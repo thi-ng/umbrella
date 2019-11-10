@@ -1,5 +1,5 @@
 import { Fn0 } from "@thi.ng/api";
-import { ICache } from "./api";
+import { ICache } from "../api";
 
 export class UnboundedCache<T> implements ICache<T> {
     index: Map<number, T>;

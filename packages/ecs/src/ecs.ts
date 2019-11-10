@@ -18,9 +18,9 @@ import {
     MemMappedComponentOpts,
     ObjectComponentOpts
 } from "./api";
-import { Component } from "./component";
-import { MemMappedComponent } from "./component-mm";
-import { Group } from "./group";
+import { MemMappedComponent } from "./components/mem-component";
+import { ObjectComponent } from "./components/object-component";
+import { Group } from "./groups/group";
 import { IDGen } from "./id";
 
 let NEXT_GROUP_ID = 0;
@@ -28,7 +28,10 @@ let NEXT_GROUP_ID = 0;
 @INotifyMixin
 export class ECS<SPEC> implements INotify {
     idgen: IDGen;
-    components: Map<ComponentID<SPEC>, IComponent<ComponentID<SPEC>, any, any>>;
+    components: Map<
+        ComponentID<SPEC>,
+        IComponent<ComponentID<SPEC>, any, any, any>
+    >;
     groups: Map<string, Group<SPEC, any>>;
 
     constructor(capacity = 1000) {
@@ -38,7 +41,7 @@ export class ECS<SPEC> implements INotify {
     }
 
     defEntity<K extends ComponentID<SPEC>>(
-        comps?: K[] | IComponent<K, any, any>[] | Partial<Pick<SPEC, K>>
+        comps?: K[] | IComponent<K, any, any, any>[] | Partial<Pick<SPEC, K>>
     ) {
         const id = this.idgen.next();
         assert(
@@ -70,7 +73,7 @@ export class ECS<SPEC> implements INotify {
     ): MemMappedComponent<K>;
     defComponent<K extends ComponentID<SPEC>>(
         opts: ObjectComponentOpts<K, SPEC[K]>
-    ): Component<K, SPEC[K]>;
+    ): ObjectComponent<K, SPEC[K]>;
     defComponent<K extends ComponentID<SPEC>>(opts: any) {
         assert(
             !this.components.has(opts.id),
@@ -80,17 +83,17 @@ export class ECS<SPEC> implements INotify {
         const utype = uintType(cap);
         const sparse = typedArray(utype, cap);
         const dense = typedArray(utype, cap);
-        const comp: IComponent<K, any, any> =
+        const comp: IComponent<K, any, any, any> =
             opts.type !== undefined
                 ? new MemMappedComponent(dense, sparse, opts)
-                : new Component(sparse, dense, opts);
+                : new ObjectComponent(sparse, dense, opts);
         this.components.set(opts.id, comp);
         return comp;
     }
 
     defGroup<K extends ComponentID<SPEC>>(
-        comps: IComponent<K, any, any>[],
-        owned: IComponent<K, any, any>[] = comps,
+        comps: IComponent<K, any, any, any>[],
+        owned: IComponent<K, any, any, any>[] = comps,
         opts: Partial<GroupOpts> = {}
     ) {
         opts = {
