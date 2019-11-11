@@ -64,6 +64,22 @@ export function* zip(...src: Iterable<any>[]): IterableIterator<any[]> {
 }
 
 /**
+ * Yields a tuple of elements, where the i-th tuple contains the i-th  element from each of the input argument sequences or iterables.
+ * Such as the first tuple contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.
+ * 
+ * The returned list is truncated in length to the length of the shortest argument sequence. With a single sequence argument, it yields a list of 1-tuples.
+ * 
+ * ```
+ * tx.zip([1,2,3], [3,4,5])
+ * // [ 1, 3 ] [ 2, 4 ] [ 3, 5 ]
+ * 
+ * tx.zip([1,2,3])
+ * // [ 1 ] [ 2 ] [ 3 ]
+ * 
+ * tx.zip([1,2,3], [3,4,5, 0, 9])
+ * // [ 1, 3 ] [ 2, 4 ] [ 3, 5 ]
+ * ```
+ *
  * @deprecated renamed to `zip`
- */
+ **/
 export const tuples = zip;
