@@ -16,3 +16,19 @@ export const compare = (a: any, b: any): number => {
     }
     return a < b ? -1 : a > b ? 1 : 0;
 };
+
+/**
+ * Numeric comparator (ascending order)
+ *
+ * @param a
+ * @param b
+ */
+export const compareNumAsc = (a: number, b: number) => a - b;
+
+/**
+ * Numeric comparator (descending order)
+ *
+ * @param a
+ * @param b
+ */
+export const compareNumDesc = (a: number, b: number) => b - a;
