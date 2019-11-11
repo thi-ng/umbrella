@@ -31,7 +31,7 @@ const packages: { id: string; v: string; deps: string[] }[] = transduce(
             } catch (_) {}
         }),
         filter(exists),
-        map((p) => JSON.parse(p.toString())),
+        map((p) => JSON.parse(p!.toString())),
         map((p) => ({
             id: p.name,
             v: p.version,
