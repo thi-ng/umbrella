@@ -45,16 +45,24 @@ export class VersionedIDGen {
     nextID: number;
     capacity: number;
     mask: number;
+    vmask: number;
     shift: number;
     freeID: number;
 
-    constructor(bits: number, cap = (1 << bits) >>> 0, next = 0) {
+    constructor(
+        bits: number,
+        vbits = 32 - bits,
+        cap = (1 << bits) >>> 0,
+        next = 0
+    ) {
+        assert(bits + vbits <= 32, "too many combined bits");
         const maxCap = (1 << bits) >>> 0;
         assert(cap <= maxCap, "capacity too large for given bit size");
         this.ids = [];
         this.nextID = next;
         this.capacity = cap;
         this.mask = maxCap - 1;
+        this.vmask = (1 << vbits) - 1;
         this.shift = bits;
         this.freeID = -1;
     }
@@ -64,7 +72,7 @@ export class VersionedIDGen {
     }
 
     version(id: number) {
-        return id >>> this.shift;
+        return (id >>> this.shift) & this.vmask;
     }
 
     next() {
@@ -83,21 +91,23 @@ export class VersionedIDGen {
     }
 
     free(id: number) {
-        if (!this.isValid(id)) return false;
+        if (!this.has(id)) return false;
         this.ids[this.id(id)] = this.freeID;
         this.freeID = this.nextVersion(id);
         return true;
     }
 
-    isValid(id: number) {
+    has(id: number) {
         const rawID = this.id(id);
-        if (id < 0 || rawID >= this.nextID) return false;
-        return this.version(this.ids[rawID]) === this.version(id);
+        const storedID = this.ids[rawID];
+        return id >= 0 && rawID < this.nextID && storedID === id;
     }
 
     protected nextVersion(id: number) {
         return (
-            ((id & this.mask) | ((id & ~this.mask) + (1 << this.shift))) >>> 0
+            ((id & this.mask) |
+                (((this.version(id) + 1) & this.vmask) << this.shift)) >>>
+            0
         );
     }
 }
