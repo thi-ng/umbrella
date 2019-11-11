@@ -1,9 +1,10 @@
 import { assert } from "@thi.ng/api";
 
 export class IDGen {
+    readonly capacity: number;
+
     protected ids: number[];
     protected nextID: number;
-    protected capacity: number;
     protected num: number;
     protected mask: number;
     protected vmask: number;
@@ -40,11 +41,11 @@ export class IDGen {
         return (id >>> this.shift) & this.vmask;
     }
 
-    numAvailable() {
+    get available() {
         return this.capacity - this.num;
     }
 
-    numUsed() {
+    get used() {
         return this.num;
     }
 
