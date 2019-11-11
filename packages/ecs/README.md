@@ -49,6 +49,7 @@ yarn add @thi.ng/ecs
 - [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/master/packages/associative)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 - [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons)
+- [@thi.ng/idgen](https://github.com/thi-ng/umbrella/tree/master/packages/idgen)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 
 ## Usage examples

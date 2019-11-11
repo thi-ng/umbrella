@@ -1,6 +1,5 @@
 export * from "./api";
 export * from "./ecs";
-export * from "./id";
 
 export * from "./components/acomponent";
 export * from "./components/mem-component";

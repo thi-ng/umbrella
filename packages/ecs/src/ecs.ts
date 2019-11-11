@@ -8,6 +8,7 @@ import {
     typedArray
 } from "@thi.ng/api";
 import { isArray, isString } from "@thi.ng/checks";
+import { IDGen } from "@thi.ng/idgen";
 import { filter } from "@thi.ng/transducers";
 import {
     ComponentID,
@@ -21,7 +22,6 @@ import {
 import { MemMappedComponent } from "./components/mem-component";
 import { ObjectComponent } from "./components/object-component";
 import { Group } from "./groups/group";
-import { IDGen } from "./id";
 
 let NEXT_GROUP_ID = 0;
 
@@ -35,7 +35,7 @@ export class ECS<SPEC> implements INotify {
     groups: Map<string, Group<SPEC, any>>;
 
     constructor(capacity = 1000) {
-        this.idgen = new IDGen(capacity, 0);
+        this.idgen = new IDGen(Math.ceil(Math.log(capacity) / Math.LN2), 0);
         this.components = new Map();
         this.groups = new Map();
     }
@@ -110,7 +110,7 @@ export class ECS<SPEC> implements INotify {
     }
 
     hasID(id: number) {
-        this.idgen.isValid(id);
+        this.idgen.has(id);
     }
 
     deleteID(id: number) {
