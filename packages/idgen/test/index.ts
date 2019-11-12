@@ -34,22 +34,22 @@ describe("idgen", () => {
         };
 
         const g = new IDGen(2, 0);
-        assert.equal(g.numAvailable(), 4);
+        assert.equal(g.available, 4);
         g.next();
         g.next();
         g.next();
         g.next();
-        assert.equal(g.numAvailable(), 0);
+        assert.equal(g.available, 0);
         assert.throws(() => g.next(), "max cap");
         check([true, true, true, true]);
         g.free(2);
-        assert.equal(g.numAvailable(), 1);
+        assert.equal(g.available, 1);
         check([true, true, false, true]);
         g.free(1);
-        assert.equal(g.numAvailable(), 2);
+        assert.equal(g.available, 2);
         check([true, false, false, true]);
         g.free(0);
-        assert.equal(g.numAvailable(), 3);
+        assert.equal(g.available, 3);
         check([false, false, false, true]);
         g.next();
         check([true, false, false, true]);
