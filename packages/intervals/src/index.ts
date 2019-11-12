@@ -165,8 +165,15 @@ export class Interval
         return new Interval(this.l, this.r, this.lopen, this.ropen);
     }
 
+    /**
+     * Compares this interval with `i` and returns a comparator value
+     * (-1, 0 or 1). Comparison order is: LHS, RHS, openness.
+     *
+     * @param i
+     */
     compare(i: Readonly<Interval>) {
         if (this === i) return 0;
+        let c: number;
         return this.l < i.l
             ? -1
             : this.l > i.l
@@ -175,7 +182,9 @@ export class Interval
             ? -1
             : this.r > i.r
             ? 1
-            : 0;
+            : (c = ~~this.lopen - ~~i.lopen) === 0
+            ? ~~i.ropen - ~~this.ropen
+            : c;
     }
 
     equiv(i: any) {

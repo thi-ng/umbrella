@@ -72,4 +72,15 @@ describe("intervals", () => {
         assert(a.intersection(i("[100..101]"))!.equiv(i("[100..100]")), "i18");
         assert(a.intersection(i("(100..101]")) === undefined, "i19");
     });
+
+    it("compare", () => {
+        const a = i("[0..1]");
+        const b = i("(0..1]");
+        const c = i("[0..1)");
+        const d = i("(0..1)");
+        assert.equal(a.compare(a), 0, "aa");
+        assert.equal(a.compare(b), -1, "ab");
+        assert.equal(a.compare(c), 1, "ac");
+        assert.equal(a.compare(d), -1, "ad");
+    });
 });
