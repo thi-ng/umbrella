@@ -43,6 +43,12 @@ export const enum Type {
     F64
 }
 
+export type UintType = Type.U8 | Type.U16 | Type.U32;
+
+export type IntType = Type.I8 | Type.I16 | Type.I32;
+
+export type FloatType = Type.F32 | Type.F64;
+
 /**
  * WebGL numeric type constants. Use `GL2TYPE` to convert, if needed.
  *
@@ -163,3 +169,25 @@ export function typedArray<T extends Type | GLType>(type: T, buf: ArrayBufferLik
 export function typedArray<T extends Type | GLType>(type: T, ...xs: any[]) {
     return new (<any>TYPEDARRAY_CTORS[type])(...xs);
 }
+
+/**
+ * Returns the smallest possible *unsigned* int type enum for given `x`.
+ * E.g. if `x <= 256`, the function returns `Type.U8`.
+ *
+ * @param x
+ */
+export const uintType = (x: number): UintType =>
+    x <= 0x100 ? Type.U8 : x <= 0x10000 ? Type.U16 : Type.U32;
+
+/**
+ * Returns the smallest possible *signed* int type enum for given `x`.
+ * E.g. if `x >= -128 && x < 128`, the function returns `Type.I8`.
+ *
+ * @param x
+ */
+export const intType = (x: number): IntType =>
+    x >= -0x80 && x < 0x80
+        ? Type.I8
+        : x >= -0x8000 && x < 0x8000
+        ? Type.I16
+        : Type.I32;
