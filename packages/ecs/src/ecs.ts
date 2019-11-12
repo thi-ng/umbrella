@@ -1,12 +1,13 @@
 import {
     assert,
     Event,
-    Fn,
     INotify,
     INotifyMixin,
+    Listener,
     Type,
     typedArray
 } from "@thi.ng/api";
+import { bitSize } from "@thi.ng/binary";
 import { isArray, isString } from "@thi.ng/checks";
 import { IDGen } from "@thi.ng/idgen";
 import { filter } from "@thi.ng/transducers";
@@ -35,7 +36,7 @@ export class ECS<SPEC> implements INotify {
     groups: Map<string, Group<SPEC, any>>;
 
     constructor(capacity = 1000) {
-        this.idgen = new IDGen(Math.ceil(Math.log(capacity) / Math.LN2), 0);
+        this.idgen = new IDGen(bitSize(capacity), 0);
         this.components = new Map();
         this.groups = new Map();
     }
@@ -132,17 +133,13 @@ export class ECS<SPEC> implements INotify {
         return filter((g) => g.has(id), this.groups.values());
     }
 
-    // @ts-ignore: arguments
-    addListener(id: string, fn: Fn<Event, void>, scope?: any): boolean {
-        return false;
-    }
+    // @ts-ignore: mixin
+    addListener(id: string, fn: Listener, scope?: any): boolean {}
 
-    // @ts-ignore: arguments
-    removeListener(id: string, fn: Fn<Event, void>, scope?: any): boolean {
-        return false;
-    }
+    // @ts-ignore: mixin
+    removeListener(id: string, fn: Listener, scope?: any): boolean {}
 
-    // @ts-ignore: arguments
+    // @ts-ignore: mixin
     notify(event: Event) {}
 }
 
