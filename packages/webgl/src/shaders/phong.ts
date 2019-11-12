@@ -68,14 +68,17 @@ export const PHONG = (opts: Partial<PhongOpts> = {}): ShaderSpec => ({
                 )),
                 assign(
                     outs.fragColor,
-                    add(
-                        diffuseLighting(
-                            directional,
-                            ins.vcolor,
-                            unis.lightCol,
-                            unis.ambientCol
+                    vec4(
+                        add(
+                            diffuseLighting(
+                                directional,
+                                ins.vcolor,
+                                unis.lightCol,
+                                unis.ambientCol
+                            ),
+                            mul(unis.specularCol, specular)
                         ),
-                        mul(unis.specularCol, specular)
+                        1
                     )
                 )
             ];
@@ -109,6 +112,7 @@ export const PHONG = (opts: Partial<PhongOpts> = {}): ShaderSpec => ({
     },
     state: {
         depth: true,
+        cull: true,
         ...opts.state
     }
 });
