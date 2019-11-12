@@ -12,14 +12,14 @@ export const EVENT_REMOVED = "removed";
 @INotifyMixin
 export class IDGen implements Iterable<number>, INotify {
     readonly capacity: number;
+    readonly ids: number[];
 
-    protected ids: number[];
     protected nextID: number;
+    protected _freeID: number;
     protected num: number;
     protected mask: number;
     protected vmask: number;
     protected shift: number;
-    protected freeID: number;
 
     constructor(
         bits: number,
@@ -40,7 +40,7 @@ export class IDGen implements Iterable<number>, INotify {
         this.mask = maxCap - 1;
         this.vmask = (1 << vbits) - 1;
         this.shift = bits;
-        this.freeID = -1;
+        this._freeID = -1;
     }
 
     id(id: number) {
@@ -59,6 +59,10 @@ export class IDGen implements Iterable<number>, INotify {
         return this.num;
     }
 
+    get freeID() {
+        return this._freeID;
+    }
+
     *[Symbol.iterator]() {
         for (let i = this.nextID; --i >= 0; ) {
             const id = this.ids[i];
@@ -68,10 +72,10 @@ export class IDGen implements Iterable<number>, INotify {
 
     next() {
         let id: number;
-        if (this.freeID !== -1) {
-            id = this.freeID;
+        if (this._freeID !== -1) {
+            id = this._freeID;
             const rawID = this.id(id);
-            this.freeID = this.ids[rawID];
+            this._freeID = this.ids[rawID];
             this.ids[rawID] = id;
         } else {
             assert(this.nextID < this.capacity, "max capacity reached");
@@ -85,8 +89,8 @@ export class IDGen implements Iterable<number>, INotify {
 
     free(id: number) {
         if (!this.has(id)) return false;
-        this.ids[this.id(id)] = this.freeID;
-        this.freeID = this.nextVersion(id);
+        this.ids[this.id(id)] = this._freeID;
+        this._freeID = this.nextVersion(id);
         this.num--;
         this.notify({ id: EVENT_REMOVED, target: this, value: id });
         return true;
