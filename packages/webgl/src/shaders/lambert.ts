@@ -97,6 +97,7 @@ export const LAMBERT = (opts: Partial<LambertOpts> = {}): ShaderSpec => ({
     },
     state: {
         depth: true,
+        cull: true,
         ...opts.state
     }
 });

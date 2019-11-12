@@ -1,15 +1,25 @@
-import { assert } from "@thi.ng/api";
+import {
+    assert,
+    Event,
+    Fn,
+    INotify,
+    INotifyMixin
+} from "@thi.ng/api";
 
-export class IDGen {
+export const EVENT_ADDED = "added";
+export const EVENT_REMOVED = "removed";
+
+@INotifyMixin
+export class IDGen implements Iterable<number>, INotify {
     readonly capacity: number;
+    readonly ids: number[];
 
-    protected ids: number[];
     protected nextID: number;
+    protected _freeID: number;
     protected num: number;
     protected mask: number;
     protected vmask: number;
     protected shift: number;
-    protected freeID: number;
 
     constructor(
         bits: number,
@@ -30,7 +40,7 @@ export class IDGen {
         this.mask = maxCap - 1;
         this.vmask = (1 << vbits) - 1;
         this.shift = bits;
-        this.freeID = -1;
+        this._freeID = -1;
     }
 
     id(id: number) {
@@ -49,6 +59,10 @@ export class IDGen {
         return this.num;
     }
 
+    get freeID() {
+        return this._freeID;
+    }
+
     *[Symbol.iterator]() {
         for (let i = this.nextID; --i >= 0; ) {
             const id = this.ids[i];
@@ -57,27 +71,28 @@ export class IDGen {
     }
 
     next() {
-        if (this.freeID !== -1) {
-            const id = this.freeID;
+        let id: number;
+        if (this._freeID !== -1) {
+            id = this._freeID;
             const rawID = this.id(id);
-            this.freeID = this.ids[rawID];
+            this._freeID = this.ids[rawID];
             this.ids[rawID] = id;
-            this.num++;
-            return id;
         } else {
             assert(this.nextID < this.capacity, "max capacity reached");
-            const id = this.nextID++;
+            id = this.nextID++;
             this.ids[id] = id;
-            this.num++;
-            return id;
         }
+        this.num++;
+        this.notify({ id: EVENT_ADDED, target: this, value: id });
+        return id;
     }
 
     free(id: number) {
         if (!this.has(id)) return false;
-        this.ids[this.id(id)] = this.freeID;
-        this.freeID = this.nextVersion(id);
+        this.ids[this.id(id)] = this._freeID;
+        this._freeID = this.nextVersion(id);
         this.num--;
+        this.notify({ id: EVENT_REMOVED, target: this, value: id });
         return true;
     }
 
@@ -85,6 +100,15 @@ export class IDGen {
         const rawID = this.id(id);
         return id >= 0 && rawID < this.nextID && this.ids[rawID] === id;
     }
+
+    // @ts-ignore: mixin
+    addListener(id: string, fn: Fn<Event, void>, scope?: any): boolean {}
+
+    // @ts-ignore: mixin
+    removeListener(id: string, fn: Fn<Event, void>, scope?: any): boolean {}
+
+    // @ts-ignore: mixin
+    notify(event: Event) {}
 
     protected nextVersion(id: number) {
         return (
