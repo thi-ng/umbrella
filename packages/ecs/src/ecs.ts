@@ -4,8 +4,8 @@ import {
     INotify,
     INotifyMixin,
     Listener,
-    Type,
-    typedArray
+    typedArray,
+    uintType
 } from "@thi.ng/api";
 import { bitSize } from "@thi.ng/binary";
 import { isArray, isString } from "@thi.ng/checks";
@@ -142,6 +142,3 @@ export class ECS<SPEC> implements INotify {
     // @ts-ignore: mixin
     notify(event: Event) {}
 }
-
-const uintType = (num: number) =>
-    num <= 0x100 ? Type.U8 : num <= 0x10000 ? Type.U16 : Type.U32;
