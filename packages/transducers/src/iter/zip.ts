@@ -78,5 +78,5 @@ export function* zip(...src: Iterable<any>[]): IterableIterator<any[]> {
  * ```
  *
  * @deprecated renamed to `zip`
- **/
+ */
 export const tuples = zip;
