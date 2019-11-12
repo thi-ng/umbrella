@@ -64,6 +64,19 @@ export function* zip(...src: Iterable<any>[]): IterableIterator<any[]> {
 }
 
 /**
+ * Zip function accepts a list of iterables, and combines them by merging each value of each iterable,
+ * Such as the first yield element contains the first elements of the given iterables, the second of which contains the second elements of the given iterables, and so on.
+ * 
+ * The returned iterable is truncated in length to the length of the shortest argument sequence. With a single sequence argument, it yields a list of 1-tuples.
+ * 
+ * ```
+ * tx.zip([1, 2, 3], [3, 4, 5, 0, 9])
+ * // [ 1, 3 ] [ 2, 4 ] [ 3, 5 ]
+ * 
+ * tx.zip([1, 2, 3])
+ * // [ 1 ] [ 2 ] [ 3 ]
+ * ```
+ *
  * @deprecated renamed to `zip`
  */
 export const tuples = zip;
