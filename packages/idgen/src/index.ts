@@ -1,6 +1,16 @@
-import { assert } from "@thi.ng/api";
+import {
+    assert,
+    Event,
+    Fn,
+    INotify,
+    INotifyMixin
+} from "@thi.ng/api";
 
-export class IDGen {
+export const EVENT_ADDED = "added";
+export const EVENT_REMOVED = "removed";
+
+@INotifyMixin
+export class IDGen implements Iterable<number>, INotify {
     readonly capacity: number;
 
     protected ids: number[];
@@ -57,20 +67,20 @@ export class IDGen {
     }
 
     next() {
+        let id: number;
         if (this.freeID !== -1) {
-            const id = this.freeID;
+            id = this.freeID;
             const rawID = this.id(id);
             this.freeID = this.ids[rawID];
             this.ids[rawID] = id;
-            this.num++;
-            return id;
         } else {
             assert(this.nextID < this.capacity, "max capacity reached");
-            const id = this.nextID++;
+            id = this.nextID++;
             this.ids[id] = id;
-            this.num++;
-            return id;
         }
+        this.num++;
+        this.notify({ id: EVENT_ADDED, target: this, value: id });
+        return id;
     }
 
     free(id: number) {
@@ -78,6 +88,7 @@ export class IDGen {
         this.ids[this.id(id)] = this.freeID;
         this.freeID = this.nextVersion(id);
         this.num--;
+        this.notify({ id: EVENT_REMOVED, target: this, value: id });
         return true;
     }
 
@@ -85,6 +96,15 @@ export class IDGen {
         const rawID = this.id(id);
         return id >= 0 && rawID < this.nextID && this.ids[rawID] === id;
     }
+
+    // @ts-ignore: mixin
+    addListener(id: string, fn: Fn<Event, void>, scope?: any): boolean {}
+
+    // @ts-ignore: mixin
+    removeListener(id: string, fn: Fn<Event, void>, scope?: any): boolean {}
+
+    // @ts-ignore: mixin
+    notify(event: Event) {}
 
     protected nextVersion(id: number) {
         return (

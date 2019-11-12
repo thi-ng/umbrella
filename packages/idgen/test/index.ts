@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { IDGen } from "../src";
+import { EVENT_ADDED, EVENT_REMOVED, IDGen } from "../src";
 
 describe("idgen", () => {
     it("re-use (versioned)", () => {
@@ -109,5 +109,23 @@ describe("idgen", () => {
         check([0, 1, 2, 3], [false, false, false, false]);
         check([0 + 4, 1 + 4, 2 + 4, 3 + 4], [false, false, false, false]);
         assert.equal((<any>g).freeID, 3 + 4);
+    });
+
+    it("notify", () => {
+        const added: number[] = [];
+        const removed: number[] = [];
+        const g = new IDGen(8);
+        g.addListener(EVENT_ADDED, ({ value }) => added.push(value));
+        g.addListener(EVENT_REMOVED, ({ value }) => removed.push(value));
+        g.next();
+        g.next();
+        g.free(0);
+        g.free(1);
+        g.next();
+        g.next();
+        g.free(0x100);
+        g.free(0x101);
+        assert.deepEqual(added, [0, 1, 0x101, 0x100]);
+        assert.deepEqual(removed, [0, 1, 0x100, 0x101]);
     });
 });
