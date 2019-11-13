@@ -40,12 +40,12 @@ const buildIndex = (n: number) => {
 /**
  * See `HDOMImplementation` interface for further details.
  *
- * @param opts
- * @param impl hdom implementation
- * @param parent
- * @param prev previous tree
- * @param curr current tree
- * @param child child index
+ * @param opts -
+ * @param impl - hdom implementation
+ * @param parent -
+ * @param prev - previous tree
+ * @param curr - current tree
+ * @param child - child index
  */
 export const diffTree = <T>(
     opts: Partial<HDOMOpts>,
@@ -212,10 +212,10 @@ const decOffsets = (offsets: any[], j: number, idx: number) => {
  * Helper function for `diffTree()` to compute & apply the difference
  * between a node's `prev` and `curr` attributes.
  *
- * @param impl
- * @param el
- * @param prev
- * @param curr
+ * @param impl -
+ * @param el -
+ * @param prev -
+ * @param curr -
  */
 export const diffAttributes = <T>(
     impl: HDOMImplementation<T>,
@@ -248,7 +248,7 @@ export const diffAttributes = <T>(
  * attribute. If (and only if) it is set to `false`, further descent
  * into that element's branch is skipped.
  *
- * @param tag
+ * @param tag -
  */
 export const releaseTree = (tag: any) => {
     if (isArray(tag)) {
@@ -289,8 +289,8 @@ const extractEquivElements = (edits: any[]) => {
  * contains `__diff: false`, the object will ALWAYS be considered
  * unequal, even if all other attributes in the object are equivalent.
  *
- * @param a
- * @param b
+ * @param a -
+ * @param b -
  */
 export const equiv = (a: any, b: any): boolean => {
     let proto: any;

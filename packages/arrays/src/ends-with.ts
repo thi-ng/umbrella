@@ -9,9 +9,9 @@ import { equiv as _eq } from "@thi.ng/equiv";
  *
  * @see startsWith
  *
- * @param buf
- * @param needle
- * @param equiv
+ * @param buf -
+ * @param needle -
+ * @param equiv -
  */
 export const endsWith = <T>(
     buf: ArrayLike<T>,

@@ -29,8 +29,8 @@ import { splitLine } from "../internal/split";
  *
  * @see splitAt
  *
- * @param shape
- * @param p
+ * @param shape -
+ * @param p -
  */
 export const splitNearPoint = defmulti<
     IShape,

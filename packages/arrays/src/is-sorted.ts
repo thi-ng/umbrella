@@ -8,7 +8,7 @@ import { compare } from "@thi.ng/compare";
  * true, if effective index range (or array length) has less than two
  * elements. No bounds checking.
  *
- * ```
+ * ```ts
  * isSorted([3, 2, 1])
  * // false
  *
@@ -17,10 +17,10 @@ import { compare } from "@thi.ng/compare";
  * // true
  * ```
  *
- * @param arr
- * @param cmp
- * @param start
- * @param end
+ * @param arr -
+ * @param cmp -
+ * @param start -
+ * @param end -
  */
 export const isSorted = <T>(
     arr: ArrayLike<T>,

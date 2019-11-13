@@ -10,9 +10,9 @@ export class AdjacencyBitMatrix implements IGraph {
      *
      * If `undirected` is true, creates symmetrical adjacencies.
      *
-     * @param n
-     * @param edges
-     * @param undirected
+     * @param n -
+     * @param edges -
+     * @param undirected -
      */
     static fromEdges(
         n: number,
@@ -58,7 +58,7 @@ export class AdjacencyBitMatrix implements IGraph {
     /**
      * Resizes matrix to new size given.
      *
-     * @param n
+     * @param n -
      */
     resize(n: number) {
         this.mat.resize(n);

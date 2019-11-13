@@ -115,7 +115,7 @@ export function utf8Decode(src?: Iterable<number>): any {
  *
  * Also see `utf8Decode()` for reverse transformation.
  *
- * ```
+ * ```ts
  * transduce(
  *   comp(utf8Encode(), hexDump()),
  *   str("\n"),

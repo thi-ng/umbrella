@@ -2,7 +2,7 @@ import { Fn } from "@thi.ng/api";
 
 /**
  * @deprecated use thi.ng/compose/juxt
- * @param fns
+ * @param fns -
  */
 export const juxt = <T>(...fns: Fn<T, any>[]) => (x: T) => {
     let res = [];

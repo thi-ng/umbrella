@@ -44,9 +44,9 @@ export interface MSDFFont {
 /**
  * Alignment function for a single line of text.
  *
- * @param font
- * @param dir
- * @param line
+ * @param font -
+ * @param dir -
+ * @param line -
  */
 export type TextAlign = Fn3<MSDFFont, Partial<TextOpts>, string, number>;
 

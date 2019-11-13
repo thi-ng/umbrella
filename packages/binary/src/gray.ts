@@ -5,7 +5,7 @@
  *
  * https://en.wikipedia.org/wiki/Gray_code
  *
- * @param x u32
+ * @param x - u32
  */
 export const encodeGray32 = (x: number) => (x ^ (x >>> 1)) >>> 0;
 

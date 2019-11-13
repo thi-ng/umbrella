@@ -12,9 +12,9 @@ import { inRange } from "@thi.ng/math";
  * @see extendSides
  * @see padSides
  *
- * @param src
- * @param numLeft
- * @param numRight
+ * @param src -
+ * @param numLeft -
+ * @param numRight -
  */
 export function* wrapSides<T>(
     src: Iterable<T>,

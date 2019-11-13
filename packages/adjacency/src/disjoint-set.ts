@@ -13,7 +13,7 @@ export class DisjointSet {
     /**
      * Creates new instance with `n` initial singular subsets.
      *
-     * @param n
+     * @param n -
      */
     constructor(n: number) {
         const roots = (this.roots = new Uint32Array(n));
@@ -29,7 +29,7 @@ export class DisjointSet {
      * already is unified with some other ID, this will always return
      * `id` itself (since each node is initially its own root).
      *
-     * @param id
+     * @param id -
      */
     canonical(id: number) {
         const roots = this.roots;
@@ -43,8 +43,8 @@ export class DisjointSet {
      * Connects combines the trees of the given two node IDs and returns
      * the new resulting canonical tree root ID.
      *
-     * @param a
-     * @param b
+     * @param a -
+     * @param b -
      */
     union(a: number, b: number) {
         const rootA = this.canonical(a);
@@ -67,8 +67,8 @@ export class DisjointSet {
      * Returns true, if the given two nodes belong to the same tree /
      * subset.
      *
-     * @param a
-     * @param b
+     * @param a -
+     * @param b -
      */
     unified(a: number, b: number) {
         return this.canonical(a) === this.canonical(b);

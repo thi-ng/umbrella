@@ -15,8 +15,8 @@ import { reduced } from "../reduced";
  * // [ 0, 1, 2, 3, 4 ]
  * ```
  *
- * @param pred
- * @param src
+ * @param pred -
+ * @param src -
  */
 export function takeWhile<T>(pred?: Predicate<T>): Transducer<T, T>;
 export function takeWhile<T>(src: Iterable<T>): IterableIterator<T>;

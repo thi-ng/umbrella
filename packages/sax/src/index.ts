@@ -156,7 +156,7 @@ const ESCAPE_SEQS: IObjectOf<string> = {
  * Returns XML parser transducer, optionally configured with given
  * options. If `src` is also given, returns an iterator instead.
  *
- * @param opts
+ * @param opts -
  */
 export function parse(
     opts?: Partial<ParseOpts>

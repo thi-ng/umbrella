@@ -11,9 +11,9 @@ import { partition } from "./partition";
  * and `cmp` function args can be used to select / compute a sortable
  * value and change sorting behavior.
  *
- * @param n window size
- * @param opts
- * @param src
+ * @param n - window size
+ * @param opts -
+ * @param src -
  */
 // prettier-ignore
 export function movingMedian<A, B>(n: number, opts?: Partial<SortOpts<A, B>>): Transducer<A, A>;

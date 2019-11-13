@@ -91,7 +91,7 @@ export type LookupPath = PropertyKey[];
  * // 20
  * ```
  *
- *  @param root
+ *  @param root -
  */
 export const resolve = (root: any) => {
     if (isPlainObject(root)) {
@@ -136,10 +136,10 @@ const resolveArray = (
  * active lookups. The latter is used for cycle detection and `_resolve`
  * will throw an error if a cycle has been detected.
  *
- * @param root
- * @param path
- * @param resolved
- * @param stack
+ * @param root -
+ * @param path -
+ * @param resolved -
+ * @param stack -
  */
 const _resolve = (
     root: any,
@@ -196,9 +196,9 @@ const _resolve = (
  * { a: { b: { c: 1 } }, d: 1 }
  * ```
  *
- * @param root
- * @param path
- * @param resolved
+ * @param root -
+ * @param path -
+ * @param resolved -
  */
 const resolvePath = (
     root: any,
@@ -229,10 +229,10 @@ const resolvePath = (
  *
  * See `resolve` comments for further details.
  *
- * @param fn
- * @param resolve
- * @param pathID current base path for marking
- * @param resolved
+ * @param fn -
+ * @param resolve -
+ * @param pathID - current base path for marking
+ * @param resolved -
  */
 const resolveFunction = (
     fn: (x: any, r?: ResolveFn) => any,
@@ -288,9 +288,9 @@ const markArrayResolved = (arr: any[], path: string, resolved: any) => {
  * Takes the path for the current key and a lookup path string. Converts
  * the possibly relative lookup path into its absolute form.
  *
- * @param curr
- * @param path
- * @param idx
+ * @param curr -
+ * @param path -
+ * @param idx -
  */
 export const absPath = (
     curr: LookupPath,

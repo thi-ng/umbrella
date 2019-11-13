@@ -12,7 +12,7 @@ import { ensureReduced, reduced } from "../reduced";
  * // [ 0, 10, 20, 30, 40 ]
  * ```
  *
- * @param n
+ * @param n -
  */
 export function take<T>(n: number): Transducer<T, T>;
 export function take<T>(n: number, src: Iterable<T>): IterableIterator<T>;

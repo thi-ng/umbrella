@@ -43,8 +43,8 @@ import { ReadonlyVec } from "./api";
  * @see https://github.com/thi-ng/c-thing/blob/master/src/math/hashfn.c
  * @see thi.ng/morton for Z-curve ordered hashing
  *
- * @param v vector
- * @param hash hash factor
+ * @param v - vector
+ * @param hash - hash factor
  */
 export const hash = (v: ReadonlyVec, H = 0x9e3779b1) => {
     let hash = -1;

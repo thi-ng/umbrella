@@ -13,8 +13,8 @@ import { EPS } from "./api";
  *
  * https://en.wikipedia.org/wiki/Derivative#Continuity_and_differentiability
  *
- * @param fn
- * @param eps
+ * @param fn -
+ * @param eps -
  */
 export const derivative = (f: (x: number) => number, eps = EPS) => (
     x: number
@@ -25,8 +25,8 @@ export const derivative = (f: (x: number) => number, eps = EPS) => (
  *
  * Note: `a` MUST NOT be zero.
  *
- * @param a slope
- * @param b constant offset
+ * @param a - slope
+ * @param b - constant offset
  */
 export const solveLinear = (a: number, b: number) => -b / a;
 
@@ -39,10 +39,10 @@ export const solveLinear = (a: number, b: number) => -b / a;
  * https://en.wikipedia.org/wiki/Quadratic_function
  * https://en.wikipedia.org/wiki/Quadratic_equation
  *
- * @param a quadratic coefficient
- * @param b linear coefficient
- * @param c constant offset
- * @param eps tolerance to determine multiple roots
+ * @param a - quadratic coefficient
+ * @param b - linear coefficient
+ * @param c - constant offset
+ * @param eps - tolerance to determine multiple roots
  */
 export const solveQuadratic = (a: number, b: number, c: number, eps = 1e-9) => {
     const d = 2 * a;
@@ -62,11 +62,11 @@ export const solveQuadratic = (a: number, b: number, c: number, eps = 1e-9) => {
  *
  * https://en.wikipedia.org/wiki/Cubic_function
  *
- * @param a cubic coefficient
- * @param b quadratic coefficient
- * @param c linear coefficient
- * @param d constant offset
- * @param eps tolerance to determine multiple roots
+ * @param a - cubic coefficient
+ * @param b - quadratic coefficient
+ * @param c - linear coefficient
+ * @param d - constant offset
+ * @param eps - tolerance to determine multiple roots
  */
 export const solveCubic = (
     a: number,

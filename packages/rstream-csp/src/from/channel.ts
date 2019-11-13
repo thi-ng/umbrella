@@ -3,8 +3,8 @@ import { LOGGER, Stream } from "@thi.ng/rstream";
 
 /**
  *
- * @param src
- * @param closeWhenCancelled
+ * @param src -
+ * @param closeWhenCancelled -
  */
 export const fromChannel = <T>(src: Channel<T>, closeWhenCancelled = true) =>
     new Stream<T>((stream) => {

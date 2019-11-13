@@ -43,9 +43,9 @@ export interface CanvasHandlers<T extends CanvasContext> {
  * Configurable canvas component. Used as common base for `canvasWebGL`
  * and `canvas2D` wrappers.
  *
- * @param type canvas context type
- * @param handlers user handlers
- * @param opts canvas context creation options
+ * @param type - canvas context type
+ * @param handlers - user handlers
+ * @param opts - canvas context creation options
  */
 const _canvas = (
     type: string,
@@ -94,7 +94,7 @@ const _canvas = (
  * inlined into hdom tree and must be initialized prior/outside, however
  * the returned component can be used as normal.
  *
- * ```
+ * ```ts
  * const glcanvas = canvasWebGL({
  *   render(canv, gl, hctx, time, frame, ...args) {
  *     const col = 0.5 + 0.5 * Math.sin(time);
@@ -105,8 +105,8 @@ const _canvas = (
  * [glcanvas, {id: "foo", width: 640, height: 480}]
  * ```
  *
- * @param handlers user provided handlers
- * @param opts canvas context creation options
+ * @param handlers - user provided handlers
+ * @param opts - canvas context creation options
  */
 export const canvasWebGL = (
     handlers: Partial<CanvasHandlers<WebGLRenderingContext>>,
@@ -116,8 +116,8 @@ export const canvasWebGL = (
 /**
  * Same as `canvasWebGL` but targets WebGL2.
  *
- * @param handlers user provided handlers
- * @param opts canvas context creation options
+ * @param handlers - user provided handlers
+ * @param opts - canvas context creation options
  */
 export const canvasWebGL2 = (
     handlers: Partial<CanvasHandlers<WebGL2RenderingContext>>,
@@ -127,8 +127,8 @@ export const canvasWebGL2 = (
 /**
  * Similar to `canvasWebGL`, but targets default 2D drawing context.
  *
- * @param handlers user provided handlers
- * @param glopts canvas context creation options
+ * @param handlers - user provided handlers
+ * @param glopts - canvas context creation options
  */
 export const canvas2D = (
     handlers: Partial<CanvasHandlers<CanvasRenderingContext2D>>,
@@ -140,9 +140,9 @@ export const canvas2D = (
  * compensate for HDPI devices. Note: For 2D canvases, this will
  * automatically clear any prior canvas content.
  *
- * @param canvas
- * @param width uncompensated pixel width
- * @param height uncompensated pixel height
+ * @param canvas -
+ * @param width - uncompensated pixel width
+ * @param height - uncompensated pixel height
  */
 export const adaptDPI = (
     canvas: HTMLCanvasElement,

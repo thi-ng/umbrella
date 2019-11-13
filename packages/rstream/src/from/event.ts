@@ -6,9 +6,9 @@ import { nextID } from "../utils/idgen";
  * target and using given event listener options (same as supported by
  * `addEventListener()`, default: false).
  *
- * @param src event target
- * @param name event name
- * @param opts listener opts
+ * @param src - event target
+ * @param name - event name
+ * @param opts - listener opts
  */
 export const fromEvent = (
     src: EventTarget,
@@ -27,14 +27,14 @@ export const fromEvent = (
  * type in its type signature, whereas `fromEvent` will only use the
  * generic `Event`.
  *
- * ```
+ * ```ts
  * fromDOMEvent(document.body, "mousemove"); // Stream<MouseEvent>
  * fromEvent(document.body, "mousemove"); // Stream<Event>
  * ```
  *
- * @param src
- * @param name
- * @param opts
+ * @param src -
+ * @param name -
+ * @param opts -
  */
 export const fromDOMEvent = <K extends keyof GlobalEventHandlersEventMap>(
     src: EventTarget,

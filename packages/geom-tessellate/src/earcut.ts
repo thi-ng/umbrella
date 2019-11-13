@@ -30,7 +30,7 @@ const snip = (
 /**
  * Tessellator for simple 2D polygons.
  *
- * @param points
+ * @param points -
  */
 export const earCut2: Tessellator = (points: ReadonlyVec[]) => {
     const tris: Vec[][] = [];

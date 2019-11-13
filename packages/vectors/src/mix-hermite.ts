@@ -6,12 +6,12 @@ import { submN } from "./submn";
 /**
  * Vector version of thi.ng/math `mixCubicHermite`.
  *
- * @param out
- * @param a
- * @param ta
- * @param b
- * @param tb
- * @param t
+ * @param out -
+ * @param a -
+ * @param ta -
+ * @param b -
+ * @param tb -
+ * @param t -
  */
 export const mixCubicHermite = (
     out: Vec | null,
@@ -46,13 +46,13 @@ export const mixCubicHermite = (
  *
  * If `out` is null, stores result in `b`.
  *
- * @param out
- * @param a
- * @param b
- * @param c
- * @param d
- * @param t
- * @param scale
+ * @param out -
+ * @param a -
+ * @param b -
+ * @param c -
+ * @param d -
+ * @param t -
+ * @param scale -
  */
 export const mixHermiteCardinal = (
     out: Vec | null,
@@ -80,12 +80,12 @@ export const mixHermiteCardinal = (
  *
  * If `out` is null, stores result in `b`.
  *
- * @param out
- * @param a
- * @param b
- * @param c
- * @param d
- * @param t
+ * @param out -
+ * @param a -
+ * @param b -
+ * @param c -
+ * @param d -
+ * @param t -
  */
 export const mixHermiteDiff3 = (
     out: Vec,
@@ -107,12 +107,12 @@ export const mixHermiteDiff3 = (
 /**
  * Vector version of thi.ng/math `tangentCardinal`.
  *
- * @param out
- * @param prev
- * @param next
- * @param scale
- * @param ta
- * @param tc
+ * @param out -
+ * @param prev -
+ * @param next -
+ * @param scale -
+ * @param ta -
+ * @param tc -
  */
 export const tangentCardinal = (
     out: Vec,
@@ -126,13 +126,13 @@ export const tangentCardinal = (
 /**
  * Vector version of thi.ng/math `tangentDiff3`.
  *
- * @param out
- * @param prev
- * @param curr
- * @param next
- * @param ta
- * @param tb
- * @param tc
+ * @param out -
+ * @param prev -
+ * @param curr -
+ * @param next -
+ * @param ta -
+ * @param tb -
+ * @param tc -
  */
 export const tangentDiff3 = (
     out: Vec,

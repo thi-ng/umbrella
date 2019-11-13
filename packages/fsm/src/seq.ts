@@ -6,9 +6,9 @@ import { result } from "./result";
  * in sequence. If any of the given matchers fails, returns
  * `Match.FAIL`.
  *
- * @param matches
- * @param success
- * @param fail
+ * @param matches -
+ * @param success -
+ * @param fail -
  */
 export const seq = <T, C, R>(
     matches: Matcher<T, C, R>[],

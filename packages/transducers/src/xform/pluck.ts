@@ -11,7 +11,7 @@ import { map } from "./map";
  * // [ 1, 2, undefined ]
  * ```
  *
- * @param key property key
+ * @param key - property key
  */
 export function pluck<A, B>(key: PropertyKey): Transducer<A, B>;
 export function pluck<A, B>(

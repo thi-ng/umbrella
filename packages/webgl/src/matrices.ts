@@ -16,7 +16,7 @@ const $ = (a: any, b: any, id: string) => a[id] || b[id].defaultVal || IDENT44;
  * Computes the inverse transpose of given 4x4 matrix uniform, i.e.
  * `transpose(invert(m))`.
  *
- * @param model
+ * @param model -
  */
 export const autoNormalMatrix1 = (model = "model") => (
     shaderU: ShaderUniforms,
@@ -27,8 +27,8 @@ export const autoNormalMatrix1 = (model = "model") => (
  * Computes the inverse transpose of the matrix product of given 4x4
  * matrix uniforms, i.e. `transpose(invert(view * model))`.
  *
- * @param model
- * @param view
+ * @param model -
+ * @param view -
  */
 export const autoNormalMatrix2 = (model = "model", view = "view") => (
     shaderU: ShaderUniforms,
@@ -47,8 +47,8 @@ export const autoNormalMatrix2 = (model = "model", view = "view") => (
  * WebGL context is given, the its `drawingBufferWidth` &
  * `drawingBufferHeight` values are used.
  *
- * @param width
- * @param height
+ * @param width -
+ * @param height -
  */
 export function screen2d(width: number, height: number): GLMat4;
 export function screen2d(gl: WebGLRenderingContext): GLMat4;

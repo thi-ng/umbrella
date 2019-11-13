@@ -27,9 +27,9 @@ import { partition } from "./partition";
  * // [ { id: 'c', val: 8 }, { id: 'b', val: 7 }, { id: 'a', val: 5 } ]
  * ```
  *
- * @param n window size
- * @param key sort key lookup
- * @param cmp comparator
+ * @param n - window size
+ * @param key - sort key lookup
+ * @param cmp - comparator
  */
 // prettier-ignore
 export function partitionSort<A, B>(n: number, opts?: Partial<SortOpts<A, B>>): Transducer<A, A>;

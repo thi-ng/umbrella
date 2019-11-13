@@ -45,8 +45,8 @@ import { dispatch } from "../internal/dispatch";
  * - Sphere
  * - Triangle
  *
- * @param shape
- * @param signed true, if signed area
+ * @param shape -
+ * @param signed - true, if signed area
  */
 export const area: MultiFn1O<IShape, boolean, number> = defmulti(dispatch);
 

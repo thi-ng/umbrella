@@ -4,7 +4,7 @@ import { ColorMode, IColor } from "./api";
 /**
  * Returns new `Int32` wrapping given ARGB int.
  *
- * @param rgba
+ * @param rgba -
  */
 export const int32 = (rgba: number) => new Int32(rgba);
 
@@ -12,7 +12,7 @@ export const int32 = (rgba: number) => new Int32(rgba);
  * Returns new `Int32` wrapping given 24bit RGB color and setting alpha
  * channel set to 100% opaque.
  *
- * @param rgb
+ * @param rgb -
  */
 export const int24 = (rgb: number) => new Int32((rgb & 0xffffff) | 0xff000000);
 

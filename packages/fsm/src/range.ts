@@ -12,10 +12,10 @@ import { result } from "./result";
  * Returns a single input matcher which returns `Match.FULL` if the
  * input is within the closed interval given by [`min`,`max`].
  *
- * @param min
- * @param max
- * @param success
- * @param fail
+ * @param min -
+ * @param max -
+ * @param success -
+ * @param fail -
  */
 export const range = <T extends number | string, C, R>(
     min: T,
@@ -30,8 +30,8 @@ export const range = <T extends number | string, C, R>(
 /**
  * Matcher for single digit characters (0-9).
  *
- * @param success
- * @param fail
+ * @param success -
+ * @param fail -
  */
 export const digit = <C, R>(
     success?: LitCallback<string, C, R>,
@@ -41,8 +41,8 @@ export const digit = <C, R>(
 /**
  * Matcher for single A-Z or a-z characters.
  *
- * @param success
- * @param fail
+ * @param success -
+ * @param fail -
  */
 export const alpha = <C, R>(
     success?: AltCallback<string, C, R>,
@@ -58,8 +58,8 @@ export const alpha = <C, R>(
 /**
  * Combination of `digit()` and `alpha()`.
  *
- * @param success
- * @param fail
+ * @param success -
+ * @param fail -
  */
 export const alphaNum = <C, R>(
     success?: AltCallback<string, C, R>,
@@ -71,8 +71,8 @@ const WS = new Set([" ", "\n", "\t", "\r"]);
 /**
  * Matcher for single whitespace characters.
  *
- * @param success
- * @param fail
+ * @param success -
+ * @param fail -
  */
 export const whitespace = <C, R>(
     success?: LitCallback<string, C, R>,

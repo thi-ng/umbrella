@@ -13,8 +13,8 @@ import { isReduced } from "../reduced";
  * // [ [ 1 ], [ 2, 4, 6 ], [ 3, 5 ], [ 8, 4 ] ]
  * ```
  *
- * @param fn
- * @param stateful
+ * @param fn -
+ * @param stateful -
  */
 export function partitionBy<T>(
     fn: Fn<T, any> | (() => Fn<T, any>),

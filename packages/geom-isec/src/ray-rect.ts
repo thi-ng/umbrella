@@ -10,10 +10,10 @@ const max = Math.max;
  * Based on:
  * https://tavianator.com/fast-branchless-raybounding-box-intersections/
  *
- * @param rpos ray origin
- * @param dir ray dir
- * @param bmin rect min
- * @param bmax rect max
+ * @param rpos - ray origin
+ * @param dir - ray dir
+ * @param bmin - rect min
+ * @param bmax - rect max
  */
 const rayRect = (
     rpos: ReadonlyVec,
@@ -37,10 +37,10 @@ const rayRect = (
 /**
  * Like to `rayRect()`, but for 3D (AABB).
  *
- * @param rpos ray origin
- * @param dir ray dir
- * @param bmin box min
- * @param bmax box max
+ * @param rpos - ray origin
+ * @param dir - ray dir
+ * @param bmin - box min
+ * @param bmax - box max
  */
 const rayBox = (
     rpos: ReadonlyVec,

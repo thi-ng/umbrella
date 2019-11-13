@@ -37,9 +37,9 @@ export interface SparklineOpts {
 /**
  * Customizable, stateless SVG sparkline component.
  *
- * @param _ hdom context object (ignored)
- * @param opts config options
- * @param vals data values
+ * @param _ - hdom context object (ignored)
+ * @param opts - config options
+ * @param vals - data values
  */
 export const sparkline = (
     _: any,

@@ -53,7 +53,7 @@ export interface NotificationArgs {
  * consists of multiple elements then they will need to be wrapped in a
  * container element.
  *
- * @param opts
+ * @param opts -
  */
 export const notification = (opts: Partial<NotificationOpts> = {}) => {
     return (_: any, args: Partial<NotificationArgs>, body: any) => [

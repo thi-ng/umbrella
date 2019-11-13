@@ -23,9 +23,9 @@ import { dispatch } from "../internal/dispatch";
  * - Quad
  * - Rect
  *
- * @param shape
- * @param uv
- * @param out
+ * @param shape -
+ * @param uv -
+ * @param out -
  */
 export const unmapPoint: MultiFn2O<IShape, ReadonlyVec, Vec, Vec> = defmulti(<
     any

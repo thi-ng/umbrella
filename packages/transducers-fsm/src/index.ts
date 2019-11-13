@@ -50,7 +50,7 @@ export interface FSMOpts<T extends FSMState, A, B> {
  * (by calling `ensureReduced()`) and no further inputs will be
  * consumed.
  *
- * ```
+ * ```ts
  * testFSM = {
  *     states: {
  *         skip: (state, x) => {
@@ -98,7 +98,7 @@ export interface FSMOpts<T extends FSMState, A, B> {
  * // [ 50, 60, 70, 80, 90, 150, 160, 170, 180, 190 ]
  * ```
  *
- * @param opts
+ * @param opts -
  */
 export const fsm = <T extends FSMState, A, B>(
     opts: FSMOpts<T, A, B[]>

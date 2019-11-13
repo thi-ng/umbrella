@@ -16,8 +16,8 @@ import {
  * Converts linearized 2D index `i` into a vec2 UV coord, based on given
  * texture `size` (in pixels).
  *
- * @param i
- * @param size
+ * @param i -
+ * @param size -
  */
 export const indexToUV = defn(
     "vec2",
@@ -37,8 +37,8 @@ export const indexToUV = defn(
  * Inverse operation of `indexToUV()`. Converts vec2 UV coord into
  * linearized 2D index, based on given texture `width` (in pixels).
  *
- * @param i
- * @param width
+ * @param i -
+ * @param width -
  */
 export const uvToIndex = defn(
     "int",

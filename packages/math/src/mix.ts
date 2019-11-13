@@ -3,7 +3,7 @@ import { HALF_PI, PI } from "./api";
 export const mix = (a: number, b: number, t: number) => a + (b - a) * t;
 
 /**
- * ```
+ * ```ts
  * c    d
  * +----+
  * |    |
@@ -11,12 +11,12 @@ export const mix = (a: number, b: number, t: number) => a + (b - a) * t;
  * a    b
  * ```
  *
- * @param a BL value
- * @param b BR value
- * @param c TL value
- * @param d TR value
- * @param u 1st interpolation factor
- * @param v 2nd interpolation factor
+ * @param a - BL value
+ * @param b - BR value
+ * @param c - TL value
+ * @param d - TR value
+ * @param u - 1st interpolation factor
+ * @param v - 2nd interpolation factor
  */
 export const mixBilinear = (
     a: number,
@@ -64,11 +64,11 @@ export const mixCubic = (
  * @see tangentCardinal
  * @see tangentDiff3
  *
- * @param a
- * @param b
- * @param c
- * @param d
- * @param t
+ * @param a -
+ * @param b -
+ * @param c -
+ * @param d -
+ * @param t -
  */
 export const mixHermite = (
     a: number,
@@ -92,11 +92,11 @@ export const mixHermite = (
  * @see tangentCardinal
  * @see tangentDiff3
  *
- * @param a
- * @param ta
- * @param b
- * @param tb
- * @param t
+ * @param a -
+ * @param ta -
+ * @param b -
+ * @param tb -
+ * @param t -
  */
 export const mixCubicHermite = (
     a: number,
@@ -125,11 +125,11 @@ export const mixCubicHermite = (
  *
  * https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Cardinal_spline
  *
- * @param prev
- * @param next
- * @param scale
- * @param ta
- * @param tc
+ * @param prev -
+ * @param next -
+ * @param scale -
+ * @param ta -
+ * @param tc -
  */
 export const tangentCardinal = (
     prev: number,
@@ -151,12 +151,12 @@ export const tangentCardinal = (
  *
  * https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Finite_difference
  *
- * @param prev
- * @param curr
- * @param next
- * @param ta
- * @param tb
- * @param tc
+ * @param prev -
+ * @param curr -
+ * @param next -
+ * @param ta -
+ * @param tb -
+ * @param tc -
  */
 export const tangentDiff3 = (
     prev: number,
@@ -172,9 +172,9 @@ export const tangentDiff3 = (
  * to]`. Returns function which takes normalized time as single arg and
  * returns interpolated value.
  *
- * @param f
- * @param from
- * @param to
+ * @param f -
+ * @param from -
+ * @param to -
  */
 export const tween = (f: (t: number) => number, from: number, to: number) => (
     t: number
@@ -183,7 +183,7 @@ export const tween = (f: (t: number) => number, from: number, to: number) => (
 /**
  * Circular interpolation: `sqrt(1 - (1 - t)^2)`
  *
- * @param t interpolation factor (0.0 .. 1.0)
+ * @param t - interpolation factor (0.0 .. 1.0)
  */
 export const circular = (t: number) => {
     t = 1 - t;
@@ -206,15 +206,15 @@ export const bounce = (k: number, amp: number, t: number) => {
  * - `ease > 1` -> ease in
  * - `ease < 1` -> ease out
  *
- * @param ease easing behavior [0.0 .. ∞]
- * @param t
+ * @param ease - easing behavior [0.0 .. ∞]
+ * @param t -
  */
 export const ease = (ease: number, t: number) => Math.pow(t, ease);
 
 /**
  * HOF impulse generator. Peaks at `t=1/k`
  *
- * @param k impulse width (higher values => shorter impulse)
+ * @param k - impulse width (higher values => shorter impulse)
  */
 export const impulse = (k: number, t: number) => {
     const h = k * t;
@@ -240,8 +240,8 @@ export const sinc = (k: number, t: number) => {
 /**
  * Sigmoid function for inputs in [0..1] interval.
  *
- * @param k
- * @param t
+ * @param k -
+ * @param t -
  */
 export const sigmoid = (k: number, t: number) =>
     1 / (1 + Math.exp(-k * (2 * t - 1)));
@@ -249,7 +249,7 @@ export const sigmoid = (k: number, t: number) =>
 /**
  * Sigmoid function for inputs in [-1..+1] interval.
  *
- * @param k
- * @param t
+ * @param k -
+ * @param t -
  */
 export const sigmoid11 = (k: number, t: number) => 1 / (1 + Math.exp(-k * t));

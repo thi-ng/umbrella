@@ -6,11 +6,11 @@ import { result } from "./result";
  * only returns `Match.FULL` if `match` succeeded at least `min` times
  * or once `max` repetitions have been found.
  *
- * @param match
- * @param min
- * @param max
- * @param success
- * @param fail
+ * @param match -
+ * @param min -
+ * @param max -
+ * @param success -
+ * @param fail -
  */
 export const repeat = <T, C, R>(
     match: Matcher<T, C, R>,

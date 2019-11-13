@@ -5,8 +5,8 @@ import { clamp } from "./clamp";
 /**
  * Inverts the RGB channels of an RGBA color.
  *
- * @param out
- * @param src
+ * @param out -
+ * @param src -
  */
 export const invertRGB: ColorOp = (out, src) => (
     (out = clamp(out || src, src)), sub3(out, ONE3, out)
@@ -15,6 +15,6 @@ export const invertRGB: ColorOp = (out, src) => (
 /**
  * Inverts the lowest 24 bits of an ARGB int.
  *
- * @param src
+ * @param src -
  */
 export const invertInt = (src: number) => src ^ 0xffffff;

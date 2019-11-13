@@ -33,9 +33,9 @@ export interface MACD {
  *
  * https://en.wikipedia.org/wiki/MACD
  *
- * @param fast fast EMA period
- * @param slow slow EMA period
- * @param smooth signal smoothing EMA period
+ * @param fast - fast EMA period
+ * @param slow - slow EMA period
+ * @param smooth - signal smoothing EMA period
  */
 export function macd(
     fast?: number,

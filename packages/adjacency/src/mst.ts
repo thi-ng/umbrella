@@ -37,10 +37,10 @@ import { DisjointSet } from "./disjoint-set";
  * // [ [ 0, 1 ], [ 1, 2 ], [ 2, 3 ], [ 2, 4 ] ]
  * ```
  *
- * @param edges
- * @param maxID
- * @param cost
- * @param verts
+ * @param edges -
+ * @param maxID -
+ * @param cost -
+ * @param verts -
  */
 export const mst = <T>(
     edges: T[],

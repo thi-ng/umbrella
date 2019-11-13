@@ -9,7 +9,7 @@ import { TargetImpl } from "./api/target";
  * generator / compile target function which serializes a given AST
  * using the provided node type implementations.
  *
- * @param impls
+ * @param impls -
  *
  * @see targetGLSL
  */

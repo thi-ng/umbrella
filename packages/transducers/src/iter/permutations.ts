@@ -19,7 +19,7 @@ import { range } from "./range";
  * // []
  * ```
  *
- * @param src
+ * @param src -
  */
 export function permutations<A>(a: Iterable<A>): IterableIterator<[A]>;
 export function permutations<A, B>(
@@ -81,9 +81,9 @@ export function* permutations(...src: any[]): IterableIterator<any[]> {
  * // [ [ 10, 20 ], [ 10, 21 ], [ 11, 20 ], [ 11, 21 ] ]
  * ```
  *
- * @param n
- * @param m
- * @param offsets
+ * @param n -
+ * @param m -
+ * @param offsets -
  */
 export const permutationsN = (
     n: number,

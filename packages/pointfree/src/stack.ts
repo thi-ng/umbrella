@@ -92,7 +92,7 @@ const __incdec = (id: 0 | 1, n: number) => (ctx: StackContext) => (
 /**
  * Returns top of stack value (always unsafe, no underflow checking).
  *
- * @param stack
+ * @param stack -
  */
 export const tos = (stack: Stack) => stack[stack.length - 1];
 
@@ -105,7 +105,7 @@ export const nop = (ctx: StackContext) => ctx;
  * Pushes current d-stack size on d-stack.
  *
  * ( -- n )
- * @param ctx
+ * @param ctx -
  */
 export const dsp = __xsp(0);
 
@@ -115,7 +115,7 @@ export const dsp = __xsp(0);
  *
  * ( ... x -- ... stack[x] )
  *
- * @param ctx
+ * @param ctx -
  */
 export const pick = (ctx: StackContext) => {
     const stack = ctx[0];
@@ -131,7 +131,7 @@ export const pick = (ctx: StackContext) => {
  *
  * ( x -- )
  *
- * @param ctx
+ * @param ctx -
  */
 export const drop = __drop(0);
 
@@ -140,7 +140,7 @@ export const drop = __drop(0);
  *
  * ( x y -- )
  *
- * @param ctx
+ * @param ctx -
  */
 export const drop2 = __drop(0, 2);
 
@@ -162,7 +162,7 @@ export const dropif = (ctx: StackContext) => (
  *
  * ( -- ...args )
  *
- * @param args
+ * @param args -
  */
 export const push = (...args: any[]) => (ctx: StackContext) => (
     ctx[0].push(...args), ctx
@@ -173,7 +173,7 @@ export const push = (...args: any[]) => (ctx: StackContext) => (
  *
  * ( x -- x x )
  *
- * @param ctx
+ * @param ctx -
  */
 export const dup = __dup(0);
 
@@ -182,7 +182,7 @@ export const dup = __dup(0);
  *
  * ( x y -- x y x y )
  *
- * @param ctx
+ * @param ctx -
  */
 export const dup2 = __dup2(0);
 
@@ -191,7 +191,7 @@ export const dup2 = __dup2(0);
  *
  * ( x y -- x y x y )
  *
- * @param ctx
+ * @param ctx -
  */
 export const dup3 = __dup3(0);
 
@@ -204,7 +204,7 @@ export const dup3 = __dup3(0);
  *
  * ( x -- x )
  *
- * @param ctx
+ * @param ctx -
  */
 export const dupif = (ctx: StackContext) => {
     $(ctx[0], 1);
@@ -218,7 +218,7 @@ export const dupif = (ctx: StackContext) => {
  *
  * ( x y -- y x )
  *
- * @param ctx
+ * @param ctx -
  */
 export const swap = __swap(0);
 
@@ -227,7 +227,7 @@ export const swap = __swap(0);
  *
  * ( a b c d -- c d a b )
  *
- * @param ctx
+ * @param ctx -
  */
 export const swap2 = __swap2(0);
 
@@ -236,7 +236,7 @@ export const swap2 = __swap2(0);
  *
  * ( x y -- y )
  *
- * @param ctx
+ * @param ctx -
  */
 export const nip = (ctx: StackContext) => {
     const stack = ctx[0];
@@ -251,7 +251,7 @@ export const nip = (ctx: StackContext) => {
  *
  * ( x y -- y x y )
  *
- * @param ctx
+ * @param ctx -
  */
 export const tuck = (ctx: StackContext) => {
     $(ctx[0], 2);
@@ -266,7 +266,7 @@ export const tuck = (ctx: StackContext) => {
  *
  * ( x y z -- y z x )
  *
- * @param ctx
+ * @param ctx -
  */
 export const rot = (ctx: StackContext) => {
     const stack = ctx[0];
@@ -284,7 +284,7 @@ export const rot = (ctx: StackContext) => {
  *
  * ( x y z -- z x y )
  *
- * @param ctx
+ * @param ctx -
  */
 export const invrot = (ctx: StackContext) => {
     const stack = ctx[0];
@@ -302,21 +302,21 @@ export const invrot = (ctx: StackContext) => {
  *
  * ( x y -- x y x )
  *
- * @param ctx
+ * @param ctx -
  */
 export const over = __over(0);
 
 /**
  * ( x -- x+1 )
  *
- * @param ctx
+ * @param ctx -
  */
 export const inc = __incdec(0, 1);
 
 /**
  * ( x -- x-1 )
  *
- * @param ctx
+ * @param ctx -
  */
 export const dec = __incdec(0, -1);
 
@@ -327,7 +327,7 @@ export const dec = __incdec(0, -1);
  *
  * ( -- n )
  *
- * @param ctx
+ * @param ctx -
  */
 export const rsp = __xsp(1);
 
@@ -336,7 +336,7 @@ export const rsp = __xsp(1);
  *
  * ( x -- x x )
  *
- * @param ctx
+ * @param ctx -
  */
 export const rdup = __dup(1);
 
@@ -345,7 +345,7 @@ export const rdup = __dup(1);
  *
  * ( x y -- x y x y )
  *
- * @param ctx
+ * @param ctx -
  */
 export const rdup2 = __dup2(1);
 
@@ -354,7 +354,7 @@ export const rdup2 = __dup2(1);
  *
  * ( x y -- x y x y )
  *
- * @param ctx
+ * @param ctx -
  */
 export const rdup3 = __dup3(1);
 
@@ -363,7 +363,7 @@ export const rdup3 = __dup3(1);
  *
  * ( x -- )
  *
- * @param ctx
+ * @param ctx -
  */
 export const rdrop = __drop(1);
 
@@ -372,7 +372,7 @@ export const rdrop = __drop(1);
  *
  * ( x y -- )
  *
- * @param ctx
+ * @param ctx -
  */
 export const rdrop2 = __drop(1, 2);
 
@@ -397,7 +397,7 @@ export const cprd2 = __copy2(1, 0);
  *
  * ( x y -- y x )
  *
- * @param ctx
+ * @param ctx -
  */
 export const rswap = __swap(1);
 
@@ -406,7 +406,7 @@ export const rswap = __swap(1);
  *
  * ( a b c d -- c d a b )
  *
- * @param ctx
+ * @param ctx -
  */
 export const rswap2 = __swap2(1);
 
@@ -415,20 +415,20 @@ export const rswap2 = __swap2(1);
  *
  * ( x y -- x y x )
  *
- * @param ctx
+ * @param ctx -
  */
 export const rover = __over(1);
 
 /**
  * Like `inc`, but applies to r-stack TOS.
  *
- * @param ctx
+ * @param ctx -
  */
 export const rinc = __incdec(1, 1);
 
 /**
  * Like `dec`, but applies to r-stack TOS.
  *
- * @param ctx
+ * @param ctx -
  */
 export const rdec = __incdec(1, -1);

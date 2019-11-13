@@ -8,7 +8,7 @@ import { reduced } from "../reduced";
  * succeed predicate test (and then immediately terminates with `true`
  * as result).
  *
- * @param pred
+ * @param pred -
  */
 export function some<T>(pred?: Predicate<T>): Reducer<boolean, T>;
 export function some<T>(xs: Iterable<T>): boolean;

@@ -15,7 +15,7 @@ import { dot } from "./dot";
  * Note: the number of results will be `period-1` less than the number
  * of processed inputs.
  *
- * @param weights period or array of weights
+ * @param weights - period or array of weights
  */
 export function wma(weights: number | number[]): Transducer<number, number>;
 export function wma(

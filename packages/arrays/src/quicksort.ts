@@ -14,7 +14,7 @@ import { swap } from "./swap";
  *
  * https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme
  *
- * ```
+ * ```ts
  * a = [4, 3, 1, 8, 5]
  * b = [40, 30, 10, 80, 50]
  * c = [-4, -3, -1, -8, -5]
@@ -29,11 +29,11 @@ import { swap } from "./swap";
  * // [ -1, -3, -4, -5, -8 ]
  * ```
  *
- * @param arr
- * @param _cmp
- * @param _swap
- * @param start
- * @param end
+ * @param arr -
+ * @param _cmp -
+ * @param _swap -
+ * @param start -
+ * @param end -
  */
 // prettier-ignore
 export function quickSort<T>(arr: T[], _cmp?: Comparator<T>, _swap?: Fn3<T[], number, number, void>, start?: number, end?: number): T[];

@@ -24,9 +24,9 @@ import { rename } from "./rename";
  * //   { length: 4, upper: 'ANDY', initial: 'A' } ]
  * ```
  *
- * @param xforms object of transducers
- * @param rfn
- * @param src
+ * @param xforms - object of transducers
+ * @param rfn -
+ * @param src -
  */
 export function multiplexObj<A, B>(
     xforms: IObjectOf<Transducer<A, any>>,

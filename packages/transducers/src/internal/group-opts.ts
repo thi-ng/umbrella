@@ -5,7 +5,7 @@ import { push } from "../rfn/push";
 /**
  * Shared helper function for groupBy* reducers
  *
- * @param opts
+ * @param opts -
  */
 export const __groupByOpts = <SRC, KEY, GROUP>(
     opts?: Partial<GroupByOpts<SRC, PropertyKey, GROUP>>

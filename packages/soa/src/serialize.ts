@@ -33,7 +33,7 @@ const toUTF8 = utf8Decode();
  * `write()` throws error if resulting byte sequence is larger than
  * configured `maxLen`.
  *
- * @param maxLen
+ * @param maxLen -
  */
 export const utf8z = (maxLen: number) =>
     <SerializerPair<string>>{

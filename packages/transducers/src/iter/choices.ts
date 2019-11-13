@@ -7,15 +7,15 @@ import { repeatedly } from "./repeatedly";
  * weights. If `weights` is given, it must have at least the same size
  * as `choices`. If omitted, each choice will have same probability.
  *
- * ```
+ * ```ts
  * transduce(take(1000), frequencies(), choices("abcd", [1, 0.5, 0.25, 0.125]))
  * // Map { 'c' => 132, 'a' => 545, 'b' => 251, 'd' => 72 }
  * ```
  *
  * @see weightedRandom
  *
- * @param choices
- * @param weights
+ * @param choices -
+ * @param weights -
  */
 export const choices = <T>(
     choices: ArrayLike<T> & Iterable<T>,

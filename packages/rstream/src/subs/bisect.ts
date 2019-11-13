@@ -7,7 +7,7 @@ import { PubSub } from "../pubsub";
  * boolean topic function and `a` & `b` as subscribers for truthy (`a`)
  * and falsy `b` values.
  *
- * ```
+ * ```ts
  * rs.fromIterable([1, 2, 3, 4]).subscribe(
  *   rs.bisect(
  *     (x) => !!(x & 1),
@@ -27,7 +27,7 @@ import { PubSub } from "../pubsub";
  * be first created as `Subscription` (if not already) and a reference
  * kept prior to calling `bisect()`.
  *
- * ```
+ * ```ts
  * const odd = rs.subscription();
  * const even = rs.subscription();
  * odd.subscribe(rs.trace("odd"));
@@ -39,9 +39,9 @@ import { PubSub } from "../pubsub";
  * );
  * ```
  *
- * @param pred predicate function
- * @param a subscription for truthy branch
- * @param b subscription for falsy branch
+ * @param pred - predicate function
+ * @param a - subscription for truthy branch
+ * @param b - subscription for falsy branch
  */
 export const bisect = <T>(
     pred: Predicate<T>,

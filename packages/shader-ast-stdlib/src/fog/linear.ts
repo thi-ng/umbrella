@@ -6,9 +6,9 @@ import { fitNorm1 } from "../math/fit";
  * Computes linear fog factor [0..1], based on given fog min/max
  * distances.
  *
- * @param dist float
- * @param start float
- * @param end float
+ * @param dist - float
+ * @param start - float
+ * @param end - float
  *
  */
 export const fogLinear = defn(

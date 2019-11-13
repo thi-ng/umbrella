@@ -9,9 +9,9 @@ import { nextID } from "../utils/idgen";
  * 0). Once the iterable is exhausted (if finite), then calls `.done()`
  * by default, but can be avoided by passing `false` as last argument.
  *
- * @param src
- * @param delay
- * @param close
+ * @param src -
+ * @param delay -
+ * @param close -
  */
 export const fromIterable = <T>(src: Iterable<T>, delay = 0, close = true) =>
     new Stream<T>((stream) => {
@@ -35,8 +35,8 @@ export const fromIterable = <T>(src: Iterable<T>, delay = 0, close = true) =>
  * exhausted (MUST be finite!), then calls `.done()` by default, but can
  * be avoided by passing `false` as last argument.
  *
- * @param src
- * @param close
+ * @param src -
+ * @param close -
  */
 export const fromIterableSync = <T>(src: Iterable<T>, close = true) =>
     new Stream<T>((stream) => {

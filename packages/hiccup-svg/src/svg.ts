@@ -6,8 +6,8 @@ import { fattribs } from "./format";
  * currently still sets SVG version to 1.1 to support Safari and other
  * legacy tooling.
  *
- * @param attribs
- * @param body
+ * @param attribs -
+ * @param body -
  */
 export const svg = (attribs: any, ...body: any[]): any[] => [
     "svg",

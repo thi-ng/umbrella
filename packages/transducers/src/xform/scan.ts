@@ -18,9 +18,9 @@ import { ensureReduced, isReduced, unreduced } from "../reduced";
  * // [ 0, 1, 3, 6, 10, 15, 21, 28, 36, 45 ]
  * ```
  *
- * @param rfn reducer used as scan operator
- * @param init
- * @param src
+ * @param rfn - reducer used as scan operator
+ * @param init -
+ * @param src -
  */
 export function scan<A, B>(rfn: Reducer<B, A>, init?: B): Transducer<A, B>;
 export function scan<A, B>(

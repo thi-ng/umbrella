@@ -4,7 +4,7 @@ import { cross2, signedArea2, ReadonlyVec } from "@thi.ng/vectors";
  * Interprets given points as closed 2D polygon and computes its signed
  * area. If result is negative, the polygon is clockwise.
  *
- * @param pts
+ * @param pts -
  */
 export const polyArea2 = (pts: ReadonlyVec[]) => {
     const n = pts.length - 1;

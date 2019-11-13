@@ -21,7 +21,7 @@ import {
 /**
  * Returns base type for given term. Used for array ops.
  *
- * ```
+ * ```ts
  * itemType("vec2[]") => "vec2"
  * ```
  */
@@ -31,8 +31,8 @@ export const itemType = (type: Type) => <Type>type.replace("[]", "");
  * Takes a numeric term and a plain number, returns number wrapped in
  * typed literal compatible with term.
  *
- * @param t
- * @param x
+ * @param t -
+ * @param x -
  */
 export const numberWithMatchingType = (t: Term<Prim | Int>, x: number) => {
     const id = t.type[0];

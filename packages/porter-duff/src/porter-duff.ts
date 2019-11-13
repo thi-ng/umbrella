@@ -33,8 +33,8 @@ export const ONE_MINUS_B = (_: number, b: number) => 1 - b;
  *
  * Reference: https://keithp.com/~keithp/porterduff/p253-porter.pdf
  *
- * @param fa fn for src coeff
- * @param fb fn for dest coeff
+ * @param fa - fn for src coeff
+ * @param fb - fn for dest coeff
  */
 export const porterDuff = (
     fa: Fn2<number, number, number>,
@@ -78,7 +78,7 @@ export const porterDuffInt = (
  * alpha for both input colors and then returns post-multiplied alpha
  * output.
  *
- * @param mode
+ * @param mode -
  */
 export const porterDuffP = (
     mode: Fn3<Color | null, ReadonlyColor, ReadonlyColor, Color>
@@ -91,7 +91,7 @@ export const porterDuffP = (
 /**
  * Like `porterDuffP`, but for packed integers.
  *
- * @param mode
+ * @param mode -
  */
 export const porterDuffPInt = (mode: Fn2<number, number, number>) => (
     src: number,
@@ -104,9 +104,9 @@ export const porterDuffPInt = (mode: Fn2<number, number, number>) => (
  *
  * @see porterDuff
  *
- * @param out
- * @param src
- * @param dest
+ * @param out -
+ * @param src -
+ * @param dest -
  */
 export const CLEAR_F = (out: Color, _: ReadonlyColor, dest: ReadonlyColor) =>
     setN4(out || dest, 0);
@@ -303,9 +303,9 @@ export const PLUS_I = porterDuffInt(ONE, ONE);
  * `t`. Alpha remains unchanged. Writes results to `out`, or if `null`
  * modifies `src` in-place.
  *
- * @param out
- * @param src
- * @param t
+ * @param out -
+ * @param src -
+ * @param t -
  */
 export const darken = (out: Color | null, src: ReadonlyColor, t: number) =>
     setC4(out || src, src[0] * t, src[1] * t, src[2] * t, src[3]);
@@ -315,9 +315,9 @@ export const darken = (out: Color | null, src: ReadonlyColor, t: number) =>
  * with `t`. Clamps alpha to [0..1] range, RGB unclamped. Writes results
  * to `out`, or if `null` modifies `src` in-place.
  *
- * @param out
- * @param src
- * @param t
+ * @param out -
+ * @param src -
+ * @param t -
  */
 export const dissolve = (out: Color | null, src: ReadonlyColor, t: number) =>
     setC4(out || src, src[0] * t, src[1] * t, src[2] * t, min(1, src[3] * t));
@@ -327,9 +327,9 @@ export const dissolve = (out: Color | null, src: ReadonlyColor, t: number) =>
  * with `t`, clamped to [0..1] range. Writes results to `out`, or if
  * `null` modifies `src` in-place.
  *
- * @param out
- * @param src
- * @param t
+ * @param out -
+ * @param src -
+ * @param t -
  */
 export const opacity = (out: Color | null, src: ReadonlyColor, t: number) =>
     setC4(out || src, src[0], src[1], src[2], min(1, src[3] * t));
@@ -338,8 +338,8 @@ export const opacity = (out: Color | null, src: ReadonlyColor, t: number) =>
  * Porter-Duff darken modifier for packed ints. Multiplies RGB
  * components of `src` with `t` ([0..1] range).
  *
- * @param src
- * @param t
+ * @param src -
+ * @param t -
  */
 export const darkenInt = (src: number, t: number) =>
     (src & 0xff000000) |
@@ -351,8 +351,8 @@ export const darkenInt = (src: number, t: number) =>
  * Porter-Duff dissolve modifier for packed ints. Multiplies all
  * components of `src` with `t` ([0..1] range).
  *
- * @param src
- * @param t
+ * @param src -
+ * @param t -
  */
 export const dissolveInt = (src: number, t: number) =>
     (min(0xff, ((src >>> 24) & 0xff) * t) << 24) |
@@ -364,8 +364,8 @@ export const dissolveInt = (src: number, t: number) =>
  * Porter-Duff opacity modifier for packed ints. Multiplies alpha
  * component of `src` with `t` ([0..1] range).
  *
- * @param src
- * @param t
+ * @param src -
+ * @param t -
  */
 export const opacityInt = (src: number, t: number) =>
     (min(0xff, ((src >>> 24) & 0xff) * t) << 24) | (src & 0xffffff);

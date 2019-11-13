@@ -19,8 +19,8 @@ const dp6 = dotC6;
  * Matrix inversion. Returns `undefined` if matrix is not invertible.
  * Mutates `mat` if `out` is `null`.
  *
- * @param out
- * @param mat
+ * @param out -
+ * @param mat -
  */
 export const invert: MultiMatOpMU = vop(1);
 

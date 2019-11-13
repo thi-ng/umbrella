@@ -35,8 +35,8 @@ export class EquivMap<K, V> extends Map<K, V>
      * default (or optionally provided) options and returns it. By
      * default uses strict `===` equality check for `equiv` option.
      *
-     * @param obj
-     * @param opts
+     * @param obj -
+     * @param opts -
      */
     static fromObject<T>(
         obj: IObjectOf<T>,
@@ -58,8 +58,8 @@ export class EquivMap<K, V> extends Map<K, V>
      * storing canonical keys and `@thi.ng/equiv` for checking key
      * equivalence.
      *
-     * @param pairs
-     * @param opts
+     * @param pairs -
+     * @param opts -
      */
     constructor(
         pairs?: Iterable<Pair<K, V>> | null,

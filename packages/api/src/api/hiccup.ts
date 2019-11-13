@@ -5,7 +5,7 @@ export interface IToHiccup {
      * hiccup components during serialization (or during DOM creation /
      * update if used with thi.ng/hdom)
      *
-     * @param ctx user context object
+     * @param ctx - user context object
      */
     toHiccup(ctx?: any): any;
 }

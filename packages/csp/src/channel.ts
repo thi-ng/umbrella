@@ -65,7 +65,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
     /**
      * Constructs new channel which closes automatically after given period.
      *
-     * @param delay time in ms
+     * @param delay - time in ms
      */
     static timeout(delay: number): Channel<any> {
         const chan = new Channel(`timeout-${Channel.NEXT_ID++}`);
@@ -76,7 +76,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
     /**
      * Shorthand for: `Channel.timeout(delay).take()`
      *
-     * @param delay time in ms
+     * @param delay - time in ms
      */
     static sleep(delay: number) {
         return Channel.timeout(delay).read();
@@ -86,7 +86,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
      * Creates new channel with single value from given promise, then closes
      * automatically iff promise has been resolved.
      *
-     * @param p
+     * @param p -
      */
     static fromPromise<T>(p: Promise<T>) {
         const chan = new Channel<T>();
@@ -138,7 +138,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
      * an array of `[value, channel]`. Channel order is repeatedly
      * shuffled for each read attempt.
      *
-     * @param chans
+     * @param chans -
      */
     static select(chans: Channel<any>[]) {
         return new Promise<any>((resolve) => {
@@ -163,10 +163,10 @@ export class Channel<T> implements IReadWriteableChannel<T> {
      * If `named` is true, the merged channel will have tuples of: `[src-id, val]`
      * If false (default), only received values will be forwarded.
      *
-     * @param chans
-     * @param out
-     * @param close
-     * @param named
+     * @param chans -
+     * @param out -
+     * @param close -
+     * @param named -
      */
     static merge(
         chans: Channel<any>[],
@@ -223,10 +223,10 @@ export class Channel<T> implements IReadWriteableChannel<T> {
      * ], null, false).consume();
      * ```
      *
-     * @param chans
-     * @param out
-     * @param closeOnFirst
-     * @param closeOutput
+     * @param chans -
+     * @param out -
+     * @param closeOnFirst -
+     * @param closeOutput -
      */
     static mergeTuples(
         chans: Channel<any>[],

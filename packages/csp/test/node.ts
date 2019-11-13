@@ -56,8 +56,8 @@ export class Node implements IEnable<string>, IID<string> {
      * If only `src` is given, returns it unmodified (if channel) or
      * creates a new tap (if Mult).
      *
-     * @param id
-     * @param spec
+     * @param id -
+     * @param spec -
      */
     static inputFromSpec(id: string, spec: NodeInputSpec) {
         if (spec.buf || spec.tx) {

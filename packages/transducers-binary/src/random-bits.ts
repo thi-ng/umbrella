@@ -9,9 +9,9 @@ import { repeatedly } from "@thi.ng/transducers";
  * By default, uses system PRNG, but a custom `IRandom` impl can be
  * provided via `rnd` arg.
  *
- * @param prob
- * @param num
- * @param rnd
+ * @param prob -
+ * @param num -
+ * @param rnd -
  */
 export const randomBits = (
     prob: number,

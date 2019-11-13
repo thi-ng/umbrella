@@ -28,7 +28,7 @@ export const formatString = (
  * leaking of sensitive information via logged messages.
  *
  *
- * ```
+ * ```ts
  * logger.transform(
  *   formatString(),
  *   maskSecrets([/(?<=[A-Z0-9_]\=)\w+/g])
@@ -40,8 +40,8 @@ export const formatString = (
  * // [INFO] logger-0: logged in USER=****, using TOKEN=****
  * ```
  *
- * @param patterns
- * @param mask
+ * @param patterns -
+ * @param mask -
  */
 export const maskSecrets = (patterns: RegExp[], mask = "****") =>
     map((msg: string) =>

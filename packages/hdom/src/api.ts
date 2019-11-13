@@ -104,7 +104,8 @@ export interface ComponentAttribs extends HDOMBehaviorAttribs {
 
 export interface HDOMOpts {
     /**
-     * Root element or ID (default: "app").
+     * Root element or ID
+     * @defaultValue "app"
      */
     root?: Element | string;
     /**
@@ -120,29 +121,35 @@ export interface HDOMOpts {
      * feature can be used to define dynamic contexts linked to the main
      * app state, e.g. using derived views provided by thi.ng/atom.
      *
-     * Default: none
+     * @defaultValue none
      */
     autoDerefKeys: PropertyKey[];
     /**
-     * If true (default), each elements will receive an auto-generated
+     * If true, each elements will receive an auto-generated
      * `key` attribute (unless one already exists).
+     *
+     * @defaultValue true
      */
     keys?: boolean;
     /**
-     * If true (default), all text content will be wrapped in `<span>`
+     * If true, all text content will be wrapped in `<span>`
      * elements. Spans will never be created inside <option>, <textarea>
      * or <text> elements.
+     *
+     * @defaultValue true
      */
     span?: boolean;
     /**
-     * If true (default false), the first frame will only be used to
-     * inject event listeners, using the `hydrateDOM()` function.
+     * If true, the first frame will only be used to inject event
+     * listeners, using the `hydrateDOM()` function.
      *
      * *Important:* Enabling this option assumes that an equivalent DOM
      * (minus event listeners) already exists (e.g. generated via SSR /
      * hiccup's `serialize()`) when hdom's `start()` function is called.
      * Any other discrepancies between the pre-existing DOM and the hdom
      * trees will cause undefined behavior.
+     *
+     * @defaultValue false
      */
     hydrate?: boolean;
 
@@ -231,8 +238,8 @@ export interface HDOMImplementation<T> {
      * See `normalizeElement` (normalize.ts) for further details about
      * the canonical element form.
      *
-     * @param tree
-     * @param opts
+     * @param tree -
+     * @param opts -
      */
     normalizeTree(opts: Partial<HDOMOpts>, tree: any): any[];
 
@@ -258,10 +265,10 @@ export interface HDOMImplementation<T> {
      * specified implementation and not descent into that branch further
      * itself.
      *
-     * @param parent
-     * @param tree
-     * @param child
-     * @param init
+     * @param parent -
+     * @param tree -
+     * @param child -
+     * @param init -
      */
     createTree(
         opts: Partial<HDOMOpts>,
@@ -285,10 +292,10 @@ export interface HDOMImplementation<T> {
      * specified implementation and not descent into that branch further
      * itself.
      *
-     * @param opts
-     * @param parent
-     * @param tree
-     * @param child
+     * @param opts -
+     * @param parent -
+     * @param tree -
+     * @param child -
      */
     hydrateTree(
         opts: Partial<HDOMOpts>,
@@ -335,11 +342,11 @@ export interface HDOMImplementation<T> {
      * 3) Call the current implementation's `replaceChild()` method to
      *    replace the old element / branch with the new one.
      *
-     * @param opts
-     * @param parent
-     * @param prev
-     * @param curr
-     * @param child
+     * @param opts -
+     * @param parent -
+     * @param prev -
+     * @param curr -
+     * @param child -
      */
     diffTree(
         opts: Partial<HDOMOpts>,
@@ -360,10 +367,10 @@ export interface HDOMImplementation<T> {
      * name, the new element will be created with the proper SVG XML
      * namespace.
      *
-     * @param parent
-     * @param tag
-     * @param attribs
-     * @param child
+     * @param parent -
+     * @param tag -
+     * @param attribs -
+     * @param child -
      */
     createElement(parent: T, tag: string, attribs?: any, child?: number): T;
 
@@ -371,8 +378,8 @@ export interface HDOMImplementation<T> {
      * Creates and appends the given `content` as text child node to
      * `parent` in the target.
      *
-     * @param parent
-     * @param content
+     * @param parent -
+     * @param content -
      */
     createTextElement(parent: T, content: string): T;
 
@@ -381,7 +388,7 @@ export interface HDOMImplementation<T> {
      * implementation's tree. In the default implementation this is
      * merely delegated to `document.getElementById()`.
      *
-     * @param id
+     * @param id -
      */
     getElementById(id: string): T | null;
 
@@ -394,9 +401,9 @@ export interface HDOMImplementation<T> {
      * impl.createTree(parent, child, newTree);
      * ```
      *
-     * @param parent
-     * @param child
-     * @param newTree
+     * @param parent -
+     * @param child -
+     * @param newTree -
      */
     replaceChild(
         opts: Partial<HDOMOpts>,
@@ -409,16 +416,16 @@ export interface HDOMImplementation<T> {
     /**
      * Retrieves child of `parent` node at index `i`.
      *
-     * @param parent
-     * @param i
+     * @param parent -
+     * @param i -
      */
     getChild(parent: T, i: number): T;
 
     /**
      * Removes the child of `parent` at index `i` in the target.
      *
-     * @param parent
-     * @param i
+     * @param parent -
+     * @param i -
      */
     removeChild(parent: T, i: number): void;
 
@@ -429,10 +436,10 @@ export interface HDOMImplementation<T> {
      * allow it to produce a derived value. See `setAttrib()` (dom.ts)
      * for details.
      *
-     * @param element
-     * @param id
-     * @param value
-     * @param attribs
+     * @param element -
+     * @param id -
+     * @param value -
+     * @param attribs -
      */
     setAttrib(element: T, id: string, value: any, attribs?: any): void;
 
@@ -441,9 +448,9 @@ export interface HDOMImplementation<T> {
      * from the previous tree are provided for reference (e.g. to be
      * able to remove DOM event listeners).
      *
-     * @param element
-     * @param attribs
-     * @param prevAttribs
+     * @param element -
+     * @param attribs -
+     * @param prevAttribs -
      */
     removeAttribs(element: T, attribs: string[], prevAttribs: any): void;
 
@@ -455,8 +462,8 @@ export interface HDOMImplementation<T> {
      * body content is automatically wrapped in such by
      * `normalizeTree()`.
      *
-     * @param element
-     * @param value
+     * @param element -
+     * @param value -
      */
     setContent(element: T, value: any): void;
 }

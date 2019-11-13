@@ -24,10 +24,10 @@ import { nextID } from "../utils/idgen";
  * ...
  * ```
  *
- * @param side
- * @param pred
- * @param initial initial switch state
- * @param id
+ * @param side -
+ * @param pred -
+ * @param initial - initial switch state
+ * @param id -
  */
 export const sidechainToggle = <A, B>(
     side: ISubscribable<B>,

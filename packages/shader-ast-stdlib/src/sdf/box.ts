@@ -19,8 +19,8 @@ import { maxComp2, maxComp3 } from "../math/maxcomp";
 /**
  * Returns signed distance from `p` to centered AABB of `size`.
  *
- * @param p vec2
- * @param size vec2
+ * @param p - vec2
+ * @param size - vec2
  */
 export const sdfBox2 = defn(
     "float",
@@ -38,8 +38,8 @@ export const sdfBox2 = defn(
 /**
  * Returns signed distance from `p` to centered AABB of `size`.
  *
- * @param p vec3
- * @param size vec3
+ * @param p - vec3
+ * @param size - vec3
  */
 export const sdfBox3 = defn(
     "float",

@@ -5,8 +5,8 @@ import { Mat } from "./api";
 /**
  * Constructs a 2x2 matrix rotation matrix for given `theta`.
  *
- * @param out
- * @param theta
+ * @param out -
+ * @param theta -
  */
 export const rotation22 = (out: Mat | null, theta: number) => {
     const [s, c] = sincos(theta);
@@ -16,8 +16,8 @@ export const rotation22 = (out: Mat | null, theta: number) => {
 /**
  * Constructs a 2x3 matrix rotation matrix for given `theta`.
  *
- * @param out
- * @param theta
+ * @param out -
+ * @param theta -
  */
 export const rotation23 = (out: Mat | null, theta: number) => {
     const [s, c] = sincos(theta);
@@ -27,8 +27,8 @@ export const rotation23 = (out: Mat | null, theta: number) => {
 /**
  * Constructs a 3x3 matrix X rotation matrix for given `theta`.
  *
- * @param out
- * @param theta
+ * @param out -
+ * @param theta -
  */
 export const rotationX33 = (out: Mat | null, theta: number) => {
     const [s, c] = sincos(theta);
@@ -38,8 +38,8 @@ export const rotationX33 = (out: Mat | null, theta: number) => {
 /**
  * Constructs a 3x3 matrix Y rotation matrix for given `theta`.
  *
- * @param out
- * @param theta
+ * @param out -
+ * @param theta -
  */
 export const rotationY33 = (out: Mat | null, theta: number) => {
     const [s, c] = sincos(theta);
@@ -49,8 +49,8 @@ export const rotationY33 = (out: Mat | null, theta: number) => {
 /**
  * Constructs a 3x3 matrix Z rotation matrix for given `theta`.
  *
- * @param out
- * @param theta
+ * @param out -
+ * @param theta -
  */
 export const rotationZ33 = (out: Mat | null, theta: number) => {
     const [s, c] = sincos(theta);
@@ -60,8 +60,8 @@ export const rotationZ33 = (out: Mat | null, theta: number) => {
 /**
  * Constructs a 4x4 matrix X rotation matrix for given `theta`.
  *
- * @param out
- * @param theta
+ * @param out -
+ * @param theta -
  */
 export const rotationX44 = (out: Mat | null, theta: number) => {
     const [s, c] = sincos(theta);
@@ -71,8 +71,8 @@ export const rotationX44 = (out: Mat | null, theta: number) => {
 /**
  * Constructs a 4x4 matrix Y rotation matrix for given `theta`.
  *
- * @param out
- * @param theta
+ * @param out -
+ * @param theta -
  */
 export const rotationY44 = (out: Mat | null, theta: number) => {
     const [s, c] = sincos(theta);
@@ -82,8 +82,8 @@ export const rotationY44 = (out: Mat | null, theta: number) => {
 /**
  * Constructs a 4x4 matrix Z rotation matrix for given `theta`.
  *
- * @param out
- * @param theta
+ * @param out -
+ * @param theta -
  */
 export const rotationZ44 = (out: Mat | null, theta: number) => {
     const [s, c] = sincos(theta);

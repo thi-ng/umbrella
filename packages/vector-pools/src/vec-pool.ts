@@ -53,11 +53,11 @@ export class VecPool implements IVecPool {
      * - `Vec4.mapBuffer()`
      * - `NDArray1.mapBuffer()`
      *
-     * @param num
-     * @param size
-     * @param cstride
-     * @param estride
-     * @param type
+     * @param num -
+     * @param size -
+     * @param cstride -
+     * @param estride -
+     * @param type -
      */
     mallocArray(
         num: number,

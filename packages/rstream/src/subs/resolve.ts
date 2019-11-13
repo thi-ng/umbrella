@@ -17,7 +17,7 @@ export interface ResolverOpts extends IID<string> {
  * promise. If none is provided, the sub's `error()` handler is called,
  * which then stops the sub from receiving further values.
  *
- * ```
+ * ```ts
  * fromIterable([1, 2, 3], 100)
  *   .transform(tx.delayed(1000))
  *   .subscribe(resolve())
@@ -28,7 +28,7 @@ export interface ResolverOpts extends IID<string> {
  * // result done
  * ```
  *
- * @param opts
+ * @param opts -
  */
 export const resolve = <T>(opts?: Partial<ResolverOpts>) =>
     new Resolver<T>(opts);

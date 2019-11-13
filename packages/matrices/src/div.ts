@@ -8,9 +8,9 @@ import { defMath } from "./internal/codegen";
  *
  * out = a / b
  *
- * @param out
- * @param a
- * @param b
+ * @param out -
+ * @param a -
+ * @param b -
  */
 export const div: MultiMatOpMM = _div;
 export const div22: MatOpMM = div4;

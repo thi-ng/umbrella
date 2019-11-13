@@ -24,7 +24,7 @@ export const aabbFromMinMax = (min: Vec, max: Vec, attribs?: Attribs) =>
  * Returns square inscribed in given circle instance. The circle can also be
  * given as centroid & radius.
  *
- * @param circle
+ * @param circle -
  */
 export function inscribedAABB(sphere: Sphere): AABB;
 export function inscribedAABB(pos: ReadonlyVec, r: number): AABB;

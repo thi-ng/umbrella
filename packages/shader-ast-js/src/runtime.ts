@@ -23,17 +23,17 @@ const clampCoord = (x: number, maxW: number, w?: number) =>
  * only defines a sub-region of the full image (e.g. when splitting
  * rendering over multiple workers, each with their own buffer).
  *
- * @param fn
- * @param u32
- * @param bufW
- * @param bufH
- * @param x
- * @param y
- * @param w
- * @param h
- * @param bufOffsetX
- * @param bufOffsetY
- * @param imgH
+ * @param fn -
+ * @param u32 -
+ * @param bufW -
+ * @param bufH -
+ * @param x -
+ * @param y -
+ * @param w -
+ * @param h -
+ * @param bufOffsetX -
+ * @param bufOffsetY -
+ * @param imgH -
  */
 export const renderPixels = (
     fn: Fn<ReadonlyVec, Vec>,
@@ -74,15 +74,15 @@ export const renderPixels = (
  * `bufOffsetX`, `bufOffsetY` and `imgH` can be given to configure the
  * location and full image height.
  *
- * @param fn
- * @param buf
- * @param x
- * @param y
- * @param w
- * @param h
- * @param bufOffsetX
- * @param bufOffsetY
- * @param imgH
+ * @param fn -
+ * @param buf -
+ * @param x -
+ * @param y -
+ * @param w -
+ * @param h -
+ * @param bufOffsetX -
+ * @param bufOffsetY -
+ * @param imgH -
  */
 export const renderBuffer = (
     fn: Fn<ReadonlyVec, Vec>,
@@ -120,7 +120,7 @@ export const renderBuffer = (
  * - `x`, `y`, `w`, `h` - optional args to define a sub-region to be
  *   updated (default to full image update)
  *
- * @param canvas
+ * @param canvas -
  */
 export const canvasRenderer = (canvas: HTMLCanvasElement) => {
     const buf = PackedBuffer.fromCanvas(canvas);

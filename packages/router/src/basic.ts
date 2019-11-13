@@ -75,7 +75,7 @@ export class BasicRouter implements INotify {
      * to default route. Before returning, triggers event with
      * return value as well.
      *
-     * @param raw route path to match
+     * @param raw - route path to match
      */
     route(src: string): RouteMatch | undefined {
         if (src.charAt(0) === "#") {
@@ -111,9 +111,9 @@ export class BasicRouter implements INotify {
      * Returns a formatted version of given `RouteMatch`, incl. any params.
      * Throw an error if an invalid route `id` is provided.
      *
-     * @param match
-     * @param params
-     * @param hash if true, prepends `#` to results
+     * @param match -
+     * @param params -
+     * @param hash - if true, prepends `#` to results
      */
     format(id: string, params?: any, hash?: boolean): string;
     format(match: Partial<RouteMatch>, hash?: boolean): string;

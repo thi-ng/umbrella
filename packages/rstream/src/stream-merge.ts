@@ -37,7 +37,7 @@ export interface StreamMergeOpts<A, B> extends IID<string> {
  * default, `StreamMerge` calls `done()` when the last active input is
  * done, but this behavior can be overridden via the `close` option.
  *
- * ```
+ * ```ts
  * merge({
  *     // input streams w/ different frequencies
  *     src: [
@@ -77,7 +77,7 @@ export interface StreamMergeOpts<A, B> extends IID<string> {
  *
  * @see StreamMergeOpts
  *
- * @param opts
+ * @param opts -
  */
 export const merge = <A, B>(opts?: Partial<StreamMergeOpts<A, B>>) =>
     new StreamMerge(opts);

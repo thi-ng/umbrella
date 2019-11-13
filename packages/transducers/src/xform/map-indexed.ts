@@ -8,7 +8,7 @@ import { $iter } from "../iterator";
  * `index` and `value` to transform. An optional start index `offset`
  * can be provided (default 0).
  *
- * ```
+ * ```ts
  * transduce(
  *   mapIndexed((i, x) => ["id" + i, x * 10], 42),
  *   assocObj(),
@@ -17,8 +17,8 @@ import { $iter } from "../iterator";
  * // { id42: 10, id43: 20, id44: 30 }
  * ```
  *
- * @param fn transformation function
- * @param offset initial index
+ * @param fn - transformation function
+ * @param offset - initial index
  */
 export function mapIndexed<A, B>(
     fn: Fn2<number, A, B>,

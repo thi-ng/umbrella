@@ -24,7 +24,7 @@ import {
 /**
  * iq's hash PRNG producing 2D results.
  *
- * @param p
+ * @param p -
  */
 export const hash2 = defn("vec2", "hash2", ["vec2"], (p) => [
     ret(fract(mul(sin(mul(p, mat2(127.1, 311.7, 269.5, 183.3))), 43758.5453)))
@@ -33,7 +33,7 @@ export const hash2 = defn("vec2", "hash2", ["vec2"], (p) => [
 /**
  * iq's hash PRNG producing 3D results.
  *
- * @param p
+ * @param p -
  */
 export const hash3 = defn("vec3", "hash3", ["vec2"], (p) => [
     ret(
@@ -60,7 +60,7 @@ const H4 = vec4(0.1031, 0.103, 0.0973, 0.1099);
  *
  * Dave Hoskins (https://www.shadertoy.com/view/4djSRW)
  *
- * @param p
+ * @param p -
  */
 export const hash11 = defn("float", "hash11", ["float"], (p) => {
     let x: FloatSym;
@@ -77,7 +77,7 @@ export const hash11 = defn("float", "hash11", ["float"], (p) => {
  *
  * Dave Hoskins (https://www.shadertoy.com/view/4djSRW)
  *
- * @param p
+ * @param p -
  */
 export const hash12 = defn("float", "hash12", ["vec2"], (p) => {
     let x: Vec3Sym;
@@ -93,7 +93,7 @@ export const hash12 = defn("float", "hash12", ["vec2"], (p) => {
  *
  * Dave Hoskins (https://www.shadertoy.com/view/4djSRW)
  *
- * @param p
+ * @param p -
  */
 export const hash13 = defn("float", "hash13", ["vec3"], (p) => {
     let x: Vec3Sym;
@@ -109,7 +109,7 @@ export const hash13 = defn("float", "hash13", ["vec3"], (p) => {
  *
  * Dave Hoskins (https://www.shadertoy.com/view/4djSRW)
  *
- * @param p
+ * @param p -
  */
 export const hash21 = defn("vec2", "hash21", ["float"], (p) => {
     let x: Vec3Sym;
@@ -125,7 +125,7 @@ export const hash21 = defn("vec2", "hash21", ["float"], (p) => {
  *
  * Dave Hoskins (https://www.shadertoy.com/view/4djSRW)
  *
- * @param p
+ * @param p -
  */
 export const hash22 = defn("vec2", "hash22", ["vec2"], (p) => {
     let x: Vec3Sym;
@@ -141,7 +141,7 @@ export const hash22 = defn("vec2", "hash22", ["vec2"], (p) => {
  *
  * Dave Hoskins (https://www.shadertoy.com/view/4djSRW)
  *
- * @param p
+ * @param p -
  */
 export const hash23 = defn("vec2", "hash23", ["vec3"], (p) => {
     let x: Vec3Sym;
@@ -157,7 +157,7 @@ export const hash23 = defn("vec2", "hash23", ["vec3"], (p) => {
  *
  * Dave Hoskins (https://www.shadertoy.com/view/4djSRW)
  *
- * @param p
+ * @param p -
  */
 export const hash31 = defn("vec3", "hash31", ["float"], (p) => {
     let x: Vec3Sym;
@@ -173,7 +173,7 @@ export const hash31 = defn("vec3", "hash31", ["float"], (p) => {
  *
  * Dave Hoskins (https://www.shadertoy.com/view/4djSRW)
  *
- * @param p
+ * @param p -
  */
 export const hash32 = defn("vec3", "hash32", ["vec2"], (p) => {
     let x: Vec3Sym;
@@ -189,7 +189,7 @@ export const hash32 = defn("vec3", "hash32", ["vec2"], (p) => {
  *
  * Dave Hoskins (https://www.shadertoy.com/view/4djSRW)
  *
- * @param p
+ * @param p -
  */
 export const hash33 = defn("vec3", "hash33", ["vec3"], (p) => {
     let x: Vec3Sym;
@@ -205,7 +205,7 @@ export const hash33 = defn("vec3", "hash33", ["vec3"], (p) => {
  *
  * Dave Hoskins (https://www.shadertoy.com/view/4djSRW)
  *
- * @param p
+ * @param p -
  */
 export const hash41 = defn("vec4", "hash41", ["float"], (p) => {
     let x: Vec4Sym;
@@ -221,7 +221,7 @@ export const hash41 = defn("vec4", "hash41", ["float"], (p) => {
  *
  * Dave Hoskins (https://www.shadertoy.com/view/4djSRW)
  *
- * @param p
+ * @param p -
  */
 export const hash42 = defn("vec4", "hash42", ["vec2"], (p) => {
     let x: Vec4Sym;
@@ -237,7 +237,7 @@ export const hash42 = defn("vec4", "hash42", ["vec2"], (p) => {
  *
  * Dave Hoskins (https://www.shadertoy.com/view/4djSRW)
  *
- * @param p
+ * @param p -
  */
 export const hash43 = defn("vec4", "hash43", ["vec3"], (p) => {
     let x: Vec4Sym;
@@ -253,7 +253,7 @@ export const hash43 = defn("vec4", "hash43", ["vec3"], (p) => {
  *
  * Dave Hoskins (https://www.shadertoy.com/view/4djSRW)
  *
- * @param p
+ * @param p -
  */
 export const hash44 = defn("vec4", "hash44", ["vec4"], (p) => {
     let x: Vec4Sym;

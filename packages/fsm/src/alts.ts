@@ -23,10 +23,10 @@ import { result } from "./result";
  * be executed and given a chance to produce a state transition. It too
  * will be given an array of all processed inputs thus far.
  *
- * @param opts
- * @param fallback
- * @param success
- * @param fail
+ * @param opts -
+ * @param fallback -
+ * @param success -
+ * @param fail -
  */
 export const alts = <T, C, R>(
     opts: Matcher<T, C, R>[],

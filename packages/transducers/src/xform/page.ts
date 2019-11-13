@@ -25,8 +25,8 @@ import { take } from "./take";
  * // []
  * ```
  *
- * @param page
- * @param pageLen
+ * @param page -
+ * @param pageLen -
  */
 export function page<T>(page: number, pageLen?: number): Transducer<T, T>;
 export function page<T>(page: number, src: Iterable<T>): IterableIterator<T>;

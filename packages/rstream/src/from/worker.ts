@@ -19,9 +19,9 @@ import { makeWorker } from "../utils/worker";
  *
  * ```
  *
- * @param worker
- * @param terminate
- * @param id
+ * @param worker -
+ * @param terminate -
+ * @param id -
  */
 export const fromWorker = <T>(
     worker: Worker | Blob | string,

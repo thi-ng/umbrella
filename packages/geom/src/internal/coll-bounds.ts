@@ -9,8 +9,8 @@ import { unionBounds } from "./union-bounds";
  * allowed! Currently the `bounds` function must be passed in as arg to
  * avoid circular module dependencies.
  *
- * @param shapes
- * @param bounds
+ * @param shapes -
+ * @param bounds -
  */
 export const collBounds = (
     shapes: IShape[],

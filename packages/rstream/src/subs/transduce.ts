@@ -8,7 +8,7 @@ import { Subscription } from "../subscription";
  * Once the input is done the promise will resolve with the final
  * reduced result (or fail with error).
  *
- * ```
+ * ```ts
  * rs.transduce(
  *   rs.fromIterable(tx.range(10)),
  *   tx.map((x) => x * 10),
@@ -18,10 +18,10 @@ import { Subscription } from "../subscription";
  * // result 450
  * ```
  *
- * @param src
- * @param xform
- * @param rfn
- * @param init
+ * @param src -
+ * @param xform -
+ * @param rfn -
+ * @param init -
  */
 export const transduce = <A, B, C>(
     src: Subscription<any, A>,

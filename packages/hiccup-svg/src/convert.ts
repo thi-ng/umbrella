@@ -38,7 +38,7 @@ const TEXT_ALIGN: { [id: string]: string } = {
  * The original remains untouched, as will any unrecognized tree/shape
  * nodes.
  *
- * @param tree
+ * @param tree -
  */
 export const convertTree = (tree: any): any[] => {
     if (implementsFunction(tree, "toHiccup")) {

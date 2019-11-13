@@ -9,8 +9,8 @@ const atan2 = Math.atan2;
  * https://en.wikipedia.org/wiki/Graham_scan
  * http://c.thi.ng/
  *
- * @param pts input points
- * @param eps tolerance for colinear neighbor detection
+ * @param pts - input points
+ * @param eps - tolerance for colinear neighbor detection
  */
 export const grahamScan2 = (pts: ReadonlyVec[], eps = EPS) => {
     const num = pts.length;
@@ -59,12 +59,12 @@ export const grahamScan2 = (pts: ReadonlyVec[], eps = EPS) => {
  *
  * @see thi.ng/vectors/signedArea2
  *
- * @param ax
- * @param ay
- * @param bx
- * @param by
- * @param cx
- * @param cy
+ * @param ax -
+ * @param ay -
+ * @param bx -
+ * @param by -
+ * @param cx -
+ * @param cy -
  */
 const notCCW = (
     ax: number,
@@ -79,7 +79,7 @@ const notCCW = (
 /**
  * Returns index of point with lowest YX coords.
  *
- * @param pts
+ * @param pts -
  */
 const findMin = (pts: ReadonlyVec[]) => {
     let n = pts.length - 1;

@@ -14,10 +14,10 @@ import { result } from "./result";
  * If `collect` is true, the failed callback will be called with the
  * collected input.
  *
- * @param str
- * @param success
- * @param fail
- * @param collect
+ * @param str -
+ * @param success -
+ * @param fail -
+ * @param collect -
  */
 export const str = <C, R>(
     str: string,

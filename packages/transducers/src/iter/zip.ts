@@ -69,7 +69,7 @@ export function* zip(...src: Iterable<any>[]): IterableIterator<any[]> {
  * 
  * The returned iterable is truncated in length to the length of the shortest argument sequence. With a single sequence argument, it yields a list of 1-tuples.
  * 
- * ```
+ * ```ts
  * tx.zip([1, 2, 3], [3, 4, 5, 0, 9])
  * // [ 1, 3 ] [ 2, 4 ] [ 3, 5 ]
  * 

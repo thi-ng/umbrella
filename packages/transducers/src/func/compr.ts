@@ -18,8 +18,8 @@ import { Reducer, ReductionFn } from "../api";
  * It is assumed that `fn` internally calls `rfn[2]` to pass its own
  * results for further processing by the nested reducer `rfn`.
  *
- * @param rfn
- * @param fn
+ * @param rfn -
+ * @param fn -
  */
 export const compR = <A, B, C>(
     rfn: Reducer<A, B>,

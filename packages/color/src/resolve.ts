@@ -11,7 +11,7 @@ import { asCSS } from "./convert";
  * - number ((A)RGB int)
  * - string (unchanged)
  *
- * @param col
+ * @param col -
  */
 export const resolveAsCSS = (col: any) =>
     isArrayLike(col)

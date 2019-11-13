@@ -13,7 +13,7 @@ import { ensureIterable } from "@thi.ng/arrays";
  * // [ 1, 2, 3, undefined, 4, 5 ]
  * ```
  *
- * @param xs
+ * @param xs -
  */
 export function* concat<T>(...xs: Iterable<T>[]): IterableIterator<T> {
     for (let x of xs) {

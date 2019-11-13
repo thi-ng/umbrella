@@ -23,9 +23,9 @@ import { nextID } from "../utils/idgen";
  * events.subscribe(sidechainPartition(fromRAF())).subscribe(trace())
  * ```
  *
- * @param side
- * @param pred
- * @param id
+ * @param side -
+ * @param pred -
+ * @param id -
  */
 export const sidechainPartition = <A, B>(
     side: ISubscribable<B>,

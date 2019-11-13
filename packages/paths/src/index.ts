@@ -18,7 +18,7 @@ const compS = (k: PropertyKey, f: (o: any, v: any) => any) => (
 /**
  * Converts the given key path to canonical form (array).
  *
- * ```
+ * ```ts
  * toPath("a.b.c");
  * // ["a", "b", "c"]
  *
@@ -29,7 +29,7 @@ const compS = (k: PropertyKey, f: (o: any, v: any) => any) => (
  * // ["a", "b", "c"]
  * ```
  *
- * @param path
+ * @param path -
  */
 export const toPath = (path: Path) =>
     isa(path)
@@ -48,8 +48,8 @@ export const toPath = (path: Path) =>
  * value is `null` or `undefined`). Checks are performed using
  * `hasOwnProperty()`.
  *
- * @param obj
- * @param path
+ * @param obj -
+ * @param path -
  */
 export const exists = (obj: any, path: Path) => {
     if (obj == null) {
@@ -87,7 +87,7 @@ export const exists = (obj: any, path: Path) => {
  *
  * Also see: `getIn()`
  *
- * ```
+ * ```ts
  * g = getter("a.b.c");
  * // or
  * g = getter(["a","b","c"]);
@@ -97,7 +97,7 @@ export const exists = (obj: any, path: Path) => {
  * g() // undefined
  * ```
  *
- * @param path
+ * @param path -
  */
 export const getter = (path: Path) => {
     const ks = toPath(path);
@@ -163,7 +163,7 @@ export const getter = (path: Path) => {
  *
  * Also see: `setIn()`, `updateIn()`, `deleteIn()`
  *
- * ```
+ * ```ts
  * s = setter("a.b.c");
  * // or
  * s = setter(["a","b","c"]);
@@ -182,7 +182,7 @@ export const getter = (path: Path) => {
  * given object retain their original values to provide efficient
  * structural sharing / re-use.
  *
- * ```
+ * ```ts
  * s = setter("a.b.c");
  *
  * a = {x: {y: {z: 1}}};
@@ -193,7 +193,7 @@ export const getter = (path: Path) => {
  * a.x.y === b.x.y // true
  * ```
  *
- * @param path
+ * @param path -
  */
 export const setter = (path: Path): ((s: any, v: any) => any) => {
     const ks = toPath(path);
@@ -242,26 +242,26 @@ export const setter = (path: Path): ((s: any, v: any) => any) => {
 /**
  * Immediate use getter, i.e. same as: `getter(path)(state)`.
  *
- * ```
+ * ```ts
  * getIn({a: {b: {c: 23}}}, "a.b.c");
  * // 23
  * ```
  *
- * @param state
- * @param path
+ * @param state -
+ * @param path -
  */
 export const getIn = (state: any, path: Path) => getter(path)(state);
 
 /**
  * Immediate use setter, i.e. same as: `setter(path)(state, val)`.
  *
- * ```
+ * ```ts
  * setIn({}, "a.b.c", 23);
  * // {a: {b: {c: 23}}}
  * ```
  *
- * @param state
- * @param path
+ * @param state -
+ * @param path -
  */
 export const setIn = (state: any, path: Path, val: any) =>
     setter(path)(state, val);
@@ -272,13 +272,13 @@ export const setIn = (state: any, path: Path, val: any) =>
  * in the data structure will be created. Does *not* mutate original
  * (instead use `mutInMany()` for this purpose).
  *
- * ```
+ * ```ts
  * setInMany({}, "a.b", 10, "x.y.z", 20)
  * // { a: { b: 10 }, x: { y: { z: 20 } } }
  * ```
  *
- * @param state
- * @param pairs
+ * @param state -
+ * @param pairs -
  */
 export const setInMany = (state: any, ...pairs: any[]) => {
     const n = pairs.length;
@@ -297,15 +297,15 @@ export const setInMany = (state: any, ...pairs: any[]) => {
  * value. Does not modify original state (unless given function does so
  * itself).
  *
- * ```
+ * ```ts
  * add = updater("a.b", (x, n) => x + n);
  *
  * add({a: {b: 10}}, 13);
  * // { a: { b: 23 } }
  * ```
  *
- * @param path
- * @param fn
+ * @param path -
+ * @param fn -
  */
 export const updater = (path: Path, fn: UpdateFn<any>) => {
     const g = getter(path);
@@ -320,14 +320,14 @@ export const updater = (path: Path, fn: UpdateFn<any>) => {
  * and uses result as new value. Does not modify original state (unless
  * given function does so itself).
  *
- * ```
+ * ```ts
  * add = (x, y) => x + y;
  * updateIn({a: {b: {c: 23}}}, "a.b.c", add, 10);
  * // {a: {b: {c: 33}}}
  * ```
  *
- * @param state
- * @param path
+ * @param state -
+ * @param path -
  */
 export const updateIn = (
     state: any,
@@ -346,13 +346,13 @@ export const updateIn = (
  *
  * Returns `undefined` if `path` is an empty string or array.
  *
- * ```
+ * ```ts
  * deleteIn({a:{b:{c: 23}}}, "a.b.c");
  * // {a: {b: {}}}
  * ```
  *
- * @param state
- * @param path
+ * @param state -
+ * @param path -
  */
 export const deleteIn = (state: any, path: Path) => {
     const ks = [...toPath(path)];
@@ -371,7 +371,7 @@ export const deleteIn = (state: any, path: Path) => {
  * `undefined`. This function provides optimized versions for path
  * lengths <= 4.
  *
- * @param path
+ * @param path -
  */
 export const mutator = (path: Path) => {
     const ks = toPath(path);
@@ -430,7 +430,7 @@ export const mutator = (path: Path) => {
 /**
  * Immediate use mutator, i.e. same as: `mutator(path)(state, val)`.
  *
- * ```
+ * ```ts
  * mutIn({ a: { b: [10, 20] } }, "a.b.1", 23);
  * // { a: { b: [ 10, 23 ] } }
  *
@@ -439,9 +439,9 @@ export const mutator = (path: Path) => {
  * // undefined
  * ```
  *
- * @param state
- * @param path
- * @param val
+ * @param state -
+ * @param path -
+ * @param val -
  */
 export const mutIn = (state: any, path: Path, val: any) =>
     mutator(path)(state, val);
@@ -451,13 +451,13 @@ export const mutIn = (state: any, path: Path, val: any) =>
  * them in sequence. All key paths must already be present in the given
  * data structure until their penultimate key.
  *
- * ```
+ * ```ts
  * mutInMany({a: {b: 1}, x: {y: {z: 2}}}, "a.b", 10, "x.y.z", 20)
  * // { a: { b: 10 }, x: { y: { z: 20 } } }
  * ```
  *
- * @param state
- * @param pairs
+ * @param state -
+ * @param pairs -
  */
 export const mutInMany = (state: any, ...pairs: any[]) => {
     const n = pairs.length;

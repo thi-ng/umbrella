@@ -6,7 +6,7 @@ import { FnAny } from "@thi.ng/api";
  * (or tuple) with the return value of the previous expression inserted
  * as last argument, using `init` for the first expression.
  *
- * ```
+ * ```ts
  * const neg = (x) => -x;
  * const sub = (a, b) => a - b;
  * const div = (a, b) => a / b;
@@ -23,8 +23,8 @@ import { FnAny } from "@thi.ng/api";
  *
  * @see threadFirst
  *
- * @param init
- * @param fns
+ * @param init -
+ * @param fns -
  */
 export const threadLast = (
     init: any,

@@ -18,8 +18,8 @@ import {
  * thi.ng/associative. Using a native `Map` type here will lead to
  * memory leaks! Alternatively, use `memoizeJ`.
  *
- * @param fn
- * @param cache
+ * @param fn -
+ * @param cache -
  */
 export function memoize<A, B>(fn: Fn1<A, B>, cache: MapLike<A, B>): Fn1<A, B>;
 export function memoize<A, B, C>(

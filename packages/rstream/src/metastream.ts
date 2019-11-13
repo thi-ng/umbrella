@@ -47,7 +47,7 @@ import { nextID } from "./utils/idgen";
  * you'll need to add a dummy subscription to each in order to keep them
  * alive and support dynamic switching between them. See issue #74
  *
- * ```
+ * ```ts
  * a = fromIterable(tx.repeat("a"), 1000);
  * b = fromIterable(tx.repeat("b"), 1000);
  *
@@ -68,8 +68,8 @@ import { nextID } from "./utils/idgen";
  * // meta from: a
  * ```
  *
- * @param factory
- * @param id
+ * @param factory -
+ * @param id -
  */
 export const metaStream = <A, B>(
     factory: Fn<A, Subscription<B, B>>,

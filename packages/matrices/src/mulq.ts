@@ -4,9 +4,9 @@ import { setC4, VecOpVV } from "@thi.ng/vectors";
  * Performs quaternion multiplication of `a` and `b` and writes result
  * to `out`. If `out` is null, writes result into `a`.
  *
- * @param out
- * @param a
- * @param b
+ * @param out -
+ * @param a -
+ * @param b -
  */
 export const mulQ: VecOpVV = (out, a, b) => {
     const { 0: ax, 1: ay, 2: az, 3: aw } = a;

@@ -16,11 +16,11 @@ import { cubicFromLine } from "./cubic-line";
  * Partially based on:
  * https://github.com/chromium/chromium/blob/master/third_party/blink/renderer/core/svg/svg_path_parser.cc#L253
  *
- * @param pos
- * @param r
- * @param axis
- * @param start
- * @param end
+ * @param pos -
+ * @param r -
+ * @param axis -
+ * @param start -
+ * @param end -
  */
 export const cubicFromArc = (
     pos: ReadonlyVec,

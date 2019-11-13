@@ -7,11 +7,11 @@ import { translation23 } from "./translation";
  * Produces a 2x3 viewport matrix to transform projected coordinates to
  * screen space.
  *
- * @param out
- * @param left
- * @param right
- * @param bottom
- * @param top
+ * @param out -
+ * @param left -
+ * @param right -
+ * @param bottom -
+ * @param top -
  */
 export const viewport = (
     out: Mat | null,

@@ -73,9 +73,9 @@ const arrayDecl = (
 /**
  * GLSL preprocessor macro for conditional execution based on `__VERSION__`.
  *
- * @param ver
- * @param ok
- * @param fail
+ * @param ver -
+ * @param ok -
+ * @param fail -
  */
 export const VERSION_CHECK = (ver: number, ok: string, fail = "") => {
     let cmp = ">=";
@@ -99,8 +99,8 @@ export const ALIAS_TEXTURE = VERSION_CHECK(
  * GLSL version specific fragment shader output. If `__VERSION__ >= 300`
  * assigns `body` to `out`, else to `gl_FragColor`.
  *
- * @param body
- * @param out
+ * @param body -
+ * @param out -
  */
 export const EXPORT_FRAGCOL = (body = "col", out = "o_fragColor") =>
     VERSION_CHECK(300, `${out}=${body};`, `gl_FragColor=${body};`);

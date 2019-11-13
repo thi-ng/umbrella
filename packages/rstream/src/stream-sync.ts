@@ -29,31 +29,39 @@ export interface StreamSyncOpts<A, B> extends IID<string> {
      */
     xform: Transducer<IObjectOf<A>, B>;
     /**
-     * If true (default: false) *no* input synchronization (waiting for
-     * values) is applied and `StreamSync` will emit potentially
-     * partially populated tuple objects for each received input value.
-     * However, as with the default behavior, tuples will retain the
-     * most recent consumed value from other inputs.
+     * If true, *no* input synchronization (waiting for values) is
+     * applied and `StreamSync` will emit potentially partially
+     * populated tuple objects for each received input value. However,
+     * as with the default behavior, tuples will retain the most recent
+     * consumed value from other inputs.
+     *
+     * @defaultValue false
      */
     mergeOnly: boolean;
     /**
      * If true, StreamSync waits for new values from *all* inputs before
-     * a new tuple is produced. If false (default), that synchronization
+     * a new tuple is produced. If false, that synchronization
      * only happens for the very first tuple.
+     *
+     * @defaultValue false
      */
     reset: boolean;
     /**
      * By default, the last emitted tuple is allowed to be incomplete
      * (in case all inputs closed). To only allow complete tuples, set
      * the `all` to false.
+     *
+     * @defaultValue true
      */
     all: boolean;
     /**
      * If false or `CloseMode.NEVER`, StreamSync stays active even if
-     * all inputs are done. If true (default) or `CloseMode.LAST`, the
+     * all inputs are done. If true, or `CloseMode.LAST`, the
      * StreamSync closes when the last input is done. If
      * `CloseMode.FIRST`, the instance closes when the first input is
      * done.
+     *
+     * @defaultValue true
      */
     close: boolean | CloseMode;
 }
@@ -103,7 +111,7 @@ export interface StreamSyncOpts<A, B> extends IID<string> {
  *
  * @see StreamSyncOpts
  *
- * @param opts
+ * @param opts -
  */
 export const sync = <A, B>(opts: Partial<StreamSyncOpts<A, B>>) =>
     new StreamSync(opts);

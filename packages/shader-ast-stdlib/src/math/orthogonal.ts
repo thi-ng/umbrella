@@ -17,7 +17,7 @@ import {
  * Inline function. Returns counter-clockwise perpendicular vector
  * (assuming Y-up). [-y, x]
  *
- * @param v
+ * @param v -
  */
 export const perpendicularCCW = (v: Vec2Term) => vec2(neg($y(v)), $x(v));
 
@@ -25,7 +25,7 @@ export const perpendicularCCW = (v: Vec2Term) => vec2(neg($y(v)), $x(v));
  * Inline function. Returns clockwise perpendicular vector (assuming
  * Y-up). [y,-x]
  *
- * @param v
+ * @param v -
  */
 export const perpendicularCW = (v: Vec2Term) => vec2($y(v), neg($x(v)));
 

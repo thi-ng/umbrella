@@ -10,13 +10,13 @@ import { distSq, mixQuadratic, ReadonlyVec, Vec } from "@thi.ng/vectors";
  *
  * @see thi.ng/math/minError
  *
- * @param p
- * @param a
- * @param b
- * @param c
- * @param res
- * @param iter
- * @param eps
+ * @param p -
+ * @param a -
+ * @param b -
+ * @param c -
+ * @param res -
+ * @param iter -
+ * @param eps -
  */
 export const closestPointQuadratic = (
     p: ReadonlyVec,

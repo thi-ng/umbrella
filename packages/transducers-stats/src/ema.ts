@@ -12,7 +12,7 @@ import {
  * Note: the number of results will be `period-1` less than the number
  * of processed inputs.
  *
- * @param period
+ * @param period -
  */
 export function ema(period: number): Transducer<number, number>;
 export function ema(

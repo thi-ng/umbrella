@@ -14,7 +14,7 @@ import { defmulti } from "./defmulti";
  * **Note:** Unlike `defmulti` no argument type checking is supported,
  * however you can specify the return type for the generated function.
  *
- * ```
+ * ```ts
  * const foo = defmultiN<string>({
  *   0: () => "zero",
  *   1: (x) => `one: ${x}`,
@@ -35,8 +35,8 @@ import { defmulti } from "./defmulti";
  * // two: 1, 2
  * ```
  *
- * @param impls
- * @param fallback
+ * @param impls -
+ * @param fallback -
  */
 export const defmultiN = <T>(
     impls: { [id: number]: Implementation<T> },

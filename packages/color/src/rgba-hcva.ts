@@ -7,8 +7,8 @@ import { clamp } from "./clamp";
  * Based on:
  * https://github.com/tobspr/GLSL-Color-Spaces/blob/master/ColorSpaces.inc.glsl#L159
  *
- * @param out
- * @param src
+ * @param out -
+ * @param src -
  */
 export const rgbaHcva: ColorOp = (out, src) => {
     out = clamp(out || src, src);

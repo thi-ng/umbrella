@@ -12,9 +12,9 @@ import { ReadonlyVec, Vec } from "@thi.ng/vectors";
 /**
  * http://algorithmicbotany.org/papers/subgpu.sig2003.pdf
  *
- * @param kernel subdivision scheme
- * @param pts source points
- * @param iter number of iterations
+ * @param kernel - subdivision scheme
+ * @param pts - source points
+ * @param iter - number of iterations
  */
 export const subdivide = (
     pts: ReadonlyVec[],

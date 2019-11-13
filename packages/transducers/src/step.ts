@@ -34,7 +34,7 @@ import { push } from "./rfn/push";
  * f(1); // undefined
  * ```
  *
- * @param tx
+ * @param tx -
  */
 export const step = <A, B>(tx: Transducer<A, B>): ((x: A) => B | B[]) => {
     const [_, complete, reduce] = tx(push());

@@ -10,10 +10,10 @@ import { nextID } from "../utils/idgen";
  * timeout resets with each received value and then only triggers once
  * the time interval since the last value has exceeded.
  *
- * @param timeoutMs timeout period in milliseconds
- * @param error error object
- * @param resetTimeout timeout reset flag
- * @param id subscription id
+ * @param timeoutMs - timeout period in milliseconds
+ * @param error - error object
+ * @param resetTimeout - timeout reset flag
+ * @param id - subscription id
  */
 export const timeout = <T>(
     timeoutMs: number,

@@ -15,8 +15,8 @@ import { sma } from "./sma";
  * Note: the number of results will be `period` less than the
  * number of processed inputs.
  *
- * @param period
- * @param src
+ * @param period -
+ * @param src -
  */
 export function rsi(period: number): Transducer<number, number>;
 export function rsi(

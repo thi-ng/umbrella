@@ -7,9 +7,9 @@ import { result } from "./result";
  * the new matcher returns `Match.FAIL` and vice versa. `Match.PARTIAL`
  * results remain as is.
  *
- * @param match
- * @param success
- * @param fail
+ * @param match -
+ * @param success -
+ * @param fail -
  */
 export const not = <T, C, R>(
     match: Matcher<T, C, R>,

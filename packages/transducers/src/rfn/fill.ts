@@ -7,7 +7,7 @@ import { $$reduce, reducer } from "../reduce";
  * index (default: 0). Use `fillN()` for typed array targets (same impl,
  * but provides correct result type).
  *
- * @param start
+ * @param start -
  */
 export function fill<T>(start?: number): Reducer<T[], T>;
 export function fill<T>(xs: Iterable<T>): T[];
@@ -24,7 +24,7 @@ export function fill<T>(...args: any[]): any {
 /**
  * Like `fill()` reducer, but for numeric arrays (incl. typed arrays).
  *
- * @param start
+ * @param start -
  */
 export function fillN(start?: number): Reducer<NumericArray, number>;
 export function fillN(xs: Iterable<number>): NumericArray;

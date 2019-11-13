@@ -44,9 +44,9 @@ export class History<T> implements IHistory<T> {
     future!: T[];
 
     /**
-     * @param state parent state
-     * @param maxLen max size of undo stack
-     * @param changed predicate to determine changed values (default `!equiv(a,b)`)
+     * @param state - parent state
+     * @param maxLen - max size of undo stack
+     * @param changed - predicate to determine changed values (default `!equiv(a,b)`)
      */
     constructor(state: IAtom<T>, maxLen = 100, changed?: Predicate2<T>) {
         this.state = state;
@@ -132,7 +132,7 @@ export class History<T> implements IHistory<T> {
      * but too applies `changed` predicate to determine if there was a
      * change and if the previous value should be recorded.
      *
-     * @param val
+     * @param val -
      */
     reset(val: T) {
         const prev = this.state.deref();
@@ -158,7 +158,7 @@ export class History<T> implements IHistory<T> {
      * but too applies `changed` predicate to determine if there was a
      * change and if the previous value should be recorded.
      *
-     * @param val
+     * @param val -
      */
     swap(fn: SwapFn<T>, ...args: any[]): T {
         return this.reset(fn(this.state.deref(), ...args));
@@ -186,7 +186,7 @@ export class History<T> implements IHistory<T> {
      * If recording succeeded, the `History.EVENT_RECORD` event is
      * emitted with the recorded state provided as event value.
      *
-     * @param state
+     * @param state -
      */
     record(state?: T) {
         const history = this.history;
@@ -219,8 +219,8 @@ export class History<T> implements IHistory<T> {
      * `IWatch.addWatch()` implementation. Delegates to wrapped
      * atom/cursor.
      *
-     * @param id
-     * @param fn
+     * @param id -
+     * @param fn -
      */
     addWatch(id: string, fn: Watch<T>) {
         return this.state.addWatch(id, fn);
@@ -230,7 +230,7 @@ export class History<T> implements IHistory<T> {
      * `IWatch.removeWatch()` implementation. Delegates to wrapped
      * atom/cursor.
      *
-     * @param id
+     * @param id -
      */
     removeWatch(id: string) {
         return this.state.removeWatch(id);
@@ -240,8 +240,8 @@ export class History<T> implements IHistory<T> {
      * `IWatch.notifyWatches()` implementation. Delegates to wrapped
      * atom/cursor.
      *
-     * @param oldState
-     * @param newState
+     * @param oldState -
+     * @param newState -
      */
     notifyWatches(oldState: T, newState: T) {
         return this.state.notifyWatches(oldState, newState);

@@ -22,7 +22,7 @@ import { map } from "./map";
  * // [ [ "A", "ALICE", 5 ], [ "B", "BOB", 3 ], [ "C", "CHARLIE", 7 ] ]
  * ```
  *
- * @param a
+ * @param a -
  */
 export function multiplex<T, A>(a: Transducer<T, A>): Transducer<T, [A]>;
 export function multiplex<T, A, B>(

@@ -13,7 +13,7 @@ import {
  * Note: the number of results will be `period` less than the number
  * of processed inputs.
  *
- * @param period
+ * @param period -
  */
 export function momentum(period: number): Transducer<number, number>;
 export function momentum(

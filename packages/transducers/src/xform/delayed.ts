@@ -9,7 +9,7 @@ import { map } from "./map";
  * **Only to be used in async contexts and NOT with `transduce`
  * directly.**
  *
- * @param t
+ * @param t -
  */
 export const delayed = <T>(t: number): Transducer<T, Promise<T>> =>
     map((x) => _delayed<T>(x, t));

@@ -28,10 +28,10 @@ export interface SIMD {
      *
      * `a` & `b` should be aligned to 16.
      *
-     * @param out
-     * @param a
-     * @param b
-     * @param num
+     * @param out -
+     * @param a -
+     * @param b -
+     * @param num -
      */
     // prettier-ignore
     dot2_f32_aos(out: number, a: number, b: number, num: number): number;
@@ -43,13 +43,13 @@ export interface SIMD {
      * between each vector in each respective buffer and should be a
      * multiple of 4.
      *
-     * @param out
-     * @param a
-     * @param b
-     * @param num
-     * @param so
-     * @param sa
-     * @param sb
+     * @param out -
+     * @param a -
+     * @param b -
+     * @param num -
+     * @param so -
+     * @param sa -
+     * @param sb -
      */
     // prettier-ignore
     dot4_f32_aos(out: number, a: number, b: number, num: number, so: number, sa: number, sb: number): number;
@@ -62,12 +62,12 @@ export interface SIMD {
      * Processes 4 vectors per iteration, hence `num` should be a
      * multiple of 4 too.
      *
-     * @param out
-     * @param a
-     * @param b
-     * @param num
-     * @param sa
-     * @param sb
+     * @param out -
+     * @param a -
+     * @param b -
+     * @param num -
+     * @param sa -
+     * @param sb -
      */
     // prettier-ignore
     dot4_f32_soa(out: number, a: number, b: number, num: number, sa: number, sb: number): number;
@@ -77,11 +77,11 @@ export interface SIMD {
      *
      * @see sqrt4_f32
      *
-     * @param out
-     * @param a
-     * @param num
-     * @param so
-     * @param sa
+     * @param out -
+     * @param a -
+     * @param num -
+     * @param so -
+     * @param sa -
      */
     // prettier-ignore
     invsqrt4_f32(out: number, a: number, num: number, so: number, sa: number): number;
@@ -94,15 +94,15 @@ export interface SIMD {
      * All strides must by multiples of 4. All pointers should be
      * aligned to multiples of 16. Returns `out` pointer.
      *
-     * @param out
-     * @param a
-     * @param b
-     * @param c
-     * @param num number of vec4
-     * @param so out element stride
-     * @param sa A element stride
-     * @param sb B element stride
-     * @param sc C element stride
+     * @param out -
+     * @param a -
+     * @param b -
+     * @param c -
+     * @param num - number of vec4
+     * @param so - out element stride
+     * @param sa - A element stride
+     * @param sb - B element stride
+     * @param sc - C element stride
      */
     // prettier-ignore
     madd4_f32(out: number, a: number, b: number, c: number, num: number, so: number, sa: number, sb: number, sc: number): number;
@@ -167,11 +167,11 @@ export interface SIMD {
      *
      * @see invsqrt4_f32
      *
-     * @param out
-     * @param a
-     * @param num
-     * @param so
-     * @param sa
+     * @param out -
+     * @param a -
+     * @param num -
+     * @param so -
+     * @param sa -
      */
     // prettier-ignore
     sqrt4_f32(out: number, a: number, num: number, so: number, sa: number): number;

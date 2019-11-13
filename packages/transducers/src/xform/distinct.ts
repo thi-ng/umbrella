@@ -15,7 +15,7 @@ export interface DistinctOpts<T> {
  * // [ { id: 1, x: 2 } ]
  * ```
  *
- * @param opts
+ * @param opts -
  */
 export function distinct<T>(opts?: Partial<DistinctOpts<T>>): Transducer<T, T>;
 export function distinct<T>(src: Iterable<T>): IterableIterator<T>;

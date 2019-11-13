@@ -58,10 +58,10 @@ const simpleDiff = <T>(
  * Various optimizations, fixes & refactorings.
  * By default uses `@thi.ng/equiv` for equality checks.
  *
- * @param a "old" array
- * @param b "new" array
- * @param mode result mode
- * @param equiv equality predicate function
+ * @param a - "old" array
+ * @param b - "new" array
+ * @param mode - result mode
+ * @param equiv - equality predicate function
  */
 export const diffArray = <T>(
     a: ArrayLike<T> | undefined | null,

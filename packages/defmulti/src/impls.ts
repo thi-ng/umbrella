@@ -16,7 +16,7 @@ import { Implementation, MultiFn } from "./api";
  * The remaining implementations are associated with their related
  * multi-method and the given `type` dispatch value.
  *
- * ```
+ * ```ts
  * foo = defmulti((x) => x.id);
  * bar = defmulti((x) => x.id);
  * bax = defmulti((x) => x.id);
@@ -53,8 +53,8 @@ import { Implementation, MultiFn } from "./api";
  * baz.impls(); // Set { "c", "a", "b" }
  * ```
  *
- * @param type
- * @param impls
+ * @param type -
+ * @param impls -
  */
 export const implementations = (
     type: PropertyKey,

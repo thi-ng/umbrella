@@ -13,8 +13,8 @@ import { $iter } from "../iterator";
  * // [ 3, 24, 25, 36, 43, 49, 59, 64, 82, 86, 89 ]
  * ```
  *
- * @param prob
- * @param src
+ * @param prob -
+ * @param src -
  */
 export function sample<T>(prob: number): Transducer<T, T>;
 export function sample<T>(prob: number, rnd: IRandom): Transducer<T, T>;

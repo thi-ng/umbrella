@@ -17,7 +17,7 @@ import { cossin } from "./sincos";
  * Converts 2D polar vector `v`, i.e. `[r,θ]` (angle in radians) to
  * cartesian coordinates. See `polar2()` for reverse operation.
  *
- * @param v
+ * @param v -
  */
 export const cartesian2 = (v: Vec2Term) => mul(cossin($y(v)), $x(v));
 
@@ -26,7 +26,7 @@ export const cartesian2 = (v: Vec2Term) => mul(cossin($y(v)), $x(v));
  * radians) to cartesian coordinates. See `polar3()` for reverse
  * operation.
  *
- * @param v
+ * @param v -
  */
 export const cartesian3 = defn("vec3", "cartesian3", ["vec3"], (v) => {
     let r: FloatSym;

@@ -18,7 +18,7 @@ import {
  * Converts 2D cartesian vector `v` to polar coordinates, i.e. `[r,θ]`
  * (angle in radians). See `cartesian2()` for reverse operation.
  *
- * @param v
+ * @param v -
  */
 export const polar2 = defn("vec2", "polar2", ["vec2"], (v) => [
     ret(vec2(length(v), atan(div($y(v), $x(v)))))
@@ -29,7 +29,7 @@ export const polar2 = defn("vec2", "polar2", ["vec2"], (v) => [
  * `[r,θ,ϕ]` (angles in radians). See `cartesian3()` for reverse
  * operation.
  *
- * @param v
+ * @param v -
  */
 export const polar3 = defn("vec3", "polar3", ["vec3"], (v) => {
     let r: FloatSym;

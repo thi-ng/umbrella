@@ -11,12 +11,12 @@ import { reduced } from "../reduced";
  *
  * Returns true if *all* values passed test.
  *
- * ```
+ * ```ts
  * reduce(every((x)=> x > 0), [1,2,-1,3]);
  * // false
  * ```
  *
- * @param pred
+ * @param pred -
  */
 export function every<T>(pred?: Predicate<T>): Reducer<boolean, T>;
 export function every<T>(xs: Iterable<T>): boolean;

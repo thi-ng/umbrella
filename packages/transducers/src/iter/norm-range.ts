@@ -7,8 +7,8 @@
  * // [0, 0.25, 0.5, 0.75, 1.0]
  * ```
  *
- * @param n number of steps
- * @param inclLast include last value (i.e. `1.0`)
+ * @param n - number of steps
+ * @param inclLast - include last value (i.e. `1.0`)
  */
 export function* normRange(n: number, inclLast = true) {
     if (n > 0) {

@@ -133,7 +133,7 @@ export const additive = (
  * Interactive graph of this oscillator:
  * https://www.desmos.com/calculator/irugw6gnhy
  *
- * @param n
+ * @param n -
  */
 export const squareAdditive = (n = 8) =>
     additive(
@@ -147,7 +147,7 @@ export const squareAdditive = (n = 8) =>
  * Interactive graph of this oscillator:
  * https://www.desmos.com/calculator/irugw6gnhy
  *
- * @param n
+ * @param n -
  */
 export const sawAdditive = (n = 8) =>
     additive(sin, (i) => i, (i) => (1 / i) * gibbs(n, i), n);
@@ -159,8 +159,8 @@ export const sawAdditive = (n = 8) =>
  * Interactive graph:
  * https://www.desmos.com/calculator/irugw6gnhy
  *
- * @param n
- * @param i
+ * @param n -
+ * @param i -
  */
 export const gibbs = (n: number, i: number) =>
     Math.pow(Math.cos(((i - 1) * HALF_PI) / n), 2);
@@ -171,8 +171,8 @@ export const gibbs = (n: number, i: number) =>
  * - http://research.spa.aalto.fi/publications/papers/smc2010-phaseshaping/
  * - http://www.kvraudio.com/forum/viewtopic.php?t=375517
  *
- * @param eps
- * @param x
+ * @param eps -
+ * @param x -
  */
 export const polyBLEP = (eps: number, x: number) =>
     x < eps

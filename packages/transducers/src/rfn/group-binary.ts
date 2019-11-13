@@ -27,7 +27,7 @@ const branchPred = <T>(
  *
  * Index by lowest 4-bits of ID value:
  *
- * ```
+ * ```ts
  * tree = reduce(
  *   groupBinary(4, x => x.id & 0xf),
  *   [{id: 3}, {id: 8}, {id: 15}, {id: 0}]
@@ -43,7 +43,7 @@ const branchPred = <T>(
  *
  * Collecting as array:
  *
- * ```
+ * ```ts
  * tree = reduce(
  *   groupBinary(4, identity, ()=>[], push(), 0, 1),
  *   [1,2,3,4,5,6,7]
@@ -58,7 +58,7 @@ const branchPred = <T>(
  *
  * Using `frequencies` as leaf reducer:
  *
- * ```
+ * ```ts
  * tree = reduce(
  *   groupBinary(3, (x: string) => x.length, null, frequencies()),
  *   "aa bbb dddd ccccc bbb eeee fff".split(" ")
@@ -73,13 +73,13 @@ const branchPred = <T>(
  * // Map { 'bbb' => 2, 'fff' => 1 }
  * ```
  *
- * @param bits index range (always from 0)
- * @param key key function
- * @param branch function to create a new branch container (object or
+ * @param bits - index range (always from 0)
+ * @param key - key function
+ * @param branch - function to create a new branch container (object or
  * array)
- * @param leaf reducer for leaf collection
- * @param left key for storing left branches (e.g. `0` for arrays)
- * @param right key for storing right branches (e.g. `1` for arrays)
+ * @param leaf - reducer for leaf collection
+ * @param left - key for storing left branches (e.g. `0` for arrays)
+ * @param right - key for storing right branches (e.g. `1` for arrays)
  */
 export const groupBinary = <T>(
     bits: number,

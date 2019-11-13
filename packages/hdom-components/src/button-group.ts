@@ -73,7 +73,7 @@ export type ButtonGroup = (
  * settings. The group can have any number of elements, given as
  * varargs.
  *
- * @param opts
+ * @param opts -
  */
 export const buttonGroup = (opts: ButtonGroupOpts): ButtonGroup => (
     _,

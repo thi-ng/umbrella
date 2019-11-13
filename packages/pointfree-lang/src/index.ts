@@ -24,8 +24,8 @@ const nodeLoc = (node: ASTNode) =>
  *
  * Throws error if symbol can't be resolved.
  *
- * @param node
- * @param ctx
+ * @param node -
+ * @param ctx -
  */
 const resolveSym = (node: ASTNode, ctx: pf.StackContext) => {
     const id = node.id!;
@@ -43,8 +43,8 @@ const resolveSym = (node: ASTNode, ctx: pf.StackContext) => {
  * stack of scopes (prepared in `ensureEnv()`), and the current scope's
  * value is always at the TOS element (`scopes[0]`).
  *
- * @param id
- * @param ctx
+ * @param id -
+ * @param ctx -
  */
 const resolveVar = (node: ASTNode, ctx: pf.StackContext) => {
     const id = node.id!;
@@ -62,8 +62,8 @@ const resolveVar = (node: ASTNode, ctx: pf.StackContext) => {
  * Resolves given node's value. Used by `resolveArray` & `resolveObject`
  * to process internal values (and in the latter case also their keys).
  *
- * @param node
- * @param ctx
+ * @param node -
+ * @param ctx -
  */
 const resolveNode = (node: ASTNode, ctx: pf.StackContext): any => {
     switch (node.type) {
@@ -85,8 +85,8 @@ const resolveNode = (node: ASTNode, ctx: pf.StackContext): any => {
 /**
  * Constructs an array literal (quotation) from given AST node.
  *
- * @param node
- * @param ctx
+ * @param node -
+ * @param ctx -
  */
 const resolveArray = (node: ASTNode, ctx: pf.StackContext) => {
     const res = [];
@@ -99,8 +99,8 @@ const resolveArray = (node: ASTNode, ctx: pf.StackContext) => {
 /**
  * Constructs object literal from given AST node.
  *
- * @param node
- * @param ctx
+ * @param node -
+ * @param ctx -
  */
 const resolveObject = (node: ASTNode, ctx: pf.StackContext) => {
     const res: any = {};
@@ -116,7 +116,7 @@ const resolveObject = (node: ASTNode, ctx: pf.StackContext) => {
 /**
  * HOF word function. Calls `resolveVar` and pushes result on stack.
  *
- * @param node
+ * @param node -
  */
 const loadvar = (node: ASTNode) => (ctx: pf.StackContext) => (
     ctx[0].push(resolveVar(node, ctx)), ctx
@@ -127,7 +127,7 @@ const loadvar = (node: ASTNode) => (ctx: pf.StackContext) => (
  * var's stack of bindings, i.e. `scopes[0] = val`. Creates new scope
  * stack for hitherto unknown vars.
  *
- * @param id
+ * @param id -
  */
 const storevar = (id: string) => (ctx: pf.StackContext) => {
     pf.ensureStack(ctx[0], 1);
@@ -145,7 +145,7 @@ const storevar = (id: string) => (ctx: pf.StackContext) => {
  * TOS and adds it as value for a new scope in stack of bindings for
  * given var.
  *
- * @param id
+ * @param id -
  */
 const beginvar = (id: string) => (ctx: pf.StackContext) => {
     pf.ensureStack(ctx[0], 1);
@@ -164,7 +164,7 @@ const beginvar = (id: string) => (ctx: pf.StackContext) => {
  * reason the scope stack has become corrupted (i.e. no more scopes left
  * to remove).
  *
- * @param id
+ * @param id -
  */
 const endvar = (id: string) => (ctx: pf.StackContext) => {
     const v = ctx[2].__vars[id];
@@ -181,9 +181,9 @@ const endvar = (id: string) => (ctx: pf.StackContext) => {
 /**
  * Main AST node visitor dispatcher.
  *
- * @param node
- * @param ctx
- * @param state
+ * @param node -
+ * @param ctx -
+ * @param state -
  */
 const visit = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
     LOGGER.fine("visit", node.type, node, ctx[0].toString());
@@ -217,9 +217,9 @@ const visit = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
  * pushes word on (temp) stack (created by `visitWord`), else executes
  * word. Throws error if unknown word.
  *
- * @param node
- * @param ctx
- * @param state
+ * @param node -
+ * @param ctx -
+ * @param state -
  */
 const visitSym = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
     const w = resolveSym(node, ctx);
@@ -236,9 +236,9 @@ const visitSym = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
  * (temp) stack (created by `visitWord`), else attempts to resolve var
  * and pushes its value on stack. Throws error if unknown var.
  *
- * @param node
- * @param ctx
- * @param state
+ * @param node -
+ * @param ctx -
+ * @param state -
  */
 const visitDeref = (
     node: ASTNode,
@@ -258,9 +258,9 @@ const visitDeref = (
  * (temp) stack (created by `visitWord`), else executes `storevar`
  * directly to save value in env.
  *
- * @param node
- * @param ctx
- * @param state
+ * @param node -
+ * @param ctx -
+ * @param state -
  */
 const visitStore = (
     node: ASTNode,
@@ -286,9 +286,9 @@ const visitStore = (
  * word1: {a: 2, b: 2} (a is local, b from root)
  * word2: {c: 3, a: 2, b: 2} (c is local, called from w1, a from w1, b: from root)
  *
- * @param node
- * @param ctx
- * @param state
+ * @param node -
+ * @param ctx -
+ * @param state -
  */
 const visitWord = (
     node: ASTNode,
@@ -335,9 +335,9 @@ const visitWord = (
  * call to `resolveArray` on temp word stack, else calls `resolveArray`
  * and pushes result on stack.
  *
- * @param node
- * @param ctx
- * @param state
+ * @param node -
+ * @param ctx -
+ * @param state -
  */
 const visitArray = (
     node: ASTNode,
@@ -361,9 +361,9 @@ const visitArray = (
  * to `resolveObject` on temp word stack, else calls `resolveObject` and
  * pushes result on stack.
  *
- * @param node
- * @param ctx
- * @param state
+ * @param node -
+ * @param ctx -
+ * @param state -
  */
 const visitObject = (
     node: ASTNode,
@@ -409,7 +409,7 @@ const visitObject = (
  *
  * Also see: `loadvar`, `storevar`, `beginvar`, `endvar`
  *
- * @param env
+ * @param env -
  */
 const ensureEnv = (env?: pf.StackEnv) => {
     env = env || {};
@@ -432,7 +432,7 @@ const ensureEnv = (env?: pf.StackEnv) => {
  * Copies current scope values for all vars back into main env object
  * and removes `env.__vars`. Called from all `run*()` functions.
  *
- * @param ctx
+ * @param ctx -
  */
 const finalizeEnv = (ctx: pf.StackContext) => {
     const env = ctx[2];
@@ -453,9 +453,9 @@ const finalizeEnv = (ctx: pf.StackContext) => {
  * env and stack. Prepares env using `ensureEnv()`, parses, compiles and
  * executes source, then returns resulting `StackContext` tuple.
  *
- * @param src
- * @param env
- * @param stack
+ * @param src -
+ * @param env -
+ * @param stack -
  */
 export const run = (src: string, env?: pf.StackEnv, stack: pf.Stack = []) => {
     let ctx = pf.ctx(stack, ensureEnv(env));
@@ -481,10 +481,10 @@ export const run = (src: string, env?: pf.StackEnv, stack: pf.Stack = []) => {
 /**
  * Like `run()`, but returns unwrapped value(s) from result data stack.
  *
- * @param src
- * @param env
- * @param stack
- * @param n
+ * @param src -
+ * @param env -
+ * @param stack -
+ * @param n -
  */
 export const runU = (src: string, env?: pf.StackEnv, stack?: pf.Stack, n = 1) =>
     pf.unwrap(run(src, env, stack), n);
@@ -492,9 +492,9 @@ export const runU = (src: string, env?: pf.StackEnv, stack?: pf.Stack, n = 1) =>
 /**
  * Like `run`, but returns resulting env object only.
  *
- * @param src
- * @param env
- * @param stack
+ * @param src -
+ * @param env -
+ * @param stack -
  */
 export const runE = (src: string, env?: pf.StackEnv, stack?: pf.Stack) =>
     run(src, env, stack)[2];
@@ -504,9 +504,9 @@ export const runE = (src: string, env?: pf.StackEnv, stack?: pf.Stack) =>
  * with given optional initial stack. Returns resulting `StackContext`
  * tuple.
  *
- * @param id
- * @param env
- * @param stack
+ * @param id -
+ * @param env -
+ * @param stack -
  */
 export const runWord = (id: string, env: pf.StackEnv, stack: pf.Stack = []) =>
     finalizeEnv(env.__words[id](pf.ctx(stack, ensureEnv(env))));
@@ -515,10 +515,10 @@ export const runWord = (id: string, env: pf.StackEnv, stack: pf.Stack = []) =>
  * Like `runWord()`, but returns unwrapped value(s) from result data
  * stack.
  *
- * @param id
- * @param env
- * @param stack
- * @param n
+ * @param id -
+ * @param env -
+ * @param stack -
+ * @param n -
  */
 export const runWordU = (
     id: string,
@@ -530,9 +530,9 @@ export const runWordU = (
 /**
  * Like `runWord()`, but returns resulting env object only.
  *
- * @param id
- * @param env
- * @param stack
+ * @param id -
+ * @param env -
+ * @param stack -
  */
 export const runWordE = (id: string, env: pf.StackEnv, stack: pf.Stack = []) =>
     finalizeEnv(env.__words[id](pf.ctx(stack, ensureEnv(env))))[2];
@@ -543,8 +543,8 @@ export const runWordE = (id: string, env: pf.StackEnv, stack: pf.Stack = []) =>
  * and their values `StackFn`s. See @thi.ng/pointfree package for more
  * details about stack functions.
  *
- * @param env
- * @param words
+ * @param env -
+ * @param words -
  */
 export const ffi = (env: any, words: IObjectOf<pf.StackFn>) => {
     env = ensureEnv(env);

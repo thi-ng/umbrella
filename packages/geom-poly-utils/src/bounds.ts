@@ -5,7 +5,7 @@ import { max, min, Vec, VecPair } from "@thi.ng/vectors";
  * to `+∞` and `vmax` to `-∞` (e.g. use copies of `MIN*` / `MAX*`
  * constants defined in thi.ng/vectors).
  *
- * ```
+ * ```ts
  * points = [[-1,-2], [5,-3], [0,4]];
  *
  * bounds(points, [...MAX2], [...MIN2])
@@ -14,9 +14,9 @@ import { max, min, Vec, VecPair } from "@thi.ng/vectors";
  *
  * Returns 2-tuple of modified `[vmin, vmax]`.
  *
- * @param pts
- * @param vmin
- * @param vmax
+ * @param pts -
+ * @param vmin -
+ * @param vmax -
  */
 export const bounds = (
     pts: ReadonlyArray<Vec>,

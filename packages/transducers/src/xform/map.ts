@@ -12,7 +12,7 @@ import { iterator1 } from "../iterator";
  * // [ 10, 20, 30 ]
  * ```
  *
- * @param fn transformation function
+ * @param fn - transformation function
  */
 export function map<A, B>(fn: Fn<A, B>): Transducer<A, B>;
 export function map<A, B>(fn: Fn<A, B>, src: Iterable<A>): IterableIterator<B>;

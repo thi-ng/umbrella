@@ -8,8 +8,8 @@ import { push } from "./rfn/push";
  * Takes a transducer and input iterable. Returns iterator of
  * transformed results.
  *
- * @param xform
- * @param xs
+ * @param xform -
+ * @param xs -
  */
 export function* iterator<A, B>(
     xform: Transducer<A, B>,
@@ -38,8 +38,8 @@ export function* iterator<A, B>(
  * 1) Only produce none or a single result per input
  * 2) Do not require a `completion` reduction step
  *
- * @param xform
- * @param xs
+ * @param xform -
+ * @param xs -
  */
 export function* iterator1<A, B>(
     xform: Transducer<A, B>,
@@ -65,9 +65,9 @@ export function* iterator1<A, B>(
  * Helper function used by various transducers to wrap themselves as
  * transforming iterators. Delegates to `iterator1()` by default.
  *
- * @param xform
- * @param args
- * @param impl
+ * @param xform -
+ * @param args -
+ * @param impl -
  */
 export const $iter = (
     xform: FnAny<Transducer<any, any>>,

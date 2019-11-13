@@ -14,18 +14,18 @@ import { tooltipRaw } from "./tooltip";
  * - -1 = proportional height (snapped to rows)
  * - >0 = fixed row height
  *
- * @param gui
- * @param layout
- * @param id
- * @param min
- * @param max
- * @param prec
- * @param val
- * @param mode
- * @param yUp
- * @param label
- * @param fmt
- * @param info
+ * @param gui -
+ * @param layout -
+ * @param id -
+ * @param min -
+ * @param max -
+ * @param prec -
+ * @param val -
+ * @param mode -
+ * @param yUp -
+ * @param label -
+ * @param fmt -
+ * @param info -
  */
 export const xyPad = (
     gui: IMGUI,

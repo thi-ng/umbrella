@@ -4,10 +4,10 @@ import { add, max, min, ReadonlyVec, sub, VecPair } from "@thi.ng/vectors";
  * Takes the position and size vectors of 2 `AABBLike`s and returns
  * 2-tuple of `[pos,size]` of their union bounds.
  *
- * @param apos
- * @param asize
- * @param bpos
- * @param bsize
+ * @param apos -
+ * @param asize -
+ * @param bpos -
+ * @param bsize -
  */
 export const unionBounds = (
     apos: ReadonlyVec,

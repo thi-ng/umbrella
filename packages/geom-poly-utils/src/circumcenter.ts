@@ -6,10 +6,10 @@ import { ReadonlyVec } from "@thi.ng/vectors";
  * triangle points. Returns `undefined` if the points are colinear or
  * coincident.
  *
- * @param a
- * @param b
- * @param c
- * @param eps
+ * @param a -
+ * @param b -
+ * @param c -
+ * @param eps -
  */
 export const circumCenter2 = (
     a: ReadonlyVec,

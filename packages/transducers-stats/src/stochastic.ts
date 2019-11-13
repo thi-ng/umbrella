@@ -17,9 +17,9 @@ export interface Stochastic {
  *
  * https://en.wikipedia.org/wiki/Stochastic_oscillator
  *
- * @param periodK
- * @param periodD1
- * @param periodD2
+ * @param periodK -
+ * @param periodD1 -
+ * @param periodD2 -
  */
 export function stochastic(
     periodK?: number,

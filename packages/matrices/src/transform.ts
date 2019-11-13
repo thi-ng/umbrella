@@ -12,10 +12,10 @@ import { translation23 } from "./translation";
  * Creates 2x3 TRS transformation matrix from given translation vector,
  * rotation angle and scale factor/vector.
  *
- * @param out
- * @param translate
- * @param rotation
- * @param scale
+ * @param out -
+ * @param translate -
+ * @param rotation -
+ * @param scale -
  */
 export const transform23 = (
     out: Mat | null,
@@ -37,10 +37,10 @@ export const transform23 = (
  * part. The quaternion is created via `quatFromEuler()` with ZYX
  * ordering.
  *
- * @param out
- * @param translate
- * @param rotation
- * @param scale
+ * @param out -
+ * @param translate -
+ * @param rotation -
+ * @param scale -
  */
 export const transform44 = (
     out: Mat | null,

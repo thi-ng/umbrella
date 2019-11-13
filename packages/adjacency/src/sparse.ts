@@ -15,9 +15,9 @@ export class AdjacencyMatrix extends CSR implements IGraph {
      * If `undirected` is true (default: false), creates symmetrical
      * edges.
      *
-     * @param n max number of vertices
-     * @param edges
-     * @param undirected
+     * @param n - max number of vertices
+     * @param edges -
+     * @param undirected -
      */
     static fromEdges(
         n: number,
@@ -94,7 +94,7 @@ export class AdjacencyMatrix extends CSR implements IGraph {
 
     /**
      *
-     * @param deg
+     * @param deg -
      */
     degreeMat(deg: DegreeType = DegreeType.OUT) {
         const res = CSR.empty(this.m);
@@ -126,7 +126,7 @@ export class AdjacencyMatrix extends CSR implements IGraph {
      * https://en.wikipedia.org/wiki/Laplacian_matrix
      * https://en.wikipedia.org/wiki/Discrete_Laplace_operator
      *
-     * @param deg degree type for `degreeMat()`
+     * @param deg - degree type for `degreeMat()`
      */
     laplacianMat(deg?: CSR) {
         return (deg || this.degreeMat()).sub(this);
@@ -155,8 +155,8 @@ export class AdjacencyMatrix extends CSR implements IGraph {
     /**
      * Computes: `I - nA + n^2 * (D - I)`
      *
-     * @param n
-     * @param deg
+     * @param n -
+     * @param deg -
      */
     deformedLaplacian(n: number, deg?: CSR) {
         deg = deg || this.degreeMat();

@@ -7,7 +7,7 @@ import { nextID } from "../utils/idgen";
  * automatically marks itself done. It doesn't matter if the promise
  * resolves before the first subscriber has attached.
  *
- * @param src
+ * @param src -
  */
 export const fromPromise = <T>(src: Promise<T>) => {
     let canceled = false;

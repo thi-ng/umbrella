@@ -5,8 +5,8 @@ export type TimingResult<T> = [T, number];
  * fn's result. The optional `prefix` will be displayed with the output,
  * allowing to label different measurements.
  *
- * @param fn
- * @param prefix
+ * @param fn -
+ * @param prefix -
  */
 export const timed = <T>(fn: () => T, prefix = "") => {
     const t0 = Date.now();
@@ -19,7 +19,7 @@ export const timed = <T>(fn: () => T, prefix = "") => {
  * Similar to `timed()`, but produces no output and instead returns
  * tuple of `fn`'s result and the time measurement.
  *
- * @param fn
+ * @param fn -
  */
 export const timedResult = <T>(fn: () => T): TimingResult<T> => {
     const t0 = Date.now();
@@ -32,8 +32,8 @@ export const timedResult = <T>(fn: () => T): TimingResult<T> => {
  * returns last result from fn. The optional `prefix` will be displayed
  * with the output, allowing to label different measurements.
  *
- * @param fn
- * @param n
+ * @param fn -
+ * @param n -
  */
 export const bench = <T>(fn: () => T, n = 1e6, prefix = "") => {
     let res: T;
@@ -49,8 +49,8 @@ export const bench = <T>(fn: () => T, n = 1e6, prefix = "") => {
  * Similar to `bench()`, but produces no output and instead returns
  * tuple of `fn`'s last result and the grand total time measurement.
  *
- * @param fn
- * @param n
+ * @param fn -
+ * @param n -
  */
 export const benchResult = <T>(fn: () => T, n = 1e6): TimingResult<T> => {
     let res: T;

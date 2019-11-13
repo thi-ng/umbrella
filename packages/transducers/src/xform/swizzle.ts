@@ -21,7 +21,7 @@ import { map } from "./map";
  *
  * @see thi.ng/arrays/swizzle
  *
- * @param order key order
+ * @param order - key order
  */
 export function swizzle<T>(order: PropertyKey[]): Transducer<T, any[]>;
 export function swizzle<T>(

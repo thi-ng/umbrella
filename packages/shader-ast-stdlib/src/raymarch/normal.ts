@@ -20,8 +20,8 @@ import { RaymarchScene } from "../api";
  * Like `raymarch()`, this function takes an existing scene function as
  * argument.
  *
- * @param scene
- * @param name
+ * @param scene -
+ * @param name -
  */
 export const raymarchNormal = (scene: RaymarchScene, name = "raymarchNormal") =>
     defn("vec3", name, ["vec3", "float"], (p, smooth) => {

@@ -21,7 +21,7 @@ import { prepareSpec } from "./utils";
  * bytes between each resulting SOA element, even though the actual
  * struct size is only 13 bytes:
  *
- * ```
+ * ```ts
  * aos(
  *   1024,
  *   {
@@ -32,10 +32,10 @@ import { prepareSpec } from "./utils";
  * );
  * ```
  *
- * @param num
- * @param specs
- * @param buf
- * @param byteOffset
+ * @param num -
+ * @param specs -
+ * @param buf -
+ * @param byteOffset -
  */
 export const aos = <K extends string>(
     num: number,

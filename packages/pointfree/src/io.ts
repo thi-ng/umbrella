@@ -8,7 +8,7 @@ import { $ } from "./safe";
  *
  * ( x -- )
  *
- * @param ctx
+ * @param ctx -
  */
 export const print = (ctx: StackContext) => (
     $(ctx[0], 1), console.log(ctx[0].pop()), ctx

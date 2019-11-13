@@ -8,16 +8,16 @@ import { sub3 } from "./sub";
  * by given 3 input vectors. If `normalize` is true (default), the
  * result vector will be normalized.
  *
- * ```
+ * ```ts
  * orthoNormal3([], [0, 0, 0], [1, 0, 0], [0, 1, 0])
  * // [0, 0, 1]
  * ```
  *
- * @param out
- * @param a
- * @param b
- * @param c
- * @param normalize
+ * @param out -
+ * @param a -
+ * @param b -
+ * @param c -
+ * @param normalize -
  */
 export const orthoNormal3 = (
     out: Vec | null,

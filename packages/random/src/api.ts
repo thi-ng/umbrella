@@ -36,9 +36,9 @@ export abstract class ARandom implements IRandom {
      *
      * https://en.wikipedia.org/wiki/Central_limit_theorem
      *
-     * @param n
-     * @param offset
-     * @param scale
+     * @param n -
+     * @param offset -
+     * @param scale -
      */
     gaussian(n = 10, offset = -0.5, scale = 1) {
         let sum = 0;

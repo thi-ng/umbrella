@@ -19,9 +19,9 @@ import { sma } from "./sma";
  * Note: the number of results will be `period-1` less than the number
  * of processed inputs.
  *
- * @param period
- * @param scale
- * @param src
+ * @param period -
+ * @param scale -
+ * @param src -
  */
 export function sd(period?: number, scale?: number): Transducer<number, number>;
 export function sd(src: Iterable<number>): IterableIterator<number>;

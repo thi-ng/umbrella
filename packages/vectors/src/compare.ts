@@ -7,8 +7,8 @@ import { ReadonlyVec } from "./api";
  * component, e.g. if order is `0,1`, a return value of -2 means that
  * `a.y < b.y`.
  *
- * @param o1
- * @param o2
+ * @param o1 -
+ * @param o2 -
  */
 export const comparator2 = (
     o1: number,
@@ -27,9 +27,9 @@ export const comparator2 = (
  * component, e.g. if order is `0,1,2`, a return value of -3 means that
  * `a.z < b.z`.
  *
- * @param o1
- * @param o2
- * @param o3
+ * @param o1 -
+ * @param o2 -
+ * @param o3 -
  */
 export const comparator3 = (
     o1: number,
@@ -63,10 +63,10 @@ export const comparator3 = (
  * component, e.g. if order is `0,1,2,3`, a return value of -4 means
  * that `a.w < b.w`.
  *
- * @param o1
- * @param o2
- * @param o3
- * @param o4
+ * @param o1 -
+ * @param o2 -
+ * @param o3 -
+ * @param o4 -
  */
 export const comparator4 = (
     o1: number,

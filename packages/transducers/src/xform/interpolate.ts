@@ -37,9 +37,9 @@ import { partition } from "./partition";
  * @see interpolateLinear
  * @see extendSides
  *
- * @param fn
- * @param window
- * @param n
+ * @param fn -
+ * @param window -
+ * @param n -
  */
 // prettier-ignore
 export function interpolate<T>(fn: Fn2<T[], number, T>, window: number, n: number): Transducer<number, number>;

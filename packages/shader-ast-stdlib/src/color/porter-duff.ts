@@ -34,9 +34,9 @@ const coeff = (
  * Optimization only happens for cases where either `fa` and/or `fb` are
  * `ZERO`.
  *
- * @param name function name
- * @param fa src coeff fn
- * @param fb dest coeff fn
+ * @param name - function name
+ * @param fa - src coeff fn
+ * @param fb - dest coeff fn
  */
 export const porterDuff = (
     name: string,

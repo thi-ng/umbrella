@@ -5,8 +5,8 @@
  * Ported & modified from original Java code by Christopher Kulla.
  * https://sourceforge.net/p/sunflow/code/HEAD/tree/trunk/src/org/sunflow/core/bucket/SpiralBucketOrder.java
  *
- * @param cols
- * @param rows
+ * @param cols -
+ * @param rows -
  *
  */
 export function* zigzagColumns2d(cols: number, rows = cols) {

@@ -175,8 +175,8 @@ export interface MultiFnBase<I> {
      * if successful. Returns false if an implementation already exists
      * (and does nothing in this case).
      *
-     * @param id
-     * @param impl
+     * @param id -
+     * @param impl -
      */
     add(id: PropertyKey, impl: I): boolean;
     /**
@@ -185,21 +185,21 @@ export interface MultiFnBase<I> {
      * added successfully. Note: Only numbers or strings are accepted as
      * dispatch values here.
      *
-     * @param impls
+     * @param impls -
      */
     addAll(impls: IObjectOf<I>): boolean;
     /**
      * Removes implementation for dispatch value `id`. Returns true, if
      * successful.
      *
-     * @param id
+     * @param id -
      */
     remove(id: PropertyKey): boolean;
     /**
      * Returns true, if the function is callable (has a valid
      * implementation) for given arguments.
      *
-     * @param args
+     * @param args -
      */
     callable(...args: any[]): boolean;
     /**
@@ -211,8 +211,8 @@ export interface MultiFnBase<I> {
      * delegate to `parent`'s implementation. I.e. in terms of dispatch
      * logic, `id` is considered the same as `parent.
      *
-     * @param id
-     * @param parent
+     * @param id -
+     * @param parent -
      */
     isa(id: PropertyKey, parent: PropertyKey): boolean;
     /**
@@ -225,13 +225,13 @@ export interface MultiFnBase<I> {
      * Returns a set of immediate parent dispatch values for given
      * dispatch value `id`.
      *
-     * @param id
+     * @param id -
      */
     parents(id: PropertyKey): Set<PropertyKey>;
     /**
      * Similar to `parents()`, but includes all transitive parent dispatch
      * values for given dispatch value `id`.
-     * @param id
+     * @param id -
      */
     ancestors(id: PropertyKey): Set<PropertyKey>;
 }

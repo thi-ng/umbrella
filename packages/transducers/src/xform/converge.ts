@@ -28,8 +28,8 @@ import { ensureReduced } from "../reduced";
  *
  * @see takeWhile
  *
- * @param pred
- * @param src
+ * @param pred -
+ * @param src -
  */
 export function converge<T>(pred?: Predicate2<T>): Transducer<T, T>;
 export function converge<T>(

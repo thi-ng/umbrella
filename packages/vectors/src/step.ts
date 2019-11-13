@@ -6,9 +6,9 @@ import { FN2 } from "./internal/templates";
 /**
  * Like GLSL `step()`
  *
- * @param out
- * @param e
- * @param v
+ * @param out -
+ * @param e -
+ * @param v -
  */
 export const [step, step2, step3, step4] = defHofOp<MultiVecOpVV, VecOpVV>(
     _step,

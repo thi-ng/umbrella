@@ -7,10 +7,10 @@ export type RLESizes = [number, number, number, number];
  * Compresses input using dynamically sized RLE compression and returns
  * result as `Uint8Array`.
  *
- * @param src
- * @param num number of input words
- * @param wordSize in bits, range 1 - 32
- * @param rleSizes run-length group sizes (in bits, max. 16)
+ * @param src -
+ * @param num - number of input words
+ * @param wordSize - in bits, range 1 - 32
+ * @param rleSizes - run-length group sizes (in bits, max. 16)
  */
 export const encode = (
     src: Iterable<number>,

@@ -7,9 +7,9 @@ import { AnyArray } from "./api";
  * Fisher-yates and optional `rnd` PRNG. If neither `start` / `end` are
  * given, the entire array will be shuffled. Mutates original array.
  *
- * @param buf
- * @param n
- * @param rnd
+ * @param buf -
+ * @param n -
+ * @param rnd -
  */
 export const shuffleRange = <T extends AnyArray>(
     buf: T,
@@ -41,9 +41,9 @@ export const shuffleRange = <T extends AnyArray>(
  *
  * @see shuffleRange
  *
- * @param buf
- * @param n
- * @param rnd
+ * @param buf -
+ * @param n -
+ * @param rnd -
  */
 export const shuffle = <T extends any[] | TypedArray>(
     buf: T,

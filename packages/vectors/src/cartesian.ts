@@ -17,9 +17,9 @@ const sin = Math.sin;
  * `offset`. See `polar()` for reverse operation. If `out` is null,
  * modifies `v` in place.
  *
- * @param out
- * @param v
- * @param offset
+ * @param out -
+ * @param v -
+ * @param offset -
  */
 export const cartesian: MultiVecOpVO<ReadonlyVec> = vop(1);
 
@@ -28,9 +28,9 @@ export const cartesian: MultiVecOpVO<ReadonlyVec> = vop(1);
  * optional `offset`. See `polar()` for reverse operation. If `out` is
  * null, modifies `v` in place.
  *
- * @param out
- * @param v
- * @param offset
+ * @param out -
+ * @param v -
+ * @param offset -
  */
 export const cartesian2 = cartesian.add(2, (out, a, b = ZERO2) =>
     maddN2(out || a, cossin(a[1]), a[0], b)
@@ -41,9 +41,9 @@ export const cartesian2 = cartesian.add(2, (out, a, b = ZERO2) =>
  * optional `offset`. See `polar()` for reverse operation. If `out` is
  * null, modifies `v` in place.
  *
- * @param out
- * @param v
- * @param offset
+ * @param out -
+ * @param v -
+ * @param offset -
  */
 export const cartesian3 = cartesian.add(3, (out, a, b = ZERO3) => {
     const r = a[0];

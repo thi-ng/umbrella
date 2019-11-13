@@ -59,14 +59,14 @@ import { IVector, VecOpV, VecOpVV, VecOpVN, VecOpVVV, VecOpVVN } from "./api";
  * // [ 11, 22, 33, 44 ]
  * ```
  *
- * @param op
- * @param out
- * @param a
- * @param b
- * @param num
- * @param so
- * @param sa
- * @param sb
+ * @param op -
+ * @param out -
+ * @param a -
+ * @param b -
+ * @param num -
+ * @param so -
+ * @param sa -
+ * @param sb -
  */
 export const mapVV = (
     op: VecOpVV,
@@ -105,12 +105,12 @@ export const mapVV = (
  * // [ [ 2, 1 ], [ 4, 3 ], [ 6, 5 ], [ 8, 7 ] ]
  * ```
  *
- * @param op
- * @param out
- * @param a
- * @param num
- * @param so
- * @param sa
+ * @param op -
+ * @param out -
+ * @param a -
+ * @param num -
+ * @param so -
+ * @param sa -
  */
 export const mapV = (
     op: VecOpV,
@@ -132,13 +132,13 @@ export const mapV = (
  * Like `mapVV`, but for `VecOpVN` type ops and hence using a single
  * vector input buffer `a` and a scalar `n`.
  *
- * @param op
- * @param out
- * @param a
- * @param n
- * @param num
- * @param so
- * @param sa
+ * @param op -
+ * @param out -
+ * @param a -
+ * @param n -
+ * @param num -
+ * @param so -
+ * @param sa -
  */
 export const mapVN = (
     op: VecOpVN,
@@ -161,16 +161,16 @@ export const mapVN = (
  * Like `mapVV`, but for `VecOpVVV` type ops and hence using three
  * vector input buffers `a`, `b`, `c`.
  *
- * @param op
- * @param out
- * @param a
- * @param b
- * @param c
- * @param num
- * @param so
- * @param sa
- * @param sb
- * @param sc
+ * @param op -
+ * @param out -
+ * @param a -
+ * @param b -
+ * @param c -
+ * @param num -
+ * @param so -
+ * @param sa -
+ * @param sb -
+ * @param sc -
  */
 export const mapVVV = (
     op: VecOpVVV,
@@ -198,15 +198,15 @@ export const mapVVV = (
  * Like `mapVV`, but for `VecOpVVN` type ops and hence using two
  * vector input buffers `a`, `b` and a scalar `n`.
  *
- * @param op
- * @param out
- * @param a
- * @param b
- * @param n
- * @param num
- * @param so
- * @param sa
- * @param sb
+ * @param op -
+ * @param out -
+ * @param a -
+ * @param b -
+ * @param n -
+ * @param num -
+ * @param so -
+ * @param sa -
+ * @param sb -
  */
 export const mapVVN = (
     op: VecOpVVN,

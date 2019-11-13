@@ -8,7 +8,7 @@ import { roc } from "./roc";
  * Note: the number of results will be `3 * (period - 1) + 1` less than
  * the number of processed inputs.
  *
- * @param period
+ * @param period -
  */
 export function trix(period: number): Transducer<number, number>;
 export function trix(

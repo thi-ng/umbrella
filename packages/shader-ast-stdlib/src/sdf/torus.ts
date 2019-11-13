@@ -12,9 +12,9 @@ import {
  * Returns signed distance from `p` to torus centered around Y-axis with
  * radii `r1`, `r2`.
  *
- * @param p vec3
- * @param r1 float
- * @param r2 float
+ * @param p - vec3
+ * @param r1 - float
+ * @param r2 - float
  */
 export const sdfTorus = defn(
     "float",

@@ -41,14 +41,14 @@ export const eqDelta4 = $(4);
  * Similar to `equiv()`, but takes tolerance `eps` into account for
  * equality checks.
  *
- * @param a first vector
- * @param b second vector
- * @param n number of elements
- * @param eps tolerance
- * @param ia start index a
- * @param ib start index b
- * @param sa stride a
- * @param sb stride b
+ * @param a - first vector
+ * @param b - second vector
+ * @param n - number of elements
+ * @param eps - tolerance
+ * @param ia - start index a
+ * @param ib - start index b
+ * @param sa - stride a
+ * @param sb - stride b
  */
 export const eqDeltaS = (
     a: ReadonlyVec,

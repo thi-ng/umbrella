@@ -5,8 +5,8 @@ import { setC4, setV4 } from "./utils";
  * Multiplies RGB channels w/ alpha channel. Assumes alpha is in last
  * vector component and [0..1] interval. Does NOT clamp result.
  *
- * @param out
- * @param src
+ * @param out -
+ * @param src -
  */
 export const premultiply = (out: Color | null, src: ReadonlyColor) => {
     const a = src[3];
@@ -17,7 +17,7 @@ export const premultiply = (out: Color | null, src: ReadonlyColor) => {
  * Multiplies RGB channels of packed int with alpha channel. Assumes
  * 8bits/channel and alpha in MSB lane.
  *
- * @param src
+ * @param src -
  */
 export const premultiplyInt = (src: number) => {
     const a = (src >>> 24) / 0xff;
@@ -33,8 +33,8 @@ export const premultiplyInt = (src: number) => {
  * Reverse operation of `premultiply`. Divides RGB channels
  * by alpha, unless alpha is zero. Does NOT clamp result.
  *
- * @param out
- * @param src
+ * @param out -
+ * @param src -
  */
 export const postmultiply = (out: Color | null, src: ReadonlyColor) => {
     const a = src[3];
@@ -50,7 +50,7 @@ export const postmultiply = (out: Color | null, src: ReadonlyColor) => {
  * MSB lane. Divides RGB channels by alpha (unless zero) and DOES clamp
  * result to avoid overflows.
  *
- * @param src
+ * @param src -
  */
 export const postmultiplyInt = (src: number) => {
     const a = (src >>> 24) / 0xff;
@@ -66,7 +66,7 @@ export const postmultiplyInt = (src: number) => {
 /**
  * Returns true if RGBA float color vector is premultiplied.
  *
- * @param src
+ * @param src -
  */
 export const isPremultiplied = (src: ReadonlyColor) => {
     const a = src[3];
@@ -76,7 +76,7 @@ export const isPremultiplied = (src: ReadonlyColor) => {
 /**
  * Returns true if packed int color value is premultiplied.
  *
- * @param src
+ * @param src -
  */
 export const isPremultipliedInt = (src: number) => {
     const a = src >>> 24;

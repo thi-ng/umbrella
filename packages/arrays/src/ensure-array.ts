@@ -7,7 +7,7 @@ import { ensureIterable } from "./ensure-iterable";
  * attempts to obtain an iterator from `x` and if successful collects it
  * as array and returns it. Throws error if `x` isn't iterable.
  *
- * @param x
+ * @param x -
  */
 export const ensureArray = (x: any): any[] =>
     isArray(x) ? x : [...ensureIterable(x)];
@@ -17,7 +17,7 @@ export const ensureArray = (x: any): any[] =>
  *
  * @see ensureArray
  *
- * @param x
+ * @param x -
  */
 export const ensureArrayLike = (x: any): ArrayLike<any> =>
     isArrayLike(x) ? x : [...ensureIterable(x)];

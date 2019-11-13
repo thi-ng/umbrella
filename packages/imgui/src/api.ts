@@ -81,14 +81,14 @@ export interface IGridLayout extends ILayout<[number, number], LayoutBox> {
     /**
      * Returns the number of columns for given width.
      *
-     * @param w
+     * @param w -
      */
     colsForWidth(w: number): number;
 
     /**
      * Returns the number of rows for given height.
      *
-     * @param w
+     * @param w -
      */
     rowsForHeight(h: number): number;
 
@@ -96,7 +96,7 @@ export interface IGridLayout extends ILayout<[number, number], LayoutBox> {
      * Calculates the required number of columns & rows for the given
      * size.
      *
-     * @param size
+     * @param size -
      */
     spansForSize(size: ReadonlyVec): [number, number];
     spansForSize(w: number, h: number): [number, number];
@@ -143,8 +143,8 @@ export interface IGridLayout extends ILayout<[number, number], LayoutBox> {
      * button(gui, outer, "bye",...);
      * ```
      *
-     * @param cols columns in nested layout
-     * @param spans default [1, 1] (i.e. size of single cell)
+     * @param cols - columns in nested layout
+     * @param spans - default [1, 1] (i.e. size of single cell)
      */
     nest(cols: number, spans?: [number, number]): IGridLayout;
 }

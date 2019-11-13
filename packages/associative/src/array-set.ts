@@ -92,8 +92,8 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
      * Returns the canonical value for `x`, if present. If the set
      * contains no equivalent for `x`, returns `notFound`.
      *
-     * @param key
-     * @param notFound
+     * @param key -
+     * @param notFound -
      */
     get(key: T, notFound?: T): T | undefined {
         const $this = __private.get(this)!;

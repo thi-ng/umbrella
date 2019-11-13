@@ -46,10 +46,10 @@ import { nextID } from "./utils/idgen";
  * // s2 42
  * ```
  *
- * @param sub
- * @param xform
- * @param parent
- * @param id
+ * @param sub -
+ * @param xform -
+ * @param parent -
+ * @param id -
  */
 export const subscription = <A, B>(
     sub?: ISubscriber<B>,
@@ -147,7 +147,7 @@ export class Subscription<A, B>
      * Returns array of new child subscriptions for all given
      * subscribers.
      *
-     * @param subs
+     * @param subs -
      */
     subscribeAll(...subs: ISubscriber<B>[]) {
         const wrapped: Subscription<B, B>[] = [];
@@ -200,7 +200,7 @@ export class Subscription<A, B>
      * other subs are remaining also cleans up itself and goes into DONE
      * state.
      *
-     * @param sub
+     * @param sub -
      */
     unsubscribe(sub?: Subscription<B, any>) {
         LOGGER.debug(this.id, "unsub start", sub ? sub.id : "self");

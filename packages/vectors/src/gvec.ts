@@ -93,10 +93,10 @@ const keys = memoize1<number, PropertyKey[]>((size: number) => [
  * // true
  * ```
  *
- * @param buf
- * @param size
- * @param offset
- * @param stride
+ * @param buf -
+ * @param size -
+ * @param offset -
+ * @param stride -
  */
 export const gvec = (
     buf: Vec,

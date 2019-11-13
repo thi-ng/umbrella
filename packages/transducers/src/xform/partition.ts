@@ -26,7 +26,7 @@ import { $iter, iterator } from "../iterator";
  * //   [ 7, 8, 9 ] ]
  * ```
  *
- * @param size
+ * @param size -
  */
 export function partition<T>(size: number): Transducer<T, T[]>;
 export function partition<T>(size: number, all: boolean): Transducer<T, T[]>;

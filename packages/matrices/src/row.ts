@@ -5,9 +5,9 @@ import { MultiVecOpMN } from "./api";
  * Extracts row vector from given matrix and writes result to `out`. If
  * `out` is null, creates new vector.
  *
- * @param out
- * @param mat
- * @param column
+ * @param out -
+ * @param mat -
+ * @param column -
  */
 export const row: MultiVecOpMN = vop(1);
 

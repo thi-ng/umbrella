@@ -10,10 +10,10 @@ import {
  * Inline function. Multiplies `pos` with given model, view & projection
  * matrices (in order). `p` is extended to a vec4.
  *
- * @param p
- * @param model
- * @param view
- * @param proj
+ * @param p -
+ * @param model -
+ * @param view -
+ * @param proj -
  */
 export const transformMVP = (
     p: Vec3Term,

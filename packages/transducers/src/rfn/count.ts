@@ -5,8 +5,8 @@ import { reducer, $$reduce } from "../reduce";
  * Reducer which ignores incoming values and instead only counts them,
  * optionally using given `start` and `step` counter values.
  *
- * @param offset
- * @param step
+ * @param offset -
+ * @param step -
  */
 export function count(offset?: number, step?: number): Reducer<number, any>;
 export function count(xs: Iterable<any>): number;

@@ -13,7 +13,7 @@ interface Cell<T> {
  * // [ 1, 2, 3, 3, 2, 1 ]
  * ```
  *
- * @param src
+ * @param src -
  */
 export function* symmetric<T>(src: Iterable<T>) {
     let head: Cell<T> | undefined = undefined;

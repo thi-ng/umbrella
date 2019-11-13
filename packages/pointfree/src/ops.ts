@@ -11,7 +11,7 @@ import { $, $n } from "./safe";
  *
  * ( x -- y )
  *
- * @param op
+ * @param op -
  */
 export const op1 = (op: Fn<any, any>) => {
     return (ctx: StackContext) => {
@@ -29,7 +29,7 @@ export const op1 = (op: Fn<any, any>) => {
  *
  * ( a b -- c )
  *
- * @param op
+ * @param op -
  */
 export const op2 = (op: Fn2<any, any, any>) => (ctx: StackContext) => {
     const stack = ctx[0];
@@ -48,7 +48,7 @@ export const op2 = (op: Fn2<any, any, any>) => (ctx: StackContext) => {
  * - ( a b -- a ), if `a` is an array
  * - ( a b -- b ), if `a` is not an array
  *
- * @param f
+ * @param f -
  */
 export const op2v = (f: Fn2<any, any, any>) => (
     ctx: StackContext

@@ -10,8 +10,8 @@ import { result } from "./result";
  *
  * @see until
  *
- * @param str
- * @param callback
+ * @param str -
+ * @param callback -
  */
 export const untilStr = <C, R>(
     str: string,
@@ -34,8 +34,8 @@ export const untilStr = <C, R>(
  *
  * @see untilStr
  *
- * @param str
- * @param callback
+ * @param str -
+ * @param callback -
  */
 export const until = <T, C, R>(
     str: T[],

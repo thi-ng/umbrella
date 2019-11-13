@@ -17,7 +17,7 @@ import { partitionBy } from "./partition-by";
  * //   [ 18, 19 ] ]
  * ```
  *
- * @param sizes
+ * @param sizes -
  */
 export function partitionOf<T>(sizes: number[]): Transducer<T, T[]>;
 export function partitionOf<T>(

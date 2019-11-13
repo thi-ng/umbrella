@@ -4,7 +4,7 @@ const OBJP = Object.getPrototypeOf;
  * Similar to `isObject()`, but also checks if prototype is that of
  * `Object` (or `null`).
  *
- * @param x
+ * @param x -
  */
 export const isPlainObject = (x: any): x is object => {
     let p;

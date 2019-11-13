@@ -5,7 +5,7 @@ import { vop } from "./internal/vop";
 /**
  * Returns component sum of vector `v`.
  *
- * @param v
+ * @param v -
  */
 export const sum: MultiVecOpRoV<number> = vop();
 

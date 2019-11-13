@@ -25,7 +25,7 @@ export const trace: InterceptorFn = (_, e) => console.log("event:", e);
  * from event and assigns it as is to given side effect ID. Assigns
  * `true` to side effect if event has no payload.
  *
- * @param fxID side effect ID
+ * @param fxID - side effect ID
  */
 export const forwardSideFx = (fxID: string): InterceptorFn => (
     _,
@@ -36,7 +36,7 @@ export const forwardSideFx = (fxID: string): InterceptorFn => (
  * Higher-order interceptor. Returns interceptor which assigns given
  * event to `FX_DISPATCH` side effect.
  *
- * @param event
+ * @param event -
  */
 export const dispatch = (event: Event): InterceptorFn => () => ({
     [FX_DISPATCH]: event
@@ -46,7 +46,7 @@ export const dispatch = (event: Event): InterceptorFn => () => ({
  * Higher-order interceptor. Returns interceptor which assigns given
  * event to `FX_DISPATCH_NOW` side effect.
  *
- * @param event
+ * @param event -
  */
 export const dispatchNow = (event: Event): InterceptorFn => () => ({
     [FX_DISPATCH_NOW]: event
@@ -62,7 +62,7 @@ export const dispatchNow = (event: Event): InterceptorFn => () => ({
  *
  * Example usage:
  *
- * ```
+ * ```ts
  * state = new Atom({});
  * history = new History(state);
  * bus = new EventBus(state);
@@ -80,7 +80,7 @@ export const dispatchNow = (event: Event): InterceptorFn => () => ({
  * bus.processQueue({ history });
  * ```
  *
- * @param id
+ * @param id -
  */
 export const snapshot = (id = "history"): InterceptorFn => (_, __, ___, ctx) =>
     ctx[id].record();
@@ -121,8 +121,8 @@ export const snapshot = (id = "history"): InterceptorFn => (_, __, ___, ctx) =>
  * ]
  * ```
  *
- * @param pred predicate applied to given state & event
- * @param err interceptor triggered on predicate failure
+ * @param pred - predicate applied to given state & event
+ * @param err - interceptor triggered on predicate failure
  */
 export const ensurePred = (
     pred: InterceptorPredicate,
@@ -156,9 +156,9 @@ const eventPathState = (
  * provide `(e) => e[1][0]` as path function to extract `"foo.bar"` from
  * the event.
  *
- * @param max
- * @param path path extractor
- * @param err error interceptor
+ * @param max -
+ * @param path - path extractor
+ * @param err - error interceptor
  */
 export const ensureStateLessThan = (
     max: number,
@@ -170,9 +170,9 @@ export const ensureStateLessThan = (
  * Specialization of `ensurePred()` to ensure a state value is greater
  * than given min. See `ensureStateLessThan()` for further details.
  *
- * @param min
- * @param path path extractor
- * @param err error interceptor
+ * @param min -
+ * @param path - path extractor
+ * @param err - error interceptor
  */
 export const ensureStateGreaterThan = (
     min: number,
@@ -185,10 +185,10 @@ export const ensureStateGreaterThan = (
  * given `min` / `max` closed interval. See `ensureStateLessThan()` for
  * further details.
  *
- * @param min
- * @param max
- * @param path path extractor
- * @param err error interceptor
+ * @param min -
+ * @param max -
+ * @param path - path extractor
+ * @param err - error interceptor
  */
 export const ensureStateRange = (
     min: number,
@@ -211,10 +211,10 @@ export const ensureStateRange = (
  * interceptor can return any number of other side effects and so be
  * used to dispatch alternative events instead.
  *
- * @param min
- * @param max
- * @param value event value extractor
- * @param err error interceptor
+ * @param min -
+ * @param max -
+ * @param value - event value extractor
+ * @param err - error interceptor
  */
 export const ensureParamRange = (
     min: number,
@@ -232,19 +232,19 @@ export const ensureParamRange = (
  * at provided path. This allows for dedicated events to set state
  * values more concisely, e.g. given this event definition:
  *
- * ```
+ * ```ts
  * setFoo: valueSetter("foo.bar")
  * ```
  *
  * ...the `setFoo` event then can be triggered like so to update the
  * state value at `foo.bar`:
  *
- * ```
+ * ```ts
  * bus.dispatch(["setFoo", 23])
  * ```
  *
- * @param path
- * @param tx
+ * @param path -
+ * @param tx -
  */
 export const valueSetter = <T>(path: Path, tx?: Fn<T, T>): InterceptorFn => {
     const $ = setter(path);
@@ -257,7 +257,7 @@ export const valueSetter = <T>(path: Path, tx?: Fn<T, T>): InterceptorFn => {
  * events to update state values more concisely, e.g. given this event
  * definition:
  *
- * ```
+ * ```ts
  * incFoo: valueUpdater("foo.bar", (x, y) => x + y)
  * ```
  *
@@ -265,12 +265,12 @@ export const valueSetter = <T>(path: Path, tx?: Fn<T, T>): InterceptorFn => {
  * state value at `foo.bar` (where `1` is the extra arg provided to the
  * update fn:
  *
- * ```
+ * ```ts
  * bus.dispatch(["incFoo", 1]) // results in value = value + 1
  * ```
  *
- * @param path
- * @param fn
+ * @param path -
+ * @param fn -
  */
 export const valueUpdater = <T>(path: Path, fn: FnO<T, T>): InterceptorFn => {
     const $ = updater(path, fn);

@@ -9,8 +9,8 @@ import {
 /**
  * Transducer.
  *
- * @param destSize target word size (bits)
- * @param srcSize source word size (bits)
+ * @param destSize - target word size (bits)
+ * @param srcSize - source word size (bits)
  */
 export function partitionBits(
     destSize: number,

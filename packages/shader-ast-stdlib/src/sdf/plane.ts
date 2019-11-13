@@ -8,9 +8,9 @@ import {
 /**
  * Returns signed distance from `p` to plane defined by `normal` and `w`.
  *
- * @param p vec2
- * @param normal vec2
- * @param w float
+ * @param p - vec2
+ * @param normal - vec2
+ * @param w - float
  */
 export const sdfPlane2 = defn(
     "float",
@@ -22,9 +22,9 @@ export const sdfPlane2 = defn(
 /**
  * Returns signed distance from `p` to plane defined by `normal` and `w`.
  *
- * @param p vec3
- * @param normal vec3
- * @param w float
+ * @param p - vec3
+ * @param normal - vec3
+ * @param w - float
  */
 export const sdfPlane3 = defn(
     "float",

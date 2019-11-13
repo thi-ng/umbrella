@@ -11,7 +11,7 @@ import { interpolate } from "./interpolate";
  * @see interpolate
  * @see interpolateHermit
  *
- * @param n
+ * @param n -
  */
 export function interpolateLinear(n: number): Transducer<number, number>;
 // prettier-ignore

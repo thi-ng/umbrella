@@ -16,9 +16,9 @@ import { $iter } from "../iterator";
  * // [ [ 0, 1, 2 ], [ 1, 2, 3 ], [ 2, 3, 4 ] ]
  * ```
  *
- * @param size
- * @param partial
- * @param src
+ * @param size -
+ * @param partial -
+ * @param src -
  */
 export function slidingWindow<T>(
     size: number,

@@ -11,7 +11,7 @@ import { throttle } from "./throttle";
  * // [ 0, 3, 6, 9 ]
  * ```
  *
- * @param n
+ * @param n -
  */
 export function takeNth<T>(n: number): Transducer<T, T>;
 export function takeNth<T>(n: number, src: Iterable<T>): IterableIterator<T>;

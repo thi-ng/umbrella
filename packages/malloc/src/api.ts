@@ -14,7 +14,8 @@ export interface MemPoolOpts {
     buf: ArrayBufferLike;
     /**
      * Byte size for newly created ArrayBuffers (if `buf` is not given).
-     * Default: 0x1000 (4KB)
+     *
+     * @defaultValue 0x1000 (4KB)
      */
     size: number;
     /**
@@ -24,47 +25,60 @@ export interface MemPoolOpts {
      * value). Unlike allocator state variables, `start`` cannot be
      * saved inside the array buffer itself. If the ArrayBuffer is
      * passed to other consumers they must use the same start value.
-     * MUST be multiple of 4. Default: 0
+     * MUST be multiple of 4.
+     *
+     * @defaultValue 0
      */
     start: number;
     /**
      * Byte address (+1) of the end of the memory region managed by the
-     * `MemPool`. If not given, defaults to the end of the backing
-     * ArrayBuffer.
+     * `MemPool`.
+     *
+     * @defaultValue end of the backing ArrayBuffer
      */
     end: number;
     /**
      * Number of bytes to align memory blocks to. MUST be a power of 2
-     * and >= 8. Default: 8. Use 16 if the pool is being used for
-     * allocating memory used in SIMD operations.
+     * and >= 8. Use 16 if the pool is being used for allocating memory
+     * used in SIMD operations.
+     *
+     * @defaultValue 8
      */
     align: Pow2;
     /**
-     * Flag to configure memory block compaction. If true (default),
+     * Flag to configure memory block compaction. If true,
      * adjoining free blocks (in terms of address space) will be merged
      * to minimize fragementation.
+     *
+     * @defaultValue true
      */
     compact: boolean;
     /**
-     * Flag to configure memory block splitting. If true (default) and
-     * when the allocator is re-using a previously freed block larger
-     * than the requested size, the block will be split to minimize
-     * wasted/unused memory. The splitting behavior can further
-     * customized via the `minSplit` option.
+     * Flag to configure memory block splitting. If true, and when the
+     * allocator is re-using a previously freed block larger than the
+     * requested size, the block will be split to minimize wasted/unused
+     * memory. The splitting behavior can further customized via the
+     * `minSplit` option.
+     *
+     * @defaultValue true
      */
     split: boolean;
     /**
      * Only used if `split` behavior is enabled. Defines min number of
      * excess bytes available in a block for memory block splitting to
-     * occur. Default: 16. MUST be > 8.
+     * occur.
+     *
+     * @defaultValue 16, MUST be > 8
      */
     minSplit: number;
     /**
-     * Only needed when sharing the underlying ArrayBuffer. If true
-     * (default: false), the `MemPool` constructor will NOT initialize
-     * its internal state and assume the underlying ArrayBuffer has
-     * already been initialized by another `MemPool` instance. If this
-     * option is used, `buf` MUST be given.
+     * Only needed when sharing the underlying ArrayBuffer. If true, the
+     * `MemPool` constructor will NOT initialize its internal state and
+     * assume the underlying ArrayBuffer has already been initialized by
+     * another `MemPool` instance. If this option is used, `buf` MUST be
+     * given.
+     *
+     * @defaultValue false
      */
     skipInitialization: boolean;
 }
@@ -98,7 +112,7 @@ export interface IMemPool extends IRelease {
      * bytes). Returns block address or zero if unsuccessful
      * (insufficient memory).
      *
-     * @param size
+     * @param size -
      */
     malloc(size: number): number;
 
@@ -106,8 +120,8 @@ export interface IMemPool extends IRelease {
      * Similar to `malloc()`, but if allocation was successful also
      * clears the allocated block w/ `fill` value (default: 0).
      *
-     * @param size
-     * @param fill
+     * @param size -
+     * @param fill -
      */
     calloc(size: number, fill?: number): number;
 
@@ -117,8 +131,8 @@ export interface IMemPool extends IRelease {
      * as typed array of given `type`. Returns undefined if allocation
      * failed.
      *
-     * @param type
-     * @param num
+     * @param type -
+     * @param num -
      */
     mallocAs<T extends Type>(
         type: T,
@@ -129,9 +143,9 @@ export interface IMemPool extends IRelease {
      * Similar to `mallocAs()`, but if allocation was successful also
      * clears the allocated block w/ `fill` value (default: 0).
      *
-     * @param type
-     * @param num
-     * @param fill
+     * @param type -
+     * @param num -
+     * @param fill -
      */
     callocAs<T extends Type>(
         type: T,
@@ -148,8 +162,8 @@ export interface IMemPool extends IRelease {
      * and the unused part freed. Returns new address if successful or
      * zero if re-allocation failed (insufficient menory).
      *
-     * @param ptr
-     * @param size
+     * @param ptr -
+     * @param size -
      */
     realloc(ptr: number, size: number): number;
 
@@ -159,8 +173,8 @@ export interface IMemPool extends IRelease {
      * returns new typed array of same type. Returns undefined on
      * failure.
      *
-     * @param arr
-     * @param num
+     * @param arr -
+     * @param num -
      */
     reallocArray<T extends TypedArray>(arr: T, num: number): T | undefined;
 
@@ -174,7 +188,7 @@ export interface IMemPool extends IRelease {
      * not used any further after calling `free()`. Undefined behavior,
      * or worse, pool corruption might ensue!
      *
-     * @param ptr
+     * @param ptr -
      */
     free(ptr: number | TypedArray): boolean;
 

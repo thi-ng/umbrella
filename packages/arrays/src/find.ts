@@ -5,9 +5,9 @@ import { equiv as _equiv } from "@thi.ng/equiv";
  * Similar to `Array.find()`, but uses thi.ng/equiv as default
  * predicate.
  *
- * @param src
- * @param x
- * @param equiv
+ * @param src -
+ * @param x -
+ * @param equiv -
  */
 export const find = <T>(
     src: ArrayLike<T>,
@@ -22,9 +22,9 @@ export const find = <T>(
  * Similar to `Array.findIndex()`, but uses thi.ng/equiv as default
  * predicate.
  *
- * @param src
- * @param x
- * @param equiv
+ * @param src -
+ * @param x -
+ * @param equiv -
  */
 export const findIndex = <T>(
     src: ArrayLike<T>,

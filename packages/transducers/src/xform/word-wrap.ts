@@ -16,9 +16,9 @@ export interface WordWrapOpts {
  * (default), the last word on each line can still fit even if there's
  * no space for the delimiter.
  *
- * @param lineLength
- * @param opts
- * @param src
+ * @param lineLength -
+ * @param opts -
+ * @param src -
  */
 export function wordWrap(
     lineLength: number,

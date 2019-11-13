@@ -24,7 +24,7 @@ const $ = <T extends Prim>(t: Term<T>, x: FloatTerm): Term<T> => <any>{
  * `pow(rgb, GAMMA)`, where gamma is hardcoded to 2.2. For vec4 args,
  * the `w` component (alpha) remains unchanged.
  *
- * @param x
+ * @param x -
  */
 export const toLinear = <T extends Prim>(x: Term<T>) => pow(x, $(x, GAMMA));
 
@@ -33,6 +33,6 @@ export const toLinear = <T extends Prim>(x: Term<T>) => pow(x, $(x, GAMMA));
  * `pow(rgb, 1.0 / GAMMA)`, where gamma is hardcoded to 2.2. For vec4
  * args, the `w` component (alpha) remains unchanged.
  *
- * @param x
+ * @param x -
  */
 export const toSRGB = <T extends Prim>(x: Term<T>) => pow(x, $(x, INV_GAMMA));

@@ -8,9 +8,9 @@ import { copy, empty } from "./utils";
  * or optionally given set `out` (assumed to be empty for correct
  * results).
  *
- * @param a
- * @param b
- * @param out
+ * @param a -
+ * @param b -
+ * @param out -
  */
 export const difference = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
     if (a === b) {
@@ -28,7 +28,7 @@ export const difference = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
  * reduced difference of given inputs, else merely returns a reducer
  * to be used with thi.ng/transducers `reduce` / `transduce` functions.
  *
- * @param src
+ * @param src -
  */
 export function differenceR<T>(): Reducer<Set<T>, Iterable<T>>;
 export function differenceR<T>(src: Iterable<T>): Set<T>;

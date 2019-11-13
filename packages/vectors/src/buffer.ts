@@ -21,7 +21,7 @@ import {
  * ensure these two values are compatible with the chosen array type
  * (i.e. for `Type.F32`, these MUST be multiples of 4).
  *
- * ```
+ * ```ts
  * mapBuffer(Type.F32, new ArrayBuffer(32), 4, 2)
  * // [
  * //   Float32Array [ 0, 0 ],
@@ -31,12 +31,12 @@ import {
  * // ]
  * ```
  *
- * @param type
- * @param buf
- * @param num
- * @param size
- * @param byteOffset
- * @param byteStride
+ * @param type -
+ * @param buf -
+ * @param num -
+ * @param size -
+ * @param byteOffset -
+ * @param byteStride -
  */
 export const mapBuffer = <T extends Type>(
     type: T,
@@ -60,11 +60,11 @@ export const mapBuffer = <T extends Type>(
  *
  * @see mapBuffer
  *
- * @param type
- * @param buf
- * @param src
- * @param byteOffset
- * @param byteStride
+ * @param type -
+ * @param buf -
+ * @param src -
+ * @param byteOffset -
+ * @param byteStride -
  */
 export const intoBuffer = <T extends Type>(
     type: T,

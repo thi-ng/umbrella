@@ -33,8 +33,8 @@ import {
  * `@thi.ng/rstream` stream constructs. Does NOT mutate original
  * `GraphSpec` object.
  *
- * @param state
- * @param spec
+ * @param state -
+ * @param spec -
  */
 export const initGraph = (state: IAtom<any>, spec: GraphSpec): Graph => {
     const res: Graph = {};
@@ -70,7 +70,7 @@ const isNodeSpec = (x: any): x is NodeSpec =>
  * special `*` output key can be used to handle the entire node output
  * value. This is useful/required for non-object node result values.
  *
- * ```
+ * ```ts
  * out: {
  *   // fn output spec
  *   // creates new sub which uses `pick` transducer to
@@ -89,9 +89,9 @@ const isNodeSpec = (x: any): x is NodeSpec =>
  *
  * See `api.ts` for further details and possible spec variations.
  *
- * @param state
- * @param spec
- * @param id
+ * @param state -
+ * @param spec -
+ * @param id -
  */
 const nodeFromSpec = (state: IAtom<any>, spec: NodeSpec, id: string) => (
     resolve: ResolveFn
@@ -171,10 +171,10 @@ const prepareNodeOutputs = (
  * `Node` object for the given spec. Throws error if the graph already
  * contains a node with given `id`.
  *
- * @param graph
- * @param state
- * @param id
- * @param spec
+ * @param graph -
+ * @param state -
+ * @param id -
+ * @param spec -
  */
 export const addNode = (
     graph: Graph,
@@ -193,8 +193,8 @@ export const addNode = (
  * removes it from graph. Returns `false` if no node exists for given
  * `id`.
  *
- * @param graph
- * @param id
+ * @param graph -
+ * @param id -
  */
 export const removeNode = (graph: Graph, id: string) => {
     const node = graph[id];
@@ -213,7 +213,7 @@ export const removeNode = (graph: Graph, id: string) => {
  * Calls `.unsubscribe()` on all nodes in the graph, causing all related
  * streams & subscriptions to terminate.
  *
- * @param graph
+ * @param graph -
  */
 export const stop = (graph: Graph) => {
     for (let id in graph) {
@@ -232,9 +232,9 @@ export const stop = (graph: Graph) => {
  * when all inputs have produced new values. See thi.ng/rstream
  * `StreamSync` for further reference.
  *
- * @param xform
- * @param inputIDs
- * @param reset
+ * @param xform -
+ * @param inputIDs -
+ * @param reset -
  */
 export const node = (
     xform: Transducer<IObjectOf<any>, any>,
@@ -251,8 +251,8 @@ export const node = (
  * Similar to `node()`, but optimized for nodes using only a single
  * input. Uses "src" as default input ID.
  *
- * @param xform
- * @param inputID
+ * @param xform -
+ * @param inputID -
  */
 export const node1 = (
     xform?: Transducer<any, any>,
@@ -269,9 +269,9 @@ export const node1 = (
  * Helper function to verify given object of inputs has required input IDs.
  * Throws error if validation fails.
  *
- * @param src
- * @param inputIDs
- * @param nodeID
+ * @param src -
+ * @param inputIDs -
+ * @param nodeID -
  */
 export const ensureInputs = (
     src: IObjectOf<ISubscribable<any>>,

@@ -3,14 +3,14 @@ import { SYSTEM } from "./system";
 
 /**
  * Returns a no-arg function which produces a random choice of given
- * weighted `choices` and using given `IRandom` instance (default:
- * `SYSTEM`). If `weights` are given, it must be the same size as
+ * weighted `choices` and using given `IRandom` instance (default
+ * {@link SYSTEM}. If `weights` are given, it must be the same size as
  * `choices`. If omitted, each choice will have same probability.
  *
  * https://www.electricmonk.nl/log/2009/12/23/weighted-random-distribution/
  *
- * @param choices
- * @param weights
+ * @param choices -
+ * @param weights -
  */
 export const weightedRandom = <T>(
     choices: Array<T>,

@@ -31,7 +31,7 @@ export interface PartitionSyncOpts<T> {
  * input value, however as with the default behavior, tuples will retain
  * the most recent consumed value from other inputs.
  *
- * ```
+ * ```ts
  * src = [
  *   ["a", 1], ["a", 2], ["d", 100], ["b", 10],
  *   ["b", 11], ["c", 0], ["a", 3]
@@ -73,10 +73,10 @@ export interface PartitionSyncOpts<T> {
  * tuple size will adjust accordingly (only if given as set, will not work
  * if keys are provided as array).
  *
- * @param keys allowed label set
- * @param keyfn label extraction function
- * @param reset true if each tuple should contain only new values
- * @param all true if last tuple is allowed to be incomplete
+ * @param keys - allowed label set
+ * @param keyfn - label extraction function
+ * @param reset - true if each tuple should contain only new values
+ * @param all - true if last tuple is allowed to be incomplete
  */
 export function partitionSync<T>(
     keys: PropertyKey[] | Set<PropertyKey>,

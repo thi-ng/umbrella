@@ -7,8 +7,8 @@ import { ensureHue } from "./internal/ensure-hue";
  * Converts a normalized hue to RGBA with given optional `alpha`
  * value (default: 1).
  *
- * @param out
- * @param hue
+ * @param out -
+ * @param hue -
  */
 export const hueRgba = (out: Color | null, hue: number, alpha = 1): Color => {
     hue = ensureHue(hue) * 6;

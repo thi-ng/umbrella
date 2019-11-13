@@ -5,8 +5,8 @@ import { copy } from "./utils";
 /**
  * Similar to `mergeApplyObj()`, but for ES6 Maps instead of plain objects.
  *
- * @param src
- * @param xs
+ * @param src -
+ * @param xs -
  */
 export const mergeApplyMap = <K, V>(
     src: Map<K, V>,
@@ -24,13 +24,13 @@ export const mergeApplyMap = <K, V>(
  * function values in `xs` will be called with respective value in `src`
  * to produce a new / derived value for that key, i.e.
  *
- * ```
+ * ```ts
  * dest[k] = xs[k](src[k])
  * ```
  *
  * Returns new merged object and does not modify any of the inputs.
  *
- * ```
+ * ```ts
  * mergeApplyObj(
  *   {a: "hello", b: 23, c: 12},
  *   {a: (x) => x + " world", b: 42}
@@ -38,8 +38,8 @@ export const mergeApplyMap = <K, V>(
  * // { a: 'hello world', b: 42, c: 12 }
  * ```
  *
- * @param src
- * @param xs
+ * @param src -
+ * @param xs -
  */
 export const mergeApplyObj = <V>(
     src: IObjectOf<V>,

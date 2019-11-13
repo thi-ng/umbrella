@@ -21,9 +21,9 @@ import { repeat } from "./repeat";
  * @see padSides
  * @see wrapSides
  *
- * @param src
- * @param numLeft
- * @param numRight
+ * @param src -
+ * @param numLeft -
+ * @param numRight -
  */
 export function* extendSides<T>(
     src: Iterable<T>,

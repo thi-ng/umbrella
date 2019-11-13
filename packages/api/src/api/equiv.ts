@@ -9,15 +9,15 @@ export interface IEquiv {
 }
 
 /**
- * @param T value type
+ * @param T - value type
  */
 export interface IEqualsDelta<T> {
     /**
      * Returns `true` if this value equals `o` with optional allowance
      * for given tolerance `eps`.
      *
-     * @param o 2nd value to test
-     * @param eps tolerance (usually defaults to `DEFAULT_EPS`)
+     * @param o - 2nd value to test
+     * @param eps - tolerance (usually defaults to `DEFAULT_EPS`)
      */
     eqDelta(o: T, eps?: number): boolean;
 }

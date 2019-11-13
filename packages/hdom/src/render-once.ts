@@ -9,9 +9,9 @@ import { resolveRoot } from "./utils";
  * hydrates target once. The given tree is first normalized and if
  * result is `null` or `undefined` no further action will be taken.
  *
- * @param tree
- * @param opts
- * @param impl
+ * @param tree -
+ * @param opts -
+ * @param impl -
  */
 export const renderOnce = (
     tree: any,

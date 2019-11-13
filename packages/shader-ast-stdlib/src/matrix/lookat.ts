@@ -16,9 +16,9 @@ import {
  * Creates a mat4 view matrix from given `eyePos`, `target` and `up`
  * vector.
  *
- * @param eye vec3
- * @param target vec3
- * @param up vec3
+ * @param eye - vec3
+ * @param target - vec3
+ * @param up - vec3
  */
 export const lookat = defn(
     "mat4",

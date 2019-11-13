@@ -14,8 +14,8 @@ import { isReduced } from "../reduced";
  * // [ 3, 2, 5, 0, 8, 7, 1, 6, 4, 9 ]
  * ```
  *
- * @param n sliding window size
- * @param maxSwaps number of swaps per input
+ * @param n - sliding window size
+ * @param maxSwaps - number of swaps per input
  */
 export function streamShuffle<T>(
     n: number,

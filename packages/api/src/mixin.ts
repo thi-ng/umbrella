@@ -6,8 +6,8 @@
  * NOT marked with `@nomixin` (i.e. haven't set their `configurable`
  * property descriptor flag to `false`)
  *
- * @param behaviour to mixin
- * @param sharedBehaviour
+ * @param behaviour - to mixin
+ * @param sharedBehaviour -
  * @returns decorator function
  */
 export const mixin = (behaviour: any, sharedBehaviour: any = {}) => {

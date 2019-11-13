@@ -29,11 +29,11 @@ export class Vec3 extends AVec implements IHash<number>, IVector<Vec3> {
      * different storage approaches, incl. SOA, AOS, striped /
      * interleaved etc.
      *
-     * @param buf backing array
-     * @param num num vectors
-     * @param start  start index
-     * @param cstride component stride
-     * @param estride element stride
+     * @param buf - backing array
+     * @param num - num vectors
+     * @param start -  start index
+     * @param cstride - component stride
+     * @param estride - element stride
      */
     static mapBuffer(
         buf: Vec,
@@ -53,11 +53,11 @@ export class Vec3 extends AVec implements IHash<number>, IVector<Vec3> {
      * capacity to hold the input vectors. See `Vec3.mapBuffer` for the
      * inverse operation. Returns `buf`.
      *
-     * @param buf
-     * @param src
-     * @param start
-     * @param cstride
-     * @param estride
+     * @param buf -
+     * @param src -
+     * @param start -
+     * @param cstride -
+     * @param estride -
      */
     static intoBuffer(
         buf: Vec,

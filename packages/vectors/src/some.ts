@@ -5,7 +5,7 @@ import { vop } from "./internal/vop";
  * Returns returns true if at least one vector component in `v` is
  * truthy.
  *
- * @param v
+ * @param v -
  */
 export const some: MultiBVecOpRoV<boolean> = vop();
 

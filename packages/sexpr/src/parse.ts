@@ -26,8 +26,8 @@ class ParseError extends Error {
  * order causes illegal nesting. The error includes `line` and `column`
  * information of the offending token.
  *
- * @param src
- * @param opts
+ * @param src -
+ * @param opts -
  */
 export const parse = (
     src: string | Iterable<Token>,

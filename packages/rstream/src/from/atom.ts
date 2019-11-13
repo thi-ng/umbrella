@@ -15,7 +15,7 @@ import { nextID } from "../utils/idgen";
  * - fromView()
  * - @thi.ng/atom
  *
- * ```
+ * ```ts
  * db = new Atom({a: 23, b: 88});
  * cursor = new Cursor(db, "a")
  *
@@ -29,9 +29,9 @@ import { nextID } from "../utils/idgen";
  * // cursor val: 66
  * ```
  *
- * @param atom
- * @param emitFirst
- * @param changed
+ * @param atom -
+ * @param emitFirst -
+ * @param changed -
  */
 export const fromAtom = <T>(
     atom: ReadonlyAtom<T>,

@@ -3,9 +3,9 @@ import { AnyArray, SwapFn } from "./api";
 /**
  * Swaps values at index `x`/`y` in given array.
  *
- * @param arr
- * @param x
- * @param y
+ * @param arr -
+ * @param x -
+ * @param y -
  */
 export const swap = (arr: AnyArray, x: number, y: number) => {
     const t = arr[x];
@@ -20,7 +20,7 @@ export const swap = (arr: AnyArray, x: number, y: number) => {
  * AND in the arrays given to `multiSwap` itself. Provides fast routes
  * for up to 3 extra arrays, then falls back to a loop-based approach.
  *
- * ```
+ * ```ts
  * a = [2, 1];
  * b = [20, 10];
  * c = [40, 30];
@@ -33,7 +33,7 @@ export const swap = (arr: AnyArray, x: number, y: number) => {
  * // c: [30, 40]
  * ```
  *
- * @param xs
+ * @param xs -
  */
 export const multiSwap = (...xs: AnyArray[]): SwapFn => {
     const [b, c, d] = xs;

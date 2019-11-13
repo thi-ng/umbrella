@@ -13,7 +13,7 @@ import { empty, first, objValues } from "./utils";
  * assumed to have the same internal structure (i.e. sets of keys).
  * Returns new set of same type as `a`.
  *
- * ```
+ * ```ts
  * join(
  *   new Set([
  *     {id: 1, name: "foo"},
@@ -29,8 +29,8 @@ import { empty, first, objValues } from "./utils";
  * // }
  * ```
  *
- * @param a
- * @param b
+ * @param a -
+ * @param b -
  */
 export const join = <A, B>(
     a: Set<A>,
@@ -69,7 +69,7 @@ export const join = <A, B>(
  * be the same as their respective keys, e.g. `{id: "id"}`. Returns new
  * set of same type as `a`.
  *
- * ```
+ * ```ts
  * joinWith(
  *   new Set([
  *     {id: 1, name: "foo"},
@@ -85,9 +85,9 @@ export const join = <A, B>(
  * //   { type: 2, color: 'blue', id: 2, name: 'bar' } }
  * ```
  *
- * @param a
- * @param b
- * @param kmap keys to compute join for
+ * @param a -
+ * @param b -
+ * @param kmap - keys to compute join for
  */
 export const joinWith = <A, B>(
     a: Set<A>,

@@ -43,9 +43,9 @@ import { resolveRoot } from "./utils";
  * Returns a function, which when called, immediately cancels the update
  * loop.
  *
- * @param tree hiccup DOM tree
- * @param opts options
- * @param impl hdom target implementation
+ * @param tree - hiccup DOM tree
+ * @param opts - options
+ * @param impl - hdom target implementation
  */
 export const start = (
     tree: any,

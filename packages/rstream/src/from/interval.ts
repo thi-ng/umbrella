@@ -7,8 +7,8 @@ import { nextID } from "../utils/idgen";
  * value (default: ∞), after which the stream is closed. The stream only
  * starts when the first subscriber becomes available.
  *
- * @param delay
- * @param count
+ * @param delay -
+ * @param count -
  */
 export const fromInterval = (delay: number, count = Infinity) =>
     new Stream<number>((stream) => {

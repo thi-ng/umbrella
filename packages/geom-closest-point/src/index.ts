@@ -21,7 +21,7 @@ import {
  * `a` -> `b`, relative to `a`. I.e. the projection of `p` can then be
  * computed like so:
  *
- * ```
+ * ```ts
  * mixN([], a, b, closestT(p, a, b))
  * ```
  *
@@ -32,9 +32,9 @@ import {
  * @see closestPointLine
  * @see closestPointSegment
  *
- * @param p
- * @param a
- * @param b
+ * @param p -
+ * @param a -
+ * @param b -
  */
 export const closestT = (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) => {
     const d = sub([], b, a);
@@ -49,9 +49,9 @@ export const closestT = (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) => {
  *
  * @see closestPointSegment
  *
- * @param p
- * @param a
- * @param b
+ * @param p -
+ * @param a -
+ * @param b -
  */
 export const closestPointLine = (
     p: ReadonlyVec,
@@ -66,9 +66,9 @@ export const closestPointLine = (
  *
  * @see distToSegment
  *
- * @param p
- * @param a
- * @param b
+ * @param p -
+ * @param a -
+ * @param b -
  */
 export const distToLine = (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) =>
     dist(p, closestPointLine(p, a, b) || a);
@@ -90,11 +90,11 @@ export const distToLine = (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) =>
  * [eps,1-eps]. If the result lies outside this interval, the function
  * returns `undefined`. Likewise, if `a` and `b` are coincident.
  *
- * @param p
- * @param a
- * @param b
- * @param out
- * @param eps
+ * @param p -
+ * @param a -
+ * @param b -
+ * @param out -
+ * @param eps -
  */
 export const closestPointSegment = (
     p: ReadonlyVec,
@@ -115,9 +115,9 @@ export const closestPointSegment = (
  * Returns distance from `p` to closest point on line segment `a` ->
  * `b`.
  *
- * @param p
- * @param a
- * @param b
+ * @param p -
+ * @param a -
+ * @param b -
  */
 export const distToSegment = (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) =>
     dist(p, closestPointSegment(p, a, b) || a);
@@ -159,11 +159,11 @@ export const closestPointPolyline = (
  * line segment `a` to `b`. `points` is only checked between indices
  * `from` and `to` (not including the latter).
  *
- * @param a
- * @param b
- * @param points
- * @param from
- * @param to
+ * @param a -
+ * @param b -
+ * @param points -
+ * @param from -
+ * @param to -
  */
 export const farthestPointSegment = (
     a: ReadonlyVec,

@@ -13,8 +13,8 @@ const cache: any = {};
  * JS process terminates or this module itself has been reloaded (though
  * the latter shouldn't happen in an HMR workflow).
  *
- * @param id
- * @param factory
+ * @param id -
+ * @param factory -
  */
 export const defonce = <T>(id: string, factory: Fn0<T>): T =>
     cache.hasOwnProperty(id) ? cache[id] : (cache[id] = factory());

@@ -39,7 +39,7 @@ export const fpoints = (pts: Vec2Like[], sep = " ") =>
  * Returns updated attribs or `undefined` if `attribs` itself is
  * null-ish.
  *
- * @param attribs
+ * @param attribs -
  */
 export const fattribs = (attribs: any) => {
     if (!attribs) return;
@@ -55,7 +55,7 @@ export const fattribs = (attribs: any) => {
  *
  * @see fattribs
  *
- * @param attribs
+ * @param attribs -
  */
 const ftransforms = (attribs: any) => {
     let v: any;
@@ -108,7 +108,7 @@ const buildTransform = (attribs: any) => {
  *
  * @see fattribs
  *
- * @param col
+ * @param col -
  */
 export const fcolor = (col: any) =>
     isString(col)

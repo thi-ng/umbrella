@@ -104,8 +104,8 @@ export class StatelessEventBus implements IDispatch {
      * built-ins are added automatically. See `addBuiltIns()`. User
      * handlers can override built-ins.
      *
-     * @param handlers
-     * @param effects
+     * @param handlers -
+     * @param effects -
      */
     constructor(
         handlers?: IObjectOf<EventDef>,
@@ -276,8 +276,8 @@ export class StatelessEventBus implements IDispatch {
      * selected handlers. If no handler IDs are given, applies
      * instrumentation to all currently registered handlers.
      *
-     * @param inject
-     * @param ids
+     * @param inject -
+     * @param ids -
      */
     instrumentWith(inject: (Interceptor | InterceptorFn)[], ids?: string[]) {
         const iceps = inject.map(asInterceptor);
@@ -331,7 +331,7 @@ export class StatelessEventBus implements IDispatch {
      * that latter function repeatedly in a timely manner, preferably
      * via `requestAnimationFrame()` or similar.
      *
-     * @param e
+     * @param e -
      */
     dispatch(...e: Event[]) {
         this.eventQueue.push(...e);
@@ -344,7 +344,7 @@ export class StatelessEventBus implements IDispatch {
      * currently active batch / frame. If called from elsewhere, the
      * result is the same as calling `dispatch()`.
      *
-     * @param e
+     * @param e -
      */
     dispatchNow(...e: Event[]) {
         (this.currQueue || this.eventQueue).push(...e);
@@ -357,8 +357,8 @@ export class StatelessEventBus implements IDispatch {
      * latter function repeatedly in a timely manner, preferably via
      * `requestAnimationFrame()` or similar.
      *
-     * @param e
-     * @param delay
+     * @param e -
+     * @param delay -
      */
     dispatchLater(e: Event, delay = 17) {
         setTimeout(() => this.dispatch(e), delay);
@@ -377,7 +377,7 @@ export class StatelessEventBus implements IDispatch {
      * can be useful for debugging, inspection or post-processing
      * purposes.
      *
-     * @param ctx
+     * @param ctx -
      */
     processQueue(ctx?: InterceptorContext) {
         if (this.eventQueue.length > 0) {
@@ -416,8 +416,8 @@ export class StatelessEventBus implements IDispatch {
      * However, the results of any previous interceptors (incl. the one
      * which cancelled) are kept and processed further as usual.
      *
-     * @param ctx
-     * @param e
+     * @param ctx -
+     * @param e -
      */
     protected processEvent(ctx: InterceptorContext, e: Event) {
         const iceps = this.handlers[<any>e[0]];
@@ -464,7 +464,7 @@ export class StatelessEventBus implements IDispatch {
      * Takes a collection of side effects generated during event
      * processing and applies them in order of configured priorities.
      *
-     * @param ctx
+     * @param ctx -
      */
     protected processEffects(ctx: InterceptorContext) {
         const effects = this.effects;
@@ -528,8 +528,8 @@ export class StatelessEventBus implements IDispatch {
      * Any `null` / `undefined` values directly assigned to a side
      * effect are ignored and will not trigger the effect.
      *
-     * @param fx
-     * @param ret
+     * @param fx -
+     * @param ret -
      */
     protected mergeEffects(ctx: InterceptorContext, ret: any) {
         if (!ret) {
@@ -591,9 +591,9 @@ export class EventBus extends StatelessEventBus
      * built-ins are added automatically. See `addBuiltIns()`. User
      * handlers can override built-ins.
      *
-     * @param state
-     * @param handlers
-     * @param effects
+     * @param state -
+     * @param handlers -
+     * @param effects -
      */
     constructor(
         state?: IAtom<any> | null,

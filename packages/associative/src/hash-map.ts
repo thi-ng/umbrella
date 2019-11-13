@@ -41,7 +41,7 @@ const DEFAULT_CAP = 16;
  *
  * See `HashMapOpts` for further configuration & behavior details.
  *
- * ```
+ * ```ts
  * import { HashMap } from "@thi.ng/associative"
  * import { hash } from "@thi.ng/vectors"
  *

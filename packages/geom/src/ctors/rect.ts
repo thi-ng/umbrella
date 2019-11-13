@@ -27,7 +27,7 @@ export const rectFromMinMax = (min: Vec, max: Vec, attribs?: Attribs) =>
  * Returns square inscribed in given circle instance. The circle can also be
  * given as centroid & radius.
  *
- * @param circle
+ * @param circle -
  */
 export function inscribedSquare(circle: Circle): Rect;
 export function inscribedSquare(pos: ReadonlyVec, r: number): Rect;
@@ -48,7 +48,7 @@ export function inscribedSquare(...args: any[]) {
  * Returns square inscribed in given (unrotated) hexagon. The hexagon
  * can be given as `Polygon` or centroid and edge length.
  *
- * @param hex
+ * @param hex -
  */
 export function inscribedSquareHex(hex: Polygon): Rect;
 export function inscribedSquareHex(pos: ReadonlyVec, len: number): Rect;

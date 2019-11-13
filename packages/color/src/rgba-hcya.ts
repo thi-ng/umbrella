@@ -8,8 +8,8 @@ import { rgbaHcva } from "./rgba-hcva";
  * Ported from:
  * https://github.com/tobspr/GLSL-Color-Spaces/blob/master/ColorSpaces.inc.glsl#L226
  *
- * @param out
- * @param src
+ * @param out -
+ * @param src -
  */
 export const rgbaHcya: ColorOp = (out, src) => {
     const y = luminanceRGB(src);

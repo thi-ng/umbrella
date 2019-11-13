@@ -11,8 +11,8 @@ import { iterator } from "../iterator";
  * // [ 7, 8, 9 ]
  * ```
  *
- * @param n
- * @param src
+ * @param n -
+ * @param src -
  */
 export function takeLast<T>(n: number): Transducer<T, T>;
 export function takeLast<T>(n: number, src: Iterable<T>): IterableIterator<T>;

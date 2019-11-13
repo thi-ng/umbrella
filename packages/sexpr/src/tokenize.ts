@@ -9,8 +9,8 @@ import { DEFAULT_SYNTAX, SyntaxOpts, Token } from "./api";
  * @see SyntaxOpts
  * @see Token
  *
- * @param src
- * @param opts
+ * @param src -
+ * @param opts -
  */
 export function* tokenize(src: Iterable<string>, opts?: Partial<SyntaxOpts>) {
     const { scopes: rawScopes, whiteSpace, string } = {

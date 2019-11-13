@@ -10,15 +10,15 @@ import { $stackFn } from "./word";
  *
  * ( -- ? )
  *
- * ```
+ * ```ts
  * run([loop([dup, ispos], [dup, print, dec])], [[3]])
  * // 3
  * // 2
  * // 1
  * // [ true, [ 0 ], undefined ]
  * ```
- * @param test
- * @param body
+ * @param test -
+ * @param body -
  */
 export const loop = (test: StackProc, body: StackProc) => {
     const _test = $stackFn(test);
@@ -41,7 +41,7 @@ export const loop = (test: StackProc, body: StackProc) => {
  *
  * ( testq bodyq -- ? )
  *
- * @param ctx
+ * @param ctx -
  */
 export const loopq = (ctx: StackContext) => {
     const stack = ctx[0];
@@ -54,7 +54,7 @@ export const loopq = (ctx: StackContext) => {
  * Executes given `body` word/quotation `n` times. In each iteration
  * pushes current counter on d-stack prior to executing body.
  *
- * ```
+ * ```ts
  * pf.run([3, ["i=", pf.swap, pf.add, pf.print], pf.dotimes])
  * // i=0
  * // i=1
@@ -75,7 +75,7 @@ export const loopq = (ctx: StackContext) => {
  *
  * ( n body -- ? )
  *
- * @param body
+ * @param body -
  */
 export const dotimes = (ctx: StackContext) => {
     let stack = ctx[0];

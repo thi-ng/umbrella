@@ -54,7 +54,7 @@ export interface TunnelOpts<A> {
  * transparently for stream processing. Multiple worker instances are
  * supported for processing. See the `maxWorkers` option for details.
  *
- * @param opts
+ * @param opts -
  */
 export const tunnel = <A, B>(opts: TunnelOpts<A>) => new Tunnel<A, B>(opts);
 

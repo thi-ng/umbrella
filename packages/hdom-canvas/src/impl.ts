@@ -46,9 +46,9 @@ const STR = "string";
  * individual shapes / groups), and if present, will skip normalization
  * of all children.
  *
- * @param _ hdom user context (ignored)
- * @param attribs canvas attribs
- * @param shapes shape components
+ * @param _ - hdom user context (ignored)
+ * @param attribs - canvas attribs
+ * @param shapes - shape components
  */
 export const canvas = {
     render(_: any, attribs: any, ...body: any[]) {

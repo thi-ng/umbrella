@@ -7,8 +7,8 @@ import { demux2 } from "@thi.ng/morton";
  * of 2. Due to using 32bit morton codes, only supports grid sizes up to
  * 32767 (0x7fff) in either dimension.
  *
- * @param cols
- * @param rows
+ * @param cols -
+ * @param rows -
  */
 export function* zcurve2d(cols: number, rows = cols) {
     const max = ceilPow2(Math.pow(Math.max(cols, rows), 2));

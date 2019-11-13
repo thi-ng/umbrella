@@ -6,7 +6,7 @@ import { MSDFFont, RawGlyphs } from "./api";
  * a filtered, more compact glyph spec used by the functions of this
  * module.
  *
- * @param raw
+ * @param raw -
  */
 export const convertGlyphs = (raw: RawGlyphs): MSDFFont => ({
     fontFace: raw.info.face,

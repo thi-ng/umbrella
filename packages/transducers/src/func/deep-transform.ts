@@ -60,7 +60,7 @@ import { TransformSpec } from "../api";
  * //   "Ratione necessitatibus doloremque itaque." ]
  * ```
  *
- * @param spec transformation spec
+ * @param spec - transformation spec
  */
 export const deepTransform = (spec: TransformSpec): ((x: any) => any) => {
     if (isFunction(spec)) {

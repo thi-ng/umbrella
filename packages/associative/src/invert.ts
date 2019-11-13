@@ -8,13 +8,13 @@ import { IObjectOf } from "@thi.ng/api";
  * the Map types in this package, you MUST provide a `dest` map, since
  * the default `dest` will only be a standard ES6 Map.
  *
- * ```
+ * ```ts
  * invertMap(new Map(), new Map([["a", 1], ["b", 2]]));
  * // Map { 1 => 'a', 2 => 'b' }
  * ```
  *
- * @param src
- * @param dest
+ * @param src -
+ * @param dest -
  */
 export const invertMap = <K, V>(src: Map<K, V>, dest?: Map<V, K>) => {
     dest = dest || new Map();
@@ -29,13 +29,13 @@ export const invertMap = <K, V>(src: Map<K, V>, dest?: Map<V, K>) => {
  * and original keys as values. If `dest` is given, writes results in
  * that object instead.
  *
- * ```
+ * ```ts
  * invertObj({a: 1, b: 2})
  * // { '1': 'a', '2': 'b' }
  * ```
  *
- * @param src
- * @param dest
+ * @param src -
+ * @param dest -
  */
 export const invertObj = (
     src: IObjectOf<PropertyKey>,

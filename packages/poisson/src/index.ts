@@ -76,7 +76,7 @@ export interface PoissonOpts {
 
 /**
  *
- * @param opts
+ * @param opts -
  */
 export const samplePoisson = (_opts: PoissonOpts) => {
     const opts = {

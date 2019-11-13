@@ -9,7 +9,7 @@ import { ensureArray } from "@thi.ng/arrays";
  * // [ "d", "l", "r", "o", "w", " ", "o", "l", "l", "e", "h" ]
  * ```
  *
- * @param input
+ * @param input -
  */
 export function* reverse<T>(input: Iterable<T>): IterableIterator<T> {
     const _input = ensureArray(input);

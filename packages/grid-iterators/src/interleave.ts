@@ -11,9 +11,9 @@ import { map, range2d } from "@thi.ng/transducers";
  *
  * @see interleaveRows2d
  *
- * @param cols
- * @param rows
- * @param step
+ * @param cols -
+ * @param rows -
+ * @param step -
  */
 export function* interleaveColumns2d(cols: number, rows = cols, step = 2) {
     for (let j = 0; j < step; j++) {
@@ -32,9 +32,9 @@ export function* interleaveColumns2d(cols: number, rows = cols, step = 2) {
  *
  * @see interleaveColumns2d
  *
- * @param cols
- * @param rows
- * @param step
+ * @param cols -
+ * @param rows -
+ * @param step -
  */
 export function* interleaveRows2d(cols: number, rows = cols, step = 2) {
     for (let j = 0; j < step; j++) {

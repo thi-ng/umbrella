@@ -135,11 +135,11 @@ import { normalize } from "./normalize";
  * // <!DOCTYPE html>
  * ```
  *
- * @param tree hiccup elements / component tree
- * @param ctx arbitrary user context object
- * @param escape auto-escape entities
- * @param span use spans for text content
- * @param keys attach key attribs
+ * @param tree - hiccup elements / component tree
+ * @param ctx - arbitrary user context object
+ * @param escape - auto-escape entities
+ * @param span - use spans for text content
+ * @param keys - attach key attribs
  */
 export const serialize = (
     tree: any,

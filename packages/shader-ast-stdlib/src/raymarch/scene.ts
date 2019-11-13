@@ -35,8 +35,8 @@ import { rayPointAt } from "./point-at";
  * The `scene` function itself takes a 3D point as input and returns a
  * vec2 with the same component meaning as above.
  *
- * @param scene
- * @param _opts
+ * @param scene -
+ * @param _opts -
  */
 export const raymarchScene = (
     scene: RaymarchScene,

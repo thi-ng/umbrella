@@ -6,8 +6,8 @@ import { implementsFunction } from "@thi.ng/checks";
  * of original. Returns updated copy of `ctx` or original if `ctx` is
  * `null` or no keys were given.
  *
- * @param ctx
- * @param keys
+ * @param ctx -
+ * @param keys -
  */
 export const derefContext = (ctx: any, keys: PropertyKey[] | undefined) => {
     if (ctx == null || !keys || !keys.length) return ctx;

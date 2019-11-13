@@ -21,7 +21,7 @@ export interface ICompare<T> {
      *
      * Also see `IHash`.
      *
-     * @param x
+     * @param x -
      */
     compare(x: T): number;
 }

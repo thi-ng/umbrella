@@ -23,10 +23,10 @@ import { repeat } from "./repeat";
  * @see extendsSides
  * @see wrapSides
  *
- * @param src
- * @param x
- * @param numLeft
- * @param numRight
+ * @param src -
+ * @param x -
+ * @param numLeft -
+ * @param numRight -
  */
 export const padSides = <T>(
     src: Iterable<T>,

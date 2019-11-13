@@ -1,9 +1,9 @@
 /**
  * Clamps value `x` to given closed interval.
  *
- * @param x value to clamp
- * @param min lower bound
- * @param max upper bound
+ * @param x - value to clamp
+ * @param min - lower bound
+ * @param max - upper bound
  */
 export const clamp = (x: number, min: number, max: number) =>
     x < min ? min : x > max ? max : x;
@@ -66,9 +66,9 @@ export const max4id = (a: number, b: number, c: number, d: number) =>
 /**
  * See `smax()`.
  *
- * @param a
- * @param b
- * @param k smooth exponent (MUST be > 0)
+ * @param a -
+ * @param b -
+ * @param k - smooth exponent (MUST be > 0)
  */
 export const smin = (a: number, b: number, k: number) => smax(a, b, -k);
 
@@ -79,9 +79,9 @@ export const smin = (a: number, b: number, k: number) => smax(a, b, -k);
  *
  * https://en.wikipedia.org/wiki/Smooth_maximum
  *
- * @param a
- * @param b
- * @param k smooth exponent (MUST be > 0)
+ * @param a -
+ * @param b -
+ * @param k - smooth exponent (MUST be > 0)
  */
 export const smax = (a: number, b: number, k: number) => {
     const ea = Math.exp(a * k);
@@ -92,10 +92,10 @@ export const smax = (a: number, b: number, k: number) => {
 /**
  * Same as `smin(smax(x, min, k), max, k)`.
  *
- * @param x
- * @param min
- * @param max
- * @param k
+ * @param x -
+ * @param min -
+ * @param max -
+ * @param k -
  */
 export const sclamp = (x: number, min: number, max: number, k: number) =>
     smin(smax(x, min, k), max, k);
@@ -109,8 +109,8 @@ export const absMax = (a: number, b: number) =>
 /**
  * http://www.musicdsp.org/showone.php?id=203
  *
- * @param e
- * @param x
+ * @param e -
+ * @param x -
  */
 export const foldback = (e: number, x: number) =>
     x < -e || x > e ? Math.abs(Math.abs((x - e) % (4 * e)) - 2 * e) - e : x;
@@ -118,9 +118,9 @@ export const foldback = (e: number, x: number) =>
 /**
  * Returns true iff `x` is in closed interval `[min .. max]`
  *
- * @param x
- * @param min
- * @param max
+ * @param x -
+ * @param min -
+ * @param max -
  */
 export const inRange = (x: number, min: number, max: number) =>
     x >= min && x <= max;
@@ -128,9 +128,9 @@ export const inRange = (x: number, min: number, max: number) =>
 /**
  * Returns true iff `x` is in open interval `(min .. max)`
  *
- * @param x
- * @param min
- * @param max
+ * @param x -
+ * @param min -
+ * @param max -
  */
 export const inOpenRange = (x: number, min: number, max: number) =>
     x > min && x < max;

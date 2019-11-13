@@ -25,9 +25,9 @@ export interface BollingerBand {
  * Note: the number of results will be `period-1` less than the
  * number of processed inputs.
  *
- * @param period
- * @param sd
- * @param src
+ * @param period -
+ * @param sd -
+ * @param src -
  */
 export function bollinger(
     period?: number,

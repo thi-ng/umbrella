@@ -5,8 +5,8 @@ import { mixN, set, Vec } from "@thi.ng/vectors";
  * sampled yields uniformly spaced points. The inner control points are
  * located at 1/3 and 2/3 respectively.
  *
- * @param a
- * @param b
+ * @param a -
+ * @param b -
  */
 export const cubicFromLine = (a: Vec, b: Vec) => [
     set([], a),

@@ -10,7 +10,7 @@ import { padLeft } from "./pad-left";
  * - NaN => "NaN"
  * - Infinity => "+/-∞"
  *
- * @param len number of fractional digits
+ * @param len - number of fractional digits
  * @kind function
  */
 export const float: (prec: number) => Stringer<number> = memoizeJ(

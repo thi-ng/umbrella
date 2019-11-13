@@ -3,8 +3,8 @@
  * concatenate their `class` values and merge their `style` maps (if
  * present). Returns merged result object.
  *
- * @param base base attribs
- * @param xs overrides
+ * @param base - base attribs
+ * @param xs - overrides
  */
 export const mergeAttribs =
     (base: any, xs: any) => {

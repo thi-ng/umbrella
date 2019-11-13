@@ -20,7 +20,7 @@ import { map } from "./map";
  * // [ 3, 3, 3 ]
  * ```
  *
- * @param fn mapping function
+ * @param fn - mapping function
  */
 export function mapcat<A, B>(
     fn: Fn<A, Iterable<B> | null | undefined>

@@ -11,9 +11,9 @@ const NO_OP_REDUCER: Reducer<void, any> = [NO_OP, NO_OP, NO_OP];
  * transducer is assumed to include at least one `sideEffect()` step
  * itself. Returns nothing.
  *
- * @param tx
- * @param fx
- * @param xs
+ * @param tx -
+ * @param fx -
+ * @param xs -
  */
 export function run<A>(tx: Transducer<A, any>, xs: Iterable<A>): void;
 export function run<A>(tx: Transducer<A, any>, xs: IReducible<any, A>): void;

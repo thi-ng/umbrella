@@ -10,7 +10,7 @@ import { throttle } from "./throttle";
  *
  * Also see: `thi.ng/rstream` and `thi.ng/csp` packages.
  *
- * @param delay
+ * @param delay -
  */
 export function throttleTime<T>(delay: number): Transducer<T, T>;
 export function throttleTime<T>(

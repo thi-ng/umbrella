@@ -12,9 +12,9 @@ import { quatFromAxisAngle } from "./quat-axis-angle";
  * `from` -> `to`. If `normalize` is true (default), first normalizes
  * the vectors (not modifying original).
  *
- * @param from
- * @param to
- * @param normalize
+ * @param from -
+ * @param to -
+ * @param normalize -
  */
 export const alignmentQuat = (
     from: ReadonlyVec,

@@ -18,7 +18,7 @@ import { interpolate } from "./interpolate";
  * @see interpolateLinear
  * @see extendSides
  *
- * @param n
+ * @param n -
  */
 export function interpolateHermite(n: number): Transducer<number, number>;
 // prettier-ignore

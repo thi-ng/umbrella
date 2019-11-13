@@ -258,7 +258,8 @@ export interface ShaderState {
     blend: boolean;
     /**
      * 2-element array of glBlendFunction coefficients
-     * (default: `[gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA]`)
+     *
+     * @defaultValue `[gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA]`
      */
     blendFn: BlendFunc;
     /**

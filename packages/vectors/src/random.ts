@@ -13,10 +13,10 @@ import { normalize } from "./normalize";
  * If no `rnd` instance is given, uses `SYSTEM`, i.e. `Math.random`.
  * Creates new vector if `v` is null.
  *
- * @param v
- * @param n default -1
- * @param m default 1
- * @param rnd
+ * @param v -
+ * @param n - default -1
+ * @param m - default 1
+ * @param rnd -
  */
 export const [random, random2, random3, random4] = defHofOp<
     MultiVecOpOOO<number, number, IRandom>,
@@ -35,9 +35,9 @@ export const [random, random2, random3, random4] = defHofOp<
  * Sets `v` to random vector, normalized to length `n` (default: 1). If no
  * `rnd` instance is given, uses `SYSTEM`, i.e. `Math.random`.
  *
- * @param v
- * @param n
- * @param rnd
+ * @param v -
+ * @param n -
+ * @param rnd -
  */
 export const randNorm = (v: Vec | null, n = 1, rnd: IRandom = SYSTEM) =>
     normalize((v = random(v, -1, 1, rnd)), v, n);
@@ -46,10 +46,10 @@ export const randNorm = (v: Vec | null, n = 1, rnd: IRandom = SYSTEM) =>
  * Sets `out` to random vector with each component in the semi-open
  * interval defined by [min,max).
  *
- * @param out
- * @param min
- * @param max
- * @param rnd
+ * @param out -
+ * @param min -
+ * @param max -
+ * @param rnd -
  */
 export const [randMinMax, randMinMax2, randMinMax3, randMinMax4] = defHofOp<
     MultiVecOpOOO<ReadonlyVec, ReadonlyVec, IRandom>,

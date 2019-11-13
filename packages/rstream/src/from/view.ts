@@ -24,7 +24,7 @@ import { nextID } from "../utils/idgen";
  * - fromAtom()
  * - @thi.ng/atom
  *
- * ```
+ * ```ts
  * db = new Atom({a: 1, b: {c: 2}});
  *
  * fromView(db, "b.c", (x) => x != null ? x : "n/a").subscribe(trace("view:"))
@@ -37,11 +37,11 @@ import { nextID } from "../utils/idgen";
  * // view: n/a
  * ```
  *
- * @param atom
- * @param path
- * @param tx
- * @param equiv
- * @param id
+ * @param atom -
+ * @param path -
+ * @param tx -
+ * @param equiv -
+ * @param id -
  */
 export const fromView = <T>(
     atom: ReadonlyAtom<any>,

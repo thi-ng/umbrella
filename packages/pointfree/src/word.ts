@@ -24,8 +24,8 @@ const compile = (prog: StackProgram) =>
  * items from result stack. If no `n` is given, defaults to single value
  * (TOS) and returns it as is. Returns an array for all other `n`.
  *
- * @param result
- * @param n
+ * @param result -
+ * @param n -
  */
 export const unwrap = ([stack]: StackContext, n = 1) =>
     n === 1 ? tos(stack) : stack.slice(Math.max(0, stack.length - n));
@@ -48,9 +48,9 @@ export const unwrap = ([stack]: StackContext, n = 1) =>
  *
  * ( ? -- ? )
  *
- * @param prog
- * @param env
- * @param mergeEnv
+ * @param prog -
+ * @param env -
+ * @param mergeEnv -
  */
 export const word = (prog: StackProgram, env?: StackEnv, mergeEnv = true) => {
     const w: StackFn = compile(prog);
@@ -70,10 +70,10 @@ export const word = (prog: StackProgram, env?: StackEnv, mergeEnv = true) => {
  * **Importatant:** Words defined with this function CANNOT be used as
  * part of a larger stack program, only for standalone use.
  *
- * @param prog
- * @param n
- * @param env
- * @param mergeEnv
+ * @param prog -
+ * @param n -
+ * @param env -
+ * @param mergeEnv -
  */
 export const wordU = (
     prog: StackProgram,
@@ -96,7 +96,7 @@ export const wordU = (
  *
  * ( x -- x() )
  *
- * @param ctx
+ * @param ctx -
  */
 export const exec = (ctx: StackContext) => (
     $(ctx[0], 1), $stackFn(ctx[0].pop())(ctx)
@@ -111,7 +111,7 @@ export const exec = (ctx: StackContext) => (
  *
  * ( [f ...] -- f(...) )
  *
- * @param ctx
+ * @param ctx -
  */
 export const execjs = (ctx: StackContext) => {
     const stack = ctx[0];

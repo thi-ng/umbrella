@@ -8,8 +8,8 @@ import { map } from "./map";
  *
  * See `deepTransform()` for details.
  *
- * @param spec
- * @param src
+ * @param spec -
+ * @param src -
  */
 export function mapDeep(spec: TransformSpec): Transducer<any, any>;
 export function mapDeep(

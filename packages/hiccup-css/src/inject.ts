@@ -6,8 +6,8 @@
  *
  * Returns created style DOM element.
  *
- * @param css
- * @param first
+ * @param css -
+ * @param first -
  */
 export const injectStyleSheet = (css: string, first = false) => {
     const head = document.getElementsByTagName("head")[0];

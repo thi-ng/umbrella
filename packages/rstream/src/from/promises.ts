@@ -7,7 +7,7 @@ import { fromPromise } from "./promise";
  * same order as arguments, then closes. If any of the promises rejects,
  * all others do too and calls `error()` in subscribers.
  *
- * ```
+ * ```ts
  * rs.fromPromises([
  *     Promise.resolve(1),
  *     Promise.resolve(2),
@@ -22,7 +22,7 @@ import { fromPromise } from "./promise";
  * If individual error handling is required, an alternative is below
  * (however this approach provides no ordering guarantees):
  *
- * ```
+ * ```ts
  * rs.fromIterable([
  *     Promise.resolve(1),
  *     new Promise(()=> { setTimeout(()=> { throw new Error("eeek"); }, 10); }),
@@ -30,7 +30,7 @@ import { fromPromise } from "./promise";
  * ]).subscribe(rs.resolve()).subscribe(rs.trace())
  * ```
  *
- * @param promises
+ * @param promises -
  */
 export const fromPromises = <T>(
     promises: Iterable<Promise<T>>

@@ -18,8 +18,8 @@ import { $iter } from "../iterator";
  * // [ 1, 2, 3, 4, 5, 60, 7, 8, 90 ]
  * ```
  *
- * @param n step size
- * @param fn transformation function
+ * @param n - step size
+ * @param fn - transformation function
  */
 export function mapNth<A, B>(n: number, fn: Fn<A, B>): Transducer<A, A | B>;
 export function mapNth<A, B>(

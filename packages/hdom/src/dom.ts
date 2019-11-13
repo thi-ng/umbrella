@@ -12,10 +12,10 @@ const maybeInitElement = <T>(el: T, tree: any) =>
 /**
  * See `HDOMImplementation` interface for further details.
  *
- * @param opts
- * @param parent
- * @param tree
- * @param insert
+ * @param opts -
+ * @param parent -
+ * @param tree -
+ * @param insert -
  */
 export const createTree = <T>(
     opts: Partial<HDOMOpts>,
@@ -72,10 +72,10 @@ export const createTree = <T>(
 /**
  * See `HDOMImplementation` interface for further details.
  *
- * @param opts
- * @param parent
- * @param tree
- * @param index
+ * @param opts -
+ * @param parent -
+ * @param tree -
+ * @param index -
  */
 export const hydrateTree = <T>(
     opts: Partial<HDOMOpts>,
@@ -128,10 +128,10 @@ export const hydrateTree = <T>(
  * If `tag` is a known SVG element name, the new element will be created
  * with the proper SVG XML namespace.
  *
- * @param parent
- * @param tag
- * @param attribs
- * @param insert
+ * @param parent -
+ * @param tag -
+ * @param attribs -
+ * @param insert -
  */
 export const createElement = (
     parent: Element,
@@ -206,10 +206,10 @@ export const setAttribs = (el: Element, attribs: any) => {
  * If the given (or computed) attrib value is `false` or `undefined` the
  * attrib is removed from the element.
  *
- * @param el
- * @param id
- * @param val
- * @param attribs
+ * @param el -
+ * @param id -
+ * @param val -
+ * @param attribs -
  */
 export const setAttrib = (el: Element, id: string, val: any, attribs?: any) => {
     if (id.startsWith("__")) return;
@@ -264,8 +264,8 @@ export const setAttrib = (el: Element, id: string, val: any, attribs?: any) => {
  * Updates an element's `value` property. For form elements it too
  * ensures the edit cursor retains its position.
  *
- * @param el
- * @param v
+ * @param el -
+ * @param v -
  */
 export const updateValueAttrib = (el: HTMLInputElement, v: any) => {
     let ev;
@@ -312,9 +312,9 @@ export const setStyle = (el: Element, styles: any) => (
 /**
  * Adds event listener (possibly with options).
  *
- * @param el
- * @param id event name (w/o `on` prefix)
- * @param listener
+ * @param el -
+ * @param id - event name (w/o `on` prefix)
+ * @param listener -
  */
 export const setListener = (
     el: Element,
@@ -328,9 +328,9 @@ export const setListener = (
 /**
  * Removes event listener (possibly with options).
  *
- * @param el
- * @param id event name (w/o `on` prefix)
- * @param listener
+ * @param el -
+ * @param id - event name (w/o `on` prefix)
+ * @param listener -
  */
 export const removeListener = (
     el: Element,

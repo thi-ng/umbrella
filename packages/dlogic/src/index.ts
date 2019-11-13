@@ -11,7 +11,7 @@ export interface Sum<T> {
  * | 0 | 1 |
  * | 1 | 0 |
  *
- * @param x
+ * @param x -
  */
 export const not = (x: boolean) => !x;
 
@@ -25,8 +25,8 @@ export const not = (x: boolean) => !x;
  * | 1 | 0 | 1 |
  * | 1 | 1 | 0 |
  *
- * @param a
- * @param b
+ * @param a -
+ * @param b -
  */
 export const nand = (a: boolean, b: boolean) => !(a && b);
 
@@ -40,8 +40,8 @@ export const nand = (a: boolean, b: boolean) => !(a && b);
  * | 1 | 0 | 0 |
  * | 1 | 1 | 1 |
  *
- * @param a
- * @param b
+ * @param a -
+ * @param b -
  */
 export const and = (a: boolean, b: boolean) => a && b;
 
@@ -55,8 +55,8 @@ export const and = (a: boolean, b: boolean) => a && b;
  * | 1 | 0 | 1 |
  * | 1 | 1 | 1 |
  *
- * @param a
- * @param b
+ * @param a -
+ * @param b -
  */
 export const or = (a: boolean, b: boolean) => a || b;
 
@@ -70,8 +70,8 @@ export const or = (a: boolean, b: boolean) => a || b;
  * | 1 | 0 | 0 |
  * | 1 | 1 | 0 |
  *
- * @param a
- * @param b
+ * @param a -
+ * @param b -
  */
 export const nor = (a: boolean, b: boolean) => !(a || b);
 
@@ -85,8 +85,8 @@ export const nor = (a: boolean, b: boolean) => !(a || b);
  * | 1 | 0 | 1 |
  * | 1 | 1 | 0 |
  *
- * @param a
- * @param b
+ * @param a -
+ * @param b -
  */
 export const xor = (a: boolean, b: boolean) => a !== b;
 
@@ -100,8 +100,8 @@ export const xor = (a: boolean, b: boolean) => a !== b;
  * | 1 | 0 | 0 |
  * | 1 | 1 | 1 |
  *
- * @param a
- * @param b
+ * @param a -
+ * @param b -
  */
 export const xnor = (a: boolean, b: boolean) => a === b;
 
@@ -114,8 +114,8 @@ export const xnor = (a: boolean, b: boolean) => a === b;
  * | 0 | 1 | 1 |
  * | 1 | 0 | 0 |
  * | 1 | 1 | 1 |
- * @param a
- * @param b
+ * @param a -
+ * @param b -
  */
 export const imply = (a: boolean, b: boolean) => !a || b;
 
@@ -135,9 +135,9 @@ export const imply = (a: boolean, b: boolean) => !a || b;
  * | 1 | 1 | 0 | 0 |
  * | 1 | 1 | 1 | 0 |
  *
- * @param a
- * @param b
- * @param c
+ * @param a -
+ * @param b -
+ * @param c -
  */
 export const aoi21 = (a: boolean, b: boolean, c: boolean) => !(a || (b && c));
 
@@ -155,9 +155,9 @@ export const aoi21 = (a: boolean, b: boolean, c: boolean) => !(a || (b && c));
  * | 1 | 1 | X | X | 0 |
  * | X | X | 1 | 1 | 0 |
  *
- * @param a
- * @param b
- * @param c
+ * @param a -
+ * @param b -
+ * @param c -
  */
 export const aoi22 = (a: boolean, b: boolean, c: boolean, d: boolean) =>
     !((a && b) || (c && d));
@@ -167,9 +167,9 @@ export const aoi22 = (a: boolean, b: boolean, c: boolean, d: boolean) =>
  *
  * `q = nand(a, or(b, c))`
  *
- * @param a
- * @param b
- * @param c
+ * @param a -
+ * @param b -
+ * @param c -
  */
 export const oai21 = (a: boolean, b: boolean, c: boolean) => !(a && (b || c));
 
@@ -178,10 +178,10 @@ export const oai21 = (a: boolean, b: boolean, c: boolean) => !(a && (b || c));
  *
  * `q = nand(or(a, b), or(c, d))`
  *
- * @param a
- * @param b
- * @param c
- * @param d
+ * @param a -
+ * @param b -
+ * @param c -
+ * @param d -
  */
 export const oai22 = (a: boolean, b: boolean, c: boolean, d: boolean) =>
     !((a || b) && (c || d));
@@ -200,9 +200,9 @@ export const oai22 = (a: boolean, b: boolean, c: boolean, d: boolean) =>
  * | 1 | 0 | 1 | 0 |
  * | 1 | 1 | 1 | 1 |
  *
- * @param a
- * @param b
- * @param s
+ * @param a -
+ * @param b -
+ * @param s -
  */
 export const mux = (a: boolean, b: boolean, s: boolean) =>
     (a && !s) || (b && s);
@@ -217,8 +217,8 @@ export const mux = (a: boolean, b: boolean, s: boolean) =>
  * | 0 | 1 | 0 | 0 |
  * | 1 | 1 | 0 | 1 |
  *
- * @param i
- * @param s
+ * @param i -
+ * @param s -
  */
 export const demux = (i: boolean, s: boolean): [boolean, boolean] => [
     i && !s,
@@ -228,8 +228,8 @@ export const demux = (i: boolean, s: boolean): [boolean, boolean] => [
 /**
  * https://en.wikipedia.org/wiki/Adder_(electronics)#Half_adder
  *
- * @param a
- * @param b
+ * @param a -
+ * @param b -
  */
 export const hadd1 = (a: boolean, b: boolean): Sum<boolean> => ({
     s: a !== b,
@@ -239,9 +239,9 @@ export const hadd1 = (a: boolean, b: boolean): Sum<boolean> => ({
 /**
  * https://en.wikipedia.org/wiki/Adder_(electronics)#Full_adder
  *
- * @param a
- * @param b
- * @param c
+ * @param a -
+ * @param b -
+ * @param c -
  */
 export const fadd1 = (a: boolean, b: boolean, c: boolean): Sum<boolean> => ({
     s: (a !== b) !== c,
@@ -251,9 +251,9 @@ export const fadd1 = (a: boolean, b: boolean, c: boolean): Sum<boolean> => ({
 /**
  * https://en.wikipedia.org/wiki/Adder_(electronics)#Ripple-carry_adder
  *
- * @param a
- * @param b
- * @param c
+ * @param a -
+ * @param b -
+ * @param c -
  */
 export const rca = (a: boolean[], b: boolean[], c: boolean): Sum<boolean[]> => {
     const s: boolean[] = [];
@@ -270,7 +270,7 @@ export const rca = (a: boolean[], b: boolean[], c: boolean): Sum<boolean[]> => {
  * buffers `n` values (ring buffer) and returns currently oldest. The
  * first `n` results will always be `false`.
  *
- * @param n
+ * @param n -
  */
 export const delay = (n: number) => {
     const buf: boolean[] = new Array(n).fill(false);

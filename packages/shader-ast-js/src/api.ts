@@ -35,8 +35,8 @@ export interface JSTarget extends Fn<Term<any>, string> {
      * // }
      * ```
      *
-     * @param tree
-     * @param env
+     * @param tree -
+     * @param env -
      */
     compile(tree: Term<any>, env?: JSEnv): any;
 }

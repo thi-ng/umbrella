@@ -63,8 +63,8 @@ export class PubSub<T> implements IWriteableChannel<T> {
      * The special "*" topic can be used to subscribe to all messages and
      * acts as multiplexed pass-through of the source channel.
      *
-     * @param id topic id
-     * @param tx transducer for new subscription
+     * @param id - topic id
+     * @param tx - transducer for new subscription
      */
     sub(id: string, tx?: Transducer<T, any>) {
         let topic = this.topics[id];

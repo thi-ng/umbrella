@@ -8,7 +8,7 @@ import { set } from "./set";
  * vector is used as write cursor over the underlying buffer and will be
  * filled with the components of vector `v`.
  *
- * ```
+ * ```ts
  * fill(
  *   new Vec2(new Float32Array(12)),
  *   new Vec2([1, 2]),
@@ -18,10 +18,10 @@ import { set } from "./set";
  * // Float32Array [1, 2, 0, 0, 1, 2, 0, 0, 1, 2, 0, 0]
  * ```
  *
- * @param out target vector / wrapped buffer
- * @param v fill vector
- * @param num number of elements to fill
- * @param so output stride
+ * @param out - target vector / wrapped buffer
+ * @param v - fill vector
+ * @param num - number of elements to fill
+ * @param so - output stride
  */
 export const fill = (
     out: IVector<any>,

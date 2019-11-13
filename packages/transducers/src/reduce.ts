@@ -70,8 +70,8 @@ const reduceIterable = <A, B>(
  * function (i.e. `(x) => x`) as completion step (true for 90% of all
  * bundled transducers).
  *
- * @param init init step of reducer
- * @param rfn reduction step of reducer
+ * @param init - init step of reducer
+ * @param rfn - reduction step of reducer
  */
 export const reducer = <A, B>(init: Fn0<A>, rfn: ReductionFn<A, B>) =>
     <Reducer<A, B>>[init, (acc) => acc, rfn];

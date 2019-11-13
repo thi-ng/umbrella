@@ -15,8 +15,8 @@ import { map } from "./map";
  * // [ { a: 10, b: 20 }, { c: 30, d: 40 } ]
  * ```
  *
- * @param fn
- * @param copy if true (default), creates a shallow copy of each incoming value
+ * @param fn -
+ * @param copy - if true (default), creates a shallow copy of each incoming value
  */
 export function mapVals<A, B>(
     fn: Fn<A, B>,

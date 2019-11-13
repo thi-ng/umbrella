@@ -45,9 +45,9 @@ import { hash32 } from "./hash";
  * Note: This implementation uses the improved `hash32` by Dave Hoskins
  * instead of iq's original `hash3`.
  *
- * @param p
- * @param u
- * @param v
+ * @param p -
+ * @param u -
+ * @param v -
  */
 export const voronoise2 = defn(
     "float",

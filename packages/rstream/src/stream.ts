@@ -57,8 +57,8 @@ import { nextID } from "./utils/idgen";
  * stream has not yet emitted a value or if the stream is done, it will
  * deref to `undefined`.
  *
- * @param id
- * @param src
+ * @param id -
+ * @param src -
  */
 export function stream<T>(): Stream<T>;
 export function stream<T>(id: string): Stream<T>;

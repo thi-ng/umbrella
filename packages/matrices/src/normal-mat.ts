@@ -9,8 +9,8 @@ import { transpose33, transpose44 } from "./transpose";
  * matrix will be created. Returns `undefined` if matrix inversion
  * failed.
  *
- * @param out
- * @param m
+ * @param out -
+ * @param m -
  */
 export const normal33: MatOpMU = (out, m) => {
     out = invert33(null, mat44to33(out, m))!;
@@ -22,8 +22,8 @@ export const normal33: MatOpMU = (out, m) => {
  * transposed inverse. Writes results to `m` if `out` is null. Returns
  * `undefined` if matrix inversion failed.
  *
- * @param out
- * @param m
+ * @param out -
+ * @param m -
  */
 export const normal44: MatOpMU = (out, m) => {
     out = invert44(out, m)!;

@@ -120,7 +120,7 @@ export interface PagerOpts {
  * [mypager, currPage, currNumItems, 10, 5]
  * ```
  *
- * @param opts
+ * @param opts -
  */
 export const pager = (_opts: PagerOpts) => {
     const opts = <PagerOpts>{

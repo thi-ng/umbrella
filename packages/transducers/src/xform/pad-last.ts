@@ -27,8 +27,8 @@ import { isReduced } from "../reduced";
  * // [ 1, 2, 3, 4 ]
  * ```
  *
- * @param n
- * @param fill
+ * @param n -
+ * @param fill -
  */
 export function padLast<T>(n: number, fill: T): Transducer<T, T>;
 export function padLast<T>(

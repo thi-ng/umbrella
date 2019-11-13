@@ -7,7 +7,7 @@
  * // [ 30, 10, 20 ]
  * ```
  *
- * @param src source data
+ * @param src - source data
  */
 export const lookup1d = <T>(src: T[]) => (i: number) => src[i];
 
@@ -23,8 +23,8 @@ export const lookup1d = <T>(src: T[]) => (i: number) => src[i];
  * // [ 2, 1, 0, 5, 4, 3, 8, 7, 6 ]
  * ```
  *
- * @param src source data
- * @param width number of items along X (columns)
+ * @param src - source data
+ * @param width - number of items along X (columns)
  */
 export const lookup2d = <T>(src: T[], width: number) => (i: number[]) =>
     src[i[0] + i[1] * width];
@@ -34,9 +34,9 @@ export const lookup2d = <T>(src: T[], width: number) => (i: number[]) =>
  * source data MUST be in Z, Y, X order (i.e. a stack of row major 2D slices).
  * No bounds checks are done.
  *
- * @param src source data
- * @param width number of items along X (columns)
- * @param height number of items along Y (rows)
+ * @param src - source data
+ * @param width - number of items along X (columns)
+ * @param height - number of items along Y (rows)
  */
 export const lookup3d = <T>(src: T[], width: number, height: number) => {
     const stridez = width * height;

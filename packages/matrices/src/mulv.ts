@@ -14,9 +14,9 @@ import { MatOpMV, MultiMatOpMV } from "./api";
  * Matrix-vector multiplication. Supports in-place modification, i.e. if
  * `out === v`.
  *
- * @param out
- * @param m
- * @param v
+ * @param out -
+ * @param m -
+ * @param v -
  */
 export const mulV: MultiMatOpMV = vop(1);
 
@@ -24,9 +24,9 @@ export const mulV: MultiMatOpMV = vop(1);
  * Multiplies 2x2 matrix `m` with 2D vector `v`. Supports in-place
  * modification, i.e. if `out === v`.
  *
- * @param out
- * @param m
- * @param v
+ * @param out -
+ * @param m -
+ * @param v -
  */
 export const mulV22: MatOpMV = mulV.add(4, (out, m, v) =>
     setC2(out || v, dotS2(m, v, 0, 0, 2), dotS2(m, v, 1, 0, 2))
@@ -36,9 +36,9 @@ export const mulV22: MatOpMV = mulV.add(4, (out, m, v) =>
  * Multiplies 2x3 matrix `m` with 2D vector `v`. Supports in-place
  * modification, i.e. if `out === v`.
  *
- * @param out
- * @param m
- * @param v
+ * @param out -
+ * @param m -
+ * @param v -
  */
 export const mulV23: MatOpMV = mulV.add(6, (out, m, v) =>
     setC2(out || v, dotS2(m, v, 0, 0, 2) + m[4], dotS2(m, v, 1, 0, 2) + m[5])
@@ -48,9 +48,9 @@ export const mulV23: MatOpMV = mulV.add(6, (out, m, v) =>
  * Multiplies 3x3 matrix `m` with 3D vector `v`. Supports in-place
  * modification, i.e. if `out === v`.
  *
- * @param out
- * @param m
- * @param v
+ * @param out -
+ * @param m -
+ * @param v -
  */
 export const mulV33: MatOpMV = mulV.add(9, (out, m, v) =>
     setC3(
@@ -65,9 +65,9 @@ export const mulV33: MatOpMV = mulV.add(9, (out, m, v) =>
  * Multiplies 4x4 matrix `m` with 4D vector `v`. Supports in-place
  * modification, i.e. if `out === v`.
  *
- * @param out
- * @param m
- * @param v
+ * @param out -
+ * @param m -
+ * @param v -
  */
 export const mulV44: MatOpMV = mulV.add(16, (out, m, v) =>
     setC4(
@@ -84,9 +84,9 @@ export const mulV44: MatOpMV = mulV.add(16, (out, m, v) =>
  * the vector is interpreted as `[x,y,z,1]`. After transformation
  * applies perspective divide of the resulting XYZ components.
  *
- * @param out
- * @param m
- * @param v
+ * @param out -
+ * @param m -
+ * @param v -
  */
 export const mulV344: MatOpMV = (out, m, v) => {
     const w = dotS3(m, v, 3, 0, 4) || 1;
@@ -102,9 +102,9 @@ export const mulV344: MatOpMV = (out, m, v) => {
  * Multiplies quaternion `q` with 3D vector `v`. Returns transformed
  * vector or modifies in-place if `out` is null or `v`.
  *
- * @param out
- * @param q
- * @param v
+ * @param out -
+ * @param q -
+ * @param v -
  */
 export const mulVQ: VecOpVV = (out, q, v) => {
     const { 0: px, 1: py, 2: pz } = v;

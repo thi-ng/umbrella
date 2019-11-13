@@ -11,8 +11,8 @@ const atan2 = Math.atan2;
  * Converts cartesian vector `v` to polar coordinates. See `cartesian()`
  * for reverse operation. If `out` is null, modifies `v` in place.
  *
- * @param out
- * @param v
+ * @param out -
+ * @param v -
  */
 export const polar: MultiVecOpV = vop(1);
 
@@ -21,8 +21,8 @@ export const polar: MultiVecOpV = vop(1);
  * (angle in radians). See `cartesian()` for reverse operation. If `out`
  * is null, modifies `v` in place.
  *
- * @param out
- * @param v
+ * @param out -
+ * @param v -
  */
 export const polar2 = polar.add(2, (out, a) =>
     setC2(out || a, mag(a), atan2(a[1], a[0]))
@@ -33,8 +33,8 @@ export const polar2 = polar.add(2, (out, a) =>
  * `[r,θ,ϕ]` (angles in radians). See `cartesian()` for reverse
  * operation. If `out` is null, modifies `v` in place.
  *
- * @param out
- * @param v
+ * @param out -
+ * @param v -
  */
 export const polar3 = polar.add(3, (out, a) => {
     const x = a[0];

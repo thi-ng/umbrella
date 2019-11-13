@@ -9,9 +9,9 @@ import { StackFn, StackProgram } from "../src/api";
  * `invrot`). Iteratation goes from 0..i and 0..j for outer/inner loops
  * respectively.
  *
- * @param i
- * @param j
- * @param bodyQ
+ * @param i -
+ * @param j -
+ * @param bodyQ -
  */
 const loop2 = (i: number, j: number, bodyQ: StackProgram) =>
     pf.word([
@@ -36,9 +36,9 @@ const loop2 = (i: number, j: number, bodyQ: StackProgram) =>
  * produced values are remaining in order of iteration. The last step is
  * to collect these results into a single result tuple.
  *
- * @param i outer size
- * @param j inner size
- * @param body user quotation
+ * @param i - outer size
+ * @param j - inner size
+ * @param body - user quotation
  */
 const grid = (i: number, j: number, body: StackProgram = [pf.tuple(2)]) =>
     pf.word([loop2(i, j, [...body, pf.invrot]), pf.tuple(i * j)]);
@@ -49,11 +49,11 @@ const grid = (i: number, j: number, body: StackProgram = [pf.tuple(2)]) =>
  * can be given for outer/inner counters. The tuple values are joined
  * with given `sep`arator.
  *
- * @param i outer size
- * @param j inner size
- * @param sep separator
- * @param id1 outer id gen
- * @param id2 inner id gen
+ * @param i - outer size
+ * @param j - inner size
+ * @param sep - separator
+ * @param id1 - outer id gen
+ * @param id2 - inner id gen
  */
 const makeids = (
     i: number,

@@ -14,8 +14,8 @@ import { iterator1 } from "../iterator";
  * Also see the @thi.ng/transducers-stats package for more optimized and
  * alternative MAs.
  *
- * @param period
- * @param src
+ * @param period -
+ * @param src -
  */
 export function movingAverage(period: number): Transducer<number, number>;
 // prettier-ignore

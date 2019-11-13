@@ -9,8 +9,8 @@ import { $ } from "./safe";
  *
  * ( -- env )
  *
- * @param ctx
- * @param env
+ * @param ctx -
+ * @param env -
  */
 export const pushenv = (ctx: StackContext) => (ctx[0].push(ctx[2]), ctx);
 
@@ -20,8 +20,8 @@ export const pushenv = (ctx: StackContext) => (ctx[0].push(ctx[2]), ctx);
  *
  * ( key -- env[key] )
  *
- * @param ctx
- * @param env
+ * @param ctx -
+ * @param env -
  */
 export const load = (ctx: StackContext) => {
     const stack = ctx[0];
@@ -37,8 +37,8 @@ export const load = (ctx: StackContext) => {
  *
  * ( val key -- )
  *
- * @param ctx
- * @param env
+ * @param ctx -
+ * @param env -
  */
 export const store = (ctx: StackContext) => (
     $(ctx[0], 2), (ctx[2][ctx[0].pop()] = ctx[0].pop()), ctx
@@ -50,8 +50,8 @@ export const store = (ctx: StackContext) => (
  * (also slightly faster). Throws error if var doesn't exist.
  *
  * ( -- env[key] )
- * @param ctx
- * @param env
+ * @param ctx -
+ * @param env -
  */
 export const loadkey = (key: PropertyKey) => (ctx: StackContext) => {
     !ctx[2].hasOwnProperty(key) &&
@@ -67,8 +67,8 @@ export const loadkey = (key: PropertyKey) => (ctx: StackContext) => {
  *
  * ( val -- )
  *
- * @param ctx
- * @param env
+ * @param ctx -
+ * @param env -
  */
 export const storekey = (key: PropertyKey) => (ctx: StackContext) => (
     $(ctx[0], 1), (ctx[2][key] = ctx[0].pop()), ctx

@@ -87,8 +87,8 @@ export class IMGUI implements IToHiccup {
      * Sets mouse position and current mouse button flags (i.e.
      * `MouseEvent.buttons`).
      *
-     * @param p
-     * @param buttons
+     * @param p -
+     * @param buttons -
      */
     setMouse(p: Vec, buttons: number) {
         set2(this.prevMouse, this.mouse);
@@ -101,7 +101,7 @@ export class IMGUI implements IToHiccup {
     /**
      * Sets internal key state from given key event details.
      *
-     * @param e
+     * @param e -
      */
     setKey(e: KeyboardEvent) {
         if (e.type === "keydown") {
@@ -121,7 +121,7 @@ export class IMGUI implements IToHiccup {
      * Merges given theme settings with `DEFAULT_THEME` and resets theme
      * stack.
      *
-     * @param theme
+     * @param theme -
      */
     setTheme(theme: Partial<GUITheme>) {
         this.themeStack = [{ ...DEFAULT_THEME, ...theme }];
@@ -134,7 +134,7 @@ export class IMGUI implements IToHiccup {
      * IMPORTANT: Currently IMGUI only supports one font and ignores any
      * font changes pushed on the theme stack.
      *
-     * @param theme
+     * @param theme -
      */
     beginTheme(theme: Partial<GUITheme>) {
         const stack = this.themeStack;
@@ -153,8 +153,8 @@ export class IMGUI implements IToHiccup {
      * Applies component function with given theme, then restores
      * previous theme and returns component result.
      *
-     * @param theme
-     * @param comp
+     * @param theme -
+     * @param comp -
      */
     withTheme<T>(theme: Partial<GUITheme>, comp: Fn0<T>) {
         this.beginTheme(theme);
@@ -168,7 +168,7 @@ export class IMGUI implements IToHiccup {
      * true, i.e. disabled). Pass `false` to temporarily enable
      * components.
      *
-     * @param disabled
+     * @param disabled -
      */
     beginDisabled(disabled = true) {
         this.disabledStack.push(disabled);
@@ -186,8 +186,8 @@ export class IMGUI implements IToHiccup {
      * Applies component function with given disabled flag, then
      * restores previous disabled state and returns component result.
      *
-     * @param disabled
-     * @param comp
+     * @param disabled -
+     * @param comp -
      */
     withDisabled<T>(disabled: boolean, comp: Fn0<T>) {
         this.disabledStack.push(disabled);
@@ -200,7 +200,7 @@ export class IMGUI implements IToHiccup {
      * Sets `focusID` to given `id` if the component can receive focus.
      * Returns true if component is focused.
      *
-     * @param id
+     * @param id -
      */
     requestFocus(id: string) {
         if (this.disabled) return false;
@@ -287,7 +287,7 @@ export class IMGUI implements IToHiccup {
      * gui.end();
      * ```
      *
-     * @param draw
+     * @param draw -
      */
     begin(draw = true) {
         this.hotID = "";
@@ -362,7 +362,7 @@ export class IMGUI implements IToHiccup {
      *
      * IMPORTANT: Currently only monospace fonts are supported.
      *
-     * @param txt
+     * @param txt -
      */
     textWidth(txt: string) {
         return this.theme.charWidth * txt.length;
@@ -374,8 +374,8 @@ export class IMGUI implements IToHiccup {
      * value should be based on any values (e.g. layout info) which
      * might invalidate cached resources.
      *
-     * @param id
-     * @param hash
+     * @param id -
+     * @param hash -
      */
     registerID(id: string, hash: Hash) {
         this.currIDs.add(id);
@@ -393,9 +393,9 @@ export class IMGUI implements IToHiccup {
      *
      * @see IMGUI.registerID()
      *
-     * @param id
-     * @param hash
-     * @param ctor
+     * @param id -
+     * @param hash -
+     * @param ctor -
      */
     resource<T>(id: string, hash: Hash, ctor: Fn0<T>) {
         let res: any;
@@ -409,8 +409,8 @@ export class IMGUI implements IToHiccup {
      * unsuccessful, calls state `ctor` function, caches result and
      * returns it.
      *
-     * @param id
-     * @param ctor
+     * @param id -
+     * @param ctor -
      */
     state<T>(id: string, ctor: Fn0<T>): T {
         let res: any = this.states.get(id);
@@ -423,8 +423,8 @@ export class IMGUI implements IToHiccup {
      * Stores / overrides given local state value for component `id` in
      * cache.
      *
-     * @param id
-     * @param state
+     * @param id -
+     * @param state -
      */
     setState(id: string, state: any) {
         this.states.set(id, state);
@@ -434,7 +434,7 @@ export class IMGUI implements IToHiccup {
      * Sets cursor property to given `id`. This setting is cleared at
      * the beginning of each frame (default value: "default").
      *
-     * @param id
+     * @param id -
      */
     setCursor(id: string) {
         this.cursor = id;

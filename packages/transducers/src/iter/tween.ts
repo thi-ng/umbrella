@@ -73,7 +73,7 @@ export interface TweenOpts<A, B, C> {
  * Using easing functions (e.g. from thi.ng/math), non-linear
  * interpolation within each keyframe interval can be achieved:
  *
- * ```
+ * ```ts
  * import { mix, smoothStep } from "@thi.ng/math"
  *
  * [...tween({
@@ -91,7 +91,7 @@ export interface TweenOpts<A, B, C> {
  * @see interpolateHermite
  * @see interpolateLinear
  *
- * @param opts
+ * @param opts -
  */
 export function* tween<A, B, C>(opts: TweenOpts<A, B, C>): IterableIterator<C> {
     const { min, max, num, init, mix, stops } = opts;

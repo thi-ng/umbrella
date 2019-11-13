@@ -16,7 +16,7 @@ import {
  * of processed inputs and no outputs will be produced if there were
  * less than `period` input values.
  *
- * @param period
+ * @param period -
  */
 export function roc(period: number): Transducer<number, number>;
 export function roc(

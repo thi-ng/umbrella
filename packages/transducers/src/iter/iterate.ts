@@ -17,8 +17,8 @@ import { Fn2 } from "@thi.ng/api";
  * // [ 0, 1, 12, 123, 1234, 12345, 123456, 1234567 ]
  * ```
  *
- * @param fn
- * @param seed
+ * @param fn -
+ * @param seed -
  */
 export function* iterate<T>(fn: Fn2<T, number, T>, seed: T) {
     let i = 0;

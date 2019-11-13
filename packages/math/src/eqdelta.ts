@@ -12,9 +12,9 @@ const max = Math.max;
  *
  * `ε = ε * max(1, |a|, |b|)`
  *
- * @param a left value
- * @param b right value
- * @param eps epsilon / tolerance, default `1e-6`
+ * @param a - left value
+ * @param b - right value
+ * @param eps - epsilon / tolerance, default `1e-6`
  */
 export const eqDelta = (a: number, b: number, eps = EPS) =>
     abs(a - b) <= eps * max(1, abs(a), abs(b));
@@ -22,9 +22,9 @@ export const eqDelta = (a: number, b: number, eps = EPS) =>
 /**
  * Similar to `eqDelta()`, but used given `eps` as is.
  *
- * @param a left value
- * @param b right value
- * @param eps epsilon / tolerance, default `1e-6`
+ * @param a - left value
+ * @param b - right value
+ * @param eps - epsilon / tolerance, default `1e-6`
  */
 export const eqDeltaFixed = (a: number, b: number, eps = EPS) =>
     abs(a - b) <= eps;

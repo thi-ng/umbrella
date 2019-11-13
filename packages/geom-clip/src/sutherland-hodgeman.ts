@@ -10,10 +10,10 @@ import { corner2, ReadonlyVec, Vec } from "@thi.ng/vectors";
  *
  * https://en.wikipedia.org/wiki/Sutherland%E2%80%93Hodgman_algorithm
  *
- * @param pts subject poly vertices
- * @param bounds clipping boundary vertices
- * @param bc pre-computed boundary centroid
- * @param eps edge classification tolerance
+ * @param pts - subject poly vertices
+ * @param bounds - clipping boundary vertices
+ * @param bc - pre-computed boundary centroid
+ * @param eps - edge classification tolerance
  */
 export const sutherlandHodgeman = (
     pts: ReadonlyVec[],

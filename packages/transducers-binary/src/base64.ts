@@ -60,8 +60,8 @@ export interface Base64EncodeOpts {
  * intermediate results. Then repeatedly calls reducer to drain buffer
  * whenever it's been filled.
  *
- * @param urlSafe
- * @param bufSize
+ * @param urlSafe -
+ * @param bufSize -
  */
 export function base64Encode(): Transducer<number, string>;
 export function base64Encode(

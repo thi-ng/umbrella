@@ -52,10 +52,10 @@ export const intersectLineLine = (
  * 2D only. Returns true if line `a`,`b` is parallel (or coincident) to
  * line `c`,`d`.
  *
- * @param a
- * @param b
- * @param c
- * @param d
+ * @param a -
+ * @param b -
+ * @param c -
+ * @param d -
  */
 export const isParallelLine = (
     a: ReadonlyVec,

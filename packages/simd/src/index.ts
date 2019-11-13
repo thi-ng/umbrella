@@ -22,7 +22,7 @@ import { BINARY } from "./binary";
  * Function will throw an error if WASM is unavailable or underlying
  * runtime doesn't yet support SIMD instructions.
  *
- * @param memory
+ * @param memory -
  */
 export const init = (memory: WebAssembly.Memory): SIMD | undefined => {
     const buf = memory.buffer;

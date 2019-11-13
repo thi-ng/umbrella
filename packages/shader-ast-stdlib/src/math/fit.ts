@@ -21,9 +21,9 @@ import {
  * Returns normalized value of `x` WRT to interval [a,b]. Returns 0, if
  * `a` equals `b`.
  *
- * @param x
- * @param a
- * @param b
+ * @param x -
+ * @param a -
+ * @param b -
  */
 export const fitNorm1 = defn(
     "float",
@@ -36,9 +36,9 @@ export const fitNorm1 = defn(
  * Inline function. Fits value `a` in [0..1] interval to new interval
  * [b..c]. No clamping performed. Same as `mix(b, c, a)`
  *
- * @param a
- * @param b
- * @param c
+ * @param a -
+ * @param b -
+ * @param c -
  */
 export const fit01 = <A extends Prim, B extends A, C extends B>(
     a: Term<A>,
@@ -50,7 +50,7 @@ export const fit01 = <A extends Prim, B extends A, C extends B>(
  * Inline function. Fits value `x` in [-1..+1] interval to [0..1]
  * interval. No clamping performed.
  *
- * @param x
+ * @param x -
  */
 export const fit1101 = <T extends Prim>(x: Term<T>): Op2<T> =>
     <any>add(mul(<any>x, FLOAT05), FLOAT05);
@@ -59,7 +59,7 @@ export const fit1101 = <T extends Prim>(x: Term<T>): Op2<T> =>
  * Inline function. Fits value `x` in [0..1] interval to [-1..+1]
  * interval. No clamping performed.
  *
- * @param x
+ * @param x -
  */
 export const fit0111 = <T extends Prim>(x: Term<T>): Op2<T> =>
     <any>sub(mul(<any>x, FLOAT2), FLOAT1);

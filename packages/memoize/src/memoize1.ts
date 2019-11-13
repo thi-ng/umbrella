@@ -8,8 +8,8 @@ import { Fn1, MapLike } from "./api";
  * `Map` type here will lead to memory leaks! Alternatively, use
  * `memoizeJ`.
  *
- * @param fn
- * @param cache
+ * @param fn -
+ * @param cache -
  */
 export function memoize1<A, B>(fn: Fn1<A, B>, cache?: MapLike<A, B>) {
     !cache && (cache = new Map());

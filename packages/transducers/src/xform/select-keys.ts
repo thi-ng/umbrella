@@ -22,8 +22,8 @@ import { map } from "./map";
  * // [ { age: 23, id: 1 }, { age: 42, id: 2 }, { id: 3 } ]
  * ```
  *
- * @param keys
- * @param src
+ * @param keys -
+ * @param src -
  */
 export function selectKeys<T>(keys: PropertyKey[]): Transducer<T, any>;
 export function selectKeys<T>(

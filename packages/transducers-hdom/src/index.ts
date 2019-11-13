@@ -39,7 +39,7 @@ import { scan, Transducer } from "@thi.ng/transducers";
  * Please see here for further details:
  * https://github.com/thi-ng/umbrella/blob/master/packages/hdom/src/start.ts
  *
- * @param opts hdom options
+ * @param opts - hdom options
  */
 export const updateDOM = (
     opts: Partial<HDOMOpts> = {},

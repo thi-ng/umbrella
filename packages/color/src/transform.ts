@@ -25,10 +25,10 @@ const S8 = 0.283;
  * Unless `clampOut` is false, the result color will be clamped to `[0,1]`
  * interval.
  *
- * @param out
- * @param mat
- * @param src
- * @param clampOut
+ * @param out -
+ * @param mat -
+ * @param src -
+ * @param clampOut -
  */
 export const transform = mulV45;
 
@@ -45,8 +45,8 @@ export const transform = mulV45;
  * unless disabled).
  *
  * @see transform
- * @param mat
- * @param xs
+ * @param mat -
+ * @param xs -
  */
 export const concat = (mat: ColorMatrix, ...xs: ColorMatrix[]) =>
     xs.reduce(mulM45, mat);
@@ -64,7 +64,7 @@ export const IDENTITY: ColorMatrix = [
  * `src` color. With the default color white, this results in the
  * inverted color. Does NOT modify alpha channel.
  *
- * @param src
+ * @param src -
  */
 // prettier-ignore
 export const subtract = (src: ReadonlyColor = WHITE): ColorMatrix => [
@@ -81,7 +81,7 @@ export const subtract = (src: ReadonlyColor = WHITE): ColorMatrix => [
  * If `x < 0` results in darker color.
  * If `x > 0` results in brighter color.
  *
- * @param x
+ * @param x -
  */
 // prettier-ignore
 export const brightness = (x: number): ColorMatrix => [
@@ -155,8 +155,8 @@ export const tint = (x: number): ColorMatrix => [
  * Returns transformation matrix which computes luminance of user color
  * (optionally with custom coefficients). Does NOT modify alpha channel.
  *
- * @param x
- * @param coeffs
+ * @param x -
+ * @param coeffs -
  */
 // prettier-ignore
 export const grayscale = (x = 0, [r, g, b] = RGB_LUMINANCE): ColorMatrix => [
@@ -171,7 +171,7 @@ export const grayscale = (x = 0, [r, g, b] = RGB_LUMINANCE): ColorMatrix => [
  * (optionally with custom coefficients), uses result as alpha channel
  * and clears RGB channels (all set to zero).
  *
- * @param coeffs
+ * @param coeffs -
  */
 // prettier-ignore
 export const luminanceAlpha = ([r, g, b] = RGB_LUMINANCE): ColorMatrix => [

@@ -24,7 +24,7 @@ import { nextID } from "./idgen";
  * Related, the actual value change predicate can be customized. If not
  * given, the default `@thi.ng/equiv` will be used.
  *
- * ```
+ * ```ts
  * a = new Atom({a: {b: 1}});
  * v = a.addView("a.b", (x) => x * 10);
  *

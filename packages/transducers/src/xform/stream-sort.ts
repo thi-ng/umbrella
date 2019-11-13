@@ -14,9 +14,9 @@ import { $iter, iterator } from "../iterator";
  * // [ 2, 4, 1, 3, 5, 6, 0, 7, 8, 9 ]
  * ```
  *
- * @param n
- * @param key
- * @param cmp
+ * @param n -
+ * @param key -
+ * @param cmp -
  */
 // prettier-ignore
 export function streamSort<A, B>(n: number, opts?: Partial<SortOpts<A, B>>): Transducer<A, A>;

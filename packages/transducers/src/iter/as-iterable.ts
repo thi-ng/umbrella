@@ -1,7 +1,7 @@
 /**
  * Helper function to (re)provide given iterable in iterator form.
  *
- * @param src
+ * @param src -
  */
 export function* asIterable<T>(src: Iterable<T>) {
     yield* src;

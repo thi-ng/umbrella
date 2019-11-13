@@ -43,13 +43,13 @@ export const NEW_OUT = "!o&&(o=[]);";
 /**
  * HOF array index lookup gen to provide optimized versions of:
  *
- * ```
+ * ```ts
  * lookup("a")(0) // a[ia]
  * lookup("a")(1) // a[ia * sa]
  * lookup("a")(2) // a[ia + 2 * sa]
  * ```
  *
- * @param sym
+ * @param sym -
  */
 const lookup = (sym: string) => (i: number) =>
     i > 1
@@ -61,14 +61,14 @@ const lookup = (sym: string) => (i: number) =>
 /**
  * Infinite iterator of strided index lookups for `sym`.
  *
- * @param sym
+ * @param sym -
  */
 const indicesStrided = (sym: string) => map(lookup(sym), range());
 
 /**
  * Infinite iterator of simple (non-strided) index lookups for `sym`.
  *
- * @param sym
+ * @param sym -
  */
 const indices = (sym: string) => map((i) => `${sym}[${i}]`, range());
 
@@ -89,14 +89,14 @@ const indices = (sym: string) => map((i) => `${sym}[${i}]`, range());
  * generated code. `post` will be injected **before** the generated
  * return statement (if not suppressed).
  *
- * @param dim
- * @param tpl
- * @param syms
- * @param ret
- * @param opJoin
- * @param pre
- * @param post
- * @param strided
+ * @param dim -
+ * @param tpl -
+ * @param syms -
+ * @param ret -
+ * @param opJoin -
+ * @param pre -
+ * @param post -
+ * @param strided -
  */
 const assemble = (
     dim: number,

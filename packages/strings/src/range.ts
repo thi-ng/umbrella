@@ -2,8 +2,8 @@
  * Yields iterator of characters [`from`..`to`] (inclusive). Uses
  * reverse ordering if `to` < `from`.
  *
- * @param from
- * @param to
+ * @param from -
+ * @param to -
  */
 export function* charRange(from: string | number, to: string | number) {
     let i = typeof from === "string" ? from.charCodeAt(0) : from;

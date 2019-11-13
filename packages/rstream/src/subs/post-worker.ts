@@ -29,9 +29,9 @@ import { makeWorker } from "../utils/worker";
  * // worker 42
  * ```
  *
- * @param worker
- * @param transfer
- * @param terminate worker termination delay (ms)
+ * @param worker -
+ * @param transfer -
+ * @param terminate - worker termination delay (ms)
  */
 export const postWorker = <T>(
     worker: Worker | Blob | string,

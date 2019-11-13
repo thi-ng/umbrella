@@ -7,13 +7,13 @@ import { ReadonlyVec, Vec, VecPair } from "@thi.ng/vectors";
  * Based on:
  * http://www.iquilezles.org/www/articles/bezierbbox/bezierbbox.htm
  *
- * @param min
- * @param max
- * @param i
- * @param pa
- * @param pb
- * @param pc
- * @param pd
+ * @param min -
+ * @param max -
+ * @param i -
+ * @param pa -
+ * @param pb -
+ * @param pc -
+ * @param pd -
  */
 const axisBounds = (
     min: Vec,

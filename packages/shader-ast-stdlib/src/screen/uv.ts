@@ -17,8 +17,8 @@ import { fit0111 } from "../math/fit";
 /**
  * Computes UV coord in [0..1] interval from given `fragCoord` and screen `res`.
  *
- * @param fragCoord
- * @param res
+ * @param fragCoord -
+ * @param res -
  */
 export const fragUV = (fragCoord: Vec4Term, res: Vec2Term) =>
     div($xy(fragCoord), res);
@@ -28,8 +28,8 @@ export const fragUV = (fragCoord: Vec4Term, res: Vec2Term) =>
  * resolution `res`, returns aspect corrected uv, with uv.y in [-1..1]
  * interval.
  *
- * @param fragCoord vec2
- * @param res vec2
+ * @param fragCoord - vec2
+ * @param res - vec2
  */
 export const aspectCorrectedUV = defn(
     "vec2",

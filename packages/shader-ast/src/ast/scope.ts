@@ -76,11 +76,11 @@ export const allChildren = (t: Term<any>) =>
  * to visiting a node's children. If false, the visitor is called on the
  * way back up.
  *
- * @param visit
- * @param children
- * @param acc
- * @param tree
- * @param pre
+ * @param visit -
+ * @param children -
+ * @param acc -
+ * @param tree -
+ * @param pre -
  */
 export const walk = <T>(
     visit: Fn2<T, Term<any>, T>,
@@ -104,8 +104,8 @@ export const walk = <T>(
  * Builds dependency graph of given function, by recursively adding all
  * function dependencies. Returns graph.
  *
- * @param fn
- * @param graph
+ * @param fn -
+ * @param graph -
  */
 export const buildCallGraph = (
     fn: Func<any>,
@@ -134,8 +134,8 @@ export const decl = <T extends Type>(id: Sym<T>): Decl<T> => ({
  * be used directly from user land code (though might be useful to
  * create custom / higher level control flow nodes).
  *
- * @param body
- * @param global
+ * @param body -
+ * @param global -
  */
 export const scope = (body: (Term<any> | null)[], global = false): Scope => ({
     tag: "scope",
@@ -161,7 +161,7 @@ export const scope = (body: (Term<any> | null)[], global = false): Scope => ({
  * @see output
  * @see uniform
  *
- * @param body
+ * @param body -
  */
 export const program = (body: (Sym<any> | Func<any>)[]) => {
     const syms = body.filter((x) => x.tag !== "fn");
