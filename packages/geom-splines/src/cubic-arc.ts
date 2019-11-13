@@ -14,7 +14,7 @@ import { cubicFromLine } from "./cubic-line";
  * arc's angle range.
  *
  * Partially based on:
- * https://github.com/chromium/chromium/blob/master/third_party/blink/renderer/core/svg/svg_path_parser.cc#L253
+ * {@link https://github.com/chromium/chromium/blob/master/third_party/blink/renderer/core/svg/svg_path_parser.cc#L253}
  *
  * @param pos -
  * @param r -
@@ -36,7 +36,7 @@ export const cubicFromArc = (
     const [s, c] = sincos(axis);
     const dx = (c * (p[0] - q[0])) / 2 + (s * (p[1] - q[1])) / 2;
     const dy = (-s * (p[0] - q[0])) / 2 + (c * (p[1] - q[1])) / 2;
-    if ((Math.abs(delta) < PI && (dx === 0 && dy === 0)) || magSq2(r) < EPS) {
+    if ((Math.abs(delta) < PI && dx === 0 && dy === 0) || magSq2(r) < EPS) {
         return [cubicFromLine(p, q)];
     }
 

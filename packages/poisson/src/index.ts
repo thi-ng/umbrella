@@ -28,7 +28,7 @@ export interface PoissonOpts {
     /**
      * Spatial indexing implementation for nearest neighbor searches of
      * candidate points. Currently only `KdTree` from the
-     * thi.ng/geom-accel package is available and must be
+     * {@link @thi.ng/geom-accel} package is available and must be
      * pre-initialized to given dimensions prior to calling
      * `samplePoisson()`.
      *
@@ -50,13 +50,16 @@ export interface PoissonOpts {
     /**
      * Step distance for the random walk each failed candidate point is
      * undergoing. This distance should be adjusted depending on overall
-     * sampling area/bounds. Default: 1
+     * sampling area/bounds.
+     *
+     * @defaultValue 1
      */
     jitter?: number;
     /**
      * Number of random walk steps performed before giving up on a
      * candidate point. Increasing this value improves overall quality.
-     * Default: 1
+     *
+     * @defaultValue 1
      */
     iter?: number;
     /**
@@ -64,12 +67,15 @@ export interface PoissonOpts {
      * stopping entire sampling process (most likely due to not being
      * able to place any further points). As with the `iter` param,
      * increasing this value improves overall quality, especially in
-     * dense regions with small radii. Default: 500
+     * dense regions with small radii.
+     *
+     * @defaultValue 500
      */
     quality?: number;
     /**
-     * Random number generator instance. Default thi.ng/random/SYSTEM
-     * (aka Math.random)
+     * Random number generator instance.
+     *
+     * @defaultValue {@link @thi.ng/random#SYSTEM} (aka Math.random)
      */
     rnd?: IRandom;
 }

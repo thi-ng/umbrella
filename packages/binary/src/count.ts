@@ -10,7 +10,7 @@ export const popCount = (x: number) => (
 );
 
 /**
- * https://en.wikipedia.org/wiki/Hamming_distance
+ * {@link https://en.wikipedia.org/wiki/Hamming_distance}
  *
  * @param x -
  * @param y -
@@ -20,7 +20,7 @@ export const hammingDist = (x: number, y: number) => popCount(x ^ y);
 /**
  * Math.clz32() polyfill (corrected).
  *
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/clz32$revision/1426816
+ * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/clz32$revision/1426816}
  *
  * @param x -
  */

@@ -29,7 +29,7 @@ export const capitalize: Stringer<string> = (x: string) =>
  * TODO: Switch back to currently broken Regex w/ positive lookbehind,
  * once avail in FF & Safari (currently TC39 stage 4)
  *
- * https://github.com/tc39/proposal-regexp-lookbehind
+ * {@link https://github.com/tc39/proposal-regexp-lookbehind}
  *
  * ```ts
  * kebab("FooBar23Baz");

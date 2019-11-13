@@ -7,7 +7,7 @@ import { SYSTEM } from "./system";
  * {@link SYSTEM}. If `weights` are given, it must be the same size as
  * `choices`. If omitted, each choice will have same probability.
  *
- * https://www.electricmonk.nl/log/2009/12/23/weighted-random-distribution/
+ * {@link https://www.electricmonk.nl/log/2009/12/23/weighted-random-distribution/}
  *
  * @param choices -
  * @param weights -

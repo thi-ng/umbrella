@@ -23,12 +23,12 @@ import { View } from "./view";
 
 /**
  * Undo/redo history stack wrapper for atoms and cursors. Implements
- * `IAtom` interface and so can be used directly in place and delegates
- * to wrapped atom/cursor. Value changes are only recorded in history if
- * `changed` predicate returns truthy value, or else by calling
- * `record()` directly. This class too implements the @thi.ng/api
- * `INotify` interface to support event listeners for `undo()`, `redo()`
- * and `record()`.
+ * {@link IAtom} interface and so can be used directly in place and
+ * delegates to wrapped atom/cursor. Value changes are only recorded in
+ * history if `changed` predicate returns truthy value, or else by
+ * calling `record()` directly. This class too implements the
+ * {@link @thi.ng/api#INotify} interface to support event listeners for
+ * `undo()`, `redo()` and `record()`.
  */
 @INotifyMixin
 export class History<T> implements IHistory<T> {

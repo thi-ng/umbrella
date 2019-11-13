@@ -3,7 +3,7 @@
  * starting from the center, given `cols` and `rows`.
  *
  * Ported & modified from original Java code by Christopher Kulla.
- * https://sourceforge.net/p/sunflow/code/HEAD/tree/trunk/src/org/sunflow/core/bucket/SpiralBucketOrder.java
+ * {@link https://sourceforge.net/p/sunflow/code/HEAD/tree/trunk/src/org/sunflow/core/bucket/SpiralBucketOrder.java}
  *
  * @param cols -
  * @param rows -

@@ -106,10 +106,10 @@ export interface StreamSyncOpts<A, B> extends IID<string> {
  * the `all` option to `false`.
  *
  * The synchronization is done via the `partitionSync()` transducer from
- * the @thi.ng/transducers package. See this function's docs for further
- * details.
+ * the {@link @thi.ng/transducers} package. See this function's docs for
+ * further details.
  *
- * @see StreamSyncOpts
+ * {@link StreamSyncOpts}
  *
  * @param opts -
  */

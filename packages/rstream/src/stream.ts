@@ -49,13 +49,13 @@ import { nextID } from "./utils/idgen";
  * // b2 42
  * ```
  *
- * `Stream`s (like `Subscription`s) implement the thi.ng/api `IDeref`
- * interface which provides read access to a stream's last received value.
- * This is useful for various purposes, e.g. in combination with
- * thi.ng/hdom, which supports direct embedding of streams (i.e. their
- * values) into UI components (and will be deref'd automatically). If the
- * stream has not yet emitted a value or if the stream is done, it will
- * deref to `undefined`.
+ * `Stream`s (like `Subscription`s) implement the
+ * {@link @thi.ng/api#IDeref} interface which provides read access to a
+ * stream's last received value. This is useful for various purposes,
+ * e.g. in combination with {@link @thi.ng/hdom}, which supports direct
+ * embedding of streams (i.e. their values) into UI components (and will
+ * be deref'd automatically). If the stream has not yet emitted a value
+ * or if the stream is done, it will deref to `undefined`.
  *
  * @param id -
  * @param src -
@@ -118,7 +118,7 @@ export class Stream<T> extends Subscription<T, T> implements IStream<T> {
 
     unsubscribe(sub?: Subscription<T, any>) {
         const res = super.unsubscribe(sub);
-        if (res && (!sub || (!this.subs || !this.subs.length))) {
+        if (res && (!sub || !this.subs || !this.subs.length)) {
             this.cancel();
         }
         return res;

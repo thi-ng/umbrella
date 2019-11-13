@@ -8,7 +8,7 @@ import {
 } from "@thi.ng/transducers";
 
 /**
- * https://en.wikipedia.org/wiki/Momentum_(technical_analysis)
+ * {@link en.wikipedia.org/wiki/Momentum_(technical_analysis)}
  *
  * Note: the number of results will be `period` less than the number
  * of processed inputs.

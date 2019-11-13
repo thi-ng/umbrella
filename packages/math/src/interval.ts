@@ -31,15 +31,15 @@ export const min4id = (a: number, b: number, c: number, d: number) =>
                 ? 0
                 : 3
             : c <= d
-                ? 2
-                : 3
+            ? 2
+            : 3
         : b <= c
-            ? b <= d
-                ? 1
-                : 3
-            : c <= d
-                ? 2
-                : 3;
+        ? b <= d
+            ? 1
+            : 3
+        : c <= d
+        ? 2
+        : 3;
 
 export const max2id = (a: number, b: number) => (a >= b ? 0 : 1);
 
@@ -53,15 +53,15 @@ export const max4id = (a: number, b: number, c: number, d: number) =>
                 ? 0
                 : 3
             : c >= d
-                ? 2
-                : 3
+            ? 2
+            : 3
         : b >= c
-            ? b >= d
-                ? 1
-                : 3
-            : c >= d
-                ? 2
-                : 3;
+        ? b >= d
+            ? 1
+            : 3
+        : c >= d
+        ? 2
+        : 3;
 
 /**
  * See `smax()`.
@@ -77,7 +77,7 @@ export const smin = (a: number, b: number, k: number) => smax(a, b, -k);
  * value near max(a,b) + eps due to exponential decay. Higher `k` values
  * reduce the error, but also reduce the smoothing. Recommended k=16.
  *
- * https://en.wikipedia.org/wiki/Smooth_maximum
+ * {@link https://en.wikipedia.org/wiki/Smooth_maximum}
  *
  * @param a -
  * @param b -
@@ -107,7 +107,7 @@ export const absMax = (a: number, b: number) =>
     Math.abs(a) > Math.abs(b) ? a : b;
 
 /**
- * http://www.musicdsp.org/showone.php?id=203
+ * {@link http://www.musicdsp.org/showone.php?id=203}
  *
  * @param e -
  * @param x -

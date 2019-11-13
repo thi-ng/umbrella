@@ -2,12 +2,13 @@ import { EPS } from "@thi.ng/math";
 import { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 const atan2 = Math.atan2;
+
 /**
  * Returns array of points defining the 2D Convex Hull of `pts` using
  * the Graham Scan method.
  *
- * https://en.wikipedia.org/wiki/Graham_scan
- * http://c.thi.ng/
+ * - {@link https://en.wikipedia.org/wiki/Graham_scan}
+ * - {@link http://c.thi.ng/}
  *
  * @param pts - input points
  * @param eps - tolerance for colinear neighbor detection
@@ -57,7 +58,7 @@ export const grahamScan2 = (pts: ReadonlyVec[], eps = EPS) => {
  * Returns true, if triangle defined by ABC is NOT counter clockwise,
  * i.e. clockwise or colinear.
  *
- * @see thi.ng/vectors/signedArea2
+ * @see {@link @thi.ng/vectors#signedArea2}
  *
  * @param ax -
  * @param ay -

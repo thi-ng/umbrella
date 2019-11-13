@@ -23,7 +23,7 @@ export const lambert = (n: Vec3Term, ldir: Vec3Term) =>
  * Inline function. Computes Half-Lambertian term. Both vectors must be
  * pre-normalized.
  *
- * https://developer.valvesoftware.com/wiki/Half_Lambert
+ * {@link https://developer.valvesoftware.com/wiki/Half_Lambert}
  *
  * @param n -
  * @param ldir -

@@ -18,8 +18,8 @@ export type QuadEdge<T> = [Edge<T>, Edge<T>, Edge<T>, Edge<T>];
  *
  * References:
  *
- * - http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/quadedge.html
- * - http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/lischinski/114.ps
+ * - {@link http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/quadedge.html}
+ * - {@link http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/lischinski/114.ps}
  */
 export class Edge<T> {
     /**

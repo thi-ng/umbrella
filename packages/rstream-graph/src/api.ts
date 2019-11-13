@@ -32,7 +32,7 @@ export type GraphSpec = IObjectOf<NodeSpec | Node | NodeResolver>;
 /**
  * Specification for a single "node" in the dataflow graph. Nodes here
  * are actually just wrappers of streams / subscriptions (or generally
- * any form of thi.ng/rstream `ISubscribable`), usually with an
+ * any form of {@link @thi.ng/rstream#ISubscribable}), usually with an
  * associated transducer to transform / combine the inputs and produce
  * values for the node's result stream.
  *
@@ -41,7 +41,7 @@ export type GraphSpec = IObjectOf<NodeSpec | Node | NodeResolver>;
  * dictated by the actual node `fn` used. Most node functions with
  * multiple inputs will be implemented as `StreamSync` instances and the
  * input IDs are used to locally rename input streams within the
- * `StreamSync` container.
+ * {@link @thi.ng/rstream#StreamSync} container.
  *
  * Alo see `initGraph` and `nodeFromSpec` (in /src/nodes.ts) for more
  * details how these specs are compiled into stream constructs.
@@ -65,7 +65,7 @@ export interface NodeSpec {
  * ```
  *
  * 2) Reference path to another node's output in the GraphSpec object.
- *    See `@thi.ng/resolve-map` for details.
+ *    See {@link @thi.ng/resolve-map} for details.
  *
  * ```
  * { stream: "/node-id/node" } // main node output

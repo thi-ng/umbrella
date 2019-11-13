@@ -22,10 +22,10 @@ const coeff = (
 
 /**
  * Higher-order Porter-Duff alpha compositing operator. See
- * thi.ng/porter-duff for reference. Returns an optimized AST function
- * which accepts 2 RGBA colors (`vec4`) and returns blended & clamped
- * result (also `vec4`). All built-in PD operators are defined via this
- * HOF.
+ * {@link @thi.ng/porter-duff} for reference. Returns an optimized AST
+ * function which accepts 2 RGBA colors (`vec4`) and returns blended &
+ * clamped result (also `vec4`). All built-in PD operators are defined
+ * via this HOF.
  *
  * The two given JS functions are used to extract blending coefficients
  * for src/dest colors and are called with the alpha components of both

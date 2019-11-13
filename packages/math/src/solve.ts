@@ -11,7 +11,7 @@ import { EPS } from "./api";
  * in the interval the returned function is going to be used.
  * No validity checks of any form are done.
  *
- * https://en.wikipedia.org/wiki/Derivative#Continuity_and_differentiability
+ * {@link https://en.wikipedia.org/wiki/Derivative#Continuity_and_differentiability}
  *
  * @param fn -
  * @param eps -
@@ -36,8 +36,8 @@ export const solveLinear = (a: number, b: number) => -b / a;
  * Note: `a` MUST NOT be zero. If the quadratic term is missing,
  * use `solveLinear` instead.
  *
- * https://en.wikipedia.org/wiki/Quadratic_function
- * https://en.wikipedia.org/wiki/Quadratic_equation
+ * - {@link https://en.wikipedia.org/wiki/Quadratic_function}
+ * - {@link https://en.wikipedia.org/wiki/Quadratic_equation}
  *
  * @param a - quadratic coefficient
  * @param b - linear coefficient
@@ -50,8 +50,8 @@ export const solveQuadratic = (a: number, b: number, c: number, eps = 1e-9) => {
     return r < 0
         ? []
         : r < eps
-            ? [-b / d]
-            : ((r = Math.sqrt(r)), [(-b - r) / d, (-b + r) / d]);
+        ? [-b / d]
+        : ((r = Math.sqrt(r)), [(-b - r) / d, (-b + r) / d]);
 };
 
 /**
@@ -60,7 +60,7 @@ export const solveQuadratic = (a: number, b: number, c: number, eps = 1e-9) => {
  * Note: `a` MUST NOT be zero. If the cubic term is missing (i.e. zero),
  * use `solveQuadratic` or `solveLinear` instead.
  *
- * https://en.wikipedia.org/wiki/Cubic_function
+ * {@link https://en.wikipedia.org/wiki/Cubic_function}
  *
  * @param a - cubic coefficient
  * @param b - quadratic coefficient

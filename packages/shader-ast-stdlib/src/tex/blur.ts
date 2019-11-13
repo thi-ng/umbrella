@@ -42,8 +42,8 @@ const singlePass = (
 /**
  * 5x5 gaussian blur texture lookup, optimized, but based on:
  *
- * - http://rastergrid.com/blog/2010/09/efficient-gaussian-blur-with-linear-sampling/
- * - https://github.com/Jam3/glsl-fast-gaussian-blur
+ * - {@link http://rastergrid.com/blog/2010/09/efficient-gaussian-blur-with-linear-sampling/}
+ * - {@link https://github.com/Jam3/glsl-fast-gaussian-blur}
  *
  * @param tex - sampler2D
  * @param res - resolution
@@ -71,8 +71,8 @@ export const blur5 = defn(
 /**
  * 9x9 gaussian blur texture lookup, optimized, but based on:
  *
- * - http://rastergrid.com/blog/2010/09/efficient-gaussian-blur-with-linear-sampling/
- * - https://github.com/Jam3/glsl-fast-gaussian-blur
+ * - {@link http://rastergrid.com/blog/2010/09/efficient-gaussian-blur-with-linear-sampling/}
+ * - {@link https://github.com/Jam3/glsl-fast-gaussian-blur}
  *
  * @param tex - sampler2D
  * @param res - resolution
@@ -103,8 +103,8 @@ export const blur9 = defn(
 /**
  * 13x13 gaussian blur texture lookup, optimized, but based on:
  *
- * - http://rastergrid.com/blog/2010/09/efficient-gaussian-blur-with-linear-sampling/
- * - https://github.com/Jam3/glsl-fast-gaussian-blur
+ * - {@link http://rastergrid.com/blog/2010/09/efficient-gaussian-blur-with-linear-sampling/}
+ * - {@link https://github.com/Jam3/glsl-fast-gaussian-blur}
  *
  * @param tex - sampler2D
  * @param res - resolution

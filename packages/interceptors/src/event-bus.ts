@@ -174,8 +174,8 @@ export class StatelessEventBus implements IDispatch {
      * response's `statusText`. The error event is only triggered if the
      * fetched response's `ok` field is non-truthy.
      *
-     * - https://developer.mozilla.org/en-US/docs/Web/API/Response/ok
-     * - https://developer.mozilla.org/en-US/docs/Web/API/Response/statusText
+     * - {@link https://developer.mozilla.org/en-US/docs/Web/API/Response/ok}
+     * - {@link https://developer.mozilla.org/en-US/docs/Web/API/Response/statusText}
      *
      * ```
      * // fetches "foo.json" and then dispatches EV_SUCCESS or EV_ERROR event
@@ -649,16 +649,16 @@ export class EventBus extends StatelessEventBus
      * #### `EV_UNDO`
      *
      * Calls `ctx[id].undo()` and uses return value as new state.
-     * Assumes `ctx[id]` is a @thi.ng/atom `History` instance, provided
-     * via e.g. `processQueue({ history })`. The event can be triggered
-     * with or without ID. By default `"history"` is used as default key
-     * to lookup the `History` instance. Furthermore, an additional
-     * event can be triggered based on if a previous state has been
-     * restored or not (basically, if the undo was successful). This is
-     * useful for resetting/re-initializing stateful resources after a
-     * successful undo action or to notify the user that no more undo's
-     * are possible. The new event will be processed in the same frame
-     * and has access to the (possibly) restored state. The event
+     * Assumes `ctx[id]` is a {@link @thi.ng/atom#History} instance,
+     * provided via e.g. `processQueue({ history })`. The event can be
+     * triggered with or without ID. By default `"history"` is used as
+     * default key to lookup the `History` instance. Furthermore, an
+     * additional event can be triggered based on if a previous state
+     * has been restored or not (basically, if the undo was successful).
+     * This is useful for resetting/re-initializing stateful resources
+     * after a successful undo action or to notify the user that no more
+     * undo's are possible. The new event will be processed in the same
+     * frame and has access to the (possibly) restored state. The event
      * structure for these options is shown below:
      *
      * ```
@@ -720,8 +720,8 @@ export class EventBus extends StatelessEventBus
      * care must be taken that there're no key name clashes.
      *
      * In order to use the built-in `EV_UNDO`, `EV_REDO` events, users
-     * MUST provide a @thi.ng/atom History (or compatible undo history
-     * instance) via the `ctx` arg, e.g.
+     * MUST provide a {@link @thi.ng/atom#History} (or compatible undo
+     * history instance) via the `ctx` arg, e.g.
      *
      * ```
      * bus.processQueue({ history });

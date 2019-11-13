@@ -10,7 +10,7 @@ import {
 import { dot } from "./dot";
 
 /**
- * https://en.wikipedia.org/wiki/Moving_average#Weighted_moving_average
+ * {@link https://en.wikipedia.org/wiki/Moving_average#Weighted_moving_average}
  *
  * Note: the number of results will be `period-1` less than the number
  * of processed inputs.

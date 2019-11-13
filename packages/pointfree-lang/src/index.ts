@@ -468,9 +468,7 @@ export const run = (src: string, env?: pf.StackEnv, stack: pf.Stack = []) => {
     } catch (e) {
         if (e instanceof SyntaxError) {
             throw new Error(
-                `line ${e.location.start.line}:${e.location.start.column}: ${
-                    e.message
-                }`
+                `line ${e.location.start.line}:${e.location.start.column}: ${e.message}`
             );
         } else {
             throw e;
@@ -540,8 +538,8 @@ export const runWordE = (id: string, env: pf.StackEnv, stack: pf.Stack = []) =>
 /**
  * Takes an environment object and injects given custom word
  * definitions. `words` is an object with keys representing word names
- * and their values `StackFn`s. See @thi.ng/pointfree package for more
- * details about stack functions.
+ * and their values `StackFn`s. See {@link @thi.ng/pointfree} package
+ * for more details about stack functions.
  *
  * @param env -
  * @param words -

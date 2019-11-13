@@ -22,9 +22,10 @@ const __vals = (inst: LLSet<any>) => __private.get(inst)!.vals;
 
 /**
  * Similar to `ArraySet`, this class is an alternative implementation of
- * the native ES6 Set API using a @thi.ng/dcons linked list as backing
- * store and a customizable value equality / equivalence predicate. By
- * the default uses `@thi.ng/equiv` for equivalence checking.
+ * the native ES6 Set API using a {@link @thi.ng/dcons#DCons} linked
+ * list as backing store and a customizable value equality / equivalence
+ * predicate. By the default uses {@link @thi.ng/equiv#equiv} for
+ * equivalence checking.
  *
  * Additionally, the type also implements the `ICopy`, `IEmpty` and
  * `IEquiv` interfaces itself.

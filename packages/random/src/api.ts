@@ -34,7 +34,7 @@ export abstract class ARandom implements IRandom {
     /**
      * Returns approx. normal distribution using CLT.
      *
-     * https://en.wikipedia.org/wiki/Central_limit_theorem
+     * {@link https://en.wikipedia.org/wiki/Central_limit_theorem}
      *
      * @param n -
      * @param offset -

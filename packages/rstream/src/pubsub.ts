@@ -35,8 +35,8 @@ export interface PubSubOpts<A, B> {
  * returned topic. The actual topic (return value from `topic` fn) can
  * be of any type, apart from `undefined`. Complex topics (e.g objects /
  * arrays) are allowed and they're matched with registered topics using
- * @thi.ng/equiv by default (but customizable via `equiv` option).
- * Each topic can have any number of subscribers.
+ * {@link @thi.ng/equiv#quiv} by default (but customizable via `equiv`
+ * option). Each topic can have any number of subscribers.
  *
  * If a transducer is specified for the `PubSub`, it is always applied
  * prior to passing the input to the topic function. I.e. in this case

@@ -21,7 +21,7 @@ const GL_MAX_COLOR_ATTACHMENTS_WEBGL = 0x8cdf;
  * fbo = new FBO(gl, { tex: [tex1, tex2] });
  * ```
  *
- * https://developer.mozilla.org/en-US/docs/Web/API/WEBGL_draw_buffers
+ * {@link https://developer.mozilla.org/en-US/docs/Web/API/WEBGL_draw_buffers}
  */
 export class FBO implements IFbo {
     gl: WebGLRenderingContext;

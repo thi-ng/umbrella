@@ -31,7 +31,7 @@ export const ONE_MINUS_B = (_: number, b: number) => 1 - b;
  * result color will be clamped. RGB components can potentially go out
  * of [0..1] range (depending on coefficient functions used).
  *
- * Reference: https://keithp.com/~keithp/porterduff/p253-porter.pdf
+ * Reference: {@link https://keithp.com/~keithp/porterduff/p253-porter.pdf}
  *
  * @param fa - fn for src coeff
  * @param fb - fn for dest coeff

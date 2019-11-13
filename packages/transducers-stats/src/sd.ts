@@ -14,7 +14,7 @@ import { sma } from "./sma";
  * Moving standard deviation, calculates mean square error to SMA and
  * yields sequence of `sqrt(error / period)`.
  *
- * https://en.wikipedia.org/wiki/Bollinger_Bands
+ * {@link https://en.wikipedia.org/wiki/Bollinger_Bands}
  *
  * Note: the number of results will be `period-1` less than the number
  * of processed inputs.

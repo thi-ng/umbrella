@@ -10,7 +10,7 @@ import { Stringer } from "./api";
  * hstr(null)   // ""
  * ```
  *
- * https://en.wikipedia.org/wiki/Hollerith_constant
+ * {@link https://en.wikipedia.org/wiki/Hollerith_constant}
  *
  * @param x -
  */

@@ -4,7 +4,7 @@
  * and progresses in -x,+y direction.
  *
  * Ported & modified from original Java code by Christopher Kulla.
- * https://sourceforge.net/p/sunflow/code/HEAD/tree/trunk/src/org/sunflow/core/bucket/DiagonalBucketOrder.java
+ * {@link https://sourceforge.net/p/sunflow/code/HEAD/tree/trunk/src/org/sunflow/core/bucket/DiagonalBucketOrder.java}
  *
  * @param cols -
  * @param rows -

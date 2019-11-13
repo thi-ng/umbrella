@@ -5,7 +5,7 @@ import { equiv as _eq } from "@thi.ng/equiv";
  * `needle`. This means `buf` should have at least the same length as
  * `needle` for this to be true.
  *
- * By default, uses thi.ng/equiv for equality checking.
+ * By default, uses {@link @thi.ng/equiv#equiv} for equality checking.
  *
  * @see startsWith
  *

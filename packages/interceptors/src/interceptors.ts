@@ -56,7 +56,7 @@ export const dispatchNow = (event: Event): InterceptorFn => () => ({
  * Higher-order interceptor. Returns interceptor which calls
  * `ctx[id].record()`, where `ctx` is the currently active
  * `InterceptorContext` passed to all event handlers and `ctx[id]` is
- * assumed to be a @thi.ng/atom `History` instance, passed to
+ * assumed to be a {@link @thi.ng/atom#History} instance, passed to
  * `processQueue()`. The default ID for the history instance is
  * `"history"`.
  *

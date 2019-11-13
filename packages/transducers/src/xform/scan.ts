@@ -8,7 +8,7 @@ import { ensureReduced, isReduced, unreduced } from "../reduced";
  * too as arg. Use `null` or `undefined` to use the given reducer's
  * default.
  *
- * https://en.wikipedia.org/wiki/Prefix_sum#Scan_higher_order_function
+ * {@link https://en.wikipedia.org/wiki/Prefix_sum#Scan_higher_order_function}
  *
  * ```
  * [...iterator(scan(add()), range(10))]

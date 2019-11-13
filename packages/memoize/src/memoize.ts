@@ -15,8 +15,8 @@ import {
  *
  * **Important:** It only makes sense to use `Map` types which support
  * value (rather than object) equality, e.g. those provided by
- * thi.ng/associative. Using a native `Map` type here will lead to
- * memory leaks! Alternatively, use `memoizeJ`.
+ * {@link @thi.ng/associative}. Using a native `Map` type here will lead
+ * to memory leaks! Alternatively, use {@link memoizeJ}.
  *
  * @param fn -
  * @param cache -

@@ -17,7 +17,7 @@ import {
 /**
  * Conversion from endpoint to center parameterization.
  *
- * https://svgwg.org/svg2-draft/implnote.html#ArcConversionEndpointToCenter
+ * {@link https://svgwg.org/svg2-draft/implnote.html#ArcConversionEndpointToCenter}
  *
  * Returns undefined if `a` & `b` are equal or any `radii` component is
  * zero.

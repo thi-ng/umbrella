@@ -1,4 +1,10 @@
-import { $iter, compR, Reducer, step, Transducer } from "@thi.ng/transducers";
+import {
+    $iter,
+    compR,
+    Reducer,
+    step,
+    Transducer
+} from "@thi.ng/transducers";
 import { donchian } from "./donchian";
 import { sma } from "./sma";
 
@@ -15,7 +21,7 @@ export interface Stochastic {
  * - %D1 = SMA(%K, periodD1)
  * - %D2 = SMA(%D1, periodD2)
  *
- * https://en.wikipedia.org/wiki/Stochastic_oscillator
+ * {@link https://en.wikipedia.org/wiki/Stochastic_oscillator}
  *
  * @param periodK -
  * @param periodD1 -

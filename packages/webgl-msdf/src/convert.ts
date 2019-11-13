@@ -2,9 +2,9 @@ import { MSDFFont, RawGlyphs } from "./api";
 
 /**
  * Takes a JSON spec produced by the MSDF font generator at
- * https://github.com/donmccurdy/msdf-bmfont-web and transforms it into
- * a filtered, more compact glyph spec used by the functions of this
- * module.
+ * {@link https://github.com/donmccurdy/msdf-bmfont-web} and transforms
+ * it into a filtered, more compact glyph spec used by the functions of
+ * this module.
  *
  * @param raw -
  */

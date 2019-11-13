@@ -17,7 +17,7 @@ import {
 /**
  * Tom Forsyth's Trilight lighting model.
  *
- * https://tomforsyth1000.github.io/papers/trilight/trilight.html
+ * {@link tomforsyth1000.github.io/papers/trilight/trilight.html}
  *
  * @param surfNormal - vec3
  * @param lightDir - vec3

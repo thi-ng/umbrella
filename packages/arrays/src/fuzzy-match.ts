@@ -5,13 +5,14 @@ import { equiv as _eq } from "@thi.ng/equiv";
  * Performs a fuzzy search of `query` in `domain` and returns `true` if
  * successful.
  *
- * The optional `equiv` predicate can be used to customize
- * item equality checking. Uses @thi.ng/equiv by default.
+ * @remarks
+ * The optional `equiv` predicate can be used to customize item equality
+ * checking. Uses {@link @thi.ng/equiv#equiv} by default.
  *
  * Adapted and generalized from:
- * https://github.com/bevacqua/fufuzzyzzysearch (MIT)
+ * {@link https://github.com/bevacqua/fufuzzyzzysearch} (MIT)
  *
- * @see thi.ng/transducers/xform/filterFuzzy
+ * {@link @thi.ng/transducers#filterFuzzy}
  *
  * @param domain -
  * @param query -

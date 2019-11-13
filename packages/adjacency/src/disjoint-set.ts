@@ -2,8 +2,9 @@
  * Typed array based Disjoint Set implementation with quick union and
  * path compression, after Sedgewick & Wayne.
  *
- * - https://en.wikipedia.org/wiki/Disjoint-set_data_structure
- * - https://algs4.cs.princeton.edu/lectures/15UnionFind-2x2.pdf
+ * @remarks
+ * - {@link https://en.wikipedia.org/wiki/Disjoint-set_data_structure}
+ * - {@link https://algs4.cs.princeton.edu/lectures/15UnionFind-2x2.pdf}
  */
 export class DisjointSet {
     roots: Uint32Array;

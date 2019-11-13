@@ -23,7 +23,8 @@ const __vals = (inst: ArraySet<any>) => __private.get(inst)!.vals;
  * An alternative set implementation to the native ES6 Set type. Uses
  * customizable equality/equivalence predicate and so is more useful
  * when dealing with structured data. Implements full API of native Set
- * and by the default uses `@thi.ng/equiv` for equivalence checking.
+ * and by the default uses {@link @thi.ng/equiv#equiv} for equivalence
+ * checking.
  *
  * Additionally, the type also implements the `ICopy`, `IEmpty` and
  * `IEquiv` interfaces itself.

@@ -84,7 +84,7 @@ export interface HDOMBehaviorAttribs {
      */
     __release?: boolean;
     /**
-     * Currently only used by thi.ng/hiccup. No relevance for hdom. If
+     * Currently only used by {@link @thi.ng/hiccup}. No relevance for hdom. If
      * `false`, the element and its children will be omitted from the
      * serialized result.
      */
@@ -116,10 +116,11 @@ export interface HDOMOpts {
     /**
      * Attempts to auto-expand/deref the given keys in the user supplied
      * context object (`ctx` option) prior to *each* tree normalization.
-     * All of these values should implement the thi.ng/api `IDeref`
-     * interface (e.g. atoms, cursors, views, rstreams etc.). This
-     * feature can be used to define dynamic contexts linked to the main
-     * app state, e.g. using derived views provided by thi.ng/atom.
+     * All of these values should implement the
+     * {@link @thi.ng/api#IDeref} interface (e.g. atoms, cursors, views,
+     * rstreams etc.). This feature can be used to define dynamic
+     * contexts linked to the main app state, e.g. using derived views
+     * provided by {@link @thi.ng/atom}.
      *
      * @defaultValue none
      */
@@ -161,12 +162,12 @@ export interface HDOMOpts {
 
 /**
  * This interface defines the underlying target update operations used
- * by `diffTree()` and `createDOM()`. It allows thi.ng/hdom to be
- * used as general purpose tree definition & differential update
+ * by `diffTree()` and `createDOM()`. It allows {@link @thi.ng/hdom} to
+ * be used as general purpose tree definition & differential update
  * mechanism, rather than being restricted to only work with an HTML
- * DOM. See `DEFAULT_IMPL` (diff.ts) for the default implementations
- * dealing with the latter. Note: Depending on use case and tree
- * configuration, not all of these methods are required.
+ * DOM. See {@link DEFAULT_IMPL} for the default implementations dealing
+ * with the latter. Note: Depending on use case and tree configuration,
+ * not all of these methods are required.
  *
  * Custom element-local implementations can also be provided via the
  * special `__impl` hdom element/component attribute. In this case the

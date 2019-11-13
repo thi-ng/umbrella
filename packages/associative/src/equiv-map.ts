@@ -55,8 +55,8 @@ export class EquivMap<K, V> extends Map<K, V>
     /**
      * Creates a new instance with optional initial key-value pairs and
      * provided options. If no `opts` are given, uses `ArraySet` for
-     * storing canonical keys and `@thi.ng/equiv` for checking key
-     * equivalence.
+     * storing canonical keys and {@link @thi.ng/equiv#equiv} for
+     * checking key equivalence.
      *
      * @param pairs -
      * @param opts -

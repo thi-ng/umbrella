@@ -10,7 +10,7 @@ import {
 /**
  * Rate of change.
  *
- * https://en.wikipedia.org/wiki/Momentum_(technical_analysis)
+ * {@link https://en.wikipedia.org/wiki/Momentum_(technical_analysis)}
  *
  * Note: the number of results will be `period` less than the number
  * of processed inputs and no outputs will be produced if there were

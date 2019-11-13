@@ -22,7 +22,7 @@ import { nextID } from "./idgen";
  * regardless of value change).
  *
  * Related, the actual value change predicate can be customized. If not
- * given, the default `@thi.ng/equiv` will be used.
+ * given, the default {@link @thi.ng/equiv#equiv} will be used.
  *
  * ```ts
  * a = new Atom({a: {b: 1}});

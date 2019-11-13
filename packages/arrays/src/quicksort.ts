@@ -9,10 +9,11 @@ import { swap } from "./swap";
  * sub-ranges only, via optionally given `start`/`end` indices (both
  * inclusive).
  *
- * Uses Hoare partitioning scheme. thi.ng/compare is used as default
- * comparator and `swap` from this package as default swap function.
+ * Uses Hoare partitioning scheme. {@link @thi.ng/compare#compare} is
+ * used as default comparator and {@link swap} from this package as
+ * default swap function.
  *
- * https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme
+ * {@link https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme}
  *
  * ```ts
  * a = [4, 3, 1, 8, 5]

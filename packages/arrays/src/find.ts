@@ -2,8 +2,8 @@ import { Predicate2 } from "@thi.ng/api";
 import { equiv as _equiv } from "@thi.ng/equiv";
 
 /**
- * Similar to `Array.find()`, but uses thi.ng/equiv as default
- * predicate.
+ * Similar to `Array.find()`, but uses {@link @thi.ng/equiv#equiv} as
+ * default predicate.
  *
  * @param src -
  * @param x -
@@ -19,8 +19,8 @@ export const find = <T>(
 };
 
 /**
- * Similar to `Array.findIndex()`, but uses thi.ng/equiv as default
- * predicate.
+ * Similar to `Array.findIndex()`, but uses {@link @thi.ng/equiv#equiv}
+ * as default predicate.
  *
  * @param src -
  * @param x -

@@ -24,9 +24,9 @@ const fail = () => illegalArgs(`dense & sparse arrays must be of same size`);
  * After "An Efficient Representation for Sparse Sets"
  * Preston Briggs and Linda Torczon (1993)
  *
- * https://research.swtch.com/sparse
- * https://programmingpraxis.com/2012/03/09/sparse-sets/
- * https://blog.molecular-matters.com/2013/07/24/adventures-in-data-oriented-design-part-3c-external-references/
+ * - {@link https://research.swtch.com/sparse}
+ * - {@link https://programmingpraxis.com/2012/03/09/sparse-sets/}
+ * - {@link https://blog.molecular-matters.com/2013/07/24/adventures-in-data-oriented-design-part-3c-external-references/}
  */
 export abstract class ASparseSet<T extends UIntArray> extends Set<number>
     implements IEquiv {

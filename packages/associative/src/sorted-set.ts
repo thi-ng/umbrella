@@ -17,19 +17,19 @@ const __private = new WeakMap<SortedSet<any>, SortedMap<any, any>>();
  * - multiple value addition/deletion via `into()` and `disj()`
  *
  * Furthermore, this class implements the `ICopy`, IEmpty`, `ICompare`
- * and `IEquiv` interfaces defined by `@thi.ng/api`. The latter two
- * allow instances to be used as keys themselves in other data types
+ * and `IEquiv` interfaces defined by {@link @thi.ng/api}. The latter
+ * two allow instances to be used as keys themselves in other data types
  * defined in this (and other) package(s).
  *
- * This set uses a `SortedMap` as backing store and therefore has the
- * same resizing characteristics.
+ * This set uses a {@link SortedMap} as backing store and therefore has
+ * the same resizing characteristics.
  */
 export class SortedSet<T> extends Set<T>
     implements IEquivSet<T>, ICompare<Set<T>>, IReducible<any, T> {
     /**
      * Creates new instance with optional given values and/or
      * implementation options. The options are the same as used by
-     * `SortedMap`.
+     * {@link SortedMap}.
      *
      * @param values -
      * @param opts -

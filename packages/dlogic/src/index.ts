@@ -4,7 +4,7 @@ export interface Sum<T> {
 }
 
 /**
- * https://en.wikipedia.org/wiki/Inverter_(logic_gate)
+ * {@link https://en.wikipedia.org/wiki/Inverter_(logic_gate)}
  *
  * | X | Q |
  * |---|---|
@@ -16,7 +16,7 @@ export interface Sum<T> {
 export const not = (x: boolean) => !x;
 
 /**
- * https://en.wikipedia.org/wiki/NAND_gate
+ * {@link https://en.wikipedia.org/wiki/NAND_gate}
  *
  * | A | B | Q |
  * |---|---|---|
@@ -31,7 +31,7 @@ export const not = (x: boolean) => !x;
 export const nand = (a: boolean, b: boolean) => !(a && b);
 
 /**
- * https://en.wikipedia.org/wiki/AND_gate
+ * {@link https://en.wikipedia.org/wiki/AND_gate}
  *
  * | A | B | Q |
  * |---|---|---|
@@ -46,7 +46,7 @@ export const nand = (a: boolean, b: boolean) => !(a && b);
 export const and = (a: boolean, b: boolean) => a && b;
 
 /**
- * https://en.wikipedia.org/wiki/OR_gate
+ * {@link https://en.wikipedia.org/wiki/OR_gate}
  *
  * | A | B | Q |
  * |---|---|---|
@@ -61,7 +61,7 @@ export const and = (a: boolean, b: boolean) => a && b;
 export const or = (a: boolean, b: boolean) => a || b;
 
 /**
- * https://en.wikipedia.org/wiki/NOR_gate
+ * {@link https://en.wikipedia.org/wiki/NOR_gate}
  *
  * | A | B | Q |
  * |---|---|---|
@@ -76,7 +76,7 @@ export const or = (a: boolean, b: boolean) => a || b;
 export const nor = (a: boolean, b: boolean) => !(a || b);
 
 /**
- * https://en.wikipedia.org/wiki/XOR_gate
+ * {@link https://en.wikipedia.org/wiki/XOR_gate}
  *
  * | A | B | Q |
  * |---|---|---|
@@ -91,7 +91,7 @@ export const nor = (a: boolean, b: boolean) => !(a || b);
 export const xor = (a: boolean, b: boolean) => a !== b;
 
 /**
- * https://en.wikipedia.org/wiki/XNOR_gate
+ * {@link https://en.wikipedia.org/wiki/XNOR_gate}
  *
  * | A | B | Q |
  * |---|---|---|
@@ -106,7 +106,7 @@ export const xor = (a: boolean, b: boolean) => a !== b;
 export const xnor = (a: boolean, b: boolean) => a === b;
 
 /**
- * https://web.archive.org/web/20160304050642/http://www.zigwap.com/digital/gates/imply_gate
+ * {@link https://web.archive.org/web/20160304050642/http://www.zigwap.com/digital/gates/imply_gate}
  *
  * | A | B | Q |
  * |---|---|---|
@@ -120,7 +120,7 @@ export const xnor = (a: boolean, b: boolean) => a === b;
 export const imply = (a: boolean, b: boolean) => !a || b;
 
 /**
- * https://en.wikipedia.org/wiki/AND-OR-Invert
+ * {@link https://en.wikipedia.org/wiki/AND-OR-Invert}
  *
  * `q = nor(a, and(b, c))`
  *
@@ -142,7 +142,7 @@ export const imply = (a: boolean, b: boolean) => !a || b;
 export const aoi21 = (a: boolean, b: boolean, c: boolean) => !(a || (b && c));
 
 /**
- * https://en.wikipedia.org/wiki/AND-OR-Invert
+ * {@link https://en.wikipedia.org/wiki/AND-OR-Invert}
  *
  * `q = nor(and(a, b), and(c, d))`
  *
@@ -187,7 +187,7 @@ export const oai22 = (a: boolean, b: boolean, c: boolean, d: boolean) =>
     !((a || b) && (c || d));
 
 /**
- * https://en.wikipedia.org/wiki/NAND_logic#MUX
+ * {@link https://en.wikipedia.org/wiki/NAND_logic#MUX}
  *
  * | A | B | S | Q |
  * |---|---|---|---|
@@ -208,7 +208,7 @@ export const mux = (a: boolean, b: boolean, s: boolean) =>
     (a && !s) || (b && s);
 
 /**
- * https://en.wikipedia.org/wiki/NAND_logic#DEMUX
+ * {@link https://en.wikipedia.org/wiki/NAND_logic#DEMUX}
  *
  * | I | S | A | B |
  * |---|---|---|---|
@@ -226,7 +226,7 @@ export const demux = (i: boolean, s: boolean): [boolean, boolean] => [
 ];
 
 /**
- * https://en.wikipedia.org/wiki/Adder_(electronics)#Half_adder
+ * {@link https://en.wikipedia.org/wiki/Adder_(electronics)#Half_adder}
  *
  * @param a -
  * @param b -
@@ -237,7 +237,7 @@ export const hadd1 = (a: boolean, b: boolean): Sum<boolean> => ({
 });
 
 /**
- * https://en.wikipedia.org/wiki/Adder_(electronics)#Full_adder
+ * {@link https://en.wikipedia.org/wiki/Adder_(electronics)#Full_adder}
  *
  * @param a -
  * @param b -
@@ -249,7 +249,7 @@ export const fadd1 = (a: boolean, b: boolean, c: boolean): Sum<boolean> => ({
 });
 
 /**
- * https://en.wikipedia.org/wiki/Adder_(electronics)#Ripple-carry_adder
+ * {@link https://en.wikipedia.org/wiki/Adder_(electronics)#Ripple-carry_adder}
  *
  * @param a -
  * @param b -

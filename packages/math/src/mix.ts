@@ -55,10 +55,10 @@ export const mixCubic = (
  * `mixCubicHermite()` with one of the tangent generators supporting
  * non-uniform spacing of points.
  *
- * See: https://www.desmos.com/calculator/j4gf8g9vkr
+ * See: {@link https://www.desmos.com/calculator/j4gf8g9vkr}
  *
  * Source:
- * https://www.musicdsp.org/en/latest/Other/93-hermite-interpollation.html
+ * {@link https://www.musicdsp.org/en/latest/Other/93-hermite-interpollation.html}
  *
  * @see mixCubicHermite
  * @see tangentCardinal
@@ -86,7 +86,7 @@ export const mixHermite = (
  * Computes cubic-hermite interpolation between `a` / `b` at normalized
  * time `t` and using respective tangents `ta` / `tb`.
  *
- * https://en.wikipedia.org/wiki/Cubic_Hermite_spline
+ * {@link https://en.wikipedia.org/wiki/Cubic_Hermite_spline}
  *
  * @see mixHermite
  * @see tangentCardinal
@@ -123,7 +123,7 @@ export const mixCubicHermite = (
  * scale the tangent where 0.0 produces a Cardinal spline tangent and
  * 1.0 a Catmull-Rom (opposite to the Wikipedia ref).
  *
- * https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Cardinal_spline
+ * {@link https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Cardinal_spline}
  *
  * @param prev -
  * @param next -
@@ -149,7 +149,7 @@ export const tangentCardinal = (
  * `mixCubicHermite()` will produce same results as the somewhat
  * optimized variant `mixHermite()`.
  *
- * https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Finite_difference
+ * {@link https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Finite_difference}
  *
  * @param prev -
  * @param curr -

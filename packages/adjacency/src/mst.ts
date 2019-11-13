@@ -15,7 +15,7 @@ import { DisjointSet } from "./disjoint-set";
  * the MST criteria. The result edges will be in ascending order, based
  * on the supplied cost function.
  *
- * https://en.wikipedia.org/wiki/Kruskal%27s_algorithm
+ * {@link https://en.wikipedia.org/wiki/Kruskal%27s_algorithm}
  *
  * ```
  * // 2D vectors

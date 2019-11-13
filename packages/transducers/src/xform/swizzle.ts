@@ -19,7 +19,7 @@ import { map } from "./map";
  * // [ [ 3, 1 ] ]
  * ```
  *
- * @see thi.ng/arrays/swizzle
+ * {@link @thi.ng/arrays#swizzle}
  *
  * @param order - key order
  */

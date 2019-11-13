@@ -3,7 +3,7 @@ import { EPS } from "@thi.ng/math";
 import { eqDelta, Vec } from "@thi.ng/vectors";
 
 /**
- * https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm
+ * {@link https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm}
  *
  * @param pts -
  * @param eps -

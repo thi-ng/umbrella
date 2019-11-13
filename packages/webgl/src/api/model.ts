@@ -87,7 +87,7 @@ export interface ModelAttributeSpec {
     type?: GLenum;
     /**
      * Only used for instanced attributes.
-     * See: https://www.khronos.org/registry/OpenGL/extensions/ANGLE/ANGLE_instanced_arrays.txt
+     * See: {@link https://www.khronos.org/registry/OpenGL/extensions/ANGLE/ANGLE_instanced_arrays.txt}
      */
     divisor?: number;
 }

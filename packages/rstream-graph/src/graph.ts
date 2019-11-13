@@ -28,10 +28,10 @@ import {
  * Dataflow graph initialization function. Takes a state Atom (or `null`
  * if not needed) and an object of `NodeSpec` values or functions
  * returning `Node` objects. Calls `nodeFromSpec` for each spec and then
- * recursively resolves references via thi.ng/resolve-map `resolve`.
- * Returns new initialized graph object of `Node` objects and
- * `@thi.ng/rstream` stream constructs. Does NOT mutate original
- * `GraphSpec` object.
+ * recursively resolves references via
+ * {@link thi.ng/resolve-map#resolve}. Returns new initialized graph
+ * object of `Node` objects and {@link @thi.ng/rstream} stream
+ * constructs. Does NOT mutate original `GraphSpec` object.
  *
  * @param state -
  * @param spec -
@@ -59,11 +59,12 @@ const isNodeSpec = (x: any): x is NodeSpec =>
  * If the spec includes the optional `outs` keys, it also creates the
  * subscriptions for each of the given output keys, which then can be
  * used as inputs by other nodes. Each value in the `outs` subspec can
- * be a function or state path (string/number/array, see thi.ng/paths).
- * Functions are called with this node's constructed stream/subscribable
- * and the output id and must return a new `ISubscribable`. For path
- * values a subscription is added to this node's result stream which
- * then updates the provided state atom at the path given.
+ * be a function or state path (string/number/array, see
+ * {@link @thi.ng/paths}). Functions are called with this node's
+ * constructed stream/subscribable and the output id and must return a
+ * new `ISubscribable`. For path values a subscription is added to this
+ * node's result stream which then updates the provided state atom at
+ * the path given.
  *
  * Non-function output specs subs assume the raw node output value is an
  * object from which the different output keys are being extracted. The
@@ -183,9 +184,11 @@ export const addNode = (
     spec: NodeSpec
 ): Node => {
     graph[id] && illegalArgs(`graph already contains a node with ID: ${id}`);
-    return (graph[id] = nodeFromSpec(state, spec, id)((path) =>
-        getIn(graph, absPath([id], path))
-    ));
+    return (graph[id] = nodeFromSpec(
+        state,
+        spec,
+        id
+    )((path) => getIn(graph, absPath([id], path))));
 };
 
 /**
@@ -229,8 +232,8 @@ export const stop = (graph: Graph) => {
  * inputs does not contain all of them.
  *
  * If `reset` is true (default: false), the `xform` will only re-run
- * when all inputs have produced new values. See thi.ng/rstream
- * `StreamSync` for further reference.
+ * when all inputs have produced new values. See
+ * {@link @thi.ng/rstream#StreamSync} for further reference.
  *
  * @param xform -
  * @param inputIDs -

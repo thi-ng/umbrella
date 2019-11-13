@@ -10,7 +10,7 @@ import { bounds } from "./bounds";
 /**
  * Computes Donchian channel, i.e. min/max values for sliding window.
  *
- * https://en.wikipedia.org/wiki/Donchian_channel
+ * {@link https://en.wikipedia.org/wiki/Donchian_channel}
  *
  * Note: the number of results will be `period-1` less than the
  * number of processed inputs.

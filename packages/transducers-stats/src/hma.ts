@@ -9,7 +9,7 @@ import {
 import { wma } from "./wma";
 
 /**
- * https://www.fidelity.com/learning-center/trading-investing/technical-analysis/technical-indicator-guide/hull-moving-average
+ * {@link https://www.fidelity.com/learning-center/trading-investing/technical-analysis/technical-indicator-guide/hull-moving-average}
  *
  * Note: the number of results will be `period + floor(sqrt(period)) - 2`
  * less than the number of processed inputs.

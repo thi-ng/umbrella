@@ -4,9 +4,9 @@ import { Fn1, MapLike } from "./api";
  * Optimized memoization for single arg functions. If the function
  * expects args other than strings or numbers, you MUST provide a `Map`
  * implementation which supports value (rather than object) equality,
- * e.g. one of those provided by thi.ng/associative. Using a native
- * `Map` type here will lead to memory leaks! Alternatively, use
- * `memoizeJ`.
+ * e.g. one of those provided by {@link @thi.ng/associative}. Using a
+ * native `Map` type here will lead to memory leaks! Alternatively, use
+ * {@link memoizeJ}.
  *
  * @param fn -
  * @param cache -

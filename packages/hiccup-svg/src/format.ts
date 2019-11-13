@@ -31,7 +31,8 @@ export const fpoints = (pts: Vec2Like[], sep = " ") =>
  *
  * For color related attribs (`fill`, `stroke`), if given value is
  * array-like, a number or an `IColor` instance, it will be converted
- * into a CSS color string using thi.ng/color's `asCSS()`.
+ * into a CSS color string using {@link @thi.ng/color}'s
+ * {@link @thi.ng/color#asCSS}.
  *
  * String color attribs prefixed with `$` are replaced with `url(#...)`
  * refs (used for referencing gradients).

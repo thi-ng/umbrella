@@ -1,4 +1,10 @@
-import { $iter, compR, Reducer, step, Transducer } from "@thi.ng/transducers";
+import {
+    $iter,
+    compR,
+    Reducer,
+    step,
+    Transducer
+} from "@thi.ng/transducers";
 import { ema } from "./ema";
 
 export interface MACD {
@@ -31,7 +37,7 @@ export interface MACD {
  * Note: the number of results will be `slow + smooth - 2` less than the
  * number of processed inputs.
  *
- * https://en.wikipedia.org/wiki/MACD
+ * {@link https://en.wikipedia.org/wiki/MACD}
  *
  * @param fast - fast EMA period
  * @param slow - slow EMA period

@@ -6,9 +6,10 @@ import { throttle } from "./throttle";
  * Time-based version of `throttle`. Ignores any new values in the
  * `delay` interval since the last accepted value.
  *
- * **Only to be used in async contexts and NOT with `transduce` directly.**
+ * **Only to be used in async contexts and NOT with `transduce`
+ * directly.**
  *
- * Also see: `thi.ng/rstream` and `thi.ng/csp` packages.
+ * Also see: {@link @thi.ng/rstream} and {@link thi.ng/csp} packages.
  *
  * @param delay -
  */

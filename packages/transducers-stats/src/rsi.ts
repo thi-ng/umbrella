@@ -10,7 +10,7 @@ import { momentum } from "./momentum";
 import { sma } from "./sma";
 
 /**
- * https://en.wikipedia.org/wiki/Relative_strength_index
+ * {@link https://en.wikipedia.org/wiki/Relative_strength_index}
  *
  * Note: the number of results will be `period` less than the
  * number of processed inputs.
@@ -29,8 +29,14 @@ export function rsi(period: number, src?: Iterable<number>): any {
         : comp(
               momentum(1),
               multiplex(
-                  comp(map((x) => (x > 0 ? x : 0)), sma(period)),
-                  comp(map((x) => (x < 0 ? -x : 0)), sma(period))
+                  comp(
+                      map((x) => (x > 0 ? x : 0)),
+                      sma(period)
+                  ),
+                  comp(
+                      map((x) => (x < 0 ? -x : 0)),
+                      sma(period)
+                  )
               ),
               drop(period - 1),
               map((hl) => 100 - 100 / (1 + hl[0] / Math.max(1e-6, hl[1])))

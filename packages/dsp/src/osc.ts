@@ -131,7 +131,7 @@ export const additive = (
 
 /**
  * Interactive graph of this oscillator:
- * https://www.desmos.com/calculator/irugw6gnhy
+ * {@link www.desmos.com/calculator/irugw6gnhy}
  *
  * @param n -
  */
@@ -145,19 +145,25 @@ export const squareAdditive = (n = 8) =>
 
 /**
  * Interactive graph of this oscillator:
- * https://www.desmos.com/calculator/irugw6gnhy
+ * {@link https://www.desmos.com/calculator/irugw6gnhy}
  *
  * @param n -
  */
 export const sawAdditive = (n = 8) =>
-    additive(sin, (i) => i, (i) => (1 / i) * gibbs(n, i), n);
+    additive(
+        sin,
+        (i) => i,
+        (i) => (1 / i) * gibbs(n, i),
+        n
+    );
 
 /**
- * https://en.wikipedia.org/wiki/Gibbs_phenomenon
- * http://www.musicdsp.org/files/bandlimited.pdf
+ * Reference:
+ * - {@link https://en.wikipedia.org/wiki/Gibbs_phenomenon}
+ * - {@link http://www.musicdsp.org/files/bandlimited.pdf}
  *
  * Interactive graph:
- * https://www.desmos.com/calculator/irugw6gnhy
+ * {@link https://www.desmos.com/calculator/irugw6gnhy}
  *
  * @param n -
  * @param i -
@@ -168,8 +174,8 @@ export const gibbs = (n: number, i: number) =>
 /**
  * Polynomial attenuation to create bandlimited version of a signal.
  *
- * - http://research.spa.aalto.fi/publications/papers/smc2010-phaseshaping/
- * - http://www.kvraudio.com/forum/viewtopic.php?t=375517
+ * - {@link http://research.spa.aalto.fi/publications/papers/smc2010-phaseshaping/}
+ * - {@link http://www.kvraudio.com/forum/viewtopic.php?t=375517}
  *
  * @param eps -
  * @param x -

@@ -123,8 +123,9 @@ export class AdjacencyMatrix extends CSR implements IGraph {
      * Returns this graph's Laplacian matrix: `L = D - A`
      * Where `D` is the degree matrix and `A` this adjacency matrix.
      *
-     * https://en.wikipedia.org/wiki/Laplacian_matrix
-     * https://en.wikipedia.org/wiki/Discrete_Laplace_operator
+     * @remarks
+     * - {@link https://en.wikipedia.org/wiki/Laplacian_matrix}
+     * - {@link https://en.wikipedia.org/wiki/Discrete_Laplace_operator}
      *
      * @param deg - degree type for `degreeMat()`
      */

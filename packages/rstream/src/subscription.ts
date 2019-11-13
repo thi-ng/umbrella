@@ -30,7 +30,7 @@ import { nextID } from "./utils/idgen";
  *   subscriber unsubscribed
  * - will go into a non-recoverable error state if NONE of the
  *   subscribers has an error handler itself
- * - implement the @thi.ng/api `IDeref` interface
+ * - implement the {@link @thi.ng/api#IDeref} interface
  *
  * ```
  * // as reactive value mechanism (same as with stream() above)
@@ -161,7 +161,7 @@ export class Subscription<A, B>
      * Creates a new child subscription using given transducers and
      * optional subscription ID. Supports up to 4 transducers and if
      * more than one transducer is given, composes them in left-to-right
-     * order using @thi.ng/transducers `comp()`.
+     * order using {@link @thi.ng/transducers#comp}.
      *
      * Shorthand for `subscribe(comp(xf1, xf2,...), id)`
      */

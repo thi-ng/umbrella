@@ -3,7 +3,7 @@
  * given `cols` and `rows` (each max. 32768 (2^15)).
  *
  * Ported & modified from original Java code by Christopher Kulla.
- * https://sourceforge.net/p/sunflow/code/HEAD/tree/trunk/src/org/sunflow/core/bucket/HilbertBucketOrder.java
+ * {@link https://sourceforge.net/p/sunflow/code/HEAD/tree/trunk/src/org/sunflow/core/bucket/HilbertBucketOrder.java}
  *
  * @param cols -
  * @param rows -

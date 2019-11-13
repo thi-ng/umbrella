@@ -183,7 +183,7 @@ export const cosineCoeffs = (from: ReadonlyColor, to: ReadonlyColor) => {
  * )
  * ```
  *
- * @see thi.ng/transducers/iter/tween
+ * {@link @thi.ng/transducers#tween}
  *
  * @param num -
  * @param stops -

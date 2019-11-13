@@ -5,7 +5,7 @@ import { ensureAlpha } from "./internal/ensure-alpha";
 /**
  * Maps a single linear RGB channel value to sRGB.
  *
- * https://en.wikipedia.org/wiki/SRGB
+ * {@link https://en.wikipedia.org/wiki/SRGB}
  *
  * @param x -
  */
@@ -17,7 +17,7 @@ export const linearSrgb = (x: number) =>
 /**
  * Maps a single linear sRGB channel value to linear RGB.
  *
- * https://en.wikipedia.org/wiki/SRGB
+ * {@link https://en.wikipedia.org/wiki/SRGB}
  *
  * @param x -
  */
