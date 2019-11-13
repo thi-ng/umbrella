@@ -4,6 +4,8 @@
         "packages/*"
     ],
     "devDependencies": {
+        "@microsoft/api-extractor": "^7.5.6",
+        "@microsoft/api-documenter": "^7.5.8",
         "benchmark": "^2.1.4",
         "file-loader": "^4.0.0",
         "gzip-size": "^5.1.0",
@@ -28,8 +30,8 @@
         "build:release": "yarn install && lerna -v && lerna bootstrap && lerna run build:release --sort",
         "build:es6only": "lerna run clean && lerna run build:es6",
         "cover": "lerna run cover",
-        "depgraph": "scripts/depgraph && git add assets/deps.png && git commit -m 'docs: update dep graph' && git push",
         "doc": "lerna run doc",
+        "doc:ae": "lerna run doc:ae && scripts/collect-apis",
         "examples": "scripts/build-examples",
         "pub": "lerna publish --registry https://registry.npmjs.org/ && yarn doc && scripts/upload-docs",
         "test": "yarn build && yarn test:only",

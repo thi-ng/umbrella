@@ -2,6 +2,8 @@
     "compilerOptions": {
         "module": "es6",
         "target": "es6",
+        "declaration": true,
+        "declarationMap": true,
         "experimentalDecorators": true,
         "noUnusedParameters": true,
         "noUnusedLocals": true,

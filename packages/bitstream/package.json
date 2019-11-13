@@ -22,12 +22,14 @@
         "cover": "yarn build:test && nyc mocha build/test/*.js && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
+        "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "pub": "yarn build:release && yarn publish --access public"
     },
     "dependencies": {
         "@thi.ng/errors": "^1.2.1"
     },
     "devDependencies": {
+        "@microsoft/api-extractor": "^7.5.6",
         "@types/mocha": "^5.2.6",
         "@types/node": "^12.6.3",
         "mocha": "^6.1.4",
