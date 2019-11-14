@@ -6,7 +6,7 @@ import { StackFn, StackProgram } from "../src/api";
  * provided `body` quotation for each iteration. The `body` MUST consume
  * the current `i,j` counter pair and produce no new TOS (if the body
  * produces results, these must be rotated down by 2 values, e.g.. using
- * `invrot`). Iteratation goes from 0..i and 0..j for outer/inner loops
+ * {@link invrot}). Iteratation goes from 0..i and 0..j for outer/inner loops
  * respectively.
  *
  * @param i -
@@ -29,7 +29,7 @@ const loop2 = (i: number, j: number, bodyQ: StackProgram) =>
     ]);
 
 /**
- * Executes `loop2` using `runU` and with user provided body quotation
+ * Executes `loop2` using {@link runU} and with user provided body quotation
  * assumed to consume the current `i,j` counter pair and produce a
  * single value for each iteration. In each iteration this result is
  * then rotated down the stack so that after the loop is done the

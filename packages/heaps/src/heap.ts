@@ -13,6 +13,7 @@ import { HeapOpts } from "./api";
  * user-supplied comparator. By default, implements min-heap ordering
  * and uses @thi.ng/compare.
  *
+ * @example
  * ```ts
  * h = new Heap([20, 5, 10]);
  * h.push(15);
@@ -110,9 +111,9 @@ export class Heap<T>
     }
 
     /**
-     * Calls `pushPop()` for each given value in `vals` and returns last
-     * result (i.e. the smallest value in heap after processing all
-     * `vals`).
+     * Calls {@link Heap.pushPop} for each given value in `vals` and
+     * returns last result (i.e. the smallest value in heap after
+     * processing all `vals`).
      *
      * @param vals -
      */

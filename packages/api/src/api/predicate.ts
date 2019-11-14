@@ -11,11 +11,11 @@ export type Predicate<T> = Fn<T, boolean>;
 export type Predicate2<T> = Fn2<T, T, boolean>;
 
 /**
- * Higher order `Predicate` builder. Possibly stateful.
+ * Higher order {@link Predicate} builder. Possibly stateful.
  */
 export type StatefulPredicate<T> = Fn0<Predicate<T>>;
 
 /**
- * Higher order `Predicate2` builder. Possibly stateful.
+ * Higher order {@link Predicate2} builder. Possibly stateful.
  */
 export type StatefulPredicate2<T> = Fn0<Predicate2<T>>;

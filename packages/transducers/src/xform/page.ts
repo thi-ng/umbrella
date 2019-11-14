@@ -8,7 +8,7 @@ import { take } from "./take";
  * Pagination helper. Returns transducer which extracts
  * only items for given page number (and page length,
  * default 10). When composing with other transducers,
- * it's most efficient if `page()` is used prior to
+ * it's most efficient if {@link page} is used prior to
  * any heavy processing steps.
  *
  * ```

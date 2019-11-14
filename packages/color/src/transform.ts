@@ -35,16 +35,15 @@ export const transform = mulV45;
 /**
  * Concatenates given color matrices by pairwise multiplying them in
  * left-right order. Returns combined result matrix to be used with
- * `transform()`.
+ * {@link transform}.
  *
- * Note: Using `concat()` is the recommended way when applying multiple
+ * Note: Using {@link concat} is the recommended way when applying multiple
  * color transformations in sequence. Since the transforms are combined
  * into a single matrix, it is faster than multiple, individual
- * `transform()` calls and will also produce more correct results, since
+ * {@link transform} calls and will also produce more correct results, since
  * result color clamping is only applied once at the end (by default,
  * unless disabled).
  *
- * @see transform
  * @param mat -
  * @param xs -
  */

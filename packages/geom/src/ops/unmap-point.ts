@@ -14,7 +14,7 @@ import { dispatch } from "../internal/dispatch";
 /**
  * Projects given point `uv` (normalized coords) into the target space
  * defined by `shape` and writes result to `out` (or returns new
- * vector). See `mapPoint` for reverse operation. Both functions
+ * vector). See {@link mapPoint} for reverse operation. Both functions
  * together can be used to warp points from one shape into another.
  *
  * Currently only implemented for these shape types:

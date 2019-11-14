@@ -37,6 +37,7 @@ import {
  * Batched event processor for using composable interceptors for event
  * handling and side effects to execute the result of handled events.
  *
+ * @remarks
  * Events processed by this class are simple 2-element tuples/arrays of
  * this form: `["event-id", payload?]`, where the `payload` is optional
  * and can be of any type.
@@ -66,16 +67,17 @@ import {
  *
  * See for further details:
  *
- * - `processQueue()`
- * - `processEvent()`
- * - `processEffects()`
- * - `mergeEffects()`
+ * - {@link StatelessEventBus.processQueue}
+ * - {@link StatelessEventBus.processEvent}
+ * - {@link StatelessEventBus.processEffects}
+ * - {@link StatelessEventBus.mergeEffects}
  *
  * The overall approach of this type of event processing is heavily
  * based on the pattern initially pioneered by @Day8/re-frame, with the
  * following differences:
  *
- * - stateless (see `EventBus` for the more common stateful alternative)
+ * - stateless (see {@link EventBus} for the more common stateful
+ *   alternative)
  * - standalone implementation (no assumptions about surrounding
  *   context/framework)
  * - manual control over event queue processing
@@ -100,9 +102,11 @@ export class StatelessEventBus implements IDispatch {
      * Creates a new event bus instance with given handler and effect
      * definitions (all optional).
      *
+     * @remarks
      * In addition to the user provided handlers & effects, a number of
-     * built-ins are added automatically. See `addBuiltIns()`. User
-     * handlers can override built-ins.
+     * built-ins are added automatically. See
+     * {@link StatelessEventBus.addBuiltIns}. User handlers can override
+     * built-ins.
      *
      * @param handlers -
      * @param effects -
@@ -125,12 +129,15 @@ export class StatelessEventBus implements IDispatch {
     }
 
     /**
-     * Adds built-in event & side effect handlers. Also see additional
-     * built-ins defined by the stateful `EventBus` extension of this
-     * class, as well as comments for these class methods:
+     * Adds built-in event & side effect handlers.
      *
-     * - `mergeEffects()`
-     * - `processEvent()`
+     * @remarks
+     * Also see additional built-ins defined by the stateful
+     * {@link EventBus} extension of this class, as well as comments for
+     * these class methods:
+     *
+     * - {@link StatelessEventBus.mergeEffects}
+     * - {@link StatelessEventBus.processEvent}
      *
      * ### Handlers
      *
@@ -327,9 +334,12 @@ export class StatelessEventBus implements IDispatch {
 
     /**
      * Adds given events to event queue to be processed by
-     * `processQueue()` later on. It's the user's responsibility to call
-     * that latter function repeatedly in a timely manner, preferably
-     * via `requestAnimationFrame()` or similar.
+     * {@link StatelessEventBus.processQueue} later on.
+     *
+     * @remarks
+     * It's the user's responsibility to call that latter function
+     * repeatedly in a timely manner, preferably via
+     * `requestAnimationFrame()` or similar.
      *
      * @param e -
      */
@@ -342,7 +352,7 @@ export class StatelessEventBus implements IDispatch {
      * triggered via the `FX_DISPATCH_NOW` side effect from an event
      * handler / interceptor, the event will still be executed in the
      * currently active batch / frame. If called from elsewhere, the
-     * result is the same as calling `dispatch()`.
+     * result is the same as calling {@link dispatch}.
      *
      * @param e -
      */
@@ -352,10 +362,14 @@ export class StatelessEventBus implements IDispatch {
 
     /**
      * Dispatches given event after `delay` milliseconds (by default
-     * 17). Note: Since events are only processed by calling
-     * `processQueue()`, it's the user's responsibility to call that
-     * latter function repeatedly in a timely manner, preferably via
-     * `requestAnimationFrame()` or similar.
+     * 17).
+     *
+     * @remarks
+     * Since events are only processed by calling
+     * {@link StatelessEventBus.processQueue}, it's the user's
+     * responsibility to call that latter function repeatedly in a
+     * timely manner, preferably via `requestAnimationFrame()` or
+     * similar.
      *
      * @param e -
      * @param delay -
@@ -368,9 +382,10 @@ export class StatelessEventBus implements IDispatch {
      * Triggers processing of current event queue and returns `true` if
      * any events have been processed.
      *
+     * @remarks
      * If an event handler triggers the `FX_DISPATCH_NOW` side effect,
      * the new event will be added to the currently processed batch and
-     * therefore executed in the same frame. Also see `dispatchNow()`.
+     * therefore executed in the same frame. Also see {@link dispatchNow}.
      *
      * An optional `ctx` (context) object can be provided, which is used
      * to collect any side effect definitions during processing. This
@@ -399,12 +414,14 @@ export class StatelessEventBus implements IDispatch {
      * chain. Logs warning message and skips processing if no handler is
      * available for the event type.
      *
+     * @remarks
      * The array of interceptors is processed in bi-directional order.
      * First any `pre` interceptors are processed in forward order. Then
      * `post` interceptors are processed in reverse.
      *
      * Each interceptor can return a result object of side effects,
-     * which are being merged and collected for `processEffects()`.
+     * which are being merged and collected for
+     * {@link StatelessEventBus.processEffects}.
      *
      * Any interceptor can trigger zero or more known side effects, each
      * (side effect) will be collected in an array to support multiple
@@ -495,6 +512,7 @@ export class StatelessEventBus implements IDispatch {
      * Merges the new side effects returned from an interceptor into the
      * internal effect accumulator.
      *
+     * @remarks
      * Any events assigned to the `FX_DISPATCH_NOW` effect key are
      * immediately added to the currently active event batch.
      *
@@ -506,7 +524,7 @@ export class StatelessEventBus implements IDispatch {
      *
      * **Note:** the `FX_STATE` effect is not actually defined by this
      * class here, but is supported to avoid code duplication in
-     * `StatefulEventBus`.
+     * {@link EventBus}.
      *
      * - `FX_CANCEL`
      * - `FX_STATE`
@@ -573,10 +591,13 @@ export class StatelessEventBus implements IDispatch {
 }
 
 /**
- * Stateful version of `StatelessEventBus`. Wraps an `IAtom` state
- * container (Atom/Cursor) and provides additional pre-defined event
- * handlers and side effects to manipulate wrapped state. Prefer this
- * as the default implementation for most use cases.
+ * Stateful version of {@link StatelessEventBus}.
+ *
+ * @remarks
+ * Wraps an {@link @thi.ng/atom#IAtom} state container (i.e.
+ * `Atom`/`Cursor`/`History`) and provides additional pre-defined event
+ * handlers and side effects to manipulate wrapped state. Prefer this as
+ * the default implementation for most use cases.
  */
 export class EventBus extends StatelessEventBus
     implements IDeref<any>, IDispatch {
@@ -584,12 +605,16 @@ export class EventBus extends StatelessEventBus
 
     /**
      * Creates a new event bus instance with given parent state, handler
-     * and effect definitions (all optional). If no state is given,
-     * automatically creates an `Atom` with empty state object.
+     * and effect definitions (all optional).
+     *
+     * @remarks
+     * If no state is given, automatically creates an
+     * {@link @thi.ng/atom#Atom} with empty state object.
      *
      * In addition to the user provided handlers & effects, a number of
-     * built-ins are added automatically. See `addBuiltIns()`. User
-     * handlers can override built-ins.
+     * built-ins are added automatically. See
+     * {@link EventBus.addBuiltIns}. User handlers can override
+     * built-ins.
      *
      * @param state -
      * @param handlers -
@@ -620,7 +645,8 @@ export class EventBus extends StatelessEventBus
      *
      * #### `EV_SET_VALUE`
      *
-     * Resets state path to provided value. See `setIn()`.
+     * Resets state path to provided value. See
+     * {@link @thi.ng/paths#setIn}.
      *
      * Example event definition:
      * ```
@@ -630,7 +656,7 @@ export class EventBus extends StatelessEventBus
      * #### `EV_UPDATE_VALUE`
      *
      * Updates a state path's value with provided function and optional
-     * extra arguments. See `updateIn()`.
+     * extra arguments. See {@link @thi.ng/paths#updateIn}.
      *
      * Example event definition:
      * ```
@@ -712,10 +738,10 @@ export class EventBus extends StatelessEventBus
      *
      * If an event handler triggers the `FX_DISPATCH_NOW` side effect,
      * the new event will be added to the currently processed batch and
-     * therefore executed in the same frame. Also see `dispatchNow()`.
+     * therefore executed in the same frame. Also see {@link dispatchNow}.
      *
      * If the optional `ctx` arg is provided it will be merged into the
-     * `InterceptorContext` object passed to each interceptor. Since the
+     * {@link InterceptorContext} object passed to each interceptor. Since the
      * merged object is also used to collect triggered side effects,
      * care must be taken that there're no key name clashes.
      *

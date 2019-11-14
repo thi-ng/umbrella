@@ -30,7 +30,7 @@ export const intersection = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
 };
 
 /**
- * Reducer version of `intersection`. If `src` is given returns the
+ * Reducer version of {@link intersection}. If `src` is given returns the
  * reduced intersection of given inputs, else merely returns a reducer
  * to be used with {@link @thi.ng/transducers#reduce} /
  * {@link @thi.ng/transducers#transduce} functions.

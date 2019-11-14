@@ -3,7 +3,7 @@ export interface IEquiv {
      * Returns `true` if this *value* is equivalent to `o`. Also see
      * `ICompare.compare` and `IHash.hash`.
      *
-     * @param  o
+     * @param o -
      */
     equiv(o: any): boolean;
 }

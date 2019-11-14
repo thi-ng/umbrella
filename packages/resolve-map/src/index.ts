@@ -29,6 +29,7 @@ export type LookupPath = PropertyKey[];
  * access any parent levels. Absolute refs are always resolved from the
  * root level (the original object passed to this function).
  *
+ * @example
  * ```ts
  * // `c` references sibling `d`
  * // `d` references parent `a`

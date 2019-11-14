@@ -3,7 +3,7 @@ import { MatOpMM, MultiMatOpMM } from "./api";
 import { defMath } from "./internal/codegen";
 
 /**
- * Componentwise matrix addition. Use `mulM` for actual matrix-matrix
+ * Componentwise matrix addition. Use {@link mulM} for actual matrix-matrix
  * multiplication. If `out` is not given, writes result in `a`.
  *
  * out = a * b

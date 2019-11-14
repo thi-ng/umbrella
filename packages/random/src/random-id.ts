@@ -6,6 +6,7 @@ import { SYSTEM } from "./system";
  * 4), plus optional given `prefix` and using only provided `syms`
  * characters (default lowercase a-z).
  *
+ * @example
  * ```ts
  * randomID()
  * "qgdt"

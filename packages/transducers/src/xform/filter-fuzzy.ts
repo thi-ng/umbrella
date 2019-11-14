@@ -10,10 +10,11 @@ export interface FilterFuzzyOpts<A, B> {
 }
 
 /**
- * Returns transducer which calls `fuzzyMatch()` for each value and
- * discards all non-matching values. The optional `key` fn can be used
- * to extract/produce the actual value used for the search. The optional
- * `eq` predicate can be used to customize item equality checking. Uses
+ * Returns transducer which calls {@link @thi.ng/arrays#fuzzyMatch} for
+ * each value and discards all non-matching values. The optional `key`
+ * fn can be used to extract/produce the actual value used for the
+ * search. The optional `eq` predicate can be used to customize item
+ * equality checking. Uses
  * @thi.ng/equiv by default.
  *
  * ```

@@ -12,7 +12,7 @@ export const uintBitsToFloat = (x: number) => ((U32[0] = x), F32[0]);
 
 /**
  * Converts given float into a sortable integer representation, using
- * raw bitwise conversion via `floatToIntBits()`.
+ * raw bitwise conversion via {@link floatToIntBits}.
  *
  * {@link https://github.com/tzaeschke/phtree/blob/master/PhTreeRevisited.pdf}
  * (page 3)

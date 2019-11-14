@@ -313,9 +313,9 @@ export class TripleStore implements Iterable<Triple>, IToDot {
     }
 
     /**
-     * Like `addMultiJoin()`, but optimized for only two input queries.
-     * Returns a rstream subscription computing the natural join of the
-     * given input query results.
+     * Like {@link TripleStore.addMultiJoin}, but optimized for only two
+     * input queries. Returns a rstream subscription computing the
+     * natural join of the given input query results.
      *
      * @param id -
      * @param a -
@@ -325,7 +325,10 @@ export class TripleStore implements Iterable<Triple>, IToDot {
         return sync<Solutions, Solutions>({
             id,
             src: { a, b },
-            xform: comp(map(({ a, b }) => join(a, b)), dedupe(equiv))
+            xform: comp(
+                map(({ a, b }) => join(a, b)),
+                dedupe(equiv)
+            )
         });
     }
 
@@ -357,7 +360,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
     /**
      * Compiles given query spec into a number of sub-queries and result
      * transformations. Returns rstream subscription of final result
-     * sets. See `QuerySpec` docs for further details.
+     * sets. See {@link QuerySpec} docs for further details.
      *
      * @param spec -
      */

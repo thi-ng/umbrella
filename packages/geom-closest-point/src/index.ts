@@ -21,6 +21,7 @@ import {
  * `a` -> `b`, relative to `a`. I.e. the projection of `p` can then be
  * computed like so:
  *
+ * @example
  * ```ts
  * mixN([], a, b, closestT(p, a, b))
  * ```
@@ -29,8 +30,8 @@ import {
  * projected point lies outside the line segment. Returns `undefined` if
  * `a` and `b` are coincident.
  *
- * @see closestPointLine
- * @see closestPointSegment
+ * - {@link closestPointLine}
+ * - {@link closestPointSegment}
  *
  * @param p -
  * @param a -
@@ -44,10 +45,10 @@ export const closestT = (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) => {
 
 /**
  * Returns closest point to `p` on infinite line defined by points `a`
- * and `b`. Use `closestPointSegment` to only consider the actual line
+ * and `b`. Use {@link closestPointSegment} to only consider the actual line
  * segment between these two points.
  *
- * @see closestPointSegment
+ * {@link closestPointSegment}
  *
  * @param p -
  * @param a -
@@ -61,10 +62,10 @@ export const closestPointLine = (
 
 /**
  * Returns distance from `p` to closest point to infinite line `a` ->
- * `b`. Use `distToSegment` to only consider the actual line segment
+ * `b`. Use {@link distToSegment} to only consider the actual line segment
  * between these two points.
  *
- * @see distToSegment
+ * {@link distToSegment}
  *
  * @param p -
  * @param a -
@@ -82,7 +83,7 @@ export const distToLine = (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) =>
  * If `insideOnly` is true, only returns the closest point iff it
  * actually is inside the segment. The behavior of this configurable via
  * the optional `eps` arg and by default includes both end points. This
- * function uses `closestT` to compute the parametric position of the
+ * function uses {@link closestT} to compute the parametric position of the
  * result point and determine if it lies within the line segment. If
  * `eps > 0`, the end points `a` and `b` will be excluded from the
  * match, effectively shortening the valid line segment from both ends,

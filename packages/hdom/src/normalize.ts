@@ -70,7 +70,7 @@ export const normalizeElement = (spec: any[], keys: boolean) => {
 };
 
 /**
- * See `HDOMImplementation` interface for further details.
+ * See {@link HDOMImplementation} interface for further details.
  *
  * @param opts -
  * @param tree -

@@ -73,6 +73,7 @@ export interface TweenOpts<A, B, C> {
  * Using easing functions (e.g. from thi.ng/math), non-linear
  * interpolation within each keyframe interval can be achieved:
  *
+ * @example
  * ```ts
  * import { mix, smoothStep } from "@thi.ng/math"
  *
@@ -86,10 +87,11 @@ export interface TweenOpts<A, B, C> {
  * })]
  * // [ 100, 100, 100, 120, 179, 200, 158, 41, 0, 0, 0 ]
  * ```
- * @see TweenOpts
- * @see interpolate
- * @see interpolateHermite
- * @see interpolateLinear
+ *
+ * - {@link TweenOpts}
+ * - {@link interpolate}
+ * - {@link interpolateHermite}
+ * - {@link interpolateLinear}
  *
  * @param opts -
  */

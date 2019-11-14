@@ -21,6 +21,7 @@ import { prepareSpec } from "./utils";
  * bytes between each resulting SOA element, even though the actual
  * struct size is only 13 bytes:
  *
+ * @example
  * ```ts
  * aos(
  *   1024,

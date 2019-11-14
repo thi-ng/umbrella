@@ -20,7 +20,7 @@ export const eqDelta = (a: number, b: number, eps = EPS) =>
     abs(a - b) <= eps * max(1, abs(a), abs(b));
 
 /**
- * Similar to `eqDelta()`, but used given `eps` as is.
+ * Similar to {@link eqDelta}, but used given `eps` as is.
  *
  * @param a - left value
  * @param b - right value

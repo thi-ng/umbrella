@@ -18,7 +18,7 @@ import { partition } from "./partition";
  *
  * Note: The *very last* input value can never be fully reached and
  * might need to be explicitly duplicated in the input, e.g. via the
- * `extendSides()` iterator...
+ * {@link extendSides} iterator...
  *
  * ```
  * [...interpolate(
@@ -33,9 +33,9 @@ import { partition } from "./partition";
  * //  0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75 ]
  * ```
  *
- * @see interpolateHermite
- * @see interpolateLinear
- * @see extendSides
+ * - {@link interpolateHermite}
+ * - {@link interpolateLinear}
+ * - {@link extendSides}
  *
  * @param fn -
  * @param window -

@@ -5,8 +5,8 @@ import { MATH2 } from "./internal/templates";
 /**
  * Returns `out = a * b + c`.
  *
- * @see addm
- * @see maddN
+ * - {@link addm}
+ * - {@link maddN}
  *
  * @param out -
  * @param a -

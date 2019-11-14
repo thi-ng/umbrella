@@ -252,7 +252,7 @@ export class SparseSet32 extends ASparseSet<Uint32Array>
 /**
  * Creates a new sparse set with given max. capacity (max ID + 1) and
  * chooses most memory efficient implementation, e.g. if `n` <= 256
- * returns a `SparseSet8` instance.
+ * returns a {@link SparseSet8} instance.
  *
  * @param n -
  */

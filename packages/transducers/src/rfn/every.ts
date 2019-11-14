@@ -11,6 +11,7 @@ import { reduced } from "../reduced";
  *
  * Returns true if *all* values passed test.
  *
+ * @example
  * ```ts
  * reduce(every((x)=> x > 0), [1,2,-1,3]);
  * // false

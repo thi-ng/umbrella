@@ -7,6 +7,7 @@ import { percent } from "./units";
  * it's keys are used as keyframe stops and their values as their declarations
  * objects. This way any number of stops can be specified.
  *
+ * @example
  * ```ts
  * css(at_keyframes("fadein", {0: {opacity: 0}, 100: {opacity: 1}}))
  * // @keyframes fadein {
@@ -25,6 +26,7 @@ import { percent } from "./units";
  * If called with two objects, the first one provides the declarations for the
  * 0% keyframe and the 2nd for the 100% keyframe.
  *
+ * @example
  * ```ts
  * css(at_keyframes("fadein", {opacity: 0}, {opacity: 1}));
  * // @keyframes fadein {

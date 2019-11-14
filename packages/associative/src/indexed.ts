@@ -4,9 +4,10 @@ import { empty } from "./utils";
 
 /**
  * Takes an iterable of plain objects and array of indexing keys. Calls
- * `selectKeysObj` on each value and uses returned objects as new keys
- * to group original values. Returns a new `EquivMap` of sets.
+ * {@link selectKeysObj} on each value and uses returned objects as new keys
+ * to group original values. Returns a new {@link EquivMap} of sets.
  *
+ * @example
  * ```ts
  * indexed(
  *   new Set([{a: 1, b: 1}, {a: 1, b: 2}, {a: 1, b: 1, c: 2}]),

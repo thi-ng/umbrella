@@ -40,7 +40,7 @@ const __private = new WeakMap<SortedMap<any, any>, SortedMapState<any, any>>();
 
 export class SortedMap<K, V> extends Map<K, V> {
     /**
-     * Creates new `SortedMap` instance from given object's key-value
+     * Creates new {@link SortedMap} instance from given object's key-value
      * pairs.
      *
      * @param obj -
@@ -64,7 +64,7 @@ export class SortedMap<K, V> extends Map<K, V> {
     static DEFAULT_P = 1 / Math.E;
 
     /**
-     * Creates new `SortedMap` instance with optionally given pairs
+     * Creates new {@link SortedMap} instance with optionally given pairs
      * and/or options.
      *
      * @param pairs -

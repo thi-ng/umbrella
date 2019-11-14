@@ -73,7 +73,7 @@ export interface TextOpts {
      */
     dirY: 1 | -1;
     /**
-     * If true, `text()` will produce color attributes.
+     * If true, {@link text} will produce color attributes.
      */
     useColor: boolean;
     /**

@@ -34,7 +34,7 @@ export const indexToUV = defn(
 );
 
 /**
- * Inverse operation of `indexToUV()`. Converts vec2 UV coord into
+ * Inverse operation of {@link indexToUV}. Converts vec2 UV coord into
  * linearized 2D index, based on given texture `width` (in pixels).
  *
  * @param i -

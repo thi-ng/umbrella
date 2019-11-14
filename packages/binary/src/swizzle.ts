@@ -38,7 +38,7 @@ export const lane2 = (x: number, lane: Lane2) =>
 /**
  * Sets 8-bit `lane` with value`y` in `x`.
  *
- * @see lane8
+ * {@link lane8}
  *
  * @param x -
  * @param y -
@@ -52,7 +52,7 @@ export const setLane8 = (x: number, y: number, lane: Lane8) => {
 /**
  * Sets 4-bit `lane` with value `y` in `x`.
  *
- * @see lane4
+ * {@link lane4}
  *
  * @param x -
  * @param y -
@@ -66,7 +66,7 @@ export const setLane4 = (x: number, y: number, lane: Lane4) => {
 /**
  * Sets 2-bit `lane` with value `y` in `x`.
  *
- * @see lane2
+ * {@link lane2}
  *
  * @param x -
  * @param y -
@@ -80,6 +80,7 @@ export const setLane2 = (x: number, y: number, lane: Lane2) => {
 /**
  * Re-orders byte lanes in given order (MSB).
  *
+ * @example
  * ```ts
  * swizzle(0x12345678, 3, 2, 1, 0) // 0x78563412
  * swizzle(0x12345678, 1, 0, 3, 2) // 0x34127856

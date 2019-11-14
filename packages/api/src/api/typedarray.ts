@@ -27,9 +27,9 @@ export type TypedArrayConstructor =
 /**
  * Type enums for Typedarray-backed buffers.
  *
- * @see GLType
- * @see GL2TYPE
- * @see TYPE2GL
+ * {@link GLType}
+ * {@link GL2TYPE}
+ * {@link TYPE2GL}
  */
 export const enum Type {
     U8,
@@ -50,11 +50,11 @@ export type IntType = Type.I8 | Type.I16 | Type.I32;
 export type FloatType = Type.F32 | Type.F64;
 
 /**
- * WebGL numeric type constants. Use `GL2TYPE` to convert, if needed.
+ * WebGL numeric type constants. Use {@link GL2TYPE} to convert, if needed.
  *
- * @see Type
- * @see GL2TYPE
- * @see TYPE2GL
+ * {@link Type}
+ * {@link GL2TYPE}
+ * {@link TYPE2GL}
  */
 export const enum GLType {
     I8 = 0x1400,
@@ -67,7 +67,7 @@ export const enum GLType {
 }
 
 /**
- * Conversion from `GLType` to `Type` enums.
+ * Conversion from {@link GLType} to {@link Type} enums.
  */
 export const GL2TYPE: Record<GLType, Type> = {
     [GLType.I8]: Type.I8,
@@ -80,7 +80,7 @@ export const GL2TYPE: Record<GLType, Type> = {
 };
 
 /**
- * Potentially lossy conversion from `Type` to `GLType` enums.
+ * Potentially lossy conversion from {@link Type} to {@link GLType} enums.
  *
  * Not all enums are mappable:
  *
@@ -101,7 +101,7 @@ export const TYPE2GL: Record<Type, GLType | undefined> = {
 };
 
 /**
- * Size information (in bytes) for `Type` enums. For `GLType`, use this
+ * Size information (in bytes) for {@link Type} enums. For {@link GLType}, use this
  * form, e.g. `SIZEOF[GL2TYPE[GLType.F32]]`
  */
 export const SIZEOF = {
@@ -155,7 +155,7 @@ export interface TypedArrayTypeMap extends Record<Type | GLType, TypedArray> {
 }
 
 /**
- * Constructs new typed array of given `Type`/`GLType`. Supports all
+ * Constructs new typed array of given {@link Type}/{@link GLType}. Supports all
  * arities of standard typed array ctors.
  *
  * @param type -

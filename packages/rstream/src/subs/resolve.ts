@@ -17,6 +17,7 @@ export interface ResolverOpts extends IID<string> {
  * promise. If none is provided, the sub's `error()` handler is called,
  * which then stops the sub from receiving further values.
  *
+ * @example
  * ```ts
  * fromIterable([1, 2, 3], 100)
  *   .transform(tx.delayed(1000))

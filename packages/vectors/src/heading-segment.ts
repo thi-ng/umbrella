@@ -32,6 +32,6 @@ export const headingSegmentYZ = (a: ReadonlyVec, b: ReadonlyVec) =>
     atan2Abs(b[2] - a[2], b[1] - a[1]);
 
 /**
- * Same as `headingSegmentXY`.
+ * Same as {@link headingSegmentXY}.
  */
 export const headingSegment = headingSegmentXY;

@@ -41,9 +41,7 @@ export class BasicRouter implements INotify {
             const route = this.routeForID(config.initialRouteID);
             assert(
                 route !== undefined,
-                `missing config for initial route: ${
-                    this.config.initialRouteID
-                }`
+                `missing config for initial route: ${this.config.initialRouteID}`
             );
             assert(
                 !isParametricRoute(route!),
@@ -108,7 +106,7 @@ export class BasicRouter implements INotify {
     }
 
     /**
-     * Returns a formatted version of given `RouteMatch`, incl. any params.
+     * Returns a formatted version of given {@link RouteMatch}, incl. any params.
      * Throw an error if an invalid route `id` is provided.
      *
      * @param match -

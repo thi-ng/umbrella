@@ -3,7 +3,7 @@ import { Stringer } from "./api";
 import { repeat } from "./repeat";
 
 /**
- * Returns a `Stringer` which formats given numbers to `radix`, `len`
+ * Returns a {@link Stringer} which formats given numbers to `radix`, `len`
  * and with optional prefix (not included in `len`).
  *
  * @param radix -

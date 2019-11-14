@@ -20,8 +20,8 @@ export const ONE_MINUS_B = (_: number, b: number) => 1 - b;
 
 /**
  * General Porter-Duff HOF operator for **pre-multiplied** RGBA. Use
- * `porderDiffP` for applying pre & post multiplication of input and
- * output colors. The returned function takes 3 arguments:
+ * {@link porterDuffP} for applying pre & post multiplication of input
+ * and output colors. The returned function takes 3 arguments:
  *
  * - `out` color (if `null` or `undefined` writes to `dest`)
  * - `src` color (background)
@@ -31,7 +31,8 @@ export const ONE_MINUS_B = (_: number, b: number) => 1 - b;
  * result color will be clamped. RGB components can potentially go out
  * of [0..1] range (depending on coefficient functions used).
  *
- * Reference: {@link https://keithp.com/~keithp/porterduff/p253-porter.pdf}
+ * Reference:
+ * {@link https://keithp.com/~keithp/porterduff/p253-porter.pdf}
  *
  * @param fa - fn for src coeff
  * @param fb - fn for dest coeff
@@ -89,7 +90,7 @@ export const porterDuffP = (
     );
 
 /**
- * Like `porterDuffP`, but for packed integers.
+ * Like {@link porterDuffP}, but for packed integers.
  *
  * @param mode -
  */
@@ -102,7 +103,7 @@ export const porterDuffPInt = (mode: Fn2<number, number, number>) => (
  * Porter-Duff operator. None of the terms are used. Always results in
  * [0, 0, 0, 0].
  *
- * @see porterDuff
+ * {@link porterDuff}
  *
  * @param out -
  * @param src -
@@ -114,14 +115,14 @@ export const CLEAR_F = (out: Color, _: ReadonlyColor, dest: ReadonlyColor) =>
 /**
  * Porter-Duff operator. Always results in `src` color, `dest` ignored.
  *
- * @see porterDuff
+ * {@link porterDuff}
  */
 export const SRC_F = porterDuff(ONE, ZERO);
 
 /**
  * Porter-Duff operator. Always results in `dest` color, `src` ignored.
  *
- * @see porterDuff
+ * {@link porterDuff}
  */
 export const DEST_F = porterDuff(ZERO, ONE);
 
@@ -129,7 +130,7 @@ export const DEST_F = porterDuff(ZERO, ONE);
  * Porter-Duff operator. The source color is placed over the destination
  * color.
  *
- * @see porterDuff
+ * {@link porterDuff}
  */
 export const SRC_OVER_F = porterDuff(ONE, ONE_MINUS_A);
 
@@ -137,7 +138,7 @@ export const SRC_OVER_F = porterDuff(ONE, ONE_MINUS_A);
  * Porter-Duff operator. The destination color is placed over the source
  * color.
  *
- * @see porterDuff
+ * {@link porterDuff}
  */
 export const DEST_OVER_F = porterDuff(ONE_MINUS_B, ONE);
 
@@ -145,7 +146,7 @@ export const DEST_OVER_F = porterDuff(ONE_MINUS_B, ONE);
  * Porter-Duff operator. The source that overlaps the destination,
  * replaces the destination.
  *
- * @see porterDuff
+ * {@link porterDuff}
  */
 export const SRC_IN_F = porterDuff(B, ZERO);
 
@@ -153,7 +154,7 @@ export const SRC_IN_F = porterDuff(B, ZERO);
  * Porter-Duff operator. The destination that overlaps the source,
  * replaces the source.
  *
- * @see porterDuff
+ * {@link porterDuff}
  */
 export const DEST_IN_F = porterDuff(ZERO, A);
 
@@ -161,7 +162,7 @@ export const DEST_IN_F = porterDuff(ZERO, A);
  * Porter-Duff operator. The source that does not overlap the
  * destination replaces the destination.
  *
- * @see porterDuff
+ * {@link porterDuff}
  */
 export const SRC_OUT_F = porterDuff(ONE_MINUS_B, ZERO);
 
@@ -169,7 +170,7 @@ export const SRC_OUT_F = porterDuff(ONE_MINUS_B, ZERO);
  * Porter-Duff operator. The destination that does not overlap the
  * source replaces the source.
  *
- * @see porterDuff
+ * {@link porterDuff}
  */
 export const DEST_OUT_F = porterDuff(ZERO, ONE_MINUS_A);
 
@@ -177,7 +178,7 @@ export const DEST_OUT_F = porterDuff(ZERO, ONE_MINUS_A);
  * Porter-Duff operator. The source that overlaps the destination is
  * composited with the destination.
  *
- * @see porterDuff
+ * {@link porterDuff}
  */
 export const SRC_ATOP_F = porterDuff(B, ONE_MINUS_A);
 
@@ -185,7 +186,7 @@ export const SRC_ATOP_F = porterDuff(B, ONE_MINUS_A);
  * Porter-Duff operator. The destination that overlaps the source is
  * composited with the source and replaces the destination.
  *
- * @see porterDuff
+ * {@link porterDuff}
  */
 export const DEST_ATOP_F = porterDuff(ONE_MINUS_B, A);
 
@@ -193,7 +194,7 @@ export const DEST_ATOP_F = porterDuff(ONE_MINUS_B, A);
  * Porter-Duff operator. The non-overlapping regions of source and
  * destination are combined.
  *
- * @see porterDuff
+ * {@link porterDuff}
  */
 export const XOR_F = porterDuff(ONE_MINUS_B, ONE_MINUS_A);
 
@@ -209,14 +210,14 @@ export const CLEAR_I = <Fn2<number, number, number>>ZERO;
 /**
  * Porter-Duff operator for packed ints. Always results in `src` color, `dest` ignored.
  *
- * @see porterDuff
+ * {@link porterDuff}
  */
 export const SRC_I = porterDuffInt(ONE, ZERO);
 
 /**
  * Porter-Duff operator for packed ints. Always results in `dest` color, `src` ignored.
  *
- * @see porterDuff
+ * {@link porterDuff}
  */
 export const DEST_I = porterDuffInt(ZERO, ONE);
 
@@ -224,7 +225,7 @@ export const DEST_I = porterDuffInt(ZERO, ONE);
  * Porter-Duff operator for packed ints. The source color is placed over the destination
  * color.
  *
- * @see porterDuff
+ * {@link porterDuff}
  */
 export const SRC_OVER_I = porterDuffInt(ONE, ONE_MINUS_A);
 
@@ -232,7 +233,7 @@ export const SRC_OVER_I = porterDuffInt(ONE, ONE_MINUS_A);
  * Porter-Duff operator for packed ints. The destination color is placed over the source
  * color.
  *
- * @see porterDuff
+ * {@link porterDuff}
  */
 export const DEST_OVER_I = porterDuffInt(ONE_MINUS_B, ONE);
 
@@ -240,7 +241,7 @@ export const DEST_OVER_I = porterDuffInt(ONE_MINUS_B, ONE);
  * Porter-Duff operator for packed ints. The source that overlaps the destination,
  * replaces the destination.
  *
- * @see porterDuff
+ * {@link porterDuff}
  */
 export const SRC_IN_I = porterDuffInt(B, ZERO);
 
@@ -248,7 +249,7 @@ export const SRC_IN_I = porterDuffInt(B, ZERO);
  * Porter-Duff operator for packed ints. The destination that overlaps the source,
  * replaces the source.
  *
- * @see porterDuff
+ * {@link porterDuff}
  */
 export const DEST_IN_I = porterDuffInt(ZERO, A);
 
@@ -256,7 +257,7 @@ export const DEST_IN_I = porterDuffInt(ZERO, A);
  * Porter-Duff operator for packed ints. The source that does not overlap the
  * destination replaces the destination.
  *
- * @see porterDuff
+ * {@link porterDuff}
  */
 export const SRC_OUT_I = porterDuffInt(ONE_MINUS_B, ZERO);
 
@@ -264,7 +265,7 @@ export const SRC_OUT_I = porterDuffInt(ONE_MINUS_B, ZERO);
  * Porter-Duff operator for packed ints. The destination that does not overlap the
  * source replaces the source.
  *
- * @see porterDuff
+ * {@link porterDuff}
  */
 export const DEST_OUT_I = porterDuffInt(ZERO, ONE_MINUS_A);
 
@@ -272,7 +273,7 @@ export const DEST_OUT_I = porterDuffInt(ZERO, ONE_MINUS_A);
  * Porter-Duff operator for packed ints. The source that overlaps the destination is
  * composited with the destination.
  *
- * @see porterDuff
+ * {@link porterDuff}
  */
 export const SRC_ATOP_I = porterDuffInt(B, ONE_MINUS_A);
 
@@ -280,7 +281,7 @@ export const SRC_ATOP_I = porterDuffInt(B, ONE_MINUS_A);
  * Porter-Duff operator for packed ints. The destination that overlaps the source is
  * composited with the source and replaces the destination.
  *
- * @see porterDuff
+ * {@link porterDuff}
  */
 export const DEST_ATOP_I = porterDuffInt(ONE_MINUS_B, A);
 
@@ -288,7 +289,7 @@ export const DEST_ATOP_I = porterDuffInt(ONE_MINUS_B, A);
  * Porter-Duff operator for packed ints. The non-overlapping regions of source and
  * destination are combined.
  *
- * @see porterDuff
+ * {@link porterDuff}
  */
 export const XOR_I = porterDuffInt(ONE_MINUS_B, ONE_MINUS_A);
 

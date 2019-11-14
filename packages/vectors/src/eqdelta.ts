@@ -38,7 +38,7 @@ export const eqDelta3 = $(3);
 export const eqDelta4 = $(4);
 
 /**
- * Similar to `equiv()`, but takes tolerance `eps` into account for
+ * Similar to {@link eq}, but takes tolerance `eps` into account for
  * equality checks.
  *
  * @param a - first vector

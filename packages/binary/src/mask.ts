@@ -4,6 +4,7 @@ import { MASKS } from "./api";
  * Creates bit mask by enabling bit `a` to bit `b-1`, both in range
  * 0-32. `b` MUST be >= `a`.
  *
+ * @example
  * ```ts
  * defMask(1,31).toString(16) // 7ffffffe
  * defMask(3,8).toString(16)  // f8

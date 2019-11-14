@@ -25,7 +25,7 @@ export const cond = (_then: StackProc, _else: StackProc = nop) => (
 ) => ($(ctx[0], 1), $stackFn(ctx[0].pop() ? _then : _else)(ctx));
 
 /**
- * Non-HOF version of `cond`, expects `test` result and both branches on
+ * Non-HOF version of {@link cond}, expects `test` result and both branches on
  * d-stack. Executes `thenq` word/quotation if `test` is truthy, else
  * runs `elseq`.
  *

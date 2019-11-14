@@ -12,9 +12,10 @@ import { nextID } from "../utils/idgen";
  * stream.
  *
  * See:
- * - fromView()
- * - @thi.ng/atom
+ * - {@link fromView}
+ * - {@link @thi.ng/atom# | @thi.ng/atom}
  *
+ * @example
  * ```ts
  * db = new Atom({a: 23, b: 88});
  * cursor = new Cursor(db, "a")

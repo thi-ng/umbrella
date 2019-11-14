@@ -11,7 +11,7 @@ import { iterator1 } from "../iterator";
  * of processed inputs and no outputs will be produced if there were
  * less than `period` input values.
  *
- * Also see the {@link @thi.ng/transducers-stats} package for more
+ * Also see the {@link @thi.ng/transducers-stats# | @thi.ng/transducers-stats} package for more
  * optimized and alternative MAs.
  *
  * @param period -

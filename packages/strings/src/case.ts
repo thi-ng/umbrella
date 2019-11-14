@@ -31,6 +31,7 @@ export const capitalize: Stringer<string> = (x: string) =>
  *
  * {@link https://github.com/tc39/proposal-regexp-lookbehind}
  *
+ * @example
  * ```ts
  * kebab("FooBar23Baz");
  * // "foo-bar23-baz"
@@ -51,7 +52,7 @@ export const kebab: Stringer<string> = (x: string, delim = "-") =>
     );
 
 /**
- * Short for `kebab` using `_` as delimiter.
+ * Short for {@link kebab} using `_` as delimiter.
  *
  * @param x -
  */

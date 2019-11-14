@@ -163,7 +163,7 @@ export const aoi22 = (a: boolean, b: boolean, c: boolean, d: boolean) =>
     !((a && b) || (c && d));
 
 /**
- * Complement logic of `aoi21`.
+ * Complement logic of {@link aoi21}.
  *
  * `q = nand(a, or(b, c))`
  *
@@ -174,7 +174,7 @@ export const aoi22 = (a: boolean, b: boolean, c: boolean, d: boolean) =>
 export const oai21 = (a: boolean, b: boolean, c: boolean) => !(a && (b || c));
 
 /**
- * Complement logic of `aoi22`.
+ * Complement logic of {@link aoi22}.
  *
  * `q = nand(or(a, b), or(c, d))`
  *

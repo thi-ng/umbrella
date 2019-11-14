@@ -16,7 +16,7 @@ import {
 
 /**
  * Converts 2D cartesian vector `v` to polar coordinates, i.e. `[r,θ]`
- * (angle in radians). See `cartesian2()` for reverse operation.
+ * (angle in radians). See {@link cartesian2} for reverse operation.
  *
  * @param v -
  */
@@ -26,7 +26,7 @@ export const polar2 = defn("vec2", "polar2", ["vec2"], (v) => [
 
 /**
  * Converts 3D cartesian vector `v` to spherical coordinates, i.e.
- * `[r,θ,ϕ]` (angles in radians). See `cartesian3()` for reverse
+ * `[r,θ,ϕ]` (angles in radians). See {@link cartesian3} for reverse
  * operation.
  *
  * @param v -

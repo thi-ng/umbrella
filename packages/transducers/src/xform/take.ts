@@ -5,7 +5,7 @@ import { ensureReduced, reduced } from "../reduced";
 
 /**
  * Transducer which only yields the first `n` values and then terminates
- * transformation (by emitting a `reduced()` value).
+ * transformation (by emitting a {@link reduced} value).
  *
  * ```
  * [...iterator(comp(take(5), map((x) => x * 10)), range(10))]

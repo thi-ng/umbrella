@@ -41,7 +41,7 @@ import { ReadonlyVec } from "./api";
  * ```
  *
  * - {@link https://github.com/thi-ng/c-thing/blob/master/src/math/hashfn.c}
- * - {@link @thi.ng/morton} for Z-curve ordered hashing
+ * - {@link @thi.ng/morton# | @thi.ng/morton} for Z-curve ordered hashing
  *
  * @param v - vector
  * @param hash - hash factor

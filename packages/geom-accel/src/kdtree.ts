@@ -337,7 +337,7 @@ const nearest = <K extends ReadonlyVec, V>(
 };
 
 /**
- * Optimized version of `nearest()` for single closest point search.
+ * Optimized version of {@link nearest} for single closest point search.
  *
  * @param q -
  * @param acc -

@@ -10,8 +10,8 @@ import { IMGUI } from "./gui";
  * rendering event handling and IMGUI mouse/key state preparation is
  * left to the user.
  *
- * @see IMGUI.setMouse()
- * @see IMGUI.setKey()
+ * - {@link IMGUI.setMouse}
+ * - {@link IMGUI.setKey}
  */
 export const useDefaultEventHandlers = (gui: IMGUI) => {
     const pos = (e: MouseEvent | TouchEvent) => {

@@ -20,8 +20,8 @@ import { repeat } from "./repeat";
  * concat(src, repeat(x, numRight))
  * ```
  *
- * @see extendsSides
- * @see wrapSides
+ * - {@link extendSides}
+ * - {@link wrapSides}
  *
  * @param src -
  * @param x -

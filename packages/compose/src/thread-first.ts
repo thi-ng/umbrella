@@ -6,6 +6,7 @@ import { FnAny } from "@thi.ng/api";
  * (or tuple) with the return value of the previous expression inserted
  * as first argument, using `init` for the first expression.
  *
+ * @example
  * ```ts
  * const neg = (x) => -x;
  * const sub = (a, b) => a - b;
@@ -21,7 +22,7 @@ import { FnAny } from "@thi.ng/api";
  * // -2.5
  * ```
  *
- * @see threadLast
+ * {@link threadLast}
  *
  * @param init -
  * @param fns -

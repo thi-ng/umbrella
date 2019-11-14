@@ -31,7 +31,7 @@ export const project = (
 );
 
 /**
- * Reverse operation of `project()`. If `invert` is true (default:
+ * Reverse operation of {@link project}. If `invert` is true (default:
  * false), both `mvp` and `view` matrices will be inverted first
  * (non-destructively), else they're both assumed to be inverted
  * already.

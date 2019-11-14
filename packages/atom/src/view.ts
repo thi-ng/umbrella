@@ -8,22 +8,23 @@ import { nextID } from "./idgen";
  * in an Atom/Cursor. An optional transformer function can be supplied
  * at creation time to produce a derived/materialized view of the actual
  * value held in the atom. Views can be created directly or via the
- * `.addView()` method of the parent state. Views can be `deref()`'d
- * like atoms and polled for value changes using `changed()`. The
- * transformer is only applied once per value change and its result
- * cached until the next change.
+ * {@link IViewable.addView} method of the parent state. Views can be
+ * {@link @thi.ng/api#IDeref.deref}'d like atoms and polled for value
+ * changes using {@link IView.changed}. The transformer is only applied
+ * once per value change and its result cached until the next change.
  *
  * If the optional `lazy` is true (default), the transformer will only
- * be executed with the first `deref()` after each value change. If
- * `lazy` is false, the transformer function will be executed
- * immediately after a value change occurred and so can be used like a
- * watch which only triggers if there was an actual value change (in
- * contrast to normal watches, which execute with each update,
- * regardless of value change).
+ * be executed with the first {@link @thi.ng/api#IDeref.deref} after
+ * each value change. If `lazy` is false, the transformer function will
+ * be executed immediately after a value change occurred and so can be
+ * used like a watch which only triggers if there was an actual value
+ * change (in contrast to normal watches, which execute with each
+ * update, regardless of value change).
  *
  * Related, the actual value change predicate can be customized. If not
  * given, the default {@link @thi.ng/equiv#equiv} will be used.
  *
+ * @example
  * ```ts
  * a = new Atom({a: {b: 1}});
  * v = a.addView("a.b", (x) => x * 10);
@@ -113,21 +114,22 @@ export class View<T> implements IView<T> {
 
     /**
      * Returns true, if the view's value has changed since last
-     * `deref()`.
+     * {@link @thi.ng/api#IDeref.deref}.
      */
     changed() {
         return this.isDirty;
     }
 
     /**
-     * Like `deref()`, but doesn't update view's cached state and dirty
-     * flag if value has changed. If there's an unprocessed value
-     * change, returns result of this sub's transformer or else the
-     * cached value.
+     * Like {@link @thi.ng/api#IDeref.deref}, but doesn't
+     * update view's cached state and dirty flag if value has changed.
+     * If there's an unprocessed value change, returns result of this
+     * sub's transformer or else the cached value.
      *
      * **Important:** Use this function only if the view has none or or
      * a stateless transformer. Else might cause undefined/inconsistent
-     * behavior when calling `view()` or `deref()` subsequently.
+     * behavior when calling `view` or
+     * {@link @thi.ng/api#IDeref.deref} subsequently.
      */
     view() {
         return this.isDirty && this.isLazy

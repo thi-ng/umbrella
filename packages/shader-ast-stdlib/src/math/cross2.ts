@@ -10,7 +10,7 @@ import {
 /**
  * Inline function. Computes 2D cross product of given vectors.
  *
- * @see crossC2
+ * {@link crossC2}
  *
  * @param a -
  * @param b -

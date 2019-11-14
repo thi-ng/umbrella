@@ -43,6 +43,7 @@ export const NEW_OUT = "!o&&(o=[]);";
 /**
  * HOF array index lookup gen to provide optimized versions of:
  *
+ * @example
  * ```ts
  * lookup("a")(0) // a[ia]
  * lookup("a")(1) // a[ia * sa]

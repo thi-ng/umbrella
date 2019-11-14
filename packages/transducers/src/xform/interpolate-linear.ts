@@ -3,13 +3,13 @@ import { Transducer } from "../api";
 import { interpolate } from "./interpolate";
 
 /**
- * Pre-configured version of `interpolate()` for numeric values and
+ * Pre-configured version of {@link interpolate} for numeric values and
  * using pairwise linear interpolation. The number of samples per
  * interval is configurable. No values will be produced if there're less
  * than 2 inputs.
  *
- * @see interpolate
- * @see interpolateHermit
+ * - {@link interpolate}
+ * - {@link interpolateHermite}
  *
  * @param n -
  */

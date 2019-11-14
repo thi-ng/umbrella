@@ -115,7 +115,7 @@ export class GridLayout implements IGridLayout {
 }
 
 /**
- * Syntax sugar for `GridLayout` ctor. By default creates a
+ * Syntax sugar for {@link GridLayout} ctor. By default creates a
  * single-column layout at given position and width.
  *
  * @param x -

@@ -3,7 +3,7 @@ import { result } from "./result";
 
 /**
  * Returns a matcher which always fails (produces a `Match.FAIL` result)
- * for any given input. Use `always()` for the opposite effect.
+ * for any given input. Use {@link always} for the opposite effect.
  */
 export const never = <T, C, R>(
     callback?: LitCallback<T, C, R>

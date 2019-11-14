@@ -10,7 +10,7 @@ const maybeInitElement = <T>(el: T, tree: any) =>
     tree.__init && tree.__init.apply(tree.__this, [el, ...tree.__args]);
 
 /**
- * See `HDOMImplementation` interface for further details.
+ * See {@link HDOMImplementation} interface for further details.
  *
  * @param opts -
  * @param parent -
@@ -70,7 +70,7 @@ export const createTree = <T>(
 };
 
 /**
- * See `HDOMImplementation` interface for further details.
+ * See {@link HDOMImplementation} interface for further details.
  *
  * @param opts -
  * @param parent -
@@ -194,13 +194,13 @@ export const setAttribs = (el: Element, attribs: any) => {
  * Sets a single attribute on given element. If attrib name is NOT an
  * event name (prefix: "on") and its value is a function, it is called
  * with given `attribs` object (usually the full attrib object passed to
- * `setAttribs`) and the function's return value is used as the actual
+ * {@link setAttribs}) and the function's return value is used as the actual
  * attrib value.
  *
  * Special rules apply for certain attributes:
  *
- * - "style": delegated to `setStyle()`
- * - "value": delegated to `updateValueAttrib()`
+ * - "style": delegated to {@link setStyle}
+ * - "value": delegated to {@link updateValueAttrib}
  * - attrib IDs starting with "on" are treated as event listeners
  *
  * If the given (or computed) attrib value is `false` or `undefined` the

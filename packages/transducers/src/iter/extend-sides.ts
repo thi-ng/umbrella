@@ -18,8 +18,8 @@ import { repeat } from "./repeat";
  * // [ 1, 2, 3,  3, 3, 3 ]
  * ```
  *
- * @see padSides
- * @see wrapSides
+ * - {@link padSides}
+ * - {@link wrapSides}
  *
  * @param src -
  * @param numLeft -

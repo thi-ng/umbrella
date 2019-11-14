@@ -34,7 +34,7 @@ export interface NotificationArgs {
     attribs: IObjectOf<any>;
     /**
      * Event handler called when user closes notification. Only used if
-     * `NotificationOpts` has `close` option configured.
+     * {@link NotificationOpts} has `close` option configured.
      */
     onclose: EventListener;
 }
@@ -45,10 +45,10 @@ export interface NotificationArgs {
  * component function accepts the following arguments:
  *
  * - hdom context object (unused)
- * - partial `NotificationArgs` object (extra attribs, onclose handler)
+ * - partial {@link NotificationArgs} object (extra attribs, onclose handler)
  * - body content
  *
- * Any `attribs` provided as arg via `NotificationArgs` are merged with
+ * Any `attribs` provided as arg via {@link NotificationArgs} are merged with
  * the default options provided to the HOF. If the notification body
  * consists of multiple elements then they will need to be wrapped in a
  * container element.

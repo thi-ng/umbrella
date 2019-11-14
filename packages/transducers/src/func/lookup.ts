@@ -30,7 +30,7 @@ export const lookup2d = <T>(src: T[], width: number) => (i: number[]) =>
     src[i[0] + i[1] * width];
 
 /**
- * Same as `lookup2d()`, but for 3D data. The index ordering of the
+ * Same as {@link lookup2d}, but for 3D data. The index ordering of the
  * source data MUST be in Z, Y, X order (i.e. a stack of row major 2D slices).
  * No bounds checks are done.
  *

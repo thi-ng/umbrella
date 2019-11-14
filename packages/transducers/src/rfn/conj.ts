@@ -2,7 +2,7 @@ import { Reducer } from "../api";
 import { reduce, reducer } from "../reduce";
 
 /**
- * Reducer. Like `push()`, but for ES6 Sets.
+ * Reducer. Like {@link push}, but for ES6 Sets.
  */
 export function conj<T>(): Reducer<Set<T>, T>;
 export function conj<T>(xs: Iterable<T>): Set<T>;

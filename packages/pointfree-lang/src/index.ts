@@ -19,7 +19,7 @@ const nodeLoc = (node: ASTNode) =>
 /**
  * Looks up given symbol (word name) in this order of priority:
  * - current `env.__words`
- * - `ALIASES`
+ * - {@link ALIASES}
  * - @thi.ng/pointfree built-ins
  *
  * Throws error if symbol can't be resolved.
@@ -40,7 +40,7 @@ const resolveSym = (node: ASTNode, ctx: pf.StackContext) => {
  * Looks up given variable in current `env.__vars` object and returns
  * its value. Throws error if var can't be resolved, either because it's
  * undefined or there's scoping error. Each var uses its own (reverse)
- * stack of scopes (prepared in `ensureEnv()`), and the current scope's
+ * stack of scopes (prepared in `ensureEnv`), and the current scope's
  * value is always at the TOS element (`scopes[0]`).
  *
  * @param id -
@@ -59,7 +59,7 @@ const resolveVar = (node: ASTNode, ctx: pf.StackContext) => {
 };
 
 /**
- * Resolves given node's value. Used by `resolveArray` & `resolveObject`
+ * Resolves given node's value. Used by {@link resolveArray} & {@link resolveObject}
  * to process internal values (and in the latter case also their keys).
  *
  * @param node -
@@ -114,7 +114,7 @@ const resolveObject = (node: ASTNode, ctx: pf.StackContext) => {
 };
 
 /**
- * HOF word function. Calls `resolveVar` and pushes result on stack.
+ * HOF word function. Calls {@link resolveVar} and pushes result on stack.
  *
  * @param node -
  */
@@ -141,7 +141,7 @@ const storevar = (id: string) => (ctx: pf.StackContext) => {
 };
 
 /**
- * HOF word function used by `visitWord` to create local variables. Pops
+ * HOF word function used by {@link visitWord} to create local variables. Pops
  * TOS and adds it as value for a new scope in stack of bindings for
  * given var.
  *
@@ -159,7 +159,7 @@ const beginvar = (id: string) => (ctx: pf.StackContext) => {
 };
 
 /**
- * HOF word function used by `visitWord` to end local variables. Removes
+ * HOF word function used by {@link visitWord} to end local variables. Removes
  * scope from given var's stack of bindings. Throws error if for some
  * reason the scope stack has become corrupted (i.e. no more scopes left
  * to remove).
@@ -214,7 +214,7 @@ const visit = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
 
 /**
  * SYM visitor. Looks up symbol (word name) and if `state.word` is true,
- * pushes word on (temp) stack (created by `visitWord`), else executes
+ * pushes word on (temp) stack (created by {@link visitWord}), else executes
  * word. Throws error if unknown word.
  *
  * @param node -
@@ -233,7 +233,7 @@ const visitSym = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
 
 /**
  * VAR_DEREF visitor. If `state.word` is true, pushes `loadvar(id)` on
- * (temp) stack (created by `visitWord`), else attempts to resolve var
+ * (temp) stack (created by {@link visitWord}), else attempts to resolve var
  * and pushes its value on stack. Throws error if unknown var.
  *
  * @param node -
@@ -255,7 +255,7 @@ const visitDeref = (
 
 /**
  * VAR_STORE visitor. If `state.word` is true, pushes `storevar(id)` on
- * (temp) stack (created by `visitWord`), else executes `storevar`
+ * (temp) stack (created by {@link visitWord}), else executes {@link storevar}
  * directly to save value in env.
  *
  * @param node -
@@ -278,8 +278,8 @@ const visitStore = (
 
 /**
  * WORD visitor to create new word definition. Sets `state.word` to
- * true, builds temp stack context and calls `visit()` for all child
- * nodes. Then calls `word()` to compile function and stores it in
+ * true, builds temp stack context and calls {@link visit} for all child
+ * nodes. Then calls {@link word} to compile function and stores it in
  * `env.__words` object.
  *
  * root: {a: 1, b: 2}
@@ -332,7 +332,7 @@ const visitWord = (
 
 /**
  * ARRAY visitor for arrays/quotations. If `state.word` is true, pushes
- * call to `resolveArray` on temp word stack, else calls `resolveArray`
+ * call to {@link resolveArray} on temp word stack, else calls {@link resolveArray}
  * and pushes result on stack.
  *
  * @param node -
@@ -358,7 +358,7 @@ const visitArray = (
 
 /**
  * OBJ visitor for object literals. If `state.word` is true, pushes call
- * to `resolveObject` on temp word stack, else calls `resolveObject` and
+ * to {@link resolveObject} on temp word stack, else calls {@link resolveObject} and
  * pushes result on stack.
  *
  * @param node -
@@ -393,7 +393,7 @@ const visitObject = (
  * e.g. `{a: 1}`. For each defined var a stack is built inside the
  * `__vars` sub-object, which only exists during runtime and will be
  * removed before returning the env back to the user (handled by
- * `finalizeEnv`). The name stacks are used to implement dynamic scoping
+ * {@link finalizeEnv}). The name stacks are used to implement dynamic scoping
  * of all variables.
  *
  * ```
@@ -407,7 +407,7 @@ const visitObject = (
  * // [ [], [], { a: 1, b: 12, __words: { foo: [Function] } } ]
  * ```
  *
- * Also see: `loadvar`, `storevar`, `beginvar`, `endvar`
+ * Also see: {@link loadvar}, {@link storevar}, {@link beginvar}, {@link endvar}
  *
  * @param env -
  */
@@ -450,8 +450,9 @@ const finalizeEnv = (ctx: pf.StackContext) => {
 
 /**
  * Main user function. Takes a string w/ DSL source code and optional
- * env and stack. Prepares env using `ensureEnv()`, parses, compiles and
- * executes source, then returns resulting `StackContext` tuple.
+ * env and stack. Prepares env using `ensureEnv`, parses, compiles and
+ * executes source, then returns resulting
+ * {@link @thi.ng/pointfree#StackContext} tuple.
  *
  * @param src -
  * @param env -
@@ -477,7 +478,7 @@ export const run = (src: string, env?: pf.StackEnv, stack: pf.Stack = []) => {
 };
 
 /**
- * Like `run()`, but returns unwrapped value(s) from result data stack.
+ * Like {@link run}, but returns unwrapped value(s) from result data stack.
  *
  * @param src -
  * @param env -
@@ -488,7 +489,7 @@ export const runU = (src: string, env?: pf.StackEnv, stack?: pf.Stack, n = 1) =>
     pf.unwrap(run(src, env, stack), n);
 
 /**
- * Like `run`, but returns resulting env object only.
+ * Like {@link run}, but returns resulting env object only.
  *
  * @param src -
  * @param env -
@@ -499,8 +500,8 @@ export const runE = (src: string, env?: pf.StackEnv, stack?: pf.Stack) =>
 
 /**
  * Executes word with given name, defined in supplied `env` object and
- * with given optional initial stack. Returns resulting `StackContext`
- * tuple.
+ * with given optional initial stack. Returns resulting
+ * {@link @thi.ng/pointfree#StackContext} tuple.
  *
  * @param id -
  * @param env -
@@ -510,7 +511,7 @@ export const runWord = (id: string, env: pf.StackEnv, stack: pf.Stack = []) =>
     finalizeEnv(env.__words[id](pf.ctx(stack, ensureEnv(env))));
 
 /**
- * Like `runWord()`, but returns unwrapped value(s) from result data
+ * Like {@link runWord}, but returns unwrapped value(s) from result data
  * stack.
  *
  * @param id -
@@ -526,7 +527,7 @@ export const runWordU = (
 ) => pf.unwrap(finalizeEnv(env.__words[id](pf.ctx(stack, ensureEnv(env)))), n);
 
 /**
- * Like `runWord()`, but returns resulting env object only.
+ * Like {@link runWord}, but returns resulting env object only.
  *
  * @param id -
  * @param env -
@@ -538,7 +539,8 @@ export const runWordE = (id: string, env: pf.StackEnv, stack: pf.Stack = []) =>
 /**
  * Takes an environment object and injects given custom word
  * definitions. `words` is an object with keys representing word names
- * and their values `StackFn`s. See {@link @thi.ng/pointfree} package
+ * and their values {@link @thi.ng/pointfree#StackFn}s. See
+ * {@link @thi.ng/pointfree# | @thi.ng/pointfree} package
  * for more details about stack functions.
  *
  * @param env -

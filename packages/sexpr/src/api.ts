@@ -6,7 +6,7 @@ export interface SyntaxOpts {
      * delimiters [open, close]. By default only the classic ["(",")"]
      * pair is defined. Only single character delimiters are supported.
      *
-     * @see DEFAULT_SYNTAX
+     * {@link DEFAULT_SYNTAX}
      */
     scopes: string[][];
     /**

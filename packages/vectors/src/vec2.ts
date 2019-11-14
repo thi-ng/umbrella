@@ -21,7 +21,7 @@ import { setS2 } from "./sets";
 
 export class Vec2 extends AVec implements IHash<number>, IVector<Vec2> {
     /**
-     * Returns array of memory mapped `Vec2` instances using given
+     * Returns array of memory mapped {@link Vec2} instances using given
      * backing array and stride settings: The `cstride` is the step size
      * between individual XY vector components. `estride` is the step
      * size between successive vectors. This arrangement allows for
@@ -45,7 +45,7 @@ export class Vec2 extends AVec implements IHash<number>, IVector<Vec2> {
     }
 
     /**
-     * Merges given `src` iterable of `Vec2`s into single array `buf`.
+     * Merges given `src` iterable of {@link Vec2}s into single array `buf`.
      * Vectors will be arranged according to given component and element
      * strides, starting at `start` index. It's the user's
      * responsibility to ensure the target buffer has sufficient

@@ -5,6 +5,7 @@ import { max, min, Vec, VecPair } from "@thi.ng/vectors";
  * to `+∞` and `vmax` to `-∞` (e.g. use copies of `MIN*` / `MAX*`
  * constants defined in thi.ng/vectors).
  *
+ * @example
  * ```ts
  * points = [[-1,-2], [5,-3], [0,4]];
  *

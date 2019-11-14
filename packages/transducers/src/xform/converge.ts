@@ -9,7 +9,7 @@ import { ensureReduced } from "../reduced";
  * applies given predicate `pred` to previous input and `x`. Only passes
  * values downstream as long as the predicate returns a falsy result.
  * Once the result is truthy, `x` is considered converged and the
- * transformation is terminated (by emitting a `reduced()` value).
+ * transformation is terminated (by emitting a {@link reduced} value).
  *
  * This can be used to limit processing of inputs only as long as
  * there're noticeable changes (according to the predicate) and then
@@ -26,7 +26,7 @@ import { ensureReduced } from "../reduced";
  * // [ 0, 0.5, 0.75, 0.875, 0.9375, 0.96875, 0.984375, 0.9921875 ]
  * ```
  *
- * @see takeWhile
+ * {@link takeWhile}
  *
  * @param pred -
  * @param src -

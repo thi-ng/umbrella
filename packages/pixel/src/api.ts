@@ -76,9 +76,9 @@ export interface PackedChannelSpec {
     size: number;
     /**
      * Related ABGR lane this channel is mapped from/to. Only used if
-     * parent format uses auto-generated `IABGRConvert` implementation
+     * parent format uses auto-generated {@link IABGRConvert} implementation
      * (i.e. only if no-user defined converters are given to
-     * `PackedFormatSpec`).
+     * {@link PackedFormatSpec}).
      */
     lane?: Lane;
 }

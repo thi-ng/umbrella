@@ -30,7 +30,7 @@ export const premultiplyInt = (src: number) => {
 };
 
 /**
- * Reverse operation of `premultiply`. Divides RGB channels
+ * Reverse operation of {@link premultiply}. Divides RGB channels
  * by alpha, unless alpha is zero. Does NOT clamp result.
  *
  * @param out -
@@ -46,7 +46,7 @@ export const postmultiply = (out: Color | null, src: ReadonlyColor) => {
 };
 
 /**
- * Reverse op of `premultiplyInt`. Assumes 8bits/channel and alpha in
+ * Reverse op of {@link premultiplyInt}. Assumes 8bits/channel and alpha in
  * MSB lane. Divides RGB channels by alpha (unless zero) and DOES clamp
  * result to avoid overflows.
  *

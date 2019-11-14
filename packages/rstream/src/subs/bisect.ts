@@ -3,10 +3,11 @@ import { ISubscriber } from "../api";
 import { PubSub } from "../pubsub";
 
 /**
- * Returns a new `PubSub` instance using given predicate `pred` as
+ * Returns a new {@link PubSub} instance using given predicate `pred` as
  * boolean topic function and `a` & `b` as subscribers for truthy (`a`)
  * and falsy `b` values.
  *
+ * @example
  * ```ts
  * rs.fromIterable([1, 2, 3, 4]).subscribe(
  *   rs.bisect(
@@ -24,9 +25,10 @@ import { PubSub } from "../pubsub";
  * ```
  *
  * If `a` or `b` need to be subscribed to directly, then `a` / `b` MUST
- * be first created as `Subscription` (if not already) and a reference
+ * be first created as {@link Subscription} (if not already) and a reference
  * kept prior to calling `bisect()`.
  *
+ * @example
  * ```ts
  * const odd = rs.subscription();
  * const even = rs.subscription();

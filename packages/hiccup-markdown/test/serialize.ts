@@ -5,7 +5,7 @@ describe("hiccup-markdown", () => {
     it("serialize", () => {
         // list component
         // the 1st arg is the optional user context object
-        // passed to `serialize()` (ignored here)
+        // passed to {@link serialize} (ignored here)
         // the 2nd arg is the list tag (ul/ol)
         // rest args are converted to list items
         const list = (_: any, type: string, ...xs: any[]) => [

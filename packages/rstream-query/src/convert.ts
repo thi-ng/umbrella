@@ -36,6 +36,7 @@ const mapSubject = (subject: any) => ([p, o]: [any, any]) => {
  *   is a plain object, it will be treated as BNode and transformed as
  *   described in the previous rule
  *
+ * @example
  * ```ts
  * src = {
  *   "@thi.ng/rstream-query": {

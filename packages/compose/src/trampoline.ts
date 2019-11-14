@@ -12,6 +12,7 @@ import { Fn0 } from "@thi.ng/api";
  * a trampoline is a form of continuation passing style and only ever
  * consumes max. 2 extra stack frames, independent from recursion depth.
  *
+ * @example
  * ```ts
  * const countdown = (acc, x) =>
  *   x >= 0 ?

@@ -13,6 +13,7 @@ import { truncate } from "./truncate";
  *
  * Note: The padding string can contain multiple characters.
  *
+ * @example
  * ```ts
  * center(20, "<>")(wrap(" ")("thi.ng"))
  * // "<><><> thi.ng <><><>"

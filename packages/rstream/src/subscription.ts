@@ -18,9 +18,9 @@ import {
 import { nextID } from "./utils/idgen";
 
 /**
- * Creates a new `Subscription` instance, the fundamental datatype &
- * building block provided by this package (`Stream`s are
- * `Subscription`s too). Subscriptions can be:
+ * Creates a new {@link Subscription} instance, the fundamental datatype &
+ * building block provided by this package ({@link Stream}s are
+ * {@link Subscription}s too). Subscriptions can be:
  *
  * - linked into directed graphs (if async, not necessarily DAGs)
  * - transformed using transducers (incl. early termination)

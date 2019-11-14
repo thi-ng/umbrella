@@ -4,6 +4,7 @@ import { eqDelta } from "./eqdelta";
 /**
  * Returns true if line A rises up over B.
  *
+ * @example
  * ```ts
  * b1  a2
  *   \/
@@ -22,6 +23,7 @@ export const isCrossOver = (a1: number, a2: number, b1: number, b2: number) =>
 /**
  * Returns true if line A rises up over B.
  *
+ * @example
  * ```ts
  * a1  b2
  *   \/
@@ -38,13 +40,13 @@ export const isCrossUnder = (a1: number, a2: number, b1: number, b2: number) =>
     a1 > b1 && a2 < b2;
 
 /**
- * Returns `Crossing` classifier indicating the relationship of line A
+ * Returns {@link Crossing} classifier indicating the relationship of line A
  * to line B. The optional epsilon value is used to determine if both
  * lines are considered equal or flat.
  *
- * @see isCrossUp
- * @see isCrossDown
- * @see Crossing
+ * - {@link isCrossOver}
+ * - {@link isCrossUnder}
+ * - {@link Crossing}
  *
  * @param a1 -
  * @param a2 -

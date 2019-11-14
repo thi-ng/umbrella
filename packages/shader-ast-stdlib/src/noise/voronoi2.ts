@@ -42,8 +42,8 @@ import { hash32 } from "./hash";
  *
  * {@link http://www.iquilezles.org/www/articles/voronoise/voronoise.htm}
  *
- * Note: This implementation uses the improved `hash32` by Dave Hoskins
- * instead of iq's original `hash3`.
+ * Note: This implementation uses the improved {@link hash32} by Dave Hoskins
+ * instead of iq's original {@link hash3}.
  *
  * @param p -
  * @param u -

@@ -9,32 +9,32 @@ export const NO_OP = () => {};
 export type Fn0<T> = () => T;
 
 /**
- * A single arg function from A => B.
+ * A single arg function from A to B.
  */
 export type Fn<A, B> = (a: A) => B;
 
 /**
- * A 2-arg function from A,B => C.
+ * A 2-arg function from A,B to C.
  */
 export type Fn2<A, B, C> = (a: A, b: B) => C;
 
 /**
- * A 3-arg function from A,B,C => D.
+ * A 3-arg function from A,B,C to D.
  */
 export type Fn3<A, B, C, D> = (a: A, b: B, c: C) => D;
 
 /**
- * A 4-arg function from A,B,C,D => E.
+ * A 4-arg function from A,B,C,D to E.
  */
 export type Fn4<A, B, C, D, E> = (a: A, b: B, c: C, d: D) => E;
 
 /**
- * A 5-arg function from A,B,C,D,E => F.
+ * A 5-arg function from A,B,C,D,E to F.
  */
 export type Fn5<A, B, C, D, E, F> = (a: A, b: B, c: C, d: D, e: E) => F;
 
 /**
- * A 6-arg function from A,B,C,D,E,F => G.
+ * A 6-arg function from A,B,C,D,E,F to G.
  */
 export type Fn6<A, B, C, D, E, F, G> = (
     a: A,
@@ -46,7 +46,7 @@ export type Fn6<A, B, C, D, E, F, G> = (
 ) => G;
 
 /**
- * A 7-arg function from A,B,C,D,E,F,G => H.
+ * A 7-arg function from A,B,C,D,E,F,G to H.
  */
 export type Fn7<A, B, C, D, E, F, G, H> = (
     a: A,
@@ -59,7 +59,7 @@ export type Fn7<A, B, C, D, E, F, G, H> = (
 ) => H;
 
 /**
- * A 8-arg function from A,B,C,D,E,F,G,H => I.
+ * A 8-arg function from A,B,C,D,E,F,G,H to I.
  */
 export type Fn8<A, B, C, D, E, F, G, H, I> = (
     a: A,
@@ -73,7 +73,7 @@ export type Fn8<A, B, C, D, E, F, G, H, I> = (
 ) => I;
 
 /**
- * A 9-arg function from A,B,C,D,E,F,G,H,I => J.
+ * A 9-arg function from A,B,C,D,E,F,G,H,I to J.
  */
 export type Fn9<A, B, C, D, E, F, G, H, I, J> = (
     a: A,
@@ -88,7 +88,7 @@ export type Fn9<A, B, C, D, E, F, G, H, I, J> = (
 ) => J;
 
 /**
- * A 10-arg function from A,B,C,D,E,F,G,H,I,J => K.
+ * A 10-arg function from A,B,C,D,E,F,G,H,I,J to K.
  */
 export type Fn10<A, B, C, D, E, F, G, H, I, J, K> = (
     a: A,
@@ -186,6 +186,6 @@ export type FnO10<A, B, C, D, E, F, G, H, I, J, K> = (
 export type FnAny<T> = (...xs: any[]) => T;
 
 /**
- * A typed vararg arg function from A => B.
+ * A typed vararg arg function from A to B.
  */
 export type FnAnyT<A, B> = (...xs: A[]) => B;

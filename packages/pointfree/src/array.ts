@@ -11,7 +11,7 @@ import { $stackFn, word } from "./word";
 /**
  * Pushes a new empty array on the d-stack. While it's easily possible to
  * use `[]` as part of a stack program, the `list` word is intended to
- * be used as part of re-usuable `word()` definitions to ensure a new
+ * be used as part of re-usuable {@link word} definitions to ensure a new
  * array is being created for every single invocation of the word (else
  * only a single instance is created due to the mutable nature of JS
  * arrays).
@@ -42,7 +42,7 @@ export const list = (ctx: StackContext) => (ctx[0].push([]), ctx);
 
 /**
  * Pushes new empty JS object on d-stack.
- * Same reasoning as for `list`.
+ * Same reasoning as for {@link list}.
  *
  * ( -- {} )
  *
@@ -174,20 +174,22 @@ export const cat = (ctx: StackContext) => {
  * // 10
  * ```
  *
- * **Important**: `mapl` does not produce a result array. However,
+ * **Important**: {@link mapl} does not produce a result array. However,
  * there're several options to collect results as array, e.g.
  *
- * Use `mapll()` to transform:
+ * Use {@link mapll} to transform:
  *
+ * @example
  * ```ts
  * runU([[1, 2, 3, 4], [10, mul], mapll])
  * // [ 10, 20, 30, 40]
  * ```
  *
  * Collecting results as array is a form of reduction, so we can use
- * `list` to produce an initial new array and `pushr` to push each new
+ * {@link list} to produce an initial new array and {@link pushr} to push each new
  * interim value into the result:
  *
+ * @example
  * ```ts
  * runU([list, [1, 2, 3, 4], [10, mul, pushr], mapl])
  * // [ 10, 20, 30, 40 ]
@@ -195,6 +197,7 @@ export const cat = (ctx: StackContext) => {
  *
  * If the array size is known & not changed by transformation:
  *
+ * @example
  * ```ts
  * runU([[1, 2, 3, 4], [10, mul], mapl, 4, collect])
  * // [ 10, 20, 30, 40 ]
@@ -216,10 +219,11 @@ export const mapl = (ctx: StackContext) => {
 };
 
 /**
- * Similar to `mapl()`, but produces new array of transformed values.
+ * Similar to {@link mapl}, but produces new array of transformed values.
  *
  * ( arr q -- arr )
  *
+ * @example
  * ```ts
  * runU([[1, 2, 3, 4], [10, mul], mapll])
  * // [ 10, 20, 30, 40]
@@ -254,7 +258,7 @@ export const mapll = (ctx: StackContext) => {
 };
 
 /**
- * Convenience wrapper for `mapl` to provide an alternative stack layout
+ * Convenience wrapper for {@link mapl} to provide an alternative stack layout
  * for reduction purposes:
  *
  * ( arr q init -- reduction )
@@ -281,7 +285,7 @@ export const collect = (ctx: StackContext) => {
 };
 
 /**
- * Higher order helper word to `collect()` tuples of pre-defined size
+ * Higher order helper word to {@link collect} tuples of pre-defined size
  * `n`. The size can be given as number or a stack function producing a
  * number.
  *
@@ -359,6 +363,7 @@ export const setat = (ctx: StackContext) => {
  * on stack at the end. Throws error if there're less stack values than
  * keys in given array.
  *
+ * @example
  * ```ts
  * runU([1,2,3, ["a","b","c"], {}, bindkeys])
  * // { c: 3, b: 2, a: 1 }

@@ -20,6 +20,7 @@ export interface StructField extends Array<any> {
  * be used to produce the final value for this field. In the example below,
  * it is used to unwrap the ID field values, e.g. from `[123] => 123`
  *
+ * @example
  * ```ts
  * tx.transduce(
  *     tx.struct([["id", 1, (id) => id[0]], ["pos", 2], ["vel", 2], ["color", 4]]),

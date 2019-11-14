@@ -16,6 +16,7 @@ import { Implementation, MultiFn } from "./api";
  * The remaining implementations are associated with their related
  * multi-method and the given `type` dispatch value.
  *
+ * @example
  * ```ts
  * foo = defmulti((x) => x.id);
  * bar = defmulti((x) => x.id);

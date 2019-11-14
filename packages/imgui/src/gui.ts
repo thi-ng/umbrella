@@ -118,7 +118,7 @@ export class IMGUI implements IToHiccup {
     }
 
     /**
-     * Merges given theme settings with `DEFAULT_THEME` and resets theme
+     * Merges given theme settings with {@link DEFAULT_THEME} and resets theme
      * stack.
      *
      * @param theme -
@@ -391,7 +391,7 @@ export class IMGUI implements IToHiccup {
      * resource `hash`. If unsuccessful, calls resource `ctor` function
      * to create it, caches result and returns it.
      *
-     * @see IMGUI.registerID()
+     * {@link IMGUI.registerID}
      *
      * @param id -
      * @param hash -

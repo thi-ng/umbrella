@@ -31,6 +31,7 @@ export interface PartitionSyncOpts<T> {
  * input value, however as with the default behavior, tuples will retain
  * the most recent consumed value from other inputs.
  *
+ * @example
  * ```ts
  * src = [
  *   ["a", 1], ["a", 2], ["d", 100], ["b", 10],

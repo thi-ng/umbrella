@@ -26,9 +26,10 @@ import { View } from "./view";
  * {@link IAtom} interface and so can be used directly in place and
  * delegates to wrapped atom/cursor. Value changes are only recorded in
  * history if `changed` predicate returns truthy value, or else by
- * calling `record()` directly. This class too implements the
- * {@link @thi.ng/api#INotify} interface to support event listeners for
- * `undo()`, `redo()` and `record()`.
+ * calling {@link History.record} directly. This class too implements
+ * the {@link @thi.ng/api#INotify} interface to support event listeners
+ * for {@link History.undo}, {@link History.redo} and
+ * {@link History.record}.
  */
 @INotifyMixin
 export class History<T> implements IHistory<T> {
@@ -83,15 +84,15 @@ export class History<T> implements IHistory<T> {
      * Attempts to re-apply most recent historical value to atom and
      * returns it if successful (i.e. there's a history). Before the
      * switch, first records the atom's current value into the future
-     * stack (to enable `redo()` feature). Returns `undefined` if
-     * there's no history.
+     * stack (to enable {@link History.redo} feature). Returns
+     * `undefined` if there's no history.
      *
      * If undo was possible, the `History.EVENT_UNDO` event is emitted
      * after the restoration with both the `prev` and `curr` (restored)
      * states provided as event value (and object with these two keys).
      * This allows for additional state handling to be executed, e.g.
-     * application of the "Command pattern". See `addListener()` for
-     * registering event listeners.
+     * application of the "Command pattern". See
+     * {@link History.addListener} for registering event listeners.
      */
     undo() {
         if (this.history.length) {
@@ -107,15 +108,15 @@ export class History<T> implements IHistory<T> {
      * Attempts to re-apply most recent value from future stack to atom
      * and returns it if successful (i.e. there's a future). Before the
      * switch, first records the atom's current value into the history
-     * stack (to enable `undo()` feature). Returns `undefined` if
-     * there's no future (so sad!).
+     * stack (to enable {@link History.undo} feature). Returns
+     * `undefined` if there's no future (so sad!).
      *
      * If redo was possible, the `History.EVENT_REDO` event is emitted
      * after the restoration with both the `prev` and `curr` (restored)
      * states provided as event value (and object with these two keys).
      * This allows for additional state handling to be executed, e.g.
-     * application of the "Command pattern". See `addListener()` for
-     * registering event listeners.
+     * application of the "Command pattern". See
+     * {@link History.addListener} for registering event listeners.
      */
     redo() {
         if (this.future.length) {
@@ -128,9 +129,9 @@ export class History<T> implements IHistory<T> {
     }
 
     /**
-     * `IAtom.reset()` implementation. Delegates to wrapped atom/cursor,
-     * but too applies `changed` predicate to determine if there was a
-     * change and if the previous value should be recorded.
+     * `IReset.reset()` implementation. Delegates to wrapped
+     * atom/cursor, but too applies `changed` predicate to determine if
+     * there was a change and if the previous value should be recorded.
      *
      * @param val -
      */
@@ -154,7 +155,7 @@ export class History<T> implements IHistory<T> {
     }
 
     /**
-     * `IAtom.swap()` implementation. Delegates to wrapped atom/cursor,
+     * `ISwap.swap()` implementation. Delegates to wrapped atom/cursor,
      * but too applies `changed` predicate to determine if there was a
      * change and if the previous value should be recorded.
      *
@@ -178,7 +179,7 @@ export class History<T> implements IHistory<T> {
      * manually managing snapshots, i.e. when applying multiple swaps on
      * the wrapped atom directly, but not wanting to create an history
      * entry for each change. **DO NOT call this explicitly if using
-     * `History.reset()` / `History.swap()` etc.**
+     * {@link History.reset} / {@link History.swap} etc.**
      *
      * If no `state` is given, uses the wrapped atom's current state
      * value (user code SHOULD always call without arg).

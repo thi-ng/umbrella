@@ -1,10 +1,10 @@
 import { memoizeJ } from "@thi.ng/memoize";
-
 import { Stringer } from "./api";
 import { padLeft } from "./pad-left";
 
+
 /**
- * Returns `Stringer` which formats numbers to given precision.
+ * Returns {@link Stringer} which formats numbers to given precision.
  * Exceptions:
  *
  * - NaN => "NaN"
@@ -18,7 +18,7 @@ export const float: (prec: number) => Stringer<number> = memoizeJ(
 );
 
 /**
- * Similar to `float`, returns `Stringer` which formats numbers to given
+ * Similar to `float`, returns {@link Stringer} which formats numbers to given
  * character width & precision. Uses scientific notation if needed.
  *
  * Default precision: 3 fractional digits

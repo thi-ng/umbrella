@@ -4,7 +4,7 @@ import { $$reduce, reducer } from "../reduce";
 
 /**
  * Reducer which starts filling array with results from given `start`
- * index (default: 0). Use `fillN()` for typed array targets (same impl,
+ * index (default: 0). Use {@link fillN} for typed array targets (same impl,
  * but provides correct result type).
  *
  * @param start -
@@ -18,11 +18,14 @@ export function fill<T>(...args: any[]): any {
         return res;
     }
     let start = args[0] || 0;
-    return reducer<T[], T>(() => [], (acc, x) => ((acc[start++] = x), acc));
+    return reducer<T[], T>(
+        () => [],
+        (acc, x) => ((acc[start++] = x), acc)
+    );
 }
 
 /**
- * Like `fill()` reducer, but for numeric arrays (incl. typed arrays).
+ * Like {@link fill} reducer, but for numeric arrays (incl. typed arrays).
  *
  * @param start -
  */

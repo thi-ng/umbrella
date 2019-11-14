@@ -1,7 +1,14 @@
-import { IVector, VecOpV, VecOpVV, VecOpVN, VecOpVVV, VecOpVVN } from "./api";
+import {
+    IVector,
+    VecOpV,
+    VecOpVN,
+    VecOpVV,
+    VecOpVVN,
+    VecOpVVV
+} from "./api";
 
 /**
- * Vec2/3/4 view based buffer transformation for `VecOpVV` type ops and
+ * Vec2/3/4 view based buffer transformation for {@link VecOpVV} type ops and
  * supporting arbitrary component and element layouts of all input and
  * output buffers. The given pre-initialized vectors MUST be separate
  * instances, are used as sliding cursors / views of their respective
@@ -88,7 +95,7 @@ export const mapVV = (
 };
 
 /**
- * Like `mapVV`, but for `VecOpV` type ops and hence only using
+ * Like {@link mapVV}, but for {@link VecOpV} type ops and hence only using
  * single input.
  *
  * ```
@@ -129,7 +136,7 @@ export const mapV = (
 };
 
 /**
- * Like `mapVV`, but for `VecOpVN` type ops and hence using a single
+ * Like {@link mapVV}, but for {@link VecOpVN} type ops and hence using a single
  * vector input buffer `a` and a scalar `n`.
  *
  * @param op -
@@ -158,7 +165,7 @@ export const mapVN = (
 };
 
 /**
- * Like `mapVV`, but for `VecOpVVV` type ops and hence using three
+ * Like {@link mapVV}, but for {@link VecOpVVV} type ops and hence using three
  * vector input buffers `a`, `b`, `c`.
  *
  * @param op -
@@ -195,7 +202,7 @@ export const mapVVV = (
 };
 
 /**
- * Like `mapVV`, but for `VecOpVVN` type ops and hence using two
+ * Like {@link mapVV}, but for {@link VecOpVVN} type ops and hence using two
  * vector input buffers `a`, `b` and a scalar `n`.
  *
  * @param op -

@@ -3,6 +3,7 @@ import { Stringer } from "./api";
 /**
  * Formats given value `x` as Fortran style Hollerith string.
  *
+ * @example
  * ```ts
  * hstr("abc")  // "3Habc"
  * hstr(123.45) // "6H123.45"

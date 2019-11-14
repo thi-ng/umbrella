@@ -1,5 +1,10 @@
 import { minError } from "@thi.ng/math";
-import { distSq, mixCubic, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import {
+    distSq,
+    mixCubic,
+    ReadonlyVec,
+    Vec
+} from "@thi.ng/vectors";
 
 /**
  * Performs recursive search for closest point to `p` on cubic curve
@@ -8,7 +13,7 @@ import { distSq, mixCubic, ReadonlyVec, Vec } from "@thi.ng/vectors";
  * the search is terminated as soon as a point with a shorter *squared*
  * distance than `eps` is found.
  *
- * @see thi.ng/math/minError
+ * {@link @thi.ng/math#minError}
  *
  * @param p -
  * @param a -

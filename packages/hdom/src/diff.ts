@@ -38,7 +38,7 @@ const buildIndex = (n: number) => {
 };
 
 /**
- * See `HDOMImplementation` interface for further details.
+ * See {@link HDOMImplementation} interface for further details.
  *
  * @param opts -
  * @param impl - hdom implementation
@@ -209,7 +209,7 @@ const decOffsets = (offsets: any[], j: number, idx: number) => {
 };
 
 /**
- * Helper function for `diffTree()` to compute & apply the difference
+ * Helper function for {@link diffTree} to compute & apply the difference
  * between a node's `prev` and `curr` attributes.
  *
  * @param impl -
@@ -242,11 +242,11 @@ export const diffAttributes = <T>(
 };
 
 /**
- * Recursively attempts to call the `release` lifecycle method on every
- * element in given tree (branch), using depth-first descent. Each
- * element is checked for the presence of the `__release` control
- * attribute. If (and only if) it is set to `false`, further descent
- * into that element's branch is skipped.
+ * Recursively attempts to call the {@link ILifecycle.release} lifecycle
+ * method on every element in given tree (branch), using depth-first
+ * descent. Each element is checked for the presence of the `__release`
+ * control attribute. If (and only if) it is set to `false`, further
+ * descent into that element's branch is skipped.
  *
  * @param tag -
  */

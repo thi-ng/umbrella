@@ -229,8 +229,8 @@ export interface MultiFnBase<I> {
      */
     parents(id: PropertyKey): Set<PropertyKey>;
     /**
-     * Similar to `parents()`, but includes all transitive parent dispatch
-     * values for given dispatch value `id`.
+     * Similar to {@link MultiFnBase.parents}, but includes all
+     * transitive parent dispatch values for given dispatch value `id`.
      * @param id -
      */
     ancestors(id: PropertyKey): Set<PropertyKey>;

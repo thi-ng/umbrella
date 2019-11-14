@@ -14,7 +14,7 @@ const sin = Math.sin;
 
 /**
  * Converts polar vector `v` to cartesian coordinates and adds optional
- * `offset`. See `polar()` for reverse operation. If `out` is null,
+ * `offset`. See {@link polar} for reverse operation. If `out` is null,
  * modifies `v` in place.
  *
  * @param out -
@@ -25,7 +25,7 @@ export const cartesian: MultiVecOpVO<ReadonlyVec> = vop(1);
 
 /**
  * Converts 2D polar vector `v` to cartesian coordinates and adds
- * optional `offset`. See `polar()` for reverse operation. If `out` is
+ * optional `offset`. See {@link polar} for reverse operation. If `out` is
  * null, modifies `v` in place.
  *
  * @param out -
@@ -38,7 +38,7 @@ export const cartesian2 = cartesian.add(2, (out, a, b = ZERO2) =>
 
 /**
  * Converts 3D polar vector `v` to cartesian coordinates and adds
- * optional `offset`. See `polar()` for reverse operation. If `out` is
+ * optional `offset`. See {@link polar} for reverse operation. If `out` is
  * null, modifies `v` in place.
  *
  * @param out -

@@ -30,7 +30,7 @@ export interface StreamSyncOpts<A, B> extends IID<string> {
     xform: Transducer<IObjectOf<A>, B>;
     /**
      * If true, *no* input synchronization (waiting for values) is
-     * applied and `StreamSync` will emit potentially partially
+     * applied and {@link StreamSync} will emit potentially partially
      * populated tuple objects for each received input value. However,
      * as with the default behavior, tuples will retain the most recent
      * consumed value from other inputs.
@@ -67,14 +67,14 @@ export interface StreamSyncOpts<A, B> extends IID<string> {
 }
 
 /**
- * Similar to `StreamMerge`, but with extra synchronization of inputs.
- * Before emitting any new values, `StreamSync` collects values until at
- * least one has been received from *all* inputs. Once that's the case,
- * the collected values are sent as labeled tuple object to downstream
- * subscribers. Each value in the emitted tuple objects is stored under
- * their input stream's ID. Only the last value received from each input
- * is passed on. After the initial tuple has been emitted, you can
- * choose from two possible behaviors:
+ * Similar to {@link StreamMerge}, but with extra synchronization of
+ * inputs. Before emitting any new values, {@link StreamSync} collects
+ * values until at least one has been received from *all* inputs. Once
+ * that's the case, the collected values are sent as labeled tuple
+ * object to downstream subscribers. Each value in the emitted tuple
+ * objects is stored under their input stream's ID. Only the last value
+ * received from each input is passed on. After the initial tuple has
+ * been emitted, you can choose from two possible behaviors:
  *
  * 1) Any future change in any input will produce a new result tuple.
  *    These tuples will retain the most recently read values from other
@@ -84,10 +84,12 @@ export interface StreamSyncOpts<A, B> extends IID<string> {
  *    at least one new value again until another result tuple is
  *    produced.
  *
- * Any done inputs are automatically removed. By default, `StreamSync`
- * calls `done()` when the last active input is done, but this behavior
- * can be overridden via the `close` constructor option.
+ * Any done inputs are automatically removed. By default,
+ * {@link StreamSync} calls `done()` when the last active input is done,
+ * but this behavior can be overridden via the `close` constructor
+ * option.
  *
+ * @example
  * ```ts
  * const a = rs.stream();
  * const b = rs.stream();
@@ -105,9 +107,9 @@ export interface StreamSyncOpts<A, B> extends IID<string> {
  * to be incomplete, by default. To only allow complete tuples, also set
  * the `all` option to `false`.
  *
- * The synchronization is done via the `partitionSync()` transducer from
- * the {@link @thi.ng/transducers} package. See this function's docs for
- * further details.
+ * The synchronization is done via the {@link @thi.ng/transducers#partitionSync}
+ * transducer fro the {@link @thi.ng/transducers# | @thi.ng/transducers} package. See this function's
+ * docs for further details.
  *
  * {@link StreamSyncOpts}
  *

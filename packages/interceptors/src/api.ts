@@ -46,14 +46,14 @@ export const FX_STATE = "--state";
 /**
  * Event ID to trigger redo action.
  * See `EventBus.addBuiltIns()` for further details.
- * Also see `snapshot()` interceptor docs.
+ * Also see {@link snapshot} interceptor docs.
  */
 export const EV_REDO = "--redo";
 
 /**
  * Event ID to trigger undo action.
  * See `EventBus.addBuiltIns()` for further details.
- * Also see `snapshot()` interceptor docs.
+ * Also see {@link snapshot} interceptor docs.
  */
 export const EV_UNDO = "--undo";
 

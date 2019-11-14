@@ -4,8 +4,11 @@ import { AnyArray } from "./api";
 
 /**
  * Shuffles the items in the given index range of array `buf` using
- * Fisher-yates and optional `rnd` PRNG. If neither `start` / `end` are
- * given, the entire array will be shuffled. Mutates original array.
+ * Fisher-yates and optional `rnd` PRNG.
+ *
+ * @remarks
+ * If neither `start` / `end` are given, the entire array will be
+ * shuffled. Mutates original array.
  *
  * @param buf -
  * @param n -
@@ -36,10 +39,10 @@ export const shuffleRange = <T extends AnyArray>(
 };
 
 /**
- * Applies `shuffleRange()` to the given array. If `n` is given, only
- * the first `n` items are shuffled. Mutates original array.
+ * Applies {@link shuffleRange} to the given array. If `n` is given,
+ * only the first `n` items are shuffled. Mutates original array.
  *
- * @see shuffleRange
+ * {@link shuffleRange}
  *
  * @param buf -
  * @param n -

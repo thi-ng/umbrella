@@ -35,7 +35,7 @@ const rayRect = (
 };
 
 /**
- * Like to `rayRect()`, but for 3D (AABB).
+ * Like to {@link rayRect}, but for 3D (AABB).
  *
  * @param rpos - ray origin
  * @param dir - ray dir

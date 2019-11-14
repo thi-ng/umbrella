@@ -23,6 +23,6 @@ export const headingXZ = (a: ReadonlyVec) => atan2Abs(a[2], a[0]);
 export const headingYZ = (a: ReadonlyVec) => atan2Abs(a[2], a[1]);
 
 /**
- * Same as `headingXY`
+ * Same as {@link headingXY}
  */
 export const heading = headingXY;

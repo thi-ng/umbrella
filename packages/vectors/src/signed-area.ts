@@ -12,9 +12,9 @@ import { ReadonlyVec } from "./api";
  *
  * Same as: `cross2(sub2([], b, a), sub2([], c, a))`
  *
- * @see corner2
- * @see clockwise2
- * @see cross2
+ * - {@link corner2}
+ * - {@link clockwise2}
+ * - {@link cross2}
  *
  * @param a -
  * @param b -
@@ -27,7 +27,7 @@ export const signedArea2 = (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec) => {
 };
 
 /**
- * Same as `signedArea2`, but expects individual vector component args,
+ * Same as {@link signedArea2}, but expects individual vector component args,
  * instead of vectors.
  *
  * @param ax -

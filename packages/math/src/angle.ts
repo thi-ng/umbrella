@@ -129,7 +129,7 @@ const __fastCos = (x: number) => {
 };
 
 /**
- * Fast cosine approximation using `normCos()` (polynomial). Max. error
+ * Fast cosine approximation using {@link normCos} (polynomial). Max. error
  * ~0.00059693
  *
  * In [0 .. 2π] interval, approx. 18-20% faster than `Math.cos` on V8.
@@ -152,7 +152,7 @@ export const fastCos = (theta: number) => {
 };
 
 /**
- * @see fastCos
+ * {@link fastCos}
  *
  * @param theta - in radians
  */

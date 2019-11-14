@@ -10,7 +10,8 @@ import { normalize } from "./normalize";
 
 /**
  * Sets `v` to random vector, with each component in interval `[n..m)`.
- * If no `rnd` instance is given, uses `SYSTEM`, i.e. `Math.random`.
+ * If no `rnd` instance is given, uses {@link @thi.ng/random#SYSTEM},
+ * i.e. `Math.random`.
  * Creates new vector if `v` is null.
  *
  * @param v -
@@ -32,8 +33,9 @@ export const [random, random2, random3, random4] = defHofOp<
 );
 
 /**
- * Sets `v` to random vector, normalized to length `n` (default: 1). If no
- * `rnd` instance is given, uses `SYSTEM`, i.e. `Math.random`.
+ * Sets `v` to random vector, normalized to length `n` (default: 1). If
+ * no `rnd` instance is given, uses {@link @thi.ng/random#SYSTEM}, i.e.
+ * `Math.random`.
  *
  * @param v -
  * @param n -

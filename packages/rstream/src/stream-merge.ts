@@ -15,7 +15,7 @@ export interface StreamMergeOpts<A, B> extends IID<string> {
      */
     xform: Transducer<A, B>;
     /**
-     * If true (default), the `StreamMerge` closes once all inputs are
+     * If true (default), the {@link StreamMerge} closes once all inputs are
      * exhausted. Set to false to keep the instance alive, regardless of
      * inputs.
      */
@@ -31,12 +31,13 @@ export interface StreamMergeOpts<A, B> extends IID<string> {
 }
 
 /**
- * Returns a new `StreamMerge` instance, a subscription type consuming
+ * Returns a new {@link StreamMerge} instance, a subscription type consuming
  * inputs from multiple inputs and passing received values on to any
  * subscribers. Input streams can be added and removed dynamically. By
- * default, `StreamMerge` calls `done()` when the last active input is
+ * default, {@link StreamMerge} calls `done()` when the last active input is
  * done, but this behavior can be overridden via the `close` option.
  *
+ * @example
  * ```ts
  * merge({
  *     // input streams w/ different frequencies
@@ -60,6 +61,7 @@ export interface StreamMergeOpts<A, B> extends IID<string> {
  * Use the `labeled()` transducer for each input to create a stream of
  * labeled values and track their provenance:
  *
+ * @example
  * ```ts
  * merge({
  *     src: [
@@ -75,7 +77,7 @@ export interface StreamMergeOpts<A, B> extends IID<string> {
  * // ["b", 30]
  * ```
  *
- * @see StreamMergeOpts
+ * {@link StreamMergeOpts}
  *
  * @param opts -
  */

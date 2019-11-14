@@ -5,8 +5,8 @@ import { signedArea2 } from "./signed-area";
 /**
  * Syntax sugar for `sign(signedArea2(a, b, c))`.
  *
- * @see thi.ng/math/sign
- * @see signedArea2
+ * - {@link @thi.ng/math#sign}
+ * - {@link signedArea2}
  *
  * @param a -
  * @param b -

@@ -41,10 +41,10 @@ const keys = memoize1<number, PropertyKey[]>((size: number) => [
  * following interfaces:
  *
  * - `Iterable` (ES6)
- * - `ICopy`
- * - `IEmpty`
- * - `IEqualsDelta`
- * - `IVector`
+ * - {@link @thi.ng/api#ICopy}
+ * - {@link @thi.ng/api#IEmpty}
+ * - {@link @thi.ng/api#IEqualsDelta}
+ * - {@link IVector}
  * - `Object.toString()`
  *
  * Read/write access for the following properties:

@@ -22,7 +22,7 @@ import { setS4 } from "./sets";
 
 export class Vec4 extends AVec implements IHash<number>, IVector<Vec4> {
     /**
-     * Returns array of memory mapped `Vec4` instances using given
+     * Returns array of memory mapped {@link Vec4} instances using given
      * backing array and stride settings: The `cstride` is the step size
      * between individual XYZ vector components. `estride` is the step
      * size between successive vectors. This arrangement allows for
@@ -46,7 +46,7 @@ export class Vec4 extends AVec implements IHash<number>, IVector<Vec4> {
     }
 
     /**
-     * Merges given `src` iterable of `Vec4`s into single array `buf`.
+     * Merges given `src` iterable of {@link Vec4}s into single array `buf`.
      * Vectors will be arranged according to given component and element
      * strides, starting at `start` index. It's the user's
      * responsibility to ensure the target buffer has sufficient

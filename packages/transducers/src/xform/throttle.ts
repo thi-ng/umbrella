@@ -4,7 +4,7 @@ import { compR } from "../func/compr";
 import { iterator1 } from "../iterator";
 
 /**
- * Similar to `filter`, but works with possibly stateful predicates
+ * Similar to {@link filter}, but works with possibly stateful predicates
  * to achieve rate limiting capabilities. Emits only values when
  * predicate returns a truthy value.
  *
@@ -14,7 +14,7 @@ import { iterator1 } from "../iterator";
  * predicate MUST be done in this function and the function MUST
  * return a 1-arg function, the actual predicate applied to each value.
  *
- * Also see: `throttleTime()`.
+ * Also see: {@link throttleTime}.
  *
  * @param pred -
  * @param src -

@@ -18,6 +18,8 @@ const compS = (k: PropertyKey, f: (o: any, v: any) => any) => (
 /**
  * Converts the given key path to canonical form (array).
  *
+ * @example
+ * @example
  * ```ts
  * toPath("a.b.c");
  * // ["a", "b", "c"]
@@ -75,6 +77,7 @@ export const exists = (obj: any, path: Path) => {
  * Supports any `[]`-indexable data structure (arrays, objects,
  * strings).
  *
+ * @remarks
  * If `path` is given as string, it will be split using `.`. Returns
  * function which accepts single object and when called, returns value
  * at given path.
@@ -85,8 +88,10 @@ export const exists = (obj: any, path: Path) => {
  * If `path` is an empty string or array, the returned getter will
  * simply return the given state arg (identity function).
  *
- * Also see: `getIn()`
+ * Also see: {@link getIn}
  *
+ * @example
+ * @example
  * ```ts
  * g = getter("a.b.c");
  * // or
@@ -161,8 +166,9 @@ export const getter = (path: Path) => {
  * If `path` is an empty string or array, the returned setter will
  * simply return the new value.
  *
- * Also see: `setIn()`, `updateIn()`, `deleteIn()`
+ * Also see: {@link setIn}, {@link updateIn}, {@link deleteIn}
  *
+ * @example
  * ```ts
  * s = setter("a.b.c");
  * // or
@@ -182,6 +188,7 @@ export const getter = (path: Path) => {
  * given object retain their original values to provide efficient
  * structural sharing / re-use.
  *
+ * @example
  * ```ts
  * s = setter("a.b.c");
  *
@@ -242,6 +249,7 @@ export const setter = (path: Path): ((s: any, v: any) => any) => {
 /**
  * Immediate use getter, i.e. same as: `getter(path)(state)`.
  *
+ * @example
  * ```ts
  * getIn({a: {b: {c: 23}}}, "a.b.c");
  * // 23
@@ -255,6 +263,7 @@ export const getIn = (state: any, path: Path) => getter(path)(state);
 /**
  * Immediate use setter, i.e. same as: `setter(path)(state, val)`.
  *
+ * @example
  * ```ts
  * setIn({}, "a.b.c", 23);
  * // {a: {b: {c: 23}}}
@@ -267,11 +276,12 @@ export const setIn = (state: any, path: Path, val: any) =>
     setter(path)(state, val);
 
 /**
- * Like `setIn()`, but takes any number of path-value pairs and applies
- * them in sequence by calling `setIn()` for each. Any key paths missing
+ * Like {@link setIn}, but takes any number of path-value pairs and applies
+ * them in sequence by calling {@link setIn} for each. Any key paths missing
  * in the data structure will be created. Does *not* mutate original
- * (instead use `mutInMany()` for this purpose).
+ * (instead use {@link mutInMany} for this purpose).
  *
+ * @example
  * ```ts
  * setInMany({}, "a.b", 10, "x.y.z", 20)
  * // { a: { b: 10 }, x: { y: { z: 20 } } }
@@ -290,13 +300,14 @@ export const setInMany = (state: any, ...pairs: any[]) => {
 };
 
 /**
- * Similar to `setter()`, returns a function to update values at given
+ * Similar to {@link setter}, returns a function to update values at given
  * `path` using provided update `fn`. The returned function accepts a
  * single object / array and applies `fn` to current path value (incl.
  * any additional/optional arguments passed) and uses result as new
  * value. Does not modify original state (unless given function does so
  * itself).
  *
+ * @example
  * ```ts
  * add = updater("a.b", (x, n) => x + n);
  *
@@ -315,11 +326,12 @@ export const updater = (path: Path, fn: UpdateFn<any>) => {
 };
 
 /**
- * Similar to `setIn()`, but applies given function to current path
- * value (incl. any additional/optional arguments passed to `updateIn`)
+ * Similar to {@link setIn}, but applies given function to current path
+ * value (incl. any additional/optional arguments passed to {@link updateIn})
  * and uses result as new value. Does not modify original state (unless
  * given function does so itself).
  *
+ * @example
  * ```ts
  * add = (x, y) => x + y;
  * updateIn({a: {b: {c: 23}}}, "a.b.c", add, 10);
@@ -341,11 +353,12 @@ export const updateIn = (
     );
 
 /**
- * Uses `updateIn()` and returns updated state with key for given path
+ * Uses {@link updateIn} and returns updated state with key for given path
  * removed. Does not modify original state.
  *
  * Returns `undefined` if `path` is an empty string or array.
  *
+ * @example
  * ```ts
  * deleteIn({a:{b:{c: 23}}}, "a.b.c");
  * // {a: {b: {}}}
@@ -363,7 +376,7 @@ export const deleteIn = (state: any, path: Path) => {
 };
 
 /**
- * Higher-order function, similar to `setter()`. Returns function which
+ * Higher-order function, similar to {@link setter}. Returns function which
  * when called mutates given object/array at given path location and
  * bails if any intermediate path values are non-indexable (only the
  * very last path element can be missing in the actual object
@@ -430,6 +443,7 @@ export const mutator = (path: Path) => {
 /**
  * Immediate use mutator, i.e. same as: `mutator(path)(state, val)`.
  *
+ * @example
  * ```ts
  * mutIn({ a: { b: [10, 20] } }, "a.b.1", 23);
  * // { a: { b: [ 10, 23 ] } }
@@ -447,10 +461,11 @@ export const mutIn = (state: any, path: Path, val: any) =>
     mutator(path)(state, val);
 
 /**
- * Like `mutIn()`, but takes any number of path-value pairs and applies
+ * Like {@link mutIn}, but takes any number of path-value pairs and applies
  * them in sequence. All key paths must already be present in the given
  * data structure until their penultimate key.
  *
+ * @example
  * ```ts
  * mutInMany({a: {b: 1}, x: {y: {z: 2}}}, "a.b", 10, "x.y.z", 20)
  * // { a: { b: 10 }, x: { y: { z: 20 } } }

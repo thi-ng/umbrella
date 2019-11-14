@@ -3,12 +3,11 @@ import { LitCallback, Matcher, RES_PARTIAL } from "./api";
 import { result } from "./result";
 
 /**
- * String only. Returns a matcher which consumes input until the given
- * string could be matched. If successful, calls `callback` with string
- * recorded so far (excluding the matched terminator string) and returns
- * `Match.FULL` result. Else `Match.PARTIAL`.
- *
- * @see until
+ * String version of {@link until}. Returns a matcher which consumes
+ * input until the given string could be matched. If successful, calls
+ * `callback` with string recorded so far (excluding the matched
+ * terminator string) and returns `Match.FULL` result. Else
+ * `Match.PARTIAL`.
  *
  * @param str -
  * @param callback -
@@ -30,9 +29,7 @@ export const untilStr = <C, R>(
 };
 
 /**
- * Generic array version of `untilStr()`.
- *
- * @see untilStr
+ * Generic array version of {@link untilStr}.
  *
  * @param str -
  * @param callback -

@@ -46,7 +46,7 @@ export function inscribedSquare(...args: any[]) {
 
 /**
  * Returns square inscribed in given (unrotated) hexagon. The hexagon
- * can be given as `Polygon` or centroid and edge length.
+ * can be given as {@link Polygon} or centroid and edge length.
  *
  * @param hex -
  */

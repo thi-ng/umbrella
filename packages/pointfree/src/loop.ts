@@ -10,6 +10,7 @@ import { $stackFn } from "./word";
  *
  * ( -- ? )
  *
+ * @example
  * ```ts
  * run([loop([dup, ispos], [dup, print, dec])], [[3]])
  * // 3
@@ -36,7 +37,7 @@ export const loop = (test: StackProc, body: StackProc) => {
 };
 
 /**
- * Non-HOF version of `loop`. Expects test result and body quotation /
+ * Non-HOF version of {@link loop}. Expects test result and body quotation /
  * word on d-stack.
  *
  * ( testq bodyq -- ? )
@@ -54,6 +55,7 @@ export const loopq = (ctx: StackContext) => {
  * Executes given `body` word/quotation `n` times. In each iteration
  * pushes current counter on d-stack prior to executing body.
  *
+ * @example
  * ```ts
  * pf.run([3, ["i=", pf.swap, pf.add, pf.print], pf.dotimes])
  * // i=0

@@ -6,7 +6,7 @@ import { unionBounds } from "./union-bounds";
 /**
  * Computes the total bounds for the given shape collection, which
  * should either contain only 2D or 3D types. No mixed dimensions are
- * allowed! Currently the `bounds` function must be passed in as arg to
+ * allowed! Currently the {@link bounds} function must be passed in as arg to
  * avoid circular module dependencies.
  *
  * @param shapes -

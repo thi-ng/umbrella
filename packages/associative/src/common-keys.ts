@@ -1,5 +1,5 @@
 /**
- * Like `commonKeysObj()`, but for ES6 Maps.
+ * Like {@link commonKeysObj}, but for ES6 Maps.
  *
  * @param a -
  * @param b -
@@ -20,6 +20,7 @@ export const commonKeysMap = <K>(
  * Returns array of keys present in both args, i.e. the set intersection
  * of the given objects' key / property sets.
  *
+ * @example
  * ```ts
  * commonKeys({ a: 1, b: 2 }, { c: 10, b: 20, a: 30 })
  * // [ "a", "b" ]

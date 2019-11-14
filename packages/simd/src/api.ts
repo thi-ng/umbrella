@@ -75,7 +75,7 @@ export interface SIMD {
     /**
      * FIXME waiting for native impl of SIMD instr
      *
-     * @see sqrt4_f32
+     * {@link SIMD.sqrt4_f32}
      *
      * @param out -
      * @param a -
@@ -165,7 +165,7 @@ export interface SIMD {
     /**
      * FIXME waiting for native impl of SIMD instr
      *
-     * @see invsqrt4_f32
+     * {@link SIMD.invsqrt4_f32}
      *
      * @param out -
      * @param a -

@@ -8,6 +8,7 @@ import { set } from "./set";
  * vector is used as write cursor over the underlying buffer and will be
  * filled with the components of vector `v`.
  *
+ * @example
  * ```ts
  * fill(
  *   new Vec2(new Float32Array(12)),

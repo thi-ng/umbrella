@@ -5,9 +5,9 @@ import { __sortOpts } from "../internal/sort-opts";
 import { $iter, iterator } from "../iterator";
 
 /**
- * Transducer. Similar to `partitionSort()`, however uses proper sliding
+ * Transducer. Similar to {@link partitionSort}, however uses proper sliding
  * window and insertion sort instead of fully sorting window as done by
- * `partitionSort()`.
+ * {@link partitionSort}.
  *
  * ```
  * [...streamSort(4, [5,9,2,6,4,1,3,8,7,0])]

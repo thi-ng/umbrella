@@ -26,8 +26,8 @@ const __vals = (inst: ArraySet<any>) => __private.get(inst)!.vals;
  * and by the default uses {@link @thi.ng/equiv#equiv} for equivalence
  * checking.
  *
- * Additionally, the type also implements the `ICopy`, `IEmpty` and
- * `IEquiv` interfaces itself.
+ * Additionally, the type also implements the {@link @thi.ng/api#ICopy}, {@link @thi.ng/api#IEmpty} and
+ * {@link @thi.ng/api#IEquiv} interfaces itself.
  */
 export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
     constructor(

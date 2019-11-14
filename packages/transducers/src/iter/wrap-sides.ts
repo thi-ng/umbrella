@@ -9,8 +9,8 @@ import { inRange } from "@thi.ng/math";
  * to same value as `numLeft`, therefore wraps both sides by default and
  * throws error if either `nXXX` < 0 or larger than `src.length`.
  *
- * @see extendSides
- * @see padSides
+ * - {@link extendSides}
+ * - {@link padSides}
  *
  * @param src -
  * @param numLeft -

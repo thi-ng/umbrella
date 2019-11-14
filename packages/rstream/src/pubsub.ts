@@ -32,10 +32,13 @@ export interface PubSubOpts<A, B> {
 /**
  * Topic based stream splitter. Applies `topic` function to each
  * received value and only forwards it to child subscriptions for
- * returned topic. The actual topic (return value from `topic` fn) can
- * be of any type, apart from `undefined`. Complex topics (e.g objects /
- * arrays) are allowed and they're matched with registered topics using
- * {@link @thi.ng/equiv#quiv} by default (but customizable via `equiv`
+ * returned topic.
+ *
+ * @remarks
+ * The actual topic (return value from `topic` fn) can be of any type,
+ * apart from `undefined`. Complex topics (e.g objects / arrays) are
+ * allowed and they're matched with registered topics using
+ * {@link @thi.ng/equiv#equiv} by default (but customizable via `equiv`
  * option). Each topic can have any number of subscribers.
  *
  * If a transducer is specified for the `PubSub`, it is always applied
@@ -43,9 +46,10 @@ export interface PubSubOpts<A, B> {
  * the topic function will receive the transformed inputs.
  *
  * PubSub supports dynamic topic subscriptions and unsubscriptions via
- * `subscribeTopic()` and `unsubscribeTopic()`. However, the standard
- * `subscribe()` / `unsubscribe()` methods are NOT supported (since
- * meaningless) and will throw an error! `unsubscribe()` can only be
+ * {@link PubSub.subscribeTopic} and {@link PubSub.unsubscribeTopic}.
+ * However, the standard {@link ISubscribable.subscribe} /
+ * {@link ISubscribable.unsubscribe} methods are NOT supported (since
+ * meaningless here) and will throw an error! `unsubscribe` can only be
  * called WITHOUT argument to unsubscribe the entire `PubSub` instance
  * (incl. all topic subscriptions) from the parent stream.
  */
@@ -68,14 +72,14 @@ export class PubSub<A, B> extends Subscription<A, B> {
     }
 
     /**
-     * Unsupported. Use `subscribeTopic()` instead.
+     * Unsupported. Use {@link .subscribeTopic} instead.
      */
     subscribe(): Subscription<B, any> {
         return unsupported(`use subscribeTopic() instead`);
     }
 
     /**
-     * Unsupported. Use `subscribeTopic()` instead.
+     * Unsupported. Use {@link .subscribeTopic} instead.
      */
     transform(): Subscription<B, any> {
         return unsupported(`use subscribeTopic() instead`);
@@ -151,7 +155,7 @@ export class PubSub<A, B> extends Subscription<A, B> {
 }
 
 /**
- * Creates a new `PubSub` instance. See class docs for further details.
+ * Creates a new {@link PubSub} instance. See class docs for further details.
  *
  * @param opts -
  */

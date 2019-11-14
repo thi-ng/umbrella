@@ -47,7 +47,7 @@ export interface TunnelOpts<A> {
 }
 
 /**
- * Creates a new worker `Tunnel` instance with given options. This
+ * Creates a new worker {@link Tunnel} instance with given options. This
  * subscription type processes received values via the configured
  * worker(s) and then passes any values received back from the worker(s)
  * on to downstream subscriptions, thereby allowing workers to be used

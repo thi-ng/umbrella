@@ -34,7 +34,7 @@ export const transform23 = (
  * Creates 4x4 TRS transformation matrix from given translation vector,
  * rotation angles (given as 3D vector) and scale factor/vector.
  * Internally, uses a quaternion for constructing the rotation matrix
- * part. The quaternion is created via `quatFromEuler()` with ZYX
+ * part. The quaternion is created via {@link quatFromEuler} with ZYX
  * ordering.
  *
  * @param out -

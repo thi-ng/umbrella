@@ -18,7 +18,7 @@ import { resolveRoot } from "./utils";
  * of these values should implement the {@link @thi.ng/api#IDeref}
  * interface (e.g. atoms, cursors, views, rstreams etc.). This feature
  * can be used to define dynamic contexts linked to the main app state,
- * e.g. using derived views provided by {@link @thi.ng/atom}.
+ * e.g. using derived views provided by {@link @thi.ng/atom# | @thi.ng/atom}.
  *
  * **Selective updates**: No updates will be applied if the given hiccup
  * tree is `undefined` or `null` or a root component function returns no

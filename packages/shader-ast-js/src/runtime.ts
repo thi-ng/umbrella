@@ -13,15 +13,16 @@ const clampCoord = (x: number, maxW: number, w?: number) =>
     w !== undefined ? Math.min(x + w, maxW) : maxW;
 
 /**
- * Low-level function used by `canvasRenderer()` and `renderToBuffer()`.
- * Applies shader function `fn` to each pixel in the given region of the
- * `u32` raw ABGR buffer (a `Uint32Array`). The region is defined by the
- * top-left `x`, `y` coords and `w`, `h` dimensions. The remaining
- * parameters `bufW`, `bufH`, `bufOffsetX`, `bufOffsetY` and `imgH` are
- * used to define the actual location of the given buffer in the full
- * image to be computed and to support use cases where the target array
- * only defines a sub-region of the full image (e.g. when splitting
- * rendering over multiple workers, each with their own buffer).
+ * Low-level function used by {@link canvasRenderer} and
+ * {@link renderBuffer}. Applies shader function `fn` to each pixel in
+ * the given region of the `u32` raw ABGR buffer (a `Uint32Array`). The
+ * region is defined by the top-left `x`, `y` coords and `w`, `h`
+ * dimensions. The remaining parameters `bufW`, `bufH`, `bufOffsetX`,
+ * `bufOffsetY` and `imgH` are used to define the actual location of the
+ * given buffer in the full image to be computed and to support use
+ * cases where the target array only defines a sub-region of the full
+ * image (e.g. when splitting rendering over multiple workers, each with
+ * their own buffer).
  *
  * @param fn -
  * @param u32 -
@@ -65,10 +66,11 @@ export const renderPixels = (
 };
 
 /**
- * Takes a `PackedBuffer` pixel buffer from thi.ng/pixel w/ `ABGR8888`
- * format, an optional buffer local region defined by `x`, `y`, `w`, `h`
- * and applies shader function `fn` to each pixel in that region (or
- * full buffer by default).
+ * Takes a {@link @thi.ng/pixel#PackedBuffer} pixel buffer from
+ * thi.ng/pixel w/ {@link @thi.ng/pixel#ABGR8888} format, an optional
+ * buffer local region defined by `x`, `y`, `w`, `h` and applies shader
+ * function `fn` to each pixel in that region (or full buffer by
+ * default).
  *
  * In case the buffer only defines a sub-region of a larger image,
  * `bufOffsetX`, `bufOffsetY` and `imgH` can be given to configure the

@@ -8,6 +8,7 @@ import { sub3 } from "./sub";
  * by given 3 input vectors. If `normalize` is true (default), the
  * result vector will be normalized.
  *
+ * @example
  * ```ts
  * orthoNormal3([], [0, 0, 0], [1, 0, 0], [0, 1, 0])
  * // [0, 0, 1]

@@ -4,7 +4,7 @@ import { Subscription } from "./subscription";
 import { nextID } from "./utils/idgen";
 
 /**
- * A `MetaStream` is a subscription type which transforms each incoming
+ * A {@link MetaStream} is a subscription type which transforms each incoming
  * value into a new stream, subscribes to it (via an hidden / internal
  * subscription) and then only passes values from that stream to its own
  * subscribers. If a new value is received, the meta stream first
@@ -47,6 +47,7 @@ import { nextID } from "./utils/idgen";
  * you'll need to add a dummy subscription to each in order to keep them
  * alive and support dynamic switching between them. See issue #74
  *
+ * @example
  * ```ts
  * a = fromIterable(tx.repeat("a"), 1000);
  * b = fromIterable(tx.repeat("b"), 1000);

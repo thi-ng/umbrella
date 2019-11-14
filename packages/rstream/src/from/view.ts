@@ -6,7 +6,7 @@ import { Stream } from "../stream";
 import { nextID } from "../utils/idgen";
 
 /**
- * Similar to `fromAtom()`, but creates an eager derived view for a
+ * Similar to {@link fromAtom}, but creates an eager derived view for a
  * nested value in atom / cursor and yields stream of its value changes.
  * Views are readonly versions of Cursors and more lightweight. The view
  * checks for value changes with given `equiv` predicate
@@ -21,9 +21,10 @@ import { nextID } from "../utils/idgen";
  * When the stream is cancelled the view is destroyed as well.
  *
  * See:
- * - fromAtom()
- * - @thi.ng/atom
+ * - {@link fromAtom}
+ * - {@link @thi.ng/atom# | @thi.ng/atom}
  *
+ * @example
  * ```ts
  * db = new Atom({a: 1, b: {c: 2}});
  *

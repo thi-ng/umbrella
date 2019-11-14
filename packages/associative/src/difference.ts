@@ -24,7 +24,7 @@ export const difference = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
 };
 
 /**
- * Reducer version of `difference`. If `src` is given returns the
+ * Reducer version of {@link difference}. If `src` is given returns the
  * reduced difference of given inputs, else merely returns a reducer to
  * be used with {@link @thi.ng/transducers#reduce} /
  * {@link @thi.ng/transducers#transduce} functions.

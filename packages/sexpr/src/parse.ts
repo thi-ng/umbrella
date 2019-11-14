@@ -9,7 +9,7 @@ import {
 } from "./api";
 import { tokenize } from "./tokenize";
 
-class ParseError extends Error {
+export class ParseError extends Error {
     line: number;
     col: number;
 
@@ -21,10 +21,10 @@ class ParseError extends Error {
 }
 
 /**
- * Takes a `src` string or `Token` iteratable and parses it into an AST,
- * then returns tree's root node. Throws `ParserError` if the token
- * order causes illegal nesting. The error includes `line` and `column`
- * information of the offending token.
+ * Takes a `src` string or {@link Token} iteratable and parses it into
+ * an AST, then returns tree's root node. Throws {@link ParseError} if
+ * the token order causes illegal nesting. The error includes `line` and
+ * `column` information of the offending token.
  *
  * @param src -
  * @param opts -

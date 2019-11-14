@@ -5,8 +5,9 @@ import { fromPromise } from "./promise";
 /**
  * Wraps given promises in `Promise.all()` to yield stream of results in
  * same order as arguments, then closes. If any of the promises rejects,
- * all others do too and calls `error()` in subscribers.
+ * all others do too and calls {@link ISubscriber.error} in subscribers.
  *
+ * @example
  * ```ts
  * rs.fromPromises([
  *     Promise.resolve(1),
@@ -22,6 +23,7 @@ import { fromPromise } from "./promise";
  * If individual error handling is required, an alternative is below
  * (however this approach provides no ordering guarantees):
  *
+ * @example
  * ```ts
  * rs.fromIterable([
  *     Promise.resolve(1),

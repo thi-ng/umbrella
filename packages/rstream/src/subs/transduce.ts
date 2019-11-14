@@ -8,6 +8,7 @@ import { Subscription } from "../subscription";
  * Once the input is done the promise will resolve with the final
  * reduced result (or fail with error).
  *
+ * @example
  * ```ts
  * rs.transduce(
  *   rs.fromIterable(tx.range(10)),

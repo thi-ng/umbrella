@@ -31,7 +31,7 @@ export const run = (
 };
 
 /**
- * Like `run()`, but returns unwrapped result. Syntax sugar for:
+ * Like {@link run}, but returns unwrapped result. Syntax sugar for:
  * `unwrap(run(...),n)`
  *
  * @param prog -
@@ -42,7 +42,7 @@ export const runU = (prog: StackProc, ctx?: StackContext, n = 1) =>
     unwrap(run(prog, ctx), n);
 
 /**
- * Like `run()`, but returns result environment. Syntax sugar for:
+ * Like {@link run}, but returns result environment. Syntax sugar for:
  * `run(...)[2]`
  *
  * @param prog -

@@ -102,7 +102,7 @@ export interface IGridLayout extends ILayout<[number, number], LayoutBox> {
     spansForSize(w: number, h: number): [number, number];
 
     /**
-     * Returns a squared `LayoutBox` based on this layout's column
+     * Returns a squared {@link LayoutBox} based on this layout's column
      * width. This box will consume `ceil(columnWidth / rowHeight)`
      * rows, but the returned box height might be less to satisfy the
      * square constraint.
@@ -111,7 +111,7 @@ export interface IGridLayout extends ILayout<[number, number], LayoutBox> {
 
     /**
      * Requests a `spans` sized cell from this layout (via `.next()`)
-     * and creates and returns a new child `GridLayout` for the returned
+     * and creates and returns a new child {@link GridLayout} for the returned
      * box / grid cell. This child layout is configured to use `cols`
      * columns and shares same `gap` as this (parent) layout. The
      * configured row span only acts as initial minimum vertical space

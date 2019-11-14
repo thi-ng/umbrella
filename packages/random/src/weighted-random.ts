@@ -3,7 +3,7 @@ import { SYSTEM } from "./system";
 
 /**
  * Returns a no-arg function which produces a random choice of given
- * weighted `choices` and using given `IRandom` instance (default
+ * weighted `choices` and using given {@link IRandom} instance (default
  * {@link SYSTEM}. If `weights` are given, it must be the same size as
  * `choices`. If omitted, each choice will have same probability.
  *

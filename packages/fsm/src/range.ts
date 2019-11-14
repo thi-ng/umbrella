@@ -56,7 +56,7 @@ export const alpha = <C, R>(
     );
 
 /**
- * Combination of `digit()` and `alpha()`.
+ * Combination of {@link digit} and {@link alpha}.
  *
  * @param success -
  * @param fail -

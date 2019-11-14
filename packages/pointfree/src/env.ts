@@ -45,7 +45,7 @@ export const store = (ctx: StackContext) => (
 );
 
 /**
- * Higher order word. Similar to `load`, but always uses given
+ * Higher order word. Similar to {@link load}, but always uses given
  * preconfigured `key` instead of reading it from d-stack at runtime
  * (also slightly faster). Throws error if var doesn't exist.
  *
@@ -61,7 +61,7 @@ export const loadkey = (key: PropertyKey) => (ctx: StackContext) => {
 };
 
 /**
- * Higher order word. Similar to `store`, but always uses given
+ * Higher order word. Similar to {@link store}, but always uses given
  * preconfigure `key` instead of reading it from d-stack at runtime
  * (also slightly faster).
  *

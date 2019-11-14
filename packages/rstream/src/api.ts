@@ -19,7 +19,7 @@ export const enum State {
 }
 
 /**
- * Closing behavior for `StreamMerge` and `StreamSync`.
+ * Closing behavior for {@link StreamMerge} and {@link StreamSync}.
  */
 export const enum CloseMode {
     NEVER,

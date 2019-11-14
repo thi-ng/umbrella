@@ -32,7 +32,7 @@ export function* iterator<A, B>(
 }
 
 /**
- * Optimized version of `iterator()` for transducers which are
+ * Optimized version of {@link iterator} for transducers which are
  * guaranteed to:
  *
  * 1) Only produce none or a single result per input
@@ -63,7 +63,7 @@ export function* iterator1<A, B>(
 
 /**
  * Helper function used by various transducers to wrap themselves as
- * transforming iterators. Delegates to `iterator1()` by default.
+ * transforming iterators. Delegates to {@link iterator1} by default.
  *
  * @param xform -
  * @param args -

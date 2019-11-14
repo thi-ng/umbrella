@@ -21,6 +21,7 @@ import {
 /**
  * Returns base type for given term. Used for array ops.
  *
+ * @example
  * ```ts
  * itemType("vec2[]") => "vec2"
  * ```

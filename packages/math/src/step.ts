@@ -23,7 +23,7 @@ export const smoothStep = (edge: number, edge2: number, x: number) => {
 };
 
 /**
- * Similar to `smoothStep()` but using different polynomial.
+ * Similar to {@link smoothStep} but using different polynomial.
  *
  * @param edge -
  * @param edge2 -

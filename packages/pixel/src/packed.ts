@@ -300,7 +300,7 @@ export class PackedBuffer {
 }
 
 /**
- * Syntax sugar for `PackedBuffer` ctor.
+ * Syntax sugar for {@link PackedBuffer} ctor.
  *
  * @param w -
  * @param h -

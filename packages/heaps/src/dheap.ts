@@ -8,7 +8,7 @@ import { Heap } from "./heap";
  * = 4) and ordering via user-supplied comparator. By default,
  * implements min-heap ordering and uses
  * {@link @thi.ng/compare#compare}. The arity `d` must be >= 2 (default:
- * 4). If `d=2`, the default binary `Heap` implementation will be
+ * 4). If `d=2`, the default binary {@link Heap} implementation will be
  * faster.
  *
  * {@link https://en.wikipedia.org/wiki/D-ary_heap }

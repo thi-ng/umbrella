@@ -11,7 +11,7 @@ import { sync } from "./stream-sync";
  * subscription which interpolates between incoming values from `src`
  * using the given `mix` function. The returned construct produces
  * values at a rate controlled by the `clock` stream or frequency. If
- * omitted, `clock` defaults to `fromRAF()` (~60Hz). If given as number,
+ * omitted, `clock` defaults to {@link fromRAF} (~60Hz). If given as number,
  * creates a `fromInterval(clock)` or else uses the given `clock` stream
  * directly. In general, the frequency of the `clock` should always be
  * higher than that of `src`.
@@ -23,6 +23,7 @@ import { sync } from "./stream-sync";
  * The returned subscription closes automatically when either `src` or
  * `clock` is exhausted.
  *
+ * @example
  * ```ts
  * val = stream();
  *
@@ -80,7 +81,7 @@ export const tween = <T>(
     );
 
 /**
- * Convenience version of `tween` for its most common use case, tweening
+ * Convenience version of {@link tween} for its most common use case, tweening
  * of numeric streams.
  *
  * @param src -

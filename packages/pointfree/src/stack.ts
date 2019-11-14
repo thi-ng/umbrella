@@ -420,14 +420,14 @@ export const rswap2 = __swap2(1);
 export const rover = __over(1);
 
 /**
- * Like `inc`, but applies to r-stack TOS.
+ * Like {@link inc}, but applies to r-stack TOS.
  *
  * @param ctx -
  */
 export const rinc = __incdec(1, 1);
 
 /**
- * Like `dec`, but applies to r-stack TOS.
+ * Like {@link dec}, but applies to r-stack TOS.
  *
  * @param ctx -
  */

@@ -21,14 +21,14 @@ const __private = new WeakMap<LLSet<any>, SetProps<any>>();
 const __vals = (inst: LLSet<any>) => __private.get(inst)!.vals;
 
 /**
- * Similar to `ArraySet`, this class is an alternative implementation of
+ * Similar to {@link ArraySet}, this class is an alternative implementation of
  * the native ES6 Set API using a {@link @thi.ng/dcons#DCons} linked
  * list as backing store and a customizable value equality / equivalence
  * predicate. By the default uses {@link @thi.ng/equiv#equiv} for
  * equivalence checking.
  *
- * Additionally, the type also implements the `ICopy`, `IEmpty` and
- * `IEquiv` interfaces itself.
+ * Additionally, the type also implements the {@link @thi.ng/api#ICopy}, {@link @thi.ng/api#IEmpty} and
+ * {@link @thi.ng/api#IEquiv} interfaces itself.
  */
 export class LLSet<T> extends Set<T> implements IEquivSet<T> {
     constructor(

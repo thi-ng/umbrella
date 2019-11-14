@@ -9,9 +9,9 @@ import { TargetImpl } from "./api/target";
  * generator / compile target function which serializes a given AST
  * using the provided node type implementations.
  *
- * @param impls -
+ * {@link @thi.ng/shader-ast-glsl#targetGLSL}
  *
- * @see targetGLSL
+ * @param impls -
  */
 export const defTarget = <T>(impls: TargetImpl<T>): Fn<Term<any>, T> => {
     const emit = defmulti<Term<any>, T>((x) => x.tag);

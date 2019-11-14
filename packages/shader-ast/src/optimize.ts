@@ -61,6 +61,7 @@ foldNode.addAll({
  * possible. Returns possibly updated tree (mutates original).
  * Currently, only scalar operations are supported / considered.
  *
+ * @example
  * ```ts
  * const foo = defn("float", "foo", ["float"], (x) => [
  *   ret(mul(x, add(neg(float(10)), float(42))))]

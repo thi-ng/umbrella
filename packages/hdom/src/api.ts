@@ -84,7 +84,7 @@ export interface HDOMBehaviorAttribs {
      */
     __release?: boolean;
     /**
-     * Currently only used by {@link @thi.ng/hiccup}. No relevance for hdom. If
+     * Currently only used by {@link @thi.ng/hiccup# | @thi.ng/hiccup}. No relevance for hdom. If
      * `false`, the element and its children will be omitted from the
      * serialized result.
      */
@@ -120,7 +120,7 @@ export interface HDOMOpts {
      * {@link @thi.ng/api#IDeref} interface (e.g. atoms, cursors, views,
      * rstreams etc.). This feature can be used to define dynamic
      * contexts linked to the main app state, e.g. using derived views
-     * provided by {@link @thi.ng/atom}.
+     * provided by {@link @thi.ng/atom# | @thi.ng/atom}.
      *
      * @defaultValue none
      */
@@ -162,7 +162,7 @@ export interface HDOMOpts {
 
 /**
  * This interface defines the underlying target update operations used
- * by `diffTree()` and `createDOM()`. It allows {@link @thi.ng/hdom} to
+ * by `diffTree()` and `createDOM()`. It allows {@link @thi.ng/hdom# | @thi.ng/hdom} to
  * be used as general purpose tree definition & differential update
  * mechanism, rather than being restricted to only work with an HTML
  * DOM. See {@link DEFAULT_IMPL} for the default implementations dealing

@@ -3,6 +3,7 @@ import { HALF_PI, PI } from "./api";
 export const mix = (a: number, b: number, t: number) => a + (b - a) * t;
 
 /**
+ * @example
  * ```ts
  * c    d
  * +----+
@@ -52,7 +53,7 @@ export const mixCubic = (
  * interpolated result is that of `b` and `c`.
  *
  * Assumes all inputs are uniformly spaced. If that's not the case, use
- * `mixCubicHermite()` with one of the tangent generators supporting
+ * {@link mixCubicHermite} with one of the tangent generators supporting
  * non-uniform spacing of points.
  *
  * See: {@link https://www.desmos.com/calculator/j4gf8g9vkr}
@@ -60,9 +61,9 @@ export const mixCubic = (
  * Source:
  * {@link https://www.musicdsp.org/en/latest/Other/93-hermite-interpollation.html}
  *
- * @see mixCubicHermite
- * @see tangentCardinal
- * @see tangentDiff3
+ * - {@link mixCubicHermite}
+ * - {@link tangentCardinal}
+ * - {@link tangentDiff3}
  *
  * @param a -
  * @param b -
@@ -88,9 +89,9 @@ export const mixHermite = (
  *
  * {@link https://en.wikipedia.org/wiki/Cubic_Hermite_spline}
  *
- * @see mixHermite
- * @see tangentCardinal
- * @see tangentDiff3
+ * - {@link mixHermite}
+ * - {@link tangentCardinal}
+ * - {@link tangentDiff3}
  *
  * @param a -
  * @param ta -
@@ -116,7 +117,7 @@ export const mixCubicHermite = (
 };
 
 /**
- * Helper function for `mixCubicHermite()`. Computes cardinal tangents
+ * Helper function for {@link mixCubicHermite}. Computes cardinal tangents
  * based on point neighbors of a point B (not given), i.e. `a`
  * (predecessor) and `c` (successor) and their times (defaults to
  * uniformly spaced). The optional `tension` parameter can be used to
@@ -140,14 +141,14 @@ export const tangentCardinal = (
 ) => scale * ((next - prev) / (tc - ta));
 
 /**
- * Helper function for `mixCubicHermite()`. Computes tangent for `curr`,
+ * Helper function for {@link mixCubicHermite}. Computes tangent for `curr`,
  * based on 3-point finite difference, where `prev` & `next` are
  * `curr`'s neighbors and the `tX` the three points' respective time
  * values. The latter are equally spaced by default (each 1.0 apart).
  *
  * Using this function with equal spacing of 1.0 and together with
- * `mixCubicHermite()` will produce same results as the somewhat
- * optimized variant `mixHermite()`.
+ * {@link mixCubicHermite} will produce same results as the somewhat
+ * optimized variant {@link mixHermite}.
  *
  * {@link https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Finite_difference}
  *

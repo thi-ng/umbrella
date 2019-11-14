@@ -58,7 +58,7 @@ export const grahamScan2 = (pts: ReadonlyVec[], eps = EPS) => {
  * Returns true, if triangle defined by ABC is NOT counter clockwise,
  * i.e. clockwise or colinear.
  *
- * @see {@link @thi.ng/vectors#signedArea2}
+ * {@link @thi.ng/vectors#signedArea2}
  *
  * @param ax -
  * @param ay -

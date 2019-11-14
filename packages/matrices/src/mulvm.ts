@@ -16,6 +16,7 @@ import { ReadonlyMat } from "./api";
 /**
  * Same as:
  *
+ * @example
  * ```ts
  * out[0] = dot(v, column(m, 0))
  * out[1] = dot(v, column(m, 1))
@@ -33,6 +34,7 @@ export const mulVM23 = mulVM22;
 /**
  * Same as:
  *
+ * @example
  * ```ts
  * out[0] = dot(v, column(m, 0))
  * out[1] = dot(v, column(m, 1))
@@ -49,6 +51,7 @@ export const mulVM33 = (out: Vec | null, v: ReadonlyVec, m: ReadonlyMat) =>
 /**
  * Same as:
  *
+ * @example
  * ```ts
  * out[0] = dot(v, column(m, 0))
  * out[1] = dot(v, column(m, 1))

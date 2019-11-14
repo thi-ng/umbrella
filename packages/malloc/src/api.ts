@@ -32,7 +32,7 @@ export interface MemPoolOpts {
     start: number;
     /**
      * Byte address (+1) of the end of the memory region managed by the
-     * `MemPool`.
+     * {@link MemPool}.
      *
      * @defaultValue end of the backing ArrayBuffer
      */
@@ -73,9 +73,9 @@ export interface MemPoolOpts {
     minSplit: number;
     /**
      * Only needed when sharing the underlying ArrayBuffer. If true, the
-     * `MemPool` constructor will NOT initialize its internal state and
+     * {@link MemPool} constructor will NOT initialize its internal state and
      * assume the underlying ArrayBuffer has already been initialized by
-     * another `MemPool` instance. If this option is used, `buf` MUST be
+     * another {@link MemPool} instance. If this option is used, `buf` MUST be
      * given.
      *
      * @defaultValue false
@@ -117,7 +117,7 @@ export interface IMemPool extends IRelease {
     malloc(size: number): number;
 
     /**
-     * Similar to `malloc()`, but if allocation was successful also
+     * Similar to {@link IMemPool.malloc}, but if allocation was successful also
      * clears the allocated block w/ `fill` value (default: 0).
      *
      * @param size -
@@ -126,10 +126,10 @@ export interface IMemPool extends IRelease {
     calloc(size: number, fill?: number): number;
 
     /**
-     * Takes a `Type` enum and element count `num` (in units of given
-     * type), calls `malloc()` and if successful wraps allocated block
-     * as typed array of given `type`. Returns undefined if allocation
-     * failed.
+     * Takes a {@link @thi.ng/api#Type} enum and element count `num` (in
+     * units of given type), calls {@link IMemPool.malloc} and if
+     * successful wraps allocated block as typed array of given `type`.
+     * Returns undefined if allocation failed.
      *
      * @param type -
      * @param num -
@@ -140,8 +140,9 @@ export interface IMemPool extends IRelease {
     ): TypedArrayTypeMap[T] | undefined;
 
     /**
-     * Similar to `mallocAs()`, but if allocation was successful also
-     * clears the allocated block w/ `fill` value (default: 0).
+     * Similar to {@link IMemPool.mallocAs}, but if allocation was
+     * successful also clears the allocated block w/ `fill` value
+     * (default: 0).
      *
      * @param type -
      * @param num -
@@ -168,10 +169,10 @@ export interface IMemPool extends IRelease {
     realloc(ptr: number, size: number): number;
 
     /**
-     * Similar to `realloc()`, but takes a typed array (one previously
-     * allocated with `mallocAs()` or `callocAs()`) and if successul
-     * returns new typed array of same type. Returns undefined on
-     * failure.
+     * Similar to {@link IMemPool.realloc}, but takes a typed array (one
+     * previously allocated with {@link IMemPool.mallocAs} or
+     * {@link IMemPool.callocAs}) and if successul returns new typed
+     * array of same type. Returns undefined on failure.
      *
      * @param arr -
      * @param num -
@@ -185,8 +186,8 @@ export interface IMemPool extends IRelease {
      * counter fragmentation. Returns true if block has been freed.
      *
      * It's the user's responsibility to ensure that freed blocks are
-     * not used any further after calling `free()`. Undefined behavior,
-     * or worse, pool corruption might ensue!
+     * not used any further after calling {@link IMemPool.free}.
+     * Undefined behavior, or worse, pool corruption might ensue!
      *
      * @param ptr -
      */

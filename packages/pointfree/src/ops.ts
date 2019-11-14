@@ -40,7 +40,7 @@ export const op2 = (op: Fn2<any, any, any>) => (ctx: StackContext) => {
 };
 
 /**
- * Similar to `op2`, but for array operators. Either `a` or `b` can be a
+ * Similar to {@link map2}, but for array operators. Either `a` or `b` can be a
  * non-array value, but not both. Creates new array of result values.
  * The result will have the same length as the shortest arg (if `a` and
  * `b` have different lengths).

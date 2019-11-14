@@ -22,6 +22,7 @@ export interface AnimationOpts {
  * same name to configure given animation `opts`. Only the `duration`
  * option is given a default value (250ms), all others are optional.
  *
+ * @example
  * ```ts
  * css(
  *   animation(

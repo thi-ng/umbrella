@@ -21,6 +21,7 @@ import {
  * ensure these two values are compatible with the chosen array type
  * (i.e. for `Type.F32`, these MUST be multiples of 4).
  *
+ * @example
  * ```ts
  * mapBuffer(Type.F32, new ArrayBuffer(32), 4, 2)
  * // [
@@ -58,7 +59,7 @@ export const mapBuffer = <T extends Type>(
  * Writes given `src` vector values into mapped `ArrayBuffer` of stated
  * `type` and from given offset & stride/spacing.
  *
- * @see mapBuffer
+ * {@link mapBuffer}
  *
  * @param type -
  * @param buf -

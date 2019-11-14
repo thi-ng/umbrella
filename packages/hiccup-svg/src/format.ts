@@ -30,8 +30,8 @@ export const fpoints = (pts: Vec2Like[], sep = " ") =>
  * therefore need to be complete, e.g. `{ rotate: "rotate(60)" }`
  *
  * For color related attribs (`fill`, `stroke`), if given value is
- * array-like, a number or an `IColor` instance, it will be converted
- * into a CSS color string using {@link @thi.ng/color}'s
+ * array-like, a number or an {@link @thi.ng/color#IColor} instance, it
+ * will be converted into a CSS color string using
  * {@link @thi.ng/color#asCSS}.
  *
  * String color attribs prefixed with `$` are replaced with `url(#...)`
@@ -54,7 +54,7 @@ export const fattribs = (attribs: any) => {
 /**
  * Converts any transformation related attribs.
  *
- * @see fattribs
+ * {@link fattribs}
  *
  * @param attribs -
  */
@@ -107,7 +107,7 @@ const buildTransform = (attribs: any) => {
 /**
  * Attempts to convert a single color attrib value.
  *
- * @see fattribs
+ * {@link fattribs}
  *
  * @param col -
  */

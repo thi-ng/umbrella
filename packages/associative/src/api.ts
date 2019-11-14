@@ -88,7 +88,7 @@ export interface SortedMapOpts<K> {
      * - positive if `a > b`
      * - `0` if `a == b`
      *
-     * Note: The `SortedMap` implementation only uses `<` and `==` style
+     * Note: The {@link SortedMap} implementation only uses `<` and `==` style
      * comparisons.
      *
      * @defaultValue {@link @thi.ng/compare#compare}

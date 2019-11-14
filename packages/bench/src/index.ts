@@ -16,7 +16,7 @@ export const timed = <T>(fn: () => T, prefix = "") => {
 };
 
 /**
- * Similar to `timed()`, but produces no output and instead returns
+ * Similar to {@link timed}, but produces no output and instead returns
  * tuple of `fn`'s result and the time measurement.
  *
  * @param fn -
@@ -46,7 +46,7 @@ export const bench = <T>(fn: () => T, n = 1e6, prefix = "") => {
 };
 
 /**
- * Similar to `bench()`, but produces no output and instead returns
+ * Similar to {@link bench}, but produces no output and instead returns
  * tuple of `fn`'s last result and the grand total time measurement.
  *
  * @param fn -

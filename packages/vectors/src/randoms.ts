@@ -10,7 +10,8 @@ import { normalizeS2, normalizeS3, normalizeS4 } from "./normalizes";
 
 /**
  * Randomizes `v` with each component in interval `[n..m)`. If no `rnd`
- * instance is given, uses `SYSTEM`, i.e. `Math.random`.
+ * instance is given, uses {@link @thi.ng/random#SYSTEM}, i.e.
+ * `Math.random`.
  *
  * @param v -
  * @param n - default -1
@@ -38,7 +39,8 @@ const $norm = (
 
 /**
  * Sets `v` to random vector, normalized to length `n` (default: 1). If
- * no `rnd` instance is given, uses `SYSTEM`, i.e. `Math.random`.
+ * no `rnd` instance is given, uses {@link @thi.ng/random#SYSTEM}, i.e.
+ * `Math.random`.
  *
  * @param v -
  * @param n -

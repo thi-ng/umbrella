@@ -13,13 +13,16 @@ const __private = new WeakMap<SortedSet<any>, SortedMap<any, any>>();
  * Sorted set implementation with standard ES6 Set API, customizable
  * value equality and comparison semantics and additional functionality:
  *
- * - range queries (via `entries`, `keys`, `values`)
- * - multiple value addition/deletion via `into()` and `disj()`
+ * - range queries (via {@link SortedSet.entries},
+ *   {@link SortedSet.keys}, {@link SortedSet.values})
+ * - multiple value addition/deletion via {@link SortedSet.into} and
+ *   {@link SortedSet.disj}
  *
- * Furthermore, this class implements the `ICopy`, IEmpty`, `ICompare`
- * and `IEquiv` interfaces defined by {@link @thi.ng/api}. The latter
- * two allow instances to be used as keys themselves in other data types
- * defined in this (and other) package(s).
+ * Furthermore, this class implements the {@link @thi.ng/api#ICopy},
+ * IEmpty`, {@link @thi.ng/api#ICompare} and {@link @thi.ng/api#IEquiv}
+ * interfaces defined by {@link @thi.ng/api# | @thi.ng/api}. The latter two allow
+ * instances to be used as keys themselves in other data types defined
+ * in this (and other) package(s).
  *
  * This set uses a {@link SortedMap} as backing store and therefore has
  * the same resizing characteristics.

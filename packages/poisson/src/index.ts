@@ -7,7 +7,7 @@ export type PointGenerator = (rnd: IRandom) => Vec;
 export type DensityFunction = (pos: ReadonlyVec) => number;
 
 /**
- * Options for `samplePoisson()`.
+ * Options for {@link samplePoisson}.
  */
 export interface PoissonOpts {
     /**
@@ -27,10 +27,10 @@ export interface PoissonOpts {
     density: DensityFunction | number;
     /**
      * Spatial indexing implementation for nearest neighbor searches of
-     * candidate points. Currently only `KdTree` from the
-     * {@link @thi.ng/geom-accel} package is available and must be
+     * candidate points. Currently only
+     * {@link @thi.ng/geom-accel#KdTree} is available and must be
      * pre-initialized to given dimensions prior to calling
-     * `samplePoisson()`.
+     * {@link samplePoisson}.
      *
      * The data structure is used to store all successful sample points
      * (as keys) incl. their exclusion radius (as value).

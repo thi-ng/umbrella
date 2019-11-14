@@ -17,8 +17,8 @@ import { RaymarchScene } from "../api";
 /**
  * Higher order function producing a function to compute the raymarched
  * scene normal for a given scene function and intersection position.
- * Like `raymarch()`, this function takes an existing scene function as
- * argument.
+ * Like {@link raymarchScene}, this function takes an existing scene
+ * function as argument.
  *
  * @param scene -
  * @param name -

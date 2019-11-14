@@ -174,6 +174,7 @@ export const cosineCoeffs = (from: ReadonlyColor, to: ReadonlyColor) => {
  * Multi-color cosine gradient generator using RGBA color stops. Returns
  * an array of `n+1` color samples.
  *
+ * @example
  * ```ts
  * multiCosineGradient(
  *   // num colors to produce

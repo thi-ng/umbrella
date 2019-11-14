@@ -4,8 +4,8 @@ import { range } from "@thi.ng/transducers";
 
 /**
  * Yields 2D grid coordinates in random order w/ support for optional
- * `IRandom` implementation (default: {@link @thi.ng/random#SYSTEM} aka
- * `Math.random`).
+ * {@link @thi.ng/random#IRandom} implementation (default:
+ * {@link @thi.ng/random#SYSTEM} aka `Math.random`).
  *
  * @param cols -
  * @param rows -

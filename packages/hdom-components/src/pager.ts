@@ -61,19 +61,19 @@ export interface PagerOpts {
      */
     navStep?: number;
     /**
-     * Label for "first page" button. Default: "<<"
+     * Label for "first page" button. Default: `"<<""`
      */
     labelFirst?: any;
     /**
-     * Label for "last page" button. Default: ">>"
+     * Label for "last page" button. Default: `">>"`
      */
     labelLast?: any;
     /**
-     * Label for "prev page" button. Default: "<"
+     * Label for "prev page" button. Default: `"<"`
      */
     labelPrev?: any;
     /**
-     * Label for "next page" button. Default: ">"
+     * Label for "next page" button. Default: `">"`
      */
     labelNext?: any;
 }

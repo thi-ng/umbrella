@@ -34,7 +34,7 @@ export const solveLinear = (a: number, b: number) => -b / a;
  * Computes solutions for quadratic equation: `ax^2 + bx + c = 0`.
  * Returns array of real solutions.
  * Note: `a` MUST NOT be zero. If the quadratic term is missing,
- * use `solveLinear` instead.
+ * use {@link solveLinear} instead.
  *
  * - {@link https://en.wikipedia.org/wiki/Quadratic_function}
  * - {@link https://en.wikipedia.org/wiki/Quadratic_equation}
@@ -58,7 +58,7 @@ export const solveQuadratic = (a: number, b: number, c: number, eps = 1e-9) => {
  * Computes solutions for quadratic equation: `ax^3 + bx^2 + c*x + d = 0`.
  * Returns array of solutions, both real & imaginary.
  * Note: `a` MUST NOT be zero. If the cubic term is missing (i.e. zero),
- * use `solveQuadratic` or `solveLinear` instead.
+ * use {@link solveQuadratic} or {@link solveLinear} instead.
  *
  * {@link https://en.wikipedia.org/wiki/Cubic_function}
  *

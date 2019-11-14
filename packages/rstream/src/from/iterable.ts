@@ -2,7 +2,7 @@ import { Stream } from "../stream";
 import { nextID } from "../utils/idgen";
 
 /**
- * Creates a new `Stream` of given iterable which asynchronously calls
+ * Creates a new {@link Stream} of given iterable which asynchronously calls
  * `.next()` for each item of the iterable when the first (and in this
  * case the only one) subscriber becomes available. The values are
  * processed via `setInterval()` using the given `delay` value (default:
@@ -29,7 +29,7 @@ export const fromIterable = <T>(src: Iterable<T>, delay = 0, close = true) =>
     }, `iterable-${nextID()}`);
 
 /**
- * Creates a new `Stream` of given iterable which synchronously calls
+ * Creates a new {@link Stream} of given iterable which synchronously calls
  * `.next()` for each item of the iterable when the first (and in this
  * case the only one) subscriber becomes available. Once the iterable is
  * exhausted (MUST be finite!), then calls `.done()` by default, but can

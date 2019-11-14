@@ -1,7 +1,7 @@
 import { Stringer } from "./api";
 
 /**
- * Returns `Stringer` which formats given fractions as percentage (e.g.
+ * Returns {@link Stringer} which formats given fractions as percentage (e.g.
  * `0.1234 => 12.34%`).
  *
  * @param prec - number of fractional digits (default: 0)

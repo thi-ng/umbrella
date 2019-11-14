@@ -14,10 +14,12 @@ import { HexDumpOpts } from "./api";
 
 /**
  * Transforms bytes into a sequence of hexdump lines with configurable
- * number of `columns` and `address` offset. Uses `partition()` internally,
- * so new lines are only produced once filled. If the input hasn't an exact
- * multiple of `cols` bytes, the last line will be padded with zeroes.
+ * number of `columns` and `address` offset. Uses
+ * {@link @thi.ng/transducers#partition} internally, so new lines are
+ * only produced once filled. If the input hasn't an exact multiple of
+ * `cols` bytes, the last line will be padded with zeroes.
  *
+ * @example
  * ```ts
  * src = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 33, 48, 49, 50, 51, 126, 122, 121, 120]
  *
