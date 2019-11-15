@@ -3,10 +3,12 @@ import { DisjointSet } from "./disjoint-set";
 
 /**
  * Computes the Minimum Spanning Tree from given weighted `edges`, using
- * Kruskal's algorithm. Edges can be of any type, but requires unsigned
- * integer vertex IDs. The latter can be extracted via the user supplied
- * `verts` function. The edge weights are extracted via the `cost`
- * function.
+ * Kruskal's algorithm.
+ *
+ * @remarks
+ * Edges can be of any type, but requires unsigned integer vertex IDs.
+ * The latter can be extracted via the user supplied `verts` function.
+ * The edge weights are extracted via the `cost` function.
  *
  * The `maxID` arg should equal or greater than the largest vertex ID
  * referenced by the given edges.
@@ -17,7 +19,8 @@ import { DisjointSet } from "./disjoint-set";
  *
  * {@link https://en.wikipedia.org/wiki/Kruskal%27s_algorithm}
  *
- * ```
+ * @example
+ * ```ts
  * // 2D vectors
  * verts = [[0,0], [0,1], [1,1], [1,2], [4,2]]
  *

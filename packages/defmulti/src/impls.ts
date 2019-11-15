@@ -8,6 +8,7 @@ import { Implementation, MultiFn } from "./api";
  * relationships and a number of multi-methods, each with an
  * implementation for the given dispatch value.
  *
+ * @remarks
  * The relations object has dispatch values (parents) as keys and arrays
  * of multi-methods as their values. For each multi-method associates
  * the given `type` with the related parent dispatch value to delegate

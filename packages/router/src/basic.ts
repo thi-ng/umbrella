@@ -50,14 +50,17 @@ export class BasicRouter implements INotify {
         }
     }
 
-    // mixin
-    addListener(_: string, __: Listener, ___?: any) {
-        return false;
-    }
-    removeListener(_: string, __: Listener, ___?: any) {
-        return false;
-    }
-    notify(_: Event) {}
+    /** {@inheritDoc @thi.ng/api#INotify.addListener} */
+    // @ts-ignore: arguments
+    addListener(id: string, fn: Listener, scope?: any): boolean {}
+
+    /** {@inheritDoc @thi.ng/api#INotify.removeListener} */
+    // @ts-ignore: arguments
+    removeListener(id: string, fn: Listener, scope?: any): boolean {}
+
+    /** {@inheritDoc @thi.ng/api#INotify.notify} */
+    // @ts-ignore: arguments
+    notify(event: Event) {}
 
     start() {
         if (this.config.initialRouteID) {

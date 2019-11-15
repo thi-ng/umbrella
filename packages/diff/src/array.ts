@@ -50,13 +50,14 @@ const simpleDiff = <T>(
 
 /**
  * Based on "An O(NP) Sequence Comparison Algorithm"" by Wu, Manber,
- * Myers and Miller
+ * Myers and Miller.
+ *
+ * @remarks
+ * Various optimizations, fixes & refactorings. By default uses
+ * {@link @thi.ng/equiv#equiv} for equality checks.
  *
  * - {@link http://www.itu.dk/stud/speciale/bepjea/xwebtex/litt/an-onp-sequence-comparison-algorithm.pdf}
  * - {@link https://github.com/cubicdaiya/onp}
- *
- * Various optimizations, fixes & refactorings. By default uses
- * {@link @thi.ng/equiv#equiv} for equality checks.
  *
  * @param a - "old" array
  * @param b - "new" array

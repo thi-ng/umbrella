@@ -4,9 +4,11 @@ import { Fn0 } from "@thi.ng/api";
  * Takes a function returning either a no-arg function (thunk) or its
  * already realized (non-function) result. Re-executes thunk for as long
  * as it returns another function/thunk. Once a non-function result has
- * been produced, `trampoline` returns that value itself. If the final
- * result should be function, it needs to wrapped (e.g. as a 1-elem
- * array).
+ * been produced, `trampoline` returns that value itself.
+ *
+ * @remarks
+ * If the final result should be function, it needs to wrapped (e.g. as
+ * a 1-elem array).
  *
  * This function should be used for non-stack consuming recursion. I.e.
  * a trampoline is a form of continuation passing style and only ever

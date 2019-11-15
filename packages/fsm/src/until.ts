@@ -4,10 +4,12 @@ import { result } from "./result";
 
 /**
  * String version of {@link until}. Returns a matcher which consumes
- * input until the given string could be matched. If successful, calls
- * `callback` with string recorded so far (excluding the matched
- * terminator string) and returns `Match.FULL` result. Else
- * `Match.PARTIAL`.
+ * input until the given string could be matched.
+ *
+ * @remarks
+ * If successful, calls `callback` with string recorded so far
+ * (excluding the matched terminator string) and returns `Match.FULL`
+ * result. Else `Match.PARTIAL`.
  *
  * @param str -
  * @param callback -

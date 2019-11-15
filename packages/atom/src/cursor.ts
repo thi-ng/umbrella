@@ -22,8 +22,10 @@ import { View } from "./view";
 
 /**
  * A cursor provides read/write access to a path location within a
- * nested parent state (Atom or another Cursor). Cursors behave like
- * Atoms for all practical purposes, i.e. support
+ * nested parent state (Atom or another Cursor).
+ *
+ * @remarks
+ * Cursors behave like Atoms for all practical purposes, i.e. support
  * {@link @thi.ng/api#IDeref.deref}, {@link IReset.reset},
  * {@link ISwap.swap}, {@link @thi.ng/api#IWatch.addWatch} etc. However,
  * when updating a cursor's value, the parent state will be updated at

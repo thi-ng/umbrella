@@ -158,10 +158,13 @@ export class Channel<T> implements IReadWriteableChannel<T> {
     /**
      * Takes an array of channels to merge into new channel. Any closed
      * channels will be automatically removed from the input selection.
-     * Once all inputs are closed, the target channel will close too (by default).
+     * Once all inputs are closed, the target channel will close too (by
+     * default).
      *
-     * If `named` is true, the merged channel will have tuples of: `[src-id, val]`
-     * If false (default), only received values will be forwarded.
+     * @remarks
+     * If `named` is true, the merged channel will have tuples of:
+     * `[src-id, val]` If false (default), only received values will be
+     * forwarded.
      *
      * @param chans -
      * @param out -
@@ -195,16 +198,19 @@ export class Channel<T> implements IReadWriteableChannel<T> {
     /**
      * Takes an array of channels to merge into new channel of tuples.
      * Whereas `Channel.merge()` realizes a sequential merging with no
-     * guarantees about ordering of the output, the output channel of
-     * this function will collect values from all channels and a new
-     * tuple is emitted only once a new value has been read from ALL
-     * channels. Therefore the overall throughput is dictated by the
-     * slowest of the inputs.
+     * guarantees about ordering of the output.
      *
-     * Once any of the inputs closes, the process is terminated and
-     * the output channel is closed too (by default).
+     * @remarks
+     * The output channel of this function will collect values from all
+     * channels and a new tuple is emitted only once a new value has
+     * been read from ALL channels. Therefore the overall throughput is
+     * dictated by the slowest of the inputs.
      *
-     * ```
+     * Once any of the inputs closes, the process is terminated and the
+     * output channel is closed too (by default).
+     *
+     * @example
+     * ```ts
      * Channel.mergeTuples([
      *   Channel.from([1, 2, 3]),
      *   Channel.from([10, 20, 30]),
@@ -422,7 +428,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
 
     isReadable() {
         return (
-            (this.state !== State.DONE && (this.buf && this.buf.length > 0)) ||
+            (this.state !== State.DONE && this.buf && this.buf.length > 0) ||
             (this.writes && this.writes.length > 0) ||
             (this.txbuf && this.txbuf.length > 0)
         );

@@ -1,9 +1,9 @@
 import {
     Event,
-    Fn,
     IID,
     INotify,
     INotifyMixin,
+    Listener,
     UIntArray
 } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks";
@@ -152,16 +152,15 @@ export class Component<K extends string, T>
         return true;
     }
 
+    /** {@inheritDoc @thi.ng/api#INotify.addListener} */
     // @ts-ignore: arguments
-    addListener(id: string, fn: Fn<Event, void>, scope?: any): boolean {
-        return false;
-    }
+    addListener(id: string, fn: Listener, scope?: any): boolean {}
 
+    /** {@inheritDoc @thi.ng/api#INotify.removeListener} */
     // @ts-ignore: arguments
-    removeListener(id: string, fn: Fn<Event, void>, scope?: any): boolean {
-        return false;
-    }
+    removeListener(id: string, fn: Listener, scope?: any): boolean {}
 
+    /** {@inheritDoc @thi.ng/api#INotify.notify} */
     // @ts-ignore: arguments
     notify(event: Event) {}
 

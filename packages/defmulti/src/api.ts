@@ -13,6 +13,10 @@ import {
     NULL_LOGGER
 } from "@thi.ng/api";
 
+/**
+ * Unique symbol used for registering a default / fallback
+ * implementation.
+ */
 export const DEFAULT: unique symbol = Symbol();
 
 export type DispatchFn = FnAny<PropertyKey>;

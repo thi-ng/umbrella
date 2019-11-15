@@ -42,7 +42,10 @@ import {
 } from "./api";
 
 /**
- * Returns a new multi-dispatch function using the provided dispatcher.
+ * Returns a new multi-dispatch function using the provided dispatch
+ * value function.
+ *
+ * @remarks
  * The dispatcher can take any number of arguments and must produce a
  * dispatch value (string, number or symbol) used to lookup an
  * implementation. If found, the impl is called with the same args and

@@ -37,12 +37,13 @@ export const transform = mulV45;
  * left-right order. Returns combined result matrix to be used with
  * {@link transform}.
  *
- * Note: Using {@link concat} is the recommended way when applying multiple
+ * @remarks
+ * Using {@link concat} is the recommended way when applying multiple
  * color transformations in sequence. Since the transforms are combined
  * into a single matrix, it is faster than multiple, individual
- * {@link transform} calls and will also produce more correct results, since
- * result color clamping is only applied once at the end (by default,
- * unless disabled).
+ * {@link transform} calls and will also produce more correct results,
+ * since result color clamping is only applied once at the end (by
+ * default, unless disabled).
  *
  * @param mat -
  * @param xs -

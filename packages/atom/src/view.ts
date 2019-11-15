@@ -7,8 +7,11 @@ import { nextID } from "./idgen";
  * This class implements readonly access to a deeply nested value with
  * in an Atom/Cursor. An optional transformer function can be supplied
  * at creation time to produce a derived/materialized view of the actual
- * value held in the atom. Views can be created directly or via the
- * {@link IViewable.addView} method of the parent state. Views can be
+ * value held in the atom.
+ *
+ * @remarks
+ * Views can be created directly or via the {@link IViewable.addView}
+ * method of the parent state. Views can be
  * {@link @thi.ng/api#IDeref.deref}'d like atoms and polled for value
  * changes using {@link IView.changed}. The transformer is only applied
  * once per value change and its result cached until the next change.
@@ -98,8 +101,10 @@ export class View<T> implements IView<T> {
     /**
      * Returns view's value. If the view has a transformer, the
      * transformed value is returned. The transformer is only run once
-     * per value change. See class comments about difference between
-     * lazy/eager behaviors.
+     * per value change.
+     *
+     * @remarks
+     * See class comments about difference between lazy/eager behaviors.
      */
     deref() {
         if (this.isDirty) {
@@ -121,15 +126,17 @@ export class View<T> implements IView<T> {
     }
 
     /**
-     * Like {@link @thi.ng/api#IDeref.deref}, but doesn't
-     * update view's cached state and dirty flag if value has changed.
+     * Like {@link @thi.ng/api#IDeref.deref}, but doesn't update view's
+     * cached state and dirty flag if value has changed.
+     *
+     * @remarks
      * If there's an unprocessed value change, returns result of this
      * sub's transformer or else the cached value.
      *
      * **Important:** Use this function only if the view has none or or
      * a stateless transformer. Else might cause undefined/inconsistent
-     * behavior when calling `view` or
-     * {@link @thi.ng/api#IDeref.deref} subsequently.
+     * behavior when calling `view` or {@link @thi.ng/api#IDeref.deref}
+     * subsequently.
      */
     view() {
         return this.isDirty && this.isLazy

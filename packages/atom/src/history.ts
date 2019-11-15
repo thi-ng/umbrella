@@ -24,12 +24,14 @@ import { View } from "./view";
 /**
  * Undo/redo history stack wrapper for atoms and cursors. Implements
  * {@link IAtom} interface and so can be used directly in place and
- * delegates to wrapped atom/cursor. Value changes are only recorded in
- * history if `changed` predicate returns truthy value, or else by
- * calling {@link History.record} directly. This class too implements
- * the {@link @thi.ng/api#INotify} interface to support event listeners
- * for {@link History.undo}, {@link History.redo} and
- * {@link History.record}.
+ * delegates to wrapped atom/cursor.
+ *
+ * @remarks
+ * Value changes are only recorded in history if `changed` predicate
+ * returns truthy value, or else by calling {@link History.record}
+ * directly. This class too implements the {@link @thi.ng/api#INotify}
+ * interface to support event listeners for {@link History.undo},
+ * {@link History.redo} and {@link History.record}.
  */
 @INotifyMixin
 export class History<T> implements IHistory<T> {
@@ -82,10 +84,12 @@ export class History<T> implements IHistory<T> {
 
     /**
      * Attempts to re-apply most recent historical value to atom and
-     * returns it if successful (i.e. there's a history). Before the
-     * switch, first records the atom's current value into the future
-     * stack (to enable {@link History.redo} feature). Returns
-     * `undefined` if there's no history.
+     * returns it if successful (i.e. there's a history).
+     *
+     * @remarks
+     * Before the switch, first records the atom's current value into
+     * the future stack (to enable {@link History.redo} feature).
+     * Returns `undefined` if there's no history.
      *
      * If undo was possible, the `History.EVENT_UNDO` event is emitted
      * after the restoration with both the `prev` and `curr` (restored)
@@ -106,10 +110,12 @@ export class History<T> implements IHistory<T> {
 
     /**
      * Attempts to re-apply most recent value from future stack to atom
-     * and returns it if successful (i.e. there's a future). Before the
-     * switch, first records the atom's current value into the history
-     * stack (to enable {@link History.undo} feature). Returns
-     * `undefined` if there's no future (so sad!).
+     * and returns it if successful (i.e. there's a future).
+     *
+     * @remarks
+     * Before the switch, first records the atom's current value into
+     * the history stack (to enable {@link History.undo} feature).
+     * Returns `undefined` if there's no future (so sad!).
      *
      * If redo was possible, the `History.EVENT_REDO` event is emitted
      * after the restoration with both the `prev` and `curr` (restored)
@@ -178,8 +184,11 @@ export class History<T> implements IHistory<T> {
      * Records given state in history. This method is only needed when
      * manually managing snapshots, i.e. when applying multiple swaps on
      * the wrapped atom directly, but not wanting to create an history
-     * entry for each change. **DO NOT call this explicitly if using
-     * {@link History.reset} / {@link History.swap} etc.**
+     * entry for each change.
+     *
+     * @remarks
+     * **DO NOT call this explicitly if using {@link History.reset} /
+     * {@link History.swap} etc.**
      *
      * If no `state` is given, uses the wrapped atom's current state
      * value (user code SHOULD always call without arg).
@@ -258,13 +267,15 @@ export class History<T> implements IHistory<T> {
         return true;
     }
 
-    addListener(_: string, __: Listener, ___?: any): boolean {
-        return false;
-    }
+    /** {@inheritDoc @thi.ng/api#INotify.addListener} */
+    // @ts-ignore: mixin
+    addListener(id: string, fn: Listener, scope?: any): boolean {}
 
-    removeListener(_: string, __: Listener, ___?: any): boolean {
-        return false;
-    }
+    /** {@inheritDoc @thi.ng/api#INotify.removeListener} */
+    // @ts-ignore: mixin
+    removeListener(id: string, fn: Listener, scope?: any): boolean {}
 
-    notify(_: Event): void {}
+    /** {@inheritDoc @thi.ng/api#INotify.notify} */
+    // @ts-ignore: mixin
+    notify(e: Event): void {}
 }

@@ -70,21 +70,18 @@ export class Atom<T> implements IAtom<T>, IEquiv {
         return this.reset(updateIn(this._value, path, fn, ...args));
     }
 
-    // mixin stub
     /* istanbul ignore next */
-    addWatch(_: string, __: Watch<T>) {
-        return false;
-    }
+    // @ts-ignore: mixin
+    addWatch(id: string, fn: Watch<T>): boolean {}
+
+    /* istanbul ignore next */
+    // @ts-ignore: mixin
+    removeWatch(id: string): boolean {}
 
     // mixin stub
     /* istanbul ignore next */
-    removeWatch(_: string) {
-        return false;
-    }
-
-    // mixin stub
-    /* istanbul ignore next */
-    notifyWatches(_: T, __: T) {}
+    // @ts-ignore: mixin
+    notifyWatches(old: T, prev: T) {}
 
     addView<V>(path: Path, tx?: ViewTransform<V>, lazy = true): IView<V> {
         return new View<V>(this, path, tx, lazy);

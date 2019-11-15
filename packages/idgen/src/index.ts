@@ -1,9 +1,9 @@
 import {
     assert,
     Event,
-    Fn,
     INotify,
-    INotifyMixin
+    INotifyMixin,
+    Listener
 } from "@thi.ng/api";
 
 export const EVENT_ADDED = "added";
@@ -101,12 +101,15 @@ export class IDGen implements Iterable<number>, INotify {
         return id >= 0 && rawID < this.nextID && this.ids[rawID] === id;
     }
 
+    /** {@inheritDoc @thi.ng/api#INotify.addListener} */
     // @ts-ignore: mixin
-    addListener(id: string, fn: Fn<Event, void>, scope?: any): boolean {}
+    addListener(id: string, fn: Listener, scope?: any): boolean {}
 
+    /** {@inheritDoc @thi.ng/api#INotify.removeListener} */
     // @ts-ignore: mixin
-    removeListener(id: string, fn: Fn<Event, void>, scope?: any): boolean {}
+    removeListener(id: string, fn: Listener, scope?: any): boolean {}
 
+    /** {@inheritDoc @thi.ng/api#INotify.notify} */
     // @ts-ignore: mixin
     notify(event: Event) {}
 
