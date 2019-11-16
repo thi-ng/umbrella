@@ -20,12 +20,15 @@ This project is part of the
 
 ## About
 
-Functional tree editing, manipulation & navigation, based on my fork and
-optimizations to
+Immutable, semi-functional, structural tree editing, manipulation &
+navigation, based on my fork and optimizations to
 [fast-zip](https://github.com/postspectacular/fast-zip), which in turn
 is based on
-[clojure.zip](https://clojure.github.io/clojure/clojure.zip-api.html).
-https://en.wikipedia.org/wiki/Zipper_(data_structure)
+[clojure.zip](https://clojure.github.io/clojure/clojure.zip-api.html)
+and which itself is based on the original data structure invented by
+Gérard Huet in 1997.
+
+Reference: https://en.wikipedia.org/wiki/Zipper_(data_structure)
 
 ## Installation
 
@@ -42,14 +45,48 @@ yarn add @thi.ng/zipper
 ## Usage examples
 
 ```ts
-import { arrayZip } from "@thi.ng/zipper";
+import { arrayZipper } from "@thi.ng/zipper";
 
 const x = [1, [5, 4, 3, 2], 6];
 
-const a = z.arrayZipper(x);
-// navigate to `3` and remove it, then append `7` and apply changes
-a.next().next().down().rightmost().left().remove().up().up().appendChild(7).root()
+// create zipper for given array
+const a = arrayZipper(x);
+
+// .next navigates to logically next location (depth-first)
+// .node retrieves a location's value
+a.next.node
+// 1
+
+a.next.next.node
+// [5, 4, 3, 2]
+
+// all navigation verbs:
+// prev, left, right, up, down, leftmost, rightmost
+a.next.next.down.rightmost.node
+// 2
+
+// navigate to value `3`, remove it
+// then append `7` at top level
+// and apply changes by requesting root value
+// (the latter is the actual zip operation)
+a.next.next.down.rightmost.left.remove().up.up.appendChild(7).root
 // [ 1, [ 5, 4, 2 ], 6, 7 ]
+
+// the same edits in different order
+a.appendChild(7).next.next.down.rightmost.left.remove().root
+// [ 1, [ 5, 4, 2 ], 6, 7 ]
+
+// insert child at the front
+a.next.next.insertChild(10).root
+// [ 1, [ 10, 5, 4, 3, 2 ], 6 ]
+
+// replace the nested array
+a.next.next.replace(10).root
+// [1, 10, 6]
+
+// all editing is immutable, original is untouched...
+x
+// [ 1, [ 5, 4, 3, 2 ], 6 ]
 ```
 
 ## Authors

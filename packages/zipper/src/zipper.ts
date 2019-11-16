@@ -20,8 +20,6 @@ const newPath = <T>(
 const changedPath = <T>(path?: Path<T>) =>
     path ? { ...path, changed: true } : undefined;
 
-const END = newPath(undefined, undefined, undefined, []);
-
 export class Location<T> {
     protected readonly _node: T;
     protected readonly _ops: ZipperOps<T>;
@@ -33,35 +31,39 @@ export class Location<T> {
         this._path = path;
     }
 
-    isBranch() {
+    get isBranch() {
         return this._ops.branch(this._node);
     }
 
-    isLast() {
-        return this._path === END;
+    get isFirst() {
+        return !this.lefts;
     }
 
-    node() {
+    get isLast() {
+        return !this.rights;
+    }
+
+    get node() {
         return this._node;
     }
 
-    children() {
+    get children() {
         return this._ops.children(this._node);
     }
 
-    path() {
+    get path() {
         return this._path ? this._path.nodes : undefined;
     }
 
-    lefts() {
+    get lefts() {
         return this._path ? this._path.l : undefined;
     }
 
-    rights() {
+    get rights() {
         return this._path ? this._path.r : undefined;
     }
 
-    left() {
+    get left() {
         const path = this._path;
         const lefts = path && path.l;
         return lefts && lefts.length
@@ -79,7 +81,7 @@ export class Location<T> {
             : undefined;
     }
 
-    right() {
+    get right() {
         const path = this._path;
         const rights = path && path.r;
         if (!rights) return;
@@ -97,7 +99,7 @@ export class Location<T> {
         );
     }
 
-    leftmost() {
+    get leftmost() {
         const path = this._path;
         const lefts = path && path.l;
         return lefts && lefts.length
@@ -115,7 +117,7 @@ export class Location<T> {
             : this;
     }
 
-    rightmost() {
+    get rightmost() {
         const path = this._path;
         const rights = path && path.r;
         return rights
@@ -136,9 +138,9 @@ export class Location<T> {
             : this;
     }
 
-    down() {
-        if (!this.isBranch()) return;
-        const children = this.children();
+    get down() {
+        if (!this.isBranch) return;
+        const children = this.children;
         if (!children) return;
         const path = this._path;
         const r = children.slice(1);
@@ -154,7 +156,7 @@ export class Location<T> {
         );
     }
 
-    up() {
+    get up() {
         let path = this._path;
         const pnodes = path && path.nodes;
         if (!pnodes) return;
@@ -173,36 +175,32 @@ export class Location<T> {
         }
     }
 
-    root(): T {
-        if (this.isLast()) return this._node;
-        const parent = this.up();
-        return parent ? parent.root() : this._node;
+    get root(): T {
+        const parent = this.up;
+        return parent ? parent.root : this._node;
     }
 
-    prev() {
-        let node = this.left();
-        if (!node) return this.up();
+    get prev() {
+        let node = this.left;
+        if (!node) return this.up;
         while (true) {
-            const child: Location<T> | undefined = node!.isBranch()
-                ? this.down()
+            const child: Location<T> | undefined = node!.isBranch
+                ? this.down
                 : undefined;
             if (!child) return node;
-            node = child.rightmost();
+            node = child.rightmost;
         }
     }
 
-    next() {
-        const path = this._path;
-        if (path === END) return this;
-        if (this.isBranch()) return this.down();
-        let right = this.right();
+    get next() {
+        if (this.isBranch) return this.down;
+        let right = this.right;
         if (right) return right;
         let loc: Location<T> = this;
         while (true) {
-            const up = loc.up();
-            // TODO why not return undefined instead?
-            if (!up) return new Location(this._node, this._ops, END);
-            right = up.right();
+            const up = loc.up;
+            if (!up) return;
+            right = up.right;
             if (right) return right;
             loc = up;
         }
@@ -246,13 +244,13 @@ export class Location<T> {
 
     insertChild(x: T) {
         this.ensureBranch();
-        return this.replace(this.newNode(this._node, [x, ...this.children()]));
+        return this.replace(this.newNode(this._node, [x, ...this.children]));
     }
 
     appendChild(x: T) {
         this.ensureBranch();
         return this.replace(
-            this.newNode(this._node, this.children().concat([x]))
+            this.newNode(this._node, this.children.concat([x]))
         );
     }
 
@@ -273,9 +271,9 @@ export class Location<T> {
                 )
             );
             while (true) {
-                const child = loc.isBranch() ? loc.down() : undefined;
+                const child = loc.isBranch ? loc.down : undefined;
                 if (!child) return loc;
-                loc = child.rightmost();
+                loc = child.rightmost;
             }
         }
         return new Location(
@@ -294,7 +292,7 @@ export class Location<T> {
     }
 
     private ensureBranch() {
-        assert(this.isBranch(), "can only insert in branches");
+        assert(this.isBranch, "can only insert in branches");
     }
 }
 
