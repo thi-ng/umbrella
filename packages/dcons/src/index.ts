@@ -8,6 +8,8 @@ import {
     IEquiv,
     ILength,
     IRelease,
+    ISeq,
+    ISeqable,
     IStack,
     Predicate
 } from "@thi.ng/api";
@@ -32,6 +34,7 @@ export class DCons<T>
         ILength,
         IReducible<any, T>,
         IRelease,
+        ISeqable<T>,
         IStack<T, T, DCons<T>> {
     head: ConsCell<T> | undefined;
     tail: ConsCell<T> | undefined;
@@ -124,12 +127,29 @@ export class DCons<T>
         }
     }
 
+    /** {@inheritDoc @thi.ng/api#ISeqable.seq} */
+    seq(start = 0, end = this.length) {
+        if (start >= end || start < 0) return;
+        let cell = this.nthCell(start);
+        const last = this.nthCell(end - 1);
+        const $seq = (cell: ConsCell<T>): ISeq<T> => ({
+            first() {
+                return cell.value;
+            },
+            next() {
+                return cell !== last && cell.next ? $seq(cell.next) : undefined;
+            }
+        });
+        return cell ? $seq(cell) : undefined;
+    }
+
     *cycle() {
         while (true) {
             yield* this;
         }
     }
 
+    /** {@inheritDoc @thi.ng/transducers#IReducible.$reduce} */
     $reduce(rfn: ReductionFn<any, T>, acc: any) {
         let cell = this.head;
         while (cell && !isReduced(acc)) {
@@ -562,3 +582,10 @@ export class DCons<T>
         return cell;
     }
 }
+
+/**
+ * Functional syntax sugar for `new DCons(src?)`.
+ *
+ * @param src
+ */
+export const dcons = <T>(src?: Iterable<T>) => new DCons(src);
