@@ -582,3 +582,10 @@ export class DCons<T>
         return cell;
     }
 }
+
+/**
+ * Functional syntax sugar for `new DCons(src?)`.
+ *
+ * @param src
+ */
+export const dcons = <T>(src?: Iterable<T>) => new DCons(src);
