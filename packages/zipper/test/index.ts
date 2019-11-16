@@ -224,4 +224,12 @@ describe("zipper", () => {
             [1, [2, [3,10], 4], 5]
         );
     });
+
+    it("update", () => {
+        // prettier-ignore
+        assert.deepEqual(
+            a.next!.next!.next!.update((x, n: number)=><number>x * n, 10).root,
+            [1, [20, [3], 4], 5]
+        );
+    });
 });

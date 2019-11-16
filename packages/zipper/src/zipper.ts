@@ -1,4 +1,4 @@
-import { assert } from "@thi.ng/api";
+import { assert, FnO } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
 import { isArray } from "@thi.ng/checks";
 import { Path, ZipperOps } from "./api";
@@ -208,6 +208,10 @@ export class Location<T> {
 
     replace(x: T) {
         return new Location(x, this._ops, changedPath(this._path));
+    }
+
+    update(fn: FnO<T, T>, ...xs: any[]) {
+        return this.replace(fn(this._node, ...xs));
     }
 
     insertLeft(x: T) {
