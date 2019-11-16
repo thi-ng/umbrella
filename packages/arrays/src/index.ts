@@ -8,7 +8,6 @@ export * from "./is-sorted";
 export * from "./iterator";
 export * from "./peek";
 export * from "./quicksort";
-export * from "./seq";
 export * from "./shuffle";
 export * from "./starts-with";
 export * from "./swap";
