@@ -56,8 +56,8 @@ export class Node implements IEnable<string>, IID<string> {
      * If only `src` is given, returns it unmodified (if channel) or
      * creates a new tap (if Mult).
      *
-     * @param id -
-     * @param spec -
+     * @param id - node id
+     * @param spec - node spec
      */
     static inputFromSpec(id: string, spec: NodeInputSpec) {
         if (spec.buf || spec.tx) {
@@ -71,9 +71,13 @@ export class Node implements IEnable<string>, IID<string> {
     }
 
     static outputFromSpec(id: string, spec: NodeOutputSpec) {
-        const mult = new Mult(<any>(
-            (spec.buf || spec.tx ? new Channel(id, spec.buf!, spec.tx!) : id)
-        ));
+        const mult = new Mult(
+            <any>(
+                (spec.buf || spec.tx
+                    ? new Channel(id, spec.buf!, spec.tx!)
+                    : id)
+            )
+        );
         if (spec.dest) {
             mult.tap(spec.dest.channel());
         }

@@ -10,6 +10,8 @@ export const popCount = (x: number) => (
 );
 
 /**
+ * Returns number of bit changes between `x` and `y`.
+ *
  * {@link https://en.wikipedia.org/wiki/Hamming_distance}
  *
  * @param x -

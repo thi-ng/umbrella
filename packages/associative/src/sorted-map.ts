@@ -43,8 +43,8 @@ export class SortedMap<K, V> extends Map<K, V> {
      * Creates new {@link SortedMap} instance from given object's key-value
      * pairs.
      *
-     * @param obj -
-     * @param opts -
+     * @param obj - source object
+     * @param opts - config options
      */
     static fromObject<T>(
         obj: IObjectOf<T>,
@@ -67,8 +67,8 @@ export class SortedMap<K, V> extends Map<K, V> {
      * Creates new {@link SortedMap} instance with optionally given pairs
      * and/or options.
      *
-     * @param pairs -
-     * @param opts -
+     * @param pairs - key-value pairs
+     * @param opts - config options
      */
     constructor(
         pairs?: Iterable<Pair<K, V>> | null,

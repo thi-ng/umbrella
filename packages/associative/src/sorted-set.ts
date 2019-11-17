@@ -34,8 +34,8 @@ export class SortedSet<T> extends Set<T>
      * implementation options. The options are the same as used by
      * {@link SortedMap}.
      *
-     * @param values -
-     * @param opts -
+     * @param values - input values
+     * @param opts - config options
      */
     constructor(values?: Iterable<T> | null, opts?: Partial<SortedSetOpts<T>>) {
         super();

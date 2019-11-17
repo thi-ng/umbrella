@@ -12,9 +12,9 @@ import { equiv as _eq } from "@thi.ng/equiv";
  *
  * {@link endsWith}
  *
- * @param buf -
- * @param needle -
- * @param equiv -
+ * @param buf - array
+ * @param needle - search value
+ * @param equiv - equivalence predicate
  */
 export const startsWith = (
     buf: ArrayLike<any>,

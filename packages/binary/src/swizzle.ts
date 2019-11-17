@@ -9,7 +9,7 @@ import { Lane2, Lane4, Lane8 } from "./api";
  * - Lane #3: bits 0-7
  *
  * @param x -
- * @param lane -
+ * @param lane - lane ID enum
  */
 export const lane8 = (x: number, lane: Lane8) =>
     (x >>> ((3 - lane) << 3)) & 0xff;
@@ -27,7 +27,7 @@ export const lane8 = (x: number, lane: Lane8) =>
  * - Lane #7: bits 0-3
  *
  * @param x -
- * @param lane -
+ * @param lane - lane ID enum
  */
 export const lane4 = (x: number, lane: Lane4) =>
     (x >>> ((7 - lane) << 2)) & 0xf;
@@ -42,7 +42,7 @@ export const lane2 = (x: number, lane: Lane2) =>
  *
  * @param x -
  * @param y -
- * @param lane -
+ * @param lane - lane ID enum
  */
 export const setLane8 = (x: number, y: number, lane: Lane8) => {
     const l = (3 - lane) << 3;
@@ -56,7 +56,7 @@ export const setLane8 = (x: number, y: number, lane: Lane8) => {
  *
  * @param x -
  * @param y -
- * @param lane -
+ * @param lane - lane ID enum
  */
 export const setLane4 = (x: number, y: number, lane: Lane4) => {
     const l = (7 - lane) << 2;
@@ -70,7 +70,7 @@ export const setLane4 = (x: number, y: number, lane: Lane4) => {
  *
  * @param x -
  * @param y -
- * @param lane -
+ * @param lane - lane ID enum
  */
 export const setLane2 = (x: number, y: number, lane: Lane2) => {
     const l = (15 - lane) << 1;
@@ -87,11 +87,11 @@ export const setLane2 = (x: number, y: number, lane: Lane2) => {
  * swizzle(0x12345678, 2, 2, 0, 0) // 0x56561212
  * ```
  *
- * @param x -
- * @param a -
- * @param b -
- * @param c -
- * @param d -
+ * @param x - value
+ * @param a - lane ID enum
+ * @param b - lane ID enum
+ * @param c - lane ID enum
+ * @param d - lane ID enum
  */
 export const swizzle8 = (x: number, a: Lane8, b: Lane8, c: Lane8, d: Lane8) =>
     ((lane8(x, a) << 24) |
@@ -102,15 +102,15 @@ export const swizzle8 = (x: number, a: Lane8, b: Lane8, c: Lane8, d: Lane8) =>
 
 /**
  *
- * @param x -
- * @param a -
- * @param b -
- * @param c -
- * @param d -
- * @param e -
- * @param f -
- * @param g -
- * @param h -
+ * @param x - value
+ * @param a - lane ID enum
+ * @param b - lane ID enum
+ * @param c - lane ID enum
+ * @param d - lane ID enum
+ * @param e - lane ID enum
+ * @param f - lane ID enum
+ * @param g - lane ID enum
+ * @param h - lane ID enum
  */
 export const swizzle4 = (
     x: number,

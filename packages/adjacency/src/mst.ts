@@ -40,10 +40,10 @@ import { DisjointSet } from "./disjoint-set";
  * // [ [ 0, 1 ], [ 1, 2 ], [ 2, 3 ], [ 2, 4 ] ]
  * ```
  *
- * @param edges -
- * @param maxID -
- * @param cost -
- * @param verts -
+ * @param edges - edge pairs
+ * @param maxID - max vertex ID (+1)
+ * @param cost - cost function
+ * @param verts - vertices / graph nodes
  */
 export const mst = <T>(
     edges: T[],

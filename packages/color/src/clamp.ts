@@ -9,9 +9,9 @@ import { ensureHue } from "./internal/ensure-hue";
  * to ensure alpha channel is defined (if missing sets it to `alpha`,
  * default: 1).
  *
- * @param out -
- * @param src -
- * @param alpha -
+ * @param out - result
+ * @param src - source color
+ * @param alpha - alpha value
  */
 export const clamp = (out: Color | null, src: ReadonlyColor, alpha = 1) =>
     setC4(
@@ -26,9 +26,9 @@ export const clamp = (out: Color | null, src: ReadonlyColor, alpha = 1) =>
  * Similar to {@link clamp}, but calls `ensureHue` to fold (instead of
  * clamping) the hue into [0,1] interval.
  *
- * @param out -
- * @param src -
- * @param alpha -
+ * @param out - result
+ * @param src - source color
+ * @param alpha - alpha value
  */
 export const clampH = (out: Color | null, src: ReadonlyColor, alpha = 1) =>
     setC4(

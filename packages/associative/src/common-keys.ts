@@ -1,9 +1,9 @@
 /**
  * Like {@link commonKeysObj}, but for ES6 Maps.
  *
- * @param a -
- * @param b -
- * @param out -
+ * @param a - first map
+ * @param b - other map
+ * @param out - result array
  */
 export const commonKeysMap = <K>(
     a: Map<K, any>,
@@ -26,9 +26,9 @@ export const commonKeysMap = <K>(
  * // [ "a", "b" ]
  * ```
  *
- * @param a -
- * @param b -
- * @param out -
+ * @param a - first object
+ * @param b - other object
+ * @param out - result array
  */
 export const commonKeysObj = <A extends any, B extends any>(
     a: A,

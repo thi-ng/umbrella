@@ -17,7 +17,7 @@ export const uintBitsToFloat = (x: number) => ((U32[0] = x), F32[0]);
  * {@link https://github.com/tzaeschke/phtree/blob/master/PhTreeRevisited.pdf}
  * (page 3)
  *
- * @param x -
+ * @param x - value to convert
  */
 export const floatToSortableInt = (x: number) => {
     if (x === -0) x = 0;

@@ -50,8 +50,8 @@ export class BitMatrix {
      * Returns a non-zero value if bit at `m,n` is enabled (row major).
      * No bounds checking.
      *
-     * @param m -
-     * @param n -
+     * @param m - row
+     * @param n - column
      */
     at(m: number, n: number) {
         return (
@@ -63,9 +63,9 @@ export class BitMatrix {
      * Enables or disables bit at `m,n` (row major). Returns a non-zero
      * value if the bit was previously enabled. No bounds checking.
      * .
-     * @param m -
-     * @param n -
-     * @param v -
+     * @param m - row
+     * @param n - column
+     * @param v - bit value
      */
     setAt(m: number, n: number, v = true) {
         const id = (n >>> 5) + m * this.stride;

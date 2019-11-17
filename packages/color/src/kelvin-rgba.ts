@@ -22,7 +22,7 @@ const B3 = 0.453646839257496;
  *
  * Uses adjusted coefficients to produce normalized RGB values.
  *
- * @param out -
+ * @param out - result
  * @param kelvin - color temperature
  * @param alpha - target alpha channel
  */

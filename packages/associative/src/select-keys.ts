@@ -4,7 +4,7 @@ import { empty } from "./utils";
  * Returns a new map of same type as input only containing given keys
  * (and only if they existed in the original map).
  *
- * @param src -
+ * @param src - source map
  * @param ks - selected keys
  */
 export const selectKeysMap = <K, V>(
@@ -22,8 +22,8 @@ export const selectKeysMap = <K, V>(
  * Returns a new object only containing given keys (and only if they
  * existed in the original).
  *
- * @param src -
- * @param ks -
+ * @param src - source object
+ * @param ks - selected keys
  */
 export const selectKeysObj = <T extends any>(
     src: T,

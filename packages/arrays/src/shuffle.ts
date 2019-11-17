@@ -10,9 +10,11 @@ import { AnyArray } from "./api";
  * If neither `start` / `end` are given, the entire array will be
  * shuffled. Mutates original array.
  *
- * @param buf -
- * @param n -
- * @param rnd -
+ * See {@link @thi.ng/random#IRandom}
+ *
+ * @param buf - array
+ * @param n - num items
+ * @param rnd - PRNG
  */
 export const shuffleRange = <T extends AnyArray>(
     buf: T,
@@ -44,9 +46,9 @@ export const shuffleRange = <T extends AnyArray>(
  *
  * {@link shuffleRange}
  *
- * @param buf -
- * @param n -
- * @param rnd -
+ * @param buf - array
+ * @param n - num items
+ * @param rnd - PRNG
  */
 export const shuffle = <T extends any[] | TypedArray>(
     buf: T,

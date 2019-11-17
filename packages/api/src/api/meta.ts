@@ -8,7 +8,7 @@ export interface IMeta<T> {
      * Returns a copy of the original value with given metadata
      * attached.
      *
-     * @param meta -
+     * @param meta - meta data
      */
     withMeta(meta: any): T;
 }

@@ -12,8 +12,8 @@ export const bitClear = (x: number, bit: Bit) => (x & ~(1 << bit)) >>> 0;
 /**
  * Toggles bit in given uint `x`.
  *
- * @param x -
- * @param bit -
+ * @param x - value
+ * @param bit - bit ID
  */
 export const bitFlip = (x: number, bit: Bit) => (x ^ (1 << bit)) >>> 0;
 

@@ -4,8 +4,8 @@ import { Pow2 } from "./api";
  * Aligns `addr` to next multiple of `size`. The latter must be a power
  * of 2.
  *
- * @param addr -
- * @param size -
+ * @param addr - value to align
+ * @param size - alignment value
  */
 export const align = (addr: number, size: Pow2) => (
     size--, (addr + size) & ~size

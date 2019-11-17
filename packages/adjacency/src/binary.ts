@@ -8,11 +8,12 @@ export class AdjacencyBitMatrix implements IGraph {
      * Creates adjacency matrix with capacity `n` (max vertices) from
      * given edge pairs. Each edge is `[dest-node src-node]`.
      *
+     * @remarks
      * If `undirected` is true, creates symmetrical adjacencies.
      *
-     * @param n -
-     * @param edges -
-     * @param undirected -
+     * @param n - max vertices
+     * @param edges - edge pairs
+     * @param undirected -true, if undirected
      */
     static fromEdges(
         n: number,
@@ -58,7 +59,7 @@ export class AdjacencyBitMatrix implements IGraph {
     /**
      * Resizes matrix to new size given.
      *
-     * @param n -
+     * @param n - new max vertices
      */
     resize(n: number) {
         this.mat.resize(n);

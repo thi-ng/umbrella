@@ -1,6 +1,6 @@
 /**
  * Returns last element of given array or `undefined` if array is empty.
  *
- * @param x -
+ * @param buf - array
  */
-export const peek = <T>(x: ArrayLike<T>) => x[x.length - 1];
+export const peek = <T>(buf: ArrayLike<T>) => buf[buf.length - 1];

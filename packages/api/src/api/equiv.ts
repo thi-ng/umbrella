@@ -1,9 +1,9 @@
 export interface IEquiv {
     /**
      * Returns `true` if this *value* is equivalent to `o`. Also see
-     * `ICompare.compare` and `IHash.hash`.
+     * {@link ICompare.compare} and {@link IHash.hash}.
      *
-     * @param o -
+     * @param o - value to check for equivalence
      */
     equiv(o: any): boolean;
 }

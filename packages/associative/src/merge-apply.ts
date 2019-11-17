@@ -5,8 +5,8 @@ import { copy } from "./utils";
 /**
  * Similar to {@link mergeApplyObj}, but for ES6 Maps instead of plain objects.
  *
- * @param src -
- * @param xs -
+ * @param src - source map
+ * @param xs - map w/ transformation functions
  */
 export const mergeApplyMap = <K, V>(
     src: Map<K, V>,
@@ -34,14 +34,14 @@ export const mergeApplyMap = <K, V>(
  * @example
  * ```ts
  * mergeApplyObj(
- *   {a: "hello", b: 23, c: 12},
- *   {a: (x) => x + " world", b: 42}
+ *   { a: "hello", b: 23, c: 12 },
+ *   { a: (x) => x + " world", b: 42 }
  * );
  * // { a: 'hello world', b: 42, c: 12 }
  * ```
  *
- * @param src -
- * @param xs -
+ * @param src - source object
+ * @param xs - object w/ transformation functions
  */
 export const mergeApplyObj = <V>(
     src: IObjectOf<V>,

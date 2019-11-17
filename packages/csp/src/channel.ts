@@ -86,7 +86,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
      * Creates new channel with single value from given promise, then closes
      * automatically iff promise has been resolved.
      *
-     * @param p -
+     * @param p - promise
      */
     static fromPromise<T>(p: Promise<T>) {
         const chan = new Channel<T>();
@@ -138,7 +138,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
      * an array of `[value, channel]`. Channel order is repeatedly
      * shuffled for each read attempt.
      *
-     * @param chans -
+     * @param chans - source channels
      */
     static select(chans: Channel<any>[]) {
         return new Promise<any>((resolve) => {
@@ -166,10 +166,10 @@ export class Channel<T> implements IReadWriteableChannel<T> {
      * `[src-id, val]` If false (default), only received values will be
      * forwarded.
      *
-     * @param chans -
-     * @param out -
-     * @param close -
-     * @param named -
+     * @param chans - source channels
+     * @param out - result channel
+     * @param close - true, if result closes
+     * @param named - true, to emit labeled tuples
      */
     static merge(
         chans: Channel<any>[],
@@ -229,10 +229,10 @@ export class Channel<T> implements IReadWriteableChannel<T> {
      * ], null, false).consume();
      * ```
      *
-     * @param chans -
-     * @param out -
-     * @param closeOnFirst -
-     * @param closeOutput -
+     * @param chans - source channels
+     * @param out - result channel
+     * @param closeOnFirst - true, if result closes when first input is done
+     * @param closeOutput - true, if result closes when all inputs are done
      */
     static mergeTuples(
         chans: Channel<any>[],

@@ -14,8 +14,8 @@ import { IObjectOf } from "@thi.ng/api";
  * // Map { 1 => 'a', 2 => 'b' }
  * ```
  *
- * @param src -
- * @param dest -
+ * @param src - map to invert
+ * @param dest - result map
  */
 export const invertMap = <K, V>(src: Map<K, V>, dest?: Map<V, K>) => {
     dest = dest || new Map();
@@ -36,8 +36,8 @@ export const invertMap = <K, V>(src: Map<K, V>, dest?: Map<V, K>) => {
  * // { '1': 'a', '2': 'b' }
  * ```
  *
- * @param src -
- * @param dest -
+ * @param src - object to invert
+ * @param dest - result object
  */
 export const invertObj = (
     src: IObjectOf<PropertyKey>,

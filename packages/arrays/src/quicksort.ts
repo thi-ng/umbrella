@@ -33,11 +33,11 @@ import { swap } from "./swap";
  * // [ -1, -3, -4, -5, -8 ]
  * ```
  *
- * @param arr -
- * @param _cmp -
- * @param _swap -
- * @param start -
- * @param end -
+ * @param arr - array to sort
+ * @param _cmp - comparator
+ * @param _swap - swap function
+ * @param start - start index
+ * @param end - end index (inclusive)
  */
 // prettier-ignore
 export function quickSort<T>(arr: T[], _cmp?: Comparator<T>, _swap?: Fn3<T[], number, number, void>, start?: number, end?: number): T[];

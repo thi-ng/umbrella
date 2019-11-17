@@ -7,7 +7,7 @@ import { ensureAlpha } from "./internal/ensure-alpha";
  *
  * {@link https://en.wikipedia.org/wiki/SRGB}
  *
- * @param x -
+ * @param x - channel value
  */
 export const linearSrgb = (x: number) =>
     x <= 0.0031308
@@ -19,7 +19,7 @@ export const linearSrgb = (x: number) =>
  *
  * {@link https://en.wikipedia.org/wiki/SRGB}
  *
- * @param x -
+ * @param x - channel value
  */
 export const srgbLinear = (x: number) =>
     x <= 0.04045
@@ -29,8 +29,8 @@ export const srgbLinear = (x: number) =>
 /**
  * Converts linear RGB to sRGB.
  *
- * @param out -
- * @param src -
+ * @param out - result
+ * @param src - source color
  */
 export const rgbaSrgba: ColorOp = (out, src) =>
     setC4(
@@ -44,8 +44,8 @@ export const rgbaSrgba: ColorOp = (out, src) =>
 /**
  * Converts sRGB to linear RGB.
  *
- * @param out -
- * @param src -
+ * @param out - result
+ * @param src - source color
  */
 export const srgbaRgba: ColorOp = (out, src) =>
     setC4(

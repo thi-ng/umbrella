@@ -158,7 +158,7 @@ export interface TypedArrayTypeMap extends Record<Type | GLType, TypedArray> {
  * Constructs new typed array of given {@link Type}/{@link GLType}. Supports all
  * arities of standard typed array ctors.
  *
- * @param type -
+ * @param type - array type enum
  */
 // prettier-ignore
 export function typedArray<T extends Type | GLType>(type: T, length: number): TypedArrayTypeMap[T];
@@ -174,7 +174,7 @@ export function typedArray<T extends Type | GLType>(type: T, ...xs: any[]) {
  * Returns the smallest possible *unsigned* int type enum for given `x`.
  * E.g. if `x <= 256`, the function returns `Type.U8`.
  *
- * @param x -
+ * @param x - value to classify
  */
 export const uintType = (x: number): UintType =>
     x <= 0x100 ? Type.U8 : x <= 0x10000 ? Type.U16 : Type.U32;
@@ -183,7 +183,7 @@ export const uintType = (x: number): UintType =>
  * Returns the smallest possible *signed* int type enum for given `x`.
  * E.g. if `x >= -128 && x < 128`, the function returns `Type.I8`.
  *
- * @param x -
+ * @param x - value to classify
  */
 export const intType = (x: number): IntType =>
     x >= -0x80 && x < 0x80

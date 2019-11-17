@@ -254,7 +254,7 @@ export class SparseSet32 extends ASparseSet<Uint32Array>
  * chooses most memory efficient implementation, e.g. if `n` <= 256
  * returns a {@link SparseSet8} instance.
  *
- * @param n -
+ * @param n - max capacity, ID range: [0...n)
  */
 export const sparseSet = (n: number) =>
     n <= 0x100

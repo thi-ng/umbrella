@@ -97,8 +97,8 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
      * Returns the canonical (stored) value for `key`, if present. If
      * the set contains no equivalent for `key`, returns `notFound`.
      *
-     * @param key -
-     * @param notFound -
+     * @param key - search key
+     * @param notFound - default value
      */
     get(key: T, notFound?: T): T | undefined {
         const $this = __private.get(this)!;

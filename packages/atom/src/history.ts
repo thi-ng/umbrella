@@ -139,7 +139,7 @@ export class History<T> implements IHistory<T> {
      * atom/cursor, but too applies `changed` predicate to determine if
      * there was a change and if the previous value should be recorded.
      *
-     * @param val -
+     * @param val - replacement value
      */
     reset(val: T) {
         const prev = this.state.deref();
@@ -165,7 +165,8 @@ export class History<T> implements IHistory<T> {
      * but too applies `changed` predicate to determine if there was a
      * change and if the previous value should be recorded.
      *
-     * @param val -
+     * @param fn - update function
+     * @param args - additional args passed to `fn`
      */
     swap(fn: SwapFn<T>, ...args: any[]): T {
         return this.reset(fn(this.state.deref(), ...args));
@@ -196,7 +197,7 @@ export class History<T> implements IHistory<T> {
      * If recording succeeded, the `History.EVENT_RECORD` event is
      * emitted with the recorded state provided as event value.
      *
-     * @param state -
+     * @param state - state to record
      */
     record(state?: T) {
         const history = this.history;
@@ -229,8 +230,8 @@ export class History<T> implements IHistory<T> {
      * `IWatch.addWatch()` implementation. Delegates to wrapped
      * atom/cursor.
      *
-     * @param id -
-     * @param fn -
+     * @param id - watch ID
+     * @param fn - watch function
      */
     addWatch(id: string, fn: Watch<T>) {
         return this.state.addWatch(id, fn);
@@ -240,7 +241,7 @@ export class History<T> implements IHistory<T> {
      * `IWatch.removeWatch()` implementation. Delegates to wrapped
      * atom/cursor.
      *
-     * @param id -
+     * @param id - watch iD
      */
     removeWatch(id: string) {
         return this.state.removeWatch(id);

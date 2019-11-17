@@ -9,9 +9,9 @@ import { empty } from "./utils";
  * correct results). If `out` is *not* given, the returned Set type will
  * be that of `a` (provided it defines `Symbol.species`).
  *
- * @param a -
- * @param b -
- * @param out -
+ * @param a - first set
+ * @param b - other set
+ * @param out - result set
  */
 export const intersection = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
     out = out || empty(a, Set);
@@ -35,7 +35,7 @@ export const intersection = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
  * to be used with {@link @thi.ng/transducers#reduce} /
  * {@link @thi.ng/transducers#transduce} functions.
  *
- * @param src -
+ * @param src - input collections
  */
 export function intersectionR<T>(): Reducer<Set<T>, Iterable<T>>;
 export function intersectionR<T>(src: Iterable<T>): Set<T>;

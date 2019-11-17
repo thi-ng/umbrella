@@ -24,8 +24,8 @@ import { FnAny } from "@thi.ng/api";
  *
  * {@link threadLast}
  *
- * @param init -
- * @param fns -
+ * @param init - start value
+ * @param fns - functions / S-expressions
  */
 export const threadFirst = (
     init: any,

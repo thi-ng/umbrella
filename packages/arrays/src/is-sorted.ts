@@ -20,10 +20,10 @@ import { compare } from "@thi.ng/compare";
  * // true
  * ```
  *
- * @param arr -
- * @param cmp -
- * @param start -
- * @param end -
+ * @param arr - array
+ * @param cmp - comparator
+ * @param start - start index
+ * @param end - end index
  */
 export const isSorted = <T>(
     arr: ArrayLike<T>,

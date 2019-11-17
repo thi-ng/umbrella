@@ -24,10 +24,10 @@ import { compare, compareNumAsc } from "@thi.ng/compare";
  * // -3
  * ```
  *
- * @param buf -
- * @param x -
- * @param key -
- * @param cmp -
+ * @param buf - array
+ * @param x - search value
+ * @param key - key function
+ * @param cmp - comparator
  */
 export const binarySearch = <A, B>(
     buf: ArrayLike<A>,
@@ -57,9 +57,9 @@ export const binarySearch = <A, B>(
  * supporting custom comparators (default:
  * {@link @thi.ng/compare#compareNumAsc}).
  *
- * @param buf -
- * @param x -
- * @param cmp -
+ * @param buf - array
+ * @param x - search value
+ * @param cmp - comparator
  */
 export const binarySearchNumeric = (
     buf: ArrayLike<number>,

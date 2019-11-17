@@ -14,9 +14,9 @@ import { equiv as _eq } from "@thi.ng/equiv";
  *
  * {@link @thi.ng/transducers#filterFuzzy}
  *
- * @param domain -
- * @param query -
- * @param equiv -
+ * @param domain - array
+ * @param query - search value
+ * @param equiv - equivalence predicate
  */
 export const fuzzyMatch = <T>(
     domain: ArrayLike<T>,

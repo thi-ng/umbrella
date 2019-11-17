@@ -30,8 +30,8 @@ import { empty, first, objValues } from "./utils";
  * // }
  * ```
  *
- * @param a -
- * @param b -
+ * @param a - first set
+ * @param b - other set
  */
 export const join = <A, B>(
     a: Set<A>,
@@ -87,8 +87,8 @@ export const join = <A, B>(
  * //   { type: 2, color: 'blue', id: 2, name: 'bar' } }
  * ```
  *
- * @param a -
- * @param b -
+ * @param a - first set
+ * @param b - other set
  * @param kmap - keys to compute join for
  */
 export const joinWith = <A, B>(

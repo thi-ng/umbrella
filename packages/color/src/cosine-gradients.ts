@@ -155,8 +155,8 @@ export const cosineGradient = (n: number, spec: CosGradientSpec) =>
  * Returns coefficients to produce a cosine gradient between the two
  * given RGBA colors.
  *
- * @param from -
- * @param to -
+ * @param from - start color
+ * @param to - end color
  */
 export const cosineCoeffs = (from: ReadonlyColor, to: ReadonlyColor) => {
     from = clamp([], from);
@@ -186,8 +186,8 @@ export const cosineCoeffs = (from: ReadonlyColor, to: ReadonlyColor) => {
  *
  * {@link @thi.ng/transducers#tween}
  *
- * @param num -
- * @param stops -
+ * @param num - number of color steps to produce
+ * @param stops - gradient stops
  */
 export const multiCosineGradient = (
     num: number,
