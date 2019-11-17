@@ -13,6 +13,7 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
+- [Benchmark](#benchmark)
 - [Authors](#authors)
 - [License](#license)
 
@@ -87,6 +88,30 @@ a.next.next.replace(10).root
 // all editing is immutable, original is untouched...
 x
 // [ 1, [ 5, 4, 3, 2 ], 6 ]
+```
+
+## Benchmark
+
+For better comparison, the included benchmarks are also ported from the
+[fast-zip](https://github.com/postspectacular/fast-zip) package and
+measure traversal & editing of a tree of 10 x 10 x 10 values.
+
+Measurements for MBP 2015 2.8GHz, 16GB, node v12.10.0:
+
+```text
+$ node bench/index.js
+
+walk:
+warmup... 2562ms
+warmup... 2469ms
+warmup... 2460ms
+total: 2476ms, mean: 0.2476ms, runs: 10000
+
+edit:
+warmup... 4660ms
+warmup... 4573ms
+warmup... 4566ms
+total: 4616ms, mean: 0.4616ms, runs: 10000
 ```
 
 ## Authors
