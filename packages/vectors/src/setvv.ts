@@ -40,9 +40,10 @@ export const setVV9: VecOpVVV = (out, a, b, c) =>
     setC(out, a[0], a[1], a[2], b[0], b[1], b[2], c[0], c[1], c[2]);
 
 /**
- * Sets `out` to:
+ * Sets `out` to concatenation of `a`, `b`, `c`, `d`:
  *
- * ```
+ * @example
+ * ```ts
  * [a.x, a.y, a.z, a.w, b.x, b.y, b.z, b.w,
  *  c.x, c.y, c.z, c.w, d.x, d.y, d.z, d.w]
  * ```

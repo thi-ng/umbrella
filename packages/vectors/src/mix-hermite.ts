@@ -4,14 +4,14 @@ import { ReadonlyVec, Vec } from "./api";
 import { submN } from "./submn";
 
 /**
- * Vector version of thi.ng/math {@link mixCubicHermite}.
+ * Vector version of {@link @thi.ng/math#mixCubicHermite}.
  *
- * @param out -
+ * @param out - result
  * @param a -
- * @param ta -
+ * @param ta - tangent A
  * @param b -
- * @param tb -
- * @param t -
+ * @param tb - tangent B
+ * @param t - interpolation coeff [0..1]
  */
 export const mixCubicHermite = (
     out: Vec | null,
@@ -38,21 +38,21 @@ export const mixCubicHermite = (
 };
 
 /**
- * Convenience version of {@link mixCubicHermite}, using 4 input points and
- * {@link tangentCardinal} to compute the tangents for points `b` and `c`
- * (with optional `scale`, default 0.5). Interpolated result point is
- * that of `b` and `c`, with `a` and `d` only being used for tangent
- * calculations.
+ * Convenience version of {@link mixCubicHermite}, using 4 input points
+ * and {@link tangentCardinal} to compute the tangents for points `b`
+ * and `c` (with optional `scale`, default 0.5). Interpolated result
+ * point is that of `b` and `c`, with `a` and `d` only being used for
+ * tangent calculations.
  *
  * If `out` is null, stores result in `b`.
  *
- * @param out -
+ * @param out - result
  * @param a -
  * @param b -
  * @param c -
  * @param d -
- * @param t -
- * @param scale -
+ * @param t - interpolation coeff [0..1]
+ * @param scale - tangent tightness / scale
  */
 export const mixHermiteCardinal = (
     out: Vec | null,
@@ -73,19 +73,19 @@ export const mixHermiteCardinal = (
     );
 
 /**
- * Convenience version of {@link mixCubicHermite}, using 4 input points and
- * {@link tangentDiff3} to compute the tangents for points `b` and `c`.
- * Interpolated result point is that of `b` and `c`, with `a` and `d`
- * only being used for tangent calculations.
+ * Convenience version of {@link mixCubicHermite}, using 4 input points
+ * and {@link tangentDiff3} to compute the tangents for points `b` and
+ * `c`. Interpolated result point is that of `b` and `c`, with `a` and
+ * `d` only being used for tangent calculations.
  *
  * If `out` is null, stores result in `b`.
  *
- * @param out -
+ * @param out - result
  * @param a -
  * @param b -
  * @param c -
  * @param d -
- * @param t -
+ * @param t - interpolation coeff [0..1]
  */
 export const mixHermiteDiff3 = (
     out: Vec,
@@ -105,7 +105,7 @@ export const mixHermiteDiff3 = (
     );
 
 /**
- * Vector version of thi.ng/math {@link tangentCardinal}.
+ * Vector version of {@link @thi.ng/math#tangentCardinal}.
  *
  * @param out -
  * @param prev -
@@ -124,9 +124,9 @@ export const tangentCardinal = (
 ) => submN(out, next, prev, scale / (tc - ta));
 
 /**
- * Vector version of thi.ng/math {@link tangentDiff3}.
+ * Vector version of {@link @thi.ng/math#tangentDiff3}.
  *
- * @param out -
+ * @param out - result
  * @param prev -
  * @param curr -
  * @param next -

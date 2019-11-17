@@ -1,6 +1,16 @@
 import { addW4 } from "./addw";
 import { ReadonlyVec, Vec } from "./api";
 
+/**
+ * Vector version of {@link @thi.ng/math#mixCubic}.
+ *
+ * @param out - result
+ * @param a -
+ * @param b -
+ * @param c -
+ * @param d -
+ * @param t - interpolation coeff [0..1]
+ */
 export const mixCubic = (
     out: Vec | null,
     a: ReadonlyVec,

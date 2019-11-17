@@ -36,9 +36,11 @@ const keys = memoize1<number, PropertyKey[]>((size: number) => [
 ]);
 
 /**
- * Wrapper for strided, arbitrary length vectors. Wraps given buffer in
- * ES6 `Proxy` with custom property getters/setters and implements the
- * following interfaces:
+ * Wrapper for strided, arbitrary length vectors.
+ *
+ * @remarks
+ * Wraps given buffer in ES6 `Proxy` with custom property
+ * getters/setters and implements the following interfaces:
  *
  * - `Iterable` (ES6)
  * - {@link @thi.ng/api#ICopy}
@@ -64,6 +66,7 @@ const keys = memoize1<number, PropertyKey[]>((size: number) => [
  * much more efficient to first copy them to compact arrays and then
  * copy result back if needed.
  *
+ * @example
  * ```
  * // 3D vector w/ stride length of 4
  * a = gvec([1,0,0,0,2,0,0,0,3,0,0,0], 3, 0, 4);
@@ -93,10 +96,10 @@ const keys = memoize1<number, PropertyKey[]>((size: number) => [
  * // true
  * ```
  *
- * @param buf -
- * @param size -
- * @param offset -
- * @param stride -
+ * @param buf - backing buffer
+ * @param size - vector size / num components
+ * @param offset - start index
+ * @param stride - component stride
  */
 export const gvec = (
     buf: Vec,

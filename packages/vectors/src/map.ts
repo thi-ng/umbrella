@@ -8,14 +8,16 @@ import {
 } from "./api";
 
 /**
- * Vec2/3/4 view based buffer transformation for {@link VecOpVV} type ops and
- * supporting arbitrary component and element layouts of all input and
- * output buffers. The given pre-initialized vectors MUST be separate
- * instances, are used as sliding cursors / views of their respective
- * backing buffers and will be modified as part of the transformation
- * process (though the input buffers themselves are treated as
- * immutable, unless `out` is configured to use one of the input
- * buffers).
+ * Vec2/3/4 view based buffer transformation for {@link VecOpVV} type
+ * ops and supporting arbitrary component and element layouts of all
+ * input and output buffers.
+ *
+ * @remarks
+ * The given pre-initialized vectors MUST be separate instances, are
+ * used as sliding cursors / views of their respective backing buffers
+ * and will be modified as part of the transformation process (though
+ * the input buffers themselves are treated as immutable, unless `out`
+ * is configured to use one of the input buffers).
  *
  * In each iteration `op` is called via `op(out, a, b)`, followed by
  * cursor updates to process the next vector view. No bounds checking is
@@ -23,7 +25,8 @@ import {
  *
  * This function returns `out`'s backing buffer.
  *
- * ```
+ * @example
+ * ```ts
  * // each input buffer contains 2 2D vectors, but using
  * // different strided data layouts
  * mapVV(
@@ -45,11 +48,11 @@ import {
  *
  * Alternatively, `Vec2/3/4.iterator()` combined with transducers can be
  * used to achieve the same (and more flexible) transformations, but
- * will incur more intermediate object allocations. `mapV*()`
- * functions only use (and mutate) the provided vector instances and do
- * not allocate any further objects.
+ * will incur more intermediate object allocations. `mapV*()` functions
+ * only use (and mutate) the provided vector instances and do not
+ * allocate any further objects.
  *
- * ```
+ * ```ts
  * // output buffer
  * const out = new Array(4);
  *
@@ -98,7 +101,8 @@ export const mapVV = (
  * Like {@link mapVV}, but for {@link VecOpV} type ops and hence only using
  * single input.
  *
- * ```
+ * @example
+ * ```ts
  * // 4x 2D vectors in SOA layout
  * // i.e. [x1, x2, x3, x4, y1, y2, y3, y4]
  * buf = [1, 3, 5, 7, 2, 4, 6, 8];
@@ -136,8 +140,8 @@ export const mapV = (
 };
 
 /**
- * Like {@link mapVV}, but for {@link VecOpVN} type ops and hence using a single
- * vector input buffer `a` and a scalar `n`.
+ * Like {@link mapVV}, but for {@link VecOpVN} type ops and hence using
+ * a single vector input buffer `a` and a scalar `n`.
  *
  * @param op -
  * @param out -
@@ -165,8 +169,8 @@ export const mapVN = (
 };
 
 /**
- * Like {@link mapVV}, but for {@link VecOpVVV} type ops and hence using three
- * vector input buffers `a`, `b`, `c`.
+ * Like {@link mapVV}, but for {@link VecOpVVV} type ops and hence using
+ * three vector input buffers `a`, `b`, `c`.
  *
  * @param op -
  * @param out -
@@ -202,8 +206,8 @@ export const mapVVV = (
 };
 
 /**
- * Like {@link mapVV}, but for {@link VecOpVVN} type ops and hence using two
- * vector input buffers `a`, `b` and a scalar `n`.
+ * Like {@link mapVV}, but for {@link VecOpVVN} type ops and hence using
+ * two vector input buffers `a`, `b` and a scalar `n`.
  *
  * @param op -
  * @param out -
