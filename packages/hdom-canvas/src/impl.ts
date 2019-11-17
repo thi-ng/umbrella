@@ -83,6 +83,7 @@ export const canvas = {
     }
 };
 
+/** @internal */
 export const createTree = (
     _: Partial<HDOMOpts>,
     canvas: HTMLCanvasElement,
@@ -101,6 +102,7 @@ export const createTree = (
     walk(ctx!, tree, { attribs: {}, edits: [] });
 };
 
+/** @internal */
 export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any): any => {
     if (tree == null) {
         return tree;
@@ -142,6 +144,7 @@ export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any): any => {
     return tree;
 };
 
+/** @internal */
 export const diffTree = (
     opts: Partial<HDOMOpts>,
     parent: HTMLCanvasElement,

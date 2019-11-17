@@ -17,6 +17,8 @@ import { normalize } from "./normalize";
 /**
  * Recursively normalizes and serializes given tree as HTML/SVG/XML
  * string. Expands any embedded component functions with their results.
+ *
+ * @remarks
  * Each node of the input tree can have one of the following input
  * forms:
  *

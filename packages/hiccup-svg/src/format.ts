@@ -6,10 +6,13 @@ let PRECISION = 2;
 
 export const setPrecision = (n: number) => (PRECISION = n);
 
+/** @internal */
 export const ff = (x: number) => x.toFixed(PRECISION);
 
+/** @internal */
 export const fpoint = (p: Vec2Like) => ff(p[0]) + "," + ff(p[1]);
 
+/** @internal */
 export const fpoints = (pts: Vec2Like[], sep = " ") =>
     pts ? pts.map(fpoint).join(sep) : "";
 
@@ -41,6 +44,8 @@ export const fpoints = (pts: Vec2Like[], sep = " ") =>
  * null-ish.
  *
  * @param attribs -
+ *
+ * @internal
  */
 export const fattribs = (attribs: any) => {
     if (!attribs) return;
@@ -57,6 +62,8 @@ export const fattribs = (attribs: any) => {
  * {@link fattribs}
  *
  * @param attribs -
+ *
+ * @internal
  */
 const ftransforms = (attribs: any) => {
     let v: any;
@@ -110,6 +117,8 @@ const buildTransform = (attribs: any) => {
  * {@link fattribs}
  *
  * @param col -
+ *
+ * @internal
  */
 export const fcolor = (col: any) =>
     isString(col)

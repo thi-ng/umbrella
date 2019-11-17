@@ -8,6 +8,8 @@ import { implementsFunction } from "@thi.ng/checks";
  *
  * @param ctx -
  * @param keys -
+ *
+ * @internal
  */
 export const derefContext = (ctx: any, keys: PropertyKey[] | undefined) => {
     if (ctx == null || !keys || !keys.length) return ctx;
