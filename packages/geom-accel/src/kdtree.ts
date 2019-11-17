@@ -245,8 +245,8 @@ export class KdTree<K extends ReadonlyVec, V>
 /**
  * Returns node for point or `undefined` if none found.
  *
- * @param p -
- * @param node -
+ * @param p - point
+ * @param node - tree node
  * @param epsSq - squared epsilon / tolerance
  */
 const find = <K extends ReadonlyVec, V>(
@@ -284,7 +284,7 @@ const findMin = <K extends ReadonlyVec, V>(
 /**
  * Returns true if root is to be deleted.
  *
- * @param node -
+ * @param node - tree node
  */
 const remove = <K extends ReadonlyVec, V>(node: KdNode<K, V>) => {
     if (!node.l && !node.r) {
@@ -339,10 +339,10 @@ const nearest = <K extends ReadonlyVec, V>(
 /**
  * Optimized version of {@link nearest} for single closest point search.
  *
- * @param q -
- * @param acc -
- * @param dims -
- * @param node -
+ * @param q - search point
+ * @param acc - accumulator
+ * @param dims - dimensions
+ * @param node - tree node
  */
 const nearest1 = <K extends ReadonlyVec, V>(
     q: K,

@@ -9,7 +9,7 @@ import { range } from "@thi.ng/transducers";
  *
  * @param cols -
  * @param rows -
- * @param rnd -
+ * @param rnd - PRNG
  */
 export function* random2d(cols: number, rows = cols, rnd: IRandom = SYSTEM) {
     for (let i of shuffle([...range(cols * rows)], undefined, rnd)) {

@@ -5,8 +5,10 @@ import { Heap } from "./heap";
 
 /**
  * Generic d-ary heap / priority queue with configurable arity (default
- * = 4) and ordering via user-supplied comparator. By default,
- * implements min-heap ordering and uses
+ * = 4) and ordering via user-supplied comparator.
+ *
+ * @remarks
+ * By default, implements min-heap ordering and uses
  * {@link @thi.ng/compare#compare}. The arity `d` must be >= 2 (default:
  * 4). If `d=2`, the default binary {@link Heap} implementation will be
  * faster.
@@ -18,8 +20,8 @@ export class DHeap<T> extends Heap<T>
     /**
      * Returns index of parent node or -1 if `idx < 1`.
      *
-     * @param idx -
-     * @param d -
+     * @param idx - index
+     * @param d - branch factor
      */
     static parentIndex(idx: number, d = 4) {
         return idx > 0 ? ((idx - 1) / d) | 0 : -1;
@@ -28,8 +30,8 @@ export class DHeap<T> extends Heap<T>
     /**
      * Returns index of 1st child or -1 if `idx < 0`.
      *
-     * @param idx -
-     * @param d -
+     * @param idx - index
+     * @param d - branch factor
      */
     static childIndex(idx: number, d = 4) {
         return idx >= 0 ? idx * d + 1 : -1;

@@ -81,16 +81,16 @@ export interface IGridLayout extends ILayout<[number, number], LayoutBox> {
     /**
      * Returns the number of columns for given width.
      *
-     * @param w -
+     * @param width -
      */
-    colsForWidth(w: number): number;
+    colsForWidth(width: number): number;
 
     /**
      * Returns the number of rows for given height.
      *
-     * @param w -
+     * @param height -
      */
-    rowsForHeight(h: number): number;
+    rowsForHeight(height: number): number;
 
     /**
      * Calculates the required number of columns & rows for the given

@@ -7,6 +7,8 @@ import { isNumber, isPlainObject } from "@thi.ng/checks";
  * `undefined`.
  *
  * @param args -
+ *
+ * @internal
  */
 export const argAttribs = (args: any[]) =>
     isPlainObject(peek(args)) ? args.pop() : undefined;
@@ -16,6 +18,8 @@ export const argAttribs = (args: any[]) =>
  * attribs object. Returns 3-tuple of re-structured args.
  *
  * @param args -
+ *
+ * @internal
  */
 export const argsVV = (args: any[]) => {
     const attr = argAttribs(args);
@@ -31,6 +35,8 @@ export const argsVV = (args: any[]) => {
  * attribs object. Returns 3-tuple of re-structured args.
  *
  * @param args -
+ *
+ * @internal
  */
 export const argsVN = (args: any[]) => {
     const attr = argAttribs(args);

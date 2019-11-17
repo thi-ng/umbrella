@@ -11,8 +11,8 @@ import { result } from "./result";
  * (excluding the matched terminator string) and returns `Match.FULL`
  * result. Else `Match.PARTIAL`.
  *
- * @param str -
- * @param callback -
+ * @param str - termination string
+ * @param callback - result callback
  */
 export const untilStr = <C, R>(
     str: string,
@@ -33,8 +33,8 @@ export const untilStr = <C, R>(
 /**
  * Generic array version of {@link untilStr}.
  *
- * @param str -
- * @param callback -
+ * @param str - termination sequence
+ * @param callback - result callback
  */
 export const until = <T, C, R>(
     str: T[],

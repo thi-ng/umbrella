@@ -1,4 +1,9 @@
-import { Match, Matcher, RES_PARTIAL, SeqCallback } from "./api";
+import {
+    Match,
+    Matcher,
+    RES_PARTIAL,
+    SeqCallback
+} from "./api";
 import { result } from "./result";
 
 /**
@@ -6,11 +11,11 @@ import { result } from "./result";
  * only returns `Match.FULL` if `match` succeeded at least `min` times
  * or once `max` repetitions have been found.
  *
- * @param match -
- * @param min -
- * @param max -
- * @param success -
- * @param fail -
+ * @param match - matcher
+ * @param min -min repetitions
+ * @param max - max repetitions
+ * @param success - success callback
+ * @param fail - failure callback
  */
 export const repeat = <T, C, R>(
     match: Matcher<T, C, R>,

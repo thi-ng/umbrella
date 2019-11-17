@@ -1,4 +1,9 @@
-import { Match, Matcher, RES_PARTIAL, SeqCallback } from "./api";
+import {
+    Match,
+    Matcher,
+    RES_PARTIAL,
+    SeqCallback
+} from "./api";
 import { result } from "./result";
 
 /**
@@ -7,9 +12,9 @@ import { result } from "./result";
  * the new matcher returns `Match.FAIL` and vice versa. `Match.PARTIAL`
  * results remain as is.
  *
- * @param match -
- * @param success -
- * @param fail -
+ * @param match - matcher to invert
+ * @param success - success callback
+ * @param fail - failure callback
  */
 export const not = <T, C, R>(
     match: Matcher<T, C, R>,

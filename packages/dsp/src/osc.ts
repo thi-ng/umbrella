@@ -133,7 +133,7 @@ export const additive = (
  * Interactive graph of this oscillator:
  * {@link www.desmos.com/calculator/irugw6gnhy}
  *
- * @param n -
+ * @param n - number of octaves
  */
 export const squareAdditive = (n = 8) =>
     additive(
@@ -147,7 +147,7 @@ export const squareAdditive = (n = 8) =>
  * Interactive graph of this oscillator:
  * {@link https://www.desmos.com/calculator/irugw6gnhy}
  *
- * @param n -
+ * @param n - number of octaves
  */
 export const sawAdditive = (n = 8) =>
     additive(
@@ -165,8 +165,8 @@ export const sawAdditive = (n = 8) =>
  * Interactive graph:
  * {@link https://www.desmos.com/calculator/irugw6gnhy}
  *
- * @param n -
- * @param i -
+ * @param n - number of octaves
+ * @param i - curr octave [1..n]
  */
 export const gibbs = (n: number, i: number) =>
     Math.pow(Math.cos(((i - 1) * HALF_PI) / n), 2);
@@ -177,12 +177,12 @@ export const gibbs = (n: number, i: number) =>
  * - {@link http://research.spa.aalto.fi/publications/papers/smc2010-phaseshaping/}
  * - {@link http://www.kvraudio.com/forum/viewtopic.php?t=375517}
  *
- * @param eps -
- * @param x -
+ * @param dt - time step
+ * @param t - phase
  */
-export const polyBLEP = (eps: number, x: number) =>
-    x < eps
-        ? ((x /= eps), x + x - x * x - 1)
-        : x > 1 - eps
-        ? ((x = (x - 1) / eps), x * x + x + x + 1)
+export const polyBLEP = (dt: number, t: number) =>
+    t < dt
+        ? ((t /= dt), t + t - t * t - 1)
+        : t > 1 - dt
+        ? ((t = (t - 1) / dt), t * t + t + t + 1)
         : 0;

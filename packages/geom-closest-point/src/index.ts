@@ -33,9 +33,9 @@ import {
  * - {@link closestPointLine}
  * - {@link closestPointSegment}
  *
- * @param p -
- * @param a -
- * @param b -
+ * @param p - query point
+ * @param a - line point A
+ * @param b - line point B
  */
 export const closestT = (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) => {
     const d = sub([], b, a);
@@ -50,9 +50,9 @@ export const closestT = (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) => {
  *
  * {@link closestPointSegment}
  *
- * @param p -
- * @param a -
- * @param b -
+ * @param p - query point
+ * @param a - line point A
+ * @param b - line point B
  */
 export const closestPointLine = (
     p: ReadonlyVec,
@@ -67,9 +67,9 @@ export const closestPointLine = (
  *
  * {@link distToSegment}
  *
- * @param p -
- * @param a -
- * @param b -
+ * @param p - query point
+ * @param a - line point A
+ * @param b - line point B
  */
 export const distToLine = (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) =>
     dist(p, closestPointLine(p, a, b) || a);
@@ -91,11 +91,11 @@ export const distToLine = (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) =>
  * [eps,1-eps]. If the result lies outside this interval, the function
  * returns `undefined`. Likewise, if `a` and `b` are coincident.
  *
- * @param p -
- * @param a -
- * @param b -
- * @param out -
- * @param eps -
+ * @param p - query point
+ * @param a - line point A
+ * @param b - line point B
+ * @param out - result
+ * @param eps - epsilon value
  */
 export const closestPointSegment = (
     p: ReadonlyVec,
@@ -116,9 +116,9 @@ export const closestPointSegment = (
  * Returns distance from `p` to closest point on line segment `a` ->
  * `b`.
  *
- * @param p -
- * @param a -
- * @param b -
+ * @param p - query point
+ * @param a - line point A
+ * @param b - line point B
  */
 export const distToSegment = (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) =>
     dist(p, closestPointSegment(p, a, b) || a);
@@ -160,11 +160,11 @@ export const closestPointPolyline = (
  * line segment `a` to `b`. `points` is only checked between indices
  * `from` and `to` (not including the latter).
  *
- * @param a -
- * @param b -
- * @param points -
- * @param from -
- * @param to -
+ * @param a - line point A
+ * @param b - line point B
+ * @param points - points
+ * @param from - start search index
+ * @param to - end search index
  */
 export const farthestPointSegment = (
     a: ReadonlyVec,

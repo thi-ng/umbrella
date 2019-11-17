@@ -51,9 +51,9 @@ export interface AnimationOpts {
  * }
  * ```
  *
- * @param id -
- * @param opts -
- * @param keyframes -
+ * @param id - animation name
+ * @param opts - animation config options
+ * @param keyframes - keyframes
  */
 export const animation = (
     id: string,

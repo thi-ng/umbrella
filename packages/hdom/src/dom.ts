@@ -12,10 +12,10 @@ const maybeInitElement = <T>(el: T, tree: any) =>
 /**
  * See {@link HDOMImplementation} interface for further details.
  *
- * @param opts -
- * @param parent -
- * @param tree -
- * @param insert -
+ * @param opts - hdom config options
+ * @param parent - DOM element
+ * @param tree - component tree
+ * @param insert - child index
  */
 export const createTree = <T>(
     opts: Partial<HDOMOpts>,
@@ -72,10 +72,10 @@ export const createTree = <T>(
 /**
  * See {@link HDOMImplementation} interface for further details.
  *
- * @param opts -
- * @param parent -
- * @param tree -
- * @param index -
+ * @param opts - hdom config options
+ * @param parent - DOM element
+ * @param tree - component tree
+ * @param index - child index
  */
 export const hydrateTree = <T>(
     opts: Partial<HDOMOpts>,
@@ -128,10 +128,10 @@ export const hydrateTree = <T>(
  * If `tag` is a known SVG element name, the new element will be created
  * with the proper SVG XML namespace.
  *
- * @param parent -
- * @param tag -
- * @param attribs -
- * @param insert -
+ * @param parent - DOM element
+ * @param tag - component tree
+ * @param attribs - attributes
+ * @param insert - child index
  */
 export const createElement = (
     parent: Element,
@@ -206,10 +206,10 @@ export const setAttribs = (el: Element, attribs: any) => {
  * If the given (or computed) attrib value is `false` or `undefined` the
  * attrib is removed from the element.
  *
- * @param el -
- * @param id -
- * @param val -
- * @param attribs -
+ * @param el - DOM element
+ * @param id - attribute name
+ * @param val - attribute value
+ * @param attribs - object of all attribs
  */
 export const setAttrib = (el: Element, id: string, val: any, attribs?: any) => {
     if (id.startsWith("__")) return;
@@ -264,10 +264,10 @@ export const setAttrib = (el: Element, id: string, val: any, attribs?: any) => {
  * Updates an element's `value` property. For form elements it too
  * ensures the edit cursor retains its position.
  *
- * @param el -
- * @param v -
+ * @param el - DOM element
+ * @param value - value
  */
-export const updateValueAttrib = (el: HTMLInputElement, v: any) => {
+export const updateValueAttrib = (el: HTMLInputElement, value: any) => {
     let ev;
     switch (el.type) {
         case "text":
@@ -283,14 +283,14 @@ export const updateValueAttrib = (el: HTMLInputElement, v: any) => {
         case "time":
         case "week":
         case "month":
-            if ((ev = el.value) !== undefined && typeof v === "string") {
-                const off = v.length - (ev.length - (el.selectionStart || 0));
-                el.value = v;
+            if ((ev = el.value) !== undefined && typeof value === "string") {
+                const off = value.length - (ev.length - (el.selectionStart || 0));
+                el.value = value;
                 el.selectionStart = el.selectionEnd = off;
                 break;
             }
         default:
-            el.value = v;
+            el.value = value;
     }
 };
 
@@ -312,7 +312,7 @@ export const setStyle = (el: Element, styles: any) => (
 /**
  * Adds event listener (possibly with options).
  *
- * @param el -
+ * @param el - DOM element
  * @param id - event name (w/o `on` prefix)
  * @param listener -
  */
@@ -328,7 +328,7 @@ export const setListener = (
 /**
  * Removes event listener (possibly with options).
  *
- * @param el -
+ * @param el - DOM element
  * @param id - event name (w/o `on` prefix)
  * @param listener -
  */

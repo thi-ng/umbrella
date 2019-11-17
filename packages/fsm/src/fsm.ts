@@ -38,11 +38,11 @@ import { Match, Matcher } from "./api";
  * If the optional `src` iterable is given, the function returns a
  * transforming iterator of the FSM results.
  *
- * @param states -
- * @param ctx -
- * @param initialState -
- * @param update -
- * @param src -
+ * @param states - FSM state matchers
+ * @param ctx - FSM context object
+ * @param initialState - initial state ID
+ * @param update - context update fn
+ * @param src - input
  */
 export function fsm<T, C, R>(
     states: IObjectOf<Matcher<T, C, R>>,

@@ -13,7 +13,7 @@ import { map, range2d } from "@thi.ng/transducers";
  *
  * @param cols -
  * @param rows -
- * @param step -
+ * @param step - column stride
  */
 export function* interleaveColumns2d(cols: number, rows = cols, step = 2) {
     for (let j = 0; j < step; j++) {
@@ -34,7 +34,7 @@ export function* interleaveColumns2d(cols: number, rows = cols, step = 2) {
  *
  * @param cols -
  * @param rows -
- * @param step -
+ * @param step - row stride
  */
 export function* interleaveRows2d(cols: number, rows = cols, step = 2) {
     for (let j = 0; j < step; j++) {

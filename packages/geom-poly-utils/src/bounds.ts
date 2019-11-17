@@ -1,4 +1,9 @@
-import { max, min, Vec, VecPair } from "@thi.ng/vectors";
+import {
+    max,
+    min,
+    Vec,
+    VecPair
+} from "@thi.ng/vectors";
 
 /**
  * Computes the nD bounds of given vectors. `vmin` should be initialized
@@ -15,9 +20,9 @@ import { max, min, Vec, VecPair } from "@thi.ng/vectors";
  *
  * Returns 2-tuple of modified `[vmin, vmax]`.
  *
- * @param pts -
- * @param vmin -
- * @param vmax -
+ * @param pts - point
+ * @param vmin - min result (pre-initialized to `+∞`)
+ * @param vmax - max result (pre-initialized to `-∞`)
  */
 export const bounds = (
     pts: ReadonlyArray<Vec>,

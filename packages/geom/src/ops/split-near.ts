@@ -27,8 +27,8 @@ import { splitLine } from "../internal/split";
  * - Polyline
  * - Quadratic
  *
- * @param shape -
- * @param p -
+ * @param shape - shape to operate on
+ * @param p - split point
  */
 export const splitNearPoint = defmulti<
     IShape,

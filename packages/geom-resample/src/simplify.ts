@@ -5,9 +5,9 @@ import { eqDelta, Vec } from "@thi.ng/vectors";
 /**
  * {@link https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm}
  *
- * @param pts -
- * @param eps -
- * @param closed -
+ * @param pts - points
+ * @param eps - simplify threshold
+ * @param closed - true, if closed shape (polygon)
  */
 export const simplify = (pts: Vec[], eps = 0, closed = false) => {
     let num = pts.length;

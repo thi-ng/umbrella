@@ -16,10 +16,10 @@ import { result } from "./result";
  * string to `fail` callback. If `collect` is true, the failed callback
  * will be called with the collected input.
  *
- * @param str -
- * @param success -
- * @param fail -
- * @param collect -
+ * @param str - search string
+ * @param success - success callback
+ * @param fail - failure callback
+ * @param collect - true, if input is to be collected/buffered
  */
 export const str = <C, R>(
     str: string,

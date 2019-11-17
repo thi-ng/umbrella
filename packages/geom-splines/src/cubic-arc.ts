@@ -16,11 +16,11 @@ import { cubicFromLine } from "./cubic-line";
  * Partially based on:
  * {@link https://github.com/chromium/chromium/blob/master/third_party/blink/renderer/core/svg/svg_path_parser.cc#L253}
  *
- * @param pos -
- * @param r -
- * @param axis -
- * @param start -
- * @param end -
+ * @param pos - ellipse center
+ * @param r - ellipse radii
+ * @param axis - rotation angle (radians)
+ * @param start - start angle (radians)
+ * @param end - end angle (radians)
  */
 export const cubicFromArc = (
     pos: ReadonlyVec,

@@ -40,8 +40,8 @@ import { defmulti } from "./defmulti";
  * // two: 1, 2
  * ```
  *
- * @param impls -
- * @param fallback -
+ * @param impls - implementations
+ * @param fallback - fallback implementation
  */
 export const defmultiN = <T>(
     impls: { [id: number]: Implementation<T> },

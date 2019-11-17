@@ -26,10 +26,10 @@ import { result } from "./result";
  * Note: Matchers are always processed in reverse order, therefore
  * attention must be paid to the given ordering of supplied matchers.
  *
- * @param opts -
- * @param fallback -
- * @param success -
- * @param fail -
+ * @param opts - child matchers
+ * @param fallback - fallback callback
+ * @param success - success callback
+ * @param fail - failure callback
  */
 export const alts = <T, C, R>(
     opts: Matcher<T, C, R>[],

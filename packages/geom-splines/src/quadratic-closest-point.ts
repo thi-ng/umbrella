@@ -15,13 +15,13 @@ import {
  *
  * {@link @thi.ng/math#minError}
  *
- * @param p -
- * @param a -
- * @param b -
- * @param c -
- * @param res -
- * @param iter -
- * @param eps -
+ * @param p - query point
+ * @param a - control point 1
+ * @param b - control point 2
+ * @param c - control point 3
+ * @param res - search steps per iteration
+ * @param iter - iterations
+ * @param eps - epsilon value
  */
 export const closestPointQuadratic = (
     p: ReadonlyVec,

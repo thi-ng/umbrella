@@ -55,11 +55,11 @@ import { Implementation, MultiFn } from "./api";
  * baz.impls(); // Set { "c", "a", "b" }
  * ```
  *
- * @param type -
- * @param impls -
+ * @param id - dispatch value / implementation ID
+ * @param impls - implementations
  */
 export const implementations = (
-    type: PropertyKey,
+    id: PropertyKey,
     rels: IObjectOf<MultiFn<any>[]>,
     ...impls: (MultiFn<any> | Implementation<any>)[]
 ) => {
@@ -68,11 +68,11 @@ export const implementations = (
     if (rels) {
         for (let parent in rels) {
             for (let fn of rels[parent]) {
-                fn.isa(type, parent);
+                fn.isa(id, parent);
             }
         }
     }
     for (let i = 0; i < impls.length; i += 2) {
-        (<MultiFn<any>>impls[i]).add(type, impls[i + 1]);
+        (<MultiFn<any>>impls[i]).add(id, impls[i + 1]);
     }
 };
