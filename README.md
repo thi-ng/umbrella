@@ -92,6 +92,8 @@ contribute, please first read [this document](./CONTRIBUTING.md).
 (These packages are still unreleased and only available on their feature or `develop` branches)
 
 - [@thi.ng/scenegraph](https://github.com/thi-ng/umbrella/tree/feature/scenegraph/packages/scenegraph) - 2D/3D scenegraph
+- [@thi.ng/seq](https://github.com/thi-ng/umbrella/tree/develop/packages/seq) - Sequence abstraction
+- [@thi.ng/zipper](https://github.com/thi-ng/umbrella/tree/develop/packages/zipper) - Immutable tree editing
 
 ### Fundamentals
 
