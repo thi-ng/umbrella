@@ -26,18 +26,29 @@ import {
 } from "./templates";
 import { vop } from "./vop";
 
+/** @internal */
 export const ARGS_V = "o,a";
+/** @internal */
 export const ARGS_VV = "o,a,b";
+/** @internal */
 export const ARGS_VVV = "o,a,b,c";
+/** @internal */
 export const ARGS_VN = "o,a,n";
+/** @internal */
 export const ARGS_VNV = "o,a,n,b";
+/** @internal */
 export const ARGS_VVN = "o,a,b,n";
 
+/** @internal */
 export const SARGS_V = "io=0,ia=0,so=1,sa=1";
+/** @internal */
 export const SARGS_VV = "io=0,ia=0,ib=0,so=1,sa=1,sb=1";
+/** @internal */
 export const SARGS_VVV = "io=0,ia=0,ib=0,ic=0,so=1,sa=1,sb=1,sc=1";
 
+/** @internal */
 export const DEFAULT_OUT = "!o&&(o=a);";
+/** @internal */
 export const NEW_OUT = "!o&&(o=[]);";
 
 /**
@@ -117,9 +128,10 @@ const assemble = (
         ),
         str(opJoin),
         <Iterable<any>>(
-            zip.apply(null, <any>(
-                syms.split(",").map(strided ? indicesStrided : indices)
-            ))
+            zip.apply(
+                null,
+                <any>syms.split(",").map(strided ? indicesStrided : indices)
+            )
         )
     ),
     post,
@@ -146,9 +158,11 @@ const assembleG = (
     ret !== null ? `return ${ret};` : ""
 ];
 
+/** @internal */
 export const defaultOut = (o: string, args: string) =>
     `!${o} && (${o}=${args.split(",")[1]});`;
 
+/** @internal */
 export const compile = (
     dim: number,
     tpl: Template,
@@ -167,6 +181,7 @@ export const compile = (
         )
     );
 
+/** @internal */
 export const compileHOF = (
     dim: number,
     fns: any[],
@@ -195,6 +210,7 @@ export const compileHOF = (
     )(...fns);
 };
 
+/** @internal */
 export const compileG = (
     tpl: Template,
     args: string,
@@ -211,6 +227,7 @@ export const compileG = (
         )
     );
 
+/** @internal */
 export const compileGHOF = (
     fns: any[],
     tpl: Template,
