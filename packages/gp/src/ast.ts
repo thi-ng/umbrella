@@ -1,11 +1,14 @@
 import { assert } from "@thi.ng/api";
 import { SYSTEM } from "@thi.ng/random";
 import {
+    add,
     choices,
     comp,
     drop,
     iterate,
     iterator,
+    range,
+    repeatedly,
     takeWhile
 } from "@thi.ng/transducers";
 import { arrayZipper, Location } from "@thi.ng/zipper";
@@ -18,39 +21,15 @@ const generateASTNode = <OP, T>(
     maxDepth: number
 ): ASTNode<OP, T> => {
     const rnd = opts.rnd || SYSTEM;
-    if (d >= maxDepth) return opts.terminal(rnd);
-    switch (choices.next().value) {
-        case 1: {
-            const c1 = generateASTNode(opts, choices, d + 1, maxDepth);
-            return <ASTNode<OP, T>>[opts.op1(rnd, c1), c1];
-        }
-        case 2: {
-            const c1 = generateASTNode(opts, choices, d + 1, maxDepth);
-            const c2 = generateASTNode(opts, choices, d + 1, maxDepth);
-            return <ASTNode<OP, T>>[opts.op2(rnd, c1, c2), c1, c2];
-        }
-        case 3: {
-            const c1 = generateASTNode(opts, choices, d + 1, maxDepth);
-            const c2 = generateASTNode(opts, choices, d + 1, maxDepth);
-            const c3 = generateASTNode(opts, choices, d + 1, maxDepth);
-            return <ASTNode<OP, T>>[opts.op3(rnd, c1, c2, c3), c1, c2, c3];
-        }
-        case 4: {
-            const c1 = generateASTNode(opts, choices, d + 1, maxDepth);
-            const c2 = generateASTNode(opts, choices, d + 1, maxDepth);
-            const c3 = generateASTNode(opts, choices, d + 1, maxDepth);
-            const c4 = generateASTNode(opts, choices, d + 1, maxDepth);
-            return <ASTNode<OP, T>>[
-                opts.op4(rnd, c1, c2, c3, c4),
-                c1,
-                c2,
-                c3,
-                c4
-            ];
-        }
-        default:
-            return opts.terminal(rnd);
-    }
+    const arity = choices.next().value;
+    if (arity === 0 || d >= maxDepth) return opts.terminal(rnd);
+    const children = [
+        ...repeatedly(
+            () => generateASTNode(opts, choices, d + 1, maxDepth),
+            arity
+        )
+    ];
+    return <ASTNode<OP, T>>[opts.ops[arity - 1].fn(rnd, children), ...children];
 };
 
 /**
@@ -60,15 +39,19 @@ const generateASTNode = <OP, T>(
  * @param maxDepth
  */
 export const generateAST = <OP, T>(opts: ASTOpts<OP, T>, maxDepth = 4) => {
-    const [p1, p2, p3, p4] = opts.probs;
-    const psum = p1 + p2 + p3 + p4;
+    const probabilities = opts.ops.map((op) => op.chance);
+    const psum = add(probabilities);
     assert(psum < 1, "total op probabilities MUST be < 1");
-    const probabilities: IterableIterator<number> = choices(
-        [0, 1, 2, 3, 4],
-        [1 - psum, p1, p2, p3, p4],
-        opts.rnd
+    return generateASTNode(
+        opts,
+        choices(
+            [...range(probabilities.length + 1)],
+            [1 - psum, ...probabilities],
+            opts.rnd
+        ),
+        0,
+        maxDepth
     );
-    return generateASTNode(opts, probabilities, 0, maxDepth);
 };
 
 /**
@@ -106,7 +89,7 @@ export const randomNode = <OP, T>(
     let node: Location<ASTNode<OP, T> | OP>;
     do {
         node = linTree[rnd.int() % linTree.length];
-    } while (opts.isOp(node.node));
+    } while (!opts.isMutatable(node.node));
     return node;
 };
 
