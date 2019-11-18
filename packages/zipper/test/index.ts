@@ -80,6 +80,15 @@ describe("zipper", () => {
         assert.deepEqual(a.next!.next!.next!.rightmost.leftmost.node, 2);
     });
 
+    it("depth", ()=> {
+        assert.equal(a.depth, 0);
+        assert.equal(a.next!.depth, 1);
+        assert.equal(a.next!.next!.depth, 1);
+        assert.equal(a.next!.next!.next!.depth, 2);
+        assert.equal(a.next!.next!.next!.next!.depth, 2);
+        assert.equal(a.next!.next!.next!.next!.next!.depth, 3);
+    });
+
     it("replace (next)", () => {
         assert.deepEqual(a.replace(10).root, 10);
         assert.deepEqual(a.next!.replace(10).root, [10, [2, [3], 4], 5]);
