@@ -43,6 +43,16 @@ export class Location<T> {
         return !this.rights;
     }
 
+    get depth() {
+        let d =0;
+        let path = this._path;
+        while(path) {
+            d++;
+            path = path.path;
+        }
+        return d;
+    }
+
     get node() {
         return this._node;
     }

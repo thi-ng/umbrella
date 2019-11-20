@@ -1,12 +1,33 @@
 import * as assert from "assert";
 import { arrayZipper, Location } from "../src";
 
-describe("zipper", () => {
+describe("arrayZipper", () => {
     let src: any[];
     let a: Location<number | number[] | (number | number[])[]>;
     beforeEach(() => {
         src = [1, [2, [3], 4], 5];
         a = arrayZipper(src);
+    });
+
+    it("isBranch", () => {
+        assert(a.isBranch);
+        assert(!a.next!.isBranch);
+        assert(a.next!.next!.isBranch);
+    });
+
+    it("isFirst", () => {
+        assert(a.isFirst);
+        assert(a.next!.isFirst);
+        assert(!a.next!.next!.isFirst);
+        assert(a.next!.next!.next!.isFirst);
+    });
+
+    it("isLast", () => {
+        assert(a.isLast);
+        assert(a.down!.rightmost.isLast);
+        assert(!a.next!.isLast);
+        assert(!a.next!.next!.isLast);
+        assert(a.next!.next!.next!.rightmost!.isLast);
     });
 
     it("down", () => {
@@ -78,15 +99,6 @@ describe("zipper", () => {
         assert.deepEqual(a.next!.next!.leftmost.next!.node, [2, [3], 4]);
         assert.deepEqual(a.next!.next!.next!.leftmost.next!.node, [3]);
         assert.deepEqual(a.next!.next!.next!.rightmost.leftmost.node, 2);
-    });
-
-    it("depth", ()=> {
-        assert.equal(a.depth, 0);
-        assert.equal(a.next!.depth, 1);
-        assert.equal(a.next!.next!.depth, 1);
-        assert.equal(a.next!.next!.next!.depth, 2);
-        assert.equal(a.next!.next!.next!.next!.depth, 2);
-        assert.equal(a.next!.next!.next!.next!.next!.depth, 3);
     });
 
     it("replace (next)", () => {
