@@ -36,6 +36,6 @@
         "test:only": "lerna run test"
     },
     "resolutions": {
-        "typescript": "^3.6.4"
+        "typescript": "^3.7.2"
     }
 }

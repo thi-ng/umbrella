@@ -3,9 +3,9 @@
     "version": "0.1.25",
     "description": "Sparse & bitwise adjacency matrices for directed / undirected graphs",
     "module": "./index.js",
-    "main": "./lib/index.js",
+    "main": "./lib/",
     "umd:main": "./lib/index.umd.js",
-    "typings": "./index.d.ts",
+    
     "repository": {
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"

@@ -5,7 +5,7 @@
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
-    "typings": "./index.d.ts",
+    
     "repository": {
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
