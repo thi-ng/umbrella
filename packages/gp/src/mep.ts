@@ -8,19 +8,6 @@ import {
 } from "./api";
 import { opNode, probabilities, terminalNode } from "./utils";
 
-export const CONF: MEPOpts<string, number> = {
-    chromoSize: 20,
-    probMutate: 0.1,
-    terminal: (rnd) => rnd.float(),
-    ops: [
-        {
-            fn: (rnd) => ["+", "-", "*", "/"][rnd.int() % 4],
-            arity: 2,
-            prob: 0.9
-        }
-    ]
-};
-
 export class MEP<OP, T> {
     opts: MEPOpts<OP, T>;
     probTerminal: number;
@@ -41,16 +28,21 @@ export class MEP<OP, T> {
         return res;
     }
 
-    decodeChromosome(chromosome: MEPChromosome<OP, T>) {
+    decodeChromosome(chromosome: MEPChromosome<OP, T>, minDepth = 0) {
         const res: any[] = [];
+        const depths: number[] = [];
         for (let i = 0; i < chromosome.length; i++) {
             const gene = chromosome[i];
-            res[i] =
-                gene.type == GeneType.TERMINAL
-                    ? gene.value
-                    : [gene.op, ...gene.args.map((g) => res[g])];
+            if (gene.type == GeneType.TERMINAL) {
+                res[i] = gene.value;
+                depths[i] = 1;
+            } else {
+                res[i] = [gene.op, ...gene.args.map((g) => res[g])];
+                depths[i] =
+                    1 + gene.args.reduce((d, a) => Math.max(d, depths[a]), 0);
+            }
         }
-        return res;
+        return res.filter((_, i) => depths[i] > minDepth);
     }
 
     crossoverSingleCut(
@@ -75,10 +67,10 @@ export class MEP<OP, T> {
         for (let i = 0; i < minLen; i++) {
             res[i] = rnd.float() < 0.5 ? chromo1[i] : chromo2[i];
         }
-        return chromo1.length > chromo2.length
+        return chromo1.length > minLen
             ? res.concat(chromo1.slice(minLen))
-            : chromo2.length > chromo1.length
-            ? res.concat(chromo1.slice(minLen))
+            : chromo2.length > minLen
+            ? res.concat(chromo2.slice(minLen))
             : res;
     }
 
