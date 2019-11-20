@@ -31,3 +31,4 @@ lib
 node_modules
 tachyons.min.css
 zig-cache
+tsconfig.tsbuildinfo
