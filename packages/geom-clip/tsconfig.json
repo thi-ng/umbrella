@@ -1,11 +1,25 @@
 {
     "extends": "../../tsconfig.json",
+
     "compilerOptions": {
-        "outDir": ".",
+        "outDir": "./lib",
         "module": "es6",
-        "target": "es6"
+        "target": "es6",
+        "composite": true,
+        "rootDir": "./src"
     },
+
     "include": [
         "./src/**/*.ts"
-    ]
+    ],
+
+    "references": [{
+        "path": "../geom-isec"
+    }, {
+        "path": "../geom-poly-utils"
+    }, {
+        "path": "../math"
+    }, {
+        "path": "../vectors"
+    }]
 }

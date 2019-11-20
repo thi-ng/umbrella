@@ -1,10 +1,30 @@
 {
     "extends": "../../tsconfig.json",
+
     "compilerOptions": {
-        "outDir": ".",
+        "outDir": "./lib",
         "module": "es6",
         "target": "es6",
-        "preserveConstEnums": true
+        "preserveConstEnums": true,
+        "composite": true,
+        "rootDir": "./src"
     },
-    "include": ["./src/**/*.ts"]
+
+    "include": ["./src/**/*.ts"],
+
+    "references": [{
+        "path": "../api"
+    }, {
+        "path": "../associative"
+    }, {
+        "path": "../atom"
+    }, {
+        "path": "../checks"
+    }, {
+        "path": "../errors"
+    }, {
+        "path": "../paths"
+    }, {
+        "path": "../transducers"
+    }]
 }

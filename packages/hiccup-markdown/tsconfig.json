@@ -1,11 +1,33 @@
 {
     "extends": "../../tsconfig.json",
+
     "compilerOptions": {
-        "outDir": ".",
+        "outDir": "./lib",
         "module": "es6",
-        "target": "es6"
+        "target": "es6",
+        "composite": true,
+        "rootDir": "./src"
     },
+
     "include": [
         "./src/**/*.ts"
-    ]
+    ],
+
+    "references": [{
+        "path": "../arrays"
+    }, {
+        "path": "../checks"
+    }, {
+        "path": "../defmulti"
+    }, {
+        "path": "../errors"
+    }, {
+        "path": "../fsm"
+    }, {
+        "path": "../hiccup"
+    }, {
+        "path": "../strings"
+    }, {
+        "path": "../transducers"
+    }]
 }

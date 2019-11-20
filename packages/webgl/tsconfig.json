@@ -1,11 +1,45 @@
 {
     "extends": "../../tsconfig.json",
+
     "compilerOptions": {
-        "outDir": ".",
+        "outDir": "./lib",
         "module": "es6",
-        "target": "es6"
+        "target": "es6",
+        "composite": true,
+        "rootDir": "./src"
     },
+
     "include": [
         "./src/**/*.ts"
-    ]
+    ],
+
+    "references": [{
+        "path": "../api"
+    }, {
+        "path": "../associative"
+    }, {
+        "path": "../binary"
+    }, {
+        "path": "../checks"
+    }, {
+        "path": "../equiv"
+    }, {
+        "path": "../errors"
+    }, {
+        "path": "../matrices"
+    }, {
+        "path": "../pixel"
+    }, {
+        "path": "../shader-ast"
+    }, {
+        "path": "../shader-ast-glsl"
+    }, {
+        "path": "../shader-ast-stdlib"
+    }, {
+        "path": "../transducers"
+    }, {
+        "path": "../vector-pools"
+    }, {
+        "path": "../vectors"
+    }]
 }

@@ -1,11 +1,31 @@
 {
     "extends": "../../tsconfig.json",
+
     "compilerOptions": {
-        "outDir": ".",
+        "outDir": "./lib",
         "module": "es6",
-        "target": "es6"
+        "target": "es6",
+        "composite": true,
+        "rootDir": "./src"
     },
+
     "include": [
         "./src/**/*.ts"
-    ]
+    ],
+
+    "references": [{
+        "path": "../vectors"
+    }, {
+        "path": "../api"
+    }, {
+        "path": "../binary"
+    }, {
+        "path": "../bitfield"
+    }, {
+        "path": "../checks"
+    }, {
+        "path": "../dcons"
+    }, {
+        "path": "../sparse"
+    }]
 }

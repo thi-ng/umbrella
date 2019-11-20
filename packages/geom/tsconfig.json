@@ -1,12 +1,68 @@
 {
     "extends": "../../tsconfig.json",
+
     "compilerOptions": {
-        "outDir": ".",
+        "outDir": "./lib",
         "module": "es6",
         "target": "es6",
-        "preserveConstEnums": false
+        "preserveConstEnums": false,
+        "composite": true,
+        "rootDir": "./src"
     },
+
     "include": [
         "./src/**/*.ts"
-    ]
+    ],
+
+    "references": [{
+        "path": "../api"
+    }, {
+        "path": "../arrays"
+    }, {
+        "path": "../checks"
+    }, {
+        "path": "../compose"
+    }, {
+        "path": "../defmulti"
+    }, {
+        "path": "../equiv"
+    }, {
+        "path": "../errors"
+    }, {
+        "path": "../geom-api"
+    }, {
+        "path": "../geom-arc"
+    }, {
+        "path": "../geom-clip"
+    }, {
+        "path": "../geom-closest-point"
+    }, {
+        "path": "../geom-hull"
+    }, {
+        "path": "../geom-isec"
+    }, {
+        "path": "../geom-poly-utils"
+    }, {
+        "path": "../geom-resample"
+    }, {
+        "path": "../geom-splines"
+    }, {
+        "path": "../geom-subdiv-curve"
+    }, {
+        "path": "../geom-tessellate"
+    }, {
+        "path": "../hiccup"
+    }, {
+        "path": "../hiccup-svg"
+    }, {
+        "path": "../math"
+    }, {
+        "path": "../matrices"
+    }, {
+        "path": "../random"
+    }, {
+        "path": "../transducers"
+    }, {
+        "path": "../vectors"
+    }]
 }

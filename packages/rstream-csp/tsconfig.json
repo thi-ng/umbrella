@@ -1,11 +1,21 @@
 {
     "extends": "../../tsconfig.json",
+
     "compilerOptions": {
-        "outDir": ".",
+        "outDir": "./lib",
         "module": "es6",
-        "target": "esnext"
+        "target": "esnext",
+        "composite": true,
+        "rootDir": "./src"
     },
+
     "include": [
         "./src/**/*.ts"
-    ]
+    ],
+
+    "references": [{
+        "path": "../csp"
+    }, {
+        "path": "../rstream"
+    }]
 }

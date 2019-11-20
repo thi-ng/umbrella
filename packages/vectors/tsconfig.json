@@ -1,10 +1,34 @@
 {
     "extends": "../../tsconfig.json",
+
     "compilerOptions": {
-        "outDir": ".",
+        "outDir": "./lib",
         "module": "es6",
         "target": "es6",
-        "noImplicitThis": false
+        "noImplicitThis": false,
+        "composite": true,
+        "rootDir": "./src"
     },
-    "include": ["./src/**/*.ts"]
+
+    "include": ["./src/**/*.ts"],
+
+    "references": [{
+        "path": "../api"
+    }, {
+        "path": "../binary"
+    }, {
+        "path": "../checks"
+    }, {
+        "path": "../equiv"
+    }, {
+        "path": "../errors"
+    }, {
+        "path": "../math"
+    }, {
+        "path": "../memoize"
+    }, {
+        "path": "../random"
+    }, {
+        "path": "../transducers"
+    }]
 }

@@ -1,11 +1,31 @@
 {
     "extends": "../../tsconfig.json",
+
     "compilerOptions": {
-        "outDir": ".",
+        "outDir": "./lib",
         "module": "es6",
-        "target": "es6"
+        "target": "es6",
+        "composite": true,
+        "rootDir": "./src"
     },
+
     "include": [
         "./src/**/*.ts"
-    ]
+    ],
+
+    "references": [{
+        "path": "../api"
+    }, {
+        "path": "../compose"
+    }, {
+        "path": "../errors"
+    }, {
+        "path": "../math"
+    }, {
+        "path": "../random"
+    }, {
+        "path": "../transducers"
+    }, {
+        "path": "../vectors"
+    }]
 }
