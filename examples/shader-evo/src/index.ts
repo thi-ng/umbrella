@@ -1,15 +1,26 @@
-import { isArray, isFunction } from "@thi.ng/checks";
-import { ASTNode, ASTOpts, generateAST } from "@thi.ng/gp";
-import { SYSTEM } from "@thi.ng/random";
+import {
+    AST,
+    ASTNode,
+    ASTOpts,
+    GeneType
+} from "@thi.ng/gp";
+import { roundTo } from "@thi.ng/math";
+import { IRandom } from "@thi.ng/random";
 import {
     $,
-    $x,
     abs,
+    acos,
     add,
+    asin,
     assign,
+    atan,
+    cos,
     div,
     exp,
     fract,
+    inversesqrt,
+    length,
+    log,
     mix,
     mod,
     mul,
@@ -18,17 +29,23 @@ import {
     pow,
     ret,
     sin,
-    smoothstep,
     sqrt,
     sub,
     sym,
+    tan,
     Term,
     vec3,
     Vec3Sym,
     Vec3Term,
     vec4
 } from "@thi.ng/shader-ast";
-import { fragUV, snoiseVec3 } from "@thi.ng/shader-ast-stdlib";
+import {
+    clamp11,
+    fit1101,
+    fragUV,
+    snoise3,
+    snoiseVec3
+} from "@thi.ng/shader-ast-stdlib";
 import { glCanvas } from "@thi.ng/webgl";
 import { MainImageFn, shaderToy } from "@thi.ng/webgl-shadertoy";
 
@@ -42,25 +59,43 @@ const OP1 = [
     neg,
     normalize,
     sin,
-    sin,
-    sin,
+    cos,
     snoiseVec3,
-    sqrt,
+    tan,
+    fract,
+    (x: Vec3Term) => vec3(snoise3(x)),
+    (x: Vec3Term) => sub(1, clamp11(x)),
+    (x: Vec3Term) => vec3(length(x)),
+    (x: Vec3Term) => log(abs(x)),
+    (x: Vec3Term) => inversesqrt(abs(x)),
+    (x: Vec3Term) => sqrt(abs(x)),
+    (x: Vec3Term) => asin(clamp11(x)),
+    (x: Vec3Term) => acos(clamp11(x)),
     (x: Vec3Term) => $(x, "zyx"),
     (x: Vec3Term) => $(x, "yzx"),
-    (x: Vec3Term) => $(x, "xyx"),
-    (x: Vec3Term) => $(x, "yzy"),
+    // (x: Vec3Term) => $(x, "xyx"),
+    // (x: Vec3Term) => $(x, "xzx"),
+    // (x: Vec3Term) => $(x, "zxz"),
+    // (x: Vec3Term) => $(x, "yzy"),
+    // (x: Vec3Term) => $(x, "xxy"),
+    // (x: Vec3Term) => $(x, "xxz"),
+    // (x: Vec3Term) => $(x, "yyx"),
+    // (x: Vec3Term) => $(x, "yyz"),
+    // (x: Vec3Term) => $(x, "zzx"),
     (x: Vec3Term) => $(x, "xxx"),
     (x: Vec3Term) => $(x, "yyy"),
     (x: Vec3Term) => $(x, "zzz")
 ];
 // binary functions
-const OP2 = [add, div, mul, mod, pow, sub];
+const OP2 = [add, div, mul, sub, atan, mod, pow];
 // ternary functions
-const OP3 = [mix, smoothstep];
+const OP3 = [mix];
 
 // place holder for fragment UV var in shader
 const UV: Vec3Sym = sym(vec3());
+
+const randomFn = (ops: Function[]) => (rnd: IRandom) =>
+    ops[rnd.int() % ops.length];
 
 // AST generation config
 const AST_OPTS: ASTOpts<Function, Vec3Term> = {
@@ -68,40 +103,43 @@ const AST_OPTS: ASTOpts<Function, Vec3Term> = {
         rnd.float() < 0.5
             ? UV
             : vec3(
-                  rnd.norm(NORM_SCALE),
-                  rnd.norm(NORM_SCALE),
-                  rnd.norm(NORM_SCALE)
+                  roundTo(rnd.norm(NORM_SCALE), 0.01),
+                  roundTo(rnd.norm(NORM_SCALE), 0.01),
+                  roundTo(rnd.norm(NORM_SCALE), 0.01)
               ),
-    op1: (rnd) => OP1[rnd.int() % OP1.length],
-    op2: (rnd) => OP2[rnd.int() % OP2.length],
-    op3: (rnd) => OP3[rnd.int() % OP3.length],
-    op4: () => <any>null,
-    probs: [0.45, 0.4, 0.1, 0],
-    isOp: isFunction,
-    rnd: SYSTEM
+    ops: [
+        { fn: randomFn(OP1), arity: 1, prob: 0.45 },
+        { fn: randomFn(OP2), arity: 2, prob: 0.4 },
+        { fn: randomFn(OP3), arity: 3, prob: 0.1 }
+    ],
+    maxDepth: MAX_DEPTH,
+    probMutate: 1
 };
 
 const transpile = (node: ASTNode<Function, Vec3Term>): Term<any> =>
-    isArray(node)
-        ? node[0].apply(
-              null,
-              node.slice(1).map((x) => transpile(<Vec3Term>x))
-          )
-        : node;
+    node.type === GeneType.OP
+        ? node.op.apply(null, node.args.map(transpile))
+        : node.value;
 
-const shaderFunction = (): MainImageFn => (gl, unis) => {
+const shaderFunction = (ast: ASTNode<Function, Vec3Term>): MainImageFn => (
+    gl,
+    unis
+) => {
     return [
         UV,
         assign(
             UV,
             vec3(
                 fragUV(gl.gl_FragCoord, unis.resolution),
-                $x(add(unis.mouse, fract(unis.time)))
+                mul(1, fract(unis.time))
             )
         ),
-        ret(vec4(transpile(generateAST(AST_OPTS, MAX_DEPTH)), 1))
+        ret(vec4(fit1101(normalize(transpile(ast))), 1))
     ];
 };
+
+const ast = new AST(AST_OPTS);
+let currTree = ast.randomAST();
 
 const canvas = glCanvas({
     width: 640,
@@ -113,11 +151,18 @@ const canvas = glCanvas({
 const toy = shaderToy({
     canvas: canvas.canvas,
     gl: canvas.gl,
-    main: shaderFunction()
+    main: shaderFunction(currTree)
 });
 
 toy.start();
 
-setInterval(() => {
-    toy.recompile(shaderFunction());
-}, 1000);
+const update = () => {
+    currTree = ast.randomAST();
+    // currTree = ast.mutate(currTree, 4, Math.random() * 2 + 1, 2);
+    // currTree = ast.crossover(currTree, ast.randomAST())[0];
+    toy.recompile(shaderFunction(currTree));
+};
+
+setInterval(update, 200);
+
+// canvas.canvas.addEventListener("click", update);
