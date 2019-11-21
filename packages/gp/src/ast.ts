@@ -1,7 +1,5 @@
 import { SYSTEM } from "@thi.ng/random";
 import {
-    comp,
-    drop,
     iterate,
     iterator,
     repeatedly,
@@ -45,7 +43,7 @@ export class AST<OP, T> {
      * @param parent1
      * @param parent2
      */
-    crossover(parent1: ASTNode<OP, T>, parent2: ASTNode<OP, T>) {
+    crossoverSingle(parent1: ASTNode<OP, T>, parent2: ASTNode<OP, T>) {
         return [
             this.selectRandomNode(parent1).replace(
                 this.selectRandomNode(parent2).node
@@ -57,36 +55,37 @@ export class AST<OP, T> {
     }
 
     /**
-     * Probilistically replaces a randomly chosen tree node with a new
-     * random AST.
-     *
-     * @remarks
-     * The default `maxDepth` of the replacement AST is 1, but can adjusted.
+     * Probilistically replaces randomly chosen tree nodes with a new
+     * random AST of given `maxDepth` (default: 1).
      *
      * @param tree
-     * @param num
      * @param maxDepth
-     * @param min
-     * @param max
      */
-    mutate(tree: ASTNode<OP, T>, num = 1, maxDepth = 1, min = 1, max = -1) {
+    mutate(tree: ASTNode<OP, T>, maxDepth = 1) {
         const { rnd, probMutate } = this.opts;
-        for (; num-- > 0; ) {
-            tree =
-                rnd!.float() < probMutate
-                    ? <ASTNode<OP, T>>(
-                          this.selectRandomNode(tree, min, max).replace(
-                              this.randomASTNode(0, maxDepth)
-                          ).root
-                      )
-                    : tree;
+        let loc = this.asZipper(tree).next!;
+        if (!loc) return tree;
+        while (true) {
+            let nextLoc: Location<ASTNode<OP, T>> | undefined;
+            if (rnd!.float() < probMutate) {
+                loc = loc.replace(this.randomASTNode(0, maxDepth));
+                nextLoc = loc.right;
+                if (!nextLoc) {
+                    nextLoc = loc.up;
+                    if (nextLoc) {
+                        nextLoc = nextLoc.right;
+                    }
+                }
+            } else {
+                nextLoc = loc.next;
+            }
+            if (!nextLoc) return loc.root;
+            loc = nextLoc;
         }
-        return tree;
     }
 
     /**
-     * Returns linearized/flat version of given AST (excluding the root
-     * node) as an array of
+     * Returns linearized/flat version of given AST as an array of
      * {@link @thi.ng/zipper#Location | zipper locations}.
      *
      * @param tree
@@ -94,23 +93,8 @@ export class AST<OP, T> {
     linearizedAST(tree: ASTNode<OP, T>): Location<ASTNode<OP, T>>[] {
         return [
             ...iterator(
-                comp(
-                    drop(1),
-                    takeWhile((x) => !!x)
-                ),
-                iterate<any>(
-                    (x) => x.next,
-                    zipper<ASTNode<OP, T>>(
-                        {
-                            branch: (x) => x.type === GeneType.OP,
-                            children: (x) =>
-                                (<OpGene<OP, ASTNode<OP, T>>>x).args,
-                            factory: (n, args) =>
-                                opNode((<OpGene<OP, ASTNode<OP, T>>>n).op, args)
-                        },
-                        tree
-                    )
-                )
+                takeWhile((x) => !!x),
+                iterate<any>((x) => x.next, this.asZipper(tree))
             )
         ];
     }
@@ -118,21 +102,24 @@ export class AST<OP, T> {
     /**
      * Returns random {@link ASTNode} from given tree, using the user
      * provided PRNG (via `opts`) or {@link @thi.ng/random#SYSTEM}. The
-     * returned value is a {@link @thi.ng/zipper#Location | zipper location}
-     * of the selected node.
+     * returned value is a
+     * {@link @thi.ng/zipper#Location | zipper location} of the selected
+     * node.
      *
      * @remarks
      * The actual `ASTNode` can be obtained via `.node`.
      *
-     * Only nodes in the linearized index range `[min..max)` are returned.
-     * `max` < 0 (default) is equivalent to the linearized tree end.
+     * Only nodes in the linearized index range `[min..max)` are
+     * returned (default: entire tree range). Since the linear tree
+     * length isn't known beforehand, `max` < 0 (default) is equivalent
+     * to the linearized tree end.
      *
      * @param opts
      * @param tree
      * @param min
      * @param max
      */
-    selectRandomNode(tree: ASTNode<OP, T>, min = 1, max = -1) {
+    selectRandomNode(tree: ASTNode<OP, T>, min = 0, max = -1) {
         const rnd = this.opts.rnd;
         const linTree = this.linearizedAST(tree);
         let node: Location<ASTNode<OP, T>>;
@@ -151,5 +138,17 @@ export class AST<OP, T> {
             ...repeatedly(() => this.randomASTNode(d + 1, maxDepth), op.arity)
         ];
         return opNode(op.fn(rnd, children), children);
+    }
+
+    protected asZipper(tree: ASTNode<OP, T>) {
+        return zipper<ASTNode<OP, T>>(
+            {
+                branch: (x) => x.type === GeneType.OP,
+                children: (x) => (<OpGene<OP, ASTNode<OP, T>>>x).args,
+                factory: (n, args) =>
+                    opNode((<OpGene<OP, ASTNode<OP, T>>>n).op, args)
+            },
+            tree
+        );
     }
 }

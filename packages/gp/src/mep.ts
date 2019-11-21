@@ -42,15 +42,19 @@ export class MEP<OP, T> {
                     1 + gene.args.reduce((d, a) => Math.max(d, depths[a]), 0);
             }
         }
-        return res.filter((_, i) => depths[i] > minDepth);
+        return res.filter((_, i) => depths[i] >= minDepth);
     }
 
-    crossoverSingleCut(
+    crossoverSingle(
         chromo1: MEPChromosome<OP, T>,
-        chromo2: MEPChromosome<OP, T>
+        chromo2: MEPChromosome<OP, T>,
+        cut?: number
     ): MEPChromosome<OP, T>[] {
-        const cut =
-            this.opts.rnd!.int() % Math.min(chromo1.length, chromo2.length);
+        cut =
+            cut !== undefined
+                ? cut
+                : this.opts.rnd!.int() %
+                  Math.min(chromo1.length, chromo2.length);
         return [
             chromo1.slice(0, cut).concat(chromo2.slice(cut)),
             chromo2.slice(0, cut).concat(chromo1.slice(cut))
