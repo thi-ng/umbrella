@@ -1,3 +1,4 @@
+import { assert } from "@thi.ng/api";
 import { SYSTEM } from "@thi.ng/random";
 import {
     iterate,
@@ -21,13 +22,15 @@ export class AST<OP, T> {
 
     constructor(opts: ASTOpts<OP, T>) {
         this.opts = { rnd: SYSTEM, ...opts };
+        assert(this.opts.probMutate < 1, "mutation probability must be < 1.0");
         const probs = probabilities(this.opts);
         this.probTerminal = probs.probTerminal;
         this.choices = probs.iter;
     }
 
     /**
-     * Returns a random AST with given max tree depth.
+     * Returns a random AST with given max tree depth. The max depth
+     * provided in {@link ASTOpts} is used by default.
      *
      * @param maxDepth
      */
@@ -56,7 +59,7 @@ export class AST<OP, T> {
 
     /**
      * Probilistically replaces randomly chosen tree nodes with a new
-     * random AST of given `maxDepth` (default: 1).
+     * random AST of given `maxDepth` (default: 1). Never mutates root.
      *
      * @param tree
      * @param maxDepth

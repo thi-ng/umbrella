@@ -1,6 +1,8 @@
+import { inRange } from "@thi.ng/math";
 import { SYSTEM } from "@thi.ng/random";
 import { repeatedly } from "@thi.ng/transducers";
 import {
+    ASTNode,
     GeneType,
     MEPChromosome,
     MEPGene,
@@ -20,6 +22,15 @@ export class MEP<OP, T> {
         this.choices = probs.iter;
     }
 
+    /**
+     * Returns a new random {@link MEPChromosome} with the configured
+     * probabilities of operator and terminal nodes (constants).
+     *
+     * @remarks
+     * See {@link MEP.decodeChromosome} for conversion to
+     * {@link ASTNode}s.
+     *
+     */
     randomChromosome(): MEPChromosome<OP, T> {
         const res: MEPChromosome<OP, T> = [];
         for (let i = 0, n = this.opts.chromoSize; i < n; i++) {
@@ -28,21 +39,41 @@ export class MEP<OP, T> {
         return res;
     }
 
-    decodeChromosome(chromosome: MEPChromosome<OP, T>, minDepth = 0) {
-        const res: any[] = [];
+    /**
+     * Decodes given chromosome into an array of {@link ASTNode}s and
+     * optionally applies tree depth filter (by default includes all).
+     *
+     * @remarks
+     * A {@link MEPChromosome} encodes multiple solutions (one per gene
+     * slot), therefore a chromosome of length `n` will produce the same
+     * number ASTs (less if min/max tree depth filters are applied).
+     *
+     * @param chromosome
+     * @param minDepth
+     * @param maxDepth
+     */
+    decodeChromosome(
+        chromosome: MEPChromosome<OP, T>,
+        minDepth = 0,
+        maxDepth = Infinity
+    ) {
+        const res: ASTNode<OP, T>[] = [];
         const depths: number[] = [];
         for (let i = 0; i < chromosome.length; i++) {
             const gene = chromosome[i];
             if (gene.type == GeneType.TERMINAL) {
-                res[i] = gene.value;
+                res[i] = gene;
                 depths[i] = 1;
             } else {
-                res[i] = [gene.op, ...gene.args.map((g) => res[g])];
+                res[i] = opNode(
+                    gene.op,
+                    gene.args.map((g) => res[g])
+                );
                 depths[i] =
                     1 + gene.args.reduce((d, a) => Math.max(d, depths[a]), 0);
             }
         }
-        return res.filter((_, i) => depths[i] >= minDepth);
+        return res.filter((_, i) => inRange(depths[i], minDepth, maxDepth));
     }
 
     crossoverSingle(

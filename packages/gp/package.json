@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/gp",
     "version": "0.0.1",
-    "description": "Genetic programming helpers",
+    "description": "Genetic programming helpers & strategies (tree based & multi-expression programming)",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -36,16 +36,20 @@
     },
     "dependencies": {
         "@thi.ng/api": "^6.5.0",
+        "@thi.ng/math": "^1.5.0",
         "@thi.ng/random": "^1.1.13",
         "@thi.ng/transducers": "^6.0.0",
         "@thi.ng/zipper": "^0.0.1"
     },
     "keywords": [
         "AST",
+        "crossover",
         "ES6",
         "evolutionary",
         "genetic algorithm",
         "genetic programming",
+        "MEP",
+        "mutation",
         "phenotype",
         "typescript"
     ],

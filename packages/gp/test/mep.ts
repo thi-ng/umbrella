@@ -38,27 +38,307 @@ describe("gp (mep)", () => {
 
     it("decode", () => {
         assert.deepEqual(ast.decodeChromosome(ast.randomChromosome()), [
-            5,
-            5,
-            ["*", 5, 5],
-            ["-", 5, ["*", 5, 5]],
-            ["-", 5, 5],
-            ["-", ["-", 5, ["*", 5, 5]], ["-", 5, 5]],
-            ["*", ["-", 5, 5], 5],
-            ["-", ["*", 5, 5], ["-", 5, ["*", 5, 5]]],
-            ["/", 5, ["-", 5, 5]],
-            ["-", ["-", ["-", 5, ["*", 5, 5]], ["-", 5, 5]], 5]
+            { type: 0, value: 5 },
+            { type: 0, value: 5 },
+            {
+                type: 1,
+                op: "*",
+                args: [
+                    { type: 0, value: 5 },
+                    { type: 0, value: 5 }
+                ]
+            },
+            {
+                type: 1,
+                op: "-",
+                args: [
+                    { type: 0, value: 5 },
+                    {
+                        type: 1,
+                        op: "*",
+                        args: [
+                            { type: 0, value: 5 },
+                            { type: 0, value: 5 }
+                        ]
+                    }
+                ]
+            },
+            {
+                type: 1,
+                op: "-",
+                args: [
+                    { type: 0, value: 5 },
+                    { type: 0, value: 5 }
+                ]
+            },
+            {
+                type: 1,
+                op: "-",
+                args: [
+                    {
+                        type: 1,
+                        op: "-",
+                        args: [
+                            { type: 0, value: 5 },
+                            {
+                                type: 1,
+                                op: "*",
+                                args: [
+                                    { type: 0, value: 5 },
+                                    { type: 0, value: 5 }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        type: 1,
+                        op: "-",
+                        args: [
+                            { type: 0, value: 5 },
+                            { type: 0, value: 5 }
+                        ]
+                    }
+                ]
+            },
+            {
+                type: 1,
+                op: "*",
+                args: [
+                    {
+                        type: 1,
+                        op: "-",
+                        args: [
+                            { type: 0, value: 5 },
+                            { type: 0, value: 5 }
+                        ]
+                    },
+                    { type: 0, value: 5 }
+                ]
+            },
+            {
+                type: 1,
+                op: "-",
+                args: [
+                    {
+                        type: 1,
+                        op: "*",
+                        args: [
+                            { type: 0, value: 5 },
+                            { type: 0, value: 5 }
+                        ]
+                    },
+                    {
+                        type: 1,
+                        op: "-",
+                        args: [
+                            { type: 0, value: 5 },
+                            {
+                                type: 1,
+                                op: "*",
+                                args: [
+                                    { type: 0, value: 5 },
+                                    { type: 0, value: 5 }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                type: 1,
+                op: "/",
+                args: [
+                    { type: 0, value: 5 },
+                    {
+                        type: 1,
+                        op: "-",
+                        args: [
+                            { type: 0, value: 5 },
+                            { type: 0, value: 5 }
+                        ]
+                    }
+                ]
+            },
+            {
+                type: 1,
+                op: "-",
+                args: [
+                    {
+                        type: 1,
+                        op: "-",
+                        args: [
+                            {
+                                type: 1,
+                                op: "-",
+                                args: [
+                                    { type: 0, value: 5 },
+                                    {
+                                        type: 1,
+                                        op: "*",
+                                        args: [
+                                            { type: 0, value: 5 },
+                                            { type: 0, value: 5 }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                type: 1,
+                                op: "-",
+                                args: [
+                                    { type: 0, value: 5 },
+                                    { type: 0, value: 5 }
+                                ]
+                            }
+                        ]
+                    },
+                    { type: 0, value: 5 }
+                ]
+            }
         ]);
     });
 
-    it("decode (mindepth)", () => {
+    it("decode (filtered)", () => {
         assert.deepEqual(ast.decodeChromosome(ast.randomChromosome(), 3), [
-            ["-", 5, ["*", 5, 5]],
-            ["-", ["-", 5, ["*", 5, 5]], ["-", 5, 5]],
-            ["*", ["-", 5, 5], 5],
-            ["-", ["*", 5, 5], ["-", 5, ["*", 5, 5]]],
-            ["/", 5, ["-", 5, 5]],
-            ["-", ["-", ["-", 5, ["*", 5, 5]], ["-", 5, 5]], 5]
+            {
+                type: 1,
+                op: "-",
+                args: [
+                    { type: 0, value: 5 },
+                    {
+                        type: 1,
+                        op: "*",
+                        args: [
+                            { type: 0, value: 5 },
+                            { type: 0, value: 5 }
+                        ]
+                    }
+                ]
+            },
+            {
+                type: 1,
+                op: "-",
+                args: [
+                    {
+                        type: 1,
+                        op: "-",
+                        args: [
+                            { type: 0, value: 5 },
+                            {
+                                type: 1,
+                                op: "*",
+                                args: [
+                                    { type: 0, value: 5 },
+                                    { type: 0, value: 5 }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        type: 1,
+                        op: "-",
+                        args: [
+                            { type: 0, value: 5 },
+                            { type: 0, value: 5 }
+                        ]
+                    }
+                ]
+            },
+            {
+                type: 1,
+                op: "*",
+                args: [
+                    {
+                        type: 1,
+                        op: "-",
+                        args: [
+                            { type: 0, value: 5 },
+                            { type: 0, value: 5 }
+                        ]
+                    },
+                    { type: 0, value: 5 }
+                ]
+            },
+            {
+                type: 1,
+                op: "-",
+                args: [
+                    {
+                        type: 1,
+                        op: "*",
+                        args: [
+                            { type: 0, value: 5 },
+                            { type: 0, value: 5 }
+                        ]
+                    },
+                    {
+                        type: 1,
+                        op: "-",
+                        args: [
+                            { type: 0, value: 5 },
+                            {
+                                type: 1,
+                                op: "*",
+                                args: [
+                                    { type: 0, value: 5 },
+                                    { type: 0, value: 5 }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                type: 1,
+                op: "/",
+                args: [
+                    { type: 0, value: 5 },
+                    {
+                        type: 1,
+                        op: "-",
+                        args: [
+                            { type: 0, value: 5 },
+                            { type: 0, value: 5 }
+                        ]
+                    }
+                ]
+            },
+            {
+                type: 1,
+                op: "-",
+                args: [
+                    {
+                        type: 1,
+                        op: "-",
+                        args: [
+                            {
+                                type: 1,
+                                op: "-",
+                                args: [
+                                    { type: 0, value: 5 },
+                                    {
+                                        type: 1,
+                                        op: "*",
+                                        args: [
+                                            { type: 0, value: 5 },
+                                            { type: 0, value: 5 }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                type: 1,
+                                op: "-",
+                                args: [
+                                    { type: 0, value: 5 },
+                                    { type: 0, value: 5 }
+                                ]
+                            }
+                        ]
+                    },
+                    { type: 0, value: 5 }
+                ]
+            }
         ]);
     });
 

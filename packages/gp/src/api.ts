@@ -24,16 +24,39 @@ export interface GPOpts<OP, T, ARGS> {
      */
     terminal: Fn<IRandom, T>;
     /**
-     * Op ID selector for unary functions. If probabilistic, the given
-     * PRNG MUST be used for repeatable results.
+     * Operator node generators.
      */
     ops: OpGenSpec<ARGS, OP>[];
     /**
      * Possibly seeded PRNG instance to be used for AST generation /
      * editing.
+     *
+     * @defaultValue {@link @thi.ng/random#SYSTEM}
      */
     rnd?: IRandom;
+    /**
+     * Per-gene mutation probability. MUST be < 1 for {@link ASTOpts} to
+     * avoid infinite tree expansion.
+     */
     probMutate: number;
+}
+
+export interface OpGenSpec<NODE, OP> {
+    /**
+     * Function producing/selecting an operator value. If probabilistic,
+     * the given PRNG MUST be used for repeatable results. The function
+     * is called with all argument genes/expressions to allow inform the
+     * operator selection.
+     */
+    fn: Fn2<IRandom, NODE[], OP>;
+    /**
+     * Operator / function arity (number or args to generate).
+     */
+    arity: number;
+    /**
+     * Probability for this generator to be used.
+     */
+    prob: number;
 }
 
 export interface ASTOpts<OP, T> extends GPOpts<OP, T, ASTNode<OP, T>> {
@@ -53,10 +76,4 @@ export interface OpGene<OP, A> {
     type: GeneType.OP;
     op: OP;
     args: A[];
-}
-
-export interface OpGenSpec<NODE, OP> {
-    fn: Fn2<IRandom, NODE[], OP>;
-    arity: number;
-    prob: number;
 }
