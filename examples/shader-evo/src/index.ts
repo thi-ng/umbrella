@@ -5,7 +5,7 @@ import {
     GeneType
 } from "@thi.ng/gp";
 import { roundTo } from "@thi.ng/math";
-import { IRandom } from "@thi.ng/random";
+import { IRandom, SYSTEM } from "@thi.ng/random";
 import {
     $,
     abs,
@@ -15,6 +15,7 @@ import {
     assign,
     atan,
     cos,
+    distance,
     div,
     exp,
     fract,
@@ -49,7 +50,7 @@ import {
 import { glCanvas } from "@thi.ng/webgl";
 import { MainImageFn, shaderToy } from "@thi.ng/webgl-shadertoy";
 
-const MAX_DEPTH = 10;
+const MAX_DEPTH = 11;
 const NORM_SCALE = 1;
 
 // unary functions
@@ -73,21 +74,21 @@ const OP1 = [
     (x: Vec3Term) => acos(clamp11(x)),
     (x: Vec3Term) => $(x, "zyx"),
     (x: Vec3Term) => $(x, "yzx"),
-    // (x: Vec3Term) => $(x, "xyx"),
-    // (x: Vec3Term) => $(x, "xzx"),
-    // (x: Vec3Term) => $(x, "zxz"),
-    // (x: Vec3Term) => $(x, "yzy"),
-    // (x: Vec3Term) => $(x, "xxy"),
-    // (x: Vec3Term) => $(x, "xxz"),
-    // (x: Vec3Term) => $(x, "yyx"),
-    // (x: Vec3Term) => $(x, "yyz"),
-    // (x: Vec3Term) => $(x, "zzx"),
+    (x: Vec3Term) => $(x, "yxz"),
     (x: Vec3Term) => $(x, "xxx"),
     (x: Vec3Term) => $(x, "yyy"),
     (x: Vec3Term) => $(x, "zzz")
 ];
 // binary functions
-const OP2 = [add, div, mul, sub, atan, mod, pow];
+const OP2 = [
+    add,
+    sub,
+    mul,
+    div,
+    mod,
+    pow,
+    (x: Vec3Term, y: Vec3Term) => vec3(distance(x, y))
+];
 // ternary functions
 const OP3 = [mix];
 
@@ -108,12 +109,12 @@ const AST_OPTS: ASTOpts<Function, Vec3Term> = {
                   roundTo(rnd.norm(NORM_SCALE), 0.01)
               ),
     ops: [
-        { fn: randomFn(OP1), arity: 1, prob: 0.45 },
+        { fn: randomFn(OP1), arity: 1, prob: 0.4 },
         { fn: randomFn(OP2), arity: 2, prob: 0.4 },
         { fn: randomFn(OP3), arity: 3, prob: 0.1 }
     ],
     maxDepth: MAX_DEPTH,
-    probMutate: 1
+    probMutate: 0.01
 };
 
 const transpile = (node: ASTNode<Function, Vec3Term>): Term<any> =>
@@ -134,7 +135,8 @@ const shaderFunction = (ast: ASTNode<Function, Vec3Term>): MainImageFn => (
                 mul(1, fract(unis.time))
             )
         ),
-        ret(vec4(fit1101(normalize(transpile(ast))), 1))
+        ret(vec4(abs(transpile(ast)), 1))
+        // ret(vec4(fit1101(normalize(transpile(ast))), 1))
     ];
 };
 
@@ -157,12 +159,15 @@ const toy = shaderToy({
 toy.start();
 
 const update = () => {
-    currTree = ast.randomAST();
-    // currTree = ast.mutate(currTree, 4, Math.random() * 2 + 1, 2);
-    // currTree = ast.crossover(currTree, ast.randomAST())[0];
+    console.clear();
+    // currTree = ast.randomAST();
+    currTree =
+        SYSTEM.float() < 0.9
+            ? ast.mutate(currTree, SYSTEM.minmax(1, 4))
+            : ast.crossoverSingle(currTree, ast.randomAST())[0];
     toy.recompile(shaderFunction(currTree));
 };
 
-setInterval(update, 200);
+setInterval(update, 500);
 
 // canvas.canvas.addEventListener("click", update);
