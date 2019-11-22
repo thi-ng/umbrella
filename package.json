@@ -18,7 +18,7 @@
         "terser": "^4.3.8",
         "ts-loader": "^6.0.4",
         "tslint": "^5.18.0",
-        "typescript": "^3.6.4",
+        "typescript": "^3.7.2",
         "webpack": "^4.35.3",
         "webpack-cli": "^3.3.6"
     },
@@ -36,6 +36,6 @@
         "test:only": "lerna run test"
     },
     "resolutions": {
-        "typescript": "^3.6.4"
+        "typescript": "^3.7.2"
     }
 }
