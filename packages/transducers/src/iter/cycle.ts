@@ -1,4 +1,4 @@
-export function* cycle<T>(input: Iterable<T>) {
+export function* cycle<T>(input: Iterable<T>): IterableIterator<T> {
     let cache: T[] = [];
     for (let i of input) {
         cache.push(i);

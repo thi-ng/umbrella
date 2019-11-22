@@ -15,7 +15,7 @@ interface Cell<T> {
  *
  * @param src
  */
-export function* symmetric<T>(src: Iterable<T>) {
+export function* symmetric<T>(src: Iterable<T>): IterableIterator<T> {
     let head: Cell<T> | undefined = undefined;
     for (let x of src) {
         head = { x, n: head };
