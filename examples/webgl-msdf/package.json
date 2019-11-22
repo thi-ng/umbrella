@@ -13,7 +13,7 @@
     "devDependencies": {
         "parcel-bundler": "^1.12.4",
         "terser": "^4.3.8",
-        "typescript": "^3.6.4"
+        "typescript": "^3.7.2"
     },
     "dependencies": {
         "@thi.ng/api": "latest",
