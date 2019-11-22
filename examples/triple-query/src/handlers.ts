@@ -93,4 +93,6 @@ export const EFFECTS: IObjectOf<EffectDef> = {
 };
 
 const comparator = (i: number, rev: boolean) =>
-    rev ? (a, b) => compare(b[i], a[i]) : (a, b) => compare(a[i], b[i]);
+    rev
+        ? (a: Triple, b: Triple) => compare(b[i], a[i])
+        : (a: Triple, b: Triple) => compare(a[i], b[i]);

@@ -20,10 +20,19 @@ import { $eval } from "./dsl";
  */
 export const DB = new Atom<IObjectOf<Cell>>(
     transduce(
-        map(([col, row]) => [
-            `${col}${row}`,
-            { formula: "", value: "", backup: "", focus: false, error: "" }
-        ]),
+        map(
+            ([col, row]) =>
+                <[string, Cell]>[
+                    `${col}${row}`,
+                    {
+                        formula: "",
+                        value: "",
+                        backup: "",
+                        focus: false,
+                        error: ""
+                    }
+                ]
+        ),
         assocObj(),
         permutations(charRange("A", MAX_COL), range(1, NUM_ROWS + 1))
     )

@@ -1,7 +1,7 @@
 import { start } from "@thi.ng/hdom";
 import { dropdown } from "@thi.ng/hdom-components";
 import { fromRAF, Stream } from "@thi.ng/rstream";
-import { radix } from "@thi.ng/strings";
+import { U16, U24 } from "@thi.ng/strings";
 import {
     benchmark,
     comp,
@@ -11,10 +11,6 @@ import {
     partition,
     range
 } from "@thi.ng/transducers";
-
-// pre-defined hex formatters
-const hex4 = radix(16, 4);
-const hex6 = radix(16, 6);
 
 /**
  * Single box component. Uses given id to switch between using `div` or
@@ -27,10 +23,10 @@ const box = (index: number, id: number) => [
     {
         key: index,
         style: {
-            background: "#" + hex6(((id & 0x1ff) << 15) | (id << 10) | id)
+            background: "#" + U24(((id & 0x1ff) << 15) | (id << 10) | id)
         }
     },
-    hex4(id & 0xffff)
+    U16(id & 0xffff)
 ];
 
 /**
@@ -111,7 +107,13 @@ const app = () => {
                 num = parseInt((<HTMLInputElement>e.target).value);
             }
         },
-        [[128, 128], [192, 192], [256, 256], [384, 384], [512, 512]]
+        [
+            [128, 128],
+            [192, 192],
+            [256, 256],
+            [384, 384],
+            [512, 512]
+        ]
     );
 
     return () => {

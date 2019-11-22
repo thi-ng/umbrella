@@ -1,3 +1,4 @@
+import { Nullable } from "@thi.ng/api";
 import { mergeDeepObj } from "@thi.ng/associative";
 import { serialize } from "@thi.ng/hiccup";
 import { map } from "@thi.ng/transducers";
@@ -25,19 +26,19 @@ export const html = (doc: HTMLDoc) => {
             { lang: doc.lang || "en" },
             [
                 "head",
-                map((meta) => ["meta", meta], doc.head.meta),
-                map((s) => script(null, s), doc.head.scripts),
-                map((link) => ["link", link], doc.head.links),
-                map((css) => ["style", css], doc.head.styles),
-                ["title", doc.head.title]
+                map((meta) => ["meta", meta], doc.head!.meta || []),
+                map((s) => script(null, s), doc.head!.scripts || []),
+                map((link) => ["link", link], doc.head!.links || []),
+                map((css) => ["style", css], doc.head!.styles || []),
+                ["title", doc.head!.title || ""]
             ],
-            ["body", doc.ctx.ui.body, ...doc.body]
+            ["body", doc.ctx!.ui.body, ...doc.body]
         ],
         doc.ctx
     )}`;
 };
 
 export const script = (
-    _: AppContext,
+    _: Nullable<AppContext>,
     script: { src: string; type?: string }
 ) => ["script", { type: "text/javascript", ...script }];

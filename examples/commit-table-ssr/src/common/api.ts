@@ -9,7 +9,7 @@ export interface HTMLDoc {
     /**
      * This object will be passed to all component functions.
      */
-    ctx: AppContext;
+    ctx?: AppContext;
 }
 
 export interface HTMLHead {

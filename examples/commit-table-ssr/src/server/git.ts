@@ -43,10 +43,10 @@ const parseLog = ([log]: string[]): Partial<Commit> => {
  *
  * @param log
  */
-const parseStats = ([_, stats]: string[]): Partial<Commit> =>
+const parseStats = ([_, stats]: string[]): Partial<Commit> | null =>
     stats
         ? transduce(
-              map(([k, v]) => [k, parseInt(v)]),
+              map(([k, v]) => <[string, number]>[k, parseInt(v)]),
               assocObj(),
               zip(["files", "add", "del"], stats.split(","))
           )
@@ -70,13 +70,12 @@ export const repoCommits = (repoPath: string) =>
             // merge commits have only 1 line
             // pick a random number for merge commits
             // in case there're successive ones
-            partitionBy(
-                (x) =>
-                    x.indexOf("~~Merge ") !== -1
-                        ? Math.random()
-                        : x.length > 0
-                            ? 1
-                            : 0
+            partitionBy((x) =>
+                x.indexOf("~~Merge ") !== -1
+                    ? Math.random()
+                    : x.length > 0
+                    ? 1
+                    : 0
             ),
             // remove empty lines
             filter((x) => x[0].length > 0),
