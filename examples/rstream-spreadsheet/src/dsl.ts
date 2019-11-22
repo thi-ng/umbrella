@@ -162,7 +162,9 @@ const defBuiltin = (fn: Fn<IObjectOf<number>, any>) => (
                             return <NodeInputSpec[]>[rt(i, env)];
                         }
                     }),
-                    mapIndexed((i, input) => [Z2(i), input])
+                    mapIndexed(
+                        (i, input) => <[string, NodeInputSpec]>[Z2(i), input]
+                    )
                 ),
                 assocObj<NodeInputSpec>(),
                 vals.slice(1)
@@ -188,7 +190,11 @@ const defReducer = (
     defBuiltin((ports: IObjectOf<number>) => {
         const keys = Object.keys(ports).sort();
         return transduce(
-            comp(map((k) => ports[k]), filter((x) => x != null), map(xf)),
+            comp(
+                map((k) => ports[k]),
+                filter((x) => x != null),
+                map(xf)
+            ),
             rfn(),
             xf(ports[keys.shift()!]),
             keys

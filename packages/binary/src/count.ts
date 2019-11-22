@@ -38,3 +38,10 @@ export const ctz32 = (x: number) => {
     x & 0x55555555 && (c -= 1);
     return c;
 };
+
+/**
+ * Returns the number of bits required to encode `x` (MUST be > 0).
+ *
+ * @param x
+ */
+export const bitSize = (x: number) => Math.ceil(Math.log(x) / Math.LN2);

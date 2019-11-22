@@ -1,5 +1,5 @@
 import { splat4_24 } from "@thi.ng/binary";
-import { ILifecycle, start } from "@thi.ng/hdom";
+import { start } from "@thi.ng/hdom";
 import { dropdown, fpsCounter } from "@thi.ng/hdom-components";
 import { css, injectStyleSheet } from "@thi.ng/hiccup-css";
 import { U24 } from "@thi.ng/strings";
@@ -146,7 +146,14 @@ let delta = 256;
 let frame = -1;
 let cells = newCells(res);
 
-const resOpts = [[24, 24], [32, 32], [40, 40], [48, 48], [56, 56], [64, 64]];
+const resOpts = [
+    [24, 24],
+    [32, 32],
+    [40, 40],
+    [48, 48],
+    [56, 56],
+    [64, 64]
+];
 const deltaOpts = [
     ...map((i) => [i, i], [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024])
 ];

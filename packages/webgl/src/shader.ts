@@ -112,7 +112,7 @@ export class Shader implements IShader {
                     attr.offset || 0
                 );
             } else {
-                console.warn(`unknown attrib: ${id}`);
+                LOGGER.warn(`unknown attrib: ${id}`);
             }
         }
     }
@@ -131,7 +131,7 @@ export class Shader implements IShader {
                 // console.log(id, val);
                 u.setter(<UniformValue>val);
             } else {
-                console.warn(`unknown uniform: ${id}`);
+                LOGGER.warn(`unknown uniform: ${id}`);
             }
         }
         // apply defaults for non-specified uniforms in user spec

@@ -11,8 +11,8 @@
     },
     "devDependencies": {
         "parcel-bundler": "^1.12.4",
-        "terser": "^3.17.0",
-        "typescript": "^3.6.4"
+        "terser": "^4.4.0",
+        "typescript": "^3.7.2"
     },
     "dependencies": {
         "@thi.ng/hdom": "latest",

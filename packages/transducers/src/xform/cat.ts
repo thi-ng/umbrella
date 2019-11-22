@@ -1,3 +1,4 @@
+import { Nullable } from "@thi.ng/api";
 import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { ensureReduced, isReduced, unreduced } from "../reduced";
@@ -32,7 +33,7 @@ import { ensureReduced, isReduced, unreduced } from "../reduced";
  * @see thi.ng/transducers/iter/concat
  * @see thi.ng/transducers/xform/mapcat
  */
-export const cat = <T>(): Transducer<Iterable<T> | null | undefined, T> => (
+export const cat = <T>(): Transducer<Nullable<Iterable<T>>, T> => (
     rfn: Reducer<any, T>
 ) => {
     const r = rfn[2];

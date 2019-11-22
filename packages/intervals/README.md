@@ -38,6 +38,8 @@ yarn add @thi.ng/intervals
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/dlogic](https://github.com/thi-ng/umbrella/tree/master/packages/dlogic)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 
 ## Usage examples

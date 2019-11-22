@@ -1,16 +1,18 @@
 import { hueRgba, rgbaCss } from "@thi.ng/color";
-import { createElement } from "@thi.ng/hdom";
-import { concat, cycle } from "@thi.ng/transducers";
 import {
     diagonal2d,
     hilbert2d,
+    interleaveColumns2d,
+    interleaveRows2d,
     random2d,
     spiral2d,
     zcurve2d,
     zigzagColumns2d,
-    // zigzagDiagonal2d,
+    zigzagDiagonal2d,
     zigzagRows2d
 } from "@thi.ng/grid-iterators";
+import { createElement } from "@thi.ng/hdom";
+import { concat, cycle } from "@thi.ng/transducers";
 
 const W = 256;
 const H = 256;
@@ -33,7 +35,9 @@ const buckets = cycle(
         hilbert2d(NB),
         zigzagColumns2d(NB),
         spiral2d(NB),
-        // zigzagDiagonal2d(NB),
+        zigzagDiagonal2d(NB),
+        interleaveColumns2d(NB, NB, 4),
+        interleaveRows2d(NB, NB, 4),
         zcurve2d(NB),
         random2d(NB)
     )
@@ -48,8 +52,3 @@ setInterval(() => {
     ctx.fillStyle = rgbaCss(hueRgba([], frame++ / (NB * NB)));
     ctx.fillRect(x, y, BW, BH);
 }, 16);
-
-// if (process.env.NODE_ENV !== "production") {
-//     const hot = (<any>module).hot;
-//     hot && hot.dispose(() => {});
-// }

@@ -20,7 +20,10 @@ import { Fn2 } from "@thi.ng/api";
  * @param fn
  * @param seed
  */
-export function* iterate<T>(fn: Fn2<T, number, T>, seed: T) {
+export function* iterate<T>(
+    fn: Fn2<T, number, T>,
+    seed: T
+): IterableIterator<T> {
     let i = 0;
     while (true) {
         yield seed;

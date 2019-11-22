@@ -29,7 +29,7 @@ export function* extendSides<T>(
     src: Iterable<T>,
     numLeft = 1,
     numRight = numLeft
-) {
+): IterableIterator<T> {
     let prev: T | typeof SEMAPHORE = SEMAPHORE;
     for (let x of src) {
         if (numLeft > 0 && prev === SEMAPHORE) {

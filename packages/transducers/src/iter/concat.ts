@@ -1,3 +1,4 @@
+import { Nullable } from "@thi.ng/api";
 import { ensureIterable } from "@thi.ng/arrays";
 
 /**
@@ -15,7 +16,9 @@ import { ensureIterable } from "@thi.ng/arrays";
  *
  * @param xs
  */
-export function* concat<T>(...xs: Iterable<T>[]): IterableIterator<T> {
+export function* concat<T>(
+    ...xs: Nullable<Iterable<T>>[]
+): IterableIterator<T> {
     for (let x of xs) {
         x != null && (yield* ensureIterable(x));
     }
