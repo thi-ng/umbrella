@@ -51,7 +51,7 @@ export const text = (
         },
         num: len * 4,
         mem: {
-            size: len * 4 * (opts.useColor ? 36 : 20) + 8
+            size: len * 4 * (opts.useColor ? 36 : 20) + 8 + /* FIXME */ 40
         }
     });
     const lines = txt.split("\n");
@@ -108,7 +108,11 @@ export const textWidth = (
     txt: string
 ) => {
     const s = opts.spacing !== undefined ? opts.spacing : 1;
-    return transduce(map((x) => font.chars[x].step * s), add(), txt);
+    return transduce(
+        map((x) => font.chars[x].step * s),
+        add(),
+        txt
+    );
 };
 
 export const alignLeft: TextAlign = () => 0;
