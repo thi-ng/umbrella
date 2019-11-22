@@ -64,8 +64,8 @@ cat << EOF > $MODULE/package.json
         "mocha": "^6.1.4",
         "nyc": "^14.0.0",
         "ts-node": "^8.5.2",
-        "typedoc": "^0.15.0",
-        "typescript": "^3.6.4"
+        "typedoc": "^0.15.2",
+        "typescript": "^3.7.2"
     },
     "dependencies": {
         "@thi.ng/api": "^6.5.0"
