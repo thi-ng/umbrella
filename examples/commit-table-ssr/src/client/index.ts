@@ -24,7 +24,7 @@ const COMMITS_URL =
     process.env.NODE_ENV === "production" ? "./commits.json" : "/commits";
 
 // UI root component
-const app = (state) => [
+const app = (state: any) => [
     "div",
     [header, ctx.repo.name],
     [stats, state],
@@ -32,7 +32,7 @@ const app = (state) => [
 ];
 
 // stats container component
-const stats = (ctx: AppContext, state) => [
+const stats = (ctx: AppContext, state: any) => [
     "div",
     ctx.ui.stats.root,
     ["div.tl", ctx.ui.stats.col, [searchFilter, state]],
@@ -51,7 +51,10 @@ const stats = (ctx: AppContext, state) => [
 ];
 
 // search filter input component
-const searchFilter = (ctx: AppContext, state) => [
+const searchFilter = (
+    ctx: AppContext,
+    state: { commits: Commit[]; search: string }
+) => [
     "div",
     "Filter:",
     [
@@ -61,7 +64,7 @@ const searchFilter = (ctx: AppContext, state) => [
             type: "text",
             value: state.search,
             // emit changes on `search` stream
-            oninput: (e) => search.next(e.target.value.toLowerCase())
+            oninput: (e: any) => search.next(e.target.value.toLowerCase())
         }
     ],
     `(${state.commits.length} commits)`
@@ -69,7 +72,13 @@ const searchFilter = (ctx: AppContext, state) => [
 
 // transformation function to filter commits with search string
 // doesn't apply filter if search term is empty
-const filterCommits = ({ commits, search }) => ({
+const filterCommits = ({
+    commits,
+    search
+}: {
+    commits: Commit[];
+    search: string;
+}) => ({
     search,
     commits: search
         ? commits.filter((x) => x.msg.toLowerCase().indexOf(search) !== -1)
@@ -78,17 +87,25 @@ const filterCommits = ({ commits, search }) => ({
 
 // transformation function to compute stats of filtered commits
 // uses `resolve-map` package to execute given functions in dependency order
-const computeStats = (state) =>
+const computeStats = (state: any) =>
     resolveMap({
         ...state,
-        adds: ({ commits }) =>
-            transduce(map((x: Commit) => x.add || 0), add(), commits),
-        dels: ({ commits }) =>
-            transduce(map((x: Commit) => x.del || 0), add(), commits),
-        authors: ({ commits }) =>
+        adds: ({ commits }: any) =>
+            transduce(
+                map((x: Commit) => x.add || 0),
+                add(),
+                commits
+            ),
+        dels: ({ commits }: any) =>
+            transduce(
+                map((x: Commit) => x.del || 0),
+                add(),
+                commits
+            ),
+        authors: ({ commits }: any) =>
             transduce(pluck("author"), conj(), commits).size,
-        avgAdds: ({ commits, adds }) => (adds / commits.length) | 0,
-        avgDels: ({ commits, dels }) => (dels / commits.length) | 0
+        avgAdds: ({ commits, adds }: any) => (adds / commits.length) | 0,
+        avgDels: ({ commits, dels }: any) => (dels / commits.length) | 0
     });
 
 // error stream & handler
@@ -116,7 +133,7 @@ const commits = fromInterval(60 * 60 * 1000)
 const search = stream<string>();
 
 // stream combinator & transformation into UI / DOM update
-sync({
+sync<any, any>({
     // streams to synchronize
     src: {
         commits,

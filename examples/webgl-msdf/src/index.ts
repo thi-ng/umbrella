@@ -1,3 +1,4 @@
+import { GLType } from "@thi.ng/api";
 import { start } from "@thi.ng/hdom";
 import { canvasWebGL } from "@thi.ng/hdom-components";
 import { fitClamped } from "@thi.ng/math";
@@ -26,7 +27,7 @@ import {
     vec4
 } from "@thi.ng/shader-ast";
 import { map } from "@thi.ng/transducers";
-import { AttribPool, GLType } from "@thi.ng/vector-pools";
+import { AttribPool } from "@thi.ng/vector-pools";
 import {
     fit3,
     madd3,
@@ -38,8 +39,8 @@ import {
 } from "@thi.ng/vectors";
 import {
     adaptDPI,
+    BLEND_NORMAL,
     compileModel,
-    DEFAULT_BLEND,
     draw,
     GLMat4,
     ModelSpec,
@@ -126,7 +127,7 @@ const createStarField = (gl: WebGLRenderingContext, num = 1000) => {
             id: { type: GLType.F32, size: 1, byteOffset: 24 }
         },
         mem: {
-            size: num * 28 + 8
+            size: num * 28 + 8 /* FIXME */ + 40
         },
         num
     });
@@ -209,7 +210,7 @@ const createStarField = (gl: WebGLRenderingContext, num = 1000) => {
             },
             state: {
                 blend: true,
-                blendFn: DEFAULT_BLEND
+                blendFn: BLEND_NORMAL
             }
         }),
         mode: gl.POINTS,

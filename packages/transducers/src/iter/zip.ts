@@ -1,3 +1,26 @@
+/**
+ * Accepts a number of iterables and combines them into an iterable of
+ * tuples of successively consumed input values.
+ *
+ * @remarks
+ * Tuples are formed by merging each value of each input iterable, such
+ * that the first yielded tuple contains the first elements of the given
+ * inputs, the second tuple contains the second elements of the inputs,
+ * etc.
+ *
+ * The number of resulting tuples will be the same as the length of the
+ * shortest input iterable. Given only a single argument, `zip` yields a
+ * sequence of 1-tuples.
+ *
+ * @example
+ * ```ts
+ * zip([1, 2, 3], [3, 4, 5, 0, 9])
+ * // [ 1, 3 ] [ 2, 4 ] [ 3, 5 ]
+ *
+ * zip([1, 2, 3])
+ * // [ 1 ] [ 2 ] [ 3 ]
+ * ```
+ */
 export function zip<A>(a: Iterable<A>): IterableIterator<[A]>;
 export function zip<A, B>(
     a: Iterable<A>,
@@ -62,21 +85,3 @@ export function* zip(...src: Iterable<any>[]): IterableIterator<any[]> {
         yield tuple;
     }
 }
-
-/**
- * Zip function accepts a list of iterables, and combines them by merging each value of each iterable,
- * Such as the first yield element contains the first elements of the given iterables, the second of which contains the second elements of the given iterables, and so on.
- * 
- * The returned iterable is truncated in length to the length of the shortest argument sequence. With a single sequence argument, it yields a list of 1-tuples.
- * 
- * ```
- * tx.zip([1, 2, 3], [3, 4, 5, 0, 9])
- * // [ 1, 3 ] [ 2, 4 ] [ 3, 5 ]
- * 
- * tx.zip([1, 2, 3])
- * // [ 1 ] [ 2 ] [ 3 ]
- * ```
- *
- * @deprecated renamed to `zip`
- */
-export const tuples = zip;

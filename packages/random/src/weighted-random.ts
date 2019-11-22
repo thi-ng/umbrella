@@ -1,3 +1,4 @@
+import { assert } from "@thi.ng/api";
 import { IRandom } from "./api";
 import { SYSTEM } from "./system";
 
@@ -17,6 +18,8 @@ export const weightedRandom = <T>(
     weights?: ArrayLike<number>,
     rnd: IRandom = SYSTEM
 ) => {
+    const n = choices.length;
+    assert(n > 0, "no choices given");
     const opts = choices
         .map(
             weights
@@ -24,22 +27,17 @@ export const weightedRandom = <T>(
                 : (x) => <[T, number]>[x, 1]
         )
         .sort((a, b) => b[1] - a[1]);
-    const n = choices.length;
-    let total = 0,
-        i: number,
-        r: number,
-        sum: number;
-    for (i = 0; i < n; i++) {
-        total += opts[i][1];
-    }
+    const total = opts.reduce((acc, o) => acc + o[1], 0);
+    assert(total > 0, "no choices given");
     return () => {
-        r = rnd.float(total);
-        sum = total;
-        for (i = 0; i < n; i++) {
+        const r = rnd.float(total);
+        let sum = total;
+        for (let i = 0; i < n; i++) {
             sum -= opts[i][1];
             if (sum <= r) {
                 return opts[i][0];
             }
         }
+        return <never>undefined;
     };
 };

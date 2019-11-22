@@ -33,7 +33,7 @@ export const padSides = <T>(
     x: T,
     numLeft = 1,
     numRight = numLeft
-) =>
+): IterableIterator<T> =>
     numLeft > 0
         ? numRight > 0
             ? concat(repeat(x, numLeft), src, repeat(x, numRight))

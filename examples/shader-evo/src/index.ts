@@ -13,7 +13,6 @@ import {
     add,
     asin,
     assign,
-    atan,
     cos,
     distance,
     div,
@@ -42,7 +41,6 @@ import {
 } from "@thi.ng/shader-ast";
 import {
     clamp11,
-    fit1101,
     fragUV,
     snoise3,
     snoiseVec3

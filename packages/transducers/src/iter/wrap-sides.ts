@@ -20,7 +20,7 @@ export function* wrapSides<T>(
     src: Iterable<T>,
     numLeft = 1,
     numRight = numLeft
-) {
+): IterableIterator<T> {
     const _src: T[] = ensureArray(src);
     !(inRange(numLeft, 0, _src.length) && inRange(numRight, 0, _src.length)) &&
         illegalArgs(`allowed wrap range: [0..${_src.length}]`);

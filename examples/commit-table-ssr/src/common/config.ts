@@ -1,4 +1,4 @@
-import { HTMLDoc, AppContext } from "./api";
+import { AppContext, HTMLDoc } from "./api";
 
 export const DEFAULT_DOC: HTMLDoc = {
     head: {
@@ -23,7 +23,6 @@ export const DEFAULT_DOC: HTMLDoc = {
         styles: [],
         title: ""
     },
-    ctx: null,
     body: []
 };
 
