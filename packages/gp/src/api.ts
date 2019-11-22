@@ -8,10 +8,8 @@ export const enum GeneType {
 
 /**
  * Type alias for S-expression based AST
- *
- * TODO update OpGen generics (recursive ASTNode<OP,T>)
  */
-export type ASTNode<OP, T> = TerminalGene<T> | OpGene<OP, any>;
+export type ASTNode<OP, T> = TerminalGene<T> | OpGene<OP, ASTNode<OP, T>>;
 
 export type MEPGene<OP, T> = TerminalGene<T> | OpGene<OP, number>;
 
