@@ -46,5 +46,5 @@ const page = (_: any, pageID: number) => ["h1", `Page: ${pageID}`];
 // most recent one to `app()` and its resulting UI tree to the
 // `updateDOM()` transducer
 state
-    .subscribe(sidechainPartition<AppState, any>(fromRAF()))
+    .subscribe(sidechainPartition<AppState, number>(fromRAF()))
     .transform(map(peek), map(app), updateDOM());

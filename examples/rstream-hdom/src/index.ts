@@ -106,7 +106,14 @@ const counter = (start: number, step: number) => {
         undefined,
         // the `scan` transducer is used to provide counter functionality
         // see: https://github.com/thi-ng/umbrella/blob/master/packages/transducers/src/xform/scan.ts
-        scan(reducer(() => start, (x, y) => (y ? x + step : start)))
+        {
+            xform: scan(
+                reducer(
+                    () => start,
+                    (x, y) => (y ? x + step : start)
+                )
+            )
+        }
     );
     s.next(false);
     return s;
@@ -148,6 +155,10 @@ const app = (ctx: any, initial: number[][]) => {
 // start app & DOM updates
 domUpdate(
     document.getElementById("app")!,
-    app(ctx, [[10, 1], [20, 5], [30, 10]]),
+    app(ctx, [
+        [10, 1],
+        [20, 5],
+        [30, 10]
+    ]),
     ctx
 );

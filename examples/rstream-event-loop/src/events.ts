@@ -1,7 +1,7 @@
 import { Fn } from "@thi.ng/api";
 import { setInMany } from "@thi.ng/paths";
 import {
-    PubSub,
+    ISubscriber,
     pubsub,
     stream,
     trace
@@ -32,9 +32,8 @@ events.subscribe(trace("event:"));
  * will delegate to event ID based child subscriptions (the actual event
  * handlers).
  */
-const eventProc = <PubSub<Event, Event>>events.subscribe(
-    pubsub<Event, Event>({ topic: (x) => x[0] })
-);
+const eventProc = pubsub<Event, Event>({ topic: (x) => x[0] });
+events.subscribe(eventProc);
 
 /**
  * Event dispatch function. Sends given event into the event stream.
@@ -45,20 +44,24 @@ export const dispatch = (e: Event) => events.next(e);
 
 /**
  * Registers event handler for given `id`, incl. optional validation
- * transducer, which when given, is applied prior to the actual hanlder.
+ * transducer, which when given, is applied prior to the actual handler.
+ * The handler's subscription also includes an error handler to display
+ * errors in the console.
  *
  * @param id
- * @param fn
+ * @param handler
  * @param xform
  */
 export const defHandler = (
     id: EventType,
-    fn: Fn<Event, void>,
+    handler: Fn<Event, void>,
     xform?: Transducer<Event, Event>
-) =>
-    xform
-        ? eventProc.subscribeTopic(id, {}).subscribe({ next: fn }, xform)
-        : eventProc.subscribeTopic(id, { next: fn });
+) => {
+    const sub: ISubscriber<Event> = { next: handler, error: console.warn };
+    return xform
+        ? eventProc.subscribeTopic(id, {}).subscribe(sub, xform)
+        : eventProc.subscribeTopic(id, sub);
+};
 
 /**
  * Event handler helper which sets `nextPageID` & `isLoading` flag in
@@ -96,7 +99,7 @@ defHandler(
     ([_, step]) => requestPage(-step!),
     // don't allow event if new page ID would be negative
     filter(([_, x]) => state.deref().pageID >= x!)
-    // alternatively, use `map()` to clamp pageID at 0
+    // alternatively, use `map()` transducer to clamp new pageID to 0
     // map((e) => state.deref().pageID < e[1]! ? [PREV, state.deref().pageID] : e)
 );
 
