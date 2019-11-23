@@ -3,6 +3,11 @@ import { CommonOpts, ISubscribable } from "../api";
 import { Subscription } from "../subscription";
 import { optsWithID } from "../utils/idgen";
 
+export interface SidechainToggleOpts<T> extends CommonOpts {
+    pred: Predicate<T>;
+    initial: boolean;
+}
+
 /**
  * Filters values from input based on values received from side chain.
  * By default, the value read from the side chain is ignored, however
@@ -31,10 +36,8 @@ import { optsWithID } from "../utils/idgen";
  */
 export const sidechainToggle = <A, B>(
     side: ISubscribable<B>,
-    initial = true,
-    pred?: Predicate<B>,
-    opts?: Partial<CommonOpts>
-): Subscription<A, A> => new SidechainToggle(side, initial, pred, opts);
+    opts?: Partial<SidechainToggleOpts<B>>
+): Subscription<A, A> => new SidechainToggle(side, opts);
 
 export class SidechainToggle<A, B> extends Subscription<A, A> {
     sideSub: Subscription<B, B>;
@@ -42,14 +45,13 @@ export class SidechainToggle<A, B> extends Subscription<A, A> {
 
     constructor(
         side: ISubscribable<B>,
-        initial = true,
-        pred?: Predicate<B>,
-        opts?: Partial<CommonOpts>
+        opts?: Partial<SidechainToggleOpts<B>>
     ) {
-        super(undefined, optsWithID("sidetoggle", opts));
-        this.isActive = initial;
+        opts = optsWithID("sidetoggle", opts);
+        super(undefined, opts);
+        this.isActive = !!opts.initial;
+        const pred = opts.pred || (() => true);
         const $this = this;
-        pred = pred || (() => true);
         this.sideSub = side.subscribe({
             next(x) {
                 if (pred!(x)) {

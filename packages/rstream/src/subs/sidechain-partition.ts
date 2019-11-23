@@ -3,6 +3,10 @@ import { CommonOpts, ISubscribable, State } from "../api";
 import { Subscription } from "../subscription";
 import { optsWithID } from "../utils/idgen";
 
+export interface SidechainPartitionOpts<T> extends CommonOpts {
+    pred: Predicate<T>;
+}
+
 /**
  * Buffers values from `src` until side chain fires, then emits buffer
  * (unless empty) and repeats process until either input is done. By
@@ -29,9 +33,8 @@ import { optsWithID } from "../utils/idgen";
  */
 export const sidechainPartition = <A, B>(
     side: ISubscribable<B>,
-    pred?: Predicate<B>,
-    opts?: Partial<CommonOpts>
-): Subscription<A, A[]> => new SidechainPartition<A, B>(side, pred, opts);
+    opts?: Partial<SidechainPartitionOpts<B>>
+): Subscription<A, A[]> => new SidechainPartition<A, B>(side, opts);
 
 export class SidechainPartition<A, B> extends Subscription<A, A[]> {
     sideSub: Subscription<B, B>;
@@ -39,13 +42,13 @@ export class SidechainPartition<A, B> extends Subscription<A, A[]> {
 
     constructor(
         side: ISubscribable<B>,
-        pred?: Predicate<B>,
-        opts?: Partial<CommonOpts>
+        opts?: Partial<SidechainPartitionOpts<B>>
     ) {
-        super(undefined, optsWithID("sidepart", opts));
+        opts = optsWithID("sidepart", opts);
+        super(undefined, opts);
         this.buf = [];
+        const pred = opts.pred || (() => true);
         const $this = this;
-        pred = pred || (() => true);
         this.sideSub = side.subscribe({
             next(x) {
                 if ($this.buf.length && pred!(x)) {

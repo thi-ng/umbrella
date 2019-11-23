@@ -2,6 +2,19 @@ import { CommonOpts, State } from "../api";
 import { Subscription } from "../subscription";
 import { optsWithID } from "../utils/idgen";
 
+export interface TimeoutOpts extends CommonOpts {
+    /**
+     * Error object.
+     */
+    error: any;
+    /**
+     * True, if timeout resets with each received value.
+     *
+     * @defaultValue false
+     */
+    reset: boolean;
+}
+
 /**
  * A subscription that emits an arbitrary error object after a given
  * time. If no `error` is given, uses a new `Error` instance by default.
@@ -11,16 +24,14 @@ import { optsWithID } from "../utils/idgen";
  * the time interval since the last value has exceeded.
  *
  * @param timeoutMs timeout period in milliseconds
- * @param error error object
+ * @param error
  * @param resetTimeout timeout reset flag
  * @param opts
  */
 export const timeout = <T>(
     timeoutMs: number,
-    error?: any,
-    resetTimeout = false,
-    opts?: Partial<CommonOpts>
-): Subscription<T, T> => new Timeout(timeoutMs, error, resetTimeout, opts);
+    opts?: Partial<TimeoutOpts>
+): Subscription<T, T> => new Timeout(timeoutMs, opts);
 
 class Timeout<T> extends Subscription<T, T> {
     protected timeoutMs: number;
@@ -28,16 +39,12 @@ class Timeout<T> extends Subscription<T, T> {
     protected errorObj: any;
     protected resetTimeout: boolean;
 
-    constructor(
-        timeoutMs: number,
-        error?: any,
-        resetTimeout = false,
-        opts?: Partial<CommonOpts>
-    ) {
-        super(undefined, optsWithID("timeout", opts));
+    constructor(timeoutMs: number, opts?: Partial<TimeoutOpts>) {
+        opts = optsWithID("timeout", opts);
+        super(undefined, opts);
         this.timeoutMs = timeoutMs;
-        this.errorObj = error;
-        this.resetTimeout = resetTimeout;
+        this.errorObj = opts.error;
+        this.resetTimeout = opts.reset === true;
         this.reset();
     }
 
@@ -55,9 +62,7 @@ class Timeout<T> extends Subscription<T, T> {
                 this.error(
                     this.errorObj ||
                         new Error(
-                            `Timeout stream "${this.id}" after ${
-                                this.timeoutMs
-                            } ms`
+                            `Timeout stream "${this.id}" after ${this.timeoutMs} ms`
                         )
                 );
             }

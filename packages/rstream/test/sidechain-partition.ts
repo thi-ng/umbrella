@@ -21,7 +21,10 @@ describe("SidechainPartition", function() {
                 buf.push(x);
             },
             done() {
-                assert.deepEqual(buf, [[1, 2], [3, 4, 5]]);
+                assert.deepEqual(buf, [
+                    [1, 2],
+                    [3, 4, 5]
+                ]);
                 done();
             }
         });
@@ -38,12 +41,17 @@ describe("SidechainPartition", function() {
     });
 
     it("partitions w/ predicate", (done) => {
-        src.subscribe(sidechainPartition(side, (x) => x === 1)).subscribe({
+        src.subscribe(
+            sidechainPartition(side, { pred: (x: any) => x === 1 })
+        ).subscribe({
             next(x) {
                 buf.push(x);
             },
             done() {
-                assert.deepEqual(buf, [[1, 2, 3], [4, 5]]);
+                assert.deepEqual(buf, [
+                    [1, 2, 3],
+                    [4, 5]
+                ]);
                 done();
             }
         });

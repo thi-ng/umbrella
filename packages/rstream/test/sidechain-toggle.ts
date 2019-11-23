@@ -22,7 +22,7 @@ describe("SidechainToggle", () => {
         expect: any,
         done: Function
     ) => {
-        src.subscribe(sidechainToggle(side, initial, pred)).subscribe({
+        src.subscribe(sidechainToggle(side, { initial, pred })).subscribe({
             next(x) {
                 buf.push(x);
             },
