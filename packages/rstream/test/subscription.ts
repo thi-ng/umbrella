@@ -11,7 +11,7 @@ describe("Subscription", () => {
     it("new sub receives last", function(done) {
         this.timeout(TIMEOUT * 5);
         let buf: any[] = [];
-        src = fromIterable([1, 2, 3], TIMEOUT);
+        src = fromIterable([1, 2, 3], { delay: TIMEOUT });
         src.subscribe({
             next(x) {
                 buf.push(x);
@@ -36,7 +36,7 @@ describe("Subscription", () => {
         this.timeout(TIMEOUT * 5);
         let buf: any[] = [];
         let called = false;
-        src = fromIterable([1, 2, 3], TIMEOUT);
+        src = fromIterable([1, 2, 3], { delay: TIMEOUT });
         const sub = src.subscribe({
             next(x) {
                 buf.push(x);
@@ -60,7 +60,7 @@ describe("Subscription", () => {
 
         let buf: any[] = [];
         let called = false;
-        src = fromIterable([1, 2, 3], TIMEOUT);
+        src = fromIterable([1, 2, 3], { delay: TIMEOUT });
         const sub = src.subscribe(
             {
                 next(x) {
@@ -83,7 +83,7 @@ describe("Subscription", () => {
 
     it("completing transducer sends all values", (done) => {
         let buf: any[] = [];
-        src = fromIterable([1, 2, 3], 10);
+        src = fromIterable([1, 2, 3], { delay: 10 });
         src.subscribe(
             {
                 next(x) {

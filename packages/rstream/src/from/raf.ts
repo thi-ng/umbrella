@@ -5,17 +5,17 @@ import { optsWithID } from "../utils/idgen";
 import { fromInterval } from "./interval";
 
 /**
- * Yields a stream of monotonically increasing counter, triggered by a
- * `requestAnimationFrame()` loop (only available in browser
+ * Yields the stream of a monotonically increasing counter, triggered by
+ * a `requestAnimationFrame()` loop (only available in browser
  * environments). In NodeJS, this function falls back to
- * `fromInterval(16)`, yielding a similar (approximately 60fps) stream.
+ * `fromInterval(16)`, yielding a similar (approx. 60Hz) stream.
  *
  * Subscribers to this stream will be processed during that same loop
  * iteration.
  */
 export const fromRAF = (opts?: Partial<CommonOpts>) =>
     isNode()
-        ? fromInterval(16, undefined, opts)
+        ? fromInterval(16, opts)
         : new Stream<number>((stream) => {
               let i = 0;
               let isActive = true;

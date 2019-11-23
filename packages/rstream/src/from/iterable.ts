@@ -2,6 +2,16 @@ import { CloseMode, CommonOpts } from "../api";
 import { Stream } from "../stream";
 import { optsWithID } from "../utils/idgen";
 
+export interface FromIterableOpts extends CommonOpts {
+    /**
+     * Time delay (in ms) between emitted values. The default value of
+     * 0, means as fast as possible (but still via `setInterval`).
+     *
+     * @defaultValue 0
+     */
+    delay: number;
+}
+
 /**
  * Creates a new `Stream` of given iterable which asynchronously calls
  * `.next()` for each item of the iterable when the first (and in this
@@ -11,13 +21,11 @@ import { optsWithID } from "../utils/idgen";
  * by default, but can be avoided by passing `false` as last argument.
  *
  * @param src
- * @param delay
  * @param opts
  */
 export const fromIterable = <T>(
     src: Iterable<T>,
-    delay = 0,
-    opts?: Partial<CommonOpts>
+    opts: Partial<FromIterableOpts> = {}
 ) =>
     new Stream<T>((stream) => {
         const iter = src[Symbol.iterator]();
@@ -29,7 +37,7 @@ export const fromIterable = <T>(
             } else {
                 stream.next(val.value);
             }
-        }, delay);
+        }, opts.delay || 0);
         return () => clearInterval(id);
     }, optsWithID("iterable", opts));
 

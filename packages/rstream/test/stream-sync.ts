@@ -42,8 +42,8 @@ describe("StreamSync", () => {
         });
         const a1 = sync({
             src: [
-                (a = fromView(db, "a1.ins.a")),
-                (b = fromView(db, "a1.ins.b"))
+                (a = fromView(db, { path: "a1.ins.a" })),
+                (b = fromView(db, { path: "a1.ins.b" }))
             ],
             xform: adder()
         });
@@ -56,7 +56,7 @@ describe("StreamSync", () => {
             }
         });
         const a2 = sync({
-            src: <any>[a1, (c = fromView(db, "a2.ins.b"))],
+            src: <any>[a1, (c = fromView(db, { path: "a2.ins.b" }))],
             xform: adder()
         });
         const res = a2.subscribe({
@@ -165,7 +165,10 @@ describe("StreamSync", () => {
                     b: fromPromise(delayed("bb", 40))
                 }
             }),
-            comp(take(1), map(({ a, b }: any) => ({ a, b }))),
+            comp(
+                take(1),
+                map(({ a, b }: any) => ({ a, b }))
+            ),
             last()
         ).then((res) => {
             assert.deepEqual(res, { a: "aa", b: "bb" });
@@ -176,8 +179,8 @@ describe("StreamSync", () => {
     it("never closes", (done) => {
         const main = sync<number, any>({
             src: [
-                fromIterable([1, 2, 3], TIMEOUT, { id: "a" }),
-                fromIterable([1, 2, 3, 4], TIMEOUT, { id: "b" })
+                fromIterable([1, 2, 3], { delay: TIMEOUT, id: "a" }),
+                fromIterable([1, 2, 3, 4], { delay: TIMEOUT, id: "b" })
             ],
             closeIn: CloseMode.NEVER,
             closeOut: CloseMode.NEVER,

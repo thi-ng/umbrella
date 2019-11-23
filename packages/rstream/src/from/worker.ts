@@ -3,32 +3,45 @@ import { Stream } from "../stream";
 import { optsWithID } from "../utils/idgen";
 import { makeWorker } from "../utils/worker";
 
+export interface FromWorkerOpts extends CommonOpts {
+    /**
+     * If true, the worker will be terminated when the stream
+     * is being closed.
+     *
+     * @defaultValue true
+     */
+    terminate: boolean;
+}
+
 /**
  * Returns a new `Stream` instance which adds "message" and "error"
  * event listeners to given `worker` and then passes received values
- * downstream. If `terminate` is true (default), the worker will be
+ * downstream.
+ *
+ * @remarks
+ * If `terminate` is true (default), the worker will be
  * terminated when the stream is being closed (either directly or
  * indirectly, i.e. if the user called `.done()` on the stream or the
  * last child subscription has unsubscribed).
  *
- * As with `postWorker()`, the `worker` can be an existing `Worker`
+ * As with {@link postWorker}, the `worker` can be an existing `Worker`
  * instance, a JS source code `Blob` or an URL string. In the latter two
  * cases, a worker is created automatically using `utils/makeWorker()`.
  *
- * ```
+ * @example
+ * ```ts
  *
  * ```
  *
  * @param worker
- * @param terminate
  * @param opts
  */
 export const fromWorker = <T>(
     worker: Worker | Blob | string,
-    terminate = true,
-    opts?: Partial<CommonOpts>
+    opts?: Partial<FromWorkerOpts>
 ) => {
     const _worker = makeWorker(worker);
+    opts = optsWithID("worker", opts);
     return new Stream<T>((stream) => {
         const ml = (e: MessageEvent) => {
             stream.next(e.data);
@@ -41,10 +54,10 @@ export const fromWorker = <T>(
         return () => {
             _worker.removeEventListener("message", ml);
             _worker.removeEventListener("error", <EventListener>el);
-            if (terminate) {
+            if (opts!.terminate !== false) {
                 LOGGER.info("terminating worker", _worker);
                 _worker.terminate();
             }
         };
-    }, optsWithID("worker", opts));
+    }, opts);
 };

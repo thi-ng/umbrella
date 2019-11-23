@@ -54,7 +54,7 @@ describe("fromIterable()", () => {
     it("works with delay", (done) => {
         let buf: any[] = [];
         let t0 = Date.now();
-        src = fromIterable(data, 10);
+        src = fromIterable(data, { delay: 10 });
         src.subscribe({
             next(x) {
                 buf.push(x);
@@ -71,7 +71,7 @@ describe("fromIterable()", () => {
         this.timeout(TIMEOUT * 5);
         let buf: any[] = [];
         let doneCalled = false;
-        src = fromIterable(data, TIMEOUT);
+        src = fromIterable(data, { delay: TIMEOUT });
         src.subscribe({
             next(x) {
                 buf.push(x);

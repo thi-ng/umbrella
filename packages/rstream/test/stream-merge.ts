@@ -19,7 +19,10 @@ describe("StreamMerge", () => {
                 buf.push(x);
             },
             done() {
-                assert.deepEqual(buf.sort((a, b) => a - b), expected);
+                assert.deepEqual(
+                    buf.sort((a, b) => a - b),
+                    expected
+                );
                 done();
             }
         };
@@ -41,8 +44,8 @@ describe("StreamMerge", () => {
 
     it("merges dynamic inputs", (done) => {
         src = merge();
-        src.add(fromIterable([1, 2, 3, 4], 10));
-        src.add(fromIterable([10, 20], 5));
+        src.add(fromIterable([1, 2, 3, 4], { delay: 10 }));
+        src.add(fromIterable([10, 20], { delay: 5 }));
         src.subscribe(check([1, 2, 3, 4, 10, 20], done));
     });
 
@@ -73,9 +76,10 @@ describe("StreamMerge", () => {
     });
 
     it("transducer streams", (done) => {
-        const sources = [fromIterable([1, 2, 3]), fromIterable([4, 5, 6])].map(
-            (s) => s.subscribe(map((x) => fromIterable([x, x, x])))
-        );
+        const sources = [
+            fromIterable([1, 2, 3]),
+            fromIterable([4, 5, 6])
+        ].map((s) => s.subscribe(map((x) => fromIterable([x, x, x]))));
         const main = merge({ src: <any>sources });
         const histogram = frequencies();
         let acc: any = histogram[0]();
@@ -86,7 +90,14 @@ describe("StreamMerge", () => {
             done() {
                 assert.deepEqual(
                     acc,
-                    new Map([[1, 3], [2, 3], [3, 3], [4, 3], [5, 3], [6, 3]])
+                    new Map([
+                        [1, 3],
+                        [2, 3],
+                        [3, 3],
+                        [4, 3],
+                        [5, 3],
+                        [6, 3]
+                    ])
                 );
                 done();
             }

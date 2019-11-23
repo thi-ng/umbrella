@@ -10,5 +10,5 @@ import { optsWithID } from "./utils/idgen";
 export function trigger(): Stream<boolean>;
 export function trigger<T>(x: T): Stream<T>;
 export function trigger(x: any = true) {
-    return fromIterable([x], 0, optsWithID("trigger"));
+    return fromIterable([x], optsWithID("trigger"));
 }

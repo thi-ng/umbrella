@@ -75,7 +75,12 @@ export const tween = <T>(
         },
         closeIn: CloseMode.FIRST
     }).transform(
-        scan(reducer(() => initial, (acc, { src }) => mix(acc, src))),
+        scan(
+            reducer(
+                () => initial,
+                (acc, { src }) => mix(acc, src)
+            )
+        ),
         dedupe(stop || (() => false))
     );
 

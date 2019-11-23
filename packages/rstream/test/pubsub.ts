@@ -48,7 +48,13 @@ describe("PubSub", () => {
         assert.deepEqual(
             [...acc],
             [
-                [["a", 0], [["a", 0], ["a", 0]]],
+                [
+                    ["a", 0],
+                    [
+                        ["a", 0],
+                        ["a", 0]
+                    ]
+                ],
                 [["a", 1], [["a", 1]]],
                 [["b", 2], [["b", 2]]]
             ]
@@ -68,7 +74,10 @@ describe("PubSub", () => {
         fromIterableSync("abcbd").subscribe(pub);
         assert.deepEqual(acc, {
             a: [["a", 0]],
-            b: [["b", 1], ["b", 3]],
+            b: [
+                ["b", 1],
+                ["b", 3]
+            ],
             c: [],
             d: []
         });
@@ -86,7 +95,7 @@ describe("PubSub", () => {
         pub = pubsub({ topic: (x) => x });
         pub.subscribeTopic("a", collect);
         const b = pub.subscribeTopic("b", collect);
-        fromIterable("abcbd", TIMEOUT).subscribe(pub);
+        fromIterable("abcbd", { delay: TIMEOUT }).subscribe(pub);
         setTimeout(() => {
             pub.unsubscribeTopic("b", b);
         }, TIMEOUT * 2.5);
