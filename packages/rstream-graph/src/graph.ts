@@ -114,7 +114,7 @@ const prepareNodeInputs = (
         let s;
         const i = ins[id];
         if (i.path) {
-            s = fromView(state, i.path);
+            s = fromView(state, { path: i.path });
         } else if (i.stream) {
             s = isString(i.stream) ? resolve(i.stream) : i.stream(resolve);
         } else if (i.const != null) {
@@ -184,9 +184,11 @@ export const addNode = (
     spec: NodeSpec
 ): Node => {
     graph[id] && illegalArgs(`graph already contains a node with ID: ${id}`);
-    return (graph[id] = nodeFromSpec(state, spec, id)((path) =>
-        getIn(graph, absPath([id], path))
-    ));
+    return (graph[id] = nodeFromSpec(
+        state,
+        spec,
+        id
+    )((path) => getIn(graph, absPath([id], path))));
 };
 
 /**
