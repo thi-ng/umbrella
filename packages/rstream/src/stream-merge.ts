@@ -92,7 +92,7 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
                     done: () => this.markDone(src),
                     __owner: this
                 },
-                `in-${src.id}`
+                { id: `in-${src.id}` }
             )
         );
     }

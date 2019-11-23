@@ -1,5 +1,6 @@
 import { IDeref, SEMAPHORE } from "@thi.ng/api";
-import { implementsFunction, isFunction, isString } from "@thi.ng/checks";
+import { peek } from "@thi.ng/arrays";
+import { implementsFunction, isFunction, isPlainObject } from "@thi.ng/checks";
 import { illegalArity, illegalState } from "@thi.ng/errors";
 import {
     comp,
@@ -11,6 +12,7 @@ import {
 } from "@thi.ng/transducers";
 import {
     CloseMode,
+    CommonOpts,
     ISubscribable,
     ISubscriber,
     ITransformable,
@@ -109,44 +111,51 @@ export class Subscription<A, B>
      * Creates new child subscription with given subscriber and/or
      * transducer and optional subscription ID.
      */
-    // prettier-ignore
-    subscribe<C>(sub: Partial<ISubscriber<C>>, xform: Transducer<B, C>, id?: string): Subscription<B, C>;
-    // subscribe<S extends Subscription<B, C>, C>(sub: S): S;
+    subscribe(
+        sub: Partial<ISubscriber<B>>,
+        opts?: Partial<CommonOpts>
+    ): Subscription<B, B>;
     subscribe<C>(sub: Subscription<B, C>): Subscription<B, C>;
-    subscribe<C>(xform: Transducer<B, C>, id?: string): Subscription<B, C>;
-    subscribe(sub: Partial<ISubscriber<B>>, id?: string): Subscription<B, B>;
-    subscribe(...args: any[]) {
+    subscribe<C>(
+        xform: Transducer<B, C>,
+        opts?: Partial<CommonOpts>
+    ): Subscription<B, C>;
+    subscribe<C>(
+        sub: Partial<ISubscriber<C>>,
+        xform: Transducer<B, C>,
+        opts?: Partial<CommonOpts>
+    ): Subscription<B, C>;
+    subscribe(...args: any[]): any {
         this.ensureState();
-        let sub, xform, id;
+        let sub: Subscription<any, any> | undefined;
+        let opts: SubscriptionOpts<any, any> =
+            args.length > 1 && isPlainObject(peek(args))
+                ? { ...args.pop() }
+                : {};
         switch (args.length) {
             case 1:
-            case 2:
                 if (isFunction(args[0])) {
-                    xform = args[0];
-                    id = args[1] || `xform-${nextID()}`;
+                    opts.xform = args[0];
+                    !opts.id && (opts.id = `xform-${nextID()}`);
                 } else {
                     sub = args[0];
-                    if (isFunction(args[1])) {
-                        xform = args[1];
-                    } else {
-                        id = args[1];
-                    }
                 }
                 break;
-            case 3:
-                [sub, xform, id] = args;
+            case 2:
+                sub = args[0];
+                opts.xform = args[1];
                 break;
             default:
                 illegalArity(args.length);
         }
-        if (implementsFunction(sub, "subscribe")) {
-            sub.parent = this;
+        if (implementsFunction(sub!, "subscribe")) {
+            sub!.parent = this;
         } else {
             // FIXME inherit options from this sub or defaults?
-            sub = subscription<B, B>(sub, { id, xform, parent: this });
+            sub = subscription<B, B>(sub, { parent: this, ...opts });
         }
-        this.last !== SEMAPHORE && sub.next(this.last);
-        return <Subscription<B, B>>this.addWrapped(sub);
+        this.last !== SEMAPHORE && sub!.next(this.last);
+        return this.addWrapped(sub!);
     }
 
     /**
@@ -171,20 +180,21 @@ export class Subscription<A, B>
      *
      * Shorthand for `subscribe(comp(xf1, xf2,...), id)`
      */
-    transform<C>(a: Transducer<B, C>, id?: string): Subscription<B, C>;
+    transform<C>(
+        a: Transducer<B, C>,
+        opts?: Partial<CommonOpts>
+    ): Subscription<B, C>;
     // prettier-ignore
-    transform<C, D>(a: Transducer<B, C>, b: Transducer<C, D>, id?: string): Subscription<B, D>;
+    transform<C, D>(a: Transducer<B, C>, b: Transducer<C, D>, opts?: Partial<CommonOpts>): Subscription<B, D>;
     // prettier-ignore
-    transform<C, D, E>(a: Transducer<B, C>, b: Transducer<C, D>, c: Transducer<D, E>, id?: string): Subscription<B, E>;
+    transform<C, D, E>(a: Transducer<B, C>, b: Transducer<C, D>, c: Transducer<D, E>, opts?: Partial<CommonOpts>): Subscription<B, E>;
     // prettier-ignore
-    transform<C, D, E, F>(a: Transducer<B, C>, b: Transducer<C, D>, c: Transducer<D, E>, d: Transducer<E, F>, id?: string): Subscription<B, F>;
+    transform<C, D, E, F>(a: Transducer<B, C>, b: Transducer<C, D>, c: Transducer<D, E>, d: Transducer<E, F>, opts?: Partial<CommonOpts>): Subscription<B, F>;
     transform(...xf: any[]) {
         const n = xf.length - 1;
-        if (isString(xf[n])) {
-            return this.subscribe((<any>comp)(...xf.slice(0, n)), xf[n]);
-        } else {
-            return this.subscribe((<any>comp)(...xf));
-        }
+        return isPlainObject(xf[n])
+            ? this.subscribe((<any>comp)(...xf.slice(0, n)), xf[n])
+            : this.subscribe((<any>comp)(...xf));
     }
 
     /**

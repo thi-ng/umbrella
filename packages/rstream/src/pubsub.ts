@@ -2,7 +2,12 @@ import { Fn, Predicate2 } from "@thi.ng/api";
 import { EquivMap } from "@thi.ng/associative";
 import { unsupported } from "@thi.ng/errors";
 import { Transducer } from "@thi.ng/transducers";
-import { ISubscriber, LOGGER, SubscriptionOpts } from "./api";
+import {
+    CommonOpts,
+    ISubscriber,
+    LOGGER,
+    SubscriptionOpts
+} from "./api";
 import { Subscription, subscription } from "./subscription";
 import { optsWithID } from "./utils/idgen";
 
@@ -81,17 +86,28 @@ export class PubSub<A, B> extends Subscription<A, B> {
         return unsupported(`use subscribeTopic() instead`);
     }
 
-    // prettier-ignore
-    subscribeTopic<C>( topicID: any, tx: Transducer<B, C>, id?: string): Subscription<B, C>;
-    // prettier-ignore
-    subscribeTopic<C>(topicID: any, sub: Subscription<B, C>): Subscription<B, C>;
-    // prettier-ignore
-    subscribeTopic(topicID: any, sub: Partial<ISubscriber<B>>, id?: string): Subscription<B, B>;
-    // prettier-ignore
-    subscribeTopic(topicID: any, sub: any, id?: string): Subscription<any, any> {
+    subscribeTopic<C>(
+        topicID: any,
+        xform: Transducer<B, C>,
+        opts?: Partial<CommonOpts>
+    ): Subscription<B, C>;
+    subscribeTopic<C>(
+        topicID: any,
+        opts?: Partial<CommonOpts>
+    ): Subscription<B, C>;
+    subscribeTopic(
+        topicID: any,
+        sub: Partial<ISubscriber<B>>,
+        opts?: Partial<CommonOpts>
+    ): Subscription<B, B>;
+    subscribeTopic(
+        topicID: any,
+        sub: any,
+        opts?: Partial<CommonOpts>
+    ): Subscription<any, any> {
         let t = this.topics.get(topicID);
         !t && this.topics.set(topicID, (t = subscription<B, B>()));
-        return t.subscribe(sub, id);
+        return t.subscribe(sub, opts);
     }
 
     unsubscribeTopic(topicID: any, sub: Subscription<B, any>) {
@@ -107,6 +123,8 @@ export class PubSub<A, B> extends Subscription<A, B> {
             this.topics.clear();
             return super.unsubscribe();
         }
+        // TODO check if sub is a registered topic sub and if so remove
+        // topic, only then fall back to unsupported
         return unsupported();
     }
 

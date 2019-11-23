@@ -103,6 +103,6 @@ describe("PubSub", () => {
             assert.deepEqual(acc, { a: ["a"], b: ["b"] });
             assert.equal(pub.getState(), State.DONE);
             done();
-        }, TIMEOUT * 7);
+        }, TIMEOUT * 7.5);
     });
 });

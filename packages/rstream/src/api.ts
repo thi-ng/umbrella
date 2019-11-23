@@ -96,27 +96,47 @@ export interface ISubscriber<T> {
 }
 
 export interface ISubscribable<T> extends IDeref<T>, IID<string> {
+    subscribe(
+        sub: Partial<ISubscriber<T>>,
+        opts?: Partial<CommonOpts>
+    ): Subscription<T, T>;
     subscribe<C>(
         sub: Partial<ISubscriber<T>>,
         xform: Transducer<T, C>,
-        id?: string
+        opts?: Partial<CommonOpts>
     ): Subscription<T, C>;
-    // subscribe<S extends Subscription<T, C>, C>(sub: S): S;
+    subscribe<C>(
+        xform: Transducer<T, C>,
+        opts?: Partial<CommonOpts>
+    ): Subscription<T, C>;
     subscribe<C>(sub: Subscription<T, C>): Subscription<T, C>;
-    subscribe<C>(xform: Transducer<T, C>, id?: string): Subscription<T, C>;
-    subscribe(sub: Partial<ISubscriber<T>>, id?: string): Subscription<T, T>;
     unsubscribe(sub?: Partial<ISubscriber<T>>): boolean;
     getState(): State;
 }
 
 export interface ITransformable<B> {
-    transform<C>(a: Transducer<B, C>, id?: string): Subscription<B, C>;
-    // prettier-ignore
-    transform<C, D>(a: Transducer<B, C>, b: Transducer<C, D>, id?: string): Subscription<B, D>;
-    // prettier-ignore
-    transform<C, D, E>(a: Transducer<B, C>, b: Transducer<C, D>, c: Transducer<D, E>, id?: string): Subscription<B, E>;
-    // prettier-ignore
-    transform<C, D, E, F>(a: Transducer<B, C>, b: Transducer<C, D>, c: Transducer<D, E>, d: Transducer<E, F>, id?: string): Subscription<B, F>;
+    transform<C>(
+        a: Transducer<B, C>,
+        opts?: Partial<CommonOpts>
+    ): Subscription<B, C>;
+    transform<C, D>(
+        a: Transducer<B, C>,
+        b: Transducer<C, D>,
+        opts?: Partial<CommonOpts>
+    ): Subscription<B, D>;
+    transform<C, D, E>(
+        a: Transducer<B, C>,
+        b: Transducer<C, D>,
+        c: Transducer<D, E>,
+        opts?: Partial<CommonOpts>
+    ): Subscription<B, E>;
+    transform<C, D, E, F>(
+        a: Transducer<B, C>,
+        b: Transducer<C, D>,
+        c: Transducer<D, E>,
+        d: Transducer<E, F>,
+        opts?: Partial<CommonOpts>
+    ): Subscription<B, F>;
 }
 
 export interface ISubscribableSubscriber<T>

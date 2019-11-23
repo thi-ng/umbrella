@@ -180,7 +180,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
                     __owner: this
                 },
                 labeled<string, A>(id),
-                `in-${id}`
+                { id: `in-${id}` }
             )
         );
     }

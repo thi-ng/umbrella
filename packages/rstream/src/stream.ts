@@ -86,12 +86,21 @@ export class Stream<T> extends Subscription<T, T> implements IStream<T> {
         this._inited = false;
     }
 
-    // prettier-ignore
-    subscribe<C>(sub: Partial<ISubscriber<C>>, xform: Transducer<T, C>, id?: string): Subscription<T, C>;
+    subscribe(
+        sub: Partial<ISubscriber<T>>,
+        opts?: Partial<CommonOpts>
+    ): Subscription<T, T>;
     subscribe<C>(sub: Subscription<T, C>): Subscription<T, C>;
-    subscribe<C>(xform: Transducer<T, C>, id?: string): Subscription<T, C>;
-    subscribe(sub: Partial<ISubscriber<T>>, id?: string): Subscription<T, T>;
-    subscribe(...args: any[]) {
+    subscribe<C>(
+        xform: Transducer<T, C>,
+        opts?: Partial<CommonOpts>
+    ): Subscription<T, C>;
+    subscribe<C>(
+        sub: Partial<ISubscriber<C>>,
+        xform: Transducer<T, C>,
+        opts?: Partial<CommonOpts>
+    ): Subscription<T, C>;
+    subscribe(...args: any[]): any {
         const wrapped = super.subscribe.apply(this, <any>args);
         if (!this._inited) {
             this._cancel = (this.src && this.src(this)) || (() => void 0);
