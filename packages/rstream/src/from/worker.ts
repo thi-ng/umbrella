@@ -14,19 +14,19 @@ export interface FromWorkerOpts extends CommonOpts {
 }
 
 /**
- * Returns a new `Stream` instance which adds "message" and "error"
- * event listeners to given `worker` and then passes received values
- * downstream.
+ * Returns a {@link Stream} which adds `message` and `error` event
+ * listeners to given `worker` and then emits received values.
  *
  * @remarks
- * If `terminate` is true (default), the worker will be
- * terminated when the stream is being closed (either directly or
- * indirectly, i.e. if the user called `.done()` on the stream or the
- * last child subscription has unsubscribed).
+ * If `terminate` is true (default), the worker will be terminated when
+ * the stream is being closed (either directly or indirectly, i.e. if
+ * the user called {@link ISubscriber.done} on the stream or the last
+ * child subscription has unsubscribed, depending on
+ * {@link CommonOpts | config options}).
  *
  * As with {@link postWorker}, the `worker` can be an existing `Worker`
  * instance, a JS source code `Blob` or an URL string. In the latter two
- * cases, a worker is created automatically using `utils/makeWorker()`.
+ * cases, a worker is created automatically.
  *
  * @example
  * ```ts

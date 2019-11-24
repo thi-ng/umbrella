@@ -13,12 +13,16 @@ export interface FromIterableOpts extends CommonOpts {
 }
 
 /**
- * Creates a new `Stream` of given iterable which asynchronously calls
- * `.next()` for each item of the iterable when the first (and in this
- * case the only one) subscriber becomes available. The values are
- * processed via `setInterval()` using the given `delay` value (default:
- * 0). Once the iterable is exhausted (if finite), then calls `.done()`
- * by default, but can be avoided by passing `false` as last argument.
+ * Returns a {@link Stream} of values from provided iterable, emitted at
+ * the given `delay` interval.
+ *
+ * @remarks
+ * Asynchronously starts pulling values from source iterable when the
+ * first subscriber becomes available. The values are processed &
+ * emitted via `setInterval()`, using the given `delay` value (default:
+ * 0). By default, once the iterable is exhausted (if finite), calls
+ * {@link ISubscriber.done} to close the stream, but this can be
+ * re-configured via provided {@link CommonOpts | options}.
  *
  * @param src
  * @param opts

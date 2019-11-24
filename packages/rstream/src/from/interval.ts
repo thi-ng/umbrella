@@ -14,13 +14,14 @@ export interface FromIntervalOpts extends CommonOpts {
 }
 
 /**
- * Returns a new `Stream` of monotonically increasing counter values,
+ * Returns a {@link Stream} of monotonically increasing counter values,
  * emitted at given `delay` interval and up to the optionally defined
- * max value (default: ∞), after which the stream is closed. The stream
- * only starts when the first subscriber becomes available.
+ * max value (default: ∞), after which the stream is closed.
+ *
+ * @remarks
+ * The stream only starts when the first subscriber becomes available.
  *
  * @param delay
- * @param count
  * @param opts
  */
 export const fromInterval = (

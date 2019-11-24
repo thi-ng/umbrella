@@ -59,14 +59,17 @@ export interface StreamSyncOpts<A, B>
 }
 
 /**
- * Similar to `StreamMerge`, but with extra synchronization of inputs.
- * Before emitting any new values, `StreamSync` collects values until at
- * least one has been received from *all* inputs. Once that's the case,
- * the collected values are sent as labeled tuple object to downstream
- * subscribers. Each value in the emitted tuple objects is stored under
- * their input stream's ID. Only the last value received from each input
- * is passed on. After the initial tuple has been emitted, you can
- * choose from two possible behaviors:
+ * Similar to {@link StreamMerge}, but with extra synchronization of
+ * inputs. Before emitting any new values, {@link StreamSync} collects
+ * values until at least one has been received from *all* inputs. Once
+ * that's the case, the collected values are sent as labeled tuple
+ * object to downstream subscribers.
+ *
+ * @remarks
+ * Each value in the emitted tuple objects is stored under their input
+ * stream's ID. Only the last value received from each input is passed
+ * on. After the initial tuple has been emitted, you can choose from two
+ * possible behaviors:
  *
  * 1) Any future change in any input will produce a new result tuple.
  *    These tuples will retain the most recently read values from other
@@ -77,17 +80,8 @@ export interface StreamSyncOpts<A, B>
  *    produced.
  *
  * Any done inputs are automatically removed. By default, `StreamSync`
- * calls `done()` when the last active input is done, but this behavior
- * can be overridden via the `close` constructor option.
- *
- * ```ts
- * const a = rs.stream();
- * const b = rs.stream();
- * s = sync({ src: { a, b } }).subscribe(trace("result: "));
- * a.next(1);
- * b.next(2);
- * // result: { a: 1, b: 2 }
- * ```
+ * calls {@link ISubscriber.done} when the last active input is done,
+ * but this behavior can be overridden via the provided options.
  *
  * Input streams can be added and removed dynamically and the emitted
  * tuple size adjusts to the current number of inputs (the next time a
@@ -100,6 +94,16 @@ export interface StreamSyncOpts<A, B>
  * The synchronization is done via the `partitionSync()` transducer from
  * the @thi.ng/transducers package. See this function's docs for further
  * details.
+ *
+ * @example
+ * ```ts
+ * const a = rs.stream();
+ * const b = rs.stream();
+ * s = sync({ src: { a, b } }).subscribe(trace("result: "));
+ * a.next(1);
+ * b.next(2);
+ * // result: { a: 1, b: 2 }
+ * ```
  *
  * @see StreamSyncOpts
  *

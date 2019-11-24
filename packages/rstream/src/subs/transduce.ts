@@ -5,12 +5,15 @@ import { Subscription } from "../subscription";
 /**
  * Returns a promise which subscribes to given input and transforms
  * incoming values using given transducer `xform` and reducer `rfn`.
+ *
+ * @remarks
  * Once the input or the reducer is done, the promise will resolve with
  * the final reduced result (or fail with error).
  *
- * ```
- * rs.transduce(
- *   rs.fromIterable(tx.range(10)),
+ * @example
+ * ```ts
+ * transduce(
+ *   fromIterable(tx.range(10)),
  *   tx.map((x) => x * 10),
  *   tx.add()
  * ).then((x) => console.log("result", x))

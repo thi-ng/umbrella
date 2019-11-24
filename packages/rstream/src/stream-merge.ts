@@ -15,19 +15,23 @@ export interface StreamMergeOpts<A, B> extends TransformableOpts<A, B> {
 }
 
 /**
- * Returns a new `StreamMerge` instance, a subscription type consuming
- * inputs from multiple inputs and passing received values on to any
- * subscribers. Input streams can be added and removed dynamically. By
- * default, `StreamMerge` calls `done()` when the last active input is
- * done, but this behavior can be overridden via the `close` option.
+ * Returns a new {@link StreamMerge} subscription, consuming values from
+ * multiple inputs and passing received values on to any subscribers.
  *
- * ```
+ * @remarks
+ * Input streams can be added and removed dynamically. By default,
+ * `StreamMerge` calls {@link ISubscriber.done} when the last active
+ * input is done, but this behavior can be overridden via the provided
+ * {@link StreamMergeOpts | options}.
+ *
+ * @example
+ * ```ts
  * merge({
  *     // input streams w/ different frequencies
  *     src: [
- *         fromIterable([1, 2, 3], 10),
- *         fromIterable([10, 20, 30], 21),
- *         fromIterable([100, 200, 300], 7)
+ *         fromIterable([1, 2, 3], { delay: 10 }),
+ *         fromIterable([10, 20, 30], { delay: 21 }),
+ *         fromIterable([100, 200, 300], { delay: 7 })
  *     ]
  * }).subscribe(trace());
  * // 100
@@ -41,14 +45,15 @@ export interface StreamMergeOpts<A, B> extends TransformableOpts<A, B> {
  * // 30
  * ```
  *
- * Use the `labeled()` transducer for each input to create a stream of
- * labeled values and track their provenance:
+ * @example
+ * Use the {@link @thi.ng/transducers#labeled} transducer for each
+ * input to create a stream of labeled values and track their provenance:
  *
  * ```ts
  * merge({
  *     src: [
- *         fromIterable([1, 2, 3]).transform(labeled("a")),
- *         fromIterable([10, 20, 30]).transform(labeled("b")),
+ *         fromIterable([1, 2, 3]).transform(tx.labeled("a")),
+ *         fromIterable([10, 20, 30]).transform(tx.labeled("b")),
  *     ]
  * }).subscribe(trace());
  * // ["a", 1]
@@ -58,8 +63,6 @@ export interface StreamMergeOpts<A, B> extends TransformableOpts<A, B> {
  * // ["a", 3]
  * // ["b", 30]
  * ```
- *
- * @see StreamMergeOpts
  *
  * @param opts
  */

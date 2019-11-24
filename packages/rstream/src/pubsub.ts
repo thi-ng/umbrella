@@ -36,24 +36,33 @@ export interface PubSubOpts<A, B> {
 
 /**
  * Topic based stream splitter. Applies `topic` function to each
- * received value and only forwards it to child subscriptions for
- * returned topic. The actual topic (return value from `topic` fn) can
- * be of any type, apart from `undefined`. Complex topics (e.g objects /
- * arrays) are allowed and they're matched with registered topics using
- * @thi.ng/equiv by default (but customizable via `equiv` option).
- * Each topic can have any number of subscribers.
+ * received value and only forwards it to the child subscriptions of the
+ * returned topic.
  *
- * If a transducer is specified for the `PubSub`, it is always applied
- * prior to passing the input to the topic function. I.e. in this case
- * the topic function will receive the transformed inputs.
+ * @remarks
+ * The actual topic (return value from `topic` fn) can be of any type,
+ * apart from `undefined`. Complex topics (e.g objects / arrays) are
+ * allowed and they're matched with registered topics using
+ * @thi.ng/equiv by default (but customizable via `equiv` option). Each
+ * topic can have any number of subscribers.
  *
- * PubSub supports dynamic topic subscriptions and unsubscriptions via
- * `subscribeTopic()` and `unsubscribeTopic()`. However, the standard
- * `subscribe()` / `unsubscribe()` methods are NOT supported (since
- * meaningless) and will throw an error! `unsubscribe()` can only be
- * called WITHOUT argument to unsubscribe the entire `PubSub` instance
- * (incl. all topic subscriptions) from the parent stream.
+ * If a `xform` transducer is given, it is always applied prior to
+ * passing the input to the topic function. I.e. in this case the topic
+ * function will receive the transformed inputs.
+ *
+ * {@link PubSub} supports dynamic topic subscriptions and
+ * unsubscriptions via {@link PubSub.subscribeTopic} and
+ * {@link PubSub.unsubscribeTopic}. However, the standard
+ * {@link ISubscribable.subscribe} / {@link ISubscribable.unsubscribe}
+ * methods are NOT supported (since meaningless) and will throw an
+ * error! `unsubscribe()` can only be called WITHOUT argument to
+ * unsubscribe the entire `PubSub` instance (incl. all topic
+ * subscriptions) from the parent stream.
+ *
+ * @param opts
  */
+export const pubsub = <A, B>(opts: PubSubOpts<A, B>) => new PubSub(opts);
+
 export class PubSub<A, B> extends Subscription<A, B> {
     topicfn: Fn<B, any>;
     topics: EquivMap<any, Subscription<B, B>>;
@@ -115,7 +124,7 @@ export class PubSub<A, B> extends Subscription<A, B> {
         return t ? t.unsubscribe(sub) : false;
     }
 
-    unsubscribe(sub?: Subscription<B, any>) {
+    unsubscribe(sub: Subscription<B, any>) {
         if (!sub) {
             for (let t of this.topics.values()) {
                 t.unsubscribe();
@@ -123,8 +132,6 @@ export class PubSub<A, B> extends Subscription<A, B> {
             this.topics.clear();
             return super.unsubscribe();
         }
-        // TODO check if sub is a registered topic sub and if so remove
-        // topic, only then fall back to unsupported
         return unsupported();
     }
 
@@ -150,10 +157,3 @@ export class PubSub<A, B> extends Subscription<A, B> {
         }
     }
 }
-
-/**
- * Creates a new `PubSub` instance. See class docs for further details.
- *
- * @param opts
- */
-export const pubsub = <A, B>(opts: PubSubOpts<A, B>) => new PubSub(opts);

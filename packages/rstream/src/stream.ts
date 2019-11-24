@@ -13,21 +13,33 @@ import { Subscription } from "./subscription";
 import { optsWithID } from "./utils/idgen";
 
 /**
- * Creates a new `Stream` instance, optionally with given `StreamSource`
- * function and / or options. If a `src` function is provided, the
- * function will be only called (with the `Stream` instance as single
- * argument) once the first subscriber has attached to the stream. If
- * the function returns another function, it will be used for cleanup
- * purposes if the stream is cancelled, e.g. if the first / last
- * subscriber has unsubscribed (depending on `closeOut` option). Streams
- * are intended as (primarily async) data sources in a dataflow graph
- * and are the primary construct for the various `from*()` functions
- * provided by this package. However, streams can also be triggered
- * manually (from outside the stream), in which case the user should
- * call `stream.next()` to cause value propagation.
+ * Creates a new {@link Stream} instance, optionally with given
+ * `StreamSource` function and / or options.
+ *
+ * @remarks
+ * If a `src` function is provided, the function will be only called
+ * (with the `Stream` instance as single argument) once the first
+ * subscriber has attached to the stream. If the function returns
+ * another function, it will be used for cleanup purposes if the stream
+ * is cancelled, e.g. if the first / last subscriber has unsubscribed
+ * (depending on `closeOut` option). Streams are intended as (primarily
+ * async) data sources in a dataflow graph and are the primary construct
+ * for the various `from*()` functions provided by this package.
+ * However, streams can also be triggered manually (from outside the
+ * stream), in which case the user should call `stream.next()` to cause
+ * value propagation.
+ *
+ * Streams (like {@link Subscription}) implement the
+ * {@link @thi.ng/api#IDeref} interface which provides read access to a
+ * stream's last received value. This is useful for various purposes,
+ * e.g. in combination with {@link @thi.ng/hdom#}, which supports direct
+ * embedding of streams (i.e. their values) into UI components (and will
+ * be deref them automatically). If the stream has not yet emitted a
+ * value, value caching is disabled or if the stream is done, it will
+ * deref to `undefined`.
  *
  * ```ts
- * a = rs.stream((s) => {
+ * a = stream((s) => {
  *     s.next(1);
  *     s.next(2);
  *     s.done()
@@ -38,9 +50,9 @@ import { optsWithID } from "./utils/idgen";
  * // a done
  *
  * // as reactive value mechanism
- * b = rs.stream();
+ * b = stream();
  * // or alternatively
- * // b = rs.subscription();
+ * // b = subscription();
  *
  * b.subscribe(trace("b1"));
  * b.subscribe(trace("b2"));
@@ -50,14 +62,6 @@ import { optsWithID } from "./utils/idgen";
  * // b1 42
  * // b2 42
  * ```
- *
- * `Stream`s (like `Subscription`s) implement the thi.ng/api `IDeref`
- * interface which provides read access to a stream's last received
- * value. This is useful for various purposes, e.g. in combination with
- * thi.ng/hdom, which supports direct embedding of streams (i.e. their
- * values) into UI components (and will be deref'd automatically). If
- * the stream has not yet emitted a value or if the stream is done, it
- * will deref to `undefined`.
  *
  * @param id
  * @param src

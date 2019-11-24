@@ -50,6 +50,8 @@ export interface CommonOpts {
      * all inputs are done. If true (default) or `CloseMode.LAST`, the
      * stream closes when the last input is done. If `CloseMode.FIRST`,
      * the instance closes when the first input is done.
+     *
+     * @defaultValue CloseMode.LAST
      */
     closeIn: CloseMode;
     /**
@@ -58,12 +60,16 @@ export interface CommonOpts {
      * the stream closes when the last subscriber has unsubscribed. If
      * `CloseMode.FIRST`, the instance closes when the first subscriber
      * disconnects.
+     *
+     * @defaultValue CloseMode.LAST
      */
     closeOut: CloseMode;
     /**
      * If true (default), stream caches last received value and pushes
      * it to new subscriberswhen they subscribe. If false, calling
      * `.deref()` on this stream will always return `undefined`.
+     *
+     * @defaultValue true
      */
     cache: boolean;
 }
@@ -95,7 +101,7 @@ export interface ISubscriber<T> {
     [id: string]: any;
 }
 
-export interface ISubscribable<T> extends IDeref<T>, IID<string> {
+export interface ISubscribable<T> extends IDeref<T | undefined>, IID<string> {
     subscribe(
         sub: Partial<ISubscriber<T>>,
         opts?: Partial<CommonOpts>

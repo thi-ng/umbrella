@@ -9,14 +9,18 @@ export interface SidechainToggleOpts<T> extends CommonOpts {
 }
 
 /**
- * Filters values from input based on values received from side chain.
- * By default, the value read from the side chain is ignored, however
- * the optional predicate can be used to only trigger for specific
- * values/conditions. Every time the predicate fn returns true, the
- * filter will be toggled on/off. Whilst switched off, no input values
- * will be forwarded.
+ * Returns {@link Subscription} which filters values from input based on
+ * values received from side chain.
  *
- * ```
+ * @remarks
+ * By default, the value read from the side chain is ignored (i.e. only
+ * their timing is used), however the `pred`icate option can be used to
+ * only trigger for specific values/conditions. Every time the predicate
+ * fn returns true, the filter will be toggled on/off. Whilst switched
+ * off, no input values will be forwarded.
+ *
+ * @example
+ * ```ts
  * // use slower interval stream to toggle main stream on/off
  * fromInterval(500)
  *   .subscribe(sidechainToggle(fromInterval(1000)))
@@ -30,8 +34,6 @@ export interface SidechainToggleOpts<T> extends CommonOpts {
  * ```
  *
  * @param side
- * @param pred
- * @param initial initial switch state
  * @param opts
  */
 export const sidechainToggle = <A, B>(

@@ -16,16 +16,18 @@ export interface TimeoutOpts extends CommonOpts {
 }
 
 /**
- * A subscription that emits an arbitrary error object after a given
- * time. If no `error` is given, uses a new `Error` instance by default.
- * If `resetTimeout` is false (default), the error is emitted regardless
- * of any received values in the meantime. However, if `true`, the
- * timeout resets with each received value and then only triggers once
- * the time interval since the last value has exceeded.
+ * Returns a {@link Subscription} that calls the
+ * {@link ISubscriber.error} handlers of all child subscriptions with an
+ * arbitrary error object after a given time.
+ *
+ * @remarks
+ * If no `error` is given, uses a new `Error` instance by default. If
+ * `resetTimeout` is false (default), the error is emitted regardless of
+ * any received values in the meantime. However, if `true`, the timeout
+ * resets with each received value and then only triggers once the time
+ * interval since the last value has exceeded.
  *
  * @param timeoutMs timeout period in milliseconds
- * @param error
- * @param resetTimeout timeout reset flag
  * @param opts
  */
 export const timeout = <T>(

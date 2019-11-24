@@ -3,9 +3,12 @@ import { Stream } from "../stream";
 import { optsWithID } from "../utils/idgen";
 
 /**
- * Yields a single-value stream of the resolved promise and then
- * automatically marks itself done. It doesn't matter if the promise
- * resolves before the first subscriber has attached.
+ * Yields a single-value {@link Stream} of the resolved promise and then
+ * automatically marks itself done.
+ *
+ * @remarks
+ * It doesn't matter if the promise resolves before the first subscriber
+ * has attached.
  *
  * @param src
  * @param opts

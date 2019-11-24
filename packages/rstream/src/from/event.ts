@@ -3,7 +3,7 @@ import { Stream } from "../stream";
 import { optsWithID } from "../utils/idgen";
 
 /**
- * Creates a new stream of events attached to given element / event
+ * Creates a {@link Stream} of events attached to given element / event
  * target and using given event listener options (same as supported by
  * `addEventListener()`, default: false).
  *

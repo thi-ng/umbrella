@@ -23,29 +23,33 @@ import {
 import { nextID } from "./utils/idgen";
 
 /**
- * Creates a new `Subscription` instance, the fundamental datatype &
- * building block provided by this package (`Stream`s are
- * `Subscription`s too). Subscriptions can be:
+ * Creates a new {@link Subscription} instance, the fundamental datatype
+ * and building block provided by this package.
  *
- * - linked into directed graphs (if async, not necessarily DAGs)
- * - transformed using transducers (incl. early termination)
+ * @remarks
+ * Most other types in rstream, including {@link Stream}s, are
+ * `Subscription`s and all can be:
+ *
+ * - linked into directed graphs (sync or async & not necessarily DAGs)
+ * - transformed using transducers (incl. support for early termination)
  * - can have any number of subscribers (optionally each w/ their own
- *   transducer)
+ *   transducers)
  * - recursively unsubscribe themselves from parent after their last
- *   subscriber unsubscribed
- * - will go into a non-recoverable error state if NONE of the
+ *   subscriber unsubscribed (configurable)
+ * - will go into a non-recoverable error state if none of the
  *   subscribers has an error handler itself
- * - implement the @thi.ng/api `IDeref` interface
+ * - implement the {@link @thi.ng/api#IDeref} interface
  *
  * Subscription behavior can be customized via the additional (optional)
  * options arg. See `CommonOpts` and `SubscriptionOpts` for further
  * details.
  *
+ * @example
  * ```ts
  * // as reactive value mechanism (same as with stream() above)
- * s = rs.subscription();
+ * s = subscription();
  * s.subscribe(trace("s1"));
- * s.subscribe(trace("s2"), tx.filter((x) => x > 25));
+ * s.subscribe(trace("s2"), { xform: tx.filter((x) => x > 25) });
  *
  * // external trigger
  * s.next(23);
@@ -64,7 +68,11 @@ export const subscription = <A, B>(
 ) => new Subscription(sub, opts);
 
 export class Subscription<A, B>
-    implements IDeref<B>, ISubscriber<A>, ISubscribable<B>, ITransformable<B> {
+    implements
+        IDeref<B | undefined>,
+        ISubscriber<A>,
+        ISubscribable<B>,
+        ITransformable<B> {
     id: string;
 
     closeIn: CloseMode;
@@ -99,7 +107,7 @@ export class Subscription<A, B>
         }
     }
 
-    deref(): B {
+    deref(): B | undefined {
         return this.last !== SEMAPHORE ? this.last : undefined;
     }
 

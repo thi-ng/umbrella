@@ -8,13 +8,17 @@ export interface SidechainPartitionOpts<T> extends CommonOpts {
 }
 
 /**
- * Buffers values from `src` until side chain fires, then emits buffer
- * (unless empty) and repeats process until either input is done. By
- * default, the value read from the side chain is ignored, however the
- * optional predicate can be used to only trigger for specific values /
- * conditions.
+ * Returns a {@link Subscription} which buffers values from `src` until
+ * side chain fires, then emits buffer (unless empty) and repeats
+ * process until either input is done.
  *
- * ```
+ * @remarks
+ * By default, the values read from the side chain are ignored (i.e.
+ * only their timing is used), however the `pred`icate option can be
+ * used to only trigger for specific values / conditions.
+ *
+ * @example
+ * ```t
  * // merge various event streams
  * events = merge([
  *     fromEvent(document,"mousemove"),
@@ -28,7 +32,6 @@ export interface SidechainPartitionOpts<T> extends CommonOpts {
  * ```
  *
  * @param side
- * @param pred
  * @param opts
  */
 export const sidechainPartition = <A, B>(

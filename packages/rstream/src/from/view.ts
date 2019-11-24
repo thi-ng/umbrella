@@ -18,32 +18,34 @@ export interface FromViewOpts<T> extends Partial<CommonOpts> {
  *
  * @remarks
  * Views are readonly and more lightweight versions of
- * {@link @thi.ng/atom#Cursor}s. The view checks for value changes with
- * given `equiv` predicate ({@link @thi.ng/equiv#equiv} by default). If
- * the predicate returns a falsy result, the new value is emitted on the
- * stream. The first value emitted is always the (possibly transformed)
- * current value at the stream's start time (i.e. when the first
- * subscriber attaches).
+ * {@link @thi.ng/atom#Cursor | cursors}. The view checks for value
+ * changes with given `equiv` predicate ({@link @thi.ng/equiv#equiv} by
+ * default). If the predicate returns a falsy result, the new value is
+ * emitted on the stream. The first value emitted is always the
+ * (possibly transformed) current value at the stream's start time (i.e.
+ * when the first subscriber attaches).
  *
- * If the optional `tx` is given, the raw value is first passed to this
- * transformer function and its result emitted on the stream.
+ * If the `tx` option is given, the raw value is first passed to this
+ * transformer function and its result emitted on the stream instead.
  *
  * When the stream is cancelled the view is destroyed as well.
  *
  * @example
  * ```ts
- * db = new Atom({a: 1, b: {c: 2}});
+ * db = new Atom({ a: 1, b: { c: 2 }});
  *
  * fromView(
  *   db,
- *   { path: "b.c", tx: (x) => x != null ? x : "n/a" }
- * ).subscribe(trace("view:"))
+ *   {
+ *     path: "b.c",
+ *     tx: (x) => x != null ? x : "n/a"
+ * }).subscribe(trace("view:"))
  * // view: 2
  *
  * db.swapIn("b.c", (x: number) => x + 1);
  * // view: 3
  *
- * db.reset({a: 10});
+ * db.reset({ a: 10 });
  * // view: n/a
  * ```
  *

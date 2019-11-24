@@ -15,20 +15,22 @@ export interface FromAtomOpts<T> extends CommonOpts {
     /**
      * User predicate to determine value changes in atom. New values are
      * only emitted on stream if the predicate returns true.
+     *
+     * @defaultValue `!==`
      */
     changed: Predicate2<T>;
 }
 
 /**
- * Yields stream of value changes in given
+ * Yields {@link Stream} of value changes in given
  * {@link @thi.ng/atom# | Atom-like state container}.
  *
  * @remarks
- * Attaches a watch to the atom and checks for value changes with given
- * `changed` predicate (`!==` by default). If the predicate returns
- * truthy result, the new value is emitted on the stream. If `emitFirst`
- * is true (default), also emits atom's current value when first
- * subscriber attaches to stream.
+ * Attaches a {@link @thi.ng/api#IWatch.addWatch | watch} to the atom
+ * and checks for value changes with given `changed` predicate (`!==` by
+ * default). If the predicate returns truthy result, the new value is
+ * emitted on the stream. If `emitFirst` is true (default), also emits
+ * atom's current value when first subscriber attaches to stream.
  *
  * Also see {@link fromView}
  *

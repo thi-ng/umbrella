@@ -99,12 +99,15 @@ export interface ForkJoinOpts<IN, MSG, RES, OUT> extends Partial<CommonOpts> {
 }
 
 /**
- * Creates a new `StreamSync` instance which creates & attaches multiple
- * subscriptions to given `src` input stream, processes each in parallel
- * via web workers, then recombines results and passes final transformed
- * value downstream.
+ * Returns a {@link StreamSync} instance which creates & attaches
+ * multiple subscriptions to given `src` input stream, processes each
+ * received value in parallel via web workers, then recombines partial
+ * results and passes the resulting transformed value downstream.
  *
- * See `ForkJoinOpts` for further details & behavior options.
+ * @remarks
+ * See {@link ForkJoinOpts} for further details & behavior options and
+ * the {@link forkBuffer} and {@link joinBuffer} helpers for array-based
+ * value processing (most likely use case).
  *
  * @param src input stream
  * @param opts
@@ -149,10 +152,13 @@ type Sliceable<T> = ArrayLike<T> & {
 
 /**
  * Higher-order fork function for scenarios involving the split-parallel
- * processing of a large buffer. The returned function is meant to be
- * used as `fork` function in a `ForkJoinOpts` config and extracts a
- * workload slice of the original buffer for a single worker. The HOF
- * itself takes a minimum chunk size as optional parameter (default: 1).
+ * processing of a large buffer.
+ *
+ * @remarks
+ * The returned function is meant to be used as `fork` function in a
+ * {@link ForkJoinOpts} config and extracts a workload slice of the
+ * original buffer for a single worker. The HOF itself takes a minimum
+ * chunk size as optional parameter (default: 1).
  *
  * **Note:** Depending on the configured `minChunkSize` and the size of
  * the input buffer to be partitioned, the returned fork function might
@@ -166,7 +172,10 @@ type Sliceable<T> = ArrayLike<T> & {
  * over the given number of workers, the last worker(s) might receive a
  * larger, smaller or empty chunk.
  *
- * ```
+ * Also see {@link forkJoin} and {@link joinBuffer}.
+ *
+ * @example
+ * ```ts
  * forkJoin<number[], number[], number[], number[]>({
  *     src,
  *     // job definition / split buffer into chunks (min size 256 values)
@@ -176,9 +185,6 @@ type Sliceable<T> = ArrayLike<T> & {
  *     worker: "./worker.js",
  * })
  * ```
- *
- * @see forkJoin
- * @see joinBuffer
  *
  * @param minChunkSize
  */
@@ -195,16 +201,21 @@ export const forkBuffer = (minChunkSize = 1) => <T extends Sliceable<any>>(
 
 /**
  * Higher-order join function for scenarios involving the split-parallel
- * processing of a large buffer. The returned function is meant to be
- * used as `join` function in a `ForkJoinOpts` config, receives the
- * processed result chunks from all workers (ordered by worker ID) and
- * concatenates them back into a single result array.
+ * processing of a large buffer.
+ *
+ * @remarks
+ * The returned function is meant to be used as `join` function in a
+ * {@link ForkJoinOpts} config, receives the processed result chunks
+ * from all workers (ordered by worker ID) and concatenates them back
+ * into a single result array.
  *
  * The optional `fn` arg can be used to pick the actual result chunk
  * from each worker result. This is useful if the worker result type is
  * not an array and includes other data points (e.g. execution metrics
  * etc.). If `fn` is not given, it defaults to the identity function
  * (i.e. each worker's result is assumed to be an array).
+ *
+ * Also see {@link forkJoin} and {@link forkBuffer}.
  *
  * @param fn
  */
