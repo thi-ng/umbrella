@@ -1,40 +1,61 @@
-import { ISeq, Nullable } from "@thi.ng/api";
+import { ISeq, ISeqable, Nullable } from "@thi.ng/api";
+import { ensureSeq } from "./ensure";
 
-export const concat = <T>(...xs: Nullable<ISeq<T>>[]): ISeq<T> | undefined => {
-    let i = 0;
-    while (i < xs.length && (!xs[i] || xs[i]!.first() === undefined)) {
-        i++;
+/**
+ * Returns the concatenation sequence of given nullable
+ * {@link @thi,ng/api#ISeq} or {@link @thi.ng/api#ISeqable} values.
+ *
+ * @param args
+ */
+export const concat = <T>(
+    ...args: Nullable<ISeq<T> | ISeqable<T>>[]
+): ISeq<T> | undefined => {
+    const seqs: ISeq<T>[] = [];
+    for (let i = 0, n = args.length; i < n; i++) {
+        const x = ensureSeq(args[i]);
+        x && seqs.push(x);
     }
-    return i < xs.length
-        ? {
-              first() {
-                  return xs[i]!.first();
-              },
-              next() {
-                  return concat(xs[i]!.next(), ...xs.slice(i + 1));
-              }
-          }
-        : undefined;
-};
-
-export const concatA = <T>(...xs: Nullable<ArrayLike<T>>[]) => {
-    const $seq = (i: number, j: number): ISeq<T> | undefined => {
-        if (xs[i] && j < xs[i]!.length - 1) {
-            j++;
-        } else {
-            do {
-                i++;
-                j = 0;
-            } while (i < xs.length && (!xs[i] || !xs[i]!.length));
+    const $seq = (curr: Nullable<ISeq<T>>, i: number) => {
+        if (!curr) {
+            curr = seqs[++i];
         }
-        return i < xs.length
+        return curr
             ? {
                   first() {
-                      const x = xs[i];
-                      return j < x!.length ? x![j] : undefined;
+                      return curr!.first();
                   },
                   next() {
-                      return $seq(i, j);
+                      return $seq(curr!.next(), i);
+                  }
+              }
+            : undefined;
+    };
+    return $seq(seqs[0], 0);
+};
+
+/**
+ * Same as {@link concat}, but optimized for nullable arraylike values.
+ *
+ * @param args
+ */
+export const concatA = <T>(...args: Nullable<ArrayLike<T>>[]) => {
+    const seqs: ArrayLike<T>[] = [];
+    for (let i = 0, n = args.length; i < n; i++) {
+        const x = args[i];
+        x && x.length && seqs.push(x);
+    }
+    const $seq = (i: number, j: number): ISeq<T> | undefined => {
+        if (!seqs[i] || j >= seqs[i].length) {
+            i++;
+            j = 0;
+        }
+        return i < seqs.length
+            ? {
+                  first() {
+                      return seqs[i][j];
+                  },
+                  next() {
+                      return $seq(i, j + 1);
                   }
               }
             : undefined;
