@@ -287,7 +287,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
                 return res;
             }),
             dedupe(equiv),
-            id
+            { id }
         );
     }
 
@@ -326,7 +326,10 @@ export class TripleStore implements Iterable<Triple>, IToDot {
         return sync<Solutions, Solutions>({
             id,
             src: { a, b },
-            xform: comp(map(({ a, b }) => join(a, b)), dedupe(equiv))
+            xform: comp(
+                map(({ a, b }) => join(a, b)),
+                dedupe(equiv)
+            )
         });
     }
 
@@ -443,7 +446,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
         if (!sel) {
             this.indexSelections[id].set(
                 key,
-                (sel = stream.transform(indexSel(key), id))
+                (sel = stream.transform(indexSel(key), { id }))
             );
         }
         return sel;
