@@ -19,7 +19,8 @@ Comprehensive doubly linked list structure with:
 - Node swaps (O(1))
 - Reversing (O(n/2))
 - Rotation (left / right) (O(1))
-- Shuffling
+- Shuffling (configurable, support custom PRNG)
+- Sorting (Merge sort, w/ custom comparator)
 - Slicing (sublist copies)
 - Splicing (delete and/or insert)
 - `release()` (emptying, GC friendly)
@@ -41,6 +42,7 @@ yarn add @thi.ng/dcons
 - [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/master/packages/compare)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 
 ## Usage
@@ -50,13 +52,13 @@ yarn add @thi.ng/dcons
 DCons = require("@thi.ng/dcons").DCons;
 
 // ES6 / TS
-import { DCons } from "@thi.ng/dcons";
+import { dcons } from "@thi.ng/dcons";
 ```
 
 ## API
 
 ```ts
-list = new DCons([1, 2, 3]);
+list = dcons([1, 2, 3]);
 list.length
 [...list]
 ```
@@ -103,6 +105,7 @@ list.length
 - `splice()`
 - `swap()`
 - `shuffle()`
+- `sort()`
 - `reverse()`
 - `rotateLeft()`
 - `rotateRight()`

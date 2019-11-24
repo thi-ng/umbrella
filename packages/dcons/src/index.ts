@@ -17,6 +17,7 @@ import { isArrayLike } from "@thi.ng/checks";
 import { compare } from "@thi.ng/compare";
 import { equiv } from "@thi.ng/equiv";
 import { illegalArgs } from "@thi.ng/errors";
+import { IRandom, SYSTEM } from "@thi.ng/random";
 import { IReducible, isReduced, ReductionFn } from "@thi.ng/transducers";
 
 export interface ConsCell<T> {
@@ -489,16 +490,99 @@ export class DCons<T>
         return acc;
     }
 
-    shuffle() {
-        let n = this._length;
-        let cell = this.tail;
-        while (n > 1) {
-            let i = Math.floor(Math.random() * n);
-            this.swap(this.nthCell(i)!, cell!);
-            cell = cell!.prev;
-            n--;
+    /**
+     * Shuffles list by probabilistically moving cells to head or tail
+     * positions.
+     *
+     * @remarks
+     * Supports configurable iterations and custom PRNG via
+     * {@link @thi.ng/random#IRandom} (default:
+     * {@link @thi.ng/random#SYSTEM}).
+     *
+     * Default iterations: `ceil(3/2 * log2(n))`
+     *
+     * @param iter
+     * @param rnd
+     */
+    shuffle(iter?: number, rnd: IRandom = SYSTEM) {
+        if (this._length < 2) return this;
+        for (
+            iter = iter ?? Math.ceil(1.5 * Math.log2(this._length));
+            iter > 0;
+            iter--
+        ) {
+            let cell = this.head;
+            while (cell) {
+                const next = cell.next;
+                rnd.float() < 0.5 ? this.asHead(cell) : this.asTail(cell);
+                cell = next;
+            }
         }
         return this;
+    }
+
+    /**
+     * Merge sort implementation based on Simon Tatham's algorithm:
+     * https://www.chiark.greenend.org.uk/~sgtatham/algorithms/listsort.html
+     *
+     * @remarks
+     * Uses {@link @thi.ng/compare#compare} as default comparator.
+     *
+     * @param cmp
+     */
+    sort(cmp: Comparator<T> = compare) {
+        if (!this._length) return this;
+        let inSize = 1;
+        while (true) {
+            let p = this.head;
+            this.head = undefined;
+            this.tail = undefined;
+            let numMerges = 0;
+            while (p) {
+                numMerges++;
+                let q: ConsCell<T> | undefined = p;
+                let psize = 0;
+                for (let i = 0; i < inSize; i++) {
+                    psize++;
+                    q = q!.next;
+                    if (!q) break;
+                }
+                let qsize = inSize;
+                while (psize > 0 || (qsize > 0 && q)) {
+                    let e: ConsCell<T> | undefined;
+                    if (psize === 0) {
+                        e = q;
+                        q = q!.next;
+                        qsize--;
+                    } else if (!q || qsize === 0) {
+                        e = p;
+                        p = p!.next;
+                        psize--;
+                    } else if (cmp(p!.value, q!.value) <= 0) {
+                        e = p;
+                        p = p!.next;
+                        psize--;
+                    } else {
+                        e = q;
+                        q = q!.next;
+                        qsize--;
+                    }
+                    if (this.tail) {
+                        this.tail!.next = e;
+                    } else {
+                        this.head = e;
+                    }
+                    e!.prev = this.tail;
+                    this.tail = e;
+                }
+                p = q;
+            }
+            this.tail!.next = undefined;
+            if (numMerges <= 1) {
+                return this;
+            }
+            inSize *= 2;
+        }
     }
 
     reverse() {
