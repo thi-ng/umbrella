@@ -59,7 +59,7 @@ export const defHandler = (
 ) => {
     const sub: ISubscriber<Event> = { next: handler, error: console.warn };
     return xform
-        ? eventProc.subscribeTopic(id, {}).subscribe(sub, xform)
+        ? eventProc.subscribeTopic(id, {}, {}).subscribe(sub, xform)
         : eventProc.subscribeTopic(id, sub);
 };
 
