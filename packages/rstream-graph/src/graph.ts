@@ -151,7 +151,7 @@ const prepareNodeOutputs = (
                     {
                         next: (x) => state.resetIn(path, x)
                     },
-                    `out-${nodeID}`
+                    { id: `out-${nodeID}` }
                 ))(o);
         } else {
             res[id] = ((path, id) =>
@@ -160,7 +160,7 @@ const prepareNodeOutputs = (
                         next: (x) => state.resetIn(path, x)
                     },
                     map((x) => (x != null ? x[id] : x)),
-                    `out-${nodeID}-${id}`
+                    { id: `out-${nodeID}-${id}` }
                 ))(o, id);
         }
     }
@@ -269,7 +269,9 @@ export const node1 = (
     id: string
 ): ISubscribable<any> => (
     ensureInputs(src, [inputID], id),
-    xform ? src[inputID].subscribe(xform, id) : src[inputID].subscribe({}, id)
+    xform
+        ? src[inputID].subscribe(xform, { id })
+        : src[inputID].subscribe({}, { id })
 );
 
 /**
