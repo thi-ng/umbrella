@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { exists, getIn, setIn } from "../src/index";
+import { exists, getIn, setIn } from "../src";
 
 describe("paths", () => {
     it("getIn", () => {
@@ -25,7 +25,7 @@ describe("paths", () => {
 
     it("setIn (len = 0)", () => {
         assert.deepEqual(setIn({ a: { b: { c: 23 } } }, "", 1), 1);
-        assert.deepEqual(setIn({ a: { b: { c: 23 } } }, [], 1), 1);
+        assert.deepEqual(setIn(<any>{ a: { b: { c: 23 } } }, [], 1), 1);
         assert.deepEqual(setIn(null, [], 1), 1);
     });
 
@@ -98,17 +98,17 @@ describe("paths", () => {
     });
 
     it("setIn arr", () => {
-        assert.deepEqual(setIn([1, 2], 0, 10), [10, 2]);
-        assert.deepEqual(setIn([[1, 2], 3], [0, 1], 10), [[1, 10], 3]);
-        assert.deepEqual(setIn([[1, 2, 3], 4], [0, 1, 2], 10), [
+        assert.deepEqual(setIn([1, 2], [0], 10), [10, 2]);
+        assert.deepEqual(setIn(<any>[[1, 2], 3], [0, 1], 10), [[1, 10], 3]);
+        assert.deepEqual(setIn(<any>[[1, 2, 3], 4], [0, 1, 2], 10), [
             [1, { 2: 10 }, 3],
             4
         ]);
-        assert.deepEqual(setIn([[1, 2, 3], 4], [0, 1, 2, "a"], 10), [
+        assert.deepEqual(setIn(<any>[[1, 2, 3], 4], [0, 1, 2, "a"], 10), [
             [1, { 2: { a: 10 } }, 3],
             4
         ]);
-        assert.deepEqual(setIn([[1, 2, 3], 4], [0, 1, 2, "a", "b"], 10), [
+        assert.deepEqual(setIn(<any>[[1, 2, 3], 4], [0, 1, 2, "a", "b"], 10), [
             [1, { 2: { a: { b: 10 } } }, 3],
             4
         ]);
