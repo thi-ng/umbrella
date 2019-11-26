@@ -34,7 +34,6 @@ import { toPath } from "./path";
  *
  * @param path
  */
-export function mutatorT(path: string): Fn2<any, any, any>;
 export function mutatorT<T>(path: []): Fn2<T, T, T>;
 export function mutatorT<T, A extends Keys<T>>(
     path: [A]
@@ -158,4 +157,4 @@ export function mutatorT(path: Path): any {
     }
 }
 
-export const mutator = (path: Path) => mutatorT(<any>path);
+export const mutator = (path: Path): Fn2<any, any, any> => mutatorT(<any>path);

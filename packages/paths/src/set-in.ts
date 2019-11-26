@@ -36,7 +36,6 @@ import { setterT } from "./setter";
  * @param state
  * @param path
  */
-export function setInT(state: any, path: string, val: any): any;
 export function setInT<T>(state: T, path: [], val: T): T;
 export function setInT<T, A extends Keys<T>>(
     state: T,
@@ -118,5 +117,5 @@ export function setInT(state: any, path: Path, val: any): any {
     return setterT(<any>path)(state, val);
 }
 
-export const setIn = (state: any, path: Path, val: any) =>
+export const setIn = (state: any, path: Path, val: any): any =>
     setterT(<any>path)(state, val);

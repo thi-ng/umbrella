@@ -41,7 +41,6 @@ import { setterT } from "./setter";
  * @param path
  * @param fn
  */
-export function updaterT(path: string, fn: UpdateFn<any>): FnO<any, any>;
 export function updaterT<T>(path: [], fn: UpdateFn<T>): FnO<T, T>;
 export function updaterT<T, A extends Keys<T>>(
     path: [A],

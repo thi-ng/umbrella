@@ -33,8 +33,6 @@ import { updateInT } from "./update-in";
  * @param state
  * @param path
  */
-export function deleteInT(state: any, path: string): any;
-export function deleteInT(state: any, path: []): undefined;
 export function deleteInT<T, A extends Keys<T>>(
     state: T,
     path: [A]

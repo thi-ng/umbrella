@@ -62,7 +62,6 @@ import { toPath } from "./path";
  *
  * @param path
  */
-export function getterT(path: string): Fn<any, any>;
 export function getterT<T>(path: []): Fn<T, T>;
 export function getterT<T, A extends Keys<T>>(path: [A]): Fn<T, Val1<T, A>>;
 export function getterT<T, A extends Keys<T>, B extends Keys1<T, A>>(
@@ -173,4 +172,4 @@ export function getterT(path: Path) {
     }
 }
 
-export const getter = (path: Path) => getterT(<any>path);
+export const getter = (path: Path): Fn<any, any> => getterT(<any>path);

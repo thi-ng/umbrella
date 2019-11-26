@@ -37,12 +37,6 @@ import { setterT } from "./setter";
  * @param fn - update function
  * @param args - optional args for `fn`
  */
-export function updateInT(
-    state: any,
-    path: string,
-    fn: UpdateFn<any>,
-    ...args: any[]
-): any;
 export function updateInT<T>(state: T, path: [], fn: UpdateFn<T>): T;
 export function updateInT<T, A extends Keys<T>>(
     state: T,

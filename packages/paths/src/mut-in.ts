@@ -48,7 +48,6 @@ import { mutatorT } from "./mutator";
  * @param path
  * @param val
  */
-export function mutInT(state: any, path: string, val: any): any;
 export function mutInT<T>(state: T, path: [], val: T): T;
 export function mutInT<T, A extends Keys<T>>(
     state: T,

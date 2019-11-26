@@ -112,4 +112,4 @@ export function getInT(state: any, path: Path) {
     return getterT(<any>path)(state);
 }
 
-export const getIn = (state: any, path: Path) => getterT(<any>path)(state);
+export const getIn = (state: any, path: Path): any => getterT(<any>path)(state);
