@@ -1,7 +1,7 @@
-## Maintainer
+### Maintainer
 
 - Karsten Schmidt (@postspectacular)
 
-## Contributors
+### Contributors
 
 - André Wachter (@andrew8er)

@@ -1,8 +1,8 @@
-## Maintainer
+### Maintainer
 
 -   Karsten Schmidt (@postspectacular)
 
-## Contributors
+### Contributors
 
 -   Gavin Cannizzaro (@gavinpc-mindgrub)
 -   Jay Zawrotny (@eccentric-j)
