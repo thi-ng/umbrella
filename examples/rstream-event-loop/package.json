@@ -1,6 +1,7 @@
 {
     "name": "rstream-event-loop",
     "version": "0.0.1",
+    "description": "Minimal demo of using rstream constructs to form an interceptor-style event loop",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
@@ -28,5 +29,9 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": true,
+        "screenshot": "examples/rstream-event-loop.png"
     }
 }

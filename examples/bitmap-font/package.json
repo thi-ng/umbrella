@@ -1,6 +1,7 @@
 {
     "name": "bitmap-font",
     "version": "0.0.1",
+    "description": "Figlet-style bitmap font creation with transducers",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
@@ -29,5 +30,9 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": true,
+        "screenshot": "examples/bitmap-font.gif"
     }
 }
