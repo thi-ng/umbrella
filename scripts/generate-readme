@@ -4,43 +4,64 @@ const fs = require("fs");
 try {
     const PKG = JSON.parse(fs.readFileSync("./package.json"));
     const TPL = fs.readFileSync("./README.tpl.md").toString();
-    const META = PKG["thi.ng"] || {};
-    const SHORT_NAME = PKG.name.split("/")[1];
 
+    const META_FIELD = "thi.ng";
+    const META = PKG[META_FIELD] || {};
+    const BRANCH = META.branch || "master";
+    const START_YEAR = META.year || 2016;
     const REPO_ID = "thi-ng/umbrella";
-    const REPO_URL = `https://github.com/${REPO_ID}`;
-    const DEMO_URL = "https://demo.thi.ng/umbrella";
-    const ASSET_URL = `https://raw.githubusercontent.com/${REPO_ID}/master/assets`;
-    const BRANCH_URL = `${REPO_URL}/tree/${META.branch || "master"}`;
-    const EX_DIR = "../../examples";
     const MAIN_AUTHOR = "Karsten Schmidt";
+    const LICENSE = "Apache Software License 2.0";
+
+    const GH_URL = "https://github.com";
+    const REPO_URL = `${GH_URL}/${REPO_ID}`;
+    const DEMO_URL = "https://demo.thi.ng/umbrella";
+    const ASSET_URL = `https://raw.githubusercontent.com/${REPO_ID}/${BRANCH}/assets`;
+    const BRANCH_URL = `${REPO_URL}/tree/${BRANCH}`;
+    const EX_DIR = "../../examples";
+
+    const RE_PKG = /@thi\.ng\/[a-z0-9-]+/g;
+    const RE_USER = /@([a-z0-9_-]+)/gi;
+    const RE_PARTIAL = /\$\{([a-z.]+)\}/gi;
+    const RE_IS_HEADING = /^#{2,4}\s/;
+    const RE_HEADING = /^(#{2,4})\s(.+)/;
+    const RE_SLUG = /[^a-z0-9]/gi;
+    const PATTERN_TOC = "<!-- TOC -->";
+
+    const shortName = (name) => name.split("/")[1];
 
     const link = (title, href) => `[${title}](${href})`;
 
     const pkgLink = (name) =>
-        link(name, `${BRANCH_URL}/packages/${name.split("/")[1]}`);
+        link(name, `${BRANCH_URL}/packages/${shortName(name)}`);
 
-    const img = (file, alt = "") => `![${alt}](${ASSET_URL}/${file})`;
+    const userLink = (id) => link(`@${id}`, `${GH_URL}/${id}`);
+
+    const asset = (file, alt = "") => `![${alt}](${ASSET_URL}/${file})`;
 
     const list = (items) => items.map((x) => `- ${x}`).join("\n");
 
-    const makeExamples = (pkgName) => {
+    const examples = (pkgName) => {
         const examples = [];
         for (let ex of fs.readdirSync(EX_DIR)) {
             try {
                 const expkg = JSON.parse(
                     fs.readFileSync(`${EX_DIR}/${ex}/package.json`)
                 );
-                const meta = expkg["thi.ng"] || {};
+                const meta = expkg[META_FIELD] || {};
+                const include = Array.isArray(meta.readme)
+                    ? meta.readme.includes(shortName(pkgName))
+                    : meta.readme === true;
                 if (
-                    // meta.readme &&
-                    Object.keys(expkg.dependencies || {}).includes(pkgName)
+                    include &&
+                    expkg.dependencies &&
+                    expkg.dependencies[pkgName]
                 ) {
                     const body = [
                         `### ${expkg.name}`,
                         "",
                         meta.screenshot
-                            ? img(meta.screenshot, "screenshot") + "\n"
+                            ? asset(meta.screenshot, "screenshot") + "\n"
                             : null,
                         expkg.description ? expkg.description + "\n" : null,
                         link("Live demo", `${DEMO_URL}/${expkg.name}`) +
@@ -57,18 +78,35 @@ try {
                 }
             } catch (_) {}
         }
-        return examples.join("\n");
+        return examples.length
+            ? [
+                  "## Usage examples",
+                  "",
+                  "Several demos in this repo's",
+                  link("/examples", `${BRANCH_URL}/examples`),
+                  "directory are using this package.",
+                  "",
+                  "A selection:",
+                  "",
+                  ...examples
+              ].join("\n")
+            : null;
     };
 
     const supportPackages = (pkgName) => {
         const pkgs = [];
+        const pkgShortName = shortName(pkgName);
         const matches = fs
             .readdirSync("../")
-            .filter((x) => x.startsWith(SHORT_NAME + "-"));
+            .filter((x) => x.startsWith(pkgShortName + "-"));
         for (let p of matches) {
             try {
                 const pkg = JSON.parse(fs.readFileSync(`../${p}/package.json`));
-                pkgs.push(pkgLink(pkg.name) + " - " + pkg.description);
+                pkgs.push(
+                    pkgLink(pkg.name) +
+                        " - " +
+                        pkg.description.replace(RE_PKG, pkgLink)
+                );
             } catch (_) {
                 console.log(`error reading support pkg: ${p.name}`);
             }
@@ -76,34 +114,97 @@ try {
         return pkgs.length > 0 ? `### Support packages\n\n${list(pkgs)}` : "";
     };
 
-    let authors;
+    const packageDesc = (pkg) => {
+        const desc = pkg.description.replace(RE_PKG, pkgLink) + ".";
+        const parent = (pkg[META_FIELD] || {}).parent;
+        return parent && desc.indexOf(parent) == -1
+            ? `${desc} This is a support package for ${pkgLink(parent)}.`
+            : desc;
+    };
 
-    try {
-        authors = fs.readFileSync("./AUTHORS.md").toString();
-    } catch (_) {
-        authors = MAIN_AUTHOR;
-    }
+    const packageDeps = (pkg) => {
+        const deps = Object.keys(pkg.dependencies || {})
+            .sort()
+            .map(pkgLink);
+        return deps.length ? list(deps) : "None";
+    };
+
+    const packageStatus = (status = "stable") => {
+        const statuses = {
+            alpha: " - bleeding edge / work-in-progress",
+            beta: " - possibly breaking changes forthcoming",
+            stable: " - used in production",
+            refactor: " - undergoing major refactoring"
+        };
+        return [
+            "### Status",
+            "",
+            `**${status.toUpperCase()}**${statuses[status] || ""}`
+        ].join("\n");
+    };
+
+    const blogPosts = (posts) => {
+        if (!posts) return;
+        return [
+            "### Blog posts",
+            "",
+            list(posts.map(({ title, url }) => link(title, url)))
+        ].join("\n");
+    };
+
+    const authors = () => {
+        try {
+            return fs
+                .readFileSync("./AUTHORS.md")
+                .toString()
+                .replace(RE_USER, (_, id) => userLink(id));
+        } catch (_) {}
+        return MAIN_AUTHOR;
+    };
+
+    const copyright = (startYear, author) => {
+        const now = new Date();
+        return `${startYear} - ${now.getFullYear()} ${author}`;
+    };
+
+    const injectTOC = (readme) => {
+        const toc = readme
+            .split("\n")
+            .filter((line) => RE_IS_HEADING.test(line))
+            .map((hd) => {
+                const [_, level, title] = RE_HEADING.exec(hd);
+                const indent = "      ".substr(0, (level.length - 2) * 2);
+                const href = "#" + title.replace(RE_SLUG, "-").toLowerCase();
+                return `${indent}- ${link(title, href)}`;
+            })
+            .join("\n");
+        return readme.replace(PATTERN_TOC, toc);
+    };
 
     const partials = {
         "pkg.name": PKG.name,
-        "pkg.deps": list(
-            Object.keys(PKG.dependencies || {})
-                .sort()
-                .map(pkgLink)
-        ),
-        examples: () => makeExamples(PKG.name),
+        "pkg.description": () => packageDesc(PKG),
+        "pkg.deps": () => packageDeps(PKG),
+        status: () => packageStatus(META.status),
+        examples: () => examples(PKG.name),
         supportPackages: () => supportPackages(PKG.name),
+        blogPosts: () => blogPosts(META.blog),
+        copyright: () => copyright(START_YEAR, MAIN_AUTHOR),
+        license: LICENSE,
         authors
     };
 
-    const readme = TPL.replace(/\$\{([a-zA-Z.]+)\}/g, (_, id) => {
+    let readme = TPL.replace(RE_PARTIAL, (_, id) => {
         if (!partials.hasOwnProperty(id)) {
             throw new Error(`unsupported tpl ID: "${id}"`);
         }
-        return typeof partials[id] === "function"
-            ? partials[id]()
-            : partials[id];
+        const part = partials[id];
+        return (typeof part === "function" ? part() : part) || "";
     });
+
+    readme =
+        "<!-- This file is generated - DO NOT EDIT! -->\n\n" +
+        injectTOC(readme);
 
     fs.writeFileSync("./README.gen.md", readme);
 } catch (e) {
