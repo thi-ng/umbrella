@@ -15,6 +15,7 @@ coverage
 dev
 doc
 export
+README.tpl.md
 src*
 test
 tsconfig.json
