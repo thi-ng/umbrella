@@ -1,0 +1,112 @@
+#!/usr/bin/env node
+const fs = require("fs");
+
+try {
+    const PKG = JSON.parse(fs.readFileSync("./package.json"));
+    const TPL = fs.readFileSync("./README.tpl.md").toString();
+    const META = PKG["thi.ng"] || {};
+    const SHORT_NAME = PKG.name.split("/")[1];
+
+    const REPO_ID = "thi-ng/umbrella";
+    const REPO_URL = `https://github.com/${REPO_ID}`;
+    const DEMO_URL = "https://demo.thi.ng/umbrella";
+    const ASSET_URL = `https://raw.githubusercontent.com/${REPO_ID}/master/assets`;
+    const BRANCH_URL = `${REPO_URL}/tree/${META.branch || "master"}`;
+    const EX_DIR = "../../examples";
+    const MAIN_AUTHOR = "Karsten Schmidt";
+
+    const link = (title, href) => `[${title}](${href})`;
+
+    const pkgLink = (name) =>
+        link(name, `${BRANCH_URL}/packages/${name.split("/")[1]}`);
+
+    const img = (file, alt = "") => `![${alt}](${ASSET_URL}/${file})`;
+
+    const list = (items) => items.map((x) => `- ${x}`).join("\n");
+
+    const makeExamples = (pkgName) => {
+        const examples = [];
+        for (let ex of fs.readdirSync(EX_DIR)) {
+            try {
+                const expkg = JSON.parse(
+                    fs.readFileSync(`${EX_DIR}/${ex}/package.json`)
+                );
+                const meta = expkg["thi.ng"] || {};
+                if (
+                    // meta.readme &&
+                    Object.keys(expkg.dependencies || {}).includes(pkgName)
+                ) {
+                    const body = [
+                        `### ${expkg.name}`,
+                        "",
+                        meta.screenshot
+                            ? img(meta.screenshot, "screenshot") + "\n"
+                            : null,
+                        expkg.description ? expkg.description + "\n" : null,
+                        link("Live demo", `${DEMO_URL}/${expkg.name}`) +
+                            " | " +
+                            link(
+                                "Source",
+                                `${BRANCH_URL}/examples/${expkg.name}`
+                            ),
+                        ""
+                    ]
+                        .filter((x) => x != null)
+                        .join("\n");
+                    examples.push(body);
+                }
+            } catch (_) {}
+        }
+        return examples.join("\n");
+    };
+
+    const supportPackages = (pkgName) => {
+        const pkgs = [];
+        const matches = fs
+            .readdirSync("../")
+            .filter((x) => x.startsWith(SHORT_NAME + "-"));
+        for (let p of matches) {
+            try {
+                const pkg = JSON.parse(fs.readFileSync(`../${p}/package.json`));
+                pkgs.push(pkgLink(pkg.name) + " - " + pkg.description);
+            } catch (_) {
+                console.log(`error reading support pkg: ${p.name}`);
+            }
+        }
+        return pkgs.length > 0 ? `### Support packages\n\n${list(pkgs)}` : "";
+    };
+
+    let authors;
+
+    try {
+        authors = fs.readFileSync("./AUTHORS.md").toString();
+    } catch (_) {
+        authors = MAIN_AUTHOR;
+    }
+
+    const partials = {
+        "pkg.name": PKG.name,
+        "pkg.deps": list(
+            Object.keys(PKG.dependencies || {})
+                .sort()
+                .map(pkgLink)
+        ),
+        examples: () => makeExamples(PKG.name),
+        supportPackages: () => supportPackages(PKG.name),
+        authors
+    };
+
+    const readme = TPL.replace(/\$\{([a-zA-Z.]+)\}/g, (_, id) => {
+        if (!partials.hasOwnProperty(id)) {
+            throw new Error(`unsupported tpl ID: "${id}"`);
+        }
+        return typeof partials[id] === "function"
+            ? partials[id]()
+            : partials[id];
+    });
+
+    fs.writeFileSync("./README.gen.md", readme);
+} catch (e) {
+    console.log(e.message);
+    process.exit(1);
+}
