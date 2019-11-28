@@ -7,7 +7,7 @@ describe("fromAtom", () => {
 
     it("works with atom", (done) => {
         let a = new Atom(0);
-        let src = fromAtom(a, false);
+        let src = fromAtom(a, { emitFirst:false });
         let calledNext = false;
         src.subscribe({
             next(x) {
@@ -30,7 +30,7 @@ describe("fromAtom", () => {
         let state = { a: { b: {}, d: { e: 42 } } };
         let a = new Atom(state);
         let c = new Cursor(a, "a.b.c");
-        let src = fromAtom(c, false);
+        let src = fromAtom(c, { emitFirst: false });
         let calledNext = false;
         src.subscribe({
             next(x) {
@@ -55,7 +55,7 @@ describe("fromAtom", () => {
         let a = new Atom({});
         let c = new Cursor(a, "a.b");
         let h = new History(c);
-        let src = fromAtom(h, true);
+        let src = fromAtom<any>(h);
         let buf: any[] = [];
         src.subscribe({ next(x) { buf.push(x); } });
         h.reset(1);
@@ -81,8 +81,8 @@ describe("fromAtom", () => {
         let h = new History(a);
         let c1 = new Cursor(a, "a.b");
         let c2 = new Cursor(a, "c");
-        let src1 = fromAtom(c1, true);
-        let src2 = fromAtom(c2, true);
+        let src1 = fromAtom(c1);
+        let src2 = fromAtom(c2);
         let buf1:any[] = [];
         let buf2:any[] = [];
         src1.subscribe({ next(x) { buf1.push(x); } });

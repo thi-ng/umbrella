@@ -1,19 +1,24 @@
-import * as tx from "@thi.ng/transducers";
+import { map } from "@thi.ng/transducers";
 import * as assert from "assert";
-import * as rs from "../src/index";
+import {
+    bisect,
+    fromIterable,
+    Stream,
+    subscription
+} from "../src/index";
 
 // prettier-ignore
 describe("bisect", () => {
-    let src: rs.Stream<number>;
+    let src: Stream<number>;
 
     beforeEach(() => {
-        src = rs.fromIterable([1, 2, 3, 4]);
+        src = fromIterable([1, 2, 3, 4]);
     });
 
     it("raw subscribers", (done) => {
         const odds: number[] = [], evens: number[] = [];
         src.subscribe(
-            rs.bisect<number>((x) => !!(x & 1),
+            bisect<number>((x) => !!(x & 1),
                 { next(x) { odds.push(x) } },
                 { next(x) { evens.push(x) } }
             )
@@ -29,16 +34,16 @@ describe("bisect", () => {
 
     it("subs", (done) => {
         const odds: number[] = [], evens: number[] = [];
-        const subo = rs.subscription<number, number>(
+        const subo = subscription<number, number>(
             { next(x) { odds.push(x) }, done() { doneCount++; } },
-            tx.map<number, number>(x => x * 10)
+            { xform: map<number, number>(x => x * 10) }
         );
-        const sube = rs.subscription<number, number>(
+        const sube = subscription<number, number>(
             { next(x) { evens.push(x) }, done() { doneCount++; } },
-            tx.map<number, number>(x => x * 100)
+            { xform: map<number, number>(x => x * 100) }
         );
         let doneCount = 0;
-        src.subscribe(rs.bisect((x) => !!(x & 1), subo, sube));
+        src.subscribe(bisect((x) => !!(x & 1), subo, sube));
         src.subscribe({
             done() {
                 assert.deepEqual(odds, [10, 30]);

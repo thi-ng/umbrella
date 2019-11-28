@@ -1,17 +1,26 @@
 import { Predicate } from "@thi.ng/api";
-import { ISubscribable } from "../api";
+import { CommonOpts, ISubscribable } from "../api";
 import { Subscription } from "../subscription";
-import { nextID } from "../utils/idgen";
+import { optsWithID } from "../utils/idgen";
+
+export interface SidechainToggleOpts<T> extends CommonOpts {
+    pred: Predicate<T>;
+    initial: boolean;
+}
 
 /**
- * Filters values from input based on values received from side chain.
- * By default, the value read from the side chain is ignored, however
- * the optional predicate can be used to only trigger for specific
- * values/conditions. Every time the predicate fn returns true, the
- * filter will be toggled on/off. Whilst switched off, no input values
- * will be forwarded.
+ * Returns {@link Subscription} which filters values from input based on
+ * values received from side chain.
  *
- * ```
+ * @remarks
+ * By default, the value read from the side chain is ignored (i.e. only
+ * their timing is used), however the `pred`icate option can be used to
+ * only trigger for specific values/conditions. Every time the predicate
+ * fn returns true, the filter will be toggled on/off. Whilst switched
+ * off, no input values will be forwarded.
+ *
+ * @example
+ * ```ts
  * // use slower interval stream to toggle main stream on/off
  * fromInterval(500)
  *   .subscribe(sidechainToggle(fromInterval(1000)))
@@ -25,16 +34,12 @@ import { nextID } from "../utils/idgen";
  * ```
  *
  * @param side
- * @param pred
- * @param initial initial switch state
- * @param id
+ * @param opts
  */
 export const sidechainToggle = <A, B>(
     side: ISubscribable<B>,
-    initial = true,
-    pred?: Predicate<B>,
-    id?: string
-): Subscription<A, A> => new SidechainToggle(side, initial, pred, id);
+    opts?: Partial<SidechainToggleOpts<B>>
+): Subscription<A, A> => new SidechainToggle(side, opts);
 
 export class SidechainToggle<A, B> extends Subscription<A, A> {
     sideSub: Subscription<B, B>;
@@ -42,14 +47,13 @@ export class SidechainToggle<A, B> extends Subscription<A, A> {
 
     constructor(
         side: ISubscribable<B>,
-        initial = true,
-        pred?: Predicate<B>,
-        id?: string
+        opts?: Partial<SidechainToggleOpts<B>>
     ) {
-        super(undefined, undefined, undefined, id || `sidetoggle-${nextID()}`);
-        this.isActive = initial;
+        opts = optsWithID("sidetoggle", opts);
+        super(undefined, opts);
+        this.isActive = !!opts.initial;
+        const pred = opts.pred || (() => true);
         const $this = this;
-        pred = pred || (() => true);
         this.sideSub = side.subscribe({
             next(x) {
                 if (pred!(x)) {

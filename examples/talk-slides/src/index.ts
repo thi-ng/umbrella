@@ -26,7 +26,7 @@ const D2 = padLeft(2, "0");
 
 const initKeys = (stream: Stream<number>) =>
     fromDOMEvent(window, "keydown").transform(
-        map((e: KeyboardEvent) => {
+        map((e) => {
             // console.log(e.code);
             switch (e.code) {
                 case "KeyR":
@@ -50,7 +50,12 @@ const parseSlideID = (str: string) => {
 
 const slideCTRL = (ctx.slide = stream<number>());
 const slideID = slideCTRL.transform<number, number, number>(
-    scan(reducer(() => 0, (x, y) => clamp(x + y, 0, SLIDES.length - 1))),
+    scan(
+        reducer(
+            () => 0,
+            (x, y) => clamp(x + y, 0, SLIDES.length - 1)
+        )
+    ),
     dedupe(),
     sideEffect((id) => (location.hash = "#" + id))
 );

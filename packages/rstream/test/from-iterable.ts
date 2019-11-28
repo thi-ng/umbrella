@@ -1,18 +1,23 @@
 import * as assert from "assert";
-import * as rs from "../src/index";
+import {
+    fromIterable,
+    State,
+    Stream,
+    Subscription
+} from "../src/index";
 import { TIMEOUT } from "./config";
 
 describe("fromIterable()", () => {
-    let src: rs.Stream<number>;
+    let src: Stream<number>;
     let data = [10, 20, 30];
 
     beforeEach(() => {
-        src = rs.fromIterable(data);
+        src = fromIterable(data);
     });
 
     it("is a stream", () => {
-        assert(src instanceof rs.Stream);
-        assert(src instanceof rs.Subscription);
+        assert(src instanceof Stream);
+        assert(src instanceof Subscription);
     });
 
     it("has an ID", () => {
@@ -20,7 +25,7 @@ describe("fromIterable()", () => {
     });
 
     it("starts in IDLE state", () => {
-        assert.equal(src.getState(), rs.State.IDLE);
+        assert.equal(src.getState(), State.IDLE);
     });
 
     it("delivers all values", (done) => {
@@ -39,8 +44,8 @@ describe("fromIterable()", () => {
     it("finishes", (done) => {
         let sub = src.subscribe({
             done() {
-                assert.equal(src.getState(), rs.State.DONE, "src not done");
-                assert.equal(sub.getState(), rs.State.DONE, "sub not done");
+                assert.equal(src.getState(), State.DONE, "src not done");
+                assert.equal(sub.getState(), State.DONE, "sub not done");
                 done();
             }
         });
@@ -49,7 +54,7 @@ describe("fromIterable()", () => {
     it("works with delay", (done) => {
         let buf: any[] = [];
         let t0 = Date.now();
-        src = rs.fromIterable(data, 10);
+        src = fromIterable(data, { delay: 10 });
         src.subscribe({
             next(x) {
                 buf.push(x);
@@ -66,7 +71,7 @@ describe("fromIterable()", () => {
         this.timeout(TIMEOUT * 5);
         let buf: any[] = [];
         let doneCalled = false;
-        src = rs.fromIterable(data, TIMEOUT);
+        src = fromIterable(data, { delay: TIMEOUT });
         src.subscribe({
             next(x) {
                 buf.push(x);

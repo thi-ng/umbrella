@@ -1,14 +1,28 @@
 import { Fn, IObjectOf } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks";
 import { identity } from "@thi.ng/compose";
+import { illegalState } from "@thi.ng/errors";
 import { Reducer, Transducer } from "../api";
 import { $iter, iterator } from "../iterator";
+import { isReduced } from "../reduced";
 
 export interface PartitionSyncOpts<T> {
     key: Fn<T, PropertyKey>;
     mergeOnly: boolean;
     reset: boolean;
     all: boolean;
+    /**
+     * If > 0, then each labeled input will cache upto the stated number
+     * of input values, even if other inputs have not yet produced new
+     * values. Once the limit is reached, `partitionSync()` will throw
+     * an `IllegalState` error.
+     *
+     * Enabling this option will cause the same behavior as if `reset`
+     * is enabled (regardless of the actual configured `reset` setting).
+     * I.e. new results are only produced when ALL required inputs have
+     * available values...
+     */
+    backPressure: number;
 }
 
 /**
@@ -78,69 +92,101 @@ export interface PartitionSyncOpts<T> {
  * @param reset true if each tuple should contain only new values
  * @param all true if last tuple is allowed to be incomplete
  */
-export function partitionSync<T>(
-    keys: PropertyKey[] | Set<PropertyKey>,
-    opts?: Partial<PartitionSyncOpts<T>>
-): Transducer<T, IObjectOf<T>>;
-export function partitionSync<T>(
-    keys: PropertyKey[] | Set<PropertyKey>,
-    src: Iterable<T>
-): IterableIterator<IObjectOf<T>>;
-export function partitionSync<T>(
-    keys: PropertyKey[] | Set<PropertyKey>,
-    opts: Partial<PartitionSyncOpts<T>>,
-    src: Iterable<T>
-): IterableIterator<IObjectOf<T>>;
+// prettier-ignore
+export function partitionSync<T>(keys: PropertyKey[] | Set<PropertyKey>,opts?: Partial<PartitionSyncOpts<T>>): Transducer<T, IObjectOf<T>>;
+// prettier-ignore
+export function partitionSync<T>(keys: PropertyKey[] | Set<PropertyKey>, src: Iterable<T>): IterableIterator<IObjectOf<T>>;
+// prettier-ignore
+export function partitionSync<T>(keys: PropertyKey[] | Set<PropertyKey>, opts: Partial<PartitionSyncOpts<T>>, src: Iterable<T>): IterableIterator<IObjectOf<T>>;
 export function partitionSync<T>(...args: any[]): any {
     return (
         $iter(partitionSync, args, iterator) ||
         (([init, complete, reduce]: Reducer<any, IObjectOf<T>>) => {
-            let curr: any = {};
+            let curr: IObjectOf<T> = {};
             let first = true;
             const currKeys = new Set<PropertyKey>();
-            const { key, mergeOnly, reset, all } = <PartitionSyncOpts<T>>{
+            const { key, mergeOnly, reset, all, backPressure } = <
+                PartitionSyncOpts<T>
+            >{
                 key: <any>identity,
                 mergeOnly: false,
                 reset: true,
                 all: true,
+                backPressure: 0,
                 ...args[1]
             };
             const ks: Set<PropertyKey> = isArray(args[0])
                 ? new Set(args[0])
                 : args[0];
-            return <Reducer<any, any>>[
-                init,
-                (acc) => {
-                    if (
-                        (reset && all && currKeys.size > 0) ||
-                        (!reset && first)
-                    ) {
-                        acc = reduce(acc, curr);
-                        curr = undefined;
-                        currKeys.clear();
-                        first = false;
-                    }
-                    return complete(acc);
-                },
-                (acc, x: T) => {
-                    const k = key(x);
-                    if (ks.has(k)) {
-                        curr[k] = x;
-                        currKeys.add(k);
-                        if (mergeOnly || requiredInputs(ks, currKeys)) {
+            if (mergeOnly || backPressure < 1) {
+                return <Reducer<any, T>>[
+                    init,
+                    (acc) => {
+                        if (
+                            (reset && all && currKeys.size > 0) ||
+                            (!reset && first)
+                        ) {
                             acc = reduce(acc, curr);
+                            curr = {};
+                            currKeys.clear();
                             first = false;
-                            if (reset) {
-                                curr = {};
-                                currKeys.clear();
-                            } else {
-                                curr = { ...curr };
+                        }
+                        return complete(acc);
+                    },
+                    (acc, x) => {
+                        const k = key(x);
+                        if (ks.has(k)) {
+                            curr[<any>k] = x;
+                            currKeys.add(k);
+                            if (mergeOnly || requiredInputs(ks, currKeys)) {
+                                acc = reduce(acc, curr);
+                                first = false;
+                                if (reset) {
+                                    curr = {};
+                                    currKeys.clear();
+                                } else {
+                                    curr = { ...curr };
+                                }
                             }
                         }
+                        return acc;
                     }
-                    return acc;
-                }
-            ];
+                ];
+            } else {
+                // with backpressure / caching...
+                const cache: Map<PropertyKey, T[]> = new Map();
+                return <Reducer<any, T>>[
+                    init,
+                    (acc) => {
+                        if (all && currKeys.size > 0) {
+                            acc = reduce(acc, collect(cache, currKeys));
+                            currKeys.clear();
+                        }
+                        return complete(acc);
+                    },
+                    (acc, x) => {
+                        const k = key(x);
+                        if (ks.has(k)) {
+                            let slot = cache.get(k);
+                            !slot && cache.set(k, (slot = []));
+                            slot.length >= backPressure &&
+                                illegalState(
+                                    `max back pressure (${backPressure}) exceeded for input: ${String(
+                                        k
+                                    )}`
+                                );
+                            slot.push(x);
+                            currKeys.add(k);
+                            while (requiredInputs(ks, currKeys)) {
+                                acc = reduce(acc, collect(cache, currKeys));
+                                first = false;
+                                if (isReduced(acc)) break;
+                            }
+                        }
+                        return acc;
+                    }
+                ];
+            }
         })
     );
 }
@@ -151,4 +197,17 @@ const requiredInputs = (required: Set<PropertyKey>, curr: Set<PropertyKey>) => {
         if (!curr.has(id)) return false;
     }
     return true;
+};
+
+const collect = <T>(
+    cache: Map<PropertyKey, T[]>,
+    currKeys: Set<PropertyKey>
+) => {
+    const curr: IObjectOf<T> = {};
+    for (let id of currKeys) {
+        const slot = cache.get(id)!;
+        curr[<any>id] = slot.shift()!;
+        !slot.length && currKeys.delete(id);
+    }
+    return curr;
 };

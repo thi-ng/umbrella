@@ -9,24 +9,28 @@ import { sync } from "./stream-sync";
 /**
  * Takes an existing stream/subscription `src` and attaches new
  * subscription which interpolates between incoming values from `src`
- * using the given `mix` function. The returned construct produces
- * values at a rate controlled by the `clock` stream or frequency. If
- * omitted, `clock` defaults to `fromRAF()` (~60Hz). If given as number,
- * creates a `fromInterval(clock)` or else uses the given `clock` stream
- * directly. In general, the frequency of the `clock` should always be
- * higher than that of `src`.
+ * using the given `mix` function.
+ *
+ * @remarks
+ * The returned construct produces values at a rate controlled by the
+ * `clock` stream or frequency. If omitted, `clock` defaults to
+ * {@link fromRAF} (~60Hz). If the `clock` is given as number, creates a
+ * {@link fromInterval} or else uses the given `clock` stream directly.
+ * In general, the frequency of the `clock` should always be higher than
+ * that of `src` or else interpolation will have undefined behavior.
  *
  * If `stop` is given as well, no values will be passed downstream if
  * that function returns true. This can be used to limit traffic once
  * the tween target value has been reached.
  *
  * The returned subscription closes automatically when either `src` or
- * `clock` is exhausted.
+ * `clock` are exhausted.
  *
- * ```
+ * @example
+ * ```ts
  * val = stream();
  *
- * rs.tween(
+ * tween(
  *   // consume from `val` stream
  *   val,
  *   // initial start value to interpolate from
@@ -35,7 +39,7 @@ import { sync } from "./stream-sync";
  *   (a, b) => a + (b - a) * 0.5,
  *   // stop emitting values if difference to previous result < 0.01
  *   (a, b) => Math.abs(a - b) < 0.01
- * ).subscribe(rs.trace("tweened"))
+ * ).subscribe(trace("tweened"))
  *
  * a.next(10)
  * // 5
@@ -73,9 +77,14 @@ export const tween = <T>(
                     ? fromInterval(clock)
                     : clock
         },
-        close: CloseMode.FIRST
+        closeIn: CloseMode.FIRST
     }).transform(
-        scan(reducer(() => initial, (acc, { src }) => mix(acc, src))),
+        scan(
+            reducer(
+                () => initial,
+                (acc, { src }) => mix(acc, src)
+            )
+        ),
         dedupe(stop || (() => false))
     );
 

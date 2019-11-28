@@ -1,25 +1,28 @@
+import { CommonOpts } from "../api";
 import { Stream } from "../stream";
-import { nextID } from "../utils/idgen";
+import { optsWithID } from "../utils/idgen";
 
 /**
- * Creates a new stream of events attached to given element / event
+ * Creates a {@link Stream} of events attached to given element / event
  * target and using given event listener options (same as supported by
  * `addEventListener()`, default: false).
  *
  * @param src event target
  * @param name event name
- * @param opts listener opts
+ * @param listenerOpts listener opts
+ * @param streamOpts stream opts
  */
 export const fromEvent = (
     src: EventTarget,
     name: string,
-    opts: boolean | AddEventListenerOptions = false
+    listenerOpts: boolean | AddEventListenerOptions = false,
+    streamOpts?: Partial<CommonOpts>
 ) =>
     new Stream<Event>((stream) => {
         let listener = (e: Event) => stream.next(e);
-        src.addEventListener(name, listener, opts);
-        return () => src.removeEventListener(name, listener, opts);
-    }, `event-${name}-${nextID()}`);
+        src.addEventListener(name, listener, listenerOpts);
+        return () => src.removeEventListener(name, listener, listenerOpts);
+    }, optsWithID(`event-${name}`, streamOpts));
 
 /**
  * Same as `fromEvent`, however only supports well-known DOM event
@@ -32,12 +35,17 @@ export const fromEvent = (
  * fromEvent(document.body, "mousemove"); // Stream<Event>
  * ```
  *
+ * @see fromEvent
+ *
  * @param src
  * @param name
- * @param opts
+ * @param listenerOpts
+ * @param streamOpts
  */
 export const fromDOMEvent = <K extends keyof GlobalEventHandlersEventMap>(
     src: EventTarget,
     name: K,
-    opts: boolean | AddEventListenerOptions = false
-): Stream<GlobalEventHandlersEventMap[K]> => <any>fromEvent(src, name, opts);
+    listenerOpts: boolean | AddEventListenerOptions = false,
+    streamOpts?: Partial<CommonOpts>
+): Stream<GlobalEventHandlersEventMap[K]> =>
+    <any>fromEvent(src, name, listenerOpts, streamOpts);

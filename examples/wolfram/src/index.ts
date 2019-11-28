@@ -53,7 +53,7 @@ const evolveCA = (src: number[], { kernel, rule, reset }: any) =>
           ];
 
 const triggerReset = () =>
-    wolfram.add(fromIterable([true, false], 16), "reset");
+    wolfram.add(fromIterable([true, false], { delay: 16 }), "reset");
 
 const triggerOBJExport = () => objExport.next(1);
 
@@ -82,7 +82,10 @@ const app = ({ id, ksize, sim }: any) => [
         [
             dropdown,
             { class: "h2 pa2 mh3", onchange: setKernel },
-            [[3, "3"], [5, "5"]],
+            [
+                [3, "3"],
+                [5, "5"]
+            ],
             ksize
         ],
         [
@@ -114,7 +117,7 @@ const app = ({ id, ksize, sim }: any) => [
 const rule = stream<number>();
 const kernel = stream<number>();
 const objExport = metaStream<any, boolean>(() =>
-    fromIterable([true, false], 17)
+    fromIterable([true, false], { delay: 17 })
 );
 
 const wolfram = sync<any, any>({
@@ -150,12 +153,17 @@ wolfram
     .transform(slidingWindow(WIDTH))
     // sidechainToggle is only letting new values through if enabled by
     // objExport stream
-    .subscribe(sidechainToggle<any, boolean>(objExport, false))
+    .subscribe(
+        sidechainToggle<any, boolean>(objExport, { initial: false })
+    )
     // actual OBJ conversion & export
     .transform(
         map((grid) =>
             transduce(
-                comp(filter((t) => !!t[1]), map(([[x, y]]) => `v ${x} ${y} 0`)),
+                comp(
+                    filter((t) => !!t[1]),
+                    map(([[x, y]]) => `v ${x} ${y} 0`)
+                ),
                 str("\n"),
                 zip(range2d(WIDTH, WIDTH), flatten(grid))
             )

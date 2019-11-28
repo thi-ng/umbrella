@@ -1,4 +1,4 @@
-import { IObjectOf } from "@thi.ng/api";
+import { IObjectOf, Tuple } from "@thi.ng/api";
 import { IAtom } from "@thi.ng/atom";
 import { isFunction, isPlainObject, isString } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
@@ -11,6 +11,7 @@ import {
     StreamSync,
     sync
 } from "@thi.ng/rstream";
+import { CloseMode } from "@thi.ng/rstream/api";
 import { map, Transducer } from "@thi.ng/transducers";
 import {
     Graph,
@@ -113,13 +114,13 @@ const prepareNodeInputs = (
         let s;
         const i = ins[id];
         if (i.path) {
-            s = fromView(state, i.path);
+            s = fromView(state, { path: i.path });
         } else if (i.stream) {
             s = isString(i.stream) ? resolve(i.stream) : i.stream(resolve);
         } else if (i.const != null) {
             s = fromIterableSync(
                 [isFunction(i.const) ? i.const(resolve) : i.const],
-                false
+                { closeIn: CloseMode.NEVER }
             );
         } else {
             illegalArgs(`invalid node input: ${id}`);
@@ -150,7 +151,7 @@ const prepareNodeOutputs = (
                     {
                         next: (x) => state.resetIn(path, x)
                     },
-                    `out-${nodeID}`
+                    { id: `out-${nodeID}` }
                 ))(o);
         } else {
             res[id] = ((path, id) =>
@@ -159,7 +160,7 @@ const prepareNodeOutputs = (
                         next: (x) => state.resetIn(path, x)
                     },
                     map((x) => (x != null ? x[id] : x)),
-                    `out-${nodeID}-${id}`
+                    { id: `out-${nodeID}-${id}` }
                 ))(o, id);
         }
     }
@@ -183,9 +184,11 @@ export const addNode = (
     spec: NodeSpec
 ): Node => {
     graph[id] && illegalArgs(`graph already contains a node with ID: ${id}`);
-    return (graph[id] = nodeFromSpec(state, spec, id)((path) =>
-        getIn(graph, absPath([id], path))
-    ));
+    return (graph[id] = nodeFromSpec(
+        state,
+        spec,
+        id
+    )((path) => getIn(graph, absPath([id], path))));
 };
 
 /**
@@ -232,6 +235,8 @@ export const stop = (graph: Graph) => {
  * when all inputs have produced new values. See thi.ng/rstream
  * `StreamSync` for further reference.
  *
+ * // TODO add close behavior opts
+ *
  * @param xform
  * @param inputIDs
  * @param reset
@@ -251,6 +256,8 @@ export const node = (
  * Similar to `node()`, but optimized for nodes using only a single
  * input. Uses "src" as default input ID.
  *
+ * // TODO add close behavior opts
+ *
  * @param xform
  * @param inputID
  */
@@ -262,8 +269,24 @@ export const node1 = (
     id: string
 ): ISubscribable<any> => (
     ensureInputs(src, [inputID], id),
-    xform ? src[inputID].subscribe(xform, id) : src[inputID].subscribe({}, id)
+    xform
+        ? src[inputID].subscribe(xform, { id })
+        : src[inputID].subscribe({}, { id })
 );
+
+/**
+ * Syntax sugar for `node()`, intended for nodes w/ 2 inputs, by default
+ * named `a` & `b` (but can be overridden).
+ *
+ * @param xform
+ * @param inputIDs
+ * @param reset
+ */
+export const node2 = (
+    xform: Transducer<IObjectOf<any>, any>,
+    inputIDs: Tuple<string, 2> = ["a", "b"],
+    reset = false
+) => node(xform, inputIDs, reset);
 
 /**
  * Helper function to verify given object of inputs has required input IDs.

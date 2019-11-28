@@ -1,4 +1,5 @@
 export * from "./api";
+export * from "./forkjoin";
 export * from "./metastream";
 export * from "./pubsub";
 export * from "./stream";
@@ -23,6 +24,7 @@ export * from "./subs/post-worker";
 export * from "./subs/resolve";
 export * from "./subs/sidechain-partition";
 export * from "./subs/sidechain-toggle";
+export * from "./subs/timeout";
 export * from "./subs/trace";
 export * from "./subs/transduce";
 export * from "./subs/tunnel";

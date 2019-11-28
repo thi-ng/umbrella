@@ -1,33 +1,29 @@
-import { IID, IObjectOf } from "@thi.ng/api";
+import { IObjectOf } from "@thi.ng/api";
 import { isPlainObject } from "@thi.ng/checks";
 import {
     comp,
     labeled,
     mapVals,
-    partitionSync,
-    Transducer
+    partitionSync
 } from "@thi.ng/transducers";
 import {
     CloseMode,
     ISubscribable,
     LOGGER,
-    State
+    State,
+    TransformableOpts
 } from "./api";
 import { Subscription } from "./subscription";
-import { closeMode } from "./utils/close";
-import { nextID } from "./utils/idgen";
+import { optsWithID } from "./utils/idgen";
 
-export interface StreamSyncOpts<A, B> extends IID<string> {
+export interface StreamSyncOpts<A, B>
+    extends TransformableOpts<IObjectOf<A>, B> {
     /**
      * Either an array or object of input streams / subscribables. If
      * the latter, the object keys are used to label the inputs, else
      * their `id` is used as label.
      */
     src: ISubscribable<A>[] | IObjectOf<ISubscribable<A>>;
-    /**
-     * Optional transducer applied to the synced result tuple objects.
-     */
-    xform: Transducer<IObjectOf<A>, B>;
     /**
      * If true (default: false) *no* input synchronization (waiting for
      * values) is applied and `StreamSync` will emit potentially
@@ -49,24 +45,31 @@ export interface StreamSyncOpts<A, B> extends IID<string> {
      */
     all: boolean;
     /**
-     * If false or `CloseMode.NEVER`, StreamSync stays active even if
-     * all inputs are done. If true (default) or `CloseMode.LAST`, the
-     * StreamSync closes when the last input is done. If
-     * `CloseMode.FIRST`, the instance closes when the first input is
-     * done.
+     * If > 0, then each labeled input will cache upto the stated number
+     * of input values, even if other inputs have not yet produced new
+     * values. Once the limit is reached, `partitionSync()` will throw
+     * an `IllegalState` error.
+     *
+     * Enabling this option will cause the same behavior as if `reset`
+     * is enabled (regardless of the actual configured `reset` setting).
+     * I.e. new results are only produced when ALL required inputs have
+     * available values...
      */
-    close: boolean | CloseMode;
+    backPressure: number;
 }
 
 /**
- * Similar to `StreamMerge`, but with extra synchronization of inputs.
- * Before emitting any new values, `StreamSync` collects values until at
- * least one has been received from *all* inputs. Once that's the case,
- * the collected values are sent as labeled tuple object to downstream
- * subscribers. Each value in the emitted tuple objects is stored under
- * their input stream's ID. Only the last value received from each input
- * is passed on. After the initial tuple has been emitted, you can
- * choose from two possible behaviors:
+ * Similar to {@link StreamMerge}, but with extra synchronization of
+ * inputs. Before emitting any new values, {@link StreamSync} collects
+ * values until at least one has been received from *all* inputs. Once
+ * that's the case, the collected values are sent as labeled tuple
+ * object to downstream subscribers.
+ *
+ * @remarks
+ * Each value in the emitted tuple objects is stored under their input
+ * stream's ID. Only the last value received from each input is passed
+ * on. After the initial tuple has been emitted, you can choose from two
+ * possible behaviors:
  *
  * 1) Any future change in any input will produce a new result tuple.
  *    These tuples will retain the most recently read values from other
@@ -77,17 +80,8 @@ export interface StreamSyncOpts<A, B> extends IID<string> {
  *    produced.
  *
  * Any done inputs are automatically removed. By default, `StreamSync`
- * calls `done()` when the last active input is done, but this behavior
- * can be overridden via the `close` constructor option.
- *
- * ```ts
- * const a = rs.stream();
- * const b = rs.stream();
- * s = sync({ src: { a, b } }).subscribe(trace("result: "));
- * a.next(1);
- * b.next(2);
- * // result: { a: 1, b: 2 }
- * ```
+ * calls {@link ISubscriber.done} when the last active input is done,
+ * but this behavior can be overridden via the provided options.
  *
  * Input streams can be added and removed dynamically and the emitted
  * tuple size adjusts to the current number of inputs (the next time a
@@ -100,6 +94,16 @@ export interface StreamSyncOpts<A, B> extends IID<string> {
  * The synchronization is done via the `partitionSync()` transducer from
  * the @thi.ng/transducers package. See this function's docs for further
  * details.
+ *
+ * @example
+ * ```ts
+ * const a = rs.stream();
+ * const b = rs.stream();
+ * s = sync({ src: { a, b } }).subscribe(trace("result: "));
+ * a.next(1);
+ * b.next(2);
+ * // result: { a: 1, b: 2 }
+ * ```
  *
  * @see StreamSyncOpts
  *
@@ -130,40 +134,32 @@ export class StreamSync<A, B> extends Subscription<A, B> {
      * these IDs are used to label inputs in result tuple
      */
     sourceIDs: Set<string>;
-    /**
-     * closing behavior
-     */
-    closeMode: CloseMode;
 
     constructor(opts: Partial<StreamSyncOpts<A, B>>) {
-        let srcIDs = new Set<string>();
-        let xform: Transducer<[string, A], any> = comp(
-            partitionSync(srcIDs, {
-                key: (x) => x[0],
-                mergeOnly: opts.mergeOnly === true,
-                reset: opts.reset === true,
-                all: opts.all !== false
-            }),
-            mapVals((x) => x[1])
-        );
-        if (opts.xform) {
-            xform = comp(xform, opts.xform);
-        }
+        const srcIDs = new Set<string>();
+        const psync = partitionSync<[string, A]>(srcIDs, {
+            key: (x) => x[0],
+            mergeOnly: opts.mergeOnly === true,
+            reset: opts.reset === true,
+            all: opts.all !== false,
+            backPressure: opts.backPressure || 0
+        });
+        const mapv = mapVals((x: [string, A]) => x[1]);
         super(
             undefined,
-            <Transducer<any, any>>xform,
-            undefined,
-            opts.id || `streamsync-${nextID()}`
+            optsWithID("streamsync", <Partial<StreamSyncOpts<any, any>>>{
+                ...opts,
+                xform: opts.xform
+                    ? comp(psync, mapv, opts.xform)
+                    : comp(psync, mapv)
+            })
         );
         this.sources = new Map();
         this.realSourceIDs = new Map();
         this.invRealSourceIDs = new Map();
         this.idSources = new Map();
         this.sourceIDs = srcIDs;
-        this.closeMode = closeMode(opts.close);
-        if (opts.src) {
-            this.addAll(opts.src);
-        }
+        opts.src && this.addAll(opts.src);
     }
 
     add(src: ISubscribable<A>, id?: string) {
@@ -188,7 +184,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
                     __owner: this
                 },
                 labeled<string, A>(id),
-                `in-${id}`
+                { id: `in-${id}` }
             )
         );
     }
@@ -220,6 +216,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
             LOGGER.info(`removing src: ${src.id} (${id})`);
             this.sourceIDs.delete(id);
             this.realSourceIDs.delete(id);
+            this.invRealSourceIDs.delete(src.id);
             this.idSources.delete(src.id);
             this.sources.delete(src);
             sub.unsubscribe();
@@ -230,10 +227,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
 
     removeID(id: string) {
         const src = this.getSourceForID(id);
-        if (src) {
-            return this.remove(src);
-        }
-        return false;
+        return src ? this.remove(src) : false;
     }
 
     removeAll(src: ISubscribable<A>[]) {
@@ -286,8 +280,8 @@ export class StreamSync<A, B> extends Subscription<A, B> {
     protected markDone(src: ISubscribable<A>) {
         this.remove(src);
         if (
-            this.closeMode === CloseMode.FIRST ||
-            (this.closeMode === CloseMode.LAST && !this.sources.size)
+            this.closeIn === CloseMode.FIRST ||
+            (this.closeIn === CloseMode.LAST && !this.sources.size)
         ) {
             this.done();
         }

@@ -1,11 +1,28 @@
 import { Atom } from "@thi.ng/atom";
-import * as tx from "@thi.ng/transducers";
+import {
+    comp,
+    filter,
+    last,
+    map,
+    take
+} from "@thi.ng/transducers";
 import * as assert from "assert";
-import * as rs from "../src/index";
+import {
+    CloseMode,
+    fromInterval,
+    fromIterable,
+    fromPromise,
+    fromView,
+    State,
+    stream,
+    sync,
+    transduce
+} from "../src";
+import { TIMEOUT } from "./config";
 
 describe("StreamSync", () => {
     function adder() {
-        return tx.map((ports: any) => {
+        return map((ports: any) => {
             let sum = 0;
             for (let p in ports) {
                 sum += ports[p];
@@ -23,10 +40,10 @@ describe("StreamSync", () => {
             a1: { ins: { a: 1, b: 2 } },
             a2: { ins: { b: 10 } }
         });
-        const a1 = rs.sync({
+        const a1 = sync({
             src: [
-                (a = rs.fromView(db, "a1.ins.a")),
-                (b = rs.fromView(db, "a1.ins.b"))
+                (a = fromView(db, { path: "a1.ins.a" })),
+                (b = fromView(db, { path: "a1.ins.b" }))
             ],
             xform: adder()
         });
@@ -38,8 +55,8 @@ describe("StreamSync", () => {
                 a1done = true;
             }
         });
-        const a2 = rs.sync({
-            src: <any>[a1, (c = rs.fromView(db, "a2.ins.b"))],
+        const a2 = sync({
+            src: <any>[a1, (c = fromView(db, { path: "a2.ins.b" }))],
             xform: adder()
         });
         const res = a2.subscribe({
@@ -59,31 +76,31 @@ describe("StreamSync", () => {
         res.unsubscribe();
         assert(!a1done);
         assert(!a2done);
-        assert.equal(a.getState(), rs.State.ACTIVE, "a != ACTIVE");
-        assert.equal(b.getState(), rs.State.ACTIVE, "b != ACTIVE");
-        assert.equal(a1.getState(), rs.State.ACTIVE, "a1 != ACTIVE");
-        assert.equal(a1res.getState(), rs.State.IDLE, "a1res != IDLE");
-        assert.equal(c.getState(), rs.State.DONE, "c != DONE");
-        assert.equal(a2.getState(), rs.State.DONE, "a2 != DONE");
-        assert.equal(res.getState(), rs.State.DONE, "res != DONE");
+        assert.equal(a.getState(), State.ACTIVE, "a != ACTIVE");
+        assert.equal(b.getState(), State.ACTIVE, "b != ACTIVE");
+        assert.equal(a1.getState(), State.ACTIVE, "a1 != ACTIVE");
+        assert.equal(a1res.getState(), State.IDLE, "a1res != IDLE");
+        assert.equal(c.getState(), State.DONE, "c != DONE");
+        assert.equal(a2.getState(), State.DONE, "a2 != DONE");
+        assert.equal(res.getState(), State.DONE, "res != DONE");
         // teardown from a1 result
         a1res.unsubscribe();
-        assert.equal(a.getState(), rs.State.DONE, "a != DONE");
-        assert.equal(b.getState(), rs.State.DONE, "b != DONE");
-        assert.equal(a1.getState(), rs.State.DONE, "a1 != DONE");
-        assert.equal(a1res.getState(), rs.State.DONE, "a1res != DONE");
+        assert.equal(a.getState(), State.DONE, "a != DONE");
+        assert.equal(b.getState(), State.DONE, "b != DONE");
+        assert.equal(a1.getState(), State.DONE, "a1 != DONE");
+        assert.equal(a1res.getState(), State.DONE, "a1res != DONE");
         assert(!a1done);
         assert(!a2done);
     });
 
     it("mergeOnly", (done) => {
         const src = {
-            a: rs.stream(),
-            b: rs.stream(),
-            c: rs.stream()
+            a: stream(),
+            b: stream(),
+            c: stream()
         };
         const res: any[] = [];
-        const sync = rs.sync({ src, mergeOnly: true }).subscribe({
+        const main = sync({ src, mergeOnly: true }).subscribe({
             next: (x) => res.push(x),
             done: () => {
                 assert.deepEqual(res, [
@@ -100,24 +117,23 @@ describe("StreamSync", () => {
         src.b.next(2);
         src.a.next(3);
         src.a.next(4);
-        sync.done();
+        main.done();
     });
 
     it("mergeOnly (w/ required keys)", (done) => {
         const src = {
-            a: rs.stream(),
-            b: rs.stream(),
-            c: rs.stream()
+            a: stream(),
+            b: stream(),
+            c: stream()
         };
         const res: any[] = [];
-        const sync = rs
-            .sync({
-                src,
-                mergeOnly: true
-            })
+        const main = sync({
+            src,
+            mergeOnly: true
+        })
             .transform(
                 // ensure `a` & `b` are present
-                tx.filter((tuple: any) => tuple.a != null && tuple.b != null)
+                filter((tuple: any) => tuple.a != null && tuple.b != null)
             )
             .subscribe({
                 next: (x) => res.push(x),
@@ -134,26 +150,59 @@ describe("StreamSync", () => {
         src.b.next(2);
         src.a.next(3);
         src.a.next(4);
-        sync.done();
+        main.done();
     });
 
     it("fromPromise", (done) => {
         const delayed = (x: any, t: number) =>
             new Promise((resolve) => setTimeout(() => resolve(x), t));
 
-        rs.transduce(
-            rs.sync({
-                src: <any>{
-                    t: rs.fromInterval(5),
-                    a: rs.fromPromise(delayed("aa", 20)),
-                    b: rs.fromPromise(delayed("bb", 40))
+        transduce(
+            sync<any, any>({
+                src: {
+                    t: fromInterval(5),
+                    a: fromPromise(delayed("aa", 20)),
+                    b: fromPromise(delayed("bb", 40))
                 }
             }),
-            tx.comp(tx.take(1), tx.map(({ a, b }: any) => ({ a, b }))),
-            tx.last()
+            comp(
+                take(1),
+                map(({ a, b }: any) => ({ a, b }))
+            ),
+            last()
         ).then((res) => {
             assert.deepEqual(res, { a: "aa", b: "bb" });
             done();
         });
+    });
+
+    it("never closes", (done) => {
+        const main = sync<number, any>({
+            src: [
+                fromIterable([1, 2, 3], { delay: TIMEOUT, id: "a" }),
+                fromIterable([1, 2, 3, 4], { delay: TIMEOUT, id: "b" })
+            ],
+            closeIn: CloseMode.NEVER,
+            closeOut: CloseMode.NEVER,
+            reset: true
+        });
+
+        const acc: any[] = [];
+        const sub = main.subscribe({
+            next(x) {
+                acc.push(x);
+            }
+        });
+
+        setTimeout(() => sub.unsubscribe(), 3.5 * TIMEOUT);
+        setTimeout(() => {
+            assert.equal(main.getState(), State.ACTIVE);
+            assert.deepEqual(acc, [
+                { a: 1, b: 1 },
+                { a: 2, b: 2 },
+                { a: 3, b: 3 }
+            ]);
+            done();
+        }, 5 * TIMEOUT);
     });
 });

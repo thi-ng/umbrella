@@ -1,5 +1,6 @@
 import { IDeref, SEMAPHORE } from "@thi.ng/api";
-import { implementsFunction, isFunction, isString } from "@thi.ng/checks";
+import { peek } from "@thi.ng/arrays";
+import { implementsFunction, isFunction, isPlainObject } from "@thi.ng/checks";
 import { illegalArity, illegalState } from "@thi.ng/errors";
 import {
     comp,
@@ -10,33 +11,45 @@ import {
     unreduced
 } from "@thi.ng/transducers";
 import {
+    CloseMode,
+    CommonOpts,
     ISubscribable,
     ISubscriber,
+    ITransformable,
     LOGGER,
-    State
+    State,
+    SubscriptionOpts
 } from "./api";
 import { nextID } from "./utils/idgen";
 
 /**
- * Creates a new `Subscription` instance, the fundamental datatype &
- * building block provided by this package (`Stream`s are
- * `Subscription`s too). Subscriptions can be:
+ * Creates a new {@link Subscription} instance, the fundamental datatype
+ * and building block provided by this package.
  *
- * - linked into directed graphs (if async, not necessarily DAGs)
- * - transformed using transducers (incl. early termination)
+ * @remarks
+ * Most other types in rstream, including {@link Stream}s, are
+ * `Subscription`s and all can be:
+ *
+ * - linked into directed graphs (sync or async & not necessarily DAGs)
+ * - transformed using transducers (incl. support for early termination)
  * - can have any number of subscribers (optionally each w/ their own
- *   transducer)
+ *   transducers)
  * - recursively unsubscribe themselves from parent after their last
- *   subscriber unsubscribed
- * - will go into a non-recoverable error state if NONE of the
+ *   subscriber unsubscribed (configurable)
+ * - will go into a non-recoverable error state if none of the
  *   subscribers has an error handler itself
- * - implement the @thi.ng/api `IDeref` interface
+ * - implement the {@link @thi.ng/api#IDeref} interface
  *
- * ```
+ * Subscription behavior can be customized via the additional (optional)
+ * options arg. See `CommonOpts` and `SubscriptionOpts` for further
+ * details.
+ *
+ * @example
+ * ```ts
  * // as reactive value mechanism (same as with stream() above)
- * s = rs.subscription();
+ * s = subscription();
  * s.subscribe(trace("s1"));
- * s.subscribe(trace("s2"), tx.filter((x) => x > 25));
+ * s.subscribe(trace("s2"), { xform: tx.filter((x) => x > 25) });
  *
  * // external trigger
  * s.next(23);
@@ -47,47 +60,54 @@ import { nextID } from "./utils/idgen";
  * ```
  *
  * @param sub
- * @param xform
- * @param parent
- * @param id
+ * @param opts
  */
 export const subscription = <A, B>(
     sub?: ISubscriber<B>,
-    xform?: Transducer<A, B>,
-    parent?: ISubscribable<A>,
-    id?: string
-) => new Subscription(sub, xform, parent, id);
+    opts?: Partial<SubscriptionOpts<A, B>>
+) => new Subscription(sub, opts);
 
 export class Subscription<A, B>
-    implements IDeref<B>, ISubscriber<A>, ISubscribable<B> {
+    implements
+        IDeref<B | undefined>,
+        ISubscriber<A>,
+        ISubscribable<B>,
+        ITransformable<B> {
     id: string;
+
+    closeIn: CloseMode;
+    closeOut: CloseMode;
 
     protected parent?: ISubscribable<A>;
     protected subs: ISubscriber<B>[];
     protected xform?: Reducer<B[], A>;
     protected state: State = State.IDLE;
 
+    protected cacheLast: boolean;
     protected last: any;
 
     constructor(
         sub?: ISubscriber<B>,
-        xform?: Transducer<A, B>,
-        parent?: ISubscribable<A>,
-        id?: string
+        opts: Partial<SubscriptionOpts<A, B>> = {}
     ) {
-        this.parent = parent;
-        this.id = id || `sub-${nextID()}`;
+        this.parent = opts.parent;
+        this.closeIn =
+            opts.closeIn !== undefined ? opts.closeIn : CloseMode.LAST;
+        this.closeOut =
+            opts.closeOut !== undefined ? opts.closeOut : CloseMode.LAST;
+        this.cacheLast = opts.cache !== false;
+        this.id = opts.id || `sub-${nextID()}`;
         this.last = SEMAPHORE;
         this.subs = [];
         if (sub) {
             this.subs.push(sub);
         }
-        if (xform) {
-            this.xform = xform(push());
+        if (opts.xform) {
+            this.xform = opts.xform(push());
         }
     }
 
-    deref(): B {
+    deref(): B | undefined {
         return this.last !== SEMAPHORE ? this.last : undefined;
     }
 
@@ -99,48 +119,51 @@ export class Subscription<A, B>
      * Creates new child subscription with given subscriber and/or
      * transducer and optional subscription ID.
      */
+    subscribe(
+        sub: Partial<ISubscriber<B>>,
+        opts?: Partial<CommonOpts>
+    ): Subscription<B, B>;
+    subscribe<C>(sub: Subscription<B, C>): Subscription<B, C>;
+    subscribe<C>(
+        xform: Transducer<B, C>,
+        opts?: Partial<CommonOpts>
+    ): Subscription<B, C>;
     subscribe<C>(
         sub: Partial<ISubscriber<C>>,
         xform: Transducer<B, C>,
-        id?: string
+        opts?: Partial<CommonOpts>
     ): Subscription<B, C>;
-    // subscribe<S extends Subscription<B, C>, C>(sub: S): S;
-    subscribe<C>(sub: Subscription<B, C>): Subscription<B, C>;
-    subscribe<C>(xform: Transducer<B, C>, id?: string): Subscription<B, C>;
-    subscribe(sub: Partial<ISubscriber<B>>, id?: string): Subscription<B, B>;
-    subscribe(...args: any[]) {
+    subscribe(...args: any[]): any {
         this.ensureState();
-        let sub, xform, id;
+        let sub: Subscription<any, any> | undefined;
+        let opts: SubscriptionOpts<any, any> =
+            args.length > 1 && isPlainObject(peek(args))
+                ? { ...args.pop() }
+                : {};
         switch (args.length) {
             case 1:
-            case 2:
                 if (isFunction(args[0])) {
-                    xform = args[0];
-                    id = args[1] || `xform-${nextID()}`;
+                    opts.xform = args[0];
+                    !opts.id && (opts.id = `xform-${nextID()}`);
                 } else {
                     sub = args[0];
-                    if (isFunction(args[1])) {
-                        xform = args[1];
-                    } else {
-                        id = args[1];
-                    }
                 }
                 break;
-            case 3:
-                [sub, xform, id] = args;
+            case 2:
+                sub = args[0];
+                opts.xform = args[1];
                 break;
             default:
                 illegalArity(args.length);
         }
-        if (implementsFunction(sub, "subscribe")) {
-            sub.parent = this;
+        if (implementsFunction(sub!, "subscribe")) {
+            sub!.parent = this;
         } else {
-            sub = subscription<B, B>(sub, xform, this, id);
+            // FIXME inherit options from this sub or defaults?
+            sub = subscription<B, B>(sub, { parent: this, ...opts });
         }
-        if (this.last !== SEMAPHORE) {
-            sub.next(this.last);
-        }
-        return <Subscription<B, B>>this.addWrapped(sub);
+        this.last !== SEMAPHORE && sub!.next(this.last);
+        return this.addWrapped(sub!);
     }
 
     /**
@@ -165,32 +188,21 @@ export class Subscription<A, B>
      *
      * Shorthand for `subscribe(comp(xf1, xf2,...), id)`
      */
-    transform<C>(a: Transducer<B, C>, id?: string): Subscription<B, C>;
-    transform<C, D>(
+    transform<C>(
         a: Transducer<B, C>,
-        b: Transducer<C, D>,
-        id?: string
-    ): Subscription<B, D>;
-    transform<C, D, E>(
-        a: Transducer<B, C>,
-        b: Transducer<C, D>,
-        c: Transducer<D, E>,
-        id?: string
-    ): Subscription<B, E>;
-    transform<C, D, E, F>(
-        a: Transducer<B, C>,
-        b: Transducer<C, D>,
-        c: Transducer<D, E>,
-        d: Transducer<E, F>,
-        id?: string
-    ): Subscription<B, F>;
+        opts?: Partial<CommonOpts>
+    ): Subscription<B, C>;
+    // prettier-ignore
+    transform<C, D>(a: Transducer<B, C>, b: Transducer<C, D>, opts?: Partial<CommonOpts>): Subscription<B, D>;
+    // prettier-ignore
+    transform<C, D, E>(a: Transducer<B, C>, b: Transducer<C, D>, c: Transducer<D, E>, opts?: Partial<CommonOpts>): Subscription<B, E>;
+    // prettier-ignore
+    transform<C, D, E, F>(a: Transducer<B, C>, b: Transducer<C, D>, c: Transducer<D, E>, d: Transducer<E, F>, opts?: Partial<CommonOpts>): Subscription<B, F>;
     transform(...xf: any[]) {
         const n = xf.length - 1;
-        if (isString(xf[n])) {
-            return this.subscribe((<any>comp)(...xf.slice(0, n)), xf[n]);
-        } else {
-            return this.subscribe((<any>comp)(...xf));
-        }
+        return isPlainObject(xf[n])
+            ? this.subscribe((<any>comp)(...xf.slice(0, n)), xf[n])
+            : this.subscribe((<any>comp)(...xf));
     }
 
     /**
@@ -218,7 +230,10 @@ export class Subscription<A, B>
             const idx = this.subs.indexOf(sub);
             if (idx >= 0) {
                 this.subs.splice(idx, 1);
-                if (!this.subs.length) {
+                if (
+                    this.closeOut === CloseMode.FIRST ||
+                    (!this.subs.length && this.closeOut !== CloseMode.NEVER)
+                ) {
                     this.unsubscribe();
                 }
                 return true;
@@ -246,7 +261,7 @@ export class Subscription<A, B>
     }
 
     done() {
-        LOGGER.debug(this.id, "done start");
+        LOGGER.debug(this.id, "entering done()");
         if (this.state < State.DONE) {
             if (this.xform) {
                 const acc = this.xform[1]([]);
@@ -258,10 +273,14 @@ export class Subscription<A, B>
             }
             this.state = State.DONE;
             for (let s of [...this.subs]) {
-                s.done && s.done();
+                try {
+                    s.done && s.done();
+                } catch (e) {
+                    s.error ? s.error(e) : this.error(e);
+                }
             }
             this.unsubscribe();
-            LOGGER.debug(this.id, "done");
+            LOGGER.debug(this.id, "exiting done()");
         }
     }
 
@@ -294,10 +313,10 @@ export class Subscription<A, B>
 
     protected dispatch(x: B) {
         // LOGGER.debug(this.id, "dispatch", x);
-        this.last = x;
+        this.cacheLast && (this.last = x);
         const subs = this.subs;
         let s: ISubscriber<B>;
-        if (subs.length == 1) {
+        if (subs.length === 1) {
             s = subs[0];
             try {
                 s.next && s.next(x);
@@ -305,7 +324,7 @@ export class Subscription<A, B>
                 s.error ? s.error(e) : this.error(e);
             }
         } else {
-            for (let i = subs.length - 1; i >= 0; i--) {
+            for (let i = subs.length; --i >= 0; ) {
                 s = subs[i];
                 try {
                     s.next && s.next(x);

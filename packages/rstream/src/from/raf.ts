@@ -1,20 +1,24 @@
 import { isNode } from "@thi.ng/checks";
+import { CommonOpts } from "../api";
 import { Stream } from "../stream";
-import { nextID } from "../utils/idgen";
+import { optsWithID } from "../utils/idgen";
 import { fromInterval } from "./interval";
 
 /**
- * Yields a stream of monotonically increasing counter, triggered by a
- * `requestAnimationFrame()` loop (only available in browser
- * environments). In NodeJS, this function falls back to
- * `fromInterval(16)`, yielding a similar (approximately 60fps) stream.
+ * Yields {@link Stream} of a monotonically increasing counter,
+ * triggered by a `requestAnimationFrame()` loop (only available in
+ * browser environments).
  *
- * Subscribers to this stream will be processed during that same loop
- * iteration.
+ * @remarks
+ * In NodeJS, this function falls back to {@link fromInterval}, yielding
+ * a similar (approx. 60Hz) stream.
+ *
+ * All subscribers to this stream will be processed during that same
+ * loop iteration.
  */
-export const fromRAF = () =>
+export const fromRAF = (opts?: Partial<CommonOpts>) =>
     isNode()
-        ? fromInterval(16)
+        ? fromInterval(16, opts)
         : new Stream<number>((stream) => {
               let i = 0;
               let isActive = true;
@@ -23,5 +27,8 @@ export const fromRAF = () =>
                   isActive && (id = requestAnimationFrame(loop));
               };
               let id = requestAnimationFrame(loop);
-              return () => ((isActive = false), cancelAnimationFrame(id));
-          }, `raf-${nextID()}`);
+              return () => {
+                  isActive = false;
+                  cancelAnimationFrame(id);
+              };
+          }, optsWithID("raf", opts));

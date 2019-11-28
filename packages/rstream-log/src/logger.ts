@@ -1,6 +1,11 @@
 import { LogLevel } from "@thi.ng/api";
 import { illegalArity } from "@thi.ng/errors";
-import { ISubscribable, nextID, StreamMerge } from "@thi.ng/rstream";
+import {
+    CloseMode,
+    ISubscribable,
+    nextID,
+    StreamMerge
+} from "@thi.ng/rstream";
 import { ILogger, LogEntry } from "./api";
 
 export class Logger extends StreamMerge<LogEntry, LogEntry> implements ILogger {
@@ -35,7 +40,7 @@ export class Logger extends StreamMerge<LogEntry, LogEntry> implements ILogger {
                 illegalArity(args.length);
         }
         id = id || `logger-${nextID()}`;
-        super({ src, id, close: false });
+        super({ src, id, closeIn: CloseMode.NEVER, closeOut: CloseMode.NEVER });
         this.level = level;
     }
 
@@ -44,37 +49,27 @@ export class Logger extends StreamMerge<LogEntry, LogEntry> implements ILogger {
     }
 
     fine(...args: any[]) {
-        this.level <= LogLevel.FINE &&
-            super.next(<LogEntry>[LogLevel.FINE, this.id, Date.now(), ...args]);
+        this.log(LogLevel.FINE, args);
     }
 
     debug(...args: any[]) {
-        this.level <= LogLevel.DEBUG &&
-            super.next(<LogEntry>[
-                LogLevel.DEBUG,
-                this.id,
-                Date.now(),
-                ...args
-            ]);
+        this.log(LogLevel.DEBUG, args);
     }
 
     info(...args: any[]) {
-        this.level <= LogLevel.INFO &&
-            super.next(<LogEntry>[LogLevel.INFO, this.id, Date.now(), ...args]);
+        this.log(LogLevel.INFO, args);
     }
 
     warn(...args: any[]) {
-        this.level <= LogLevel.WARN &&
-            super.next(<LogEntry>[LogLevel.WARN, this.id, Date.now(), ...args]);
+        this.log(LogLevel.WARN, args);
     }
 
     severe(...args: any[]) {
-        this.level <= LogLevel.SEVERE &&
-            super.next(<LogEntry>[
-                LogLevel.SEVERE,
-                this.id,
-                Date.now(),
-                ...args
-            ]);
+        this.log(LogLevel.SEVERE, args);
+    }
+
+    protected log(level: LogLevel, args: any[]) {
+        this.level <= level &&
+            super.next(<LogEntry>[level, this.id, Date.now(), ...args]);
     }
 }

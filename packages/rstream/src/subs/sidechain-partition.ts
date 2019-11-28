@@ -1,16 +1,24 @@
 import { Predicate } from "@thi.ng/api";
-import { ISubscribable, State } from "../api";
+import { CommonOpts, ISubscribable, State } from "../api";
 import { Subscription } from "../subscription";
-import { nextID } from "../utils/idgen";
+import { optsWithID } from "../utils/idgen";
+
+export interface SidechainPartitionOpts<T> extends CommonOpts {
+    pred: Predicate<T>;
+}
 
 /**
- * Buffers values from `src` until side chain fires, then emits buffer
- * (unless empty) and repeats process until either input is done. By
- * default, the value read from the side chain is ignored, however the
- * optional predicate can be used to only trigger for specific values /
- * conditions.
+ * Returns a {@link Subscription} which buffers values from `src` until
+ * side chain fires, then emits buffer (unless empty) and repeats
+ * process until either input is done.
  *
- * ```
+ * @remarks
+ * By default, the values read from the side chain are ignored (i.e.
+ * only their timing is used), however the `pred`icate option can be
+ * used to only trigger for specific values / conditions.
+ *
+ * @example
+ * ```t
  * // merge various event streams
  * events = merge([
  *     fromEvent(document,"mousemove"),
@@ -24,24 +32,26 @@ import { nextID } from "../utils/idgen";
  * ```
  *
  * @param side
- * @param pred
- * @param id
+ * @param opts
  */
 export const sidechainPartition = <A, B>(
     side: ISubscribable<B>,
-    pred?: Predicate<B>,
-    id?: string
-): Subscription<A, A[]> => new SidechainPartition<A, B>(side, pred, id);
+    opts?: Partial<SidechainPartitionOpts<B>>
+): Subscription<A, A[]> => new SidechainPartition<A, B>(side, opts);
 
 export class SidechainPartition<A, B> extends Subscription<A, A[]> {
     sideSub: Subscription<B, B>;
     buf: A[];
 
-    constructor(side: ISubscribable<B>, pred?: Predicate<B>, id?: string) {
-        super(undefined, undefined, undefined, id || `sidepart-${nextID()}`);
+    constructor(
+        side: ISubscribable<B>,
+        opts?: Partial<SidechainPartitionOpts<B>>
+    ) {
+        opts = optsWithID("sidepart", opts);
+        super(undefined, opts);
         this.buf = [];
+        const pred = opts.pred || (() => true);
         const $this = this;
-        pred = pred || (() => true);
         this.sideSub = side.subscribe({
             next(x) {
                 if ($this.buf.length && pred!(x)) {

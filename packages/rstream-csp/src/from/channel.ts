@@ -1,13 +1,30 @@
 import { Channel } from "@thi.ng/csp";
 import { LOGGER, Stream } from "@thi.ng/rstream";
+import { CommonOpts } from "@thi.ng/rstream/api";
+
+export interface FromChannelOpts extends CommonOpts {
+    /**
+     * If true, the parent CSP channel will be closed when this stream
+     * closes.
+     *
+     * @defaultValue true
+     */
+    closeChannel: boolean;
+}
 
 /**
+ * Returns a stream of values received from given
+ * {@link @thi.ng/csp#Channel}.
  *
  * @param src
- * @param closeWhenCancelled
+ * @param opts
  */
-export const fromChannel = <T>(src: Channel<T>, closeWhenCancelled = true) =>
-    new Stream<T>((stream) => {
+export const fromChannel = <T>(
+    src: Channel<T>,
+    opts?: Partial<FromChannelOpts>
+) => {
+    opts = { id: `channel-${src.id}`, closeChannel: true, ...opts };
+    return new Stream<T>((stream) => {
         let isActive = true;
         (async () => {
             let x;
@@ -20,10 +37,11 @@ export const fromChannel = <T>(src: Channel<T>, closeWhenCancelled = true) =>
             stream.done();
         })();
         return () => {
-            if (closeWhenCancelled) {
+            if (opts!.closeChannel !== false) {
                 src.close(true);
                 LOGGER.info("closed channel", src.id);
             }
             isActive = false;
         };
-    }, `channel-${src.id}`);
+    }, opts);
+};
