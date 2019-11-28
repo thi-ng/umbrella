@@ -18,6 +18,7 @@ try {
     const DEMO_URL = "https://demo.thi.ng/umbrella";
     const ASSET_URL = `https://raw.githubusercontent.com/${REPO_ID}/${BRANCH}/assets`;
     const BRANCH_URL = `${REPO_URL}/tree/${BRANCH}`;
+    const DOC_URL = "https://docs.thi.ng/umbrella";
     const EX_DIR = "../../examples";
 
     const RE_PKG = /@thi\.ng\/[a-z0-9-]+/g;
@@ -49,13 +50,14 @@ try {
                     fs.readFileSync(`${EX_DIR}/${ex}/package.json`)
                 );
                 const meta = expkg[META_FIELD] || {};
-                const include = Array.isArray(meta.readme)
-                    ? meta.readme.includes(shortName(pkgName))
-                    : meta.readme === true;
+                const explicitInclude =
+                    Array.isArray(meta.readme) &&
+                    meta.readme.includes(shortName(pkgName));
                 if (
-                    include &&
-                    expkg.dependencies &&
-                    expkg.dependencies[pkgName]
+                    explicitInclude ||
+                    (meta.readme === true &&
+                        expkg.dependencies &&
+                        expkg.dependencies[pkgName])
                 ) {
                     const body = [
                         `### ${expkg.name}`,
@@ -64,7 +66,7 @@ try {
                             ? asset(meta.screenshot, "screenshot") + "\n"
                             : null,
                         expkg.description ? expkg.description + "\n" : null,
-                        link("Live demo", `${DEMO_URL}/${expkg.name}`) +
+                        link("Live demo", `${DEMO_URL}/${expkg.name}/`) +
                             " | " +
                             link(
                                 "Source",
@@ -152,6 +154,9 @@ try {
         ].join("\n");
     };
 
+    const docLink = (pkgName) =>
+        link("Generated API docs", `${DOC_URL}/${shortName(pkgName)}/`);
+
     const authors = () => {
         try {
             return fs
@@ -163,8 +168,10 @@ try {
     };
 
     const copyright = (startYear, author) => {
-        const now = new Date();
-        return `${startYear} - ${now.getFullYear()} ${author}`;
+        const now = new Date().getFullYear();
+        return startYear < now
+            ? `${startYear} - ${now} ${author}`
+            : `${startYear} ${author}`;
     };
 
     const injectTOC = (readme) => {
@@ -190,21 +197,23 @@ try {
         supportPackages: () => supportPackages(PKG.name),
         blogPosts: () => blogPosts(META.blog),
         copyright: () => copyright(START_YEAR, MAIN_AUTHOR),
+        docLink: () => docLink(PKG.name),
         license: LICENSE,
         authors
     };
 
-    let readme = TPL.replace(RE_PARTIAL, (_, id) => {
+    let readme = TPL.replace(RE_PARTIAL, (orig, id) => {
         if (!partials.hasOwnProperty(id)) {
-            throw new Error(`unsupported tpl ID: "${id}"`);
+            console.warn(`skipping unsupported tpl ID: "${id}"`);
+            return orig;
         }
         const part = partials[id];
         return (typeof part === "function" ? part() : part) || "";
     });
 
-    readme =
-        "<!-- This file is generated - DO NOT EDIT! -->\n\n" +
-        injectTOC(readme);
+    readme = readme.replace(/\n{3,}/g, "\n\n");
+    readme = injectTOC(readme);
+    readme = "<!-- This file is generated - DO NOT EDIT! -->\n\n" + readme;
 
     fs.writeFileSync("./README.gen.md", readme);
 } catch (e) {
