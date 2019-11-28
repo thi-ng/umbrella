@@ -28,6 +28,7 @@ try {
     const RE_HEADING = /^(#{2,4})\s(.+)/;
     const RE_SLUG = /[^a-z0-9]/gi;
     const PATTERN_TOC = "<!-- TOC -->";
+    const PATTERN_NO_TOC = "<!-- NOTOC -->";
 
     const shortName = (name) => name.split("/")[1];
 
@@ -41,6 +42,23 @@ try {
     const asset = (file, alt = "") => `![${alt}](${ASSET_URL}/${file})`;
 
     const list = (items) => items.map((x) => `- ${x}`).join("\n");
+
+    const packageList = (pkgShortNames, title) => {
+        const items = [];
+        for (let p of pkgShortNames) {
+            try {
+                const pkg = JSON.parse(fs.readFileSync(`../${p}/package.json`));
+                items.push(
+                    pkgLink(pkg.name) +
+                        " - " +
+                        pkg.description.replace(RE_PKG, pkgLink)
+                );
+            } catch (_) {
+                console.log(`error reading support pkg: ${p.name}`);
+            }
+        }
+        return items.length > 0 ? `### ${title}\n\n${list(items)}` : "";
+    };
 
     const examples = (pkgName) => {
         const examples = [];
@@ -60,7 +78,7 @@ try {
                         expkg.dependencies[pkgName])
                 ) {
                     const body = [
-                        `### ${expkg.name}`,
+                        `### ${expkg.name} ${PATTERN_NO_TOC}`,
                         "",
                         meta.screenshot
                             ? asset(meta.screenshot, "screenshot") + "\n"
@@ -96,25 +114,17 @@ try {
     };
 
     const supportPackages = (pkgName) => {
-        const pkgs = [];
         const pkgShortName = shortName(pkgName);
-        const matches = fs
-            .readdirSync("../")
-            .filter((x) => x.startsWith(pkgShortName + "-"));
-        for (let p of matches) {
-            try {
-                const pkg = JSON.parse(fs.readFileSync(`../${p}/package.json`));
-                pkgs.push(
-                    pkgLink(pkg.name) +
-                        " - " +
-                        pkg.description.replace(RE_PKG, pkgLink)
-                );
-            } catch (_) {
-                console.log(`error reading support pkg: ${p.name}`);
-            }
-        }
-        return pkgs.length > 0 ? `### Support packages\n\n${list(pkgs)}` : "";
+        return packageList(
+            fs
+                .readdirSync("../")
+                .filter((x) => x.startsWith(pkgShortName + "-")),
+            "Support packages"
+        );
     };
+
+    const relatedPackages = (pkgShortNames = []) =>
+        packageList(pkgShortNames, "Related packages");
 
     const packageDesc = (pkg) => {
         const desc = pkg.description.replace(RE_PKG, pkgLink) + ".";
@@ -177,7 +187,11 @@ try {
     const injectTOC = (readme) => {
         const toc = readme
             .split("\n")
-            .filter((line) => RE_IS_HEADING.test(line))
+            .filter(
+                (line) =>
+                    RE_IS_HEADING.test(line) &&
+                    line.indexOf(PATTERN_NO_TOC) === -1
+            )
             .map((hd) => {
                 const [_, level, title] = RE_HEADING.exec(hd);
                 const indent = "      ".substr(0, (level.length - 2) * 2);
@@ -195,6 +209,7 @@ try {
         status: () => packageStatus(META.status),
         examples: () => examples(PKG.name),
         supportPackages: () => supportPackages(PKG.name),
+        relatedPackages: () => relatedPackages(META.related),
         blogPosts: () => blogPosts(META.blog),
         copyright: () => copyright(START_YEAR, MAIN_AUTHOR),
         docLink: () => docLink(PKG.name),
@@ -215,7 +230,7 @@ try {
     readme = injectTOC(readme);
     readme = "<!-- This file is generated - DO NOT EDIT! -->\n\n" + readme;
 
-    fs.writeFileSync("./README.gen.md", readme);
+    fs.writeFileSync("./README.md", readme);
 } catch (e) {
     console.log(e.message);
     process.exit(1);
