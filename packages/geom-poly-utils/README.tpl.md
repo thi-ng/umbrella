@@ -13,6 +13,20 @@ This project is part of the
 
 ${pkg.description}
 
+- signed 2D polygon & triangle area
+- triangle barycentric coord conversion
+- nD point cloud bounding box
+- 2D poly center of weight
+- nD point cloud centroid
+- 2D circumcenter
+- 2D polygon convexity classification
+- 2D equilateral triangle
+- polygon / polyline perimeter
+
+Current implementations partially based on
+[toxiclibs](http://toxiclibs.org) (Java) and Clojure version of
+[thi.ng/geom](http://thi.ng/geom).
+
 ${status}
 
 ${supportPackages}
@@ -32,6 +46,8 @@ ${pkg.deps}
 ${examples}
 
 ## API
+
+${docLink}
 
 TODO
 

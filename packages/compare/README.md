@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/compare
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/compare.svg)](https://www.npmjs.com/package/@thi.ng/compare)
@@ -7,14 +9,23 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+- [About](#about)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
+  - [triple-query](#triple-query)
+- [API](#api)
+- [Authors](#authors)
+- [License](#license)
+
 ## About
 
-General purpose comparator with optional delegation for types
-implementing the `@thi.ng/api/ICompare` interface.
+Comparators with support for types implementing the [@thi.ng/api `ICompare`](https://github.com/thi-ng/umbrella/tree/master/packages/api/src/api/compare.ts) interface.
 
-This feature was previously part of the
-[@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-package.
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -27,6 +38,20 @@ yarn add @thi.ng/compare
 None
 
 ## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### triple-query
+
+[Live demo](https://demo.thi.ng/umbrella/triple-query/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/triple-query)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/compare/)
 
 ```ts
 import { ICompare } from "@thi.ng/api";
@@ -51,8 +76,8 @@ compare(new Foo(1), new Foo(2));
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2019 Karsten Schmidt // Apache Software License 2.0

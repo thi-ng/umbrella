@@ -33,7 +33,15 @@ ${examples}
 
 ## API
 
-TODO
+${docLink}
+
+- [comp()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/comp.ts)
+- [compL()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/comp.ts#L52)
+- [juxt()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/juxt.ts)
+- [partial()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/partial.ts)
+- [threadFirst()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/thread-first.ts)
+- [threadLast()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/thread-last.ts)
+- [trampoline()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/trampoline.ts)
 
 ## Authors
 

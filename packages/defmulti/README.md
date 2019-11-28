@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/defmulti
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/defmulti.svg)](https://www.npmjs.com/package/@thi.ng/defmulti)
@@ -7,6 +9,21 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+- [About](#about)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [API](#api)
+  - [defmulti()](#defmulti--)
+    - [Dispatch value hierarchies](#dispatch-value-hierarchies)
+  - [implementations()](#implementations--)
+  - [defmultiN()](#defmultin--)
+- [Usage examples](#usage-examples)
+    - [Dynamic dispatch: Simple S-expression interpreter](#dynamic-dispatch--simple-s-expression-interpreter)
+    - [True multiple arg dispatch](#true-multiple-arg-dispatch)
+- [Authors](#authors)
+- [License](#license)
+
 ## About
 
 Dynamically extensible [multiple
@@ -14,6 +31,10 @@ dispatch](https://en.wikipedia.org/wiki/Multiple_dispatch) via user
 supplied dispatch function, with minimal overhead and support for
 dispatch value inheritance hierarchies (more flexible and independent of
 any actual JS type relationships).
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -27,6 +48,8 @@ yarn add @thi.ng/defmulti
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 
 ## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/defmulti/)
 
 ### defmulti()
 
@@ -237,7 +260,6 @@ See
 [/test/index.ts](https://github.com/thi-ng/umbrella/tree/master/packages/defmulti/test/index.ts)
 for a variation of this example.
 
-
 #### Dynamic dispatch: Simple S-expression interpreter
 
 ```ts
@@ -279,12 +301,10 @@ apr({type: "isa", balance: 10000});
 // Error: invalid account type: isa
 ```
 
-
-
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

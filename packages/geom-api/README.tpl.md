@@ -33,6 +33,8 @@ ${examples}
 
 ## API
 
+${docLink}
+
 TODO
 
 ## Authors

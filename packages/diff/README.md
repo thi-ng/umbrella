@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/diff
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/diff.svg)](https://www.npmjs.com/package/@thi.ng/diff)
@@ -7,10 +9,23 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+- [About](#about)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [API](#api)
+- [Breaking changes](#breaking-changes)
+  - [2.0.0](#2-0-0)
+- [Authors](#authors)
+- [License](#license)
+
 ## About
 
-Customizable diff implementations for JS arrays (sequential) & objects
-(associative), with or without linear edit logs.
+Customizable diff implementations for arrays (sequential) & objects (associative), with or without linear edit logs.
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -23,7 +38,9 @@ yarn add @thi.ng/diff
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/diff/)
 
 ```ts
 import { diffArray, DiffMode } from "@thi.ng/diff";
@@ -54,8 +71,8 @@ The order of optional args to both functions has been swapped to:
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2019 Karsten Schmidt // Apache Software License 2.0

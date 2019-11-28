@@ -1,33 +1,33 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/ecs
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/ecs.svg)](https://www.npmjs.com/package/@thi.ng/ecs)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/ecs.svg)](https://www.npmjs.com/package/@thi.ng/ecs)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/ecs.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
-    - [Status](#status)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-    - [Basic concepts](#basic-concepts)
+  - [soa-ecs](#soa-ecs)
+- [API](#api)
+  - [Basic concepts](#basic-concepts)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
 
-Entity Component System based on memory mapped buffers & sparse sets.
+Entity Component System based around typed arrays & sparse sets.
 
 - Entities are merely numeric identifiers
 - Component types:
-    - Memory mapped (typed array views, customizable striding)
-    - JS objects
+    - Numeric / vectors are stored as typed array views with customizable striding
+    - arbitrary JS values are stored in vanilla JS arrays
 - Component grouping w/ optional group ownership to allow re-ordering
   components for optimized iteration
 - Systems are plain functions
@@ -35,7 +35,7 @@ Entity Component System based on memory mapped buffers & sparse sets.
 
 ### Status
 
-ALPHA - WIP
+**ALPHA** - bleeding edge / work-in-progress
 
 ## Installation
 
@@ -49,16 +49,27 @@ yarn add @thi.ng/ecs
 - [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/master/packages/associative)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 - [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons)
+- [@thi.ng/soa](https://github.com/thi-ng/umbrella/tree/master/packages/soa)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
 ## Usage examples
 
-![100k particle system](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/soa-ecs-100k.png)
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
 
-See the ECS particle system example for usage/reference:
+A selection:
 
-[Live version](https://demo.thi.ng/umbrella/soa-ecs/) |
-[Source code](https://github.com/thi-ng/umbrella/tree/master/examples/soa-ecs/)
+### soa-ecs
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/soa-ecs-100k.png)
+
+[Live demo](https://demo.thi.ng/umbrella/soa-ecs/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/soa-ecs)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/ecs/)
 
 ### Basic concepts
 
@@ -132,7 +143,7 @@ group.forEach((x) => console.log(x));
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 

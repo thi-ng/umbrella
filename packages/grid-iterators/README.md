@@ -1,36 +1,39 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/grid-iterators
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/grid-iterators.svg)](https://www.npmjs.com/package/@thi.ng/grid-iterators)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/grid-iterators.svg)](https://www.npmjs.com/package/@thi.ng/grid-iterators)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/grid-iterators.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
-    - [Diagonal](#diagonal)
-    - [Hilbert curve](#hilbert-curve)
-    - [Interleave columns](#interleave-columns)
-    - [Interleave rows](#interleave-rows)
-    - [Random](#random)
-    - [Outward spiral](#outward-spiral)
-    - [Z-curve](#z-curve)
-    - [Zigzag columns](#zigzag-columns)
-    - [Zigzag diagonal](#zigzag-diagonal)
-    - [Zigzag rows](#zigzag-rows)
+  - [Diagonal](#diagonal)
+  - [Hilbert curve](#hilbert-curve)
+  - [Interleave columns](#interleave-columns)
+  - [Interleave rows](#interleave-rows)
+  - [Random](#random)
+  - [Outward spiral](#outward-spiral)
+  - [Z-curve](#z-curve)
+  - [Zigzag columns](#zigzag-columns)
+  - [Zigzag diagonal](#zigzag-diagonal)
+  - [Zigzag rows](#zigzag-rows)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
+  - [grid-iterators](#grid-iterators)
+- [API](#api)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
 
-Collection of 2D grid iterators, providing the 10 following orderings:
+2D grid iterators w/ multiple orderings.
+
+Provides the 10 following orderings to generate grid coordinates:
 
 ### Diagonal
 
@@ -107,6 +110,10 @@ For more basic 2D/3D grid iteration, also see `range2d()` & `range3d()`
 in
 [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers).
 
+### Status
+
+**STABLE** - used in production
+
 ## Installation
 
 ```bash
@@ -123,6 +130,20 @@ yarn add @thi.ng/grid-iterators
 
 ## Usage examples
 
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### grid-iterators
+
+[Live demo](https://demo.thi.ng/umbrella/grid-iterators/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/grid-iterators)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/grid-iterators/)
+
 ```ts
 import * as gi from "@thi.ng/grid-iterators";
 
@@ -138,7 +159,7 @@ import * as gi from "@thi.ng/grid-iterators";
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 

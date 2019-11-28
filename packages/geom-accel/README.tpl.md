@@ -13,6 +13,20 @@ This project is part of the
 
 ${pkg.description}
 
+Some implementations were ported from the Clojure version of
+[thi.ng/geom](http://thi.ng/geom).
+
+Currently available:
+
+- [k-D Tree](src/kdtree.ts)
+
+**TODO: reimport / publish**
+
+- [Grid](src/grid.ts)
+- [Quadtree](src/quadtree.ts)
+- [Octree](src/octree.ts)
+- [Morton / Z-order](src/morton.ts)
+
 ${status}
 
 ${supportPackages}
@@ -32,6 +46,8 @@ ${pkg.deps}
 ${examples}
 
 ## API
+
+${docLink}
 
 TODO
 

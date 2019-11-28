@@ -33,7 +33,22 @@ ${examples}
 
 ## API
 
-TODO
+${docLink}
+
+- [binarySearch()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/binary-search.ts)
+- [endsWith()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/ends-with.ts)
+- [ensureArray()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/ensure-array.ts)
+- [ensureIterable()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/ensure-iterable.ts)
+- [fuzzyMatch()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/fuzzy-match.ts)
+- [isSorted()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/is-sorted.ts)
+- [multiSwap()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/swap.ts)
+- [peek()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/peek.ts)
+- [quickSort()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/quicksort.ts)
+- [shuffle()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/shuffle.ts) (w/ custom PRNG support)
+- [shuffleRange()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/shuffle.ts) (w/ custom PRNG support)
+- [startsWith()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/starts-with.ts)
+- [swap()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/swap.ts)
+- [swizzle()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/swizzle.ts)
 
 ## Authors
 

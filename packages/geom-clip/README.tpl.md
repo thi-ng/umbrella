@@ -13,6 +13,9 @@ This project is part of the
 
 ${pkg.description}
 
+Current implementation is based on [toxiclibs](http://toxiclibs.org)
+(Java) and Clojure version of [thi.ng/geom](http://thi.ng/geom).
+
 ${status}
 
 ${supportPackages}
@@ -32,6 +35,8 @@ ${pkg.deps}
 ${examples}
 
 ## API
+
+${docLink}
 
 TODO
 

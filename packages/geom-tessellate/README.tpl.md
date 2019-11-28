@@ -13,6 +13,17 @@ This project is part of the
 
 ${pkg.description}
 
+- [earcut](https://github.com/thi-ng/umbrella/tree/master/packages/geom-tessellate/src/earcut.ts)
+- [edgeSplit](https://github.com/thi-ng/umbrella/tree/master/packages/geom-tessellate/src/edge-split.ts)
+- [inset](https://github.com/thi-ng/umbrella/tree/master/packages/geom-tessellate/src/inset.ts)
+- [quadFan](https://github.com/thi-ng/umbrella/tree/master/packages/geom-tessellate/src/quad-fan.ts)
+- [rimTris](https://github.com/thi-ng/umbrella/tree/master/packages/geom-tessellate/src/rim-tris.ts)
+- [triFan](https://github.com/thi-ng/umbrella/tree/master/packages/geom-tessellate/src/tri-fan.ts)
+
+**Note**: Though not officially supported, all functions *might* also
+work (in principle) with concave polygons, though correct results are
+highly dependent on the concavities present. YMMV!
+
 ${status}
 
 ${supportPackages}
@@ -32,6 +43,8 @@ ${pkg.deps}
 ${examples}
 
 ## API
+
+${docLink}
 
 TODO
 

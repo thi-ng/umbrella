@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/atom
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/atom.svg)](https://www.npmjs.com/package/@thi.ng/atom)
@@ -7,27 +9,36 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
-    - [Status](#status)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-    - [Atom](#atom)
-    - [Transacted updates](#transacted-updates)
-    - [Cursor](#cursor)
-    - [Derived views](#derived-views)
-    - [Undo / Redo history](#undo--redo-history)
+  - [devcards](#devcards)
+  - [hdom-dropdown-fuzzy](#hdom-dropdown-fuzzy)
+  - [hdom-dyn-context](#hdom-dyn-context)
+  - [interceptor-basics](#interceptor-basics)
+  - [rotating-voronoi](#rotating-voronoi)
+  - [router-basics](#router-basics)
+  - [rstream-dataflow](#rstream-dataflow)
+  - [rstream-grid](#rstream-grid)
+  - [svg-waveform](#svg-waveform)
+  - [hdom-todolist](#hdom-todolist)
+  - [triple-query](#triple-query)
+- [API](#api)
+  - [Atom](#atom)
+  - [Transacted updates](#transacted-updates)
+  - [Cursor](#cursor)
+  - [Derived views](#derived-views)
+  - [Undo / Redo history](#undo---redo-history)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
 
-Clojure inspired mutable wrappers for (usually) immutable values, with
-infrastructure support for:
+Mutable wrappers for nested immutable values with optional undo/redo history and transaction support.
+
+Clojure inspired wrappers with infrastructure support for:
 
 - watches
 - derived view subscriptions
@@ -42,7 +53,7 @@ as single source of truth within an application.
 
 ### Status
 
-Stable, used in production and in active development.
+**STABLE** - used in production
 
 ## Installation
 
@@ -60,9 +71,65 @@ yarn add @thi.ng/atom
 
 ## Usage examples
 
-Several projects in the
-[/examples](https://github.com/thi-ng/umbrella/tree/master/examples/)
-directory make heavy use of this library.
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### devcards
+
+[Live demo](https://demo.thi.ng/umbrella/devcards/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/devcards)
+
+### hdom-dropdown-fuzzy
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-dropdown-fuzzy)
+
+### hdom-dyn-context
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-dyn-context/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-dyn-context)
+
+### interceptor-basics
+
+[Live demo](https://demo.thi.ng/umbrella/interceptor-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/interceptor-basics)
+
+### rotating-voronoi
+
+[Live demo](https://demo.thi.ng/umbrella/rotating-voronoi/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rotating-voronoi)
+
+### router-basics
+
+Basic @thi.ng/router & @thi.ng/hdom app skeleton
+
+[Live demo](https://demo.thi.ng/umbrella/router-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/router-basics)
+
+### rstream-dataflow
+
+[Live demo](https://demo.thi.ng/umbrella/rstream-dataflow/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-dataflow)
+
+### rstream-grid
+
+Interactive grid generator, SVG generation & export, undo/redo support
+
+[Live demo](https://demo.thi.ng/umbrella/rstream-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid)
+
+### svg-waveform
+
+Additive waveform synthesis & SVG visualization with undo/redo
+
+[Live demo](https://demo.thi.ng/umbrella/svg-waveform/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-waveform)
+
+### hdom-todolist
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-todolist/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-todolist)
+
+### triple-query
+
+[Live demo](https://demo.thi.ng/umbrella/triple-query/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/triple-query)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/atom/)
 
 ### Atom
 
@@ -468,8 +535,8 @@ db.canRedo()
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2019 Karsten Schmidt // Apache Software License 2.0

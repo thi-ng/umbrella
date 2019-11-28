@@ -1,29 +1,31 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/geom-subdiv-curve
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/geom-subdiv-curve.svg)](https://www.npmjs.com/package/@thi.ng/geom-subdiv-curve)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/geom-subdiv-curve.svg)](https://www.npmjs.com/package/@thi.ng/geom-subdiv-curve)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-subdiv-curve.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
+- [API](#api)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
 
-Freely customizable, iterative subdivision curves for open / closed input geometries.
+Freely customizable, iterative nD subdivision curves for open / closed geometries.
 
-Based in principle on: [Generating subdivision curves with L−systems on
-a GPU](http://algorithmicbotany.org/papers/subgpu.sig2003.pdf)
+Based in principle on:
+
+- [Generating subdivision curves with L−systems on a
+  GPU](http://algorithmicbotany.org/papers/subgpu.sig2003.pdf)
+- Clojure version of [thi.ng/geom](http://thi.ng/geom).
 
 Supplied / implemented subdivision schemes:
 
@@ -35,6 +37,10 @@ Supplied / implemented subdivision schemes:
 | Chaikin (closed)                                        | Chaikin (open)                                      |
 |---------------------------------------------------------|-----------------------------------------------------|
 | ![chaikin closed](../../assets/geom/chaikin-closed.svg) | ![chaikin open](../../assets/geom/chaikin-open.svg) |
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -48,7 +54,9 @@ yarn add @thi.ng/geom-subdiv-curve
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/geom-subdiv-curve/)
 
 ```ts
 import * as gsc from "@thi.ng/geom-subdiv-curve";
@@ -58,8 +66,8 @@ gsc.subdivide([[0,0], [100,0], [100,100], [0,100]], gsc.SUBDIV_CHAIKIN_CLOSED, 4
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2019 Karsten Schmidt // Apache Software License 2.0

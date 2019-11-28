@@ -11,7 +11,7 @@ This project is part of the
 
 ## About
 
-${pkg.description}
+Comparators with support for types implementing the [@thi.ng/api `ICompare`](https://github.com/thi-ng/umbrella/tree/master/packages/api/src/api/compare.ts) interface.
 
 ${status}
 
@@ -33,7 +33,28 @@ ${examples}
 
 ## API
 
-TODO
+${docLink}
+
+```ts
+import { ICompare } from "@thi.ng/api";
+import { compare } from "@thi.ng/compare";
+
+class Foo implements ICompare<Foo> {
+
+    x: number;
+
+    constructor(x: number) {
+        this.x = x;
+    }
+
+    compare(o: Foo) {
+        return compare(this.x, o.x);
+    }
+}
+
+compare(new Foo(1), new Foo(2));
+// -1
+```
 
 ## Authors
 

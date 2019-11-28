@@ -13,6 +13,10 @@ This project is part of the
 
 ${pkg.description}
 
+Current implementations partially based on
+[toxiclibs](http://toxiclibs.org) (Java) and Clojure version of
+[thi.ng/geom](http://thi.ng/geom).
+
 ${status}
 
 ${supportPackages}
@@ -33,7 +37,20 @@ ${examples}
 
 ## API
 
-TODO
+${docLink}
+
+- `closestPointAABB`
+- `closestPointArray`
+- `closestPointCircle`
+- `closestPointLine`
+- `closestPointPlane`
+- `closestPointPolyline`
+- `closestPointRect`
+- `closestPointSphere`
+- `closestPointSegment`
+- `closestT`
+- `distToLine`
+- `distToSegment`
 
 ## Authors
 

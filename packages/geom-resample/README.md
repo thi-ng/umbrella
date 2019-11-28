@@ -1,27 +1,38 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/geom-resample
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/geom-resample.svg)](https://www.npmjs.com/package/@thi.ng/geom-resample)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/geom-resample.svg)](https://www.npmjs.com/package/@thi.ng/geom-resample)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-resample.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
+  - [rotating-voronoi](#rotating-voronoi)
+- [API](#api)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
 
-Customizable nD polyline interpolation, re-sampling, splitting & nearest
-point computation, Douglas-Peucker polyline / polygon simplifaction.
+Customizable nD polyline interpolation, re-sampling, splitting & nearest point computation.
+
+Also includes an implementation of [Douglas-Peucker polyline / polygon
+simplification](https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm).
+
+Current implementations partially based on
+[toxiclibs](http://toxiclibs.org) (Java) and Clojure version of
+[thi.ng/geom](http://thi.ng/geom).
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -38,6 +49,20 @@ yarn add @thi.ng/geom-resample
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
 ## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### rotating-voronoi
+
+[Live demo](https://demo.thi.ng/umbrella/rotating-voronoi/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rotating-voronoi)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/geom-resample/)
 
 ```ts
 import { resample, simplify } from "@thi.ng/geom-resample";
@@ -59,8 +84,8 @@ simplify(pts, 0, true)
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2013 - 2019 Karsten Schmidt // Apache Software License 2.0

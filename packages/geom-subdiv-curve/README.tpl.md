@@ -13,6 +13,23 @@ This project is part of the
 
 ${pkg.description}
 
+Based in principle on:
+
+- [Generating subdivision curves with L−systems on a
+  GPU](http://algorithmicbotany.org/papers/subgpu.sig2003.pdf)
+- Clojure version of [thi.ng/geom](http://thi.ng/geom).
+
+Supplied / implemented subdivision schemes:
+
+- Split @ midpoints (open / closed)
+- Split @ thirds (open / closed)
+- Chaikin (open / closed)
+- Cubic (closed only)
+
+| Chaikin (closed)                                        | Chaikin (open)                                      |
+|---------------------------------------------------------|-----------------------------------------------------|
+| ![chaikin closed](../../assets/geom/chaikin-closed.svg) | ![chaikin open](../../assets/geom/chaikin-open.svg) |
+
 ${status}
 
 ${supportPackages}
@@ -33,7 +50,13 @@ ${examples}
 
 ## API
 
-TODO
+${docLink}
+
+```ts
+import * as gsc from "@thi.ng/geom-subdiv-curve";
+
+gsc.subdivide([[0,0], [100,0], [100,100], [0,100]], gsc.SUBDIV_CHAIKIN_CLOSED, 4)
+```
 
 ## Authors
 

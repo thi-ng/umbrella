@@ -1,26 +1,29 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/geom-arc
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/geom-arc.svg)](https://www.npmjs.com/package/@thi.ng/geom-arc)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/geom-arc.svg)](https://www.npmjs.com/package/@thi.ng/geom-arc)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-arc.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
+- [API](#api)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
 
-2D circular / elliptic arc operations
+2D circular / elliptic arc operations.
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -36,16 +39,16 @@ yarn add @thi.ng/geom-arc
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
-## Usage examples
+## API
 
-```ts
-import * as ga from "@thi.ng/geom-arc";
-```
+[Generated API docs](https://docs.thi.ng/umbrella/geom-arc/)
+
+TODO
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

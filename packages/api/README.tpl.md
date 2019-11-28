@@ -13,6 +13,16 @@ This project is part of the
 
 ${pkg.description}
 
+This package is implicitly used by most other projects in this
+repository. It defines:
+
+- Dozens of generic, common interfaces & types
+- Class & method decorators
+- Mixins
+- Logging
+- Assert (can be disabled for production builds)
+- Typedarray utilities
+
 ${status}
 
 ${supportPackages}
@@ -32,6 +42,8 @@ ${pkg.deps}
 ${examples}
 
 ## API
+
+${docLink}
 
 TODO
 

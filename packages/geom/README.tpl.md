@@ -13,9 +13,19 @@ This project is part of the
 
 ${pkg.description}
 
-${status}
+This project is a partially ported from the [Clojure version of the same
+name](http://thi.ng/geom). All polymorphic operations built on
+[@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/master/packages/defmulti).
+
+[**Up-to-date feature matrix spreadsheet**](https://docs.google.com/spreadsheets/d/1GxJm-zOQaGECui2MJUmy3gQPTF-T6BJ6vhNlUnPsmDs/edit?usp=sharing)
+
+This package acts as a higher-level frontend for most of the following
+related packages (which are more low-level, lightweight and usable by
+themselves too):
 
 ${supportPackages}
+
+${status}
 
 ${blogPosts}
 
@@ -32,6 +42,8 @@ ${pkg.deps}
 ${examples}
 
 ## API
+
+${docLink}
 
 TODO
 

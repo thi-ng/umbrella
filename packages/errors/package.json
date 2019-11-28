@@ -47,5 +47,8 @@
         "process": false,
         "setTimeout": false
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "year": 2018
+    }
 }

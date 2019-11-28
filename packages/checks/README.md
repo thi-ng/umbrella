@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/checks
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)
@@ -7,10 +9,23 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+- [About](#about)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [API](#api)
+- [Authors](#authors)
+  - [Maintainer](#maintainer)
+  - [Contributors](#contributors)
+- [License](#license)
+
 ## About
 
-This package provides ~50 single-function sub-modules for type, feature
-& value checks.
+Collection of 50+ type, feature & value checks.
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -22,20 +37,23 @@ yarn add @thi.ng/checks
 
 None
 
-## Usage
+## API
 
-```ts
-// full import
-import * as checks from "@thi.ng/checks";
+[Generated API docs](https://docs.thi.ng/umbrella/checks/)
 
-// individual import
-import { isFunction } from "@thi.ng/checks";
-```
+TODO
 
 ## Authors
 
-- Karsten Schmidt
+### Maintainer
+
+-   Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
+
+### Contributors
+
+-   Gavin Cannizzaro ([@gavinpc-mindgrub](https://github.com/gavinpc-mindgrub))
+-   Jay Zawrotny ([@eccentric-j](https://github.com/eccentric-j))
 
 ## License
 
-&copy; 2016-2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2019 Karsten Schmidt // Apache Software License 2.0

@@ -1,27 +1,32 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/bitfield
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/bitfield.svg)](https://www.npmjs.com/package/@thi.ng/bitfield)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/bitfield.svg)](https://www.npmjs.com/package/@thi.ng/bitfield)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/bitfield.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
+- [API](#api)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
 
-Typed array backed 1D / 2D bit field / bit matrix implementations. Due
-to `Uint32Array` backing, width is always a multiple of 32.
+1D / 2D bit field implementations.
+
+All implementations are backed by typed arrays. Due to `Uint32Array`
+backing the width is always rounded to a multiple of 32.
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -31,10 +36,13 @@ yarn add @thi.ng/bitfield
 
 ## Dependencies
 
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 - [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/master/packages/binary)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/master/packages/strings)
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/bitfield/)
 
 ```ts
 import { BitField, BitMatrix } from "@thi.ng/bitfield";
@@ -81,8 +89,8 @@ mat.toString();
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2019 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2019 Karsten Schmidt // Apache Software License 2.0
