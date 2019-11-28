@@ -16,7 +16,6 @@
         "typescript": "^3.7.2"
     },
     "dependencies": {
-        "@thi.ng/api": "latest",
         "@thi.ng/gp": "latest",
         "@thi.ng/math": "latest",
         "@thi.ng/random": "latest",
@@ -35,7 +34,9 @@
         "readme": [
             "gp",
             "shader-ast",
+            "shader-ast-stdlib",
             "random",
+            "webgl",
             "webgl-shadertoy"
         ],
         "screenshot": "examples/shader-ast-evo.jpg"

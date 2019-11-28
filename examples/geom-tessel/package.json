@@ -17,9 +17,13 @@
     "dependencies": {
         "@thi.ng/compose": "latest",
         "@thi.ng/geom": "latest",
-        "@thi.ng/hdom": "latest",
+        "@thi.ng/geom-api": "latest",
+        "@thi.ng/geom-tessellate": "latest",
         "@thi.ng/hdom-canvas": "latest",
         "@thi.ng/math": "latest",
+        "@thi.ng/rstream": "latest",
+        "@thi.ng/transducers": "latest",
+        "@thi.ng/transducers-hdom": "latest",
         "@thi.ng/vectors": "latest"
     },
     "browserslist": [

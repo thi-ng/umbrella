@@ -17,13 +17,30 @@
     },
     "dependencies": {
         "@thi.ng/api": "latest",
+        "@thi.ng/associative": "latest",
+        "@thi.ng/dsp": "latest",
+        "@thi.ng/hdom": "latest",
+        "@thi.ng/hdom-components": "latest",
+        "@thi.ng/matrices": "latest",
         "@thi.ng/rstream": "latest",
-        "@thi.ng/transducers-hdom": "latest"
+        "@thi.ng/shader-ast": "latest",
+        "@thi.ng/shader-ast-stdlib": "latest",
+        "@thi.ng/transducers": "latest",
+        "@thi.ng/vectors": "latest",
+        "@thi.ng/webgl": "latest"
     },
     "browserslist": [
         "last 3 Chrome versions"
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "dsp",
+            "shader-ast",
+            "shader-ast-stdlib",
+            "webgl"
+        ]
     }
 }

@@ -17,7 +17,19 @@
     },
     "dependencies": {
         "@thi.ng/api": "latest",
+        "@thi.ng/atom": "latest",
+        "@thi.ng/checks": "latest",
+        "@thi.ng/defmulti": "latest",
+        "@thi.ng/errors": "latest",
+        "@thi.ng/hdom": "latest",
+        "@thi.ng/math": "latest",
+        "@thi.ng/memoize": "latest",
+        "@thi.ng/paths": "latest",
         "@thi.ng/rstream": "latest",
+        "@thi.ng/rstream-graph": "latest",
+        "@thi.ng/sexpr": "latest",
+        "@thi.ng/strings": "latest",
+        "@thi.ng/transducers": "latest",
         "@thi.ng/transducers-hdom": "latest"
     },
     "browserslist": [
@@ -25,5 +37,18 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "atom",
+            "defmulti",
+            "hdom",
+            "memoize",
+            "rstream",
+            "rstream-graph",
+            "sexpr",
+            "strings",
+            "transducers-hdom"
+        ]
     }
 }

@@ -17,7 +17,6 @@
         "typescript": "^3.7.2"
     },
     "dependencies": {
-        "@thi.ng/api": "latest",
         "@thi.ng/atom": "latest",
         "@thi.ng/bench": "latest",
         "@thi.ng/geom": "latest",

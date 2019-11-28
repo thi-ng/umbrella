@@ -35,8 +35,13 @@
     "thi.ng": {
         "readme": [
             "ecs",
+            "hdom",
+            "matrices",
             "soa",
-            "vectors"
+            "shader-ast",
+            "shader-ast-glsl",
+            "vectors",
+            "webgl"
         ],
         "screenshot": "examples/soa-ecs-100k.png"
     }
