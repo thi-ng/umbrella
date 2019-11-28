@@ -63,5 +63,10 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "parent": "@thi.ng/rstream",
+        "status": "alpha",
+        "year": 2018
+    }
 }

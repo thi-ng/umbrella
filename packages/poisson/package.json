@@ -57,5 +57,12 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "related": [
+            "geom-voronoi",
+            "random"
+        ],
+        "year": 2016
+    }
 }

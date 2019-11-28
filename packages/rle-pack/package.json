@@ -55,5 +55,12 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "related": [
+            "bitstream",
+            "range-coder"
+        ],
+        "year": 2017
+    }
 }

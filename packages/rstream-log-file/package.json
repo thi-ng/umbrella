@@ -51,5 +51,9 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "parent": "@thi.ng/rstream-log",
+        "year": 2017
+    }
 }

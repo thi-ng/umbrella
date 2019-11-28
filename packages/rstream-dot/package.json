@@ -53,5 +53,12 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "parent": "@thi.ng/rstream",
+        "related": [
+            "dot"
+        ],
+        "year": 2018
+    }
 }

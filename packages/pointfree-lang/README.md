@@ -1,43 +1,43 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/pointfree-lang
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pointfree-lang.svg)](https://www.npmjs.com/package/@thi.ng/pointfree-lang)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pointfree-lang.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
-This project is part of the [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
-
-<!-- TOC depthFrom:2 depthTo:4 -->
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-- [Status](#status)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-- [Language & Syntax](#language--syntax)
-    - [Comments](#comments)
-    - [Identifiers](#identifiers)
-    - [Word definitions](#word-definitions)
-        - [Hyperstatic words](#hyperstatic-words)
-        - [Local variables](#local-variables)
-    - [Boolean](#boolean)
-    - [Numbers](#numbers)
-    - [Strings](#strings)
-    - [Quotations (Arrays)](#quotations-arrays)
-    - [Literal quotes](#literal-quotes)
-    - [Variables](#variables)
-        - [Dynamic scoping](#dynamic-scoping)
-    - [Objects](#objects)
-- [Ideas / Todos](#ideas--todos)
+- [API](#api)
+- [Language & Syntax](#language---syntax)
+  - [Comments](#comments)
+  - [Identifiers](#identifiers)
+  - [Word definitions](#word-definitions)
+    - [Hyperstatic words](#hyperstatic-words)
+    - [Local variables](#local-variables)
+  - [Boolean](#boolean)
+  - [Numbers](#numbers)
+  - [Strings](#strings)
+  - [Quotations (Arrays)](#quotations--arrays-)
+  - [Literal quotes](#literal-quotes)
+  - [Variables](#variables)
+    - [Dynamic scoping](#dynamic-scoping)
+  - [Objects](#objects)
+- [Ideas / Todos](#ideas---todos)
 - [Authors](#authors)
 - [License](#license)
-
-<!-- /TOC -->
 
 ## About
 
 Experimental language layer with compact
 [Forth](https://en.wikipedia.org/wiki/Forth_(programming_language))
-style syntax for the
+style syntax for
 [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree),
 an ES6 embedded DSL for concatenative programming:
 
@@ -53,18 +53,14 @@ an ES6 embedded DSL for concatenative programming:
 - array & object literals (optionally w/ computed properties)
 - all other features of @thi.ng/pointfree (combinators, array/vector ops etc.)
 
-## Status
+### Status
 
-ALPHA
+**ALPHA** - bleeding edge / work-in-progress
 
 ## Installation
 
 ```bash
 yarn add @thi.ng/pointfree-lang
-```
-
-```ts
-import * as pf from "@thi.ng/pointfree-lang";
 ```
 
 ## Dependencies
@@ -75,12 +71,23 @@ import * as pf from "@thi.ng/pointfree-lang";
 
 ## Usage examples
 
-[A complete
-example](https://github.com/thi-ng/umbrella/tree/master/examples/pointfree-svg/)
-generating the below SVG graphic is located in the `/examples`
-directory.
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
 
-![generated example output](https://raw.githubusercontent.com/thi-ng/umbrella/master/examples/pointfree-svg/output.svg)
+A selection:
+
+### pointfree-svg <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/pointfree-svg.png)
+
+[Live demo](https://demo.thi.ng/umbrella/pointfree-svg/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/pointfree-svg)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/pointfree-lang/)
+
+(Code for the above example)
 
 ```ts
 // DSL source code (syntax described further below)
@@ -102,7 +109,6 @@ const src = `
 : hairx ( x y w h -- [] )
   -rot [vline] [hline] bis2 [gfx.line] bia2;
 `;
-
 
 // custom word definition (will be used by `hairx` word above)
 // stack effect:
@@ -517,8 +523,8 @@ pf.runU(src, {bingo: 42}, [43]);
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

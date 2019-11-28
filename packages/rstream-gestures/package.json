@@ -57,6 +57,7 @@
     },
     "sideEffects": false,
     "thi.ng": {
-        "parent": "@thi.ng/rstream"
+        "parent": "@thi.ng/rstream",
+        "year": 2018
     }
 }

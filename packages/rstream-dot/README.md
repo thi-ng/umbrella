@@ -1,17 +1,34 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/rstream-dot
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-dot.svg)](https://www.npmjs.com/package/@thi.ng/rstream-dot)
-![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rsteam-dot.svg)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-dot.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+- [About](#about)
+  - [Status](#status)
+  - [Related packages](#related-packages)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [API](#api)
+- [Authors](#authors)
+- [License](#license)
+
 ## About
 
-Graphviz DOT conversion of
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
-dataflow graph topologies.
+Graphviz DOT conversion of [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream) dataflow graph topologies.
+
+### Status
+
+**STABLE** - used in production
+
+### Related packages
+
+- [@thi.ng/dot](https://github.com/thi-ng/umbrella/tree/master/packages/dot) - Graphviz document abstraction & serialization to DOT format
 
 ## Installation
 
@@ -23,7 +40,9 @@ yarn add @thi.ng/rstream-dot
 
 - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/rstream-dot/)
 
 ```ts
 import * as rsd from "@thi.ng/rstream-dot";
@@ -79,8 +98,8 @@ This will generate this diagram:
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

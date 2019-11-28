@@ -52,5 +52,12 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "related": [
+            "pixel",
+            "shader-ast-stdlib"
+        ],
+        "year": 2018
+    }
 }

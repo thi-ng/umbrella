@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/pixel",
     "version": "0.1.5",
-    "description": "Packed pixel buffer w/ customizable formats, blitting, conversions",
+    "description": "Typed array backed, packed pixel buffer w/ customizable formats, blitting, conversions",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -56,5 +56,11 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "related": [
+            "porter-duff"
+        ],
+        "year": 2019
+    }
 }

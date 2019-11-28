@@ -1,17 +1,19 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/pixel
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pixel.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
-    - [WIP features](#wip-features)
-    - [Preset pixel formats](#preset-pixel-formats)
+  - [WIP features](#wip-features)
+  - [Preset pixel formats](#preset-pixel-formats)
+  - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -19,14 +21,11 @@ This project is part of the
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/pixel/pixel-basics.png)
+Typed array backed, packed pixel buffer w/ customizable formats, blitting, conversions.
 
-Typed array backed, packed integer pixel buffers with customizable
-layout formats and the following operations:
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/pixel/pixel-basics.png)
 
 - Buffer creation from HTML image elements w/ opt resize & format
   conversion (browser only)
@@ -86,6 +85,14 @@ Format specs can freely control channel layout within current limits:
 - In all built-in formats supporting it, the alpha channel always
   occupies the most-significant bits (up to format size)
 
+### Status
+
+**STABLE** - used in production
+
+### Related packages
+
+- [@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/master/packages/porter-duff) - Porter-Duff operators for packed ints & float-array alpha compositing
+
 ## Installation
 
 ```bash
@@ -101,19 +108,27 @@ yarn add @thi.ng/pixel
 
 ## Usage examples
 
-Porter-Duff operators:
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
 
-[Live demo](http://demo.thi.ng/umbrella/porter-duff/) |
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/porter-duff)
+A selection:
 
-![porter-duff compositing modes](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/porter-duff/porter-duff2.png)
+### pixel-basics <!-- NOTOC -->
 
-Code for the screenshot at the top of this readme...
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/pixel/pixel-basics.png)
 
-Also see full example here:
+[Live demo](https://demo.thi.ng/umbrella/pixel-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/pixel-basics)
 
-[Live demo](http://demo.thi.ng/umbrella/pixel-basics/) |
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/pixel-basics)
+### porter-duff <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/porter-duff/porter-duff2.png)
+
+[Live demo](https://demo.thi.ng/umbrella/porter-duff/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/porter-duff)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/pixel/)
 
 ```ts
 import * as pix from "@thi.ng/pixel";
@@ -177,13 +192,11 @@ Promise
 });
 ```
 
-## API
-
 TODO see examples & source comments for now
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 

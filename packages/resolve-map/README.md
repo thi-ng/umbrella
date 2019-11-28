@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/resolve-map
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/resolve-map.svg)](https://www.npmjs.com/package/@thi.ng/resolve-map)
@@ -7,14 +9,25 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+- [About](#about)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
+  - [Statistical analysis](#statistical-analysis)
+  - [Theme configuration](#theme-configuration)
+- [API](#api)
+  - [`resolve(obj)`](#-resolve-obj--)
+- [Authors](#authors)
+- [License](#license)
+
 ## About
 
-DAG resolution of vanilla objects & arrays with internally linked
-values. This is useful for expressing complex configurations with
+DAG resolution of vanilla objects & arrays with internally linked values.
+
+This is useful for expressing complex configurations with
 derived values or computing interrelated values without having to
 specify the order of computations.
-
-**TL;DR go check out [the examples](#usage-examples)**
 
 It's common practice to use nested JS objects for configuration
 purposes. Frequently some values in the object are copies or derivatives
@@ -27,86 +40,9 @@ provide a resolution mechanism to recursively expand their real values
 and / or compute derived values. Both absolute & relative references are
 supported.
 
-## API
+### Status
 
-### `resolve(obj)`
-
-Visits all key-value pairs or array items in depth-first order,
-expands any reference values, mutates the original object and returns
-it. Cyclic references are not allowed and will throw an error.
-However, refs pointing to other refs are recursively resolved (again,
-provided there are no cycles).
-Reference values are special strings representing lookup paths of
-other values in the object and are prefixed with `@` for relative
-refs or `@/` for absolute refs and both using `/` as path separator
-(Note: trailing slashes are NOT allowed!). Relative refs are resolved
-from the currently visited object and support "../" prefixes to
-access any parent levels. Absolute refs are always resolved from the
-root level (the original object passed to this function).
-
-```ts
-// `c` references sibling `d`
-// `d` references parent `a`
-resolve({a: 1, b: {c: "@d", d: "@/a"} })
-// { a: 1, b: { c: 1, d: 1 } }
-```
-
-Any function values are called using two possible conventions:
-
-1) If the user function uses ES6 object destructuring for its first
-   argument, the given object keys are resolved prior to calling the
-   function and the resolved values provided as first argument (object)
-   and a general `resolve` function as second argument.
-2) If no de-structure form is found in the function's arguments, the
-   function is only called with `resolve` as argument.
-
-**Important:** ES6 destructuring can *only* be used for ES6 compile
-targets and *will fail when transpiling to ES5*. If you're not sure, use
-the 2nd (legacy) form. Also, since ES6 var names can't contain special
-characters, destructured keys can ALWAYS only be looked up as siblings
-of the currently processed key.
-
-The `resolve` function provided as arg to the user function accepts a
-path (**without `@` prefix**) to look up any other values in the root
-object.
-
-```ts
-// `c` uses ES6 destructuring form to look up `a` & `b` values
-// `d` uses provided resolve fn arg `$` to look up `c`
-resolve({a: 1, b: 2, c: ({a,b}) => a + b, d: ($) => $("c") })
-// { a: 1, b: 2, c: 3, d: 3 }
-
-// last item references item @ index = 2
-resolve([1,2, ($) => $("0") + $("1"), "@2"])
-// [1, 2, 3, 3]
-```
-
-The return value of the user provided function is used as final value
-for that key in the object. This mechanism can be used to compute
-derived values of other values stored anywhere in the root object.
-**Function values will always be called only once.** Therefore, in order
-to associate a function as final value to a key, it MUST be wrapped with
-an additional function, as shown for the `e` key in the example below.
-Similarly, if an actual string value should happen to start with `@`, it
-needs to be wrapped in a function (see `f` key below).
-
-```ts
-// `a` is derived from 1st array element in `b.d`
-// `b.c` is looked up from `b.d[0]`
-// `b.d[1]` is derived from calling `e(2)`
-// `e` is a wrapped function
-// `f` is wrapped to ignore `@` prefix
-res = resolve({
-  a: ($) => $("b/c") * 100,
-  b: { c: "@d/0", d: [2, ($) => $("../../e")(2) ] },
-  e: () => (x) => x * 10,
-  f: () => "@foo",
-})
-// { a: 200, b: { c: 2, d: [ 2, 20 ] }, e: [Function], f: "@foo" }
-
-res.e(2);
-// 20
-```
+**STABLE** - used in production
 
 ## Installation
 
@@ -116,11 +52,34 @@ yarn add @thi.ng/resolve-map
 
 ## Dependencies
 
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 - [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/master/packages/paths)
 
 ## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### commit-table-ssr <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/commit-table-ssr.png)
+
+Filterable commit log UI w/ minimal server to provide commit history
+
+[Live demo](https://demo.thi.ng/umbrella/commit-table-ssr/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/commit-table-ssr)
+
+### crypto-chart <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/crypto-chart.png)
+
+Basic crypto-currency candle chart with multiple moving averages plots
+
+[Live demo](https://demo.thi.ng/umbrella/crypto-chart/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart)
 
 ### Statistical analysis
 
@@ -235,10 +194,93 @@ resolve({
 // }
 ```
 
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/resolve-map/)
+
+### `resolve(obj)`
+
+Visits all key-value pairs or array items in depth-first order,
+expands any reference values, mutates the original object and returns
+it. Cyclic references are not allowed and will throw an error.
+However, refs pointing to other refs are recursively resolved (again,
+provided there are no cycles).
+Reference values are special strings representing lookup paths of
+other values in the object and are prefixed with `@` for relative
+refs or `@/` for absolute refs and both using `/` as path separator
+(Note: trailing slashes are NOT allowed!). Relative refs are resolved
+from the currently visited object and support "../" prefixes to
+access any parent levels. Absolute refs are always resolved from the
+root level (the original object passed to this function).
+
+```ts
+// `c` references sibling `d`
+// `d` references parent `a`
+resolve({a: 1, b: {c: "@d", d: "@/a"} })
+// { a: 1, b: { c: 1, d: 1 } }
+```
+
+Any function values are called using two possible conventions:
+
+1. If the user function uses ES6 object destructuring for its first
+   argument, the given object keys are resolved prior to calling the
+   function and the resolved values provided as first argument (object)
+   and a general `resolve` function as second argument.
+2. If no de-structure form is found in the function's arguments, the
+   function is only called with `resolve` as argument.
+
+**Important:** ES6 destructuring can *only* be used for ES6 compile
+targets and *will fail when transpiling to ES5*. If you're not sure, use
+the 2nd (legacy) form. Also, since ES6 var names can't contain special
+characters, destructured keys can ALWAYS only be looked up as siblings
+of the currently processed key.
+
+The `resolve` function provided as arg to the user function accepts a
+path (**without `@` prefix**) to look up any other values in the root
+object.
+
+```ts
+// `c` uses ES6 destructuring form to look up `a` & `b` values
+// `d` uses provided resolve fn arg `$` to look up `c`
+resolve({a: 1, b: 2, c: ({a,b}) => a + b, d: ($) => $("c") })
+// { a: 1, b: 2, c: 3, d: 3 }
+
+// last item references item @ index = 2
+resolve([1,2, ($) => $("0") + $("1"), "@2"])
+// [1, 2, 3, 3]
+```
+
+The return value of the user provided function is used as final value
+for that key in the object. This mechanism can be used to compute
+derived values of other values stored anywhere in the root object.
+**Function values will always be called only once.** Therefore, in order
+to associate a function as final value to a key, it MUST be wrapped with
+an additional function, as shown for the `e` key in the example below.
+Similarly, if an actual string value should happen to start with `@`, it
+needs to be wrapped in a function (see `f` key below).
+
+```ts
+// `a` is derived from 1st array element in `b.d`
+// `b.c` is looked up from `b.d[0]`
+// `b.d[1]` is derived from calling `e(2)`
+// `e` is a wrapped function
+// `f` is wrapped to ignore `@` prefix
+res = resolve({
+  a: ($) => $("b/c") * 100,
+  b: { c: "@d/0", d: [2, ($) => $("../../e")(2) ] },
+  e: () => (x) => x * 10,
+  f: () => "@foo",
+})
+// { a: 200, b: { c: 2, d: [ 2, 20 ] }, e: [Function], f: "@foo" }
+
+res.e(2);
+// 20
+```
+
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

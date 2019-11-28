@@ -50,5 +50,12 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "related": [
+            "bitstream",
+            "rle-pack"
+        ],
+        "year": 2017
+    }
 }
