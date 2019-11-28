@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/hiccup
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup.svg)](https://www.npmjs.com/package/@thi.ng/hiccup)
@@ -7,41 +9,41 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
-    - [Features](#features)
-    - [Use cases](#use-cases)
-    - [Related packages](#related-packages)
-    - [No special sauce needed (or wanted)](#no-special-sauce-needed-or-wanted)
-    - [What is Hiccup?](#what-is-hiccup)
+  - [Features](#features)
+  - [Use cases](#use-cases)
+  - [No special sauce needed (or wanted)](#no-special-sauce-needed--or-wanted-)
+  - [What is Hiccup?](#what-is-hiccup-)
+  - [Status](#status)
+  - [Support packages](#support-packages)
+  - [Related packages](#related-packages)
+  - [Blog posts](#blog-posts)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Examples](#examples)
-    - [Tags with Zencoding expansion](#tags-with-zencoding-expansion)
-    - [Attributes](#attributes)
-    - [Simple components](#simple-components)
-    - [User context injection](#user-context-injection)
-    - [SVG generation, generators & lazy composition](#svg-generation-generators--lazy-composition)
-    - [Data-driven component composition](#data-driven-component-composition)
-    - [Stateful component](#stateful-component)
-    - [Component objects](#component-objects)
-    - [Behavior control attributes](#behavior-control-attributes)
-    - [Comments](#comments)
-    - [XML / DTD processing instructions](#xml--dtd-processing-instructions)
+- [Usage examples](#usage-examples)
 - [API](#api)
-    - [serialize(tree: any, ctx?: any, escape = false): string](#serializetree-any-ctx-any-escape--false-string)
-    - [escape(str: string): string](#escapestr-string-string)
+  - [Tags with Zencoding expansion](#tags-with-zencoding-expansion)
+  - [Attributes](#attributes)
+  - [Simple components](#simple-components)
+  - [User context injection](#user-context-injection)
+  - [SVG generation, generators & lazy composition](#svg-generation--generators---lazy-composition)
+  - [Data-driven component composition](#data-driven-component-composition)
+  - [Stateful component](#stateful-component)
+  - [Component objects](#component-objects)
+  - [Behavior control attributes](#behavior-control-attributes)
+  - [Comments](#comments)
+  - [XML / DTD processing instructions](#xml---dtd-processing-instructions)
+- [API](#api)
+  - [serialize(tree: any, ctx?: any, escape = false): string](#serialize-tree--any--ctx---any--escape---false---string)
+  - [escape(str: string): string](#escape-str--string---string)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
 
-Lightweight HTML / SVG / XML serialization of plain, nested data
-structures, iterables & closures. Inspired by
-[Hiccup](https://github.com/weavejester/hiccup) and
+HTML/SVG/XML serialization of nested data structures, iterables & closures.
+
+Inspired by [Hiccup](https://github.com/weavejester/hiccup) and
 [Reagent](http://reagent-project.github.io/) for Clojure/ClojureScript.
 
 Forget all the custom toy DSLs for templating and instead use the full
@@ -66,7 +68,7 @@ rendering etc. For interactive use cases, please see companion package
 - Branch-local behavior control attributes to control serialization
 - Small (1.9KB minified) & fast
 
-*) Lazy composition here means that functions are only executed at
+(*) Lazy composition here means that functions are only executed at
 serialization time. Examples below...
 
 ### Use cases
@@ -76,14 +78,6 @@ serialization time. Examples below...
 - `.innerHTML` body generation
 - SVG asset creation
 - Shape trees for declarative canvas API drawing
-
-### Related packages
-
-- [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
-- [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas)
-- [@thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-css)
-- [@thi.ng/hiccup-markdown](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-markdown)
-- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg)
 
 ### No special sauce needed (or wanted)
 
@@ -116,14 +110,31 @@ values of the same structure. Please see [examples](#examples) &
 iterable
 ```
 
+### Status
+
+**STABLE** - used in production
+
+### Support packages
+
+- [@thi.ng/hiccup-carbon-icons](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-carbon-icons) - Full set of IBM's Carbon icons in hiccup format
+- [@thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-css) - CSS from nested JS data structures
+- [@thi.ng/hiccup-markdown](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-markdown) - Markdown parser & serializer from/to Hiccup format
+- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg) - SVG element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup) & [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
+
+### Related packages
+
+- [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
+- [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas)
+
+### Blog posts
+
+- [How to UI in 2018](https://medium.com/@thi.ng/how-to-ui-in-2018-ac2ae02acdf3)
+- [Of umbrellas, transducers, reactive streams & mushrooms (Pt.1)](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-1-a8717ce3a170)
+
 ## Installation
 
 ```bash
 yarn add @thi.ng/hiccup
-```
-
-```ts
-import { serialize } from "@thi.ng/hiccup";
 ```
 
 ## Dependencies
@@ -131,7 +142,39 @@ import { serialize } from "@thi.ng/hiccup";
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 
-## Examples
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### commit-table-ssr <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/commit-table-ssr.png)
+
+Filterable commit log UI w/ minimal server to provide commit history
+
+[Live demo](https://demo.thi.ng/umbrella/commit-table-ssr/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/commit-table-ssr)
+
+### hdom-canvas-shapes <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-shapes)
+
+### hydrate-basics <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/hydrate-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hydrate-basics)
+
+### rstream-grid <!-- NOTOC -->
+
+Interactive grid generator, SVG generation & export, undo/redo support
+
+[Live demo](https://demo.thi.ng/umbrella/rstream-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/hiccup/)
 
 ### Tags with Zencoding expansion
 
@@ -591,12 +634,12 @@ attributes](#behavior-control-attributes).
 Helper function. Applies HTML entity replacement on given string. If
 `serialize()` is called with `true` as 2nd argument, entity encoding is
 done automatically ([list of entities
-considered](https://github.com/thi-ng/umbrella/blob/master/packages/hiccup/src/index.ts#L14)).
+considered](https://github.com/thi-ng/umbrella/blob/master/packages/hiccup/src/api.ts)).
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2016-2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2019 Karsten Schmidt // Apache Software License 2.0

@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/hdom-components
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hdom-components.svg)](https://www.npmjs.com/package/@thi.ng/hdom-components)
@@ -7,10 +9,22 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-**As of 2018-03-03 this package is now called @thi.ng/hdom-components,
-formerly @thi.ng/hiccup-dom-components**
+- [About](#about)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
+- [API](#api)
+  - [Canvas](#canvas)
+  - [Form elements](#form-elements)
+  - [Links](#links)
+  - [Other](#other)
+- [Authors](#authors)
+- [License](#license)
 
 ## About
+
+Raw, skinnable UI & SVG components for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom).
 
 A growing collection of unstyled, re-usable & customizable components
 for use with
@@ -18,14 +32,14 @@ for use with
 &
 [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup).
 
-**Please see the
+**Please see
 [ADR-0002](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-components/adr/0002-component-configuration.md)
-for detailed discussion about the design intentions of these
+and onwards for detailed discussion about the design intentions of these
 components**. Feedback welcome!
 
-## Status
+### Status
 
-ALPHA
+**BETA** - possibly breaking changes forthcoming
 
 ## Installation
 
@@ -37,13 +51,63 @@ yarn add @thi.ng/hdom-components
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+- [@thi.ng/transducers-stats](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-stats)
 
 ## Usage examples
 
-```ts
-import * as hdc from "@thi.ng/hdom-components";
-```
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### canvas-dial <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/canvas-dial.png)
+
+Canvas based dial widget
+
+[Live demo](https://demo.thi.ng/umbrella/canvas-dial/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/canvas-dial)
+
+### crypto-chart <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/crypto-chart.png)
+
+Basic crypto-currency candle chart with multiple moving averages plots
+
+[Live demo](https://demo.thi.ng/umbrella/crypto-chart/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart)
+
+### hdom-benchmark2 <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/hdom-benchmark2.png)
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-benchmark2/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-benchmark2)
+
+### hdom-canvas-shapes <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-shapes)
+
+### hdom-dropdown-fuzzy <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-dropdown-fuzzy)
+
+### mandelbrot <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/mandelbrot.jpg)
+
+Worker based, interactive Mandelbrot visualization
+
+[Live demo](https://demo.thi.ng/umbrella/mandelbrot/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/mandelbrot)
+
+### triple-query <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/triple-query/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/triple-query)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/hdom-components/)
 
 ### Canvas
 
@@ -60,10 +124,17 @@ import * as hdc from "@thi.ng/hdom-components";
 
 - [Link types](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-components/src/link.ts)
 
+### Other
+
+- [FPS counter](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-components/src/fps-counter.ts)
+- [Notification](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-components/src/notification.ts)
+- [Sparkline](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-components/src/sparkline.ts)
+- [Title](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-components/src/title.ts)
+
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

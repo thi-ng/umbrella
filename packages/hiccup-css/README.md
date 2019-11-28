@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/hiccup-css
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css)
@@ -7,39 +9,37 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC -->
-
-- [@thi.ng/hiccup-css](#thinghiccup-css)
-    - [About](#about)
-    - [Features](#features)
-    - [Use cases](#use-cases)
-    - [Installation](#installation)
-    - [Dependencies](#dependencies)
-    - [API & usage examples](#api--usage-examples)
-        - [`css(rules: any, opts?: CSSOpts)`](#cssrules-any-opts-cssopts)
-        - [Property formatting only](#property-formatting-only)
-        - [Basic selectors](#basic-selectors)
-        - [Property object merging & re-use](#property-object-merging--re-use)
-        - [Iterators & CSS class scoping](#iterators--css-class-scoping)
-        - [Nested selectors](#nested-selectors)
-        - [Pseudo-classes](#pseudo-classes)
-        - [Attribute selectors](#attribute-selectors)
-        - [Auto-prefixed properties](#auto-prefixed-properties)
-        - [Media queries](#media-queries)
-        - [Keyframes](#keyframes)
-        - [Animations](#animations)
-        - [DOM stylesheet injection](#dom-stylesheet-injection)
-        - [General function handling](#general-function-handling)
-            - [Functions in scope head position](#functions-in-scope-head-position)
-            - [Functions in other positions](#functions-in-other-positions)
-        - [Quoted functions](#quoted-functions)
-    - [Future plans](#future-plans)
-    - [Authors](#authors)
-    - [License](#license)
-
-<!-- /TOC -->
+- [About](#about)
+- [Features](#features)
+- [Use cases](#use-cases)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
+- [API](#api)
+  - [`css(rules: any, opts?: CSSOpts)`](#-css-rules--any--opts---cssopts--)
+  - [Property formatting only](#property-formatting-only)
+  - [Basic selectors](#basic-selectors)
+  - [Property object merging & re-use](#property-object-merging---re-use)
+  - [Iterators & CSS class scoping](#iterators---css-class-scoping)
+  - [Nested selectors](#nested-selectors)
+  - [Pseudo-classes](#pseudo-classes)
+  - [Attribute selectors](#attribute-selectors)
+  - [Auto-prefixed properties](#auto-prefixed-properties)
+  - [Media queries](#media-queries)
+  - [Keyframes](#keyframes)
+  - [Animations](#animations)
+  - [DOM stylesheet injection](#dom-stylesheet-injection)
+  - [General function handling](#general-function-handling)
+    - [Functions in scope head position](#functions-in-scope-head-position)
+    - [Functions in other positions](#functions-in-other-positions)
+  - [Quoted functions](#quoted-functions)
+- [Authors](#authors)
+- [License](#license)
 
 ## About
+
+CSS from nested JS data structures.
 
 Following a similar pattern as the
 [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
@@ -84,6 +84,10 @@ Clojure projects:
 - [hiccup](https://github.com/weavejester/hiccup)
 - [garden](https://github.com/noprompt/garden)
 
+### Status
+
+**STABLE** - used in production
+
 ## Installation
 
 ```bash
@@ -97,7 +101,23 @@ yarn add @thi.ng/hiccup-css
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 
-## API & usage examples
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### hdom-benchmark2 <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/hdom-benchmark2.png)
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-benchmark2/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-benchmark2)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/hiccup-css/)
 
 ```ts
 import * as css from "@thi.ng/hiccup-css";
@@ -614,15 +634,10 @@ const QUOTED_FNS = {
 }
 ```
 
-## Future plans
-
-- [ ] Integration with @thi.ng/hiccup and @thi.ng/hdom
-- [ ] Webpack loader (help wanted)
-
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2016 - 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2019 Karsten Schmidt // Apache Software License 2.0

@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/hiccup-markdown",
     "version": "1.1.6",
-    "description": "Markdown serialization of hiccup DOM trees",
+    "description": "Markdown parser & serializer from/to Hiccup format",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -60,5 +60,9 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "status": "alpha",
+        "year": 2018
+    }
 }

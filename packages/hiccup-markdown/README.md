@@ -1,37 +1,44 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/hiccup-markdown
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/hiccup-markdown.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-markdown)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-markdown.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-markdown)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-markdown.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
+- [API](#api)
 - [Parser](#parser)
-    - [Features](#features)
-    - [Current issues & limitations](#current-issues--limitations)
-    - [Other parser features](#other-parser-features)
-    - [Serializing to HTML](#serializing-to-html)
-    - [Customizing tags](#customizing-tags)
-- [Serializer (Hiccup to Markdown)](#serializer-hiccup-to-markdown)
-    - [Features](#features-1)
-    - [Behaviors](#behaviors)
-    - [Usage examples](#usage-examples)
+  - [Features](#features)
+  - [Current issues & limitations](#current-issues---limitations)
+  - [Other parser features](#other-parser-features)
+  - [Serializing to HTML](#serializing-to-html)
+  - [Customizing tags](#customizing-tags)
+- [Serializer (Hiccup to Markdown)](#serializer--hiccup-to-markdown-)
+  - [Features](#features)
+  - [Behaviors](#behaviors)
+  - [Usage examples](#usage-examples)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
+
+Markdown parser & serializer from/to Hiccup format.
 
 This package provides both a customizable
 [Markdown](https://en.wikipedia.org/wiki/Markdown)-to-[Hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
 parser and an extensible Hiccup-to-Markdown converter.
+
+### Status
+
+**ALPHA** - bleeding edge / work-in-progress
 
 ## Installation
 
@@ -50,10 +57,27 @@ yarn add @thi.ng/hiccup-markdown
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/master/packages/strings)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 
-## Parser
+## Usage examples
 
-**Try out the [Markdown editor demo](https://demo.thi.ng/umbrella/markdown/)**
-([Source code](https://github.com/thi-ng/umbrella/tree/master/examples/markdown))
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### markdown <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/markdown-parser.jpg)
+
+Minimal Markdown to Hiccup to HTML parser / transformer
+
+[Live demo](https://demo.thi.ng/umbrella/markdown/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/markdown)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/hiccup-markdown/)
+
+## Parser
 
 ### Features
 
@@ -81,7 +105,10 @@ an additional newline.**
 
 ### Current issues & limitations
 
-Paragraphs, headings and blockquotes ending with a character involved w/ inline formatting (e.g. `!`, `~`, `*`, `_`) either require an additional space or 2 empty lines (instead of just one) between the next paragraph. See [#156](https://github.com/thi-ng/umbrella/issues/156) for details.
+Paragraphs, headings and blockquotes ending with a character involved w/
+inline formatting (e.g. `!`, `~`, `*`, `_`) either require an additional
+space or 2 empty lines (instead of just one) between the next paragraph.
+See [#156](https://github.com/thi-ng/umbrella/issues/156) for details.
 
 Also, these MD features (and probably many more) are currently **not**
 supported:
@@ -96,7 +123,6 @@ supported:
 
 Some of these are considered, though currently not high priority... Pull
 requests are welcome, though!
-
 
 ### Other parser features
 
@@ -292,7 +318,6 @@ layout breakage)
 ```md
 # Hello Markdown
 
-
 This is a test: **I am strong and _italic_**...
 
 My magic number is: 42
@@ -319,7 +344,6 @@ Realized result:
 
 # Hello Markdown
 
-
 This is a test: **I am strong and _italic_**...
 
 My magic number is: 42
@@ -343,8 +367,8 @@ More info [here](http://thi.ng/hiccup-markdown).
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

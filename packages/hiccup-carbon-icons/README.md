@@ -1,24 +1,23 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/hiccup-carbon-icons
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/hiccup-carbon-icons.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-carbon-icons)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-carbon-icons.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-carbon-icons)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-carbon-icons.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
 - [Contact sheet](#contact-sheet)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
+- [API](#api)
 - [Icon conversion process](#icon-conversion-process)
 - [Authors](#authors)
 - [License](#license)
-
-<!-- /TOC -->
 
 ## About
 
@@ -39,6 +38,10 @@ All icons can be previewed here: [contact
 sheet](https://demo.thi.ng/umbrella/hiccup-carbon-icons/). ([Source
 code](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-carbon-icons/test/contact-sheet.ts))
 
+### Status
+
+**STABLE** - used in production
+
 ## Installation
 
 ```bash
@@ -47,9 +50,11 @@ yarn add @thi.ng/hiccup-carbon-icons
 
 ## Dependencies
 
-None.
+None
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/hiccup-carbon-icons/)
 
 ```ts
 import { renderOnce } from "@thi.ng/hdom";
@@ -100,8 +105,8 @@ yarn build
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

@@ -1,63 +1,63 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/hdom-canvas
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/hdom-canvas.svg)](https://www.npmjs.com/package/@thi.ng/hdom-canvas)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/hdom-canvas.svg)](https://www.npmjs.com/package/@thi.ng/hdom-canvas)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdom-canvas.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:4 -->
-
 - [About](#about)
-    - [Status](#status)
+  - [Status](#status)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Related packages](#related-packages)
 - [Usage examples](#usage-examples)
+- [API](#api)
 - [How it works](#how-it-works)
-    - [Restrictions & behavior controls](#restrictions--behavior-controls)
-    - [HDPI support](#hdpi-support)
+  - [Restrictions & behavior controls](#restrictions---behavior-controls)
+  - [HDPI support](#hdpi-support)
 - [SVG conversion](#svg-conversion)
 - [Supported shape types](#supported-shape-types)
-    - [Group](#group)
-    - [Definition group](#definition-group)
-    - [Circle](#circle)
-    - [Circular arc](#circular-arc)
-    - [Ellipse / elliptic arc](#ellipse--elliptic-arc)
-    - [Rect](#rect)
-    - [Line](#line)
-    - [Horizontal Line](#horizontal-line)
-    - [Vertical Line](#vertical-line)
-    - [Polyline / Polygon](#polyline--polygon)
-    - [Path](#path)
-        - [SVG paths with arc segments](#svg-paths-with-arc-segments)
-    - [Points](#points)
-    - [Packed points](#packed-points)
-    - [Text](#text)
-    - [Image](#image)
-    - [Gradients](#gradients)
+  - [Group](#group)
+  - [Definition group](#definition-group)
+  - [Circle](#circle)
+  - [Circular arc](#circular-arc)
+  - [Ellipse / elliptic arc](#ellipse---elliptic-arc)
+  - [Rect](#rect)
+  - [Line](#line)
+  - [Horizontal Line](#horizontal-line)
+  - [Vertical Line](#vertical-line)
+  - [Polyline / Polygon](#polyline---polygon)
+  - [Path](#path)
+    - [SVG paths with arc segments](#svg-paths-with-arc-segments)
+  - [Points](#points)
+  - [Packed points](#packed-points)
+  - [Text](#text)
+  - [Image](#image)
+  - [Gradients](#gradients)
 - [Attributes](#attributes)
-    - [Color attributes](#color-attributes)
-        - [String](#string)
-        - [Number](#number)
-        - [Array](#array)
-        - [@thi.ng/color values](#thingcolor-values)
-    - [Coordinate transformations](#coordinate-transformations)
-        - [Transform matrix](#transform-matrix)
-        - [Override transform](#override-transform)
-        - [Translation](#translation)
-        - [Scaling](#scaling)
-        - [Rotation](#rotation)
+  - [Color attributes](#color-attributes)
+    - [String](#string)
+    - [Number](#number)
+    - [Array](#array)
+    - [@thi.ng/color values](#-thi-ng-color-values)
+  - [Coordinate transformations](#coordinate-transformations)
+    - [Transform matrix](#transform-matrix)
+    - [Override transform](#override-transform)
+    - [Translation](#translation)
+    - [Scaling](#scaling)
+    - [Rotation](#rotation)
 - [Authors](#authors)
+  - [Maintainer](#maintainer)
+  - [Contributors](#contributors)
 - [License](#license)
-
-<!-- /TOC -->
 
 ## About
 
-Declarative canvas scenegraph & visualization for
-[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom).
+Declarative canvas scenegraph & visualization for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom).
 
 This package provides a [re-usable canvas
 component](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas/src/index.ts#L66),
@@ -69,7 +69,12 @@ API draw calls during the hdom update process / cycle.
 
 ### Status
 
-BETA - in active development, possibly breaking changes ahead...
+**STABLE** - used in production
+
+## Related packages
+
+- [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom)
+- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg)
 
 ## Installation
 
@@ -84,19 +89,56 @@ yarn add @thi.ng/hdom-canvas
 - [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/master/packages/color)
 - [@thi.ng/diff](https://github.com/thi-ng/umbrella/tree/master/packages/diff)
 - [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
-
-## Related packages
-
-- [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom)
-- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
 ## Usage examples
 
-Please see these example projects for reference:
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
 
-- [hdom-canvas-clock](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-clock)
-- [hdom-canvas-draw](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-draw)
-- [hdom-canvas-shapes](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-shapes)
+A selection:
+
+### hdom-canvas-clock <!-- NOTOC -->
+
+Realtime clock demo for @thi.ng/hdom-canvas
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-canvas-clock/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-clock)
+
+### hdom-canvas-draw <!-- NOTOC -->
+
+Interactive @thi.ng/hdom-canvas pattern drawing demo using transducers
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-canvas-draw/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-draw)
+
+### hdom-canvas-shapes <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-shapes)
+
+### imgui <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/imgui/imgui-all.png)
+
+Canvas based Immediate Mode GUI components
+
+[Live demo](https://demo.thi.ng/umbrella/imgui/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/imgui)
+
+### iso-plasma <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-isoline.png)
+
+Animated sine plasma effect visualized using contour lines
+
+[Live demo](https://demo.thi.ng/umbrella/iso-plasma/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/iso-plasma)
+
+### rotating-voronoi <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/rotating-voronoi/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rotating-voronoi)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/hdom-canvas/)
 
 ```ts
 import { start } from "@thi.ng/hdom";
@@ -256,7 +298,6 @@ serialize(
 
 In the near future, factory functions for these shape types will be
 provided...
-
 
 ### Group
 
@@ -588,8 +629,14 @@ package for creating different kinds of transformation matrices, e.g.
 
 ## Authors
 
-- Karsten Schmidt
+### Maintainer
+
+- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
+
+### Contributors
+
+- Arthur Carabott ([@acarabott](https://github.com/acarabott))
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0
