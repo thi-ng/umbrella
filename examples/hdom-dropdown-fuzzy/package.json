@@ -28,5 +28,14 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "atom",
+            "hdom",
+            "hdom-components",
+            "interceptors",
+            "transducers"
+        ]
     }
 }

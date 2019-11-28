@@ -33,7 +33,12 @@
         "process": false
     },
     "thi.ng": {
-        "readme": true,
+        "readme": [
+            "geom",
+            "rstream-gestures",
+            "transducers-hdom",
+            "vectors"
+        ],
         "screenshot": "examples/gesture-analysis.png"
     }
 }

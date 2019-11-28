@@ -30,5 +30,16 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "atom",
+            "compare",
+            "hdom",
+            "hdom-components",
+            "paths",
+            "rstream-query",
+            "transducers"
+        ]
     }
 }

@@ -32,7 +32,12 @@
         "process": false
     },
     "thi.ng": {
-        "readme": true,
+        "readme": [
+            "rstream",
+            "transducers",
+            "transducers-binary",
+            "transducers-hdom"
+        ],
         "screenshot": "examples/bitmap-font.gif"
     }
 }

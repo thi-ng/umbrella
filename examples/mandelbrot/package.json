@@ -35,7 +35,14 @@
         "process": false
     },
     "thi.ng": {
-        "readme": true,
+        "readme": [
+            "hdom-components",
+            "math",
+            "rstream",
+            "rstream-gestures",
+            "transducers",
+            "transducers-hdom"
+        ],
         "screenshot": "examples/mandelbrot.jpg"
     }
 }

@@ -28,6 +28,8 @@
         "process": false
     },
     "thi.ng": {
-        "readme": true
+        "readme": [
+            "interceptors"
+        ]
     }
 }

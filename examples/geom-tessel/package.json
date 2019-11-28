@@ -27,5 +27,12 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "geom",
+            "geom-tessellate"
+        ],
+        "screenshot": "geom/tessel.png"
     }
 }

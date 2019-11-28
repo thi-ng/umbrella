@@ -31,5 +31,13 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "ecs",
+            "soa",
+            "vectors"
+        ],
+        "screenshot": "examples/soa-ecs-100k.png"
     }
 }

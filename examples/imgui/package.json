@@ -41,7 +41,15 @@
         "process": false
     },
     "thi.ng": {
-        "readme": true,
+        "readme": [
+            "geom",
+            "hdom",
+            "hdom-canvas",
+            "imgui",
+            "rstream",
+            "rstream-gestures",
+            "transducers-hdom"
+        ],
         "screenshot": "imgui/imgui-all.png"
     }
 }

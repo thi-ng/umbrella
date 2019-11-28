@@ -30,5 +30,12 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "atom",
+            "hdom",
+            "rstream-graph"
+        ]
     }
 }

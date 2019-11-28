@@ -31,7 +31,13 @@
         "process": false
     },
     "thi.ng": {
-        "readme": true,
+        "readme": [
+            "hdom",
+            "paths",
+            "rstream",
+            "transducers",
+            "transducers-hdom"
+        ],
         "screenshot": "examples/rstream-event-loop.png"
     }
 }

@@ -27,5 +27,9 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": true,
+        "screenshot": "examples/hdom-benchmark2.png"
     }
 }

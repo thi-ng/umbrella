@@ -16,14 +16,21 @@
         "typescript": "^3.7.2"
     },
     "dependencies": {
-        "@thi.ng/api": "latest",
-        "@thi.ng/rstream": "latest",
-        "@thi.ng/transducers-hdom": "latest"
+        "@thi.ng/color": "latest",
+        "@thi.ng/grid-iterators": "latest",
+        "@thi.ng/hdom": "latest",
+        "@thi.ng/transducers": "latest"
     },
     "browserslist": [
         "last 3 Chrome versions"
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "color",
+            "grid-iterators"
+        ]
     }
 }
