@@ -36,7 +36,12 @@
         "process": false
     },
     "thi.ng": {
-        "readme": true,
+        "readme": [
+            "cache",
+            "hiccup",
+            "resolve-map",
+            "transducers"
+        ],
         "screenshot": "examples/commit-table-ssr.png"
     }
 }

@@ -15,7 +15,6 @@ This project is part of the
   - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
 - [API](#api)
   - [IEquivSet](#iequivset)
   - [ArraySet](#arrayset)
@@ -175,22 +174,6 @@ yarn add @thi.ng/associative
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
-
-## Usage examples
-
-Several demos in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
-directory are using this package.
-
-A selection:
-
-### commit-table-ssr <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/commit-table-ssr.png)
-
-Filterable commit log UI w/ minimal server to provide commit history
-
-[Live demo](https://demo.thi.ng/umbrella/commit-table-ssr/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/commit-table-ssr)
 
 ## API
 

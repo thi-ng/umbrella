@@ -56,12 +56,6 @@ Basic crypto-currency candle chart with multiple moving averages plots
 
 [Live demo](https://demo.thi.ng/umbrella/crypto-chart/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart)
 
-### hdom-benchmark2 <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/hdom-benchmark2.png)
-
-[Live demo](https://demo.thi.ng/umbrella/hdom-benchmark2/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-benchmark2)
-
 ### rstream-spreadsheet <!-- NOTOC -->
 
 [Live demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-spreadsheet)

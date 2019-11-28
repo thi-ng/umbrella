@@ -89,14 +89,6 @@ Figlet-style bitmap font creation with transducers
 
 [Live demo](https://demo.thi.ng/umbrella/bitmap-font/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/bitmap-font)
 
-### commit-table-ssr <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/commit-table-ssr.png)
-
-Filterable commit log UI w/ minimal server to provide commit history
-
-[Live demo](https://demo.thi.ng/umbrella/commit-table-ssr/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/commit-table-ssr)
-
 ### crypto-chart <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/crypto-chart.png)
@@ -120,6 +112,8 @@ Interactive @thi.ng/hdom-canvas pattern drawing demo using transducers
 [Live demo](https://demo.thi.ng/umbrella/hdom-canvas-draw/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-draw)
 
 ### hdom-canvas-shapes <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/hdom-canvas/hdom-canvas-shapes-results.png)
 
 [Live demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-shapes)
 

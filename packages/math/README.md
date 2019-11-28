@@ -50,6 +50,20 @@ directory are using this package.
 
 A selection:
 
+### crypto-chart <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/crypto-chart.png)
+
+Basic crypto-currency candle chart with multiple moving averages plots
+
+[Live demo](https://demo.thi.ng/umbrella/crypto-chart/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart)
+
+### hdom-canvas-draw <!-- NOTOC -->
+
+Interactive @thi.ng/hdom-canvas pattern drawing demo using transducers
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-canvas-draw/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-draw)
+
 ### iso-plasma <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-isoline.png)

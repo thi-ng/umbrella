@@ -194,6 +194,8 @@ Interactive @thi.ng/hdom-canvas pattern drawing demo using transducers
 
 ### hdom-canvas-shapes <!-- NOTOC -->
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/hdom-canvas/hdom-canvas-shapes-results.png)
+
 [Live demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-shapes)
 
 ### iso-plasma <!-- NOTOC -->

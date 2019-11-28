@@ -29,7 +29,13 @@
         "process": false
     },
     "thi.ng": {
-        "readme": true,
+        "readme": [
+            "binary",
+            "hdom",
+            "hdom-components",
+            "hiccup-css",
+            "transducers"
+        ],
         "screenshot": "examples/hdom-benchmark2.png"
     }
 }

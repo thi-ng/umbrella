@@ -34,7 +34,17 @@
         "process": false
     },
     "thi.ng": {
-        "readme": true,
+        "readme": [
+            "hdom-components",
+            "hiccup-svg",
+            "math",
+            "resolve-map",
+            "rstream",
+            "strings",
+            "transducers",
+            "transducers-hdom",
+            "transducers-stats"
+        ],
         "screenshot": "examples/crypto-chart.png"
     }
 }
