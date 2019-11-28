@@ -1,40 +1,42 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/shader-ast-stdlib
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/shader-ast-stdlib.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-stdlib)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/shader-ast-stdlib.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-stdlib)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/shader-ast-stdlib.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-    - [Basic Lambert shader](#basic-lambert-shader)
-    - [Generated vertex shader](#generated-vertex-shader)
-    - [Generated fragment shader](#generated-fragment-shader)
-    - [Using higher order functions](#using-higher-order-functions)
 - [API](#api)
-    - [Color](#color)
-    - [Porter-Duff alpha blending](#porter-duff-alpha-blending)
-    - [Fog](#fog)
-    - [Lighting](#lighting)
-    - [Math](#math)
-    - [Matrix operations](#matrix-operations)
-    - [Noise / randomness](#noise--randomness)
-    - [Raymarching](#raymarching)
-    - [Screen coordinates](#screen-coordinates)
-    - [Signed Distance Fields](#signed-distance-fields)
-    - [Texture lookups](#texture-lookups)
+  - [Basic Lambert shader](#basic-lambert-shader)
+  - [Generated vertex shader](#generated-vertex-shader)
+  - [Generated fragment shader](#generated-fragment-shader)
+  - [Using higher order functions](#using-higher-order-functions)
+- [API](#api)
+  - [Color](#color)
+  - [Porter-Duff alpha blending](#porter-duff-alpha-blending)
+  - [Fog](#fog)
+  - [Lighting](#lighting)
+  - [Math](#math)
+  - [Matrix operations](#matrix-operations)
+  - [Noise / randomness](#noise---randomness)
+  - [Raymarching](#raymarching)
+  - [Screen coordinates](#screen-coordinates)
+  - [Signed Distance Fields](#signed-distance-fields)
+  - [Texture lookups](#texture-lookups)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
+
+Function collection for modular GPGPU / shader programming with [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast).
 
 A growing collection (currently 110+) of useful functions & higher order
 constructs for GPU / shader programming, acting as optional standard
@@ -61,6 +63,10 @@ Reference:
 - https://www.shadertoy.com/view/4djSRW
 - https://github.com/ashima/webgl-noise
 
+### Status
+
+**STABLE** - used in production
+
 ## Installation
 
 ```bash
@@ -73,22 +79,57 @@ yarn add @thi.ng/shader-ast-stdlib
 
 ## Usage examples
 
-There're are several `shader-ast` & `webgl` examples in the
+Several demos in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
-folder of this repo, for example...
+directory are using this package.
 
-(Possibly non-exhaustive list, live demo links in readme's)
+A selection:
 
-- [Canvas2D shader](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-canvas2d)
-- [2D SDF](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-sdf2d)
-- [Raymarching](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-raymarch)
-- [Simplex noise](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-noise)
-- [Textured tunnel](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-tunnel)
-- [Cubemap](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-cubemap)
-- [Grid instancing](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-grid)
-- [GPGPU basics](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-gpgpu-basics)
-- [MSDF font rendering](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-msdf)
-- [SSAO deferred rendering](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-ssao)
+### shader-ast-canvas2d <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/shader-ast/shader-ast-01.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-canvas2d/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-canvas2d)
+
+### shader-ast-evo <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/shader-ast-evo.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-evo/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-evo)
+
+### shader-ast-noise <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-noise/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-noise)
+
+### shader-ast-raymarch <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/shader-ast/shader-ast-raymarch.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-raymarch/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-raymarch)
+
+### shader-ast-sdf2 <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-sdf2/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-sdf2)
+
+### shader-ast-tunnel <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-tunnel/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-tunnel)
+
+### webgl-multipass <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/webgl-multipass/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-multipass)
+
+### webgl-shadertoy <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/webgl-shadertoy/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-shadertoy)
+
+### webgl-ssao <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/webgl-ssao/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-ssao)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/shader-ast-stdlib/)
 
 ### Basic Lambert shader
 
@@ -419,7 +460,7 @@ for reference.
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 

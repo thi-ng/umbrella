@@ -15,10 +15,15 @@
         "typescript": "^3.7.2"
     },
     "dependencies": {
+        "@thi.ng/color": "latest",
+        "@thi.ng/geom": "latest",
+        "@thi.ng/hdom": "latest",
         "@thi.ng/hdom-canvas": "latest",
         "@thi.ng/hdom-components": "latest",
         "@thi.ng/hiccup": "latest",
         "@thi.ng/hiccup-svg": "latest",
+        "@thi.ng/math": "latest",
+        "@thi.ng/matrices": "latest",
         "@thi.ng/rstream": "latest",
         "@thi.ng/transducers": "latest",
         "@thi.ng/transducers-hdom": "latest",
@@ -29,5 +34,18 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "hdom",
+            "hdom-canvas",
+            "hdom-components",
+            "hiccup",
+            "hiccup-svg",
+            "transducers",
+            "transducers-hdom",
+            "vectors"
+        ],
+        "screenshot": "hdom-canvas/hdom-canvas-shapes-results.png"
     }
 }

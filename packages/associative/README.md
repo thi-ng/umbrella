@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/associative
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/associative.svg)](https://www.npmjs.com/package/@thi.ng/associative)
@@ -7,11 +9,28 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+- [About](#about)
+  - [Why?](#why-)
+  - [Comparison with ES6 native types](#comparison-with-es6-native-types)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [API](#api)
+  - [IEquivSet](#iequivset)
+  - [ArraySet](#arrayset)
+  - [LLSet](#llset)
+  - [EquivMap](#equivmap)
+  - [HashMap](#hashmap)
+  - [SortedMap](#sortedmap)
+    - [Ranged queries](#ranged-queries)
+  - [SortedSet](#sortedset)
+  - [SparseSet8/16/32](#sparseset8-16-32)
+- [Authors](#authors)
+- [License](#license)
+
 ## About
 
-This package provides alternative `Set` & `Map` data type
-implementations with customizable equality semantics, as well as common
-operations working with these types:
+Alternative Map and Set implementations with customizable equality semantics & supporting operations.
 
 - Array based `ArraySet`, Linked List based `LLSet`,
   [Skiplist](https://en.wikipedia.org/wiki/Skip_list) based `SortedMap`
@@ -39,6 +58,13 @@ operations working with these types:
 - Key selection & renaming for maps and objects
 
 ### Why?
+
+Please see these packages for use cases:
+
+- [@thi.ng/cache](https://github.com/thi-ng/umbrella/tree/master/packages/cache)
+- [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/master/packages/dgraph)
+- [@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/master/packages/ecs)
+- [@thi.ng/rstream-query](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-query)
 
 The native ES6 implementations use object reference identity to
 determine key containment, but often it's more practical and useful to
@@ -128,6 +154,10 @@ map.get([3,4], "n/a");
 // "n/a"
 ```
 
+### Status
+
+**STABLE** - used in production
+
 ## Installation
 
 ```bash
@@ -137,19 +167,22 @@ yarn add @thi.ng/associative
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/master/packages/binary)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 - [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/master/packages/compare)
 - [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 
-## Types
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/associative/)
 
 ### IEquivSet
 
 All `Set` implementations in this package implement the
-[IEquivSet](https://github.com/thi-ng/umbrella/tree/master/packages/associative/src/api.ts#L7)
+[IEquivSet](https://github.com/thi-ng/umbrella/tree/master/packages/associative/src/api.ts)
 interface, an extension of the native ES6 Set API.
 
 ### ArraySet
@@ -271,18 +304,9 @@ const b = sparseSet(0x10000);
 // SparseSet16 {}
 ```
 
-## Usage examples
-
-Please see these packages for use cases:
-
-- [@thi.ng/cache](https://github.com/thi-ng/umbrella/tree/master/packages/cache)
-- [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/master/packages/dgraph)
-- [@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/master/packages/ecs)
-- [@thi.ng/rstream-query](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-query)
-
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 

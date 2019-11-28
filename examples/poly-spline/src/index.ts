@@ -69,7 +69,7 @@ const slider = (
             ...attribs
         }
     ],
-    stream.deref().toFixed(1)
+    stream.deref()!.toFixed(1)
 ];
 
 // main app component / stream transformer
@@ -90,12 +90,19 @@ const app = (
     });
     // visualize control points as circles
     const controlPoints = iterator(
-        comp(mapcat((x) => x.points), map((p) => circle(p, 0.75))),
+        comp(
+            mapcat((x) => x.points),
+            map((p) => circle(p, 0.75))
+        ),
         cubics
     );
     // visualize control point handles
     const handles = iterator(
-        comp(mapcat((x) => x.points), partition(2), map(line)),
+        comp(
+            mapcat((x) => x.points),
+            partition(2),
+            map(line)
+        ),
         cubics
     );
     return [
@@ -174,7 +181,12 @@ const scale = stream<number>();
 const uniScale = stream<number>();
 
 // re-usable transducer implementing a toggle switch
-const toggle = scan(reducer(() => true, (acc) => !acc));
+const toggle = scan(
+    reducer(
+        () => true,
+        (acc) => !acc
+    )
+);
 
 // main stream combinator
 const main = sync<any, any>({

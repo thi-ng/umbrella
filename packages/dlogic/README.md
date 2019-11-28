@@ -1,23 +1,21 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/dlogic
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/dlogic.svg)](https://www.npmjs.com/package/@thi.ng/dlogic)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/dlogic.svg)](https://www.npmjs.com/package/@thi.ng/dlogic)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dlogic.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
-- [Status](#status)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
+- [API](#api)
 - [Authors](#authors)
 - [License](#license)
-
-<!-- /TOC -->
 
 ## About
 
@@ -30,9 +28,9 @@ Also see
 [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/master/packages/binary/src/logic.ts)
 for binary versions of most of the ops provided by this package.
 
-## Status
+### Status
 
-ALPHA
+**STABLE** - used in production
 
 ## Installation
 
@@ -42,9 +40,11 @@ yarn add @thi.ng/dlogic
 
 ## Dependencies
 
-None.
+None
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/dlogic/)
 
 ```ts
 import { nand } from "@thi.ng/dlogic";
@@ -67,8 +67,8 @@ xor(true, true)
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2017 - 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2017 - 2019 Karsten Schmidt // Apache Software License 2.0

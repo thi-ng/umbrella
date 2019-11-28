@@ -1,24 +1,26 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/random
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/random.svg)](https://www.npmjs.com/package/@thi.ng/random)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/random.svg)](https://www.npmjs.com/package/@thi.ng/random)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/random.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
+- [API](#api)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
+
+Pseudo-random number generators w/ unified API.
 
 This package provides the `IRandom` interface and various (mostly
 seedable) pseudo-random number generator implementations, incl. a
@@ -29,6 +31,13 @@ seedable) pseudo-random number generator implementations, incl. a
 - [XorShift128](https://github.com/thi-ng/umbrella/tree/master/packages/random/src/xorshift128.ts)
 - [XorWow](https://github.com/thi-ng/umbrella/tree/master/packages/random/src/xorwow.ts)
 - [XsAdd](https://github.com/thi-ng/umbrella/tree/master/packages/random/src/xsadd.ts)
+
+Partially ported from C implementations taken from
+[c.thi.ng](http://c.thi.ng).
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -41,6 +50,22 @@ yarn add @thi.ng/random
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 
 ## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### shader-ast-evo <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/shader-ast-evo.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-evo/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-evo)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/random/)
 
 ```ts
 import { Smush32 } from "@thi.ng/random";
@@ -74,8 +99,8 @@ rnd.gaussian()
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2019 Karsten Schmidt // Apache Software License 2.0

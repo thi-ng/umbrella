@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/shader-ast-stdlib",
     "version": "0.3.1",
-    "description": "Useful functions for GPGPU / shader programming w/ @thi.ng/shader-ast",
+    "description": "Function collection for modular GPGPU / shader programming with @thi.ng/shader-ast",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -21,6 +21,7 @@
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib color fog light math matrix noise raymarch screen sdf tex",
+        "doc:readme": "../../scripts/generate-readme",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },
@@ -62,5 +63,8 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "year": 2019
+    }
 }

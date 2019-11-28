@@ -1,8 +1,22 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/dgraph
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dgraph.svg)](https://www.npmjs.com/package/@thi.ng/dgraph)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dgraph.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
+- [About](#about)
+  - [Features](#features)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [API](#api)
+- [Authors](#authors)
+- [License](#license)
 
 ## About
 
@@ -16,6 +30,10 @@ maps & sets as backend.
 - accessors for direct & transitive dependencies / dependents
 - topological sorting
 - iterable (in topo order)
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -31,7 +49,9 @@ yarn add @thi.ng/dgraph
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/dgraph/)
 
 ```ts
 import { DGraph } from "@thi.ng/dgraph";
@@ -52,8 +72,8 @@ g.sort();
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2019 Karsten Schmidt // Apache Software License 2.0

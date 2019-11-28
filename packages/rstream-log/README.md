@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/rstream-log
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-log.svg)](https://www.npmjs.com/package/@thi.ng/rstream-log)
@@ -7,21 +9,36 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+- [About](#about)
+  - [Status](#status)
+  - [Support packages](#support-packages)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [API](#api)
+- [Authors](#authors)
+- [License](#license)
+
 ## About
 
-Extensible, multi-level & multi-hierarchy logging based on
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)s,
-transformable via
-[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers).
+Structured, multilevel & hierarchical loggers based on [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream).
 
-Also see the
-[@thi.ng/rstream-log-file](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-log-file)
-support package for local file output of logged data.
+This package provides extensible, multi-level & multi-hierarchy logging
+infrastructure, with logged values transformable via
+[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers).
+Several built-in transformers are provided.
 
 The `Logger` class provided by this package implements the
 [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 `ILogger` interface and uses `LogLevel` enums to configure levels /
 filtering.
+
+### Status
+
+**STABLE** - used in production
+
+### Support packages
+
+- [@thi.ng/rstream-log-file](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-log-file) - File output handler for structured, multilevel & hierarchical loggers based on [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
 
 ## Installation
 
@@ -37,7 +54,9 @@ yarn add @thi.ng/rstream-log
 - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/rstream-log/)
 
 ```ts
 import { LogLevel } from "@thi.ng/api";
@@ -73,10 +92,12 @@ mod1.info("hi from sub-module");
 // [INFO] [module-1] 2018-01-20T09:05:21.198Z hi from sub-module
 ```
 
+TODO
+
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2017 - 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2017 - 2019 Karsten Schmidt // Apache Software License 2.0

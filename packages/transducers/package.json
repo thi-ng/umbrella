@@ -21,6 +21,7 @@
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib func internal iter rfn xform",
+        "doc:readme": "../../scripts/generate-readme",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },
@@ -71,5 +72,31 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "blog": [
+            {
+                "title": "HOFs, Transducers, Reducers",
+                "url": "https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-2-9c540beb0023"
+            },
+            {
+                "title": "Convolution, 1D/2D Cellular automata",
+                "url": "https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-3-a1c4e621db9b"
+            },
+            {
+                "title": "Disjoint Sets, Graph analysis, Signed Distance Fields",
+                "url": "https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-4-62d8e71e5603"
+            }
+        ],
+        "related": [
+            "csp",
+            "grid-iterators",
+            "fsm",
+            "rstream",
+            "rstream-graph",
+            "rstream-log",
+            "sax"
+        ],
+        "year": 2016
+    }
 }

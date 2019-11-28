@@ -15,13 +15,13 @@ const atan2 = Math.atan2;
 export const grahamScan2 = (pts: ReadonlyVec[], eps = EPS) => {
     const num = pts.length;
     if (num <= 3) return pts.slice();
-    let h = 1,
-        i,
-        p,
-        q,
-        r,
-        rx,
-        ry;
+    let h = 1;
+    let i;
+    let p;
+    let q;
+    let r;
+    let rx;
+    let ry;
     // find min YX index
     const min = findMin(pts);
     [rx, ry] = pts[min];
@@ -84,13 +84,14 @@ const notCCW = (
 const findMin = (pts: ReadonlyVec[]) => {
     let n = pts.length - 1;
     let minID = n;
-    let min = pts[n][1];
+    let [minX, minY] = pts[n];
     let p, y;
     for (; --n >= 0; ) {
         p = pts[n];
         y = p[1];
-        if (y < min || (y === min && p[0] < pts[minID][0])) {
-            min = y;
+        if (y < minY || (y === minY && p[0] < minX)) {
+            minX = p[0];
+            minY = y;
             minID = n;
         }
     }

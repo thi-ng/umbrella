@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/dot",
     "version": "1.1.6",
-    "description": "Graphviz DOM abstraction as vanilla JS objects & serialization to DOT format",
+    "description": "Graphviz document abstraction & serialization to DOT format",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -21,6 +21,7 @@
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "doc:readme": "../../scripts/generate-readme",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },
@@ -45,5 +46,9 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "status": "beta",
+        "year": 2018
+    }
 }

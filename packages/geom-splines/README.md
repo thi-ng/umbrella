@@ -1,28 +1,37 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/geom-splines
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/geom-splines.svg)](https://www.npmjs.com/package/@thi.ng/geom-splines)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/geom-splines.svg)](https://www.npmjs.com/package/@thi.ng/geom-splines)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-splines.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-    - [Polygon to cubic curve conversion](#polygon-to-cubic-curve-conversion)
+- [API](#api)
+  - [Polygon to cubic curve conversion](#polygon-to-cubic-curve-conversion)
+    - [Poly vertices as control points](#poly-vertices-as-control-points)
+    - [Poly vertices as break points](#poly-vertices-as-break-points)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
 
-nD cubic & quadratic curve analysis, conversion, interpolation,
-splitting, resampling.
+nD cubic & quadratic curve analysis, conversion, interpolation, splitting.
+
+Current implementations partially based on
+[toxiclibs](http://toxiclibs.org) (Java) and Clojure version of
+[thi.ng/geom](http://thi.ng/geom).
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -40,6 +49,20 @@ yarn add @thi.ng/geom-splines
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
 ## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### poly-spline <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/poly-spline/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/poly-spline)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/geom-splines/)
 
 ### Polygon to cubic curve conversion
 
@@ -73,14 +96,10 @@ each vertex corner, taking into the convexity of each poly vertex.
 |-------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
 | ![](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-splines-bp-nonuni.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-splines-bp-uni.png) |
 
-```ts
-import * as gs from "@thi.ng/geom-splines";
-```
-
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2019 Karsten Schmidt // Apache Software License 2.0

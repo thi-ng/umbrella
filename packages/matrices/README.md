@@ -1,38 +1,40 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/matrices
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/matrices.svg)](https://www.npmjs.com/package/@thi.ng/matrices)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/matrices.svg)](https://www.npmjs.com/package/@thi.ng/matrices)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/matrices.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
-    - [Related packages](#related-packages)
+  - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [API](#api)
-    - [Constants](#constants)
-    - [Matrix creation](#matrix-creation)
-    - [Matrix conversion](#matrix-conversion)
-    - [Setters](#setters)
-    - [Row & column accessors](#row--column-accessors)
-    - [Componentwise matrix - matrix](#componentwise-matrix---matrix)
-    - [Componentwise matrix - scalar](#componentwise-matrix---scalar)
-    - [Matrix multiplication](#matrix-multiplication)
-    - [Matrix - vector multiplication](#matrix---vector-multiplication)
-    - [Determinant & inversion](#determinant--inversion)
-    - [Matrix transposition](#matrix-transposition)
-    - [Quaternion](#quaternion)
+  - [Constants](#constants)
+  - [Matrix creation](#matrix-creation)
+    - [WebGL related](#webgl-related)
+  - [Matrix conversion](#matrix-conversion)
+  - [Setters](#setters)
+  - [Row & column accessors](#row---column-accessors)
+  - [Componentwise matrix - matrix](#componentwise-matrix---matrix)
+  - [Componentwise matrix - scalar](#componentwise-matrix---scalar)
+  - [Matrix multiplication](#matrix-multiplication)
+  - [Matrix - vector multiplication](#matrix---vector-multiplication)
+  - [Determinant & inversion](#determinant---inversion)
+  - [Matrix transposition](#matrix-transposition)
+  - [Quaternion](#quaternion)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
+
+Matrix & quaternion operations for 2D/3D geometry processing.
 
 This package provides 160+ matrix & quaternion operations for 2D/3D
 geometry processing and acts as companion package for
@@ -46,12 +48,16 @@ typed arrays, custom impls) and hence many other functions provided by
 the vectors package can also be used directly with matrices (where
 sensible).
 
+### Status
+
+**STABLE** - used in production
+
 ### Related packages
 
-- [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/master/packages/color) - vector based color operations / conversions
-- [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom) - 2D/3D geometry types & operations
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors) - optimized 2d/3d/4d and arbitrary length vector ops
-- [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/master/packages/vector-pools) - operations on memory mapped data
+- [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/master/packages/color) - Array-based color ops, conversions, multi-color gradients, presets
+- [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom) - Functional, polymorphic API for 2D geometry types & SVG generation
+- [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/master/packages/vector-pools) - Data structures for managing & working with strided, memory mapped vectors
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors) - Optimized 2d/3d/4d and arbitrary length vector operations
 
 ## Installation
 
@@ -68,11 +74,39 @@ yarn add @thi.ng/matrices
 
 ## Usage examples
 
-```ts
-import * as m from "@thi.ng/matrices";
-```
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### soa-ecs <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/soa-ecs-100k.png)
+
+[Live demo](https://demo.thi.ng/umbrella/soa-ecs/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/soa-ecs)
+
+### webgl-cube <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/webgl-cube/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-cube)
+
+### webgl-cubemap <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/webgl-cubemap/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-cubemap)
+
+### webgl-grid <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/webgl-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-grid)
+
+### webgl-msdf <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/webgl-msdf.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/webgl-msdf/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-msdf)
 
 ## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/matrices/)
 
 ### Constants
 
@@ -176,8 +210,8 @@ import * as m from "@thi.ng/matrices";
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

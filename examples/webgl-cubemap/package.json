@@ -20,6 +20,8 @@
         "@thi.ng/hdom": "latest",
         "@thi.ng/hdom-components": "latest",
         "@thi.ng/matrices": "latest",
+        "@thi.ng/rstream": "latest",
+        "@thi.ng/shader-ast": "latest",
         "@thi.ng/webgl": "latest"
     },
     "browserslist": [
@@ -28,5 +30,12 @@
     "browser": {
         "process": false,
         "setTimeout": false
+    },
+    "thi.ng": {
+        "readme": [
+            "matrices",
+            "shader-ast",
+            "webgl"
+        ]
     }
 }

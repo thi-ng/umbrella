@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/csp
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/csp.svg)](https://www.npmjs.com/package/@thi.ng/csp)
@@ -7,10 +9,20 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+- [About](#about)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [API](#api)
+  - [File loading & word frequency analysis](#file-loading---word-frequency-analysis)
+  - [Channel merging](#channel-merging)
+  - [PubSub](#pubsub)
+- [Authors](#authors)
+- [License](#license)
+
 ## About
 
-Lightweight ES6-promise based CSP implementation written in TypeScript
-(18KB minified, full lib).
+ES6 promise based CSP primitives & operations.
 
 - `Channel` with/without buffering and/or
   [transducers](https://github.com/thi-ng/umbrella/blob/master/packages/transducers)
@@ -28,6 +40,14 @@ Lightweight ES6-promise based CSP implementation written in TypeScript
   - each topic implemented as `Mult`
   - wildcard topic for processing fallthrough messages
 
+### Status
+
+**STABLE** - used in production
+
+This package might possibly become deprecated soon. See
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+for a similar, but alternative (and actively maintained) approach.
+
 ## Installation
 
 ```bash
@@ -37,12 +57,15 @@ yarn add @thi.ng/csp
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/master/packages/arrays)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 - [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/csp/)
 
 ### File loading & word frequency analysis
 
@@ -204,8 +227,8 @@ pub.channel().into(["alice", "bert", "bella", "charlie", "arthur"]);
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2016-2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2019 Karsten Schmidt // Apache Software License 2.0

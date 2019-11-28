@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/pixel",
     "version": "0.1.5",
-    "description": "Packed pixel buffer w/ customizable formats, blitting, conversions",
+    "description": "Typed array backed, packed pixel buffer w/ customizable formats, blitting, conversions",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -21,6 +21,7 @@
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "doc:readme": "../../scripts/generate-readme",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },
@@ -55,5 +56,11 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "related": [
+            "porter-duff"
+        ],
+        "year": 2019
+    }
 }

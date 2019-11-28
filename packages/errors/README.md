@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/errors
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/errors.svg)](https://www.npmjs.com/package/@thi.ng/errors)
@@ -7,13 +9,24 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+- [About](#about)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [API](#api)
+- [Authors](#authors)
+- [License](#license)
+
 ## About
 
-Custom error types (extending `Error`) and helper functions used by most
-other packages in this repo.
+Custom error types and error factory functions.
 
 Additional error types can be defined using
-[`defError()`](https://github.com/thi-ng/umbrella/tree/master/packages/errors/src/deferror.ts)
+[`defError()`](https://github.com/thi-ng/umbrella/tree/master/packages/errors/src/deferror.ts).
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -25,7 +38,9 @@ yarn add @thi.ng/errors
 
 None
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/errors/)
 
 ```ts
 import * as err from "@thi.ng/errors";
@@ -60,8 +75,8 @@ try {
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

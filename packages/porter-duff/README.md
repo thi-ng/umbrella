@@ -1,43 +1,39 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/porter-duff
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/porter-duff.svg)](https://www.npmjs.com/package/@thi.ng/porter-duff)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/porter-duff.svg)](https://www.npmjs.com/package/@thi.ng/porter-duff)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/porter-duff.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
-    - [References](#references)
+  - [References](#references)
+  - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Related packages](#related-packages)
 - [Usage examples](#usage-examples)
 - [API](#api)
-    - [Operators](#operators)
-    - [Custom operators](#custom-operators)
-    - [Additional operators / modifiers](#additional-operators--modifiers)
-    - [Pre/post-multiplied colors](#prepost-multiplied-colors)
+  - [Basic usage](#basic-usage)
+  - [Operators](#operators)
+  - [Custom operators](#custom-operators)
+  - [Additional operators / modifiers](#additional-operators---modifiers)
+  - [Pre/post-multiplied colors](#pre-post-multiplied-colors)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
+
+Porter-Duff operators for packed ints & float-array alpha compositing.
 
 This package provides all 13 fundamental
 [Porter-Duff](https://keithp.com/~keithp/porterduff/p253-porter.pdf)
 compositing / blending operators, and utilities to pre/post-multiply
 alpha. All operators are available for packed ARGB/ABGR 32bit packed
 ints or RGBA float vectors.
-
-*Note:* These operators were previously part of the
-[@thi.ng/color](https://github.com/thi-ng/umbrella/tree/master/packages/color)
-package (prior to v1.0.0).
-
-![porter-duff compositing modes](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/porter-duff/porter-duff2.png)
 
 ### References
 
@@ -46,6 +42,15 @@ package (prior to v1.0.0).
 - https://ciechanow.ski/alpha-compositing/
 - http://www.adriancourreges.com/blog/2017/05/09/beware-of-transparent-pixels/
 - http://ssp.impulsetrain.com/porterduff.html
+
+### Status
+
+**STABLE** - used in production
+
+### Related packages
+
+- [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/master/packages/pixel) - Typed array backed, packed pixel buffer w/ customizable formats, blitting, conversions
+- [@thi.ng/shader-ast-stdlib](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdlib) - Function collection for modular GPGPU / shader programming with [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast)
 
 ## Installation
 
@@ -56,19 +61,33 @@ yarn add @thi.ng/porter-duff
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-
-## Related packages
-
-- [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/master/packages/pixel) - Multi-format pixel buffers
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
 
 ## Usage examples
 
-Full overview of all operators (shown above):
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
 
-[Live demo](http://demo.thi.ng/umbrella/porter-duff/) |
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/porter-duff)
+A selection:
 
-Basic usage...
+### pixel-basics <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/pixel/pixel-basics.png)
+
+[Live demo](https://demo.thi.ng/umbrella/pixel-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/pixel-basics)
+
+### porter-duff <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/porter-duff/porter-duff2.png)
+
+[Live demo](https://demo.thi.ng/umbrella/porter-duff/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/porter-duff)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/porter-duff/)
+
+### Basic usage
 
 ```ts
 import * as pd from "@thi.ng/porter-duff";
@@ -90,8 +109,6 @@ pd.postmultiplyInt(
 // premultiplied float version [R,G,B,A]
 pd.SRC_OVER_F([1, 0, 0, 0.5], [0, 1, 0, 0.8]);
 ```
-
-## API
 
 ### Operators
 
@@ -163,8 +180,8 @@ Note: HTML Canvas `ImageData` is using non-premultiplied colors.
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

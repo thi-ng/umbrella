@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/diff",
     "version": "3.2.5",
-    "description": "Array & object Diff",
+    "description": "Customizable diff implementations for arrays (sequential) & objects (associative), with or without linear edit logs",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -21,6 +21,7 @@
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "doc:readme": "../../scripts/generate-readme",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },

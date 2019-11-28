@@ -1,30 +1,26 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/geom-isec
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/geom-isec.svg)](https://www.npmjs.com/package/@thi.ng/geom-isec)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/geom-isec.svg)](https://www.npmjs.com/package/@thi.ng/geom-isec)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-isec.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
-    - [2D tests](#2d-tests)
-    - [3D tests](#3d-tests)
+  - [3D tests](#3d-tests)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
+- [API](#api)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
 
-2D / 3D shape intersection tests:
-
-### 2D tests
+2D/3D shape intersection checks.
 
 | Type   | Circle | Line | Poly | Ray | Rect | Tri |
 |--------|:------:|:----:|:----:|:---:|:----:|:---:|
@@ -44,6 +40,14 @@ This project is part of the
 | Ray    |  ✓   |   ✓   |       |     |   ✓    |
 | Sphere |      |       |       |     |   ✓    |
 
+Current implementations partially based on
+[toxiclibs](http://toxiclibs.org) (Java) and Clojure version of
+[thi.ng/geom](http://thi.ng/geom).
+
+### Status
+
+**STABLE** - used in production
+
 ## Installation
 
 ```bash
@@ -52,17 +56,20 @@ yarn add @thi.ng/geom-isec
 
 ## Dependencies
 
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 - [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/master/packages/geom-api)
 - [@thi.ng/geom-closest-point](https://github.com/thi-ng/umbrella/tree/master/packages/geom-closest-point)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/geom-isec/)
 
 ```ts
 import * as isec from "@thi.ng/geom-isec";
 
-const res = isec.intersectLineLine([0,0], [100,50], [50,100], [50,-100]);
+const res = isec.intersectLineLine([0, 0], [100, 50], [50, 100], [50, -100]);
 // { type: 4, isec: [ 50, 25 ], alpha: 0.5, beta: 0.375, det: -20000 }
 
 res.type === isec.IntersectionType.INTERSECT
@@ -71,8 +78,8 @@ res.type === isec.IntersectionType.INTERSECT
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2019 Karsten Schmidt // Apache Software License 2.0

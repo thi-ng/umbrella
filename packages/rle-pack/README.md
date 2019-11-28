@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/rle-pack
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rle-pack.svg)](https://www.npmjs.com/package/@thi.ng/rle-pack)
@@ -7,15 +9,27 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+- [About](#about)
+  - [Encoding format](#encoding-format)
+  - [Status](#status)
+  - [Related packages](#related-packages)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [API](#api)
+- [Authors](#authors)
+- [License](#license)
+
 ## About
 
-Binary run-length encoding packer/unpacker w/ support for customizable
-input word sizes (1 - 32 bits) and repeat count (run-length) bit sizes
-(1 - 16 bits). The encoder uses 4 different repeat group sizes
-(thresholds) to minimize the number of bits used to store the run
-lengths. The range of supported run lengths is 16 bits (i.e. 65536
-repetitions). If a value is repeated more often than that, the remainder
-will be encoded using additional RLE chunks...
+Binary [run-length
+encoding](https://en.wikipedia.org/wiki/Run-length_encoding)
+packer/unpacker with support for customizable input word sizes (1 - 32
+bits) and repeat count (run-length) bit sizes (1 - 16 bits). The encoder
+uses 4 different repeat group sizes (thresholds) to minimize the number
+of bits used to store the run lengths. The range of supported run
+lengths is 16 bits (i.e. 65536 repetitions). If a value is repeated more
+often than that, the remainder will be encoded using additional RLE
+chunks...
 
 ### Encoding format
 
@@ -35,6 +49,15 @@ Then per value:
   then split into chunks...)
 - n bits - value(s)
 
+### Status
+
+**STABLE** - used in production
+
+### Related packages
+
+- [@thi.ng/bitstream](https://github.com/thi-ng/umbrella/tree/master/packages/bitstream) - ES6 iterator based read/write bit streams with support for variable word widths
+- [@thi.ng/range-coder](https://github.com/thi-ng/umbrella/tree/master/packages/range-coder) - Binary data range encoder / decoder
+
 ## Installation
 
 ```bash
@@ -48,34 +71,34 @@ yarn add @thi.ng/rle-pack
 
 ## API
 
-```ts
-let rle = require("@thi.ng/rle-pack");
-```
+[Generated API docs](https://docs.thi.ng/umbrella/rle-pack/)
 
 ```ts
+import { encode, decode } from "@thi.ng/rle-pack";
+
 // prepare dummy data
 src = new Uint8Array(1024);
 src.set([1,1,1,1,1,2,2,2,2,3,3,3,4,4,5,4,4,3,3,3,2,2,2,2,1,1,1,1,1], 512);
 
 // pack data
-packed = rle.encode(src, src.length);
+packed = encode(src, src.length);
 packed.length
 // 30 => 2.93% of original
 
 // pack with custom word size (3 bits, i.e. our value range is only 0-7)
 // and use custom repeat group sizes suitable for our data
-alt = rle.encode(src, src.length, 3, [1, 2, 3, 9]);
+alt = encode(src, src.length, 3, [1, 2, 3, 9]);
 alt.length
 // 20 => 1.95% of original, 66% of default config
 
 // unpack
-unpacked = new Uint8Array(rle.decode(alt));
+unpacked = new Uint8Array(decode(alt));
 ```
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2017 - 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2017 - 2019 Karsten Schmidt // Apache Software License 2.0

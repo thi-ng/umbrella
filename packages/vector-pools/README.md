@@ -1,27 +1,29 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/vector-pools
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/vector-pools.svg)](https://www.npmjs.com/package/@thi.ng/vector-pools)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/vector-pools.svg)](https://www.npmjs.com/package/@thi.ng/vector-pools)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/vector-pools.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
-    - [Status](#status)
+  - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-    - [WebGL geometry definition / manipulation](#webgl-geometry-definition--manipulation)
-    - [WASM interop](#wasm-interop)
+- [API](#api)
+  - [WebGL geometry definition / manipulation](#webgl-geometry-definition---manipulation)
+  - [WASM interop](#wasm-interop)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
+
+Data structures for managing & working with strided, memory mapped vectors.
 
 This still package provides several data structures for managing &
 working with memory mapped vectors. Together with
@@ -35,10 +37,21 @@ region of a WebGL or WASM memory buffer.
 
 ### Status
 
+**ALPHA** - bleeding edge / work-in-progress
+
 This package might be merged with and/or superseded by
 [@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/master/packages/ecs)
 /
 [@thi.ng/soa](https://github.com/thi-ng/umbrella/tree/master/packages/soa).
+
+### Related packages
+
+- [@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/master/packages/ecs) - Entity Component System based around typed arrays & sparse sets
+- [@thi.ng/malloc](https://github.com/thi-ng/umbrella/tree/master/packages/malloc) - ArrayBuffer based malloc() impl for hybrid JS/WASM use cases, based on thi.ng/tinyalloc
+- [@thi.ng/soa](https://github.com/thi-ng/umbrella/tree/master/packages/soa) - SOA & AOS memory mapped structured views with optional & extensible serialization
+- [@thi.ng/unionstruct](https://github.com/thi-ng/umbrella/tree/master/packages/unionstruct) - C-style struct, union and bitfield read/write views of ArrayBuffers
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors) - Optimized 2d/3d/4d and arbitrary length vector operations
+- [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/master/packages/webgl) - WebGL & GLSL abstraction layer
 
 ## Installation
 
@@ -49,10 +62,29 @@ yarn add @thi.ng/vector-pools
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/master/packages/binary)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 - [@thi.ng/malloc](https://github.com/thi-ng/umbrella/tree/master/packages/malloc)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
 ## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### webgl-msdf <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/webgl-msdf.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/webgl-msdf/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-msdf)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/vector-pools/)
 
 ### WebGL geometry definition / manipulation
 
@@ -227,8 +259,8 @@ const geo = new vp.AttribPool(
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

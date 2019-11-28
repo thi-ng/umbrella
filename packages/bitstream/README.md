@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/bitstream
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/bitstream.svg)](https://www.npmjs.com/package/@thi.ng/bitstream)
@@ -7,10 +9,23 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-## Overview
+- [About](#about)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [API](#api)
+  - [BitOutputStream](#bitoutputstream)
+  - [BitInputStream](#bitinputstream)
+- [Authors](#authors)
+- [License](#license)
 
-ES6 iterator based, seekable read/write bit streams. Written in
-TypeScript, distributed in ES6.
+## About
+
+ES6 iterator based read/write bit streams with support for variable word widths.
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -24,9 +39,7 @@ yarn add @thi.ng/bitstream
 
 ## API
 
-```ts
-import { BitInputStream, BitOutputStream } from "@thi.ng/bitstream";
-```
+[Generated API docs](https://docs.thi.ng/umbrella/bitstream/)
 
 ### BitOutputStream
 
@@ -76,10 +89,9 @@ limits (does not attempt to resize backing buffer).
 with optional start position and read limit (both **in bits**). All
 readers are independent instances, but if obtained from
 `BitOutputStream` will share the same backing buffer as the writer. An
-auto-configured input stream can be obtained via `output.reader()`. The
-class too implements the ES6 Iterator API for **bitwise** read access
-(see [below](#bitinputstream)), as well as a `read()` method to read
-bitfields.
+auto-configured input stream can also be obtained via `output.reader()`.
+The class too implements the ES6 Iterator API for **bitwise** read
+access, as well as a `read()` method to read bitfields.
 
 **Note**: Attempting to read beyond capacity will throw an EOF error.
 
@@ -95,7 +107,7 @@ stream limits.
 
 // obtain new reader
 input = out.reader();
-// sqeuentially read bit fields of varying sizes
+// sequentially read bit fields of varying sizes
 out.reader().readFields([3, 7, 32, 16, 16]).map(x => x.toString(16))
 // [ "5", "66", "decafbad", "aaaa", "5555" ]
 
@@ -127,8 +139,8 @@ faster `readBit()` for reading single bits.
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2016-2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2019 Karsten Schmidt // Apache Software License 2.0

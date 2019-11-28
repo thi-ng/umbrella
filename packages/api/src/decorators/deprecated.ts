@@ -1,4 +1,4 @@
-import { illegalArgs } from "@thi.ng/errors";
+import { assert } from "../assert";
 
 /**
  * Method property decorator factory. Augments original method with
@@ -16,9 +16,7 @@ export const deprecated = (msg?: string, log = console.log): MethodDecorator =>
     ) {
         const signature = `${target.constructor.name}#${prop.toString()}`;
         const fn = descriptor.value;
-        if (typeof fn !== "function") {
-            illegalArgs(`${signature} is not a function`);
-        }
+        assert(typeof fn === "function", `${signature} is not a function`);
         descriptor.value = function() {
             log(`DEPRECATED ${signature}: ${msg || "will be removed soon"}`);
             return fn.apply(this, arguments);

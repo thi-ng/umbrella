@@ -1,6 +1,7 @@
 {
     "name": "hdom-canvas-draw",
     "version": "0.0.1",
+    "description": "Interactive @thi.ng/hdom-canvas pattern drawing demo using transducers",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
@@ -16,6 +17,7 @@
     },
     "dependencies": {
         "@thi.ng/hdom-canvas": "latest",
+        "@thi.ng/math": "latest",
         "@thi.ng/rstream": "latest",
         "@thi.ng/rstream-gestures": "latest",
         "@thi.ng/transducers": "latest",
@@ -27,5 +29,8 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": true
     }
 }

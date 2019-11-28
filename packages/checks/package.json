@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/checks",
     "version": "2.4.1",
-    "description": "Single-function sub-modules for type, feature & value checks",
+    "description": "Collection of 50+ type, feature & value checks",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -21,6 +21,7 @@
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "doc:readme": "../../scripts/generate-readme",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },
@@ -47,9 +48,6 @@
     "publishConfig": {
         "access": "public"
     },
-    "browserslist": [
-        "since 2018-07"
-    ],
     "browser": {
         "process": false,
         "setTimeout": false

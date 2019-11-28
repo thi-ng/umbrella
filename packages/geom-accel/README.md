@@ -1,35 +1,43 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/geom-accel
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/geom-accel.svg)](https://www.npmjs.com/package/@thi.ng/geom-accel)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/geom-accel.svg)](https://www.npmjs.com/package/@thi.ng/geom-accel)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-accel.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
+- [API](#api)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
 
-A selection of spatial indexing data structures...
+n-D spatial indexing data structures.
+
+Some implementations were ported from the Clojure version of
+[thi.ng/geom](http://thi.ng/geom).
+
+Currently available:
 
 - [k-D Tree](src/kdtree.ts)
 
-**TODO: reimport**
+**TODO: reimport / publish**
 
 - [Grid](src/grid.ts)
 - [Quadtree](src/quadtree.ts)
 - [Octree](src/octree.ts)
 - [Morton / Z-order](src/morton.ts)
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -47,23 +55,16 @@ yarn add @thi.ng/geom-accel
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
-## Usage examples
+## API
 
-Please see the
-[geom-knn](https://github.com/thi-ng/umbrella/tree/master/examples/geom-knn)
-example for concrete usage & comments...
+[Generated API docs](https://docs.thi.ng/umbrella/geom-accel/)
 
-[Live demo](https://demo.thi.ng/umbrella/geom-knn) |
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/geom-knn)
-
-```ts
-import { KdTree } from "@thi.ng/geom-accel";
-```
+TODO
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2013 - 2019 Karsten Schmidt // Apache Software License 2.0

@@ -13,7 +13,9 @@ export type NumericArray = number[] | TypedArray;
 
 export type Nullable<T> = T | null | undefined;
 
-export type Primitive = number | string | boolean | symbol;
+export type NumOrString = number | string;
+
+export type Primitive = NumOrString | boolean | symbol;
 
 /**
  * Lookup path for nested data structures.

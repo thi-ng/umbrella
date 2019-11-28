@@ -1,22 +1,23 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/shader-ast-glsl
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/shader-ast-glsl.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-glsl)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/shader-ast-glsl.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-glsl)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/shader-ast-glsl.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
+- [API](#api)
+  - [Basic GLSL code generation](#basic-glsl-code-generation)
 - [Authors](#authors)
 - [License](#license)
-
-<!-- /TOC -->
 
 ## About
 
@@ -26,6 +27,10 @@ Currently supports GLSL ES 1.00 (WebGL) & GLSL ES 3.00 (WebGL 2).
 
 This package is also used for shader assembly by
 [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/master/packages/webgl).
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -42,22 +47,47 @@ yarn add @thi.ng/shader-ast-glsl
 
 ## Usage examples
 
-There're are several `shader-ast` & `webgl` examples in the
+Several demos in this repo's
 [/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
-folder of this repo, for example...
+directory are using this package.
 
-(Possibly non-exhaustive list, live demo links in readme's)
+A selection:
 
-- [2D SDF](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-sdf2d)
-- [Raymarching](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-raymarch)
-- [Simplex noise](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-noise)
-- [Textured tunnel](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-tunnel)
-- [Cubemap](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-cubemap)
-- [GPGPU basics](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-gpgpu-basics)
-- [MSDF font rendering](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-msdf)
-- [SSAO deferred rendering](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-ssao)
+### shader-ast-canvas2d <!-- NOTOC -->
 
-Basic GLSL code generation:
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/shader-ast/shader-ast-01.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-canvas2d/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-canvas2d)
+
+### shader-ast-noise <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-noise/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-noise)
+
+### shader-ast-raymarch <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/shader-ast/shader-ast-raymarch.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-raymarch/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-raymarch)
+
+### shader-ast-sdf2 <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-sdf2/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-sdf2)
+
+### shader-ast-tunnel <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-tunnel/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-tunnel)
+
+### soa-ecs <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/soa-ecs-100k.png)
+
+[Live demo](https://demo.thi.ng/umbrella/soa-ecs/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/soa-ecs)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/shader-ast-glsl/)
+
+### Basic GLSL code generation
 
 ```ts
 import { assign, defMain, output, program, uniform, vec4 } from "@thi.ng/shader-ast";
@@ -71,7 +101,8 @@ const glsl = targetGLSL({
     // fragment shader
     type: "fs",
     // custom prelude
-    prelude: `// custom GLSL source string injection, e.g.
+    prelude: `
+// custom GLSL source string injection, e.g.
 #define PI 3.1415926`
 });
 
@@ -91,6 +122,7 @@ glsl(
 
 ```glsl
 #version 300 es
+
 // custom GLSL source string injection, e.g.
 #define PI 3.1415926
 uniform vec3 color;
@@ -102,8 +134,8 @@ fragColor = vec4(color, 1.0);
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2019 Karsten Schmidt // Apache Software License 2.0

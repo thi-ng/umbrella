@@ -21,6 +21,7 @@
         "@thi.ng/compare": "latest",
         "@thi.ng/hdom": "latest",
         "@thi.ng/hdom-components": "latest",
+        "@thi.ng/interceptors": "latest",
         "@thi.ng/paths": "latest",
         "@thi.ng/rstream-query": "latest",
         "@thi.ng/transducers": "latest"
@@ -30,5 +31,16 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "atom",
+            "compare",
+            "hdom",
+            "hdom-components",
+            "paths",
+            "rstream-query",
+            "transducers"
+        ]
     }
 }

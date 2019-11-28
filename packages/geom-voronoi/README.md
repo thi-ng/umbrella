@@ -1,26 +1,27 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/geom-voronoi
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/geom-voronoi.svg)](https://www.npmjs.com/package/@thi.ng/geom-voronoi)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/geom-voronoi.svg)](https://www.npmjs.com/package/@thi.ng/geom-voronoi)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-voronoi.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
+- [API](#api)
 - [Authors](#authors)
 - [License](#license)
-
-<!-- /TOC -->
 
 ## About
 
 Fast, incremental 2D Delaunay & Voronoi mesh implementation, based on
+the
 [@thi.ng/quad-edge](https://github.com/thi-ng/umbrella/tree/master/packages/quad-edge)
 data structure after Guibas & Stolfi and partially ported from C++
 versions by Dani Lischinski, Paul Heckbert et al:
@@ -33,6 +34,10 @@ References:
 Construction speed: 20k random points ([poisson disc samples, even
 distribution](https://github.com/thi-ng/umbrella/tree/master/packages/poisson))
 in ~850ms (Chrome 72, MBP 2016)
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -53,9 +58,24 @@ yarn add @thi.ng/geom-voronoi
 
 ## Usage examples
 
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### rotating-voronoi <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/rotating-voronoi/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rotating-voronoi)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/geom-voronoi/)
+
 ![example screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-voronoi.jpg)
 
 ```ts
+import * as g from "@thi.ng/geom";
 import { DVMesh } from "@thi.ng/geom-voronoi";
 import { repeatedly } from "@thi.ng/transducers";
 import { randNorm2 } from "@thi.ng/vectors";
@@ -69,8 +89,6 @@ mesh.delaunay()
 mesh.voronoi()
 
 // ...or clipped & filtered polygons within convex polygon boundary
-import * as g from "@thi.ng/geom";
-
 const bounds = g.vertices(g.center(g.rect(500)));
 // [ [ -250, -250 ], [ 250, -250 ], [ 250, 250 ], [ -250, 250 ] ]
 
@@ -86,8 +104,8 @@ document.body.innerHtml = g.asSvg(
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2016 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2019 Karsten Schmidt // Apache Software License 2.0

@@ -1,27 +1,26 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/lsys
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/lsys.svg)](https://www.npmjs.com/package/@thi.ng/lsys)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/lsys.svg)](https://www.npmjs.com/package/@thi.ng/lsys)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/lsys.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
-- [Status](#status)
+  - [Status](#status)
+  - [Blog posts](#blog-posts)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
-    - [Stochastic behaviors](#stochastic-behaviors)
+- [API](#api)
+  - [Stochastic behaviors](#stochastic-behaviors)
 - [Default turtle](#default-turtle)
-    - [Options](#options)
-    - [Symbols](#symbols)
+  - [Options](#options)
+  - [Symbols](#symbols)
 - [Authors](#authors)
 - [License](#license)
-
-<!-- /TOC -->
 
 ## About
 
@@ -34,14 +33,20 @@ base 2D turtle implementation is included. 0.6KB gzipped.
 Partially based on Clojure version of
 [@thi.ng/thingybot](https://github.com/thi-ng/thingybot).
 
-## Status
-
-ALPHA. Planned features:
+Planned features:
 
 - [ ] parametric grammars
 - [ ] max expansion length enforcement
 - [ ] convergence testing
 - [ ] 3D turtle implementation
+
+### Status
+
+**BETA** - possibly breaking changes forthcoming
+
+### Blog posts
+
+- [Workshop report: Generative design with Clojure](https://medium.com/@thi.ng/workshop-report-generative-design-with-clojure-7d6d8ea9a6e8)
 
 ## Installation
 
@@ -55,10 +60,13 @@ yarn add @thi.ng/lsys
 - [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/master/packages/compose)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
+- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/lsys/)
 
 | Examples                                                                                    |                                                                                             |
 |---------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
@@ -226,7 +234,7 @@ rnd: IRandom;
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 

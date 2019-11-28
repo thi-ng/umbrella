@@ -1,25 +1,26 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/poisson
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/poisson.svg)](https://www.npmjs.com/package/@thi.ng/poisson)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/poisson.svg)](https://www.npmjs.com/package/@thi.ng/poisson)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/poisson.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
+  - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
+
+![example screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-voronoi.jpg)
 
 nD [Poisson disk
 sampling](https://en.wikipedia.org/wiki/Supersampling#Poisson_disc) with
@@ -33,6 +34,15 @@ tree](https://github.com/thi-ng/umbrella/tree/master/packages/geom-accel/src/kdt
 implementation to speed up the sampling process, but will be refactored
 to support other, alternative spatial indexing mechanisms...
 
+### Status
+
+**STABLE** - used in production
+
+### Related packages
+
+- [@thi.ng/geom-voronoi](https://github.com/thi-ng/umbrella/tree/master/packages/geom-voronoi) - Fast, incremental 2D Delaunay & Voronoi mesh implementation
+- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random) - Pseudo-random number generators w/ unified API
+
 ## Installation
 
 ```bash
@@ -42,41 +52,13 @@ yarn add @thi.ng/poisson
 ## Dependencies
 
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
-- [@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/master/packages/geom-accel)
+- [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/master/packages/geom-api)
 - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
-## Usage examples
-
-![example output](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/poisson/poisson.jpg)
-
-```ts
-import { samplePoisson } from "@thi.ng/poisson";
-
-import { asSvg, svgDoc, circle } from "@thi.ng/geom";
-import { KdTree } from "@thi.ng/geom-accel";
-import { fit01 } from "@thi.ng/math";
-import { dist2, randMinMax2 } from "@thi.ng/vectors";
-
-accel = new KdTree(2);
-
-pts = samplePoisson({
-	accel,
-	points: () => randMinMax2(null, [0, 0], [500, 500]),
-	density: (p) => fit01(Math.pow(Math.max(dist2(p, [250, 250]) / 250, 0), 2), 2, 10),
-	iter: 5,
-	max: 8000,
-	quality: 500
-});
-
-// use thi.ng/geom to visualize results
-// each circle's radius is set to distance to its nearest neighbor
-circles = pts.map((p) => circle(p, dist2(p, accel.selectKeys(p, 2, 40)[1]) / 2));
-
-document.body.innerHTML = asSvg(svgDoc({ fill: "none", stroke: "red" }, ...circles));
-```
-
 ## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/poisson/)
 
 The package provides a single function `samplePoisson()` and the
 following options to customize the sampling process:
@@ -133,10 +115,38 @@ interface PoissonOpts {
 }
 ```
 
+![example output](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/poisson/poisson.jpg)
+
+```ts
+import { samplePoisson } from "@thi.ng/poisson";
+
+import { asSvg, svgDoc, circle } from "@thi.ng/geom";
+import { KdTree } from "@thi.ng/geom-accel";
+import { fit01 } from "@thi.ng/math";
+import { dist2, randMinMax2 } from "@thi.ng/vectors";
+
+accel = new KdTree(2);
+
+pts = samplePoisson({
+	accel,
+	points: () => randMinMax2(null, [0, 0], [500, 500]),
+	density: (p) => fit01(Math.pow(Math.max(dist2(p, [250, 250]) / 250, 0), 2), 2, 10),
+	iter: 5,
+	max: 8000,
+	quality: 500
+});
+
+// use thi.ng/geom to visualize results
+// each circle's radius is set to distance to its nearest neighbor
+circles = pts.map((p) => circle(p, dist2(p, accel.selectKeys(p, 2, 40)[1]) / 2));
+
+document.body.innerHTML = asSvg(svgDoc({ fill: "none", stroke: "red" }, ...circles));
+```
+
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2016 - 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2019 Karsten Schmidt // Apache Software License 2.0

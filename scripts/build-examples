@@ -12,7 +12,14 @@ for e in $examples; do
         echo "building $e..."
         echo "------------------------------"
         rm -rf $e/out $e/.cache
-        (cd $e && yarn build)
+        if [ ! -r $e/package.json ]; then
+            continue
+        fi
+        if grep --quiet build:webpack $e/package.json; then
+            (cd $e && yarn build:webpack)
+        else
+            (cd $e && yarn build)
+        fi
         if [ 0 -eq $? ]; then
             src=`ls $e/out/*.js`
             for js in $src; do

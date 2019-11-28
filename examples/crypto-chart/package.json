@@ -1,6 +1,7 @@
 {
     "name": "crypto-chart",
     "version": "0.0.1",
+    "description": "Basic crypto-currency candle chart with multiple moving averages plots",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
@@ -15,8 +16,10 @@
         "typescript": "^3.7.2"
     },
     "dependencies": {
+        "@thi.ng/api": "latest",
         "@thi.ng/hdom-components": "latest",
         "@thi.ng/hiccup-svg": "latest",
+        "@thi.ng/math": "latest",
         "@thi.ng/resolve-map": "latest",
         "@thi.ng/rstream": "latest",
         "@thi.ng/strings": "latest",
@@ -29,5 +32,19 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "hdom-components",
+            "hiccup-svg",
+            "math",
+            "resolve-map",
+            "rstream",
+            "strings",
+            "transducers",
+            "transducers-hdom",
+            "transducers-stats"
+        ],
+        "screenshot": "examples/crypto-chart.png"
     }
 }

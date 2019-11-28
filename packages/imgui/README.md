@@ -1,31 +1,32 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/imgui
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/imgui.svg)](https://www.npmjs.com/package/@thi.ng/imgui)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/imgui.svg)](https://www.npmjs.com/package/@thi.ng/imgui)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/imgui.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
-    - [Current features](#current-features)
-    - [Available components / widgets](#available-components--widgets)
-    - [State handling](#state-handling)
-    - [Layout support](#layout-support)
-    - [Key controls](#key-controls)
-    - [Current limitations](#current-limitations)
-    - [Status](#status)
+  - [Current features](#current-features)
+  - [Available components / widgets](#available-components---widgets)
+  - [State handling](#state-handling)
+  - [Layout support](#layout-support)
+  - [Key controls](#key-controls)
+  - [Current limitations](#current-limitations)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
+- [API](#api)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
+
+Immediate mode GUI with flexible state handling & data only shape output.
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/imgui/imgui-all.png)
 
@@ -216,7 +217,7 @@ Some of the most obvious missing features:
 
 ### Status
 
-WIP - Alpha. *hic sunt dracones etc.*
+**ALPHA** - bleeding edge / work-in-progress
 
 ## Installation
 
@@ -229,25 +230,38 @@ yarn add @thi.ng/imgui
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 - [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom)
+- [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/master/packages/geom-api)
+- [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/master/packages/geom-isec)
+- [@thi.ng/geom-tessellate](https://github.com/thi-ng/umbrella/tree/master/packages/geom-tessellate)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
 ## Usage examples
 
-Documented WIP demo GUI with undo/redo, on-demand updates and showcasing
-all available components (see above screenshot):
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
 
-[Live demo](http://demo.thi.ng/umbrella/imgui/) | [Source
-code](https://github.com/thi-ng/umbrella/tree/master/examples/imgui/)
+A selection:
 
-```ts
-import * as imgui from "@thi.ng/imgui";
-```
+### imgui <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/imgui/imgui-all.png)
+
+Canvas based Immediate Mode GUI components
+
+[Live demo](https://demo.thi.ng/umbrella/imgui/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/imgui)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/imgui/)
+
+TODO
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 

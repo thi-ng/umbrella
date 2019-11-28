@@ -1,26 +1,30 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/binary
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/binary.svg)](https://www.npmjs.com/package/@thi.ng/binary)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/binary.svg)](https://www.npmjs.com/package/@thi.ng/binary)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/binary.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
+- [API](#api)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
 
-Collection of 50+ binary / bitwise operations, conversions, utilities.
+50+ assorted binary / bitwise operations, conversions, utilities.
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -30,18 +34,32 @@ yarn add @thi.ng/binary
 
 ## Dependencies
 
-None.
+None
 
 ## Usage examples
 
-```ts
-import * as b from "@thi.ng/binary";
-```
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### hdom-benchmark2 <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/hdom-benchmark2.png)
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-benchmark2/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-benchmark2)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/binary/)
+
+TODO
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2019 Karsten Schmidt // Apache Software License 2.0

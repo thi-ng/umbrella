@@ -1,28 +1,30 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/bencode
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/bencode.svg)](https://www.npmjs.com/package/@thi.ng/bencode)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/bencode.svg)](https://www.npmjs.com/package/@thi.ng/bencode)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/bencode.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
-    - [Features / behaviors](#features--behaviors)
+  - [Features / behaviors](#features---behaviors)
+    - [Booleans](#booleans)
+    - [String handling](#string-handling)
+    - [Floating point values](#floating-point-values)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
+- [API](#api)
 - [Authors](#authors)
 - [License](#license)
-
-<!-- /TOC -->
 
 ## About
 
 Binary [Bencode](https://en.wikipedia.org/wiki/Bencode) encoder &
-decoder for structured data. 1.15KB gzipped.
+decoder for structured data.
 
 ### Features / behaviors
 
@@ -38,13 +40,17 @@ Bencode strings (e.g. `len:xxx...`), but are used as is.
 
 #### Floating point values
 
-This implementation has optional support for floating point values. If
-these are not desired (e.g. for compatibility reasons), all numeric
-values MUST be pre-rounded to integers. The encoder only chooses the
-custom float encoding iff a number has a fractional part. Floats are
-encoded similarly to standard ints (i.e. as text), but using `f` as
-prefix. Furthermore, only floats with an absolute value in the semi-open
-`[1e-6,1e21)` interval can be encoded.
+This implementation has optional (non-standard) support for floating
+point values. If these are not desired (e.g. for compatibility reasons),
+all numeric values MUST be pre-rounded to integers. The encoder only
+chooses the custom float encoding iff a number has a fractional part.
+Floats are encoded similarly to standard ints (i.e. as text), but using
+`f` as prefix. Furthermore, only floats with an absolute value in the
+semi-open `[1e-6,1e21)` interval can be encoded.
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -55,12 +61,16 @@ yarn add @thi.ng/bencode
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/master/packages/arrays)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 - [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/master/packages/defmulti)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 - [@thi.ng/transducers-binary](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary)
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/bencode/)
 
 ```ts
 import { encode, decode } from "@thi.ng/bencode";
@@ -79,7 +89,6 @@ import { hexDump } from "@thi.ng/transducers-binary";
 const bytes = encode({ foo: [1, "a", { bar: "baz"}, [42]] });
 // Uint8Array [ 100, 51, 58, 102, 111, 111, 108, 105, 49, 101, 49, ... ]
 
-
 decode(bytes)
 // { foo: [ 1, 'a', { bar: 'baz' }, [ 42 ] ] }
 
@@ -91,8 +100,8 @@ decode(bytes, false)
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2016 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2019 Karsten Schmidt // Apache Software License 2.0

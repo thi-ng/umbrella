@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/sax
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax)
@@ -6,6 +8,21 @@
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
+- [About](#about)
+  - [Status](#status)
+  - [Related packages](#related-packages)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [API](#api)
+  - [Basic usage](#basic-usage)
+  - [Partial parsing & result post-processing](#partial-parsing---result-post-processing)
+  - [DOM-style tree parsing using `defmulti`](#dom-style-tree-parsing-using--defmulti-)
+  - [Error handling](#error-handling)
+- [Emitted result type IDs](#emitted-result-type-ids)
+- [Parser options](#parser-options)
+- [Authors](#authors)
+- [License](#license)
 
 ## About
 
@@ -26,6 +43,16 @@ Additionally, since by default the parser emits any children as part of
 "element end" events, it can be used like a tree-walking DOM parser as
 well (see SVG parsing example further below). The choice is yours!
 
+### Status
+
+**STABLE** - used in production
+
+### Related packages
+
+- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg) - SVG element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup) & [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers) - Lightweight transducer implementations for ES6 / TypeScript
+- [@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-fsm) - Transducer-based Finite State Machine transformer
+
 ## Installation
 
 ```bash
@@ -38,7 +65,11 @@ yarn add @thi.ng/sax
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 - [@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-fsm)
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/sax/)
+
+### Basic usage
 
 ```ts
 import * as sax from "@thi.ng/sax";
@@ -281,8 +312,8 @@ The `type` key in each emitted result object is a TypeScript enum with the follo
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

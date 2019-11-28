@@ -1,33 +1,40 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/seq
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/seq.svg)](https://www.npmjs.com/package/@thi.ng/seq)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/seq.svg)](https://www.npmjs.com/package/@thi.ng/seq)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/seq.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
+- [API](#api)
 - [Authors](#authors)
 - [License](#license)
-
-<!-- /TOC -->
 
 ## About
 
 Various implementations of the [@thi.ng/api
 `ISeq`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api/seq.ts)
-interface / sequence abstraction and related tooling.
+interface / sequence abstraction and related tooling (inspired by
+Clojure). Think of `ISeq`s as readonly sequential views & cursors of an
+underlying (not necessarily sequential) collection...
 
-Unlike ES6 iterators, `ISeq.next()` is decoupled from an iteration step
-and merely produces a new view of the remaining sequence values. This
-allows forking & sharing of the sequence head among multiple consumers,
-each able to read the remaining values at their own pace.
+Unlike with ES6 iterators,
+[`ISeq.next()`](https://github.com/thi-ng/umbrella/blob/develop/packages/api/src/api/seq.ts#L23)
+is decoupled from an iteration step and merely produces a new view /
+sequence head of the remaining sequence values. This allows forking &
+sharing the sequence head(s) among multiple consumers, each able to read
+the remaining values at their own pace.
+
+### Status
+
+**ALPHA** - bleeding edge / work-in-progress
 
 ## Installation
 
@@ -40,13 +47,21 @@ yarn add @thi.ng/seq
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/seq/)
 
 ```ts
-import { aseq, concat, iterator } from "@thi.ng/seq";
+import { aseq, rseq, concat, iterator } from "@thi.ng/seq";
 
 // create a sequence abstraction of an array
 const a = aseq([1,2,3]);
+
+// aseq returns `undefined` for nullish or empty array arguments
+// this is in accordance w/ the `ISeqable` interface
+// see further below...
+aseq([])
+// undefined
 
 // first() returns first value of seq (or undefined if empty)
 a.first()
@@ -71,11 +86,22 @@ aseq([10, 20, 30, 40], 2).first()
 aseq([10, 20, 30, 40], 2).next().first()
 // 40
 
-// if start index > end index, seq is built in reverse
 // the iterator here is only used for demo purposes
 // (i.e. to convert the sequence to a standard ES6 iterable & show the result)
-[...iterator(aseq([10, 20, 30, 40], 3, 1))]
-// [40, 30]
+[...iterator(aseq([10, 20, 30, 40], 2))]
+// [30, 40]
+
+// rseq() produces a reverse sequence of the given array
+rseq([1, 2, 3]).first()
+// 3
+rseq([1, 2, 3]).next().first()
+// 2
+
+// index ranges only (start MUST be > end)
+[...iterator(rseq([0, 1, 2, 3, 4], 2))]
+// [2, 1, 0]
+[...iterator(rseq([0, 1, 2, 3, 4], 3, 1))]
+// [3, 2]
 
 // zero-copy concat (supporting nullable parts/sub-sequences)
 [...iterator(concat(null, aseq([]), aseq([1, 2]), undefined, aseq([3])))]
@@ -87,21 +113,22 @@ aseq([10, 20, 30, 40], 2).next().first()
 ```
 
 Since the entire approach is interface based, sequences can be defined
-for any custom datatype (via the `ISeqable` interface), for example here
-using
+for any custom datatype (preferably via the
+[ISeqable](https://github.com/thi-ng/umbrella/blob/develop/packages/api/src/api/seq.ts#L35)
+interface), for example here using
 [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons):
 
 ```ts
 import { dcons } from "@thi.ng/dcons";
 
-// concat array with doubly-linked list
-[...iterator(concat(aseq([1,2,3]), dcons([4,5,6]).seq()))]
-// [ 1, 2, 3, 4, 5, 6 ]
+// concat reversed array with doubly-linked list
+[...iterator(concat(rseq([1, 2, 3]), dcons([4, 5, 6])))]
+// [ 3, 2, 1, 4, 5, 6 ]
 ```
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 

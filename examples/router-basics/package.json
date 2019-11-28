@@ -1,7 +1,7 @@
 {
     "name": "router-basics",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "Basic @thi.ng/router & @thi.ng/hdom app skeleton",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt",
     "license": "Apache-2.0",
@@ -15,8 +15,8 @@
         "@thi.ng/api": "latest",
         "@thi.ng/atom": "latest",
         "@thi.ng/checks": "latest",
-        "@thi.ng/interceptors": "latest",
         "@thi.ng/hdom": "latest",
+        "@thi.ng/interceptors": "latest",
         "@thi.ng/router": "latest"
     },
     "devDependencies": {
@@ -29,5 +29,13 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "atom",
+            "hdom",
+            "interceptors",
+            "router"
+        ]
     }
 }

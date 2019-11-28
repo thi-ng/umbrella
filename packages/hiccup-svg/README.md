@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/hiccup-svg
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-svg.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-svg)
@@ -7,12 +9,23 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+- [About](#about)
+  - [Important](#important)
+  - [SVG conversion of @thi.ng/geom & @thi.ng/hdom-canvas shape trees](#svg-conversion-of--thi-ng-geom----thi-ng-hdom-canvas-shape-trees)
+  - [Automatic attribute conversions](#automatic-attribute-conversions)
+    - [Colors](#colors)
+    - [Transforms](#transforms)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
+- [API](#api)
+- [Authors](#authors)
+- [License](#license)
+
 ## About
 
-SVG element functions & conversion for
-[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
-&
-[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom).
+SVG element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup) & [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom).
 
 ### Important
 
@@ -54,7 +67,8 @@ result tree). See example below.
 
 Since v3.1.0:
 
-Color conversions are only applied to `fill` and `stroke` attributes and color stops provided to `linearGradient()`, `radialGradient()`
+Color conversions are only applied to `fill` and `stroke` attributes and
+color stops provided to `linearGradient()`, `radialGradient()`
 
 ##### String
 
@@ -87,7 +101,8 @@ If an element has a `transform` attrib, conversion of the other
 transformation attribs will be skipped, else the values are assumed to
 be either strings or:
 
-- `transform`: 6-element numeric array ([2x3 matrix in column major order](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform#Matrix))
+- `transform`: 6-element numeric array ([2x3 matrix in column major
+  order](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform#Matrix))
 - `translate`: 2-element array
 - `rotate`: number (angle in radians)
 - `scale`: number (uniform scale) or 2-elem array
@@ -95,6 +110,10 @@ be either strings or:
 If no `transform`, but others are given, the resulting transformation
 order will always be TRS. Any string values will be used as-is and
 therefore need to be complete, e.g. `{ rotate: "rotate(60)" }`
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -109,6 +128,52 @@ yarn add @thi.ng/hiccup-svg
 - [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
 
 ## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### crypto-chart <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/crypto-chart.png)
+
+Basic crypto-currency candle chart with multiple moving averages plots
+
+[Live demo](https://demo.thi.ng/umbrella/crypto-chart/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart)
+
+### hdom-canvas-shapes <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/hdom-canvas/hdom-canvas-shapes-results.png)
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-shapes)
+
+### pointfree-svg <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/pointfree-svg.png)
+
+[Live demo](https://demo.thi.ng/umbrella/pointfree-svg/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/pointfree-svg)
+
+### poly-spline <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/poly-spline/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/poly-spline)
+
+### rstream-grid <!-- NOTOC -->
+
+Interactive grid generator, SVG generation & export, undo/redo support
+
+[Live demo](https://demo.thi.ng/umbrella/rstream-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid)
+
+### svg-waveform <!-- NOTOC -->
+
+Additive waveform synthesis & SVG visualization with undo/redo
+
+[Live demo](https://demo.thi.ng/umbrella/svg-waveform/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-waveform)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/hiccup-svg/)
 
 ```ts
 import * as svg from "@thi.ng/hiccup-svg";
@@ -177,8 +242,8 @@ Result:
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2016 - 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2019 Karsten Schmidt // Apache Software License 2.0

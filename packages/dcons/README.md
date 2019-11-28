@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/dcons
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dcons.svg)](https://www.npmjs.com/package/@thi.ng/dcons)
@@ -7,9 +9,23 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+- [About](#about)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [API](#api)
+  - [Head centric](#head-centric)
+  - [Tail centric](#tail-centric)
+  - [Random Access](#random-access)
+  - [Insertion](#insertion)
+  - [Finding](#finding)
+  - [Structure](#structure)
+- [Authors](#authors)
+- [License](#license)
+
 ## About
 
-Comprehensive doubly linked list structure with:
+Double-linked list with comprehensive set of operations.
 
 - ES6 iterator support
 - Stack & queue API (front and/or back)
@@ -19,7 +35,8 @@ Comprehensive doubly linked list structure with:
 - Node swaps (O(1))
 - Reversing (O(n/2))
 - Rotation (left / right) (O(1))
-- Shuffling
+- Shuffling (configurable, support custom PRNG)
+- Sorting (Merge sort, w/ custom comparator)
 - Slicing (sublist copies)
 - Splicing (delete and/or insert)
 - `release()` (emptying, GC friendly)
@@ -27,6 +44,10 @@ Comprehensive doubly linked list structure with:
 - `map()` / `filter()` / `reduce()`
 - `compare()` / `equiv()`
 - `toJSON()` transform (-> array)
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -41,25 +62,12 @@ yarn add @thi.ng/dcons
 - [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/master/packages/compare)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
-
-## Usage
-
-```ts
-// ES5
-DCons = require("@thi.ng/dcons").DCons;
-
-// ES6 / TS
-import { DCons } from "@thi.ng/dcons";
-```
 
 ## API
 
-```ts
-list = new DCons([1, 2, 3]);
-list.length
-[...list]
-```
+[Generated API docs](https://docs.thi.ng/umbrella/dcons/)
 
 ### Head centric
 
@@ -80,6 +88,7 @@ list.length
 
 - `.length`
 - `nth()`
+- `nthCell()`
 - `setNth()`
 
 ### Insertion
@@ -103,17 +112,18 @@ list.length
 - `splice()`
 - `swap()`
 - `shuffle()`
+- `sort()`
 - `reverse()`
 - `rotateLeft()`
 - `rotateRight()`
 - `release()`
 
-TODO...
+TODO
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2017-2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2017 - 2019 Karsten Schmidt // Apache Software License 2.0
