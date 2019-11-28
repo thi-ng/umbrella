@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/geom-closest-point",
     "version": "0.3.9",
-    "description": "Closest point / proximity helpers",
+    "description": "2D / 3D closest point / proximity helpers",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -21,6 +21,7 @@
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "doc:readme": "../../scripts/generate-readme",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },

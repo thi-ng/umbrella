@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/atom",
     "version": "3.1.1",
-    "description": "Mutable wrappers for nested immutable values w/ optional undo/redo history",
+    "description": "Mutable wrappers for nested immutable values with optional undo/redo history and transaction support",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -59,9 +59,6 @@
     "publishConfig": {
         "access": "public"
     },
-    "browserslist": [
-        "since 2018-07"
-    ],
     "browser": {
         "process": false,
         "setTimeout": false

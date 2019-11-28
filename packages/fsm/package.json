@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/fsm",
     "version": "2.3.0",
-    "description": "Composable primitives for building declarative, transducer based Finite-State machines & parsers for arbitrary data streams",
+    "description": "Composable primitives for building declarative, transducer based Finite-State Machines & matchers for arbitrary data streams",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -21,6 +21,7 @@
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "doc:readme": "../../scripts/generate-readme",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },
@@ -58,5 +59,9 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "status": "alpha",
+        "year": 2019
+    }
 }

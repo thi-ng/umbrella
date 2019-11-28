@@ -55,9 +55,6 @@
     "publishConfig": {
         "access": "public"
     },
-    "browserslist": [
-        "since 2018-07"
-    ],
     "browser": {
         "process": false,
         "setTimeout": false

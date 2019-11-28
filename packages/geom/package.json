@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/geom",
     "version": "1.7.7",
-    "description": "2D geometry types, polymorphic operations, SVG generation",
+    "description": "Functional, polymorphic API for 2D geometry types & SVG generation",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -21,6 +21,7 @@
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib ctors internal ops",
+        "doc:readme": "../../scripts/generate-readme",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },
@@ -76,6 +77,8 @@
     },
     "sideEffects": false,
     "thi.ng": {
-        "shortlink": false
+        "shortlink": false,
+        "status": "beta",
+        "year": 2013
     }
 }

@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/ecs",
     "version": "0.1.0",
-    "description": "TODO",
+    "description": "Entity Component System based around typed arrays & sparse sets",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -51,5 +51,9 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "status": "alpha",
+        "year": 2019
+    }
 }

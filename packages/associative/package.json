@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/associative",
     "version": "3.1.0",
-    "description": "Alternative Set & Map data type implementations with customizable equality semantics & supporting operations",
+    "description": "Alternative Map and Set implementations with customizable equality semantics & supporting operations",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -21,6 +21,7 @@
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "doc:readme": "../../scripts/generate-readme",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },

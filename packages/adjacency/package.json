@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/adjacency",
     "version": "0.1.25",
-    "description": "Sparse & bitwise adjacency matrices for directed / undirected graphs",
+    "description": "Sparse & bitwise adjacency matrices and related functions for directed & undirected graphs",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -21,6 +21,7 @@
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "doc:readme": "../../scripts/generate-readme",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },

@@ -21,6 +21,7 @@
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "doc:readme": "../../scripts/generate-readme",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },
@@ -62,5 +63,17 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "blog": [
+            {
+                "title": "How to UI in 2018",
+                "url": "https://medium.com/@thi.ng/how-to-ui-in-2018-ac2ae02acdf3"
+            },
+            {
+                "title": "Of umbrellas, transducers, reactive streams & mushrooms (Pt.1)",
+                "url": "https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-1-a8717ce3a170"
+            }
+        ]
+    }
 }
