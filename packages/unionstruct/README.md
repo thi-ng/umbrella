@@ -1,30 +1,48 @@
-# @thi.ng/union-struct
+<!-- This file is generated - DO NOT EDIT! -->
 
-[![npm](https://img.shields.io/npm/v/@thi.ng/unionstruct.svg)](https://www.npmjs.com/package/@thi.ng/unionstruct)
+# @thi.ng/unionstruct
+
+[![npm version](https://img.shields.io/npm/v/@thi.ng/unionstruct.svg)](https://www.npmjs.com/package/@thi.ng/unionstruct)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/unionstruct.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+- [About](#about)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [API](#api)
+  - [union](#union)
+  - [struct](#struct)
+  - [sizeOf](#sizeof)
+  - [Alignment](#alignment)
+  - [Bitfields](#bitfields)
+- [Authors](#authors)
+- [License](#license)
+
 ## About
 
 C-style struct, union and bitfield read/write views of ArrayBuffers.
-Written in TypeScript, distributed as ES6.
 
 Features:
 
-- construct memory mapped JS objects based on given typedef specs
-- nested structs & unions
-- packed bitfields (signed / unsigned)
-- auto-alignment of fields to respective word boundaries (can be
+- Construct memory mapped JS objects based on given typedef specs
+- Nested structs & unions
+- Packed bitfields (signed / unsigned)
+- Auto-alignment of fields to respective word boundaries (can be
   disabled)
-- configurable endianess (bitfields currently assume network order / big
+- Configurable endianess (bitfields currently assume network order / big
   endian)
-- no runtime dependencies, works in node & browser
-- small: 2.35KB minified, 1.14KB gzipped
+- No runtime dependencies, works in node & browser
+- Small: 2.35KB minified, 1.14KB gzipped
 
 Currently does not support array fields (incl. strings).
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -38,8 +56,10 @@ None
 
 ## API
 
+[Generated API docs](https://docs.thi.ng/umbrella/unionstruct/)
+
 ```ts
-let {struct, union, sizeOf} = require("@thi.ng/unionstruct");
+import { struct, union, sizeOf } from "@thi.ng/unionstruct";
 ```
 
 C-style union types define alternate views of the same data. For example
@@ -122,7 +142,9 @@ header.state.scheduled    // -131072
 header.state.tag          // 12345
 ```
 
-### union(spec: Field[], buf?: ArrayBuffer, offset = 0, align = true, littleEndian = false) => any
+### union
+
+`union(spec: Field[], buf?: ArrayBuffer, offset = 0, align = true, littleEndian = false) => any`
 
 Takes an array of field specs (as in example above) and optional
 ArrayBuffer, offset etc. If no buffer is given, constructs a new one
@@ -138,11 +160,15 @@ for introspection purposes):
 All top-level fields in a union share the same start address. Also see
 note about [alignment](#alignment) below.
 
-### struct(spec: Field[], buf?: ArrayBuffer, offset = 0, align = true, littleEndian = false) => any
+### struct
+
+`struct(spec: Field[], buf?: ArrayBuffer, offset = 0, align = true, littleEndian = false) => any`
 
 Same as `union`, but field start addresses are arranged sequentially (and aligned individually).
 
-### sizeOf(spec: Field[], union = false, doAlign = true) => number
+### sizeOf
+
+`sizeOf(spec: Field[], union = false, doAlign = true) => number`
 
 Returns bit size of given field spec, taking into account alignment.
 
@@ -201,18 +227,10 @@ bitfields.__offsets
 // (since u8 aligns itself to 8-bit boundaries)
 ```
 
-## Typescript specifics
-
-The library defines a `FieldType` type alias and `Field` interface to
-allow for type checking of field specs (details
-[here](https://github.com/thi-ng/umbrella/blob/master/packages/unionstruct/src/index.ts)).
-These are exposed in the `index.d.ts` file, bundled in the release
-version.
-
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2017 Karsten Schmidt // Apache Software License 2.0
+&copy; 2017 - 2019 Karsten Schmidt // Apache Software License 2.0

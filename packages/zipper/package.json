@@ -54,5 +54,18 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "blog": [
+            {
+                "title": "Evolutionary failures (Part 1)",
+                "url": "https://medium.com/@thi.ng/evolutionary-failures-part-1-54522c69be37"
+            }
+        ],
+        "branch": "develop",
+        "related": [
+            "gp"
+        ],
+        "year": 2015
+    }
 }

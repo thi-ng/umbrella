@@ -48,5 +48,9 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "parent": "@thi.ng/transducers",
+        "year": 2017
+    }
 }

@@ -13,9 +13,24 @@ This project is part of the
 
 ${pkg.description}
 
+This package provides [multi-channel SDF font
+rendering](https://github.com/Chlumsky/msdfgen) capabilities for
+[@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/master/packages/webgl),
+incl. optional support for basic text alignment, vertex colors (e.g. for
+multi-color text), and shader options to draw outlines for each
+character. Furthermore, the key GLSL functions are provided as shader
+snippets to embed this functionality in custom shaders without having to
+resort to copy & paste.
+
+There're different versions of MSDF font generators. The format
+supported by this module is based on [Don
+McCurdy's](https://msdf-bmfont.donmccurdy.com/).
+
 ${status}
 
 ${supportPackages}
+
+${relatedPackages}
 
 ${blogPosts}
 
@@ -32,6 +47,8 @@ ${pkg.deps}
 ${examples}
 
 ## API
+
+${docLink}
 
 TODO
 

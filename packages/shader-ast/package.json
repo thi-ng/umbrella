@@ -59,5 +59,13 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "related": [
+            "gp",
+            "webgl",
+            "webgl-shadertoy"
+        ],
+        "year": 2019
+    }
 }

@@ -49,5 +49,14 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "parent": "@thi.ng/transducers",
+        "related": [
+            "fsm",
+            "sax"
+        ],
+        "status": "beta",
+        "year": 2018
+    }
 }

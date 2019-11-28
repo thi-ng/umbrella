@@ -126,6 +126,10 @@ A selection:
 
 [Live demo](https://demo.thi.ng/umbrella/porter-duff/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/porter-duff)
 
+### webgl-multipass <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/webgl-multipass/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-multipass)
+
 ## API
 
 [Generated API docs](https://docs.thi.ng/umbrella/pixel/)

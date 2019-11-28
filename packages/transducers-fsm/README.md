@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/transducers-fsm
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-fsm.svg)](https://www.npmjs.com/package/@thi.ng/transducers-fsm)
@@ -7,13 +9,40 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+- [About](#about)
+  - [Status](#status)
+  - [Related packages](#related-packages)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
+  - [3-state FSM](#3-state-fsm)
+- [API](#api)
+  - [fsm transducer](#fsm-transducer)
+- [Authors](#authors)
+- [License](#license)
+
 ## About
+
+Transducer-based Finite State Machine transformer. This is a support package for [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers).
 
 This package provides a single function, a general purpose [Finite State
 Machine](https://en.wikipedia.org/wiki/Finite-state_machine) transducer,
 which acts as useful & lightweight mechanism to provide
 context-sensitive processing capabilities as part of a transducer
 transformation pipeline.
+
+### Status
+
+**BETA** - possibly breaking changes forthcoming
+
+This package might be merged with (or deprecated by) the newer
+[@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/master/packages/fsm)
+package.
+
+### Related packages
+
+- [@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/master/packages/fsm) - Composable primitives for building declarative, transducer based Finite-State Machines & matchers for arbitrary data streams
+- [@thi.ng/sax](https://github.com/thi-ng/umbrella/tree/master/packages/sax) - Transducer-based, SAX-like, non-validating, speedy & tiny XML parser
 
 ## Installation
 
@@ -121,7 +150,11 @@ const testFSM = fsm({
 
 ## API
 
-### `fsm<T extends FSMState, A, B>(opts: FSMOpts<T, A, B[]>): Transducer<A, B>`
+[Generated API docs](https://docs.thi.ng/umbrella/transducers-fsm/)
+
+### fsm transducer
+
+`fsm<T extends FSMState, A, B>(opts: FSMOpts<T, A, B[]>): Transducer<A, B>`
 
 Finite State Machine transducer. Takes an FSM configuration object and
 returns a transducer, which processes inputs using the provided state
@@ -148,8 +181,8 @@ to the configured `terminate` state, processing is terminated (by calling
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

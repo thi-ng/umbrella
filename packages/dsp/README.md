@@ -56,6 +56,10 @@ A selection:
 
 [Live demo](https://demo.thi.ng/umbrella/poly-spline/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/poly-spline)
 
+### webgl-ssao <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/webgl-ssao/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-ssao)
+
 ## API
 
 [Generated API docs](https://docs.thi.ng/umbrella/dsp/)

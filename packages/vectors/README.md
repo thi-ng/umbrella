@@ -1,53 +1,56 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/vectors
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/vectors.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
-    - [Features](#features)
-    - [Related packages](#related-packages)
+  - [Features](#features)
+  - [Status](#status)
+  - [Breaking changes in v3.0.0](#breaking-changes-in-v3-0-0)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [API](#api)
-    - [Breaking changes in v3.0.0](#breaking-changes-in-v300)
-    - [Naming conventions](#naming-conventions)
-    - [Constants](#constants)
-    - [Component setters & copying](#component-setters--copying)
-    - [Component swizzling](#component-swizzling)
-    - [Vector creation](#vector-creation)
-    - [Basic vector math](#basic-vector-math)
-    - [Combined operations](#combined-operations)
-    - [Constraints](#constraints)
-    - [Cross product](#cross-product)
-    - [Dot product](#dot-product)
-    - [Interpolation](#interpolation)
-    - [Normalization / magnitude](#normalization--magnitude)
-    - [Distances](#distances)
-    - [Orientation](#orientation)
-    - [Rotations](#rotations)
-    - [Polar / cartesian conversion](#polar--cartesian-conversion)
-    - [Randomness](#randomness)
-    - [Unary vector math ops](#unary-vector-math-ops)
-    - [Vector array batch processing](#vector-array-batch-processing)
-    - [Comparison / equality](#comparison--equality)
-    - [Bitwise operations (int / uint vec)](#bitwise-operations-int--uint-vec)
-    - [Boolean vector logic](#boolean-vector-logic)
-    - [Componentwise comparisons](#componentwise-comparisons)
-    - [Hashing](#hashing)
-    - [Code generator](#code-generator)
+  - [Naming conventions](#naming-conventions)
+  - [Constants](#constants)
+  - [Component setters & copying](#component-setters---copying)
+  - [Component swizzling](#component-swizzling)
+  - [Vector creation](#vector-creation)
+  - [Basic vector math](#basic-vector-math)
+    - [Vector / vector](#vector---vector)
+    - [Vector / scalar](#vector---scalar)
+  - [Combined operations](#combined-operations)
+  - [Constraints](#constraints)
+  - [Cross product](#cross-product)
+  - [Dot product](#dot-product)
+  - [Interpolation](#interpolation)
+  - [Normalization / magnitude](#normalization---magnitude)
+  - [Distances](#distances)
+  - [Orientation](#orientation)
+  - [Rotations](#rotations)
+  - [Polar / cartesian conversion](#polar---cartesian-conversion)
+  - [Randomness](#randomness)
+  - [Unary vector math ops](#unary-vector-math-ops)
+  - [Vector array batch processing](#vector-array-batch-processing)
+  - [Comparison / equality](#comparison---equality)
+  - [Bitwise operations (int / uint vec)](#bitwise-operations--int---uint-vec-)
+  - [Boolean vector logic](#boolean-vector-logic)
+  - [Componentwise comparisons](#componentwise-comparisons)
+  - [Hashing](#hashing)
+  - [Code generator](#code-generator)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
+
+Optimized 2d/3d/4d and arbitrary length vector operations.
 
 Likely the most comprehensive vector library for TypeScript / JavaScript
 currently available.
@@ -64,54 +67,76 @@ ops for signed & unsigned integer vectors.
 
 ### Features
 
--   Small & fast: The vast majority of functions are code generated with
-    fixed-sized versions not using any loops. Minified + gzipped, the
-    entire package is ~10.1KB (though you'll hardly ever use all functions).
--   Unified API: Any `ArrayLike` type can be used as vector containers
-    (e.g. JS arrays, typed arrays, custom impls). Most functions are
-    implemented as multi-methods, dispatching to any potentially optimized
-    versions based on given vector arguments.
--   Highly modular: Each function is defined in its own submodule / file.
-    In addition to each generic multi-method base function, all
-    fixed-length optimized versions are exported too. E.g. If
-    [`add`](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/add.ts)
-    performs vector addition on arbitrary-length vectors, `add2`, `add3`,
-    `add4` are the optimized version for fixed-length vectors...
--   Extensible: Custom vector ops can be defined in a similar manner using
-    the provided code generation helpers (see
-    [vop.ts](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/internal/vop.ts)
-    and
-    [codegen.ts](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/internal/codegen.ts)
-    for details).
--   Immutable by default: Each operation producing a vector result takes
-    an output vector as first argument. If `null`, the vector given as 2nd
-    argument will be used as output (i.e. for mutation).
--   Strided vector support is handled via the lightweight
-    [`Vec2/3/4`](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/vec2.ts)
-    class wrappers and the
-    [`gvec()`](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/gvec.ts)
-    proxy (for generic, arbitrary-length vectors). These types behave like
-    normal arrays (for read/write operations) and are also iterable. A
-    subset of functions (suffixed with `S`, e.g.
-    [`addS`](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/adds.ts)
-    vs. `add`) also support striding without the need for extra class
-    wrappers. This is handled via additional index and stride arguments
-    for each input/output vector. These functions are only available for
-    sizes 2 / 3 / 4, though.
--   Random vector functions support the `IRandom` interface defined by
-    [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
-    to work with custom (P)RNGs. If omitted, the built-in `Math.random()`
-    will be used.
+- Small & fast: The vast majority of functions are code generated with
+  fixed-sized versions not using any loops. Minified + gzipped, the
+  entire package is ~10.1KB (though you'll hardly ever use all
+  functions).
+- Unified API: Any `ArrayLike` type can be used as vector containers
+  (e.g. JS arrays, typed arrays, custom impls). Most functions are
+  implemented as multi-methods, dispatching to any potentially optimized
+  versions based on given vector arguments.
+- Highly modular: Each function is defined in its own submodule / file.
+  In addition to each generic multi-method base function, all
+  fixed-length optimized versions are exported too. E.g. If
+  [`add`](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/add.ts)
+  performs vector addition on arbitrary-length vectors, `add2`, `add3`,
+  `add4` are the optimized version for fixed-length vectors...
+- Extensible: Custom vector ops can be defined in a similar manner using
+  the provided code generation helpers (see
+  [vop.ts](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/internal/vop.ts)
+  and
+  [codegen.ts](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/internal/codegen.ts)
+  for details).
+- Immutable by default: Each operation producing a vector result takes
+  an output vector as first argument. If `null`, the vector given as 2nd
+  argument will be used as output (i.e. for mutation).
+- Strided vector support is handled via the lightweight
+  [`Vec2/3/4`](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/vec2.ts)
+  class wrappers and the
+  [`gvec()`](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/gvec.ts)
+  proxy (for generic, arbitrary-length vectors). These types behave like
+  normal arrays (for read/write operations) and are also iterable. A
+  subset of functions (suffixed with `S`, e.g.
+  [`addS`](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/adds.ts)
+  vs. `add`) also support striding without the need for extra class
+  wrappers. This is handled via additional index and stride arguments
+  for each input/output vector. These functions are only available for
+  sizes 2 / 3 / 4, though.
+- Random vector functions support the `IRandom` interface defined by
+  [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
+  to work with custom (P)RNGs. If omitted, the built-in `Math.random()`
+  will be used.
+
+Partially ported from [thi.ng/geom](http://thi.ng/geom) (Clojure) and
+[c.thi.ng](http://c.thi.ng) (C11).
+
+### Status
+
+**STABLE** - used in production
+
+### Breaking changes in v3.0.0
+
+- to avoid confusion, the arg order of `madd` and `maddN` functions have
+  been updated to be compatible with the OpenCL `mad` function and to
+  generally follow the expanded name, i.e. multiply-add:
+  - `madd([], a, b, c)`: before `a + b * c`, now: `a * b + c`
+  - `maddN([], a, b, n)` => `maddN([], a, n, b)` (i.e. `a * n + b`)
+- rename `perpendicularLeft2` => `perpendicularCCW`
+- rename `perpendicularRight2` => `perpendicularCW`
+- rename `normalLeft2`/ `normalRight2` => `normalCCW` / `normalCW`
 
 ### Related packages
 
--   [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/master/packages/color) - vector based color operations / conversions
--   [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom) - 2D/3D geometry types & operations
--   [@thi.ng/imgui](https://github.com/thi-ng/umbrella/tree/master/packages/imgui) - immediate mode GUI
--   [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/master/packages/matrices) - 2x2, 2x3, 3x3, 4x4 matrix & quaternion ops
--   [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast) - Shader DSL & cross-compilation
--   [@thi.ng/shader-ast-js](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-js) - JS code generator for shader-ast
--   [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/master/packages/vector-pools) - operations on memory mapped data
+- [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/master/packages/color) - Array-based color ops, conversions, multi-color gradients, presets
+- [@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/master/packages/ecs) - Entity Component System based around typed arrays & sparse sets
+- [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom) - Functional, polymorphic API for 2D geometry types & SVG generation
+- [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas) - Declarative canvas scenegraph & visualization for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
+- [@thi.ng/imgui](https://github.com/thi-ng/umbrella/tree/master/packages/imgui) - Immediate mode GUI with flexible state handling & data only shape output
+- [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/master/packages/matrices) - Matrix & quaternion operations for 2D/3D geometry processing
+- [@thi.ng/soa](https://github.com/thi-ng/umbrella/tree/master/packages/soa) - SOA & AOS memory mapped structured views with optional & extensible serialization
+- [@thi.ng/shader-ast-js](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-js) - Customizable JS code generator, compiler & runtime for [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast)
+- [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/master/packages/vector-pools) - Data structures for managing & working with strided, memory mapped vectors
+- [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/master/packages/webgl) - WebGL & GLSL abstraction layer
 
 ## Installation
 
@@ -121,15 +146,87 @@ yarn add @thi.ng/vectors
 
 ## Dependencies
 
--   [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
--   [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
--   [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
--   [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
--   [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
--   [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
--   [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/master/packages/binary)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
+- [@thi.ng/memoize](https://github.com/thi-ng/umbrella/tree/master/packages/memoize)
+- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 
 ## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### canvas-dial <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/canvas-dial.png)
+
+Canvas based dial widget
+
+[Live demo](https://demo.thi.ng/umbrella/canvas-dial/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/canvas-dial)
+
+### gesture-analysis <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/gesture-analysis.png)
+
+Mouse gesture / stroke analysis, simplification, corner detection
+
+[Live demo](https://demo.thi.ng/umbrella/gesture-analysis/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/gesture-analysis)
+
+### hdom-canvas-clock <!-- NOTOC -->
+
+Realtime clock demo for @thi.ng/hdom-canvas
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-canvas-clock/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-clock)
+
+### hdom-canvas-draw <!-- NOTOC -->
+
+Interactive @thi.ng/hdom-canvas pattern drawing demo using transducers
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-canvas-draw/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-draw)
+
+### hdom-canvas-shapes <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-shapes)
+
+### iso-plasma <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-isoline.png)
+
+Animated sine plasma effect visualized using contour lines
+
+[Live demo](https://demo.thi.ng/umbrella/iso-plasma/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/iso-plasma)
+
+### rotating-voronoi <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/rotating-voronoi/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rotating-voronoi)
+
+### soa-ecs <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/soa-ecs-100k.png)
+
+[Live demo](https://demo.thi.ng/umbrella/soa-ecs/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/soa-ecs)
+
+### webgl-cube <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/webgl-cube/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-cube)
+
+### webgl-grid <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/webgl-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-grid)
+
+### webgl-msdf <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/webgl-msdf.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/webgl-msdf/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-msdf)
 
 ```ts
 import * as v from "@thi.ng/vectors";
@@ -186,16 +283,7 @@ v.hash([1, 2, 3])
 
 ## API
 
-### Breaking changes in v3.0.0
-
-- to avoid confusion, the arg order of `madd` and `maddN` functions have
-  been updated to be compatible with the OpenCL `mad` function and to
-  generally follow the expanded name, i.e. multiply-add:
-  - `madd([], a, b, c)`: before `a + b * c`, now: `a * b + c`
-  - `maddN([], a, b, n)` => `maddN([], a, n, b)` (i.e. `a * n + b`)
-- rename `perpendicularLeft2` => `perpendicularCCW`
-- rename `perpendicularRight2` => `perpendicularCW`
-- rename `normalLeft2`/ `normalRight2` => `normalCCW` / `normalCW`
+[Generated API docs](https://docs.thi.ng/umbrella/vectors/)
 
 ### Naming conventions
 
@@ -546,28 +634,27 @@ All resulting in boolean vectors:
 | `gte`    | ✓       | 2-4   |         |     |          |
 | `neq`    | ✓       | 2-4   |         |     |          |
 
-
 ### Hashing
 
 - `hash`
 
 ### Code generator
 
--   `compile` / `compileG` / `compileGHOF` / `compileHOF`
--   `defOp` / `defOpS` / `defFnOp` / `defHofOp`
--   `defMathNOp` / `defMathOp`
--   `vop`
+- `compile` / `compileG` / `compileGHOF` / `compileHOF`
+- `defOp` / `defOpS` / `defFnOp` / `defHofOp`
+- `defMathNOp` / `defMathOp`
+- `vop`
 
 For more information about the code generator see:
 
--   [codegen.ts](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/internal/codegen.ts)
--   [templates.ts](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/internal/templates.ts)
--   [vop.ts](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/internal/vop.ts)
+- [codegen.ts](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/internal/codegen.ts)
+- [templates.ts](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/internal/templates.ts)
+- [vop.ts](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/internal/vop.ts)
 
 ## Authors
 
--   Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2019 Karsten Schmidt // Apache Software License 2.0

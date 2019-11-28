@@ -17,6 +17,8 @@ ${status}
 
 ${supportPackages}
 
+${relatedPackages}
+
 ${blogPosts}
 
 ## Installation
@@ -32,6 +34,8 @@ ${pkg.deps}
 ${examples}
 
 ## API
+
+${docLink}
 
 TODO
 

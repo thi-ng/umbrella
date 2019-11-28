@@ -11,11 +11,16 @@ This project is part of the
 
 ## About
 
-${pkg.description}
+Various higher-order, configurable string formatting & utility
+functions, some memoized. Please sources / docstrings for now.
+
+Partially based on Clojure version of [thi.ng/strf](http://thi.ng/strf).
 
 ${status}
 
 ${supportPackages}
+
+${relatedPackages}
 
 ${blogPosts}
 
@@ -32,6 +37,8 @@ ${pkg.deps}
 ${examples}
 
 ## API
+
+${docLink}
 
 TODO
 

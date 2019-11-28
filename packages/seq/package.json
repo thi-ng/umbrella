@@ -46,5 +46,9 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "status": "alpha",
+        "year": 2019
+    }
 }

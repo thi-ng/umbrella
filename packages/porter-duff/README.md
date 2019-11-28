@@ -50,7 +50,7 @@ ints or RGBA float vectors.
 ### Related packages
 
 - [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/master/packages/pixel) - Typed array backed, packed pixel buffer w/ customizable formats, blitting, conversions
-- [@thi.ng/shader-ast-stdlib](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdlib) - Useful functions for GPGPU / shader programming w/ [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast)
+- [@thi.ng/shader-ast-stdlib](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdlib) - Function collection for modular GPGPU / shader programming with [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast)
 
 ## Installation
 

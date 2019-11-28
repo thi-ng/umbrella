@@ -1,27 +1,26 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/sexpr
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/sexpr.svg)](https://www.npmjs.com/package/@thi.ng/sexpr)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/sexpr.svg)](https://www.npmjs.com/package/@thi.ng/sexpr)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/sexpr.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
-- [Status](#status)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-    - [Tokenize only (iterator)](#tokenize-only-iterator)
-    - [AST generation](#ast-generation)
-    - [Interpreter](#interpreter)
-    - [Custom syntax](#custom-syntax)
+- [API](#api)
+  - [Tokenize only (iterator)](#tokenize-only--iterator-)
+  - [AST generation](#ast-generation)
+  - [Interpreter](#interpreter)
+  - [Custom syntax](#custom-syntax)
 - [Authors](#authors)
 - [License](#license)
-
-<!-- /TOC -->
 
 ## About
 
@@ -39,9 +38,9 @@ The following default syntax rules are used:
 
 Everything else is parsed as is, i.e. as symbol.
 
-## Status
+### Status
 
-ALPHA
+**ALPHA** - bleeding edge / work-in-progress
 
 ## Installation
 
@@ -52,15 +51,24 @@ yarn add @thi.ng/sexpr
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 - [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/master/packages/defmulti)
 
 ## Usage examples
 
-- [DSL for spreadsheet formulas](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-spreadsheet)
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
 
-```ts
-import { tokenize, parse, runtime } from "@thi.ng/sexpr";
-```
+A selection:
+
+### rstream-spreadsheet <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-spreadsheet)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/sexpr/)
 
 ### Tokenize only (iterator)
 
@@ -260,8 +268,8 @@ parse(`<nest { a '2' b 3 }>`, syntax);
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2016 - 2019 Karsten Schmidt // Apache Software License 2.0
+&copy; 2019 Karsten Schmidt // Apache Software License 2.0

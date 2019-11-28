@@ -60,5 +60,14 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "parent": "@thi.ng/transducers",
+        "related": [
+            "binary",
+            "bitstream",
+            "unionstruct"
+        ],
+        "year": 2018
+    }
 }

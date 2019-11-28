@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/shader-ast-stdlib",
     "version": "0.3.1",
-    "description": "Useful functions for GPGPU / shader programming w/ @thi.ng/shader-ast",
+    "description": "Function collection for modular GPGPU / shader programming with @thi.ng/shader-ast",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -63,5 +63,8 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "year": 2019
+    }
 }

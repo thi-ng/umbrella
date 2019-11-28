@@ -52,5 +52,13 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "related": [
+            "hiccup-svg",
+            "transducers",
+            "transducers-fsm"
+        ],
+        "year": 2018
+    }
 }

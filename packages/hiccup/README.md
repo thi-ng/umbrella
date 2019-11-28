@@ -166,6 +166,12 @@ Filterable commit log UI w/ minimal server to provide commit history
 
 [Live demo](https://demo.thi.ng/umbrella/hydrate-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hydrate-basics)
 
+### pointfree-svg <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/pointfree-svg.png)
+
+[Live demo](https://demo.thi.ng/umbrella/pointfree-svg/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/pointfree-svg)
+
 ### rstream-grid <!-- NOTOC -->
 
 Interactive grid generator, SVG generation & export, undo/redo support

@@ -74,6 +74,10 @@ Interactive grid generator, SVG generation & export, undo/redo support
 
 [Live demo](https://demo.thi.ng/umbrella/rstream-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid)
 
+### rstream-spreadsheet <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-spreadsheet)
+
 ## API
 
 [Generated API docs](https://docs.thi.ng/umbrella/rstream-graph/)

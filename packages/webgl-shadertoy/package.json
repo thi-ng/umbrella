@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/webgl-shadertoy",
     "version": "0.1.1",
-    "description": "Basic WebGL scaffolding for running interactive fragment shaders",
+    "description": "Basic WebGL scaffolding for running interactive fragment shaders via @thi.ng/shader-ast",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -55,5 +55,15 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "parent": "@thi.ng/webgl",
+        "related": [
+            "shader-ast",
+            "shader-ast-stdlib",
+            "webgl"
+        ],
+        "status": "alpha",
+        "year": 2019
+    }
 }

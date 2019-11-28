@@ -53,5 +53,14 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "parent": "@thi.ng/transducers",
+        "related": [
+            "hdom",
+            "interceptors",
+            "rstream"
+        ],
+        "year": 2018
+    }
 }
