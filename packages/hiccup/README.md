@@ -123,8 +123,8 @@ iterable
 
 ### Related packages
 
-- [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
-- [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas)
+- [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom) - Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors
+- [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas) - Declarative canvas scenegraph & visualization for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
 
 ### Blog posts
 

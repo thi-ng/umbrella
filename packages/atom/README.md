@@ -14,17 +14,6 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-  - [devcards](#devcards)
-  - [hdom-dropdown-fuzzy](#hdom-dropdown-fuzzy)
-  - [hdom-dyn-context](#hdom-dyn-context)
-  - [interceptor-basics](#interceptor-basics)
-  - [rotating-voronoi](#rotating-voronoi)
-  - [router-basics](#router-basics)
-  - [rstream-dataflow](#rstream-dataflow)
-  - [rstream-grid](#rstream-grid)
-  - [svg-waveform](#svg-waveform)
-  - [hdom-todolist](#hdom-todolist)
-  - [triple-query](#triple-query)
 - [API](#api)
   - [Atom](#atom)
   - [Transacted updates](#transacted-updates)
@@ -77,53 +66,45 @@ directory are using this package.
 
 A selection:
 
-### devcards
+### devcards <!-- NOTOC -->
 
 [Live demo](https://demo.thi.ng/umbrella/devcards/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/devcards)
 
-### hdom-dropdown-fuzzy
+### hdom-dropdown-fuzzy <!-- NOTOC -->
 
 [Live demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-dropdown-fuzzy)
 
-### hdom-dyn-context
-
-[Live demo](https://demo.thi.ng/umbrella/hdom-dyn-context/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-dyn-context)
-
-### interceptor-basics
-
-[Live demo](https://demo.thi.ng/umbrella/interceptor-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/interceptor-basics)
-
-### rotating-voronoi
+### rotating-voronoi <!-- NOTOC -->
 
 [Live demo](https://demo.thi.ng/umbrella/rotating-voronoi/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rotating-voronoi)
 
-### router-basics
+### router-basics <!-- NOTOC -->
 
 Basic @thi.ng/router & @thi.ng/hdom app skeleton
 
 [Live demo](https://demo.thi.ng/umbrella/router-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/router-basics)
 
-### rstream-dataflow
+### rstream-dataflow <!-- NOTOC -->
 
 [Live demo](https://demo.thi.ng/umbrella/rstream-dataflow/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-dataflow)
 
-### rstream-grid
+### rstream-grid <!-- NOTOC -->
 
 Interactive grid generator, SVG generation & export, undo/redo support
 
 [Live demo](https://demo.thi.ng/umbrella/rstream-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid)
 
-### svg-waveform
+### svg-waveform <!-- NOTOC -->
 
 Additive waveform synthesis & SVG visualization with undo/redo
 
 [Live demo](https://demo.thi.ng/umbrella/svg-waveform/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-waveform)
 
-### hdom-todolist
+### hdom-todolist <!-- NOTOC -->
 
 [Live demo](https://demo.thi.ng/umbrella/hdom-todolist/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-todolist)
 
-### triple-query
+### triple-query <!-- NOTOC -->
 
 [Live demo](https://demo.thi.ng/umbrella/triple-query/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/triple-query)
 

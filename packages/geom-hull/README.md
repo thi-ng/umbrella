@@ -14,7 +14,6 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-  - [geom-convex-hull](#geom-convex-hull)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -49,7 +48,7 @@ directory are using this package.
 
 A selection:
 
-### geom-convex-hull
+### geom-convex-hull <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/geom-convex-hull.png)
 

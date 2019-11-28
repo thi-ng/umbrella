@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/idgen",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "Generator of opaque numeric identifiers with optional support for ID versioning and efficient re-use",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -49,5 +49,9 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "status": "alpha",
+        "year": 2019
+    }
 }

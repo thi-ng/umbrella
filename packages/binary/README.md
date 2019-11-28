@@ -14,7 +14,6 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-  - [hdom-benchmark2](#hdom-benchmark2)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -45,7 +44,7 @@ directory are using this package.
 
 A selection:
 
-### hdom-benchmark2
+### hdom-benchmark2 <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/hdom-benchmark2.png)
 

@@ -69,6 +69,10 @@
                 "url": "https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-1-a8717ce3a170"
             }
         ],
+        "related": [
+            "hdom",
+            "hdom-canvas"
+        ],
         "year": 2016
     }
 }

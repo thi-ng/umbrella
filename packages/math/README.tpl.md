@@ -13,9 +13,15 @@ This project is part of the
 
 ${pkg.description}
 
+Partially ported from Clojure version of
+[thi.ng/math](https://github.com/thi-ng/math) and
+[thi.ng/vexed-generation](https://github.com/thi-ng/vexed-generation).
+
 ${status}
 
 ${supportPackages}
+
+${relatedPackages}
 
 ${blogPosts}
 
@@ -32,6 +38,8 @@ ${pkg.deps}
 ${examples}
 
 ## API
+
+${docLink}
 
 TODO
 

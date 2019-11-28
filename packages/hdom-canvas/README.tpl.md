@@ -25,10 +25,7 @@ ${status}
 
 ${supportPackages}
 
-## Related packages
-
-- [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom)
-- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg)
+${relatedPackages}
 
 ${blogPosts}
 

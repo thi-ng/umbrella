@@ -14,7 +14,6 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-  - [geom-tessel](#geom-tessel)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -61,7 +60,7 @@ directory are using this package.
 
 A selection:
 
-### geom-tessel
+### geom-tessel <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/tessel.png)
 

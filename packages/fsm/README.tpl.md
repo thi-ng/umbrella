@@ -26,6 +26,8 @@ package.
 
 ${supportPackages}
 
+${relatedPackages}
+
 ${blogPosts}
 
 ## Installation

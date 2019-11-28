@@ -14,7 +14,6 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-  - [poly-spline](#poly-spline)
 - [API](#api)
   - [Polygon to cubic curve conversion](#polygon-to-cubic-curve-conversion)
     - [Poly vertices as control points](#poly-vertices-as-control-points)
@@ -57,7 +56,7 @@ directory are using this package.
 
 A selection:
 
-### poly-spline
+### poly-spline <!-- NOTOC -->
 
 [Live demo](https://demo.thi.ng/umbrella/poly-spline/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/poly-spline)
 

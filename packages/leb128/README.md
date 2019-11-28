@@ -1,23 +1,22 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/leb128
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/leb128.svg)](https://www.npmjs.com/package/@thi.ng/leb128)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/leb128.svg)](https://www.npmjs.com/package/@thi.ng/leb128)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/leb128.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
+- [API](#api)
 - [Building the binary](#building-the-binary)
 - [Authors](#authors)
 - [License](#license)
-
-<!-- /TOC -->
 
 ## About
 
@@ -40,6 +39,10 @@ References:
 - https://en.wikipedia.org/wiki/LEB128
 - http://webassembly.github.io/spec/core/binary/values.html#integers
 
+### Status
+
+**STABLE** - used in production
+
 ## Installation
 
 ```bash
@@ -52,7 +55,9 @@ yarn add @thi.ng/leb128
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 - [@thi.ng/transducers-binary](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary)
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/leb128/)
 
 ```ts
 import * as leb from "@thi.ng/leb128";
@@ -102,7 +107,7 @@ yarn test
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 

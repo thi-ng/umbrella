@@ -60,6 +60,11 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "geom",
+            "hdom",
+            "hiccup-svg"
+        ],
         "year": 2018
     }
 }

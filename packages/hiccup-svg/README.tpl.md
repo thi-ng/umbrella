@@ -101,6 +101,8 @@ ${status}
 
 ${supportPackages}
 
+${relatedPackages}
+
 ${blogPosts}
 
 ## Installation

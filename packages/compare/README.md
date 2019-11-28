@@ -14,7 +14,6 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-  - [triple-query](#triple-query)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -45,7 +44,7 @@ directory are using this package.
 
 A selection:
 
-### triple-query
+### triple-query <!-- NOTOC -->
 
 [Live demo](https://demo.thi.ng/umbrella/triple-query/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/triple-query)
 

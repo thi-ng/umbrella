@@ -14,7 +14,6 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-  - [shader-ast-evo](#shader-ast-evo)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -70,7 +69,7 @@ directory are using this package.
 
 A selection:
 
-### shader-ast-evo
+### shader-ast-evo <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-evo.jpg)
 

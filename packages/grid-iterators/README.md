@@ -21,10 +21,10 @@ This project is part of the
   - [Zigzag diagonal](#zigzag-diagonal)
   - [Zigzag rows](#zigzag-rows)
   - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-  - [grid-iterators](#grid-iterators)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -114,6 +114,11 @@ in
 
 **STABLE** - used in production
 
+### Related packages
+
+- [@thi.ng/morton](https://github.com/thi-ng/umbrella/tree/master/packages/morton) - Z-order-curve / Morton encoding & decoding for 1D, 2D, 3D
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers) - Lightweight transducer implementations for ES6 / TypeScript
+
 ## Installation
 
 ```bash
@@ -136,7 +141,7 @@ directory are using this package.
 
 A selection:
 
-### grid-iterators
+### grid-iterators <!-- NOTOC -->
 
 [Live demo](https://demo.thi.ng/umbrella/grid-iterators/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/grid-iterators)
 

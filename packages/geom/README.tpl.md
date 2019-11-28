@@ -25,6 +25,8 @@ themselves too):
 
 ${supportPackages}
 
+${relatedPackages}
+
 ${status}
 
 ${blogPosts}

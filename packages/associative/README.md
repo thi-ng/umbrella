@@ -16,7 +16,6 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-  - [commit-table-ssr](#commit-table-ssr)
 - [API](#api)
   - [IEquivSet](#iequivset)
   - [ArraySet](#arrayset)
@@ -185,7 +184,7 @@ directory are using this package.
 
 A selection:
 
-### commit-table-ssr
+### commit-table-ssr <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/commit-table-ssr.png)
 

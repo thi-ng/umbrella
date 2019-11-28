@@ -14,7 +14,6 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-  - [iso-plasma](#iso-plasma)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -49,7 +48,7 @@ directory are using this package.
 
 A selection:
 
-### iso-plasma
+### iso-plasma <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-isoline.png)
 

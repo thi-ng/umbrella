@@ -14,7 +14,6 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-  - [markdown](#markdown)
 - [API](#api)
   - [Matchers](#matchers)
   - [FSM transducer](#fsm-transducer)
@@ -60,7 +59,7 @@ directory are using this package.
 
 A selection:
 
-### markdown
+### markdown <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/markdown-parser.jpg)
 

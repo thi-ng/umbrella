@@ -14,7 +14,6 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-  - [soa-ecs](#soa-ecs)
 - [API](#api)
   - [Basic concepts](#basic-concepts)
 - [Authors](#authors)
@@ -61,7 +60,7 @@ directory are using this package.
 
 A selection:
 
-### soa-ecs
+### soa-ecs <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/soa-ecs-100k.png)
 

@@ -62,6 +62,10 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "morton",
+            "transducers"
+        ],
         "year": 2019
     }
 }

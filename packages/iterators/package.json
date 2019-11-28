@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/iterators",
     "version": "5.1.6",
-    "description": "clojure.core inspired, composable ES6 iterators & generators",
+    "description": "Clojure inspired, composable ES6 iterators & generators",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -54,5 +54,8 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "year": 2017
+    }
 }

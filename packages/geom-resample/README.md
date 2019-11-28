@@ -14,7 +14,6 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-  - [rotating-voronoi](#rotating-voronoi)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -56,7 +55,7 @@ directory are using this package.
 
 A selection:
 
-### rotating-voronoi
+### rotating-voronoi <!-- NOTOC -->
 
 [Live demo](https://demo.thi.ng/umbrella/rotating-voronoi/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rotating-voronoi)
 

@@ -60,5 +60,15 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "blog": [
+            {
+                "title": "Workshop report: Generative design with Clojure",
+                "url": "https://medium.com/@thi.ng/workshop-report-generative-design-with-clojure-7d6d8ea9a6e8"
+            }
+        ],
+        "status": "beta",
+        "year": 2019
+    }
 }

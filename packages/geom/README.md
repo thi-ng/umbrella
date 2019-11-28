@@ -15,13 +15,6 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-  - [geom-convex-hull](#geom-convex-hull)
-  - [geom-tessel](#geom-tessel)
-  - [gesture-analysis](#gesture-analysis)
-  - [imgui](#imgui)
-  - [iso-plasma](#iso-plasma)
-  - [poly-spline](#poly-spline)
-  - [rotating-voronoi](#rotating-voronoi)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -103,19 +96,19 @@ directory are using this package.
 
 A selection:
 
-### geom-convex-hull
+### geom-convex-hull <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/geom-convex-hull.png)
 
 [Live demo](https://demo.thi.ng/umbrella/geom-convex-hull/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/geom-convex-hull)
 
-### geom-tessel
+### geom-tessel <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/tessel.png)
 
 [Live demo](https://demo.thi.ng/umbrella/geom-tessel/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/geom-tessel)
 
-### gesture-analysis
+### gesture-analysis <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/gesture-analysis.png)
 
@@ -123,7 +116,7 @@ Mouse gesture / stroke analysis, simplification, corner detection
 
 [Live demo](https://demo.thi.ng/umbrella/gesture-analysis/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/gesture-analysis)
 
-### imgui
+### imgui <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/imgui/imgui-all.png)
 
@@ -131,17 +124,19 @@ Canvas based Immediate Mode GUI components
 
 [Live demo](https://demo.thi.ng/umbrella/imgui/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/imgui)
 
-### iso-plasma
+### iso-plasma <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-isoline.png)
 
+Animated sine plasma effect visualized using contour lines
+
 [Live demo](https://demo.thi.ng/umbrella/iso-plasma/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/iso-plasma)
 
-### poly-spline
+### poly-spline <!-- NOTOC -->
 
 [Live demo](https://demo.thi.ng/umbrella/poly-spline/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/poly-spline)
 
-### rotating-voronoi
+### rotating-voronoi <!-- NOTOC -->
 
 [Live demo](https://demo.thi.ng/umbrella/rotating-voronoi/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rotating-voronoi)
 

@@ -11,7 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Status](#status)
-- [Related packages](#related-packages)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -71,10 +71,11 @@ API draw calls during the hdom update process / cycle.
 
 **STABLE** - used in production
 
-## Related packages
+### Related packages
 
-- [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom)
-- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg)
+- [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom) - Functional, polymorphic API for 2D geometry types & SVG generation
+- [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom) - Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors
+- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg) - SVG element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup) & [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
 
 ## Installation
 

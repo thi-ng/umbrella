@@ -37,6 +37,8 @@ for a similar, but alternative (and actively maintained) approach.
 
 ${supportPackages}
 
+${relatedPackages}
+
 ${blogPosts}
 
 ## Installation

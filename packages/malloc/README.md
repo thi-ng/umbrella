@@ -1,48 +1,47 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/malloc
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/malloc.svg)](https://www.npmjs.com/package/@thi.ng/malloc)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/malloc.svg)](https://www.npmjs.com/package/@thi.ng/malloc)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/malloc.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
 - [Memory layout](#memory-layout)
-- [Free block compaction / coalescing](#free-block-compaction--coalescing)
+- [Free block compaction / coalescing](#free-block-compaction---coalescing)
 - [Block splitting](#block-splitting)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
 - [API](#api)
-    - [MemPool](#mempool)
-    - [`malloc(size: number)`](#mallocsize-number)
-    - [`mallocAs(type: Type, num: number)`](#mallocastype-type-num-number)
-    - [`calloc(size: number, fill = 0)`](#callocsize-number-fill--0)
-    - [`callocAs(type: Type, num: number, fill = 0)`](#callocastype-type-num-number-fill--0)
-    - [`realloc(addr: number, size: number)`](#reallocaddr-number-size-number)
-    - [`reallocArray(buf: TypedArray, num: number)`](#reallocarraybuf-typedarray-num-number)
-    - [`free(addr: number | TypedArray)`](#freeaddr-number--typedarray)
-    - [`freeAll()`](#freeall)
-    - [`release()`](#release)
-    - [`stats()`](#stats)
+  - [MemPool](#mempool)
+  - [`malloc(size: number)`](#-malloc-size--number--)
+  - [`mallocAs(type: Type, num: number)`](#-mallocas-type--type--num--number--)
+  - [`calloc(size: number, fill = 0)`](#-calloc-size--number--fill---0--)
+  - [`callocAs(type: Type, num: number, fill = 0)`](#-callocas-type--type--num--number--fill---0--)
+  - [`realloc(addr: number, size: number)`](#-realloc-addr--number--size--number--)
+  - [`reallocArray(buf: TypedArray, num: number)`](#-reallocarray-buf--typedarray--num--number--)
+  - [`free(addr: number | TypedArray)`](#-free-addr--number---typedarray--)
+  - [`freeAll()`](#-freeall---)
+  - [`release()`](#-release---)
+  - [`stats()`](#-stats---)
 - [Benchmarks](#benchmarks)
 - [Authors](#authors)
+  - [Maintainer](#maintainer)
+  - [Contributors](#contributors)
 - [License](#license)
-
-<!-- /TOC -->
 
 ## About
 
-TypeScript port of
-[thi.ng/tinyalloc](https://github.com/thi-ng/tinyalloc), for raw or
-typed array memory pooling and/or hybrid JS/WASM use cases etc. Supports
-free block compaction and configurable splitting. Unlike the original,
-this implementation also supports `realloc()` and does not constrain the
-overall number of blocks in use and the only imposed limit is that of
-the underlying array buffer.
+ArrayBuffer based malloc() impl for hybrid JS/WASM use cases, based on thi.ng/tinyalloc.
+
+Supports free block compaction and configurable splitting. Unlike the
+original, this implementation also supports `realloc()` and does not
+constrain the overall number of blocks in use and the only imposed limit
+is that of the underlying array buffer.
 
 Each `MemPool` instance operates on a single large `ArrayBuffer` used as
 backing memory chunk, e.g. the same buffer used by a WASM module.
@@ -115,9 +114,14 @@ Initial example layout:
 
 ![Block splitting (initial layout)](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/malloc/split-01.png)
 
-Layout after allocating only a smaller size than the free block's capacity:
+Layout after allocating only a smaller size than the free block's
+capacity:
 
 ![Block splitting (result)](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/malloc/split-02.png)
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -132,11 +136,28 @@ yarn add @thi.ng/malloc
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/malloc/)
+
+### MemPool
+
+The `MemPool` constructor takes an object of optional configuration
+options. See
+[`MemPoolOpts`](https://github.com/thi-ng/umbrella/blob/master/packages/malloc/src/api.ts#L9)
+for further reference:
 
 ```ts
 import { Type } from "@thi.ng/api";
 import { MemPool } from "@thi.ng/malloc";
+
+// example with some default options shown
+new MemPool({
+    size:     0x1000,
+    compact:  true,
+    split:    true,
+    minSplit: 16
+});
 
 // create memory w/ optional start allocation address
 // (start address can't be zero, reserved for malloc/calloc failure)
@@ -189,25 +210,6 @@ pool.stats();
 //   top: 56,
 //   available: 4040,
 //   total: 4096 }
-```
-
-## API
-
-### MemPool
-
-The `MemPool` constructor takes an object of optional configuration
-options. See
-[`MemPoolOpts`](https://github.com/thi-ng/umbrella/blob/master/packages/malloc/src/api.ts#L9)
-for further reference:
-
-```ts
-// example with some default options shown
-new MemPool({
-    size:     0x1000,
-    compact:  true,
-    split:    true,
-    minSplit: 16
-});
 ```
 
 ### `malloc(size: number)`
@@ -306,8 +308,14 @@ allocating tiny arrays is slightly slower than the vanilla version... YMMV!
 
 ## Authors
 
-- Karsten Schmidt
+### Maintainer
+
+- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
+
+### Contributors
+
+- Bnaya Peretz ([@Bnaya](https://github.com/Bnaya))
 
 ## License
 
-&copy; 2016 - 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2019 Karsten Schmidt // Apache Software License 2.0

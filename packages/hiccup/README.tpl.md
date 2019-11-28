@@ -84,10 +84,7 @@ ${status}
 
 ${supportPackages}
 
-### Related packages
-
-- [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
-- [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas)
+${relatedPackages}
 
 ${blogPosts}
 
