@@ -13,6 +13,7 @@ This project is part of the
   - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -54,6 +55,20 @@ yarn add @thi.ng/geom-accel
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### geom-knn <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/geom-knn.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/geom-knn/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/geom-knn)
 
 ## API
 

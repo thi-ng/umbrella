@@ -144,6 +144,8 @@ A selection:
 
 ### webgl-grid <!-- NOTOC -->
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/webgl-grid.jpg)
+
 [Live demo](https://demo.thi.ng/umbrella/webgl-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-grid)
 
 ### webgl-msdf <!-- NOTOC -->
@@ -161,6 +163,8 @@ A selection:
 [Live demo](https://demo.thi.ng/umbrella/webgl-shadertoy/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-shadertoy)
 
 ### webgl-ssao <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/webgl-ssao.jpg)
 
 [Live demo](https://demo.thi.ng/umbrella/webgl-ssao/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-ssao)
 

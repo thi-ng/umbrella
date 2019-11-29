@@ -172,6 +172,12 @@ Canvas based dial widget
 
 [Live demo](https://demo.thi.ng/umbrella/canvas-dial/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/canvas-dial)
 
+### geom-knn <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/geom-knn.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/geom-knn/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/geom-knn)
+
 ### gesture-analysis <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/gesture-analysis.png)
@@ -206,7 +212,15 @@ Animated sine plasma effect visualized using contour lines
 
 [Live demo](https://demo.thi.ng/umbrella/iso-plasma/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/iso-plasma)
 
+### package-stats <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/package-stats.png)
+
+[Live demo](https://demo.thi.ng/umbrella/package-stats/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/package-stats)
+
 ### rotating-voronoi <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/rotating-voronoi.png)
 
 [Live demo](https://demo.thi.ng/umbrella/rotating-voronoi/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rotating-voronoi)
 
@@ -221,6 +235,8 @@ Animated sine plasma effect visualized using contour lines
 [Live demo](https://demo.thi.ng/umbrella/webgl-cube/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-cube)
 
 ### webgl-grid <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/webgl-grid.jpg)
 
 [Live demo](https://demo.thi.ng/umbrella/webgl-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-grid)
 

@@ -59,7 +59,7 @@ Please also see the following hdom references for further details:
 
 - [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom) - Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors
 - [@thi.ng/interceptors](https://github.com/thi-ng/umbrella/tree/master/packages/interceptors) - Interceptor based event bus, side effect & immutable state handling
-- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream) - Reactive multi-tap streams, dataflow & transformation pipeline constructs
+- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream) - Reactive streams & subscription primitives for constructing dataflow graphs / pipelines
 
 ## Installation
 
@@ -146,6 +146,8 @@ Minimal Markdown to Hiccup to HTML parser / transformer
 [Live demo](https://demo.thi.ng/umbrella/poly-spline/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/poly-spline)
 
 ### rotating-voronoi <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/rotating-voronoi.png)
 
 [Live demo](https://demo.thi.ng/umbrella/rotating-voronoi/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rotating-voronoi)
 

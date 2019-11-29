@@ -75,6 +75,12 @@ Canvas based dial widget
 
 [Live demo](https://demo.thi.ng/umbrella/canvas-dial/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/canvas-dial)
 
+### geom-knn <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/geom-knn.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/geom-knn/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/geom-knn)
+
 ### gesture-analysis <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/gesture-analysis.png)

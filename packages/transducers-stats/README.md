@@ -85,6 +85,12 @@ Basic crypto-currency candle chart with multiple moving averages plots
 
 [Live demo](https://demo.thi.ng/umbrella/crypto-chart/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart)
 
+### shader-ast-workers <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/shader-ast-workers.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-workers)
+
 ## API
 
 [Generated API docs](https://docs.thi.ng/umbrella/transducers-stats/)

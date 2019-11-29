@@ -76,6 +76,8 @@ A selection:
 
 ### rotating-voronoi <!-- NOTOC -->
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/rotating-voronoi.png)
+
 [Live demo](https://demo.thi.ng/umbrella/rotating-voronoi/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rotating-voronoi)
 
 ### router-basics <!-- NOTOC -->
@@ -90,6 +92,8 @@ Basic @thi.ng/router & @thi.ng/hdom app skeleton
 
 ### rstream-grid <!-- NOTOC -->
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/rstream-grid.jpg)
+
 Interactive grid generator, SVG generation & export, undo/redo support
 
 [Live demo](https://demo.thi.ng/umbrella/rstream-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid)
@@ -99,6 +103,8 @@ Interactive grid generator, SVG generation & export, undo/redo support
 [Live demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-spreadsheet)
 
 ### svg-waveform <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/svg-waveform.jpg)
 
 Additive waveform synthesis & SVG visualization with undo/redo
 

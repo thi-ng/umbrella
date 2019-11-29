@@ -126,6 +126,12 @@ A selection:
 
 [Live demo](https://demo.thi.ng/umbrella/porter-duff/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/porter-duff)
 
+### shader-ast-workers <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/shader-ast-workers.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-workers)
+
 ### webgl-multipass <!-- NOTOC -->
 
 [Live demo](https://demo.thi.ng/umbrella/webgl-multipass/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-multipass)

@@ -32,7 +32,7 @@ and synchronous stream subscriptions/transformations of
 ### Related packages
 
 - [@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/master/packages/csp) - ES6 promise based CSP primitives & operations
-- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream) - Reactive multi-tap streams, dataflow & transformation pipeline constructs
+- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream) - Reactive streams & subscription primitives for constructing dataflow graphs / pipelines
 
 ## Installation
 

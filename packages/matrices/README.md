@@ -96,6 +96,8 @@ A selection:
 
 ### webgl-grid <!-- NOTOC -->
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/webgl-grid.jpg)
+
 [Live demo](https://demo.thi.ng/umbrella/webgl-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-grid)
 
 ### webgl-msdf <!-- NOTOC -->

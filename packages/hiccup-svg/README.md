@@ -149,6 +149,12 @@ Basic crypto-currency candle chart with multiple moving averages plots
 
 [Live demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-shapes)
 
+### package-stats <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/package-stats.png)
+
+[Live demo](https://demo.thi.ng/umbrella/package-stats/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/package-stats)
+
 ### pointfree-svg <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/pointfree-svg.png)
@@ -161,11 +167,15 @@ Basic crypto-currency candle chart with multiple moving averages plots
 
 ### rstream-grid <!-- NOTOC -->
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/rstream-grid.jpg)
+
 Interactive grid generator, SVG generation & export, undo/redo support
 
 [Live demo](https://demo.thi.ng/umbrella/rstream-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid)
 
 ### svg-waveform <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/svg-waveform.jpg)
 
 Additive waveform synthesis & SVG visualization with undo/redo
 

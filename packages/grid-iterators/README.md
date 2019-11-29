@@ -143,6 +143,8 @@ A selection:
 
 ### grid-iterators <!-- NOTOC -->
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/grid-iterators.png)
+
 [Live demo](https://demo.thi.ng/umbrella/grid-iterators/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/grid-iterators)
 
 ## API

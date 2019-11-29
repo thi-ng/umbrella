@@ -185,6 +185,8 @@ Minimal Markdown to Hiccup to HTML parser / transformer
 
 ### rotating-voronoi <!-- NOTOC -->
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/rotating-voronoi.png)
+
 [Live demo](https://demo.thi.ng/umbrella/rotating-voronoi/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rotating-voronoi)
 
 ### rstream-event-loop <!-- NOTOC -->
@@ -196,6 +198,8 @@ Minimal demo of using rstream constructs to form an interceptor-style event loop
 [Live demo](https://demo.thi.ng/umbrella/rstream-event-loop/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-event-loop)
 
 ### rstream-grid <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/rstream-grid.jpg)
 
 Interactive grid generator, SVG generation & export, undo/redo support
 

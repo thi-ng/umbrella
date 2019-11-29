@@ -96,6 +96,12 @@ A selection:
 
 [Live demo](https://demo.thi.ng/umbrella/shader-ast-tunnel/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-tunnel)
 
+### shader-ast-workers <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/shader-ast-workers.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-workers)
+
 ## API
 
 [Generated API docs](https://docs.thi.ng/umbrella/shader-ast-js/)

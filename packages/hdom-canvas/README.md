@@ -101,6 +101,12 @@ directory are using this package.
 
 A selection:
 
+### geom-knn <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/geom-knn.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/geom-knn/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/geom-knn)
+
 ### hdom-canvas-clock <!-- NOTOC -->
 
 Realtime clock demo for @thi.ng/hdom-canvas
@@ -137,7 +143,15 @@ Animated sine plasma effect visualized using contour lines
 
 ### rotating-voronoi <!-- NOTOC -->
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/rotating-voronoi.png)
+
 [Live demo](https://demo.thi.ng/umbrella/rotating-voronoi/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rotating-voronoi)
+
+### shader-ast-workers <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/shader-ast-workers.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-workers)
 
 ## API
 

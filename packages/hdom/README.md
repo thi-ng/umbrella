@@ -227,6 +227,8 @@ Minimal demo of using rstream constructs to form an interceptor-style event loop
 
 ### rstream-grid <!-- NOTOC -->
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/rstream-grid.jpg)
+
 Interactive grid generator, SVG generation & export, undo/redo support
 
 [Live demo](https://demo.thi.ng/umbrella/rstream-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid)
@@ -242,6 +244,8 @@ Interactive grid generator, SVG generation & export, undo/redo support
 [Live demo](https://demo.thi.ng/umbrella/soa-ecs/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/soa-ecs)
 
 ### svg-waveform <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/svg-waveform.jpg)
 
 Additive waveform synthesis & SVG visualization with undo/redo
 

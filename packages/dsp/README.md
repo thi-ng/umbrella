@@ -58,6 +58,8 @@ A selection:
 
 ### webgl-ssao <!-- NOTOC -->
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/webgl-ssao.jpg)
+
 [Live demo](https://demo.thi.ng/umbrella/webgl-ssao/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-ssao)
 
 ## API

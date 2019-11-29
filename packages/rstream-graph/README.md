@@ -70,6 +70,8 @@ A selection:
 
 ### rstream-grid <!-- NOTOC -->
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/rstream-grid.jpg)
+
 Interactive grid generator, SVG generation & export, undo/redo support
 
 [Live demo](https://demo.thi.ng/umbrella/rstream-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid)

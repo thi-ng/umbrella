@@ -14,6 +14,7 @@ This project is part of the
   - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -48,6 +49,20 @@ yarn add @thi.ng/dgraph
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### package-stats <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/package-stats.png)
+
+[Live demo](https://demo.thi.ng/umbrella/package-stats/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/package-stats)
 
 ## API
 

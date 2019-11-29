@@ -124,7 +124,7 @@ package.
 - [@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/master/packages/csp) - ES6 promise based CSP primitives & operations
 - [@thi.ng/grid-iterators](https://github.com/thi-ng/umbrella/tree/master/packages/grid-iterators) - 2D grid iterators w/ multiple orderings
 - [@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/master/packages/fsm) - Composable primitives for building declarative, transducer based Finite-State Machines & matchers for arbitrary data streams
-- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream) - Reactive multi-tap streams, dataflow & transformation pipeline constructs
+- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream) - Reactive streams & subscription primitives for constructing dataflow graphs / pipelines
 - [@thi.ng/rstream-graph](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-graph) - Declarative dataflow graph construction for [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
 - [@thi.ng/rstream-log](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-log) - Structured, multilevel & hierarchical loggers based on [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
 - [@thi.ng/sax](https://github.com/thi-ng/umbrella/tree/master/packages/sax) - Transducer-based, SAX-like, non-validating, speedy & tiny XML parser
@@ -232,7 +232,15 @@ Worker based, interactive Mandelbrot visualization
 
 [Live demo](https://demo.thi.ng/umbrella/mandelbrot/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/mandelbrot)
 
+### package-stats <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/package-stats.png)
+
+[Live demo](https://demo.thi.ng/umbrella/package-stats/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/package-stats)
+
 ### rotating-voronoi <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/rotating-voronoi.png)
 
 [Live demo](https://demo.thi.ng/umbrella/rotating-voronoi/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rotating-voronoi)
 
@@ -246,11 +254,21 @@ Minimal demo of using rstream constructs to form an interceptor-style event loop
 
 ### rstream-grid <!-- NOTOC -->
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/rstream-grid.jpg)
+
 Interactive grid generator, SVG generation & export, undo/redo support
 
 [Live demo](https://demo.thi.ng/umbrella/rstream-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid)
 
+### shader-ast-workers <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/shader-ast-workers.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-workers)
+
 ### svg-waveform <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/svg-waveform.jpg)
 
 Additive waveform synthesis & SVG visualization with undo/redo
 
@@ -265,6 +283,8 @@ Additive waveform synthesis & SVG visualization with undo/redo
 [Live demo](https://demo.thi.ng/umbrella/webgl-cube/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-cube)
 
 ### webgl-grid <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/webgl-grid.jpg)
 
 [Live demo](https://demo.thi.ng/umbrella/webgl-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-grid)
 
