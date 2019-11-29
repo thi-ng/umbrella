@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/equiv
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/equiv.svg)](https://www.npmjs.com/package/@thi.ng/equiv)
@@ -7,23 +9,34 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+- [About](#about)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [API](#api)
+  - [Implement IEquiv interface](#implement-iequiv-interface)
+- [Authors](#authors)
+- [License](#license)
+
 ## About
 
-Extensible deep equivalence checking for any data types. Supports:
+Extensible deep value equivalence checking for any data types.
+
+Supports:
 
 - JS primitives
-- arrays
-- plain objects
+- Arrays
+- Plain objects
 - ES6 Sets / Maps
 - Date
 - RegExp
-- types with `.equiv()` implementations
-  ([IEquiv](https://github.com/thi-ng/umbrella/tree/master/packages/api/src/api.ts#L213)
-  interface)
+- Types with
+  [IEquiv](https://github.com/thi-ng/umbrella/tree/master/packages/api/src/api/equiv.ts)
+  implementation
 
-This feature was previously part of the
-[@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-package.
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -33,14 +46,19 @@ yarn add @thi.ng/equiv
 
 ## Dependencies
 
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+None
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/equiv/)
 
 ```ts
 import { equiv } from "@thi.ng/equiv";
 
-equiv({a: {b: [1, 2]}}, {a: {b: [1, 2]}});
+equiv(
+    { a: { b: [1, 2] } },
+    { a: { b: [1, 2] } }
+);
 // true
 ```
 
@@ -49,7 +67,7 @@ equiv({a: {b: [1, 2]}}, {a: {b: [1, 2]}});
 This is useful & required for custom types to take part in `equiv`
 checks, by default only plain objects & array are traversed deeply.
 
-Furthemore by implementing this interface we can better control which
+Furthermore, by implementing this interface we can better control which
 internal values / criteria are required to establish equivalence. In
 this example we exclude the `meta` property and only check for same type
 & `children` equality.
@@ -63,7 +81,7 @@ class Node implements IEquiv {
     meta: any;
     children: any[];
 
-    constructor(children: any[], meta?) {
+    constructor(children: any[], meta?: any) {
         this.children = children;
         this.meta = meta;
     }
@@ -79,8 +97,8 @@ equiv(new Node([1,2,3], "foo"), new Node([1,2,3], "bar"));
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2019 Karsten Schmidt // Apache Software License 2.0

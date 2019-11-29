@@ -1,6 +1,7 @@
 {
     "name": "iso-plasma",
     "version": "0.0.1",
+    "description": "Animated sine plasma effect visualized using contour lines",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
@@ -30,5 +31,17 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "geom",
+            "geom-isoline",
+            "hdom",
+            "hdom-canvas",
+            "math",
+            "transducers",
+            "vectors"
+        ],
+        "screenshot": "geom/geom-isoline.png"
     }
 }

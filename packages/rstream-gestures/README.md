@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/rstream-gestures
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-gestures.svg)](https://www.npmjs.com/package/@thi.ng/rstream-gestures)
@@ -7,10 +9,23 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+- [About](#about)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
+- [API](#api)
+  - [Basic usage](#basic-usage)
+- [Authors](#authors)
+  - [Maintainer](#maintainer)
+  - [Contributors](#contributors)
+- [License](#license)
+
 ## About
 
-Unified mouse, mouse wheel & single-touch event stream abstraction.
-Stream emits tuples of:
+Unified mouse, mouse wheel & single-touch event stream abstraction. This is a support package for [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream).
+
+The stream emits tuples of:
 
 ```ts
 [type, { pos, click?, delta?, zoom, zoomDelta }]
@@ -28,6 +43,10 @@ Also see the
 [`GestureStreamOpts`](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-gestures/src/index.ts#L31)
 config options for further details.
 
+### Status
+
+**STABLE** - used in production
+
 ## Installation
 
 ```bash
@@ -42,15 +61,59 @@ yarn add @thi.ng/rstream-gestures
 
 ## Usage examples
 
-Several small, fully commented projects can be found in the `/examples` folder:
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### canvas-dial <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/canvas-dial.png)
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/canvas-dial) |
-[Live version](https://demo.thi.ng/umbrella/canvas-dial)
+Canvas based dial widget
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-dataflow) |
-[Live version](https://demo.thi.ng/umbrella/rstream-dataflow)
+[Live demo](https://demo.thi.ng/umbrella/canvas-dial/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/canvas-dial)
+
+### geom-knn <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/geom-knn.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/geom-knn/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/geom-knn)
+
+### gesture-analysis <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/gesture-analysis.png)
+
+Mouse gesture / stroke analysis, simplification, corner detection
+
+[Live demo](https://demo.thi.ng/umbrella/gesture-analysis/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/gesture-analysis)
+
+### hdom-canvas-draw <!-- NOTOC -->
+
+Interactive @thi.ng/hdom-canvas pattern drawing demo using transducers
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-canvas-draw/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-draw)
+
+### imgui <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/imgui/imgui-all.png)
+
+Canvas based Immediate Mode GUI components
+
+[Live demo](https://demo.thi.ng/umbrella/imgui/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/imgui)
+
+### mandelbrot <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/mandelbrot.jpg)
+
+Worker based, interactive Mandelbrot visualization
+
+[Live demo](https://demo.thi.ng/umbrella/mandelbrot/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/mandelbrot)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/rstream-gestures/)
 
 ### Basic usage
 
@@ -85,8 +148,14 @@ gestures.subscribe(
 
 ## Authors
 
-- Karsten Schmidt
+### Maintainer
+
+- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
+
+### Contributors
+
+- Arthur Carabott ([@acarabott](https://github.com/acarabott))
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

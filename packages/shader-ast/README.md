@@ -1,45 +1,64 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/shader-ast
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/shader-ast.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/shader-ast.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/shader-ast.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
-    - [Standard library of common, higher level operations](#standard-library-of-common-higher-level-operations)
-    - [Benefits](#benefits)
-    - [Language specific code generators](#language-specific-code-generators)
-    - [Higher level building blocks](#higher-level-building-blocks)
-    - [Prior art / influences](#prior-art--influences)
-    - [Future goals](#future-goals)
+  - [Standard library of common, higher level operations](#standard-library-of-common--higher-level-operations)
+  - [Benefits](#benefits)
+  - [Prior art / influences](#prior-art---influences)
+  - [Future goals](#future-goals)
+  - [Status](#status)
+  - [Support packages](#support-packages)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [API](#api)
-    - [Supported types](#supported-types)
-    - [Operators](#operators)
-    - [Symbol definitions / assignments](#symbol-definitions--assignments)
-    - [Control flow](#control-flow)
-    - [Built-in functions](#built-in-functions)
-    - [User defined functions](#user-defined-functions)
-    - [Global scope](#global-scope)
-    - [Code generation](#code-generation)
-    - [Compilation & execution](#compilation--execution)
-    - [AST tooling & traversal](#ast-tooling--traversal)
+  - [Supported types](#supported-types)
+  - [Operators](#operators)
+    - [Comparison](#comparison)
+    - [Logic](#logic)
+    - [Bitwise](#bitwise)
+    - [Swizzling](#swizzling)
+    - [Array index lookups](#array-index-lookups)
+  - [Symbol definitions / assignments](#symbol-definitions---assignments)
+  - [Control flow](#control-flow)
+    - [If-Then-Else](#if-then-else)
+    - [Ternary operator](#ternary-operator)
+    - [For-loop](#for-loop)
+    - [While-loop](#while-loop)
+  - [Built-in functions](#built-in-functions)
+  - [User defined functions](#user-defined-functions)
+    - [Function arguments](#function-arguments)
+    - [Inline functions](#inline-functions)
+  - [Global scope](#global-scope)
+    - [Input / output variables / declarations](#input---output-variables---declarations)
+    - [Program definition](#program-definition)
+  - [Code generation](#code-generation)
+    - [GLSL (ES)](#glsl--es-)
+    - [JavaScript](#javascript)
+  - [Compilation & execution](#compilation---execution)
+  - [AST tooling & traversal](#ast-tooling---traversal)
+    - [Tree traversals](#tree-traversals)
+    - [Constant folding](#constant-folding)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
 
+DSL to define shader code in TypeScript and cross-compile to GLSL, JS and other targets.
+
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/shader-ast/shader-ast-01.jpg)
-Example shader running in plain JS & Canvas 2D context,
-cross-compiled JS/GLSL outputs shown on the right
+
+<small>Example shader running in plain JS & Canvas 2D context,
+cross-compiled JS/GLSL outputs on the right</small>
 
 Both an [embedded
 DSL](https://en.wikipedia.org/wiki/Domain-specific_language) and [IR
@@ -64,16 +83,15 @@ WebGPU](https://github.com/gpuweb/WHLSL) in the near future as well.
 
 ![webgl/canvas2d comparison](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/shader-ast/shader-ast-raymarch-compare.jpg)
 
-Comparison of the raymarch shader example (link further below), cross
-compiled to both GLSL/WebGL and JavaScript w/ Canvas2D API and showing
-the difference image of both results.
+<small>Comparison of the raymarch shader example (link further below), cross
+compiled to both GLSL (left) and JavaScript (right). Difference image of both results in the center.</small>
 
 ![VEX plane displacement](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/shader-ast/shader-ast-raymarch-vex-sm.gif)
 
-The same raymarching example compiled to Houdini VEX and used as "Point
+<small>[Larger
+version](https://twitter.com/thing_umbrella/status/1146109598274924544) - The same raymarching example compiled to Houdini VEX and used as "Point
 Wrangle" to displace a grid geometry (using only the depth value of the
-raymarching step). [Larger
-version](https://twitter.com/thing_umbrella/status/1146109598274924544)
+raymarching step).</small>
 
 ### Standard library of common, higher level operations
 
@@ -110,16 +128,6 @@ package](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdl
   chains, no extra plugins needed
 - small run time & file size overhead (depending on output target impl)
 
-### Language specific code generators
-
-- [@thi.ng/shader-ast-glsl](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-glsl) - GLSL 100 / 300 (WebGL1 / 2)
-- [@thi.ng/shader-ast-js](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-js) - plain JavaScript (incl. runtime)
-- [@thi.ng/shader-ast-vex](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-vex) - Houdini VEX
-
-### Higher level building blocks
-
-- [@thi.ng/shader-ast-stdlib](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdlib)
-
 ### Prior art / influences
 
 - [Hypergiant](http://alex-charlton.com/posts/Prototype_to_polish_Making_games_in_CHICKEN_Scheme_with_Hypergiant)
@@ -144,6 +152,22 @@ status. The TL;DR list...
 - [ ] AST transformations (optimizers, e.g. [constant
   folding ✅](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast/src/optimize.ts))
 
+### Status
+
+**STABLE** - used in production
+
+### Support packages
+
+- [@thi.ng/shader-ast-glsl](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-glsl) - Customizable GLSL code generator for [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast)
+- [@thi.ng/shader-ast-js](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-js) - Customizable JS code generator, compiler & runtime for [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast)
+- [@thi.ng/shader-ast-stdlib](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdlib) - Function collection for modular GPGPU / shader programming with [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast)
+
+### Related packages
+
+- [@thi.ng/gp](https://github.com/thi-ng/umbrella/tree/master/packages/gp) - Genetic programming helpers & strategies (tree based & multi-expression programming)
+- [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/master/packages/webgl) - WebGL & GLSL abstraction layer
+- [@thi.ng/webgl-shadertoy](https://github.com/thi-ng/umbrella/tree/master/packages/webgl-shadertoy) - Basic WebGL scaffolding for running interactive fragment shaders via [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast)
+
 ## Installation
 
 ```bash
@@ -160,22 +184,87 @@ yarn add @thi.ng/shader-ast
 
 ## Usage examples
 
-(Possibly non-exhaustive list, live demo links in readme's)
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
 
-- [Canvas2D shader](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-canvas2d)
-- [2D SDF](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-sdf2d)
-- [Raymarching](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-raymarch)
-- [Simplex noise](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-noise)
-- [Textured tunnel](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-tunnel)
-- [Cubemap](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-cubemap)
-- [Grid instancing](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-grid)
-- [GPGPU basics](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-gpgpu-basics)
-- [MSDF font rendering](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-msdf)
-- [SSAO deferred rendering](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-ssao)
+A selection:
+
+### shader-ast-canvas2d <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/shader-ast/shader-ast-01.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-canvas2d/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-canvas2d)
+
+### shader-ast-evo <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/shader-ast-evo.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-evo/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-evo)
+
+### shader-ast-noise <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-noise/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-noise)
+
+### shader-ast-raymarch <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/shader-ast/shader-ast-raymarch.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-raymarch/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-raymarch)
+
+### shader-ast-sdf2 <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-sdf2/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-sdf2)
+
+### shader-ast-tunnel <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-tunnel/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-tunnel)
+
+### shader-ast-workers <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/shader-ast-workers.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-workers)
+
+### soa-ecs <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/soa-ecs-100k.png)
+
+[Live demo](https://demo.thi.ng/umbrella/soa-ecs/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/soa-ecs)
+
+### webgl-cubemap <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/webgl-cubemap/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-cubemap)
+
+### webgl-grid <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/webgl-grid.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/webgl-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-grid)
+
+### webgl-msdf <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/webgl-msdf.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/webgl-msdf/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-msdf)
+
+### webgl-multipass <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/webgl-multipass/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-multipass)
+
+### webgl-shadertoy <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/webgl-shadertoy/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-shadertoy)
+
+### webgl-ssao <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/webgl-ssao.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/webgl-ssao/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-ssao)
 
 ## API
 
-**TODO** - docs forthcoming
+[Generated API docs](https://docs.thi.ng/umbrella/shader-ast/)
 
 ### Supported types
 
@@ -541,7 +630,7 @@ constantFolding(ast)
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 

@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/pointfree
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pointfree.svg)](https://www.npmjs.com/package/@thi.ng/pointfree)
@@ -7,38 +9,60 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
-    - [A brief comparison](#a-brief-comparison)
-- [Status](#status)
+  - [A brief comparison](#a-brief-comparison)
+  - [Status](#status)
+  - [Support packages](#support-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage](#usage)
-    - [Custom word definitions](#custom-word-definitions)
-    - [Factoring](#factoring)
-    - [Quotations](#quotations)
-    - [Dataflow combinators](#dataflow-combinators)
-    - [Array transformations](#array-transformations)
-    - [Conditionals](#conditionals)
-    - [Loops](#loops)
-    - [In-place stack value transformation](#in-place-stack-value-transformation)
-    - [R-stack usage](#r-stack-usage)
+- [Usage examples](#usage-examples)
+- [API](#api)
+    - [About stack effects](#about-stack-effects)
+    - [run](#run)
+  - [Custom word definitions](#custom-word-definitions)
+  - [Factoring](#factoring)
+  - [Quotations](#quotations)
+    - [Quotations as vanilla JS function calls](#quotations-as-vanilla-js-function-calls)
+    - [Currying & composing quotations](#currying---composing-quotations)
+  - [Dataflow combinators](#dataflow-combinators)
+    - [dip](#dip)
+    - [keep](#keep)
+    - [bi & tri](#bi---tri)
+    - [bis & tris](#bis---tris)
+    - [bia & tria](#bia---tria)
+  - [Array transformations](#array-transformations)
+    - [Bind stack values to object keys](#bind-stack-values-to-object-keys)
+    - [Combine array transform op with deeper stack values](#combine-array-transform-op-with-deeper-stack-values)
+  - [Conditionals](#conditionals)
+  - [Loops](#loops)
+  - [In-place stack value transformation](#in-place-stack-value-transformation)
+  - [R-stack usage](#r-stack-usage)
 - [Core vocabulary](#core-vocabulary)
-    - [D-Stack modification](#d-stack-modification)
-    - [R-Stack modification](#r-stack-modification)
-    - [Word & quotation execution / combinators](#word--quotation-execution--combinators)
-    - [Primitive math](#primitive-math)
-    - [Logic](#logic)
-    - [Environment](#environment)
-    - [Arrays, objects, strings](#arrays-objects-strings)
-    - [I/O](#io)
-    - [Control flow](#control-flow)
-    - [Word creation and execution](#word-creation-and-execution)
+  - [D-Stack modification](#d-stack-modification)
+  - [R-Stack modification](#r-stack-modification)
+  - [Word & quotation execution / combinators](#word---quotation-execution---combinators)
+  - [Primitive math](#primitive-math)
+  - [Logic](#logic)
+  - [Environment](#environment)
+  - [Arrays, objects, strings](#arrays--objects--strings)
+  - [I/O](#i-o)
+  - [Control flow](#control-flow)
+    - [cond](#cond)
+    - [condq](#condq)
+    - [cases](#cases)
+    - [loop](#loop)
+    - [loopq](#loopq)
+    - [dotimes](#dotimes)
+  - [Word creation and execution](#word-creation-and-execution)
+    - [word](#word)
+    - [wordU](#wordu)
+    - [unwrap](#unwrap)
+    - [ctx](#ctx)
+    - [run](#run)
+    - [runU](#runu)
+    - [runE](#rune)
 - [Authors](#authors)
 - [License](#license)
-
-<!-- /TOC -->
 
 ## About
 
@@ -90,7 +114,7 @@ VM/REPL](http://forth.thi.ng) (JS) and
 refactored to be more generally useful as environment for building data
 processing pipelines in a [pointfree / concatenative programming
 style](https://en.wikipedia.org/wiki/Concatenative_programming_language)
-rather than acting as fullblown VM. Some words and concepts have been
+rather than acting as full-blown VM. Some words and concepts have been
 ported from [Factor](http://factorcode.org) and
 [Popr](https://github.com/HackerFoo/poprc).
 
@@ -151,11 +175,15 @@ each function ("word" in Concatenative-programming-speak) can consume or
 produce any number of intermediate values from/on the stack.
 Furthermore, on-stack quotations and dataflow combinators can be used
 for dynamic programming approaches and conditionals can be used to cause
-non-linear controlflow.
+non-linear control flow.
 
-## Status
+### Status
 
-ALPHA - in active development, API still undergoing major changes
+**ALPHA** - bleeding edge / work-in-progress
+
+### Support packages
+
+- [@thi.ng/pointfree-lang](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree-lang) - Forth style syntax layer/compiler for the [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree) DSL
 
 ## Installation
 
@@ -167,14 +195,27 @@ yarn add @thi.ng/pointfree
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/master/packages/compose)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 
-## Usage
+## Usage examples
 
-```ts
-import * as pf from "@thi.ng/pointfree";
-```
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### pointfree-svg <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/pointfree-svg.png)
+
+[Live demo](https://demo.thi.ng/umbrella/pointfree-svg/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/pointfree-svg)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/pointfree/)
 
 The main type aliases used by this DSL are:
 
@@ -225,11 +266,13 @@ no args are given on the RHS, no result values are produced.
 
 (Note: **TOS** = Top Of Stack)
 
-#### `run(program: StackProgram, stack?: StackContext)`
+#### run
 
-`run()` is the main user function of this library. It takes a stack
-program and optional `StackContext` with initial stacks and environment
-(an arbitrary object). It executes the program and returns the updated
+`run(program: StackProgram, stack?: StackContext)`
+
+The main user function of this library. It takes a stack program and
+optional `StackContext` with initial stacks and environment (an
+arbitrary object). It executes the program and returns the updated
 context.
 
 Alternatively, we can use `runU()` to return an unwrapped value or
@@ -421,7 +464,9 @@ language.
 Btw. the number suffixes indicate the number of values or quotations
 each combinator deals with... not all versions are shown here.
 
-#### `dip / dip2 / dip3 / dip4`
+#### dip
+
+`dip` / `dip2` / `dip3` / `dip4`
 
 Removes one or more stack values before applying quotation, then
 restores them again after. Most other combinators are internally built
@@ -438,7 +483,9 @@ pf.run([1, 2, 3, [10, pf.add], pf.dip2])[0]
 // [11, 2, 3]
 ```
 
-#### `keep / keep2 / keep3`
+#### keep
+
+`keep` / `keep2` / `keep3`
 
 Calls a quotation with a value on the d-stack, restoring the value after
 quotation finished.
@@ -450,7 +497,10 @@ pf.run([1, 2, [pf.add], pf.keep2])[0]
 // [3, 1, 2]
 ```
 
-#### `bi / bi2 / bi3 / tri / tri2 / tri3`
+#### bi & tri
+
+- `bi` / `bi2` / `bi3`
+- `tri` / `tri2` / `tri3`
 
 `bi` takes one value and two quotations. Applies first quot to the
 value, then applies second quot to the same value.
@@ -471,7 +521,10 @@ pf.run([10, [pf.dec], [pf.dup, pf.mul], [pf.inc], pf.tri])[0]
 // [9, 100, 11]
 ```
 
-#### `bis / bis2 / tris / tris2`
+#### bis & tris
+
+- `bis` / `bis2`
+- `tris` / `tris2`
 
 `bis` applies first quot `p` to `x`, then applies 2nd quot `q` to `y`.
 
@@ -487,7 +540,10 @@ pf.run([10, 20, 30, 40, [pf.add], [pf.sub], pf.bis2])[0]
 // [30, -10]
 ```
 
-#### `bia / bia2 / tria / tria2`
+#### bia & tria
+
+- `bia` / `bia2`
+- `tria` / `tria2`
 
 Applies the quotation `q` to `x`, then to `y`.
 
@@ -940,7 +996,9 @@ at word construction time and return a pre-configured stack function.
 
 ### Control flow
 
-#### `cond(_then: StackFn | StackProgram, _else?: StackFn | StackProgram)`
+#### cond
+
+`cond(_then: StackFn | StackProgram, _else?: StackFn | StackProgram)`
 
 Higher order word. Takes two stack programs: truthy and falsey branches,
 respectively. When executed, pops TOS and runs only one of the branches
@@ -949,7 +1007,7 @@ depending if TOS was truthy or not.
 Note: Unlike JS `if() {...} else {...}` constructs, the actual
 conditional is **not** part of this word (only the branches are).
 
-#### `condq`
+#### condq
 
 Non-HOF version of `cond`, expects `test` result and both branches on
 d-stack. Executes `thenq` word/quotation if `test` is truthy, else runs
@@ -959,7 +1017,9 @@ d-stack. Executes `thenq` word/quotation if `test` is truthy, else runs
 ( test thenq elseq -- ? )
 ```
 
-#### `cases(cases: IObjectOf<StackFn | StackProgram>)`
+#### cases
+
+`cases(cases: IObjectOf<StackFn | StackProgram>)`
 
 Higher order word. Essentially like JS `switch`. Takes an object of
 stack programs with keys in the object being used to check for equality
@@ -970,12 +1030,14 @@ program. In all other cases throws an error.
 **Important:** The default case/branch has the original TOS re-added to
 the stack before execution.
 
-#### `loop = (test: StackFn | StackProgram, body: StackFn | StackProgram)`
+#### loop
+
+`loop(test: StackFn | StackProgram, body: StackFn | StackProgram)`
 
 Takes a `test` and `body` stack program. Applies test to TOS and
 executes body. Repeats while test is truthy.
 
-#### `loopq`
+#### loopq
 
 Non-HOF version of `loop`. Expects test result and body quotation/word
 on d-stack.
@@ -984,7 +1046,7 @@ on d-stack.
 ( testq bodyq -- ? )
 ```
 
-#### `dotimes`
+#### dotimes
 
 ```forth
 ( n body -- ? )
@@ -997,7 +1059,9 @@ prior to executing body. With empty body acts as finite range generator
 
 ### Word creation and execution
 
-#### `word(prog: StackProgram, env?: StackEnv, mergeEnv = false)`
+#### word
+
+`word(prog: StackProgram, env?: StackEnv, mergeEnv = false)`
 
 Higher order word. Takes a `StackProgram` and returns it as `StackFn` to
 be used like any other built-in word. Unknown stack effect.
@@ -1013,40 +1077,52 @@ procedures in the main env.
 **Note**: The provided (or merged) env is only active within the
 execution scope of the word.
 
-#### `wordU(prog: StackProgram, n = 1, env?: StackEnv, mergeEnv = true)`
+#### wordU
+
+`wordU(prog: StackProgram, n = 1, env?: StackEnv, mergeEnv = true)`
 
 Like `word()`, but uses `runU()` for execution and returns `n` unwrapped
 values from result stack.
 
-#### `unwrap(ctx: StackContext, n = 1)`
+#### unwrap
+
+`unwrap(ctx: StackContext, n = 1)`
 
 Takes a result tuple returned by `run()` and unwraps one or more items
 from result stack. If no `n` is given, defaults to single value (TOS)
 and returns it as is. Returns an array for all other `n`.
 
-#### `ctx(stack: Stack = [], env: StackEnv = {}): StackContext`
+#### ctx
+
+`ctx(stack: Stack = [], env: StackEnv = {}): StackContext`
 
 Creates a new StackContext tuple from given d-stack and/or environment
 only (the r-stack is always initialized empty).
 
-#### `run(prog: StackProc, ctx?: StackContext = [[], [], {}]): StackContext`
+#### run
+
+`run(prog: StackProc, ctx?: StackContext = [[], [], {}]): StackContext`
 
 Executes given stack word or program using (optional) context.
 
-#### `runU(prog: StackProc, ctx?: StackContext, n = 1): any`
+#### runU
+
+`runU(prog: StackProc, ctx?: StackContext, n = 1): any`
 
 Like `run()`, but returns unwrapped result. Syntax sugar for:
 `unwrap(run(...),n)`
 
-#### `runE(prog: StackProc, ctx?: StackContext): any`
+#### runE
+
+`runE(prog: StackProc, ctx?: StackContext): any`
 
 Like `run()`, but returns result environment. Syntax sugar for:
 `run(...)[2]`
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2015 - 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2019 Karsten Schmidt // Apache Software License 2.0

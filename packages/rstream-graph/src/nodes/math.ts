@@ -1,7 +1,7 @@
 import { IObjectOf } from "@thi.ng/api";
 import { map } from "@thi.ng/transducers";
 import { NodeFactory } from "../api";
-import { node } from "../graph";
+import { node, node2 } from "../graph";
 
 /**
  * Addition node.
@@ -42,9 +42,8 @@ export const mul: NodeFactory<number> = node(
  *
  * Inputs: `a`, `b`
  */
-export const sub: NodeFactory<number> = node(
-    map((ports: IObjectOf<number>) => ports.a - ports.b),
-    ["a", "b"]
+export const sub: NodeFactory<number> = node2(
+    map((ports: IObjectOf<number>) => ports.a - ports.b)
 );
 
 /**
@@ -52,7 +51,6 @@ export const sub: NodeFactory<number> = node(
  *
  * Inputs: `a`, `b`
  */
-export const div: NodeFactory<number> = node(
-    map((ports: IObjectOf<number>) => ports.a / ports.b),
-    ["a", "b"]
+export const div: NodeFactory<number> = node2(
+    map((ports: IObjectOf<number>) => ports.a / ports.b)
 );

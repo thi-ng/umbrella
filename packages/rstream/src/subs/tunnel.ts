@@ -12,9 +12,10 @@ export interface TunnelOpts<A> {
     src: Worker | Blob | string;
     /**
      * Max. number of worker instances to use. Only useful if
-     * `interrupt` is disabled. If more than one is used, incoming
-     * stream values will be assigned to workers in a round robin order.
-     * Workers will be instantiated on demand.
+     * `interrupt` is disabled. If more than one worker is used,
+     * incoming stream values will be assigned in a round robin manner
+     * and result value ordering will be non-deterministic. Workers will
+     * be instantiated on demand.
      *
      * Default: 1
      */
@@ -47,12 +48,16 @@ export interface TunnelOpts<A> {
 }
 
 /**
- * Creates a new worker `Tunnel` instance with given options. This
- * subscription type processes received values via the configured
- * worker(s) and then passes any values received back from the worker(s)
- * on to downstream subscriptions, thereby allowing workers to be used
- * transparently for stream processing. Multiple worker instances are
- * supported for processing. See the `maxWorkers` option for details.
+ * Returns a {@link Subscription} which processes received values via
+ * the configured worker(s) and then passes values received back from
+ * the worker(s) downstream, thereby allowing workers to be used
+ * transparently for stream processing.
+ *
+ * @remarks
+ * Multiple worker instances are supported for concurrent processing.
+ * See the {@link TunnelOpts} for details.
+ *
+ * Also see {@link forkJoin} and {@link postWorker}.
  *
  * @param opts
  */
@@ -68,7 +73,7 @@ export class Tunnel<A, B> extends Subscription<A, B> {
     index: number;
 
     constructor(opts: TunnelOpts<A>) {
-        super(undefined, undefined, undefined, opts.id || `tunnel-${nextID()}`);
+        super(undefined, { id: opts.id || `tunnel-${nextID()}` });
         this.src = opts.src;
         this.workers = new Array(opts.maxWorkers || 1);
         this.transferables = opts.transferables;

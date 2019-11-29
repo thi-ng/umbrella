@@ -1,6 +1,5 @@
-import { partial } from "@thi.ng/compose/partial";
-import { TAU } from "@thi.ng/math/api";
-import { clamp01 } from "@thi.ng/math/interval";
+import { partial } from "@thi.ng/compose";
+import { clamp01, TAU } from "@thi.ng/math";
 import {
     comp,
     map,

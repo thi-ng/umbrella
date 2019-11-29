@@ -1,22 +1,21 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/seq
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/seq.svg)](https://www.npmjs.com/package/@thi.ng/seq)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/seq.svg)](https://www.npmjs.com/package/@thi.ng/seq)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/seq.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
+- [API](#api)
 - [Authors](#authors)
 - [License](#license)
-
-<!-- /TOC -->
 
 ## About
 
@@ -33,6 +32,10 @@ sequence head of the remaining sequence values. This allows forking &
 sharing the sequence head(s) among multiple consumers, each able to read
 the remaining values at their own pace.
 
+### Status
+
+**ALPHA** - bleeding edge / work-in-progress
+
 ## Installation
 
 ```bash
@@ -44,7 +47,9 @@ yarn add @thi.ng/seq
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/seq/)
 
 ```ts
 import { aseq, rseq, concat, iterator } from "@thi.ng/seq";
@@ -123,7 +128,7 @@ import { dcons } from "@thi.ng/dcons";
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 

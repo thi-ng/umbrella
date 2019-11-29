@@ -2,9 +2,14 @@ import { Fn, Predicate2 } from "@thi.ng/api";
 import { EquivMap } from "@thi.ng/associative";
 import { unsupported } from "@thi.ng/errors";
 import { Transducer } from "@thi.ng/transducers";
-import { ISubscriber, LOGGER } from "./api";
+import {
+    CommonOpts,
+    ISubscriber,
+    LOGGER,
+    SubscriptionOpts
+} from "./api";
 import { Subscription, subscription } from "./subscription";
-import { nextID } from "./utils/idgen";
+import { optsWithID } from "./utils/idgen";
 
 export interface PubSubOpts<A, B> {
     /**
@@ -31,24 +36,33 @@ export interface PubSubOpts<A, B> {
 
 /**
  * Topic based stream splitter. Applies `topic` function to each
- * received value and only forwards it to child subscriptions for
- * returned topic. The actual topic (return value from `topic` fn) can
- * be of any type, apart from `undefined`. Complex topics (e.g objects /
- * arrays) are allowed and they're matched with registered topics using
- * @thi.ng/equiv by default (but customizable via `equiv` option).
- * Each topic can have any number of subscribers.
+ * received value and only forwards it to the child subscriptions of the
+ * returned topic.
  *
- * If a transducer is specified for the `PubSub`, it is always applied
- * prior to passing the input to the topic function. I.e. in this case
- * the topic function will receive the transformed inputs.
+ * @remarks
+ * The actual topic (return value from `topic` fn) can be of any type,
+ * apart from `undefined`. Complex topics (e.g objects / arrays) are
+ * allowed and they're matched with registered topics using
+ * @thi.ng/equiv by default (but customizable via `equiv` option). Each
+ * topic can have any number of subscribers.
  *
- * PubSub supports dynamic topic subscriptions and unsubscriptions via
- * `subscribeTopic()` and `unsubscribeTopic()`. However, the standard
- * `subscribe()` / `unsubscribe()` methods are NOT supported (since
- * meaningless) and will throw an error! `unsubscribe()` can only be
- * called WITHOUT argument to unsubscribe the entire `PubSub` instance
- * (incl. all topic subscriptions) from the parent stream.
+ * If a `xform` transducer is given, it is always applied prior to
+ * passing the input to the topic function. I.e. in this case the topic
+ * function will receive the transformed inputs.
+ *
+ * {@link PubSub} supports dynamic topic subscriptions and
+ * unsubscriptions via {@link PubSub.subscribeTopic} and
+ * {@link PubSub.unsubscribeTopic}. However, the standard
+ * {@link ISubscribable.subscribe} / {@link ISubscribable.unsubscribe}
+ * methods are NOT supported (since meaningless) and will throw an
+ * error! `unsubscribe()` can only be called WITHOUT argument to
+ * unsubscribe the entire `PubSub` instance (incl. all topic
+ * subscriptions) from the parent stream.
+ *
+ * @param opts
  */
+export const pubsub = <A, B>(opts: PubSubOpts<A, B>) => new PubSub(opts);
+
 export class PubSub<A, B> extends Subscription<A, B> {
     topicfn: Fn<B, any>;
     topics: EquivMap<any, Subscription<B, B>>;
@@ -57,9 +71,9 @@ export class PubSub<A, B> extends Subscription<A, B> {
         opts = opts || <PubSubOpts<A, B>>{};
         super(
             undefined,
-            opts.xform,
-            undefined,
-            opts.id || `pubsub-${nextID()}`
+            optsWithID("pubsub", <Partial<SubscriptionOpts<A, B>>>{
+                xform: opts.xform
+            })
         );
         this.topicfn = opts.topic;
         this.topics = new EquivMap<any, Subscription<B, B>>(undefined, {
@@ -83,40 +97,34 @@ export class PubSub<A, B> extends Subscription<A, B> {
 
     subscribeTopic<C>(
         topicID: any,
-        tx: Transducer<B, C>,
-        id?: string
+        xform: Transducer<B, C>,
+        opts?: Partial<CommonOpts>
     ): Subscription<B, C>;
-    // subscribeTopic<S extends Subscription<B, C>, C>(topicID: any, sub: S): S;
     subscribeTopic<C>(
         topicID: any,
-        sub: Subscription<B, C>
+        opts?: Partial<CommonOpts>
     ): Subscription<B, C>;
     subscribeTopic(
         topicID: any,
         sub: Partial<ISubscriber<B>>,
-        id?: string
+        opts?: Partial<CommonOpts>
     ): Subscription<B, B>;
     subscribeTopic(
         topicID: any,
         sub: any,
-        id?: string
+        opts?: Partial<CommonOpts>
     ): Subscription<any, any> {
         let t = this.topics.get(topicID);
-        if (!t) {
-            this.topics.set(topicID, (t = subscription<B, B>()));
-        }
-        return t.subscribe(sub, id);
+        !t && this.topics.set(topicID, (t = subscription<B, B>()));
+        return t.subscribe(sub, opts);
     }
 
     unsubscribeTopic(topicID: any, sub: Subscription<B, any>) {
-        let t = this.topics.get(topicID);
-        if (t) {
-            return t.unsubscribe(sub);
-        }
-        return false;
+        const t = this.topics.get(topicID);
+        return t ? t.unsubscribe(sub) : false;
     }
 
-    unsubscribe(sub?: Subscription<B, any>) {
+    unsubscribe(sub: Subscription<B, any>) {
         if (!sub) {
             for (let t of this.topics.values()) {
                 t.unsubscribe();
@@ -149,10 +157,3 @@ export class PubSub<A, B> extends Subscription<A, B> {
         }
     }
 }
-
-/**
- * Creates a new `PubSub` instance. See class docs for further details.
- *
- * @param opts
- */
-export const pubsub = <A, B>(opts: PubSubOpts<A, B>) => new PubSub(opts);

@@ -1,26 +1,29 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/adjacency
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/adjacency.svg)](https://www.npmjs.com/package/@thi.ng/adjacency)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/adjacency.svg)](https://www.npmjs.com/package/@thi.ng/adjacency)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/adjacency.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
+- [API](#api)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
 
-Sparse & bitwise adjacency matrices for directed / undirected graphs.
+Sparse & bitwise adjacency matrices and related functions for directed & undirected graphs.
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -33,18 +36,20 @@ yarn add @thi.ng/adjacency
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 - [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/master/packages/binary)
 - [@thi.ng/bitfield](https://github.com/thi-ng/umbrella/tree/master/packages/bitfield)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons)
 - [@thi.ng/sparse](https://github.com/thi-ng/umbrella/tree/master/packages/sparse)
 
-## Usage examples
+## API
 
-```ts
-import { AdjacencyMatrix, AdjacencyBitMatrix } from "@thi.ng/adjacency";
-```
+[Generated API docs](https://docs.thi.ng/umbrella/adjacency/)
+
+TODO
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/dot
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dot.svg)](https://www.npmjs.com/package/@thi.ng/dot)
@@ -7,10 +9,20 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+- [About](#about)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [API](#api)
+- [Authors](#authors)
+- [License](#license)
+
 ## About
 
-[Graphviz](http://www.graphviz.org/) DOM abstraction as vanilla JS
-objects & serialization to DOT format. Provides several
+[Graphviz](http://www.graphviz.org/) document abstraction as vanilla JS
+objects and serialization to DOT format.
+
+Provides several
 [interfaces](https://github.com/thi-ng/umbrella/tree/master/packages/dot/src/api.ts)
 covering a large subset of GraphViz options and
 [functions](https://github.com/thi-ng/umbrella/tree/master/packages/dot/src/serialize.ts)
@@ -20,6 +32,10 @@ both directed and undirected graphs.
 Please see the [GraphViz DOT
 guide](https://graphviz.gitlab.io/_pages/pdf/dotguide.pdf) for further
 details.
+
+### Status
+
+**BETA** - possibly breaking changes forthcoming
 
 ## Installation
 
@@ -32,7 +48,9 @@ yarn add @thi.ng/dot
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/dot/)
 
 ![example graph](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/dot/dot-example.png)
 
@@ -123,8 +141,8 @@ edge[arrowsize="0.75", fontname="Inconsolata", fontsize="9"];
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

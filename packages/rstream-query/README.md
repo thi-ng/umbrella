@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/rstream-query
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-query.svg)](https://www.npmjs.com/package/@thi.ng/rstream-query)
@@ -6,6 +8,16 @@
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
+- [About](#about)
+  - [Current features](#current-features)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
+- [API](#api)
+- [Authors](#authors)
+- [License](#license)
 
 ## About
 
@@ -41,10 +53,11 @@ feature is currently WIP).
 
 ### Status
 
-ALPHA - This project is currently still in early development and
-intended as a continuation of the Clojure based
-[thi.ng/fabric](http://thi.ng/fabric), this time built on the streaming
-primitives provided by
+**ALPHA** - bleeding edge / work-in-progress
+
+This project is currently still in early development and intended as a
+continuation of the Clojure based [thi.ng/fabric](http://thi.ng/fabric),
+this time built on the streaming primitives provided by
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream).
 
 ## Installation
@@ -60,11 +73,26 @@ yarn add @thi.ng/rstream-query
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
 - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
 - [@thi.ng/rstream-dot](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-dot)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 
 ## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### triple-query <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/triple-query/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/triple-query)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/rstream-query/)
 
 ```ts
 import { TripleStore, asTriples } from "@thi.ng/rstream-query";
@@ -183,8 +211,8 @@ The source code for the above example is
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

@@ -21,7 +21,8 @@
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
-        "doc": "typedoc --mode modules --out doc src",
+        "doc:readme": "../../scripts/generate-readme",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
@@ -55,12 +56,21 @@
     "publishConfig": {
         "access": "public"
     },
-    "browserslist": [
-        "since 2018-07"
-    ],
     "browser": {
         "process": false,
         "setTimeout": false
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "related": [
+            "ecs",
+            "malloc",
+            "soa",
+            "unionstruct",
+            "vectors",
+            "webgl"
+        ],
+        "status": "alpha",
+        "year": 2018
+    }
 }

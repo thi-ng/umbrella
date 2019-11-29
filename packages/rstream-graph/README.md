@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/rstream-graph
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-graph.svg)](https://www.npmjs.com/package/@thi.ng/rstream-graph)
@@ -6,6 +8,17 @@
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
+- [About](#about)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
+- [API](#api)
+  - [Basic usage](#basic-usage)
+- [Graph specification](#graph-specification)
+- [Authors](#authors)
+- [License](#license)
 
 ## About
 
@@ -21,7 +34,11 @@ graph edges, transforming data for downstream consumers / nodes.
 Theoretically, allows cycles and is not restricted to DAG topologies,
 but care must be taken to avoid CPU hogging if those cycles are causing
 synchronous computation loops (it the user's responsibility to avoid
-these).
+these and keep any cycles async).
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -41,19 +58,33 @@ yarn add @thi.ng/rstream-graph
 
 ## Usage examples
 
-Small(ish), fully commented projects can be found in the `/examples` folder:
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
 
-- **Spreadsheet w/ Lisp-style DSL** -
-  [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-spreadsheet),
-  [Live version](https://demo.thi.ng/umbrella/rstream-spreadsheet)
-- **SVG grid gen** -
-  [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid),
-  [Live version](https://demo.thi.ng/umbrella/rstream-grid)
-- **Dataflow circles** -
-  [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-dataflow),
-  [Live version](https://demo.thi.ng/umbrella/rstream-dataflow)
+A selection:
 
-More basic:
+### rstream-dataflow <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/rstream-dataflow/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-dataflow)
+
+### rstream-grid <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/rstream-grid.jpg)
+
+Interactive grid generator, SVG generation & export, undo/redo support
+
+[Live demo](https://demo.thi.ng/umbrella/rstream-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid)
+
+### rstream-spreadsheet <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-spreadsheet)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/rstream-graph/)
+
+### Basic usage
 
 ```ts
 import { Atom } from "@thi.ng/atom";
@@ -185,8 +216,8 @@ further details.
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

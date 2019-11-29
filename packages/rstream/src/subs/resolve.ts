@@ -1,7 +1,7 @@
 import { Fn, IID } from "@thi.ng/api";
 import { LOGGER, State } from "../api";
 import { Subscription } from "../subscription";
-import { nextID } from "../utils/idgen";
+import { optsWithID } from "../utils/idgen";
 
 export interface ResolverOpts extends IID<string> {
     /**
@@ -11,13 +11,17 @@ export interface ResolverOpts extends IID<string> {
 }
 
 /**
- * Creates a new subscription which receives promises, buffers them and
- * then passes their resolved values downstream. If the optional `fail`
- * handler is provided, it'll be called with the error of each failed
- * promise. If none is provided, the sub's `error()` handler is called,
- * which then stops the sub from receiving further values.
+ * Creates a {@link Subscription} which receives promises, buffers them
+ * and then passes their resolved values downstream.
  *
- * ```
+ * @remarks
+ * If the optional `fail` handler is provided, it'll be called with the
+ * error of each failed promise. If none is provided, the sub's
+ * {@link ISubscriber.error} handler is called, which then stops the sub
+ * from receiving further values.
+ *
+ * @example
+ * ```ts
  * fromIterable([1, 2, 3], 100)
  *   .transform(tx.delayed(1000))
  *   .subscribe(resolve())
@@ -38,12 +42,7 @@ export class Resolver<T> extends Subscription<Promise<T>, T> {
     protected fail?: Fn<any, void>;
 
     constructor(opts: Partial<ResolverOpts> = {}) {
-        super(
-            undefined,
-            undefined,
-            undefined,
-            opts.id || `resolve-${nextID()}`
-        );
+        super(undefined, optsWithID("resolve"));
         this.fail = opts.fail;
     }
 

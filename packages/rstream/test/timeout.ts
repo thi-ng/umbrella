@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { timeout } from "../src/subs/timeout";
+import { timeout } from "../src";
 import { TIMEOUT } from "./config";
 
 describe("Timeout", () => {
@@ -19,7 +19,7 @@ describe("Timeout", () => {
 
         const error = "error object";
 
-        timeout(TIMEOUT, error).subscribe({
+        timeout(TIMEOUT, { error }).subscribe({
             error: (err) => {
                 assert.equal(err, error);
                 done();
@@ -43,7 +43,7 @@ describe("Timeout", () => {
         this.timeout(TIMEOUT * 4);
 
         const res: any[] = [];
-        const t = timeout(TIMEOUT, null, true);
+        const t = timeout(TIMEOUT, { reset: true });
         t.subscribe({
             next: (x) => {
                 res.push(x);

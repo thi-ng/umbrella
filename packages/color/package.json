@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/color",
     "version": "1.1.2",
-    "description": "Raw, array-based, color ops, conversions, opt. type wrappers, multi-color gradients",
+    "description": "Array-based color ops, conversions, multi-color gradients, presets",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -71,9 +71,6 @@
     "publishConfig": {
         "access": "public"
     },
-    "browserslist": [
-        "since 2018-07"
-    ],
     "browser": {
         "process": false,
         "setTimeout": false

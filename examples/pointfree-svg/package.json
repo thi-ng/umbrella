@@ -17,5 +17,9 @@
     "devDependencies": {
         "ts-node": "^8.2.0",
         "typescript": "^3.7.2"
+    },
+    "thi.ng": {
+        "readme": true,
+        "screenshot": "examples/pointfree-svg.png"
     }
 }

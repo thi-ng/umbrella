@@ -1,35 +1,90 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/iterators
 
-![npm version](https://img.shields.io/npm/v/@thi.ng/iterators.svg)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/iterators.svg)](https://www.npmjs.com/package/@thi.ng/iterators)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/iterators.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+- [About](#about)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [API](#api)
+  - [butLast](#butlast)
+  - [cached](#cached)
+  - [concat](#concat)
+  - [constantly](#constantly)
+  - [consume](#consume)
+  - [cycle](#cycle)
+  - [dedupe](#dedupe)
+  - [dedupeWith](#dedupewith)
+  - [dense](#dense)
+  - [drop](#drop)
+  - [dropNth](#dropnth)
+  - [dropWhile](#dropwhile)
+  - [every](#every)
+  - [filter](#filter)
+  - [flatten](#flatten)
+  - [flattenWith](#flattenwith)
+  - [fnil](#fnil)
+  - [fork](#fork)
+  - [frequencies](#frequencies)
+  - [groupBy](#groupby)
+  - [identity](#identity)
+  - [indexed](#indexed)
+  - [interleave](#interleave)
+  - [interpose](#interpose)
+  - [iterate](#iterate)
+  - [iterator](#iterator)
+  - [juxt](#juxt)
+  - [last](#last)
+  - [map](#map)
+  - [mapcat](#mapcat)
+  - [mapIndexed](#mapindexed)
+  - [maybeIterator](#maybeiterator)
+  - [maybeObjectIterator](#maybeobjectiterator)
+  - [objectIterator](#objectiterator)
+  - [partition](#partition)
+  - [partitionBy](#partitionby)
+  - [randomSample](#randomsample)
+  - [range](#range)
+  - [reduce](#reduce)
+  - [reductions](#reductions)
+  - [reduced](#reduced)
+  - [repeat](#repeat)
+  - [repeatedly](#repeatedly)
+  - [reverse](#reverse)
+  - [some](#some)
+  - [take](#take)
+  - [takeNth](#takenth)
+  - [takeWhile](#takewhile)
+  - [takeLast](#takelast)
+  - [walk](#walk)
+  - [walkIterator](#walkiterator)
+  - [zip](#zip)
+- [Authors](#authors)
+- [License](#license)
+
 ## About
 
-Collection of ~50 composable, iterator-centric data processing
-functions, largely implemented as ES6 iterators / generators, inspired
-by
-[clojure.core](http://clojure.github.io/clojure/clojure.core-api.html)
-API. Written in TypeScript.
+Clojure inspired, composable ES6 iterators & generators.
+
+Most of the provided functionality here is also available in the form of
+more composable & efficient transducers via
+[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers).
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
 ```bash
 yarn add @thi.ng/iterators
-```
-
-All functions are defined as sub-modules and re-exported to allow the
-full library to be imported if desired. Sub-module file names use *Kebab
-case*, whereas function names are in *Camel case*.
-
-```ts
-// import all
-import * as ti from "@thi.ng/iterators";
-// single function (ES6 / TS)
-import { partitionBy } from "@thi.ng/iterators";
 ```
 
 ## Dependencies
@@ -40,9 +95,13 @@ import { partitionBy } from "@thi.ng/iterators";
 
 ## API
 
+[Generated API docs](https://docs.thi.ng/umbrella/iterators/)
+
 In alphabetical order:
 
-### `butLast<T>(input: Iterable<T>) => IterableIterator<T>`
+### butLast
+
+Signature: `butLast<T>(input: Iterable<T>) => IterableIterator<T>`
 
 Yields iterator of all but the last value of input.
 
@@ -61,7 +120,9 @@ Yields iterator of all but the last value of input.
 // [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
 ```
 
-### `cached<T>(input: Iterable<T>) => CachedIterableIterator<T>`
+### cached
+
+Signature: `cached<T>(input: Iterable<T>) => CachedIterableIterator<T>`
 
 Consumes and **lazily** caches values of a **finite** input and returns
 a no-arg function, which when called return new iterator. These iterator
@@ -107,7 +168,9 @@ ti.zip(
 //   "315": [ 0.27563309945482667, -0.9612629164203338 ] }
 ```
 
-### `concat<T>(...inputs: Iterable<T>[]) => IterableIterator<T>`
+### concat
+
+Signature: `concat<T>(...inputs: Iterable<T>[]) => IterableIterator<T>`
 
 Produces iterator yielding **lazy** concatenation of given iterables.
 For practical purposes none but the last input should be infinite. Any
@@ -121,7 +184,9 @@ For practical purposes none but the last input should be infinite. Any
 // [ "a", "b", "c", 1, 2, 3 ]
 ```
 
-### `constantly<T>(x: T) => (...args: any[]) => T`
+### constantly
+
+Signature: `constantly<T>(x: T) => (...args: any[]) => T`
 
 Helper function returning a new fn which takes any number of args and
 always returns `x`.
@@ -153,12 +218,16 @@ times10(filterModes[???], [1, 2, 3]);
 // [10, 20, 30] (all)
 ```
 
-### `consume(input: Iterator<any>, n?: number) => void`
+### consume
+
+Signature: `consume(input: Iterator<any>, n?: number) => void`
 
 Helper function. Consumes & discards items from iterator (possibly for
 side effects) and optionally only up to the given number of steps.
 
-### `cycle<T>(input: Iterable<T>) => IterableIterator<T>`
+### cycle
+
+Signature: `cycle<T>(input: Iterable<T>) => IterableIterator<T>`
 
 Produces iterator which **lazily** caches & **infinitely** repeats
 sequence of input. **Important:** Input MUST be finite, use `take` to
@@ -169,7 +238,9 @@ truncate input or output if necessary.
 // [0, 1, 2, 0, 1, 2, 0, 1, 2, 0]
 ```
 
-### `dedupe<T>(input: Iterable<T>) => IterableIterator<T>`
+### dedupe
+
+Signature: `dedupe<T>(input: Iterable<T>) => IterableIterator<T>`
 
 Produces iterator which discards successive duplicate values from input.
 **Important:** Uses `===` for equality checks.
@@ -179,7 +250,9 @@ Produces iterator which discards successive duplicate values from input.
 // [1, 2, 3, 4, 3]
 ```
 
-### `dedupeWith<T>(equiv: (a:T, b: T) => boolean, input: Iterable<T>) => IterableIterator<T>`
+### dedupeWith
+
+Signature: `dedupeWith<T>(equiv: (a:T, b: T) => boolean, input: Iterable<T>) => IterableIterator<T>`
 
 Like `dedupe`, but uses given function `equiv` to determine equivalence
 of successive values.
@@ -192,7 +265,9 @@ var eq = (a, b) => a.a === b.a;
 // [ { a: 1 }, { a: 2, b: 2 }, { a: 3 } ]
 ```
 
-### `dense<T>(input: Iterable<T>) => IterableIterator<T>`
+### dense
+
+Signature: `dense<T>(input: Iterable<T>) => IterableIterator<T>`
 
 Yields iterator of all non-`null` and non-`undefined` values of input
 (e.g. a sparse array).
@@ -206,7 +281,9 @@ a[20] = 2;
 // [1, 2]
 ```
 
-### `drop<T>(n: number, input: Iterable<T>) => IterableIterator<T>`
+### drop
+
+Signature: `drop<T>(n: number, input: Iterable<T>) => IterableIterator<T>`
 
 Consumes & discards up to `n` items from input and returns remaining
 (possibly exhausted) iterator.
@@ -220,7 +297,9 @@ Consumes & discards up to `n` items from input and returns remaining
 // [ 5, 6, 7, 8, 9 ]
 ```
 
-### `dropNth<T>(n: number, input: Iterable<T>) => IterableIterator<T>`
+### dropNth
+
+Signature: `dropNth<T>(n: number, input: Iterable<T>) => IterableIterator<T>`
 
 Produces iterator which drops every `n`th item from input.
 
@@ -231,7 +310,9 @@ Produces iterator which drops every `n`th item from input.
 // [ 0, 1, 3, 4, 6, 7, 9 ]
 ```
 
-### `dropWhile<T>(pred: (x: T) => boolean, input: Iterable<T>) => IterableIterator<T>`
+### dropWhile
+
+Signature: `dropWhile<T>(pred: (x: T) => boolean, input: Iterable<T>) => IterableIterator<T>`
 
 Consumes input and calls `pred` for each item. Discards all items whilst
 `pred` returns `true`, then returns remaining (possibly exhausted)
@@ -242,7 +323,9 @@ iterator.
 // [5, 6, 7, 8, 9]
 ```
 
-### `every<T>(pred: (x: T) => boolean, input: Iterable<T>) => boolean`
+### every
+
+Signature: `every<T>(pred: (x: T) => boolean, input: Iterable<T>) => boolean`
 
 Consumes input and calls `pred` for each item. When `pred` returns not
 `true`, process stops and returns `false` itself. When all items pass
@@ -269,7 +352,9 @@ ti.every((x) => true, [])
 // false (empty input)
 ```
 
-### `filter<T>(pred: (x: T) => boolean, input: Iterable<T>) => IterableIterator<T>`
+### filter
+
+Signature: `filter<T>(pred: (x: T) => boolean, input: Iterable<T>) => IterableIterator<T>`
 
 Consumes input and calls `pred` for each item. Yields iterator of items
 for which `pred` returned `true`.
@@ -280,7 +365,9 @@ var multOf3 = (x) => (x % 3) === 0;
 // [ 0, 3, 6, 9 ]
 ```
 
-### `flatten(input: Iterable<any>, flatObjects = true) => IterableIterator<any>`
+### flatten
+
+Signature: `flatten(input: Iterable<any>, flatObjects = true) => IterableIterator<any>`
 
 Produces iterator which recursively flattens input (using
 `flattenWith`). **Important:** Recursion only applies to iterable types
@@ -299,7 +386,9 @@ Produces iterator which recursively flattens input (using
 // [ { a: 1 }, 1, 2, 3, { a: 23, b: 42, c: [ 1, 2, 3 ] } ]
 ```
 
-### `flattenWith(tx: (x: any) => any, input: Iterable<any>) => IterableIterator<any>`
+### flattenWith
+
+Signature: `flattenWith(tx: (x: any) => any, input: Iterable<any>) => IterableIterator<any>`
 
 Produces iterator which selectively & recursively flattens input. The
 first arg `tx` is a transformation fn called for each
@@ -323,7 +412,9 @@ let tx = x => typeof x == "string" ? ti.map(x => x.charCodeAt(0), x) : ti.maybeI
 // [ 82, 79, 79, 84, undefined, 67, 72, 73, 76, 68, 95, 49, null, 67, 72, 73, 76, 68, 95, 50 ]
 ```
 
-### `fnil(fn: (...args: any[]) => any, ...ctors: (() => any)[]) => (...args: any[]) => any`
+### fnil
+
+Signature: `fnil(fn: (...args: any[]) => any, ...ctors: (() => any)[]) => (...args: any[]) => any`
 
 Takes a function `fn` and up to 3 `ctor` functions. Produces a new
 function that calls `fn`, replacing a `null` or `undefined` arg with the
@@ -366,7 +457,9 @@ ti.reduce(updateWith(adder), {}, "abracadabra");
 // { a: 5, b: 2, r: 2, c: 1, d: 1 }
 ```
 
-### `fork<T>(input: Iterable<T>, cacheLimit = 16) => () => IterableIterator<T>`
+### fork
+
+Signature: `fork<T>(input: Iterable<T>, cacheLimit = 16) => () => IterableIterator<T>`
 
 Similar to `cached`, this function allows multiple consumers of a single
 input, however is only using a sliding window of N cached values
@@ -413,7 +506,9 @@ for(let part of raw) {
 // part: 93,67,33,59,76, avg: 65.6, min: 33, 93
 ```
 
-### `frequencies<T>(input: Iterable<T>, key?: (v: T) => any): IterableIterator<FrequencyPair<T>[]>`
+### frequencies
+
+Signature: `frequencies<T>(input: Iterable<T>, key?: (v: T) => any): IterableIterator<FrequencyPair<T>[]>`
 
 Consumes input, applies `key` fn (if given) to each item and yields
 iterator of 2-element tuples, each `[key, freq]` (where `freq` is the
@@ -438,7 +533,9 @@ var isLetter = (x) => /[a-z]/i.test(x);
 // [ ["l", 3], ["o", 2], ["h", 1], ["e", 1], ["w", 1], ["r", 1], ["d", 1] ]
 ```
 
-### `groupBy<T>(key: (v) => any, input: Iterable<T>) => { [id: string]: T[] }`
+### groupBy
+
+Signature: `groupBy<T>(key: (v) => any, input: Iterable<T>) => { [id: string]: T[] }`
 
 Consumes input, applies `key` fn to each item and returns object of
 items grouped by result of `key` fn. **Important:** The input MUST be
@@ -457,7 +554,9 @@ groupBy((x) => x.toUpperCase(), "AbRaCadaBra")
 //   '"D"': [ 'd' ] }
 ```
 
-### `identity<T>(x: T) => T`
+### identity
+
+Signature: `identity<T>(x: T) => T`
 
 Helper function. Simply returns its argument.
 
@@ -477,7 +576,9 @@ ti.every(ti.fnil(ti.identity, () => true), tests);
 // true
 ```
 
-### `indexed<T>(input: Iterable<T>) => IterableIterator<[number, T]>`
+### indexed
+
+Signature: `indexed<T>(input: Iterable<T>) => IterableIterator<[number, T]>`
 
 Yields iterator producing `[index, value]` pairs of input.
 
@@ -486,7 +587,9 @@ Yields iterator producing `[index, value]` pairs of input.
 // [ [ 0, "h" ], [ 1, "e" ], [ 2, "l" ], [ 3, "l" ], [ 4, "o" ] ]
 ```
 
-### `interleave(...inputs: Iterable<any>[]) => IterableIterator<any>`
+### interleave
+
+Signature: `interleave(...inputs: Iterable<any>[]) => IterableIterator<any>`
 
 Takes an arbitrary number of iterators and yields iterator of
 interleaved items from each input. Terminates as soon as one of the
@@ -497,7 +600,9 @@ inputs is exhausted.
 // [ 0, 100, 200, 1, 101, 201, 2, 102, 202, 3, 103, 203, 4, 104, 204 ]
 ```
 
-### `interpose(x: any, input: Iterable<any>) => IterableIterator<any>`
+### interpose
+
+Signature: `interpose(x: any, input: Iterable<any>) => IterableIterator<any>`
 
 Produces an iterator which injects `x` inbetween each item from input
 `iter`.
@@ -507,7 +612,9 @@ Produces an iterator which injects `x` inbetween each item from input
 // [ 0, "/", 1, "/", 2, "/", 3, "/", 4 ]
 ```
 
-### `iterate<T>(fn: (x: T) => T, seed: T) => IterableIterator<T>`
+### iterate
+
+Signature: `iterate<T>(fn: (x: T) => T, seed: T) => IterableIterator<T>`
 
 Produces an iterator of the infinite results of iteratively applying
 `fn` to `seed`.
@@ -519,12 +626,16 @@ Produces an iterator of the infinite results of iteratively applying
 // [ 1, 2, 4, 8, 16, 32, 64, 128, 256, 512 ]
 ```
 
-### `iterator<T>(x: Iterable<T>) => Iterator<T>`
+### iterator
+
+Signature: `iterator<T>(x: Iterable<T>) => Iterator<T>`
 
 Syntax sugar. Returns `x[Symbol.iterator]()`. Most functions in this
 module call this automatically for each input.
 
-### `juxt<T>(...fns: ((x: T) => any)[]) => (x: T) => any[]`
+### juxt
+
+Signature: `juxt<T>(...fns: ((x: T) => any)[]) => (x: T) => any[]`
 
 Takes arbitrary number of functions and returns new function, which
 takes single argument `x` and produces array of result values of
@@ -544,7 +655,9 @@ kernel(1)
 // [ [-1, 0, 1], [0, 1, 2], [1, 2, 3] ]
 ```
 
-### `last<T>(input: Iterable<T>) => T`
+### last
+
+Signature: `last<T>(input: Iterable<T>) => T`
 
 Consumes a **finite** iterator and returns last item.
 
@@ -559,7 +672,9 @@ ti.last(ti.take(10, ti.range()))
 // 9
 ```
 
-### `map<T>(fn: (...args: any[]) => T, ...inputs: Iterable<any>[]) => IterableIterator<T>`
+### map
+
+Signature: `map<T>(fn: (...args: any[]) => T, ...inputs: Iterable<any>[]) => IterableIterator<T>`
 
 Consumes an arbitrary number of iterators and applies `fn` to each of
 their values. Produces iterator of results. Iteration stops as soon as
@@ -575,7 +690,9 @@ input mapping.
 // [ [0, 0, 0], [1, 10, 100], [2, 20, 200], [3, 30, 300], [4, 40, 400] ]
 ```
 
-### `mapcat<T>(fn: (...args: any[]) => Iterable<T>, ...inputs: Iterable<any>[]) => IterableIterator<T>`
+### mapcat
+
+Signature: `mapcat<T>(fn: (...args: any[]) => Iterable<T>, ...inputs: Iterable<any>[]) => IterableIterator<T>`
 
 Like `map`, but expects mapping fn to return an iterable result and
 produces iterator which yields the flat concatenation of results (only
@@ -590,7 +707,9 @@ returned by the mapping fn are skipped in the output.
 // [ 1, 2, 2, 3, 3, 3, 4, 4, 4, 4 ]
 ```
 
-### `mapIndexed<T>(fn: (i: number, ...args: any[]) => T[], ...inputs: Iterable<any>[]) => IterableIterator<T>`
+### mapIndexed
+
+Signature: `mapIndexed<T>(fn: (i: number, ...args: any[]) => T[], ...inputs: Iterable<any>[]) => IterableIterator<T>`
 
 Like `map`, but too passes a monotonically increasing `index` as first
 argument to mapping fn.
@@ -604,17 +723,23 @@ argument to mapping fn.
 //   [4, "o", "e"] ]
 ```
 
-### `maybeIterator(x: any) => any`
+### maybeIterator
+
+Signature: `maybeIterator(x: any) => any`
 
 Helper function, returning arg's iterator (if present) or else
 `undefined`.
 
-### `maybeObjectIterator(x: any) => any`
+### maybeObjectIterator
+
+Signature: `maybeObjectIterator(x: any) => any`
 
 Helper function, checks if `x` is object-like (but no generator) and
 returns `objectIterator(x)` or else `undefined`.
 
-### `objectIterator(x: any) => IterableIterator<any[]>`
+### objectIterator
+
+Signature: `objectIterator(x: any) => IterableIterator<any[]>`
 
 Produces iterator of an object"s key/value pairs.
 
@@ -623,7 +748,9 @@ Produces iterator of an object"s key/value pairs.
 // [ ["a", 23], ["b", 42], ["c", [1, 2, 3]] ]
 ```
 
-### `partition<T>(n: number, step: number, input: Iterable<T>, all = false) => IterableIterator<T[]>`
+### partition
+
+Signature: `partition<T>(n: number, step: number, input: Iterable<T>, all = false) => IterableIterator<T[]>`
 
 Produces iterator of fixed size partitions/chunks of input values.
 Produces overlapping partitions, if `step` < partition size `n`. Unless
@@ -646,7 +773,9 @@ than `n` items (though never empty).
 // [ [0, 1, 2], [5, 6, 7] ]
 ```
 
-### `partitionBy<T>(fn: (x: T) => any, input: Iterable<T>) => IterableIterator<T[]>`
+### partitionBy
+
+Signature: `partitionBy<T>(fn: (x: T) => any, input: Iterable<T>) => IterableIterator<T[]>`
 
 Produces iterator of partitions/chunks of input values. Applies `fn` to
 each item and starts new partition each time `fn` returns new result.
@@ -656,7 +785,9 @@ each item and starts new partition each time `fn` returns new result.
 // [ [0, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10] ]
 ```
 
-### `randomSample<T>(prob: number, input: Iterable<T>) => IterableIterator<T>`
+### randomSample
+
+Signature: `randomSample<T>(prob: number, input: Iterable<T>) => IterableIterator<T>`
 
 Produces iterator which consumes input and yields values with given
 probability (0 .. 1 range).
@@ -666,7 +797,9 @@ probability (0 .. 1 range).
 // [ 10, 13, 16, 21, 22, 24, 32, 35, 37, 81, 93 ]
 ```
 
-### `range(from?: number, to?: number, step?: number) => IterableIterator<number>`
+### range
+
+Signature: `range(from?: number, to?: number, step?: number) => IterableIterator<number>`
 
 Produces iterator of monotonically increasing or decreasing values with
 optional `step` value.
@@ -697,7 +830,9 @@ If `from` > `to` and no `step` is given, a `step` of `-1` is used.
 // [50, 40, 30, 20, 10, 0]
 ```
 
-### `reduce<A, B>(rfn: (acc: B, x: A) => B | ReducedValue<B>, acc: B, input: Iterable<A>) => B`
+### reduce
+
+Signature: `reduce<A, B>(rfn: (acc: B, x: A) => B | ReducedValue<B>, acc: B, input: Iterable<A>) => B`
 
 Consumes and reduces input using reduction function `rfn`, then returns
 reduced result value. `rfn` can abort reduction process by returning a
@@ -715,7 +850,9 @@ ti.reduce((acc, x) => { return acc += x, acc >= 15 ? ti.reduced(acc) : acc }, 0,
 // 15
 ```
 
-### `reductions<A, B>(rfn: (acc: B, x: A) => B | ReducedValue<B>, acc: B, input: Iterable<A>) => IterableIterator<B[]>`
+### reductions
+
+Signature: `reductions<A, B>(rfn: (acc: B, x: A) => B | ReducedValue<B>, acc: B, input: Iterable<A>) => IterableIterator<B[]>`
 
 Like `reduce`, but yields an iterator of all intermediate reduction
 results. Always yields at least initial `acc`umulator arg, even if input
@@ -734,12 +871,16 @@ operation](http://http.developer.nvidia.com/GPUGems3/gpugems3_ch39.html)
 // [ 0, 1, 3, 6, 10, 15 ]
 ```
 
-### `reduced<T>(x: T) => ReducedValue<T>`
+### reduced
+
+Signature: `reduced<T>(x: T) => ReducedValue<T>`
 
 For use inside reduction functions only. Wraps result in marker type to
 cause early termination of reduction (see example above).
 
-### `repeat<T>(x: T, n?: number) => IterableIterator<T>`
+### repeat
+
+Signature: `repeat<T>(x: T, n?: number) => IterableIterator<T>`
 
 Produces an iterator of infinite (by default) repetitions of value `x`.
 If `n` is given, produces only that many values.
@@ -752,7 +893,9 @@ If `n` is given, produces only that many values.
 // [42, 42, 42, 42, 42]
 ```
 
-### `repeatedly<T>(fn: () => T, n?: number) => IterableIterator<T>`
+### repeatedly
+
+Signature: `repeatedly<T>(fn: () => T, n?: number) => IterableIterator<T>`
 
 Produces an iterator of infinite (by default) results of calling the
 no-arg `fn` repeatedly. If `n` is given, produces only that many values.
@@ -765,7 +908,9 @@ no-arg `fn` repeatedly. If `n` is given, produces only that many values.
 // [ 0.46381477224416057, 0.22568030685532992, 0.5494769470662977 ]
 ```
 
-### `reverse<T>(input: Iterable<T>) => IterableIterator<T>`
+### reverse
+
+Signature: `reverse<T>(input: Iterable<T>) => IterableIterator<T>`
 
 Yields iterator **lazily** producing reverse result order of input
 (**must be finite**). If input is not already array-like (strings are
@@ -782,7 +927,9 @@ for this purpose), the function first consumes & caches input as array.
 // [ 512, 256, 128, 64, 32, 16, 8, 4, 2, 1 ]
 ```
 
-### `some<T>(pred: (x: T) => boolean, input: Iterable<T>) => T`
+### some
+
+Signature: `some<T>(pred: (x: T) => boolean, input: Iterable<T>) => T`
 
 Consumes iterator and calls `pred` for each item. When `pred` returns
 `true`, process stops and returns this first successful item. When none
@@ -803,7 +950,9 @@ nums.next()
 // { value: undefined, done: true }
 ```
 
-### `take<T>(n: number, input: Iterable<T>) => IterableIterator<T>`
+### take
+
+Signature: `take<T>(n: number, input: Iterable<T>) => IterableIterator<T>`
 
 Produces iterator of the first `n` values of input (or less than `n`, if
 input is too short...)
@@ -813,7 +962,9 @@ input is too short...)
 // [ 0, 1, 2 ]
 ```
 
-### `takeNth<T>(n: number, input: Iterable<T>) => IterableIterator<T>`
+### takeNth
+
+Signature: `takeNth<T>(n: number, input: Iterable<T>) => IterableIterator<T>`
 
 Produces an iterator only yielding every `n`th item from input.
 
@@ -822,7 +973,9 @@ Produces an iterator only yielding every `n`th item from input.
 // [ 0, 3, 6, 9 ]
 ```
 
-### `takeWhile<T>(pred: (x: T) => boolean, input: Iterable<T>) => IterableIterator<T>`
+### takeWhile
+
+Signature: `takeWhile<T>(pred: (x: T) => boolean, input: Iterable<T>) => IterableIterator<T>`
 
 Produces iterator which calls `pred` for each item of input and
 terminates as soon as `pred` returns `false`.
@@ -840,7 +993,9 @@ var input = ti.range(10);
 // [ 6, 7, 8, 9 ]
 ```
 
-### `takeLast<T>(n: number, input: Iterable<T>) => IterableIterator<T>`
+### takeLast
+
+Signature: `takeLast<T>(n: number, input: Iterable<T>) => IterableIterator<T>`
 
 Consumes input and produces iterator of the last `n` values of input (or
 less than `n`, if input is too short...)
@@ -855,8 +1010,10 @@ less than `n`, if input is too short...)
 // [ 0, 1, 2 ]
 ```
 
-### `walk(fn: (x: any) => void, input: Iterable<any>, postOrder = false) => void`
-### `walk(fn: (x: any) => void, children: (x: any) => any, input: Iterable<any>, postOrder = false) => void`
+### walk
+
+- Signature: `walk(fn: (x: any) => void, input: Iterable<any>, postOrder = false) => void`
+- Signature: `walk(fn: (x: any) => void, children: (x: any) => any, input: Iterable<any>, postOrder = false) => void`
 
 Recursively walks input and applies `fn` to each element (for in-place
 editing or side effects). Only iterable values and objects (but not
@@ -908,8 +1065,10 @@ doc.content[1]
 // { tag: "circle", attr: { fill: "red", x: 37.963, y: 87.521, r: 5 } }
 ```
 
-### `walkIterator(input: Iterable<any>, postOrder = false) => IterableIterator<any>`
-### `walkIterator(input: Iterable<any>, children: (x: any) => any, postOrder = false) => IterableIterator<any>`
+### walkIterator
+
+- Signature: `walkIterator(input: Iterable<any>, postOrder = false) => IterableIterator<any>`
+- Signature: `walkIterator(input: Iterable<any>, children: (x: any) => any, postOrder = false) => IterableIterator<any>`
 
 Yields an iterator performing either pre-order (default) or post-order
 [traversal](https://en.wikipedia.org/wiki/Tree_traversal#Pre-order) of
@@ -957,7 +1116,9 @@ visited.
 //   "[[[1,[2]],[3,[4]]],[5]]" ]
 ```
 
-### `zip(keys: Iterable<any>, vals: Iterable<any>, target?: any) => any`
+### zip
+
+Signature: `zip(keys: Iterable<any>, vals: Iterable<any>, target?: any) => any`
 
 Takes an iterator of keys and iterator of values, pairwise combines
 items from each input and associates them as key-value mappings in a
@@ -985,8 +1146,8 @@ ti.zip(ti.map((x)=> x.id, langs), langs)
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2017-2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2017 - 2019 Karsten Schmidt // Apache Software License 2.0

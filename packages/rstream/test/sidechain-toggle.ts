@@ -1,13 +1,18 @@
 import { Predicate } from "@thi.ng/api";
 import * as assert from "assert";
-import * as rs from "../src/index";
+import {
+    sidechainToggle,
+    State,
+    Stream,
+    stream
+} from "../src/index";
 
 describe("SidechainToggle", () => {
-    let src: rs.Stream<any>, side: rs.Stream<any>, buf: any[];
+    let src: Stream<any>, side: Stream<any>, buf: any[];
 
     beforeEach(() => {
-        src = rs.stream();
-        side = rs.stream();
+        src = stream();
+        side = stream();
         buf = [];
     });
 
@@ -17,7 +22,7 @@ describe("SidechainToggle", () => {
         expect: any,
         done: Function
     ) => {
-        src.subscribe(rs.sidechainToggle(side, initial, pred)).subscribe({
+        src.subscribe(sidechainToggle(side, { initial, pred })).subscribe({
             next(x) {
                 buf.push(x);
             },
@@ -49,12 +54,12 @@ describe("SidechainToggle", () => {
     });
 
     it("unsubscribe chain (from child)", () => {
-        const part = src.subscribe(rs.sidechainToggle(side));
+        const part = src.subscribe(sidechainToggle(side));
         const sub = part.subscribe({});
         sub.unsubscribe();
-        assert.equal(src.getState(), rs.State.DONE);
-        assert.equal(side.getState(), rs.State.DONE);
-        assert.equal(part.getState(), rs.State.DONE);
-        assert.equal(sub.getState(), rs.State.DONE);
+        assert.equal(src.getState(), State.DONE);
+        assert.equal(side.getState(), State.DONE);
+        assert.equal(part.getState(), State.DONE);
+        assert.equal(sub.getState(), State.DONE);
     });
 });

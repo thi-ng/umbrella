@@ -14,6 +14,7 @@ coverage
 dev
 doc
 export
+README.tpl.md
 src*
 test
 tools

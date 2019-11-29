@@ -1,27 +1,29 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/arrays
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/arrays.svg)](https://www.npmjs.com/package/@thi.ng/arrays)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/arrays.svg)](https://www.npmjs.com/package/@thi.ng/arrays)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/arrays.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
 
-Array & ArrayLike utilities.
+Array / Arraylike utilities.
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -38,13 +40,9 @@ yarn add @thi.ng/arrays
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
 
-## Usage examples
-
-```ts
-import * as a from "@thi.ng/arrays";
-```
-
 ## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/arrays/)
 
 - [binarySearch()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/binary-search.ts)
 - [endsWith()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/ends-with.ts)
@@ -63,8 +61,8 @@ import * as a from "@thi.ng/arrays";
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

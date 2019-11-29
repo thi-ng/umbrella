@@ -5,7 +5,7 @@ import { app } from "./app";
 import { state } from "./state";
 
 // combine streams of atom values & timer
-const ui = sync({
+const ui = sync<any, any>({
     src: {
         state: fromAtom(state),
         now: fromInterval(1000).transform(map((_) => new Date()))

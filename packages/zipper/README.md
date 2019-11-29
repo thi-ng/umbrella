@@ -1,25 +1,28 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/zipper
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/zipper.svg)](https://www.npmjs.com/package/@thi.ng/zipper)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/zipper.svg)](https://www.npmjs.com/package/@thi.ng/zipper)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/zipper.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
+  - [Status](#status)
+  - [Related packages](#related-packages)
+  - [Blog posts](#blog-posts)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
+- [API](#api)
 - [Benchmark](#benchmark)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
+
+Functional tree editing, manipulation & navigation.
 
 Immutable, semi-functional, structural tree editing, manipulation &
 navigation, based on my fork and optimizations to
@@ -31,6 +34,18 @@ Gérard Huet in 1997.
 
 Reference: https://en.wikipedia.org/wiki/Zipper_(data_structure)
 
+### Status
+
+**STABLE** - used in production
+
+### Related packages
+
+- [@thi.ng/gp](https://github.com/thi-ng/umbrella/tree/develop/packages/gp) - Genetic programming helpers & strategies (tree based & multi-expression programming)
+
+### Blog posts
+
+- [Evolutionary failures (Part 1)](https://medium.com/@thi.ng/evolutionary-failures-part-1-54522c69be37)
+
 ## Installation
 
 ```bash
@@ -39,11 +54,13 @@ yarn add @thi.ng/zipper
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/master/packages/arrays)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/zipper/)
 
 ```ts
 import { arrayZipper } from "@thi.ng/zipper";
@@ -116,7 +133,7 @@ total: 4616ms, mean: 0.4616ms, runs: 10000
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 

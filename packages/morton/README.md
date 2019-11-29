@@ -1,32 +1,42 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/morton
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/morton.svg)](https://www.npmjs.com/package/@thi.ng/morton)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/morton.svg)](https://www.npmjs.com/package/@thi.ng/morton)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/morton.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
+  - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
+- [API](#api)
 - [Authors](#authors)
 - [License](#license)
-
-<!-- /TOC -->
 
 ## About
 
 [Z-order-curve](https://en.wikipedia.org/wiki/Z-order_curve) / Morton
 encoding & decoding for 1D, 2D, 3D.
 
+References:
+
 - [Decoding Morton Codes](https://fgiesen.wordpress.com/2009/12/13/decoding-morton-codes/)
 - [Morton encoding/decoding through bit interleaving](https://www.forceflow.be/2013/10/07/morton-encodingdecoding-through-bit-interleaving-implementations/)
 - [github.com/JaneliaSciComp/Morton.jl](https://github.com/JaneliaSciComp/Morton.jl/blob/master/src/Morton.jl)
 - [Z-Order Indexing for Multifaceted Queries in Amazon DynamoDB](https://aws.amazon.com/blogs/database/z-order-indexing-for-multifaceted-queries-in-amazon-dynamodb-part-1/)
+
+### Status
+
+**STABLE** - used in production
+
+### Related packages
+
+- [@thi.ng/grid-iterators](https://github.com/thi-ng/umbrella/tree/master/packages/grid-iterators) - 2D grid iterators w/ multiple orderings
 
 ## Installation
 
@@ -37,9 +47,12 @@ yarn add @thi.ng/morton
 ## Dependencies
 
 - [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/master/packages/binary)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/morton/)
 
 ```ts
 import * as m from "@thi.ng/morton";
@@ -59,8 +72,8 @@ m.demuxScaled2(m.muxScaled2(0.25, 0.75))
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2015 - 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2019 Karsten Schmidt // Apache Software License 2.0

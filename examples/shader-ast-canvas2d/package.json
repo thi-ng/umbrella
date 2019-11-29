@@ -25,5 +25,9 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": true,
+        "screenshot": "shader-ast/shader-ast-01.jpg"
     }
 }

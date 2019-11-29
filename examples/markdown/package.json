@@ -1,6 +1,7 @@
 {
     "name": "markdown",
     "version": "0.0.1",
+    "description": "Minimal Markdown to Hiccup to HTML parser / transformer",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
@@ -16,10 +17,10 @@
         "typescript": "^3.7.2"
     },
     "dependencies": {
-        "@thi.ng/api": "latest",
         "@thi.ng/bench": "latest",
         "@thi.ng/hiccup-markdown": "latest",
         "@thi.ng/rstream": "latest",
+        "@thi.ng/transducers": "latest",
         "@thi.ng/transducers-hdom": "latest"
     },
     "browserslist": [
@@ -27,5 +28,14 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "fsm",
+            "hiccup-markdown",
+            "rstream",
+            "transducers-hdom"
+        ],
+        "screenshot": "examples/markdown-parser.jpg"
     }
 }

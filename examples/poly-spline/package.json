@@ -16,8 +16,11 @@
         "typescript": "^3.7.2"
     },
     "dependencies": {
-        "@thi.ng/api": "latest",
+        "@thi.ng/dsp": "latest",
+        "@thi.ng/geom": "latest",
+        "@thi.ng/hiccup-svg": "latest",
         "@thi.ng/rstream": "latest",
+        "@thi.ng/transducers": "latest",
         "@thi.ng/transducers-hdom": "latest"
     },
     "browserslist": [
@@ -25,5 +28,14 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "dsp",
+            "geom",
+            "geom-splines",
+            "hiccup-svg",
+            "transducers-hdom"
+        ]
     }
 }

@@ -4,6 +4,7 @@ import { equiv } from "@thi.ng/equiv";
 import { illegalArgs } from "@thi.ng/errors";
 import { min3id } from "@thi.ng/math";
 import {
+    CloseMode,
     ISubscribable,
     nextID,
     Stream,
@@ -81,10 +82,10 @@ export class TripleStore implements Iterable<Triple>, IToDot {
             p: new Map(),
             o: new Map()
         };
-        this.streamS = new Stream("S");
-        this.streamP = new Stream("P");
-        this.streamO = new Stream("O");
-        this.streamAll = new Stream("ALL");
+        this.streamS = new Stream({ id: "S", closeOut: CloseMode.NEVER });
+        this.streamP = new Stream({ id: "P", closeOut: CloseMode.NEVER });
+        this.streamO = new Stream({ id: "O", closeOut: CloseMode.NEVER });
+        this.streamAll = new Stream({ id: "ALL", closeOut: CloseMode.NEVER });
         this.allIDs = new Set<number>();
         this.NEXT_ID = 0;
         if (triples) {
@@ -286,7 +287,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
                 return res;
             }),
             dedupe(equiv),
-            id
+            { id }
         );
     }
 
@@ -325,7 +326,10 @@ export class TripleStore implements Iterable<Triple>, IToDot {
         return sync<Solutions, Solutions>({
             id,
             src: { a, b },
-            xform: comp(map(({ a, b }) => join(a, b)), dedupe(equiv))
+            xform: comp(
+                map(({ a, b }) => join(a, b)),
+                dedupe(equiv)
+            )
         });
     }
 
@@ -442,7 +446,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
         if (!sel) {
             this.indexSelections[id].set(
                 key,
-                (sel = stream.transform(indexSel(key), id))
+                (sel = stream.transform(indexSel(key), { id }))
             );
         }
         return sel;

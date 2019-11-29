@@ -1,24 +1,22 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/simd
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/simd.svg)](https://www.npmjs.com/package/@thi.ng/simd)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/simd.svg)](https://www.npmjs.com/package/@thi.ng/simd)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/simd.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
 - [Available functions](#available-functions)
-- [Status](#status)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
+- [API](#api)
 - [Authors](#authors)
 - [License](#license)
-
-<!-- /TOC -->
 
 ## About
 
@@ -80,9 +78,9 @@ Also see
 [src/api.ts](https://github.com/thi-ng/umbrella/tree/master/packages/simd/src/api.ts)
 for documentation about the exposed TS/JS API...
 
-## Status
+### Status
 
-ALPHA - experimental
+**ALPHA** - bleeding edge / work-in-progress
 
 The [WebAssembly SIMD spec](https://github.com/WebAssembly/simd) is
 still WIP and (at the time of writing) only partially implemented and
@@ -100,8 +98,12 @@ yarn add @thi.ng/simd
 ## Dependencies
 
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+- [@thi.ng/transducers-binary](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary)
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/simd/)
 
 ```ts
 import { init } from "@thi.ng/simd";
@@ -169,7 +171,7 @@ points
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 

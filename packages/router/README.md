@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/router
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/router.svg)](https://www.npmjs.com/package/@thi.ng/router)
@@ -7,10 +9,18 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+- [About](#about)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
+- [API](#api)
+- [Authors](#authors)
+- [License](#license)
+
 ## About
 
-Generic router for browser & non-browser based applications with support
-for:
+Generic router for browser & non-browser based applications.
 
 - Declarative route definitions
 - Parametric routes, each param with optional value coercion &
@@ -22,23 +32,17 @@ for:
 - Route formatting (with params)
 - HTML5 history & hash fragment support
 
+Partially based on the Clojure implementation in
+[thi.ng/domus](https://github.com/thi-ng/domus/blob/master/src/router.org).
+
+### Status
+
+**STABLE** - used in production
+
 ## Installation
 
 ```bash
 yarn add @thi.ng/router
-```
-
-**New since 2018-03-15: You can now create a preconfigured app skeleton
-using @thi.ng/atom, @thi.ng/hdom & @thi.ng/router using the
-[create-hdom-app](https://github.com/thi-ng/create-hdom-app) project
-generator:**
-
-```bash
-yarn create hdom-app my-app
-
-cd my-app
-yarn install
-yarn start
 ```
 
 ## Dependencies
@@ -50,10 +54,21 @@ yarn start
 
 ## Usage examples
 
-A complete, full commented demo app is here:
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
 
-[Source](https://github.com/thi-ng/umbrella/blob/master/examples/router-basics/) |
-[Live demo](https://demo.thi.ng/umbrella/router-basics/)
+A selection:
+
+### router-basics <!-- NOTOC -->
+
+Basic @thi.ng/router & @thi.ng/hdom app skeleton
+
+[Live demo](https://demo.thi.ng/umbrella/router-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/router-basics)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/router/)
 
 ```ts
 import { HTMLRouter, EVENT_ROUTE_CHANGED } from "@thi.ng/router";
@@ -136,7 +151,6 @@ const config = {
     ]
 };
 
-
 // `HTMLRouter` ONLY works in browser environments
 // for non-browser use cases use `BasicRouter`
 const router = new HTMLRouter(config);
@@ -150,8 +164,8 @@ code](https://github.com/thi-ng/umbrella/blob/master/packages/router/src/api.ts)
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2014-2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2014 - 2019 Karsten Schmidt // Apache Software License 2.0

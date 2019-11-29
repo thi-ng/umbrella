@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/heaps
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/heaps.svg)](https://www.npmjs.com/package/@thi.ng/heaps)
@@ -7,11 +9,26 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+- [About](#about)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [API](#api)
+- [Authors](#authors)
+- [License](#license)
+
 ## About
+
+Generic binary heap & d-ary heap implementations with customizable ordering.
 
 Type agnostic binary heap & d-ary heap implementations with customizable
 ordering and fanout / tree arity (in case of `DHeap`). Both `Heap` and
-`DHeap` have identical base API, however the former provides several additional operations.
+`DHeap` have an identical base API, however the former provides several
+additional operations.
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -24,16 +41,20 @@ yarn add @thi.ng/heaps
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 - [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/master/packages/compare)
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/heaps/)
 
 ```ts
 import { Heap, DHeap } from "@thi.ng/heaps";
 
 // with initial values, custom comparator and heap arity
-const h = new DHeap(
+const h = new DHeap<number>(
     [5, 2, 10, 15, 18, 23, 22, -1],
     {
-        compare: (a,b) => b - a,
+        // custom comparator
+        compare: (a, b) => b - a,
+        // branch size (DHeap only)
         d: 4
     }
 );
@@ -53,8 +74,8 @@ h.push(24);
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2017 - 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2017 - 2019 Karsten Schmidt // Apache Software License 2.0

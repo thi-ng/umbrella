@@ -1,28 +1,45 @@
 import { assert, Fn } from "@thi.ng/api";
-import { State } from "./api";
+import { CommonOpts, State } from "./api";
 import { Subscription } from "./subscription";
-import { nextID } from "./utils/idgen";
+import { optsWithID } from "./utils/idgen";
 
 /**
- * A `MetaStream` is a subscription type which transforms each incoming
- * value into a new stream, subscribes to it (via an hidden / internal
+ * Returns a {@link Subscription} which transforms each incoming value
+ * into a new {@link Stream}, subscribes to it (via an hidden / internal
  * subscription) and then only passes values from that stream to its own
- * subscribers. If a new value is received, the meta stream first
- * unsubscribes from any still active stream, before creating and
- * subscribing to the new stream. Hence this stream type is useful for
- * cases where streams need to be dynamically created & inserted into an
- * existing dataflow topology.
+ * subscribers.
+ *
+ * @remarks
+ * If a new value is received, the metastream first unsubscribes from
+ * any still active stream, before creating and subscribing to the new
+ * stream. Hence this stream type is useful for cases where streams need
+ * to be dynamically created & inserted into an existing dataflow
+ * topology.
  *
  * The user supplied `factory` function will be called for each incoming
  * value and is responsible for creating the new stream instances. If
  * the function returns null/undefined, no further action will be taken
  * (acts like a filter transducer).
  *
- * ```
+ * The factory function does NOT need to create *new* streams, but can
+ * merely return other existing streams, and so making the meta stream
+ * act like a switch with arbitrary criteria.
+ *
+ * If the meta stream itself is the only subscriber to existing input
+ * streams, you'll need to configure the input's
+ * {@link CommonOpts.closeOut} option to keep them alive and support
+ * dynamic switching between them.
+ *
+ * @example
+ * ```ts
  * // transform each received odd number into a stream
  * // producing 3 copies of that number in the metastream
  * // even numbers are ignored
- * a = metastream((x) => (x & 1) ? fromIterable(tx.repeat(x, 3), 100) : null)
+ * a = metastream(
+ *   (x) => (x & 1)
+ *     ? fromIterable(tx.repeat(x, 3), { delay: 100 })
+ *     : null
+ * );
  *
  * a.subscribe(trace())
  * a.next(23)
@@ -39,22 +56,19 @@ import { nextID } from "./utils/idgen";
  * // 43
  * ```
  *
- * The factory function does NOT need to create new streams, but can
- * only merely return other existing streams, and so making the meta
- * stream act like a switch.
+ * @example
+ * ```ts
+ * // infinite inputs
+ * a = fromIterable(
+ *   tx.repeat("a"),
+ *   { delay: 1000, closeOut: CloseMode.NEVER }
+ * );
+ * b = fromIterable(
+ *   tx.repeat("b"),
+ *   { delay: 1000, closeOut: CloseMode.NEVER }
+ * );
  *
- * If the meta stream is the only subscriber to these input streams,
- * you'll need to add a dummy subscription to each in order to keep them
- * alive and support dynamic switching between them. See issue #74
- *
- * ```
- * a = fromIterable(tx.repeat("a"), 1000);
- * b = fromIterable(tx.repeat("b"), 1000);
- *
- * // dummy subscriptions
- * a.subscribe({})
- * b.subscribe({})
- *
+ * // stream selector / switch
  * m = metaStream((x) => x ? a : b);
  * m.subscribe(trace("meta from: "));
  *
@@ -73,16 +87,19 @@ import { nextID } from "./utils/idgen";
  */
 export const metaStream = <A, B>(
     factory: Fn<A, Subscription<B, B>>,
-    id?: string
-) => new MetaStream(factory, id);
+    opts?: Partial<CommonOpts>
+) => new MetaStream(factory, opts);
 
 export class MetaStream<A, B> extends Subscription<A, B> {
     factory: Fn<A, Subscription<B, B>>;
     stream?: Subscription<B, B>;
     sub?: Subscription<B, B>;
 
-    constructor(factory: Fn<A, Subscription<B, B>>, id?: string) {
-        super(undefined, undefined, undefined, id || `metastram-${nextID()}`);
+    constructor(
+        factory: Fn<A, Subscription<B, B>>,
+        opts?: Partial<CommonOpts>
+    ) {
+        super(undefined, optsWithID("metastram", opts));
         this.factory = factory;
     }
 

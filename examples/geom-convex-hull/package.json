@@ -26,5 +26,12 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "geom",
+            "geom-hull"
+        ],
+        "screenshot": "examples/geom-convex-hull.png"
     }
 }

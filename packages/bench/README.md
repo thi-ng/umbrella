@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/bench
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/bench.svg)](https://www.npmjs.com/package/@thi.ng/bench)
@@ -7,13 +9,22 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+- [About](#about)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
+- [API](#api)
+- [Authors](#authors)
+- [License](#license)
+
 ## About
 
-Basic, non-precise benchmarking helpers.
+Basic benchmarking utilities.
 
-This feature was previously part of the
-[@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-package.
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -26,6 +37,22 @@ yarn add @thi.ng/bench
 None
 
 ## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### shader-ast-workers <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/shader-ast-workers.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-workers)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/bench/)
 
 ```ts
 import { timed, bench } from "@thi.ng/bench";
@@ -61,8 +88,8 @@ bench(() => fib2(10), 1e6);
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

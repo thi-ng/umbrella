@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "@thi.ng/hdom": "latest",
+        "@thi.ng/math": "latest",
         "@thi.ng/transducers": "latest"
     },
     "browserslist": [

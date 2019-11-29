@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/iges
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/iges.svg)](https://www.npmjs.com/package/@thi.ng/iges)
@@ -7,13 +9,26 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+- [About](#about)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [API](#api)
+- [Authors](#authors)
+- [License](#license)
+
 ## About
 
-Bare-bones IGES 5.3 serializer for (currently only) polygonal geometry,
-both open & closed, for use in various CAD applications (e.g. Rhino,
-Houdini, Fusion 360)
+IGES 5.3 serializer for (currently only) polygonal geometry, both open & closed.
+
+Mainly intended for exporting geometry to be used in various CAD
+applications (e.g. Rhino, Houdini, Fusion 360)
 
 ![houdini](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/iges/iges-houdini.png)
+
+### Status
+
+**ALPHA** - bleeding edge / work-in-progress
 
 ## Installation
 
@@ -24,11 +39,15 @@ yarn add @thi.ng/iges
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 - [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/master/packages/defmulti)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/master/packages/strings)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/iges/)
 
 ```ts
 import * as iges from "@thi.ng/iges";
@@ -78,8 +97,8 @@ S0000002G0000003D0000002P0000003                                        T      1
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2016 - 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2019 Karsten Schmidt // Apache Software License 2.0

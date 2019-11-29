@@ -1,33 +1,39 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/intervals
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/intervals.svg)](https://www.npmjs.com/package/@thi.ng/intervals)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/intervals.svg)](https://www.npmjs.com/package/@thi.ng/intervals)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/intervals.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
+- [API](#api)
 - [Authors](#authors)
+  - [Maintainer](#maintainer)
+  - [Contributors](#contributors)
 - [License](#license)
-
-<!-- /TOC -->
 
 ## About
 
-Data type for closed, open and semi-open intervals, point / range
-queries and set operations with other intervals (union, intersection,
-difference).
+Closed/open/semi-open interval data type, queries & operations.
+
+Supports point & range queries and set operations with other intervals
+(union, intersection, difference).
 
 Furthermore, a parser for [ISO 80000-2 / ISO 31-11 interval
 notation](https://en.wikipedia.org/wiki/ISO_31-11#Sets) is provided. See
-[`Interval.parse()`](https://github.com/thi-ng/umbrella/blob/master/packages/intervals/src/index.ts#L23)
+[`Interval.parse()`](https://github.com/thi-ng/umbrella/blob/master/packages/intervals/src/index.ts#L25)
 for details.
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -42,7 +48,9 @@ yarn add @thi.ng/intervals
 - [@thi.ng/dlogic](https://github.com/thi-ng/umbrella/tree/master/packages/dlogic)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/intervals/)
 
 ```ts
 import { Interval } from "@thi.ng/intervals";
@@ -104,8 +112,14 @@ i.ropen = false;
 
 ## Authors
 
-- Karsten Schmidt
+### Maintainer
+
+- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
+
+### Contributors
+
+- [@oljeger](https://github.com/oljeger)
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

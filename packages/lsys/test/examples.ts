@@ -30,9 +30,13 @@ const examples: Example[] = [
 
 const impl = lsys.TURTLE_IMPL_2D;
 
+try {
+    fs.mkdirSync("export");
+} catch (_) {}
+
 examples.forEach(({ rules, delta, iter }, i) =>
     fs.writeFileSync(
-        `lsys-ex${i}.svg`,
+        `export/lsys-ex${i}.svg`,
         g.asSvg(
             g.svgDoc(
                 {

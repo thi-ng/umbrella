@@ -1,10 +1,15 @@
 import * as assert from "assert";
-import * as rs from "../src/index";
+import {
+    fromIterable,
+    fromPromise,
+    resolve,
+    State
+} from "../src/index";
 import { TIMEOUT } from "./config";
 
 describe("fromPromise()", () => {
     it("resolves to sub", (done) => {
-        let src = rs.fromPromise(Promise.resolve(23));
+        let src = fromPromise(Promise.resolve(23));
         let called = false;
         src.subscribe({
             next(x) {
@@ -19,7 +24,7 @@ describe("fromPromise()", () => {
     });
 
     it("rejects to sub", (done) => {
-        let src = rs.fromPromise(Promise.reject(23));
+        let src = fromPromise(Promise.reject(23));
         let called = false;
         let sub = src.subscribe({
             next(_) {
@@ -30,8 +35,8 @@ describe("fromPromise()", () => {
             },
             error(x) {
                 assert.equal(x, 23);
-                assert.equal(src.getState(), rs.State.ERROR);
-                assert.equal(sub.getState(), rs.State.ERROR);
+                assert.equal(src.getState(), State.ERROR);
+                assert.equal(sub.getState(), State.ERROR);
                 called = true;
             }
         });
@@ -42,7 +47,7 @@ describe("fromPromise()", () => {
     });
 
     it("passes error to sub", (done) => {
-        let src = rs.fromPromise(
+        let src = fromPromise(
             new Promise(() => {
                 throw new Error("foo");
             })
@@ -57,8 +62,8 @@ describe("fromPromise()", () => {
             },
             error(x) {
                 assert.equal(x.message, "foo");
-                assert.equal(src.getState(), rs.State.ERROR);
-                assert.equal(sub.getState(), rs.State.ERROR);
+                assert.equal(src.getState(), State.ERROR);
+                assert.equal(sub.getState(), State.ERROR);
                 called = true;
             }
         });
@@ -67,15 +72,15 @@ describe("fromPromise()", () => {
             // TODO remove, next() doesn't throw error anymore if already in done or error state
             // assert.throws(() => src.next(Promise.resolve()), "no next() allowed");
             src.done();
-            assert.equal(src.getState(), rs.State.ERROR, "src not ERROR");
+            assert.equal(src.getState(), State.ERROR, "src not ERROR");
             done();
         }, TIMEOUT);
     });
 
     it("resolves via Resolver", (done) => {
-        let src = rs.fromIterable([Promise.resolve(23)]);
+        let src = fromIterable([Promise.resolve(23)]);
         let called = false;
-        src.subscribe(rs.resolve()).subscribe({
+        src.subscribe(resolve()).subscribe({
             next(x) {
                 assert.equal(x, 23);
                 called = true;

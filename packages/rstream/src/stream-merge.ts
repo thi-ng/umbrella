@@ -1,49 +1,37 @@
-import { IID } from "@thi.ng/api";
-import { Transducer } from "@thi.ng/transducers";
-import { CloseMode, ISubscribable, State } from "./api";
+import {
+    CloseMode,
+    ISubscribable,
+    State,
+    TransformableOpts
+} from "./api";
 import { Subscription } from "./subscription";
-import { closeMode } from "./utils/close";
-import { nextID } from "./utils/idgen";
+import { optsWithID } from "./utils/idgen";
 
-export interface StreamMergeOpts<A, B> extends IID<string> {
+export interface StreamMergeOpts<A, B> extends TransformableOpts<A, B> {
     /**
      * Input sources.
      */
     src: ISubscribable<A>[];
-    /**
-     * Optional transducer applied to each input value.
-     */
-    xform: Transducer<A, B>;
-    /**
-     * If true (default), the `StreamMerge` closes once all inputs are
-     * exhausted. Set to false to keep the instance alive, regardless of
-     * inputs.
-     */
-
-    /**
-     * If false or `CloseMode.NEVER`, StreamMerge stays active even if
-     * all inputs are done. If true (default) or `CloseMode.LAST`, the
-     * StreamMerge closes when the last input is done. If
-     * `CloseMode.FIRST`, the instance closes when the first input is
-     * done.
-     */
-    close: boolean | CloseMode;
 }
 
 /**
- * Returns a new `StreamMerge` instance, a subscription type consuming
- * inputs from multiple inputs and passing received values on to any
- * subscribers. Input streams can be added and removed dynamically. By
- * default, `StreamMerge` calls `done()` when the last active input is
- * done, but this behavior can be overridden via the `close` option.
+ * Returns a new {@link StreamMerge} subscription, consuming values from
+ * multiple inputs and passing received values on to any subscribers.
  *
- * ```
+ * @remarks
+ * Input streams can be added and removed dynamically. By default,
+ * `StreamMerge` calls {@link ISubscriber.done} when the last active
+ * input is done, but this behavior can be overridden via the provided
+ * {@link StreamMergeOpts | options}.
+ *
+ * @example
+ * ```ts
  * merge({
  *     // input streams w/ different frequencies
  *     src: [
- *         fromIterable([1, 2, 3], 10),
- *         fromIterable([10, 20, 30], 21),
- *         fromIterable([100, 200, 300], 7)
+ *         fromIterable([1, 2, 3], { delay: 10 }),
+ *         fromIterable([10, 20, 30], { delay: 21 }),
+ *         fromIterable([100, 200, 300], { delay: 7 })
  *     ]
  * }).subscribe(trace());
  * // 100
@@ -57,14 +45,15 @@ export interface StreamMergeOpts<A, B> extends IID<string> {
  * // 30
  * ```
  *
- * Use the `labeled()` transducer for each input to create a stream of
- * labeled values and track their provenance:
+ * @example
+ * Use the {@link @thi.ng/transducers#labeled} transducer for each
+ * input to create a stream of labeled values and track their provenance:
  *
  * ```ts
  * merge({
  *     src: [
- *         fromIterable([1, 2, 3]).transform(labeled("a")),
- *         fromIterable([10, 20, 30]).transform(labeled("b")),
+ *         fromIterable([1, 2, 3]).transform(tx.labeled("a")),
+ *         fromIterable([10, 20, 30]).transform(tx.labeled("b")),
  *     ]
  * }).subscribe(trace());
  * // ["a", 1]
@@ -75,8 +64,6 @@ export interface StreamMergeOpts<A, B> extends IID<string> {
  * // ["b", 30]
  * ```
  *
- * @see StreamMergeOpts
- *
  * @param opts
  */
 export const merge = <A, B>(opts?: Partial<StreamMergeOpts<A, B>>) =>
@@ -84,21 +71,12 @@ export const merge = <A, B>(opts?: Partial<StreamMergeOpts<A, B>>) =>
 
 export class StreamMerge<A, B> extends Subscription<A, B> {
     sources: Map<ISubscribable<A>, Subscription<A, any>>;
-    closeMode: CloseMode;
 
     constructor(opts?: Partial<StreamMergeOpts<A, B>>) {
         opts = opts || {};
-        super(
-            undefined,
-            opts.xform,
-            undefined,
-            opts.id || `streammerge-${nextID()}`
-        );
+        super(undefined, optsWithID("streammerge", opts));
         this.sources = new Map();
-        this.closeMode = closeMode(opts.close);
-        if (opts.src) {
-            this.addAll(opts.src);
-        }
+        opts.src && this.addAll(opts.src);
     }
 
     add(src: ISubscribable<A>) {
@@ -117,7 +95,7 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
                     done: () => this.markDone(src),
                     __owner: this
                 },
-                `in-${src.id}`
+                { id: `in-${src.id}` }
             )
         );
     }
@@ -177,8 +155,8 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
     protected markDone(src: ISubscribable<A>) {
         this.remove(src);
         if (
-            this.closeMode === CloseMode.FIRST ||
-            (this.closeMode === CloseMode.LAST && !this.sources.size)
+            this.closeIn === CloseMode.FIRST ||
+            (this.closeIn === CloseMode.LAST && !this.sources.size)
         ) {
             this.done();
         }

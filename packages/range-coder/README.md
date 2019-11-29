@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/range-coder
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/range-coder.svg)](https://www.npmjs.com/package/@thi.ng/range-coder)
@@ -7,10 +9,28 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+- [About](#about)
+  - [Status](#status)
+  - [Related packages](#related-packages)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [API](#api)
+- [Authors](#authors)
+- [License](#license)
+
 ## About
 
-Range encoder / decoder for binary data, based on [Java implementation
+Binary range encoder / decoder, based on [Java implementation
 by Joe Halliwell](https://www.winterwell.com/software/compressor.php).
+
+### Status
+
+**STABLE** - used in production
+
+### Related packages
+
+- [@thi.ng/bitstream](https://github.com/thi-ng/umbrella/tree/master/packages/bitstream) - ES6 iterator based read/write bit streams with support for variable word widths
+- [@thi.ng/rle-pack](https://github.com/thi-ng/umbrella/tree/master/packages/rle-pack) - Binary run-length encoding packer w/ flexible repeat bit widths
 
 ## Installation
 
@@ -24,11 +44,11 @@ yarn add @thi.ng/range-coder
 
 ## API
 
-```ts
-import * as rc "@thi.ng/range-coder";
-```
+[Generated API docs](https://docs.thi.ng/umbrella/range-coder/)
 
 ```ts
+import * as rc "@thi.ng/range-coder";
+
 // prepare dummy data
 src = new Uint8Array(1024);
 src.set([1,1,1,1,1,2,2,2,2,3,3,3,4,4,5,4,4,3,3,3,2,2,2,2,1,1,1,1,1], 512);
@@ -48,8 +68,8 @@ dest = rc.decodeBytes(packed);
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2017 Karsten Schmidt // Apache Software License 2.0
+&copy; 2017 - 2019 Karsten Schmidt // Apache Software License 2.0

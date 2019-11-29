@@ -1,42 +1,39 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/fsm
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/fsm.svg)](https://www.npmjs.com/package/@thi.ng/fsm)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/fsm.svg)](https://www.npmjs.com/package/@thi.ng/fsm)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/fsm.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
-- [Status](#status)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [API](#api)
-    - [Matchers](#matchers)
-    - [FSM transducer](#fsm-transducer)
+  - [Matchers](#matchers)
+  - [FSM transducer](#fsm-transducer)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
 
-Functional & composable primitives for building declarative,
-[transducer](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
-based Finite-State machines and parsers for arbitrary input data streams
-(not necessarily string based).
+Composable primitives for building declarative, transducer based Finite-State Machines & matchers for arbitrary data streams.
 
 See the [hiccup-markdown
 parser](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-markdown/src/parser.ts)
 & [example](https://demo.thi.ng/umbrella/markdown/) for a concrete use
 case.
 
-## Status
+### Status
 
-**ALPHA**. This package will be merged with and update the existing
+**ALPHA** - bleeding edge / work-in-progress
+
+This package will be merged with and update the existing
 [@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-fsm)
 package.
 
@@ -49,25 +46,30 @@ yarn add @thi.ng/fsm
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/master/packages/arrays)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 
 ## Usage examples
 
-Checkout the minimal Markdown parser example:
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
 
-[Source code](https://github.com/thi-ng/umbrella/tree/master/examples/markdown) |
-[Live demo](https://demo.thi.ng/umbrella/markdown/)
+A selection:
 
-The parser itself is defined here:
-[@thi.ng/hiccup-markdown](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-markdown/src/parse.ts)
+### markdown <!-- NOTOC -->
 
-```ts
-import * as fsm from "@thi.ng/fsm";
-```
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/markdown-parser.jpg)
+
+Minimal Markdown to Hiccup to HTML parser / transformer
+
+[Live demo](https://demo.thi.ng/umbrella/markdown/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/markdown)
 
 ## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/fsm/)
 
 There're two key concepts provided by this package:
 
@@ -121,8 +123,8 @@ transforming iterator of the FSM results.
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

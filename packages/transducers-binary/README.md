@@ -1,38 +1,49 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/transducers-binary
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/transducers-binary.svg)](https://www.npmjs.com/package/@thi.ng/transducers-binary)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-binary.svg)](https://www.npmjs.com/package/@thi.ng/transducers-binary)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-binary.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
--   [About](#about)
--   [Installation](#installation)
--   [Dependencies](#dependencies)
--   [Usage examples](#usage-examples)
-    -   [Random bits](#random-bits)
-    -   [Streaming hexdump](#streaming-hexdump)
-    -   [Structured byte buffer construction](#structured-byte-buffer-construction)
-    -   [Bitstream](#bitstream)
-    -   [Base64 & UTF-8 en/decoding](#base64--utf-8-endecoding)
--   [API](#api)
-    -   [Transducers](#transducers)
-    -   [Reducers](#reducers)
--   [Authors](#authors)
--   [License](#license)
-
-<!-- /TOC -->
+- [About](#about)
+  - [Status](#status)
+  - [Related packages](#related-packages)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
+- [API](#api)
+  - [Random bits](#random-bits)
+  - [Streaming hexdump](#streaming-hexdump)
+  - [Structured byte buffer construction](#structured-byte-buffer-construction)
+  - [Bitstream](#bitstream)
+  - [Base64 & UTF-8 en/decoding](#base64---utf-8-en-decoding)
+  - [Transducers](#transducers)
+  - [Reducers](#reducers)
+- [Authors](#authors)
+- [License](#license)
 
 ## About
 
-Binary data related transducers & reducers. Like the transducers and
-reducers defined in
+Binary data related transducers & reducers. This is a support package for [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers).
+
+Like the transducers and reducers defined in
 [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers),
 all functions defined in this package too accept an optional input
 iterable for direct use.
+
+### Status
+
+**STABLE** - used in production
+
+### Related packages
+
+- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/master/packages/binary) - 50+ assorted binary / bitwise operations, conversions, utilities
+- [@thi.ng/bitstream](https://github.com/thi-ng/umbrella/tree/master/packages/bitstream) - ES6 iterator based read/write bit streams with support for variable word widths
+- [@thi.ng/unionstruct](https://github.com/thi-ng/umbrella/tree/master/packages/unionstruct) - C-style struct, union and bitfield read/write views of ArrayBuffers
 
 ## Installation
 
@@ -42,10 +53,30 @@ yarn add @thi.ng/transducers-binary
 
 ## Dependencies
 
--   [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/master/packages/strings)
--   [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+- [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/master/packages/compose)
+- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
+- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/master/packages/strings)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 
 ## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### bitmap-font <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/bitmap-font.gif)
+
+Figlet-style bitmap font creation with transducers
+
+[Live demo](https://demo.thi.ng/umbrella/bitmap-font/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/bitmap-font)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/transducers-binary/)
 
 ```ts
 import * as tx from "@thi.ng/transducers";
@@ -237,26 +268,24 @@ tx.transduce(tx.comp(txb.base64Decode(), txb.utf8Decode()), tx.str(), buf);
 // "beer (🍺) or hot beverage (☕️)"
 ```
 
-## API
-
 ### Transducers
 
--   [base64Decode](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/base64.ts)
--   [base64Encode](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/base64.ts)
--   [bits](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/bits.ts)
--   [hexDump](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/hex-dump.ts)
--   [partitionBits](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/partition-bits.ts)
--   [utf8Decode](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/utf8.ts)
--   [utf8Encode](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/utf8.ts)
+- [base64Decode](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/base64.ts)
+- [base64Encode](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/base64.ts)
+- [bits](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/bits.ts)
+- [hexDump](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/hex-dump.ts)
+- [partitionBits](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/partition-bits.ts)
+- [utf8Decode](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/utf8.ts)
+- [utf8Encode](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/utf8.ts)
 
 ### Reducers
 
--   [bytes](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/bytes.ts)
+- [bytes](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/bytes.ts)
 
 ## Authors
 
--   Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

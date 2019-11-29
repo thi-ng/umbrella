@@ -268,7 +268,7 @@ const data = sync<any, any>({
 
 // this stream combinator (re)computes the SVG chart
 // updates whenever data, theme or window size has changed
-const chart = sync({
+const chart = sync<any, any>({
     src: {
         data,
         theme,
@@ -426,7 +426,7 @@ const chart = sync({
 });
 
 // stream construct to perform UI update
-sync({
+sync<any, any>({
     src: {
         chart,
         theme,

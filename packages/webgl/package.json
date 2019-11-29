@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/webgl",
     "version": "0.2.1",
-    "description": "WebGL abstraction layer",
+    "description": "WebGL & GLSL abstraction layer",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -21,6 +21,7 @@
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib api geo shaders textures",
+        "doc:readme": "../../scripts/generate-readme",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },
@@ -65,5 +66,19 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "related": [
+            "ecs",
+            "geom",
+            "imgui",
+            "matrices",
+            "shader-ast",
+            "soa",
+            "vectors",
+            "vector-pools"
+        ],
+        "status": "beta",
+        "year": 2014
+    }
 }

@@ -31,5 +31,15 @@
     "browser": {
         "process": false,
         "setTimeout": false
+    },
+    "thi.ng": {
+        "readme": [
+            "matrices",
+            "shader-ast",
+            "transducers",
+            "vectors",
+            "webgl"
+        ],
+        "screenshot": "examples/webgl-grid.jpg"
     }
 }

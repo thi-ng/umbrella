@@ -1,29 +1,33 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/geom-isoline
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/geom-isoline.svg)](https://www.npmjs.com/package/@thi.ng/geom-isoline)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/geom-isoline.svg)](https://www.npmjs.com/package/@thi.ng/geom-isoline)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-isoline.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
+- [API](#api)
 - [Authors](#authors)
 - [License](#license)
-
-<!-- /TOC -->
 
 ## About
 
 2D isoline / contour extraction, using [Marching
 squares](https://en.wikipedia.org/wiki/Marching_squares). Ported from
-Clojure version of
+the Clojure version of
 [thi.ng/ndarray](https://github.com/thi-ng/ndarray/blob/master/src/contours.org).
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -38,11 +42,23 @@ yarn add @thi.ng/geom-isoline
 
 ## Usage examples
 
-Animated version:
-[Live demo](https://demo.thi.ng/umbrella/iso-plasma/) |
-[Source code](https://github.com/thi-ng/umbrella/tree/master/examples/iso-plasma)
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
 
-![example output](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-isoline.png)
+A selection:
+
+### iso-plasma <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-isoline.png)
+
+Animated sine plasma effect visualized using contour lines
+
+[Live demo](https://demo.thi.ng/umbrella/iso-plasma/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/iso-plasma)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/geom-isoline/)
 
 ```ts
 import * as g from "@thi.ng/geom";
@@ -98,8 +114,8 @@ fs.writeFileSync("contours.svg", g.asSvg(doc));
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2015 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2019 Karsten Schmidt // Apache Software License 2.0

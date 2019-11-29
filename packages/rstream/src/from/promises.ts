@@ -1,38 +1,49 @@
 import { mapcat } from "@thi.ng/transducers";
+import { CommonOpts } from "../api";
 import { Subscription } from "../subscription";
+import { optsWithID } from "../utils/idgen";
 import { fromPromise } from "./promise";
 
 /**
- * Wraps given promises in `Promise.all()` to yield stream of results in
- * same order as arguments, then closes. If any of the promises rejects,
- * all others do too and calls `error()` in subscribers.
+ * Wraps given iterable in `Promise.all()` to yield {@link Stream} of
+ * results in same order as arguments, then closes.
  *
- * ```
- * rs.fromPromises([
+ * @remarks
+ * If any of the promises rejects, all others will do so too. In this
+ * case the stream calls {@link ISubscriber.error} in all of its
+ * subscribers.
+ *
+ * @example
+ * ```ts
+ * fromPromises([
  *     Promise.resolve(1),
  *     Promise.resolve(2),
  *     Promise.resolve(3)
- * ]).subscribe(rs.trace())
+ * ]).subscribe(trace())
  * // 1
  * // 2
  * // 3
  * // done
  * ```
  *
+ * @example
  * If individual error handling is required, an alternative is below
  * (however this approach provides no ordering guarantees):
  *
- * ```
- * rs.fromIterable([
+ * ```ts
+ * fromIterable([
  *     Promise.resolve(1),
- *     new Promise(()=> { setTimeout(()=> { throw new Error("eeek"); }, 10); }),
+ *     new Promise(() => setTimeout(() => { throw new Error("eeek"); }, 10)),
  *     Promise.resolve(3)
- * ]).subscribe(rs.resolve()).subscribe(rs.trace())
+ * ]).subscribe(resolve()).subscribe(trace())
  * ```
  *
  * @param promises
  */
 export const fromPromises = <T>(
-    promises: Iterable<Promise<T>>
+    promises: Iterable<T | PromiseLike<T>>,
+    opts?: Partial<CommonOpts>
 ): Subscription<T[], T> =>
-    fromPromise(Promise.all(promises)).transform(mapcat((x: T[]) => x));
+    fromPromise(Promise.all(promises), optsWithID("promises", opts)).transform(
+        mapcat((x: T[]) => x)
+    );

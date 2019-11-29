@@ -1,22 +1,42 @@
 import { Predicate2 } from "@thi.ng/api";
 import { ReadonlyAtom } from "@thi.ng/atom";
+import { CommonOpts } from "../api";
 import { Stream } from "../stream";
-import { nextID } from "../utils/idgen";
+import { optsWithID } from "../utils/idgen";
+
+export interface FromAtomOpts<T> extends CommonOpts {
+    /**
+     * True, if the current atom value should be emitted when the stream
+     * activates.
+     *
+     * @defaultValue true
+     */
+    emitFirst: boolean;
+    /**
+     * User predicate to determine value changes in atom. New values are
+     * only emitted on stream if the predicate returns true.
+     *
+     * @defaultValue `!==`
+     */
+    changed: Predicate2<T>;
+}
 
 /**
- * Yields stream of value changes in given atom / cursor. Attaches watch
- * to atom and checks for value changes with given `changed` predicate
- * (`!==` by default). If the predicate returns truthy result, the new
- * value is emitted on the stream. If `emitFirst` is true (default),
- * also emits atom's current value when first subscriber attaches to
- * stream.
+ * Yields {@link Stream} of value changes in given
+ * {@link @thi.ng/atom# | Atom-like state container}.
  *
- * See:
- * - fromView()
- * - @thi.ng/atom
+ * @remarks
+ * Attaches a {@link @thi.ng/api#IWatch.addWatch | watch} to the atom
+ * and checks for value changes with given `changed` predicate (`!==` by
+ * default). If the predicate returns truthy result, the new value is
+ * emitted on the stream. If `emitFirst` is true (default), also emits
+ * atom's current value when first subscriber attaches to stream.
  *
- * ```
- * db = new Atom({a: 23, b: 88});
+ * Also see {@link fromView}
+ *
+ * @example
+ * ```ts
+ * db = new Atom({ a: 23, b: 88 });
  * cursor = new Cursor(db, "a")
  *
  * rs.fromAtom(cursor).subscribe(rs.trace("cursor val:"))
@@ -30,21 +50,24 @@ import { nextID } from "../utils/idgen";
  * ```
  *
  * @param atom
- * @param emitFirst
- * @param changed
+ * @param opts
  */
 export const fromAtom = <T>(
     atom: ReadonlyAtom<T>,
-    emitFirst = true,
-    changed?: Predicate2<T>
-): Stream<T> =>
-    new Stream<T>((stream) => {
-        changed = changed || ((a, b) => a !== b);
+    opts?: Partial<FromAtomOpts<T>>
+): Stream<T> => {
+    opts = optsWithID("atom", <FromAtomOpts<T>>{
+        emitFirst: true,
+        changed: (a, b) => a !== b,
+        ...opts
+    });
+    return new Stream<T>((stream) => {
         atom.addWatch(stream.id, (_, prev, curr) => {
-            if (changed!(prev, curr)) {
+            if (opts!.changed!(prev, curr)) {
                 stream.next(curr);
             }
         });
-        emitFirst && stream.next(atom.deref());
+        opts!.emitFirst && stream.next(atom.deref());
         return () => atom.removeWatch(stream.id);
-    }, `atom-${nextID()}`);
+    }, opts);
+};

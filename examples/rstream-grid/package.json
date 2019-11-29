@@ -1,7 +1,7 @@
 {
     "name": "rstream-grid",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "Interactive grid generator, SVG generation & export, undo/redo support",
     "repository": "https://github.com/[your-gh-username]/rs-undo",
     "author": "Karsten Schmidt",
     "license": "MIT",
@@ -34,5 +34,18 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "atom",
+            "hdom",
+            "hiccup",
+            "hiccup-svg",
+            "interceptors",
+            "rstream",
+            "rstream-graph",
+            "transducers"
+        ],
+        "screenshot": "examples/rstream-grid.jpg"
     }
 }

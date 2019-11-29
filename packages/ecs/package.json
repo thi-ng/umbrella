@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/ecs",
     "version": "0.1.0",
-    "description": "TODO",
+    "description": "Entity Component System based around typed arrays & sparse sets",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -21,7 +21,8 @@
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
-        "doc": "node_modules/.bin/typedoc --mode modules --out doc --ignoreCompilerErrors src",
+        "doc:readme": "../../scripts/generate-readme",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
@@ -51,5 +52,9 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "status": "alpha",
+        "year": 2019
+    }
 }

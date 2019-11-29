@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/transducers-stats
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-stats.svg)](https://www.npmjs.com/package/@thi.ng/transducers-stats)
@@ -7,19 +9,19 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
 - [Supported indicators](#supported-indicators)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
+- [API](#api)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
+
+Transducers for statistical / technical analysis. This is a support package for [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers).
 
 This package provides a set of
 [transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
@@ -50,6 +52,10 @@ transforming ES6 iterator (generator) instead of a transducer.
 - [TRIX (Triple smoothed EMA)](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-stats/src/trix.ts)
 - [WMA (Weighted Moving Average)](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-stats/src/wma.ts)
 
+### Status
+
+**STABLE** - used in production
+
 ## Installation
 
 ```bash
@@ -58,17 +64,36 @@ yarn add @thi.ng/transducers-stats
 
 ## Dependencies
 
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 - [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 
 ## Usage examples
 
-For some realworld use, please see the [crypto
-chart](https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart)
-example.
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### crypto-chart <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/crypto-chart.png)
+
+Basic crypto-currency candle chart with multiple moving averages plots
+
+[Live demo](https://demo.thi.ng/umbrella/crypto-chart/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart)
+
+### shader-ast-workers <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/shader-ast-workers.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-workers)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/transducers-stats/)
 
 ```ts
 import * as tx from "@thi.ng/transducers";
@@ -110,8 +135,8 @@ tx.transduce(
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2017 - 2019 Karsten Schmidt // Apache Software License 2.0

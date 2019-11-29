@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/memoize
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/memoize.svg)](https://www.npmjs.com/package/@thi.ng/memoize)
@@ -7,32 +9,36 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-    - [Optimized version for single arg functions](#optimized-version-for-single-arg-functions)
-    - [Arbitrary args](#arbitrary-args)
-    - [Via JSON.stringify()](#via-jsonstringify)
+- [API](#api)
+  - [Optimized version for single arg functions](#optimized-version-for-single-arg-functions)
+  - [Arbitrary args](#arbitrary-args)
+  - [Via JSON.stringify()](#via-json-stringify--)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
+
+Function memoization with configurable caching.
 
 This package provides different function memoization implementations for
 functions with 1 or more arguments and custom result caching using ES6
 Map API like implementations. Unlike native ES6 Maps, **the
-implementations MUST support value, not referential, equality
+implementations MUST support value, not just referential, equality
 semantics** (e.g. those provided by
 [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/master/packages/associative))
 or
 [@thi.ng/cache](https://github.com/thi-ng/umbrella/tree/master/packages/cache)).
 The latter also support automatically pruning of memoization caches,
 based on different strategies. See doc strings for further details.
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -45,6 +51,20 @@ yarn add @thi.ng/memoize
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 
 ## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### rstream-spreadsheet <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-spreadsheet)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/memoize/)
 
 ```ts
 import * as m from "@thi.ng/memoize";
@@ -113,8 +133,8 @@ dotProduct([1,2], [3,4]);
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

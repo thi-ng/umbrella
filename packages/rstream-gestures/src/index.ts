@@ -21,6 +21,7 @@ export interface GestureInfo {
     delta: number[];
     zoom: number;
     zoomDelta: number;
+    buttons: number;
 }
 
 export interface GestureEvent {
@@ -146,6 +147,7 @@ export const gestureStream = (
         xform: map((e) => {
             let evt: { clientX: number; clientY: number };
             let type: any;
+            let buttons: number;
             opts.preventDefault && e.preventDefault();
             if ((<TouchEvent>e).touches) {
                 type = (<any>{
@@ -155,6 +157,7 @@ export const gestureStream = (
                     touchcancel: GestureType.END
                 })[e.type];
                 evt = (<TouchEvent>e).changedTouches[0];
+                buttons = ~~(e.type == "touchstart" || e.type != "touchmove");
             } else {
                 type = (<any>{
                     mousedown: GestureType.START,
@@ -163,6 +166,7 @@ export const gestureStream = (
                     wheel: GestureType.ZOOM
                 })[e.type];
                 evt = <any>e;
+                buttons = (<MouseEvent>e).buttons;
             }
             const pos = [evt.clientX | 0, evt.clientY | 0];
             if (opts.local) {
@@ -174,7 +178,7 @@ export const gestureStream = (
                 pos[0] *= dpr;
                 pos[1] *= dpr;
             }
-            const body = <GestureInfo>{ pos, zoom, zoomDelta: 0 };
+            const body = <GestureInfo>{ pos, zoom, zoomDelta: 0, buttons };
             switch (type) {
                 case GestureType.START:
                     isDown = true;

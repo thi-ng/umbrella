@@ -30,5 +30,15 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "dgraph",
+            "hiccup",
+            "hiccup-svg",
+            "transducers",
+            "vectors"
+        ],
+        "screenshot": "examples/package-stats.png"
     }
 }

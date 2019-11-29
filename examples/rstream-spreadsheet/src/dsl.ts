@@ -209,9 +209,10 @@ const defReducer = (
 const cellInput = memoize1(
     (id: string): NodeInputSpec => ({
         stream: () =>
-            fromView(DB, [id.toUpperCase(), "value"], (x) =>
-                maybeParseFloat(x, null)
-            )
+            fromView(DB, {
+                path: [id.toUpperCase(), "value"],
+                tx: (x) => maybeParseFloat(x, null)
+            })
     })
 );
 

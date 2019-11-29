@@ -1,6 +1,7 @@
 {
     "name": "hdom-canvas-clock",
     "version": "0.0.1",
+    "description": "Realtime clock demo for @thi.ng/hdom-canvas",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
@@ -26,5 +27,12 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "hdom",
+            "hdom-canvas",
+            "vectors"
+        ]
     }
 }

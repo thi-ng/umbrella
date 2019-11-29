@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/api",
     "version": "6.5.0",
-    "description": "Common, generic types & interfaces for thi.ng projects",
+    "description": "Common, generic types, interfaces & mixins",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -21,6 +21,7 @@
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib api decorators mixins",
+        "doc:readme": "../../scripts/generate-readme",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },
@@ -33,9 +34,6 @@
         "ts-node": "^8.5.2",
         "typedoc": "^0.15.2",
         "typescript": "^3.7.2"
-    },
-    "dependencies": {
-        "@thi.ng/errors": "^1.2.1"
     },
     "keywords": [
         "compare",
@@ -50,9 +48,6 @@
     "publishConfig": {
         "access": "public"
     },
-    "browserslist": [
-        "since 2018-07"
-    ],
     "browser": {
         "process": false,
         "setTimeout": false

@@ -55,7 +55,7 @@ export const CONFIG: AppConfig = {
         // triggers download of 18 svg files (each delayed by 1sec),
         // each with a different rotation in the 0-90 degrees interval
         [fx.SAVE_ANIM]: (_, bus) =>
-            fromIterable(range(0, 90, 5), 1000).subscribe({
+            fromIterable(range(0, 90, 5), { delay: 1000 }).subscribe({
                 next: (x) => {
                     bus.dispatch([ev.SET_THETA, x]);
                     bus.dispatchLater([ev.SAVE_SVG]);

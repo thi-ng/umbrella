@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/rstream-csp
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-csp.svg)](https://www.npmjs.com/package/@thi.ng/rstream-csp)
@@ -7,12 +9,30 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+- [About](#about)
+  - [Status](#status)
+  - [Related packages](#related-packages)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [API](#api)
+- [Authors](#authors)
+- [License](#license)
+
 ## About
 
 Adapter bridge between async [CSP
 channels](https://github.com/thi-ng/umbrella/tree/master/packages/csp)
 and synchronous stream subscriptions/transformations of
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream).
+
+### Status
+
+**STABLE** - used in production
+
+### Related packages
+
+- [@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/master/packages/csp) - ES6 promise based CSP primitives & operations
+- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream) - Reactive streams & subscription primitives for constructing dataflow graphs / pipelines
 
 ## Installation
 
@@ -25,7 +45,9 @@ yarn add @thi.ng/rstream-csp
 - [@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/master/packages/csp)
 - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/rstream-csp/)
 
 ```ts
 import * as rs from "@thi.ng/rstream";
@@ -53,8 +75,8 @@ stream.subscribe(rs.trace("tentimes"), tx.map(x => x * 10));
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

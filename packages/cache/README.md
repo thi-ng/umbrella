@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/cache
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/cache.svg)](https://www.npmjs.com/package/@thi.ng/cache)
@@ -7,12 +9,27 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+- [About](#about)
+  - [Available strategies](#available-strategies)
+  - [Features](#features)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
+- [API](#api)
+  - [Common config options](#common-config-options)
+  - [LRU](#lru)
+  - [TLRU](#tlru)
+  - [MRU](#mru)
+- [Authors](#authors)
+- [License](#license)
+
 ## About
 
 In-memory cache implementations with different [eviction
 strategies](https://en.wikipedia.org/wiki/Cache_replacement_policies).
-This package is still in early development and currently the only
-strategies available are:
+
+### Available strategies
 
 - **LRU**: Least Recently Used
 - **TLRU**: Time-aware Least Recently Used
@@ -25,6 +42,10 @@ strategies available are:
 - Customizable cache limits (no. of items / actual size)
 - Customizable key equality checks (@thi.ng/equiv by default)
 - Optional item release callbacks (to clean up resources when value is expunged)
+
+### Status
+
+**STABLE** - used in production
 
 ## Installation
 
@@ -39,6 +60,26 @@ yarn add @thi.ng/cache
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 
 ## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### commit-table-ssr <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/commit-table-ssr.png)
+
+Filterable commit log UI w/ minimal server to provide commit history
+
+[Live demo](https://demo.thi.ng/umbrella/commit-table-ssr/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/commit-table-ssr)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/cache/)
+
+### Common config options
 
 All caches support at least the following options (all optional):
 
@@ -171,8 +212,8 @@ mru = new cache.MRUCache();
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

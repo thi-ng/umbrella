@@ -17,8 +17,8 @@
     },
     "dependencies": {
         "@thi.ng/api": "latest",
-        "@thi.ng/rstream": "latest",
-        "@thi.ng/transducers-hdom": "latest"
+        "@thi.ng/hdom": "latest",
+        "@thi.ng/transducers": "latest"
     },
     "browserslist": [
         "last 3 Chrome versions"

@@ -1,29 +1,34 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/hdom-mock
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/hdom-mock.svg)](https://www.npmjs.com/package/@thi.ng/hdom-mock)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/hdom-mock.svg)](https://www.npmjs.com/package/@thi.ng/hdom-mock)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdom-mock.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
+- [API](#api)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
+
+Mock base implementation for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom) API.
 
 This package provides a mock implementation of the
 [`HDOMImplementation`](https://github.com/thi-ng/umbrella/tree/master/packages/hdom/src/api.ts)
 interface for testing and prototyping purposes of potential basis of
 custom target implementations.
+
+### Status
+
+**ALPHA** - bleeding edge / work-in-progress
 
 ## Installation
 
@@ -34,9 +39,12 @@ yarn add @thi.ng/hdom-mock
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 - [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
 
-## Usage examples
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/hdom-mock/)
 
 ```ts
 import { HDOMNode, MockHDOM } from "@thi.ng/hdom-mock";
@@ -84,8 +92,8 @@ impl.root.children[0].toHiccup();
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0

@@ -27,5 +27,15 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "binary",
+            "hdom",
+            "hdom-components",
+            "hiccup-css",
+            "transducers"
+        ],
+        "screenshot": "examples/hdom-benchmark2.png"
     }
 }

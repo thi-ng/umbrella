@@ -1,7 +1,7 @@
 {
     "name": "svg-waveform",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "Additive waveform synthesis & SVG visualization with undo/redo",
     "repository": "https://github.com/[your-gh-username]/rs-icep",
     "author": "Karsten Schmidt",
     "license": "MIT",
@@ -30,5 +30,15 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "atom",
+            "hdom",
+            "hiccup-svg",
+            "interceptors",
+            "transducers"
+        ],
+        "screenshot": "examples/svg-waveform.jpg"
     }
 }

@@ -1,3 +1,5 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/hdom
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hdom.svg)](https://www.npmjs.com/package/@thi.ng/hdom)
@@ -7,57 +9,56 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
-    - [Minimal example #1: Local state, RAF update](#minimal-example-1-local-state-raf-update)
-    - [Minimal example #2: Reactive, push-based state & update](#minimal-example-2-reactive-push-based-state--update)
-    - [Minimal example #3: Immutable app state & interceptors](#minimal-example-3-immutable-app-state--interceptors)
-    - [Minimal example #4: Canvas scene tree / branch-local behavior](#minimal-example-4-canvas-scene-tree--branch-local-behavior)
-- [How it works](#how-it-works)
-    - [The hdom data flow](#the-hdom-data-flow)
-    - [Nested arrays](#nested-arrays)
-    - [Attribute objects](#attribute-objects)
-    - [Pure functions and/or closures](#pure-functions-andor-closures)
-    - [Iterators](#iterators)
-    - [Interface support](#interface-support)
-    - [Component objects with life cycle methods](#component-objects-with-life-cycle-methods)
-    - [Event & state handling options](#event--state-handling-options)
-    - [Event listener options](#event-listener-options)
-    - [Reusable components](#reusable-components)
-- [Status](#status)
-- [Example projects](#example-projects)
-    - [Realtime crypto candle chart](#realtime-crypto-candle-chart)
-    - [Git commit log table](#git-commit-log-table)
-    - [XML/HTML/SVG to Hiccup converter](#xmlhtmlsvg-to-hiccup-converter)
-    - [Interactive SVG grid generator](#interactive-svg-grid-generator)
-    - [Interactive additive waveform visualization](#interactive-additive-waveform-visualization)
-    - [Dataflow graph SVG components](#dataflow-graph-svg-components)
-    - [Mouse gesture analysis](#mouse-gesture-analysis)
-    - [Canvas based radial dial input widget](#canvas-based-radial-dial-input-widget)
-    - [SPA with router and event bus](#spa-with-router-and-event-bus)
-    - [XML/HTML to Hiccup syntax converter](#xmlhtml-to-hiccup-syntax-converter)
+  - [Status](#status)
+  - [Support packages](#support-packages)
+  - [Blog posts](#blog-posts)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [API & Usage](#api--usage)
-    - [start()](#start)
-    - [renderOnce()](#renderonce)
-    - [HDOMOpts config options](#hdomopts-config-options)
-    - [HDOMImplementation interface](#hdomimplementation-interface)
-    - [normalizeTree()](#normalizetree)
-    - [diffTree()](#difftree)
-    - [createTree()](#createtree)
-    - [hydrateTree()](#hydratetree)
+- [Usage examples](#usage-examples)
+  - [Minimal example #1: Local state, RAF update](#minimal-example--1--local-state--raf-update)
+  - [Minimal example #2: Reactive, push-based state & update](#minimal-example--2--reactive--push-based-state---update)
+  - [Minimal example #3: Immutable app state & interceptors](#minimal-example--3--immutable-app-state---interceptors)
+  - [Minimal example #4: Canvas scene tree / branch-local behavior](#minimal-example--4--canvas-scene-tree---branch-local-behavior)
+- [API](#api)
+  - [The hdom data flow](#the-hdom-data-flow)
+  - [Nested arrays](#nested-arrays)
+  - [Attribute objects](#attribute-objects)
+  - [Pure functions and/or closures](#pure-functions-and-or-closures)
+  - [Iterators](#iterators)
+  - [Interface support](#interface-support)
+  - [Component objects with life cycle methods](#component-objects-with-life-cycle-methods)
+  - [Event & state handling options](#event---state-handling-options)
+  - [Event listener options](#event-listener-options)
+  - [Reusable components](#reusable-components)
+  - [Usage details](#usage-details)
+  - [start()](#start--)
+    - [Selective updates](#selective-updates)
+  - [renderOnce()](#renderonce--)
+  - [HDOMOpts config options](#hdomopts-config-options)
+  - [HDOMImplementation interface](#hdomimplementation-interface)
+  - [normalizeTree()](#normalizetree--)
+  - [diffTree()](#difftree--)
+  - [createTree()](#createtree--)
+  - [hydrateTree()](#hydratetree--)
 - [User context](#user-context)
-    - [`value` attribute handling](#value-attribute-handling)
-    - [Behavior control attributes](#behavior-control-attributes)
-    - [Benchmarks](#benchmarks)
+  - [`value` attribute handling](#-value--attribute-handling)
+  - [Behavior control attributes](#behavior-control-attributes)
+    - [\_\_impl](#----impl)
+    - [\_\_diff](#----diff)
+    - [\_\_normalize](#----normalize)
+    - [\_\_release](#----release)
+    - [\_\_serialize](#----serialize)
+    - [\_\_skip](#----skip)
+  - [Benchmarks](#benchmarks)
 - [Authors](#authors)
+  - [Maintainer](#maintainer)
+  - [Contributors](#contributors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
+
+Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors.
 
 Lightweight UI component tree definition syntax, DOM creation and
 differential updates using only vanilla JS data structures (arrays,
@@ -94,6 +95,169 @@ Benefits:
   interfaces (e.g. [atoms, cursors, derived views](https://github.com/thi-ng/umbrella/tree/master/packages/atom), [streams](https://github.com/thi-ng/umbrella/tree/master/packages/rstream) etc.)
 - Fast (see [benchmark examples](#benchmarks) below)
 - Only ~6.2KB gzipped
+
+### Status
+
+**STABLE** - used in production
+
+### Support packages
+
+- [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas) - Declarative canvas scenegraph & visualization for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
+- [@thi.ng/hdom-components](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-components) - Raw, skinnable UI & SVG components for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
+- [@thi.ng/hdom-mock](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-mock) - Mock base implementation for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom) API
+
+### Blog posts
+
+- [How to UI in 2018](https://medium.com/@thi.ng/how-to-ui-in-2018-ac2ae02acdf3)
+- [Of umbrellas, transducers, reactive streams & mushrooms (Pt.1)](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-1-a8717ce3a170)
+
+## Installation
+
+```bash
+yarn add @thi.ng/hdom
+```
+
+You can use the
+[create-hdom-app](https://github.com/thi-ng/create-hdom-app) project
+generator to create one of several pre-configured app skeletons using
+features from @thi.ng/atom, @thi.ng/hdom, @thi.ng/interceptors &
+@thi.ng/router. Presets using @thi.ng/rstream for reactive state
+handling will be added in the future.
+
+```bash
+yarn create hdom-app my-app
+
+cd my-app
+yarn install
+yarn start
+```
+
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/diff](https://github.com/thi-ng/umbrella/tree/master/packages/diff)
+- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+- [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### cellular-automata <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/cellular-automata.png)
+
+2D transducer based cellular automata
+
+[Live demo](https://demo.thi.ng/umbrella/cellular-automata/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/cellular-automata)
+
+### devcards <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/devcards/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/devcards)
+
+### hdom-benchmark2 <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/hdom-benchmark2.png)
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-benchmark2/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-benchmark2)
+
+### hdom-canvas-clock <!-- NOTOC -->
+
+Realtime clock demo for @thi.ng/hdom-canvas
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-canvas-clock/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-clock)
+
+### hdom-canvas-shapes <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/hdom-canvas/hdom-canvas-shapes-results.png)
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-shapes)
+
+### hdom-dropdown-fuzzy <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-dropdown-fuzzy)
+
+### hydrate-basics <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/hydrate-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hydrate-basics)
+
+### imgui <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/imgui/imgui-all.png)
+
+Canvas based Immediate Mode GUI components
+
+[Live demo](https://demo.thi.ng/umbrella/imgui/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/imgui)
+
+### interceptor-basics2 <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/interceptor-basics2/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/interceptor-basics2)
+
+### iso-plasma <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-isoline.png)
+
+Animated sine plasma effect visualized using contour lines
+
+[Live demo](https://demo.thi.ng/umbrella/iso-plasma/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/iso-plasma)
+
+### router-basics <!-- NOTOC -->
+
+Basic @thi.ng/router & @thi.ng/hdom app skeleton
+
+[Live demo](https://demo.thi.ng/umbrella/router-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/router-basics)
+
+### rstream-dataflow <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/rstream-dataflow/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-dataflow)
+
+### rstream-event-loop <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/rstream-event-loop.png)
+
+Minimal demo of using rstream constructs to form an interceptor-style event loop
+
+[Live demo](https://demo.thi.ng/umbrella/rstream-event-loop/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-event-loop)
+
+### rstream-grid <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/rstream-grid.jpg)
+
+Interactive grid generator, SVG generation & export, undo/redo support
+
+[Live demo](https://demo.thi.ng/umbrella/rstream-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid)
+
+### rstream-spreadsheet <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-spreadsheet)
+
+### soa-ecs <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/soa-ecs-100k.png)
+
+[Live demo](https://demo.thi.ng/umbrella/soa-ecs/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/soa-ecs)
+
+### svg-waveform <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/svg-waveform.jpg)
+
+Additive waveform synthesis & SVG visualization with undo/redo
+
+[Live demo](https://demo.thi.ng/umbrella/svg-waveform/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-waveform)
+
+### hdom-todolist <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-todolist/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-todolist)
+
+### triple-query <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/triple-query/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/triple-query)
 
 ### Minimal example #1: Local state, RAF update
 
@@ -298,7 +462,9 @@ start(() =>
 );
 ```
 
-## How it works
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/hdom/)
 
 ### The hdom data flow
 
@@ -659,7 +825,6 @@ start(
     [canvas(), { width: 100, height: 100 }, "Hello world"],
 );
 
-
 // usage scenario #2: dynamic component
 // in this example, the root component itself is given as function,
 // which is evaluated each frame.
@@ -742,123 +907,7 @@ provided by these packages:
 - [@thi.ng/hdom-components](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-components)
 - [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg)
 
-## Status
-
-Stable, in active development. The project has been used for several
-projects in production since early 2016.
-
-## Example projects
-
-Most of the approx. 30
-[examples](https://github.com/thi-ng/umbrella/tree/master/examples)
-included in this repo are using this package in one way or another.
-Please check them out to learn more. Each is heavily commented, incl.
-some best practice notes.
-
-Non-exhaustive list:
-
-### Realtime crypto candle chart
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/crypto-chart.png)
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart) |
-[Live version](https://demo.thi.ng/umbrella/crypto-chart/)
-
-### Git commit log table
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/commit-table-ssr.png)
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/commit-table-ssr) |
-[Live version](https://demo.thi.ng/umbrella/commit-table-ssr/)
-
-### XML/HTML/SVG to Hiccup converter
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/xml-converter.png)
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/xml-converter) |
-[Live version](https://demo.thi.ng/umbrella/xml-converter/)
-
-### Interactive SVG grid generator
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/rstream-grid.png)
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid) |
-[Live version](https://demo.thi.ng/umbrella/rstream-grid/)
-
-### Interactive additive waveform visualization
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/svg-waveform.png)
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-waveform) |
-[Live version](https://demo.thi.ng/umbrella/svg-waveform/)
-
-### Dataflow graph SVG components
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/estuary/estuary.jpg)
-
-This is a preview of the WIP
-[@thi.ng/estuary](https://github.com/thi-ng/umbrella/tree/feature/estuary/packages/estuary)
-package:
-
-[Source](https://github.com/thi-ng/umbrella/tree/feature/estuary/packages/estuary)
-| [Live version](https://demo.thi.ng/umbrella/estuary/)
-
-### Mouse gesture analysis
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/gesture-analysis.png)
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/gesture-analysis)
-| [Live version](https://demo.thi.ng/umbrella/gesture-analysis)
-
-### Canvas based radial dial input widget
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/canvas-dial.png)
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/canvas-dial) |
-[Live version](https://demo.thi.ng/umbrella/canvas-dial/)
-
-### SPA with router and event bus
-
-Based on the `create-hdom-app` project scaffolding...
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/router-basics)
-| [Live version](https://demo.thi.ng/umbrella/router-basics/)
-
-### XML/HTML to Hiccup syntax converter
-
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/xml-converter)
-| [Live version](https://demo.thi.ng/umbrella/xml-converter/)
-
-## Installation
-
-```bash
-yarn add @thi.ng/hdom
-```
-
-You can use the
-[create-hdom-app](https://github.com/thi-ng/create-hdom-app) project
-generator to create one of several pre-configured app skeletons using
-features from @thi.ng/atom, @thi.ng/hdom, @thi.ng/interceptors &
-@thi.ng/router. Presets using @thi.ng/rstream for reactive state
-handling will be added in the near future.
-
-```bash
-yarn create hdom-app my-app
-
-cd my-app
-yarn install
-yarn start
-```
-
-## Dependencies
-
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
-- [@thi.ng/diff](https://github.com/thi-ng/umbrella/tree/master/packages/diff)
-- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
-- [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
-
-## API & Usage
+### Usage details
 
 Even though the overall approach should be obvious from the various
 examples in this document, it's still recommended to also study the
@@ -1045,15 +1094,15 @@ not descent into that branch further itself.
 Furthermore, if (and only if) an element has the `__diff` control
 attribute set to `false`, then:
 
-1) Computing the difference between old & new branch MUST be skipped
-2) The implementation MUST recursively call any `release` life cycle
+1. Computing the difference between old & new branch MUST be skipped
+2. The implementation MUST recursively call any `release` life cycle
    methods present anywhere in the current `prev` tree (branch). The
    recursive release process itself is implemented by the exported
    `releaseDeep()` function in `diff.ts`. Custom implementations are
    encouraged to reuse this, since that function also takes care of
    handling the `__release` attrib: if the attrib is present and set to
    false, `releaseDeep()` will not descend into the branch any further.
-3) Call the current implementation's `replaceChild()` method to replace
+3. Call the current implementation's `replaceChild()` method to replace
    the old element / branch with the new one.
 
 ### createTree()
@@ -1144,7 +1193,6 @@ const eventLink = (ctx: AppContext, evt: Event, ...body: any[]) =>
             onclick: () => ctx.bus.dispatch(evt),
         },
         ...body];
-
 
 // list component wrapper for links
 const linkList = (ctx: AppContext, ...links: LinkSpec[]) =>
@@ -1238,8 +1286,14 @@ Some stress test benchmarks are here:
 
 ## Authors
 
-- Karsten Schmidt
+### Maintainer
+
+- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
+
+### Contributors
+
+- Kevin Nolan ([@allforabit](https://github.com/allforabit))
 
 ## License
 
-&copy; 2016 - 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2019 Karsten Schmidt // Apache Software License 2.0

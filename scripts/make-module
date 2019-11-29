@@ -54,6 +54,7 @@ cat << EOF > $MODULE/package.json
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "doc:readme": "../../scripts/generate-readme",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },
@@ -77,7 +78,8 @@ cat << EOF > $MODULE/package.json
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {}
 }
 EOF
 
@@ -129,51 +131,58 @@ coverage
 dev
 doc
 export
+README.tpl.md
 src*
 test
 tsconfig.json
 EOF
 
-echo "writing README.md..."
-cat << EOF > $MODULE/README.md
-# @thi.ng/$1
+echo "writing README.tpl.md..."
+cat << 'EOF' > $MODULE/README.tpl.md
+# ${pkg.name}
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/$1.svg)](https://www.npmjs.com/package/@thi.ng/$1)
-![npm downloads](https://img.shields.io/npm/dm/@thi.ng/$1.svg)
+[![npm version](https://img.shields.io/npm/v/${pkg.name}.svg)](https://www.npmjs.com/package/${pkg.name})
+![npm downloads](https://img.shields.io/npm/dm/${pkg.name}.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
-<!-- /TOC -->
+<!-- TOC -->
 
 ## About
 
-TODO...
+${pkg.description}
+
+${status}
+
+${supportPackages}
+
+${blogPosts}
 
 ## Installation
 
-\`\`\`bash
-yarn add @thi.ng/$1
-\`\`\`
+```bash
+yarn add ${pkg.name}
+```
 
 ## Dependencies
 
-- TODO...
+${pkg.deps}
 
-## Usage examples
+${examples}
 
-\`\`\`ts
-import * as $INITIAL from "@thi.ng/$1";
-\`\`\`
+## API
+
+${docLink}
+
+TODO
 
 ## Authors
 
-- $AUTHOR
+${authors}
 
 ## License
 
-&copy; 2019 $AUTHOR // Apache Software License 2.0
+&copy; ${copyright} // ${license}
 EOF
