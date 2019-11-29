@@ -29,5 +29,14 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "geom-accel",
+            "hdom-canvas",
+            "rstream-gestures",
+            "vectors"
+        ],
+        "screenshot": "examples/geom-knn.jpg"
     }
 }

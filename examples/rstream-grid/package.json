@@ -45,6 +45,7 @@
             "rstream",
             "rstream-graph",
             "transducers"
-        ]
+        ],
+        "screenshot": "examples/rstream-grid.jpg"
     }
 }

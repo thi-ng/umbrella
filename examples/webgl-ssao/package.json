@@ -41,6 +41,7 @@
             "shader-ast",
             "shader-ast-stdlib",
             "webgl"
-        ]
+        ],
+        "screenshot": "examples/webgl-ssao.jpg"
     }
 }

@@ -38,6 +38,7 @@
             "hiccup-svg",
             "interceptors",
             "transducers"
-        ]
+        ],
+        "screenshot": "examples/svg-waveform.jpg"
     }
 }

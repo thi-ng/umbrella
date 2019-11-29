@@ -53,6 +53,7 @@
             "transducers",
             "transducers-hdom",
             "vectors"
-        ]
+        ],
+        "screenshot": "examples/rotating-voronoi.png"
     }
 }

@@ -39,6 +39,7 @@
             "transducers",
             "vectors",
             "webgl"
-        ]
+        ],
+        "screenshot": "examples/webgl-grid.jpg"
     }
 }

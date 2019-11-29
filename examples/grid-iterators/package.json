@@ -31,6 +31,7 @@
         "readme": [
             "color",
             "grid-iterators"
-        ]
+        ],
+        "screenshot": "examples/grid-iterators.png"
     }
 }
