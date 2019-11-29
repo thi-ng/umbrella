@@ -205,6 +205,12 @@ Interactive grid generator, SVG generation & export, undo/redo support
 
 [Live demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-spreadsheet)
 
+### shader-ast-workers <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/shader-ast-workers.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-workers)
+
 ### transducers-hdom <!-- NOTOC -->
 
 [Live demo](https://demo.thi.ng/umbrella/transducers-hdom/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/transducers-hdom)

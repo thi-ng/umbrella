@@ -35,5 +35,20 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "bench",
+            "color",
+            "hdom-canvas",
+            "pixel",
+            "rstream",
+            "shader-ast",
+            "shader-ast-js",
+            "shader-ast-stdlib",
+            "transducers",
+            "transducers-stats"
+        ],
+        "screenshot": "examples/shader-ast-workers.jpg"
     }
 }
