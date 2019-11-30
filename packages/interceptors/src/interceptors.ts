@@ -1,10 +1,5 @@
-import { Fn, FnO } from "@thi.ng/api";
-import {
-    getIn,
-    Path,
-    setter,
-    updater
-} from "@thi.ng/paths";
+import { Fn, FnO, Path } from "@thi.ng/api";
+import { getIn, setter, updater } from "@thi.ng/paths";
 import {
     Event,
     FX_CANCEL,
