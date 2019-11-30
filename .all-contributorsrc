@@ -140,11 +140,21 @@
         "bug",
         "ideas"
       ]
+    },
+    {
+      "login": "oljeger",
+      "name": "oljeger",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/19798833?v=4",
+      "profile": "https://github.com/oljeger",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
   "projectName": "umbrella",
   "projectOwner": "thi-ng",
   "repoType": "github",
-  "repoHost": "https://github.com"
+  "repoHost": "https://github.com",
+  "skipCi": true
 }
