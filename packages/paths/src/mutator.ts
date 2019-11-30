@@ -8,6 +8,7 @@ import {
     Keys5,
     Keys6,
     Keys7,
+    Path,
     Val1,
     Val2,
     Val3,
@@ -17,7 +18,6 @@ import {
     Val7,
     Val8
 } from "@thi.ng/api";
-import { Path } from "./api";
 import { toPath } from "./path";
 
 /**

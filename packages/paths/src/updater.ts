@@ -8,6 +8,7 @@ import {
     Keys5,
     Keys6,
     Keys7,
+    Path,
     Val1,
     Val2,
     Val3,
@@ -17,7 +18,7 @@ import {
     Val7,
     Val8
 } from "@thi.ng/api";
-import { Path, UpdateFn } from "./api";
+import { UpdateFn } from "./api";
 import { getterT } from "./getter";
 import { setterT } from "./setter";
 

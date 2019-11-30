@@ -7,6 +7,7 @@ import {
     Keys5,
     Keys6,
     Keys7,
+    Path,
     Without,
     Without2,
     Without3,
@@ -16,7 +17,6 @@ import {
     Without7,
     Without8
 } from "@thi.ng/api";
-import { Path } from "./api";
 import { toPath } from "./path";
 import { updateInT } from "./update-in";
 

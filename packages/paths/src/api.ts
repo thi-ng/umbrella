@@ -6,11 +6,8 @@ import {
     Keys4,
     Keys5,
     Keys6,
-    Keys7,
-    NumOrString
+    Keys7
 } from "@thi.ng/api";
-
-export type Path = NumOrString | NumOrString[];
 
 export type Path1<T, A extends Keys<T>> = [A];
 export type Path2<T, A extends Keys<T>, B extends Keys1<T, A>> = [A, B];
