@@ -17,13 +17,13 @@
     },
     "dependencies": {
         "@thi.ng/api": "latest",
-        "@thi.ng/checks": "latest",
         "@thi.ng/dsp": "latest",
         "@thi.ng/geom": "latest",
         "@thi.ng/hdom": "latest",
         "@thi.ng/hdom-canvas": "latest",
         "@thi.ng/matrices": "latest",
         "@thi.ng/pixel": "latest",
+        "@thi.ng/scenegraph": "latest",
         "@thi.ng/transducers": "latest",
         "@thi.ng/vectors": "latest"
     },
@@ -32,5 +32,17 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "geom",
+            "hdom",
+            "hdom-canvas",
+            "math",
+            "matrices",
+            "scenegraph",
+            "vectors"
+        ],
+        "screenshot": "examples/scenegraph-image.png"
     }
 }
