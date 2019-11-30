@@ -1,11 +1,12 @@
 import {
     IEquiv,
     IWatchMixin,
+    Path,
     Predicate,
     Watch
 } from "@thi.ng/api";
 import { illegalState } from "@thi.ng/errors";
-import { Path, setIn, updateIn } from "@thi.ng/paths";
+import { setIn, updateIn } from "@thi.ng/paths";
 import {
     IAtom,
     IView,

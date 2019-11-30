@@ -4,9 +4,9 @@ import {
     INotify,
     IRelease,
     IWatch,
+    Path,
     Predicate
 } from "@thi.ng/api";
-import { Path } from "@thi.ng/paths";
 
 export type SwapFn<T> = (curr: T, ...args: any[]) => T;
 

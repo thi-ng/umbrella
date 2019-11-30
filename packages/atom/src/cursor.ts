@@ -3,12 +3,13 @@ import {
     Fn2,
     IID,
     IRelease,
+    Path,
     Predicate,
     Watch
 } from "@thi.ng/api";
 import { isArray, isFunction } from "@thi.ng/checks";
 import { illegalArgs, illegalArity } from "@thi.ng/errors";
-import { getter, Path, setter } from "@thi.ng/paths";
+import { getter, setter } from "@thi.ng/paths";
 import {
     CursorOpts,
     IAtom,

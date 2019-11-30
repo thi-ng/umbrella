@@ -2,16 +2,12 @@ import {
     Event,
     INotifyMixin,
     Listener,
+    Path,
     Predicate2,
     Watch
 } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
-import {
-    getIn,
-    Path,
-    setIn,
-    updateIn
-} from "@thi.ng/paths";
+import { getIn, setIn, updateIn } from "@thi.ng/paths";
 import {
     IAtom,
     IHistory,
