@@ -1,5 +1,3 @@
-import { IToHiccup } from "@thi.ng/api";
-import { isNumber } from "@thi.ng/checks";
 import {
     asPolygon,
     circle,
@@ -10,13 +8,7 @@ import { IShape } from "@thi.ng/geom-api";
 import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { HALF_PI, PI } from "@thi.ng/math";
-import {
-    invert23,
-    Mat,
-    mulM23,
-    mulV23,
-    transform23
-} from "@thi.ng/matrices";
+import { Node2D, NodeInfo } from "@thi.ng/scenegraph";
 import { cycle, map, range } from "@thi.ng/transducers";
 import {
     cartesian2,
@@ -25,128 +17,13 @@ import {
     Vec
 } from "@thi.ng/vectors";
 
-const DPR = window.devicePixelRatio;
-
-/**
- * Node information for mouse picking.
- */
-interface NodeInfo {
-    /**
-     * selected node
-     */
-    node: Node;
-    /**
-     * mouse pos in node local coordinate space
-     */
-    p: Vec;
-}
-
-/**
- * Basic scene graph node.
- */
-class Node implements IToHiccup {
-    id: string;
-    parent: Node | null;
-    children: Node[];
-
-    translate: Vec;
-    rotate: number;
-    scale: Vec;
-
-    body: any;
-
-    mat!: Mat;
-    invMat!: Mat;
-
-    constructor(
-        id: string,
-        parent: Node | null,
-        translate: Vec,
-        rotate: number,
-        scale: Vec | number,
-        body?: any
-    ) {
-        this.id = id;
-        this.parent = parent;
-        this.children = [];
-        this.translate = translate;
-        this.rotate = rotate;
-        this.scale = isNumber(scale) ? [scale, scale] : scale;
-        this.body = body;
-        if (parent) {
-            parent.children.push(this);
-        }
-        this.invMat = [];
-        this.update();
-    }
-
-    /**
-     * Updates matrices of this node and of all children. If node has a
-     * parent, the matrix will be concatenated to the parent's matrix.
-     *
-     * The matrix functions used here are hardcoded for 2D use cases
-     * (2x3 matrices), but similar functions can be used for 3D
-     * scenegraphs.
-     */
-    update() {
-        this.mat = transform23([], this.translate, this.rotate, this.scale);
-        if (this.parent) {
-            this.mat = mulM23(this.mat, this.parent.mat, this.mat);
-        }
-        invert23(this.invMat, this.mat);
-        for (let c of this.children) {
-            c.update();
-        }
-    }
-
-    /**
-     * Checks all children, then (if no child matched) node itself for
-     * containment of given point (in screen coords). Returns `NodeInfo`
-     * object with matched node (if any) or undefined.
-     *
-     * @param p
-     */
-    childForPoint(p: ReadonlyVec): NodeInfo | undefined {
-        for (let c of this.children) {
-            const n = c.childForPoint(p);
-            if (n) {
-                return n;
-            }
-        }
-        const q = mulV23([], this.invMat, p);
-        if (this.containsLocalPoint(q)) {
-            return { node: this, p: q };
-        }
-    }
-
-    /**
-     * Returns true, if given point is contained within the boundary of
-     * this node. Since this class is used as a base implementation for
-     * other, more specialized scene graph nodes, this base impl always
-     * returns false (meaning these nodes cannot be selected by the user).
-     *
-     * @param p
-     */
-    containsLocalPoint(_: ReadonlyVec) {
-        return false;
-    }
-
-    /**
-     * By implementing this method (`IToHiccup` interface), scene graph
-     * nodes can be directly used by hdom-canvas.
-     */
-    toHiccup() {
-        return ["g", { setTransform: this.mat }, this.body, ...this.children];
-    }
-}
-
 /**
  * Specialized scene graph node using @thi.ng/geom shapes as body.
  */
-class GeomNode extends Node {
+class GeomNode extends Node2D {
     constructor(
         id: string,
-        parent: Node,
+        parent: Node2D,
         t: Vec,
         r: number,
         s: Vec | number,
@@ -169,7 +46,7 @@ class GeomNode extends Node {
 // mouse pos
 let mouse: Vec = [0, 0];
 // info object for mouse over
-let info: NodeInfo | undefined;
+let info: NodeInfo<Node2D> | undefined;
 
 // color iterator (used for node highlighting)
 const colors = cycle([
@@ -187,7 +64,7 @@ const colors = cycle([
 // scene graph definition
 
 // set root node scale to window.devicePixelRatio
-const root = new Node("root", null, [0, 0], 0, DPR);
+const root = new Node2D("root", null, [0, 0], 0, 1);
 
 // main geometry node w/ origin at canvas center
 const hex = new GeomNode(
@@ -227,7 +104,7 @@ const satellites = [
 
 // this node uses a hdom component function as body to create the dynamic
 // crosshair and node info overlay
-const infoNode = new Node("info", root, mouse, 0, 1, () => [
+const infoNode = new Node2D("info", root, mouse, 0, 1, () => [
     "g",
     {},
     // crosshair
@@ -242,7 +119,7 @@ const infoNode = new Node("info", root, mouse, 0, 1, () => [
                   "text",
                   {},
                   [8, -10],
-                  `${info.p[0].toFixed(2)}, ${info.p[1].toFixed(2)}`
+                  `${info.p![0].toFixed(2)}, ${info.p![1].toFixed(2)}`
               ],
               ["text", {}, [8, -24], `ID: ${info.node.id}`]
           ]
@@ -252,7 +129,7 @@ const infoNode = new Node("info", root, mouse, 0, 1, () => [
 // mousemove event handler
 const updateMouse = (e: MouseEvent) => {
     mouse = [e.offsetX, e.offsetY];
-    info = root.childForPoint(mulN2([], mouse, DPR));
+    info = root.childForPoint(mouse);
     infoNode.translate = mouse;
 };
 
