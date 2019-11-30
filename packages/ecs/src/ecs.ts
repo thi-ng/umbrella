@@ -1,13 +1,15 @@
 import {
     assert,
     Event,
-    Fn,
     INotify,
     INotifyMixin,
-    Type,
-    typedArray
+    Listener,
+    typedArray,
+    uintType
 } from "@thi.ng/api";
+import { bitSize } from "@thi.ng/binary";
 import { isArray, isString } from "@thi.ng/checks";
+import { IDGen } from "@thi.ng/idgen";
 import { filter } from "@thi.ng/transducers";
 import {
     ComponentID,
@@ -18,27 +20,29 @@ import {
     MemMappedComponentOpts,
     ObjectComponentOpts
 } from "./api";
-import { Component } from "./component";
-import { MemMappedComponent } from "./component-mm";
-import { Group } from "./group";
-import { IDGen } from "./id";
+import { MemMappedComponent } from "./components/mem-component";
+import { ObjectComponent } from "./components/object-component";
+import { Group } from "./groups/group";
 
 let NEXT_GROUP_ID = 0;
 
 @INotifyMixin
 export class ECS<SPEC> implements INotify {
     idgen: IDGen;
-    components: Map<ComponentID<SPEC>, IComponent<ComponentID<SPEC>, any, any>>;
+    components: Map<
+        ComponentID<SPEC>,
+        IComponent<ComponentID<SPEC>, any, any, any>
+    >;
     groups: Map<string, Group<SPEC, any>>;
 
     constructor(capacity = 1000) {
-        this.idgen = new IDGen(capacity, 0);
+        this.idgen = new IDGen(bitSize(capacity), 0);
         this.components = new Map();
         this.groups = new Map();
     }
 
     defEntity<K extends ComponentID<SPEC>>(
-        comps?: K[] | IComponent<K, any, any>[] | Partial<Pick<SPEC, K>>
+        comps?: K[] | IComponent<K, any, any, any>[] | Partial<Pick<SPEC, K>>
     ) {
         const id = this.idgen.next();
         assert(
@@ -70,7 +74,7 @@ export class ECS<SPEC> implements INotify {
     ): MemMappedComponent<K>;
     defComponent<K extends ComponentID<SPEC>>(
         opts: ObjectComponentOpts<K, SPEC[K]>
-    ): Component<K, SPEC[K]>;
+    ): ObjectComponent<K, SPEC[K]>;
     defComponent<K extends ComponentID<SPEC>>(opts: any) {
         assert(
             !this.components.has(opts.id),
@@ -80,17 +84,17 @@ export class ECS<SPEC> implements INotify {
         const utype = uintType(cap);
         const sparse = typedArray(utype, cap);
         const dense = typedArray(utype, cap);
-        const comp: IComponent<K, any, any> =
+        const comp: IComponent<K, any, any, any> =
             opts.type !== undefined
                 ? new MemMappedComponent(dense, sparse, opts)
-                : new Component(sparse, dense, opts);
+                : new ObjectComponent(sparse, dense, opts);
         this.components.set(opts.id, comp);
         return comp;
     }
 
     defGroup<K extends ComponentID<SPEC>>(
-        comps: IComponent<K, any, any>[],
-        owned: IComponent<K, any, any>[] = comps,
+        comps: IComponent<K, any, any, any>[],
+        owned: IComponent<K, any, any, any>[] = comps,
         opts: Partial<GroupOpts> = {}
     ) {
         opts = {
@@ -107,7 +111,7 @@ export class ECS<SPEC> implements INotify {
     }
 
     hasID(id: number) {
-        this.idgen.isValid(id);
+        this.idgen.has(id);
     }
 
     deleteID(id: number) {
@@ -129,19 +133,12 @@ export class ECS<SPEC> implements INotify {
         return filter((g) => g.has(id), this.groups.values());
     }
 
-    // @ts-ignore: arguments
-    addListener(id: string, fn: Fn<Event, void>, scope?: any): boolean {
-        return false;
-    }
+    // @ts-ignore: mixin
+    addListener(id: string, fn: Listener, scope?: any): boolean {}
 
-    // @ts-ignore: arguments
-    removeListener(id: string, fn: Fn<Event, void>, scope?: any): boolean {
-        return false;
-    }
+    // @ts-ignore: mixin
+    removeListener(id: string, fn: Listener, scope?: any): boolean {}
 
-    // @ts-ignore: arguments
+    // @ts-ignore: mixin
     notify(event: Event) {}
 }
-
-const uintType = (num: number) =>
-    num <= 0x100 ? Type.U8 : num <= 0x10000 ? Type.U16 : Type.U32;

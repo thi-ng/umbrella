@@ -2,6 +2,7 @@ import {
     ArrayLikeIterable,
     Fn0,
     IID,
+    ILogger,
     INotify,
     IRelease,
     Type,
@@ -30,25 +31,39 @@ export interface ComponentInfo<SPEC, K extends ComponentID<SPEC>> {
     stride: number;
 }
 
-export interface IComponent<K extends string, T, V> extends IID<K>, INotify {
+export interface IComponent<K extends string, VALUES, GET, SET>
+    extends IID<K>,
+        INotify {
     dense: UIntArray;
     sparse: UIntArray;
-    vals: ArrayLike<any>;
-    size: number;
-    stride: number;
+    vals: VALUES;
+    readonly size: number;
+    readonly stride: number;
 
     owner?: IID<string>;
 
     has(id: number): boolean;
-    add(id: number, val?: V): boolean;
+    add(id: number, val?: SET): boolean;
     delete(id: number): boolean;
-    get(id: number): T | undefined;
-    getIndex(i: number): T | undefined;
+    get(id: number): GET | undefined;
+    set(i: number, val: SET): boolean;
+    getIndex(i: number): GET | undefined;
+    setIndex(i: number, val: SET): boolean;
+    setIndexUnsafe(i: number, val: SET, notify?: boolean): void;
 
     keys(): ArrayLikeIterable<number>;
-    values(): IterableIterator<T>;
+    values(): IterableIterator<GET>;
 
-    swapIndices(a: number, b: number): boolean;
+    /**
+     * Swaps slots of `src` & `dest` indices. The given args are NOT
+     * entity IDs, but indices in the `dense` array. The corresponding
+     * sparse & value slots are swapped too. Returns true if swap
+     * happened (false, if `src` and `dest` are equal)
+     *
+     * @param src
+     * @param dest
+     */
+    swapIndices(src: number, dest: number): boolean;
 }
 
 export interface MemMappedComponentOpts<ID extends string> {
@@ -79,3 +94,7 @@ export interface ICache<T> extends IRelease {
     getSet(key: number, notFound: Fn0<T>): T;
     delete(key: number): boolean;
 }
+
+export let LOGGER: ILogger | null = null;
+
+export const setLogger = (logger: ILogger) => (LOGGER = logger);

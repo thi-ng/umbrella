@@ -16,16 +16,17 @@ import {
     GroupOpts,
     GroupTuple,
     ICache,
-    IComponent
-} from "./api";
-import { Component } from "./component";
-import { UnboundedCache } from "./unbounded";
+    IComponent,
+    LOGGER
+} from "../api";
+import { UnboundedCache } from "../caches/unbounded";
+import { ObjectComponent } from "../components/object-component";
 
 export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
     readonly id: string;
 
-    components: IComponent<K, any, any>[];
-    owned: IComponent<K, any, any>[];
+    components: IComponent<K, any, any, any>[];
+    owned: IComponent<K, any, any, any>[];
     ids: Set<number>;
     n: number;
 
@@ -33,8 +34,8 @@ export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
     cache: ICache<GroupTuple<SPEC, K>>;
 
     constructor(
-        comps: IComponent<K, any, any>[],
-        owned: IComponent<K, any, any>[] = comps,
+        comps: IComponent<K, any, any, any>[],
+        owned: IComponent<K, any, any, any>[] = comps,
         opts: GroupOpts
     ) {
         this.components = comps;
@@ -155,18 +156,18 @@ export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
     }
 
     protected onAddListener(e: Event) {
-        // console.log(`add ${e.target.id}: ${e.value}`);
+        LOGGER && LOGGER.debug(`add ${e.target.id}: ${e.value}`);
         this.addID(e.value);
     }
 
     protected onDeleteListener(e: Event) {
-        // console.log(`delete ${e.target.id}: ${e.value}`);
+        LOGGER && LOGGER.debug(`delete ${e.target.id}: ${e.value}`);
         this.removeID(e.value);
     }
 
     protected onChangeListener(e: Event) {
-        if (e.target instanceof Component) {
-            // console.log(`invalidate ${e.target.id}: ${e.value}`);
+        if (e.target instanceof ObjectComponent) {
+            LOGGER && LOGGER.debug(`invalidate ${e.target.id}: ${e.value}`);
             this.cache.delete(e.value);
         }
     }

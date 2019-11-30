@@ -39,11 +39,11 @@
     "dependencies": {
         "@thi.ng/api": "^6.5.0",
         "@thi.ng/associative": "^3.1.0",
+        "@thi.ng/binary": "^1.1.1",
         "@thi.ng/checks": "^2.4.1",
         "@thi.ng/dcons": "^2.1.6",
-        "@thi.ng/soa": "^0.1.0",
-        "@thi.ng/transducers": "^6.0.0",
-        "@thi.ng/vectors": "^4.0.0"
+        "@thi.ng/idgen": "^0.0.1",
+        "@thi.ng/transducers": "^6.0.0"
     },
     "keywords": [
         "ES6",
