@@ -1,7 +1,6 @@
-import { Predicate2 } from "@thi.ng/api";
+import { Path, Predicate2 } from "@thi.ng/api";
 import { ReadonlyAtom, ViewTransform } from "@thi.ng/atom";
 import { View } from "@thi.ng/atom";
-import { Path } from "@thi.ng/paths";
 import { CommonOpts } from "../api";
 import { Stream } from "../stream";
 import { optsWithID } from "../utils/idgen";
