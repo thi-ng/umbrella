@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/random",
-    "version": "1.1.13",
+    "version": "1.1.14",
     "description": "Pseudo-random number generators w/ unified API",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -36,7 +36,7 @@
         "typescript": "^3.7.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.5.0"
+        "@thi.ng/api": "^6.6.0"
     },
     "keywords": [
         "ES6",

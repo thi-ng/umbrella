@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.5.0...@thi.ng/api@6.6.0) (2019-11-30)
+
+
+### Features
+
+* **api:** add ISeq, ISeqable ([541e9c8](https://github.com/thi-ng/umbrella/commit/541e9c8bdf95ece80b74e630eeb428876b7d7bc9))
+* **api:** add Uint/Int/FloatType & helpers ([1d3c824](https://github.com/thi-ng/umbrella/commit/1d3c824f3647cbc7ced7f3289b184474f3281674))
+* **api:** add WithoutX & ReplaceX types, update KeysX/ValX ([7707370](https://github.com/thi-ng/umbrella/commit/7707370741dc0835218f4a9302e6076e70bf8fba))
+
+
+
+
+
 # [6.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.4.0...@thi.ng/api@6.5.0) (2019-11-09)
 
 

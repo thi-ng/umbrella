@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/grid-iterators",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "2D grid iterators w/ multiple orderings",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -37,11 +37,11 @@
         "typescript": "^3.7.2"
     },
     "dependencies": {
-        "@thi.ng/arrays": "^0.3.0",
-        "@thi.ng/binary": "^1.1.1",
-        "@thi.ng/morton": "^1.1.4",
-        "@thi.ng/random": "^1.1.13",
-        "@thi.ng/transducers": "^6.0.0"
+        "@thi.ng/arrays": "^0.4.0",
+        "@thi.ng/binary": "^1.2.0",
+        "@thi.ng/morton": "^1.1.5",
+        "@thi.ng/random": "^1.1.14",
+        "@thi.ng/transducers": "^6.1.0"
     },
     "keywords": [
         "ES6",

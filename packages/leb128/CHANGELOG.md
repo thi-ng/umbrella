@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/leb128@1.0.0...@thi.ng/leb128@1.0.1) (2019-11-30)
+
+
+### Bug Fixes
+
+* **leb128:** add type hints ([18a4380](https://github.com/thi-ng/umbrella/commit/18a4380336604f4a8fc890296d5c9dce5d9c0cd2))
+
+
+
+
+
 # [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/leb128@0.1.5...@thi.ng/leb128@1.0.0) (2019-11-09)
 
 

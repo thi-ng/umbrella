@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@0.3.7...@thi.ng/geom-api@0.3.8) (2019-11-30)
+
+**Note:** Version bump only for package @thi.ng/geom-api
+
+
+
+
+
 ## [0.3.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@0.3.6...@thi.ng/geom-api@0.3.7) (2019-11-09)
 
 **Note:** Version bump only for package @thi.ng/geom-api

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@1.2.6...@thi.ng/rstream-gestures@1.3.0) (2019-11-30)
+
+
+### Features
+
+* **rstream-gestures:** add `buttons` to GestureInfo ([2d837e2](https://github.com/thi-ng/umbrella/commit/2d837e2858754f50e24afc1f939755d1a3096d43))
+
+
+
+
+
 ## [1.2.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@1.2.5...@thi.ng/rstream-gestures@1.2.6) (2019-11-09)
 
 **Note:** Version bump only for package @thi.ng/rstream-gestures

@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@2.1.6...@thi.ng/paths@3.0.0) (2019-11-30)
+
+
+### Bug Fixes
+
+* **paths:** update fn signatures (remove obsolete) ([47dd001](https://github.com/thi-ng/umbrella/commit/47dd0016dfbc7a59046c396344c5217b8b7127e2))
+
+
+### Code Refactoring
+
+* **paths:** use `Path` from [@thi](https://github.com/thi).ng/api, remove local def ([a142655](https://github.com/thi-ng/umbrella/commit/a142655b8a9565f3644d50272f165c1e329c2404))
+
+
+### Features
+
+* **paths:** [#87](https://github.com/thi-ng/umbrella/issues/87), add typed versions of all fns, split into sep files ([319f4f8](https://github.com/thi-ng/umbrella/commit/319f4f84e5d1a9f09cc0d6af41244d4bdecd53a9))
+
+
+### BREAKING CHANGES
+
+* **paths:** re-use `Path` from @thi.ng/api, remove local def
+
+
+
+
+
 ## [2.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@2.1.5...@thi.ng/paths@2.1.6) (2019-11-09)
 
 **Note:** Version bump only for package @thi.ng/paths

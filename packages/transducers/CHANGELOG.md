@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@6.0.0...@thi.ng/transducers@6.1.0) (2019-11-30)
+
+
+### Bug Fixes
+
+* **transducers:** add type hints ([651e281](https://github.com/thi-ng/umbrella/commit/651e281df6ca7f713e78d17c656bb59bea52f877))
+
+
+### Features
+
+* **transducers:** add back pressure support for partitionSync() ([6e14952](https://github.com/thi-ng/umbrella/commit/6e1495229c3e9527c168ffe573533124088c3006))
+
+
+
+
+
 # [6.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@5.4.5...@thi.ng/transducers@6.0.0) (2019-11-09)
 
 

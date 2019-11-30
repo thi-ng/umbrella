@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-msdf@0.1.9...@thi.ng/webgl-msdf@0.1.10) (2019-11-30)
+
+
+### Bug Fixes
+
+* **webgl-msdf:** update mempool size in text() ([9f96b2e](https://github.com/thi-ng/umbrella/commit/9f96b2ec525cd8d8a5d5e31d39352f0c6e350991))
+
+
+
+
+
 ## [0.1.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-msdf@0.1.8...@thi.ng/webgl-msdf@0.1.9) (2019-11-09)
 
 **Note:** Version bump only for package @thi.ng/webgl-msdf

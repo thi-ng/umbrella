@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@3.1.8...@thi.ng/rstream-graph@3.2.0) (2019-11-30)
+
+
+### Bug Fixes
+
+* **rstream-graph:** update prepareNodeInputs() to reflect rstream changes ([dbe344a](https://github.com/thi-ng/umbrella/commit/dbe344a24f2605a05db65d5cc7242949e4d2452c))
+* **rstream-graph:** update prepareNodeOutputs to reflect rstream changes ([680848d](https://github.com/thi-ng/umbrella/commit/680848d259910df41593ee67030d0e1ea3934cd0))
+
+
+### Features
+
+* **rstream-graph:** add node2(), update sub/div ([5214f9a](https://github.com/thi-ng/umbrella/commit/5214f9a7d32732cb120b30dd8faefa4425ec7bb2))
+
+
+
+
+
 ## [3.1.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@3.1.7...@thi.ng/rstream-graph@3.1.8) (2019-11-09)
 
 **Note:** Version bump only for package @thi.ng/rstream-graph

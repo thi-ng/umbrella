@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/scenegraph",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "Extensible 2D/3D scene graph with @thi.ng/hdom-canvas support",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -36,10 +36,10 @@
         "typescript": "^3.7.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.5.0",
-        "@thi.ng/checks": "^2.4.1",
-        "@thi.ng/matrices": "^0.5.9",
-        "@thi.ng/vectors": "^4.0.0"
+        "@thi.ng/api": "^6.6.0",
+        "@thi.ng/checks": "^2.4.2",
+        "@thi.ng/matrices": "^0.5.10",
+        "@thi.ng/vectors": "^4.0.1"
     },
     "keywords": [
         "2D",

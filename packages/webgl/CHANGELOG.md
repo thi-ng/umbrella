@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@0.2.1...@thi.ng/webgl@0.2.2) (2019-11-30)
+
+
+### Bug Fixes
+
+* **webgl:** fix PHONG shader preset, minor update LAMBERT ([792379f](https://github.com/thi-ng/umbrella/commit/792379fd507cbc9ef684a1b255f3152cb55092b9))
+* **webgl:** use LOGGER for warnings ([14d5025](https://github.com/thi-ng/umbrella/commit/14d502556717e1e0aded784294401ec0afc6d733))
+
+
+
+
+
 ## [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@0.2.0...@thi.ng/webgl@0.2.1) (2019-11-09)
 
 

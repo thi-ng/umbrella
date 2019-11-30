@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/binary@1.1.1...@thi.ng/binary@1.2.0) (2019-11-30)
+
+
+### Features
+
+* **binary:** add bitSize() ([f085bfb](https://github.com/thi-ng/umbrella/commit/f085bfbaf1e6cb77c9a8eec8d488d716165b93dc))
+
+
+
+
+
 ## [1.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/binary@1.1.0...@thi.ng/binary@1.1.1) (2019-11-09)
 
 **Note:** Version bump only for package @thi.ng/binary

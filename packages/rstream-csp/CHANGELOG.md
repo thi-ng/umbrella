@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-csp@1.0.33...@thi.ng/rstream-csp@2.0.0) (2019-11-30)
+
+
+### Code Refactoring
+
+* **rstream-csp:** use options object arg ([b39f4d0](https://github.com/thi-ng/umbrella/commit/b39f4d023fdb90d5ad095b2e50d76e69c2b50843))
+
+
+### BREAKING CHANGES
+
+* **rstream-csp:** use options object arg for fromChannel()
+
+
+
+
+
 ## [1.0.33](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-csp@1.0.32...@thi.ng/rstream-csp@1.0.33) (2019-11-09)
 
 **Note:** Version bump only for package @thi.ng/rstream-csp

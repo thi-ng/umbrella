@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-query@1.1.6...@thi.ng/rstream-query@1.1.7) (2019-11-30)
+
+
+### Bug Fixes
+
+* **rstream-query:** fix [#91](https://github.com/thi-ng/umbrella/issues/91), add CloseMode.NEVER configs to main indices ([b3315ab](https://github.com/thi-ng/umbrella/commit/b3315ab39c53b6d6cad065062c4114a6159b9a8e))
+* **rstream-query:** update TripleStore to reflect rstream changes ([1936cd3](https://github.com/thi-ng/umbrella/commit/1936cd3b24dee7a97bfa8f5863dc933ca3267ad9))
+
+
+
+
+
 ## [1.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-query@1.1.5...@thi.ng/rstream-query@1.1.6) (2019-11-09)
 
 **Note:** Version bump only for package @thi.ng/rstream-query

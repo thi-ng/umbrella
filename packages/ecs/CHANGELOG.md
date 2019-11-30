@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/ecs@0.1.0...@thi.ng/ecs@0.2.0) (2019-11-30)
+
+
+### Bug Fixes
+
+* **ecs:** update VersionedIDGen, add tests ([118405d](https://github.com/thi-ng/umbrella/commit/118405d0039e6f013c0343d805f220d04320f327))
+
+
+### Features
+
+* **ecs:** add version bits for VersionedIDGen, add/update tests ([cc06f0b](https://github.com/thi-ng/umbrella/commit/cc06f0b7c964c116468f10a399dd3948610c5840))
+
+
+
+
+
 # [0.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/ecs@0.0.2...@thi.ng/ecs@0.1.0) (2019-11-09)
 
 

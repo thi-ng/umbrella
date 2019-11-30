@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.3.0...@thi.ng/arrays@0.4.0) (2019-11-30)
+
+
+### Features
+
+* **arrays:** add arraySeq(), arrayIterator() & tests ([d94df57](https://github.com/thi-ng/umbrella/commit/d94df5786dddf6ef6915af79c3fbf0331ddfd2bd))
+* **arrays:** add binarySearchNumeric() ([7b38202](https://github.com/thi-ng/umbrella/commit/7b38202480db71753d24aa52a9c09d3ac78d36ae))
+
+
+
+
+
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.2.5...@thi.ng/arrays@0.3.0) (2019-11-09)
 
 

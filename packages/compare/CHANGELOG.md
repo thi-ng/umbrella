@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/compare@1.0.10...@thi.ng/compare@1.1.0) (2019-11-30)
+
+
+### Features
+
+* **compare:** add compareNumAsc/Desc numeric comparators ([2b8fafc](https://github.com/thi-ng/umbrella/commit/2b8fafc9eca040b649ade479203537bbd9ba54ef))
+
+
+
+
+
 ## [1.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/compare@1.0.9...@thi.ng/compare@1.0.10) (2019-11-09)
 
 **Note:** Version bump only for package @thi.ng/compare

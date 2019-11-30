@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.1.6...@thi.ng/dcons@2.2.0) (2019-11-30)
+
+
+### Features
+
+* **dcons:** add dcons() factory fn (syntax sugar) ([6e09446](https://github.com/thi-ng/umbrella/commit/6e0944661d92effea2b117d09a5b24facd61fc42))
+* **dcons:** add ISeqable impl (seq()) & tests ([1cfb02a](https://github.com/thi-ng/umbrella/commit/1cfb02a828db3670a745e7d4e30867614f594881))
+* **dcons:** add sort(), update shuffle(), add tests ([f6bbcd5](https://github.com/thi-ng/umbrella/commit/f6bbcd57a04cf71389eb8045773275748ef0c50c))
+
+
+
+
+
 ## [2.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.1.5...@thi.ng/dcons@2.1.6) (2019-11-09)
 
 **Note:** Version bump only for package @thi.ng/dcons

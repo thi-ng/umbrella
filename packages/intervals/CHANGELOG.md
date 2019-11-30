@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@1.0.15...@thi.ng/intervals@2.0.0) (2019-11-30)
+
+
+### Bug Fixes
+
+* **intervals:** add union/intersection tests ([d301628](https://github.com/thi-ng/umbrella/commit/d301628bf0f9c3c7c09ebe2eb8e98a98b899d5c4))
+* **intervals:** update compare() to consider openness, add tests ([995b32a](https://github.com/thi-ng/umbrella/commit/995b32ac5fb4c4ecfa978555dc99d7c6e1264b0f))
+
+
+### Features
+
+* **intervals:** fix [#171](https://github.com/thi-ng/umbrella/issues/171), various fixes, additions, add tests ([2d13c71](https://github.com/thi-ng/umbrella/commit/2d13c7169f978918af444d89fcd50420761a6401))
+
+
+### BREAKING CHANGES
+
+* **intervals:** inverted meaning of isBefore/isAfter() to be
+more understandable
+
+
+
+
+
 ## [1.0.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@1.0.14...@thi.ng/intervals@1.0.15) (2019-11-09)
 
 **Note:** Version bump only for package @thi.ng/intervals

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/porter-duff",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "description": "Porter-Duff operators for packed ints & float-array alpha compositing",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -36,8 +36,8 @@
         "typescript": "^3.7.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.5.0",
-        "@thi.ng/math": "^1.5.0"
+        "@thi.ng/api": "^6.6.0",
+        "@thi.ng/math": "^1.5.1"
     },
     "keywords": [
         "alpha blending",

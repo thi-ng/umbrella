@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.5.6...@thi.ng/rstream@3.0.0) (2019-11-30)
+
+
+### Bug Fixes
+
+* **rstream:** add missing timeout() re-export ([7062332](https://github.com/thi-ng/umbrella/commit/7062332137125e86b8f956ceafcb0d2fe16a30e6))
+* **rstream:** update StreamSync.remove(), refactor ctor ([d5fd4b4](https://github.com/thi-ng/umbrella/commit/d5fd4b4db759d26270491c38334f1e4258a74c4f))
+
+
+### Documentation
+
+* **rstream:** update readme ([4ecdbf9](https://github.com/thi-ng/umbrella/commit/4ecdbf92e53e24099cc3a136c18ab51563ddd06f))
+
+
+### Features
+
+* **rstream:** add back pressure opts to StreamSyncOpts & ForkJoinOpts ([e236987](https://github.com/thi-ng/umbrella/commit/e2369879b3972568eac985daf11766b292fce84a))
+* **rstream:** add CommonOpts support for ISubscribable & ITransformable ([0a70b90](https://github.com/thi-ng/umbrella/commit/0a70b90a244b8d1285ee6c0c01e8e4d570c18a91))
+* **rstream:** add forkBuffer/joinBuffer HOFs, add docs ([a35c8e8](https://github.com/thi-ng/umbrella/commit/a35c8e86d212b4186c2642f19230c0153356e203))
+* **rstream:** add forkJoin() parallel worker processing ([da03722](https://github.com/thi-ng/umbrella/commit/da03722897995a61c46d255ccfac4d81c4af24d0))
+* **rstream:** add ITransformable interface, minor updates ([da52b98](https://github.com/thi-ng/umbrella/commit/da52b9872b5063b617bb217a7c54743d427aa219))
+* **rstream:** add Subscription.done() error handling ([c911006](https://github.com/thi-ng/umbrella/commit/c911006e7990f4283e5a3f93191b03638cc39905))
+* **rstream:** add/update fork/joinBuffer generics, optimize ([8f0c55c](https://github.com/thi-ng/umbrella/commit/8f0c55c1680558292c022a2dd535bbb8d49200ab))
+* **rstream:** initial work on [#74](https://github.com/thi-ng/umbrella/issues/74), [#81](https://github.com/thi-ng/umbrella/issues/81), [#91](https://github.com/thi-ng/umbrella/issues/91), [#92](https://github.com/thi-ng/umbrella/issues/92), add stream opts ([e770469](https://github.com/thi-ng/umbrella/commit/e77046995ff4cdb4b2582620b32bee001ceb664c))
+* **rstream:** update args for various fromXXX() stream factories ([b466ebc](https://github.com/thi-ng/umbrella/commit/b466ebc553dd00e37a84fe20cc61d8e1f275ed37))
+* **rstream:** update sidechainPartition/Toggle and timeout ([898eb53](https://github.com/thi-ng/umbrella/commit/898eb537c6812eecc1b6f0dd720ce5a24b431f13))
+* **rstream:** update Stream cancel & reset behavior for CloseMode.NEVER ([250dfe1](https://github.com/thi-ng/umbrella/commit/250dfe12560d4629d867a0a2c0cc3e03756fdab6))
+
+
+### BREAKING CHANGES
+
+* **rstream:** document new stream/sub config opts in readme
+* **rstream:** update stream factories to use options object args
+
+- fromAtom
+- fromInterval
+- fromIterable
+- fromView
+- fromWorker
+
+
+
+
+
 ## [2.5.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.5.5...@thi.ng/rstream@2.5.6) (2019-11-09)
 
 **Note:** Version bump only for package @thi.ng/rstream
