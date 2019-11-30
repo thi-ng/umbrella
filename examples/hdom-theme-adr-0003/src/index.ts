@@ -1,6 +1,6 @@
-import { IObjectOf } from "@thi.ng/api";
+import { IObjectOf, Path } from "@thi.ng/api";
 import { start } from "@thi.ng/hdom";
-import { getIn, Path } from "@thi.ng/paths";
+import { getIn } from "@thi.ng/paths";
 
 interface ButtonBehavior {
     /**

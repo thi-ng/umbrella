@@ -1,8 +1,8 @@
-import { Fn, IObjectOf } from "@thi.ng/api";
+import { Fn, IObjectOf, Path } from "@thi.ng/api";
 import { ReadonlyAtom } from "@thi.ng/atom";
 import { appLink } from "@thi.ng/hdom-components";
 import { EV_SET_VALUE, EV_TOGGLE_VALUE, EventBus } from "@thi.ng/interceptors";
-import { getIn, Path } from "@thi.ng/paths";
+import { getIn } from "@thi.ng/paths";
 
 export interface BaseContext {
     bus: EventBus;
