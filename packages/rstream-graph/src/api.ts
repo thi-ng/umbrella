@@ -1,5 +1,4 @@
-import { Fn, IObjectOf } from "@thi.ng/api";
-import { Path } from "@thi.ng/paths";
+import { Fn, IObjectOf, Path } from "@thi.ng/api";
 import { ResolveFn } from "@thi.ng/resolve-map";
 import { ISubscribable } from "@thi.ng/rstream";
 import { Transducer } from "@thi.ng/transducers";
