@@ -41,6 +41,15 @@ import { setterT } from "./setter";
  * @param path
  * @param fn
  */
+export const updater = (path: Path, fn: UpdateFn<any>) =>
+    updaterT(<any>path, fn);
+
+/**
+ * Type checked version of {@link updater}.
+ *
+ * @param path
+ * @param fn
+ */
 export function updaterT<T>(path: [], fn: UpdateFn<T>): FnO<T, T>;
 export function updaterT<T, A extends Keys<T>>(
     path: [A],
@@ -127,6 +136,3 @@ export function updaterT(path: Path, fn: UpdateFn<any>): FnO<any, any> {
     return (state: any, ...args: any[]) =>
         s(state, fn.apply(null, <any>(args.unshift(g(state)), args)));
 }
-
-export const updater = (path: Path, fn: UpdateFn<any>) =>
-    updaterT(<any>path, fn);

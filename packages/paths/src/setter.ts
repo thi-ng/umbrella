@@ -78,6 +78,13 @@ import { toPath } from "./path";
  *
  * @param path
  */
+export const setter = (path: Path): Fn2<any, any, any> => setterT(<any>path);
+
+/**
+ * Type checked version of {@link setter}.
+ *
+ * @param path
+ */
 export function setterT<T>(path: []): Fn2<T, T, T>;
 export function setterT<T, A extends Keys<T>>(path: [A]): Fn2<T, Val1<T, A>, T>;
 export function setterT<T, A extends Keys<T>, B extends Keys1<T, A>>(
@@ -188,8 +195,6 @@ export function setterT(path: Path): Fn2<any, any, any> {
             return f;
     }
 }
-
-export const setter = (path: Path): Fn2<any, any, any> => setterT(<any>path);
 
 const _copy = (s: any) => (isArray(s) ? s.slice() : { ...s });
 

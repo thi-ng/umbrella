@@ -37,6 +37,20 @@ import { setterT } from "./setter";
  * @param fn - update function
  * @param args - optional args for `fn`
  */
+export const updateIn = (
+    state: any,
+    path: Path,
+    fn: UpdateFn<any>,
+    ...args: any[]
+) => updateInT(state, <any>path, fn, ...args);
+
+/**
+ * Type checked version of {@link updateIn}.
+ *
+ * @param state
+ * @param path
+ * @param fn
+ */
 export function updateInT<T>(state: T, path: [], fn: UpdateFn<T>): T;
 export function updateInT<T, A extends Keys<T>>(
     state: T,
@@ -153,10 +167,3 @@ export function updateInT(
         fn.apply(null, <any>(args.unshift(getterT(<any>path)(state)), args))
     );
 }
-
-export const updateIn = (
-    state: any,
-    path: Path,
-    fn: UpdateFn<any>,
-    ...args: any[]
-) => updateInT(state, <any>path, fn, ...args);
