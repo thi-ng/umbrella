@@ -573,7 +573,7 @@ fromInterval(500)
 
 Source: [forkJoin()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/forkjoin.ts)
 
-![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream/rstream-forkjoin.png)
+![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/rstream/rstream-forkjoin.png)
 
 ##### worker.ts
 

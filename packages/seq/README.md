@@ -20,13 +20,13 @@ This project is part of the
 ## About
 
 Various implementations of the [@thi.ng/api
-`ISeq`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api/seq.ts)
+`ISeq`](https://github.com/thi-ng/umbrella/tree/master/packages/api/src/api/seq.ts)
 interface / sequence abstraction and related tooling (inspired by
 Clojure). Think of `ISeq`s as readonly sequential views & cursors of an
 underlying (not necessarily sequential) collection...
 
 Unlike with ES6 iterators,
-[`ISeq.next()`](https://github.com/thi-ng/umbrella/blob/develop/packages/api/src/api/seq.ts#L23)
+[`ISeq.next()`](https://github.com/thi-ng/umbrella/blob/master/packages/api/src/api/seq.ts#L23)
 is decoupled from an iteration step and merely produces a new view /
 sequence head of the remaining sequence values. This allows forking &
 sharing the sequence head(s) among multiple consumers, each able to read
@@ -114,7 +114,7 @@ rseq([1, 2, 3]).next().first()
 
 Since the entire approach is interface based, sequences can be defined
 for any custom datatype (preferably via the
-[ISeqable](https://github.com/thi-ng/umbrella/blob/develop/packages/api/src/api/seq.ts#L35)
+[ISeqable](https://github.com/thi-ng/umbrella/blob/master/packages/api/src/api/seq.ts#L35)
 interface), for example here using
 [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons):
 

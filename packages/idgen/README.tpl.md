@@ -23,7 +23,7 @@ If versioning is used, the produced IDs are *composite* values, i.e. the
 lowest bits contain the actual ID (e.g for indexing purposes) and other
 bits contain the version information.
 
-![composite ID](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/idgen/composite-id.png)
+![composite ID](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/idgen/composite-id.png)
 
 Both parts can be extracted via the generator's `.id()` and `.version()`
 methods. Each time a valid versioned ID is being discarded via

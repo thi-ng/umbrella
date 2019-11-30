@@ -7,7 +7,7 @@ This example demonstrates the use of
 constructs to define a basic event-loop, event handlers and reactive DOM
 updates, based on the dataflow topology shown below:
 
-![generated result](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-event-loop.png)
+![generated result](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/rstream-event-loop.png)
 
 Please refer to the [example build instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions) on the wiki.
 
