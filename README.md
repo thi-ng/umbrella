@@ -310,7 +310,8 @@ yarn doc
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
 <table>
   <tr>
     <td align="center"><a href="http://thi.ng"><img src="https://avatars1.githubusercontent.com/u/52302?v=4" width="100px;" alt="Karsten Schmidt"/><br /><sub><b>Karsten Schmidt</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=postspectacular" title="Code">💻</a> <a href="https://github.com/thi-ng/umbrella/commits?author=postspectacular" title="Documentation">📖</a> <a href="#maintenance-postspectacular" title="Maintenance">🚧</a></td>
@@ -328,9 +329,12 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://pngupngu.com/"><img src="https://avatars0.githubusercontent.com/u/250297?v=4" width="100px;" alt="stwind"/><br /><sub><b>stwind</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=stwind" title="Code">💻</a> <a href="https://github.com/thi-ng/umbrella/issues?q=author%3Astwind" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/evilive3000"><img src="https://avatars1.githubusercontent.com/u/5011293?v=4" width="100px;" alt="evilive"/><br /><sub><b>evilive</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=evilive3000" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Bnaya"><img src="https://avatars0.githubusercontent.com/u/1304862?v=4" width="100px;" alt="Bnaya Peretz"/><br /><sub><b>Bnaya Peretz</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=Bnaya" title="Code">💻</a> <a href="https://github.com/thi-ng/umbrella/issues?q=author%3ABnaya" title="Bug reports">🐛</a> <a href="#ideas-Bnaya" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/oljeger"><img src="https://avatars0.githubusercontent.com/u/19798833?v=4" width="100px;" alt="oljeger"/><br /><sub><b>oljeger</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Aoljeger" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
