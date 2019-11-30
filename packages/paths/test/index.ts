@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { exists, getIn, setIn } from "../src/index";
+import { exists, getIn, setIn } from "../src";
 
 describe("paths", () => {
     it("getIn", () => {
@@ -98,7 +98,7 @@ describe("paths", () => {
     });
 
     it("setIn arr", () => {
-        assert.deepEqual(setIn([1, 2], 0, 10), [10, 2]);
+        assert.deepEqual(setIn([1, 2], [0], 10), [10, 2]);
         assert.deepEqual(setIn([[1, 2], 3], [0, 1], 10), [[1, 10], 3]);
         assert.deepEqual(setIn([[1, 2, 3], 4], [0, 1, 2], 10), [
             [1, { 2: 10 }, 3],

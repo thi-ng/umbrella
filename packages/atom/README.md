@@ -110,9 +110,9 @@ Additive waveform synthesis & SVG visualization with undo/redo
 
 [Live demo](https://demo.thi.ng/umbrella/svg-waveform/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-waveform)
 
-### hdom-todolist <!-- NOTOC -->
+### todo-list <!-- NOTOC -->
 
-[Live demo](https://demo.thi.ng/umbrella/hdom-todolist/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-todolist)
+[Live demo](https://demo.thi.ng/umbrella/todo-list/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/todo-list)
 
 ### triple-query <!-- NOTOC -->
 
