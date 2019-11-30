@@ -64,6 +64,13 @@ programming:
 
 ${status}
 
+### Breaking changes in 3.0.0
+
+The vast majority of stream & subscription constructors and their
+syntax-sugar factory functions have been updated to take their various
+options from a config object arg. Please see [Common configuration
+options](#common-configuration-options) for further details.
+
 ${supportPackages}
 
 ${relatedPackages}
@@ -88,7 +95,9 @@ ${docLink}
 
 ### Common configuration options
 
-Since version 3.0.0 all stream and subscription factory functions take an optional object of configuration options with at least these keys (each optional):
+Since version 3.0.0 all stream and subscription factory functions take
+an optional object of configuration options with **at least** these keys
+(each optional):
 
 ```ts
 interface CommonOpts {
@@ -170,7 +179,10 @@ b.next(42);
 // b2 42
 ```
 
-`Stream`s (like `Subscription`s) implement the @thi.ng/api `IDeref`
+### IDeref support
+
+`Stream`s (like `Subscription`s) implement the [@thi.ng/api
+`IDeref`](https://github.com/thi-ng/umbrella/blob/master/packages/api/src/api/deref.ts)
 interface which provides read access to a stream's last received value.
 This is useful for various purposes, e.g. in combination with
 @thi.ng/hdom, which supports direct embedding of streams (i.e. their
@@ -227,7 +239,9 @@ s.next(42);
 
 ### Meta streams
 
-Meta streams are streams of streams. A `MetaStream` is a subscription
+Source: [metaStream()](https://github.com/thi-ng/umbrella/blob/master/packages/rstream/src/metastream.ts)
+
+`MetaStream`s are streams of streams. A `MetaStream` is a subscription
 type which transforms each incoming value into a new stream, subscribes
 to it (via an hidden / internal subscription) and then only passes
 values from that stream to its own subscribers. If a new value is
