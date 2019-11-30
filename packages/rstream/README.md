@@ -387,25 +387,25 @@ ignored).
 // transform each received odd number into a stream
 // producing 3 copies of that number in the metastream
 // even numbers are ignored
-a = metastream(
+a = metastream<number, string>(
   (x) => (x & 1)
-    ? fromIterable(tx.repeat(x, 3), { delay: 100 })
+    ? fromIterable(tx.repeat("odd: " + x, 3), { delay: 100 })
     : null
 );
 
 a.subscribe(trace())
 
 a.next(23)
-// 23
-// 23
-// 23
+// odd: 23
+// odd: 23
+// odd: 23
 
 a.next(42) // not odd, ignored by meta factory fn
 
 a.next(43)
-// 43
-// 43
-// 43
+// odd: 43
+// odd: 43
+// odd: 43
 ```
 
 The factory function does NOT need to create new streams, but too can
@@ -710,7 +710,7 @@ fromInterval(500)
 
 Source: [forkJoin()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/forkjoin.ts)
 
-![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/feature/rstream-opts/assets/rstream/rstream-forkjoin.png)
+![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream/rstream-forkjoin.png)
 
 ##### worker.ts
 
