@@ -179,10 +179,10 @@ export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
         true
     ),
     [TextureFormat.DEPTH_COMPONENT]: $(
-      TextureFormat.DEPTH_COMPONENT,
-      [TextureType.UNSIGNED_SHORT, 2, TextureType.UNSIGNED_INT, 4],
-      1,
-      true
+        TextureFormat.DEPTH_COMPONENT,
+        [TextureType.UNSIGNED_SHORT, 2, TextureType.UNSIGNED_INT, 4],
+        1,
+        true
     ),
     [TextureFormat.DEPTH_COMPONENT16]: $(
         TextureFormat.DEPTH_COMPONENT,
@@ -199,6 +199,12 @@ export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
     [TextureFormat.DEPTH_COMPONENT32F]: $(
         TextureFormat.DEPTH_COMPONENT,
         [TextureType.FLOAT, 4],
+        1,
+        true
+    ),
+    [TextureFormat.DEPTH_STENCIL]: $(
+        TextureFormat.DEPTH_STENCIL,
+        [TextureType.UNSIGNED_INT_24_8, 4],
         1,
         true
     ),
