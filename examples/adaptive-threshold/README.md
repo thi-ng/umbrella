@@ -1,0 +1,18 @@
+# adaptive-threshold
+
+[Live demo](http://demo.thi.ng/umbrella/adaptive-threshold/)
+
+Image processing via
+[@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/master/packages/pixel)
+and
+[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers).
+
+Please refer to the [example build instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions) on the wiki.
+
+## Authors
+
+- Karsten Schmidt
+
+## License
+
+&copy; 2019 Karsten Schmidt // Apache Software License 2.0
