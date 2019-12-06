@@ -434,7 +434,6 @@ export class Channel<T> implements IReadWriteableChannel<T> {
             while (((x = null), (x = await this.read())) !== undefined) {
                 await fn(x);
             }
-            console.log(this.id, "done");
         })();
     }
 
