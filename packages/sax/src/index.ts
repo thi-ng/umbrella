@@ -195,8 +195,8 @@ const isWS = (x: string) => {
         c === 0x20 || // space
         c === 0x09 || // tab
         c === 0x0a || // LF
-        c === 0x0d
-    ); // CR
+        c === 0x0d // CR
+    );
 };
 
 const isTagChar = (x: string) => {
@@ -207,8 +207,8 @@ const isTagChar = (x: string) => {
         (c >= 0x30 && c <= 0x39) || // 0-9
         c == 0x2d || // -
         c == 0x5f || // _
-        c == 0x3a
-    ); // :
+        c == 0x3a // :
+    );
 };
 
 const error = (s: ParseState, body: string) => {
