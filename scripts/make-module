@@ -55,11 +55,13 @@ cat << EOF > $MODULE/package.json
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "doc:readme": "../../scripts/generate-readme",
+        "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^0.1.3",
+        "@microsoft/api-extractor": "^7.7.0",
         "@types/mocha": "^5.2.6",
         "@types/node": "^12.6.3",
         "mocha": "^6.1.4",
@@ -79,7 +81,10 @@ cat << EOF > $MODULE/package.json
         "access": "public"
     },
     "sideEffects": false,
-    "thi.ng": {}
+    "thi.ng": {
+        "status": "alpha",
+        "year": 2019
+    }
 }
 EOF
 
@@ -110,6 +115,13 @@ cat << EOF > $MODULE/test/tsconfig.json
         "./**/*.ts",
         "../src/**/*.ts"
     ]
+}
+EOF
+
+echo "writing api-extractor.json..."
+cat << EOF > $MODULE/api-extractor.json
+{
+    "extends": "../../api-extractor.json"
 }
 EOF
 
@@ -157,6 +169,8 @@ ${pkg.description}
 ${status}
 
 ${supportPackages}
+
+${relatedPackages}
 
 ${blogPosts}
 
