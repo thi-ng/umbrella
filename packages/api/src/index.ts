@@ -35,6 +35,7 @@ export * from "./api/typedarray";
 export * from "./api/watch";
 
 export * from "./assert";
+export * from "./expose";
 export * from "./logger";
 export * from "./mixin";
 
