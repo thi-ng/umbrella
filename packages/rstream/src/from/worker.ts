@@ -33,8 +33,8 @@ export interface FromWorkerOpts extends CommonOpts {
  *
  * ```
  *
- * @param worker
- * @param opts
+ * @param worker -
+ * @param opts -
  */
 export const fromWorker = <T>(
     worker: Worker | Blob | string,

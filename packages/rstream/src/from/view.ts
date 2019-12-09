@@ -48,8 +48,8 @@ export interface FromViewOpts<T> extends Partial<CommonOpts> {
  * // view: n/a
  * ```
  *
- * @param atom
- * @param opts
+ * @param atom -
+ * @param opts -
  */
 export const fromView = <T>(
     atom: ReadonlyAtom<any>,

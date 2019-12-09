@@ -60,8 +60,8 @@ export interface IComponent<K extends string, VALUES, GET, SET>
      * sparse & value slots are swapped too. Returns true if swap
      * happened (false, if `src` and `dest` are equal)
      *
-     * @param src
-     * @param dest
+     * @param src -
+     * @param dest -
      */
     swapIndices(src: number, dest: number): boolean;
 }

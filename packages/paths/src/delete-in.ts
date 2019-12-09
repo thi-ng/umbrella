@@ -30,16 +30,16 @@ import { updateInT } from "./update-in";
  * // { a: { b: { } } }
  * ```
  *
- * @param state
- * @param path
+ * @param state -
+ * @param path -
  */
 export const deleteIn = (state: any, path: Path) => deleteInT(state, <any>path);
 
 /**
  * Type checked version of {@link deleteIn}.
  *
- * @param state
- * @param path
+ * @param state -
+ * @param path -
  */
 export function deleteInT<T, A extends Keys<T>>(
     state: T,

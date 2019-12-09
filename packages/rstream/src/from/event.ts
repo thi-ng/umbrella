@@ -7,10 +7,10 @@ import { optsWithID } from "../utils/idgen";
  * target and using given event listener options (same as supported by
  * `addEventListener()`, default: false).
  *
- * @param src event target
- * @param name event name
- * @param listenerOpts listener opts
- * @param streamOpts stream opts
+ * @param src - event target
+ * @param name - event name
+ * @param listenerOpts - listener opts
+ * @param streamOpts - stream opts
  */
 export const fromEvent = (
     src: EventTarget,
@@ -36,12 +36,12 @@ export const fromEvent = (
  * fromEvent(document.body, "mousemove"); // Stream<Event>
  * ```
  *
- * @see fromEvent
+ * Also see: {@link fromEvent}
  *
- * @param src
- * @param name
- * @param listenerOpts
- * @param streamOpts
+ * @param src -
+ * @param name -
+ * @param listenerOpts -
+ * @param streamOpts -
  */
 export const fromDOMEvent = <K extends keyof GlobalEventHandlersEventMap>(
     src: EventTarget,

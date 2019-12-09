@@ -48,9 +48,9 @@ export class MEP<OP, T> {
      * slot), therefore a chromosome of length `n` will produce the same
      * number ASTs (less if min/max tree depth filters are applied).
      *
-     * @param chromosome
-     * @param minDepth
-     * @param maxDepth
+     * @param chromosome -
+     * @param minDepth -
+     * @param maxDepth -
      */
     decodeChromosome(
         chromosome: MEPChromosome<OP, T>,

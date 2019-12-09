@@ -33,8 +33,8 @@ export interface SidechainToggleOpts<T> extends CommonOpts {
  * ...
  * ```
  *
- * @param side
- * @param opts
+ * @param side -
+ * @param opts -
  */
 export const sidechainToggle = <A, B>(
     side: ISubscribable<B>,

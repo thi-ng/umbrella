@@ -72,8 +72,8 @@ export interface TweenOpts<A, B, C> {
  * // [ 100, 100, 100, 133, 166, 200, 133, 66, 0, 0, 0 ]
  * ```
  *
- * Using easing functions (e.g. from {@link @thi.ng/math#}), non-linear
- * interpolation within each keyframe interval can be achieved:
+ * Using easing functions (e.g. via {@link @thi.ng/math# | @thi.ng/math}),
+ * non-linear interpolation within each keyframe interval can be achieved:
  *
  * @example
  * ```ts

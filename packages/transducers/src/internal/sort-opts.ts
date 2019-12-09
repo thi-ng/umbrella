@@ -5,7 +5,7 @@ import { SortOpts } from "../api";
 /**
  * Helper function to inject default {@link SortOpts}.
  *
- * @param opts
+ * @param opts -
  *
  * @internal
  */

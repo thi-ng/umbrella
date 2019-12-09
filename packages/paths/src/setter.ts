@@ -76,14 +76,14 @@ import { toPath } from "./path";
  * a.x.y === b.x.y // true
  * ```
  *
- * @param path
+ * @param path -
  */
 export const setter = (path: Path): Fn2<any, any, any> => setterT(<any>path);
 
 /**
  * Type checked version of {@link setter}.
  *
- * @param path
+ * @param path -
  */
 export function setterT<T>(path: []): Fn2<T, T, T>;
 export function setterT<T, A extends Keys<T>>(path: [A]): Fn2<T, Val1<T, A>, T>;

@@ -20,8 +20,8 @@ import { mutInT } from "./mut-in";
  * // { a: { b: 10 }, x: { y: { z: 20 } } }
  * ```
  *
- * @param state
- * @param pairs
+ * @param state -
+ * @param pairs -
  */
 export const mutInMany = (state: any, ...pairs: any[]) => {
     const n = pairs.length;

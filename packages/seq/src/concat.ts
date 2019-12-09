@@ -5,7 +5,7 @@ import { ensureSeq } from "./ensure";
  * Returns the concatenation sequence of given nullable
  * {@link @thi,ng/api#ISeq} or {@link @thi.ng/api#ISeqable} values.
  *
- * @param args
+ * @param args -
  */
 export const concat = <T>(
     ...args: Nullable<ISeq<T> | ISeqable<T>>[]
@@ -36,7 +36,7 @@ export const concat = <T>(
 /**
  * Same as {@link concat}, but optimized for nullable arraylike values.
  *
- * @param args
+ * @param args -
  */
 export const concatA = <T>(...args: Nullable<ArrayLike<T>>[]) => {
     const seqs: ArrayLike<T>[] = [];

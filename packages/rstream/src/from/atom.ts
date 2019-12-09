@@ -49,8 +49,8 @@ export interface FromAtomOpts<T> extends CommonOpts {
  * // cursor val: 66
  * ```
  *
- * @param atom
- * @param opts
+ * @param atom -
+ * @param opts -
  */
 export const fromAtom = <T>(
     atom: ReadonlyAtom<T>,

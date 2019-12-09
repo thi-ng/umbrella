@@ -32,14 +32,14 @@ import { toPath } from "./path";
  * for path lengths <= 4. Type checking is supported for path lengths <=
  * 8.
  *
- * @param path
+ * @param path -
  */
 export const mutator = (path: Path): Fn2<any, any, any> => mutatorT(<any>path);
 
 /**
  * Type checked version of {@link mutator}.
  *
- * @param path
+ * @param path -
  */
 export function mutatorT<T>(path: []): Fn2<T, T, T>;
 export function mutatorT<T, A extends Keys<T>>(

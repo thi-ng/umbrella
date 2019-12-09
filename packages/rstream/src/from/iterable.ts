@@ -24,8 +24,8 @@ export interface FromIterableOpts extends CommonOpts {
  * {@link ISubscriber.done} to close the stream, but this can be
  * re-configured via provided {@link CommonOpts | options}.
  *
- * @param src
- * @param opts
+ * @param src -
+ * @param opts -
  */
 export const fromIterable = <T>(
     src: Iterable<T>,
@@ -52,8 +52,8 @@ export const fromIterable = <T>(
  * exhausted (MUST be finite!), then calls `.done()` by default, but can
  * be avoided by passing `false` as last argument.
  *
- * @param src
- * @param opts
+ * @param src -
+ * @param opts -
  */
 export const fromIterableSync = <T>(
     src: Iterable<T>,

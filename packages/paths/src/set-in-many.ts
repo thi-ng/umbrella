@@ -17,8 +17,8 @@ import { setInT } from "./set-in";
  * // { a: { b: 10 }, x: { y: { z: 20 } } }
  * ```
  *
- * @param state
- * @param pairs
+ * @param state -
+ * @param pairs -
  */
 export const setInMany = (state: any, ...pairs: any[]) => {
     const n = pairs.length;

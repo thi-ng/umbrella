@@ -240,9 +240,9 @@ export const stop = (graph: Graph) => {
  *
  * // TODO add close behavior opts
  *
- * @param xform
- * @param inputIDs
- * @param reset
+ * @param xform -
+ * @param inputIDs -
+ * @param reset -
  */
 export const node = (
     xform: Transducer<IObjectOf<any>, any>,
@@ -261,8 +261,8 @@ export const node = (
  *
  * // TODO add close behavior opts
  *
- * @param xform
- * @param inputID
+ * @param xform -
+ * @param inputID -
  */
 export const node1 = (
     xform?: Transducer<any, any>,
@@ -281,9 +281,9 @@ export const node1 = (
  * Syntax sugar for `node()`, intended for nodes w/ 2 inputs, by default
  * named `a` & `b` (but can be overridden).
  *
- * @param xform
- * @param inputIDs
- * @param reset
+ * @param xform -
+ * @param inputIDs -
+ * @param reset -
  */
 export const node2 = (
     xform: Transducer<IObjectOf<any>, any>,

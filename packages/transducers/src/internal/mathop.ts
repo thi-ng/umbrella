@@ -5,10 +5,10 @@ import { $$reduce, reducer } from "../reduce";
 /**
  * Higher-order reducer for math operations.
  *
- * @param rfn
- * @param fn
- * @param initDefault
- * @param args
+ * @param rfn -
+ * @param fn -
+ * @param initDefault -
+ * @param args -
  *
  * @internal
  */

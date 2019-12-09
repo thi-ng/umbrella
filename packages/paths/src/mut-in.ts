@@ -44,9 +44,9 @@ import { mutatorT } from "./mutator";
  * // undefined
  * ```
  *
- * @param state
- * @param path
- * @param val
+ * @param state -
+ * @param path -
+ * @param val -
  */
 export const mutIn = (state: any, path: Path, val: any) =>
     mutInT(state, <any>path, val);
@@ -54,9 +54,9 @@ export const mutIn = (state: any, path: Path, val: any) =>
 /**
  * Type checked version of {@link mutIn}.
  *
- * @param state
- * @param path
- * @param val
+ * @param state -
+ * @param path -
+ * @param val -
  */
 export function mutInT<T>(state: T, path: [], val: T): T;
 export function mutInT<T, A extends Keys<T>>(

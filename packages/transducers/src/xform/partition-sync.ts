@@ -12,10 +12,10 @@ export interface PartitionSyncOpts<T> {
     reset: boolean;
     all: boolean;
     /**
-     * If > 0, then each labeled input will cache upto the stated number
-     * of input values, even if other inputs have not yet produced new
-     * values. Once the limit is reached, `partitionSync()` will throw
-     * an `IllegalState` error.
+     * If greater than 0, then each labeled input will cache upto the
+     * stated number of input values, even if other inputs have not yet
+     * produced new values. Once the limit is reached, `partitionSync()`
+     * will throw an `IllegalState` error.
      *
      * Enabling this option will cause the same behavior as if `reset`
      * is enabled (regardless of the actual configured `reset` setting).
