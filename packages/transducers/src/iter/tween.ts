@@ -89,9 +89,9 @@ export interface TweenOpts<A, B, C> {
  * ```
  *
  * - {@link TweenOpts}
- * - {@link interpolate}
- * - {@link interpolateHermite}
- * - {@link interpolateLinear}
+ * - {@link (interpolate:1)}
+ * - {@link (interpolateHermite:1)}
+ * - {@link (interpolateLinear:1)}
  *
  * @param opts -
  */

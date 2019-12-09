@@ -4,7 +4,7 @@ import { $iter } from "../iterator";
 import { map } from "./map";
 
 /**
- * Transducer. Similar to {@link map}, but expects object values and the given
+ * Transducer. Similar to {@link (map:1)}, but expects object values and the given
  * function `fn` is applied to each enumerable property value and the
  * results reassigned to their original keys. By default, a shallow copy
  * of the source object is created. The resulting object is then used as

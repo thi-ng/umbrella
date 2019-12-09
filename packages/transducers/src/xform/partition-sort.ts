@@ -6,11 +6,12 @@ import { mapcat } from "./mapcat";
 import { partition } from "./partition";
 
 /**
- * Transducer. Composition of {@link partition} and {@link mapcat} which yields a
- * **partially** sorted sequence of input values. Sorting is performed on
- * sliding / non-overlapping chunks of `n` inputs. The optional `key`
- * and `cmp` function args can be used to select / compute a sortable
- * value and change sorting behavior.
+ * Transducer. Composition of {@link (partition:1)} and
+ * {@link (mapcat:1)} which yields a **partially** sorted sequence of
+ * input values. Sorting is performed on sliding / non-overlapping
+ * chunks of `n` inputs. The optional `key` and `cmp` function args can
+ * be used to select / compute a sortable value and change sorting
+ * behavior.
  *
  * ```
  * [...partitionSort(4, [5,9,2,6,4,1,3,8,7,0])]

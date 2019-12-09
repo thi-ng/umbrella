@@ -4,7 +4,7 @@ import { compR } from "../func/compr";
 import { $iter } from "../iterator";
 
 /**
- * Transducer. Similar to {@link map}, but only transforms every `n`-th input
+ * Transducer. Similar to {@link (map:1)}, but only transforms every `n`-th input
  * value and passes intermediate values unchanged downstream. The
  * optional `offset` arg can be used to adjust the number of inputs
  * before the first transformation occurs (default 0).

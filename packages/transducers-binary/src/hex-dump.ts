@@ -15,9 +15,9 @@ import { HexDumpOpts } from "./api";
 /**
  * Transforms bytes into a sequence of hexdump lines with configurable
  * number of `columns` and `address` offset. Uses
- * {@link @thi.ng/transducers#partition} internally, so new lines are
- * only produced once filled. If the input hasn't an exact multiple of
- * `cols` bytes, the last line will be padded with zeroes.
+ * {@link @thi.ng/transducers!(partition:1)} internally, so new lines
+ * are only produced once filled. If the input hasn't an exact multiple
+ * of `cols` bytes, the last line will be padded with zeroes.
  *
  * @example
  * ```ts

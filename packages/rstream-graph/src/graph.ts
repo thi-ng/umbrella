@@ -27,11 +27,12 @@ import {
 /**
  * Dataflow graph initialization function. Takes a state Atom (or `null`
  * if not needed) and an object of {@link NodeSpec} values or functions
- * returning {@link Node} objects. Calls {@link nodeFromSpec} for each spec and then
- * recursively resolves references via
+ * returning {@link Node} objects. Calls `nodeFromSpec()` for each spec
+ * and then recursively resolves references via
  * {@link @thi.ng/resolve-map#resolve}. Returns new initialized graph
- * object of {@link Node} objects and {@link @thi.ng/rstream# | @thi.ng/rstream} stream
- * constructs. Does NOT mutate original {@link GraphSpec} object.
+ * object of {@link Node} objects and
+ * {@link @thi.ng/rstream# | @thi.ng/rstream} stream constructs. Does
+ * NOT mutate original {@link GraphSpec} object.
  *
  * @param state -
  * @param spec -

@@ -3,6 +3,6 @@ import { Transducer } from "../api";
 /**
  * No-op / pass-through transducer, essentially the same as:
  * `map(identity)`, but faster. Useful for testing and / or to keep
- * existing values in a {@link multiplex} tuple lane.
+ * existing values in a {@link (multiplex:1)} tuple lane.
  */
 export const noop = <T>(): Transducer<T, T> => (rfn) => rfn;

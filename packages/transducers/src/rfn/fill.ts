@@ -4,8 +4,8 @@ import { $$reduce, reducer } from "../reduce";
 
 /**
  * Reducer which starts filling array with results from given `start`
- * index (default: 0). Use {@link fillN} for typed array targets (same impl,
- * but provides correct result type).
+ * index (default: 0). Use {@link (fillN:1)} for typed array targets
+ * (same impl, but provides correct result type).
  *
  * @param start -
  */
@@ -25,7 +25,8 @@ export function fill<T>(...args: any[]): any {
 }
 
 /**
- * Like {@link fill} reducer, but for numeric arrays (incl. typed arrays).
+ * Like {@link (fill:1)} reducer, but for numeric arrays (incl. typed
+ * arrays).
  *
  * @param start -
  */

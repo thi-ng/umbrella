@@ -3,7 +3,7 @@ import { Transducer } from "../api";
 import { interpolate } from "./interpolate";
 
 /**
- * Pre-configured version of {@link interpolate} for numeric values and
+ * Pre-configured version of {@link (interpolate:1)} for numeric values and
  * using cubic hermite interpolation. The number of samples per interval
  * is configurable. No values will be produced if there're less than 4
  * inputs.
@@ -14,8 +14,8 @@ import { interpolate } from "./interpolate";
  * the input so that these values are duplicated and so are used as part
  * of an interpolation interval.
  *
- * - {@link interpolate}
- * - {@link interpolateLinear}
+ * - {@link (interpolate:1)}
+ * - {@link (interpolateLinear:1)}
  * - {@link extendSides}
  *
  * @param n -

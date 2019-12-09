@@ -24,7 +24,7 @@ export const swap = (arr: AnyArray, x: number, y: number) => {
  * arrays given to {@link multiSwap} itself. Provides fast routes for up to 3
  * extra arrays, then falls back to a loop-based approach.
  *
- * {@link quickSort}
+ * {@link (quickSort:1)}
  *
  * @example
  * ```ts

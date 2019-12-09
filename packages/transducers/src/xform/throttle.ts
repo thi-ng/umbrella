@@ -4,17 +4,17 @@ import { compR } from "../func/compr";
 import { iterator1 } from "../iterator";
 
 /**
- * Similar to {@link filter}, but works with possibly stateful predicates
- * to achieve rate limiting capabilities. Emits only values when
- * predicate returns a truthy value.
+ * Similar to {@link (filter:1)}, but works with possibly stateful
+ * predicates to achieve rate limiting capabilities. Emits only values
+ * when predicate returns a truthy value.
  *
  * To support multiple instances of stateful predicates, the predicate
- * itself must be wrapped in a no-arg function, which is called when
- * the transducer initializes. Any stateful initialization of the
- * predicate MUST be done in this function and the function MUST
- * return a 1-arg function, the actual predicate applied to each value.
+ * itself must be wrapped in a no-arg function, which is called when the
+ * transducer initializes. Any stateful initialization of the predicate
+ * MUST be done in this function and the function MUST return a 1-arg
+ * function, the actual predicate applied to each value.
  *
- * Also see: {@link throttleTime}.
+ * Also see: {@link (throttleTime:1)}.
  *
  * @param pred -
  * @param src -

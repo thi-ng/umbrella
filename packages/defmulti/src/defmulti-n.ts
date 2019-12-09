@@ -8,13 +8,13 @@ import { defmulti } from "./defmulti";
  * the function is called.
  *
  * @remarks
- * Internally uses {@link defmulti}, so new arities can be dynamically
+ * Internally uses {@link (defmulti:1)}, so new arities can be dynamically
  * added (or removed) at a later time. If no `fallback` is provided,
  * `defmultiN` also registers a {@link DEFAULT} implementation which
  * simply throws an {@link @thi.ng/errors#IllegalArityError} when
  * invoked.
  *
- * **Note:** Unlike {@link defmulti} no argument type checking is
+ * **Note:** Unlike {@link (defmulti:1)} no argument type checking is
  * supported, however you can specify the return type for the generated
  * function.
  *

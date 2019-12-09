@@ -23,7 +23,7 @@ import { Match, Matcher } from "./api";
  * results of type `R`. The results are produced by callbacks of the
  * given state matchers. Each can produce any number of values. If a
  * callback returns a result wrapped w/
- * {@link @thi.ng/transducers#reduced}, the FSM causes early termination
+ * {@link @thi.ng/transducers!(reduce:1)d}, the FSM causes early termination
  * of the overall transducer pipeline. Failed state callbacks too can
  * produce outputs, but will afterwards terminate the FSM.
  *

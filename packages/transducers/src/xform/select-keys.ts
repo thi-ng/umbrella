@@ -8,7 +8,7 @@ import { map } from "./map";
  * only containing the given `keys`. If a key's value is `undefined` (or
  * missing entirely) it will be omitted in the result.
  *
- * Note: For single key extraction {@link pluck} is a faster alternative.
+ * Note: For single key extraction {@link (pluck:1)} is a faster alternative.
  *
  * ```
  * [...selectKeys(

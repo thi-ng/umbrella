@@ -3,13 +3,14 @@ import { iterator1 } from "../iterator";
 import { throttle } from "./throttle";
 
 /**
- * Time-based version of {@link throttle}. Ignores any new values in the
- * `delay` interval since the last accepted value.
+ * Time-based version of {@link (throttle:1)}. Ignores any new values in
+ * the `delay` interval since the last accepted value.
  *
- * **Only to be used in async contexts and NOT with {@link transduce}
- * directly.**
+ * **Only to be used in async contexts and NOT with
+ * {@link (transduce:1)} directly.**
  *
- * Also see: {@link @thi.ng/rstream# | @thi.ng/rstream} and {@link @thi.ng/csp# | @thi.ng/csp} packages.
+ * Also see: {@link @thi.ng/rstream# | @thi.ng/rstream} and
+ * {@link @thi.ng/csp# | @thi.ng/csp} packages.
  *
  * @param delay -
  */

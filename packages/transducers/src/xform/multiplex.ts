@@ -5,7 +5,7 @@ import { map } from "./map";
 
 /**
  * Yields a new transducer which applies given transducers in parallel
- * (using {@link @thi.ng/compose#juxt} & {@link step}) and produces
+ * (using {@link @thi.ng/compose!(juxt:1)} & {@link step}) and produces
  * tuples of results.
  *
  * Tip: Use {@link noop} transducer for lanes which should retain the

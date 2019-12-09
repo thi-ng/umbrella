@@ -22,8 +22,8 @@ const branchPred = <T>(
  * with left branches stored as "l" and right ones as "r". The original
  * values are stored at the lowest tree level using a customizable
  * nested reducer. By default leaves are collected in arrays (using the
- * {@link push} reducer), but any suitable reducer can be used (e.g.
- * {@link conj} to collect values into sets).
+ * {@link (push:1)} reducer), but any suitable reducer can be used (e.g.
+ * {@link (conj:1)} to collect values into sets).
  *
  * Index by lowest 4-bits of ID value:
  *
@@ -58,7 +58,7 @@ const branchPred = <T>(
  * // [ [ 6 ], [ 7 ] ]
  * ```
  *
- * Using {@link frequencies} as leaf reducer:
+ * Using {@link (frequencies:1)} as leaf reducer:
  *
  * @example
  * ```ts

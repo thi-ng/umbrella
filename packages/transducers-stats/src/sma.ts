@@ -8,7 +8,7 @@ import {
 } from "@thi.ng/transducers";
 
 /**
- * Like {@link @thi.ng/transducers#movingAverage}, but using more
+ * Like {@link @thi.ng/transducers!(movingAverage:1)}, but using more
  * efficient linked list as sliding window buffer.
  *
  * Note: the number of results will be `period-1` less than the number

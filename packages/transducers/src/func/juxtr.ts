@@ -6,7 +6,7 @@ import { isReduced, reduced, unreduced } from "../reduced";
  * multiple reductions in parallel from the same input. The returned
  * reducer produces a result tuple of reduction results, one per
  * reducer. If any of the reducers returns a {@link reduced} result, the
- * reduction process stops for all others too. {@link juxtR} produces
+ * reduction process stops for all others too. `juxtR` produces
  * optimized versions for up to 3 reducer args, but can support any
  * number of reducers.
  *

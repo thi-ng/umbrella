@@ -143,8 +143,8 @@ export interface RouterConfig {
     /**
      * Route prefix. Default: `/`. All routes to be parsed by
      * {@link BasicRouter.route} are assumed to have this prefix. All
-     * routes returned by {@link BasicRouter.format} will include this
-     * prefix.
+     * routes returned by {@link (BasicRouter.format:1)} will include
+     * this prefix.
      */
     prefix?: string;
 }
