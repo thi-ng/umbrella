@@ -10,8 +10,8 @@ import {
 /**
  * Returns vector of `[sin(theta)*n, cos(theta)*n]`.
  *
- * @param theta
- * @param n
+ * @param theta -
+ * @param n -
  */
 export const sincos = (theta: number, n = 1) => [
     Math.sin(theta) * n,
@@ -21,8 +21,8 @@ export const sincos = (theta: number, n = 1) => [
 /**
  * Returns vector of `[cos(theta)*n, sin(theta)*n]`.
  *
- * @param theta
- * @param n
+ * @param theta -
+ * @param n -
  */
 export const cossin = (theta: number, n = 1) => [
     Math.cos(theta) * n,
@@ -32,7 +32,7 @@ export const cossin = (theta: number, n = 1) => [
 /**
  * Projects `theta` into [0 .. 2π] interval.
  *
- * @param theta
+ * @param theta -
  */
 export const absTheta = (theta: number) => (
     (theta %= TAU), theta < 0 ? TAU + theta : theta
@@ -46,8 +46,8 @@ export const absInnerAngle = (theta: number) => (
  * Returns smallest absolute angle difference between `a` and `b`.
  * Result will be in [0 .. π] interval.
  *
- * @param a
- * @param b
+ * @param a -
+ * @param b -
  */
 export const angleDist = (a: number, b: number) =>
     absInnerAngle(absTheta((b % TAU) - (a % TAU)));
@@ -55,50 +55,50 @@ export const angleDist = (a: number, b: number) =>
 /**
  * Like `Math.atan2`, but always returns angle in [0 .. TAU) interval.
  *
- * @param y
- * @param x
+ * @param y -
+ * @param x -
  */
 export const atan2Abs = (y: number, x: number) => absTheta(Math.atan2(y, x));
 
 /**
  * Returns quadrant ID (0-3) of given angle (in radians).
  *
- * @param theta
+ * @param theta -
  */
 export const quadrant = (theta: number) => (absTheta(theta) * INV_HALF_PI) | 0;
 
 /**
  * Converts angle to degrees.
  *
- * @param theta angle in radians
+ * @param theta - angle in radians
  */
 export const deg = (theta: number) => theta * RAD2DEG;
 
 /**
  * Converts angle to radians.
  *
- * @param theta angle in degrees
+ * @param theta - angle in degrees
  */
 export const rad = (theta: number) => theta * DEG2RAD;
 
 /**
  * Cosecant. Approaches `±Infinity` for `theta` near multiples of π.
  *
- * @param theta angle in radians
+ * @param theta - angle in radians
  */
 export const csc = (theta: number) => 1 / Math.sin(theta);
 
 /**
  * Secant. Approaches `±Infinity` for `theta` near π/2 ± nπ
  *
- * @param theta angle in radians
+ * @param theta - angle in radians
  */
 export const sec = (theta: number) => 1 / Math.cos(theta);
 
 /**
  * Cotangent. Approaches `±Infinity` for `theta` near multiples of π.
  *
- * @param theta angle in radians
+ * @param theta - angle in radians
  */
 export const cot = (theta: number) => 1 / Math.tan(theta);
 
@@ -106,9 +106,9 @@ export const cot = (theta: number) => 1 / Math.tan(theta);
  * Law of Cosines. Takes length of two sides of a triangle and the inner
  * angle (in radians) between them. Returns length of third side.
  *
- * @param a
- * @param b
- * @param gamma
+ * @param a -
+ * @param b -
+ * @param gamma -
  */
 export const loc = (a: number, b: number, gamma: number) =>
     Math.sqrt(a * a + b * b - 2 * a * b * Math.cos(gamma));
@@ -116,7 +116,7 @@ export const loc = (a: number, b: number, gamma: number) =>
 /**
  * Approximates cos(xπ) for x in [-1,1]
  *
- * @param x
+ * @param x -
  */
 export const normCos = (x: number) => {
     const x2 = x * x;
@@ -129,12 +129,12 @@ const __fastCos = (x: number) => {
 };
 
 /**
- * Fast cosine approximation using `normCos()` (polynomial). Max. error
+ * Fast cosine approximation using {@link normCos} (polynomial). Max. error
  * ~0.00059693
  *
  * In [0 .. 2π] interval, approx. 18-20% faster than `Math.cos` on V8.
  *
- * @param theta in radians
+ * @param theta - in radians
  */
 export const fastCos = (theta: number) => {
     theta %= TAU;
@@ -152,8 +152,8 @@ export const fastCos = (theta: number) => {
 };
 
 /**
- * @see fastCos
+ * {@link fastCos}
  *
- * @param theta in radians
+ * @param theta - in radians
  */
 export const fastSin = (theta: number) => fastCos(HALF_PI - theta);

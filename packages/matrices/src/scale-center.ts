@@ -8,8 +8,8 @@ import { translation23, translation44 } from "./translation";
  * Computes a 2x3 matrix representing a scale operation with origin `p`
  * and writes result to `out`.
  *
- * @param out
- * @param m
+ * @param out -
+ * @param m -
  */
 export const scaleWithCenter23 = (
     m: Mat | null,
@@ -27,8 +27,8 @@ export const scaleWithCenter23 = (
  * Computes a 4x4 matrix representing a scale operation with origin `p`
  * and writes result to `out`.
  *
- * @param out
- * @param m
+ * @param out -
+ * @param m -
  */
 export const scaleWithCenter44 = (
     m: Mat | null,

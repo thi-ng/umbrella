@@ -3,11 +3,15 @@ import { repeat } from "./repeat";
 
 /**
  * Yields iterator of given iterable which repeats the first and/or last
- * value(s) `numLeft`/`numRight` times (default: 1). By default both
- * sides are repeated, but can be adjusted by setting either of them to
- * zero. `numRight` defaults to same value as `numLeft`.
+ * value(s) `numLeft`/`numRight` times (default: 1).
  *
- * ```
+ * @remarks
+ * By default both sides are repeated, but can be adjusted by setting
+ * either of them to zero. `numRight` defaults to same value as
+ * `numLeft`.
+ *
+ * @example
+ * ```ts
  * [...extendSides([1, 2, 3])]
  * // [ 1,  1, 2, 3,  3]
  *
@@ -18,12 +22,12 @@ import { repeat } from "./repeat";
  * // [ 1, 2, 3,  3, 3, 3 ]
  * ```
  *
- * @see padSides
- * @see wrapSides
+ * - {@link padSides}
+ * - {@link wrapSides}
  *
- * @param src
- * @param numLeft
- * @param numRight
+ * @param src -
+ * @param numLeft -
+ * @param numRight -
  */
 export function* extendSides<T>(
     src: Iterable<T>,

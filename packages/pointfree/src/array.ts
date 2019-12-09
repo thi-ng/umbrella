@@ -11,7 +11,7 @@ import { $stackFn, word } from "./word";
 /**
  * Pushes a new empty array on the d-stack. While it's easily possible to
  * use `[]` as part of a stack program, the `list` word is intended to
- * be used as part of re-usuable `word()` definitions to ensure a new
+ * be used as part of re-usuable {@link word} definitions to ensure a new
  * array is being created for every single invocation of the word (else
  * only a single instance is created due to the mutable nature of JS
  * arrays).
@@ -36,17 +36,17 @@ import { $stackFn, word } from "./word";
  *
  * ( -- [] )
  *
- * @param ctx
+ * @param ctx -
  */
 export const list = (ctx: StackContext) => (ctx[0].push([]), ctx);
 
 /**
  * Pushes new empty JS object on d-stack.
- * Same reasoning as for `list`.
+ * Same reasoning as for {@link list}.
  *
  * ( -- {} )
  *
- * @param ctx
+ * @param ctx -
  */
 export const obj = (ctx: StackContext) => (ctx[0].push({}), ctx);
 
@@ -55,7 +55,7 @@ export const obj = (ctx: StackContext) => (ctx[0].push({}), ctx);
  *
  * ( val arr -- arr )
  *
- * @param ctx
+ * @param ctx -
  */
 export const pushl = (ctx: StackContext) => {
     $(ctx[0], 2);
@@ -71,7 +71,7 @@ export const pushl = (ctx: StackContext) => {
  *
  * ( arr val -- arr )
  *
- * @param ctx
+ * @param ctx -
  */
 export const pushr = (ctx: StackContext) => {
     const stack = ctx[0];
@@ -88,7 +88,7 @@ export const pushr = (ctx: StackContext) => {
  *
  * ( arr -- arr arr[-1] )
  *
- * @param ctx
+ * @param ctx -
  */
 export const popr = (ctx: StackContext) => {
     const stack = ctx[0];
@@ -115,7 +115,7 @@ export const vdiv = op2v((b, a) => a / b);
  *
  * ( arr x -- [...] [...] )
  *
- * @param ctx
+ * @param ctx -
  */
 export const split = (ctx: StackContext) => {
     const stack = ctx[0];
@@ -132,7 +132,7 @@ export const split = (ctx: StackContext) => {
  *
  * ( arr1 arr2 -- arr )
  *
- * @param ctx
+ * @param ctx -
  */
 export const cat = (ctx: StackContext) => {
     const stack = ctx[0];
@@ -174,33 +174,36 @@ export const cat = (ctx: StackContext) => {
  * // 10
  * ```
  *
- * **Important**: `mapl` does not produce a result array. However,
+ * **Important**: {@link mapl} does not produce a result array. However,
  * there're several options to collect results as array, e.g.
  *
- * Use `mapll()` to transform:
+ * Use {@link mapll} to transform:
  *
- * ```
+ * @example
+ * ```ts
  * runU([[1, 2, 3, 4], [10, mul], mapll])
  * // [ 10, 20, 30, 40]
  * ```
  *
  * Collecting results as array is a form of reduction, so we can use
- * `list` to produce an initial new array and `pushr` to push each new
+ * {@link list} to produce an initial new array and {@link pushr} to push each new
  * interim value into the result:
  *
- * ```
+ * @example
+ * ```ts
  * runU([list, [1, 2, 3, 4], [10, mul, pushr], mapl])
  * // [ 10, 20, 30, 40 ]
  * ```
  *
  * If the array size is known & not changed by transformation:
  *
- * ```
+ * @example
+ * ```ts
  * runU([[1, 2, 3, 4], [10, mul], mapl, 4, collect])
  * // [ 10, 20, 30, 40 ]
  * ```
  *
- * @param ctx
+ * @param ctx -
  */
 export const mapl = (ctx: StackContext) => {
     $(ctx[0], 2);
@@ -216,11 +219,12 @@ export const mapl = (ctx: StackContext) => {
 };
 
 /**
- * Similar to `mapl()`, but produces new array of transformed values.
+ * Similar to {@link mapl}, but produces new array of transformed values.
  *
  * ( arr q -- arr )
  *
- * ```
+ * @example
+ * ```ts
  * runU([[1, 2, 3, 4], [10, mul], mapll])
  * // [ 10, 20, 30, 40]
  * ```
@@ -233,7 +237,7 @@ export const mapl = (ctx: StackContext) => {
  * // [ [ [ 1, 1, 3, 3 ] ], [], {} ]
  * ```
  *
- * @param ctx
+ * @param ctx -
  */
 export const mapll = (ctx: StackContext) => {
     $(ctx[0], 2);
@@ -254,7 +258,7 @@ export const mapll = (ctx: StackContext) => {
 };
 
 /**
- * Convenience wrapper for `mapl` to provide an alternative stack layout
+ * Convenience wrapper for {@link mapl} to provide an alternative stack layout
  * for reduction purposes:
  *
  * ( arr q init -- reduction )
@@ -268,7 +272,7 @@ export const foldl = word([invrot, mapl]);
  *
  * ( ... n --- ... [...] )
  *
- * @param ctx
+ * @param ctx -
  */
 export const collect = (ctx: StackContext) => {
     const stack = ctx[0];
@@ -281,13 +285,13 @@ export const collect = (ctx: StackContext) => {
 };
 
 /**
- * Higher order helper word to `collect()` tuples of pre-defined size
+ * Higher order helper word to {@link collect} tuples of pre-defined size
  * `n`. The size can be given as number or a stack function producing a
  * number.
  *
  * ( ... -- [...])
  *
- * @param n
+ * @param n -
  */
 export const tuple = (n: number | StackFn) => word([n, collect]);
 
@@ -299,7 +303,7 @@ export const vec4 = tuple(4);
  * Higher order helper word to convert a TOS tuple/array into a string
  * using `Array.join()` with given `sep`arator.
  *
- * @param sep
+ * @param sep -
  */
 export const join = (sep = "") => op1((x) => x.join(sep));
 
@@ -308,7 +312,7 @@ export const join = (sep = "") => op1((x) => x.join(sep));
  *
  * ( x -- x.length )
  *
- * @param ctx
+ * @param ctx -
  */
 export const length = op1((x) => x.length);
 
@@ -330,7 +334,7 @@ export const copy = op1((x) =>
  *
  * ( obj k -- obj[k] )
  *
- * @param ctx
+ * @param ctx -
  */
 export const at = op2((b, a) => a[b]);
 
@@ -339,7 +343,7 @@ export const at = op2((b, a) => a[b]);
  *
  * ( val obj k -- obj )
  *
- * @param ctx
+ * @param ctx -
  */
 export const setat = (ctx: StackContext) => {
     const stack = ctx[0];
@@ -359,14 +363,15 @@ export const setat = (ctx: StackContext) => {
  * on stack at the end. Throws error if there're less stack values than
  * keys in given array.
  *
- * ```
+ * @example
+ * ```ts
  * runU([1,2,3, ["a","b","c"], {}, bindkeys])
  * // { c: 3, b: 2, a: 1 }
  * ```
  *
  * (v1 v2 .. [k1 k2 ..] obj -- obj )
  *
- * @param ctx
+ * @param ctx -
  */
 export const bindkeys = (ctx: StackContext) => {
     const stack = ctx[0];

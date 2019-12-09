@@ -5,7 +5,7 @@ import { result } from "./result";
  * Returns a matcher which always succeeds (produces a `Match.FULL` result) for
  * any given input. Use `never()` for the opposite effect.
  *
- * @param callback
+ * @param callback -
  */
 export const always = <T, C, R>(
     callback?: LitCallback<T, C, R>

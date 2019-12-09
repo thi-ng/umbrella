@@ -2,16 +2,19 @@ import { equiv as _eq } from "@thi.ng/equiv";
 
 /**
  * Returns true if the last items of `buf` are the same items as in
- * `needle`. This means `buf` should have at least the same length as
- * `needle` for this to be true.
+ * `needle`.
  *
- * By default, uses thi.ng/equiv for equality checking.
+ * @remarks
+ * This means `buf` should have at least the same length as `needle` for
+ * this to be true.
  *
- * @see startsWith
+ * By default, uses {@link @thi.ng/equiv#equiv} for equality checking.
  *
- * @param buf
- * @param needle
- * @param equiv
+ * {@link startsWith}
+ *
+ * @param buf - array
+ * @param needle - search values (array)
+ * @param equiv - equivalence predicate
  */
 export const endsWith = <T>(
     buf: ArrayLike<T>,

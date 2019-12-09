@@ -6,10 +6,11 @@ import { multiplex } from "./multiplex";
 import { rename } from "./rename";
 
 /**
- * Transducer. Similar to (and building on) `multiplex()`, but takes an
+ * Transducer. Similar to (and building on) {@link (multiplex:1)}, but takes an
  * object of transducers and produces a result object for each input.
  *
- * ```
+ * @example
+ * ```ts
  * [...multiplexObj(
  *   {
  *     initial: map(x => x.charAt(0)),
@@ -24,9 +25,9 @@ import { rename } from "./rename";
  * //   { length: 4, upper: 'ANDY', initial: 'A' } ]
  * ```
  *
- * @param xforms object of transducers
- * @param rfn
- * @param src
+ * @param xforms - object of transducers
+ * @param rfn -
+ * @param src -
  */
 export function multiplexObj<A, B>(
     xforms: IObjectOf<Transducer<A, any>>,

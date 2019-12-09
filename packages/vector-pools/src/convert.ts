@@ -6,15 +6,16 @@ import {
 } from "@thi.ng/api";
 
 /**
- * Returns canonical `Type` value of `type` by first attempting to
- * resolve it as `GLType` enum.
+ * Returns canonical {@link @thi.ng/api#Type} value of `type` by first
+ * attempting to resolve it as {@link @thi.ng/api#GLType} enum.
  *
- * ```
+ * @example
+ * ```ts
  * nativeType(GLType.F32) => Type.F32
  * nativeType(Type.F32) => Type.F32
  * ```
  *
- * @param type
+ * @param type -
  */
 export const asNativeType = (type: GLType | Type): Type => {
     const t = (<any>GL2TYPE)[type];

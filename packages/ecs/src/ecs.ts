@@ -133,12 +133,15 @@ export class ECS<SPEC> implements INotify {
         return filter((g) => g.has(id), this.groups.values());
     }
 
+    /** {@inheritDoc @thi.ng/api#INotify.addListener} */
     // @ts-ignore: mixin
     addListener(id: string, fn: Listener, scope?: any): boolean {}
 
+    /** {@inheritDoc @thi.ng/api#INotify.removeListener} */
     // @ts-ignore: mixin
     removeListener(id: string, fn: Listener, scope?: any): boolean {}
 
+    /** {@inheritDoc @thi.ng/api#INotify.notify} */
     // @ts-ignore: mixin
     notify(event: Event) {}
 }

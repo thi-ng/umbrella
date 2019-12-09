@@ -41,9 +41,7 @@ export class BasicRouter implements INotify {
             const route = this.routeForID(config.initialRouteID);
             assert(
                 route !== undefined,
-                `missing config for initial route: ${
-                    this.config.initialRouteID
-                }`
+                `missing config for initial route: ${this.config.initialRouteID}`
             );
             assert(
                 !isParametricRoute(route!),
@@ -52,14 +50,17 @@ export class BasicRouter implements INotify {
         }
     }
 
-    // mixin
-    addListener(_: string, __: Listener, ___?: any) {
-        return false;
-    }
-    removeListener(_: string, __: Listener, ___?: any) {
-        return false;
-    }
-    notify(_: Event) {}
+    /** {@inheritDoc @thi.ng/api#INotify.addListener} */
+    // @ts-ignore: arguments
+    addListener(id: string, fn: Listener, scope?: any): boolean {}
+
+    /** {@inheritDoc @thi.ng/api#INotify.removeListener} */
+    // @ts-ignore: arguments
+    removeListener(id: string, fn: Listener, scope?: any): boolean {}
+
+    /** {@inheritDoc @thi.ng/api#INotify.notify} */
+    // @ts-ignore: arguments
+    notify(event: Event) {}
 
     start() {
         if (this.config.initialRouteID) {
@@ -75,7 +76,7 @@ export class BasicRouter implements INotify {
      * to default route. Before returning, triggers event with
      * return value as well.
      *
-     * @param raw route path to match
+     * @param raw - route path to match
      */
     route(src: string): RouteMatch | undefined {
         if (src.charAt(0) === "#") {
@@ -108,12 +109,12 @@ export class BasicRouter implements INotify {
     }
 
     /**
-     * Returns a formatted version of given `RouteMatch`, incl. any params.
+     * Returns a formatted version of given {@link RouteMatch}, incl. any params.
      * Throw an error if an invalid route `id` is provided.
      *
-     * @param match
-     * @param params
-     * @param hash if true, prepends `#` to results
+     * @param match -
+     * @param params -
+     * @param hash - if true, prepends `#` to results
      */
     format(id: string, params?: any, hash?: boolean): string;
     format(match: Partial<RouteMatch>, hash?: boolean): string;

@@ -13,6 +13,7 @@ import { rect } from "./draw/rect";
 import { text } from "./draw/text";
 import { mergeState, registerGradient, restoreState } from "./state";
 
+/** @internal */
 export const walk = (
     ctx: CanvasRenderingContext2D,
     shape: any[],

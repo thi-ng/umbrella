@@ -4,10 +4,11 @@ import { empty } from "./utils";
 
 /**
  * Takes an iterable of plain objects and array of indexing keys. Calls
- * `selectKeysObj` on each value and uses returned objects as new keys
- * to group original values. Returns a new `EquivMap` of sets.
+ * {@link selectKeysObj} on each value and uses returned objects as new keys
+ * to group original values. Returns a new {@link EquivMap} of sets.
  *
- * ```
+ * @example
+ * ```ts
  * indexed(
  *   new Set([{a: 1, b: 1}, {a: 1, b: 2}, {a: 1, b: 1, c: 2}]),
  *   ["a","b"]
@@ -17,8 +18,8 @@ import { empty } from "./utils";
  * //   { a: 1, b: 2 } => Set { { a: 1, b: 2 } } }
  * ```
  *
- * @param records objects to index
- * @param ks keys used for indexing
+ * @param records - objects to index
+ * @param ks - keys used for indexing
  */
 export const indexed = <T>(records: Iterable<T>, ks: (keyof T)[]) => {
     const res = new EquivMap<{ [id in keyof T]?: T[id] }, Set<T>>();

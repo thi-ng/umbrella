@@ -18,11 +18,11 @@ import {
  * Inline function. Computes single blur step for given +/- offset &
  * weight.
  *
- * @param col
- * @param tex
- * @param uv
- * @param off
- * @param k
+ * @param col -
+ * @param tex -
+ * @param uv -
+ * @param off -
+ * @param k -
  */
 const singlePass = (
     col: Vec4Sym,
@@ -42,13 +42,13 @@ const singlePass = (
 /**
  * 5x5 gaussian blur texture lookup, optimized, but based on:
  *
- * - http://rastergrid.com/blog/2010/09/efficient-gaussian-blur-with-linear-sampling/
- * - https://github.com/Jam3/glsl-fast-gaussian-blur
+ * - {@link http://rastergrid.com/blog/2010/09/efficient-gaussian-blur-with-linear-sampling/}
+ * - {@link https://github.com/Jam3/glsl-fast-gaussian-blur}
  *
- * @param tex sampler2D
- * @param res resolution
- * @param uv
- * @param dir blur pass direction (`vec2(1,0)` or `vec2(0,1)`)
+ * @param tex - sampler2D
+ * @param res - resolution
+ * @param uv -
+ * @param dir - blur pass direction (`vec2(1,0)` or `vec2(0,1)`)
  */
 export const blur5 = defn(
     "vec4",
@@ -71,13 +71,13 @@ export const blur5 = defn(
 /**
  * 9x9 gaussian blur texture lookup, optimized, but based on:
  *
- * - http://rastergrid.com/blog/2010/09/efficient-gaussian-blur-with-linear-sampling/
- * - https://github.com/Jam3/glsl-fast-gaussian-blur
+ * - {@link http://rastergrid.com/blog/2010/09/efficient-gaussian-blur-with-linear-sampling/}
+ * - {@link https://github.com/Jam3/glsl-fast-gaussian-blur}
  *
- * @param tex sampler2D
- * @param res resolution
- * @param uv
- * @param dir blur pass direction (`vec2(1,0)` or `vec2(0,1)`)
+ * @param tex - sampler2D
+ * @param res - resolution
+ * @param uv -
+ * @param dir - blur pass direction (`vec2(1,0)` or `vec2(0,1)`)
  */
 export const blur9 = defn(
     "vec4",
@@ -103,13 +103,13 @@ export const blur9 = defn(
 /**
  * 13x13 gaussian blur texture lookup, optimized, but based on:
  *
- * - http://rastergrid.com/blog/2010/09/efficient-gaussian-blur-with-linear-sampling/
- * - https://github.com/Jam3/glsl-fast-gaussian-blur
+ * - {@link http://rastergrid.com/blog/2010/09/efficient-gaussian-blur-with-linear-sampling/}
+ * - {@link https://github.com/Jam3/glsl-fast-gaussian-blur}
  *
- * @param tex sampler2D
- * @param res resolution
- * @param uv
- * @param dir blur pass direction (`vec2(1,0)` or `vec2(0,1)`)
+ * @param tex - sampler2D
+ * @param res - resolution
+ * @param uv -
+ * @param dir - blur pass direction (`vec2(1,0)` or `vec2(0,1)`)
  */
 export const blur13 = defn(
     "vec4",

@@ -4,9 +4,9 @@ import { clamp01, clamp11 } from "./interval";
  * Returns normalized value of `x` WRT to interval `a .. b`. If `a`
  * equals `b`, returns 0.
  *
- * @param x
- * @param a
- * @param b
+ * @param x -
+ * @param a -
+ * @param b -
  */
 export const norm = (x: number, a: number, b: number) =>
     b !== a ? (x - a) / (b - a) : 0;

@@ -2,24 +2,28 @@ import { Fn } from "@thi.ng/api";
 
 /**
  * Returns optimized function to immutably select, repeat, reshape and /
- * or reorder array / object values in the specified index order. Fast
- * paths for up to 8 indices are provided, before a loop based approach
- * is used.
+ * or reorder array / object values in the specified index order.
  *
- * ```
+ * @remarks
+ * Fast paths for up to 8 indices are provided, before a loop based
+ * approach is used.
+ *
+ * @example
+ * ```ts
  * swizzle([0, 0, 0])([1, 2, 3, 4])    // [ 1, 1, 1 ]
  * swizzle([1, 1, 3, 3])([1, 2, 3, 4]) // [ 2, 2, 4, 4 ]
  * swizzle([2, 0])([1, 2, 3])          // [ 3, 1 ]
  * ```
  *
+ * @example
  * Objects can be used as input to the generated function, but the
  * result will always be in array form.
- *
- * ```
+
+ * ```ts
  * swizzle(["a", "c", "b"])({a: 1, b: 2, c: 3}) // [ 1, 3, 2 ]
  * ```
  *
- * @param order indices
+ * @param order - indices
  */
 export const swizzle = <T>(order: string | PropertyKey[]): Fn<T, any[]> => {
     const [a, b, c, d, e, f, g, h] = order;

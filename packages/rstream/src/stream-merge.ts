@@ -49,6 +49,7 @@ export interface StreamMergeOpts<A, B> extends TransformableOpts<A, B> {
  * Use the {@link @thi.ng/transducers#labeled} transducer for each
  * input to create a stream of labeled values and track their provenance:
  *
+ * @example
  * ```ts
  * merge({
  *     src: [

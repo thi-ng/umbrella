@@ -8,13 +8,14 @@ import { isReduced } from "../reduced";
  * values until the return value of the `fn` has changed. Once this
  * happens yields chunk of buffered values.
  *
- * ```
+ * @example
+ * ```ts
  * [...partitionBy((x) => x & 1, [1, 2, 4, 6, 3, 5, 8, 4])]
  * // [ [ 1 ], [ 2, 4, 6 ], [ 3, 5 ], [ 8, 4 ] ]
  * ```
  *
- * @param fn
- * @param stateful
+ * @param fn -
+ * @param stateful -
  */
 export function partitionBy<T>(
     fn: Fn<T, any> | (() => Fn<T, any>),

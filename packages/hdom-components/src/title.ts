@@ -21,7 +21,8 @@ export interface TitleOpts {
  * Configurable Higher order title with optional subtitle component. The
  * returned component function takes two args: title, subtitle.
  *
- * ```
+ * @example
+ * ```ts
  * const h1 = title();
  * const h2 = title({ element: "h2", attribs: { class: "blue" }});
  *
@@ -30,7 +31,7 @@ export interface TitleOpts {
  * [h2, "Chapter 1", "Once upon a time..."]
  * ```
  *
- * @param opts
+ * @param opts -
  */
 export const title = (_opts?: Partial<TitleOpts>) => {
     const opts = {

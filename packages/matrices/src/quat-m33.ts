@@ -4,8 +4,8 @@ import { Mat } from "./api";
 /**
  * Converts quaternion into 3x3 matrix and writes result to `out`.
  *
- * @param out
- * @param q
+ * @param out -
+ * @param q -
  */
 export const quatToMat33 = (out: Mat | null, q: ReadonlyVec) => {
     const [x, y, z, w] = q;

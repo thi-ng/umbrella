@@ -3,12 +3,12 @@ let NEXT_ID = 0;
 /**
  * Helper function to set / reset edge ID counter.
  *
- * @param id
+ * @param id -
  */
 export const setNextID = (id: number) => (NEXT_ID = (id + 3) & -4);
 
 /**
- * Type alias for a 4-tuple of `Edge` instances.
+ * Type alias for a 4-tuple of {@link Edge} instances.
  */
 export type QuadEdge<T> = [Edge<T>, Edge<T>, Edge<T>, Edge<T>];
 
@@ -18,20 +18,20 @@ export type QuadEdge<T> = [Edge<T>, Edge<T>, Edge<T>, Edge<T>];
  *
  * References:
  *
- * - http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/quadedge.html
- * - http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/lischinski/114.ps
+ * - {@link http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/quadedge.html}
+ * - {@link http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/lischinski/114.ps}
  */
 export class Edge<T> {
     /**
      * Main edge / quadedge factory function. Use this in preference of
-     * direct invocation of the `Edge` constructor.
+     * direct invocation of the {@link Edge} constructor.
      *
-     * Creates new `QuadEdge` with 4 child edges and returns the first
+     * Creates new {@link QuadEdge} with 4 child edges and returns the first
      * child/primary edge. If `src` and `dest` are not `null`ish, the
      * given args will be associated with that new edge as end points.
      *
-     * @param src
-     * @param dest
+     * @param src -
+     * @param dest -
      */
     static create<T>(src?: T, dest?: T) {
         const quad = <QuadEdge<T>>new Array(4);
@@ -149,8 +149,8 @@ export class Edge<T> {
      * Sets the origin & dest vertices of this edge (in other words, the
      * origins of this edge and `this.sym`).
      *
-     * @param o
-     * @param d
+     * @param o -
+     * @param d -
      */
     setEnds(o: T, d: T) {
         this.origin = o;
@@ -186,11 +186,11 @@ export class Edge<T> {
      * as well as, independently, the edge rings of both edges' left
      * dual vertex. In each case, if the rings are separate, this
      * operator will join them and if both rings are the same ring, they
-     * will be split / separated. Therefore, `splice()` is it's own
-     * reverse operator and the only operator needed to edit quad edge
+     * will be split / separated. Therefore, splice` is it's own reverse
+     * operator and the only operator needed to edit quad edge
      * topologies.
      *
-     * @param e
+     * @param e -
      */
     splice(e: Edge<T>): Edge<T> {
         const alpha = this.onext.rot;

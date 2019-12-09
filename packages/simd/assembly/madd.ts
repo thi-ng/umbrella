@@ -6,15 +6,15 @@
  * All strides must by multiples of 4. All pointers must be aligned to
  * multiples of 16. Returns `out` pointer.
  *
- * @param out
- * @param a
- * @param b
- * @param c
- * @param num number of vec4
- * @param so out element stride
- * @param sa A element stride
- * @param sb B element stride
- * @param sc C element stride
+ * @param out -
+ * @param a -
+ * @param b -
+ * @param c -
+ * @param num - number of vec4
+ * @param so - out element stride
+ * @param sa - A element stride
+ * @param sb - B element stride
+ * @param sc - C element stride
  */
 export function madd4_f32(
     out: usize,

@@ -13,13 +13,17 @@ export interface TLRUCacheEntry<K, V> extends CacheEntry<K, V> {
 
 /**
  * Time-aware LRU cache. Extends LRU strategy with TTL (time-to-live)
- * values associated to each entry. `has()` will only return true and
- * `get()` only returns a cached value if its TTL hasn't yet expired.
- * When adding a new value to the cache, first removes expired entries
- * and if still not sufficient space then removes entries in LRU order.
- * `set()` takes an optional entry specific `ttl` arg. If not given,
- * uses the cache instance's default (provided via ctor option arg).
- * If no instance TTL is given, TTL defaults to 1 hour.
+ * values associated to each entry.
+ *
+ * @remarks
+ * {@link ICache.has} will only return true and {@link ICache.get} only
+ * returns a cached value if its TTL hasn't yet expired. When adding a
+ * new value to the cache, first removes expired entries and if still
+ * not sufficient space then removes entries in LRU order.
+ *
+ * {@link ICache.set} takes an optional entry specific `ttl` arg. If not
+ * given, uses the cache instance's default (provided via ctor option
+ * arg). If no instance TTL is given, TTL defaults to 1 hour.
  */
 export class TLRUCache<K, V> extends LRUCache<K, V> {
     protected opts!: TLRUCacheOpts<K, V>;

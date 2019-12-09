@@ -21,7 +21,8 @@ import {
  * `a` -> `b`, relative to `a`. I.e. the projection of `p` can then be
  * computed like so:
  *
- * ```
+ * @example
+ * ```ts
  * mixN([], a, b, closestT(p, a, b))
  * ```
  *
@@ -29,12 +30,12 @@ import {
  * projected point lies outside the line segment. Returns `undefined` if
  * `a` and `b` are coincident.
  *
- * @see closestPointLine
- * @see closestPointSegment
+ * - {@link closestPointLine}
+ * - {@link closestPointSegment}
  *
- * @param p
- * @param a
- * @param b
+ * @param p - query point
+ * @param a - line point A
+ * @param b - line point B
  */
 export const closestT = (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) => {
     const d = sub([], b, a);
@@ -44,14 +45,14 @@ export const closestT = (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) => {
 
 /**
  * Returns closest point to `p` on infinite line defined by points `a`
- * and `b`. Use `closestPointSegment` to only consider the actual line
+ * and `b`. Use {@link closestPointSegment} to only consider the actual line
  * segment between these two points.
  *
- * @see closestPointSegment
+ * {@link closestPointSegment}
  *
- * @param p
- * @param a
- * @param b
+ * @param p - query point
+ * @param a - line point A
+ * @param b - line point B
  */
 export const closestPointLine = (
     p: ReadonlyVec,
@@ -61,14 +62,14 @@ export const closestPointLine = (
 
 /**
  * Returns distance from `p` to closest point to infinite line `a` ->
- * `b`. Use `distToSegment` to only consider the actual line segment
+ * `b`. Use {@link distToSegment} to only consider the actual line segment
  * between these two points.
  *
- * @see distToSegment
+ * {@link distToSegment}
  *
- * @param p
- * @param a
- * @param b
+ * @param p - query point
+ * @param a - line point A
+ * @param b - line point B
  */
 export const distToLine = (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) =>
     dist(p, closestPointLine(p, a, b) || a);
@@ -82,7 +83,7 @@ export const distToLine = (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) =>
  * If `insideOnly` is true, only returns the closest point iff it
  * actually is inside the segment. The behavior of this configurable via
  * the optional `eps` arg and by default includes both end points. This
- * function uses `closestT` to compute the parametric position of the
+ * function uses {@link closestT} to compute the parametric position of the
  * result point and determine if it lies within the line segment. If
  * `eps > 0`, the end points `a` and `b` will be excluded from the
  * match, effectively shortening the valid line segment from both ends,
@@ -90,11 +91,11 @@ export const distToLine = (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) =>
  * [eps,1-eps]. If the result lies outside this interval, the function
  * returns `undefined`. Likewise, if `a` and `b` are coincident.
  *
- * @param p
- * @param a
- * @param b
- * @param out
- * @param eps
+ * @param p - query point
+ * @param a - line point A
+ * @param b - line point B
+ * @param out - result
+ * @param eps - epsilon value
  */
 export const closestPointSegment = (
     p: ReadonlyVec,
@@ -115,9 +116,9 @@ export const closestPointSegment = (
  * Returns distance from `p` to closest point on line segment `a` ->
  * `b`.
  *
- * @param p
- * @param a
- * @param b
+ * @param p - query point
+ * @param a - line point A
+ * @param b - line point B
  */
 export const distToSegment = (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) =>
     dist(p, closestPointSegment(p, a, b) || a);
@@ -159,11 +160,11 @@ export const closestPointPolyline = (
  * line segment `a` to `b`. `points` is only checked between indices
  * `from` and `to` (not including the latter).
  *
- * @param a
- * @param b
- * @param points
- * @param from
- * @param to
+ * @param a - line point A
+ * @param b - line point B
+ * @param points - points
+ * @param from - start search index
+ * @param to - end search index
  */
 export const farthestPointSegment = (
     a: ReadonlyVec,

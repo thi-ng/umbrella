@@ -34,14 +34,18 @@ export interface StreamSyncOpts<A, B>
     mergeOnly: boolean;
     /**
      * If true, StreamSync waits for new values from *all* inputs before
-     * a new tuple is produced. If false (default), that synchronization
+     * a new tuple is produced. If false, that synchronization
      * only happens for the very first tuple.
+     *
+     * @defaultValue false
      */
     reset: boolean;
     /**
      * By default, the last emitted tuple is allowed to be incomplete
      * (in case all inputs closed). To only allow complete tuples, set
      * the `all` to false.
+     *
+     * @defaultValue true
      */
     all: boolean;
     /**
@@ -91,9 +95,9 @@ export interface StreamSyncOpts<A, B>
  * to be incomplete, by default. To only allow complete tuples, also set
  * the `all` option to `false`.
  *
- * The synchronization is done via the `partitionSync()` transducer from
- * the @thi.ng/transducers package. See this function's docs for further
- * details.
+ * The synchronization is done via the {@link @thi.ng/transducers#partitionSync}
+ * transducer fro the {@link @thi.ng/transducers# | @thi.ng/transducers} package. See this function's
+ * docs for further details.
  *
  * @example
  * ```ts
@@ -107,7 +111,7 @@ export interface StreamSyncOpts<A, B>
  *
  * @see StreamSyncOpts
  *
- * @param opts
+ * @param opts -
  */
 export const sync = <A, B>(opts: Partial<StreamSyncOpts<A, B>>) =>
     new StreamSync(opts);

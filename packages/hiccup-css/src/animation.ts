@@ -22,7 +22,8 @@ export interface AnimationOpts {
  * same name to configure given animation `opts`. Only the `duration`
  * option is given a default value (250ms), all others are optional.
  *
- * ```
+ * @example
+ * ```ts
  * css(
  *   animation(
  *     "fadein",
@@ -50,9 +51,9 @@ export interface AnimationOpts {
  * }
  * ```
  *
- * @param id
- * @param opts
- * @param keyframes
+ * @param id - animation name
+ * @param opts - animation config options
+ * @param keyframes - keyframes
  */
 export const animation = (
     id: string,

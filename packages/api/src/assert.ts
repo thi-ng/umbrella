@@ -2,9 +2,11 @@ import { Fn0, NO_OP } from "./api/fn";
 
 /**
  * Takes a `test` result or predicate function without args and throws
- * error with given `msg` if test failed (i.e. is falsy). The function
- * is only enabled if `process.env.NODE_ENV != "production"` or if the
- * `UMBRELLA_ASSERTS` env var is set to 1.
+ * error with given `msg` if test failed (i.e. is falsy).
+ *
+ * @remarks
+ * The function is only enabled if `process.env.NODE_ENV != "production"`
+ * or if the `UMBRELLA_ASSERTS` env var is set to 1.
  */
 export const assert =
     process?.env?.NODE_ENV !== "production" ||

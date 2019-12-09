@@ -7,9 +7,9 @@ export class CSC extends ASparseMatrix {
     /**
      * Constructs CSC from dense column-major matrix values.
      *
-     * @param m rows
-     * @param n columns
-     * @param dense matrix values
+     * @param m - rows
+     * @param n - columns
+     * @param dense - matrix values
      */
     static fromDense(m: number, n: number, dense: ArrayLike<number>) {
         const [cols, rows, data] = compress(m, n, dense);

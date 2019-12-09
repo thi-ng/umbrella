@@ -1,9 +1,15 @@
 import { Fn, IID, IObjectOf } from "@thi.ng/api";
 
 /**
+ * ID of event being triggered by `router.match()`
+ */
+export const EVENT_ROUTE_CHANGED = "route-changed";
+export const EVENT_ROUTE_FAILED = "route-failed";
+
+/**
  * A validation function to for authenticated routes. If this function
  * determines that the user is not allowed to access this route, it
- * should return nothing or a `RouteMatch` object for redirecting (e.g.
+ * should return nothing or a {@link RouteMatch} object for redirecting (e.g.
  * to a login, home page or other non-protected route). If nothing is
  * returned and no other routes can be matched, the router will
  * eventually return the configure default fallback route.
@@ -78,7 +84,7 @@ export interface Route extends IID<string> {
     auth?: boolean;
 
     /**
-     * Optional route title (passed to `RouteMatch`)
+     * Optional route title (passed to {@link RouteMatch})
      */
     title?: string;
 
@@ -90,7 +96,7 @@ export interface Route extends IID<string> {
 
 /**
  * Result object returned by a routing operation and event value for
- * `EVENT_ROUTE_CHANGE`. Contains the matched route ID and any route
+ * {@link EVENT_ROUTE_CHANGED}. Contains the matched route ID and any route
  * params.
  */
 export interface RouteMatch extends IID<string> {
@@ -103,7 +109,8 @@ export interface RouteMatch extends IID<string> {
 }
 
 /**
- * Configuration object for `Router` instances.
+ * Configuration object for {@link BasicRouter} and {@link HTMLRouter}
+ * instances.
  */
 export interface RouterConfig {
     /**
@@ -123,7 +130,7 @@ export interface RouterConfig {
      */
     initialRouteID?: string;
     /**
-     * Optional route authentication function. See `RouteAuthenticator`
+     * Optional route authentication function. See {@link RouteAuthenticator}
      * for further details. If no authenticator is given, all matched
      * routes will always succeed, regardless if a rule's `auth` flag is
      * enabled or not.
@@ -134,9 +141,10 @@ export interface RouterConfig {
      */
     separator?: string;
     /**
-     * Route prefix. Default: `/`. All routes to be parsed by `route()`
-     * are assumed to have this prefix. All routes returned by
-     * `format()` will include this prefix.
+     * Route prefix. Default: `/`. All routes to be parsed by
+     * {@link BasicRouter.route} are assumed to have this prefix. All
+     * routes returned by {@link (BasicRouter.format:1)} will include
+     * this prefix.
      */
     prefix?: string;
 }
@@ -148,9 +156,3 @@ export interface HTMLRouterConfig extends RouterConfig {
      */
     useFragment?: boolean;
 }
-
-/**
- * ID of event being triggered by `router.match()`
- */
-export const EVENT_ROUTE_CHANGED = "route-changed";
-export const EVENT_ROUTE_FAILED = "route-failed";

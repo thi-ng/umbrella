@@ -6,7 +6,9 @@ import { isNumber, isPlainObject } from "@thi.ng/checks";
  * and if so, removes it from array and returns it. Else returns
  * `undefined`.
  *
- * @param args
+ * @param args -
+ *
+ * @internal
  */
 export const argAttribs = (args: any[]) =>
     isPlainObject(peek(args)) ? args.pop() : undefined;
@@ -15,7 +17,9 @@ export const argAttribs = (args: any[]) =>
  * Args parser for functions expecting up to 2 vector args and optional
  * attribs object. Returns 3-tuple of re-structured args.
  *
- * @param args
+ * @param args -
+ *
+ * @internal
  */
 export const argsVV = (args: any[]) => {
     const attr = argAttribs(args);
@@ -30,7 +34,9 @@ export const argsVV = (args: any[]) => {
  * Args parser for functions expecting a vector, numeric and/or optional
  * attribs object. Returns 3-tuple of re-structured args.
  *
- * @param args
+ * @param args -
+ *
+ * @internal
  */
 export const argsVN = (args: any[]) => {
     const attr = argAttribs(args);

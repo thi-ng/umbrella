@@ -49,7 +49,8 @@ export type SOASpecs<K extends string> = Record<K, Partial<SOAAttribSpec>>;
 
 /**
  * Mapped type for index lookups. Declares an object with all keys from
- * given `AttribSpecs` and each value a `Vec`.
+ * given {@link SOAAttribSpec} and each value a
+ * {@link @thi.ng/vectors#Vec}.
  */
 export type SOATuple<K extends string, V> = Record<K, V>;
 

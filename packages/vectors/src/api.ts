@@ -57,22 +57,22 @@ export interface MultiVecOp<VOP> {
     /**
      * Adds / overwrites implementation for given vector size.
      *
-     * @param dim
-     * @param op
+     * @param dim -
+     * @param op -
      */
     add(dim: number, op: VOP): VOP;
     /**
      * Adds / overwrites default implementation (SHOULD support
      * arbitrary vector sizes).
      *
-     * @param op
+     * @param op -
      */
     default(op: VOP): VOP;
     /**
      * Returns implementation for given vector size or default
      * implementation.
      *
-     * @param dim
+     * @param dim -
      */
     impl(dim: number): VOP;
 }

@@ -16,8 +16,8 @@ import {
  * **Important:** If the given args cannot be stringified, the user
  * function will ALWAYS be called (without caching result).
  *
- * @param fn
- * @param cache
+ * @param fn -
+ * @param cache -
  */
 export function memoizeJ<A, B>(fn: Fn1<A, B>, cache?: IObjectOf<B>): Fn1<A, B>;
 export function memoizeJ<A, B, C>(

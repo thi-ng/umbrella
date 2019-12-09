@@ -13,11 +13,11 @@ import {
  * used to switch to linear interpolation if the angular difference is
  * very small.
  *
- * @param out
- * @param a
- * @param b
- * @param t
- * @param eps
+ * @param out -
+ * @param a -
+ * @param b -
+ * @param t -
+ * @param eps -
  */
 export const mixQ = (
     out: Vec | null,

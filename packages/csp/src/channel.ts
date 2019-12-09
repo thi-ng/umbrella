@@ -65,7 +65,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
     /**
      * Constructs new channel which closes automatically after given period.
      *
-     * @param delay time in ms
+     * @param delay - time in ms
      */
     static timeout(delay: number): Channel<any> {
         const chan = new Channel(`timeout-${Channel.NEXT_ID++}`);
@@ -76,7 +76,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
     /**
      * Shorthand for: `Channel.timeout(delay).take()`
      *
-     * @param delay time in ms
+     * @param delay - time in ms
      */
     static sleep(delay: number) {
         return Channel.timeout(delay).read();
@@ -86,7 +86,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
      * Creates new channel with single value from given promise, then closes
      * automatically iff promise has been resolved.
      *
-     * @param p
+     * @param p - promise
      */
     static fromPromise<T>(p: Promise<T>) {
         const chan = new Channel<T>();
@@ -138,7 +138,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
      * an array of `[value, channel]`. Channel order is repeatedly
      * shuffled for each read attempt.
      *
-     * @param chans
+     * @param chans - source channels
      */
     static select(chans: Channel<any>[]) {
         return new Promise<any>((resolve) => {
@@ -158,15 +158,18 @@ export class Channel<T> implements IReadWriteableChannel<T> {
     /**
      * Takes an array of channels to merge into new channel. Any closed
      * channels will be automatically removed from the input selection.
-     * Once all inputs are closed, the target channel will close too (by default).
+     * Once all inputs are closed, the target channel will close too (by
+     * default).
      *
-     * If `named` is true, the merged channel will have tuples of: `[src-id, val]`
-     * If false (default), only received values will be forwarded.
+     * @remarks
+     * If `named` is true, the merged channel will have tuples of:
+     * `[src-id, val]` If false (default), only received values will be
+     * forwarded.
      *
-     * @param chans
-     * @param out
-     * @param close
-     * @param named
+     * @param chans - source channels
+     * @param out - result channel
+     * @param close - true, if result closes
+     * @param named - true, to emit labeled tuples
      */
     static merge(
         chans: Channel<any>[],
@@ -195,16 +198,19 @@ export class Channel<T> implements IReadWriteableChannel<T> {
     /**
      * Takes an array of channels to merge into new channel of tuples.
      * Whereas `Channel.merge()` realizes a sequential merging with no
-     * guarantees about ordering of the output, the output channel of
-     * this function will collect values from all channels and a new
-     * tuple is emitted only once a new value has been read from ALL
-     * channels. Therefore the overall throughput is dictated by the
-     * slowest of the inputs.
+     * guarantees about ordering of the output.
      *
-     * Once any of the inputs closes, the process is terminated and
-     * the output channel is closed too (by default).
+     * @remarks
+     * The output channel of this function will collect values from all
+     * channels and a new tuple is emitted only once a new value has
+     * been read from ALL channels. Therefore the overall throughput is
+     * dictated by the slowest of the inputs.
      *
-     * ```
+     * Once any of the inputs closes, the process is terminated and the
+     * output channel is closed too (by default).
+     *
+     * @example
+     * ```ts
      * Channel.mergeTuples([
      *   Channel.from([1, 2, 3]),
      *   Channel.from([10, 20, 30]),
@@ -223,10 +229,10 @@ export class Channel<T> implements IReadWriteableChannel<T> {
      * ], null, false).consume();
      * ```
      *
-     * @param chans
-     * @param out
-     * @param closeOnFirst
-     * @param closeOutput
+     * @param chans - source channels
+     * @param out - result channel
+     * @param closeOnFirst - true, if result closes when first input is done
+     * @param closeOutput - true, if result closes when all inputs are done
      */
     static mergeTuples(
         chans: Channel<any>[],
@@ -422,7 +428,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
 
     isReadable() {
         return (
-            (this.state !== State.DONE && (this.buf && this.buf.length > 0)) ||
+            (this.state !== State.DONE && this.buf && this.buf.length > 0) ||
             (this.writes && this.writes.length > 0) ||
             (this.txbuf && this.txbuf.length > 0)
         );

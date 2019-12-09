@@ -7,10 +7,10 @@ import { mat33to44 } from "./m33-m44";
  * `axis` and writes result to `out`. If `normalize` is true (default
  * false), non-destructively first normalizes axis vector.
  *
- * @param out
- * @param axis
- * @param theta
- * @param normalize
+ * @param out -
+ * @param axis -
+ * @param theta -
+ * @param normalize -
  */
 export const rotationAroundAxis33 = (
     out: Mat | null,
@@ -41,10 +41,10 @@ export const rotationAroundAxis33 = (
  * `axis` and writes result to `out`. If `normalize` is true (default
  * false), non-destructively first normalizes axis vector.
  *
- * @param out
- * @param axis
- * @param theta
- * @param normalize
+ * @param out -
+ * @param axis -
+ * @param theta -
+ * @param normalize -
  */
 export const rotationAroundAxis44 = (
     out: Mat | null,

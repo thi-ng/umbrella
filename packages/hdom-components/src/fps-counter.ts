@@ -29,7 +29,7 @@ export interface FpsCounterOpts {
  * Customizable FPS counter with sparkline visualization of N previous
  * frames.
  *
- * @param opts
+ * @param opts -
  */
 export const fpsCounter = (_opts?: Partial<FpsCounterOpts>) => {
     const opts = {

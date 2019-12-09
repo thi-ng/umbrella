@@ -5,8 +5,8 @@ import { MATH2 } from "./internal/templates";
 /**
  * Returns `out = (a + b) * c`.
  *
- * @see madd
- * @see subm
+ * - {@link madd}
+ * - {@link subm}
  */
 export const [addm, addm2, addm3, addm4] = defOp<MultiVecOpVVV, VecOpVVV>(
     MATH2("+", "*"),

@@ -18,7 +18,7 @@ export class BitField {
      * Resizes bitfield to new size given (rounded up to multiples of
      * 32).
      *
-     * @param n
+     * @param n - new size
      */
     resize(n: number) {
         n = align(n, 32);
@@ -33,7 +33,7 @@ export class BitField {
      * Returns a non-zero value if bit `n` is enabled. No bounds
      * checking.
      *
-     * @param n
+     * @param n - bit number
      */
     at(n: number) {
         return this.data[n >>> 5] & (0x80000000 >>> (n & 31));
@@ -43,8 +43,8 @@ export class BitField {
      * Enables or disables bit `n`. Returns a non-zero value if the bit
      * was previously enabled. No bounds checking.
      * .
-     * @param n
-     * @param v
+     * @param n - bit number
+     * @param v - new bit value
      */
     setAt(n: number, v = true) {
         const id = n >>> 5;

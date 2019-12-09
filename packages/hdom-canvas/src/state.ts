@@ -57,6 +57,7 @@ const newState = (state: DrawState, restore = false) => ({
     restore
 });
 
+/** @internal */
 export const mergeState = (
     ctx: CanvasRenderingContext2D,
     state: DrawState,
@@ -82,6 +83,7 @@ export const mergeState = (
     return res;
 };
 
+/** @internal */
 export const restoreState = (
     ctx: CanvasRenderingContext2D,
     prev: DrawState,
@@ -100,6 +102,7 @@ export const restoreState = (
     }
 };
 
+/** @internal */
 export const registerGradient = (
     state: DrawState,
     id: string,

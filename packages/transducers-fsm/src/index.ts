@@ -47,10 +47,11 @@ export interface FSMOpts<T extends FSMState, A, B> {
  *
  * Regardless of return value, if a state handler has caused a state
  * change to the configured `terminal` state, processing is terminated
- * (by calling `ensureReduced()`) and no further inputs will be
- * consumed.
+ * (by calling {@link @thi.ng/transducers#ensureReduced}) and no further
+ * inputs will be consumed.
  *
- * ```
+ * @example
+ * ```ts
  * testFSM = {
  *     states: {
  *         skip: (state, x) => {
@@ -98,7 +99,7 @@ export interface FSMOpts<T extends FSMState, A, B> {
  * // [ 50, 60, 70, 80, 90, 150, 160, 170, 180, 190 ]
  * ```
  *
- * @param opts
+ * @param opts -
  */
 export const fsm = <T extends FSMState, A, B>(
     opts: FSMOpts<T, A, B[]>

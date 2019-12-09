@@ -26,12 +26,12 @@ const STR = "string";
  * with the following restrictions:
  *
  * - Shape component objects with life cycle methods are only partially
- *   supported, i.e. only the `render` & `release` methods are used
- *   (Note, for performance reasons `release` methods are ignored by
- *   default. If your shape tree contains stateful components which use
- *   the `release` life cycle method, you'll need to explicitly enable
- *   the canvas component's `__release` attribute by setting it to
- *   `true`).
+ *   supported, i.e. only the {@link @thi.ng/hdom#ILifecycle.render} &
+ *   {@link @thi.ng/hdom#ILifecycle.release} methods are used (Note, for
+ *   performance reasons `release` methods are ignored by default. If
+ *   your shape tree contains stateful components which use the
+ *   `release` life cycle method, you'll need to explicitly enable the
+ *   canvas component's `__release` attribute by setting it to `true`).
  * - Currently no event listeners can be assigned to shapes (ignored),
  *   though this is planned for a future version. The canvas element
  *   itself can of course have event handlers as usual.
@@ -46,9 +46,9 @@ const STR = "string";
  * individual shapes / groups), and if present, will skip normalization
  * of all children.
  *
- * @param _ hdom user context (ignored)
- * @param attribs canvas attribs
- * @param shapes shape components
+ * @param _ - hdom user context (ignored)
+ * @param attribs - canvas attribs
+ * @param shapes - shape components
  */
 export const canvas = {
     render(_: any, attribs: any, ...body: any[]) {
@@ -83,6 +83,7 @@ export const canvas = {
     }
 };
 
+/** @internal */
 export const createTree = (
     _: Partial<HDOMOpts>,
     canvas: HTMLCanvasElement,
@@ -101,6 +102,7 @@ export const createTree = (
     walk(ctx!, tree, { attribs: {}, edits: [] });
 };
 
+/** @internal */
 export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any): any => {
     if (tree == null) {
         return tree;
@@ -142,6 +144,7 @@ export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any): any => {
     return tree;
 };
 
+/** @internal */
 export const diffTree = (
     opts: Partial<HDOMOpts>,
     parent: HTMLCanvasElement,

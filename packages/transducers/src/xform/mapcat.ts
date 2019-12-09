@@ -6,10 +6,10 @@ import { cat } from "./cat";
 import { map } from "./map";
 
 /**
- * Transducer. Similar to `map`, but expects the given mapping function
- * `fn` to return an iterable result (or `null`) and then emits each
- * value of the result individually downstream. `null` or `undefined`
- * result values will be skipped / omitted.
+ * Transducer. Similar to {@link (map:1)}, but expects the given mapping
+ * function `fn` to return an iterable result (or `null`) and then emits
+ * each value of the result individually downstream. `null` or
+ * `undefined` result values will be skipped / omitted.
  *
  * @example
  * ```
@@ -20,7 +20,7 @@ import { map } from "./map";
  * // [ 3, 3, 3 ]
  * ```
  *
- * @param fn mapping function
+ * @param fn - mapping function
  */
 export function mapcat<A, B>(
     fn: Fn<A, Iterable<B> | null | undefined>

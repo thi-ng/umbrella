@@ -1,3 +1,4 @@
+/** @internal */
 export const ensureArgs = (args: any[]) => {
     if (typeof args[0] === "number") {
         switch (args.length) {

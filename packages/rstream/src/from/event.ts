@@ -25,12 +25,13 @@ export const fromEvent = (
     }, optsWithID(`event-${name}`, streamOpts));
 
 /**
- * Same as `fromEvent`, however only supports well-known DOM event
+ * Same as {@link fromEvent}, however only supports well-known DOM event
  * names. Returned stream instance will use corresponding concrete event
- * type in its type signature, whereas `fromEvent` will only use the
+ * type in its type signature, whereas {@link fromEvent} will only use the
  * generic `Event`.
  *
- * ```
+ * @example
+ * ```ts
  * fromDOMEvent(document.body, "mousemove"); // Stream<MouseEvent>
  * fromEvent(document.body, "mousemove"); // Stream<Event>
  * ```

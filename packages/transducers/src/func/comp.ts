@@ -1,6 +1,15 @@
 import { comp as _comp } from "@thi.ng/compose";
 import { Transducer } from "../api";
 
+/**
+ * Transducer composition. Returns new transducer which applies given
+ * transducers in left-to-right order.
+ *
+ * @remarks
+ * Fast (loop-free) paths are provided for up to 10 args (transducers).
+ *
+ * @param a -
+ */
 export function comp<A, B>(a: Transducer<A, B>): Transducer<A, B>;
 export function comp<A, B, C>(
     a: Transducer<A, B>,

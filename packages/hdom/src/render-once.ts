@@ -5,13 +5,13 @@ import { resolveRoot } from "./utils";
 
 /**
  * One-off hdom tree conversion & target DOM application. Takes same
- * options as `start()`, but performs no diffing and only creates or
+ * options as {@link start}, but performs no diffing and only creates or
  * hydrates target once. The given tree is first normalized and if
  * result is `null` or `undefined` no further action will be taken.
  *
- * @param tree
- * @param opts
- * @param impl
+ * @param tree - component tree
+ * @param opts - hdom config options
+ * @param impl - hdom implementation
  */
 export const renderOnce = (
     tree: any,

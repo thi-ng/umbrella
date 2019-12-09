@@ -3,16 +3,19 @@ import { isReduced, reduced, unreduced } from "../reduced";
 
 /**
  * Composes a new reducer from the ones given, in order to produce
- * multiple reductions in parallel from the same input. The returned
- * reducer produces a result tuple of reduction results, one per
- * reducer. If any of the reducers returns a `reduced()` result, the
- * reduction process stops for all others too. `juxtR` produces
- * optimized versions for up to 3 reducer args, but can support any
- * number of reducers.
+ * multiple reductions in parallel from the same input.
  *
- * ```
+ * @remarks
+ * The returned reducer produces a result tuple of reduction results,
+ * one per reducer. If any of the reducers returns a {@link reduced}
+ * result, the reduction process stops for all others too. `juxtR`
+ * produces optimized versions for up to 3 reducer args, but can support
+ * any number of reducers.
+ *
+ * @example
+ * ```ts
  * reduce(juxtR(add(), reductions(add()), str("-")), [1, 2, 3, 4]);
- * // [ 10, [ 0, 1, 3, 6, 10 ], [ 1, 2, 3, 4 ] ]
+ * // [ 10, [ 0, 1, 3, 6, 10 ], '1-2-3-4' ]
  * ```
  */
 export function juxtR<A1, B>(r1: Reducer<A1, B>): Reducer<[A1], B>;

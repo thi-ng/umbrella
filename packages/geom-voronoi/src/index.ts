@@ -106,9 +106,9 @@ export class DVMesh<T> {
 
     /**
      * Returns tuple of the edge related to `p` and a boolean to indicate if
-     * `p` already exists in this triangulation.
+     * `p` already exists in this triangulation (true if already present).
      *
-     * @param p
+     * @param p - query point
      */
     locate(p: ReadonlyVec, eps = EPS): [Edge<Vertex<T>>, boolean] {
         let e = this.first;

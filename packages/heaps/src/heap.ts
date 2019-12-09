@@ -13,7 +13,8 @@ import { HeapOpts } from "./api";
  * user-supplied comparator. By default, implements min-heap ordering
  * and uses @thi.ng/compare.
  *
- * ```
+ * @example
+ * ```ts
  * h = new Heap([20, 5, 10]);
  * h.push(15);
  *
@@ -110,11 +111,11 @@ export class Heap<T>
     }
 
     /**
-     * Calls `pushPop()` for each given value in `vals` and returns last
-     * result (i.e. the smallest value in heap after processing all
-     * `vals`).
+     * Calls {@link Heap.pushPop} for each given value in `vals` and
+     * returns last result (i.e. the smallest value in heap after
+     * processing all `vals`).
      *
-     * @param vals
+     * @param vals - values to insert
      */
     pushPopAll(vals: Iterable<T>) {
         let res: any;
@@ -141,7 +142,7 @@ export class Heap<T>
      * Returns the largest `n` values (or less) in heap, based on
      * comparator ordering.
      *
-     * @param n
+     * @param n - number of values
      */
     max(n = this.values.length) {
         const vals = this.values;
@@ -161,7 +162,7 @@ export class Heap<T>
      * Returns the smallest `n` values (or less) in heap, based on
      * comparator ordering.
      *
-     * @param n
+     * @param n - number of values
      */
     min(n = this.values.length) {
         const vals = this.values;

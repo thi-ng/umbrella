@@ -17,21 +17,21 @@ import { $stackFn } from "./word";
  *
  * ( bool -- ? )
  *
- * @param _then
- * @param _else
+ * @param _then -
+ * @param _else -
  */
 export const cond = (_then: StackProc, _else: StackProc = nop) => (
     ctx: StackContext
 ) => ($(ctx[0], 1), $stackFn(ctx[0].pop() ? _then : _else)(ctx));
 
 /**
- * Non-HOF version of `cond`, expects `test` result and both branches on
+ * Non-HOF version of {@link cond}, expects `test` result and both branches on
  * d-stack. Executes `thenq` word/quotation if `test` is truthy, else
  * runs `elseq`.
  *
  * ( test thenq elseq -- ? )
  *
- * @param ctx
+ * @param ctx -
  */
 export const condq = (ctx: StackContext) => {
     const stack = ctx[0];
@@ -51,7 +51,7 @@ export const condq = (ctx: StackContext) => {
  * Important: The default case has the original TOS re-added to the
  * d-stack before execution.
  *
- * @param cases
+ * @param cases -
  */
 export const cases = (cases: IObjectOf<StackProc>) => (ctx: StackContext) => {
     $(ctx[0], 1);

@@ -1,8 +1,8 @@
 import { memoizeJ } from "@thi.ng/memoize";
 
 /**
- * @param ch character
- * @param n repeat count
+ * @param ch - character
+ * @param n - repeat count
  */
 export const repeat = memoizeJ<string, number, string>(
     (ch: string, n: number) => ch.repeat(n)

@@ -16,8 +16,8 @@ export const polygon = (
 /**
  * Shared internal helper for polygon & polyline fns.
  *
- * @param ctx
- * @param pts
+ * @param ctx - canvas context
+ * @param pts - poly vertices
  */
 export const __drawPoly = (
     ctx: CanvasRenderingContext2D,

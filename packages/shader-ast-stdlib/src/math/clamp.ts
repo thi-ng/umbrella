@@ -28,13 +28,13 @@ const __clamp = (min: number, max: number) => <T extends Prim>(
 /**
  * Inline function, expands to equivalent of `clamp(x, 0, 1)`.
  *
- * @param x
+ * @param x -
  */
 export const clamp01 = __clamp(0, 1);
 
 /**
  * Inline function, expands to equivalent of `clamp(x, -1, 1)`.
  *
- * @param x
+ * @param x -
  */
 export const clamp11 = __clamp(-1, 1);

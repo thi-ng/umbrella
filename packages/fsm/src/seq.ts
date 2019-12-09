@@ -1,4 +1,9 @@
-import { Match, Matcher, RES_PARTIAL, SeqCallback } from "./api";
+import {
+    Match,
+    Matcher,
+    RES_PARTIAL,
+    SeqCallback
+} from "./api";
 import { result } from "./result";
 
 /**
@@ -6,9 +11,9 @@ import { result } from "./result";
  * in sequence. If any of the given matchers fails, returns
  * `Match.FAIL`.
  *
- * @param matches
- * @param success
- * @param fail
+ * @param matches - child matchers
+ * @param success - success callback
+ * @param fail - failure callback
  */
 export const seq = <T, C, R>(
     matches: Matcher<T, C, R>[],

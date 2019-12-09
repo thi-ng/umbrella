@@ -4,11 +4,11 @@ import { $$reduce, reducer } from "../reduce";
 import { reduced } from "../reduced";
 
 /**
- * Similar to `every()` reducer, but only requires at least 1 value to
+ * Similar to {@link (every:1)} reducer, but only requires at least 1 value to
  * succeed predicate test (and then immediately terminates with `true`
  * as result).
  *
- * @param pred
+ * @param pred -
  */
 export function some<T>(pred?: Predicate<T>): Reducer<boolean, T>;
 export function some<T>(xs: Iterable<T>): boolean;

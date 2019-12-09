@@ -8,7 +8,7 @@ export type ModelAttributeSpecs = IObjectOf<ModelAttributeSpec>;
 
 export interface ModelSpec {
     /**
-     * Initialized `IShader` instance
+     * Initialized {@link IShader} instance
      */
     shader: IShader;
     /**
@@ -16,7 +16,8 @@ export interface ModelSpec {
      */
     attribs: ModelAttributeSpecs;
     /**
-     * Geometry attributes given as `AttribPool` instance.
+     * Geometry attributes given as
+     * {@link @thi.ng/vector-pools#AttribPool} instance.
      */
     attribPool?: AttribPool;
     /**
@@ -28,9 +29,9 @@ export interface ModelSpec {
      */
     indices?: IndexBufferSpec;
     /**
-     * Array of initialized `ITexture` instances.
+     * Array of initialized {@link ITexture} instances.
      * Each non-null item will be auto-bound to its respective texture unit,
-     * each time the model is drawn via `draw()`
+     * each time the model is drawn via {@link draw}
      */
     textures?: ITexture[];
     /**
@@ -52,8 +53,8 @@ export interface ModelSpec {
  */
 export interface ModelAttributeSpec {
     /**
-     * Backing `WebGLArrayBuffer` instance. Usually this will be
-     * auto-initialized by `compileBuffers()`
+     * Backing {@link WebGLArrayBuffer} instance. Usually this will be
+     * auto-initialized by {@link compileBuffers}
      */
     buffer?: IWebGLBuffer<AttribBufferData>;
     /**
@@ -87,7 +88,7 @@ export interface ModelAttributeSpec {
     type?: GLenum;
     /**
      * Only used for instanced attributes.
-     * See: https://www.khronos.org/registry/OpenGL/extensions/ANGLE/ANGLE_instanced_arrays.txt
+     * See: {@link https://www.khronos.org/registry/OpenGL/extensions/ANGLE/ANGLE_instanced_arrays.txt}
      */
     divisor?: number;
 }

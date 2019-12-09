@@ -6,9 +6,11 @@ import { isReduced } from "../reduced";
  * Helper HOF yielding a buffer drain completion function for some
  * transducers.
  *
- * @param buf
- * @param complete
- * @param reduce
+ * @param buf -
+ * @param complete -
+ * @param reduce -
+ *
+ * @internal
  */
 export const __drain = <T>(
     buf: T[],

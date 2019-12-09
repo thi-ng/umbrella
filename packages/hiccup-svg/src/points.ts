@@ -7,10 +7,10 @@ import { fattribs, ff } from "./format";
  * `size` arg is only used for the latter two shape types and defines
  * the radius or width respectively.
  *
- * @param pts
- * @param shape
- * @param size
- * @param attribs
+ * @param pts - points
+ * @param shape - shape type
+ * @param size - point size/radius
+ * @param attribs - attributes
  */
 export const points = (
     pts: Iterable<Vec2Like>,

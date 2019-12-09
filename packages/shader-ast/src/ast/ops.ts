@@ -198,8 +198,8 @@ export function div(l: Term<any> | number, r: Term<any> | number): Op2<any> {
 /**
  * Integer % (modulo) operator
  *
- * @param l
- * @param b
+ * @param l -
+ * @param b -
  */
 // prettier-ignore
 export function modi<A extends Int | IVec | UVec, B extends A>(l: Term<A>, r: Term<B>): Op2<A>;
@@ -225,9 +225,9 @@ export const neg = <T extends Prim | Int | IVec | Mat>(val: Term<T>) =>
 /**
  * Multiply-add: a * b + c. All must be of same type.
  *
- * @param a
- * @param b
- * @param c
+ * @param a -
+ * @param b -
+ * @param c -
  */
 export const madd = <
     A extends Prim | IVec | UVec | "int" | "uint",
@@ -242,9 +242,9 @@ export const madd = <
 /**
  * Add-multiply: (a + b) * c. All must be of same type.
  *
- * @param a
- * @param b
- * @param c
+ * @param a -
+ * @param b -
+ * @param c -
  */
 export const addm = <A extends Prim, B extends A, C extends B>(
     a: Term<A>,

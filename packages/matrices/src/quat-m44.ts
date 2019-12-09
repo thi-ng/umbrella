@@ -5,8 +5,8 @@ import { Mat } from "./api";
  * Converts quaternion into 4x4 matrix with optional translation offset
  * `t`, then writes result to `out`.
  *
- * @param out
- * @param q
+ * @param out -
+ * @param q -
  */
 export const quatToMat44 = (
     out: Mat | null,

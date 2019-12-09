@@ -5,16 +5,20 @@ import { swap } from "./swap";
 /**
  * In-place quicksort implementation with optional comparator & index
  * based swap function, useful for sorting multiple related arrays in
- * parallel, based on a single sort criteria. Supports sorting of
- * sub-ranges only, via optionally given `start`/`end` indices (both
- * inclusive).
+ * parallel, based on a single sort criteria.
  *
- * Uses Hoare partitioning scheme. thi.ng/compare is used as default
- * comparator and `swap` from this package as default swap function.
+ * @remarks
+ * Supports sorting of sub-ranges only, via optionally given
+ * `start`/`end` indices (both inclusive).
  *
- * https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme
+ * Uses Hoare partitioning scheme. {@link @thi.ng/compare#compare} is
+ * used as default comparator and {@link swap} from this package as
+ * default swap function. Also see {@link multiSwap}.
  *
- * ```
+ * {@link https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme}
+ *
+ * @example
+ * ```ts
  * a = [4, 3, 1, 8, 5]
  * b = [40, 30, 10, 80, 50]
  * c = [-4, -3, -1, -8, -5]
@@ -29,11 +33,11 @@ import { swap } from "./swap";
  * // [ -1, -3, -4, -5, -8 ]
  * ```
  *
- * @param arr
- * @param _cmp
- * @param _swap
- * @param start
- * @param end
+ * @param arr - array to sort
+ * @param _cmp - comparator
+ * @param _swap - swap function
+ * @param start - start index
+ * @param end - end index (inclusive)
  */
 // prettier-ignore
 export function quickSort<T>(arr: T[], _cmp?: Comparator<T>, _swap?: Fn3<T[], number, number, void>, start?: number, end?: number): T[];

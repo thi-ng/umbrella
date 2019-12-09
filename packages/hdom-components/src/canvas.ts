@@ -12,17 +12,17 @@ interface Canvas2DContextAttributes {
 
 /**
  * User provided canvas life cycle methods. These differ from the usual
- * @thi.ng/hdom life cycle methods and are always passed at least the
- * canvas DOM element, canvas context and hdom user context. Not all
- * handlers need to be implemented.
+ * {@link @thi.ng/hdom#ILifecycle} methods and are always passed at
+ * least the canvas DOM element, canvas context and hdom user context.
+ * Not all handlers need to be implemented.
  */
 export interface CanvasHandlers<T extends CanvasContext> {
     /**
-     * user init handler (called only once when canvas first)
+     * User init handler (called only once when canvas first)
      */
     init(el: HTMLCanvasElement, ctx: T, hctx: any, ...args: any[]): void;
     /**
-     * update handler (called for each hdom update iteration)
+     * Update handler (called for each hdom update iteration)
      */
     update(
         el: HTMLCanvasElement,
@@ -40,12 +40,12 @@ export interface CanvasHandlers<T extends CanvasContext> {
 }
 
 /**
- * Configurable canvas component. Used as common base for `canvasWebGL`
- * and `canvas2D` wrappers.
+ * Configurable canvas component. Used as common base for {@link canvasWebGL}
+ * and {@link canvas2D} wrappers.
  *
- * @param type canvas context type
- * @param handlers user handlers
- * @param opts canvas context creation options
+ * @param type - canvas context type
+ * @param handlers - user handlers
+ * @param opts - canvas context creation options
  */
 const _canvas = (
     type: string,
@@ -89,12 +89,14 @@ const _canvas = (
  * Higher order WebGL canvas component delegating to user provided
  * handlers.
  *
- * Note: Since this is an higher order component, if used within a
- * non-static parent component, this function itself cannot be directly
- * inlined into hdom tree and must be initialized prior/outside, however
- * the returned component can be used as normal.
+ * @remarks
+ * Since this is an higher order component, if used within a non-static
+ * parent component, this function itself cannot be directly inlined
+ * into hdom tree and must be initialized prior/outside, however the
+ * returned component can be used as normal.
  *
- * ```
+ * @example
+ * ```ts
  * const glcanvas = canvasWebGL({
  *   render(canv, gl, hctx, time, frame, ...args) {
  *     const col = 0.5 + 0.5 * Math.sin(time);
@@ -105,8 +107,8 @@ const _canvas = (
  * [glcanvas, {id: "foo", width: 640, height: 480}]
  * ```
  *
- * @param handlers user provided handlers
- * @param opts canvas context creation options
+ * @param handlers - user provided handlers
+ * @param opts - canvas context creation options
  */
 export const canvasWebGL = (
     handlers: Partial<CanvasHandlers<WebGLRenderingContext>>,
@@ -114,10 +116,10 @@ export const canvasWebGL = (
 ) => _canvas("webgl", handlers, opts);
 
 /**
- * Same as `canvasWebGL` but targets WebGL2.
+ * Same as {@link canvasWebGL} but targets WebGL2.
  *
- * @param handlers user provided handlers
- * @param opts canvas context creation options
+ * @param handlers - user provided handlers
+ * @param opts - canvas context creation options
  */
 export const canvasWebGL2 = (
     handlers: Partial<CanvasHandlers<WebGL2RenderingContext>>,
@@ -125,10 +127,10 @@ export const canvasWebGL2 = (
 ) => _canvas("webgl2", handlers, opts);
 
 /**
- * Similar to `canvasWebGL`, but targets default 2D drawing context.
+ * Similar to {@link canvasWebGL}, but targets default 2D drawing context.
  *
- * @param handlers user provided handlers
- * @param glopts canvas context creation options
+ * @param handlers - user provided handlers
+ * @param glopts - canvas context creation options
  */
 export const canvas2D = (
     handlers: Partial<CanvasHandlers<CanvasRenderingContext2D>>,
@@ -140,9 +142,9 @@ export const canvas2D = (
  * compensate for HDPI devices. Note: For 2D canvases, this will
  * automatically clear any prior canvas content.
  *
- * @param canvas
- * @param width uncompensated pixel width
- * @param height uncompensated pixel height
+ * @param canvas -
+ * @param width - uncompensated pixel width
+ * @param height - uncompensated pixel height
  */
 export const adaptDPI = (
     canvas: HTMLCanvasElement,

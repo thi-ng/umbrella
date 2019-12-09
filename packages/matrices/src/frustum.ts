@@ -6,13 +6,13 @@ import { Mat } from "./api";
  * Constructs a 4x4 matrix representing the given view frustum. Creates
  * new matrix if `out` is `null`.
  *
- * @param out
- * @param left
- * @param right
- * @param bottom
- * @param top
- * @param near
- * @param far
+ * @param out -
+ * @param left -
+ * @param right -
+ * @param bottom -
+ * @param top -
+ * @param near -
+ * @param far -
  */
 export const frustum = (
     out: Mat | null,

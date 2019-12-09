@@ -61,9 +61,9 @@ export const getExtensions = <K extends keyof WebGLExtensionMap>(
  * compensate for HDPI devices. Note: For 2D canvases, this will
  * automatically clear any prior canvas content.
  *
- * @param canvas
- * @param width uncompensated pixel width
- * @param height uncompensated pixel height
+ * @param canvas -
+ * @param width - uncompensated pixel width
+ * @param height - uncompensated pixel height
  */
 export const adaptDPI = (
     canvas: HTMLCanvasElement,

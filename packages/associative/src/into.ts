@@ -4,8 +4,8 @@ import { isMap } from "@thi.ng/checks";
 /**
  * Adds elements from `src` iterable to `dest` Map or Set.
  *
- * @param dest
- * @param src
+ * @param dest - target collection
+ * @param src - source collection
  */
 // prettier-ignore
 export function into<K, V>(dest: Map<K, V>, src: Iterable<Pair<K, V>>): Map<K, V>;

@@ -5,16 +5,20 @@ import { inRange } from "@thi.ng/math";
 /**
  * Yields iterator of `src` with the last `numLeft` values of `src`
  * prepended at the beginning and/or the first `numRight` values
- * appended at the end. `numLeft` defaults to 1 and `numRight` defaults
- * to same value as `numLeft`, therefore wraps both sides by default and
- * throws error if either `nXXX` < 0 or larger than `src.length`.
+ * appended at the end.
  *
- * @see extendSides
- * @see padSides
+ * @remarks
+ * `numLeft` defaults to 1 and `numRight` defaults to same value as
+ * `numLeft`, therefore wraps both sides by default and throws error if
+ * either `nXXX < 0` or larger than `src.length`.
  *
- * @param src
- * @param numLeft
- * @param numRight
+ * See also:
+ * - {@link extendSides}
+ * - {@link padSides}
+ *
+ * @param src -
+ * @param numLeft -
+ * @param numRight -
  */
 export function* wrapSides<T>(
     src: Iterable<T>,

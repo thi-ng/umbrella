@@ -4,18 +4,25 @@ import { compR } from "../func/compr";
 import { $iter } from "../iterator";
 
 export interface DistinctOpts<T> {
+    /**
+     * Key extractor function.
+     */
     key: Fn<T, any>;
+    /**
+     * Cache factory. Must produce a ES6 Set-like instance used to keep
+     * track of seen key values.
+     */
     cache: Fn0<Set<any>>;
 }
 
 /**
- *
- * ```
- * [...tx.distinct({ key: (x) => x.id }, [{id: 1, x: 2}, {id: 1, x: 3}])]
+ * @example
+ * ```ts
+ * [...distinct({ key: (x) => x.id }, [{id: 1, x: 2}, {id: 1, x: 3}])]
  * // [ { id: 1, x: 2 } ]
  * ```
  *
- * @param opts
+ * @param opts -
  */
 export function distinct<T>(opts?: Partial<DistinctOpts<T>>): Transducer<T, T>;
 export function distinct<T>(src: Iterable<T>): IterableIterator<T>;

@@ -1,8 +1,8 @@
 /**
  * Computes mean square error of given array.
  *
- * @param window
- * @param mean
+ * @param window -
+ * @param mean -
  */
 export const mse = (window: number[], mean: number) => {
     let sum = 0;

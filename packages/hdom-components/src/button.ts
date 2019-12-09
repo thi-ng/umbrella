@@ -45,10 +45,10 @@ export type Button = (_: any, args: ButtonArgs, ...body: any[]) => any;
  * function accepts the following arguments:
  *
  * - hdom context object (unused)
- * - partial `ButtonArgs` object (extra attribs, onclick, disabled)
+ * - partial {@link ButtonArgs} object (extra attribs, onclick, disabled)
  * - body content (varargs)
  *
- * Any `attribs` provided as arg via `ButtonArgs` are merged with the
+ * Any `attribs` provided as arg via {@link ButtonArgs} are merged with the
  * default options provided to the HOF. The `disabled` arg decides which
  * button version to create. The button can have any number of body
  * elements (e.g. icon and label), given as varargs.

@@ -10,12 +10,12 @@ import {
 import { clamp01 } from "../math/clamp";
 
 /**
- * Similar to `fogExp()`. Computes exponential fog factor [0..1], based
- * on given fully saturated fog distance and density. Uses `exp2()`
- * internally.
+ * Similar to {@link fogExp}. Computes exponential fog factor [0..1],
+ * based on given fully saturated fog distance and density. Uses
+ * {@link @thi.ng/shader-ast#exp2} internally.
  *
- * @param dist float
- * @param density float
+ * @param dist - float
+ * @param density - float
  */
 export const fogExp2 = defn(
     "float",

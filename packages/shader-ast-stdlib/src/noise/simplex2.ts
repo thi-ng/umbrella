@@ -35,7 +35,7 @@ import { permute3 } from "./permute";
  * Array and textureless GLSL 2D simplex noise function. Ported from
  * original GLSL implementation by Ian McEwan & Ashima Arts.
  *
- * https://github.com/ashima/webgl-noise
+ * {@link https://github.com/ashima/webgl-noise}
  */
 export const snoise2 = defn("float", "snoise2", ["vec2"], (v) => {
     let C: Vec4Sym;

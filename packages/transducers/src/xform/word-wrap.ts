@@ -9,16 +9,18 @@ export interface WordWrapOpts {
 
 /**
  * Returns transducer partitioning words into variable sized arrays
- * based on given `lineLength` (default 80). The optional `delim` and
- * `always` args can be used to adjust the length and usage of
- * delimiters between each word. If `always` is true, the delimiter
- * length is added to each word, even near line endings. If false
- * (default), the last word on each line can still fit even if there's
- * no space for the delimiter.
+ * based on given `lineLength` (default 80).
  *
- * @param lineLength
- * @param opts
- * @param src
+ * @remarks
+ * The optional `delim` and `always` args can be used to adjust the
+ * length and usage of delimiters between each word. If `always` is
+ * true, the delimiter length is added to each word, even near line
+ * endings. If false (default), the last word on each line can still fit
+ * even if there's no space for the delimiter.
+ *
+ * @param lineLength -
+ * @param opts -
+ * @param src -
  */
 export function wordWrap(
     lineLength: number,

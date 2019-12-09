@@ -22,12 +22,13 @@ const branchPred = <T>(
  * with left branches stored as "l" and right ones as "r". The original
  * values are stored at the lowest tree level using a customizable
  * nested reducer. By default leaves are collected in arrays (using the
- * `push()` reducer), but any suitable reducer can be used (e.g.
- * `conj()` to collect values into sets).
+ * {@link (push:1)} reducer), but any suitable reducer can be used (e.g.
+ * {@link (conj:1)} to collect values into sets).
  *
  * Index by lowest 4-bits of ID value:
  *
- * ```
+ * @example
+ * ```ts
  * tree = reduce(
  *   groupBinary(4, x => x.id & 0xf),
  *   [{id: 3}, {id: 8}, {id: 15}, {id: 0}]
@@ -43,7 +44,8 @@ const branchPred = <T>(
  *
  * Collecting as array:
  *
- * ```
+ * @example
+ * ```ts
  * tree = reduce(
  *   groupBinary(4, identity, ()=>[], push(), 0, 1),
  *   [1,2,3,4,5,6,7]
@@ -56,9 +58,10 @@ const branchPred = <T>(
  * // [ [ 6 ], [ 7 ] ]
  * ```
  *
- * Using `frequencies` as leaf reducer:
+ * Using {@link (frequencies:1)} as leaf reducer:
  *
- * ```
+ * @example
+ * ```ts
  * tree = reduce(
  *   groupBinary(3, (x: string) => x.length, null, frequencies()),
  *   "aa bbb dddd ccccc bbb eeee fff".split(" ")
@@ -73,13 +76,13 @@ const branchPred = <T>(
  * // Map { 'bbb' => 2, 'fff' => 1 }
  * ```
  *
- * @param bits index range (always from 0)
- * @param key key function
- * @param branch function to create a new branch container (object or
+ * @param bits - index range (always from 0)
+ * @param key - key function
+ * @param branch - function to create a new branch container (object or
  * array)
- * @param leaf reducer for leaf collection
- * @param left key for storing left branches (e.g. `0` for arrays)
- * @param right key for storing right branches (e.g. `1` for arrays)
+ * @param leaf - reducer for leaf collection
+ * @param left - key for storing left branches (e.g. `0` for arrays)
+ * @param right - key for storing right branches (e.g. `1` for arrays)
  */
 export const groupBinary = <T>(
     bits: number,

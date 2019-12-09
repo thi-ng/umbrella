@@ -15,10 +15,10 @@ import { mulV23, mulV344, mulV44 } from "./mulv";
  * components with 2x3 matrix `view` matrix. Returns 3D vector. The
  * result Z component can be used for depth sorting.
  *
- * @param out
- * @param mvp 4x4 matrix
- * @param view 2x3 matrix
- * @param p
+ * @param out -
+ * @param mvp - 4x4 matrix
+ * @param view - 2x3 matrix
+ * @param p -
  */
 export const project = (
     out: Vec | null,
@@ -31,16 +31,16 @@ export const project = (
 );
 
 /**
- * Reverse operation of `project()`. If `invert` is true (default:
+ * Reverse operation of {@link project}. If `invert` is true (default:
  * false), both `mvp` and `view` matrices will be inverted first
  * (non-destructively), else they're both assumed to be inverted
  * already.
  *
- * @param out
- * @param mvp 4x4 matrix
- * @param view 2x3 matrix
- * @param p
- * @param invert
+ * @param out -
+ * @param mvp - 4x4 matrix
+ * @param view - 2x3 matrix
+ * @param p -
+ * @param invert -
  */
 export const unproject = (
     out: Vec,

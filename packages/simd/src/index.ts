@@ -2,12 +2,14 @@ import { base64Decode } from "@thi.ng/transducers-binary";
 import { SIMD } from "./api";
 import { BINARY } from "./binary";
 
+export * from "./api";
+
 /**
  * Creates a new WASM module instance w/ user supplied memory. The WASM
  * module itself doesn't use any memory itself and the full address
  * space of the given memory instance is freely available for use. The
  * returned object exposes all SIMD functions defined by this package,
- * as well as various views of the provided memory. See `SIMD` interface
+ * as well as various views of the provided memory. See {@link SIMD} interface
  * in api.ts for details.
  *
  * The initialization method used here is synchronous and the WASM
@@ -22,7 +24,7 @@ import { BINARY } from "./binary";
  * Function will throw an error if WASM is unavailable or underlying
  * runtime doesn't yet support SIMD instructions.
  *
- * @param memory
+ * @param memory -
  */
 export const init = (memory: WebAssembly.Memory): SIMD | undefined => {
     const buf = memory.buffer;

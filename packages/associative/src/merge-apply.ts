@@ -3,10 +3,10 @@ import { isFunction } from "@thi.ng/checks";
 import { copy } from "./utils";
 
 /**
- * Similar to `mergeApplyObj()`, but for ES6 Maps instead of plain objects.
+ * Similar to {@link mergeApplyObj}, but for ES6 Maps instead of plain objects.
  *
- * @param src
- * @param xs
+ * @param src - source map
+ * @param xs - map w/ transformation functions
  */
 export const mergeApplyMap = <K, V>(
     src: Map<K, V>,
@@ -20,26 +20,28 @@ export const mergeApplyMap = <K, V>(
 };
 
 /**
- * Similar to `mergeObjWith()`, but only supports 2 args and any
+ * Similar to {@link mergeObjWith}, but only supports 2 args and any
  * function values in `xs` will be called with respective value in `src`
  * to produce a new / derived value for that key, i.e.
  *
- * ```
+ * @example
+ * ```ts
  * dest[k] = xs[k](src[k])
  * ```
  *
  * Returns new merged object and does not modify any of the inputs.
  *
- * ```
+ * @example
+ * ```ts
  * mergeApplyObj(
- *   {a: "hello", b: 23, c: 12},
- *   {a: (x) => x + " world", b: 42}
+ *   { a: "hello", b: 23, c: 12 },
+ *   { a: (x) => x + " world", b: 42 }
  * );
  * // { a: 'hello world', b: 42, c: 12 }
  * ```
  *
- * @param src
- * @param xs
+ * @param src - source object
+ * @param xs - object w/ transformation functions
  */
 export const mergeApplyObj = <V>(
     src: IObjectOf<V>,

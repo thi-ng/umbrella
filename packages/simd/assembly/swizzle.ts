@@ -8,11 +8,11 @@
  * set_lane_f32(0x1000, 1, 1.23, 4, 4)
  * ```
  *
- * @param addr
- * @param id
- * @param x
- * @param num
- * @param stride
+ * @param addr -
+ * @param id -
+ * @param x -
+ * @param num -
+ * @param stride -
  */
 export function set_lane_f32(
     addr: usize,

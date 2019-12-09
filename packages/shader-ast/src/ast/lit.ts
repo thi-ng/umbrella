@@ -53,7 +53,7 @@ const wrap = <T extends Type>(type: T, ctor: Fn<any, Term<T>>) => (
  * Takes a plain number or numeric term and wraps it as float literal if
  * needed.
  *
- * @param x
+ * @param x -
  */
 export const wrapFloat = wrap("float", float);
 
@@ -61,7 +61,7 @@ export const wrapFloat = wrap("float", float);
  * Takes a plain number or numeric term and wraps it as signed integer
  * literal if needed.
  *
- * @param x
+ * @param x -
  */
 export const wrapInt = wrap("int", int);
 
@@ -69,7 +69,7 @@ export const wrapInt = wrap("int", int);
  * Takes a plain number or numeric term and wraps it as unsigned integer
  * literal if needed.
  *
- * @param x
+ * @param x -
  */
 export const wrapUint = wrap("uint", uint);
 
@@ -77,7 +77,7 @@ export const wrapUint = wrap("uint", uint);
  * Takes a plain number or numeric term and wraps it as boolean literal
  * if needed.
  *
- * @param x
+ * @param x -
  */
 export const wrapBool = wrap("bool", bool);
 

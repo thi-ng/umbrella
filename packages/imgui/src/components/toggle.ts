@@ -11,14 +11,14 @@ import { tooltipRaw } from "./tooltip";
  * If `square` is true, the clickable area will not fill the entire
  * cell, but only a left-aligned square of cell/row height.
  *
- * @param gui
- * @param layout
- * @param id
- * @param val
- * @param i
- * @param square
- * @param label
- * @param info
+ * @param gui -
+ * @param layout -
+ * @param id -
+ * @param val -
+ * @param i -
+ * @param square -
+ * @param label -
+ * @param info -
  */
 export const toggle = (
     gui: IMGUI,

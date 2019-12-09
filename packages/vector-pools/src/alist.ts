@@ -17,13 +17,13 @@ export abstract class AVecList<T extends StridedVec> {
 
     /**
      *
-     * @param buffer
-     * @param capacity
-     * @param size
-     * @param start
-     * @param cstride
-     * @param estride
-     * @param factory
+     * @param buffer -
+     * @param capacity -
+     * @param size -
+     * @param start -
+     * @param cstride -
+     * @param estride -
+     * @param factory -
      */
     constructor(
         buffer: Vec,

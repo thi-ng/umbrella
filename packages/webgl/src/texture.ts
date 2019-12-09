@@ -262,9 +262,9 @@ export const texture = (
  * - `target`
  * - `image`
  *
- * @param gl
- * @param faces in order: +x,-x,+y,-y,+z,-z
- * @param opts
+ * @param gl -
+ * @param faces - in order: +x,-x,+y,-y,+z,-z
+ * @param opts -
  */
 export const cubeMap = (
     gl: WebGLRenderingContext,
@@ -297,12 +297,12 @@ export const cubeMap = (
  * Under WebGL 1.0, we assume the caller has previously enabled the
  * `OES_texture_float` extension.
  *
- * @param gl GL context
- * @param data texture data
- * @param width width
- * @param height height
- * @param format
- * @param type
+ * @param gl - GL context
+ * @param data - texture data
+ * @param width - width
+ * @param height - height
+ * @param format -
+ * @param type -
  */
 export const floatTexture = (
     gl: WebGLRenderingContext,

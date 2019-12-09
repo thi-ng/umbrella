@@ -6,7 +6,7 @@ import { assert } from "../assert";
  * Accepts optional message arg. Throws error if assigned property
  * is not a function.
  *
- * @param msg deprecation message
+ * @param msg - deprecation message
  */
 export const deprecated = (msg?: string, log = console.log): MethodDecorator =>
     function(

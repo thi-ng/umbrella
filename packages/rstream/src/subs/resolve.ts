@@ -32,7 +32,7 @@ export interface ResolverOpts extends IID<string> {
  * // result done
  * ```
  *
- * @param opts
+ * @param opts -
  */
 export const resolve = <T>(opts?: Partial<ResolverOpts>) =>
     new Resolver<T>(opts);

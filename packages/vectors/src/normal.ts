@@ -7,10 +7,10 @@ import { perpendicularCCW, perpendicularCW } from "./perpendicular";
  * counterclockwise, normalized to length `n` (default: 1). If `out` is
  * null, creates new vector.
  *
- * @param out
- * @param a
- * @param b
- * @param n
+ * @param out -
+ * @param a -
+ * @param b -
+ * @param n -
  */
 export const normalCCW = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n = 1) =>
     perpendicularCCW(null, direction(out || [], a, b, n));
@@ -20,10 +20,10 @@ export const normalCCW = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n = 1) =>
  * clockwise, normalized to length `n` (default: 1). If `out` is null,
  * creates new vector.
  *
- * @param out
- * @param a
- * @param b
- * @param n
+ * @param out -
+ * @param a -
+ * @param b -
+ * @param n -
  */
 export const normalCW = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n = 1) =>
     perpendicularCW(null, direction(out || [], a, b, n));

@@ -31,7 +31,7 @@ export interface EquivSetOpts<T> {
      * Key equivalence predicate. MUST return truthy result if given
      * keys are considered equal.
      *
-     * Default: `@thi.ng/equiv`
+     * @defaultValue {@link @thi.ng/equiv#equiv}
      */
     equiv: Predicate2<T>;
 }
@@ -55,19 +55,24 @@ export interface HashMapOpts<K> {
      */
     hash: HashFn<K>;
     /**
-     * Optional key equality predicate. Default: thi.ng/equiv
+     * Optional key equality predicate.
+     *
+     * @defaultValue {@link @thi.ng/equiv#equiv}
      */
     equiv?: Predicate2<K>;
     /**
      * Normalized max load factor in the open (0..1) interval. The map
      * will be resized (doubled in size) and all existing keys rehashed
      * every time a new key is to be added and the current size exceeds
-     * this normalized load. Default: 0.75
+     * this normalized load.
+     *
+     * @defaultValue 0.75
      */
     load?: number;
     /**
-     * Initial capacity. Will be rounded up to next power of 2. Default:
-     * 16.
+     * Initial capacity. Will be rounded up to next power of 2.
+     *
+     * @defaultValue 16
      */
     cap?: number;
 }
@@ -83,22 +88,24 @@ export interface SortedMapOpts<K> {
      * - positive if `a > b`
      * - `0` if `a == b`
      *
-     * Note: The `SortedMap` implementation only uses `<` and `==` style
+     * Note: The {@link SortedMap} implementation only uses `<` and `==` style
      * comparisons.
      *
-     * Default: `@thi.ng/compare`
+     * @defaultValue {@link @thi.ng/compare#compare}
      */
     compare: Comparator<K>;
     /**
      * Initial capacity before resizing (doubling) occurs.
      * This value will be rounded up to next pow2.
      *
-     * Default: 8
+     * @defaultValue 8
      */
     capacity: number;
     /**
      * Probability for a value to exist in any express lane of the
-     * underlying Skip List implementation. Default: `1 / Math.E`
+     * underlying Skip List implementation.
+     *
+     * @defaultValue `1 / Math.E`
      */
     probability: number;
 }

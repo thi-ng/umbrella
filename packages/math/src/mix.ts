@@ -3,7 +3,8 @@ import { HALF_PI, PI } from "./api";
 export const mix = (a: number, b: number, t: number) => a + (b - a) * t;
 
 /**
- * ```
+ * @example
+ * ```ts
  * c    d
  * +----+
  * |    |
@@ -11,12 +12,12 @@ export const mix = (a: number, b: number, t: number) => a + (b - a) * t;
  * a    b
  * ```
  *
- * @param a BL value
- * @param b BR value
- * @param c TL value
- * @param d TR value
- * @param u 1st interpolation factor
- * @param v 2nd interpolation factor
+ * @param a - BL value
+ * @param b - BR value
+ * @param c - TL value
+ * @param d - TR value
+ * @param u - 1st interpolation factor
+ * @param v - 2nd interpolation factor
  */
 export const mixBilinear = (
     a: number,
@@ -52,23 +53,23 @@ export const mixCubic = (
  * interpolated result is that of `b` and `c`.
  *
  * Assumes all inputs are uniformly spaced. If that's not the case, use
- * `mixCubicHermite()` with one of the tangent generators supporting
+ * {@link mixCubicHermite} with one of the tangent generators supporting
  * non-uniform spacing of points.
  *
- * See: https://www.desmos.com/calculator/j4gf8g9vkr
+ * See: {@link https://www.desmos.com/calculator/j4gf8g9vkr}
  *
  * Source:
- * https://www.musicdsp.org/en/latest/Other/93-hermite-interpollation.html
+ * {@link https://www.musicdsp.org/en/latest/Other/93-hermite-interpollation.html}
  *
- * @see mixCubicHermite
- * @see tangentCardinal
- * @see tangentDiff3
+ * - {@link mixCubicHermite}
+ * - {@link tangentCardinal}
+ * - {@link tangentDiff3}
  *
- * @param a
- * @param b
- * @param c
- * @param d
- * @param t
+ * @param a -
+ * @param b -
+ * @param c -
+ * @param d -
+ * @param t -
  */
 export const mixHermite = (
     a: number,
@@ -86,17 +87,17 @@ export const mixHermite = (
  * Computes cubic-hermite interpolation between `a` / `b` at normalized
  * time `t` and using respective tangents `ta` / `tb`.
  *
- * https://en.wikipedia.org/wiki/Cubic_Hermite_spline
+ * {@link https://en.wikipedia.org/wiki/Cubic_Hermite_spline}
  *
- * @see mixHermite
- * @see tangentCardinal
- * @see tangentDiff3
+ * - {@link mixHermite}
+ * - {@link tangentCardinal}
+ * - {@link tangentDiff3}
  *
- * @param a
- * @param ta
- * @param b
- * @param tb
- * @param t
+ * @param a -
+ * @param ta -
+ * @param b -
+ * @param tb -
+ * @param t -
  */
 export const mixCubicHermite = (
     a: number,
@@ -116,20 +117,20 @@ export const mixCubicHermite = (
 };
 
 /**
- * Helper function for `mixCubicHermite()`. Computes cardinal tangents
+ * Helper function for {@link mixCubicHermite}. Computes cardinal tangents
  * based on point neighbors of a point B (not given), i.e. `a`
  * (predecessor) and `c` (successor) and their times (defaults to
  * uniformly spaced). The optional `tension` parameter can be used to
  * scale the tangent where 0.0 produces a Cardinal spline tangent and
  * 1.0 a Catmull-Rom (opposite to the Wikipedia ref).
  *
- * https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Cardinal_spline
+ * {@link https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Cardinal_spline}
  *
- * @param prev
- * @param next
- * @param scale
- * @param ta
- * @param tc
+ * @param prev -
+ * @param next -
+ * @param scale -
+ * @param ta -
+ * @param tc -
  */
 export const tangentCardinal = (
     prev: number,
@@ -140,23 +141,23 @@ export const tangentCardinal = (
 ) => scale * ((next - prev) / (tc - ta));
 
 /**
- * Helper function for `mixCubicHermite()`. Computes tangent for `curr`,
+ * Helper function for {@link mixCubicHermite}. Computes tangent for `curr`,
  * based on 3-point finite difference, where `prev` & `next` are
  * `curr`'s neighbors and the `tX` the three points' respective time
  * values. The latter are equally spaced by default (each 1.0 apart).
  *
  * Using this function with equal spacing of 1.0 and together with
- * `mixCubicHermite()` will produce same results as the somewhat
- * optimized variant `mixHermite()`.
+ * {@link mixCubicHermite} will produce same results as the somewhat
+ * optimized variant {@link mixHermite}.
  *
- * https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Finite_difference
+ * {@link https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Finite_difference}
  *
- * @param prev
- * @param curr
- * @param next
- * @param ta
- * @param tb
- * @param tc
+ * @param prev -
+ * @param curr -
+ * @param next -
+ * @param ta -
+ * @param tb -
+ * @param tc -
  */
 export const tangentDiff3 = (
     prev: number,
@@ -172,9 +173,9 @@ export const tangentDiff3 = (
  * to]`. Returns function which takes normalized time as single arg and
  * returns interpolated value.
  *
- * @param f
- * @param from
- * @param to
+ * @param f -
+ * @param from -
+ * @param to -
  */
 export const tween = (f: (t: number) => number, from: number, to: number) => (
     t: number
@@ -183,7 +184,7 @@ export const tween = (f: (t: number) => number, from: number, to: number) => (
 /**
  * Circular interpolation: `sqrt(1 - (1 - t)^2)`
  *
- * @param t interpolation factor (0.0 .. 1.0)
+ * @param t - interpolation factor (0.0 .. 1.0)
  */
 export const circular = (t: number) => {
     t = 1 - t;
@@ -206,15 +207,15 @@ export const bounce = (k: number, amp: number, t: number) => {
  * - `ease > 1` -> ease in
  * - `ease < 1` -> ease out
  *
- * @param ease easing behavior [0.0 .. ∞]
- * @param t
+ * @param ease - easing behavior [0.0 .. ∞]
+ * @param t -
  */
 export const ease = (ease: number, t: number) => Math.pow(t, ease);
 
 /**
  * HOF impulse generator. Peaks at `t=1/k`
  *
- * @param k impulse width (higher values => shorter impulse)
+ * @param k - impulse width (higher values => shorter impulse)
  */
 export const impulse = (k: number, t: number) => {
     const h = k * t;
@@ -240,8 +241,8 @@ export const sinc = (k: number, t: number) => {
 /**
  * Sigmoid function for inputs in [0..1] interval.
  *
- * @param k
- * @param t
+ * @param k -
+ * @param t -
  */
 export const sigmoid = (k: number, t: number) =>
     1 / (1 + Math.exp(-k * (2 * t - 1)));
@@ -249,7 +250,7 @@ export const sigmoid = (k: number, t: number) =>
 /**
  * Sigmoid function for inputs in [-1..+1] interval.
  *
- * @param k
- * @param t
+ * @param k -
+ * @param t -
  */
 export const sigmoid11 = (k: number, t: number) => 1 / (1 + Math.exp(-k * t));

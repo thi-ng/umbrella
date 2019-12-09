@@ -5,11 +5,11 @@ import { ReadonlyMat } from "./api";
  * Returns true, if given square matrix of size `n` is orthagonal, i.e.
  * check if `A * AT = I`.
  *
- * https://en.wikipedia.org/wiki/Orthogonal_matrix
+ * {@link https://en.wikipedia.org/wiki/Orthogonal_matrix}
  *
- * @param m
- * @param n
- * @param eps
+ * @param m -
+ * @param n -
+ * @param eps -
  */
 export const isOrthagonal = (m: ReadonlyMat, n: number, eps = EPS) => {
     for (let i = 0; i < n; i++) {

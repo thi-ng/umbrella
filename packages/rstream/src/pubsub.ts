@@ -82,14 +82,14 @@ export class PubSub<A, B> extends Subscription<A, B> {
     }
 
     /**
-     * Unsupported. Use `subscribeTopic()` instead.
+     * Unsupported. Use {@link .subscribeTopic} instead.
      */
     subscribe(): Subscription<B, any> {
         return unsupported(`use subscribeTopic() instead`);
     }
 
     /**
-     * Unsupported. Use `subscribeTopic()` instead.
+     * Unsupported. Use {@link .subscribeTopic} instead.
      */
     transform(): Subscription<B, any> {
         return unsupported(`use subscribeTopic() instead`);

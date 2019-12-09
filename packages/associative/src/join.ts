@@ -13,7 +13,8 @@ import { empty, first, objValues } from "./utils";
  * assumed to have the same internal structure (i.e. sets of keys).
  * Returns new set of same type as `a`.
  *
- * ```
+ * @example
+ * ```ts
  * join(
  *   new Set([
  *     {id: 1, name: "foo"},
@@ -29,8 +30,8 @@ import { empty, first, objValues } from "./utils";
  * // }
  * ```
  *
- * @param a
- * @param b
+ * @param a - first set
+ * @param b - other set
  */
 export const join = <A, B>(
     a: Set<A>,
@@ -62,14 +63,15 @@ export const join = <A, B>(
 };
 
 /**
- * Similar to `join()`, computes the join between two sets of relations,
+ * Similar to {@link join}, computes the join between two sets of relations,
  * using the given keys in `kmap` only for joining and ignoring others.
  * `kmap` can also be used to translate join keys in `b` where
  * needed. Else, if no renaming is desired, the values in `kmap` should
  * be the same as their respective keys, e.g. `{id: "id"}`. Returns new
  * set of same type as `a`.
  *
- * ```
+ * @example
+ * ```ts
  * joinWith(
  *   new Set([
  *     {id: 1, name: "foo"},
@@ -85,9 +87,9 @@ export const join = <A, B>(
  * //   { type: 2, color: 'blue', id: 2, name: 'bar' } }
  * ```
  *
- * @param a
- * @param b
- * @param kmap keys to compute join for
+ * @param a - first set
+ * @param b - other set
+ * @param kmap - keys to compute join for
  */
 export const joinWith = <A, B>(
     a: Set<A>,

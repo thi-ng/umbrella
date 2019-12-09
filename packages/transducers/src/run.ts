@@ -8,12 +8,12 @@ const NO_OP_REDUCER: Reducer<void, any> = [NO_OP, NO_OP, NO_OP];
  * Transforms `xs` with given transducer and optional side effect
  * without any reduction step. If `fx` is given it will be called with
  * every value produced by the transducer. If `fx` is *not* given, the
- * transducer is assumed to include at least one `sideEffect()` step
+ * transducer is assumed to include at least one {@link sideEffect} step
  * itself. Returns nothing.
  *
- * @param tx
- * @param fx
- * @param xs
+ * @param tx -
+ * @param fx -
+ * @param xs -
  */
 export function run<A>(tx: Transducer<A, any>, xs: Iterable<A>): void;
 export function run<A>(tx: Transducer<A, any>, xs: IReducible<any, A>): void;

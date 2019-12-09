@@ -1,18 +1,18 @@
 /**
  * Returns true if `b` is a local minima, i.e. iff a > b and b < c.
  *
- * @param a
- * @param b
- * @param c
+ * @param a -
+ * @param b -
+ * @param c -
  */
 export const isMinima = (a: number, b: number, c: number) => a > b && b < c;
 
 /**
  * Returns true if `b` is a local maxima, i.e. iff a < b and b > c.
  *
- * @param a
- * @param b
- * @param c
+ * @param a -
+ * @param b -
+ * @param c -
  */
 export const isMaxima = (a: number, b: number, c: number) => a < b && b > c;
 
@@ -36,9 +36,9 @@ const index = (
  * `values` array, or -1 if no such minima exists. The search range can
  * be optionally defined via semi-open [from, to) index interval.
  *
- * @param values
- * @param from
- * @param to
+ * @param values -
+ * @param from -
+ * @param to -
  */
 export const minimaIndex = (values: number[], from = 0, to = values.length) =>
     index(isMinima, values, from, to);
@@ -48,9 +48,9 @@ export const minimaIndex = (values: number[], from = 0, to = values.length) =>
  * `values` array, or -1 if no such maxima exists. The search range can
  * be optionally defined via semi-open [from, to) index interval.
  *
- * @param values
- * @param from
- * @param to
+ * @param values -
+ * @param from -
+ * @param to -
  */
 export const maximaIndex = (values: number[], from = 0, to = values.length) =>
     index(isMaxima, values, from, to);
@@ -74,9 +74,9 @@ function* indices(
  * array. The search range can be optionally defined via semi-open
  * [from, to) index interval.
  *
- * @param values
- * @param from
- * @param to
+ * @param values -
+ * @param from -
+ * @param to -
  */
 export const minimaIndices = (values: number[], from = 0, to = values.length) =>
     indices(minimaIndex, values, from, to);
@@ -86,9 +86,9 @@ export const minimaIndices = (values: number[], from = 0, to = values.length) =>
  * array. The search range can be optionally defined via semi-open
  * [from, to) index interval.
  *
- * @param values
- * @param from
- * @param to
+ * @param values -
+ * @param from -
+ * @param to -
  */
 export const maximaIndices = (values: number[], from = 0, to = values.length) =>
     indices(minimaIndex, values, from, to);

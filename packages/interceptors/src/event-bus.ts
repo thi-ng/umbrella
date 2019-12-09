@@ -37,6 +37,7 @@ import {
  * Batched event processor for using composable interceptors for event
  * handling and side effects to execute the result of handled events.
  *
+ * @remarks
  * Events processed by this class are simple 2-element tuples/arrays of
  * this form: `["event-id", payload?]`, where the `payload` is optional
  * and can be of any type.
@@ -66,16 +67,17 @@ import {
  *
  * See for further details:
  *
- * - `processQueue()`
- * - `processEvent()`
- * - `processEffects()`
- * - `mergeEffects()`
+ * - {@link StatelessEventBus.processQueue}
+ * - {@link StatelessEventBus.processEvent}
+ * - {@link StatelessEventBus.processEffects}
+ * - {@link StatelessEventBus.mergeEffects}
  *
  * The overall approach of this type of event processing is heavily
  * based on the pattern initially pioneered by @Day8/re-frame, with the
  * following differences:
  *
- * - stateless (see `EventBus` for the more common stateful alternative)
+ * - stateless (see {@link EventBus} for the more common stateful
+ *   alternative)
  * - standalone implementation (no assumptions about surrounding
  *   context/framework)
  * - manual control over event queue processing
@@ -100,12 +102,14 @@ export class StatelessEventBus implements IDispatch {
      * Creates a new event bus instance with given handler and effect
      * definitions (all optional).
      *
+     * @remarks
      * In addition to the user provided handlers & effects, a number of
-     * built-ins are added automatically. See `addBuiltIns()`. User
-     * handlers can override built-ins.
+     * built-ins are added automatically. See
+     * {@link StatelessEventBus.addBuiltIns}. User handlers can override
+     * built-ins.
      *
-     * @param handlers
-     * @param effects
+     * @param handlers -
+     * @param effects -
      */
     constructor(
         handlers?: IObjectOf<EventDef>,
@@ -125,12 +129,15 @@ export class StatelessEventBus implements IDispatch {
     }
 
     /**
-     * Adds built-in event & side effect handlers. Also see additional
-     * built-ins defined by the stateful `EventBus` extension of this
-     * class, as well as comments for these class methods:
+     * Adds built-in event & side effect handlers.
      *
-     * - `mergeEffects()`
-     * - `processEvent()`
+     * @remarks
+     * Also see additional built-ins defined by the stateful
+     * {@link EventBus} extension of this class, as well as comments for
+     * these class methods:
+     *
+     * - {@link StatelessEventBus.mergeEffects}
+     * - {@link StatelessEventBus.processEvent}
      *
      * ### Handlers
      *
@@ -174,8 +181,8 @@ export class StatelessEventBus implements IDispatch {
      * response's `statusText`. The error event is only triggered if the
      * fetched response's `ok` field is non-truthy.
      *
-     * - https://developer.mozilla.org/en-US/docs/Web/API/Response/ok
-     * - https://developer.mozilla.org/en-US/docs/Web/API/Response/statusText
+     * - {@link https://developer.mozilla.org/en-US/docs/Web/API/Response/ok}
+     * - {@link https://developer.mozilla.org/en-US/docs/Web/API/Response/statusText}
      *
      * ```
      * // fetches "foo.json" and then dispatches EV_SUCCESS or EV_ERROR event
@@ -276,8 +283,8 @@ export class StatelessEventBus implements IDispatch {
      * selected handlers. If no handler IDs are given, applies
      * instrumentation to all currently registered handlers.
      *
-     * @param inject
-     * @param ids
+     * @param inject -
+     * @param ids -
      */
     instrumentWith(inject: (Interceptor | InterceptorFn)[], ids?: string[]) {
         const iceps = inject.map(asInterceptor);
@@ -327,11 +334,14 @@ export class StatelessEventBus implements IDispatch {
 
     /**
      * Adds given events to event queue to be processed by
-     * `processQueue()` later on. It's the user's responsibility to call
-     * that latter function repeatedly in a timely manner, preferably
-     * via `requestAnimationFrame()` or similar.
+     * {@link StatelessEventBus.processQueue} later on.
      *
-     * @param e
+     * @remarks
+     * It's the user's responsibility to call that latter function
+     * repeatedly in a timely manner, preferably via
+     * `requestAnimationFrame()` or similar.
+     *
+     * @param e -
      */
     dispatch(...e: Event[]) {
         this.eventQueue.push(...e);
@@ -342,9 +352,9 @@ export class StatelessEventBus implements IDispatch {
      * triggered via the `FX_DISPATCH_NOW` side effect from an event
      * handler / interceptor, the event will still be executed in the
      * currently active batch / frame. If called from elsewhere, the
-     * result is the same as calling `dispatch()`.
+     * result is the same as calling {@link dispatch}.
      *
-     * @param e
+     * @param e -
      */
     dispatchNow(...e: Event[]) {
         (this.currQueue || this.eventQueue).push(...e);
@@ -352,13 +362,17 @@ export class StatelessEventBus implements IDispatch {
 
     /**
      * Dispatches given event after `delay` milliseconds (by default
-     * 17). Note: Since events are only processed by calling
-     * `processQueue()`, it's the user's responsibility to call that
-     * latter function repeatedly in a timely manner, preferably via
-     * `requestAnimationFrame()` or similar.
+     * 17).
      *
-     * @param e
-     * @param delay
+     * @remarks
+     * Since events are only processed by calling
+     * {@link StatelessEventBus.processQueue}, it's the user's
+     * responsibility to call that latter function repeatedly in a
+     * timely manner, preferably via `requestAnimationFrame()` or
+     * similar.
+     *
+     * @param e -
+     * @param delay -
      */
     dispatchLater(e: Event, delay = 17) {
         setTimeout(() => this.dispatch(e), delay);
@@ -368,16 +382,17 @@ export class StatelessEventBus implements IDispatch {
      * Triggers processing of current event queue and returns `true` if
      * any events have been processed.
      *
+     * @remarks
      * If an event handler triggers the `FX_DISPATCH_NOW` side effect,
      * the new event will be added to the currently processed batch and
-     * therefore executed in the same frame. Also see `dispatchNow()`.
+     * therefore executed in the same frame. Also see {@link dispatchNow}.
      *
      * An optional `ctx` (context) object can be provided, which is used
      * to collect any side effect definitions during processing. This
      * can be useful for debugging, inspection or post-processing
      * purposes.
      *
-     * @param ctx
+     * @param ctx -
      */
     processQueue(ctx?: InterceptorContext) {
         if (this.eventQueue.length > 0) {
@@ -399,12 +414,14 @@ export class StatelessEventBus implements IDispatch {
      * chain. Logs warning message and skips processing if no handler is
      * available for the event type.
      *
+     * @remarks
      * The array of interceptors is processed in bi-directional order.
      * First any `pre` interceptors are processed in forward order. Then
      * `post` interceptors are processed in reverse.
      *
      * Each interceptor can return a result object of side effects,
-     * which are being merged and collected for `processEffects()`.
+     * which are being merged and collected for
+     * {@link StatelessEventBus.processEffects}.
      *
      * Any interceptor can trigger zero or more known side effects, each
      * (side effect) will be collected in an array to support multiple
@@ -416,8 +433,8 @@ export class StatelessEventBus implements IDispatch {
      * However, the results of any previous interceptors (incl. the one
      * which cancelled) are kept and processed further as usual.
      *
-     * @param ctx
-     * @param e
+     * @param ctx -
+     * @param e -
      */
     protected processEvent(ctx: InterceptorContext, e: Event) {
         const iceps = this.handlers[<any>e[0]];
@@ -464,7 +481,7 @@ export class StatelessEventBus implements IDispatch {
      * Takes a collection of side effects generated during event
      * processing and applies them in order of configured priorities.
      *
-     * @param ctx
+     * @param ctx -
      */
     protected processEffects(ctx: InterceptorContext) {
         const effects = this.effects;
@@ -495,6 +512,7 @@ export class StatelessEventBus implements IDispatch {
      * Merges the new side effects returned from an interceptor into the
      * internal effect accumulator.
      *
+     * @remarks
      * Any events assigned to the `FX_DISPATCH_NOW` effect key are
      * immediately added to the currently active event batch.
      *
@@ -506,7 +524,7 @@ export class StatelessEventBus implements IDispatch {
      *
      * **Note:** the `FX_STATE` effect is not actually defined by this
      * class here, but is supported to avoid code duplication in
-     * `StatefulEventBus`.
+     * {@link EventBus}.
      *
      * - `FX_CANCEL`
      * - `FX_STATE`
@@ -528,8 +546,8 @@ export class StatelessEventBus implements IDispatch {
      * Any `null` / `undefined` values directly assigned to a side
      * effect are ignored and will not trigger the effect.
      *
-     * @param fx
-     * @param ret
+     * @param fx -
+     * @param ret -
      */
     protected mergeEffects(ctx: InterceptorContext, ret: any) {
         if (!ret) {
@@ -573,10 +591,13 @@ export class StatelessEventBus implements IDispatch {
 }
 
 /**
- * Stateful version of `StatelessEventBus`. Wraps an `IAtom` state
- * container (Atom/Cursor) and provides additional pre-defined event
- * handlers and side effects to manipulate wrapped state. Prefer this
- * as the default implementation for most use cases.
+ * Stateful version of {@link StatelessEventBus}.
+ *
+ * @remarks
+ * Wraps an {@link @thi.ng/atom#IAtom} state container (i.e.
+ * `Atom`/`Cursor`/`History`) and provides additional pre-defined event
+ * handlers and side effects to manipulate wrapped state. Prefer this as
+ * the default implementation for most use cases.
  */
 export class EventBus extends StatelessEventBus
     implements IDeref<any>, IDispatch {
@@ -584,16 +605,20 @@ export class EventBus extends StatelessEventBus
 
     /**
      * Creates a new event bus instance with given parent state, handler
-     * and effect definitions (all optional). If no state is given,
-     * automatically creates an `Atom` with empty state object.
+     * and effect definitions (all optional).
+     *
+     * @remarks
+     * If no state is given, automatically creates an
+     * {@link @thi.ng/atom#Atom} with empty state object.
      *
      * In addition to the user provided handlers & effects, a number of
-     * built-ins are added automatically. See `addBuiltIns()`. User
-     * handlers can override built-ins.
+     * built-ins are added automatically. See
+     * {@link EventBus.addBuiltIns}. User handlers can override
+     * built-ins.
      *
-     * @param state
-     * @param handlers
-     * @param effects
+     * @param state -
+     * @param handlers -
+     * @param effects -
      */
     constructor(
         state?: IAtom<any> | null,
@@ -620,7 +645,8 @@ export class EventBus extends StatelessEventBus
      *
      * #### `EV_SET_VALUE`
      *
-     * Resets state path to provided value. See `setIn()`.
+     * Resets state path to provided value. See
+     * {@link @thi.ng/paths#setIn}.
      *
      * Example event definition:
      * ```
@@ -630,7 +656,7 @@ export class EventBus extends StatelessEventBus
      * #### `EV_UPDATE_VALUE`
      *
      * Updates a state path's value with provided function and optional
-     * extra arguments. See `updateIn()`.
+     * extra arguments. See {@link @thi.ng/paths#updateIn}.
      *
      * Example event definition:
      * ```
@@ -649,16 +675,16 @@ export class EventBus extends StatelessEventBus
      * #### `EV_UNDO`
      *
      * Calls `ctx[id].undo()` and uses return value as new state.
-     * Assumes `ctx[id]` is a @thi.ng/atom `History` instance, provided
-     * via e.g. `processQueue({ history })`. The event can be triggered
-     * with or without ID. By default `"history"` is used as default key
-     * to lookup the `History` instance. Furthermore, an additional
-     * event can be triggered based on if a previous state has been
-     * restored or not (basically, if the undo was successful). This is
-     * useful for resetting/re-initializing stateful resources after a
-     * successful undo action or to notify the user that no more undo's
-     * are possible. The new event will be processed in the same frame
-     * and has access to the (possibly) restored state. The event
+     * Assumes `ctx[id]` is a {@link @thi.ng/atom#History} instance,
+     * provided via e.g. `processQueue({ history })`. The event can be
+     * triggered with or without ID. By default `"history"` is used as
+     * default key to lookup the `History` instance. Furthermore, an
+     * additional event can be triggered based on if a previous state
+     * has been restored or not (basically, if the undo was successful).
+     * This is useful for resetting/re-initializing stateful resources
+     * after a successful undo action or to notify the user that no more
+     * undo's are possible. The new event will be processed in the same
+     * frame and has access to the (possibly) restored state. The event
      * structure for these options is shown below:
      *
      * ```
@@ -712,16 +738,16 @@ export class EventBus extends StatelessEventBus
      *
      * If an event handler triggers the `FX_DISPATCH_NOW` side effect,
      * the new event will be added to the currently processed batch and
-     * therefore executed in the same frame. Also see `dispatchNow()`.
+     * therefore executed in the same frame. Also see {@link dispatchNow}.
      *
      * If the optional `ctx` arg is provided it will be merged into the
-     * `InterceptorContext` object passed to each interceptor. Since the
+     * {@link InterceptorContext} object passed to each interceptor. Since the
      * merged object is also used to collect triggered side effects,
      * care must be taken that there're no key name clashes.
      *
      * In order to use the built-in `EV_UNDO`, `EV_REDO` events, users
-     * MUST provide a @thi.ng/atom History (or compatible undo history
-     * instance) via the `ctx` arg, e.g.
+     * MUST provide a {@link @thi.ng/atom#History} (or compatible undo
+     * history instance) via the `ctx` arg, e.g.
      *
      * ```
      * bus.processQueue({ history });

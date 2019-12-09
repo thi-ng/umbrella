@@ -14,8 +14,8 @@ import { clamp01 } from "../math/clamp";
 import { fit1101 } from "../math/fit";
 
 /**
- * @param d1 float
- * @param d2 float
+ * @param d1 - float
+ * @param d2 - float
  */
 export const sdfSmoothIntersect = defn(
     "float",

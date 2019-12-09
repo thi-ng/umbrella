@@ -20,9 +20,9 @@ import { maxComp2 } from "../math/maxcomp";
  * Returns signed distance from `p` to cylinder centered around Y-axis
  * with height `h` and radius `r`.
  *
- * @param p vec3
- * @param h float
- * @param r float
+ * @param p - vec3
+ * @param h - float
+ * @param r - float
  */
 export const sdfCylinder = defn(
     "float",

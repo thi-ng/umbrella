@@ -20,10 +20,10 @@ import { clamp01 } from "../math/clamp";
 import { cross2 } from "../math/cross2";
 
 /**
- * @param p vec2
- * @param a vec2
- * @param b vec2
- * @param c vec2
+ * @param p - vec2
+ * @param a - vec2
+ * @param b - vec2
+ * @param c - vec2
  */
 export const sdfTriangle2 = defn(
     "float",

@@ -12,7 +12,7 @@ export type RuleFn = (acc: string[], opts: CSSOpts) => string[];
 
 /**
  * Configuration type for conditional rule functions
- * (i.e. `at_media()`, `at_supports()`)
+ * (i.e. {@link at_media}, {@link at_supports})
  */
 export type Conditional = string | IObjectOf<boolean | number | string>;
 
@@ -31,7 +31,7 @@ export interface Format {
 }
 
 /**
- * Config options supported by `css()` and its helper functions.
+ * Config options supported by {@link css} and its helper functions.
  */
 export interface CSSOpts {
     /**
@@ -71,7 +71,7 @@ export interface CSSOpts {
 export const DEFAULT_VENDORS = ["-moz-", "-ms-", "-o-", "-webkit-"];
 
 /**
- * Default format config used by `css()` function.
+ * Default format config used by {@link css} function.
  * Forms "minimized" CSS without obsolete white space
  * and omits comments unless they were forced.
  */

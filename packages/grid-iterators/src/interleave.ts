@@ -9,11 +9,11 @@ import { map, range2d } from "@thi.ng/transducers";
  * - 1, 2 * step + 1, 3 * step + 1...
  * - etc.
  *
- * @see interleaveRows2d
+ * {@link interleaveRows2d}
  *
- * @param cols
- * @param rows
- * @param step
+ * @param cols -
+ * @param rows -
+ * @param step - column stride
  */
 export function* interleaveColumns2d(cols: number, rows = cols, step = 2) {
     for (let j = 0; j < step; j++) {
@@ -22,7 +22,7 @@ export function* interleaveColumns2d(cols: number, rows = cols, step = 2) {
 }
 
 /**
- * Similar to `interleaveColumns2d`, but yields 2D grid coordinates in
+ * Similar to {@link interleaveColumns2d}, but yields 2D grid coordinates in
  * the order of interleaved rows with configurable `step` size (default:
  * 2). I.e. returns rows in this order:
  *
@@ -30,11 +30,11 @@ export function* interleaveColumns2d(cols: number, rows = cols, step = 2) {
  * - 1, 2 * step + 1, 3 * step + 1...
  * - etc.
  *
- * @see interleaveColumns2d
+ * {@link interleaveColumns2d}
  *
- * @param cols
- * @param rows
- * @param step
+ * @param cols -
+ * @param rows -
+ * @param step - row stride
  */
 export function* interleaveRows2d(cols: number, rows = cols, step = 2) {
     for (let j = 0; j < step; j++) {

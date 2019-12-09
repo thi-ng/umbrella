@@ -2,9 +2,9 @@
  * Generic interface for collections implementing
  * stack functionality.
  *
- * @param V value type
- * @param P return type for pop()
- * @param S return type for push()
+ * @param V - value type
+ * @param P - return type for pop()
+ * @param S - return type for push()
  */
 export interface IStack<V, P, S> {
     /**

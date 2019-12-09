@@ -5,6 +5,7 @@ import { at_media } from "./media";
 import { at_namespace } from "./namespace";
 import { at_supports } from "./supports";
 
+/** @internal */
 export const QUOTED_FNS = {
     "@comment": comment,
     "@import": at_import,

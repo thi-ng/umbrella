@@ -13,6 +13,10 @@ import {
     NULL_LOGGER
 } from "@thi.ng/api";
 
+/**
+ * Unique symbol used for registering a default / fallback
+ * implementation.
+ */
 export const DEFAULT: unique symbol = Symbol();
 
 export type DispatchFn = FnAny<PropertyKey>;
@@ -175,8 +179,8 @@ export interface MultiFnBase<I> {
      * if successful. Returns false if an implementation already exists
      * (and does nothing in this case).
      *
-     * @param id
-     * @param impl
+     * @param id - implementation ID (dispatch value)
+     * @param impl - implementation
      */
     add(id: PropertyKey, impl: I): boolean;
     /**
@@ -185,21 +189,21 @@ export interface MultiFnBase<I> {
      * added successfully. Note: Only numbers or strings are accepted as
      * dispatch values here.
      *
-     * @param impls
+     * @param impls - object of implementations
      */
     addAll(impls: IObjectOf<I>): boolean;
     /**
      * Removes implementation for dispatch value `id`. Returns true, if
      * successful.
      *
-     * @param id
+     * @param id - implementation ID
      */
     remove(id: PropertyKey): boolean;
     /**
      * Returns true, if the function is callable (has a valid
      * implementation) for given arguments.
      *
-     * @param args
+     * @param args - arguments to find impl for
      */
     callable(...args: any[]): boolean;
     /**
@@ -211,8 +215,8 @@ export interface MultiFnBase<I> {
      * delegate to `parent`'s implementation. I.e. in terms of dispatch
      * logic, `id` is considered the same as `parent.
      *
-     * @param id
-     * @param parent
+     * @param id - implementation ID
+     * @param parent -parent implementation ID
      */
     isa(id: PropertyKey, parent: PropertyKey): boolean;
     /**
@@ -225,13 +229,13 @@ export interface MultiFnBase<I> {
      * Returns a set of immediate parent dispatch values for given
      * dispatch value `id`.
      *
-     * @param id
+     * @param id - implementation ID
      */
     parents(id: PropertyKey): Set<PropertyKey>;
     /**
-     * Similar to `parents()`, but includes all transitive parent dispatch
-     * values for given dispatch value `id`.
-     * @param id
+     * Similar to {@link MultiFnBase.parents}, but includes all
+     * transitive parent dispatch values for given dispatch value `id`.
+     * @param id - implementation ID
      */
     ancestors(id: PropertyKey): Set<PropertyKey>;
 }

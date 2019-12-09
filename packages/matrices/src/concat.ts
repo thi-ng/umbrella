@@ -6,10 +6,10 @@ import { mulM } from "./mulm";
  * minimum of 2 input matrices must be given. If `out` is null, writes
  * result into `a`.
  *
- * @param out
- * @param a
- * @param b
- * @param xs
+ * @param out -
+ * @param a -
+ * @param b -
+ * @param xs -
  */
 export const concat = (
     out: Mat | null,

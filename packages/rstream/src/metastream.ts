@@ -82,8 +82,8 @@ import { optsWithID } from "./utils/idgen";
  * // meta from: a
  * ```
  *
- * @param factory
- * @param id
+ * @param factory -
+ * @param id -
  */
 export const metaStream = <A, B>(
     factory: Fn<A, Subscription<B, B>>,

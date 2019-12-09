@@ -6,14 +6,16 @@ import { map } from "./map";
 import { partition } from "./partition";
 
 /**
- * Transducer. Similar to `movingAverage()`, but yields median of
- * sliding window and supports non-numeric inputs. The optional `key`
- * and `cmp` function args can be used to select / compute a sortable
- * value and change sorting behavior.
+ * Transducer. Similar to {@link (movingAverage:1)}, but yields median
+ * of sliding window and supports non-numeric inputs.
  *
- * @param n window size
- * @param opts
- * @param src
+ * @remarks
+ * The optional `key` and `cmp` function options can be used to select /
+ * compute a sortable value and change sorting behavior.
+ *
+ * @param n - window size
+ * @param opts -
+ * @param src -
  */
 // prettier-ignore
 export function movingMedian<A, B>(n: number, opts?: Partial<SortOpts<A, B>>): Transducer<A, A>;

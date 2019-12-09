@@ -1,7 +1,7 @@
 /**
  * Returns number of 1 bits in `x`.
  *
- * @param x
+ * @param x -
  */
 export const popCount = (x: number) => (
     (x = x - ((x >>> 1) & 0x55555555)),
@@ -10,19 +10,21 @@ export const popCount = (x: number) => (
 );
 
 /**
- * https://en.wikipedia.org/wiki/Hamming_distance
+ * Returns number of bit changes between `x` and `y`.
  *
- * @param x
- * @param y
+ * {@link https://en.wikipedia.org/wiki/Hamming_distance}
+ *
+ * @param x -
+ * @param y -
  */
 export const hammingDist = (x: number, y: number) => popCount(x ^ y);
 
 /**
  * Math.clz32() polyfill (corrected).
  *
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/clz32$revision/1426816
+ * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/clz32$revision/1426816}
  *
- * @param x
+ * @param x -
  */
 export const clz32 = (x: number) =>
     x !== 0 ? 31 - ((Math.log(x >>> 0) / Math.LN2) | 0) : 32;
@@ -42,6 +44,6 @@ export const ctz32 = (x: number) => {
 /**
  * Returns the number of bits required to encode `x` (MUST be > 0).
  *
- * @param x
+ * @param x -
  */
 export const bitSize = (x: number) => Math.ceil(Math.log(x) / Math.LN2);

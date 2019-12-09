@@ -3,26 +3,31 @@ import { compare, compareNumAsc } from "@thi.ng/compare";
 
 /**
  * Returns the supposed index of `x` in pre-sorted array-like collection
- * `buf`. If `x` can't be found, returns `-index-1`, representing the
- * negative of the index, were `x` to be inserted into `buf`. E.g if the
- * return value is -3, `x` would appear/insert at index 2.
+ * `buf`.
  *
- * ```
- * binarySearch([2, 4, 6], 5);
- * // -3
- * ```
+ * @remarks
+ * If `x` can't be found, returns `-index-1`, representing the negative
+ * of the index, were `x` to be inserted into `buf`. E.g if the return
+ * value is -3, `x` would appear/insert at index 2.
  *
  * The optional `key` function is used to obtain the actual sort value
  * of `x` and each array item (default: identity).
  *
- * The optional `cmp` comparator (default: thi.ng/compare) is then used
- * to identify the index of `x`. The sort order of `buf` MUST be
- * compatible with that of `cmp`.
+ * The optional `cmp` comparator (default:
+ * {@link @thi.ng/compare#compare}) is then used to identify the index
+ * of `x`. The sort order of `buf` MUST be compatible with that of
+ * `cmp`.
  *
- * @param buf
- * @param x
- * @param key
- * @param cmp
+ * @example
+ * ```ts
+ * binarySearch([2, 4, 6], 5);
+ * // -3
+ * ```
+ *
+ * @param buf - array
+ * @param x - search value
+ * @param key - key function
+ * @param cmp - comparator
  */
 export const binarySearch = <A, B>(
     buf: ArrayLike<A>,
@@ -48,13 +53,13 @@ export const binarySearch = <A, B>(
 };
 
 /**
- * Similar to `binarySearch()`, but optimized for numeric arrays and
- * supporting custom comparators (default: `compareNumAsc` from
- * thi.ng/compare pkg).
+ * Similar to {@link binarySearch}, but optimized for numeric arrays and
+ * supporting custom comparators (default:
+ * {@link @thi.ng/compare#compareNumAsc}).
  *
- * @param buf
- * @param x
- * @param cmp
+ * @param buf - array
+ * @param x - search value
+ * @param cmp - comparator
  */
 export const binarySearchNumeric = (
     buf: ArrayLike<number>,

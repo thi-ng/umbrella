@@ -38,6 +38,7 @@ import { optsWithID } from "./utils/idgen";
  * value, value caching is disabled or if the stream is done, it will
  * deref to `undefined`.
  *
+ * @example
  * ```ts
  * a = stream((s) => {
  *     s.next(1);

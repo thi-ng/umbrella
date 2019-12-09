@@ -21,18 +21,18 @@ import { setS2 } from "./sets";
 
 export class Vec2 extends AVec implements IHash<number>, IVector<Vec2> {
     /**
-     * Returns array of memory mapped `Vec2` instances using given
+     * Returns array of memory mapped {@link Vec2} instances using given
      * backing array and stride settings: The `cstride` is the step size
      * between individual XY vector components. `estride` is the step
      * size between successive vectors. This arrangement allows for
      * different storage approaches, incl. SOA, AOS, striped /
      * interleaved etc.
      *
-     * @param buf backing array
-     * @param num num vectors
-     * @param start  start index
-     * @param cstride component stride
-     * @param estride element stride
+     * @param buf - backing array
+     * @param num - num vectors
+     * @param start -  start index
+     * @param cstride - component stride
+     * @param estride - element stride
      */
     static mapBuffer(
         buf: Vec,
@@ -45,18 +45,18 @@ export class Vec2 extends AVec implements IHash<number>, IVector<Vec2> {
     }
 
     /**
-     * Merges given `src` iterable of `Vec2`s into single array `buf`.
+     * Merges given `src` iterable of {@link Vec2}s into single array `buf`.
      * Vectors will be arranged according to given component and element
      * strides, starting at `start` index. It's the user's
      * responsibility to ensure the target buffer has sufficient
      * capacity to hold the input vectors. See `Vec2.mapBuffer` for the
      * inverse operation. Returns `buf`.
      *
-     * @param buf
-     * @param src
-     * @param start
-     * @param cstride
-     * @param estride
+     * @param buf -
+     * @param src -
+     * @param start -
+     * @param cstride -
+     * @param estride -
      */
     static intoBuffer(
         buf: Vec,

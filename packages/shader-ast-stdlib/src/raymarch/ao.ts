@@ -25,8 +25,8 @@ import { clamp01 } from "../math/clamp";
  * returned function takes 2 arguments: surface pos and normal. It
  * returns a float in [0..1] interval (zero = fully occluded).
  *
- * @param scene
- * @param numSamples
+ * @param scene -
+ * @param numSamples -
  */
 export const raymarchAO = (scene: RaymarchScene, numSamples = 5) =>
     defn("float", "raymarchAO", ["vec3", "vec3"], (p, n) => {

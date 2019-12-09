@@ -31,12 +31,12 @@ export class EquivMap<K, V> extends Map<K, V>
         IEmpty<EquivMap<K, V>>,
         IEquiv {
     /**
-     * Converts given vanilla object into an `EquivMap` instance with
+     * Converts given vanilla object into an {@link EquivMap} instance with
      * default (or optionally provided) options and returns it. By
      * default uses strict `===` equality check for `equiv` option.
      *
-     * @param obj
-     * @param opts
+     * @param obj - source object
+     * @param opts - config options
      */
     static fromObject<T>(
         obj: IObjectOf<T>,
@@ -55,11 +55,11 @@ export class EquivMap<K, V> extends Map<K, V>
     /**
      * Creates a new instance with optional initial key-value pairs and
      * provided options. If no `opts` are given, uses `ArraySet` for
-     * storing canonical keys and `@thi.ng/equiv` for checking key
-     * equivalence.
+     * storing canonical keys and {@link @thi.ng/equiv#equiv} for
+     * checking key equivalence.
      *
-     * @param pairs
-     * @param opts
+     * @param pairs - key-value pairs
+     * @param opts - config options
      */
     constructor(
         pairs?: Iterable<Pair<K, V>> | null,

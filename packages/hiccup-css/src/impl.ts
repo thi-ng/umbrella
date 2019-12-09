@@ -29,8 +29,12 @@ const xfSel = comp<any, string, string>(
 );
 
 const withScope = (xf: Transducer<any, any>, scope: string) =>
-    comp(xf, map((x) => (isString(x) && x.indexOf(" .") == 0 ? x + scope : x)));
+    comp(
+        xf,
+        map((x) => (isString(x) && x.indexOf(" .") == 0 ? x + scope : x))
+    );
 
+/** @internal */
 export const expand = (
     acc: string[],
     parent: any[],
@@ -98,6 +102,7 @@ const formatRule = (parent: any[], sel: any[], curr: any, opts: CSSOpts) => {
     ].join("");
 };
 
+/** @internal */
 export const formatDecls = (rules: any, opts: CSSOpts) => {
     const f = opts.format;
     const prefixes = <Set<string>>(opts.autoprefix || EMPTY);
@@ -125,6 +130,7 @@ export const formatDecls = (rules: any, opts: CSSOpts) => {
     return acc.join(f.decls) + f.decls;
 };
 
+/** @internal */
 export const indent = (opts: CSSOpts, d = opts.depth) =>
     d > 1
         ? [...repeat(opts.format.indent, d)].join("")
