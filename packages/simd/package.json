@@ -33,7 +33,7 @@
         "@microsoft/api-extractor": "^7.7.0",
         "@types/mocha": "^5.2.6",
         "@types/node": "^12.12.11",
-        "assemblyscript": "AssemblyScript/assemblyscript",
+        "assemblyscript": "^0.8.1",
         "mocha": "^6.2.2",
         "nyc": "^14.0.0",
         "ts-node": "^8.5.2",
