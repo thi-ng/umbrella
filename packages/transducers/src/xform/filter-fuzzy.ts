@@ -5,19 +5,28 @@ import { $iter } from "../iterator";
 import { filter } from "./filter";
 
 export interface FilterFuzzyOpts<A, B> {
+    /**
+     * Key extractor function.
+     */
     key: Fn<A, ArrayLike<B>>;
+    /**
+     * Equivalence predicate function.
+     */
     equiv: Predicate2<any>;
 }
 
 /**
  * Returns transducer which calls {@link @thi.ng/arrays#fuzzyMatch} for
- * each value and discards all non-matching values. The optional `key`
- * fn can be used to extract/produce the actual value used for the
- * search. The optional `eq` predicate can be used to customize item
- * equality checking. Uses
- * @thi.ng/equiv by default.
+ * each value and discards all non-matching values.
  *
- * ```
+ * @remarks
+ * The `key` option function can be used to extract/produce the actual
+ * value used for the search. The `equiv` option predicate can be used
+ * to customize item equality checking. Uses {@link @thi.ng/equiv#equiv}
+ * by default.
+ *
+ * @example
+ * ```ts
  * [...filterFuzzy("ho", ["hello", "hallo", "hey", "heyoka"])]
  * // ["hello", "hallo", "heyoka"]
  * ```

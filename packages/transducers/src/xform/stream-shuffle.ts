@@ -9,7 +9,8 @@ import { isReduced } from "../reduced";
  * yields values in shuffled order. By default `maxSwaps` is the same as
  * the chosen chunk size.
  *
- * ```
+ * @example
+ * ```ts
  * [...streamShuffle(5, range(10))]
  * // [ 3, 2, 5, 0, 8, 7, 1, 6, 4, 9 ]
  * ```

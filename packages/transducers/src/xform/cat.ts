@@ -5,13 +5,21 @@ import { ensureReduced, isReduced, unreduced } from "../reduced";
 /**
  * Transducer to concatenate iterable values. Iterates over each input
  * and emits individual values down stream, therefore removing one level
- * of nesting from the input. If, during processing, the transducer is
- * given a wrapped reduced input iterable, it will still be processed as
- * normal, but then immediately triggers early termination by wrapping
- * its own result in {@link reduced}. E.g. this behavior allows a
- * {@link (mapcat:1)} user functions to benefit from reduced results.
+ * of nesting from the input.
  *
- * ```
+ * @remarks
+ * If, during processing, the transducer is given a wrapped reduced
+ * input iterable, it will still be processed as normal, but then
+ * immediately triggers early termination by wrapping its own result in
+ * {@link reduced}. E.g. this behavior allows a {@link (mapcat:1)} user
+ * functions to benefit from reduced results.
+ *
+ * Also see:
+ * - {@link concat}
+ * - {@link (mapcat:1)}
+ *
+ * @example
+ * ```ts
  * [...iterator(comp(map((x) => [x, x]), cat()), [1, 2, 3, 4])]
  * // [ 1, 1, 2, 2, 3, 3, 4, 4 ]
  *
@@ -29,8 +37,7 @@ import { ensureReduced, isReduced, unreduced } from "../reduced";
  * // [ 1, 1, 2, 2 ]
  * ```
  *
- * - {@link @thi.ng/transducers#concat}
- * - {@link @thi.ng/transducers!(mapcat:1)}
+ * @param rfn -
  */
 export const cat = <T>(): Transducer<Iterable<T> | null | undefined, T> => (
     rfn: Reducer<any, T>

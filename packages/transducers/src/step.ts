@@ -8,11 +8,13 @@ import { push } from "./rfn/push";
  * and undefined if there was no output. Else returns single
  * result value.
  *
+ * @remarks
  * Likewise, once a transducer has produced a final / reduced
  * value, all further invocations of the stepper function will
  * return undefined.
  *
- * ```
+ * @example
+ * ```ts
  * // single result
  * step(map(x => x * 10))(1);
  * // 10

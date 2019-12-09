@@ -3,13 +3,15 @@ import { Fn2 } from "@thi.ng/api";
 /**
  * Yields an infinite iterator of the inductive sequence:
  *
- * f(x+1) = f(f(x))
+ * `f(x+1) = f(f(x))`
  *
+ * @remarks
  * The first value emitted always is `seed` itself, then f(seed),
  * f(f(seed)) etc. The given function is called with the current
  * iteration counter as 2nd arg.
  *
- * ```
+ * @example
+ * ```ts
  * [...take(5, iterate((x) => x * 2, 1))]
  * // [ 1, 2, 4, 8, 16 ]
  *

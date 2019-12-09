@@ -6,7 +6,8 @@ import { throttle } from "./throttle";
  * Transducer which only yields every `n`-th value from the input
  * source.
  *
- * ```
+ * @example
+ * ```ts
  * [...takeNth(3, range(10))]
  * // [ 0, 3, 6, 9 ]
  * ```

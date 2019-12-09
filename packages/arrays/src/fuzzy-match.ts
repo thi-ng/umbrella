@@ -12,7 +12,7 @@ import { equiv as _eq } from "@thi.ng/equiv";
  * Adapted and generalized from:
  * {@link https://github.com/bevacqua/fufuzzyzzysearch} (MIT)
  *
- * {@link @thi.ng/transducers!(filterFuzzy:1)}
+ * {@link @thi.ng/transducers#(filterFuzzy:1)}
  *
  * @param domain - array
  * @param query - search value

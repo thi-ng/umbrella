@@ -37,6 +37,7 @@ export interface TweenOpts<A, B, C> {
  * Keyframes are defined as `[time, value]` tuples. Only values in the
  * closed `[min..max]` time interval will be computed.
  *
+ * @remarks
  * Interpolation happens in two stages: First the given `init` function
  * is called to transform/prepare pairs of consecutive keyframes into a
  * single interval (user defined). Then, to produce each tweened value
@@ -58,7 +59,8 @@ export interface TweenOpts<A, B, C> {
  * in total, all `num` yielded samples will be that keyframe's
  * transformed value.
  *
- * ```
+ * @example
+ * ```ts
  * [...tween({
  *   num: 10,
  *   min: 0,
@@ -70,7 +72,7 @@ export interface TweenOpts<A, B, C> {
  * // [ 100, 100, 100, 133, 166, 200, 133, 66, 0, 0, 0 ]
  * ```
  *
- * Using easing functions (e.g. from thi.ng/math), non-linear
+ * Using easing functions (e.g. from {@link @thi.ng/math#}), non-linear
  * interpolation within each keyframe interval can be achieved:
  *
  * @example

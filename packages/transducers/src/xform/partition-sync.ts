@@ -12,11 +12,12 @@ export interface PartitionSyncOpts<T> {
 }
 
 /**
- * This transducer is intended for synchronization and provenance
- * tracking of possibly previously merged inputs. It partitions the
- * input into labeled tuple objects with the object keys obtained from
- * the user provided `keyfn` (which is applied to each input value).
+ * Transducer intended for synchronization and provenance tracking of
+ * possibly previously merged inputs. Partitions the input into labeled
+ * tuple objects with the object keys obtained from the user provided
+ * `keyfn` (which is applied to each input value).
  *
+ * @remarks
  * By default, a new result is only produced once values from **all**
  * given labeled sources have been received. Only labels contained in
  * the provided key set are used, others are skipped. The result tuples
@@ -52,7 +53,7 @@ export interface PartitionSyncOpts<T> {
  * available (with other values in the tuple remaining). Compare with
  * above example:
  *
- * ```
+ * ```ts
  * // passing `false` to disable tuple reset
  * [...partitionSync(
  *   ["a", "b"],
@@ -65,6 +66,7 @@ export interface PartitionSyncOpts<T> {
  * // [ { a: ["a", 2], b: ["b", 10] },
  * //   { a: ["a", 2], b: ["b", 11] },
  * //   { a: ["a", 3], b: ["b", 11] } ]
+ * ```
  *
  * By default, the last emitted tuple is allowed to be incomplete (in
  * case the input closed). To only allow complete tuples, set the

@@ -3,14 +3,18 @@ import { iterator } from "../iterator";
 import { isReduced } from "../reduced";
 
 /**
- * Ensures the total number of transformed values will be multiples
- * of `n`. Only makes sense for finite streams / reductions. Does nothing
- * if the to be transformed data source has exactly multiple of `n`
- * values, but if not pads / supplies additional `fill` values at the end
- * until the next multiple is reached. No padding takes place if input
- * is empty, since length 0 is always a multiple.
+ * Ensures the total number of transformed values will be multiples of
+ * `n`.
  *
- * ```
+ * @remarks
+ * Only makes sense for finite streams / reductions. Does nothing if the
+ * to be transformed data source has exactly multiple of `n` values, but
+ * if not pads / supplies additional `fill` values at the end until the
+ * next multiple is reached. No padding takes place if input is empty,
+ * since length 0 is always a multiple.
+ *
+ * @example
+ * ```ts
  * [...padLast(8, 0, [1, 2, 3, 4, 5])]
  * // [ 1, 2, 3, 4, 5, 0, 0, 0 ]
  *

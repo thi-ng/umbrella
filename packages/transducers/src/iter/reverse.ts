@@ -4,7 +4,8 @@ import { ensureArray } from "@thi.ng/arrays";
  * Yields iterator which consumes input and yield its values in reverse
  * order. Important: Input MUST be finite.
  *
- * ```
+ * @example
+ * ```ts
  * [...tx.reverse("hello world")]
  * // [ "d", "l", "r", "o", "w", " ", "o", "l", "l", "e", "h" ]
  * ```

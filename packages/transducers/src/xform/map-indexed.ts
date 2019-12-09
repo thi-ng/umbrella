@@ -4,9 +4,11 @@ import { compR } from "../func/compr";
 import { $iter } from "../iterator";
 
 /**
- * Transducer. Similar to {@link (map:1)}, but given `fn` takes two arguments:
- * `index` and `value` to transform. An optional start index `offset`
- * can be provided (default 0).
+ * Transducer. Similar to {@link (map:1)}, but given `fn` takes two
+ * arguments: `index` and `value` to transform.
+ *
+ * @remarks
+ * An optional start index `offset` can be provided (default 0).
  *
  * @example
  * ```ts

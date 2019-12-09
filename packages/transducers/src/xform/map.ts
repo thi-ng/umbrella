@@ -7,7 +7,8 @@ import { iterator1 } from "../iterator";
  * Transducer. Applies mapping function `fn` to each received value and
  * passes result downstream to next reducer.
  *
- * ```
+ * @example
+ * ```ts
  * [...map((x) => x * 10, [1, 2, 3])]
  * // [ 10, 20, 30 ]
  * ```

@@ -7,9 +7,10 @@ import { repeat } from "./repeat";
  * padded, but can be adjusted by setting either of them to zero.
  * `numRight` defaults to same value as `numLeft`.
  *
+ * @example
  * Essentially, syntax sugar for:
  *
- * ```
+ * ```ts
  * // default
  * concat(repeat(x, numLeft), src, repeat(x, numRight))
  *

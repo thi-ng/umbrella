@@ -7,7 +7,8 @@ import { iterator1 } from "../iterator";
  * produces time measurements since last value processed,
  * e.g. for use in async usage contexts.
  *
- * ```
+ * @example
+ * ```ts
  * // example using @thi.ng/rstream
  * rstream
  *     .fromInterval(1000)

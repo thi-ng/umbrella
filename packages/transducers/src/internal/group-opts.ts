@@ -3,9 +3,11 @@ import { GroupByOpts } from "../api";
 import { push } from "../rfn/push";
 
 /**
- * Shared helper function for groupBy* reducers
+ * Shared helper function for `groupBy*` reducers
  *
  * @param opts -
+ *
+ * @internal
  */
 export const __groupByOpts = <SRC, KEY, GROUP>(
     opts?: Partial<GroupByOpts<SRC, PropertyKey, GROUP>>

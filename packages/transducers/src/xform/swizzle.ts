@@ -8,7 +8,8 @@ import { map } from "./map";
  * property order. Accepts arrays or objects as input, but always yields
  * arrays.
  *
- * ```
+ * @example
+ * ```ts
  * [...swizzle([3,0,2,1], [[1,2,3,4], [10,20,30,40]])]
  * // [ [ 4, 1, 3, 2 ], [ 40, 10, 30, 20 ] ]
  *

@@ -9,6 +9,8 @@ import { isReduced } from "../reduced";
  * @param buf -
  * @param complete -
  * @param reduce -
+ *
+ * @internal
  */
 export const __drain = <T>(
     buf: T[],

@@ -8,6 +8,7 @@ import { iterator1 } from "../iterator";
  * predicates to achieve rate limiting capabilities. Emits only values
  * when predicate returns a truthy value.
  *
+ * @remarks
  * To support multiple instances of stateful predicates, the predicate
  * itself must be wrapped in a no-arg function, which is called when the
  * transducer initializes. Any stateful initialization of the predicate

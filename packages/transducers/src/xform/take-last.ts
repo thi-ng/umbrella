@@ -6,7 +6,8 @@ import { iterator } from "../iterator";
  * Transducer which only yields the last `n` values. Assumes
  * input source is finite (of course).
  *
- * ```
+ * @example
+ * ```ts
  * [...takeLast(3, range(10))]
  * // [ 7, 8, 9 ]
  * ```

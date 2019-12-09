@@ -9,7 +9,8 @@ import { rename } from "./rename";
  * Transducer. Similar to (and building on) {@link (multiplex:1)}, but takes an
  * object of transducers and produces a result object for each input.
  *
- * ```
+ * @example
+ * ```ts
  * [...multiplexObj(
  *   {
  *     initial: map(x => x.charAt(0)),

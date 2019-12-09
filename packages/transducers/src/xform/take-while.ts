@@ -10,7 +10,8 @@ import { reduced } from "../reduced";
  * the result is falsy, transformation is terminated (by emitting a
  * {@link reduced} value).
  *
- * ```
+ * @example
+ * ```ts
  * [...takeWhile((x) => x < 5, range(10))]
  * // [ 0, 1, 2, 3, 4 ]
  * ```
@@ -31,9 +32,8 @@ export function takeWhile<T>(...args: any[]): any {
             const r = rfn[2];
             const pred = args[0];
             let ok = true;
-            return compR(
-                rfn,
-                (acc, x: T) => ((ok = ok && pred(x)) ? r(acc, x) : reduced(acc))
+            return compR(rfn, (acc, x: T) =>
+                (ok = ok && pred(x)) ? r(acc, x) : reduced(acc)
             );
         })
     );

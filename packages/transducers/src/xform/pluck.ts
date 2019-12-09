@@ -6,7 +6,8 @@ import { map } from "./map";
  * Transducer which looks up given `key` in each input and yields
  * sequence of these values.
  *
- * ```
+ * @example
+ * ```ts
  * [...pluck("id", [{id: 1}, {id: 2}, {}])]
  * // [ 1, 2, undefined ]
  * ```

@@ -8,7 +8,8 @@ import { isReduced } from "../reduced";
  * values until the return value of the `fn` has changed. Once this
  * happens yields chunk of buffered values.
  *
- * ```
+ * @example
+ * ```ts
  * [...partitionBy((x) => x & 1, [1, 2, 4, 6, 3, 5, 8, 4])]
  * // [ [ 1 ], [ 2, 4, 6 ], [ 3, 5 ], [ 8, 4 ] ]
  * ```

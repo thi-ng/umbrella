@@ -8,7 +8,8 @@ import { $iter, iterator } from "../iterator";
  * emitted. However, if `all` is true, the last partition is allowed to
  * be incomplete / partially filled only.
  *
- * ```
+ * @example
+ * ```ts
  * [...partition(3, range(10))]
  * // [ [ 0, 1, 2 ], [ 3, 4, 5 ], [ 6, 7, 8 ] ]
  *

@@ -1,7 +1,7 @@
 import { Fn } from "@thi.ng/api";
 
 /**
- * @deprecated use {@link @thi.ng/compose!(juxt:1)}
+ * @deprecated use {@link @thi.ng/compose#(juxt:1)}
  *
  * @param fns -
  */

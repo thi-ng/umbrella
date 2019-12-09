@@ -5,13 +5,16 @@ import { drop } from "./drop";
 import { take } from "./take";
 
 /**
- * Pagination helper. Returns transducer which extracts
- * only items for given page number (and page length,
- * default 10). When composing with other transducers,
- * it's most efficient if {@link (page:1)} is used prior to
- * any heavy processing steps.
+ * Pagination helper. Returns transducer which extracts only items for
+ * given page number (and page length, default 10).
  *
- * ```
+ * @remarks
+ * When {@link (comp:1) | composing} with other transducers, it's most
+ * efficient if `page` is used as early as possible / prior to any heavy
+ * processing steps.
+ *
+ * @example
+ * ```ts
  * [...page(0, 5, range(12))]
  * // [ 0, 1, 2, 3, 4 ]
  *

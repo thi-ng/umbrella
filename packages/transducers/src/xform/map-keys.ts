@@ -10,7 +10,8 @@ import { map } from "./map";
  * `keys[k](x[k])` and reassigns result. By default creates a shallow
  * copy of each `x`.
  *
- * ```
+ * @example
+ * ```ts
  * [...mapKeys(
  *   {
  *     a: (x) => x != null ? x * 10 : x,

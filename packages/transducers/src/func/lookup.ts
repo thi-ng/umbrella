@@ -2,7 +2,8 @@
  * Returns function accepting a single index arg used to
  * lookup value in given array. No bounds checks are done.
  *
- * ```
+ * @example
+ * ```ts
  * [...map(lookup1d([10, 20, 30]), [2,0,1])]
  * // [ 30, 10, 20 ]
  * ```
@@ -12,13 +13,16 @@
 export const lookup1d = <T>(src: T[]) => (i: number) => src[i];
 
 /**
- * Returns function accepting a single `[x, y]` index tuple,
- * used to lookup value in given array. Useful for transducers
- * processing 2D data. **Note**: The source data MUST be in
- * row major linearized format, i.e. 1D representation of 2D data
- * (pixel buffer). No bounds checks are done.
+ * Returns function accepting a single `[x, y]` index tuple, used to
+ * lookup value in given array. Useful for transducers processing 2D
+ * data.
  *
- * ```
+ * @remarks
+ * The source data MUST be in row major linearized format, i.e. 1D
+ * representation of 2D data (pixel buffer). No bounds checks are done.
+ *
+ * @example
+ * ```ts
  * [...map(lookup2d([...range(9)], 3), range2d(2, -1, 0, 3))]
  * // [ 2, 1, 0, 5, 4, 3, 8, 7, 6 ]
  * ```

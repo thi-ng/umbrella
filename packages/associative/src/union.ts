@@ -24,8 +24,8 @@ export const union = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
 /**
  * Reducer version of {@link union}. If `src` is given returns the reduced
  * union of given inputs, else merely returns a reducer to be used with
- * {@link @thi.ng/transducers!(reduce:1)} /
- * {@link @thi.ng/transducers!(transduce:1)} functions.
+ * {@link @thi.ng/transducers#(reduce:1)} /
+ * {@link @thi.ng/transducers#(transduce:1)} functions.
  *
  * @param src - input collections
  */

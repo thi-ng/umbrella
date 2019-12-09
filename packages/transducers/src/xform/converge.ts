@@ -11,11 +11,15 @@ import { ensureReduced } from "../reduced";
  * Once the result is truthy, `x` is considered converged and the
  * transformation is terminated (by emitting a {@link reduced} value).
  *
+ * @remarks
  * This can be used to limit processing of inputs only as long as
  * there're noticeable changes (according to the predicate) and then
  * stop the transducer pipeline once results have converged.
  *
- * ```
+ * See also: {@link (takeWhile:1)}
+ *
+ * @example
+ * ```ts
  * // process as long as difference to prev value is >= 0.01
  * [...converge(
  *       // predicate
@@ -25,8 +29,6 @@ import { ensureReduced } from "../reduced";
  * )]
  * // [ 0, 0.5, 0.75, 0.875, 0.9375, 0.96875, 0.984375, 0.9921875 ]
  * ```
- *
- * {@link (takeWhile:1)}
  *
  * @param pred -
  * @param src -
