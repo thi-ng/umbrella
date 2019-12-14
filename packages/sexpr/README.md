@@ -15,7 +15,7 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [API](#api)
-  - [Tokenize only (iterator)](#tokenize-only--iterator-)
+  - [Tokenize only (iterator)](#tokenize-only-iterator)
   - [AST generation](#ast-generation)
   - [Interpreter](#interpreter)
   - [Custom syntax](#custom-syntax)

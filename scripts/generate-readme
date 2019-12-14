@@ -50,8 +50,8 @@ try {
                 const pkg = JSON.parse(fs.readFileSync(`../${p}/package.json`));
                 items.push(
                     pkgLink(pkg.name) +
-                        " - " +
-                        pkg.description.replace(RE_PKG, pkgLink)
+                    " - " +
+                    pkg.description.replace(RE_PKG, pkgLink)
                 );
             } catch (_) {
                 console.log(`error reading support pkg: ${p.name}`);
@@ -85,31 +85,31 @@ try {
                             : null,
                         expkg.description ? expkg.description + "\n" : null,
                         link("Live demo", `${DEMO_URL}/${expkg.name}/`) +
-                            " | " +
-                            link(
-                                "Source",
-                                `${BRANCH_URL}/examples/${expkg.name}`
-                            ),
+                        " | " +
+                        link(
+                            "Source",
+                            `${BRANCH_URL}/examples/${expkg.name}`
+                        ),
                         ""
                     ]
                         .filter((x) => x != null)
                         .join("\n");
                     examples.push(body);
                 }
-            } catch (_) {}
+            } catch (_) { }
         }
         return examples.length
             ? [
-                  "## Usage examples",
-                  "",
-                  "Several demos in this repo's",
-                  link("/examples", `${BRANCH_URL}/examples`),
-                  "directory are using this package.",
-                  "",
-                  "A selection:",
-                  "",
-                  ...examples
-              ].join("\n")
+                "## Usage examples",
+                "",
+                "Several demos in this repo's",
+                link("/examples", `${BRANCH_URL}/examples`),
+                "directory are using this package.",
+                "",
+                "A selection:",
+                "",
+                ...examples
+            ].join("\n")
             : null;
     };
 
@@ -173,7 +173,7 @@ try {
                 .readFileSync("./AUTHORS.md")
                 .toString()
                 .replace(RE_USER, (_, id) => userLink(id));
-        } catch (_) {}
+        } catch (_) { }
         return MAIN_AUTHOR;
     };
 
@@ -182,6 +182,23 @@ try {
         return startYear < now
             ? `${startYear} - ${now} ${author}`
             : `${startYear} ${author}`;
+    };
+
+    const src = "àáäâãåèéëêìíïîòóöôùúüûñçßÿœæŕśńṕẃǵǹḿǘẍźḧ·_,:;";
+    const dest = "aaaaaaeeeeiiiioooouuuuncsyoarsnpwgnmuxzh-----";
+    const re = new RegExp(src.split("").join("|"), "g");
+    // based on @thi.ng/strings
+    const slugify = (str) => {
+        return str
+            .toLowerCase()
+            .replace("/", "")
+            .replace(/\s+/g, "-")
+            .replace(re, (c) => dest[src.indexOf(c)])
+            .replace(/&+/g, "-and-")
+            .replace(/[^\w\-]+/g, "")
+            // .replace(/\-{2,}/g, "-")
+            .replace(/^-+/, "")
+            .replace(/-+$/, "");
     };
 
     const injectTOC = (readme) => {
@@ -195,7 +212,7 @@ try {
             .map((hd) => {
                 const [_, level, title] = RE_HEADING.exec(hd);
                 const indent = "      ".substr(0, (level.length - 2) * 2);
-                const href = "#" + title.replace(RE_SLUG, "-").toLowerCase();
+                const href = "#" + slugify(title);
                 return `${indent}- ${link(title, href)}`;
             })
             .join("\n");

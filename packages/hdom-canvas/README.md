@@ -17,7 +17,7 @@ This project is part of the
 - [Usage examples](#usage-examples)
 - [API](#api)
 - [How it works](#how-it-works)
-  - [Restrictions & behavior controls](#restrictions---behavior-controls)
+  - [Restrictions & behavior controls](#restrictions--and--behavior-controls)
   - [HDPI support](#hdpi-support)
 - [SVG conversion](#svg-conversion)
 - [Supported shape types](#supported-shape-types)
@@ -25,12 +25,12 @@ This project is part of the
   - [Definition group](#definition-group)
   - [Circle](#circle)
   - [Circular arc](#circular-arc)
-  - [Ellipse / elliptic arc](#ellipse---elliptic-arc)
+  - [Ellipse / elliptic arc](#ellipse-elliptic-arc)
   - [Rect](#rect)
   - [Line](#line)
   - [Horizontal Line](#horizontal-line)
   - [Vertical Line](#vertical-line)
-  - [Polyline / Polygon](#polyline---polygon)
+  - [Polyline / Polygon](#polyline-polygon)
   - [Path](#path)
     - [SVG paths with arc segments](#svg-paths-with-arc-segments)
   - [Points](#points)
@@ -43,7 +43,7 @@ This project is part of the
     - [String](#string)
     - [Number](#number)
     - [Array](#array)
-    - [@thi.ng/color values](#-thi-ng-color-values)
+    - [@thi.ng/color values](#thingcolor-values)
   - [Coordinate transformations](#coordinate-transformations)
     - [Transform matrix](#transform-matrix)
     - [Override transform](#override-transform)
@@ -140,6 +140,14 @@ Canvas based Immediate Mode GUI components
 Animated sine plasma effect visualized using contour lines
 
 [Live demo](https://demo.thi.ng/umbrella/iso-plasma/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/iso-plasma)
+
+### ramp-synth <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/ramp-synth.png)
+
+TODO
+
+[Live demo](https://demo.thi.ng/umbrella/ramp-synth/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/ramp-synth)
 
 ### rotating-voronoi <!-- NOTOC -->
 

@@ -11,7 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Current features](#current-features)
-  - [Available components / widgets](#available-components---widgets)
+  - [Available components / widgets](#available-components-widgets)
   - [State handling](#state-handling)
   - [Layout support](#layout-support)
   - [Key controls](#key-controls)

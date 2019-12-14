@@ -17,7 +17,7 @@ This project is part of the
   - [Statistical analysis](#statistical-analysis)
   - [Theme configuration](#theme-configuration)
 - [API](#api)
-  - [`resolve(obj)`](#-resolve-obj--)
+  - [`resolve(obj)`](#resolveobj)
 - [Authors](#authors)
 - [License](#license)
 

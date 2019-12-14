@@ -17,7 +17,7 @@ This project is part of the
 - [API](#api)
   - [Optimized version for single arg functions](#optimized-version-for-single-arg-functions)
   - [Arbitrary args](#arbitrary-args)
-  - [Via JSON.stringify()](#via-json-stringify--)
+  - [Via JSON.stringify()](#via-jsonstringify)
 - [Authors](#authors)
 - [License](#license)
 

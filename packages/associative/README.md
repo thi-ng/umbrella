@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Why?](#why-)
+  - [Why?](#why)
   - [Comparison with ES6 native types](#comparison-with-es6-native-types)
   - [Status](#status)
 - [Installation](#installation)
@@ -24,7 +24,7 @@ This project is part of the
   - [SortedMap](#sortedmap)
     - [Ranged queries](#ranged-queries)
   - [SortedSet](#sortedset)
-  - [SparseSet8/16/32](#sparseset8-16-32)
+  - [SparseSet8/16/32](#sparseset81632)
 - [Authors](#authors)
 - [License](#license)
 

@@ -15,7 +15,7 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [API](#api)
 - [Breaking changes](#breaking-changes)
-  - [2.0.0](#2-0-0)
+  - [2.0.0](#200)
 - [Authors](#authors)
 - [License](#license)
 
