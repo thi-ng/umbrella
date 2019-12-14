@@ -19,7 +19,7 @@ This project is part of the
   - [Transacted updates](#transacted-updates)
   - [Cursor](#cursor)
   - [Derived views](#derived-views)
-  - [Undo / Redo history](#undo-redo-history)
+  - [Undo / Redo history](#undo--redo-history)
 - [Authors](#authors)
 - [License](#license)
 

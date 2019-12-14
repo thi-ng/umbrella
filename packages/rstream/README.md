@@ -33,7 +33,7 @@ This project is part of the
     - [Topic based splitting](#topic-based-splitting)
     - [Splitting via predicate](#splitting-via-predicate)
   - [Side-chaining](#side-chaining)
-    - [Input chunking / buffering, controlled by sidechain](#input-chunking-buffering--controlled-by-sidechain)
+    - [Input chunking / buffering, controlled by sidechain](#input-chunking--buffering--controlled-by-sidechain)
     - [Input toggling, controlled by sidechain](#input-toggling--controlled-by-sidechain)
   - [Worker support](#worker-support)
     - [Parallel stream processing via workers](#parallel-stream-processing-via-workers)

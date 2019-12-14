@@ -16,7 +16,7 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [API](#api)
   - [Basic usage](#basic-usage)
-  - [Partial parsing & result post-processing](#partial-parsing--and--result-post-processing)
+  - [Partial parsing & result post-processing](#partial-parsing--result-post-processing)
   - [DOM-style tree parsing using `defmulti`](#dom-style-tree-parsing-using-defmulti)
   - [Error handling](#error-handling)
 - [Emitted result type IDs](#emitted-result-type-ids)

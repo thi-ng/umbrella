@@ -84,7 +84,9 @@ ${docLink}
 import * as css from "@thi.ng/hiccup-css";
 ```
 
-### `css(rules: any, opts?: CSSOpts)`
+### css()
+
+Signature: `css(rules: any, opts?: CSSOpts): string`
 
 This is the main function exposed by this module. It accepts a JS data
 structure (array, object, iterator or function) and returns a CSS

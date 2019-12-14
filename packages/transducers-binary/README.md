@@ -20,7 +20,7 @@ This project is part of the
   - [Streaming hexdump](#streaming-hexdump)
   - [Structured byte buffer construction](#structured-byte-buffer-construction)
   - [Bitstream](#bitstream)
-  - [Base64 & UTF-8 en/decoding](#base64--and--utf-8-endecoding)
+  - [Base64 & UTF-8 en/decoding](#base64--utf-8-endecoding)
   - [Transducers](#transducers)
   - [Reducers](#reducers)
 - [Authors](#authors)

@@ -20,7 +20,7 @@ This project is part of the
   - [Basic usage](#basic-usage)
   - [Operators](#operators)
   - [Custom operators](#custom-operators)
-  - [Additional operators / modifiers](#additional-operators-modifiers)
+  - [Additional operators / modifiers](#additional-operators--modifiers)
   - [Pre/post-multiplied colors](#prepost-multiplied-colors)
 - [Authors](#authors)
 - [License](#license)

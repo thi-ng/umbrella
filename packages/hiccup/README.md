@@ -26,16 +26,16 @@ This project is part of the
   - [Attributes](#attributes)
   - [Simple components](#simple-components)
   - [User context injection](#user-context-injection)
-  - [SVG generation, generators & lazy composition](#svg-generation--generators--and--lazy-composition)
+  - [SVG generation, generators & lazy composition](#svg-generation--generators--lazy-composition)
   - [Data-driven component composition](#data-driven-component-composition)
   - [Stateful component](#stateful-component)
   - [Component objects](#component-objects)
   - [Behavior control attributes](#behavior-control-attributes)
   - [Comments](#comments)
-  - [XML / DTD processing instructions](#xml-dtd-processing-instructions)
+  - [XML / DTD processing instructions](#xml--dtd-processing-instructions)
 - [API](#api)
-  - [serialize(tree: any, ctx?: any, escape = false): string](#serializetree--any--ctx--any--escape--false--string)
-  - [escape(str: string): string](#escapestr--string--string)
+  - [serialize()](#serialize)
+  - [escape()](#escape)
 - [Authors](#authors)
 - [License](#license)
 
@@ -575,7 +575,9 @@ character.
 
 The library exposes these two functions:
 
-### serialize(tree: any, ctx?: any, escape = false): string
+### serialize()
+
+Signature: `serialize(tree: any, ctx?: any, escape = false): string`
 
 Recursively normalizes and serializes given tree as HTML/SVG/XML string.
 Expands any embedded component functions with their results. Each node
@@ -645,7 +647,9 @@ implementation).
 Please also see list of supported [behavior control
 attributes](#behavior-control-attributes).
 
-### escape(str: string): string
+### escape()
+
+Signature: `escape(str: string): string`
 
 Helper function. Applies HTML entity replacement on given string. If
 `serialize()` is called with `true` as 2nd argument, entity encoding is

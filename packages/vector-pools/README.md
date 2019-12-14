@@ -16,7 +16,7 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [API](#api)
-  - [WebGL geometry definition / manipulation](#webgl-geometry-definition-manipulation)
+  - [WebGL geometry definition / manipulation](#webgl-geometry-definition--manipulation)
   - [WASM interop](#wasm-interop)
 - [Authors](#authors)
 - [License](#license)

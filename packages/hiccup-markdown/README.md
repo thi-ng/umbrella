@@ -17,7 +17,7 @@ This project is part of the
 - [API](#api)
 - [Parser](#parser)
   - [Features](#features)
-  - [Current issues & limitations](#current-issues--and--limitations)
+  - [Current issues & limitations](#current-issues--limitations)
   - [Other parser features](#other-parser-features)
   - [Serializing to HTML](#serializing-to-html)
   - [Customizing tags](#customizing-tags)

@@ -20,7 +20,7 @@ This project is part of the
   - [implementations()](#implementations)
   - [defmultiN()](#defmultin)
 - [Usage examples](#usage-examples)
-    - [Dynamic dispatch: Simple S-expression interpreter](#dynamic-dispatch--simple-s-expression-interpreter)
+    - [Dynamic dispatch: Simple S-expression interpreter](#dynamic-dispatch-simple-s-expression-interpreter)
     - [True multiple arg dispatch](#true-multiple-arg-dispatch)
 - [Authors](#authors)
 - [License](#license)

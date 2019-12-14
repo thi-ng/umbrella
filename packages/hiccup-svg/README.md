@@ -11,7 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Important](#important)
-  - [SVG conversion of @thi.ng/geom & @thi.ng/hdom-canvas shape trees](#svg-conversion-of-thinggeom--and--thinghdom-canvas-shape-trees)
+  - [SVG conversion of @thi.ng/geom & @thi.ng/hdom-canvas shape trees](#svg-conversion-of-thinggeom--thinghdom-canvas-shape-trees)
   - [Automatic attribute conversions](#automatic-attribute-conversions)
     - [Colors](#colors)
     - [Transforms](#transforms)

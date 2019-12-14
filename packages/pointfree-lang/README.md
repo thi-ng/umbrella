@@ -15,7 +15,7 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [API](#api)
-- [Language & Syntax](#language--and--syntax)
+- [Language & Syntax](#language--syntax)
   - [Comments](#comments)
   - [Identifiers](#identifiers)
   - [Word definitions](#word-definitions)
@@ -29,7 +29,7 @@ This project is part of the
   - [Variables](#variables)
     - [Dynamic scoping](#dynamic-scoping)
   - [Objects](#objects)
-- [Ideas / Todos](#ideas-todos)
+- [Ideas / Todos](#ideas--todos)
 - [Authors](#authors)
 - [License](#license)
 

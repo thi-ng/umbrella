@@ -184,19 +184,17 @@ try {
             : `${startYear} ${author}`;
     };
 
-    const src = "àáäâãåèéëêìíïîòóöôùúüûñçßÿœæŕśńṕẃǵǹḿǘẍźḧ·_,:;";
-    const dest = "aaaaaaeeeeiiiioooouuuuncsyoarsnpwgnmuxzh-----";
+    const src = "àáäâãåèéëêìíïîòóöôùúüûñçßÿœæŕśńṕẃǵǹḿǘẍźḧ·_,;";
+    const dest = "aaaaaaeeeeiiiioooouuuuncsyoarsnpwgnmuxzh----";
     const re = new RegExp(src.split("").join("|"), "g");
-    // based on @thi.ng/strings
+    // based on @thi.ng/strings, adapted for GH
     const slugify = (str) => {
         return str
             .toLowerCase()
-            .replace("/", "")
-            .replace(/\s+/g, "-")
+            // .replace(/[\:\/&]/, "")
+            .replace(/\s/g, "-")
             .replace(re, (c) => dest[src.indexOf(c)])
-            .replace(/&+/g, "-and-")
             .replace(/[^\w\-]+/g, "")
-            // .replace(/\-{2,}/g, "-")
             .replace(/^-+/, "")
             .replace(/-+$/, "");
     };

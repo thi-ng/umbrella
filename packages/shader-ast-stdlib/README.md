@@ -26,7 +26,7 @@ This project is part of the
   - [Lighting](#lighting)
   - [Math](#math)
   - [Matrix operations](#matrix-operations)
-  - [Noise / randomness](#noise-randomness)
+  - [Noise / randomness](#noise--randomness)
   - [Raymarching](#raymarching)
   - [Screen coordinates](#screen-coordinates)
   - [Signed Distance Fields](#signed-distance-fields)
