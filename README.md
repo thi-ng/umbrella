@@ -87,11 +87,11 @@ contribute, please first read [this document](./CONTRIBUTING.md).
 
 ## Projects
 
-<!--
 ### New / unreleased packages in development
 
 (These packages are still unreleased and only available on their feature or `develop` branches)
--->
+
+- [@thi.ng/ramp](https://github.com/thi-ng/umbrella/tree/develop/packages/ramp) - Parametric, interpolated lookup tables
 
 ### Fundamentals
 
