@@ -44,7 +44,7 @@ This project is part of the
   - [Primitive math](#primitive-math)
   - [Logic](#logic)
   - [Environment](#environment)
-  - [Arrays, objects, strings](#arrays--objects--strings)
+  - [Arrays, objects, strings](#arrays-objects-strings)
   - [I/O](#io)
   - [Control flow](#control-flow)
     - [cond](#cond)

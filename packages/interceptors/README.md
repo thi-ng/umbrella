@@ -10,11 +10,11 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-- [Event bus, interceptors, side effects](#event-bus--interceptors--side-effects)
+- [Event bus, interceptors, side effects](#event-bus-interceptors-side-effects)
   - [Interceptors: Event and Effect primitives](#interceptors-event-and-effect-primitives)
   - [Event Handlers](#event-handlers)
     - [Events vs Effects:](#events-vs-effects)
-  - [Great, but why?](#great--but-why)
+  - [Great, but why?](#great-but-why)
   - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)

@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Standard library of common, higher level operations](#standard-library-of-common--higher-level-operations)
+  - [Standard library of common, higher level operations](#standard-library-of-common-higher-level-operations)
   - [Benefits](#benefits)
   - [Prior art / influences](#prior-art--influences)
   - [Future goals](#future-goals)

@@ -26,7 +26,7 @@ This project is part of the
   - [Attributes](#attributes)
   - [Simple components](#simple-components)
   - [User context injection](#user-context-injection)
-  - [SVG generation, generators & lazy composition](#svg-generation--generators--lazy-composition)
+  - [SVG generation, generators & lazy composition](#svg-generation-generators--lazy-composition)
   - [Data-driven component composition](#data-driven-component-composition)
   - [Stateful component](#stateful-component)
   - [Component objects](#component-objects)
