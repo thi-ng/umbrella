@@ -1,10 +1,25 @@
 # ramp-synth
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ramp-synth.png)
+
 [Live demo](http://demo.thi.ng/umbrella/ramp-synth/)
 
-## Hotkeys
+## Usage
 
-- `1` - `5`: load preset ramp
+Click and drag in the
+[ramp](https://github.com/thi-ng/umbrella/tree/master/packages/ramp)
+visualization to add & move new markers. Drag markers below the
+visualization to move their position. Markers cannot be moved past their
+neighbors.
+
+Audio must be explicitly enabled by pressing `a`. Sonification uses the
+current ramp as wave table for a 2-voice oscillator w/ 30 Hz base
+frequency.
+
+### Hotkeys
+
+- `1` - `5`: load preset ramp (#5 only available after creating new
+  preset via `s`)
 - `a` - toggle audio on/off
 - `l` - toggle linear/hermite interpolation
 - `r` - randomize ramp
