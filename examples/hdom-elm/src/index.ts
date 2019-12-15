@@ -16,17 +16,17 @@ mount(
     // update / event processor
     (event, model) => {
         switch (event[0]) {
-            case "inc":
+            case INC:
                 return updateInT(model, ["value"], (x) =>
                     Math.min(x + event[1], 100)
                 );
-            case "dec":
+            case DEC:
                 return updateInT(model, ["value"], (x) =>
                     Math.max(x - event[1], 0)
                 );
-            case "rnd":
+            case RANDOM:
                 return setInT(model, ["value"], (Math.random() * 100) | 0);
-            case "defer":
+            case DEFER:
                 setTimeout(() => event[1](), event[2]);
                 break;
             default:
