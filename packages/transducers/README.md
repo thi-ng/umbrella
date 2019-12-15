@@ -250,7 +250,7 @@ Worker based, interactive Mandelbrot visualization
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/ramp-synth.png)
 
-TODO
+Unison wavetable synth with waveform editor
 
 [Live demo](https://demo.thi.ng/umbrella/ramp-synth/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/ramp-synth)
 

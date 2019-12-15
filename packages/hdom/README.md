@@ -183,6 +183,12 @@ Realtime clock demo for @thi.ng/hdom-canvas
 
 [Live demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-dropdown-fuzzy)
 
+### hdom-elm <!-- NOTOC -->
+
+Using hdom in an Elm-like manner
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-elm/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-elm)
+
 ### hydrate-basics <!-- NOTOC -->
 
 [Live demo](https://demo.thi.ng/umbrella/hydrate-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hydrate-basics)
@@ -206,6 +212,14 @@ Canvas based Immediate Mode GUI components
 Animated sine plasma effect visualized using contour lines
 
 [Live demo](https://demo.thi.ng/umbrella/iso-plasma/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/iso-plasma)
+
+### ramp-synth <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/ramp-synth.png)
+
+Unison wavetable synth with waveform editor
+
+[Live demo](https://demo.thi.ng/umbrella/ramp-synth/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/ramp-synth)
 
 ### router-basics <!-- NOTOC -->
 

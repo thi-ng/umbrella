@@ -51,7 +51,7 @@ A selection:
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ramp-synth.png)
 
-TODO
+Unison wavetable synth with waveform editor
 
 [Live demo](https://demo.thi.ng/umbrella/ramp-synth/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ramp-synth)
 
