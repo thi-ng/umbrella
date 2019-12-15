@@ -7,7 +7,7 @@ export const PAD = 20;
 export const CWIDTH = WIDTH - 2 * PAD;
 export const CHEIGHT = HEIGHT - 2 * PAD;
 export const SNAP = 5 / WIDTH;
-export const BASE_FREQ = 30;
+export const BASE_FREQ = 60;
 
 export const PRESETS: Vec[][] = [
     [

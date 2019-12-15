@@ -13,8 +13,8 @@ visualization to move their position. Markers cannot be moved past their
 neighbors.
 
 Audio must be explicitly enabled by pressing `a`. Sonification uses the
-current ramp as wave table for a 2-voice oscillator w/ 30 Hz base
-frequency.
+current ramp as wave table for a 6-voice unison stereo oscillator w/ 60
+Hz base frequency (configurable via `BASE_FREQ` in `api.ts`).
 
 ### Hotkeys
 
