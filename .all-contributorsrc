@@ -149,6 +149,16 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "shevchenkonik",
+      "name": "Nik Shevchenko",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/8392253?v=4",
+      "profile": "https://shevchenkonik.com",
+      "contributions": [
+        "bug",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
