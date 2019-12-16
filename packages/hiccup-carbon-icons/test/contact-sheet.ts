@@ -3,7 +3,7 @@ import { execSync } from "child_process";
 import * as fs from "fs";
 import * as icons from "../src/index";
 
-const REV = execSync("git log --pretty='%h %cI' -1")
+const REV = execSync('git log --pretty="%h %cI" -1')
     .toString()
     .trim();
 
