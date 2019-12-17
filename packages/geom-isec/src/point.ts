@@ -1,3 +1,4 @@
+import { Fn3 } from "@thi.ng/api";
 import { closestT } from "@thi.ng/geom-closest-point";
 import { clamp01, EPS, sign } from "@thi.ng/math";
 import {
@@ -6,8 +7,10 @@ import {
     magSq,
     mixN,
     ReadonlyVec,
-    signedArea2
+    signedArea2,
+    vop
 } from "@thi.ng/vectors";
+import { MultiIsecOp } from "./api";
 
 export const pointInSegment = (
     p: ReadonlyVec,
@@ -103,24 +106,75 @@ export const classifyPointPolyPair = (
         ? inside ^ (ax + ((py - ay) / (by - ay)) * (bx - ax) < px ? 1 : 0)
         : inside;
 
-export const pointInAABB = (
-    [x, y, z]: ReadonlyVec,
-    pos: ReadonlyVec,
-    size: ReadonlyVec
-) =>
-    x >= pos[0] &&
-    x <= pos[0] + size[0] &&
-    y >= pos[1] &&
-    y <= pos[1] + size[1] &&
-    z >= pos[2] &&
-    z <= pos[2] + size[2];
+export const pointInBox: MultiIsecOp<Fn3<
+    ReadonlyVec,
+    ReadonlyVec,
+    ReadonlyVec,
+    boolean
+>> = vop(0);
 
-export const pointInRect = (
-    [x, y]: ReadonlyVec,
-    pos: ReadonlyVec,
-    size: ReadonlyVec
-) =>
-    x >= pos[0] &&
-    x <= pos[0] + size[0] &&
-    y >= pos[1] &&
-    y <= pos[1] + size[1];
+export const pointInRect = pointInBox.add(
+    2,
+    ([x, y]: ReadonlyVec, pos: ReadonlyVec, size: ReadonlyVec) =>
+        x >= pos[0] &&
+        x <= pos[0] + size[0] &&
+        y >= pos[1] &&
+        y <= pos[1] + size[1]
+);
+
+export const pointInAABB = pointInBox.add(
+    3,
+    ([x, y, z]: ReadonlyVec, pos: ReadonlyVec, size: ReadonlyVec) =>
+        x >= pos[0] &&
+        x <= pos[0] + size[0] &&
+        y >= pos[1] &&
+        y <= pos[1] + size[1] &&
+        z >= pos[2] &&
+        z <= pos[2] + size[2]
+);
+
+pointInBox.default((p, boxMin, boxSize) => {
+    for (let i = p.length; --i >= 0; ) {
+        const x = p[i];
+        const y = boxMin[i];
+        if (x < y || x > y + boxSize[i]) return false;
+    }
+    return true;
+});
+
+export const pointInCenteredBox: MultiIsecOp<Fn3<
+    ReadonlyVec,
+    ReadonlyVec,
+    ReadonlyVec,
+    boolean
+>> = vop(0);
+
+export const pointInCenteredRect = pointInCenteredBox.add(
+    2,
+    ([x, y], pos, size) =>
+        x >= pos[0] - size[0] &&
+        x <= pos[0] + size[0] &&
+        y >= pos[1] - size[1] &&
+        y <= pos[1] + size[1]
+);
+
+export const pointInCenteredAABB = pointInCenteredBox.add(
+    3,
+    ([x, y, z]: ReadonlyVec, pos: ReadonlyVec, size: ReadonlyVec) =>
+        x >= pos[0] - size[0] &&
+        x <= pos[0] + size[0] &&
+        y >= pos[1] - size[1] &&
+        y <= pos[1] + size[1] &&
+        z >= pos[2] - size[2] &&
+        z <= pos[2] + size[2]
+);
+
+pointInCenteredBox.default((p, boxCenter, boxExtent) => {
+    for (let i = p.length; --i >= 0; ) {
+        const x = p[i];
+        const y = boxCenter[i];
+        const z = boxExtent[i];
+        if (x < y - z || x > y + z) return false;
+    }
+    return true;
+});
