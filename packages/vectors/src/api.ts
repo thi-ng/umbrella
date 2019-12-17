@@ -223,38 +223,26 @@ export type VecOpSOOO<A, B, C> = (
     sa?: number
 ) => Vec;
 
-export interface MultiVecOpV extends VecOpV, MultiVecOp<VecOpV> {}
-export interface MultiVecOpN extends VecOpN, MultiVecOp<VecOpN> {}
-export interface MultiVecOpVV extends VecOpVV, MultiVecOp<VecOpVV> {}
-export interface MultiVecOpVN extends VecOpVN, MultiVecOp<VecOpVN> {}
-export interface MultiVecOpVVV extends VecOpVVV, MultiVecOp<VecOpVVV> {}
-export interface MultiVecOpVVN extends VecOpVVN, MultiVecOp<VecOpVVN> {}
-export interface MultiVecOpVNV extends VecOpVNV, MultiVecOp<VecOpVNV> {}
-export interface MultiVecOpVNN extends VecOpVNN, MultiVecOp<VecOpVNN> {}
-export interface MultiVecOpVVVVNN
-    extends VecOpVVVVNN,
-        MultiVecOp<VecOpVVVVNN> {}
+export type MultiVecOpImpl<T> = T & MultiVecOp<T>;
 
-export interface MultiVecOpVO<T> extends VecOpVO<T>, MultiVecOp<VecOpVO<T>> {}
-export interface MultiVecOpOO<A, B>
-    extends VecOpOO<A, B>,
-        MultiVecOp<VecOpOO<A, B>> {}
-export interface MultiVecOpOOO<A, B, C>
-    extends VecOpOOO<A, B, C>,
-        MultiVecOp<VecOpOOO<A, B, C>> {}
-export interface MultiVecOpNNO<T>
-    extends VecOpNNO<T>,
-        MultiVecOp<VecOpNNO<T>> {}
+export type MultiVecOpV = MultiVecOpImpl<VecOpV>;
+export type MultiVecOpN = MultiVecOpImpl<VecOpN>;
+export type MultiVecOpVV = MultiVecOpImpl<VecOpVV>;
+export type MultiVecOpVN = MultiVecOpImpl<VecOpVN>;
+export type MultiVecOpVVV = MultiVecOpImpl<VecOpVVV>;
+export type MultiVecOpVVN = MultiVecOpImpl<VecOpVVN>;
+export type MultiVecOpVNV = MultiVecOpImpl<VecOpVNV>;
+export type MultiVecOpVNN = MultiVecOpImpl<VecOpVNN>;
+export type MultiVecOpVVVVNN = MultiVecOpImpl<VecOpVVVVNN>;
 
-export interface MultiVecOpRoV<T>
-    extends VecOpRoV<T>,
-        MultiVecOp<VecOpRoV<T>> {}
-export interface MultiVecOpRoVV<T>
-    extends VecOpRoVV<T>,
-        MultiVecOp<VecOpRoVV<T>> {}
-export interface MultiVecOpRoVVO<T, O>
-    extends VecOpRoVVO<T, O>,
-        MultiVecOp<VecOpRoVVO<T, O>> {}
+export type MultiVecOpVO<T> = MultiVecOpImpl<VecOpVO<T>>;
+export type MultiVecOpOO<A, B> = MultiVecOpImpl<VecOpOO<A, B>>;
+export type MultiVecOpOOO<A, B, C> = MultiVecOpImpl<VecOpOOO<A, B, C>>;
+export type MultiVecOpNNO<T> = MultiVecOpImpl<VecOpNNO<T>>;
+
+export type MultiVecOpRoV<T> = MultiVecOpImpl<VecOpRoV<T>>;
+export type MultiVecOpRoVV<T> = MultiVecOpImpl<VecOpRoVV<T>>;
+export type MultiVecOpRoVVO<T, O> = MultiVecOpImpl<VecOpRoVVO<T, O>>;
 
 export type BVecOpRoV<T> = Fn<ReadonlyBVec, T>;
 export type BVecOpV = Fn2<BVec | null, ReadonlyBVec, BVec>;
@@ -263,18 +251,15 @@ export type BVecOpVN = Fn3<BVec | null, ReadonlyBVec, boolean, BVec>;
 
 export type ToBVecOpV = Fn2<BVec | null, ReadonlyVec, BVec>;
 
+export type MultiBVecOpV = MultiVecOpImpl<BVecOpV>;
+export type MultiBVecOpVV = MultiVecOpImpl<BVecOpVV>;
+export type MultiBVecOpVN = MultiVecOpImpl<BVecOpVN>;
+export type MultiBVecOpRoV<T> = MultiVecOpImpl<BVecOpRoV<T>>;
+
+export type MultiToBVecOpV = MultiVecOpImpl<ToBVecOpV>;
+
 export type CompareOp = Fn3<BVec | null, ReadonlyVec, ReadonlyVec, BVec>;
-
-export interface MultiBVecOpV extends BVecOpV, MultiVecOp<BVecOpV> {}
-export interface MultiBVecOpVV extends BVecOpVV, MultiVecOp<BVecOpVV> {}
-export interface MultiBVecOpVN extends BVecOpVN, MultiVecOp<BVecOpVN> {}
-export interface MultiBVecOpRoV<T>
-    extends BVecOpRoV<T>,
-        MultiVecOp<BVecOpRoV<T>> {}
-
-export interface MultiToBVecOpV extends ToBVecOpV, MultiVecOp<ToBVecOpV> {}
-
-export interface MultiCompareOp extends CompareOp, MultiVecOp<CompareOp> {}
+export type MultiCompareOp = MultiVecOpImpl<CompareOp>;
 
 const mi = -Infinity;
 const mx = Infinity;
