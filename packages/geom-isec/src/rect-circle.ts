@@ -1,6 +1,5 @@
 import { Fn4 } from "@thi.ng/api";
-import { ReadonlyVec, vop } from "@thi.ng/vectors";
-import { MultiIsecOp } from "./api";
+import { MultiVecOpImpl, ReadonlyVec, vop } from "@thi.ng/vectors";
 
 /**
  * Returns true if given 2D rect defined by `rectMinPos` and `rectSize`
@@ -42,7 +41,7 @@ export const testAABBSphere = (
  * @param spherePos
  * @param r
  */
-export const testCenteredBoxSphere: MultiIsecOp<Fn4<
+export const testCenteredBoxSphere: MultiVecOpImpl<Fn4<
     ReadonlyVec,
     ReadonlyVec,
     ReadonlyVec,

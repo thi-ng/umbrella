@@ -6,11 +6,11 @@ import {
     distSq,
     magSq,
     mixN,
+    MultiVecOpImpl,
     ReadonlyVec,
     signedArea2,
     vop
 } from "@thi.ng/vectors";
-import { MultiIsecOp } from "./api";
 
 export const pointInSegment = (
     p: ReadonlyVec,
@@ -106,7 +106,7 @@ export const classifyPointPolyPair = (
         ? inside ^ (ax + ((py - ay) / (by - ay)) * (bx - ax) < px ? 1 : 0)
         : inside;
 
-export const pointInBox: MultiIsecOp<Fn3<
+export const pointInBox: MultiVecOpImpl<Fn3<
     ReadonlyVec,
     ReadonlyVec,
     ReadonlyVec,
@@ -142,7 +142,7 @@ pointInBox.default((p, boxMin, boxSize) => {
     return true;
 });
 
-export const pointInCenteredBox: MultiIsecOp<Fn3<
+export const pointInCenteredBox: MultiVecOpImpl<Fn3<
     ReadonlyVec,
     ReadonlyVec,
     ReadonlyVec,
