@@ -1,19 +1,20 @@
 import { Fn, ICopy, Pair } from "@thi.ng/api";
 import { ensureArray } from "@thi.ng/arrays";
-import { ISpatialAccel } from "@thi.ng/geom-api";
+import { IRegionQuery, ISpatialMap } from "@thi.ng/geom-api";
 import { Heap } from "@thi.ng/heaps";
 import { EPS } from "@thi.ng/math";
+import { map } from "@thi.ng/transducers";
 import { distSq, ReadonlyVec, Vec } from "@thi.ng/vectors";
 
-type MaybeKdNode<K extends ReadonlyVec, V> = KdNode<K, V> | null;
+type MaybeKdNode<K extends ReadonlyVec, V> = KdNode<K, V> | undefined;
 
 const CMP = (a: [number, any], b: [number, any]) => b[0] - a[0];
 
 export class KdNode<K extends ReadonlyVec, V> {
-    parent: KdNode<K, V> | null;
-    l: KdNode<K, V> | null;
-    r: KdNode<K, V> | null;
     d: number;
+    parent?: KdNode<K, V>;
+    l?: KdNode<K, V>;
+    r?: KdNode<K, V>;
     k: K;
     v: V;
 
@@ -22,35 +23,11 @@ export class KdNode<K extends ReadonlyVec, V> {
         this.d = dim;
         this.k = key;
         this.v = val;
-        this.l = this.r = null;
     }
 
-    *[Symbol.iterator](): IterableIterator<Pair<K, V>> {
-        let queue: MaybeKdNode<K, V>[] = [this];
-        while (queue.length) {
-            const n = queue.pop();
-            if (n) {
-                yield [n.k, n.v];
-                queue.push(n.r, n.l);
-            }
-        }
-    }
-
-    *keys(): IterableIterator<K> {
-        let queue: MaybeKdNode<K, V>[] = [this];
-        while (queue.length) {
-            const n = queue.pop();
-            if (n) {
-                yield n.k;
-                queue.push(n.r, n.l);
-            }
-        }
-    }
-
-    height(): number {
+    get height(): number {
         return (
-            1 +
-            Math.max(this.l ? this.l.height() : 0, this.r ? this.r.height() : 0)
+            1 + Math.max(this.l ? this.l.height : 0, this.r ? this.r.height : 0)
         );
     }
 }
@@ -62,173 +39,193 @@ export class KdNode<K extends ReadonlyVec, V> {
  * {@link https://github.com/ubilabs/kd-tree-javascript}
  *
  */
-export class KdTree<K extends ReadonlyVec, V>
-    implements ICopy<KdTree<K, V>>, ISpatialAccel<K, V> {
-    root: KdNode<K, V> | null;
-    dim: number;
+export class KdTreeMap<K extends ReadonlyVec, V>
+    implements
+        ICopy<KdTreeMap<K, V>>,
+        IRegionQuery<K, V, number>,
+        ISpatialMap<K, V> {
+    readonly dim: number;
 
-    protected _length: number;
+    protected root: MaybeKdNode<K, V>;
+    protected _size: number;
 
     constructor(dim: number, pairs?: Iterable<Pair<K, V>>) {
         this.dim = dim;
-        this._length = 0;
-        this.root = pairs ? this.buildTree(ensureArray(pairs), 0, null) : null;
+        this._size = 0;
+        this.root = pairs ? this.buildTree(ensureArray(pairs), 0) : undefined;
     }
 
-    [Symbol.iterator](): IterableIterator<Pair<K, V>> {
-        return (this.root || [])[Symbol.iterator]();
+    *[Symbol.iterator]() {
+        let queue: MaybeKdNode<K, V>[] = this.root ? [this.root] : [];
+        while (queue.length) {
+            const n = queue.pop();
+            if (n) {
+                yield <Pair<K, V>>[n.k, n.v];
+                queue.push(n.r, n.l);
+            }
+        }
     }
 
-    keys(): IterableIterator<K> {
-        return this.root ? this.root.keys() : [][Symbol.iterator]();
+    *keys() {
+        let queue: MaybeKdNode<K, V>[] = this.root ? [this.root] : [];
+        while (queue.length) {
+            const n = queue.pop();
+            if (n) {
+                yield n.k;
+                queue.push(n.r, n.l);
+            }
+        }
     }
 
-    get length() {
-        return this._length;
+    values() {
+        return map((p) => p[1], this);
+    }
+
+    get size() {
+        return this._size;
+    }
+
+    get height() {
+        return this.root ? this.root.height : 0;
+    }
+
+    get ratio() {
+        return this._size ? this.height / Math.log2(this._size) : 0;
     }
 
     copy() {
-        return new KdTree(this.dim, this);
+        return new KdTreeMap(this.dim, this);
     }
 
-    add(p: K, v: V, eps = EPS) {
+    set(key: K, val: V, eps = EPS) {
         eps *= eps;
         const search = (
             node: MaybeKdNode<K, V>,
             parent: MaybeKdNode<K, V>
         ): MaybeKdNode<K, V> =>
             node
-                ? search(p[node.d] < node.k[node.d] ? node.l : node.r, node)
+                ? search(key[node.d] < node.k[node.d] ? node.l : node.r, node)
                 : parent;
         let parent: MaybeKdNode<K, V>;
         if (this.root) {
-            parent = nearest1(p, [eps * eps, null], this.dim, this.root)[1];
+            parent = nearest1(key, [eps, undefined], this.dim, this.root)[1];
             if (parent) {
+                parent.v = val;
                 return false;
             }
-            parent = search(this.root, null)!;
+            parent = search(this.root, undefined)!;
             const dim = parent.d;
-            parent[p[dim] < parent.k[dim] ? "l" : "r"] = new KdNode<K, V>(
+            parent[key[dim] < parent.k[dim] ? "l" : "r"] = new KdNode<K, V>(
                 parent,
                 (dim + 1) % this.dim,
-                p,
-                v
+                key,
+                val
             );
         } else {
-            this.root = new KdNode<K, V>(null, 0, p, v);
+            this.root = new KdNode<K, V>(undefined, 0, key, val);
         }
-        this._length++;
+        this._size++;
         return true;
     }
 
-    addAll(pts: Iterable<Pair<K, V>>, eps = EPS) {
+    into(pairs: Iterable<Pair<K, V>>, eps = EPS) {
         let ok = true;
-        for (let [k, v] of pts) {
-            ok = this.add(k, v, eps) && ok;
+        for (let [k, v] of pairs) {
+            ok = this.set(k, v, eps) && ok;
         }
         return ok;
     }
 
-    addKey(k: Readonly<K>, eps = EPS) {
-        return this.add(k, null!, eps);
-    }
-
-    addKeys(ks: Iterable<Readonly<K>>, eps = EPS) {
-        let ok = true;
-        for (let k of ks) {
-            ok = this.add(k, null!, eps) && ok;
-        }
-        return ok;
-    }
-
-    remove(p: Readonly<K>) {
-        const node = find(p, this.root, 0);
+    remove(key: Readonly<K>) {
+        const node = find(key, this.root, 0);
         if (node) {
-            remove(node) && (this.root = null);
-            this._length--;
+            remove(node) && (this.root = undefined);
+            this._size--;
             return true;
         }
         return false;
     }
 
-    has(k: Readonly<K>, eps = EPS) {
+    has(key: Readonly<K>, eps = EPS) {
         return (
             !!this.root &&
-            !!nearest1(k, [eps * eps, null], this.dim, this.root)[1]
+            !!nearest1(key, [eps * eps, undefined], this.dim, this.root)[1]
         );
     }
 
-    select(q: Readonly<K>, maxNum: number, maxDist?: number): Pair<K, V>[] {
-        return this.doSelect(q, (x) => [x.k, x.v], maxNum, maxDist);
-    }
-
-    selectKeys(q: Readonly<K>, maxNum: number, maxDist?: number) {
-        return this.doSelect(q, (x) => x.k, maxNum, maxDist);
-    }
-
-    selectVals(q: Readonly<K>, maxNum: number, maxDist?: number) {
-        return this.doSelect(q, (x) => x.v, maxNum, maxDist);
-    }
-
-    balanceRatio() {
-        return this._length
-            ? this.root!.height() / (Math.log(this._length) / Math.LN2)
-            : 0;
-    }
-
-    protected buildSelection(
-        q: Readonly<K>,
-        maxNum: number,
-        maxDist = Infinity
-    ) {
-        const nodes = new Heap<[number, KdNode<K, V> | null]>(null, {
-            compare: CMP
-        });
-        maxDist *= maxDist;
-        const c: [number, KdNode<K, V> | null] = [maxDist, null];
-        for (let i = maxNum; --i >= 0; ) {
-            nodes.push(c);
+    get(key: Readonly<K>, eps = EPS) {
+        if (this.root) {
+            const node = nearest1(
+                key,
+                [eps * eps, undefined],
+                this.dim,
+                this.root
+            )[1];
+            return node ? node.v : undefined;
         }
-        nearest(q, nodes, this.dim, maxNum, this.root!);
-        return nodes.values.sort(CMP);
+    }
+
+    query(
+        q: K,
+        maxDist: number,
+        limit?: number,
+        acc?: Pair<K, V>[]
+    ): Pair<K, V>[] {
+        return this.doSelect(q, (x) => [x.k, x.v], maxDist, limit, acc);
+    }
+
+    queryKeys(q: K, maxDist: number, limit?: number, acc?: K[]): K[] {
+        return this.doSelect(q, (x) => x.k, maxDist, limit, acc);
+    }
+
+    queryValues(q: K, maxDist: number, limit?: number, acc?: V[]): V[] {
+        return this.doSelect(q, (x) => x.v, maxDist, limit, acc);
     }
 
     protected doSelect<T>(
         q: Readonly<K>,
         f: Fn<KdNode<K, V>, T>,
-        maxNum: number,
-        maxDist?: number
+        maxDist: number,
+        maxNum = 1,
+        acc: any[] = []
     ): T[] {
         if (!this.root) return [];
-        const res: any[] = [];
+        maxDist *= maxDist;
         if (maxNum === 1) {
             const sel = nearest1(
                 q,
-                [maxDist != null ? maxDist * maxDist : Infinity, null],
+                [maxDist, undefined],
                 this.dim,
                 this.root
             )[1];
-            sel && res.push(f(sel));
+            sel && acc.push(f(sel));
         } else {
-            const sel = this.buildSelection(q, maxNum, maxDist);
+            const nodes = new Heap<[number, MaybeKdNode<K, V>]>(
+                [[maxDist, undefined]],
+                {
+                    compare: CMP
+                }
+            );
+            nearest(q, nodes, this.dim, maxNum, this.root!);
+            const sel = nodes.values.sort(CMP);
             for (let n = sel.length; --n >= 0; ) {
                 const s = sel[n][1];
-                s && res.push(f(s));
+                s && acc.push(f(s));
             }
         }
-        return res;
+        return acc;
     }
 
     protected buildTree(
         points: Pair<K, V>[],
         depth: number,
-        parent: KdNode<K, V> | null
+        parent?: KdNode<K, V>
     ) {
         const n = points.length;
         if (n === 0) {
-            return null;
+            return;
         }
-        this._length++;
+        this._size++;
         let dim = depth % this.dim;
         if (n === 1) {
             return new KdNode<K, V>(parent, dim, ...points[0]);
@@ -264,7 +261,7 @@ const findMin = <K extends ReadonlyVec, V>(
     node: MaybeKdNode<K, V>,
     dim: number
 ): MaybeKdNode<K, V> => {
-    if (!node) return null;
+    if (!node) return;
     if (node.d === dim) {
         return node.l ? findMin(node.l, dim) : node;
     }
@@ -293,7 +290,7 @@ const remove = <K extends ReadonlyVec, V>(node: KdNode<K, V>) => {
         }
         const parent = node.parent;
         const pdim = parent.d;
-        parent[node.k[pdim] < parent.k[pdim] ? "l" : "r"] = null;
+        parent[node.k[pdim] < parent.k[pdim] ? "l" : "r"] = undefined;
         return;
     }
     let next: MaybeKdNode<K, V>;
@@ -308,7 +305,7 @@ const remove = <K extends ReadonlyVec, V>(node: KdNode<K, V>) => {
         nextP = next.k;
         remove(next);
         node.r = node.l;
-        node.l = null;
+        node.l = undefined;
         node.k = nextP;
     }
 };
@@ -323,13 +320,13 @@ const nearest = <K extends ReadonlyVec, V>(
     const p = node.k;
     const ndist = distSq(p, q);
     if (!node.l && !node.r) {
-        collect(acc, node, maxNum, ndist);
+        collect(acc, maxNum, node, ndist);
         return;
     }
     const tdist = nodeDist(node, dims, q, p);
     let best = bestChild(node, q);
     nearest(q, acc, dims, maxNum, best!);
-    collect(acc, node, maxNum, ndist);
+    collect(acc, maxNum, node, ndist);
     if (!acc.length || tdist < acc.peek()[0]) {
         best = best === node.l ? node.r : node.l;
         best && nearest(q, acc, dims, maxNum, best);
@@ -380,8 +377,8 @@ const bestChild = <K extends ReadonlyVec, V>(node: KdNode<K, V>, q: K) => {
 
 const collect = <K extends ReadonlyVec, V>(
     acc: Heap<[number, MaybeKdNode<K, V>]>,
-    node: KdNode<K, V>,
     maxNum: number,
+    node: KdNode<K, V>,
     ndist: number
 ) =>
     (!acc.length || ndist < acc.peek()[0]) &&

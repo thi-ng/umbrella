@@ -1,52 +1,57 @@
+import { mapIndexed } from "@thi.ng/transducers";
 import { ReadonlyVec } from "@thi.ng/vectors";
 import * as assert from "assert";
-import { NdQuadtree, ndQuadtreeFromMinMax } from "../src";
+import { ndQuadtreeFromMinMax, NdQuadtreeMap } from "../src";
 
-const pts = new Set([
+const pts = new Set<ReadonlyVec>([
     [10, 20, 30],
     [60, 70, 80],
     [44, 55, 66]
 ]);
 
+const pairs = new Set(mapIndexed((i, p) => <[ReadonlyVec, number]>[p, i], pts));
+
 describe("NdTree", () => {
-    let tree: NdQuadtree<ReadonlyVec, any>;
+    let tree: NdQuadtreeMap<ReadonlyVec, any>;
     beforeEach(() => {
         tree = ndQuadtreeFromMinMax([0, 0, 0], [100, 100, 100]);
     });
 
     it("ctor", () => {
-        assert.deepEqual(tree.pos, [50, 50, 50]);
-        assert.deepEqual(tree.size, [50, 50, 50]);
+        assert.deepEqual(tree.root.pos, [50, 50, 50]);
+        assert.deepEqual(tree.root.ext, [50, 50, 50]);
     });
 
-    it("addKeys", () => {
-        assert.ok(tree.addKeys(pts));
-        for (let p of pts) {
-            assert(tree.has(p), String(p));
+    it("into / get / has", () => {
+        assert.ok(tree.into(pairs));
+        for (let p of pairs) {
+            assert(tree.has(p[0]), `has: ${p}`);
+            assert.equal(tree.get(p[0]), p[1], `get ${p}`);
         }
-        assert.deepEqual(new Set(tree.keys()), pts);
     });
 
     it("add duplicate", () => {
-        tree.addKeys(pts);
-        assert.ok(!tree.add([10, 20, 30]));
-        assert.ok(!tree.add([10.01, 20, 30], undefined, 0.1));
+        tree.into(pairs);
+        assert.ok(!tree.set([10, 20, 30], 10));
+        assert.ok(!tree.set([10.01, 20, 30], 100, 0.1));
+        // TODO check new value
     });
 
-    it("keys iterator", () => {
-        tree.addKeys(pts);
+    it("iterators", () => {
+        tree.into(pairs);
+        assert.deepEqual(new Set(tree), pairs);
         assert.deepEqual(new Set(tree.keys()), pts);
     });
 
     it("selectKeys", () => {
-        tree.addKeys(pts);
+        tree.into(pairs);
         assert.deepEqual(
-            new Set(tree.selectKeys([50, 50, 50], 100)),
+            new Set(tree.queryKeys([50, 50, 50], 100, Infinity)),
             pts,
             "r=100"
         );
         assert.deepEqual(
-            new Set(tree.selectKeys([50, 50, 50], 50)),
+            new Set(tree.queryKeys([50, 50, 50], 50, Infinity)),
             new Set([
                 [44, 55, 66],
                 [60, 70, 80]
@@ -54,7 +59,7 @@ describe("NdTree", () => {
             "r=50"
         );
         assert.deepEqual(
-            new Set(tree.selectKeys([20, 20, 20], 15)),
+            new Set(tree.queryKeys([20, 20, 20], 15, Infinity)),
             new Set([[10, 20, 30]]),
             "r=25"
         );
