@@ -17,7 +17,6 @@ import {
 } from "@thi.ng/transducers";
 import {
     addmN,
-    copy,
     distSq,
     madd,
     mulN,
@@ -26,46 +25,6 @@ import {
     submN,
     vop
 } from "@thi.ng/vectors";
-
-const MAX_DIM = 16;
-
-const maxChildren = [
-    ...take(
-        MAX_DIM + 1,
-        iterate((x) => x * 2, 1)
-    )
-];
-
-const childOffsets: ReadonlyVec[][] = [];
-
-const initChildOffsets = (dim: number) =>
-    (childOffsets[dim] = [...permutations(...repeat([-1, 1], dim))]);
-
-/**
- * Returns a new point-based quadtree for nD keys in given region
- * defined by `min` / `max` coordinates. The dimensionality of the tree
- * is implicitly defined by the provided coordinates. Only points within
- * that region can be indexed.
- *
- * @remarks
- * Due to exponentially growing lookup tables, currently only supports
- * up to 16 dimensions.
- *
- * See {@link NdQuadtree}
- */
-export const ndQuadtreeFromMinMax = <K extends ReadonlyVec, V>(
-    min: ReadonlyVec,
-    max: ReadonlyVec
-) => {
-    const dim = min.length;
-    assert(dim > 0 && dim <= MAX_DIM, `illegal dimension: ${dim}`);
-    assert(max.length === dim, `min/max dimensions must be equal`);
-    initChildOffsets(dim);
-    return new NdQuadtreeMap<K, V>(
-        addmN([], min, max, 0.5),
-        submN([], max, min, 0.5)
-    );
-};
 
 export class NdQtNode<K extends ReadonlyVec, V> {
     pos: ReadonlyVec;
@@ -126,7 +85,7 @@ export class NdQtNode<K extends ReadonlyVec, V> {
 
     query<T>(
         fn: Fn<NdQtNode<K, V>, T>,
-        p: ReadonlyVec,
+        p: K,
         r: number,
         max: number,
         acc: T[]
@@ -139,7 +98,7 @@ export class NdQtNode<K extends ReadonlyVec, V> {
                 }
             } else if (this.children) {
                 for (
-                    let i = maxChildren[this.pos.length], j = this.numC;
+                    let i = MAX_CHILDREN[this.pos.length], j = this.numC;
                     --i >= 0 && j > 0;
 
                 ) {
@@ -153,19 +112,19 @@ export class NdQtNode<K extends ReadonlyVec, V> {
         return acc;
     }
 
-    queryKeys(p: ReadonlyVec, r: number, max: number, acc: K[]): K[] {
+    queryKeys(p: K, r: number, max: number, acc: K[]): K[] {
         return this.query((n) => <K>n.k, p, r, max, acc);
     }
 
-    queryValues(p: ReadonlyVec, r: number, max: number, acc: V[]): V[] {
+    queryValues(p: K, r: number, max: number, acc: V[]): V[] {
         return this.query((n) => <V>n.v, p, r, max, acc);
     }
 
-    containsPoint(p: ReadonlyVec) {
+    containsPoint(p: K) {
         return pointInCenteredBox(p, this.pos, this.ext);
     }
 
-    nodeForPoint(p: ReadonlyVec): NdQtNode<K, V> | undefined {
+    nodeForPoint(p: K): NdQtNode<K, V> | undefined {
         if (this.k && equivArrayLike(this.k, p)) {
             return this;
         }
@@ -182,7 +141,7 @@ export class NdQtNode<K extends ReadonlyVec, V> {
             const csize = mulN([], this.ext, 0.5);
             this.children[id] = c = new NdQtNode(
                 this,
-                madd([], csize, childOffsets[csize.length][id], this.pos),
+                madd([], csize, CHILD_OFFSETS[csize.length][id], this.pos),
                 csize
             );
             this.numC++;
@@ -204,6 +163,28 @@ export class NdQuadtreeMap<K extends ReadonlyVec, V>
         ICopy<NdQuadtreeMap<K, V>>,
         IRegionQuery<K, V, number>,
         ISpatialMap<K, V> {
+    static readonly MAX_DIM = 16;
+
+    /**
+     * Returns a new point-based `NdQuadtreeMap` for nD keys in given
+     * region defined by `min` / `max` coordinates. The dimensionality
+     * of the tree is implicitly defined by the provided coordinates.
+     * Only points within that region can be indexed.
+     *
+     * @remarks
+     * Due to exponentially growing lookup tables, currently only
+     * supports up to 16 dimensions.
+     */
+    static fromMinMax<K extends ReadonlyVec, V>(
+        min: ReadonlyVec,
+        max: ReadonlyVec
+    ) {
+        return new NdQuadtreeMap<K, V>(
+            addmN([], min, max, 0.5),
+            submN([], max, min, 0.5)
+        );
+    }
+
     root: NdQtNode<K, V>;
     protected _size: number;
 
@@ -212,6 +193,13 @@ export class NdQuadtreeMap<K extends ReadonlyVec, V>
         ext: ReadonlyVec,
         pairs?: Iterable<Pair<K, V>>
     ) {
+        const dim = pos.length;
+        assert(
+            dim > 0 && dim <= NdQuadtreeMap.MAX_DIM,
+            `illegal dimension: ${dim}`
+        );
+        assert(ext.length === dim, `pos/ext dimensions must be equal`);
+        initChildOffsets(dim);
         this.root = new NdQtNode(undefined, pos, ext);
         this._size = 0;
         pairs && this.into(pairs, -1);
@@ -246,8 +234,8 @@ export class NdQuadtreeMap<K extends ReadonlyVec, V>
 
     copy(): NdQuadtreeMap<K, V> {
         const tree = new NdQuadtreeMap<K, V>(
-            copy(this.root.pos),
-            copy(this.root.ext),
+            this.root.pos,
+            this.root.ext,
             this
         );
         return tree;
@@ -270,7 +258,7 @@ export class NdQuadtreeMap<K extends ReadonlyVec, V>
         return ok;
     }
 
-    remove(p: ReadonlyVec) {
+    remove(p: K) {
         let node = this.root.nodeForPoint(p);
         if (!node) return false;
         delete node.k;
@@ -286,13 +274,13 @@ export class NdQuadtreeMap<K extends ReadonlyVec, V>
         return true;
     }
 
-    has(p: ReadonlyVec, eps = EPS) {
+    has(p: K, eps = EPS) {
         return !!(eps <= 0
             ? this.root.nodeForPoint(p)
             : this.root.queryKeys(p, eps, 1, []).length);
     }
 
-    get(p: ReadonlyVec, eps = EPS) {
+    get(p: K, eps = EPS) {
         if (eps <= 0) {
             const node = this.root.nodeForPoint(p);
             return node ? node.v : undefined;
@@ -300,26 +288,39 @@ export class NdQuadtreeMap<K extends ReadonlyVec, V>
         return this.root.queryValues(p, eps, 1, [])[0];
     }
 
-    query(p: ReadonlyVec, r: number, max = 1, acc: Pair<K, V>[] = []) {
+    query(p: K, r: number, max = 1, acc: Pair<K, V>[] = []) {
         return this.root.query((n) => <Pair<K, V>>[n.k, n.v], p, r, max, acc);
     }
 
-    queryKeys(p: ReadonlyVec, r: number, max = 1, acc: K[] = []) {
+    queryKeys(p: K, r: number, max = 1, acc: K[] = []) {
         return this.root.queryKeys(p, r, max, acc);
     }
 
-    queryValues(p: ReadonlyVec, r: number, max = 1, acc: V[] = []) {
+    queryValues(p: K, r: number, max = 1, acc: V[] = []) {
         return this.root.queryValues(p, r, max, acc);
     }
 
-    containsPoint(p: ReadonlyVec) {
+    containsPoint(p: K) {
         return this.root.containsPoint(p);
     }
 
-    nodeForPoint(p: ReadonlyVec): NdQtNode<K, V> | undefined {
+    nodeForPoint(p: K): NdQtNode<K, V> | undefined {
         return this.root.nodeForPoint(p);
     }
 }
+
+const MAX_CHILDREN = [
+    ...take(
+        NdQuadtreeMap.MAX_DIM + 1,
+        iterate((x) => x * 2, 1)
+    )
+];
+
+const CHILD_OFFSETS: ReadonlyVec[][] = [];
+
+const initChildOffsets = (dim: number) =>
+    CHILD_OFFSETS[dim] ||
+    (CHILD_OFFSETS[dim] = [...permutations(...repeat([-1, 1], dim))]);
 
 const childID: MultiVecOpRoVV<number> = vop(0);
 childID.add(1, (p, q) => (p[0] >= q[0] ? 1 : 0));

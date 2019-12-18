@@ -60,7 +60,7 @@ export class KdTreeSet<K extends ReadonlyVec>
         return this.tree.has(key, eps);
     }
 
-    get(key: Readonly<K>, eps?: number) {
+    get(key: K, eps?: number) {
         return this.tree.get(key, eps);
     }
 

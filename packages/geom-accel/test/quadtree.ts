@@ -1,7 +1,7 @@
 import { mapIndexed } from "@thi.ng/transducers";
 import { ReadonlyVec } from "@thi.ng/vectors";
 import * as assert from "assert";
-import { ndQuadtreeFromMinMax, NdQuadtreeMap } from "../src";
+import { NdQuadtreeMap } from "../src";
 
 const pts = new Set<ReadonlyVec>([
     [10, 20, 30],
@@ -14,7 +14,7 @@ const pairs = new Set(mapIndexed((i, p) => <[ReadonlyVec, number]>[p, i], pts));
 describe("NdTree", () => {
     let tree: NdQuadtreeMap<ReadonlyVec, any>;
     beforeEach(() => {
-        tree = ndQuadtreeFromMinMax([0, 0, 0], [100, 100, 100]);
+        tree = NdQuadtreeMap.fromMinMax([0, 0, 0], [100, 100, 100]);
     });
 
     it("ctor", () => {

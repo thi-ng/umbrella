@@ -1,7 +1,7 @@
 import { ICopy, Pair } from "@thi.ng/api";
 import { IRegionQuery, ISpatialSet } from "@thi.ng/geom-api";
 import { EPS } from "@thi.ng/math";
-import { ReadonlyVec } from "@thi.ng/vectors";
+import { addmN, ReadonlyVec, submN } from "@thi.ng/vectors";
 import { NdQuadtreeMap } from "./nd-quadtree-map";
 
 export class NdQuadtreeSet<K extends ReadonlyVec>
@@ -9,10 +9,30 @@ export class NdQuadtreeSet<K extends ReadonlyVec>
         ICopy<NdQuadtreeSet<K>>,
         IRegionQuery<K, K, number>,
         ISpatialSet<K> {
+    /**
+     * Returns a new point-based `NdQuadtreeSet` for nD keys in given
+     * region defined by `min` / `max` coordinates. The dimensionality
+     * of the tree is implicitly defined by the provided coordinates.
+     * Only points within that region can be indexed.
+     *
+     * @remarks
+     * Due to exponentially growing lookup tables, currently only
+     * supports up to 16 dimensions.
+     */
+    static fromMinMax<K extends ReadonlyVec>(
+        min: ReadonlyVec,
+        max: ReadonlyVec
+    ) {
+        return new NdQuadtreeSet<K>(
+            addmN([], min, max, 0.5),
+            submN([], max, min, 0.5)
+        );
+    }
+
     protected tree: NdQuadtreeMap<K, K>;
     protected _size: number;
 
-    constructor(pos: ReadonlyVec, ext: ReadonlyVec, keys: Iterable<K>) {
+    constructor(pos: ReadonlyVec, ext: ReadonlyVec, keys?: Iterable<K>) {
         this.tree = new NdQuadtreeMap<K, K>(pos, ext);
         this._size = 0;
         keys && this.into(keys);

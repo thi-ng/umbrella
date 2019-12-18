@@ -98,6 +98,7 @@ export class KdTreeMap<K extends ReadonlyVec, V>
     }
 
     set(key: K, val: V, eps = EPS) {
+        eps = Math.max(0, eps);
         eps *= eps;
         const search = (
             node: MaybeKdNode<K, V>,
@@ -136,7 +137,7 @@ export class KdTreeMap<K extends ReadonlyVec, V>
         return ok;
     }
 
-    remove(key: Readonly<K>) {
+    remove(key: K) {
         const node = find(key, this.root, 0);
         if (node) {
             remove(node) && (this.root = undefined);
@@ -146,14 +147,14 @@ export class KdTreeMap<K extends ReadonlyVec, V>
         return false;
     }
 
-    has(key: Readonly<K>, eps = EPS) {
+    has(key: K, eps = EPS) {
         return (
             !!this.root &&
             !!nearest1(key, [eps * eps, undefined], this.dim, this.root)[1]
         );
     }
 
-    get(key: Readonly<K>, eps = EPS) {
+    get(key: K, eps = EPS) {
         if (this.root) {
             const node = nearest1(
                 key,
@@ -183,7 +184,7 @@ export class KdTreeMap<K extends ReadonlyVec, V>
     }
 
     protected doSelect<T>(
-        q: Readonly<K>,
+        q: K,
         f: Fn<KdNode<K, V>, T>,
         maxDist: number,
         maxNum = 1,
