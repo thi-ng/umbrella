@@ -1,5 +1,5 @@
 import { isNumber } from "@thi.ng/checks";
-import { ISpatialAccel } from "@thi.ng/geom-api";
+import { ISpatialSet } from "@thi.ng/geom-api";
 import { IRandom, SYSTEM } from "@thi.ng/random";
 import { jitter as _jitter, ReadonlyVec, Vec } from "@thi.ng/vectors";
 
@@ -42,7 +42,7 @@ export interface PoissonOpts {
      * distributing the process over multiple invocations of smaller
      * sample sizes (see `max` option) to avoid long delays.
      */
-    index: ISpatialAccel<ReadonlyVec, number>;
+    index: ISpatialSet<ReadonlyVec>;
     /**
      * Max number of samples to produce. Must be given, no default.
      */
@@ -107,7 +107,7 @@ export const samplePoisson = (_opts: PoissonOpts) => {
         i = iter;
         while (i-- > 0) {
             if (!index.has(pos, d)) {
-                index.add(pos, d);
+                index.add(pos, 0);
                 samples.push(pos);
                 failed = 0;
                 num--;
