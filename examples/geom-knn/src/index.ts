@@ -1,5 +1,5 @@
 import { timedResult } from "@thi.ng/bench";
-import { KdTree } from "@thi.ng/geom-accel";
+import { KdTreeMap } from "@thi.ng/geom-accel";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { StreamSync, sync, trigger } from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
@@ -22,13 +22,13 @@ const app = (main: StreamSync<any, any>) => {
     // initialize 1st point & store in tree for fast KNN searches
     const width = window.innerWidth;
     const height = window.innerHeight;
-    let tree = new KdTree<Vec, number>(2);
+    let tree = new KdTreeMap<Vec, number>(2);
 
     // return root component function, triggered by each new mouse / touch event
     return ({ mpos }: { mpos: Vec }) => {
         // recreate tree every 500 points (in lieu of re-balancing)
-        if (!(tree.length % 500)) {
-            tree = new KdTree(2, tree);
+        if (!(tree.size % 500)) {
+            tree = tree.copy();
         }
         // the 1st invocation of this function will be via the
         // `trigger()` stream defined further below. that means
@@ -36,7 +36,7 @@ const app = (main: StreamSync<any, any>) => {
         // default point instead
         mpos = mpos || [width / 2, height / 2];
         // record new pos in tree
-        tree.add(mpos, 1.5 + Math.random() * 5);
+        tree.set(mpos, 1.5 + Math.random() * 5);
         // even though we only create 2d vectors, we store a 3rd value
         // in the backing array, which will be later used as radius when
         // the point has been selected as part of a KNN query and is
@@ -46,7 +46,7 @@ const app = (main: StreamSync<any, any>) => {
         // select max. 200 neighbors for given mouse position,
         // measure execution time...
         let [selected, t1] = timedResult(() =>
-            tree.select(mpos, 200, width / 4)
+            tree.query(mpos, width / 4, 200)
         );
         // for each selected neighbor, perform another KNN search and
         // create line segments to each of these secondary matches
@@ -55,7 +55,7 @@ const app = (main: StreamSync<any, any>) => {
             ...mapcat(
                 (p) =>
                     tree
-                        .selectKeys(p[0], 8, width / 4)
+                        .queryKeys(p[0], width / 4, 8)
                         .map((q) => ["line", {}, p[0], q]),
                 selected
             )
@@ -65,11 +65,9 @@ const app = (main: StreamSync<any, any>) => {
             // tree stats
             [
                 "div",
-                `Points: ${tree.length}, Sel: ${selected.length}, `,
+                `Points: ${tree.size}, Sel: ${selected.length}, `,
                 `Neighbors: ${neighbors.length}, Q1: ${t1}ms, Q2: ${t2}ms, `,
-                `Height: ${tree.root!.height()}, Ratio: ${tree
-                    .balanceRatio()
-                    .toFixed(2)}`
+                `Height: ${tree.height}, Ratio: ${tree.ratio.toFixed(2)}`
             ],
             // visualize
             // the __diff & __normalize control attribs are used to optimize drawing perf
@@ -78,7 +76,7 @@ const app = (main: StreamSync<any, any>) => {
                 _canvas,
                 { width, height, __diff: false, __normalize: false },
                 // point cloud
-                ["points", { fill: "black" }, tree.keys()],
+                ["points", { fill: "black", size: 2 }, tree.keys()],
                 // selected points as circles (using 3rd array item as radius)
                 [
                     "g",
