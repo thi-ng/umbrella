@@ -41,8 +41,9 @@ const __drawPoints = (
             ctx[cmd]();
         }
     } else {
+        const r = size / 2;
         for (let i = start; --num >= 0; i += estride) {
-            ctx[cmdR](pts[i], pts[i + cstride], size, size);
+            ctx[cmdR](pts[i] - r, pts[i + cstride] - r, size, size);
         }
     }
 };

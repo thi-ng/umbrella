@@ -32,8 +32,9 @@ const __drawPoints = (
             ctx[cmd]();
         }
     } else {
+        const r = s / 2;
         for (let p of pts) {
-            ctx[cmdR](p[0], p[1], s, s);
+            ctx[cmdR](p[0] - r, p[1] - r, s, s);
         }
     }
 };
