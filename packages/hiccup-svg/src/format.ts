@@ -126,3 +126,11 @@ export const fcolor = (col: any) =>
             ? `url(#${col.substr(1)})`
             : col
         : resolveAsCSS(col);
+
+export const withoutKeys = (src: any, keys: Set<PropertyKey>) => {
+    const dest: any = {};
+    for (let k in src) {
+        src.hasOwnProperty(k) && !keys.has(k) && (dest[k] = src[<any>k]);
+    }
+    return dest;
+};

@@ -6,7 +6,7 @@ import { linearGradient, radialGradient } from "./gradients";
 import { image } from "./image";
 import { hline, line, vline } from "./line";
 import { path } from "./path";
-import { points } from "./points";
+import { packedPoints, points } from "./points";
 import { polygon } from "./polygon";
 import { polyline } from "./polyline";
 import { roundedRect } from "./rect";
@@ -110,6 +110,8 @@ export const convertTree = (tree: any): any[] => {
             return image(tree[3], tree[2].src, attribs);
         case "points":
             return points(tree[2], attribs.shape, attribs.size, attribs);
+        case "packedPoints":
+            return packedPoints(tree[2], attribs.shape, attribs.size, attribs);
         default:
             return tree;
     }
