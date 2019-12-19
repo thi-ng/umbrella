@@ -38,8 +38,8 @@
         "typescript": "^3.7.2"
     },
     "dependencies": {
+        "@thi.ng/api": "^6.6.0",
         "@thi.ng/binary": "^1.2.0",
-        "@thi.ng/errors": "^1.2.2",
         "@thi.ng/math": "^1.5.1"
     },
     "keywords": [
