@@ -11,8 +11,8 @@ type Range2_64 = Exclude<Range1_64, 1>;
 
 /**
  * Z-Curve encoder/decoder and optimized bbox range extraction for
- * arbitrary dimensions. Supports max. 32bit per-component value range
- * and resulting Morton codes encoded as `BigInt`.
+ * arbitrary dimensions (>= 2). Supports max. 32bit per-component value
+ * range and resulting Morton codes encoded as `BigInt`.
  */
 export class ZCurve<T extends Range2_64> {
     /**
@@ -64,39 +64,26 @@ export class ZCurve<T extends Range2_64> {
 
     dim: T;
     bits: number;
-    pattern: ArrayLike<number>;
-    masks: bigint[];
-    fullMask: bigint;
+    order: ArrayLike<number>;
+    masks!: bigint[];
+    wipeMasks!: bigint[];
 
     /**
      * @param dim - dimensions
      * @param bits - number of bits per component
-     * @param pattern - component order
+     * @param order - component ordering
      */
-    constructor(
-        dim: T,
-        bits: Range1_32,
-        pattern?: ArrayLike<RangeValueMap[T]>
-    ) {
-        assert(dim >= 1, `unsupported dimensions`);
+    constructor(dim: T, bits: Range1_32, order?: ArrayLike<RangeValueMap[T]>) {
+        assert(dim >= 2, `unsupported dimensions`);
         assert(bits >= 1 && bits <= 32, `unsupported bits per component`);
         this.dim = dim;
         this.bits = bits;
-        if (!pattern) {
-            pattern = [];
-            for (let i = 0; i < dim; i++) (<any>pattern)[i] = <any>i;
+        if (!order) {
+            order = [];
+            for (let i = 0; i < dim; i++) (<any>order)[i] = <any>i;
         }
-        this.pattern = pattern;
-        this.masks = [];
-        this.fullMask = (1n << BigInt(dim * bits)) - 1n;
-        for (let i = dim; --i >= 0; ) {
-            this.masks[i] = ZCurve.encodeComponent(
-                MASKS[bits],
-                bits,
-                dim,
-                pattern[i]
-            );
-        }
+        this.order = order;
+        this.initMasks();
     }
 
     /**
@@ -106,9 +93,9 @@ export class ZCurve<T extends Range2_64> {
      */
     encode(p: ArrayLike<number>) {
         let res = 0n;
-        const { dim, bits, pattern } = this;
+        const { dim, bits, order } = this;
         for (let i = dim; --i >= 0; ) {
-            res = ZCurve.encodeComponent(p[i], bits, dim, pattern[i], res);
+            res = ZCurve.encodeComponent(p[i], bits, dim, order[i], res);
         }
         return res;
     }
@@ -120,9 +107,9 @@ export class ZCurve<T extends Range2_64> {
      * @param out - optional result array
      */
     decode(z: bigint, out: NumericArray = []) {
-        const { dim, bits, pattern } = this;
+        const { dim, bits, order } = this;
         for (let i = dim; --i >= 0; ) {
-            out[i] = ZCurve.decodeComponent(z, bits, dim, pattern[i]);
+            out[i] = ZCurve.decodeComponent(z, bits, dim, order[i]);
         }
         return out;
     }
@@ -206,22 +193,25 @@ export class ZCurve<T extends Range2_64> {
             const zmaxBit = zmax & mask;
             const currBit = zcurr & mask;
             const bitMask = 1 << ((bitPos / dim) | 0);
-            const offset = bitPos % dim;
             if (!currBit) {
                 if (!zminBit && zmaxBit) {
-                    bigmin = this.loadBits(bitMask, bitPos, zmin, offset);
-                    zmax = this.loadBits(bitMask - 1, bitPos, zmax, offset);
-                } else if (zminBit && zmaxBit) {
-                    return zmin;
-                } else if (zminBit && !zmaxBit) {
-                    throw new Error("illegal BIGMIN state");
+                    bigmin = this.loadBits(bitMask, bitPos, zmin);
+                    zmax = this.loadBits(bitMask - 1, bitPos, zmax);
+                } else if (zminBit) {
+                    if (zmaxBit) {
+                        return zmin;
+                    } else {
+                        throw new Error("illegal BIGMIN state");
+                    }
                 }
             } else {
-                if (!zminBit && !zmaxBit) {
-                    return bigmin;
-                } else if (!zminBit && zmaxBit) {
-                    zmin = this.loadBits(bitMask, bitPos, zmin, offset);
-                } else if (zminBit && !zmaxBit) {
+                if (!zminBit) {
+                    if (zmaxBit) {
+                        zmin = this.loadBits(bitMask, bitPos, zmin);
+                    } else {
+                        return bigmin;
+                    }
+                } else if (!zmaxBit) {
                     throw new Error("illegal BIGMIN state");
                 }
             }
@@ -243,21 +233,35 @@ export class ZCurve<T extends Range2_64> {
         return true;
     }
 
-    protected loadBits(
-        mask: number,
-        bitPos: number,
-        z: bigint,
-        offset: number
-    ) {
-        const { bits, dim } = this;
-        const wipeMask =
-            ZCurve.encodeComponent(
-                MASKS[bits] >>> (bits - (((bitPos / dim) | 0) + 1)),
+    protected initMasks() {
+        const { bits, dim, order } = this;
+        this.masks = [];
+        for (let i = dim; --i >= 0; ) {
+            this.masks[i] = ZCurve.encodeComponent(
+                MASKS[bits],
                 bits,
                 dim,
-                offset
-            ) ^ this.fullMask;
-        const bitPattern = ZCurve.encodeComponent(mask, bits, dim, offset);
-        return (z & wipeMask) | bitPattern;
+                order[i]
+            );
+        }
+        this.wipeMasks = [];
+        const fullMask = (1n << BigInt(dim * bits)) - 1n;
+        for (let i = dim * bits; --i >= 0; ) {
+            this.wipeMasks[i] =
+                ZCurve.encodeComponent(
+                    MASKS[bits] >>> (bits - (((i / dim) | 0) + 1)),
+                    bits,
+                    dim,
+                    i % dim
+                ) ^ fullMask;
+        }
+    }
+
+    protected loadBits(mask: number, bitPos: number, z: bigint) {
+        const dim = this.dim;
+        return (
+            (z & this.wipeMasks[bitPos]) |
+            ZCurve.encodeComponent(mask, this.bits, dim, bitPos % dim)
+        );
     }
 }
