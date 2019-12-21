@@ -59,7 +59,7 @@ export class ZCurve<T extends Range2_64> {
                 res |= 1 << j;
             }
         }
-        return res;
+        return res >>> 0;
     }
 
     dim: T;
@@ -262,6 +262,89 @@ export class ZCurve<T extends Range2_64> {
         return (
             (z & this.wipeMasks[bitPos]) |
             ZCurve.encodeComponent(mask, this.bits, dim, bitPos % dim)
+        );
+    }
+}
+
+export class ZCurve2 extends ZCurve<2> {
+    constructor(bits: Range1_32, order?: ArrayLike<RangeValueMap[2]>) {
+        super(2, bits, order);
+    }
+
+    encode(p: ArrayLike<number>) {
+        const { dim, bits, order } = this;
+        return ZCurve.encodeComponent(
+            p[1],
+            bits,
+            dim,
+            order[1],
+            ZCurve.encodeComponent(p[0], bits, dim, order[0])
+        );
+    }
+
+    decode(z: bigint, out: NumericArray = []) {
+        const { dim, bits, order } = this;
+        out[0] = ZCurve.decodeComponent(z, bits, dim, order[0]);
+        out[1] = ZCurve.decodeComponent(z, bits, dim, order[1]);
+        return out;
+    }
+
+    pointInBox(
+        p: ArrayLike<number>,
+        rmin: ArrayLike<number>,
+        rmax: ArrayLike<number>
+    ) {
+        const x = p[0];
+        const y = p[1];
+        return x >= rmin[0] && x <= rmax[0] && y >= rmin[1] && y <= rmax[1];
+    }
+}
+
+export class ZCurve3 extends ZCurve<3> {
+    constructor(bits: Range1_32, order?: ArrayLike<RangeValueMap[3]>) {
+        super(3, bits, order);
+    }
+
+    encode(p: ArrayLike<number>) {
+        const { dim, bits, order } = this;
+        return ZCurve.encodeComponent(
+            p[2],
+            bits,
+            dim,
+            order[2],
+            ZCurve.encodeComponent(
+                p[1],
+                bits,
+                dim,
+                order[1],
+                ZCurve.encodeComponent(p[0], bits, dim, order[0])
+            )
+        );
+    }
+
+    decode(z: bigint, out: NumericArray = []) {
+        const { dim, bits, order } = this;
+        out[0] = ZCurve.decodeComponent(z, bits, dim, order[0]);
+        out[1] = ZCurve.decodeComponent(z, bits, dim, order[1]);
+        out[2] = ZCurve.decodeComponent(z, bits, dim, order[2]);
+        return out;
+    }
+
+    pointInBox(
+        p: ArrayLike<number>,
+        rmin: ArrayLike<number>,
+        rmax: ArrayLike<number>
+    ) {
+        const x = p[0];
+        const y = p[1];
+        const z = p[2];
+        return (
+            x >= rmin[0] &&
+            x <= rmax[0] &&
+            y >= rmin[1] &&
+            y <= rmax[1] &&
+            z >= rmin[2] &&
+            z <= rmax[2]
         );
     }
 }
