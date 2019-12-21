@@ -24,5 +24,11 @@ export const timed = <T>(fn: () => T, prefix = "") => {
 export const timedResult = <T>(fn: () => T): TimingResult<T> => {
     const t0 = now();
     const res = fn();
-    return [res, Number(now() - t0) * 1e-6];
+    const t1 = now();
+    return [
+        res,
+        typeof BigInt !== "undefined"
+            ? Number(<bigint>t1 - <bigint>t0) * 1e-6
+            : <number>t1 - <number>t0
+    ];
 };

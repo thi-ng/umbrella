@@ -11,7 +11,6 @@ This project is part of the
 
 - [About](#about)
   - [Status](#status)
-  - [Breaking changes](#breaking-changes)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -24,18 +23,17 @@ This project is part of the
 
 Benchmarking utilities w/ optional statistics.
 
+Though no public API change (only additions), since v2.0.0 this library
+internally attempts to use high-res ES
+[`BigInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt)
+timestamps (in Node via
+[`process.hrtime.bigint()`](https://nodejs.org/dist/latest-v12.x/docs/api/process.html#process_process_hrtime_bigint)).
+If `BigInt` is not available in the target environment, timestamps are
+still only sourced via `Date.now()`.
+
 ### Status
 
 **STABLE** - used in production
-
-### Breaking changes
-
-Though no public API change, since v2.0.0 this library internally uses
-ES
-[`BigInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt)
-timestamps (in Node via `process.hrtime.bigint()`). See
-[caniuse](https://caniuse.com/#feat=mdn-javascript_builtins_bigint) for
-browser support.
 
 ## Installation
 
