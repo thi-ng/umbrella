@@ -1,21 +1,30 @@
 import { Fn4 } from "@thi.ng/api";
 import { MultiVecOpImpl, ReadonlyVec, vop } from "@thi.ng/vectors";
 
+export const testBoxSphere: MultiVecOpImpl<Fn4<
+    ReadonlyVec,
+    ReadonlyVec,
+    ReadonlyVec,
+    number,
+    boolean
+>> = vop(0);
+
 /**
- * Returns true if given 2D rect defined by `rectMinPos` and `rectSize`
+ * Returns true if given 2D rect defined by `boxMinPos` and `boxSize`
  * intersects circle.
  *
- * @param rectMinPos
- * @param rectSize
+ * @param boxMinPos
+ * @param boxSize
  * @param circlePos
  * @param r
  */
-export const testRectCircle = (
-    [rx, ry]: ReadonlyVec,
-    [w, h]: ReadonlyVec,
-    [cx, cy]: ReadonlyVec,
-    r: number
-) => axis(cx, rx, w) + axis(cy, ry, h) <= r * r;
+export const testRectCircle = testBoxSphere.add(
+    2,
+    (boxMinPos, boxSize, circlePos, r) =>
+        axis(circlePos[0], boxMinPos[0], boxSize[0]) +
+            axis(circlePos[1], boxMinPos[1], boxSize[1]) <=
+        r * r
+);
 
 /**
  * Same as {@link testRectCircle}, but for 3D AABB and sphere.
@@ -25,12 +34,22 @@ export const testRectCircle = (
  * @param spherePos
  * @param r
  */
-export const testAABBSphere = (
-    [rx, ry, rz]: ReadonlyVec,
-    [w, h, d]: ReadonlyVec,
-    [cx, cy, cz]: ReadonlyVec,
-    r: number
-) => axis(cx, rx, w) + axis(cy, ry, h) + axis(cz, rz, d) <= r * r;
+export const testAABBSphere = testBoxSphere.add(
+    3,
+    (boxMinPos, boxSize, spherePos, r) =>
+        axis(spherePos[0], boxMinPos[0], boxSize[0]) +
+            axis(spherePos[1], boxMinPos[1], boxSize[1]) +
+            axis(spherePos[2], boxMinPos[2], boxSize[2]) <=
+        r * r
+);
+
+testBoxSphere.default((boxPos, boxSize, spherePos, r) => {
+    let sum = 0;
+    for (let i = boxPos.length; --i >= 0; ) {
+        sum += axis(spherePos[i], boxPos[i], boxSize[i]);
+    }
+    return sum <= r * r;
+});
 
 /**
  * Like {@link testCenteredAABBSphere}, but for arbitrary dimensions w/
@@ -60,8 +79,10 @@ export const testCenteredBoxSphere: MultiVecOpImpl<Fn4<
  */
 export const testCenteredRectCircle = testCenteredBoxSphere.add(
     2,
-    ([rx, ry], [w, h], [cx, cy], r) =>
-        axis(cx, rx - w, w * 2) + axis(cy, ry - h, h * 2) <= r * r
+    (boxPos, { 0: w, 1: h }, circlePos, r) =>
+        axis(circlePos[0], boxPos[0] - w, w * 2) +
+            axis(circlePos[1], boxPos[1] - h, h * 2) <=
+        r * r
 );
 
 /**
@@ -75,10 +96,10 @@ export const testCenteredRectCircle = testCenteredBoxSphere.add(
  */
 export const testCenteredAABBSphere = testCenteredBoxSphere.add(
     3,
-    ([rx, ry, rz], [w, h, d], [cx, cy, cz], r) =>
-        axis(cx, rx - w, w * 2) +
-            axis(cy, ry - h, h * 2) +
-            axis(cz, rz - w, d * 2) <=
+    (boxPos, { 0: w, 1: h, 2: d }, spherePos, r) =>
+        axis(spherePos[0], boxPos[0] - w, w * 2) +
+            axis(spherePos[1], boxPos[1] - h, h * 2) +
+            axis(spherePos[2], boxPos[2] - w, d * 2) <=
         r * r
 );
 
