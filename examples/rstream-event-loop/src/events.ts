@@ -104,7 +104,7 @@ defHandler(
     // don't allow event if new page ID would be negative
     filter(([_, x]) => state.deref()!.pageID >= x!)
     // alternatively, use `map()` transducer to clamp new pageID to 0
-    // map((e) => state.deref().pageID < e[1]! ? [PREV, state.deref().pageID] : e)
+    // map((e) => state.deref()!.pageID < e[1]! ? [PREV, state.deref()!.pageID] : e)
 );
 
 defHandler(
