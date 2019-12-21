@@ -9,6 +9,10 @@ import { MASKS } from "@thi.ng/binary";
 
 type Range2_64 = Exclude<Range1_64, 1>;
 
+const ZERO = BigInt(0);
+const ONE = BigInt(1);
+const MINUS_ONE = BigInt(-1);
+
 /**
  * Z-Curve encoder/decoder and optimized bbox range extraction for
  * arbitrary dimensions (>= 2). Supports max. 32bit per-component value
@@ -29,11 +33,11 @@ export class ZCurve<T extends Range2_64> {
         bits: number,
         dims: number,
         offset: number,
-        out: bigint = 0n
+        out: bigint = ZERO
     ) {
         for (let j = bits; --j >= 0; ) {
             if ((x >>> j) & 1) {
-                out |= 1n << BigInt(j * dims + offset);
+                out |= ONE << BigInt(j * dims + offset);
             }
         }
         return out;
@@ -55,7 +59,7 @@ export class ZCurve<T extends Range2_64> {
     ) {
         let res = 0;
         for (let j = bits; --j >= 0; ) {
-            if ((z >> BigInt(j * dims + offset)) & 1n) {
+            if ((z >> BigInt(j * dims + offset)) & ONE) {
                 res |= 1 << j;
             }
         }
@@ -92,7 +96,7 @@ export class ZCurve<T extends Range2_64> {
      * @param p - point to encode
      */
     encode(p: ArrayLike<number>) {
-        let res = 0n;
+        let res = ZERO;
         const { dim, bits, order } = this;
         for (let i = dim; --i >= 0; ) {
             res = ZCurve.encodeComponent(p[i], bits, dim, order[i], res);
@@ -132,7 +136,7 @@ export class ZCurve<T extends Range2_64> {
     }
 
     merge(zparts: bigint[]) {
-        let res = 0n;
+        let res = ZERO;
         for (let i = zparts.length; --i >= 0; ) {
             res |= zparts[i];
         }
@@ -159,7 +163,7 @@ export class ZCurve<T extends Range2_64> {
         const zmax = this.encode(rmax);
         const p = new Array<number>(this.dim);
         let xd = zmin;
-        while (xd !== -1n) {
+        while (xd !== MINUS_ONE) {
             this.decode(xd, p);
             if (this.pointInBox(p, rmin, rmax)) {
                 yield xd;
@@ -185,9 +189,9 @@ export class ZCurve<T extends Range2_64> {
      */
     bigMin(zcurr: bigint, zmin: bigint, zmax: bigint) {
         const dim = this.dim;
-        let bigmin = -1n;
+        let bigmin = MINUS_ONE;
         let bitPos = dim * this.bits - 1;
-        let mask = 1n << BigInt(bitPos);
+        let mask = ONE << BigInt(bitPos);
         do {
             const zminBit = zmin & mask;
             const zmaxBit = zmax & mask;
@@ -216,7 +220,7 @@ export class ZCurve<T extends Range2_64> {
                 }
             }
             bitPos--;
-            mask >>= 1n;
+            mask >>= ONE;
         } while (mask);
         return bigmin;
     }
@@ -245,7 +249,7 @@ export class ZCurve<T extends Range2_64> {
             );
         }
         this.wipeMasks = [];
-        const fullMask = (1n << BigInt(dim * bits)) - 1n;
+        const fullMask = (ONE << BigInt(dim * bits)) - ONE;
         for (let i = dim * bits; --i >= 0; ) {
             this.wipeMasks[i] =
                 ZCurve.encodeComponent(
