@@ -188,7 +188,7 @@ export class KdTreeMap<K extends ReadonlyVec, V>
         f: Fn<KdNode<K, V>, T>,
         maxDist: number,
         maxNum = 1,
-        acc: any[] = []
+        acc: T[] = []
     ): T[] {
         if (!this.root) return [];
         maxDist *= maxDist;
@@ -328,7 +328,7 @@ const nearest = <K extends ReadonlyVec, V>(
     let best = bestChild(node, q);
     nearest(q, acc, dims, maxNum, best!);
     collect(acc, maxNum, node, ndist);
-    if (!acc.length || tdist < acc.peek()[0]) {
+    if (tdist < acc.values[0][0]) {
         best = best === node.l ? node.r : node.l;
         best && nearest(q, acc, dims, maxNum, best);
     }

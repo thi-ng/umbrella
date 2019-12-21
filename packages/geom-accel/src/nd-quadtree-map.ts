@@ -7,6 +7,7 @@ import {
 import { equivArrayLike } from "@thi.ng/equiv";
 import { IRegionQuery, ISpatialMap } from "@thi.ng/geom-api";
 import { pointInCenteredBox, testCenteredBoxSphere } from "@thi.ng/geom-isec";
+import { Heap } from "@thi.ng/heaps";
 import { EPS } from "@thi.ng/math";
 import {
     iterate,
@@ -25,6 +26,8 @@ import {
     submN,
     vop
 } from "@thi.ng/vectors";
+
+const CMP = (a: [number, any?], b: [number, any?]) => b[0] - a[0];
 
 export class NdQtNode<K extends ReadonlyVec, V> {
     pos: ReadonlyVec;
@@ -89,25 +92,18 @@ export class NdQtNode<K extends ReadonlyVec, V> {
         r: number,
         max: number,
         acc: T[]
-    ): T[] {
-        if (acc.length >= max) return acc;
-        if (testCenteredBoxSphere(this.pos, this.ext, p, r)) {
-            if (this.k) {
-                if (distSq(this.k, p) < r * r) {
-                    acc.push(fn(this));
-                }
-            } else if (this.children) {
-                for (
-                    let i = MAX_CHILDREN[this.pos.length], j = this.numC;
-                    --i >= 0 && j > 0;
-
-                ) {
-                    if (this.children[i]) {
-                        this.children[i].query(fn, p, r, max, acc);
-                        j--;
-                    }
-                }
-            }
+    ) {
+        const sel = this.doQuery(
+            p,
+            r,
+            max,
+            new Heap<[number, NdQtNode<K, V>?]>([[r * r]], {
+                compare: CMP
+            })
+        ).values.sort(CMP);
+        for (let n = sel.length; --n >= 0; ) {
+            const s = sel[n][1];
+            s && acc.push(fn(s));
         }
         return acc;
     }
@@ -132,6 +128,36 @@ export class NdQtNode<K extends ReadonlyVec, V> {
             const child = this.children[childID(p, this.pos)];
             return child ? child.nodeForPoint(p) : undefined;
         }
+    }
+
+    protected doQuery(
+        p: K,
+        r: number,
+        max: number,
+        acc: Heap<[number, NdQtNode<K, V>?]>
+    ): Heap<[number, NdQtNode<K, V>?]> {
+        if (testCenteredBoxSphere(this.pos, this.ext, p, r)) {
+            if (this.k) {
+                const d = distSq(this.k, p);
+                if (d <= acc.values[0][0]) {
+                    acc.length >= max
+                        ? acc.pushPop([d, this])
+                        : acc.push([d, this]);
+                }
+            } else if (this.children) {
+                for (
+                    let i = MAX_CHILDREN[this.pos.length], j = this.numC;
+                    --i >= 0 && j > 0;
+
+                ) {
+                    if (this.children[i]) {
+                        this.children[i].doQuery(p, r, max, acc);
+                        j--;
+                    }
+                }
+            }
+        }
+        return acc;
     }
 
     protected ensureChild(id: number) {
@@ -247,13 +273,17 @@ export class NdQuadtreeMap<K extends ReadonlyVec, V>
     }
 
     set(key: K, val: V, eps = EPS) {
-        return this.root.set(key, val, eps);
+        if (this.root.set(key, val, eps)) {
+            this._size++;
+            return true;
+        }
+        return false;
     }
 
     into(pairs: Iterable<Pair<K, V>>, eps = EPS) {
         let ok = true;
         for (let [k, v] of pairs) {
-            ok = this.root.set(k, v, eps) && ok;
+            ok = this.set(k, v, eps) && ok;
         }
         return ok;
     }
@@ -261,6 +291,7 @@ export class NdQuadtreeMap<K extends ReadonlyVec, V>
     remove(p: K) {
         let node = this.root.nodeForPoint(p);
         if (!node) return false;
+        this._size--;
         delete node.k;
         delete node.v;
         let doPrune = true;
