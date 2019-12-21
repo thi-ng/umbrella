@@ -1,5 +1,6 @@
 export * from "./exists-not-null";
 export * from "./exists";
+export * from "./has-bigint";
 export * from "./has-crypto";
 export * from "./has-max-length";
 export * from "./has-min-length";
