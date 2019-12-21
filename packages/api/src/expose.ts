@@ -7,9 +7,20 @@
  * @param value -
  * @param always -
  */
-export const exposeGlobal = (id: string, value: any, always = false) =>
-    typeof global !== undefined &&
-    (always ||
-        process?.env?.NODE_ENV !== "production" ||
-        process?.env?.UMBRELLA_GLOBALS === "1") &&
-    ((<any>global)[id] = value);
+export const exposeGlobal = (id: string, value: any, always = false) => {
+    const glob: any =
+        typeof global !== "undefined"
+            ? global
+            : typeof window !== "undefined"
+            ? window
+            : undefined;
+    if (
+        glob &&
+        (always ||
+            typeof process === "undefined" ||
+            process.env.NODE_ENV !== "production" ||
+            process.env.UMBRELLA_ASSERTS === "1")
+    ) {
+        glob[id] = value;
+    }
+};

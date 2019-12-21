@@ -9,8 +9,9 @@ import { Fn0, NO_OP } from "./api/fn";
  * or if the `UMBRELLA_ASSERTS` env var is set to 1.
  */
 export const assert =
-    process?.env?.NODE_ENV !== "production" ||
-    process?.env?.UMBRELLA_ASSERTS === "1"
+    typeof process === "undefined" ||
+    process.env.NODE_ENV !== "production" ||
+    process.env.UMBRELLA_ASSERTS === "1"
         ? (
               test: boolean | Fn0<boolean>,
               msg: string | Fn0<string> = "assertion failed"
