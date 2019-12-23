@@ -1,4 +1,9 @@
-import { Fn, ICopy, Pair } from "@thi.ng/api";
+import {
+    Fn,
+    ICopy,
+    IEmpty,
+    Pair
+} from "@thi.ng/api";
 import { ensureArray } from "@thi.ng/arrays";
 import { IRegionQuery, ISpatialMap } from "@thi.ng/geom-api";
 import { Heap } from "@thi.ng/heaps";
@@ -42,6 +47,7 @@ export class KdNode<K extends ReadonlyVec, V> {
 export class KdTreeMap<K extends ReadonlyVec, V>
     implements
         ICopy<KdTreeMap<K, V>>,
+        IEmpty<KdTreeMap<K, V>>,
         IRegionQuery<K, V, number>,
         ISpatialMap<K, V> {
     readonly dim: number;
@@ -95,6 +101,15 @@ export class KdTreeMap<K extends ReadonlyVec, V>
 
     copy() {
         return new KdTreeMap(this.dim, this);
+    }
+
+    clear() {
+        delete this.root;
+        this._size = 0;
+    }
+
+    empty() {
+        return new KdTreeMap<K, V>(this.dim);
     }
 
     set(key: K, val: V, eps = EPS) {

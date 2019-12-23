@@ -1,4 +1,4 @@
-import { ICopy, Pair } from "@thi.ng/api";
+import { ICopy, IEmpty, Pair } from "@thi.ng/api";
 import { IRegionQuery, ISpatialSet } from "@thi.ng/geom-api";
 import { EPS } from "@thi.ng/math";
 import { addmN, ReadonlyVec, submN } from "@thi.ng/vectors";
@@ -7,6 +7,7 @@ import { NdQuadtreeMap } from "./nd-quadtree-map";
 export class NdQuadtreeSet<K extends ReadonlyVec>
     implements
         ICopy<NdQuadtreeSet<K>>,
+        IEmpty<NdQuadtreeSet<K>>,
         IRegionQuery<K, K, number>,
         ISpatialSet<K> {
     /**
@@ -60,6 +61,14 @@ export class NdQuadtreeSet<K extends ReadonlyVec>
             this.tree.root.ext,
             this
         );
+    }
+
+    clear() {
+        this.tree.clear();
+    }
+
+    empty() {
+        return new NdQuadtreeSet<K>(this.tree.root.pos, this.tree.root.ext);
     }
 
     add(key: K, eps = EPS) {

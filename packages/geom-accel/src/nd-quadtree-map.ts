@@ -2,6 +2,7 @@ import {
     assert,
     Fn,
     ICopy,
+    IEmpty,
     Pair
 } from "@thi.ng/api";
 import { equivArrayLike } from "@thi.ng/equiv";
@@ -187,6 +188,7 @@ export class NdQtNode<K extends ReadonlyVec, V> {
 export class NdQuadtreeMap<K extends ReadonlyVec, V>
     implements
         ICopy<NdQuadtreeMap<K, V>>,
+        IEmpty<NdQuadtreeMap<K, V>>,
         IRegionQuery<K, V, number>,
         ISpatialMap<K, V> {
     static readonly MAX_DIM = 16;
@@ -270,6 +272,10 @@ export class NdQuadtreeMap<K extends ReadonlyVec, V>
     clear() {
         this.root.clear();
         this._size = 0;
+    }
+
+    empty() {
+        return new NdQuadtreeMap<K, V>(this.root.pos, this.root.ext);
     }
 
     set(key: K, val: V, eps = EPS) {
