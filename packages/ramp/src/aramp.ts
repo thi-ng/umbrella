@@ -1,6 +1,8 @@
+import { binarySearch } from "@thi.ng/arrays";
+import { compareNumAsc } from "@thi.ng/compare";
 import { absDiff, clamp } from "@thi.ng/math";
 import { comparator2, ReadonlyVec, Vec } from "@thi.ng/vectors";
-import { IRamp } from "./api";
+import { IRamp, RampBounds } from "./api";
 
 export abstract class ARamp implements IRamp {
     stops: Vec[];
@@ -17,6 +19,20 @@ export abstract class ARamp implements IRamp {
     abstract at(t: number): number;
 
     abstract interpolatedPoints(): Iterable<ReadonlyVec>;
+
+    bounds(): RampBounds {
+        const stops = this.stops;
+        const n = stops.length;
+        if (!n) return { min: 0, max: 0, minT: 0, maxT: 0 };
+        let min = Infinity;
+        let max = -Infinity;
+        for (let i = n; --i >= 0; ) {
+            const y = stops[i][1];
+            min = Math.min(min, y);
+            max = Math.max(max, y);
+        }
+        return { min, max, minT: stops[0][0], maxT: stops[n - 1][0] };
+    }
 
     addStopAt(t: number, y: number, eps = 0.01) {
         if (this.closestIndex(t, eps) !== -1) {
@@ -67,9 +83,13 @@ export abstract class ARamp implements IRamp {
 
     protected timeIndex(t: number) {
         const stops = this.stops;
-        for (let i = stops.length; --i >= 0; ) {
-            if (t > stops[i][0]) return i;
+        const n = stops.length;
+        if (n < 256) {
+            for (let i = n; --i >= 0; ) {
+                if (t >= stops[i][0]) return i;
+            }
+            return -1;
         }
-        return -1;
+        return binarySearch(stops, [t], (x) => x[0], compareNumAsc);
     }
 }

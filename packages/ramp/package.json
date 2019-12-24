@@ -39,6 +39,8 @@
     },
     "dependencies": {
         "@thi.ng/api": "^6.6.0",
+        "@thi.ng/arrays": "^0.4.0",
+        "@thi.ng/compare": "^1.1.0",
         "@thi.ng/math": "^1.5.1",
         "@thi.ng/transducers": "^6.1.0",
         "@thi.ng/vectors": "^4.0.1"

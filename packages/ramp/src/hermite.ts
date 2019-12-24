@@ -13,7 +13,10 @@ import {
     normRange,
     partition
 } from "@thi.ng/transducers";
+import { Vec } from "@thi.ng/vectors";
 import { ARamp } from "./aramp";
+
+export const hermite = (stops?: Vec[]) => new HermiteRamp(stops);
 
 export class HermiteRamp extends ARamp {
     at(t: number) {

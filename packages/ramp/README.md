@@ -35,6 +35,8 @@ yarn add @thi.ng/ramp
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
+- [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/develop/packages/compare)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
@@ -59,7 +61,26 @@ Unison wavetable synth with waveform editor
 
 [Generated API docs](https://docs.thi.ng/umbrella/ramp/)
 
-TODO
+```ts
+import { linear, hermite } from "@thi.ng/ramp";
+
+const ramp = linear([[0.1, 0], [0.5, 1], [0.9, 0]]);
+
+for(let i = 0; i <= 10; i++) {
+    console.log(i / 10, ramp.at(i / 10));
+}
+// 0 0
+// 0.1 0
+// 0.2 0.25
+// 0.3 0.49999999999999994
+// 0.4 0.7500000000000001
+// 0.5 1
+// 0.6 0.75
+// 0.7 0.5000000000000001
+// 0.8 0.2499999999999999
+// 0.9 0
+// 1 0
+```
 
 ## Authors
 
