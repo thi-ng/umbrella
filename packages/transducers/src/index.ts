@@ -123,6 +123,7 @@ export * from "./iter/range3d";
 export * from "./iter/repeat";
 export * from "./iter/repeatedly";
 export * from "./iter/reverse";
+export * from "./iter/sorted-keys";
 export * from "./iter/symmetric";
 export * from "./iter/tween";
 export * from "./iter/vals";
