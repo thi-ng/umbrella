@@ -1,14 +1,16 @@
-import { Fn } from "@thi.ng/api";
+import { Fn, Nullable } from "@thi.ng/api";
 import { identity } from "@thi.ng/compose";
 import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { $iter } from "../iterator";
 
-export function keep<T>(pred?: Fn<T, any>): Transducer<T, T>;
-export function keep<T>(src: Iterable<T>): IterableIterator<T>;
 export function keep<T>(
-    pred: Fn<T, any>,
-    src: Iterable<T>
+    pred?: Fn<Nullable<T>, any>
+): Transducer<Nullable<T>, T>;
+export function keep<T>(src: Iterable<Nullable<T>>): IterableIterator<T>;
+export function keep<T>(
+    pred: Fn<Nullable<T>, any>,
+    src: Iterable<Nullable<T>>
 ): IterableIterator<T>;
 export function keep<T>(...args: any[]): any {
     return (
