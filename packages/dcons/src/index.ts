@@ -2,6 +2,7 @@ import {
     assert,
     Comparator,
     Fn,
+    IClear,
     ICompare,
     ICopy,
     IEmpty,
@@ -28,6 +29,7 @@ export interface ConsCell<T> {
 
 export class DCons<T>
     implements
+        IClear,
         ICompare<DCons<T>>,
         ICopy<DCons<T>>,
         IEmpty<DCons<T>>,
