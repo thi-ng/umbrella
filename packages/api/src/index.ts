@@ -2,6 +2,7 @@ export * from "./api";
 export * from "./api/assoc";
 export * from "./api/bind";
 export * from "./api/buffered";
+export * from "./api/clear";
 export * from "./api/compare";
 export * from "./api/contains";
 export * from "./api/copy";
