@@ -1,7 +1,19 @@
-import { Pair } from "@thi.ng/api";
+import {
+    IClear,
+    ICopy,
+    IEmpty,
+    Pair
+} from "@thi.ng/api";
 
-export interface ISpatialMap<K, V> {
+export interface ISpatialMap<K, V>
+    extends Iterable<Pair<K, V>>,
+        IClear,
+        ICopy<ISpatialMap<K, V>>,
+        IEmpty<ISpatialMap<K, V>> {
     readonly size: number;
+
+    keys(): IterableIterator<K>;
+    values(): IterableIterator<V>;
 
     set(key: K, v: V, eps?: number): boolean;
     into(pairs: Iterable<Pair<K, V>>, eps?: number): boolean;
@@ -10,8 +22,15 @@ export interface ISpatialMap<K, V> {
     get(key: K, eps?: number): V | undefined;
 }
 
-export interface ISpatialSet<K> {
+export interface ISpatialSet<K>
+    extends Iterable<K>,
+        IClear,
+        ICopy<ISpatialSet<K>>,
+        IEmpty<ISpatialSet<K>> {
     readonly size: number;
+
+    keys(): IterableIterator<K>;
+    values(): IterableIterator<K>;
 
     add(key: K, eps?: number): boolean;
     into(keys: Iterable<K>, eps?: number): boolean;
