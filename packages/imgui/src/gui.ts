@@ -1,4 +1,4 @@
-import { Fn0, IToHiccup } from "@thi.ng/api";
+import { Fn0, IClear, IToHiccup } from "@thi.ng/api";
 import { set2, Vec } from "@thi.ng/vectors";
 import {
     DEFAULT_THEME,
@@ -11,7 +11,7 @@ import {
     NONE
 } from "./api";
 
-export class IMGUI implements IToHiccup {
+export class IMGUI implements IClear, IToHiccup {
     attribs!: any;
     layers: any[];
 
