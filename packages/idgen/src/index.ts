@@ -1,6 +1,7 @@
 import {
     assert,
     Event,
+    IClear,
     INotify,
     INotifyMixin,
     Listener
@@ -10,11 +11,12 @@ export const EVENT_ADDED = "added";
 export const EVENT_REMOVED = "removed";
 
 @INotifyMixin
-export class IDGen implements Iterable<number>, INotify {
+export class IDGen implements Iterable<number>, IClear, INotify {
     readonly ids: number[];
 
     protected nextID: number;
     protected _freeID: number;
+    protected start: number;
     protected num: number;
     protected _capacity: number;
     protected mask: number;
@@ -30,6 +32,7 @@ export class IDGen implements Iterable<number>, INotify {
         );
         this.ids = [];
         this.nextID = next;
+        this.start = next;
         this._capacity = cap;
         this.num = 0;
         this.mask = maxCap - 1;
@@ -72,7 +75,7 @@ export class IDGen implements Iterable<number>, INotify {
     }
 
     get available() {
-        return this._capacity - this.num;
+        return this._capacity - this.num - this.start;
     }
 
     get used() {
@@ -88,6 +91,13 @@ export class IDGen implements Iterable<number>, INotify {
             const id = this.ids[i];
             if ((id & this.mask) === i) yield id;
         }
+    }
+
+    clear() {
+        this.ids.length = 0;
+        this.nextID = this.start;
+        this.num = 0;
+        this._freeID = -1;
     }
 
     next() {

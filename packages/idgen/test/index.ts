@@ -144,4 +144,16 @@ describe("idgen", () => {
         const g2 = new IDGen(1);
         assert.throws(() => (g2.capacity = 4));
     });
+
+    it("clear", () => {
+        const g = new IDGen(8, 0, 256, 128);
+        assert.equal(g.available, 128);
+        assert.equal(g.next(), 128);
+        assert.equal(g.next(), 129);
+        assert.equal(g.available, 126);
+        g.clear();
+        assert.equal(g.available, 128);
+        assert.equal(g.used, 0);
+        assert.equal(g.next(), 128);
+    });
 });
