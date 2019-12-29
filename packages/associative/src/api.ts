@@ -1,6 +1,7 @@
 import {
     Comparator,
     Fn,
+    IClear,
     ICopy,
     IEmpty,
     IEquiv,
@@ -11,6 +12,7 @@ import {
 
 export interface IEquivSet<T>
     extends Set<T>,
+        IClear,
         ICopy<IEquivSet<T>>,
         IEmpty<IEquivSet<T>>,
         IEquiv,
