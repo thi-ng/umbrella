@@ -48,6 +48,8 @@ export abstract class AComponent<K extends string, VALUES, GET, SET>
         }
     }
 
+    abstract resize(newCap: number): void;
+
     has(id: number): boolean {
         const i = this.sparse[id];
         return i < this.n && this.dense[i] === id;
@@ -56,6 +58,15 @@ export abstract class AComponent<K extends string, VALUES, GET, SET>
     abstract get(id: number): GET | undefined;
 
     abstract getIndex(i: number): GET | undefined;
+
+    valueIndexForID(id: number) {
+        const i = this.sparse[id];
+        return i < this.n && this.dense[i] === id ? i * this.stride : -1;
+    }
+
+    valueIndexForIDUnsafe(id: number) {
+        return this.sparse[id] * this.stride;
+    }
 
     set(id: number, val: SET) {
         const i = this.sparse[id];

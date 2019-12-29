@@ -45,10 +45,6 @@ export class ECS<SPEC> implements INotify {
         comps?: K[] | IComponent<K, any, any, any>[] | Partial<Pick<SPEC, K>>
     ) {
         const id = this.idgen.next();
-        assert(
-            id !== undefined,
-            `max number of components reached (${this.idgen.capacity})`
-        );
         if (comps) {
             if (isArray(comps)) {
                 if (!comps.length) return id!;
@@ -131,6 +127,13 @@ export class ECS<SPEC> implements INotify {
 
     groupsForID(id: number) {
         return filter((g) => g.has(id), this.groups.values());
+    }
+
+    setCapacity(newCap: number) {
+        this.idgen.capacity = newCap;
+        for (let comp of this.components.values()) {
+            comp.resize(newCap);
+        }
     }
 
     /** {@inheritDoc @thi.ng/api#INotify.addListener} */

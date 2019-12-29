@@ -8,8 +8,12 @@ export class UnboundedCache<T> implements ICache<T> {
         this.index = new Map();
     }
 
-    release() {
+    clear() {
         this.index.clear();
+    }
+
+    release() {
+        this.clear();
         return true;
     }
 
