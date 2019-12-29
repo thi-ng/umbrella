@@ -128,4 +128,20 @@ describe("idgen", () => {
         assert.deepEqual(added, [0, 1, 0x101, 0x100]);
         assert.deepEqual(removed, [0, 1, 0x100, 0x101]);
     });
+
+    it("grow capacity", () => {
+        const g = new IDGen(1, 0);
+        g.next();
+        g.next();
+        assert.throws(() => g.next());
+        g.capacity = 4;
+        g.next();
+        g.next();
+        assert.throws(() => g.next());
+        assert.equal(g.capacity, 4);
+        assert.equal((<any>g).mask, 3);
+        assert.equal((<any>g).shift, 2);
+        const g2 = new IDGen(1);
+        assert.throws(() => (g2.capacity = 4));
+    });
 });
