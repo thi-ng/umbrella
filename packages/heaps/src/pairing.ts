@@ -1,6 +1,7 @@
 import {
     Comparator,
     Fn,
+    IClear,
     ICopy,
     IEmpty,
     ILength,
@@ -17,6 +18,8 @@ interface Node<T> {
 
 export class PairingHeap<T>
     implements
+        Iterable<T>,
+        IClear,
         ICopy<PairingHeap<T>>,
         IEmpty<PairingHeap<T>>,
         ILength,

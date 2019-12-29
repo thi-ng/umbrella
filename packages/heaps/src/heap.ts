@@ -1,5 +1,6 @@
 import {
     Comparator,
+    IClear,
     ICopy,
     IEmpty,
     ILength,
@@ -26,7 +27,13 @@ import { HeapOpts } from "./api";
  * ```
  */
 export class Heap<T>
-    implements ICopy<Heap<T>>, IEmpty<Heap<T>>, ILength, IStack<T, T, Heap<T>> {
+    implements
+        Iterable<T>,
+        IClear,
+        ICopy<Heap<T>>,
+        IEmpty<Heap<T>>,
+        ILength,
+        IStack<T, T, Heap<T>> {
     static parentIndex(idx: number) {
         return idx > 0 ? (idx - 1) >> 1 : -1;
     }
