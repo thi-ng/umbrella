@@ -17,13 +17,13 @@ import {
 /**
  * Tom Forsyth's Trilight lighting model.
  *
- * https://tomforsyth1000.github.io/papers/trilight/trilight.html
+ * {@link tomforsyth1000.github.io/papers/trilight/trilight.html}
  *
- * @param surfNormal vec3
- * @param lightDir vec3
- * @param col1 vec3
- * @param col2 vec3
- * @param col3 vec3
+ * @param surfNormal - vec3
+ * @param lightDir - vec3
+ * @param col1 - vec3
+ * @param col2 - vec3
+ * @param col3 - vec3
  */
 export const trilight = defn(
     "vec3",

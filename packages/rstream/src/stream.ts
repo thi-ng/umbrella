@@ -32,12 +32,13 @@ import { optsWithID } from "./utils/idgen";
  * Streams (like {@link Subscription}) implement the
  * {@link @thi.ng/api#IDeref} interface which provides read access to a
  * stream's last received value. This is useful for various purposes,
- * e.g. in combination with {@link @thi.ng/hdom#}, which supports direct
- * embedding of streams (i.e. their values) into UI components (and will
- * be deref them automatically). If the stream has not yet emitted a
- * value, value caching is disabled or if the stream is done, it will
- * deref to `undefined`.
+ * e.g. in combination with {@link @thi.ng/hdom# | @thi.ng/hdom}, which
+ * supports direct embedding of streams (i.e. their values) into UI
+ * components (and will be deref them automatically). If the stream has
+ * not yet emitted a value, value caching is disabled or if the stream
+ * is done, it will deref to `undefined`.
  *
+ * @example
  * ```ts
  * a = stream((s) => {
  *     s.next(1);
@@ -63,8 +64,8 @@ import { optsWithID } from "./utils/idgen";
  * // b2 42
  * ```
  *
- * @param id
- * @param src
+ * @param id -
+ * @param src -
  */
 export function stream<T>(opts?: Partial<CommonOpts>): Stream<T>;
 // prettier-ignore

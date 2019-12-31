@@ -20,12 +20,12 @@ export const qvarName = (x: string) => x.substr(1);
  * will be optimized to 1 of the 8 possible case and accepts a single
  * fact to extract the respective variables from.
  *
- * @param vs
- * @param vp
- * @param vo
- * @param s
- * @param p
- * @param o
+ * @param vs -
+ * @param vp -
+ * @param vo -
+ * @param s -
+ * @param p -
+ * @param o -
  */
 export const qvarResolver = (
     vs: boolean,

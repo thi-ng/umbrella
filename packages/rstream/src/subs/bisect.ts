@@ -42,9 +42,9 @@ import { PubSub } from "../pubsub";
  * );
  * ```
  *
- * @param pred predicate function
- * @param truthy subscription for truthy branch
- * @param falsy subscription for falsy branch
+ * @param pred - predicate function
+ * @param truthy - subscription for truthy branch
+ * @param falsy - subscription for falsy branch
  */
 export const bisect = <T>(
     pred: Predicate<T>,

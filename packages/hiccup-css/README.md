@@ -17,11 +17,11 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [API](#api)
-  - [`css(rules: any, opts?: CSSOpts)`](#-css-rules--any--opts---cssopts--)
+  - [css()](#css)
   - [Property formatting only](#property-formatting-only)
   - [Basic selectors](#basic-selectors)
-  - [Property object merging & re-use](#property-object-merging---re-use)
-  - [Iterators & CSS class scoping](#iterators---css-class-scoping)
+  - [Property object merging & re-use](#property-object-merging--re-use)
+  - [Iterators & CSS class scoping](#iterators--css-class-scoping)
   - [Nested selectors](#nested-selectors)
   - [Pseudo-classes](#pseudo-classes)
   - [Attribute selectors](#attribute-selectors)
@@ -123,7 +123,9 @@ A selection:
 import * as css from "@thi.ng/hiccup-css";
 ```
 
-### `css(rules: any, opts?: CSSOpts)`
+### css()
+
+Signature: `css(rules: any, opts?: CSSOpts): string`
 
 This is the main function exposed by this module. It accepts a JS data
 structure (array, object, iterator or function) and returns a CSS

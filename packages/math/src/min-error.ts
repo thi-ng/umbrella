@@ -15,13 +15,13 @@ import { EPS } from "./api";
  * The interval end points `start` and `end` MUST be normalized values
  * in the closed [0,1] interval.
  *
- * @param fn function to evaluate
- * @param error error function
- * @param q target value
- * @param res number of samples per interval
- * @param iter max number of iterations / recursion limit
- * @param start interval start
- * @param end interval end
+ * @param fn - function to evaluate
+ * @param error - error function
+ * @param q - target value
+ * @param res - number of samples per interval
+ * @param iter - max number of iterations / recursion limit
+ * @param start - interval start
+ * @param end - interval end
  */
 export const minError = <T>(
     fn: (x: number) => T,

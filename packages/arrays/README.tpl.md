@@ -52,6 +52,34 @@ ${docLink}
 - [swap()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/swap.ts)
 - [swizzle()](https://github.com/thi-ng/umbrella/tree/master/packages/arrays/src/swizzle.ts)
 
+### Binary search result predicates
+
+The following predicates can be used to perform predecessor / successor
+queries using `binarySearch()`.
+
+- `bsLT()` - Returns index of last item less than search value or -1 if
+  no such values exist
+- `bsLE()` - Similar to `bsLT()`, but for less-than-equals queries
+- `bsGT()` - Returns index of first item greater than search value or -1
+  if no such values exist
+- `bsGE()` - Similar to `bsGT()`, but for less-than-equals queries
+- `bsEQ()` - Merely syntax sugar, casting any non-found result indices to -1
+
+```ts
+const src = [10, 20, 30, 40];
+
+bsLT(binarySearch(src, 25))
+// 1
+
+// greater-than queries also require the array length
+
+bsGT(binarySearch(src, 25), src.length)
+// 2
+
+bsGT(binarySearch(src, 40), src.length)
+// -1
+```
+
 ## Authors
 
 ${authors}

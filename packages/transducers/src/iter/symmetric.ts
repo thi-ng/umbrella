@@ -8,12 +8,13 @@ interface Cell<T> {
  * in reverse order. Efficiently builds the reversed order via an
  * internal linked list.
  *
- * ```
+ * @example
+ * ```ts
  * [...symmetric([1, 2, 3])]
  * // [ 1, 2, 3, 3, 2, 1 ]
  * ```
  *
- * @param src
+ * @param src -
  */
 export function* symmetric<T>(src: Iterable<T>): IterableIterator<T> {
     let head: Cell<T> | undefined = undefined;

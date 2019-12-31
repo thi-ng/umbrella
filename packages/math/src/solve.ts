@@ -11,10 +11,10 @@ import { EPS } from "./api";
  * in the interval the returned function is going to be used.
  * No validity checks of any form are done.
  *
- * https://en.wikipedia.org/wiki/Derivative#Continuity_and_differentiability
+ * {@link https://en.wikipedia.org/wiki/Derivative#Continuity_and_differentiability}
  *
- * @param fn
- * @param eps
+ * @param fn -
+ * @param eps -
  */
 export const derivative = (f: (x: number) => number, eps = EPS) => (
     x: number
@@ -25,8 +25,8 @@ export const derivative = (f: (x: number) => number, eps = EPS) => (
  *
  * Note: `a` MUST NOT be zero.
  *
- * @param a slope
- * @param b constant offset
+ * @param a - slope
+ * @param b - constant offset
  */
 export const solveLinear = (a: number, b: number) => -b / a;
 
@@ -34,15 +34,15 @@ export const solveLinear = (a: number, b: number) => -b / a;
  * Computes solutions for quadratic equation: `ax^2 + bx + c = 0`.
  * Returns array of real solutions.
  * Note: `a` MUST NOT be zero. If the quadratic term is missing,
- * use `solveLinear` instead.
+ * use {@link solveLinear} instead.
  *
- * https://en.wikipedia.org/wiki/Quadratic_function
- * https://en.wikipedia.org/wiki/Quadratic_equation
+ * - {@link https://en.wikipedia.org/wiki/Quadratic_function}
+ * - {@link https://en.wikipedia.org/wiki/Quadratic_equation}
  *
- * @param a quadratic coefficient
- * @param b linear coefficient
- * @param c constant offset
- * @param eps tolerance to determine multiple roots
+ * @param a - quadratic coefficient
+ * @param b - linear coefficient
+ * @param c - constant offset
+ * @param eps - tolerance to determine multiple roots
  */
 export const solveQuadratic = (a: number, b: number, c: number, eps = 1e-9) => {
     const d = 2 * a;
@@ -50,23 +50,23 @@ export const solveQuadratic = (a: number, b: number, c: number, eps = 1e-9) => {
     return r < 0
         ? []
         : r < eps
-            ? [-b / d]
-            : ((r = Math.sqrt(r)), [(-b - r) / d, (-b + r) / d]);
+        ? [-b / d]
+        : ((r = Math.sqrt(r)), [(-b - r) / d, (-b + r) / d]);
 };
 
 /**
  * Computes solutions for quadratic equation: `ax^3 + bx^2 + c*x + d = 0`.
  * Returns array of solutions, both real & imaginary.
  * Note: `a` MUST NOT be zero. If the cubic term is missing (i.e. zero),
- * use `solveQuadratic` or `solveLinear` instead.
+ * use {@link solveQuadratic} or {@link solveLinear} instead.
  *
- * https://en.wikipedia.org/wiki/Cubic_function
+ * {@link https://en.wikipedia.org/wiki/Cubic_function}
  *
- * @param a cubic coefficient
- * @param b quadratic coefficient
- * @param c linear coefficient
- * @param d constant offset
- * @param eps tolerance to determine multiple roots
+ * @param a - cubic coefficient
+ * @param b - quadratic coefficient
+ * @param c - linear coefficient
+ * @param d - constant offset
+ * @param eps - tolerance to determine multiple roots
  */
 export const solveCubic = (
     a: number,

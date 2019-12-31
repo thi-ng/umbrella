@@ -31,8 +31,10 @@ const isPlainObject = iso;
  * Elements with `__skip` attrib enabled and no children, will have an
  * empty text child element injected.
  *
- * @param spec
- * @param keys
+ * @param spec - single hdom component
+ * @param keys -
+ *
+ * @internal
  */
 export const normalizeElement = (spec: any[], keys: boolean) => {
     let tag = spec[0];
@@ -70,10 +72,10 @@ export const normalizeElement = (spec: any[], keys: boolean) => {
 };
 
 /**
- * See `HDOMImplementation` interface for further details.
+ * See {@link HDOMImplementation} interface for further details.
  *
- * @param opts
- * @param tree
+ * @param opts - hdom config options
+ * @param tree - component tree
  */
 export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any) =>
     _normalizeTree(

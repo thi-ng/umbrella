@@ -4,9 +4,9 @@ import { empty } from "./utils";
  * Renames keys in `src` using mapping provided by key map `km`. Does
  * support key swapping / swizzling. Does not modify original.
  *
- * @param src
- * @param km
- * @param out
+ * @param src - source map
+ * @param km - key mappings
+ * @param out - result map
  */
 export const renameKeysMap = <K, V>(
     src: Map<K, V>,
@@ -30,8 +30,9 @@ export const renameKeysMap = <K, V>(
  * // {b: 1, a: 2, cc: 3}
  * ```
  *
- * @param src
- * @param km
+ * @param src - source object
+ * @param km - key mappings
+ * @param out - result object
  */
 export const renameKeysObj = <T>(
     src: T,

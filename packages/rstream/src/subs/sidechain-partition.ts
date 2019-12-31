@@ -31,8 +31,8 @@ export interface SidechainPartitionOpts<T> extends CommonOpts {
  * events.subscribe(sidechainPartition(fromRAF())).subscribe(trace())
  * ```
  *
- * @param side
- * @param opts
+ * @param side -
+ * @param opts -
  */
 export const sidechainPartition = <A, B>(
     side: ISubscribable<B>,

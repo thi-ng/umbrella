@@ -1,3 +1,4 @@
+/** @internal */
 export const declareIndex = (
     proto: any,
     id: string,
@@ -42,6 +43,7 @@ export const declareIndex = (
     });
 };
 
+/** @internal */
 export const declareIndices = (
     proto: any,
     props: string[],

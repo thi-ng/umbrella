@@ -8,7 +8,8 @@ import { map } from "./map";
  * property order. Accepts arrays or objects as input, but always yields
  * arrays.
  *
- * ```
+ * @example
+ * ```ts
  * [...swizzle([3,0,2,1], [[1,2,3,4], [10,20,30,40]])]
  * // [ [ 4, 1, 3, 2 ], [ 40, 10, 30, 20 ] ]
  *
@@ -19,9 +20,9 @@ import { map } from "./map";
  * // [ [ 3, 1 ] ]
  * ```
  *
- * @see thi.ng/arrays/swizzle
+ * {@link @thi.ng/arrays#swizzle}
  *
- * @param order key order
+ * @param order - key order
  */
 export function swizzle<T>(order: PropertyKey[]): Transducer<T, any[]>;
 export function swizzle<T>(

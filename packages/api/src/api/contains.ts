@@ -6,7 +6,7 @@ export interface IContains<T> {
     /**
      * Returns `true` if `x` is part of collection.
      *
-     * @param x
+     * @param x - value to check for
      */
     contains(x: T): boolean;
 }

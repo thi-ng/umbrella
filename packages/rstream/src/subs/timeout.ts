@@ -27,8 +27,8 @@ export interface TimeoutOpts extends CommonOpts {
  * resets with each received value and then only triggers once the time
  * interval since the last value has exceeded.
  *
- * @param timeoutMs timeout period in milliseconds
- * @param opts
+ * @param timeoutMs - timeout period in milliseconds
+ * @param opts -
  */
 export const timeout = <T>(
     timeoutMs: number,

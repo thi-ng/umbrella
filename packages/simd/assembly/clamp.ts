@@ -9,15 +9,15 @@
  * Set `sb` and `sc` to 0 for clamping all `a` vectors against same
  * bounds.
  *
- * @param out
- * @param a
- * @param b
- * @param c
- * @param num number of vec4
- * @param so out element stride
- * @param sa A element stride
- * @param sb B element stride
- * @param sc C element stride
+ * @param out -
+ * @param a -
+ * @param b -
+ * @param c -
+ * @param num - number of vec4
+ * @param so - out element stride
+ * @param sa - A element stride
+ * @param sb - B element stride
+ * @param sc - C element stride
  */
 export function clamp4_f32(
     out: usize,

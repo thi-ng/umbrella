@@ -15,6 +15,7 @@
 *.wat
 *.zip
 /.gtm/
+ae-docs
 build
 bundle.*
 coverage

@@ -1,3 +1,4 @@
 export * from "./api";
-export * from "./dheap";
 export * from "./heap";
+export * from "./dheap";
+export * from "./pairing";

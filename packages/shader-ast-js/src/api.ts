@@ -14,8 +14,8 @@ export interface JSTarget extends Fn<Term<any>, string> {
     /**
      * Compiles given AST to JavaScript, using optional `env` as backend
      * for various operators / builtins. If `env` is not given the
-     * bundled `JS_DEFAULT_ENV` is used (based on thi.ng/vectors and
-     * thi.ng/matrices packages).
+     * bundled {@link JS_DEFAULT_ENV} is used (based on
+     * {@link @thi.ng/vectors# | @thi.ng/vectors} and {@link @thi.ng/matrices# | @thi.ng/matrices} packages).
      *
      * Any functions defined in the given AST will be exported using
      * their defined name via the returned object.
@@ -35,8 +35,8 @@ export interface JSTarget extends Fn<Term<any>, string> {
      * // }
      * ```
      *
-     * @param tree
-     * @param env
+     * @param tree -
+     * @param env -
      */
     compile(tree: Term<any>, env?: JSEnv): any;
 }

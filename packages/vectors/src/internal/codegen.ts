@@ -26,30 +26,42 @@ import {
 } from "./templates";
 import { vop } from "./vop";
 
+/** @internal */
 export const ARGS_V = "o,a";
+/** @internal */
 export const ARGS_VV = "o,a,b";
+/** @internal */
 export const ARGS_VVV = "o,a,b,c";
+/** @internal */
 export const ARGS_VN = "o,a,n";
+/** @internal */
 export const ARGS_VNV = "o,a,n,b";
+/** @internal */
 export const ARGS_VVN = "o,a,b,n";
 
+/** @internal */
 export const SARGS_V = "io=0,ia=0,so=1,sa=1";
+/** @internal */
 export const SARGS_VV = "io=0,ia=0,ib=0,so=1,sa=1,sb=1";
+/** @internal */
 export const SARGS_VVV = "io=0,ia=0,ib=0,ic=0,so=1,sa=1,sb=1,sc=1";
 
+/** @internal */
 export const DEFAULT_OUT = "!o&&(o=a);";
+/** @internal */
 export const NEW_OUT = "!o&&(o=[]);";
 
 /**
  * HOF array index lookup gen to provide optimized versions of:
  *
- * ```
+ * @example
+ * ```ts
  * lookup("a")(0) // a[ia]
  * lookup("a")(1) // a[ia * sa]
  * lookup("a")(2) // a[ia + 2 * sa]
  * ```
  *
- * @param sym
+ * @param sym -
  */
 const lookup = (sym: string) => (i: number) =>
     i > 1
@@ -61,14 +73,14 @@ const lookup = (sym: string) => (i: number) =>
 /**
  * Infinite iterator of strided index lookups for `sym`.
  *
- * @param sym
+ * @param sym -
  */
 const indicesStrided = (sym: string) => map(lookup(sym), range());
 
 /**
  * Infinite iterator of simple (non-strided) index lookups for `sym`.
  *
- * @param sym
+ * @param sym -
  */
 const indices = (sym: string) => map((i) => `${sym}[${i}]`, range());
 
@@ -89,14 +101,14 @@ const indices = (sym: string) => map((i) => `${sym}[${i}]`, range());
  * generated code. `post` will be injected **before** the generated
  * return statement (if not suppressed).
  *
- * @param dim
- * @param tpl
- * @param syms
- * @param ret
- * @param opJoin
- * @param pre
- * @param post
- * @param strided
+ * @param dim -
+ * @param tpl -
+ * @param syms -
+ * @param ret -
+ * @param opJoin -
+ * @param pre -
+ * @param post -
+ * @param strided -
  */
 const assemble = (
     dim: number,
@@ -116,9 +128,10 @@ const assemble = (
         ),
         str(opJoin),
         <Iterable<any>>(
-            zip.apply(null, <any>(
-                syms.split(",").map(strided ? indicesStrided : indices)
-            ))
+            zip.apply(
+                null,
+                <any>syms.split(",").map(strided ? indicesStrided : indices)
+            )
         )
     ),
     post,
@@ -145,9 +158,11 @@ const assembleG = (
     ret !== null ? `return ${ret};` : ""
 ];
 
+/** @internal */
 export const defaultOut = (o: string, args: string) =>
     `!${o} && (${o}=${args.split(",")[1]});`;
 
+/** @internal */
 export const compile = (
     dim: number,
     tpl: Template,
@@ -166,6 +181,7 @@ export const compile = (
         )
     );
 
+/** @internal */
 export const compileHOF = (
     dim: number,
     fns: any[],
@@ -194,6 +210,7 @@ export const compileHOF = (
     )(...fns);
 };
 
+/** @internal */
 export const compileG = (
     tpl: Template,
     args: string,
@@ -210,6 +227,7 @@ export const compileG = (
         )
     );
 
+/** @internal */
 export const compileGHOF = (
     fns: any[],
     tpl: Template,

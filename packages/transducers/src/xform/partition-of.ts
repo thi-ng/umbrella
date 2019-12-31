@@ -6,7 +6,8 @@ import { partitionBy } from "./partition-by";
  * Transducer. Yields cyclic sequence of user defined variable sized
  * chunks. The last partition emitted is allowed to be incomplete.
  *
- * ```
+ * @example
+ * ```ts
  * [...partitionOf([3,2,4], range(20))]
  * // [ [ 0, 1, 2 ],
  * //   [ 3, 4 ],
@@ -17,7 +18,7 @@ import { partitionBy } from "./partition-by";
  * //   [ 18, 19 ] ]
  * ```
  *
- * @param sizes
+ * @param sizes -
  */
 export function partitionOf<T>(sizes: number[]): Transducer<T, T[]>;
 export function partitionOf<T>(

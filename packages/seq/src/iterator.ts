@@ -4,7 +4,7 @@ import { ensureSeq } from "./ensure";
 /**
  * Yields an ES6 iterable for given seq or seqable.
  *
- * @param src
+ * @param src -
  */
 export function* iterator<T>(
     src: Nullable<ISeq<T> | ISeqable<T> | ArrayLike<T>>

@@ -15,7 +15,7 @@ import { isArray, isString } from "@thi.ng/checks";
  * // ["a", "b", "c"]
  * ```
  *
- * @param path
+ * @param path -
  */
 export const toPath = (path: Path) =>
     isArray(path)
@@ -34,8 +34,8 @@ export const toPath = (path: Path) =>
  * value is `null` or `undefined`). Checks are performed using
  * `hasOwnProperty()`.
  *
- * @param obj
- * @param path
+ * @param obj -
+ * @param path -
  */
 export const exists = (obj: any, path: Path) => {
     if (obj == null) {

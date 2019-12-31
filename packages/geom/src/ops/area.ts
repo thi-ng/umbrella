@@ -17,7 +17,7 @@ import { dispatch } from "../internal/dispatch";
 
 /**
  * Returns the possibly signed (unsigned by default) surface area of given
- * `shape`. For groups calls `area()` for each child and returns sum of
+ * `shape`. For groups calls {@link area} for each child and returns sum of
  * unsigned areas.
  *
  * In general, for polygons and triangles, the sign of the result can be
@@ -45,8 +45,8 @@ import { dispatch } from "../internal/dispatch";
  * - Sphere
  * - Triangle
  *
- * @param shape
- * @param signed true, if signed area
+ * @param shape - shape to operate on
+ * @param signed - true, if signed area
  */
 export const area: MultiFn1O<IShape, boolean, number> = defmulti(dispatch);
 

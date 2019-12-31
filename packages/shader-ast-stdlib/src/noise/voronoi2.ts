@@ -40,14 +40,14 @@ import { hash32 } from "./hash";
  * - perlin noise (0,1)
  * - voronoise (1,1)
  *
- * http://www.iquilezles.org/www/articles/voronoise/voronoise.htm
+ * {@link http://www.iquilezles.org/www/articles/voronoise/voronoise.htm}
  *
- * Note: This implementation uses the improved `hash32` by Dave Hoskins
- * instead of iq's original `hash3`.
+ * Note: This implementation uses the improved {@link hash32} by Dave Hoskins
+ * instead of iq's original {@link hash3}.
  *
- * @param p
- * @param u
- * @param v
+ * @param p -
+ * @param u -
+ * @param v -
  */
 export const voronoise2 = defn(
     "float",
@@ -71,21 +71,38 @@ export const voronoise2 = defn(
             (k = sym(add(1, mul(63, pow(sub(1, v), float(4)))))),
             (va = sym(FLOAT0)),
             (wt = sym(FLOAT0)),
-            forLoop(sym(int(-2)), (i) => lte(i, int(2)), inc, (i) => [
-                forLoop(sym(int(-2)), (j) => lte(j, int(2)), inc, (j) => [
-                    (g = sym(vec2(float(i), float(j)))),
-                    (o = sym(mul(hash32(add(p, g)), coeff))),
-                    (r = sym(add(sub(g, f), $xy(o)))),
-                    (w = sym(
-                        pow(
-                            sub(1, smoothstep(FLOAT0, SQRT2, sqrt(dot(r, r)))),
-                            k
-                        )
-                    )),
-                    assign(va, madd(w, $z(o), va)),
-                    assign(wt, add(wt, w))
-                ])
-            ]),
+            forLoop(
+                sym(int(-2)),
+                (i) => lte(i, int(2)),
+                inc,
+                (i) => [
+                    forLoop(
+                        sym(int(-2)),
+                        (j) => lte(j, int(2)),
+                        inc,
+                        (j) => [
+                            (g = sym(vec2(float(i), float(j)))),
+                            (o = sym(mul(hash32(add(p, g)), coeff))),
+                            (r = sym(add(sub(g, f), $xy(o)))),
+                            (w = sym(
+                                pow(
+                                    sub(
+                                        1,
+                                        smoothstep(
+                                            FLOAT0,
+                                            SQRT2,
+                                            sqrt(dot(r, r))
+                                        )
+                                    ),
+                                    k
+                                )
+                            )),
+                            assign(va, madd(w, $z(o), va)),
+                            assign(wt, add(wt, w))
+                        ]
+                    )
+                ]
+            ),
             ret(div(va, wt))
         ];
     }

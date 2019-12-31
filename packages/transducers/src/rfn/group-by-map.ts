@@ -1,6 +1,6 @@
 import { GroupByOpts, Reducer } from "../api";
 import { __groupByOpts } from "../internal/group-opts";
-import { $$reduce, reducer } from "../reduce";
+import { $$reduce } from "../reduce";
 
 // prettier-ignore
 export function groupByMap<SRC, KEY, GROUP>(opts?: Partial<GroupByOpts<SRC, KEY, GROUP>>): Reducer<Map<KEY, GROUP>, SRC>;
@@ -13,10 +13,15 @@ export function groupByMap<SRC, KEY, GROUP>(...args: any[]): any {
         return res;
     }
     const opts = __groupByOpts<SRC, KEY, GROUP>(args[0]);
-    const [init, _, reduce] = opts.group;
-    _; // ignore
-    return reducer<Map<KEY, GROUP>, SRC>(
+    const [init, complete, reduce] = opts.group;
+    return <Reducer<Map<KEY, GROUP>, SRC>>[
         () => new Map(),
+        (acc) => {
+            for (let k of acc.keys()) {
+                acc.set(k, complete(acc.get(k)!));
+            }
+            return acc;
+        },
         (acc, x) => {
             const k = opts.key(x);
             return acc.set(
@@ -26,5 +31,5 @@ export function groupByMap<SRC, KEY, GROUP>(...args: any[]): any {
                     : <GROUP>reduce(init(), x)
             );
         }
-    );
+    ];
 }

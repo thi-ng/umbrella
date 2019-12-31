@@ -38,7 +38,7 @@ const primOp3 = (name: string) => <A extends Prim, B extends A, C extends B>(
 /**
  * Returns normalized version of given vector.
  *
- * @param v
+ * @param v -
  */
 export const normalize = <T extends Vec>(v: Term<T>) =>
     builtinCall("normalize", v.type, v);
@@ -46,7 +46,7 @@ export const normalize = <T extends Vec>(v: Term<T>) =>
 /**
  * Returns length / magnitude of given vector.
  *
- * @param v
+ * @param v -
  */
 export const length = <T extends Vec>(v: Term<T>) =>
     builtinCall("length", "float", v);
@@ -57,8 +57,8 @@ export const distance = <A extends Vec, B extends A>(a: Term<A>, b: Term<B>) =>
 /**
  * Returns dot product of given vectors.
  *
- * @param a
- * @param b
+ * @param a -
+ * @param b -
  */
 export const dot = <A extends Vec, B extends A>(a: Term<A>, b: Term<B>) =>
     builtinCall("dot", "float", a, b);
@@ -66,8 +66,8 @@ export const dot = <A extends Vec, B extends A>(a: Term<A>, b: Term<B>) =>
 /**
  * Returns cross product of given 3D vectors.
  *
- * @param a
- * @param b
+ * @param a -
+ * @param b -
  */
 export const cross = (a: Vec3Term, b: Vec3Term) =>
     builtinCall("cross", a.type, a, b);
@@ -145,8 +145,8 @@ export function mod(a: Term<any>, b: Term<any>): FnCall<any> {
  *
  * TODO add additional metadata for JS (`b` is an output var), issue #96
  *
- * @param a
- * @param b
+ * @param a -
+ * @param b -
  */
 // prettier-ignore
 export const modf = <A extends Prim, B extends A>(a: Term<A>, b: Sym<B>): FnCall<A> =>
@@ -169,7 +169,7 @@ export const matrixCompMult = <A extends Mat, B extends A>(a: Term<A>, b: Term<B
 /**
  * Important: Not available in JS / GLSL ES 100
  *
- * @param a
+ * @param a -
  */
 export function isnan(a: FloatTerm | IntTerm | UintTerm): BoolTerm;
 export function isnan(a: Vec2Term | IVec2Term | UVec2Term): BVec2Term;
@@ -182,7 +182,7 @@ export function isnan(a: any): FnCall<any> {
 /**
  * Important: Not available in JS / GLSL ES 100
  *
- * @param a
+ * @param a -
  */
 export function isinf(a: FloatTerm | IntTerm | UintTerm): BoolTerm;
 export function isinf(a: Vec2Term | IVec2Term | UVec2Term): BVec2Term;

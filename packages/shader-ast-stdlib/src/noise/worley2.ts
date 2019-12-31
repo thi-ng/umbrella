@@ -51,9 +51,9 @@ export const worleyDistManhattan = defn(
  * can be used individually or combined (e.g. `noise.y - noise.x`)...
  *
  * Based on implementation by Stefan Gustavson:
- * http://webstaff.itn.liu.se/~stegu/GLSL-cellular/GLSL-cellular-notes.pdf
+ * {@link http://webstaff.itn.liu.se/~stegu/GLSL-cellular/GLSL-cellular-notes.pdf}
  *
- * @param distFn
+ * @param distFn -
  */
 export const worley2 = (distFn: Func2<"vec3", "vec3", "vec3">) =>
     defn("vec2", "worley2", ["vec2", "float"], (P, jitter) => {

@@ -72,10 +72,10 @@ const newRender = (
 };
 
 const updateZoom = (zoom: number) => {
-    let _x1 = x1.deref();
-    let _y1 = y1.deref();
-    let _x2 = x2.deref();
-    let _y2 = y2.deref();
+    let _x1 = x1.deref()!;
+    let _y1 = y1.deref()!;
+    let _x2 = x2.deref()!;
+    let _y2 = y2.deref()!;
     newRender(
         mix(_x1, _x2, zoom),
         mix(_y1, _y2, zoom),
@@ -134,10 +134,10 @@ const app = () => {
                 smooth: 1e-3
             }).subscribe({
                 next([type, { pos, zoom }]: any) {
-                    const _x1 = x1.deref();
-                    const _y1 = y1.deref();
-                    const _x2 = x2.deref();
-                    const _y2 = y2.deref();
+                    const _x1 = x1.deref()!;
+                    const _y1 = y1.deref()!;
+                    const _x2 = x2.deref()!;
+                    const _y2 = y2.deref()!;
                     switch (type) {
                         case GestureType.START:
                             sel1.next(pos);
@@ -182,10 +182,10 @@ const app = () => {
             });
             // key controls fine tuning region
             window.addEventListener("keydown", (e) => {
-                let _x1 = x1.deref();
-                let _y1 = y1.deref();
-                let _x2 = x2.deref();
-                let _y2 = y2.deref();
+                let _x1 = x1.deref()!;
+                let _y1 = y1.deref()!;
+                let _x2 = x2.deref()!;
+                let _y2 = y2.deref()!;
                 const amp = e.shiftKey ? 0.1 : 0.01;
                 const deltaX = (_x2 - _x1) * amp;
                 const deltaY = (_y2 - _y1) * amp;
@@ -294,12 +294,15 @@ const slider = (
 main.transform(map(app()), updateDOM());
 
 // init parameter streams, if possible from location.hash
-newRender.apply(null, <any>(location.hash.length > 1
-    ? location.hash
-          .substr(1)
-          .split(";")
-          .map(parseFloat)
-    : DEFAULT_CONFIG));
+newRender.apply(
+    null,
+    <any>(location.hash.length > 1
+        ? location.hash
+              .substr(1)
+              .split(";")
+              .map(parseFloat)
+        : DEFAULT_CONFIG)
+);
 
 // HMR handling
 if (process.env.NODE_ENV !== "production") {

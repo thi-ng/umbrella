@@ -10,6 +10,7 @@ import { filter, Transducer } from "@thi.ng/transducers";
 import {
     Event,
     EventType,
+    EventTypeMap,
     NEXT,
     PAGE_READY,
     PREV
@@ -52,12 +53,15 @@ export const dispatch = (e: Event) => events.next(e);
  * @param handler
  * @param xform
  */
-export const defHandler = (
-    id: EventType,
-    handler: Fn<Event, void>,
+export const defHandler = <E extends EventType>(
+    id: E,
+    handler: Fn<EventTypeMap[E], void>,
     xform?: Transducer<Event, Event>
 ) => {
-    const sub: ISubscriber<Event> = { next: handler, error: console.warn };
+    const sub: ISubscriber<Event> = {
+        next: <Fn<Event, void>>handler,
+        error: console.warn
+    };
     return xform
         ? eventProc.subscribeTopic(id, {}, {}).subscribe(sub, xform)
         : eventProc.subscribeTopic(id, sub);
@@ -72,7 +76,7 @@ export const defHandler = (
  */
 const requestPage = (offset: number) => {
     // get current app state
-    const curr = state.deref();
+    const curr = state.deref()!;
     // just for illustration, not actually required in current example
     // clear any active timeout before creating new one...
     curr.timeoutID !== undefined && clearTimeout(curr.timeoutID);
@@ -98,20 +102,20 @@ defHandler(
     PREV,
     ([_, step]) => requestPage(-step!),
     // don't allow event if new page ID would be negative
-    filter(([_, x]) => state.deref().pageID >= x!)
+    filter(([_, x]) => state.deref()!.pageID >= x!)
     // alternatively, use `map()` transducer to clamp new pageID to 0
-    // map((e) => state.deref().pageID < e[1]! ? [PREV, state.deref().pageID] : e)
+    // map((e) => state.deref()!.pageID < e[1]! ? [PREV, state.deref()!.pageID] : e)
 );
 
 defHandler(
     NEXT,
     ([_, step]) => requestPage(step!),
     // don't allow event if new page ID would be >= 20
-    filter(([_, x]) => state.deref().pageID < 20 - x!)
+    filter(([_, x]) => state.deref()!.pageID < 20 - x!)
 );
 
 defHandler(PAGE_READY, () => {
-    const curr = state.deref();
+    const curr = state.deref()!;
     // apply `nextPageID` and clear preload flag
     state.next(setInMany(curr, "pageID", curr.nextPageID, "isLoading", false));
 });

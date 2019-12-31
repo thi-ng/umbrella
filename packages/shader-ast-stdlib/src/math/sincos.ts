@@ -8,13 +8,13 @@ import {
 /**
  * Inline function. Returns vec2(sin(x), cos(x)).
  *
- * @param x
+ * @param x -
  */
 export const sincos = (x: FloatTerm) => vec2(sin(x), cos(x));
 
 /**
  * Inline function. Returns vec2(cos(x), sin(x)).
  *
- * @param x
+ * @param x -
  */
 export const cossin = (x: FloatTerm) => vec2(cos(x), sin(x));

@@ -1,9 +1,11 @@
 import {
+    assert,
     INotifyMixin,
     Type,
     typedArray,
     TypedArray,
-    UIntArray
+    UIntArray,
+    uintType
 } from "@thi.ng/api";
 import { ICache, MemMappedComponentOpts } from "../api";
 import { AComponent } from "./acomponent";
@@ -15,6 +17,7 @@ export class MemMappedComponent<K extends string> extends AComponent<
     TypedArray,
     ArrayLike<number>
 > {
+    readonly type: Type;
     readonly size: number;
     readonly stride: number;
 
@@ -46,14 +49,31 @@ export class MemMappedComponent<K extends string> extends AComponent<
                   )
                 : typedArray(opts.type!, dense.length * stride)
         );
-        this.default = opts.default;
+        this.type = opts.type!;
         this.size = size;
         this.stride = stride;
+        this.default = opts.default;
         this.cache = opts.cache;
     }
 
     packedValues() {
         return this.vals.subarray(0, this.n * this.stride);
+    }
+
+    resize(cap: number) {
+        assert(cap >= this.dense.length, "can't decrease capacity");
+        if (cap === this.dense.length) return;
+        const utype = uintType(cap);
+        const sparse = typedArray(utype, cap);
+        const dense = typedArray(utype, cap);
+        const vals = typedArray(this.type, cap * this.stride);
+        sparse.set(this.sparse);
+        dense.set(this.dense);
+        vals.set(this.vals);
+        this.sparse = sparse;
+        this.dense = dense;
+        this.vals = vals;
+        this.cache && this.cache.release();
     }
 
     get(id: number) {

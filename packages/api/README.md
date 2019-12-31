@@ -14,6 +14,7 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
+  - [Environment variables](#environment-variables)
 - [Authors](#authors)
 - [License](#license)
 
@@ -49,7 +50,20 @@ None
 
 [Generated API docs](https://docs.thi.ng/umbrella/api/)
 
-TODO
+### Environment variables
+
+The following env variables are used to control the behavior of some functions in production builds:
+
+- `UMBRELLA_ASSERTS` -  if set to `1` the
+  [assert](https://github.com/thi-ng/umbrella/tree/master/packages/api/src/assert.ts)
+  function will **always** be enabled. By default, `assert()` is
+  disabled for production builds, i.e. if `process.env.NODE_ENV ===
+  "production"`.
+- `UMBRELLA_GLOBALS` -  if set to `1` the
+  [exposeGlobal](https://github.com/thi-ng/umbrella/tree/master/packages/api/src/expose.ts)
+  function will **always** be enabled. By default, `exposeGlobal()` is
+  disabled for production builds, i.e. if `process.env.NODE_ENV ===
+  "production"`.
 
 ## Authors
 

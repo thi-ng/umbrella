@@ -33,9 +33,9 @@ import {
  *
  * n += decay / exp2(i) * fn(pos * exp2(i) + i * shift)
  *
- * @param fn
- * @param oct
- * @param name
+ * @param fn -
+ * @param oct -
+ * @param name -
  */
 export const additive = <T extends Prim>(
     type: T,

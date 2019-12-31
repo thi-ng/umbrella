@@ -16,8 +16,8 @@ export interface FromChannelOpts extends CommonOpts {
  * Returns a stream of values received from given
  * {@link @thi.ng/csp#Channel}.
  *
- * @param src
- * @param opts
+ * @param src -
+ * @param opts -
  */
 export const fromChannel = <T>(
     src: Channel<T>,

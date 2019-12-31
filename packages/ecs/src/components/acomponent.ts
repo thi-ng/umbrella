@@ -1,9 +1,9 @@
 import {
     Event,
-    Fn,
     IID,
     INotify,
     INotifyMixin,
+    Listener,
     UIntArray
 } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks";
@@ -48,6 +48,8 @@ export abstract class AComponent<K extends string, VALUES, GET, SET>
         }
     }
 
+    abstract resize(newCap: number): void;
+
     has(id: number): boolean {
         const i = this.sparse[id];
         return i < this.n && this.dense[i] === id;
@@ -56,6 +58,15 @@ export abstract class AComponent<K extends string, VALUES, GET, SET>
     abstract get(id: number): GET | undefined;
 
     abstract getIndex(i: number): GET | undefined;
+
+    valueIndexForID(id: number) {
+        const i = this.sparse[id];
+        return i < this.n && this.dense[i] === id ? i * this.stride : -1;
+    }
+
+    valueIndexForIDUnsafe(id: number) {
+        return this.sparse[id] * this.stride;
+    }
 
     set(id: number, val: SET) {
         const i = this.sparse[id];
@@ -113,15 +124,13 @@ export abstract class AComponent<K extends string, VALUES, GET, SET>
     }
 
     // @ts-ignore: arguments
-    addListener(id: string, fn: Fn<Event, void>, scope?: any): boolean {
-        return false;
-    }
+    addListener(id: string, fn: Listener, scope?: any): boolean {}
 
+    /** {@inheritDoc @thi.ng/api#INotify.removeListener} */
     // @ts-ignore: arguments
-    removeListener(id: string, fn: Fn<Event, void>, scope?: any): boolean {
-        return false;
-    }
+    removeListener(id: string, fn: Listener, scope?: any): boolean {}
 
+    /** {@inheritDoc @thi.ng/api#INotify.notify} */
     // @ts-ignore: arguments
     notify(event: Event) {}
 

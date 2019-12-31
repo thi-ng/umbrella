@@ -25,9 +25,11 @@
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "doc:readme": "../../scripts/generate-readme",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
+        "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
+        "@microsoft/api-extractor": "^7.7.0",
         "@types/mocha": "^5.2.6",
         "@types/node": "^12.12.11",
         "mocha": "^6.2.2",

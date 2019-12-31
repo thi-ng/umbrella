@@ -60,14 +60,14 @@ import { toPath } from "./path";
  * g() // undefined
  * ```
  *
- * @param path
+ * @param path -
  */
 export const getter = (path: Path): Fn<any, any> => getterT(<any>path);
 
 /**
  * Type checked version of {@link getter}.
  *
- * @param path
+ * @param path -
  */
 export function getterT<T>(path: []): Fn<T, T>;
 export function getterT<T, A extends Keys<T>>(path: [A]): Fn<T, Val1<T, A>>;

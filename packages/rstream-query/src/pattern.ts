@@ -35,8 +35,8 @@ export const patternVars = ([s, p, o]: Pattern) => {
  * ]
  * ```
  *
- * @param pattern
- * @param maxLen
+ * @param pattern -
+ * @param maxLen -
  */
 export const resolvePathPattern = (
     [s, p, o]: PathPattern,

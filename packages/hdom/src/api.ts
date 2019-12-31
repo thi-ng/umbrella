@@ -84,7 +84,7 @@ export interface HDOMBehaviorAttribs {
      */
     __release?: boolean;
     /**
-     * Currently only used by thi.ng/hiccup. No relevance for hdom. If
+     * Currently only used by {@link @thi.ng/hiccup# | @thi.ng/hiccup}. No relevance for hdom. If
      * `false`, the element and its children will be omitted from the
      * serialized result.
      */
@@ -104,7 +104,8 @@ export interface ComponentAttribs extends HDOMBehaviorAttribs {
 
 export interface HDOMOpts {
     /**
-     * Root element or ID (default: "app").
+     * Root element or ID
+     * @defaultValue "app"
      */
     root?: Element | string;
     /**
@@ -115,34 +116,41 @@ export interface HDOMOpts {
     /**
      * Attempts to auto-expand/deref the given keys in the user supplied
      * context object (`ctx` option) prior to *each* tree normalization.
-     * All of these values should implement the thi.ng/api `IDeref`
-     * interface (e.g. atoms, cursors, views, rstreams etc.). This
-     * feature can be used to define dynamic contexts linked to the main
-     * app state, e.g. using derived views provided by thi.ng/atom.
+     * All of these values should implement the
+     * {@link @thi.ng/api#IDeref} interface (e.g. atoms, cursors, views,
+     * rstreams etc.). This feature can be used to define dynamic
+     * contexts linked to the main app state, e.g. using derived views
+     * provided by {@link @thi.ng/atom# | @thi.ng/atom}.
      *
-     * Default: none
+     * @defaultValue none
      */
     autoDerefKeys: PropertyKey[];
     /**
-     * If true (default), each elements will receive an auto-generated
+     * If true, each elements will receive an auto-generated
      * `key` attribute (unless one already exists).
+     *
+     * @defaultValue true
      */
     keys?: boolean;
     /**
-     * If true (default), all text content will be wrapped in `<span>`
+     * If true, all text content will be wrapped in `<span>`
      * elements. Spans will never be created inside <option>, <textarea>
      * or <text> elements.
+     *
+     * @defaultValue true
      */
     span?: boolean;
     /**
-     * If true (default false), the first frame will only be used to
-     * inject event listeners, using the `hydrateDOM()` function.
+     * If true, the first frame will only be used to inject event
+     * listeners, using the `hydrateDOM()` function.
      *
      * *Important:* Enabling this option assumes that an equivalent DOM
      * (minus event listeners) already exists (e.g. generated via SSR /
      * hiccup's `serialize()`) when hdom's `start()` function is called.
      * Any other discrepancies between the pre-existing DOM and the hdom
      * trees will cause undefined behavior.
+     *
+     * @defaultValue false
      */
     hydrate?: boolean;
 
@@ -154,12 +162,12 @@ export interface HDOMOpts {
 
 /**
  * This interface defines the underlying target update operations used
- * by `diffTree()` and `createDOM()`. It allows thi.ng/hdom to be
- * used as general purpose tree definition & differential update
+ * by `diffTree()` and `createDOM()`. It allows {@link @thi.ng/hdom# | @thi.ng/hdom} to
+ * be used as general purpose tree definition & differential update
  * mechanism, rather than being restricted to only work with an HTML
- * DOM. See `DEFAULT_IMPL` (diff.ts) for the default implementations
- * dealing with the latter. Note: Depending on use case and tree
- * configuration, not all of these methods are required.
+ * DOM. See {@link DEFAULT_IMPL} for the default implementations dealing
+ * with the latter. Note: Depending on use case and tree configuration,
+ * not all of these methods are required.
  *
  * Custom element-local implementations can also be provided via the
  * special `__impl` hdom element/component attribute. In this case the
@@ -231,17 +239,20 @@ export interface HDOMImplementation<T> {
      * See `normalizeElement` (normalize.ts) for further details about
      * the canonical element form.
      *
-     * @param tree
-     * @param opts
+     * @param tree - component tree
+     * @param opts - hdom config options
      */
     normalizeTree(opts: Partial<HDOMOpts>, tree: any): any[];
 
     /**
      * Realizes the given hdom tree in the target below the `parent`
      * node, e.g. in the case of the browser DOM, creates all required
-     * DOM elements encoded by the given hdom tree. If `parent` is null
-     * the result tree won't be attached to any parent. If `child` is
-     * given, the new elements will be inserted at given child index.
+     * DOM elements encoded by the given hdom tree.
+     *
+     * @remarks
+     * If `parent` is null the result tree won't be attached to any
+     * parent. If `child` is given, the new elements will be inserted at
+     * given child index.
      *
      * For any components with `init` life cycle methods, the
      * implementation MUST call `init` with the created element, the
@@ -258,10 +269,10 @@ export interface HDOMImplementation<T> {
      * specified implementation and not descent into that branch further
      * itself.
      *
-     * @param parent
-     * @param tree
-     * @param child
-     * @param init
+     * @param parent - parent node in target (e.g. DOM element)
+     * @param tree - component tree
+     * @param child - child index
+     * @param init - true, if {@link ILifecycle.init} methods are called
      */
     createTree(
         opts: Partial<HDOMOpts>,
@@ -285,10 +296,10 @@ export interface HDOMImplementation<T> {
      * specified implementation and not descent into that branch further
      * itself.
      *
-     * @param opts
-     * @param parent
-     * @param tree
-     * @param child
+     * @param opts - hdom config options
+     * @param parent - parent node in target (e.g. DOM element)
+     * @param tree - component tree
+     * @param child - child index
      */
     hydrateTree(
         opts: Partial<HDOMOpts>,
@@ -335,11 +346,11 @@ export interface HDOMImplementation<T> {
      * 3) Call the current implementation's `replaceChild()` method to
      *    replace the old element / branch with the new one.
      *
-     * @param opts
-     * @param parent
-     * @param prev
-     * @param curr
-     * @param child
+     * @param opts - hdom config options
+     * @param parent - parent node in target (e.g. DOM element)
+     * @param prev - previous component tree
+     * @param curr - current component tree
+     * @param child - child index
      */
     diffTree(
         opts: Partial<HDOMOpts>,
@@ -360,10 +371,10 @@ export interface HDOMImplementation<T> {
      * name, the new element will be created with the proper SVG XML
      * namespace.
      *
-     * @param parent
-     * @param tag
-     * @param attribs
-     * @param child
+     * @param parent - parent node in target (e.g. DOM element)
+     * @param tag - element tag name
+     * @param attribs - element attributes
+     * @param child - child index
      */
     createElement(parent: T, tag: string, attribs?: any, child?: number): T;
 
@@ -371,8 +382,8 @@ export interface HDOMImplementation<T> {
      * Creates and appends the given `content` as text child node to
      * `parent` in the target.
      *
-     * @param parent
-     * @param content
+     * @param parent - parent node in target (e.g. DOM element)
+     * @param content - content
      */
     createTextElement(parent: T, content: string): T;
 
@@ -381,7 +392,7 @@ export interface HDOMImplementation<T> {
      * implementation's tree. In the default implementation this is
      * merely delegated to `document.getElementById()`.
      *
-     * @param id
+     * @param id - element ID
      */
     getElementById(id: string): T | null;
 
@@ -394,9 +405,9 @@ export interface HDOMImplementation<T> {
      * impl.createTree(parent, child, newTree);
      * ```
      *
-     * @param parent
-     * @param child
-     * @param newTree
+     * @param parent - parent node in target (e.g. DOM element)
+     * @param child - child index
+     * @param newTree - component tree
      */
     replaceChild(
         opts: Partial<HDOMOpts>,
@@ -409,16 +420,16 @@ export interface HDOMImplementation<T> {
     /**
      * Retrieves child of `parent` node at index `i`.
      *
-     * @param parent
-     * @param i
+     * @param parent - parent node in target (e.g. DOM element)
+     * @param i - child index
      */
     getChild(parent: T, i: number): T;
 
     /**
      * Removes the child of `parent` at index `i` in the target.
      *
-     * @param parent
-     * @param i
+     * @param parent - parent node in target (e.g. DOM element)
+     * @param i - child index
      */
     removeChild(parent: T, i: number): void;
 
@@ -429,10 +440,10 @@ export interface HDOMImplementation<T> {
      * allow it to produce a derived value. See `setAttrib()` (dom.ts)
      * for details.
      *
-     * @param element
-     * @param id
-     * @param value
-     * @param attribs
+     * @param element - target element / DOM node
+     * @param id - attribute name
+     * @param value - attribute value
+     * @param attribs - object with all attribs
      */
     setAttrib(element: T, id: string, value: any, attribs?: any): void;
 
@@ -441,9 +452,9 @@ export interface HDOMImplementation<T> {
      * from the previous tree are provided for reference (e.g. to be
      * able to remove DOM event listeners).
      *
-     * @param element
-     * @param attribs
-     * @param prevAttribs
+     * @param element - target element / DOM node
+     * @param attribs - element attributes
+     * @param prevAttribs - previous attributes
      */
     removeAttribs(element: T, attribs: string[], prevAttribs: any): void;
 
@@ -455,8 +466,8 @@ export interface HDOMImplementation<T> {
      * body content is automatically wrapped in such by
      * `normalizeTree()`.
      *
-     * @param element
-     * @param value
+     * @param element - target element / DOM node
+     * @param value - new content
      */
     setContent(element: T, value: any): void;
 }

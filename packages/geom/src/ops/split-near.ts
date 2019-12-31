@@ -16,7 +16,7 @@ import { pointArraysAsShapes } from "../internal/points-as-shape";
 import { splitLine } from "../internal/split";
 
 /**
- * Similar to `splitAt`, but instead of taking a normalized parametric
+ * Similar to {@link splitAt}, but instead of taking a normalized parametric
  * split position, splits the given curve at the closest point to `p`.
  * Returns tuple of split shapes of same type as `shape`.
  *
@@ -27,10 +27,8 @@ import { splitLine } from "../internal/split";
  * - Polyline
  * - Quadratic
  *
- * @see splitAt
- *
- * @param shape
- * @param p
+ * @param shape - shape to operate on
+ * @param p - split point
  */
 export const splitNearPoint = defmulti<
     IShape,

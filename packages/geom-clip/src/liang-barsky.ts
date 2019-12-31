@@ -11,15 +11,15 @@ import { Vec } from "@thi.ng/vectors";
  * line segment. Returns `undefined` iff the line lies completely
  * outside the rect.
  *
- * https://en.wikipedia.org/wiki/Liang%E2%80%93Barsky_algorithm
- * https://github.com/thi-ng/c-thing/blob/master/src/geom/clip/liangbarsky.c
+ * - {@link https://en.wikipedia.org/wiki/Liang%E2%80%93Barsky_algorithm}
+ * - {@link https://github.com/thi-ng/c-thing/blob/master/src/geom/clip/liangbarsky.c}
  *
- * @param a
- * @param b
- * @param min
- * @param max
- * @param ca
- * @param cb
+ * @param a - line endpoint
+ * @param b - line endpoint
+ * @param min - bbox min
+ * @param max - bbox max
+ * @param ca - result A
+ * @param cb - result B
  */
 export const liangBarsky2 = (
     a: Vec,

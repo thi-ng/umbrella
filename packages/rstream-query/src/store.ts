@@ -167,8 +167,8 @@ export class TripleStore implements Iterable<Triple>, IToDot {
      * Replaces triple `a` with `b`, *iff* `a` is actually in the store.
      * Else does nothing.
      *
-     * @param a
-     * @param b
+     * @param a -
+     * @param b -
      */
     replace(a: Triple, b: Triple) {
         if (this.delete(a)) {
@@ -189,8 +189,8 @@ export class TripleStore implements Iterable<Triple>, IToDot {
      * matched triples. If only the raw triple IDs are wanted, set
      * `emitTriples` arg to `false`.
      *
-     * @param id
-     * @param param1
+     * @param id -
+     * @param param1 -
      */
     addPatternQuery(pattern: Pattern, id?: string): ISubscribable<Triples>;
     addPatternQuery(
@@ -260,8 +260,8 @@ export class TripleStore implements Iterable<Triple>, IToDot {
      * [{a: "asterix", b: "obelix"}, {a: "romeo", b: "julia"}]
      * ```
      *
-     * @param id
-     * @param param1
+     * @param id -
+     * @param param1 -
      */
     addParamQuery([s, p, o]: Pattern, id?: string): QuerySolution {
         const vs = isQVar(s);
@@ -297,9 +297,9 @@ export class TripleStore implements Iterable<Triple>, IToDot {
      * `maxLen` is given and greater than the number of actual path
      * predicates, the predicates are repeated.
      *
-     * @param path
-     * @param maxDepth
-     * @param id
+     * @param path -
+     * @param maxDepth -
+     * @param id -
      */
     addPathQuery(
         path: PathPattern,
@@ -314,13 +314,13 @@ export class TripleStore implements Iterable<Triple>, IToDot {
     }
 
     /**
-     * Like `addMultiJoin()`, but optimized for only two input queries.
-     * Returns a rstream subscription computing the natural join of the
-     * given input query results.
+     * Like {@link TripleStore.addMultiJoin}, but optimized for only two
+     * input queries. Returns a rstream subscription computing the
+     * natural join of the given input query results.
      *
-     * @param id
-     * @param a
-     * @param b
+     * @param id -
+     * @param a -
+     * @param b -
      */
     addJoin(a: QuerySolution, b: QuerySolution, id?: string): QuerySolution {
         return sync<Solutions, Solutions>({
@@ -361,9 +361,9 @@ export class TripleStore implements Iterable<Triple>, IToDot {
     /**
      * Compiles given query spec into a number of sub-queries and result
      * transformations. Returns rstream subscription of final result
-     * sets. See `QuerySpec` docs for further details.
+     * sets. See {@link QuerySpec} docs for further details.
      *
-     * @param spec
+     * @param spec -
      */
     addQueryFromSpec(spec: QuerySpec): QuerySolution {
         let query: QuerySolution | undefined;

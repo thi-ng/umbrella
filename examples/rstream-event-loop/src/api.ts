@@ -1,15 +1,20 @@
+import { Val1 } from "@thi.ng/api";
+
 // event ID constants
 export const PREV = "prev";
 export const NEXT = "next";
 export const PAGE_READY = "page-ready";
 
-export type EventType = typeof PREV | typeof NEXT | typeof PAGE_READY;
-
 // alias of possible event structures/signatures
-export type Event =
-    | [typeof PREV, number]
-    | [typeof NEXT, number]
-    | [typeof PAGE_READY];
+export interface EventTypeMap {
+    [PREV]: [typeof PREV, number];
+    [NEXT]: [typeof NEXT, number];
+    [PAGE_READY]: [typeof PAGE_READY];
+}
+
+export type EventType = keyof EventTypeMap;
+
+export type Event = Val1<EventTypeMap, EventType>;
 
 export interface AppState {
     pageID: number;

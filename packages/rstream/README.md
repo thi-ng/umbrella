@@ -12,7 +12,7 @@ This project is part of the
 - [About](#about)
 - [Conceptual differences to RxJS](#conceptual-differences-to-rxjs)
   - [Status](#status)
-  - [Breaking changes in 3.0.0](#breaking-changes-in-3-0-0)
+  - [Breaking changes in 3.0.0](#breaking-changes-in-300)
   - [Support packages](#support-packages)
   - [Related packages](#related-packages)
 - [Installation](#installation)
@@ -27,14 +27,14 @@ This project is part of the
     - [Other stream creation helpers](#other-stream-creation-helpers)
   - [Meta streams](#meta-streams)
   - [Stream merging](#stream-merging)
-    - [Unordered merge from multiple inputs (dynamic add/remove)](#unordered-merge-from-multiple-inputs--dynamic-add-remove-)
+    - [Unordered merge from multiple inputs (dynamic add/remove)](#unordered-merge-from-multiple-inputs-dynamic-addremove)
     - [Synchronized merge and labeled tuple objects](#synchronized-merge-and-labeled-tuple-objects)
   - [Stream splitting](#stream-splitting)
     - [Topic based splitting](#topic-based-splitting)
     - [Splitting via predicate](#splitting-via-predicate)
   - [Side-chaining](#side-chaining)
-    - [Input chunking / buffering, controlled by sidechain](#input-chunking---buffering--controlled-by-sidechain)
-    - [Input toggling, controlled by sidechain](#input-toggling--controlled-by-sidechain)
+    - [Input chunking / buffering, controlled by sidechain](#input-chunking--buffering-controlled-by-sidechain)
+    - [Input toggling, controlled by sidechain](#input-toggling-controlled-by-sidechain)
   - [Worker support](#worker-support)
     - [Parallel stream processing via workers](#parallel-stream-processing-via-workers)
     - [Stream processing via workers](#stream-processing-via-workers)
@@ -145,6 +145,14 @@ Several demos in this repo's
 directory are using this package.
 
 A selection:
+
+### adaptive-threshold <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/adaptive-threshold.png)
+
+Interactive image processing (adaptive threshold)
+
+[Live demo](https://demo.thi.ng/umbrella/adaptive-threshold/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/adaptive-threshold)
 
 ### bitmap-font <!-- NOTOC -->
 

@@ -4,7 +4,7 @@ import { vop } from "./internal/vop";
 /**
  * Returns returns true if all vector components in `v` are truthy.
  *
- * @param v
+ * @param v -
  */
 export const every: MultiBVecOpRoV<boolean> = vop();
 

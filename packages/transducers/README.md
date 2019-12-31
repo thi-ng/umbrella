@@ -11,8 +11,8 @@ This project is part of the
 
 - [About](#about)
   - [Status](#status)
-  - [6.0.0 release](#6-0-0-release)
-  - [5.0.0 release](#5-0-0-release)
+  - [6.0.0 release](#600-release)
+  - [5.0.0 release](#500-release)
   - [Support packages](#support-packages)
   - [Related packages](#related-packages)
   - [Blog posts](#blog-posts)
@@ -20,15 +20,15 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
   - [Basic usage patterns](#basic-usage-patterns)
-  - [Interpolation & SVG generation](#interpolation---svg-generation)
+  - [Interpolation & SVG generation](#interpolation--svg-generation)
   - [Fuzzy search](#fuzzy-search)
-  - [Histogram generation & result grouping](#histogram-generation---result-grouping)
+  - [Histogram generation & result grouping](#histogram-generation--result-grouping)
   - [Pagination](#pagination)
-  - [Multiplexing / parallel transducer application](#multiplexing---parallel-transducer-application)
+  - [Multiplexing / parallel transducer application](#multiplexing--parallel-transducer-application)
   - [Moving average using sliding window](#moving-average-using-sliding-window)
   - [Benchmark function execution time](#benchmark-function-execution-time)
   - [Apply inspectors to debug transducer pipeline](#apply-inspectors-to-debug-transducer-pipeline)
-  - [Stream parsing / structuring](#stream-parsing---structuring)
+  - [Stream parsing / structuring](#stream-parsing--structuring)
   - [CSV parsing](#csv-parsing)
   - [Early termination](#early-termination)
   - [Scan operator](#scan-operator)
@@ -40,7 +40,7 @@ This project is part of the
     - [Reduced](#reduced)
   - [IReducible](#ireducible)
   - [Transducer](#transducer)
-  - [Composition & execution](#composition---execution)
+  - [Composition & execution](#composition--execution)
     - [comp](#comp)
     - [compR](#compr)
     - [iterator](#iterator)
@@ -48,7 +48,7 @@ This project is part of the
     - [transduce](#transduce)
     - [run](#run)
   - [Transducers](#transducers)
-  - [Generators / Iterators](#generators---iterators)
+  - [Generators / Iterators](#generators--iterators)
   - [Reducers](#reducers)
 - [Authors](#authors)
 - [License](#license)
@@ -162,6 +162,14 @@ directory are using this package.
 
 A selection:
 
+### adaptive-threshold <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/adaptive-threshold.png)
+
+Interactive image processing (adaptive threshold)
+
+[Live demo](https://demo.thi.ng/umbrella/adaptive-threshold/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/adaptive-threshold)
+
 ### bitmap-font <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/bitmap-font.gif)
@@ -237,6 +245,14 @@ Worker based, interactive Mandelbrot visualization
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/package-stats.png)
 
 [Live demo](https://demo.thi.ng/umbrella/package-stats/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/package-stats)
+
+### ramp-synth <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/ramp-synth.png)
+
+Unison wavetable synth with waveform editor
+
+[Live demo](https://demo.thi.ng/umbrella/ramp-synth/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/ramp-synth)
 
 ### rotating-voronoi <!-- NOTOC -->
 

@@ -13,6 +13,7 @@ const compileRShift = (x: string, shift: number) => compileLShift(x, -shift);
 
 const hex = (x: number) => `0x${x.toString(16)}`;
 
+/** @internal */
 export const compileGrayFromABGR = (size: number) => {
     const shift = 8 - size;
     const mask = (1 << size) - 1;
@@ -24,6 +25,7 @@ export const compileGrayFromABGR = (size: number) => {
     );
 };
 
+/** @internal */
 export const compileGrayToABGR = (size: number) => {
     let body: string;
     if (size !== 8) {
@@ -39,6 +41,7 @@ export const compileGrayToABGR = (size: number) => {
     );
 };
 
+/** @internal */
 export const compileFromABGR = (chans: PackedChannel[]) =>
     <Fn<number, number>>new Function(
         "x",
@@ -52,6 +55,7 @@ export const compileFromABGR = (chans: PackedChannel[]) =>
             ") >>> 0;"
     );
 
+/** @internal */
 export const compileToABGR = (chans: PackedChannel[], hasAlpha: boolean) => {
     const body = chans
         .map((ch) => {

@@ -19,9 +19,13 @@ export class LRU<T> implements ICache<T> {
         return this.index.keys();
     }
 
-    release() {
+    clear() {
         this.items.release();
         this.index.clear();
+    }
+
+    release() {
+        this.clear();
         return true;
     }
 

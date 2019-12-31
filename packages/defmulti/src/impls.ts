@@ -8,6 +8,7 @@ import { Implementation, MultiFn } from "./api";
  * relationships and a number of multi-methods, each with an
  * implementation for the given dispatch value.
  *
+ * @remarks
  * The relations object has dispatch values (parents) as keys and arrays
  * of multi-methods as their values. For each multi-method associates
  * the given `type` with the related parent dispatch value to delegate
@@ -16,7 +17,8 @@ import { Implementation, MultiFn } from "./api";
  * The remaining implementations are associated with their related
  * multi-method and the given `type` dispatch value.
  *
- * ```
+ * @example
+ * ```ts
  * foo = defmulti((x) => x.id);
  * bar = defmulti((x) => x.id);
  * bax = defmulti((x) => x.id);
@@ -53,11 +55,11 @@ import { Implementation, MultiFn } from "./api";
  * baz.impls(); // Set { "c", "a", "b" }
  * ```
  *
- * @param type
- * @param impls
+ * @param id - dispatch value / implementation ID
+ * @param impls - implementations
  */
 export const implementations = (
-    type: PropertyKey,
+    id: PropertyKey,
     rels: IObjectOf<MultiFn<any>[]>,
     ...impls: (MultiFn<any> | Implementation<any>)[]
 ) => {
@@ -66,11 +68,11 @@ export const implementations = (
     if (rels) {
         for (let parent in rels) {
             for (let fn of rels[parent]) {
-                fn.isa(type, parent);
+                fn.isa(id, parent);
             }
         }
     }
     for (let i = 0; i < impls.length; i += 2) {
-        (<MultiFn<any>>impls[i]).add(type, impls[i + 1]);
+        (<MultiFn<any>>impls[i]).add(id, impls[i + 1]);
     }
 };

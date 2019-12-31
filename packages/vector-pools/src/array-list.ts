@@ -7,12 +7,12 @@ export class VecArrayList<T extends StridedVec> extends AVecList<T> {
 
     /**
      *
-     * @param buffer
-     * @param capacity
-     * @param size
-     * @param cstride
-     * @param estride
-     * @param start
+     * @param buffer -
+     * @param capacity -
+     * @param size -
+     * @param cstride -
+     * @param estride -
+     * @param start -
      */
     constructor(
         buffer: Vec,

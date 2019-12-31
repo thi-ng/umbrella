@@ -6,12 +6,12 @@ import { repeatedly } from "@thi.ng/transducers";
  * probability `prob` (in the [0,1] interval). If `num` is given, only
  * that many bits will be produced.
  *
- * By default, uses system PRNG, but a custom `IRandom` impl can be
- * provided via `rnd` arg.
+ * By default, uses system PRNG, but a custom
+ * {@link @thi.ng/random#IRandom} impl can be provided via `rnd` arg.
  *
- * @param prob
- * @param num
- * @param rnd
+ * @param prob -
+ * @param num -
+ * @param rnd -
  */
 export const randomBits = (
     prob: number,

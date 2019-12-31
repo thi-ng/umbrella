@@ -6,7 +6,8 @@ import { ensureIterable } from "@thi.ng/arrays";
  * Undefined & null inputs are silently ignored, however any
  * such values produced or contained in an input will remain.
  *
- * ```
+ * @example
+ * ```ts
  * [...concat([1, 2, 3], null, [4, 5])]
  * // [ 1, 2, 3, 4, 5 ]
  *
@@ -14,7 +15,7 @@ import { ensureIterable } from "@thi.ng/arrays";
  * // [ 1, 2, 3, undefined, 4, 5 ]
  * ```
  *
- * @param xs
+ * @param xs -
  */
 export function* concat<T>(
     ...xs: Nullable<Iterable<T>>[]

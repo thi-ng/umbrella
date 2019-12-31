@@ -487,7 +487,9 @@ character.
 
 The library exposes these two functions:
 
-### serialize(tree: any, ctx?: any, escape = false): string
+### serialize()
+
+Signature: `serialize(tree: any, ctx?: any, escape = false): string`
 
 Recursively normalizes and serializes given tree as HTML/SVG/XML string.
 Expands any embedded component functions with their results. Each node
@@ -557,7 +559,9 @@ implementation).
 Please also see list of supported [behavior control
 attributes](#behavior-control-attributes).
 
-### escape(str: string): string
+### escape()
+
+Signature: `escape(str: string): string`
 
 Helper function. Applies HTML entity replacement on given string. If
 `serialize()` is called with `true` as 2nd argument, entity encoding is

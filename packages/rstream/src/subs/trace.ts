@@ -5,7 +5,7 @@ import { ISubscriber } from "../api";
  * Simply logs received values to console, optionally with given
  * `prefix`.
  *
- * @param prefix
+ * @param prefix -
  */
 export const trace = (prefix?: any): ISubscriber<any> => ({
     next(x) {

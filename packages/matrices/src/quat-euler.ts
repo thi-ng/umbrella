@@ -15,10 +15,10 @@ const axisOrder = {
  * Constructs a quaternion from given rotation angles in specified
  * `order`.
  *
- * @param order
- * @param a
- * @param b
- * @param c
+ * @param order -
+ * @param a -
+ * @param b -
+ * @param c -
  */
 export const quatFromEuler = (
     order: keyof typeof axisOrder,

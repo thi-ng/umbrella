@@ -1,23 +1,25 @@
 import { Predicate } from "@thi.ng/api";
-
 import { Transducer } from "../api";
 import { comp } from "../func/comp";
 import { iterator1 } from "../iterator";
 import { filter } from "./filter";
 import { take } from "./take";
 
+
 /**
  * Transducer composition / syntax sugar for:
  *
- * ```
+ * @example
+ * ```ts
  * comp(filter(pred), take(1))
  * ```
  *
  * Yields none or only the first value which passed the predicate check
  * and then causes early termination. If `src` input is given, returns
- * first match found (or `undefined`). Also see `matchLast()`.
+ * first match found (or `undefined`). Also see {@link (matchLast:1)}.
  *
- * ```
+ * @example
+ * ```ts
  * matchFirst((x) => x >= 5, [3, 1, 4, 2, 6, 5])
  * // 6
  *
@@ -32,7 +34,7 @@ import { take } from "./take";
  * // 60
  * ```
  *
- * @param pred predicate function
+ * @param pred - predicate function
  */
 export function matchFirst<T>(pred: Predicate<T>): Transducer<T, T>;
 export function matchFirst<T>(

@@ -6,8 +6,8 @@ import { unwrap } from "./word";
  * Executes program / quotation with given stack context (initial D/R
  * stacks and optional environment). Returns updated context.
  *
- * @param prog
- * @param ctx
+ * @param prog -
+ * @param ctx -
  */
 export const run = (
     prog: StackProc,
@@ -31,22 +31,22 @@ export const run = (
 };
 
 /**
- * Like `run()`, but returns unwrapped result. Syntax sugar for:
+ * Like {@link run}, but returns unwrapped result. Syntax sugar for:
  * `unwrap(run(...),n)`
  *
- * @param prog
- * @param ctx
- * @param n
+ * @param prog -
+ * @param ctx -
+ * @param n -
  */
 export const runU = (prog: StackProc, ctx?: StackContext, n = 1) =>
     unwrap(run(prog, ctx), n);
 
 /**
- * Like `run()`, but returns result environment. Syntax sugar for:
+ * Like {@link run}, but returns result environment. Syntax sugar for:
  * `run(...)[2]`
  *
- * @param prog
- * @param ctx
- * @param n
+ * @param prog -
+ * @param ctx -
+ * @param n -
  */
 export const runE = (prog: StackProc, ctx?: StackContext) => run(prog, ctx)[2];

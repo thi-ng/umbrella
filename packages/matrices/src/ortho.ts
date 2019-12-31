@@ -5,13 +5,13 @@ import { Mat } from "./api";
  * Creates a 4x4 matrix orthographic projection matrix and writes result
  * to `out`.
  *
- * @param out
- * @param left
- * @param right
- * @param bottom
- * @param top
- * @param near
- * @param far
+ * @param out -
+ * @param left -
+ * @param right -
+ * @param bottom -
+ * @param top -
+ * @param near -
+ * @param far -
  */
 export const ortho = (
     out: Mat | null,

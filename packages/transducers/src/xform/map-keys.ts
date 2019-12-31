@@ -10,7 +10,8 @@ import { map } from "./map";
  * `keys[k](x[k])` and reassigns result. By default creates a shallow
  * copy of each `x`.
  *
- * ```
+ * @example
+ * ```ts
  * [...mapKeys(
  *   {
  *     a: (x) => x != null ? x * 10 : x,
@@ -21,9 +22,9 @@ import { map } from "./map";
  * // [ { a: 10, b: 200 }, { c: 3, d: 4, b: 'n/a', a: undefined } ]
  * ```
  *
- * @param keys object of transformation functions
- * @param copy if true (default), creates a shallow copy of each incoming value
- * @param src
+ * @param keys - object of transformation functions
+ * @param copy - if true (default), creates a shallow copy of each incoming value
+ * @param src -
  */
 export function mapKeys(
     keys: IObjectOf<Fn<any, any>>,

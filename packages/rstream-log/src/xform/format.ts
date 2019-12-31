@@ -24,11 +24,12 @@ export const formatString = (
 /**
  * Takes an array of regex patterns and optional `mask` string. Returns
  * transducer which replaces all found pattern occurrences with `mask`.
- * Intended to be used in combination / after `formatString()` to avoid
+ * Intended to be used in combination / after {@link formatString} to avoid
  * leaking of sensitive information via logged messages.
  *
  *
- * ```
+ * @example
+ * ```ts
  * logger.transform(
  *   formatString(),
  *   maskSecrets([/(?<=[A-Z0-9_]\=)\w+/g])
@@ -40,8 +41,8 @@ export const formatString = (
  * // [INFO] logger-0: logged in USER=****, using TOKEN=****
  * ```
  *
- * @param patterns
- * @param mask
+ * @param patterns -
+ * @param mask -
  */
 export const maskSecrets = (patterns: RegExp[], mask = "****") =>
     map((msg: string) =>

@@ -59,8 +59,8 @@ import { nextID } from "./utils/idgen";
  * // s2 42
  * ```
  *
- * @param sub
- * @param opts
+ * @param sub -
+ * @param opts -
  */
 export const subscription = <A, B>(
     sub?: ISubscriber<B>,
@@ -170,7 +170,7 @@ export class Subscription<A, B>
      * Returns array of new child subscriptions for all given
      * subscribers.
      *
-     * @param subs
+     * @param subs -
      */
     subscribeAll(...subs: ISubscriber<B>[]) {
         const wrapped: Subscription<B, B>[] = [];
@@ -184,7 +184,7 @@ export class Subscription<A, B>
      * Creates a new child subscription using given transducers and
      * optional subscription ID. Supports up to 4 transducers and if
      * more than one transducer is given, composes them in left-to-right
-     * order using @thi.ng/transducers `comp()`.
+     * order using {@link @thi.ng/transducers#(comp:1)}.
      *
      * Shorthand for `subscribe(comp(xf1, xf2,...), id)`
      */
@@ -212,7 +212,7 @@ export class Subscription<A, B>
      * other subs are remaining also cleans up itself and goes into DONE
      * state.
      *
-     * @param sub
+     * @param sub -
      */
     unsubscribe(sub?: Subscription<B, any>) {
         LOGGER.debug(this.id, "unsub start", sub ? sub.id : "self");

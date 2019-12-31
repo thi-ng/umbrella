@@ -10,14 +10,15 @@ import { normalizeS2, normalizeS3, normalizeS4 } from "./normalizes";
 
 /**
  * Randomizes `v` with each component in interval `[n..m)`. If no `rnd`
- * instance is given, uses `SYSTEM`, i.e. `Math.random`.
+ * instance is given, uses {@link @thi.ng/random#SYSTEM}, i.e.
+ * `Math.random`.
  *
- * @param v
- * @param n default -1
- * @param m default 1
- * @param rnd
- * @param ia
- * @param sa
+ * @param v -
+ * @param n - default -1
+ * @param m - default 1
+ * @param rnd -
+ * @param ia -
+ * @param sa -
  */
 export const [randomS2, randomS3, randomS4] = defHofOpS<
     VecOpSOOO<number, number, IRandom>
@@ -37,12 +38,13 @@ const $norm = (
     normalize((a = random(a, -1, 1, rnd, ia, sa)), a, n, ia, ia, sa, sa);
 
 /**
- * Sets `v` to random vector, normalized to length `n` (default: 1). If no
- * `rnd` instance is given, uses `SYSTEM`, i.e. `Math.random`.
+ * Sets `v` to random vector, normalized to length `n` (default: 1). If
+ * no `rnd` instance is given, uses {@link @thi.ng/random#SYSTEM}, i.e.
+ * `Math.random`.
  *
- * @param v
- * @param n
- * @param rnd
+ * @param v -
+ * @param n -
+ * @param rnd -
  */
 export const randNormS2 = $norm(normalizeS2, randomS2);
 
@@ -54,10 +56,10 @@ export const randNormS4 = $norm(normalizeS4, randomS4);
  * Sets `out` to random vector with each component in the semi-open
  * interval defined by [min,max).
  *
- * @param out
- * @param min
- * @param max
- * @param rnd
+ * @param out -
+ * @param min -
+ * @param max -
+ * @param rnd -
  */
 export const [randMinMaxS2, randMinMaxS3, randMinMaxS4] = defHofOpS<
     VecOpSOOO<ReadonlyVec, ReadonlyVec, IRandom>

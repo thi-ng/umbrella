@@ -3,7 +3,7 @@ import { ARGS_VV, defHofOp } from "./internal/codegen";
 import { FN2 } from "./internal/templates";
 
 /**
- * This version of mod uses the same logic as in GLSL, whereas `mod`
+ * This version of mod uses the same logic as in GLSL, whereas {@link mod}
  * merely uses JavaScript's `%` modulo operator, yielding different
  * results for negative values, i.e. using the sign of the last arg.
  *

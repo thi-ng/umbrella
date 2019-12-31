@@ -13,8 +13,8 @@ import { fit1101 } from "../math/fit";
  * Inline function. Computes Lambert term, i.e. `max(dot(n, l), 0)`.
  * Both vectors must be pre-normalized.
  *
- * @param surfNormal vec3
- * @param lightDir vec3
+ * @param surfNormal - vec3
+ * @param lightDir - vec3
  */
 export const lambert = (n: Vec3Term, ldir: Vec3Term) =>
     max(dot(n, ldir), FLOAT0);
@@ -23,10 +23,10 @@ export const lambert = (n: Vec3Term, ldir: Vec3Term) =>
  * Inline function. Computes Half-Lambertian term. Both vectors must be
  * pre-normalized.
  *
- * https://developer.valvesoftware.com/wiki/Half_Lambert
+ * {@link https://developer.valvesoftware.com/wiki/Half_Lambert}
  *
- * @param n
- * @param ldir
+ * @param n -
+ * @param ldir -
  */
 export const halfLambert = (n: Vec3Term, ldir: Vec3Term) =>
     fit1101(dot(n, ldir));
@@ -36,10 +36,10 @@ export const halfLambert = (n: Vec3Term, ldir: Vec3Term) =>
  *
  * col = lambert * lightCol * diffuseCol + ambientCol
  *
- * @param lambertian float
- * @param diffuseCol vec3
- * @param lightCol vec3
- * @param ambientCol vec3
+ * @param lambertian - float
+ * @param diffuseCol - vec3
+ * @param lightCol - vec3
+ * @param ambientCol - vec3
  */
 export const diffuseLighting = (
     lambertian: FloatTerm,

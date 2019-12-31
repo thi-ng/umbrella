@@ -8,9 +8,11 @@ import { map } from "./map";
  * only containing the given `keys`. If a key's value is `undefined` (or
  * missing entirely) it will be omitted in the result.
  *
- * Note: For single key extraction `pluck()` is a faster alternative.
+ * @remarks
+ * For single key extraction {@link (pluck:1)} is a faster alternative.
  *
- * ```
+ * @example
+ * ```ts
  * [...selectKeys(
  *   ["id", "age"],
  *   [
@@ -22,8 +24,8 @@ import { map } from "./map";
  * // [ { age: 23, id: 1 }, { age: 42, id: 2 }, { id: 3 } ]
  * ```
  *
- * @param keys
- * @param src
+ * @param keys -
+ * @param src -
  */
 export function selectKeys<T>(keys: PropertyKey[]): Transducer<T, any>;
 export function selectKeys<T>(

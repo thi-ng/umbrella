@@ -1,6 +1,7 @@
 import {
     ArrayLikeIterable,
     Fn0,
+    IClear,
     IID,
     ILogger,
     INotify,
@@ -42,6 +43,7 @@ export interface IComponent<K extends string, VALUES, GET, SET>
 
     owner?: IID<string>;
 
+    resize(cap: number): void;
     has(id: number): boolean;
     add(id: number, val?: SET): boolean;
     delete(id: number): boolean;
@@ -60,8 +62,8 @@ export interface IComponent<K extends string, VALUES, GET, SET>
      * sparse & value slots are swapped too. Returns true if swap
      * happened (false, if `src` and `dest` are equal)
      *
-     * @param src
-     * @param dest
+     * @param src -
+     * @param dest -
      */
     swapIndices(src: number, dest: number): boolean;
 }
@@ -87,7 +89,7 @@ export interface GroupOpts {
     cache?: ICache<any>;
 }
 
-export interface ICache<T> extends IRelease {
+export interface ICache<T> extends IClear, IRelease {
     keys(): Iterable<number>;
     set(key: number, val: T): T;
     get(key: number): T | undefined;

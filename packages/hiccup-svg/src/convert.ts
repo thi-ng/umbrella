@@ -6,7 +6,7 @@ import { linearGradient, radialGradient } from "./gradients";
 import { image } from "./image";
 import { hline, line, vline } from "./line";
 import { path } from "./path";
-import { points } from "./points";
+import { packedPoints, points } from "./points";
 import { polygon } from "./polygon";
 import { polyline } from "./polyline";
 import { roundedRect } from "./rect";
@@ -31,14 +31,14 @@ const TEXT_ALIGN: { [id: string]: string } = {
 };
 
 /**
- * Takes a normalized hiccup tree of thi.ng/geom or thi.ng/hdom-canvas
- * shape definitions and recursively converts it into an hiccup flavor
- * which is compatible for SVG serialization. This conversion also
- * involves translation & reorg of various attributes. Returns new tree.
- * The original remains untouched, as will any unrecognized tree/shape
- * nodes.
+ * Takes a normalized hiccup tree of {@link @thi.ng/geom# | @thi.ng/geom} or
+ * {@link @thi.ng/hdom-canvas# | @thi.ng/hdom-canvas} shape definitions and recursively
+ * converts it into an hiccup flavor which is compatible for SVG
+ * serialization. This conversion also involves translation & reorg of
+ * various attributes. Returns new tree. The original remains untouched,
+ * as will any unrecognized tree/shape nodes.
  *
- * @param tree
+ * @param tree - shape tree
  */
 export const convertTree = (tree: any): any[] => {
     if (implementsFunction(tree, "toHiccup")) {
@@ -110,6 +110,8 @@ export const convertTree = (tree: any): any[] => {
             return image(tree[3], tree[2].src, attribs);
         case "points":
             return points(tree[2], attribs.shape, attribs.size, attribs);
+        case "packedPoints":
+            return packedPoints(tree[2], attribs.shape, attribs.size, attribs);
         default:
             return tree;
     }

@@ -19,12 +19,15 @@ import { View } from "./view";
 
 /**
  * Undo/redo history stack wrapper for atoms and cursors. Implements
- * `IAtom` interface and so can be used directly in place and delegates
- * to wrapped atom/cursor. Value changes are only recorded in history if
- * `changed` predicate returns truthy value, or else by calling
- * `record()` directly. This class too implements the @thi.ng/api
- * `INotify` interface to support event listeners for `undo()`, `redo()`
- * and `record()`.
+ * {@link IAtom} interface and so can be used directly in place and
+ * delegates to wrapped atom/cursor.
+ *
+ * @remarks
+ * Value changes are only recorded in history if `changed` predicate
+ * returns truthy value, or else by calling {@link History.record}
+ * directly. This class too implements the {@link @thi.ng/api#INotify}
+ * interface to support event listeners for {@link History.undo},
+ * {@link History.redo} and {@link History.record}.
  */
 @INotifyMixin
 export class History<T> implements IHistory<T> {
@@ -40,9 +43,9 @@ export class History<T> implements IHistory<T> {
     future!: T[];
 
     /**
-     * @param state parent state
-     * @param maxLen max size of undo stack
-     * @param changed predicate to determine changed values (default `!equiv(a,b)`)
+     * @param state - parent state
+     * @param maxLen - max size of undo stack
+     * @param changed - predicate to determine changed values (default `!equiv(a,b)`)
      */
     constructor(state: IAtom<T>, maxLen = 100, changed?: Predicate2<T>) {
         this.state = state;
@@ -77,17 +80,19 @@ export class History<T> implements IHistory<T> {
 
     /**
      * Attempts to re-apply most recent historical value to atom and
-     * returns it if successful (i.e. there's a history). Before the
-     * switch, first records the atom's current value into the future
-     * stack (to enable `redo()` feature). Returns `undefined` if
-     * there's no history.
+     * returns it if successful (i.e. there's a history).
+     *
+     * @remarks
+     * Before the switch, first records the atom's current value into
+     * the future stack (to enable {@link History.redo} feature).
+     * Returns `undefined` if there's no history.
      *
      * If undo was possible, the `History.EVENT_UNDO` event is emitted
      * after the restoration with both the `prev` and `curr` (restored)
      * states provided as event value (and object with these two keys).
      * This allows for additional state handling to be executed, e.g.
-     * application of the "Command pattern". See `addListener()` for
-     * registering event listeners.
+     * application of the "Command pattern". See
+     * {@link History.addListener} for registering event listeners.
      */
     undo() {
         if (this.history.length) {
@@ -101,17 +106,19 @@ export class History<T> implements IHistory<T> {
 
     /**
      * Attempts to re-apply most recent value from future stack to atom
-     * and returns it if successful (i.e. there's a future). Before the
-     * switch, first records the atom's current value into the history
-     * stack (to enable `undo()` feature). Returns `undefined` if
-     * there's no future (so sad!).
+     * and returns it if successful (i.e. there's a future).
+     *
+     * @remarks
+     * Before the switch, first records the atom's current value into
+     * the history stack (to enable {@link History.undo} feature).
+     * Returns `undefined` if there's no future (so sad!).
      *
      * If redo was possible, the `History.EVENT_REDO` event is emitted
      * after the restoration with both the `prev` and `curr` (restored)
      * states provided as event value (and object with these two keys).
      * This allows for additional state handling to be executed, e.g.
-     * application of the "Command pattern". See `addListener()` for
-     * registering event listeners.
+     * application of the "Command pattern". See
+     * {@link History.addListener} for registering event listeners.
      */
     redo() {
         if (this.future.length) {
@@ -124,11 +131,11 @@ export class History<T> implements IHistory<T> {
     }
 
     /**
-     * `IAtom.reset()` implementation. Delegates to wrapped atom/cursor,
-     * but too applies `changed` predicate to determine if there was a
-     * change and if the previous value should be recorded.
+     * `IReset.reset()` implementation. Delegates to wrapped
+     * atom/cursor, but too applies `changed` predicate to determine if
+     * there was a change and if the previous value should be recorded.
      *
-     * @param val
+     * @param val - replacement value
      */
     reset(val: T) {
         const prev = this.state.deref();
@@ -150,11 +157,12 @@ export class History<T> implements IHistory<T> {
     }
 
     /**
-     * `IAtom.swap()` implementation. Delegates to wrapped atom/cursor,
+     * `ISwap.swap()` implementation. Delegates to wrapped atom/cursor,
      * but too applies `changed` predicate to determine if there was a
      * change and if the previous value should be recorded.
      *
-     * @param val
+     * @param fn - update function
+     * @param args - additional args passed to `fn`
      */
     swap(fn: SwapFn<T>, ...args: any[]): T {
         return this.reset(fn(this.state.deref(), ...args));
@@ -173,8 +181,11 @@ export class History<T> implements IHistory<T> {
      * Records given state in history. This method is only needed when
      * manually managing snapshots, i.e. when applying multiple swaps on
      * the wrapped atom directly, but not wanting to create an history
-     * entry for each change. **DO NOT call this explicitly if using
-     * `History.reset()` / `History.swap()` etc.**
+     * entry for each change.
+     *
+     * @remarks
+     * **DO NOT call this explicitly if using {@link History.reset} /
+     * {@link History.swap} etc.**
      *
      * If no `state` is given, uses the wrapped atom's current state
      * value (user code SHOULD always call without arg).
@@ -182,7 +193,7 @@ export class History<T> implements IHistory<T> {
      * If recording succeeded, the `History.EVENT_RECORD` event is
      * emitted with the recorded state provided as event value.
      *
-     * @param state
+     * @param state - state to record
      */
     record(state?: T) {
         const history = this.history;
@@ -215,8 +226,8 @@ export class History<T> implements IHistory<T> {
      * `IWatch.addWatch()` implementation. Delegates to wrapped
      * atom/cursor.
      *
-     * @param id
-     * @param fn
+     * @param id - watch ID
+     * @param fn - watch function
      */
     addWatch(id: string, fn: Watch<T>) {
         return this.state.addWatch(id, fn);
@@ -226,7 +237,7 @@ export class History<T> implements IHistory<T> {
      * `IWatch.removeWatch()` implementation. Delegates to wrapped
      * atom/cursor.
      *
-     * @param id
+     * @param id - watch iD
      */
     removeWatch(id: string) {
         return this.state.removeWatch(id);
@@ -236,8 +247,8 @@ export class History<T> implements IHistory<T> {
      * `IWatch.notifyWatches()` implementation. Delegates to wrapped
      * atom/cursor.
      *
-     * @param oldState
-     * @param newState
+     * @param oldState -
+     * @param newState -
      */
     notifyWatches(oldState: T, newState: T) {
         return this.state.notifyWatches(oldState, newState);
@@ -253,13 +264,15 @@ export class History<T> implements IHistory<T> {
         return true;
     }
 
-    addListener(_: string, __: Listener, ___?: any): boolean {
-        return false;
-    }
+    /** {@inheritDoc @thi.ng/api#INotify.addListener} */
+    // @ts-ignore: mixin
+    addListener(id: string, fn: Listener, scope?: any): boolean {}
 
-    removeListener(_: string, __: Listener, ___?: any): boolean {
-        return false;
-    }
+    /** {@inheritDoc @thi.ng/api#INotify.removeListener} */
+    // @ts-ignore: mixin
+    removeListener(id: string, fn: Listener, scope?: any): boolean {}
 
-    notify(_: Event): void {}
+    /** {@inheritDoc @thi.ng/api#INotify.notify} */
+    // @ts-ignore: mixin
+    notify(e: Event): void {}
 }

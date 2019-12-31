@@ -4,12 +4,16 @@ import { compR } from "../func/compr";
 import { $iter } from "../iterator";
 
 /**
- * Transducer. Similar to `map`, but only transforms every `n`-th input
- * value and passes intermediate values unchanged downstream. The
- * optional `offset` arg can be used to adjust the number of inputs
- * before the first transformation occurs (default 0).
+ * Transducer. Similar to {@link (map:1)}, but only transforms every
+ * `n`-th input value and passes intermediate values unchanged
+ * downstream.
  *
- * ```
+ * @remarks
+ * The optional `offset` arg can be used to adjust the
+ * number of inputs before the first transformation occurs (default 0).
+ *
+ * @example
+ * ```ts
  * [...mapNth(3, (x) => x * 10, range(1,10))]
  * // [ 10, 2, 3, 40, 5, 6, 70, 8, 9 ]
  *
@@ -18,8 +22,8 @@ import { $iter } from "../iterator";
  * // [ 1, 2, 3, 4, 5, 60, 7, 8, 90 ]
  * ```
  *
- * @param n step size
- * @param fn transformation function
+ * @param n - step size
+ * @param fn - transformation function
  */
 export function mapNth<A, B>(n: number, fn: Fn<A, B>): Transducer<A, A | B>;
 export function mapNth<A, B>(

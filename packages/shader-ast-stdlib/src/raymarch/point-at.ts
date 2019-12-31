@@ -12,10 +12,10 @@ import {
  * Unless `norm` is true (default false), `dir` must be already
  * normalized.
  *
- * @param p
- * @param dir
- * @param t
- * @param normalize
+ * @param p -
+ * @param dir -
+ * @param t -
+ * @param normalize -
  */
 export const rayPointAt = <A extends Vec, B extends A>(
     p: Term<A>,

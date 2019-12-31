@@ -8,11 +8,11 @@ import { __hadd2_f32, __hadd4_f32 } from "./inline/hadd";
  *
  * `a` & `b` should be aligned to 16, `out` to multiples of 4.
  *
- * @param out
- * @param a
- * @param b
- * @param num
- * @param so
+ * @param out -
+ * @param a -
+ * @param b -
+ * @param num -
+ * @param so -
  */
 export function dot2_f32_aos(
     out: usize,
@@ -39,13 +39,13 @@ export function dot2_f32_aos(
  * and `sb` indicate the stride lengths (in floats) between each vector
  * in each respective buffer and should be a multiple of 4.
  *
- * @param out
- * @param a
- * @param b
- * @param num
- * @param so
- * @param sa
- * @param sb
+ * @param out -
+ * @param a -
+ * @param b -
+ * @param num -
+ * @param so -
+ * @param sa -
+ * @param sb -
  */
 export function dot4_f32_aos(
     out: usize,

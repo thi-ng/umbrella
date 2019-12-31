@@ -348,8 +348,8 @@ export class MemPool implements IMemPool {
     /**
      * Sets & returns given block size.
      *
-     * @param block
-     * @param size
+     * @param block -
+     * @param size -
      */
     protected setBlockSize(block: number, size: number) {
         this.u32[(block >> 2) + MEM_BLOCK_SIZE] = size;
@@ -363,7 +363,7 @@ export class MemPool implements IMemPool {
     /**
      * Sets block next pointer to `next`. Use zero to indicate list end.
      *
-     * @param block
+     * @param block -
      */
     protected setBlockNext(block: number, next: number) {
         this.u32[(block >> 2) + MEM_BLOCK_NEXT] = next;
@@ -372,9 +372,9 @@ export class MemPool implements IMemPool {
     /**
      * Initializes block header with given `size` and `next` pointer. Returns `block`.
      *
-     * @param block
-     * @param size
-     * @param next
+     * @param block -
+     * @param size -
+     * @param next -
      */
     protected initBlock(block: number, size: number, next: number) {
         const idx = block >>> 2;
@@ -455,7 +455,7 @@ export class MemPool implements IMemPool {
     /**
      * Inserts given block into list of free blocks, sorted by address.
      *
-     * @param block
+     * @param block -
      */
     protected insert(block: number) {
         let ptr = this._free;
@@ -477,7 +477,7 @@ export class MemPool implements IMemPool {
 /**
  * Returns a block's data address, based on given alignment.
  *
- * @param blockAddress
+ * @param blockAddress -
  */
 const blockDataAddress = (blockAddress: number) =>
     blockAddress + SIZEOF_MEM_BLOCK;
@@ -485,7 +485,7 @@ const blockDataAddress = (blockAddress: number) =>
 /**
  * Returns block start address for given data address and alignment.
  *
- * @param dataAddress
+ * @param dataAddress -
  */
 const blockSelfAddress = (dataAddress: number) =>
     dataAddress - SIZEOF_MEM_BLOCK;

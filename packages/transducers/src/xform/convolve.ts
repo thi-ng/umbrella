@@ -17,11 +17,11 @@ export interface ConvolutionOpts<K> {
     /**
      * Current cell states
      */
-    src: number[];
+    src: ArrayLike<number>;
     /**
      * Kernel weights
      */
-    weights?: number[];
+    weights?: Iterable<number>;
     /**
      * Convolution kernel, pre-build via `buildKernel*`
      */
@@ -70,7 +70,7 @@ export const buildKernel1d = (
 export const buildKernel2d = (
     weights: Iterable<number>,
     w: number,
-    h: number
+    h = w
 ): ConvolutionKernel2D => {
     const w2 = w >> 1;
     const h2 = h >> 1;
@@ -78,7 +78,7 @@ export const buildKernel2d = (
 };
 
 const kernelLookup1d = (
-    src: number[],
+    src: ArrayLike<number>,
     x: number,
     width: number,
     wrap: boolean,
@@ -95,7 +95,7 @@ const kernelLookup1d = (
           };
 
 const kernelLookup2d = (
-    src: number[],
+    src: ArrayLike<number>,
     x: number,
     y: number,
     width: number,

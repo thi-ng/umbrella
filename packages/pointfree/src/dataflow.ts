@@ -24,7 +24,7 @@ import { $stackFn, exec, word } from "./word";
  * Same behavior as: `[swap, movdr, exec, movrd]`, only the current
  * implementation doesn't use r-stack and stashes `x` off stack.
  *
- * @param ctx
+ * @param ctx -
  */
 export const dip = (ctx: StackContext) => {
     const stack = ctx[0];

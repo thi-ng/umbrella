@@ -39,9 +39,10 @@ const DEFAULT_CAP = 16;
  * addressing / linear probing to resolve key collisions. Supports any
  * key types via mandatory user supplied hash function.
  *
- * See `HashMapOpts` for further configuration & behavior details.
+ * See {@link HashMapOpts} for further configuration & behavior details.
  *
- * ```
+ * @example
+ * ```ts
  * import { HashMap } from "@thi.ng/associative"
  * import { hash } from "@thi.ng/vectors"
  *

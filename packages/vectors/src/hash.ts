@@ -2,12 +2,14 @@ import { floatToUintBits, rotateLeft } from "@thi.ng/binary";
 import { ReadonlyVec } from "./api";
 
 /**
- * Returns an unsigned 32-bit hash code for the given vector. The hash
- * is the reduction of `hash = H * hash + murmur(x)`, where `murmur(x)` is
- * the partial Murmur3 hash of a single vector component's bitwise
- * representation and `H` an optional hash factor, by default Knuth's
- * 0x9e3779b1 (see TAOCP, section 6.4, page 516). If the vector `v` is
- * empty (length 0), the function returns -1.
+ * Returns an unsigned 32-bit hash code for the given vector.
+ *
+ * @remarks
+ * The hash is the reduction of `hash = H * hash + murmur(x)`, where
+ * `murmur(x)` is the partial Murmur3 hash of a single vector
+ * component's bitwise representation and `H` an optional hash factor,
+ * by default Knuth's 0x9e3779b1 (see TAOCP, section 6.4, page 516). If
+ * the vector `v` is empty (length 0), the function returns -1.
  *
  * Hashes for zero-vectors:
  *
@@ -16,9 +18,10 @@ import { ReadonlyVec } from "./api";
  * - `[0, 0, 0]`: 4192292821
  * - `[0, 0, 0, 0]`: 2558592725
  *
+ * @example
  * Hash collisions:
  *
- * ```
+ * ```ts
  * // integer grid coords
  * uniq = tx.transduce(tx.map(v.hash32), tx.conj(), tx.range2d(0x1000, 0x1000)).size
  * // 16744420
@@ -40,11 +43,11 @@ import { ReadonlyVec } from "./api";
  * // 0.0106 %
  * ```
  *
- * @see https://github.com/thi-ng/c-thing/blob/master/src/math/hashfn.c
- * @see thi.ng/morton for Z-curve ordered hashing
+ * - {@link https://github.com/thi-ng/c-thing/blob/master/src/math/hashfn.c}
+ * - {@link @thi.ng/morton# | @thi.ng/morton} for Z-curve ordered hashing
  *
- * @param v vector
- * @param hash hash factor
+ * @param v - vector
+ * @param hash - hash factor
  */
 export const hash = (v: ReadonlyVec, H = 0x9e3779b1) => {
     let hash = -1;

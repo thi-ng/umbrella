@@ -1,4 +1,5 @@
 import {
+    IClear,
     IDeref,
     IID,
     INotify,
@@ -49,13 +50,12 @@ export interface CursorOpts<T> {
     id?: string;
 }
 
-export interface IHistory<T> extends IAtom<T>, INotify {
+export interface IHistory<T> extends IAtom<T>, IClear, INotify {
     canUndo(): boolean;
     canRedo(): boolean;
 
     undo(): T | undefined;
     redo(): T | undefined;
-    clear(): void;
 
     record(): void;
 }

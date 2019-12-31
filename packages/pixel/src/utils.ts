@@ -8,6 +8,7 @@ import {
 import { clamp } from "@thi.ng/math";
 import { BlitOpts, PackedFormat } from "./api";
 
+/** @internal */
 export const ensureSize = (
     pixels: TypedArray,
     width: number,
@@ -15,6 +16,7 @@ export const ensureSize = (
     stride = 1
 ) => assert(pixels.length >= width * height * stride, "pixel buffer too small");
 
+/** @internal */
 export const ensureChannel = (fmt: PackedFormat, id: number) => {
     const chan = fmt.channels[id];
     assert(chan != null, `invalid channel ID: ${id}`);
@@ -25,6 +27,7 @@ export const luminanceABGR = (c: number) =>
     (((c >>> 16) & 0xff) * 29 + ((c >>> 8) & 0xff) * 150 + (c & 0xff) * 76) /
     255;
 
+/** @internal */
 export const clampRegion = (
     sx: number,
     sy: number,
@@ -40,6 +43,7 @@ export const clampRegion = (
     return [sx, sy, clamp(w, 0, maxw - sx), clamp(h, 0, maxh - sy), dx, dy];
 };
 
+/** @internal */
 export const prepRegions = (
     src: { width: number; height: number },
     dest: { width: number; height: number },
@@ -71,6 +75,7 @@ export const prepRegions = (
     return { sx, sy, dx, dy, rw, rh };
 };
 
+/** @internal */
 export const setChannelUni = (
     dbuf: UIntArray,
     src: number,
@@ -81,6 +86,7 @@ export const setChannelUni = (
     }
 };
 
+/** @internal */
 export const setChannelSame = (
     dbuf: UIntArray,
     sbuf: UIntArray,
@@ -92,6 +98,7 @@ export const setChannelSame = (
     }
 };
 
+/** @internal */
 export const setChannelConvert = (
     dbuf: UIntArray,
     sbuf: UIntArray,

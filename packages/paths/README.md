@@ -50,6 +50,12 @@ directory are using this package.
 
 A selection:
 
+### hdom-elm <!-- NOTOC -->
+
+Using hdom in an Elm-like manner
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-elm/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-elm)
+
 ### interceptor-basics2 <!-- NOTOC -->
 
 [Live demo](https://demo.thi.ng/umbrella/interceptor-basics2/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/interceptor-basics2)

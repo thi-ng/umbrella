@@ -15,16 +15,18 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
+  - [ZCurve class](#zcurve-class)
+  - [Low level (2D / 3D only)](#low-level-2d--3d-only)
 - [Authors](#authors)
 - [License](#license)
 
 ## About
 
-[Z-order-curve](https://en.wikipedia.org/wiki/Z-order_curve) / Morton
-encoding & decoding for 1D, 2D, 3D.
+Z-order curve / Morton encoding, decoding & range extraction for arbitrary dimensions.
 
 References:
 
+- [Z-order-curve](https://en.wikipedia.org/wiki/Z-order_curve)
 - [Decoding Morton Codes](https://fgiesen.wordpress.com/2009/12/13/decoding-morton-codes/)
 - [Morton encoding/decoding through bit interleaving](https://www.forceflow.be/2013/10/07/morton-encodingdecoding-through-bit-interleaving-implementations/)
 - [github.com/JaneliaSciComp/Morton.jl](https://github.com/JaneliaSciComp/Morton.jl/blob/master/src/Morton.jl)
@@ -37,6 +39,7 @@ References:
 ### Related packages
 
 - [@thi.ng/grid-iterators](https://github.com/thi-ng/umbrella/tree/master/packages/grid-iterators) - 2D grid iterators w/ multiple orderings
+- [@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/master/packages/geom-accel) - n-D spatial indexing data structures
 
 ## Installation
 
@@ -46,13 +49,64 @@ yarn add @thi.ng/morton
 
 ## Dependencies
 
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 - [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/master/packages/binary)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
 
 ## API
 
 [Generated API docs](https://docs.thi.ng/umbrella/morton/)
+
+### ZCurve class
+
+The `ZCurve` class provides nD encoding/decoding and Z index range
+extraction (for a given nD bounding box). The maximum per-component
+value range is 32 bits (unsigned!).
+
+**Note: All Z indices are encoded as ES
+[`BigInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt)
+and therefore only available in environments where `BigInt`s are
+supported. No polyfill is provided!**
+
+TypeScript projects using this class should set their compile target (in
+`tsconfig.json`) to `"ESNext"` to enable `BigInt` support.
+
+```ts
+// create new Z-curve for 6D positions and 16bit value range
+const z = new ZCurve(3, 16);
+
+z.encode([60000, 30000, 20000]);
+// 67807501328384n
+
+z.decode(67807501328384n);
+// [ 60000, 30000, 20000 ]
+
+// optimized z-index iteration for given bounding box (min, max)
+[...z.range([2, 2, 0], [3, 6, 1])]
+// [
+//    24n,  25n,  26n,  27n,  28n,
+//    29n,  30n,  31n, 136n, 137n,
+//   138n, 139n, 140n, 141n, 142n,
+//   143n, 152n, 153n, 156n, 157n
+// ]
+
+// or as coordinates
+[...z.range([2, 2, 0], [3, 6, 1])].map((i) => z.decode(i));
+// [
+//   [ 2, 2, 0 ], [ 3, 2, 0 ],
+//   [ 2, 3, 0 ], [ 3, 3, 0 ],
+//   [ 2, 2, 1 ], [ 3, 2, 1 ],
+//   [ 2, 3, 1 ], [ 3, 3, 1 ],
+//   [ 2, 4, 0 ], [ 3, 4, 0 ],
+//   [ 2, 5, 0 ], [ 3, 5, 0 ],
+//   [ 2, 4, 1 ], [ 3, 4, 1 ],
+//   [ 2, 5, 1 ], [ 3, 5, 1 ],
+//   [ 2, 6, 0 ], [ 3, 6, 0 ],
+//   [ 2, 6, 1 ], [ 3, 6, 1 ]
+// ]
+```
+
+### Low level (2D / 3D only)
 
 ```ts
 import * as m from "@thi.ng/morton";

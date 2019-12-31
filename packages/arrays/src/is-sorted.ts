@@ -4,11 +4,14 @@ import { compare } from "@thi.ng/compare";
 /**
  * Returns true if the given array and its elements in the selected
  * index range (entire array, by default) are in the order defined by
- * the given comparator (thi.ng/compare by default). Always returns
- * true, if effective index range (or array length) has less than two
- * elements. No bounds checking.
+ * the given comparator ({@link @thi.ng/compare#compare} by default).
  *
- * ```
+ * @remarks
+ * Always returns true, if effective index range (or array length) has
+ * less than two elements. No bounds checking.
+ *
+ * @example
+ * ```ts
  * isSorted([3, 2, 1])
  * // false
  *
@@ -17,10 +20,10 @@ import { compare } from "@thi.ng/compare";
  * // true
  * ```
  *
- * @param arr
- * @param cmp
- * @param start
- * @param end
+ * @param arr - array
+ * @param cmp - comparator
+ * @param start - start index
+ * @param end - end index
  */
 export const isSorted = <T>(
     arr: ArrayLike<T>,

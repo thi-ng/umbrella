@@ -1,7 +1,7 @@
 /**
  * Computes min / max values of given array.
  *
- * @param window
+ * @param window -
  */
 export const bounds = (window: number[]) => {
     let min = window[0];

@@ -15,7 +15,7 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [API](#api)
   - [ID generator with 16 bit range and no versioning](#id-generator-with-16-bit-range-and-no-versioning)
-  - [ID generator w/ 24 bit range & 8 bit version range](#id-generator-w--24-bit-range---8-bit-version-range)
+  - [ID generator w/ 24 bit range & 8 bit version range](#id-generator-w-24-bit-range--8-bit-version-range)
   - [IDGen is iterable](#idgen-is-iterable)
 - [Authors](#authors)
 - [License](#license)

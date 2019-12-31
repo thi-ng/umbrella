@@ -65,7 +65,7 @@ export abstract class ANode<T extends ISceneNode<any>> {
      *
      * **Important:** Disabled nodes and their children will be skipped!
      *
-     * @param p
+     * @param p -
      */
     childForPoint(p: ReadonlyVec): NodeInfo<T> | undefined {
         if (this.enabled) {
@@ -87,7 +87,7 @@ export abstract class ANode<T extends ISceneNode<any>> {
      * Returns copy of world space point `p`, transformed into this
      * node's local coordinate system.
      *
-     * @param p
+     * @param p -
      */
     abstract mapGlobalPoint(p: ReadonlyVec): Vec;
 
@@ -95,8 +95,8 @@ export abstract class ANode<T extends ISceneNode<any>> {
      * Returns copy of node local space point `p`, transformed into the
      * coordinate system of `dest` node.
      *
-     * @param dest
-     * @param p
+     * @param dest -
+     * @param p -
      */
     abstract mapLocalPointToNode(dest: T, p: ReadonlyVec): Vec;
 
@@ -108,7 +108,7 @@ export abstract class ANode<T extends ISceneNode<any>> {
      * will not be selectable by the user unless a subclass overrides
      * this method).
      *
-     * @param p
+     * @param p -
      */
     containsLocalPoint(_: ReadonlyVec) {
         return false;

@@ -6,10 +6,10 @@ import { FN3 } from "./internal/templates";
 /**
  * Like GLSL `smoothstep()`
  *
- * @param out
- * @param e1
- * @param e2
- * @param v
+ * @param out -
+ * @param e1 -
+ * @param e2 -
+ * @param v -
  */
 export const [smoothStep, smoothStep2, smoothStep3, smoothStep4] = defHofOp<
     MultiVecOpVVV,

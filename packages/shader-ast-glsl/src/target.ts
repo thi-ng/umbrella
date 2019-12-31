@@ -31,7 +31,7 @@ const RE_SEMI = /[};]$/;
  *
  * - Fragment shader output vars
  *
- * @param opts
+ * @param opts -
  */
 export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
     const _opts: GLSLOpts = {

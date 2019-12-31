@@ -38,7 +38,7 @@ forkJoin<number, WorkerJob, WorkerResult, void>({
         updatePixels(parts);
         drawStats(parts);
         // trigger next update
-        time.next(time.deref() + 0.05);
+        time.next(time.deref()! + 0.05);
     },
     worker: "./worker.js",
     numWorkers: NUM_WORKERS

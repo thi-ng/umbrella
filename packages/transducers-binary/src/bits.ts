@@ -19,8 +19,8 @@ import {
  * // [ [ 1, 1, 1, 1 ], [ 0, 0, 0, 0 ], [ 1, 0, 1, 0 ], [ 1, 0, 1, 0 ] ]
  * ```
  *
- * @param wordSize
- * @param msbFirst
+ * @param wordSize -
+ * @param msbFirst -
  */
 export function bits(size?: number, msb?: boolean): Transducer<number, number>;
 export function bits(src: Iterable<number>): IterableIterator<number>;

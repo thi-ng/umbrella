@@ -8,21 +8,21 @@ const asin = Math.asin;
 const atan2 = Math.atan2;
 
 /**
- * Converts cartesian vector `v` to polar coordinates. See `cartesian()`
+ * Converts cartesian vector `v` to polar coordinates. See {@link cartesian}
  * for reverse operation. If `out` is null, modifies `v` in place.
  *
- * @param out
- * @param v
+ * @param out -
+ * @param v -
  */
 export const polar: MultiVecOpV = vop(1);
 
 /**
  * Converts 2D cartesian vector `v` to polar coordinates, i.e. `[r,θ]`
- * (angle in radians). See `cartesian()` for reverse operation. If `out`
+ * (angle in radians). See {@link cartesian} for reverse operation. If `out`
  * is null, modifies `v` in place.
  *
- * @param out
- * @param v
+ * @param out -
+ * @param v -
  */
 export const polar2 = polar.add(2, (out, a) =>
     setC2(out || a, mag(a), atan2(a[1], a[0]))
@@ -30,11 +30,11 @@ export const polar2 = polar.add(2, (out, a) =>
 
 /**
  * Converts 3D cartesian vector `v` to spherical coordinates, i.e.
- * `[r,θ,ϕ]` (angles in radians). See `cartesian()` for reverse
+ * `[r,θ,ϕ]` (angles in radians). See {@link cartesian} for reverse
  * operation. If `out` is null, modifies `v` in place.
  *
- * @param out
- * @param v
+ * @param out -
+ * @param v -
  */
 export const polar3 = polar.add(3, (out, a) => {
     const x = a[0];

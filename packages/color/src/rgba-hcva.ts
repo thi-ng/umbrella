@@ -5,10 +5,10 @@ import { clamp } from "./clamp";
 
 /**
  * Based on:
- * https://github.com/tobspr/GLSL-Color-Spaces/blob/master/ColorSpaces.inc.glsl#L159
+ * {@link https://github.com/tobspr/GLSL-Color-Spaces/blob/master/ColorSpaces.inc.glsl#L159}
  *
- * @param out
- * @param src
+ * @param out - result
+ * @param src - source color
  */
 export const rgbaHcva: ColorOp = (out, src) => {
     out = clamp(out || src, src);

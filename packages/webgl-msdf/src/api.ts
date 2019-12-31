@@ -44,9 +44,9 @@ export interface MSDFFont {
 /**
  * Alignment function for a single line of text.
  *
- * @param font
- * @param dir
- * @param line
+ * @param font -
+ * @param dir -
+ * @param line -
  */
 export type TextAlign = Fn3<MSDFFont, Partial<TextOpts>, string, number>;
 
@@ -73,7 +73,7 @@ export interface TextOpts {
      */
     dirY: 1 | -1;
     /**
-     * If true, `text()` will produce color attributes.
+     * If true, {@link text} will produce color attributes.
      */
     useColor: boolean;
     /**

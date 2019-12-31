@@ -21,8 +21,8 @@ export interface FromIntervalOpts extends CommonOpts {
  * @remarks
  * The stream only starts when the first subscriber becomes available.
  *
- * @param delay
- * @param opts
+ * @param delay -
+ * @param opts -
  */
 export const fromInterval = (
     delay: number,

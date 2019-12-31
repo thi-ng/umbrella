@@ -32,7 +32,7 @@ export class AST<OP, T> {
      * Returns a random AST with given max tree depth. The max depth
      * provided in {@link ASTOpts} is used by default.
      *
-     * @param maxDepth
+     * @param maxDepth -
      */
     randomAST(maxDepth = this.opts.maxDepth) {
         return this.randomASTNode(0, maxDepth);
@@ -43,8 +43,8 @@ export class AST<OP, T> {
      * a randomly chosen location in `parent1` and vice versa. Returns 2
      * new trees.
      *
-     * @param parent1
-     * @param parent2
+     * @param parent1 -
+     * @param parent2 -
      */
     crossoverSingle(parent1: ASTNode<OP, T>, parent2: ASTNode<OP, T>) {
         return [
@@ -61,8 +61,8 @@ export class AST<OP, T> {
      * Probilistically replaces randomly chosen tree nodes with a new
      * random AST of given `maxDepth` (default: 1). Never mutates root.
      *
-     * @param tree
-     * @param maxDepth
+     * @param tree -
+     * @param maxDepth -
      */
     mutate(tree: ASTNode<OP, T>, maxDepth = 1) {
         const { rnd, probMutate } = this.opts;
@@ -91,7 +91,7 @@ export class AST<OP, T> {
      * Returns linearized/flat version of given AST as an array of
      * {@link @thi.ng/zipper#Location | zipper locations}.
      *
-     * @param tree
+     * @param tree -
      */
     linearizedAST(tree: ASTNode<OP, T>): Location<ASTNode<OP, T>>[] {
         return [
@@ -117,10 +117,10 @@ export class AST<OP, T> {
      * length isn't known beforehand, `max` < 0 (default) is equivalent
      * to the linearized tree end.
      *
-     * @param opts
-     * @param tree
-     * @param min
-     * @param max
+     * @param opts -
+     * @param tree -
+     * @param min -
+     * @param max -
      */
     selectRandomNode(tree: ASTNode<OP, T>, min = 0, max = -1) {
         const rnd = this.opts.rnd;

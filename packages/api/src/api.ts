@@ -4,6 +4,8 @@ export const DEFAULT_EPS = 1e-6;
 
 /**
  * Internal use only. **Do NOT use in user land code!**
+ *
+ * @internal
  */
 export const SEMAPHORE = Symbol();
 

@@ -20,14 +20,14 @@ export interface BollingerBand {
 /**
  * Computes Bollinger bands using sliding window.
  *
- * https://en.wikipedia.org/wiki/Bollinger_Bands
+ * {@link https://en.wikipedia.org/wiki/Bollinger_Bands}
  *
  * Note: the number of results will be `period-1` less than the
  * number of processed inputs.
  *
- * @param period
- * @param sd
- * @param src
+ * @param period -
+ * @param sd -
+ * @param src -
  */
 export function bollinger(
     period?: number,

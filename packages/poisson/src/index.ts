@@ -1,5 +1,5 @@
 import { isNumber } from "@thi.ng/checks";
-import { ISpatialAccel } from "@thi.ng/geom-api";
+import { ISpatialSet } from "@thi.ng/geom-api";
 import { IRandom, SYSTEM } from "@thi.ng/random";
 import { jitter as _jitter, ReadonlyVec, Vec } from "@thi.ng/vectors";
 
@@ -7,7 +7,7 @@ export type PointGenerator = (rnd: IRandom) => Vec;
 export type DensityFunction = (pos: ReadonlyVec) => number;
 
 /**
- * Options for `samplePoisson()`.
+ * Options for {@link samplePoisson}.
  */
 export interface PoissonOpts {
     /**
@@ -27,10 +27,10 @@ export interface PoissonOpts {
     density: DensityFunction | number;
     /**
      * Spatial indexing implementation for nearest neighbor searches of
-     * candidate points. Currently only `KdTree` from the
-     * thi.ng/geom-accel package is available and must be
+     * candidate points. Currently only
+     * {@link @thi.ng/geom-accel#KdTree} is available and must be
      * pre-initialized to given dimensions prior to calling
-     * `samplePoisson()`.
+     * {@link samplePoisson}.
      *
      * The data structure is used to store all successful sample points
      * (as keys) incl. their exclusion radius (as value).
@@ -42,7 +42,7 @@ export interface PoissonOpts {
      * distributing the process over multiple invocations of smaller
      * sample sizes (see `max` option) to avoid long delays.
      */
-    index: ISpatialAccel<ReadonlyVec, number>;
+    index: ISpatialSet<ReadonlyVec>;
     /**
      * Max number of samples to produce. Must be given, no default.
      */
@@ -50,13 +50,16 @@ export interface PoissonOpts {
     /**
      * Step distance for the random walk each failed candidate point is
      * undergoing. This distance should be adjusted depending on overall
-     * sampling area/bounds. Default: 1
+     * sampling area/bounds.
+     *
+     * @defaultValue 1
      */
     jitter?: number;
     /**
      * Number of random walk steps performed before giving up on a
      * candidate point. Increasing this value improves overall quality.
-     * Default: 1
+     *
+     * @defaultValue 1
      */
     iter?: number;
     /**
@@ -64,19 +67,22 @@ export interface PoissonOpts {
      * stopping entire sampling process (most likely due to not being
      * able to place any further points). As with the `iter` param,
      * increasing this value improves overall quality, especially in
-     * dense regions with small radii. Default: 500
+     * dense regions with small radii.
+     *
+     * @defaultValue 500
      */
     quality?: number;
     /**
-     * Random number generator instance. Default thi.ng/random/SYSTEM
-     * (aka Math.random)
+     * Random number generator instance.
+     *
+     * @defaultValue {@link @thi.ng/random#SYSTEM} (aka Math.random)
      */
     rnd?: IRandom;
 }
 
 /**
  *
- * @param opts
+ * @param opts -
  */
 export const samplePoisson = (_opts: PoissonOpts) => {
     const opts = {
@@ -101,7 +107,7 @@ export const samplePoisson = (_opts: PoissonOpts) => {
         i = iter;
         while (i-- > 0) {
             if (!index.has(pos, d)) {
-                index.add(pos, d);
+                index.add(pos, 0);
                 samples.push(pos);
                 failed = 0;
                 num--;

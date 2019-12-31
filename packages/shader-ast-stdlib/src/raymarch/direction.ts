@@ -15,9 +15,9 @@ import {
 } from "@thi.ng/shader-ast";
 
 /**
- * @param fragCoord vec2
- * @param res vec2
- * @param fov float vertical FOV (in degrees)
+ * @param fragCoord - vec2
+ * @param res - vec2
+ * @param fov - float vertical FOV (in degrees)
  */
 export const raymarchDir = defn(
     "vec3",

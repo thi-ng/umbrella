@@ -8,8 +8,8 @@ import {
 /**
  * Returns signed distance from `p` to centered circle of radius `r`.
  *
- * @param p vec2
- * @param r float
+ * @param p - vec2
+ * @param r - float
  */
 export const sdfCircle = defn(
     "float",
@@ -21,8 +21,8 @@ export const sdfCircle = defn(
 /**
  * Returns signed distance from `p` to centered sphere of radius `r`.
  *
- * @param p vec3
- * @param r float
+ * @param p - vec3
+ * @param r - float
  */
 export const sdfSphere = defn(
     "float",

@@ -67,7 +67,7 @@ export class Interval
      * Interval.parse("[-1 .. 1]")
      * ```
      *
-     * @param src
+     * @param src -
      */
     static parse(src: string) {
         let l, r, c1, c2;
@@ -169,7 +169,7 @@ export class Interval
      * Compares this interval with `i` and returns a comparator value
      * (-1, 0 or 1). Comparison order is: LHS, RHS, openness.
      *
-     * @param i
+     * @param i -
      */
     compare(i: Readonly<Interval>) {
         if (this === i) return 0;
@@ -218,7 +218,7 @@ export class Interval
      * openness. If `x` is an interval, then checks this interval's RHS
      * is less than LHS of `x` (again with openness).
      *
-     * @param x
+     * @param x -
      */
     isBefore(x: number | Readonly<Interval>) {
         return x instanceof Interval
@@ -235,7 +235,7 @@ export class Interval
      * openness. If `x` is an interval, then checks this interval's LHS
      * is greater than RHS of `x` (again with openness).
      *
-     * @param x
+     * @param x -
      */
     isAfter(x: number | Readonly<Interval>) {
         return x instanceof Interval
@@ -250,7 +250,7 @@ export class Interval
     /**
      * Returns true if `x` is lies within this interval.
      *
-     * @param x
+     * @param x -
      */
     contains(x: number) {
         return (
@@ -264,7 +264,7 @@ export class Interval
      * If `x` lies outside the current interval, the new one will be
      * extended correspondingly.
      *
-     * @param x
+     * @param x -
      */
     include(x: number) {
         return this.isAfter(x)
@@ -278,7 +278,7 @@ export class Interval
      * Returns the distance between intervals, or zero if they touch or
      * overlap.
      *
-     * @param i
+     * @param i -
      */
     distance(i: Readonly<Interval>) {
         return this.overlaps(i)
@@ -323,7 +323,7 @@ export class Interval
      *    [ this ]
      * ```
      *
-     * @param i
+     * @param i -
      */
     classify(i: Readonly<Interval>) {
         return this.equiv(i)
@@ -345,7 +345,7 @@ export class Interval
      * Returns true if this interval intersects `i` in any way (incl.
      * subset / superset).
      *
-     * @param i
+     * @param i -
      */
     overlaps(i: Readonly<Interval>) {
         return this.classify(i) >= Classifier.EQUIV;

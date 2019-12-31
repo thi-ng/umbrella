@@ -8,9 +8,9 @@ import { setS2, setS3, setS4 } from "./sets";
  * Normalizes vector to given (optional) length (default: 1). If `out`
  * is null, modifies `v` in place.
  *
- * @param out
- * @param v
- * @param n
+ * @param out -
+ * @param v -
+ * @param n -
  */
 export const normalizeS2: VecOpSVO<number> = (
     out,
@@ -34,9 +34,9 @@ export const normalizeS2: VecOpSVO<number> = (
  * Normalizes vector to given (optional) length (default: 1). If `out`
  * is null, modifies `v` in place.
  *
- * @param out
- * @param v
- * @param n
+ * @param out -
+ * @param v -
+ * @param n -
  */
 export const normalizeS3: VecOpSVO<number> = (
     out,
@@ -60,9 +60,9 @@ export const normalizeS3: VecOpSVO<number> = (
  * Normalizes vector to given (optional) length (default: 1). If `out`
  * is null, modifies `v` in place.
  *
- * @param out
- * @param v
- * @param n
+ * @param out -
+ * @param v -
+ * @param n -
  */
 export const normalizeS4: VecOpSVO<number> = (
     out,

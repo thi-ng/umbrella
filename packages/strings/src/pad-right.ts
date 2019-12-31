@@ -3,8 +3,8 @@ import { Stringer } from "./api";
 import { repeat } from "./repeat";
 
 /**
- * @param n target length
- * @param ch pad character(s)
+ * @param n - target length
+ * @param ch - pad character(s)
  */
 export const padRight: (
     n: number,

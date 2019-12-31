@@ -1,5 +1,5 @@
 /**
- * Observer function for `IWatch` implementations.
+ * Observer function for {@link IWatch} implementations.
  */
 export type Watch<T> = (id: string, oldState: T, newState: T) => void;
 

@@ -3,7 +3,7 @@ import { ARGS_V, ARGS_VN, defHofOp } from "./internal/codegen";
 import { FN_N } from "./internal/templates";
 
 /**
- * Same as `fmod`, but 2nd operand is a single scalar (uniform domain
+ * Same as {@link fmod}, but 2nd operand is a single scalar (uniform domain
  * for all vector components).
  */
 export const [fmodN, fmodN2, fmodN3, fmodN4] = defHofOp(

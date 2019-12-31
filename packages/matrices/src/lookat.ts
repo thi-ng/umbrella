@@ -13,10 +13,10 @@ import { Mat } from "./api";
  * `target` (both in world space) and normalized `up` vector. Creates
  * new matrix if `out` is `null`.
  *
- * @param out
- * @param eye
- * @param target
- * @param up
+ * @param out -
+ * @param eye -
+ * @param target -
+ * @param up -
  */
 export const lookAt = (
     out: Mat | null,

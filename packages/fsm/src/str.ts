@@ -7,17 +7,19 @@ import {
 import { result } from "./result";
 
 /**
- * String-only version of `seq()`. Returns `Match.FULL` once the entire
- * given string could be matched. Unless `collect` is true (default:
- * false), only matches given string and does not collect input.
- * Therefore then also only passes an empty string to `fail` callback.
- * If `collect` is true, the failed callback will be called with the
- * collected input.
+ * String-only version of {@link seq}. Returns `Match.FULL` once the
+ * entire given string could be matched.
  *
- * @param str
- * @param success
- * @param fail
- * @param collect
+ * @remarks
+ * Unless `collect` is true (default: false), only matches given string
+ * and does not collect input. Therefore then also only passes an empty
+ * string to `fail` callback. If `collect` is true, the failed callback
+ * will be called with the collected input.
+ *
+ * @param str - search string
+ * @param success - success callback
+ * @param fail - failure callback
+ * @param collect - true, if input is to be collected/buffered
  */
 export const str = <C, R>(
     str: string,

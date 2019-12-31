@@ -20,10 +20,10 @@ import { Type } from "../api/types";
 import { isMat, isVec } from "./checks";
 
 /**
- * Helper function for `walk()`. Returns child nodes for any control
+ * Helper function for {@link walk}. Returns child nodes for any control
  * flow nodes containing a child scope.
  *
- * @see allChildren
+ * {@link allChildren}
  */
 export const scopedChildren = (t: Term<any>) =>
     t.tag === "fn" || t.tag === "for" || t.tag == "while"
@@ -35,10 +35,10 @@ export const scopedChildren = (t: Term<any>) =>
         : undefined;
 
 /**
- * Helper function for `walk()`. Returns an array of all child nodes for
+ * Helper function for {@link walk}. Returns an array of all child nodes for
  * a given term (if any).
  *
- * @see scopedChildren
+ * {@link scopedChildren}
  */
 export const allChildren = (t: Term<any>) =>
     scopedChildren(t) ||
@@ -68,19 +68,19 @@ export const allChildren = (t: Term<any>) =>
  * Traverses given AST in depth-first order and applies `visit` and
  * `children` fns to each node. Descends only further if `children`
  * returns an array of child nodes. The `visit` function must accept 2
- * args: the accumulator (`acc`) given to `walk` and a tree node. The
+ * args: the accumulator (`acc`) given to {@link walk} and a tree node. The
  * return value of `visit` becomes the new `acc` value, much like in a
- * reduce operation. `walk` itself returns the final `acc`.
+ * reduce operation. {@link walk} itself returns the final `acc`.
  *
  * If `pre` is true (default), the `visit` function will be called prior
  * to visiting a node's children. If false, the visitor is called on the
  * way back up.
  *
- * @param visit
- * @param children
- * @param acc
- * @param tree
- * @param pre
+ * @param visit -
+ * @param children -
+ * @param acc -
+ * @param tree -
+ * @param pre -
  */
 export const walk = <T>(
     visit: Fn2<T, Term<any>, T>,
@@ -104,8 +104,8 @@ export const walk = <T>(
  * Builds dependency graph of given function, by recursively adding all
  * function dependencies. Returns graph.
  *
- * @param fn
- * @param graph
+ * @param fn -
+ * @param graph -
  */
 export const buildCallGraph = (
     fn: Func<any>,
@@ -134,8 +134,8 @@ export const decl = <T extends Type>(id: Sym<T>): Decl<T> => ({
  * be used directly from user land code (though might be useful to
  * create custom / higher level control flow nodes).
  *
- * @param body
- * @param global
+ * @param body -
+ * @param global -
  */
 export const scope = (body: (Term<any> | null)[], global = false): Scope => ({
     tag: "scope",
@@ -149,19 +149,19 @@ export const scope = (body: (Term<any> | null)[], global = false): Scope => ({
 });
 
 /**
- * Takes an array of global sym/var definitions (`input()`, `output()`,
- * `uniform()`) and functions defined via `defn()`. Constructs the call
- * graph of all transitively used functions and bundles everything in
- * topological order within a global scope object, which is then
- * returned to the user and can be passed to a target codegen for full
- * program output.
+ * Takes an array of global sym/var definitions ({@link input},
+ * {@link output}, {@link uniform}) and functions defined via
+ * {@link (defn:1)}. Constructs the call graph of all transitively used
+ * functions and bundles everything in topological order within a global
+ * scope object, which is then returned to the user and can be passed to
+ * a target codegen for full program output.
  *
- * @see scope
- * @see input
- * @see output
- * @see uniform
+ * - {@link scope}
+ * - {@link input}
+ * - {@link output}
+ * - {@link uniform}
  *
- * @param body
+ * @param body -
  */
 export const program = (body: (Sym<any> | Func<any>)[]) => {
     const syms = body.filter((x) => x.tag !== "fn");

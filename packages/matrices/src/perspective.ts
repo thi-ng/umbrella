@@ -5,11 +5,11 @@ import { frustum, frustumBounds } from "./frustum";
  * Creates a 4x4 matrix perspective projection matrix and writes result
  * to `out`.
  *
- * @param out
- * @param fov
- * @param aspect
- * @param near
- * @param far
+ * @param out -
+ * @param fov -
+ * @param aspect -
+ * @param near -
+ * @param far -
  */
 export const perspective = (
     out: Mat | null,

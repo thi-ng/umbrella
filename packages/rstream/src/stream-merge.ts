@@ -46,9 +46,10 @@ export interface StreamMergeOpts<A, B> extends TransformableOpts<A, B> {
  * ```
  *
  * @example
- * Use the {@link @thi.ng/transducers#labeled} transducer for each
+ * Use the {@link @thi.ng/transducers#(labeled:1)} transducer for each
  * input to create a stream of labeled values and track their provenance:
  *
+ * @example
  * ```ts
  * merge({
  *     src: [
@@ -64,7 +65,7 @@ export interface StreamMergeOpts<A, B> extends TransformableOpts<A, B> {
  * // ["b", 30]
  * ```
  *
- * @param opts
+ * @param opts -
  */
 export const merge = <A, B>(opts?: Partial<StreamMergeOpts<A, B>>) =>
     new StreamMerge(opts);

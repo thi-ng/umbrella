@@ -5,8 +5,8 @@ import { MatOpM } from "./api";
  * Converts 2x3 to 4x4 matrix and writes result to `out`. Creates new
  * matrix if `out` is `null`.
  *
- * @param out
- * @param m23
+ * @param out -
+ * @param m23 -
  */
 export const mat23to44: MatOpM = (out, m23) =>
     setC(

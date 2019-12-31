@@ -43,23 +43,23 @@ export interface PubSubOpts<A, B> {
  * The actual topic (return value from `topic` fn) can be of any type,
  * apart from `undefined`. Complex topics (e.g objects / arrays) are
  * allowed and they're matched with registered topics using
- * @thi.ng/equiv by default (but customizable via `equiv` option). Each
- * topic can have any number of subscribers.
+ * {@link @thi.ng/equiv#equiv} by default (but customizable via `equiv`
+ * option). Each topic can have any number of subscribers.
  *
  * If a `xform` transducer is given, it is always applied prior to
  * passing the input to the topic function. I.e. in this case the topic
  * function will receive the transformed inputs.
  *
  * {@link PubSub} supports dynamic topic subscriptions and
- * unsubscriptions via {@link PubSub.subscribeTopic} and
+ * unsubscriptions via {@link PubSub.(subscribeTopic:1)} and
  * {@link PubSub.unsubscribeTopic}. However, the standard
- * {@link ISubscribable.subscribe} / {@link ISubscribable.unsubscribe}
- * methods are NOT supported (since meaningless) and will throw an
- * error! `unsubscribe()` can only be called WITHOUT argument to
- * unsubscribe the entire `PubSub` instance (incl. all topic
- * subscriptions) from the parent stream.
+ * {@link ISubscribable.(subscribe:1)} /
+ * {@link ISubscribable.unsubscribe} methods are NOT supported (since
+ * meaningless) and will throw an error! `unsubscribe()` can only be
+ * called WITHOUT argument to unsubscribe the entire `PubSub` instance
+ * (incl. all topic subscriptions) from the parent stream.
  *
- * @param opts
+ * @param opts -
  */
 export const pubsub = <A, B>(opts: PubSubOpts<A, B>) => new PubSub(opts);
 
@@ -82,14 +82,14 @@ export class PubSub<A, B> extends Subscription<A, B> {
     }
 
     /**
-     * Unsupported. Use `subscribeTopic()` instead.
+     * Unsupported. Use {@link PubSub.(subscribeTopic:1)} instead.
      */
     subscribe(): Subscription<B, any> {
         return unsupported(`use subscribeTopic() instead`);
     }
 
     /**
-     * Unsupported. Use `subscribeTopic()` instead.
+     * Unsupported. Use {@link PubSub.(subscribeTopic:1)} instead.
      */
     transform(): Subscription<B, any> {
         return unsupported(`use subscribeTopic() instead`);

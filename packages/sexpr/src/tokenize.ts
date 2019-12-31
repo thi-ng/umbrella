@@ -1,16 +1,16 @@
 import { DEFAULT_SYNTAX, SyntaxOpts, Token } from "./api";
 
 /**
- * Yields iterator of `Token`s (incl. location info) from `src` string
+ * Yields iterator of {@link Token}s (incl. location info) from `src` string
  * (or from a **characterwise** iterable). Scope and string delimiters
  * and whitespace characters can be configured via given `opts`. By
- * default `DEFAULT_SYNTAX` is used.
+ * default {@link DEFAULT_SYNTAX} is used.
  *
- * @see SyntaxOpts
- * @see Token
+ * - {@link SyntaxOpts}
+ * - {@link Token}
  *
- * @param src
- * @param opts
+ * @param src -
+ * @param opts -
  */
 export function* tokenize(src: Iterable<string>, opts?: Partial<SyntaxOpts>) {
     const { scopes: rawScopes, whiteSpace, string } = {

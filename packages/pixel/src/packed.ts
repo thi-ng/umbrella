@@ -300,12 +300,12 @@ export class PackedBuffer {
 }
 
 /**
- * Syntax sugar for `PackedBuffer` ctor.
+ * Syntax sugar for {@link PackedBuffer} ctor.
  *
- * @param w
- * @param h
- * @param fmt
- * @param pixels
+ * @param w -
+ * @param h -
+ * @param fmt -
+ * @param pixels -
  */
 export const buffer = (
     w: number,

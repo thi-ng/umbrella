@@ -1,12 +1,13 @@
+.ae
 .cache
 .meta
 .nyc_output
 *.gz
+*.h
 *.html
+*.o
 *.svg
 *.tgz
-*.h
-*.o
 *.wasm
 build
 coverage
@@ -15,4 +16,6 @@ doc
 export
 src*
 test
+api-extractor.json
+README.tpl.md
 tsconfig.json

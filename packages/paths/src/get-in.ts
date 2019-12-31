@@ -37,16 +37,16 @@ import { getterT } from "./getter";
  * // 23
  * ```
  *
- * @param state
- * @param path
+ * @param state -
+ * @param path -
  */
 export const getIn = (state: any, path: Path): any => getterT(<any>path)(state);
 
 /**
  * Type checked version of {@link getIn}.
  *
- * @param state
- * @param path
+ * @param state -
+ * @param path -
  */
 export function getInT<T>(state: T, path: []): T;
 export function getInT<T, A extends Keys<T>>(state: T, path: [A]): Val1<T, A>;

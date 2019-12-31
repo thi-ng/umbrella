@@ -8,9 +8,9 @@ import { defMathN } from "./internal/codegen";
  *
  * out = mat * n
  *
- * @param out
- * @param mat
- * @param n
+ * @param out -
+ * @param mat -
+ * @param n -
  */
 export const mulN: MultiMatOpMN = _mulN;
 export const mulN22: MatOpMN = mulN4;

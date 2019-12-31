@@ -21,10 +21,10 @@ import { Subscription } from "../subscription";
  * // result 450
  * ```
  *
- * @param src
- * @param xform
- * @param rfn
- * @param init
+ * @param src -
+ * @param xform -
+ * @param rfn -
+ * @param init -
  */
 export const transduce = <A, B, C>(
     src: Subscription<any, A>,

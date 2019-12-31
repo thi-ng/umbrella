@@ -2,8 +2,8 @@
  * Computes dot product of 2 arrays. Assumes `a` and `b` are equal
  * sized, but only considers length of `a`.
  *
- * @param a
- * @param b
+ * @param a -
+ * @param b -
  */
 export const dot = (a: number[], b: number[]) => {
     let sum = 0;

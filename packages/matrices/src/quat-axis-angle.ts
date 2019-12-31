@@ -5,8 +5,8 @@ import { normalize, ReadonlyVec } from "@thi.ng/vectors";
  * Computes a quaternion representing the rotation `theta` around
  * `axis`.
  *
- * @param axis
- * @param theta
+ * @param axis -
+ * @param theta -
  */
 export const quatFromAxisAngle = (axis: ReadonlyVec, theta: number) => {
     theta /= 2;
@@ -16,7 +16,7 @@ export const quatFromAxisAngle = (axis: ReadonlyVec, theta: number) => {
 /**
  * Decomposes quaternion into `[axis, theta]` tuple.
  *
- * @param quat
+ * @param quat -
  */
 export const quatToAxisAngle = (quat: ReadonlyVec) => {
     const n = normalize([], quat);

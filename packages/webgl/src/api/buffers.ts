@@ -26,8 +26,8 @@ export interface IRenderBuffer extends IBind<void>, IRelease {
 
 export interface IndexBufferSpec {
     /**
-     * Backing `WebGLBuffer` instance. Usually this will be
-     * auto-initialized by `makeBuffersInSpec()`
+     * Backing WebGLBuffer instance. Usually this will be
+     * auto-initialized by `makeBuffersInSpec`
      */
     buffer?: IWebGLBuffer<IndexBufferData>;
     /**
@@ -46,8 +46,8 @@ export interface FboOpts {
      */
     tex: ITexture[];
     /**
-     * Optional pre-instantiated `RenderBuffer` to be used as depth
-     * buffer for this FBO.
+     * Optional pre-instantiated {@link RBO} to be used as depth buffer
+     * for this FBO.
      */
     depth?: ITexture | IRenderBuffer;
 }

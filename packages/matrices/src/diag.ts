@@ -4,8 +4,8 @@ import { MultiVecOpM } from "./api";
 /**
  * Extracts matrix diagonal into `out`.
  *
- * @param out
- * @param mat
+ * @param out -
+ * @param mat -
  */
 export const diag: MultiVecOpM = vop(1);
 

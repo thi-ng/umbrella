@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Features / behaviors](#features---behaviors)
+  - [Features / behaviors](#features--behaviors)
     - [Booleans](#booleans)
     - [String handling](#string-handling)
     - [Floating point values](#floating-point-values)

@@ -2,6 +2,7 @@ import {
     assert,
     Comparator,
     Fn,
+    IClear,
     ICompare,
     ICopy,
     IEmpty,
@@ -28,6 +29,7 @@ export interface ConsCell<T> {
 
 export class DCons<T>
     implements
+        IClear,
         ICompare<DCons<T>>,
         ICopy<DCons<T>>,
         IEmpty<DCons<T>>,
@@ -501,8 +503,8 @@ export class DCons<T>
      *
      * Default iterations: `ceil(3/2 * log2(n))`
      *
-     * @param iter
-     * @param rnd
+     * @param iter -
+     * @param rnd -
      */
     shuffle(iter?: number, rnd: IRandom = SYSTEM) {
         if (this._length < 2) return this;
@@ -528,7 +530,7 @@ export class DCons<T>
      * @remarks
      * Uses {@link @thi.ng/compare#compare} as default comparator.
      *
-     * @param cmp
+     * @param cmp -
      */
     sort(cmp: Comparator<T> = compare) {
         if (!this._length) return this;
@@ -670,6 +672,6 @@ export class DCons<T>
 /**
  * Functional syntax sugar for `new DCons(src?)`.
  *
- * @param src
+ * @param src -
  */
 export const dcons = <T>(src?: Iterable<T>) => new DCons(src);

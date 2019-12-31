@@ -33,7 +33,7 @@ const copy = (src: Uint8Array, idx: number) =>
  * Encodes signed integer `x` into LEB128 varint format and returns
  * encoded bytes.
  *
- * @param x
+ * @param x -
  */
 export const encodeSLEB128 = (x: number) => {
     ensureWASM();
@@ -45,8 +45,8 @@ export const encodeSLEB128 = (x: number) => {
  * start index to decode from. Returns 2-tuple of decoded value and
  * number of bytes consumed. Consumes up to 10 bytes from `src`.
  *
- * @param src
- * @param idx
+ * @param src -
+ * @param idx -
  */
 export const decodeSLEB128 = (src: Uint8Array, idx = 0) => {
     ensureWASM();
@@ -58,7 +58,7 @@ export const decodeSLEB128 = (src: Uint8Array, idx = 0) => {
  * Encodes unsigned integer `x` into LEB128 varint format and returns
  * encoded bytes. Values < 0 will be encoded as zero.
  *
- * @param x
+ * @param x -
  */
 export const encodeULEB128 = (x: number) => {
     ensureWASM();
@@ -70,8 +70,8 @@ export const encodeULEB128 = (x: number) => {
  * start index to decode from. Returns 2-tuple of decoded value and
  * number of bytes consumed. Consumes up to 10 bytes from `src`.
  *
- * @param src
- * @param idx
+ * @param src -
+ * @param idx -
  */
 export const decodeULEB128 = (src: Uint8Array, idx = 0) => {
     ensureWASM();

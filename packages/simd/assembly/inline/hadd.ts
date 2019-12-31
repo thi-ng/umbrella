@@ -5,7 +5,7 @@
  * [a, b, c, d] => [a+b, a+b, c+d, c+d]
  * ```
  *
- * @param v
+ * @param v -
  */
 // @ts-ignore: decorator
 @inline
@@ -19,7 +19,7 @@ export function __hadd2_f32(v: v128): v128 {
  * ```
  * [a, b, c, d] => a + c + b + d
  * ```
- * @param v
+ * @param v -
  */
 // @ts-ignore: decorator
 @inline

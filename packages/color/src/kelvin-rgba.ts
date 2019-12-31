@@ -17,14 +17,14 @@ const B3 = 0.453646839257496;
 
 /**
  * Based on:
- * https://github.com/neilbartlett/color-temperature/blob/master/index.js
- * http://www.zombieprototypes.com/?p=210
+ * - {@link https://github.com/neilbartlett/color-temperature/blob/master/index.js}
+ * - {@link http://www.zombieprototypes.com/?p=210}
  *
  * Uses adjusted coefficients to produce normalized RGB values.
  *
- * @param out
- * @param kelvin color temperature
- * @param alpha target alpha channel
+ * @param out - result
+ * @param kelvin - color temperature
+ * @param alpha - target alpha channel
  */
 export const kelvinRgba = (out: Color | null, kelvin: number, alpha = 1) => {
     kelvin *= 0.01;

@@ -38,7 +38,7 @@ import { fromPromise } from "./promise";
  * ]).subscribe(resolve()).subscribe(trace())
  * ```
  *
- * @param promises
+ * @param promises -
  */
 export const fromPromises = <T>(
     promises: Iterable<T | PromiseLike<T>>,

@@ -62,11 +62,11 @@ const defArg = <T extends Type>(a: Arg<T>): FuncArg<T> => {
 /**
  * Defines a new function with up to 8 typed checked arguments.
  *
- * @param type return type
- * @param name function name
- * @param args arg types / names / opts
- * @param body function body closure
- * @param deps array of userland functions called from this function
+ * @param type - return type
+ * @param name - function name
+ * @param args - arg types / names / opts
+ * @param body - function body closure
+ * @param deps - array of userland functions called from this function
  */
 // prettier-ignore
 export function defn<T extends Type>(type: T, name: string, args: [], body: FnBody0): TaggedFn0<T>;
@@ -142,7 +142,7 @@ export function defn(type: Type, id: string, _args: Arg<any>[], _body: (...xs: S
 /**
  * Syntax sugar for defining `void main()` functions.
  *
- * @param body
+ * @param body -
  */
 export const defMain = (body: FnBody0) => defn("void", "main", [], body);
 

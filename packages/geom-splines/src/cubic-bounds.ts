@@ -5,15 +5,15 @@ import { ReadonlyVec, Vec, VecPair } from "@thi.ng/vectors";
  * Computes cubic spline bounds for a single vector component.
  *
  * Based on:
- * http://www.iquilezles.org/www/articles/bezierbbox/bezierbbox.htm
+ * {@link http://www.iquilezles.org/www/articles/bezierbbox/bezierbbox.htm}
  *
- * @param min
- * @param max
- * @param i
- * @param pa
- * @param pb
- * @param pc
- * @param pd
+ * @param min - min accumulator
+ * @param max - max accumulator
+ * @param i - vector component
+ * @param pa - control point 1
+ * @param pb - control point 2
+ * @param pc - control point 3
+ * @param pd - control point 4
  */
 const axisBounds = (
     min: Vec,

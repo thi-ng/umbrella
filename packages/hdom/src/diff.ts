@@ -38,14 +38,14 @@ const buildIndex = (n: number) => {
 };
 
 /**
- * See `HDOMImplementation` interface for further details.
+ * See {@link HDOMImplementation} interface for further details.
  *
- * @param opts
- * @param impl hdom implementation
- * @param parent
- * @param prev previous tree
- * @param curr current tree
- * @param child child index
+ * @param opts - hdom config options
+ * @param impl - hdom implementation
+ * @param parent - parent element (DOM node)
+ * @param prev - previous tree
+ * @param curr - current tree
+ * @param child - child index
  */
 export const diffTree = <T>(
     opts: Partial<HDOMOpts>,
@@ -209,13 +209,15 @@ const decOffsets = (offsets: any[], j: number, idx: number) => {
 };
 
 /**
- * Helper function for `diffTree()` to compute & apply the difference
+ * Helper function for {@link diffTree} to compute & apply the difference
  * between a node's `prev` and `curr` attributes.
  *
- * @param impl
- * @param el
- * @param prev
- * @param curr
+ * @param impl - hdom implementation
+ * @param el - DOM element
+ * @param prev - previous attributes
+ * @param curr - current attributes
+ * 
+ * @internal
  */
 export const diffAttributes = <T>(
     impl: HDOMImplementation<T>,
@@ -242,27 +244,29 @@ export const diffAttributes = <T>(
 };
 
 /**
- * Recursively attempts to call the `release` lifecycle method on every
- * element in given tree (branch), using depth-first descent. Each
- * element is checked for the presence of the `__release` control
- * attribute. If (and only if) it is set to `false`, further descent
- * into that element's branch is skipped.
+ * Recursively attempts to call the {@link ILifecycle.release} lifecycle
+ * method on every element in given tree (branch), using depth-first
+ * descent. Each element is checked for the presence of the `__release`
+ * control attribute. If (and only if) it is set to `false`, further
+ * descent into that element's branch is skipped.
  *
- * @param tag
+ * @param tree - hdom sub-tree
+ *
+ * @internal
  */
-export const releaseTree = (tag: any) => {
-    if (isArray(tag)) {
+export const releaseTree = (tree: any) => {
+    if (isArray(tree)) {
         let x: any;
-        if ((x = tag[1]) && x.__release === false) {
+        if ((x = tree[1]) && x.__release === false) {
             return;
         }
-        if ((<any>tag).__release) {
+        if ((<any>tree).__release) {
             // LOGGER.fine("call __release", tag);
-            (<any>tag).__release.apply((<any>tag).__this, (<any>tag).__args);
-            delete (<any>tag).__release;
+            (<any>tree).__release.apply((<any>tree).__this, (<any>tree).__args);
+            delete (<any>tree).__release;
         }
-        for (x = tag.length; --x >= 2; ) {
-            releaseTree(tag[x]);
+        for (x = tree.length; --x >= 2; ) {
+            releaseTree(tree[x]);
         }
     }
 };
@@ -284,13 +288,16 @@ const extractEquivElements = (edits: any[]) => {
 };
 
 /**
- * Customized version @thi.ng/equiv which takes `__diff` attributes into
- * account (at any nesting level). If an hdom element's attribute object
- * contains `__diff: false`, the object will ALWAYS be considered
- * unequal, even if all other attributes in the object are equivalent.
+ * Customized version {@link @thi.ng/equiv#equiv} which takes `__diff`
+ * attributes into account (at any nesting level). If an hdom element's
+ * attribute object contains `__diff: false`, the object will ALWAYS be
+ * considered unequal, even if all other attributes in the object are
+ * equivalent.
  *
- * @param a
- * @param b
+ * @param a -
+ * @param b -
+ *
+ * @internal
  */
 export const equiv = (a: any, b: any): boolean => {
     let proto: any;

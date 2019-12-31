@@ -10,8 +10,8 @@ import {
 /**
  * Domain repetition by wrapping position `p` into period `c`.
  *
- * @param p vec2
- * @param c vec2
+ * @param p - vec2
+ * @param c - vec2
  */
 export const sdfRepeat2 = defn(
     "vec2",
@@ -23,8 +23,8 @@ export const sdfRepeat2 = defn(
 /**
  * Domain repetition by wrapping position `p` into period `c`.
  *
- * @param p vec3
- * @param c vec3
+ * @param p - vec3
+ * @param c - vec3
  */
 export const sdfRepeat3 = defn(
     "vec3",

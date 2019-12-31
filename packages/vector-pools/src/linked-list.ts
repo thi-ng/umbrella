@@ -18,14 +18,14 @@ export class VecLinkedList<T extends StridedVec> extends AVecList<T> {
 
     /**
      *
-     * @param closed
-     * @param buffer
-     * @param capacity
-     * @param size
-     * @param factory
-     * @param cstride
-     * @param estride
-     * @param start
+     * @param closed -
+     * @param buffer -
+     * @param capacity -
+     * @param size -
+     * @param factory -
+     * @param cstride -
+     * @param estride -
+     * @param start -
      */
     constructor(
         closed: boolean,

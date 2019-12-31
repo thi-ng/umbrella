@@ -1,9 +1,9 @@
 /**
  * Clamps value `x` to given closed interval.
  *
- * @param x value to clamp
- * @param min lower bound
- * @param max upper bound
+ * @param x - value to clamp
+ * @param min - lower bound
+ * @param max - upper bound
  */
 export const clamp = (x: number, min: number, max: number) =>
     x < min ? min : x > max ? max : x;
@@ -31,15 +31,15 @@ export const min4id = (a: number, b: number, c: number, d: number) =>
                 ? 0
                 : 3
             : c <= d
-                ? 2
-                : 3
+            ? 2
+            : 3
         : b <= c
-            ? b <= d
-                ? 1
-                : 3
-            : c <= d
-                ? 2
-                : 3;
+        ? b <= d
+            ? 1
+            : 3
+        : c <= d
+        ? 2
+        : 3;
 
 export const max2id = (a: number, b: number) => (a >= b ? 0 : 1);
 
@@ -53,22 +53,22 @@ export const max4id = (a: number, b: number, c: number, d: number) =>
                 ? 0
                 : 3
             : c >= d
-                ? 2
-                : 3
+            ? 2
+            : 3
         : b >= c
-            ? b >= d
-                ? 1
-                : 3
-            : c >= d
-                ? 2
-                : 3;
+        ? b >= d
+            ? 1
+            : 3
+        : c >= d
+        ? 2
+        : 3;
 
 /**
  * See `smax()`.
  *
- * @param a
- * @param b
- * @param k smooth exponent (MUST be > 0)
+ * @param a -
+ * @param b -
+ * @param k - smooth exponent (MUST be > 0)
  */
 export const smin = (a: number, b: number, k: number) => smax(a, b, -k);
 
@@ -77,11 +77,11 @@ export const smin = (a: number, b: number, k: number) => smax(a, b, -k);
  * value near max(a,b) + eps due to exponential decay. Higher `k` values
  * reduce the error, but also reduce the smoothing. Recommended k=16.
  *
- * https://en.wikipedia.org/wiki/Smooth_maximum
+ * {@link https://en.wikipedia.org/wiki/Smooth_maximum}
  *
- * @param a
- * @param b
- * @param k smooth exponent (MUST be > 0)
+ * @param a -
+ * @param b -
+ * @param k - smooth exponent (MUST be > 0)
  */
 export const smax = (a: number, b: number, k: number) => {
     const ea = Math.exp(a * k);
@@ -92,10 +92,10 @@ export const smax = (a: number, b: number, k: number) => {
 /**
  * Same as `smin(smax(x, min, k), max, k)`.
  *
- * @param x
- * @param min
- * @param max
- * @param k
+ * @param x -
+ * @param min -
+ * @param max -
+ * @param k -
  */
 export const sclamp = (x: number, min: number, max: number, k: number) =>
     smin(smax(x, min, k), max, k);
@@ -107,10 +107,10 @@ export const absMax = (a: number, b: number) =>
     Math.abs(a) > Math.abs(b) ? a : b;
 
 /**
- * http://www.musicdsp.org/showone.php?id=203
+ * {@link http://www.musicdsp.org/showone.php?id=203}
  *
- * @param e
- * @param x
+ * @param e -
+ * @param x -
  */
 export const foldback = (e: number, x: number) =>
     x < -e || x > e ? Math.abs(Math.abs((x - e) % (4 * e)) - 2 * e) - e : x;
@@ -118,9 +118,9 @@ export const foldback = (e: number, x: number) =>
 /**
  * Returns true iff `x` is in closed interval `[min .. max]`
  *
- * @param x
- * @param min
- * @param max
+ * @param x -
+ * @param min -
+ * @param max -
  */
 export const inRange = (x: number, min: number, max: number) =>
     x >= min && x <= max;
@@ -128,9 +128,9 @@ export const inRange = (x: number, min: number, max: number) =>
 /**
  * Returns true iff `x` is in open interval `(min .. max)`
  *
- * @param x
- * @param min
- * @param max
+ * @param x -
+ * @param min -
+ * @param max -
  */
 export const inOpenRange = (x: number, min: number, max: number) =>
     x > min && x < max;

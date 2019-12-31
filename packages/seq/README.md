@@ -14,6 +14,8 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
+  - [ISeqable support](#iseqable-support)
+  - [Lazy sequences](#lazy-sequences)
 - [Authors](#authors)
 - [License](#license)
 
@@ -103,14 +105,26 @@ rseq([1, 2, 3]).next().first()
 [...iterator(rseq([0, 1, 2, 3, 4], 3, 1))]
 // [3, 2]
 
+// values can be prepended via cons()
+[...iterator(cons(42, aseq([1, 2, 3])))]
+// [ 42, 1, 2, 3 ]
+
+// create new (or single value) seqs
+cons(42).first()
+// 42
+cons(42).next()
+// undefined
+
 // zero-copy concat (supporting nullable parts/sub-sequences)
-[...iterator(concat(null, aseq([]), aseq([1, 2]), undefined, aseq([3])))]
+[...iterator(concat(null, aseq([]), aseq([1, 2]), undefined, cons(3)))]
 // [ 1, 2, 3 ]
 
 // if only arrays are used as sources, can also use concatA()
 [...iterator(concatA(null, [], [1, 2], undefined, [3]))]
 // [ 1, 2, 3 ]
 ```
+
+### ISeqable support
 
 Since the entire approach is interface based, sequences can be defined
 for any custom datatype (preferably via the
@@ -124,6 +138,58 @@ import { dcons } from "@thi.ng/dcons";
 // concat reversed array with doubly-linked list
 [...iterator(concat(rseq([1, 2, 3]), dcons([4, 5, 6])))]
 // [ 3, 2, 1, 4, 5, 6 ]
+```
+
+### Lazy sequences
+
+Lazily instantiated (possibly infinite) sequences can be created via
+`lazyseq()`. This function returns an `ISeq` which only realizes its
+values when they're requested.
+
+```ts
+import { defmultiN } from "@thi.ng/defmulti";
+
+// defmultiN only used here to define multiple arities for `fib`
+const fib = defmultiN({
+    0: () => fib(0, 1),
+    2: (a, b) => lazyseq(() => {
+        console.log(`realize: ${a}`);
+        return cons(a, fib(b, a + b));
+    })
+});
+
+fib()
+// { first: [Function: first], next: [Function: next] }
+
+fib().first()
+// realize: 0
+// 0
+
+fib().next().first()
+// realize: 0
+// realize: 1
+// 1
+
+fib().next().next().first()
+// realize: 0
+// realize: 1
+// realize: 1
+// 1
+
+fib().next().next().next().first()
+// realize: 0
+// realize: 1
+// realize: 1
+// realize: 2
+// 2
+
+fib().next().next().next().next().first()
+// realize: 0
+// realize: 1
+// realize: 1
+// realize: 2
+// realize: 3
+// 3
 ```
 
 ## Authors

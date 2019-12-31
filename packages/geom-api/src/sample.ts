@@ -5,7 +5,8 @@ export const setDefaultSamples = (n: number) => (DEFAULT_SAMPLES = n);
 export interface SamplingOpts {
     /**
      * Number of points to sample & return. Defaults to the implementing
-     * type's `DEFAULT_RES` if neither this nor `theta` option is given.
+     * type's default samples if neither this nor `theta` option is
+     * given.
      */
     num: number;
     /**

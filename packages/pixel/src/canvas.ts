@@ -5,8 +5,8 @@ import { CanvasContext, RawPixelBuffer } from "./api";
  * Creates a canvas element of given size, obtains its 2D drawing
  * context and returns object of both.
  *
- * @param width
- * @param height
+ * @param width -
+ * @param height -
  */
 export const canvas2d = (width: number, height = width): CanvasContext => {
     const canvas = document.createElement("canvas");
@@ -52,9 +52,9 @@ export function canvasPixels(width: HTMLCanvasElement | number, height?: number)
  * new size. If no width/height is given, the canvas will be of same
  * size as image.
  *
- * @param img
- * @param width
- * @param height
+ * @param img -
+ * @param width -
+ * @param height -
  */
 export const imageCanvas = (
     img: HTMLImageElement,
@@ -71,7 +71,7 @@ export const imageCanvas = (
 /**
  * Async function. Loads image from given `src` URL.
  *
- * @param src
+ * @param src -
  */
 export const imagePromise = async (src: string) => {
     const img = new Image();

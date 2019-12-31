@@ -81,28 +81,28 @@ export interface IGridLayout extends ILayout<[number, number], LayoutBox> {
     /**
      * Returns the number of columns for given width.
      *
-     * @param w
+     * @param width -
      */
-    colsForWidth(w: number): number;
+    colsForWidth(width: number): number;
 
     /**
      * Returns the number of rows for given height.
      *
-     * @param w
+     * @param height -
      */
-    rowsForHeight(h: number): number;
+    rowsForHeight(height: number): number;
 
     /**
      * Calculates the required number of columns & rows for the given
      * size.
      *
-     * @param size
+     * @param size -
      */
     spansForSize(size: ReadonlyVec): [number, number];
     spansForSize(w: number, h: number): [number, number];
 
     /**
-     * Returns a squared `LayoutBox` based on this layout's column
+     * Returns a squared {@link LayoutBox} based on this layout's column
      * width. This box will consume `ceil(columnWidth / rowHeight)`
      * rows, but the returned box height might be less to satisfy the
      * square constraint.
@@ -111,7 +111,7 @@ export interface IGridLayout extends ILayout<[number, number], LayoutBox> {
 
     /**
      * Requests a `spans` sized cell from this layout (via `.next()`)
-     * and creates and returns a new child `GridLayout` for the returned
+     * and creates and returns a new child {@link GridLayout} for the returned
      * box / grid cell. This child layout is configured to use `cols`
      * columns and shares same `gap` as this (parent) layout. The
      * configured row span only acts as initial minimum vertical space
@@ -143,8 +143,8 @@ export interface IGridLayout extends ILayout<[number, number], LayoutBox> {
      * button(gui, outer, "bye",...);
      * ```
      *
-     * @param cols columns in nested layout
-     * @param spans default [1, 1] (i.e. size of single cell)
+     * @param cols - columns in nested layout
+     * @param spans - default [1, 1] (i.e. size of single cell)
      */
     nest(cols: number, spans?: [number, number]): IGridLayout;
 }

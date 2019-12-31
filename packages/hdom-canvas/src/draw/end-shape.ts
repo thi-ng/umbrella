@@ -1,5 +1,6 @@
 import { IObjectOf } from "@thi.ng/api";
 
+/** @internal */
 export const endShape = (
     ctx: CanvasRenderingContext2D,
     attribs: IObjectOf<any>

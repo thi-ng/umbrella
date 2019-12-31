@@ -4,13 +4,12 @@ import { range } from "@thi.ng/transducers";
 
 /**
  * Yields 2D grid coordinates in random order w/ support for optional
- * `IRandom` implementation (default: `SYSTEM` aka `Math.random`).
+ * {@link @thi.ng/random#IRandom} implementation (default:
+ * {@link @thi.ng/random#SYSTEM} aka `Math.random`).
  *
- * @see thi.ng/random
- *
- * @param cols
- * @param rows
- * @param rnd
+ * @param cols -
+ * @param rows -
+ * @param rnd - PRNG
  */
 export function* random2d(cols: number, rows = cols, rnd: IRandom = SYSTEM) {
     for (let i of shuffle([...range(cols * rows)], undefined, rnd)) {

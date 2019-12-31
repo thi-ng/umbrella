@@ -1,7 +1,7 @@
 import { IObjectOf } from "@thi.ng/api";
 import { GroupByOpts, Reducer } from "../api";
 import { __groupByOpts } from "../internal/group-opts";
-import { $$reduce, reducer } from "../reduce";
+import { $$reduce } from "../reduce";
 
 // prettier-ignore
 export function groupByObj<SRC, GROUP>(opts?: Partial<GroupByOpts<SRC, PropertyKey, GROUP>>): Reducer<IObjectOf<GROUP>, SRC>;
@@ -14,10 +14,15 @@ export function groupByObj<SRC, GROUP>(...args: any[]): any {
         return res;
     }
     const opts = __groupByOpts<SRC, PropertyKey, GROUP>(args[0]);
-    const [_init, _, _reduce] = opts.group;
-    _; // ignore
-    return reducer<IObjectOf<GROUP>, SRC>(
+    const [_init, complete, _reduce] = opts.group;
+    return <Reducer<IObjectOf<GROUP>, SRC>>[
         () => ({}),
+        (acc) => {
+            for (let k in acc) {
+                acc[k] = complete(acc[k]);
+            }
+            return acc;
+        },
         (acc, x: SRC) => {
             const k: any = opts.key(x);
             acc[k] = acc[k]
@@ -25,5 +30,5 @@ export function groupByObj<SRC, GROUP>(...args: any[]): any {
                 : <GROUP>_reduce(_init(), x);
             return acc;
         }
-    );
+    ];
 }

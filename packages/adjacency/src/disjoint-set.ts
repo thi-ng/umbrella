@@ -2,8 +2,9 @@
  * Typed array based Disjoint Set implementation with quick union and
  * path compression, after Sedgewick & Wayne.
  *
- * - https://en.wikipedia.org/wiki/Disjoint-set_data_structure
- * - https://algs4.cs.princeton.edu/lectures/15UnionFind-2x2.pdf
+ * @remarks
+ * - {@link https://en.wikipedia.org/wiki/Disjoint-set_data_structure}
+ * - {@link https://algs4.cs.princeton.edu/lectures/15UnionFind-2x2.pdf}
  */
 export class DisjointSet {
     roots: Uint32Array;
@@ -13,7 +14,7 @@ export class DisjointSet {
     /**
      * Creates new instance with `n` initial singular subsets.
      *
-     * @param n
+     * @param n - initial capacity, ID range [0..n)
      */
     constructor(n: number) {
         const roots = (this.roots = new Uint32Array(n));
@@ -29,7 +30,7 @@ export class DisjointSet {
      * already is unified with some other ID, this will always return
      * `id` itself (since each node is initially its own root).
      *
-     * @param id
+     * @param id - node ID
      */
     canonical(id: number) {
         const roots = this.roots;
@@ -43,8 +44,8 @@ export class DisjointSet {
      * Connects combines the trees of the given two node IDs and returns
      * the new resulting canonical tree root ID.
      *
-     * @param a
-     * @param b
+     * @param a - node ID
+     * @param b - node ID
      */
     union(a: number, b: number) {
         const rootA = this.canonical(a);
@@ -67,8 +68,8 @@ export class DisjointSet {
      * Returns true, if the given two nodes belong to the same tree /
      * subset.
      *
-     * @param a
-     * @param b
+     * @param a - node ID
+     * @param b - node ID
      */
     unified(a: number, b: number) {
         return this.canonical(a) === this.canonical(b);
@@ -77,9 +78,11 @@ export class DisjointSet {
     /**
      * Returns a `Map` of all subsets (connected components) with their
      * canonical tree root IDs as keys and arrays of node IDs as values.
+     *
+     * @remarks
      * If only the number of subsets is required, use the `count`
      * property of this class instance instead (O(1), updated with each
-     * call to `union()`).
+     * call to {@link DisjointSet.union}).
      */
     subsets() {
         const sets: Map<number, number[]> = new Map();

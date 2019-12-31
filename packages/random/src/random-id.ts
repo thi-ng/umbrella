@@ -6,7 +6,8 @@ import { SYSTEM } from "./system";
  * 4), plus optional given `prefix` and using only provided `syms`
  * characters (default lowercase a-z).
  *
- * ```
+ * @example
+ * ```ts
  * randomID()
  * "qgdt"
  *
@@ -14,10 +15,10 @@ import { SYSTEM } from "./system";
  * "id-94EF6E1A"
  * ```
  *
- * @param len
- * @param prefix
- * @param syms
- * @param rnd
+ * @param len -
+ * @param prefix -
+ * @param syms -
+ * @param rnd -
  */
 export const randomID = (
     len = 4,

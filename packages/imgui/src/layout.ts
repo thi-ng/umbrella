@@ -104,7 +104,7 @@ export class GridLayout implements IGridLayout {
     /**
      * Updates max rows used in this layout and all of its parents.
      *
-     * @param rspan
+     * @param rspan -
      */
     protected propagateSize(rspan: number) {
         let rows = this.rows;
@@ -115,15 +115,15 @@ export class GridLayout implements IGridLayout {
 }
 
 /**
- * Syntax sugar for `GridLayout` ctor. By default creates a
+ * Syntax sugar for {@link GridLayout} ctor. By default creates a
  * single-column layout at given position and width.
  *
- * @param x
- * @param y
- * @param width
- * @param cols
- * @param rowH
- * @param gap
+ * @param x -
+ * @param y -
+ * @param width -
+ * @param cols -
+ * @param rowH -
+ * @param gap -
  */
 export const gridLayout = (
     x: number,

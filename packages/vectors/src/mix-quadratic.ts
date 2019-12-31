@@ -1,6 +1,15 @@
 import { addW3 } from "./addw";
 import { ReadonlyVec, Vec } from "./api";
 
+/**
+ * Vector version of {@link @thi.ng/math#mixQuadratic}.
+ *
+ * @param out - result
+ * @param a -
+ * @param b -
+ * @param c -
+ * @param t - interpolation coeff [0..1]
+ */
 export const mixQuadratic = (
     out: Vec | null,
     a: ReadonlyVec,

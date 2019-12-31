@@ -14,7 +14,7 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
-  - [File loading & word frequency analysis](#file-loading---word-frequency-analysis)
+  - [File loading & word frequency analysis](#file-loading--word-frequency-analysis)
   - [Channel merging](#channel-merging)
   - [PubSub](#pubsub)
 - [Authors](#authors)

@@ -15,11 +15,11 @@ import {
  *
  * **Important:** It only makes sense to use `Map` types which support
  * value (rather than object) equality, e.g. those provided by
- * thi.ng/associative. Using a native `Map` type here will lead to
- * memory leaks! Alternatively, use `memoizeJ`.
+ * {@link @thi.ng/associative# | @thi.ng/associative}. Using a native `Map` type here will lead
+ * to memory leaks! Alternatively, use {@link (memoizeJ:1)}.
  *
- * @param fn
- * @param cache
+ * @param fn -
+ * @param cache -
  */
 export function memoize<A, B>(fn: Fn1<A, B>, cache: MapLike<A, B>): Fn1<A, B>;
 export function memoize<A, B, C>(

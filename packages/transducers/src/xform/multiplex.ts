@@ -5,12 +5,15 @@ import { map } from "./map";
 
 /**
  * Yields a new transducer which applies given transducers in parallel
- * (using `juxt()` & `step()`) and produces tuples of results.
+ * (using {@link @thi.ng/compose#(juxt:1)} & {@link step}) and produces
+ * tuples of results.
  *
- * Tip: Use `noop()` transducer for lanes which should retain the
- * original input values.
+ * @remarks
+ * Use the {@link noop} transducer for processing lanes which should
+ * retain the original input values.
  *
- * ```
+ * @example
+ * ```ts
  * [...iterator(
  *   multiplex(
  *     map(x => x.charAt(0)),
@@ -22,7 +25,7 @@ import { map } from "./map";
  * // [ [ "A", "ALICE", 5 ], [ "B", "BOB", 3 ], [ "C", "CHARLIE", 7 ] ]
  * ```
  *
- * @param a
+ * @param a -
  */
 export function multiplex<T, A>(a: Transducer<T, A>): Transducer<T, [A]>;
 export function multiplex<T, A, B>(

@@ -6,10 +6,10 @@ import { map } from "./map";
 /**
  * Transducer. Same as `map(deepTransform(spec))`
  *
- * See `deepTransform()` for details.
+ * See {@link deepTransform} for details.
  *
- * @param spec
- * @param src
+ * @param spec -
+ * @param src -
  */
 export function mapDeep(spec: TransformSpec): Transducer<any, any>;
 export function mapDeep(

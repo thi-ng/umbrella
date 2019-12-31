@@ -3,14 +3,18 @@ import { $iter, iterator } from "../iterator";
 import { ensureReduced, isReduced, unreduced } from "../reduced";
 
 /**
- * Transducer which performs "scan" operation via given reducer. Note:
+ * Transducer which performs "scan" operation via given reducer.
+ *
+ * @remarks
  * If an input `src` is given an initial result `init` must be provided
  * too as arg. Use `null` or `undefined` to use the given reducer's
  * default.
  *
- * https://en.wikipedia.org/wiki/Prefix_sum#Scan_higher_order_function
+ * @remarks
+ * {@link https://en.wikipedia.org/wiki/Prefix_sum#Scan_higher_order_function}
  *
- * ```
+ * @example
+ * ```ts
  * [...iterator(scan(add()), range(10))]
  * // [ 0, 1, 3, 6, 10, 15, 21, 28, 36, 45 ]
  *
@@ -18,9 +22,9 @@ import { ensureReduced, isReduced, unreduced } from "../reduced";
  * // [ 0, 1, 3, 6, 10, 15, 21, 28, 36, 45 ]
  * ```
  *
- * @param rfn reducer used as scan operator
- * @param init
- * @param src
+ * @param rfn - reducer used as scan operator
+ * @param init -
+ * @param src -
  */
 export function scan<A, B>(rfn: Reducer<B, A>, init?: B): Transducer<A, B>;
 export function scan<A, B>(

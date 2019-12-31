@@ -17,8 +17,8 @@ export interface Event extends IID<PropertyKey> {
 }
 
 /**
- * Interface to provide event emitter functionality. Also see `@INotify`
- * decorator mixin
+ * Interface to provide event emitter functionality. Also see
+ * {@link INotifyMixin} decorator mixin.
  */
 export interface INotify {
     addListener(id: string, fn: Listener, scope?: any): boolean;

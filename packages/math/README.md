@@ -80,6 +80,14 @@ Worker based, interactive Mandelbrot visualization
 
 [Live demo](https://demo.thi.ng/umbrella/mandelbrot/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/mandelbrot)
 
+### ramp-synth <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/ramp-synth.png)
+
+Unison wavetable synth with waveform editor
+
+[Live demo](https://demo.thi.ng/umbrella/ramp-synth/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/ramp-synth)
+
 ### scenegraph <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/scenegraph.png)

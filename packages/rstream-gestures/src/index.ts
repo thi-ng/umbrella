@@ -11,7 +11,7 @@ export const enum GestureType {
 }
 
 /**
- * Reverse lookup for `GestureType` enums
+ * Reverse lookup for {@link GestureType} enums
  */
 // export const __GestureType = (<any>exports).GestureType;
 
@@ -33,7 +33,7 @@ type UIEvent = MouseEvent | TouchEvent | WheelEvent;
 
 export interface GestureStreamOpts extends IID<string> {
     /**
-     * Event listener options (see standard `addEventListener()`)
+     * Event listener options (see standard `addEventListener`).
      * Default: false
      */
     eventOpts: boolean | AddEventListenerOptions;
@@ -73,9 +73,10 @@ export interface GestureStreamOpts extends IID<string> {
      */
     local: boolean;
     /**
-     * If true (default: false), all positions and delta values are
-     * scaled by `window.devicePixelRatio`. Note: Only enable if `local`
-     * is true.
+     * If true, all positions and delta values are scaled by
+     * `window.devicePixelRatio`. Note: Only enable if `local` is true.
+     *
+     * @defaultValue false
      */
     scale: boolean;
 }
@@ -99,14 +100,15 @@ export interface GestureStreamOpts extends IID<string> {
  * Note: If using `preventDefault` and attaching the event stream to
  * `document.body`, the following event listener options SHOULD be used:
  *
- * ```
+ * @example
+ * ```ts
  * eventOpts: { passive: false }
  * ```
  *
- * See: https://www.chromestatus.com/features/5093566007214080
+ * {@link https://www.chromestatus.com/features/5093566007214080 }
  *
- * @param el
- * @param opts
+ * @param el -
+ * @param opts -
  */
 export const gestureStream = (
     el: HTMLElement,

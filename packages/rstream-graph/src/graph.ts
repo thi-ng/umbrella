@@ -27,15 +27,16 @@ import {
 
 /**
  * Dataflow graph initialization function. Takes a state Atom (or `null`
- * if not needed) and an object of `NodeSpec` values or functions
- * returning `Node` objects. Calls `nodeFromSpec` for each spec and then
- * recursively resolves references via thi.ng/resolve-map `resolve`.
- * Returns new initialized graph object of `Node` objects and
- * `@thi.ng/rstream` stream constructs. Does NOT mutate original
- * `GraphSpec` object.
+ * if not needed) and an object of {@link NodeSpec} values or functions
+ * returning {@link Node} objects. Calls `nodeFromSpec()` for each spec
+ * and then recursively resolves references via
+ * {@link @thi.ng/resolve-map#resolve}. Returns new initialized graph
+ * object of {@link Node} objects and
+ * {@link @thi.ng/rstream# | @thi.ng/rstream} stream constructs. Does
+ * NOT mutate original {@link GraphSpec} object.
  *
- * @param state
- * @param spec
+ * @param state -
+ * @param spec -
  */
 export const initGraph = (state: IAtom<any>, spec: GraphSpec): Graph => {
     const res: Graph = {};
@@ -52,29 +53,31 @@ const isNodeSpec = (x: any): x is NodeSpec =>
     isPlainObject(x) && isFunction((<any>x).fn);
 
 /**
- * Transforms a single `NodeSpec` into a lookup function for `resolve`
- * (which is called from `initGraph`). When that function is called,
- * recursively resolves all specified input streams and calls this
- * spec's `fn` to produce a new stream from these inputs.
+ * Transforms a single {@link NodeSpec} into a lookup function for
+ * {@link resolve} (which is called from {@link initGraph}). When that
+ * function is called, recursively resolves all specified input streams
+ * and calls this spec's `fn` to produce a new stream from these inputs.
  *
  * If the spec includes the optional `outs` keys, it also creates the
  * subscriptions for each of the given output keys, which then can be
  * used as inputs by other nodes. Each value in the `outs` subspec can
- * be a function or state path (string/number/array, see thi.ng/paths).
- * Functions are called with this node's constructed stream/subscribable
- * and the output id and must return a new `ISubscribable`. For path
- * values a subscription is added to this node's result stream which
- * then updates the provided state atom at the path given.
+ * be a function or state path (string/number/array, see
+ * {@link @thi.ng/paths# | @thi.ng/paths}). Functions are called with this node's
+ * constructed stream/subscribable and the output id and must return a
+ * new {@link @thi.ng/rstream#ISubscribable}. For path values a
+ * subscription is added to this node's result stream which then updates
+ * the provided state atom at the path given.
  *
  * Non-function output specs subs assume the raw node output value is an
  * object from which the different output keys are being extracted. The
  * special `*` output key can be used to handle the entire node output
  * value. This is useful/required for non-object node result values.
  *
- * ```
+ * @example
+ * ```ts
  * out: {
  *   // fn output spec
- *   // creates new sub which uses `pick` transducer to
+ *   // creates new sub which uses {@link pick} transducer to
  *   // select key `a` from main node output (assumed to be object)
  *   a: (node, id) => node.subscribe({}, pick(id)),
  *
@@ -90,9 +93,9 @@ const isNodeSpec = (x: any): x is NodeSpec =>
  *
  * See `api.ts` for further details and possible spec variations.
  *
- * @param state
- * @param spec
- * @param id
+ * @param state -
+ * @param spec -
+ * @param id -
  */
 const nodeFromSpec = (state: IAtom<any>, spec: NodeSpec, id: string) => (
     resolve: ResolveFn
@@ -168,14 +171,14 @@ const prepareNodeOutputs = (
 };
 
 /**
- * Compiles given `NodeSpec` and adds it to graph. Returns compiled
- * `Node` object for the given spec. Throws error if the graph already
+ * Compiles given {@link NodeSpec} and adds it to graph. Returns compiled
+ * {@link Node} object for the given spec. Throws error if the graph already
  * contains a node with given `id`.
  *
- * @param graph
- * @param state
- * @param id
- * @param spec
+ * @param graph -
+ * @param state -
+ * @param id -
+ * @param spec -
  */
 export const addNode = (
     graph: Graph,
@@ -196,8 +199,8 @@ export const addNode = (
  * removes it from graph. Returns `false` if no node exists for given
  * `id`.
  *
- * @param graph
- * @param id
+ * @param graph -
+ * @param id -
  */
 export const removeNode = (graph: Graph, id: string) => {
     const node = graph[id];
@@ -216,7 +219,7 @@ export const removeNode = (graph: Graph, id: string) => {
  * Calls `.unsubscribe()` on all nodes in the graph, causing all related
  * streams & subscriptions to terminate.
  *
- * @param graph
+ * @param graph -
  */
 export const stop = (graph: Graph) => {
     for (let id in graph) {
@@ -227,19 +230,19 @@ export const stop = (graph: Graph) => {
 /**
  * Higher order node / stream creator. Takes a transducer and (optional)
  * required input stream IDs. The returned function takes an object of
- * input streams and returns a new `StreamSync` instance. The returned
- * function will throw an error if `inputIDs` is given and the object of
- * inputs does not contain all of them.
+ * input streams and returns a new {@link @thi.ng/rstream#StreamSync}
+ * instance. The returned function will throw an error if `inputIDs` is
+ * given and the object of inputs does not contain all of them.
  *
  * If `reset` is true (default: false), the `xform` will only re-run
- * when all inputs have produced new values. See thi.ng/rstream
- * `StreamSync` for further reference.
+ * when all inputs have produced new values. See
+ * {@link @thi.ng/rstream#StreamSync} for further reference.
  *
  * // TODO add close behavior opts
  *
- * @param xform
- * @param inputIDs
- * @param reset
+ * @param xform -
+ * @param inputIDs -
+ * @param reset -
  */
 export const node = (
     xform: Transducer<IObjectOf<any>, any>,
@@ -253,13 +256,13 @@ export const node = (
 );
 
 /**
- * Similar to `node()`, but optimized for nodes using only a single
+ * Similar to {@link node}, but optimized for nodes using only a single
  * input. Uses "src" as default input ID.
  *
  * // TODO add close behavior opts
  *
- * @param xform
- * @param inputID
+ * @param xform -
+ * @param inputID -
  */
 export const node1 = (
     xform?: Transducer<any, any>,
@@ -278,9 +281,9 @@ export const node1 = (
  * Syntax sugar for `node()`, intended for nodes w/ 2 inputs, by default
  * named `a` & `b` (but can be overridden).
  *
- * @param xform
- * @param inputIDs
- * @param reset
+ * @param xform -
+ * @param inputIDs -
+ * @param reset -
  */
 export const node2 = (
     xform: Transducer<IObjectOf<any>, any>,
@@ -292,9 +295,9 @@ export const node2 = (
  * Helper function to verify given object of inputs has required input IDs.
  * Throws error if validation fails.
  *
- * @param src
- * @param inputIDs
- * @param nodeID
+ * @param src -
+ * @param inputIDs -
+ * @param nodeID -
  */
 export const ensureInputs = (
     src: IObjectOf<ISubscribable<any>>,

@@ -8,10 +8,10 @@ import { illegalArgs } from "@thi.ng/errors";
  * `src` will be removed in the new string. If either position is
  * negative, it'll be considered relative to the end of the `src`.
  *
- * @param src
- * @param insert
- * @param from
- * @param to
+ * @param src -
+ * @param insert -
+ * @param from -
+ * @param to -
  */
 export const splice = (
     src: string,

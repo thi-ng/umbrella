@@ -49,19 +49,20 @@ const simpleDiff = <T>(
 };
 
 /**
- * Based on "An O(NP) Sequence Comparison Algorithm""
- * by Wu, Manber, Myers and Miller
+ * Based on "An O(NP) Sequence Comparison Algorithm"" by Wu, Manber,
+ * Myers and Miller.
  *
- * - http://www.itu.dk/stud/speciale/bepjea/xwebtex/litt/an-onp-sequence-comparison-algorithm.pdf
- * - https://github.com/cubicdaiya/onp
+ * @remarks
+ * Various optimizations, fixes & refactorings. By default uses
+ * {@link @thi.ng/equiv#equiv} for equality checks.
  *
- * Various optimizations, fixes & refactorings.
- * By default uses `@thi.ng/equiv` for equality checks.
+ * - {@link http://www.itu.dk/stud/speciale/bepjea/xwebtex/litt/an-onp-sequence-comparison-algorithm.pdf}
+ * - {@link https://github.com/cubicdaiya/onp}
  *
- * @param a "old" array
- * @param b "new" array
- * @param mode result mode
- * @param equiv equality predicate function
+ * @param a - "old" array
+ * @param b - "new" array
+ * @param mode - result mode
+ * @param equiv - equality predicate function
  */
 export const diffArray = <T>(
     a: ArrayLike<T> | undefined | null,

@@ -48,9 +48,9 @@ export const updateIn = (
 /**
  * Type checked version of {@link updateIn}.
  *
- * @param state
- * @param path
- * @param fn
+ * @param state -
+ * @param path -
+ * @param fn -
  */
 export function updateInT<T>(state: T, path: [], fn: UpdateFn<T>): T;
 export function updateInT<T, A extends Keys<T>>(

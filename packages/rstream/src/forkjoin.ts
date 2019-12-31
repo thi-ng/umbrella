@@ -27,7 +27,7 @@ export interface ForkJoinOpts<IN, MSG, RES, OUT> extends Partial<CommonOpts> {
      * can be used to create non-overlapping chunks to evenly spread the
      * workload...
      *
-     * @see workerSlice()
+     * Also see: {@link forkBuffer}
      */
     fork: Fn3<number, number, IN, MSG>;
     /**
@@ -85,10 +85,10 @@ export interface ForkJoinOpts<IN, MSG, RES, OUT> extends Partial<CommonOpts> {
      */
     terminate?: number;
     /**
-     * If > 0, then each labeled input will cache upto the stated number
-     * of input values, even if other inputs have not yet produced new
-     * values. Once the limit is reached, `partitionSync()` will throw
-     * an `IllegalState` error.
+     * If greater than 0, then each labeled input will cache upto the
+     * stated number of input values, even if other inputs have not yet
+     * produced new values. Once the limit is reached, `partitionSync()`
+     * will throw an `IllegalState` error.
      *
      * Enabling this option will cause the same behavior as if `reset`
      * is enabled (regardless of the actual configured `reset` setting).
@@ -109,8 +109,8 @@ export interface ForkJoinOpts<IN, MSG, RES, OUT> extends Partial<CommonOpts> {
  * the {@link forkBuffer} and {@link joinBuffer} helpers for array-based
  * value processing (most likely use case).
  *
- * @param src input stream
- * @param opts
+ * @param src - input stream
+ * @param opts -
  */
 export const forkJoin = <IN, MSG, RES, OUT>(
     opts: ForkJoinOpts<IN, MSG, RES, OUT>
@@ -186,7 +186,7 @@ type Sliceable<T> = ArrayLike<T> & {
  * })
  * ```
  *
- * @param minChunkSize
+ * @param minChunkSize -
  */
 export const forkBuffer = (minChunkSize = 1) => <T extends Sliceable<any>>(
     id: number,
@@ -217,7 +217,7 @@ export const forkBuffer = (minChunkSize = 1) => <T extends Sliceable<any>>(
  *
  * Also see {@link forkJoin} and {@link forkBuffer}.
  *
- * @param fn
+ * @param fn -
  */
 export const joinBuffer = <A, B>(fn?: Fn<A, ArrayLikeIterable<B>>) =>
     fn

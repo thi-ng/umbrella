@@ -7,16 +7,18 @@ import { iterator1 } from "../iterator";
  * be optionally provided (default: false) and must be given if used as
  * an iterator.
  *
- * ```
+ * @example
+ * ```ts
  * [...toggle(1, 0, false, [1, 2, 3, 4])]
  * // [ 1, 0, 1, 0 ]
  *
  * [...tx.toggle("on", "off", true, [1, 2, 3, 4])]
  * // [ 'off', 'on', 'off', 'on' ]
  * ```
- * @param on result for "on" state
- * @param off result for "off" state
- * @param initial initial state
+ *
+ * @param on - result for "on" state
+ * @param off - result for "off" state
+ * @param initial - initial state
  */
 export function toggle<T>(on: T, off: T, initial?: boolean): Transducer<any, T>;
 export function toggle<T>(

@@ -7,9 +7,9 @@ export class CSR extends ASparseMatrix {
     /**
      * Constructs CSR from dense row-major matrix values.
      *
-     * @param m rows
-     * @param n columns
-     * @param dense matrix values
+     * @param m - rows
+     * @param n - columns
+     * @param dense - matrix values
      */
     static fromDense(m: number, n: number, dense: ArrayLike<number>) {
         const [rows, cols, data] = compress(m, n, dense);

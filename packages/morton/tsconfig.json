@@ -3,9 +3,7 @@
     "compilerOptions": {
         "outDir": ".",
         "module": "es6",
-        "target": "es6"
+        "target": "ESNext"
     },
-    "include": [
-        "./src/**/*.ts"
-    ]
+    "include": ["./src/**/*.ts"]
 }

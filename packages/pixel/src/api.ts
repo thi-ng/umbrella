@@ -76,9 +76,9 @@ export interface PackedChannelSpec {
     size: number;
     /**
      * Related ABGR lane this channel is mapped from/to. Only used if
-     * parent format uses auto-generated `IABGRConvert` implementation
+     * parent format uses auto-generated {@link IABGRConvert} implementation
      * (i.e. only if no-user defined converters are given to
-     * `PackedFormatSpec`).
+     * {@link PackedFormatSpec}).
      */
     lane?: Lane;
 }
@@ -127,7 +127,7 @@ export interface PackedChannel {
 }
 
 /**
- * Format configuration passed to `defPackedFormat()`.
+ * Format configuration passed to {@link defPackedFormat}.
  */
 export interface PackedFormatSpec extends Partial<IABGRConvert<number>> {
     /**
@@ -139,8 +139,10 @@ export interface PackedFormatSpec extends Partial<IABGRConvert<number>> {
      */
     size: number;
     /**
-     * Number of alpha channel bits (default: 0). MUST be given if
-     * format uses alpha channel.
+     * Number of alpha channel bits. MUST be given if format uses alpha
+     * channel.
+     *
+     * @defaultValue 0
      */
     alpha?: number;
     /**
@@ -150,7 +152,7 @@ export interface PackedFormatSpec extends Partial<IABGRConvert<number>> {
 }
 
 /**
- * Compiled format object returned by `defPackedFormat()`.
+ * Compiled format object returned by {@link defPackedFormat}.
  */
 export interface PackedFormat extends IABGRConvert<number> {
     type: UintType;
@@ -180,8 +182,8 @@ export interface IPixelBuffer<T extends TypedArray, P> {
      * Returns pixel value at given position. If pos is outside the
      * defined region, returns a suitable zero value.
      *
-     * @param x
-     * @param y
+     * @param x -
+     * @param y -
      */
     getAt(x: number, y: number): P;
 
@@ -189,19 +191,19 @@ export interface IPixelBuffer<T extends TypedArray, P> {
      * Writes pixel value at given position. Has no effect if outside of
      * the defined region.
      *
-     * @param x
-     * @param y
-     * @param col
+     * @param x -
+     * @param y -
+     * @param col -
      */
     setAt(x: number, y: number, col: P): this;
 
     /**
      * Extracts region as new pixel buffer in same format.
      *
-     * @param x
-     * @param y
-     * @param width
-     * @param height
+     * @param x -
+     * @param y -
+     * @param width -
+     * @param height -
      */
     getRegion(
         x: number,
@@ -220,8 +222,8 @@ export interface IBlit<T extends TypedArray, P> {
      * Destination MUST be of same format as original. No conversion is
      * performed.
      *
-     * @param dest
-     * @param opts
+     * @param dest -
+     * @param opts -
      */
     blit(dest: IPixelBuffer<T, P>, opts?: Partial<BlitOpts>): void;
 
@@ -239,9 +241,9 @@ export interface IBlend<F, T extends TypedArray, P> {
      * with those of `dest` and writes results into `dest`. Supports
      * same options as `blit()`.
      *
-     * @param op
-     * @param dest
-     * @param opts
+     * @param op -
+     * @param dest -
+     * @param opts -
      */
     blend(op: F, dest: IPixelBuffer<T, P>, opts?: Partial<BlitOpts>): void;
 }
@@ -260,35 +262,47 @@ export interface IColorChannel<T extends TypedArray, C> {
      * Replaces selected color channel with values from given pixel
      * buffer, which MUST be of same size as target.
      *
-     * @param id
-     * @param buf
+     * @param id -
+     * @param buf -
      */
     setChannel(id: C, buf: IPixelBuffer<T, number> | number): this;
 }
 
 export interface BlitOpts {
     /**
-     * Destination X position (top-left), default: 0
+     * Destination X position (top-left)
+     *
+     * @defaultValue 0
      */
     dx: number;
     /**
-     * Destination Y position (top-left), default: 0
+     * Destination Y position (top-left)
+     *
+     * @defaultValue 0
      */
     dy: number;
     /**
-     * Source X position (top-left), default: 0
+     * Source X position (top-left)
+     *
+     * @defaultValue 0
      */
     sx: number;
     /**
-     * Source Y position (top-left), default: 0
+     * Source Y position (top-left)
+     *
+     * @defaultValue 0
      */
     sy: number;
     /**
-     * Source region width (default: buffer width)
+     * Source region width
+     *
+     * @defaultValue buffer width
      */
     w: number;
     /**
-     * Source region width (default: buffer height)
+     * Source region width
+     *
+     * @defaultValue buffer height
      */
     h: number;
 }

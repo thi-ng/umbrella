@@ -5,16 +5,21 @@ import { defmulti } from "./defmulti";
 /**
  * Returns a multi-dispatch function which delegates to one of the
  * provided implementations, based on the arity (number of args) when
- * the function is called. Internally uses `defmulti`, so new arities
- * can be dynamically added (or removed) at a later time. If no
- * `fallback` is provided, `defmultiN` also registers a `DEFAULT`
- * implementation which simply throws an `IllegalArityError` when
+ * the function is called.
+ *
+ * @remarks
+ * Internally uses {@link (defmulti:1)}, so new arities can be dynamically
+ * added (or removed) at a later time. If no `fallback` is provided,
+ * `defmultiN` also registers a {@link DEFAULT} implementation which
+ * simply throws an {@link @thi.ng/errors#IllegalArityError} when
  * invoked.
  *
- * **Note:** Unlike `defmulti` no argument type checking is supported,
- * however you can specify the return type for the generated function.
+ * **Note:** Unlike {@link (defmulti:1)} no argument type checking is
+ * supported, however you can specify the return type for the generated
+ * function.
  *
- * ```
+ * @example
+ * ```ts
  * const foo = defmultiN<string>({
  *   0: () => "zero",
  *   1: (x) => `one: ${x}`,
@@ -35,8 +40,8 @@ import { defmulti } from "./defmulti";
  * // two: 1, 2
  * ```
  *
- * @param impls
- * @param fallback
+ * @param impls - implementations
+ * @param fallback - fallback implementation
  */
 export const defmultiN = <T>(
     impls: { [id: number]: Implementation<T> },

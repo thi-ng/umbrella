@@ -33,8 +33,8 @@ import { setterT } from "./setter";
  * // { a: { b: { c: 23} } }
  * ```
  *
- * @param state
- * @param path
+ * @param state -
+ * @param path -
  */
 export const setIn = (state: any, path: Path, val: any): any =>
     setterT(<any>path)(state, val);
@@ -42,9 +42,9 @@ export const setIn = (state: any, path: Path, val: any): any =>
 /**
  * Type checked version of {@link setIn}.
  *
- * @param state
- * @param path
- * @param val
+ * @param state -
+ * @param path -
+ * @param val -
  */
 export function setInT<T>(state: T, path: [], val: T): T;
 export function setInT<T, A extends Keys<T>>(

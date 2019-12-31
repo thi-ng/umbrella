@@ -17,17 +17,17 @@ import {
 /**
  * Conversion from endpoint to center parameterization.
  *
- * https://svgwg.org/svg2-draft/implnote.html#ArcConversionEndpointToCenter
+ * {@link https://svgwg.org/svg2-draft/implnote.html#ArcConversionEndpointToCenter}
  *
  * Returns undefined if `a` & `b` are equal or any `radii` component is
  * zero.
  *
- * @param a start point
- * @param b end point
- * @param radii ellipse radii
- * @param axis in radians
- * @param xl large arc flag
- * @param cw clockwise flag
+ * @param a - start point
+ * @param b - end point
+ * @param radii - ellipse radii
+ * @param axis - in radians
+ * @param xl - large arc flag
+ * @param cw - clockwise flag
  */
 export const fromEndPoints = (
     a: ReadonlyVec,

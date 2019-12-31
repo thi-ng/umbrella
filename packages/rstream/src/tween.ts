@@ -54,11 +54,11 @@ import { sync } from "./stream-sync";
  * // 99.989013671875
  * ```
  *
- * @param src
- * @param initial
- * @param mix
- * @param stop
- * @param clock
+ * @param src -
+ * @param initial -
+ * @param mix -
+ * @param stop -
+ * @param clock -
  */
 export const tween = <T>(
     src: ISubscribable<T>,
@@ -89,14 +89,14 @@ export const tween = <T>(
     );
 
 /**
- * Convenience version of `tween` for its most common use case, tweening
+ * Convenience version of {@link tween} for its most common use case, tweening
  * of numeric streams.
  *
- * @param src
- * @param init
- * @param speed
- * @param eps
- * @param clock
+ * @param src -
+ * @param init -
+ * @param speed -
+ * @param eps -
+ * @param clock -
  */
 export const tweenNumber = (
     src: ISubscribable<number>,

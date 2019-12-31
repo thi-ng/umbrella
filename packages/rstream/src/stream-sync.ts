@@ -34,21 +34,25 @@ export interface StreamSyncOpts<A, B>
     mergeOnly: boolean;
     /**
      * If true, StreamSync waits for new values from *all* inputs before
-     * a new tuple is produced. If false (default), that synchronization
+     * a new tuple is produced. If false, that synchronization
      * only happens for the very first tuple.
+     *
+     * @defaultValue false
      */
     reset: boolean;
     /**
      * By default, the last emitted tuple is allowed to be incomplete
      * (in case all inputs closed). To only allow complete tuples, set
      * the `all` to false.
+     *
+     * @defaultValue true
      */
     all: boolean;
     /**
-     * If > 0, then each labeled input will cache upto the stated number
-     * of input values, even if other inputs have not yet produced new
-     * values. Once the limit is reached, `partitionSync()` will throw
-     * an `IllegalState` error.
+     * If greater than 0, then each labeled input will cache upto the
+     * stated number of input values, even if other inputs have not yet
+     * produced new values. Once the limit is reached, `partitionSync()`
+     * will throw an `IllegalState` error.
      *
      * Enabling this option will cause the same behavior as if `reset`
      * is enabled (regardless of the actual configured `reset` setting).
@@ -91,9 +95,10 @@ export interface StreamSyncOpts<A, B>
  * to be incomplete, by default. To only allow complete tuples, also set
  * the `all` option to `false`.
  *
- * The synchronization is done via the `partitionSync()` transducer from
- * the @thi.ng/transducers package. See this function's docs for further
- * details.
+ * The synchronization is done via the
+ * {@link @thi.ng/transducers#(partitionSync:1)} transducer fro the
+ * {@link @thi.ng/transducers# | @thi.ng/transducers} package. See this
+ * function's docs for further details.
  *
  * @example
  * ```ts
@@ -105,9 +110,9 @@ export interface StreamSyncOpts<A, B>
  * // result: { a: 1, b: 2 }
  * ```
  *
- * @see StreamSyncOpts
+ * Also see: {@link StreamSyncOpts}
  *
- * @param opts
+ * @param opts -
  */
 export const sync = <A, B>(opts: Partial<StreamSyncOpts<A, B>>) =>
     new StreamSync(opts);

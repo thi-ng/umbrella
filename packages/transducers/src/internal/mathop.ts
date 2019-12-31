@@ -2,6 +2,16 @@ import { FnAny } from "@thi.ng/api";
 import { Reducer, ReductionFn } from "../api";
 import { $$reduce, reducer } from "../reduce";
 
+/**
+ * Higher-order reducer for math operations.
+ *
+ * @param rfn -
+ * @param fn -
+ * @param initDefault -
+ * @param args -
+ *
+ * @internal
+ */
 export const __mathop = (
     rfn: FnAny<Reducer<number, number>>,
     fn: ReductionFn<number, number>,

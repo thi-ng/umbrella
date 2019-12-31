@@ -4,10 +4,13 @@ import { range } from "./range";
 
 /**
  * Iterator yielding the Cartesian Product of the given iterables.
+ *
+ * @remarks
  * All iterables MUST be finite! If any of the given iterables is
  * empty the iterator yields no values.
  *
- * ```
+ * @example
+ * ```ts
  * [...permutations("ab", range(3))]
  * // [ ['a', 0], ['a', 1], ['a', 2],
  * //   ['b', 0], ['b', 1], ['b', 2] ]
@@ -19,7 +22,7 @@ import { range } from "./range";
  * // []
  * ```
  *
- * @param src
+ * @param src -
  */
 export function permutations<A>(a: Iterable<A>): IterableIterator<[A]>;
 export function permutations<A, B>(
@@ -64,11 +67,15 @@ export function* permutations(...src: any[]): IterableIterator<any[]> {
 
 /**
  * Iterator yielding the Cartesian Product for `n` items of `m` values
- * each. If `m` is not given, defaults to value of `n`. The range of `m`
- * is `0..m-1`. The optional `offsets` array can be used to define start
+ * each.
+ *
+ * @remarks
+ * If `m` is not given, defaults to value of `n`. The range of `m` is
+ * `0..m-1`. The optional `offsets` array can be used to define start
  * values for each dimension.
  *
- * ```
+ * @example
+ * ```ts
  * [...permutationsN(2)]
  * // [ [0, 0], [0, 1], [1, 0], [1, 1] ]
  *
@@ -81,9 +88,9 @@ export function* permutations(...src: any[]): IterableIterator<any[]> {
  * // [ [ 10, 20 ], [ 10, 21 ], [ 11, 20 ], [ 11, 21 ] ]
  * ```
  *
- * @param n
- * @param m
- * @param offsets
+ * @param n -
+ * @param m -
+ * @param offsets -
  */
 export const permutationsN = (
     n: number,

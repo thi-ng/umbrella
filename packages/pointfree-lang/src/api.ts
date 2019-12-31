@@ -32,7 +32,7 @@ export const enum NodeType {
 }
 
 /**
- * Reverse lookup for `NodeType` enums
+ * Reverse lookup for {@link NodeType} enums
  */
 // export const __NodeType = (<any>exports).NodeType;
 

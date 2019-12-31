@@ -1,4 +1,10 @@
-import { INotifyMixin, UIntArray } from "@thi.ng/api";
+import {
+    assert,
+    INotifyMixin,
+    typedArray,
+    UIntArray,
+    uintType
+} from "@thi.ng/api";
 import { ObjectComponentOpts } from "../api";
 import { AComponent } from "./acomponent";
 
@@ -27,6 +33,18 @@ export class ObjectComponent<K extends string, T> extends AComponent<
 
     packedValues() {
         return this.vals.slice(0, this.n);
+    }
+
+    resize(cap: number) {
+        assert(cap >= this.dense.length, "can't decrease capacity");
+        if (cap === this.dense.length) return;
+        const utype = uintType(cap);
+        const sparse = typedArray(utype, cap);
+        const dense = typedArray(utype, cap);
+        sparse.set(this.sparse);
+        dense.set(this.dense);
+        this.sparse = sparse;
+        this.dense = dense;
     }
 
     get(id: number) {

@@ -6,10 +6,13 @@ let PRECISION = 2;
 
 export const setPrecision = (n: number) => (PRECISION = n);
 
+/** @internal */
 export const ff = (x: number) => x.toFixed(PRECISION);
 
+/** @internal */
 export const fpoint = (p: Vec2Like) => ff(p[0]) + "," + ff(p[1]);
 
+/** @internal */
 export const fpoints = (pts: Vec2Like[], sep = " ") =>
     pts ? pts.map(fpoint).join(sep) : "";
 
@@ -30,8 +33,9 @@ export const fpoints = (pts: Vec2Like[], sep = " ") =>
  * therefore need to be complete, e.g. `{ rotate: "rotate(60)" }`
  *
  * For color related attribs (`fill`, `stroke`), if given value is
- * array-like, a number or an `IColor` instance, it will be converted
- * into a CSS color string using thi.ng/color's `asCSS()`.
+ * array-like, a number or an {@link @thi.ng/color#IColor} instance, it
+ * will be converted into a CSS color string using
+ * {@link @thi.ng/color#asCSS}.
  *
  * String color attribs prefixed with `$` are replaced with `url(#...)`
  * refs (used for referencing gradients).
@@ -39,7 +43,9 @@ export const fpoints = (pts: Vec2Like[], sep = " ") =>
  * Returns updated attribs or `undefined` if `attribs` itself is
  * null-ish.
  *
- * @param attribs
+ * @param attribs - attributes object
+ *
+ * @internal
  */
 export const fattribs = (attribs: any) => {
     if (!attribs) return;
@@ -53,9 +59,11 @@ export const fattribs = (attribs: any) => {
 /**
  * Converts any transformation related attribs.
  *
- * @see fattribs
+ * {@link fattribs}
  *
- * @param attribs
+ * @param attribs - attributes object
+ *
+ * @internal
  */
 const ftransforms = (attribs: any) => {
     let v: any;
@@ -106,9 +114,11 @@ const buildTransform = (attribs: any) => {
 /**
  * Attempts to convert a single color attrib value.
  *
- * @see fattribs
+ * {@link fattribs}
  *
- * @param col
+ * @param col - color value
+ *
+ * @internal
  */
 export const fcolor = (col: any) =>
     isString(col)
@@ -116,3 +126,11 @@ export const fcolor = (col: any) =>
             ? `url(#${col.substr(1)})`
             : col
         : resolveAsCSS(col);
+
+export const withoutKeys = (src: any, keys: Set<PropertyKey>) => {
+    const dest: any = {};
+    for (let k in src) {
+        src.hasOwnProperty(k) && !keys.has(k) && (dest[k] = src[<any>k]);
+    }
+    return dest;
+};

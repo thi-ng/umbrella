@@ -11,7 +11,7 @@ import { Mat } from "./api";
  * Computes outer/tensor product of vectors `u` and `v`. Returns square
  * matrix of same dimensions as vectors, e.g. 3x3 matrix for 3D vectors.
  *
- * https://en.wikipedia.org/wiki/Outer_product
+ * {@link https://en.wikipedia.org/wiki/Outer_product}
  */
 export const outerProduct: MultiVecOpVV = vop(1);
 

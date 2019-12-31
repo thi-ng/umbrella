@@ -8,7 +8,8 @@ import { $iter } from "../iterator";
  * true (default). Each emitted window is a shallow copy of the internal
  * accumulation buffer.
  *
- * ```
+ * @example
+ * ```ts
  * [...window(3, range(5))]
  * // [ [ 0 ], [ 0, 1 ], [ 0, 1, 2 ], [ 1, 2, 3 ], [ 2, 3, 4 ] ]
  *
@@ -16,9 +17,9 @@ import { $iter } from "../iterator";
  * // [ [ 0, 1, 2 ], [ 1, 2, 3 ], [ 2, 3, 4 ] ]
  * ```
  *
- * @param size
- * @param partial
- * @param src
+ * @param size -
+ * @param partial -
+ * @param src -
  */
 export function slidingWindow<T>(
     size: number,

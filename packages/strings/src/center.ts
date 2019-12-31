@@ -13,13 +13,14 @@ import { truncate } from "./truncate";
  *
  * Note: The padding string can contain multiple characters.
  *
- * ```
+ * @example
+ * ```ts
  * center(20, "<>")(wrap(" ")("thi.ng"))
  * // "<><><> thi.ng <><><>"
  * ```
  *
- * @param lineWidth target length
- * @param pad pad character(s)
+ * @param lineWidth - target length
+ * @param pad - pad character(s)
  */
 export const center: (
     lineWidth: number,

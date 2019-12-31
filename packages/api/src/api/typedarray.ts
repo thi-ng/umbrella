@@ -27,9 +27,9 @@ export type TypedArrayConstructor =
 /**
  * Type enums for Typedarray-backed buffers.
  *
- * @see GLType
- * @see GL2TYPE
- * @see TYPE2GL
+ * {@link GLType}
+ * {@link GL2TYPE}
+ * {@link TYPE2GL}
  */
 export const enum Type {
     U8,
@@ -50,11 +50,11 @@ export type IntType = Type.I8 | Type.I16 | Type.I32;
 export type FloatType = Type.F32 | Type.F64;
 
 /**
- * WebGL numeric type constants. Use `GL2TYPE` to convert, if needed.
+ * WebGL numeric type constants. Use {@link GL2TYPE} to convert, if needed.
  *
- * @see Type
- * @see GL2TYPE
- * @see TYPE2GL
+ * {@link Type}
+ * {@link GL2TYPE}
+ * {@link TYPE2GL}
  */
 export const enum GLType {
     I8 = 0x1400,
@@ -67,7 +67,7 @@ export const enum GLType {
 }
 
 /**
- * Conversion from `GLType` to `Type` enums.
+ * Conversion from {@link GLType} to {@link Type} enums.
  */
 export const GL2TYPE: Record<GLType, Type> = {
     [GLType.I8]: Type.I8,
@@ -80,7 +80,7 @@ export const GL2TYPE: Record<GLType, Type> = {
 };
 
 /**
- * Potentially lossy conversion from `Type` to `GLType` enums.
+ * Potentially lossy conversion from {@link Type} to {@link GLType} enums.
  *
  * Not all enums are mappable:
  *
@@ -101,7 +101,7 @@ export const TYPE2GL: Record<Type, GLType | undefined> = {
 };
 
 /**
- * Size information (in bytes) for `Type` enums. For `GLType`, use this
+ * Size information (in bytes) for {@link Type} enums. For {@link GLType}, use this
  * form, e.g. `SIZEOF[GL2TYPE[GLType.F32]]`
  */
 export const SIZEOF = {
@@ -155,10 +155,10 @@ export interface TypedArrayTypeMap extends Record<Type | GLType, TypedArray> {
 }
 
 /**
- * Constructs new typed array of given `Type`/`GLType`. Supports all
+ * Constructs new typed array of given {@link Type}/{@link GLType}. Supports all
  * arities of standard typed array ctors.
  *
- * @param type
+ * @param type - array type enum
  */
 // prettier-ignore
 export function typedArray<T extends Type | GLType>(type: T, length: number): TypedArrayTypeMap[T];
@@ -174,7 +174,7 @@ export function typedArray<T extends Type | GLType>(type: T, ...xs: any[]) {
  * Returns the smallest possible *unsigned* int type enum for given `x`.
  * E.g. if `x <= 256`, the function returns `Type.U8`.
  *
- * @param x
+ * @param x - value to classify
  */
 export const uintType = (x: number): UintType =>
     x <= 0x100 ? Type.U8 : x <= 0x10000 ? Type.U16 : Type.U32;
@@ -183,7 +183,7 @@ export const uintType = (x: number): UintType =>
  * Returns the smallest possible *signed* int type enum for given `x`.
  * E.g. if `x >= -128 && x < 128`, the function returns `Type.I8`.
  *
- * @param x
+ * @param x - value to classify
  */
 export const intType = (x: number): IntType =>
     x >= -0x80 && x < 0x80

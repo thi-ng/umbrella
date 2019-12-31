@@ -23,10 +23,11 @@ const __vals = (inst: ArraySet<any>) => __private.get(inst)!.vals;
  * An alternative set implementation to the native ES6 Set type. Uses
  * customizable equality/equivalence predicate and so is more useful
  * when dealing with structured data. Implements full API of native Set
- * and by the default uses `@thi.ng/equiv` for equivalence checking.
+ * and by the default uses {@link @thi.ng/equiv#equiv} for equivalence
+ * checking.
  *
- * Additionally, the type also implements the `ICopy`, `IEmpty` and
- * `IEquiv` interfaces itself.
+ * Additionally, the type also implements the {@link @thi.ng/api#ICopy}, {@link @thi.ng/api#IEmpty} and
+ * {@link @thi.ng/api#IEquiv} interfaces itself.
  */
 export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
     constructor(
@@ -92,8 +93,8 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
      * Returns the canonical value for `x`, if present. If the set
      * contains no equivalent for `x`, returns `notFound`.
      *
-     * @param key
-     * @param notFound
+     * @param key - search key
+     * @param notFound - default value
      */
     get(key: T, notFound?: T): T | undefined {
         const $this = __private.get(this)!;

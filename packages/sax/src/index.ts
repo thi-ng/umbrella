@@ -11,7 +11,7 @@ export interface ParseOpts {
      */
     entities: boolean;
     /**
-     * If `true`, include children tags in `ELEM_END` events. For very
+     * If `true`, include children tags in {@link ELEM_END} events. For very
      * large documents, this should be disabled to save (or even fit
      * into) memory.
      *
@@ -156,7 +156,7 @@ const ESCAPE_SEQS: IObjectOf<string> = {
  * Returns XML parser transducer, optionally configured with given
  * options. If `src` is also given, returns an iterator instead.
  *
- * @param opts
+ * @param opts -
  */
 export function parse(
     opts?: Partial<ParseOpts>
