@@ -186,6 +186,14 @@ Figlet-style bitmap font creation with transducers
 
 [Live demo](https://demo.thi.ng/umbrella/cellular-automata/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/cellular-automata)
 
+### commit-heatmap <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/commit-heatmap.png)
+
+Heatmap visualization of this mono-repo's commits
+
+[Live demo](https://demo.thi.ng/umbrella/commit-heatmap/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/commit-heatmap)
+
 ### commit-table-ssr <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/commit-table-ssr.png)
@@ -951,7 +959,7 @@ tx.transduce(tx.map((x) => x*10), tx.push(), tx.range(4))
 - [extendSides](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/extend-sides.ts)
 - [iterate](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/iterate.ts)
 - [keys](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/keys.ts)
-- [normRange](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/normRange.ts)
+- [normRange](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/norm-range.ts)
 - [padSides](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/pad-sides.ts)
 - [pairs](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/pairs.ts)
 - [permutations](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/permutations.ts)
@@ -962,6 +970,7 @@ tx.transduce(tx.map((x) => x*10), tx.push(), tx.range(4))
 - [repeat](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/repeat.ts)
 - [repeatedly](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/repeatedly.ts)
 - [reverse](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/reverse.ts)
+- [sortedKeys](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/sorted-keys.ts)
 - [symmetric](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/symmetric.ts)
 - [tween](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/tween.ts)
 - [vals](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/iter/vals.ts)
@@ -993,8 +1002,9 @@ and return a reduced result (as if it would be called via `reduce()`).
 - [minCompare](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/rfn/min-compare.ts)
 - [min](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/rfn/min.ts)
 - [mul](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/rfn/mul.ts)
-- [pushCopy](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/rfn/push-copy.ts)
 - [push](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/rfn/push.ts)
+- [pushCopy](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/rfn/push-copy.ts)
+- [pushSort](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/rfn/push-sort.ts)
 - [reductions](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/rfn/reductions.ts)
 - [some](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/rfn/some.ts)
 - [str](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/rfn/str.ts)

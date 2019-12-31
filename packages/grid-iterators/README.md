@@ -116,7 +116,7 @@ in
 
 ### Related packages
 
-- [@thi.ng/morton](https://github.com/thi-ng/umbrella/tree/master/packages/morton) - Z-order-curve / Morton encoding & decoding for 1D, 2D, 3D
+- [@thi.ng/morton](https://github.com/thi-ng/umbrella/tree/master/packages/morton) - Z-order curve / Morton encoding, decoding & range extraction for arbitrary dimensions
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers) - Lightweight transducer implementations for ES6 / TypeScript
 
 ## Installation

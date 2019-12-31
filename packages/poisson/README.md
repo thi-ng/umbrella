@@ -14,6 +14,7 @@ This project is part of the
   - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -55,6 +56,22 @@ yarn add @thi.ng/poisson
 - [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/master/packages/geom-api)
 - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### geom-voronoi-mst <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/geom-voronoi-mst.jpg)
+
+Poisson-disk shape-aware sampling, Voronoi & Minimum Spanning Tree visualization
+
+[Live demo](https://demo.thi.ng/umbrella/geom-voronoi-mst/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/geom-voronoi-mst)
 
 ## API
 

@@ -107,6 +107,14 @@ A selection:
 
 [Live demo](https://demo.thi.ng/umbrella/geom-knn/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/geom-knn)
 
+### geom-voronoi-mst <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/geom-voronoi-mst.jpg)
+
+Poisson-disk shape-aware sampling, Voronoi & Minimum Spanning Tree visualization
+
+[Live demo](https://demo.thi.ng/umbrella/geom-voronoi-mst/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/geom-voronoi-mst)
+
 ### hdom-canvas-clock <!-- NOTOC -->
 
 Realtime clock demo for @thi.ng/hdom-canvas

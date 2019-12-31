@@ -50,7 +50,9 @@ yarn add @thi.ng/geom-accel
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
 - [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/master/packages/arrays)
+- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
 - [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/master/packages/geom-api)
+- [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/master/packages/geom-isec)
 - [@thi.ng/heaps](https://github.com/thi-ng/umbrella/tree/master/packages/heaps)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
@@ -69,6 +71,14 @@ A selection:
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/geom-knn.jpg)
 
 [Live demo](https://demo.thi.ng/umbrella/geom-knn/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/geom-knn)
+
+### geom-voronoi-mst <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/geom-voronoi-mst.jpg)
+
+Poisson-disk shape-aware sampling, Voronoi & Minimum Spanning Tree visualization
+
+[Live demo](https://demo.thi.ng/umbrella/geom-voronoi-mst/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/geom-voronoi-mst)
 
 ## API
 

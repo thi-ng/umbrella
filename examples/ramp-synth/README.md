@@ -1,13 +1,13 @@
 # ramp-synth
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ramp-synth.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/ramp-synth.png)
 
 [Live demo](http://demo.thi.ng/umbrella/ramp-synth/)
 
 ## Usage
 
 Click and drag in the
-[ramp](https://github.com/thi-ng/umbrella/tree/develop/packages/ramp)
+[ramp](https://github.com/thi-ng/umbrella/tree/master/packages/ramp)
 visualization to add & move new markers. Drag markers below the
 visualization to move their position. Markers cannot be moved past their
 neighbors.
