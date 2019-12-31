@@ -87,11 +87,11 @@ contribute, please first read [this document](./CONTRIBUTING.md).
 
 ## Projects
 
+<!--
 ### New / unreleased packages in development
 
 (These packages are still unreleased and only available on their feature or `develop` branches)
-
-- [@thi.ng/ramp](https://github.com/thi-ng/umbrella/tree/develop/packages/ramp) - Parametric, interpolated lookup tables
+-->
 
 ### Fundamentals
 
@@ -159,6 +159,7 @@ contribute, please first read [this document](./CONTRIBUTING.md).
 | [`@thi.ng/heaps`](./packages/heaps)             | [![version](https://img.shields.io/npm/v/@thi.ng/heaps.svg)](https://www.npmjs.com/package/@thi.ng/heaps)             | [changelog](./packages/heaps/CHANGELOG.md)       | Binary & d-ary heap impls                |
 | [`@thi.ng/idgen`](./packages/idgen)             | [![version](https://img.shields.io/npm/v/@thi.ng/idgen.svg)](https://www.npmjs.com/package/@thi.ng/idgen)             | [changelog](./packages/idgen/CHANGELOG.md)       | Versioned ID generation / free-list      |
 | [`@thi.ng/intervals`](./packages/intervals)     | [![version](https://img.shields.io/npm/v/@thi.ng/intervals.svg)](https://www.npmjs.com/package/@thi.ng/intervals)     | [changelog](./packages/intervals/CHANGELOG.md)   | Open/closed intervals, queries, set ops  |
+| [`@thi.ng/ramp`](./packages/ramp)               | [![version](https://img.shields.io/npm/v/@thi.ng/ramp.svg)](https://www.npmjs.com/package/@thi.ng/ramp)               | [changelog](./packages/ramp/CHANGELOG.md)        | Parametric, interpolated lookup tables  |
 | [`@thi.ng/quad-edge`](./packages/quad-edge)     | [![version](https://img.shields.io/npm/v/@thi.ng/quad-edge.svg)](https://www.npmjs.com/package/@thi.ng/quad-edge)     | [changelog](./packages/quad-edge/CHANGELOG.md)   | Quad-edge, dual-graph data structure     |
 | [`@thi.ng/resolve-map`](./packages/resolve-map) | [![version](https://img.shields.io/npm/v/@thi.ng/resolve-map.svg)](https://www.npmjs.com/package/@thi.ng/resolve-map) | [changelog](./packages/resolve-map/CHANGELOG.md) | DAG computations & value resolution      |
 | [`@thi.ng/sparse`](./packages/sparse)           | [![version](https://img.shields.io/npm/v/@thi.ng/sparse.svg)](https://www.npmjs.com/package/@thi.ng/sparse)           | [changelog](./packages/sparse/CHANGELOG.md)      | Sparse matrix & vector impls             |
