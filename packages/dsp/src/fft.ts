@@ -4,6 +4,78 @@ import { ComplexArray } from "./api";
 
 const PI = Math.PI;
 
+export const complexArray = (n: number): ComplexArray => [
+    new Float64Array(n),
+    new Float64Array(n)
+];
+
+/**
+ * If given a {@link ComplexArray}, computes the complex conjugate,
+ * concatenates it in mirrored order to input (excluding bin 0) and
+ * returns it a new (complex) array.
+ *
+ * If given a {@link @thi.ng/api#NumericArray}, the `isImg` arg chooses
+ * from one of the following operations: If `true` (default), returns
+ * new array with negated values concatenated in reverse order. If
+ * `false`, returns new array with original values concatenated in
+ * reverse order.
+ *
+ * @example
+ * ```ts
+ * conjugate([0, 3, 2, 1], true)
+ * // Float64Array [ 0, 3, 2, 1, -1, -2, -3, -0 ]
+ *
+ * conjugate([0, 3, 2, 1], false)
+ * // Float64Array [ 0, 3, 2, 1, 1, 2, 3, 0 ]
+ *
+ * conjugate([[0, 1, 0, 1], [0, -0.5, 0, -0.25]])
+ * [
+ *   Float64Array [ 0, 1, 0, 1, 1, 0, 1, 0 ],
+ *   Float64Array [ 0, -0.5, 0, -0.25, 0.25, -0, 0.5, -0 ]
+ * ]
+ * ```
+ *
+ * @example
+ * ```ts
+ * // generate 1Hz sine
+ * ifft(conjugate([0, 8, 0, 0, 0, 0, 0, 0]))[0]
+ * // [
+ * //   0, 0.383, 0.707, 0.924,
+ * //   1, 0.924, 0.707, 0.383,
+ * //   0, -0.384, -0.707, -0.924,
+ * //   -1, -0.924, -0.707, -0.383
+ * // ]
+ * ```
+ *
+ * @param src
+ * @param isImg
+ */
+export function conjugate(src: NumericArray, isImg?: boolean): NumericArray;
+export function conjugate(complex: ComplexArray): ComplexArray;
+export function conjugate(src: NumericArray | ComplexArray, isImg = true): any {
+    if (isNumber(src[0])) {
+        const n = src.length;
+        const dest = new Float64Array(n * 2);
+        dest.set(<NumericArray>src);
+        for (let i = 1, j = n * 2 - 1; i < n; i++, j--) {
+            dest[j] = isImg ? -(<NumericArray>src)[i] : (<NumericArray>src)[i];
+        }
+        return dest;
+    } else {
+        const n = src[0].length;
+        const res = complexArray(n * 2);
+        const [sreal, simg] = <ComplexArray>src;
+        const [dreal, dimg] = res;
+        (<Float64Array>dreal).set(sreal);
+        (<Float64Array>dimg).set(simg);
+        for (let i = 1, j = n * 2 - 1; i < n; i++, j--) {
+            dreal[j] = sreal[i];
+            dimg[j] = -simg[i];
+        }
+        return res;
+    }
+}
+
 const swapR = (real: NumericArray, n: number) => {
     const n2 = n >> 1;
     let ii: number;
@@ -103,8 +175,7 @@ const transform = (real: NumericArray, img: NumericArray, n: number) => {
  * - https://betterexplained.com/articles/an-interactive-guide-to-the-fourier-transform/
  * - http://toxi.co.uk/p5/fftDebug/fft4amit.pde
  *
- * @param real
- * @param img
+ * @param complex
  * @param window
  */
 export const fft = (
@@ -145,10 +216,12 @@ export const fft = (
  *
  * - https://www.dsprelated.com/showarticle/800.php (method #3)
  *
- * @param real
- * @param img
+ * @param complex
  */
-export const ifft = (complex: ComplexArray): ComplexArray => {
+export const ifft = (src: NumericArray | ComplexArray): ComplexArray => {
+    let complex: ComplexArray = isNumber(src[0])
+        ? [new Float64Array(src.length), <NumericArray>src]
+        : <ComplexArray>src;
     fft([complex[1], complex[0]]);
     return scaleFFT(complex, 1 / complex[0].length);
 };
@@ -172,6 +245,14 @@ export const normalizeFFT = (complex: ComplexArray): ComplexArray =>
 export const denormalizeFFT = (complex: ComplexArray): ComplexArray =>
     scaleFFT(complex, Math.sqrt(complex[0].length));
 
+/**
+ * Computes magnitude spectrum for given FFT. By default only the first
+ * N/2 values are returned.
+ *
+ * @param complex - FFT result
+ * @param n - bin count
+ * @param out - result array
+ */
 export const spectrumMag = (
     complex: ComplexArray,
     n = complex[0].length / 2,
@@ -185,38 +266,46 @@ export const spectrumMag = (
 };
 
 /**
- * Computes power spectrum for the given FFT result arrays (length = N)
- * and writes result to `out`.
+ * Computes power spectrum (optionally as dBFS) for the given raw,
+ * unnormalized FFT result arrays (length = N) and writes result to
+ * `out`.
  *
  * @remarks
- * By default only the first N/2 values are returned.
+ * By default only the first N/2 values are returned. If `db` is true,
+ * the spectrum values are converted to dBFS.
  *
- * Also by default, the FFT inputs are expected to be normalized (e.g.
- * via {@link normalizeFFT}) and spectrum values converted to dB.
+ * - https://www.kvraudio.com/forum/viewtopic.php?t=276092
  *
- * @param real
- * @param img
- * @param normalized
+ * @param complex
  * @param db
  * @param n
  * @param out
  */
 export const spectrumPow = (
     complex: ComplexArray,
-    normalized = true,
-    db = true,
+    db = false,
     n = complex[0].length / 2,
     out: NumericArray = []
 ) => {
     const [real, img] = complex;
-    const scale = normalized ? 1 : 1 / real.length;
+    const scale = (db ? 2 : 1) / real.length;
     for (let i = 0; i < n; i++) {
-        const p = (real[i] ** 2 + img[i] ** 2) * scale;
-        out[i] = db ? 20 * (Math.log(p) / Math.LN10) : p;
+        const p = real[i] ** 2 + img[i] ** 2;
+        out[i] = db
+            ? 20 * (Math.log(Math.sqrt(p) * scale) / Math.LN10)
+            : p * scale;
     }
     return out;
 };
 
+/**
+ * Computes phase spectrum for given FFT and writes results to `out`. By
+ * default only the first N/2 values are returned.
+ *
+ * @param complex - FFT result
+ * @param n - bin count
+ * @param out - result array
+ */
 export const spectrumPhase = (
     complex: ComplexArray,
     n = complex[0].length / 2,
@@ -227,4 +316,40 @@ export const spectrumPhase = (
         out[i] = Math.atan2(img[i], real[i]);
     }
     return out;
+};
+
+/**
+ * Returns FFT bin index for given frequency, sample rate and window
+ * size. See {@link binFreq} for reverse op.
+ *
+ * @param f - frequency
+ * @param fs - sample rate
+ * @param n - window size
+ */
+export const freqBin = (f: number, fs: number, n: number) => (f * n) / fs;
+
+/**
+ * Returns frequency for given FFT bin index, sample rate and window
+ * size. See {@link freqBin} for reverse op.
+ *
+ * @param bin - bin
+ * @param fs - sample rate
+ * @param n - window size
+ */
+export const binFreq = (bin: number, fs: number, n: number) => (bin * fs) / n;
+
+/**
+ * Returns array of bin center frequencies for given FFT window size and
+ * sample rate. By default only the first N/2 values are returned.
+ *
+ * @param n
+ * @param fs
+ * @param m
+ */
+export const fftFreq = (n: number, fs: number, m = n / 2) => {
+    const res = new Float64Array(m);
+    for (let i = 0; i < m; i++) {
+        res[i] = binFreq(i, fs, n);
+    }
+    return res;
 };

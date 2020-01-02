@@ -58,25 +58,15 @@ describe("fft", () => {
             ])
         );
 
-        assert.ok(
-            deltaEq(spectrumPow(res, false, false), [0, 3.414, 0, 0.586])
-        );
+        assert.ok(deltaEq(spectrumPow(res, false), [0, 3.414, 0, 0.586]));
 
         assert.ok(
-            deltaEq(spectrumPow(res, false, true), [
+            deltaEq(spectrumPow(res, true), [
                 -Infinity,
-                10.666,
+                2.323,
                 -Infinity,
-                -4.645
+                -5.333
             ])
-        );
-
-        assert.ok(
-            deltaEq(spectrumPow(norm, true, false), [0, 3.414, 0, 0.586])
-        );
-
-        assert.ok(
-            deltaEq(spectrumPow(norm), [-Infinity, 10.666, -Infinity, -4.645])
         );
 
         assert.ok(deltaEq(spectrumPhase(res), [0, 1.963, 0, 2.749]));
