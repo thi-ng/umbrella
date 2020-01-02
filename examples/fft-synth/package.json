@@ -22,6 +22,7 @@
         "@thi.ng/hdom-canvas": "latest",
         "@thi.ng/imgui": "latest",
         "@thi.ng/math": "latest",
+        "@thi.ng/random": "latest",
         "@thi.ng/rstream": "latest",
         "@thi.ng/rstream-gestures": "latest",
         "@thi.ng/strings": "latest",
@@ -38,7 +39,8 @@
         "readme": [
             "dsp",
             "imgui",
-            "hdom-canvas"
+            "hdom-canvas",
+            "random"
         ],
         "screenshot": "examples/fft-synth.png"
     }
