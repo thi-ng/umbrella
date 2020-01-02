@@ -5,11 +5,15 @@ import {
     buttonH,
     DEFAULT_THEME,
     gridLayout,
+    GridLayout,
     IMGUI,
+    sliderH,
     sliderVGroup,
-    textLabel
+    textLabel,
+    toggle
 } from "@thi.ng/imgui";
 import { fit, fitClamped } from "@thi.ng/math";
+import { weightedRandom } from "@thi.ng/random";
 import {
     fromAtom,
     fromDOMEvent,
@@ -41,7 +45,20 @@ const PRESETS: any[] = [
     () => [...mapcat((i) => [0, 1 / i], range(1, NUM_BINS + 1, 2))]
 ];
 
+const weights = [
+    ...map(
+        (x) => 2 * (Math.exp((-1 / NUM_BINS) * Math.LN2 * x) - 0.5),
+        range(NUM_BINS)
+    )
+];
+
+const rnd = weightedRandom([...range(0, NUM_BINS)], weights);
+
 const DB = new Atom({
+    auto: <any>null,
+    gain: 0.5,
+    decay: 0.99,
+    interval: 10,
     bins: [...repeat(0, NUM_BINS)],
     wave: new Float64Array(NUM_BINS * 2),
     size: [window.innerWidth, window.innerHeight]
@@ -78,7 +95,8 @@ export const stopAudio = () => {
 };
 
 export const updateAudio = () => {
-    const wave = ifft(conjugate(DB.value.bins.map((i) => i * BIN_AMP)))[0];
+    const gain = BIN_AMP * DB.value.gain;
+    const wave = ifft(conjugate(DB.value.bins.map((i) => i * gain)))[0];
     DB.resetIn("wave", wave);
 
     if (!actx) return;
@@ -86,6 +104,11 @@ export const updateAudio = () => {
     for (let i = 0, j = 0; i < wave.length; i++, j += PITCH_SCALE) {
         left.fill(wave[i], j, j + PITCH_SCALE);
     }
+};
+
+const setGain = (gain: number) => {
+    DB.resetIn("gain", gain);
+    updateAudio();
 };
 
 const clearSpectrum = () => {
@@ -103,8 +126,32 @@ const updateSpectrum = (bin: number, amp: number) => {
     updateAudio();
 };
 
+const startAutoMode = () => {
+    let i = 0;
+    DB.resetIn(
+        "auto",
+        setInterval(() => {
+            const { decay, interval } = DB.value;
+            DB.swapIn("bins", (buf: number[]) => buf.map((x) => x * decay));
+            i % interval === 0 && updateSpectrum(rnd(), Math.random());
+            updateAudio();
+            i++;
+        }, 16)
+    );
+};
+
+const stopAutoMode = () => {
+    clearInterval(DB.value.auto);
+    DB.resetIn("auto", null);
+};
+
+const toggleAutoMode = () =>
+    DB.value.auto == null ? startAutoMode() : stopAutoMode();
+
 const app = () => {
-    const gui = new IMGUI({ theme: { ...DEFAULT_THEME, globalBg: "#ccc" } });
+    const gui = new IMGUI({
+        theme: { ...DEFAULT_THEME, globalBg: "#ccc", font: "10px Inconsolata" }
+    });
 
     const _canvas = {
         ...canvas,
@@ -135,6 +182,8 @@ const app = () => {
         const state = DB.deref();
         const width = state.size[0] - 20;
         const grid = gridLayout(10, 10, width, 1, 16, 4);
+        let inner: GridLayout;
+        let res: any;
 
         gui.begin(draw);
 
@@ -144,7 +193,27 @@ const app = () => {
         }
 
         grid.next();
-        const inner = grid.nest(4);
+        inner = grid.nest(4);
+        // prettier-ignore
+        res = sliderH(gui, inner, "gain", 0, 1, 0.001, 0.5, "Gain", FMT);
+        res !== undefined && setGain(res);
+
+        toggle(gui, inner, "autoMode", !!state.auto, false, "Auto mode") !==
+            undefined && toggleAutoMode();
+
+        !state.auto && gui.beginDisabled(true);
+
+        // prettier-ignore
+        res=sliderH(gui, inner, "decay", 0.5, 0.999, 0.001, state.decay, "Decay", FMT);
+        res !== undefined && DB.resetIn("decay", res);
+
+        // prettier-ignore
+        res=sliderH(gui, inner, "delay", 1, 50, 1, state.interval, "Interval", FMT);
+        res !== undefined && DB.resetIn("interval", res);
+
+        !state.auto && gui.endDisabled();
+
+        inner = grid.nest(4);
         buttonH(gui, inner, "clear", "Clear") && clearSpectrum();
         buttonH(gui, inner, "presetSin", "Sine") && setSpectrumPreset(0);
         buttonH(gui, inner, "presetSaw", "Saw") && setSpectrumPreset(1);
@@ -152,10 +221,8 @@ const app = () => {
 
         textLabel(gui, grid, "Frequency bins");
         // prettier-ignore
-        let res = sliderVGroup(gui, grid, "bins", 0, 1, 0.001, state.bins.slice(0, Math.min(width/16, NUM_BINS)), 8, [], FMT);
-        if (res) {
-            updateSpectrum(res[0], res[1]);
-        }
+        res = sliderVGroup(gui, grid, "bins", 0, 1, 0.001, state.bins.slice(0, Math.min(width/16, NUM_BINS)), 8, [], FMT);
+        res && updateSpectrum(res[0], res[1]);
 
         textLabel(gui, grid, "Waveform");
         gui.end();
@@ -163,7 +230,7 @@ const app = () => {
 
     return () => {
         const width = window.innerWidth;
-        const height = 480;
+        const height = 500;
         const iwidth = width - 20;
 
         updateGUI(false);
@@ -186,7 +253,7 @@ const app = () => {
                     ...mapIndexed(
                         (i, y) => [
                             fit(i, 0, WINDOW_LEN, 10, iwidth),
-                            fitClamped(y, -1, 1, 470, 270)
+                            fitClamped(y, -1, 1, 490, 290)
                         ],
                         DB.value.wave
                     )
