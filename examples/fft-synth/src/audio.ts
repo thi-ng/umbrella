@@ -31,10 +31,14 @@ export const stopAudio = () => {
 };
 
 export const updateAudio = () => {
-    let { bins, gain, feedback } = DB.value;
-    const pbins = [0, ...delay.read().slice(0, NUM_BINS - 1)];
+    let { auto, bins, gain, feedback } = DB.value;
     gain *= BIN_AMP;
-    bins = bins.map((x, i) => x * gain + pbins[i] * feedback);
+    if (auto != null) {
+        const pbins = [0, ...delay.read().slice(0, NUM_BINS - 1)];
+        bins = bins.map((x, i) => x * gain + pbins[i] * feedback);
+    } else {
+        bins = bins.map((x) => x * gain);
+    }
     delay.write(bins);
     const wave = ifft(conjugate(bins))[0];
     DB.resetIn("wave", wave);
