@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const fs = require("fs");
-const execSync = require('child_process').execSync;
+const execSync = require("child_process").execSync;
 const dg = require("@thi.ng/dgraph");
 const tx = require("@thi.ng/transducers");
 
@@ -11,8 +11,12 @@ const ecol = "#aaaaaa";
 const xform = tx.comp(
     tx.map((f) => baseDir + f),
     tx.filter((f) => f.indexOf(".DS_Store") < 0 && fs.statSync(f).isDirectory),
-    tx.map((f) => { try { return fs.readFileSync(f + "/package.json"); } catch (_) { } }),
-    tx.filter(f => f !== undefined),
+    tx.map((f) => {
+        try {
+            return fs.readFileSync(f + "/package.json");
+        } catch (_) {}
+    }),
+    tx.filter((f) => f !== undefined),
     tx.map((p) => {
         p = JSON.parse(p.toString());
         return {
@@ -20,17 +24,26 @@ const xform = tx.comp(
             v: p.version,
             deps: p.dependencies ? Object.keys(p.dependencies) : []
         };
-    }));
+    })
+);
 
 const packages = tx.transduce(xform, tx.push(), fs.readdirSync(baseDir));
 const formatted = tx.transduce(
-    tx.map((m) => `"${m.id}"[color="${col}",label="${m.id}\\n${m.v}"];\n` +
-        m.deps.map((d) => `"${m.id}" -> "${d}"[color="${ecol}"];`).join("\n")),
+    tx.map(
+        (m) =>
+            `"${m.id}"[color="${col}",label="${m.id}\\n${m.v}"];\n` +
+            m.deps
+                .map((d) => `"${m.id}" -> "${d}"[color="${ecol}"];`)
+                .join("\n")
+    ),
     tx.str("\n"),
     packages
 );
 const leaves = tx.transduce(
-    tx.comp(tx.filter((p) => !p.deps.length), tx.map((p) => `"${p.id}";`)),
+    tx.comp(
+        tx.filter((p) => !p.deps.length),
+        tx.map((p) => `"${p.id}";`)
+    ),
     tx.str(" "),
     packages
 );
@@ -49,10 +62,10 @@ execSync("dot -Tpng -o assets/deps.png assets/deps.dot");
 
 const g = new dg.DGraph();
 tx.run(
-    tx.mapcat((p) => tx.tuples(tx.repeat(p.id), p.deps)),
+    tx.mapcat((p) => tx.zip(tx.repeat(p.id), p.deps)),
     ([p, d]) => g.addDependency(p, d),
-    packages);
-
+    packages
+);
 
 const sorted = g.sort();
 console.log("topo order:", sorted.map((x) => x.substr(8)).join(" "), "\n\n");
