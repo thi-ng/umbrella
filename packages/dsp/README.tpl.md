@@ -44,32 +44,69 @@ ${examples}
 
 ${docLink}
 
-```ts
-import * as dsp from "@thi.ng/dsp";
-import { take } from "@thi.ng/transducers";
+### Oscillators
 
-[...take(20, new dsp.Oscillator(dsp.mix(dsp.sin, dsp.rect), 1/20)]
-// [ 0.5,
-//   0.6545084971874737,
-//   0.7938926261462366,
-//   0.9045084971874737,
-//   0.9755282581475768,
-//   1,
-//   0.9755282581475768,
-//   0.9045084971874737,
-//   0.7938926261462367,
-//   0.654508497187474,
-//   0.5000000000000003,
-//   -0.6545084971874735,
-//   -0.7938926261462365,
-//   -0.9045084971874737,
-//   -0.9755282581475768,
-//   -1,
-//   -0.9755282581475766,
-//   -0.9045084971874735,
-//   -0.793892626146236,
-//   -0.6545084971874731 ]
-```
+[Source](https://github.com/thi-ng/umbrella/blob/master/packages/dsp/src/osc.ts)
+
+Stateless & not band-limited:
+
+- sin()
+- tri()
+- triConcave()
+- rect()
+- saw()
+- wavetable()
+- mix()
+- additive() (bandlimited)
+- squareAdditive()
+- sawAdditive()
+
+Stateful:
+
+- Oscillator
+- AMFMOscillator
+
+### LFO
+
+Trigonometry free sin/cos oscillator / iterator based on a state-variable filter. Only useable for freq < ~2Hz.
+
+- lfo()
+
+### DelayLine
+
+Ringbuffer / delay line for arbitrary values and support for tapping at any relative position.
+
+- DelayLine
+
+### FFT
+
+- fft()
+- ifft()
+- normalizeFFT()
+- denormalizeFFT()
+- scaleFFT()
+- conjugate()
+- spectrumMag()
+- spectrumPow() (optionally as dBFS)
+- spectrumPhase()
+- binFreq()
+- freqBin()
+- fftFreq()
+
+### Window functions
+
+- window()
+- windowRect()
+- windowSin()
+- windowSinPow()
+- windowLanczos()
+- windowHann()
+- windowHamming()
+- windowBlackman()
+- windowBlackmanHarris()
+- windowNuttal()
+- windowBlackmanNuttal()
+- windowGauss()
 
 ## Authors
 

@@ -101,6 +101,14 @@ directory are using this package.
 
 A selection:
 
+### fft-synth <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/fft-synth.png)
+
+Interactive inverse FFT toy synth
+
+[Live demo](https://demo.thi.ng/umbrella/fft-synth/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/fft-synth)
+
 ### geom-knn <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/geom-knn.jpg)
@@ -684,4 +692,4 @@ package for creating different kinds of transformation matrices, e.g.
 
 ## License
 
-&copy; 2018 - 2019 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2020 Karsten Schmidt // Apache Software License 2.0
