@@ -28,11 +28,9 @@ This project is part of the
 Assorted oscillators / wave gens, FFT, windowing functions & DSP utils.
 
 Partially ported from other thi.ng projects (e.g.
-[thi.ng/synstack](https://github.com/thi-ng/synstack)). Currently only
-features various [stateless & stateful wave generators /
-oscillators](https://github.com/thi-ng/umbrella/tree/master/packages/dsp/src/osc.ts),
-which have been ported from
-[thi.ng/vexed-generation](http://thi.ng/vexed-generation).
+[thi.ng/synstack](https://github.com/thi-ng/synstack),
+[thi.ng/vexed-generation](http://thi.ng/vexed-generation),
+[toxiclibs](http://toxiclibs.org)).
 
 ### Status
 
@@ -80,69 +78,85 @@ Interactive inverse FFT toy synth
 
 [Generated API docs](https://docs.thi.ng/umbrella/dsp/)
 
+See comments in source and examples (especially FFT synth one) for usage details.
+
 ### Oscillators
 
 [Source](https://github.com/thi-ng/umbrella/blob/master/packages/dsp/src/osc.ts)
 
-Stateless & not band-limited:
+Stateless & band-unlimited:
 
-- sin()
-- tri()
-- triConcave()
-- rect()
-- saw()
-- wavetable()
-- mix()
-- additive() (bandlimited)
-- squareAdditive()
-- sawAdditive()
+- `sin()`
+- `tri()`
+- `triConcave()`
+- `rect()`
+- `saw()`
+- `wavetable()` (HOF)
+- `mix()` (HOF)
 
-Stateful:
+Band-limited:
 
-- Oscillator
-- AMFMOscillator
+- `additive()` (HOF)
+- `squareAdditive()`
+- `sawAdditive()`
+
+Stateful (classes):
+
+- `Oscillator`
+- `AMFMOscillator`
 
 ### LFO
 
-Trigonometry free sin/cos oscillator / iterator based on a state-variable filter. Only useable for freq < ~2Hz.
+[Source](https://github.com/thi-ng/umbrella/blob/master/packages/dsp/src/lfo.ts)
 
-- lfo()
+Trigonometry free sin/cos oscillator / iterator based on a
+state-variable filter. Only useable for freq < ~2Hz.
+
+- `lfo()`
 
 ### DelayLine
 
-Ringbuffer / delay line for arbitrary values and support for tapping at any relative position.
+[Source](https://github.com/thi-ng/umbrella/blob/master/packages/dsp/src/delay.ts)
 
-- DelayLine
+Ringbuffer / delay line for arbitrary values and support for tapping at
+any relative position.
+
+- `DelayLine` class
 
 ### FFT
 
-- fft()
-- ifft()
-- normalizeFFT()
-- denormalizeFFT()
-- scaleFFT()
-- conjugate()
-- spectrumMag()
-- spectrumPow() (optionally as dBFS)
-- spectrumPhase()
-- binFreq()
-- freqBin()
-- fftFreq()
+[Source](https://github.com/thi-ng/umbrella/blob/master/packages/dsp/src/fft.ts)
+
+- `fft()`
+- `ifft()`
+- `normalizeFFT()`
+- `denormalizeFFT()`
+- `scaleFFT()`
+- `complexArray()`
+- `conjugate()`
+- `spectrumMag()`
+- `spectrumPow()` (optionally as dBFS)
+- `spectrumPhase()`
+- `binFreq()`
+- `freqBin()`
+- `fftFreq()`
 
 ### Window functions
 
-- window()
-- windowRect()
-- windowSin()
-- windowSinPow()
-- windowLanczos()
-- windowHann()
-- windowHamming()
-- windowBlackman()
-- windowBlackmanHarris()
-- windowNuttal()
-- windowBlackmanNuttal()
-- windowGauss()
+[Source](https://github.com/thi-ng/umbrella/blob/master/packages/dsp/src/window.ts)
+
+- `window()`
+- `windowRect()`
+- `windowSin()`
+- `windowSinPow()`
+- `windowLanczos()`
+- `windowHann()`
+- `windowHamming()`
+- `windowBlackman()`
+- `windowBlackmanHarris()`
+- `windowNuttal()`
+- `windowBlackmanNuttal()`
+- `windowGauss()`
 
 ## Authors
 
