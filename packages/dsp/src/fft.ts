@@ -326,7 +326,7 @@ export const spectrumPhase = (
  * @param fs - sample rate
  * @param n - window size
  */
-export const freqBin = (f: number, fs: number, n: number) => (f * n) / fs;
+export const freqBin = (f: number, fs: number, n: number) => ((f * n) / fs) | 0;
 
 /**
  * Returns frequency for given FFT bin index, sample rate and window

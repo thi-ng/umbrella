@@ -1,3 +1,6 @@
+import { Fn0 } from "@thi.ng/api";
+import { isFunction } from "@thi.ng/checks";
+
 /**
  * Ring buffer / delay line for arbitrary values w/ support for tapping
  * at any delay time (within configured buffer size).
@@ -7,10 +10,26 @@ export class DelayLine<T> {
     readPos: number;
     writePos: number;
 
-    constructor(n: number, empty: T) {
-        this.buf = new Array(n).fill(empty);
+    /**
+     * Constructs new delay line of size `n` and initializes all
+     * elements to `empty`. If the latter is a function, the buffer will
+     * be initialized with the results of that function (called for each
+     * element).
+     *
+     * @param n
+     * @param empty
+     */
+    constructor(n: number, empty: T | Fn0<T>) {
         this.writePos = n - 1;
         this.readPos = 0;
+        this.buf = new Array(n);
+        if (isFunction(empty)) {
+            for (let i = 0; i < n; i++) {
+                this.buf[i] = empty();
+            }
+        } else {
+            this.buf.fill(empty);
+        }
     }
 
     /**
@@ -45,6 +64,10 @@ export class DelayLine<T> {
         this.buf[this.writePos] = x;
     }
 
+    /**
+     * Moves read & write cursors one step forward. Useful for skipping
+     * elements and/or to create gaps in the delay line.
+     */
     step() {
         const n = this.buf.length;
         ++this.writePos >= n && (this.writePos -= n);
