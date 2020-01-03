@@ -7,8 +7,9 @@
 Basic inverse FFT synth with randomized auto sequencer to trigger
 frequency bins and delay line with pitch shift.
 
-The "sequencer" uses a weighted random function to prioritize lower
-frequency bins. You can change the weighting function in
+The "sequencer" (click the "Auto mode" button to enable) uses a weighted
+random function to prioritize lower frequency bins. You can change the
+weighting function in
 [automode.ts](https://github.com/thi-ng/umbrella/blob/master/examples/fft-synth/src/automode.ts).The
 delay line doesn't store samples, but entire spectrums. Delay period is
 currently hard coded to 80 frames (see
@@ -26,8 +27,9 @@ Some explanations for various parameters / controls:
 
 Videos (with audio):
 
-- https://twitter.com/thing_umbrella/status/1212529111077412865
+- https://twitter.com/thing_umbrella/status/1212822862970654720
 - https://twitter.com/thing_umbrella/status/1212595113324625920
+- https://twitter.com/thing_umbrella/status/1212529111077412865
 
 If you come up with interesting combinations, please send a screenshot
 and I might add some presets.
