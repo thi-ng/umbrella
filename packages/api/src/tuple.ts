@@ -16,3 +16,10 @@ export type Tail<T extends unknown[]> = ((...a: T) => void) extends (
 ) => void
     ? R
     : never;
+
+/**
+ * Add an element at the start of an tuple.
+ */
+export type Prepend<T, U extends unknown[]> = Parameters<
+    (v: T, ...args: U) => void
+>;
