@@ -48,3 +48,12 @@ type ReverseReducer<T extends unknown[], C extends unknown[] = []> = {
  * Reverses the order of elements from a tuple.
  */
 export type Reverse<T extends unknown[]> = ReverseReducer<T>;
+
+/**
+ * Extracts the last element from a tuple.
+ */
+export type Last<T extends unknown[]> = {
+    // We need to use this trick to get around typescripts recursive type limit.
+    0: Head<T>;
+    1: Last<Tail<T>>;
+}[Tail<T> extends [] ? 0 : 1];
