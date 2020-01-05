@@ -313,3 +313,31 @@ export type Replace8<
     H extends Keys7<T, A, B, C, D, E, F, G>,
     V
 > = Without<T, A> & { [id in A]: Replace7<Val1<T, A>, B, C, D, E, F, G, H, V> };
+
+/**
+ * Internal reducer used as a building block for ReduceN.
+ *
+ * @internal
+ *
+ * @param T The structure to remove keys from.
+ * @param C The current key.
+ * @param R The remaining keys.
+ * @param V The type to use for the replacement.
+ */
+type ReplaceNReducer<T, C, R extends unknown[], V> = C extends keyof T
+    ? {
+          0: Replace<T, C, V>;
+          1: Without<T, C> &
+              Record<C, ReplaceNReducer<T[C], Head<R>, Tail<R>, V>>;
+      }[R extends [] ? 0 : 1]
+    : never;
+
+/**
+ * Generalised version of Replace0-Replace8.
+ */
+export type ReplaceN<T, P extends unknown[], V> = ReplaceNReducer<
+    T,
+    Head<P>,
+    Tail<P>,
+    V
+>;
