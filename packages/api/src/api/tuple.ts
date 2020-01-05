@@ -57,3 +57,16 @@ export type Last<T extends unknown[]> = {
     0: Head<T>;
     1: Last<Tail<T>>;
 }[Tail<T> extends [] ? 0 : 1];
+
+/**
+ * Internal version of Init accepting 1 extra argument for the accumulated value.
+ */
+type InitReducer<T extends unknown[], C extends unknown[] = []> = {
+    0: Reverse<C>;
+    1: InitReducer<Tail<T>, Prepend<Head<T>, C>>;
+}[Tail<T> extends [] ? 0 : 1];
+
+/**
+ * Extracts everything except the last element from a tuple.
+ */
+export type Init<T extends unknown[]> = InitReducer<T>;
