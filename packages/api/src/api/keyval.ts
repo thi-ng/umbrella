@@ -1,3 +1,5 @@
+import { Head, Tail } from "./tuple";
+
 /*
  * Utilities for extracting key types of nested objects.
  */
@@ -55,6 +57,29 @@ export type Keys8<
     G extends Keys6<T, A, B, C, D, E, F>,
     H extends Keys7<T, A, B, C, D, E, F, G>
 > = Keys7<T[A], B, C, D, E, F, G, H>;
+
+/**
+ * Internal type used as a reducer for the KeyN type.
+ *
+ * @internal
+ *
+ * @param T - structure to validate the key against.
+ * @param L - Current value.
+ * @param R - Remaining values.
+ */
+type KeysNReducer<T, L, R extends unknown[]> = L extends keyof T
+    ? {
+          0: keyof T[L];
+          1: KeysNReducer<T[L], Head<R>, Tail<R>>;
+      }[R extends [] ? 0 : 1]
+    : never;
+
+/**
+ * Generalised version of Keys0 - Keys7.
+ */
+export type KeysN<T, L extends unknown[]> = L extends []
+    ? Keys<T>
+    : KeysNReducer<T, Head<L>, Tail<L>>;
 
 /*
  * Utilities for extracting value types from nested objects.
