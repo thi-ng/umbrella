@@ -6,3 +6,13 @@ export type Head<T extends unknown[]> = T extends Parameters<
 >
     ? R
     : never;
+
+/**
+ * Extracts everything except the first element from a tuple.
+ */
+export type Tail<T extends unknown[]> = ((...a: T) => void) extends (
+    v: any,
+    ...args: infer R
+) => void
+    ? R
+    : never;
