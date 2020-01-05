@@ -223,6 +223,31 @@ export type Without8<
 > = Without<T, A> & { [id in A]: Without7<Val1<T, A>, B, C, D, E, F, G, H> };
 
 /**
+ * Internal reducer used as a building block for WithoutN.
+ *
+ * @internal
+ *
+ * @param T The structure to remove keys from.
+ * @param C The current key.
+ * @param R The remaining keys.
+ */
+type WithoutNReducer<T, C, R extends unknown[]> = C extends keyof T
+    ? {
+          0: Without<T, C>;
+          1: Without<T, C> & Record<C, WithoutNReducer<T[C], Head<R>, Tail<R>>>;
+      }[R extends [] ? 0 : 1]
+    : never;
+
+/**
+ * Generalised version of Without0-Without8.
+ */
+export type WithoutN<T, P extends unknown[]> = WithoutNReducer<
+    T,
+    Head<P>,
+    Tail<P>
+>;
+
+/**
  * Utilities for replacing types of nested keys.
  */
 export type Replace<T, A extends Keys<T>, V> = Without<T, A> & { [id in A]: V };
