@@ -139,6 +139,29 @@ export type Val8<
 > = Val7<T, A, B, C, D, E, F, G>[H];
 
 /**
+ * Internal reducer for ValN.
+ *
+ * @internal
+ *
+ * @param T The structure to get the values from.
+ * @param C The current key.
+ * @param R The remaining keys
+ */
+type ValNReducer<T, C, R extends unknown[]> = C extends keyof T
+    ? {
+          0: T[C];
+          1: ValNReducer<T[C], Head<R>, Tail<R>>;
+      }[R extends [] ? 0 : 1]
+    : never;
+
+/**
+ * Generalised version of Val1-Val7
+ */
+export type ValN<T, L extends unknown[]> = L extends []
+    ? T
+    : ValNReducer<T, Head<L>, Tail<L>>;
+
+/**
  * Utilities for constructing types with nested keys removed.
  */
 export type Without<T, A extends Keys<T>> = Omit<T, A>;
