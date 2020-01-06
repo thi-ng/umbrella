@@ -59,14 +59,14 @@ export type Last<T extends unknown[]> = {
 }[Tail<T> extends [] ? 0 : 1];
 
 /**
- * Internal version of Init accepting 1 extra argument for the accumulated value.
+ * Internal version of ButLast accepting 1 extra argument for the accumulated value.
  */
-type InitReducer<T extends unknown[], C extends unknown[] = []> = {
+type ButLastReducer<T extends unknown[], C extends unknown[] = []> = {
     0: Reverse<C>;
-    1: InitReducer<Tail<T>, Prepend<Head<T>, C>>;
+    1: ButLastReducer<Tail<T>, Prepend<Head<T>, C>>;
 }[Tail<T> extends [] ? 0 : 1];
 
 /**
  * Extracts everything except the last element from a tuple.
  */
-export type Init<T extends unknown[]> = InitReducer<T>;
+export type ButLast<T extends unknown[]> = ButLastReducer<T>;
