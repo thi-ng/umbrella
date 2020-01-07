@@ -53,4 +53,4 @@ Karsten Schmidt
 
 ## License
 
-&copy; 2013 - 2019 Karsten Schmidt // Apache Software License 2.0
+&copy; 2013 - 2020 Karsten Schmidt // Apache Software License 2.0

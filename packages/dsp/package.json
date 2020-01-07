@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/dsp",
     "version": "1.0.18",
-    "description": "Assorted oscillators / waveform generators & DSP utils",
+    "description": "Assorted oscillators / wave gens, FFT, windowing functions & DSP utils",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -39,6 +39,7 @@
     },
     "dependencies": {
         "@thi.ng/api": "^6.6.0",
+        "@thi.ng/checks": "^2.4.2",
         "@thi.ng/math": "^1.5.1"
     },
     "keywords": [

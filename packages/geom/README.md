@@ -108,6 +108,14 @@ A selection:
 
 [Live demo](https://demo.thi.ng/umbrella/geom-tessel/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/geom-tessel)
 
+### geom-voronoi-mst <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/geom-voronoi-mst.jpg)
+
+Poisson-disk shape-aware sampling, Voronoi & Minimum Spanning Tree visualization
+
+[Live demo](https://demo.thi.ng/umbrella/geom-voronoi-mst/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/geom-voronoi-mst)
+
 ### gesture-analysis <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/gesture-analysis.png)
@@ -166,4 +174,4 @@ Karsten Schmidt
 
 ## License
 
-&copy; 2013 - 2019 Karsten Schmidt // Apache Software License 2.0
+&copy; 2013 - 2020 Karsten Schmidt // Apache Software License 2.0

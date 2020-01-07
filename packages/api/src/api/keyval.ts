@@ -1,3 +1,5 @@
+import { Head, Tail } from "./tuple";
+
 /*
  * Utilities for extracting key types of nested objects.
  */
@@ -56,6 +58,29 @@ export type Keys8<
     H extends Keys7<T, A, B, C, D, E, F, G>
 > = Keys7<T[A], B, C, D, E, F, G, H>;
 
+/**
+ * Internal type used as a reducer for the KeyN type.
+ *
+ * @internal
+ *
+ * @param T - structure to validate the key against.
+ * @param L - Current value.
+ * @param R - Remaining values.
+ */
+type KeysNReducer<T, L, R extends unknown[]> = L extends keyof T
+    ? {
+          0: keyof T[L];
+          1: KeysNReducer<T[L], Head<R>, Tail<R>>;
+      }[R extends [] ? 0 : 1]
+    : never;
+
+/**
+ * Generalised version of Keys0 - Keys7.
+ */
+export type KeysN<T, L extends unknown[]> = L extends []
+    ? Keys<T>
+    : KeysNReducer<T, Head<L>, Tail<L>>;
+
 /*
  * Utilities for extracting value types from nested objects.
  */
@@ -112,6 +137,29 @@ export type Val8<
     G extends Keys6<T, A, B, C, D, E, F>,
     H extends Keys7<T, A, B, C, D, E, F, G>
 > = Val7<T, A, B, C, D, E, F, G>[H];
+
+/**
+ * Internal reducer for ValN.
+ *
+ * @internal
+ *
+ * @param T The structure to get the values from.
+ * @param C The current key.
+ * @param R The remaining keys
+ */
+type ValNReducer<T, C, R extends unknown[]> = C extends keyof T
+    ? {
+          0: T[C];
+          1: ValNReducer<T[C], Head<R>, Tail<R>>;
+      }[R extends [] ? 0 : 1]
+    : never;
+
+/**
+ * Generalised version of Val1-Val7
+ */
+export type ValN<T, L extends unknown[]> = L extends []
+    ? T
+    : ValNReducer<T, Head<L>, Tail<L>>;
 
 /**
  * Utilities for constructing types with nested keys removed.
@@ -173,6 +221,31 @@ export type Without8<
     G extends Keys6<T, A, B, C, D, E, F>,
     H extends Keys7<T, A, B, C, D, E, F, G>
 > = Without<T, A> & { [id in A]: Without7<Val1<T, A>, B, C, D, E, F, G, H> };
+
+/**
+ * Internal reducer used as a building block for WithoutN.
+ *
+ * @internal
+ *
+ * @param T The structure to remove keys from.
+ * @param C The current key.
+ * @param R The remaining keys.
+ */
+type WithoutNReducer<T, C, R extends unknown[]> = C extends keyof T
+    ? {
+          0: Without<T, C>;
+          1: Without<T, C> & Record<C, WithoutNReducer<T[C], Head<R>, Tail<R>>>;
+      }[R extends [] ? 0 : 1]
+    : never;
+
+/**
+ * Generalised version of Without0-Without8.
+ */
+export type WithoutN<T, P extends unknown[]> = WithoutNReducer<
+    T,
+    Head<P>,
+    Tail<P>
+>;
 
 /**
  * Utilities for replacing types of nested keys.
@@ -240,3 +313,31 @@ export type Replace8<
     H extends Keys7<T, A, B, C, D, E, F, G>,
     V
 > = Without<T, A> & { [id in A]: Replace7<Val1<T, A>, B, C, D, E, F, G, H, V> };
+
+/**
+ * Internal reducer used as a building block for ReduceN.
+ *
+ * @internal
+ *
+ * @param T The structure to remove keys from.
+ * @param C The current key.
+ * @param R The remaining keys.
+ * @param V The type to use for the replacement.
+ */
+type ReplaceNReducer<T, C, R extends unknown[], V> = C extends keyof T
+    ? {
+          0: Replace<T, C, V>;
+          1: Without<T, C> &
+              Record<C, ReplaceNReducer<T[C], Head<R>, Tail<R>, V>>;
+      }[R extends [] ? 0 : 1]
+    : never;
+
+/**
+ * Generalised version of Replace0-Replace8.
+ */
+export type ReplaceN<T, P extends unknown[], V> = ReplaceNReducer<
+    T,
+    Head<P>,
+    Tail<P>,
+    V
+>;

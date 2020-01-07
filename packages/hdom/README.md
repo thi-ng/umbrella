@@ -1322,4 +1322,4 @@ Some stress test benchmarks are here:
 
 ## License
 
-&copy; 2015 - 2019 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2020 Karsten Schmidt // Apache Software License 2.0

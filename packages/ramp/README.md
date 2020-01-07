@@ -34,28 +34,28 @@ yarn add @thi.ng/ramp
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
-- [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/develop/packages/compare)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/master/packages/arrays)
+- [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/master/packages/compare)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
 ## Usage examples
 
 Several demos in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
 directory are using this package.
 
 A selection:
 
 ### ramp-synth <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ramp-synth.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/ramp-synth.png)
 
 Unison wavetable synth with waveform editor
 
-[Live demo](https://demo.thi.ng/umbrella/ramp-synth/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ramp-synth)
+[Live demo](https://demo.thi.ng/umbrella/ramp-synth/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/ramp-synth)
 
 ## API
 
@@ -64,22 +64,28 @@ Unison wavetable synth with waveform editor
 ```ts
 import { linear, hermite } from "@thi.ng/ramp";
 
-const ramp = linear([[0.1, 0], [0.5, 1], [0.9, 0]]);
+const rampL = linear([[0.1, 0], [0.5, 1], [0.9, 0]]);
+const rampH = hermite([[0.1, 0], [0.5, 1], [0.9, 0]]);
 
 for(let i = 0; i <= 10; i++) {
-    console.log(i / 10, ramp.at(i / 10));
+    console.log(
+        i / 10,
+        rampL.at(i / 10).toFixed(2),
+        rampH.at(i / 10).toFixed(2)
+    );
 }
-// 0 0
-// 0.1 0
-// 0.2 0.25
-// 0.3 0.49999999999999994
-// 0.4 0.7500000000000001
-// 0.5 1
-// 0.6 0.75
-// 0.7 0.5000000000000001
-// 0.8 0.2499999999999999
-// 0.9 0
-// 1 0
+
+// 0   0.00 0.00
+// 0.1 0.00 0.00
+// 0.2 0.25 0.16
+// 0.3 0.50 0.50
+// 0.4 0.75 0.84
+// 0.5 1.00 1.00
+// 0.6 0.75 0.84
+// 0.7 0.50 0.50
+// 0.8 0.25 0.16
+// 0.9 0.00 0.00
+// 1   0.00 0.00
 ```
 
 ## Authors
@@ -88,4 +94,4 @@ Karsten Schmidt
 
 ## License
 
-&copy; 2019 Karsten Schmidt // Apache Software License 2.0
+&copy; 2019 - 2020 Karsten Schmidt // Apache Software License 2.0

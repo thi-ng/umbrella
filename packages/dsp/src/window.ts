@@ -1,11 +1,10 @@
 import { FloatArray } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
+import { PI, TAU } from "@thi.ng/math";
 import { WindowFn } from "./api";
 
 // https://en.wikipedia.org/wiki/Window_function
 
-const PI = Math.PI;
-const PI2 = 2 * PI;
 const PI4 = 4 * PI;
 const PI6 = 6 * PI;
 const sin = Math.sin;
@@ -42,7 +41,7 @@ export const windowLanczos: WindowFn = (i, n) => {
 
 const windowCosSum = (k: number): WindowFn => {
     let ik = 1 - k;
-    return (i, n) => k - ik * cos((PI2 * i) / n);
+    return (i, n) => k - ik * cos((TAU * i) / n);
 };
 
 const windowCosSum3 = (k1: number, k2: number, k3: number): WindowFn => (
@@ -50,7 +49,7 @@ const windowCosSum3 = (k1: number, k2: number, k3: number): WindowFn => (
     n
 ) => {
     i /= n;
-    return k1 + k2 * cos(PI2 * i) + k3 * cos(PI4 * i);
+    return k1 + k2 * cos(TAU * i) + k3 * cos(PI4 * i);
 };
 
 const windowCosSum4 = (
@@ -60,7 +59,7 @@ const windowCosSum4 = (
     k4: number
 ): WindowFn => (i, n) => {
     i /= n;
-    return k1 + k2 * cos(PI2 * i) + k3 * cos(PI4 * i) + k4 * cos(PI6 * i);
+    return k1 + k2 * cos(TAU * i) + k3 * cos(PI4 * i) + k4 * cos(PI6 * i);
 };
 
 export const windowHann = windowCosSum(0.5);

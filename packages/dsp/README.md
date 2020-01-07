@@ -15,19 +15,22 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [API](#api)
+  - [Oscillators](#oscillators)
+  - [LFO](#lfo)
+  - [DelayLine](#delayline)
+  - [FFT](#fft)
+  - [Window functions](#window-functions)
 - [Authors](#authors)
 - [License](#license)
 
 ## About
 
-Assorted oscillators / waveform generators & DSP utils.
+Assorted oscillators / wave gens, FFT, windowing functions & DSP utils.
 
 Partially ported from other thi.ng projects (e.g.
-[thi.ng/synstack](https://github.com/thi-ng/synstack)). Currently only
-features various [stateless & stateful wave generators /
-oscillators](https://github.com/thi-ng/umbrella/tree/master/packages/dsp/src/osc.ts),
-which have been ported from
-[thi.ng/vexed-generation](http://thi.ng/vexed-generation).
+[thi.ng/synstack](https://github.com/thi-ng/synstack),
+[thi.ng/vexed-generation](http://thi.ng/vexed-generation),
+[toxiclibs](http://toxiclibs.org)).
 
 ### Status
 
@@ -42,6 +45,7 @@ yarn add @thi.ng/dsp
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
 
 ## Usage examples
@@ -51,6 +55,14 @@ Several demos in this repo's
 directory are using this package.
 
 A selection:
+
+### fft-synth <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/fft-synth.png)
+
+Interactive inverse FFT toy synth
+
+[Live demo](https://demo.thi.ng/umbrella/fft-synth/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/fft-synth)
 
 ### poly-spline <!-- NOTOC -->
 
@@ -66,32 +78,85 @@ A selection:
 
 [Generated API docs](https://docs.thi.ng/umbrella/dsp/)
 
-```ts
-import * as dsp from "@thi.ng/dsp";
-import { take } from "@thi.ng/transducers";
+See comments in source and examples (especially FFT synth one) for usage details.
 
-[...take(20, new dsp.Oscillator(dsp.mix(dsp.sin, dsp.rect), 1/20)]
-// [ 0.5,
-//   0.6545084971874737,
-//   0.7938926261462366,
-//   0.9045084971874737,
-//   0.9755282581475768,
-//   1,
-//   0.9755282581475768,
-//   0.9045084971874737,
-//   0.7938926261462367,
-//   0.654508497187474,
-//   0.5000000000000003,
-//   -0.6545084971874735,
-//   -0.7938926261462365,
-//   -0.9045084971874737,
-//   -0.9755282581475768,
-//   -1,
-//   -0.9755282581475766,
-//   -0.9045084971874735,
-//   -0.793892626146236,
-//   -0.6545084971874731 ]
-```
+### Oscillators
+
+[Source](https://github.com/thi-ng/umbrella/blob/master/packages/dsp/src/osc.ts)
+
+Stateless & band-unlimited:
+
+- `sin()`
+- `tri()`
+- `triConcave()`
+- `rect()`
+- `saw()`
+- `wavetable()` (HOF)
+- `mix()` (HOF)
+
+Band-limited:
+
+- `additive()` (HOF)
+- `squareAdditive()`
+- `sawAdditive()`
+
+Stateful (classes):
+
+- `Oscillator`
+- `AMFMOscillator`
+
+### LFO
+
+[Source](https://github.com/thi-ng/umbrella/blob/master/packages/dsp/src/lfo.ts)
+
+Trigonometry free sin/cos oscillator / iterator based on a
+state-variable filter. Only useable for freq < ~2Hz.
+
+- `lfo()`
+
+### DelayLine
+
+[Source](https://github.com/thi-ng/umbrella/blob/master/packages/dsp/src/delay.ts)
+
+Ringbuffer / delay line for arbitrary values and support for tapping at
+any relative position.
+
+- `DelayLine` class
+
+### FFT
+
+[Source](https://github.com/thi-ng/umbrella/blob/master/packages/dsp/src/fft.ts)
+
+- `fft()`
+- `ifft()`
+- `normalizeFFT()`
+- `denormalizeFFT()`
+- `scaleFFT()`
+- `complexArray()`
+- `conjugate()`
+- `spectrumMag()`
+- `spectrumPow()` (optionally as dBFS)
+- `spectrumPhase()`
+- `binFreq()`
+- `freqBin()`
+- `fftFreq()`
+
+### Window functions
+
+[Source](https://github.com/thi-ng/umbrella/blob/master/packages/dsp/src/window.ts)
+
+- `window()`
+- `windowRect()`
+- `windowSin()`
+- `windowSinPow()`
+- `windowLanczos()`
+- `windowHann()`
+- `windowHamming()`
+- `windowBlackman()`
+- `windowBlackmanHarris()`
+- `windowNuttal()`
+- `windowBlackmanNuttal()`
+- `windowGauss()`
 
 ## Authors
 
@@ -99,4 +164,4 @@ Karsten Schmidt
 
 ## License
 
-&copy; 2015 - 2019 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2020 Karsten Schmidt // Apache Software License 2.0

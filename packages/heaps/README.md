@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-Generic binary heap & d-ary heap implementations with customizable ordering.
+Various heap implementations for arbitrary values and with customizable ordering.
 
 Type agnostic binary heap & d-ary heap implementations with customizable
 ordering and fanout / tree arity (in case of `DHeap`). Both `Heap` and
@@ -78,4 +78,4 @@ Karsten Schmidt
 
 ## License
 
-&copy; 2017 - 2019 Karsten Schmidt // Apache Software License 2.0
+&copy; 2017 - 2020 Karsten Schmidt // Apache Software License 2.0

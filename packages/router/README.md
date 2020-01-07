@@ -168,4 +168,4 @@ Karsten Schmidt
 
 ## License
 
-&copy; 2014 - 2019 Karsten Schmidt // Apache Software License 2.0
+&copy; 2014 - 2020 Karsten Schmidt // Apache Software License 2.0

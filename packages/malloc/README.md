@@ -318,4 +318,4 @@ allocating tiny arrays is slightly slower than the vanilla version... YMMV!
 
 ## License
 
-&copy; 2016 - 2019 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2020 Karsten Schmidt // Apache Software License 2.0

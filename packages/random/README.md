@@ -57,6 +57,14 @@ directory are using this package.
 
 A selection:
 
+### fft-synth <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/fft-synth.png)
+
+Interactive inverse FFT toy synth
+
+[Live demo](https://demo.thi.ng/umbrella/fft-synth/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/fft-synth)
+
 ### shader-ast-evo <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/shader-ast-evo.jpg)
@@ -103,4 +111,4 @@ Karsten Schmidt
 
 ## License
 
-&copy; 2016 - 2019 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2020 Karsten Schmidt // Apache Software License 2.0
