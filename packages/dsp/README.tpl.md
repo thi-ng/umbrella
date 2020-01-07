@@ -50,13 +50,13 @@ See comments in source and examples (especially FFT synth one) for usage details
 
 Stateless & band-unlimited:
 
-- `sin()`
-- `tri()`
-- `triConcave()`
+- `comb()`
+- `mix()` (HOF)
 - `rect()`
 - `saw()`
+- `sin()`
+- `tri()`
 - `wavetable()` (HOF)
-- `mix()` (HOF)
 
 Band-limited:
 

@@ -1,6 +1,7 @@
 import { NumericArray } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
 import { ComplexArray } from "./api";
+import { magToDB } from "./util/convert";
 
 const PI = Math.PI;
 
@@ -288,12 +289,10 @@ export const spectrumPow = (
     out: NumericArray = []
 ) => {
     const [real, img] = complex;
-    const scale = (db ? 2 : 1) / real.length;
+    const scale = 1 / real.length;
     for (let i = 0; i < n; i++) {
         const p = real[i] ** 2 + img[i] ** 2;
-        out[i] = db
-            ? 20 * (Math.log(Math.sqrt(p) * scale) / Math.LN10)
-            : p * scale;
+        out[i] = db ? magToDB(Math.sqrt(p) * scale) : p * scale;
     }
     return out;
 };

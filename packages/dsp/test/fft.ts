@@ -63,9 +63,9 @@ describe("fft", () => {
         assert.ok(
             deltaEq(spectrumPow(res, true), [
                 -Infinity,
-                2.323,
+                -3.698,
                 -Infinity,
-                -5.333
+                -11.354
             ])
         );
 
