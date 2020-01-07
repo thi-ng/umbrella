@@ -15,7 +15,7 @@ export const trunc = (x: number) => (x < 0 ? Math.ceil(x) : Math.floor(x));
 export const roundTo = (x: number, prec = 1) => Math.round(x / prec) * prec;
 
 /**
- * Only rounds `x` to nearest int if `fract(x)` < `eps` or > `1-eps`.
+ * Only rounds `x` to nearest int if `fract(x)` <= `eps` or >= `1-eps`.
  *
  * @param x -
  * @param eps -

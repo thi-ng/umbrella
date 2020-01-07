@@ -12,11 +12,50 @@ export const clamp01 = (x: number) => (x < 0 ? 0 : x > 1 ? 1 : x);
 
 export const clamp11 = (x: number) => (x < -1 ? -1 : x > 1 ? 1 : x);
 
-export const wrap = (x: number, min: number, max: number) =>
+/**
+ * Folds `x` back inside [min..max] interval. Also see {@link wrapOnce}.
+ *
+ * @param x -
+ * @param min -
+ * @param max -
+ */
+export const wrap = (x: number, min: number, max: number) => {
+    if (min === max) return min;
+    if (x > max) {
+        const d = max - min;
+        x -= d;
+        if (x > max) x -= d * (((x - min) / d) | 0);
+    } else if (x < min) {
+        const d = max - min;
+        x += d;
+        if (x < min) x += d * (((min - x) / d + 1) | 0);
+    }
+    return x;
+};
+
+/**
+ * Like {@link wrap}, but optimized for cases where `x` is guaranteed to
+ * be in `[min - d, max + d]` interval, where `d = max - min`.
+ *
+ * @param x -
+ * @param min -
+ * @param max -
+ */
+export const wrapOnce = (x: number, min: number, max: number) =>
     x < min ? x - min + max : x >= max ? x - max + min : x;
 
+/**
+ * Similar to {@link wrapOnce} for [0..1] interval.
+ *
+ * @param x -
+ */
 export const wrap01 = (x: number) => (x < 0 ? x + 1 : x >= 1 ? x - 1 : x);
 
+/**
+ * Similar to {@link wrapOnce} for [-1..1] interval.
+ *
+ * @param x -
+ */
 export const wrap11 = (x: number) => (x < -1 ? x + 2 : x >= 1 ? x - 2 : x);
 
 export const min2id = (a: number, b: number) => (a <= b ? 0 : 1);
