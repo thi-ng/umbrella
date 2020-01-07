@@ -254,3 +254,15 @@ export const sigmoid = (k: number, t: number) =>
  * @param t -
  */
 export const sigmoid11 = (k: number, t: number) => 1 / (1 + Math.exp(-k * t));
+
+/**
+ * Computes exponential factor to interpolate from `a` to `b` over
+ * `num` steps. I.e. multiplying `a` with the returned factor will yield
+ * `b` after `num` steps. All args must be > 0.
+ *
+ * @param a
+ * @param b
+ * @param num
+ */
+export const expFactor = (a: number, b: number, num: number) =>
+    (b / a) ** (1 / num);
