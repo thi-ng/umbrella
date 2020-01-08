@@ -1,4 +1,5 @@
 import { IID, Nullable } from "@thi.ng/api";
+import { clamp } from "@thi.ng/math";
 import { fromDOMEvent, merge, StreamMerge } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 
@@ -17,8 +18,8 @@ export const enum GestureType {
 
 export interface GestureInfo {
     pos: number[];
-    click: number[];
-    delta: number[];
+    click?: number[];
+    delta?: number[];
     zoom: number;
     zoomDelta: number;
     buttons: number;
@@ -30,14 +31,6 @@ export interface GestureEvent {
 }
 
 type UIEvent = MouseEvent | TouchEvent | WheelEvent;
-
-/**
- * Internal inerface used to strongly type a mouse event or a touch position.
- */
-interface IClienPos {
-    clientX: number;
-    clientY: number;
-}
 
 export interface GestureStreamOpts extends IID<string> {
     /**
@@ -104,12 +97,19 @@ const events = <const>[
     "wheel"
 ];
 
+const touchEventMap: Record<string, GestureType> = {
+    touchstart: GestureType.START,
+    touchmove: GestureType.DRAG,
+    touchend: GestureType.END,
+    touchcancel: GestureType.END
+};
+
 /**
  * Attaches mouse & touch event listeners to given DOM element and
  * returns a stream of custom "gesture" events in the form of tuples:
  *
  * ```
- * [type, {pos, click?, delta?, zoom}]
+ * [type, {pos, click?, delta?, zoom, zoomDelta?, buttons}]
  * ```
  *
  * The `click` and `delta` values are only present if `type ==
@@ -154,42 +154,31 @@ export const gestureStream = (
         ..._opts
     };
 
-    let zoom = Math.min(Math.max(opts.zoom, opts.minZoom), opts.maxZoom);
+    let zoom = clamp(opts.zoom, opts.minZoom, opts.maxZoom);
     const dpr = window.devicePixelRatio || 1;
 
     return merge<UIEvent, GestureEvent>({
         id: opts.id,
         src: events.map((e) => fromDOMEvent(el, e, opts.eventOpts)),
         xform: map((e) => {
-            let evt: IClienPos;
+            let evt: Touch | MouseEvent;
             let type: GestureType;
             let buttons: number;
             opts.preventDefault && e.preventDefault();
             if ((<TouchEvent>e).touches) {
-                type = (<Record<string, GestureType>>{
-                    touchstart: GestureType.START,
-                    touchmove: GestureType.DRAG,
-                    touchend: GestureType.END,
-                    touchcancel: GestureType.END
-                })[e.type];
                 evt = (<TouchEvent>e).changedTouches[0];
                 buttons = ~~(e.type == "touchstart" || e.type != "touchmove");
+                type = touchEventMap[e.type];
             } else {
-                buttons = (<MouseEvent>e).buttons;
-
-                // if no buton is pressed
-                if (buttons === 0) {
-                    isDown = false;
-                }
-
+                evt = <MouseEvent>e;
+                buttons = evt.buttons;
+                isDown = buttons > 0;
                 type = (<Record<string, GestureType>>{
                     mousedown: GestureType.START,
                     mousemove: isDown ? GestureType.DRAG : GestureType.MOVE,
                     mouseup: GestureType.END,
                     wheel: GestureType.ZOOM
                 })[e.type];
-
-                evt = e as MouseEvent;
             }
             const pos = [evt.clientX | 0, evt.clientY | 0];
             if (opts.local) {
@@ -216,12 +205,13 @@ export const gestureStream = (
                     body.delta = [pos[0] - clickPos![0], pos[1] - clickPos![1]];
                     break;
                 case GestureType.ZOOM:
-                    const zdelta = (<WheelEvent>e).deltaY * opts.smooth;
+                    const zdelta =
+                        opts.smooth *
+                        ("wheelDeltaY" in (e as any)
+                            ? -(e as any).wheelDeltaY / 120
+                            : (<WheelEvent>e).deltaY / 40);
                     body.zoom = zoom = opts.absZoom
-                        ? Math.min(
-                              Math.max(zoom + zdelta, opts.minZoom),
-                              opts.maxZoom
-                          )
+                        ? clamp(zoom + zdelta, opts.minZoom, opts.maxZoom)
                         : zdelta;
                     body.zoomDelta = zdelta;
                     break;

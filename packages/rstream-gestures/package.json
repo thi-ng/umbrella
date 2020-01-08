@@ -39,6 +39,7 @@
     },
     "dependencies": {
         "@thi.ng/api": "^6.6.0",
+        "@thi.ng/math": "^1.5.1",
         "@thi.ng/rstream": "^3.0.0",
         "@thi.ng/transducers": "^6.1.0"
     },
