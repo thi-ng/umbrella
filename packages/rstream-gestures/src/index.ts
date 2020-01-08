@@ -1,4 +1,4 @@
-import { IID } from "@thi.ng/api";
+import { IID, Nullable } from "@thi.ng/api";
 import { fromDOMEvent, merge, StreamMerge } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 
@@ -30,6 +30,14 @@ export interface GestureEvent {
 }
 
 type UIEvent = MouseEvent | TouchEvent | WheelEvent;
+
+/**
+ * Internal inerface used to strongly type a mouse event or a touch position.
+ */
+interface IClienPos {
+    clientX: number;
+    clientY: number;
+}
 
 export interface GestureStreamOpts extends IID<string> {
     /**
@@ -82,6 +90,21 @@ export interface GestureStreamOpts extends IID<string> {
 }
 
 /**
+ * By using "<const>" we make typescript constain the type of this
+ * from string[] to an tuple containing exactly those values
+ */
+const events = <const>[
+    "mousedown",
+    "mousemove",
+    "mouseup",
+    "touchstart",
+    "touchmove",
+    "touchend",
+    "touchcancel",
+    "wheel"
+];
+
+/**
  * Attaches mouse & touch event listeners to given DOM element and
  * returns a stream of custom "gesture" events in the form of tuples:
  *
@@ -115,7 +138,7 @@ export const gestureStream = (
     _opts?: Partial<GestureStreamOpts>
 ): StreamMerge<any, GestureEvent> => {
     let isDown = false;
-    let clickPos: number[] | null = null;
+    let clickPos: Nullable<number[]> = null;
 
     const opts = <GestureStreamOpts>{
         id: "gestures",
@@ -136,23 +159,14 @@ export const gestureStream = (
 
     return merge<UIEvent, GestureEvent>({
         id: opts.id,
-        src: [
-            "mousedown",
-            "mousemove",
-            "mouseup",
-            "touchstart",
-            "touchmove",
-            "touchend",
-            "touchcancel",
-            "wheel"
-        ].map((e) => fromDOMEvent(el, <any>e, opts.eventOpts)),
+        src: events.map((e) => fromDOMEvent(el, e, opts.eventOpts)),
         xform: map((e) => {
-            let evt: { clientX: number; clientY: number };
-            let type: any;
+            let evt: IClienPos;
+            let type: GestureType;
             let buttons: number;
             opts.preventDefault && e.preventDefault();
             if ((<TouchEvent>e).touches) {
-                type = (<any>{
+                type = (<Record<string, GestureType>>{
                     touchstart: GestureType.START,
                     touchmove: GestureType.DRAG,
                     touchend: GestureType.END,
@@ -161,14 +175,21 @@ export const gestureStream = (
                 evt = (<TouchEvent>e).changedTouches[0];
                 buttons = ~~(e.type == "touchstart" || e.type != "touchmove");
             } else {
-                type = (<any>{
+                buttons = (<MouseEvent>e).buttons;
+
+                // if no buton is pressed
+                if (buttons === 0) {
+                    isDown = false;
+                }
+
+                type = (<Record<string, GestureType>>{
                     mousedown: GestureType.START,
                     mousemove: isDown ? GestureType.DRAG : GestureType.MOVE,
                     mouseup: GestureType.END,
                     wheel: GestureType.ZOOM
                 })[e.type];
-                evt = <any>e;
-                buttons = (<MouseEvent>e).buttons;
+
+                evt = e as MouseEvent;
             }
             const pos = [evt.clientX | 0, evt.clientY | 0];
             if (opts.local) {
