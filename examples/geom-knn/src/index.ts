@@ -17,7 +17,7 @@ const app = (main: StreamSync<any, any>) => {
     const _canvas = {
         ...canvas,
         init: (el: HTMLCanvasElement) =>
-            main.add(gestureStream(el).transform(map((g) => g[1].pos)), "mpos")
+            main.add(gestureStream(el).transform(map((g) => g.pos)), "mpos")
     };
     // initialize 1st point & store in tree for fast KNN searches
     const width = window.innerWidth;

@@ -120,13 +120,13 @@ const isCorner = (thresh: number) => ([a, b, c]: Vec[]) =>
 const collectPath = () => {
     let pts: Vec[] = [];
     return (g: GestureEvent) => {
-        const pos = g[1].pos;
-        switch (g[0]) {
+        console.log(g);
+        switch (g.type) {
             case GestureType.START:
-                pts = [pos];
+                pts = [g.pos];
                 break;
             case GestureType.DRAG:
-                pts.push(pos);
+                pts.push(g.pos);
                 break;
         }
         return pts;
@@ -144,7 +144,9 @@ const gesture = merge<any, any>({
         // mouse & touch event stream attached to document.body
         // we're filtering out move & zoom events to avoid extraneous work
         gestureStream(document.body).transform(
-            filter((g) => g[0] != GestureType.MOVE && g[0] != GestureType.ZOOM),
+            filter(
+                (g) => g.type != GestureType.MOVE && g.type != GestureType.ZOOM
+            ),
             map(collectPath())
         )
     ]
