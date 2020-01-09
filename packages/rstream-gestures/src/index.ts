@@ -1,6 +1,6 @@
-import { IID, Nullable } from "@thi.ng/api";
+import { IID, IObjectOf } from "@thi.ng/api";
 import { clamp } from "@thi.ng/math";
-import { fromDOMEvent, merge, StreamMerge } from "@thi.ng/rstream";
+import { fromDOMEvent, merge, Stream } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 
 export const enum GestureType {
@@ -11,26 +11,68 @@ export const enum GestureType {
     ZOOM
 }
 
-/**
- * Reverse lookup for {@link GestureType} enums
- */
-// export const __GestureType = (<any>exports).GestureType;
-
 export interface GestureInfo {
+    /**
+     * Touch/cursor ID. For mouse cursors this always is zero.
+     */
+    id: number;
+    /**
+     * Current cursor position (as per {@link GestureStreamOpts.local} &
+     * {@link GestureStreamOpts.scale})
+     */
     pos: number[];
-    click?: number[];
+    /**
+     * Optional current force/pressure details. Only available for touch
+     * gestures.
+     */
+    force?: number;
+    /**
+     * Initial start position of this cursor.
+     */
+    start?: number[];
+    /**
+     * Difference vector between from `start` to `pos`. Only available
+     * during dragging.
+     */
     delta?: number[];
-    zoom: number;
-    zoomDelta: number;
-    buttons: number;
 }
 
 export interface GestureEvent {
-    [0]: GestureType;
-    [1]: GestureInfo;
+    /**
+     * Current translated/abstracted event type.
+     */
+    type: GestureType;
+    /**
+     * Original DOM event.
+     */
+    event: UIEvent;
+    /**
+     * Event position (as per {@link GestureStreamOpts.local} &
+     * {@link GestureStreamOpts.scale})
+     */
+    pos: number[];
+    /**
+     * Active cursors (i.e. ongoing drag / touch gestures)
+     */
+    active: GestureInfo[];
+    /**
+     * Mouse button bitmask (same as in standard `MouseEvent`), or, if
+     * `isTouch` is true, number of `active` touches.
+     */
+    buttons: number;
+    /**
+     * Current zoom factor (as per {@link GestureStreamOpts} config)
+     */
+    zoom: number;
+    /**
+     * Last `WheelEvent`'s transformed `deltaY`, `wheelDeltaY`
+     */
+    zoomDelta: number;
+    /**
+     * True, if original event was a `TouchEvent`.
+     */
+    isTouch: boolean;
 }
-
-type UIEvent = MouseEvent | TouchEvent | WheelEvent;
 
 export interface GestureStreamOpts extends IID<string> {
     /**
@@ -43,6 +85,20 @@ export interface GestureStreamOpts extends IID<string> {
      * Default: true
      */
     preventDefault: boolean;
+    /**
+     * If true (default), wheel events on the element will prevent the
+     * document from scrolling. If false, the wheel event will use the
+     * eventOpts.passive argument (default: true) which should be true
+     * in most cases for performance reasons:
+     * https://www.chromestatus.com/feature/5745543795965952
+     */
+    preventScrollOnZoom: boolean;
+    /**
+     * If true (default), attaches dummy event handler disabling context
+     * menu for the target element and thus allow using right mouse
+     * button to be used normally.
+     */
+    preventContextMenu: boolean;
     /**
      * Initial zoom value. Default: 1
      */
@@ -82,26 +138,45 @@ export interface GestureStreamOpts extends IID<string> {
     scale: boolean;
 }
 
-/**
- * By using "<const>" we make typescript constain the type of this
- * from string[] to an tuple containing exactly those values
- */
-const events = <const>[
+type UIEvent = MouseEvent | TouchEvent | WheelEvent;
+
+type UIEventID =
+    | "mousedown"
+    | "mousemove"
+    | "mouseup"
+    | "touchstart"
+    | "touchmove"
+    | "touchend"
+    | "touchcancel"
+    | "wheel";
+
+const startEvents = new Set([
     "mousedown",
-    "mousemove",
-    "mouseup",
-    "touchstart",
     "touchmove",
+    "touchstart",
+    "mousemove"
+]);
+
+const endEvents = new Set(["mouseup", "touchend", "touchcancel"]);
+
+const baseEvents = <const>["mousemove", "mousedown", "touchstart", "wheel"];
+
+const tempEvents = <const>[
     "touchend",
     "touchcancel",
-    "wheel"
+    "touchmove",
+    "mouseup",
+    "mousemove"
 ];
 
-const touchEventMap: Record<string, GestureType> = {
+const eventGestureTypeMap: IObjectOf<GestureType> = {
     touchstart: GestureType.START,
     touchmove: GestureType.DRAG,
     touchend: GestureType.END,
-    touchcancel: GestureType.END
+    touchcancel: GestureType.END,
+    mousedown: GestureType.START,
+    mouseup: GestureType.END,
+    wheel: GestureType.ZOOM
 };
 
 /**
@@ -136,10 +211,7 @@ const touchEventMap: Record<string, GestureType> = {
 export const gestureStream = (
     el: HTMLElement,
     _opts?: Partial<GestureStreamOpts>
-): StreamMerge<any, GestureEvent> => {
-    let isDown = false;
-    let clickPos: Nullable<number[]> = null;
-
+) => {
     const opts = <GestureStreamOpts>{
         id: "gestures",
         zoom: 1,
@@ -149,75 +221,145 @@ export const gestureStream = (
         smooth: 1,
         eventOpts: { capture: true },
         preventDefault: true,
+        preventScrollOnZoom: true,
+        preventContextMenu: true,
         local: true,
         scale: false,
         ..._opts
     };
-
-    let zoom = clamp(opts.zoom, opts.minZoom, opts.maxZoom);
     const dpr = window.devicePixelRatio || 1;
+    const active: GestureInfo[] = [];
+    let zoom = clamp(opts.zoom, opts.minZoom, opts.maxZoom);
+    let zoomDelta = 0;
+    let numTouches = 0;
+    let tempStreams: Stream<UIEvent>[] | undefined;
 
-    return merge<UIEvent, GestureEvent>({
-        id: opts.id,
-        src: events.map((e) => fromDOMEvent(el, e, opts.eventOpts)),
+    opts.preventContextMenu &&
+        el.addEventListener("contextmenu", (e) => e.preventDefault());
+
+    const stream = merge<UIEvent, GestureEvent>({
+        src: baseEvents.map((id) => eventSource(el, id, opts)),
         xform: map((e) => {
-            let evt: Touch | MouseEvent;
-            let type: GestureType;
-            let buttons: number;
             opts.preventDefault && e.preventDefault();
-            if ((<TouchEvent>e).touches) {
-                evt = (<TouchEvent>e).changedTouches[0];
-                buttons = ~~(e.type == "touchstart" || e.type != "touchmove");
-                type = touchEventMap[e.type];
-            } else {
-                evt = <MouseEvent>e;
-                buttons = evt.buttons;
-                isDown = buttons > 0;
-                type = (<Record<string, GestureType>>{
-                    mousedown: GestureType.START,
-                    mousemove: isDown ? GestureType.DRAG : GestureType.MOVE,
-                    mouseup: GestureType.END,
-                    wheel: GestureType.ZOOM
-                })[e.type];
+            const etype = e.type;
+            const type =
+                etype === "mousemove"
+                    ? tempStreams
+                        ? GestureType.DRAG
+                        : GestureType.MOVE
+                    : eventGestureTypeMap[etype];
+            let isTouch = !!(<TouchEvent>event).touches;
+            let events: Array<Touch | MouseEvent | WheelEvent> = isTouch
+                ? Array.from((<TouchEvent>event).changedTouches)
+                : [<MouseEvent | WheelEvent>event];
+            const b = el.getBoundingClientRect();
+
+            const getPos = (e: Touch | MouseEvent | WheelEvent) => {
+                const pos = [e.clientX, e.clientY];
+                if (opts.local) {
+                    pos[0] -= b.left;
+                    pos[1] -= b.top;
+                }
+                if (opts.scale) {
+                    pos[0] *= dpr;
+                    pos[1] *= dpr;
+                }
+                return pos;
+            };
+
+            if (startEvents.has(etype)) {
+                const isStart = etype === "mousedown" || etype === "touchstart";
+                for (let t of events) {
+                    const id = (<Touch>t).identifier || 0;
+                    const pos = getPos(t);
+                    let touch = active.find((t) => t.id === id);
+                    if (!touch && isStart) {
+                        touch = <GestureInfo>{ id, start: pos };
+                        active.push(touch);
+                        numTouches++;
+                    }
+                    if (touch) {
+                        touch.pos = pos;
+                        if (isTouch) {
+                            touch.force = (<Touch>t).force;
+                        }
+                        if (!isStart && tempStreams) {
+                            touch.delta = [
+                                pos[0] - touch.start![0],
+                                pos[1] - touch.start![1]
+                            ];
+                        }
+                    }
+                }
+                if (isStart && !tempStreams) {
+                    tempStreams = tempEvents.map((id) =>
+                        eventSource(document.body, id, opts, "-temp")
+                    );
+                    stream.addAll(tempStreams);
+                    stream.removeID("mousemove");
+                    // console.log("add temp", [
+                    //     ...map((s) => s.id, stream.sources.keys())
+                    // ]);
+                }
+            } else if (endEvents.has(etype)) {
+                for (let t of events) {
+                    const id = (<Touch>t).identifier || 0;
+                    const idx = active.findIndex((t) => t.id === id);
+                    if (idx !== -1) {
+                        active.splice(idx, 1);
+                        numTouches--;
+                    }
+                }
+                if (numTouches === 0) {
+                    stream.removeAll(tempStreams!);
+                    stream.add(eventSource(el, "mousemove", opts));
+                    tempStreams = undefined;
+                    // console.log("remove temp", [
+                    //     ...map((s) => s.id, stream.sources.keys())
+                    // ]);
+                }
+            } else if (type === GestureType.ZOOM) {
+                const zdelta =
+                    opts.smooth *
+                    ("wheelDeltaY" in (e as any)
+                        ? -(e as any).wheelDeltaY / 120
+                        : (<WheelEvent>e).deltaY / 40);
+                zoom = opts.absZoom
+                    ? clamp(zoom + zdelta, opts.minZoom, opts.maxZoom)
+                    : zdelta;
+                zoomDelta = zdelta;
             }
-            const pos = [evt.clientX | 0, evt.clientY | 0];
-            if (opts.local) {
-                const rect = el.getBoundingClientRect();
-                pos[0] -= rect.left;
-                pos[1] -= rect.top;
-            }
-            if (opts.scale) {
-                pos[0] *= dpr;
-                pos[1] *= dpr;
-            }
-            const body = <GestureInfo>{ pos, zoom, zoomDelta: 0, buttons };
-            switch (type) {
-                case GestureType.START:
-                    isDown = true;
-                    clickPos = [...pos];
-                    break;
-                case GestureType.END:
-                    isDown = false;
-                    clickPos = null;
-                    break;
-                case GestureType.DRAG:
-                    body.click = clickPos!;
-                    body.delta = [pos[0] - clickPos![0], pos[1] - clickPos![1]];
-                    break;
-                case GestureType.ZOOM:
-                    const zdelta =
-                        opts.smooth *
-                        ("wheelDeltaY" in (e as any)
-                            ? -(e as any).wheelDeltaY / 120
-                            : (<WheelEvent>e).deltaY / 40);
-                    body.zoom = zoom = opts.absZoom
-                        ? clamp(zoom + zdelta, opts.minZoom, opts.maxZoom)
-                        : zdelta;
-                    body.zoomDelta = zdelta;
-                    break;
-                default:
-            }
-            return <GestureEvent>[type, body];
+            const buttons = isTouch
+                ? active.length
+                : (<MouseEvent>event).buttons;
+            return {
+                type,
+                event: e,
+                pos: getPos(events[0]),
+                active,
+                buttons,
+                zoom,
+                zoomDelta,
+                isTouch
+            };
         })
     });
+
+    return stream;
+};
+
+const eventSource = (
+    el: HTMLElement,
+    id: UIEventID,
+    opts: GestureStreamOpts,
+    suffix = ""
+) => {
+    let eventOpts = opts.eventOpts;
+    if (id === "wheel" && opts.preventScrollOnZoom) {
+        eventOpts =
+            typeof eventOpts === "boolean"
+                ? { capture: eventOpts, passive: false }
+                : { ...eventOpts, passive: false };
+    }
+    return fromDOMEvent(el, id, eventOpts, { id: id + suffix });
 };
