@@ -32,14 +32,6 @@ const endEvents = new Set(["mouseup", "touchend", "touchcancel"]);
 
 const baseEvents = <const>["mousemove", "mousedown", "touchstart", "wheel"];
 
-const tempEvents = <const>[
-    "touchend",
-    "touchcancel",
-    "touchmove",
-    "mouseup",
-    "mousemove"
-];
-
 const eventGestureTypeMap: IObjectOf<GestureType> = {
     touchstart: GestureType.START,
     touchmove: GestureType.DRAG,
@@ -105,6 +97,15 @@ export const gestureStream = (
     let numTouches = 0;
     let tempStreams: Stream<UIEvent>[] | undefined;
 
+    const isBody = el === document.body;
+    const tempEvents: UIEventID[] = [
+        "touchend",
+        "touchcancel",
+        "touchmove",
+        "mouseup"
+    ];
+    !isBody && tempEvents.push("mousemove");
+
     opts.preventContextMenu &&
         el.addEventListener("contextmenu", (e) => e.preventDefault());
 
@@ -126,16 +127,17 @@ export const gestureStream = (
             const b = el.getBoundingClientRect();
 
             const getPos = (e: Touch | MouseEvent | WheelEvent) => {
-                const pos = [e.clientX, e.clientY];
+                let x = e.clientX;
+                let y = e.clientY;
                 if (opts.local) {
-                    pos[0] -= b.left;
-                    pos[1] -= b.top;
+                    x -= b.left;
+                    y -= b.top;
                 }
                 if (opts.scale) {
-                    pos[0] *= dpr;
-                    pos[1] *= dpr;
+                    x *= dpr;
+                    y *= dpr;
                 }
-                return pos;
+                return [x | 0, y | 0];
             };
 
             if (startEvents.has(etype)) {
@@ -165,7 +167,7 @@ export const gestureStream = (
                         eventSource(document.body, id, opts, "-temp")
                     );
                     stream.addAll(tempStreams);
-                    stream.removeID("mousemove");
+                    !isBody && stream.removeID("mousemove");
                     // console.log("add temp", [
                     //     ...map((s) => s.id, stream.sources.keys())
                     // ]);
@@ -181,7 +183,7 @@ export const gestureStream = (
                 }
                 if (numTouches === 0) {
                     stream.removeAll(tempStreams!);
-                    stream.add(eventSource(el, "mousemove", opts));
+                    !isBody && stream.add(eventSource(el, "mousemove", opts));
                     tempStreams = undefined;
                     // console.log("remove temp", [
                     //     ...map((s) => s.id, stream.sources.keys())
