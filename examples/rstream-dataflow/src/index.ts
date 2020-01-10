@@ -67,7 +67,7 @@ const graph = initGraph(db, {
     // extracts current mouse/touch position from gesture tuple
     // the `[1, 0]` is the lookup path, i.e. `gesture[1][0]`
     mpos: {
-        fn: extract([1, "pos"]),
+        fn: extract(["pos"]),
         ins: { src: { stream: () => gestures } },
         outs: { "*": "mpos" }
     },
@@ -76,7 +76,7 @@ const graph = initGraph(db, {
     // the `[1, 1]` is the lookup path, i.e. `gesture[1][1]`
     // (only defined during drag gestures)
     clickpos: {
-        fn: extract([1, "click"]),
+        fn: extract(["active", 0, "click"]),
         ins: { src: { stream: () => gestures } },
         outs: { "*": "clickpos" }
     },
@@ -88,7 +88,7 @@ const graph = initGraph(db, {
     dist: {
         fn: node1(
             map((gesture) => {
-                const delta = getIn(gesture, [1, "delta"]);
+                const delta = getIn(gesture, ["active", 0, "delta"]);
                 return delta && Math.hypot.apply(null, delta) | 0;
             })
         ),
@@ -126,7 +126,12 @@ const graph = initGraph(db, {
     // time clickpos is redefined (remember, clickpos is only defined
     // during drag gestures)
     color: {
-        fn: node1(comp(dedupe(equiv), map((x) => x && colors.next().value))),
+        fn: node1(
+            comp(
+                dedupe(equiv),
+                map((x) => x && colors.next().value)
+            )
+        ),
         ins: { src: { stream: "/clickpos/node" } },
         outs: { "*": "color" }
     },

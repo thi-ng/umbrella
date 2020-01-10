@@ -133,26 +133,26 @@ const app = () => {
                 absZoom: false,
                 smooth: 1e-3
             }).subscribe({
-                next([type, { pos, zoom }]: any) {
+                next(e) {
                     const _x1 = x1.deref()!;
                     const _y1 = y1.deref()!;
                     const _x2 = x2.deref()!;
                     const _y2 = y2.deref()!;
-                    switch (type) {
+                    switch (e.type) {
                         case GestureType.START:
-                            sel1.next(pos);
+                            sel1.next(e.pos);
                             break;
                         case GestureType.DRAG:
-                            sel2.next(pos);
+                            sel2.next(e.pos);
                             break;
                         case GestureType.END: {
                             const p = sel1.deref();
-                            if (!p || equiv(p, pos)) return;
+                            if (!p || equiv(p, e.pos)) return;
                             // compute target coord based on current zoom region
                             let ax = fit(p[0], 0, el.width, _x1, _x2);
                             let ay = fit(p[1], 0, el.height, _y1, _y2);
-                            let bx = fit(pos[0], 0, el.width, _x1, _x2);
-                            let by = fit(pos[1], 0, el.height, _y1, _y2);
+                            let bx = fit(e.pos[0], 0, el.width, _x1, _x2);
+                            let by = fit(e.pos[1], 0, el.height, _y1, _y2);
                             if (ax > bx) {
                                 const t = ax;
                                 ax = bx;
@@ -174,7 +174,7 @@ const app = () => {
                             break;
                         }
                         case GestureType.ZOOM:
-                            updateZoom(zoom);
+                            updateZoom(e.zoom);
                             break;
                         default:
                     }

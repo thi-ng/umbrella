@@ -150,10 +150,7 @@ const app = () => {
                         // mouse & touch events
                         gestureStream(canv, {}).subscribe({
                             next(e) {
-                                gui.setMouse(
-                                    [...e[1].pos],
-                                    e[1].buttons
-                                )
+                                gui.setMouse(e.pos, e.buttons)
                             }
                         }),
                         // keydown & undo/redo handler:

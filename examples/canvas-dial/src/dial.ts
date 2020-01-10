@@ -187,12 +187,11 @@ export const dial = (_opts: Partial<DialOpts>) => {
                 events = gestureStream(el, { scale: true }).subscribe({
                     next: (e) => {
                         if (
-                            e[0] === GestureType.START ||
-                            e[0] === GestureType.DRAG
+                            e.type === GestureType.START ||
+                            e.type === GestureType.DRAG
                         ) {
                             let theta =
-                                heading(sub2([], e[1].pos, [cx, cy])) -
-                                startTheta;
+                                heading(sub2([], e.pos, [cx, cy])) - startTheta;
                             if (theta < 0) theta += TAU;
                             theta %= TAU;
                             opts.onchange.call(

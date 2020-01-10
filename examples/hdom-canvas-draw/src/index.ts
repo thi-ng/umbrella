@@ -45,11 +45,11 @@ const app = (main: StreamSync<any, any>) => {
                     // only interested in some gesture types
                     filter(
                         (e: GestureEvent) =>
-                            e[0] === GestureType.START ||
-                            e[0] === GestureType.DRAG
+                            e.type === GestureType.START ||
+                            e.type === GestureType.DRAG
                     ),
                     // get current mouse / touch position
-                    map((e) => e[1].pos),
+                    map((e) => e.pos),
                     // form consecutive line pairs
                     partition(2, 1),
                     // transform into pre-curried line component
