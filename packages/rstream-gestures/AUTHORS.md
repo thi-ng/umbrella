@@ -5,3 +5,4 @@
 ### Contributors
 
 - Arthur Carabott (@acarabott)
+- Matei Adriel (@Mateiadrielrafael)
