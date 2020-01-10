@@ -1,0 +1,41 @@
+{
+    "name": "multitouch",
+    "version": "0.0.1",
+    "description": "Basic @thi.ng/rstream-gestures multi-touch demo",
+    "repository": "https://github.com/thi-ng/umbrella",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "clean": "rm -rf .cache build out",
+        "build": "yarn clean && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --detailed-report --experimental-scope-hoisting",
+        "build:webpack": "../../node_modules/.bin/webpack --mode production",
+        "start": "parcel index.html -p 8080 --open"
+    },
+    "devDependencies": {
+        "parcel-bundler": "^1.12.4",
+        "terser": "^4.4.0",
+        "typescript": "^3.7.2"
+    },
+    "dependencies": {
+        "@thi.ng/hdom-canvas": "latest",
+        "@thi.ng/memoize": "latest",
+        "@thi.ng/rstream": "latest",
+        "@thi.ng/rstream-gestures": "latest",
+        "@thi.ng/transducers": "latest",
+        "@thi.ng/transducers-hdom": "latest"
+    },
+    "browserslist": [
+        "last 3 Chrome versions"
+    ],
+    "browser": {
+        "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "hdom-canvas",
+            "memoize",
+            "rstream-gestures",
+            "transducers-hdom"
+        ]
+    }
+}
