@@ -1,4 +1,5 @@
 import { IObjectOf } from "@thi.ng/api";
+import { isBoolean } from "@thi.ng/checks";
 import { clamp } from "@thi.ng/math";
 import { fromDOMEvent, merge, Stream } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
@@ -72,7 +73,7 @@ const eventGestureTypeMap: IObjectOf<GestureType> = {
  * @param opts -
  */
 export const gestureStream = (
-    el: HTMLElement,
+    el: Element,
     _opts?: Partial<GestureStreamOpts>
 ) => {
     const opts = <GestureStreamOpts>{
@@ -168,9 +169,6 @@ export const gestureStream = (
                     );
                     stream.addAll(tempStreams);
                     !isBody && stream.removeID("mousemove");
-                    // console.log("add temp", [
-                    //     ...map((s) => s.id, stream.sources.keys())
-                    // ]);
                 }
             } else if (endEvents.has(etype)) {
                 for (let t of events) {
@@ -185,9 +183,6 @@ export const gestureStream = (
                     stream.removeAll(tempStreams!);
                     !isBody && stream.add(eventSource(el, "mousemove", opts));
                     tempStreams = undefined;
-                    // console.log("remove temp", [
-                    //     ...map((s) => s.id, stream.sources.keys())
-                    // ]);
                 }
             } else if (type === GestureType.ZOOM) {
                 const zdelta =
@@ -200,15 +195,12 @@ export const gestureStream = (
                     : zdelta;
                 zoomDelta = zdelta;
             }
-            const buttons = isTouch
-                ? active.length
-                : (<MouseEvent>event).buttons;
             return {
-                type,
                 event: e,
                 pos: getPos(events[0]),
+                buttons: isTouch ? active.length : (<MouseEvent>event).buttons,
+                type,
                 active,
-                buttons,
                 zoom,
                 zoomDelta,
                 isTouch
@@ -220,17 +212,16 @@ export const gestureStream = (
 };
 
 const eventSource = (
-    el: HTMLElement,
-    id: UIEventID,
+    el: Element,
+    type: UIEventID,
     opts: GestureStreamOpts,
     suffix = ""
 ) => {
     let eventOpts = opts.eventOpts;
-    if (id === "wheel" && opts.preventScrollOnZoom) {
-        eventOpts =
-            typeof eventOpts === "boolean"
-                ? { capture: eventOpts, passive: false }
-                : { ...eventOpts, passive: false };
+    if (type === "wheel" && opts.preventScrollOnZoom) {
+        eventOpts = isBoolean(eventOpts)
+            ? { capture: eventOpts, passive: false }
+            : { ...eventOpts, passive: false };
     }
-    return fromDOMEvent(el, id, eventOpts, { id: id + suffix });
+    return fromDOMEvent(el, type, eventOpts, { id: type + suffix });
 };
