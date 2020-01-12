@@ -1,15 +1,15 @@
 import { AGen } from "./agen";
 
 export class Reciprocal extends AGen<number> {
-    protected n: number;
-    constructor(protected step = 1) {
+    protected _n: number;
+    constructor(protected _step = 1) {
         super(1);
-        this.n = 1 - this.step;
+        this._n = 1 - this._step;
     }
 
     next() {
-        this.n += this.step;
-        return (this.val = 1 / this.n);
+        this._n += this._step;
+        return (this._val = 1 / this._n);
     }
 }
 

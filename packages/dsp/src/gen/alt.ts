@@ -9,11 +9,11 @@ export const altB = (x = true) => new Alt(x, !x);
 export class Alt<T> extends AGen<T> {
     protected flip = true;
 
-    constructor(protected a: T, protected b: T) {
-        super(b);
+    constructor(protected _a: T, protected _b: T) {
+        super(_b);
     }
 
     next() {
-        return (this.val = (this.flip = !this.flip) ? this.b : this.a);
+        return (this._val = (this.flip = !this.flip) ? this._b : this._a);
     }
 }

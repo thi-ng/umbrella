@@ -2,19 +2,19 @@ import { wrap } from "@thi.ng/math";
 import { IGen } from "../api";
 import { AGen } from "./agen";
 
-export class WrapAround extends AGen<number> {
+export class WrapAroundG extends AGen<number> {
     constructor(
-        protected gen: IGen<number>,
-        protected min = 0,
-        protected max = 1
+        protected _gen: IGen<number>,
+        protected _min = 0,
+        protected _max = 1
     ) {
-        super(wrap(gen.deref(), min, max));
+        super(wrap(_gen.deref(), _min, _max));
     }
 
     next() {
-        return (this.val = wrap(this.gen.next(), this.min, this.max));
+        return (this._val = wrap(this._gen.next(), this._min, this._max));
     }
 }
 
-export const wrapAround = (gen: IGen<number>, min?: number, max?: number) =>
-    new WrapAround(gen, min, max);
+export const wrapAroundG = (gen: IGen<number>, min?: number, max?: number) =>
+    new WrapAroundG(gen, min, max);

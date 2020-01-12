@@ -9,6 +9,6 @@ export const constant = <T>(x: T) => new Const(x);
 
 export class Const<T> extends AGen<T> {
     next() {
-        return this.val;
+        return this._val;
     }
 }

@@ -7,7 +7,7 @@ export const integrator = (coeff?: number, start?: number) =>
  * https://en.wikipedia.org/wiki/Leaky_integrator
  */
 export class Integrator extends AProc<number, number> {
-    protected buf!: number;
+    protected _z1!: number;
 
     constructor(coeff = 1, start = 0) {
         super(start);
@@ -15,14 +15,14 @@ export class Integrator extends AProc<number, number> {
     }
 
     next(x: number) {
-        return (this.val = this.val * this.buf + x);
+        return (this._val = this._val * this._z1 + x);
     }
 
     setCoeff(c: number) {
-        this.buf = c;
+        this._z1 = c;
     }
 
     zero() {
-        this.val = 0;
+        this._val = 0;
     }
 }

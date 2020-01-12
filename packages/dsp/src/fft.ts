@@ -5,6 +5,11 @@ import { magToDB } from "./util/convert";
 
 const PI = Math.PI;
 
+/**
+ * Returns a new tuple of real/img F64 buffers of given size.
+ *
+ * @param n
+ */
 export const complexArray = (n: number): ComplexArray => [
     new Float64Array(n),
     new Float64Array(n)
@@ -13,33 +18,36 @@ export const complexArray = (n: number): ComplexArray => [
 /**
  * If given a {@link ComplexArray}, computes the complex conjugate,
  * concatenates it in mirrored order to input (excluding bin 0) and
- * returns it a new (complex) array.
+ * returns it as new (complex) array.
+ *
+ * @remarks
+ * The length of the input buffer(s) is assumed to be a power of 2.
  *
  * If given a {@link @thi.ng/api#NumericArray}, the `isImg` arg chooses
  * from one of the following operations: If `true` (default), returns
- * new array with negated values concatenated in reverse order. If
- * `false`, returns new array with original values concatenated in
+ * new array with *negated* values concatenated in reverse order. If
+ * `false`, returns new array with *original* values concatenated in
  * reverse order.
  *
  * @example
  * ```ts
  * conjugate([0, 3, 2, 1], true)
- * // Float64Array [ 0, 3, 2, 1, -1, -2, -3, -0 ]
+ * // Float64Array [ 0, 3, 2, 1, 0, -1, -2, -3 ]
  *
  * conjugate([0, 3, 2, 1], false)
- * // Float64Array [ 0, 3, 2, 1, 1, 2, 3, 0 ]
+ * // Float64Array [ 0, 3, 2, 1, 0, 1, 2, 3 ]
  *
  * conjugate([[0, 1, 0, 1], [0, -0.5, 0, -0.25]])
  * [
- *   Float64Array [ 0, 1, 0, 1, 1, 0, 1, 0 ],
- *   Float64Array [ 0, -0.5, 0, -0.25, 0.25, -0, 0.5, -0 ]
+ *   Float64Array [ 0, 1, 0, 1, 0, 1, 0, 1 ],
+ *   Float64Array [ 0, -0.5, 0, -0.25, 0, 0.25, 0, 0.5 ]
  * ]
  * ```
  *
  * @example
  * ```ts
- * // generate 1Hz sine
- * ifft(conjugate([0, 8, 0, 0, 0, 0, 0, 0]))[0]
+ * // generate single-period sine (window size = 16)
+ * ifft(conjugate([0, -8, 0, 0, 0, 0, 0, 0]))[0]
  * // [
  * //   0, 0.383, 0.707, 0.924,
  * //   1, 0.924, 0.707, 0.383,

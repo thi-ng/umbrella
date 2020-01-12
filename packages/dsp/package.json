@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/dsp",
     "version": "1.0.18",
-    "description": "Assorted oscillators / wave gens, FFT, windowing functions & DSP utils",
+    "description": "Composable signal generators, oscillators, filters, FFT, spectrum, windowing & related DSP utils",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -59,6 +59,7 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "branch": "feature/dsp",
         "year": 2015
     }
 }

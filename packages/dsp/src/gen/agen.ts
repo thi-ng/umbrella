@@ -6,10 +6,10 @@ import { IGen } from "../api";
  * `Iterable` implementations to use gens as ES6 iterables.
  */
 export abstract class AGen<T> implements IGen<T> {
-    constructor(protected val: T) {}
+    constructor(protected _val: T) {}
 
     deref() {
-        return this.val;
+        return this._val;
     }
 
     *[Symbol.iterator]() {

@@ -56,7 +56,7 @@ export const osc = (
  * @param modAmp - normalized freq
  * @param phase - normalized start phase
  */
-export const fmodOsc = (
+export const modOsc = (
     osc: StatelessOscillator,
     mod: IGen<number>,
     freq: IGen<number> | number,
@@ -64,14 +64,14 @@ export const fmodOsc = (
 ) => new Osc(osc, sum(mod, isNumber(freq) ? add(freq) : freq), amp);
 
 export class Osc extends AGen<number> {
-    protected phase!: IGen<number>;
-    protected amp!: IGen<number>;
+    protected _phase!: IGen<number>;
+    protected _amp!: IGen<number>;
 
     constructor(
-        protected osc: StatelessOscillator,
+        protected _osc: StatelessOscillator,
         freq: IGen<number> | number,
         amp: IGen<number> | number = 1,
-        protected dc = 0
+        protected _dc = 0
     ) {
         super(0);
         this.setFreq(freq);
@@ -79,19 +79,19 @@ export class Osc extends AGen<number> {
     }
 
     next() {
-        return (this.val = this.osc(
-            this.phase.next(),
+        return (this._val = this._osc(
+            this._phase.next(),
             1,
-            this.amp.next(),
-            this.dc
+            this._amp.next(),
+            this._dc
         ));
     }
 
     setFreq(freq: IGen<number> | number, phase = 0) {
-        this.phase = isNumber(freq) ? new Add(freq, phase) : freq;
+        this._phase = isNumber(freq) ? new Add(freq, phase) : freq;
     }
 
     setAmp(amp: IGen<number> | number) {
-        this.amp = isNumber(amp) ? new Const(amp) : amp;
+        this._amp = isNumber(amp) ? new Const(amp) : amp;
     }
 }

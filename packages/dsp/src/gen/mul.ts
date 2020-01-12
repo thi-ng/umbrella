@@ -5,6 +5,8 @@ import { AGen } from "./agen";
  * Returns new multiply gen, producing `y(t) = factor * y(t-1)`, using
  * given `factor` and `start` values.
  *
+ * Also see {@link exp}.
+ *
  * @param factor -
  * @param start -
  */
@@ -19,6 +21,8 @@ export const mul = (factor?: number, start?: number) => new Mul(factor, start);
  * The `end` value is only reached after `num + 1` steps. The curve will
  * NOT stop at `end` but continue indefinitely if more values are
  * requested from the generator.
+ *
+ * Also see {@link mul}.
  *
  * @example
  * ```ts
@@ -42,11 +46,11 @@ export const exp = (start: number, end: number, num: number) =>
     new Mul(expFactor(start, end, num), start);
 
 export class Mul extends AGen<number> {
-    constructor(protected factor = 1, start = 1) {
-        super(start / factor);
+    constructor(protected _factor = 1, start = 1) {
+        super(start / _factor);
     }
 
     next() {
-        return (this.val *= this.factor);
+        return (this._val *= this._factor);
     }
 }

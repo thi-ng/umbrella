@@ -21,7 +21,9 @@ export * from "./gen/sum";
 export * from "./gen/trigger";
 export * from "./gen/wrap-around";
 
+export * from "./proc/allpass";
 export * from "./proc/aproc";
+export * from "./proc/atwopole";
 export * from "./proc/integrator";
 export * from "./proc/onepole";
 

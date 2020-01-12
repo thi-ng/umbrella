@@ -11,11 +11,11 @@ export const madd = (factor?: number, start?: number, offset?: number) =>
     new MAdd(factor, start, offset);
 
 export class MAdd extends AGen<number> {
-    constructor(protected factor = 1, start = 1, protected offset = 0) {
-        super((start - offset) / factor);
+    constructor(protected _factor = 1, start = 1, protected _offset = 0) {
+        super((start - _offset) / _factor);
     }
 
     next() {
-        return (this.val = this.val * this.factor + this.offset);
+        return (this._val = this._val * this._factor + this._offset);
     }
 }

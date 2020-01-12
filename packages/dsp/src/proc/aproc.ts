@@ -6,10 +6,10 @@ import { IProc } from "../api";
  * `Iterable` implementations to use gens as ES6 iterables.
  */
 export abstract class AProc<A, B> implements IProc<A, B> {
-    constructor(protected val: B) {}
+    constructor(protected _val: B) {}
 
     deref() {
-        return this.val;
+        return this._val;
     }
 
     abstract next(x: A): B;

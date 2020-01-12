@@ -26,13 +26,13 @@ export const impulseN = (on = 1) => new Impulse(on, 0);
 export const impulseB = (start = true) => new Impulse(start, !start);
 
 export class Impulse<T> extends AGen<T> {
-    constructor(protected on: T, protected off: T) {
-        super(on);
+    constructor(protected _on: T, protected _off: T) {
+        super(_on);
     }
 
     next() {
-        const x = this.val;
-        this.val = this.off;
+        const x = this._val;
+        this._val = this._off;
         return x;
     }
 }

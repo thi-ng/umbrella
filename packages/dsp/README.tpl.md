@@ -42,13 +42,34 @@ ${examples}
 
 ${docLink}
 
-See comments in source and examples (especially FFT synth one) for usage details.
+### IGen
 
-### Oscillators
+- [add](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/add.ts) - adder
+- [alt](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/alt.ts) - alternating values
+- [constant](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/const.ts) - constant value
+- [cosP](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/cosp.ts) - trig-free cosine osc
+- [exp](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/mul.ts) - time-based exponential gain/decay (factory for `mul`)
+- [impulse](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/impulse.ts) - impulse gen
+- [line](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/add.ts) - line gen (factory for `add`)
+- [madd](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/madd.ts) - multiply-adder
+- [mul](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/mul.ts) - multiplier (exponential gain/decay)
+- [reciprocal](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/reciprocal.ts) - fractional sequence (1, 1/2, 1/3, 1/4 etc.)
+- [trigger](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/trigger.ts) - cyclic impulse
 
-[Source](https://github.com/thi-ng/umbrella/blob/master/packages/dsp/src/osc.ts)
+#### Higher order generators
 
-Stateless & band-unlimited:
+- [comp](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/comp.ts) - `IGen` composition (1-4 inputs)
+- [addG](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/addg.ts) - higher-order adder
+- [product](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/product.ts) - product of input gens
+- [sum](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/sum.ts) - sum of input gens
+- [wrapAroundG](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/wrap-around.ts) - folds input gen into given interval
+
+#### Oscillators
+
+- [osc](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/osc.ts) - arbitrary function oscillator
+- [modOsc](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/osc.ts) - FM / FMAM oscillator
+
+##### Stateless & band-unlimited:
 
 - `comb()`
 - `mix()` (HOF)
@@ -64,12 +85,7 @@ Band-limited:
 - `squareAdditive()`
 - `sawAdditive()`
 
-Stateful (classes):
-
-- `Oscillator`
-- `AMFMOscillator`
-
-### LFO
+#### LFO
 
 [Source](https://github.com/thi-ng/umbrella/blob/master/packages/dsp/src/lfo.ts)
 

@@ -11,8 +11,8 @@ import { AGen } from "./agen";
 export const cosp = (freq: number, amp?: number) => new CosP(freq, amp);
 
 export class CosP extends AGen<number> {
-    protected cos!: number;
-    protected nxt!: number;
+    protected _cos!: number;
+    protected _nxt!: number;
 
     constructor(freq: number, amp = 1) {
         super(0);
@@ -20,19 +20,19 @@ export class CosP extends AGen<number> {
     }
 
     next() {
-        const t = this.nxt * this.cos - this.val;
-        this.val = this.nxt;
-        this.nxt = t;
-        return this.val;
+        const t = this._nxt * this._cos - this._val;
+        this._val = this._nxt;
+        this._nxt = t;
+        return this._val;
     }
 
     freq() {
-        return Math.acos(this.cos * 0.5) * INV_TAU;
+        return Math.acos(this._cos * 0.5) * INV_TAU;
     }
 
     set(freq: number, amp: number) {
-        this.nxt = amp;
-        this.cos = Math.cos(freq * TAU) * 2;
-        this.val = this.cos * amp * 0.5;
+        this._nxt = amp;
+        this._cos = Math.cos(freq * TAU) * 2;
+        this._val = this._cos * amp * 0.5;
     }
 }

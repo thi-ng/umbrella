@@ -17,7 +17,7 @@ export const additive = (
     }
     return (phase, freq, amp = 1, dc = 0) => {
         let y = 0;
-        for (let i = 1; i <= n; i++) {
+        for (let i = 0; i < n; i++) {
             y += osc(phase, freq * fcache[i], amp * acache[i]);
         }
         return dc + y;

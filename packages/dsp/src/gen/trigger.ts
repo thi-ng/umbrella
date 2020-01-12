@@ -2,18 +2,20 @@ import { AGen } from "./agen";
 
 export class Trigger<T> extends AGen<T> {
     constructor(
-        protected on: T,
-        protected off: T,
-        protected period: number,
-        protected pos = 0
+        protected _on: T,
+        protected _off: T,
+        protected _period: number,
+        protected _pos = 0
     ) {
-        super(off);
-        this.pos--;
+        super(_off);
+        this._pos--;
     }
 
     next() {
-        return (this.val =
-            ++this.pos >= this.period ? ((this.pos = 0), this.on) : this.off);
+        return (this._val =
+            ++this._pos >= this._period
+                ? ((this._pos = 0), this._on)
+                : this._off);
     }
 }
 
