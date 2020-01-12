@@ -19,6 +19,11 @@ This project is part of the
     - [Higher order generators](#higher-order-generators)
     - [Oscillators](#oscillators)
     - [LFO](#lfo)
+  - [Filters](#filters)
+    - [1-pole low pass](#1-pole-low-pass)
+    - [Frequency modulated osc & 1-pole low pass](#frequency-modulated-osc--1-pole-low-pass)
+    - [1-pole all-pass](#1-pole-all-pass)
+    - [2-pole all-pass](#2-pole-all-pass)
   - [DelayLine](#delayline)
   - [FFT](#fft)
   - [Window functions](#window-functions)
@@ -125,12 +130,73 @@ Band-limited:
 
 #### LFO
 
-[Source](https://github.com/thi-ng/umbrella/blob/master/packages/dsp/src/lfo.ts)
-
 Trigonometry free sin/cos oscillator / iterator based on a
 state-variable filter. Only useable for freq < ~2Hz.
 
-- `lfo()`
+- [lfo](https://github.com/thi-ng/umbrella/blob/master/packages/dsp/src/lfo.ts)
+
+### Filters
+
+The following diagrams show various combinations of oscillator signals
+and their filtered responses (with different cutoff/center frequencies).
+The red waveform is the original generated 1kHz signal.
+
+All diagrams were generated with [this
+script](https://github.com/thi-ng/umbrella/blob/feature/dsp/packages/dsp/tools/generate-diagrams.ts).
+
+TODO
+
+#### 1-pole low pass
+
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/sin-lpf-1pole.png)
+
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/tri-lpf-1pole.png)
+
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/comb-lpf-1pole.png)
+
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/saw-lpf-1pole.png)
+
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/rect-lpf-1pole.png)
+
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/trigger-lpf.png)
+
+#### Frequency modulated osc & 1-pole low pass
+
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/fmod-comb-lpf-1pole.png)
+
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/fmod-rect-lpf-1pole.png)
+
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/fmod-saw-lpf-1pole.png)
+
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/fmod-sin-lpf-1pole.png)
+
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/fmod-tri-lpf-1pole.png)
+
+#### 1-pole all-pass
+
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/sin-allpass1.png)
+
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/tri-allpass1.png)
+
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/comb-allpass1.png)
+
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/saw-allpass1.png)
+
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/rect-allpass1.png)
+
+#### 2-pole all-pass
+
+The bandwidth of each filter is set to 1/2 of its center frequency.
+
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/sin-allpass2.png)
+
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/tri-allpass2.png)
+
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/comb-allpass2.png)
+
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/saw-allpass2.png)
+
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/rect-allpass2.png)
 
 ### DelayLine
 
