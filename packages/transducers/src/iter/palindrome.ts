@@ -26,7 +26,7 @@ export function palindrome<T>(x: T[]): T[];
 export function palindrome<T>(x: Iterable<T>): Iterable<T>;
 export function palindrome(x: any): any {
     return isString(x)
-        ? str("", concat(x, reverse(x)))
+        ? str("", concat([x], reverse(x)))
         : isArray(x)
         ? x.concat(x.slice().reverse())
         : ((x = ensureArray(x)), concat(x, reverse(x)));
