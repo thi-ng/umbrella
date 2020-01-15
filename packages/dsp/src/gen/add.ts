@@ -10,8 +10,9 @@ import { AGen } from "./agen";
 export const add = (step?: number, start?: number) => new Add(step, start);
 
 /**
- * Creates a new `Add` gen based on given `start` (default: 0) and `end`
- * (default: 1) positions and tracing a line over `num` steps.
+ * Timebased version of {@link add}. Creates a new `Add` gen based on
+ * given `start` (default: 0) and `end` (default: 1) positions and
+ * tracing a line over `num` steps.
  *
  * @remarks
  * Since `start` will be the first generated value, the `end` value is

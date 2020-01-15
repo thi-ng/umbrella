@@ -9,15 +9,15 @@ export * from "./gen/agen";
 export * from "./gen/alt";
 export * from "./gen/comp";
 export * from "./gen/const";
-export * from "./gen/cosp";
+export * from "./gen/cosine";
 export * from "./gen/impulse";
+export * from "./gen/impulse-train";
 export * from "./gen/madd";
 export * from "./gen/mul";
 export * from "./gen/osc";
 export * from "./gen/product";
 export * from "./gen/reciprocal";
 export * from "./gen/sum";
-export * from "./gen/trigger";
 export * from "./gen/wrap-around";
 
 export * from "./proc/allpass";

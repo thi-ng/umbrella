@@ -1,24 +1,24 @@
 import { AGen } from "./agen";
 
 /**
- * Creates a new impulse gen, producing `on` for the first invocation of
- * {@link IGen.next}, then `off` thereafter.
- *
- * @param on - impulse value
- * @param off -
- */
-export const impulse = <T>(on: T, off: T) => new Impulse<T>(on, off);
-
-/**
- * Numeric version of {@link impulse}, using given `on` (default: 1) as
+ * Numeric version of {@link impulseT}, using given `on` (default: 1) as
  * initial value and zero for the remaining values.
  *
  * @param on
  */
-export const impulseN = (on = 1) => new Impulse(on, 0);
+export const impulse = (on = 1) => new Impulse(on, 0);
 
 /**
- * Boolean version of {@link impulse}, using given `start` (default:
+ * Creates a new impulse gen, producing a single `on` for the first
+ * invocation of {@link IGen.next}, then only `off` thereafter.
+ *
+ * @param on - impulse value
+ * @param off -
+ */
+export const impulseT = <T>(on: T, off: T) => new Impulse<T>(on, off);
+
+/**
+ * Boolean version of {@link impulseT}, using given `start` (default:
  * true) as initial value and its inverse for the remaining values.
  *
  * @param start

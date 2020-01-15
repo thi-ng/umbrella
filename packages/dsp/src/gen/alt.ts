@@ -1,8 +1,8 @@
 import { AGen } from "./agen";
 
-export const alt = <T>(a: T, b: T) => new Alt(a, b);
+export const alt = (n = 1) => new Alt(n, -n);
 
-export const altN = (n = 1) => new Alt(n, -n);
+export const altT = <T>(a: T, b: T) => new Alt(a, b);
 
 export const altB = (x = true) => new Alt(x, !x);
 

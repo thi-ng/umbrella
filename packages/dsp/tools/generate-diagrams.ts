@@ -9,7 +9,6 @@ import {
 } from "@thi.ng/geom";
 import { IHiccupShape } from "@thi.ng/geom-api";
 import {
-    cat,
     map,
     mapIndexed,
     range,
@@ -21,29 +20,24 @@ import {
     AllPass2,
     comb,
     IGen,
-    integrator,
+    impulseTrainT,
     IProc,
     modOsc,
     normFreq,
-    OnePole,
     onepoleHP,
     onepoleLP,
     osc,
     rect,
     saw,
-    sawAdditive,
     sin,
-    squareAdditive,
     StatelessOscillator,
-    tri,
-    trigger,
-    triggerN
+    tri
 } from "../src";
 
 const FS = 48000;
 
 const FREQS = [5000, 2500, 1000, 500, 250, 125];
-const [F1, F2, F3, F4, F5, F6] = FREQS.map((f) => normFreq(f, FS));
+const [F1, F2, F3, F4, F5] = FREQS.map((f) => normFreq(f, FS));
 
 const OSC: IObjectOf<StatelessOscillator> = {
     sin,
@@ -179,11 +173,17 @@ withFilters(
 withFilters(
     (id) => `fmod-${id}-lpf-1pole.svg`,
     onepoleLP,
-    (o) => modOsc(o, osc(sin, F1, 0.1), F3, 0.75)
+    (o) => modOsc(o, F3, osc(sin, F1, 0.1), 0.75)
 );
 
 withFilters(
     () => `trigger-lpf.svg`,
     onepoleLP,
-    (o) => trigger(1, -1, 16)
+    () => impulseTrainT(1, -1, 16)
+);
+
+withFilters(
+    () => `fmam-osc.svg`,
+    onepoleLP,
+    (o) => modOsc(saw, F3, osc(saw, F1, 0.3), osc(saw, F4))
 );

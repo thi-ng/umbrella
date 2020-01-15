@@ -1,5 +1,5 @@
 import { IGen } from "../api";
-import { Comp2, Comp3 } from "./comp";
+import { CompG2, CompG3 } from "./comp";
 
 /**
  * Higher order gen. Returns a {@link Comp2} or {@link Comp3} yielding
@@ -8,17 +8,14 @@ import { Comp2, Comp3 } from "./comp";
  * @param a - summand
  * @param b - summand
  */
-export function sum(
-    a: IGen<number>,
-    b: IGen<number>
-): Comp2<number, number, number>;
+export function sum(a: IGen<number>, b: IGen<number>): IGen<number>;
 export function sum(
     a: IGen<number>,
     b: IGen<number>,
     c: IGen<number>
-): Comp3<number, number, number, number>;
+): IGen<number>;
 export function sum(a: IGen<number>, b: IGen<number>, c?: IGen<number>) {
     return c
-        ? new Comp3((a, b, c) => a + b + c, a, b, c, 0)
-        : new Comp2((a, b) => a + b, a, b, 0);
+        ? new CompG3((a, b, c) => a + b + c, a, b, c, 0)
+        : new CompG2((a, b) => a + b, a, b, 0);
 }

@@ -39,29 +39,30 @@ export const osc = (
  * Syntax sugar for creating frequency modulated `Osc` gens.
  *
  * @remarks
- * The `modAmp` value defines the +/- normalized frequency modulation
+ * The `fmod` value defines the +/- normalized frequency modulation
  * range, added to the main oscillator `freq`.
  *
  * @example
  * ```ts
- * // rect modulated sin oscillator
- * fmodOsc(sin, osc(rect, 0.1, 0.2), 0.01)
+ * // FM sin osc using rect osc as modulator
+ * modOsc(sin, 0.01, osc(rect, 0.1, 0.2))
  *
+ * // FM & AM sin osc using rect osc as fmod and saw as amod
+ * modOsc(sin, 0.01, osc(rect, 0.1, 0.2), osc(saw, 0.05))
  *
  * ```
  *
- * @param osc
- * @param freq - normalized freq
- * @param modFreq - normalized freq
- * @param modAmp - normalized freq
- * @param phase - normalized start phase
+ * @param osc - stateless main osc
+ * @param freq - main osc freq
+ * @param fmod - freq modulator
+ * @param amod` - normalized freq
  */
 export const modOsc = (
     osc: StatelessOscillator,
-    mod: IGen<number>,
     freq: IGen<number> | number,
-    amp: IGen<number> | number
-) => new Osc(osc, sum(mod, isNumber(freq) ? add(freq) : freq), amp);
+    fmod: IGen<number>,
+    amod: IGen<number> | number = 1
+) => new Osc(osc, sum(fmod, isNumber(freq) ? add(freq) : freq), amod);
 
 export class Osc extends AGen<number> {
     protected _phase!: IGen<number>;

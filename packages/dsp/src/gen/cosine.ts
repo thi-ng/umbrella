@@ -8,9 +8,9 @@ import { AGen } from "./agen";
  * @param freq -
  * @param amp -
  */
-export const cosp = (freq: number, amp?: number) => new CosP(freq, amp);
+export const cosine = (freq: number, amp?: number) => new Cosine(freq, amp);
 
-export class CosP extends AGen<number> {
+export class Cosine extends AGen<number> {
     protected _cos!: number;
     protected _nxt!: number;
 

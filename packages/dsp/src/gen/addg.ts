@@ -1,5 +1,5 @@
 import { IGen } from "../api";
-import { Comp1 } from "./comp";
+import { CompG1 } from "./comp";
 
 /**
  * Creates a new {@link IGen} using given `step` gen and `start
@@ -20,4 +20,4 @@ import { Comp1 } from "./comp";
  * @param start
  */
 export const addg = (step: IGen<number>, start = 0) =>
-    new Comp1((a, b) => a + b, step, start - step.deref());
+    new CompG1((a, b) => a + b, step, start - step.deref());
