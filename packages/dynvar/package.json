@@ -1,0 +1,62 @@
+{
+    "name": "@thi.ng/dynvar",
+    "version": "0.0.1",
+    "description": "Dynamically scoped variable bindings",
+    "module": "./index.js",
+    "main": "./lib/index.js",
+    "umd:main": "./lib/index.umd.js",
+    "typings": "./index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thi-ng/umbrella.git"
+    },
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/api",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
+        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
+        "build:es6": "tsc --declaration",
+        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "test": "mocha test",
+        "cover": "nyc mocha test && nyc report --reporter=lcov",
+        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib api decorators mixins",
+        "doc:readme": "../../scripts/generate-readme",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
+        "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
+        "pub": "yarn build:release && yarn publish --access public"
+    },
+    "devDependencies": {
+        "@istanbuljs/nyc-config-typescript": "^0.1.3",
+        "@microsoft/api-extractor": "^7.7.0",
+        "@types/mocha": "^5.2.6",
+        "@types/node": "^12.12.11",
+        "mocha": "^6.2.2",
+        "nyc": "^14.0.0",
+        "ts-node": "^8.5.2",
+        "typedoc": "^0.15.2",
+        "typescript": "^3.7.2"
+    },
+    "dependencies": {
+        "@thi.ng/api": "^6.6.0"
+    },
+    "keywords": [
+        "binding",
+        "dynamic scope",
+        "ES6",
+        "typescript",
+        "variable"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "browser": {
+        "process": false,
+        "setTimeout": false
+    },
+    "sideEffects": false,
+    "thi.ng": {
+        "year": 2016,
+        "status": "alpha"
+    }
+}
