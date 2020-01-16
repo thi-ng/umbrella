@@ -1,3 +1,4 @@
+import { IClear } from "@thi.ng/api";
 import { TAU } from "@thi.ng/math";
 import { FilterType } from "../api";
 import { AProc } from "./aproc";
@@ -9,7 +10,7 @@ export const onepoleHP = (fc: number) => new OnePole(fc, FilterType.HP);
 /**
  * https://www.earlevel.com/main/2012/12/15/a-one-pole-filter/
  */
-export class OnePole extends AProc<number, number> {
+export class OnePole extends AProc<number, number> implements IClear {
     protected _a!: number;
     protected _b!: number;
 
@@ -19,6 +20,10 @@ export class OnePole extends AProc<number, number> {
     ) {
         super(0);
         this.setFreq(fc);
+    }
+
+    clear() {
+        this._val = 0;
     }
 
     next(x: number) {

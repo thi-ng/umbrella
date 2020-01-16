@@ -1,14 +1,17 @@
-import { Fn0 } from "@thi.ng/api";
+import { Fn0, IClear, ILength } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks";
+import { AProc } from "./aproc";
+
+export const delay = (n: number) => new Delay(n, 0);
 
 /**
  * Ring buffer / delay line for arbitrary values w/ support for tapping
  * at any delay time (within configured buffer size).
  */
-export class DelayLine<T> {
-    buf: T[];
-    readPos: number;
-    writePos: number;
+export class Delay<T> extends AProc<T, T> implements IClear, ILength {
+    protected buf: T[];
+    protected readPos: number;
+    protected writePos: number;
 
     /**
      * Constructs new delay line of size `n` and initializes all
@@ -19,12 +22,22 @@ export class DelayLine<T> {
      * @param n
      * @param empty
      */
-    constructor(n: number, empty: T | Fn0<T>) {
+    constructor(n: number, protected empty: T | Fn0<T>) {
+        super(isFunction(empty) ? empty() : empty);
         this.writePos = n - 1;
         this.readPos = 0;
         this.buf = new Array(n);
+        this.clear();
+    }
+
+    get length() {
+        return this.buf.length;
+    }
+
+    clear() {
+        const { buf, empty } = this;
         if (isFunction(empty)) {
-            for (let i = 0; i < n; i++) {
+            for (let i = buf.length; --i >= 0; ) {
                 this.buf[i] = empty();
             }
         } else {
@@ -36,7 +49,7 @@ export class DelayLine<T> {
      * Returns the delayed value at current read position (i.e. `n`
      * samples behind current write pos).
      */
-    read(): T {
+    deref(): T {
         return this.buf[this.readPos];
     }
 
@@ -55,13 +68,16 @@ export class DelayLine<T> {
     }
 
     /**
-     * Progresses read & write pos and stores new value.
+     * Progresses read & write pos, stores new value and returns delayed
+     * value.
      *
      * @param x
      */
-    write(x: T) {
+    next(x: T) {
+        const out = this.deref();
         this.step();
         this.buf[this.writePos] = x;
+        return out;
     }
 
     /**

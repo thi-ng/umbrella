@@ -1,8 +1,9 @@
+import { IClear } from "@thi.ng/api";
 import { PI, QUARTER_PI } from "@thi.ng/math";
 import { AProc } from "./aproc";
 import { ATwoPole2 } from "./atwopole";
 
-export class AllPass1 extends AProc<number, number> {
+export class AllPass1 extends AProc<number, number> implements IClear {
     protected _fc!: number;
     protected _c!: number;
     protected _z1!: number;
@@ -10,7 +11,7 @@ export class AllPass1 extends AProc<number, number> {
     constructor(fc: number) {
         super(0);
         this.setFreq(fc);
-        this.zero();
+        this.clear();
     }
 
     next(x: number) {
@@ -21,7 +22,7 @@ export class AllPass1 extends AProc<number, number> {
         return out;
     }
 
-    zero() {
+    clear() {
         this._z1 = 0;
     }
 

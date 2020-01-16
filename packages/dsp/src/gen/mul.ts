@@ -18,6 +18,9 @@ export const mul = (factor?: number, start?: number) => new Mul(factor, start);
  * {@link line}.
  *
  * @remarks
+ * Both `start` and `end` MUST be != 0 and of same sign. If `start` <
+ * `end`, the curve will ease in, if `end` > `start` it will ease out.
+ *
  * The `end` value is only reached after `num + 1` steps. The curve will
  * NOT stop at `end` but continue indefinitely if more values are
  * requested from the generator.
@@ -33,7 +36,7 @@ export const mul = (factor?: number, start?: number) => new Mul(factor, start);
  * //   0.5743491774985174,
  * //   0.435275281648062,
  * //   0.3298769776932235,
- * //   0.24999999999999994,
+ * //   0.24999999999999994, // target
  * //   0.1894645708137997
  * // ]
  * ```

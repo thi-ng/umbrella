@@ -1,5 +1,4 @@
 export * from "./api";
-export * from "./delay";
 export * from "./fft";
 export * from "./lfo";
 
@@ -23,6 +22,7 @@ export * from "./gen/wrap-around";
 export * from "./proc/allpass";
 export * from "./proc/aproc";
 export * from "./proc/atwopole";
+export * from "./proc/delay";
 export * from "./proc/integrator";
 export * from "./proc/onepole";
 

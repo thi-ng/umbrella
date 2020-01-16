@@ -1,7 +1,9 @@
+import { IClear } from "@thi.ng/api";
 import { PI, TAU } from "@thi.ng/math";
 import { AProc } from "./aproc";
 
-export abstract class ATwoPole2 extends AProc<number, number> {
+export abstract class ATwoPole2 extends AProc<number, number>
+    implements IClear {
     protected _c1!: number;
     protected _c2!: number;
     protected _z1!: number;
@@ -17,12 +19,12 @@ export abstract class ATwoPole2 extends AProc<number, number> {
     constructor(freq: number, width: number) {
         super(0);
         this._gain = 0;
-        this.zero();
+        this.clear();
         this.setFreq(freq);
         this.setWidth(width);
     }
 
-    zero() {
+    clear() {
         this._z1 = this._z2 = 0;
     }
 
