@@ -9,9 +9,9 @@ export const delay = (n: number) => new Delay(n, 0);
  * at any delay time (within configured buffer size).
  */
 export class Delay<T> extends AProc<T, T> implements IClear, ILength {
-    protected buf: T[];
-    protected readPos: number;
-    protected writePos: number;
+    protected _buf: T[];
+    protected _rpos: number;
+    protected _wpos: number;
 
     /**
      * Constructs new delay line of size `n` and initializes all
@@ -20,28 +20,28 @@ export class Delay<T> extends AProc<T, T> implements IClear, ILength {
      * element).
      *
      * @param n
-     * @param empty
+     * @param _empty
      */
-    constructor(n: number, protected empty: T | Fn0<T>) {
-        super(isFunction(empty) ? empty() : empty);
-        this.writePos = n - 1;
-        this.readPos = 0;
-        this.buf = new Array(n);
+    constructor(n: number, protected _empty: T | Fn0<T>) {
+        super(isFunction(_empty) ? _empty() : _empty);
+        this._wpos = n - 1;
+        this._rpos = 0;
+        this._buf = new Array(n);
         this.clear();
     }
 
     get length() {
-        return this.buf.length;
+        return this._buf.length;
     }
 
     clear() {
-        const { buf, empty } = this;
-        if (isFunction(empty)) {
-            for (let i = buf.length; --i >= 0; ) {
-                this.buf[i] = empty();
+        const { _buf, _empty } = this;
+        if (isFunction(_empty)) {
+            for (let i = _buf.length; --i >= 0; ) {
+                this._buf[i] = _empty();
             }
         } else {
-            this.buf.fill(empty);
+            this._buf.fill(_empty);
         }
     }
 
@@ -50,7 +50,7 @@ export class Delay<T> extends AProc<T, T> implements IClear, ILength {
      * samples behind current write pos).
      */
     deref(): T {
-        return this.buf[this.readPos];
+        return this._buf[this._rpos];
     }
 
     /**
@@ -61,23 +61,21 @@ export class Delay<T> extends AProc<T, T> implements IClear, ILength {
      * @param t
      */
     tap(t: number) {
-        const n = this.buf.length;
-        t = t + this.writePos;
+        const n = this._buf.length;
+        t = t + this._wpos;
         t = t < 0 ? t + n : t >= n ? t - n : t;
-        return this.buf[t];
+        return this._buf[t | 0];
     }
 
     /**
-     * Progresses read & write pos, stores new value and returns delayed
-     * value.
+     * Progresses read & write pos, stores & returns new value.
      *
      * @param x
      */
     next(x: T) {
-        const out = this.deref();
         this.step();
-        this.buf[this.writePos] = x;
-        return out;
+        this._buf[this._wpos] = x;
+        return x;
     }
 
     /**
@@ -85,8 +83,8 @@ export class Delay<T> extends AProc<T, T> implements IClear, ILength {
      * elements and/or to create gaps in the delay line.
      */
     step() {
-        const n = this.buf.length;
-        ++this.writePos >= n && (this.writePos -= n);
-        ++this.readPos >= n && (this.readPos -= n);
+        const n = this._buf.length;
+        ++this._wpos >= n && (this._wpos -= n);
+        ++this._rpos >= n && (this._rpos -= n);
     }
 }

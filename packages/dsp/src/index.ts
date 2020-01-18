@@ -22,9 +22,13 @@ export * from "./gen/wrap-around";
 export * from "./proc/allpass";
 export * from "./proc/aproc";
 export * from "./proc/atwopole";
+export * from "./proc/biquad";
+export * from "./proc/dcblocker";
 export * from "./proc/delay";
+export * from "./proc/feedback-delay";
 export * from "./proc/integrator";
 export * from "./proc/onepole";
+export * from "./proc/svf";
 
 export * from "./stateless/additive";
 export * from "./stateless/comb";

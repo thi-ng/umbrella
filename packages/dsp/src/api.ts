@@ -3,7 +3,12 @@ import { Fn2, IDeref, NumericArray } from "@thi.ng/api";
 export const enum FilterType {
     LP,
     HP,
-    BP
+    BP,
+    NOTCH,
+    PEAK,
+    LOSHELF,
+    HISHELF,
+    ALL
 }
 
 export type StatelessOscillator = (
@@ -26,8 +31,21 @@ export interface IProc<A, B> extends IDeref<B> {
     next(src: A): B;
 }
 
+export interface FilterConfig {
+    zeroes: number[];
+    poles: number[];
+}
+
 export interface FilterResponse {
     freq: number;
     mag: number;
     phase: number;
+}
+
+export interface IFilter {
+    /**
+     * Returns this filter's zero & pole position(s). The result object
+     * can then be passed to {@link filterResponse}.
+     */
+    filterCoeffs(): FilterConfig;
 }
