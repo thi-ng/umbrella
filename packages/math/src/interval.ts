@@ -8,12 +8,30 @@
 export const clamp = (x: number, min: number, max: number) =>
     x < min ? min : x > max ? max : x;
 
+/**
+ * Clamps value `x` to closed [0 .. 1] interval.
+ *
+ * @param x
+ */
 export const clamp01 = (x: number) => (x < 0 ? 0 : x > 1 ? 1 : x);
 
+/**
+ * Clamps value `x` to closed [-1 .. 1] interval.
+ *
+ * @param x
+ */
 export const clamp11 = (x: number) => (x < -1 ? -1 : x > 1 ? 1 : x);
 
 /**
- * Folds `x` back inside [min..max] interval. Also see {@link wrapOnce}.
+ * Clamps value `x` to closed [0 .. 0.5] interval.
+ *
+ * @param x
+ */
+export const clamp05 = (x: number) => (x < 0 ? 0 : x > 0.5 ? 0.5 : x);
+
+/**
+ * Folds `x` back inside closed [min..max] interval. Also see
+ * {@link wrapOnce}.
  *
  * @param x -
  * @param min -
@@ -35,28 +53,29 @@ export const wrap = (x: number, min: number, max: number) => {
 
 /**
  * Like {@link wrap}, but optimized for cases where `x` is guaranteed to
- * be in `[min - d, max + d]` interval, where `d = max - min`.
+ * be in `[min - d, max + d]` interval, where `d = max - min`. Result
+ * will be in closed `[min..max]` interval.
  *
  * @param x -
  * @param min -
  * @param max -
  */
 export const wrapOnce = (x: number, min: number, max: number) =>
-    x < min ? x - min + max : x >= max ? x - max + min : x;
+    x < min ? x - min + max : x > max ? x - max + min : x;
 
 /**
  * Similar to {@link wrapOnce} for [0..1] interval.
  *
  * @param x -
  */
-export const wrap01 = (x: number) => (x < 0 ? x + 1 : x >= 1 ? x - 1 : x);
+export const wrap01 = (x: number) => (x < 0 ? x + 1 : x > 1 ? x - 1 : x);
 
 /**
  * Similar to {@link wrapOnce} for [-1..1] interval.
  *
  * @param x -
  */
-export const wrap11 = (x: number) => (x < -1 ? x + 2 : x >= 1 ? x - 2 : x);
+export const wrap11 = (x: number) => (x < -1 ? x + 2 : x > 1 ? x - 2 : x);
 
 export const min2id = (a: number, b: number) => (a <= b ? 0 : 1);
 
@@ -146,10 +165,16 @@ export const absMax = (a: number, b: number) =>
     Math.abs(a) > Math.abs(b) ? a : b;
 
 /**
- * {@link http://www.musicdsp.org/showone.php?id=203}
+ * If `abs(x) > abs(e)`, recursively mirrors `x` back into `[-e .. +e]`
+ * interval at respective positive/negative boundary.
  *
- * @param e -
- * @param x -
+ * @remarks
+ * References:
+ * - https://www.desmos.com/calculator/lkyf2ag3ta
+ * - https://www.musicdsp.org/en/latest/Effects/203-fold-back-distortion.html
+ *
+ * @param e - threshold (> 0)
+ * @param x - input value
  */
 export const foldback = (e: number, x: number) =>
     x < -e || x > e ? Math.abs(Math.abs((x - e) % (4 * e)) - 2 * e) - e : x;
