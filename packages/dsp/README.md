@@ -51,35 +51,35 @@ yarn add @thi.ng/dsp
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/feature/dsp/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/feature/dsp/packages/checks)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/feature/dsp/packages/math)
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 
 ## Usage examples
 
 Several demos in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/feature/dsp/examples)
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package.
 
 A selection:
 
 ### fft-synth <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/examples/fft-synth.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fft-synth.png)
 
 Interactive inverse FFT toy synth
 
-[Live demo](https://demo.thi.ng/umbrella/fft-synth/) | [Source](https://github.com/thi-ng/umbrella/tree/feature/dsp/examples/fft-synth)
+[Live demo](https://demo.thi.ng/umbrella/fft-synth/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fft-synth)
 
 ### poly-spline <!-- NOTOC -->
 
-[Live demo](https://demo.thi.ng/umbrella/poly-spline/) | [Source](https://github.com/thi-ng/umbrella/tree/feature/dsp/examples/poly-spline)
+[Live demo](https://demo.thi.ng/umbrella/poly-spline/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-spline)
 
 ### webgl-ssao <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/examples/webgl-ssao.jpg)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-ssao.jpg)
 
-[Live demo](https://demo.thi.ng/umbrella/webgl-ssao/) | [Source](https://github.com/thi-ng/umbrella/tree/feature/dsp/examples/webgl-ssao)
+[Live demo](https://demo.thi.ng/umbrella/webgl-ssao/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-ssao)
 
 ## API
 
@@ -142,61 +142,61 @@ and their filtered responses (with different cutoff/center frequencies).
 The red waveform is the original generated 1kHz signal.
 
 All diagrams were generated with [this
-script](https://github.com/thi-ng/umbrella/blob/feature/dsp/packages/dsp/tools/generate-diagrams.ts).
+script](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/tools/generate-diagrams.ts).
 
 TODO
 
 #### 1-pole low pass
 
-![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/sin-lpf-1pole.png)
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/sin-lpf-1pole.png)
 
-![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/tri-lpf-1pole.png)
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/tri-lpf-1pole.png)
 
-![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/comb-lpf-1pole.png)
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/comb-lpf-1pole.png)
 
-![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/saw-lpf-1pole.png)
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/saw-lpf-1pole.png)
 
-![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/rect-lpf-1pole.png)
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/rect-lpf-1pole.png)
 
-![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/trigger-lpf.png)
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/trigger-lpf.png)
 
 #### Frequency modulated osc & 1-pole low pass
 
-![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/fmod-comb-lpf-1pole.png)
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/fmod-comb-lpf-1pole.png)
 
-![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/fmod-rect-lpf-1pole.png)
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/fmod-rect-lpf-1pole.png)
 
-![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/fmod-saw-lpf-1pole.png)
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/fmod-saw-lpf-1pole.png)
 
-![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/fmod-sin-lpf-1pole.png)
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/fmod-sin-lpf-1pole.png)
 
-![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/fmod-tri-lpf-1pole.png)
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/fmod-tri-lpf-1pole.png)
 
 #### 1-pole all-pass
 
-![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/sin-allpass1.png)
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/sin-allpass1.png)
 
-![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/tri-allpass1.png)
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/tri-allpass1.png)
 
-![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/comb-allpass1.png)
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/comb-allpass1.png)
 
-![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/saw-allpass1.png)
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/saw-allpass1.png)
 
-![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/rect-allpass1.png)
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/rect-allpass1.png)
 
 #### 2-pole all-pass
 
 The bandwidth of each filter is set to 1/2 of its center frequency.
 
-![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/sin-allpass2.png)
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/sin-allpass2.png)
 
-![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/tri-allpass2.png)
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/tri-allpass2.png)
 
-![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/comb-allpass2.png)
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/comb-allpass2.png)
 
-![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/saw-allpass2.png)
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/saw-allpass2.png)
 
-![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/feature/dsp/assets/dsp/rect-allpass2.png)
+![waveform](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/rect-allpass2.png)
 
 ### DelayLine
 
