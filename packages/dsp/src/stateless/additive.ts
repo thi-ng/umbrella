@@ -18,15 +18,15 @@ export const additive = (
     return (phase, freq, amp = 1, dc = 0) => {
         let y = 0;
         for (let i = 0; i < n; i++) {
-            y += osc(phase, freq * fcache[i], amp * acache[i]);
+            y += osc(phase, freq * fcache[i], acache[i]);
         }
-        return dc + y;
+        return dc + amp * y;
     };
 };
 
 /**
  * Interactive graph of this oscillator:
- * {@link www.desmos.com/calculator/irugw6gnhy}
+ * {@link https://www.desmos.com/calculator/irugw6gnhy}
  *
  * @param n - number of octaves
  */

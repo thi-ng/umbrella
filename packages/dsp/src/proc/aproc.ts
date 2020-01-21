@@ -1,4 +1,4 @@
-import { IProc } from "../api";
+import { IProc, IProc2 } from "../api";
 
 /**
  * Abstract base class for unit gens in this package. Provides
@@ -13,4 +13,14 @@ export abstract class AProc<A, B> implements IProc<A, B> {
     }
 
     abstract next(x: A): B;
+}
+
+export abstract class AProc2<A, B, C> implements IProc2<A, B, C> {
+    constructor(protected _val: C) {}
+
+    deref() {
+        return this._val;
+    }
+
+    abstract next(a: A, b: B): C;
 }

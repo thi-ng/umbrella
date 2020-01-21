@@ -1,3 +1,4 @@
+import { IReset } from "../api";
 import { AGen } from "./agen";
 
 /**
@@ -19,7 +20,9 @@ export const impulseTrainT = <T>(
 export const impulseTrainB = (period: number, start?: number) =>
     new ImpulseTrain(true, false, period, start);
 
-export class ImpulseTrain<T> extends AGen<T> {
+export class ImpulseTrain<T> extends AGen<T> implements IReset {
+    protected _startpos: number;
+
     constructor(
         protected _on: T,
         protected _off: T,
@@ -27,7 +30,12 @@ export class ImpulseTrain<T> extends AGen<T> {
         protected _pos = 0
     ) {
         super(_off);
-        this._pos--;
+        this._startpos = --this._pos;
+    }
+
+    reset() {
+        this._val = this._off;
+        this._pos = this._startpos;
     }
 
     next() {

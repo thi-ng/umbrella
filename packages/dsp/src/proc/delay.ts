@@ -1,14 +1,18 @@
 import { Fn0, IClear, ILength } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks";
+import { wrap } from "@thi.ng/math";
+import { IReset } from "../api";
 import { AProc } from "./aproc";
 
 export const delay = (n: number) => new Delay(n, 0);
+
+export const delayT = <T>(n: number, off: T | Fn0<T>) => new Delay<T>(n, off);
 
 /**
  * Ring buffer / delay line for arbitrary values w/ support for tapping
  * at any delay time (within configured buffer size).
  */
-export class Delay<T> extends AProc<T, T> implements IClear, ILength {
+export class Delay<T> extends AProc<T, T> implements IClear, ILength, IReset {
     protected _buf: T[];
     protected _rpos: number;
     protected _wpos: number;
@@ -46,8 +50,16 @@ export class Delay<T> extends AProc<T, T> implements IClear, ILength {
     }
 
     /**
+     * Alias for {@link Delay.clear}
+     */
+    reset() {
+        this.clear();
+    }
+
+    /**
      * Returns the delayed value at current read position (i.e. `n`
-     * samples behind current write pos).
+     * samples behind current write pos, where `n` is the length of this
+     * delay line).
      */
     deref(): T {
         return this._buf[this._rpos];
@@ -55,16 +67,25 @@ export class Delay<T> extends AProc<T, T> implements IClear, ILength {
 
     /**
      * Reads value at `t` relative to current write position. `t` should
-     * be in `[-(n-1)..0)` interval. E.g. `tap(-1)` returns the second
+     * be in `(-∞..0)` interval. E.g. `tap(-1)` returns the second
      * most recent value written.
      *
      * @param t
      */
     tap(t: number) {
-        const n = this._buf.length;
-        t = t + this._wpos;
-        t = t < 0 ? t + n : t >= n ? t - n : t;
-        return this._buf[t | 0];
+        return this._buf[wrap((t | 0) + this._wpos, 0, this._buf.length - 1)];
+    }
+
+    /**
+     * Takes an array of offsets relative to current write position,
+     * calls {@link Delay.tap} for each, writes results to `out` and
+     * returns it.
+     */
+    multiTap(t: ArrayLike<number>, out: T[] = []) {
+        for (let i = t.length; --i >= 0; ) {
+            out[i] = this.tap(t[i]);
+        }
+        return out;
     }
 
     /**

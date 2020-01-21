@@ -1,4 +1,5 @@
-import { INV_TAU, TAU } from "@thi.ng/math";
+import { TAU } from "@thi.ng/math";
+import { IReset } from "../api";
 import { AGen } from "./agen";
 
 /**
@@ -10,13 +11,17 @@ import { AGen } from "./agen";
  */
 export const cosine = (freq: number, amp?: number) => new Cosine(freq, amp);
 
-export class Cosine extends AGen<number> {
+export class Cosine extends AGen<number> implements IReset {
     protected _cos!: number;
     protected _nxt!: number;
 
-    constructor(freq: number, amp = 1) {
+    constructor(protected _freq: number, protected _amp = 1) {
         super(0);
-        this.set(freq, amp);
+        this.calcCoeffs();
+    }
+
+    reset() {
+        this.calcCoeffs();
     }
 
     next() {
@@ -27,12 +32,26 @@ export class Cosine extends AGen<number> {
     }
 
     freq() {
-        return Math.acos(this._cos * 0.5) * INV_TAU;
+        return this._freq;
     }
 
-    set(freq: number, amp: number) {
-        this._nxt = amp;
-        this._cos = Math.cos(freq * TAU) * 2;
-        this._val = this._cos * amp * 0.5;
+    setFreq(freq: number) {
+        this._freq = freq;
+        this.calcCoeffs();
+    }
+
+    amp() {
+        return this._amp;
+    }
+
+    setAmp(amp: number) {
+        this._amp = amp;
+        this.calcCoeffs();
+    }
+
+    protected calcCoeffs() {
+        this._nxt = this._amp;
+        this._cos = Math.cos(this._freq * TAU) * 2;
+        this._val = this._cos * this._amp * 0.5;
     }
 }

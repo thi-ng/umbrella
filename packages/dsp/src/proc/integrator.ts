@@ -1,33 +1,34 @@
-import { IClear } from "@thi.ng/api";
+import { IReset } from "../api";
 import { AProc } from "./aproc";
 
+/**
+ * Leaky integrator.
+ *
+ * https://en.wikipedia.org/wiki/Leaky_integrator
+ *
+ * @param coeff - leak (default: 1)
+ */
 export const integrator = (coeff?: number, start?: number) =>
     new Integrator(coeff, start);
 
-/**
- * https://en.wikipedia.org/wiki/Leaky_integrator
- */
-export class Integrator extends AProc<number, number> implements IClear {
-    protected _z1!: number;
-
-    constructor(coeff = 1, start = 0) {
-        super(start);
-        this.setCoeff(coeff);
+export class Integrator extends AProc<number, number> implements IReset {
+    constructor(protected _coeff = 1, protected _start = 0) {
+        super(_start);
     }
 
-    clear() {
-        this._val = 0;
+    reset() {
+        this._val = this._start;
     }
 
     next(x: number) {
-        return (this._val = this._val * this._z1 + x);
+        return (this._val = this._val * this._coeff + x);
+    }
+
+    coeff() {
+        return this._coeff;
     }
 
     setCoeff(c: number) {
-        this._z1 = c;
-    }
-
-    zero() {
-        this._val = 0;
+        this._coeff = c;
     }
 }

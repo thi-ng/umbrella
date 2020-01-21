@@ -16,7 +16,7 @@ export type StatelessOscillator = (
     freq: number,
     amp?: number,
     dc?: number,
-    opts?: any
+    ...opts: any[]
 ) => number;
 
 export type ComplexArray = [NumericArray, NumericArray];
@@ -29,6 +29,10 @@ export interface IGen<T> extends Iterable<T>, IDeref<T> {
 
 export interface IProc<A, B> extends IDeref<B> {
     next(src: A): B;
+}
+
+export interface IProc2<A, B, C> extends IDeref<C> {
+    next(srcA: A, srcB: B): C;
 }
 
 export interface FilterConfig {
@@ -48,4 +52,8 @@ export interface IFilter {
      * can then be passed to {@link filterResponse}.
      */
     filterCoeffs(): FilterConfig;
+}
+
+export interface IReset {
+    reset(): void;
 }

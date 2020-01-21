@@ -2,7 +2,6 @@ import { NumericArray } from "@thi.ng/api";
 import { cossin, TAU } from "@thi.ng/math";
 import { FilterConfig, FilterResponse } from "../api";
 import { line } from "../gen/add";
-import { exp } from "../gen/mul";
 import { magDb } from "./convert";
 
 /**
@@ -41,12 +40,8 @@ export const filterResponse = (
     db?: boolean
 ) => filterResponseRaw(coeffs.zeroes, coeffs.poles, freq, db);
 
-export const freqRange = (
-    fstart: number,
-    fend: number,
-    steps: number,
-    isExp = true
-) => (isExp ? exp : line)(fstart, fend, steps).take(steps + 1);
+export const freqRange = (fstart: number, fend: number, num: number) =>
+    line(fstart, fend, num - 1).take(num);
 
 const convolve = (coeffs: NumericArray, w0: number) => {
     let c = 0;

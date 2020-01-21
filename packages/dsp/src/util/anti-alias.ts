@@ -34,7 +34,7 @@ export const fejer = (k: number, n: number) => (n - k) / n;
  * - {@link http://www.kvraudio.com/forum/viewtopic.php?t=375517}
  *
  * @param dt - time step
- * @param t - phase
+ * @param t - normalized phase
  */
 export const polyBLEP = (dt: number, t: number) =>
     t < dt

@@ -1,7 +1,16 @@
-import { IClear } from "@thi.ng/api";
 import { unsupported } from "@thi.ng/errors";
-import { PI, SQRT2, SQRT2_2 } from "@thi.ng/math";
-import { FilterConfig, FilterType, IFilter } from "../api";
+import {
+    clamp05,
+    PI,
+    SQRT2,
+    SQRT2_2
+} from "@thi.ng/math";
+import {
+    FilterConfig,
+    FilterType,
+    IFilter,
+    IReset
+} from "../api";
 import { dbMag } from "../util/convert";
 import { AProc } from "./aproc";
 
@@ -42,27 +51,27 @@ export const biquadLoShelf = (fc: number, gain = -6) =>
 export const biquadHiShelf = (fc: number, gain = -6) =>
     new Biquad(FilterType.LOSHELF, fc, undefined, gain);
 
-export class Biquad extends AProc<number, number> implements IClear, IFilter {
+export class Biquad extends AProc<number, number> implements IReset, IFilter {
     protected _a0!: number;
     protected _a1!: number;
     protected _a2!: number;
     protected _b1!: number;
     protected _b2!: number;
-    protected _z1 = 0;
-    protected _z2 = 0;
+    protected _z1!: number;
+    protected _z2!: number;
 
     constructor(
         protected _type: BiquadType,
-        protected _fc: number,
+        protected _freq: number,
         protected _q = SQRT2_2,
         protected _gain = 0
     ) {
         super(0);
-        this.clear();
-        this.computeCoeffs();
+        this.reset();
+        this.calcCoeffs();
     }
 
-    clear() {
+    reset() {
         this._z1 = this._z2 = this._val = 0;
     }
 
@@ -73,26 +82,38 @@ export class Biquad extends AProc<number, number> implements IClear, IFilter {
         return (this._val = out);
     }
 
+    freq() {
+        return this._freq;
+    }
+
+    q() {
+        return this._q;
+    }
+
+    gain() {
+        return this._gain;
+    }
+
     set(fc: number, q: number, gain: number) {
-        this._fc = fc;
+        this._freq = clamp05(fc);
         this._q = q;
         this._gain = gain;
-        this.computeCoeffs();
+        this.calcCoeffs();
     }
 
     setFreq(fc: number) {
-        this._fc = fc;
-        this.computeCoeffs();
+        this._freq = clamp05(fc);
+        this.calcCoeffs();
     }
 
     setQ(q: number) {
         this._q = q;
-        this.computeCoeffs();
+        this.calcCoeffs();
     }
 
     setGain(g: number) {
         this._gain = g;
-        this.computeCoeffs();
+        this.calcCoeffs();
     }
 
     filterCoeffs(): FilterConfig {
@@ -102,8 +123,8 @@ export class Biquad extends AProc<number, number> implements IClear, IFilter {
         };
     }
 
-    protected computeCoeffs() {
-        const k = Math.tan(PI * this._fc);
+    protected calcCoeffs() {
+        const k = Math.tan(PI * this._freq);
         const k2 = k * k;
         const k22 = 2 * (k2 - 1);
         const kq = k / this._q;
@@ -170,13 +191,14 @@ export class Biquad extends AProc<number, number> implements IClear, IFilter {
             case FilterType.LOSHELF: {
                 const z1 = 1 + ksqrt2 + k2;
                 const z2 = 1 - ksqrt2 + k2;
-                const y1 = 1 + ksqrt2v + v * k2;
-                const y2 = 1 - ksqrt2v + v * k2;
-                const vk2 = 2 * (v * k2 - 1);
+                const vk2 = v * k2;
+                const y1 = 1 + ksqrt2v + vk2;
+                const y2 = 1 - ksqrt2v + vk2;
+                const vk22 = 2 * (vk2 - 1);
                 if (this._gain >= 0) {
                     norm = 1 / z1;
                     this._a0 = y1 * norm;
-                    this._a1 = vk2 * norm;
+                    this._a1 = vk22 * norm;
                     this._a2 = y2 * norm;
                     this._b1 = k22 * norm;
                     this._b2 = z2 * norm;
@@ -185,7 +207,7 @@ export class Biquad extends AProc<number, number> implements IClear, IFilter {
                     this._a0 = z1 * norm;
                     this._a1 = k22 * norm;
                     this._a2 = z2 * norm;
-                    this._b1 = vk2 * norm;
+                    this._b1 = vk22 * norm;
                     this._b2 = y2 * norm;
                 }
                 break;

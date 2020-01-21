@@ -1,6 +1,5 @@
-import { IClear } from "@thi.ng/api";
-import { PI } from "@thi.ng/math";
-import { FilterType } from "../api";
+import { clamp05, PI } from "@thi.ng/math";
+import { FilterType, IReset } from "../api";
 import { AProc } from "./aproc";
 
 type SVFType =
@@ -10,6 +9,21 @@ type SVFType =
     | FilterType.NOTCH
     | FilterType.PEAK
     | FilterType.ALL;
+
+export const svfLP = (fc: number, q?: number) => new SVF(FilterType.LP, fc, q);
+
+export const svfHP = (fc: number, q?: number) => new SVF(FilterType.HP, fc, q);
+
+export const svfBP = (fc: number, q?: number) => new SVF(FilterType.BP, fc, q);
+
+export const svfNotch = (fc: number, q?: number) =>
+    new SVF(FilterType.NOTCH, fc, q);
+
+export const svfPeak = (fc: number, q?: number) =>
+    new SVF(FilterType.PEAK, fc, q);
+
+export const svfAllpass = (fc: number, q?: number) =>
+    new SVF(FilterType.ALL, fc, q);
 
 /**
  * State variable filter w/ trapezoidal integration, after Andrew
@@ -21,7 +35,7 @@ type SVFType =
  * - https://en.wikipedia.org/wiki/Trapezoidal_rule
  *
  */
-export class SVF extends AProc<number, number> implements IClear {
+export class SVF extends AProc<number, number> implements IReset {
     protected _a1!: number;
     protected _a2!: number;
     protected _c1!: number;
@@ -31,21 +45,21 @@ export class SVF extends AProc<number, number> implements IClear {
 
     constructor(
         protected _type: SVFType,
-        protected _fc: number,
+        protected _freq: number,
         protected _q = 0
     ) {
         super(0);
-        this.clear();
+        this.reset();
         this.computeCoeffs();
     }
 
-    clear() {
+    reset() {
         this._c1 = this._c2 = this._val = 0;
     }
 
     next(x: number) {
-        const { _a2, _c1, _c2 } = this;
-        const x1 = this._a1 * _c1 + _a2 * (x - _c2);
+        const { _c1, _c2 } = this;
+        const x1 = this._a1 * _c1 + this._a2 * (x - _c2);
         const x2 = _c2 + this._g * x1;
         this._c1 = 2 * x1 - _c1;
         this._c2 = 2 * x2 - _c2;
@@ -66,17 +80,25 @@ export class SVF extends AProc<number, number> implements IClear {
         }
     }
 
+    set(fc: number, q: number) {
+        this._freq = fc;
+        this._q = q;
+        this.computeCoeffs();
+    }
+
     setFreq(fc: number) {
-        this._fc = fc;
-        this.setQ(this._q);
+        this._freq = fc;
+        this.computeCoeffs();
     }
 
     setQ(q: number) {
         this._q = q;
+        this.computeCoeffs();
     }
 
     protected computeCoeffs() {
-        const g = (this._g = Math.tan(PI * this._fc));
+        this._freq = clamp05(this._freq);
+        const g = (this._g = Math.tan(PI * this._freq));
         this._k = 2 - 2 * this._q;
         this._a1 = 1 / (1 + g * (g + this._k));
         this._a2 = g * this._a1;

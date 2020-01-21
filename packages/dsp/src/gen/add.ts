@@ -34,8 +34,13 @@ export const line = (start = 0, end = 1, num = 10) =>
     new Add((end - start) / num, start);
 
 export class Add extends AGen<number> {
-    constructor(protected _step = 1, start = 0) {
-        super(start - _step);
+    constructor(protected _step = 1, protected _start = 0) {
+        super(0);
+        this.reset();
+    }
+
+    reset() {
+        this._val = this._start - this._step;
     }
 
     next() {

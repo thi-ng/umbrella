@@ -1,3 +1,4 @@
+import { IReset } from "../api";
 import { AGen } from "./agen";
 
 /**
@@ -25,9 +26,13 @@ export const impulseT = <T>(on: T, off: T) => new Impulse<T>(on, off);
  */
 export const impulseB = (start = true) => new Impulse(start, !start);
 
-export class Impulse<T> extends AGen<T> {
+export class Impulse<T> extends AGen<T> implements IReset {
     constructor(protected _on: T, protected _off: T) {
         super(_on);
+    }
+
+    reset() {
+        this._val = this._on;
     }
 
     next() {

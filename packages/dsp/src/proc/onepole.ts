@@ -1,5 +1,5 @@
 import { IClear } from "@thi.ng/api";
-import { TAU } from "@thi.ng/math";
+import { clamp05, TAU } from "@thi.ng/math";
 import { FilterConfig, FilterType, IFilter } from "../api";
 import { AProc } from "./aproc";
 
@@ -16,9 +16,9 @@ export class OnePole extends AProc<number, number> implements IClear, IFilter {
     protected _a0!: number;
     protected _b1!: number;
 
-    constructor(protected _type: OnepoleType, fc: number) {
+    constructor(protected _type: OnepoleType, protected _freq: number) {
         super(0);
-        this.setFreq(fc);
+        this.setFreq(_freq);
     }
 
     clear() {
@@ -30,6 +30,7 @@ export class OnePole extends AProc<number, number> implements IClear, IFilter {
     }
 
     setFreq(fc: number) {
+        this._freq = fc = clamp05(fc);
         if (this._type === FilterType.LP) {
             this._b1 = Math.exp(-TAU * fc);
             this._a0 = 1 - this._b1;
