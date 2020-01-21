@@ -1,7 +1,7 @@
 import { FloatArray } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
 import { PI, TAU } from "@thi.ng/math";
-import { WindowFn } from "./api";
+import { WindowFn } from "../api";
 
 // https://en.wikipedia.org/wiki/Window_function
 

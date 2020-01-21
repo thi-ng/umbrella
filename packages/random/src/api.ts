@@ -24,7 +24,7 @@ export abstract class ARandom implements IRandom {
     }
 
     norm(norm = 1) {
-        return this.int() * INV_MAX * norm * 2 - norm;
+        return (this.int() * INV_MAX - 0.5) * 2 * norm;
     }
 
     minmax(min: number, max: number) {
