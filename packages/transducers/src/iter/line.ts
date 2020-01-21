@@ -2,7 +2,7 @@ import { map } from "../xform/map";
 import { normRange } from "./norm-range";
 
 /**
- * Iterator yielding `steps` + 1 interpolate values on a line in the
+ * Iterator yielding `steps` + 1 interpolated values on a line in the
  * closed `[start .. end]` interval.
  *
  * @remarks

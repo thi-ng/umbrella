@@ -1,25 +1,32 @@
-import { expFactor, fit } from "@thi.ng/math";
-
 /**
- * Iterator yielding `steps` + 1 interpolated values along an
- * exponential curve in the closed `[start .. end]` interval. The
- * curvature can be controlled via `falloff` (default: 1), which is used
- * as a power of 10 to compute the exponential decay / growth factor.
- * Use `falloff` < 0 for ease in or > 0 for ease out.
+ * Iterator producing an exponential curve (with adjustable curvature)
+ * between `start` and `end` values over `num` steps. This is the
+ * exponential equivalent of {@link line}.
+ *
+ * @remarks
+ * Since `start` is the first value emitted, the `end` value is only
+ * reached in the `num+1`th step.
+ *
+ * The curvature can be controlled via the logarithmic `rate` param.
+ * Recommended range [0.0001 - 10000] (curved -> linear). Default: 0.1
+ *
+ * The same functionality (w/ different call format) is availble in the
+ * {@link @thi.ng/dsp# | @thi.ng/dsp} package.
  *
  * @example
  * ```ts
  * [...curve(50, 100, 10, 2)]
  * // [
  * //   50,
- * //   70.228,
- * //   82.354,
- * //   89.624,
- * //   93.982,
- * //   96.594,
- * //   98.160,
- * //   99.099,
- * //   99.662,
+ * //   73.193,
+ * //   85.649,
+ * //   92.339,
+ * //   95.932,
+ * //   97.861,
+ * //   98.897,
+ * //   99.454,
+ * //   99.753,
+ * //   99.913,
  * //   100
  * // ]
  * ```
@@ -29,12 +36,13 @@ import { expFactor, fit } from "@thi.ng/math";
  * @param steps -
  * @param falloff -
  */
-export function* curve(start: number, end: number, steps = 10, falloff = 1) {
-    const fe = 1 / 10 ** falloff;
-    const f = expFactor(1, fe, steps - 1);
-    let t = 1;
-    for (; --steps >= 0; ) {
-        yield fit(t, 1, fe, start, end);
-        t *= f;
+export function* curve(start: number, end: number, steps = 10, rate = 0.1) {
+    const c = Math.exp(
+        -Math.log((Math.abs(end - start) + rate) / rate) / steps
+    );
+    const offset = (start < end ? end + rate : end - rate) * (1 - c);
+    steps > 0 && (yield start);
+    for (let x = start; --steps >= 0; ) {
+        yield (x = offset + x * c);
     }
 }

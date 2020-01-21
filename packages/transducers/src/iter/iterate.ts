@@ -12,22 +12,24 @@ import { Fn2 } from "@thi.ng/api";
  *
  * @example
  * ```ts
- * [...take(5, iterate((x) => x * 2, 1))]
+ * [...iterate((x) => x * 2, 1, 5)]
  * // [ 1, 2, 4, 8, 16 ]
  *
- * [...take(8, iterate((x, i) => x * 10 + i, 0))]
+ * [...iterate((x, i) => x * 10 + i, 0, 8)]
  * // [ 0, 1, 12, 123, 1234, 12345, 123456, 1234567 ]
  * ```
  *
  * @param fn -
  * @param seed -
+ * @param num -
  */
 export function* iterate<T>(
     fn: Fn2<T, number, T>,
-    seed: T
+    seed: T,
+    num = Infinity
 ): IterableIterator<T> {
     let i = 0;
-    while (true) {
+    while (i < num) {
         yield seed;
         seed = fn(seed, ++i);
     }
