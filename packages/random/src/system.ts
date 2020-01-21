@@ -10,6 +10,10 @@ export class SystemRandom extends ARandom {
     float(norm = 1) {
         return random() * norm;
     }
+
+    norm(norm = 1) {
+        return (random() - 0.5) * 2 * norm;
+    }
 }
 
 export const SYSTEM = new SystemRandom();
