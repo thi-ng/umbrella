@@ -1,8 +1,15 @@
 import { clamp01 } from "@thi.ng/math";
 import { Delay } from "./delay";
 
-export const feedbackDelay = (n: number, fb?: number) =>
-    new FeedbackDelay(n, fb);
+/**
+ * Extension of {@link Delay} which adds sum delayed value multiplied
+ * with `feedback` for each new input.
+ *
+ * @param n - delay length
+ * @param feedback - feedback factor (default: 0.5)
+ */
+export const feedbackDelay = (n: number, feedback?: number) =>
+    new FeedbackDelay(n, feedback);
 
 export class FeedbackDelay extends Delay<number> {
     constructor(n: number, protected _feedback = 0.5) {

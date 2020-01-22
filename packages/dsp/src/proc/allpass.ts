@@ -2,14 +2,21 @@ import { clamp05, PI, QUARTER_PI } from "@thi.ng/math";
 import { IReset } from "../api";
 import { AProc } from "./aproc";
 
+/**
+ * One-pole allpass filter.
+ *
+ * @param freq - normalized center freq
+ */
+export const allpass = (freq: number) => new AllPass1(freq);
+
 export class AllPass1 extends AProc<number, number> implements IReset {
     protected _freq!: number;
     protected _coeff!: number;
     protected _z1!: number;
 
-    constructor(fc: number) {
+    constructor(freq: number) {
         super(0);
-        this.setFreq(fc);
+        this.setFreq(freq);
         this.reset();
     }
 

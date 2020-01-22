@@ -6,25 +6,33 @@ export type WaveShaperFn = Fn2<number, number, number>;
 
 /**
  * Customizable wave shaper for user defined shaping function supporting
- * one (optional) adjustable curve parameter. The default implementation
- * is based on {@link waveshapeSigmoid} and supports configurable
- * curvature. Post-amplification (default: 1) is applied to the
- * transformed result value.
+ * one (optional, implementation specific) adjustable curve parameter.
+ * By default uses {@link waveshapeTan} and supports configurable
+ * curvature. Post-amplification is applied to the transformed result
+ * value (see remarks).
  *
  * @remarks
  * If `amp` is `true` (default), the curve will be normalized such that
  * input values in the [-1 .. 1] range will be mapped to the same output
- * interval. For the default sigmoid function this will produce out of
- * range outputs for inputs `abs(in) > 1`, especially if `coeff < 6`.
+ * interval.
  *
- * Reference:
- * - https://www.desmos.com/calculator/fsamds9lvq
+ * The following wave shaping functions are supplied by default:
+ *
+ * - {@link waveshapeTan}
+ * - {@link waveshapeSigmoid}
+ * - {@link waveshapeSin}
+ *
+ * Interactive graph:
+ * - https://www.desmos.com/calculator/hg4i7o836i
  *
  * @param thresh - fold threshold
  * @param amp - post amplifier / autogain flag
  */
-export const waveShaper = (thresh?: number, amp?: number) =>
-    new WaveShaper(thresh, amp);
+export const waveShaper = (
+    thresh?: number,
+    amp?: number | true,
+    map?: WaveShaperFn
+) => new WaveShaper(thresh, amp, map);
 
 export class WaveShaper extends AProc<number, number> {
     protected _amp!: number;
@@ -66,6 +74,8 @@ export class WaveShaper extends AProc<number, number> {
         this._autoGain = true;
     }
 }
+
+export const waveshapeTan: WaveShaperFn = (x, k) => Math.atan(k * x) / k;
 
 export const waveshapeSigmoid: WaveShaperFn = (x, k) =>
     2 / (1 + Math.exp(-k * x)) - 1;

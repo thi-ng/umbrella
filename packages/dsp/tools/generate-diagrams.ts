@@ -1,4 +1,5 @@
 import { Fn, IObjectOf } from "@thi.ng/api";
+import { cosineColor, GRADIENTS } from "@thi.ng/color";
 import {
     asSvg,
     group,
@@ -16,16 +17,16 @@ import {
 } from "@thi.ng/math";
 import {
     map,
+    mapcat,
     mapIndexed,
     range,
-    take
+    take,
+    zip
 } from "@thi.ng/transducers";
-import { addN, mulN } from "@thi.ng/vectors";
 import { writeFileSync } from "fs";
 import {
-    adsr,
+    allpass,
     AllPass1,
-    Biquad,
     biquadBP,
     biquadHiShelf,
     biquadHP,
@@ -33,54 +34,49 @@ import {
     biquadLP,
     biquadNotch,
     biquadPeak,
-    comb,
     curve,
     dcblocker,
-    dsf,
+    dsfHOF,
     filterResponse,
-    FilterType,
     freqMs,
     freqRange,
     IGen,
     impulseTrainT,
     IProc,
+    mixOscHOF,
     modOsc,
     msFrames,
     normFreq,
-    onepoleHP,
     onepoleLP,
     osc,
-    PinkNoise,
+    parabolic,
+    pinkNoise,
     rect,
     saw,
-    sawAdditive,
     sin,
     StatelessOscillator,
-    SVF,
+    svfHP,
     svfLP,
     tri,
     wavetable,
-    WhiteNoise
+    whiteNoise
 } from "../src";
-import { waveShaper, WaveShaper, waveshapeSin } from "../src/proc/waveshaper";
+import { waveShaper, waveshapeSin, waveshapeTan } from "../src/proc/waveshaper";
 
 const FS = 48000;
 
 const FREQS = [5000, 2500, 1000, 500, 250, 125];
 const [F1, F2, F3, F4, F5] = FREQS.map((f) => normFreq(f, FS));
 
-const env = adsr(16, 32, 0.5, 48, 0.001, 0.1);
-
 const OSC: IObjectOf<StatelessOscillator> = {
     sin,
     saw,
     rect,
     tri,
-    comb,
-    dsf: dsf(0.4, 3),
-    sawa: sawAdditive(10),
-    wt: wavetable(curve(1, -1, 127).take(128)),
-    wt2: wavetable([...env.take(80), ...(env.release(), env.take(48))])
+    parabolic,
+    recttri: mixOscHOF(rect, tri),
+    dsf: dsfHOF(0.4, 3),
+    wt: wavetable(curve(1, -1, 127).take(128))
 };
 
 const BASE_DIR = "export/";
@@ -95,7 +91,8 @@ const label = (x: number, y: number, body: string) =>
         }
     };
 
-const color = (i: number) => [1 - i, i * 0.75, i];
+const color = (i: number) =>
+    cosineColor(GRADIENTS["orange-magenta-blue"], 1 - i);
 
 const write = (
     fname: string,
@@ -112,21 +109,27 @@ const write = (
                 {
                     viewBox: `-10 -${YSCALE + 10} 570 ${2 * YSCALE + 40}`,
                     "font-family": "Inconsolata",
-                    "font-size": "9px",
+                    "font-size": "8px",
                     "text-anchor": "end"
                     // "dominant-baseline": "middle"
                 },
                 // axis & labels
-                group({ stroke: "#000" }, [
-                    line([X - 10, 0], [pts.length * 4 + X + 10, 0]),
+                group({ stroke: "#666", fill: "#666", "stroke-width": 0.5 }, [
+                    line([X - 6, 0], [pts.length * 4 + X + 10, 0]),
                     line([X, -YSCALE], [X, YSCALE]),
-                    ...mapIndexed(
-                        (i, y) =>
+                    ...mapcat(
+                        ([i, y]) => [
                             line(
-                                [i & 1 ? X - 5 : X - 10, y * YSCALE],
+                                [i & 1 ? X - 3 : X - 6, y * YSCALE],
                                 [X, y * YSCALE]
                             ),
-                        yticks
+                            line(
+                                [X + 5, y * YSCALE],
+                                [pts.length * 4 + X + 10, y * YSCALE],
+                                { stroke: "#ccc", dash: [1, 2] }
+                            )
+                        ],
+                        zip(range(), yticks)
                     ),
                     ...map((y) => label(X - 12, -y * YSCALE, yfmt(y)), yticks)
                 ]),
@@ -142,7 +145,8 @@ const write = (
                                     )
                                 ],
                                 {
-                                    stroke: color(id / num)
+                                    stroke: color(id / num),
+                                    "stroke-width": id === 0 ? 1 : 0.5
                                 }
                             ),
                         range(num)
@@ -198,7 +202,7 @@ const withFilters = (
 
 withFilters(
     (id) => `${id}-wshape-sigmoid.svg`,
-    (k) => new WaveShaper(k, true),
+    (k) => waveShaper(k, true),
     undefined,
     [0.5, 1, 2, 4, 8],
     ["orig", ...[0.5, 1, 2, 4, 8].map((k) => `k=${k}`)]
@@ -206,7 +210,15 @@ withFilters(
 
 withFilters(
     (id) => `${id}-wshape-sin.svg`,
-    (k) => new WaveShaper(k, 1, waveshapeSin),
+    (k) => waveShaper(k, 1, waveshapeSin),
+    undefined,
+    [0.5, 1, 2, 4, 8],
+    ["orig", ...[0.5, 1, 2, 4, 8].map((k) => `k=${k}`)]
+);
+
+withFilters(
+    (id) => `${id}-wshape-tan.svg`,
+    (k) => waveShaper(k, true, waveshapeTan),
     undefined,
     [0.5, 1, 2, 4, 8],
     ["orig", ...[0.5, 1, 2, 4, 8].map((k) => `k=${k}`)]
@@ -215,24 +227,26 @@ withFilters(
 withFilters(
     () => `pnoise.svg`,
     svfLP,
-    () => new PinkNoise(2),
+    () => pinkNoise(2),
     [12000 / FS, 8000 / FS, F1, F2, F3]
 );
 
 withFilters(
     () => `wnoise.svg`,
     svfLP,
-    () => new WhiteNoise(),
+    () => whiteNoise(),
     [12000 / FS, 8000 / FS, F1, F2, F3]
 );
 
-withFilters((id) => `${id}-svf-lp.svg`, svfLP);
+withFilters((id) => `${id}-svf-lpf.svg`, svfLP);
 
-withFilters((id) => `${id}-lpf-1pole.svg`, onepoleLP);
+withFilters((id) => `${id}-svf-hpf.svg`, svfHP);
+
+withFilters((id) => `${id}-svf-bpf.svg`, svfHP);
+
+withFilters((id) => `${id}-1pole-lpf.svg`, onepoleLP);
 
 withFilters((id) => `${id}-dcblock.svg`, dcblocker);
-
-withFilters((id) => `${id}-hpf-1pole.svg`, onepoleHP);
 
 withFilters((id) => `${id}-bq-lpf.svg`, biquadLP);
 
@@ -250,7 +264,7 @@ withFilters((id) => `${id}-bq-hsh.svg`, biquadHiShelf);
 
 withFilters(
     (id) => `${id}-allpass1.svg`,
-    (f) => new AllPass1(f)
+    (f) => allpass(f)
 );
 
 withFilters(
@@ -268,7 +282,7 @@ withFilters(
 withFilters(
     () => `fmam-osc.svg`,
     onepoleLP,
-    (o) => modOsc(saw, F3, osc(saw, F1, 0.3), osc(saw, F4))
+    () => modOsc(saw, F3, osc(saw, F1, 0.3), osc(saw, F4))
 );
 
 withFilters(

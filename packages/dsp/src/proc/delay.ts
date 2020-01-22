@@ -4,8 +4,18 @@ import { wrap } from "@thi.ng/math";
 import { IReset } from "../api";
 import { AProc } from "./aproc";
 
+/**
+ * Delay line of length `n` for numeric values.
+ *
+ * @param n
+ */
 export const delay = (n: number) => new Delay(n, 0);
 
+/**
+ * Delay line of length `n` for arbitrary typed values.
+ *
+ * @param n
+ */
 export const delayT = <T>(n: number, off: T | Fn0<T>) => new Delay<T>(n, off);
 
 /**

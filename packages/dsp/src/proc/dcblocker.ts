@@ -1,7 +1,12 @@
 import { FilterType } from "../api";
 import { OnePole } from "./onepole";
 
-export const dcblocker = (fc: number) => new DCBlocker(FilterType.LP, fc);
+/**
+ * One-pole DC blocker based on {@link OnePole}.
+ *
+ * @param freq
+ */
+export const dcblocker = (freq: number) => new DCBlocker(FilterType.LP, freq);
 
 export class DCBlocker extends OnePole {
     next(x: number) {
