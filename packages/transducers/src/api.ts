@@ -1,8 +1,9 @@
 import { Comparator, Fn, IObjectOf } from "@thi.ng/api";
-
 import { Reduced } from "./reduced";
 
 export type Transducer<A, B> = (rfn: Reducer<any, B>) => Reducer<any, A>;
+
+export type TxLike<A, B> = Transducer<A, B> | IXform<A, B>;
 
 export type ReductionFn<A, B> = (acc: A, x: B) => A | Reduced<A>;
 
@@ -10,6 +11,45 @@ export interface Reducer<A, B> extends Array<any> {
     [0]: () => A;
     [1]: (acc: A) => A;
     [2]: ReductionFn<A, B>;
+}
+
+/**
+ * Interface for types able to provide some internal functionality (or
+ * derive some related transformation) as {@link Transducer}.
+ * Implementations of this interface can be directly passed to all
+ * functions in this package which are expecting a transducer arg.
+ *
+ * @example
+ * ```
+ * class Mul implements IXform<number, number> {
+ *   constructor(public factor = 10) {}
+ *
+ *   xform() { return map((x) => this.factor * x); }
+ * }
+ *
+ * transduce(new Mul(11), push(), range(4))
+ * // [0, 11, 22, 33, 44]
+ *
+ * // also usable w/ comp()
+ * transduce(
+ *   comp(
+ *     drop(1),
+ *     new Mul(11),
+ *     takeNth(2)
+ *   ),
+ *   push(),
+ *   range(4)
+ * )
+ * // [11, 33]
+ * ```
+ */
+export interface IXform<A, B> {
+    /**
+     * Returns type specific operation as transducer. Internally called
+     * by functions in this package which expect transducer args. Users
+     * don't need to call this manually.
+     */
+    xform(): Transducer<A, B>;
 }
 
 export interface IReducible<A, B> {

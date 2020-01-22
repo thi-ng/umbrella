@@ -1,5 +1,5 @@
 import { juxt } from "@thi.ng/compose";
-import { Transducer } from "../api";
+import { Transducer, TxLike } from "../api";
 import { step } from "../step";
 import { map } from "./map";
 
@@ -27,55 +27,55 @@ import { map } from "./map";
  *
  * @param a -
  */
-export function multiplex<T, A>(a: Transducer<T, A>): Transducer<T, [A]>;
+export function multiplex<T, A>(a: TxLike<T, A>): Transducer<T, [A]>;
 export function multiplex<T, A, B>(
-    a: Transducer<T, A>,
-    b: Transducer<T, B>
+    a: TxLike<T, A>,
+    b: TxLike<T, B>
 ): Transducer<T, [A, B]>;
 export function multiplex<T, A, B, C>(
-    a: Transducer<T, A>,
-    b: Transducer<T, B>,
-    c: Transducer<T, C>
+    a: TxLike<T, A>,
+    b: TxLike<T, B>,
+    c: TxLike<T, C>
 ): Transducer<T, [A, B, C]>;
 export function multiplex<T, A, B, C, D>(
-    a: Transducer<T, A>,
-    b: Transducer<T, B>,
-    c: Transducer<T, C>,
-    d: Transducer<T, D>
+    a: TxLike<T, A>,
+    b: TxLike<T, B>,
+    c: TxLike<T, C>,
+    d: TxLike<T, D>
 ): Transducer<T, [A, B, C, D]>;
 export function multiplex<T, A, B, C, D, E>(
-    a: Transducer<T, A>,
-    b: Transducer<T, B>,
-    c: Transducer<T, C>,
-    d: Transducer<T, D>,
-    e: Transducer<T, E>
+    a: TxLike<T, A>,
+    b: TxLike<T, B>,
+    c: TxLike<T, C>,
+    d: TxLike<T, D>,
+    e: TxLike<T, E>
 ): Transducer<T, [A, B, C, D, E]>;
 export function multiplex<T, A, B, C, D, E, F>(
-    a: Transducer<T, A>,
-    b: Transducer<T, B>,
-    c: Transducer<T, C>,
-    d: Transducer<T, D>,
-    e: Transducer<T, E>,
-    f: Transducer<T, F>
+    a: TxLike<T, A>,
+    b: TxLike<T, B>,
+    c: TxLike<T, C>,
+    d: TxLike<T, D>,
+    e: TxLike<T, E>,
+    f: TxLike<T, F>
 ): Transducer<T, [A, B, C, D, E, F]>;
 export function multiplex<T, A, B, C, D, E, F, G>(
-    a: Transducer<T, A>,
-    b: Transducer<T, B>,
-    c: Transducer<T, C>,
-    d: Transducer<T, D>,
-    e: Transducer<T, E>,
-    f: Transducer<T, F>,
-    g: Transducer<T, G>
+    a: TxLike<T, A>,
+    b: TxLike<T, B>,
+    c: TxLike<T, C>,
+    d: TxLike<T, D>,
+    e: TxLike<T, E>,
+    f: TxLike<T, F>,
+    g: TxLike<T, G>
 ): Transducer<T, [A, B, C, D, E, F, G]>;
 export function multiplex<T, A, B, C, D, E, F, G, H>(
-    a: Transducer<T, A>,
-    b: Transducer<T, B>,
-    c: Transducer<T, C>,
-    d: Transducer<T, D>,
-    e: Transducer<T, E>,
-    f: Transducer<T, F>,
-    g: Transducer<T, G>,
-    h: Transducer<T, H>
+    a: TxLike<T, A>,
+    b: TxLike<T, B>,
+    c: TxLike<T, C>,
+    d: TxLike<T, D>,
+    e: TxLike<T, E>,
+    f: TxLike<T, F>,
+    g: TxLike<T, G>,
+    h: TxLike<T, H>
 ): Transducer<T, [A, B, C, D, E, F, G, H]>;
 export function multiplex(...args: any[]) {
     return map(juxt.apply(null, <any>args.map(step)));

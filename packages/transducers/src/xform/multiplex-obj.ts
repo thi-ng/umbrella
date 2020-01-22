@@ -1,5 +1,5 @@
 import { IObjectOf } from "@thi.ng/api";
-import { Reducer, Transducer } from "../api";
+import { Reducer, Transducer, TxLike } from "../api";
 import { comp } from "../func/comp";
 import { $iter } from "../iterator";
 import { multiplex } from "./multiplex";
@@ -30,15 +30,15 @@ import { rename } from "./rename";
  * @param src -
  */
 export function multiplexObj<A, B>(
-    xforms: IObjectOf<Transducer<A, any>>,
+    xforms: IObjectOf<TxLike<A, any>>,
     rfn?: Reducer<B, [PropertyKey, any]>
 ): Transducer<A, B>;
 export function multiplexObj<A, B>(
-    xforms: IObjectOf<Transducer<A, any>>,
+    xforms: IObjectOf<TxLike<A, any>>,
     src: Iterable<A>
 ): IterableIterator<B>;
 export function multiplexObj<A, B>(
-    xforms: IObjectOf<Transducer<A, any>>,
+    xforms: IObjectOf<TxLike<A, any>>,
     rfn: Reducer<B, [PropertyKey, any]>,
     src: Iterable<A>
 ): IterableIterator<B>;

@@ -1,5 +1,5 @@
 import { Fn, NO_OP } from "@thi.ng/api";
-import { IReducible, Reducer, Transducer } from "./api";
+import { IReducible, Reducer, TxLike } from "./api";
 import { transduce } from "./transduce";
 
 const NO_OP_REDUCER: Reducer<void, any> = [NO_OP, NO_OP, NO_OP];
@@ -15,19 +15,19 @@ const NO_OP_REDUCER: Reducer<void, any> = [NO_OP, NO_OP, NO_OP];
  * @param fx -
  * @param xs -
  */
-export function run<A>(tx: Transducer<A, any>, xs: Iterable<A>): void;
-export function run<A>(tx: Transducer<A, any>, xs: IReducible<any, A>): void;
+export function run<A>(tx: TxLike<A, any>, xs: Iterable<A>): void;
+export function run<A>(tx: TxLike<A, any>, xs: IReducible<any, A>): void;
 export function run<A, B>(
-    tx: Transducer<A, B>,
+    tx: TxLike<A, B>,
     fx: Fn<B, void>,
     xs: Iterable<A>
 ): void;
 export function run<A, B>(
-    tx: Transducer<A, B>,
+    tx: TxLike<A, B>,
     fx: Fn<B, void>,
     xs: IReducible<any, A>
 ): void;
-export function run<A, B>(tx: Transducer<A, B>, ...args: any[]) {
+export function run<A, B>(tx: TxLike<A, B>, ...args: any[]) {
     if (args.length === 1) {
         transduce(tx, NO_OP_REDUCER, args[0]);
     } else {

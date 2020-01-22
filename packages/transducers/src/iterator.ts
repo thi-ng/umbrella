@@ -1,6 +1,7 @@
 import { FnAny, NO_OP, SEMAPHORE } from "@thi.ng/api";
 import { isIterable } from "@thi.ng/checks";
-import { Reducer, Transducer } from "./api";
+import { Reducer, Transducer, TxLike } from "./api";
+import { ensureTransducer } from "./internal/ensure";
 import { isReduced, unreduced } from "./reduced";
 import { push } from "./rfn/push";
 
@@ -12,10 +13,10 @@ import { push } from "./rfn/push";
  * @param xs -
  */
 export function* iterator<A, B>(
-    xform: Transducer<A, B>,
+    xform: TxLike<A, B>,
     xs: Iterable<A>
 ): IterableIterator<B> {
-    const rfn = <Reducer<B[], A>>xform(push());
+    const rfn = <Reducer<B[], A>>ensureTransducer(xform)(push());
     const complete = rfn[1];
     const reduce = rfn[2];
     for (let x of xs) {
@@ -42,10 +43,12 @@ export function* iterator<A, B>(
  * @param xs -
  */
 export function* iterator1<A, B>(
-    xform: Transducer<A, B>,
+    xform: TxLike<A, B>,
     xs: Iterable<A>
 ): IterableIterator<B> {
-    const reduce = (<Reducer<B, A>>xform([NO_OP, NO_OP, (_, x) => x]))[2];
+    const reduce = (<Reducer<B, A>>(
+        ensureTransducer(xform)([NO_OP, NO_OP, (_, x) => x])
+    ))[2];
     for (let x of xs) {
         let y = reduce(<any>SEMAPHORE, x);
         if (isReduced(y)) {
@@ -68,6 +71,8 @@ export function* iterator1<A, B>(
  * @param xform -
  * @param args -
  * @param impl -
+ *
+ * @internal
  */
 export const $iter = (
     xform: FnAny<Transducer<any, any>>,

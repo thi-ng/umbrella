@@ -1,30 +1,36 @@
 import { illegalArity } from "@thi.ng/errors";
-import { IReducible, Reducer, Transducer } from "./api";
+import {
+    IReducible,
+    Reducer,
+    Transducer,
+    TxLike
+} from "./api";
+import { ensureTransducer } from "./internal/ensure";
 import { reduce } from "./reduce";
 import { map } from "./xform/map";
 
 export function transduce<A, B, C>(
-    tx: Transducer<A, B>,
+    tx: TxLike<A, B>,
     rfn: Reducer<C, B>
 ): Transducer<Iterable<A>, C>;
 export function transduce<A, B, C>(
-    tx: Transducer<A, B>,
+    tx: TxLike<A, B>,
     rfn: Reducer<C, B>,
     xs: Iterable<A>
 ): C;
 export function transduce<A, B, C>(
-    tx: Transducer<A, B>,
+    tx: TxLike<A, B>,
     rfn: Reducer<C, B>,
     xs: IReducible<C, A>
 ): C;
 export function transduce<A, B, C>(
-    tx: Transducer<A, B>,
+    tx: TxLike<A, B>,
     rfn: Reducer<C, B>,
     acc: C,
     xs: Iterable<A>
 ): C;
 export function transduce<A, B, C>(
-    tx: Transducer<A, B>,
+    tx: TxLike<A, B>,
     rfn: Reducer<C, B>,
     acc: C,
     xs: IReducible<C, A>
@@ -44,5 +50,5 @@ export function transduce(...args: any[]): any {
         default:
             illegalArity(args.length);
     }
-    return reduce(args[0](args[1]), acc, xs);
+    return reduce(ensureTransducer(args[0])(args[1]), acc, xs);
 }

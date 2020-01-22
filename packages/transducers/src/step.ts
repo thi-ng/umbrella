@@ -1,4 +1,5 @@
-import { Transducer } from "./api";
+import { TxLike } from "./api";
+import { ensureTransducer } from "./internal/ensure";
 import { isReduced } from "./reduced";
 import { push } from "./rfn/push";
 
@@ -38,9 +39,8 @@ import { push } from "./rfn/push";
  *
  * @param tx -
  */
-export const step = <A, B>(tx: Transducer<A, B>): ((x: A) => B | B[]) => {
-    const [_, complete, reduce] = tx(push());
-    _;
+export const step = <A, B>(tx: TxLike<A, B>): ((x: A) => B | B[]) => {
+    const { 1: complete, 2: reduce } = ensureTransducer(tx)(push());
     let done = false;
     return (x: A) => {
         if (!done) {
