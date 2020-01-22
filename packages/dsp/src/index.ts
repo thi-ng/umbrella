@@ -35,9 +35,9 @@ export * from "./proc/svf";
 export * from "./proc/waveshaper";
 
 export * from "./stateless/additive";
-export * from "./stateless/comb";
 export * from "./stateless/dsf";
 export * from "./stateless/mix";
+export * from "./stateless/parabolic";
 export * from "./stateless/rect";
 export * from "./stateless/saw";
 export * from "./stateless/sin";

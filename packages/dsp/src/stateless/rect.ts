@@ -8,3 +8,16 @@ export const rect: StatelessOscillator = (
     dc = 0,
     duty = 0.5
 ) => dc + amp * (fract(phase * freq) < duty ? 1 : -1);
+
+/**
+ * Higher order version of {@link rect} with pre-configured `duty` width
+ * (in the (0..1) range).
+ *
+ * @param duty
+ */
+export const rectHOF = (duty = 0.5): StatelessOscillator => (
+    phase,
+    freq,
+    amp,
+    dc
+) => rect(phase, freq, amp, dc, duty);
