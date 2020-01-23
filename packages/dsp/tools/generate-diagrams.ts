@@ -55,6 +55,7 @@ import {
     saw,
     sin,
     StatelessOscillator,
+    svfBP,
     svfHP,
     svfLP,
     tri,
@@ -242,7 +243,7 @@ withFilters((id) => `${id}-svf-lpf.svg`, svfLP);
 
 withFilters((id) => `${id}-svf-hpf.svg`, svfHP);
 
-withFilters((id) => `${id}-svf-bpf.svg`, svfHP);
+withFilters((id) => `${id}-svf-bpf.svg`, svfBP);
 
 withFilters((id) => `${id}-1pole-lpf.svg`, onepoleLP);
 
