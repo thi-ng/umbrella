@@ -79,6 +79,8 @@ Largely declarative WebGL 1.0 / 2.0 abstraction layer, partially ported
 yarn add @thi.ng/webgl
 ```
 
+Package sizes (gzipped): ESM: 11.0KB / CJS: 11.1KB / UMD: 10.9KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

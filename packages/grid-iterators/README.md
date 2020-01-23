@@ -125,6 +125,8 @@ in
 yarn add @thi.ng/grid-iterators
 ```
 
+Package sizes (gzipped): ESM: 1.0KB / CJS: 1.0KB / UMD: 1.1KB
+
 ## Dependencies
 
 - [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/master/packages/arrays)

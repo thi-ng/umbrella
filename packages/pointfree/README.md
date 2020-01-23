@@ -191,6 +191,8 @@ non-linear control flow.
 yarn add @thi.ng/pointfree
 ```
 
+Package sizes (gzipped): ESM: 3.1KB / CJS: 3.6KB / UMD: 3.4KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

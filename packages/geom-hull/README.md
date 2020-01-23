@@ -35,6 +35,8 @@ Current implementation is partially based on Clojure version of
 yarn add @thi.ng/geom-hull
 ```
 
+Package sizes (gzipped): ESM: 0.4KB / CJS: 0.5KB / UMD: 0.6KB
+
 ## Dependencies
 
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)

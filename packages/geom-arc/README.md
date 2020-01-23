@@ -31,6 +31,8 @@ This project is part of the
 yarn add @thi.ng/geom-arc
 ```
 
+Package sizes (gzipped): ESM: 1.0KB / CJS: 1.1KB / UMD: 1.1KB
+
 ## Dependencies
 
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)

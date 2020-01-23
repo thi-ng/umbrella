@@ -121,6 +121,8 @@ therefore need to be complete, e.g. `{ rotate: "rotate(60)" }`
 yarn add @thi.ng/hiccup-svg
 ```
 
+Package sizes (gzipped): ESM: 2.4KB / CJS: 2.5KB / UMD: 2.4KB
+
 ## Dependencies
 
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)

@@ -34,6 +34,8 @@ Current implementation is based on [toxiclibs](http://toxiclibs.org)
 yarn add @thi.ng/geom-clip
 ```
 
+Package sizes (gzipped): ESM: 0.5KB / CJS: 0.6KB / UMD: 0.7KB
+
 ## Dependencies
 
 - [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/master/packages/geom-isec)

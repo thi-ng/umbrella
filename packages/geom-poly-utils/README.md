@@ -45,6 +45,8 @@ Current implementations partially based on
 yarn add @thi.ng/geom-poly-utils
 ```
 
+Package sizes (gzipped): ESM: 1.1KB / CJS: 1.1KB / UMD: 1.2KB
+
 ## Dependencies
 
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)

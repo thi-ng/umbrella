@@ -33,6 +33,8 @@ Collection of 50+ type, feature & value checks.
 yarn add @thi.ng/checks
 ```
 
+Package sizes (gzipped): ESM: 1.3KB / CJS: 1.5KB / UMD: 1.3KB
+
 ## Dependencies
 
 None

@@ -225,6 +225,8 @@ Some of the most obvious missing features:
 yarn add @thi.ng/imgui
 ```
 
+Package sizes (gzipped): ESM: 7.0KB / CJS: 7.2KB / UMD: 7.2KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

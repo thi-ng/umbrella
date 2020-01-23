@@ -35,6 +35,8 @@ the Clojure version of
 yarn add @thi.ng/geom-isoline
 ```
 
+Package sizes (gzipped): ESM: 0.7KB / CJS: 0.8KB / UMD: 0.8KB
+
 ## Dependencies
 
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)

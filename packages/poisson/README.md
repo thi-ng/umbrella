@@ -50,6 +50,8 @@ to support other, alternative spatial indexing mechanisms...
 yarn add @thi.ng/poisson
 ```
 
+Package sizes (gzipped): ESM: 0.3KB / CJS: 0.4KB / UMD: 0.5KB
+
 ## Dependencies
 
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)

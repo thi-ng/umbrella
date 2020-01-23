@@ -38,6 +38,8 @@ Partially ported from Clojure version of
 yarn add @thi.ng/math
 ```
 
+Package sizes (gzipped): ESM: 3.4KB / CJS: 3.9KB / UMD: 3.2KB
+
 ## Dependencies
 
 None

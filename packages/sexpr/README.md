@@ -48,6 +48,8 @@ Everything else is parsed as is, i.e. as symbol.
 yarn add @thi.ng/sexpr
 ```
 
+Package sizes (gzipped): ESM: 0.8KB / CJS: 0.9KB / UMD: 1.0KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

@@ -53,6 +53,8 @@ which altogether provide ~750 optimized vector/matrix functions.
 yarn add @thi.ng/shader-ast-js
 ```
 
+Package sizes (gzipped): ESM: 4.9KB / CJS: 4.4KB / UMD: 4.4KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

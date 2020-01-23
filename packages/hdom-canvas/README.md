@@ -83,6 +83,8 @@ API draw calls during the hdom update process / cycle.
 yarn add @thi.ng/hdom-canvas
 ```
 
+Package sizes (gzipped): ESM: 3.2KB / CJS: 3.3KB / UMD: 3.3KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
@@ -156,6 +158,12 @@ Canvas based Immediate Mode GUI components
 Animated sine plasma effect visualized using contour lines
 
 [Live demo](https://demo.thi.ng/umbrella/iso-plasma/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/iso-plasma)
+
+### multitouch <!-- NOTOC -->
+
+Basic @thi.ng/rstream-gestures multi-touch demo
+
+[Live demo](https://demo.thi.ng/umbrella/multitouch/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/multitouch)
 
 ### ramp-synth <!-- NOTOC -->
 

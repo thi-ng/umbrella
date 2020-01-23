@@ -47,6 +47,8 @@ components**. Feedback welcome!
 yarn add @thi.ng/hdom-components
 ```
 
+Package sizes (gzipped): ESM: 1.8KB / CJS: 1.9KB / UMD: 2.0KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

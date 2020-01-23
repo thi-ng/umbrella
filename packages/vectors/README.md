@@ -144,6 +144,8 @@ Partially ported from [thi.ng/geom](http://thi.ng/geom) (Clojure) and
 yarn add @thi.ng/vectors
 ```
 
+Package sizes (gzipped): ESM: 10.7KB / CJS: 13.5KB / UMD: 11.9KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

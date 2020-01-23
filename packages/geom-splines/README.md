@@ -39,6 +39,8 @@ Current implementations partially based on
 yarn add @thi.ng/geom-splines
 ```
 
+Package sizes (gzipped): ESM: 2.0KB / CJS: 2.1KB / UMD: 2.0KB
+
 ## Dependencies
 
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)

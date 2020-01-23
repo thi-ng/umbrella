@@ -44,6 +44,8 @@ the remaining values at their own pace.
 yarn add @thi.ng/seq
 ```
 
+Package sizes (gzipped): ESM: 0.5KB / CJS: 0.6KB / UMD: 0.7KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

@@ -58,6 +58,8 @@ ints or RGBA float vectors.
 yarn add @thi.ng/porter-duff
 ```
 
+Package sizes (gzipped): ESM: 1.0KB / CJS: 1.2KB / UMD: 1.1KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

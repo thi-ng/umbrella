@@ -59,6 +59,8 @@ This package might be merged with and/or superseded by
 yarn add @thi.ng/vector-pools
 ```
 
+Package sizes (gzipped): ESM: 3.0KB / CJS: 3.1KB / UMD: 3.2KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

@@ -43,6 +43,8 @@ any actual JS type relationships).
 yarn add @thi.ng/defmulti
 ```
 
+Package sizes (gzipped): ESM: 0.7KB / CJS: 0.8KB / UMD: 0.8KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

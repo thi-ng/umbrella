@@ -45,6 +45,8 @@ in ~850ms (Chrome 72, MBP 2016)
 yarn add @thi.ng/geom-voronoi
 ```
 
+Package sizes (gzipped): ESM: 1.3KB / CJS: 1.4KB / UMD: 1.5KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

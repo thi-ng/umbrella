@@ -37,6 +37,8 @@ Immutable, optimized and optionally typed path-based object property / array acc
 yarn add @thi.ng/paths
 ```
 
+Package sizes (gzipped): ESM: 1.0KB / CJS: 1.1KB / UMD: 1.1KB
+
 ## Dependencies
 
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)

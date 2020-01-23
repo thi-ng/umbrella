@@ -46,6 +46,8 @@ these and keep any cycles async).
 yarn add @thi.ng/rstream-graph
 ```
 
+Package sizes (gzipped): ESM: 1.0KB / CJS: 1.1KB / UMD: 1.1KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

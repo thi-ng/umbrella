@@ -35,6 +35,8 @@ Current implementations partially based on
 yarn add @thi.ng/geom-closest-point
 ```
 
+Package sizes (gzipped): ESM: 0.8KB / CJS: 0.9KB / UMD: 0.9KB
+
 ## Dependencies
 
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)

@@ -95,6 +95,8 @@ hidden behind feature flags.
 yarn add @thi.ng/simd
 ```
 
+Package sizes (gzipped): ESM: 2.2KB / CJS: 2.3KB / UMD: 2.4KB
+
 ## Dependencies
 
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)

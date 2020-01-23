@@ -51,6 +51,8 @@ iterable for direct use.
 yarn add @thi.ng/transducers-binary
 ```
 
+Package sizes (gzipped): ESM: 2.5KB / CJS: 2.6KB / UMD: 2.5KB
+
 ## Dependencies
 
 - [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/master/packages/compose)

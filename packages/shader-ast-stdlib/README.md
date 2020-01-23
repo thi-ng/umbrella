@@ -73,6 +73,8 @@ Reference:
 yarn add @thi.ng/shader-ast-stdlib
 ```
 
+Package sizes (gzipped): ESM: 5.8KB / CJS: 6.5KB / UMD: 6.0KB
+
 ## Dependencies
 
 - [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast)

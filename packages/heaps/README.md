@@ -36,6 +36,8 @@ additional operations.
 yarn add @thi.ng/heaps
 ```
 
+Package sizes (gzipped): ESM: 1.5KB / CJS: 1.6KB / UMD: 1.7KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

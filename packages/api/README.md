@@ -16,6 +16,8 @@ This project is part of the
 - [API](#api)
   - [Environment variables](#environment-variables)
 - [Authors](#authors)
+  - [Maintainer](#maintainer)
+  - [Contributors](#contributors)
 - [License](#license)
 
 ## About
@@ -42,6 +44,8 @@ repository. It defines:
 yarn add @thi.ng/api
 ```
 
+Package sizes (gzipped): ESM: 2.0KB / CJS: 2.1KB / UMD: 2.1KB
+
 ## Dependencies
 
 None
@@ -67,7 +71,13 @@ The following env variables are used to control the behavior of some functions i
 
 ## Authors
 
-Karsten Schmidt
+### Maintainer
+
+- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
+
+### Contributors
+
+- Matei Adriel ([@Mateiadrielrafael](https://github.com/Mateiadrielrafael))
 
 ## License
 

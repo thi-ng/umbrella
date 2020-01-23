@@ -38,6 +38,8 @@ This package is also used for shader assembly by
 yarn add @thi.ng/shader-ast-glsl
 ```
 
+Package sizes (gzipped): ESM: 1.3KB / CJS: 1.3KB / UMD: 1.4KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

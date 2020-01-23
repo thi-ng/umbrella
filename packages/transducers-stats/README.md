@@ -62,6 +62,8 @@ transforming ES6 iterator (generator) instead of a transducer.
 yarn add @thi.ng/transducers-stats
 ```
 
+Package sizes (gzipped): ESM: 1.1KB / CJS: 1.3KB / UMD: 1.3KB
+
 ## Dependencies
 
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)

@@ -78,6 +78,8 @@ yarn install
 yarn start
 ```
 
+${pkg.size}
+
 ## Dependencies
 
 ${pkg.deps}

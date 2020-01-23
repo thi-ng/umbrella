@@ -45,6 +45,8 @@ Partially based on the Clojure implementation in
 yarn add @thi.ng/router
 ```
 
+Package sizes (gzipped): ESM: 1.7KB / CJS: 1.7KB / UMD: 1.8KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

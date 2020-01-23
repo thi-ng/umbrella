@@ -32,6 +32,8 @@ This project is part of the
 yarn add @thi.ng/binary
 ```
 
+Package sizes (gzipped): ESM: 1.2KB / CJS: 1.5KB / UMD: 1.3KB
+
 ## Dependencies
 
 None

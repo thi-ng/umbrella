@@ -42,6 +42,8 @@ maps & sets as backend.
 yarn add @thi.ng/dgraph
 ```
 
+Package sizes (gzipped): ESM: 0.7KB / CJS: 0.8KB / UMD: 0.9KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

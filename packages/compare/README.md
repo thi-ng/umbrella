@@ -32,6 +32,8 @@ Comparators with support for types implementing the [@thi.ng/api `ICompare`](htt
 yarn add @thi.ng/compare
 ```
 
+Package sizes (gzipped): ESM: 0.2KB / CJS: 0.2KB / UMD: 0.3KB
+
 ## Dependencies
 
 None

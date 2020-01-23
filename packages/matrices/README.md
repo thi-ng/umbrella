@@ -65,6 +65,8 @@ sensible).
 yarn add @thi.ng/matrices
 ```
 
+Package sizes (gzipped): ESM: 4.8KB / CJS: 5.3KB / UMD: 4.8KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

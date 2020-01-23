@@ -45,6 +45,8 @@ McCurdy's](https://msdf-bmfont.donmccurdy.com/).
 yarn add @thi.ng/webgl-msdf
 ```
 
+Package sizes (gzipped): ESM: 1.5KB / CJS: 1.5KB / UMD: 1.6KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

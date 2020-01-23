@@ -38,6 +38,8 @@ for binary versions of most of the ops provided by this package.
 yarn add @thi.ng/dlogic
 ```
 
+Package sizes (gzipped): ESM: 0.4KB / CJS: 0.5KB / UMD: 0.5KB
+
 ## Dependencies
 
 None

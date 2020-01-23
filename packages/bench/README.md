@@ -41,6 +41,8 @@ still only sourced via `Date.now()`.
 yarn add @thi.ng/bench
 ```
 
+Package sizes (gzipped): ESM: 0.7KB / CJS: 0.7KB / UMD: 0.8KB
+
 ## Dependencies
 
 None

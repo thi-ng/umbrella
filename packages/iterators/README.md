@@ -87,6 +87,8 @@ more composable & efficient transducers via
 yarn add @thi.ng/iterators
 ```
 
+Package sizes (gzipped): ESM: 2.5KB / CJS: 2.7KB / UMD: 2.5KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

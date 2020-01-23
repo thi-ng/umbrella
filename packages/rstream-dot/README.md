@@ -36,6 +36,8 @@ Graphviz DOT conversion of [@thi.ng/rstream](https://github.com/thi-ng/umbrella/
 yarn add @thi.ng/rstream-dot
 ```
 
+Package sizes (gzipped): ESM: 0.8KB / CJS: 0.8KB / UMD: 0.9KB
+
 ## Dependencies
 
 - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)

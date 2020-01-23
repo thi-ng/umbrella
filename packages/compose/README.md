@@ -31,6 +31,8 @@ Optimized functional composition helpers.
 yarn add @thi.ng/compose
 ```
 
+Package sizes (gzipped): ESM: 0.8KB / CJS: 0.9KB / UMD: 0.9KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

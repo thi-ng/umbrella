@@ -32,6 +32,8 @@ Sparse & bitwise adjacency matrices and related functions for directed & undirec
 yarn add @thi.ng/adjacency
 ```
 
+Package sizes (gzipped): ESM: 1.8KB / CJS: 1.9KB / UMD: 2.0KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

@@ -44,6 +44,8 @@ by
 yarn add @thi.ng/soa
 ```
 
+Package sizes (gzipped): ESM: 1.4KB / CJS: 1.5KB / UMD: 1.6KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

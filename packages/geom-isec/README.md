@@ -54,6 +54,8 @@ Current implementations partially based on
 yarn add @thi.ng/geom-isec
 ```
 
+Package sizes (gzipped): ESM: 2.3KB / CJS: 2.4KB / UMD: 2.4KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

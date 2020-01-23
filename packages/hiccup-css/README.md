@@ -94,6 +94,8 @@ Clojure projects:
 yarn add @thi.ng/hiccup-css
 ```
 
+Package sizes (gzipped): ESM: 2.0KB / CJS: 2.2KB / UMD: 2.1KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

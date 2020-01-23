@@ -132,6 +132,8 @@ yarn install
 yarn start
 ```
 
+Package sizes (gzipped): ESM: 3.6KB / CJS: 3.7KB / UMD: 3.6KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

@@ -64,6 +64,8 @@ Then per value:
 yarn add @thi.ng/rle-pack
 ```
 
+Package sizes (gzipped): ESM: 0.7KB / CJS: 0.7KB / UMD: 0.8KB
+
 ## Dependencies
 
 - [@thi.ng/bitstream](https://github.com/thi-ng/umbrella/tree/master/packages/bitstream)

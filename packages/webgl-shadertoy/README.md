@@ -39,6 +39,8 @@ Basic WebGL scaffolding for running interactive fragment shaders via [@thi.ng/sh
 yarn add @thi.ng/webgl-shadertoy
 ```
 
+Package sizes (gzipped): ESM: 0.7KB / CJS: 0.7KB / UMD: 0.8KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

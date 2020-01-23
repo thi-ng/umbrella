@@ -50,6 +50,8 @@ Currently does not support array fields (incl. strings).
 yarn add @thi.ng/unionstruct
 ```
 
+Package sizes (gzipped): ESM: 1.1KB / CJS: 1.1KB / UMD: 1.2KB
+
 ## Dependencies
 
 None

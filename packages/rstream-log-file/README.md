@@ -31,6 +31,8 @@ File output handler for structured, multilevel & hierarchical loggers based on [
 yarn add @thi.ng/rstream-log-file
 ```
 
+Package sizes (gzipped): ESM: 0.1KB / CJS: 0.2KB / UMD: 0.3KB
+
 ## Dependencies
 
 - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)

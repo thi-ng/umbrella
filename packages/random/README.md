@@ -45,6 +45,8 @@ Partially ported from C implementations taken from
 yarn add @thi.ng/random
 ```
 
+Package sizes (gzipped): ESM: 1.0KB / CJS: 1.1KB / UMD: 1.1KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

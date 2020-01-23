@@ -42,6 +42,8 @@ Entity Component System based around typed arrays & sparse sets.
 yarn add @thi.ng/ecs
 ```
 
+Package sizes (gzipped): ESM: 3.1KB / CJS: 3.1KB / UMD: 3.2KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

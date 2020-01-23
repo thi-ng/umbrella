@@ -44,9 +44,12 @@ rewrite of `gestureStream()` and new event data formats.
 yarn add @thi.ng/rstream-gestures
 ```
 
+Package sizes (gzipped): ESM: 1.2KB / CJS: 1.2KB / UMD: 1.3KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)

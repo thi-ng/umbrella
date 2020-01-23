@@ -137,6 +137,8 @@ iterable
 yarn add @thi.ng/hiccup
 ```
 
+Package sizes (gzipped): ESM: 1.9KB / CJS: 2.0KB / UMD: 2.0KB
+
 ## Dependencies
 
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)

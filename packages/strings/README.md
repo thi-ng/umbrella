@@ -35,6 +35,8 @@ Partially based on Clojure version of [thi.ng/strf](http://thi.ng/strf).
 yarn add @thi.ng/strings
 ```
 
+Package sizes (gzipped): ESM: 1.9KB / CJS: 2.1KB / UMD: 2.0KB
+
 ## Dependencies
 
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)

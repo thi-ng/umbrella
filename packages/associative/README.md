@@ -164,6 +164,8 @@ map.get([3,4], "n/a");
 yarn add @thi.ng/associative
 ```
 
+Package sizes (gzipped): ESM: 4.8KB / CJS: 5.0KB / UMD: 4.9KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

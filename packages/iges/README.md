@@ -36,6 +36,8 @@ applications (e.g. Rhino, Houdini, Fusion 360)
 yarn add @thi.ng/iges
 ```
 
+Package sizes (gzipped): ESM: 2.6KB / CJS: 2.6KB / UMD: 2.7KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

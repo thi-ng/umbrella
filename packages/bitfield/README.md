@@ -34,6 +34,8 @@ backing the width is always rounded to a multiple of 32.
 yarn add @thi.ng/bitfield
 ```
 
+Package sizes (gzipped): ESM: 0.5KB / CJS: 0.6KB / UMD: 0.7KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

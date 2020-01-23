@@ -48,6 +48,8 @@ ${blogPosts}
 yarn add ${pkg.name}
 ```
 
+${pkg.size}
+
 ## Dependencies
 
 ${pkg.deps}

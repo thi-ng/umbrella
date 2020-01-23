@@ -55,6 +55,8 @@ Double-linked list with comprehensive set of operations.
 yarn add @thi.ng/dcons
 ```
 
+Package sizes (gzipped): ESM: 2.0KB / CJS: 2.1KB / UMD: 2.2KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

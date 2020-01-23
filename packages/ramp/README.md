@@ -32,6 +32,8 @@ Parametric interpolated 1D lookup tables for remapping values.
 yarn add @thi.ng/ramp
 ```
 
+Package sizes (gzipped): ESM: 0.9KB / CJS: 1.0KB / UMD: 1.1KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

@@ -99,6 +99,8 @@ Format specs can freely control channel layout within current limits:
 yarn add @thi.ng/pixel
 ```
 
+Package sizes (gzipped): ESM: 3.2KB / CJS: 3.3KB / UMD: 3.3KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

@@ -112,7 +112,7 @@ options](#common-configuration-options) for further details.
 
 - [@thi.ng/rstream-csp](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-csp) - [@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/master/packages/csp) bridge module for [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
 - [@thi.ng/rstream-dot](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-dot) - Graphviz DOT conversion of [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream) dataflow graph topologies
-- [@thi.ng/rstream-gestures](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-gestures) - Unified mouse, mouse wheel & single-touch event stream abstraction
+- [@thi.ng/rstream-gestures](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-gestures) - Unified mouse, mouse wheel & multi-touch event stream abstraction
 - [@thi.ng/rstream-graph](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-graph) - Declarative dataflow graph construction for [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
 - [@thi.ng/rstream-log](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-log) - Structured, multilevel & hierarchical loggers based on [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
 - [@thi.ng/rstream-log-file](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-log-file) - File output handler for structured, multilevel & hierarchical loggers based on [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
@@ -127,6 +127,8 @@ options](#common-configuration-options) for further details.
 ```bash
 yarn add @thi.ng/rstream
 ```
+
+Package sizes (gzipped): ESM: 5.0KB / CJS: 5.2KB / UMD: 5.1KB
 
 ## Dependencies
 

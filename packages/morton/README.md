@@ -47,6 +47,8 @@ References:
 yarn add @thi.ng/morton
 ```
 
+Package sizes (gzipped): ESM: 2.0KB / CJS: 2.1KB / UMD: 2.1KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

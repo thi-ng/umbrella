@@ -43,6 +43,8 @@ package.
 yarn add @thi.ng/fsm
 ```
 
+Package sizes (gzipped): ESM: 1.4KB / CJS: 1.5KB / UMD: 1.5KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

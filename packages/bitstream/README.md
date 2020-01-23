@@ -33,6 +33,8 @@ ES6 iterator based read/write bit streams with support for variable word widths.
 yarn add @thi.ng/bitstream
 ```
 
+Package sizes (gzipped): ESM: 1.1KB / CJS: 1.1KB / UMD: 1.2KB
+
 ## Dependencies
 
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)

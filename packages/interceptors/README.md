@@ -124,6 +124,8 @@ commented source code and examples for now:
 yarn add @thi.ng/interceptors
 ```
 
+Package sizes (gzipped): ESM: 2.1KB / CJS: 2.3KB / UMD: 2.2KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

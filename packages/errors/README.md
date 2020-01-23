@@ -34,6 +34,8 @@ Additional error types can be defined using
 yarn add @thi.ng/errors
 ```
 
+Package sizes (gzipped): ESM: 0.3KB / CJS: 0.3KB / UMD: 0.4KB
+
 ## Dependencies
 
 None

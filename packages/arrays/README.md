@@ -32,6 +32,8 @@ Array / Arraylike utilities.
 yarn add @thi.ng/arrays
 ```
 
+Package sizes (gzipped): ESM: 1.3KB / CJS: 1.4KB / UMD: 1.4KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

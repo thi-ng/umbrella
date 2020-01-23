@@ -32,6 +32,8 @@ Extensible 2D/3D scene graph with [@thi.ng/hdom-canvas](https://github.com/thi-n
 yarn add @thi.ng/scenegraph
 ```
 
+Package sizes (gzipped): ESM: 0.8KB / CJS: 0.8KB / UMD: 0.9KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

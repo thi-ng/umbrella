@@ -46,6 +46,8 @@ based on different strategies. See doc strings for further details.
 yarn add @thi.ng/memoize
 ```
 
+Package sizes (gzipped): ESM: 0.2KB / CJS: 0.3KB / UMD: 0.4KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
@@ -57,6 +59,12 @@ Several demos in this repo's
 directory are using this package.
 
 A selection:
+
+### multitouch <!-- NOTOC -->
+
+Basic @thi.ng/rstream-gestures multi-touch demo
+
+[Live demo](https://demo.thi.ng/umbrella/multitouch/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/multitouch)
 
 ### rstream-spreadsheet <!-- NOTOC -->
 

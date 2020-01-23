@@ -31,6 +31,8 @@ Sparse vector & matrix implementations.
 yarn add @thi.ng/sparse
 ```
 
+Package sizes (gzipped): ESM: 3.5KB / CJS: 3.6KB / UMD: 3.7KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

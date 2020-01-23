@@ -67,6 +67,8 @@ Please also see the following hdom references for further details:
 yarn add @thi.ng/transducers-hdom
 ```
 
+Package sizes (gzipped): ESM: 0.3KB / CJS: 0.3KB / UMD: 0.4KB
+
 ## Dependencies
 
 - [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
@@ -148,6 +150,12 @@ Worker based, interactive Mandelbrot visualization
 Minimal Markdown to Hiccup to HTML parser / transformer
 
 [Live demo](https://demo.thi.ng/umbrella/markdown/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/markdown)
+
+### multitouch <!-- NOTOC -->
+
+Basic @thi.ng/rstream-gestures multi-touch demo
+
+[Live demo](https://demo.thi.ng/umbrella/multitouch/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/multitouch)
 
 ### poly-spline <!-- NOTOC -->
 

@@ -49,6 +49,8 @@ Reference:
 yarn add @thi.ng/quad-edge
 ```
 
+Package sizes (gzipped): ESM: 0.5KB / CJS: 0.5KB / UMD: 0.6KB
+
 ## Dependencies
 
 None

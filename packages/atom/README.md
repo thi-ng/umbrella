@@ -50,6 +50,8 @@ as single source of truth within an application.
 yarn add @thi.ng/atom
 ```
 
+Package sizes (gzipped): ESM: 2.0KB / CJS: 2.0KB / UMD: 2.0KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

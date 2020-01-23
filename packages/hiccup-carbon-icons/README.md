@@ -48,6 +48,8 @@ code](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-carbon-icon
 yarn add @thi.ng/hiccup-carbon-icons
 ```
 
+Package sizes (gzipped): ESM: 16.4KB / CJS: 16.9KB / UMD: 16.1KB
+
 ## Dependencies
 
 None

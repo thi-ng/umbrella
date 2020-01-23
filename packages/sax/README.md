@@ -59,6 +59,8 @@ well (see SVG parsing example further below). The choice is yours!
 yarn add @thi.ng/sax
 ```
 
+Package sizes (gzipped): ESM: 1.9KB / CJS: 2.0KB / UMD: 2.1KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

@@ -53,6 +53,8 @@ strategies](https://en.wikipedia.org/wiki/Cache_replacement_policies).
 yarn add @thi.ng/cache
 ```
 
+Package sizes (gzipped): ESM: 1.0KB / CJS: 1.1KB / UMD: 1.2KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

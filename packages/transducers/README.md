@@ -38,8 +38,9 @@ This project is part of the
   - [Types](#types)
     - [Reducer](#reducer)
     - [Reduced](#reduced)
-  - [IReducible](#ireducible)
-  - [Transducer](#transducer)
+    - [IReducible](#ireducible)
+    - [Transducer](#transducer)
+    - [IXform interface](#ixform-interface)
   - [Composition & execution](#composition--execution)
     - [comp](#comp)
     - [compR](#compr)
@@ -140,6 +141,8 @@ package.
 ```bash
 yarn add @thi.ng/transducers
 ```
+
+Package sizes (gzipped): ESM: 7.8KB / CJS: 8.3KB / UMD: 7.6KB
 
 ## Dependencies
 
@@ -764,21 +767,22 @@ created via `reduced(x)` and handled via these helper functions:
 - `ensureReduced(x: any): Reduced<any>`
 - `unreduced(x: any): any`
 
-### IReducible
+#### IReducible
 
 By default `reduce()` consumes inputs via the standard ES6 `Iterable`
-interface, i.e. using a `for..of..` loop. Array-like inputs are consumed
-via a traditional `for`-loop and custom optimized iterations can be
-provided via implementations of the `IReducible` interface in the source
-collection type. Examples can be found here:
+interface, i.e. using a `for..of..` loop, but uses optimized routes
+for some types: Array-like inputs are consumed via a traditional
+`for`-loop and custom optimized iterations can be provided via
+implementations of the `IReducible` interface in the source collection
+type. Examples can be found here:
 
--   [DCons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons/src/index.ts#L126)
--   [SortedMap](https://github.com/thi-ng/umbrella/tree/master/packages/associative/src/sorted-map.ts#L294)
+- [DCons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons/src/index.ts#L156)
+- [SortedMap](https://github.com/thi-ng/umbrella/tree/master/packages/associative/src/sorted-map.ts#L276)
 
 **Note:** The `IReducible` interface is only used by `reduce()`,
 `transduce()` and `run()`.
 
-### Transducer
+#### Transducer
 
 From Rich Hickey's original definition:
 
@@ -819,6 +823,35 @@ function dedupe<T>(): Transducer<T, T> {
         ];
     };
 }
+```
+
+#### IXform interface
+
+Interface for types able to provide some internal functionality (or
+derive some related transformation) as `Transducer`. Implementations of
+this interface can be directly passed to all functions in this package
+where are `Transducer` arg is expected.
+
+```ts
+class Mul implements IXform<number, number> {
+
+    constructor(public factor = 10) {}
+
+    xform() {
+        return map((x) => this.factor * x);
+    }
+}
+
+transduce(new Mul(11), push(), range(4))
+// [0, 11, 22, 33, 44]
+
+// also usable w/ comp(), iterator(), step(), run() etc.
+transduce(
+    comp(drop(1), new Mul(11), takeNth(2)),
+    push(),
+    range(4)
+)
+// [11, 33]
 ```
 
 ### Composition & execution

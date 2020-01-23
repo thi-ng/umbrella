@@ -67,6 +67,8 @@ References:
 yarn add @thi.ng/gp
 ```
 
+Package sizes (gzipped): ESM: 1.2KB / CJS: 1.3KB / UMD: 1.4KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

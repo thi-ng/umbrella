@@ -174,6 +174,8 @@ status. The TL;DR list...
 yarn add @thi.ng/shader-ast
 ```
 
+Package sizes (gzipped): ESM: 4.7KB / CJS: 5.2KB / UMD: 4.6KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

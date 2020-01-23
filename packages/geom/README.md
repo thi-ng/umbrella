@@ -60,6 +60,8 @@ themselves too):
 yarn add @thi.ng/geom
 ```
 
+Package sizes (gzipped): ESM: 9.1KB / CJS: 9.3KB / UMD: 8.8KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)

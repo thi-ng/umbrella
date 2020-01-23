@@ -38,6 +38,8 @@ by Joe Halliwell](https://www.winterwell.com/software/compressor.php).
 yarn add @thi.ng/range-coder
 ```
 
+Package sizes (gzipped): ESM: 0.7KB / CJS: 0.7KB / UMD: 0.7KB
+
 ## Dependencies
 
 - [@thi.ng/bitstream](https://github.com/thi-ng/umbrella/tree/master/packages/bitstream)
