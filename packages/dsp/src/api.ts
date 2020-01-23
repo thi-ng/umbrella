@@ -25,6 +25,7 @@ export type WindowFn = Fn2<number, number, number>;
 
 export interface IGen<T> extends Iterable<T>, IDeref<T> {
     next(): T;
+    take(num: number, out?: T[], idx?: number): T[];
 }
 
 export interface IProc<A, B> extends IDeref<B> {
@@ -52,8 +53,4 @@ export interface IFilter {
      * can then be passed to {@link filterResponse}.
      */
     filterCoeffs(): FilterConfig;
-}
-
-export interface IReset {
-    reset(): void;
 }

@@ -1,12 +1,18 @@
 export * from "./api";
 export * from "./fft";
 
+export * from "./comp/addg";
+export * from "./comp/compg";
+export * from "./comp/compp";
+export * from "./comp/multiplex";
+export * from "./comp/pipe";
+export * from "./comp/product";
+export * from "./comp/sum";
+
 export * from "./gen/add";
-export * from "./gen/addg";
 export * from "./gen/adsr";
 export * from "./gen/agen";
 export * from "./gen/alt";
-export * from "./gen/comp";
 export * from "./gen/const";
 export * from "./gen/cosine";
 export * from "./gen/impulse";
@@ -15,10 +21,8 @@ export * from "./gen/madd";
 export * from "./gen/mul";
 export * from "./gen/osc";
 export * from "./gen/pink-noise";
-export * from "./gen/product";
 export * from "./gen/reciprocal";
 export * from "./gen/sincos";
-export * from "./gen/sum";
 export * from "./gen/white-noise";
 
 export * from "./proc/allpass";

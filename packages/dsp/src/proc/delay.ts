@@ -1,7 +1,11 @@
-import { Fn0, IClear, ILength } from "@thi.ng/api";
+import {
+    Fn0,
+    IClear,
+    ILength,
+    IReset
+} from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks";
 import { wrap } from "@thi.ng/math";
-import { IReset } from "../api";
 import { AProc } from "./aproc";
 
 /**
@@ -64,6 +68,7 @@ export class Delay<T> extends AProc<T, T> implements IClear, ILength, IReset {
      */
     reset() {
         this.clear();
+        return this;
     }
 
     /**

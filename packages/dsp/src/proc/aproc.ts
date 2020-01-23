@@ -1,3 +1,4 @@
+import { IXform, map } from "@thi.ng/transducers";
 import { IProc, IProc2 } from "../api";
 
 /**
@@ -5,7 +6,7 @@ import { IProc, IProc2 } from "../api";
  * {@link @thi.ng/api#IDeref} to obtain the gen's current value and
  * `Iterable` implementations to use gens as ES6 iterables.
  */
-export abstract class AProc<A, B> implements IProc<A, B> {
+export abstract class AProc<A, B> implements IProc<A, B>, IXform<A, B> {
     constructor(protected _val: B) {}
 
     deref() {
@@ -13,6 +14,10 @@ export abstract class AProc<A, B> implements IProc<A, B> {
     }
 
     abstract next(x: A): B;
+
+    xform() {
+        return map((x: A) => this.next(x));
+    }
 }
 
 export abstract class AProc2<A, B, C> implements IProc2<A, B, C> {

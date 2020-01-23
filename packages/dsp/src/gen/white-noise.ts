@@ -1,3 +1,4 @@
+import { IReset } from "@thi.ng/api";
 import { IRandom, SYSTEM } from "@thi.ng/random";
 import { AGen } from "./agen";
 
@@ -11,9 +12,13 @@ import { AGen } from "./agen";
 export const whiteNoise = (gain?: number, rnd?: IRandom) =>
     new WhiteNoise(gain, rnd);
 
-export class WhiteNoise extends AGen<number> {
+export class WhiteNoise extends AGen<number> implements IReset {
     constructor(protected _gain = 1, protected _rnd: IRandom = SYSTEM) {
         super(0);
+    }
+
+    reset() {
+        return this;
     }
 
     next() {

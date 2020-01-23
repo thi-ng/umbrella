@@ -1,4 +1,4 @@
-import { IReset } from "../api";
+import { IReset } from "@thi.ng/api";
 import { AGen } from "./agen";
 
 /**
@@ -20,6 +20,7 @@ export class Mul extends AGen<number> implements IReset {
 
     reset() {
         this._val = this._start / this._factor;
+        return this;
     }
 
     next() {

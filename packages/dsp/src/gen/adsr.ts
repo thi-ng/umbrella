@@ -1,4 +1,4 @@
-import { IReset } from "../api";
+import { IReset } from "@thi.ng/api";
 import { AGen } from "./agen";
 import { curve, MAdd } from "./madd";
 
@@ -79,6 +79,7 @@ export class ADSR extends AGen<number> implements IReset {
         this._phase = EnvPhase.ATTACK;
         this._curve = curve(0, 1, this._atime, this._acurve);
         this._val = 0;
+        return this;
     }
 
     release() {

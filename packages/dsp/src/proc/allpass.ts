@@ -1,5 +1,5 @@
+import { IReset } from "@thi.ng/api";
 import { clamp05, PI, QUARTER_PI } from "@thi.ng/math";
-import { IReset } from "../api";
 import { AProc } from "./aproc";
 
 /**
@@ -22,6 +22,7 @@ export class AllPass1 extends AProc<number, number> implements IReset {
 
     reset() {
         this._z1 = 0;
+        return this;
     }
 
     next(x: number) {

@@ -1,3 +1,4 @@
+import { IReset } from "@thi.ng/api";
 import { unsupported } from "@thi.ng/errors";
 import {
     clamp05,
@@ -5,12 +6,7 @@ import {
     SQRT2,
     SQRT2_2
 } from "@thi.ng/math";
-import {
-    FilterConfig,
-    FilterType,
-    IFilter,
-    IReset
-} from "../api";
+import { FilterConfig, FilterType, IFilter } from "../api";
 import { dbMag } from "../util/convert";
 import { AProc } from "./aproc";
 
@@ -49,7 +45,7 @@ export const biquadLoShelf = (fc: number, gain = -6) =>
     new Biquad(FilterType.LOSHELF, fc, undefined, gain);
 
 export const biquadHiShelf = (fc: number, gain = -6) =>
-    new Biquad(FilterType.LOSHELF, fc, undefined, gain);
+    new Biquad(FilterType.HISHELF, fc, undefined, gain);
 
 export class Biquad extends AProc<number, number> implements IReset, IFilter {
     protected _a0!: number;
@@ -73,6 +69,7 @@ export class Biquad extends AProc<number, number> implements IReset, IFilter {
 
     reset() {
         this._z1 = this._z2 = this._val = 0;
+        return this;
     }
 
     next(x: number) {

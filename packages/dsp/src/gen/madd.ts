@@ -1,4 +1,4 @@
-import { IReset } from "../api";
+import { IReset } from "@thi.ng/api";
 import { AGen } from "./agen";
 
 /**

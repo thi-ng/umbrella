@@ -1,6 +1,5 @@
-import { Tuple } from "@thi.ng/api";
+import { IReset, Tuple } from "@thi.ng/api";
 import { IRandom, SYSTEM } from "@thi.ng/random";
-import { IReset } from "../api";
 import { AGen } from "./agen";
 
 type PNoiseCoeffs = Tuple<number, 5>;
@@ -61,6 +60,7 @@ export class PinkNoise extends AGen<number> implements IReset {
 
     reset() {
         this._bins.fill(0);
+        return this;
     }
 
     next() {

@@ -1,3 +1,4 @@
+import { IReset } from "@thi.ng/api";
 import { TAU } from "@thi.ng/math";
 import { AGen } from "./agen";
 
@@ -18,7 +19,7 @@ import { AGen } from "./agen";
  * @param freq - normalized freq
  * @param amp - amplitude (default: 1)
  */
-export class SinCos extends AGen<number[]> {
+export class SinCos extends AGen<number[]> implements IReset {
     protected _f!: number;
     protected _s!: number;
     protected _c!: number;
@@ -26,6 +27,11 @@ export class SinCos extends AGen<number[]> {
     constructor(protected _freq: number, protected _amp = 1) {
         super([0, _amp]);
         this.calcCoeffs();
+    }
+
+    reset() {
+        this.calcCoeffs();
+        return this;
     }
 
     next() {

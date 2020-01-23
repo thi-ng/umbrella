@@ -1,3 +1,4 @@
+import { IReset } from "@thi.ng/api";
 import { AGen } from "./agen";
 
 /**
@@ -33,7 +34,7 @@ export const add = (step?: number, start?: number) => new Add(step, start);
 export const line = (start = 0, end = 1, num = 10) =>
     new Add((end - start) / num, start);
 
-export class Add extends AGen<number> {
+export class Add extends AGen<number> implements IReset {
     constructor(protected _step = 1, protected _start = 0) {
         super(0);
         this.reset();
@@ -41,6 +42,7 @@ export class Add extends AGen<number> {
 
     reset() {
         this._val = this._start - this._step;
+        return this;
     }
 
     next() {

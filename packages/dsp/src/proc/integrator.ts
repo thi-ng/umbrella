@@ -1,4 +1,4 @@
-import { IReset } from "../api";
+import { IReset } from "@thi.ng/api";
 import { AProc } from "./aproc";
 
 /**
@@ -18,6 +18,7 @@ export class Integrator extends AProc<number, number> implements IReset {
 
     reset() {
         this._val = this._start;
+        return this;
     }
 
     next(x: number) {

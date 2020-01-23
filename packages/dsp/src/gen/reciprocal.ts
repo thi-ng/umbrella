@@ -1,4 +1,4 @@
-import { IReset } from "../api";
+import { IReset } from "@thi.ng/api";
 import { AGen } from "./agen";
 
 /**
@@ -18,6 +18,7 @@ export class Reciprocal extends AGen<number> implements IReset {
 
     reset() {
         this._n = 1 - this._step;
+        return this;
     }
 
     next() {

@@ -1,9 +1,10 @@
 import { IGen } from "../api";
-import { CompG2, CompG3 } from "./comp";
+import { CompG2, CompG3 } from "./compg";
 
 /**
  * Higher order gen. Returns a {@link Comp2} or {@link Comp3} yielding
- * products of the given {@link IGen}s. Initializes to 0.
+ * stepwise (non-accumulated) products of the given {@link IGen}s.
+ * Initializes to 0.
  *
  * @param a - factor
  * @param b - factor

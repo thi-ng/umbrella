@@ -1,5 +1,6 @@
+import { IReset } from "@thi.ng/api";
 import { clamp05, PI } from "@thi.ng/math";
-import { FilterType, IReset } from "../api";
+import { FilterType } from "../api";
 import { AProc } from "./aproc";
 
 type SVFType =
@@ -55,6 +56,7 @@ export class SVF extends AProc<number, number> implements IReset {
 
     reset() {
         this._c1 = this._c2 = this._val = 0;
+        return this;
     }
 
     next(x: number) {

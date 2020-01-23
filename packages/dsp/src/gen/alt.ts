@@ -1,3 +1,4 @@
+import { IReset } from "@thi.ng/api";
 import { AGen } from "./agen";
 
 export const alt = (n = 1) => new Alt(n, -n);
@@ -6,11 +7,16 @@ export const altT = <T>(a: T, b: T) => new Alt(a, b);
 
 export const altB = (x = true) => new Alt(x, !x);
 
-export class Alt<T> extends AGen<T> {
+export class Alt<T> extends AGen<T> implements IReset {
     protected _flip = true;
 
     constructor(protected _a: T, protected _b: T) {
         super(_b);
+    }
+
+    reset() {
+        this._flip = true;
+        return this;
     }
 
     next() {

@@ -1,5 +1,5 @@
+import { IReset } from "@thi.ng/api";
 import { TAU } from "@thi.ng/math";
-import { IReset } from "../api";
 import { AGen } from "./agen";
 
 /**
@@ -22,6 +22,7 @@ export class Cosine extends AGen<number> implements IReset {
 
     reset() {
         this.calcCoeffs();
+        return this;
     }
 
     next() {

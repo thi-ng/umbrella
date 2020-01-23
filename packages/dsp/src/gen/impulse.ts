@@ -1,4 +1,4 @@
-import { IReset } from "../api";
+import { IReset } from "@thi.ng/api";
 import { AGen } from "./agen";
 
 /**
@@ -33,6 +33,7 @@ export class Impulse<T> extends AGen<T> implements IReset {
 
     reset() {
         this._val = this._on;
+        return this;
     }
 
     next() {
