@@ -17,7 +17,7 @@ export interface Reducer<A, B> extends Array<any> {
  * Interface for types able to provide some internal functionality (or
  * derive some related transformation) as {@link Transducer}.
  * Implementations of this interface can be directly passed to all
- * functions in this package which are expecting a transducer arg.
+ * functions in this package where a `Transducer` arg is expected.
  *
  * @example
  * ```

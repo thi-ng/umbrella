@@ -10,8 +10,8 @@
  * The curvature can be controlled via the logarithmic `rate` param.
  * Recommended range [0.0001 - 10000] (curved -> linear). Default: 0.1
  *
- * The same functionality (w/ different call format) is availble in the
- * {@link @thi.ng/dsp# | @thi.ng/dsp} package.
+ * Similar functionality (w/ more options) is availble here:
+ * {@link @thi.ng/dsp#curve}.
  *
  * @example
  * ```ts

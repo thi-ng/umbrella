@@ -10,6 +10,9 @@ import { normRange } from "./norm-range";
  * precise values (by avoiding the accumulation of floating point errors
  * during iteration).
  *
+ * Similar functionality (w/ more options) is availble here:
+ * {@link @thi.ng/dsp#line}.
+ *
  * @example
  * ```ts
  * [...line(50, 100, 10)]
