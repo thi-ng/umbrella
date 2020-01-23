@@ -18,6 +18,7 @@ export * from "./gen/cosine";
 export * from "./gen/curve";
 export * from "./gen/impulse";
 export * from "./gen/impulse-train";
+export * from "./gen/line";
 export * from "./gen/madd";
 export * from "./gen/mul";
 export * from "./gen/osc";

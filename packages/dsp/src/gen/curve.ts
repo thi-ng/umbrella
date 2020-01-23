@@ -6,9 +6,10 @@ import { MAdd } from "./madd";
  * steps. This is the exponential equivalent of {@link line}.
  *
  * @remarks
- * The `end` value is only reached after `num + 1` steps. The curve will
- * NOT stop at `end` but continue indefinitely if more values are
- * requested from the generator.
+ * Unless `skipFirst` is true (default: false), the `end` value is only
+ * reached at `num + 1` steps. Unless `clampEnd` is true (default:
+ * false), the curve will NOT stop at `end` but continue indefinitely if
+ * more values are requested from the generator.
  *
  * The curvature can be controlled via the logarithmic `rate` param.
  * Recommended range [0.0001 - 10000] (curved -> linear). Default: 0.1
@@ -32,20 +33,24 @@ import { MAdd } from "./madd";
  * @param start - start value
  * @param end - end value
  * @param num - num steps
- * @param rate - curvature
+ * @param rate - curvature control
+ * @param skipFirst - true to skip start value (default: false)
+ * @param clampEnd - true to clamp curve at end value (default: false)
  */
 export const curve = (
     start: number,
     end: number,
-    steps: number,
-    rate = 0.1
+    num: number,
+    rate = 0.1,
+    skipFirst = false,
+    clampEnd = false
 ) => {
-    const c = Math.exp(
-        -Math.log((Math.abs(end - start) + rate) / rate) / steps
-    );
+    const c = Math.exp(-Math.log((Math.abs(end - start) + rate) / rate) / num);
+    const offset = (start < end ? end + rate : end - rate) * (1 - c);
     return new MAdd(
         c,
-        start,
-        (start < end ? end + rate : end - rate) * (1 - c)
+        skipFirst ? offset + start * c : start,
+        offset,
+        clampEnd ? end : undefined
     );
 };

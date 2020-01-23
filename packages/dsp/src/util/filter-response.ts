@@ -1,7 +1,7 @@
 import { NumericArray } from "@thi.ng/api";
 import { cossin, TAU } from "@thi.ng/math";
 import { FilterConfig, FilterResponse } from "../api";
-import { line } from "../gen/add";
+import { line } from "../gen/line";
 import { magDb } from "./convert";
 
 /**

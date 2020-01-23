@@ -4,7 +4,8 @@ import { curve } from "./curve";
 /**
  * Similar to {@link curve}, but with added accumulation (via
  * {@link addG}). Systax sugar for `addg(curve(...))` and intended for
- * creating oscillator frequency sweeps.
+ * creating oscillator frequency sweeps. By default, the sweep speed is
+ * clamped at the given `end` value.
  *
  * @example
  * ```ts
@@ -24,10 +25,12 @@ import { curve } from "./curve";
  * @param end
  * @param steps
  * @param rate
+ * @param clamp - true, if clamp at `end` value
  */
 export const sweep = (
     start: number,
     end: number,
     steps: number,
-    rate?: number
-) => addG(curve(start, end, steps, rate));
+    rate?: number,
+    clamp = true
+) => addG(curve(start, end, steps, rate, false, clamp));
