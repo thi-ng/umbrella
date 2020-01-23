@@ -50,8 +50,8 @@ try {
                 const pkg = JSON.parse(fs.readFileSync(`../${p}/package.json`));
                 items.push(
                     pkgLink(pkg.name) +
-                    " - " +
-                    pkg.description.replace(RE_PKG, pkgLink)
+                        " - " +
+                        pkg.description.replace(RE_PKG, pkgLink)
                 );
             } catch (_) {
                 console.log(`error reading support pkg: ${p.name}`);
@@ -85,31 +85,31 @@ try {
                             : null,
                         expkg.description ? expkg.description + "\n" : null,
                         link("Live demo", `${DEMO_URL}/${expkg.name}/`) +
-                        " | " +
-                        link(
-                            "Source",
-                            `${BRANCH_URL}/examples/${expkg.name}`
-                        ),
+                            " | " +
+                            link(
+                                "Source",
+                                `${BRANCH_URL}/examples/${expkg.name}`
+                            ),
                         ""
                     ]
                         .filter((x) => x != null)
                         .join("\n");
                     examples.push(body);
                 }
-            } catch (_) { }
+            } catch (_) {}
         }
         return examples.length
             ? [
-                "## Usage examples",
-                "",
-                "Several demos in this repo's",
-                link("/examples", `${BRANCH_URL}/examples`),
-                "directory are using this package.",
-                "",
-                "A selection:",
-                "",
-                ...examples
-            ].join("\n")
+                  "## Usage examples",
+                  "",
+                  "Several demos in this repo's",
+                  link("/examples", `${BRANCH_URL}/examples`),
+                  "directory are using this package.",
+                  "",
+                  "A selection:",
+                  "",
+                  ...examples
+              ].join("\n")
             : null;
     };
 
@@ -155,6 +155,23 @@ try {
         ].join("\n");
     };
 
+    const packageSize = () => {
+        try {
+            const meta = JSON.parse(fs.readFileSync("./.meta/size.json"));
+            const res = [];
+            for (let id in meta) {
+                res.push(
+                    `${id.toUpperCase()}: ${(meta[id].gzip / 1024).toFixed(
+                        1
+                    )}KB`
+                );
+            }
+            return "Package sizes (gzipped): " + res.join(" / ");
+        } catch (_) {
+            return "";
+        }
+    };
+
     const blogPosts = (posts) => {
         if (!posts) return;
         return [
@@ -173,7 +190,7 @@ try {
                 .readFileSync("./AUTHORS.md")
                 .toString()
                 .replace(RE_USER, (_, id) => userLink(id));
-        } catch (_) { }
+        } catch (_) {}
         return MAIN_AUTHOR;
     };
 
@@ -220,6 +237,7 @@ try {
         "pkg.name": PKG.name,
         "pkg.description": () => packageDesc(PKG),
         "pkg.deps": () => packageDeps(PKG),
+        "pkg.size": () => packageSize(),
         status: () => packageStatus(META.status),
         examples: () => examples(PKG.name),
         supportPackages: () => supportPackages(PKG.name),
