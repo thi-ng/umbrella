@@ -2,8 +2,8 @@ export * from "./api";
 export * from "./fft";
 
 export * from "./comp/addg";
-export * from "./comp/compg";
 export * from "./comp/compp";
+export * from "./comp/mapg";
 export * from "./comp/multiplex";
 export * from "./comp/pipe";
 export * from "./comp/product";

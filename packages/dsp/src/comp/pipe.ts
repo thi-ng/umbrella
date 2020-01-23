@@ -1,6 +1,6 @@
 import { FnAny } from "@thi.ng/api";
 import { IGen, IProc } from "../api";
-import { CompG1 } from "./compg";
+import { MapG1 } from "./mapg";
 
 export function pipe<A, B>(src: IGen<A>, proc: IProc<A, B>): IGen<B>;
 export function pipe<A, B, C>(
@@ -48,5 +48,5 @@ export function pipe(src: IGen<any>, ...procs: IProc<any, any>[]): IGen<any> {
         default:
             fn = (x) => procs.reduce((x, p) => p.next(x), x);
     }
-    return new CompG1(fn, src, <any>null);
+    return new MapG1(fn, src, <any>null);
 }
