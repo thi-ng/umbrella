@@ -1,6 +1,7 @@
 import { IReset } from "@thi.ng/api";
 import { AGen } from "./agen";
-import { curve, MAdd } from "./madd";
+import { curve } from "./curve";
+import { MAdd } from "./madd";
 
 const enum EnvPhase {
     ATTACK,

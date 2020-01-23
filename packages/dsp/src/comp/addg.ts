@@ -19,5 +19,5 @@ import { CompG1 } from "./compg";
  * @param step
  * @param start
  */
-export const addg = (step: IGen<number>, start = 0): IGen<number> =>
+export const addG = (step: IGen<number>, start = 0): IGen<number> =>
     new CompG1((a, b) => a + b, step, start - step.deref());

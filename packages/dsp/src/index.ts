@@ -15,6 +15,7 @@ export * from "./gen/agen";
 export * from "./gen/alt";
 export * from "./gen/const";
 export * from "./gen/cosine";
+export * from "./gen/curve";
 export * from "./gen/impulse";
 export * from "./gen/impulse-train";
 export * from "./gen/madd";
@@ -23,6 +24,7 @@ export * from "./gen/osc";
 export * from "./gen/pink-noise";
 export * from "./gen/reciprocal";
 export * from "./gen/sincos";
+export * from "./gen/sweep";
 export * from "./gen/white-noise";
 
 export * from "./proc/allpass";
