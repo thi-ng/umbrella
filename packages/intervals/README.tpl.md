@@ -48,7 +48,7 @@ ${examples}
 ${docLink}
 
 ```ts
-import { Interval } from "@thi.ng/intervals";
+import { interval, Interval } from "@thi.ng/intervals";
 
 // [0 .. +∞] (fully closed)
 a = Interval.withMin(0);
@@ -61,7 +61,7 @@ i.toString();
 // [0 .. 1)
 
 // parse from string
-Interval.parse("[0 .. 1)")
+interval("[0 .. 1)")
 // Interval { l: 0, r: 1, lopen: false, ropen: true }
 
 i.contains(1);
@@ -70,13 +70,19 @@ i.contains(1);
 i.contains(0.999999);
 // true
 
-// classify point (true if x < LHS)
+// classify interval relative to point (true if RHS < x)
 i.isBefore(-1)
+// false
+
+i.isBefore(1)
 // true
 
-// classify point (true if x > RHS)
-i.isAfter(1);
+// classify interval relative to point (true if LHS > x)
+i.isAfter(-1);
 // true
+
+i.isAfter(1);
+// false
 
 // grow interval to include 2 => [0 ... 2]
 i2 = i.include(2);
@@ -87,11 +93,11 @@ i.compare(i2);
 
 // classify WRT given interval arg
 i.classify(Interval.infinity());
-// Classifier.SUBSET
+// 3 (aka Classifier.SUBSET)
 
 // create transformed interval
 // (here scaled around centroid)
-i.map((x) => x + (x - i.centroid()) * 2);
+i.map((x) => x + (x - i.centroid()) * 2).toString();
 // [-1 .. 2)
 
 // iterator of decimated interval values
