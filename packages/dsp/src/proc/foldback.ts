@@ -5,6 +5,10 @@ import { AProc } from "./aproc";
  * Recursively folds input into `[-thresh .. +thresh]` interval and
  * amplifies it with `amp` (default: 1/thresh).
  *
+ * @remarks
+ * Reference:
+ * - https://www.desmos.com/calculator/lkyf2ag3ta
+ *
  * @param thresh - fold threshold
  * @param amp - post amplifier
  */

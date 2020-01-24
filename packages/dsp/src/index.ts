@@ -1,5 +1,4 @@
 export * from "./api";
-export * from "./fft";
 
 export * from "./comp/addg";
 export * from "./comp/compp";
@@ -31,7 +30,7 @@ export * from "./gen/white-noise";
 export * from "./proc/allpass";
 export * from "./proc/aproc";
 export * from "./proc/biquad";
-export * from "./proc/dcblocker";
+export * from "./proc/dcblock";
 export * from "./proc/delay";
 export * from "./proc/feedback-delay";
 export * from "./proc/foldback";
@@ -41,17 +40,19 @@ export * from "./proc/onepole";
 export * from "./proc/svf";
 export * from "./proc/waveshaper";
 
-export * from "./stateless/additive";
-export * from "./stateless/dsf";
-export * from "./stateless/mix";
-export * from "./stateless/parabolic";
-export * from "./stateless/rect";
-export * from "./stateless/saw";
-export * from "./stateless/sin";
-export * from "./stateless/tri";
-export * from "./stateless/wavetable";
+export * from "./osc/additive";
+export * from "./osc/dsf";
+export * from "./osc/mix";
+export * from "./osc/parabolic";
+export * from "./osc/rect";
+export * from "./osc/saw";
+export * from "./osc/sin";
+export * from "./osc/tri";
+export * from "./osc/wavetable";
+
+export * from "./fft/fft";
+export * from "./fft/window";
 
 export * from "./util/anti-alias";
 export * from "./util/convert";
 export * from "./util/filter-response";
-export * from "./util/window";

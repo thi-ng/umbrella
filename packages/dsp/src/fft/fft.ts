@@ -1,7 +1,7 @@
 import { NumericArray } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
-import { ComplexArray } from "./api";
-import { magDb } from "./util/convert";
+import { ComplexArray } from "../api";
+import { magDb } from "../util/convert";
 
 const PI = Math.PI;
 

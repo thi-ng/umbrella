@@ -27,14 +27,13 @@ export const svfAllpass = (fc: number, q?: number) =>
     new SVF(FilterType.ALL, fc, q);
 
 /**
- * State variable filter w/ trapezoidal integration, after Andrew
- * Simper.
+ * Multi-type state variable filter w/ trapezoidal integration, after
+ * Andrew Simper.
  *
  * Reference:
  *
  * - https://cytomic.com/files/dsp/SvfLinearTrapOptimised2.pdf
  * - https://en.wikipedia.org/wiki/Trapezoidal_rule
- *
  */
 export class SVF extends AProc<number, number> implements IReset {
     protected _a1!: number;
@@ -47,7 +46,7 @@ export class SVF extends AProc<number, number> implements IReset {
     constructor(
         protected _type: SVFType,
         protected _freq: number,
-        protected _q = 0
+        protected _q = 0.5
     ) {
         super(0);
         this.reset();

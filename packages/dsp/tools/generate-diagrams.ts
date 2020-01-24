@@ -26,7 +26,6 @@ import {
 import { writeFileSync } from "fs";
 import {
     allpass,
-    AllPass1,
     biquadBP,
     biquadHiShelf,
     biquadHP,
@@ -35,9 +34,10 @@ import {
     biquadNotch,
     biquadPeak,
     curve,
-    dcblocker,
+    dcBlock,
     dsfHOF,
     filterResponse,
+    foldback,
     freqMs,
     freqRange,
     IGen,
@@ -55,9 +55,12 @@ import {
     saw,
     sin,
     StatelessOscillator,
+    svfAllpass,
     svfBP,
     svfHP,
     svfLP,
+    svfNotch,
+    svfPeak,
     tri,
     wavetable,
     whiteNoise
@@ -76,7 +79,7 @@ const OSC: IObjectOf<StatelessOscillator> = {
     tri,
     parabolic,
     recttri: mixOscHOF(rect, tri),
-    dsf: dsfHOF(0.4, 3),
+    dsf: dsfHOF(0.6, 2.04),
     wt: wavetable(curve(1, -1, 127).take(128))
 };
 
@@ -245,9 +248,15 @@ withFilters((id) => `${id}-svf-hpf.svg`, svfHP);
 
 withFilters((id) => `${id}-svf-bpf.svg`, svfBP);
 
+withFilters((id) => `${id}-svf-notch.svg`, svfNotch);
+
+withFilters((id) => `${id}-svf-peak.svg`, svfPeak);
+
+withFilters((id) => `${id}-svf-all.svg`, svfAllpass);
+
 withFilters((id) => `${id}-1pole-lpf.svg`, onepoleLP);
 
-withFilters((id) => `${id}-dcblock.svg`, dcblocker);
+withFilters((id) => `${id}-dcblock.svg`, dcBlock);
 
 withFilters((id) => `${id}-bq-lpf.svg`, biquadLP);
 
@@ -262,6 +271,14 @@ withFilters((id) => `${id}-bq-peak.svg`, biquadPeak);
 withFilters((id) => `${id}-bq-lsh.svg`, biquadLoShelf);
 
 withFilters((id) => `${id}-bq-hsh.svg`, biquadHiShelf);
+
+withFilters(
+    (id) => `${id}-foldback.svg`,
+    (t) => foldback(t),
+    undefined,
+    [0.5, 0.3, 0.15],
+    ["orig", ...[0.5, 0.3, 0.15].map((t) => `t=${t}`)]
+);
 
 withFilters(
     (id) => `${id}-allpass1.svg`,
@@ -289,8 +306,8 @@ withFilters(
 withFilters(
     (id) => `${id}-allpass-high.svg`,
     (f) => {
-        let flt = new AllPass1(f);
-        return <any>{
+        let flt = allpass(f);
+        return <IGen<number>>{
             next(x: number) {
                 return flt.high(x);
             }

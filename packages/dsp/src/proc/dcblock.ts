@@ -6,9 +6,9 @@ import { OnePole } from "./onepole";
  *
  * @param freq
  */
-export const dcblocker = (freq: number) => new DCBlocker(FilterType.LP, freq);
+export const dcBlock = (freq: number) => new DCBlock(FilterType.LP, freq);
 
-export class DCBlocker extends OnePole {
+export class DCBlock extends OnePole {
     next(x: number) {
         return x - super.next(x);
     }
