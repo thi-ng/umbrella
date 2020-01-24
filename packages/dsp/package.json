@@ -45,21 +45,31 @@
     },
     "keywords": [
         "additive",
+        "allpass",
+        "biquad",
+        "composition",
+        "delay",
         "DSP",
         "ES6",
-        "generator",
+        "feedback",
+        "FFT",
+        "filter",
+        "iterable",
         "math",
         "oscillator",
-        "stateless",
+        "signal generators",
+        "SVF",
         "synthesis",
         "typescript",
-        "waveform"
+        "waveform",
+        "window function"
     ],
     "publishConfig": {
         "access": "public"
     },
     "sideEffects": false,
     "thi.ng": {
+        "status": "beta",
         "year": 2015
     }
 }
