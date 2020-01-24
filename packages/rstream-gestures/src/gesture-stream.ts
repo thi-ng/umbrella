@@ -45,15 +45,14 @@ const eventGestureTypeMap: IObjectOf<GestureType> = {
 
 /**
  * Attaches mouse & touch event listeners to given DOM element and
- * returns a stream of custom "gesture" events in the form of tuples:
+ * returns a stream of {@link GestureEvent}s and their
+ * {@link GestureInfo} details.
  *
- * ```
- * [type, {pos, click?, delta?, zoom, zoomDelta?, buttons}]
- * ```
- *
- * The `click` and `delta` values are only present if `type ==
- * GestureType.DRAG`. Both (and `pos` too) are 2-element arrays of
- * `[x,y]` coordinates.
+ * In multi-touch environments, a `GestureEvent` can contain multiple
+ * such `GestureInfo` objects (one per active touch). In general, the
+ * `click` and `delta` values are only present if the abstracted event
+ * `type == GestureType.DRAG`. Both (and `pos` too) are 2-element arrays
+ * of `[x,y]` coordinates.
  *
  * The `zoom` value is always present, but is only updated with wheel
  * events. The value will be constrained to `minZoom` ... `maxZoom`
