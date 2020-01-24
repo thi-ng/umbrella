@@ -52,9 +52,9 @@ Package sizes (gzipped): ESM: 0.6KB / CJS: 0.7KB / UMD: 0.7KB
 
 ## Dependencies
 
-- [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/master/packages/geom-api)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
+- [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-api)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 
 ## API
 

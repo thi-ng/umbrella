@@ -91,7 +91,7 @@ Format specs can freely control channel layout within current limits:
 
 ### Related packages
 
-- [@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/master/packages/porter-duff) - Porter-Duff operators for packed ints & float-array alpha compositing
+- [@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/develop/packages/porter-duff) - Porter-Duff operators for packed ints & float-array alpha compositing
 
 ## Installation
 
@@ -103,48 +103,48 @@ Package sizes (gzipped): ESM: 3.2KB / CJS: 3.3KB / UMD: 3.3KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
-- [@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/master/packages/porter-duff)
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
+- [@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/develop/packages/porter-duff)
 
 ## Usage examples
 
 Several demos in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package.
 
 A selection:
 
 ### adaptive-threshold <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/adaptive-threshold.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/adaptive-threshold.png)
 
 Interactive image processing (adaptive threshold)
 
-[Live demo](https://demo.thi.ng/umbrella/adaptive-threshold/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/adaptive-threshold)
+[Live demo](https://demo.thi.ng/umbrella/adaptive-threshold/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/adaptive-threshold)
 
 ### pixel-basics <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/pixel/pixel-basics.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/pixel-basics.png)
 
-[Live demo](https://demo.thi.ng/umbrella/pixel-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/pixel-basics)
+[Live demo](https://demo.thi.ng/umbrella/pixel-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-basics)
 
 ### porter-duff <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/porter-duff/porter-duff2.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/porter-duff/porter-duff2.png)
 
-[Live demo](https://demo.thi.ng/umbrella/porter-duff/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/porter-duff)
+[Live demo](https://demo.thi.ng/umbrella/porter-duff/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/porter-duff)
 
 ### shader-ast-workers <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/shader-ast-workers.jpg)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-workers.jpg)
 
-[Live demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-workers)
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-workers)
 
 ### webgl-multipass <!-- NOTOC -->
 
-[Live demo](https://demo.thi.ng/umbrella/webgl-multipass/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-multipass)
+[Live demo](https://demo.thi.ng/umbrella/webgl-multipass/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-multipass)
 
 ## API
 

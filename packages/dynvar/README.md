@@ -40,7 +40,7 @@ Package sizes (gzipped): ESM: 0.3KB / CJS: 0.3KB / UMD: 0.4KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 
 ## API
 

@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Multi-channel SDF font rendering & basic text layout for WebGL. This is a support package for [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/master/packages/webgl).
+Multi-channel SDF font rendering & basic text layout for WebGL. This is a support package for [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl).
 
 This package provides [multi-channel SDF font
 rendering](https://github.com/Chlumsky/msdfgen) capabilities for
@@ -49,26 +49,26 @@ Package sizes (gzipped): ESM: 1.5KB / CJS: 1.5KB / UMD: 1.6KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-- [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
-- [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/master/packages/vector-pools)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
-- [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/master/packages/webgl)
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/develop/packages/vector-pools)
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl)
 
 ## Usage examples
 
 Several demos in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package.
 
 A selection:
 
 ### webgl-msdf <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/webgl-msdf.jpg)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-msdf.jpg)
 
-[Live demo](https://demo.thi.ng/umbrella/webgl-msdf/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-msdf)
+[Live demo](https://demo.thi.ng/umbrella/webgl-msdf/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-msdf)
 
 ## API
 

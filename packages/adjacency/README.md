@@ -36,28 +36,28 @@ Package sizes (gzipped): ESM: 1.8KB / CJS: 1.9KB / UMD: 2.0KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/master/packages/binary)
-- [@thi.ng/bitfield](https://github.com/thi-ng/umbrella/tree/master/packages/bitfield)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
-- [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons)
-- [@thi.ng/sparse](https://github.com/thi-ng/umbrella/tree/master/packages/sparse)
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
+- [@thi.ng/bitfield](https://github.com/thi-ng/umbrella/tree/develop/packages/bitfield)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/develop/packages/dcons)
+- [@thi.ng/sparse](https://github.com/thi-ng/umbrella/tree/develop/packages/sparse)
 
 ## Usage examples
 
 Several demos in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package.
 
 A selection:
 
 ### geom-voronoi-mst <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/geom-voronoi-mst.jpg)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-voronoi-mst.jpg)
 
 Poisson-disk shape-aware sampling, Voronoi & Minimum Spanning Tree visualization
 
-[Live demo](https://demo.thi.ng/umbrella/geom-voronoi-mst/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/geom-voronoi-mst)
+[Live demo](https://demo.thi.ng/umbrella/geom-voronoi-mst/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-voronoi-mst)
 
 ## API
 

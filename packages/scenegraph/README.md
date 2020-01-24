@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Extensible 2D/3D scene graph with [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas) support.
+Extensible 2D/3D scene graph with [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-canvas) support.
 
 ### Status
 
@@ -36,30 +36,30 @@ Package sizes (gzipped): ESM: 0.8KB / CJS: 0.8KB / UMD: 0.9KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
-- [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/master/packages/matrices)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/develop/packages/matrices)
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 
 ## Usage examples
 
 Several demos in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package.
 
 A selection:
 
 ### scenegraph <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/scenegraph.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph.png)
 
-[Live demo](https://demo.thi.ng/umbrella/scenegraph/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/scenegraph)
+[Live demo](https://demo.thi.ng/umbrella/scenegraph/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph)
 
 ### scenegraph-image <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/scenegraph-image.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-image.png)
 
-[Live demo](https://demo.thi.ng/umbrella/scenegraph-image/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/scenegraph-image)
+[Live demo](https://demo.thi.ng/umbrella/scenegraph-image/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-image)
 
 ## API
 

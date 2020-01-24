@@ -184,43 +184,43 @@ Package sizes (gzipped): ESM: 7.1KB / CJS: 7.4KB / UMD: 6.9KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
-- [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/master/packages/compose)
-- [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/master/packages/defmulti)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
-- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/master/packages/strings)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/develop/packages/compose)
+- [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
+- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 
 ## Usage examples
 
 Several demos in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package.
 
 A selection:
 
 ### commit-heatmap <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/commit-heatmap.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png)
 
 Heatmap visualization of this mono-repo's commits
 
-[Live demo](https://demo.thi.ng/umbrella/commit-heatmap/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/commit-heatmap)
+[Live demo](https://demo.thi.ng/umbrella/commit-heatmap/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-heatmap)
 
 ### grid-iterators <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/grid-iterators.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/grid-iterators.png)
 
-[Live demo](https://demo.thi.ng/umbrella/grid-iterators/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/grid-iterators)
+[Live demo](https://demo.thi.ng/umbrella/grid-iterators/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/grid-iterators)
 
 ### shader-ast-workers <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/shader-ast-workers.jpg)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-workers.jpg)
 
-[Live demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-workers)
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-workers)
 
 ## API
 

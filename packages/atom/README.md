@@ -54,71 +54,71 @@ Package sizes (gzipped): ESM: 2.0KB / CJS: 2.0KB / UMD: 2.0KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
-- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
-- [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/master/packages/paths)
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths)
 
 ## Usage examples
 
 Several demos in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package.
 
 A selection:
 
 ### devcards <!-- NOTOC -->
 
-[Live demo](https://demo.thi.ng/umbrella/devcards/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/devcards)
+[Live demo](https://demo.thi.ng/umbrella/devcards/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/devcards)
 
 ### hdom-dropdown-fuzzy <!-- NOTOC -->
 
-[Live demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-dropdown-fuzzy)
+[Live demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-dropdown-fuzzy)
 
 ### rotating-voronoi <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/rotating-voronoi.jpg)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rotating-voronoi.jpg)
 
-[Live demo](https://demo.thi.ng/umbrella/rotating-voronoi/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rotating-voronoi)
+[Live demo](https://demo.thi.ng/umbrella/rotating-voronoi/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rotating-voronoi)
 
 ### router-basics <!-- NOTOC -->
 
 Basic @thi.ng/router & @thi.ng/hdom app skeleton
 
-[Live demo](https://demo.thi.ng/umbrella/router-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/router-basics)
+[Live demo](https://demo.thi.ng/umbrella/router-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/router-basics)
 
 ### rstream-dataflow <!-- NOTOC -->
 
-[Live demo](https://demo.thi.ng/umbrella/rstream-dataflow/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-dataflow)
+[Live demo](https://demo.thi.ng/umbrella/rstream-dataflow/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-dataflow)
 
 ### rstream-grid <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/rstream-grid.jpg)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-grid.jpg)
 
 Interactive grid generator, SVG generation & export, undo/redo support
 
-[Live demo](https://demo.thi.ng/umbrella/rstream-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid)
+[Live demo](https://demo.thi.ng/umbrella/rstream-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-grid)
 
 ### rstream-spreadsheet <!-- NOTOC -->
 
-[Live demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-spreadsheet)
+[Live demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-spreadsheet)
 
 ### svg-waveform <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/svg-waveform.jpg)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-waveform.jpg)
 
 Additive waveform synthesis & SVG visualization with undo/redo
 
-[Live demo](https://demo.thi.ng/umbrella/svg-waveform/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-waveform)
+[Live demo](https://demo.thi.ng/umbrella/svg-waveform/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-waveform)
 
 ### todo-list <!-- NOTOC -->
 
-[Live demo](https://demo.thi.ng/umbrella/todo-list/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/todo-list)
+[Live demo](https://demo.thi.ng/umbrella/todo-list/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/todo-list)
 
 ### triple-query <!-- NOTOC -->
 
-[Live demo](https://demo.thi.ng/umbrella/triple-query/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/triple-query)
+[Live demo](https://demo.thi.ng/umbrella/triple-query/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/triple-query)
 
 ## API
 

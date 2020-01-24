@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-Shared type & interface declarations for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom) packages.
+Shared type & interface declarations for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom) packages.
 
 ### Status
 
@@ -35,8 +35,8 @@ Package sizes (gzipped): ESM: 0.6KB / CJS: 0.6KB / UMD: 0.7KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 
 ## API
 

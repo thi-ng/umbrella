@@ -168,14 +168,14 @@ Package sizes (gzipped): ESM: 4.8KB / CJS: 5.0KB / UMD: 4.9KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/master/packages/binary)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
-- [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/master/packages/compare)
-- [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons)
-- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/develop/packages/compare)
+- [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/develop/packages/dcons)
+- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 
 ## API
 

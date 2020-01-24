@@ -20,6 +20,13 @@ Partially ported from other thi.ng projects (e.g.
 
 ${status}
 
+Even though this library is now at v2.0.0 and still retains most of the
+features from earlier versions, all recently added features (IGen's,
+IProc's, composition ops etc.) should be considered "beta" and are
+likely to undergo further (hopefully not too drastic) changes in the
+near future. Also, pending outcomes of ongoing experiments, some aspects
+might be ported to WASM.
+
 ${supportPackages}
 
 ${relatedPackages}

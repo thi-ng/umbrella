@@ -67,23 +67,23 @@ Package sizes (gzipped): ESM: 5.0KB / CJS: 5.0KB / UMD: 4.9KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
-- [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree)
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree)
 
 ## Usage examples
 
 Several demos in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package.
 
 A selection:
 
 ### pointfree-svg <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/pointfree-svg.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-svg.png)
 
-[Live demo](https://demo.thi.ng/umbrella/pointfree-svg/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/pointfree-svg)
+[Live demo](https://demo.thi.ng/umbrella/pointfree-svg/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-svg)
 
 ## API
 

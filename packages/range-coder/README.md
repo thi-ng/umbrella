@@ -29,8 +29,8 @@ by Joe Halliwell](https://www.winterwell.com/software/compressor.php).
 
 ### Related packages
 
-- [@thi.ng/bitstream](https://github.com/thi-ng/umbrella/tree/master/packages/bitstream) - ES6 iterator based read/write bit streams with support for variable word widths
-- [@thi.ng/rle-pack](https://github.com/thi-ng/umbrella/tree/master/packages/rle-pack) - Binary run-length encoding packer w/ flexible repeat bit widths
+- [@thi.ng/bitstream](https://github.com/thi-ng/umbrella/tree/develop/packages/bitstream) - ES6 iterator based read/write bit streams with support for variable word widths
+- [@thi.ng/rle-pack](https://github.com/thi-ng/umbrella/tree/develop/packages/rle-pack) - Binary run-length encoding packer w/ flexible repeat bit widths
 
 ## Installation
 
@@ -42,7 +42,7 @@ Package sizes (gzipped): ESM: 0.7KB / CJS: 0.7KB / UMD: 0.7KB
 
 ## Dependencies
 
-- [@thi.ng/bitstream](https://github.com/thi-ng/umbrella/tree/master/packages/bitstream)
+- [@thi.ng/bitstream](https://github.com/thi-ng/umbrella/tree/develop/packages/bitstream)
 
 ## API
 

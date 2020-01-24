@@ -116,15 +116,15 @@ iterable
 
 ### Support packages
 
-- [@thi.ng/hiccup-carbon-icons](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-carbon-icons) - Full set of IBM's Carbon icons in hiccup format
-- [@thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-css) - CSS from nested JS data structures
-- [@thi.ng/hiccup-markdown](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-markdown) - Markdown parser & serializer from/to Hiccup format
-- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg) - SVG element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup) & [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
+- [@thi.ng/hiccup-carbon-icons](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-carbon-icons) - Full set of IBM's Carbon icons in hiccup format
+- [@thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-css) - CSS from nested JS data structures
+- [@thi.ng/hiccup-markdown](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-markdown) - Markdown parser & serializer from/to Hiccup format
+- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg) - SVG element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) & [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
 
 ### Related packages
 
-- [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom) - Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors
-- [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas) - Declarative canvas scenegraph & visualization for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
+- [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom) - Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors
+- [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-canvas) - Declarative canvas scenegraph & visualization for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
 
 ### Blog posts
 
@@ -141,62 +141,62 @@ Package sizes (gzipped): ESM: 1.9KB / CJS: 2.0KB / UMD: 2.0KB
 
 ## Dependencies
 
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 
 ## Usage examples
 
 Several demos in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package.
 
 A selection:
 
 ### commit-heatmap <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/commit-heatmap.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png)
 
 Heatmap visualization of this mono-repo's commits
 
-[Live demo](https://demo.thi.ng/umbrella/commit-heatmap/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/commit-heatmap)
+[Live demo](https://demo.thi.ng/umbrella/commit-heatmap/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-heatmap)
 
 ### commit-table-ssr <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/commit-table-ssr.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-table-ssr.png)
 
 Filterable commit log UI w/ minimal server to provide commit history
 
-[Live demo](https://demo.thi.ng/umbrella/commit-table-ssr/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/commit-table-ssr)
+[Live demo](https://demo.thi.ng/umbrella/commit-table-ssr/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-table-ssr)
 
 ### hdom-canvas-shapes <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/hdom-canvas/hdom-canvas-shapes-results.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png)
 
-[Live demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-shapes)
+[Live demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes)
 
 ### hydrate-basics <!-- NOTOC -->
 
-[Live demo](https://demo.thi.ng/umbrella/hydrate-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hydrate-basics)
+[Live demo](https://demo.thi.ng/umbrella/hydrate-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hydrate-basics)
 
 ### package-stats <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/package-stats.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/package-stats.png)
 
-[Live demo](https://demo.thi.ng/umbrella/package-stats/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/package-stats)
+[Live demo](https://demo.thi.ng/umbrella/package-stats/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/package-stats)
 
 ### pointfree-svg <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/pointfree-svg.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-svg.png)
 
-[Live demo](https://demo.thi.ng/umbrella/pointfree-svg/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/pointfree-svg)
+[Live demo](https://demo.thi.ng/umbrella/pointfree-svg/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-svg)
 
 ### rstream-grid <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/rstream-grid.jpg)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-grid.jpg)
 
 Interactive grid generator, SVG generation & export, undo/redo support
 
-[Live demo](https://demo.thi.ng/umbrella/rstream-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid)
+[Live demo](https://demo.thi.ng/umbrella/rstream-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-grid)
 
 ## API
 

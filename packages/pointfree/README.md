@@ -183,7 +183,7 @@ non-linear control flow.
 
 ### Support packages
 
-- [@thi.ng/pointfree-lang](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree-lang) - Forth style syntax layer/compiler for the [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree) DSL
+- [@thi.ng/pointfree-lang](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree-lang) - Forth style syntax layer/compiler for the [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree) DSL
 
 ## Installation
 
@@ -195,25 +195,25 @@ Package sizes (gzipped): ESM: 3.1KB / CJS: 3.6KB / UMD: 3.4KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
-- [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/master/packages/compose)
-- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/develop/packages/compose)
+- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 
 ## Usage examples
 
 Several demos in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package.
 
 A selection:
 
 ### pointfree-svg <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/pointfree-svg.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-svg.png)
 
-[Live demo](https://demo.thi.ng/umbrella/pointfree-svg/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/pointfree-svg)
+[Live demo](https://demo.thi.ng/umbrella/pointfree-svg/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-svg)
 
 ## API
 

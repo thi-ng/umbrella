@@ -36,12 +36,12 @@ Package sizes (gzipped): ESM: 1.3KB / CJS: 1.4KB / UMD: 1.4KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
-- [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/master/packages/compare)
-- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
-- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/develop/packages/compare)
+- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
 
 ## API
 

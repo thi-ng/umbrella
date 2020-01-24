@@ -46,12 +46,12 @@ This package might be merged with and/or superseded by
 
 ### Related packages
 
-- [@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/master/packages/ecs) - Entity Component System based around typed arrays & sparse sets
-- [@thi.ng/malloc](https://github.com/thi-ng/umbrella/tree/master/packages/malloc) - ArrayBuffer based malloc() impl for hybrid JS/WASM use cases, based on thi.ng/tinyalloc
-- [@thi.ng/soa](https://github.com/thi-ng/umbrella/tree/master/packages/soa) - SOA & AOS memory mapped structured views with optional & extensible serialization
-- [@thi.ng/unionstruct](https://github.com/thi-ng/umbrella/tree/master/packages/unionstruct) - C-style struct, union and bitfield read/write views of ArrayBuffers
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors) - Optimized 2d/3d/4d and arbitrary length vector operations
-- [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/master/packages/webgl) - WebGL & GLSL abstraction layer
+- [@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/develop/packages/ecs) - Entity Component System based around typed arrays & sparse sets
+- [@thi.ng/malloc](https://github.com/thi-ng/umbrella/tree/develop/packages/malloc) - ArrayBuffer based malloc() impl for hybrid JS/WASM use cases, based on thi.ng/tinyalloc
+- [@thi.ng/soa](https://github.com/thi-ng/umbrella/tree/develop/packages/soa) - SOA & AOS memory mapped structured views with optional & extensible serialization
+- [@thi.ng/unionstruct](https://github.com/thi-ng/umbrella/tree/develop/packages/unionstruct) - C-style struct, union and bitfield read/write views of ArrayBuffers
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors) - Optimized 2d/3d/4d and arbitrary length vector operations
+- [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl) - WebGL & GLSL abstraction layer
 
 ## Installation
 
@@ -63,26 +63,26 @@ Package sizes (gzipped): ESM: 3.0KB / CJS: 3.1KB / UMD: 3.2KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/master/packages/binary)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
-- [@thi.ng/malloc](https://github.com/thi-ng/umbrella/tree/master/packages/malloc)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/malloc](https://github.com/thi-ng/umbrella/tree/develop/packages/malloc)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 
 ## Usage examples
 
 Several demos in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package.
 
 A selection:
 
 ### webgl-msdf <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/webgl-msdf.jpg)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-msdf.jpg)
 
-[Live demo](https://demo.thi.ng/umbrella/webgl-msdf/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/webgl-msdf)
+[Live demo](https://demo.thi.ng/umbrella/webgl-msdf/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-msdf)
 
 ## API
 

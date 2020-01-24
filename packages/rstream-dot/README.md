@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Graphviz DOT conversion of [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream) dataflow graph topologies.
+Graphviz DOT conversion of [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream) dataflow graph topologies.
 
 ### Status
 
@@ -28,7 +28,7 @@ Graphviz DOT conversion of [@thi.ng/rstream](https://github.com/thi-ng/umbrella/
 
 ### Related packages
 
-- [@thi.ng/dot](https://github.com/thi-ng/umbrella/tree/master/packages/dot) - Graphviz document abstraction & serialization to DOT format
+- [@thi.ng/dot](https://github.com/thi-ng/umbrella/tree/develop/packages/dot) - Graphviz document abstraction & serialization to DOT format
 
 ## Installation
 
@@ -40,7 +40,7 @@ Package sizes (gzipped): ESM: 0.8KB / CJS: 0.8KB / UMD: 0.9KB
 
 ## Dependencies
 
-- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 
 ## API
 

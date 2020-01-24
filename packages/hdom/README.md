@@ -102,9 +102,9 @@ Benefits:
 
 ### Support packages
 
-- [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas) - Declarative canvas scenegraph & visualization for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
-- [@thi.ng/hdom-components](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-components) - Raw, skinnable UI & SVG components for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
-- [@thi.ng/hdom-mock](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-mock) - Mock base implementation for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom) API
+- [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-canvas) - Declarative canvas scenegraph & visualization for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
+- [@thi.ng/hdom-components](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-components) - Raw, skinnable UI & SVG components for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
+- [@thi.ng/hdom-mock](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-mock) - Mock base implementation for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom) API
 
 ### Blog posts
 
@@ -136,156 +136,156 @@ Package sizes (gzipped): ESM: 3.6KB / CJS: 3.7KB / UMD: 3.6KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
-- [@thi.ng/diff](https://github.com/thi-ng/umbrella/tree/master/packages/diff)
-- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
-- [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/diff](https://github.com/thi-ng/umbrella/tree/develop/packages/diff)
+- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
 
 ## Usage examples
 
 Several demos in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package.
 
 A selection:
 
 ### cellular-automata <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/cellular-automata.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/cellular-automata.png)
 
 2D transducer based cellular automata
 
-[Live demo](https://demo.thi.ng/umbrella/cellular-automata/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/cellular-automata)
+[Live demo](https://demo.thi.ng/umbrella/cellular-automata/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/cellular-automata)
 
 ### devcards <!-- NOTOC -->
 
-[Live demo](https://demo.thi.ng/umbrella/devcards/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/devcards)
+[Live demo](https://demo.thi.ng/umbrella/devcards/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/devcards)
 
 ### hdom-benchmark2 <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/hdom-benchmark2.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-benchmark2.png)
 
-[Live demo](https://demo.thi.ng/umbrella/hdom-benchmark2/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-benchmark2)
+[Live demo](https://demo.thi.ng/umbrella/hdom-benchmark2/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-benchmark2)
 
 ### hdom-canvas-clock <!-- NOTOC -->
 
 Realtime clock demo for @thi.ng/hdom-canvas
 
-[Live demo](https://demo.thi.ng/umbrella/hdom-canvas-clock/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-clock)
+[Live demo](https://demo.thi.ng/umbrella/hdom-canvas-clock/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-clock)
 
 ### hdom-canvas-shapes <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/hdom-canvas/hdom-canvas-shapes-results.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png)
 
-[Live demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-shapes)
+[Live demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes)
 
 ### hdom-dropdown-fuzzy <!-- NOTOC -->
 
-[Live demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-dropdown-fuzzy)
+[Live demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-dropdown-fuzzy)
 
 ### hdom-elm <!-- NOTOC -->
 
 Using hdom in an Elm-like manner
 
-[Live demo](https://demo.thi.ng/umbrella/hdom-elm/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-elm)
+[Live demo](https://demo.thi.ng/umbrella/hdom-elm/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-elm)
 
 ### hydrate-basics <!-- NOTOC -->
 
-[Live demo](https://demo.thi.ng/umbrella/hydrate-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hydrate-basics)
+[Live demo](https://demo.thi.ng/umbrella/hydrate-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hydrate-basics)
 
 ### imgui <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/imgui/imgui-all.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png)
 
 Canvas based Immediate Mode GUI components
 
-[Live demo](https://demo.thi.ng/umbrella/imgui/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/imgui)
+[Live demo](https://demo.thi.ng/umbrella/imgui/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui)
 
 ### interceptor-basics2 <!-- NOTOC -->
 
-[Live demo](https://demo.thi.ng/umbrella/interceptor-basics2/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/interceptor-basics2)
+[Live demo](https://demo.thi.ng/umbrella/interceptor-basics2/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/interceptor-basics2)
 
 ### iso-plasma <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-isoline.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-isoline.png)
 
 Animated sine plasma effect visualized using contour lines
 
-[Live demo](https://demo.thi.ng/umbrella/iso-plasma/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/iso-plasma)
+[Live demo](https://demo.thi.ng/umbrella/iso-plasma/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/iso-plasma)
 
 ### ramp-synth <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/ramp-synth.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ramp-synth.png)
 
 Unison wavetable synth with waveform editor
 
-[Live demo](https://demo.thi.ng/umbrella/ramp-synth/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/ramp-synth)
+[Live demo](https://demo.thi.ng/umbrella/ramp-synth/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ramp-synth)
 
 ### router-basics <!-- NOTOC -->
 
 Basic @thi.ng/router & @thi.ng/hdom app skeleton
 
-[Live demo](https://demo.thi.ng/umbrella/router-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/router-basics)
+[Live demo](https://demo.thi.ng/umbrella/router-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/router-basics)
 
 ### rstream-dataflow <!-- NOTOC -->
 
-[Live demo](https://demo.thi.ng/umbrella/rstream-dataflow/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-dataflow)
+[Live demo](https://demo.thi.ng/umbrella/rstream-dataflow/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-dataflow)
 
 ### rstream-event-loop <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/rstream-event-loop.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-event-loop.png)
 
 Minimal demo of using rstream constructs to form an interceptor-style event loop
 
-[Live demo](https://demo.thi.ng/umbrella/rstream-event-loop/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-event-loop)
+[Live demo](https://demo.thi.ng/umbrella/rstream-event-loop/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-event-loop)
 
 ### rstream-grid <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/rstream-grid.jpg)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-grid.jpg)
 
 Interactive grid generator, SVG generation & export, undo/redo support
 
-[Live demo](https://demo.thi.ng/umbrella/rstream-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid)
+[Live demo](https://demo.thi.ng/umbrella/rstream-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-grid)
 
 ### rstream-spreadsheet <!-- NOTOC -->
 
-[Live demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-spreadsheet)
+[Live demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-spreadsheet)
 
 ### scenegraph <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/scenegraph.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph.png)
 
-[Live demo](https://demo.thi.ng/umbrella/scenegraph/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/scenegraph)
+[Live demo](https://demo.thi.ng/umbrella/scenegraph/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph)
 
 ### scenegraph-image <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/scenegraph-image.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-image.png)
 
-[Live demo](https://demo.thi.ng/umbrella/scenegraph-image/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/scenegraph-image)
+[Live demo](https://demo.thi.ng/umbrella/scenegraph-image/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-image)
 
 ### soa-ecs <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/soa-ecs-100k.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/soa-ecs-100k.png)
 
-[Live demo](https://demo.thi.ng/umbrella/soa-ecs/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/soa-ecs)
+[Live demo](https://demo.thi.ng/umbrella/soa-ecs/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/soa-ecs)
 
 ### svg-waveform <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/svg-waveform.jpg)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-waveform.jpg)
 
 Additive waveform synthesis & SVG visualization with undo/redo
 
-[Live demo](https://demo.thi.ng/umbrella/svg-waveform/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-waveform)
+[Live demo](https://demo.thi.ng/umbrella/svg-waveform/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-waveform)
 
 ### todo-list <!-- NOTOC -->
 
-[Live demo](https://demo.thi.ng/umbrella/todo-list/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/todo-list)
+[Live demo](https://demo.thi.ng/umbrella/todo-list/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/todo-list)
 
 ### triple-query <!-- NOTOC -->
 
-[Live demo](https://demo.thi.ng/umbrella/triple-query/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/triple-query)
+[Live demo](https://demo.thi.ng/umbrella/triple-query/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/triple-query)
 
 ### Minimal example #1: Local state, RAF update
 

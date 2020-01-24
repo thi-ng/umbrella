@@ -23,7 +23,7 @@ This project is part of the
 
 ## About
 
-Transducer-based Finite State Machine transformer. This is a support package for [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers).
+Transducer-based Finite State Machine transformer. This is a support package for [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
 
 This package provides a single function, a general purpose [Finite State
 Machine](https://en.wikipedia.org/wiki/Finite-state_machine) transducer,
@@ -41,8 +41,8 @@ package.
 
 ### Related packages
 
-- [@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/master/packages/fsm) - Composable primitives for building declarative, transducer based Finite-State Machines & matchers for arbitrary data streams
-- [@thi.ng/sax](https://github.com/thi-ng/umbrella/tree/master/packages/sax) - Transducer-based, SAX-like, non-validating, speedy & tiny XML parser
+- [@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm) - Composable primitives for building declarative, transducer based Finite-State Machines & matchers for arbitrary data streams
+- [@thi.ng/sax](https://github.com/thi-ng/umbrella/tree/develop/packages/sax) - Transducer-based, SAX-like, non-validating, speedy & tiny XML parser
 
 ## Installation
 
@@ -54,8 +54,8 @@ Package sizes (gzipped): ESM: 0.2KB / CJS: 0.3KB / UMD: 0.4KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 
 ## Usage examples
 

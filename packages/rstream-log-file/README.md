@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-File output handler for structured, multilevel & hierarchical loggers based on [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream). This is a support package for [@thi.ng/rstream-log](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-log).
+File output handler for structured, multilevel & hierarchical loggers based on [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream). This is a support package for [@thi.ng/rstream-log](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-log).
 
 ### Status
 
@@ -35,7 +35,7 @@ Package sizes (gzipped): ESM: 0.1KB / CJS: 0.2KB / UMD: 0.3KB
 
 ## Dependencies
 
-- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 
 ## API
 

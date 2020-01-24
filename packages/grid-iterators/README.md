@@ -116,8 +116,8 @@ in
 
 ### Related packages
 
-- [@thi.ng/morton](https://github.com/thi-ng/umbrella/tree/master/packages/morton) - Z-order curve / Morton encoding, decoding & range extraction for arbitrary dimensions
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers) - Lightweight transducer implementations for ES6 / TypeScript
+- [@thi.ng/morton](https://github.com/thi-ng/umbrella/tree/develop/packages/morton) - Z-order curve / Morton encoding, decoding & range extraction for arbitrary dimensions
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers) - Lightweight transducer implementations for ES6 / TypeScript
 
 ## Installation
 
@@ -129,25 +129,25 @@ Package sizes (gzipped): ESM: 1.0KB / CJS: 1.0KB / UMD: 1.1KB
 
 ## Dependencies
 
-- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/master/packages/arrays)
-- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/master/packages/binary)
-- [@thi.ng/morton](https://github.com/thi-ng/umbrella/tree/master/packages/morton)
-- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
+- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
+- [@thi.ng/morton](https://github.com/thi-ng/umbrella/tree/develop/packages/morton)
+- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 
 ## Usage examples
 
 Several demos in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package.
 
 A selection:
 
 ### grid-iterators <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/grid-iterators.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/grid-iterators.png)
 
-[Live demo](https://demo.thi.ng/umbrella/grid-iterators/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/grid-iterators)
+[Live demo](https://demo.thi.ng/umbrella/grid-iterators/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/grid-iterators)
 
 ## API
 

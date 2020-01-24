@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-Mock base implementation for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom) API.
+Mock base implementation for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom) API.
 
 This package provides a mock implementation of the
 [`HDOMImplementation`](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom/src/api.ts)
@@ -40,9 +40,9 @@ Package sizes (gzipped): ESM: 1.0KB / CJS: 1.1KB / UMD: 1.2KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
-- [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
 
 ## API
 

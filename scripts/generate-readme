@@ -7,7 +7,7 @@ try {
 
     const META_FIELD = "thi.ng";
     const META = PKG[META_FIELD] || {};
-    const BRANCH = META.branch || "master";
+    const BRANCH = META.branch || "develop";
     const START_YEAR = META.year || 2016;
     const REPO_ID = "thi-ng/umbrella";
     const MAIN_AUTHOR = "Karsten Schmidt";

@@ -128,16 +128,16 @@ Package sizes (gzipped): ESM: 2.1KB / CJS: 2.3KB / UMD: 2.2KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-- [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/master/packages/atom)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
-- [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/master/packages/paths)
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths)
 
 ## Usage examples
 
 Several demos in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package.
 
 A selection:
@@ -146,41 +146,41 @@ A selection:
 
 Minimal demo using interceptors with an async side effect
 
-[Live demo](https://demo.thi.ng/umbrella/async-effect/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/async-effect)
+[Live demo](https://demo.thi.ng/umbrella/async-effect/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/async-effect)
 
 ### hdom-dropdown-fuzzy <!-- NOTOC -->
 
-[Live demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/hdom-dropdown-fuzzy)
+[Live demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-dropdown-fuzzy)
 
 ### interceptor-basics <!-- NOTOC -->
 
-[Live demo](https://demo.thi.ng/umbrella/interceptor-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/interceptor-basics)
+[Live demo](https://demo.thi.ng/umbrella/interceptor-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/interceptor-basics)
 
 ### interceptor-basics2 <!-- NOTOC -->
 
-[Live demo](https://demo.thi.ng/umbrella/interceptor-basics2/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/interceptor-basics2)
+[Live demo](https://demo.thi.ng/umbrella/interceptor-basics2/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/interceptor-basics2)
 
 ### router-basics <!-- NOTOC -->
 
 Basic @thi.ng/router & @thi.ng/hdom app skeleton
 
-[Live demo](https://demo.thi.ng/umbrella/router-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/router-basics)
+[Live demo](https://demo.thi.ng/umbrella/router-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/router-basics)
 
 ### rstream-grid <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/rstream-grid.jpg)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-grid.jpg)
 
 Interactive grid generator, SVG generation & export, undo/redo support
 
-[Live demo](https://demo.thi.ng/umbrella/rstream-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/rstream-grid)
+[Live demo](https://demo.thi.ng/umbrella/rstream-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-grid)
 
 ### svg-waveform <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/svg-waveform.jpg)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-waveform.jpg)
 
 Additive waveform synthesis & SVG visualization with undo/redo
 
-[Live demo](https://demo.thi.ng/umbrella/svg-waveform/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/svg-waveform)
+[Live demo](https://demo.thi.ng/umbrella/svg-waveform/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-waveform)
 
 ## API
 

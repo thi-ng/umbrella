@@ -55,8 +55,8 @@ Then per value:
 
 ### Related packages
 
-- [@thi.ng/bitstream](https://github.com/thi-ng/umbrella/tree/master/packages/bitstream) - ES6 iterator based read/write bit streams with support for variable word widths
-- [@thi.ng/range-coder](https://github.com/thi-ng/umbrella/tree/master/packages/range-coder) - Binary data range encoder / decoder
+- [@thi.ng/bitstream](https://github.com/thi-ng/umbrella/tree/develop/packages/bitstream) - ES6 iterator based read/write bit streams with support for variable word widths
+- [@thi.ng/range-coder](https://github.com/thi-ng/umbrella/tree/develop/packages/range-coder) - Binary data range encoder / decoder
 
 ## Installation
 
@@ -68,8 +68,8 @@ Package sizes (gzipped): ESM: 0.7KB / CJS: 0.7KB / UMD: 0.8KB
 
 ## Dependencies
 
-- [@thi.ng/bitstream](https://github.com/thi-ng/umbrella/tree/master/packages/bitstream)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+- [@thi.ng/bitstream](https://github.com/thi-ng/umbrella/tree/develop/packages/bitstream)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 
 ## API
 

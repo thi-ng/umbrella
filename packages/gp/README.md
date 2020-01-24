@@ -51,11 +51,11 @@ References:
 
 ### Related packages
 
-- [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/master/packages/defmulti) - Dynamic, extensible multiple dispatch via user supplied dispatch function.
-- [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree) - Pointfree functional composition / Forth style stack execution engine
-- [@thi.ng/sexpr](https://github.com/thi-ng/umbrella/tree/master/packages/sexpr) - Extensible S-Expression parser & runtime infrastructure
-- [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast) - DSL to define shader code in TypeScript and cross-compile to GLSL, JS and other targets
-- [@thi.ng/zipper](https://github.com/thi-ng/umbrella/tree/master/packages/zipper) - Functional tree editing, manipulation & navigation
+- [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti) - Dynamic, extensible multiple dispatch via user supplied dispatch function.
+- [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree) - Pointfree functional composition / Forth style stack execution engine
+- [@thi.ng/sexpr](https://github.com/thi-ng/umbrella/tree/develop/packages/sexpr) - Extensible S-Expression parser & runtime infrastructure
+- [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast) - DSL to define shader code in TypeScript and cross-compile to GLSL, JS and other targets
+- [@thi.ng/zipper](https://github.com/thi-ng/umbrella/tree/develop/packages/zipper) - Functional tree editing, manipulation & navigation
 
 ### Blog posts
 
@@ -71,25 +71,25 @@ Package sizes (gzipped): ESM: 1.2KB / CJS: 1.3KB / UMD: 1.4KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
-- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
-- [@thi.ng/zipper](https://github.com/thi-ng/umbrella/tree/master/packages/zipper)
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
+- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [@thi.ng/zipper](https://github.com/thi-ng/umbrella/tree/develop/packages/zipper)
 
 ## Usage examples
 
 Several demos in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package.
 
 A selection:
 
 ### shader-ast-evo <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/shader-ast-evo.jpg)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-evo.jpg)
 
-[Live demo](https://demo.thi.ng/umbrella/shader-ast-evo/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-evo)
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-evo/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-evo)
 
 ## API
 

@@ -40,7 +40,7 @@ Reference: https://en.wikipedia.org/wiki/Zipper_(data_structure)
 
 ### Related packages
 
-- [@thi.ng/gp](https://github.com/thi-ng/umbrella/tree/master/packages/gp) - Genetic programming helpers & strategies (tree based & multi-expression programming)
+- [@thi.ng/gp](https://github.com/thi-ng/umbrella/tree/develop/packages/gp) - Genetic programming helpers & strategies (tree based & multi-expression programming)
 
 ### Blog posts
 
@@ -56,9 +56,9 @@ Package sizes (gzipped): ESM: 1.0KB / CJS: 1.1KB / UMD: 1.2KB
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
-- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/master/packages/arrays)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 
 ## API
 

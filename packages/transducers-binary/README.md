@@ -28,7 +28,7 @@ This project is part of the
 
 ## About
 
-Binary data related transducers & reducers. This is a support package for [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers).
+Binary data related transducers & reducers. This is a support package for [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
 
 Like the transducers and reducers defined in
 [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers),
@@ -41,9 +41,9 @@ iterable for direct use.
 
 ### Related packages
 
-- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/master/packages/binary) - 50+ assorted binary / bitwise operations, conversions, utilities
-- [@thi.ng/bitstream](https://github.com/thi-ng/umbrella/tree/master/packages/bitstream) - ES6 iterator based read/write bit streams with support for variable word widths
-- [@thi.ng/unionstruct](https://github.com/thi-ng/umbrella/tree/master/packages/unionstruct) - C-style struct, union and bitfield read/write views of ArrayBuffers
+- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary) - 50+ assorted binary / bitwise operations, conversions, utilities
+- [@thi.ng/bitstream](https://github.com/thi-ng/umbrella/tree/develop/packages/bitstream) - ES6 iterator based read/write bit streams with support for variable word widths
+- [@thi.ng/unionstruct](https://github.com/thi-ng/umbrella/tree/develop/packages/unionstruct) - C-style struct, union and bitfield read/write views of ArrayBuffers
 
 ## Installation
 
@@ -55,26 +55,26 @@ Package sizes (gzipped): ESM: 2.5KB / CJS: 2.6KB / UMD: 2.5KB
 
 ## Dependencies
 
-- [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/master/packages/compose)
-- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
-- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/master/packages/strings)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+- [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/develop/packages/compose)
+- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
+- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 
 ## Usage examples
 
 Several demos in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
 directory are using this package.
 
 A selection:
 
 ### bitmap-font <!-- NOTOC -->
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/bitmap-font.gif)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/bitmap-font.gif)
 
 Figlet-style bitmap font creation with transducers
 
-[Live demo](https://demo.thi.ng/umbrella/bitmap-font/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/bitmap-font)
+[Live demo](https://demo.thi.ng/umbrella/bitmap-font/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/bitmap-font)
 
 ## API
 

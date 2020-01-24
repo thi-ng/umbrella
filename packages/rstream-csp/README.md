@@ -31,8 +31,8 @@ and synchronous stream subscriptions/transformations of
 
 ### Related packages
 
-- [@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/master/packages/csp) - ES6 promise based CSP primitives & operations
-- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream) - Reactive streams & subscription primitives for constructing dataflow graphs / pipelines
+- [@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/develop/packages/csp) - ES6 promise based CSP primitives & operations
+- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream) - Reactive streams & subscription primitives for constructing dataflow graphs / pipelines
 
 ## Installation
 
@@ -44,8 +44,8 @@ Package sizes (gzipped): ESM: 0.2KB / CJS: 0.3KB / UMD: 0.4KB
 
 ## Dependencies
 
-- [@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/master/packages/csp)
-- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+- [@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/develop/packages/csp)
+- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 
 ## API
 
