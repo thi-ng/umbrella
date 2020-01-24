@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/morton@1.1.5...@thi.ng/morton@2.0.0) (2020-01-24)
+
+
+### Features
+
+* **morton:** add ZCurve class, restructure package, update build target ([2ee4b68](https://github.com/thi-ng/umbrella/commit/2ee4b683783f7041fbaf965416698566ee63ff3f))
+* **morton:** add ZCurve range iterator and bigMin() impl ([a78d07a](https://github.com/thi-ng/umbrella/commit/a78d07a3bc4f185e2ba8757d409368b217c59e49))
+
+
+### Performance Improvements
+
+* **morton:** add optimized ZCurve2/3 class impls ([d61c717](https://github.com/thi-ng/umbrella/commit/d61c717918b0d154b64613e8527e4bf3afb42615))
+* **morton:** precompute wipe masks, minor other refactoring ([4b79950](https://github.com/thi-ng/umbrella/commit/4b799505928ed00f685bc8f692c34bfc147073ce))
+
+
+### BREAKING CHANGES
+
+* **morton:** module uses bigint and now uses ESNext build target
+
+
+
+
+
 ## [1.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/morton@1.1.4...@thi.ng/morton@1.1.5) (2019-11-30)
 
 **Note:** Version bump only for package @thi.ng/morton

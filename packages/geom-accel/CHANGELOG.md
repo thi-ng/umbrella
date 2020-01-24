@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@1.2.10...@thi.ng/geom-accel@2.0.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* **geom-accel:** use Heap in NdQtNode.query to select closest ([5fd6726](https://github.com/thi-ng/umbrella/commit/5fd67260eeb85cfce8216bc3a3d9e5d304f3d846))
+
+
+### Features
+
+* **geom-accel:** add IEmpty & clear() impls ([af747d0](https://github.com/thi-ng/umbrella/commit/af747d0e607f193b02e2e9d561d66ce588a8bdc8))
+* **geom-accel:** add initial nD quadtree impl & tests ([6f59869](https://github.com/thi-ng/umbrella/commit/6f59869f80222d200c68083b2dad5c1a8da731a0))
+* **geom-accel:** add NdQuadTreeMap/Set, update/add KdTreeMap/Set ([7c6f7d2](https://github.com/thi-ng/umbrella/commit/7c6f7d249780dbfcabd60e3f8f6369fb1b42998d))
+
+
+### Performance Improvements
+
+* **geom-accel:** add benchmark ([a09bcba](https://github.com/thi-ng/umbrella/commit/a09bcbacae2cd7f1e284baaa47f40f64ed6a327e))
+
+
+### BREAKING CHANGES
+
+* **geom-accel:** replace KdTree with KdTreeMap/Set
+
+
+
+
+
 ## [1.2.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@1.2.9...@thi.ng/geom-accel@1.2.10) (2019-11-30)
 
 **Note:** Version bump only for package @thi.ng/geom-accel

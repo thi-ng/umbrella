@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/imgui",
-    "version": "0.1.5",
+    "version": "0.1.6",
     "description": "Immediate mode GUI with flexible state handling & data only shape output",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,15 +38,15 @@
         "typescript": "^3.7.5"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.6.0",
-        "@thi.ng/checks": "^2.4.2",
-        "@thi.ng/geom": "^1.7.8",
-        "@thi.ng/geom-api": "^0.3.8",
-        "@thi.ng/geom-isec": "^0.3.10",
-        "@thi.ng/geom-tessellate": "^0.2.10",
-        "@thi.ng/math": "^1.5.1",
-        "@thi.ng/transducers": "^6.1.0",
-        "@thi.ng/vectors": "^4.0.1"
+        "@thi.ng/api": "^6.7.0",
+        "@thi.ng/checks": "^2.5.0",
+        "@thi.ng/geom": "^1.7.9",
+        "@thi.ng/geom-api": "^1.0.0",
+        "@thi.ng/geom-isec": "^0.4.0",
+        "@thi.ng/geom-tessellate": "^0.2.11",
+        "@thi.ng/math": "^1.6.0",
+        "@thi.ng/transducers": "^6.2.0",
+        "@thi.ng/vectors": "^4.0.2"
     },
     "keywords": [
         "canvas",

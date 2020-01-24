@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.1.14...@thi.ng/random@1.1.15) (2020-01-24)
+
+
+### Performance Improvements
+
+* **random:** minor update ARandom.norm() ([babbbaa](https://github.com/thi-ng/umbrella/commit/babbbaa12b5be09415f420e7559fa5c8bb76f802))
+
+
+
+
+
 ## [1.1.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.1.13...@thi.ng/random@1.1.14) (2019-11-30)
 
 **Note:** Version bump only for package @thi.ng/random

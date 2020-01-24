@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@0.2.2...@thi.ng/webgl@0.2.3) (2020-01-24)
+
+
+### Bug Fixes
+
+* **webgl:** webgl1 depth texture ([5c86165](https://github.com/thi-ng/umbrella/commit/5c861659c353076d01153d3258d3d98bc5113a1c))
+
+
+
+
+
 ## [0.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@0.2.1...@thi.ng/webgl@0.2.2) (2019-11-30)
 
 

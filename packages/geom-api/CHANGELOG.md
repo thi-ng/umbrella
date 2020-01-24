@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@0.3.8...@thi.ng/geom-api@1.0.0) (2020-01-24)
+
+
+### Features
+
+* **geom-api:** replace ISpatialAccel w/ new interfaces ([baa05d1](https://github.com/thi-ng/umbrella/commit/baa05d1908a940115690cb3d1dd403173061d63a))
+
+
+### BREAKING CHANGES
+
+* **geom-api:** replace ISpatialAccel with new interfaces:
+ISpatialMap, ISpatialSet, IRegionQuery
+
+
+
+
+
 ## [0.3.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@0.3.7...@thi.ng/geom-api@0.3.8) (2019-11-30)
 
 **Note:** Version bump only for package @thi.ng/geom-api

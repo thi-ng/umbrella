@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@6.1.0...@thi.ng/transducers@6.2.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* **transducers:** update keep() xform to accept nullable ([1bc561b](https://github.com/thi-ng/umbrella/commit/1bc561bde02f116a5b1e2aff7a3d432d737fc4ae))
+* **transducers:** use child reducer completion step in groupByMap/Obj() ([ff44fcb](https://github.com/thi-ng/umbrella/commit/ff44fcbc877d75a5d7458459656f3b86ab6a0399))
+
+
+### Features
+
+* **transducers:** add dup() & palindrome(), update readme ([546bf9f](https://github.com/thi-ng/umbrella/commit/546bf9ffaa25c926f3e8af365049723bc9fe5877))
+* **transducers:** add IXform interface & TxLike type alias, update related functions ([49c62b7](https://github.com/thi-ng/umbrella/commit/49c62b7932eb943a8db472c3e1de0f18a35c43c6))
+* **transducers:** add line(), curve() ([31bd5b9](https://github.com/thi-ng/umbrella/commit/31bd5b9758a8da828cb9cc79820333279f810345))
+* **transducers:** add opt limit for cycle() ([186daff](https://github.com/thi-ng/umbrella/commit/186daff00edeb9b3a7e1475e3f903f3b1f0b75c2))
+* **transducers:** add pushSort() reducer ([444d2ee](https://github.com/thi-ng/umbrella/commit/444d2ee6b5111e4855b8cb3f2417738ccd934861))
+* **transducers:** add sortedKeys() iterator ([fa9343c](https://github.com/thi-ng/umbrella/commit/fa9343c8028c3f02e0322362db97a126f5c8a564))
+* **transducers:** update curve(), line(), iterate() ([3581a9d](https://github.com/thi-ng/umbrella/commit/3581a9d7c9eba9e3fa6cf8ec6a0a63e662157e83))
+
+
+### Performance Improvements
+
+* **transducers:** update string version of palindrome() ([315cbf8](https://github.com/thi-ng/umbrella/commit/315cbf80b577966e19f6a135d2c4256205c4a251))
+
+
+
+
+
 # [6.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@6.0.0...@thi.ng/transducers@6.1.0) (2019-11-30)
 
 

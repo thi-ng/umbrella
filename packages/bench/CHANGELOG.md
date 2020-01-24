@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@1.0.11...@thi.ng/bench@2.0.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* **bench:** update now() to only OPTIONALLY use bigint timestamps ([7ac391b](https://github.com/thi-ng/umbrella/commit/7ac391b58b7e8b3b6fdc458d1edda6ca441d379b))
+
+
+### Features
+
+* **bench:** add types, benchmark(), bigint timestamps, restructure ([e0af94c](https://github.com/thi-ng/umbrella/commit/e0af94cfbedea46a4131ec8243f2553e49a5e644))
+
+
+### BREAKING CHANGES
+
+* **bench:** Though no public API change, this library internally
+uses ES BigInt timestamps now (in Node via `process.hrtime.bigint()`).
+
+
+
+
+
 ## [1.0.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@1.0.10...@thi.ng/bench@1.0.11) (2019-11-30)
 
 **Note:** Version bump only for package @thi.ng/bench

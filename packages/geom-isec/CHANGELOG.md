@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isec@0.3.10...@thi.ng/geom-isec@0.4.0) (2020-01-24)
+
+
+### Features
+
+* **geom-isec:** add testBoxSphere nD version, minor optimizations ([122c187](https://github.com/thi-ng/umbrella/commit/122c1876375f638b35f9f576824f2af081008081))
+* **geom-isec:** add testCenteredBoxSphere() & pointInCenteredBox() tests (nD) ([6c5af97](https://github.com/thi-ng/umbrella/commit/6c5af97a8da9bce307bc76f956c185c5e75a9e8d))
+
+
+
+
+
 ## [0.3.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isec@0.3.9...@thi.ng/geom-isec@0.3.10) (2019-11-30)
 
 **Note:** Version bump only for package @thi.ng/geom-isec

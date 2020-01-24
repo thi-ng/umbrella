@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.3.3...@thi.ng/hiccup-svg@3.4.0) (2020-01-24)
+
+
+### Features
+
+* **hiccup-svg:** add packedPoints(), update convertTree() ([67be25e](https://github.com/thi-ng/umbrella/commit/67be25e425d224279a91bf070bfe4ee53cf6847b))
+
+
+
+
+
 ## [3.3.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.3.2...@thi.ng/hiccup-svg@3.3.3) (2019-11-30)
 
 **Note:** Version bump only for package @thi.ng/hiccup-svg

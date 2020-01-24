@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.4.2...@thi.ng/checks@2.5.0) (2020-01-24)
+
+
+### Features
+
+* **checks:** add hasBigInt() ([aa4faed](https://github.com/thi-ng/umbrella/commit/aa4faed08362caa591f64d1ffce75e8d9e213dd9))
+
+
+
+
+
 ## [2.4.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.4.1...@thi.ng/checks@2.4.2) (2019-11-30)
 
 **Note:** Version bump only for package @thi.ng/checks

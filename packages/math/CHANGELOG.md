@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.5.1...@thi.ng/math@1.6.0) (2020-01-24)
+
+
+### Features
+
+* **math:** add clamp05, update wrapOnce, wrap01, wrap11 ([19af252](https://github.com/thi-ng/umbrella/commit/19af2527a3c7afee4f829e36bf06acaeaf045be7))
+* **math:** add expFactor(), update wrap/wrapOnce() ([bb07348](https://github.com/thi-ng/umbrella/commit/bb07348da2e252641c1bc4de1e577451ead3607b))
+
+
+
+
+
 ## [1.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.5.0...@thi.ng/math@1.5.1) (2019-11-30)
 
 **Note:** Version bump only for package @thi.ng/math

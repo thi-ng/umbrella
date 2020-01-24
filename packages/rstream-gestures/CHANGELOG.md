@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@1.3.0...@thi.ng/rstream-gestures@2.0.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* **rstream-gestures:** remove duplicate MOVE events ([0c8da9b](https://github.com/thi-ng/umbrella/commit/0c8da9b235be37082f514b515917b82a630095d0))
+* fixed the bug allowing the user to drag without pressing anything and improved types ([e5a9996](https://github.com/thi-ng/umbrella/commit/e5a9996b73a6284b115d7ef601f3b032a1bdc3fb))
+
+
+### Features
+
+* **rstream-gestures:** add multitouch support, almost complete pkg rewrite ([031d89b](https://github.com/thi-ng/umbrella/commit/031d89bd3ada19c5aee158545bfec11e06a70a5f))
+* **rstream-gestures:** update deps, zoom delta calc, GestureInfo ([6bbbd55](https://github.com/thi-ng/umbrella/commit/6bbbd550e2d29e183a8a23447f003f9e31589112))
+
+
+### BREAKING CHANGES
+
+* **rstream-gestures:** New `GestureEvent` & `GestureInfo` data formats,
+add multitouch support
+
+
+
+
+
 # [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@1.2.6...@thi.ng/rstream-gestures@1.3.0) (2019-11-30)
 
 

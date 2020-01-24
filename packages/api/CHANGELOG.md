@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.6.0...@thi.ng/api@6.7.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* **api:** don't use optional chaining, update assert(), exposeGlobal() ([ddfc65e](https://github.com/thi-ng/umbrella/commit/ddfc65eb120d0f509cb18458f65497cb849bd305))
+
+
+### Features
+
+* **api:** add Drop, TupleLength, update Tuple ([dc79324](https://github.com/thi-ng/umbrella/commit/dc79324fbdc509b9d4dc2567b0a9106a25a62ea7))
+* **api:** add exposeGlobal(), update assert(), update readme ([7981cc9](https://github.com/thi-ng/umbrella/commit/7981cc95703c95800a0346f9111276202c906c75))
+* **api:** add IClear interface ([38f03ff](https://github.com/thi-ng/umbrella/commit/38f03ff205b29cd7819d3b8885c25e6b58a27381))
+* **api:** add IReset interface ([d491bd0](https://github.com/thi-ng/umbrella/commit/d491bd081e3926eabab377085406b8eb93205ba0))
+* **api:** add more RangeXX types & RangeValueMap ([654ea53](https://github.com/thi-ng/umbrella/commit/654ea53d068cc2b830608d6d69ab31df460eab3e))
+* **api:** added the Head type ([f000a3d](https://github.com/thi-ng/umbrella/commit/f000a3d57442963363abd0aab6fe3309e711b1ab))
+* **api:** added the Init type ([f6c333a](https://github.com/thi-ng/umbrella/commit/f6c333a7079a18ec7594a0ceefc2a425eead9d07))
+* **api:** added the KeysN type ([e0f0e90](https://github.com/thi-ng/umbrella/commit/e0f0e9002eac4b4d3e7d39e634929a4c390d1463))
+* **api:** added the Last type ([44ae2f7](https://github.com/thi-ng/umbrella/commit/44ae2f770d33fa1b25f8fc7e14b3caf5bada7bc6))
+* **api:** added the Prepend type ([7bfe7a8](https://github.com/thi-ng/umbrella/commit/7bfe7a8756818b5879d698500fc203c583e185f9))
+* **api:** added the ReplaceN type ([4da54ae](https://github.com/thi-ng/umbrella/commit/4da54aea15d3bd4f33b040e2220a43e1bb95ea11))
+* **api:** added the Reverse type ([88cfaa4](https://github.com/thi-ng/umbrella/commit/88cfaa45bab2f85d176dc6ad9d3551a9f431d68d))
+* **api:** added the Tail type ([fa59ff3](https://github.com/thi-ng/umbrella/commit/fa59ff3a5a30b9b2e226a363a18dedaca512e1db))
+* **api:** added the ValN type ([b48623f](https://github.com/thi-ng/umbrella/commit/b48623fdf539962fff9bd805adf5e6b3d24fc23e))
+* **api:** added the WithoutN type ([0d13af5](https://github.com/thi-ng/umbrella/commit/0d13af539bff270a15cc896515bd4cb5cf39ee0c))
+
+
+
+
+
 # [6.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.5.0...@thi.ng/api@6.6.0) (2019-11-30)
 
 

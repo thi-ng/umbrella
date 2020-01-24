@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/heaps@1.1.6...@thi.ng/heaps@1.2.0) (2020-01-24)
+
+
+### Features
+
+* **heaps:** add PairingHeap ([748da44](https://github.com/thi-ng/umbrella/commit/748da4405f9b4ab49bbdb3d4b49131df1f0cae88))
+
+
+### Performance Improvements
+
+* **heap:** add benchmarks ([2208353](https://github.com/thi-ng/umbrella/commit/220835345b1e842950a7288a8cc618585fda593f))
+
+
+
+
+
 ## [1.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/heaps@1.1.5...@thi.ng/heaps@1.1.6) (2019-11-30)
 
 **Note:** Version bump only for package @thi.ng/heaps

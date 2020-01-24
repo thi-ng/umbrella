@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.4.0...@thi.ng/arrays@0.5.0) (2020-01-24)
+
+
+### Features
+
+* **arrays:** add binary search predicates, tests, update readme ([b8f421e](https://github.com/thi-ng/umbrella/commit/b8f421eb8888fa1b57a9287f6841cd29952bf19f))
+
+
+
+
+
 # [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.3.0...@thi.ng/arrays@0.4.0) (2019-11-30)
 
 

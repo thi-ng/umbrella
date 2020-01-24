@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/poisson@0.2.27...@thi.ng/poisson@1.0.0) (2020-01-24)
+
+
+### Features
+
+* **poisson:** update to use ISpatialSet ([32a20fe](https://github.com/thi-ng/umbrella/commit/32a20fee6dadeed62610ef7d83c1824775cb28af))
+
+
+### BREAKING CHANGES
+
+* **poisson:** update to use latest geom-accel API
+
+
+
+
+
 ## [0.2.27](https://github.com/thi-ng/umbrella/compare/@thi.ng/poisson@0.2.26...@thi.ng/poisson@0.2.27) (2019-11-30)
 
 **Note:** Version bump only for package @thi.ng/poisson
