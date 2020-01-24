@@ -9,6 +9,7 @@
 *.svg
 *.tgz
 *.wasm
+bench
 build
 coverage
 dev
@@ -16,6 +17,7 @@ doc
 export
 src*
 test
+tools
 api-extractor.json
 README.tpl.md
 tsconfig.json

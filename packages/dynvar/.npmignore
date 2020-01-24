@@ -9,6 +9,7 @@
 *.h
 *.o
 *.wasm
+bench
 build
 coverage
 dev
@@ -17,4 +18,5 @@ export
 README.tpl.md
 src*
 test
+tools
 tsconfig.json
