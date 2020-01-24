@@ -44,17 +44,14 @@ export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
         this.id = opts.id;
         this.cache = opts.cache || new UnboundedCache();
 
-        this.info = comps.reduce(
-            (acc: GroupInfo<SPEC, K>, c) => {
-                acc[c.id] = {
-                    values: <any>c.vals,
-                    size: c.size,
-                    stride: c.stride
-                };
-                return acc;
-            },
-            <any>{}
-        );
+        this.info = comps.reduce((acc: GroupInfo<SPEC, K>, c) => {
+            acc[c.id] = {
+                values: <any>c.vals,
+                size: c.size,
+                stride: c.stride
+            };
+            return acc;
+        }, <any>{});
 
         // update ownerships
         owned.forEach((c) => {
@@ -70,20 +67,11 @@ export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
         });
         this.owned = owned;
         this.addExisting();
-
-        comps.forEach((comp) => {
-            comp.addListener(EVENT_ADDED, this.onAddListener, this);
-            comp.addListener(EVENT_PRE_DELETE, this.onDeleteListener, this);
-            comp.addListener(EVENT_CHANGED, this.onChangeListener, this);
-        });
+        this.addRemoveListeners(true);
     }
 
     release() {
-        this.components.forEach((comp) => {
-            comp.removeListener(EVENT_ADDED, this.onAddListener, this);
-            comp.removeListener(EVENT_PRE_DELETE, this.onDeleteListener, this);
-            comp.removeListener(EVENT_CHANGED, this.onChangeListener, this);
-        });
+        this.addRemoveListeners(false);
         this.cache.release();
     }
 
@@ -230,5 +218,14 @@ export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
             this.isFullyOwning(),
             `group ${this.id} isn't fully owning its components`
         );
+    }
+
+    protected addRemoveListeners(add: boolean) {
+        const f = add ? "addListener" : "removeListener";
+        this.components.forEach((comp) => {
+            comp[f](EVENT_ADDED, this.onAddListener, this);
+            comp[f](EVENT_PRE_DELETE, this.onDeleteListener, this);
+            comp[f](EVENT_CHANGED, this.onChangeListener, this);
+        });
     }
 }
