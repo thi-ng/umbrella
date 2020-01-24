@@ -16,7 +16,7 @@ for (let f of fs.readdirSync(baseDir)) {
             console.log(`\tskipping: ${id}`);
             continue;
         }
-        const branch = getIn(pkg, ["thi.ng", "branch"]) || "master";
+        const branch = getIn(pkg, ["thi.ng", "branch"]) || "develop";
         const html = `<html><head><meta http-equiv="refresh" content="0; url=https://github.com/thi-ng/umbrella/tree/${branch}/packages/${id}"/></head></html>`;
         console.log(`${id} -> ${branch}`);
         fs.writeFileSync(tmpFile, html);
