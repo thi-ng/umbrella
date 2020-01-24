@@ -24,10 +24,10 @@
         "@thi.ng/transducers": "latest"
     },
     "devDependencies": {
-        "@types/node": "^9.6.2",
+        "@types/node": "^13.5.0",
         "parcel-bundler": "^1.12.4",
-        "terser": "^4.4.0",
-        "typescript": "^3.7.2"
+        "terser": "^4.6.3",
+        "typescript": "^3.7.5"
     },
     "browserslist": [
         "last 3 Chrome versions"
