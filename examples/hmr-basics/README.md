@@ -3,7 +3,7 @@
 [Live demo](http://demo.thi.ng/umbrella/hmr-basics/)
 
 Minimal example demonstrating the combined usage of @thi.ng/memoize's
-[`defonce`](https://github.com/thi-ng/umbrella/tree/master/packages/memoize/src/defonce.ts)
+[`defonce`](https://github.com/thi-ng/umbrella/tree/develop/packages/memoize/src/defonce.ts)
 and parcel's [Hot Module Replacement API](https://parceljs.org/hmr.html).
 
 Please refer to the [example build

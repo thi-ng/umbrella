@@ -14,7 +14,7 @@ This project is part of the
 ${pkg.description}
 
 Like the transducers and reducers defined in
-[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers),
+[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers),
 all functions defined in this package too accept an optional input
 iterable for direct use.
 
@@ -71,7 +71,7 @@ import { Smush32 } from "@thi.ng/random";
 
 This is a higher-order transducer, purely composed from other
 transducers. [See code
-here](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/hex-dump.ts).
+here](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary/src/hex-dump.ts).
 
 ```ts
 src = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 33, 48, 49, 50, 51, 126, 122, 121, 120]
@@ -85,7 +85,7 @@ src = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 33, 48, 49, 50, 51, 126, 122, 121
 ### Structured byte buffer construction
 
 The
-[`bytes()`](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/bytes.ts)
+[`bytes()`](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary/src/bytes.ts)
 reducer transforms a stream of declarative data definitions (optionally
 with Little-Endian encoding) into an `Uint8Array`.
 
@@ -144,7 +144,7 @@ console.log(
 ```
 
 Extended to transform longer strings (taken from the [bitmap-font
-example](https://github.com/thi-ng/umbrella/tree/master/examples/bitmap-font),
+example](https://github.com/thi-ng/umbrella/tree/develop/examples/bitmap-font),
 [live demo](https://demo.thi.ng/umbrella/bitmap-font/)):
 
 ```ts
@@ -236,17 +236,17 @@ tx.transduce(tx.comp(txb.base64Decode(), txb.utf8Decode()), tx.str(), buf);
 
 ### Transducers
 
-- [base64Decode](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/base64.ts)
-- [base64Encode](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/base64.ts)
-- [bits](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/bits.ts)
-- [hexDump](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/hex-dump.ts)
-- [partitionBits](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/partition-bits.ts)
-- [utf8Decode](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/utf8.ts)
-- [utf8Encode](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/utf8.ts)
+- [base64Decode](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary/src/base64.ts)
+- [base64Encode](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary/src/base64.ts)
+- [bits](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary/src/bits.ts)
+- [hexDump](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary/src/hex-dump.ts)
+- [partitionBits](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary/src/partition-bits.ts)
+- [utf8Decode](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary/src/utf8.ts)
+- [utf8Encode](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary/src/utf8.ts)
 
 ### Reducers
 
-- [bytes](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-binary/src/bytes.ts)
+- [bytes](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary/src/bytes.ts)
 
 ## Authors
 

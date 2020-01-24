@@ -12,6 +12,7 @@ This project is part of the
 - [About](#about)
   - [Unsupported features](#unsupported-features)
   - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -25,18 +26,18 @@ Customizable JS code generator, compiler & runtime for [@thi.ng/shader-ast](http
 
 Due to the lack of native vector operations in JS, this compile target
 is much more involved than the
-[@thi.ng/shader-ast-glsl](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-glsl)
+[@thi.ng/shader-ast-glsl](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-glsl)
 code gen and uses a pluggable backend to perform all math ops. The
 default backend delegates all ops to
-[@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
+[@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 and
-[@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/master/packages/matrices),
+[@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/develop/packages/matrices),
 which altogether provide ~750 optimized vector/matrix functions.
 
 ### Unsupported features
 
 - texture lookups (see [texture tunnel
-  demo](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-tunnel)
+  demo](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-tunnel)
   for a monkey-patched solution)
 - derivatives (`dFdx`, `dFdy`, `fwidth`) - probably never supported in
   this env
@@ -46,6 +47,11 @@ which altogether provide ~750 optimized vector/matrix functions.
 ### Status
 
 **STABLE** - used in production
+
+### Related packages
+
+- [@thi.ng/shader-ast-glsl](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-glsl) - Customizable GLSL code generator for [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast)
+- [@thi.ng/shader-ast-stdlib](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdlib) - Function collection for modular GPGPU / shader programming with [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast)
 
 ## Installation
 

@@ -16,12 +16,12 @@ This project is part of the
 nD [Poisson disk
 sampling](https://en.wikipedia.org/wiki/Supersampling#Poisson_disc) with
 support for variable spatial density, custom PRNGs (via
-[@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)'s
+[@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)'s
 `IRandom` interface & implementations) and customizable quality
 settings.
 
 Currently uses a [k-D
-tree](https://github.com/thi-ng/umbrella/tree/master/packages/geom-accel/src/kdtree.ts#L57)
+tree](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-accel/src/kdtree.ts#L57)
 implementation to speed up the sampling process, but will be refactored
 to support other, alternative spatial indexing mechanisms...
 

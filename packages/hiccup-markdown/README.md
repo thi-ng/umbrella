@@ -33,7 +33,7 @@ This project is part of the
 Markdown parser & serializer from/to Hiccup format.
 
 This package provides both a customizable
-[Markdown](https://en.wikipedia.org/wiki/Markdown)-to-[Hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
+[Markdown](https://en.wikipedia.org/wiki/Markdown)-to-[Hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
 parser and an extensible Hiccup-to-Markdown converter.
 
 ### Status
@@ -129,17 +129,17 @@ requests are welcome, though!
 ### Other parser features
 
 - **Functional:** parser entirely built using
-  [transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+  [transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
   (specifically those defined in
-  [@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/master/packages/fsm))
+  [@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm))
   & function composition. Use the parser in a transducer pipeline to
   easily apply post-processing of the emitted results
 - **Declarative:** parsing rules defined declaratively with only minimal
   state/context handling needed
 - **No regex:** consumes input character-wise and produces an iterator
   of hiccup-style tree nodes, ready to be used with
-  [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom),
-  [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
+  [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom),
+  [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
   or the serializer of this package for back conversion to MD
 - **Customizable:** supports custom tag factory functions to override
   default behavior / representation of each parsed result element
@@ -258,7 +258,7 @@ Not (yet) supported:
 
 Also, other element types can be supported by adding a new tag specific
 implementation to the exported `serializeElement`
-[multi-method](https://github.com/thi-ng/umbrella/tree/master/packages/defmulti).
+[multi-method](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti).
 See source code for reference.
 
 ### Usage examples

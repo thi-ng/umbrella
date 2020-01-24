@@ -53,7 +53,7 @@ friends.
 
 This library is suitable for static website generation, server side
 rendering etc. For interactive use cases, please see companion package
-[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom).
+[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom).
 
 ### Features
 
@@ -359,7 +359,7 @@ serialize([div, {id: "foo"}, "bar"]);
 ### SVG generation, generators & lazy composition
 
 Also see
-[@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-svg)
+[@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg)
 for related functionality.
 
 ```ts
@@ -512,7 +512,7 @@ serialize([
 ### Component objects
 
 The sibling library
-[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
+[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
 supports components with basic life cycle methods (init, render,
 release). In order to support serialization of hdom component trees,
 hiccup too supports such components since version 2.0.0. However, for
@@ -533,7 +533,7 @@ The following attributes can be used to control the serialization
 behavior of individual elements / tree branches:
 
 - **`__skip`** - if true, skips serialization (also used by
-  [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom))
+  [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom))
 - **`__serialize`** - if false, skips serialization (hiccup only)
 
 ```ts
@@ -664,7 +664,7 @@ Signature: `escape(str: string): string`
 Helper function. Applies HTML entity replacement on given string. If
 `serialize()` is called with `true` as 2nd argument, entity encoding is
 done automatically ([list of entities
-considered](https://github.com/thi-ng/umbrella/blob/master/packages/hiccup/src/api.ts)).
+considered](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup/src/api.ts)).
 
 ## Authors
 

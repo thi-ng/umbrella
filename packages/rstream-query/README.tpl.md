@@ -11,7 +11,7 @@ This project is part of the
 
 ## About
 
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 based [triple store](https://en.wikipedia.org/wiki/Triplestore) &
 reactive query engine with declarative query specs related to
 [Datalog](https://en.wikipedia.org/wiki/Datalog) /
@@ -33,9 +33,9 @@ feature is currently WIP).
 - Dynamic & declarative dataflow graph construction via high-level data
   specs and/or functions
 - Entirely based on stream abstractions provided by
-  [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+  [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 - All data transformations done using dynamically composed
-  [tranducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+  [tranducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - Query optimizations
 - Extensive re-use of existing sub-query results (via subscriptions)
 - Interim result de-duplication / dataflow gates
@@ -46,7 +46,7 @@ ${status}
 This project is currently still in early development and intended as a
 continuation of the Clojure based [thi.ng/fabric](http://thi.ng/fabric),
 this time built on the streaming primitives provided by
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream).
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream).
 
 ${supportPackages}
 
@@ -179,11 +179,11 @@ generated dataflow topology then looks as follows:
   transformed to produce the final solution set and post-process it
 
 Btw. The diagram has been generated using
-[@thi.ng/rstream-dot](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-dot)
+[@thi.ng/rstream-dot](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-dot)
 and can be recreated by calling `store.toDot()` (for the above example)
 
 The source code for the above example is
-[here](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-query/test/example.ts)
+[here](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-query/test/example.ts)
 
 (Many) more features forthcoming...
 

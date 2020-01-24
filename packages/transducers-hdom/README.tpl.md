@@ -15,12 +15,12 @@ ${pkg.description}
 
 This package provides a single `updateDOM` function, a side-effecting &
 stateful transducer which receives
-[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
+[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
 component trees, diffs each against the previous value and applies any
 required changes to the browser DOM, starting at given root element. By
 default, incoming values are first normalized using @thi.ng/hdom's
 `normalizeTree()` function. See [hdom's `start()`
-function](https://github.com/thi-ng/umbrella/tree/master/packages/hdom#start)
+function](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom#start)
 for more details.
 
 If the `hydrate` option is given, the first received tree is only used
@@ -29,7 +29,7 @@ to inject event listeners and initialize components with lifecycle
 All succeeding trees are diffed then as usual.
 
 This transducer is primarily intended for
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)-based
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)-based
 dataflow graphs, where it can be used as final leaf subscription /
 stream transformer to reflect UI changes back to the user, without using
 the usual RAF update loop used by @thi.ng/hdom by default. In this
@@ -38,8 +38,8 @@ is attached to receives new values (i.e. hdom component trees).
 
 Please also see the following hdom references for further details:
 
-- [start()](https://github.com/thi-ng/umbrella/tree/master/packages/hdom/src/start.ts)
-- [HDOMOpts](https://github.com/thi-ng/umbrella/tree/master/packages/hdom/src/api.ts#L19)
+- [start()](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom/src/start.ts)
+- [HDOMOpts](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom/src/api.ts#L19)
 
 ${status}
 

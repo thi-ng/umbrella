@@ -7,7 +7,7 @@
 ## Usage
 
 Click and drag in the
-[ramp](https://github.com/thi-ng/umbrella/tree/master/packages/ramp)
+[ramp](https://github.com/thi-ng/umbrella/tree/develop/packages/ramp)
 visualization to add & move new markers. Drag markers below the
 visualization to move their position. Markers cannot be moved past their
 neighbors.

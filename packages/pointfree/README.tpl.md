@@ -16,7 +16,7 @@ functional composition via lightweight (~3KB gzipped), stack-based embedded DSL.
 
 This module implements the language's core components in vanilla ES6 and
 is perfectly usable like that. **The related
-[@thi.ng/pointfree-lang](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree-lang)
+[@thi.ng/pointfree-lang](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree-lang)
 module defines an actual language with a powerful and more concise
 syntax around this module and might be better suited for some use
 cases.**
@@ -26,7 +26,7 @@ Current features:
 - words implemented as tiny vanilla JS functions (easily extensible)
 - optimized pre-composition/compilation of custom user defined words
   (see
-  [word.ts](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree/src/word.ts))
+  [word.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree/src/word.ts))
 - dual stack (main & stash/scratch space)
 - nested execution environments (scopes)
 - arbitrary stack values
@@ -41,7 +41,7 @@ Current features:
     - higher order combinators
     - environment manipulation etc.
 - stack comments & documentation for most ops/words
-- [over 330 test cases](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree/test/index.ts)
+- [over 330 test cases](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree/test/index.ts)
 
 For a great overview & history of this type of this type of programming,
 please see:
@@ -113,7 +113,7 @@ normalize([10, -10, 0])
 
 In terms of composing processing pipelines, this approach is somewhat
 related to
-[transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers),
+[transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers),
 however the pointfree method and use of a stack as sole communication
 medium between different sub-processes **can** be more flexible, since
 each function ("word" in Concatenative-programming-speak) can consume or
@@ -490,7 +490,7 @@ pf.run([10, 20, 30, 40, 50, 60, [pf.add], pf.tria2])[0]
 // [30, 70, 110]
 ```
 
-See [tests](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree/test/index.ts#L579) for more examples...
+See [tests](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree/test/index.ts#L579) for more examples...
 
 ### Array transformations
 

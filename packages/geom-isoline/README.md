@@ -23,7 +23,7 @@ This project is part of the
 2D isoline / contour extraction, using [Marching
 squares](https://en.wikipedia.org/wiki/Marching_squares). Ported from
 the Clojure version of
-[thi.ng/ndarray](https://github.com/thi-ng/ndarray/blob/master/src/contours.org).
+[thi.ng/ndarray](https://github.com/thi-ng/ndarray/blob/develop/src/contours.org).
 
 ### Status
 

@@ -212,7 +212,7 @@ The package also provides several approaches to compose multi-step
 processing pipelines (see section further below). Furthermore, all
 implementations in this package implement the [@thi.ng/transducers
 `IXform`
-interface](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/README.md#IXform)
+interface](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/README.md#IXform-interface)
 and so can be directly used in transducer pipelines too.
 
 ```ts

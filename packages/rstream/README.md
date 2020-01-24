@@ -289,7 +289,7 @@ interface CommonOpts {
 
 #### Stream
 
-Source: [stream()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/stream.ts)
+Source: [stream()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/stream.ts)
 
 Creates a new `Stream` instance, optionally with given `StreamSource`
 function and / or ID. If a `src` function is provided, the function
@@ -331,7 +331,7 @@ b.next(42);
 ### IDeref support
 
 `Stream`s (like `Subscription`s) implement the [@thi.ng/api
-`IDeref`](https://github.com/thi-ng/umbrella/blob/master/packages/api/src/api/deref.ts)
+`IDeref`](https://github.com/thi-ng/umbrella/blob/develop/packages/api/src/api/deref.ts)
 interface which provides read access to a stream's last received value.
 This is useful for various purposes, e.g. in combination with
 @thi.ng/hdom, which supports direct embedding of streams (i.e. their
@@ -341,7 +341,7 @@ deref to `undefined`.
 
 #### Subscription
 
-Source: [subscription()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subscription.ts)
+Source: [subscription()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/subscription.ts)
 
 Creates a new `Subscription` instance, the fundamental datatype &
 building block provided by this package (`Stream`s are `Subscription`s
@@ -373,22 +373,22 @@ s.next(42);
 
 #### Other stream creation helpers
 
-- [fromAtom()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/from/atom.ts) - streams from value changes in atoms/cursors
-- [fromChannel()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-csp) - CSP channel to stream conversion
-- [fromEvent()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/from/event.ts) - events
-- [fromDOMEvent()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/from/event.ts#L25) - DOM events
-- [fromInterval()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/from/interval.ts) - interval based counters
-- [fromIterable()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/from/iterable.ts) - arrays, iterators / generators (async & sync)
-- [fromPromise()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/from/promise.ts) - single value stream from promise
-- [fromPromises()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/from/promises.ts) - results from multiple promise
-- [fromRAF()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/from/raf.ts) - requestAnimationFrame() counter (w/ node fallback)
-- [fromView()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/from/view.ts) - derived view changes (see [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/master/packages/atom))
-- [fromWorker()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/from/worker.ts) - messages received from worker
-- [trigger()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/trigger.ts) - one-off events
+- [fromAtom()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/from/atom.ts) - streams from value changes in atoms/cursors
+- [fromChannel()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-csp) - CSP channel to stream conversion
+- [fromEvent()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/from/event.ts) - events
+- [fromDOMEvent()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/from/event.ts#L25) - DOM events
+- [fromInterval()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/from/interval.ts) - interval based counters
+- [fromIterable()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/from/iterable.ts) - arrays, iterators / generators (async & sync)
+- [fromPromise()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/from/promise.ts) - single value stream from promise
+- [fromPromises()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/from/promises.ts) - results from multiple promise
+- [fromRAF()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/from/raf.ts) - requestAnimationFrame() counter (w/ node fallback)
+- [fromView()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/from/view.ts) - derived view changes (see [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom))
+- [fromWorker()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/from/worker.ts) - messages received from worker
+- [trigger()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/trigger.ts) - one-off events
 
 ### Meta streams
 
-Source: [metaStream()](https://github.com/thi-ng/umbrella/blob/master/packages/rstream/src/metastream.ts)
+Source: [metaStream()](https://github.com/thi-ng/umbrella/blob/develop/packages/rstream/src/metastream.ts)
 
 `MetaStream`s are streams of streams. A `MetaStream` is a subscription
 type which transforms each incoming value into a new stream, subscribes
@@ -473,7 +473,7 @@ m.next(true);
 
 #### Unordered merge from multiple inputs (dynamic add/remove)
 
-Source: [merge()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/stream-merge.ts)
+Source: [merge()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/stream-merge.ts)
 
 ![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/rstream/rstream-merge.png)
 
@@ -505,7 +505,7 @@ merge({
 ```
 
 Use the [`labeled()`
-transducer](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/labeled.ts)
+transducer](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/labeled.ts)
 for each input to create a stream of labeled values and track their
 provenance:
 
@@ -525,7 +525,7 @@ merge({
 ```
 
 See
-[StreamMergeOpts](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/stream-merge.ts#L7)
+[StreamMergeOpts](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/stream-merge.ts#L7)
 for further reference of the various behavior options.
 
 ##### Adding inputs automatically
@@ -558,7 +558,7 @@ a.next("a");
 
 #### Synchronized merge and labeled tuple objects
 
-Source: [sync()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/stream-sync.ts)
+Source: [sync()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/stream-sync.ts)
 
 ![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/rstream/rstream-sync.png)
 
@@ -599,19 +599,19 @@ be incomplete, by default. To only allow complete tuples, also set the
 `all` option to `false`.
 
 The synchronization is done via the
-[`partitionSync()`](https://github.com/thi-ng/umbrella/tree/master/packages/transducers/src/xform/partition-sync.ts)
+[`partitionSync()`](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/partition-sync.ts)
 transducer from the @thi.ng/transducers package. See this function's
 docs for further details.
 
 See
-[StreamSyncOpts](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/stream-sync.ts#L12)
+[StreamSyncOpts](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/stream-sync.ts#L12)
 for further reference of the various behavior options.
 
 ### Stream splitting
 
 #### Topic based splitting
 
-Source: [pubsub()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/pubsub.ts)
+Source: [pubsub()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/pubsub.ts)
 
 ![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/rstream/rstream-pubsub.png)
 
@@ -636,7 +636,7 @@ called WITHOUT argument to unsubscribe the entire `PubSub` instance
 
 #### Splitting via predicate
 
-Source: [bisect()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/bisect.ts)
+Source: [bisect()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/subs/bisect.ts)
 
 Returns a new `PubSub` instance using given predicate `pred` as boolean
 topic function and `a` & `b` as subscribers for truthy (`a`) and falsy
@@ -681,7 +681,7 @@ fromIterable([1, 2, 3, 4]).subscribe(bisect((x) => !!(x & 1), odd, even));
 
 #### Input chunking / buffering, controlled by sidechain
 
-Source: [sidechainPartition()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/sidechain-partition.ts)
+Source: [sidechainPartition()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/subs/sidechain-partition.ts)
 
 ![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/rstream/rstream-sidechain-partition.png)
 
@@ -706,7 +706,7 @@ merge([
 
 #### Input toggling, controlled by sidechain
 
-Source: [sidechainToggle()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/sidechain-toggle.ts)
+Source: [sidechainToggle()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/subs/sidechain-toggle.ts)
 
 ![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/rstream/rstream-sidechain-toggle.png)
 
@@ -734,7 +734,7 @@ fromInterval(500)
 
 #### Parallel stream processing via workers
 
-Source: [forkJoin()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/forkjoin.ts)
+Source: [forkJoin()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/forkjoin.ts)
 
 ![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/rstream/rstream-forkjoin.png)
 
@@ -783,26 +783,26 @@ src.next(new Array(16).fill(1));
 
 #### Stream processing via workers
 
-Source: [tunnel()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/tunnel.ts)
+Source: [tunnel()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/subs/tunnel.ts)
 
 Delegate stream value processing to workers and pass on their responses
 to downstream subscriptions. Supports multiple worker instances and
 worker termination / restart for each new stream value received.
 
-Source: [postWorker()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/post-worker.ts)
+Source: [postWorker()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/subs/post-worker.ts)
 
 Send values to workers (incl. optional (inline) worker instantiation)
 
-Source: [fromWorker()](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/from/worker.ts)
+Source: [fromWorker()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/from/worker.ts)
 
 Create value stream from worker messages.
 
 ### Other subscription ops
 
-- [resolve](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/resolve.ts) - resolve on-stream promises
-- [trace](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/trace.ts) - debug helper
-- [transduce](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/subs/transduce.ts) - transduce or just reduce an entire stream into a promise
-- [tween](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/tween.ts) - stream interpolation
+- [resolve](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/subs/resolve.ts) - resolve on-stream promises
+- [trace](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/subs/trace.ts) - debug helper
+- [transduce](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/subs/transduce.ts) - transduce or just reduce an entire stream into a promise
+- [tween](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/tween.ts) - stream interpolation
 
 ## Authors
 

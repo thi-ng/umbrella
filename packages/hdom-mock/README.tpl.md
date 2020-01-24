@@ -14,7 +14,7 @@ This project is part of the
 ${pkg.description}
 
 This package provides a mock implementation of the
-[`HDOMImplementation`](https://github.com/thi-ng/umbrella/tree/master/packages/hdom/src/api.ts)
+[`HDOMImplementation`](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom/src/api.ts)
 interface for testing and prototyping purposes of potential basis of
 custom target implementations.
 

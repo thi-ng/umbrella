@@ -14,7 +14,7 @@ This project is part of the
 ${pkg.description}
 
 Additional error types can be defined using
-[`defError()`](https://github.com/thi-ng/umbrella/tree/master/packages/errors/src/deferror.ts).
+[`defError()`](https://github.com/thi-ng/umbrella/tree/develop/packages/errors/src/deferror.ts).
 
 ${status}
 

@@ -14,11 +14,11 @@ This project is part of the
 Experimental language layer with compact
 [Forth](https://en.wikipedia.org/wiki/Forth_(programming_language))
 style syntax for
-[@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree),
+[@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree),
 an ES6 embedded DSL for concatenative programming:
 
 - [PegJS](https://pegjs.org/) based
-  [grammar](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree-lang/src/grammar.pegjs)
+  [grammar](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree-lang/src/grammar.pegjs)
   & parser
 - untyped, interpreted, but with AOT compilation of user defined words
 - hyperstatic word definitions
@@ -169,7 +169,7 @@ drastically. In this DSL (and most aspects also in @thi.ng/pointfree):
 
 As in Forth, comments are enclosed in `( ... )`. If the comment body
 includes the `--` string, it's marked as a [stack effect
-comment](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree#about-stack-effects)
+comment](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree#about-stack-effects)
 in preparation for future tooling additions.
 
 Comments current cannot contain `(` or `)`, but can span multiple lines.
@@ -196,7 +196,7 @@ additional ones: `*?$%&/|~<>=._+-`. However, digits are not allowed as
 first char.
 
 All 100+ built-in words defined by
-[@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree)
+[@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree)
 are available by default with the following additional aliases (which
 aren't valid names in the ES6 context):
 
@@ -256,7 +256,7 @@ Will result in `100`.
 
 There're no formatting rules enforced (yet, but under consideration).
 However, it's strongly encouraged to include [stack effect
-comments](https://github.com/thi-ng/umbrella/tree/master/packages/pointfree#about-stack-effects)
+comments](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree#about-stack-effects)
 as shown in the examples above.
 
 **Word definitions MUST be terminated with `;`.**

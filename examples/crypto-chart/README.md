@@ -7,13 +7,13 @@
 Price data provided by [cryptocompare.com](https://min-api.cryptocompare.com/).
 
 This example demonstrates how to use
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 &
-[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 constructs to create a basic crypto-currency candle chart with multiple
 moving averages plots. Unlike most other examples in this repo, there's
 no additional state handling used (e.g. via
-[@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/master/packages/atom)
+[@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom)
 constructs) and the entire app largely relies on various stream
 combinators & transformers. Furthermore, this approach only triggers UI
 updates / diffs when there were any relevant upstream value changes.

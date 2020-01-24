@@ -31,7 +31,7 @@ Supports:
 - Date
 - RegExp
 - Types with
-  [IEquiv](https://github.com/thi-ng/umbrella/tree/master/packages/api/src/api/equiv.ts)
+  [IEquiv](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api/equiv.ts)
   implementation
 
 ### Status

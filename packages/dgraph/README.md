@@ -22,7 +22,7 @@ This project is part of the
 ## About
 
 Type-agnostic directed acyclic graph (DAG), using
-[@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/master/packages/associative)
+[@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative)
 maps & sets as backend.
 
 ### Features

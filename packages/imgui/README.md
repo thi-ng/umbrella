@@ -33,9 +33,9 @@ Immediate mode GUI with flexible state handling & data only shape output.
 Currently still somewhat bare-bones, but already usable & customizable [immediate
 mode GUI](https://github.com/ocornut/imgui#references) implementation,
 primarily for
-[@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas)
+[@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-canvas)
 and
-[@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/master/packages/webgl),
+[@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl),
 however with no direct dependency on either and only outputting data structures.
 
 IMGUI components are largely ephemeral and expressed as simple
@@ -48,7 +48,7 @@ interaction produced a change. Additionally, each component produces a
 number of shapes & text labels, all of which are collected internally
 and are, from the user's POV, a mere side effect. At the end of the
 update cycle IMGUI produces a tree of
-[@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas)
+[@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-canvas)
 compatible elements, which can be easily converted into other formats
 (incl. SVG).
 
@@ -67,7 +67,7 @@ published, pending ongoing development in other packages...*
 - Re-usable hover & activation behaviors (for creating new components)
 - Fully keyboard controllable & Tab-focus switching / highlighting
 - All built-in components based on
-  [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom)
+  [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
   shape primitives
 
 ### Available components / widgets
@@ -129,7 +129,7 @@ components are not hard-coded to require it, and those which do need a
 layout manager only expect a `ILayout` or `IGridLayout` interface,
 allowing for custom implementations. Furthermore / alternatively, we
 also define a simple [`LayoutBox`
-interface](https://github.com/thi-ng/umbrella/tree/master/packages/imgui/src/api.ts),
+interface](https://github.com/thi-ng/umbrella/tree/develop/packages/imgui/src/api.ts),
 which can be passed instead and too is what `ILayout` implementations
 are expected to produce when allocating space for a component.
 
@@ -198,7 +198,7 @@ The entire UI is fully keyboard controllable, built-in behaviors:
 | `Alt+Left/Right`            | Textfield        | Move cursor to prev/next word |
 
 More complex behaviors can be achieved in user land. E.g. in the
-[demo](https://github.com/thi-ng/umbrella/tree/master/examples/imgui/),
+[demo](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui/),
 holding down `Alt` whilst adjusting a slider or dial group will set all
 values uniformly...
 

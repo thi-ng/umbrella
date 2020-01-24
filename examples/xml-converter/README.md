@@ -3,16 +3,16 @@
 [Live demo](http://demo.thi.ng/umbrella/xml-converter/)
 
 This example uses
-[@thi.ng/sax](https://github.com/thi-ng/umbrella/tree/master/packages/sax)
+[@thi.ng/sax](https://github.com/thi-ng/umbrella/tree/develop/packages/sax)
 to convert XML/HTML/SVG syntax into
-[hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
+[hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
 / JSON syntax and provides several options to filter the parsed tree and
 control the resulting output format.
 
 ## Dataflow
 
 This diagram illustrates the
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 dataflow topology used by the browser app:
 
 ![dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/xml-converter.png)

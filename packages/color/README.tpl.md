@@ -40,7 +40,7 @@ to / from sRGB (i.e. linear vs gamma corrected).
 
 The package provides lightweight class wrappers for each color mode /
 space. These wrappers act similarly to the `Vec2/3/4` wrappers in
-[@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors),
+[@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors),
 support striding (for mapped memory views), named channel accessor
 aliases (in addition to array indexing) and are fully compatible with
 all functions (and act as syntax sugar for generic conversion
@@ -49,7 +49,7 @@ functions). Wrapper factory functions are provided for convenience.
 ### RGBA transformations
 
 RGBA [color matrix
-transformations](https://github.com/thi-ng/umbrella/tree/master/packages/color/src/transform.ts),
+transformations](https://github.com/thi-ng/umbrella/tree/develop/packages/color/src/transform.ts),
 including parametric preset transforms:
 
 - brightness
@@ -70,7 +70,7 @@ concatenation (see `concat()`) for more efficient application.
 ### RGBA Porter-Duff compositing
 
 This feature has been moved to the separate
-[@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/master/packages/porter-duff)
+[@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/develop/packages/porter-duff)
 package.
 
 ### Cosine gradients
@@ -78,7 +78,7 @@ package.
 - [Original article](http://www.iquilezles.org/www/articles/palettes/palettes.htm)
 - [Gradient generator](http://dev.thi.ng/gradients/)
 
-The following presets are bundled (in [`cosine-gradients.ts`](https://github.com/thi-ng/umbrella/tree/master/packages/color/src/cosine-gradients.ts)):
+The following presets are bundled (in [`cosine-gradients.ts`](https://github.com/thi-ng/umbrella/tree/develop/packages/color/src/cosine-gradients.ts)):
 
 |                                                                |                                                                  |
 |----------------------------------------------------------------|------------------------------------------------------------------|

@@ -23,14 +23,14 @@ This project is part of the
 Quadedge data structure after Guibas & Stolfi.
 
 See the related
-[@thi.ng/geom-voronoi](https://github.com/thi-ng/umbrella/tree/master/packages/geom-voronoi)
+[@thi.ng/geom-voronoi](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-voronoi)
 package for concrete usage. This package merely provides the underlying
 graph data structure.
 
 Reference:
 
 - http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/quadedge.html
-- https://github.com/thi-ng/c-thing/blob/master/src/geom/quadedge.h
+- https://github.com/thi-ng/c-thing/blob/develop/src/geom/quadedge.h
 - Guibas & Stolfi: _Primitives for the manipulation of general
   subdivisions and the computation of Voronoi diagrams, ACM Transactions
   on Graphics, 4, 1985, p.75-123_

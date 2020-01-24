@@ -12,11 +12,11 @@ This project is part of the
 ## About
 
 GLSL code generator for
-[@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast).
+[@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast).
 Currently supports GLSL ES 1.00 (WebGL) & GLSL ES 3.00 (WebGL 2).
 
 This package is also used for shader assembly by
-[@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/master/packages/webgl).
+[@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl).
 
 ${status}
 

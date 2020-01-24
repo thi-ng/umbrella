@@ -12,10 +12,10 @@ This project is part of the
 ## About
 
 Declarative, reactive dataflow graph construction using
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream),
-[@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/master/packages/atom)
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream),
+[@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom)
 and
-[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 primitives.
 
 Stream subscription types act as graph nodes and attached transducers as
@@ -114,7 +114,7 @@ interface NodeSpec {
 Specification for a single "node" in the dataflow graph. Nodes here are
 actually just wrappers of streams / subscriptions (or generally any form
 of
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 `ISubscribable`), usually with an associated transducer to transform /
 combine the inputs and produce values for the node's result stream.
 
@@ -123,11 +123,11 @@ construct and the library provides several general purpose helpers for
 that purpose. The keys used to specify inputs in the `ins` object are
 dictated by the actual node `fn` used. Most node functions with multiple
 inputs will be implemented as
-[`StreamSync`](https://github.com/thi-ng/umbrella/tree/master/packages/rstream/src/stream-sync.ts)
+[`StreamSync`](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/stream-sync.ts)
 instances and the input IDs are used to locally rename input streams
 within the `StreamSync` container. Alo see `initGraph` and
 `nodeFromSpec` (in
-[`/src/nodes.ts`](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-graph/src/nodes.ts)
+[`/src/nodes.ts`](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-graph/src/nodes.ts)
 for more details how these specs are compiled into stream constructs.
 
 Specification for a single input, which can be given in different ways:
@@ -142,7 +142,7 @@ Specification for a single input, which can be given in different ways:
 ```
 
 2) Reference path to another node's output in the GraphSpec object. See
-   [@thi.ng/resolve-map](https://github.com/thi-ng/umbrella/tree/master/packages/resolve-map)
+   [@thi.ng/resolve-map](https://github.com/thi-ng/umbrella/tree/develop/packages/resolve-map)
    for details.
 
 ```ts

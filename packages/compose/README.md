@@ -42,13 +42,13 @@ Package sizes (gzipped): ESM: 0.8KB / CJS: 0.9KB / UMD: 0.9KB
 
 [Generated API docs](https://docs.thi.ng/umbrella/compose/)
 
-- [comp()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/comp.ts)
-- [compL()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/comp.ts#L52)
-- [juxt()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/juxt.ts)
-- [partial()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/partial.ts)
-- [threadFirst()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/thread-first.ts)
-- [threadLast()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/thread-last.ts)
-- [trampoline()](https://github.com/thi-ng/umbrella/tree/master/packages/compose/src/trampoline.ts)
+- [comp()](https://github.com/thi-ng/umbrella/tree/develop/packages/compose/src/comp.ts)
+- [compL()](https://github.com/thi-ng/umbrella/tree/develop/packages/compose/src/comp.ts#L52)
+- [juxt()](https://github.com/thi-ng/umbrella/tree/develop/packages/compose/src/juxt.ts)
+- [partial()](https://github.com/thi-ng/umbrella/tree/develop/packages/compose/src/partial.ts)
+- [threadFirst()](https://github.com/thi-ng/umbrella/tree/develop/packages/compose/src/thread-first.ts)
+- [threadLast()](https://github.com/thi-ng/umbrella/tree/develop/packages/compose/src/thread-last.ts)
+- [trampoline()](https://github.com/thi-ng/umbrella/tree/develop/packages/compose/src/trampoline.ts)
 
 ## Authors
 

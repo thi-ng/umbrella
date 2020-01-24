@@ -24,7 +24,7 @@ This project is part of the
 Transducers for statistical / technical analysis. This is a support package for [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers).
 
 This package provides a set of
-[transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+[transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 for [technical
 (financial)](https://en.wikipedia.org/wiki/Technical_indicator) and
 statistical analysis and replaces the older
@@ -38,19 +38,19 @@ transforming ES6 iterator (generator) instead of a transducer.
 
 ## Supported indicators
 
-- [Bollinger Bands](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-stats/src/bollinger.ts)
-- [Donchian Channel](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-stats/src/donchian.ts)
-- [EMA (Exponential Moving Average)](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-stats/src/ema.ts)
-- [HMA (Hull Moving Average)](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-stats/src/hma.ts)
-- [MACD (Moving Average Convergence/Divergence)](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-stats/src/macd.ts)
-- [Momentum](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-stats/src/momentum.ts)
-- [ROC (Rate of change)](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-stats/src/roc.ts)
-- [RSI (Relative Strength Index)](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-stats/src/rsi.ts)
-- [SD (Standard Deviation)](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-stats/src/sd.ts)
-- [SMA (Simple Moving Average)](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-stats/src/sma.ts)
-- [Stochastic oscillator](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-stats/src/stochastic.ts)
-- [TRIX (Triple smoothed EMA)](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-stats/src/trix.ts)
-- [WMA (Weighted Moving Average)](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-stats/src/wma.ts)
+- [Bollinger Bands](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/bollinger.ts)
+- [Donchian Channel](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/donchian.ts)
+- [EMA (Exponential Moving Average)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/ema.ts)
+- [HMA (Hull Moving Average)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/hma.ts)
+- [MACD (Moving Average Convergence/Divergence)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/macd.ts)
+- [Momentum](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/momentum.ts)
+- [ROC (Rate of change)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/roc.ts)
+- [RSI (Relative Strength Index)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/rsi.ts)
+- [SD (Standard Deviation)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/sd.ts)
+- [SMA (Simple Moving Average)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/sma.ts)
+- [Stochastic oscillator](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/stochastic.ts)
+- [TRIX (Triple smoothed EMA)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/trix.ts)
+- [WMA (Weighted Moving Average)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/wma.ts)
 
 ### Status
 

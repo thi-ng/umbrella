@@ -42,10 +42,10 @@ ${pkg.description}
 
 Please see these packages for use cases:
 
-- [@thi.ng/cache](https://github.com/thi-ng/umbrella/tree/master/packages/cache)
-- [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/master/packages/dgraph)
-- [@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/master/packages/ecs)
-- [@thi.ng/rstream-query](https://github.com/thi-ng/umbrella/tree/master/packages/rstream-query)
+- [@thi.ng/cache](https://github.com/thi-ng/umbrella/tree/develop/packages/cache)
+- [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph)
+- [@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/develop/packages/ecs)
+- [@thi.ng/rstream-query](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-query)
 
 The native ES6 implementations use object reference identity to
 determine key containment, but often it's more practical and useful to
@@ -164,19 +164,19 @@ ${docLink}
 ### IEquivSet
 
 All `Set` implementations in this package implement the
-[IEquivSet](https://github.com/thi-ng/umbrella/tree/master/packages/associative/src/api.ts)
+[IEquivSet](https://github.com/thi-ng/umbrella/tree/develop/packages/associative/src/api.ts)
 interface, an extension of the native ES6 Set API.
 
 ### ArraySet
 
 Simple array based `Set` implementation which by default uses
-[@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/master/packages/equiv/src/index.ts)
+[@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv/src/index.ts)
 for value equivalence checking.
 
 ### LLSet
 
 Similar to `ArraySet`, but uses
-[@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons) linked list
+[@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/develop/packages/dcons) linked list
 as backing storage for values.
 
 ### EquivMap

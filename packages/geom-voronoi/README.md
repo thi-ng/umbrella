@@ -22,7 +22,7 @@ This project is part of the
 
 Fast, incremental 2D Delaunay & Voronoi mesh implementation, based on
 the
-[@thi.ng/quad-edge](https://github.com/thi-ng/umbrella/tree/master/packages/quad-edge)
+[@thi.ng/quad-edge](https://github.com/thi-ng/umbrella/tree/develop/packages/quad-edge)
 data structure after Guibas & Stolfi and partially ported from C++
 versions by Dani Lischinski, Paul Heckbert et al:
 
@@ -32,7 +32,7 @@ References:
 - http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/lischinski/114.ps
 
 Construction speed: 20k random points ([poisson disc samples, even
-distribution](https://github.com/thi-ng/umbrella/tree/master/packages/poisson))
+distribution](https://github.com/thi-ng/umbrella/tree/develop/packages/poisson))
 in ~850ms (Chrome 72, MBP 2016)
 
 ### Status

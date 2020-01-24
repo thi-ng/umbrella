@@ -22,7 +22,7 @@ transformation pipeline.
 ${status}
 
 This package might be merged with (or deprecated by) the newer
-[@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/master/packages/fsm)
+[@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm)
 package.
 
 ${supportPackages}
@@ -48,7 +48,7 @@ ${examples}
 ## Usage examples
 
 For a real world example, the
-[@thi.ng/sax](https://github.com/thi-ng/umbrella/tree/master/packages/sax)
+[@thi.ng/sax](https://github.com/thi-ng/umbrella/tree/develop/packages/sax)
 package provides a SAX-like XML parser transducer, built around the FSM
 provided here.
 

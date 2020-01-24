@@ -39,32 +39,32 @@ ops for signed & unsigned integer vectors.
 - Highly modular: Each function is defined in its own submodule / file.
   In addition to each generic multi-method base function, all
   fixed-length optimized versions are exported too. E.g. If
-  [`add`](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/add.ts)
+  [`add`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/add.ts)
   performs vector addition on arbitrary-length vectors, `add2`, `add3`,
   `add4` are the optimized version for fixed-length vectors...
 - Extensible: Custom vector ops can be defined in a similar manner using
   the provided code generation helpers (see
-  [vop.ts](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/internal/vop.ts)
+  [vop.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/internal/vop.ts)
   and
-  [codegen.ts](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/internal/codegen.ts)
+  [codegen.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/internal/codegen.ts)
   for details).
 - Immutable by default: Each operation producing a vector result takes
   an output vector as first argument. If `null`, the vector given as 2nd
   argument will be used as output (i.e. for mutation).
 - Strided vector support is handled via the lightweight
-  [`Vec2/3/4`](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/vec2.ts)
+  [`Vec2/3/4`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/vec2.ts)
   class wrappers and the
-  [`gvec()`](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/gvec.ts)
+  [`gvec()`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/gvec.ts)
   proxy (for generic, arbitrary-length vectors). These types behave like
   normal arrays (for read/write operations) and are also iterable. A
   subset of functions (suffixed with `S`, e.g.
-  [`addS`](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/adds.ts)
+  [`addS`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/adds.ts)
   vs. `add`) also support striding without the need for extra class
   wrappers. This is handled via additional index and stride arguments
   for each input/output vector. These functions are only available for
   sizes 2 / 3 / 4, though.
 - Random vector functions support the `IRandom` interface defined by
-  [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
+  [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
   to work with custom (P)RNGs. If omitted, the built-in `Math.random()`
   will be used.
 
@@ -390,7 +390,7 @@ Component wise op with one input vector and single scalar:
 ### Rotations
 
 (Also see rotation matrices provided by
-[@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/master/packages/matrices))
+[@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/develop/packages/matrices))
 
 | Function              | Generic | Fixed | Strided | Int | Comments            |
 |-----------------------|---------|-------|---------|-----|---------------------|
@@ -411,7 +411,7 @@ Component wise op with one input vector and single scalar:
 ### Randomness
 
 All ops support custom PRNG impls based on the
-[@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
+[@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
 `IRandom` interface and use `Math.random` by default:
 
 | Function     | Generic | Fixed | Strided | Int | Comments |
@@ -524,9 +524,9 @@ All resulting in boolean vectors:
 
 For more information about the code generator see:
 
-- [codegen.ts](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/internal/codegen.ts)
-- [templates.ts](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/internal/templates.ts)
-- [vop.ts](https://github.com/thi-ng/umbrella/tree/master/packages/vectors/src/internal/vop.ts)
+- [codegen.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/internal/codegen.ts)
+- [templates.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/internal/templates.ts)
+- [vop.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/internal/vop.ts)
 
 ## Authors
 

@@ -5,12 +5,12 @@
 
 Minimal, skinnable presentation tool with keyboard navigation, using:
 
-- [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
-- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
-- [@thi.ng/transducers-hdom](https://github.com/thi-ng/umbrella/tree/master/packages/transducers-hdom)
+- [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
+- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+- [@thi.ng/transducers-hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-hdom)
 
 The contents of the
-[slides](https://github.com/thi-ng/umbrella/tree/master/examples/talk-slides/src/slides.ts)
+[slides](https://github.com/thi-ng/umbrella/tree/develop/examples/talk-slides/src/slides.ts)
 are from my talk at the [ClojureX 2018
 conference](https://skillsmatter.com/skillscasts/12269-keynote-the-spirit-of-clojure),
 however for file size reasons all media assets have been **excluded**

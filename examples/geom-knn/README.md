@@ -4,7 +4,7 @@
 
 Drawing / debug toy based on 2x recursive KNN search using the k-D tree
 implementation provided by
-[@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/master/packages/geom-accel)
+[@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-accel)
 package. For each new mouse/touch movement the 1st search pass selects
 up to 200 neighboring points. Those points are highlighted in blue. For
 each of those a secondary KNN search is performed selecting up to 8

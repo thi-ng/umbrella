@@ -105,7 +105,7 @@ statistics: mean, median, min/max, 1st/3rd quartile, standard deviation
 (as percentage)...
 
 See
-[api.ts](https://github.com/thi-ng/umbrella/tree/master/packages/bench/src/api.ts)
+[api.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/bench/src/api.ts)
 for configuration options.
 
 ```ts

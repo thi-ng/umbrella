@@ -20,7 +20,7 @@ ${pkg.description}
 - Buffer-to-buffer blitting w/ automatic format conversion
 - Buffer-to-canvas blitting
 - Buffer-to-buffer blending w/ [Porter-Duff
-  operators](https://github.com/thi-ng/umbrella/tree/master/packages/porter-duff)
+  operators](https://github.com/thi-ng/umbrella/tree/develop/packages/porter-duff)
 - Pre/post-multiply alpha
 - Region / sub-image extraction
 - Single-channel manipulation / extraction / replacement / conversion

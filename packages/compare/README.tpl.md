@@ -11,7 +11,7 @@ This project is part of the
 
 ## About
 
-Comparators with support for types implementing the [@thi.ng/api `ICompare`](https://github.com/thi-ng/umbrella/tree/master/packages/api/src/api/compare.ts) interface.
+Comparators with support for types implementing the [@thi.ng/api `ICompare`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api/compare.ts) interface.
 
 ${status}
 

@@ -4,7 +4,7 @@
 - [Live demo (Canvas 2D)](http://demo.thi.ng/umbrella/shader-ast-raymarch/#2d)
 
 Basic 3D raymarch shader defined via higher-order constructs of
-[@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast)
+[@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
 and cross-compiled to GLSL and JavaScript, the latter for emulating the
 shader using Canvas 2D API (`getImageData()`).
 

@@ -7,7 +7,7 @@ This example is a proof-of-concept, demonstrating how to:
 - Re-render on-demand only a component's subtree, independently from the
   main DOM update cycle
 - Use
-  [@thi.ng/memoize](https://github.com/thi-ng/umbrella/tree/master/packages/memoize)
+  [@thi.ng/memoize](https://github.com/thi-ng/umbrella/tree/develop/packages/memoize)
   to simplify usage of higher-order components (with local state or
   without)
 

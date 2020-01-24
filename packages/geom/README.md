@@ -25,7 +25,7 @@ Functional, polymorphic API for 2D geometry types & SVG generation.
 
 This project is a partially ported from the [Clojure version of the same
 name](http://thi.ng/geom). All polymorphic operations built on
-[@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/master/packages/defmulti).
+[@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti).
 
 [**Up-to-date feature matrix spreadsheet**](https://docs.google.com/spreadsheets/d/1GxJm-zOQaGECui2MJUmy3gQPTF-T6BJ6vhNlUnPsmDs/edit?usp=sharing)
 

@@ -1,35 +1,33 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
 # @thi.ng/color
 
-[![npm (scoped)](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/color.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC depthFrom:2 depthTo:3 -->
-
 - [About](#about)
-    - [Color spaces / modes](#color-spaces--modes)
-    - [RGBA transformations](#rgba-transformations)
-    - [RGBA Porter-Duff compositing](#rgba-porter-duff-compositing)
-    - [Cosine gradients](#cosine-gradients)
-    - [Two-color gradients](#two-color-gradients)
-    - [Multi-stop gradients](#multi-stop-gradients)
-- [Status](#status)
+  - [Color spaces / modes](#color-spaces--modes)
+    - [Class wrappers](#class-wrappers)
+  - [RGBA transformations](#rgba-transformations)
+  - [RGBA Porter-Duff compositing](#rgba-porter-duff-compositing)
+  - [Cosine gradients](#cosine-gradients)
+  - [Two-color gradients](#two-color-gradients)
+  - [Multi-stop gradients](#multi-stop-gradients)
+  - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
+- [API](#api)
 - [Authors](#authors)
 - [License](#license)
 
-<!-- /TOC -->
-
 ## About
 
-Raw, array-based, color operations, color space conversions, optional type
-wrappers, multi-color gradients, based on
-[@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors).
+Array-based color ops, conversions, multi-color gradients, presets.
 
 ### Color spaces / modes
 
@@ -58,7 +56,7 @@ to / from sRGB (i.e. linear vs gamma corrected).
 
 The package provides lightweight class wrappers for each color mode /
 space. These wrappers act similarly to the `Vec2/3/4` wrappers in
-[@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors),
+[@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors),
 support striding (for mapped memory views), named channel accessor
 aliases (in addition to array indexing) and are fully compatible with
 all functions (and act as syntax sugar for generic conversion
@@ -67,7 +65,7 @@ functions). Wrapper factory functions are provided for convenience.
 ### RGBA transformations
 
 RGBA [color matrix
-transformations](https://github.com/thi-ng/umbrella/tree/master/packages/color/src/transform.ts),
+transformations](https://github.com/thi-ng/umbrella/tree/develop/packages/color/src/transform.ts),
 including parametric preset transforms:
 
 - brightness
@@ -88,7 +86,7 @@ concatenation (see `concat()`) for more efficient application.
 ### RGBA Porter-Duff compositing
 
 This feature has been moved to the separate
-[@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/master/packages/porter-duff)
+[@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/develop/packages/porter-duff)
 package.
 
 ### Cosine gradients
@@ -96,7 +94,7 @@ package.
 - [Original article](http://www.iquilezles.org/www/articles/palettes/palettes.htm)
 - [Gradient generator](http://dev.thi.ng/gradients/)
 
-The following presets are bundled (in [`cosine-gradients.ts`](https://github.com/thi-ng/umbrella/tree/master/packages/color/src/cosine-gradients.ts)):
+The following presets are bundled (in [`cosine-gradients.ts`](https://github.com/thi-ng/umbrella/tree/develop/packages/color/src/cosine-gradients.ts)):
 
 |                                                                |                                                                  |
 |----------------------------------------------------------------|------------------------------------------------------------------|
@@ -172,14 +170,9 @@ col.multiCosineGradient(
 // ]
 ```
 
-## Status
+### Status
 
-ALPHA - work in progress
-
-- [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom) - 2D/3D geometry types & operations
-- [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/master/packages/matrices) - 2x2, 2x3, 3x3, 4x4 matrix & quaternion ops
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors) - optimized 2d/3d/4d and arbitrary length vector ops
-- [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/master/packages/vector-pools) - operations on memory mapped data
+**STABLE** - used in production
 
 ## Installation
 
@@ -187,17 +180,51 @@ ALPHA - work in progress
 yarn add @thi.ng/color
 ```
 
+Package sizes (gzipped): ESM: 7.1KB / CJS: 7.4KB / UMD: 6.9KB
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/master/packages/checks)
 - [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/master/packages/compose)
 - [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/master/packages/defmulti)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/master/packages/errors)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/master/packages/math)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/master/packages/strings)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/master/packages/vectors)
 
 ## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/master/examples)
+directory are using this package.
+
+A selection:
+
+### commit-heatmap <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/commit-heatmap.png)
+
+Heatmap visualization of this mono-repo's commits
+
+[Live demo](https://demo.thi.ng/umbrella/commit-heatmap/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/commit-heatmap)
+
+### grid-iterators <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/grid-iterators.png)
+
+[Live demo](https://demo.thi.ng/umbrella/grid-iterators/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/grid-iterators)
+
+### shader-ast-workers <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/shader-ast-workers.jpg)
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-workers)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/color/)
 
 ```ts
 import * as col from "@thi.ng/color";
@@ -241,8 +268,8 @@ col.transform([], filter, col.RED);
 
 ## Authors
 
-- Karsten Schmidt
+Karsten Schmidt
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2020 Karsten Schmidt // Apache Software License 2.0

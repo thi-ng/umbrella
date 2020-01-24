@@ -3,9 +3,9 @@
 [Live demo](http://demo.thi.ng/umbrella/gesture-analysis/)
 
 Mouse / touch gesture processing, analysis and SVG visualization, using
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 constructs and
-[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers).
+[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
 
 **Note: Currently only really works on desktop until I figured out a way
 to better attach touch events...**

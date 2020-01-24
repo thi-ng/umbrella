@@ -14,7 +14,7 @@ This project is part of the
 ${pkg.description}
 
 Following a similar pattern as the
-[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
+[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
 package, this library generates CSS from plain nested arrays / data
 structures, functions, iterators.
 
@@ -94,7 +94,7 @@ This is the main function exposed by this module. It accepts a JS data
 structure (array, object, iterator or function) and returns a CSS
 string. The optional `opts` arg is used to control formatting,
 auto-prefixing and other conversion options. See
-[api.ts](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-css/src/api.ts)
+[api.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-css/src/api.ts)
 for reference.
 
 By default the generated CSS uses the `css.COMPACT` format, causing

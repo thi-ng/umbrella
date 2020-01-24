@@ -24,9 +24,9 @@ This project is part of the
 This package provides the full set of IBM's [Carbon
 icons](https://github.com/IBM/carbon-icons) in hiccup format (i.e. as
 Javascript encoded SVG), ready to be used with
-[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
+[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
 /
-[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup).
+[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup).
 
 Each icon is defined in its own source file and can be imported
 individually. The converted icons DO NOT have a fixed size and will
@@ -36,7 +36,7 @@ expand to the available size (see example below).
 
 All icons can be previewed here: [contact
 sheet](https://demo.thi.ng/umbrella/hiccup-carbon-icons/). ([Source
-code](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-carbon-icons/test/contact-sheet.ts))
+code](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-carbon-icons/test/contact-sheet.ts))
 
 ### Status
 

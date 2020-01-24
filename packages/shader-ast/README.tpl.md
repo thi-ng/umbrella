@@ -59,7 +59,7 @@ cases and which can be used as syntax sugar and / or higher level
 building blocks for your own shaders. So far, this includes various math
 utils, lighting models, fog equations, SDF primitives / operators,
 raymarching helpers etc. [These functions are distributed in as separate
-package](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdlib).
+package](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib).
 
 ### Benefits
 
@@ -72,9 +72,9 @@ package](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdl
 - **improve general re-use**, especially once more target codegens are
   available (see [future goals](#future-goals)).
 - **higher-order function composition & customization** (e.g. see
-  [raymarch.ts](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdlib/src/raymarch/scene.ts),
+  [raymarch.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/raymarch/scene.ts),
   or
-  [additive.ts](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdlib/src/math/additive.ts))
+  [additive.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/math/additive.ts))
 - **cross compilation** to different graphics environments
 - shader functions can be called like standard TS/JS functions (incl.
   automatically type checked args via TS mapped types)
@@ -89,7 +89,7 @@ package](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdl
 ### Prior art / influences
 
 - [Hypergiant](http://alex-charlton.com/posts/Prototype_to_polish_Making_games_in_CHICKEN_Scheme_with_Hypergiant)
-- [Lux](https://github.com/cscheid/lux/tree/master/src/shade)
+- [Lux](https://github.com/cscheid/lux/tree/develop/src/shade)
 - [Penumbra](https://github.com/ztellman/penumbra)
 - [gamma](https://github.com/kovasb/gamma/)
 - [thi.ng/shader-graph](http://thi.ng/shader-graph)
@@ -108,7 +108,7 @@ status. The TL;DR list...
 - [ ] JS runtime improvements / features (non-GPU / vanilla JS shader execution)
 - [ ] Integration w/ a GLSL parser (new or existing)
 - [ ] AST transformations (optimizers, e.g. [constant
-  folding ✅](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast/src/optimize.ts))
+  folding ✅](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast/src/optimize.ts))
 
 ${status}
 
@@ -285,7 +285,7 @@ Swizzle patterns are type checked in the editor (and at compile time), i.e.
 ### Built-in functions
 
 The most common set of GLSL ES 3.0 builtins are supported. See
-[/builtin](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast/src/builtin/)
+[/builtin](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast/src/builtin/)
 for reference.
 
 ### User defined functions
@@ -361,7 +361,7 @@ instantiated, typed symbols representing each arg and can use any name
 within that function (also as shown in the above example).
 
 See `SymOpts` interface in
-[/api/syms.ts](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast/src/api/syms.ts)
+[/api/syms.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast/src/api/syms.ts)
 for more details about the options object...
 
 #### Inline functions
@@ -429,7 +429,7 @@ Currently, an AST can be compiled into the following languages:
 #### GLSL (ES)
 
 See
-[@thi.ng/shader-ast-glsl](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-glsl)
+[@thi.ng/shader-ast-glsl](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-glsl)
 for further details.
 
 ```ts
@@ -448,7 +448,7 @@ console.log(glsl(lambert))
 #### JavaScript
 
 See
-[@thi.ng/shader-ast-js](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-js)
+[@thi.ng/shader-ast-js](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-js)
 for further details.
 
 ```ts

@@ -190,7 +190,7 @@ baz.impls(); // Set { "c", "a", "b" }
 ```
 
 Also see the WIP package
-[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom)
+[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
 for a concreate realworld usage example.
 
 ### defmultiN()
@@ -249,7 +249,7 @@ visit([{a: 1, b: ["foo", "bar", null, 42]}])
 ```
 
 See
-[/test/index.ts](https://github.com/thi-ng/umbrella/tree/master/packages/defmulti/test/index.ts)
+[/test/index.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti/test/index.ts)
 for a variation of this example.
 
 

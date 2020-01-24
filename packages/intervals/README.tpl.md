@@ -18,7 +18,7 @@ Supports point & range queries and set operations with other intervals
 
 Furthermore, a parser for [ISO 80000-2 / ISO 31-11 interval
 notation](https://en.wikipedia.org/wiki/ISO_31-11#Sets) is provided. See
-[`Interval.parse()`](https://github.com/thi-ng/umbrella/blob/master/packages/intervals/src/index.ts#L25)
+[`Interval.parse()`](https://github.com/thi-ng/umbrella/blob/develop/packages/intervals/src/index.ts#L25)
 for details.
 
 ${status}

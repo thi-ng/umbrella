@@ -3,9 +3,9 @@
 [Live demo](http://demo.thi.ng/umbrella/scenegraph/)
 
 Minimal 2D scene graph with support for
-[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/master/packages/geom)
+[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
 geometry primitives, node picking and visualization via
-[@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/master/packages/hdom-canvas).
+[@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-canvas).
 
 Please refer to the [example build instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions) on the wiki.
 

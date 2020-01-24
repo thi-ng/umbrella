@@ -25,7 +25,7 @@ This project is part of the
 ES6 promise based CSP primitives & operations.
 
 - `Channel` with/without buffering and/or
-  [transducers](https://github.com/thi-ng/umbrella/blob/master/packages/transducers)
+  [transducers](https://github.com/thi-ng/umbrella/blob/develop/packages/transducers)
   - optional channel IDs
   - choice of buffer behaviors (fixed, sliding, dropping)
   - channel selection
@@ -45,7 +45,7 @@ ES6 promise based CSP primitives & operations.
 **STABLE** - used in production
 
 This package might possibly become deprecated soon. See
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 for a similar, but alternative (and actively maintained) approach.
 
 ## Installation

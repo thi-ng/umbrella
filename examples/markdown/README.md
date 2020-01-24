@@ -7,9 +7,9 @@ This project is part of the
 
 This example is a test environment for the new & minimal
 [Markdown](https://en.wikipedia.org/wiki/Markdown) parser & converter to
-[hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
+[hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
 format from the
-[@thi.ng/hiccup-markdown](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-markdown)
+[@thi.ng/hiccup-markdown](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-markdown)
 package.
 
 The rest of this file is an excerpt of the relevant parts of that
@@ -59,17 +59,17 @@ Some of these are considered, though currently not high priority...
 ### Other features
 
 - **Functional:** parser entirely built using
-  [transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)
+  [transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
   (specifically those defined in
-  [@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/master/packages/fsm))
+  [@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm))
   & function composition. Use the parser in a transducer pipeline to
   easily apply post-processing of the emitted results
 - **Declarative:** parsing rules defined declaratively with only minimal
   state/context handling needed
 - **No regex:** consumes input character-wise and produces an iterator
   of hiccup-style tree nodes, ready to be used with
-  [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom),
-  [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
+  [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom),
+  [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
   or the serializer of this package for back conversion to MD
 - **Customizable:** supports custom tag factory functions to override
   default behavior / representation of each parsed result element
@@ -77,7 +77,7 @@ Some of these are considered, though currently not high priority...
 - **Small:** minified + gzipped ~2.5KB (parser sub-module incl. deps)
 
 See [example source
-code](https://github.com/thi-ng/umbrella/tree/master/examples/markdown/src/)
+code](https://github.com/thi-ng/umbrella/tree/develop/examples/markdown/src/)
 for reference...
 
 ## Parsing & serializing to HTML

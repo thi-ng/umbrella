@@ -24,7 +24,7 @@ Multi-channel SDF font rendering & basic text layout for WebGL. This is a suppor
 
 This package provides [multi-channel SDF font
 rendering](https://github.com/Chlumsky/msdfgen) capabilities for
-[@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/master/packages/webgl),
+[@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl),
 incl. optional support for basic text alignment, vertex colors (e.g. for
 multi-color text), and shader options to draw outlines for each
 character. Furthermore, the key GLSL functions are provided as shader

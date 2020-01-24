@@ -75,7 +75,7 @@ Clojure inspired, composable ES6 iterators & generators.
 
 Most of the provided functionality here is also available in the form of
 more composable & efficient transducers via
-[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers).
+[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
 
 ### Status
 
@@ -476,7 +476,7 @@ similar speeds (up to `cacheLimit` divergence). The cache is shared by
 given `cacheLimit`, the other forks will lose intermediate values. If in
 doubt, increase the cache limit to a higher value (default 16). The
 cache uses
-[@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/master/packages/dcons)
+[@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/develop/packages/dcons)
 to avoid unnecessary copying during window sliding.
 
 ```ts

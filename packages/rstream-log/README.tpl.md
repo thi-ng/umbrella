@@ -15,11 +15,11 @@ ${pkg.description}
 
 This package provides extensible, multi-level & multi-hierarchy logging
 infrastructure, with logged values transformable via
-[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers).
+[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
 Several built-in transformers are provided.
 
 The `Logger` class provided by this package implements the
-[@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api)
+[@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 `ILogger` interface and uses `LogLevel` enums to configure levels /
 filtering.
 

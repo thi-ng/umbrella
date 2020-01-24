@@ -146,7 +146,7 @@ Package sizes (gzipped): ESM: 1.9KB / CJS: 1.9KB / UMD: 1.9KB
 
 The `MemPool` constructor takes an object of optional configuration
 options. See
-[`MemPoolOpts`](https://github.com/thi-ng/umbrella/blob/master/packages/malloc/src/api.ts#L9)
+[`MemPoolOpts`](https://github.com/thi-ng/umbrella/blob/develop/packages/malloc/src/api.ts#L9)
 for further reference:
 
 ```ts
@@ -228,7 +228,7 @@ and instead of byte size, expects number of elements. Returns `null`, if
 allocation failed.
 
 Types are referred to via the `Type` enum in the base
-[@thi.ng/api](https://github.com/thi-ng/umbrella/tree/master/packages/api/src/api.ts)
+[@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api.ts)
 package, e.g. `Type.F64`:
 
 `U8`, `U8C`, `I8`, `U16`, `I16`, `U32`, `I32`, `F32`, `F64`
@@ -286,7 +286,7 @@ Returns pool statistics (see above example).
 ## Benchmarks
 
 Benchmark
-([source](https://github.com/thi-ng/umbrella/blob/master/packages/malloc/bench/index.js))
+([source](https://github.com/thi-ng/umbrella/blob/develop/packages/malloc/bench/index.js))
 comparing against raw typed array construction of different sizes:
 
 ```bash

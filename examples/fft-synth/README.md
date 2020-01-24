@@ -10,10 +10,10 @@ frequency bins and delay line with pitch shift.
 The "sequencer" (click the "Auto mode" button to enable) uses a weighted
 random function to prioritize lower frequency bins. You can change the
 weighting function in
-[automode.ts](https://github.com/thi-ng/umbrella/blob/master/examples/fft-synth/src/automode.ts).The
+[automode.ts](https://github.com/thi-ng/umbrella/blob/develop/examples/fft-synth/src/automode.ts).The
 delay line doesn't store samples, but entire spectrums. Delay period is
 currently hard coded to 80 frames (see
-[audio.ts](https://github.com/thi-ng/umbrella/blob/master/examples/fft-synth/src/audio.ts)).
+[audio.ts](https://github.com/thi-ng/umbrella/blob/develop/examples/fft-synth/src/audio.ts)).
 
 Some explanations for various parameters / controls:
 

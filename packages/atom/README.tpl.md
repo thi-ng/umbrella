@@ -91,7 +91,7 @@ a.reset(42);
 When atoms are used to wrap nested object values, the `resetIn()` /
 `swapIn()` methods can be used to directly update nested values. These
 updates are handled via immutable setters provided by
-[@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/master/packages/paths).
+[@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths).
 
 ```ts
 const db = new Atom<any>({ a: { b: 1, c: 2 } });
@@ -163,7 +163,7 @@ Cursors provide direct & immutable access to a nested value within a
 structured atom. The path to the desired value must be provided when the
 cursor is created and cannot be changed later. The path is then compiled
 into a [getter and
-setter](https://github.com/thi-ng/umbrella/tree/master/packages/paths)
+setter](https://github.com/thi-ng/umbrella/tree/develop/packages/paths)
 to allow cursors to be used like atoms and update the parent state in an
 immutable manner (i.e. producing an optimized copy with structural
 sharing of the original (as much as possible)) - see further details
@@ -310,7 +310,7 @@ x === null
 
 Atoms & views are useful tools for keeping state outside UI components.
 Here's an example of a tiny
-[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/master/packages/hdom)
+[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
 web app, demonstrating how to use derived views to switch the UI for
 different application states / modules.
 
@@ -321,13 +321,13 @@ larger app we'd want to avoid the use of global variables (apart from
 
 For a more advanced / realworld usage pattern, check the related [event
 handling
-package](https://github.com/thi-ng/umbrella/tree/master/packages/interceptors)
+package](https://github.com/thi-ng/umbrella/tree/develop/packages/interceptors)
 and bundled
-[examples](https://github.com/thi-ng/umbrella/tree/master/examples/).
+[examples](https://github.com/thi-ng/umbrella/tree/develop/examples/).
 
 This example is also available in standalone form:
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/examples/login-form) | [Live demo](https://demo.thi.ng/umbrella/login-form/)
+[Source](https://github.com/thi-ng/umbrella/tree/develop/examples/login-form) | [Live demo](https://demo.thi.ng/umbrella/login-form/)
 
 ```ts
 import { Atom, setIn } from "@thi.ng/atom";

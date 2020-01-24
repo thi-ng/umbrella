@@ -12,9 +12,9 @@ This project is part of the
 ## About
 
 Adapter bridge between async [CSP
-channels](https://github.com/thi-ng/umbrella/tree/master/packages/csp)
+channels](https://github.com/thi-ng/umbrella/tree/develop/packages/csp)
 and synchronous stream subscriptions/transformations of
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream).
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream).
 
 ${status}
 

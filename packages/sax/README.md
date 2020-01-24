@@ -26,7 +26,7 @@ This project is part of the
 
 ## About
 
-[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers)-based,
+[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)-based,
 [SAX](https://en.wikipedia.org/wiki/Simple_API_for_XML)-like,
 non-validating, [configurable](#parser-options), speedy & tiny XML
 parser (~1.8KB gzipped).
@@ -138,7 +138,7 @@ example parses an SVG file, then extracts and selectively applies
 transformations to only the `<circle>` elements in the first group
 (`<g>`) element. Btw. The transformed elements can be serialized back
 into SVG syntax using
-[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)...
+[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)...
 
 Given the composed transducer below, parsing stops immediately after the
 first `<g>` element is complete. This is because the `matchFirst()`
@@ -189,7 +189,7 @@ svg=`
 ### DOM-style tree parsing using `defmulti`
 
 This example shows how SVG can be parsed into
-[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/master/packages/hiccup)
+[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
 format.
 
 ```ts

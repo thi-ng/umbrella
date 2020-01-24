@@ -29,7 +29,7 @@ SOA & AOS memory mapped structured views with optional & extensible serializatio
 
 See tests for usage. This package might be merged with and/or superseded
 by
-[@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/master/packages/ecs).
+[@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/develop/packages/ecs).
 
 ### Related packages
 

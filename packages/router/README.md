@@ -33,7 +33,7 @@ Generic router for browser & non-browser based applications.
 - HTML5 history & hash fragment support
 
 Partially based on the Clojure implementation in
-[thi.ng/domus](https://github.com/thi-ng/domus/blob/master/src/router.org).
+[thi.ng/domus](https://github.com/thi-ng/domus/blob/develop/src/router.org).
 
 ### Status
 
@@ -162,7 +162,7 @@ router.start();
 ```
 
 See [further comments in source
-code](https://github.com/thi-ng/umbrella/blob/master/packages/router/src/api.ts)
+code](https://github.com/thi-ng/umbrella/blob/develop/packages/router/src/api.ts)
 
 ## Authors
 

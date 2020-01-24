@@ -16,7 +16,7 @@ ${pkg.description}
 A growing collection (currently 110+) of useful functions & higher order
 constructs for GPU / shader programming, acting as optional standard
 library for
-[@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast)
+[@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
 based workflows.
 
 These functions can be imported like normal TS/JS functions and (in TS)
@@ -171,7 +171,7 @@ gl_Position = ((proj * (view * model)) * vec4(position, 1.0));
 ### Generated fragment shader
 
 The `fragColor` output variable is auto-created by
-[@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/master/packages/webgl)
+[@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl)
 if no other output vars are defined. For WebGL v1 this is defined as an
 alias for `gl_FragColor`...
 
@@ -202,7 +202,7 @@ usually seen in shader code and not easily achievable via the usual
 string templating approach used by most other GLSL libraries.
 
 For example, the
-[`additive()`](https://github.com/thi-ng/umbrella/blob/master/packages/shader-ast-stdlib/src/math/additive.ts#L21)
+[`additive()`](https://github.com/thi-ng/umbrella/blob/develop/packages/shader-ast-stdlib/src/math/additive.ts#L21)
 HOF takes a single-arg scalar function and a number of octaves. It
 returns a new function which computes the summed value of `fn` over the
 given number octaves, with a user defined phase shift & decay factor
@@ -216,7 +216,7 @@ dependencies are resolved and emitted in the correct topological order
 during later code generation.
 
 Below is the main shader code of the [Simplex noise
-example](https://github.com/thi-ng/umbrella/tree/master/examples/shader-ast-noise).
+example](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-noise).
 
 ```ts
 import { add, defn, float, ret, sym, vec2, vec3, vec4 } from "@thi.ng/shader-ast";
@@ -255,7 +255,7 @@ TODO. For now, please see doc strings in source for details...
 
 ### Color
 
-[/src/color](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdlib/src/color/)
+[/src/color](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/color/)
 
 - `toLinear`
 - `toSRGB`
@@ -265,7 +265,7 @@ TODO. For now, please see doc strings in source for details...
 
 Use the `porterDuff` higher order function to define new blend modes.
 See
-[@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/master/packages/porter-duff)
+[@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/develop/packages/porter-duff)
 for reference.
 
 12 standard PD operators for `vec4` RGBA colors:
@@ -283,7 +283,7 @@ for reference.
 
 ### Fog
 
-[/src/fog](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdlib/src/fog/)
+[/src/fog](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/fog/)
 
 - `fogLinear`
 - `fogExp`
@@ -291,7 +291,7 @@ for reference.
 
 ### Lighting
 
-[/src/light](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdlib/src/light/)
+[/src/light](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/light/)
 
 - `lambert`
 - `halfLambert`
@@ -300,7 +300,7 @@ for reference.
 
 ### Math
 
-[/src/math](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdlib/src/math/)
+[/src/math](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/math/)
 
 - `additive`
 - `cartesian2` / `cartesian3`
@@ -319,7 +319,7 @@ for reference.
 
 ### Matrix operations
 
-[/src/matrix](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdlib/src/matrix/)
+[/src/matrix](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/matrix/)
 
 - `lookat`
 - `transformMVP`
@@ -330,7 +330,7 @@ for reference.
 
 ### Noise / randomness
 
-[/src/noise](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdlib/src/noise/)
+[/src/noise](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/noise/)
 
 - `hash2` / `hash3`
 - `hash11` / `hash12` / `hash13`
@@ -344,7 +344,7 @@ for reference.
 
 ### Raymarching
 
-[/src/raymarch](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdlib/src/raymarch/)
+[/src/raymarch](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/raymarch/)
 
 - `raymarchAO`
 - `raymarchDir`
@@ -354,13 +354,13 @@ for reference.
 
 ### Screen coordinates
 
-[/src/screen](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdlib/src/screen/)
+[/src/screen](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/screen/)
 
 - `aspectCorrectedUV`
 
 ### Signed Distance Fields
 
-[/src/sdf](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdlib/src/sdf/)
+[/src/sdf](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/sdf/)
 
 - `sdfAnnular`
 - `sdfBox2`
@@ -385,7 +385,7 @@ for reference.
 
 ### Texture lookups
 
-[/src/tex](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast-stdlib/src/tex/)
+[/src/tex](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/tex/)
 
 - `indexToCoord` / `coordToIndex`
 - `indexToUV` / `uvToIndex`

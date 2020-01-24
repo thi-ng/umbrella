@@ -17,7 +17,7 @@ ${pkg.description}
 
 ### Interceptors: Event and Effect primitives
 
-[Reference](https://github.com/thi-ng/umbrella/blob/master/packages/interceptors/src/interceptors.ts)
+[Reference](https://github.com/thi-ng/umbrella/blob/develop/packages/interceptors/src/interceptors.ts)
 
 The idea of interceptors is quite similar to functional composition and
 AOP ([aspect oriented
@@ -25,9 +25,9 @@ programming](https://en.wikipedia.org/wiki/Aspect-oriented_programming)).
 You want to reuse some functionality across components within your app.
 For example, if you have multiple actions which should be undoable, you
 can compose your main event handlers with the
-[`snapShot()`](https://github.com/thi-ng/umbrella/blob/master/packages/interceptors/src/interceptors.ts#L55)
+[`snapShot()`](https://github.com/thi-ng/umbrella/blob/develop/packages/interceptors/src/interceptors.ts#L55)
 interceptor, which requires a
-[@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/master/packages/atom)/History-like
+[@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom)/History-like
 instance and records a snapshot of the current app state, but else is
 completely invisible.
 
@@ -44,7 +44,7 @@ performance. Most composed event handler chains are setup so that your
 "actual" main handler is last in line in the pre processing phase. If
 e.g. your event handlers would directly update the state atom, then any
 attached watches [(derived views, cursors, other
-subscriptions)](https://github.com/thi-ng/umbrella/tree/master/packages/atom#about)
+subscriptions)](https://github.com/thi-ng/umbrella/tree/develop/packages/atom#about)
 would be re-run each time. By assigning the updated state to, e.g., an
 `FX_STATE` event, we can avoid these interim updates and only apply the
 new state once all events in the current frame have been processed.
@@ -74,7 +74,7 @@ validation & logging post-update. I.e., interceptors commonly need `pre`
 only.
 
 Like with
-[`trace()`](https://github.com/thi-ng/umbrella/blob/master/packages/interceptors/src/interceptors.ts#L21)
+[`trace()`](https://github.com/thi-ng/umbrella/blob/develop/packages/interceptors/src/interceptors.ts#L21)
 some interceptors DO have side effects, but they're really the exception
 to the rule. For example, `snapshot()` is idempotent since it only
 records a new snapshot if it's different from the last and `trace()`,
@@ -87,7 +87,7 @@ In most apps there're far more event types/handlers than possible
 actions any component can take. So assigning them to registered side
 effects enables better code reuse. Another use-case is debugging. With a
 break point set at the beginning of `processEffects()` (in
-[`event-bus.ts`](https://github.com/thi-ng/umbrella/blob/master/packages/interceptors/src/event-bus.ts#L36))
+[`event-bus.ts`](https://github.com/thi-ng/umbrella/blob/develop/packages/interceptors/src/event-bus.ts#L36))
 you can see exactly which side effects have occured at each frame. This
 can be very helpful for debugging and avoid having to "keep everything
 in your head" or - as Rich Hickey would say - make your app "Easier to
@@ -96,7 +96,7 @@ reason about".
 More comprehensive description forthcoming. Please check the detailed
 commented source code and examples for now:
 
-- [/src/event-bus.ts](https://github.com/thi-ng/umbrella/tree/master/packages/interceptors/src/event-bus.ts)
+- [/src/event-bus.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/interceptors/src/event-bus.ts)
 
 ${status}
 

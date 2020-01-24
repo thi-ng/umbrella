@@ -22,7 +22,7 @@ Largely declarative WebGL 1.0 / 2.0 abstraction layer, partially ported
 - Extensive set of WebGL related types & interfaces
 - Declarative shader definition
     - option to fully define shaders in TypeScript and transpile to GLSL (via
-      [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/master/packages/shader-ast))
+      [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast))
     - attribute, varying, uniform & output type declarations via a simple config object
     - GLSL code generation of data type declarations
     - automatic support for GLSL ES 1.0 & 3.0

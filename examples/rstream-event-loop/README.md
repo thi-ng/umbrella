@@ -3,7 +3,7 @@
 [Live demo](http://demo.thi.ng/umbrella/rstream-event-loop/)
 
 This example demonstrates the use of
-[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/master/packages/rstream)
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 constructs to define a basic event-loop, event handlers and reactive DOM
 updates, based on the dataflow topology shown below:
 

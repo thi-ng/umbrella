@@ -19,19 +19,19 @@ Provides the 10 following orderings to generate grid coordinates:
 
 ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/grid-iterators/diagonal2d-small.gif)
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/packages/grid-iterators/src/diagonal.ts)
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/diagonal.ts)
 
 ### Hilbert curve
 
 ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/grid-iterators/hilbert2d-small.gif)
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/packages/grid-iterators/src/hilbert.ts)
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/hilbert.ts)
 
 ### Interleave columns
 
 ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/grid-iterators/interleavecolumns2d-small.gif)
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/packages/grid-iterators/src/interleave.ts)
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/interleave.ts)
 
 Supports custom strides... example uses `step = 4`
 
@@ -39,7 +39,7 @@ Supports custom strides... example uses `step = 4`
 
 ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/grid-iterators/interleaverows2d-small.gif)
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/packages/grid-iterators/src/interleave.ts)
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/interleave.ts)
 
 Supports custom strides... example uses `step = 4`
 
@@ -47,40 +47,40 @@ Supports custom strides... example uses `step = 4`
 
 ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/grid-iterators/random2d-small.gif)
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/packages/grid-iterators/src/random.ts)
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/random.ts)
 
 Supports custom PRNG implementations via `IRandom` interface defined in
-[@thi.ng/random](https://github.com/thi-ng/umbrella/tree/master/packages/random)
+[@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
 
 ### Outward spiral
 
 ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/grid-iterators/spiral2d-small.gif)
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/packages/grid-iterators/src/spiral.ts)
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/spiral.ts)
 
 ### Z-curve
 
 ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/grid-iterators/zcurve2d-small.gif)
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/packages/grid-iterators/src/zcurve.ts)
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/zcurve.ts)
 
 ### Zigzag columns
 
 ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/grid-iterators/zigzagcolumns2d-small.gif)
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/packages/grid-iterators/src/zigzag-columns.ts)
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/zigzag-columns.ts)
 
 ### Zigzag diagonal
 
 ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/grid-iterators/zigzagdiag2d-small.gif)
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/packages/grid-iterators/src/zigzag-diagonal.ts)
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/zigzag-diagonal.ts)
 
 ### Zigzag rows
 
 ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/grid-iterators/zigzagrows2d-small.gif)
 
-[Source](https://github.com/thi-ng/umbrella/tree/master/packages/grid-iterators/src/zigzag-rows.ts)
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/zigzag-rows.ts)
 
 Some functions have been ported from [Christopher
 Kulla](https://fpsunflower.github.io/ckulla/)'s Java-based [Sunflow
@@ -88,7 +88,7 @@ renderer](https://sunflow.sf.net).
 
 For more basic 2D/3D grid iteration, also see `range2d()` & `range3d()`
 in
-[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/master/packages/transducers).
+[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
 
 ${status}
 

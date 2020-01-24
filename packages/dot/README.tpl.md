@@ -15,9 +15,9 @@ This project is part of the
 objects and serialization to DOT format.
 
 Provides several
-[interfaces](https://github.com/thi-ng/umbrella/tree/master/packages/dot/src/api.ts)
+[interfaces](https://github.com/thi-ng/umbrella/tree/develop/packages/dot/src/api.ts)
 covering a large subset of GraphViz options and
-[functions](https://github.com/thi-ng/umbrella/tree/master/packages/dot/src/serialize.ts)
+[functions](https://github.com/thi-ng/umbrella/tree/develop/packages/dot/src/serialize.ts)
 to serialize whole graphs (incl. subgraphs), nodes or edges. Supports
 both directed and undirected graphs.
 
@@ -54,7 +54,7 @@ ${docLink}
 ![example graph](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/dot/dot-example.png)
 
 The source code of this example is also available in
-[/test/example.ts](https://github.com/thi-ng/umbrella/tree/master/packages/dot/test/example.ts).
+[/test/example.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/dot/test/example.ts).
 
 ```ts
 import { serializeGraph } from "@thi.ng/dot";

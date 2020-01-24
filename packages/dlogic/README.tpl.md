@@ -17,7 +17,7 @@ purposes. Truth tables and references are provided in the doc strings of
 each function.
 
 Also see
-[@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/master/packages/binary/src/logic.ts)
+[@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary/src/logic.ts)
 for binary versions of most of the ops provided by this package.
 
 ${status}
