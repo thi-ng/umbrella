@@ -117,24 +117,24 @@ import { take } from "@thi.ng/transducers";
 - [alt](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/alt.ts) - alternating values
 - [constant](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/const.ts) - constant value
 - [cosine](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/cosp.ts) - trig-free cosine osc
-- [curve](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/madd.ts) - timebased exponential gain/decay (factory for `madd`)
+- [curve](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/curve.ts) - timebased exponential gain/decay (factory for `madd`)
 - [impulse](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/impulse.ts) - impulse gen
 - [impulseTrain](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/impulse-train.ts) - timebased cyclic impulse
-- [line](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/add.ts) - timebased line gen (factory for `add`)
+- [line](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/line.ts) - timebased line gen (factory for `add`)
 - [madd](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/madd.ts) - multiply-adder
 - [mul](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/mul.ts) - multiplier (exponential gain/decay)
 - [pinkNoise](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/pink-noise.ts) - configurable pink noise (1/f power spectrum)
 - [reciprocal](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/reciprocal.ts) - fractional sequence (1, 1/2, 1/3, 1/4 etc.)
-- [sincos](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/cosp.ts) - trig-free sin/cos LFO
+- [sincos](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/sincos.ts) - trig-free sin/cos LFO
 - [sweep](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/sweep.ts) - freq sweep gen w/ phase accumulation for oscillators
 - [whiteNoise](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/pink-noise.ts) - white noise
 
 #### Higher order generators
 
-- [mapG](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/mapg.ts) - `IGen` composition / transformation (1-4 inputs)
-- [addG](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/addg.ts) - higher-order adder
-- [product](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/product.ts) - product of input gens
-- [sum](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/sum.ts) - sum of input gens
+- [mapG](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/comp/mapg.ts) - `IGen` composition / transformation (1-4 inputs)
+- [addG](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/comp/addg.ts) - higher-order adder
+- [product](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/comp/product.ts) - product of input gens
+- [sum](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/comp/sum.ts) - sum of input gens
 
 #### Oscillators
 
@@ -143,7 +143,37 @@ import { take } from "@thi.ng/transducers";
 - [osc](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/osc.ts) - arbitrary function oscillator w/ modulation support
 - [modOsc](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/osc.ts) - FM / FMAM oscillator builder
 
-##### Stateless
+```ts
+const FS = 44100;
+
+// simple 100Hz sine oscillator
+const o = osc(sin, 100 / FS, 0.5);
+
+// get next sample
+o.next();
+...
+
+// frequency & amplitude modulated saw osc
+const fmam = modOsc(
+    // carrier waveform
+    saw,
+    // carrier freq
+    1000 / FS,
+    // fmod
+    osc(saw, 5000 / FS, 0.3),
+    // amod
+    osc(saw, 500 / FS)
+);
+
+// compute 1sec of signal
+fmam.take(FS)
+```
+
+Diagram of the FM/AM osc with some low pass filters applied:
+
+![FM/AM waveform](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/fmam-osc.png)
+
+##### Stateless oscillator functions
 
 - [additive](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc/additive.ts)
 - [dsf](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc/dsf.ts)
@@ -230,9 +260,15 @@ The following filter types / functions are available:
 - [`dcBlock`](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/proc/dcblock.ts) - high pass, 6dB/oct falloff
 - [`allpass`](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/proc/allpass.ts) - allpass (-90° phase shift @ center freq)
 
+Low pass:
+
 ![LPF response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-1pole-lpf.png)
 
+DC blocker:
+
 ![DC block response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-dcblock.png)
+
+Allpass:
 
 ![Allpass response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-allpass1.png)
 
@@ -250,19 +286,33 @@ The following filter types / functions are available:
 
 (Q = 0.707 for all versions)
 
+Low pass:
+
 ![LPF response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-bq-lpf.png)
+
+High pass:
 
 ![HPF response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-bq-hpf.png)
 
+Band pass:
+
 ![BPF response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-bq-bpf.png)
+
+Notch:
 
 ![Notch response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-bq-notch.png)
 
-![Peak response (gain = 6dB)](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-bq-peak.png)
+Peak (gain = 6dB):
 
-![Lo-shelf response (gain = -6dB)](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-bq-lsh.png)
+![Peak response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-bq-peak.png)
 
-![Hi-shelf response (gain = -6dB)](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-bq-hsh.png)
+Low shelf (gain = -6dB):
+
+![Lo-shelf response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-bq-lsh.png)
+
+High shelf (gain = -6dB):
+
+![Hi-shelf response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-bq-hsh.png)
 
 ##### State variable filter
 
@@ -277,17 +327,73 @@ The following filter types / functions are available:
 
 (Q = 0.5 for all versions)
 
+Low pass:
+
 ![LPF response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-svf-lpf.png)
+
+High pass:
 
 ![HPF response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-svf-hpf.png)
 
+Band pass:
+
 ![BPF response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-svf-bpf.png)
+
+Notch:
 
 ![Notch response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-svf-notch.png)
 
-![Peak response (gain = -6dB)](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-svf-peak.png)
+Peak (gain = 6dB):
+
+![Peak response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-svf-peak.png)
+
+Allpass:
 
 ![Allpass response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-svf-all.png)
+
+#### Filter responses
+
+Using the [Filter response
+utils](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/util/filter-response.ts),
+the following filter types can be evaluated for analyzing their impact
+on specific frequencies (or frequency bands). Any type implementing
+[`IFilter`](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/api.ts#L50)
+can be used, currently:
+
+- 1-pole
+- DC-block
+- Biquad
+
+```ts
+// peak biquad @ 5kHz w/ -60dB gain
+const coeffs = biquadPeak(5000 / FS, 10, -60).filterCoeffs();
+// {
+//   zeroes: [ 0.030659922512760035, -0.04493872132576855, 0.028719301737009807 ],
+//   poles: [ 1, -0.04493872132576855, -0.94062077575023 ]
+// }
+
+// compute 256 filter responses between 0 - nyquist
+// (magnitude in dBFS by default, phase shift in radians)
+const resp = freqRange(0, 0.5, 256).map((f) => filterResponse(coeffs, f));
+// [
+//   { freq: 0, phase: 0, mag: -9.836140158843584e-14 },
+//   {
+//     freq: 0.00196078431372549,
+//     phase: -1.025916720326544,
+//     mag: -5.731888923801755
+//   },
+//   {
+//     freq: 0.00392156862745098,
+//     phase: -1.27451127560192,
+//     mag: -10.788101434823263
+//   },
+//   ...
+// ]
+```
+
+Basic filter response plot:
+
+![Filter response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/bq-notch-resp.png)
 
 #### Delay
 
@@ -317,9 +423,15 @@ This operator remaps inputs via a user provided function. The following shaping 
 Use the [interactive calculator @
 Desmos](https://www.desmos.com/calculator/hg4i7o836i) to experiment.
 
+Acrtan:
+
 ![Tan response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-wshape-tan.png)
 
+Sigmoid:
+
 ![Sigmoid response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-wshape-sigmoid.png)
+
+Sine:
 
 ![Sine response](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/dsp/dsf-wshape-sin.png)
 
