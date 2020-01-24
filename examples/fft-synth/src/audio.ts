@@ -1,5 +1,5 @@
 import { NumericArray } from "@thi.ng/api";
-import { conjugate, DelayLine, ifft } from "@thi.ng/dsp";
+import { conjugate, Delay, ifft } from "@thi.ng/dsp";
 import { BIN_AMP, NUM_BINS, PITCH_SCALE } from "./config";
 import { DB } from "./state";
 
@@ -8,7 +8,7 @@ export const makeBins = () => new Array(NUM_BINS).fill(0);
 let actx: AudioContext | undefined;
 let buf: AudioBuffer;
 let src: AudioBufferSourceNode;
-let delay = new DelayLine<NumericArray>(80, makeBins());
+let delay = new Delay<NumericArray>(80, makeBins());
 
 export const isAudioActive = () => !!actx;
 
@@ -34,12 +34,12 @@ export const updateAudio = () => {
     let { auto, bins, gain, feedback } = DB.value;
     gain *= BIN_AMP;
     if (auto != null) {
-        const pbins = [0, ...delay.read().slice(0, NUM_BINS - 1)];
+        const pbins = [0, ...delay.deref().slice(0, NUM_BINS - 1)];
         bins = bins.map((x, i) => x * gain + pbins[i] * feedback);
     } else {
         bins = bins.map((x) => x * gain);
     }
-    delay.write(bins);
+    delay.next(bins);
     const wave = ifft(conjugate(bins))[0];
     DB.resetIn("wave", wave);
 
