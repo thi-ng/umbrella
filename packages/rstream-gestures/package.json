@@ -62,7 +62,6 @@
     },
     "sideEffects": false,
     "thi.ng": {
-        "branch": "develop",
         "parent": "@thi.ng/rstream",
         "year": 2018
     }
