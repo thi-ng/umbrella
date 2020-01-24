@@ -55,14 +55,14 @@ value range is 32 bits (unsigned!).
 
 **Note: All Z indices are encoded as ES
 [`BigInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt)
-and therefore only available in environments where `BigInt`s are
+and therefore only available in environments where `BigInt`s are already
 supported. No polyfill is provided!**
 
 TypeScript projects using this class should set their compile target (in
 `tsconfig.json`) to `"ESNext"` to enable `BigInt` support.
 
 ```ts
-// create new Z-curve for 6D positions and 16bit value range
+// create new Z-curve for 3D positions and 16bit value range
 const z = new ZCurve(3, 16);
 
 z.encode([60000, 30000, 20000]);
@@ -98,15 +98,19 @@ z.decode(67807501328384n);
 
 ### Low level (2D / 3D only)
 
+[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/morton/src/mux.ts)
+
 ```ts
 import * as m from "@thi.ng/morton";
 
+// unsigned 16 bit coords only
 m.mux2(23, 42);
 // 2461
 
 m.demux2(2461)
 // [ 23, 42 ]
 
+// encoded normalized coords (see source for opts)
 m.muxScaled2(0.25, 0.75)
 // 2594876074
 
