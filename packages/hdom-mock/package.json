@@ -51,6 +51,7 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "parent": "@thi.ng/hdom",
         "status": "alpha",
         "year": 2018
     }

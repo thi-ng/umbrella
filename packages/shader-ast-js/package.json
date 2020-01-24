@@ -64,6 +64,11 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "parent": "@thi.ng/shader-ast",
+        "related": [
+            "shader-ast-glsl",
+            "shader-ast-stdlib"
+        ],
         "year": 2019
     }
 }

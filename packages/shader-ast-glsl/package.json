@@ -59,6 +59,12 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "parent": "@thi.ng/shader-ast",
+        "related": [
+            "shader-ast-js",
+            "shader-ast-stdlib",
+            "webgl"
+        ],
         "year": 2019
     }
 }
