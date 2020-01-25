@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ $# == 1 ]; then
+if [ $# = 1 ]; then
     examples="examples/$1"
 else
     examples="examples/*"
@@ -11,23 +11,23 @@ for e in $examples; do
         echo "------------------------------"
         echo "building $e..."
         echo "------------------------------"
-        rm -rf $e/out $e/.cache
-        if [ ! -r $e/package.json ]; then
+        rm -rf "$e"/out "$e"/.cache
+        if [ ! -r "$e"/package.json ]; then
             continue
         fi
-        if grep --quiet build:webpack $e/package.json; then
-            (cd $e && yarn build:webpack)
+        if grep --quiet build:webpack "$e"/package.json; then
+            (cd "$e" && yarn build:webpack)
         else
-            (cd $e && yarn build)
+            (cd "$e" && yarn build)
         fi
         if [ 0 -eq $? ]; then
-            src=`ls $e/out/*.js`
+            src=$(ls "$e"/out/*.js)
             for js in $src; do
-                node_modules/.bin/terser -c -m --ecma 6 -o $js $js
-                sed -i '' -E 's/Object\.defineProperty([a-z]\+,"__esModule",{value:\!0});//g' $js
-                sed -i '' -E 's/Object\.defineProperty([a-z]\+,"__esModule",{value:\!0}),\([^f]\)/(\1)/g' $js
-                gzip -c $js > $js.gz
-                ls -la $js*
+                node_modules/.bin/terser -c -m --ecma 6 -o "$js" "$js"
+                sed -i '' -E 's/Object\.defineProperty([a-z]\+,"__esModule",{value:\!0});//g' "$js"
+                sed -i '' -E 's/Object\.defineProperty([a-z]\+,"__esModule",{value:\!0}),\([^f]\)/(\1)/g' "$js"
+                gzip -c "$js" > "$js".gz
+                ls -la "$js"*
             done
             # sed -i 's/src="\//src=".\//g' $e/out/index.html
         else

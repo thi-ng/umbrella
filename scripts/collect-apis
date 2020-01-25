@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ $# == 1 ]; then
+if [ $# = 1 ]; then
     modules="packages/$1/"
 else
     modules="packages/*/"
@@ -10,7 +10,7 @@ mkdir -p ae-docs/input ae-docs/markdown
 
 for m in $modules; do
     echo "$m"
-    cp $m/.ae/doc/*.api.json ae-docs/input/
+    cp "$m"/.ae/doc/*.api.json ae-docs/input/
 done
 
 (cd ae-docs && ../node_modules/.bin/api-documenter markdown)

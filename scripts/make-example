@@ -1,15 +1,15 @@
-#!/bin/sh
+#!/bin/bash
 
 readonly MODULE="examples/$1"
 readonly AUTHOR="Karsten Schmidt"
 readonly EMAIL="k+npm@thi.ng"
 
 echo "generating module: $MODULE"
-mkdir -p $MODULE
+mkdir -p "$MODULE"
 
 echo "creating /src folder..."
-mkdir -p $MODULE/src
-cat << EOF > $MODULE/src/index.ts
+mkdir -p "$MODULE"/src
+cat << EOF > "$MODULE"/src/index.ts
 import { } from "@thi.ng/hdom";
 
 if (process.env.NODE_ENV !== "production") {
@@ -18,14 +18,15 @@ if (process.env.NODE_ENV !== "production") {
 }
 EOF
 
-cat << EOF > $MODULE/src/webpack.d.ts
+cat << EOF > "$MODULE"/src/webpack.d.ts
 declare module "*.jpg";
 declare module "*.png";
 declare module "*.svg";
+declare module "*.json";
 EOF
 
 echo "writing package.json..."
-cat << EOF > $MODULE/package.json
+cat << EOF > "$MODULE"/package.json
 {
     "name": "$1",
     "version": "0.0.1",
@@ -41,8 +42,8 @@ cat << EOF > $MODULE/package.json
     },
     "devDependencies": {
         "parcel-bundler": "^1.12.4",
-        "terser": "^4.4.0",
-        "typescript": "^3.7.2"
+        "terser": "^4.6.3",
+        "typescript": "^3.7.5"
     },
     "dependencies": {
         "@thi.ng/api": "latest",
@@ -59,7 +60,7 @@ cat << EOF > $MODULE/package.json
 EOF
 
 echo "writing tsconfig.json..."
-cat << EOF > $MODULE/tsconfig.json
+cat << EOF > "$MODULE"/tsconfig.json
 {
     "extends": "../../tsconfig.json",
     "compilerOptions": {
@@ -74,16 +75,19 @@ cat << EOF > $MODULE/tsconfig.json
 EOF
 
 echo "writing .gitignore..."
-cat << EOF > $MODULE/.gitignore
+cat << EOF > "$MODULE"/.gitignore
 .cache
 out
 node_modules
 yarn.lock
 *.js
+*.map
+!src/*.d.ts
+!*.config.js
 EOF
 
 echo "writing index.html..."
-cat << EOF > $MODULE/index.html
+cat << EOF > "$MODULE"/index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,14 +101,14 @@ cat << EOF > $MODULE/index.html
 </head>
 <body class="sans-serif">
     <div id="app"></div>
-    <div><a class="link" href="https://github.com/thi-ng/umbrella/tree/master/examples/$1">Source code</a></div>
+    <div><a class="link" href="https://github.com/thi-ng/umbrella/tree/develop/examples/$1">Source code</a></div>
     <script type="text/javascript" src="./src/index.ts"></script>
 </body>
 </html>
 EOF
 
 echo "writing README.md..."
-cat << EOF > $MODULE/README.md
+cat << EOF > "$MODULE"/README.md
 # $1
 
 [Live demo](http://demo.thi.ng/umbrella/$1/)
@@ -117,11 +121,11 @@ Please refer to the [example build instructions](https://github.com/thi-ng/umbre
 
 ## License
 
-&copy; 2019 $AUTHOR // Apache Software License 2.0
+&copy; 2020 $AUTHOR // Apache Software License 2.0
 EOF
 
 echo "writing webpack.config.js..."
-cat << EOF > $MODULE/webpack.config.js
+cat << EOF > "$MODULE"/webpack.config.js
 module.exports = {
     entry: "./src/index.ts",
     output: {
@@ -143,6 +147,8 @@ module.exports = {
     },
     node: {
         process: false
+    },
+    "thi.ng": {
     }
 };
 EOF

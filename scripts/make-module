@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 readonly MODULE="packages/$1"
 readonly AUTHOR="Karsten Schmidt"
@@ -11,26 +11,38 @@ for i in "${parts[@]}"; do
 done
 
 echo "generating module: $MODULE ($INITIAL)"
-mkdir -p $MODULE
+mkdir -p "$MODULE"
 
-echo "creating /src & /test folders..."
-mkdir -p $MODULE/src $MODULE/test
-touch $MODULE/src/index.ts
+echo "creating /src /test /bench /dev /export /tools"
+mkdir -p "$MODULE"/src "$MODULE"/test "$MODULE"/bench "$MODULE"/dev "$MODULE"/export "$MODULE"/tools
 
-cp packages/api/LICENSE $MODULE/
+echo "creating index.ts stubs..."
+touch "$MODULE"/src/index.ts "$MODULE"/tools/index.ts
+
+cp packages/api/LICENSE "$MODULE"/
 
 echo "writing test skeleton..."
-cat << EOF > $MODULE/test/index.ts
+cat << EOF > "$MODULE"/test/index.ts
 // import * as assert from "assert";
-// import * as $INITIAL from "../src/index";
+// import { } from "../src";
 
 describe("$1", () => {
     it("tests pending");
 });
 EOF
 
+echo "writing bench skeleton..."
+cat << EOF > "$MODULE"/bench/index.ts
+// import { benchmark } from "@thi.ng/bench";
+// import { } from "../src";
+
+const opts = { iter: 1000, warmup: 100 };
+
+benchmark(() => {}, { title: "", ...opts });
+EOF
+
 echo "writing package.json..."
-cat << EOF > $MODULE/package.json
+cat << EOF > "$MODULE"/package.json
 {
     "name": "@thi.ng/$1",
     "version": "0.0.1",
@@ -53,25 +65,25 @@ cat << EOF > $MODULE/package.json
         "build:test": "rimraf build && tsc -p test/tsconfig.json",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
         "doc:readme": "../../scripts/generate-readme",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
-        "@istanbuljs/nyc-config-typescript": "^0.1.3",
-        "@microsoft/api-extractor": "^7.7.0",
-        "@types/mocha": "^5.2.6",
-        "@types/node": "^12.6.3",
-        "mocha": "^6.1.4",
-        "nyc": "^14.0.0",
-        "ts-node": "^8.5.2",
-        "typedoc": "^0.15.2",
-        "typescript": "^3.7.2"
+        "@istanbuljs/nyc-config-typescript": "^1.0.1",
+        "@microsoft/api-extractor": "^7.7.7",
+        "@types/mocha": "^5.2.7",
+        "@types/node": "^13.5.0",
+        "mocha": "^7.0.0",
+        "nyc": "^15.0.0",
+        "ts-node": "^8.6.2",
+        "typedoc": "^0.16.8",
+        "typescript": "^3.7.5"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.5.0"
+        "@thi.ng/api": "^6.7.0"
     },
     "keywords": [
         "ES6",
@@ -83,13 +95,13 @@ cat << EOF > $MODULE/package.json
     "sideEffects": false,
     "thi.ng": {
         "status": "alpha",
-        "year": 2019
+        "year": 2020
     }
 }
 EOF
 
 echo "writing module tsconfig.json..."
-cat << EOF > $MODULE/tsconfig.json
+cat << EOF > "$MODULE"/tsconfig.json
 {
     "extends": "../../tsconfig.json",
     "compilerOptions": {
@@ -104,7 +116,7 @@ cat << EOF > $MODULE/tsconfig.json
 EOF
 
 echo "writing test tsconfig.json..."
-cat << EOF > $MODULE/test/tsconfig.json
+cat << EOF > "$MODULE"/test/tsconfig.json
 {
     "extends": "../../../tsconfig.json",
     "compilerOptions": {
@@ -118,15 +130,43 @@ cat << EOF > $MODULE/test/tsconfig.json
 }
 EOF
 
+echo "writing bench tsconfig.json..."
+cat << EOF > "$MODULE"/bench/tsconfig.json
+{
+    "extends": "../../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "../build",
+        "module": "commonjs",
+        "noUnusedLocals": false,
+        "noUnusedParameters": false
+    },
+    "include": ["./**/*.ts", "../src/**/*.ts"]
+}
+EOF
+
+echo "writing tools tsconfig.json..."
+cat << EOF > "$MODULE"/tools/tsconfig.json
+{
+    "extends": "../../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "../build",
+        "module": "commonjs",
+        "noUnusedLocals": false,
+        "noUnusedParameters": false
+    },
+    "include": ["./**/*.ts", "../src/**/*.ts"]
+}
+EOF
+
 echo "writing api-extractor.json..."
-cat << EOF > $MODULE/api-extractor.json
+cat << EOF > "$MODULE"/api-extractor.json
 {
     "extends": "../../api-extractor.json"
 }
 EOF
 
 echo "writing .npmignore..."
-cat << EOF > $MODULE/.npmignore
+cat << EOF > "$MODULE"/.npmignore
 .ae
 .cache
 .meta
@@ -138,19 +178,21 @@ cat << EOF > $MODULE/.npmignore
 *.h
 *.o
 *.wasm
+*.tpl.md
+bench
 build
 coverage
 dev
 doc
 export
-README.tpl.md
 src*
 test
+tools
 tsconfig.json
 EOF
 
 echo "writing README.tpl.md..."
-cat << 'EOF' > $MODULE/README.tpl.md
+cat << 'EOF' > "$MODULE"/README.tpl.md
 # ${pkg.name}
 
 [![npm version](https://img.shields.io/npm/v/${pkg.name}.svg)](https://www.npmjs.com/package/${pkg.name})
@@ -179,6 +221,8 @@ ${blogPosts}
 ```bash
 yarn add ${pkg.name}
 ```
+
+${pkg.size}
 
 ## Dependencies
 
