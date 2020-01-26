@@ -9,3 +9,18 @@ export const format = (fmt: any[], ...args: any[]) => {
     }
     return acc.join("");
 };
+
+/**
+ * Helper for {@link format} which ignores argument and always returns
+ * an empty string.
+ *
+ * @param _
+ */
+export const ignore = (_: any) => "";
+
+/**
+ * Helper for {@link format} which coerces `x` to a string.
+ *
+ * @param x
+ */
+export const str = (x: any) => String(x);
