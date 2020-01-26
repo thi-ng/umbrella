@@ -142,7 +142,7 @@ package.
 yarn add @thi.ng/transducers
 ```
 
-Package sizes (gzipped): ESM: 7.8KB / CJS: 8.3KB / UMD: 7.6KB
+Package sizes (gzipped): ESM: 7.8KB / CJS: 8.3KB / UMD: 7.5KB
 
 ## Dependencies
 

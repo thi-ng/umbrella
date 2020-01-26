@@ -82,6 +82,11 @@ rnd.gaussian()
 // 0.10632886109089679
 ```
 
+### Other utilities
+
+- [randomBytes](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/random-bytes.ts)
+- [randomID](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/random-id.ts)
+
 ## Authors
 
 ${authors}

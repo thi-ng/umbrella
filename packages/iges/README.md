@@ -36,7 +36,7 @@ applications (e.g. Rhino, Houdini, Fusion 360)
 yarn add @thi.ng/iges
 ```
 
-Package sizes (gzipped): ESM: 2.6KB / CJS: 2.6KB / UMD: 2.7KB
+Package sizes (gzipped): ESM: 2.7KB / CJS: 2.7KB / UMD: 2.7KB
 
 ## Dependencies
 

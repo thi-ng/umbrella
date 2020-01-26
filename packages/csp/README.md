@@ -54,7 +54,7 @@ for a similar, but alternative (and actively maintained) approach.
 yarn add @thi.ng/csp
 ```
 
-Package sizes (gzipped): ESM: 2.8KB / CJS: 2.9KB / UMD: 2.9KB
+Package sizes (gzipped): ESM: 2.9KB / CJS: 2.9KB / UMD: 2.9KB
 
 ## Dependencies
 

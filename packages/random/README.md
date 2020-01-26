@@ -15,6 +15,7 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [API](#api)
+  - [Other utilities](#other-utilities)
 - [Authors](#authors)
 - [License](#license)
 
@@ -45,7 +46,7 @@ Partially ported from C implementations taken from
 yarn add @thi.ng/random
 ```
 
-Package sizes (gzipped): ESM: 1.0KB / CJS: 1.1KB / UMD: 1.1KB
+Package sizes (gzipped): ESM: 1.1KB / CJS: 1.2KB / UMD: 1.2KB
 
 ## Dependencies
 
@@ -106,6 +107,11 @@ rnd.minmax(10, 20)
 rnd.gaussian()
 // 0.10632886109089679
 ```
+
+### Other utilities
+
+- [randomBytes](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/random-bytes.ts)
+- [randomID](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/random-id.ts)
 
 ## Authors
 

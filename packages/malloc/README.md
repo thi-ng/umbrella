@@ -129,7 +129,7 @@ capacity:
 yarn add @thi.ng/malloc
 ```
 
-Package sizes (gzipped): ESM: 1.9KB / CJS: 1.9KB / UMD: 1.9KB
+Package sizes (gzipped): ESM: 1.8KB / CJS: 1.9KB / UMD: 1.8KB
 
 ## Dependencies
 

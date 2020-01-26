@@ -46,7 +46,7 @@ parser and an extensible Hiccup-to-Markdown converter.
 yarn add @thi.ng/hiccup-markdown
 ```
 
-Package sizes (gzipped): ESM: 2.4KB / CJS: 2.5KB / UMD: 2.4KB
+Package sizes (gzipped): ESM: 2.5KB / CJS: 2.5KB / UMD: 2.4KB
 
 ## Dependencies
 

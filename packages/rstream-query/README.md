@@ -66,7 +66,7 @@ this time built on the streaming primitives provided by
 yarn add @thi.ng/rstream-query
 ```
 
-Package sizes (gzipped): ESM: 2.5KB / CJS: 2.6KB / UMD: 2.6KB
+Package sizes (gzipped): ESM: 2.6KB / CJS: 2.7KB / UMD: 2.6KB
 
 ## Dependencies
 
