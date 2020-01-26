@@ -87,17 +87,3 @@ type ButLastReducer<T extends unknown[], C extends unknown[] = []> = {
  * Extracts everything except the last element from a tuple.
  */
 export type ButLast<T extends unknown[]> = ButLastReducer<T>;
-
-/**
- * Internal version of {@link Drop} accepting 1 extra argument for the
- * accumulated value.
- */
-type DropReducer<T extends unknown[], C extends unknown[] = []> = {
-    0: C;
-    1: DropReducer<Prepend<Head<T>, C>, Tail<T>>;
-}[Tail<T> extends [] ? 0 : 1];
-
-/**
- * Extracts everything except the first element from a tuple.
- */
-export type Drop<T extends unknown[]> = DropReducer<T>;
