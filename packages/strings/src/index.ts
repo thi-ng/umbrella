@@ -4,6 +4,7 @@ export * from "./center";
 export * from "./float";
 export * from "./format";
 export * from "./hollerith";
+export * from "./interpolate";
 export * from "./pad-left";
 export * from "./pad-right";
 export * from "./parse";
