@@ -6,6 +6,8 @@ export interface IToHiccup {
      * update if used with {@link @thi.ng/hdom# | @thi.ng/hdom})
      *
      * @param ctx - user context object
+     * @param attribs - user attribs
+     * @param xs - additional args
      */
-    toHiccup(ctx?: any): any;
+    toHiccup(ctx?: any, attribs?: any, ...xs: any[]): any;
 }
