@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.3.3...@thi.ng/strings@1.4.0) (2020-01-26)
+
+
+### Features
+
+* **strings:** add format() helpers (str, ignore) ([df87b7c](https://github.com/thi-ng/umbrella/commit/df87b7c7f0a1f9fa5b299fe8311fda02f40ab4cd))
+* **strings:** add interpolate() ([a19e409](https://github.com/thi-ng/umbrella/commit/a19e4094494a8b4af6c35626e4a99394e0481a4e))
+
+
+
+
+
 ## [1.3.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.3.2...@thi.ng/strings@1.3.3) (2020-01-24)
 
 **Note:** Version bump only for package @thi.ng/strings

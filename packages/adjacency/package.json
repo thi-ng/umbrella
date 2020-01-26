@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/adjacency",
-    "version": "0.1.27",
+    "version": "0.1.28",
     "description": "Sparse & bitwise adjacency matrices and related functions for directed & undirected graphs",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -29,7 +29,7 @@
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
         "@microsoft/api-extractor": "^7.7.7",
-        "@thi.ng/vectors": "^4.0.2",
+        "@thi.ng/vectors": "^4.0.3",
         "@types/mocha": "^5.2.7",
         "@types/node": "^13.5.0",
         "mocha": "^7.0.0",
@@ -39,12 +39,12 @@
         "typescript": "^3.7.5"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.7.0",
+        "@thi.ng/api": "^6.7.1",
         "@thi.ng/binary": "^1.2.1",
-        "@thi.ng/bitfield": "^0.2.3",
+        "@thi.ng/bitfield": "^0.2.4",
         "@thi.ng/checks": "^2.5.0",
-        "@thi.ng/dcons": "^2.2.1",
-        "@thi.ng/sparse": "^0.1.24"
+        "@thi.ng/dcons": "^2.2.2",
+        "@thi.ng/sparse": "^0.1.25"
     },
     "keywords": [
         "adjacency",

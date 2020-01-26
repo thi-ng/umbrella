@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.1.15...@thi.ng/random@1.2.0) (2020-01-26)
+
+
+### Features
+
+* **random:** add randomBytes() wrapper ([c536bcd](https://github.com/thi-ng/umbrella/commit/c536bcd83c766414e349f6b82494ace9888ac2ba))
+
+
+
+
+
 ## [1.1.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.1.14...@thi.ng/random@1.1.15) (2020-01-24)
 
 
