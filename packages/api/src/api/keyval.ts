@@ -1,5 +1,16 @@
 import { Head, Tail } from "./tuple";
 
+/**
+ * Extracts from A all keys which have values assignable to type B.
+ */
+type TypedKeys<A, B> = {
+    [P in keyof Required<A>]: B extends A[P] ? P : never;
+}[keyof A];
+
+export type NumericKeys<T> = TypedKeys<T, number>;
+
+export type StringKeys<T> = TypedKeys<T, string>;
+
 /*
  * Utilities for extracting key types of nested objects.
  */
