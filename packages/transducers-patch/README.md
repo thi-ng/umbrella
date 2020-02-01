@@ -1,0 +1,123 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
+# @thi.ng/transducers-patch
+
+[![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-patch.svg)](https://www.npmjs.com/package/@thi.ng/transducers-patch)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-patch.svg)
+[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
+- [About](#about)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [API](#api)
+- [Authors](#authors)
+- [License](#license)
+
+## About
+
+Reducers for patch-based, immutable-by-default array & object editing. This is a support package for [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
+
+The `patchArray` and `patchObj` reducers can be used in any
+reducer/transducer scenario and are useful for any form of declarative
+state update. By default all edits are performed non-destructively, but
+`pushArray` also supports in place editing (mutation).
+
+### Status
+
+**ALPHA** - bleeding edge / work-in-progress
+
+## Installation
+
+```bash
+yarn add @thi.ng/transducers-patch
+```
+
+Package sizes (gzipped): ESM: 0.5KB / CJS: 0.5KB / UMD: 0.6KB
+
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/transducers-patch/)
+
+TODO
+
+```ts
+import { Patch, patchArray, patchObj } from "@thi.ng/transducers-patch";
+import { reduce, reductions } from "@thi.ng/transducers";
+
+patchArray(
+    // pass false to perform in-place edits (else immutable updates)
+    false,
+    // orig array to edit
+    [1, 2, 3],
+    // edits
+    [
+        // set idx #0 to 42
+        [Patch.SET, 0, 42],
+        // update idx #1 (here: times 10)
+        [Patch.UPDATE, 1, (x, n) => x * n, 10],
+        // insert values @ idx #2
+        [Patch.INSERT, 2, [10, 11]],
+        // delete (remove) idx #3
+        [Patch.DELETE, 3]
+    ]
+);
+// [ 42, 20, 10, 3 ]
+
+// flat (immutable by default) array editing
+reduce(
+    // reductions() used here to obtain step-wise edit results
+    reductions(patchArray<number>()),
+    // original array (wrapped here only for `reductions`)
+    [[1, 2, 3]],
+    [
+        [Patch.INSERT, 0, [10, 11]],
+        [Patch.UPDATE, 1, (x, n) => x * n, 10],
+        [Patch.DELETE, 3],
+        [Patch.SET, 2, 200]
+    ]
+);
+// [
+//     [1, 2, 3],
+//     [10, 11, 1, 2, 3],
+//     [10, 110, 1, 2, 3],
+//     [10, 110, 1, 3],
+//     [10, 110, 200, 3]
+// ]
+
+// nested (always immutable) object editing
+// (uses @thi.ng/paths for edits)
+reduce(
+    reductions(patchObj()),
+    [{ x: 23 }],
+    [
+        [Patch.SET, ["a", "b"], 1],
+        [Patch.UPDATE, ["a", "b"], (x, n) => x + n, 10],
+        [Patch.DELETE, ["x"]]
+    ]
+),
+// [
+//     { x: 23 },
+//     { x: 23, a: { b: 1 } },
+//     { x: 23, a: { b: 11 } },
+//     { a: { b: 11 } }
+// ]
+```
+
+## Authors
+
+Karsten Schmidt
+
+## License
+
+&copy; 2020 Karsten Schmidt // Apache Software License 2.0
