@@ -87,11 +87,11 @@ contribute, please first read [this document](./CONTRIBUTING.md).
 
 ## Projects
 
-<!--
 ### New / unreleased packages in development
 
 (These packages are still unreleased and only available on their feature or `develop` branches)
--->
+
+- [@thi.ng/transducers-patch](./packages/transducers-patch) - Reducers for patch-based, array & object editing
 
 ### Fundamentals
 
