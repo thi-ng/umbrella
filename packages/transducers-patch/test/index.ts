@@ -32,8 +32,8 @@ describe("transducers-patch", () => {
                 [{ x: 23 }],
                 [
                     [Patch.SET, ["a", "b"], 1],
-                    [Patch.UPDATE, ["a", "b"], (x, n) => x + n, 10],
-                    [Patch.DELETE, ["x"]]
+                    [Patch.UPDATE, "a.b", (x, n) => x + n, 10],
+                    [Patch.DELETE, "x"]
                 ]
             ),
             [

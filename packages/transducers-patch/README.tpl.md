@@ -46,10 +46,13 @@ ${docLink}
 
 TODO
 
+### Basic usage
+
 ```ts
 import { Patch, patchArray, patchObj } from "@thi.ng/transducers-patch";
 import { reduce, reductions } from "@thi.ng/transducers";
 
+// flat array editing
 patchArray(
     // pass false to perform in-place edits (else immutable updates)
     false,
@@ -107,6 +110,37 @@ reduce(
 //     { x: 23, a: { b: 11 } },
 //     { a: { b: 11 } }
 // ]
+```
+
+### Stream-based processing
+
+.This example uses constructs from the
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+package.
+
+```ts
+import { stream, trace } from "@thi.ng/rstream";
+
+const initialState: any = { x: 23 };
+
+// create transformed stream mapping patch commands to states
+// since `patchArray` is only a reducer, we need to wrap it w/ the `scan` transducer
+// see: https://github.com/thi-ng/umbrella/blob/develop/packages/transducers/src/xform/scan.ts
+export const state = stream<PatchObjOp>().transform(
+    scan(patchObj(), initialState)
+);
+
+// add debug subscription
+state.subscribe(trace("state: "));
+
+state.next([Patch.SET, "a.b", 1]);
+// state: { x: 23, a: { b: 1 } }
+
+state.next([Patch.UPDATE, ["a", "b"], (x, n)=> x + n, 10]);
+// state: { x: 23, a: { b: 11 } }
+
+state.next([Patch.DELETE, "x"]);
+// state: { a: { b: 11 } }
 ```
 
 ## Authors
