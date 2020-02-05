@@ -143,7 +143,7 @@ package.
 yarn add @thi.ng/transducers
 ```
 
-Package sizes (gzipped): ESM: 7.8KB / CJS: 8.3KB / UMD: 7.5KB
+Package sizes (gzipped): ESM: 7.8KB / CJS: 8.4KB / UMD: 7.6KB
 
 ## Dependencies
 
@@ -964,6 +964,7 @@ tx.transduce(tx.map((x) => x*10), tx.push(), tx.range(4))
 - [partitionSort](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/partition-sort.ts)
 - [partitionSync](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/partition-sync.ts)
 - [partition](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/partition.ts)
+- [peek](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/peek.ts)
 - [pluck](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/pluck.ts)
 - [rename](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/rename.ts)
 - [sample](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/sample.ts)
