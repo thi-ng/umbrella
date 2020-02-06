@@ -7,6 +7,10 @@ export const enum Type {
     I16_ARRAY,
     U16,
     U16_ARRAY,
+    I24,
+    I24_ARRAY,
+    U24,
+    U24_ARRAY,
     I32,
     I32_ARRAY,
     U32,
@@ -27,6 +31,10 @@ export type BinStructItem =
     | [Type.I16_ARRAY, ArrayLike<number>, boolean?]
     | [Type.U16, number, boolean?]
     | [Type.U16_ARRAY, ArrayLike<number>, boolean?]
+    | [Type.I24, number, boolean?]
+    | [Type.I24_ARRAY, ArrayLike<number>, boolean?]
+    | [Type.U24, number, boolean?]
+    | [Type.U24_ARRAY, ArrayLike<number>, boolean?]
     | [Type.I32, number, boolean?]
     | [Type.I32_ARRAY, ArrayLike<number>, boolean?]
     | [Type.U32, number, boolean?]
