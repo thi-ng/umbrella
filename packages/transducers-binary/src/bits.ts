@@ -38,19 +38,19 @@ export function bits(...args: any[]): any {
         $iter(bits, args, iterator) ||
         ((rfn: Reducer<any, number>) => {
             const reduce = rfn[2];
-            const size = (args[0] || 8) - 1;
+            const size = args[0] || 8;
             const msb = args[1] !== false;
             return compR(
                 rfn,
                 msb
                     ? (acc, x: number) => {
-                          for (let i = size; i >= 0 && !isReduced(acc); i--) {
+                          for (let i = size; --i >= 0 && !isReduced(acc); ) {
                               acc = reduce(acc, (x >>> i) & 1);
                           }
                           return acc;
                       }
                     : (acc, x: number) => {
-                          for (let i = 0; i <= size && !isReduced(acc); i++) {
+                          for (let i = 0; i < size && !isReduced(acc); i++) {
                               acc = reduce(acc, (x >>> i) & 1);
                           }
                           return acc;

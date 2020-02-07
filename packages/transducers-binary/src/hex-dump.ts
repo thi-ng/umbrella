@@ -48,7 +48,7 @@ export function hexDump(...args: any[]): any {
     return comp(
         padLast(cols, 0),
         map(
-            juxt(U8, (x) => (x > 31 && x < 128 ? String.fromCharCode(x) : "."))
+            juxt(U8, (x) => (x > 31 && x < 127 ? String.fromCharCode(x) : "."))
         ),
         partition(cols, true),
         map(
@@ -60,3 +60,15 @@ export function hexDump(...args: any[]): any {
         mapIndexed((i, [h, a]) => `${U32(address + i * cols)} | ${h} | ${a}`)
     );
 }
+
+/**
+ * Convenience wrapper for {@link hexDump}, return the hexdump as a
+ * single result string.
+ *
+ * @param opts -
+ * @param src -
+ */
+export const hexDumpString = (
+    opts: Partial<HexDumpOpts>,
+    src: Iterable<number>
+) => [...hexDump(opts, src)].join("\n");

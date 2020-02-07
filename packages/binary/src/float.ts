@@ -24,3 +24,27 @@ export const floatToSortableInt = (x: number) => {
     const i = floatToIntBits(x);
     return x < 0 ? ~i | (1 << 31) : i;
 };
+
+const clamp11 = (x: number) => (x < -1 ? -1 : x > 1 ? 1 : x);
+
+export const f32u8 = (x: number) => (clamp11(x) * 0x7f) & 0xff;
+
+export const f32u16 = (x: number) => (clamp11(x) * 0x7fff) & 0xffff;
+
+export const f32u24 = (x: number) => (clamp11(x) * 0x7fffff) & 0xffffff;
+
+export const f32u32 = (x: number) => (clamp11(x) * 0x7fffffff) >>> 0;
+
+export const u8f32 = (x: number) => (
+    (x &= 0xff), (x | ((x >> 7) * 0xffffff00)) / 0x7f
+);
+
+export const u16f32 = (x: number) => (
+    (x &= 0xffff), (x | ((x >> 15) * 0xffff0000)) / 0x7fff
+);
+
+export const u24f32 = (x: number) => (
+    (x &= 0xffffff), (x | ((x >> 23) * 0xff000000)) / 0x7fffff
+);
+
+export const u32f32 = (x: number) => (x | 0) / 0x7fffffff;

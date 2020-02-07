@@ -1,4 +1,12 @@
-import { reduce, Reducer } from "@thi.ng/transducers";
+import { bytes16, bytes24, bytes32 } from "@thi.ng/binary";
+import { unsupported } from "@thi.ng/errors";
+import {
+    iterator,
+    mapcat,
+    reduce,
+    Reducer,
+    Transducer
+} from "@thi.ng/transducers";
 import { BinStructItem, Type } from "./api";
 import { utf8Encode } from "./utf8";
 
@@ -7,48 +15,109 @@ export const i8array = (x: ArrayLike<number>): BinStructItem => [
     Type.I8_ARRAY,
     x
 ];
+
 export const u8 = (x: number): BinStructItem => [Type.U8, x];
 export const u8array = (x: ArrayLike<number>): BinStructItem => [
     Type.U8_ARRAY,
     x
 ];
+
 export const i16 = (x: number, le = false): BinStructItem => [Type.I16, x, le];
 export const i16array = (x: ArrayLike<number>, le = false): BinStructItem => [
     Type.I16_ARRAY,
     x,
     le
 ];
+
 export const u16 = (x: number, le = false): BinStructItem => [Type.U16, x, le];
 export const u16array = (x: ArrayLike<number>, le = false): BinStructItem => [
     Type.U16_ARRAY,
     x,
     le
 ];
+
+export const i24 = (x: number, le = false): BinStructItem => [Type.I24, x, le];
+export const i24array = (x: ArrayLike<number>, le = false): BinStructItem => [
+    Type.I24_ARRAY,
+    x,
+    le
+];
+
+export const u24 = (x: number, le = false): BinStructItem => [Type.U24, x, le];
+export const u24array = (x: ArrayLike<number>, le = false): BinStructItem => [
+    Type.U24_ARRAY,
+    x,
+    le
+];
+
 export const i32 = (x: number, le = false): BinStructItem => [Type.I32, x, le];
 export const i32array = (x: ArrayLike<number>, le = false): BinStructItem => [
     Type.I32_ARRAY,
     x,
     le
 ];
+
 export const u32 = (x: number, le = false): BinStructItem => [Type.U32, x, le];
 export const u32array = (x: ArrayLike<number>, le = false): BinStructItem => [
     Type.U32_ARRAY,
     x,
     le
 ];
+
 export const f32 = (x: number, le = false): BinStructItem => [Type.F32, x, le];
 export const f32array = (x: ArrayLike<number>, le = false): BinStructItem => [
     Type.F32_ARRAY,
     x,
     le
 ];
+
 export const f64 = (x: number, le = false): BinStructItem => [Type.F64, x, le];
 export const f64array = (x: ArrayLike<number>, le = false): BinStructItem => [
     Type.F64_ARRAY,
     x,
     le
 ];
+
 export const str = (x: string): BinStructItem => [Type.STR, x];
+
+export function asBytes(): Transducer<BinStructItem, number>;
+export function asBytes(src: Iterable<BinStructItem>): IterableIterator<number>;
+export function asBytes(src?: Iterable<BinStructItem>): any {
+    return src
+        ? iterator(asBytes(), src)
+        : mapcat((x: BinStructItem) => {
+              const val = <number>x[1];
+              const le = x[2];
+              switch (x[0]) {
+                  case Type.I8:
+                  case Type.U8:
+                      return [val];
+                  case Type.I8_ARRAY:
+                  case Type.U8_ARRAY:
+                      return <number[]>x[1];
+                  case Type.I16:
+                  case Type.U16:
+                      return bytes16(val, le);
+                  case Type.I16_ARRAY:
+                  case Type.U16_ARRAY:
+                      return mapcat((x) => bytes16(x, le), <number[]>x[1]);
+                  case Type.I24:
+                  case Type.U24:
+                      return bytes24(val, le);
+                  case Type.I24_ARRAY:
+                  case Type.U24_ARRAY:
+                      return mapcat((x) => bytes24(x, le), <number[]>x[1]);
+                  case Type.I32:
+                  case Type.U32:
+                      return bytes32(val, le);
+                  case Type.I32_ARRAY:
+                  case Type.U32_ARRAY:
+                      return mapcat((x) => bytes32(x, le), <number[]>x[1]);
+                  default:
+                      unsupported(`invalid struct item: ${x[0]}`);
+              }
+          });
+}
 
 export function bytes(cap?: number): Reducer<Uint8Array, BinStructItem>;
 export function bytes(cap: number, src: Iterable<BinStructItem>): Uint8Array;
@@ -127,12 +196,28 @@ export function bytes(cap = 1024, src?: Iterable<BinStructItem>) {
                           acc = setArray("setInt16", 2, acc, x, le);
                           break;
                       case Type.U16:
-                          acc = ensure(acc, 4);
+                          acc = ensure(acc, 2);
                           view.setUint16(pos, <number>x, le);
-                          pos += 4;
+                          pos += 2;
                           break;
                       case Type.U16_ARRAY:
                           acc = setArray("setUint16", 2, acc, x, le);
+                          break;
+                      case Type.I24:
+                          acc = ensure(acc, 4);
+                          view.setInt32(pos, <number>x, le);
+                          pos += 3;
+                          break;
+                      case Type.I24_ARRAY:
+                          acc = setArray("setInt32", 3, acc, x, le);
+                          break;
+                      case Type.U24:
+                          acc = ensure(acc, 4);
+                          view.setUint32(pos, <number>x, le);
+                          pos += 3;
+                          break;
+                      case Type.U24_ARRAY:
+                          acc = setArray("setUint32", 3, acc, x, le);
                           break;
                       case Type.I32:
                           acc = ensure(acc, 4);
