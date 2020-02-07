@@ -87,5 +87,3 @@ export function partial(fn: any, ...args: any[]) {
             illegalArgs();
     }
 }
-
-export const foo = partial((a: string, b: number) => a + b, "a");
