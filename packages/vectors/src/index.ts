@@ -37,6 +37,7 @@ export * from "./clamp";
 export * from "./clampn";
 export * from "./clockwise";
 export * from "./compare";
+export * from "./convert";
 export * from "./copy";
 export * from "./cos";
 export * from "./cosh";
