@@ -1,7 +1,7 @@
 import { TypedArray } from "@thi.ng/api";
 import { AttribPool } from "@thi.ng/vector-pools";
 import { IndexBufferSpec, IWebGLBuffer } from "./api/buffers";
-import { ModelAttributeSpecs, ModelSpec } from "./api/model";
+import { ModelAttributeSpec, ModelAttributeSpecs, ModelSpec } from "./api/model";
 import { isGL2Context } from "./checks";
 import { error } from "./error";
 
@@ -83,6 +83,19 @@ export const compileModel = (
     return spec;
 };
 
+const initBuffer = (
+    gl: WebGLRenderingContext,
+    src: ModelAttributeSpec | IndexBufferSpec,
+    type: GLenum,
+    mode: GLenum
+) => {
+    if (src.buffer) {
+        src.data && src.buffer.set(<any>src.data);
+    } else {
+        src.buffer = new WebGLArrayBuffer(gl, src.data, type, mode);
+    }
+};
+
 const compileAttribs = (
     gl: WebGLRenderingContext,
     attribs: ModelAttributeSpecs,
@@ -90,19 +103,7 @@ const compileAttribs = (
 ) => {
     if (attribs) {
         for (let id in attribs) {
-            if (attribs.hasOwnProperty(id)) {
-                const attr = attribs[id];
-                if (attr.buffer) {
-                    attr.data && attr.buffer.set(attr.data);
-                } else {
-                    attr.buffer = new WebGLArrayBuffer(
-                        gl,
-                        attr.data,
-                        gl.ARRAY_BUFFER,
-                        mode
-                    );
-                }
-            }
+            initBuffer(gl, attribs[id], gl.ARRAY_BUFFER, mode);
         }
     }
     return attribs;
@@ -114,16 +115,7 @@ export const compileIndices = (
     mode: GLenum = gl.STATIC_DRAW
 ) => {
     if (index) {
-        if (index.buffer) {
-            index.data && index.buffer.set(index.data);
-        } else {
-            index.buffer = new WebGLArrayBuffer(
-                gl,
-                index.data,
-                gl.ELEMENT_ARRAY_BUFFER,
-                mode
-            );
-        }
+        initBuffer(gl, index, gl.ELEMENT_ARRAY_BUFFER, mode);
     }
     return index;
 };
