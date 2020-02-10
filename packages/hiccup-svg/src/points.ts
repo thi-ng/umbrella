@@ -26,14 +26,7 @@ export const points = (
         "g",
         fattribs(withoutKeys(attribs, new Set(["shape", "size"])))
     ];
-    let href: string;
-    if (!shape || shape[0] !== "#") {
-        href = "_" + ((Math.random() * 1e6) | 0).toString(36);
-        group.push(["g", { opacity: 0 }, buildShape(shape, href, size)]);
-        href = "#" + href;
-    } else {
-        href = shape;
-    }
+    const href = buildSymbol(group, shape, size);
     for (let p of pts) {
         // TODO replace w/ SVG2 `href` once Safari supports it
         group.push(["use", { "xlink:href": href, x: ff(p[0]), y: ff(p[1]) }]);
