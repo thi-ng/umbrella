@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/sparse
+# ![@thi.ng/sparse](https://media.thi.ng/umbrella/banners/thing-sparse.svg?1581297781)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/sparse.svg)](https://www.npmjs.com/package/@thi.ng/sparse)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/sparse.svg)

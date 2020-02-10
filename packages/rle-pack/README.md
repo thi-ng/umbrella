@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/rle-pack
+# ![@thi.ng/rle-pack](https://media.thi.ng/umbrella/banners/thing-rle-pack.svg?1581297779)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rle-pack.svg)](https://www.npmjs.com/package/@thi.ng/rle-pack)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rle-pack.svg)

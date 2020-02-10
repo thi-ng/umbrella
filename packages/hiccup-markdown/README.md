@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/hiccup-markdown
+# ![@thi.ng/hiccup-markdown](https://media.thi.ng/umbrella/banners/thing-hiccup-markdown.svg?1581297782)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-markdown.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-markdown)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-markdown.svg)

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/range-coder
+# ![@thi.ng/range-coder](https://media.thi.ng/umbrella/banners/thing-range-coder.svg?1581297781)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/range-coder.svg)](https://www.npmjs.com/package/@thi.ng/range-coder)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/range-coder.svg)

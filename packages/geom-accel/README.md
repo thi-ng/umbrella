@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/geom-accel
+# ![@thi.ng/geom-accel](https://media.thi.ng/umbrella/banners/thing-geom-accel.svg?1581297787)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-accel.svg)](https://www.npmjs.com/package/@thi.ng/geom-accel)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-accel.svg)

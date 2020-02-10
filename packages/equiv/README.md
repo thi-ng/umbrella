@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/equiv
+# ![@thi.ng/equiv](https://media.thi.ng/umbrella/banners/thing-equiv.svg?1581297776)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/equiv.svg)](https://www.npmjs.com/package/@thi.ng/equiv)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/equiv.svg)

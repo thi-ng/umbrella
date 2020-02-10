@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/color
+# ![@thi.ng/color](https://media.thi.ng/umbrella/banners/thing-color.svg?1581297783)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/color.svg)

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/math
+# ![@thi.ng/math](https://media.thi.ng/umbrella/banners/thing-math.svg?1581297777)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/math.svg)

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/checks
+# ![@thi.ng/checks](https://media.thi.ng/umbrella/banners/thing-checks.svg?1581297776)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/checks.svg)

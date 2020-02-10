@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/cache
+# ![@thi.ng/cache](https://media.thi.ng/umbrella/banners/thing-cache.svg?1581297782)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/cache.svg)](https://www.npmjs.com/package/@thi.ng/cache)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/cache.svg)

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/bencode
+# ![@thi.ng/bencode](https://media.thi.ng/umbrella/banners/thing-bencode.svg?1581297782)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/bencode.svg)](https://www.npmjs.com/package/@thi.ng/bencode)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/bencode.svg)

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/resolve-map
+# ![@thi.ng/resolve-map](https://media.thi.ng/umbrella/banners/thing-resolve-map.svg?1581297779)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/resolve-map.svg)](https://www.npmjs.com/package/@thi.ng/resolve-map)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/resolve-map.svg)

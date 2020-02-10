@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/simd
+# ![@thi.ng/simd](https://media.thi.ng/umbrella/banners/thing-simd.svg?1581297783)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/simd.svg)](https://www.npmjs.com/package/@thi.ng/simd)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/simd.svg)

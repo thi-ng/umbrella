@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/pointfree-lang
+# ![@thi.ng/pointfree-lang](https://media.thi.ng/umbrella/banners/thing-pointfree-lang.svg?1581297780)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pointfree-lang.svg)](https://www.npmjs.com/package/@thi.ng/pointfree-lang)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pointfree-lang.svg)
@@ -233,41 +233,41 @@ All 100+ built-in words defined by
 are available by default with the following additional aliases (which
 aren't valid names in the ES6 context):
 
-| Alias | Original name |
-| --- | --- |
-| `?drop` | `dropif` |
-| `?dup` | `dupif` |
-| `-rot` | `invrot` |
-| `>r` | `movdr` |
-| `>r2` | `movdr2` |
-| `r>` | `movrd` |
-| `r2>` | `movrd2` |
-| `if` | `condq` |
-| `switch` | `casesq` |
-| `while` | `loopq` |
-| `+` | `add` |
-| `-` | `sub` |
-| `*` | `mul` |
-| `/` | `div` |
-| `v+` | `vadd` |
-| `v-` | `vsub` |
-| `v*` | `vmul` |
-| `v/` | `vdiv` |
-| `=` | `eq` |
-| `not=` | `neq` |
-| `<=` | `lteq` |
-| `>=` | `gteq` |
-| `<` | `lt` |
-| `>` | `gt` |
-| `pos?` | `ispos` |
-| `neg?` | `isneg` |
-| `nil?` | `isnil` |
-| `zero?` | `iszero` |
-| `pi` | `Math.PI` |
-| `tau` | `2 * Math.PI` |
-| `.` | `print` |
-| `.s` | `printds` |
-| `.r` | `printrs` |
+| Alias    | Original name |
+|----------|---------------|
+| `?drop`  | `dropif`      |
+| `?dup`   | `dupif`       |
+| `-rot`   | `invrot`      |
+| `>r`     | `movdr`       |
+| `>r2`    | `movdr2`      |
+| `r>`     | `movrd`       |
+| `r2>`    | `movrd2`      |
+| `if`     | `condq`       |
+| `switch` | `casesq`      |
+| `while`  | `loopq`       |
+| `+`      | `add`         |
+| `-`      | `sub`         |
+| `*`      | `mul`         |
+| `/`      | `div`         |
+| `v+`     | `vadd`        |
+| `v-`     | `vsub`        |
+| `v*`     | `vmul`        |
+| `v/`     | `vdiv`        |
+| `=`      | `eq`          |
+| `not=`   | `neq`         |
+| `<=`     | `lteq`        |
+| `>=`     | `gteq`        |
+| `<`      | `lt`          |
+| `>`      | `gt`          |
+| `pos?`   | `ispos`       |
+| `neg?`   | `isneg`       |
+| `nil?`   | `isnil`       |
+| `zero?`  | `iszero`      |
+| `pi`     | `Math.PI`     |
+| `tau`    | `2 * Math.PI` |
+| `.`      | `print`       |
+| `.s`     | `printds`     |
+| `.r`     | `printrs`     |
 
 The ID resolution priority is:
 

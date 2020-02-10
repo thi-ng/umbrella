@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/geom-tessellate
+# ![@thi.ng/geom-tessellate](https://media.thi.ng/umbrella/banners/thing-geom-tessellate.svg?1581297788)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-tessellate.svg)](https://www.npmjs.com/package/@thi.ng/geom-tessellate)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-tessellate.svg)

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/transducers-hdom
+# ![@thi.ng/transducers-hdom](https://media.thi.ng/umbrella/banners/thing-transducers-hdom.svg?1581297785)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-hdom.svg)](https://www.npmjs.com/package/@thi.ng/transducers-hdom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-hdom.svg)

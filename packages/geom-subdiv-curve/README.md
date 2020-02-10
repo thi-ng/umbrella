@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/geom-subdiv-curve
+# ![@thi.ng/geom-subdiv-curve](https://media.thi.ng/umbrella/banners/thing-geom-subdiv-curve.svg?1581297786)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-subdiv-curve.svg)](https://www.npmjs.com/package/@thi.ng/geom-subdiv-curve)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-subdiv-curve.svg)

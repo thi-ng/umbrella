@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/defmulti
+# ![@thi.ng/defmulti](https://media.thi.ng/umbrella/banners/thing-defmulti.svg?1581297778)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/defmulti.svg)](https://www.npmjs.com/package/@thi.ng/defmulti)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/defmulti.svg)

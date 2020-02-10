@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/dsp
+# ![@thi.ng/dsp](https://media.thi.ng/umbrella/banners/thing-dsp.svg?1581297780)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dsp.svg)](https://www.npmjs.com/package/@thi.ng/dsp)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dsp.svg)
@@ -11,6 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Status](#status)
+  - [Support packages](#support-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -50,6 +51,10 @@ IProc's, composition ops etc.) should be considered "beta" and are
 likely to undergo further (hopefully not too drastic) changes in the
 near future. Also, pending outcomes of ongoing experiments, some aspects
 might be ported to WASM.
+
+### Support packages
+
+- [@thi.ng/dsp-io-wav](https://github.com/thi-ng/umbrella/tree/develop/packages/dsp-io-wav) - WAV file format generation
 
 ## Installation
 

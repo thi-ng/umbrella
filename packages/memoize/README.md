@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/memoize
+# ![@thi.ng/memoize](https://media.thi.ng/umbrella/banners/thing-memoize.svg?1581297777)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/memoize.svg)](https://www.npmjs.com/package/@thi.ng/memoize)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/memoize.svg)

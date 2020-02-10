@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/poisson
+# ![@thi.ng/poisson](https://media.thi.ng/umbrella/banners/thing-poisson.svg?1581297786)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/poisson.svg)](https://www.npmjs.com/package/@thi.ng/poisson)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/poisson.svg)

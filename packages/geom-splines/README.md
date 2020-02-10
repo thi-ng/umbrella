@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/geom-splines
+# ![@thi.ng/geom-splines](https://media.thi.ng/umbrella/banners/thing-geom-splines.svg?1581297788)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-splines.svg)](https://www.npmjs.com/package/@thi.ng/geom-splines)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-splines.svg)
@@ -83,8 +83,8 @@ In this mode the curve always goes through the midpoints each polygon
 edge, with the original polygon vertices being used to compute control
 points.
 
-| Proportional tangent scale                                                                            | Uniform tangent scale                                                                              |
-|-------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| Proportional tangent scale                                                                           | Uniform tangent scale                                                                             |
+|------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
 | ![](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-splines-cp-nonuni.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-splines-cp-uni.png) |
 
 #### Poly vertices as break points
@@ -94,8 +94,8 @@ and additional control points are created via symmetric tangents at each
 poly vertex. The tangents themselves are computed via the bisector of
 each vertex corner, taking into the convexity of each poly vertex.
 
-| Proportional tangent scale                                                                            | Uniform tangent scale                                                                              |
-|-------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| Proportional tangent scale                                                                           | Uniform tangent scale                                                                             |
+|------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
 | ![](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-splines-bp-nonuni.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-splines-bp-uni.png) |
 
 ## Authors

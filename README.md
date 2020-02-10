@@ -1,4 +1,4 @@
-# @thi.ng/umbrella
+# ![thi.ng/umbrella](https://media.thi.ng/umbrella/banners/thing-umbrella.svg?1581297779)
 
 [![Travis status](https://api.travis-ci.org/thi-ng/umbrella.svg?branch=master)](https://travis-ci.org/thi-ng/umbrella)
 [![Code Climate](https://api.codeclimate.com/v1/badges/592940419adb5bf8abaf/maintainability)](https://codeclimate.com/github/thi-ng/umbrella/maintainability)

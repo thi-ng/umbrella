@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/associative
+# ![@thi.ng/associative](https://media.thi.ng/umbrella/banners/thing-associative.svg?1581297782)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/associative.svg)](https://www.npmjs.com/package/@thi.ng/associative)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/associative.svg)

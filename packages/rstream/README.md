@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/rstream
+# ![@thi.ng/rstream](https://media.thi.ng/umbrella/banners/thing-rstream.svg?1581297785)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream.svg)](https://www.npmjs.com/package/@thi.ng/rstream)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream.svg)
@@ -117,6 +117,7 @@ options](#common-configuration-options) for further details.
 - [@thi.ng/rstream-log](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-log) - Structured, multilevel & hierarchical loggers based on [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 - [@thi.ng/rstream-log-file](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-log-file) - File output handler for structured, multilevel & hierarchical loggers based on [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 - [@thi.ng/rstream-query](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-query) - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream) based triple store & reactive query engine
+- [@thi.ng/rstream-state](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-state) - TODO
 
 ### Related packages
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/unionstruct
+# ![@thi.ng/unionstruct](https://media.thi.ng/umbrella/banners/thing-unionstruct.svg?1581297777)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/unionstruct.svg)](https://www.npmjs.com/package/@thi.ng/unionstruct)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/unionstruct.svg)
@@ -196,11 +196,11 @@ first field has an impact on whole struct alignment).
 
 | Type      | Alignment |
 |-----------|----------:|
-| f64       | 8         |
-| f32       | 4         |
-| u32 / i32 | 4         |
-| u16 / i16 | 2         |
-| u8 / i8   | 1         |
+| f64       |         8 |
+| f32       |         4 |
+| u32 / i32 |         4 |
+| u16 / i16 |         2 |
+| u8 / i8   |         1 |
 
 ### Bitfields
 

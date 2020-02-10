@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/router
+# ![@thi.ng/router](https://media.thi.ng/umbrella/banners/thing-router.svg?1581297779)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/router.svg)](https://www.npmjs.com/package/@thi.ng/router)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/router.svg)

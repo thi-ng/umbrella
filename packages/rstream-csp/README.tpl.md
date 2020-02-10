@@ -1,4 +1,4 @@
-# ${pkg.name}
+# ${pkg.banner}
 
 [![npm version](https://img.shields.io/npm/v/${pkg.name}.svg)](https://www.npmjs.com/package/${pkg.name})
 ![npm downloads](https://img.shields.io/npm/dm/${pkg.name}.svg)

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/webgl
+# ![@thi.ng/webgl](https://media.thi.ng/umbrella/banners/thing-webgl.svg?1581297788)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/webgl.svg)](https://www.npmjs.com/package/@thi.ng/webgl)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/webgl.svg)

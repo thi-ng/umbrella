@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/hiccup-css
+# ![@thi.ng/hiccup-css](https://media.thi.ng/umbrella/banners/thing-hiccup-css.svg?1581297781)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-css.svg)
@@ -379,12 +379,12 @@ conditionals and a body which will be based to `css()`.
 The key-value pairs of the conditional object are interpreted as follows
 and ALWAYS combined using `and`:
 
-| Key/Value pair | Result |
-| --- | --- |
+| Key/Value pair         | Result               |
+|------------------------|----------------------|
 | `"min-width": "10rem"` | `(min-width: 10rem)` |
-| `print: true` | `print` |
-| `print: false` | `not print` |
-| `print: "only"` | `only print` |
+| `print: true`          | `print`              |
+| `print: false`         | `not print`          |
+| `print: "only"`        | `only print`         |
 
 ```ts
 css.css(

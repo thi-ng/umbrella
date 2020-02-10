@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/heaps
+# ![@thi.ng/heaps](https://media.thi.ng/umbrella/banners/thing-heaps.svg?1581297778)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/heaps.svg)](https://www.npmjs.com/package/@thi.ng/heaps)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/heaps.svg)

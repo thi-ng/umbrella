@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/lsys
+# ![@thi.ng/lsys](https://media.thi.ng/umbrella/banners/thing-lsys.svg?1581297784)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/lsys.svg)](https://www.npmjs.com/package/@thi.ng/lsys)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/lsys.svg)

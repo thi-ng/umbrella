@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/leb128
+# ![@thi.ng/leb128](https://media.thi.ng/umbrella/banners/thing-leb128.svg?1581297783)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/leb128.svg)](https://www.npmjs.com/package/@thi.ng/leb128)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/leb128.svg)

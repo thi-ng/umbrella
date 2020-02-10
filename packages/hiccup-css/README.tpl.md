@@ -1,4 +1,4 @@
-# ${pkg.name}
+# ${pkg.banner}
 
 [![npm version](https://img.shields.io/npm/v/${pkg.name}.svg)](https://www.npmjs.com/package/${pkg.name})
 ![npm downloads](https://img.shields.io/npm/dm/${pkg.name}.svg)
@@ -340,12 +340,12 @@ conditionals and a body which will be based to `css()`.
 The key-value pairs of the conditional object are interpreted as follows
 and ALWAYS combined using `and`:
 
-| Key/Value pair | Result |
-| --- | --- |
+| Key/Value pair         | Result               |
+|------------------------|----------------------|
 | `"min-width": "10rem"` | `(min-width: 10rem)` |
-| `print: true` | `print` |
-| `print: false` | `not print` |
-| `print: "only"` | `only print` |
+| `print: true`          | `print`              |
+| `print: false`         | `not print`          |
+| `print: "only"`        | `only print`         |
 
 ```ts
 css.css(

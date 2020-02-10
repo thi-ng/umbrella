@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# @thi.ng/porter-duff
+# ![@thi.ng/porter-duff](https://media.thi.ng/umbrella/banners/thing-porter-duff.svg?1581297779)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/porter-duff.svg)](https://www.npmjs.com/package/@thi.ng/porter-duff)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/porter-duff.svg)
