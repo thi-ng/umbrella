@@ -78,14 +78,7 @@ export class MemMappedComponent<K extends string> extends AComponent<
 
     get(id: number) {
         let i = this.sparse[id];
-        return i < this.n && this.dense[i] === id
-            ? this.cache
-                ? this.cache.getSet(i, () => {
-                      i *= this.stride;
-                      return this.vals.subarray(i, i + this.size);
-                  })
-                : ((i *= this.stride), this.vals.subarray(i, i + this.size))
-            : undefined;
+        return this.dense[i] === id ? this.getIndex(i) : undefined;
     }
 
     getIndex(i: number) {
