@@ -12,9 +12,16 @@ import {
     quad,
     shader
 } from "@thi.ng/webgl";
-import { MainImageFn, ShaderToy, ShaderToyOpts } from "./api";
+import {
+    MainImageFn,
+    ShaderToy,
+    ShaderToyOpts,
+    ShaderToyUniforms
+} from "./api";
 
-export const shaderToy = (opts: ShaderToyOpts) => {
+export const shaderToy = <U extends ShaderToyUniforms>(
+    opts: ShaderToyOpts<U>
+) => {
     const gl = opts.gl;
 
     const model = quad(false);
@@ -54,7 +61,7 @@ export const shaderToy = (opts: ShaderToyOpts) => {
         active && requestAnimationFrame(updateRAF);
     };
 
-    const instance: ShaderToy = {
+    const instance: ShaderToy<U> = {
         start() {
             t0 = Date.now();
             active = true;
@@ -66,7 +73,7 @@ export const shaderToy = (opts: ShaderToyOpts) => {
         update(time: number) {
             update(time);
         },
-        recompile(main: MainImageFn) {
+        recompile(main: MainImageFn<U>) {
             if (model.shader) {
                 model.shader.release();
             }

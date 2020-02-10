@@ -6,9 +6,13 @@ import {
     Vec2Sym
 } from "@thi.ng/shader-ast";
 import { GLSLTarget } from "@thi.ng/shader-ast-glsl";
-import { ITexture, ModelSpec, ShaderUniformSpecs } from "@thi.ng/webgl";
+import { ITexture, ModelSpec, UniformDecl } from "@thi.ng/webgl";
 
-export type MainImageFn = Fn2<GLSLTarget, ShaderToyUniforms, ScopeBody>;
+export type MainImageFn<U extends ShaderToyUniforms> = Fn2<
+    GLSLTarget,
+    U,
+    ScopeBody
+>;
 
 export interface ShaderToyUniforms {
     resolution: Vec2Sym;
@@ -17,27 +21,27 @@ export interface ShaderToyUniforms {
     time: FloatSym;
 }
 
-export interface ShaderToyOpts {
+export interface ShaderToyOpts<U extends ShaderToyUniforms> {
     canvas: HTMLCanvasElement;
     gl: WebGLRenderingContext;
     /**
      * Main user shader function
      */
-    main: MainImageFn;
+    main: MainImageFn<U>;
     /**
      * Optional additional uniforms
      */
-    uniforms?: ShaderUniformSpecs;
+    uniforms?: Partial<Record<keyof U, UniformDecl>>;
     /**
      * Optional textures to bind
      */
     textures?: ITexture[];
 }
 
-export interface ShaderToy {
+export interface ShaderToy<U extends ShaderToyUniforms> {
     start(): void;
     stop(): void;
     update(time?: number): void;
-    recompile(main: MainImageFn): void;
+    recompile(main: MainImageFn<U>): void;
     model: ModelSpec;
 }
