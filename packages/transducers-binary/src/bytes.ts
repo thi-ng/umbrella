@@ -1,4 +1,10 @@
-import { bytes16, bytes24, bytes32 } from "@thi.ng/binary";
+import {
+    bytes16,
+    bytes24,
+    bytes32,
+    bytesF32,
+    bytesF64
+} from "@thi.ng/binary";
 import { unsupported } from "@thi.ng/errors";
 import {
     iterator,
@@ -80,6 +86,22 @@ export const f64array = (x: ArrayLike<number>, le = false): BinStructItem => [
 
 export const str = (x: string): BinStructItem => [Type.STR, x];
 
+/**
+ * Transducer which converts {@link BinStructItem} inputs to bytes. If
+ * `src` iterable is given, yields an iterator of unsigned bytes (e.g.
+ * for streaming purposes).
+ *
+ * @example
+ * ```ts
+ * hexDumpString({}, asBytes([
+ *   str("hello!"),
+ *   u32(0xdecafbad),
+ *   i16(-1),
+ *   f32(Math.PI)
+ * ]))
+ * // 00000000 | 68 65 6c 6c 6f 21 de ca fb ad ff ff 40 49 0f db | hello!......@I..
+ * ```
+ */
 export function asBytes(): Transducer<BinStructItem, number>;
 export function asBytes(src: Iterable<BinStructItem>): IterableIterator<number>;
 export function asBytes(src?: Iterable<BinStructItem>): any {
@@ -113,6 +135,16 @@ export function asBytes(src?: Iterable<BinStructItem>): any {
                   case Type.I32_ARRAY:
                   case Type.U32_ARRAY:
                       return mapcat((x) => bytes32(x, le), <number[]>x[1]);
+                  case Type.F32:
+                      return bytesF32(val, le);
+                  case Type.F32_ARRAY:
+                      return mapcat((x) => bytesF32(x, le), <number[]>x[1]);
+                  case Type.F64:
+                      return bytesF64(val, le);
+                  case Type.F64_ARRAY:
+                      return mapcat((x) => bytesF64(x, le), <number[]>x[1]);
+                  case Type.STR:
+                      return utf8Encode(<string>x[1]);
                   default:
                       unsupported(`invalid struct item: ${x[0]}`);
               }
