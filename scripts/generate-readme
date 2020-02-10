@@ -172,6 +172,11 @@ try {
         }
     };
 
+    const packageBanner = (name) =>
+        `![${name}](https://media.thi.ng/umbrella/banners/thing-${shortName(
+            name
+        )}.svg?${(Date.now() / 1000) | 0})`;
+
     const blogPosts = (posts) => {
         if (!posts) return;
         return [
@@ -238,6 +243,7 @@ try {
         "pkg.description": () => packageDesc(PKG),
         "pkg.deps": () => packageDeps(PKG),
         "pkg.size": () => packageSize(),
+        "pkg.banner": () => packageBanner(PKG.name),
         status: () => packageStatus(META.status),
         examples: () => examples(PKG.name),
         supportPackages: () => supportPackages(PKG.name),
