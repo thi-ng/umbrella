@@ -82,7 +82,14 @@ fs.writeFileSync(
             ],
             [
                 "body.measure.center.sans-serif.lh-copy",
-                ["h1", "docs.thi.ng"],
+                [
+                    "img.db.mt3",
+                    {
+                        alt: "docs.thi.ng",
+                        src:
+                            "https://media.thi.ng/umbrella/banners/docsthing.svg"
+                    }
+                ],
                 [
                     "p",
                     "this site hosts auto-generated documentation for the following projects:"
