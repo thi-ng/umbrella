@@ -14,6 +14,7 @@ import {
     take
 } from "@thi.ng/transducers";
 import {
+    asBytes,
     BinStructItem,
     bytes,
     u16,
@@ -93,6 +94,24 @@ export const wavByteArray = (spec: WavSpec, src: Iterable<number>) => {
         new Uint8Array(
             HEADER_SIZE + spec.length * spec.channels * (spec.bits >> 3)
         ),
+        concat(
+            wavHeader(spec),
+            iterator(comp(take(spec.length * spec.channels), map(convert)), src)
+        )
+    );
+};
+
+/**
+ * Similar to {@link wavByteArray}, but yields an iterator of the result
+ * bytes, not an actual byte array.
+ *
+ * @param spec
+ * @param src
+ */
+export const wavBytes = (spec: WavSpec, src: Iterable<number>) => {
+    const convert = CONVERTERS[spec.bits];
+    assert(!!convert, `unsupported bits/sample: ${spec.bits}`);
+    return asBytes(
         concat(
             wavHeader(spec),
             iterator(comp(take(spec.length * spec.channels), map(convert)), src)
