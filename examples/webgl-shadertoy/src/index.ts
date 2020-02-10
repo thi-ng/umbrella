@@ -22,7 +22,11 @@ import {
 } from "@thi.ng/shader-ast";
 import { aspectCorrectedUV, fit1101 } from "@thi.ng/shader-ast-stdlib";
 import { glCanvas } from "@thi.ng/webgl";
-import { MainImageFn, shaderToy } from "@thi.ng/webgl-shadertoy";
+import { MainImageFn, shaderToy, ShaderToyUniforms } from "@thi.ng/webgl-shadertoy";
+
+interface DemoUniforms extends ShaderToyUniforms {
+    bright: FloatSym;
+}
 
 // main shader function, supplied to `shaderToy` below
 // the 2 args given are objects containing GLSL builtin vars and uniforms
@@ -30,7 +34,7 @@ import { MainImageFn, shaderToy } from "@thi.ng/webgl-shadertoy";
 // see:
 // https://github.com/thi-ng/umbrella/blob/master/packages/shader-ast-glsl/src/api.ts#L22
 // https://github.com/thi-ng/umbrella/blob/master/packages/webgl-shadertoy/src/api.ts#L13
-const mainImage: MainImageFn = (gl, unis) => {
+const mainImage: MainImageFn<DemoUniforms> = (gl, unis) => {
     // predeclare local vars / symbols
     let uv: Vec2Sym;
     let mp: Vec2Sym;
@@ -56,7 +60,7 @@ const mainImage: MainImageFn = (gl, unis) => {
                 vec3(fit1101(min(d1, d2))),
                 mix(
                     vec3(1),
-                    vec3(d1, 0, d2),
+                    mul(vec3(d1, 0, d2), unis.bright),
                     float(eq(unis.mouseButtons, int(1)))
                 )
             )
@@ -78,7 +82,11 @@ const canvas = glCanvas({
 const toy = shaderToy({
     canvas: canvas.canvas,
     gl: canvas.gl,
-    main: mainImage
+    main: mainImage,
+    uniforms: {
+        // brightness factor for colored rings
+        bright: ["float", 1]
+    }
 });
 
 toy.start();
