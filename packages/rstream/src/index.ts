@@ -19,6 +19,7 @@ export * from "./from/raf";
 export * from "./from/view";
 export * from "./from/worker";
 
+export * from "./subs/asidechain";
 export * from "./subs/bisect";
 export * from "./subs/post-worker";
 export * from "./subs/resolve";

@@ -2,6 +2,7 @@ import { Predicate } from "@thi.ng/api";
 import { CommonOpts, ISubscribable, State } from "../api";
 import { Subscription } from "../subscription";
 import { optsWithID } from "../utils/idgen";
+import { ASidechain } from "./asidechain";
 
 export interface SidechainPartitionOpts<T> extends CommonOpts {
     pred: Predicate<T>;
@@ -39,16 +40,15 @@ export const sidechainPartition = <A, B>(
     opts?: Partial<SidechainPartitionOpts<B>>
 ): Subscription<A, A[]> => new SidechainPartition<A, B>(side, opts);
 
-export class SidechainPartition<A, B> extends Subscription<A, A[]> {
-    sideSub: Subscription<B, B>;
-    buf: A[];
+export class SidechainPartition<T, S> extends ASidechain<T, S, T[]> {
+    buf: T[];
 
     constructor(
-        side: ISubscribable<B>,
-        opts?: Partial<SidechainPartitionOpts<B>>
+        side: ISubscribable<S>,
+        opts?: Partial<SidechainPartitionOpts<S>>
     ) {
         opts = optsWithID("sidepart", opts);
-        super(undefined, opts);
+        super(opts);
         this.buf = [];
         const pred = opts.pred || (() => true);
         const $this = this;
@@ -69,22 +69,9 @@ export class SidechainPartition<A, B> extends Subscription<A, A[]> {
         });
     }
 
-    unsubscribe(sub?: Subscription<any, any>) {
-        const res = super.unsubscribe(sub);
-        if (!sub || !this.subs.length) {
-            this.sideSub.unsubscribe();
-        }
-        return res;
-    }
-
-    next(x: A) {
+    next(x: T) {
         if (this.state < State.DONE) {
             this.buf.push(x);
         }
-    }
-
-    done() {
-        this.sideSub.unsubscribe();
-        super.done();
     }
 }

@@ -1,7 +1,8 @@
 import { Predicate } from "@thi.ng/api";
-import { CommonOpts, ISubscribable } from "../api";
+import { CommonOpts, ISubscribable, State } from "../api";
 import { Subscription } from "../subscription";
 import { optsWithID } from "../utils/idgen";
+import { ASidechain } from "./asidechain";
 
 export interface SidechainToggleOpts<T> extends CommonOpts {
     pred: Predicate<T>;
@@ -41,16 +42,15 @@ export const sidechainToggle = <A, B>(
     opts?: Partial<SidechainToggleOpts<B>>
 ): Subscription<A, A> => new SidechainToggle(side, opts);
 
-export class SidechainToggle<A, B> extends Subscription<A, A> {
-    sideSub: Subscription<B, B>;
+export class SidechainToggle<T, S> extends ASidechain<T, S, T> {
     isActive: boolean;
 
     constructor(
-        side: ISubscribable<B>,
-        opts?: Partial<SidechainToggleOpts<B>>
+        side: ISubscribable<S>,
+        opts?: Partial<SidechainToggleOpts<S>>
     ) {
         opts = optsWithID("sidetoggle", opts);
-        super(undefined, opts);
+        super(opts);
         this.isActive = !!opts.initial;
         const pred = opts.pred || (() => true);
         const $this = this;
@@ -66,22 +66,9 @@ export class SidechainToggle<A, B> extends Subscription<A, A> {
         });
     }
 
-    unsubscribe(sub?: Subscription<any, any>) {
-        const res = super.unsubscribe(sub);
-        if (!sub || !this.subs.length) {
-            this.sideSub.unsubscribe();
-        }
-        return res;
-    }
-
-    next(x: A) {
-        if (this.isActive) {
+    next(x: T) {
+        if (this.isActive && this.state < State.DONE) {
             super.next(x);
         }
-    }
-
-    done() {
-        super.done();
-        this.sideSub.unsubscribe();
     }
 }
