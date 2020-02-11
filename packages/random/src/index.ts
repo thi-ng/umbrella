@@ -7,4 +7,5 @@ export * from "./xsadd";
 
 export * from "./random-bytes";
 export * from "./random-id";
+export * from "./uuid";
 export * from "./weighted-random";
