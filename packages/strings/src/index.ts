@@ -17,4 +17,5 @@ export * from "./splice";
 export * from "./truncate";
 export * from "./truncate-left";
 export * from "./units";
+export * from "./uuid";
 export * from "./wrap";
