@@ -4,7 +4,7 @@ import { defMath } from "./internal/codegen";
 
 /**
  * Componentwise matrix division. If `out` is not given, writes result
- * in `a`.
+ * in `a`. Both input matrices MUST be of same size.
  *
  * out = a / b
  *

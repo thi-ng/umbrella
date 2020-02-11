@@ -3,8 +3,8 @@ import { MatOpMN, MultiMatOpMN } from "./api";
 import { defMathN } from "./internal/codegen";
 
 /**
- * Subtracts matrix componentwise with single scalar. If `out` is not
- * given, writes result in `mat`.
+ * Componentwise scalar subtraction. If `out` is not given, writes
+ * result in `mat`.
  *
  * out = mat - n
  *
