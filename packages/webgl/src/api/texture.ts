@@ -646,22 +646,99 @@ export type ReadableTextureFormat =
 // );
 
 export interface TextureOpts {
+    /**
+     * If this value is null or a typedarray then size options (i.e.
+     * `width`, `height`, `depth`) MUST be given (the latter only if
+     * `target` is TEXTURE_3D).
+     */
     image: ArrayBufferView | TexImageSource | null;
+    /**
+     * @defaultValue TextureTarget.TEXTURE_2D
+     */
     target: TextureTarget;
+    /**
+     * Only needed if overriding `format`'s default type.
+     */
     type: TextureType;
+    /**
+     * @defaultValue TextureFilter.NEAREST
+     */
     filter: TextureFilter | [TextureFilter, TextureFilter?];
+    /**
+     * @defaultValue TextureRepeat.CLAMP
+     */
     wrap: TextureRepeat | [TextureRepeat, TextureRepeat?, TextureRepeat?];
+    /**
+     * Min/max level-of-detail values.
+     *
+     * @defaultValue none
+     */
     lod: [number, number?];
+    /**
+     * Min/max mipmap levels (ints)
+     *
+     * @defaultValue none
+     */
     minMaxLevel: [number, number];
+    /**
+     * Mipmap level to configure (e.g. if providing custom mipmaps)
+     *
+     * @defaultValue 0
+     */
     level: number;
+    /**
+     * @defaultValue TextureFormat.RGBA
+     */
     format: TextureFormat;
+    /**
+     * Texture width in pixels. Only used if `image` is null or a typed
+     * array.
+     *
+     * @defaultValue none
+     */
     width: number;
+    /**
+     * Texture height in pixels. Only used if `image` is null or a typed
+     * array.
+     *
+     * @defaultValue none
+     */
     height: number;
+    /**
+     * Texture depth in pixels. Only used if `target` is
+     * `TextureTarget.TEXTURE_3D`
+     *
+     * @defaultValue none
+     */
     depth: number;
+    /**
+     * True, if mipmaps should be generated.
+     *
+     * @defaultValue false
+     */
     mipmap: boolean;
+    /**
+     * True, if source data should be flipped along its vertical axis.
+     *
+     * @defaultValue none
+     */
     flip: boolean;
+    /**
+     * True, if the source data's color channels should be
+     * pre-multiplied with the alpha channel.
+     *
+     * @defaultValue none
+     */
     premultiply: boolean;
+    /**
+     * True, if given `image` is only defining a sub-image (i.e. partial
+     * update of a previously configured texture). If true, also uses
+     * `pos` option.
+     */
     sub: boolean;
+    /**
+     * Pixel position offset for `sub` image updates.
+     */
     pos: number[];
 }
 

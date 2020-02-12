@@ -3,8 +3,10 @@ import { isArray } from "@thi.ng/checks";
 import {
     ITexture,
     TEX_FORMATS,
+    TextureFilter,
     TextureFormat,
     TextureOpts,
+    TextureRepeat,
     TextureTarget,
     TextureType
 } from "./api/texture";
@@ -143,9 +145,14 @@ export class Texture implements ITexture {
                                 (<any>opts.image).height
                             ];
                         }
-                        gl.texImage2D(target, level, format, baseFormat, type, <
-                            TexImageSource
-                        >opts.image);
+                        gl.texImage2D(
+                            target,
+                            level,
+                            format,
+                            baseFormat,
+                            type,
+                            <TexImageSource>opts.image
+                        );
                     }
                 }
             }
@@ -153,38 +160,34 @@ export class Texture implements ITexture {
 
         opts.mipmap && gl.generateMipmap(target);
 
-        if (opts.filter) {
-            const flt = opts.filter;
-            if (isArray(flt)) {
-                t1 = flt[0];
-                t2 = flt[1]!;
-            } else {
-                t1 = t2 = flt;
-            }
-            t1 && gl.texParameteri(target, gl.TEXTURE_MIN_FILTER, t1);
-            t2 && gl.texParameteri(target, gl.TEXTURE_MAG_FILTER, t2);
+        const flt = opts.filter || TextureFilter.NEAREST;
+        if (isArray(flt)) {
+            t1 = flt[0];
+            t2 = flt[1]!;
+        } else {
+            t1 = t2 = flt;
         }
+        t1 && gl.texParameteri(target, gl.TEXTURE_MIN_FILTER, t1);
+        t2 && gl.texParameteri(target, gl.TEXTURE_MAG_FILTER, t2);
 
-        if (opts.wrap) {
-            const wrap = opts.wrap;
-            if (isArray(wrap)) {
-                t1 = wrap[0];
-                t2 = wrap[1]!;
-                t3 = wrap[2]!;
-            } else {
-                t1 = t2 = t3 = wrap;
-            }
-            t1 && gl.texParameteri(target, gl.TEXTURE_WRAP_S, t1);
-            t2 && gl.texParameteri(target, gl.TEXTURE_WRAP_T, t2);
-            t3 &&
-                isGL2 &&
-                target === (<WebGL2RenderingContext>gl).TEXTURE_3D &&
-                gl.texParameteri(
-                    target,
-                    (<WebGL2RenderingContext>gl).TEXTURE_WRAP_R,
-                    t3
-                );
+        const wrap = opts.wrap || TextureRepeat.CLAMP;
+        if (isArray(wrap)) {
+            t1 = wrap[0];
+            t2 = wrap[1]!;
+            t3 = wrap[2]!;
+        } else {
+            t1 = t2 = t3 = wrap;
         }
+        t1 && gl.texParameteri(target, gl.TEXTURE_WRAP_S, t1);
+        t2 && gl.texParameteri(target, gl.TEXTURE_WRAP_T, t2);
+        t3 &&
+            isGL2 &&
+            target === (<WebGL2RenderingContext>gl).TEXTURE_3D &&
+            gl.texParameteri(
+                target,
+                (<WebGL2RenderingContext>gl).TEXTURE_WRAP_R,
+                t3
+            );
 
         if (opts.lod) {
             const [t1, t2] = opts.lod;
