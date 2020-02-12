@@ -3,21 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@2.0.0...@thi.ng/dsp@2.0.1) (2020-01-26)
-
-**Note:** Version bump only for package @thi.ng/dsp
-
-
-
-
-
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@1.0.18...@thi.ng/dsp@2.0.0) (2020-01-24)
-
 
 ### Code Refactoring
 
 * **dsp:** remove obsolete classes ([aa24c1e](https://github.com/thi-ng/umbrella/commit/aa24c1e4d9272f6ed468c011c00ab7c1b3e6c4f7))
-
 
 ### Features
 
@@ -38,132 +28,22 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **dsp:** update DelayLine ctor, freqBin, update pkg ([228a81e](https://github.com/thi-ng/umbrella/commit/228a81e951203e4e215de825d2474ec302290727))
 * **dsp:** update gens to support clamping ([fe8f6f3](https://github.com/thi-ng/umbrella/commit/fe8f6f347b9a9a618cfd30b95739f9400cc197d6))
 
-
 ### BREAKING CHANGES
 
 * **dsp:** remove obsolete Oscillator/AMFMOscillator
 (superceded by osc()/modOsc())
 
-
-
-
-
-## [1.0.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@1.0.17...@thi.ng/dsp@1.0.18) (2019-11-30)
-
-**Note:** Version bump only for package @thi.ng/dsp
-
-
-
-
-
-## [1.0.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@1.0.16...@thi.ng/dsp@1.0.17) (2019-11-09)
-
-**Note:** Version bump only for package @thi.ng/dsp
-
-
-
-
-
-## [1.0.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@1.0.15...@thi.ng/dsp@1.0.16) (2019-09-21)
-
-**Note:** Version bump only for package @thi.ng/dsp
-
-
-
-
-
-## [1.0.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@1.0.14...@thi.ng/dsp@1.0.15) (2019-08-21)
-
-**Note:** Version bump only for package @thi.ng/dsp
-
-
-
-
-
-## [1.0.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@1.0.13...@thi.ng/dsp@1.0.14) (2019-07-31)
-
-**Note:** Version bump only for package @thi.ng/dsp
-
-
-
-
-
-## [1.0.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@1.0.12...@thi.ng/dsp@1.0.13) (2019-07-12)
-
-**Note:** Version bump only for package @thi.ng/dsp
-
-
-
-
-
-## [1.0.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@1.0.11...@thi.ng/dsp@1.0.12) (2019-07-07)
-
-**Note:** Version bump only for package @thi.ng/dsp
-
-
-
-
-
-## [1.0.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@1.0.10...@thi.ng/dsp@1.0.11) (2019-05-22)
-
-**Note:** Version bump only for package @thi.ng/dsp
-
-
-
-
-
 ## [1.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@1.0.9...@thi.ng/dsp@1.0.10) (2019-04-26)
-
 
 ### Bug Fixes
 
 * **dsp:** fix tri() oscillator for negative phases ([c67c733](https://github.com/thi-ng/umbrella/commit/c67c733))
 
-
-
-
-
-## [1.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@1.0.8...@thi.ng/dsp@1.0.9) (2019-04-26)
-
-**Note:** Version bump only for package @thi.ng/dsp
-
-
-
-
-
-## [1.0.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@1.0.7...@thi.ng/dsp@1.0.8) (2019-04-24)
-
-**Note:** Version bump only for package @thi.ng/dsp
-
-
-
-
-
-## [1.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@1.0.6...@thi.ng/dsp@1.0.7) (2019-04-02)
-
-**Note:** Version bump only for package @thi.ng/dsp
-
-
-
-
-
-## [1.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@1.0.5...@thi.ng/dsp@1.0.6) (2019-03-28)
-
-**Note:** Version bump only for package @thi.ng/dsp
-
-
-
-
-
-
-
 # [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@0.1.3...@thi.ng/dsp@1.0.0) (2019-01-21)
-
 
 ### Build System
 
 * update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
-
 
 ### BREAKING CHANGES
 
@@ -175,9 +55,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
   (not individual files anymore). tree shaking in user land will get rid of
   all unused imported symbols.
 
-
 # 0.1.0 (2018-10-17)
-
 
 ### Features
 

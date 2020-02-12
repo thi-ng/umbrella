@@ -5,145 +5,31 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.1.15...@thi.ng/random@1.2.0) (2020-01-26)
 
-
 ### Features
 
 * **random:** add randomBytes() wrapper ([c536bcd](https://github.com/thi-ng/umbrella/commit/c536bcd83c766414e349f6b82494ace9888ac2ba))
 
-
-
-
-
 ## [1.1.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.1.14...@thi.ng/random@1.1.15) (2020-01-24)
-
 
 ### Performance Improvements
 
 * **random:** minor update ARandom.norm() ([babbbaa](https://github.com/thi-ng/umbrella/commit/babbbaa12b5be09415f420e7559fa5c8bb76f802))
 
-
-
-
-
-## [1.1.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.1.13...@thi.ng/random@1.1.14) (2019-11-30)
-
-**Note:** Version bump only for package @thi.ng/random
-
-
-
-
-
-## [1.1.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.1.12...@thi.ng/random@1.1.13) (2019-11-09)
-
-**Note:** Version bump only for package @thi.ng/random
-
-
-
-
-
-## [1.1.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.1.11...@thi.ng/random@1.1.12) (2019-09-21)
-
-**Note:** Version bump only for package @thi.ng/random
-
-
-
-
-
-## [1.1.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.1.10...@thi.ng/random@1.1.11) (2019-08-21)
-
-**Note:** Version bump only for package @thi.ng/random
-
-
-
-
-
-## [1.1.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.1.9...@thi.ng/random@1.1.10) (2019-07-31)
-
-**Note:** Version bump only for package @thi.ng/random
-
-
-
-
-
-## [1.1.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.1.8...@thi.ng/random@1.1.9) (2019-07-12)
-
-**Note:** Version bump only for package @thi.ng/random
-
-
-
-
-
-## [1.1.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.1.7...@thi.ng/random@1.1.8) (2019-07-07)
-
-**Note:** Version bump only for package @thi.ng/random
-
-
-
-
-
-## [1.1.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.1.6...@thi.ng/random@1.1.7) (2019-05-22)
-
-**Note:** Version bump only for package @thi.ng/random
-
-
-
-
-
-## [1.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.1.5...@thi.ng/random@1.1.6) (2019-04-26)
-
-**Note:** Version bump only for package @thi.ng/random
-
-
-
-
-
-## [1.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.1.4...@thi.ng/random@1.1.5) (2019-04-24)
-
-**Note:** Version bump only for package @thi.ng/random
-
-
-
-
-
-## [1.1.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.1.3...@thi.ng/random@1.1.4) (2019-04-02)
-
-**Note:** Version bump only for package @thi.ng/random
-
-
-
-
-
-## [1.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.1.2...@thi.ng/random@1.1.3) (2019-03-28)
-
-**Note:** Version bump only for package @thi.ng/random
-
-
-
-
-
-
-
 # [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.0.2...@thi.ng/random@1.1.0) (2019-02-15)
-
 
 ### Bug Fixes
 
 * **random:** add opt scale arg to IRandom.float() ([5a7e448](https://github.com/thi-ng/umbrella/commit/5a7e448))
 
-
 ### Features
 
 * **random:** add randomID() & weightedRandom() ([f719724](https://github.com/thi-ng/umbrella/commit/f719724))
 
-
-
 # [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@0.1.1...@thi.ng/random@1.0.0) (2019-01-21)
-
 
 ### Build System
 
 * update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
-
 
 ### BREAKING CHANGES
 
@@ -155,9 +41,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
   (not individual files anymore). tree shaking in user land will get rid of
   all unused imported symbols.
 
-
 # 0.1.0 (2018-11-24)
-
 
 ### Features
 

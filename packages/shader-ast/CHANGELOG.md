@@ -3,113 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.3.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.3.4...@thi.ng/shader-ast@0.3.5) (2020-01-26)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.3.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.3.3...@thi.ng/shader-ast@0.3.4) (2020-01-24)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.3.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.3.2...@thi.ng/shader-ast@0.3.3) (2019-11-30)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.3.1...@thi.ng/shader-ast@0.3.2) (2019-11-09)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.3.0...@thi.ng/shader-ast@0.3.1) (2019-09-21)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.2.3...@thi.ng/shader-ast@0.3.0) (2019-08-21)
-
 
 ### Features
 
 * **shader-ast:** add modf(), isnan(), isinf() built-ins ([7fae67b](https://github.com/thi-ng/umbrella/commit/7fae67b))
 
-
-
-
-
 ## [0.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.2.2...@thi.ng/shader-ast@0.2.3) (2019-08-17)
-
 
 ### Bug Fixes
 
 * **shader-ast:** update atan built-in handling ([9f0c739](https://github.com/thi-ng/umbrella/commit/9f0c739))
 
-
-
-
-
-## [0.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.2.1...@thi.ng/shader-ast@0.2.2) (2019-08-16)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.2.0...@thi.ng/shader-ast@0.2.1) (2019-07-31)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.1.1...@thi.ng/shader-ast@0.2.0) (2019-07-12)
-
 
 ### Bug Fixes
 
 * **shader-ast:** builtin `not` (bvec) used wrong internal fn name ([237c6f3](https://github.com/thi-ng/umbrella/commit/237c6f3))
 
-
 ### Features
 
 * **shader-ast:** support number casts from bools ([119f257](https://github.com/thi-ng/umbrella/commit/119f257))
 
-
-
-
-
 ## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.1.0...@thi.ng/shader-ast@0.1.1) (2019-07-08)
-
 
 ### Bug Fixes
 
 * **shader-ast:** fix [#98](https://github.com/thi-ng/umbrella/issues/98), update defn() arg lists, add/update docs ([bcfbcfd](https://github.com/thi-ng/umbrella/commit/bcfbcfd))
 
-
-
-
-
 # 0.1.0 (2019-07-07)
-
 
 ### Bug Fixes
 
@@ -120,7 +42,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **shader-ast:** update allChildren() ([1711064](https://github.com/thi-ng/umbrella/commit/1711064))
 * **shader-ast:** use GLSL style mod in JS codegen ([b4ca8e4](https://github.com/thi-ng/umbrella/commit/b4ca8e4))
 * **shader-ast:** use JS op2 info hints to delegate ([162c1ae](https://github.com/thi-ng/umbrella/commit/162c1ae))
-
 
 ### Features
 

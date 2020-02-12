@@ -5,100 +5,31 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.5.1...@thi.ng/math@1.6.0) (2020-01-24)
 
-
 ### Features
 
 * **math:** add clamp05, update wrapOnce, wrap01, wrap11 ([19af252](https://github.com/thi-ng/umbrella/commit/19af2527a3c7afee4f829e36bf06acaeaf045be7))
 * **math:** add expFactor(), update wrap/wrapOnce() ([bb07348](https://github.com/thi-ng/umbrella/commit/bb07348da2e252641c1bc4de1e577451ead3607b))
 
-
-
-
-
-## [1.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.5.0...@thi.ng/math@1.5.1) (2019-11-30)
-
-**Note:** Version bump only for package @thi.ng/math
-
-
-
-
-
 # [1.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.4.2...@thi.ng/math@1.5.0) (2019-11-09)
-
 
 ### Features
 
 * **math:** add mixCubicHermite & tangent fns ([d6b4b37](https://github.com/thi-ng/umbrella/commit/d6b4b3710b80fa1366cb40c193ad745bc63d4253))
 
-
-
-
-
-## [1.4.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.4.1...@thi.ng/math@1.4.2) (2019-07-31)
-
-**Note:** Version bump only for package @thi.ng/math
-
-
-
-
-
-## [1.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.4.0...@thi.ng/math@1.4.1) (2019-07-12)
-
-**Note:** Version bump only for package @thi.ng/math
-
-
-
-
-
 # [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.3.0...@thi.ng/math@1.4.0) (2019-07-07)
-
 
 ### Features
 
 * **math:** add signed/unsigned int math ops ([518d79a](https://github.com/thi-ng/umbrella/commit/518d79a))
 
-
-
-
-
 # [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.2.3...@thi.ng/math@1.3.0) (2019-05-22)
-
 
 ### Features
 
 * **math:** add extrema & crossing fns and Crossing enum ([e102f39](https://github.com/thi-ng/umbrella/commit/e102f39))
 * **math:** add sigmoid / sigmoid11 fns ([3f085a3](https://github.com/thi-ng/umbrella/commit/3f085a3))
 
-
-
-
-
-## [1.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.2.2...@thi.ng/math@1.2.3) (2019-04-24)
-
-**Note:** Version bump only for package @thi.ng/math
-
-
-
-
-
-## [1.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.2.1...@thi.ng/math@1.2.2) (2019-04-02)
-
-**Note:** Version bump only for package @thi.ng/math
-
-
-
-
-
-## [1.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.2.0...@thi.ng/math@1.2.1) (2019-03-28)
-
-**Note:** Version bump only for package @thi.ng/math
-
-
-
-
-
 # [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.1.1...@thi.ng/math@1.2.0) (2019-03-18)
-
 
 ### Features
 
@@ -106,10 +37,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **math:** add cos/sin approximations, loc(), add docstrings ([78ed751](https://github.com/thi-ng/umbrella/commit/78ed751))
 * **math:** more trigonometry ([b5e1c02](https://github.com/thi-ng/umbrella/commit/b5e1c02))
 
-
-
 # [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.0.1...@thi.ng/math@1.1.0) (2019-02-05)
-
 
 ### Features
 
@@ -117,15 +45,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **math:** add PHI const ([57d4488](https://github.com/thi-ng/umbrella/commit/57d4488))
 * **math:** add simplifyRatio() ([31e369b](https://github.com/thi-ng/umbrella/commit/31e369b))
 
-
-
 # [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@0.2.2...@thi.ng/math@1.0.0) (2019-01-21)
-
 
 ### Build System
 
 * update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
-
 
 ### Features
 
@@ -133,7 +57,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **math:** add constants ([8fa05c3](https://github.com/thi-ng/umbrella/commit/8fa05c3))
 * **math:** add cossin(), add opt scale arg for sincos() ([0043fb5](https://github.com/thi-ng/umbrella/commit/0043fb5))
 * **math:** update eqDelta w/ adaptive eps, rename old => eqDeltaFixed ([5018009](https://github.com/thi-ng/umbrella/commit/5018009))
-
 
 ### BREAKING CHANGES
 
@@ -145,32 +68,20 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
   (not individual files anymore). tree shaking in user land will get rid of
   all unused imported symbols.
 
-
 ## [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@0.2.0...@thi.ng/math@0.2.1) (2018-11-20)
-
 
 ### Bug Fixes
 
 * **math:** fix [#60](https://github.com/thi-ng/umbrella/issues/60), add range check for norm() ([143c47c](https://github.com/thi-ng/umbrella/commit/143c47c))
 
-
-
-
-
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@0.1.0...@thi.ng/math@0.2.0) (2018-10-21)
-
 
 ### Features
 
 * **math:** add sincos() & roundEps() ([f891c41](https://github.com/thi-ng/umbrella/commit/f891c41))
 * **math:** migrate mixCubic()/mixQuadratic() from geom package ([4a47daa](https://github.com/thi-ng/umbrella/commit/4a47daa))
 
-
-
-
-
 # 0.1.0 (2018-10-17)
-
 
 ### Features
 

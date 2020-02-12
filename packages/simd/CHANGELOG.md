@@ -3,37 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/simd@0.1.2...@thi.ng/simd@0.1.3) (2020-01-26)
-
-**Note:** Version bump only for package @thi.ng/simd
-
-
-
-
-
-## [0.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/simd@0.1.1...@thi.ng/simd@0.1.2) (2020-01-24)
-
-**Note:** Version bump only for package @thi.ng/simd
-
-
-
-
-
-## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/simd@0.1.0...@thi.ng/simd@0.1.1) (2019-11-30)
-
-**Note:** Version bump only for package @thi.ng/simd
-
-
-
-
-
 # 0.1.0 (2019-11-09)
-
 
 ### Bug Fixes
 
 * **simd:** add missing wasm exports ([f998f88](https://github.com/thi-ng/umbrella/commit/f998f883a10e1a663da7213fed49948c005fcdf1))
-
 
 ### Features
 

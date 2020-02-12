@@ -3,70 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/porter-duff@0.1.6...@thi.ng/porter-duff@0.1.7) (2020-01-26)
-
-**Note:** Version bump only for package @thi.ng/porter-duff
-
-
-
-
-
-## [0.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/porter-duff@0.1.5...@thi.ng/porter-duff@0.1.6) (2020-01-24)
-
-**Note:** Version bump only for package @thi.ng/porter-duff
-
-
-
-
-
-## [0.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/porter-duff@0.1.4...@thi.ng/porter-duff@0.1.5) (2019-11-30)
-
-**Note:** Version bump only for package @thi.ng/porter-duff
-
-
-
-
-
-## [0.1.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/porter-duff@0.1.3...@thi.ng/porter-duff@0.1.4) (2019-11-09)
-
-**Note:** Version bump only for package @thi.ng/porter-duff
-
-
-
-
-
-## [0.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/porter-duff@0.1.2...@thi.ng/porter-duff@0.1.3) (2019-09-21)
-
-**Note:** Version bump only for package @thi.ng/porter-duff
-
-
-
-
-
-## [0.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/porter-duff@0.1.1...@thi.ng/porter-duff@0.1.2) (2019-08-21)
-
-**Note:** Version bump only for package @thi.ng/porter-duff
-
-
-
-
-
-## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/porter-duff@0.1.0...@thi.ng/porter-duff@0.1.1) (2019-07-31)
-
-**Note:** Version bump only for package @thi.ng/porter-duff
-
-
-
-
-
 # 0.1.0 (2019-07-31)
-
 
 ### Bug Fixes
 
 * **porter-duff:** re-add missing channel blend factor (porterDuffInt) ([cf94597](https://github.com/thi-ng/umbrella/commit/cf94597))
 * **porter-duff:** use int version for PLUS_I ([ccb29dc](https://github.com/thi-ng/umbrella/commit/ccb29dc))
-
 
 ### Features
 

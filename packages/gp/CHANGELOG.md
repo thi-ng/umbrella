@@ -3,29 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/gp@0.1.1...@thi.ng/gp@0.1.2) (2020-01-26)
-
-**Note:** Version bump only for package @thi.ng/gp
-
-
-
-
-
-## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/gp@0.1.0...@thi.ng/gp@0.1.1) (2020-01-24)
-
-**Note:** Version bump only for package @thi.ng/gp
-
-
-
-
-
 # 0.1.0 (2019-11-30)
-
 
 ### Bug Fixes
 
 * **gp:** update ASTNode as recursive type (TS3.7) ([33fbd7f](https://github.com/thi-ng/umbrella/commit/33fbd7f152df370270690e5b1381a86f647f9b6b))
-
 
 ### Features
 

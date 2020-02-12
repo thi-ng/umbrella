@@ -3,91 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/leb128@1.0.2...@thi.ng/leb128@1.0.3) (2020-01-26)
-
-**Note:** Version bump only for package @thi.ng/leb128
-
-
-
-
-
-## [1.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/leb128@1.0.1...@thi.ng/leb128@1.0.2) (2020-01-24)
-
-**Note:** Version bump only for package @thi.ng/leb128
-
-
-
-
-
 ## [1.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/leb128@1.0.0...@thi.ng/leb128@1.0.1) (2019-11-30)
-
 
 ### Bug Fixes
 
 * **leb128:** add type hints ([18a4380](https://github.com/thi-ng/umbrella/commit/18a4380336604f4a8fc890296d5c9dce5d9c0cd2))
 
-
-
-
-
 # [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/leb128@0.1.5...@thi.ng/leb128@1.0.0) (2019-11-09)
-
 
 ### Features
 
 * **leb128:** no more async init, remove READY promise, update tests ([2044583](https://github.com/thi-ng/umbrella/commit/20445837f5af1891703e1c51fe8db56e69f11c86))
 
-
 ### BREAKING CHANGES
 
 * **leb128:** switch to synchronous initialization
 
-
-
-
-
-## [0.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/leb128@0.1.4...@thi.ng/leb128@0.1.5) (2019-09-21)
-
-**Note:** Version bump only for package @thi.ng/leb128
-
-
-
-
-
-## [0.1.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/leb128@0.1.3...@thi.ng/leb128@0.1.4) (2019-08-21)
-
-**Note:** Version bump only for package @thi.ng/leb128
-
-
-
-
-
-## [0.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/leb128@0.1.2...@thi.ng/leb128@0.1.3) (2019-08-16)
-
-**Note:** Version bump only for package @thi.ng/leb128
-
-
-
-
-
-## [0.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/leb128@0.1.1...@thi.ng/leb128@0.1.2) (2019-07-31)
-
-**Note:** Version bump only for package @thi.ng/leb128
-
-
-
-
-
-## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/leb128@0.1.0...@thi.ng/leb128@0.1.1) (2019-07-12)
-
-**Note:** Version bump only for package @thi.ng/leb128
-
-
-
-
-
 # 0.1.0 (2019-07-07)
-
 
 ### Features
 

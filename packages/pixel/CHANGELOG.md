@@ -3,75 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.1.7...@thi.ng/pixel@0.1.8) (2020-01-26)
-
-**Note:** Version bump only for package @thi.ng/pixel
-
-
-
-
-
-## [0.1.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.1.6...@thi.ng/pixel@0.1.7) (2020-01-24)
-
-**Note:** Version bump only for package @thi.ng/pixel
-
-
-
-
-
-## [0.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.1.5...@thi.ng/pixel@0.1.6) (2019-11-30)
-
-**Note:** Version bump only for package @thi.ng/pixel
-
-
-
-
-
-## [0.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.1.4...@thi.ng/pixel@0.1.5) (2019-11-09)
-
-**Note:** Version bump only for package @thi.ng/pixel
-
-
-
-
-
 ## [0.1.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.1.3...@thi.ng/pixel@0.1.4) (2019-09-21)
-
 
 ### Bug Fixes
 
 * **pixel:** clamp values in PackedChannel.setFloat() ([ce78467](https://github.com/thi-ng/umbrella/commit/ce78467))
 
-
-
-
-
-## [0.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.1.2...@thi.ng/pixel@0.1.3) (2019-08-21)
-
-**Note:** Version bump only for package @thi.ng/pixel
-
-
-
-
-
-## [0.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.1.1...@thi.ng/pixel@0.1.2) (2019-08-16)
-
-**Note:** Version bump only for package @thi.ng/pixel
-
-
-
-
-
-## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.1.0...@thi.ng/pixel@0.1.1) (2019-07-31)
-
-**Note:** Version bump only for package @thi.ng/pixel
-
-
-
-
-
 # 0.1.0 (2019-07-31)
-
 
 ### Bug Fixes
 
@@ -80,7 +18,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **pixel:** update 16bit formats & handling in getChannel ([aa15179](https://github.com/thi-ng/umbrella/commit/aa15179))
 * **pixel:** update clampRegion(), adjust src pos if dest is outside ([bb6ba47](https://github.com/thi-ng/umbrella/commit/bb6ba47))
 * **pixel:** update prepRegions() ([ad8d2d7](https://github.com/thi-ng/umbrella/commit/ad8d2d7))
-
 
 ### Features
 

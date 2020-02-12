@@ -3,57 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@0.2.3...@thi.ng/webgl@0.2.4) (2020-01-26)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
 ## [0.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@0.2.2...@thi.ng/webgl@0.2.3) (2020-01-24)
-
 
 ### Bug Fixes
 
 * **webgl:** webgl1 depth texture ([5c86165](https://github.com/thi-ng/umbrella/commit/5c861659c353076d01153d3258d3d98bc5113a1c))
 
-
-
-
-
 ## [0.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@0.2.1...@thi.ng/webgl@0.2.2) (2019-11-30)
-
 
 ### Bug Fixes
 
 * **webgl:** fix PHONG shader preset, minor update LAMBERT ([792379f](https://github.com/thi-ng/umbrella/commit/792379fd507cbc9ef684a1b255f3152cb55092b9))
 * **webgl:** use LOGGER for warnings ([14d5025](https://github.com/thi-ng/umbrella/commit/14d502556717e1e0aded784294401ec0afc6d733))
 
-
-
-
-
 ## [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@0.2.0...@thi.ng/webgl@0.2.1) (2019-11-09)
-
 
 ### Bug Fixes
 
 * **webgl:** add LOGGER, update initUniforms() ([4719110](https://github.com/thi-ng/umbrella/commit/471911084c8db79930cf273f222f345318671953))
 * **webgl:** ensure system defaults for all uniforms, update equiv checks ([39dc83f](https://github.com/thi-ng/umbrella/commit/39dc83ff49c97fb7ba70f7bbf0f7244d612c7fc8))
 
-
-
-
-
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@0.1.7...@thi.ng/webgl@0.2.0) (2019-09-21)
-
 
 ### Bug Fixes
 
 * **webgl:** update extension handling in shader(), add ExtensionInfo ([12abaa0](https://github.com/thi-ng/umbrella/commit/12abaa0))
 * **webgl:** update samplerXX[] uniform decl types ([48b8906](https://github.com/thi-ng/umbrella/commit/48b8906))
-
 
 ### Features
 
@@ -66,71 +41,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **webgl:** update texture config, split api.ts into mult files ([052552f](https://github.com/thi-ng/umbrella/commit/052552f))
 * **webgl:** update Texture.configure, store target, format, type, size ([9131310](https://github.com/thi-ng/umbrella/commit/9131310))
 
-
-
-
-
-## [0.1.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@0.1.6...@thi.ng/webgl@0.1.7) (2019-08-21)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
-## [0.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@0.1.5...@thi.ng/webgl@0.1.6) (2019-08-17)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
-## [0.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@0.1.4...@thi.ng/webgl@0.1.5) (2019-08-16)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
-## [0.1.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@0.1.3...@thi.ng/webgl@0.1.4) (2019-07-31)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
 ## [0.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@0.1.2...@thi.ng/webgl@0.1.3) (2019-07-31)
-
 
 ### Bug Fixes
 
 * **webgl:** update check for WEBGL_draw_buffers ([7df09d1](https://github.com/thi-ng/umbrella/commit/7df09d1))
 
-
-
-
-
-## [0.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@0.1.1...@thi.ng/webgl@0.1.2) (2019-07-12)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
-## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@0.1.0...@thi.ng/webgl@0.1.1) (2019-07-08)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
 # 0.1.0 (2019-07-07)
-
 
 ### Bug Fixes
 
@@ -142,7 +59,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **webgl:** update GPGPU texture & shader handling ([ce286ad](https://github.com/thi-ng/umbrella/commit/ce286ad))
 * **webgl:** update lambert shader preset ([2fea507](https://github.com/thi-ng/umbrella/commit/2fea507))
 * **webgl:** update texture mipmap config & handling ([2a5b87f](https://github.com/thi-ng/umbrella/commit/2a5b87f))
-
 
 ### Features
 

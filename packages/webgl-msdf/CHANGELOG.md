@@ -3,114 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-msdf@0.1.11...@thi.ng/webgl-msdf@0.1.12) (2020-01-26)
-
-**Note:** Version bump only for package @thi.ng/webgl-msdf
-
-
-
-
-
-## [0.1.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-msdf@0.1.10...@thi.ng/webgl-msdf@0.1.11) (2020-01-24)
-
-**Note:** Version bump only for package @thi.ng/webgl-msdf
-
-
-
-
-
 ## [0.1.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-msdf@0.1.9...@thi.ng/webgl-msdf@0.1.10) (2019-11-30)
-
 
 ### Bug Fixes
 
 * **webgl-msdf:** update mempool size in text() ([9f96b2e](https://github.com/thi-ng/umbrella/commit/9f96b2ec525cd8d8a5d5e31d39352f0c6e350991))
 
-
-
-
-
-## [0.1.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-msdf@0.1.8...@thi.ng/webgl-msdf@0.1.9) (2019-11-09)
-
-**Note:** Version bump only for package @thi.ng/webgl-msdf
-
-
-
-
-
-## [0.1.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-msdf@0.1.7...@thi.ng/webgl-msdf@0.1.8) (2019-09-21)
-
-**Note:** Version bump only for package @thi.ng/webgl-msdf
-
-
-
-
-
-## [0.1.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-msdf@0.1.6...@thi.ng/webgl-msdf@0.1.7) (2019-08-21)
-
-**Note:** Version bump only for package @thi.ng/webgl-msdf
-
-
-
-
-
-## [0.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-msdf@0.1.5...@thi.ng/webgl-msdf@0.1.6) (2019-08-17)
-
-**Note:** Version bump only for package @thi.ng/webgl-msdf
-
-
-
-
-
-## [0.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-msdf@0.1.4...@thi.ng/webgl-msdf@0.1.5) (2019-08-16)
-
-**Note:** Version bump only for package @thi.ng/webgl-msdf
-
-
-
-
-
-## [0.1.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-msdf@0.1.3...@thi.ng/webgl-msdf@0.1.4) (2019-07-31)
-
-**Note:** Version bump only for package @thi.ng/webgl-msdf
-
-
-
-
-
-## [0.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-msdf@0.1.2...@thi.ng/webgl-msdf@0.1.3) (2019-07-31)
-
-**Note:** Version bump only for package @thi.ng/webgl-msdf
-
-
-
-
-
-## [0.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-msdf@0.1.1...@thi.ng/webgl-msdf@0.1.2) (2019-07-12)
-
-**Note:** Version bump only for package @thi.ng/webgl-msdf
-
-
-
-
-
-## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-msdf@0.1.0...@thi.ng/webgl-msdf@0.1.1) (2019-07-08)
-
-**Note:** Version bump only for package @thi.ng/webgl-msdf
-
-
-
-
-
 # 0.1.0 (2019-07-07)
-
 
 ### Bug Fixes
 
 * **webgl-msdf:** update madd call sites ([#95](https://github.com/thi-ng/umbrella/issues/95)) ([5c6fa50](https://github.com/thi-ng/umbrella/commit/5c6fa50))
 * **webgl-msdf:** update shader (remove prefixes) ([33731e9](https://github.com/thi-ng/umbrella/commit/33731e9))
 * **webgl-msdf:** update textWidth & align fns ([dd6f752](https://github.com/thi-ng/umbrella/commit/dd6f752))
-
 
 ### Features
 

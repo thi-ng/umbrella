@@ -3,32 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [4.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.0.2...@thi.ng/vectors@4.0.3) (2020-01-26)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.0.1...@thi.ng/vectors@4.0.2) (2020-01-24)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.0.0...@thi.ng/vectors@4.0.1) (2019-11-30)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
 # [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@3.3.1...@thi.ng/vectors@4.0.0) (2019-11-09)
-
 
 ### Bug Fixes
 
@@ -36,11 +11,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **vectors:** fix out args in mixCubic/mixQuadratic ([d02dae6](https://github.com/thi-ng/umbrella/commit/d02dae6b4bad2d026dec96c865292778e2c50ba2))
 * **vectors:** update random2/3/4 to return new vec if none given ([a0be4d4](https://github.com/thi-ng/umbrella/commit/a0be4d4a288c61e7860990bb3c5b6992af30552c))
 
-
 ### Code Refactoring
 
 * **vectors:** rename strided-scalar op suffixes (SN => NS) ([66258d8](https://github.com/thi-ng/umbrella/commit/66258d8b096de2a49d2f801a5329a07e7ef97c56))
-
 
 ### Features
 
@@ -52,108 +25,47 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **vectors:** add strided rotate ops ([4f2b5a7](https://github.com/thi-ng/umbrella/commit/4f2b5a72948774966c5580bdf33f75b913b9f460))
 * **vectors:** update readme ([f16bb45](https://github.com/thi-ng/umbrella/commit/f16bb4567eb293e56eabd6c1fb6969e1217598e0))
 
-
 ### Performance Improvements
 
 * **vectors:** minor optimization for 0-index Vec2/3/4 accessors ([a7c561d](https://github.com/thi-ng/umbrella/commit/a7c561df31d7466676a48880f1ae1083d8938397))
-
 
 ### BREAKING CHANGES
 
 * **vectors:** setSN2/3/4 => setSN2/3/4
 
-
-
-
-
-## [3.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@3.3.0...@thi.ng/vectors@3.3.1) (2019-09-21)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
 # [3.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@3.2.0...@thi.ng/vectors@3.3.0) (2019-08-21)
-
 
 ### Features
 
 * **vectors:** add isNaN(), isInf() vec ops, update readme ([ed60d09](https://github.com/thi-ng/umbrella/commit/ed60d09))
 
-
-
-
-
 # [3.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@3.1.1...@thi.ng/vectors@3.2.0) (2019-08-17)
-
 
 ### Features
 
 * **vectors:** add atan_2/22/23/24, update readme ([e9b156b](https://github.com/thi-ng/umbrella/commit/e9b156b))
 
-
-
-
-
-## [3.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@3.1.0...@thi.ng/vectors@3.1.1) (2019-08-16)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
 # [3.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@3.0.3...@thi.ng/vectors@3.1.0) (2019-07-31)
-
 
 ### Features
 
 * **vectors:** add new bvec ops & types, update readme ([931ee43](https://github.com/thi-ng/umbrella/commit/931ee43))
 
-
-
-
-
-## [3.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@3.0.2...@thi.ng/vectors@3.0.3) (2019-07-31)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [3.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@3.0.1...@thi.ng/vectors@3.0.2) (2019-07-12)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
 ## [3.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@3.0.0...@thi.ng/vectors@3.0.1) (2019-07-08)
-
 
 ### Bug Fixes
 
 * **vectors:** reflect output handling ([8ec12a4](https://github.com/thi-ng/umbrella/commit/8ec12a4))
 
-
-
-
-
 # [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@2.5.6...@thi.ng/vectors@3.0.0) (2019-07-07)
-
 
 ### Bug Fixes
 
 * **vectors:** update arg types ([6d213bd](https://github.com/thi-ng/umbrella/commit/6d213bd))
 
-
 ### Code Refactoring
 
 * **vectors:** fix [#95](https://github.com/thi-ng/umbrella/issues/95), update madd/maddN arg order, bug fixes ([020b4c8](https://github.com/thi-ng/umbrella/commit/020b4c8))
-
 
 ### Features
 
@@ -167,7 +79,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **vectors:** add vecOf() ctor fn ([25feeee](https://github.com/thi-ng/umbrella/commit/25feeee))
 * **vectors:** enable TS strict compiler flags (refactor) ([94715ff](https://github.com/thi-ng/umbrella/commit/94715ff))
 
-
 ### BREAKING CHANGES
 
 * **vectors:** update madd/maddN arg order, rename functions
@@ -179,121 +90,47 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - rename normalLeft/Right => normalCCW/CW
 - fix output vec handling in addW fns
 
-
-
-
-
-## [2.5.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@2.5.5...@thi.ng/vectors@2.5.6) (2019-05-22)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [2.5.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@2.5.4...@thi.ng/vectors@2.5.5) (2019-04-26)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [2.5.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@2.5.3...@thi.ng/vectors@2.5.4) (2019-04-24)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [2.5.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@2.5.2...@thi.ng/vectors@2.5.3) (2019-04-15)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [2.5.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@2.5.1...@thi.ng/vectors@2.5.2) (2019-04-03)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [2.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@2.5.0...@thi.ng/vectors@2.5.1) (2019-04-02)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
 # [2.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@2.4.4...@thi.ng/vectors@2.5.0) (2019-03-28)
-
 
 ### Features
 
 * **vectors:** add hash() op and IHash impls for Vec2/3/4 ([577d8cf](https://github.com/thi-ng/umbrella/commit/577d8cf))
 * **vectors:** add Vec2/3/4Like type aliases, update ReadonlyVec ([3d5cd61](https://github.com/thi-ng/umbrella/commit/3d5cd61))
 
-
-
-
-
-
-
 # [2.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@2.3.2...@thi.ng/vectors@2.4.0) (2019-03-03)
-
 
 ### Features
 
 * **vectors:** add headingSegment*() fns, update readme ([6ab6858](https://github.com/thi-ng/umbrella/commit/6ab6858))
 
-
-
 # [2.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@2.2.1...@thi.ng/vectors@2.3.0) (2019-02-15)
-
 
 ### Features
 
 * **vectors:** add fit, fit01, fit11 fns ([161d19d](https://github.com/thi-ng/umbrella/commit/161d19d))
 
-
-
 # [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@2.1.1...@thi.ng/vectors@2.2.0) (2019-02-05)
-
 
 ### Features
 
 * **vectors:** add corner2, clockwise2, signedAreaC2, isInArray fns ([2440ffd](https://github.com/thi-ng/umbrella/commit/2440ffd))
 * **vectors:** add VecPair type alias, add copyVectors() ([58e0a05](https://github.com/thi-ng/umbrella/commit/58e0a05))
 
-
-
 # [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@2.0.0...@thi.ng/vectors@2.1.0) (2019-01-21)
-
 
 ### Features
 
 * **vectors:** migrate direction(), normalLeft/Right2() from geom pkg ([07d5f8f](https://github.com/thi-ng/umbrella/commit/07d5f8f))
 
-
-
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@1.4.12...@thi.ng/vectors@2.0.0) (2019-01-21)
-
 
 ### Bug Fixes
 
 * **vectors:** fix NaNs in Mat23.scaleWithCenter ([92bce73](https://github.com/thi-ng/umbrella/commit/92bce73))
 
-
 ### Build System
 
 * update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
-
 
 ### BREAKING CHANGES
 
@@ -305,9 +142,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
   (not individual files anymore). tree shaking in user land will get rid of
   all unused imported symbols.
 
-
 # [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@1.3.0...@thi.ng/vectors@1.4.0) (2018-10-17)
-
 
 ### Features
 
@@ -318,58 +153,39 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **vectors:** add operation specific interfaces, rename Vec3.toPolar() ([5c44ad9](https://github.com/thi-ng/umbrella/commit/5c44ad9))
 * **vectors:** replace math.ts w/ imports from [@thi](https://github.com/thi).ng/maths package ([0967929](https://github.com/thi-ng/umbrella/commit/0967929))
 
-
-
-
-
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@1.2.2...@thi.ng/vectors@1.3.0) (2018-09-28)
-
 
 ### Features
 
 * **vectors:** add vector ops codegen, update basic vec2/3/4 ops ([#51](https://github.com/thi-ng/umbrella/issues/51)) ([b5ed254](https://github.com/thi-ng/umbrella/commit/b5ed254))
 
-
-
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@1.0.0...@thi.ng/vectors@1.1.0) (2018-09-10)
-
 
 ### Bug Fixes
 
 * **vectors:** GVec.copy() / get() ([ae261ab](https://github.com/thi-ng/umbrella/commit/ae261ab))
 * **vectors:** Mat23/33/44 toString() impls ([07d1ccf](https://github.com/thi-ng/umbrella/commit/07d1ccf))
 
-
 ### Features
 
 * **vectors:** add matrix index & property accessors ([3dd0072](https://github.com/thi-ng/umbrella/commit/3dd0072))
 
-
-
-
-
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@0.6.0...@thi.ng/vectors@1.0.0) (2018-09-05)
-
 
 ### Features
 
 * **vectors:** add immutable vec2/3/4 ops ([a3c0407](https://github.com/thi-ng/umbrella/commit/a3c0407))
 * **vectors:** add/update transformVectors*(), update types ([2eec700](https://github.com/thi-ng/umbrella/commit/2eec700))
 
-
 ### BREAKING CHANGES
 
 * **vectors:** update transformVectors1/2() arg order
 
-
-
-
 <a name="0.6.0"></a>
 # [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@0.5.3...@thi.ng/vectors@0.6.0) (2018-09-03)
-
 
 ### Bug Fixes
 
@@ -377,58 +193,43 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **vectors:** add opt normalize for angleBetween2/3 ([25ea00c](https://github.com/thi-ng/umbrella/commit/25ea00c))
 * **vectors:** update GVec method args (readonly) ([ad13151](https://github.com/thi-ng/umbrella/commit/ad13151))
 
-
 ### Features
 
 * **vectors:** add mixBilinear1/2/3/4 ([f0ccd0c](https://github.com/thi-ng/umbrella/commit/f0ccd0c))
 * **vectors:** add new vector ops, update readme ([9510f01](https://github.com/thi-ng/umbrella/commit/9510f01))
 * **vectors:** add Vec*.intoBuffer() impls ([16aa0c4](https://github.com/thi-ng/umbrella/commit/16aa0c4))
 
-
 <a name="0.5.2"></a>
 ## [0.5.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@0.5.1...@thi.ng/vectors@0.5.2) (2018-09-01)
-
 
 ### Bug Fixes
 
 * **vectors:** add missing deps ([d2b4faf](https://github.com/thi-ng/umbrella/commit/d2b4faf))
 
-
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@0.4.0...@thi.ng/vectors@0.5.0) (2018-08-30)
-
 
 ### Features
 
 * **vectors:** consolidate vector consts, add toJSON() impls ([bdb5d37](https://github.com/thi-ng/umbrella/commit/bdb5d37))
 * **vectors:** update types, update GVec, add maths fns, swap impls ([d5cec94](https://github.com/thi-ng/umbrella/commit/d5cec94))
 
-
-
-
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@0.3.0...@thi.ng/vectors@0.4.0) (2018-08-28)
-
 
 ### Features
 
 * **vectors:** add more vec2/3 ops ([cd834f8](https://github.com/thi-ng/umbrella/commit/cd834f8))
 
-
-
-
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@0.2.1...@thi.ng/vectors@0.3.0) (2018-08-27)
-
 
 ### Features
 
 * **vectors:** add mix1(), minor cleanups ([cfb2b74](https://github.com/thi-ng/umbrella/commit/cfb2b74))
 
-
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@0.1.3...@thi.ng/vectors@0.2.0) (2018-08-02)
-
 
 ### Features
 
@@ -436,37 +237,26 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **vectors:** add toCylindrical3() / fromCylindrical3() ([74f939c](https://github.com/thi-ng/umbrella/commit/74f939c))
 * **vectors:** make Vec2/3/4 array-like, add IEquiv impls, add tests ([3039a35](https://github.com/thi-ng/umbrella/commit/3039a35))
 
-
 <a name="0.1.2"></a>
 ## [0.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@0.1.1...@thi.ng/vectors@0.1.2) (2018-07-30)
-
 
 ### Bug Fixes
 
 * **vectors:** get*() return types, refactor using set*() ([3534274](https://github.com/thi-ng/umbrella/commit/3534274))
 
-
-
-
 <a name="0.1.1"></a>
 ## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@0.1.0...@thi.ng/vectors@0.1.1) (2018-07-29)
-
 
 ### Bug Fixes
 
 * **vectors:** naming convention, add function overview tables ([3de5cea](https://github.com/thi-ng/umbrella/commit/3de5cea))
 
-
-
-
 <a name="0.1.0"></a>
 # 0.1.0 (2018-07-29)
-
 
 ### Bug Fixes
 
 * **vectors:** copy/paste mistakes, add tests ([2a5a744](https://github.com/thi-ng/umbrella/commit/2a5a744))
-
 
 ### Features
 

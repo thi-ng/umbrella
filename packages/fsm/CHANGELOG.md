@@ -3,158 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.3.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.3.2...@thi.ng/fsm@2.3.3) (2020-01-26)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [2.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.3.1...@thi.ng/fsm@2.3.2) (2020-01-24)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [2.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.3.0...@thi.ng/fsm@2.3.1) (2019-11-30)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
 # [2.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.2.5...@thi.ng/fsm@2.3.0) (2019-11-09)
-
 
 ### Features
 
 * **fsm:** update str() to NOT collect input by default (match only) ([6105ea7](https://github.com/thi-ng/umbrella/commit/6105ea7f8a9c99b0117bb6db2396607438c1eb02))
 
-
-
-
-
-## [2.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.2.4...@thi.ng/fsm@2.2.5) (2019-09-21)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [2.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.2.3...@thi.ng/fsm@2.2.4) (2019-08-21)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [2.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.2.2...@thi.ng/fsm@2.2.3) (2019-08-16)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [2.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.2.1...@thi.ng/fsm@2.2.2) (2019-07-31)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [2.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.2.0...@thi.ng/fsm@2.2.1) (2019-07-12)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
 # [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.1.15...@thi.ng/fsm@2.2.0) (2019-07-07)
-
 
 ### Bug Fixes
 
 * **fsm:** callback return types ([09b047b](https://github.com/thi-ng/umbrella/commit/09b047b))
-
 
 ### Features
 
 * **color:** TS strictNullChecks, update color conversion fns ([04dc356](https://github.com/thi-ng/umbrella/commit/04dc356))
 * **fsm:** enable TS strict compiler flags (refactor) ([135b838](https://github.com/thi-ng/umbrella/commit/135b838))
 
-
-
-
-
-## [2.1.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.1.14...@thi.ng/fsm@2.1.15) (2019-05-22)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [2.1.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.1.13...@thi.ng/fsm@2.1.14) (2019-04-26)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [2.1.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.1.12...@thi.ng/fsm@2.1.13) (2019-04-24)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [2.1.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.1.11...@thi.ng/fsm@2.1.12) (2019-04-15)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [2.1.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.1.10...@thi.ng/fsm@2.1.11) (2019-04-03)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [2.1.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.1.9...@thi.ng/fsm@2.1.10) (2019-04-02)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [2.1.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.1.8...@thi.ng/fsm@2.1.9) (2019-03-28)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-
-
 # [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.0.0...@thi.ng/fsm@2.1.0) (2019-02-20)
-
 
 ### Features
 
@@ -162,17 +28,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **fsm:** add optional failure callbacks in all matchers & fsm ([4b51c9a](https://github.com/thi-ng/umbrella/commit/4b51c9a))
 * **fsm:** add optional FSM ctx update handler, add iterator support ([da9ff03](https://github.com/thi-ng/umbrella/commit/da9ff03))
 
-
-
-
-
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@1.0.4...@thi.ng/fsm@2.0.0) (2019-02-15)
-
 
 ### Features
 
 * **fsm:** update / split until() ([aeb05f8](https://github.com/thi-ng/umbrella/commit/aeb05f8))
-
 
 ### BREAKING CHANGES
 
@@ -180,15 +40,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - rename existing `until()` => `untilStr()`
 
-
-
 # [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@0.1.0...@thi.ng/fsm@1.0.0) (2019-01-21)
-
 
 ### Build System
 
 * update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
-
 
 ### BREAKING CHANGES
 
@@ -200,10 +56,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
   (not individual files anymore). tree shaking in user land will get rid of
   all unused imported symbols.
 
-
-
 # 0.1.0 (2019-01-04)
-
 
 ### Features
 
