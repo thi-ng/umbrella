@@ -1,3 +1,5 @@
+export type Lane16 = 0 | 1;
+
 export type Lane8 = 0 | 1 | 2 | 3;
 
 export type Lane4 = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;

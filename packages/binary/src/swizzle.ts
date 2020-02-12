@@ -1,7 +1,26 @@
-import { Lane2, Lane4, Lane8 } from "./api";
+import {
+    Lane16,
+    Lane2,
+    Lane4,
+    Lane8
+} from "./api";
 
 /**
- * Extracts 8-bit lane from given 32bit uint.
+ * Extracts 16-bit lane from given 32bit uint and returns as unsigned
+ * half word [0x0000 .. 0xffff].
+ *
+ * - Lane #0: bits 16-31
+ * - Lane #1: bits 0-15
+ *
+ * @param x -
+ * @param lane - lane ID enum
+ */
+export const lane16 = (x: number, lane: Lane16) =>
+    (x >>> ((1 - lane) << 4)) & 0xffff;
+
+/**
+ * Extracts 8-bit lane from given 32bit uint and returns as unsigned
+ * byte [0x00 .. 0xff].
  *
  * - Lane #0: bits 24-31
  * - Lane #1: bits 16-23
@@ -15,7 +34,8 @@ export const lane8 = (x: number, lane: Lane8) =>
     (x >>> ((3 - lane) << 3)) & 0xff;
 
 /**
- * Extracts 4-bit lane from given 32bit uint.
+ * Extracts 4-bit lane from given 32bit uint and returns as unsigned
+ * nibble [0x00 .. 0x0f].
  *
  * - Lane #0: bits 28-31
  * - Lane #1: bits 24-27
@@ -34,6 +54,9 @@ export const lane4 = (x: number, lane: Lane4) =>
 
 export const lane2 = (x: number, lane: Lane2) =>
     (x >>> ((15 - lane) << 1)) & 0x3;
+
+export const setLane16 = (x: number, y: number, lane: Lane16) =>
+    lane ? mux(x, y, 0xffff) : mux(x, y << 16, 0xffff0000);
 
 /**
  * Sets 8-bit `lane` with value`y` in `x`.
@@ -134,9 +157,47 @@ export const swizzle4 = (
     0;
 
 /**
+ * Merges bits of `a` and `b`, selecting bits from `b` where `mask` bits
+ * are set.
+ *
+ * @example
+ * ```ts
+ * mux(0x12345678, 0xaaaa5555, 0xffff0000)
+ * // 0xaaaa5678
+ *
+ * mux(0x12345678, 0xaaaa5555, 0x0000ffff)
+ * // 0x12345555
+ * ```
+ *
+ * @param a
+ * @param b
+ * @param mask
+ */
+export const mux = (a: number, b: number, mask: number) =>
+    (~mask & a) | (mask & b);
+
+/**
  * Same as `swizzle8(x, 3, 2, 1, 0)`, but faster.
  *
  * @param x -
  */
-export const flipBytes = (x: number) =>
+export const flip8 = (x: number) =>
     ((x >>> 24) | ((x >> 8) & 0xff00) | ((x & 0xff00) << 8) | (x << 24)) >>> 0;
+
+/**
+ * Swaps the highest & lowest 16 bits in `x`.
+ *
+ * @example
+ * ```ts
+ * flip16(0x12345678)
+ * // 0x56781234
+ * ```
+ *
+ * @param x
+ */
+export const flip16 = (x: number) => mux(x << 16, x >>> 16, 0xffff);
+
+/**
+ * @deprecated renamed to {@link flip8}
+ */
+export const flipBytes = flip8;
