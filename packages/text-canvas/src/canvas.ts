@@ -1,5 +1,6 @@
 import { peek } from "@thi.ng/arrays";
 import { clamp } from "@thi.ng/math";
+import { wordWrap } from "@thi.ng/transducers";
 import { STROKE_STYLES, StrokeStyle } from "./api";
 
 interface ClipRect {
@@ -23,8 +24,9 @@ export class Canvas {
         this.height = height;
         this.buf = new Array(width * height).fill(" ");
         this.styles = [STROKE_STYLES.thin];
-        this.clipRects = [];
-        beginClip(this, 0, 0, width, height);
+        this.clipRects = [
+            { x1: 0, y1: 0, x2: width, y2: height, w: width, h: height }
+        ];
     }
 
     toString() {
@@ -37,7 +39,14 @@ export class Canvas {
     }
 }
 
-export const clear = (canvas: Canvas, char = " ") => canvas.buf.fill(char);
+export const clear = (canvas: Canvas, char = " ") => {
+    if (canvas.clipRects.length > 1) {
+        const { x1, y1, w, h } = peek(canvas.clipRects);
+        fillRect(canvas, x1, y1, w, h, char);
+    } else {
+        canvas.buf.fill(char);
+    }
+};
 
 export const beginClip = (
     canvas: Canvas,
@@ -51,7 +60,12 @@ export const beginClip = (
     const y2 = clamp(y + h, 0, height);
     const x1 = clamp(x, 0, width);
     const y1 = clamp(y, 0, height);
-    canvas.clipRects.push({ x1, y1, x2, y2, w: x2 - x1, h: y2 - y1 });
+    canvas.clipRects.push(
+        intersectRect(
+            { x1, y1, x2, y2, w: x2 - x1, h: y2 - y1 },
+            peek(canvas.clipRects)
+        )
+    );
 };
 
 export const endClip = (canvas: Canvas) => {
@@ -70,7 +84,7 @@ export const endStyle = (canvas: Canvas) => {
     }
 };
 
-export const writeLine = (
+export const textLine = (
     canvas: Canvas,
     x: number,
     y: number,
@@ -93,6 +107,24 @@ export const writeLine = (
     }
 };
 
+export const wrappedText = (
+    canvas: Canvas,
+    x: number,
+    y: number,
+    width: number,
+    txt: string
+) => {
+    const height = canvas.height;
+    for (let line of txt.split("\n")) {
+        for (let words of wordWrap(width, line.split(" "))) {
+            textLine(canvas, x, y, words.join(" "));
+            y++;
+            if (y >= height) return y;
+        }
+    }
+    return y;
+};
+
 export const fillRect = (
     canvas: Canvas,
     x: number,
@@ -101,18 +133,19 @@ export const fillRect = (
     h: number,
     char: string
 ) => {
-    if (x < 0) {
-        w += x;
-        x = 0;
+    const { x1, y1, x2, y2 } = peek(canvas.clipRects);
+    if (x < x1) {
+        w += x - x1;
+        x = x1;
     }
-    if (y < 0) {
-        h += y;
-        y = 0;
+    if (y < y1) {
+        h += y - y1;
+        y = y1;
     }
-    const { buf, width, height } = canvas;
-    if (w < 1 || h < 1 || x >= width || y >= height) return;
-    w = Math.min(w, width - x);
-    h = Math.min(h, height - y);
+    const { buf, width } = canvas;
+    if (w < 1 || h < 1 || x >= x2 || y >= y2) return;
+    w = Math.min(w, x2 - x);
+    h = Math.min(h, y2 - y);
     for (; --h >= 0; y++) {
         const idx = x + y * width;
         buf.fill(char, idx, idx + w);
@@ -143,28 +176,10 @@ export const hline = (
     e?: string,
     m?: string
 ) => {
-    const { buf, width, height } = canvas;
-    if (len < 1 || y < 0 || y >= height || x >= width) return;
-    const style = peek(canvas.styles);
-    let idx: number;
-    if (x < 0) {
-        len += x;
-        x = 0;
-        idx = y * width;
-    } else {
-        idx = x + y * width;
-        buf[idx++] = s !== undefined && len > 1 ? s : style.hl;
-        x++;
-        len--;
-    }
-    len--;
-    m = m != undefined ? m : style.hl;
-    for (let i = 0; i < len && x < width; i++, x++, idx++) {
-        buf[idx] = m;
-    }
-    if (len >= 0 && x < width) {
-        buf[idx] = e !== undefined ? e : style.vl;
-    }
+    const { x1, y1, x2, y2 } = peek(canvas.clipRects);
+    const { buf, width } = canvas;
+    if (len < 1 || y < y1 || y >= y2 || x >= x2) return;
+    _line(buf, x, y, 1, width, x1, x2, len, peek(canvas.styles).hl, s, e, m);
 };
 
 export const vline = (
@@ -176,27 +191,54 @@ export const vline = (
     e?: string,
     m?: string
 ) => {
-    const { buf, width, height } = canvas;
-    if (len < 1 || x < 0 || x >= width || y >= height) return;
-    const style = peek(canvas.styles);
+    const { x1, x2, y1, y2 } = peek(canvas.clipRects);
+    const { buf, width } = canvas;
+    if (len < 1 || x < x1 || x >= x2 || y >= y2) return;
+    _line(buf, y, x, width, 1, y1, y2, len, peek(canvas.styles).vl, s, e, m);
+};
+
+const _line = (
+    buf: string[],
+    a: number,
+    b: number,
+    astride: number,
+    bstride: number,
+    amin: number,
+    amax: number,
+    len: number,
+    style: string,
+    s?: string,
+    e?: string,
+    m?: string
+) => {
     let idx: number;
-    if (y < 0) {
-        len += y;
-        y = 0;
-        idx = x;
+    if (a < amin) {
+        len += a - amin;
+        a = amin;
+        idx = a * astride + b * bstride;
     } else {
-        idx = x + y * width;
-        buf[idx] = s !== undefined && len > 1 ? s : style.vl;
-        idx += width;
-        y++;
+        idx = a * astride + b * bstride;
+        buf[idx] = s !== undefined && len > 1 ? s : style;
+        idx += astride;
+        a++;
         len--;
     }
     len--;
-    m = m != undefined ? m : style.vl;
-    for (let i = 0; i < len && y < height; i++, y++, idx += width) {
+    m = m != undefined ? m : style;
+    for (let i = 0; i < len && a < amax; i++, a++, idx += astride) {
         buf[idx] = m;
     }
-    if (len >= 0 && y < height) {
-        buf[idx] = e !== undefined ? e : style.vl;
+    if (len >= 0 && a < amax) {
+        buf[idx] = e !== undefined ? e : style;
     }
+};
+
+const intersectRect = (a: ClipRect, b: ClipRect): ClipRect => {
+    const x1 = Math.max(a.x1, b.x1);
+    const y1 = Math.max(a.y1, b.y1);
+    const x2 = Math.min(a.x2, b.x2);
+    const y2 = Math.min(a.y2, b.y2);
+    const w = Math.max(x2 - x1, 0);
+    const h = Math.max(y2 - y1, 0);
+    return { x1, y1, x2, y2, w, h };
 };
