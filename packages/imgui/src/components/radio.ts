@@ -1,6 +1,10 @@
-import { IGridLayout, LayoutBox } from "../api";
+import {
+    gridLayout,
+    IGridLayout,
+    isLayout,
+    LayoutBox
+} from "@thi.ng/layout";
 import { IMGUI } from "../gui";
-import { gridLayout, isLayout } from "../layout";
 import { toggle } from "./toggle";
 
 export const radio = (

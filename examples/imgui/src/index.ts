@@ -1,21 +1,23 @@
-import { History, Atom } from "@thi.ng/atom";
+import { Atom, History } from "@thi.ng/atom";
 import { timedResult } from "@thi.ng/bench";
-import { line, pathFromSvg, normalizedPath } from "@thi.ng/geom";
+import { line, normalizedPath, pathFromSvg } from "@thi.ng/geom";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { DOWNLOAD, RESTART } from "@thi.ng/hiccup-carbon-icons";
 import {
     buttonH,
     buttonV,
     DEFAULT_THEME,
+    dialGroup,
     dropdown,
-    GridLayout,
     GUITheme,
     iconButton,
     IMGUI,
+    Key,
     NONE,
     radialMenu,
     radio,
     ring,
+    ringGroup,
     sliderH,
     sliderHGroup,
     sliderVGroup,
@@ -23,22 +25,39 @@ import {
     textLabel,
     textLabelRaw,
     toggle,
-    xyPad,
-    Key,
-    gridLayout,
-    layoutBox,
-    dialGroup,
-    ringGroup
+    xyPad
 } from "@thi.ng/imgui";
+import { gridLayout, GridLayout, layoutBox } from "@thi.ng/layout";
 import { clamp, PI } from "@thi.ng/math";
 import { setInMany } from "@thi.ng/paths";
-import { sync, fromDOMEvent, sidechainPartition, fromRAF, merge, fromAtom } from "@thi.ng/rstream";
+import {
+    fromAtom,
+    fromDOMEvent,
+    fromRAF,
+    merge,
+    sidechainPartition,
+    sync
+} from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
 import { float } from "@thi.ng/strings";
-import { step, map, comp, mapcat, iterator } from "@thi.ng/transducers";
+import {
+    comp,
+    iterator,
+    map,
+    mapcat,
+    step
+} from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { sma } from "@thi.ng/transducers-stats";
-import { ZERO2, setC2, min2, Vec, vecOf, add2, hash } from "@thi.ng/vectors";
+import {
+    add2,
+    hash,
+    min2,
+    setC2,
+    Vec,
+    vecOf,
+    ZERO2
+} from "@thi.ng/vectors";
 
 // define theme colors in RGBA format for future compatibility with
 // WebGL backend
@@ -76,14 +95,17 @@ const THEME_IDS = ["Default", "Raspberry"];
 
 // helper function to normalize hiccup icon paths
 // (transforms each path into one only consisting of cubic spline segments)
-const mkIcon = (icon: any[]) =>
-    [
-        "g", { stroke: "none" },
-        ...iterator(
-            comp(mapcat((p) => pathFromSvg(p[1].d)), map(normalizedPath)),
-            icon.slice(2)
-        )
-    ];
+const mkIcon = (icon: any[]) => [
+    "g",
+    { stroke: "none" },
+    ...iterator(
+        comp(
+            mapcat((p) => pathFromSvg(p[1].d)),
+            map(normalizedPath)
+        ),
+        icon.slice(2)
+    )
+];
 
 // icon definitions (from @thi.ng/hiccup-carbon-icons)
 const ICON1 = mkIcon(DOWNLOAD);
@@ -102,24 +124,27 @@ const DB = new History(
         txt: "Hello there! This is a test, do not panic!",
         toggles: new Array<boolean>(12).fill(false),
         flags: [true, false],
-        radio: 0,
+        radio: 0
     }),
     // max. 500 undo steps
     500
 );
 
 // theme merging helper
-const themeForID = (theme: number): Partial<GUITheme> =>
-    ({ ...THEMES[theme % THEMES.length], font: FONT, cursorBlink: 0 });
+const themeForID = (theme: number): Partial<GUITheme> => ({
+    ...THEMES[theme % THEMES.length],
+    font: FONT,
+    cursorBlink: 0
+});
 
 // state update handler for `rgb` value
 // if Alt key is pressed when this handler executes,
 // then all values will be set uniformly...
 const setRGB = (gui: IMGUI, res: number[]) =>
     res !== undefined &&
-        (gui.isAltDown()
-            ? DB.resetIn("rgb", vecOf(3, res[1]))
-            : DB.resetIn(["rgb", res[0]], res[1]));
+    (gui.isAltDown()
+        ? DB.resetIn("rgb", vecOf(3, res[1]))
+        : DB.resetIn(["rgb", res[0]], res[1]));
 
 // main application
 const app = () => {
@@ -145,12 +170,12 @@ const app = () => {
                 // merge all event streams into a single input to `main`
                 // (we don't actually care about their actual values and merely
                 // use them as mechanism to trigger updates)
-                merge<any,any>({
+                merge<any, any>({
                     src: [
                         // mouse & touch events
                         gestureStream(canv, {}).subscribe({
                             next(e) {
-                                gui.setMouse(e.pos, e.buttons)
+                                gui.setMouse(e.pos, e.buttons);
                             }
                         }),
                         // keydown & undo/redo handler:
@@ -161,7 +186,10 @@ const app = () => {
                                 if (e.key === Key.TAB) {
                                     e.preventDefault();
                                 }
-                                if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "z") {
+                                if (
+                                    (e.metaKey || e.ctrlKey) &&
+                                    e.key.toLowerCase() === "z"
+                                ) {
                                     e.shiftKey ? DB.redo() : DB.undo();
                                 } else {
                                     gui.setKey(e);
@@ -169,13 +197,21 @@ const app = () => {
                             }
                         }),
                         fromDOMEvent(window, "keyup").subscribe({
-                            next(e) { gui.setKey(e); }
+                            next(e) {
+                                gui.setKey(e);
+                            }
                         }),
                         fromDOMEvent(window, "resize").subscribe({
                             next() {
                                 maxW = Math.min(maxW, window.innerWidth - 16);
-                                setC2(size, window.innerWidth, window.innerHeight);
-                                DB.swapIn("pos", (pos: Vec) => min2([], pos, size));
+                                setC2(
+                                    size,
+                                    window.innerWidth,
+                                    window.innerHeight
+                                );
+                                DB.swapIn("pos", (pos: Vec) =>
+                                    min2([], pos, size)
+                                );
                             }
                         })
                     ]
@@ -200,13 +236,16 @@ const app = () => {
         gui.beginDisabled(radialActive);
 
         // button components return true if clicked
-        if (buttonH(gui, grid, "show", state.uiVisible ? "Hide UI" : "Show UI")) {
+        if (
+            buttonH(gui, grid, "show", state.uiVisible ? "Hide UI" : "Show UI")
+        ) {
             DB.resetIn("uiVisible", !state.uiVisible);
         }
         if (state.uiVisible) {
             let inner: GridLayout;
             let inner2: GridLayout;
             let res: any;
+            // prettier-ignore
             switch(state.uiMode) {
                 case 0:
                     // create empty row
@@ -365,19 +404,42 @@ const app = () => {
             }
             // menu backdrop
             gui.add(
-                gui.resource("radial", hash(radialPos) + 1, ()=>
-                    ["g",{},
-                        ["radialGradient",
-                            { id: "shadow", from: radialPos, to: radialPos, r1: 5, r2: 300},
-                            [[0, [1, 1, 1, 0.8]], [0.5, [1, 1, 1, 0.66]], [1, [1, 1, 1, 0]]]
-                        ],
-                        ["circle", { fill: "$shadow" }, radialPos, 300]
-                    ]
-                )
+                gui.resource("radial", hash(radialPos) + 1, () => [
+                    "g",
+                    {},
+                    [
+                        "radialGradient",
+                        {
+                            id: "shadow",
+                            from: radialPos,
+                            to: radialPos,
+                            r1: 5,
+                            r2: 300
+                        },
+                        [
+                            [0, [1, 1, 1, 0.8]],
+                            [0.5, [1, 1, 1, 0.66]],
+                            [1, [1, 1, 1, 0]]
+                        ]
+                    ],
+                    ["circle", { fill: "$shadow" }, radialPos, 300]
+                ])
             );
             let res: number | undefined;
-            if ((res = radialMenu(gui, "radial", radialPos[0], radialPos[1], 100, RADIAL_LABELS, [])) !== undefined) {
-                DB.swap((db) => setInMany(db, "uiMode", res, "uiVisible", true));
+            if (
+                (res = radialMenu(
+                    gui,
+                    "radial",
+                    radialPos[0],
+                    radialPos[1],
+                    100,
+                    RADIAL_LABELS,
+                    []
+                )) !== undefined
+            ) {
+                DB.swap((db) =>
+                    setInMany(db, "uiMode", res, "uiVisible", true)
+                );
             }
             gui.add(
                 textLabelRaw(
@@ -399,7 +461,7 @@ const app = () => {
             radialActive = false;
         }
         // resize
-        const [w,h] = size;
+        const [w, h] = size;
         if (
             gui.activeID === NONE &&
             gui.isMouseDown() &&
@@ -412,7 +474,11 @@ const app = () => {
         const statLayout = gridLayout(10, h - 10 - 3 * 14, w, 1, 14, 0);
         textLabel(gui, statLayout, `Key: ${key}`);
         textLabel(gui, statLayout, `Focus: ${focusID} / ${lastID}`);
-        textLabel(gui, statLayout, `IDs: ${hotID || "none"} / ${activeID || "none"}`);
+        textLabel(
+            gui,
+            statLayout,
+            `IDs: ${hotID || "none"} / ${activeID || "none"}`
+        );
 
         gui.end();
     };
@@ -434,11 +500,18 @@ const app = () => {
             timedResult(() => {
                 updateGUI(false);
                 updateGUI(true);
-            }
-        )[1]);
+            })[1]
+        );
         // since the MA will only be available after the configured period,
         // we will only display stats when they're ready...
-        t != null && gui.add(textLabelRaw([10, height - 10 - 4 * 14], "#ff0", `GUI time: ${F2(t)}ms`));
+        t != null &&
+            gui.add(
+                textLabelRaw(
+                    [10, height - 10 - 4 * 14],
+                    "#ff0",
+                    `GUI time: ${F2(t)}ms`
+                )
+            );
         // return hdom-canvas component with embedded GUI
         return [
             _canvas,
@@ -473,22 +546,19 @@ const app = () => {
 // once the 1st frame renders, the canvas component will create and attach
 // event streams to this stream sync, which are then used to trigger future
 // updates on demand...
-const main = sync<any,any>({
+const main = sync<any, any>({
     src: {
         state: fromAtom(DB)
-    },
+    }
 });
 
 // transform the stream:
 main
     // group potentially higher frequency event updates & sync with RAF
     // to avoid extraneous real DOM/Canvas updates
-    .subscribe(sidechainPartition<any,number>(fromRAF()))
+    .subscribe(sidechainPartition<any, number>(fromRAF()))
     // then apply main compoment function & apply hdom
-    .transform(
-        map(app()),
-        updateDOM()
-    );
+    .transform(map(app()), updateDOM());
 
 // HMR handling / cleanup
 if (process.env.NODE_ENV !== "production") {

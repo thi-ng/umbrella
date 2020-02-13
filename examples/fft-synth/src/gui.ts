@@ -1,14 +1,13 @@
 import {
     buttonH,
     DEFAULT_THEME,
-    GridLayout,
-    gridLayout,
     IMGUI,
     sliderH,
     sliderVGroup,
     textLabel,
     toggle
 } from "@thi.ng/imgui";
+import { gridLayout, GridLayout } from "@thi.ng/layout";
 import { initAudio, isAudioActive, stopAudio } from "./audio";
 import { toggleAutoMode } from "./automode";
 import {

@@ -1,7 +1,5 @@
-import { implementsFunction } from "@thi.ng/checks";
 import { isNumber } from "@thi.ng/checks";
-import { ReadonlyVec } from "@thi.ng/vectors";
-import { IGridLayout, ILayout, LayoutBox } from "./api";
+import { IGridLayout, LayoutBox } from "./api";
 
 const DEFAULT_SPANS: [number, number] = [1, 1];
 
@@ -53,11 +51,11 @@ export class GridLayout implements IGridLayout {
         return Math.ceil(h / this.cellHG);
     }
 
-    spansForSize(size: ReadonlyVec): [number, number];
+    spansForSize(size: ArrayLike<number>): [number, number];
     spansForSize(w: number, h: number): [number, number];
-    spansForSize(w: ReadonlyVec | number, h?: number): [number, number] {
-        const [ww, hh] = isNumber(w) ? [w, h!] : w;
-        return [this.colsForWidth(ww), this.rowsForHeight(hh)];
+    spansForSize(w: ArrayLike<number> | number, h?: number): [number, number] {
+        const size = isNumber(w) ? [w, h!] : w;
+        return [this.colsForWidth(size[0]), this.rowsForHeight(size[1])];
     }
 
     next(spans = DEFAULT_SPANS) {
@@ -133,16 +131,3 @@ export const gridLayout = (
     rowH = 16,
     gap = 4
 ) => new GridLayout(null, x, y, width, cols, rowH, gap);
-
-export const layoutBox = (
-    x: number,
-    y: number,
-    w: number,
-    h: number,
-    cw: number,
-    ch: number,
-    gap: number
-) => ({ x, y, w, h, cw, ch, gap });
-
-export const isLayout = (x: any): x is ILayout<any, any> =>
-    implementsFunction(x, "next");

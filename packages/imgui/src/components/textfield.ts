@@ -1,11 +1,11 @@
 import { Predicate } from "@thi.ng/api";
 import { rect } from "@thi.ng/geom";
+import { IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
 import { fitClamped } from "@thi.ng/math";
 import { hash } from "@thi.ng/vectors";
-import { IGridLayout, Key, LayoutBox } from "../api";
+import { Key } from "../api";
 import { isHoverSlider } from "../behaviors/slider";
 import { IMGUI } from "../gui";
-import { isLayout } from "../layout";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 

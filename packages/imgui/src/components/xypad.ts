@@ -1,7 +1,7 @@
 import { Fn } from "@thi.ng/api";
 import { line, rect } from "@thi.ng/geom";
+import { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { fit2, hash, Vec } from "@thi.ng/vectors";
-import { IGridLayout, LayoutBox } from "../api";
 import { handleSlider2Keys, isHoverSlider, slider2Val } from "../behaviors/slider";
 import { IMGUI } from "../gui";
 import { textLabelRaw } from "./textlabel";
@@ -44,7 +44,7 @@ export const xyPad = (
     let box: LayoutBox;
     const ch = layout.cellH;
     const gap = layout.gap;
-    if (mode == -2) {
+    if (mode === -2) {
         box = layout.nextSquare();
     } else {
         let rows = (mode > 0 ? mode : layout.cellW / (ch + gap)) | 0;

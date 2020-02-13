@@ -1,9 +1,8 @@
 import { rect } from "@thi.ng/geom";
+import { IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
 import { hash } from "@thi.ng/vectors";
-import { IGridLayout, LayoutBox } from "../api";
 import { IMGUI } from "../gui";
 import { mixHash } from "../hash";
-import { isLayout } from "../layout";
 import { buttonRaw } from "./button";
 import { textLabelRaw } from "./textlabel";
 

@@ -104,25 +104,27 @@ res !== undefined && STATE.resetIn("foo", res);
 
 ### Layout support
 
-Most component functions exist in two versions: Using a layout manager
-or not (`Raw` suffix, e.g. `buttonRaw`). The latter versions are more
-"low-level" & verbose to use, but offer complete layout freedom and are
-re-used by other component types.
+Most component functions exist in two versions: Using a
+[@thi.ng/layout](https://github.com/thi-ng/umbrella/tree/master/packages/layout)-compatible
+grid layout manager or not (e.g. `dial` vs. `dialRaw`). The latter
+versions are more "low-level" & verbose to use, but offer complete
+layout freedom and are re-used by other component types.
 
-Currently, this package features only a single grid layout type, but
-components are not hard-coded to require it, and those which do need a
-layout manager only expect a `ILayout` or `IGridLayout` interface,
-allowing for custom implementations. Furthermore / alternatively, we
-also define a simple [`LayoutBox`
+The components in this package not needing a layout manager are only
+expecting a `ILayout` or `IGridLayout` interface, allowing for custom
+implementations. Furthermore / alternatively, the
+[@thi.ng/layout](https://github.com/thi-ng/umbrella/tree/develop/packages/layout)
+package also defines a [`LayoutBox`
 interface](https://github.com/thi-ng/umbrella/tree/develop/packages/imgui/src/api.ts),
-which can be passed instead and too is what `ILayout` implementations
-are expected to produce when allocating space for a component.
+which can be passed instead and too is the type `ILayout`
+implementations are expected to produce when allocating space for a
+component.
 
 The `GridLayout` class supports infinite nesting and column/row-based
 space allocation, based on an initial configuration and supporting
 multiple column/row spans.
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/imgui/imgui-layout.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/layout/grid-layout.png)
 
 The code producing this structure:
 
