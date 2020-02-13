@@ -23,6 +23,7 @@
         "@thi.ng/hdom-canvas": "latest",
         "@thi.ng/hiccup-carbon-icons": "latest",
         "@thi.ng/imgui": "latest",
+        "@thi.ng/layout": "latest",
         "@thi.ng/math": "latest",
         "@thi.ng/paths": "latest",
         "@thi.ng/rstream": "latest",
@@ -45,6 +46,7 @@
             "hdom",
             "hdom-canvas",
             "imgui",
+            "layout",
             "rstream",
             "rstream-gestures",
             "transducers-hdom"
