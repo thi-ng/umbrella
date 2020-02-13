@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/imgui](https://media.thi.ng/umbrella/banners/thing-imgui.svg?1581297789)
+# ![@thi.ng/imgui](https://media.thi.ng/umbrella/banners/thing-imgui.svg?1581555259)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/imgui.svg)](https://www.npmjs.com/package/@thi.ng/imgui)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/imgui.svg)
@@ -119,25 +119,27 @@ res !== undefined && STATE.resetIn("foo", res);
 
 ### Layout support
 
-Most component functions exist in two versions: Using a layout manager
-or not (`Raw` suffix, e.g. `buttonRaw`). The latter versions are more
-"low-level" & verbose to use, but offer complete layout freedom and are
-re-used by other component types.
+Most component functions exist in two versions: Using a
+[@thi.ng/layout](https://github.com/thi-ng/umbrella/tree/master/packages/layout)-compatible
+grid layout manager or not (e.g. `dial` vs. `dialRaw`). The latter
+versions are more "low-level" & verbose to use, but offer complete
+layout freedom and are re-used by other component types.
 
-Currently, this package features only a single grid layout type, but
-components are not hard-coded to require it, and those which do need a
-layout manager only expect a `ILayout` or `IGridLayout` interface,
-allowing for custom implementations. Furthermore / alternatively, we
-also define a simple [`LayoutBox`
+The components in this package not needing a layout manager are only
+expecting a `ILayout` or `IGridLayout` interface, allowing for custom
+implementations. Furthermore / alternatively, the
+[@thi.ng/layout](https://github.com/thi-ng/umbrella/tree/develop/packages/layout)
+package also defines a [`LayoutBox`
 interface](https://github.com/thi-ng/umbrella/tree/develop/packages/imgui/src/api.ts),
-which can be passed instead and too is what `ILayout` implementations
-are expected to produce when allocating space for a component.
+which can be passed instead and too is the type `ILayout`
+implementations are expected to produce when allocating space for a
+component.
 
 The `GridLayout` class supports infinite nesting and column/row-based
 space allocation, based on an initial configuration and supporting
 multiple column/row spans.
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/imgui/imgui-layout.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/layout/grid-layout.png)
 
 The code producing this structure:
 
@@ -225,7 +227,7 @@ Some of the most obvious missing features:
 yarn add @thi.ng/imgui
 ```
 
-Package sizes (gzipped): ESM: 7.0KB / CJS: 7.2KB / UMD: 7.2KB
+Package sizes (gzipped): ESM: 6.6KB / CJS: 6.8KB / UMD: 6.7KB
 
 ## Dependencies
 
@@ -235,6 +237,7 @@ Package sizes (gzipped): ESM: 7.0KB / CJS: 7.2KB / UMD: 7.2KB
 - [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-api)
 - [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isec)
 - [@thi.ng/geom-tessellate](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate)
+- [@thi.ng/layout](https://github.com/thi-ng/umbrella/tree/develop/packages/layout)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)

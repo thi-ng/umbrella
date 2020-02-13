@@ -1,12 +1,11 @@
 import { Fn } from "@thi.ng/api";
 import { rect } from "@thi.ng/geom";
+import { IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
 import { fit, norm } from "@thi.ng/math";
 import { hash } from "@thi.ng/vectors";
-import { IGridLayout, LayoutBox } from "../api";
 import { handleSlider1Keys, isHoverSlider, slider1Val } from "../behaviors/slider";
 import { IMGUI } from "../gui";
 import { valHash } from "../hash";
-import { isLayout } from "../layout";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 

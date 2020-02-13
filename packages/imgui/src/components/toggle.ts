@@ -1,9 +1,8 @@
 import { rect } from "@thi.ng/geom";
+import { IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
 import { hash } from "@thi.ng/vectors";
-import { IGridLayout, LayoutBox } from "../api";
 import { handleButtonKeys, isHoverButton } from "../behaviors/button";
 import { IMGUI } from "../gui";
-import { isLayout } from "../layout";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 

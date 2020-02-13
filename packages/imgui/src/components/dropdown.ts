@@ -1,8 +1,13 @@
 import { polygon } from "@thi.ng/geom";
+import {
+    gridLayout,
+    IGridLayout,
+    isLayout,
+    LayoutBox
+} from "@thi.ng/layout";
 import { hash } from "@thi.ng/vectors";
-import { IGridLayout, Key, LayoutBox } from "../api";
+import { Key } from "../api";
 import { IMGUI } from "../gui";
-import { gridLayout, isLayout } from "../layout";
 import { buttonH } from "./button";
 
 /**
@@ -41,7 +46,11 @@ export const dropdown = (
             gui.add(
                 gui.resource(id, key + 1, () =>
                     polygon(
-                        [[tx - 4, ty + 2], [tx + 4, ty + 2], [tx, ty - 2]],
+                        [
+                            [tx - 4, ty + 2],
+                            [tx + 4, ty + 2],
+                            [tx, ty - 2]
+                        ],
                         {
                             fill: gui.textColor(false)
                         }
@@ -82,7 +91,11 @@ export const dropdown = (
             gui.add(
                 gui.resource(id, key + 2, () =>
                     polygon(
-                        [[tx - 4, ty - 2], [tx + 4, ty - 2], [tx, ty + 2]],
+                        [
+                            [tx - 4, ty - 2],
+                            [tx + 4, ty - 2],
+                            [tx, ty + 2]
+                        ],
                         {
                             fill: gui.textColor(false)
                         }

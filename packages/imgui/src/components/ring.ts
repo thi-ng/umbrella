@@ -1,6 +1,7 @@
 import { Fn } from "@thi.ng/api";
 import { polygon } from "@thi.ng/geom";
 import { pointInRect } from "@thi.ng/geom-isec";
+import { IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
 import {
     fitClamped,
     HALF_PI,
@@ -11,12 +12,10 @@ import {
 } from "@thi.ng/math";
 import { map, normRange } from "@thi.ng/transducers";
 import { cartesian2, hash, Vec } from "@thi.ng/vectors";
-import { IGridLayout, LayoutBox } from "../api";
 import { dialVal } from "../behaviors/dial";
 import { handleSlider1Keys } from "../behaviors/slider";
 import { IMGUI } from "../gui";
 import { valHash } from "../hash";
-import { isLayout } from "../layout";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 

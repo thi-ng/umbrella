@@ -44,6 +44,7 @@
         "@thi.ng/geom-api": "^1.0.1",
         "@thi.ng/geom-isec": "^0.4.1",
         "@thi.ng/geom-tessellate": "^0.2.12",
+        "@thi.ng/layout": "^0.0.1",
         "@thi.ng/math": "^1.6.0",
         "@thi.ng/transducers": "^6.2.1",
         "@thi.ng/vectors": "^4.0.3"

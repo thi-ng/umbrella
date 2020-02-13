@@ -1,5 +1,6 @@
 import { Fn } from "@thi.ng/api";
 import { circle, line } from "@thi.ng/geom";
+import { IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
 import {
     HALF_PI,
     norm,
@@ -7,12 +8,10 @@ import {
     TAU
 } from "@thi.ng/math";
 import { cartesian2, hash } from "@thi.ng/vectors";
-import { IGridLayout, LayoutBox } from "../api";
 import { dialVal } from "../behaviors/dial";
 import { handleSlider1Keys, isHoverSlider } from "../behaviors/slider";
 import { IMGUI } from "../gui";
 import { valHash } from "../hash";
-import { isLayout } from "../layout";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 
