@@ -14,6 +14,7 @@ export interface StrokeStyle {
     tjt: string;
     tjb: string;
     jct: string;
+    dot: string;
 }
 
 // https://en.wikipedia.org/wiki/Box-drawing_character
@@ -30,7 +31,8 @@ export const STROKE_STYLES: IObjectOf<StrokeStyle> = {
         tjr: "+",
         tjt: "+",
         tjb: "+",
-        jct: "+"
+        jct: "+",
+        dot: "."
     },
     thin: {
         hl: "─",
@@ -43,7 +45,8 @@ export const STROKE_STYLES: IObjectOf<StrokeStyle> = {
         tjr: "┤",
         tjt: "┬",
         tjb: "┴",
-        jct: "┼"
+        jct: "┼",
+        dot: "·"
     },
     double: {
         hl: "═",
@@ -56,6 +59,7 @@ export const STROKE_STYLES: IObjectOf<StrokeStyle> = {
         tjr: "╣",
         tjt: "╦",
         tjb: "╩",
-        jct: "╬"
+        jct: "╬",
+        dot: "·"
     }
 };
