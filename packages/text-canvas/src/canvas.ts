@@ -48,6 +48,14 @@ export const clear = (canvas: Canvas, char = " ") => {
     }
 };
 
+const intersectRect = (a: ClipRect, b: ClipRect): ClipRect => {
+    const x1 = Math.max(a.x1, b.x1);
+    const y1 = Math.max(a.y1, b.y1);
+    const x2 = Math.min(a.x2, b.x2);
+    const y2 = Math.min(a.y2, b.y2);
+    return { x1, y1, x2, y2, w: Math.max(x2 - x1, 0), h: Math.max(y2 - y1, 0) };
+};
+
 export const beginClip = (
     canvas: Canvas,
     x: number,
@@ -55,6 +63,10 @@ export const beginClip = (
     w: number,
     h: number
 ) => {
+    x |= 0;
+    y |= 0;
+    w |= 0;
+    h |= 0;
     const { width, height } = canvas;
     const x2 = clamp(x + w, 0, width);
     const y2 = clamp(y + h, 0, height);
@@ -84,12 +96,22 @@ export const endStyle = (canvas: Canvas) => {
     }
 };
 
+export const setAt = (canvas: Canvas, x: number, y: number, char: string) => {
+    x |= 0;
+    y |= 0;
+    const { x1, y1, x2, y2 } = peek(canvas.clipRects);
+    if (x < x1 || y < y1 || x >= x2 || y >= y2) return;
+    canvas.buf[x + y * canvas.width] = char;
+};
+
 export const textLine = (
     canvas: Canvas,
     x: number,
     y: number,
     line: string
 ) => {
+    x |= 0;
+    y |= 0;
     const { x1, y1, x2, y2 } = peek(canvas.clipRects);
     if (y < y1 || y >= y2 || x >= x2) return;
     let i = 0;
@@ -107,13 +129,16 @@ export const textLine = (
     }
 };
 
-export const wrappedText = (
+export const textColumn = (
     canvas: Canvas,
     x: number,
     y: number,
     width: number,
     txt: string
 ) => {
+    x |= 0;
+    y |= 0;
+    width |= 0;
     const height = canvas.height;
     for (let line of txt.split("\n")) {
         for (let words of wordWrap(width, line.split(" "))) {
@@ -133,6 +158,10 @@ export const fillRect = (
     h: number,
     char: string
 ) => {
+    x |= 0;
+    y |= 0;
+    w |= 0;
+    h |= 0;
     const { x1, y1, x2, y2 } = peek(canvas.clipRects);
     if (x < x1) {
         w += x - x1;
@@ -159,6 +188,10 @@ export const strokeRect = (
     w: number,
     h: number
 ) => {
+    x |= 0;
+    y |= 0;
+    w |= 0;
+    h |= 0;
     if (w < 2 || h < 2) return;
     const style = peek(canvas.styles);
     hline(canvas, x, y, w, style.tl, style.tr);
@@ -176,10 +209,13 @@ export const hline = (
     e?: string,
     m?: string
 ) => {
+    x |= 0;
+    y |= 0;
+    len |= 0;
     const { x1, y1, x2, y2 } = peek(canvas.clipRects);
     const { buf, width } = canvas;
     if (len < 1 || y < y1 || y >= y2 || x >= x2) return;
-    _line(buf, x, y, 1, width, x1, x2, len, peek(canvas.styles).hl, s, e, m);
+    _hvline(buf, x, y, 1, width, x1, x2, len, peek(canvas.styles).hl, s, e, m);
 };
 
 export const vline = (
@@ -191,13 +227,16 @@ export const vline = (
     e?: string,
     m?: string
 ) => {
+    x |= 0;
+    y |= 0;
+    len |= 0;
     const { x1, x2, y1, y2 } = peek(canvas.clipRects);
     const { buf, width } = canvas;
     if (len < 1 || x < x1 || x >= x2 || y >= y2) return;
-    _line(buf, y, x, width, 1, y1, y2, len, peek(canvas.styles).vl, s, e, m);
+    _hvline(buf, y, x, width, 1, y1, y2, len, peek(canvas.styles).vl, s, e, m);
 };
 
-const _line = (
+const _hvline = (
     buf: string[],
     a: number,
     b: number,
@@ -233,12 +272,108 @@ const _line = (
     }
 };
 
-const intersectRect = (a: ClipRect, b: ClipRect): ClipRect => {
-    const x1 = Math.max(a.x1, b.x1);
-    const y1 = Math.max(a.y1, b.y1);
-    const x2 = Math.min(a.x2, b.x2);
-    const y2 = Math.min(a.y2, b.y2);
-    const w = Math.max(x2 - x1, 0);
-    const h = Math.max(y2 - y1, 0);
-    return { x1, y1, x2, y2, w, h };
+export const line = (
+    canvas: Canvas,
+    ax: number,
+    ay: number,
+    bx: number,
+    by: number,
+    char?: string
+) => {
+    ax |= 0;
+    ay |= 0;
+    bx |= 0;
+    by |= 0;
+    const dx = Math.abs(bx - ax);
+    const dy = -Math.abs(by - ay);
+    const w = canvas.width;
+    const { x1, y1, x2, y2 } = peek(canvas.clipRects);
+
+    let sx = ax < bx ? 1 : -1;
+    let sy = ay < by ? 1 : -1;
+    let err = dx + dy;
+
+    char = char !== undefined ? char : peek(canvas.styles).dot;
+
+    while (true) {
+        if (ax >= x1 && ay >= y1 && ax < x2 && ay < y2) {
+            canvas.buf[ax + ay * w] = char;
+        }
+        if (ax === bx && ay === by) return;
+        let t = err << 1;
+        if (t < dx) {
+            err += dx;
+            ay += sy;
+        }
+        if (t > dy) {
+            err += dy;
+            ax += sx;
+        }
+    }
+};
+
+export const circle = (
+    canvas: Canvas,
+    cx: number,
+    cy: number,
+    r: number,
+    char?: string,
+    fill = false
+) => {
+    if (r < 1) return;
+    cx |= 0;
+    cy |= 0;
+    r |= 0;
+    char = char !== undefined ? char : peek(canvas.styles).dot;
+
+    let x = 0;
+    let y = r;
+    let ymax = r * r;
+    let sum = ymax + r;
+    let dx2 = 1;
+    let dy2 = 2 * r - 1;
+
+    const { buf, width } = canvas;
+    const { x1, y1, x2, y2 } = peek(canvas.clipRects);
+
+    const $ = (ox: number, oy: number) =>
+        ox >= x1 &&
+        oy >= y1 &&
+        ox < x2 &&
+        oy < y2 &&
+        (buf[ox + oy * width] = char!);
+
+    while (x <= y) {
+        if (fill) {
+            hline(canvas, cx - y, cy + x, y << 1, char, char, char);
+            x && hline(canvas, cx - y, cy - x, y << 1, char, char, char);
+        } else {
+            $(cx - y, cy + x);
+            y && $(cx + y, cy + x);
+            if (x) {
+                $(cx - y, cy - x);
+                y && $(cx + y, cy - x);
+            }
+            if (x !== y) {
+                $(cx - x, cy - y);
+                x && $(cx + x, cy - y);
+                if (y) {
+                    $(cx - x, cy + y);
+                    x && $(cx + x, cy + y);
+                }
+            }
+        }
+        sum -= dx2;
+        if (sum <= ymax) {
+            if (fill && x !== y) {
+                hline(canvas, cx - x, cy - y, x << 1, char, char, char);
+                y && hline(canvas, cx - x, cy + y, x << 1, char, char, char);
+            }
+            y--;
+            ymax -= dy2;
+            dy2 -= 2;
+        }
+        x++;
+        dx2 += 2;
+    }
 };
