@@ -1,0 +1,67 @@
+{
+    "name": "@thi.ng/geom-clip-poly",
+    "version": "0.0.1",
+    "description": "2D convex polygon clipping (Sutherland-Hodgeman)",
+    "module": "./index.js",
+    "main": "./lib/index.js",
+    "umd:main": "./lib/index.umd.js",
+    "typings": "./index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thi-ng/umbrella.git"
+    },
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/geom-clip-poly",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
+        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
+        "build:es6": "tsc --declaration",
+        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "test": "mocha test",
+        "cover": "nyc mocha test && nyc report --reporter=lcov",
+        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "doc:readme": "../../scripts/generate-readme",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
+        "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
+        "pub": "yarn build:release && yarn publish --access public"
+    },
+    "devDependencies": {
+        "@istanbuljs/nyc-config-typescript": "^1.0.1",
+        "@microsoft/api-extractor": "^7.7.7",
+        "@types/mocha": "^5.2.7",
+        "@types/node": "^13.5.0",
+        "mocha": "^7.0.0",
+        "nyc": "^15.0.0",
+        "ts-node": "^8.6.2",
+        "typedoc": "^0.16.8",
+        "typescript": "^3.7.5"
+    },
+    "dependencies": {
+        "@thi.ng/geom-isec": "^0.4.1",
+        "@thi.ng/geom-poly-utils": "^0.1.30",
+        "@thi.ng/math": "^1.6.0",
+        "@thi.ng/vectors": "^4.0.3"
+    },
+    "keywords": [
+        "2D",
+        "convex",
+        "clipping",
+        "ES6",
+        "geometry",
+        "liang-barsky",
+        "line",
+        "polygon",
+        "rect",
+        "rectangle",
+        "sutherland-hodgeman",
+        "typescript"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "sideEffects": false,
+    "thi.ng": {
+        "year": 2013
+    }
+}
