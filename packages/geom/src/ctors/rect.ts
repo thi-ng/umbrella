@@ -2,11 +2,15 @@ import { Attribs } from "@thi.ng/geom-api";
 import { centroid } from "@thi.ng/geom-poly-utils";
 import { SQRT2_2, SQRT3 } from "@thi.ng/math";
 import {
+    add2,
     dist,
+    max2,
+    min2,
     ReadonlyVec,
     sub2,
     subN2,
-    Vec
+    Vec,
+    ZERO2
 } from "@thi.ng/vectors";
 import { Circle } from "../api/circle";
 import { Polygon } from "../api/polygon";
@@ -22,6 +26,20 @@ export function rect(...args: any[]) {
 
 export const rectFromMinMax = (min: Vec, max: Vec, attribs?: Attribs) =>
     new Rect(min, sub2([], max, min), attribs);
+
+/**
+ * Returns the intersection rect of given inputs or `undefined` if they
+ * are non-overlapping.
+ *
+ * @param a
+ * @param b
+ */
+export const intersectionRect = (a: Rect, b: Rect) => {
+    const p = max2([], a.pos, b.pos);
+    const q = min2(null, add2([], a.pos, a.size), add2([], b.pos, b.size));
+    const size = max2(null, sub2(null, q, p), ZERO2);
+    return size[0] > 0 && size[1] > 0 ? new Rect(p, size) : undefined;
+};
 
 /**
  * Returns square inscribed in given circle instance. The circle can also be
