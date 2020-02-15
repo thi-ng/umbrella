@@ -3,12 +3,13 @@
 .meta
 .nyc_output
 *.gz
-*.h
 *.html
-*.o
 *.svg
 *.tgz
+*.h
+*.o
 *.wasm
+*.tpl.md
 bench
 build
 coverage
@@ -18,6 +19,4 @@ export
 src*
 test
 tools
-api-extractor.json
-README.tpl.md
 tsconfig.json

@@ -1,4 +1,3 @@
-import { EPS } from "@thi.ng/math";
 import { Vec } from "@thi.ng/vectors";
 
 /**
@@ -26,18 +25,58 @@ export const liangBarsky2 = (
     b: Vec,
     min: Vec,
     max: Vec,
-    ca?: Vec,
-    cb?: Vec
+    ca: Vec = [],
+    cb: Vec = []
 ): [Vec, Vec, number, number] | undefined => {
-    const ax = a[0];
-    const ay = a[1];
-    const dx = b[0] - ax;
-    const dy = b[1] - ay;
+    const res = liangBarsky2Raw(
+        a[0],
+        a[1],
+        b[0],
+        b[1],
+        min[0],
+        min[1],
+        max[0],
+        max[1]
+    );
+    if (!res) return;
+
+    ca[0] = res[0];
+    ca[1] = res[1];
+    cb[0] = res[2];
+    cb[1] = res[3];
+
+    return [ca, cb, res[4], res[5]];
+};
+
+/**
+ * Same as {@link liangBarsky2} but for non-vector arguments.
+ *
+ * @param ax
+ * @param ay
+ * @param bx
+ * @param by
+ * @param minx
+ * @param miny
+ * @param maxx
+ * @param maxy
+ */
+export const liangBarsky2Raw = (
+    ax: number,
+    ay: number,
+    bx: number,
+    by: number,
+    minx: number,
+    miny: number,
+    maxx: number,
+    maxy: number
+): [number, number, number, number, number, number] | undefined => {
+    const dx = bx - ax;
+    const dy = by - ay;
     let alpha = 0;
     let beta = 1;
 
     const clip = (p: number, q: number) => {
-        if (q < 0 && Math.abs(p) < EPS) {
+        if (q < 0 && Math.abs(p) < 1e-6) {
             return false;
         }
         const r = q / p;
@@ -57,24 +96,17 @@ export const liangBarsky2 = (
         return true;
     };
 
-    if (
-        !(
-            clip(-dx, -(min[0] - ax)) &&
-            clip(dx, max[0] - ax) &&
-            clip(-dy, -(min[1] - ay)) &&
-            clip(dy, max[1] - ay)
-        )
-    ) {
-        return;
-    }
-
-    !ca && (ca = []);
-    !cb && (cb = []);
-
-    ca[0] = alpha * dx + ax;
-    ca[1] = alpha * dy + ay;
-    cb[0] = beta * dx + ax;
-    cb[1] = beta * dy + ay;
-
-    return [ca, cb, alpha, beta];
+    return clip(-dx, -(minx - ax)) &&
+        clip(dx, maxx - ax) &&
+        clip(-dy, -(miny - ay)) &&
+        clip(dy, maxy - ay)
+        ? [
+              alpha * dx + ax,
+              alpha * dy + ay,
+              beta * dx + ax,
+              beta * dy + ay,
+              alpha,
+              beta
+          ]
+        : undefined;
 };
