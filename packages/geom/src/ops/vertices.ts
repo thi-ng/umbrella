@@ -42,18 +42,26 @@ export const vertices: MultiFn1O<
 vertices.addAll(<
     IObjectOf<Implementation1O<unknown, number | Partial<SamplingOpts>, Vec[]>>
 >{
+    // e +----+ h
+    //   |\   :\
+    //   |f+----+ g
+    //   | |  : |
+    // a +-|--+d|
+    //    \|   \|
+    //   b +----+ c
+    //
     [Type.AABB]: ({ pos, size }: AABB) => {
         const [px, py, pz] = pos;
         const [qx, qy, qz] = add3([], pos, size);
         return [
-            [px, py, pz],
-            [px, py, qz],
-            [qx, py, qz],
-            [qx, py, pz],
-            [px, qy, pz],
-            [px, qy, qz],
-            [qx, qy, qz],
-            [qx, qy, pz]
+            [px, py, pz], // a
+            [px, py, qz], // b
+            [qx, py, qz], // c
+            [qx, py, pz], // d
+            [px, qy, pz], // e
+            [px, qy, qz], // f
+            [qx, qy, qz], // g
+            [qx, qy, pz] // h
         ];
     },
 
