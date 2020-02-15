@@ -2,6 +2,7 @@ import { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
 import { IShape, SamplingOpts, Type } from "@thi.ng/geom-api";
 import { VecPair } from "@thi.ng/vectors";
+import { AABB } from "../api/aabb";
 import { Polygon } from "../api/polygon";
 import { Polyline } from "../api/polyline";
 import { Rect } from "../api/rect";
@@ -24,6 +25,24 @@ edges.addAll(<
         >
     >
 >{
+    [Type.AABB]: ($: AABB) => {
+        const [a, b, c, d, e, f, g, h] = vertices($);
+        return [
+            [a, b],
+            [b, c],
+            [c, d],
+            [d, a], // bottom
+            [e, f],
+            [f, g],
+            [g, h],
+            [h, e], // top
+            [a, e],
+            [b, f], // left
+            [c, g],
+            [d, h] // right
+        ];
+    },
+
     [Type.POLYGON]: ($: Polygon) => edgeIterator($.points, true),
 
     [Type.POLYLINE]: ($: Polyline) => edgeIterator($.points),

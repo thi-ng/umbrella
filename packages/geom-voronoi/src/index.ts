@@ -1,6 +1,7 @@
 import { IObjectOf, Pair } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
-import { liangBarsky2, sutherlandHodgeman } from "@thi.ng/geom-clip";
+import { liangBarsky2 } from "@thi.ng/geom-clip-line";
+import { sutherlandHodgeman } from "@thi.ng/geom-clip-poly";
 import { pointInCircumCircle, pointInPolygon2, pointInSegment } from "@thi.ng/geom-isec";
 import { centroid, circumCenter2 } from "@thi.ng/geom-poly-utils";
 import { EPS } from "@thi.ng/math";

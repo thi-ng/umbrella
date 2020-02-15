@@ -1,7 +1,7 @@
 import { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
-import { sutherlandHodgeman } from "@thi.ng/geom-clip";
+import { sutherlandHodgeman } from "@thi.ng/geom-clip-poly";
 import { Polygon } from "../api/polygon";
 import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";

@@ -1,7 +1,7 @@
 {
-    "name": "@thi.ng/geom-voronoi",
-    "version": "0.1.30",
-    "description": "Fast, incremental 2D Delaunay & Voronoi mesh implementation",
+    "name": "@thi.ng/geom-clip-poly",
+    "version": "0.0.1",
+    "description": "2D convex polygon clipping (Sutherland-Hodgeman)",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -10,7 +10,7 @@
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
     },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/geom-voronoi",
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/geom-clip-poly",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
@@ -38,37 +38,30 @@
         "typescript": "^3.7.5"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.7.1",
-        "@thi.ng/checks": "^2.5.0",
-        "@thi.ng/geom-clip-line": "^0.0.1",
-        "@thi.ng/geom-clip-poly": "^0.0.1",
         "@thi.ng/geom-isec": "^0.4.1",
         "@thi.ng/geom-poly-utils": "^0.1.30",
         "@thi.ng/math": "^1.6.0",
-        "@thi.ng/quad-edge": "^0.2.5",
         "@thi.ng/vectors": "^4.0.3"
     },
     "keywords": [
         "2D",
+        "convex",
         "clipping",
-        "data structure",
-        "delaunay",
-        "dual",
-        "edges",
         "ES6",
         "geometry",
-        "graph",
-        "incremental",
-        "mesh",
-        "quadedge",
-        "typescript",
-        "voronoi"
+        "liang-barsky",
+        "line",
+        "polygon",
+        "rect",
+        "rectangle",
+        "sutherland-hodgeman",
+        "typescript"
     ],
     "publishConfig": {
         "access": "public"
     },
     "sideEffects": false,
     "thi.ng": {
-        "year": 2016
+        "year": 2013
     }
 }

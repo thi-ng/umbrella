@@ -1,7 +1,7 @@
 {
-    "name": "@thi.ng/geom-voronoi",
-    "version": "0.1.30",
-    "description": "Fast, incremental 2D Delaunay & Voronoi mesh implementation",
+    "name": "@thi.ng/text-canvas",
+    "version": "0.0.1",
+    "description": "TODO",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -10,7 +10,7 @@
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
     },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/geom-voronoi",
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/text-canvas",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
@@ -20,15 +20,16 @@
         "build:test": "rimraf build && tsc -p test/tsconfig.json",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
         "doc:readme": "../../scripts/generate-readme",
-        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
         "@microsoft/api-extractor": "^7.7.7",
+        "@thi.ng/transducers": "^6.2.1",
         "@types/mocha": "^5.2.7",
         "@types/node": "^13.5.0",
         "mocha": "^7.0.0",
@@ -39,36 +40,25 @@
     },
     "dependencies": {
         "@thi.ng/api": "^6.7.1",
-        "@thi.ng/checks": "^2.5.0",
-        "@thi.ng/geom-clip-line": "^0.0.1",
-        "@thi.ng/geom-clip-poly": "^0.0.1",
-        "@thi.ng/geom-isec": "^0.4.1",
-        "@thi.ng/geom-poly-utils": "^0.1.30",
-        "@thi.ng/math": "^1.6.0",
-        "@thi.ng/quad-edge": "^0.2.5",
-        "@thi.ng/vectors": "^4.0.3"
+        "@thi.ng/arrays": "^0.5.1",
+        "@thi.ng/math": "^1.6.0"
     },
     "keywords": [
-        "2D",
-        "clipping",
-        "data structure",
-        "delaunay",
-        "dual",
-        "edges",
+        "ascii",
+        "canvas",
+        "drawing",
+        "line",
         "ES6",
-        "geometry",
-        "graph",
-        "incremental",
-        "mesh",
-        "quadedge",
-        "typescript",
-        "voronoi"
+        "rect",
+        "text",
+        "typescript"
     ],
     "publishConfig": {
         "access": "public"
     },
     "sideEffects": false,
     "thi.ng": {
-        "year": 2016
+        "status": "alpha",
+        "year": 2020
     }
 }

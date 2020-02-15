@@ -1,9 +1,9 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-clip](https://media.thi.ng/umbrella/banners/thing-geom-clip.svg?1581297787)
+# ![@thi.ng/geom-clip-poly](https://media.thi.ng/umbrella/banners/thing-geom-clip-poly.svg?1581809309)
 
-[![npm version](https://img.shields.io/npm/v/@thi.ng/geom-clip.svg)](https://www.npmjs.com/package/@thi.ng/geom-clip)
-![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-clip.svg)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/geom-clip-poly.svg)](https://www.npmjs.com/package/@thi.ng/geom-clip-poly)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-clip-poly.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-2D line & convex polygon clipping (Liang-Barsky / Sutherland-Hodgeman).
+2D convex polygon clipping (Sutherland-Hodgeman).
 
 Current implementation is based on [toxiclibs](http://toxiclibs.org)
 (Java) and Clojure version of [thi.ng/geom](http://thi.ng/geom).
@@ -31,10 +31,10 @@ Current implementation is based on [toxiclibs](http://toxiclibs.org)
 ## Installation
 
 ```bash
-yarn add @thi.ng/geom-clip
+yarn add @thi.ng/geom-clip-poly
 ```
 
-Package sizes (gzipped): ESM: 0.5KB / CJS: 0.6KB / UMD: 0.7KB
+Package sizes (gzipped): CJS: 0.4KB
 
 ## Dependencies
 
@@ -45,7 +45,7 @@ Package sizes (gzipped): ESM: 0.5KB / CJS: 0.6KB / UMD: 0.7KB
 
 ## API
 
-[Generated API docs](https://docs.thi.ng/umbrella/geom-clip/)
+[Generated API docs](https://docs.thi.ng/umbrella/geom-clip-poly/)
 
 TODO
 
