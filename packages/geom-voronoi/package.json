@@ -40,7 +40,8 @@
     "dependencies": {
         "@thi.ng/api": "^6.7.1",
         "@thi.ng/checks": "^2.5.0",
-        "@thi.ng/geom-clip": "^0.1.12",
+        "@thi.ng/geom-clip-line": "^0.0.1",
+        "@thi.ng/geom-clip-poly": "^0.0.1",
         "@thi.ng/geom-isec": "^0.4.1",
         "@thi.ng/geom-poly-utils": "^0.1.30",
         "@thi.ng/math": "^1.6.0",
