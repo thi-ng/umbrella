@@ -6,20 +6,22 @@ import { charCode } from "./utils";
 
 /**
  * Clears/fills the canvas' current clip rect with given char (default:
- * 0x20 / space). If `reset` is true, first resets all internal stacks
- * (clipping, formatting, styles), so that entire canvas will be cleared.
+ * 0x20 / space). If `reset` is true, first resets all internal state
+ * (clipping, format, style), so that entire canvas will be cleared.
  *
  * @param canvas
+ * @param reset
  * @param code
  */
 export const clear = (
     canvas: Canvas,
-    code: NumOrString = 0x20,
-    reset = false
+    reset = false,
+    code: NumOrString = 0x20
 ) => {
     const rects = canvas.clipRects;
     if (reset) {
-        rects.length = canvas.format.length = canvas.styles.length = 1;
+        rects.length = canvas.styles.length = 1;
+        canvas.format = canvas.defaultFormat;
     }
     code = charCode(code, canvas.format);
     if (rects.length > 1) {
@@ -47,7 +49,8 @@ export const fillRect = (
     y: number,
     w: number,
     h: number,
-    char: NumOrString
+    char: NumOrString,
+    format = canvas.format
 ) => {
     x |= 0;
     y |= 0;
@@ -66,7 +69,7 @@ export const fillRect = (
     if (w < 1 || h < 1 || x >= x2 || y >= y2) return;
     w = Math.min(w, x2 - x);
     h = Math.min(h, y2 - y);
-    char = charCode(char, canvas.format);
+    char = charCode(char, format);
     for (; --h >= 0; y++) {
         const idx = x + y * width;
         buf.fill(char, idx, idx + w);
@@ -88,14 +91,24 @@ export const strokeRect = (
     x: number,
     y: number,
     w: number,
-    h: number
+    h: number,
+    format = canvas.format
 ) => {
     w |= 0;
     h |= 0;
     if (w < 2 || h < 2) return;
     const style = peek(canvas.styles);
-    hline(canvas, x, y, w, style.tl, style.tr);
-    hline(canvas, x, y + h - 1, w, style.bl, style.br);
-    vline(canvas, x, y + 1, h - 2);
-    vline(canvas, x + w - 1, y + 1, h - 2);
+    hline(canvas, x, y, w, style.tl, style.tr, style.hl, format);
+    hline(canvas, x, y + h - 1, w, style.bl, style.br, style.hl, format);
+    vline(canvas, x, y + 1, h - 2, undefined, undefined, undefined, format);
+    vline(
+        canvas,
+        x + w - 1,
+        y + 1,
+        h - 2,
+        undefined,
+        undefined,
+        undefined,
+        format
+    );
 };

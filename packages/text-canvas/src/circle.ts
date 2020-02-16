@@ -22,7 +22,8 @@ export const circle = (
     cy: number,
     r: number,
     char?: NumOrString,
-    fill = false
+    fill = false,
+    format = canvas.format
 ) => {
     if (r < 1) return;
     cx |= 0;
@@ -34,7 +35,7 @@ export const circle = (
 
     char = charCode(
         char !== undefined ? char : peek(canvas.styles).dot,
-        canvas.format
+        format
     );
 
     let x = 0;

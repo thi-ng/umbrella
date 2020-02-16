@@ -8,6 +8,8 @@ const ANSI_FLAGS = ["", "1", "2", "1;2", "4", "1;4", "2;4", "1;2;4"];
 /**
  * String format preset, translating canvas format info to ANSI 4bit
  * control sequences.
+ *
+ * https://stackoverflow.com/a/33206814/294515
  */
 export const FMT_ANSI16: StringFormat = {
     start: memoize1((x: number) => {

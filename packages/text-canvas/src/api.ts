@@ -1,4 +1,4 @@
-import { Fn, IObjectOf } from "@thi.ng/api";
+import { Fn } from "@thi.ng/api";
 
 export interface ClipRect {
     x1: number;
@@ -61,14 +61,15 @@ export interface HtmlFormatOpts {
 }
 
 // bits 0-3: fg
-// bit 3: bright fg
-// bits 4-7: bg
-// bit 8: bright bg
-// bit 9: bold
-// bit 10: dim
-// bit 11: underline
+// bit 4: bright fg
+// bits 5-8: bg
+// bit 9: bright bg
+// bit 10: bold
+// bit 11: dim
+// bit 12: underline
 
 export const NONE = 0;
+
 export const FG_BLACK = 1;
 export const FG_RED = 2;
 export const FG_GREEN = 3;
@@ -76,23 +77,38 @@ export const FG_YELLOW = 4;
 export const FG_BLUE = 5;
 export const FG_MAGENTA = 6;
 export const FG_CYAN = 7;
-export const FG_WHITE = 8;
+export const FG_LIGHT_GRAT = 8;
 
-export const BG_BLACK = 1 << 5;
-export const BG_RED = 2 << 5;
-export const BG_GREEN = 3 << 5;
-export const BG_YELLOW = 4 << 5;
-export const BG_BLUE = 5 << 5;
-export const BG_MAGENTA = 6 << 5;
-export const BG_CYAN = 7 << 5;
-export const BG_WHITE = 8 << 5;
+export const FG_GRAY = 0x11;
+export const FG_BRIGHT_RED = 0x12;
+export const FG_BRIGHT_GREEN = 0x13;
+export const FG_BRIGHT_YELLOW = 0x14;
+export const FG_BRIGHT_BLUE = 0x15;
+export const FG_BRIGHT_MAGENTA = 0x16;
+export const FG_BRIGHT_CYAN = 0x17;
+export const FG_WHITE = 0x18;
 
-export const FG_BRIGHT = 1 << 4;
-export const BG_BRIGHT = 1 << 9;
+export const BG_BLACK = 0x20;
+export const BG_RED = 0x40;
+export const BG_GREEN = 0x60;
+export const BG_YELLOW = 0x80;
+export const BG_BLUE = 0xa0;
+export const BG_MAGENTA = 0xc0;
+export const BG_CYAN = 0xe0;
+export const BG_LIGHT_GRAY = 0x100;
 
-export const BOLD = 1 << 10;
-export const DIM = 1 << 11;
-export const UNDERLINE = 1 << 12;
+export const BG_GRAY = 0x220;
+export const BG_BRIGHT_RED = 0x240;
+export const BG_BRIGHT_GREEN = 0x260;
+export const BG_BRIGHT_YELLOW = 0x280;
+export const BG_BRIGHT_BLUE = 0x2a0;
+export const BG_BRIGHT_MAGENTA = 0x2c0;
+export const BG_BRIGHT_CYAN = 0x2e0;
+export const BG_WHITE = 0x300;
+
+export const BOLD = 0x400;
+export const DIM = 0x800;
+export const UNDERLINE = 0x1000;
 
 export const ENDINGS = "()[]{}<>◀▶▲▼•●";
 
@@ -113,7 +129,7 @@ export interface StrokeStyle {
 
 // https://en.wikipedia.org/wiki/Box-drawing_character
 
-export const STROKE_STYLES: IObjectOf<StrokeStyle> = {
+export const STROKE_STYLES: Record<"ascii" | "thin" | "double", StrokeStyle> = {
     ascii: {
         hl: "-",
         vl: "|",
@@ -140,7 +156,7 @@ export const STROKE_STYLES: IObjectOf<StrokeStyle> = {
         tjt: "┬",
         tjb: "┴",
         jct: "┼",
-        dot: "·"
+        dot: "•"
     },
     double: {
         hl: "═",
@@ -154,6 +170,6 @@ export const STROKE_STYLES: IObjectOf<StrokeStyle> = {
         tjt: "╦",
         tjb: "╩",
         jct: "╬",
-        dot: "·"
+        dot: "•"
     }
 };

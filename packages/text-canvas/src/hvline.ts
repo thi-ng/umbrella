@@ -24,7 +24,8 @@ export const hline = (
     len: number,
     s?: NumOrString,
     e?: NumOrString,
-    m?: NumOrString
+    m?: NumOrString,
+    format = canvas.format
 ) => {
     const { x1, y1, x2, y2 } = peek(canvas.clipRects);
     if (len < 1 || y < y1 || y >= y2 || x >= x2) return;
@@ -37,7 +38,7 @@ export const hline = (
         x1,
         x2,
         len,
-        canvas.format,
+        format,
         peek(canvas.styles).hl,
         s,
         e,
@@ -66,7 +67,8 @@ export const vline = (
     len: number,
     s?: NumOrString,
     e?: NumOrString,
-    m?: NumOrString
+    m?: NumOrString,
+    format = canvas.format
 ) => {
     const { x1, x2, y1, y2 } = peek(canvas.clipRects);
     if (len < 1 || x < x1 || x >= x2 || y >= y2) return;
@@ -79,7 +81,7 @@ export const vline = (
         y1,
         y2,
         len,
-        canvas.format,
+        format,
         peek(canvas.styles).vl,
         s,
         e,
@@ -96,7 +98,7 @@ const _hvline = (
     amin: number,
     amax: number,
     len: number,
-    format: number[],
+    format: number,
     style: NumOrString,
     s?: NumOrString,
     e?: NumOrString,

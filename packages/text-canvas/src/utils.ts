@@ -1,9 +1,8 @@
 import { NumOrString } from "@thi.ng/api";
 import { ClipRect } from "./api";
 
-export const charCode = (x: NumOrString, format: number[]) =>
-    (typeof x === "string" ? x.charCodeAt(0) : x) |
-    (format[format.length - 1] << 16);
+export const charCode = (x: NumOrString, format: number) =>
+    (typeof x === "string" ? x.charCodeAt(0) : x) | (format << 16);
 
 export const intersectRect = (a: ClipRect, b: ClipRect): ClipRect => {
     const x1 = Math.max(a.x1, b.x1);

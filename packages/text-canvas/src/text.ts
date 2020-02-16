@@ -1,6 +1,14 @@
 import { peek } from "@thi.ng/arrays";
 import { wordWrap } from "@thi.ng/transducers";
-import { Canvas } from "./canvas";
+import { StrokeStyle } from "./api";
+import {
+    beginClip,
+    beginStyle,
+    Canvas,
+    endClip,
+    endStyle
+} from "./canvas";
+import { fillRect, strokeRect } from "./rect";
 
 /**
  * Writes given string at position `x`,`y`, taking the current clip rect
@@ -16,7 +24,8 @@ export const textLine = (
     canvas: Canvas,
     x: number,
     y: number,
-    line: string
+    line: string,
+    format = canvas.format
 ) => {
     x |= 0;
     y |= 0;
@@ -28,8 +37,8 @@ export const textLine = (
         x = x1;
     }
     const { buf, width } = canvas;
-    const format = peek(canvas.format) << 16;
     const n = line.length;
+    format <<= 16;
     for (let idx = x + y * width; i < n && x < x2; i++, x++, idx++) {
         buf[idx] = line.charCodeAt(i) | format;
     }
@@ -51,7 +60,8 @@ export const textColumn = (
     x: number,
     y: number,
     width: number,
-    txt: string
+    txt: string,
+    format = canvas.format
 ) => {
     x |= 0;
     y |= 0;
@@ -59,10 +69,64 @@ export const textColumn = (
     const height = canvas.height;
     for (let line of txt.split("\n")) {
         for (let words of wordWrap(width, line.split(" "))) {
-            textLine(canvas, x, y, words.join(" "));
+            textLine(canvas, x, y, words.join(" "), format);
             y++;
             if (y >= height) return y;
         }
     }
     return y;
+};
+
+interface TextBoxOpts {
+    format: number;
+    padding: number[];
+    style: StrokeStyle;
+}
+
+export const textBox = (
+    canvas: Canvas,
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    txt: string,
+    opts?: Partial<TextBoxOpts>
+) => {
+    const { format, style, padding } = {
+        format: canvas.format,
+        padding: [0, 0],
+        ...opts
+    };
+    const currFmt = canvas.format;
+    canvas.format = format;
+    style && beginStyle(canvas, style);
+    x |= 0;
+    y |= 0;
+    width |= 0;
+    let innerW = width - 2 - 2 * padding[0];
+    let innerH = 0;
+    const lines: string[] = [];
+    for (let line of txt.split("\n")) {
+        for (let words of wordWrap(innerW, line.split(" "))) {
+            lines.push(words.join(" "));
+        }
+    }
+    if (height < 0) {
+        innerH = lines.length + 2;
+        height = innerH + 2 * padding[1];
+    } else {
+        innerH = Math.max(0, height - 2);
+    }
+    strokeRect(canvas, x, y, width, height);
+    fillRect(canvas, x + 1, y + 1, width - 2, height - 2, " ");
+    x += 1 + padding[0];
+    y += 1 + padding[1];
+    beginClip(canvas, x, y, innerW, innerH);
+    for (let line of lines) {
+        textLine(canvas, x, y, line);
+        y++;
+    }
+    endClip(canvas);
+    style && endStyle(canvas);
+    canvas.format = currFmt;
 };

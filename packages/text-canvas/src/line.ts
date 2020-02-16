@@ -22,7 +22,8 @@ export const line = (
     ay: number,
     bx: number,
     by: number,
-    char?: NumOrString
+    char?: NumOrString,
+    format = canvas.format
 ) => {
     const { x1, y1, x2, y2 } = peek(canvas.clipRects);
     const clipped = liangBarsky2Raw(ax, ay, bx, by, x1, y1, x2, y2);
@@ -41,7 +42,7 @@ export const line = (
 
     char = charCode(
         char !== undefined ? char : peek(canvas.styles).dot,
-        canvas.format
+        format
     );
 
     while (true) {

@@ -13,16 +13,22 @@ export class Canvas {
     buf: Uint32Array;
     width: number;
     height: number;
-    format: number[];
+    format: number;
+    defaultFormat: number;
     styles: StrokeStyle[];
     clipRects: ClipRect[];
 
-    constructor(width: number, height: number) {
+    constructor(
+        width: number,
+        height: number,
+        format = NONE,
+        style = STROKE_STYLES.ascii
+    ) {
         this.width = width;
         this.height = height;
         this.buf = new Uint32Array(width * height).fill(0x20);
-        this.format = [NONE];
-        this.styles = [STROKE_STYLES.ascii];
+        this.format = this.defaultFormat = format;
+        this.styles = [style];
         this.clipRects = [
             { x1: 0, y1: 0, x2: width, y2: height, w: width, h: height }
         ];
@@ -63,21 +69,16 @@ export const beginStyle = (canvas: Canvas, style: StrokeStyle) => {
 
 export const endStyle = (canvas: Canvas) => pop(canvas.styles);
 
-export const beginFormat = (canvas: Canvas, format: number) => {
-    canvas.format.push(format);
-};
-
-export const endFormat = (canvas: Canvas) => pop(canvas.format);
-
 export const setAt = (
     canvas: Canvas,
     x: number,
     y: number,
-    code: NumOrString
+    code: NumOrString,
+    format = canvas.format
 ) => {
     x |= 0;
     y |= 0;
     const { x1, y1, x2, y2 } = peek(canvas.clipRects);
     if (x < x1 || y < y1 || x >= x2 || y >= y2) return;
-    canvas.buf[x + y * canvas.width] = charCode(code, canvas.format);
+    canvas.buf[x + y * canvas.width] = charCode(code, format);
 };
