@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/text-canvas",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "Text based canvas with extensible formatting (incl. ANSI/HTML)",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -41,7 +41,10 @@
     "dependencies": {
         "@thi.ng/api": "^6.7.1",
         "@thi.ng/arrays": "^0.5.1",
-        "@thi.ng/math": "^1.6.0"
+        "@thi.ng/geom-clip-line": "^0.0.1",
+        "@thi.ng/math": "^1.6.0",
+        "@thi.ng/memoize": "^1.1.8",
+        "@thi.ng/transducers": "^6.2.1"
     },
     "keywords": [
         "ascii",
