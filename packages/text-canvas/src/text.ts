@@ -1,6 +1,6 @@
 import { peek } from "@thi.ng/arrays";
 import { wordWrap } from "@thi.ng/transducers";
-import { StrokeStyle } from "./api";
+import { TextBoxOpts } from "./api";
 import {
     beginClip,
     beginStyle,
@@ -44,6 +44,20 @@ export const textLine = (
     }
 };
 
+export const textLines = (
+    canvas: Canvas,
+    x: number,
+    y: number,
+    lines: string[],
+    format = canvas.format
+) => {
+    for (let line of lines) {
+        textLine(canvas, x, y, line, format);
+        y++;
+    }
+    return y;
+};
+
 /**
  * Writes multiline string at position `x`,`y` and using column `width`,
  * also taking the current clip rect and format into account. Applies
@@ -77,12 +91,6 @@ export const textColumn = (
     return y;
 };
 
-interface TextBoxOpts {
-    format: number;
-    padding: number[];
-    style: StrokeStyle;
-}
-
 export const textBox = (
     canvas: Canvas,
     x: number,
@@ -105,12 +113,7 @@ export const textBox = (
     width |= 0;
     let innerW = width - 2 - 2 * padding[0];
     let innerH = 0;
-    const lines: string[] = [];
-    for (let line of txt.split("\n")) {
-        for (let words of wordWrap(innerW, line.split(" "))) {
-            lines.push(words.join(" "));
-        }
-    }
+    const lines = wordWrappedLines(innerW, txt);
     if (height < 0) {
         innerH = lines.length + 2;
         height = innerH + 2 * padding[1];
@@ -122,11 +125,19 @@ export const textBox = (
     x += 1 + padding[0];
     y += 1 + padding[1];
     beginClip(canvas, x, y, innerW, innerH);
-    for (let line of lines) {
-        textLine(canvas, x, y, line);
-        y++;
-    }
+    y = textLines(canvas, x, y, lines);
     endClip(canvas);
     style && endStyle(canvas);
     canvas.format = currFmt;
+    return y + height;
+};
+
+export const wordWrappedLines = (width: number, txt: string) => {
+    const lines: string[] = [];
+    for (let line of txt.split("\n")) {
+        for (let words of wordWrap(width, line.split(" "))) {
+            lines.push(words.join(" "));
+        }
+    }
+    return lines;
 };
