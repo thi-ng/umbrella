@@ -1,5 +1,34 @@
 import { Fn } from "@thi.ng/api";
 
+export const enum Align {
+    LEFT,
+    RIGHT,
+    CENTER
+}
+
+export const enum Border {
+    NONE = 0,
+    H = 1,
+    V = 2,
+    ALL = 3,
+    FRAME = 4
+}
+
+export interface TableOpts {
+    cols: { width: number /* align?: Align*/ }[];
+    style?: StrokeStyle;
+    format?: number;
+    formatHead?: number;
+    border?: Border;
+    padding?: number[];
+}
+
+export interface TextBoxOpts {
+    format: number;
+    padding: number[];
+    style: StrokeStyle;
+}
+
 export interface ClipRect {
     x1: number;
     y1: number;

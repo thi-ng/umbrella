@@ -7,5 +7,6 @@ export * from "./hvline";
 export * from "./line";
 export * from "./rect";
 export * from "./string";
+export * from "./table";
 export * from "./text";
 export * from "./utils";
