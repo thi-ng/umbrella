@@ -1,4 +1,4 @@
-import { NumOrString } from "@thi.ng/api";
+import { Fn0, NumOrString } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
 import { clamp } from "@thi.ng/math";
 import {
@@ -63,11 +63,37 @@ const pop = (stack: any[]) => stack.length > 1 && stack.pop();
 
 export const endClip = (canvas: Canvas) => pop(canvas.clipRects);
 
+export const withClip = (
+    canvas: Canvas,
+    x: number,
+    y: number,
+    w: number,
+    h: number,
+    fn: Fn0<any>
+) => {
+    beginClip(canvas, x, y, w, h);
+    fn();
+    canvas.clipRects.pop();
+};
+
 export const beginStyle = (canvas: Canvas, style: StrokeStyle) => {
     canvas.styles.push(style);
 };
 
 export const endStyle = (canvas: Canvas) => pop(canvas.styles);
+
+export const withStyle = (canvas: Canvas, style: StrokeStyle, fn: Fn0<any>) => {
+    canvas.styles.push(style);
+    fn();
+    canvas.styles.pop();
+};
+
+export const withFormat = (canvas: Canvas, format: number, fn: Fn0<any>) => {
+    const prev = canvas.format;
+    canvas.format = format;
+    fn();
+    canvas.format = prev;
+};
 
 export const setAt = (
     canvas: Canvas,
