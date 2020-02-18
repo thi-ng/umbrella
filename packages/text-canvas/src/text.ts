@@ -135,7 +135,7 @@ export const textBox = (
 export const wordWrappedLines = (width: number, txt: string) => {
     const lines: string[] = [];
     for (let line of txt.split("\n")) {
-        for (let words of wordWrap(width, line.split(" "))) {
+        for (let words of wordWrap(width, { always: false }, line.split(" "))) {
             lines.push(words.join(" "));
         }
     }

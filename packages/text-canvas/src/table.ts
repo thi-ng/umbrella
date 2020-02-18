@@ -1,5 +1,6 @@
 import { peek } from "@thi.ng/arrays";
-import { Border, TableOpts } from "./api";
+import { isString } from "@thi.ng/checks";
+import { Border, NONE, TableOpts } from "./api";
 import {
     beginClip,
     beginStyle,
@@ -13,7 +14,10 @@ import { fillRect, strokeRect } from "./rect";
 import { horizontalOnly, verticalOnly } from "./style";
 import { textLines, wordWrappedLines } from "./text";
 
-export const initTable = (opts: TableOpts, cells: string[][]) => {
+type RawCell = { body: string; format: number };
+type Cell = { body: string[]; format: number };
+
+export const initTable = (opts: TableOpts, cells: (string | RawCell)[][]) => {
     const b = opts.border !== undefined ? opts.border : Border.ALL;
     const bH = b & Border.H ? 1 : 0;
     const bV = b & Border.V ? 1 : 0;
@@ -26,13 +30,16 @@ export const initTable = (opts: TableOpts, cells: string[][]) => {
     const numCols = cols.length - 1;
     const numRows = cells.length - 1;
     const rowHeights = new Array<number>(numRows + 1).fill(0);
-    const wrapped: string[][][] = [];
+    const wrapped: Cell[][] = [];
     for (let i = 0; i <= numRows; i++) {
         const row = cells[i];
-        const wrappedRow: string[][] = [];
-        for (let j = 0; j < row.length; j++) {
-            const lines = wordWrappedLines(cols[j].width, row[j]);
-            wrappedRow.push(lines);
+        const wrappedRow: Cell[] = [];
+        for (let j = 0; j <= numCols; j++) {
+            const cell = isString(row[j])
+                ? { body: <string>row[j], format: NONE }
+                : <RawCell>row[j];
+            const lines = wordWrappedLines(cols[j].width, cell.body);
+            wrappedRow.push({ body: lines, format: cell.format });
             rowHeights[i] = Math.max(rowHeights[i], lines.length);
         }
         wrapped.push(wrappedRow);
@@ -88,8 +95,7 @@ export const drawTable = (
         bFV
     } = opts;
     const fmt = opts.format !== undefined ? opts.format : canvas.format;
-    const fmtHd =
-        opts.formatHead !== undefined ? opts.formatHead : canvas.format;
+    const fmtHd = opts.formatHead !== undefined ? opts.formatHead : fmt;
     const currFormat = canvas.format;
     canvas.format = fmt;
     let style = opts.style || peek(canvas.styles);
@@ -122,15 +128,18 @@ export const drawTable = (
         }
         for (let j = 0, xx = x + bFV; j <= numCols; j++) {
             const col = cols[j];
-            beginClip(canvas, xx, yy, col.width + padH, rowH + padV);
-            textLines(
-                canvas,
-                xx + padH / 2,
-                yy + padV / 2,
-                row[j] || [],
-                i ? fmt : fmtHd
-            );
-            endClip(canvas);
+            const curr = row[j];
+            if (curr.body) {
+                beginClip(canvas, xx, yy, col.width + padH, rowH + padV);
+                textLines(
+                    canvas,
+                    xx + padH / 2,
+                    yy + padV / 2,
+                    curr.body,
+                    curr.format || (i ? fmt : fmtHd)
+                );
+                endClip(canvas);
+            }
             if (bH && bV && j > 0 && i < numRows) {
                 setAt(canvas, xx - 1, y2, style.jct);
             }
