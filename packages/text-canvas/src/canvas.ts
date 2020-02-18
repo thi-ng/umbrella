@@ -4,8 +4,8 @@ import { clamp } from "@thi.ng/math";
 import {
     ClipRect,
     NONE,
-    STROKE_STYLES,
-    StrokeStyle
+    StrokeStyle,
+    STYLE_ASCII
 } from "./api";
 import { charCode, intersectRect } from "./utils";
 
@@ -22,7 +22,7 @@ export class Canvas {
         width: number,
         height: number,
         format = NONE,
-        style = STROKE_STYLES.ascii
+        style = STYLE_ASCII
     ) {
         this.width = width;
         this.height = height;
@@ -87,6 +87,9 @@ export const withStyle = (canvas: Canvas, style: StrokeStyle, fn: Fn0<any>) => {
     fn();
     canvas.styles.pop();
 };
+
+export const setFormat = (canvas: Canvas, format: number) =>
+    (canvas.format = format);
 
 export const withFormat = (canvas: Canvas, format: number, fn: Fn0<any>) => {
     const prev = canvas.format;

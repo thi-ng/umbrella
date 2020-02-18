@@ -106,7 +106,7 @@ export const FG_YELLOW = 4;
 export const FG_BLUE = 5;
 export const FG_MAGENTA = 6;
 export const FG_CYAN = 7;
-export const FG_LIGHT_GRAT = 8;
+export const FG_LIGHT_GRAY = 8;
 
 export const FG_GRAY = 0x11;
 export const FG_BRIGHT_RED = 0x12;
@@ -158,47 +158,75 @@ export interface StrokeStyle {
 
 // https://en.wikipedia.org/wiki/Box-drawing_character
 
-export const STROKE_STYLES: Record<"ascii" | "thin" | "double", StrokeStyle> = {
-    ascii: {
-        hl: "-",
-        vl: "|",
-        tl: "+",
-        tr: "+",
-        bl: "+",
-        br: "+",
-        tjl: "+",
-        tjr: "+",
-        tjt: "+",
-        tjb: "+",
-        jct: "+",
-        dot: "."
-    },
-    thin: {
-        hl: "─",
-        vl: "│",
-        tl: "┌",
-        tr: "┐",
-        bl: "└",
-        br: "┘",
-        tjl: "├",
-        tjr: "┤",
-        tjt: "┬",
-        tjb: "┴",
-        jct: "┼",
-        dot: "•"
-    },
-    double: {
-        hl: "═",
-        vl: "║",
-        tl: "╔",
-        tr: "╗",
-        bl: "╚",
-        br: "╝",
-        tjl: "╠",
-        tjr: "╣",
-        tjt: "╦",
-        tjb: "╩",
-        jct: "╬",
-        dot: "•"
-    }
+export const STYLE_ASCII: StrokeStyle = {
+    hl: "-",
+    vl: "|",
+    tl: "+",
+    tr: "+",
+    bl: "+",
+    br: "+",
+    tjl: "+",
+    tjr: "+",
+    tjt: "+",
+    tjb: "+",
+    jct: "+",
+    dot: "."
 };
+
+export const STYLE_THIN: StrokeStyle = {
+    hl: "─",
+    vl: "│",
+    tl: "┌",
+    tr: "┐",
+    bl: "└",
+    br: "┘",
+    tjl: "├",
+    tjr: "┤",
+    tjt: "┬",
+    tjb: "┴",
+    jct: "┼",
+    dot: "•"
+};
+
+export const STYLE_THIN_ROUNDED: StrokeStyle = {
+    ...STYLE_THIN,
+    tl: "╭",
+    tr: "╮",
+    bl: "╰",
+    br: "╯"
+};
+
+export const STYLE_DASHED: StrokeStyle = {
+    ...STYLE_THIN,
+    hl: "╌",
+    vl: "┆"
+};
+
+export const STYLE_DASHED_ROUNDED: StrokeStyle = {
+    ...STYLE_DASHED,
+    tl: "╭",
+    tr: "╮",
+    bl: "╰",
+    br: "╯"
+};
+
+export const STYLE_DOUBLE: StrokeStyle = {
+    hl: "═",
+    vl: "║",
+    tl: "╔",
+    tr: "╗",
+    bl: "╚",
+    br: "╝",
+    tjl: "╠",
+    tjr: "╣",
+    tjt: "╦",
+    tjb: "╩",
+    jct: "╬",
+    dot: "•"
+};
+
+export const BARS_H = " ▏▎▍▌▋▊▉█";
+
+export const BARS_V = " ▁▂▃▄▅▆▇█";
+
+export const SHADES = " ░▒▓█";
