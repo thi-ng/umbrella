@@ -89,7 +89,7 @@ export const mulV44: MatOpMV = mulV.add(16, (out, m, v) =>
  * @param v -
  */
 export const mulV344: MatOpMV = (out, m, v) => {
-    const w = dotS3(m, v, 3, 0, 4) || 1;
+    const w = dotS3(m, v, 3, 0, 4) + m[15];
     return setC3(
         out || v,
         (dotS3(m, v, 0, 0, 4) + m[12]) / w,
