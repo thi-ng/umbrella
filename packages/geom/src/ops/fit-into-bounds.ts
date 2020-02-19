@@ -105,12 +105,12 @@ export function transformV344(
     }
 
     if (!isArray(out)) {
-        throw new Error("transform3 out must me an array or null");
+        throw new Error("transformV344 out must me an array or null");
     }
 
     if (isArray(out) && out.length !== pts.length) {
         throw new Error(
-            `transform3: out must be an array with the the same length of input array`
+            `transformV344: out must be an array with the the same length of input array`
         );
     }
 
