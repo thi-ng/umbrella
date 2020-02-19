@@ -1,10 +1,4 @@
-import {
-    divN3,
-    dotC6,
-    fromHomogeneous4,
-    ReadonlyVec,
-    Vec
-} from "@thi.ng/vectors";
+import { fromHomogeneous4, ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { ReadonlyMat } from "./api";
 import { invert23, invert44 } from "./invert";
 import { mulV23, mulV344, mulV44 } from "./mulv";
@@ -31,7 +25,30 @@ export const project = (
 );
 
 /**
- * Reverse operation of {@link project}. If `invert` is true (default:
+ * Same as {@link project}, but slightly faster and more convenient for
+ * the most common use case of projecting a 3D input point (assumes
+ * `w=1` for its homogeneous coordinate, i.e. `[x,y,z,1]`). Returns
+ * `undefined` if the computed perspective divisor is zero (and would
+ * cause in `NaN` results).
+ *
+ * @param out -
+ * @param mvp - 4x4 matrix
+ * @param view - 2x3 matrix
+ * @param p -
+ */
+export const project3 = (
+    out: Vec | null,
+    mvp: ReadonlyMat,
+    view: ReadonlyMat,
+    p: ReadonlyVec
+) => {
+    !out && (out = []);
+    const q = mulV344(out, mvp, p);
+    return q ? mulV23(q, view, q) : undefined;
+};
+
+/**
+ * Reverse operation of {@link project3}. If `invert` is true (default:
  * false), both `mvp` and `view` matrices will be inverted first
  * (non-destructively), else they're both assumed to be inverted
  * already.
@@ -56,10 +73,5 @@ export const unproject = (
         mvp = _mvp;
         view = _view;
     }
-    const q = [...mulV23([], view, p), p[2] * 2 - 1];
-    return divN3(
-        out,
-        mulV344(out, mvp, q),
-        dotC6(q[0], mvp[3], q[1], mvp[7], q[2], mvp[11]) + mvp[15]
-    );
+    return mulV344(out, mvp, mulV23([0, 0, p[2] * 2 - 1], view, p));
 };

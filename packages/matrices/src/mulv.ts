@@ -2,13 +2,15 @@ import {
     dotS2,
     dotS3,
     dotS4,
+    ReadonlyVec,
     setC2,
     setC3,
     setC4,
+    Vec,
     VecOpVV,
     vop
 } from "@thi.ng/vectors";
-import { MatOpMV, MultiMatOpMV } from "./api";
+import { MatOpMV, MultiMatOpMV, ReadonlyMat } from "./api";
 
 /**
  * Matrix-vector multiplication. Supports in-place modification, i.e. if
@@ -80,22 +82,26 @@ export const mulV44: MatOpMV = mulV.add(16, (out, m, v) =>
 );
 
 /**
- * Multiplies 4x4 matrix `m` with 3D vector `v` and assumes `w=1`, i.e.
- * the vector is interpreted as `[x,y,z,1]`. After transformation
- * applies perspective divide of the resulting XYZ components.
+ * Multiplies 4x4 matrix `m` with 3D vector `v` and assumes initial
+ * `w=1`, i.e. the vector is interpreted as `[x,y,z,1]`. After
+ * transformation applies perspective divide of the resulting XYZ
+ * components. Returns `undefined` if the computed perspective divisor
+ * is zero (and would cause `NaN` results).
  *
  * @param out -
  * @param m -
  * @param v -
  */
-export const mulV344: MatOpMV = (out, m, v) => {
+export const mulV344 = (out: Vec | null, m: ReadonlyMat, v: ReadonlyVec) => {
     const w = dotS3(m, v, 3, 0, 4) + m[15];
-    return setC3(
-        out || v,
-        (dotS3(m, v, 0, 0, 4) + m[12]) / w,
-        (dotS3(m, v, 1, 0, 4) + m[13]) / w,
-        (dotS3(m, v, 2, 0, 4) + m[14]) / w
-    );
+    return w !== 0
+        ? setC3(
+              out || v,
+              (dotS3(m, v, 0, 0, 4) + m[12]) / w,
+              (dotS3(m, v, 1, 0, 4) + m[13]) / w,
+              (dotS3(m, v, 2, 0, 4) + m[14]) / w
+          )
+        : undefined;
 };
 
 /**
