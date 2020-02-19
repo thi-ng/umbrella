@@ -2,6 +2,7 @@ import {
     divN3,
     dotC6,
     fromHomogeneous4,
+    fromHomogeneous4V3,
     ReadonlyVec,
     Vec
 } from "@thi.ng/vectors";
@@ -18,7 +19,7 @@ import { mulV23, mulV344, mulV44 } from "./mulv";
  * @param out -
  * @param mvp - 4x4 matrix
  * @param view - 2x3 matrix
- * @param p -
+ * @param p - 4 vector
  */
 export const project = (
     out: Vec | null,
@@ -28,6 +29,27 @@ export const project = (
 ) => (
     !out && (out = []),
     mulV23(out, view, fromHomogeneous4(out, mulV44([], mvp, p)))
+);
+
+/**
+ * Transforms given point `p` (3D, the `w` homogeneous coordinates
+ * is assumed to be 1, as [x, y, z, 1]) with 4x4 matrix `mvp`, applies perspective
+ * divide and then transforms XY components with 2x3 matrix `view` matrix.
+ * Returns 3D vector. The result Z component can be used for depth sorting.
+ *
+ * @param out -
+ * @param mvp - 4x4 matrix
+ * @param view - 2x3 matrix
+ * @param p - 3 vector
+ */
+export const project3 = (
+    out: Vec | null,
+    mvp: ReadonlyMat,
+    view: ReadonlyMat,
+    p: ReadonlyVec
+) => (
+    !out && (out = []),
+    mulV23(out, view, fromHomogeneous4V3(out, mulV344([], mvp, p)))
 );
 
 /**
