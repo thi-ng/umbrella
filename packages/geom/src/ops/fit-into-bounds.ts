@@ -138,7 +138,8 @@ const translateScale3 = (
     );
 
 /**
- * Fit a 3d point array into a 3d bounding box.
+ * Fit a 3d points into a 3d bounding box.
+ * Instead of the 2d version that takes an IShape as input this function works on raw array of Vec.
  *
  * @param out
  * @param pts
