@@ -12,4 +12,5 @@ export * from "./mix";
 export * from "./prec";
 export * from "./ratio";
 export * from "./solve";
+export * from "./safe-div";
 export * from "./step";
