@@ -98,6 +98,14 @@ export const withFormat = (canvas: Canvas, format: number, fn: Fn0<any>) => {
     canvas.format = prev;
 };
 
+export const getAt = (canvas: Canvas, x: number, y: number) => {
+    x |= 0;
+    y |= 0;
+    return x >= 0 && y >= 0 && x < canvas.width && y < canvas.height
+        ? canvas.buf[x + y * canvas.width]
+        : 0;
+};
+
 export const setAt = (
     canvas: Canvas,
     x: number,

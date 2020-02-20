@@ -157,7 +157,7 @@ export const table = (
     x: number,
     y: number,
     opts: TableOpts,
-    cells: string[][]
+    cells: (string | RawCell)[][]
 ) => {
     const spec = initTable(opts, cells);
     drawTable(canvas, x, y, spec);
