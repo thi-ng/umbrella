@@ -15,23 +15,19 @@ import {
     concat,
     lookAt,
     perspective,
-    project,
+    project3,
     rotationX44,
     rotationY44,
     viewport
 } from "@thi.ng/matrices";
 import {
     beginClip,
-    beginFormat,
-    BG_BRIGHT,
+    BG_BRIGHT_MAGENTA,
     BG_GREEN,
-    BG_MAGENTA,
     Canvas,
     circle,
     clear,
     endClip,
-    endFormat,
-    FG_BRIGHT,
     FG_CYAN,
     FG_WHITE,
     FG_YELLOW,
@@ -112,22 +108,29 @@ requestAnimationFrame(function update() {
     // combined model-view-projection matrix
     const mvp = concat([], proj, view, model);
     // draw cube instances
-    beginFormat(canvas, FG_WHITE | BG_MAGENTA | FG_BRIGHT | BG_BRIGHT);
     for (let pos of instances) {
         // project 3D points to 2D viewport (canvas coords)
-        const pts = cube.map((p) =>
-            project([], mvp, viewp, add3([0, 0, 0, 1], p, pos))
+        const pts = cube.map(
+            (p) => project3([], mvp, viewp, add3([], p, pos))!
         );
         // draw cube edges
         for (let e of edges) {
             const a = pts[e[0]];
             const b = pts[e[1]];
-            line(canvas, a[0], a[1], b[0], b[1], "#");
+            line(
+                canvas,
+                a[0],
+                a[1],
+                b[0],
+                b[1],
+                "#",
+                FG_WHITE | BG_BRIGHT_MAGENTA
+            );
         }
     }
-    endFormat(canvas);
     // remove clip rect
     endClip(canvas);
+
     // draw canvas
     root!.innerHTML = toFormattedString(canvas, FMT_HTML_TACHYONS);
     requestAnimationFrame(update);
