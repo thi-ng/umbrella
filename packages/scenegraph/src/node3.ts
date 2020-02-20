@@ -53,7 +53,7 @@ export class Node3D extends ANode<Node3D>
     }
 
     mapLocalPointToNode(dest: Node3D, p: ReadonlyVec) {
-        return mulV344(null, dest.invMat, mulV344([], this.mat, p));
+        return mulV344(null, dest.invMat, mulV344([], this.mat, p)!);
     }
 
     /**

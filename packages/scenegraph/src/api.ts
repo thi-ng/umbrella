@@ -13,9 +13,9 @@ export interface ISceneNode<T extends ISceneNode<T>> extends IID<string> {
 
     draw<D>(ctx: D): void;
 
-    mapGlobalPoint(p: ReadonlyVec): Vec;
+    mapGlobalPoint(p: ReadonlyVec): Vec | undefined;
 
-    mapLocalPointToNode(dest: ISceneNode<T>, p: ReadonlyVec): Vec;
+    mapLocalPointToNode(dest: ISceneNode<T>, p: ReadonlyVec): Vec | undefined;
 
     containsLocalPoint(_: ReadonlyVec): boolean;
 

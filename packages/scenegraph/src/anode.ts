@@ -77,7 +77,7 @@ export abstract class ANode<T extends ISceneNode<any>> {
                 }
             }
             const q = this.mapGlobalPoint(p);
-            if (this.containsLocalPoint(q)) {
+            if (q && this.containsLocalPoint(q)) {
                 return { node: <any>this, p: q };
             }
         }
@@ -89,7 +89,7 @@ export abstract class ANode<T extends ISceneNode<any>> {
      *
      * @param p -
      */
-    abstract mapGlobalPoint(p: ReadonlyVec): Vec;
+    abstract mapGlobalPoint(p: ReadonlyVec): Vec | undefined;
 
     /**
      * Returns copy of node local space point `p`, transformed into the
@@ -98,7 +98,7 @@ export abstract class ANode<T extends ISceneNode<any>> {
      * @param dest -
      * @param p -
      */
-    abstract mapLocalPointToNode(dest: T, p: ReadonlyVec): Vec;
+    abstract mapLocalPointToNode(dest: T, p: ReadonlyVec): Vec | undefined;
 
     /**
      * Returns true, if given point is contained within the boundary of
