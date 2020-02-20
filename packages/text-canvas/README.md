@@ -1,43 +1,73 @@
-# ${pkg.banner}
+<!-- This file is generated - DO NOT EDIT! -->
 
-[![npm version](https://img.shields.io/npm/v/${pkg.name}.svg)](https://www.npmjs.com/package/${pkg.name})
-![npm downloads](https://img.shields.io/npm/dm/${pkg.name}.svg)
+# ![@thi.ng/text-canvas](https://media.thi.ng/umbrella/banners/thing-text-canvas.svg?1582232497)
+
+[![npm version](https://img.shields.io/npm/v/@thi.ng/text-canvas.svg)](https://www.npmjs.com/package/@thi.ng/text-canvas)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/text-canvas.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC -->
+- [About](#about)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
+- [API](#api)
+  - [Format identifiers](#format-identifiers)
+  - [Output formatter presets](#output-formatter-presets)
+  - [Built-in stroke style presets](#built-in-stroke-style-presets)
+  - [Drawing functions](#drawing-functions)
+  - [Tables](#tables)
+  - [Basic example](#basic-example)
+- [Authors](#authors)
+- [License](#license)
 
 ## About
 
-${pkg.description}
+Text based canvas with extensible formatting (incl. ANSI/HTML).
 
-${status}
+### Status
 
-${supportPackages}
-
-${relatedPackages}
-
-${blogPosts}
+**ALPHA** - bleeding edge / work-in-progress
 
 ## Installation
 
 ```bash
-yarn add ${pkg.name}
+yarn add @thi.ng/text-canvas
 ```
 
-${pkg.size}
+Package sizes (gzipped): CJS: 5.3KB
 
 ## Dependencies
 
-${pkg.deps}
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
+- [@thi.ng/geom-clip-line](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-clip-line)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
+- [@thi.ng/memoize](https://github.com/thi-ng/umbrella/tree/develop/packages/memoize)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 
-${examples}
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+### text-canvas <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas.png)
+
+3D wireframe textmode demo
+
+[Live demo](https://demo.thi.ng/umbrella/text-canvas/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas)
 
 ## API
 
-${docLink}
+[Generated API docs](https://docs.thi.ng/umbrella/text-canvas/)
 
 ### Format identifiers
 
@@ -192,8 +222,8 @@ setInterval(() => {
 
 ## Authors
 
-${authors}
+Karsten Schmidt
 
 ## License
 
-&copy; ${copyright} // ${license}
+&copy; 2020 Karsten Schmidt // Apache Software License 2.0
