@@ -1,6 +1,6 @@
 import { peek } from "@thi.ng/arrays";
 import { isString } from "@thi.ng/checks";
-import { Border, NONE, TableOpts } from "./api";
+import { Border, TableOpts } from "./api";
 import {
     beginClip,
     beginStyle,
@@ -14,8 +14,8 @@ import { fillRect, strokeRect } from "./rect";
 import { horizontalOnly, verticalOnly } from "./style";
 import { textLines, wordWrappedLines } from "./text";
 
-type RawCell = { body: string; format: number };
-type Cell = { body: string[]; format: number };
+type RawCell = { body: string; format?: number; height?: number };
+type Cell = { body: string[]; format?: number; height?: number };
 
 export const initTable = (opts: TableOpts, cells: (string | RawCell)[][]) => {
     const b = opts.border !== undefined ? opts.border : Border.ALL;
@@ -36,11 +36,15 @@ export const initTable = (opts: TableOpts, cells: (string | RawCell)[][]) => {
         const wrappedRow: Cell[] = [];
         for (let j = 0; j <= numCols; j++) {
             const cell = isString(row[j])
-                ? { body: <string>row[j], format: NONE }
+                ? { body: <string>row[j] }
                 : <RawCell>row[j];
             const lines = wordWrappedLines(cols[j].width, cell.body);
             wrappedRow.push({ body: lines, format: cell.format });
-            rowHeights[i] = Math.max(rowHeights[i], lines.length);
+            rowHeights[i] = Math.max(
+                rowHeights[i],
+                lines.length,
+                cell.height || 0
+            );
         }
         wrapped.push(wrappedRow);
     }
