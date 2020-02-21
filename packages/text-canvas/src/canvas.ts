@@ -35,6 +35,13 @@ export class Canvas {
     }
 }
 
+export const canvas = (
+    width: number,
+    height: number,
+    format?: number,
+    style?: StrokeStyle
+) => new Canvas(width, height, format, style);
+
 export const beginClip = (
     canvas: Canvas,
     x: number,
