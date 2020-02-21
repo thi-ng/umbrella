@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/text-canvas",
     "version": "0.0.1",
-    "description": "Text based canvas with extensible formatting (incl. ANSI/HTML)",
+    "description": "Text based canvas, drawing, tables with arbitrary formatting (incl. ANSI/HTML)",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -47,14 +47,20 @@
         "@thi.ng/transducers": "^6.2.1"
     },
     "keywords": [
-        "ascii",
+        "ASCII",
+        "ANSI",
         "canvas",
+        "circle",
         "drawing",
+        "format",
+        "HTML",
         "line",
         "ES6",
         "rect",
+        "table",
         "text",
-        "typescript"
+        "typescript",
+        "wordwrap"
     ],
     "publishConfig": {
         "access": "public"
