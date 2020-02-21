@@ -11,7 +11,9 @@ export const enum Border {
     H = 1,
     V = 2,
     ALL = 3,
-    FRAME = 4
+    FRAME = 4,
+    FRAME_H = 5,
+    FRAME_V = 6
 }
 
 export interface TableOpts {
