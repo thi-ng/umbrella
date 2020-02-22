@@ -1,7 +1,7 @@
 import { memoize1 } from "@thi.ng/memoize";
 import { StringFormat } from "./api";
 
-const ANSI_RESET = `\u001B[0m`;
+const ANSI_RESET = `\x1b[0m`;
 
 const ANSI_FLAGS = ["", "1", "2", "1;2", "4", "1;4", "2;4", "1;2;4"];
 
@@ -20,7 +20,7 @@ export const FMT_ANSI16: StringFormat = {
         y && res.push(39 + ((x >> 9) & 1) * 60 + y);
         y = x >> 10;
         y && res.push(ANSI_FLAGS[y]);
-        return "\u001b[" + res.join(";") + "m";
+        return "\x1b[" + res.join(";") + "m";
     }),
     end: ANSI_RESET,
     prefix: ANSI_RESET,

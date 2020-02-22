@@ -48,9 +48,15 @@ export interface ImageOpts {
      * Gamma correction value / exponent. All source pixel values will
      * be raised by this exponent.
      *
-     * @defaultValue 2.2
+     * @defaultValue 1
      */
     gamma: number;
+    /**
+     * If true, uses inverted pixel values.
+     *
+     * @defaultValue false
+     */
+    invert: boolean;
     /**
      * Number of bits/pixel in source image (only grayscale supported)
      *
@@ -77,15 +83,15 @@ export interface StringFormat {
      */
     start: Fn<number, string>;
     /**
-     * Format end string.
+     * Format end string (e.g. to ANSI reset or `</span>`).
      */
     end: string;
     /**
-     * Prefix for entire canvas result string
+     * Prefix for each canvas row / line result string
      */
     prefix: string;
     /**
-     * Suffix for entire canvas result string
+     * Suffix for each canvas row / line result string (e.g. linebreak)
      */
     suffix: string;
 }
@@ -102,8 +108,8 @@ export interface HtmlFormatOpts {
      */
     attrib: string;
     /**
-     * Delimiter between individual formatting terms, e.g. `;` for CSS
-     * rules or ` ` for CSS class names.
+     * Delimiter between individual formatting terms (e.g. `;` for CSS
+     * rules or ` ` for CSS class names).
      */
     delim: string;
     /**
@@ -114,8 +120,17 @@ export interface HtmlFormatOpts {
      * Prefix string for background colors
      */
     bg: string;
+    /**
+     * Bold format string
+     */
     bold: string;
+    /**
+     * Dimmed format string
+     */
     dim: string;
+    /**
+     * Underline format string
+     */
     underline: string;
 }
 
@@ -139,12 +154,12 @@ export const FG_CYAN = 7;
 export const FG_LIGHT_GRAY = 8;
 
 export const FG_GRAY = 0x11;
-export const FG_BRIGHT_RED = 0x12;
-export const FG_BRIGHT_GREEN = 0x13;
-export const FG_BRIGHT_YELLOW = 0x14;
-export const FG_BRIGHT_BLUE = 0x15;
-export const FG_BRIGHT_MAGENTA = 0x16;
-export const FG_BRIGHT_CYAN = 0x17;
+export const FG_LIGHT_RED = 0x12;
+export const FG_LIGHT_GREEN = 0x13;
+export const FG_LIGHT_YELLOW = 0x14;
+export const FG_LIGHT_BLUE = 0x15;
+export const FG_LIGHT_MAGENTA = 0x16;
+export const FG_LIGHT_CYAN = 0x17;
 export const FG_WHITE = 0x18;
 
 export const BG_BLACK = 0x20;
@@ -157,19 +172,17 @@ export const BG_CYAN = 0xe0;
 export const BG_LIGHT_GRAY = 0x100;
 
 export const BG_GRAY = 0x220;
-export const BG_BRIGHT_RED = 0x240;
-export const BG_BRIGHT_GREEN = 0x260;
-export const BG_BRIGHT_YELLOW = 0x280;
-export const BG_BRIGHT_BLUE = 0x2a0;
-export const BG_BRIGHT_MAGENTA = 0x2c0;
-export const BG_BRIGHT_CYAN = 0x2e0;
+export const BG_LIGHT_RED = 0x240;
+export const BG_LIGHT_GREEN = 0x260;
+export const BG_LIGHT_YELLOW = 0x280;
+export const BG_LIGHT_BLUE = 0x2a0;
+export const BG_LIGHT_MAGENTA = 0x2c0;
+export const BG_LIGHT_CYAN = 0x2e0;
 export const BG_WHITE = 0x300;
 
 export const BOLD = 0x400;
 export const DIM = 0x800;
 export const UNDERLINE = 0x1000;
-
-export const ENDINGS = "()[]{}<>◀▶▲▼•●";
 
 export interface StrokeStyle {
     hl: string;
@@ -255,8 +268,13 @@ export const STYLE_DOUBLE: StrokeStyle = {
     dot: "•"
 };
 
-export const BARS_H = " ▏▎▍▌▋▊▉█";
+export const ENDINGS = "()[]{}<>^v◀▶▲▼•●";
 
+export const BARS_H = " ▏▎▍▌▋▊▉█";
 export const BARS_V = " ▁▂▃▄▅▆▇█";
 
-export const SHADES = " ░▒▓█";
+export const SHADES_ASCII_10 = " .-:=+*#%@";
+export const SHADES_ASCII_16 = " .,:|+*=il3GOWQ0";
+
+export const SHADES_BLOCK = " ░▒▓█";
+export const SHADES_BLOCK_ALT = " ▖▞▟█";
