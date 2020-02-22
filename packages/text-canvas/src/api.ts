@@ -1,4 +1,4 @@
-import { Fn } from "@thi.ng/api";
+import { Fn, NumOrString } from "@thi.ng/api";
 
 export const enum Align {
     LEFT,
@@ -29,6 +29,34 @@ export interface TextBoxOpts {
     format: number;
     padding: number[];
     style: StrokeStyle;
+}
+
+export interface ImageOpts {
+    /**
+     * Target characters in order of increasing brightness. If chars are
+     * given as number, `format` option will NOT be applied, but is
+     * assumed to be already encoded in the number.
+     *
+     * @defaultValue {@link SHADES}
+     */
+    chars: NumOrString[];
+    /**
+     * Format to apply to all chars.
+     */
+    format: number;
+    /**
+     * Gamma correction value / exponent. All source pixel values will
+     * be raised by this exponent.
+     *
+     * @defaultValue 2.2
+     */
+    gamma: number;
+    /**
+     * Number of bits/pixel in source image (only grayscale supported)
+     *
+     * @defaultValue 8
+     */
+    bits: number;
 }
 
 export interface ClipRect {
