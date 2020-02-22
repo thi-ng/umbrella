@@ -1,5 +1,5 @@
 import { peek } from "@thi.ng/arrays";
-import { ImageOpts, SHADES } from "./api";
+import { ImageOpts, SHADES_BLOCK } from "./api";
 import { Canvas } from "./canvas";
 import { charCode, intersectRect } from "./utils";
 
@@ -78,21 +78,28 @@ export const image = (
     if (!iw || !ih) return;
     const sx = Math.max(0, x1 - x);
     const sy = Math.max(0, y1 - y);
-    const { chars, format, gamma, bits } = {
-        chars: SHADES,
+    const { chars, format, gamma, invert, bits } = {
+        chars: SHADES_BLOCK,
         format: canvas.format,
-        gamma: 2.2,
+        gamma: 1,
+        invert: false,
         bits: 8,
         ...opts
     };
-    const norm = 1 / ((1 << bits) - 1);
+    const max = (1 << bits) - 1;
+    const mask = invert ? max : 0;
+    const norm = 1 / max;
     const num = chars.length - 1;
     for (let yy = sy, dy = y1; dy < y2; yy++, dy++) {
         let sidx = sx + yy * w;
         let didx = x1 + dy * width;
         for (let xx = sx, dx = x1; dx < x2; xx++, dx++) {
             buf[didx++] = charCode(
-                chars[(Math.pow(pixels[sidx++] * norm, gamma) * num + 0.5) | 0],
+                chars[
+                    (Math.pow((pixels[sidx++] ^ mask) * norm, gamma) * num +
+                        0.5) |
+                        0
+                ],
                 format
             );
         }
