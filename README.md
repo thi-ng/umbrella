@@ -91,6 +91,7 @@ contribute, please first read [this document](./CONTRIBUTING.md).
 
 (These packages are still unreleased and only available on their feature or `develop` branches)
 
+- [@thi.ng/text-canvas](./packages/text-canvas) - Text-mode canvas, drawing, tables, charts w/ extensible formatting
 - [@thi.ng/transducers-patch](./packages/transducers-patch) - Reducers for patch-based, array & object editing
 
 ### Fundamentals
