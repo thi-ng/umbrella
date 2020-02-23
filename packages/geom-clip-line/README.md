@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-clip-line](https://media.thi.ng/umbrella/banners/thing-geom-clip-line.svg?1581809314)
+# ![@thi.ng/geom-clip-line](https://media.thi.ng/umbrella/banners/thing-geom-clip-line.svg?1582472092)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-clip-line.svg)](https://www.npmjs.com/package/@thi.ng/geom-clip-line)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-clip-line.svg)
@@ -21,9 +21,15 @@ This project is part of the
 
 2D line clipping (Liang-Barsky).
 
+Current implementation is based on [toxiclibs](http://toxiclibs.org)
+(Java) and Clojure version of [thi.ng/geom](http://thi.ng/geom).
+
+This package has been extracted from the former (now obsolete)
+@thi.ng/geom-clip package.
+
 ### Status
 
-**ALPHA** - bleeding edge / work-in-progress
+**STABLE** - used in production
 
 ## Installation
 
@@ -31,7 +37,7 @@ This project is part of the
 yarn add @thi.ng/geom-clip-line
 ```
 
-Package sizes (gzipped): CJS: 0.4KB
+Package sizes (gzipped): ESM: 0.3KB / CJS: 0.3KB / UMD: 0.4KB
 
 ## Dependencies
 
@@ -41,7 +47,29 @@ Package sizes (gzipped): CJS: 0.4KB
 
 [Generated API docs](https://docs.thi.ng/umbrella/geom-clip-line/)
 
-TODO
+- `liangBarsky2`
+- `liangBarksy2Raw`
+
+```ts
+import { liangBarsky2 } from "@thi.ng/geom-clip-line";
+
+liangBarsky2(
+    // line end points
+    [-10, -20], [30, 400],
+    // min/max clip rect
+    [0, 0], [100, 200]
+)
+// [ [ 0, 85 ], [ 10.952380952380953, 200 ], 0.25, 0.5238095238095238 ]
+
+// returns undefined if line is completely outside the clip rect
+liangBarsky2(
+    // line end points
+    [-10, -20], [-30, 400],
+    // min/max bbox
+    [0, 0], [100, 200]
+)
+// undefined
+```
 
 ## Authors
 
@@ -49,4 +77,4 @@ Karsten Schmidt
 
 ## License
 
-&copy; 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2013 - 2020 Karsten Schmidt // Apache Software License 2.0
