@@ -22,8 +22,8 @@ import {
 } from "@thi.ng/matrices";
 import {
     beginClip,
-    BG_BRIGHT_MAGENTA,
     BG_GREEN,
+    BG_LIGHT_MAGENTA,
     Canvas,
     circle,
     clear,
@@ -33,7 +33,7 @@ import {
     FG_YELLOW,
     FMT_HTML_TACHYONS,
     line,
-    toFormattedString
+    toString
 } from "@thi.ng/text-canvas";
 import { add3 } from "@thi.ng/vectors";
 
@@ -124,7 +124,7 @@ requestAnimationFrame(function update() {
                 b[0],
                 b[1],
                 "#",
-                FG_WHITE | BG_BRIGHT_MAGENTA
+                FG_WHITE | BG_LIGHT_MAGENTA
             );
         }
     }
@@ -132,6 +132,6 @@ requestAnimationFrame(function update() {
     endClip(canvas);
 
     // draw canvas
-    root!.innerHTML = toFormattedString(canvas, FMT_HTML_TACHYONS);
+    root!.innerHTML = toString(canvas, FMT_HTML_TACHYONS);
     requestAnimationFrame(update);
 });
