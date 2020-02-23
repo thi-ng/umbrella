@@ -52,7 +52,8 @@ asCubic.addAll(<IObjectOf<Implementation1<unknown, Cubic[]>>>{
         cubicFromQuadratic(points[0], points[1], points[2], { ...attribs })
     ],
 
-    [Type.RECT]: ($: Rect, opts?) => asCubic(asPolygon($), opts)
+    [Type.RECT]: ($: Rect, opts?: Partial<CubicOpts>) =>
+        asCubic(asPolygon($), opts)
 });
 
 asCubic.isa(Type.ELLIPSE, Type.CIRCLE);
