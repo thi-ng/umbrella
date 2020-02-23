@@ -1,7 +1,7 @@
 import { BitField } from "@thi.ng/bitfield";
 import { isNumber } from "@thi.ng/checks";
 import { DCons } from "@thi.ng/dcons";
-import { CostFn, IGraph } from "./api";
+import type { CostFn, IGraph } from "./api";
 
 export class BFS {
     graph: IGraph;

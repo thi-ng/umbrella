@@ -1,4 +1,4 @@
-import { Fn2, Pair } from "@thi.ng/api";
+import type { Fn2, Pair } from "@thi.ng/api";
 
 export const enum DegreeType {
     IN,

@@ -1,5 +1,5 @@
 import { BitField } from "@thi.ng/bitfield";
-import { IGraph } from "./api";
+import type { IGraph } from "./api";
 
 export class DFS {
     graph: IGraph;

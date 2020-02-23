@@ -1,7 +1,7 @@
-import { Pair } from "@thi.ng/api";
 import { popCount } from "@thi.ng/binary";
 import { BitMatrix } from "@thi.ng/bitfield";
-import { IGraph } from "./api";
+import type { Pair } from "@thi.ng/api";
+import type { IGraph } from "./api";
 
 export class AdjacencyBitMatrix implements IGraph {
     /**
