@@ -28,14 +28,14 @@
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
-        "@microsoft/api-extractor": "^7.7.7",
-        "@types/mocha": "^5.2.7",
-        "@types/node": "^13.5.0",
-        "mocha": "^7.0.0",
+        "@microsoft/api-extractor": "^7.7.8",
+        "@types/mocha": "^7.0.1",
+        "@types/node": "^13.7.4",
+        "mocha": "^7.0.1",
         "nyc": "^15.0.0",
         "ts-node": "^8.6.2",
-        "typedoc": "^0.16.8",
-        "typescript": "^3.7.5"
+        "typedoc": "^0.16.10",
+        "typescript": "^3.8.2"
     },
     "keywords": [
         "check",

@@ -16,7 +16,7 @@
     },
     "devDependencies": {
         "ts-node": "^8.2.0",
-        "typescript": "^3.7.5"
+        "typescript": "^3.8.2"
     },
     "thi.ng": {
         "readme": true,
