@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/strings](https://media.thi.ng/umbrella/banners/thing-strings.svg?1581297779)
+# ![@thi.ng/strings](https://media.thi.ng/umbrella/banners/thing-strings.svg?1582472087)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/strings.svg)
@@ -35,7 +35,7 @@ Partially based on Clojure version of [thi.ng/strf](http://thi.ng/strf).
 yarn add @thi.ng/strings
 ```
 
-Package sizes (gzipped): ESM: 2.0KB / CJS: 2.1KB / UMD: 2.1KB
+Package sizes (gzipped): ESM: 2.0KB / CJS: 2.2KB / UMD: 2.1KB
 
 ## Dependencies
 

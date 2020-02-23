@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-voronoi](https://media.thi.ng/umbrella/banners/thing-geom-voronoi.svg?1581297788)
+# ![@thi.ng/geom-voronoi](https://media.thi.ng/umbrella/banners/thing-geom-voronoi.svg?1582472097)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-voronoi.svg)](https://www.npmjs.com/package/@thi.ng/geom-voronoi)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-voronoi.svg)
@@ -51,7 +51,8 @@ Package sizes (gzipped): ESM: 1.3KB / CJS: 1.4KB / UMD: 1.5KB
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/geom-clip](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-clip)
+- [@thi.ng/geom-clip-line](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-clip-line)
+- [@thi.ng/geom-clip-poly](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-clip-poly)
 - [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isec)
 - [@thi.ng/geom-poly-utils](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-poly-utils)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)

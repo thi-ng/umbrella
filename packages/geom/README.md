@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom](https://media.thi.ng/umbrella/banners/thing-geom.svg?1581297788)
+# ![@thi.ng/geom](https://media.thi.ng/umbrella/banners/thing-geom.svg?1582472097)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom.svg)
@@ -38,7 +38,8 @@ themselves too):
 - [@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-accel) - n-D spatial indexing data structures
 - [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-api) - Shared type & interface declarations for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom) packages
 - [@thi.ng/geom-arc](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-arc) - 2D circular / elliptic arc operations
-- [@thi.ng/geom-clip](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-clip) - 2D line & convex polygon clipping (Liang-Barsky / Sutherland-Hodgeman)
+- [@thi.ng/geom-clip-line](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-clip-line) - 2D line clipping (Liang-Barsky)
+- [@thi.ng/geom-clip-poly](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-clip-poly) - 2D convex polygon clipping (Sutherland-Hodgeman)
 - [@thi.ng/geom-closest-point](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-closest-point) - 2D / 3D closest point / proximity helpers
 - [@thi.ng/geom-hull](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-hull) - Fast 2D convex hull (Graham Scan)
 - [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isec) - 2D/3D shape intersection checks
@@ -60,7 +61,7 @@ themselves too):
 yarn add @thi.ng/geom
 ```
 
-Package sizes (gzipped): ESM: 9.1KB / CJS: 9.3KB / UMD: 8.8KB
+Package sizes (gzipped): ESM: 9.2KB / CJS: 9.5KB / UMD: 9.0KB
 
 ## Dependencies
 
@@ -73,7 +74,8 @@ Package sizes (gzipped): ESM: 9.1KB / CJS: 9.3KB / UMD: 8.8KB
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-api)
 - [@thi.ng/geom-arc](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-arc)
-- [@thi.ng/geom-clip](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-clip)
+- [@thi.ng/geom-clip-line](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-clip-line)
+- [@thi.ng/geom-clip-poly](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-clip-poly)
 - [@thi.ng/geom-closest-point](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-closest-point)
 - [@thi.ng/geom-hull](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-hull)
 - [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isec)
@@ -163,6 +165,14 @@ Animated sine plasma effect visualized using contour lines
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-image.png)
 
 [Live demo](https://demo.thi.ng/umbrella/scenegraph-image/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-image)
+
+### text-canvas <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas.png)
+
+3D wireframe textmode demo
+
+[Live demo](https://demo.thi.ng/umbrella/text-canvas/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas)
 
 ## API
 

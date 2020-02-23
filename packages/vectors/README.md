@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/vectors](https://media.thi.ng/umbrella/banners/thing-vectors.svg?1581297781)
+# ![@thi.ng/vectors](https://media.thi.ng/umbrella/banners/thing-vectors.svg?1582472090)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/vectors.svg)
@@ -243,6 +243,14 @@ Animated sine plasma effect visualized using contour lines
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/soa-ecs-100k.png)
 
 [Live demo](https://demo.thi.ng/umbrella/soa-ecs/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/soa-ecs)
+
+### text-canvas <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas.png)
+
+3D wireframe textmode demo
+
+[Live demo](https://demo.thi.ng/umbrella/text-canvas/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas)
 
 ### webgl-cube <!-- NOTOC -->
 

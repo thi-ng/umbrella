@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/dsp](https://media.thi.ng/umbrella/banners/thing-dsp.svg?1581297780)
+# ![@thi.ng/dsp](https://media.thi.ng/umbrella/banners/thing-dsp.svg?1582472089)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dsp.svg)](https://www.npmjs.com/package/@thi.ng/dsp)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dsp.svg)
@@ -90,6 +90,14 @@ Interactive inverse FFT toy synth
 ### poly-spline <!-- NOTOC -->
 
 [Live demo](https://demo.thi.ng/umbrella/poly-spline/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-spline)
+
+### text-canvas <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas.png)
+
+3D wireframe textmode demo
+
+[Live demo](https://demo.thi.ng/umbrella/text-canvas/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas)
 
 ### webgl-ssao <!-- NOTOC -->
 

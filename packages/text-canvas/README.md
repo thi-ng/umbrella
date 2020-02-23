@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/text-canvas](https://media.thi.ng/umbrella/banners/thing-text-canvas.svg?1582417232)
+# ![@thi.ng/text-canvas](https://media.thi.ng/umbrella/banners/thing-text-canvas.svg?1582472094)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/text-canvas.svg)](https://www.npmjs.com/package/@thi.ng/text-canvas)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/text-canvas.svg)
@@ -46,7 +46,7 @@ Text based canvas, drawing, tables with arbitrary formatting (incl. ANSI/HTML).
 yarn add @thi.ng/text-canvas
 ```
 
-Package sizes (gzipped): CJS: 5.6KB
+Package sizes (gzipped): ESM: 5.3KB / CJS: 5.6KB / UMD: 5.3KB
 
 ## Dependencies
 

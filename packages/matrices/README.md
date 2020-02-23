@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/matrices](https://media.thi.ng/umbrella/banners/thing-matrices.svg?1581297784)
+# ![@thi.ng/matrices](https://media.thi.ng/umbrella/banners/thing-matrices.svg?1582472093)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/matrices.svg)](https://www.npmjs.com/package/@thi.ng/matrices)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/matrices.svg)
@@ -99,6 +99,14 @@ A selection:
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/soa-ecs-100k.png)
 
 [Live demo](https://demo.thi.ng/umbrella/soa-ecs/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/soa-ecs)
+
+### text-canvas <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas.png)
+
+3D wireframe textmode demo
+
+[Live demo](https://demo.thi.ng/umbrella/text-canvas/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas)
 
 ### webgl-cube <!-- NOTOC -->
 
