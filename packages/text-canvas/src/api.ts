@@ -33,9 +33,8 @@ export interface TextBoxOpts {
 
 export interface ImageOpts {
     /**
-     * Target characters in order of increasing brightness. If chars are
-     * given as number, `format` option will NOT be applied, but is
-     * assumed to be already encoded in the number.
+     * Target characters in order of increasing brightness (assuming
+     * white text on black bg).
      *
      * @defaultValue {@link SHADES}
      */

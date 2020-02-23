@@ -48,6 +48,28 @@ export const extract = (
 };
 
 /**
+ * Scrolls canvas vertically by `dy` lines. If `dy > 0` content moves
+ * upward, if `dy < 0` downward. The new empty space will be filled with
+ * `clear` char (default: ` `).
+ *
+ * @param canvas
+ * @param dy
+ * @param clear
+ */
+export const scrollV = (canvas: Canvas, dy: number, clear = 0x20) => {
+    const { buf, width } = canvas;
+    const ch = charCode(clear, canvas.format);
+    dy *= width;
+    if (dy < 0) {
+        buf.copyWithin(-dy, 0, dy);
+        buf.fill(ch, 0, -dy);
+    } else if (dy > 0) {
+        buf.copyWithin(0, dy);
+        buf.fill(ch, -dy);
+    }
+};
+
+/**
  *
  * @param canvas
  * @param x
