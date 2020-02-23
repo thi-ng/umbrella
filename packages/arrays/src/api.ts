@@ -1,4 +1,4 @@
-import { Fn3, TypedArray } from "@thi.ng/api";
+import type { Fn3, TypedArray } from "@thi.ng/api";
 
 export type AnyArray = any[] | TypedArray;
 

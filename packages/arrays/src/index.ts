@@ -1,3 +1,4 @@
+export type * from "./api";
 export * from "./binary-search";
 export * from "./ends-with";
 export * from "./ensure-array";
