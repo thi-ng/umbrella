@@ -4,6 +4,7 @@ import {
     Fn2,
     Fn3,
     Fn4,
+    Fn6,
     Fn7,
     ICopy,
     IEmpty,
@@ -93,6 +94,15 @@ export type VecOpVVV = Fn4<
 export type VecOpVVN = Fn4<Vec | null, ReadonlyVec, ReadonlyVec, number, Vec>;
 export type VecOpVNV = Fn4<Vec | null, ReadonlyVec, number, ReadonlyVec, Vec>;
 export type VecOpVNN = Fn4<Vec | null, ReadonlyVec, number, number, Vec>;
+export type VecOpVVVVV = Fn6<
+    Vec | null,
+    ReadonlyVec,
+    ReadonlyVec,
+    ReadonlyVec,
+    ReadonlyVec,
+    ReadonlyVec,
+    Vec
+>;
 export type VecOpVVVVNN = Fn7<
     Vec | null,
     ReadonlyVec,
@@ -233,6 +243,7 @@ export type MultiVecOpVVV = MultiVecOpImpl<VecOpVVV>;
 export type MultiVecOpVVN = MultiVecOpImpl<VecOpVVN>;
 export type MultiVecOpVNV = MultiVecOpImpl<VecOpVNV>;
 export type MultiVecOpVNN = MultiVecOpImpl<VecOpVNN>;
+export type MultiVecOpVVVVV = MultiVecOpImpl<VecOpVVVVV>;
 export type MultiVecOpVVVVNN = MultiVecOpImpl<VecOpVVVVNN>;
 
 export type MultiVecOpVO<T> = MultiVecOpImpl<VecOpVO<T>>;

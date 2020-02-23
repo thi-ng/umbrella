@@ -3,9 +3,7 @@ import { MultiVecOpV, VecOpV } from "./api";
 import { defHofOp } from "./internal/codegen";
 import { FN } from "./internal/templates";
 
-export const [radians, radians2, radians3, radians4]: [
+export const [radians, radians2, radians3, radians4] = defHofOp<
     MultiVecOpV,
-    VecOpV,
-    VecOpV,
     VecOpV
-] = defHofOp(rad, FN("op"));
+>(rad, FN("op"));

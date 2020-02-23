@@ -1,4 +1,5 @@
 import { fmod as _fmod } from "@thi.ng/math";
+import { MultiVecOpVV, VecOpVV } from "./api";
 import { ARGS_VV, defHofOp } from "./internal/codegen";
 import { FN2 } from "./internal/templates";
 
@@ -10,4 +11,8 @@ import { FN2 } from "./internal/templates";
  * `a - b * floor(a/b)`
  *
  */
-export const [fmod, fmod2, fmod3, fmod4] = defHofOp(_fmod, FN2("op"), ARGS_VV);
+export const [fmod, fmod2, fmod3, fmod4] = defHofOp<MultiVecOpVV, VecOpVV>(
+    _fmod,
+    FN2("op"),
+    ARGS_VV
+);
