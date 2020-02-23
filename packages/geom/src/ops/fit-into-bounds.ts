@@ -1,16 +1,14 @@
 import { IShape } from "@thi.ng/geom-api";
+import { minNonZero2, minNonZero3, safeDiv } from "@thi.ng/math";
 import {
     concat,
-    ReadonlyMat,
     scale23,
-    translation23
+    scale44,
+    translation23,
+    translation44
 } from "@thi.ng/matrices";
-import {
-    div2,
-    neg,
-    ReadonlyVec,
-    Vec
-} from "@thi.ng/vectors";
+import { neg, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { AABB } from "../api/aabb";
 import { Rect } from "../api/rect";
 import { collBounds } from "../internal/coll-bounds";
 import { bounds } from "./bounds";
@@ -22,13 +20,34 @@ import { unmapPoint } from "./unmap-point";
 
 const translateScale2 = (
     shape: IShape,
-    c1: ReadonlyVec,
-    c2: ReadonlyVec,
-    smat: ReadonlyMat
+    preTrans: ReadonlyVec,
+    postTrans: ReadonlyVec,
+    scale: ReadonlyVec | number
 ) =>
     transform(
         shape,
-        concat(translation23([], c1), smat, translation23([], c2))
+        concat(
+            [],
+            translation23([], postTrans),
+            scale23([], scale),
+            translation23([], preTrans)
+        )
+    );
+
+const translateScale3 = (
+    shape: IShape,
+    preTrans: ReadonlyVec,
+    postTrans: ReadonlyVec,
+    scale: ReadonlyVec | number
+) =>
+    transform(
+        shape,
+        concat(
+            [],
+            translation44([], postTrans),
+            scale44([], scale),
+            translation44([], preTrans)
+        )
     );
 
 export const fitIntoBounds2 = (shape: IShape, dest: Rect) => {
@@ -36,13 +55,31 @@ export const fitIntoBounds2 = (shape: IShape, dest: Rect) => {
     if (!src) return;
     const c = centroid(src);
     if (!c) return;
-    const tscale = div2([], dest.size, src.size);
-    const scale = Math.min(tscale[0], tscale[1]);
     return translateScale2(
         shape,
-        centroid(dest)!,
         neg(null, c),
-        scale23([], scale)
+        centroid(dest)!,
+        minNonZero2(
+            safeDiv(dest.size[0], src.size[0]),
+            safeDiv(dest.size[1], src.size[1])
+        )
+    );
+};
+
+export const fitIntoBounds3 = (shape: IShape, dest: AABB) => {
+    const src = <AABB>bounds(shape);
+    if (!src) return;
+    const c = centroid(src);
+    if (!c) return;
+    return translateScale3(
+        shape,
+        neg(null, c),
+        centroid(dest)!,
+        minNonZero3(
+            safeDiv(dest.size[0], src.size[0]),
+            safeDiv(dest.size[1], src.size[1]),
+            safeDiv(dest.size[2], src.size[2])
+        )
     );
 };
 
@@ -50,9 +87,10 @@ export const fitAllIntoBounds2 = (shapes: IShape[], dest: Rect) => {
     const sbraw = collBounds(shapes, bounds);
     if (!sbraw) return;
     const src = new Rect(...sbraw);
-    const [w, h] = div2([], dest.size, src.size);
-    const s = w > 0 && h > 0 ? Math.min(w, h) : w > 0 ? w : h;
-    const smat = scale23([], s);
+    const sx = safeDiv(dest.size[0], src.size[0]);
+    const sy = safeDiv(dest.size[1], src.size[1]);
+    const scale = sx > 0 ? (sy > 0 ? Math.min(sx, sy) : sx) : sy;
+    const smat = scale23([], scale);
     const b = center(transform(src, smat), centroid(dest))!;
     const c1: Vec = [];
     const c2: Vec = [];
@@ -62,7 +100,7 @@ export const fitAllIntoBounds2 = (shapes: IShape[], dest: Rect) => {
         const sc = centroid(s, c1);
         if (sc) {
             unmapPoint(b, mapPoint(src, sc), c2);
-            res.push(translateScale2(s, c2, neg(null, c1), smat));
+            res.push(translateScale2(s, neg(null, c1), c2, smat));
         } else {
             res.push(s);
         }
