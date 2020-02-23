@@ -11,5 +11,6 @@ export * from "./min-error";
 export * from "./mix";
 export * from "./prec";
 export * from "./ratio";
+export * from "./safe-div";
 export * from "./solve";
 export * from "./step";
