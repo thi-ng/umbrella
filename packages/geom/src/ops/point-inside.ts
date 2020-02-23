@@ -38,5 +38,6 @@ pointInside.addAll(<IObjectOf<Implementation2<unknown, ReadonlyVec, boolean>>>{
         pointInTriangle2(p, ...(<[Vec, Vec, Vec]>tri.points))
 });
 
-pointInside.isa(Type.SPHERE, Type.CIRCLE);
+pointInside.isa(Type.POINTS3, Type.POINTS);
 pointInside.isa(Type.QUAD, Type.POLYGON);
+pointInside.isa(Type.SPHERE, Type.CIRCLE);

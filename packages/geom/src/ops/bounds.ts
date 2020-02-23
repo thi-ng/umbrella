@@ -19,11 +19,14 @@ import {
 import {
     max,
     MAX2,
+    MAX3,
     min,
     MIN2,
+    MIN3,
     mul2,
     mulN2,
     set2,
+    set3,
     sub2,
     subN2
 } from "@thi.ng/vectors";
@@ -36,6 +39,7 @@ import { Line } from "../api/line";
 import { Path } from "../api/path";
 import { Quadratic } from "../api/quadratic";
 import { Rect } from "../api/rect";
+import { aabbFromMinMax } from "../ctors/aabb";
 import { rectFromMinMax } from "../ctors/rect";
 import { collBounds } from "../internal/coll-bounds";
 import { dispatch } from "../internal/dispatch";
@@ -69,7 +73,10 @@ bounds.addAll(<IObjectOf<Implementation1<unknown, AABBLike>>>{
         const b = collBounds(
             [
                 ...iterator1(
-                    comp(map((s: PathSegment) => s.geo!), filter((s) => !!s)),
+                    comp(
+                        map((s: PathSegment) => s.geo!),
+                        filter((s) => !!s)
+                    ),
                     path.segments
                 )
             ],
@@ -80,6 +87,9 @@ bounds.addAll(<IObjectOf<Implementation1<unknown, AABBLike>>>{
 
     [Type.POINTS]: ($: PCLike) =>
         rectFromMinMax(..._bounds($.points, set2([], MAX2), set2([], MIN2))),
+
+    [Type.POINTS3]: ($: PCLike) =>
+        aabbFromMinMax(..._bounds($.points, set3([], MAX3), set3([], MIN3))),
 
     [Type.QUADRATIC]: ({ points }: Quadratic) =>
         rectFromMinMax(...quadraticBounds(points[0], points[1], points[2])),

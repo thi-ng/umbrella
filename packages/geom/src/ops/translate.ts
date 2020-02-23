@@ -15,7 +15,7 @@ import { Ellipse } from "../api/ellipse";
 import { Group } from "../api/group";
 import { Line } from "../api/line";
 import { Path } from "../api/path";
-import { Points } from "../api/points";
+import { Points, Points3 } from "../api/points";
 import { Polygon } from "../api/polygon";
 import { Polyline } from "../api/polyline";
 import { Quad } from "../api/quad";
@@ -70,6 +70,8 @@ translate.addAll(<IObjectOf<Implementation2<unknown, ReadonlyVec, IShape>>>{
         ),
 
     [Type.POINTS]: tx(Points),
+
+    [Type.POINTS3]: tx(Points3),
 
     [Type.POLYGON]: tx(Polygon),
 

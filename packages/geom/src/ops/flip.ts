@@ -43,6 +43,7 @@ flip.addAll(<IObjectOf<Implementation1<unknown, IShape>>>{
 
 flip.isa(Type.CUBIC, Type.POINTS);
 flip.isa(Type.LINE, Type.POINTS);
+flip.isa(Type.POINTS3, Type.POINTS);
 flip.isa(Type.POLYGON, Type.POINTS);
 flip.isa(Type.POLYLINE, Type.POINTS);
 flip.isa(Type.QUAD, Type.POINTS);

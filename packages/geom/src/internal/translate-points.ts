@@ -7,5 +7,5 @@ export const translatedPoints = (pts: ReadonlyVec[], delta: ReadonlyVec) =>
 
 export const translatedShape = (ctor: PCLikeConstructor) => (
     $: PCLike,
-    mat: ReadonlyVec
-) => new ctor(translatedPoints($.points, mat), copyAttribs($));
+    delta: ReadonlyVec
+) => new ctor(translatedPoints($.points, delta), copyAttribs($));

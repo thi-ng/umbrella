@@ -13,7 +13,7 @@ import { Cubic } from "../api/cubic";
 import { Group } from "../api/group";
 import { Line } from "../api/line";
 import { Path } from "../api/path";
-import { Points } from "../api/points";
+import { Points, Points3 } from "../api/points";
 import { Polygon } from "../api/polygon";
 import { Polyline } from "../api/polyline";
 import { Quad } from "../api/quad";
@@ -22,7 +22,7 @@ import { Rect } from "../api/rect";
 import { Triangle } from "../api/triangle";
 import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
-import { transformedShape as tx } from "../internal/transform-points";
+import { transformedShape as tx, transformedShape3 as tx3 } from "../internal/transform-points";
 import { asPath } from "./as-path";
 import { asPolygon } from "./as-polygon";
 
@@ -73,6 +73,8 @@ transform.addAll(<IObjectOf<Implementation2<unknown, ReadonlyMat, IShape>>>{
         ),
 
     [Type.POINTS]: tx(Points),
+
+    [Type.POINTS3]: tx3(Points3),
 
     [Type.POLYGON]: tx(Polygon),
 

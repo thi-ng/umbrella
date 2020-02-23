@@ -60,6 +60,7 @@ centroid.isa(Type.ARC, Type.CIRCLE);
 centroid.isa(Type.AABB, Type.RECT);
 centroid.isa(Type.ELLIPSE, Type.CIRCLE);
 centroid.isa(Type.LINE3, Type.LINE);
+centroid.isa(Type.POINTS3, Type.POINTS);
 centroid.isa(Type.POLYLINE, Type.POINTS);
 centroid.isa(Type.QUAD, Type.POLYGON);
 centroid.isa(Type.SPHERE, Type.CIRCLE);

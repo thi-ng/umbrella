@@ -132,6 +132,7 @@ vertices.addAll(<
 });
 
 vertices.isa(Type.LINE, Type.POLYLINE);
+vertices.isa(Type.POINTS3, Type.POINTS);
 vertices.isa(Type.QUAD, Type.POLYGON);
 vertices.isa(Type.TRIANGLE, Type.POLYGON);
 
