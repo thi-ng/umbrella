@@ -76,29 +76,31 @@ export const liangBarsky2Raw = (
     let beta = 1;
 
     const clip = (p: number, q: number) => {
-        if (q < 0 && Math.abs(p) < 1e-6) {
-            return false;
-        }
-        const r = q / p;
         if (p < 0) {
+            const r = q / p;
             if (r > beta) {
                 return false;
-            } else if (r > alpha) {
+            }
+            if (r > alpha) {
                 alpha = r;
             }
-        } else {
+        } else if (p > 0) {
+            const r = q / p;
             if (r < alpha) {
                 return false;
-            } else if (r < beta) {
+            }
+            if (r < beta) {
                 beta = r;
             }
+        } else if (q < 0) {
+            return false;
         }
         return true;
     };
 
-    return clip(-dx, -(minx - ax)) &&
+    return clip(-dx, ax - minx) &&
         clip(dx, maxx - ax) &&
-        clip(-dy, -(miny - ay)) &&
+        clip(-dy, ay - miny) &&
         clip(dy, maxy - ay)
         ? [
               alpha * dx + ax,
