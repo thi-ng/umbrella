@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/math](https://media.thi.ng/umbrella/banners/thing-math.svg?1581297777)
+# ![@thi.ng/math](https://media.thi.ng/umbrella/banners/thing-math.svg?1582480837)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/math.svg)
@@ -38,7 +38,7 @@ Partially ported from Clojure version of
 yarn add @thi.ng/math
 ```
 
-Package sizes (gzipped): ESM: 3.4KB / CJS: 3.9KB / UMD: 3.2KB
+Package sizes (gzipped): ESM: 3.5KB / CJS: 4.0KB / UMD: 3.3KB
 
 ## Dependencies
 

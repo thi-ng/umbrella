@@ -122,6 +122,25 @@ export const max4id = (a: number, b: number, c: number, d: number) =>
         : 3;
 
 /**
+ * Returns the non-zero minimum value of the given `a`, `b` args.
+ *
+ * @param a
+ * @param b
+ */
+export const minNonZero2 = (a: number, b: number) =>
+    a !== 0 ? (b !== 0 ? Math.min(a, b) : a) : b;
+
+/**
+ * Returns the non-zero minimum value of the given `a`, `b`, `c` args.
+ *
+ * @param a
+ * @param b
+ * @param c
+ */
+export const minNonZero3 = (a: number, b: number, c: number) =>
+    minNonZero2(minNonZero2(a, b), c);
+
+/**
  * See `smax()`.
  *
  * @param a -
