@@ -1,4 +1,4 @@
-import {
+import type {
     Lane16,
     Lane2,
     Lane4,

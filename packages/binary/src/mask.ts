@@ -1,4 +1,4 @@
-import { MASKS } from "./api";
+import { MASKS } from "./constants";
 
 /**
  * Creates bit mask by enabling bit `a` to bit `b-1`, both in range
