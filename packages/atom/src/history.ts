@@ -1,21 +1,21 @@
-import {
+import { INotifyMixin } from "@thi.ng/api";
+import { equiv } from "@thi.ng/equiv";
+import { getIn, setIn, updateIn } from "@thi.ng/paths";
+import { View } from "./view";
+import type {
     Event,
-    INotifyMixin,
     Listener,
     Path,
     Predicate2,
     Watch
 } from "@thi.ng/api";
-import { equiv } from "@thi.ng/equiv";
-import { getIn, setIn, updateIn } from "@thi.ng/paths";
-import {
+import type {
     IAtom,
     IHistory,
     IView,
     SwapFn,
     ViewTransform
 } from "./api";
-import { View } from "./view";
 
 /**
  * Undo/redo history stack wrapper for atoms and cursors. Implements

@@ -1,13 +1,14 @@
-import { assert, Path, Watch } from "@thi.ng/api";
+import { assert } from "@thi.ng/api";
 import { setIn, updateIn } from "@thi.ng/paths";
-import {
+import { nextID } from "./idgen";
+import { View } from "./view";
+import type { Path, Watch } from "@thi.ng/api";
+import type {
     IAtom,
     IView,
     SwapFn,
     ViewTransform
 } from "./api";
-import { nextID } from "./idgen";
-import { View } from "./view";
 
 export class Transacted<T> implements IAtom<T> {
     parent: IAtom<T>;

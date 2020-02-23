@@ -1,4 +1,10 @@
-import {
+import { isArray, isFunction } from "@thi.ng/checks";
+import { illegalArgs, illegalArity } from "@thi.ng/errors";
+import { getter, setter } from "@thi.ng/paths";
+import { Atom } from "./atom";
+import { nextID } from "./idgen";
+import { View } from "./view";
+import type {
     Fn,
     Fn2,
     IID,
@@ -7,19 +13,13 @@ import {
     Predicate,
     Watch
 } from "@thi.ng/api";
-import { isArray, isFunction } from "@thi.ng/checks";
-import { illegalArgs, illegalArity } from "@thi.ng/errors";
-import { getter, setter } from "@thi.ng/paths";
-import {
+import type {
     CursorOpts,
     IAtom,
     IView,
     SwapFn,
     ViewTransform
 } from "./api";
-import { Atom } from "./atom";
-import { nextID } from "./idgen";
-import { View } from "./view";
 
 /**
  * A cursor provides read/write access to a path location within a
