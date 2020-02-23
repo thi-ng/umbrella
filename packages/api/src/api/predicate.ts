@@ -1,4 +1,4 @@
-import { Fn, Fn0, Fn2 } from "./fn";
+import type { Fn, Fn0, Fn2 } from "./fn";
 
 /**
  * Predicate function mapping given value to true/false.

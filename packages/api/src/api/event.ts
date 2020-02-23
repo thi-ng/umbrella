@@ -1,9 +1,5 @@
-import { Fn } from "./fn";
-import { IID } from "./id";
-
-export const EVENT_ALL = "*";
-export const EVENT_ENABLE = "enable";
-export const EVENT_DISABLE = "disable";
+import type { Fn } from "./fn";
+import type { IID } from "./id";
 
 /**
  * Event listener.

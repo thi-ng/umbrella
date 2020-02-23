@@ -1,9 +1,14 @@
-import { Head, Tail } from "./tuple";
+import type { Head, Tail } from "./tuple";
+
+/**
+ * Lookup path for nested data structures.
+ */
+export type Path = PropertyKey | PropertyKey[];
 
 /**
  * Extracts from A all keys which have values assignable to type B.
  */
-type TypedKeys<A, B> = {
+export type TypedKeys<A, B> = {
     [P in keyof Required<A>]: B extends A[P] ? P : never;
 }[keyof A];
 
