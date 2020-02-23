@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/text-canvas](https://media.thi.ng/umbrella/banners/thing-text-canvas.svg?1582311446)
+# ![@thi.ng/text-canvas](https://media.thi.ng/umbrella/banners/thing-text-canvas.svg?1582417232)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/text-canvas.svg)](https://www.npmjs.com/package/@thi.ng/text-canvas)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/text-canvas.svg)
@@ -24,6 +24,9 @@ This project is part of the
   - [Stroke styles](#stroke-styles)
   - [Clipping](#clipping)
   - [Drawing functions](#drawing-functions)
+  - [Image functions](#image-functions)
+  - [Text functions](#text-functions)
+  - [Bars & bar charts](#bars--bar-charts)
   - [Tables](#tables)
   - [3D wireframe cube example](#3d-wireframe-cube-example)
 - [Authors](#authors)
@@ -43,7 +46,7 @@ Text based canvas, drawing, tables with arbitrary formatting (incl. ANSI/HTML).
 yarn add @thi.ng/text-canvas
 ```
 
-Package sizes (gzipped): CJS: 5.3KB
+Package sizes (gzipped): CJS: 5.6KB
 
 ## Dependencies
 
@@ -85,7 +88,7 @@ const c = canvas(width, height, format?, style?);
 The text canvas stores all characters in a `Uint32Array` with the lower
 16 bits used for the UTF-16 code and the upper 16 bits for **abitrary**
 formatting data. The package [provides its own format
-IDs](https://github.com/thi-ng/umbrella/blob/develop/packages/text-canvas/src/api.ts#L100)
+IDs](https://github.com/thi-ng/umbrella/blob/develop/packages/text-canvas/src/api.ts#L144)
 which are tailored for the bundled ANSI & HTML formatters, but users are
 free to choose use any other system (but then will also need to
 implement a custom string formatter impl).
@@ -94,13 +97,15 @@ The default format ID layout is as shown:
 
 ![format bit layout](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/format-layout.png)
 
-Most drawing functions accept an optional `format` arg, but the default format can also be set via `setFormat(canvas, formatID)`.
+Most drawing functions accept an optional `format` arg, but a default
+format can also be set via `setFormat(canvas, formatID)`.
 
 List of built-in format IDs:
 
 #### Colors
 
-These color IDs MUST be prefixed with either `FG_` or `BG_`:
+These color IDs MUST be prefixed with either `FG_` (foreground) or `BG_`
+(background):
 
 - `BLACK`
 - `RED`
@@ -110,14 +115,14 @@ These color IDs MUST be prefixed with either `FG_` or `BG_`:
 - `MAGENTA`
 - `CYAN`
 - `GRAY`
-- `LIGHT_GRAY`
 - `WHITE`
-- `BRIGHT_RED`
-- `BRIGHT_GREEN`
-- `BRIGHT_YELLOW`
-- `BRIGHT_BLUE`
-- `BRIGHT_MAGENTA`
-- `BRIGHT_CYAN`
+- `LIGHT_GRAY`
+- `LIGHT_RED`
+- `LIGHT_GREEN`
+- `LIGHT_YELLOW`
+- `LIGHT_BLUE`
+- `LIGHT_MAGENTA`
+- `LIGHT_CYAN`
 
 #### Variations
 
@@ -130,14 +135,14 @@ These color IDs MUST be prefixed with either `FG_` or `BG_`:
 Format IDs can be combined via the binary OR operator (`|`), e.g.:
 
 ```ts
-setFormat(canvas, FG_BLACK | BG_BRIGHT_CYAN | BOLD | UNDERLINE);
+setFormat(canvas, FG_BLACK | BG_LIGHT_CYAN | BOLD | UNDERLINE);
 ```
 
 ### String conversion format presets
 
 Canvas-to-string conversion is completely customizable via the
 [`StringFormat`
-interface](https://github.com/thi-ng/umbrella/blob/develop/packages/text-canvas/src/api.ts#L41)
+interface](https://github.com/thi-ng/umbrella/blob/develop/packages/text-canvas/src/api.ts#L76)
 and the following presets are supplied:
 
 - `FMT_ANSI16` - translate built-in format IDs to 4bit ANSI escape sequences
@@ -148,11 +153,11 @@ and the following presets are supplied:
 
 ```ts
 // Terminal
-console.log(toFormattedString(canvas, FMT_ANSI16));
+console.log(toString(canvas, FMT_ANSI16));
 
 // Browser
 const el = document.createElement("pre");
-el.innerHTML = toFormattedString(canvas, FMT_HTML_TACHYONS);
+el.innerHTML = toString(canvas, FMT_HTML_TACHYONS);
 ```
 
 ### Stroke styles
@@ -203,12 +208,22 @@ clipping regions, each newly pushed one being intersected with the previous top-
 - `fillRect`
 - `strokeRect`
 
+### Image functions
+
 - `blit`
+- `resize`
+- `extract`
+- `scrollV`
+- `image`
+
+### Text functions
 
 - `textLine`
 - `textLines`
 - `textColumn`
 - `textBox`
+
+### Bars & bar charts
 
 The following are string builders only, draw result via text functions:
 
@@ -219,7 +234,9 @@ The following are string builders only, draw result via text functions:
 
 ### Tables
 
-Tables support individual column width, automatic (or user defined) row heights, as well as per-cell formats and the following border style options:
+Tables support individual column width, automatic (or user defined) row
+heights, cell padding, as well as global and per-cell formats and the
+following border style options:
 
 | Border style | Result |
 | ------- | --- |
@@ -252,9 +269,9 @@ tc.table(
         // column defs
         cols: [{ width: 4 }, { width: 20 }, { width: 8 }],
         // default cell format
-        format: tc.FG_BLACK | tc.BG_BRIGHT_CYAN,
+        format: tc.FG_BLACK | tc.BG_LIGHT_CYAN,
         // default format for header cells (1st row)
-        formatHead: tc.FG_RED | tc.BG_BRIGHT_CYAN | tc.BOLD | tc.UNDERLINE,
+        formatHead: tc.FG_RED | tc.BG_LIGHT_CYAN | tc.BOLD | tc.UNDERLINE,
         // border line style
         style: tc.STYLE_DASHED_ROUNDED,
         // border mode
@@ -268,7 +285,7 @@ tc.table(
         ["ID", "Main", "Comment"],
         [
             "0001",
-            { body: chart, format: tc.FG_BLUE | tc.BG_BRIGHT_CYAN },
+            { body: chart, format: tc.FG_BLUE | tc.BG_LIGHT_CYAN },
             "This is a test!"
         ],
         ["0002", "Random data plot", "Word wrapped content"],
@@ -277,10 +294,17 @@ tc.table(
 );
 
 // output as ANSI formatted string
-console.log(tc.toFormattedString(canvas, tc.FMT_ANSI16));
+console.log(tc.toString(canvas, tc.FMT_ANSI16));
 ```
 
-Tables can be also be pre-initialized prior to creation of the canvas via [`initTable()`](https://github.com/thi-ng/umbrella/blob/develop/packages/text-canvas/src/table.ts#L20) and then drawn via [`drawTable()`](https://github.com/thi-ng/umbrella/blob/develop/packages/text-canvas/src/table.ts#L80). The `initTable` function returns an object also containing the computed table size (`numCols`, `numRows` keys) which can then be used to create a canvas with the required size...
+Tables can be also be pre-initialized prior to creation of the canvas
+via
+[`initTable()`](https://github.com/thi-ng/umbrella/blob/develop/packages/text-canvas/src/table.ts#L20)
+and then drawn via
+[`drawTable()`](https://github.com/thi-ng/umbrella/blob/develop/packages/text-canvas/src/table.ts#L80).
+The `initTable` function returns an object also containing the computed
+table size (`numCols`, `numRows` keys) which can then be used to create
+a canvas with the required size...
 
 ### 3D wireframe cube example
 
@@ -378,13 +402,15 @@ setInterval(() => {
         2, 1, 24, -1,
         `@thi.ng/text-canvas wireframe cube\n\nx: ${rotx.toFixed(2)}\ny: ${roty.toFixed(2)}`,
         {
-            format: tc.FG_BLACK | tc.BG_BRIGHT_CYAN,
+            format: tc.FG_BLACK | tc.BG_LIGHT_CYAN,
             padding: [1, 0]
         }
     );
     // draw canvas
     console.clear();
-    console.log(tc.toFormattedString(canvas, tc.FMT_ANSI16));
+    // output as ANSI formatted string
+    console.log(tc.toString(canvas, tc.FMT_ANSI16));
+    // output as plain text
     // console.log(tc.toString(canvas));
 }, 15);
 ```
