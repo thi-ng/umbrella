@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-clip-poly](https://media.thi.ng/umbrella/banners/thing-geom-clip-poly.svg?1581809309)
+# ![@thi.ng/geom-clip-poly](https://media.thi.ng/umbrella/banners/thing-geom-clip-poly.svg?1582472096)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-clip-poly.svg)](https://www.npmjs.com/package/@thi.ng/geom-clip-poly)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-clip-poly.svg)
@@ -24,6 +24,9 @@ This project is part of the
 Current implementation is based on [toxiclibs](http://toxiclibs.org)
 (Java) and Clojure version of [thi.ng/geom](http://thi.ng/geom).
 
+This package has been extracted from the former (now obsolete)
+@thi.ng/geom-clip package.
+
 ### Status
 
 **STABLE** - used in production
@@ -34,7 +37,7 @@ Current implementation is based on [toxiclibs](http://toxiclibs.org)
 yarn add @thi.ng/geom-clip-poly
 ```
 
-Package sizes (gzipped): CJS: 0.4KB
+Package sizes (gzipped): ESM: 0.3KB / CJS: 0.4KB / UMD: 0.5KB
 
 ## Dependencies
 

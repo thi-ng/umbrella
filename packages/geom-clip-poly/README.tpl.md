@@ -16,6 +16,9 @@ ${pkg.description}
 Current implementation is based on [toxiclibs](http://toxiclibs.org)
 (Java) and Clojure version of [thi.ng/geom](http://thi.ng/geom).
 
+This package has been extracted from the former (now obsolete)
+@thi.ng/geom-clip package.
+
 ${status}
 
 ${supportPackages}
