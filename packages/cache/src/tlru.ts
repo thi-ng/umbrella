@@ -1,7 +1,7 @@
-import { Fn0 } from "@thi.ng/api";
 import { ConsCell, DCons } from "@thi.ng/dcons";
-import { CacheEntry, CacheOpts } from "./api";
 import { LRUCache } from "./lru";
+import type { Fn0 } from "@thi.ng/api";
+import type { CacheEntry, CacheOpts } from "./api";
 
 export interface TLRUCacheOpts<K, V> extends CacheOpts<K, V> {
     ttl: number;
