@@ -1,18 +1,18 @@
-import {
+import { SEMAPHORE } from "@thi.ng/api";
+import { equiv } from "@thi.ng/equiv";
+import { ArraySet } from "./array-set";
+import { dissoc } from "./dissoc";
+import { equivMap } from "./internal/equiv";
+import { into } from "./into";
+import type { EquivMapOpts, IEquivSet } from "./api";
+import type {
     Fn3,
     ICopy,
     IEmpty,
     IEquiv,
     IObjectOf,
     Pair,
-    SEMAPHORE
 } from "@thi.ng/api";
-import { equiv } from "@thi.ng/equiv";
-import { EquivMapOpts, IEquivSet } from "./api";
-import { ArraySet } from "./array-set";
-import { dissoc } from "./dissoc";
-import { equivMap } from "./internal/equiv";
-import { into } from "./into";
 
 interface MapProps<K, V> {
     keys: IEquivSet<K>;

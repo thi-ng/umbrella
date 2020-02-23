@@ -1,4 +1,4 @@
-export * from "./api";
+export type * from "./api";
 export * from "./array-set";
 export * from "./common-keys";
 export * from "./difference";

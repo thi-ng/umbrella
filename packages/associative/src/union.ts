@@ -1,7 +1,7 @@
-import { Reducer } from "@thi.ng/transducers";
 import { xformSetOp } from "./internal/xform-setop";
 import { into } from "./into";
 import { copy } from "./utils";
+import type { Reducer } from "@thi.ng/transducers";
 
 /**
  * Computes union of sets `a` and `b` and writes results to new set or

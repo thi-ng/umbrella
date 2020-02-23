@@ -1,4 +1,9 @@
-import {
+import { ceilPow2 } from "@thi.ng/binary";
+import { equiv } from "@thi.ng/equiv";
+import { dissoc } from "./dissoc";
+import { equivMap } from "./internal/equiv";
+import { into } from "./into";
+import type {
     Fn,
     Fn3,
     ICopy,
@@ -7,12 +12,7 @@ import {
     Pair,
     Predicate2
 } from "@thi.ng/api";
-import { ceilPow2 } from "@thi.ng/binary";
-import { equiv } from "@thi.ng/equiv";
-import { HashMapOpts } from "./api";
-import { dissoc } from "./dissoc";
-import { equivMap } from "./internal/equiv";
-import { into } from "./into";
+import type { HashMapOpts } from "./api";
 
 interface HashMapState<K, V> {
     hash: Fn<K, number>;

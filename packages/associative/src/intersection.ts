@@ -1,7 +1,7 @@
-import { Reducer } from "@thi.ng/transducers";
 import { xformSetOp } from "./internal/xform-setop";
 import { into } from "./into";
 import { empty } from "./utils";
+import type { Reducer } from "@thi.ng/transducers";
 
 /**
  * Computes the intersection of sets `a` and `b` and writes results into

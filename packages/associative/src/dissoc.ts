@@ -1,4 +1,4 @@
-import { IObjectOf } from "@thi.ng/api";
+import type { IObjectOf } from "@thi.ng/api";
 
 export function dissoc<K, V>(map: Map<K, V>, keys: Iterable<K>): Map<K, V>;
 export function dissoc<T>(set: Set<T>, keys: Iterable<T>): Set<T>;

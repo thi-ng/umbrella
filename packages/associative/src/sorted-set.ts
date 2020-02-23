@@ -1,11 +1,12 @@
-import { Fn3, ICompare, Pair } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare";
-import { IReducible, map, ReductionFn } from "@thi.ng/transducers";
-import { IEquivSet, SortedSetOpts } from "./api";
+import { map } from "@thi.ng/transducers";
 import { dissoc } from "./dissoc";
 import { equivSet } from "./internal/equiv";
 import { into } from "./into";
 import { SortedMap } from "./sorted-map";
+import type { Fn3, ICompare, Pair } from "@thi.ng/api";
+import type { IReducible, ReductionFn } from "@thi.ng/transducers";
+import type { IEquivSet, SortedSetOpts } from "./api";
 
 const __private = new WeakMap<SortedSet<any>, SortedMap<any, any>>();
 

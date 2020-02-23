@@ -1,5 +1,5 @@
-import { Fn2, IObjectOf } from "@thi.ng/api";
 import { copy } from "./utils";
+import type { Fn2, IObjectOf } from "@thi.ng/api";
 
 export const mergeMapWith = <K, V>(
     f: Fn2<V, V, V>,
