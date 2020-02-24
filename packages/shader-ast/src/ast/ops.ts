@@ -1,13 +1,16 @@
-import { IObjectOf } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
-import {
+import { isMat, isVec } from "./checks";
+import { numberWithMatchingType } from "./item";
+import { float } from "./lit";
+import type { IObjectOf } from "@thi.ng/api";
+import type {
     Op1,
     Op2,
     Sym,
     Term
 } from "../api/nodes";
-import { ComparisonOperator, Operator } from "../api/ops";
-import {
+import type { ComparisonOperator, Operator } from "../api/ops";
+import type {
     BoolTerm,
     FloatTerm,
     IntTerm,
@@ -19,7 +22,7 @@ import {
     Vec3Term,
     Vec4Term
 } from "../api/terms";
-import {
+import type {
     Comparable,
     Int,
     IVec,
@@ -29,9 +32,6 @@ import {
     UVec,
     Vec
 } from "../api/types";
-import { isMat, isVec } from "./checks";
-import { numberWithMatchingType } from "./item";
-import { float } from "./lit";
 
 export const op1 = <T extends Type>(
     op: Operator,

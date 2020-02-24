@@ -1,6 +1,6 @@
-import { Select4 } from "@thi.ng/api";
-import { Swizzle, Term } from "../api/nodes";
-import {
+import type { Select4 } from "@thi.ng/api";
+import type { Swizzle, Term } from "../api/nodes";
+import type {
     Swizzle2,
     Swizzle2_1,
     Swizzle2_2,
@@ -14,7 +14,7 @@ import {
     Swizzle4_2,
     Swizzle4_3
 } from "../api/swizzles";
-import {
+import type {
     BVec2Term,
     BVec3Term,
     BVec4Term,
@@ -28,7 +28,7 @@ import {
     Vec3Term,
     Vec4Term
 } from "../api/terms";
-import {
+import type {
     BVec,
     IVec,
     Type,

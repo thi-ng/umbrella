@@ -1,5 +1,5 @@
-import { Fn } from "@thi.ng/api";
-import {
+import type { Fn } from "@thi.ng/api";
+import type {
     ArrayInit,
     Assign,
     Branch,
@@ -19,7 +19,7 @@ import {
     Ternary,
     WhileLoop
 } from "./nodes";
-import { Tag } from "./tags";
+import type { Tag } from "./tags";
 
 export interface TargetImpl<T> extends Record<Tag, Fn<any, T>> {
     arg: Fn<FuncArg<any>, T>;

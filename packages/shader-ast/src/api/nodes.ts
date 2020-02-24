@@ -1,4 +1,4 @@
-import {
+import type {
     Func0,
     Func1,
     Func2,
@@ -9,11 +9,11 @@ import {
     Func7,
     Func8
 } from "./function";
-import { Operator } from "./ops";
-import { SymOpts } from "./syms";
-import { Tag } from "./tags";
-import { BoolTerm } from "./terms";
-import {
+import type { Operator } from "./ops";
+import type { SymOpts } from "./syms";
+import type { Tag } from "./tags";
+import type { BoolTerm } from "./terms";
+import type {
     Assignable,
     Indexable,
     Type,

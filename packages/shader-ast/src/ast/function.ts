@@ -1,6 +1,14 @@
 import { assert } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks";
+import { gensym } from "./idgen";
 import {
+    allChildren,
+    scope,
+    scopedChildren,
+    walk
+} from "./scope";
+import { sym } from "./sym";
+import type {
     Arg,
     Arg1,
     Arg2,
@@ -21,7 +29,7 @@ import {
     FnBody8,
     ScopeBody
 } from "../api/function";
-import {
+import type {
     FnCall,
     Func,
     FuncArg,
@@ -38,16 +46,8 @@ import {
     TaggedFn8,
     Term
 } from "../api/nodes";
-import { SymOpts } from "../api/syms";
-import { Type } from "../api/types";
-import { gensym } from "./idgen";
-import {
-    allChildren,
-    scope,
-    scopedChildren,
-    walk
-} from "./scope";
-import { sym } from "./sym";
+import type { SymOpts } from "../api/syms";
+import type { Type } from "../api/types";
 
 const defArg = <T extends Type>(a: Arg<T>): FuncArg<T> => {
     const [type, id, opts] = isString(a) ? <[T, string?, SymOpts?]>[a] : a;

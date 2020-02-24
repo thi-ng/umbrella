@@ -1,4 +1,4 @@
-import { Term } from "../api/nodes";
+import type { Term } from "../api/nodes";
 
 const RE_VEC = /^[iub]?vec[234]$/;
 const RE_MAT = /^mat[234]$/;
