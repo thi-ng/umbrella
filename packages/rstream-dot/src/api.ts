@@ -1,4 +1,4 @@
-import { ISubscribable } from "@thi.ng/rstream";
+import type { ISubscribable } from "@thi.ng/rstream";
 
 export interface IToDot {
     toDot(opts?: Partial<DotOpts>): string;

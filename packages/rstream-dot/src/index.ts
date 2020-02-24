@@ -4,14 +4,14 @@ import {
     StreamMerge,
     StreamSync
 } from "@thi.ng/rstream";
-import {
+import type {
     DotOpts,
     Node,
     NodeType,
     WalkState
 } from "./api";
 
-export * from "./api";
+export type * from "./api";
 
 const getNodeType = (sub: ISubscribable<any>) => {
     if (sub instanceof Stream) {
