@@ -1,6 +1,6 @@
-import { StridedVec, Vec } from "@thi.ng/vectors";
 import { AVecList } from "./alist";
-import { VecFactory } from "./api";
+import type { StridedVec, Vec } from "@thi.ng/vectors";
+import type { VecFactory } from "./api";
 
 export class VecArrayList<T extends StridedVec> extends AVecList<T> {
     items: T[];

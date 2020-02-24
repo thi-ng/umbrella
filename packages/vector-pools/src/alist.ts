@@ -1,6 +1,6 @@
-import { StridedVec, Vec } from "@thi.ng/vectors";
-import { VecFactory } from "./api";
 import { wrap } from "./wrap";
+import type { StridedVec, Vec } from "@thi.ng/vectors";
+import type { VecFactory } from "./api";
 
 export abstract class AVecList<T extends StridedVec> {
     buffer: Vec;
