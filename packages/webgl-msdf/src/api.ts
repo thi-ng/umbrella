@@ -1,6 +1,6 @@
-import { Fn3, IObjectOf } from "@thi.ng/api";
-import { ReadonlyVec } from "@thi.ng/vectors";
-import { GLVec4 } from "@thi.ng/webgl";
+import type { Fn3, IObjectOf } from "@thi.ng/api";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import type { GLVec4 } from "@thi.ng/webgl";
 
 export interface RawGlyphs {
     pages: string[];

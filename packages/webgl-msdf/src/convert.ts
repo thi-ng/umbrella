@@ -1,4 +1,4 @@
-import { MSDFFont, RawGlyphs } from "./api";
+import type { MSDFFont, RawGlyphs } from "./api";
 
 /**
  * Takes a JSON spec produced by the MSDF font generator at
