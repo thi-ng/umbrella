@@ -1,7 +1,7 @@
-import { StatefulPredicate } from "@thi.ng/api";
-import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { iterator1 } from "../iterator";
+import type { StatefulPredicate } from "@thi.ng/api";
+import type { Reducer, Transducer } from "../api";
 
 /**
  * Similar to {@link (filter:1)}, but works with possibly stateful

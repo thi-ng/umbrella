@@ -1,7 +1,7 @@
 import { isFunction } from "@thi.ng/checks";
-import { Transducer } from "../api";
 import { iterator1 } from "../iterator";
 import { map } from "./map";
+import type { Transducer } from "../api";
 
 export type LabelFn<L, T> = L | ((x: T) => L);
 

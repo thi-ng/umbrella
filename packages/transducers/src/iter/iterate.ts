@@ -1,4 +1,4 @@
-import { Fn2 } from "@thi.ng/api";
+import type { Fn2 } from "@thi.ng/api";
 
 /**
  * Yields an infinite iterator of the inductive sequence:

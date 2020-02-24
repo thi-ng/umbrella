@@ -1,4 +1,4 @@
-import { IObjectOf } from "@thi.ng/api";
+import type { IObjectOf } from "@thi.ng/api";
 
 export const renamer = (kmap: IObjectOf<PropertyKey>) => {
     const ks = Object.keys(kmap);

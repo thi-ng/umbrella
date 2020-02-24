@@ -1,6 +1,6 @@
-import { FnAny } from "@thi.ng/api";
-import { Reducer, ReductionFn } from "../api";
 import { $$reduce, reducer } from "../reduce";
+import type { FnAny } from "@thi.ng/api";
+import type { Reducer, ReductionFn } from "../api";
 
 /**
  * Higher-order reducer for math operations.

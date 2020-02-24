@@ -1,6 +1,6 @@
-import { Transducer } from "../api";
 import { iterator1 } from "../iterator";
 import { throttle } from "./throttle";
+import type { Transducer } from "../api";
 
 /**
  * Time-based version of {@link (throttle:1)}. Ignores any new values in

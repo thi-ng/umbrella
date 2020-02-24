@@ -1,6 +1,6 @@
-import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { iterator1 } from "../iterator";
+import type { Reducer, Transducer } from "../api";
 
 /**
  * Stateful transducer. Ignores the actual input values, but

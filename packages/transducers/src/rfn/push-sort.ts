@@ -1,6 +1,6 @@
-import { Comparator } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare";
-import { Reducer } from "../api";
+import type { Comparator } from "@thi.ng/api";
+import type { Reducer } from "../api";
 
 /**
  * Similar to {@link (push:1)}, but sorts result array upon completion

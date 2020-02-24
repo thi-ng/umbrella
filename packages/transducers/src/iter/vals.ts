@@ -1,4 +1,4 @@
-import { IObjectOf } from "@thi.ng/api";
+import type { IObjectOf } from "@thi.ng/api";
 
 /**
  * Iterator which yields all values of given object's own properties

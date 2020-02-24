@@ -1,4 +1,4 @@
-import { Transducer } from "../api";
+import type { Transducer } from "../api";
 
 /**
  * No-op / pass-through transducer, essentially the same as:

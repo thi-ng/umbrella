@@ -1,5 +1,5 @@
-import { Transducer } from "../api";
 import { flattenWith } from "./flatten-with";
+import type { Transducer } from "../api";
 
 export function flatten<T>(): Transducer<T | Iterable<T>, T>;
 export function flatten<T>(src: Iterable<T | Iterable<T>>): IterableIterator<T>;

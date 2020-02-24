@@ -1,4 +1,4 @@
-import { Fn0 } from "@thi.ng/api";
+import type { Fn0 } from "@thi.ng/api";
 
 /**
  * Iterator yielding return values of given no-arg function `fn`. If `n`

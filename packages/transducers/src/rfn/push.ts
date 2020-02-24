@@ -1,5 +1,5 @@
-import { Reducer } from "../api";
 import { reducer } from "../reduce";
+import type { Reducer } from "../api";
 
 export function push<T>(): Reducer<T[], T>;
 export function push<T>(xs: Iterable<T>): T[];
