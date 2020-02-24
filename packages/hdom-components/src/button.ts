@@ -1,5 +1,5 @@
-import { IObjectOf } from "@thi.ng/api";
 import { mergeAttribs } from "./utils/merge-attribs";
+import type { IObjectOf } from "@thi.ng/api";
 
 export interface ButtonOpts {
     /**
