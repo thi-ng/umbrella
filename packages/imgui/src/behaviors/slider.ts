@@ -1,5 +1,4 @@
 import { pointInside } from "@thi.ng/geom";
-import { IShape } from "@thi.ng/geom-api";
 import { clamp, roundTo } from "@thi.ng/math";
 import {
     add2,
@@ -9,6 +8,7 @@ import {
 } from "@thi.ng/vectors";
 import { Key } from "../api";
 import { IMGUI } from "../gui";
+import type { IShape } from "@thi.ng/geom-api";
 
 export const isHoverSlider = (
     gui: IMGUI,

@@ -1,4 +1,3 @@
-import { Fn0, IClear, IToHiccup } from "@thi.ng/api";
 import { set2, Vec } from "@thi.ng/vectors";
 import {
     DEFAULT_THEME,
@@ -10,6 +9,7 @@ import {
     MouseButton,
     NONE
 } from "./api";
+import type { Fn0, IClear, IToHiccup } from "@thi.ng/api";
 
 export class IMGUI implements IClear, IToHiccup {
     attribs!: any;

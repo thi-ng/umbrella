@@ -1,4 +1,3 @@
-import { Fn } from "@thi.ng/api";
 import { rect } from "@thi.ng/geom";
 import { IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
 import { fit, norm } from "@thi.ng/math";
@@ -8,6 +7,7 @@ import { IMGUI } from "../gui";
 import { valHash } from "../hash";
 import { textLabelRaw, textTransformV } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
+import type { Fn } from "@thi.ng/api";
 
 export const sliderV = (
     gui: IMGUI,

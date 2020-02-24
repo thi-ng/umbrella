@@ -1,4 +1,3 @@
-import { Fn } from "@thi.ng/api";
 import { circle, line } from "@thi.ng/geom";
 import { IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
 import {
@@ -14,6 +13,7 @@ import { IMGUI } from "../gui";
 import { valHash } from "../hash";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
+import type { Fn } from "@thi.ng/api";
 
 export const dial = (
     gui: IMGUI,

@@ -1,4 +1,3 @@
-import { Fn } from "@thi.ng/api";
 import { polygon } from "@thi.ng/geom";
 import { pointInRect } from "@thi.ng/geom-isec";
 import { IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
@@ -18,6 +17,7 @@ import { IMGUI } from "../gui";
 import { valHash } from "../hash";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
+import type { Fn } from "@thi.ng/api";
 
 const ringHeight = (w: number, thetaGap: number) =>
     (w / 2) * (1 + Math.sin(HALF_PI + thetaGap / 2));
