@@ -1,10 +1,6 @@
-import {
-    IRelease,
-    Type,
-    TypedArray,
-    TypedArrayTypeMap
-} from "@thi.ng/api";
-import { Pow2 } from "@thi.ng/binary";
+import { Type } from "@thi.ng/api";
+import type { IRelease, TypedArray, TypedArrayTypeMap } from "@thi.ng/api";
+import type { Pow2 } from "@thi.ng/binary";
 
 export interface MemPoolOpts {
     /**
@@ -203,9 +199,3 @@ export interface IMemPool extends IRelease {
      */
     stats(): Readonly<MemPoolStats>;
 }
-
-export type BlockCtor = (
-    buf: ArrayBuffer,
-    addr: number,
-    num: number
-) => TypedArray;
