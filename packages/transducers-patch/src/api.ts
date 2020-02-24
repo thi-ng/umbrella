@@ -1,4 +1,4 @@
-import { FnO, Path } from "@thi.ng/api";
+import type { FnO, Path } from "@thi.ng/api";
 
 export const enum Patch {
     SET,
