@@ -1,5 +1,5 @@
 import { isString } from "@thi.ng/checks";
-import { MIME_TYPES } from "@thi.ng/mime";
+import { preferredType } from "@thi.ng/mime";
 import type { TypedArray } from "@thi.ng/api";
 
 export interface DownloadOpts {
@@ -61,11 +61,7 @@ export const download = (
     };
     if (_opts.mime === undefined) {
         const match = /\.(\w+)$/.exec(name);
-        _opts.mime = match
-            ? MIME_TYPES.hasOwnProperty(match[1])
-                ? MIME_TYPES[match[1]][0]
-                : MIME_TYPES.bin[0]
-            : MIME_TYPES.bin[0];
+        _opts.mime = preferredType(match ? match[1] : "bin");
     }
     if (isString(src) && _opts.utf8) {
         src = new TextEncoder().encode(src);

@@ -40,7 +40,7 @@ ${examples}
 ${docLink}
 
 ```ts
-import { download, MIME_TEXT } from "@thi.ng/download";
+import { download } from "@thi.ng/download";
 
 const src = "Hellö wörld!";
 
@@ -50,9 +50,22 @@ download("hello.txt", src, {
     expire: 1000
 });
 
-// with explicit mime type
+// with explicit MIME type string
 download("hello.txt", src, {
-    mime: MIME_TXT,
+    mime: "text/plain",
+    utf8: true,
+    expire: 1000
+});
+```
+
+...or using MIME type preset from
+[@thi.ng/mime](https://github.com/thi-ng/umbrella/tree/develop/packages/mime).
+
+```ts
+import { MIME_TYPES } from "@thi.ng/mime";
+
+download("hello.txt", src, {
+    mime: MIME_TYPES.text,
     utf8: true,
     expire: 1000
 });

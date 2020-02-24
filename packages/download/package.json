@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/download",
     "version": "0.0.1",
-    "description": "Local asset download for web apps, mime type presets",
+    "description": "Local asset download for web apps, with automatic MIME type detection",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
