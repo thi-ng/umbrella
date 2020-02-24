@@ -1,4 +1,4 @@
-import { Fn0 } from "@thi.ng/api";
+import type { Fn0 } from "@thi.ng/api";
 
 /**
  * Takes a function returning either a no-arg function (thunk) or its

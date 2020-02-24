@@ -1,4 +1,4 @@
-import { Fn } from "@thi.ng/api";
+import type { Fn } from "@thi.ng/api";
 
 export function juxt<T, A>(a: Fn<T, A>): Fn<T, [A]>;
 export function juxt<T, A, B>(a: Fn<T, A>, b: Fn<T, B>): Fn<T, [A, B]>;

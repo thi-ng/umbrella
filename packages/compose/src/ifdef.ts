@@ -1,4 +1,4 @@
-import { Fn } from "@thi.ng/api";
+import type { Fn } from "@thi.ng/api";
 
 /**
  * Returns f(x) iff `x` is not null or undefined.
