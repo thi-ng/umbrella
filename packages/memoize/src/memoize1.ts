@@ -1,4 +1,5 @@
-import { Fn1, MapLike } from "./api";
+import type { Fn } from "@thi.ng/api";
+import type { MapLike } from "./api";
 
 /**
  * Optimized memoization for single arg functions. If the function
@@ -12,7 +13,7 @@ import { Fn1, MapLike } from "./api";
  * @param fn -
  * @param cache -
  */
-export function memoize1<A, B>(fn: Fn1<A, B>, cache?: MapLike<A, B>) {
+export function memoize1<A, B>(fn: Fn<A, B>, cache?: MapLike<A, B>) {
     !cache && (cache = new Map());
     return (x: A): B => {
         let res;

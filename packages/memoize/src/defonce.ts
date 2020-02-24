@@ -1,4 +1,4 @@
-import { Fn0 } from "./api";
+import type { Fn0 } from "@thi.ng/api";
 
 const cache: any = {};
 
