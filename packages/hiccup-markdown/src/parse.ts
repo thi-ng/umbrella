@@ -1,4 +1,3 @@
-import { Fn, Fn2 } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
 import {
     alts,
@@ -12,7 +11,8 @@ import {
     whitespace
 } from "@thi.ng/fsm";
 import { comp, filter } from "@thi.ng/transducers";
-import { TagFactories } from "./api";
+import type { Fn, Fn2 } from "@thi.ng/api";
+import type { TagFactories } from "./api";
 
 type ParseResult = ResultBody<any[]>;
 
