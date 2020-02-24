@@ -1,10 +1,10 @@
-import { PathSegment } from "./api";
 import {
     fattribs,
     ff,
     fpoint,
     fpoints
 } from "./format";
+import type { PathSegment } from "./api";
 
 const DEG = 180 / Math.PI;
 

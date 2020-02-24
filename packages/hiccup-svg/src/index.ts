@@ -1,4 +1,4 @@
-export * from "./api";
+export type * from "./api";
 export * from "./circle";
 export * from "./defs";
 export * from "./ellipse";

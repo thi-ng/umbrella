@@ -1,5 +1,5 @@
-import { Vec2Like } from "./api";
 import { fattribs, ff } from "./format";
+import type { Vec2Like } from "./api";
 
 export const circle = (p: Vec2Like, r: number, attribs?: any): any[] => [
     "circle",

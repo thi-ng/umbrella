@@ -1,5 +1,5 @@
-import { Vec2Like } from "./api";
-import { ff, fattribs } from "./format";
+import { fattribs, ff } from "./format";
+import type { Vec2Like } from "./api";
 
 export const rect = (
     p: Vec2Like,
