@@ -1,5 +1,5 @@
-import {
-    assert,
+import { assert } from "@thi.ng/api";
+import type {
     Fn0,
     IBind,
     ICopy,
