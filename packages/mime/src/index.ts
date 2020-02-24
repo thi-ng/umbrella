@@ -289,3 +289,16 @@ export const MIME_TYPES = ((defs: any) => {
         "x-msvideo": "avi"
     }
 });
+
+/**
+ * Returns preferred MIME type for given file extension or, if no match
+ * is available, the `fallback` MIME type (default:
+ * `application/octet-stream`).
+ *
+ * @param ext
+ * @param fallback
+ */
+export const preferredType = (ext: string, fallback = MIME_TYPES.bin[0]) => {
+    const type = MIME_TYPES[ext];
+    return type ? type[0] : fallback;
+};
