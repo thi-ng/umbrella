@@ -1,4 +1,4 @@
-import { Fn0, ISeq } from "@thi.ng/api";
+import type { Fn0, ISeq } from "@thi.ng/api";
 
 /**
  * Returns a new lazily evaluated `ISeq` produced by given function

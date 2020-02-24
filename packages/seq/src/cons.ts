@@ -1,4 +1,4 @@
-import { ISeq } from "@thi.ng/api";
+import type { ISeq } from "@thi.ng/api";
 
 /**
  * Returns a new `ISeq` with `head` prepended to (optional) `seq`.
