@@ -1,8 +1,8 @@
 import { isNumber, isPlainObject } from "@thi.ng/checks";
 import { DEFAULT_SAMPLES, SamplingOpts } from "@thi.ng/geom-api";
 import { Sampler } from "@thi.ng/geom-resample";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { pointAtTheta } from "./point-at";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 export const sample = (
     pos: ReadonlyVec,
