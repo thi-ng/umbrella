@@ -3,7 +3,7 @@ import { ASparseMatrix } from "./amatrix";
 import { CSC } from "./csc";
 import { CSR } from "./csr";
 import { SparseVec } from "./vec";
-import { NzEntry } from "./api";
+import type { NzEntry } from "./api";
 
 export class Diag extends ASparseMatrix {
     static identity(m: number) {
