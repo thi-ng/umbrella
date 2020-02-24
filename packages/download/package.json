@@ -39,7 +39,8 @@
     },
     "dependencies": {
         "@thi.ng/api": "^6.7.1",
-        "@thi.ng/checks": "^2.5.0"
+        "@thi.ng/checks": "^2.5.0",
+        "@thi.ng/mime": "^0.0.1"
     },
     "keywords": [
         "ES6",

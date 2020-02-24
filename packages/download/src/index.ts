@@ -1,46 +1,6 @@
 import { isString } from "@thi.ng/checks";
+import { MIME_TYPES } from "@thi.ng/mime";
 import type { TypedArray } from "@thi.ng/api";
-
-// https://www.iana.org/assignments/media-types/
-
-export const MIME_3MF = "model/3mf";
-export const MIME_BINARY = "application/octet-stream";
-export const MIME_CSS = "text/css";
-export const MIME_CSV = "text/csv";
-export const MIME_HTML = "text/html";
-export const MIME_GIF = "image/gif";
-export const MIME_IGES = "model/iges";
-export const MIME_JPEG = "image/jpeg";
-export const MIME_JS = "application/javascript";
-export const MIME_JSON = "application/json";
-export const MIME_MD = "text/markdown";
-export const MIME_OBJ = "model/obj";
-export const MIME_PDF = "application/pdf";
-export const MIME_PNG = "image/png";
-export const MIME_STL = "model/stl";
-export const MIME_SVG = "image/svg+xml";
-export const MIME_TEXT = "text/plain";
-export const MIME_WAV = "audio/wav";
-
-export const MIME_TYPE_MAP = {
-    ".3mf": MIME_3MF,
-    ".css": MIME_CSS,
-    ".csv": MIME_CSV,
-    ".html": MIME_HTML,
-    ".gif": MIME_GIF,
-    ".iges":MIME_IGES,
-    ".jpg": MIME_JPEG,
-    ".js": MIME_JS,
-    ".json": MIME_JSON,
-    ".md": MIME_MD,
-    ".obj": MIME_OBJ,
-    ".pdf": MIME_PDF,
-    ".png": MIME_PNG,
-    ".stl": MIME_STL,
-    ".svg": MIME_SVG,
-    ".txt": MIME_TEXT,
-    ".wav": MIME_WAV,
-};
 
 export interface DownloadOpts {
     /**
@@ -68,7 +28,7 @@ export interface DownloadOpts {
 
 /**
  * Triggers download of given `src` blob (or typed array or string) as
- * local file with filename `name`. Mime type, text encoding and URL
+ * local file with filename `name`. MIME type, text encoding and URL
  * expiry can be defined via the optional `opts` config object. See
  * {@link DownloadOpts} for details & defaults.
  *
@@ -100,12 +60,12 @@ export const download = (
         ...opts
     };
     if (_opts.mime === undefined) {
-        const match = /(\.\w+)$/.exec(name);
+        const match = /\.(\w+)$/.exec(name);
         _opts.mime = match
-            ? MIME_TYPE_MAP.hasOwnProperty(match[0])
-                ? (<any>MIME_TYPE_MAP)[match[0]]
-                : MIME_BINARY
-            : MIME_BINARY;
+            ? MIME_TYPES.hasOwnProperty(match[1])
+                ? MIME_TYPES[match[1]][0]
+                : MIME_TYPES.bin[0]
+            : MIME_TYPES.bin[0];
     }
     if (isString(src) && _opts.utf8) {
         src = new TextEncoder().encode(src);
