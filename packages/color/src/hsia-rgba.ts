@@ -1,6 +1,6 @@
 import { setC3 } from "@thi.ng/vectors";
-import { ColorOp } from "./api";
 import { clampH } from "./clamp";
+import type { ColorOp } from "./api";
 
 // https://en.wikipedia.org/wiki/HSL_and_HSV#From_HSI
 

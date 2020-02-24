@@ -1,6 +1,7 @@
 import { setC4 } from "@thi.ng/vectors";
-import { ColorOp, SRGB_ALPHA } from "./api";
+import { SRGB_ALPHA } from "./constants";
 import { ensureAlpha } from "./internal/ensure-alpha";
+import type { ColorOp } from "./api";
 
 /**
  * Maps a single linear RGB channel value to sRGB.

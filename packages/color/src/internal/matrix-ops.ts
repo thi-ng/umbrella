@@ -1,8 +1,8 @@
 import { clamp01 } from "@thi.ng/math";
 import { dotS3, dotS4 } from "@thi.ng/vectors";
 import { setC4 } from "@thi.ng/vectors";
-import { Color, ColorMatrix, ReadonlyColor } from "../api";
 import { ensureAlpha } from "./ensure-alpha";
+import type { Color, ColorMatrix, ReadonlyColor } from "../api";
 
 export const mulV33 = (
     out: Color | null,

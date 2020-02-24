@@ -1,5 +1,5 @@
 import { setC4 } from "@thi.ng/vectors";
-import { Color, ReadonlyColor } from "./api";
+import type { Color, ReadonlyColor } from "./api";
 
 export const alpha = (src: ReadonlyColor) =>
     src[3] !== undefined ? src[3] : 1;

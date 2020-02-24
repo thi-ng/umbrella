@@ -1,6 +1,6 @@
 import { clamp01 } from "@thi.ng/math";
 import { setC4 } from "@thi.ng/vectors";
-import { Color } from "./api";
+import type { Color } from "./api";
 
 const G1 = -0.6088425710866344;
 const G2 = -0.001748900018414868;

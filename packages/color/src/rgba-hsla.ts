@@ -1,6 +1,6 @@
 import { EPS } from "@thi.ng/math";
-import { ColorOp } from "./api";
 import { rgbaHcva } from "./rgba-hcva";
+import type { ColorOp } from "./api";
 
 export const rgbaHsla: ColorOp = (out, src) => {
     out = rgbaHcva(out, src);

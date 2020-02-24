@@ -1,7 +1,8 @@
-import { ColorOp, RGB_XYZ } from "./api";
 import { clamp } from "./clamp";
+import { RGB_XYZ } from "./constants";
 import { ensureAlpha } from "./internal/ensure-alpha";
 import { mulV33 } from "./internal/matrix-ops";
+import type { ColorOp } from "./api";
 
 /**
  * {@link https://en.wikipedia.org/wiki/CIE_1931_color_space}
