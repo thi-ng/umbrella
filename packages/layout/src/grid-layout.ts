@@ -1,5 +1,5 @@
 import { isNumber } from "@thi.ng/checks";
-import { IGridLayout, LayoutBox } from "./api";
+import type { IGridLayout, LayoutBox } from "./api";
 
 const DEFAULT_SPANS: [number, number] = [1, 1];
 
