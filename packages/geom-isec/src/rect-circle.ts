@@ -1,5 +1,5 @@
-import { Fn4 } from "@thi.ng/api";
 import { MultiVecOpImpl, ReadonlyVec, vop } from "@thi.ng/vectors";
+import type { Fn4 } from "@thi.ng/api";
 
 export const testBoxSphere: MultiVecOpImpl<Fn4<
     ReadonlyVec,

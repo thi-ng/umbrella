@@ -1,4 +1,4 @@
-import { ReadonlyVec } from "@thi.ng/vectors";
+import type { ReadonlyVec } from "@thi.ng/vectors";
 
 export const testRectRect = (
     [ax, ay]: ReadonlyVec,

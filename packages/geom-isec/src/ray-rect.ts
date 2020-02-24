@@ -1,7 +1,7 @@
-import { Fn4 } from "@thi.ng/api";
 import { IntersectionType } from "@thi.ng/geom-api";
 import { maddN, ReadonlyVec } from "@thi.ng/vectors";
 import { NONE } from "./api";
+import type { Fn4 } from "@thi.ng/api";
 
 const min = Math.min;
 const max = Math.max;
