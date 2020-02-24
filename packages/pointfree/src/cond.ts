@@ -1,9 +1,9 @@
-import { IObjectOf } from "@thi.ng/api";
 import { illegalState } from "@thi.ng/errors";
-import { StackContext, StackProc } from "./api";
 import { $ } from "./safe";
 import { nop } from "./stack";
 import { $stackFn } from "./word";
+import type { IObjectOf } from "@thi.ng/api";
+import type { StackContext, StackProc } from "./api";
 
 //////////////////// Conditionals  ////////////////////
 

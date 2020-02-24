@@ -1,5 +1,4 @@
-import { equiv as _equiv } from "@thi.ng/equiv";
-export * from "./api";
+export type * from "./api";
 export * from "./array";
 export * from "./binary";
 export * from "./cond";

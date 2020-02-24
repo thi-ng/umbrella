@@ -1,6 +1,6 @@
-import { StackContext, StackProc } from "./api";
 import { $ } from "./safe";
 import { $stackFn } from "./word";
+import type { StackContext, StackProc } from "./api";
 
 //////////////////// Loop constructs  ////////////////////
 

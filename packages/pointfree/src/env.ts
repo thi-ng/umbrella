@@ -1,6 +1,6 @@
 import { illegalArgs } from "@thi.ng/errors";
-import { StackContext } from "./api";
 import { $ } from "./safe";
+import type { StackContext } from "./api";
 
 //////////////////// Environment  ////////////////////
 

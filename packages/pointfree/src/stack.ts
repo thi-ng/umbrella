@@ -1,5 +1,5 @@
-import { Stack, StackContext } from "./api";
 import { $, $n } from "./safe";
+import type { Stack, StackContext } from "./api";
 
 const __xsp = (id: 0 | 1) => (ctx: StackContext) => (
     ctx[0].push(ctx[id].length), ctx

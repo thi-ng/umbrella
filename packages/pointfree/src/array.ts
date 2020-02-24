@@ -1,10 +1,10 @@
 import { isArray, isPlainObject } from "@thi.ng/checks";
 import { illegalArgs, illegalState } from "@thi.ng/errors";
-import { StackContext, StackFn } from "./api";
 import { op1, op2, op2v } from "./ops";
 import { $, $n } from "./safe";
 import { invrot, swap } from "./stack";
 import { $stackFn, word } from "./word";
+import type { StackContext, StackFn } from "./api";
 
 //////////////////// Array / list ops  ////////////////////
 

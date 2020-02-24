@@ -1,7 +1,7 @@
-import { StackContext } from "./api";
 import { op1, op2 } from "./ops";
 import { swap } from "./stack";
 import { word } from "./word";
+import type { StackContext } from "./api";
 
 //////////////////// Math ops ////////////////////
 

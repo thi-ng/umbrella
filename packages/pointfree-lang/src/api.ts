@@ -1,5 +1,5 @@
-import { IObjectOf } from "@thi.ng/api";
 import * as pf from "@thi.ng/pointfree";
+import type { IObjectOf } from "@thi.ng/api";
 
 export interface ASTNode {
     type: NodeType;
