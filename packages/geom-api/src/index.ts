@@ -1,9 +1,9 @@
-export * from "./accel";
+export type * from "./accel";
 export * from "./convex";
-export * from "./cubic";
+export type * from "./cubic";
 export * from "./isec";
 export * from "./path";
 export * from "./sample";
 export * from "./shape";
-export * from "./subdiv";
-export * from "./tessel";
+export type * from "./subdiv";
+export type * from "./tessel";

@@ -1,4 +1,4 @@
-import { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 export interface SubdivKernel {
     /**

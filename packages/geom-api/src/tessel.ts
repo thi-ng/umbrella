@@ -1,4 +1,4 @@
-import { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 /**
  * Tessellation function. Receives a point array representing a polygon
