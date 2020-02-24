@@ -1,6 +1,6 @@
-import { IObjectOf } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks";
-import {
+import type { IObjectOf } from "@thi.ng/api";
+import type {
     Edge,
     Graph,
     GraphAttribs,
