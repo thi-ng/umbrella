@@ -1,8 +1,8 @@
-import { IObjectOf } from "@thi.ng/api";
 import { unsupported } from "@thi.ng/errors";
-import {
+import { DEFAULT, LOGGER } from "./constants";
+import type { IObjectOf } from "@thi.ng/api";
+import type {
     AncestorDefs,
-    DEFAULT,
     DispatchFn,
     DispatchFn1,
     DispatchFn1O,
@@ -21,7 +21,6 @@ import {
     DispatchFn8,
     DispatchFn8O,
     Implementation,
-    LOGGER,
     MultiFn,
     MultiFn1,
     MultiFn1O,

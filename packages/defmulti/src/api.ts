@@ -1,4 +1,4 @@
-import {
+import type {
     Fn,
     Fn2,
     Fn3,
@@ -8,16 +8,8 @@ import {
     Fn7,
     Fn8,
     FnAny,
-    ILogger,
-    IObjectOf,
-    NULL_LOGGER
+    IObjectOf
 } from "@thi.ng/api";
-
-/**
- * Unique symbol used for registering a default / fallback
- * implementation.
- */
-export const DEFAULT: unique symbol = Symbol();
 
 export type DispatchFn = FnAny<PropertyKey>;
 export type DispatchFn1<A> = Fn<A, PropertyKey>;
@@ -309,7 +301,3 @@ export interface MultiFn8O<A, B, C, D, E, F, G, H, I, T>
         MultiFnBase<Implementation8O<A, B, C, D, E, F, G, H, I, T>> {}
 
 export type AncestorDefs = IObjectOf<Iterable<PropertyKey>>;
-
-export let LOGGER: ILogger = NULL_LOGGER;
-
-export const setLogger = (logger: ILogger) => (LOGGER = logger);
