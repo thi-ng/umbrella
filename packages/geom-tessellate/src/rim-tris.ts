@@ -1,4 +1,3 @@
-import { Tessellator } from "@thi.ng/geom-api";
 import {
     comp,
     map,
@@ -9,6 +8,7 @@ import {
     zip
 } from "@thi.ng/transducers";
 import { mixN, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import type { Tessellator } from "@thi.ng/geom-api";
 
 export const rimTris: Tessellator = (points: ReadonlyVec[]) => {
     const edgeCentroids = transduce(
