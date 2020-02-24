@@ -2,11 +2,11 @@ import {
     assert,
     INotifyMixin,
     typedArray,
-    UIntArray,
     uintType
 } from "@thi.ng/api";
-import { ObjectComponentOpts } from "../api";
 import { AComponent } from "./acomponent";
+import type { UIntArray } from "@thi.ng/api";
+import type { ObjectComponentOpts } from "../api";
 
 @INotifyMixin
 export class ObjectComponent<K extends string, T> extends AComponent<
