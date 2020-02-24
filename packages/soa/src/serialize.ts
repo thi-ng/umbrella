@@ -1,7 +1,7 @@
 import { assert } from "@thi.ng/api";
 import { utf8Decode, utf8Encode } from "@thi.ng/transducers-binary";
-import { Vec } from "@thi.ng/vectors";
-import {
+import type { Vec } from "@thi.ng/vectors";
+import type {
     SerializedTuple,
     Serializer,
     SerializerPair,
