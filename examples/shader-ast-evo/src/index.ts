@@ -46,7 +46,7 @@ import {
     snoiseVec3
 } from "@thi.ng/shader-ast-stdlib";
 import { glCanvas } from "@thi.ng/webgl";
-import { MainImageFn, shaderToy } from "@thi.ng/webgl-shadertoy";
+import { MainImageFn, shaderToy, ShaderToyUniforms } from "@thi.ng/webgl-shadertoy";
 
 const MAX_DEPTH = 11;
 const NORM_SCALE = 1;
@@ -120,10 +120,9 @@ const transpile = (node: ASTNode<Function, Vec3Term>): Term<any> =>
         ? node.op.apply(null, node.args.map(transpile))
         : node.value;
 
-const shaderFunction = (ast: ASTNode<Function, Vec3Term>): MainImageFn => (
-    gl,
-    unis
-) => {
+const shaderFunction = (
+    ast: ASTNode<Function, Vec3Term>
+): MainImageFn<ShaderToyUniforms> => (gl, unis) => {
     return [
         UV,
         assign(
