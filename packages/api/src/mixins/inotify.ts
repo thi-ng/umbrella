@@ -1,10 +1,6 @@
-import {
-    Event,
-    EVENT_ALL,
-    INotify,
-    Listener
-} from "../api/event";
+import { Event, INotify, Listener } from "../api/event";
 import { IObjectOf } from "../api/object";
+import { EVENT_ALL } from "../constants";
 import { mixin } from "../mixin";
 
 interface _INotify extends INotify {

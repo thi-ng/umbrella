@@ -1,4 +1,4 @@
-import { NO_OP } from "./api/fn";
+import { NO_OP } from "./constants";
 import type { Fn0 } from "./api/fn";
 
 /**
