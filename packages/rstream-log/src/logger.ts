@@ -6,7 +6,7 @@ import {
     nextID,
     StreamMerge
 } from "@thi.ng/rstream";
-import { ILogger, LogEntry } from "./api";
+import type { ILogger, LogEntry } from "./api";
 
 export class Logger extends StreamMerge<LogEntry, LogEntry> implements ILogger {
     level: LogLevel;
