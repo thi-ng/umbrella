@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks";
 import {
     createTree,
@@ -8,6 +7,7 @@ import {
     hydrateTree,
     normalizeTree
 } from "@thi.ng/hdom";
+import type { IObjectOf } from "@thi.ng/api";
 
 export const TEXT = Symbol();
 
