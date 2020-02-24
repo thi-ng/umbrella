@@ -1,4 +1,3 @@
-import { FnAny } from "@thi.ng/api";
 import {
     isArray,
     isFunction,
@@ -17,7 +16,8 @@ import {
     transduce,
     Transducer
 } from "@thi.ng/transducers";
-import { CSSOpts, RuleFn } from "./api";
+import type { FnAny } from "@thi.ng/api";
+import type { CSSOpts, RuleFn } from "./api";
 
 const EMPTY = new Set<string>();
 

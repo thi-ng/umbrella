@@ -1,5 +1,5 @@
-import { RuleFn } from "./api";
 import { indent } from "./impl";
+import type { RuleFn } from "./api";
 
 export const comment = (body: string, force = false): RuleFn => (acc, opts) => {
     const space = indent(opts);

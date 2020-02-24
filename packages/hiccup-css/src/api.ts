@@ -1,4 +1,4 @@
-import { FnAny, IObjectOf } from "@thi.ng/api";
+import type { FnAny, IObjectOf } from "@thi.ng/api";
 
 /**
  * Function type used by `at_xxx()` functions or any
