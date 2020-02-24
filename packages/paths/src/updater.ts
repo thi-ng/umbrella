@@ -1,4 +1,6 @@
-import {
+import { getterT } from "./getter";
+import { setterT } from "./setter";
+import type {
     FnO,
     Keys,
     Keys1,
@@ -18,9 +20,7 @@ import {
     Val7,
     Val8
 } from "@thi.ng/api";
-import { UpdateFn } from "./api";
-import { getterT } from "./getter";
-import { setterT } from "./setter";
+import type { UpdateFn } from "./api";
 
 /**
  * Similar to {@link setter}, returns a function to update values at

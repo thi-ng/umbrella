@@ -1,4 +1,4 @@
-import {
+import type {
     Keys,
     Keys1,
     Keys2,

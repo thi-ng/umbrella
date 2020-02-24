@@ -1,4 +1,5 @@
-import {
+import { toPath } from "./path";
+import type {
     Fn,
     Keys,
     Keys1,
@@ -18,7 +19,6 @@ import {
     Val7,
     Val8
 } from "@thi.ng/api";
-import { toPath } from "./path";
 
 /**
  * Composes a getter function for given nested lookup path. Optimized

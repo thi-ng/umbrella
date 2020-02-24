@@ -1,4 +1,5 @@
-import {
+import { mutatorT } from "./mutator";
+import type {
     Keys,
     Keys1,
     Keys2,
@@ -17,7 +18,6 @@ import {
     Val7,
     Val8
 } from "@thi.ng/api";
-import { mutatorT } from "./mutator";
 
 /**
  * Immediate use mutator, i.e. same as: `mutator(path)(state, val)`.

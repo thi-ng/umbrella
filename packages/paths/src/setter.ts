@@ -1,4 +1,6 @@
-import {
+import { isArray } from "@thi.ng/checks";
+import { toPath } from "./path";
+import type {
     Fn2,
     Keys,
     Keys1,
@@ -18,8 +20,6 @@ import {
     Val7,
     Val8
 } from "@thi.ng/api";
-import { isArray } from "@thi.ng/checks";
-import { toPath } from "./path";
 
 /**
  * Composes a setter function for given nested update path. Optimized

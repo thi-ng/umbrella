@@ -1,4 +1,6 @@
-import {
+import { getterT } from "./getter";
+import { setterT } from "./setter";
+import type {
     Keys,
     Keys1,
     Keys2,
@@ -17,9 +19,7 @@ import {
     Val7,
     Val8
 } from "@thi.ng/api";
-import { UpdateFn } from "./api";
-import { getterT } from "./getter";
-import { setterT } from "./setter";
+import type { UpdateFn } from "./api";
 
 /**
  * Similar to {@link setIn}, but applies given function to current path
