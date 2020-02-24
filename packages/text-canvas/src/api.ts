@@ -1,4 +1,4 @@
-import { Fn, NumOrString } from "@thi.ng/api";
+import type { Fn, NumOrString } from "@thi.ng/api";
 
 export const enum Align {
     LEFT,

@@ -1,4 +1,3 @@
-import { Fn0, NumOrString } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
 import { clamp } from "@thi.ng/math";
 import {
@@ -8,6 +7,7 @@ import {
     STYLE_ASCII
 } from "./api";
 import { charCode, intersectRect } from "./utils";
+import type { Fn0, NumOrString } from "@thi.ng/api";
 
 export class Canvas {
     buf: Uint32Array;

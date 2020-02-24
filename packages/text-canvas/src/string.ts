@@ -1,5 +1,5 @@
-import { StringFormat } from "./api";
 import { Canvas } from "./canvas";
+import type { StringFormat } from "./api";
 
 /**
  * Returns string representation of canvas, optionally using given

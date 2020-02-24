@@ -1,5 +1,5 @@
 import { memoize1 } from "@thi.ng/memoize";
-import { StringFormat } from "./api";
+import type { StringFormat } from "./api";
 
 const ANSI_RESET = `\x1b[0m`;
 

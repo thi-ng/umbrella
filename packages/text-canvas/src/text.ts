@@ -1,6 +1,5 @@
 import { peek } from "@thi.ng/arrays";
 import { wordWrap } from "@thi.ng/transducers";
-import { TextBoxOpts } from "./api";
 import {
     beginClip,
     beginStyle,
@@ -9,6 +8,7 @@ import {
     endStyle
 } from "./canvas";
 import { fillRect, strokeRect } from "./rect";
+import type { TextBoxOpts } from "./api";
 
 /**
  * Writes given string at position `x`,`y`, taking the current clip rect

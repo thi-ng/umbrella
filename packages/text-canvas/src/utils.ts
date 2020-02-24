@@ -1,5 +1,5 @@
-import { NumOrString } from "@thi.ng/api";
-import { ClipRect } from "./api";
+import type { NumOrString } from "@thi.ng/api";
+import type { ClipRect } from "./api";
 
 export const charCode = (x: NumOrString, format: number) =>
     (typeof x === "string" ? x.charCodeAt(0) : x) | (format << 16);
