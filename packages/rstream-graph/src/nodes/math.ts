@@ -1,7 +1,7 @@
-import { IObjectOf } from "@thi.ng/api";
 import { map } from "@thi.ng/transducers";
-import { NodeFactory } from "../api";
 import { node, node2 } from "../graph";
+import type { IObjectOf } from "@thi.ng/api";
+import type { NodeFactory } from "../api";
 
 /**
  * Addition node.
