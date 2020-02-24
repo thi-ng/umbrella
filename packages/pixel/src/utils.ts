@@ -6,7 +6,7 @@ import {
     UIntArray
 } from "@thi.ng/api";
 import { clamp } from "@thi.ng/math";
-import { BlitOpts, PackedFormat } from "./api";
+import type { BlitOpts, PackedFormat } from "./api";
 
 /** @internal */
 export const ensureSize = (

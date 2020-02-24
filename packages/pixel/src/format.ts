@@ -76,7 +76,10 @@ export const GRAY_ALPHA8 = defPackedFormat({
     type: Type.U16,
     size: 16,
     alpha: 8,
-    channels: [{ size: 8, lane: Lane.ALPHA }, { size: 8, lane: Lane.RED }],
+    channels: [
+        { size: 8, lane: Lane.ALPHA },
+        { size: 8, lane: Lane.RED }
+    ],
     fromABGR: (x) => luminanceABGR(x) | ((x >>> 16) & 0xff00),
     toABGR: (x) => ((x & 0xff00) << 16) | ((x & 0xff) * 0x010101)
 });
@@ -92,7 +95,10 @@ export const GRAY16 = defPackedFormat({
 export const GRAY_ALPHA16 = defPackedFormat({
     type: Type.U32,
     size: 32,
-    channels: [{ size: 8, lane: Lane.ALPHA }, { size: 16, lane: Lane.RED }],
+    channels: [
+        { size: 8, lane: Lane.ALPHA },
+        { size: 16, lane: Lane.RED }
+    ],
     fromABGR: (x) =>
         (((luminanceABGR(x) + 0.5) | 0) * 0x0101) |
         (((x >>> 8) & 0xff0000) * 0x0101),

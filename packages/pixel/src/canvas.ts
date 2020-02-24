@@ -1,5 +1,5 @@
 import { isNumber } from "@thi.ng/checks";
-import { CanvasContext, RawPixelBuffer } from "./api";
+import type { CanvasContext, RawPixelBuffer } from "./api";
 
 /**
  * Creates a canvas element of given size, obtains its 2D drawing
