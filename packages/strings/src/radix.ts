@@ -1,6 +1,6 @@
 import { memoizeJ } from "@thi.ng/memoize";
-import { Stringer } from "./api";
 import { repeat } from "./repeat";
+import type { Stringer } from "./api";
 
 /**
  * Returns a {@link Stringer} which formats given numbers to `radix`, `len`

@@ -1,5 +1,5 @@
 import { memoizeJ } from "@thi.ng/memoize";
-import { Stringer } from "./api";
+import type { Stringer } from "./api";
 
 type UnitDefs = [number, string, number?][];
 

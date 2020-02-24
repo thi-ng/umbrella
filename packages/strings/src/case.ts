@@ -1,4 +1,4 @@
-import { Stringer } from "./api";
+import type { Stringer } from "./api";
 
 /**
  * Uppercase string formatter.
