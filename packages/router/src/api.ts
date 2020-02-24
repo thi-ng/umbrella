@@ -1,10 +1,4 @@
-import { Fn, IID, IObjectOf } from "@thi.ng/api";
-
-/**
- * ID of event being triggered by `router.match()`
- */
-export const EVENT_ROUTE_CHANGED = "route-changed";
-export const EVENT_ROUTE_FAILED = "route-failed";
+import type { Fn, IID, IObjectOf } from "@thi.ng/api";
 
 /**
  * A validation function to for authenticated routes. If this function
