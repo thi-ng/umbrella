@@ -1,3 +1,4 @@
+import { download } from "@thi.ng/download";
 import { dropdown } from "@thi.ng/hdom-components";
 import {
     fromIterable,
@@ -27,7 +28,6 @@ import {
 } from "@thi.ng/transducers";
 import { bits, randomBits } from "@thi.ng/transducers-binary";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { download } from "./download";
 
 const WIDTH = 160;
 const HEIGHT = 32;
@@ -168,9 +168,7 @@ wolfram
                 zip(range2d(WIDTH, WIDTH), flatten(grid))
             )
         ),
-        map((obj: string) =>
-            download(`ca-${rule.deref()}.obj`, obj, "text/plain")
-        )
+        map((obj: string) => download(`ca-${rule.deref()}.obj`, obj))
     );
 
 rule.next(105);

@@ -1,3 +1,4 @@
+import { download, MIME_SVG } from "@thi.ng/download";
 import {
     asCubic,
     asSvg,
@@ -18,7 +19,6 @@ import { map, mapcat, normRange } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { cartesian2, Vec } from "@thi.ng/vectors";
 import { checkbox, slider } from "./controllers";
-import { download } from "./download";
 import {
     animationStream,
     AppState,
