@@ -1,8 +1,8 @@
-import { Fn3 } from "@thi.ng/api";
 import { isNumber, isPlainObject } from "@thi.ng/checks";
 import { DEFAULT_SAMPLES, SamplingOpts } from "@thi.ng/geom-api";
 import { Sampler } from "@thi.ng/geom-resample";
 import { ReadonlyVec, set, Vec } from "@thi.ng/vectors";
+import type { Fn3 } from "@thi.ng/api";
 
 export const __sample = (sample: Fn3<Vec[], ReadonlyVec[], number, void>) =>
     function $(

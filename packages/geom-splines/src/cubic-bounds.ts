@@ -1,5 +1,5 @@
 import { mixCubic } from "@thi.ng/math";
-import { ReadonlyVec, Vec, VecPair } from "@thi.ng/vectors";
+import type { ReadonlyVec, Vec, VecPair } from "@thi.ng/vectors";
 
 /**
  * Computes cubic spline bounds for a single vector component.
