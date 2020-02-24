@@ -10,7 +10,7 @@ import {
     partition,
     Transducer
 } from "@thi.ng/transducers";
-import { HexDumpOpts } from "./api";
+import type { HexDumpOpts } from "./api";
 
 /**
  * Transforms bytes into a sequence of hexdump lines with configurable
