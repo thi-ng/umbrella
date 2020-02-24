@@ -12,7 +12,7 @@ import {
     Vec2Sym,
     vec3
 } from "@thi.ng/shader-ast";
-import { RaymarchScene } from "../api";
+import type { RaymarchScene } from "../api";
 
 /**
  * Higher order function producing a function to compute the raymarched

@@ -1,4 +1,4 @@
-import { TaggedFn1 } from "@thi.ng/shader-ast";
+import type { TaggedFn1 } from "@thi.ng/shader-ast";
 
 export type RaymarchScene = TaggedFn1<"vec3", "vec2">;
 

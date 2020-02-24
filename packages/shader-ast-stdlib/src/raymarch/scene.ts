@@ -18,8 +18,8 @@ import {
     vec2,
     Vec2Sym
 } from "@thi.ng/shader-ast";
-import { RaymarchOpts, RaymarchScene } from "../api";
 import { rayPointAt } from "./point-at";
+import type { RaymarchOpts, RaymarchScene } from "../api";
 
 /**
  * Higher order function producing a function to perform a raymarch
