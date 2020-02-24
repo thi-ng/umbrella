@@ -1,5 +1,4 @@
 import { isArray } from "@thi.ng/checks";
-import { DrawState } from "./api";
 import { circularArc, ellipticArc } from "./draw/arc";
 import { defLinearGradient, defRadialGradient } from "./draw/color";
 import { image } from "./draw/image";
@@ -12,6 +11,7 @@ import { polyline } from "./draw/polyline";
 import { rect } from "./draw/rect";
 import { text } from "./draw/text";
 import { mergeState, registerGradient, restoreState } from "./state";
+import type { DrawState } from "./api";
 
 /** @internal */
 export const walk = (

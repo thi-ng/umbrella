@@ -1,5 +1,5 @@
-import { IObjectOf } from "@thi.ng/api";
-import { ReadonlyVec } from "@thi.ng/vectors";
+import type { IObjectOf } from "@thi.ng/api";
+import type { ReadonlyVec } from "@thi.ng/vectors";
 
 export const line = (
     ctx: CanvasRenderingContext2D,
