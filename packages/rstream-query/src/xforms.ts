@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { intersection, join } from "@thi.ng/associative";
 import { equiv } from "@thi.ng/equiv";
 import { LOGGER } from "@thi.ng/rstream";
@@ -19,6 +18,7 @@ import {
     TripleIds
 } from "./api";
 import { TripleStore } from "./store";
+import type { IObjectOf } from "@thi.ng/api";
 
 export const intersect2: Transducer<IObjectOf<TripleIds>, TripleIds> = comp(
     map(({ a, b }) => intersection(a, b)),

@@ -26,7 +26,19 @@ import {
     transduce,
     Transducer
 } from "@thi.ng/transducers";
+import { patternVars, resolvePathPattern } from "./pattern";
+import { isQVar, qvarResolver } from "./qvar";
 import {
+    bindVars,
+    filterSolutions,
+    indexSel,
+    intersect2,
+    intersect3,
+    joinSolutions,
+    limitSolutions,
+    resultTriples
+} from "./xforms";
+import type {
     Edit,
     PathPattern,
     PathQuerySpec,
@@ -40,18 +52,6 @@ import {
     Triples,
     WhereQuerySpec
 } from "./api";
-import { patternVars, resolvePathPattern } from "./pattern";
-import { isQVar, qvarResolver } from "./qvar";
-import {
-    bindVars,
-    filterSolutions,
-    indexSel,
-    intersect2,
-    intersect3,
-    joinSolutions,
-    limitSolutions,
-    resultTriples
-} from "./xforms";
 
 export class TripleStore implements Iterable<Triple>, IToDot {
     NEXT_ID: number;
