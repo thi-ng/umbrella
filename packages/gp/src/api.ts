@@ -1,5 +1,5 @@
-import { Fn, Fn2 } from "@thi.ng/api";
-import { IRandom } from "@thi.ng/random";
+import type { Fn, Fn2 } from "@thi.ng/api";
+import type { IRandom } from "@thi.ng/random";
 
 export const enum GeneType {
     TERMINAL,
