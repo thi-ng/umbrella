@@ -1,5 +1,5 @@
-import { Fn } from "@thi.ng/api";
-import {
+import type { Fn } from "@thi.ng/api";
+import type {
     FloatSym,
     Sym,
     Term,
