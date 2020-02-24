@@ -1,4 +1,3 @@
-import { IDeref, IObjectOf } from "@thi.ng/api";
 import { Atom, IAtom } from "@thi.ng/atom";
 import {
     implementsFunction,
@@ -32,6 +31,7 @@ import {
     LOGGER,
     SideEffect
 } from "./api";
+import type { IDeref, IObjectOf } from "@thi.ng/api";
 
 /**
  * Batched event processor for using composable interceptors for event

@@ -1,5 +1,5 @@
 import { ILogger, NULL_LOGGER } from "@thi.ng/api";
-import { ReadonlyAtom } from "@thi.ng/atom";
+import type { ReadonlyAtom } from "@thi.ng/atom";
 
 export type InterceptorFn = (
     state: any,
