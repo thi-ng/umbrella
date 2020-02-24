@@ -1,5 +1,5 @@
-import { IObjectOf } from "@thi.ng/api";
 import { appLink } from "./link";
+import type { IObjectOf } from "@thi.ng/api";
 
 export interface NotificationOpts {
     /**

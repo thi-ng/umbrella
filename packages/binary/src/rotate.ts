@@ -1,4 +1,4 @@
-import { Bit } from "./api";
+import type { Bit } from "./api";
 
 /**
  * Rotates `x` `n` bits to the left.

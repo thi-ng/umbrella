@@ -1,5 +1,5 @@
 import { defmulti, MultiFn1O } from "@thi.ng/defmulti";
-import { ASTNode, Implementations } from "./api";
+import type { ASTNode, Implementations } from "./api";
 
 export const runtime = <IMPL extends Implementations<ENV, RES>, ENV, RES>(
     impls: Partial<IMPL>

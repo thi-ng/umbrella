@@ -1,5 +1,5 @@
-import { Reducer, Transducer } from "../api";
 import { $iter, iterator } from "../iterator";
+import type { Reducer, Transducer } from "../api";
 
 /**
  * Transducer to create overlapping and non-overlapping sliding windows

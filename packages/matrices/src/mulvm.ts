@@ -11,7 +11,7 @@ import {
     setC4,
     Vec
 } from "@thi.ng/vectors";
-import { ReadonlyMat } from "./api";
+import type { ReadonlyMat } from "./api";
 
 /**
  * Same as:

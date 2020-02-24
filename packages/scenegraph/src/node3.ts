@@ -1,4 +1,3 @@
-import { IToHiccup, Nullable } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
 import {
     invert44,
@@ -6,9 +5,10 @@ import {
     mulV344,
     transform44
 } from "@thi.ng/matrices";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { ANode } from "./anode";
-import { ISceneNode } from "./api";
+import type { IToHiccup, Nullable } from "@thi.ng/api";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import type { ISceneNode } from "./api";
 
 export class Node3D extends ANode<Node3D>
     implements ISceneNode<Node3D>, IToHiccup {

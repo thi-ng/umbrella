@@ -6,7 +6,7 @@ import {
     setC,
     sub3
 } from "@thi.ng/vectors";
-import { Mat } from "./api";
+import type { Mat } from "./api";
 
 /**
  * Constructs a 4x4 camera matrix for given `eye` position, look-at

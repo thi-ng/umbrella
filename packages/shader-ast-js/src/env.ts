@@ -19,7 +19,6 @@ import {
     ZERO3,
     ZERO4
 } from "@thi.ng/vectors";
-import { JSBuiltinsSampler, JSEnv } from "./api";
 import { FLOAT } from "./env/float";
 import { INT } from "./env/int";
 import { IVEC2 } from "./env/ivec2";
@@ -35,6 +34,7 @@ import { UVEC4 } from "./env/uvec4";
 import { VEC2 } from "./env/vec2";
 import { VEC3 } from "./env/vec3";
 import { VEC4 } from "./env/vec4";
+import type { JSBuiltinsSampler, JSEnv } from "./api";
 
 // TODO texture lookups
 // all texture fns currently return [0,0,0,0] or 0

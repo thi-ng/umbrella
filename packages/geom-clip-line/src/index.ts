@@ -1,4 +1,4 @@
-import { Vec } from "@thi.ng/vectors";
+import type { Vec, ReadonlyVec } from "@thi.ng/vectors";
 
 /**
  * Performs Liang-Barsky clipping of the line segment with endpoints
@@ -21,10 +21,10 @@ import { Vec } from "@thi.ng/vectors";
  * @param cb - result B
  */
 export const liangBarsky2 = (
-    a: Vec,
-    b: Vec,
-    min: Vec,
-    max: Vec,
+    a: ReadonlyVec,
+    b: ReadonlyVec,
+    min: ReadonlyVec,
+    max: ReadonlyVec,
     ca: Vec = [],
     cb: Vec = []
 ): [Vec, Vec, number, number] | undefined => {

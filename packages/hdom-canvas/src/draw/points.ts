@@ -1,6 +1,6 @@
-import { IObjectOf } from "@thi.ng/api";
 import { TAU } from "@thi.ng/math";
-import { ReadonlyVec } from "@thi.ng/vectors";
+import type { IObjectOf } from "@thi.ng/api";
+import type { ReadonlyVec } from "@thi.ng/vectors";
 
 export const points = (
     ctx: CanvasRenderingContext2D,

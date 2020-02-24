@@ -1,6 +1,6 @@
 import { LogLevel } from "@thi.ng/api";
 import { map, Transducer } from "@thi.ng/transducers";
-import {
+import type {
     BodyFormat,
     DateFormat,
     LogEntry,

@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
 import { Sampler } from "@thi.ng/geom-resample";
@@ -14,6 +13,7 @@ import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
 import { pointArraysAsShapes } from "../internal/points-as-shape";
 import { splitLine } from "../internal/split";
+import type { IObjectOf } from "@thi.ng/api";
 
 export const splitAt = defmulti<IShape, number, IShape[] | undefined>(dispatch);
 

@@ -1,4 +1,4 @@
-import { Pow2 } from "./api";
+import type { Pow2 } from "./api";
 
 /**
  * Aligns `addr` to next multiple of `size`. The latter must be a power

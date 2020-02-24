@@ -1,7 +1,7 @@
-import { Fn, IObjectOf, Path } from "@thi.ng/api";
-import { ResolveFn } from "@thi.ng/resolve-map";
-import { ISubscribable } from "@thi.ng/rstream";
-import { Transducer } from "@thi.ng/transducers";
+import type { Fn, IObjectOf, Path } from "@thi.ng/api";
+import type { ResolveFn } from "@thi.ng/resolve-map";
+import type { ISubscribable } from "@thi.ng/rstream";
+import type { Transducer } from "@thi.ng/transducers";
 
 /**
  * A function which constructs and returns an

@@ -1,5 +1,5 @@
 import { memoize1 } from "@thi.ng/memoize";
-import { HtmlFormatOpts, StringFormat } from "./api";
+import type { HtmlFormatOpts, StringFormat } from "./api";
 
 /**
  * Constructs an HTML formatter using given config options.

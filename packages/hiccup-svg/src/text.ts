@@ -1,5 +1,5 @@
-import { Vec2Like } from "./api";
 import { fattribs, ff } from "./format";
+import type { Vec2Like } from "./api";
 
 export const text = (p: Vec2Like, body: string, attribs?: any): any[] => [
     "text",

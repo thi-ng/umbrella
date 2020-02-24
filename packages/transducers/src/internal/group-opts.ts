@@ -1,6 +1,6 @@
 import { identity } from "@thi.ng/compose";
-import { GroupByOpts } from "../api";
 import { push } from "../rfn/push";
+import type { GroupByOpts } from "../api";
 
 /**
  * Shared helper function for `groupBy*` reducers

@@ -1,4 +1,4 @@
-import { Nullable } from "@thi.ng/api";
+import type { Nullable } from "@thi.ng/api";
 
 /**
  * Returns iterator of nullable array w/ optional index range support

@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { isBoolean } from "@thi.ng/checks";
 import { clamp } from "@thi.ng/math";
 import { fromDOMEvent, merge, Stream } from "@thi.ng/rstream";
@@ -9,6 +8,7 @@ import {
     GestureStreamOpts,
     GestureType
 } from "./api";
+import type { IObjectOf } from "@thi.ng/api";
 
 type UIEvent = MouseEvent | TouchEvent | WheelEvent;
 

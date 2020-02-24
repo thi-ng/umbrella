@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import {
     DEFAULT,
     defmulti,
@@ -19,6 +18,7 @@ import { Rect } from "../api/rect";
 import { Sphere } from "../api/sphere";
 import { Triangle } from "../api/triangle";
 import { dispatch } from "../internal/dispatch";
+import type { IObjectOf } from "@thi.ng/api";
 
 /**
  * Returns the possibly signed (unsigned by default) surface area of given

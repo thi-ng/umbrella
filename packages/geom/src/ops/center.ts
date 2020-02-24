@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import {
     DEFAULT,
     defmulti,
@@ -22,6 +21,7 @@ import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
 import { centroid } from "./centroid";
 import { translate } from "./translate";
+import type { IObjectOf } from "@thi.ng/api";
 
 export const center: MultiFn1O<
     IShape,

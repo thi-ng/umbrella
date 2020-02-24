@@ -1,5 +1,6 @@
-import { ICopy, IDeref } from "@thi.ng/api";
-import { ColorMode, IColor } from "./api";
+import { ColorMode } from "./constants";
+import type { ICopy, IDeref } from "@thi.ng/api";
+import type { IColor } from "./api";
 
 export const css = (col: string) => new CSS(col);
 

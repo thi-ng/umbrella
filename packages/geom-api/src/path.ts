@@ -1,5 +1,5 @@
-import { Vec } from "@thi.ng/vectors";
-import { IShape } from "./shape";
+import type { Vec } from "@thi.ng/vectors";
+import type { IShape } from "./shape";
 
 export const enum SegmentType {
     MOVE,

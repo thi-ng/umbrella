@@ -1,4 +1,4 @@
-import { assert, Fn, IObjectOf } from "@thi.ng/api";
+import { assert } from "@thi.ng/api";
 import {
     f32u16,
     f32u24,
@@ -15,14 +15,15 @@ import {
 } from "@thi.ng/transducers";
 import {
     asBytes,
-    BinStructItem,
     bytes,
     u16,
     u24,
     u32,
     u8
 } from "@thi.ng/transducers-binary";
-import { WavSpec } from "./api";
+import type { Fn, IObjectOf } from "@thi.ng/api";
+import type { BinStructItem } from "@thi.ng/transducers-binary";
+import type { WavSpec } from "./api";
 
 const HEADER_SIZE = 44;
 

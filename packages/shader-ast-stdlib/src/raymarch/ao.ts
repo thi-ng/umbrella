@@ -16,8 +16,8 @@ import {
     sub,
     sym
 } from "@thi.ng/shader-ast";
-import { RaymarchScene } from "../api";
 import { clamp01 } from "../math/clamp";
+import type { RaymarchScene } from "../api";
 
 /**
  * Higher order function returning an function to compute the Ambient

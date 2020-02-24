@@ -1,4 +1,3 @@
-import { Attribs } from "@thi.ng/geom-api";
 import {
     dist,
     mixN3,
@@ -7,6 +6,7 @@ import {
 } from "@thi.ng/vectors";
 import { Sphere } from "../api/sphere";
 import { argsVN } from "../internal/args";
+import type { Attribs } from "@thi.ng/geom-api";
 
 export function sphere(pos: Vec, r: number, attribs?: Attribs): Sphere;
 export function sphere(pos: Vec, attribs?: Attribs): Sphere;

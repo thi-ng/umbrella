@@ -1,4 +1,4 @@
-import { ISeq, Nullable } from "@thi.ng/api";
+import type { ISeq, Nullable } from "@thi.ng/api";
 
 /**
  * Returns a zero-copy {@link @thi.ng/api#ISeq} for the given array and

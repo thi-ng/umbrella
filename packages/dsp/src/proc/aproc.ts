@@ -1,5 +1,6 @@
-import { IXform, map } from "@thi.ng/transducers";
-import { IProc, IProc2 } from "../api";
+import { map } from "@thi.ng/transducers";
+import type { IXform } from "@thi.ng/transducers";
+import type { IProc, IProc2 } from "../api";
 
 /**
  * Abstract base class for unit gens in this package. Provides

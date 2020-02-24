@@ -1,4 +1,5 @@
-import { Fn0, NO_OP } from "./api/fn";
+import { NO_OP } from "./constants";
+import type { Fn0 } from "./api/fn";
 
 /**
  * Takes a `test` result or predicate function without args and throws

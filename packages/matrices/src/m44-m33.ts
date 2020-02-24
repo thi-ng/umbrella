@@ -1,5 +1,5 @@
 import { setS3 } from "@thi.ng/vectors";
-import { MatOpM } from "./api";
+import type { MatOpM } from "./api";
 
 /**
  * Converts 4x4 to 3x3 matrix and writes result to `out`. Creates new

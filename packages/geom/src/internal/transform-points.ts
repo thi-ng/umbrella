@@ -1,7 +1,7 @@
-import { PCLike, PCLikeConstructor } from "@thi.ng/geom-api";
 import { mulV, mulV344, ReadonlyMat } from "@thi.ng/matrices";
-import { ReadonlyVec } from "@thi.ng/vectors";
 import { copyAttribs } from "./copy-attribs";
+import type { PCLike, PCLikeConstructor } from "@thi.ng/geom-api";
+import type { ReadonlyVec } from "@thi.ng/vectors";
 
 export const transformPoints = (pts: ReadonlyVec[], mat: ReadonlyMat) => (
     pts.forEach((p) => mulV(null, mat, p)), pts

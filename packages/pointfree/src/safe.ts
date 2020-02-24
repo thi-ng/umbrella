@@ -1,6 +1,6 @@
 import { Fn2, NO_OP } from "@thi.ng/api";
 import { illegalState } from "@thi.ng/errors";
-import { Stack } from "./api";
+import type { Stack } from "./api";
 
 // ensure stack size
 export let $: Fn2<Stack, number, void>;

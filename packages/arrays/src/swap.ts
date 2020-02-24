@@ -1,4 +1,4 @@
-import { AnyArray, SwapFn } from "./api";
+import type { AnyArray, SwapFn } from "./api";
 
 /**
  * Swaps values at index `x`/`y` in given array.

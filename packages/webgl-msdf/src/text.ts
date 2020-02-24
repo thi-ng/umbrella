@@ -14,8 +14,8 @@ import {
     mul2,
     ONE4
 } from "@thi.ng/vectors";
-import { GLVec4, ModelSpec } from "@thi.ng/webgl";
-import { MSDFFont, TextAlign, TextOpts } from "./api";
+import type { GLVec4, ModelSpec } from "@thi.ng/webgl";
+import type { MSDFFont, TextAlign, TextOpts } from "./api";
 
 export const text = (
     glyphs: MSDFFont,

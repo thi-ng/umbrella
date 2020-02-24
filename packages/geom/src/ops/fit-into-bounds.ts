@@ -1,4 +1,3 @@
-import { IShape } from "@thi.ng/geom-api";
 import { minNonZero2, minNonZero3, safeDiv } from "@thi.ng/math";
 import {
     concat,
@@ -17,6 +16,7 @@ import { centroid } from "./centroid";
 import { mapPoint } from "./map-point";
 import { transform } from "./transform";
 import { unmapPoint } from "./unmap-point";
+import type { IShape } from "@thi.ng/geom-api";
 
 const translateScale2 = (
     shape: IShape,

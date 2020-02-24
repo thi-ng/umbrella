@@ -1,4 +1,4 @@
-import { IShape } from "@thi.ng/geom-api";
+import type { IShape } from "@thi.ng/geom-api";
 
 export const dispatch = (x: IShape) => x.type;
 

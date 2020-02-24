@@ -1,9 +1,6 @@
 import {
     assert,
-    Event,
-    INotify,
     INotifyMixin,
-    Listener,
     typedArray,
     uintType
 } from "@thi.ng/api";
@@ -13,8 +10,6 @@ import { IDGen } from "@thi.ng/idgen";
 import { filter } from "@thi.ng/transducers";
 import {
     ComponentID,
-    EVENT_ADDED,
-    EVENT_PRE_DELETE,
     GroupOpts,
     IComponent,
     MemMappedComponentOpts,
@@ -22,7 +17,9 @@ import {
 } from "./api";
 import { MemMappedComponent } from "./components/mem-component";
 import { ObjectComponent } from "./components/object-component";
+import { EVENT_ADDED, EVENT_PRE_DELETE } from "./constants";
 import { Group } from "./groups/group";
+import type { Event, INotify, Listener } from "@thi.ng/api";
 
 let NEXT_GROUP_ID = 0;
 

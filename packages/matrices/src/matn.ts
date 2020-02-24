@@ -1,10 +1,10 @@
-import { Mat } from "./api";
 import {
     scale22,
     scale23,
     scale33,
     scale44
 } from "./scale";
+import type { Mat } from "./api";
 
 export const mat22n = (out: Mat | null, n: number) => scale22(out, n);
 

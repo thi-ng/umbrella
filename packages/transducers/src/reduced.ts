@@ -1,4 +1,4 @@
-import { IDeref } from "@thi.ng/api";
+import type { IDeref } from "@thi.ng/api";
 
 export class Reduced<T> implements IDeref<T> {
     protected value: T;

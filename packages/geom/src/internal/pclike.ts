@@ -1,5 +1,5 @@
-import { PCLikeConstructor } from "@thi.ng/geom-api";
 import { argAttribs } from "./args";
+import type { PCLikeConstructor } from "@thi.ng/geom-api";
 
 export const pclike = (ctor: PCLikeConstructor, args: any[]) => {
     const attr = argAttribs(args);

@@ -1,7 +1,7 @@
-import { Fn } from "@thi.ng/api";
-import { StatelessOscillator } from "../api";
 import { gibbs } from "../util/anti-alias";
 import { sin } from "./sin";
+import type { Fn } from "@thi.ng/api";
+import type { StatelessOscillator } from "../api";
 
 export const additive = (
     osc: StatelessOscillator,

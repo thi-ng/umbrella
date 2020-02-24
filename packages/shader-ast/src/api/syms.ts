@@ -1,5 +1,5 @@
-import { Sym } from "./nodes";
-import { Precision } from "./precision";
+import type { Sym } from "./nodes";
+import type { Precision } from "./precision";
 
 export type SymQualifier = "in" | "out" | "inout";
 

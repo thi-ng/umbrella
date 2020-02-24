@@ -1,4 +1,5 @@
-import {
+import { toPath } from "./path";
+import type {
     Fn2,
     Keys,
     Keys1,
@@ -18,7 +19,6 @@ import {
     Val7,
     Val8
 } from "@thi.ng/api";
-import { toPath } from "./path";
 
 /**
  * Higher-order function, similar to {@link setter}. Returns function

@@ -1,4 +1,3 @@
-import { Fn } from "@thi.ng/api";
 import {
     add,
     assign,
@@ -17,6 +16,7 @@ import {
     sym,
     Term
 } from "@thi.ng/shader-ast";
+import type { Fn } from "@thi.ng/api";
 
 /**
  * Higher order function. Takes an AST type ID, a single-arg scalar

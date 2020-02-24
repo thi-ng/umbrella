@@ -1,5 +1,5 @@
 import { isString } from "@thi.ng/checks";
-import { Triple } from "./api";
+import type { Triple } from "./api";
 
 const AUTO_QVAR_PREFIX = "?__q";
 let AUTO_QVAR_ID = 0;

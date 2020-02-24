@@ -1,9 +1,9 @@
-import { Path, Predicate2 } from "@thi.ng/api";
-import { ReadonlyAtom, ViewTransform } from "@thi.ng/atom";
 import { View } from "@thi.ng/atom";
-import { CommonOpts } from "../api";
 import { Stream } from "../stream";
 import { optsWithID } from "../utils/idgen";
+import type { Path, Predicate2 } from "@thi.ng/api";
+import type { ReadonlyAtom, ViewTransform } from "@thi.ng/atom";
+import type { CommonOpts } from "../api";
 
 export interface FromViewOpts<T> extends Partial<CommonOpts> {
     path: Path;

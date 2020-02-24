@@ -1,4 +1,7 @@
-import {
+import { isString } from "@thi.ng/checks";
+import { and, or } from "@thi.ng/dlogic";
+import { illegalArgs } from "@thi.ng/errors";
+import type {
     Fn,
     Fn2,
     ICompare,
@@ -6,9 +9,6 @@ import {
     ICopy,
     IEquiv
 } from "@thi.ng/api";
-import { isString } from "@thi.ng/checks";
-import { and, or } from "@thi.ng/dlogic";
-import { illegalArgs } from "@thi.ng/errors";
 
 export const enum Classifier {
     DISJOINT_LEFT,

@@ -1,7 +1,8 @@
-import { Fn, Fn2 } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks";
 import { DGraph } from "@thi.ng/dgraph";
-import {
+import { isMat, isVec } from "./checks";
+import type { Fn, Fn2 } from "@thi.ng/api";
+import type {
     Assign,
     Branch,
     Decl,
@@ -16,8 +17,7 @@ import {
     Term,
     Ternary
 } from "../api/nodes";
-import { Type } from "../api/types";
-import { isMat, isVec } from "./checks";
+import type { Type } from "../api/types";
 
 /**
  * Helper function for {@link walk}. Returns child nodes for any control

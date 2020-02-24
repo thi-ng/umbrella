@@ -1,4 +1,3 @@
-import { Fn } from "@thi.ng/api";
 import { line, rect } from "@thi.ng/geom";
 import { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { fit2, hash, Vec } from "@thi.ng/vectors";
@@ -6,6 +5,7 @@ import { handleSlider2Keys, isHoverSlider, slider2Val } from "../behaviors/slide
 import { IMGUI } from "../gui";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
+import type { Fn } from "@thi.ng/api";
 
 /**
  * `mode` interpretation:

@@ -1,5 +1,5 @@
-import { IBind, IObjectOf, IRelease } from "@thi.ng/api";
-import { IConfigure } from "./buffers";
+import type { IBind, IObjectOf, IRelease } from "@thi.ng/api";
+import type { IConfigure } from "./buffers";
 
 export const enum TextureFormat {
     ALPHA = 0x1906,

@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
 import { Sampler } from "@thi.ng/geom-resample";
@@ -23,6 +22,7 @@ import { Ray } from "../api/ray";
 import { Rect } from "../api/rect";
 import { dispatch } from "../internal/dispatch";
 import { vertices } from "./vertices";
+import type { IObjectOf } from "@thi.ng/api";
 
 export const pointAt = defmulti<IShape, number, Vec>(dispatch);
 

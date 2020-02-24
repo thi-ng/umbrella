@@ -1,4 +1,4 @@
-import { IObjectOf } from "@thi.ng/api";
+import type { IObjectOf } from "@thi.ng/api";
 
 export const CSS_NAMES: IObjectOf<string> = {
     aliceblue: "f0f8ff",

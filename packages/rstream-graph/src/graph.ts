@@ -1,5 +1,3 @@
-import { IObjectOf, Tuple } from "@thi.ng/api";
-import { IAtom } from "@thi.ng/atom";
 import { isFunction, isPlainObject, isString } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { getIn } from "@thi.ng/paths";
@@ -13,7 +11,9 @@ import {
 } from "@thi.ng/rstream";
 import { CloseMode } from "@thi.ng/rstream/api";
 import { map, Transducer } from "@thi.ng/transducers";
-import {
+import type { IObjectOf, Tuple } from "@thi.ng/api";
+import type { IAtom } from "@thi.ng/atom";
+import type {
     Graph,
     GraphSpec,
     Node,

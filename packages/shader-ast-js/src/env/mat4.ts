@@ -12,7 +12,7 @@ import {
     subN44
 } from "@thi.ng/matrices";
 import { neg, vecOf } from "@thi.ng/vectors";
-import { JSBuiltinsMat } from "../api";
+import type { JSBuiltinsMat } from "../api";
 
 export const MAT4: JSBuiltinsMat = {
     add: (a, b) => add44([], a, b),

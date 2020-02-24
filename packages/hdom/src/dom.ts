@@ -1,7 +1,7 @@
 import { isArray as isa, isNotStringAndIterable as isi } from "@thi.ng/checks";
 import { SVG_NS, SVG_TAGS } from "@thi.ng/hiccup";
 import { css } from "@thi.ng/hiccup";
-import { HDOMImplementation, HDOMOpts } from "./api";
+import type { HDOMImplementation, HDOMOpts } from "./api";
 
 const isArray = isa;
 const isNotStringAndIterable = isi;

@@ -1,6 +1,6 @@
 import { subN as _subN, subN4 } from "@thi.ng/vectors";
-import { MatOpMN, MultiMatOpMN } from "./api";
 import { defMathN } from "./internal/codegen";
+import type { MatOpMN, MultiMatOpMN } from "./api";
 
 /**
  * Componentwise scalar subtraction. If `out` is not given, writes

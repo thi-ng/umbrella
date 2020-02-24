@@ -1,4 +1,3 @@
-import { Attribs } from "@thi.ng/geom-api";
 import {
     dot3,
     normalize,
@@ -7,6 +6,7 @@ import {
     Vec
 } from "@thi.ng/vectors";
 import { Plane } from "../api/plane";
+import type { Attribs } from "@thi.ng/geom-api";
 
 export const plane = (normal: Vec, w: number, attribs?: Attribs) =>
     new Plane(normalize(null, normal), w, attribs);

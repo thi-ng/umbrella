@@ -1,4 +1,3 @@
-import { StackContext } from "./api";
 import { and, or } from "./logic";
 import { $ } from "./safe";
 import {
@@ -9,6 +8,7 @@ import {
     swap
 } from "./stack";
 import { $stackFn, exec, word } from "./word";
+import type { StackContext } from "./api";
 
 //////////////////// Dataflow combinators  ////////////////////
 

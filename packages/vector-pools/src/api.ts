@@ -8,7 +8,7 @@ import {
     TypedArray
 } from "@thi.ng/api";
 import { MemPool, MemPoolOpts } from "@thi.ng/malloc";
-import { ReadonlyVec, StridedVec, Vec } from "@thi.ng/vectors";
+import type { ReadonlyVec, StridedVec, Vec } from "@thi.ng/vectors";
 
 export interface AttribSpec {
     type: GLType | Type;

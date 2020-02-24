@@ -1,7 +1,7 @@
 import { isString } from "@thi.ng/checks";
-import { WeblGLCanvasOpts } from "./api/canvas";
-import { WebGLExtensionMap } from "./api/ext";
 import { error } from "./error";
+import type { WeblGLCanvasOpts } from "./api/canvas";
+import type { WebGLExtensionMap } from "./api/ext";
 
 const defaultOpts: WebGLContextAttributes = {
     alpha: true,

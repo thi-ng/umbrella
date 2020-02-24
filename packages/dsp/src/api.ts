@@ -1,15 +1,4 @@
-import { Fn2, IDeref, NumericArray } from "@thi.ng/api";
-
-export const enum FilterType {
-    LP,
-    HP,
-    BP,
-    NOTCH,
-    PEAK,
-    LOSHELF,
-    HISHELF,
-    ALL
-}
+import type { Fn2, IDeref, NumericArray } from "@thi.ng/api";
 
 export type StatelessOscillator = (
     phase: number,

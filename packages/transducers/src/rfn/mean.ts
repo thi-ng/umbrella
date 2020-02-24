@@ -1,5 +1,5 @@
-import { Reducer } from "../api";
 import { reduce } from "../reduce";
+import type { Reducer } from "../api";
 
 /**
  * Reducer computing mean of received inputs. Returns 0 if no inputs

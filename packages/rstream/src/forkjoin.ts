@@ -1,14 +1,14 @@
-import { ArrayLikeIterable, Fn, Fn3 } from "@thi.ng/api";
 import {
     comp,
     map,
     mapcat,
     range
 } from "@thi.ng/transducers";
-import { CommonOpts, ITransformable } from "./api";
 import { sync } from "./stream-sync";
 import { tunnel } from "./subs/tunnel";
 import { Subscription } from "./subscription";
+import type { ArrayLikeIterable, Fn, Fn3 } from "@thi.ng/api";
+import type { CommonOpts, ITransformable } from "./api";
 
 export interface ForkJoinOpts<IN, MSG, RES, OUT> extends Partial<CommonOpts> {
     /**

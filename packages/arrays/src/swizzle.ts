@@ -1,4 +1,4 @@
-import { Fn } from "@thi.ng/api";
+import type { Fn } from "@thi.ng/api";
 
 /**
  * Returns optimized function to immutably select, repeat, reshape and /

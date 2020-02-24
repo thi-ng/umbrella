@@ -1,7 +1,7 @@
-import { Fn, Fn0 } from "@thi.ng/api";
-import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { $iter } from "../iterator";
+import type { Fn, Fn0 } from "@thi.ng/api";
+import type { Reducer, Transducer } from "../api";
 
 export interface DistinctOpts<T> {
     /**

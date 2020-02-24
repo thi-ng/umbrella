@@ -1,5 +1,6 @@
 import { dot3 } from "@thi.ng/vectors";
-import { ReadonlyColor, RGB_LUMINANCE } from "./api";
+import { RGB_LUMINANCE } from "./constants";
+import type { ReadonlyColor } from "./api";
 
 export const luminanceRGB = (rgb: ReadonlyColor, weights = RGB_LUMINANCE) =>
     dot3(rgb, weights);

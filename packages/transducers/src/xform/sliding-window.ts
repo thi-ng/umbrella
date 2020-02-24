@@ -1,6 +1,6 @@
-import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { $iter } from "../iterator";
+import type { Reducer, Transducer } from "../api";
 
 /**
  * Sliding window transducer, similar to `partition(size, 1)`, but

@@ -8,7 +8,7 @@ import {
     smoothStep,
     step
 } from "@thi.ng/math";
-import { JSBuiltinsFloat } from "../api";
+import type { JSBuiltinsFloat } from "../api";
 
 export const FLOAT: JSBuiltinsFloat<number> = {
     abs: Math.abs,

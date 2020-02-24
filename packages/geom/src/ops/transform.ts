@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import {
     IHiccupShape,
@@ -25,6 +24,7 @@ import { dispatch } from "../internal/dispatch";
 import { transformedShape as tx, transformedShape3 as tx3 } from "../internal/transform-points";
 import { asPath } from "./as-path";
 import { asPolygon } from "./as-polygon";
+import type { IObjectOf } from "@thi.ng/api";
 
 /**
  * Transforms given shape with provided matrix. Some shape types will be

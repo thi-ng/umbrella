@@ -1,6 +1,6 @@
-import { Transducer } from "../api";
 import { $iter, iterator } from "../iterator";
 import { partitionBy } from "./partition-by";
+import type { Transducer } from "../api";
 
 export interface WordWrapOpts {
     delim: number;

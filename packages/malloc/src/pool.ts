@@ -8,7 +8,7 @@ import {
 import { align, Pow2 } from "@thi.ng/binary";
 import { isNumber } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
-import { IMemPool, MemPoolOpts, MemPoolStats } from "./api";
+import type { IMemPool, MemPoolOpts, MemPoolStats } from "./api";
 
 const STATE_FREE = 0;
 const STATE_USED = 1;

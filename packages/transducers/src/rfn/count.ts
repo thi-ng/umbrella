@@ -1,5 +1,5 @@
-import { Reducer } from "../api";
-import { reducer, $$reduce } from "../reduce";
+import { $$reduce, reducer } from "../reduce";
+import type { Reducer } from "../api";
 
 /**
  * Reducer which ignores incoming values and instead only counts them,

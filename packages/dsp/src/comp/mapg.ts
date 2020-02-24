@@ -1,13 +1,13 @@
-import {
+import { illegalArity } from "@thi.ng/errors";
+import { AGen } from "../gen/agen";
+import type {
     Fn2,
     Fn3,
     Fn4,
     Fn5,
     FnAny
 } from "@thi.ng/api";
-import { illegalArity } from "@thi.ng/errors";
-import { IGen } from "../api";
-import { AGen } from "../gen/agen";
+import type { IGen } from "../api";
 
 export function mapG<A, T>(op: Fn2<A, T, T>, a: IGen<A>, init: T): IGen<T>;
 export function mapG<A, B, T>(

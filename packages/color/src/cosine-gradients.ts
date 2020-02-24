@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { partial } from "@thi.ng/compose";
 import { clamp01, TAU } from "@thi.ng/math";
 import {
@@ -9,8 +8,9 @@ import {
     tween,
     zip
 } from "@thi.ng/transducers";
-import { Color, CosGradientSpec, ReadonlyColor } from "./api";
 import { clamp } from "./clamp";
+import type { IObjectOf } from "@thi.ng/api";
+import type { Color, CosGradientSpec, ReadonlyColor } from "./api";
 
 // see http://dev.thi.ng/gradients/ - unlike the clojure version, these
 // presets are for RGBA (though the alpha channel is configured to

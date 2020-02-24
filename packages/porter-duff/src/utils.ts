@@ -1,4 +1,4 @@
-import { Color, ReadonlyColor } from "./api";
+import type { Color, ReadonlyColor } from "./api";
 
 /** @internal */
 export const setC4 = (

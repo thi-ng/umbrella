@@ -1,7 +1,7 @@
 import { assert, Nullable } from "@thi.ng/api";
-import { Mat } from "@thi.ng/matrices";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors";
-import { ISceneNode, NodeInfo } from "./api";
+import type { Mat } from "@thi.ng/matrices";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import type { ISceneNode, NodeInfo } from "./api";
 
 export abstract class ANode<T extends ISceneNode<any>> {
     id: string;

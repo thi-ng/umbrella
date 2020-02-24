@@ -1,4 +1,3 @@
-import { Fn2, IObjectOf } from "@thi.ng/api";
 import { illegalArgs, illegalState } from "@thi.ng/errors";
 import {
     ensureReduced,
@@ -10,6 +9,7 @@ import {
     unreduced
 } from "@thi.ng/transducers";
 import { Match, Matcher } from "./api";
+import type { Fn2, IObjectOf } from "@thi.ng/api";
 
 /**
  * Finite-state machine transducer / iterator with support for single

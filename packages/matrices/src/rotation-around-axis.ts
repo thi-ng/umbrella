@@ -1,6 +1,6 @@
 import { normalize as _normalize, ReadonlyVec, setC } from "@thi.ng/vectors";
-import { Mat } from "./api";
 import { mat33to44 } from "./m33-m44";
+import type { Mat } from "./api";
 
 /**
  * Constructs a 3x3 matrix representing a rotation of `theta` around

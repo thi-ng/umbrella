@@ -1,5 +1,5 @@
-import { ICopy, IObjectOf, IToHiccup } from "@thi.ng/api";
-import { Vec } from "@thi.ng/vectors";
+import type { ICopy, IObjectOf, IToHiccup } from "@thi.ng/api";
+import type { Vec } from "@thi.ng/vectors";
 
 export const enum Type {
     AABB = 1,

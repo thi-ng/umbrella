@@ -1,4 +1,3 @@
-import { Fn3 } from "@thi.ng/api";
 import { closestT } from "@thi.ng/geom-closest-point";
 import { clamp01, EPS, sign } from "@thi.ng/math";
 import {
@@ -11,6 +10,7 @@ import {
     signedArea2,
     vop
 } from "@thi.ng/vectors";
+import type { Fn3 } from "@thi.ng/api";
 
 export const pointInSegment = (
     p: ReadonlyVec,

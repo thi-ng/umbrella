@@ -1,4 +1,4 @@
-import { Fn, Fn2 } from "@thi.ng/api";
+import type { Fn, Fn2 } from "@thi.ng/api";
 
 export interface ZipperOps<T> {
     branch: Fn<T, boolean>;

@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import {
     IShape,
@@ -12,6 +11,7 @@ import { Polyline } from "../api/polyline";
 import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
 import { asPolygon } from "./as-polygon";
+import type { IObjectOf } from "@thi.ng/api";
 
 export const resample = defmulti<
     IShape,

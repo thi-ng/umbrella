@@ -1,6 +1,6 @@
-import { IID, Nullable } from "@thi.ng/api";
-import { Mat } from "@thi.ng/matrices";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import type { IID, Nullable } from "@thi.ng/api";
+import type { Mat } from "@thi.ng/matrices";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 export interface ISceneNode<T extends ISceneNode<T>> extends IID<string> {
     parent: Nullable<T>;

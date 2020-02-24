@@ -1,6 +1,6 @@
-import { IObjectOf } from "@thi.ng/api";
-import { ReadonlyVec } from "@thi.ng/vectors";
 import { path } from "./path";
+import type { IObjectOf } from "@thi.ng/api";
+import type { ReadonlyVec } from "@thi.ng/vectors";
 
 export const rect = (
     ctx: CanvasRenderingContext2D,

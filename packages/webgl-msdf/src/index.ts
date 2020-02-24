@@ -1,4 +1,4 @@
-export * from "./api";
+export type * from "./api";
 export * from "./convert";
 export * from "./shader";
 export * from "./text";

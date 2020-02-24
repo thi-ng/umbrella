@@ -1,5 +1,5 @@
-import { Bit } from "./api";
 import { defMask } from "./mask";
+import type { Bit } from "./api";
 
 /**
  * Clears bit in given uint `x`.

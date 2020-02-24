@@ -10,7 +10,7 @@ import {
     VecOpVV,
     vop
 } from "@thi.ng/vectors";
-import { MatOpMV, MultiMatOpMV, ReadonlyMat } from "./api";
+import type { MatOpMV, MultiMatOpMV, ReadonlyMat } from "./api";
 
 /**
  * Matrix-vector multiplication. Supports in-place modification, i.e. if

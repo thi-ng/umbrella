@@ -1,4 +1,3 @@
-import { Attribs } from "@thi.ng/geom-api";
 import { circumCenter2 } from "@thi.ng/geom-poly-utils";
 import {
     dist,
@@ -8,6 +7,7 @@ import {
 } from "@thi.ng/vectors";
 import { Circle } from "../api/circle";
 import { argsVN } from "../internal/args";
+import type { Attribs } from "@thi.ng/geom-api";
 
 export function circle(pos: Vec, r: number, attribs?: Attribs): Circle;
 export function circle(pos: Vec, attribs?: Attribs): Circle;

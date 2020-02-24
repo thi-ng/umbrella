@@ -1,4 +1,4 @@
-import { ILogger, IObjectOf, NULL_LOGGER } from "@thi.ng/api";
+import type { IObjectOf } from "@thi.ng/api";
 
 export interface ILifecycle {
     /**
@@ -471,7 +471,3 @@ export interface HDOMImplementation<T> {
      */
     setContent(element: T, value: any): void;
 }
-
-export let LOGGER = NULL_LOGGER;
-
-export const setLogger = (logger: ILogger) => (LOGGER = logger);

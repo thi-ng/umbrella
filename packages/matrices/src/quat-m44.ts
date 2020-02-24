@@ -1,5 +1,5 @@
 import { ReadonlyVec, setC, ZERO3 } from "@thi.ng/vectors";
-import { Mat } from "./api";
+import type { Mat } from "./api";
 
 /**
  * Converts quaternion into 4x4 matrix with optional translation offset

@@ -1,19 +1,19 @@
-import {
+import { IWatchMixin } from "@thi.ng/api";
+import { illegalState } from "@thi.ng/errors";
+import { setIn, updateIn } from "@thi.ng/paths";
+import { View } from "./view";
+import type {
     IEquiv,
-    IWatchMixin,
     Path,
     Predicate,
     Watch
 } from "@thi.ng/api";
-import { illegalState } from "@thi.ng/errors";
-import { setIn, updateIn } from "@thi.ng/paths";
-import {
+import type {
     IAtom,
     IView,
     SwapFn,
     ViewTransform
 } from "./api";
-import { View } from "./view";
 
 /**
  * Mutable wrapper for an (usually) immutable value. Support for

@@ -1,5 +1,5 @@
 import { EPS, eqDeltaFixed } from "@thi.ng/math";
-import { ReadonlyMat } from "./api";
+import type { ReadonlyMat } from "./api";
 
 /**
  * Returns true, if given square matrix of size `n` is orthagonal, i.e.

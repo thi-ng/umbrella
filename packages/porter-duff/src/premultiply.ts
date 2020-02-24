@@ -1,5 +1,5 @@
-import { Color, ReadonlyColor } from "./api";
 import { setC4, setV4 } from "./utils";
+import type { Color, ReadonlyColor } from "./api";
 
 /**
  * Multiplies RGB channels w/ alpha channel. Assumes alpha is in last

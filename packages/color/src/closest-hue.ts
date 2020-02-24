@@ -1,4 +1,4 @@
-import { Hue } from "./api";
+import { Hue } from "./constants";
 import { ensureHue } from "./internal/ensure-hue";
 
 /**

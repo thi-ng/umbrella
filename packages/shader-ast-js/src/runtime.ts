@@ -1,7 +1,7 @@
 import { assert, Fn } from "@thi.ng/api";
 import { clamp, clamp01 } from "@thi.ng/math";
 import { ABGR8888, PackedBuffer } from "@thi.ng/pixel";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 const rgba2bgra = (rgba: ReadonlyVec) =>
     ((clamp01(rgba[0]) * 255.5) << 0) |

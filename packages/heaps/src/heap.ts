@@ -1,4 +1,5 @@
-import {
+import { compare } from "@thi.ng/compare";
+import type {
     Comparator,
     IClear,
     ICopy,
@@ -6,8 +7,7 @@ import {
     ILength,
     IStack
 } from "@thi.ng/api";
-import { compare } from "@thi.ng/compare";
-import { HeapOpts } from "./api";
+import type { HeapOpts } from "./api";
 
 /**
  * Generic binary heap / priority queue with customizable ordering via

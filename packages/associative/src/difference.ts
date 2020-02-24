@@ -1,7 +1,7 @@
-import { Reducer } from "@thi.ng/transducers";
 import { xformSetOp } from "./internal/xform-setop";
 import { into } from "./into";
 import { copy, empty } from "./utils";
+import type { Reducer } from "@thi.ng/transducers";
 
 /**
  * Computes the difference of sets `a - b` and writes results to new set

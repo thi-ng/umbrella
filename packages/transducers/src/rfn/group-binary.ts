@@ -1,7 +1,7 @@
-import { Fn, Fn0, IObjectOf } from "@thi.ng/api";
-import { Reducer } from "../api";
 import { groupByObj } from "./group-by-obj";
 import { push } from "./push";
+import type { Fn, Fn0, IObjectOf } from "@thi.ng/api";
+import type { Reducer } from "../api";
 
 const branchPred = <T>(
     key: Fn<T, number>,

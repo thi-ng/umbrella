@@ -1,14 +1,14 @@
 import { isArray, isFunction } from "@thi.ng/checks";
 import { compL } from "@thi.ng/compose";
-import {
+import { $ } from "./safe";
+import { tos } from "./stack";
+import type {
     StackContext,
     StackEnv,
     StackFn,
     StackProc,
     StackProgram
 } from "./api";
-import { $ } from "./safe";
-import { tos } from "./stack";
 
 export const $stackFn = (f: StackProc) => (isArray(f) ? word(f) : f);
 

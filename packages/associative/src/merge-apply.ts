@@ -1,6 +1,6 @@
-import { Fn, IObjectOf } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks";
 import { copy } from "./utils";
+import type { Fn, IObjectOf } from "@thi.ng/api";
 
 /**
  * Similar to {@link mergeApplyObj}, but for ES6 Maps instead of plain objects.

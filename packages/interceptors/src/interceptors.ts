@@ -1,4 +1,3 @@
-import { Fn, FnO, Path } from "@thi.ng/api";
 import { getIn, setter, updater } from "@thi.ng/paths";
 import {
     Event,
@@ -9,6 +8,7 @@ import {
     InterceptorFn,
     InterceptorPredicate
 } from "./api";
+import type { Fn, FnO, Path } from "@thi.ng/api";
 
 /**
  * Debug interceptor to log the current event to the console.

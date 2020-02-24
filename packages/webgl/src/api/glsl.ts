@@ -1,5 +1,5 @@
-import { Tuple } from "@thi.ng/api";
-import { Type } from "@thi.ng/shader-ast";
+import type { Tuple } from "@thi.ng/api";
+import type { Type } from "@thi.ng/shader-ast";
 
 export type GLSL = Type;
 

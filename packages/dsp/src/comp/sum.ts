@@ -1,5 +1,5 @@
-import { IGen } from "../api";
 import { MapG2, MapG3 } from "./mapg";
+import type { IGen } from "../api";
 
 /**
  * Higher order gen. Returns a {@link MapG2} or {@link MapG3} yielding

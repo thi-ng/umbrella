@@ -1,10 +1,6 @@
 import { equiv as _equiv } from "@thi.ng/equiv";
-import {
-    ArrayDiff,
-    DiffKeyMap,
-    DiffMode,
-    EditLog
-} from "./api";
+import { DiffMode } from "./constants";
+import type { ArrayDiff, DiffKeyMap, EditLog } from "./api";
 
 let _cachedFP: Int32Array;
 let _cachedPath: Int32Array;

@@ -1,15 +1,15 @@
-import {
-    Fn3,
-    Pair,
-    Predicate2,
-    SEMAPHORE
-} from "@thi.ng/api";
+import { SEMAPHORE } from "@thi.ng/api";
 import { DCons } from "@thi.ng/dcons";
 import { equiv } from "@thi.ng/equiv";
-import { EquivSetOpts, IEquivSet } from "./api";
 import { dissoc } from "./dissoc";
 import { equivSet } from "./internal/equiv";
 import { into } from "./into";
+import type {
+    Fn3,
+    Pair,
+    Predicate2,
+} from "@thi.ng/api";
+import type { EquivSetOpts, IEquivSet } from "./api";
 
 interface SetProps<T> {
     vals: DCons<T>;

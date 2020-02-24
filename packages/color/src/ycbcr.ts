@@ -1,7 +1,8 @@
 import { declareIndices, IVector } from "@thi.ng/vectors";
-import { Color, ColorMode } from "./api";
+import { ColorMode } from "./constants";
 import { AColor } from "./internal/acolor";
 import { ensureArgs } from "./internal/ensure-args";
+import type { Color } from "./api";
 
 export function ycbcra(col: Color, offset?: number, stride?: number): YCbCrA;
 export function ycbcra(y: number, b: number, r: number, a?: number): YCbCrA;

@@ -1,5 +1,10 @@
-import { setS2, setS3, setS4, vop } from "@thi.ng/vectors";
-import { MultiVecOpMN, VecOpMN } from "./api";
+import {
+    setS2,
+    setS3,
+    setS4,
+    vop
+} from "@thi.ng/vectors";
+import type { MultiVecOpMN, VecOpMN } from "./api";
 
 /**
  * Extracts column vector from given matrix and writes result to `out`.

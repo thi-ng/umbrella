@@ -1,7 +1,7 @@
-import { Predicate } from "@thi.ng/api";
-import { Reducer } from "../api";
 import { $$reduce, reducer } from "../reduce";
 import { reduced } from "../reduced";
+import type { Predicate } from "@thi.ng/api";
+import type { Reducer } from "../api";
 
 /**
  * Reducer which applies optional `pred` function to each value and

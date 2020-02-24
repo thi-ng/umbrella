@@ -1,4 +1,3 @@
-import { HDOMImplementation } from "./api";
 import { diffTree } from "./diff";
 import {
     createElement,
@@ -13,6 +12,7 @@ import {
     setContent
 } from "./dom";
 import { normalizeTree } from "./normalize";
+import type { HDOMImplementation } from "./api";
 
 /**
  * Default target implementation to manipulate browser DOM.

@@ -12,7 +12,7 @@ import {
     quad,
     shader
 } from "@thi.ng/webgl";
-import {
+import type {
     MainImageFn,
     ShaderToy,
     ShaderToyOpts,

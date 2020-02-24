@@ -1,4 +1,4 @@
-import { IID } from "@thi.ng/api";
+import type { IID } from "@thi.ng/api";
 
 export const enum GestureType {
     START,

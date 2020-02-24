@@ -1,12 +1,5 @@
-import {
-    assert,
-    Fn,
-    ICopy,
-    IEmpty,
-    Pair
-} from "@thi.ng/api";
+import { assert } from "@thi.ng/api";
 import { equivArrayLike } from "@thi.ng/equiv";
-import { IRegionQuery, ISpatialMap } from "@thi.ng/geom-api";
 import { pointInCenteredBox, testCenteredBoxSphere } from "@thi.ng/geom-isec";
 import { Heap } from "@thi.ng/heaps";
 import { EPS } from "@thi.ng/math";
@@ -27,6 +20,13 @@ import {
     submN,
     vop
 } from "@thi.ng/vectors";
+import type {
+    Fn,
+    ICopy,
+    IEmpty,
+    Pair
+} from "@thi.ng/api";
+import type { IRegionQuery, ISpatialMap } from "@thi.ng/geom-api";
 
 const CMP = (a: [number, any?], b: [number, any?]) => b[0] - a[0];
 

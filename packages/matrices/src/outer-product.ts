@@ -5,7 +5,7 @@ import {
     setC4,
     vop
 } from "@thi.ng/vectors";
-import { Mat } from "./api";
+import type { Mat } from "./api";
 
 /**
  * Computes outer/tensor product of vectors `u` and `v`. Returns square

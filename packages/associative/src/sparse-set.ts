@@ -1,14 +1,14 @@
-import {
+import { isNumber } from "@thi.ng/checks";
+import { illegalArgs } from "@thi.ng/errors";
+import { dissoc } from "./dissoc";
+import { into } from "./into";
+import type {
     Fn3,
     IEquiv,
     Pair,
     UIntArray
 } from "@thi.ng/api";
-import { isNumber } from "@thi.ng/checks";
-import { illegalArgs } from "@thi.ng/errors";
-import { IEquivSet } from "./api";
-import { dissoc } from "./dissoc";
-import { into } from "./into";
+import type { IEquivSet } from "./api";
 
 interface SparseSetProps {
     dense: UIntArray;

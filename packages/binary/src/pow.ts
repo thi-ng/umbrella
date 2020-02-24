@@ -1,4 +1,4 @@
-import { Pow2 } from "./api";
+import type { Pow2 } from "./api";
 
 // http://graphics.stanford.edu/~seander/bithacks.html
 

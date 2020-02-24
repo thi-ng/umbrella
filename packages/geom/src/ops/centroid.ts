@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
 import {
     AABBLike,
@@ -24,6 +23,7 @@ import { Polygon } from "../api/polygon";
 import { Triangle } from "../api/triangle";
 import { dispatch } from "../internal/dispatch";
 import { bounds } from "./bounds";
+import type { IObjectOf } from "@thi.ng/api";
 
 export const centroid: MultiFn1O<IShape, Vec, Vec | undefined> = defmulti(
     dispatch

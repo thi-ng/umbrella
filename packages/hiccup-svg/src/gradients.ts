@@ -1,5 +1,5 @@
-import { GradientStop, Vec2Like } from "./api";
 import { fattribs, fcolor, ff } from "./format";
+import type { GradientStop, Vec2Like } from "./api";
 
 const RE_ALPHA_COLOR = /(rgb|hsl)a\(([a-z0-9.-]+),([0-9.%]+),([0-9.%]+),([0-9.]+)\)/;
 

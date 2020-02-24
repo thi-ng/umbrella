@@ -1,4 +1,6 @@
-import {
+import { toPath } from "./path";
+import { updateInT } from "./update-in";
+import type {
     Keys,
     Keys1,
     Keys2,
@@ -17,8 +19,6 @@ import {
     Without7,
     Without8
 } from "@thi.ng/api";
-import { toPath } from "./path";
-import { updateInT } from "./update-in";
 
 /**
  * Uses {@link updateIn} and returns updated state with key for given

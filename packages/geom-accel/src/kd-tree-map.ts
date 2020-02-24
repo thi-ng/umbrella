@@ -1,15 +1,15 @@
-import {
+import { ensureArray } from "@thi.ng/arrays";
+import { Heap } from "@thi.ng/heaps";
+import { EPS } from "@thi.ng/math";
+import { map } from "@thi.ng/transducers";
+import { distSq, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import type {
     Fn,
     ICopy,
     IEmpty,
     Pair
 } from "@thi.ng/api";
-import { ensureArray } from "@thi.ng/arrays";
-import { IRegionQuery, ISpatialMap } from "@thi.ng/geom-api";
-import { Heap } from "@thi.ng/heaps";
-import { EPS } from "@thi.ng/math";
-import { map } from "@thi.ng/transducers";
-import { distSq, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import type { IRegionQuery, ISpatialMap } from "@thi.ng/geom-api";
 
 type MaybeKdNode<K extends ReadonlyVec, V> = KdNode<K, V> | undefined;
 

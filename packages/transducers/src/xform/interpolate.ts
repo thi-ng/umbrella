@@ -1,11 +1,11 @@
-import { Fn2 } from "@thi.ng/api";
-import { Transducer } from "../api";
 import { comp } from "../func/comp";
 import { normRange } from "../iter/norm-range";
 import { iterator } from "../iterator";
 import { map } from "./map";
 import { mapcat } from "./mapcat";
 import { partition } from "./partition";
+import type { Fn2 } from "@thi.ng/api";
+import type { Transducer } from "../api";
 
 /**
  * Higher order interpolation transducer. The resulting transducer forms

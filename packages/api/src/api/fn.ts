@@ -1,9 +1,4 @@
 /**
- * No-effect placeholder function.
- */
-export const NO_OP = () => {};
-
-/**
  * A no-arg function, returning T.
  */
 export type Fn0<T> = () => T;

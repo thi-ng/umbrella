@@ -1,17 +1,6 @@
-import {
-    DEFAULT,
-    defmulti,
-    Implementation2O,
-    MultiFn2O
-} from "@thi.ng/defmulti";
+import { DEFAULT, defmulti } from "@thi.ng/defmulti";
 import { illegalArgs } from "@thi.ng/errors";
-import {
-    Color,
-    ColorConversion,
-    ColorMode,
-    IColor,
-    ReadonlyColor
-} from "./api";
+import { ColorMode } from "./constants";
 import { hcyaRgba } from "./hcya-rgba";
 import { hsiaRgba } from "./hsia-rgba";
 import { hslaCss } from "./hsla-css";
@@ -33,6 +22,13 @@ import { rgbaXyza } from "./rgba-xyza";
 import { rgbaYcbcra } from "./rgba-ycbcra";
 import { xyzaRgba } from "./xyza-rgba";
 import { ycbcraRgba } from "./ycbcra-rgba";
+import type { Implementation2O, MultiFn2O } from "@thi.ng/defmulti";
+import type {
+    Color,
+    ColorConversion,
+    IColor,
+    ReadonlyColor
+} from "./api";
 
 export const convert: MultiFn2O<
     string | number | ReadonlyColor | IColor,

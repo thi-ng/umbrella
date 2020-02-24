@@ -1,6 +1,6 @@
-import { IObjectOf, Pair } from "@thi.ng/api";
-import { Reducer } from "../api";
 import { reduce, reducer } from "../reduce";
+import type { IObjectOf, Pair } from "@thi.ng/api";
+import type { Reducer } from "../api";
 
 /**
  * Reducer accepting key-value pairs / tuples and updating / adding them

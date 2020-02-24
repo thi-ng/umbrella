@@ -1,7 +1,8 @@
 import { clamp01 } from "@thi.ng/math";
-import { FF, PC, ReadonlyColor } from "./api";
+import { FF, PC } from "./constants";
 import { ensureAlpha } from "./internal/ensure-alpha";
 import { ensureHue } from "./internal/ensure-hue";
+import type { ReadonlyColor } from "./api";
 
 export const hslaCss = (src: ReadonlyColor) => {
     const h = FF(ensureHue(src[0]) * 360);

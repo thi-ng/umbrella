@@ -1,5 +1,5 @@
 import { setC, setC4 } from "@thi.ng/vectors";
-import { MatOpM } from "./api";
+import type { MatOpM } from "./api";
 
 /**
  * Writes transposition of 2x2 matrix `m` to `out`. Creates new matrix

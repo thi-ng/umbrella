@@ -1,8 +1,8 @@
 import { isPlainObject } from "@thi.ng/checks";
 import { IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
-import { ReadonlyVec } from "@thi.ng/vectors";
-import { Color, GUITheme } from "../api";
 import { IMGUI } from "../gui";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import type { Color, GUITheme } from "../api";
 
 export const textLabel = (
     gui: IMGUI,

@@ -1,6 +1,6 @@
-import { GLSL } from "./api/glsl";
-import { Material } from "./api/material";
-import { ShaderUniformSpecs } from "./api/shader";
+import type { GLSL } from "./api/glsl";
+import type { Material } from "./api/material";
+import type { ShaderUniformSpecs } from "./api/shader";
 
 export const DEFAULT_MATERIAL: Material = {
     ambientCol: [0.1, 0.1, 0.1],

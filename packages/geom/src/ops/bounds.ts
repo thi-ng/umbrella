@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation1 } from "@thi.ng/defmulti";
 import {
     AABBLike,
@@ -43,6 +42,7 @@ import { aabbFromMinMax } from "../ctors/aabb";
 import { rectFromMinMax } from "../ctors/rect";
 import { collBounds } from "../internal/coll-bounds";
 import { dispatch } from "../internal/dispatch";
+import type { IObjectOf } from "@thi.ng/api";
 
 export const bounds = defmulti<IShape, AABBLike | undefined>(dispatch);
 

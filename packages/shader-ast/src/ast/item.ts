@@ -1,13 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
-import { Term } from "../api/nodes";
-import { FloatTerm } from "../api/terms";
-import {
-    Int,
-    IVec,
-    Prim,
-    Type,
-    UVec
-} from "../api/types";
 import {
     bool,
     float,
@@ -17,6 +7,16 @@ import {
     vec3,
     vec4
 } from "./lit";
+import type { IObjectOf } from "@thi.ng/api";
+import type { Term } from "../api/nodes";
+import type { FloatTerm } from "../api/terms";
+import type {
+    Int,
+    IVec,
+    Prim,
+    Type,
+    UVec
+} from "../api/types";
 
 /**
  * Returns base type for given term. Used for array ops.

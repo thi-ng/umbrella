@@ -1,5 +1,5 @@
 import { memoizeJ } from "@thi.ng/memoize";
-import { Stringer } from "./api";
+import type { Stringer } from "./api";
 
 /**
  * Returns a {@link Stringer} which wrap inputs with given `pad` string on

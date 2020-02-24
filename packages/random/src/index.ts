@@ -1,4 +1,6 @@
-export * from "./api";
+export type * from "./api";
+
+export * from "./arandom";
 export * from "./smush32";
 export * from "./system";
 export * from "./xorshift128";

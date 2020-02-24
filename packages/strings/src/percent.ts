@@ -1,4 +1,4 @@
-import { Stringer } from "./api";
+import type { Stringer } from "./api";
 
 /**
  * Returns {@link Stringer} which formats given fractions as percentage (e.g.

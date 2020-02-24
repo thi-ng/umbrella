@@ -1,4 +1,9 @@
-import { Fn } from "./fn";
+import type { Fn } from "./fn";
+
+/**
+ * A key-value pair / tuple.
+ */
+export type Pair<K, V> = [K, V];
 
 /**
  * @param K - key type

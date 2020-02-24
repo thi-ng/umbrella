@@ -1,4 +1,4 @@
-import { IInto } from "./into";
+import type { IInto } from "./into";
 
 /**
  * Generic interface for set collection types.

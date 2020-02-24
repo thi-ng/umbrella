@@ -1,6 +1,6 @@
-import { Transducer } from "../api";
 import { iterator1 } from "../iterator";
 import { map } from "./map";
+import type { Transducer } from "../api";
 
 /**
  * Transducer which looks up given `key` in each input and yields

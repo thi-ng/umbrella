@@ -1,5 +1,5 @@
-import { IRandom } from "./api";
 import { SYSTEM } from "./system";
+import type { IRandom } from "./api";
 
 /**
  * Generates and returns a random string of `len` characters (default

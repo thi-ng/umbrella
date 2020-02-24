@@ -1,12 +1,12 @@
 import { alts } from "./alts";
 import { altsLit } from "./alts-lit";
-import {
+import { result } from "./result";
+import type {
     AltCallback,
     AltFallback,
     LitCallback,
     Matcher
 } from "./api";
-import { result } from "./result";
 
 /**
  * Returns a single input matcher which returns `Match.FULL` if the

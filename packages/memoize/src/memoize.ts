@@ -1,11 +1,11 @@
-import {
-    Fn1,
+import type {
+    Fn,
     Fn2,
     Fn3,
     Fn4,
-    FnAny,
-    MapLike
-} from "./api";
+    FnAny
+} from "@thi.ng/api";
+import type { MapLike } from "./api";
 
 /**
  * Function memoization for arbitrary argument counts. Returns augmented
@@ -21,7 +21,7 @@ import {
  * @param fn -
  * @param cache -
  */
-export function memoize<A, B>(fn: Fn1<A, B>, cache: MapLike<A, B>): Fn1<A, B>;
+export function memoize<A, B>(fn: Fn<A, B>, cache: MapLike<A, B>): Fn<A, B>;
 export function memoize<A, B, C>(
     fn: Fn2<A, B, C>,
     cache: MapLike<[A, B], C>
@@ -34,7 +34,7 @@ export function memoize<A, B, C, D, E>(
     fn: Fn4<A, B, C, D, E>,
     cache: MapLike<[A, B, C, D], E>
 ): Fn4<A, B, C, D, E>;
-export function memoize(fn: FnAny, cache: MapLike<any, any>): FnAny {
+export function memoize(fn: FnAny<any>, cache: MapLike<any, any>): FnAny<any> {
     return (...args: any[]) => {
         let res;
         return cache.has(args)

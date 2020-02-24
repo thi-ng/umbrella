@@ -1,10 +1,9 @@
-import { Predicate } from "@thi.ng/api";
-import { Transducer } from "../api";
 import { comp } from "../func/comp";
 import { iterator1 } from "../iterator";
 import { filter } from "./filter";
 import { take } from "./take";
-
+import type { Predicate } from "@thi.ng/api";
+import type { Transducer } from "../api";
 
 /**
  * Transducer composition / syntax sugar for:

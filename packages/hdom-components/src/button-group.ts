@@ -1,6 +1,6 @@
-import { IObjectOf } from "@thi.ng/api";
-import { Button, ButtonArgs } from "./button";
 import { mergeAttribs } from "./utils/merge-attribs";
+import type { IObjectOf } from "@thi.ng/api";
+import type { Button, ButtonArgs } from "./button";
 
 /**
  * Button group component config options.

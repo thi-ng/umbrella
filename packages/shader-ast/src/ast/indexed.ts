@@ -1,13 +1,13 @@
 import { isNumber } from "@thi.ng/checks";
-import { Index, Sym } from "../api/nodes";
-import { UintTerm } from "../api/terms";
-import {
+import { int } from "./lit";
+import type { Index, Sym } from "../api/nodes";
+import type { UintTerm } from "../api/terms";
+import type {
     Indexable,
     IndexTypeMap,
     MatIndexTypeMap,
     NumericI
 } from "../api/types";
-import { int } from "./lit";
 
 export const index = <T extends Indexable>(
     val: Sym<T>,

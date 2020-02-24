@@ -1,4 +1,4 @@
-import { Reducer, ReductionFn } from "../api";
+import type { Reducer, ReductionFn } from "../api";
 
 /**
  * Reducer composition helper, internally used by various transducers

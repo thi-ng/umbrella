@@ -1,4 +1,4 @@
-import { Predicate } from "@thi.ng/api";
+import type { Predicate } from "@thi.ng/api";
 
 export type Color = string | number | number[];
 

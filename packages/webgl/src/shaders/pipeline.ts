@@ -7,7 +7,7 @@ import {
     texture,
     vec4
 } from "@thi.ng/shader-ast";
-import { ShaderFn, ShaderSpec } from "../api/shader";
+import type { ShaderFn, ShaderSpec } from "../api/shader";
 
 export const PASSTHROUGH_VS: ShaderFn = (gl, _, ins) => [
     defMain(() => [assign(gl.gl_Position, vec4(ins.position, FLOAT0, FLOAT1))])

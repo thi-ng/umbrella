@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2O, MultiFn2O } from "@thi.ng/defmulti";
 import {
     IntersectionResult,
@@ -27,6 +26,7 @@ import { Ray } from "../api/ray";
 import { Rect } from "../api/rect";
 import { Sphere } from "../api/sphere";
 import { dispatch2 } from "../internal/dispatch";
+import type { IObjectOf } from "@thi.ng/api";
 
 export const intersects: MultiFn2O<
     IShape,

@@ -1,4 +1,5 @@
-import {
+import { BlendEquation, BlendFunc } from "./blend";
+import type {
     Fn,
     Fn2,
     Fn3,
@@ -9,12 +10,11 @@ import {
     IRelease,
     NumericArray
 } from "@thi.ng/api";
-import { Func, Sym } from "@thi.ng/shader-ast";
-import { GLSLTarget } from "@thi.ng/shader-ast-glsl";
-import { ReadonlyVec } from "@thi.ng/vectors";
-import { BlendEquation, BlendFunc } from "./blend";
-import { ExtensionBehaviors } from "./ext";
-import {
+import type { Func, Sym } from "@thi.ng/shader-ast";
+import type { GLSLTarget } from "@thi.ng/shader-ast-glsl";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import type { ExtensionBehaviors } from "./ext";
+import type {
     GLIntVec,
     GLIntVec2,
     GLIntVec3,
@@ -31,8 +31,8 @@ import {
     GLVec3,
     GLVec4
 } from "./glsl";
-import { ModelAttributeSpecs, ModelSpec } from "./model";
-import { StencilFnParams, StencilOpParams } from "./stencil";
+import type { ModelAttributeSpecs, ModelSpec } from "./model";
+import type { StencilFnParams, StencilOpParams } from "./stencil";
 
 export interface GLSLSyntax {
     number: number;

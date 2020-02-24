@@ -1,6 +1,6 @@
-import { IObjectOf } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors";
-import { Implementation, MultiFn } from "./api";
+import type { IObjectOf } from "@thi.ng/api";
+import type { Implementation, MultiFn } from "./api";
 
 /**
  * Syntax-sugar intended for sets of multi-methods sharing same dispatch

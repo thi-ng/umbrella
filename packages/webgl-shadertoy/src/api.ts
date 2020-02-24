@@ -1,12 +1,12 @@
-import { Fn2 } from "@thi.ng/api";
-import {
+import type { Fn2 } from "@thi.ng/api";
+import type {
     FloatSym,
     IntSym,
     ScopeBody,
     Vec2Sym
 } from "@thi.ng/shader-ast";
-import { GLSLTarget } from "@thi.ng/shader-ast-glsl";
-import { ITexture, ModelSpec, UniformDecl } from "@thi.ng/webgl";
+import type { GLSLTarget } from "@thi.ng/shader-ast-glsl";
+import type { ITexture, ModelSpec, UniformDecl } from "@thi.ng/webgl";
 
 export type MainImageFn<U extends ShaderToyUniforms> = Fn2<
     GLSLTarget,

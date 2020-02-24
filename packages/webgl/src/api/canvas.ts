@@ -1,4 +1,4 @@
-import { WebGLExtensionMap } from "./ext";
+import type { WebGLExtensionMap } from "./ext";
 
 export interface WeblGLCanvasOpts {
     canvas: string | HTMLCanvasElement;

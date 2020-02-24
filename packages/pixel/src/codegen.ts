@@ -1,6 +1,6 @@
-import { Fn } from "@thi.ng/api";
-import { PackedChannel } from "./api";
 import { luminanceABGR } from "./utils";
+import type { Fn } from "@thi.ng/api";
+import type { PackedChannel } from "./api";
 
 const compileLShift = (x: string, shift: number) =>
     shift > 0

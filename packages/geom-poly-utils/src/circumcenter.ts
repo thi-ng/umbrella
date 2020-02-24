@@ -1,5 +1,5 @@
 import { EPS } from "@thi.ng/math";
-import { ReadonlyVec } from "@thi.ng/vectors";
+import type { ReadonlyVec } from "@thi.ng/vectors";
 
 /**
  * Computes and returns the center of the circumcircle of the given 2D

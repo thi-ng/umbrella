@@ -1,5 +1,5 @@
-import { Index, Swizzle, Sym } from "./nodes";
-import {
+import type { Index, Swizzle, Sym } from "./nodes";
+import type {
     BoolTerm,
     FloatTerm,
     IntTerm,

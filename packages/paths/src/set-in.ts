@@ -1,4 +1,5 @@
-import {
+import { setterT } from "./setter";
+import type {
     Keys,
     Keys1,
     Keys2,
@@ -17,7 +18,6 @@ import {
     Val7,
     Val8
 } from "@thi.ng/api";
-import { setterT } from "./setter";
 
 /**
  * Immediate use setter, i.e. same as: `setter(path)(state, val)`.

@@ -1,4 +1,3 @@
-import { IObjectOf, Pair } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
 import { liangBarsky2 } from "@thi.ng/geom-clip-line";
 import { sutherlandHodgeman } from "@thi.ng/geom-clip-poly";
@@ -14,6 +13,7 @@ import {
     VecPair,
     ZERO2
 } from "@thi.ng/vectors";
+import type { IObjectOf, Pair } from "@thi.ng/api";
 
 export type Visitor<T> = (
     e: Edge<Vertex<T>>,

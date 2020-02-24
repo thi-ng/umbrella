@@ -48,7 +48,7 @@ import {
     tan3,
     ZERO3
 } from "@thi.ng/vectors";
-import { JSBuiltinsVec3 } from "../api";
+import type { JSBuiltinsVec3 } from "../api";
 
 export const VEC3: JSBuiltinsVec3 = {
     abs: (a) => abs3([], a),

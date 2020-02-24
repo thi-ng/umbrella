@@ -1,6 +1,6 @@
-import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { iterator1 } from "../iterator";
+import type { Reducer, Transducer } from "../api";
 
 export function drop<T>(n: number): Transducer<T, T>;
 export function drop<T>(n: number, src: Iterable<T>): IterableIterator<T>;

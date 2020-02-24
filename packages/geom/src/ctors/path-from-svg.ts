@@ -1,7 +1,7 @@
 import { illegalState } from "@thi.ng/errors";
 import { rad } from "@thi.ng/math";
-import { Vec } from "@thi.ng/vectors";
 import { PathBuilder } from "./path-builder";
+import type { Vec } from "@thi.ng/vectors";
 
 const CMD_RE = /[achlmqstvz]/i;
 

@@ -1,4 +1,4 @@
-import { Fn0, IDeref } from "@thi.ng/api";
+import type { Fn0, IDeref } from "@thi.ng/api";
 
 export const delay = <T>(body: Fn0<T>) => new Delay<T>(body);
 

@@ -1,5 +1,11 @@
-import {
-    assert,
+import { assert } from "@thi.ng/api";
+import { isArrayLike } from "@thi.ng/checks";
+import { compare } from "@thi.ng/compare";
+import { equiv } from "@thi.ng/equiv";
+import { illegalArgs } from "@thi.ng/errors";
+import { SYSTEM } from "@thi.ng/random";
+import { isReduced } from "@thi.ng/transducers";
+import type {
     Comparator,
     Fn,
     IClear,
@@ -14,12 +20,8 @@ import {
     IStack,
     Predicate
 } from "@thi.ng/api";
-import { isArrayLike } from "@thi.ng/checks";
-import { compare } from "@thi.ng/compare";
-import { equiv } from "@thi.ng/equiv";
-import { illegalArgs } from "@thi.ng/errors";
-import { IRandom, SYSTEM } from "@thi.ng/random";
-import { IReducible, isReduced, ReductionFn } from "@thi.ng/transducers";
+import type { IRandom } from "@thi.ng/random";
+import type { IReducible, ReductionFn } from "@thi.ng/transducers";
 
 export interface ConsCell<T> {
     value: T;

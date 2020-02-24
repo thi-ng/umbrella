@@ -1,4 +1,3 @@
-import { IReset } from "@thi.ng/api";
 import { unsupported } from "@thi.ng/errors";
 import {
     clamp05,
@@ -6,9 +5,11 @@ import {
     SQRT2,
     SQRT2_2
 } from "@thi.ng/math";
-import { FilterConfig, FilterType, IFilter } from "../api";
+import { FilterType } from "../constants";
 import { dbMag } from "../util/convert";
 import { AProc } from "./aproc";
+import type { IReset } from "@thi.ng/api";
+import type { FilterConfig, IFilter } from "../api";
 
 type BiquadType =
     | FilterType.LP

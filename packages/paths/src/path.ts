@@ -1,5 +1,5 @@
-import { Path } from "@thi.ng/api";
 import { isArray, isString } from "@thi.ng/checks";
+import type { Path } from "@thi.ng/api";
 
 /**
  * Converts the given key path to canonical form (array).

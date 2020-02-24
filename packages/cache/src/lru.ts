@@ -1,7 +1,7 @@
-import { Fn0 } from "@thi.ng/api";
 import { ConsCell, DCons } from "@thi.ng/dcons";
 import { map } from "@thi.ng/transducers";
-import { CacheEntry, CacheOpts, ICache } from "./api";
+import type { Fn0 } from "@thi.ng/api";
+import type { CacheEntry, CacheOpts, ICache } from "./api";
 
 export class LRUCache<K, V> implements ICache<K, V> {
     protected map: Map<K, ConsCell<CacheEntry<K, V>>>;

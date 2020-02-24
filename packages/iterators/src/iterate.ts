@@ -1,4 +1,4 @@
-import { Fn } from "@thi.ng/api";
+import type { Fn } from "@thi.ng/api";
 
 export function* iterate<T>(fn: Fn<T, T>, seed: T) {
     while (true) {

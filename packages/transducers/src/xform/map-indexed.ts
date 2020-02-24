@@ -1,7 +1,7 @@
-import { Fn2 } from "@thi.ng/api";
-import { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { $iter } from "../iterator";
+import type { Fn2 } from "@thi.ng/api";
+import type { Reducer, Transducer } from "../api";
 
 /**
  * Transducer. Similar to {@link (map:1)}, but given `fn` takes two

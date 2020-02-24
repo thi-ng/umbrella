@@ -1,3 +1,7 @@
+export type ArrayLikeIterable<T> = ArrayLike<T> & Iterable<T>;
+
+export type NumericArray = number[] | TypedArray;
+
 export type TypedArray =
     | Float32Array
     | Float64Array

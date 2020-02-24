@@ -1,8 +1,8 @@
-import { ICopy } from "@thi.ng/api";
 import { ArraySet, EquivMap, union } from "@thi.ng/associative";
 import { equiv } from "@thi.ng/equiv";
 import { illegalArgs } from "@thi.ng/errors";
 import { filter, reduce, reducer } from "@thi.ng/transducers";
+import type { ICopy } from "@thi.ng/api";
 
 export class DGraph<T> implements Iterable<T>, ICopy<DGraph<T>> {
     dependencies: EquivMap<T, ArraySet<T>>;

@@ -1,6 +1,8 @@
-import { assert, TypedArray } from "@thi.ng/api";
-import { IRandom, SYSTEM } from "@thi.ng/random";
-import { AnyArray } from "./api";
+import { assert } from "@thi.ng/api";
+import { SYSTEM } from "@thi.ng/random";
+import type { TypedArray } from "@thi.ng/api";
+import type { IRandom } from "@thi.ng/random";
+import type { AnyArray } from "./api";
 
 /**
  * Shuffles the items in the given index range of array `buf` using

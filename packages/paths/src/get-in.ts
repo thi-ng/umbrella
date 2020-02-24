@@ -1,4 +1,5 @@
-import {
+import { getterT } from "./getter";
+import type {
     Keys,
     Keys1,
     Keys2,
@@ -17,7 +18,6 @@ import {
     Val7,
     Val8
 } from "@thi.ng/api";
-import { getterT } from "./getter";
 
 /**
  * Immediate use getter, i.e. same as: `getter(path)(state)`.

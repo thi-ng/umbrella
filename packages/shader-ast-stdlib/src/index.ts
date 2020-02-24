@@ -1,4 +1,4 @@
-export * from "./api";
+export type * from "./api";
 
 export * from "./color/linear-srgb";
 export * from "./color/luminance";

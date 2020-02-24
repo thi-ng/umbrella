@@ -1,4 +1,4 @@
-export * from "./api";
+export type * from "./api";
 export * from "./case";
 export * from "./center";
 export * from "./float";

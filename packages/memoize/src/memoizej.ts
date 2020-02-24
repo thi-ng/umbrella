@@ -1,11 +1,11 @@
-import { IObjectOf } from "@thi.ng/api";
-import {
-    Fn1,
+import type {
+    Fn,
     Fn2,
     Fn3,
     Fn4,
-    FnAny
-} from "./api";
+    FnAny,
+    IObjectOf
+} from "@thi.ng/api";
 
 /**
  * Function memoization for arbitrary argument counts. Returns augmented
@@ -19,7 +19,7 @@ import {
  * @param fn -
  * @param cache -
  */
-export function memoizeJ<A, B>(fn: Fn1<A, B>, cache?: IObjectOf<B>): Fn1<A, B>;
+export function memoizeJ<A, B>(fn: Fn<A, B>, cache?: IObjectOf<B>): Fn<A, B>;
 export function memoizeJ<A, B, C>(
     fn: Fn2<A, B, C>,
     cache?: IObjectOf<C>
@@ -32,7 +32,7 @@ export function memoizeJ<A, B, C, D, E>(
     fn: Fn4<A, B, C, D, E>,
     cache?: IObjectOf<E>
 ): Fn4<A, B, C, D, E>;
-export function memoizeJ(fn: FnAny, cache?: IObjectOf<any>): FnAny {
+export function memoizeJ(fn: FnAny<any>, cache?: IObjectOf<any>): FnAny<any> {
     !cache && (cache = {});
     return (...args: any[]) => {
         const key = JSON.stringify(args);

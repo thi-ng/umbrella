@@ -1,5 +1,5 @@
 import { dotC4, dotC6 } from "@thi.ng/vectors";
-import { ReadonlyMat } from "./api";
+import type { ReadonlyMat } from "./api";
 
 const dp4 = dotC4;
 const dp6 = dotC6;

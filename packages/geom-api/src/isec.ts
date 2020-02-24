@@ -1,4 +1,4 @@
-import { Vec } from "@thi.ng/vectors";
+import type { Vec } from "@thi.ng/vectors";
 
 export const enum IntersectionType {
     NONE,

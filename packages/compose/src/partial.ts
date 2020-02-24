@@ -1,4 +1,5 @@
-import {
+import { illegalArgs } from "@thi.ng/errors";
+import type {
     FnAny,
     FnO,
     FnO2,
@@ -9,7 +10,6 @@ import {
     FnO7,
     FnO8
 } from "@thi.ng/api";
-import { illegalArgs } from "@thi.ng/errors";
 
 export function partial<A, T>(fn: FnO<A, T>, a: A): FnAny<T>;
 export function partial<A, B, T>(fn: FnO2<A, B, T>, a: A, b: B): FnAny<T>;

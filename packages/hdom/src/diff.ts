@@ -1,4 +1,4 @@
-import { IObjectOf, SEMAPHORE } from "@thi.ng/api";
+import { SEMAPHORE } from "@thi.ng/api";
 import { diffArray, DiffMode, diffObject } from "@thi.ng/diff";
 import {
     equiv as _equiv,
@@ -7,7 +7,8 @@ import {
     equivObject,
     equivSet
 } from "@thi.ng/equiv";
-import { HDOMImplementation, HDOMOpts } from "./api";
+import type { IObjectOf } from "@thi.ng/api";
+import type { HDOMImplementation, HDOMOpts } from "./api";
 
 const isArray = Array.isArray;
 const max = Math.max;

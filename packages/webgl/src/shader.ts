@@ -1,4 +1,3 @@
-import { Fn3, IDeref, IObjectOf } from "@thi.ng/api";
 import {
     existsAndNotNull,
     implementsFunction,
@@ -23,9 +22,7 @@ import {
     ExtensionName,
     GL_EXT_INFO
 } from "./api/ext";
-import { GLSL } from "./api/glsl";
 import { LOGGER } from "./api/logger";
-import { ModelAttributeSpecs, ModelSpec } from "./api/model";
 import {
     DEFAULT_OUTPUT,
     GLSLDeclPrefixes,
@@ -47,6 +44,9 @@ import { isGL2Context } from "./checks";
 import { error } from "./error";
 import { GLSL_HEADER, NO_PREFIXES, SYNTAX } from "./syntax";
 import { UNIFORM_SETTERS } from "./uniforms";
+import type { Fn3, IDeref, IObjectOf } from "@thi.ng/api";
+import type { GLSL } from "./api/glsl";
+import type { ModelAttributeSpecs, ModelSpec } from "./api/model";
 
 const ERROR_REGEXP = /ERROR: \d+:(\d+): (.*)/;
 

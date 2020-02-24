@@ -1,7 +1,7 @@
-import { Comparator, Fn0 } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare";
-import { Reducer } from "../api";
 import { $$reduce, reducer } from "../reduce";
+import type { Comparator, Fn0 } from "@thi.ng/api";
+import type { Reducer } from "../api";
 
 export function minCompare<T>(init: Fn0<T>, cmp?: Comparator<T>): Reducer<T, T>;
 export function minCompare<T>(init: Fn0<T>, xs: Iterable<T>): T;

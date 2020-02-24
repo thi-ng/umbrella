@@ -1,4 +1,4 @@
-import { Tuple } from "@thi.ng/api";
+import type { Tuple } from "@thi.ng/api";
 
 export const enum Blend {
     ZERO = 0,

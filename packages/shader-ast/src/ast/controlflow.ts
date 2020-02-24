@@ -1,6 +1,7 @@
-import { FnBody1 } from "..";
-import { Fn } from "@thi.ng/api";
-import {
+import { decl, scope } from "./scope";
+import type { FnBody1 } from "../api/function";
+import type { Fn } from "@thi.ng/api";
+import type {
     Branch,
     ControlFlow,
     ForLoop,
@@ -9,9 +10,8 @@ import {
     Ternary,
     WhileLoop
 } from "../api/nodes";
-import { BoolTerm } from "../api/terms";
-import { Type } from "../api/types";
-import { decl, scope } from "./scope";
+import type { BoolTerm } from "../api/terms";
+import type { Type } from "../api/types";
 
 export const ifThen = (
     test: BoolTerm,

@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2O, MultiFn2O } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
 import {
@@ -10,6 +9,7 @@ import {
 import { Quad } from "../api/quad";
 import { Rect } from "../api/rect";
 import { dispatch } from "../internal/dispatch";
+import type { IObjectOf } from "@thi.ng/api";
 
 /**
  * Projects given point `uv` (normalized coords) into the target space

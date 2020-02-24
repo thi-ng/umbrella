@@ -1,7 +1,8 @@
-import { Fn } from "@thi.ng/api";
 import { isBoolean, isNumber } from "@thi.ng/checks";
-import { Lit, Term } from "../api/nodes";
-import {
+import { isVec } from "./checks";
+import type { Fn } from "@thi.ng/api";
+import type { Lit, Term } from "../api/nodes";
+import type {
     FloatTerm,
     IntTerm,
     UintTerm,
@@ -9,14 +10,13 @@ import {
     Vec3Term,
     Vec4Term
 } from "../api/terms";
-import {
+import type {
     NumericB,
     NumericF,
     NumericI,
     NumericU,
     Type
 } from "../api/types";
-import { isVec } from "./checks";
 
 export const lit = <T extends Type>(
     type: T,

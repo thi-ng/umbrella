@@ -1,19 +1,14 @@
-import {
+import type {
     ArrayLikeIterable,
     Fn0,
     IClear,
     IID,
-    ILogger,
     INotify,
     IRelease,
     Type,
     TypedArray,
     UIntArray
 } from "@thi.ng/api";
-
-export const EVENT_ADDED = "added";
-export const EVENT_PRE_DELETE = "pre-delete";
-export const EVENT_CHANGED = "changed";
 
 export type ComponentID<S> = keyof S & string;
 
@@ -96,7 +91,3 @@ export interface ICache<T> extends IClear, IRelease {
     getSet(key: number, notFound: Fn0<T>): T;
     delete(key: number): boolean;
 }
-
-export let LOGGER: ILogger | null = null;
-
-export const setLogger = (logger: ILogger) => (LOGGER = logger);

@@ -89,5 +89,3 @@ export type Pow2 =
     | 0x20000000
     | 0x40000000
     | 0x80000000;
-
-export const MASKS = new Array(33).fill(0).map((_, i) => Math.pow(2, i) - 1);

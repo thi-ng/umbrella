@@ -1,5 +1,5 @@
-import { Mat, ReadonlyMat } from "./api";
 import { mulM } from "./mulm";
+import type { Mat, ReadonlyMat } from "./api";
 
 /**
  * Concatenates / multiplies given matrices in left-to-right order. A

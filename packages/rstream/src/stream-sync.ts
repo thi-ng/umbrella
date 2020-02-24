@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { isPlainObject } from "@thi.ng/checks";
 import {
     comp,
@@ -15,6 +14,7 @@ import {
 } from "./api";
 import { Subscription } from "./subscription";
 import { optsWithID } from "./utils/idgen";
+import type { IObjectOf } from "@thi.ng/api";
 
 export interface StreamSyncOpts<A, B>
     extends TransformableOpts<IObjectOf<A>, B> {

@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2O, MultiFn2O } from "@thi.ng/defmulti";
 import { IShape, PCLike, Type } from "@thi.ng/geom-api";
 import { closestPoint as closestPointArc } from "@thi.ng/geom-arc";
@@ -27,6 +26,7 @@ import { Plane } from "../api/plane";
 import { Quadratic } from "../api/quadratic";
 import { Rect } from "../api/rect";
 import { dispatch } from "../internal/dispatch";
+import type { IObjectOf } from "@thi.ng/api";
 
 export const closestPoint: MultiFn2O<
     IShape,

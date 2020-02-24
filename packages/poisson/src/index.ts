@@ -1,7 +1,7 @@
 import { isNumber } from "@thi.ng/checks";
-import { ISpatialSet } from "@thi.ng/geom-api";
 import { IRandom, SYSTEM } from "@thi.ng/random";
 import { jitter as _jitter, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import type { ISpatialSet } from "@thi.ng/geom-api";
 
 export type PointGenerator = (rnd: IRandom) => Vec;
 export type DensityFunction = (pos: ReadonlyVec) => number;
