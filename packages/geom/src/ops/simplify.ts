@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import {
@@ -8,13 +7,14 @@ import {
     Type
 } from "@thi.ng/geom-api";
 import { simplify as _simplify } from "@thi.ng/geom-resample";
-import { Vec } from "@thi.ng/vectors";
 import { Path } from "../api/path";
 import { Polygon } from "../api/polygon";
 import { Polyline } from "../api/polyline";
 import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
 import { vertices } from "./vertices";
+import type { IObjectOf } from "@thi.ng/api";
+import type { Vec } from "@thi.ng/vectors";
 
 export const simplify = defmulti<IShape, number, IShape>(dispatch);
 

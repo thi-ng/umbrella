@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import { IShape, PCLike, Type } from "@thi.ng/geom-api";
 import { Sampler } from "@thi.ng/geom-resample";
@@ -8,6 +7,7 @@ import { Line } from "../api/line";
 import { Rect } from "../api/rect";
 import { dispatch } from "../internal/dispatch";
 import { vertices } from "./vertices";
+import type { IObjectOf } from "@thi.ng/api";
 
 export const tangentAt = defmulti<IShape, number, Vec>(dispatch);
 

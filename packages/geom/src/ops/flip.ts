@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { DEFAULT, defmulti, Implementation1 } from "@thi.ng/defmulti";
 import { IShape, PCLike, Type } from "@thi.ng/geom-api";
 import { neg } from "@thi.ng/vectors";
@@ -7,6 +6,7 @@ import { Group } from "../api/group";
 import { Path } from "../api/path";
 import { Ray } from "../api/ray";
 import { dispatch } from "../internal/dispatch";
+import type { IObjectOf } from "@thi.ng/api";
 
 export const flip = defmulti<IShape, IShape>(dispatch);
 flip.add(DEFAULT, ($) => $);

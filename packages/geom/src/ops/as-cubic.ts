@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation1, MultiFn1O } from "@thi.ng/defmulti";
 import { CubicOpts, IShape, Type } from "@thi.ng/geom-api";
 import { closedCubicFromBreakPoints, closedCubicFromControlPoints } from "@thi.ng/geom-splines";
@@ -17,6 +16,7 @@ import { cubicFromArc, cubicFromLine, cubicFromQuadratic } from "../ctors/cubic"
 import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
 import { asPolygon } from "./as-polygon";
+import type { IObjectOf } from "@thi.ng/api";
 
 export const asCubic: MultiFn1O<IShape, Partial<CubicOpts>, Cubic[]> = defmulti(
     dispatch

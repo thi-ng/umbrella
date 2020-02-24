@@ -1,7 +1,5 @@
-import { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
 import { IShape, SamplingOpts, Type } from "@thi.ng/geom-api";
-import { VecPair } from "@thi.ng/vectors";
 import { AABB } from "../api/aabb";
 import { Polygon } from "../api/polygon";
 import { Polyline } from "../api/polyline";
@@ -9,6 +7,8 @@ import { Rect } from "../api/rect";
 import { dispatch } from "../internal/dispatch";
 import { edgeIterator } from "../internal/edges";
 import { vertices } from "./vertices";
+import type { VecPair } from "@thi.ng/vectors";
+import type { IObjectOf } from "@thi.ng/api";
 
 export const edges: MultiFn1O<
     IShape,

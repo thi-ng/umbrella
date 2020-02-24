@@ -1,5 +1,5 @@
 import { partition, wrapSides } from "@thi.ng/transducers";
-import { ReadonlyVec, VecPair } from "@thi.ng/vectors";
+import type { ReadonlyVec, VecPair } from "@thi.ng/vectors";
 
 export const edgeIterator = (vertices: Iterable<ReadonlyVec>, closed = false) =>
     <IterableIterator<VecPair>>(

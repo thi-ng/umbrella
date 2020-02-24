@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2O, MultiFn2O } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
 import {
@@ -9,6 +8,7 @@ import {
 } from "@thi.ng/vectors";
 import { Rect } from "../api/rect";
 import { dispatch } from "../internal/dispatch";
+import type { IObjectOf } from "@thi.ng/api";
 
 export const mapPoint: MultiFn2O<IShape, ReadonlyVec, Vec, Vec> = defmulti(<
     any

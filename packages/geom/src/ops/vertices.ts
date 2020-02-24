@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
 import { defmulti, Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
 import {
@@ -32,6 +31,7 @@ import { Polyline } from "../api/polyline";
 import { Quadratic } from "../api/quadratic";
 import { Rect } from "../api/rect";
 import { dispatch } from "../internal/dispatch";
+import type { IObjectOf } from "@thi.ng/api";
 
 export const vertices: MultiFn1O<
     IShape,

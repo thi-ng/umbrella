@@ -1,4 +1,3 @@
-import { Attribs } from "@thi.ng/geom-api";
 import { centroid } from "@thi.ng/geom-poly-utils";
 import { SQRT2_2, SQRT3 } from "@thi.ng/math";
 import {
@@ -16,6 +15,7 @@ import { Circle } from "../api/circle";
 import { Polygon } from "../api/polygon";
 import { Rect } from "../api/rect";
 import { argsVV } from "../internal/args";
+import type { Attribs } from "@thi.ng/geom-api";
 
 export function rect(pos: Vec, size: number | Vec, attribs?: Attribs): Rect;
 export function rect(size: number | Vec, attribs?: Attribs): Rect;

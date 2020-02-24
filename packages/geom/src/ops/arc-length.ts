@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation1 } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
 import { perimeter } from "@thi.ng/geom-poly-utils";
@@ -12,6 +11,7 @@ import { Polygon } from "../api/polygon";
 import { Rect } from "../api/rect";
 import { Triangle } from "../api/triangle";
 import { dispatch } from "../internal/dispatch";
+import type { IObjectOf } from "@thi.ng/api";
 
 /**
  * Returns the arc length / perimeter / circumference of the given

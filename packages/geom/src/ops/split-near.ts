@@ -1,11 +1,9 @@
-import { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
 import { closestT } from "@thi.ng/geom-closest-point";
 import { Sampler } from "@thi.ng/geom-resample";
 import { quadraticSplitNearPoint, splitCubicNearPoint } from "@thi.ng/geom-splines";
 import { clamp01 } from "@thi.ng/math";
-import { ReadonlyVec } from "@thi.ng/vectors";
 import { Cubic } from "../api/cubic";
 import { Line } from "../api/line";
 import { Polyline } from "../api/polyline";
@@ -14,6 +12,8 @@ import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
 import { pointArraysAsShapes } from "../internal/points-as-shape";
 import { splitLine } from "../internal/split";
+import type { IObjectOf } from "@thi.ng/api";
+import type { ReadonlyVec } from "@thi.ng/vectors";
 
 /**
  * Similar to {@link splitAt}, but instead of taking a normalized parametric

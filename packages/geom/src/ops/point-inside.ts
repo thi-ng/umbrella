@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
 import {
@@ -18,6 +17,7 @@ import { Polygon } from "../api/polygon";
 import { Rect } from "../api/rect";
 import { Triangle } from "../api/triangle";
 import { dispatch } from "../internal/dispatch";
+import type { IObjectOf } from "@thi.ng/api";
 
 export const pointInside = defmulti<IShape, ReadonlyVec, boolean>(dispatch);
 
