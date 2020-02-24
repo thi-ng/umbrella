@@ -1,5 +1,5 @@
-import { CommonOpts } from "../api";
 import { Subscription } from "../subscription";
+import type { CommonOpts } from "../api";
 
 /**
  * Abstract base class for sidechained subscription types (e.g.

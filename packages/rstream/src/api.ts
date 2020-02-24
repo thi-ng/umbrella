@@ -1,14 +1,14 @@
-import {
+import { NULL_LOGGER } from "@thi.ng/api";
+import { Stream } from "./stream";
+import { Subscription } from "./subscription";
+import type {
     Fn,
     Fn0,
     IDeref,
     IID,
-    ILogger,
-    NULL_LOGGER
+    ILogger
 } from "@thi.ng/api";
-import { Transducer } from "@thi.ng/transducers";
-import { Stream } from "./stream";
-import { Subscription } from "./subscription";
+import type { Transducer } from "@thi.ng/transducers";
 
 export const enum State {
     IDLE,

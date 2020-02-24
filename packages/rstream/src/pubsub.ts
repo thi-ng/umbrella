@@ -1,7 +1,5 @@
-import { Fn, Predicate2 } from "@thi.ng/api";
 import { EquivMap } from "@thi.ng/associative";
 import { unsupported } from "@thi.ng/errors";
-import { Transducer } from "@thi.ng/transducers";
 import {
     CommonOpts,
     ISubscriber,
@@ -10,6 +8,8 @@ import {
 } from "./api";
 import { Subscription, subscription } from "./subscription";
 import { optsWithID } from "./utils/idgen";
+import type { Fn, Predicate2 } from "@thi.ng/api";
+import type { Transducer } from "@thi.ng/transducers";
 
 export interface PubSubOpts<A, B> {
     /**
