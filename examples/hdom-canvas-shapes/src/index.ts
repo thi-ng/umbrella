@@ -1,4 +1,5 @@
 import { hsva } from "@thi.ng/color";
+import { download } from "@thi.ng/download";
 import { pathBuilder, points } from "@thi.ng/geom";
 import { canvas, normalizeTree } from "@thi.ng/hdom-canvas";
 import { dropdown } from "@thi.ng/hdom-components";
@@ -16,7 +17,6 @@ import { map, range, repeatedly } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { addN } from "@thi.ng/vectors";
 import logo from "../assets/logo-64.png";
-import { download } from "./download";
 
 // for testing SVG conversion
 
@@ -153,7 +153,10 @@ const TESTS: any = {
                 [
                     "linearGradient",
                     { id: "grad1", from: [0, 0], to: [W, W] },
-                    [[0, "#fc0"], [1, "#0ef"]]
+                    [
+                        [0, "#fc0"],
+                        [1, "#0ef"]
+                    ]
                 ],
                 [
                     "linearGradient",
@@ -162,7 +165,11 @@ const TESTS: any = {
                         from: [0, 0],
                         to: [W, W2 + W2 * Math.sin(Date.now() * 0.005)]
                     },
-                    [[0, "#700"], [0.5, "#d0f"], [1, "#fff"]]
+                    [
+                        [0, "#700"],
+                        [0.5, "#d0f"],
+                        [1, "#fff"]
+                    ]
                 ]
             ],
             ["circle", { fill: "$grad1" }, [W2, W2], W2 - 10],
@@ -192,12 +199,20 @@ const TESTS: any = {
                             r1: W,
                             r2: 100
                         },
-                        [[0, "#07f"], [0.5, "#0ef"], [0.8, "#efe"], [1, "#af0"]]
+                        [
+                            [0, "#07f"],
+                            [0.5, "#0ef"],
+                            [0.8, "#efe"],
+                            [1, "#af0"]
+                        ]
                     ],
                     [
                         "radialGradient",
                         { id: "sun", from: spos, to: spos, r1: 5, r2: 50 },
-                        [[0, [1, 1, 1]], [1, [1, 1, 0.75, 0]]]
+                        [
+                            [0, [1, 1, 1]],
+                            [1, [1, 1, 0.75, 0]]
+                        ]
                     ]
                 ],
                 ["circle", { fill: "$bg" }, [W2, y], W2 - 20],

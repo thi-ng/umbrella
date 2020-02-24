@@ -1,3 +1,4 @@
+import { download } from "@thi.ng/download";
 import { equiv } from "@thi.ng/equiv";
 import { canvas2D } from "@thi.ng/hdom-components";
 import { fit, mix } from "@thi.ng/math";
@@ -11,7 +12,6 @@ import { gestureStream, GestureType } from "@thi.ng/rstream-gestures";
 import { padLeft } from "@thi.ng/strings";
 import { map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { download } from "./download";
 
 // if enabled, auto-zoom out & export frames
 // (in this case also update initial DEFAULT_CONFIG below)

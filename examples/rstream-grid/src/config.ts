@@ -1,3 +1,4 @@
+import { download } from "@thi.ng/download";
 import { serialize } from "@thi.ng/hiccup";
 import { snapshot, valueSetter } from "@thi.ng/interceptors";
 import { getIn } from "@thi.ng/paths";
@@ -5,7 +6,6 @@ import { fromIterable } from "@thi.ng/rstream";
 import { range } from "@thi.ng/transducers";
 import { AppConfig } from "./api";
 import { main } from "./components/main";
-import { download } from "./download";
 import * as fx from "./effects";
 import * as ev from "./events";
 import * as paths from "./paths";
