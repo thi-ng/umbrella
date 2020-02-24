@@ -1,6 +1,6 @@
 import { DEG2RAD } from "@thi.ng/math";
 import { setC } from "@thi.ng/vectors";
-import { Mat } from "./api";
+import type { Mat } from "./api";
 
 /**
  * Constructs a 4x4 matrix representing the given view frustum. Creates

@@ -5,7 +5,7 @@ import {
     setC4,
     setC6
 } from "@thi.ng/vectors";
-import { Mat } from "./api";
+import type { Mat } from "./api";
 
 /**
  * Computes 2x2 matrix scale matrix and writes result to `out`. If `s`

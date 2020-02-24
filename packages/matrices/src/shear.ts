@@ -1,10 +1,10 @@
-import { Mat, MatOp1 } from "./api";
 import {
     identity22,
     identity23,
     identity33,
     identity44
 } from "./identity";
+import type { Mat, MatOp1 } from "./api";
 
 const $ = (f: MatOp1) => (i: number) => (m: Mat | null, x: number) => (
     !m && (m = []), f(m), (m[i] = x), m

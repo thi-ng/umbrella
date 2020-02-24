@@ -1,5 +1,10 @@
-import { vop, setS2, setS3, setS4 } from "@thi.ng/vectors";
-import { MultiVecOpM } from "./api";
+import {
+    setS2,
+    setS3,
+    setS4,
+    vop
+} from "@thi.ng/vectors";
+import type { MultiVecOpM } from "./api";
 
 /**
  * Extracts matrix diagonal into `out`.

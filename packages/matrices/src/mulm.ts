@@ -7,7 +7,7 @@ import {
     setC6,
     vop
 } from "@thi.ng/vectors";
-import { MultiMatOpMM } from "./api";
+import type { MultiMatOpMM } from "./api";
 
 /**
  * Multi-method. Performs matrix-matrix multiplication. If `out` is not
