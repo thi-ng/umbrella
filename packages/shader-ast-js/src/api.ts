@@ -1,4 +1,4 @@
-import {
+import type {
     Fn,
     Fn2,
     Fn3,
@@ -6,9 +6,9 @@ import {
     Fn5,
     Fn6
 } from "@thi.ng/api";
-import { Mat } from "@thi.ng/matrices";
-import { Term } from "@thi.ng/shader-ast";
-import { Vec } from "@thi.ng/vectors";
+import type { Mat } from "@thi.ng/matrices";
+import type { Term } from "@thi.ng/shader-ast";
+import type { Vec } from "@thi.ng/vectors";
 
 export interface JSTarget extends Fn<Term<any>, string> {
     /**

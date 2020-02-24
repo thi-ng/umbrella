@@ -1,5 +1,5 @@
 import { clamp } from "@thi.ng/math";
-import { JSBuiltinsInt } from "../api";
+import type { JSBuiltinsInt } from "../api";
 
 export const UINT: JSBuiltinsInt<number> = {
     abs: Math.abs,

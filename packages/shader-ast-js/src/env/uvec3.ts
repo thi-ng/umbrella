@@ -16,8 +16,8 @@ import {
     subNU3,
     subU3
 } from "@thi.ng/vectors";
-import { JSBuiltinsIntVec } from "../api";
 import { VEC3 } from "./vec3";
+import type { JSBuiltinsIntVec } from "../api";
 
 export const UVEC3: JSBuiltinsIntVec = {
     ...VEC3,

@@ -16,8 +16,8 @@ import {
     subI4,
     subNI4
 } from "@thi.ng/vectors";
-import { JSBuiltinsIntVec } from "../api";
 import { VEC4 } from "./vec4";
+import type { JSBuiltinsIntVec } from "../api";
 
 export const IVEC4: JSBuiltinsIntVec = {
     ...VEC4,
