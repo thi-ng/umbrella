@@ -108,23 +108,29 @@ const app = () => {
                     num: 6
                 },
                 uniforms: {
-                    eyePos: tweenNumber(
-                        PARAMS.eyeDist,
-                        PARAM_DEFS.eyeDist[2],
-                        0.05,
-                        1e-3,
-                        raf
-                    ).transform(map((z) => [0, 0, z])),
-                    lightPos: tweenNumber(
-                        PARAMS.lightTheta,
-                        PARAM_DEFS.lightTheta[2],
-                        0.05,
-                        1e-3,
-                        raf
-                    ).transform(
-                        map((theta) => <GLVec3>rotateY([], LIGHT_POS, theta))
+                    eyePos: <IDeref<GLVec3>>(
+                        tweenNumber(
+                            PARAMS.eyeDist,
+                            PARAM_DEFS.eyeDist[2],
+                            0.05,
+                            1e-3,
+                            raf
+                        ).transform(map((z) => [0, 0, z]))
                     ),
-                    specular: PARAMS.specular
+                    lightPos: <IDeref<GLVec3>>(
+                        tweenNumber(
+                            PARAMS.lightTheta,
+                            PARAM_DEFS.lightTheta[2],
+                            0.05,
+                            1e-3,
+                            raf
+                        ).transform(
+                            map(
+                                (theta) => <GLVec3>rotateY([], LIGHT_POS, theta)
+                            )
+                        )
+                    ),
+                    specular: <IDeref<number>>PARAMS.specular
                 },
                 textures: [
                     texture(gl, {
@@ -144,10 +150,10 @@ const app = () => {
                 shader: shader(gl, SSAO_SHADER),
                 textures: [posTex, normTex, noiseTex],
                 uniforms: {
-                    sampleRadius: PARAMS.radius,
-                    bias: PARAMS.bias,
-                    attenuate: PARAMS.baseAttenuation,
-                    attenuateDist: PARAMS.distAttenuation,
+                    sampleRadius: <IDeref<number>>PARAMS.radius,
+                    bias: <IDeref<number>>PARAMS.bias,
+                    attenuate: <IDeref<number>>PARAMS.baseAttenuation,
+                    attenuateDist: <IDeref<number>>PARAMS.distAttenuation,
                     depthRange: [Z_NEAR, Z_FAR]
                 }
             });
@@ -156,7 +162,7 @@ const app = () => {
                 shader: shader(gl, FINAL_SHADER),
                 textures: [colorTex, ssaoTex],
                 uniforms: {
-                    amp: PARAMS.amp
+                    amp: <IDeref<number>>PARAMS.amp
                 }
             });
         },
