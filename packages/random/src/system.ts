@@ -1,4 +1,4 @@
-import { ARandom } from "./api";
+import { ARandom } from "./arandom";
 
 const random = Math.random;
 

@@ -1,5 +1,6 @@
-import { IBuffered, ICopy } from "@thi.ng/api";
-import { ARandom, ISeedable } from "./api";
+import { ARandom } from "./arandom";
+import type { IBuffered, ICopy } from "@thi.ng/api";
+import type { ISeedable } from "./api";
 
 // https://github.com/thi-ng/ct-head/blob/master/random.h
 // https://gist.github.com/voidqk/d112165a26b45244a65298933c0349a4

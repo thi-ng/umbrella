@@ -1,5 +1,6 @@
-import { IBuffered, ICopy } from "@thi.ng/api";
-import { ARandom, ISeedable } from "./api";
+import { ARandom } from "./arandom";
+import type { IBuffered, ICopy } from "@thi.ng/api";
+import type { ISeedable } from "./api";
 
 // https://en.wikipedia.org/wiki/Xorshift
 
