@@ -1,4 +1,4 @@
-import { ModelSpec } from "../api/model";
+import type { ModelSpec } from "../api/model";
 
 export interface CubeOpts {
     size: number;

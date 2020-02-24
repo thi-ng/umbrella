@@ -1,11 +1,11 @@
-import { IObjectOf } from "@thi.ng/api";
 import {
     add,
     mul,
     Sym,
     Term
 } from "@thi.ng/shader-ast";
-import { ShaderOpts } from "./api/shader";
+import type { IObjectOf } from "@thi.ng/api";
+import type { ShaderOpts } from "./api/shader";
 
 export const positionAttrib = (
     opts: Partial<ShaderOpts<any>>,

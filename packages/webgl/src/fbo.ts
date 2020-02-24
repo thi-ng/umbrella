@@ -1,9 +1,9 @@
 import { assert } from "@thi.ng/api";
-import { FboOpts, IFbo } from "./api/buffers";
 import { ITexture, TEX_FORMATS } from "./api/texture";
 import { isGL2Context } from "./checks";
 import { error } from "./error";
 import { RBO } from "./rbo";
+import type { FboOpts, IFbo } from "./api/buffers";
 
 const GL_COLOR_ATTACHMENT0_WEBGL = 0x8ce0;
 const GL_MAX_COLOR_ATTACHMENTS_WEBGL = 0x8cdf;

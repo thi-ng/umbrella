@@ -6,10 +6,6 @@ import {
     some,
     transduce
 } from "@thi.ng/transducers";
-import { ExtensionBehaviors } from "./api/ext";
-import { Multipass, MultipassOpts, PassOpts } from "./api/multipass";
-import { ShaderOutputSpec, ShaderSpec, ShaderUniformSpecs } from "./api/shader";
-import { ITexture } from "./api/texture";
 import { compileModel } from "./buffer";
 import { isFloatTexture, isGL2Context } from "./checks";
 import { draw } from "./draw";
@@ -18,6 +14,10 @@ import { quad } from "./geo/quad";
 import { shader } from "./shader";
 import { PASSTHROUGH_VS } from "./shaders/pipeline";
 import { texture } from "./texture";
+import type { ExtensionBehaviors } from "./api/ext";
+import type { Multipass, MultipassOpts, PassOpts } from "./api/multipass";
+import type { ShaderOutputSpec, ShaderSpec, ShaderUniformSpecs } from "./api/shader";
+import type { ITexture } from "./api/texture";
 
 export const multipass = (opts: MultipassOpts) => {
     const gl = opts.gl;

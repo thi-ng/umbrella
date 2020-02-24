@@ -1,4 +1,4 @@
-import { GLVec3 } from "./glsl";
+import type { GLVec3 } from "./glsl";
 
 export interface Material {
     ambientCol: GLVec3;

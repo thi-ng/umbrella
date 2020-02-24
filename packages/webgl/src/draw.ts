@@ -1,8 +1,8 @@
 import { isArray } from "@thi.ng/checks";
-import { ModelSpec } from "./api/model";
 import { isGL2Context } from "./checks";
 import { error } from "./error";
 import { bindTextures } from "./texture";
+import type { ModelSpec } from "./api/model";
 
 export const draw = (specs: ModelSpec | ModelSpec[]) => {
     const _specs = isArray(specs) ? specs : [specs];

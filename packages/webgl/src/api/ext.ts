@@ -1,4 +1,4 @@
-import { IObjectOf } from "@thi.ng/api";
+import type { IObjectOf } from "@thi.ng/api";
 
 export const GL_EXT_INFO: IObjectOf<ExtensionInfo> = {
     WEBGL_draw_buffers: {
