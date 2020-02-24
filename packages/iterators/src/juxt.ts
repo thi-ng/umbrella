@@ -1,4 +1,4 @@
-import { Fn } from "@thi.ng/api";
+import type { Fn } from "@thi.ng/api";
 
 /**
  * @deprecated use {@link @thi.ng/compose#(juxt:1)}
