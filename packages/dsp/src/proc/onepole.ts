@@ -1,7 +1,8 @@
-import { IClear, IReset } from "@thi.ng/api";
 import { clamp05, TAU } from "@thi.ng/math";
-import { FilterConfig, FilterType, IFilter } from "../api";
+import { FilterType } from "../constants";
 import { AProc } from "./aproc";
+import type { IClear, IReset } from "@thi.ng/api";
+import type { FilterConfig, IFilter } from "../api";
 
 type OnepoleType = FilterType.LP | FilterType.HP;
 

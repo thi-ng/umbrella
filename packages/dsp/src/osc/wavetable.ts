@@ -1,6 +1,6 @@
-import { Fn3, NumericArray } from "@thi.ng/api";
 import { fract, mix as _mix } from "@thi.ng/math";
-import { StatelessOscillator } from "../api";
+import type { Fn3, NumericArray } from "@thi.ng/api";
+import type { StatelessOscillator } from "../api";
 
 export const wavetable = (
     table: NumericArray,

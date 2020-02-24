@@ -1,5 +1,5 @@
 import { fract } from "@thi.ng/math";
-import { StatelessOscillator } from "../api";
+import type { StatelessOscillator } from "../api";
 
 export const rect: StatelessOscillator = (
     phase,

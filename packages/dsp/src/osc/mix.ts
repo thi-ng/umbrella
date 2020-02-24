@@ -1,5 +1,5 @@
 import { mix as _mix } from "@thi.ng/math";
-import { StatelessOscillator } from "../api";
+import type { StatelessOscillator } from "../api";
 
 /**
  * HOF oscillator. Takes 2 stateless oscillator fns and returns new

@@ -1,4 +1,4 @@
-import { FilterType } from "../api";
+import { FilterType } from "../constants";
 import { OnePole } from "./onepole";
 
 /**

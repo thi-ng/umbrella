@@ -1,5 +1,5 @@
-import { IReset } from "@thi.ng/api";
 import { AGen } from "./agen";
+import type { IReset } from "@thi.ng/api";
 
 /**
  * https://en.wikipedia.org/wiki/Dirac_comb

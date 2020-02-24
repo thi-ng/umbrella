@@ -1,5 +1,5 @@
-import { IReset } from "@thi.ng/api";
 import { AGen } from "./agen";
+import type { IReset } from "@thi.ng/api";
 
 /**
  * Returns new multiply-add gen producing `y(t) = factor * y(t-1) +

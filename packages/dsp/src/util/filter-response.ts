@@ -1,8 +1,8 @@
-import { NumericArray } from "@thi.ng/api";
 import { cossin, TAU } from "@thi.ng/math";
-import { FilterConfig, FilterResponse } from "../api";
 import { line } from "../gen/line";
 import { magDb } from "./convert";
+import type { NumericArray } from "@thi.ng/api";
+import type { FilterConfig, FilterResponse } from "../api";
 
 /**
  * Returns filter response for given filter coefficients at normalized

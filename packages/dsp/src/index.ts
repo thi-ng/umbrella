@@ -1,4 +1,5 @@
-export * from "./api";
+export type * from "./api";
+export * from "./constants";
 
 export * from "./comp/addg";
 export * from "./comp/compp";

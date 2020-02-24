@@ -1,6 +1,6 @@
-import { Fn2 } from "@thi.ng/api";
 import { foldback as _foldback, PI } from "@thi.ng/math";
 import { AProc } from "./aproc";
+import type { Fn2 } from "@thi.ng/api";
 
 export type WaveShaperFn = Fn2<number, number, number>;
 

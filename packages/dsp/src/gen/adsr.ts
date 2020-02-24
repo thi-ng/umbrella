@@ -1,9 +1,9 @@
-import { IReset } from "@thi.ng/api";
 import { clamp01 } from "@thi.ng/math";
-import { IGen } from "../api";
 import { add } from "./add";
 import { AGen } from "./agen";
 import { curve } from "./curve";
+import type { IReset } from "@thi.ng/api";
+import type { IGen } from "../api";
 
 const enum EnvPhase {
     ATTACK,

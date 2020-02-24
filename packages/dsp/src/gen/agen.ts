@@ -1,4 +1,4 @@
-import { IGen } from "../api";
+import type { IGen } from "../api";
 
 /**
  * Abstract base class for unit gens in this package. Provides
