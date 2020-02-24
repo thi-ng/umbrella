@@ -1,13 +1,13 @@
 import { isString } from "@thi.ng/checks";
-import {
+import { DEFAULT_SYNTAX } from "./constants";
+import { tokenize } from "./tokenize";
+import type {
     ASTNode,
-    DEFAULT_SYNTAX,
     Expression,
     Root,
     SyntaxOpts,
     Token
 } from "./api";
-import { tokenize } from "./tokenize";
 
 export class ParseError extends Error {
     line: number;
