@@ -1,5 +1,5 @@
 import { mixQuadratic } from "@thi.ng/vectors";
-import { __sample } from "./internal/sample";
+import { __sample, __sampleArray } from "./internal/sample";
 
 export const sampleQuadratic = __sample((res, [a, b, c], num) => {
     const delta = 1 / num;
@@ -7,3 +7,5 @@ export const sampleQuadratic = __sample((res, [a, b, c], num) => {
         res.push(mixQuadratic([], a, b, c, t * delta));
     }
 });
+
+export const sampleQuadraticArray = __sampleArray(sampleQuadratic);
