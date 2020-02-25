@@ -1,5 +1,6 @@
 import {
     add,
+    addmN,
     direction,
     mixN,
     ReadonlyVec,
@@ -42,8 +43,23 @@ export const closedCubicFromControlPoints = (
     const segments: Vec[] = [];
     for (let i = 0, num = points.length; i < num; i++) {
         const q = points[(i + 1) % num];
-        segments.push(mixN([], points[i], q, 0.5), set([], q));
+        segments.push(addmN([], points[i], q, 0.5), set([], q));
     }
     segments.push(segments[0]);
+    return uniform ? buildUniform(segments, t) : buildNonUniform(segments, t);
+};
+
+export const openCubicFromControlPoints = (
+    points: ReadonlyVec[],
+    t = 1,
+    uniform = false
+) => {
+    const segments: Vec[] = [set([], points[0]), set([], points[0])];
+    const num = points.length - 1;
+    for (let i = 0; i < num; i++) {
+        const q = points[i + 1];
+        segments.push(addmN([], points[i], q, 0.5), set([], q));
+    }
+    segments.push(set([], points[num]));
     return uniform ? buildUniform(segments, t) : buildNonUniform(segments, t);
 };
