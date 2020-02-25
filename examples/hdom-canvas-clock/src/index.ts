@@ -37,9 +37,11 @@ const hand = (
     return [
         "polygon",
         attribs,
-        [[r1, theta - eps], [r2, theta], [r1, theta + eps]].map((p) =>
-            cartesian2(null, p)
-        )
+        [
+            [r1, theta - eps],
+            [r2, theta],
+            [r1, theta + eps]
+        ].map((p) => cartesian2(null, p))
     ];
 };
 
@@ -116,7 +118,7 @@ const cancel = start(() => {
             "a.link",
             {
                 href:
-                    "https://github.com/thi-ng/umbrella/tree/master/examples/hdom-canvas-clock"
+                    "https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-clock"
             },
             "Source code"
         ]

@@ -82,7 +82,7 @@ const app = (
     _uniScale: Stream<number>
 ) => ({ poly, mode, uniform, scale, uniScale }: any) => {
     // reconstruct poly as cubic curve segments
-    // reference: https://github.com/thi-ng/umbrella/tree/master/packages/geom-splines#polygon-to-cubic-curve-conversion
+    // reference: https://github.com/thi-ng/umbrella/tree/develop/packages/geom-splines#polygon-to-cubic-curve-conversion
     const cubics = asCubic(poly, {
         breakPoints: mode,
         scale: scale * (uniform ? uniScale : 1),

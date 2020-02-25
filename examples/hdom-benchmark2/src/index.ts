@@ -208,7 +208,7 @@ const cancel = start(() => {
                 "a",
                 {
                     href:
-                        "https://github.com/thi-ng/umbrella/tree/master/examples/hdom-benchmark2"
+                        "https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-benchmark2"
                 },
                 "Source"
             ]

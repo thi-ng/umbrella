@@ -30,7 +30,7 @@ const item = (_: any, label: string, value: any) => [
 const repoLink = (_: any, file: string) => [
     "a.pa1.link.black.bg-light-gray",
     {
-        href: `https://github.com/thi-ng/umbrella/tree/master/examples/hmr-basics/${file}`
+        href: `https://github.com/thi-ng/umbrella/tree/develop/examples/hmr-basics/${file}`
     },
     file
 ];

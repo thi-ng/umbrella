@@ -502,7 +502,7 @@ sync<any, any>({
                     {
                         class: `mr3 b link ${theme.body}`,
                         href:
-                            "https://github.com/thi-ng/umbrella/tree/master/examples/crypto-chart/"
+                            "https://github.com/thi-ng/umbrella/tree/develop/examples/crypto-chart/"
                     },
                     "Source"
                 ]

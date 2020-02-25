@@ -1,9 +1,9 @@
 import { AppContext } from "../api";
 import * as ev from "../events";
-
 import { buttonGroup } from "./button-group";
 import { link } from "./link";
 import { slider, SliderOpts } from "./slider";
+
 
 export function sidebar(ctx: AppContext, ...specs: SliderOpts[]) {
     const sliders = specs.map((s) => slider(ctx, s));
@@ -26,14 +26,14 @@ export function sidebar(ctx: AppContext, ...specs: SliderOpts[]) {
             ctx.ui.footer,
             [
                 link,
-                "https://github.com/thi-ng/umbrella/tree/master/examples/svg-waveform",
+                "https://github.com/thi-ng/umbrella/tree/develop/examples/svg-waveform",
                 "Source"
             ],
             ["br"],
             "Made with ",
             [
                 link,
-                "https://github.com/thi-ng/umbrella/tree/master/packages/hdom",
+                "https://github.com/thi-ng/umbrella/tree/develop/packages/hdom",
                 "@thi.ng/hdom"
             ]
         ]

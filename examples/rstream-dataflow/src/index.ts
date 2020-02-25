@@ -175,5 +175,5 @@ start(() => [
 // `dot -Tsvg -o graph.svg graph.dot`
 //
 // see for more info:
-// https://github.com/thi-ng/umbrella/tree/master/packages/rstream-dot
+// https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-dot
 console.log(toDot(walk([gestures, raf])));

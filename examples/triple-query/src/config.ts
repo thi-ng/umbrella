@@ -37,7 +37,7 @@ export const CONFIG: AppConfig = {
     // each key specifies the name of the view and each value is
     // a state path or `[path, transformer]` tuple
     // docs here:
-    // https://github.com/thi-ng/umbrella/tree/master/packages/atom#derived-views
+    // https://github.com/thi-ng/umbrella/tree/develop/packages/atom#derived-views
     // also see `app.ts` for view initialization
     views: {
         page: "page",

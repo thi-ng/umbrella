@@ -83,7 +83,7 @@ export const CONFIG: AppConfig = {
     // a state path or `[path, transformer]` tuple
 
     // docs here:
-    // https://github.com/thi-ng/umbrella/tree/master/packages/atom#derived-views
+    // https://github.com/thi-ng/umbrella/tree/develop/packages/atom#derived-views
     views: {
         cols: paths.COLS,
         rows: paths.ROWS,

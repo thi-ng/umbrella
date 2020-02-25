@@ -25,7 +25,11 @@ const items = db.addView("tasks", (tasks) => [
 // the `atom.setter` calls produce an immutable update function for given paths
 const addNewTask = () =>
     tasks.swap((tasks) =>
-        setIn(tasks, nextID.swap((id) => id + 1), { body: "", done: false })
+        setIn(
+            tasks,
+            nextID.swap((id) => id + 1),
+            { body: "", done: false }
+        )
     );
 const toggleTask = (id: string) =>
     tasks.swap((tasks) => updateIn(tasks, [id, "done"], (done) => !done));
@@ -91,7 +95,7 @@ const header = [
             "a",
             {
                 href:
-                    "https://github.com/thi-ng/umbrella/tree/master/packages/hdom"
+                    "https://github.com/thi-ng/umbrella/tree/develop/packages/hdom"
             },
             "@thi.ng/hdom"
         ]

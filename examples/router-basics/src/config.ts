@@ -175,7 +175,7 @@ export const CONFIG: AppConfig = {
     // each key specifies the name of the view and its value
     // the state path or `[path, transformer]`
     // docs here:
-    // https://github.com/thi-ng/umbrella/tree/master/packages/atom#derived-views
+    // https://github.com/thi-ng/umbrella/tree/develop/packages/atom#derived-views
     views: {
         json: ["", (state) => JSON.stringify(state, null, 2)],
         users: ["users", (users) => users || {}],

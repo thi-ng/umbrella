@@ -24,7 +24,7 @@ fs.writeFileSync(
                     ["p.measure.lh-copy",
                         "This document lists all icons provided by the ",
                         ["a.link.b.black.hover-blue",
-                            { href: "https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-carbon-icons" },
+                            { href: "https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-carbon-icons" },
                             "@thi.ng/hiccup-carbon-icons"],
                         ` package, including their exported variable names. These icons were converted to hiccup format from the original icons designed by IBM and published in the `,
                         ["a.link.b.black.hover-blue",
