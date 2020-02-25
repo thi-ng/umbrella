@@ -23,7 +23,7 @@ chunks...
 
 ### Encoding format
 
-![data layout](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/rle/rle-layout.png)
+![data layout](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rle/rle-layout.png)
 
 - 32 bits - original number of words
 - 5 bits - word size

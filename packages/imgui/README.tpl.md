@@ -13,7 +13,7 @@ This project is part of the
 
 ${pkg.description}
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/imgui/imgui-all.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png)
 
 Currently still somewhat bare-bones, but already usable & customizable [immediate
 mode GUI](https://github.com/ocornut/imgui#references) implementation,
@@ -105,7 +105,7 @@ res !== undefined && STATE.resetIn("foo", res);
 ### Layout support
 
 Most component functions exist in two versions: Using a
-[@thi.ng/layout](https://github.com/thi-ng/umbrella/tree/master/packages/layout)-compatible
+[@thi.ng/layout](https://github.com/thi-ng/umbrella/tree/develop/packages/layout)-compatible
 grid layout manager or not (e.g. `dial` vs. `dialRaw`). The latter
 versions are more "low-level" & verbose to use, but offer complete
 layout freedom and are re-used by other component types.

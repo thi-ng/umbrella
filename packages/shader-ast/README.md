@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/shader-ast](https://media.thi.ng/umbrella/banners/thing-shader-ast.svg?1581297787)
+# ![@thi.ng/shader-ast](https://media.thi.ng/umbrella/banners/thing-shader-ast.svg?1582660667)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/shader-ast.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/shader-ast.svg)
@@ -55,7 +55,7 @@ This project is part of the
 
 DSL to define shader code in TypeScript and cross-compile to GLSL, JS and other targets.
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/shader-ast/shader-ast-01.jpg)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/shader-ast/shader-ast-01.jpg)
 
 <small>Example shader running in plain JS & Canvas 2D context,
 cross-compiled JS/GLSL outputs on the right</small>
@@ -81,12 +81,12 @@ VEX](http://www.sidefx.com/docs/houdini/vex/index.html) (in-progress),
 [WASM](https://webassembly.org), [WHLSL for
 WebGPU](https://github.com/gpuweb/WHLSL) in the near future as well.
 
-![webgl/canvas2d comparison](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/shader-ast/shader-ast-raymarch-compare.jpg)
+![webgl/canvas2d comparison](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/shader-ast/shader-ast-raymarch-compare.jpg)
 
 <small>Comparison of the raymarch shader example (link further below), cross
 compiled to both GLSL (left) and JavaScript (right). Difference image of both results in the center.</small>
 
-![VEX plane displacement](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/shader-ast/shader-ast-raymarch-vex-sm.gif)
+![VEX plane displacement](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/shader-ast/shader-ast-raymarch-vex-sm.gif)
 
 <small>[Larger
 version](https://twitter.com/thing_umbrella/status/1146109598274924544) - The same raymarching example compiled to Houdini VEX and used as "Point

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/transducers](https://media.thi.ng/umbrella/banners/thing-transducers.svg?1581297779)
+# ![@thi.ng/transducers](https://media.thi.ng/umbrella/banners/thing-transducers.svg?1582660659)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers.svg)
@@ -322,6 +322,10 @@ Additive waveform synthesis & SVG visualization with undo/redo
 
 [Live demo](https://demo.thi.ng/umbrella/webgl-msdf/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-msdf)
 
+### wolfram <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/wolfram/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/wolfram)
+
 ### Basic usage patterns
 
 ```ts
@@ -368,7 +372,7 @@ This example uses the
 [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
 package for quick SVG generation.
 
-![example output](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/transducers/hermite-tx.png)
+![example output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/transducers/hermite-tx.png)
 
 ```ts
 import { asSvg, svgDoc, circle, polyline } from "@thi.ng/geom";

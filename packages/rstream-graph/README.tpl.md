@@ -133,7 +133,7 @@ for more details how these specs are compiled into stream constructs.
 Specification for a single input, which can be given in different ways:
 
 1) Create a stream of value changes at given path in state
-   [Atom](https://github.com/thi-ng/umbrella/e/master/packages/atom)
+   [Atom](https://github.com/thi-ng/umbrella/e/develop/packages/atom)
    (passed to `initGraph`):
 
 ```ts

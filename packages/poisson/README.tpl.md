@@ -11,7 +11,7 @@ This project is part of the
 
 ## About
 
-![example screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-voronoi.jpg)
+![example screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-voronoi.jpg)
 
 nD [Poisson disk
 sampling](https://en.wikipedia.org/wiki/Supersampling#Poisson_disc) with
@@ -106,7 +106,7 @@ interface PoissonOpts {
 }
 ```
 
-![example output](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/poisson/poisson.jpg)
+![example output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/poisson/poisson.jpg)
 
 ```ts
 import { samplePoisson } from "@thi.ng/poisson";

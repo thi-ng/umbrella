@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/rstream-graph](https://media.thi.ng/umbrella/banners/thing-rstream-graph.svg?1581297787)
+# ![@thi.ng/rstream-graph](https://media.thi.ng/umbrella/banners/thing-rstream-graph.svg?1582660668)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-graph.svg)](https://www.npmjs.com/package/@thi.ng/rstream-graph)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-graph.svg)
@@ -168,7 +168,7 @@ for more details how these specs are compiled into stream constructs.
 Specification for a single input, which can be given in different ways:
 
 1) Create a stream of value changes at given path in state
-   [Atom](https://github.com/thi-ng/umbrella/e/master/packages/atom)
+   [Atom](https://github.com/thi-ng/umbrella/e/develop/packages/atom)
    (passed to `initGraph`):
 
 ```ts

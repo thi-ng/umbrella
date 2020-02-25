@@ -43,10 +43,11 @@ ${examples}
 
 ${docLink}
 
-### Polygon to cubic curve conversion
+### Cubic curve conversion from polygons & polylines
 
-Currently, there're two ways to convert a polygon into a sequence of
-cubic curve segments. Both modes support customizable curve tightness.
+Currently, there're two ways to convert a polygon/polyline into a
+sequence of cubic curve segments. Both modes support customizable curve
+tightness.
 
 Furthermore, both conversion modes can be instructed to use uniformly
 scaled control point tangents: In uniform mode, the tangents have a
@@ -62,7 +63,7 @@ points.
 
 | Proportional tangent scale                                                                           | Uniform tangent scale                                                                             |
 |------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
-| ![](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-splines-cp-nonuni.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-splines-cp-uni.png) |
+| ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-splines-cp-nonuni.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-splines-cp-uni.png) |
 
 #### Poly vertices as break points
 
@@ -73,7 +74,7 @@ each vertex corner, taking into the convexity of each poly vertex.
 
 | Proportional tangent scale                                                                           | Uniform tangent scale                                                                             |
 |------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
-| ![](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-splines-bp-nonuni.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-splines-bp-uni.png) |
+| ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-splines-bp-nonuni.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-splines-bp-uni.png) |
 
 ## Authors
 

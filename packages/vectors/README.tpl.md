@@ -367,6 +367,7 @@ Component wise op with one input vector and single scalar:
 | `angleRatio`       | ✓       |       |         |     |                          |
 | `atan_2`           | ✓       | 2-4   |         |     | `Math.atan2(y, x)`       |
 | `bisect`           |         | 2     |         |     |                          |
+| `cornerBisector`   | ✓       |       |         |     |                          |
 | `degrees`          | ✓       | 2-4   |         |     |                          |
 | `direction`        | ✓       |       |         |     | normalize(b - a)         |
 | `faceForward`      | ✓       |       |         |     |                          |

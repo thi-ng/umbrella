@@ -13,7 +13,7 @@ This project is part of the
 
 ${pkg.description}
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/pixel/pixel-basics.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/pixel-basics.png)
 
 - Buffer creation from HTML image elements w/ opt resize & format
   conversion (browser only)

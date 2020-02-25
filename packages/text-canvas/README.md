@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/text-canvas](https://media.thi.ng/umbrella/banners/thing-text-canvas.svg?1582472094)
+# ![@thi.ng/text-canvas](https://media.thi.ng/umbrella/banners/thing-text-canvas.svg?1582660666)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/text-canvas.svg)](https://www.npmjs.com/package/@thi.ng/text-canvas)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/text-canvas.svg)

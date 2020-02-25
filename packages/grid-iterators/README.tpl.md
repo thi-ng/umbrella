@@ -17,19 +17,19 @@ Provides the 10 following orderings to generate grid coordinates:
 
 ### Diagonal
 
-![anim](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/grid-iterators/diagonal2d-small.gif)
+![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/diagonal2d-small.gif)
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/diagonal.ts)
 
 ### Hilbert curve
 
-![anim](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/grid-iterators/hilbert2d-small.gif)
+![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/hilbert2d-small.gif)
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/hilbert.ts)
 
 ### Interleave columns
 
-![anim](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/grid-iterators/interleavecolumns2d-small.gif)
+![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/interleavecolumns2d-small.gif)
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/interleave.ts)
 
@@ -37,7 +37,7 @@ Supports custom strides... example uses `step = 4`
 
 ### Interleave rows
 
-![anim](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/grid-iterators/interleaverows2d-small.gif)
+![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/interleaverows2d-small.gif)
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/interleave.ts)
 
@@ -45,7 +45,7 @@ Supports custom strides... example uses `step = 4`
 
 ### Random
 
-![anim](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/grid-iterators/random2d-small.gif)
+![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/random2d-small.gif)
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/random.ts)
 
@@ -54,31 +54,31 @@ Supports custom PRNG implementations via `IRandom` interface defined in
 
 ### Outward spiral
 
-![anim](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/grid-iterators/spiral2d-small.gif)
+![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/spiral2d-small.gif)
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/spiral.ts)
 
 ### Z-curve
 
-![anim](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/grid-iterators/zcurve2d-small.gif)
+![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/zcurve2d-small.gif)
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/zcurve.ts)
 
 ### Zigzag columns
 
-![anim](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/grid-iterators/zigzagcolumns2d-small.gif)
+![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/zigzagcolumns2d-small.gif)
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/zigzag-columns.ts)
 
 ### Zigzag diagonal
 
-![anim](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/grid-iterators/zigzagdiag2d-small.gif)
+![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/zigzagdiag2d-small.gif)
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/zigzag-diagonal.ts)
 
 ### Zigzag rows
 
-![anim](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/grid-iterators/zigzagrows2d-small.gif)
+![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/zigzagrows2d-small.gif)
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/zigzag-rows.ts)
 
@@ -89,6 +89,15 @@ renderer](https://sunflow.sf.net).
 For more basic 2D/3D grid iteration, also see `range2d()` & `range3d()`
 in
 [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
+
+### Miscellaneous
+
+Additionally, the following non-exhaustive iterators are available:
+
+- [circle](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/circle.ts)
+- [hline](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/hvline.ts)
+- [vline](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/hvline.ts)
+- [line](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/line.ts)
 
 ${status}
 

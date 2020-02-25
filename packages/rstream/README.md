@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/rstream](https://media.thi.ng/umbrella/banners/thing-rstream.svg?1582472094)
+# ![@thi.ng/rstream](https://media.thi.ng/umbrella/banners/thing-rstream.svg?1582660666)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream.svg)](https://www.npmjs.com/package/@thi.ng/rstream)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream.svg)
@@ -475,7 +475,7 @@ m.next(true);
 
 Source: [merge()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/stream-merge.ts)
 
-![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/rstream/rstream-merge.png)
+![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream/rstream-merge.png)
 
 Returns a new `StreamMerge` instance, a subscription type consuming
 inputs from multiple inputs and passing received values on to any
@@ -560,7 +560,7 @@ a.next("a");
 
 Source: [sync()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/stream-sync.ts)
 
-![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/rstream/rstream-sync.png)
+![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream/rstream-sync.png)
 
 Similar to `StreamMerge` above, but with extra synchronization of
 inputs. Before emitting any new values, `StreamSync` collects values
@@ -613,7 +613,7 @@ for further reference of the various behavior options.
 
 Source: [pubsub()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/pubsub.ts)
 
-![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/rstream/rstream-pubsub.png)
+![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream/rstream-pubsub.png)
 
 Topic based stream splitter. Applies `topic` function to each
 received value and only forwards it to child subscriptions for
@@ -683,7 +683,7 @@ fromIterable([1, 2, 3, 4]).subscribe(bisect((x) => !!(x & 1), odd, even));
 
 Source: [sidechainPartition()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/subs/sidechain-partition.ts)
 
-![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/rstream/rstream-sidechain-partition.png)
+![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream/rstream-sidechain-partition.png)
 
 Buffers values from `src` until side chain fires, then emits buffer
 (unless empty) and repeats process until either input is done. By
@@ -708,7 +708,7 @@ merge([
 
 Source: [sidechainToggle()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/subs/sidechain-toggle.ts)
 
-![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/rstream/rstream-sidechain-toggle.png)
+![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream/rstream-sidechain-toggle.png)
 
 Filters values from input based on values received from side chain. By
 default, the value read from the side chain is ignored, however the
@@ -736,7 +736,7 @@ fromInterval(500)
 
 Source: [forkJoin()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/forkjoin.ts)
 
-![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/rstream/rstream-forkjoin.png)
+![diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rstream/rstream-forkjoin.png)
 
 ##### worker.ts
 

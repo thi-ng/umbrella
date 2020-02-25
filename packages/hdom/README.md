@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/hdom](https://media.thi.ng/umbrella/banners/thing-hdom.svg?1581297781)
+# ![@thi.ng/hdom](https://media.thi.ng/umbrella/banners/thing-hdom.svg?1582660661)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hdom.svg)](https://www.npmjs.com/package/@thi.ng/hdom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdom.svg)
@@ -516,7 +516,7 @@ previous DOM tree.
 - hdom can be used **without** diffing, i.e. for compact, one-off DOM
   creation (see [`renderOnce()`](#renderonce))
 
-![hdom dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/hdom/hdom-dataflow.png)
+![hdom dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom/hdom-dataflow.png)
 
 The syntax is inspired by Clojure's
 [Hiccup](https://github.com/weavejester/hiccup) and

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/transducers-binary](https://media.thi.ng/umbrella/banners/thing-transducers-binary.svg?1582472090)
+# ![@thi.ng/transducers-binary](https://media.thi.ng/umbrella/banners/thing-transducers-binary.svg?1582642859)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-binary.svg)](https://www.npmjs.com/package/@thi.ng/transducers-binary)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-binary.svg)
@@ -75,6 +75,10 @@ A selection:
 Figlet-style bitmap font creation with transducers
 
 [Live demo](https://demo.thi.ng/umbrella/bitmap-font/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/bitmap-font)
+
+### wolfram <!-- NOTOC -->
+
+[Live demo](https://demo.thi.ng/umbrella/wolfram/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/wolfram)
 
 ## API
 

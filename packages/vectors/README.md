@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/vectors](https://media.thi.ng/umbrella/banners/thing-vectors.svg?1582472090)
+# ![@thi.ng/vectors](https://media.thi.ng/umbrella/banners/thing-vectors.svg?1582642859)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/vectors.svg)
@@ -144,7 +144,7 @@ Partially ported from [thi.ng/geom](http://thi.ng/geom) (Clojure) and
 yarn add @thi.ng/vectors
 ```
 
-Package sizes (gzipped): ESM: 10.8KB / CJS: 13.6KB / UMD: 12.0KB
+Package sizes (gzipped): ESM: 10.8KB / CJS: 13.7KB / UMD: 12.0KB
 
 ## Dependencies
 
@@ -531,6 +531,7 @@ Component wise op with one input vector and single scalar:
 | `angleRatio`       | ✓       |       |         |     |                          |
 | `atan_2`           | ✓       | 2-4   |         |     | `Math.atan2(y, x)`       |
 | `bisect`           |         | 2     |         |     |                          |
+| `cornerBisector`   | ✓       |       |         |     |                          |
 | `degrees`          | ✓       | 2-4   |         |     |                          |
 | `direction`        | ✓       |       |         |     | normalize(b - a)         |
 | `faceForward`      | ✓       |       |         |     |                          |

@@ -315,7 +315,7 @@ previous DOM tree.
 - hdom can be used **without** diffing, i.e. for compact, one-off DOM
   creation (see [`renderOnce()`](#renderonce))
 
-![hdom dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/hdom/hdom-dataflow.png)
+![hdom dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom/hdom-dataflow.png)
 
 The syntax is inspired by Clojure's
 [Hiccup](https://github.com/weavejester/hiccup) and

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/sax](https://media.thi.ng/umbrella/banners/thing-sax.svg?1581297783)
+# ![@thi.ng/sax](https://media.thi.ng/umbrella/banners/thing-sax.svg?1582660663)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/sax.svg)

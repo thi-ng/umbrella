@@ -107,7 +107,7 @@ to extract blend coefficients from the src & dest colors:
 const customOp = porterDuffInt(() => -0.5, () => 1);
 ```
 
-![custom operator](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/porter-duff/porter-duff-custom.png)
+![custom operator](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/porter-duff/porter-duff-custom.png)
 
 The following coefficient functions are included by default (and are
 used by all standard operators):

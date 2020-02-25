@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/malloc](https://media.thi.ng/umbrella/banners/thing-malloc.svg?1581297778)
+# ![@thi.ng/malloc](https://media.thi.ng/umbrella/banners/thing-malloc.svg?1582660657)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/malloc.svg)](https://www.npmjs.com/package/@thi.ng/malloc)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/malloc.svg)
@@ -61,7 +61,7 @@ to/from local storage.
 
 The new memory layout is as follows:
 
-![Memory layout diagram](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/malloc/malloc-layout.png)
+![Memory layout diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/malloc/malloc-layout.png)
 
 ## Free block compaction / coalescing
 
@@ -75,14 +75,14 @@ The following diagrams show the different stages of this behavior:
 
 In this example we start with three allocated neighboring blocks:
 
-![Block compaction (initial layout)](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/malloc/compact-01.png)
+![Block compaction (initial layout)](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/malloc/compact-01.png)
 
 **Non-continuous free blocks**
 
 After freeing the first & last blocks, the free blocks are linked via
 their `next` pointers, but still occupy non-continuous memory regions.
 
-![Block compaction (non-continuous)](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/malloc/compact-02.png)
+![Block compaction (non-continuous)](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/malloc/compact-02.png)
 
 **Single compacted free block**
 
@@ -95,7 +95,7 @@ pointer to the beginning of that block and considers it blank space that
 way (essentially a merge with the remaining free/unallocated space of
 the array buffer).
 
-![Block compaction (result)](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/malloc/compact-03.png)
+![Block compaction (result)](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/malloc/compact-03.png)
 
 ## Block splitting
 
@@ -112,12 +112,12 @@ This behavior too is enabled by default, but can be turned off via the
 
 Initial example layout:
 
-![Block splitting (initial layout)](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/malloc/split-01.png)
+![Block splitting (initial layout)](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/malloc/split-01.png)
 
 Layout after allocating only a smaller size than the free block's
 capacity:
 
-![Block splitting (result)](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/malloc/split-02.png)
+![Block splitting (result)](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/malloc/split-02.png)
 
 ### Status
 

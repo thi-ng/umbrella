@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-splines](https://media.thi.ng/umbrella/banners/thing-geom-splines.svg?1581297788)
+# ![@thi.ng/geom-splines](https://media.thi.ng/umbrella/banners/thing-geom-splines.svg?1582660669)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-splines.svg)](https://www.npmjs.com/package/@thi.ng/geom-splines)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-splines.svg)
@@ -15,7 +15,7 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [API](#api)
-  - [Polygon to cubic curve conversion](#polygon-to-cubic-curve-conversion)
+  - [Cubic curve conversion from polygons & polylines](#cubic-curve-conversion-from-polygons--polylines)
     - [Poly vertices as control points](#poly-vertices-as-control-points)
     - [Poly vertices as break points](#poly-vertices-as-break-points)
 - [Authors](#authors)
@@ -39,7 +39,7 @@ Current implementations partially based on
 yarn add @thi.ng/geom-splines
 ```
 
-Package sizes (gzipped): ESM: 2.0KB / CJS: 2.1KB / UMD: 2.0KB
+Package sizes (gzipped): ESM: 2.2KB / CJS: 2.3KB / UMD: 2.3KB
 
 ## Dependencies
 
@@ -66,10 +66,11 @@ A selection:
 
 [Generated API docs](https://docs.thi.ng/umbrella/geom-splines/)
 
-### Polygon to cubic curve conversion
+### Cubic curve conversion from polygons & polylines
 
-Currently, there're two ways to convert a polygon into a sequence of
-cubic curve segments. Both modes support customizable curve tightness.
+Currently, there're two ways to convert a polygon/polyline into a
+sequence of cubic curve segments. Both modes support customizable curve
+tightness.
 
 Furthermore, both conversion modes can be instructed to use uniformly
 scaled control point tangents: In uniform mode, the tangents have a
@@ -85,7 +86,7 @@ points.
 
 | Proportional tangent scale                                                                           | Uniform tangent scale                                                                             |
 |------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
-| ![](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-splines-cp-nonuni.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-splines-cp-uni.png) |
+| ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-splines-cp-nonuni.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-splines-cp-uni.png) |
 
 #### Poly vertices as break points
 
@@ -96,7 +97,7 @@ each vertex corner, taking into the convexity of each poly vertex.
 
 | Proportional tangent scale                                                                           | Uniform tangent scale                                                                             |
 |------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
-| ![](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-splines-bp-nonuni.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-splines-bp-uni.png) |
+| ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-splines-bp-nonuni.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-splines-bp-uni.png) |
 
 ## Authors
 

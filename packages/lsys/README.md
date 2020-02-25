@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/lsys](https://media.thi.ng/umbrella/banners/thing-lsys.svg?1581297784)
+# ![@thi.ng/lsys](https://media.thi.ng/umbrella/banners/thing-lsys.svg?1582660665)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/lsys.svg)](https://www.npmjs.com/package/@thi.ng/lsys)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/lsys.svg)
@@ -72,8 +72,8 @@ Package sizes (gzipped): ESM: 0.7KB / CJS: 0.7KB / UMD: 0.8KB
 
 | Examples                                                                                    |                                                                                             |
 |---------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
-| ![example](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/lsys/lsys-0.png) | ![example](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/lsys/lsys-1.png) |
-| ![example](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/lsys/lsys-2.png) | ![example](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/lsys/lsys-3.png) |
+| ![example](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/lsys/lsys-0.png) | ![example](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/lsys/lsys-1.png) |
+| ![example](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/lsys/lsys-2.png) | ![example](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/lsys/lsys-3.png) |
 
 ```ts
 import * as lsys from "@thi.ng/lsys";
@@ -119,7 +119,7 @@ stochastic features, e.g. randomization of growth direction and
 stochastic branch termination. This enables the creation of more organic
 looking structures, like shown in the following example:
 
- ![stochastic L-system](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/lsys/lsys-tree.png)
+ ![stochastic L-system](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/lsys/lsys-tree.png)
 
 ```ts
 import { XsAdd } from "@thi.ng/random";

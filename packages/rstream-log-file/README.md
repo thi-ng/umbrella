@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/rstream-log-file](https://media.thi.ng/umbrella/banners/thing-rstream-log-file.svg?1581297787)
+# ![@thi.ng/rstream-log-file](https://media.thi.ng/umbrella/banners/thing-rstream-log-file.svg?1582660668)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-log-file.svg)](https://www.npmjs.com/package/@thi.ng/rstream-log-file)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-log-file.svg)

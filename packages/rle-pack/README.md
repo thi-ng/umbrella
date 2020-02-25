@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/rle-pack](https://media.thi.ng/umbrella/banners/thing-rle-pack.svg?1581297779)
+# ![@thi.ng/rle-pack](https://media.thi.ng/umbrella/banners/thing-rle-pack.svg?1582660658)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rle-pack.svg)](https://www.npmjs.com/package/@thi.ng/rle-pack)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rle-pack.svg)
@@ -33,7 +33,7 @@ chunks...
 
 ### Encoding format
 
-![data layout](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/rle/rle-layout.png)
+![data layout](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rle/rle-layout.png)
 
 - 32 bits - original number of words
 - 5 bits - word size

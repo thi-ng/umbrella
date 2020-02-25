@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/pixel](https://media.thi.ng/umbrella/banners/thing-pixel.svg?1581297780)
+# ![@thi.ng/pixel](https://media.thi.ng/umbrella/banners/thing-pixel.svg?1582660659)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pixel.svg)
@@ -25,7 +25,7 @@ This project is part of the
 
 Typed array backed, packed pixel buffer w/ customizable formats, blitting, conversions.
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/pixel/pixel-basics.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/pixel-basics.png)
 
 - Buffer creation from HTML image elements w/ opt resize & format
   conversion (browser only)

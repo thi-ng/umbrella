@@ -52,7 +52,7 @@ ${examples}
 
 ${docLink}
 
-![example screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-voronoi.jpg)
+![example screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-voronoi.jpg)
 
 ```ts
 import * as g from "@thi.ng/geom";

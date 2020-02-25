@@ -16,7 +16,7 @@ ${pkg.description}
 Mainly intended for exporting geometry to be used in various CAD
 applications (e.g. Rhino, Houdini, Fusion 360)
 
-![houdini](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/iges/iges-houdini.png)
+![houdini](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/iges/iges-houdini.png)
 
 ${status}
 

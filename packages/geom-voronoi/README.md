@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-voronoi](https://media.thi.ng/umbrella/banners/thing-geom-voronoi.svg?1582472097)
+# ![@thi.ng/geom-voronoi](https://media.thi.ng/umbrella/banners/thing-geom-voronoi.svg?1582660670)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-voronoi.svg)](https://www.npmjs.com/package/@thi.ng/geom-voronoi)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-voronoi.svg)
@@ -85,7 +85,7 @@ Poisson-disk shape-aware sampling, Voronoi & Minimum Spanning Tree visualization
 
 [Generated API docs](https://docs.thi.ng/umbrella/geom-voronoi/)
 
-![example screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/geom/geom-voronoi.jpg)
+![example screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-voronoi.jpg)
 
 ```ts
 import * as g from "@thi.ng/geom";
