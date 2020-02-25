@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.1.7...@thi.ng/imgui@0.2.0) (2020-02-25)
+
+
+### Features
+
+* **imgui:** remove layout, update imports, readme ([c89a6d8](https://github.com/thi-ng/umbrella/commit/c89a6d8c200631f257cb8051214848ebd88cdd9a))
+
+
+
+
+
 # 0.1.0 (2019-08-16)
 
 ### Bug Fixes

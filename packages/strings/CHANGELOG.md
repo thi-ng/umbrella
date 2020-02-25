@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.4.0...@thi.ng/strings@1.5.0) (2020-02-25)
+
+
+### Features
+
+* **strings:** add uuid() formatter ([4592742](https://github.com/thi-ng/umbrella/commit/4592742daad1020aa336e3d819324f4555223160))
+
+
+
+
+
 # [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.3.3...@thi.ng/strings@1.4.0) (2020-01-26)
 
 ### Features

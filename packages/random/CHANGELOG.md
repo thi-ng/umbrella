@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.2.0...@thi.ng/random@1.3.0) (2020-02-25)
+
+
+### Features
+
+* **random:** add uuidv4Bytes() ([e9ea10f](https://github.com/thi-ng/umbrella/commit/e9ea10f5e6b2415863e1a552207758aa3a47c9cf))
+
+
+
+
+
 # [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.1.15...@thi.ng/random@1.2.0) (2020-01-26)
 
 ### Features

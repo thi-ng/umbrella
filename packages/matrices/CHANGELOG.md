@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/matrices@0.5.12...@thi.ng/matrices@0.6.0) (2020-02-25)
+
+
+### Bug Fixes
+
+* **matrices:** ([#205](https://github.com/thi-ng/umbrella/issues/205)) fix `w` calc in mulV344() ([46c1061](https://github.com/thi-ng/umbrella/commit/46c1061078d394d5b6ec2885f1025741893fe452))
+
+
+### Features
+
+* **matrices:** add project3(), refactor unproject(), mulV344() ([61c36fc](https://github.com/thi-ng/umbrella/commit/61c36fcc532d78b21d78dddeee5523155b0798b2))
+
+
+
+
+
 ## [0.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/matrices@0.5.0...@thi.ng/matrices@0.5.1) (2019-07-08)
 
 ### Bug Fixes

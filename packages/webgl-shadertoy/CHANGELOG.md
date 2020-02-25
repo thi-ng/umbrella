@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-shadertoy@0.1.4...@thi.ng/webgl-shadertoy@0.2.0) (2020-02-25)
+
+
+### Features
+
+* **webgl-shadertoy:** fix [#199](https://github.com/thi-ng/umbrella/issues/199), add generics ([e392774](https://github.com/thi-ng/umbrella/commit/e392774945e4d29f145dba2fd17f99919b2c5fd5))
+
+
+
+
+
 # 0.1.0 (2019-09-21)
 
 ### Bug Fixes

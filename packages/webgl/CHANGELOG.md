@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@0.2.4...@thi.ng/webgl@0.3.0) (2020-02-25)
+
+
+### Features
+
+* **webgl:** update Texture.config() default handling ([4c62d87](https://github.com/thi-ng/umbrella/commit/4c62d87016d6e73899d9c080e9c9f7fb03d841f2))
+
+
+
+
+
 ## [0.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@0.2.2...@thi.ng/webgl@0.2.3) (2020-01-24)
 
 ### Bug Fixes

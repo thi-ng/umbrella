@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/binary@1.2.1...@thi.ng/binary@1.3.0) (2020-02-25)
+
+
+### Features
+
+* **binary:** add byte conversions ([564310b](https://github.com/thi-ng/umbrella/commit/564310b45db9f6cfe8788af14e47c7346ef6a576))
+* **binary:** add endianess detection, 64bit float/int/uint conv ([856e035](https://github.com/thi-ng/umbrella/commit/856e035d68d727c717ce1cbb021e171fca81e3a8))
+* **binary:** add float & 64bit byte conversions ([9882196](https://github.com/thi-ng/umbrella/commit/9882196a887c842efda2c835d3b86f491893c6f9))
+* **binary:** add float/int conversions ([2e02d34](https://github.com/thi-ng/umbrella/commit/2e02d345a970eeb783109c6b92b32fda6b322235))
+* **binary:** add lane16/setLane16, flip8/16, mux ([1aa0a5e](https://github.com/thi-ng/umbrella/commit/1aa0a5e665ab067840ade8abdab73bfd2d0e9325))
+
+
+
+
+
 # [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/binary@1.1.1...@thi.ng/binary@1.2.0) (2019-11-30)
 
 ### Features

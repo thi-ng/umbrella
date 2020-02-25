@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-binary@0.4.9...@thi.ng/transducers-binary@0.5.0) (2020-02-25)
+
+
+### Features
+
+* **transducers-binary:** add asBytes() transducer ([b8589d4](https://github.com/thi-ng/umbrella/commit/b8589d4cd0971adea9538fa9066870b4e32ded5b))
+* **transducers-binary:** add hexDumpString() syntax sugar ([a3ad805](https://github.com/thi-ng/umbrella/commit/a3ad805aefa4dd3836d7fb00cfbf0cf147b9d059))
+* **transducers-binary:** add missing type impls to asBytes() ([6514292](https://github.com/thi-ng/umbrella/commit/65142927f520d0a90ca4f4bd5b7d570527e72923))
+* **transducers-binary:** update bytes(), add i24/u24 support ([6d658d0](https://github.com/thi-ng/umbrella/commit/6d658d072977009f1289ba2cf230970dabf55d7f))
+
+
+
+
+
 # [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-binary@0.3.12...@thi.ng/transducers-binary@0.4.0) (2019-07-07)
 
 ### Features

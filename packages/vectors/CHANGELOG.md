@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.0.3...@thi.ng/vectors@4.1.0) (2020-02-25)
+
+
+### Bug Fixes
+
+* **vectors:** add missing types & annotations (TS3.8) ([8680e37](https://github.com/thi-ng/umbrella/commit/8680e37c39156ff8a772b51f2466a661853b7bd6))
+
+
+### Features
+
+* **vectors:** add cornerBisector() ([b2d923e](https://github.com/thi-ng/umbrella/commit/b2d923ecf0b41ce6b8a3e1261957825d6dc1ec93))
+* **vectors:** add ivec/uvec/bvec conversions ([1147acb](https://github.com/thi-ng/umbrella/commit/1147acbf5d0aca20bb243cb1381b788633545f06))
+
+
+
+
+
 # [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@3.3.1...@thi.ng/vectors@4.0.0) (2019-11-09)
 
 ### Bug Fixes

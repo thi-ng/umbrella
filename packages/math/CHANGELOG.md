@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.6.0...@thi.ng/math@1.7.0) (2020-02-25)
+
+
+### Features
+
+* **math:** add minNonZero2/3() ([49c88d9](https://github.com/thi-ng/umbrella/commit/49c88d917ca7089841f5c26ca92293582d80f148))
+* **math:** add safeDiv() (from [@nkint](https://github.com/nkint) PR [#206](https://github.com/thi-ng/umbrella/issues/206)) ([0567b93](https://github.com/thi-ng/umbrella/commit/0567b93b881467c634fc4723cad986432faecd83))
+
+
+
+
+
 # [1.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.5.1...@thi.ng/math@1.6.0) (2020-01-24)
 
 ### Features

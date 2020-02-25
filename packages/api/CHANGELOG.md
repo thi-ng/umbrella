@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.7.1...@thi.ng/api@6.8.0) (2020-02-25)
+
+
+### Bug Fixes
+
+* **api:** fix imports ([e3e0cdc](https://github.com/thi-ng/umbrella/commit/e3e0cdc244dd25f33c633e7477e56baf0a9e53e4))
+
+
+### Features
+
+* **api:** add TypedKeys, NumericKeys, StringKeys ([fab1a5e](https://github.com/thi-ng/umbrella/commit/fab1a5ec800b68c8170f7c9f138781c6e7fd4263))
+
+
+
+
+
 # [6.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.6.0...@thi.ng/api@6.7.0) (2020-01-24)
 
 ### Bug Fixes

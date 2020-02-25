@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.7.10...@thi.ng/geom@1.8.0) (2020-02-25)
+
+
+### Bug Fixes
+
+* **geom:** add missing type annotation (asCubic) ([c4f7eae](https://github.com/thi-ng/umbrella/commit/c4f7eae7fe45a7e48e43420afe273a06d56ae936))
+
+
+### Features
+
+* **geom:** add cubic polyline impls ([263f2f9](https://github.com/thi-ng/umbrella/commit/263f2f9709045c40defcd79804a6b10dd44cb6b4))
+* **geom:** add edges() impl for AABB ([b800686](https://github.com/thi-ng/umbrella/commit/b800686d42acf105764dddb6591eabc1ea72bcf8))
+* **geom:** add fitIntoBounds3, fix [#202](https://github.com/thi-ng/umbrella/issues/202), [#206](https://github.com/thi-ng/umbrella/issues/206) ([19be3fa](https://github.com/thi-ng/umbrella/commit/19be3fa516147a7612515e80c11dfc9ebcff50b3))
+* **geom:** add intersectionAABB/Rect() ([ecc9706](https://github.com/thi-ng/umbrella/commit/ecc9706c13d2bf7929b63fb8bf023d8ce2477268))
+* **geom:** add Points3 and supporting ops ([7e1adb7](https://github.com/thi-ng/umbrella/commit/7e1adb7b0d4e78dc6988fe3c32e1fd6170914dc8))
+
+
+
+
+
 # [1.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.6.1...@thi.ng/geom@1.7.0) (2019-07-12)
 
 ### Bug Fixes

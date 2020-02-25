@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-splines@0.4.5...@thi.ng/geom-splines@0.5.0) (2020-02-25)
+
+
+### Features
+
+* **geom-splines:** add openCubicFromBreakPoints(), refactor, [#208](https://github.com/thi-ng/umbrella/issues/208) ([1882262](https://github.com/thi-ng/umbrella/commit/188226216099a33b6251540b497ce8fd946502d8))
+* **geom-splines:** add openCubicFromControlPoints(), [#208](https://github.com/thi-ng/umbrella/issues/208) ([1a95d94](https://github.com/thi-ng/umbrella/commit/1a95d94df2396e14247cca84d3add7385d74a693))
+* **geom-splines:** add sampleCubicArray(), sampleQuadraticArray(), [#208](https://github.com/thi-ng/umbrella/issues/208) ([bfc09db](https://github.com/thi-ng/umbrella/commit/bfc09db2493d50576c9f57a93273a3bd102b7ad8))
+
+
+
+
+
 # [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-splines@0.3.4...@thi.ng/geom-splines@0.4.0) (2019-08-21)
 
 ### Features

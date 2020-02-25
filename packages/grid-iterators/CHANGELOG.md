@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/grid-iterators@0.2.3...@thi.ng/grid-iterators@0.3.0) (2020-02-25)
+
+
+### Features
+
+* **grid-iterators:** add line & circle iterators ([a6b757d](https://github.com/thi-ng/umbrella/commit/a6b757dd350e46404bfd2f82e58d8a3bc2c5b133))
+
+
+
+
+
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/grid-iterators@0.1.0...@thi.ng/grid-iterators@0.2.0) (2019-11-09)
 
 ### Features

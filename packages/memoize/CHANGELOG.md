@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@1.1.8...@thi.ng/memoize@2.0.0) (2020-02-25)
+
+
+### Code Refactoring
+
+* **memoize:** update imports ([d6b5614](https://github.com/thi-ng/umbrella/commit/d6b56148ec3ab36f97bc3fce94d7c49a74e81e96))
+
+
+### BREAKING CHANGES
+
+* **memoize:** replace obsolete Fn type aliases w/ @thi.ng/api types
+
+
+
+
+
 # [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@1.0.9...@thi.ng/memoize@1.1.0) (2019-07-07)
 
 ### Bug Fixes

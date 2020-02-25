@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@6.2.1...@thi.ng/transducers@6.3.0) (2020-02-25)
+
+
+### Features
+
+* **transducers:** add peek() xform, update readme ([26aa228](https://github.com/thi-ng/umbrella/commit/26aa2284309dcf07cca3714dec23a799efd44f30))
+
+
+
+
+
 # [6.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@6.1.0...@thi.ng/transducers@6.2.0) (2020-01-24)
 
 ### Bug Fixes
