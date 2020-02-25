@@ -1,5 +1,5 @@
 {
-    "name": "@thi.ng/download",
+    "name": "@thi.ng/download-asset",
     "version": "0.1.0",
     "description": "Local asset download for web apps, with automatic MIME type detection",
     "module": "./index.js",
