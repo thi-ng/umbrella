@@ -1,6 +1,11 @@
 import { defmulti, Implementation1, MultiFn1O } from "@thi.ng/defmulti";
 import { CubicOpts, IShape, Type } from "@thi.ng/geom-api";
-import { closedCubicFromBreakPoints, closedCubicFromControlPoints } from "@thi.ng/geom-splines";
+import {
+    closedCubicFromBreakPoints,
+    closedCubicFromControlPoints,
+    openCubicFromBreakPoints,
+    openCubicFromControlPoints
+} from "@thi.ng/geom-splines";
 import { TAU } from "@thi.ng/math";
 import { mapcat } from "@thi.ng/transducers";
 import { Circle } from "../api/circle";
@@ -9,6 +14,7 @@ import { Group } from "../api/group";
 import { Line } from "../api/line";
 import { Path } from "../api/path";
 import { Polygon } from "../api/polygon";
+import { Polyline } from "../api/polyline";
 import { Quadratic } from "../api/quadratic";
 import { Rect } from "../api/rect";
 import { arc } from "../ctors/arc";
@@ -45,6 +51,14 @@ asCubic.addAll(<IObjectOf<Implementation1<unknown, Cubic[]>>>{
         return (opts.breakPoints
             ? closedCubicFromBreakPoints($.points, opts.scale, opts.uniform)
             : closedCubicFromControlPoints($.points, opts.scale, opts.uniform)
+        ).map((pts) => new Cubic(pts, copyAttribs($)));
+    },
+
+    [Type.POLYLINE]: ($: Polyline, opts: Partial<CubicOpts> = {}) => {
+        opts = { breakPoints: false, scale: 1 / 3, uniform: false, ...opts };
+        return (opts.breakPoints
+            ? openCubicFromBreakPoints($.points, opts.scale, opts.uniform)
+            : openCubicFromControlPoints($.points, opts.scale, opts.uniform)
         ).map((pts) => new Cubic(pts, copyAttribs($)));
     },
 

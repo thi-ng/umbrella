@@ -1,5 +1,6 @@
 import { defmulti, Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
 import { IShape, SamplingOpts, Type } from "@thi.ng/geom-api";
+import { Cubic } from "../api/cubic";
 import { Path } from "../api/path";
 import { Polyline } from "../api/polyline";
 import { copyAttribs } from "../internal/copy-attribs";
@@ -18,6 +19,8 @@ asPolyline.addAll(<
         Implementation1O<unknown, number | Partial<SamplingOpts>, Polyline>
     >
 >{
+    [Type.CUBIC]: ($:Cubic, opts) => new Polyline(vertices($, opts)),
+
     [Type.POINTS]: ($: IShape, opts) =>
         new Polyline(vertices($, opts), copyAttribs($)),
 
