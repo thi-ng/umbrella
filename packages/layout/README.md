@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/layout](https://media.thi.ng/umbrella/banners/thing-layout.svg?1581555255)
+# ![@thi.ng/layout](https://media.thi.ng/umbrella/banners/thing-layout.svg?1582662658)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/layout.svg)](https://www.npmjs.com/package/@thi.ng/layout)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/layout.svg)
@@ -30,7 +30,7 @@ to define other layout types / implementations.
 
 ### Status
 
-**ALPHA** - bleeding edge / work-in-progress
+**STABLE** - used in production
 
 ## Installation
 
