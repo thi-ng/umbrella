@@ -1,4 +1,4 @@
-import { download } from "@thi.ng/download";
+import { download } from "@thi.ng/download-asset";
 import { serialize } from "@thi.ng/hiccup";
 import { snapshot, valueSetter } from "@thi.ng/interceptors";
 import { getIn } from "@thi.ng/paths";

@@ -1,4 +1,4 @@
-import { download } from "@thi.ng/download";
+import { download } from "@thi.ng/download-asset";
 import { dropdown } from "@thi.ng/hdom-components";
 import {
     fromIterable,

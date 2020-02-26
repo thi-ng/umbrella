@@ -1,4 +1,4 @@
-import { download, MIME_SVG } from "@thi.ng/download";
+import { download } from "@thi.ng/download-asset";
 import {
     asCubic,
     asSvg,
