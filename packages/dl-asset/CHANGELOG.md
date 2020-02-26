@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.3.0 (2020-02-26)
+
+
+### Features
+
+* **dl-asset:** yet another npm forced pkg rename ([2cae33c](https://github.com/thi-ng/umbrella/commit/2cae33cabd379b3d449079edfc255d9cf56c34a5))
+
+
+
+
+
 # 0.2.0 (2020-02-26)
 
 
