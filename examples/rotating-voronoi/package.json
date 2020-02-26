@@ -24,7 +24,7 @@
         "typescript": "^3.8.2"
     },
     "dependencies": {
-        "@thi.ng/download-asset": "latest",
+        "@thi.ng/dl-asset": "latest",
         "@thi.ng/geom": "latest",
         "@thi.ng/geom-resample": "latest",
         "@thi.ng/geom-voronoi": "latest",
@@ -46,7 +46,7 @@
     "thi.ng": {
         "readme": [
             "atom",
-            "download",
+            "dl-asset",
             "geom",
             "geom-resample",
             "geom-voronoi",

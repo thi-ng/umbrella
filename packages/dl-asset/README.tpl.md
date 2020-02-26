@@ -40,7 +40,7 @@ ${examples}
 ${docLink}
 
 ```ts
-import { download } from "@thi.ng/download-asset";
+import { download } from "@thi.ng/dl-asset";
 
 const src = "Hellö wörld!";
 

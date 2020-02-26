@@ -16,7 +16,7 @@
     },
     "dependencies": {
         "@thi.ng/color": "latest",
-        "@thi.ng/download-asset": "latest",
+        "@thi.ng/dl-asset": "latest",
         "@thi.ng/geom": "latest",
         "@thi.ng/hdom": "latest",
         "@thi.ng/hdom-canvas": "latest",
@@ -38,7 +38,7 @@
     },
     "thi.ng": {
         "readme": [
-            "download",
+            "dl-asset",
             "hdom",
             "hdom-canvas",
             "hdom-components",

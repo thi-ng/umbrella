@@ -1,9 +1,9 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/download](https://media.thi.ng/umbrella/banners/thing-download.svg?1582642856)
+# ![@thi.ng/dl-asset](https://media.thi.ng/umbrella/banners/thing-dl-asset.svg?1582677839)
 
-[![npm version](https://img.shields.io/npm/v/@thi.ng/download.svg)](https://www.npmjs.com/package/@thi.ng/download)
-![npm downloads](https://img.shields.io/npm/dm/@thi.ng/download.svg)
+[![npm version](https://img.shields.io/npm/v/@thi.ng/dl-asset.svg)](https://www.npmjs.com/package/@thi.ng/dl-asset)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dl-asset.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
@@ -29,7 +29,7 @@ Local asset download for web apps, with automatic MIME type detection.
 ## Installation
 
 ```bash
-yarn add @thi.ng/download
+yarn add @thi.ng/dl-asset
 ```
 
 Package sizes (gzipped): ESM: 0.4KB / CJS: 0.4KB / UMD: 0.5KB
@@ -74,10 +74,10 @@ Interactive grid generator, SVG generation & export, undo/redo support
 
 ## API
 
-[Generated API docs](https://docs.thi.ng/umbrella/download/)
+[Generated API docs](https://docs.thi.ng/umbrella/dl-asset/)
 
 ```ts
-import { download } from "@thi.ng/download";
+import { download } from "@thi.ng/dl-asset";
 
 const src = "Hellö wörld!";
 

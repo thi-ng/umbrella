@@ -18,7 +18,7 @@
     },
     "dependencies": {
         "@thi.ng/compose": "latest",
-        "@thi.ng/download-asset": "latest",
+        "@thi.ng/dl-asset": "latest",
         "@thi.ng/equiv": "latest",
         "@thi.ng/hdom": "latest",
         "@thi.ng/hdom-components": "latest",

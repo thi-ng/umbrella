@@ -1,4 +1,4 @@
-import { download } from "@thi.ng/download-asset";
+import { download } from "@thi.ng/dl-asset";
 import { equiv } from "@thi.ng/equiv";
 import { canvas2D } from "@thi.ng/hdom-components";
 import { fit, mix } from "@thi.ng/math";

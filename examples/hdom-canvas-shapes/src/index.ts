@@ -1,5 +1,5 @@
 import { hsva } from "@thi.ng/color";
-import { download } from "@thi.ng/download-asset";
+import { download } from "@thi.ng/dl-asset";
 import { pathBuilder, points } from "@thi.ng/geom";
 import { canvas, normalizeTree } from "@thi.ng/hdom-canvas";
 import { dropdown } from "@thi.ng/hdom-components";

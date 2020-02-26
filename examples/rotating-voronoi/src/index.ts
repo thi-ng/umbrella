@@ -1,4 +1,4 @@
-import { download } from "@thi.ng/download-asset";
+import { download } from "@thi.ng/dl-asset";
 import {
     asCubic,
     asSvg,
