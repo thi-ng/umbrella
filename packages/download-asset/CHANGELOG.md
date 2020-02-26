@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.2.0 (2020-02-26)
+
+
+### Features
+
+* **download-asset:** rename pkg due to npm name conflict ([b490b46](https://github.com/thi-ng/umbrella/commit/b490b46994333103f653514c96531637d903202d))
+
+
+
+
+
 # 0.1.0 (2020-02-25)
 
 

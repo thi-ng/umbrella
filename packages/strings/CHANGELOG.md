@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.5.0...@thi.ng/strings@1.5.1) (2020-02-26)
+
+**Note:** Version bump only for package @thi.ng/strings
+
+
+
+
+
 # [1.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.4.0...@thi.ng/strings@1.5.0) (2020-02-25)
 
 

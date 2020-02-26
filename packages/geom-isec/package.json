@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom-isec",
-    "version": "0.4.2",
+    "version": "0.4.3",
     "description": "2D/3D shape intersection checks",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,11 +38,11 @@
         "typescript": "^3.8.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.8.0",
-        "@thi.ng/geom-api": "^1.0.2",
-        "@thi.ng/geom-closest-point": "^0.3.13",
-        "@thi.ng/math": "^1.7.0",
-        "@thi.ng/vectors": "^4.1.0"
+        "@thi.ng/api": "^6.8.1",
+        "@thi.ng/geom-api": "^1.0.3",
+        "@thi.ng/geom-closest-point": "^0.3.14",
+        "@thi.ng/math": "^1.7.1",
+        "@thi.ng/vectors": "^4.1.1"
     },
     "keywords": [
         "2D",

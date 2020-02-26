@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/atom",
-    "version": "3.1.5",
+    "version": "3.1.6",
     "description": "Mutable wrappers for nested immutable values with optional undo/redo history and transaction support",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,11 +38,11 @@
         "typescript": "^3.8.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.8.0",
-        "@thi.ng/checks": "^2.5.1",
-        "@thi.ng/equiv": "^1.0.13",
-        "@thi.ng/errors": "^1.2.4",
-        "@thi.ng/paths": "^3.0.2"
+        "@thi.ng/api": "^6.8.1",
+        "@thi.ng/checks": "^2.5.2",
+        "@thi.ng/equiv": "^1.0.14",
+        "@thi.ng/errors": "^1.2.5",
+        "@thi.ng/paths": "^3.0.3"
     },
     "keywords": [
         "derived views",
