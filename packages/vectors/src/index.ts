@@ -139,6 +139,7 @@ export * from "./rotate";
 export * from "./rotates";
 export * from "./round";
 export * from "./rshift";
+export * from "./safe-div";
 export * from "./set";
 export * from "./setc";
 export * from "./setn";
