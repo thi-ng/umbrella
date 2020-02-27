@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/random](https://media.thi.ng/umbrella/banners/thing-random.svg?1582472085)
+# ![@thi.ng/random](https://media.thi.ng/umbrella/banners/thing-random.svg?1582807038)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/random.svg)](https://www.npmjs.com/package/@thi.ng/random)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/random.svg)
@@ -29,6 +29,7 @@ seedable) pseudo-random number generator implementations, incl. a
 
 - [Smush32](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/smush.ts)
 - [System](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/system.ts)
+- [Xoshiro128](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/xoshiro128.ts)
 - [XorShift128](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/xorshift128.ts)
 - [XorWow](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/xorwow.ts)
 - [XsAdd](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/xsadd.ts)
@@ -46,7 +47,7 @@ Partially ported from C implementations taken from
 yarn add @thi.ng/random
 ```
 
-Package sizes (gzipped): ESM: 1.2KB / CJS: 1.2KB / UMD: 1.3KB
+Package sizes (gzipped): ESM: 1.2KB / CJS: 1.3KB / UMD: 1.3KB
 
 ## Dependencies
 

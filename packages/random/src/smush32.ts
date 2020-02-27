@@ -1,17 +1,16 @@
 import { ARandom } from "./arandom";
+import { DEFAULT_SEED_32 } from "./constants";
 import type { IBuffered, ICopy } from "@thi.ng/api";
 import type { ISeedable } from "./api";
 
 // https://github.com/thi-ng/ct-head/blob/master/random.h
 // https://gist.github.com/voidqk/d112165a26b45244a65298933c0349a4
 
-const DEFAULT_SEED = 0xdecafbad;
-
 export class Smush32 extends ARandom
     implements IBuffered<Uint32Array>, ICopy<Smush32>, ISeedable<number> {
     buffer: Uint32Array;
 
-    constructor(seed = DEFAULT_SEED) {
+    constructor(seed = DEFAULT_SEED_32) {
         super();
         this.buffer = new Uint32Array([seed, 0]);
     }

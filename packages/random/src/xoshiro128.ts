@@ -3,12 +3,13 @@ import { DEFAULT_SEED_128 } from "./constants";
 import type { IBuffered, ICopy } from "@thi.ng/api";
 import type { ISeedable } from "./api";
 
-// https://en.wikipedia.org/wiki/Xorshift
+// http://prng.di.unimi.it/
+// http://prng.di.unimi.it/xoshiro128plusplus.c
 
-export class XorShift128 extends ARandom
+export class Xoshiro128 extends ARandom
     implements
         IBuffered<Uint32Array>,
-        ICopy<XorShift128>,
+        ICopy<Xoshiro128>,
         ISeedable<ArrayLike<number>> {
     buffer: Uint32Array;
 
@@ -19,7 +20,7 @@ export class XorShift128 extends ARandom
     }
 
     copy() {
-        return new XorShift128(this.buffer);
+        return new Xoshiro128(this.buffer);
     }
 
     bytes() {
@@ -33,13 +34,16 @@ export class XorShift128 extends ARandom
 
     int() {
         const s = this.buffer;
-        let t = s[3];
-        let w;
-        t ^= t << 11;
-        t ^= t >>> 8;
-        s[3] = s[2];
-        s[2] = s[1];
-        w = s[1] = s[0];
-        return (s[0] = (t ^ w ^ (w >>> 19)) >>> 0);
+        let t = s[0] + s[3];
+        const res = ((t << 7) | (t >>> 25)) >>> 0;
+        t = s[1] << 9;
+        s[2] ^= s[0];
+        s[3] ^= s[1];
+        s[1] ^= s[2];
+        s[0] ^= s[3];
+        s[2] ^= t;
+        t = s[3];
+        s[3] = ((t << 11) | (t >>> 21)) >>> 0;
+        return res;
     }
 }

@@ -1,16 +1,9 @@
 import { ARandom } from "./arandom";
+import { DEFAULT_SEED_128 } from "./constants";
 import type { IBuffered, ICopy } from "@thi.ng/api";
 import type { ISeedable } from "./api";
 
 // https://en.wikipedia.org/wiki/Xorshift#xorwow
-
-const DEFAULT_SEED = [
-    0xdecafbad,
-    0x2fa9d75b,
-    0xe41f67e3,
-    0x5c83ec1a,
-    0xf69a5c71
-];
 
 export class XorWow extends ARandom
     implements
@@ -19,7 +12,7 @@ export class XorWow extends ARandom
         ISeedable<ArrayLike<number>> {
     buffer: Uint32Array;
 
-    constructor(seed: ArrayLike<number> = DEFAULT_SEED) {
+    constructor(seed: ArrayLike<number> = DEFAULT_SEED_128) {
         super();
         this.buffer = new Uint32Array(5);
         this.seed(seed);
