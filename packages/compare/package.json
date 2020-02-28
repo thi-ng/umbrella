@@ -37,6 +37,9 @@
         "typedoc": "^0.16.10",
         "typescript": "^3.8.2"
     },
+    "dependencies": {
+        "@thi.ng/api": "^6.8.2"
+    },
     "keywords": [
         "comparator",
         "ES6",
