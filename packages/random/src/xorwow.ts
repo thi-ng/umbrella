@@ -1,5 +1,5 @@
 import { ARandom } from "./arandom";
-import { DEFAULT_SEED_128 } from "./constants";
+import { DEFAULT_SEED_160 } from "./constants";
 import type { IBuffered, ICopy } from "@thi.ng/api";
 import type { ISeedable } from "./api";
 
@@ -12,7 +12,7 @@ export class XorWow extends ARandom
         ISeedable<ArrayLike<number>> {
     buffer: Uint32Array;
 
-    constructor(seed: ArrayLike<number> = DEFAULT_SEED_128) {
+    constructor(seed: ArrayLike<number> = DEFAULT_SEED_160) {
         super();
         this.buffer = new Uint32Array(5);
         this.seed(seed);
