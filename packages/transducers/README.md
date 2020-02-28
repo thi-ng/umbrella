@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/transducers](https://media.thi.ng/umbrella/banners/thing-transducers.svg?1582660659)
+# ![@thi.ng/transducers](https://media.thi.ng/umbrella/banners/thing-transducers.svg?1582933570)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers.svg)
@@ -143,7 +143,7 @@ package.
 yarn add @thi.ng/transducers
 ```
 
-Package sizes (gzipped): ESM: 7.8KB / CJS: 8.4KB / UMD: 7.6KB
+Package sizes (gzipped): ESM: 7.9KB / CJS: 8.4KB / UMD: 7.6KB
 
 ## Dependencies
 
@@ -967,6 +967,7 @@ tx.transduce(tx.map((x) => x*10), tx.push(), tx.range(4))
 - [partitionOf](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/partition-of.ts)
 - [partitionSort](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/partition-sort.ts)
 - [partitionSync](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/partition-sync.ts)
+- [partitionTime](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/partition-time.ts)
 - [partition](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/partition.ts)
 - [peek](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/peek.ts)
 - [pluck](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/pluck.ts)
