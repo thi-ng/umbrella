@@ -83,7 +83,7 @@ cat << EOF > "$MODULE"/package.json
         "typescript": "^3.8.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.7.1"
+        "@thi.ng/api": "^6.8.2"
     },
     "keywords": [
         "ES6",
