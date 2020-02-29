@@ -11,6 +11,14 @@ export const format = (fmt: any[], ...args: any[]) => {
 };
 
 /**
+ * HOF version of {@link format}.
+ *
+ * @param fmt
+ */
+export const defFormat = (fmt: any[]) => (...args: any[]) =>
+    format(fmt, ...args);
+
+/**
  * Helper for {@link format} which ignores argument and always returns
  * an empty string.
  *
