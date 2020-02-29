@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/strings](https://media.thi.ng/umbrella/banners/thing-strings.svg?1582660658)
+# ![@thi.ng/strings](https://media.thi.ng/umbrella/banners/thing-strings.svg?1582942887)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/strings.svg)
@@ -15,6 +15,13 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [API](#api)
+  - [Basic usage examples](#basic-usage-examples)
+  - [General](#general)
+  - [Case](#case)
+  - [Numeric & radix-based](#numeric--radix-based)
+  - [Padding / truncation](#padding--truncation)
+  - [Units](#units)
+  - [String creation & editing](#string-creation--editing)
 - [Authors](#authors)
 - [License](#license)
 
@@ -66,7 +73,82 @@ Basic crypto-currency candle chart with multiple moving averages plots
 
 [Generated API docs](https://docs.thi.ng/umbrella/strings/)
 
-TODO
+### Basic usage examples
+
+```ts
+// create a custom string formatter
+const fmt = defFormat([
+    "Price: ",
+    { usd: "$", gbp: "£", eur: "€" },
+    float(2),
+    " (",
+    percent(2),
+    " off)"
+]);
+
+// use format
+fmt("usd", 1.2345, 0.5);
+// Price: $1.23 (50.00% off)
+
+fmt("eur", 1.2345, 0.25)
+// Price: €1.23 (25.00% off)
+```
+
+### General
+
+- `defFormat`
+- `format`
+- `hstr`
+- `ignore`
+- `interpolate`
+- `str`
+
+### Case
+
+- `camel`
+- `capitalize`
+- `kebab`
+- `lower`
+- `snake`
+- `slugify`
+- `upper`
+
+### Numeric & radix-based
+
+- `float`
+- `floatFixedWidth`
+- `maybeParseFloat`
+- `maybeParseInt`
+- `percent`
+- `radix`
+- `uuid`
+- `B8` / `B16` / `B32` - binary / bitstring presets
+- `U8` / `U16` / `U24` / `U32` / `U64` - hex format presets (unsigned values)
+
+### Padding / truncation
+
+- `center`
+- `padLeft`
+- `padRight`
+- `truncate`
+- `truncateLeft`
+- `wrap`
+- `Z2` / `Z3` / `Z4` - zero-pad presets
+
+### Units
+
+- `units` - define new unit w/ magnitudes & suffixes
+- `bits`
+- `bytes`
+- `grams`
+- `meters`
+- `seconds`
+
+### String creation & editing
+
+- `charRange`
+- `repeat`
+- `splice`
 
 ## Authors
 
