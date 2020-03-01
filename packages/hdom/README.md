@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/hdom](https://media.thi.ng/umbrella/banners/thing-hdom.svg?1582660661)
+# ![@thi.ng/hdom](https://media.thi.ng/umbrella/banners/thing-hdom.svg?1583078715)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hdom.svg)](https://www.npmjs.com/package/@thi.ng/hdom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdom.svg)
@@ -161,27 +161,45 @@ A selection:
 
 ### devcards <!-- NOTOC -->
 
+BMI calculator in a devcards format
+
 [Live demo](https://demo.thi.ng/umbrella/devcards/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/devcards)
 
 ### hdom-benchmark2 <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-benchmark2.png)
 
+hdom update performance benchmark w/ config options
+
 [Live demo](https://demo.thi.ng/umbrella/hdom-benchmark2/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-benchmark2)
 
 ### hdom-canvas-clock <!-- NOTOC -->
 
-Realtime clock demo for @thi.ng/hdom-canvas
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-canvas-clock.png)
+
+Realtime analog clock demo
 
 [Live demo](https://demo.thi.ng/umbrella/hdom-canvas-clock/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-clock)
+
+### hdom-canvas-particles <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-canvas-particles.jpg)
+
+2D Bezier curve-guided particle system
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-canvas-particles/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-particles)
 
 ### hdom-canvas-shapes <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png)
 
+Various hdom-canvas shape drawing examples & SVG conversion / export
+
 [Live demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes)
 
 ### hdom-dropdown-fuzzy <!-- NOTOC -->
+
+Custom dropdown UI component w/ fuzzy search
 
 [Live demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-dropdown-fuzzy)
 
@@ -192,6 +210,8 @@ Using hdom in an Elm-like manner
 [Live demo](https://demo.thi.ng/umbrella/hdom-elm/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-elm)
 
 ### hydrate-basics <!-- NOTOC -->
+
+Hiccup / hdom DOM hydration example
 
 [Live demo](https://demo.thi.ng/umbrella/hydrate-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hydrate-basics)
 
@@ -205,6 +225,8 @@ Canvas based Immediate Mode GUI components
 
 ### interceptor-basics2 <!-- NOTOC -->
 
+Event handling w/ interceptors and side effects
+
 [Live demo](https://demo.thi.ng/umbrella/interceptor-basics2/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/interceptor-basics2)
 
 ### iso-plasma <!-- NOTOC -->
@@ -214,6 +236,14 @@ Canvas based Immediate Mode GUI components
 Animated sine plasma effect visualized using contour lines
 
 [Live demo](https://demo.thi.ng/umbrella/iso-plasma/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/iso-plasma)
+
+### json-components <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/json-components.jpg)
+
+Transforming JSON into UI components
+
+[Live demo](https://demo.thi.ng/umbrella/json-components/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/json-components)
 
 ### ramp-synth <!-- NOTOC -->
 
@@ -225,11 +255,15 @@ Unison wavetable synth with waveform editor
 
 ### router-basics <!-- NOTOC -->
 
-Basic @thi.ng/router & @thi.ng/hdom app skeleton
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/router-basics.jpg)
+
+Complete mini SPA app w/ router & async content loading
 
 [Live demo](https://demo.thi.ng/umbrella/router-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/router-basics)
 
 ### rstream-dataflow <!-- NOTOC -->
+
+Minimal rstream dataflow graph
 
 [Live demo](https://demo.thi.ng/umbrella/rstream-dataflow/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-dataflow)
 
@@ -251,11 +285,17 @@ Interactive grid generator, SVG generation & export, undo/redo support
 
 ### rstream-spreadsheet <!-- NOTOC -->
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-spreadsheet.png)
+
+rstream based spreadsheet w/ S-expression formula DSL
+
 [Live demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-spreadsheet)
 
 ### scenegraph <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph.png)
+
+2D scenegraph & shape picking
 
 [Live demo](https://demo.thi.ng/umbrella/scenegraph/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph)
 
@@ -263,13 +303,25 @@ Interactive grid generator, SVG generation & export, undo/redo support
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-image.png)
 
+2D scenegraph & image map based geometry manipulation
+
 [Live demo](https://demo.thi.ng/umbrella/scenegraph-image/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-image)
 
 ### soa-ecs <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/soa-ecs-100k.png)
 
+Entity Component System w/ 100k 3D particles
+
 [Live demo](https://demo.thi.ng/umbrella/soa-ecs/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/soa-ecs)
+
+### svg-barchart <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-barchart.png)
+
+Simplistic SVG bar chart component
+
+[Live demo](https://demo.thi.ng/umbrella/svg-barchart/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-barchart)
 
 ### svg-waveform <!-- NOTOC -->
 
@@ -279,11 +331,27 @@ Additive waveform synthesis & SVG visualization with undo/redo
 
 [Live demo](https://demo.thi.ng/umbrella/svg-waveform/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-waveform)
 
+### talk-slides <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/talk-slides.png)
+
+hdom based slide deck viewer & slides from my ClojureX 2018 keynote
+
+[Live demo](https://demo.thi.ng/umbrella/talk-slides/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/talk-slides)
+
 ### todo-list <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/todo-list.png)
+
+Obligatory to-do list example with undo/redo
 
 [Live demo](https://demo.thi.ng/umbrella/todo-list/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/todo-list)
 
 ### triple-query <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/triple-query.png)
+
+Triple store query results & sortable table
 
 [Live demo](https://demo.thi.ng/umbrella/triple-query/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/triple-query)
 

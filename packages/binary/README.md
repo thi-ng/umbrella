@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/binary](https://media.thi.ng/umbrella/banners/thing-binary.svg?1582472083)
+# ![@thi.ng/binary](https://media.thi.ng/umbrella/banners/thing-binary.svg?1583078709)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/binary.svg)](https://www.npmjs.com/package/@thi.ng/binary)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/binary.svg)
@@ -49,6 +49,8 @@ A selection:
 ### hdom-benchmark2 <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-benchmark2.png)
+
+hdom update performance benchmark w/ config options
 
 [Live demo](https://demo.thi.ng/umbrella/hdom-benchmark2/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-benchmark2)
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/compare](https://media.thi.ng/umbrella/banners/thing-compare.svg?1582856125)
+# ![@thi.ng/compare](https://media.thi.ng/umbrella/banners/thing-compare.svg?1583078710)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/compare.svg)](https://www.npmjs.com/package/@thi.ng/compare)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/compare.svg)
@@ -57,6 +57,10 @@ directory are using this package.
 A selection:
 
 ### triple-query <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/triple-query.png)
+
+Triple store query results & sortable table
 
 [Live demo](https://demo.thi.ng/umbrella/triple-query/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/triple-query)
 

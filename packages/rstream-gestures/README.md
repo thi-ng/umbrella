@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/rstream-gestures](https://media.thi.ng/umbrella/banners/thing-rstream-gestures.svg?1582660668)
+# ![@thi.ng/rstream-gestures](https://media.thi.ng/umbrella/banners/thing-rstream-gestures.svg?1583078720)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-gestures.svg)](https://www.npmjs.com/package/@thi.ng/rstream-gestures)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-gestures.svg)
@@ -74,6 +74,8 @@ Canvas based dial widget
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-knn.jpg)
 
+Doodle w/ K-nearest neighbor search result visualization
+
 [Live demo](https://demo.thi.ng/umbrella/geom-knn/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-knn)
 
 ### gesture-analysis <!-- NOTOC -->
@@ -86,7 +88,9 @@ Mouse gesture / stroke analysis, simplification, corner detection
 
 ### hdom-canvas-draw <!-- NOTOC -->
 
-Interactive @thi.ng/hdom-canvas pattern drawing demo using transducers
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-canvas-draw.jpg)
+
+Interactive pattern drawing demo using transducers
 
 [Live demo](https://demo.thi.ng/umbrella/hdom-canvas-draw/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-draw)
 
@@ -108,7 +112,7 @@ Worker based, interactive Mandelbrot visualization
 
 ### multitouch <!-- NOTOC -->
 
-Basic @thi.ng/rstream-gestures multi-touch demo
+Basic rstream-gestures multi-touch demo
 
 [Live demo](https://demo.thi.ng/umbrella/multitouch/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/multitouch)
 

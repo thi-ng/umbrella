@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/bench](https://media.thi.ng/umbrella/banners/thing-bench.svg?1581297776)
+# ![@thi.ng/bench](https://media.thi.ng/umbrella/banners/thing-bench.svg?1583078709)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/bench.svg)](https://www.npmjs.com/package/@thi.ng/bench)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/bench.svg)
@@ -58,6 +58,8 @@ A selection:
 ### shader-ast-workers <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-workers.jpg)
+
+Fork-join worker-based raymarch renderer
 
 [Live demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-workers)
 

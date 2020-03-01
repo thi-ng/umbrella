@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/webgl-msdf](https://media.thi.ng/umbrella/banners/thing-webgl-msdf.svg?1581297788)
+# ![@thi.ng/webgl-msdf](https://media.thi.ng/umbrella/banners/thing-webgl-msdf.svg?1583078723)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/webgl-msdf.svg)](https://www.npmjs.com/package/@thi.ng/webgl-msdf)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/webgl-msdf.svg)
@@ -67,6 +67,8 @@ A selection:
 ### webgl-msdf <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-msdf.jpg)
+
+WebGL MSDF text rendering & particle system
 
 [Live demo](https://demo.thi.ng/umbrella/webgl-msdf/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-msdf)
 

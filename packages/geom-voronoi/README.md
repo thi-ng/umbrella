@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-voronoi](https://media.thi.ng/umbrella/banners/thing-geom-voronoi.svg?1582660670)
+# ![@thi.ng/geom-voronoi](https://media.thi.ng/umbrella/banners/thing-geom-voronoi.svg?1583078722)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-voronoi.svg)](https://www.npmjs.com/package/@thi.ng/geom-voronoi)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-voronoi.svg)
@@ -78,6 +78,8 @@ Poisson-disk shape-aware sampling, Voronoi & Minimum Spanning Tree visualization
 ### rotating-voronoi <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rotating-voronoi.jpg)
+
+Animated Voronoi diagram, cubic splines & SVG download
 
 [Live demo](https://demo.thi.ng/umbrella/rotating-voronoi/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rotating-voronoi)
 

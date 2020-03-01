@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-resample](https://media.thi.ng/umbrella/banners/thing-geom-resample.svg?1581297786)
+# ![@thi.ng/geom-resample](https://media.thi.ng/umbrella/banners/thing-geom-resample.svg?1583078720)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-resample.svg)](https://www.npmjs.com/package/@thi.ng/geom-resample)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-resample.svg)
@@ -60,6 +60,8 @@ A selection:
 ### rotating-voronoi <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rotating-voronoi.jpg)
+
+Animated Voronoi diagram, cubic splines & SVG download
 
 [Live demo](https://demo.thi.ng/umbrella/rotating-voronoi/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rotating-voronoi)
 

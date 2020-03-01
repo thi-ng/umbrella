@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-tessellate](https://media.thi.ng/umbrella/banners/thing-geom-tessellate.svg?1581297788)
+# ![@thi.ng/geom-tessellate](https://media.thi.ng/umbrella/banners/thing-geom-tessellate.svg?1583078721)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-tessellate.svg)](https://www.npmjs.com/package/@thi.ng/geom-tessellate)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-tessellate.svg)
@@ -65,6 +65,8 @@ A selection:
 ### geom-tessel <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/tessel.png)
+
+Animated, recursive polygon tessellations
 
 [Live demo](https://demo.thi.ng/umbrella/geom-tessel/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-tessel)
 

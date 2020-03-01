@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/transducers](https://media.thi.ng/umbrella/banners/thing-transducers.svg?1582933570)
+# ![@thi.ng/transducers](https://media.thi.ng/umbrella/banners/thing-transducers.svg?1583078713)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers.svg)
@@ -218,11 +218,15 @@ Basic crypto-currency candle chart with multiple moving averages plots
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-benchmark2.png)
 
+hdom update performance benchmark w/ config options
+
 [Live demo](https://demo.thi.ng/umbrella/hdom-benchmark2/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-benchmark2)
 
 ### hdom-canvas-draw <!-- NOTOC -->
 
-Interactive @thi.ng/hdom-canvas pattern drawing demo using transducers
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-canvas-draw.jpg)
+
+Interactive pattern drawing demo using transducers
 
 [Live demo](https://demo.thi.ng/umbrella/hdom-canvas-draw/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-draw)
 
@@ -230,9 +234,13 @@ Interactive @thi.ng/hdom-canvas pattern drawing demo using transducers
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png)
 
+Various hdom-canvas shape drawing examples & SVG conversion / export
+
 [Live demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes)
 
 ### hdom-dropdown-fuzzy <!-- NOTOC -->
+
+Custom dropdown UI component w/ fuzzy search
 
 [Live demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-dropdown-fuzzy)
 
@@ -243,6 +251,14 @@ Interactive @thi.ng/hdom-canvas pattern drawing demo using transducers
 Animated sine plasma effect visualized using contour lines
 
 [Live demo](https://demo.thi.ng/umbrella/iso-plasma/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/iso-plasma)
+
+### json-components <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/json-components.jpg)
+
+Transforming JSON into UI components
+
+[Live demo](https://demo.thi.ng/umbrella/json-components/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/json-components)
 
 ### mandelbrot <!-- NOTOC -->
 
@@ -255,6 +271,8 @@ Worker based, interactive Mandelbrot visualization
 ### package-stats <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/package-stats.png)
+
+CLI util to visualize umbrella pkg stats
 
 [Live demo](https://demo.thi.ng/umbrella/package-stats/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/package-stats)
 
@@ -269,6 +287,8 @@ Unison wavetable synth with waveform editor
 ### rotating-voronoi <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rotating-voronoi.jpg)
+
+Animated Voronoi diagram, cubic splines & SVG download
 
 [Live demo](https://demo.thi.ng/umbrella/rotating-voronoi/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rotating-voronoi)
 
@@ -292,7 +312,17 @@ Interactive grid generator, SVG generation & export, undo/redo support
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-workers.jpg)
 
+Fork-join worker-based raymarch renderer
+
 [Live demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-workers)
+
+### svg-barchart <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-barchart.png)
+
+Simplistic SVG bar chart component
+
+[Live demo](https://demo.thi.ng/umbrella/svg-barchart/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-barchart)
 
 ### svg-waveform <!-- NOTOC -->
 
@@ -304,9 +334,17 @@ Additive waveform synthesis & SVG visualization with undo/redo
 
 ### triple-query <!-- NOTOC -->
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/triple-query.png)
+
+Triple store query results & sortable table
+
 [Live demo](https://demo.thi.ng/umbrella/triple-query/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/triple-query)
 
 ### webgl-cube <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-cube.png)
+
+WebGL multi-colored cube mesh
 
 [Live demo](https://demo.thi.ng/umbrella/webgl-cube/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-cube)
 
@@ -314,17 +352,33 @@ Additive waveform synthesis & SVG visualization with undo/redo
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-grid.jpg)
 
+WebGL instancing, animated grid
+
 [Live demo](https://demo.thi.ng/umbrella/webgl-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-grid)
 
 ### webgl-msdf <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-msdf.jpg)
 
+WebGL MSDF text rendering & particle system
+
 [Live demo](https://demo.thi.ng/umbrella/webgl-msdf/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-msdf)
 
 ### wolfram <!-- NOTOC -->
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/wolfram.png)
+
+1D Wolfram automata with OBJ point cloud export
+
 [Live demo](https://demo.thi.ng/umbrella/wolfram/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/wolfram)
+
+### xml-converter <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/xml-converter.png)
+
+XML/HTML/SVG to hiccup/JS conversion
+
+[Live demo](https://demo.thi.ng/umbrella/xml-converter/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/xml-converter)
 
 ### Basic usage patterns
 

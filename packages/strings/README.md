@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/strings](https://media.thi.ng/umbrella/banners/thing-strings.svg?1582942887)
+# ![@thi.ng/strings](https://media.thi.ng/umbrella/banners/thing-strings.svg?1583078712)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/strings.svg)
@@ -67,7 +67,19 @@ Basic crypto-currency candle chart with multiple moving averages plots
 
 ### rstream-spreadsheet <!-- NOTOC -->
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-spreadsheet.png)
+
+rstream based spreadsheet w/ S-expression formula DSL
+
 [Live demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-spreadsheet)
+
+### xml-converter <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/xml-converter.png)
+
+XML/HTML/SVG to hiccup/JS conversion
+
+[Live demo](https://demo.thi.ng/umbrella/xml-converter/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/xml-converter)
 
 ## API
 

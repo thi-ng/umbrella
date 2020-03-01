@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/router](https://media.thi.ng/umbrella/banners/thing-router.svg?1581297779)
+# ![@thi.ng/router](https://media.thi.ng/umbrella/banners/thing-router.svg?1583078711)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/router.svg)](https://www.npmjs.com/package/@thi.ng/router)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/router.svg)
@@ -64,7 +64,9 @@ A selection:
 
 ### router-basics <!-- NOTOC -->
 
-Basic @thi.ng/router & @thi.ng/hdom app skeleton
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/router-basics.jpg)
+
+Complete mini SPA app w/ router & async content loading
 
 [Live demo](https://demo.thi.ng/umbrella/router-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/router-basics)
 

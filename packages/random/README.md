@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/random](https://media.thi.ng/umbrella/banners/thing-random.svg?1582807038)
+# ![@thi.ng/random](https://media.thi.ng/umbrella/banners/thing-random.svg?1583078711)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/random.svg)](https://www.npmjs.com/package/@thi.ng/random)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/random.svg)
@@ -73,6 +73,8 @@ Interactive inverse FFT toy synth
 ### shader-ast-evo <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-evo.jpg)
+
+Evolutionary shader generation using genetic programming
 
 [Live demo](https://demo.thi.ng/umbrella/shader-ast-evo/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-evo)
 

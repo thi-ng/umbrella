@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/color](https://media.thi.ng/umbrella/banners/thing-color.svg?1581297783)
+# ![@thi.ng/color](https://media.thi.ng/umbrella/banners/thing-color.svg?1583078717)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/color.svg)
@@ -214,11 +214,15 @@ Heatmap visualization of this mono-repo's commits
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/grid-iterators.png)
 
+Visualization of different grid iterator strategies
+
 [Live demo](https://demo.thi.ng/umbrella/grid-iterators/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/grid-iterators)
 
 ### shader-ast-workers <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-workers.jpg)
+
+Fork-join worker-based raymarch renderer
 
 [Live demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-workers)
 

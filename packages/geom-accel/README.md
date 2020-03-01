@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-accel](https://media.thi.ng/umbrella/banners/thing-geom-accel.svg?1581297787)
+# ![@thi.ng/geom-accel](https://media.thi.ng/umbrella/banners/thing-geom-accel.svg?1583078721)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-accel.svg)](https://www.npmjs.com/package/@thi.ng/geom-accel)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-accel.svg)
@@ -71,6 +71,8 @@ A selection:
 ### geom-knn <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-knn.jpg)
+
+Doodle w/ K-nearest neighbor search result visualization
 
 [Live demo](https://demo.thi.ng/umbrella/geom-knn/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-knn)
 

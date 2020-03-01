@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/rstream](https://media.thi.ng/umbrella/banners/thing-rstream.svg?1582660666)
+# ![@thi.ng/rstream](https://media.thi.ng/umbrella/banners/thing-rstream.svg?1583078719)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream.svg)](https://www.npmjs.com/package/@thi.ng/rstream)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream.svg)
@@ -174,7 +174,9 @@ Basic crypto-currency candle chart with multiple moving averages plots
 
 ### hdom-canvas-draw <!-- NOTOC -->
 
-Interactive @thi.ng/hdom-canvas pattern drawing demo using transducers
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-canvas-draw.jpg)
+
+Interactive pattern drawing demo using transducers
 
 [Live demo](https://demo.thi.ng/umbrella/hdom-canvas-draw/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-draw)
 
@@ -206,6 +208,8 @@ Minimal Markdown to Hiccup to HTML parser / transformer
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rotating-voronoi.jpg)
 
+Animated Voronoi diagram, cubic splines & SVG download
+
 [Live demo](https://demo.thi.ng/umbrella/rotating-voronoi/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rotating-voronoi)
 
 ### rstream-event-loop <!-- NOTOC -->
@@ -226,15 +230,31 @@ Interactive grid generator, SVG generation & export, undo/redo support
 
 ### rstream-spreadsheet <!-- NOTOC -->
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-spreadsheet.png)
+
+rstream based spreadsheet w/ S-expression formula DSL
+
 [Live demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-spreadsheet)
 
 ### shader-ast-workers <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-workers.jpg)
 
+Fork-join worker-based raymarch renderer
+
 [Live demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-workers)
 
+### talk-slides <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/talk-slides.png)
+
+hdom based slide deck viewer & slides from my ClojureX 2018 keynote
+
+[Live demo](https://demo.thi.ng/umbrella/talk-slides/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/talk-slides)
+
 ### transducers-hdom <!-- NOTOC -->
+
+Transducer & rstream based hdom UI updates
 
 [Live demo](https://demo.thi.ng/umbrella/transducers-hdom/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/transducers-hdom)
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/math](https://media.thi.ng/umbrella/banners/thing-math.svg?1582480837)
+# ![@thi.ng/math](https://media.thi.ng/umbrella/banners/thing-math.svg?1583078709)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/math.svg)
@@ -62,9 +62,19 @@ Basic crypto-currency candle chart with multiple moving averages plots
 
 ### hdom-canvas-draw <!-- NOTOC -->
 
-Interactive @thi.ng/hdom-canvas pattern drawing demo using transducers
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-canvas-draw.jpg)
+
+Interactive pattern drawing demo using transducers
 
 [Live demo](https://demo.thi.ng/umbrella/hdom-canvas-draw/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-draw)
+
+### hdom-canvas-particles <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-canvas-particles.jpg)
+
+2D Bezier curve-guided particle system
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-canvas-particles/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-particles)
 
 ### iso-plasma <!-- NOTOC -->
 
@@ -94,13 +104,25 @@ Unison wavetable synth with waveform editor
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph.png)
 
+2D scenegraph & shape picking
+
 [Live demo](https://demo.thi.ng/umbrella/scenegraph/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph)
 
 ### scenegraph-image <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-image.png)
 
+2D scenegraph & image map based geometry manipulation
+
 [Live demo](https://demo.thi.ng/umbrella/scenegraph-image/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-image)
+
+### svg-barchart <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-barchart.png)
+
+Simplistic SVG bar chart component
+
+[Live demo](https://demo.thi.ng/umbrella/svg-barchart/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-barchart)
 
 ## API
 

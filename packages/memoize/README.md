@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/memoize](https://media.thi.ng/umbrella/banners/thing-memoize.svg?1581297777)
+# ![@thi.ng/memoize](https://media.thi.ng/umbrella/banners/thing-memoize.svg?1583078710)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/memoize.svg)](https://www.npmjs.com/package/@thi.ng/memoize)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/memoize.svg)
@@ -62,11 +62,15 @@ A selection:
 
 ### multitouch <!-- NOTOC -->
 
-Basic @thi.ng/rstream-gestures multi-touch demo
+Basic rstream-gestures multi-touch demo
 
 [Live demo](https://demo.thi.ng/umbrella/multitouch/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/multitouch)
 
 ### rstream-spreadsheet <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-spreadsheet.png)
+
+rstream based spreadsheet w/ S-expression formula DSL
 
 [Live demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-spreadsheet)
 

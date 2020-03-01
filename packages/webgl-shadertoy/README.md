@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/webgl-shadertoy](https://media.thi.ng/umbrella/banners/thing-webgl-shadertoy.svg?1581297788)
+# ![@thi.ng/webgl-shadertoy](https://media.thi.ng/umbrella/banners/thing-webgl-shadertoy.svg?1583078723)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/webgl-shadertoy.svg)](https://www.npmjs.com/package/@thi.ng/webgl-shadertoy)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/webgl-shadertoy.svg)
@@ -61,9 +61,15 @@ A selection:
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-evo.jpg)
 
+Evolutionary shader generation using genetic programming
+
 [Live demo](https://demo.thi.ng/umbrella/shader-ast-evo/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-evo)
 
 ### webgl-shadertoy <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-shadertoy.jpg)
+
+Shadertoy-like WebGL setup
 
 [Live demo](https://demo.thi.ng/umbrella/webgl-shadertoy/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-shadertoy)
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/sax](https://media.thi.ng/umbrella/banners/thing-sax.svg?1582660663)
+# ![@thi.ng/sax](https://media.thi.ng/umbrella/banners/thing-sax.svg?1583078719)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/sax.svg)
@@ -14,6 +14,7 @@ This project is part of the
   - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
   - [Basic usage](#basic-usage)
   - [Partial parsing & result post-processing](#partial-parsing--result-post-processing)
@@ -66,6 +67,22 @@ Package sizes (gzipped): ESM: 1.9KB / CJS: 2.0KB / UMD: 2.1KB
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-fsm)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+### xml-converter <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/xml-converter.png)
+
+XML/HTML/SVG to hiccup/JS conversion
+
+[Live demo](https://demo.thi.ng/umbrella/xml-converter/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/xml-converter)
 
 ## API
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/vectors](https://media.thi.ng/umbrella/banners/thing-vectors.svg?1582642859)
+# ![@thi.ng/vectors](https://media.thi.ng/umbrella/banners/thing-vectors.svg?1583078715)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/vectors.svg)
@@ -144,7 +144,7 @@ Partially ported from [thi.ng/geom](http://thi.ng/geom) (Clojure) and
 yarn add @thi.ng/vectors
 ```
 
-Package sizes (gzipped): ESM: 10.8KB / CJS: 13.7KB / UMD: 12.0KB
+Package sizes (gzipped): ESM: 10.9KB / CJS: 13.7KB / UMD: 12.1KB
 
 ## Dependencies
 
@@ -178,6 +178,8 @@ Canvas based dial widget
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-knn.jpg)
 
+Doodle w/ K-nearest neighbor search result visualization
+
 [Live demo](https://demo.thi.ng/umbrella/geom-knn/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-knn)
 
 ### gesture-analysis <!-- NOTOC -->
@@ -190,19 +192,33 @@ Mouse gesture / stroke analysis, simplification, corner detection
 
 ### hdom-canvas-clock <!-- NOTOC -->
 
-Realtime clock demo for @thi.ng/hdom-canvas
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-canvas-clock.png)
+
+Realtime analog clock demo
 
 [Live demo](https://demo.thi.ng/umbrella/hdom-canvas-clock/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-clock)
 
 ### hdom-canvas-draw <!-- NOTOC -->
 
-Interactive @thi.ng/hdom-canvas pattern drawing demo using transducers
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-canvas-draw.jpg)
+
+Interactive pattern drawing demo using transducers
 
 [Live demo](https://demo.thi.ng/umbrella/hdom-canvas-draw/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-draw)
+
+### hdom-canvas-particles <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-canvas-particles.jpg)
+
+2D Bezier curve-guided particle system
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-canvas-particles/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-particles)
 
 ### hdom-canvas-shapes <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png)
+
+Various hdom-canvas shape drawing examples & SVG conversion / export
 
 [Live demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes)
 
@@ -218,11 +234,15 @@ Animated sine plasma effect visualized using contour lines
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/package-stats.png)
 
+CLI util to visualize umbrella pkg stats
+
 [Live demo](https://demo.thi.ng/umbrella/package-stats/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/package-stats)
 
 ### rotating-voronoi <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rotating-voronoi.jpg)
+
+Animated Voronoi diagram, cubic splines & SVG download
 
 [Live demo](https://demo.thi.ng/umbrella/rotating-voronoi/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rotating-voronoi)
 
@@ -230,17 +250,23 @@ Animated sine plasma effect visualized using contour lines
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph.png)
 
+2D scenegraph & shape picking
+
 [Live demo](https://demo.thi.ng/umbrella/scenegraph/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph)
 
 ### scenegraph-image <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-image.png)
 
+2D scenegraph & image map based geometry manipulation
+
 [Live demo](https://demo.thi.ng/umbrella/scenegraph-image/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-image)
 
 ### soa-ecs <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/soa-ecs-100k.png)
+
+Entity Component System w/ 100k 3D particles
 
 [Live demo](https://demo.thi.ng/umbrella/soa-ecs/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/soa-ecs)
 
@@ -254,17 +280,25 @@ Animated sine plasma effect visualized using contour lines
 
 ### webgl-cube <!-- NOTOC -->
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-cube.png)
+
+WebGL multi-colored cube mesh
+
 [Live demo](https://demo.thi.ng/umbrella/webgl-cube/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-cube)
 
 ### webgl-grid <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-grid.jpg)
 
+WebGL instancing, animated grid
+
 [Live demo](https://demo.thi.ng/umbrella/webgl-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-grid)
 
 ### webgl-msdf <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-msdf.jpg)
+
+WebGL MSDF text rendering & particle system
 
 [Live demo](https://demo.thi.ng/umbrella/webgl-msdf/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-msdf)
 

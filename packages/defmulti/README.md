@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/defmulti](https://media.thi.ng/umbrella/banners/thing-defmulti.svg?1581297778)
+# ![@thi.ng/defmulti](https://media.thi.ng/umbrella/banners/thing-defmulti.svg?1583078711)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/defmulti.svg)](https://www.npmjs.com/package/@thi.ng/defmulti)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/defmulti.svg)
@@ -60,7 +60,19 @@ A selection:
 
 ### rstream-spreadsheet <!-- NOTOC -->
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-spreadsheet.png)
+
+rstream based spreadsheet w/ S-expression formula DSL
+
 [Live demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-spreadsheet)
+
+### xml-converter <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/xml-converter.png)
+
+XML/HTML/SVG to hiccup/JS conversion
+
+[Live demo](https://demo.thi.ng/umbrella/xml-converter/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/xml-converter)
 
 ## API
 

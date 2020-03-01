@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/transducers-binary](https://media.thi.ng/umbrella/banners/thing-transducers-binary.svg?1582642859)
+# ![@thi.ng/transducers-binary](https://media.thi.ng/umbrella/banners/thing-transducers-binary.svg?1583078714)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-binary.svg)](https://www.npmjs.com/package/@thi.ng/transducers-binary)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-binary.svg)
@@ -77,6 +77,10 @@ Figlet-style bitmap font creation with transducers
 [Live demo](https://demo.thi.ng/umbrella/bitmap-font/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/bitmap-font)
 
 ### wolfram <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/wolfram.png)
+
+1D Wolfram automata with OBJ point cloud export
 
 [Live demo](https://demo.thi.ng/umbrella/wolfram/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/wolfram)
 

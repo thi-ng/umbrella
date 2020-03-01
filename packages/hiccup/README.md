@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/hiccup](https://media.thi.ng/umbrella/banners/thing-hiccup.svg?1581297780)
+# ![@thi.ng/hiccup](https://media.thi.ng/umbrella/banners/thing-hiccup.svg?1583078713)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup.svg)](https://www.npmjs.com/package/@thi.ng/hiccup)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup.svg)
@@ -172,9 +172,13 @@ Filterable commit log UI w/ minimal server to provide commit history
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png)
 
+Various hdom-canvas shape drawing examples & SVG conversion / export
+
 [Live demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes)
 
 ### hydrate-basics <!-- NOTOC -->
+
+Hiccup / hdom DOM hydration example
 
 [Live demo](https://demo.thi.ng/umbrella/hydrate-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hydrate-basics)
 
@@ -182,11 +186,15 @@ Filterable commit log UI w/ minimal server to provide commit history
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/package-stats.png)
 
+CLI util to visualize umbrella pkg stats
+
 [Live demo](https://demo.thi.ng/umbrella/package-stats/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/package-stats)
 
 ### pointfree-svg <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-svg.png)
+
+Generate SVG using pointfree DSL
 
 [Live demo](https://demo.thi.ng/umbrella/pointfree-svg/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-svg)
 

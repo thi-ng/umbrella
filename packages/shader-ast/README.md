@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/shader-ast](https://media.thi.ng/umbrella/banners/thing-shader-ast.svg?1582660667)
+# ![@thi.ng/shader-ast](https://media.thi.ng/umbrella/banners/thing-shader-ast.svg?1583078720)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/shader-ast.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/shader-ast.svg)
@@ -196,15 +196,23 @@ A selection:
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/shader-ast/shader-ast-01.jpg)
 
+2D canvas shader emulation
+
 [Live demo](https://demo.thi.ng/umbrella/shader-ast-canvas2d/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-canvas2d)
 
 ### shader-ast-evo <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-evo.jpg)
 
+Evolutionary shader generation using genetic programming
+
 [Live demo](https://demo.thi.ng/umbrella/shader-ast-evo/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-evo)
 
 ### shader-ast-noise <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-noise.jpg)
+
+HOF shader procedural noise function composition
 
 [Live demo](https://demo.thi.ng/umbrella/shader-ast-noise/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-noise)
 
@@ -212,13 +220,23 @@ A selection:
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/shader-ast/shader-ast-raymarch.jpg)
 
+WebGL & JS canvas2D raymarch shader cross-compilation
+
 [Live demo](https://demo.thi.ng/umbrella/shader-ast-raymarch/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-raymarch)
 
-### shader-ast-sdf2 <!-- NOTOC -->
+### shader-ast-sdf2d <!-- NOTOC -->
 
-[Live demo](https://demo.thi.ng/umbrella/shader-ast-sdf2/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-sdf2)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-sdf2d.jpg)
+
+WebGL & JS canvas 2D SDF
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-sdf2d/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-sdf2d)
 
 ### shader-ast-tunnel <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-tunnel.jpg)
+
+WebGL & Canvas2D textured tunnel shader
 
 [Live demo](https://demo.thi.ng/umbrella/shader-ast-tunnel/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-tunnel)
 
@@ -226,15 +244,23 @@ A selection:
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-workers.jpg)
 
+Fork-join worker-based raymarch renderer
+
 [Live demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-workers)
 
 ### soa-ecs <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/soa-ecs-100k.png)
 
+Entity Component System w/ 100k 3D particles
+
 [Live demo](https://demo.thi.ng/umbrella/soa-ecs/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/soa-ecs)
 
 ### webgl-cubemap <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-cubemap.jpg)
+
+WebGL cube maps with async texture loading
 
 [Live demo](https://demo.thi.ng/umbrella/webgl-cubemap/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-cubemap)
 
@@ -242,25 +268,37 @@ A selection:
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-grid.jpg)
 
+WebGL instancing, animated grid
+
 [Live demo](https://demo.thi.ng/umbrella/webgl-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-grid)
 
 ### webgl-msdf <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-msdf.jpg)
 
+WebGL MSDF text rendering & particle system
+
 [Live demo](https://demo.thi.ng/umbrella/webgl-msdf/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-msdf)
 
 ### webgl-multipass <!-- NOTOC -->
 
+Minimal multi-pass / GPGPU example
+
 [Live demo](https://demo.thi.ng/umbrella/webgl-multipass/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-multipass)
 
 ### webgl-shadertoy <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-shadertoy.jpg)
+
+Shadertoy-like WebGL setup
 
 [Live demo](https://demo.thi.ng/umbrella/webgl-shadertoy/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-shadertoy)
 
 ### webgl-ssao <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-ssao.jpg)
+
+WebGL screenspace ambient occlusion
 
 [Live demo](https://demo.thi.ng/umbrella/webgl-ssao/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-ssao)
 

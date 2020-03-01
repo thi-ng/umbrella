@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/paths](https://media.thi.ng/umbrella/banners/thing-paths.svg?1581297778)
+# ![@thi.ng/paths](https://media.thi.ng/umbrella/banners/thing-paths.svg?1583078711)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/paths.svg)](https://www.npmjs.com/package/@thi.ng/paths)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/paths.svg)
@@ -60,6 +60,8 @@ Using hdom in an Elm-like manner
 
 ### interceptor-basics2 <!-- NOTOC -->
 
+Event handling w/ interceptors and side effects
+
 [Live demo](https://demo.thi.ng/umbrella/interceptor-basics2/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/interceptor-basics2)
 
 ### rstream-event-loop <!-- NOTOC -->
@@ -72,9 +74,17 @@ Minimal demo of using rstream constructs to form an interceptor-style event loop
 
 ### todo-list <!-- NOTOC -->
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/todo-list.png)
+
+Obligatory to-do list example with undo/redo
+
 [Live demo](https://demo.thi.ng/umbrella/todo-list/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/todo-list)
 
 ### triple-query <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/triple-query.png)
+
+Triple store query results & sortable table
 
 [Live demo](https://demo.thi.ng/umbrella/triple-query/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/triple-query)
 

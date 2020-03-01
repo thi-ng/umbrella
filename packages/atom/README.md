@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/atom](https://media.thi.ng/umbrella/banners/thing-atom.svg?1581297779)
+# ![@thi.ng/atom](https://media.thi.ng/umbrella/banners/thing-atom.svg?1583078713)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/atom.svg)](https://www.npmjs.com/package/@thi.ng/atom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/atom.svg)
@@ -70,9 +70,13 @@ A selection:
 
 ### devcards <!-- NOTOC -->
 
+BMI calculator in a devcards format
+
 [Live demo](https://demo.thi.ng/umbrella/devcards/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/devcards)
 
 ### hdom-dropdown-fuzzy <!-- NOTOC -->
+
+Custom dropdown UI component w/ fuzzy search
 
 [Live demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-dropdown-fuzzy)
 
@@ -80,15 +84,21 @@ A selection:
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rotating-voronoi.jpg)
 
+Animated Voronoi diagram, cubic splines & SVG download
+
 [Live demo](https://demo.thi.ng/umbrella/rotating-voronoi/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rotating-voronoi)
 
 ### router-basics <!-- NOTOC -->
 
-Basic @thi.ng/router & @thi.ng/hdom app skeleton
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/router-basics.jpg)
+
+Complete mini SPA app w/ router & async content loading
 
 [Live demo](https://demo.thi.ng/umbrella/router-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/router-basics)
 
 ### rstream-dataflow <!-- NOTOC -->
+
+Minimal rstream dataflow graph
 
 [Live demo](https://demo.thi.ng/umbrella/rstream-dataflow/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-dataflow)
 
@@ -102,6 +112,10 @@ Interactive grid generator, SVG generation & export, undo/redo support
 
 ### rstream-spreadsheet <!-- NOTOC -->
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-spreadsheet.png)
+
+rstream based spreadsheet w/ S-expression formula DSL
+
 [Live demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-spreadsheet)
 
 ### svg-waveform <!-- NOTOC -->
@@ -114,9 +128,17 @@ Additive waveform synthesis & SVG visualization with undo/redo
 
 ### todo-list <!-- NOTOC -->
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/todo-list.png)
+
+Obligatory to-do list example with undo/redo
+
 [Live demo](https://demo.thi.ng/umbrella/todo-list/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/todo-list)
 
 ### triple-query <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/triple-query.png)
+
+Triple store query results & sortable table
 
 [Live demo](https://demo.thi.ng/umbrella/triple-query/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/triple-query)
 

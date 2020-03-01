@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/interceptors](https://media.thi.ng/umbrella/banners/thing-interceptors.svg?1581297780)
+# ![@thi.ng/interceptors](https://media.thi.ng/umbrella/banners/thing-interceptors.svg?1583078713)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/interceptors.svg)](https://www.npmjs.com/package/@thi.ng/interceptors)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/interceptors.svg)
@@ -150,19 +150,27 @@ Minimal demo using interceptors with an async side effect
 
 ### hdom-dropdown-fuzzy <!-- NOTOC -->
 
+Custom dropdown UI component w/ fuzzy search
+
 [Live demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-dropdown-fuzzy)
 
 ### interceptor-basics <!-- NOTOC -->
+
+Event handling w/ interceptors and side effects
 
 [Live demo](https://demo.thi.ng/umbrella/interceptor-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/interceptor-basics)
 
 ### interceptor-basics2 <!-- NOTOC -->
 
+Event handling w/ interceptors and side effects
+
 [Live demo](https://demo.thi.ng/umbrella/interceptor-basics2/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/interceptor-basics2)
 
 ### router-basics <!-- NOTOC -->
 
-Basic @thi.ng/router & @thi.ng/hdom app skeleton
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/router-basics.jpg)
+
+Complete mini SPA app w/ router & async content loading
 
 [Live demo](https://demo.thi.ng/umbrella/router-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/router-basics)
 

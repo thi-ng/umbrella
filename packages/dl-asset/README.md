@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/dl-asset](https://media.thi.ng/umbrella/banners/thing-dl-asset.svg?1582677839)
+# ![@thi.ng/dl-asset](https://media.thi.ng/umbrella/banners/thing-dl-asset.svg?1583078712)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dl-asset.svg)](https://www.npmjs.com/package/@thi.ng/dl-asset)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dl-asset.svg)
@@ -52,11 +52,15 @@ A selection:
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png)
 
+Various hdom-canvas shape drawing examples & SVG conversion / export
+
 [Live demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes)
 
 ### rotating-voronoi <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rotating-voronoi.jpg)
+
+Animated Voronoi diagram, cubic splines & SVG download
 
 [Live demo](https://demo.thi.ng/umbrella/rotating-voronoi/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rotating-voronoi)
 
@@ -69,6 +73,10 @@ Interactive grid generator, SVG generation & export, undo/redo support
 [Live demo](https://demo.thi.ng/umbrella/rstream-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-grid)
 
 ### wolfram <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/wolfram.png)
+
+1D Wolfram automata with OBJ point cloud export
 
 [Live demo](https://demo.thi.ng/umbrella/wolfram/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/wolfram)
 

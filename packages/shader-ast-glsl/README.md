@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/shader-ast-glsl](https://media.thi.ng/umbrella/banners/thing-shader-ast-glsl.svg?1582660669)
+# ![@thi.ng/shader-ast-glsl](https://media.thi.ng/umbrella/banners/thing-shader-ast-glsl.svg?1583078722)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/shader-ast-glsl.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-glsl)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/shader-ast-glsl.svg)
@@ -66,9 +66,15 @@ A selection:
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/shader-ast/shader-ast-01.jpg)
 
+2D canvas shader emulation
+
 [Live demo](https://demo.thi.ng/umbrella/shader-ast-canvas2d/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-canvas2d)
 
 ### shader-ast-noise <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-noise.jpg)
+
+HOF shader procedural noise function composition
 
 [Live demo](https://demo.thi.ng/umbrella/shader-ast-noise/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-noise)
 
@@ -76,19 +82,31 @@ A selection:
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/shader-ast/shader-ast-raymarch.jpg)
 
+WebGL & JS canvas2D raymarch shader cross-compilation
+
 [Live demo](https://demo.thi.ng/umbrella/shader-ast-raymarch/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-raymarch)
 
-### shader-ast-sdf2 <!-- NOTOC -->
+### shader-ast-sdf2d <!-- NOTOC -->
 
-[Live demo](https://demo.thi.ng/umbrella/shader-ast-sdf2/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-sdf2)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-sdf2d.jpg)
+
+WebGL & JS canvas 2D SDF
+
+[Live demo](https://demo.thi.ng/umbrella/shader-ast-sdf2d/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-sdf2d)
 
 ### shader-ast-tunnel <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-tunnel.jpg)
+
+WebGL & Canvas2D textured tunnel shader
 
 [Live demo](https://demo.thi.ng/umbrella/shader-ast-tunnel/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-tunnel)
 
 ### soa-ecs <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/soa-ecs-100k.png)
+
+Entity Component System w/ 100k 3D particles
 
 [Live demo](https://demo.thi.ng/umbrella/soa-ecs/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/soa-ecs)
 

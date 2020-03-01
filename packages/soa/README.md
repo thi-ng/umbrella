@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/soa](https://media.thi.ng/umbrella/banners/thing-soa.svg?1582660665)
+# ![@thi.ng/soa](https://media.thi.ng/umbrella/banners/thing-soa.svg?1583078718)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/soa.svg)](https://www.npmjs.com/package/@thi.ng/soa)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/soa.svg)
@@ -65,9 +65,15 @@ A selection:
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/soa-ecs-100k.png)
 
+Entity Component System w/ 100k 3D particles
+
 [Live demo](https://demo.thi.ng/umbrella/soa-ecs/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/soa-ecs)
 
 ### webgl-cube <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-cube.png)
+
+WebGL multi-colored cube mesh
 
 [Live demo](https://demo.thi.ng/umbrella/webgl-cube/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-cube)
 

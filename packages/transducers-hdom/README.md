@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/transducers-hdom](https://media.thi.ng/umbrella/banners/thing-transducers-hdom.svg?1581297785)
+# ![@thi.ng/transducers-hdom](https://media.thi.ng/umbrella/banners/thing-transducers-hdom.svg?1583078717)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-hdom.svg)](https://www.npmjs.com/package/@thi.ng/transducers-hdom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-hdom.svg)
@@ -117,13 +117,17 @@ Mouse gesture / stroke analysis, simplification, corner detection
 
 ### hdom-canvas-draw <!-- NOTOC -->
 
-Interactive @thi.ng/hdom-canvas pattern drawing demo using transducers
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-canvas-draw.jpg)
+
+Interactive pattern drawing demo using transducers
 
 [Live demo](https://demo.thi.ng/umbrella/hdom-canvas-draw/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-draw)
 
 ### hdom-canvas-shapes <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png)
+
+Various hdom-canvas shape drawing examples & SVG conversion / export
 
 [Live demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes)
 
@@ -153,17 +157,23 @@ Minimal Markdown to Hiccup to HTML parser / transformer
 
 ### multitouch <!-- NOTOC -->
 
-Basic @thi.ng/rstream-gestures multi-touch demo
+Basic rstream-gestures multi-touch demo
 
 [Live demo](https://demo.thi.ng/umbrella/multitouch/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/multitouch)
 
 ### poly-spline <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-spline.png)
+
+Polygon to cubic curve conversion & visualization
 
 [Live demo](https://demo.thi.ng/umbrella/poly-spline/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-spline)
 
 ### rotating-voronoi <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rotating-voronoi.jpg)
+
+Animated Voronoi diagram, cubic splines & SVG download
 
 [Live demo](https://demo.thi.ng/umbrella/rotating-voronoi/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rotating-voronoi)
 
@@ -177,9 +187,23 @@ Minimal demo of using rstream constructs to form an interceptor-style event loop
 
 ### rstream-spreadsheet <!-- NOTOC -->
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-spreadsheet.png)
+
+rstream based spreadsheet w/ S-expression formula DSL
+
 [Live demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-spreadsheet)
 
+### talk-slides <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/talk-slides.png)
+
+hdom based slide deck viewer & slides from my ClojureX 2018 keynote
+
+[Live demo](https://demo.thi.ng/umbrella/talk-slides/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/talk-slides)
+
 ### transducers-hdom <!-- NOTOC -->
+
+Transducer & rstream based hdom UI updates
 
 [Live demo](https://demo.thi.ng/umbrella/transducers-hdom/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/transducers-hdom)
 

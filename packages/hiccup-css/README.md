@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/hiccup-css](https://media.thi.ng/umbrella/banners/thing-hiccup-css.svg?1581297781)
+# ![@thi.ng/hiccup-css](https://media.thi.ng/umbrella/banners/thing-hiccup-css.svg?1583078714)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-css.svg)
@@ -114,6 +114,8 @@ A selection:
 ### hdom-benchmark2 <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-benchmark2.png)
+
+hdom update performance benchmark w/ config options
 
 [Live demo](https://demo.thi.ng/umbrella/hdom-benchmark2/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-benchmark2)
 

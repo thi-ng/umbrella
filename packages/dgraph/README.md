@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/dgraph](https://media.thi.ng/umbrella/banners/thing-dgraph.svg?1581297785)
+# ![@thi.ng/dgraph](https://media.thi.ng/umbrella/banners/thing-dgraph.svg?1583078718)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dgraph.svg)](https://www.npmjs.com/package/@thi.ng/dgraph)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dgraph.svg)
@@ -63,6 +63,8 @@ A selection:
 ### package-stats <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/package-stats.png)
+
+CLI util to visualize umbrella pkg stats
 
 [Live demo](https://demo.thi.ng/umbrella/package-stats/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/package-stats)
 

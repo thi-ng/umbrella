@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/pointfree](https://media.thi.ng/umbrella/banners/thing-pointfree.svg?1581297779)
+# ![@thi.ng/pointfree](https://media.thi.ng/umbrella/banners/thing-pointfree.svg?1583078712)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pointfree.svg)](https://www.npmjs.com/package/@thi.ng/pointfree)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pointfree.svg)
@@ -212,6 +212,8 @@ A selection:
 ### pointfree-svg <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-svg.png)
+
+Generate SVG using pointfree DSL
 
 [Live demo](https://demo.thi.ng/umbrella/pointfree-svg/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-svg)
 

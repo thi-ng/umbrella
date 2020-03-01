@@ -200,13 +200,13 @@ Tables support individual column width, automatic (or user defined) row
 heights, cell padding, as well as global and per-cell formats and the
 following border style options:
 
-| Border style | Result |
-| ------- | --- |
-| `Border.ALL` | ![table](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/table-border-all.png) |
-| `Border.NONE` | ![table](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/table-border-none.png) |
-| `Border.H` | ![table](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/table-border-h.png) |
-| `Border.V` | ![table](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/table-border-v.png) |
-| `Border.FRAME` | ![table](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/table-border-frame.png) |
+| Border style     | Result                                                                                                          |
+|------------------|-----------------------------------------------------------------------------------------------------------------|
+| `Border.ALL`     | ![table](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/table-border-all.png)     |
+| `Border.NONE`    | ![table](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/table-border-none.png)    |
+| `Border.H`       | ![table](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/table-border-h.png)       |
+| `Border.V`       | ![table](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/table-border-v.png)       |
+| `Border.FRAME`   | ![table](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/table-border-frame.png)   |
 | `Border.FRAME_H` | ![table](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/table-border-frame-h.png) |
 | `Border.FRAME_V` | ![table](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/table-border-frame-v.png) |
 
@@ -259,14 +259,18 @@ tc.table(
 console.log(tc.toString(canvas, tc.FMT_ANSI16));
 ```
 
-Tables can be also be pre-initialized prior to creation of the canvas
-via
+For even more detailed control, tables can also be pre-initialized prior
+to creation of the canvas via
 [`initTable()`](https://github.com/thi-ng/umbrella/blob/develop/packages/text-canvas/src/table.ts#L20)
 and then drawn via
 [`drawTable()`](https://github.com/thi-ng/umbrella/blob/develop/packages/text-canvas/src/table.ts#L80).
 The `initTable` function returns an object also containing the computed
-table size (`numCols`, `numRows` keys) which can then be used to create
-a canvas with the required size...
+table size (`width`, `height` keys) which can then be used to create a
+canvas with the required size...
+
+For convenience, the `tableCanvas()` function can be used to combine
+these steps and to create an auto-sized canvas with the rendered table
+as content.
 
 ### 3D wireframe cube example
 
@@ -304,6 +308,8 @@ a canvas with the required size...
                      + +        +++
                       ++      ++
 ````
+
+Code for this above example output (CLI version):
 
 ```ts
 import * as geom from "@thi.ng/geom";

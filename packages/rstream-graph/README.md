@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/rstream-graph](https://media.thi.ng/umbrella/banners/thing-rstream-graph.svg?1582660668)
+# ![@thi.ng/rstream-graph](https://media.thi.ng/umbrella/banners/thing-rstream-graph.svg?1583078721)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-graph.svg)](https://www.npmjs.com/package/@thi.ng/rstream-graph)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-graph.svg)
@@ -68,6 +68,8 @@ A selection:
 
 ### rstream-dataflow <!-- NOTOC -->
 
+Minimal rstream dataflow graph
+
 [Live demo](https://demo.thi.ng/umbrella/rstream-dataflow/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-dataflow)
 
 ### rstream-grid <!-- NOTOC -->
@@ -79,6 +81,10 @@ Interactive grid generator, SVG generation & export, undo/redo support
 [Live demo](https://demo.thi.ng/umbrella/rstream-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-grid)
 
 ### rstream-spreadsheet <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-spreadsheet.png)
+
+rstream based spreadsheet w/ S-expression formula DSL
 
 [Live demo](https://demo.thi.ng/umbrella/rstream-spreadsheet/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-spreadsheet)
 

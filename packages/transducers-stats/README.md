@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/transducers-stats](https://media.thi.ng/umbrella/banners/thing-transducers-stats.svg?1581297782)
+# ![@thi.ng/transducers-stats](https://media.thi.ng/umbrella/banners/thing-transducers-stats.svg?1583078716)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-stats.svg)](https://www.npmjs.com/package/@thi.ng/transducers-stats)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-stats.svg)
@@ -90,6 +90,8 @@ Basic crypto-currency candle chart with multiple moving averages plots
 ### shader-ast-workers <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-workers.jpg)
+
+Fork-join worker-based raymarch renderer
 
 [Live demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-workers)
 

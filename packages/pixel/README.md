@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/pixel](https://media.thi.ng/umbrella/banners/thing-pixel.svg?1582660659)
+# ![@thi.ng/pixel](https://media.thi.ng/umbrella/banners/thing-pixel.svg?1583078713)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pixel.svg)
@@ -128,11 +128,15 @@ Interactive image processing (adaptive threshold)
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/pixel-basics.png)
 
+Pixel buffer manipulations
+
 [Live demo](https://demo.thi.ng/umbrella/pixel-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-basics)
 
 ### porter-duff <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/porter-duff/porter-duff2.png)
+
+Port-Duff image compositing / alpha blending
 
 [Live demo](https://demo.thi.ng/umbrella/porter-duff/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/porter-duff)
 
@@ -140,9 +144,13 @@ Interactive image processing (adaptive threshold)
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-workers.jpg)
 
+Fork-join worker-based raymarch renderer
+
 [Live demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-workers)
 
 ### webgl-multipass <!-- NOTOC -->
+
+Minimal multi-pass / GPGPU example
 
 [Live demo](https://demo.thi.ng/umbrella/webgl-multipass/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-multipass)
 

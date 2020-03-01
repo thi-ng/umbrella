@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-hull](https://media.thi.ng/umbrella/banners/thing-geom-hull.svg?1581297783)
+# ![@thi.ng/geom-hull](https://media.thi.ng/umbrella/banners/thing-geom-hull.svg?1583078717)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-hull.svg)](https://www.npmjs.com/package/@thi.ng/geom-hull)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-hull.svg)
@@ -53,6 +53,8 @@ A selection:
 ### geom-convex-hull <!-- NOTOC -->
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-convex-hull.png)
+
+Convex hull & shape clipping of 2D polygons
 
 [Live demo](https://demo.thi.ng/umbrella/geom-convex-hull/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-convex-hull)
 
