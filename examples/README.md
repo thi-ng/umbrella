@@ -1,81 +1,96 @@
 # @thi.ng/umbrella examples
 
-This directory contains a growing number of standalone example projects,
-including live online versions, build instructions and commented source
-code.
+This directory contains a growing number (currently 85) of standalone
+example projects, including live online versions, build instructions
+and commented source code.
 
 If you want to [contribute](../CONTRIBUTING.md) an example, please get
 in touch via PR, issue tracker, email or twitter!
 
-| #  | Name                                         | Description                                              | Packages of interest                                              | Difficulty   |
-|----|----------------------------------------------|----------------------------------------------------------|-------------------------------------------------------------------|--------------|
-| 1  | [async-effect](./async-effect)               | Async side effect handling (JSON I/O)                    | atom, hdom, interceptors                                          | intermediate |
-| 2  | [bitmap-font](./bitmap-font)                 | Figlet style ASCII -> bitmap font transformation         | transducers, transducers-binary, rstream                          | intermediate |
-| 3  | [canvas-dial](./canvas-dial)                 | Canvas dial component w/ mouse & touch events            | hdom, rstream, rstream-gestures, transducers, transducers-hdom    | intermediate |
-| 4  | [cellular-automata](./cellular-automata)     | Transducer based, customizable 2D cellular automata      | hdom, hdom-components, transducers                                | basic        |
-| 5  | [commit-table-ssr](./commit-table-ssr)       | Server-side & static file rendering of hiccup components | hiccup, transducers                                               | intermediate |
-| 6  | [crypto-chart](./crypto-chart)               | Interactive rstream & transducer based SVG chart         | hdom, hiccup-svg, rstream, transducers                            | advanced     |
-| 7  | [dashboard](./dashboard)                     | Barebones components w/ local state                      | hdom, transducers                                                 | basic        |
-| 8  | [devcards](./devcards)                       | Multiple app instances with/without shared state         | atom, hdom                                                        | intermediate |
-| 9  | [geom-convex-hull](./geom-convex-hull)       | 2D convex hull and shape clipping visualization          | geom, hdom, hdom-canvas                                           | basic        |
-| 10 | [geom-knn](./geom-knn)                       | @thi.ng/geom-accel k-D tree                              | geom, geom-accel, hdom-canvas, vectors                            | intermediate |
-| 11 | [geom-tessel](./geom-tessel)                 | @thi.ng/geom shape tesselations & hdom-canvas drawing    | geom, hdom-canvas, vectors                                        | intermediate |
-| 12 | [gesture-analysis](./gesture-analysis)       | Mouse/touch gesture processing, analysis & visualization | rstream, rstream-gestures, transducers, hiccup-svg                | intermediate |
-| 13 | [hdom-basics](./hdom-basics)                 | Hello world                                              | hdom, hiccup                                                      | basic        |
-| 14 | [hdom-benchmark](./hdom-benchmark)           | hdom rendering perf / stress test, FPS counter           | hdom, rstream, transducers                                        | intermediate |
-| 15 | [hdom-benchmark2](./hdom-benchmark2)         | hdom rendering perf / stress test, FPS counter           | hdom, hdom-components, hiccup-css, transducers, stats             | intermediate |
-| 16 | [hdom-canvas-clock](./hdom-canvas-clock)     | hdom-canvas rendered clock                               | hdom, hdom-canvas, transducers                                    | basic        |
-| 17 | [hdom-canvas-draw](./hdom-canvas-draw)       | hdom-canvas mouse / touch gesture drawing                | hdom, hdom-canvas, transducers                                    | intermediate |
-| 18 | [hdom-canvas-shapes](./hdom-canvas-shapes)   | various hdom-canvas shape tests                          | hdom, hdom-canvas, rstream, transducers                           | basic        |
-| 19 | [hdom-dropdown](./hdom-dropdown)             | custom dropdown menu                                     | hdom, hdom-components                                             | intermediate |
-| 20 | [hdom-dropdown-fuzzy](./hdom-dropdown-fuzzy) | custom dropdown menu w/ fuzzy autocomplete               | hdom, hdom-components                                             | advanced     |
-| 21 | [hdom-dyn-context](./hdom-dyn-context)       | dynamic hdom user context / theming                      | atom, hdom                                                        | basic        |
-| 22 | [hdom-inner-html](./hdom-inner-html)         | using `.innerHTML` w/ hdom                               | hdom                                                              | intermediate |
-| 23 | [hdom-localstate](./hdom-localstate)         | hdom component with local state                          | hdom                                                              | intermediate |
-| 24 | [hdom-skip](./hdom-skip)                     | selective component updates                              | hdom                                                              | basic        |
-| 25 | [hdom-theme-adr-0003](./hdom-theme-adr-0003) | hdom themed components proposal                          | hdom                                                              | intermediate |
-| 26 | [hdom-vscroller](./hdom-vscroller)           | virtual scroller component for large tables / lists      | hdom                                                              | advanced     |
-| 27 | [hmr-basics](./hmr-basics)                   | hdom & hot module replacement                            | hdom, memoize                                                     | basic        |
-| 28 | [hydrate-basics](./hydrate-basics)           | hiccup / hdom DOM hydration                              | hiccup, hdom                                                      | intermediate |
-| 30 | [imgui](./imgui)                             | Canvas based immediate mode GUI                          | atom, hdom-canvas, imgui                                          | advanced     |
-| 31 | [interceptor-basics](./interceptor-basics)   | Event handling w/ interceptors and side effects          | atom, hdom, interceptors                                          | basic        |
-| 32 | [interceptor-basics2](./interceptor-basics2) | Event handling w/ interceptors and side effects          | atom, hdom, interceptors                                          | intermediate |
-| 33 | [iso-plasma](./iso-plasma)                   | 2D contour line extraction & animation                   | geom, geom-isoline                                                | intermediate |
-| 34 | [json-components](./json-components)         | JSON->component transformation, live editor              | hdom, transducers                                                 | intermediate |
-| 35 | [local-state](./local-state)                 | Local component state w/o HOF                            | hdom, paths                                                       | basic        |
-| 36 | [login-form](./login-form)                   | Basic SPA without router                                 | atom, hdom                                                        | intermediate |
-| 37 | [mandelbrot](./mandelbrot)                   | Worker-based mandelbrot fractal renderer                 | rstream, rstream-gestures, transducers-hdom                       | advanced     |
-| 38 | [markdown](./markdown)                       | Markdown parser & editor w/ live preview                 | fsm, rstream, transducers-hdom                                    | advanced     |
-| 39 | [package-stats](./package-stats)             | CLI util to visualize umbrella pkg stats                 | hiccup-svg, transducers                                           | intermediate |
-| 40 | [pixel-basics](./pixel-basics)               | Pixel buffer manipulations                               | pixel                                                             | basic        |
-| 41 | [pointfree-svg](./pointfree-svg)             | Generate SVG using pointfree DSL                         | hiccup, hiccup-svg, pointfree-lang                                | intermediate |
-| 42 | [poly-spline](./poly-spline)                 | Polygon to cubic curve conversion & visualization        | geom, hiccup-svg, hdom, rstream                                   | intermediate |
-| 43 | [porter-duff](./porter-duff)                 | Port-Duff image compositing / alpha blending             | porter-duff, pixel                                                | basic        |
-| 44 | [rotating-voronoi](./rotating-voronoi)       | Animated Voronoi diagram, cubic splines & SVG download   | geom, hdom, hdom-canvas, rstream, transducers                     | intermediate |
-| 45 | [router-basics](./router-basics)             | Complete mini SPA                                        | atom, hdom, interceptors, router                                  | advanced     |
-| 46 | [rstream-dataflow](./rstream-dataflow)       | Dataflow graph                                           | atom, hdom, rstream, rstream-gestures, rstream-graph, transducers | intermediate |
-| 47 | [rstream-grid](./rstream-grid)               | Dataflow graph SVG grid                                  | atom, hdom, hiccup-svg, interceptors, rstream-graph, transducers  | advanced     |
-| 48 | [rstream-hdom](./rstream-hdom)               | rstream based UI updates & state handling                | hdom, rstream, transducers                                        | intermediate |
-| 49 | [rstream-spreadsheet](./rstream-spreadsheet) | Spreadsheet w/ S-expr formula DSL                        | hdom, rstream-graph, sexpr, transducers                           | advanced     |
-| 50 | [scenegraph](./scenegraph)                   | 2D scenegraph & shape picking                            | geom, hdom, hdom-canvas                                           | intermediate |
-| 51 | [scenegraph-image](./scenegraph-image)       | 2D scenegraph & image map based geometry manipulation    | geom, hdom, hdom-canvas, pixel                                    | intermediate |
-| 52 | [shader-ast-canvas2d](shader-ast-canvas2d)   | 2D canvas shader emulation                               | shader-ast                                                        | basic        |
-| 53 | [shader-ast-noise](shader-ast-noise)         | HOF shader function composition                          | shader-ast, webgl                                                 | basic        |
-| 54 | [shader-ast-raymarch](shader-ast-raymarch)   | WebGL & Canvas2D raymarch shader                         | shader-ast, webgl                                                 | intermediate |
-| 55 | [shader-ast-sdf2d](shader-ast-sdf2d)         | WebGL & Canvas2D SDF                                     | shader-ast, webgl                                                 | basic        |
-| 56 | [shader-ast-tunnel](shader-ast-tunnel)       | WebGL & Canvas2D textured tunnel shader                  | shader-ast, webgl                                                 | basic        |
-| 57 | [svg-barchart](./svg-barchart)               | hdom SVG barchart component                              | hdom, transducers                                                 | basic        |
-| 58 | [svg-particles](./svg-particles)             | hdom SVG generation / animation                          | hdom, transducers                                                 | basic        |
-| 59 | [svg-waveform](./svg-waveform)               | hdom SVG generation / undo history                       | atom, hdom, hiccup-svg, interceptors, iterators                   | intermediate |
-| 60 | [talk-slides](./talk-slides)                 | Presentation slides from ClojureX 2018                   | hdom, rstream, transducers-hdom                                   | intermediate |
-| 61 | [todo-list](./todo-list)                     | Canonical Todo list with undo/redo                       | atom, hdom, transducers                                           | intermediate |
-| 62 | [transducers-hdom](./transducers-hdom)       | Transducer & rstream based hdom UI updates               | hdom, rstream, transducers-hdom                                   | basic        |
-| 63 | [triple-query](./triple-query)               | Triple store query results & sortable table              | atom, hdom, hdom-components, rstream-query, transducers           | intermediate |
-| 64 | [webgl-cubemap](./webgl-cubemap)             | WebGL cubemap, async texture loading                     | hdom, webgl, shader-ast                                           | intermediate |
-| 65 | [webgl-grid](./webgl-grid)                   | WebGL instancing                                         | webgl, hdom                                                       | intermediate |
-| 66 | [webgl-msdf](./webgl-msdf)                   | WebGL MSDF font rendering & particle system              | webgl, webgl-msdf, shader-ast, hdom                               | intermediate |
-| 67 | [webgl-multipass](./webgl-multipass)         | Minimal multi-pass / GPGPU example                       | webgl, shader-ast, shader-ast-stdlib                              | intermediate |
-| 68 | [webgl-shadertoy](./webgl-shadertoy)         | Shadertoy-like example                                   | webgl, shader-ast, shader-ast-stdlib                              | basic        |
-| 69 | [webgl-ssao](./webgl-ssao)                   | WebGL screenspace ambient occlusion                      | webgl, shader-ast, rstream, hdom                                  | advanced     |
-| 70 | [wolfram](./wolfram)                         | 1D Wolfram automata                                      | rstream, transducers, transducers-hdom                            | intermediate |
-| 71 | [xml-converter](./xml-converter)             | XML/HTML/SVG to hiccup conversion as you type            | rstream, sax, transducers, transducers-hdom                       | advanced     |
+| #   | Screenshot                                                                    | Name                                              | Description                                                                      |
+| --- | ----------------------------------------------------------------------------- | ------------------------------------------------- | -------------------------------------------------------------------------------- |
+| 001 | <img src="../assets/examples/adaptive-threshold.png" width="240"/>            | [adaptive-threshold](./adaptive-threshold/)       | Interactive image processing (adaptive threshold)                                |
+| 002 |                                                                               | [async-effect](./async-effect/)                   | Minimal demo using interceptors with an async side effect                        |
+| 003 | <img src="../assets/examples/bitmap-font.gif" width="240"/>                   | [bitmap-font](./bitmap-font/)                     | Figlet-style bitmap font creation with transducers                               |
+| 004 | <img src="../assets/examples/canvas-dial.png" width="240"/>                   | [canvas-dial](./canvas-dial/)                     | Canvas based dial widget                                                         |
+| 005 | <img src="../assets/examples/cellular-automata.png" width="240"/>             | [cellular-automata](./cellular-automata/)         | 2D transducer based cellular automata                                            |
+| 006 | <img src="../assets/examples/commit-heatmap.png" width="240"/>                | [commit-heatmap](./commit-heatmap/)               | Heatmap visualization of this mono-repo's commits                                |
+| 007 | <img src="../assets/examples/commit-table-ssr.png" width="240"/>              | [commit-table-ssr](./commit-table-ssr/)           | Filterable commit log UI w/ minimal server to provide commit history             |
+| 008 | <img src="../assets/examples/crypto-chart.png" width="240"/>                  | [crypto-chart](./crypto-chart/)                   | Basic crypto-currency candle chart with multiple moving averages plots           |
+| 009 |                                                                               | [devcards](./devcards/)                           | BMI calculator in a devcards format                                              |
+| 010 | <img src="../assets/examples/fft-synth.png" width="240"/>                     | [fft-synth](./fft-synth/)                         | Interactive inverse FFT toy synth                                                |
+| 011 | <img src="../assets/examples/geom-convex-hull.png" width="240"/>              | [geom-convex-hull](./geom-convex-hull/)           | Convex hull & shape clipping of 2D polygons                                      |
+| 012 | <img src="../assets/examples/geom-knn.jpg" width="240"/>                      | [geom-knn](./geom-knn/)                           | Doodle w/ K-nearest neighbor search result visualization                         |
+| 013 | <img src="../assets/geom/tessel.png" width="240"/>                            | [geom-tessel](./geom-tessel/)                     | Animated, recursive polygon tessellations                                        |
+| 014 | <img src="../assets/examples/geom-voronoi-mst.jpg" width="240"/>              | [geom-voronoi-mst](./geom-voronoi-mst/)           | Poisson-disk shape-aware sampling, Voronoi & Minimum Spanning Tree visualization |
+| 015 | <img src="../assets/examples/gesture-analysis.png" width="240"/>              | [gesture-analysis](./gesture-analysis/)           | Mouse gesture / stroke analysis, simplification, corner detection                |
+| 016 | <img src="../assets/examples/grid-iterators.png" width="240"/>                | [grid-iterators](./grid-iterators/)               | Visualization of different grid iterator strategies                              |
+| 017 |                                                                               | [hdom-basics](./hdom-basics/)                     | Minimal hdom usage example                                                       |
+| 018 |                                                                               | [hdom-benchmark](./hdom-benchmark/)               | hdom update performance benchmark (old version)                                  |
+| 019 | <img src="../assets/examples/hdom-benchmark2.png" width="240"/>               | [hdom-benchmark2](./hdom-benchmark2/)             | hdom update performance benchmark w/ config options                              |
+| 020 |                                                                               | [hdom-canvas-clock](./hdom-canvas-clock/)         | Realtime analog clock demo                                                       |
+| 021 |                                                                               | [hdom-canvas-draw](./hdom-canvas-draw/)           | Interactive pattern drawing demo using transducers                               |
+| 022 | <img src="../assets/examples/hdom-canvas-particles.jpg" width="240"/>         | [hdom-canvas-particles](./hdom-canvas-particles/) | 2D Bezier curve-guided particle system                                           |
+| 023 | <img src="../assets/hdom-canvas/hdom-canvas-shapes-results.png" width="240"/> | [hdom-canvas-shapes](./hdom-canvas-shapes/)       | Various hdom-canvas shape drawing examples & SVG conversion / export             |
+| 024 |                                                                               | [hdom-dropdown](./hdom-dropdown/)                 | Custom dropdown UI component for hdom                                            |
+| 025 |                                                                               | [hdom-dropdown-fuzzy](./hdom-dropdown-fuzzy/)     | Custom dropdown UI component w/ fuzzy search                                     |
+| 026 |                                                                               | [hdom-dyn-context](./hdom-dyn-context/)           | Using custom hdom context for dynamic UI theming                                 |
+| 027 |                                                                               | [hdom-elm](./hdom-elm/)                           | Using hdom in an Elm-like manner                                                 |
+| 028 |                                                                               | [hdom-inner-html](./hdom-inner-html/)             | Higher-order component for rendering HTML strings                                |
+| 029 |                                                                               | [hdom-local-render](./hdom-local-render/)         | Isolated, component-local DOM updates                                            |
+| 030 |                                                                               | [hdom-localstate](./hdom-localstate/)             | UI component w/ local state stored in hdom context                               |
+| 031 |                                                                               | [hdom-skip](./hdom-skip/)                         | Skipping UI updates for selected component(s)                                    |
+| 032 |                                                                               | [hdom-skip-nested](./hdom-skip-nested/)           | Skipping UI updates for nested component(s)                                      |
+| 033 |                                                                               | [hdom-theme](./hdom-theme/)                       | Example for themed components proposal                                           |
+| 034 |                                                                               | [hdom-vscroller](./hdom-vscroller/)               | Virtual scroller component for large tables / lists                              |
+| 035 |                                                                               | [hmr-basics](./hmr-basics/)                       | hdom & hot module replacement                                                    |
+| 036 |                                                                               | [hydrate-basics](./hydrate-basics/)               | Hiccup / hdom DOM hydration example                                              |
+| 037 | <img src="../assets/imgui/imgui-all.png" width="240"/>                        | [imgui](./imgui/)                                 | Canvas based Immediate Mode GUI components                                       |
+| 038 |                                                                               | [interceptor-basics](./interceptor-basics/)       | Event handling w/ interceptors and side effects                                  |
+| 039 |                                                                               | [interceptor-basics2](./interceptor-basics2/)     | Event handling w/ interceptors and side effects                                  |
+| 040 | <img src="../assets/geom/geom-isoline.png" width="240"/>                      | [iso-plasma](./iso-plasma/)                       | Animated sine plasma effect visualized using contour lines                       |
+| 041 |                                                                               | [json-components](./json-components/)             | Transforming JSON into UI components                                             |
+| 042 |                                                                               | [login-form](./login-form/)                       | Basic SPA example without router                                                 |
+| 043 | <img src="../assets/examples/mandelbrot.jpg" width="240"/>                    | [mandelbrot](./mandelbrot/)                       | Worker based, interactive Mandelbrot visualization                               |
+| 044 | <img src="../assets/examples/markdown-parser.jpg" width="240"/>               | [markdown](./markdown/)                           | Minimal Markdown to Hiccup to HTML parser / transformer                          |
+| 045 |                                                                               | [multitouch](./multitouch/)                       | Basic rstream-gestures multi-touch demo                                          |
+| 046 | <img src="../assets/examples/package-stats.png" width="240"/>                 | [package-stats](./package-stats/)                 | CLI util to visualize umbrella pkg stats                                         |
+| 047 | <img src="../assets/pixel/pixel-basics.png" width="240"/>                     | [pixel-basics](./pixel-basics/)                   | Pixel buffer manipulations                                                       |
+| 048 | <img src="../assets/examples/pointfree-svg.png" width="240"/>                 | [pointfree-svg](./pointfree-svg/)                 | Generate SVG using pointfree DSL                                                 |
+| 049 |                                                                               | [poly-spline](./poly-spline/)                     | Polygon to cubic curve conversion & visualization                                |
+| 050 | <img src="../assets/porter-duff/porter-duff2.png" width="240"/>               | [porter-duff](./porter-duff/)                     | Port-Duff image compositing / alpha blending                                     |
+| 051 | <img src="../assets/examples/ramp-synth.png" width="240"/>                    | [ramp-synth](./ramp-synth/)                       | Unison wavetable synth with waveform editor                                      |
+| 052 | <img src="../assets/examples/rotating-voronoi.jpg" width="240"/>              | [rotating-voronoi](./rotating-voronoi/)           | Animated Voronoi diagram, cubic splines & SVG download                           |
+| 053 |                                                                               | [router-basics](./router-basics/)                 | Complete mini SPA app w/ router & async content loading                          |
+| 054 |                                                                               | [rstream-dataflow](./rstream-dataflow/)           | Minimal rstream dataflow graph                                                   |
+| 055 | <img src="../assets/examples/rstream-event-loop.png" width="240"/>            | [rstream-event-loop](./rstream-event-loop/)       | Minimal demo of using rstream constructs to form an interceptor-style event loop |
+| 056 | <img src="../assets/examples/rstream-grid.jpg" width="240"/>                  | [rstream-grid](./rstream-grid/)                   | Interactive grid generator, SVG generation & export, undo/redo support           |
+| 057 |                                                                               | [rstream-hdom](./rstream-hdom/)                   | rstream based UI updates & state handling                                        |
+| 058 |                                                                               | [rstream-spreadsheet](./rstream-spreadsheet/)     | rstream based spreadsheet w/ S-expression formula DSL                            |
+| 059 | <img src="../assets/examples/scenegraph.png" width="240"/>                    | [scenegraph](./scenegraph/)                       | 2D scenegraph & shape picking                                                    |
+| 060 | <img src="../assets/examples/scenegraph-image.png" width="240"/>              | [scenegraph-image](./scenegraph-image/)           | 2D scenegraph & image map based geometry manipulation                            |
+| 061 | <img src="../assets/shader-ast/shader-ast-01.jpg" width="240"/>               | [shader-ast-canvas2d](./shader-ast-canvas2d/)     | 2D canvas shader emulation                                                       |
+| 062 | <img src="../assets/examples/shader-ast-evo.jpg" width="240"/>                | [shader-ast-evo](./shader-ast-evo/)               | Evolutionary shader generation using genetic programming                         |
+| 063 |                                                                               | [shader-ast-noise](./shader-ast-noise/)           | HOF shader procedural noise function composition                                 |
+| 064 | <img src="../assets/shader-ast/shader-ast-raymarch.jpg" width="240"/>         | [shader-ast-raymarch](./shader-ast-raymarch/)     | WebGL & JS canvas2D raymarch shader cross-compilation                            |
+| 065 |                                                                               | [shader-ast-sdf2](./shader-ast-sdf2/)             | WebGL & JS canvas 2D SDF                                                         |
+| 066 |                                                                               | [shader-ast-tunnel](./shader-ast-tunnel/)         | WebGL & Canvas2D textured tunnel shader                                          |
+| 067 | <img src="../assets/examples/shader-ast-workers.jpg" width="240"/>            | [shader-ast-workers](./shader-ast-workers/)       | Fork-join worker-based raymarch renderer                                         |
+| 068 | <img src="../assets/examples/soa-ecs-100k.png" width="240"/>                  | [soa-ecs](./soa-ecs/)                             | Entity Component System w/ 100k 3D particles                                     |
+| 069 |                                                                               | [svg-barchart](./svg-barchart/)                   | Simplistic SVG bar chart component                                               |
+| 070 |                                                                               | [svg-particles](./svg-particles/)                 | Basic 2D particle system w/ SVG shapes                                           |
+| 071 | <img src="../assets/examples/svg-waveform.jpg" width="240"/>                  | [svg-waveform](./svg-waveform/)                   | Additive waveform synthesis & SVG visualization with undo/redo                   |
+| 072 |                                                                               | [talk-slides](./talk-slides/)                     | Presentation slides from ClojureX 2018 keynote                                   |
+| 073 | <img src="../assets/examples/text-canvas.png" width="240"/>                   | [text-canvas](./text-canvas/)                     | 3D wireframe textmode demo                                                       |
+| 074 |                                                                               | [todo-list](./todo-list/)                         | Obligatory to-do list example with undo/redo                                     |
+| 075 |                                                                               | [transducers-hdom](./transducers-hdom/)           | Transducer & rstream based hdom UI updates                                       |
+| 076 |                                                                               | [triple-query](./triple-query/)                   | Triple store query results & sortable table                                      |
+| 077 |                                                                               | [webgl-cube](./webgl-cube/)                       | WebGL multi-colored cube mesh                                                    |
+| 078 |                                                                               | [webgl-cubemap](./webgl-cubemap/)                 | WebGL cube maps with async texture loading                                       |
+| 079 | <img src="../assets/examples/webgl-grid.jpg" width="240"/>                    | [webgl-grid](./webgl-grid/)                       | WebGL instancing, animated grid                                                  |
+| 080 | <img src="../assets/examples/webgl-msdf.jpg" width="240"/>                    | [webgl-msdf](./webgl-msdf/)                       | WebGL MSDF text rendering & particle system                                      |
+| 081 |                                                                               | [webgl-multipass](./webgl-multipass/)             | Minimal multi-pass / GPGPU example                                               |
+| 082 |                                                                               | [webgl-shadertoy](./webgl-shadertoy/)             | Shadertoy-like WebGL setup                                                       |
+| 083 | <img src="../assets/examples/webgl-ssao.jpg" width="240"/>                    | [webgl-ssao](./webgl-ssao/)                       | WebGL screenspace ambient occlusion                                              |
+| 084 |                                                                               | [wolfram](./wolfram/)                             | 1D Wolfram automata with OBJ point cloud export                                  |
+| 085 |                                                                               | [xml-converter](./xml-converter/)                 | XML/HTML/SVG to hiccup/JS conversion                                             |
