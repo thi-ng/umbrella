@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.5.2...@thi.ng/strings@1.6.0) (2020-03-01)
+
+
+### Features
+
+* **strings:** add defFormat() HOF ([62f4e04](https://github.com/thi-ng/umbrella/commit/62f4e04c72e8822930da3f337898dae0ea51f6d0))
+
+
+
+
+
 ## [1.5.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.5.1...@thi.ng/strings@1.5.2) (2020-02-26)
 
 **Note:** Version bump only for package @thi.ng/strings

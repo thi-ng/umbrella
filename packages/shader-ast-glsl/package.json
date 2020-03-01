@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/shader-ast-glsl",
-    "version": "0.1.14",
+    "version": "0.1.15",
     "description": "Customizable GLSL code generator for @thi.ng/shader-ast",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -41,7 +41,7 @@
         "@thi.ng/api": "^6.8.2",
         "@thi.ng/checks": "^2.5.3",
         "@thi.ng/errors": "^1.2.6",
-        "@thi.ng/shader-ast": "^0.3.8"
+        "@thi.ng/shader-ast": "^0.3.9"
     },
     "keywords": [
         "AST",
