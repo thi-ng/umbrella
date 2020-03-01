@@ -1,7 +1,7 @@
 {
     "name": "multitouch",
     "version": "0.0.1",
-    "description": "Basic @thi.ng/rstream-gestures multi-touch demo",
+    "description": "Basic rstream-gestures multi-touch demo",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",

@@ -55,6 +55,8 @@ cat << EOF > "$MODULE"/package.json
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
     }
 }
 EOF
@@ -147,8 +149,6 @@ module.exports = {
     },
     node: {
         process: false
-    },
-    "thi.ng": {
     }
 };
 EOF

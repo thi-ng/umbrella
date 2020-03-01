@@ -1,5 +1,6 @@
 {
     "name": "scenegraph",
+    "description": "2D scenegraph & shape picking",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",

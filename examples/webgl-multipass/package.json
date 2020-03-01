@@ -1,5 +1,6 @@
 {
     "name": "webgl-multipass",
+    "description": "Minimal multi-pass / GPGPU example",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",

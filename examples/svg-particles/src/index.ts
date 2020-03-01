@@ -1,10 +1,9 @@
 import { start } from "@thi.ng/hdom";
-import { radix } from "@thi.ng/strings";
+import { U24 } from "@thi.ng/strings";
 import { repeatedly } from "@thi.ng/transducers";
 
 const width = window.innerWidth;
 const height = window.innerHeight;
-const hex6 = radix(16, 6);
 
 const updateParticle = (p: any, v: number[]) => {
     let x = p.cx + v[0];
@@ -28,19 +27,23 @@ const randomParticle = () => {
             cx: Math.random() * width,
             cy: Math.random() * height,
             r: (Math.random() * 6 + 3) | 0,
-            fill: "#" + hex6((Math.random() * 0x1000000) | 0)
+            fill: "#" + U24((Math.random() * 0x1000000) | 0)
         }
     ];
 };
 
-const velocities: any[] = [null];
-const particles: any[] = ["g", ...repeatedly(randomParticle, 100)];
+const velocities: any[] = [null, null];
+const particles: any[] = ["g", {}, ...repeatedly(randomParticle, 200)];
 
 const app = () => {
-    for (let i = particles.length - 1; i > 0; i--) {
+    for (let i = particles.length - 1; i > 1; i--) {
         updateParticle(particles[i][1], velocities[i]);
     }
-    return ["svg", { width, height, __diff: false }, particles];
+    return [
+        "svg",
+        { width, height, __diff: false, __normalize: false },
+        particles
+    ];
 };
 
 start(app);

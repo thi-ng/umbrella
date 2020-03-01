@@ -1,7 +1,7 @@
 {
     "name": "router-basics",
     "version": "0.0.1",
-    "description": "Basic @thi.ng/router & @thi.ng/hdom app skeleton",
+    "description": "Complete mini SPA app w/ router & async content loading",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt",
     "license": "Apache-2.0",

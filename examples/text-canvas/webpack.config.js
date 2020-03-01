@@ -19,7 +19,5 @@ module.exports = {
     },
     node: {
         process: false
-    },
-    "thi.ng": {
     }
 };

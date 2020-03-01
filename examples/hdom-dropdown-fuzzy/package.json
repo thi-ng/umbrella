@@ -1,5 +1,6 @@
 {
     "name": "hdom-dropdown-fuzzy",
+    "description": "Custom dropdown UI component w/ fuzzy search",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
