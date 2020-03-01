@@ -63,9 +63,15 @@ Most packages:
 
 ## Examples
 
-There's a steadily growing number (~70) of standalone examples
+There's a steadily growing number (~85) of standalone examples
 (different complexities, often combining functionality from several
-packages) in the [examples](./examples) directory.
+packages) in the [**examples**](./examples/README.md) directory.
+
+| Example screenshots                                               | (small selection)                                           |                                                                      |
+|-------------------------------------------------------------------|-------------------------------------------------------------|----------------------------------------------------------------------|
+| <img src="./assets/examples/svg-waveform.jpg" width="240"/>       | <img src="./assets/imgui/imgui-all.png" width="240"/>       | <img src="./assets/shader-ast/shader-ast-raymarch.jpg" width="240"/> |
+| <img src="./assets/examples/adaptive-threshold.png" width="240"/> | <img src="./assets/examples/crypto-chart.png" width="240"/> | <img src="./assets/examples/commit-table-ssr.png" width="240"/>      |
+| <img src="./assets/examples/text-canvas.png" width="240"/>        | <img src="./assets/geom/tessel.png" width="240"/>           | <img src="./assets/examples/soa-ecs-100k.png" width="240"/>          |
 
 ## Blog posts
 
