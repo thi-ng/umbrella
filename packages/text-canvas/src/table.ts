@@ -5,6 +5,7 @@ import {
     beginClip,
     beginStyle,
     Canvas,
+    canvas,
     endClip,
     endStyle,
     setAt
@@ -24,7 +25,6 @@ export const initTable = (opts: TableOpts, cells: (string | RawCell)[][]) => {
     const bF = (bH && bV) || b & Border.FRAME ? 1 : 0;
     const bFH = bF | bH;
     const bFV = bF | bV;
-
     const [padH, padV] = (opts.padding || [0, 0]).map((x) => x << 1);
     const cols = opts.cols;
     const numCols = cols.length - 1;
@@ -166,4 +166,18 @@ export const table = (
     const spec = initTable(opts, cells);
     drawTable(canvas, x, y, spec);
     return [spec.width, spec.height];
+};
+
+/**
+ * Initializes table with given options and contents. Then creates
+ * auto-sized canvas for it, renders table and returns canvas.
+ *
+ * @param opts - table config
+ * @param cells - table cells (row major)
+ */
+export const tableCanvas = (opts: TableOpts, cells: (string | RawCell)[][]) => {
+    const tbl = initTable(opts, cells);
+    const result = canvas(tbl.width, tbl.height);
+    drawTable(result, 0, 0, tbl);
+    return result;
 };
