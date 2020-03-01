@@ -33,6 +33,7 @@
             "atom",
             "hdom",
             "paths"
-        ]
+        ],
+        "screenshot": "examples/todo-list.png"
     }
 }

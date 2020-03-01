@@ -37,6 +37,7 @@
             "shader-ast-js",
             "shader-ast-stdlib",
             "webgl"
-        ]
+        ],
+        "screenshot": "examples/shader-ast-tunnel.jpg"
     }
 }

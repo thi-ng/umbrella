@@ -24,5 +24,9 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": true,
+        "screenshot": "examples/json-components.jpg"
     }
 }

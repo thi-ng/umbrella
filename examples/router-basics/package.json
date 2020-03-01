@@ -36,6 +36,7 @@
             "hdom",
             "interceptors",
             "router"
-        ]
+        ],
+        "screenshot": "examples/router-basics.jpg"
     }
 }

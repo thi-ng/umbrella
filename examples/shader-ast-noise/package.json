@@ -30,6 +30,7 @@
         "process": false
     },
     "thi.ng": {
-        "readme": true
+        "readme": true,
+        "screenshot": "examples/shader-ast-noise.jpg"
     }
 }

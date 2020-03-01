@@ -1,6 +1,6 @@
 {
     "name": "talk-slides",
-    "description": "Presentation slides from ClojureX 2018 keynote",
+    "description": "hdom based slide deck viewer & slides from my ClojureX 2018 keynote",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
@@ -28,5 +28,13 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "hdom",
+            "rstream",
+            "transducers-hdom"
+        ],
+        "screenshot": "examples/talk-slides.png"
     }
 }

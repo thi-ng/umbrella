@@ -38,6 +38,7 @@
             "transducers",
             "vectors",
             "webgl"
-        ]
+        ],
+        "screenshot": "examples/webgl-cube.png"
     }
 }
