@@ -37,6 +37,7 @@
             "matrices",
             "shader-ast",
             "webgl"
-        ]
+        ],
+        "screenshot": "examples/webgl-cubemap.jpg"
     }
 }

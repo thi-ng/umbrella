@@ -36,6 +36,7 @@
             "dl-asset",
             "transducers",
             "transducers-binary"
-        ]
+        ],
+        "screenshot": "examples/wolfram.png"
     }
 }

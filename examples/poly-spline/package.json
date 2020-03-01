@@ -37,6 +37,7 @@
             "geom-splines",
             "hiccup-svg",
             "transducers-hdom"
-        ]
+        ],
+        "screenshot": "examples/poly-spline.png"
     }
 }

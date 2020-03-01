@@ -33,6 +33,7 @@
             "hdom",
             "hdom-canvas",
             "vectors"
-        ]
+        ],
+        "screenshot": "examples/hdom-canvas-clock.png"
     }
 }

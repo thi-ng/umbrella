@@ -1,7 +1,7 @@
 # shader-ast-sdf2
 
-- [Live demo (WebGL)](http://demo.thi.ng/umbrella/shader-ast-raymarch/)
-- [Live demo (Canvas 2D)](http://demo.thi.ng/umbrella/shader-ast-raymarch/#2d)
+- [Live demo (WebGL)](http://demo.thi.ng/umbrella/shader-ast-sdf2d/)
+- [Live demo (Canvas 2D)](http://demo.thi.ng/umbrella/shader-ast-sdf2d/#2d)
 
 Basic 3D raymarch shader defined via higher-order constructs of
 [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)

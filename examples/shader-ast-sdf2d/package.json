@@ -1,5 +1,5 @@
 {
-    "name": "shader-ast-sdf2",
+    "name": "shader-ast-sdf2d",
     "description": "WebGL & JS canvas 2D SDF",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",
@@ -30,6 +30,7 @@
         "process": false
     },
     "thi.ng": {
-        "readme": true
+        "readme": true,
+        "screenshot": "examples/shader-ast-sdf2d.jpg"
     }
 }

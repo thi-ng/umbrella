@@ -32,5 +32,14 @@
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "defmulti",
+            "sax",
+            "strings",
+            "transducers"
+        ],
+        "screenshot": "examples/xml-converter.png"
     }
 }

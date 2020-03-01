@@ -50,6 +50,7 @@
             "sexpr",
             "strings",
             "transducers-hdom"
-        ]
+        ],
+        "screenshot": "examples/rstream-spreadsheet.png"
     }
 }
