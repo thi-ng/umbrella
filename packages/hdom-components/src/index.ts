@@ -8,5 +8,6 @@ export * from "./notification";
 export * from "./pager";
 export * from "./sparkline";
 export * from "./title";
+export * from "./toggle";
 
 export * from "./utils/merge-attribs";
