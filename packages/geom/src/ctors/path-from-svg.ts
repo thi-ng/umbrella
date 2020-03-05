@@ -1,5 +1,6 @@
 import { illegalState } from "@thi.ng/errors";
 import { rad } from "@thi.ng/math";
+import { WS } from "@thi.ng/strings";
 import { PathBuilder } from "./path-builder";
 import type { Vec } from "@thi.ng/vectors";
 
@@ -37,25 +38,21 @@ export const pathFromSvg = (svg: string) => {
                 case "q":
                     [pa, i] = readPoint(svg, i);
                     [p, i] = readPoint(svg, i);
-                    // console.log("quadratic", pa.toString(), p.toString());
                     b.quadraticTo(pa, p, cmd === "q");
                     break;
                 case "c":
                     [pa, i] = readPoint(svg, i);
                     [pb, i] = readPoint(svg, i);
                     [p, i] = readPoint(svg, i);
-                    // console.log("cubic", pa.toString(), pb.toString(), p.toString());
                     b.cubicTo(pa, pb, p, cmd === "c");
                     break;
                 case "s":
                     [pa, i] = readPoint(svg, i);
                     [p, i] = readPoint(svg, i);
-                    // console.log("cubicChain", pa.toString(), p.toString());
                     b.cubicChainTo(pa, p, cmd === "s");
                     break;
                 case "t":
                     [p, i] = readPoint(svg, i);
-                    // console.log("quadraticChain", p.toString());
                     b.quadraticChainTo(p, cmd === "t");
                     break;
                 case "a": {
@@ -64,7 +61,6 @@ export const pathFromSvg = (svg: string) => {
                     [t2, i] = readFlag(svg, i);
                     [t3, i] = readFlag(svg, i);
                     [pb, i] = readPoint(svg, i);
-                    // console.log("arc", pa.toString(), rad(t1), t2, t3, pb.toString());
                     b.arcTo(pb, pa, rad(t1), t2, t3, cmd === "a");
                     break;
                 }
@@ -85,11 +81,9 @@ export const pathFromSvg = (svg: string) => {
     }
 };
 
-const isWS = (c: string) => c === " " || c === "\n" || c === "\r" || c === "\t";
-
 const skipWS = (src: string, i: number) => {
     const n = src.length;
-    while (i < n && isWS(src.charAt(i))) i++;
+    while (i < n && WS[src.charAt(i)]) i++;
     return i;
 };
 
@@ -123,7 +117,6 @@ const readFloat = (src: string, index: number) => {
     let i = index;
     for (let n = src.length; i < n; i++) {
         const c = src.charAt(i);
-        // console.log("float", src.substring(index, i + 1));
         if ("0" <= c && c <= "9") {
             expOk = true;
             commaOk = true;
