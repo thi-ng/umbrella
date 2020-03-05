@@ -36,7 +36,11 @@ const toggleV = slideToggleDot({ ...dotOpts, vertical: true });
 const toggleVStroke = slideToggleDot({
     ...dotOpts,
     ...strokeOpts,
-    vertical: true
+    fgOn: { stroke: "#00f", fill: "#00f" },
+    fgOff: { stroke: "#99f", fill: "none" },
+    vertical: true,
+    pad: 3,
+    r: 7
 });
 
 const toggleHSq = slideToggleRect({ ...rectOpts });
@@ -45,6 +49,8 @@ const toggleVSq = slideToggleRect({ ...rectOpts, vertical: true });
 const toggleVSqStroke = slideToggleRect({
     ...rectOpts,
     ...strokeOpts,
+    w: 8,
+    h: 20,
     vertical: true
 });
 
