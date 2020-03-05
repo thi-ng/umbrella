@@ -3,6 +3,7 @@ export * from "./case";
 export * from "./center";
 export * from "./float";
 export * from "./format";
+export * from "./groups";
 export * from "./hollerith";
 export * from "./interpolate";
 export * from "./pad-left";
