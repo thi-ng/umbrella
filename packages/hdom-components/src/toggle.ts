@@ -31,8 +31,8 @@ const DEFAULT_OPTS: ToggleOpts = {
 
 export const slideToggleDot = (opts: Partial<ToggleDotOpts> = {}) => {
     const _opts: ToggleDotOpts = {
-        ...DEFAULT_OPTS,
         r: 5,
+        ...DEFAULT_OPTS,
         ...opts
     };
     const { r, pad, margin, vertical } = _opts;
@@ -77,9 +77,9 @@ export const slideToggleDot = (opts: Partial<ToggleDotOpts> = {}) => {
 
 export const slideToggleRect = (opts: Partial<ToggleRectOpts> = {}) => {
     const _opts: ToggleRectOpts = {
-        ...DEFAULT_OPTS,
         w: 10,
         h: 10,
+        ...DEFAULT_OPTS,
         ...opts
     };
     const { w, h, pad, margin, vertical } = _opts;
@@ -87,15 +87,12 @@ export const slideToggleRect = (opts: Partial<ToggleRectOpts> = {}) => {
     const pm = pad + margin;
     const width = vertical ? w + pad * 2 : (w + pad) * 2;
     const height = vertical ? (h + pad) * 2 : h + pad * 2;
-    const totalW = width + m2;
-    const totalH = height + m2;
-    const svgSize = vertical
-        ? { width: totalH, height: totalW }
-        : { width: totalW, height: totalH };
+    const svgSize = { width: width + m2, height: height + m2 };
     const style = { transition: `all ${_opts.anim}ms ease-out` };
     const bgOn = {
-        ...(vertical ? { width: height, height: width } : { width, height }),
         ..._opts.bgOn,
+        width,
+        height,
         x: margin,
         y: margin
     };
