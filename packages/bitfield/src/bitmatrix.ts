@@ -1,9 +1,9 @@
 import { align } from "@thi.ng/binary";
-import { B32 } from "@thi.ng/strings";
+import { toString } from "./util";
 
 /**
- * MxN row-major 2D bit matrix, backed by a Uint32Array. Width is always
- * a multiple of 32.
+ * MxN row-major 2D bit matrix, backed by a Uint32Array. Hence the width
+ * (number of columns) is always rounded up to a multiple of 32.
  */
 export class BitMatrix {
     data: Uint32Array;
@@ -11,11 +11,11 @@ export class BitMatrix {
     m: number;
     n: number;
 
-    constructor(m: number, n = m) {
-        this.m = m;
-        this.n = n = align(n, 32);
-        this.stride = n >>> 5;
-        this.data = new Uint32Array(m * this.stride);
+    constructor(rows: number, cols = rows) {
+        this.m = rows;
+        this.n = cols = align(cols, 32);
+        this.stride = cols >>> 5;
+        this.data = new Uint32Array(rows * this.stride);
     }
 
     /**
@@ -27,6 +27,7 @@ export class BitMatrix {
      */
     resize(m: number, n = m) {
         n = align(n, 32);
+        if (m === this.m && n === this.n) return this;
         const dstride = n >>> 5;
         const sstride = this.stride;
         const w = Math.min(dstride, sstride);
@@ -79,11 +80,33 @@ export class BitMatrix {
         return r;
     }
 
+    /**
+     * Inverts bit at `m,n` (row major). Returns a non-zero value if the
+     * bit was previously enabled. No bounds checking.
+     *
+     * @param m - row
+     * @param n - column
+     */
+    toggleAt(m: number, n: number) {
+        const id = (n >>> 5) + m * this.stride;
+        const mask = 0x80000000 >>> (n & 31);
+        const r = this.data[id] & mask;
+        if (r) {
+            this.data[id] &= ~mask;
+        } else {
+            this.data[id] |= mask;
+        }
+        return r;
+    }
+
     toString() {
         const res: string[] = [];
         for (let i = 0, j = 0, s = this.stride; i < this.m; i++, j += s) {
-            res.push([...this.data.slice(j, j + s)].map(B32).join(""));
+            res.push(toString(this.data.subarray(j, j + s)));
         }
         return res.join("\n");
     }
 }
+
+export const bitMatrix = (rows: number, cols = rows) =>
+    new BitMatrix(rows, cols);

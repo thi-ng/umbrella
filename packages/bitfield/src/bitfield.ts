@@ -1,17 +1,19 @@
 import { align } from "@thi.ng/binary";
-import { B32 } from "@thi.ng/strings";
+import { toString } from "./util";
 
 /**
- * 1D bit field, backed by a Uint32Array. Size is always a multiple of
- * 32.
+ * 1D bit field, backed by a Uint32Array. Hence size is always rounded
+ * up to a multiple of 32.
  */
 export class BitField {
     data: Uint32Array;
     n: number;
 
-    constructor(n: number) {
-        this.n = align(n, 32);
+    constructor(bits: number | string | ArrayLike<boolean>) {
+        const isNumber = typeof bits === "number";
+        this.n = align(isNumber ? <number>bits : (<any>bits).length, 32);
         this.data = new Uint32Array(this.n >>> 5);
+        !isNumber && this.setRange(0, <any>bits);
     }
 
     /**
@@ -22,6 +24,7 @@ export class BitField {
      */
     resize(n: number) {
         n = align(n, 32);
+        if (n === this.n) return this;
         const dest = new Uint32Array(n >>> 5);
         dest.set(this.data.slice(0, dest.length));
         this.data = dest;
@@ -42,7 +45,7 @@ export class BitField {
     /**
      * Enables or disables bit `n`. Returns a non-zero value if the bit
      * was previously enabled. No bounds checking.
-     * .
+     *
      * @param n - bit number
      * @param v - new bit value
      */
@@ -58,7 +61,47 @@ export class BitField {
         return r;
     }
 
+    /**
+     * Sets bits from `start` index with given `values`. No bounds
+     * checking.
+     *
+     * @param start -
+     * @param vals -
+     */
+    setRange(start: number, vals: string | ArrayLike<boolean>) {
+        const isString = typeof vals === "string";
+        for (let i = 0, n = vals.length; i < n; i++) {
+            this.setAt(
+                start + i,
+                isString
+                    ? (<string>vals)[i] === "1"
+                    : (<ArrayLike<boolean>>vals)[i]
+            );
+        }
+    }
+
+    /**
+     * Inverts bit `n`. Returns a non-zero value if the bit was
+     * previously enabled. No bounds checking.
+     *
+     * @param n - bit number
+     */
+    toggleAt(n: number) {
+        const id = n >>> 5;
+        const mask = 0x80000000 >>> (n & 31);
+        const r = this.data[id] & mask;
+        if (r) {
+            this.data[id] &= ~mask;
+        } else {
+            this.data[id] |= mask;
+        }
+        return r;
+    }
+
     toString() {
-        return [...this.data].map(B32).join("");
+        return toString(this.data);
     }
 }
+
+export const bitField = (bits: number | string | ArrayLike<boolean>) =>
+    new BitField(bits);
