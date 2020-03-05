@@ -1,12 +1,7 @@
-import { alts } from "./alts";
-import { altsLit } from "./alts-lit";
+import { ALPHA, DIGITS, WS } from "@thi.ng/strings";
+import { altsLitObj } from "./alts-lit";
 import { result } from "./result";
-import type {
-    AltCallback,
-    AltFallback,
-    LitCallback,
-    Matcher
-} from "./api";
+import type { LitCallback, Matcher } from "./api";
 
 /**
  * Returns a single input matcher which returns `Match.FULL` if the
@@ -36,7 +31,7 @@ export const range = <T extends number | string, C, R>(
 export const digit = <C, R>(
     success?: LitCallback<string, C, R>,
     fail?: LitCallback<string, C, R>
-): Matcher<string, C, R> => range<string, C, R>("0", "9", success, fail);
+): Matcher<string, C, R> => altsLitObj(DIGITS, success, fail);
 
 /**
  * Matcher for single A-Z or a-z characters.
@@ -45,15 +40,9 @@ export const digit = <C, R>(
  * @param fail - failure callback
  */
 export const alpha = <C, R>(
-    success?: AltCallback<string, C, R>,
-    fail?: AltFallback<string, C, R>
-): Matcher<string, C, R> =>
-    alts(
-        [range<string, C, R>("a", "z"), range<string, C, R>("A", "Z")],
-        undefined,
-        success,
-        fail
-    );
+    success?: LitCallback<string, C, R>,
+    fail?: LitCallback<string, C, R>
+): Matcher<string, C, R> => altsLitObj(ALPHA, success, fail);
 
 /**
  * Combination of {@link digit} and {@link alpha}.
@@ -62,11 +51,13 @@ export const alpha = <C, R>(
  * @param fail - failure callback
  */
 export const alphaNum = <C, R>(
-    success?: AltCallback<string, C, R>,
-    fail?: AltFallback<string, C, R>
-): Matcher<string, C, R> => alts([alpha(), digit()], undefined, success, fail);
-
-const WS = new Set([" ", "\n", "\t", "\r"]);
+    success?: LitCallback<string, C, R>,
+    fail?: LitCallback<string, C, R>
+): Matcher<string, C, R> => altsLitObj(
+    { ...ALPHA, ...DIGITS },
+    success,
+    fail
+);
 
 /**
  * Matcher for single whitespace characters.
@@ -77,4 +68,4 @@ const WS = new Set([" ", "\n", "\t", "\r"]);
 export const whitespace = <C, R>(
     success?: LitCallback<string, C, R>,
     fail?: LitCallback<string, C, R>
-): Matcher<string, C, R> => altsLit(WS, success, fail);
+): Matcher<string, C, R> => altsLitObj(WS, success, fail);
