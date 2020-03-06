@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@3.1.13...@thi.ng/hdom-components@3.2.0) (2020-03-06)
+
+
+### Bug Fixes
+
+* **hdom-components:** fix total size calc in slideToggleRect() ([8f58b09](https://github.com/thi-ng/umbrella/commit/8f58b0992396357f4e06a7c2d835a751ef848dfd))
+
+
+### Features
+
+* **hdom-components:** import slideToggleDot/Rect() components ([a2d0158](https://github.com/thi-ng/umbrella/commit/a2d015863ddea9e7a883dc9e0ce0e2e9a38497ae))
+
+
+
+
+
 ## [3.1.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@3.1.12...@thi.ng/hdom-components@3.1.13) (2020-03-01)
 
 **Note:** Version bump only for package @thi.ng/hdom-components

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.3.7...@thi.ng/fsm@2.4.0) (2020-03-06)
+
+
+### Features
+
+* **fsm:** add altsLitObj(), update deps & char range matchers ([300fe2b](https://github.com/thi-ng/umbrella/commit/300fe2bf6a814f3822a2173576c8ab7b76d3f4bb))
+
+
+
+
+
 ## [2.3.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.3.6...@thi.ng/fsm@2.3.7) (2020-03-01)
 
 **Note:** Version bump only for package @thi.ng/fsm

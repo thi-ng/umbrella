@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/seq@0.2.4...@thi.ng/seq@0.2.5) (2020-03-06)
+
+**Note:** Version bump only for package @thi.ng/seq
+
+
+
+
+
 ## [0.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/seq@0.2.3...@thi.ng/seq@0.2.4) (2020-02-26)
 
 **Note:** Version bump only for package @thi.ng/seq

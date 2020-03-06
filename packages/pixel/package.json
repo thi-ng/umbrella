@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/pixel",
-    "version": "0.1.11",
+    "version": "0.1.12",
     "description": "Typed array backed, packed pixel buffer w/ customizable formats, blitting, conversions",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,10 +38,10 @@
         "typescript": "^3.8.3"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.8.2",
-        "@thi.ng/checks": "^2.5.3",
-        "@thi.ng/math": "^1.7.2",
-        "@thi.ng/porter-duff": "^0.1.10"
+        "@thi.ng/api": "^6.8.3",
+        "@thi.ng/checks": "^2.5.4",
+        "@thi.ng/math": "^1.7.3",
+        "@thi.ng/porter-duff": "^0.1.11"
     },
     "keywords": [
         "ES6",

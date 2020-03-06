@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/binary@1.3.2...@thi.ng/binary@2.0.0) (2020-03-06)
+
+
+### Features
+
+* **binary:** make binary logic ops unmasked, rename masked versions ([c07cf04](https://github.com/thi-ng/umbrella/commit/c07cf040f831b7393d889f6e97dbae001769d0c2))
+
+
+### BREAKING CHANGES
+
+* **binary:** make binary logic ops unmasked, rename masked versions
+
+- existing names used for unmasked versions (returning signed ints)
+- masked versions of bitOr/bitAnd/bitXor etc. now suffixed with `M`, e.g. `bitAndM()`
+
+
+
+
+
 ## [1.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/binary@1.3.1...@thi.ng/binary@1.3.2) (2020-02-26)
 
 **Note:** Version bump only for package @thi.ng/binary

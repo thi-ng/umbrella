@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.2.8...@thi.ng/bitfield@0.3.0) (2020-03-06)
+
+
+### Features
+
+* **bitfield:** add and/or/xor/not() methods, add IClear, ICopy impls ([52d3005](https://github.com/thi-ng/umbrella/commit/52d3005281c90b89d41d3b2504e3eb47cafa6e03))
+* **bitfield:** add toggleAt(), setRange(), update ctor ([6ed20c1](https://github.com/thi-ng/umbrella/commit/6ed20c13768fe3bdd38990ee79c865a13775fc2d))
+
+
+
+
+
 ## [0.2.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.2.7...@thi.ng/bitfield@0.2.8) (2020-03-01)
 
 **Note:** Version bump only for package @thi.ng/bitfield
