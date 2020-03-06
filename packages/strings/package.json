@@ -38,6 +38,7 @@
         "typescript": "^3.8.3"
     },
     "dependencies": {
+        "@thi.ng/api": "^6.8.2",
         "@thi.ng/errors": "^1.2.6",
         "@thi.ng/memoize": "^2.0.2"
     },
