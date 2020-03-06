@@ -1,28 +1,62 @@
 import { maskL } from "./mask";
 
-export const bitNot = (n: number, x: number) => maskL(n, ~x);
+export const bitNot = (x: number) => ~x;
 
-export const bitAnd = (n: number, a: number, b: number) => maskL(n, a & b);
+export const bitAnd = (a: number, b: number) => a & b;
 
-export const bitNand = (n: number, a: number, b: number) => maskL(n, ~(a & b));
+export const bitNand = (a: number, b: number) => ~(a & b);
 
-export const bitOr = (n: number, a: number, b: number) => maskL(n, a | b);
+export const bitOr = (a: number, b: number) => a | b;
 
-export const bitNor = (n: number, a: number, b: number) => maskL(n, ~(a & b));
+export const bitNor = (a: number, b: number) => ~(a | b);
 
-export const bitXor = (n: number, a: number, b: number) => maskL(n, a ^ b);
+export const bitXor = (a: number, b: number) => a ^ b;
 
-export const bitXnor = (n: number, a: number, b: number) => maskL(n, ~(a ^ b));
+export const bitXnor = (a: number, b: number) => ~(a ^ b);
 
-export const bitImply = (n: number, a: number, b: number) => maskL(n, ~a | b);
+export const bitImply = (a: number, b: number) => ~a | b;
 
-export const bitAoi21 = (n: number, a: number, b: number, c: number) =>
+export const bitAoi21 = (a: number, b: number, c: number) => ~(a | (b & c));
+
+export const bitOai21 = (a: number, b: number, c: number) => ~(a & (b | c));
+
+export const bitAoi22 = (a: number, b: number, c: number, d: number) =>
+    ~((a & b) | (c & d));
+
+export const bitOai22 = (a: number, b: number, c: number, d: number) =>
+    ~((a | b) & (c | d));
+
+export const bitMux = (a: number, b: number, s: number) =>
+    ((a & ~s) | (b & s)) >>> 0;
+
+export const bitDemux = (a: number, b: number, s: number): [number, number] => [
+    (a & ~s) >>> 0,
+    (b & s) >>> 0
+];
+
+export const bitNotM = (n: number, x: number) => maskL(n, ~x);
+
+export const bitAndM = (n: number, a: number, b: number) => maskL(n, a & b);
+
+export const bitNandM = (n: number, a: number, b: number) => maskL(n, ~(a & b));
+
+export const bitOrM = (n: number, a: number, b: number) => maskL(n, a | b);
+
+export const bitNorM = (n: number, a: number, b: number) => maskL(n, ~(a | b));
+
+export const bitXorM = (n: number, a: number, b: number) => maskL(n, a ^ b);
+
+export const bitXnorM = (n: number, a: number, b: number) => maskL(n, ~(a ^ b));
+
+export const bitImplyM = (n: number, a: number, b: number) => maskL(n, ~a | b);
+
+export const bitAoi21M = (n: number, a: number, b: number, c: number) =>
     maskL(n, ~(a | (b & c)));
 
-export const bitOai21 = (n: number, a: number, b: number, c: number) =>
+export const bitOai21M = (n: number, a: number, b: number, c: number) =>
     maskL(n, ~(a & (b | c)));
 
-export const bitAoi22 = (
+export const bitAoi22M = (
     n: number,
     a: number,
     b: number,
@@ -30,7 +64,7 @@ export const bitAoi22 = (
     d: number
 ) => maskL(n, ~((a & b) | (c & d)));
 
-export const bitOai22 = (
+export const bitOai22M = (
     n: number,
     a: number,
     b: number,
@@ -38,10 +72,10 @@ export const bitOai22 = (
     d: number
 ) => maskL(n, ~((a | b) & (c | d)));
 
-export const bitMux = (n: number, a: number, b: number, s: number) =>
+export const bitMuxM = (n: number, a: number, b: number, s: number) =>
     maskL(n, (a & ~s) | (b & s));
 
-export const bitDemux = (
+export const bitDemuxM = (
     n: number,
     a: number,
     b: number,
