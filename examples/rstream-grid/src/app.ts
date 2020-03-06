@@ -1,17 +1,17 @@
-import { IObjectOf } from "@thi.ng/api";
 import { Atom, Cursor, History } from "@thi.ng/atom";
 import { isArray } from "@thi.ng/checks";
 import { start } from "@thi.ng/hdom";
 import { EventBus } from "@thi.ng/interceptors";
-import {
+import { initDataflow } from "./dataflow";
+import * as ev from "./events";
+import { PARAM_BASE } from "./paths";
+import type { IObjectOf } from "@thi.ng/api";
+import type {
     AppConfig,
     AppContext,
     AppViews,
     ViewSpec
 } from "./api";
-import { initDataflow } from "./dataflow";
-import * as ev from "./events";
-import { PARAM_BASE } from "./paths";
 
 /**
  * The app does not much more than:

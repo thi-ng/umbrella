@@ -1,4 +1,3 @@
-import { Fn, IObjectOf } from "@thi.ng/api";
 import { dropdown, DropDownOption } from "@thi.ng/hdom-components";
 import {
     group,
@@ -43,6 +42,7 @@ import {
     sma,
     wma
 } from "@thi.ng/transducers-stats";
+import type { Fn, IObjectOf } from "@thi.ng/api";
 
 // this example demonstrates how to use @thi.ng/rstream &
 // @thi.ng/transducer constructs to create a basic cryptocurrency candle

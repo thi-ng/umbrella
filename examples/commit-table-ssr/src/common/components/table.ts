@@ -1,5 +1,5 @@
 import { map, mapcat } from "@thi.ng/transducers";
-import { AppContext } from "../api";
+import type { AppContext } from "../api";
 
 const thead = (ctx: AppContext, head: Iterable<any>) => [
     "thead",

@@ -1,9 +1,9 @@
-import { Nullable } from "@thi.ng/api";
 import { mergeDeepObj } from "@thi.ng/associative";
 import { serialize } from "@thi.ng/hiccup";
 import { map } from "@thi.ng/transducers";
-import { AppContext, HTMLDoc } from "../common/api";
 import { DEFAULT_DOC } from "../common/config";
+import type { Nullable } from "@thi.ng/api";
+import type { AppContext, HTMLDoc } from "../common/api";
 
 /**
  * Takes a `HTMLDoc` object and serializes it into an HTML5 string. The

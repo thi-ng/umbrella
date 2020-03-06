@@ -1,4 +1,3 @@
-import { Fn } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
 import { isString } from "@thi.ng/checks";
 import { canvas2D } from "@thi.ng/hdom-components";
@@ -6,6 +5,7 @@ import { fitClamped } from "@thi.ng/math";
 import { Subscription } from "@thi.ng/rstream";
 import { GestureEvent, gestureStream, GestureType } from "@thi.ng/rstream-gestures";
 import { heading, sub2 } from "@thi.ng/vectors";
+import type { Fn } from "@thi.ng/api";
 
 /**
  * Dial component options.

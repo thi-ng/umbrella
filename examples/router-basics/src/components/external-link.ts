@@ -1,4 +1,4 @@
-import { AppContext } from "../api";
+import type { AppContext } from "../api";
 
 /**
  * User stylable external link component.

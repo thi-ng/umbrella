@@ -14,11 +14,11 @@ import {
     transduce
 } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { AppContext, Commit } from "../common/api";
 import { header } from "../common/components/header";
 import { link } from "../common/components/link";
 import { repoTable } from "../common/components/repo-table";
 import { ctx } from "../common/config";
+import type { AppContext, Commit } from "../common/api";
 
 const COMMITS_URL =
     process.env.NODE_ENV === "production" ? "./commits.json" : "/commits";

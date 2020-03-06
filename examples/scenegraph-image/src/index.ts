@@ -1,4 +1,3 @@
-import { Fn0 } from "@thi.ng/api";
 import { sin } from "@thi.ng/dsp";
 import { group, polyline } from "@thi.ng/geom";
 import { start } from "@thi.ng/hdom";
@@ -9,6 +8,7 @@ import { Node2D } from "@thi.ng/scenegraph";
 import { map, range } from "@thi.ng/transducers";
 import { ReadonlyVec, setN2, Vec } from "@thi.ng/vectors";
 import LOGO from "../assets/logo-256.png";
+import type { Fn0 } from "@thi.ng/api";
 
 /**
  * Specialized scene graph node for images.

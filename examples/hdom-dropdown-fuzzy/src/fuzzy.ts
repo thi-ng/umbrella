@@ -1,4 +1,3 @@
-import { IView } from "@thi.ng/atom";
 import { EV_SET_VALUE } from "@thi.ng/interceptors";
 import {
     comp,
@@ -7,6 +6,7 @@ import {
     map
 } from "@thi.ng/transducers";
 import { DropdownItem, dropdownListeners, DropdownState } from "./dropdown";
+import type { IView } from "@thi.ng/atom";
 
 export interface FuzzyArgs {
     state: IView<DropdownState>;

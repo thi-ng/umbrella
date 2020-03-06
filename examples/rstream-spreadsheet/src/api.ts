@@ -1,4 +1,4 @@
-import { ILifecycle } from "@thi.ng/hdom";
+import type { ILifecycle } from "@thi.ng/hdom";
 
 export const NUM_COLS = 5;
 export const NUM_ROWS = 10;

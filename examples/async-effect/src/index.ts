@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { start } from "@thi.ng/hdom";
 import {
     EffectDef,
@@ -8,6 +7,7 @@ import {
     FX_DISPATCH_NOW,
     valueSetter
 } from "@thi.ng/interceptors";
+import type { IObjectOf } from "@thi.ng/api";
 
 // best practice tip:
 // define event & effect names as consts or enums and

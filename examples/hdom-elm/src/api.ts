@@ -1,4 +1,4 @@
-import { Fn, Fn0, Val1 } from "@thi.ng/api";
+import type { Fn, Fn0, Val1 } from "@thi.ng/api";
 
 export const INC = "inc";
 export const DEC = "dec";

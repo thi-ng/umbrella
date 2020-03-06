@@ -1,7 +1,7 @@
-import { Path } from "@thi.ng/api";
 import { Atom } from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom";
 import { setIn } from "@thi.ng/paths";
+import type { Path } from "@thi.ng/api";
 
 // central immutable app state
 const db = new Atom({ state: "login" });

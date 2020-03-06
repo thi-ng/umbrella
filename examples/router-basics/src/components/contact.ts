@@ -1,5 +1,5 @@
-import { AppContext } from "../api";
 import { externalLink } from "./external-link";
+import type { AppContext } from "../api";
 
 /**
  * Contact page component.

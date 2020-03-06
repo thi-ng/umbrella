@@ -1,4 +1,4 @@
-import { AppContext } from "../api";
+import type { AppContext } from "../api";
 
 /**
  * Generic HTML link component.

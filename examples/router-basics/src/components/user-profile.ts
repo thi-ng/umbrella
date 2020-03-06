@@ -2,7 +2,6 @@ import { AppContext, StatusType } from "../api";
 import { LOAD_USER, SET_STATUS } from "../events";
 import { status } from "./status";
 
-
 /**
  * Single user profile page. Triggers JSON I/O request on init if user
  * data has not been loaded yet.

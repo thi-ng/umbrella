@@ -1,4 +1,3 @@
-import { IDeref } from "@thi.ng/api";
 import { sin } from "@thi.ng/dsp";
 import { start } from "@thi.ng/hdom";
 import { canvasWebGL2 } from "@thi.ng/hdom-components";
@@ -29,6 +28,7 @@ import {
 } from "@thi.ng/webgl";
 import { CONTROLS, PARAM_DEFS, PARAMS } from "./params";
 import { FINAL_SHADER, LIGHT_SHADER, SSAO_SHADER } from "./shaders";
+import type { IDeref } from "@thi.ng/api";
 
 // FBO size
 const W = 1024;

@@ -10,7 +10,6 @@ import {
     map,
     mapcat,
     mapIndexed,
-    normRange,
     range
 } from "@thi.ng/transducers";
 

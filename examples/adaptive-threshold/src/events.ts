@@ -1,4 +1,3 @@
-import { Fn } from "@thi.ng/api";
 import { setInT } from "@thi.ng/paths";
 import { GRAY8, PackedBuffer } from "@thi.ng/pixel";
 import {
@@ -7,7 +6,6 @@ import {
     stream,
     trace
 } from "@thi.ng/rstream";
-import { Transducer } from "@thi.ng/transducers";
 import {
     Event,
     EventType,
@@ -19,6 +17,8 @@ import {
 } from "./api";
 import { state } from "./state";
 import { adaptiveThreshold } from "./threshold";
+import type { Fn } from "@thi.ng/api";
+import type { Transducer } from "@thi.ng/transducers";
 
 /**
  * Event input stream (not exported)

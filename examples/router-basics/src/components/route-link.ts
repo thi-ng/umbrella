@@ -1,5 +1,5 @@
-import { AppContext } from "../api";
 import { ROUTE_TO } from "../events";
+import type { AppContext } from "../api";
 
 /**
  * Customizable hyperlink component emitting EV_ROUTE_TO event when clicked.

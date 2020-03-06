@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { stream, Stream } from "@thi.ng/rstream";
 import {
     assocObj,
@@ -7,6 +6,7 @@ import {
     push,
     transduce
 } from "@thi.ng/transducers";
+import type { IObjectOf } from "@thi.ng/api";
 
 const slider = (label: string, attribs: any, stream: Stream<number>) => () => [
     "div.mb2",

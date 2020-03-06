@@ -1,4 +1,4 @@
-import { Val1 } from "@thi.ng/api";
+import type { Val1 } from "@thi.ng/api";
 
 // event ID constants
 export const PREV = "prev";

@@ -1,5 +1,5 @@
 import { stream } from "@thi.ng/rstream";
-import { AppState } from "./api";
+import type { AppState } from "./api";
 
 /**
  * Stream of app state values.

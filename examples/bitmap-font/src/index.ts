@@ -1,4 +1,3 @@
-import { IObjectOf } from "@thi.ng/api";
 import { dropdown } from "@thi.ng/hdom-components";
 import { clamp } from "@thi.ng/math";
 import {
@@ -21,6 +20,7 @@ import {
 import { bits } from "@thi.ng/transducers-binary";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { FONT } from "./font";
+import type { IObjectOf } from "@thi.ng/api";
 
 const emitOnStream = (stream: Subscription<any, any>) => (e: Event) =>
     stream.next((<HTMLSelectElement>e.target).value);

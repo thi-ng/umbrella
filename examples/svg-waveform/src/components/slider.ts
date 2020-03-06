@@ -1,4 +1,4 @@
-import { AppContext } from "../api";
+import type { AppContext } from "../api";
 
 export interface SliderOpts {
     event: PropertyKey;

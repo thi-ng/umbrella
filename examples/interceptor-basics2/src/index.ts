@@ -1,4 +1,3 @@
-import { IObjectOf, Path } from "@thi.ng/api";
 import { start } from "@thi.ng/hdom";
 import {
     EffectDef,
@@ -13,6 +12,7 @@ import {
     IDispatch,
     trace
 } from "@thi.ng/interceptors";
+import type { IObjectOf, Path } from "@thi.ng/api";
 
 ///////////////////////////////////////////////////////////////////////
 // event name and handler definitions

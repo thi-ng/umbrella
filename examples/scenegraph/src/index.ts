@@ -4,7 +4,6 @@ import {
     pointInside,
     rect
 } from "@thi.ng/geom";
-import { IShape } from "@thi.ng/geom-api";
 import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { HALF_PI, PI } from "@thi.ng/math";
@@ -16,6 +15,7 @@ import {
     ReadonlyVec,
     Vec
 } from "@thi.ng/vectors";
+import type { IShape } from "@thi.ng/geom-api";
 
 /**
  * Specialized scene graph node using @thi.ng/geom shapes as body.

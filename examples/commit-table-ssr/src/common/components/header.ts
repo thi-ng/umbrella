@@ -1,4 +1,4 @@
-import { AppContext } from "../api";
+import type { AppContext } from "../api";
 
 export const header = (ctx: AppContext, title: string) => [
     "section",

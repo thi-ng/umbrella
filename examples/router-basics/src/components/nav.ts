@@ -1,7 +1,7 @@
-import { AppContext } from "../api";
-import { USER_LIST, HOME, CONTACT } from "../routes";
-
+import { CONTACT, HOME, USER_LIST } from "../routes";
 import { routeLink } from "./route-link";
+import type { AppContext } from "../api";
+
 
 /**
  * Main nav component with hard coded routes.

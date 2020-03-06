@@ -1,4 +1,3 @@
-import { Fn } from "@thi.ng/api";
 import { polygon } from "@thi.ng/geom";
 import { isolines, setBorder } from "@thi.ng/geom-isoline";
 import { start } from "@thi.ng/hdom";
@@ -13,7 +12,8 @@ import {
     range,
     range2d
 } from "@thi.ng/transducers";
-import { Vec } from "@thi.ng/vectors";
+import type { Fn } from "@thi.ng/api";
+import type { Vec } from "@thi.ng/vectors";
 
 const W = 100;
 

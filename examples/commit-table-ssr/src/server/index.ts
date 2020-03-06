@@ -2,10 +2,10 @@ import { TLRUCache } from "@thi.ng/cache";
 import * as express from "express";
 import * as fs from "fs";
 import * as Bundler from "parcel-bundler";
-import { Commit } from "../common/api";
 import { ctx } from "../common/config";
 import { buildRepoTableHTML } from "./build-table";
 import { repoCommits } from "./git";
+import type { Commit } from "../common/api";
 
 // building the repo commit table takes quite some time
 // therefore we cache results with 1h expiry time

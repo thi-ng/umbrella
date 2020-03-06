@@ -1,4 +1,4 @@
-import { AppContext, HTMLDoc } from "./api";
+import type { AppContext, HTMLDoc } from "./api";
 
 export const DEFAULT_DOC: HTMLDoc = {
     head: {

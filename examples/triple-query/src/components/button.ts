@@ -1,5 +1,5 @@
-import { AppContext } from "../api";
 import { eventLink } from "./event-link";
+import type { AppContext } from "../api";
 
 export function button(
     ctx: AppContext,

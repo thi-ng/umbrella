@@ -1,16 +1,16 @@
-import { IObjectOf } from "@thi.ng/api";
 import { Atom } from "@thi.ng/atom";
 import { isArray } from "@thi.ng/checks";
 import { start } from "@thi.ng/hdom";
 import { EV_SET_VALUE, EventBus } from "@thi.ng/interceptors";
 import { TripleStore } from "@thi.ng/rstream-query";
-import {
+import * as ev from "./events";
+import type { IObjectOf } from "@thi.ng/api";
+import type {
     AppConfig,
     AppContext,
     AppViews,
     ViewSpec
 } from "./api";
-import * as ev from "./events";
 
 /**
  * Generic base app skeleton. You can use this as basis for your own

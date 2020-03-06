@@ -1,4 +1,3 @@
-import { Fn } from "@thi.ng/api";
 import { setInMany } from "@thi.ng/paths";
 import {
     ISubscriber,
@@ -16,6 +15,7 @@ import {
     PREV
 } from "./api";
 import { state } from "./state";
+import type { Fn } from "@thi.ng/api";
 
 /**
  * Event input stream (not exported)
