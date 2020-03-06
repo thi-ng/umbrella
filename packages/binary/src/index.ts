@@ -1,4 +1,4 @@
-export type * from "./api";
+export * from "./api";
 export * from "./align";
 export * from "./bytes";
 export * from "./constants";

@@ -1,4 +1,4 @@
-export type * from "./api";
+export * from "./api";
 
 export * from "./amatrix";
 export * from "./coo";

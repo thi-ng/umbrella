@@ -2,7 +2,7 @@ import { base64Decode } from "@thi.ng/transducers-binary";
 import { BINARY } from "./binary";
 import type { SIMD } from "./api";
 
-export type * from "./api";
+export * from "./api";
 
 /**
  * Creates a new WASM module instance w/ user supplied memory. The WASM

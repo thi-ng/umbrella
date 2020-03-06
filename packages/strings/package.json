@@ -35,7 +35,7 @@
         "nyc": "^15.0.0",
         "ts-node": "^8.6.2",
         "typedoc": "^0.16.10",
-        "typescript": "^3.8.2"
+        "typescript": "^3.8.3"
     },
     "dependencies": {
         "@thi.ng/errors": "^1.2.6",

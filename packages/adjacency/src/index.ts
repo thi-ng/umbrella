@@ -1,4 +1,4 @@
-export type * from "./api";
+export * from "./api";
 export * from "./binary";
 export * from "./disjoint-set";
 export * from "./sparse";

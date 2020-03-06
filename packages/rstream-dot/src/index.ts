@@ -11,7 +11,7 @@ import type {
     WalkState
 } from "./api";
 
-export type * from "./api";
+export * from "./api";
 
 const getNodeType = (sub: ISubscribable<any>) => {
     if (sub instanceof Stream) {

@@ -1,4 +1,4 @@
-export type * from "./api";
+export * from "./api";
 export * from "./impl";
 export * from "./state";
 export * from "./walk";

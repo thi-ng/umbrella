@@ -1,4 +1,4 @@
-export type * from "./api";
+export * from "./api";
 export * from "./default";
 export * from "./diff";
 export * from "./dom";

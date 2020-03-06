@@ -1,13 +1,13 @@
-export type * from "./api/function";
-export type * from "./api/nodes";
-export type * from "./api/ops";
-export type * from "./api/precision";
-export type * from "./api/swizzles";
-export type * from "./api/syms";
-export type * from "./api/tags";
-export type * from "./api/target";
-export type * from "./api/terms";
-export type * from "./api/types";
+export * from "./api/function";
+export * from "./api/nodes";
+export * from "./api/ops";
+export * from "./api/precision";
+export * from "./api/swizzles";
+export * from "./api/syms";
+export * from "./api/tags";
+export * from "./api/target";
+export * from "./api/terms";
+export * from "./api/types";
 
 export * from "./ast/assign";
 export * from "./ast/checks";
