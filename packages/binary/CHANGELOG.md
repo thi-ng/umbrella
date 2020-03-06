@@ -22,22 +22,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/binary@1.3.1...@thi.ng/binary@1.3.2) (2020-02-26)
-
-**Note:** Version bump only for package @thi.ng/binary
-
-
-
-
-
-## [1.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/binary@1.3.0...@thi.ng/binary@1.3.1) (2020-02-26)
-
-**Note:** Version bump only for package @thi.ng/binary
-
-
-
-
-
 # [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/binary@1.2.1...@thi.ng/binary@1.3.0) (2020-02-25)
 
 

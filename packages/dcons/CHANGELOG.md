@@ -3,46 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.2.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.2.6...@thi.ng/dcons@2.2.7) (2020-03-06)
-
-**Note:** Version bump only for package @thi.ng/dcons
-
-
-
-
-
-## [2.2.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.2.5...@thi.ng/dcons@2.2.6) (2020-03-01)
-
-**Note:** Version bump only for package @thi.ng/dcons
-
-
-
-
-
-## [2.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.2.4...@thi.ng/dcons@2.2.5) (2020-02-26)
-
-**Note:** Version bump only for package @thi.ng/dcons
-
-
-
-
-
-## [2.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.2.3...@thi.ng/dcons@2.2.4) (2020-02-26)
-
-**Note:** Version bump only for package @thi.ng/dcons
-
-
-
-
-
-## [2.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.2.2...@thi.ng/dcons@2.2.3) (2020-02-25)
-
-**Note:** Version bump only for package @thi.ng/dcons
-
-
-
-
-
 # [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.1.6...@thi.ng/dcons@2.2.0) (2019-11-30)
 
 ### Features

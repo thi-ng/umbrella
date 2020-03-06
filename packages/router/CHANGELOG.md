@@ -3,38 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/router@2.0.12...@thi.ng/router@2.0.13) (2020-03-06)
-
-**Note:** Version bump only for package @thi.ng/router
-
-
-
-
-
-## [2.0.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/router@2.0.11...@thi.ng/router@2.0.12) (2020-02-26)
-
-**Note:** Version bump only for package @thi.ng/router
-
-
-
-
-
-## [2.0.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/router@2.0.10...@thi.ng/router@2.0.11) (2020-02-26)
-
-**Note:** Version bump only for package @thi.ng/router
-
-
-
-
-
-## [2.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/router@2.0.9...@thi.ng/router@2.0.10) (2020-02-25)
-
-**Note:** Version bump only for package @thi.ng/router
-
-
-
-
-
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/router@1.0.12...@thi.ng/router@2.0.0) (2019-07-07)
 
 ### Code Refactoring

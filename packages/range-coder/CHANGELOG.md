@@ -3,46 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.0.34](https://github.com/thi-ng/umbrella/compare/@thi.ng/range-coder@1.0.33...@thi.ng/range-coder@1.0.34) (2020-03-06)
-
-**Note:** Version bump only for package @thi.ng/range-coder
-
-
-
-
-
-## [1.0.33](https://github.com/thi-ng/umbrella/compare/@thi.ng/range-coder@1.0.32...@thi.ng/range-coder@1.0.33) (2020-03-01)
-
-**Note:** Version bump only for package @thi.ng/range-coder
-
-
-
-
-
-## [1.0.32](https://github.com/thi-ng/umbrella/compare/@thi.ng/range-coder@1.0.31...@thi.ng/range-coder@1.0.32) (2020-02-26)
-
-**Note:** Version bump only for package @thi.ng/range-coder
-
-
-
-
-
-## [1.0.31](https://github.com/thi-ng/umbrella/compare/@thi.ng/range-coder@1.0.30...@thi.ng/range-coder@1.0.31) (2020-02-26)
-
-**Note:** Version bump only for package @thi.ng/range-coder
-
-
-
-
-
-## [1.0.30](https://github.com/thi-ng/umbrella/compare/@thi.ng/range-coder@1.0.29...@thi.ng/range-coder@1.0.30) (2020-02-25)
-
-**Note:** Version bump only for package @thi.ng/range-coder
-
-
-
-
-
 # [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/range-coder@0.1.28...@thi.ng/range-coder@1.0.0) (2019-01-21)
 
 ### Build System

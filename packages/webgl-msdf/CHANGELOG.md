@@ -3,46 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-msdf@0.1.16...@thi.ng/webgl-msdf@0.1.17) (2020-03-06)
-
-**Note:** Version bump only for package @thi.ng/webgl-msdf
-
-
-
-
-
-## [0.1.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-msdf@0.1.15...@thi.ng/webgl-msdf@0.1.16) (2020-03-01)
-
-**Note:** Version bump only for package @thi.ng/webgl-msdf
-
-
-
-
-
-## [0.1.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-msdf@0.1.14...@thi.ng/webgl-msdf@0.1.15) (2020-02-26)
-
-**Note:** Version bump only for package @thi.ng/webgl-msdf
-
-
-
-
-
-## [0.1.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-msdf@0.1.13...@thi.ng/webgl-msdf@0.1.14) (2020-02-26)
-
-**Note:** Version bump only for package @thi.ng/webgl-msdf
-
-
-
-
-
-## [0.1.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-msdf@0.1.12...@thi.ng/webgl-msdf@0.1.13) (2020-02-25)
-
-**Note:** Version bump only for package @thi.ng/webgl-msdf
-
-
-
-
-
 ## [0.1.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-msdf@0.1.9...@thi.ng/webgl-msdf@0.1.10) (2019-11-30)
 
 ### Bug Fixes

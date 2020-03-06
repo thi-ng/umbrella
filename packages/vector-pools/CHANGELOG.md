@@ -3,46 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.0.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/vector-pools@1.0.16...@thi.ng/vector-pools@1.0.17) (2020-03-06)
-
-**Note:** Version bump only for package @thi.ng/vector-pools
-
-
-
-
-
-## [1.0.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/vector-pools@1.0.15...@thi.ng/vector-pools@1.0.16) (2020-03-01)
-
-**Note:** Version bump only for package @thi.ng/vector-pools
-
-
-
-
-
-## [1.0.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/vector-pools@1.0.14...@thi.ng/vector-pools@1.0.15) (2020-02-26)
-
-**Note:** Version bump only for package @thi.ng/vector-pools
-
-
-
-
-
-## [1.0.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/vector-pools@1.0.13...@thi.ng/vector-pools@1.0.14) (2020-02-26)
-
-**Note:** Version bump only for package @thi.ng/vector-pools
-
-
-
-
-
-## [1.0.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/vector-pools@1.0.12...@thi.ng/vector-pools@1.0.13) (2020-02-25)
-
-**Note:** Version bump only for package @thi.ng/vector-pools
-
-
-
-
-
 # [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vector-pools@0.2.16...@thi.ng/vector-pools@1.0.0) (2019-07-07)
 
 ### Code Refactoring

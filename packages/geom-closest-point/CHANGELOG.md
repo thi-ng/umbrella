@@ -3,46 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.3.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-closest-point@0.3.16...@thi.ng/geom-closest-point@0.3.17) (2020-03-06)
-
-**Note:** Version bump only for package @thi.ng/geom-closest-point
-
-
-
-
-
-## [0.3.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-closest-point@0.3.15...@thi.ng/geom-closest-point@0.3.16) (2020-03-01)
-
-**Note:** Version bump only for package @thi.ng/geom-closest-point
-
-
-
-
-
-## [0.3.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-closest-point@0.3.14...@thi.ng/geom-closest-point@0.3.15) (2020-02-26)
-
-**Note:** Version bump only for package @thi.ng/geom-closest-point
-
-
-
-
-
-## [0.3.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-closest-point@0.3.13...@thi.ng/geom-closest-point@0.3.14) (2020-02-26)
-
-**Note:** Version bump only for package @thi.ng/geom-closest-point
-
-
-
-
-
-## [0.3.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-closest-point@0.3.12...@thi.ng/geom-closest-point@0.3.13) (2020-02-25)
-
-**Note:** Version bump only for package @thi.ng/geom-closest-point
-
-
-
-
-
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-closest-point@0.2.3...@thi.ng/geom-closest-point@0.3.0) (2019-07-07)
 
 ### Bug Fixes

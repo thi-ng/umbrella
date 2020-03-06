@@ -19,38 +19,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [3.1.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@3.1.12...@thi.ng/hdom-components@3.1.13) (2020-03-01)
-
-**Note:** Version bump only for package @thi.ng/hdom-components
-
-
-
-
-
-## [3.1.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@3.1.11...@thi.ng/hdom-components@3.1.12) (2020-02-26)
-
-**Note:** Version bump only for package @thi.ng/hdom-components
-
-
-
-
-
-## [3.1.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@3.1.10...@thi.ng/hdom-components@3.1.11) (2020-02-26)
-
-**Note:** Version bump only for package @thi.ng/hdom-components
-
-
-
-
-
-## [3.1.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@3.1.9...@thi.ng/hdom-components@3.1.10) (2020-02-25)
-
-**Note:** Version bump only for package @thi.ng/hdom-components
-
-
-
-
-
 # [3.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@3.0.20...@thi.ng/hdom-components@3.1.0) (2019-07-07)
 
 ### Bug Fixes

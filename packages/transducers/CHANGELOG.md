@@ -3,14 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [6.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@6.4.0...@thi.ng/transducers@6.4.1) (2020-03-06)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
 # [6.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@6.3.2...@thi.ng/transducers@6.4.0) (2020-03-01)
 
 
@@ -18,22 +10,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **transducers:** add partitionTime() transducer ([efafd0b](https://github.com/thi-ng/umbrella/commit/efafd0ba3f5cfc52a42bb39819caadf35d6b2f42))
 * **transducers:** update mapKeys() key fns to accept 2nd arg ([749d2cd](https://github.com/thi-ng/umbrella/commit/749d2cd2fef29f6991bde75a775d6715600c3b34))
-
-
-
-
-
-## [6.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@6.3.1...@thi.ng/transducers@6.3.2) (2020-02-26)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
-## [6.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@6.3.0...@thi.ng/transducers@6.3.1) (2020-02-26)
-
-**Note:** Version bump only for package @thi.ng/transducers
 
 
 

@@ -3,36 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [4.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.2.0...@thi.ng/vectors@4.2.1) (2020-03-06)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
 # [4.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.1.2...@thi.ng/vectors@4.2.0) (2020-03-01)
 
 
 ### Features
 
 * **vectors:** add safeDiv() ([8e9a688](https://github.com/thi-ng/umbrella/commit/8e9a688e44ed1ed63619ff52b514dd4b373fd743))
-
-
-
-
-
-## [4.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.1.1...@thi.ng/vectors@4.1.2) (2020-02-26)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.1.0...@thi.ng/vectors@4.1.1) (2020-02-26)
-
-**Note:** Version bump only for package @thi.ng/vectors
 
 
 

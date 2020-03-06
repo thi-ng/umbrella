@@ -3,46 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [3.2.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@3.2.6...@thi.ng/rstream-graph@3.2.7) (2020-03-06)
-
-**Note:** Version bump only for package @thi.ng/rstream-graph
-
-
-
-
-
-## [3.2.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@3.2.5...@thi.ng/rstream-graph@3.2.6) (2020-03-01)
-
-**Note:** Version bump only for package @thi.ng/rstream-graph
-
-
-
-
-
-## [3.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@3.2.4...@thi.ng/rstream-graph@3.2.5) (2020-02-26)
-
-**Note:** Version bump only for package @thi.ng/rstream-graph
-
-
-
-
-
-## [3.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@3.2.3...@thi.ng/rstream-graph@3.2.4) (2020-02-26)
-
-**Note:** Version bump only for package @thi.ng/rstream-graph
-
-
-
-
-
-## [3.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@3.2.2...@thi.ng/rstream-graph@3.2.3) (2020-02-25)
-
-**Note:** Version bump only for package @thi.ng/rstream-graph
-
-
-
-
-
 # [3.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@3.1.8...@thi.ng/rstream-graph@3.2.0) (2019-11-30)
 
 ### Bug Fixes

@@ -3,14 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.4.0...@thi.ng/random@1.4.1) (2020-03-06)
-
-**Note:** Version bump only for package @thi.ng/random
-
-
-
-
-
 # [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.3.2...@thi.ng/random@1.4.0) (2020-03-01)
 
 
@@ -22,22 +14,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **random:** add Xoshiro128, refactor default seeds ([b535628](https://github.com/thi-ng/umbrella/commit/b535628c879b133d121307695a2a138dac70f008))
-
-
-
-
-
-## [1.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.3.1...@thi.ng/random@1.3.2) (2020-02-26)
-
-**Note:** Version bump only for package @thi.ng/random
-
-
-
-
-
-## [1.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.3.0...@thi.ng/random@1.3.1) (2020-02-26)
-
-**Note:** Version bump only for package @thi.ng/random
 
 
 

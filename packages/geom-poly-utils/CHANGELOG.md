@@ -3,46 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.35](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-poly-utils@0.1.34...@thi.ng/geom-poly-utils@0.1.35) (2020-03-06)
-
-**Note:** Version bump only for package @thi.ng/geom-poly-utils
-
-
-
-
-
-## [0.1.34](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-poly-utils@0.1.33...@thi.ng/geom-poly-utils@0.1.34) (2020-03-01)
-
-**Note:** Version bump only for package @thi.ng/geom-poly-utils
-
-
-
-
-
-## [0.1.33](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-poly-utils@0.1.32...@thi.ng/geom-poly-utils@0.1.33) (2020-02-26)
-
-**Note:** Version bump only for package @thi.ng/geom-poly-utils
-
-
-
-
-
-## [0.1.32](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-poly-utils@0.1.31...@thi.ng/geom-poly-utils@0.1.32) (2020-02-26)
-
-**Note:** Version bump only for package @thi.ng/geom-poly-utils
-
-
-
-
-
-## [0.1.31](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-poly-utils@0.1.30...@thi.ng/geom-poly-utils@0.1.31) (2020-02-25)
-
-**Note:** Version bump only for package @thi.ng/geom-poly-utils
-
-
-
-
-
 ## [0.1.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-poly-utils@0.1.17...@thi.ng/geom-poly-utils@0.1.18) (2019-07-07)
 
 ### Bug Fixes
