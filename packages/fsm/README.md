@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/fsm](https://media.thi.ng/umbrella/banners/thing-fsm.svg?1581297780)
+# ![@thi.ng/fsm](https://media.thi.ng/umbrella/banners/thing-fsm.svg?1583462198)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/fsm.svg)](https://www.npmjs.com/package/@thi.ng/fsm)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/fsm.svg)
@@ -43,7 +43,7 @@ package.
 yarn add @thi.ng/fsm
 ```
 
-Package sizes (gzipped): ESM: 1.4KB / CJS: 1.5KB / UMD: 1.5KB
+Package sizes (gzipped): ESM: 1.4KB / CJS: 1.5KB / UMD: 1.4KB
 
 ## Dependencies
 
@@ -51,6 +51,7 @@ Package sizes (gzipped): ESM: 1.4KB / CJS: 1.5KB / UMD: 1.5KB
 - [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 
 ## Usage examples

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/hdom](https://media.thi.ng/umbrella/banners/thing-hdom.svg?1583078715)
+# ![@thi.ng/hdom](https://media.thi.ng/umbrella/banners/thing-hdom.svg?1583462199)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hdom.svg)](https://www.npmjs.com/package/@thi.ng/hdom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdom.svg)
@@ -208,6 +208,14 @@ Custom dropdown UI component w/ fuzzy search
 Using hdom in an Elm-like manner
 
 [Live demo](https://demo.thi.ng/umbrella/hdom-elm/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-elm)
+
+### hdom-toggle <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-toggle.png)
+
+Customizable slide toggle component demo
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-toggle/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-toggle)
 
 ### hydrate-basics <!-- NOTOC -->
 

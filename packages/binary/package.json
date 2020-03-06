@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/binary",
     "version": "1.3.2",
-    "description": "50+ assorted binary / bitwise operations, conversions, utilities",
+    "description": "95+ assorted binary / bitwise operations, conversions, utilities",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",

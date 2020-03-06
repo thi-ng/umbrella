@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/hdom-components](https://media.thi.ng/umbrella/banners/thing-hdom-components.svg?1583078719)
+# ![@thi.ng/hdom-components](https://media.thi.ng/umbrella/banners/thing-hdom-components.svg?1583462203)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hdom-components.svg)](https://www.npmjs.com/package/@thi.ng/hdom-components)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdom-components.svg)
@@ -47,7 +47,7 @@ components**. Feedback welcome!
 yarn add @thi.ng/hdom-components
 ```
 
-Package sizes (gzipped): ESM: 1.8KB / CJS: 1.9KB / UMD: 2.0KB
+Package sizes (gzipped): ESM: 2.3KB / CJS: 2.4KB / UMD: 2.4KB
 
 ## Dependencies
 
@@ -102,6 +102,14 @@ Various hdom-canvas shape drawing examples & SVG conversion / export
 Custom dropdown UI component w/ fuzzy search
 
 [Live demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-dropdown-fuzzy)
+
+### hdom-toggle <!-- NOTOC -->
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-toggle.png)
+
+Customizable slide toggle component demo
+
+[Live demo](https://demo.thi.ng/umbrella/hdom-toggle/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-toggle)
 
 ### mandelbrot <!-- NOTOC -->
 

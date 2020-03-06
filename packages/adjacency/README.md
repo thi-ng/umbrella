@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/adjacency](https://media.thi.ng/umbrella/banners/thing-adjacency.svg?1582642861)
+# ![@thi.ng/adjacency](https://media.thi.ng/umbrella/banners/thing-adjacency.svg?1583462201)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/adjacency.svg)](https://www.npmjs.com/package/@thi.ng/adjacency)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/adjacency.svg)
@@ -32,7 +32,7 @@ Sparse & bitwise adjacency matrices and related functions for directed & undirec
 yarn add @thi.ng/adjacency
 ```
 
-Package sizes (gzipped): ESM: 1.7KB / CJS: 1.8KB / UMD: 1.9KB
+Package sizes (gzipped): ESM: 1.8KB / CJS: 1.9KB / UMD: 2.0KB
 
 ## Dependencies
 
