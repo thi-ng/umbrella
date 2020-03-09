@@ -1,4 +1,4 @@
-import type { ModelSpec } from "../api/model";
+import { DrawMode, ModelSpec } from "../api/model";
 
 export interface CubeOpts {
     size: number;
@@ -21,6 +21,7 @@ export const cube = (opts?: Partial<CubeOpts>) => {
         },
         uniforms: {},
         shader: <any>null,
+        mode: DrawMode.TRIANGLES,
         num: 36
     };
     opts.normal && (spec.attribs.normal = {

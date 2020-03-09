@@ -1,9 +1,14 @@
 import { AttribPool } from "@thi.ng/vector-pools";
+import {
+    DrawMode,
+    ModelAttributeSpec,
+    ModelAttributeSpecs,
+    ModelSpec
+} from "./api/model";
 import { isGL2Context } from "./checks";
 import { error } from "./error";
 import type { TypedArray } from "@thi.ng/api";
 import type { IndexBufferSpec, IWebGLBuffer } from "./api/buffers";
-import type { ModelAttributeSpec, ModelAttributeSpecs, ModelSpec } from "./api/model";
 
 export class WebGLArrayBuffer<T extends TypedArray> implements IWebGLBuffer<T> {
     gl: WebGLRenderingContext;
@@ -78,7 +83,7 @@ export const compileModel = (
     }
     spec.instances && compileAttribs(gl, spec.instances.attribs, mode);
     compileIndices(gl, spec.indices, mode);
-    spec.mode == null && (spec.mode = gl.TRIANGLES);
+    spec.mode == null && (spec.mode = DrawMode.TRIANGLES);
     // TODO auto-create VAO & inject into model spec?
     return spec;
 };

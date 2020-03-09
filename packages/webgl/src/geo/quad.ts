@@ -1,4 +1,4 @@
-import type { ModelSpec } from "../api/model";
+import { DrawMode, ModelSpec } from "../api/model";
 
 export const quad = (uv = true): ModelSpec => ({
     attribs: {
@@ -17,6 +17,6 @@ export const quad = (uv = true): ModelSpec => ({
     },
     uniforms: {},
     shader: <any>null,
-    mode: 5, // TRIANGLE_STRIP,
+    mode: DrawMode.TRIANGLE_STRIP,
     num: 4
 });
