@@ -7,6 +7,7 @@ export * from "./identity";
 export * from "./ifdef";
 export * from "./juxt";
 export * from "./partial";
+export * from "./promisify";
 export * from "./thread-first";
 export * from "./thread-last";
 export * from "./trampoline";
