@@ -24,7 +24,10 @@ import {
     rbo,
     shader,
     texture,
-    TextureOpts
+    TextureFilter,
+    TextureFormat,
+    TextureOpts,
+    TextureRepeat
 } from "@thi.ng/webgl";
 import { CONTROLS, PARAM_DEFS, PARAMS } from "./params";
 import { FINAL_SHADER, LIGHT_SHADER, SSAO_SHADER } from "./shaders";
@@ -72,11 +75,11 @@ const app = () => {
             }
             const [colorTex, posTex, normTex, noiseTex, ssaoTex] = [
                 {},
-                { format: gl.RGBA16F },
-                { format: gl.RGBA16F },
+                { format: TextureFormat.RGBA16F },
+                { format: TextureFormat.RGBA16F },
                 {
                     image: NOISE,
-                    format: gl.RG16F
+                    format: TextureFormat.RG16F
                 },
                 {}
             ].map((opts: Partial<TextureOpts>) =>
@@ -84,8 +87,8 @@ const app = () => {
                     width: W,
                     height: H,
                     image: null,
-                    filter: gl.NEAREST,
-                    wrap: gl.CLAMP_TO_EDGE,
+                    filter: TextureFilter.NEAREST,
+                    wrap: TextureRepeat.CLAMP,
                     ...opts
                 })
             );
@@ -140,8 +143,8 @@ const app = () => {
                             col2: 0xffe0e0e0,
                             corners: true
                         }),
-                        filter: gl.NEAREST,
-                        wrap: gl.CLAMP_TO_EDGE
+                        filter: TextureFilter.NEAREST,
+                        wrap: TextureRepeat.CLAMP
                     })
                 ]
             });

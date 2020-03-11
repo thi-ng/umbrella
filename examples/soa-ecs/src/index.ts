@@ -36,6 +36,7 @@ import {
     BLEND_ADD,
     compileModel,
     draw,
+    DrawMode,
     GLMat4,
     GLVec4,
     ModelSpec,
@@ -185,7 +186,7 @@ const app = () => {
                     color2: COLOR2
                 },
                 num: NUM,
-                mode: gl.POINTS
+                mode: DrawMode.POINTS
             });
         },
         update: (el, gl, __, time) => {

@@ -14,7 +14,9 @@ import {
     LAMBERT,
     ModelSpec,
     shader,
-    texture
+    texture,
+    TextureFilter,
+    TextureRepeat
 } from "@thi.ng/webgl";
 
 const app = () => {
@@ -69,8 +71,8 @@ const app = () => {
                             col2: 0xffffffff,
                             corners: true
                         }),
-                        filter: gl.NEAREST,
-                        wrap: gl.CLAMP_TO_EDGE
+                        filter: TextureFilter.NEAREST,
+                        wrap: TextureRepeat.CLAMP
                     })
                 ]
             });

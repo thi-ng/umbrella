@@ -25,7 +25,8 @@ import {
     GLMat4,
     ModelSpec,
     shader,
-    ShaderSpec
+    ShaderSpec,
+    TextureFilter
 } from "@thi.ng/webgl";
 
 const CUBEMAP_SHADER: ShaderSpec = {
@@ -85,8 +86,8 @@ const app = () => {
                                 textures: [
                                     cubeMap(gl, faces, {
                                         filter: [
-                                            gl.LINEAR_MIPMAP_LINEAR,
-                                            gl.LINEAR
+                                            TextureFilter.LINEAR_MIPMAP_LINEAR,
+                                            TextureFilter.LINEAR
                                         ],
                                         mipmap: true
                                     })

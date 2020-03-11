@@ -42,10 +42,13 @@ import {
     BLEND_NORMAL,
     compileModel,
     draw,
+    DrawMode,
     GLMat4,
     ModelSpec,
     shader,
-    texture
+    texture,
+    TextureFilter,
+    TextureRepeat
 } from "@thi.ng/webgl";
 import {
     alignCenter,
@@ -103,8 +106,8 @@ const createText = (
         textures: [
             texture(gl, {
                 image: img,
-                filter: gl.LINEAR,
-                wrap: gl.CLAMP_TO_EDGE
+                filter: TextureFilter.LINEAR,
+                wrap: TextureRepeat.CLAMP
             })
         ],
         uniforms: {
@@ -213,7 +216,7 @@ const createStarField = (gl: WebGLRenderingContext, num = 1000) => {
                 blendFn: BLEND_NORMAL
             }
         }),
-        mode: gl.POINTS,
+        mode: DrawMode.POINTS,
         num
     });
 };
