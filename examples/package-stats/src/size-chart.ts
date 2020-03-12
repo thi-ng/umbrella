@@ -27,6 +27,10 @@ const meta = transduce(
     fs.readdirSync(BASE_DIR)
 );
 
+fs.writeFileSync(
+    `package-sizes-${new Date().toISOString().substr(0, 10)}.json`,
+    JSON.stringify(meta, null, 4)
+);
 console.log(meta.length);
 
 const fileSizeChart = (stats: any, modType: string, type: string) => {
