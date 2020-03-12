@@ -43,7 +43,8 @@
         "@thi.ng/compare": "^1.2.1",
         "@thi.ng/math": "^1.7.3",
         "@thi.ng/transducers": "^6.4.1",
-        "@thi.ng/vectors": "^4.2.1"
+        "@thi.ng/vectors": "^4.2.1",
+        "tslib": "^1.11.1"
     },
     "keywords": [
         "animation",

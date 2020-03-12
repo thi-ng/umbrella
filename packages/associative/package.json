@@ -45,7 +45,8 @@
         "@thi.ng/dcons": "^2.2.7",
         "@thi.ng/equiv": "^1.0.16",
         "@thi.ng/errors": "^1.2.7",
-        "@thi.ng/transducers": "^6.4.1"
+        "@thi.ng/transducers": "^6.4.1",
+        "tslib": "^1.11.1"
     },
     "keywords": [
         "data structures",

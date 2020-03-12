@@ -42,7 +42,8 @@
         "@thi.ng/checks": "^2.5.4",
         "@thi.ng/defmulti": "^1.2.7",
         "@thi.ng/dgraph": "^1.1.24",
-        "@thi.ng/errors": "^1.2.7"
+        "@thi.ng/errors": "^1.2.7",
+        "tslib": "^1.11.1"
     },
     "keywords": [
         "AST",

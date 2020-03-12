@@ -53,5 +53,8 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "dependencies": {
+        "tslib": "^1.11.1"
+    }
 }

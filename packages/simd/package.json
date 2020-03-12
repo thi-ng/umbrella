@@ -43,7 +43,8 @@
     "dependencies": {
         "@thi.ng/checks": "^2.5.4",
         "@thi.ng/transducers": "^6.4.1",
-        "@thi.ng/transducers-binary": "^0.5.4"
+        "@thi.ng/transducers-binary": "^0.5.4",
+        "tslib": "^1.11.1"
     },
     "keywords": [
         "AssemblyScript",

@@ -40,7 +40,8 @@
     "dependencies": {
         "@thi.ng/api": "^6.8.3",
         "@thi.ng/binary": "^2.0.0",
-        "@thi.ng/strings": "^1.7.0"
+        "@thi.ng/strings": "^1.7.0",
+        "tslib": "^1.11.1"
     },
     "keywords": [
         "1D",

@@ -27,7 +27,8 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "dependencies": {
-        "@thi.ng/errors": "^1.2.7"
+        "@thi.ng/errors": "^1.2.7",
+        "tslib": "^1.11.1"
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",

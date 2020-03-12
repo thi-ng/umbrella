@@ -42,7 +42,8 @@
         "@thi.ng/math": "^1.7.3",
         "@thi.ng/random": "^1.4.1",
         "@thi.ng/transducers": "^6.4.1",
-        "@thi.ng/zipper": "^0.1.7"
+        "@thi.ng/zipper": "^0.1.7",
+        "tslib": "^1.11.1"
     },
     "keywords": [
         "AST",

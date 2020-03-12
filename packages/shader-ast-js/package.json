@@ -45,7 +45,8 @@
         "@thi.ng/matrices": "^0.6.4",
         "@thi.ng/pixel": "^0.1.12",
         "@thi.ng/shader-ast": "^0.3.10",
-        "@thi.ng/vectors": "^4.2.1"
+        "@thi.ng/vectors": "^4.2.1",
+        "tslib": "^1.11.1"
     },
     "keywords": [
         "AST",

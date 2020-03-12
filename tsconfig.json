@@ -5,6 +5,7 @@
         "declaration": true,
         "declarationMap": true,
         "experimentalDecorators": true,
+        "importHelpers": true,
         "noUnusedParameters": true,
         "noUnusedLocals": true,
         "preserveConstEnums": true,

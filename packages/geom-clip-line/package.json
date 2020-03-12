@@ -38,7 +38,8 @@
         "typescript": "^3.8.3"
     },
     "dependencies": {
-        "@thi.ng/vectors": "^4.2.1"
+        "@thi.ng/vectors": "^4.2.1",
+        "tslib": "^1.11.1"
     },
     "keywords": [
         "ES6",

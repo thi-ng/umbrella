@@ -39,7 +39,8 @@
         "typescript": "^3.8.3"
     },
     "dependencies": {
-        "@thi.ng/bitstream": "^1.1.10"
+        "@thi.ng/bitstream": "^1.1.10",
+        "tslib": "^1.11.1"
     },
     "keywords": [
         "ES6",

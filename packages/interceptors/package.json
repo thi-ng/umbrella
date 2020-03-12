@@ -42,7 +42,8 @@
         "@thi.ng/atom": "^3.1.8",
         "@thi.ng/checks": "^2.5.4",
         "@thi.ng/errors": "^1.2.7",
-        "@thi.ng/paths": "^3.0.5"
+        "@thi.ng/paths": "^3.0.5",
+        "tslib": "^1.11.1"
     },
     "keywords": [
         "ES6",

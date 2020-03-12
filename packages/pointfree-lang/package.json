@@ -41,7 +41,8 @@
     "dependencies": {
         "@thi.ng/api": "^6.8.3",
         "@thi.ng/errors": "^1.2.7",
-        "@thi.ng/pointfree": "^1.2.9"
+        "@thi.ng/pointfree": "^1.2.9",
+        "tslib": "^1.11.1"
     },
     "keywords": [
         "concatenative",

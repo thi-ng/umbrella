@@ -39,7 +39,8 @@
     },
     "dependencies": {
         "@thi.ng/api": "^6.8.3",
-        "@thi.ng/transducers": "^6.4.1"
+        "@thi.ng/transducers": "^6.4.1",
+        "tslib": "^1.11.1"
     },
     "keywords": [
         "adjacency",

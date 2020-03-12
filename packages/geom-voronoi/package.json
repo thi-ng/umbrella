@@ -46,7 +46,8 @@
         "@thi.ng/geom-poly-utils": "^0.1.35",
         "@thi.ng/math": "^1.7.3",
         "@thi.ng/quad-edge": "^0.2.9",
-        "@thi.ng/vectors": "^4.2.1"
+        "@thi.ng/vectors": "^4.2.1",
+        "tslib": "^1.11.1"
     },
     "keywords": [
         "2D",

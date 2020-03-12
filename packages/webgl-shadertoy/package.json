@@ -42,7 +42,8 @@
         "@thi.ng/shader-ast": "^0.3.10",
         "@thi.ng/shader-ast-glsl": "^0.1.16",
         "@thi.ng/transducers": "^6.4.1",
-        "@thi.ng/webgl": "^0.3.4"
+        "@thi.ng/webgl": "^0.3.4",
+        "tslib": "^1.11.1"
     },
     "keywords": [
         "ES6",

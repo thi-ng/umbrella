@@ -38,7 +38,8 @@
         "typescript": "^3.8.3"
     },
     "dependencies": {
-        "@thi.ng/shader-ast": "^0.3.10"
+        "@thi.ng/shader-ast": "^0.3.10",
+        "tslib": "^1.11.1"
     },
     "keywords": [
         "AST",

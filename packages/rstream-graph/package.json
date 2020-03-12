@@ -44,7 +44,8 @@
         "@thi.ng/paths": "^3.0.5",
         "@thi.ng/resolve-map": "^4.1.15",
         "@thi.ng/rstream": "^3.0.7",
-        "@thi.ng/transducers": "^6.4.1"
+        "@thi.ng/transducers": "^6.4.1",
+        "tslib": "^1.11.1"
     },
     "keywords": [
         "compute",

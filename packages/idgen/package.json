@@ -38,7 +38,8 @@
         "typescript": "^3.8.3"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.8.3"
+        "@thi.ng/api": "^6.8.3",
+        "tslib": "^1.11.1"
     },
     "keywords": [
         "counter",

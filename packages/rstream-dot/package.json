@@ -38,7 +38,8 @@
         "typescript": "^3.8.3"
     },
     "dependencies": {
-        "@thi.ng/rstream": "^3.0.7"
+        "@thi.ng/rstream": "^3.0.7",
+        "tslib": "^1.11.1"
     },
     "keywords": [
         "conversion",

@@ -56,5 +56,8 @@
     "sideEffects": false,
     "thi.ng": {
         "year": 2018
+    },
+    "dependencies": {
+        "tslib": "^1.11.1"
     }
 }

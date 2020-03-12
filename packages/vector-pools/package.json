@@ -43,7 +43,8 @@
         "@thi.ng/checks": "^2.5.4",
         "@thi.ng/malloc": "^4.1.7",
         "@thi.ng/transducers": "^6.4.1",
-        "@thi.ng/vectors": "^4.2.1"
+        "@thi.ng/vectors": "^4.2.1",
+        "tslib": "^1.11.1"
     },
     "keywords": [
         "ES6",
