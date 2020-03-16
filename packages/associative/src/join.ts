@@ -63,12 +63,12 @@ export const join = <A, B>(
 };
 
 /**
- * Similar to {@link join}, computes the join between two sets of relations,
- * using the given keys in `kmap` only for joining and ignoring others.
- * `kmap` can also be used to translate join keys in `b` where
- * needed. Else, if no renaming is desired, the values in `kmap` should
- * be the same as their respective keys, e.g. `{id: "id"}`. Returns new
- * set of same type as `a`.
+ * Similar to {@link join}, computes the join between two sets of
+ * relations, using the given keys in `kmap` only for joining and
+ * ignoring others. `kmap` can also be used to translate join keys in
+ * `b` where needed. Else, if no renaming is desired, the values in
+ * `kmap` should be the same as their respective keys, e.g. `{id:
+ * "id"}`. Returns new set of same type as `a`.
  *
  * @example
  * ```ts
