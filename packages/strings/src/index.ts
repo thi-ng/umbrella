@@ -6,6 +6,7 @@ export * from "./format";
 export * from "./groups";
 export * from "./hollerith";
 export * from "./interpolate";
+export * from "./join";
 export * from "./pad-left";
 export * from "./pad-right";
 export * from "./parse";
