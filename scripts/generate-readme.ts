@@ -1,72 +1,85 @@
-#!/usr/bin/env node
-const fs = require("fs");
+import { Fn0, IObjectOf, Nullable } from "@thi.ng/api";
+import { readdirSync, readFileSync, writeFileSync } from "fs";
+
+interface Package {
+    name: string;
+    description: string;
+    dependencies: IObjectOf<string>;
+    "thi.ng": any;
+}
+
+interface BlogPost {
+    title: string;
+    url: string;
+}
+
+const META_FIELD = "thi.ng";
+const REPO_ID = "thi-ng/umbrella";
+const MAIN_AUTHOR = "Karsten Schmidt";
+const LICENSE = "Apache Software License 2.0";
+
+const GH_URL = "https://github.com";
+const REPO_URL = `${GH_URL}/${REPO_ID}`;
+const ASSET_BASE_URL = `https://raw.githubusercontent.com/${REPO_ID}`;
+const DEMO_URL = "https://demo.thi.ng/umbrella";
+const DOC_URL = "https://docs.thi.ng/umbrella";
+const EX_DIR = "../../examples";
+
+const RE_PKG = /@thi\.ng\/[a-z0-9-]+/g;
+const RE_USER = /@([a-z0-9_-]+)/gi;
+const RE_PARTIAL = /\$\{([a-z.]+)\}/gi;
+const RE_IS_HEADING = /^#{2,4}\s/;
+const RE_HEADING = /^(#{2,4})\s(.+)/;
+const PATTERN_TOC = "<!-- TOC -->";
+const PATTERN_NO_TOC = "<!-- NOTOC -->";
+
+const readJSON = (path: string) => JSON.parse(readFileSync(path).toString());
 
 try {
-    const PKG = JSON.parse(fs.readFileSync("./package.json"));
-    const TPL = fs.readFileSync("./README.tpl.md").toString();
+    const PKG = JSON.parse(readFileSync("./package.json").toString());
+    const TPL = readFileSync("./README.tpl.md").toString();
 
-    const META_FIELD = "thi.ng";
     const META = PKG[META_FIELD] || {};
     const BRANCH = META.branch || "develop";
-    const START_YEAR = META.year || 2016;
-    const REPO_ID = "thi-ng/umbrella";
-    const MAIN_AUTHOR = "Karsten Schmidt";
-    const LICENSE = "Apache Software License 2.0";
-
-    const GH_URL = "https://github.com";
-    const REPO_URL = `${GH_URL}/${REPO_ID}`;
-    const DEMO_URL = "https://demo.thi.ng/umbrella";
-    const ASSET_URL = `https://raw.githubusercontent.com/${REPO_ID}/${BRANCH}/assets`;
     const BRANCH_URL = `${REPO_URL}/tree/${BRANCH}`;
-    const DOC_URL = "https://docs.thi.ng/umbrella";
-    const EX_DIR = "../../examples";
+    const ASSET_URL = `${ASSET_BASE_URL}/${BRANCH}/assets`;
+    const START_YEAR = META.year || 2016;
 
-    const RE_PKG = /@thi\.ng\/[a-z0-9-]+/g;
-    const RE_USER = /@([a-z0-9_-]+)/gi;
-    const RE_PARTIAL = /\$\{([a-z.]+)\}/gi;
-    const RE_IS_HEADING = /^#{2,4}\s/;
-    const RE_HEADING = /^(#{2,4})\s(.+)/;
-    const RE_SLUG = /[^a-z0-9]/gi;
-    const PATTERN_TOC = "<!-- TOC -->";
-    const PATTERN_NO_TOC = "<!-- NOTOC -->";
+    const shortName = (name: string) => name.split("/")[1];
 
-    const shortName = (name) => name.split("/")[1];
+    const link = (title: string, href: string) => `[${title}](${href})`;
 
-    const link = (title, href) => `[${title}](${href})`;
-
-    const pkgLink = (name) =>
+    const pkgLink = (name: string) =>
         link(name, `${BRANCH_URL}/packages/${shortName(name)}`);
 
-    const userLink = (id) => link(`@${id}`, `${GH_URL}/${id}`);
+    const userLink = (id: string): string => link(`@${id}`, `${GH_URL}/${id}`);
 
-    const asset = (file, alt = "") => `![${alt}](${ASSET_URL}/${file})`;
+    const asset = (file: string, alt = "") => `![${alt}](${ASSET_URL}/${file})`;
 
-    const list = (items) => items.map((x) => `- ${x}`).join("\n");
+    const list = (items: string[]) => items.map((x) => `- ${x}`).join("\n");
 
-    const packageList = (pkgShortNames, title) => {
+    const packageList = (pkgShortNames: string[], title: string) => {
         const items = [];
         for (let p of pkgShortNames) {
             try {
-                const pkg = JSON.parse(fs.readFileSync(`../${p}/package.json`));
+                const pkg = readJSON(`../${p}/package.json`);
                 items.push(
                     pkgLink(pkg.name) +
                         " - " +
                         pkg.description.replace(RE_PKG, pkgLink)
                 );
             } catch (_) {
-                console.log(`error reading support pkg: ${p.name}`);
+                console.log(`error reading support pkg: ${p}`);
             }
         }
         return items.length > 0 ? `### ${title}\n\n${list(items)}` : "";
     };
 
-    const examples = (pkgName) => {
+    const examples = (pkgName: string) => {
         const examples = [];
-        for (let ex of fs.readdirSync(EX_DIR)) {
+        for (let ex of readdirSync(EX_DIR)) {
             try {
-                const expkg = JSON.parse(
-                    fs.readFileSync(`${EX_DIR}/${ex}/package.json`)
-                );
+                const expkg = readJSON(`${EX_DIR}/${ex}/package.json`);
                 const meta = expkg[META_FIELD] || {};
                 const explicitInclude =
                     Array.isArray(meta.readme) &&
@@ -113,20 +126,18 @@ try {
             : null;
     };
 
-    const supportPackages = (pkgName) => {
+    const supportPackages = (pkgName: string) => {
         const pkgShortName = shortName(pkgName);
         return packageList(
-            fs
-                .readdirSync("../")
-                .filter((x) => x.startsWith(pkgShortName + "-")),
+            readdirSync("../").filter((x) => x.startsWith(pkgShortName + "-")),
             "Support packages"
         );
     };
 
-    const relatedPackages = (pkgShortNames = []) =>
+    const relatedPackages = (pkgShortNames: string[] = []) =>
         packageList(pkgShortNames, "Related packages");
 
-    const packageDesc = (pkg) => {
+    const packageDesc = (pkg: Package) => {
         const desc = pkg.description.replace(RE_PKG, pkgLink) + ".";
         const parent = (pkg[META_FIELD] || {}).parent;
         return parent && desc.indexOf(parent) == -1
@@ -134,7 +145,7 @@ try {
             : desc;
     };
 
-    const packageDeps = (pkg) => {
+    const packageDeps = (pkg: Package) => {
         const deps = Object.keys(pkg.dependencies || {})
             .sort()
             .map(pkgLink);
@@ -142,7 +153,7 @@ try {
     };
 
     const packageStatus = (status = "stable") => {
-        const statuses = {
+        const statuses: IObjectOf<string> = {
             alpha: " - bleeding edge / work-in-progress",
             beta: " - possibly breaking changes forthcoming",
             stable: " - used in production",
@@ -157,7 +168,7 @@ try {
 
     const packageSize = () => {
         try {
-            const meta = JSON.parse(fs.readFileSync("./.meta/size.json"));
+            const meta = readJSON("./.meta/size.json");
             const res = [];
             for (let id in meta) {
                 res.push(
@@ -172,12 +183,12 @@ try {
         }
     };
 
-    const packageBanner = (name) =>
+    const packageBanner = (name: string) =>
         `![${name}](https://media.thi.ng/umbrella/banners/thing-${shortName(
             name
         )}.svg?${(Date.now() / 1000) | 0})`;
 
-    const blogPosts = (posts) => {
+    const blogPosts = (posts: BlogPost[]) => {
         if (!posts) return;
         return [
             "### Blog posts",
@@ -186,20 +197,19 @@ try {
         ].join("\n");
     };
 
-    const docLink = (pkgName) =>
+    const docLink = (pkgName: string) =>
         link("Generated API docs", `${DOC_URL}/${shortName(pkgName)}/`);
 
     const authors = () => {
         try {
-            return fs
-                .readFileSync("./AUTHORS.md")
+            return readFileSync("./AUTHORS.md")
                 .toString()
                 .replace(RE_USER, (_, id) => userLink(id));
         } catch (_) {}
         return MAIN_AUTHOR;
     };
 
-    const copyright = (startYear, author) => {
+    const copyright = (startYear: number, author: string) => {
         const now = new Date().getFullYear();
         return startYear < now
             ? `${startYear} - ${now} ${author}`
@@ -210,7 +220,7 @@ try {
     const dest = "aaaaaaeeeeiiiioooouuuuncsyoarsnpwgnmuxzh--";
     const re = new RegExp(src.split("").join("|"), "g");
     // based on @thi.ng/strings, adapted for GH
-    const slugify = (str) => {
+    const slugify = (str: string) => {
         return str
             .toLowerCase()
             .replace(/\s/g, "-")
@@ -220,7 +230,7 @@ try {
             .replace(/-+$/, "");
     };
 
-    const injectTOC = (readme) => {
+    const injectTOC = (readme: string) => {
         const toc = readme
             .split("\n")
             .filter(
@@ -229,7 +239,7 @@ try {
                     line.indexOf(PATTERN_NO_TOC) === -1
             )
             .map((hd) => {
-                const [_, level, title] = RE_HEADING.exec(hd);
+                const [_, level, title] = RE_HEADING.exec(hd)!;
                 const indent = "      ".substr(0, (level.length - 2) * 2);
                 const href = "#" + slugify(title);
                 return `${indent}- ${link(title, href)}`;
@@ -238,7 +248,7 @@ try {
         return readme.replace(PATTERN_TOC, toc);
     };
 
-    const partials = {
+    const partials: IObjectOf<string | Fn0<Nullable<string>>> = {
         "pkg.name": PKG.name,
         "pkg.description": () => packageDesc(PKG),
         "pkg.deps": () => packageDeps(PKG),
@@ -268,7 +278,7 @@ try {
     readme = injectTOC(readme);
     readme = "<!-- This file is generated - DO NOT EDIT! -->\n\n" + readme;
 
-    fs.writeFileSync("./README.md", readme);
+    writeFileSync("./README.md", readme);
 } catch (e) {
     console.log(e.message);
     process.exit(1);

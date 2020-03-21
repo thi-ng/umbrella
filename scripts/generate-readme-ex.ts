@@ -1,4 +1,3 @@
-import { selectKeysObj } from "@thi.ng/associative";
 import { repeat, Z3 } from "@thi.ng/strings";
 import { Border, tableCanvas, toString } from "@thi.ng/text-canvas";
 import {
