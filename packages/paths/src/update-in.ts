@@ -40,7 +40,7 @@ import type { UpdateFn } from "./api";
  */
 export const updateIn = (
     state: any,
-    path: Path,
+    path: Readonly<Path>,
     fn: UpdateFn<any>,
     ...args: any[]
 ) => updateInT(state, <any>path, fn, ...args);
@@ -52,16 +52,16 @@ export const updateIn = (
  * @param path -
  * @param fn -
  */
-export function updateInT<T>(state: T, path: [], fn: UpdateFn<T>): T;
+export function updateInT<T>(state: T, path: readonly [], fn: UpdateFn<T>): T;
 export function updateInT<T, A extends Keys<T>>(
     state: T,
-    path: [A],
+    path: readonly [A],
     fn: UpdateFn<Val1<T, A>>,
     ...args: any[]
 ): T;
 export function updateInT<T, A extends Keys<T>, B extends Keys1<T, A>>(
     state: T,
-    path: [A, B],
+    path: readonly [A, B],
     fn: UpdateFn<Val2<T, A, B>>,
     ...args: any[]
 ): T;
@@ -70,7 +70,7 @@ export function updateInT<
     A extends Keys<T>,
     B extends Keys1<T, A>,
     C extends Keys2<T, A, B>
->(state: T, path: [A, B, C], fn: UpdateFn<Val3<T, A, B, C>>, ...args: any[]): T;
+>(state: T, path: readonly [A, B, C], fn: UpdateFn<Val3<T, A, B, C>>, ...args: any[]): T;
 export function updateInT<
     T,
     A extends Keys<T>,
@@ -79,7 +79,7 @@ export function updateInT<
     D extends Keys3<T, A, B, C>
 >(
     state: T,
-    path: [A, B, C, D],
+    path: readonly [A, B, C, D],
     fn: UpdateFn<Val4<T, A, B, C, D>>,
     ...args: any[]
 ): T;
@@ -92,7 +92,7 @@ export function updateInT<
     E extends Keys4<T, A, B, C, D>
 >(
     state: T,
-    path: [A, B, C, D, E],
+    path: readonly [A, B, C, D, E],
     fn: UpdateFn<Val5<T, A, B, C, D, E>>,
     ...args: any[]
 ): T;
@@ -106,7 +106,7 @@ export function updateInT<
     F extends Keys5<T, A, B, C, D, E>
 >(
     state: T,
-    path: [A, B, C, D, E, F],
+    path: readonly [A, B, C, D, E, F],
     fn: UpdateFn<Val6<T, A, B, C, D, E, F>>,
     ...args: any[]
 ): T;
@@ -121,7 +121,7 @@ export function updateInT<
     G extends Keys6<T, A, B, C, D, E, F>
 >(
     state: T,
-    path: [A, B, C, D, E, F, G],
+    path: readonly [A, B, C, D, E, F, G],
     fn: UpdateFn<Val7<T, A, B, C, D, E, F, G>>,
     ...args: any[]
 ): T;
@@ -137,7 +137,7 @@ export function updateInT<
     H extends Keys7<T, A, B, C, D, E, F, G>
 >(
     state: T,
-    path: [A, B, C, D, E, F, G, H],
+    path: readonly [A, B, C, D, E, F, G, H],
     fn: UpdateFn<Val8<T, A, B, C, D, E, F, G, H>>,
     ...args: any[]
 ): T;
@@ -153,13 +153,13 @@ export function updateInT<
     H extends Keys7<T, A, B, C, D, E, F, G>
 >(
     state: T,
-    path: [A, B, C, D, E, F, G, H, ...PropertyKey[]],
+    path: readonly [A, B, C, D, E, F, G, H, ...PropertyKey[]],
     fn: UpdateFn<any>,
     ...args: any[]
 ): T;
 export function updateInT(
     state: any,
-    path: Path,
+    path: Readonly<Path>,
     fn: UpdateFn<any>,
     ...args: any[]
 ) {

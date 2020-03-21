@@ -62,31 +62,31 @@ import type {
  *
  * @param path -
  */
-export const getter = (path: Path): Fn<any, any> => getterT(<any>path);
+export const getter = (path: Readonly<Path>): Fn<any, any> => getterT(<any>path);
 
 /**
  * Type checked version of {@link getter}.
  *
  * @param path -
  */
-export function getterT<T>(path: []): Fn<T, T>;
-export function getterT<T, A extends Keys<T>>(path: [A]): Fn<T, Val1<T, A>>;
+export function getterT<T>(path: readonly []): Fn<T, T>;
+export function getterT<T, A extends Keys<T>>(path: readonly [A]): Fn<T, Val1<T, A>>;
 export function getterT<T, A extends Keys<T>, B extends Keys1<T, A>>(
-    path: [A, B]
+    path: readonly [A, B]
 ): Fn<T, Val2<T, A, B>>;
 export function getterT<
     T,
     A extends Keys<T>,
     B extends Keys1<T, A>,
     C extends Keys2<T, A, B>
->(path: [A, B, C]): Fn<T, Val3<T, A, B, C>>;
+>(path: readonly [A, B, C]): Fn<T, Val3<T, A, B, C>>;
 export function getterT<
     T,
     A extends Keys<T>,
     B extends Keys1<T, A>,
     C extends Keys2<T, A, B>,
     D extends Keys3<T, A, B, C>
->(path: [A, B, C, D]): Fn<T, Val4<T, A, B, C, D>>;
+>(path: readonly [A, B, C, D]): Fn<T, Val4<T, A, B, C, D>>;
 export function getterT<
     T,
     A extends Keys<T>,
@@ -94,7 +94,7 @@ export function getterT<
     C extends Keys2<T, A, B>,
     D extends Keys3<T, A, B, C>,
     E extends Keys4<T, A, B, C, D>
->(path: [A, B, C, D, E]): Fn<T, Val5<T, A, B, C, D, E>>;
+>(path: readonly [A, B, C, D, E]): Fn<T, Val5<T, A, B, C, D, E>>;
 export function getterT<
     T,
     A extends Keys<T>,
@@ -103,7 +103,7 @@ export function getterT<
     D extends Keys3<T, A, B, C>,
     E extends Keys4<T, A, B, C, D>,
     F extends Keys5<T, A, B, C, D, E>
->(path: [A, B, C, D, E, F]): Fn<T, Val6<T, A, B, C, D, E, F>>;
+>(path: readonly [A, B, C, D, E, F]): Fn<T, Val6<T, A, B, C, D, E, F>>;
 export function getterT<
     T,
     A extends Keys<T>,
@@ -113,7 +113,7 @@ export function getterT<
     E extends Keys4<T, A, B, C, D>,
     F extends Keys5<T, A, B, C, D, E>,
     G extends Keys6<T, A, B, C, D, E, F>
->(path: [A, B, C, D, E, F, G]): Fn<T, Val7<T, A, B, C, D, E, F, G>>;
+>(path: readonly [A, B, C, D, E, F, G]): Fn<T, Val7<T, A, B, C, D, E, F, G>>;
 export function getterT<
     T,
     A extends Keys<T>,
@@ -124,7 +124,7 @@ export function getterT<
     F extends Keys5<T, A, B, C, D, E>,
     G extends Keys6<T, A, B, C, D, E, F>,
     H extends Keys7<T, A, B, C, D, E, F, G>
->(path: [A, B, C, D, E, F, G, H]): Fn<T, Val8<T, A, B, C, D, E, F, G, H>>;
+>(path: readonly [A, B, C, D, E, F, G, H]): Fn<T, Val8<T, A, B, C, D, E, F, G, H>>;
 export function getterT<
     T,
     A extends Keys<T>,
@@ -135,8 +135,8 @@ export function getterT<
     F extends Keys5<T, A, B, C, D, E>,
     G extends Keys6<T, A, B, C, D, E, F>,
     H extends Keys7<T, A, B, C, D, E, F, G>
->(path: [A, B, C, D, E, F, G, H, ...any[]]): Fn<T, any>;
-export function getterT(path: Path) {
+>(path: readonly [A, B, C, D, E, F, G, H, ...any[]]): Fn<T, any>;
+export function getterT(path: Readonly<Path>) {
     const ks = toPath(path);
     let [a, b, c, d] = ks;
     switch (ks.length) {

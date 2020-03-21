@@ -33,7 +33,7 @@ import type {
  * @param state -
  * @param path -
  */
-export const deleteIn = (state: any, path: Path) => deleteInT(state, <any>path);
+export const deleteIn = (state: any, path: Readonly<Path>) => deleteInT(state, <any>path);
 
 /**
  * Type checked version of {@link deleteIn}.
@@ -43,25 +43,25 @@ export const deleteIn = (state: any, path: Path) => deleteInT(state, <any>path);
  */
 export function deleteInT<T, A extends Keys<T>>(
     state: T,
-    path: [A]
+    path: readonly [A]
 ): Without<T, A>;
 export function deleteInT<T, A extends Keys<T>, B extends Keys1<T, A>>(
     state: T,
-    path: [A, B]
+    path: readonly [A, B]
 ): Without2<T, A, B>;
 export function deleteInT<
     T,
     A extends Keys<T>,
     B extends Keys1<T, A>,
     C extends Keys2<T, A, B>
->(state: T, path: [A, B, C]): Without3<T, A, B, C>;
+>(state: T, path: readonly [A, B, C]): Without3<T, A, B, C>;
 export function deleteInT<
     T,
     A extends Keys<T>,
     B extends Keys1<T, A>,
     C extends Keys2<T, A, B>,
     D extends Keys3<T, A, B, C>
->(state: T, path: [A, B, C, D]): Without4<T, A, B, C, D>;
+>(state: T, path: readonly [A, B, C, D]): Without4<T, A, B, C, D>;
 export function deleteInT<
     T,
     A extends Keys<T>,
@@ -69,7 +69,7 @@ export function deleteInT<
     C extends Keys2<T, A, B>,
     D extends Keys3<T, A, B, C>,
     E extends Keys4<T, A, B, C, D>
->(state: T, path: [A, B, C, D, E]): Without5<T, A, B, C, D, E>;
+>(state: T, path: readonly [A, B, C, D, E]): Without5<T, A, B, C, D, E>;
 export function deleteInT<
     T,
     A extends Keys<T>,
@@ -78,7 +78,7 @@ export function deleteInT<
     D extends Keys3<T, A, B, C>,
     E extends Keys4<T, A, B, C, D>,
     F extends Keys5<T, A, B, C, D, E>
->(state: T, path: [A, B, C, D, E, F]): Without6<T, A, B, C, D, E, F>;
+>(state: T, path: readonly [A, B, C, D, E, F]): Without6<T, A, B, C, D, E, F>;
 export function deleteInT<
     T,
     A extends Keys<T>,
@@ -88,7 +88,7 @@ export function deleteInT<
     E extends Keys4<T, A, B, C, D>,
     F extends Keys5<T, A, B, C, D, E>,
     G extends Keys6<T, A, B, C, D, E, F>
->(state: T, path: [A, B, C, D, E, F, G]): Without7<T, A, B, C, D, E, F, G>;
+>(state: T, path: readonly [A, B, C, D, E, F, G]): Without7<T, A, B, C, D, E, F, G>;
 export function deleteInT<
     T,
     A extends Keys<T>,
@@ -101,9 +101,9 @@ export function deleteInT<
     H extends Keys7<T, A, B, C, D, E, F, G>
 >(
     state: T,
-    path: [A, B, C, D, E, F, G, H]
+    path: readonly [A, B, C, D, E, F, G, H]
 ): Without8<T, A, B, C, D, E, F, G, H>;
-export function deleteInT(state: any, path: Path): any {
+export function deleteInT(state: any, path: Readonly<Path>): any {
     const ks = [...toPath(path)];
     if (ks.length > 0) {
         const k = ks.pop()!;

@@ -48,7 +48,7 @@ import type {
  * @param path -
  * @param val -
  */
-export const mutIn = (state: any, path: Path, val: any) =>
+export const mutIn = (state: any, path: Readonly<Path>, val: any) =>
     mutInT(state, <any>path, val);
 
 /**
@@ -58,15 +58,15 @@ export const mutIn = (state: any, path: Path, val: any) =>
  * @param path -
  * @param val -
  */
-export function mutInT<T>(state: T, path: [], val: T): T;
+export function mutInT<T>(state: T, path: readonly [], val: T): T;
 export function mutInT<T, A extends Keys<T>>(
     state: T,
-    path: [A],
+    path: readonly [A],
     val: Val1<T, A>
 ): T;
 export function mutInT<T, A extends Keys<T>, B extends Keys1<T, A>>(
     state: T,
-    path: [A, B],
+    path: readonly [A, B],
     val: Val2<T, A, B>
 ): T;
 export function mutInT<
@@ -74,14 +74,14 @@ export function mutInT<
     A extends Keys<T>,
     B extends Keys1<T, A>,
     C extends Keys2<T, A, B>
->(state: T, path: [A, B, C], val: Val3<T, A, B, C>): T;
+>(state: T, path: readonly [A, B, C], val: Val3<T, A, B, C>): T;
 export function mutInT<
     T,
     A extends Keys<T>,
     B extends Keys1<T, A>,
     C extends Keys2<T, A, B>,
     D extends Keys3<T, A, B, C>
->(state: T, path: [A, B, C, D], val: Val4<T, A, B, C, D>): T;
+>(state: T, path: readonly [A, B, C, D], val: Val4<T, A, B, C, D>): T;
 export function mutInT<
     T,
     A extends Keys<T>,
@@ -89,7 +89,7 @@ export function mutInT<
     C extends Keys2<T, A, B>,
     D extends Keys3<T, A, B, C>,
     E extends Keys4<T, A, B, C, D>
->(state: T, path: [A, B, C, D, E], val: Val5<T, A, B, C, D, E>): T;
+>(state: T, path: readonly [A, B, C, D, E], val: Val5<T, A, B, C, D, E>): T;
 export function mutInT<
     T,
     A extends Keys<T>,
@@ -98,7 +98,7 @@ export function mutInT<
     D extends Keys3<T, A, B, C>,
     E extends Keys4<T, A, B, C, D>,
     F extends Keys5<T, A, B, C, D, E>
->(state: T, path: [A, B, C, D, E, F], val: Val6<T, A, B, C, D, E, F>): T;
+>(state: T, path: readonly [A, B, C, D, E, F], val: Val6<T, A, B, C, D, E, F>): T;
 export function mutInT<
     T,
     A extends Keys<T>,
@@ -109,7 +109,7 @@ export function mutInT<
     F extends Keys5<T, A, B, C, D, E>,
     G extends Keys6<T, A, B, C, D, E, F>,
     V
->(state: T, path: [A, B, C, D, E, F, G], val: Val7<T, A, B, C, D, E, F, G>): T;
+>(state: T, path: readonly [A, B, C, D, E, F, G], val: Val7<T, A, B, C, D, E, F, G>): T;
 export function mutInT<
     T,
     A extends Keys<T>,
@@ -122,7 +122,7 @@ export function mutInT<
     H extends Keys7<T, A, B, C, D, E, F, G>
 >(
     state: T,
-    path: [A, B, C, D, E, F, G, H],
+    path: readonly [A, B, C, D, E, F, G, H],
     val: Val8<T, A, B, C, D, E, F, G, H>
 ): T;
 export function mutInT<
@@ -135,7 +135,7 @@ export function mutInT<
     F extends Keys5<T, A, B, C, D, E>,
     G extends Keys6<T, A, B, C, D, E, F>,
     H extends Keys7<T, A, B, C, D, E, F, G>
->(state: T, path: [A, B, C, D, E, F, G, H, ...PropertyKey[]], val: any): any;
-export function mutInT(state: any, path: Path, val: any): any {
+>(state: T, path: readonly [A, B, C, D, E, F, G, H, ...PropertyKey[]], val: any): any;
+export function mutInT(state: any, path: Readonly<Path>, val: any): any {
     return mutatorT(<any>path)(state, val);
 }

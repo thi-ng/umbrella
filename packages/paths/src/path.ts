@@ -17,7 +17,7 @@ import type { Path } from "@thi.ng/api";
  *
  * @param path -
  */
-export const toPath = (path: Path) =>
+export const toPath = (path: Readonly<Path>) =>
     isArray(path)
         ? path
         : isString(path)
@@ -37,7 +37,7 @@ export const toPath = (path: Path) =>
  * @param obj -
  * @param path -
  */
-export const exists = (obj: any, path: Path) => {
+export const exists = (obj: any, path: Readonly<Path>) => {
     if (obj == null) {
         return false;
     }

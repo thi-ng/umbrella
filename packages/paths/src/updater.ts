@@ -42,7 +42,7 @@ import type { UpdateFn } from "./api";
  * @param path -
  * @param fn -
  */
-export const updater = (path: Path, fn: UpdateFn<any>) =>
+export const updater = (path: Readonly<Path>, fn: UpdateFn<any>) =>
     updaterT(<any>path, fn);
 
 /**
@@ -51,13 +51,13 @@ export const updater = (path: Path, fn: UpdateFn<any>) =>
  * @param path -
  * @param fn -
  */
-export function updaterT<T>(path: [], fn: UpdateFn<T>): FnO<T, T>;
+export function updaterT<T>(path: readonly [], fn: UpdateFn<T>): FnO<T, T>;
 export function updaterT<T, A extends Keys<T>>(
-    path: [A],
+    path: readonly [A],
     fn: UpdateFn<Val1<T, A>>
 ): FnO<T, T>;
 export function updaterT<T, A extends Keys<T>, B extends Keys1<T, A>>(
-    path: [A, B],
+    path: readonly [A, B],
     fn: UpdateFn<Val2<T, A, B>>
 ): FnO<T, T>;
 export function updaterT<
@@ -65,14 +65,14 @@ export function updaterT<
     A extends Keys<T>,
     B extends Keys1<T, A>,
     C extends Keys2<T, A, B>
->(path: [A, B, C], fn: UpdateFn<Val3<T, A, B, C>>): FnO<T, T>;
+>(path: readonly [A, B, C], fn: UpdateFn<Val3<T, A, B, C>>): FnO<T, T>;
 export function updaterT<
     T,
     A extends Keys<T>,
     B extends Keys1<T, A>,
     C extends Keys2<T, A, B>,
     D extends Keys3<T, A, B, C>
->(path: [A, B, C, D], fn: UpdateFn<Val4<T, A, B, C, D>>): FnO<T, T>;
+>(path: readonly [A, B, C, D], fn: UpdateFn<Val4<T, A, B, C, D>>): FnO<T, T>;
 export function updaterT<
     T,
     A extends Keys<T>,
@@ -80,7 +80,7 @@ export function updaterT<
     C extends Keys2<T, A, B>,
     D extends Keys3<T, A, B, C>,
     E extends Keys4<T, A, B, C, D>
->(path: [A, B, C, D, E], fn: UpdateFn<Val5<T, A, B, C, D, E>>): FnO<T, T>;
+>(path: readonly [A, B, C, D, E], fn: UpdateFn<Val5<T, A, B, C, D, E>>): FnO<T, T>;
 export function updaterT<
     T,
     A extends Keys<T>,
@@ -89,7 +89,7 @@ export function updaterT<
     D extends Keys3<T, A, B, C>,
     E extends Keys4<T, A, B, C, D>,
     F extends Keys5<T, A, B, C, D, E>
->(path: [A, B, C, D, E, F], fn: UpdateFn<Val6<T, A, B, C, D, E, F>>): FnO<T, T>;
+>(path: readonly [A, B, C, D, E, F], fn: UpdateFn<Val6<T, A, B, C, D, E, F>>): FnO<T, T>;
 export function updaterT<
     T,
     A extends Keys<T>,
@@ -100,7 +100,7 @@ export function updaterT<
     F extends Keys5<T, A, B, C, D, E>,
     G extends Keys6<T, A, B, C, D, E, F>
 >(
-    path: [A, B, C, D, E, F, G],
+    path: readonly [A, B, C, D, E, F, G],
     fn: UpdateFn<Val7<T, A, B, C, D, E, F, G>>
 ): FnO<T, T>;
 export function updaterT<
@@ -114,7 +114,7 @@ export function updaterT<
     G extends Keys6<T, A, B, C, D, E, F>,
     H extends Keys7<T, A, B, C, D, E, F, G>
 >(
-    path: [A, B, C, D, E, F, G, H],
+    path: readonly [A, B, C, D, E, F, G, H],
     fn: UpdateFn<Val8<T, A, B, C, D, E, F, G, H>>
 ): FnO<T, T>;
 export function updaterT<
@@ -128,10 +128,10 @@ export function updaterT<
     G extends Keys6<T, A, B, C, D, E, F>,
     H extends Keys7<T, A, B, C, D, E, F, G>
 >(
-    path: [A, B, C, D, E, F, G, H, ...PropertyKey[]],
+    path: readonly [A, B, C, D, E, F, G, H, ...PropertyKey[]],
     fn: UpdateFn<any>
 ): FnO<T, T>;
-export function updaterT(path: Path, fn: UpdateFn<any>): FnO<any, any> {
+export function updaterT(path: Readonly<Path>, fn: UpdateFn<any>): FnO<any, any> {
     const g = getterT(<any>path);
     const s = setterT(<any>path);
     return (state: any, ...args: any[]) =>

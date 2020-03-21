@@ -78,31 +78,33 @@ import type {
  *
  * @param path -
  */
-export const setter = (path: Path): Fn2<any, any, any> => setterT(<any>path);
+export const setter = (path: Readonly<Path>): Fn2<any, any, any> => setterT(<any>path);
 
 /**
  * Type checked version of {@link setter}.
  *
  * @param path -
  */
-export function setterT<T>(path: []): Fn2<T, T, T>;
-export function setterT<T, A extends Keys<T>>(path: [A]): Fn2<T, Val1<T, A>, T>;
+export function setterT<T>(path: readonly []): Fn2<T, T, T>;
+export function setterT<T, A extends Keys<T>>(
+    path: readonly [A]
+): Fn2<T, Val1<T, A>, T>;
 export function setterT<T, A extends Keys<T>, B extends Keys1<T, A>>(
-    path: [A, B]
+    path: readonly [A, B]
 ): Fn2<T, Val2<T, A, B>, T>;
 export function setterT<
     T,
     A extends Keys<T>,
     B extends Keys1<T, A>,
     C extends Keys2<T, A, B>
->(path: [A, B, C]): Fn2<T, Val3<T, A, B, C>, T>;
+>(path: readonly [A, B, C]): Fn2<T, Val3<T, A, B, C>, T>;
 export function setterT<
     T,
     A extends Keys<T>,
     B extends Keys1<T, A>,
     C extends Keys2<T, A, B>,
     D extends Keys3<T, A, B, C>
->(path: [A, B, C, D]): Fn2<T, Val4<T, A, B, C, D>, T>;
+>(path: readonly [A, B, C, D]): Fn2<T, Val4<T, A, B, C, D>, T>;
 export function setterT<
     T,
     A extends Keys<T>,
@@ -110,7 +112,7 @@ export function setterT<
     C extends Keys2<T, A, B>,
     D extends Keys3<T, A, B, C>,
     E extends Keys4<T, A, B, C, D>
->(path: [A, B, C, D, E]): Fn2<T, Val5<T, A, B, C, D, E>, T>;
+>(path: readonly [A, B, C, D, E]): Fn2<T, Val5<T, A, B, C, D, E>, T>;
 export function setterT<
     T,
     A extends Keys<T>,
@@ -119,7 +121,7 @@ export function setterT<
     D extends Keys3<T, A, B, C>,
     E extends Keys4<T, A, B, C, D>,
     F extends Keys5<T, A, B, C, D, E>
->(path: [A, B, C, D, E, F]): Fn2<T, Val6<T, A, B, C, D, E, F>, T>;
+>(path: readonly [A, B, C, D, E, F]): Fn2<T, Val6<T, A, B, C, D, E, F>, T>;
 export function setterT<
     T,
     A extends Keys<T>,
@@ -129,7 +131,9 @@ export function setterT<
     E extends Keys4<T, A, B, C, D>,
     F extends Keys5<T, A, B, C, D, E>,
     G extends Keys6<T, A, B, C, D, E, F>
->(path: [A, B, C, D, E, F, G]): Fn2<T, Val7<T, A, B, C, D, E, F, G>, T>;
+>(
+    path: readonly [A, B, C, D, E, F, G]
+): Fn2<T, Val7<T, A, B, C, D, E, F, G>, T>;
 export function setterT<
     T,
     A extends Keys<T>,
@@ -140,7 +144,9 @@ export function setterT<
     F extends Keys5<T, A, B, C, D, E>,
     G extends Keys6<T, A, B, C, D, E, F>,
     H extends Keys7<T, A, B, C, D, E, F, G>
->(path: [A, B, C, D, E, F, G, H]): Fn2<T, Val8<T, A, B, C, D, E, F, G, H>, T>;
+>(
+    path: readonly [A, B, C, D, E, F, G, H]
+): Fn2<T, Val8<T, A, B, C, D, E, F, G, H>, T>;
 export function setterT<
     T,
     A extends Keys<T>,
@@ -151,8 +157,8 @@ export function setterT<
     F extends Keys5<T, A, B, C, D, E>,
     G extends Keys6<T, A, B, C, D, E, F>,
     H extends Keys7<T, A, B, C, D, E, F, G>
->(path: [A, B, C, D, E, F, G, H, ...PropertyKey[]]): Fn2<T, any, any>;
-export function setterT(path: Path): Fn2<any, any, any> {
+>(path: readonly [A, B, C, D, E, F, G, H, ...PropertyKey[]]): Fn2<T, any, any>;
+export function setterT(path: Readonly<Path>): Fn2<any, any, any> {
     const ks = toPath(path);
     let [a, b, c, d] = ks;
     switch (ks.length) {
