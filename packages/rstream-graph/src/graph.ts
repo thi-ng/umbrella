@@ -152,7 +152,7 @@ const prepareNodeOutputs = (
             res[id] = ((path) =>
                 node.subscribe(
                     {
-                        next: (x) => state.resetIn(path, x)
+                        next: (x) => state.resetIn(<any>path, x)
                     },
                     { id: `out-${nodeID}` }
                 ))(o);
@@ -160,7 +160,7 @@ const prepareNodeOutputs = (
             res[id] = ((path, id) =>
                 node.subscribe(
                     {
-                        next: (x) => state.resetIn(path, x)
+                        next: (x) => state.resetIn(<any>path, x)
                     },
                     map((x) => (x != null ? x[id] : x)),
                     { id: `out-${nodeID}-${id}` }
