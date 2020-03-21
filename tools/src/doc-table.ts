@@ -1,62 +1,65 @@
-#!/usr/bin/env node
-const fs = require("fs");
-const h = require("@thi.ng/hiccup");
-const tx = require("@thi.ng/transducers");
+import { serialize } from "@thi.ng/hiccup";
+import {
+    comp,
+    filter,
+    map,
+    push,
+    transduce
+} from "@thi.ng/transducers";
+import { existsSync, readdirSync, writeFileSync } from "fs";
+import { META_FIELD, Package } from "./api";
+import { readJSON } from "./io";
+import { shortName } from "./partials/package";
 
-const baseDir = "./packages/";
+const REPO_URL = "https://github.com/thi-ng/umbrella/blob/master/packages";
+const NPM_URL = "https://www.npmjs.com/package";
+const BADGE_URL = "https://img.shields.io/npm/v";
+const BASE_DIR = "./packages/";
 
-const xform = tx.comp(
-    tx.map((f) => baseDir + f),
-    tx.filter((f) => f.indexOf(".DS_Store") < 0 && fs.statSync(f).isDirectory),
-    tx.map((f) => {
-        try {
-            return fs.readFileSync(f + "/package.json");
-        } catch (_) {}
-    }),
-    tx.filter((f) => f !== undefined),
-    tx.map((p) => {
-        p = JSON.parse(p.toString());
-        return {
-            name: p.name,
-            short: p.name.substr(8),
-            v: p.version
-        };
-    }),
-    tx.map((p) => [
-        "tr",
-        ["td", ["a", { href: `umbrella/${p.short}/` }, p.name]],
+const pkgDetails = (p: Package) => [
+    "tr",
+    ["td", ["a", { href: `umbrella/${shortName(p.name)}/` }, p.name]],
+    [
+        "td",
         [
-            "td",
+            "a",
+            { href: `${NPM_URL}/${p.name}` },
             [
-                "a",
-                { href: `https://www.npmjs.com/package/${p.name}` },
-                [
-                    "img",
-                    {
-                        src: `https://img.shields.io/npm/v/${p.name}.svg`,
-                        alt: "npm version"
-                    }
-                ]
-            ]
-        ],
-        [
-            "td",
-            [
-                "a",
+                "img",
                 {
-                    href: `https://github.com/thi-ng/umbrella/blob/master/packages/${p.short}/CHANGELOG.md`
-                },
-                "changelog"
+                    src: `${BADGE_URL}/${p.name}.svg`,
+                    alt: "npm version"
+                }
             ]
         ]
-    ])
+    ],
+    [
+        "td",
+        [
+            "a",
+            {
+                href: `${REPO_URL}/${shortName(p.name)}/CHANGELOG.md`
+            },
+            "changelog"
+        ]
+    ]
+];
+
+const packages = transduce(
+    comp(
+        map((f) => `${BASE_DIR}/${f}/package.json`),
+        filter(existsSync),
+        map((f) => readJSON(<string>f)),
+        filter((pkg) => !pkg[META_FIELD]?.skip),
+        map(pkgDetails)
+    ),
+    push(),
+    readdirSync(BASE_DIR)
 );
 
-const packages = tx.transduce(xform, tx.push(), fs.readdirSync(baseDir));
-
-fs.writeFileSync(
+writeFileSync(
     "docs.html",
-    h.serialize([
+    serialize([
         ["!DOCTYPE", "html"],
         [
             "html",
@@ -92,7 +95,7 @@ fs.writeFileSync(
                 ],
                 [
                     "p",
-                    "this site hosts auto-generated documentation for the following projects:"
+                    "This site hosts auto-generated documentation for the following projects:"
                 ],
                 ["table.w-100", ["tbody", ...packages]],
                 [

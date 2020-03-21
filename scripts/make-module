@@ -66,7 +66,7 @@ cat << EOF > "$MODULE"/package.json
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
-        "doc:readme": "ts-node -P ../../scripts/tsconfig.json ../../scripts/generate-readme.ts",
+        "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/readme.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
@@ -83,7 +83,7 @@ cat << EOF > "$MODULE"/package.json
         "typescript": "^3.8.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.8.2"
+        "@thi.ng/api": "^6.8.3"
     },
     "keywords": [
         "ES6",

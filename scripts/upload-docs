@@ -14,6 +14,6 @@ for m in $modules; do
     aws s3 sync "$m"/doc s3://docs.thi.ng/umbrella/"$name" --profile toxi-s3 --acl public-read
 done
 
-scripts/generate-doc-table
+node_modules/.bin/ts-node -P tools/tsconfig.json tools/src/doc-table.ts
 
 aws s3 cp docs.html s3://docs.thi.ng/index.html --profile toxi-s3 --acl public-read
