@@ -1,0 +1,11 @@
+{
+    "repoURL": "https://github.com/thi-ng/umbrella",
+    "userURL": "https://github.com/",
+    "assetURL": "https://raw.githubusercontent.com/thi-ng/umbrella",
+    "demoURL": "https://demo.thi.ng/umbrella",
+    "docURL": "https://docs.thi.ng/umbrella",
+    "exampleDir": "../../examples",
+    "mainAuthor": "Karsten Schmidt",
+    "license": "Apache Software License 2.0",
+    "pkgScope": "@thi.ng"
+}

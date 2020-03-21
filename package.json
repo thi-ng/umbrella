@@ -32,7 +32,7 @@
         "doc": "lerna run doc",
         "doc:readme": "lerna run doc:readme",
         "doc:ae": "lerna run doc:ae && scripts/collect-apis",
-        "doc:examples": "ts-node -P scripts/tsconfig.json scripts/generate-readme-ex.ts",
+        "doc:examples": "ts-node -P tools/tsconfig.json tools/src/readme-examples.ts",
         "examples": "scripts/build-examples",
         "pub": "lerna publish --registry https://registry.npmjs.org/ && yarn doc && scripts/upload-docs",
         "test": "yarn build && yarn test:only",

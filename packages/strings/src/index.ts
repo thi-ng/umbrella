@@ -16,6 +16,7 @@ export * from "./range";
 export * from "./repeat";
 export * from "./slugify";
 export * from "./splice";
+export * from "./trim";
 export * from "./truncate";
 export * from "./truncate-left";
 export * from "./units";

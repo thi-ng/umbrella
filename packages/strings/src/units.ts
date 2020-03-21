@@ -39,10 +39,14 @@ export const units: (
 });
 
 const KB = 1024;
-const MB = 1024 * 1024;
 
 export const bits = units(
-    [[1, " bits", 0], [KB, " Kb"], [MB, " Mb"], [KB * MB, " Gb"]],
+    [
+        [1, " bits", 0],
+        [KB, " Kb"],
+        [KB ** 2, " Mb"],
+        [KB ** 3, " Gb"]
+    ],
     " bits",
     2
 );
@@ -51,10 +55,10 @@ export const bytes = units(
     [
         [1, " bytes", 0],
         [KB, " KB"],
-        [MB, " MB"],
-        [KB * MB, " GB"],
-        [MB * MB, " TB"],
-        [KB * MB * MB, " PB"]
+        [KB ** 2, " MB"],
+        [KB ** 3, " GB"],
+        [KB ** 4, " TB"],
+        [KB ** 5, " PB"]
     ],
     " bytes",
     2
