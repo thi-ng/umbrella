@@ -115,9 +115,9 @@ function bmi(state: IAtom<any>) {
         let { height, weight, bmi } = <any>(state.deref() || {});
         height *= 0.01;
         if (updateWeight) {
-            state.resetIn("weight", bmi * height * height);
+            state.resetIn(["weight"], bmi * height * height);
         } else {
-            state.resetIn("bmi", weight / (height * height));
+            state.resetIn(["bmi"], weight / (height * height));
         }
     };
 
@@ -216,7 +216,7 @@ defcard(bmi, new Cursor(db, "card2"));
 defcard((state) => {
     // just some random task to populate another part of the app state
     setInterval(
-        () => state.resetIn("stats.now", new Date().toISOString()),
+        () => state.resetIn(["stats","now"], new Date().toISOString()),
         1000
     );
     return ["div", "The full shared state:"];

@@ -11,8 +11,8 @@ const state = new Atom<any>({
 });
 
 // state updates
-const setBg = (x: string) => state.resetIn("bg", x);
-const setFreq = (x: number) => state.resetIn("freq", x);
+const setBg = (x: string) => state.resetIn(["bg"], x);
+const setFreq = (x: number) => state.resetIn(["freq"], x);
 
 // root component with different types of child components
 const app = () => {

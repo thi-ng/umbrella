@@ -120,7 +120,7 @@ const DB = new History(
         radius: 10,
         gridW: 15,
         rgb: [0.9, 0.45, 0.5],
-        pos: [400, 140],
+        pos: <Vec>[400, 140],
         txt: "Hello there! This is a test, do not panic!",
         toggles: new Array<boolean>(12).fill(false),
         flags: [true, false],
@@ -143,7 +143,7 @@ const themeForID = (theme: number): Partial<GUITheme> => ({
 const setRGB = (gui: IMGUI, res: number[]) =>
     res !== undefined &&
     (gui.isAltDown()
-        ? DB.resetIn("rgb", vecOf(3, res[1]))
+        ? DB.resetIn(["rgb"], vecOf(3, res[1]))
         : DB.resetIn(["rgb", res[0]], res[1]));
 
 // main application
@@ -209,7 +209,7 @@ const app = () => {
                                     window.innerWidth,
                                     window.innerHeight
                                 );
-                                DB.swapIn("pos", (pos: Vec) =>
+                                DB.swapIn(["pos"], (pos: Vec) =>
                                     min2([], pos, size)
                                 );
                             }
@@ -239,7 +239,7 @@ const app = () => {
         if (
             buttonH(gui, grid, "show", state.uiVisible ? "Hide UI" : "Show UI")
         ) {
-            DB.resetIn("uiVisible", !state.uiVisible);
+            DB.resetIn(["uiVisible"], !state.uiVisible);
         }
         if (state.uiVisible) {
             let inner: GridLayout;
@@ -265,7 +265,7 @@ const app = () => {
                     inner = grid.nest(8);
                     // vertical button in 1st column and spanning 3 rows
                     if (buttonV(gui, inner, "toggleAll", 3, "INVERT")) {
-                        DB.swapIn("toggles", (toggles: boolean[]) => toggles.map((x) => !x));
+                        DB.swapIn(["toggles"], (toggles: boolean[]) => toggles.map((x) => !x));
                     }
 
                     // create nested 4 column layout using remaining 7 columns of current layout
@@ -299,17 +299,17 @@ const app = () => {
                     grid.next();
                     // alternative theme override for all components created by given function
                     if ((res = gui.withTheme(themeForID(state.theme + 1), () => radio(gui, grid, "radio2", true, state.radio, true, RADIO_LABELS))) !== undefined) {
-                        DB.resetIn("radio", res);
+                        DB.resetIn(["radio"], res);
                     }
 
                     grid.next();
                     textLabel(gui, grid, "Radio (vertical):");
                     if ((res = radio(gui, grid, "radio3", false, state.radio, false, RADIO_LABELS)) !== undefined) {
-                        DB.resetIn("radio", res);
+                        DB.resetIn(["radio"], res);
                     }
                     grid.next();
                     if ((res = radio(gui, grid, "radio4", false, state.radio, true, RADIO_LABELS)) !== undefined) {
-                        DB.resetIn("radio", res);
+                        DB.resetIn(["radio"], res);
                     }
                     break;
 
@@ -319,10 +319,10 @@ const app = () => {
 
                     inner = grid.nest(2);
                     if ((res = sliderH(gui, inner, "grid", 1, 20, 1, state.gridW, "Grid", undefined, "Grid size")) !== undefined) {
-                        DB.resetIn("gridW", res);
+                        DB.resetIn(["gridW"], res);
                     }
                     if ((res = sliderH(gui, inner, "rad", 2, 20, 1, state.radius, "Radius", undefined, "Dot radius")) !== undefined) {
-                        DB.resetIn("radius", res);
+                        DB.resetIn(["radius"], res);
                     }
 
                     textLabel(gui, grid, "Slider groups:");
@@ -341,7 +341,7 @@ const app = () => {
                     res = xyPad(gui, inner, "xy2", ZERO2, size, 10, state.pos, 4, false, undefined, undefined, "Origin") || res;
                     res = xyPad(gui, inner, "xy3", ZERO2, size, 10, state.pos, -1, false, undefined, undefined, "Origin") || res;
                     res = xyPad(gui, inner, "xy4", ZERO2, size, 10, state.pos, -2, false, undefined, undefined, "Origin") || res;
-                    res !== undefined && DB.resetIn("pos", res);
+                    res !== undefined && DB.resetIn(["pos"], res);
                     break;
 
                 case 2:
@@ -375,11 +375,11 @@ const app = () => {
                     grid.next();
                     textLabel(gui, grid, "Select theme:");
                     if ((res = dropdown(gui, grid, "theme", state.theme, THEME_IDS, "GUI theme")) !== undefined) {
-                        DB.resetIn("theme", res);
+                        DB.resetIn(["theme"], res);
                     }
                     const box = layoutBox(10, 150, 150, 120, 200, 24, 0);
                     if ((res = dropdown(gui, box, "theme2", state.theme, THEME_IDS, "GUI theme")) !== undefined) {
-                        DB.resetIn("theme", res);
+                        DB.resetIn(["theme"], res);
                     }
                     break;
 
@@ -387,7 +387,7 @@ const app = () => {
                     grid.next();
                     textLabel(gui, grid, "Editable textfield:");
                     if ((res = textField(gui, grid, "txt", state.txt, undefined, "Type something...")) !== undefined) {
-                        DB.resetIn("txt", res);
+                        DB.resetIn(["txt"], res);
                     }
                     break;
 

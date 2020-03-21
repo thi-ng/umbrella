@@ -23,7 +23,7 @@ import {
     DB,
     setGain,
     setSpectrumPreset,
-    updateSpectrum
+    updateSpectrumBin
 } from "./state";
 
 export const gui = new IMGUI({
@@ -105,7 +105,7 @@ export const updateGUI = (draw: boolean) => {
         FMT_PERCENT,
         "Bin gain decay factor"
     );
-    res !== undefined && DB.resetIn("decay", res);
+    res !== undefined && DB.resetIn(["decay"], res);
 
     res = sliderH(
         gui,
@@ -119,7 +119,7 @@ export const updateGUI = (draw: boolean) => {
         FMT_PERCENT,
         "Bin decay attenuation factor"
     );
-    res !== undefined && DB.resetIn("attenuate", res);
+    res !== undefined && DB.resetIn(["attenuate"], res);
 
     res = sliderH(
         gui,
@@ -133,7 +133,7 @@ export const updateGUI = (draw: boolean) => {
         FMT_PERCENT,
         "Delay line feedback"
     );
-    res !== undefined && DB.resetIn("feedback", res);
+    res !== undefined && DB.resetIn(["feedback"], res);
 
     res = sliderH(
         gui,
@@ -147,7 +147,7 @@ export const updateGUI = (draw: boolean) => {
         FMT,
         "Trigger interval"
     );
-    res !== undefined && DB.resetIn("interval", res);
+    res !== undefined && DB.resetIn(["interval"], res);
 
     gui.endDisabled();
 
@@ -179,7 +179,7 @@ export const updateGUI = (draw: boolean) => {
         FMT,
         BIN_LABELS
     );
-    res && updateSpectrum(res[0], res[1]);
+    res && updateSpectrumBin(res[0], res[1]);
 
     textLabel(gui, grid, "Waveform");
     gui.end();

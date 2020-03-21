@@ -9,6 +9,8 @@ interface Task {
     body: string;
 }
 
+type Tasks = IObjectOf<Task>;
+
 // central app state (immutable)
 const db = new Atom({ tasks: {}, nextID: 0 });
 // attach undo/redo history for `tasks` branch (arbitrary undo limit of 100 steps)
@@ -16,8 +18,8 @@ const tasks = new History<IObjectOf<Task>>(new Cursor(db, "tasks"), 100);
 // cursor for direct access to `nextID`
 const nextID = new Cursor<number>(db, "nextID");
 // create derived view of tasks transformed into components
-const items = db.addView("tasks", (tasks) => [
-    ...map(([id, t]) => taskItem(id, t), pairs<Task>(tasks))
+const items = db.addView("tasks", (tasks: Tasks) => [
+    ...map(([id, t]) => taskItem(id, t), pairs(tasks))
 ]);
 
 // state updaters

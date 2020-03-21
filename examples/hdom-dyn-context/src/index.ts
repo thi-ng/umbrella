@@ -34,7 +34,8 @@ const ctx = {
 };
 
 // state updater / event handler to cycle through all themes
-const toggle = () => db.swapIn("id", (id: number) => (id + 1) % THEMES.length);
+const toggle = () =>
+    db.swapIn(["id"], (id: number) => (id + 1) % THEMES.length);
 
 // root component function
 // the destructuring form is for the context object which is always

@@ -2,7 +2,7 @@ import { weightedRandom } from "@thi.ng/random";
 import { map, range } from "@thi.ng/transducers";
 import { updateAudio } from "./audio";
 import { NUM_BINS } from "./config";
-import { DB, updateSpectrum } from "./state";
+import { DB, updateSpectrumBin } from "./state";
 
 const weights = [
     0,
@@ -17,16 +17,16 @@ const rnd = weightedRandom([...range(0, NUM_BINS)], weights);
 const startAutoMode = () => {
     let i = 0;
     DB.resetIn(
-        "auto",
+        ["auto"],
         setInterval(() => {
             let { decay, attenuate, interval } = DB.value;
             attenuate = 1 + attenuate;
-            DB.swapIn("bins", (buf: number[]) =>
+            DB.swapIn(["bins"], (buf: number[]) =>
                 buf.map((x, i) => (x * decay) / attenuate ** i)
             );
             if (i % interval === 0) {
                 const bin = rnd();
-                updateSpectrum(
+                updateSpectrumBin(
                     bin,
                     Math.random() * (1 - Math.pow((bin - 1) / NUM_BINS, 0.8))
                 );
@@ -39,7 +39,7 @@ const startAutoMode = () => {
 
 const stopAutoMode = () => {
     clearInterval(DB.value.auto);
-    DB.resetIn("auto", null);
+    DB.resetIn(["auto"], null);
 };
 
 export const toggleAutoMode = () =>

@@ -51,7 +51,7 @@ export const removeCell = (id: string) => removeNode(graph, id);
  * @param id
  */
 export const focusCell = (id: string) => {
-    DB.swapIn(id, (cell: Cell) =>
+    DB.swapIn([id], (cell) =>
         setInMany(cell, "focus", true, "backup", cell.formula)
     );
 };
@@ -62,7 +62,7 @@ export const focusCell = (id: string) => {
  * @param id
  */
 export const blurCell = (id: string) => {
-    DB.swapIn(id, (cell: Cell) => setIn(cell, "focus", false));
+    DB.swapIn([id], (cell) => setIn(cell, "focus", false));
 };
 
 /**
@@ -71,7 +71,7 @@ export const blurCell = (id: string) => {
  * @param id
  */
 export const cancelCell = (id: string) => {
-    DB.swapIn(id, (cell: Cell) =>
+    DB.swapIn([id], (cell) =>
         setInMany(cell, "focus", false, "formula", cell.backup)
     );
 };
@@ -96,7 +96,7 @@ export const updateCell = (id: string, val: string) => {
         }
     } else {
         removeCell(id);
-        DB.swapIn(id, (cell) =>
+        DB.swapIn([id], (cell) =>
             setInMany(cell, "value", val, "formula", "", "error", null)
         );
     }
