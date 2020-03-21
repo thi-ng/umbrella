@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/sax](https://media.thi.ng/umbrella/banners/thing-sax.svg?1583078719)
+# ![@thi.ng/sax](https://media.thi.ng/umbrella/banners/thing-sax.svg?1584814437)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/sax.svg)
@@ -67,6 +67,7 @@ Package sizes (gzipped): ESM: 1.9KB / CJS: 2.0KB / UMD: 2.1KB
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-fsm)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## Usage examples
 
@@ -76,13 +77,9 @@ directory are using this package.
 
 A selection:
 
-### xml-converter <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/xml-converter.png)
-
-XML/HTML/SVG to hiccup/JS conversion
-
-[Live demo](https://demo.thi.ng/umbrella/xml-converter/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/xml-converter)
+| Screenshot                                                                                                           | Description                          | Live demo                                           | Source                                                                           |
+| -------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | --------------------------------------------------- | -------------------------------------------------------------------------------- |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/xml-converter.png" width="240"/> | XML/HTML/SVG to hiccup/JS conversion | [Demo](https://demo.thi.ng/umbrella/xml-converter/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/xml-converter) |
 
 ## API
 

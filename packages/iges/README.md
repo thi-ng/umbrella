@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/iges](https://media.thi.ng/umbrella/banners/thing-iges.svg?1582660664)
+# ![@thi.ng/iges](https://media.thi.ng/umbrella/banners/thing-iges.svg?1584814451)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/iges.svg)](https://www.npmjs.com/package/@thi.ng/iges)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/iges.svg)
@@ -46,6 +46,7 @@ Package sizes (gzipped): ESM: 2.7KB / CJS: 2.7KB / UMD: 2.7KB
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

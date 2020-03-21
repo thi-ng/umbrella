@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/grid-iterators](https://media.thi.ng/umbrella/banners/thing-grid-iterators.svg?1583078714)
+# ![@thi.ng/grid-iterators](https://media.thi.ng/umbrella/banners/thing-grid-iterators.svg?1584814401)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/grid-iterators.svg)](https://www.npmjs.com/package/@thi.ng/grid-iterators)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/grid-iterators.svg)
@@ -144,6 +144,7 @@ Package sizes (gzipped): ESM: 1.2KB / CJS: 1.3KB / UMD: 1.4KB
 - [@thi.ng/morton](https://github.com/thi-ng/umbrella/tree/develop/packages/morton)
 - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## Usage examples
 
@@ -153,13 +154,9 @@ directory are using this package.
 
 A selection:
 
-### grid-iterators <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/grid-iterators.png)
-
-Visualization of different grid iterator strategies
-
-[Live demo](https://demo.thi.ng/umbrella/grid-iterators/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/grid-iterators)
+| Screenshot                                                                                                            | Description                                         | Live demo                                            | Source                                                                            |
+| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- | ---------------------------------------------------- | --------------------------------------------------------------------------------- |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/grid-iterators.png" width="240"/> | Visualization of different grid iterator strategies | [Demo](https://demo.thi.ng/umbrella/grid-iterators/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/grid-iterators) |
 
 ## API
 

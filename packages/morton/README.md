@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/morton](https://media.thi.ng/umbrella/banners/thing-morton.svg?1581297779)
+# ![@thi.ng/morton](https://media.thi.ng/umbrella/banners/thing-morton.svg?1584814365)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/morton.svg)](https://www.npmjs.com/package/@thi.ng/morton)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/morton.svg)
@@ -16,7 +16,7 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [API](#api)
   - [ZCurve class](#zcurve-class)
-  - [Low level (2D / 3D only)](#low-level-2d--3d-only)
+  - [Low level (2D / 3D only)](#low-level-2d---3d-only)
 - [Authors](#authors)
 - [License](#license)
 
@@ -54,6 +54,7 @@ Package sizes (gzipped): ESM: 2.0KB / CJS: 2.1KB / UMD: 2.1KB
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

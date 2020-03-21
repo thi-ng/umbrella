@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-api](https://media.thi.ng/umbrella/banners/thing-geom-api.svg?1581297783)
+# ![@thi.ng/geom-api](https://media.thi.ng/umbrella/banners/thing-geom-api.svg?1584814449)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-api.svg)](https://www.npmjs.com/package/@thi.ng/geom-api)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-api.svg)
@@ -37,6 +37,7 @@ Package sizes (gzipped): ESM: 0.6KB / CJS: 0.6KB / UMD: 0.7KB
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

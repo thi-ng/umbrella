@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/ramp](https://media.thi.ng/umbrella/banners/thing-ramp.svg?1581297784)
+# ![@thi.ng/ramp](https://media.thi.ng/umbrella/banners/thing-ramp.svg?1584814461)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/ramp.svg)](https://www.npmjs.com/package/@thi.ng/ramp)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/ramp.svg)
@@ -42,6 +42,7 @@ Package sizes (gzipped): ESM: 0.9KB / CJS: 1.0KB / UMD: 1.1KB
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## Usage examples
 
@@ -51,13 +52,9 @@ directory are using this package.
 
 A selection:
 
-### ramp-synth <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ramp-synth.png)
-
-Unison wavetable synth with waveform editor
-
-[Live demo](https://demo.thi.ng/umbrella/ramp-synth/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ramp-synth)
+| Screenshot                                                                                                        | Description                                 | Live demo                                        | Source                                                                        |
+| ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------- |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ramp-synth.png" width="240"/> | Unison wavetable synth with waveform editor | [Demo](https://demo.thi.ng/umbrella/ramp-synth/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ramp-synth) |
 
 ## API
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/interceptors](https://media.thi.ng/umbrella/banners/thing-interceptors.svg?1583078713)
+# ![@thi.ng/interceptors](https://media.thi.ng/umbrella/banners/thing-interceptors.svg?1584814389)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/interceptors.svg)](https://www.npmjs.com/package/@thi.ng/interceptors)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/interceptors.svg)
@@ -10,11 +10,11 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-- [Event bus, interceptors, side effects](#event-bus-interceptors-side-effects)
-  - [Interceptors: Event and Effect primitives](#interceptors-event-and-effect-primitives)
+- [Event bus, interceptors, side effects](#event-bus--interceptors--side-effects)
+  - [Interceptors: Event and Effect primitives](#interceptors--event-and-effect-primitives)
   - [Event Handlers](#event-handlers)
     - [Events vs Effects:](#events-vs-effects)
-  - [Great, but why?](#great-but-why)
+  - [Great, but why?](#great--but-why)
   - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -133,6 +133,7 @@ Package sizes (gzipped): ESM: 2.1KB / CJS: 2.3KB / UMD: 2.2KB
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## Usage examples
 
@@ -142,53 +143,15 @@ directory are using this package.
 
 A selection:
 
-### async-effect <!-- NOTOC -->
-
-Minimal demo using interceptors with an async side effect
-
-[Live demo](https://demo.thi.ng/umbrella/async-effect/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/async-effect)
-
-### hdom-dropdown-fuzzy <!-- NOTOC -->
-
-Custom dropdown UI component w/ fuzzy search
-
-[Live demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-dropdown-fuzzy)
-
-### interceptor-basics <!-- NOTOC -->
-
-Event handling w/ interceptors and side effects
-
-[Live demo](https://demo.thi.ng/umbrella/interceptor-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/interceptor-basics)
-
-### interceptor-basics2 <!-- NOTOC -->
-
-Event handling w/ interceptors and side effects
-
-[Live demo](https://demo.thi.ng/umbrella/interceptor-basics2/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/interceptor-basics2)
-
-### router-basics <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/router-basics.jpg)
-
-Complete mini SPA app w/ router & async content loading
-
-[Live demo](https://demo.thi.ng/umbrella/router-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/router-basics)
-
-### rstream-grid <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-grid.jpg)
-
-Interactive grid generator, SVG generation & export, undo/redo support
-
-[Live demo](https://demo.thi.ng/umbrella/rstream-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-grid)
-
-### svg-waveform <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-waveform.jpg)
-
-Additive waveform synthesis & SVG visualization with undo/redo
-
-[Live demo](https://demo.thi.ng/umbrella/svg-waveform/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-waveform)
+| Screenshot                                                                                                           | Description                                                            | Live demo                                                 | Source                                                                                 |
+| -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+|                                                                                                                      | Minimal demo using interceptors with an async side effect              | [Demo](https://demo.thi.ng/umbrella/async-effect/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/async-effect)        |
+|                                                                                                                      | Custom dropdown UI component w/ fuzzy search                           | [Demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-dropdown-fuzzy) |
+|                                                                                                                      | Event handling w/ interceptors and side effects                        | [Demo](https://demo.thi.ng/umbrella/interceptor-basics/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/interceptor-basics)  |
+|                                                                                                                      | Event handling w/ interceptors and side effects                        | [Demo](https://demo.thi.ng/umbrella/interceptor-basics2/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/interceptor-basics2) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/router-basics.jpg" width="240"/> | Complete mini SPA app w/ router & async content loading                | [Demo](https://demo.thi.ng/umbrella/router-basics/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/router-basics)       |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-grid.jpg" width="240"/>  | Interactive grid generator, SVG generation & export, undo/redo support | [Demo](https://demo.thi.ng/umbrella/rstream-grid/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-grid)        |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-waveform.jpg" width="240"/>  | Additive waveform synthesis & SVG visualization with undo/redo         | [Demo](https://demo.thi.ng/umbrella/svg-waveform/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-waveform)        |
 
 ## API
 
@@ -200,11 +163,11 @@ TODO
 
 ### Maintainer
 
-- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
+- Karsten Schmidt ([@postspectacular](https://github.com//postspectacular))
 
 ### Contributors
 
-- Logan Powell ([@loganpowell](https://github.com/loganpowell))
+- Logan Powell ([@loganpowell](https://github.com//loganpowell))
 
 ## License
 

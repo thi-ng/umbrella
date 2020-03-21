@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-tessellate](https://media.thi.ng/umbrella/banners/thing-geom-tessellate.svg?1583078721)
+# ![@thi.ng/geom-tessellate](https://media.thi.ng/umbrella/banners/thing-geom-tessellate.svg?1584814495)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-tessellate.svg)](https://www.npmjs.com/package/@thi.ng/geom-tessellate)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-tessellate.svg)
@@ -53,6 +53,7 @@ Package sizes (gzipped): ESM: 0.8KB / CJS: 0.9KB / UMD: 0.9KB
 - [@thi.ng/geom-poly-utils](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-poly-utils)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## Usage examples
 
@@ -62,13 +63,9 @@ directory are using this package.
 
 A selection:
 
-### geom-tessel <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/tessel.png)
-
-Animated, recursive polygon tessellations
-
-[Live demo](https://demo.thi.ng/umbrella/geom-tessel/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-tessel)
+| Screenshot                                                                                                | Description                               | Live demo                                         | Source                                                                         |
+| --------------------------------------------------------------------------------------------------------- | ----------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------ |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/tessel.png" width="240"/> | Animated, recursive polygon tessellations | [Demo](https://demo.thi.ng/umbrella/geom-tessel/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-tessel) |
 
 ## API
 

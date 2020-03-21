@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/idgen](https://media.thi.ng/umbrella/banners/thing-idgen.svg?1582660655)
+# ![@thi.ng/idgen](https://media.thi.ng/umbrella/banners/thing-idgen.svg?1584814344)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/idgen.svg)](https://www.npmjs.com/package/@thi.ng/idgen)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/idgen.svg)
@@ -15,7 +15,7 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [API](#api)
   - [ID generator with 16 bit range and no versioning](#id-generator-with-16-bit-range-and-no-versioning)
-  - [ID generator w/ 24 bit range & 8 bit version range](#id-generator-w-24-bit-range--8-bit-version-range)
+  - [ID generator w/ 24 bit range & 8 bit version range](#id-generator-w--24-bit-range--8-bit-version-range)
   - [IDGen is iterable](#idgen-is-iterable)
 - [Authors](#authors)
 - [License](#license)
@@ -53,11 +53,12 @@ be checked for validity via `.has(id)` (in constant time).
 yarn add @thi.ng/idgen
 ```
 
-Package sizes (gzipped): ESM: 1.0KB / CJS: 1.0KB / UMD: 1.1KB
+Package sizes (gzipped): ESM: 0.8KB / CJS: 0.9KB / UMD: 1.0KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/csp](https://media.thi.ng/umbrella/banners/thing-csp.svg?1581297782)
+# ![@thi.ng/csp](https://media.thi.ng/umbrella/banners/thing-csp.svg?1584814424)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/csp.svg)](https://www.npmjs.com/package/@thi.ng/csp)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/csp.svg)
@@ -54,7 +54,7 @@ for a similar, but alternative (and actively maintained) approach.
 yarn add @thi.ng/csp
 ```
 
-Package sizes (gzipped): ESM: 2.9KB / CJS: 2.9KB / UMD: 2.9KB
+Package sizes (gzipped): ESM: 2.7KB / CJS: 2.8KB / UMD: 2.8KB
 
 ## Dependencies
 
@@ -64,6 +64,7 @@ Package sizes (gzipped): ESM: 2.9KB / CJS: 2.9KB / UMD: 2.9KB
 - [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/develop/packages/dcons)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

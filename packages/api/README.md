@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/api](https://media.thi.ng/umbrella/banners/thing-api.svg?1581297776)
+# ![@thi.ng/api](https://media.thi.ng/umbrella/banners/thing-api.svg?1584814331)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/api.svg)](https://www.npmjs.com/package/@thi.ng/api)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/api.svg)
@@ -48,7 +48,7 @@ Package sizes (gzipped): ESM: 2.0KB / CJS: 2.1KB / UMD: 2.1KB
 
 ## Dependencies
 
-None
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 
@@ -73,11 +73,11 @@ The following env variables are used to control the behavior of some functions i
 
 ### Maintainer
 
-- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
+- Karsten Schmidt ([@postspectacular](https://github.com//postspectacular))
 
 ### Contributors
 
-- Matei Adriel ([@Mateiadrielrafael](https://github.com/Mateiadrielrafael))
+- Matei Adriel ([@Mateiadrielrafael](https://github.com//Mateiadrielrafael))
 
 ## License
 

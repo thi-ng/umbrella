@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/hiccup](https://media.thi.ng/umbrella/banners/thing-hiccup.svg?1583078713)
+# ![@thi.ng/hiccup](https://media.thi.ng/umbrella/banners/thing-hiccup.svg?1584814388)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup.svg)](https://www.npmjs.com/package/@thi.ng/hiccup)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup.svg)
@@ -26,13 +26,13 @@ This project is part of the
   - [Attributes](#attributes)
   - [Simple components](#simple-components)
   - [User context injection](#user-context-injection)
-  - [SVG generation, generators & lazy composition](#svg-generation-generators--lazy-composition)
+  - [SVG generation, generators & lazy composition](#svg-generation--generators--lazy-composition)
   - [Data-driven component composition](#data-driven-component-composition)
   - [Stateful component](#stateful-component)
   - [Component objects](#component-objects)
   - [Behavior control attributes](#behavior-control-attributes)
   - [Comments](#comments)
-  - [XML / DTD processing instructions](#xml--dtd-processing-instructions)
+  - [XML / DTD processing instructions](#xml---dtd-processing-instructions)
 - [API](#api)
   - [serialize()](#serialize)
   - [escape()](#escape)
@@ -143,6 +143,7 @@ Package sizes (gzipped): ESM: 1.9KB / CJS: 2.0KB / UMD: 2.0KB
 
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## Usage examples
 
@@ -152,59 +153,15 @@ directory are using this package.
 
 A selection:
 
-### commit-heatmap <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png)
-
-Heatmap visualization of this mono-repo's commits
-
-[Live demo](https://demo.thi.ng/umbrella/commit-heatmap/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-heatmap)
-
-### commit-table-ssr <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-table-ssr.png)
-
-Filterable commit log UI w/ minimal server to provide commit history
-
-[Live demo](https://demo.thi.ng/umbrella/commit-table-ssr/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-table-ssr)
-
-### hdom-canvas-shapes <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png)
-
-Various hdom-canvas shape drawing examples & SVG conversion / export
-
-[Live demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes)
-
-### hydrate-basics <!-- NOTOC -->
-
-Hiccup / hdom DOM hydration example
-
-[Live demo](https://demo.thi.ng/umbrella/hydrate-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hydrate-basics)
-
-### package-stats <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/package-stats.png)
-
-CLI util to visualize umbrella pkg stats
-
-[Live demo](https://demo.thi.ng/umbrella/package-stats/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/package-stats)
-
-### pointfree-svg <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-svg.png)
-
-Generate SVG using pointfree DSL
-
-[Live demo](https://demo.thi.ng/umbrella/pointfree-svg/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-svg)
-
-### rstream-grid <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-grid.jpg)
-
-Interactive grid generator, SVG generation & export, undo/redo support
-
-[Live demo](https://demo.thi.ng/umbrella/rstream-grid/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-grid)
+| Screenshot                                                                                                                           | Description                                                            | Live demo                                                | Source                                                                                |
+| ------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png" width="240"/>                | Heatmap visualization of this mono-repo's commits                      | [Demo](https://demo.thi.ng/umbrella/commit-heatmap/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-heatmap)     |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-table-ssr.png" width="240"/>              | Filterable commit log UI w/ minimal server to provide commit history   | [Demo](https://demo.thi.ng/umbrella/commit-table-ssr/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-table-ssr)   |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png" width="240"/> | Various hdom-canvas shape drawing examples & SVG conversion / export   | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-shapes/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-shapes) |
+|                                                                                                                                      | Hiccup / hdom DOM hydration example                                    | [Demo](https://demo.thi.ng/umbrella/hydrate-basics/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hydrate-basics)     |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/package-stats.png" width="240"/>                 | CLI util to visualize umbrella pkg stats                               | [Demo](https://demo.thi.ng/umbrella/package-stats/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/package-stats)      |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-svg.png" width="240"/>                 | Generate SVG using pointfree DSL                                       | [Demo](https://demo.thi.ng/umbrella/pointfree-svg/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-svg)      |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-grid.jpg" width="240"/>                  | Interactive grid generator, SVG generation & export, undo/redo support | [Demo](https://demo.thi.ng/umbrella/rstream-grid/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-grid)       |
 
 ## API
 

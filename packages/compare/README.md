@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/compare](https://media.thi.ng/umbrella/banners/thing-compare.svg?1583078710)
+# ![@thi.ng/compare](https://media.thi.ng/umbrella/banners/thing-compare.svg?1584814344)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/compare.svg)](https://www.npmjs.com/package/@thi.ng/compare)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/compare.svg)
@@ -16,7 +16,7 @@ This project is part of the
 - [Usage examples](#usage-examples)
 - [API](#api)
   - [ICompare support](#icompare-support)
-  - [Cluster sort w/ multiple sort keys](#cluster-sort-w-multiple-sort-keys)
+  - [Cluster sort w/ multiple sort keys](#cluster-sort-w--multiple-sort-keys)
 - [Authors](#authors)
 - [License](#license)
 
@@ -47,6 +47,7 @@ Package sizes (gzipped): ESM: 0.3KB / CJS: 0.4KB / UMD: 0.5KB
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## Usage examples
 
@@ -56,13 +57,9 @@ directory are using this package.
 
 A selection:
 
-### triple-query <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/triple-query.png)
-
-Triple store query results & sortable table
-
-[Live demo](https://demo.thi.ng/umbrella/triple-query/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/triple-query)
+| Screenshot                                                                                                          | Description                                 | Live demo                                          | Source                                                                          |
+| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------- |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/triple-query.png" width="240"/> | Triple store query results & sortable table | [Demo](https://demo.thi.ng/umbrella/triple-query/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/triple-query) |
 
 ## API
 

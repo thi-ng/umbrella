@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/hdom-mock](https://media.thi.ng/umbrella/banners/thing-hdom-mock.svg?1581297785)
+# ![@thi.ng/hdom-mock](https://media.thi.ng/umbrella/banners/thing-hdom-mock.svg?1584814425)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hdom-mock.svg)](https://www.npmjs.com/package/@thi.ng/hdom-mock)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdom-mock.svg)
@@ -43,6 +43,7 @@ Package sizes (gzipped): ESM: 1.0KB / CJS: 1.1KB / UMD: 1.2KB
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

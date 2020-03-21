@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/dot](https://media.thi.ng/umbrella/banners/thing-dot.svg?1582660656)
+# ![@thi.ng/dot](https://media.thi.ng/umbrella/banners/thing-dot.svg?1584814356)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dot.svg)](https://www.npmjs.com/package/@thi.ng/dot)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dot.svg)
@@ -49,6 +49,7 @@ Package sizes (gzipped): ESM: 0.7KB / CJS: 0.8KB / UMD: 0.8KB
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/heaps](https://media.thi.ng/umbrella/banners/thing-heaps.svg?1581297778)
+# ![@thi.ng/heaps](https://media.thi.ng/umbrella/banners/thing-heaps.svg?1584814368)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/heaps.svg)](https://www.npmjs.com/package/@thi.ng/heaps)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/heaps.svg)
@@ -42,6 +42,7 @@ Package sizes (gzipped): ESM: 1.5KB / CJS: 1.6KB / UMD: 1.7KB
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/develop/packages/compare)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

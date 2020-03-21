@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/associative](https://media.thi.ng/umbrella/banners/thing-associative.svg?1581297782)
+# ![@thi.ng/associative](https://media.thi.ng/umbrella/banners/thing-associative.svg?1584814413)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/associative.svg)](https://www.npmjs.com/package/@thi.ng/associative)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/associative.svg)
@@ -24,7 +24,7 @@ This project is part of the
   - [SortedMap](#sortedmap)
     - [Ranged queries](#ranged-queries)
   - [SortedSet](#sortedset)
-  - [SparseSet8/16/32](#sparseset81632)
+  - [SparseSet8/16/32](#sparseset8-16-32)
 - [Authors](#authors)
 - [License](#license)
 
@@ -176,6 +176,7 @@ Package sizes (gzipped): ESM: 4.8KB / CJS: 5.0KB / UMD: 4.9KB
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

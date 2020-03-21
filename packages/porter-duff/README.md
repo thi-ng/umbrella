@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/porter-duff](https://media.thi.ng/umbrella/banners/thing-porter-duff.svg?1583078712)
+# ![@thi.ng/porter-duff](https://media.thi.ng/umbrella/banners/thing-porter-duff.svg?1584814366)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/porter-duff.svg)](https://www.npmjs.com/package/@thi.ng/porter-duff)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/porter-duff.svg)
@@ -20,8 +20,8 @@ This project is part of the
   - [Basic usage](#basic-usage)
   - [Operators](#operators)
   - [Custom operators](#custom-operators)
-  - [Additional operators / modifiers](#additional-operators--modifiers)
-  - [Pre/post-multiplied colors](#prepost-multiplied-colors)
+  - [Additional operators / modifiers](#additional-operators---modifiers)
+  - [Pre/post-multiplied colors](#pre-post-multiplied-colors)
 - [Authors](#authors)
 - [License](#license)
 
@@ -64,6 +64,7 @@ Package sizes (gzipped): ESM: 1.0KB / CJS: 1.2KB / UMD: 1.1KB
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## Usage examples
 
@@ -73,21 +74,10 @@ directory are using this package.
 
 A selection:
 
-### pixel-basics <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/pixel-basics.png)
-
-Pixel buffer manipulations
-
-[Live demo](https://demo.thi.ng/umbrella/pixel-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-basics)
-
-### porter-duff <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/porter-duff/porter-duff2.png)
-
-Port-Duff image compositing / alpha blending
-
-[Live demo](https://demo.thi.ng/umbrella/porter-duff/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/porter-duff)
+| Screenshot                                                                                                             | Description                                  | Live demo                                          | Source                                                                          |
+| ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------- |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/pixel-basics.png" width="240"/>       | Pixel buffer manipulations                   | [Demo](https://demo.thi.ng/umbrella/pixel-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-basics) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/porter-duff/porter-duff2.png" width="240"/> | Port-Duff image compositing / alpha blending | [Demo](https://demo.thi.ng/umbrella/porter-duff/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/porter-duff)  |
 
 ## API
 

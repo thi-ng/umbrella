@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/rstream-dot](https://media.thi.ng/umbrella/banners/thing-rstream-dot.svg?1582660668)
+# ![@thi.ng/rstream-dot](https://media.thi.ng/umbrella/banners/thing-rstream-dot.svg?1584814463)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-dot.svg)](https://www.npmjs.com/package/@thi.ng/rstream-dot)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-dot.svg)
@@ -41,6 +41,7 @@ Package sizes (gzipped): ESM: 0.8KB / CJS: 0.8KB / UMD: 0.9KB
 ## Dependencies
 
 - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

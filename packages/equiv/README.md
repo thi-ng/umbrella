@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/equiv](https://media.thi.ng/umbrella/banners/thing-equiv.svg?1581297776)
+# ![@thi.ng/equiv](https://media.thi.ng/umbrella/banners/thing-equiv.svg?1584814332)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/equiv.svg)](https://www.npmjs.com/package/@thi.ng/equiv)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/equiv.svg)
@@ -48,7 +48,7 @@ Package sizes (gzipped): ESM: 0.5KB / CJS: 0.5KB / UMD: 0.6KB
 
 ## Dependencies
 
-None
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

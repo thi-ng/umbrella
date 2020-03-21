@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/pointfree-lang](https://media.thi.ng/umbrella/banners/thing-pointfree-lang.svg?1583078713)
+# ![@thi.ng/pointfree-lang](https://media.thi.ng/umbrella/banners/thing-pointfree-lang.svg?1584814381)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pointfree-lang.svg)](https://www.npmjs.com/package/@thi.ng/pointfree-lang)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pointfree-lang.svg)
@@ -29,7 +29,7 @@ This project is part of the
   - [Variables](#variables)
     - [Dynamic scoping](#dynamic-scoping)
   - [Objects](#objects)
-- [Ideas / Todos](#ideas--todos)
+- [Ideas / Todos](#ideas---todos)
 - [Authors](#authors)
 - [License](#license)
 
@@ -70,6 +70,7 @@ Package sizes (gzipped): ESM: 4.8KB / CJS: 4.9KB / UMD: 4.8KB
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## Usage examples
 
@@ -79,13 +80,9 @@ directory are using this package.
 
 A selection:
 
-### pointfree-svg <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-svg.png)
-
-Generate SVG using pointfree DSL
-
-[Live demo](https://demo.thi.ng/umbrella/pointfree-svg/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-svg)
+| Screenshot                                                                                                           | Description                      | Live demo                                           | Source                                                                           |
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------- | --------------------------------------------------- | -------------------------------------------------------------------------------- |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-svg.png" width="240"/> | Generate SVG using pointfree DSL | [Demo](https://demo.thi.ng/umbrella/pointfree-svg/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-svg) |
 
 ## API
 

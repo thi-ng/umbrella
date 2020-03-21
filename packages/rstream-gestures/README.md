@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/rstream-gestures](https://media.thi.ng/umbrella/banners/thing-rstream-gestures.svg?1583078720)
+# ![@thi.ng/rstream-gestures](https://media.thi.ng/umbrella/banners/thing-rstream-gestures.svg?1584814463)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-gestures.svg)](https://www.npmjs.com/package/@thi.ng/rstream-gestures)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-gestures.svg)
@@ -53,6 +53,7 @@ Package sizes (gzipped): ESM: 1.2KB / CJS: 1.2KB / UMD: 1.3KB
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## Usage examples
 
@@ -62,59 +63,15 @@ directory are using this package.
 
 A selection:
 
-### canvas-dial <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/canvas-dial.png)
-
-Canvas based dial widget
-
-[Live demo](https://demo.thi.ng/umbrella/canvas-dial/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/canvas-dial)
-
-### geom-knn <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-knn.jpg)
-
-Doodle w/ K-nearest neighbor search result visualization
-
-[Live demo](https://demo.thi.ng/umbrella/geom-knn/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-knn)
-
-### gesture-analysis <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/gesture-analysis.png)
-
-Mouse gesture / stroke analysis, simplification, corner detection
-
-[Live demo](https://demo.thi.ng/umbrella/gesture-analysis/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/gesture-analysis)
-
-### hdom-canvas-draw <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-canvas-draw.jpg)
-
-Interactive pattern drawing demo using transducers
-
-[Live demo](https://demo.thi.ng/umbrella/hdom-canvas-draw/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-draw)
-
-### imgui <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png)
-
-Canvas based Immediate Mode GUI components
-
-[Live demo](https://demo.thi.ng/umbrella/imgui/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui)
-
-### mandelbrot <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mandelbrot.jpg)
-
-Worker based, interactive Mandelbrot visualization
-
-[Live demo](https://demo.thi.ng/umbrella/mandelbrot/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/mandelbrot)
-
-### multitouch <!-- NOTOC -->
-
-Basic rstream-gestures multi-touch demo
-
-[Live demo](https://demo.thi.ng/umbrella/multitouch/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/multitouch)
+| Screenshot                                                                                                              | Description                                                       | Live demo                                              | Source                                                                              |
+| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/canvas-dial.png" width="240"/>      | Canvas based dial widget                                          | [Demo](https://demo.thi.ng/umbrella/canvas-dial/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/canvas-dial)      |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-knn.jpg" width="240"/>         | Doodle w/ K-nearest neighbor search result visualization          | [Demo](https://demo.thi.ng/umbrella/geom-knn/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-knn)         |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/gesture-analysis.png" width="240"/> | Mouse gesture / stroke analysis, simplification, corner detection | [Demo](https://demo.thi.ng/umbrella/gesture-analysis/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/gesture-analysis) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-canvas-draw.jpg" width="240"/> | Interactive pattern drawing demo using transducers                | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-draw/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-draw) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png" width="240"/>           | Canvas based Immediate Mode GUI components                        | [Demo](https://demo.thi.ng/umbrella/imgui/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui)            |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mandelbrot.jpg" width="240"/>       | Worker based, interactive Mandelbrot visualization                | [Demo](https://demo.thi.ng/umbrella/mandelbrot/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/mandelbrot)       |
+|                                                                                                                         | Basic rstream-gestures multi-touch demo                           | [Demo](https://demo.thi.ng/umbrella/multitouch/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/multitouch)       |
 
 ## API
 
@@ -208,12 +165,12 @@ gestures.subscribe(
 
 ### Maintainer
 
-- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
+- Karsten Schmidt ([@postspectacular](https://github.com//postspectacular))
 
 ### Contributors
 
-- Arthur Carabott ([@acarabott](https://github.com/acarabott))
-- Matei Adriel ([@Mateiadrielrafael](https://github.com/Mateiadrielrafael))
+- Arthur Carabott ([@acarabott](https://github.com//acarabott))
+- Matei Adriel ([@Mateiadrielrafael](https://github.com//Mateiadrielrafael))
 
 ## License
 

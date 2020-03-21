@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-closest-point](https://media.thi.ng/umbrella/banners/thing-geom-closest-point.svg?1581297783)
+# ![@thi.ng/geom-closest-point](https://media.thi.ng/umbrella/banners/thing-geom-closest-point.svg?1584814450)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-closest-point.svg)](https://www.npmjs.com/package/@thi.ng/geom-closest-point)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-closest-point.svg)
@@ -41,6 +41,7 @@ Package sizes (gzipped): ESM: 0.8KB / CJS: 0.9KB / UMD: 0.9KB
 
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

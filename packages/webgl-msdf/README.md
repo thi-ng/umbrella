@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/webgl-msdf](https://media.thi.ng/umbrella/banners/thing-webgl-msdf.svg?1583078723)
+# ![@thi.ng/webgl-msdf](https://media.thi.ng/umbrella/banners/thing-webgl-msdf.svg?1584814502)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/webgl-msdf.svg)](https://www.npmjs.com/package/@thi.ng/webgl-msdf)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/webgl-msdf.svg)
@@ -55,6 +55,7 @@ Package sizes (gzipped): ESM: 1.5KB / CJS: 1.5KB / UMD: 1.6KB
 - [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/develop/packages/vector-pools)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 - [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## Usage examples
 
@@ -64,13 +65,9 @@ directory are using this package.
 
 A selection:
 
-### webgl-msdf <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-msdf.jpg)
-
-WebGL MSDF text rendering & particle system
-
-[Live demo](https://demo.thi.ng/umbrella/webgl-msdf/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-msdf)
+| Screenshot                                                                                                        | Description                                 | Live demo                                        | Source                                                                        |
+| ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------- |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-msdf.jpg" width="240"/> | WebGL MSDF text rendering & particle system | [Demo](https://demo.thi.ng/umbrella/webgl-msdf/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-msdf) |
 
 ## API
 

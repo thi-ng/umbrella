@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/intervals](https://media.thi.ng/umbrella/banners/thing-intervals.svg?1581297778)
+# ![@thi.ng/intervals](https://media.thi.ng/umbrella/banners/thing-intervals.svg?1584814368)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/intervals.svg)](https://www.npmjs.com/package/@thi.ng/intervals)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/intervals.svg)
@@ -49,6 +49,7 @@ Package sizes (gzipped): ESM: 1.4KB / CJS: 1.5KB / UMD: 1.5KB
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/dlogic](https://github.com/thi-ng/umbrella/tree/develop/packages/dlogic)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 
@@ -122,11 +123,11 @@ i.ropen = false;
 
 ### Maintainer
 
-- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
+- Karsten Schmidt ([@postspectacular](https://github.com//postspectacular))
 
 ### Contributors
 
-- [@oljeger](https://github.com/oljeger)
+- [@oljeger](https://github.com//oljeger)
 
 ## License
 

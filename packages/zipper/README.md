@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/zipper](https://media.thi.ng/umbrella/banners/thing-zipper.svg?1581297779)
+# ![@thi.ng/zipper](https://media.thi.ng/umbrella/banners/thing-zipper.svg?1584814388)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/zipper.svg)](https://www.npmjs.com/package/@thi.ng/zipper)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/zipper.svg)
@@ -59,6 +59,7 @@ Package sizes (gzipped): ESM: 1.0KB / CJS: 1.1KB / UMD: 1.2KB
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

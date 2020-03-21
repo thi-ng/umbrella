@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/router](https://media.thi.ng/umbrella/banners/thing-router.svg?1583078711)
+# ![@thi.ng/router](https://media.thi.ng/umbrella/banners/thing-router.svg?1584814368)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/router.svg)](https://www.npmjs.com/package/@thi.ng/router)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/router.svg)
@@ -45,7 +45,7 @@ Partially based on the Clojure implementation in
 yarn add @thi.ng/router
 ```
 
-Package sizes (gzipped): ESM: 1.7KB / CJS: 1.7KB / UMD: 1.8KB
+Package sizes (gzipped): ESM: 1.5KB / CJS: 1.6KB / UMD: 1.6KB
 
 ## Dependencies
 
@@ -53,6 +53,7 @@ Package sizes (gzipped): ESM: 1.7KB / CJS: 1.7KB / UMD: 1.8KB
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## Usage examples
 
@@ -62,13 +63,9 @@ directory are using this package.
 
 A selection:
 
-### router-basics <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/router-basics.jpg)
-
-Complete mini SPA app w/ router & async content loading
-
-[Live demo](https://demo.thi.ng/umbrella/router-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/router-basics)
+| Screenshot                                                                                                           | Description                                             | Live demo                                           | Source                                                                           |
+| -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- | --------------------------------------------------- | -------------------------------------------------------------------------------- |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/router-basics.jpg" width="240"/> | Complete mini SPA app w/ router & async content loading | [Demo](https://demo.thi.ng/umbrella/router-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/router-basics) |
 
 ## API
 

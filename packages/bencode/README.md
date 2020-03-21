@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/bencode](https://media.thi.ng/umbrella/banners/thing-bencode.svg?1581297782)
+# ![@thi.ng/bencode](https://media.thi.ng/umbrella/banners/thing-bencode.svg?1584814425)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/bencode.svg)](https://www.npmjs.com/package/@thi.ng/bencode)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/bencode.svg)
@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Features / behaviors](#features--behaviors)
+  - [Features / behaviors](#features---behaviors)
     - [Booleans](#booleans)
     - [String handling](#string-handling)
     - [Floating point values](#floating-point-values)
@@ -69,6 +69,7 @@ Package sizes (gzipped): ESM: 1.2KB / CJS: 1.2KB / UMD: 1.3KB
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [@thi.ng/transducers-binary](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

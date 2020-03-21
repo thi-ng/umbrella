@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/ecs](https://media.thi.ng/umbrella/banners/thing-ecs.svg?1583078719)
+# ![@thi.ng/ecs](https://media.thi.ng/umbrella/banners/thing-ecs.svg?1584814438)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/ecs.svg)](https://www.npmjs.com/package/@thi.ng/ecs)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/ecs.svg)
@@ -42,7 +42,7 @@ Entity Component System based around typed arrays & sparse sets.
 yarn add @thi.ng/ecs
 ```
 
-Package sizes (gzipped): ESM: 3.1KB / CJS: 3.1KB / UMD: 3.2KB
+Package sizes (gzipped): ESM: 2.9KB / CJS: 3.0KB / UMD: 3.0KB
 
 ## Dependencies
 
@@ -53,6 +53,7 @@ Package sizes (gzipped): ESM: 3.1KB / CJS: 3.1KB / UMD: 3.2KB
 - [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/develop/packages/dcons)
 - [@thi.ng/idgen](https://github.com/thi-ng/umbrella/tree/develop/packages/idgen)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## Usage examples
 
@@ -62,13 +63,9 @@ directory are using this package.
 
 A selection:
 
-### soa-ecs <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/soa-ecs-100k.png)
-
-Entity Component System w/ 100k 3D particles
-
-[Live demo](https://demo.thi.ng/umbrella/soa-ecs/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/soa-ecs)
+| Screenshot                                                                                                          | Description                                  | Live demo                                     | Source                                                                     |
+| ------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- | --------------------------------------------- | -------------------------------------------------------------------------- |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/soa-ecs-100k.png" width="240"/> | Entity Component System w/ 100k 3D particles | [Demo](https://demo.thi.ng/umbrella/soa-ecs/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/soa-ecs) |
 
 ## API
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/layout](https://media.thi.ng/umbrella/banners/thing-layout.svg?1582662658)
+# ![@thi.ng/layout](https://media.thi.ng/umbrella/banners/thing-layout.svg?1584814356)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/layout.svg)](https://www.npmjs.com/package/@thi.ng/layout)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/layout.svg)
@@ -44,6 +44,7 @@ Package sizes (gzipped): ESM: 0.6KB / CJS: 0.7KB / UMD: 0.8KB
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## Usage examples
 
@@ -53,21 +54,10 @@ directory are using this package.
 
 A selection:
 
-### fft-synth <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fft-synth.png)
-
-Interactive inverse FFT toy synth
-
-[Live demo](https://demo.thi.ng/umbrella/fft-synth/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fft-synth)
-
-### imgui <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png)
-
-Canvas based Immediate Mode GUI components
-
-[Live demo](https://demo.thi.ng/umbrella/imgui/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui)
+| Screenshot                                                                                                       | Description                                | Live demo                                       | Source                                                                       |
+| ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | ----------------------------------------------- | ---------------------------------------------------------------------------- |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fft-synth.png" width="240"/> | Interactive inverse FFT toy synth          | [Demo](https://demo.thi.ng/umbrella/fft-synth/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fft-synth) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png" width="240"/>    | Canvas based Immediate Mode GUI components | [Demo](https://demo.thi.ng/umbrella/imgui/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui)     |
 
 ## API
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-clip-poly](https://media.thi.ng/umbrella/banners/thing-geom-clip-poly.svg?1582472096)
+# ![@thi.ng/geom-clip-poly](https://media.thi.ng/umbrella/banners/thing-geom-clip-poly.svg?1584814495)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-clip-poly.svg)](https://www.npmjs.com/package/@thi.ng/geom-clip-poly)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-clip-poly.svg)
@@ -45,6 +45,7 @@ Package sizes (gzipped): ESM: 0.3KB / CJS: 0.4KB / UMD: 0.5KB
 - [@thi.ng/geom-poly-utils](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-poly-utils)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

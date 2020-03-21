@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/seq](https://media.thi.ng/umbrella/banners/thing-seq.svg?1582660657)
+# ![@thi.ng/seq](https://media.thi.ng/umbrella/banners/thing-seq.svg?1584814357)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/seq.svg)](https://www.npmjs.com/package/@thi.ng/seq)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/seq.svg)
@@ -50,6 +50,7 @@ Package sizes (gzipped): ESM: 0.5KB / CJS: 0.6KB / UMD: 0.7KB
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

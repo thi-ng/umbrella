@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/errors](https://media.thi.ng/umbrella/banners/thing-errors.svg?1581297777)
+# ![@thi.ng/errors](https://media.thi.ng/umbrella/banners/thing-errors.svg?1584814329)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/errors.svg)](https://www.npmjs.com/package/@thi.ng/errors)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/errors.svg)
@@ -38,7 +38,7 @@ Package sizes (gzipped): ESM: 0.3KB / CJS: 0.3KB / UMD: 0.4KB
 
 ## Dependencies
 
-None
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

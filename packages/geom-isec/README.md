@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-isec](https://media.thi.ng/umbrella/banners/thing-geom-isec.svg?1581297786)
+# ![@thi.ng/geom-isec](https://media.thi.ng/umbrella/banners/thing-geom-isec.svg?1584814486)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-isec.svg)](https://www.npmjs.com/package/@thi.ng/geom-isec)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-isec.svg)
@@ -63,6 +63,7 @@ Package sizes (gzipped): ESM: 2.3KB / CJS: 2.4KB / UMD: 2.4KB
 - [@thi.ng/geom-closest-point](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-closest-point)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

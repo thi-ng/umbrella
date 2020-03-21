@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/sparse](https://media.thi.ng/umbrella/banners/thing-sparse.svg?1582660661)
+# ![@thi.ng/sparse](https://media.thi.ng/umbrella/banners/thing-sparse.svg?1584814412)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/sparse.svg)](https://www.npmjs.com/package/@thi.ng/sparse)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/sparse.svg)
@@ -37,6 +37,7 @@ Package sizes (gzipped): ESM: 3.5KB / CJS: 3.6KB / UMD: 3.7KB
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/arrays](https://media.thi.ng/umbrella/banners/thing-arrays.svg?1581297779)
+# ![@thi.ng/arrays](https://media.thi.ng/umbrella/banners/thing-arrays.svg?1584814381)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/arrays.svg)](https://www.npmjs.com/package/@thi.ng/arrays)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/arrays.svg)
@@ -32,7 +32,7 @@ Array / Arraylike utilities.
 yarn add @thi.ng/arrays
 ```
 
-Package sizes (gzipped): ESM: 1.3KB / CJS: 1.4KB / UMD: 1.4KB
+Package sizes (gzipped): ESM: 1.7KB / CJS: 1.9KB / UMD: 1.9KB
 
 ## Dependencies
 
@@ -42,6 +42,7 @@ Package sizes (gzipped): ESM: 1.3KB / CJS: 1.4KB / UMD: 1.4KB
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

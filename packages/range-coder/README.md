@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/range-coder](https://media.thi.ng/umbrella/banners/thing-range-coder.svg?1581297781)
+# ![@thi.ng/range-coder](https://media.thi.ng/umbrella/banners/thing-range-coder.svg?1584814413)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/range-coder.svg)](https://www.npmjs.com/package/@thi.ng/range-coder)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/range-coder.svg)
@@ -43,6 +43,7 @@ Package sizes (gzipped): ESM: 0.7KB / CJS: 0.7KB / UMD: 0.7KB
 ## Dependencies
 
 - [@thi.ng/bitstream](https://github.com/thi-ng/umbrella/tree/develop/packages/bitstream)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

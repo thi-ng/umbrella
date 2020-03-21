@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/rstream-csp](https://media.thi.ng/umbrella/banners/thing-rstream-csp.svg?1582660668)
+# ![@thi.ng/rstream-csp](https://media.thi.ng/umbrella/banners/thing-rstream-csp.svg?1584814463)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-csp.svg)](https://www.npmjs.com/package/@thi.ng/rstream-csp)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-csp.svg)
@@ -46,6 +46,7 @@ Package sizes (gzipped): ESM: 0.2KB / CJS: 0.3KB / UMD: 0.4KB
 
 - [@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/develop/packages/csp)
 - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

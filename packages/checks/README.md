@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/checks](https://media.thi.ng/umbrella/banners/thing-checks.svg?1581297776)
+# ![@thi.ng/checks](https://media.thi.ng/umbrella/banners/thing-checks.svg?1584814331)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/checks.svg)
@@ -37,7 +37,7 @@ Package sizes (gzipped): ESM: 1.3KB / CJS: 1.5KB / UMD: 1.3KB
 
 ## Dependencies
 
-None
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 
@@ -49,12 +49,12 @@ TODO
 
 ### Maintainer
 
--   Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
+-   Karsten Schmidt ([@postspectacular](https://github.com//postspectacular))
 
 ### Contributors
 
--   Gavin Cannizzaro ([@gavinpc-mindgrub](https://github.com/gavinpc-mindgrub))
--   Jay Zawrotny ([@eccentric-j](https://github.com/eccentric-j))
+-   Gavin Cannizzaro ([@gavinpc-mindgrub](https://github.com//gavinpc-mindgrub))
+-   Jay Zawrotny ([@eccentric-j](https://github.com//eccentric-j))
 
 ## License
 

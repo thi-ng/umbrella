@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/text-canvas](https://media.thi.ng/umbrella/banners/thing-text-canvas.svg?1583078719)
+# ![@thi.ng/text-canvas](https://media.thi.ng/umbrella/banners/thing-text-canvas.svg?1584814487)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/text-canvas.svg)](https://www.npmjs.com/package/@thi.ng/text-canvas)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/text-canvas.svg)
@@ -56,6 +56,7 @@ Package sizes (gzipped): ESM: 5.3KB / CJS: 5.6KB / UMD: 5.3KB
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/memoize](https://github.com/thi-ng/umbrella/tree/develop/packages/memoize)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## Usage examples
 
@@ -65,13 +66,9 @@ directory are using this package.
 
 A selection:
 
-### text-canvas <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas.png)
-
-3D wireframe textmode demo
-
-[Live demo](https://demo.thi.ng/umbrella/text-canvas/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas)
+| Screenshot                                                                                                         | Description                | Live demo                                         | Source                                                                         |
+| ------------------------------------------------------------------------------------------------------------------ | -------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------ |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas.png" width="240"/> | 3D wireframe textmode demo | [Demo](https://demo.thi.ng/umbrella/text-canvas/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas) |
 
 ## API
 

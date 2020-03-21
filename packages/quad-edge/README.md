@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/quad-edge](https://media.thi.ng/umbrella/banners/thing-quad-edge.svg?1581297777)
+# ![@thi.ng/quad-edge](https://media.thi.ng/umbrella/banners/thing-quad-edge.svg?1584814341)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/quad-edge.svg)](https://www.npmjs.com/package/@thi.ng/quad-edge)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/quad-edge.svg)
@@ -53,7 +53,7 @@ Package sizes (gzipped): ESM: 0.5KB / CJS: 0.5KB / UMD: 0.6KB
 
 ## Dependencies
 
-None
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

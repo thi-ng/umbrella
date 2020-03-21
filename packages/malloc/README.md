@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/malloc](https://media.thi.ng/umbrella/banners/thing-malloc.svg?1582660657)
+# ![@thi.ng/malloc](https://media.thi.ng/umbrella/banners/thing-malloc.svg?1584814356)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/malloc.svg)](https://www.npmjs.com/package/@thi.ng/malloc)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/malloc.svg)
@@ -11,20 +11,20 @@ This project is part of the
 
 - [About](#about)
 - [Memory layout](#memory-layout)
-- [Free block compaction / coalescing](#free-block-compaction--coalescing)
+- [Free block compaction / coalescing](#free-block-compaction---coalescing)
 - [Block splitting](#block-splitting)
   - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
   - [MemPool](#mempool)
-  - [`malloc(size: number)`](#mallocsize-number)
-  - [`mallocAs(type: Type, num: number)`](#mallocastype-type-num-number)
-  - [`calloc(size: number, fill = 0)`](#callocsize-number-fill--0)
-  - [`callocAs(type: Type, num: number, fill = 0)`](#callocastype-type-num-number-fill--0)
-  - [`realloc(addr: number, size: number)`](#reallocaddr-number-size-number)
-  - [`reallocArray(buf: TypedArray, num: number)`](#reallocarraybuf-typedarray-num-number)
-  - [`free(addr: number | TypedArray)`](#freeaddr-number--typedarray)
+  - [`malloc(size: number)`](#mallocsize--number)
+  - [`mallocAs(type: Type, num: number)`](#mallocastype--type--num--number)
+  - [`calloc(size: number, fill = 0)`](#callocsize--number--fill--0)
+  - [`callocAs(type: Type, num: number, fill = 0)`](#callocastype--type--num--number--fill--0)
+  - [`realloc(addr: number, size: number)`](#reallocaddr--number--size--number)
+  - [`reallocArray(buf: TypedArray, num: number)`](#reallocarraybuf--typedarray--num--number)
+  - [`free(addr: number | TypedArray)`](#freeaddr--number--typedarray)
   - [`freeAll()`](#freeall)
   - [`release()`](#release)
   - [`stats()`](#stats)
@@ -137,6 +137,7 @@ Package sizes (gzipped): ESM: 1.8KB / CJS: 1.9KB / UMD: 1.8KB
 - [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 
@@ -312,11 +313,11 @@ allocating tiny arrays is slightly slower than the vanilla version... YMMV!
 
 ### Maintainer
 
-- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
+- Karsten Schmidt ([@postspectacular](https://github.com//postspectacular))
 
 ### Contributors
 
-- Bnaya Peretz ([@Bnaya](https://github.com/Bnaya))
+- Bnaya Peretz ([@Bnaya](https://github.com//Bnaya))
 
 ## License
 

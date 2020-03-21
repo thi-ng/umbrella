@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/transducers-binary](https://media.thi.ng/umbrella/banners/thing-transducers-binary.svg?1583078714)
+# ![@thi.ng/transducers-binary](https://media.thi.ng/umbrella/banners/thing-transducers-binary.svg?1584814413)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-binary.svg)](https://www.npmjs.com/package/@thi.ng/transducers-binary)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-binary.svg)
@@ -20,7 +20,7 @@ This project is part of the
   - [Streaming hexdump](#streaming-hexdump)
   - [Structured byte buffer construction](#structured-byte-buffer-construction)
   - [Bitstream](#bitstream)
-  - [Base64 & UTF-8 en/decoding](#base64--utf-8-endecoding)
+  - [Base64 & UTF-8 en/decoding](#base64--utf-8-en-decoding)
   - [Transducers](#transducers)
   - [Reducers](#reducers)
 - [Authors](#authors)
@@ -41,7 +41,7 @@ iterable for direct use.
 
 ### Related packages
 
-- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary) - 50+ assorted binary / bitwise operations, conversions, utilities
+- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary) - 95+ assorted binary / bitwise operations, conversions, utilities
 - [@thi.ng/bitstream](https://github.com/thi-ng/umbrella/tree/develop/packages/bitstream) - ES6 iterator based read/write bit streams with support for variable word widths
 - [@thi.ng/unionstruct](https://github.com/thi-ng/umbrella/tree/develop/packages/unionstruct) - C-style struct, union and bitfield read/write views of ArrayBuffers
 
@@ -59,6 +59,7 @@ Package sizes (gzipped): ESM: 2.8KB / CJS: 2.9KB / UMD: 2.8KB
 - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## Usage examples
 
@@ -68,21 +69,10 @@ directory are using this package.
 
 A selection:
 
-### bitmap-font <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/bitmap-font.gif)
-
-Figlet-style bitmap font creation with transducers
-
-[Live demo](https://demo.thi.ng/umbrella/bitmap-font/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/bitmap-font)
-
-### wolfram <!-- NOTOC -->
-
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/wolfram.png)
-
-1D Wolfram automata with OBJ point cloud export
-
-[Live demo](https://demo.thi.ng/umbrella/wolfram/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/wolfram)
+| Screenshot                                                                                                         | Description                                        | Live demo                                         | Source                                                                         |
+| ------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------ |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/bitmap-font.gif" width="240"/> | Figlet-style bitmap font creation with transducers | [Demo](https://demo.thi.ng/umbrella/bitmap-font/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/bitmap-font) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/wolfram.png" width="240"/>     | 1D Wolfram automata with OBJ point cloud export    | [Demo](https://demo.thi.ng/umbrella/wolfram/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/wolfram)     |
 
 ## API
 

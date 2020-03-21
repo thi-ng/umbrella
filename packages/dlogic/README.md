@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/dlogic](https://media.thi.ng/umbrella/banners/thing-dlogic.svg?1581297776)
+# ![@thi.ng/dlogic](https://media.thi.ng/umbrella/banners/thing-dlogic.svg?1584814332)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dlogic.svg)](https://www.npmjs.com/package/@thi.ng/dlogic)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dlogic.svg)
@@ -42,7 +42,7 @@ Package sizes (gzipped): ESM: 0.4KB / CJS: 0.5KB / UMD: 0.5KB
 
 ## Dependencies
 
-None
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 
