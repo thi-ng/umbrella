@@ -63,7 +63,7 @@ export class View<T> implements IView<T> {
 
     constructor(
         parent: ReadonlyAtom<any>,
-        path: Path,
+        path: Readonly<Path>,
         tx?: ViewTransform<T>,
         lazy = true,
         equiv = _equiv
