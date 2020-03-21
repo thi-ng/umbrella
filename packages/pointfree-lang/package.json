@@ -23,7 +23,7 @@
         "peg": "pegjs -f es -o parser.js src/grammar.pegjs",
         "pegtest": "pegjs -o build/src/parser.js src/grammar.pegjs",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
-        "doc:readme": "../../scripts/generate-readme",
+        "doc:readme": "ts-node -P ../../scripts/tsconfig.json ../../scripts/generate-readme.ts",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "pub": "yarn build:release && yarn publish --access public"
