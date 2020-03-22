@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/hiccup-markdown](https://media.thi.ng/umbrella/banners/thing-hiccup-markdown.svg?1584814425)
+# ![@thi.ng/hiccup-markdown](https://media.thi.ng/umbrella/banners/thing-hiccup-markdown.svg?1584845437)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-markdown.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-markdown)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-markdown.svg)
@@ -46,7 +46,7 @@ parser and an extensible Hiccup-to-Markdown converter.
 yarn add @thi.ng/hiccup-markdown
 ```
 
-Package sizes (gzipped): ESM: 2.5KB / CJS: 2.5KB / UMD: 2.4KB
+Package sizes (gzipped): CJS: 2.8KB
 
 ## Dependencies
 
@@ -57,6 +57,7 @@ Package sizes (gzipped): ESM: 2.5KB / CJS: 2.5KB / UMD: 2.4KB
 - [@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm)
 - [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
+- [@thi.ng/text-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/text-canvas)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
@@ -229,6 +230,7 @@ standard (applicable) Markdown features:
 - Images (w/ optional alt attrib)
 - Links, image links
 - Code blocks w/ language hint (GFM output)
+- Tables
 - Blockquotes
 - Nested lists (ordered & unordered)
 - Horizontal rule / separator
@@ -236,7 +238,6 @@ standard (applicable) Markdown features:
 
 Not (yet) supported:
 
-- Tables
 - Nested blockquotes
 - Link refs
 - Wordwrapped output
@@ -301,6 +302,13 @@ serialize(
             "baz"],
         ["blockquote",
             "So long and thanks for all the fish."],
+        ["table",
+            ["caption", ["em", "Table #1"]],
+            ["thead",
+                ["tr", ["th", "ID"], ["th", "Name"]]],
+            ["tbody",
+                ["tr", ["td", 1], ["td", "Alice B. Charles"]],
+                ["tr", ["td", 2], ["td", "Bart Simpson"]]]],
         ["p",
             "More info ",
             [thingLink, "hiccup-markdown", "here"], "."]],
@@ -334,6 +342,13 @@ import { serialize } from "@thi.ng/hiccup-markdown";
 
 > So long and thanks for all the fish.
 
+| **ID**  | **Name**         |
+| ------- | ---------------- |
+| 1       | Alice B. Charles |
+| 2       | Bart Simpson     |
+
+_Table #1_
+
 More info [here](http://thi.ng/hiccup-markdown).
 ```
 
@@ -341,7 +356,7 @@ Realized result:
 
 ---
 
-# Hello Markdown
+# Hello Markdown <!-- NOTOC -->
 
 This is a test: **I am strong and _italic_**...
 
@@ -359,6 +374,13 @@ import { serialize } from "@thi.ng/hiccup-markdown";
 - baz
 
 > So long and thanks for all the fish.
+
+| **ID**  | **Name**         |
+| ------- | ---------------- |
+| 1       | Alice B. Charles |
+| 2       | Bart Simpson     |
+
+_Table #1_
 
 More info [here](http://thi.ng/hiccup-markdown).
 

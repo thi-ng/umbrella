@@ -196,6 +196,7 @@ standard (applicable) Markdown features:
 - Images (w/ optional alt attrib)
 - Links, image links
 - Code blocks w/ language hint (GFM output)
+- Tables
 - Blockquotes
 - Nested lists (ordered & unordered)
 - Horizontal rule / separator
@@ -203,7 +204,6 @@ standard (applicable) Markdown features:
 
 Not (yet) supported:
 
-- Tables
 - Nested blockquotes
 - Link refs
 - Wordwrapped output
@@ -268,6 +268,13 @@ serialize(
             "baz"],
         ["blockquote",
             "So long and thanks for all the fish."],
+        ["table",
+            ["caption", ["em", "Table #1"]],
+            ["thead",
+                ["tr", ["th", "ID"], ["th", "Name"]]],
+            ["tbody",
+                ["tr", ["td", 1], ["td", "Alice B. Charles"]],
+                ["tr", ["td", 2], ["td", "Bart Simpson"]]]],
         ["p",
             "More info ",
             [thingLink, "hiccup-markdown", "here"], "."]],
@@ -283,7 +290,6 @@ layout breakage)
 
 ```md
 # Hello Markdown
-
 
 This is a test: **I am strong and _italic_**...
 
@@ -302,6 +308,13 @@ import { serialize } from "@thi.ng/hiccup-markdown";
 
 > So long and thanks for all the fish.
 
+| **ID**  | **Name**         |
+| ------- | ---------------- |
+| 1       | Alice B. Charles |
+| 2       | Bart Simpson     |
+
+_Table #1_
+
 More info [here](http://thi.ng/hiccup-markdown).
 ```
 
@@ -309,8 +322,7 @@ Realized result:
 
 ---
 
-# Hello Markdown
-
+# Hello Markdown <!-- NOTOC -->
 
 This is a test: **I am strong and _italic_**...
 
@@ -328,6 +340,13 @@ import { serialize } from "@thi.ng/hiccup-markdown";
 - baz
 
 > So long and thanks for all the fish.
+
+| **ID**  | **Name**         |
+| ------- | ---------------- |
+| 1       | Alice B. Charles |
+| 2       | Bart Simpson     |
+
+_Table #1_
 
 More info [here](http://thi.ng/hiccup-markdown).
 
