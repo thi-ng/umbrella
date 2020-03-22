@@ -14,12 +14,14 @@ export interface BaseConfig {
     repoURL: string;
     userURL: string;
     assetURL: string;
+    bannerURL: string;
     demoURL: string;
     docURL: string;
     exampleDir: string;
     mainAuthor: string;
     license: string;
     pkgScope: string;
+    statuses: IObjectOf<string>;
 }
 
 export interface Config extends BaseConfig {

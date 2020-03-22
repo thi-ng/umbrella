@@ -1,4 +1,5 @@
 import { IObjectOf } from "@thi.ng/api";
+import { bytes } from "@thi.ng/strings";
 import { readdirSync } from "fs";
 import { META_FIELD, Package, RE_PKG } from "../api";
 import { CONFIG } from "../config";
@@ -54,17 +55,12 @@ export const packageDeps = (pkg: Package) => {
     return deps.length ? list(deps) : "None";
 };
 
-export const packageStatus = (status = "stable") => {
-    const statuses: IObjectOf<string> = {
-        alpha: " - bleeding edge / work-in-progress",
-        beta: " - possibly breaking changes forthcoming",
-        stable: " - used in production",
-        refactor: " - undergoing major refactoring"
-    };
+export const packageStatus = (id = "stable") => {
+    const status = CONFIG.statuses[id];
     return [
         "### Status",
         "",
-        `**${status.toUpperCase()}**${statuses[status] || ""}`
+        `**${id.toUpperCase()}**${status ? " - " + status : ""}`
     ].join("\n");
 };
 
@@ -73,9 +69,7 @@ export const packageSize = () => {
         const meta = readJSON("./.meta/size.json");
         const res = [];
         for (let id in meta) {
-            res.push(
-                `${id.toUpperCase()}: ${(meta[id].gzip / 1024).toFixed(1)}KB`
-            );
+            res.push(`${id.toUpperCase()}: ${bytes(meta[id].gzip)}`);
         }
         return "Package sizes (gzipped): " + res.join(" / ");
     } catch (_) {
@@ -84,6 +78,6 @@ export const packageSize = () => {
 };
 
 export const packageBanner = (name: string) =>
-    `![${name}](https://media.thi.ng/umbrella/banners/thing-${shortName(
-        name
-    )}.svg?${(Date.now() / 1000) | 0})`;
+    `![${name}](${CONFIG.bannerURL}${shortName(name)}.svg?${(Date.now() /
+        1000) |
+        0})`;
