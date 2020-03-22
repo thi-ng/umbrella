@@ -9,7 +9,6 @@ import { illegalArgs } from "@thi.ng/errors";
 import { normalize } from "@thi.ng/hiccup";
 import { repeat, wrap } from "@thi.ng/strings";
 import { Border, tableCanvas, toString } from "@thi.ng/text-canvas";
-import { map } from "@thi.ng/transducers";
 
 interface SerializeState {
     indent: number;
@@ -19,7 +18,7 @@ interface SerializeState {
 }
 
 export const serialize = (tree: any, ctx: any) =>
-    _serialize(tree, ctx, { indent: 0, sep: "" });
+    _serialize(tree, ctx, { indent: 0, sep: "" }).replace(/\n{3,}/g, "\n\n");
 
 const _serialize = (tree: any, ctx: any, state: SerializeState): string => {
     if (tree == null) return "";
@@ -160,7 +159,8 @@ serializeElement.addAll({
 
     hr: () => "\n---\n",
 
-    table: (el, ctx) => {
+    table: (el, ctx, state) => {
+        let caption = "";
         let thead: any[] = [];
         let tbody: any[] = [];
         let colWidths: number[] = [];
@@ -183,6 +183,11 @@ serializeElement.addAll({
                 case "tbody":
                     tbody = rows(child[2]);
                     break;
+                case "caption":
+                    caption = body(child, ctx, state);
+                    break;
+                default:
+                // TODO output warning?
             }
         }
         return (
@@ -190,18 +195,18 @@ serializeElement.addAll({
             toString(
                 tableCanvas(
                     {
-                        cols: [...map((width) => ({ width }), colWidths)],
+                        cols: colWidths.map((width) => ({ width })),
                         padding: [1, 0],
                         border: Border.V
                     },
-                    [
-                        ...thead,
-                        [...map((w) => repeat("-", w), colWidths)],
-                        ...tbody
-                    ]
+                    [...thead, colWidths.map((w) => repeat("-", w)), ...tbody]
                 )
             ) +
+            "\n" +
+            caption +
             "\n"
         );
     }
 });
+
+serializeElement.isa("th", "strong");

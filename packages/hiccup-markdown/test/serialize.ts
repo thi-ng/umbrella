@@ -60,6 +60,7 @@ describe("hiccup-markdown", () => {
                     ["blockquote", "So long and thanks for all the fish."],
                     [
                         "table",
+                        ["caption", ["em", "Table caption"]],
                         [
                             "thead",
                             [
@@ -73,13 +74,13 @@ describe("hiccup-markdown", () => {
                             "tbody",
                             [
                                 "tr",
-                                ["td", 1],
+                                ["th", 1],
                                 ["td", ["code", "map()"]],
                                 ["td", "Transform"]
                             ],
                             [
                                 "tr",
-                                ["td", 2],
+                                ["th", 2],
                                 ["td", ["code", "filter()"]],
                                 ["td", "Predicate"]
                             ]
@@ -98,7 +99,6 @@ describe("hiccup-markdown", () => {
             // prettier-ignore
             `# Hello Markdown
 
-
 This is a test: **I am strong and _italic_**...
 
 My magic number is: 42
@@ -116,11 +116,12 @@ My magic number is: 42
 
 > So long and thanks for all the fish.
 
-| ID  | Name       | Comment   |
-| --- | ---------- | --------- |
-| 1   | \`map()\`    | Transform |
-| 2   | \`filter()\` | Predicate |
+| **ID** | **Name**   | **Comment** |
+| ------ | ---------- | ----------- |
+| **1**  | \`map()\`    | Transform   |
+| **2**  | \`filter()\` | Predicate   |
 
+_Table caption_
 
 More info [here](http://thi.ng/hiccup-markdown).
 `
