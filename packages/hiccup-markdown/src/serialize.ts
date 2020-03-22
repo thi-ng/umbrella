@@ -8,6 +8,8 @@ import { DEFAULT, defmulti, MultiFn3 } from "@thi.ng/defmulti";
 import { illegalArgs } from "@thi.ng/errors";
 import { normalize } from "@thi.ng/hiccup";
 import { repeat, wrap } from "@thi.ng/strings";
+import { Border, tableCanvas, toString } from "@thi.ng/text-canvas";
+import { map } from "@thi.ng/transducers";
 
 interface SerializeState {
     indent: number;
@@ -156,5 +158,50 @@ serializeElement.addAll({
 
     br: () => "\\\n",
 
-    hr: () => "\n---\n"
+    hr: () => "\n---\n",
+
+    table: (el, ctx) => {
+        let thead: any[] = [];
+        let tbody: any[] = [];
+        let colWidths: number[] = [];
+
+        const rows = (rows: any[]) =>
+            rows.map((x: any) =>
+                normalize(x)[2].map((td: any, i: number) => {
+                    const cell = serialize(td, ctx);
+                    colWidths[i] = Math.max(colWidths[i] || 3, cell.length);
+                    return cell;
+                })
+            );
+
+        for (let child of el[2]) {
+            child = normalize(child);
+            switch (child[0]) {
+                case "thead":
+                    thead = rows(child[2]);
+                    break;
+                case "tbody":
+                    tbody = rows(child[2]);
+                    break;
+            }
+        }
+        return (
+            "\n" +
+            toString(
+                tableCanvas(
+                    {
+                        cols: [...map((width) => ({ width }), colWidths)],
+                        padding: [1, 0],
+                        border: Border.V
+                    },
+                    [
+                        ...thead,
+                        [...map((w) => repeat("-", w), colWidths)],
+                        ...tbody
+                    ]
+                )
+            ) +
+            "\n"
+        );
+    }
 });

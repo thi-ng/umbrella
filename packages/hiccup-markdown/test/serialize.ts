@@ -59,6 +59,33 @@ describe("hiccup-markdown", () => {
                     ],
                     ["blockquote", "So long and thanks for all the fish."],
                     [
+                        "table",
+                        [
+                            "thead",
+                            [
+                                "tr",
+                                ["th", "ID"],
+                                ["th", "Name"],
+                                ["th", "Comment"]
+                            ]
+                        ],
+                        [
+                            "tbody",
+                            [
+                                "tr",
+                                ["td", 1],
+                                ["td", ["code", "map()"]],
+                                ["td", "Transform"]
+                            ],
+                            [
+                                "tr",
+                                ["td", 2],
+                                ["td", ["code", "filter()"]],
+                                ["td", "Predicate"]
+                            ]
+                        ]
+                    ],
+                    [
                         "p",
                         "More info ",
                         [thingLink, "hiccup-markdown", "here"],
@@ -88,6 +115,12 @@ My magic number is: 42
 - baz
 
 > So long and thanks for all the fish.
+
+| ID  | Name       | Comment   |
+| --- | ---------- | --------- |
+| 1   | \`map()\`    | Transform |
+| 2   | \`filter()\` | Predicate |
+
 
 More info [here](http://thi.ng/hiccup-markdown).
 `
