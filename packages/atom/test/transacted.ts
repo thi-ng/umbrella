@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { Atom, Transacted } from "../src/index";
+import { Atom, defView, Transacted } from "../src/index";
 
 describe("transacted", () => {
     let db: Atom<any>;
@@ -19,8 +19,8 @@ describe("transacted", () => {
         tx.begin();
         assert.deepEqual(tx.deref(), { a: 1, b: 2 });
         assert.throws(() => tx.begin(), "no nested tx");
-        tx.swapIn("a", (x: number) => x + 10);
-        tx.swapIn("b", (x: number) => x + 20);
+        tx.swapIn(["a"], (x: number) => x + 10);
+        tx.swapIn(["b"], (x: number) => x + 20);
         assert.deepEqual(tx.deref(), { a: 11, b: 22 });
         assert.deepEqual(db.deref(), { a: 1, b: 2 });
         assert.deepEqual(tx.commit(), { a: 11, b: 22 });
@@ -31,7 +31,7 @@ describe("transacted", () => {
 
     it("cancel", () => {
         tx.begin();
-        tx.swapIn("a", (x: number) => x + 10);
+        tx.swapIn(["a"], (x: number) => x + 10);
         assert.deepEqual(tx.deref(), { a: 11, b: 2 });
         tx.cancel();
         assert.deepEqual(tx.deref(), { a: 1, b: 2 });
@@ -42,8 +42,8 @@ describe("transacted", () => {
     it("no edits outside tx", () => {
         assert.throws(() => tx.reset({}), "no reset");
         assert.throws(() => tx.swap(() => ({})), "no swap");
-        assert.throws(() => tx.resetIn("a", {}), "no resetIn");
-        assert.throws(() => tx.swapIn("a", () => ({})), "no swapIn");
+        assert.throws(() => tx.resetIn(["a"], {}), "no resetIn");
+        assert.throws(() => tx.swapIn(["a"], () => ({})), "no swapIn");
         assert.throws(() => (tx.value = {}), "no .value");
     });
 
@@ -64,7 +64,7 @@ describe("transacted", () => {
 
     it("view (lazy)", () => {
         const acc: any[] = [];
-        const view = tx.addView("a", (x) => (acc.push(x), x), true);
+        const view = defView(tx, ["a"], (x) => (acc.push(x), x), true);
         assert.equal(view.deref(), 1);
         tx.begin();
         tx.reset({ a: 11 });
@@ -76,7 +76,7 @@ describe("transacted", () => {
 
     it("view (eager)", () => {
         const acc: any[] = [];
-        const view = tx.addView("a", (x) => (acc.push(x), x), false);
+        const view = defView(tx, ["a"], (x) => (acc.push(x), x), false);
         tx.begin();
         tx.reset({ a: 11 });
         tx.reset({ a: 22 });

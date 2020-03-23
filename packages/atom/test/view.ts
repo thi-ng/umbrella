@@ -2,12 +2,17 @@ import { setIn, updateIn } from "@thi.ng/paths";
 import * as assert from "assert";
 import { IView } from "../src/api";
 import { Atom } from "../src/atom";
-import { Cursor } from "../src/cursor";
-import { View } from "../src/view";
+import { defCursor } from "../src/cursor";
+import { defView, View } from "../src/view";
+
+interface State {
+    a: number;
+    b: { c: number; d: number };
+    e: number;
+}
 
 describe("view", () => {
-
-    let a: Atom<any>;
+    let a: Atom<State>;
     let s: IView<number>;
 
     beforeEach(() => {
@@ -15,44 +20,44 @@ describe("view", () => {
     });
 
     it("can be created from atom", () => {
-        s = a.addView("e");
+        s = defView(a, ["e"]);
         assert.ok(s instanceof View);
         assert.equal(s.deref(), 4);
-        s = a.addView("e", (x) => x * 10);
+        s = defView(a, ["e"], (x) => x * 10);
         assert.ok(s instanceof View);
         assert.equal(s.deref(), 40);
     });
 
     it("can be created from cursor", () => {
-        let c = new Cursor(a, "b");
-        s = c.addView("d");
+        let c = defCursor(a, ["b"]);
+        s = defView(c, ["d"]);
         assert.ok(s instanceof View);
         assert.equal(s.deref(), 3);
-        s = c.addView("c", (x: number) => x * 10);
+        s = defView(c, ["c"], (x: number) => x * 10);
         assert.ok(s instanceof View);
         assert.equal(s.deref(), 20);
     });
 
     it("can be deref'd", () => {
-        assert.equal(new View(a, "b.c").deref(), 2);
-        assert.equal(new View(new Cursor(a, "b"), "d").deref(), 3);
+        assert.equal(defView(a, ["b", "c"]).deref(), 2);
+        assert.equal(defView(defCursor(a, ["b"]), ["d"]).deref(), 3);
     });
 
     it("can be deref'd w/ transformer", () => {
-        s = new View(a, "b.c", (x) => x * 10)
+        s = defView(a, ["b", "c"], (x) => x * 10);
         assert.equal(s.deref(), 20);
         assert.equal(s.deref(), 20);
     });
 
     it("can read .value", () => {
-        assert.equal(new View(a, "b.c").value, 2);
-        assert.equal(a.addView("b.c").value, 2);
-        assert.equal(new View(new Cursor(a, "b"), "d").value, 3);
-        assert.equal(new Cursor(a, "b").addView("d").value, 3);
+        assert.equal(defView(a, ["b", "c"]).value, 2);
+        assert.equal(defView(defCursor(a, ["b"]), ["d"]).value, 3);
+        // assert.equal(new View(new Cursor(a, "b"), "d").value, 3);
+        // assert.equal(new Cursor(a, "b").addView("d").value, 3);
     });
 
     it("reflects updates", () => {
-        s = new View(a, "b.c", (x) => x * 10);
+        s = defView(a, ["b", "c"], (x) => x * 10);
         assert.ok(s.changed(), "not dirty");
         assert.equal(s.deref(), 20);
         assert.ok(!s.changed(), "changed");
@@ -63,7 +68,7 @@ describe("view", () => {
     });
 
     it("reflects updates (initially undefined)", () => {
-        s = new View(a, "f");
+        s = defView(<Atom<any>>a, ["f"]);
         assert.ok(s.changed(), "not dirty");
         assert.equal(s.deref(), undefined);
         assert.ok(!s.changed(), "changed");
@@ -73,7 +78,7 @@ describe("view", () => {
     });
 
     it("can be released", () => {
-        s = new View(a, "b.c")
+        s = defView(a, ["b", "c"]);
         assert.equal(s.deref(), 2);
         assert.ok(!s.changed(), "changed");
         assert.ok(s.release());
@@ -85,7 +90,7 @@ describe("view", () => {
 
     it("is lazy by default", () => {
         let x;
-        s = a.addView("b.c", (y) => (x = y, y * 10));
+        s = defView(a, ["b", "c"], (y) => ((x = y), y * 10));
         assert.equal(x, undefined);
         assert.equal(s.deref(), 20);
         assert.equal(x, 2);
@@ -96,7 +101,7 @@ describe("view", () => {
 
     it("can be eager", () => {
         let x;
-        s = a.addView("b.c", (y) => (x = y, y * 10), false);
+        s = defView(a, ["b", "c"], (y) => ((x = y), y * 10), false);
         assert.equal(x, 2);
         assert.equal(s.deref(), 20);
         x = undefined;
