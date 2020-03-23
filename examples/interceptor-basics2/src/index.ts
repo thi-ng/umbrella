@@ -1,3 +1,4 @@
+import { AtomPath, defView, defViewUnsafe } from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom";
 import {
     EffectDef,
@@ -10,9 +11,9 @@ import {
     EventDef,
     FX_DISPATCH_NOW,
     IDispatch,
-    trace
+    trace,
 } from "@thi.ng/interceptors";
-import type { IObjectOf, Path } from "@thi.ng/api";
+import type { IObjectOf } from "@thi.ng/api";
 
 ///////////////////////////////////////////////////////////////////////
 // event name and handler definitions
@@ -37,13 +38,13 @@ const events: IObjectOf<EventDef> = {
         ensureStateLessThan(100, undefined, () =>
             console.warn("eek, reached max")
         ),
-        (_, [__, path]) => ({ [FX_DISPATCH_NOW]: [EV_ADD_VALUE, [path, 1]] })
+        (_, [__, path]) => ({ [FX_DISPATCH_NOW]: [EV_ADD_VALUE, [path, 1]] }),
     ],
     [EV_DEC]: [
         ensureStateGreaterThan(0, undefined, () =>
             console.warn("eek, reached min")
         ),
-        (_, [__, path]) => ({ [FX_DISPATCH_NOW]: [EV_ADD_VALUE, [path, -1]] })
+        (_, [__, path]) => ({ [FX_DISPATCH_NOW]: [EV_ADD_VALUE, [path, -1]] }),
     ],
 
     // similar to the EV_INIT handler above, here we just delegate to the
@@ -53,8 +54,8 @@ const events: IObjectOf<EventDef> = {
     [EV_ADD_VALUE]: [
         trace,
         (_, [__, [path, y]]) => ({
-            [FX_DISPATCH_NOW]: [EV_UPDATE_VALUE, [path, (x: number) => x + y]]
-        })
+            [FX_DISPATCH_NOW]: [EV_UPDATE_VALUE, [path, (x: number) => x + y]],
+        }),
     ],
 
     // this handler increments the `nextID` state value and
@@ -68,9 +69,9 @@ const events: IObjectOf<EventDef> = {
             start: ~~(Math.random() * 100),
             color: ["gold", "orange", "springgreen", "yellow", "cyan"][
                 ~~(Math.random() * 5)
-            ]
-        }
-    })
+            ],
+        },
+    }),
 };
 
 ///////////////////////////////////////////////////////////////////////
@@ -84,14 +85,14 @@ const effects: IObjectOf<EffectDef> = {};
 const button = (bus: IDispatch, event: Event, label: string, id?: string) => [
     "button",
     { id, onclick: () => bus.dispatch(event) },
-    label
+    label,
 ];
 
 // counter component function
 // calls to this function will be triggered via the "addCounter" event and its side effect
 // (see further below)
-const counter = (bus: IDispatch, path: Path, start = 0, color: string) => {
-    const view = bus.state.addView(path);
+const counter = (bus: IDispatch, path: AtomPath, start = 0, color: string) => {
+    const view = defViewUnsafe(bus.state, path);
     bus.dispatch([EV_SET_VALUE, [path, start]]);
     return [
         "div.counter",
@@ -100,8 +101,8 @@ const counter = (bus: IDispatch, path: Path, start = 0, color: string) => {
         [
             "div",
             button(bus, [EV_DEC, view.path], "-"),
-            button(bus, [EV_INC, view.path], "+")
-        ]
+            button(bus, [EV_INC, view.path], "+"),
+        ],
     ];
 };
 
@@ -124,7 +125,7 @@ const app = () => {
 
     // add derived view subscription for updating JSON state trace
     // (only executed when state changes)
-    const json = bus.state.addView([], (state) =>
+    const json = defView(bus.state, [], (state) =>
         JSON.stringify(state, null, 2)
     );
 
@@ -137,7 +138,7 @@ const app = () => {
         "div",
         button(bus, [EV_ADD_COUNTER], "add counter", "addcounter"),
         ["div", ...counters],
-        ["pre", json]
+        ["pre", json],
     ];
 
     return () => {

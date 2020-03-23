@@ -1,6 +1,6 @@
-import { Atom, Cursor } from "@thi.ng/atom";
+import { defAtom, defCursor, defView } from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom";
-import type { Fn } from "@thi.ng/api";
+import type { Fn, IObjectOf } from "@thi.ng/api";
 import type { IAtom } from "@thi.ng/atom";
 
 type CardFn = (state: IAtom<any>) => any;
@@ -36,7 +36,7 @@ function defcard(
     title?: string,
     parent?: string | Element
 ) {
-    state = state || new Atom({});
+    state = state || defAtom({});
     title = title || `devcard-${CARD_ID++}`;
 
     // create new parent element if not provided
@@ -47,7 +47,7 @@ function defcard(
 
     // Create a derived view for entire atom (using empty path `[]`)
     // this updates the JSON body only when state has changed
-    const json = state.addView([], (state) => JSON.stringify(state, null, 2));
+    const json = defView(state, [], (state) => JSON.stringify(state, null, 2));
 
     // instantiate the component with supplied state
     const root = card(state);
@@ -89,13 +89,19 @@ function slider(state: IAtom<any>, opts: SliderOpts) {
         oninput: (e: Event) => {
             state.reset((<HTMLInputElement>e.target).value);
             opts.onchange && opts.onchange(e);
-        }
+        },
     };
     return () => [
         "div",
         ["div", opts.label(state.deref())],
-        ["input", { ...attribs, value: state.deref() }]
+        ["input", { ...attribs, value: state.deref() }],
     ];
+}
+
+interface BMIState {
+    height: number;
+    weight: number;
+    bmi: number;
 }
 
 /**
@@ -107,12 +113,16 @@ function slider(state: IAtom<any>, opts: SliderOpts) {
  *
  * @param state
  */
-function bmi(state: IAtom<any>) {
+function bmi(state: IAtom<BMIState>) {
     // state update function
     // computes new BMI value (if weight was changed) or
     // new weight value (if BMI was changed by user)
     const calc = (updateWeight = false) => {
-        let { height, weight, bmi } = <any>(state.deref() || {});
+        let { height, weight, bmi } = state.deref() || {
+            height: 0,
+            weight: 0,
+            bmi: 0,
+        };
         height *= 0.01;
         if (updateWeight) {
             state.resetIn(["weight"], bmi * height * height);
@@ -126,11 +136,11 @@ function bmi(state: IAtom<any>) {
         [10, "underweight", "#cf3"],
         [18.5, "normal", "#7f0"],
         [25, "overweight", "#f90"],
-        [30, "obese", "#f00"]
+        [30, "obese", "#f00"],
     ];
 
     // derived view of bmi value to translate it into english
-    const bmiClass = state.addView("bmi", (bmi: number) =>
+    const bmiClass = defView(state, ["bmi"], (bmi) =>
         bmi > thresh[3][0]
             ? thresh[3][1]
             : bmi > thresh[2][0]
@@ -142,48 +152,48 @@ function bmi(state: IAtom<any>) {
 
     // another derived view to create SVG visualization
     const bmiScale = (x: number) => ((x - 10) / 30) * 100 + "%";
-    const bmiViz = state.addView("bmi", (bmi: number) => [
+    const bmiViz = defView(state, ["bmi"], (bmi: number) => [
         "div",
         [
             "svg",
             { width: "100%", height: 30, style: { "font-size": "10px" } },
             ...thresh.map(([t, _, col]) => [
                 "rect",
-                { x: bmiScale(t), y: 0, width: "100%", height: 30, fill: col }
+                { x: bmiScale(t), y: 0, width: "100%", height: 30, fill: col },
             ]),
             ...thresh.map(([t, label]) => [
                 "text",
                 { x: bmiScale(t + 0.5), y: 12 },
-                label
+                label,
             ]),
-            ["circle", { cx: bmiScale(bmi), cy: 20, r: 5 }]
-        ]
+            ["circle", { cx: bmiScale(bmi), cy: 20, r: 5 }],
+        ],
     ]);
 
     // define slider components
     // note how each uses a cursor to their respective
     // target values in the app state
-    const height = slider(new Cursor(state, "height"), {
+    const height = slider(defCursor(state, ["height"]), {
         min: 100,
         max: 220,
         label: (v) => `Height: ${~~v}cm`,
-        onchange: () => calc()
+        onchange: () => calc(),
     });
-    const weight = slider(new Cursor(state, "weight"), {
+    const weight = slider(defCursor(state, ["weight"]), {
         min: 10,
         max: 150,
         label: (v) => `Weight: ${~~v}kg`,
-        onchange: () => calc()
+        onchange: () => calc(),
     });
-    const bmi = slider(new Cursor(state, "bmi"), {
+    const bmi = slider(defCursor(state, ["bmi"]), {
         min: 10,
         max: 50,
         label: (v) => [
             "span",
             { class: bmiClass.deref() },
-            `BMI: ${~~v} (${bmiClass.deref()})`
+            `BMI: ${~~v} (${bmiClass.deref()})`,
         ],
-        onchange: () => calc(true)
+        onchange: () => calc(true),
     });
 
     // perform initial calculation
@@ -197,7 +207,7 @@ function bmi(state: IAtom<any>) {
  *
  * Option 1: Two defcard() instances, each with their own, individual state atom
  */
-defcard(bmi, new Atom({ weight: 75, height: 194 }), "BMI calculator");
+defcard(bmi, defAtom({ weight: 75, height: 194 }), "BMI calculator");
 defcard(bmi);
 
 defcard(
@@ -208,15 +218,17 @@ defcard(
 /**
  * Option 2: defcard() instances using shared central state
  */
-const db = new Atom({ card1: { weight: 75, height: 194 } });
+const db = defAtom<IObjectOf<Partial<BMIState>>>({
+    card1: { weight: 75, height: 194 },
+});
 
-defcard(bmi, new Cursor(db, "card1"), "BMI calculator (shared)");
-defcard(bmi, new Cursor(db, "card2"));
+defcard(bmi, defCursor(db, ["card1"]), "BMI calculator (shared)");
+defcard(bmi, defCursor(db, ["card2"]));
 
 defcard((state) => {
     // just some random task to populate another part of the app state
     setInterval(
-        () => state.resetIn(["stats","now"], new Date().toISOString()),
+        () => state.resetIn(["stats", "now"], new Date().toISOString()),
         1000
     );
     return ["div", "The full shared state:"];

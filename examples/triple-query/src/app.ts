@@ -1,16 +1,11 @@
-import { Atom } from "@thi.ng/atom";
+import { Atom, defViewUnsafe } from "@thi.ng/atom";
 import { isArray } from "@thi.ng/checks";
 import { start } from "@thi.ng/hdom";
 import { EV_SET_VALUE, EventBus } from "@thi.ng/interceptors";
 import { TripleStore } from "@thi.ng/rstream-query";
 import * as ev from "./events";
 import type { IObjectOf } from "@thi.ng/api";
-import type {
-    AppConfig,
-    AppContext,
-    AppViews,
-    ViewSpec
-} from "./api";
+import type { AppConfig, AppContext, AppViews, ViewSpec } from "./api";
 
 /**
  * Generic base app skeleton. You can use this as basis for your own
@@ -35,7 +30,7 @@ export class App {
             bus: new EventBus(this.state, config.events, config.effects),
             store: new TripleStore(),
             views: <AppViews>{},
-            ui: config.ui
+            ui: config.ui,
         };
         this.addViews(<any>this.config.views);
     }
@@ -47,14 +42,12 @@ export class App {
      * @param specs
      */
     addViews(specs: IObjectOf<ViewSpec>) {
-        const views = this.ctx.views;
+        const views: any = this.ctx.views;
         for (let id in specs) {
             const spec = specs[id];
-            if (isArray(spec)) {
-                (<any>views)[id] = this.state.addView(spec[0], spec[1]);
-            } else {
-                (<any>views)[id] = this.state.addView(spec);
-            }
+            views[id] = isArray(spec)
+                ? defViewUnsafe(this.state, spec[0], spec[1])
+                : defViewUnsafe(this.state, spec);
         }
     }
 
@@ -101,7 +94,10 @@ export class App {
         for (let q in conf.queries) {
             store.addQueryFromSpec(conf.queries[q]).subscribe({
                 next: (res) =>
-                    this.ctx.bus.dispatch([EV_SET_VALUE, [["queries", q], res]])
+                    this.ctx.bus.dispatch([
+                        EV_SET_VALUE,
+                        [["queries", q], res],
+                    ]),
             });
         }
     }

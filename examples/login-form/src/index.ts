@@ -1,24 +1,30 @@
-import { Atom } from "@thi.ng/atom";
+import { AtomPath, defAtom, defView } from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom";
-import { setIn } from "@thi.ng/paths";
-import type { Path } from "@thi.ng/api";
+import type { Nullable } from "@thi.ng/api";
+
+interface State {
+    state: string;
+    error?: string;
+    user: {
+        name?: string;
+    };
+}
 
 // central immutable app state
-const db = new Atom({ state: "login" });
+const db = defAtom<State>({ state: "login", user: {} });
 
 // define views for different state values
-const appState = db.addView<string>("state");
-const error = db.addView<string>("error");
+const appState = defView(db, ["state"]);
+const error = defView(db, ["error"]);
 // specify a view transformer for the username value
-const user = db.addView<string>("user.name", (x) =>
+const user = defView(db, ["user", "name"], (x) =>
     x ? x.charAt(0).toUpperCase() + x.substr(1) : null
 );
 
 // state update functions
-const setValue = (path: Path, val: any) =>
-    db.swap((state) => setIn(state, path, val));
-const setState = (s: any) => setValue(appState.path, s);
-const setError = (err: string | null) => setValue(error.path, err);
+const setValue = (path: AtomPath, val: any) => db.resetInUnsafe(path, val);
+const setState = (s: string) => setValue(appState.path, s);
+const setError = (err: Nullable<string>) => setValue(error.path, err);
 const setUser = (e: Event) => setValue(user.path, (<any>e.target).value);
 const loginUser = () => {
     if (user.deref() && user.deref()!.toLowerCase() === "admin") {
@@ -42,13 +48,13 @@ const uiViews: any = {
         ["h1", "Login"],
         error.deref() ? ["div.error", error] : undefined,
         ["input", { type: "text", onchange: setUser }],
-        ["button", { onclick: loginUser }, "Login"]
+        ["button", { onclick: loginUser }, "Login"],
     ],
     logout: () => [
         "div#logout",
         ["h1", "Good bye"],
         "You've been logged out. ",
-        ["a", { href: "#", onclick: () => setState("login") }, "Log back in?"]
+        ["a", { href: "#", onclick: () => setState("login") }, "Log back in?"],
     ],
     main: () => [
         "div#main",
@@ -59,18 +65,19 @@ const uiViews: any = {
             [
                 "textarea",
                 { cols: 40, rows: 10 },
-                JSON.stringify(db.deref(), null, 2)
-            ]
+                JSON.stringify(db.deref(), null, 2),
+            ],
         ],
-        ["button", { onclick: logoutUser }, "Logout"]
-    ]
+        ["button", { onclick: logoutUser }, "Logout"],
+    ],
 };
 
 // finally define another derived view for the app state value
 // including a transformer, which maps the current app state value
 // to its correct UI component (incl. a fallback for illegal app states)
-const currView = db.addView(
-    appState.path,
+const currView = defView(
+    db,
+    ["state"],
     (state) =>
         uiViews[state] || ["div", ["h1", `No component for state: ${state}`]]
 );
@@ -79,7 +86,7 @@ const currView = db.addView(
 const app = () => [
     "div",
     currView,
-    ["footer", "Made with @thi.ng/atom and @thi.ng/hdom"]
+    ["footer", "Made with @thi.ng/atom and @thi.ng/hdom"],
 ];
 
 start(app);
