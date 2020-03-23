@@ -1,7 +1,6 @@
 import { assert } from "@thi.ng/api";
 import { setIn, updateIn } from "@thi.ng/paths";
 import { nextID } from "./idgen";
-import { View } from "./view";
 import type {
     Keys,
     Keys1,
@@ -11,7 +10,6 @@ import type {
     Keys5,
     Keys6,
     Keys7,
-    Path,
     Val1,
     Val2,
     Val3,
@@ -20,14 +18,11 @@ import type {
     Val6,
     Val7,
     Val8,
-    Watch
+    Watch,
 } from "@thi.ng/api";
-import type {
-    IAtom,
-    IView,
-    SwapFn,
-    ViewTransform
-} from "./api";
+import type { AtomPath, IAtom, SwapFn } from "./api";
+
+export const defTransacted = <T>(parent: IAtom<T>) => new Transacted(parent);
 
 export class Transacted<T> implements IAtom<T> {
     parent: IAtom<T>;
@@ -40,7 +35,7 @@ export class Transacted<T> implements IAtom<T> {
         this.parent = parent;
         this.current = undefined;
         this.isActive = false;
-        this.id = `tx${nextID()}-`;
+        this.id = `tx-${nextID()}`;
     }
 
     get value() {
@@ -134,9 +129,13 @@ export class Transacted<T> implements IAtom<T> {
         G extends Keys6<T, A, B, C, D, E, F>,
         H extends Keys7<T, A, B, C, D, E, F, G>
     >(path: readonly [A, B, C, D, E, F, G, H, ...PropertyKey[]], val: any): T;
-    resetIn(path: Readonly<Path>, val: any) {
+    resetIn(path: AtomPath, val: any) {
         this.ensureTx();
         return this.reset(setIn(this.current, path, val));
+    }
+
+    resetInUnsafe(path: string | AtomPath, val: any) {
+        return this.resetIn(<any>path, val);
     }
 
     swap(fn: SwapFn<T>, ...args: any[]) {
@@ -233,9 +232,13 @@ export class Transacted<T> implements IAtom<T> {
         fn: SwapFn<any>,
         ...args: any[]
     ): T;
-    swapIn(path: Readonly<Path>, fn: SwapFn<any>, ...args: any[]) {
+    swapIn(path: AtomPath, fn: SwapFn<any>, ...args: any[]) {
         this.ensureTx();
         return this.reset(updateIn(this.current, path, fn, ...args));
+    }
+
+    swapInUnsafe(path: AtomPath, fn: SwapFn<any>, ...args: any[]) {
+        return this.swapIn(<any>path, fn, ...args);
     }
 
     begin() {
@@ -271,10 +274,6 @@ export class Transacted<T> implements IAtom<T> {
 
     notifyWatches(old: T, curr: T) {
         this.parent.notifyWatches(old, curr);
-    }
-
-    addView<V>(path: Path, tx?: ViewTransform<V>, lazy = true): IView<V> {
-        return new View<V>(this, path, tx, lazy);
     }
 
     release() {

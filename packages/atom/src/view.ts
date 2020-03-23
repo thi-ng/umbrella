@@ -1,8 +1,179 @@
 import { equiv as _equiv } from "@thi.ng/equiv";
 import { getter, toPath } from "@thi.ng/paths";
 import { nextID } from "./idgen";
-import type { Path } from "@thi.ng/api";
-import type { IView, ReadonlyAtom, ViewTransform } from "./api";
+import type {
+    Fn,
+    Keys,
+    Keys1,
+    Keys2,
+    Keys3,
+    Keys4,
+    Keys5,
+    Keys6,
+    Keys7,
+    Predicate2,
+    Val1,
+    Val2,
+    Val3,
+    Val4,
+    Val5,
+    Val6,
+    Val7,
+    Val8,
+} from "@thi.ng/api";
+import type { AtomPath, IView, ReadonlyAtom } from "./api";
+
+export function defView<T, R>(
+    parent: ReadonlyAtom<T>,
+    path: readonly [],
+    tx?: Fn<T, R>,
+    lazy?: boolean,
+    equiv?: Predicate2<T>
+): View<R extends undefined ? T : R>;
+export function defView<T, A extends Keys<T>, R>(
+    parent: ReadonlyAtom<T>,
+    path: readonly [A],
+    tx?: Fn<Val1<T, A>, R>,
+    lazy?: boolean,
+    equiv?: Predicate2<Val1<T, A>>
+): View<R extends undefined ? Val1<T, A> : R>;
+export function defView<T, A extends Keys<T>, B extends Keys1<T, A>, R>(
+    parent: ReadonlyAtom<T>,
+    path: readonly [A, B],
+    tx?: Fn<Val2<T, A, B>, R>,
+    lazy?: boolean,
+    equiv?: Predicate2<Val2<T, A, B>>
+): View<R extends undefined ? Val2<T, A, B> : R>;
+export function defView<
+    T,
+    A extends Keys<T>,
+    B extends Keys1<T, A>,
+    C extends Keys2<T, A, B>,
+    R
+>(
+    parent: ReadonlyAtom<T>,
+    path: readonly [A, B, C],
+    tx?: Fn<Val3<T, A, B, C>, R>,
+    lazy?: boolean,
+    equiv?: Predicate2<Val3<T, A, B, C>>
+): View<R extends undefined ? Val3<T, A, B, C> : R>;
+export function defView<
+    T,
+    A extends Keys<T>,
+    B extends Keys1<T, A>,
+    C extends Keys2<T, A, B>,
+    D extends Keys3<T, A, B, C>,
+    R
+>(
+    parent: ReadonlyAtom<T>,
+    path: readonly [A, B, C, D],
+    tx?: Fn<Val4<T, A, B, C, D>, R>,
+    lazy?: boolean,
+    equiv?: Predicate2<Val4<T, A, B, C, D>>
+): View<R extends undefined ? Val4<T, A, B, C, D> : R>;
+export function defView<
+    T,
+    A extends Keys<T>,
+    B extends Keys1<T, A>,
+    C extends Keys2<T, A, B>,
+    D extends Keys3<T, A, B, C>,
+    E extends Keys4<T, A, B, C, D>,
+    R
+>(
+    parent: ReadonlyAtom<T>,
+    path: readonly [A, B, C, D, E],
+    tx?: Fn<Val5<T, A, B, C, D, E>, R>,
+    lazy?: boolean,
+    equiv?: Predicate2<Val5<T, A, B, C, D, E>>
+): View<R extends undefined ? Val5<T, A, B, C, D, E> : R>;
+export function defView<
+    T,
+    A extends Keys<T>,
+    B extends Keys1<T, A>,
+    C extends Keys2<T, A, B>,
+    D extends Keys3<T, A, B, C>,
+    E extends Keys4<T, A, B, C, D>,
+    F extends Keys5<T, A, B, C, D, E>,
+    R
+>(
+    parent: ReadonlyAtom<T>,
+    path: readonly [A, B, C, D, E, F],
+    tx?: Fn<Val6<T, A, B, C, D, E, F>, R>,
+    lazy?: boolean,
+    equiv?: Predicate2<Val6<T, A, B, C, D, E, F>>
+): View<R extends undefined ? Val6<T, A, B, C, D, E, F> : R>;
+export function defView<
+    T,
+    A extends Keys<T>,
+    B extends Keys1<T, A>,
+    C extends Keys2<T, A, B>,
+    D extends Keys3<T, A, B, C>,
+    E extends Keys4<T, A, B, C, D>,
+    F extends Keys5<T, A, B, C, D, E>,
+    G extends Keys6<T, A, B, C, D, E, F>,
+    R
+>(
+    parent: ReadonlyAtom<T>,
+    path: readonly [A, B, C, D, E, F, G],
+    tx?: Fn<Val7<T, A, B, C, D, E, F, G>, R>,
+    lazy?: boolean,
+    equiv?: Predicate2<Val7<T, A, B, C, D, E, F, G>>
+): View<R extends undefined ? Val7<T, A, B, C, D, E, F, G> : R>;
+export function defView<
+    T,
+    A extends Keys<T>,
+    B extends Keys1<T, A>,
+    C extends Keys2<T, A, B>,
+    D extends Keys3<T, A, B, C>,
+    E extends Keys4<T, A, B, C, D>,
+    F extends Keys5<T, A, B, C, D, E>,
+    G extends Keys6<T, A, B, C, D, E, F>,
+    H extends Keys7<T, A, B, C, D, E, F, G>,
+    R
+>(
+    parent: ReadonlyAtom<T>,
+    path: readonly [A, B, C, D, E, F, G, H],
+    tx?: Fn<Val8<T, A, B, C, D, E, F, G, H>, R>,
+    lazy?: boolean,
+    equiv?: Predicate2<Val8<T, A, B, C, D, E, F, G, H>>
+): View<R extends undefined ? Val8<T, A, B, C, D, E, F, G, H> : R>;
+export function defView<
+    T,
+    A extends Keys<T>,
+    B extends Keys1<T, A>,
+    C extends Keys2<T, A, B>,
+    D extends Keys3<T, A, B, C>,
+    E extends Keys4<T, A, B, C, D>,
+    F extends Keys5<T, A, B, C, D, E>,
+    G extends Keys6<T, A, B, C, D, E, F>,
+    H extends Keys7<T, A, B, C, D, E, F, G>,
+    R
+>(
+    parent: ReadonlyAtom<T>,
+    path: readonly [A, B, C, D, E, F, G, H, ...PropertyKey[]],
+    tx?: Fn<any, R>,
+    lazy?: boolean,
+    equiv?: Predicate2<any>
+): View<R extends undefined ? any : R>;
+export function defView(
+    parent: ReadonlyAtom<any>,
+    path: AtomPath,
+    tx?: Fn<any, any>,
+    lazy?: boolean,
+    equiv?: Predicate2<any>
+) {
+    return new View(parent, path, tx, lazy, equiv);
+}
+
+export function defViewUnsafe(
+    parent: ReadonlyAtom<any>,
+    path: string | AtomPath,
+    tx?: Fn<any, any>,
+    lazy?: boolean,
+    equiv?: Predicate2<any>
+) {
+    return new View<any>(parent, path, tx, lazy, equiv);
+}
 
 /**
  * This class implements readonly access to a deeply nested value with
@@ -30,41 +201,41 @@ import type { IView, ReadonlyAtom, ViewTransform } from "./api";
  *
  * @example
  * ```ts
- * a = new Atom({a: {b: 1}});
- * v = a.addView("a.b", (x) => x * 10);
+ * a = defAtom({ a: { b: 1 } });
+ * v = defView(a, ["a", "b"], (x) => x * 10);
  *
  * v.deref()
  * // 10
  *
  * // update atom state
- * a.swap((state) => setIn(state, "a.b", 2));
- * // {a: {b: 2}}
+ * a.resetIn(["a", "b"], 2);
+ * // { a: { b: 2 } }
  *
  * v.changed()
  * // true
  * v.deref()
  * // 20
  *
- * v.release()
  * // remove view from parent state
+ * v.release()
  * ```
  */
 export class View<T> implements IView<T> {
     readonly id: string;
 
     readonly parent: ReadonlyAtom<any>;
-    readonly path: PropertyKey[];
+    readonly path: AtomPath;
 
     protected state: T | undefined;
-    protected tx: ViewTransform<T>;
+    protected tx: Fn<any, T>;
     protected unprocessed: any;
     protected isDirty: boolean;
     protected isLazy: boolean;
 
     constructor(
         parent: ReadonlyAtom<any>,
-        path: Readonly<Path>,
-        tx?: ViewTransform<T>,
+        path: string | AtomPath,
+        tx?: Fn<any, T>,
         lazy = true,
         equiv = _equiv
     ) {

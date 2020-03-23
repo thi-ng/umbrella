@@ -13,7 +13,7 @@ import type {
     Keys5,
     Keys6,
     Keys7,
-    Path,
+    NumOrString,
     Predicate,
     Val1,
     Val2,
@@ -22,18 +22,14 @@ import type {
     Val5,
     Val6,
     Val7,
-    Val8
+    Val8,
 } from "@thi.ng/api";
+
+export type AtomPath = Readonly<NumOrString[]>;
 
 export type SwapFn<T> = (curr: T, ...args: any[]) => T;
 
-export type ViewTransform<T> = (x: any) => T;
-
-export interface ReadonlyAtom<T>
-    extends IDeref<T>,
-        IRelease,
-        IWatch<T>,
-        IViewable {}
+export interface ReadonlyAtom<T> extends IDeref<T>, IRelease, IWatch<T> {}
 
 export interface IAtom<T> extends ReadonlyAtom<T>, IReset<T>, ISwap<T> {}
 
@@ -114,10 +110,11 @@ export interface IReset<T> {
         G extends Keys6<T, A, B, C, D, E, F>,
         H extends Keys7<T, A, B, C, D, E, F, G>
     >(
-        path: readonly [A, B, C, D, E, F, G, H, ...PropertyKey[]],
+        path: readonly [A, B, C, D, E, F, G, H, ...NumOrString[]],
         val: any
     ): T;
-    // resetIn(path: Readonly<Path>, val: any): T;
+
+    resetInUnsafe(path: string | AtomPath, val: any): T;
 }
 
 export interface ISwap<T> {
@@ -212,26 +209,21 @@ export interface ISwap<T> {
         fn: SwapFn<any>,
         ...args: any[]
     ): T;
-    // swapIn<V>(path: Readonly<Path>, fn: SwapFn<V>, ...args: any[]): T;
+
+    swapInUnsafe(path: string | AtomPath, fn: SwapFn<any>, ...args: any[]): T;
 }
 
 export interface IView<T> extends IDeref<T | undefined>, IID<string>, IRelease {
-    readonly path: PropertyKey[];
+    readonly path: AtomPath;
     readonly value: T | undefined;
 
     view(): T | undefined;
     changed(): boolean;
 }
 
-export interface IViewable {
-    addView<V>(path: Path, tx?: ViewTransform<V>, lazy?: boolean): IView<V>;
-}
-
 export interface CursorOpts<T> {
-    parent: IAtom<any>;
-    path: Path | [(s: any) => T, (s: any, v: T) => any];
-    validate?: Predicate<T>;
-    id?: string;
+    validate: Predicate<T>;
+    id: string;
 }
 
 export interface IHistory<T> extends IAtom<T>, IClear, INotify {

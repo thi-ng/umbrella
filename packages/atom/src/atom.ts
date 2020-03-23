@@ -1,7 +1,6 @@
 import { IWatchMixin } from "@thi.ng/api";
 import { illegalState } from "@thi.ng/errors";
 import { setIn, updateIn } from "@thi.ng/paths";
-import { View } from "./view";
 import type {
     IEquiv,
     Keys,
@@ -12,7 +11,7 @@ import type {
     Keys5,
     Keys6,
     Keys7,
-    Path,
+    NumOrString,
     Predicate,
     Val1,
     Val2,
@@ -22,14 +21,12 @@ import type {
     Val6,
     Val7,
     Val8,
-    Watch
+    Watch,
 } from "@thi.ng/api";
-import type {
-    IAtom,
-    IView,
-    SwapFn,
-    ViewTransform
-} from "./api";
+import type { AtomPath, IAtom, SwapFn } from "./api";
+
+export const defAtom = <T>(value: T, valid?: Predicate<T>) =>
+    new Atom<T>(value, valid);
 
 /**
  * Mutable wrapper for an (usually) immutable value. Support for
@@ -139,9 +136,13 @@ export class Atom<T> implements IAtom<T>, IEquiv {
         F extends Keys5<T, A, B, C, D, E>,
         G extends Keys6<T, A, B, C, D, E, F>,
         H extends Keys7<T, A, B, C, D, E, F, G>
-    >(path: readonly [A, B, C, D, E, F, G, H, ...PropertyKey[]], val: any): T;
-    resetIn(path: Readonly<Path>, val: any) {
-        return this.reset(setIn(this._value, <Path>path, val));
+    >(path: readonly [A, B, C, D, E, F, G, H, ...NumOrString[]], val: any): T;
+    resetIn(path: AtomPath, val: any) {
+        return this.reset(setIn(this._value, path, val));
+    }
+
+    resetInUnsafe(path: string | AtomPath, val: any): T {
+        return this.reset(setIn(this._value, path, val));
     }
 
     swap(fn: SwapFn<T>, ...args: any[]) {
@@ -237,7 +238,11 @@ export class Atom<T> implements IAtom<T>, IEquiv {
         fn: SwapFn<any>,
         ...args: any[]
     ): T;
-    swapIn(path: Readonly<Path>, fn: SwapFn<any>, ...args: any[]) {
+    swapIn(path: AtomPath, fn: SwapFn<any>, ...args: any[]) {
+        return this.reset(updateIn(this._value, path, fn, ...args));
+    }
+
+    swapInUnsafe(path: string | AtomPath, fn: SwapFn<any>, ...args: any[]) {
         return this.reset(updateIn(this._value, path, fn, ...args));
     }
 
@@ -249,10 +254,6 @@ export class Atom<T> implements IAtom<T>, IEquiv {
 
     // @ts-ignore: mixin
     notifyWatches(old: T, prev: T) {}
-
-    addView<V>(path: Path, tx?: ViewTransform<V>, lazy = true): IView<V> {
-        return new View<V>(this, path, tx, lazy);
-    }
 
     release() {
         delete this._watches;

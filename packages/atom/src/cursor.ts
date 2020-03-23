@@ -1,12 +1,7 @@
-import { isArray, isFunction } from "@thi.ng/checks";
-import { illegalArgs, illegalArity } from "@thi.ng/errors";
 import { getter, setter } from "@thi.ng/paths";
 import { Atom } from "./atom";
 import { nextID } from "./idgen";
-import { View } from "./view";
 import type {
-    Fn,
-    Fn2,
     IID,
     IRelease,
     Keys,
@@ -17,8 +12,6 @@ import type {
     Keys5,
     Keys6,
     Keys7,
-    Path,
-    Predicate,
     Val1,
     Val2,
     Val3,
@@ -27,19 +20,129 @@ import type {
     Val6,
     Val7,
     Val8,
-    Watch
+    Watch,
 } from "@thi.ng/api";
-import type {
-    CursorOpts,
-    IAtom,
-    IView,
-    SwapFn,
-    ViewTransform
-} from "./api";
+import type { AtomPath, CursorOpts, IAtom, SwapFn } from "./api";
+
+export function defCursor<T, A extends Keys<T>>(
+    parent: IAtom<T>,
+    path: readonly [A],
+    opts?: Partial<CursorOpts<Val1<T, A>>>
+): Cursor<Val1<T, A>>;
+export function defCursor<T, A extends Keys<T>, B extends Keys1<T, A>>(
+    parent: IAtom<T>,
+    path: readonly [A, B],
+    opts?: Partial<CursorOpts<Val2<T, A, B>>>
+): Cursor<Val2<T, A, B>>;
+export function defCursor<
+    T,
+    A extends Keys<T>,
+    B extends Keys1<T, A>,
+    C extends Keys2<T, A, B>
+>(
+    parent: IAtom<T>,
+    path: readonly [A, B, C],
+    opts?: Partial<CursorOpts<Val3<T, A, B, C>>>
+): Cursor<Val3<T, A, B, C>>;
+export function defCursor<
+    T,
+    A extends Keys<T>,
+    B extends Keys1<T, A>,
+    C extends Keys2<T, A, B>,
+    D extends Keys3<T, A, B, C>
+>(
+    parent: IAtom<T>,
+    path: readonly [A, B, C, D],
+    opts?: Partial<CursorOpts<Val4<T, A, B, C, D>>>
+): Cursor<Val4<T, A, B, C, D>>;
+export function defCursor<
+    T,
+    A extends Keys<T>,
+    B extends Keys1<T, A>,
+    C extends Keys2<T, A, B>,
+    D extends Keys3<T, A, B, C>,
+    E extends Keys4<T, A, B, C, D>
+>(
+    parent: IAtom<T>,
+    path: readonly [A, B, C, D, E],
+    opts?: Partial<CursorOpts<Val5<T, A, B, C, D, E>>>
+): Cursor<Val5<T, A, B, C, D, E>>;
+export function defCursor<
+    T,
+    A extends Keys<T>,
+    B extends Keys1<T, A>,
+    C extends Keys2<T, A, B>,
+    D extends Keys3<T, A, B, C>,
+    E extends Keys4<T, A, B, C, D>,
+    F extends Keys5<T, A, B, C, D, E>
+>(
+    parent: IAtom<T>,
+    path: readonly [A, B, C, D, E, F],
+    opts?: Partial<CursorOpts<Val6<T, A, B, C, D, E, F>>>
+): Cursor<Val6<T, A, B, C, D, E, F>>;
+export function defCursor<
+    T,
+    A extends Keys<T>,
+    B extends Keys1<T, A>,
+    C extends Keys2<T, A, B>,
+    D extends Keys3<T, A, B, C>,
+    E extends Keys4<T, A, B, C, D>,
+    F extends Keys5<T, A, B, C, D, E>,
+    G extends Keys6<T, A, B, C, D, E, F>
+>(
+    parent: IAtom<T>,
+    path: readonly [A, B, C, D, E, F, G],
+    opts?: Partial<CursorOpts<Val7<T, A, B, C, D, E, F, G>>>
+): Cursor<Val7<T, A, B, C, D, E, F, G>>;
+export function defCursor<
+    T,
+    A extends Keys<T>,
+    B extends Keys1<T, A>,
+    C extends Keys2<T, A, B>,
+    D extends Keys3<T, A, B, C>,
+    E extends Keys4<T, A, B, C, D>,
+    F extends Keys5<T, A, B, C, D, E>,
+    G extends Keys6<T, A, B, C, D, E, F>,
+    H extends Keys7<T, A, B, C, D, E, F, G>
+>(
+    parent: IAtom<T>,
+    path: readonly [A, B, C, D, E, F, G, H],
+    opts?: Partial<CursorOpts<Val8<T, A, B, C, D, E, F, G, H>>>
+): Cursor<Val8<T, A, B, C, D, E, F, G, H>>;
+export function defCursor<
+    T,
+    A extends Keys<T>,
+    B extends Keys1<T, A>,
+    C extends Keys2<T, A, B>,
+    D extends Keys3<T, A, B, C>,
+    E extends Keys4<T, A, B, C, D>,
+    F extends Keys5<T, A, B, C, D, E>,
+    G extends Keys6<T, A, B, C, D, E, F>,
+    H extends Keys7<T, A, B, C, D, E, F, G>
+>(
+    parent: IAtom<T>,
+    path: readonly [A, B, C, D, E, F, G, H, ...PropertyKey[]],
+    opts?: Partial<CursorOpts<any>>
+): Cursor<any>;
+export function defCursor(
+    parent: IAtom<any>,
+    path: AtomPath,
+    opts?: Partial<CursorOpts<any>>
+): Cursor<any> {
+    return new Cursor(parent, path, opts);
+}
+
+export function defCursorUnsafe<T = any>(
+    parent: IAtom<any>,
+    path: string | AtomPath,
+    opts?: Partial<CursorOpts<any>>
+) {
+    return new Cursor<T>(parent, path, opts);
+}
 
 /**
  * A cursor provides read/write access to a path location within a
- * nested parent state (Atom or another Cursor).
+ * nested (Atom-like) parent state.
  *
  * @remarks
  * Cursors behave like Atoms for all practical purposes, i.e. support
@@ -73,59 +176,22 @@ export class Cursor<T> implements IAtom<T>, IID<string>, IRelease {
     protected local: Atom<T>;
     protected selfUpdate: boolean;
 
-    constructor(opts: CursorOpts<T>);
-    constructor(parent: IAtom<any>, path: Path);
     constructor(
         parent: IAtom<any>,
-        lookup: Fn<any, T>,
-        update: Fn2<any, T, any>
-    );
-    constructor(...args: any[]) {
-        let parent!: IAtom<any>;
-        let lookup: Fn<any, T> | undefined;
-        let update: Fn2<any, T, any> | undefined;
-        let validate: Predicate<T> | undefined;
-        let opts: CursorOpts<T>;
-        let id: string | undefined;
-        switch (args.length) {
-            case 1:
-                opts = args[0];
-                id = opts.id;
-                parent = opts.parent;
-                validate = opts.validate;
-                if (opts.path) {
-                    if (isArray(opts.path) && isFunction(opts.path[0])) {
-                        [lookup, update] = <any>opts.path;
-                    } else {
-                        lookup = getter(<Path>opts.path);
-                        update = setter(<Path>opts.path);
-                    }
-                } else {
-                    illegalArgs("missing path config");
-                }
-                break;
-            case 2:
-                parent = args[0];
-                lookup = getter(args[1]);
-                update = setter(args[1]);
-                break;
-            case 3:
-                [parent, lookup, update] = args;
-                break;
-            default:
-                illegalArity(args.length);
-        }
+        path: string | AtomPath,
+        opts: Partial<CursorOpts<T>> = {}
+    ) {
+        const validate = opts.validate;
+        const lookup = getter(path);
+        const update = setter(path);
         this.parent = parent;
-        this.id = id || `cursor-${nextID()}`;
+        this.id = opts.id || `cursor-${nextID()}`;
         this.selfUpdate = false;
-        if (!lookup || !update) {
-            illegalArgs();
-        }
-        this.local = new Atom<T>(lookup!(parent.deref()), validate);
+        this.local = new Atom<T>(lookup(parent.deref()), validate);
         this.local.addWatch(this.id, (_, prev, curr) => {
             if (prev !== curr) {
                 this.selfUpdate = true;
-                parent.swap((state) => update!(state, curr));
+                parent.swap((state) => update(state, curr));
                 this.selfUpdate = false;
             }
         });
@@ -228,8 +294,12 @@ export class Cursor<T> implements IAtom<T>, IID<string>, IRelease {
         G extends Keys6<T, A, B, C, D, E, F>,
         H extends Keys7<T, A, B, C, D, E, F, G>
     >(path: readonly [A, B, C, D, E, F, G, H, ...PropertyKey[]], val: any): T;
-    resetIn(path: Readonly<Path>, val: any) {
-        return this.local.resetIn(<any>path, val);
+    resetIn(path: AtomPath, val: any) {
+        return this.local.resetInUnsafe(path, val);
+    }
+
+    resetInUnsafe(path: string | AtomPath, val: any) {
+        return this.local.resetInUnsafe(path, val);
     }
 
     swap(fn: SwapFn<T>, ...args: any[]): T {
@@ -325,8 +395,12 @@ export class Cursor<T> implements IAtom<T>, IID<string>, IRelease {
         fn: SwapFn<any>,
         ...args: any[]
     ): T;
-    swapIn(path: Readonly<Path>, fn: SwapFn<any>, ...args: any[]) {
-        return this.local.swapIn(<any>path, fn, ...args);
+    swapIn(path: AtomPath, fn: SwapFn<any>, ...args: any[]) {
+        return this.local.swapInUnsafe(path, fn, ...args);
+    }
+
+    swapInUnsafe(path: string | AtomPath, fn: SwapFn<any>, ...args: any[]) {
+        return this.local.swapInUnsafe(path, fn, ...args);
     }
 
     addWatch(id: string, fn: Watch<T>) {
@@ -337,12 +411,7 @@ export class Cursor<T> implements IAtom<T>, IID<string>, IRelease {
         return this.local.removeWatch(id);
     }
 
-    /* istanbul ignore next */
     notifyWatches(oldState: T, newState: T) {
         return this.local.notifyWatches(oldState, newState);
-    }
-
-    addView<V>(path: Path, tx?: ViewTransform<V>, lazy = true): IView<V> {
-        return new View<V>(this, path, tx, lazy);
     }
 }

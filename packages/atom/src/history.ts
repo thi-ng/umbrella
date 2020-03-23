@@ -1,5 +1,8 @@
-import {
-    INotifyMixin,
+import { INotifyMixin } from "@thi.ng/api";
+import { equiv } from "@thi.ng/equiv";
+import { getIn, setIn, updateIn } from "@thi.ng/paths";
+import type {
+    Event,
     Keys,
     Keys1,
     Keys2,
@@ -8,6 +11,8 @@ import {
     Keys5,
     Keys6,
     Keys7,
+    Listener,
+    Predicate2,
     Val1,
     Val2,
     Val3,
@@ -15,25 +20,16 @@ import {
     Val5,
     Val6,
     Val7,
-    Val8
+    Val8,
+    Watch,
 } from "@thi.ng/api";
-import { equiv } from "@thi.ng/equiv";
-import { getIn, setIn, updateIn } from "@thi.ng/paths";
-import { View } from "./view";
-import type {
-    Event,
-    Listener,
-    Path,
-    Predicate2,
-    Watch
-} from "@thi.ng/api";
-import type {
-    IAtom,
-    IHistory,
-    IView,
-    SwapFn,
-    ViewTransform
-} from "./api";
+import type { AtomPath, IAtom, IHistory, SwapFn } from "./api";
+
+export const defHistory = <T>(
+    state: IAtom<T>,
+    maxLen?: number,
+    changed?: Predicate2<T>
+) => new History(state, maxLen, changed);
 
 /**
  * Undo/redo history stack wrapper for atoms and cursors. Implements
@@ -230,13 +226,17 @@ export class History<T> implements IHistory<T> {
         G extends Keys6<T, A, B, C, D, E, F>,
         H extends Keys7<T, A, B, C, D, E, F, G>
     >(path: readonly [A, B, C, D, E, F, G, H, ...PropertyKey[]], val: any): T;
-    resetIn(path: Readonly<Path>, val: any) {
+    resetIn(path: AtomPath, val: any) {
         const prev = this.state.deref();
         const prevV = getIn(prev, path);
         const curr = setIn(prev, path, val);
         this.state.reset(curr);
         this.changed(prevV, getIn(curr, path)) && this.record(prev);
         return curr;
+    }
+
+    resetInUnsafe(path: AtomPath, val: any) {
+        return this.resetIn(<any>path, val);
     }
 
     /**
@@ -340,13 +340,17 @@ export class History<T> implements IHistory<T> {
         fn: SwapFn<any>,
         ...args: any[]
     ): T;
-    swapIn(path: Readonly<Path>, fn: SwapFn<any>, ...args: any[]) {
+    swapIn(path: AtomPath, fn: SwapFn<any>, ...args: any[]) {
         const prev = this.state.deref();
         const prevV = getIn(prev, path);
         const curr = updateIn(this.state.deref(), path, fn, ...args);
         this.state.reset(curr);
         this.changed(prevV, getIn(curr, path)) && this.record(prev);
         return curr;
+    }
+
+    swapInUnsafe(path: string | AtomPath, fn: SwapFn<any>, ...args: any[]) {
+        return this.swapIn(<any>path, fn, ...args);
     }
 
     /**
@@ -424,10 +428,6 @@ export class History<T> implements IHistory<T> {
      */
     notifyWatches(oldState: T, newState: T) {
         return this.state.notifyWatches(oldState, newState);
-    }
-
-    addView<V>(path: Path, tx?: ViewTransform<V>, lazy = true): IView<V> {
-        return new View<V>(this, path, tx, lazy);
     }
 
     release() {
