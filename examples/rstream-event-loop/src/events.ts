@@ -1,4 +1,4 @@
-import { setInMany } from "@thi.ng/paths";
+import { setInManyUnsafe } from "@thi.ng/paths";
 import {
     ISubscriber,
     pubsub,
@@ -60,7 +60,7 @@ export const defHandler = <E extends EventType>(
 ) => {
     const sub: ISubscriber<Event> = {
         next: <Fn<Event, void>>handler,
-        error: console.warn
+        error: console.warn,
     };
     return xform
         ? eventProc.subscribeTopic(id, {}, {}).subscribe(sub, xform)
@@ -84,7 +84,7 @@ const requestPage = (offset: number) => {
     const timeoutID = setTimeout(() => dispatch([PAGE_READY]), 250);
     // IMMUTABLY(!) update app state
     state.next(
-        setInMany(
+        setInManyUnsafe(
             curr,
             "nextPageID",
             curr.pageID + offset,
@@ -117,5 +117,7 @@ defHandler(
 defHandler(PAGE_READY, () => {
     const curr = state.deref()!;
     // apply `nextPageID` and clear preload flag
-    state.next(setInMany(curr, "pageID", curr.nextPageID, "isLoading", false));
+    state.next(
+        setInManyUnsafe(curr, "pageID", curr.nextPageID, "isLoading", false)
+    );
 });

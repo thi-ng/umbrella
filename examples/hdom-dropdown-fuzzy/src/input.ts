@@ -1,4 +1,4 @@
-import { getIn } from "@thi.ng/paths";
+import { getInUnsafe } from "@thi.ng/paths";
 import type { Path } from "@thi.ng/api";
 import type { IView } from "@thi.ng/atom";
 
@@ -23,7 +23,7 @@ export function cancelableInput(themeCtxPath: Path) {
             [
                 "input",
                 {
-                    ...getIn(ctx, themeCtxPath),
+                    ...getInUnsafe(ctx, themeCtxPath),
                     ...args.attribs,
                     type: "text",
                     oninput: args.oninput,
@@ -43,8 +43,8 @@ export function cancelableInput(themeCtxPath: Path) {
                         }
                     },
                     placeholder: args.placeholder,
-                    value: args.state
-                }
+                    value: args.state,
+                },
             ],
             args.onclear
                 ? [
@@ -55,14 +55,14 @@ export function cancelableInput(themeCtxPath: Path) {
                               e.stopPropagation();
                               input.focus();
                               args.onclear(e);
-                          }
+                          },
                       },
                       [
                           "i.absolute.fas.fa-times-circle.gray.f7",
-                          { style: { right: "0.5rem", top: "0.25rem" } }
-                      ]
+                          { style: { right: "0.5rem", top: "0.25rem" } },
+                      ],
                   ]
-                : undefined
-        ]
+                : undefined,
+        ],
     };
 }

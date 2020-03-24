@@ -1,4 +1,4 @@
-import { setInT } from "@thi.ng/paths";
+import { setIn } from "@thi.ng/paths";
 import { GRAY8, PackedBuffer } from "@thi.ng/pixel";
 import {
     ISubscriber,
@@ -6,6 +6,8 @@ import {
     stream,
     trace
 } from "@thi.ng/rstream";
+import { state } from "./state";
+import { adaptiveThreshold } from "./threshold";
 import {
     Event,
     EventType,
@@ -13,10 +15,8 @@ import {
     SET_IMAGE,
     SET_KERNEL_OFFSET,
     SET_KERNEL_WIDTH,
-    UPDATE_IMAGE
+    UPDATE_IMAGE,
 } from "./api";
-import { state } from "./state";
-import { adaptiveThreshold } from "./threshold";
 import type { Fn } from "@thi.ng/api";
 import type { Transducer } from "@thi.ng/transducers";
 
@@ -63,7 +63,7 @@ export const defHandler = <E extends EventType>(
 ) => {
     const sub: ISubscriber<Event> = {
         next: <Fn<Event, void>>handler,
-        error: console.warn
+        error: console.warn,
     };
     return xform
         ? eventProc.subscribeTopic(id, {}, {}).subscribe(sub, xform)
@@ -79,7 +79,7 @@ defHandler(SET_IMAGE, ([_, file]) => {
         img.src = e.target.result;
         await img.decode();
         state.next(
-            setInT(
+            setIn(
                 state.deref()!,
                 ["srcImg"],
                 PackedBuffer.fromImage(img, GRAY8)
@@ -94,7 +94,7 @@ defHandler(UPDATE_IMAGE, () => {
     const curr = state.deref()!;
     // create & store threshold image in state
     state.next(
-        setInT(
+        setIn(
             curr,
             ["destImg"],
             adaptiveThreshold(
@@ -107,11 +107,11 @@ defHandler(UPDATE_IMAGE, () => {
 });
 
 defHandler(SET_KERNEL_WIDTH, ([_, width]) => {
-    state.next(setInT(state.deref()!, ["threshold", "windowSize"], width));
+    state.next(setIn(state.deref()!, ["threshold", "windowSize"], width));
     dispatch([UPDATE_IMAGE]);
 });
 
 defHandler(SET_KERNEL_OFFSET, ([_, offset]) => {
-    state.next(setInT(state.deref()!, ["threshold", "offset"], offset));
+    state.next(setIn(state.deref()!, ["threshold", "offset"], offset));
     dispatch([UPDATE_IMAGE]);
 });

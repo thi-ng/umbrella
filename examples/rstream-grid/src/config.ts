@@ -1,7 +1,7 @@
 import { download } from "@thi.ng/dl-asset";
 import { serialize } from "@thi.ng/hiccup";
 import { snapshot, valueSetter } from "@thi.ng/interceptors";
-import { getIn } from "@thi.ng/paths";
+import { getInUnsafe } from "@thi.ng/paths";
 import { fromIterable } from "@thi.ng/rstream";
 import { range } from "@thi.ng/transducers";
 import { main } from "./components/main";
@@ -38,8 +38,10 @@ export const CONFIG: AppConfig = {
             {}
         ),
         [ev.UPDATE_SVG]: [valueSetter(paths.SVG)],
-        [ev.SAVE_SVG]: (state) => ({ [fx.SAVE_SVG]: getIn(state, paths.SVG) }),
-        [ev.SAVE_ANIM]: () => ({ [fx.SAVE_ANIM]: true })
+        [ev.SAVE_SVG]: (state) => ({
+            [fx.SAVE_SVG]: getInUnsafe(state, paths.SVG),
+        }),
+        [ev.SAVE_ANIM]: () => ({ [fx.SAVE_ANIM]: true }),
     },
 
     // custom side effects
@@ -59,8 +61,8 @@ export const CONFIG: AppConfig = {
                 next: (x) => {
                     bus.dispatch([ev.SET_THETA, x]);
                     bus.dispatchLater([ev.SAVE_SVG]);
-                }
-            })
+                },
+            }),
     },
 
     rootComponent: main,
@@ -74,8 +76,8 @@ export const CONFIG: AppConfig = {
             cols: 5,
             rows: 5,
             theta: 35,
-            stroke: 0.3
-        }
+            stroke: 0.3,
+        },
     },
 
     // derived view declarations
@@ -89,7 +91,7 @@ export const CONFIG: AppConfig = {
         rows: paths.ROWS,
         stroke: paths.STROKE,
         theta: paths.THETA,
-        svg: paths.SVG
+        svg: paths.SVG,
     },
 
     // component CSS class config using http://tachyons.io/
@@ -97,7 +99,7 @@ export const CONFIG: AppConfig = {
     // as part of the AppContext object
     ui: {
         button: {
-            class: `pointer bg-${FG_COL} hover-bg-${LINK_COL} bg-animate black pa2 mr1 w-100 ttu b tracked-tight`
+            class: `pointer bg-${FG_COL} hover-bg-${LINK_COL} bg-animate black pa2 mr1 w-100 ttu b tracked-tight`,
         },
         buttongroup: { class: "flex mb1" },
         footer: { class: "absolute bottom-1" },
@@ -105,13 +107,13 @@ export const CONFIG: AppConfig = {
         root: { class: "vw-100 vh-100 flex" },
         sidebar: {
             root: { class: `bg-near-black pa2 pt3 w5 f7 ${FG_COL}` },
-            title: { class: `mt0 ${FG_COL}` }
+            title: { class: `mt0 ${FG_COL}` },
         },
         slider: {
             root: { class: `mb3 ttu b tracked-tight ${FG_COL}` },
             range: { class: "w-100" },
             label: { class: "pl2" },
-            number: { class: `fr w3 tr ttu bn bg-transparent ${FG_COL}` }
-        }
-    }
+            number: { class: `fr w3 tr ttu bn bg-transparent ${FG_COL}` },
+        },
+    },
 };

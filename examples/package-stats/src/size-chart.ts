@@ -1,7 +1,9 @@
 import { serialize } from "@thi.ng/hiccup";
 import { group, text } from "@thi.ng/hiccup-svg";
-import { getter } from "@thi.ng/paths";
+import { defGetterUnsafe } from "@thi.ng/paths";
 import { bytes } from "@thi.ng/strings";
+import * as fs from "fs";
+import { barChart, labeledTickX, labeledTickY } from "./viz";
 import {
     comp,
     filter,
@@ -10,10 +12,8 @@ import {
     mapIndexed,
     max,
     push,
-    transduce
+    transduce,
 } from "@thi.ng/transducers";
-import * as fs from "fs";
-import { barChart, labeledTickX, labeledTickY } from "./viz";
 
 const BASE_DIR = "../../packages/";
 
@@ -34,7 +34,7 @@ fs.writeFileSync(
 console.log(meta.length);
 
 const fileSizeChart = (stats: any, modType: string, type: string) => {
-    const get = getter([1, modType, type]);
+    const get = defGetterUnsafe([1, modType, type]);
     stats = [...stats].sort((a, b) => get(b) - get(a));
 
     const width = stats.length * 16;
@@ -54,23 +54,23 @@ const fileSizeChart = (stats: any, modType: string, type: string) => {
                     width: width,
                     height: 260,
                     "font-size": "10px",
-                    "font-family": "Iosevka-Term-Light, Menlo, sans-serif"
+                    "font-family": "Iosevka-Term-Light, Menlo, sans-serif",
                 },
                 x: {
                     axis: [80, width - 15, 170],
                     domain: [0, stats.length, 1],
                     range: [80, width - 5],
                     ticks: [...map((x: any) => x[0], stats)],
-                    label: labeledTickX
+                    label: labeledTickX,
                 },
                 y: {
                     axis: [170, 10, 65],
                     domain: [0, maxSize, 5 * 1024],
                     range: [160, 20],
-                    label: labeledTickY(width - 15, bytes)
+                    label: labeledTickY(width - 15, bytes),
                 },
                 axis: "#666",
-                fill: "#0cc"
+                fill: "#0cc",
             },
             mapIndexed((i, m) => [i, get(m)], stats),
             group(
@@ -80,7 +80,7 @@ const fileSizeChart = (stats: any, modType: string, type: string) => {
                     `@thi.ng/umbrella package sizes (${modType.toUpperCase()})`
                 ),
                 text([width / 2 + 40, 56], `(minified + gzipped)`)
-            )
+            ),
         ])
     );
 };

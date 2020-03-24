@@ -1,16 +1,16 @@
 import { Atom } from "@thi.ng/atom";
-import { setIn, setInMany } from "@thi.ng/paths";
+import { setIn, setInManyUnsafe } from "@thi.ng/paths";
 import { Node, removeNode } from "@thi.ng/rstream-graph";
 import { charRange } from "@thi.ng/strings";
+import { Cell, MAX_COL, NUM_ROWS } from "./api";
+import { $eval } from "./dsl";
 import {
     assocObj,
     map,
     permutations,
     range,
-    transduce
+    transduce,
 } from "@thi.ng/transducers";
-import { Cell, MAX_COL, NUM_ROWS } from "./api";
-import { $eval } from "./dsl";
 import type { IObjectOf } from "@thi.ng/api";
 
 /**
@@ -29,8 +29,8 @@ export const DB = new Atom<IObjectOf<Cell>>(
                         value: "",
                         backup: "",
                         focus: false,
-                        error: ""
-                    }
+                        error: "",
+                    },
                 ]
         ),
         assocObj(),
@@ -52,7 +52,7 @@ export const removeCell = (id: string) => removeNode(graph, id);
  */
 export const focusCell = (id: string) => {
     DB.swapIn([id], (cell) =>
-        setInMany(cell, "focus", true, "backup", cell.formula)
+        setInManyUnsafe(cell, "focus", true, "backup", cell.formula)
     );
 };
 
@@ -62,7 +62,7 @@ export const focusCell = (id: string) => {
  * @param id
  */
 export const blurCell = (id: string) => {
-    DB.swapIn([id], (cell) => setIn(cell, "focus", false));
+    DB.swapIn([id], (cell) => setIn(cell, ["focus"], false));
 };
 
 /**
@@ -72,7 +72,7 @@ export const blurCell = (id: string) => {
  */
 export const cancelCell = (id: string) => {
     DB.swapIn([id], (cell) =>
-        setInMany(cell, "focus", false, "formula", cell.backup)
+        setInManyUnsafe(cell, "focus", false, "formula", cell.backup)
     );
 };
 
@@ -87,17 +87,17 @@ export const cancelCell = (id: string) => {
  */
 export const updateCell = (id: string, val: string) => {
     if (val.startsWith("(")) {
-        DB.resetIn([id, "formula"], val);
+        DB.resetIn(<const>[id, "formula"], val);
         try {
             $eval(val, id);
-            DB.resetIn([id, "error"], null);
+            DB.resetIn(<const>[id, "error"], null);
         } catch (e) {
-            DB.resetIn([id, "error"], e.message);
+            DB.resetIn(<const>[id, "error"], e.message);
         }
     } else {
         removeCell(id);
         DB.swapIn([id], (cell) =>
-            setInMany(cell, "value", val, "formula", "", "error", null)
+            setInManyUnsafe(cell, "value", val, "formula", "", "error", null)
         );
     }
 };

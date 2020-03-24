@@ -5,7 +5,6 @@ import {
     defView
 } from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom";
-import { setIn, updateIn } from "@thi.ng/paths";
 import { map, pairs } from "@thi.ng/transducers";
 import type { IObjectOf } from "@thi.ng/api";
 
@@ -36,17 +35,11 @@ const items = defView(db, ["tasks"], (tasks: Tasks) => [
 // each applies its updates via the history atom wrapper
 // the `atom.setter` calls produce an immutable update function for given paths
 const addNewTask = () =>
-    tasks.swap((tasks) =>
-        setIn(
-            tasks,
-            nextID.swap((id) => id + 1),
-            { body: "", done: false }
-        )
-    );
+    tasks.resetIn([nextID.swap((id) => id + 1)], { body: "", done: false });
 const toggleTask = (id: string) =>
-    tasks.swap((tasks) => updateIn(tasks, [id, "done"], (done) => !done));
+    tasks.swapIn(<const>[id, "done"], (done) => !done);
 const updateTask = (id: string, body: string) =>
-    tasks.swap((tasks) => setIn(tasks, [id, "body"], body));
+    tasks.resetIn(<const>[id, "body"], body);
 
 // single task component
 const taskItem = (id: string, task: Task): any[] => {

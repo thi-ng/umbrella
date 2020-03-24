@@ -3,6 +3,29 @@ import { timedResult } from "@thi.ng/bench";
 import { line, normalizedPath, pathFromSvg } from "@thi.ng/geom";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { DOWNLOAD, RESTART } from "@thi.ng/hiccup-carbon-icons";
+import { gridLayout, GridLayout, layoutBox } from "@thi.ng/layout";
+import { clamp, PI } from "@thi.ng/math";
+import { setInManyUnsafe } from "@thi.ng/paths";
+import { gestureStream } from "@thi.ng/rstream-gestures";
+import { float } from "@thi.ng/strings";
+import {
+    comp,
+    iterator,
+    map,
+    mapcat,
+    step
+} from "@thi.ng/transducers";
+import { updateDOM } from "@thi.ng/transducers-hdom";
+import { sma } from "@thi.ng/transducers-stats";
+import {
+    add2,
+    hash,
+    min2,
+    setC2,
+    Vec,
+    vecOf,
+    ZERO2
+} from "@thi.ng/vectors";
 import {
     buttonH,
     buttonV,
@@ -25,39 +48,16 @@ import {
     textLabel,
     textLabelRaw,
     toggle,
-    xyPad
+    xyPad,
 } from "@thi.ng/imgui";
-import { gridLayout, GridLayout, layoutBox } from "@thi.ng/layout";
-import { clamp, PI } from "@thi.ng/math";
-import { setInMany } from "@thi.ng/paths";
 import {
     fromAtom,
     fromDOMEvent,
     fromRAF,
     merge,
     sidechainPartition,
-    sync
+    sync,
 } from "@thi.ng/rstream";
-import { gestureStream } from "@thi.ng/rstream-gestures";
-import { float } from "@thi.ng/strings";
-import {
-    comp,
-    iterator,
-    map,
-    mapcat,
-    step
-} from "@thi.ng/transducers";
-import { updateDOM } from "@thi.ng/transducers-hdom";
-import { sma } from "@thi.ng/transducers-stats";
-import {
-    add2,
-    hash,
-    min2,
-    setC2,
-    Vec,
-    vecOf,
-    ZERO2
-} from "@thi.ng/vectors";
 
 // define theme colors in RGBA format for future compatibility with
 // WebGL backend
@@ -77,8 +77,8 @@ const THEMES: Partial<GUITheme>[] = [
         textDisabled: [0.3, 0.3, 0.3, 0.5],
         textHover: [0.2, 0.2, 0.4, 1],
         bgTooltip: [1, 1, 0.8, 0.85],
-        textTooltip: [0, 0, 0, 1]
-    }
+        textTooltip: [0, 0, 0, 1],
+    },
 ];
 
 // float value formatters
@@ -104,7 +104,7 @@ const mkIcon = (icon: any[]) => [
             map(normalizedPath)
         ),
         icon.slice(2)
-    )
+    ),
 ];
 
 // icon definitions (from @thi.ng/hiccup-carbon-icons)
@@ -124,7 +124,7 @@ const DB = new History(
         txt: "Hello there! This is a test, do not panic!",
         toggles: new Array<boolean>(12).fill(false),
         flags: [true, false],
-        radio: 0
+        radio: 0,
     }),
     // max. 500 undo steps
     500
@@ -134,7 +134,7 @@ const DB = new History(
 const themeForID = (theme: number): Partial<GUITheme> => ({
     ...THEMES[theme % THEMES.length],
     font: FONT,
-    cursorBlink: 0
+    cursorBlink: 0,
 });
 
 // state update handler for `rgb` value
@@ -176,7 +176,7 @@ const app = () => {
                         gestureStream(canv, {}).subscribe({
                             next(e) {
                                 gui.setMouse(e.pos, e.buttons);
-                            }
+                            },
                         }),
                         // keydown & undo/redo handler:
                         // Ctrl/Command + Z = undo
@@ -194,12 +194,12 @@ const app = () => {
                                 } else {
                                     gui.setKey(e);
                                 }
-                            }
+                            },
                         }),
                         fromDOMEvent(window, "keyup").subscribe({
                             next(e) {
                                 gui.setKey(e);
-                            }
+                            },
                         }),
                         fromDOMEvent(window, "resize").subscribe({
                             next() {
@@ -212,12 +212,12 @@ const app = () => {
                                 DB.swapIn(["pos"], (pos: Vec) =>
                                     min2([], pos, size)
                                 );
-                            }
-                        })
-                    ]
+                            },
+                        }),
+                    ],
                 })
             );
-        }
+        },
     };
 
     // main GUI update function
@@ -414,15 +414,15 @@ const app = () => {
                             from: radialPos,
                             to: radialPos,
                             r1: 5,
-                            r2: 300
+                            r2: 300,
                         },
                         [
                             [0, [1, 1, 1, 0.8]],
                             [0.5, [1, 1, 1, 0.66]],
-                            [1, [1, 1, 1, 0]]
-                        ]
+                            [1, [1, 1, 1, 0]],
+                        ],
                     ],
-                    ["circle", { fill: "$shadow" }, radialPos, 300]
+                    ["circle", { fill: "$shadow" }, radialPos, 300],
                 ])
             );
             let res: number | undefined;
@@ -438,7 +438,7 @@ const app = () => {
                 )) !== undefined
             ) {
                 DB.swap((db) =>
-                    setInMany(db, "uiMode", res, "uiVisible", true)
+                    setInManyUnsafe(db, ["uiMode"], res, ["uiVisible"], true)
                 );
             }
             gui.add(
@@ -520,7 +520,7 @@ const app = () => {
                 height,
                 style: { background: gui.theme.globalBg, cursor: gui.cursor },
                 oncontextmenu: (e: Event) => e.preventDefault(),
-                ...gui.attribs
+                ...gui.attribs,
             },
             // GUI resize border line
             line([maxW, 0], [maxW, height], { stroke: "#000" }),
@@ -530,13 +530,13 @@ const app = () => {
                     transform: [0, -1, 1, 0, maxW + 12, height / 2],
                     fill: "#000",
                     font: FONT,
-                    align: "center"
+                    align: "center",
                 },
                 [0, 0],
-                "DRAG TO RESIZE"
+                "DRAG TO RESIZE",
             ],
             // IMGUI implements IToHiccup interface so just supply as is
-            gui
+            gui,
         ];
     };
 };
@@ -548,8 +548,8 @@ const app = () => {
 // updates on demand...
 const main = sync<any, any>({
     src: {
-        state: fromAtom(DB)
-    }
+        state: fromAtom(DB),
+    },
 });
 
 // transform the stream:
