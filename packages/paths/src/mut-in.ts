@@ -1,29 +1,29 @@
-import { mutatorT } from "./mutator";
+import { defMutator } from "./mutator";
 import type {
-    Keys,
-    Keys1,
-    Keys2,
-    Keys3,
-    Keys4,
-    Keys5,
-    Keys6,
-    Keys7,
+    DeepPath,
     Path,
-    Val1,
-    Val2,
-    Val3,
-    Val4,
-    Val5,
-    Val6,
-    Val7,
-    Val8
+    Path0,
+    Path1,
+    Path2,
+    Path3,
+    Path4,
+    Path5,
+    Path6,
+    Path7,
+    Path8,
+    PathVal1,
+    PathVal2,
+    PathVal3,
+    PathVal4,
+    PathVal5,
+    PathVal6,
+    PathVal7,
+    PathVal8,
 } from "@thi.ng/api";
 
 /**
- * Immediate use mutator, i.e. same as: `mutator(path)(state, val)`.
- *
- * @remarks
- * Also see {@link setIn}, {@link updateIn}, {@link deleteIn}.
+ * Immediate use mutator, i.e. same as: `defMutatorUnsafe(path)(state,
+ * val)`.
  *
  * @example
  * ```ts
@@ -48,94 +48,63 @@ import type {
  * @param path -
  * @param val -
  */
-export const mutIn = (state: any, path: Readonly<Path>, val: any) =>
-    mutInT(state, <any>path, val);
+export const mutInUnsafe = (state: any, path: Path, val: any) =>
+    defMutator(<any>path)(state, val);
 
 /**
- * Type checked version of {@link mutIn}.
+ * Type checked version of {@link mutIn}. Only the first 8 path levels
+ * are type checked.
  *
  * @param state -
  * @param path -
  * @param val -
  */
-export function mutInT<T>(state: T, path: readonly [], val: T): T;
-export function mutInT<T, A extends Keys<T>>(
+export function mutIn<T>(state: T, path: Path0, val: T): T;
+export function mutIn<T, A>(
     state: T,
-    path: readonly [A],
-    val: Val1<T, A>
+    path: Path1<T, A>,
+    val: PathVal1<T, A>
 ): T;
-export function mutInT<T, A extends Keys<T>, B extends Keys1<T, A>>(
+export function mutIn<T, A, B>(
     state: T,
-    path: readonly [A, B],
-    val: Val2<T, A, B>
+    path: Path2<T, A, B>,
+    val: PathVal2<T, A, B>
 ): T;
-export function mutInT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>
->(state: T, path: readonly [A, B, C], val: Val3<T, A, B, C>): T;
-export function mutInT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>
->(state: T, path: readonly [A, B, C, D], val: Val4<T, A, B, C, D>): T;
-export function mutInT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>,
-    E extends Keys4<T, A, B, C, D>
->(state: T, path: readonly [A, B, C, D, E], val: Val5<T, A, B, C, D, E>): T;
-export function mutInT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>,
-    E extends Keys4<T, A, B, C, D>,
-    F extends Keys5<T, A, B, C, D, E>
->(state: T, path: readonly [A, B, C, D, E, F], val: Val6<T, A, B, C, D, E, F>): T;
-export function mutInT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>,
-    E extends Keys4<T, A, B, C, D>,
-    F extends Keys5<T, A, B, C, D, E>,
-    G extends Keys6<T, A, B, C, D, E, F>,
-    V
->(state: T, path: readonly [A, B, C, D, E, F, G], val: Val7<T, A, B, C, D, E, F, G>): T;
-export function mutInT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>,
-    E extends Keys4<T, A, B, C, D>,
-    F extends Keys5<T, A, B, C, D, E>,
-    G extends Keys6<T, A, B, C, D, E, F>,
-    H extends Keys7<T, A, B, C, D, E, F, G>
->(
+export function mutIn<T, A, B, C>(
     state: T,
-    path: readonly [A, B, C, D, E, F, G, H],
-    val: Val8<T, A, B, C, D, E, F, G, H>
+    path: Path3<T, A, B, C>,
+    val: PathVal3<T, A, B, C>
 ): T;
-export function mutInT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>,
-    E extends Keys4<T, A, B, C, D>,
-    F extends Keys5<T, A, B, C, D, E>,
-    G extends Keys6<T, A, B, C, D, E, F>,
-    H extends Keys7<T, A, B, C, D, E, F, G>
->(state: T, path: readonly [A, B, C, D, E, F, G, H, ...PropertyKey[]], val: any): any;
-export function mutInT(state: any, path: Readonly<Path>, val: any): any {
-    return mutatorT(<any>path)(state, val);
+export function mutIn<T, A, B, C, D>(
+    state: T,
+    path: Path4<T, A, B, C, D>,
+    val: PathVal4<T, A, B, C, D>
+): T;
+export function mutIn<T, A, B, C, D, E>(
+    state: T,
+    path: Path5<T, A, B, C, D, E>,
+    val: PathVal5<T, A, B, C, D, E>
+): T;
+export function mutIn<T, A, B, C, D, E, F>(
+    state: T,
+    path: Path6<T, A, B, C, D, E, F>,
+    val: PathVal6<T, A, B, C, D, E, F>
+): T;
+export function mutIn<T, A, B, C, D, E, F, G>(
+    state: T,
+    path: Path7<T, A, B, C, D, E, F, G>,
+    val: PathVal7<T, A, B, C, D, E, F, G>
+): T;
+export function mutIn<T, A, B, C, D, E, F, G, H>(
+    state: T,
+    path: Path8<T, A, B, C, D, E, F, G, H>,
+    val: PathVal8<T, A, B, C, D, E, F, G, H>
+): T;
+export function mutIn<T, A, B, C, D, E, F, G, H>(
+    state: T,
+    path: DeepPath<T, A, B, C, D, E, F, G, H>,
+    val: any
+): any;
+export function mutIn(state: any, path: Path, val: any): any {
+    return defMutator(<any>path)(state, val);
 }

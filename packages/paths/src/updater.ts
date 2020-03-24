@@ -1,139 +1,102 @@
-import { getterT } from "./getter";
-import { setterT } from "./setter";
+import { defGetter } from "./getter";
+import { defSetter } from "./setter";
 import type {
+    DeepPath,
     FnO,
-    Keys,
-    Keys1,
-    Keys2,
-    Keys3,
-    Keys4,
-    Keys5,
-    Keys6,
-    Keys7,
     Path,
-    Val1,
-    Val2,
-    Val3,
-    Val4,
-    Val5,
-    Val6,
-    Val7,
-    Val8
+    Path0,
+    Path1,
+    Path2,
+    Path3,
+    Path4,
+    Path5,
+    Path6,
+    Path7,
+    Path8,
+    PathVal1,
+    PathVal2,
+    PathVal3,
+    PathVal4,
+    PathVal5,
+    PathVal6,
+    PathVal7,
+    PathVal8,
 } from "@thi.ng/api";
 import type { UpdateFn } from "./api";
 
 /**
- * Similar to {@link setter}, returns a function to update values at
- * given `path` using provided update `fn`.
+ * Similar to {@link defSetterUnsafe}, returns a function to update
+ * values at given `path` using provided update `fn`. Paths and the
+ * arguments given to the returned function are NOT type checked.
  *
  * @remarks
  * The returned function accepts a single object / array and applies
- * `fn` to current path value (incl. any additional/optional arguments
- * passed) and uses result as new value. Does not modify original state
- * (unless given function does so itself).
+ * `fn` to given path value (incl. any additional / optional arguments
+ * passed) and uses result as new value. Does not modify original state.
  *
- * ```
- * add = updater("a.b", (x, n) => x + n);
+ * @example
+ * ```ts
+ * const incB = defUpdaterUnsafe("a.b", (x, n) => x + n);
+ * // or
+ * const incB = defUpdaterUnsafe(["a", "b"], (x, n) => x + n);
  *
- * add({a: {b: 10}}, 13);
+ * incB({ a: { b: 10 } }, 13);
  * // { a: { b: 23 } }
  * ```
  *
  * @param path -
  * @param fn -
  */
-export const updater = (path: Readonly<Path>, fn: UpdateFn<any>) =>
-    updaterT(<any>path, fn);
+export const defUpdaterUnsafe = (path: Path, fn: UpdateFn<any>) =>
+    defUpdater(<any>path, fn);
 
 /**
- * Type checked version of {@link updater}.
+ * Type checked version of {@link defUpdaterUnsafe}. Only the first 8
+ * path levels are type checked.
  *
  * @param path -
  * @param fn -
  */
-export function updaterT<T>(path: readonly [], fn: UpdateFn<T>): FnO<T, T>;
-export function updaterT<T, A extends Keys<T>>(
-    path: readonly [A],
-    fn: UpdateFn<Val1<T, A>>
+export function defUpdater<T>(path: Path0, fn: UpdateFn<T>): FnO<T, T>;
+export function defUpdater<T, A>(
+    path: Path1<T, A>,
+    fn: UpdateFn<PathVal1<T, A>>
 ): FnO<T, T>;
-export function updaterT<T, A extends Keys<T>, B extends Keys1<T, A>>(
-    path: readonly [A, B],
-    fn: UpdateFn<Val2<T, A, B>>
+export function defUpdater<T, A, B>(
+    path: Path2<T, A, B>,
+    fn: UpdateFn<PathVal2<T, A, B>>
 ): FnO<T, T>;
-export function updaterT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>
->(path: readonly [A, B, C], fn: UpdateFn<Val3<T, A, B, C>>): FnO<T, T>;
-export function updaterT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>
->(path: readonly [A, B, C, D], fn: UpdateFn<Val4<T, A, B, C, D>>): FnO<T, T>;
-export function updaterT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>,
-    E extends Keys4<T, A, B, C, D>
->(path: readonly [A, B, C, D, E], fn: UpdateFn<Val5<T, A, B, C, D, E>>): FnO<T, T>;
-export function updaterT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>,
-    E extends Keys4<T, A, B, C, D>,
-    F extends Keys5<T, A, B, C, D, E>
->(path: readonly [A, B, C, D, E, F], fn: UpdateFn<Val6<T, A, B, C, D, E, F>>): FnO<T, T>;
-export function updaterT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>,
-    E extends Keys4<T, A, B, C, D>,
-    F extends Keys5<T, A, B, C, D, E>,
-    G extends Keys6<T, A, B, C, D, E, F>
->(
-    path: readonly [A, B, C, D, E, F, G],
-    fn: UpdateFn<Val7<T, A, B, C, D, E, F, G>>
+export function defUpdater<T, A, B, C>(
+    path: Path3<T, A, B, C>,
+    fn: UpdateFn<PathVal3<T, A, B, C>>
 ): FnO<T, T>;
-export function updaterT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>,
-    E extends Keys4<T, A, B, C, D>,
-    F extends Keys5<T, A, B, C, D, E>,
-    G extends Keys6<T, A, B, C, D, E, F>,
-    H extends Keys7<T, A, B, C, D, E, F, G>
->(
-    path: readonly [A, B, C, D, E, F, G, H],
-    fn: UpdateFn<Val8<T, A, B, C, D, E, F, G, H>>
+export function defUpdater<T, A, B, C, D>(
+    path: Path4<T, A, B, C, D>,
+    fn: UpdateFn<PathVal4<T, A, B, C, D>>
 ): FnO<T, T>;
-export function updaterT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>,
-    E extends Keys4<T, A, B, C, D>,
-    F extends Keys5<T, A, B, C, D, E>,
-    G extends Keys6<T, A, B, C, D, E, F>,
-    H extends Keys7<T, A, B, C, D, E, F, G>
->(
-    path: readonly [A, B, C, D, E, F, G, H, ...PropertyKey[]],
+export function defUpdater<T, A, B, C, D, E>(
+    path: Path5<T, A, B, C, D, E>,
+    fn: UpdateFn<PathVal5<T, A, B, C, D, E>>
+): FnO<T, T>;
+export function defUpdater<T, A, B, C, D, E, F>(
+    path: Path6<T, A, B, C, D, E, F>,
+    fn: UpdateFn<PathVal6<T, A, B, C, D, E, F>>
+): FnO<T, T>;
+export function defUpdater<T, A, B, C, D, E, F, G>(
+    path: Path7<T, A, B, C, D, E, F, G>,
+    fn: UpdateFn<PathVal7<T, A, B, C, D, E, F, G>>
+): FnO<T, T>;
+export function defUpdater<T, A, B, C, D, E, F, G, H>(
+    path: Path8<T, A, B, C, D, E, F, G, H>,
+    fn: UpdateFn<PathVal8<T, A, B, C, D, E, F, G, H>>
+): FnO<T, T>;
+export function defUpdater<T, A, B, C, D, E, F, G, H>(
+    path: DeepPath<T, A, B, C, D, E, F, G, H>,
     fn: UpdateFn<any>
 ): FnO<T, T>;
-export function updaterT(path: Readonly<Path>, fn: UpdateFn<any>): FnO<any, any> {
-    const g = getterT(<any>path);
-    const s = setterT(<any>path);
+export function defUpdater(path: Path, fn: UpdateFn<any>): FnO<any, any> {
+    const g = defGetter(<any>path);
+    const s = defSetter(<any>path);
     return (state: any, ...args: any[]) =>
         s(state, fn.apply(null, <any>(args.unshift(g(state)), args)));
 }

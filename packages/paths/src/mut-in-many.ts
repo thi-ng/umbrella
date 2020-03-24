@@ -1,20 +1,20 @@
 import { illegalArgs } from "@thi.ng/errors";
-import { mutInT } from "./mut-in";
+import { mutIn } from "./mut-in";
+import type { Path } from "@thi.ng/api";
 
 /**
- * Similar to {@link mutIn}, but takes any number of path-value pairs as
- * args and applies them in sequence using `mutIn()`. All key paths must
- * already be present in the given data structure until their
- * penultimate key.
- *
- * @remarks
- * Unlike {@link mutIn}, this function does not use type checked paths.
+ * Similar to {@link mutInUnsafe}, but takes any number of path-value
+ * pairs as args and applies them in sequence using `mutInUnsafe()`. All
+ * key paths must already be present in the given data structure until
+ * their penultimate key. Missing leaf values are supported.
  *
  * @example
  * ```ts
- * mutInMany(
+ * mutInManyUnsafe(
  *   { a: { b: 1 }, x: { y: { z: 2 } } },
+ *   // pair #1
  *   "a.b", 10,
+ *   // pair #2
  *   "x.y.z", 20
  * )
  * // { a: { b: 10 }, x: { y: { z: 20 } } }
@@ -23,11 +23,51 @@ import { mutInT } from "./mut-in";
  * @param state -
  * @param pairs -
  */
-export const mutInMany = (state: any, ...pairs: any[]) => {
+export function mutInManyUnsafe<T>(state: T, p1: Path, v1: any): T;
+export function mutInManyUnsafe<T>(
+    state: T,
+    p1: Path,
+    v1: any,
+    p2: Path,
+    v2: any
+): T;
+export function mutInManyUnsafe<T>(
+    state: T,
+    p1: Path,
+    v1: any,
+    p2: Path,
+    v2: any,
+    p3: Path,
+    v3: any
+): T;
+export function mutInManyUnsafe<T>(
+    state: T,
+    p1: Path,
+    v1: any,
+    p2: Path,
+    v2: any,
+    p3: Path,
+    v3: any,
+    p4: Path,
+    v4: any
+): T;
+export function mutInManyUnsafe<T>(
+    state: T,
+    p1: Path,
+    v1: any,
+    p2: Path,
+    v2: any,
+    p3: Path,
+    v3: any,
+    p4: Path,
+    v4: any,
+    ...xs: any[]
+): T;
+export function mutInManyUnsafe<T>(state: T, ...pairs: any[]) {
     const n = pairs.length;
     n & 1 && illegalArgs(`require even number of args (got ${pairs.length})`);
     for (let i = 0; i < n && state; i += 2) {
-        state = mutInT(state, pairs[i], pairs[i + 1]);
+        state = mutIn(state, pairs[i], pairs[i + 1]);
     }
     return state;
-};
+}

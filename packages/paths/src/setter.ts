@@ -1,24 +1,27 @@
-import { isArray } from "@thi.ng/checks";
+import { isArray, isTypedArray } from "@thi.ng/checks";
 import { toPath } from "./path";
 import type {
+    DeepPath,
     Fn2,
-    Keys,
-    Keys1,
-    Keys2,
-    Keys3,
-    Keys4,
-    Keys5,
-    Keys6,
-    Keys7,
     Path,
-    Val1,
-    Val2,
-    Val3,
-    Val4,
-    Val5,
-    Val6,
-    Val7,
-    Val8
+    Path0,
+    Path1,
+    Path2,
+    Path3,
+    Path4,
+    Path5,
+    Path6,
+    Path7,
+    Path8,
+    PathVal1,
+    PathVal2,
+    PathVal3,
+    PathVal4,
+    PathVal5,
+    PathVal6,
+    PathVal7,
+    PathVal8,
+    NumOrString,
 } from "@thi.ng/api";
 
 /**
@@ -46,13 +49,11 @@ import type {
  * given object retain their original values to provide efficient
  * structural sharing / re-use.
  *
- * Also see: {@link setIn}, {@link updateIn}, {@link deleteIn}
- *
  * @example
- * ```
- * s = setter("a.b.c");
+ * ```ts
+ * s = defSetterUnsafe("a.b.c");
  * // or
- * s = setter(["a","b","c"]);
+ * s = defSetterUnsafe(["a", "b", "c"]);
  *
  * s({ a: { b: { c: 23} } }, 24)
  * // { a: { b: { c: 24} } }
@@ -66,9 +67,9 @@ import type {
  *
  * @example
  * ```ts
- * s = setter("a.b.c");
+ * s = defSetterUnsafe("a.b.c");
  *
- * a = {x: {y: {z: 1}}};
+ * a = { x: { y: { z: 1 } } };
  * b = s(a, 2);
  * // { x: { y: { z: 1 } }, a: { b: { c: 2 } } }
  *
@@ -78,118 +79,97 @@ import type {
  *
  * @param path -
  */
-export const setter = (path: Readonly<Path>): Fn2<any, any, any> => setterT(<any>path);
+export const defSetterUnsafe = (path: Path): Fn2<any, any, any> =>
+    defSetter(<any>path);
 
 /**
- * Type checked version of {@link setter}.
+ * Type checked version of {@link defSetterUnsafe}. Only the first 8
+ * path levels are type checked.
+ *
+ * @remarks
+ * Due to the higher-order nature of this function, generics for path
+ * validation must be given and so this function is more verbose than
+ * {@link setIn} (where the generics can usually be fully inferred).
+ *
+ * @example
+ * ```ts
+ * type State = { a: { b: number } };
+ *
+ * const setB = defSetter<State, "a", "b">(["a", "b"]);
+ *
+ * setB({ a: { b: 1 } }, 2); // ok!
+ * setB({ a: { b: 1 } }, "2"); // error!
+ * ```
+ *
+ * @example
+ * ```ts
+ * type State = { a: { b: number } };
+ *
+ * const path = <const>["a","b"];
+ *
+ * const setB = defSetter<State, typeof path[0], typeof path[1]>(path);
+ * ```
  *
  * @param path -
  */
-export function setterT<T>(path: readonly []): Fn2<T, T, T>;
-export function setterT<T, A extends Keys<T>>(
-    path: readonly [A]
-): Fn2<T, Val1<T, A>, T>;
-export function setterT<T, A extends Keys<T>, B extends Keys1<T, A>>(
-    path: readonly [A, B]
-): Fn2<T, Val2<T, A, B>, T>;
-export function setterT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>
->(path: readonly [A, B, C]): Fn2<T, Val3<T, A, B, C>, T>;
-export function setterT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>
->(path: readonly [A, B, C, D]): Fn2<T, Val4<T, A, B, C, D>, T>;
-export function setterT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>,
-    E extends Keys4<T, A, B, C, D>
->(path: readonly [A, B, C, D, E]): Fn2<T, Val5<T, A, B, C, D, E>, T>;
-export function setterT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>,
-    E extends Keys4<T, A, B, C, D>,
-    F extends Keys5<T, A, B, C, D, E>
->(path: readonly [A, B, C, D, E, F]): Fn2<T, Val6<T, A, B, C, D, E, F>, T>;
-export function setterT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>,
-    E extends Keys4<T, A, B, C, D>,
-    F extends Keys5<T, A, B, C, D, E>,
-    G extends Keys6<T, A, B, C, D, E, F>
->(
-    path: readonly [A, B, C, D, E, F, G]
-): Fn2<T, Val7<T, A, B, C, D, E, F, G>, T>;
-export function setterT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>,
-    E extends Keys4<T, A, B, C, D>,
-    F extends Keys5<T, A, B, C, D, E>,
-    G extends Keys6<T, A, B, C, D, E, F>,
-    H extends Keys7<T, A, B, C, D, E, F, G>
->(
-    path: readonly [A, B, C, D, E, F, G, H]
-): Fn2<T, Val8<T, A, B, C, D, E, F, G, H>, T>;
-export function setterT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>,
-    E extends Keys4<T, A, B, C, D>,
-    F extends Keys5<T, A, B, C, D, E>,
-    G extends Keys6<T, A, B, C, D, E, F>,
-    H extends Keys7<T, A, B, C, D, E, F, G>
->(path: readonly [A, B, C, D, E, F, G, H, ...PropertyKey[]]): Fn2<T, any, any>;
-export function setterT(path: Readonly<Path>): Fn2<any, any, any> {
+export function defSetter<T>(path: Path0): Fn2<T, T, T>;
+export function defSetter<T, A>(path: Path1<T, A>): Fn2<T, PathVal1<T, A>, T>;
+export function defSetter<T, A, B>(
+    path: Path2<T, A, B>
+): Fn2<T, PathVal2<T, A, B>, T>;
+export function defSetter<T, A, B, C>(
+    path: Path3<T, A, B, C>
+): Fn2<T, PathVal3<T, A, B, C>, T>;
+export function defSetter<T, A, B, C, D>(
+    path: Path4<T, A, B, C, D>
+): Fn2<T, PathVal4<T, A, B, C, D>, T>;
+export function defSetter<T, A, B, C, D, E>(
+    path: Path5<T, A, B, C, D, E>
+): Fn2<T, PathVal5<T, A, B, C, D, E>, T>;
+export function defSetter<T, A, B, C, D, E, F>(
+    path: Path6<T, A, B, C, D, E, F>
+): Fn2<T, PathVal6<T, A, B, C, D, E, F>, T>;
+export function defSetter<T, A, B, C, D, E, F, G>(
+    path: Path7<T, A, B, C, D, E, F, G>
+): Fn2<T, PathVal7<T, A, B, C, D, E, F, G>, T>;
+export function defSetter<T, A, B, C, D, E, F, G, H>(
+    path: Path8<T, A, B, C, D, E, F, G, H>
+): Fn2<T, PathVal8<T, A, B, C, D, E, F, G, H>, T>;
+export function defSetter<T, A, B, C, D, E, F, G, H>(
+    path: DeepPath<T, A, B, C, D, E, F, G, H>
+): Fn2<T, any, any>;
+export function defSetter(path: Path): Fn2<any, any, any> {
     const ks = toPath(path);
-    let [a, b, c, d] = ks;
+    const [a, b, c, d] = ks;
     switch (ks.length) {
         case 0:
             return (_, v) => v;
         case 1:
-            return (s, v) => ((s = _copy(s)), (s[a] = v), s);
+            return (s, v) => ((s = copy(s)), (s[a] = v), s);
         case 2:
             return (s, v) => {
                 let x;
-                s = _copy(s);
-                s[a] = x = _copy(s[a]);
+                s = copy(s);
+                s[a] = x = copy(s[a]);
                 x[b] = v;
                 return s;
             };
         case 3:
             return (s, v) => {
                 let x, y;
-                s = _copy(s);
-                s[a] = x = _copy(s[a]);
-                x[b] = y = _copy(x[b]);
+                s = copy(s);
+                s[a] = x = copy(s[a]);
+                x[b] = y = copy(x[b]);
                 y[c] = v;
                 return s;
             };
         case 4:
             return (s, v) => {
                 let x, y, z;
-                s = _copy(s);
-                s[a] = x = _copy(s[a]);
-                x[b] = y = _copy(x[b]);
-                y[c] = z = _copy(y[c]);
+                s = copy(s);
+                s[a] = x = copy(s[a]);
+                x[b] = y = copy(x[b]);
+                y[c] = z = copy(y[c]);
                 z[d] = v;
                 return s;
             };
@@ -202,9 +182,23 @@ export function setterT(path: Readonly<Path>): Fn2<any, any, any> {
     }
 }
 
-const _copy = (s: any) => (isArray(s) ? s.slice() : { ...s });
+/**
+ * Creates a shallow copy of given array, typed array or plain object.
+ *
+ * @param x
+ */
+export const copy = (x: any) =>
+    isArray(x) || isTypedArray(x) ? x.slice() : { ...x };
 
-const compS = (k: PropertyKey, f: (o: any, v: any) => any) => (
+/**
+ * Helper for {@link defSetter}. Returns setter for a single step.
+ *
+ * @param k -
+ * @param f -
+ *
+ * @internal
+ */
+const compS = (k: NumOrString, f: (o: any, v: any) => any) => (
     s: any,
     v: any
-) => ((s = _copy(s)), (s[k] = f ? f(s[k], v) : v), s);
+) => ((s = copy(s)), (s[k] = f ? f(s[k], v) : v), s);
