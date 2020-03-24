@@ -1,4 +1,4 @@
-import { getIn } from "@thi.ng/paths";
+import { getInUnsafe } from "@thi.ng/paths";
 import { map } from "@thi.ng/transducers";
 import { node1 } from "../graph";
 import type { Path } from "@thi.ng/api";
@@ -14,6 +14,6 @@ import type { NodeFactory } from "../api";
  */
 export const extract = (path: Path, inputID?: string): NodeFactory<any> =>
     node1(
-        map((x) => getIn(x, path)),
+        map((x) => getInUnsafe(x, path)),
         inputID
     );

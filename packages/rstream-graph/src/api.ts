@@ -1,4 +1,4 @@
-import type { Fn, IObjectOf, Path } from "@thi.ng/api";
+import type { Fn, IObjectOf, Path, NumOrString } from "@thi.ng/api";
 import type { ResolveFn } from "@thi.ng/resolve-map";
 import type { ISubscribable } from "@thi.ng/rstream";
 import type { Transducer } from "@thi.ng/transducers";
@@ -112,5 +112,5 @@ export type NodeOutputSpec = Path | NodeOutputFn;
 
 export type NodeOutputFn = (
     node: ISubscribable<any>,
-    id: PropertyKey
+    id: NumOrString
 ) => ISubscribable<any>;
