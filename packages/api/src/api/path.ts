@@ -19,20 +19,32 @@ import type {
 } from "./keyval";
 
 /**
- * Lookup path for nested data structures.
+ * Unchecked lookup path for nested data structures.
  */
-export type Path = PropertyKey | PropertyKey[];
+export type Path = readonly NumOrString[] | NumOrString;
 
+/**
+ * Empty lookup path.
+ */
 export type Path0 = readonly [];
 
+/**
+ * Type checked lookup path (depth 1)
+ */
 export type Path1<T, A> = A extends Keys<T> ? readonly [A] : never;
 
+/**
+ * Type checked lookup path (depth 2)
+ */
 export type Path2<T, A, B> = A extends Keys<T>
     ? B extends Keys1<T, A>
         ? readonly [A, B]
         : never
     : never;
 
+/**
+ * Type checked lookup path (depth 3)
+ */
 export type Path3<T, A, B, C> = A extends Keys<T>
     ? B extends Keys1<T, A>
         ? C extends Keys2<T, A, B>
@@ -41,6 +53,9 @@ export type Path3<T, A, B, C> = A extends Keys<T>
         : never
     : never;
 
+/**
+ * Type checked lookup path (depth 4)
+ */
 export type Path4<T, A, B, C, D> = A extends Keys<T>
     ? B extends Keys1<T, A>
         ? C extends Keys2<T, A, B>
@@ -51,6 +66,9 @@ export type Path4<T, A, B, C, D> = A extends Keys<T>
         : never
     : never;
 
+/**
+ * Type checked lookup path (depth 5)
+ */
 export type Path5<T, A, B, C, D, E> = A extends Keys<T>
     ? B extends Keys1<T, A>
         ? C extends Keys2<T, A, B>
@@ -63,6 +81,9 @@ export type Path5<T, A, B, C, D, E> = A extends Keys<T>
         : never
     : never;
 
+/**
+ * Type checked lookup path (depth 6)
+ */
 export type Path6<T, A, B, C, D, E, F> = A extends Keys<T>
     ? B extends Keys1<T, A>
         ? C extends Keys2<T, A, B>
@@ -77,6 +98,9 @@ export type Path6<T, A, B, C, D, E, F> = A extends Keys<T>
         : never
     : never;
 
+/**
+ * Type checked lookup path (depth 7)
+ */
 export type Path7<T, A, B, C, D, E, F, G> = A extends Keys<T>
     ? B extends Keys1<T, A>
         ? C extends Keys2<T, A, B>
@@ -93,6 +117,9 @@ export type Path7<T, A, B, C, D, E, F, G> = A extends Keys<T>
         : never
     : never;
 
+/**
+ * Type checked lookup path (depth 8)
+ */
 export type Path8<T, A, B, C, D, E, F, G, H> = A extends Keys<T>
     ? B extends Keys1<T, A>
         ? C extends Keys2<T, A, B>
@@ -111,6 +138,10 @@ export type Path8<T, A, B, C, D, E, F, G, H> = A extends Keys<T>
         : never
     : never;
 
+/**
+ * Semi-typechecked lookup path (depth > 8). Only the first 8 levels are
+ * checked.
+ */
 // prettier-ignore
 export type DeepPath<T, A, B, C, D, E, F, G, H> = A extends Keys<T>
     ? B extends Keys1<T, A>
@@ -130,14 +161,23 @@ export type DeepPath<T, A, B, C, D, E, F, G, H> = A extends Keys<T>
         : never
     : never;
 
+/**
+ * Value type for lookup path (depth 1)
+ */
 export type PathVal1<T, A> = A extends Keys<T> ? Val1<T, A> : never;
 
+/**
+ * Value type for lookup path (depth 2)
+ */
 export type PathVal2<T, A, B> = A extends Keys<T>
     ? B extends Keys1<T, A>
         ? Val2<T, A, B>
         : never
     : never;
 
+/**
+ * Value type for lookup path (depth 3)
+ */
 export type PathVal3<T, A, B, C> = A extends Keys<T>
     ? B extends Keys1<T, A>
         ? C extends Keys2<T, A, B>
@@ -146,6 +186,9 @@ export type PathVal3<T, A, B, C> = A extends Keys<T>
         : never
     : never;
 
+/**
+ * Value type for lookup path (depth 4)
+ */
 export type PathVal4<T, A, B, C, D> = A extends Keys<T>
     ? B extends Keys1<T, A>
         ? C extends Keys2<T, A, B>
@@ -156,6 +199,9 @@ export type PathVal4<T, A, B, C, D> = A extends Keys<T>
         : never
     : never;
 
+/**
+ * Value type for lookup path (depth 5)
+ */
 export type PathVal5<T, A, B, C, D, E> = A extends Keys<T>
     ? B extends Keys1<T, A>
         ? C extends Keys2<T, A, B>
@@ -168,6 +214,9 @@ export type PathVal5<T, A, B, C, D, E> = A extends Keys<T>
         : never
     : never;
 
+/**
+ * Value type for lookup path (depth 6)
+ */
 export type PathVal6<T, A, B, C, D, E, F> = A extends Keys<T>
     ? B extends Keys1<T, A>
         ? C extends Keys2<T, A, B>
@@ -182,6 +231,9 @@ export type PathVal6<T, A, B, C, D, E, F> = A extends Keys<T>
         : never
     : never;
 
+/**
+ * Value type for lookup path (depth 7)
+ */
 export type PathVal7<T, A, B, C, D, E, F, G> = A extends Keys<T>
     ? B extends Keys1<T, A>
         ? C extends Keys2<T, A, B>
@@ -198,6 +250,9 @@ export type PathVal7<T, A, B, C, D, E, F, G> = A extends Keys<T>
         : never
     : never;
 
+/**
+ * Value type for lookup path (depth 8)
+ */
 export type PathVal8<T, A, B, C, D, E, F, G, H> = A extends Keys<T>
     ? B extends Keys1<T, A>
         ? C extends Keys2<T, A, B>
