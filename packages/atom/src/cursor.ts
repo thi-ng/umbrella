@@ -1,10 +1,11 @@
-import { getter, setter } from "@thi.ng/paths";
+import { defGetterUnsafe, defSetterUnsafe } from "@thi.ng/paths";
 import { Atom } from "./atom";
 import { nextID } from "./idgen";
 import type {
     DeepPath,
     IID,
     IRelease,
+    Path,
     Path0,
     Path1,
     Path2,
@@ -24,7 +25,7 @@ import type {
     PathVal8,
     Watch,
 } from "@thi.ng/api";
-import type { AtomPath, CursorOpts, IAtom, SwapFn } from "./api";
+import type { CursorOpts, IAtom, SwapFn } from "./api";
 
 export function defCursor<T, A>(
     parent: IAtom<T>,
@@ -73,7 +74,7 @@ export function defCursor<T, A, B, C, D, E, F, G, H>(
 ): Cursor<any>;
 export function defCursor(
     parent: IAtom<any>,
-    path: AtomPath,
+    path: Path,
     opts?: Partial<CursorOpts<any>>
 ): Cursor<any> {
     return new Cursor(parent, path, opts);
@@ -81,7 +82,7 @@ export function defCursor(
 
 export function defCursorUnsafe<T = any>(
     parent: IAtom<any>,
-    path: string | AtomPath,
+    path: Path,
     opts?: Partial<CursorOpts<any>>
 ) {
     return new Cursor<T>(parent, path, opts);
@@ -125,12 +126,12 @@ export class Cursor<T> implements IAtom<T>, IID<string>, IRelease {
 
     constructor(
         parent: IAtom<any>,
-        path: string | AtomPath,
+        path: Path,
         opts: Partial<CursorOpts<T>> = {}
     ) {
         const validate = opts.validate;
-        const lookup = getter(path);
-        const update = setter(path);
+        const lookup = defGetterUnsafe(path);
+        const update = defSetterUnsafe(path);
         this.parent = parent;
         this.id = opts.id || `cursor-${nextID()}`;
         this.selfUpdate = false;
@@ -204,11 +205,11 @@ export class Cursor<T> implements IAtom<T>, IID<string>, IRelease {
         path: DeepPath<T, A, B, C, D, E, F, G, H>,
         val: any
     ): T;
-    resetIn(path: AtomPath, val: any) {
+    resetIn(path: Path, val: any) {
         return this.local.resetInUnsafe(path, val);
     }
 
-    resetInUnsafe(path: string | AtomPath, val: any) {
+    resetInUnsafe(path: Path, val: any) {
         return this.local.resetInUnsafe(path, val);
     }
 
@@ -258,11 +259,11 @@ export class Cursor<T> implements IAtom<T>, IID<string>, IRelease {
         fn: SwapFn<any>,
         ...args: any[]
     ): T;
-    swapIn(path: AtomPath, fn: SwapFn<any>, ...args: any[]) {
+    swapIn(path: Path, fn: SwapFn<any>, ...args: any[]) {
         return this.local.swapInUnsafe(path, fn, ...args);
     }
 
-    swapInUnsafe(path: string | AtomPath, fn: SwapFn<any>, ...args: any[]) {
+    swapInUnsafe(path: Path, fn: SwapFn<any>, ...args: any[]) {
         return this.local.swapInUnsafe(path, fn, ...args);
     }
 

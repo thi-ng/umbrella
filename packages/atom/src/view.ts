@@ -1,9 +1,10 @@
 import { equiv as _equiv } from "@thi.ng/equiv";
-import { getter, toPath } from "@thi.ng/paths";
+import { defGetterUnsafe, toPath } from "@thi.ng/paths";
 import { nextID } from "./idgen";
 import type {
     DeepPath,
     Fn,
+    Path,
     Path0,
     Path1,
     Path2,
@@ -23,7 +24,7 @@ import type {
     PathVal8,
     Predicate2,
 } from "@thi.ng/api";
-import type { AtomPath, IView, ReadonlyAtom } from "./api";
+import type { IView, ReadonlyAtom } from "./api";
 
 // const a = defAtom({ a: { b: { c: 1 } } });
 // const v1 = defView(a, ["a", "b", "c"], (x) => "");
@@ -101,7 +102,7 @@ export function defView<T, A, B, C, D, E, F, G, H, R = undefined>(
 ): View<R extends undefined ? any : R>;
 export function defView(
     parent: ReadonlyAtom<any>,
-    path: AtomPath,
+    path: Path,
     tx?: Fn<any, any>,
     lazy?: boolean,
     equiv?: Predicate2<any>
@@ -111,7 +112,7 @@ export function defView(
 
 export function defViewUnsafe(
     parent: ReadonlyAtom<any>,
-    path: string | AtomPath,
+    path: Path,
     tx?: Fn<any, any>,
     lazy?: boolean,
     equiv?: Predicate2<any>
@@ -168,7 +169,7 @@ export class View<T> implements IView<T> {
     readonly id: string;
 
     readonly parent: ReadonlyAtom<any>;
-    readonly path: AtomPath;
+    readonly path: Path;
 
     protected state: T | undefined;
     protected tx: Fn<any, T>;
@@ -178,7 +179,7 @@ export class View<T> implements IView<T> {
 
     constructor(
         parent: ReadonlyAtom<any>,
-        path: string | AtomPath,
+        path: Path,
         tx?: Fn<any, T>,
         lazy = true,
         equiv = _equiv
@@ -189,7 +190,7 @@ export class View<T> implements IView<T> {
         this.path = toPath(path);
         this.isDirty = true;
         this.isLazy = lazy;
-        const lookup = getter(this.path);
+        const lookup = defGetterUnsafe(this.path);
         const state = this.parent.deref();
         this.unprocessed = state ? lookup(state) : undefined;
         if (!lazy) {

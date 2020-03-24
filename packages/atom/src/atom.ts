@@ -1,9 +1,10 @@
 import { IWatchMixin } from "@thi.ng/api";
 import { illegalState } from "@thi.ng/errors";
-import { setIn, updateIn } from "@thi.ng/paths";
+import { setInUnsafe, updateInUnsafe } from "@thi.ng/paths";
 import type {
     DeepPath,
     IEquiv,
+    Path,
     Path0,
     Path1,
     Path2,
@@ -24,7 +25,7 @@ import type {
     Predicate,
     Watch,
 } from "@thi.ng/api";
-import type { AtomPath, IAtom, SwapFn } from "./api";
+import type { IAtom, SwapFn } from "./api";
 
 export const defAtom = <T>(value: T, valid?: Predicate<T>) =>
     new Atom<T>(value, valid);
@@ -101,12 +102,12 @@ export class Atom<T> implements IAtom<T>, IEquiv {
         path: DeepPath<T, A, B, C, D, E, F, G, H>,
         val: any
     ): T;
-    resetIn(path: AtomPath, val: any) {
-        return this.reset(setIn(this._value, path, val));
+    resetIn(path: Path, val: any) {
+        return this.reset(setInUnsafe(this._value, path, val));
     }
 
-    resetInUnsafe(path: string | AtomPath, val: any): T {
-        return this.reset(setIn(this._value, path, val));
+    resetInUnsafe(path: Path, val: any): T {
+        return this.reset(setInUnsafe(this._value, path, val));
     }
 
     swap(fn: SwapFn<T>, ...args: any[]) {
@@ -155,12 +156,12 @@ export class Atom<T> implements IAtom<T>, IEquiv {
         fn: SwapFn<any>,
         ...args: any[]
     ): T;
-    swapIn(path: AtomPath, fn: SwapFn<any>, ...args: any[]) {
-        return this.reset(updateIn(this._value, path, fn, ...args));
+    swapIn(path: Path, fn: SwapFn<any>, ...args: any[]) {
+        return this.reset(updateInUnsafe(this._value, path, fn, ...args));
     }
 
-    swapInUnsafe(path: string | AtomPath, fn: SwapFn<any>, ...args: any[]) {
-        return this.reset(updateIn(this._value, path, fn, ...args));
+    swapInUnsafe(path: Path, fn: SwapFn<any>, ...args: any[]) {
+        return this.reset(updateInUnsafe(this._value, path, fn, ...args));
     }
 
     // @ts-ignore: mixin

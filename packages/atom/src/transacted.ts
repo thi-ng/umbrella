@@ -1,8 +1,9 @@
 import { assert } from "@thi.ng/api";
-import { setIn, updateIn } from "@thi.ng/paths";
+import { setInUnsafe, updateInUnsafe } from "@thi.ng/paths";
 import { nextID } from "./idgen";
 import type {
     DeepPath,
+    Path,
     Path0,
     Path1,
     Path2,
@@ -22,7 +23,7 @@ import type {
     PathVal8,
     Watch,
 } from "@thi.ng/api";
-import type { AtomPath, IAtom, SwapFn } from "./api";
+import type { IAtom, SwapFn } from "./api";
 
 export const defTransacted = <T>(parent: IAtom<T>) => new Transacted(parent);
 
@@ -94,12 +95,12 @@ export class Transacted<T> implements IAtom<T> {
         path: DeepPath<T, A, B, C, D, E, F, G, H>,
         val: any
     ): T;
-    resetIn(path: AtomPath, val: any) {
+    resetIn(path: Path, val: any) {
         this.ensureTx();
-        return this.reset(setIn(this.current, path, val));
+        return this.reset(setInUnsafe(this.current, path, val));
     }
 
-    resetInUnsafe(path: string | AtomPath, val: any) {
+    resetInUnsafe(path: Path, val: any) {
         return this.resetIn(<any>path, val);
     }
 
@@ -150,12 +151,12 @@ export class Transacted<T> implements IAtom<T> {
         fn: SwapFn<any>,
         ...args: any[]
     ): T;
-    swapIn(path: AtomPath, fn: SwapFn<any>, ...args: any[]) {
+    swapIn(path: Path, fn: SwapFn<any>, ...args: any[]) {
         this.ensureTx();
-        return this.reset(updateIn(this.current, path, fn, ...args));
+        return this.reset(updateInUnsafe(this.current, path, fn, ...args));
     }
 
-    swapInUnsafe(path: AtomPath, fn: SwapFn<any>, ...args: any[]) {
+    swapInUnsafe(path: Path, fn: SwapFn<any>, ...args: any[]) {
         return this.swapIn(<any>path, fn, ...args);
     }
 

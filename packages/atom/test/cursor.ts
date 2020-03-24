@@ -6,7 +6,6 @@ import {
     defAtom,
     defCursor
 } from "../src/index";
-// import { getIn } from "@thi.ng/paths";
 
 interface State {
     a: {
@@ -23,14 +22,14 @@ interface State {
     f: number;
 }
 
-describe("cursor", function() {
+describe("cursor", function () {
     let a: Atom<State>;
     let c: Cursor<any>;
     let src: any;
 
     beforeEach(() => {
         src = { a: { b: { c: 23, g: { h: 88 } }, d: { e: 42 } }, f: 66 };
-        a = defAtom(src);
+        a = defAtom<State>(src);
     });
 
     it("can be deref'd (a)", () => {
@@ -62,29 +61,6 @@ describe("cursor", function() {
         c = defCursor(new Atom<any>(null), [0]);
         assert.strictEqual(c.deref(), undefined);
     });
-
-    // it("works with get/set", () => {
-    //     c = cursor(
-    //         a,
-    //         (s) => s.a.b,
-    //         (s, x) => ({ ...s, a: { ...s.a, b: x } })
-    //     );
-    //     assert.strictEqual(c.deref(), src.a.b);
-    //     c.reset(42);
-    //     assert.equal(c.deref(), 42);
-    //     assert.equal(c.deref(), getIn(a.deref(), "a.b"));
-    // });
-
-    // it("works with get/set opts", () => {
-    //     c = new Cursor({
-    //         parent: a,
-    //         path: [(s) => s.a.b, (s, x) => ({ ...s, a: { ...s.a, b: x } })]
-    //     });
-    //     assert.strictEqual(c.deref(), src.a.b);
-    //     c.reset(42);
-    //     assert.equal(c.deref(), 42);
-    //     assert.equal(c.deref(), getIn(a.deref(), "a.b"));
-    // });
 
     it("can be validated", () => {
         c = defCursor(a, ["a", "b", "c"], { validate: isNumber });

@@ -1,10 +1,11 @@
 import { INotifyMixin } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
-import { getIn, setIn, updateIn } from "@thi.ng/paths";
+import { defGetterUnsafe, setInUnsafe, updateInUnsafe } from "@thi.ng/paths";
 import type {
     DeepPath,
     Event,
     Listener,
+    Path,
     Path0,
     Path1,
     Path2,
@@ -25,7 +26,7 @@ import type {
     Predicate2,
     Watch,
 } from "@thi.ng/api";
-import type { AtomPath, IAtom, IHistory, SwapFn } from "./api";
+import type { IAtom, IHistory, SwapFn } from "./api";
 
 export const defHistory = <T>(
     state: IAtom<T>,
@@ -191,16 +192,17 @@ export class History<T> implements IHistory<T> {
         path: DeepPath<T, A, B, C, D, E, F, G, H>,
         val: any
     ): T;
-    resetIn(path: AtomPath, val: any) {
+    resetIn(path: Path, val: any) {
         const prev = this.state.deref();
-        const prevV = getIn(prev, path);
-        const curr = setIn(prev, path, val);
+        const get = defGetterUnsafe(path);
+        const prevV = get(prev);
+        const curr = setInUnsafe(prev, path, val);
         this.state.reset(curr);
-        this.changed(prevV, getIn(curr, path)) && this.record(prev);
+        this.changed(prevV, get(curr)) && this.record(prev);
         return curr;
     }
 
-    resetInUnsafe(path: AtomPath, val: any) {
+    resetInUnsafe(path: Path, val: any) {
         return this.resetIn(<any>path, val);
     }
 
@@ -258,16 +260,17 @@ export class History<T> implements IHistory<T> {
         fn: SwapFn<any>,
         ...args: any[]
     ): T;
-    swapIn(path: AtomPath, fn: SwapFn<any>, ...args: any[]) {
+    swapIn(path: Path, fn: SwapFn<any>, ...args: any[]) {
         const prev = this.state.deref();
-        const prevV = getIn(prev, path);
-        const curr = updateIn(this.state.deref(), path, fn, ...args);
+        const get = defGetterUnsafe(path);
+        const prevV = get(prev);
+        const curr = updateInUnsafe(this.state.deref(), path, fn, ...args);
         this.state.reset(curr);
-        this.changed(prevV, getIn(curr, path)) && this.record(prev);
+        this.changed(prevV, get(curr)) && this.record(prev);
         return curr;
     }
 
-    swapInUnsafe(path: string | AtomPath, fn: SwapFn<any>, ...args: any[]) {
+    swapInUnsafe(path: Path, fn: SwapFn<any>, ...args: any[]) {
         return this.swapIn(<any>path, fn, ...args);
     }
 

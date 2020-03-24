@@ -6,7 +6,7 @@ import type {
     INotify,
     IRelease,
     IWatch,
-    NumOrString,
+    Path,
     Path0,
     Path1,
     Path2,
@@ -26,8 +26,6 @@ import type {
     PathVal8,
     Predicate,
 } from "@thi.ng/api";
-
-export type AtomPath = Readonly<NumOrString[]>;
 
 export type SwapFn<T> = (curr: T, ...args: any[]) => T;
 
@@ -67,7 +65,7 @@ export interface IReset<T> {
         val: any
     ): T;
 
-    resetInUnsafe(path: string | AtomPath, val: any): T;
+    resetInUnsafe(path: Path, val: any): T;
 }
 
 export interface ISwap<T> {
@@ -116,11 +114,11 @@ export interface ISwap<T> {
         ...args: any[]
     ): T;
 
-    swapInUnsafe(path: string | AtomPath, fn: SwapFn<any>, ...args: any[]): T;
+    swapInUnsafe(path: Path, fn: SwapFn<any>, ...args: any[]): T;
 }
 
 export interface IView<T> extends IDeref<T | undefined>, IID<string>, IRelease {
-    readonly path: AtomPath;
+    readonly path: Path;
     readonly value: T | undefined;
 
     view(): T | undefined;
