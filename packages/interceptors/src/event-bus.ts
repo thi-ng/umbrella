@@ -1,12 +1,12 @@
 import { Atom, IAtom } from "@thi.ng/atom";
+import { illegalArgs } from "@thi.ng/errors";
+import { setInUnsafe, updateInUnsafe } from "@thi.ng/paths";
 import {
     implementsFunction,
     isArray,
     isFunction,
-    isPromise
+    isPromise,
 } from "@thi.ng/checks";
-import { illegalArgs } from "@thi.ng/errors";
-import { setIn, updateIn } from "@thi.ng/paths";
 import {
     EffectDef,
     EffectPriority,
@@ -29,7 +29,7 @@ import {
     InterceptorContext,
     InterceptorFn,
     LOGGER,
-    SideEffect
+    SideEffect,
 } from "./api";
 import type { IDeref, IObjectOf } from "@thi.ng/api";
 
@@ -209,13 +209,13 @@ export class StatelessEventBus implements IDispatch {
                         LOGGER.warn(`skipping invalid async effect: ${id}`);
                     }
                 },
-                -999
+                -999,
             ],
 
             [FX_DELAY]: [
                 ([x, body]) =>
                     new Promise((res) => setTimeout(() => res(body), x)),
-                1000
+                1000,
             ],
 
             [FX_FETCH]: [
@@ -226,8 +226,8 @@ export class StatelessEventBus implements IDispatch {
                         }
                         return resp;
                     }),
-                1000
-            ]
+                1000,
+            ],
         });
     }
 
@@ -714,21 +714,21 @@ export class EventBus extends StatelessEventBus
         // handlers
         this.addHandlers({
             [EV_SET_VALUE]: (state, [_, [path, val]]) => ({
-                [FX_STATE]: setIn(state, path, val)
+                [FX_STATE]: setInUnsafe(state, path, val),
             }),
             [EV_UPDATE_VALUE]: (state, [_, [path, fn, ...args]]) => ({
-                [FX_STATE]: updateIn(state, path, fn, ...args)
+                [FX_STATE]: updateInUnsafe(state, path, fn, ...args),
             }),
             [EV_TOGGLE_VALUE]: (state, [_, path]) => ({
-                [FX_STATE]: updateIn(state, path, (x) => !x)
+                [FX_STATE]: updateInUnsafe(state, path, (x) => !x),
             }),
             [EV_UNDO]: undoHandler("undo"),
-            [EV_REDO]: undoHandler("redo")
+            [EV_REDO]: undoHandler("redo"),
         });
 
         // effects
         this.addEffects({
-            [FX_STATE]: [(state) => this.state.reset(state), -1000]
+            [FX_STATE]: [(state) => this.state.reset(state), -1000],
         });
     }
 
@@ -788,7 +788,7 @@ const undoHandler = (action: string): InterceptorFn => (
                 ? ok !== undefined
                     ? ev[1]
                     : ev[2]
-                : undefined
+                : undefined,
         };
     } else {
         LOGGER.warn("no history in context");
