@@ -2,25 +2,27 @@ import { INotifyMixin } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
 import { getIn, setIn, updateIn } from "@thi.ng/paths";
 import type {
+    DeepPath,
     Event,
-    Keys,
-    Keys1,
-    Keys2,
-    Keys3,
-    Keys4,
-    Keys5,
-    Keys6,
-    Keys7,
     Listener,
+    Path0,
+    Path1,
+    Path2,
+    Path3,
+    Path4,
+    Path5,
+    Path6,
+    Path7,
+    Path8,
+    PathVal1,
+    PathVal2,
+    PathVal3,
+    PathVal4,
+    PathVal5,
+    PathVal6,
+    PathVal7,
+    PathVal8,
     Predicate2,
-    Val1,
-    Val2,
-    Val3,
-    Val4,
-    Val5,
-    Val6,
-    Val7,
-    Val8,
     Watch,
 } from "@thi.ng/api";
 import type { AtomPath, IAtom, IHistory, SwapFn } from "./api";
@@ -161,71 +163,34 @@ export class History<T> implements IHistory<T> {
         return val;
     }
 
-    resetIn<A extends Keys<T>>(path: readonly [A], val: Val1<T, A>): T;
-    resetIn<A extends Keys<T>, B extends Keys1<T, A>>(
-        path: readonly [A, B],
-        val: Val2<T, A, B>
+    resetIn(path: Path0, val: T): T;
+    resetIn<A>(path: Path1<T, A>, val: PathVal1<T, A>): T;
+    resetIn<A, B>(path: Path2<T, A, B>, val: PathVal2<T, A, B>): T;
+    resetIn<A, B, C>(path: Path3<T, A, B, C>, val: PathVal3<T, A, B, C>): T;
+    resetIn<A, B, C, D>(
+        path: Path4<T, A, B, C, D>,
+        val: PathVal4<T, A, B, C, D>
     ): T;
-    resetIn<A extends Keys<T>, B extends Keys1<T, A>, C extends Keys2<T, A, B>>(
-        path: readonly [A, B, C],
-        val: Val3<T, A, B, C>
+    resetIn<A, B, C, D, E>(
+        path: Path5<T, A, B, C, D, E>,
+        val: PathVal5<T, A, B, C, D, E>
     ): T;
-    resetIn<
-        A extends Keys<T>,
-        B extends Keys1<T, A>,
-        C extends Keys2<T, A, B>,
-        D extends Keys3<T, A, B, C>
-    >(path: readonly [A, B, C, D], val: Val4<T, A, B, C, D>): T;
-    resetIn<
-        A extends Keys<T>,
-        B extends Keys1<T, A>,
-        C extends Keys2<T, A, B>,
-        D extends Keys3<T, A, B, C>,
-        E extends Keys4<T, A, B, C, D>
-    >(path: readonly [A, B, C, D, E], val: Val5<T, A, B, C, D, E>): T;
-    resetIn<
-        A extends Keys<T>,
-        B extends Keys1<T, A>,
-        C extends Keys2<T, A, B>,
-        D extends Keys3<T, A, B, C>,
-        E extends Keys4<T, A, B, C, D>,
-        F extends Keys5<T, A, B, C, D, E>
-    >(path: readonly [A, B, C, D, E, F], val: Val6<T, A, B, C, D, E, F>): T;
-    resetIn<
-        A extends Keys<T>,
-        B extends Keys1<T, A>,
-        C extends Keys2<T, A, B>,
-        D extends Keys3<T, A, B, C>,
-        E extends Keys4<T, A, B, C, D>,
-        F extends Keys5<T, A, B, C, D, E>,
-        G extends Keys6<T, A, B, C, D, E, F>
-    >(
-        path: readonly [A, B, C, D, E, F, G],
-        val: Val7<T, A, B, C, D, E, F, G>
+    resetIn<A, B, C, D, E, F>(
+        path: Path6<T, A, B, C, D, E, F>,
+        val: PathVal6<T, A, B, C, D, E, F>
     ): T;
-    resetIn<
-        A extends Keys<T>,
-        B extends Keys1<T, A>,
-        C extends Keys2<T, A, B>,
-        D extends Keys3<T, A, B, C>,
-        E extends Keys4<T, A, B, C, D>,
-        F extends Keys5<T, A, B, C, D, E>,
-        G extends Keys6<T, A, B, C, D, E, F>,
-        H extends Keys7<T, A, B, C, D, E, F, G>
-    >(
-        path: readonly [A, B, C, D, E, F, G, H],
-        val: Val8<T, A, B, C, D, E, F, G, H>
+    resetIn<A, B, C, D, E, F, G>(
+        path: Path7<T, A, B, C, D, E, F, G>,
+        val: PathVal7<T, A, B, C, D, E, F, G>
     ): T;
-    resetIn<
-        A extends Keys<T>,
-        B extends Keys1<T, A>,
-        C extends Keys2<T, A, B>,
-        D extends Keys3<T, A, B, C>,
-        E extends Keys4<T, A, B, C, D>,
-        F extends Keys5<T, A, B, C, D, E>,
-        G extends Keys6<T, A, B, C, D, E, F>,
-        H extends Keys7<T, A, B, C, D, E, F, G>
-    >(path: readonly [A, B, C, D, E, F, G, H, ...PropertyKey[]], val: any): T;
+    resetIn<A, B, C, D, E, F, G, H>(
+        path: Path8<T, A, B, C, D, E, F, G, H>,
+        val: PathVal8<T, A, B, C, D, E, F, G, H>
+    ): T;
+    resetIn<A, B, C, D, E, F, G, H>(
+        path: DeepPath<T, A, B, C, D, E, F, G, H>,
+        val: any
+    ): T;
     resetIn(path: AtomPath, val: any) {
         const prev = this.state.deref();
         const prevV = getIn(prev, path);
@@ -251,92 +216,45 @@ export class History<T> implements IHistory<T> {
         return this.reset(fn(this.state.deref(), ...args));
     }
 
-    swapIn<A extends Keys<T>>(
-        path: readonly [A],
-        fn: SwapFn<Val1<T, A>>,
+    swapIn<A>(path: Path0, fn: SwapFn<T>, ...args: any[]): T;
+    swapIn<A>(path: Path1<T, A>, fn: SwapFn<PathVal1<T, A>>, ...args: any[]): T;
+    swapIn<A, B>(
+        path: Path2<T, A, B>,
+        fn: SwapFn<PathVal2<T, A, B>>,
         ...args: any[]
     ): T;
-    swapIn<A extends Keys<T>, B extends Keys1<T, A>>(
-        path: readonly [A, B],
-        fn: SwapFn<Val2<T, A, B>>,
+    swapIn<A, B, C>(
+        path: Path3<T, A, B, C>,
+        fn: SwapFn<PathVal3<T, A, B, C>>,
         ...args: any[]
     ): T;
-    swapIn<A extends Keys<T>, B extends Keys1<T, A>, C extends Keys2<T, A, B>>(
-        path: readonly [A, B, C],
-        fn: SwapFn<Val3<T, A, B, C>>,
+    swapIn<A, B, C, D>(
+        path: Path4<T, A, B, C, D>,
+        fn: SwapFn<PathVal4<T, A, B, C, D>>,
         ...args: any[]
     ): T;
-    swapIn<
-        A extends Keys<T>,
-        B extends Keys1<T, A>,
-        C extends Keys2<T, A, B>,
-        D extends Keys3<T, A, B, C>
-    >(
-        path: readonly [A, B, C, D],
-        fn: SwapFn<Val4<T, A, B, C, D>>,
+    swapIn<A, B, C, D, E>(
+        path: Path5<T, A, B, C, D, E>,
+        fn: SwapFn<PathVal5<T, A, B, C, D, E>>,
         ...args: any[]
     ): T;
-    swapIn<
-        A extends Keys<T>,
-        B extends Keys1<T, A>,
-        C extends Keys2<T, A, B>,
-        D extends Keys3<T, A, B, C>,
-        E extends Keys4<T, A, B, C, D>
-    >(
-        path: readonly [A, B, C, D, E],
-        fn: SwapFn<Val5<T, A, B, C, D, E>>,
+    swapIn<A, B, C, D, E, F>(
+        path: Path6<T, A, B, C, D, E, F>,
+        fn: SwapFn<PathVal6<T, A, B, C, D, E, F>>,
         ...args: any[]
     ): T;
-    swapIn<
-        A extends Keys<T>,
-        B extends Keys1<T, A>,
-        C extends Keys2<T, A, B>,
-        D extends Keys3<T, A, B, C>,
-        E extends Keys4<T, A, B, C, D>,
-        F extends Keys5<T, A, B, C, D, E>
-    >(
-        path: readonly [A, B, C, D, E, F],
-        fn: SwapFn<Val6<T, A, B, C, D, E, F>>,
+    swapIn<A, B, C, D, E, F, G>(
+        path: Path7<T, A, B, C, D, E, F, G>,
+        fn: SwapFn<PathVal7<T, A, B, C, D, E, F, G>>,
         ...args: any[]
     ): T;
-    swapIn<
-        A extends Keys<T>,
-        B extends Keys1<T, A>,
-        C extends Keys2<T, A, B>,
-        D extends Keys3<T, A, B, C>,
-        E extends Keys4<T, A, B, C, D>,
-        F extends Keys5<T, A, B, C, D, E>,
-        G extends Keys6<T, A, B, C, D, E, F>
-    >(
-        path: readonly [A, B, C, D, E, F, G],
-        fn: SwapFn<Val7<T, A, B, C, D, E, F, G>>,
+    swapIn<A, B, C, D, E, F, G, H>(
+        path: Path8<T, A, B, C, D, E, F, G, H>,
+        fn: SwapFn<PathVal8<T, A, B, C, D, E, F, G, H>>,
         ...args: any[]
     ): T;
-    swapIn<
-        A extends Keys<T>,
-        B extends Keys1<T, A>,
-        C extends Keys2<T, A, B>,
-        D extends Keys3<T, A, B, C>,
-        E extends Keys4<T, A, B, C, D>,
-        F extends Keys5<T, A, B, C, D, E>,
-        G extends Keys6<T, A, B, C, D, E, F>,
-        H extends Keys7<T, A, B, C, D, E, F, G>
-    >(
-        path: readonly [A, B, C, D, E, F, G, H],
-        fn: SwapFn<Val8<T, A, B, C, D, E, F, G, H>>,
-        ...args: any[]
-    ): T;
-    swapIn<
-        A extends Keys<T>,
-        B extends Keys1<T, A>,
-        C extends Keys2<T, A, B>,
-        D extends Keys3<T, A, B, C>,
-        E extends Keys4<T, A, B, C, D>,
-        F extends Keys5<T, A, B, C, D, E>,
-        G extends Keys6<T, A, B, C, D, E, F>,
-        H extends Keys7<T, A, B, C, D, E, F, G>
-    >(
-        path: readonly [A, B, C, D, E, F, G, H, ...PropertyKey[]],
+    swapIn<A, B, C, D, E, F, G, H>(
+        path: DeepPath<T, A, B, C, D, E, F, G, H>,
         fn: SwapFn<any>,
         ...args: any[]
     ): T;
