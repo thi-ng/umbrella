@@ -1,4 +1,4 @@
-import { Atom } from "@thi.ng/atom";
+import { defAtom, defView } from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom";
 import { EventBus } from "@thi.ng/interceptors";
 import { trace } from "@thi.ng/interceptors";
@@ -7,16 +7,16 @@ import { dropdown } from "./dropdown";
 import { fuzzyDropdown } from "./fuzzy";
 import { cancelableInput } from "./input";
 
-const bus = new EventBus(new Atom(state));
+const bus = new EventBus(defAtom(state));
 bus.instrumentWith([trace]);
 
 const ctx = {
     bus,
     theme,
     views: {
-        countries: bus.state.addView("countries"),
-        filter: bus.state.addView("countries.filter")
-    }
+        countries: defView(bus.state, ["countries"]),
+        filter: defView(bus.state, ["countries", "filter"]),
+    },
 };
 
 const dd = dropdown("theme.dd");
@@ -39,13 +39,13 @@ start(
                         placeholder: "Start typing to fuzzy match",
                         hoverLabel: [
                             ["span", "Choose a country..."],
-                            ["i.fr.fas.fa-angle-down"]
+                            ["i.fr.fas.fa-angle-down"],
                         ],
                         dropdown: dd,
-                        input
-                    }
-                ]
-            ]
+                        input,
+                    },
+                ],
+            ],
         ];
     },
     { ctx }

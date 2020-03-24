@@ -16,21 +16,21 @@ export const DB = new Atom({
 });
 
 export const setGain = (gain: number) => {
-    DB.resetIn("gain", gain);
+    DB.resetIn(["gain"], gain);
     updateAudio();
 };
 
 export const clearSpectrum = () => {
-    DB.resetIn("bins", makeBins());
+    DB.resetIn(["bins"], makeBins());
     updateAudio();
 };
 
 export const setSpectrumPreset = (id: number) => {
-    DB.swapIn("bins", PRESETS[id]);
+    DB.swapIn(["bins"], PRESETS[id]);
     updateAudio();
 };
 
-export const updateSpectrum = (bin: number, amp: number) => {
+export const updateSpectrumBin = (bin: number, amp: number) => {
     DB.resetIn(["bins", bin], amp);
     updateAudio();
 };

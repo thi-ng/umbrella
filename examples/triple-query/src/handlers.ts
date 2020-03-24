@@ -1,23 +1,23 @@
 import { compare } from "@thi.ng/compare";
+import { getIn, setIn } from "@thi.ng/paths";
+import * as fx from "./effects";
+import * as ev from "./events";
 import {
     dispatchNow,
     EffectDef,
     EventDef,
     FX_DISPATCH_NOW,
     FX_STATE,
-    valueSetter
+    valueSetter,
 } from "@thi.ng/interceptors";
-import { getIn, setIn } from "@thi.ng/paths";
 import {
     comp,
     iterator,
     mapIndexed,
     padLast,
     page,
-    repeat
+    repeat,
 } from "@thi.ng/transducers";
-import * as fx from "./effects";
-import * as ev from "./events";
 import type { IObjectOf } from "@thi.ng/api";
 import type { Triple } from "@thi.ng/rstream-query";
 import type { AppInterceptorContext } from "./api";
@@ -30,25 +30,26 @@ export const EVENTS: IObjectOf<EventDef> = {
             [id, "type", "country"],
             [id, "name", name],
             [id, "partOf", region],
-            [region, "type", "region"]
-        ]
+            [region, "type", "region"],
+        ],
     }),
 
     [ev.ADD_CITY]: (_, [__, [city, countryID]]) => ({
         [fx.ADD_TRIPLE]: [
             [city, "type", "city"],
-            [city, "locatedIn", countryID]
-        ]
+            [city, "locatedIn", countryID],
+        ],
     }),
 
     [ev.SET_SORT]: (state, [_, i]) => {
-        const sort = getIn(state, "sort");
+        const sort = getIn(state, ["sort"]);
         return {
-            [FX_STATE]: setIn(state, "sort", [
-                i,
-                sort[0] === i ? !sort[1] : false
-            ]),
-            [FX_DISPATCH_NOW]: [ev.UPDATE_PAGE]
+            [FX_STATE]: setIn(
+                state,
+                ["sort"],
+                [i, sort[0] === i ? !sort[1] : false]
+            ),
+            [FX_DISPATCH_NOW]: [ev.UPDATE_PAGE],
         };
     },
 
@@ -58,27 +59,33 @@ export const EVENTS: IObjectOf<EventDef> = {
         const maxPage = Math.floor(
             Math.max(0, ctx.store.triples.length - 1) / PAGE_LEN
         );
-        let curr = getIn(state, "page");
-        let sort = getIn(state, "sort");
+        let curr = getIn(state, ["page"]);
+        let sort = getIn(state, ["sort"]);
         if (curr > maxPage) {
-            state = setIn(state, "page", (curr = maxPage));
+            state = setIn(state, ["page"], (curr = maxPage));
         }
         return {
-            [FX_STATE]: setIn(state, "pagedTriples", [
-                ...iterator(
-                    comp(
-                        page(curr, PAGE_LEN),
-                        mapIndexed(
-                            (i, x: Triple) => [i + 1, ...x],
-                            curr * PAGE_LEN
+            [FX_STATE]: setIn(
+                state,
+                ["pagedTriples"],
+                [
+                    ...iterator(
+                        comp(
+                            page(curr, PAGE_LEN),
+                            mapIndexed(
+                                (i, x: Triple) => [i + 1, ...x],
+                                curr * PAGE_LEN
+                            ),
+                            padLast(PAGE_LEN, [...repeat("\u00a0", 4)])
                         ),
-                        padLast(PAGE_LEN, [...repeat("\u00a0", 4)])
+                        ctx.store.triples
+                            .slice()
+                            .sort(comparator.apply(null, sort))
                     ),
-                    ctx.store.triples.slice().sort(comparator.apply(null, sort))
-                )
-            ])
+                ]
+            ),
         };
-    }
+    },
 };
 
 export const EFFECTS: IObjectOf<EffectDef> = {
@@ -89,7 +96,7 @@ export const EFFECTS: IObjectOf<EffectDef> = {
     [fx.REMOVE_TRIPLE]: (triple: Triple, bus, ctx: AppInterceptorContext) => {
         ctx.store.delete(triple);
         bus.dispatch([ev.UPDATE_PAGE]);
-    }
+    },
 };
 
 const comparator = (i: number, rev: boolean) =>

@@ -3,6 +3,29 @@ import { timedResult } from "@thi.ng/bench";
 import { line, normalizedPath, pathFromSvg } from "@thi.ng/geom";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { DOWNLOAD, RESTART } from "@thi.ng/hiccup-carbon-icons";
+import { gridLayout, GridLayout, layoutBox } from "@thi.ng/layout";
+import { clamp, PI } from "@thi.ng/math";
+import { setInManyUnsafe } from "@thi.ng/paths";
+import { gestureStream } from "@thi.ng/rstream-gestures";
+import { float } from "@thi.ng/strings";
+import {
+    comp,
+    iterator,
+    map,
+    mapcat,
+    step
+} from "@thi.ng/transducers";
+import { updateDOM } from "@thi.ng/transducers-hdom";
+import { sma } from "@thi.ng/transducers-stats";
+import {
+    add2,
+    hash,
+    min2,
+    setC2,
+    Vec,
+    vecOf,
+    ZERO2
+} from "@thi.ng/vectors";
 import {
     buttonH,
     buttonV,
@@ -25,39 +48,16 @@ import {
     textLabel,
     textLabelRaw,
     toggle,
-    xyPad
+    xyPad,
 } from "@thi.ng/imgui";
-import { gridLayout, GridLayout, layoutBox } from "@thi.ng/layout";
-import { clamp, PI } from "@thi.ng/math";
-import { setInMany } from "@thi.ng/paths";
 import {
     fromAtom,
     fromDOMEvent,
     fromRAF,
     merge,
     sidechainPartition,
-    sync
+    sync,
 } from "@thi.ng/rstream";
-import { gestureStream } from "@thi.ng/rstream-gestures";
-import { float } from "@thi.ng/strings";
-import {
-    comp,
-    iterator,
-    map,
-    mapcat,
-    step
-} from "@thi.ng/transducers";
-import { updateDOM } from "@thi.ng/transducers-hdom";
-import { sma } from "@thi.ng/transducers-stats";
-import {
-    add2,
-    hash,
-    min2,
-    setC2,
-    Vec,
-    vecOf,
-    ZERO2
-} from "@thi.ng/vectors";
 
 // define theme colors in RGBA format for future compatibility with
 // WebGL backend
@@ -77,8 +77,8 @@ const THEMES: Partial<GUITheme>[] = [
         textDisabled: [0.3, 0.3, 0.3, 0.5],
         textHover: [0.2, 0.2, 0.4, 1],
         bgTooltip: [1, 1, 0.8, 0.85],
-        textTooltip: [0, 0, 0, 1]
-    }
+        textTooltip: [0, 0, 0, 1],
+    },
 ];
 
 // float value formatters
@@ -104,7 +104,7 @@ const mkIcon = (icon: any[]) => [
             map(normalizedPath)
         ),
         icon.slice(2)
-    )
+    ),
 ];
 
 // icon definitions (from @thi.ng/hiccup-carbon-icons)
@@ -120,11 +120,11 @@ const DB = new History(
         radius: 10,
         gridW: 15,
         rgb: [0.9, 0.45, 0.5],
-        pos: [400, 140],
+        pos: <Vec>[400, 140],
         txt: "Hello there! This is a test, do not panic!",
         toggles: new Array<boolean>(12).fill(false),
         flags: [true, false],
-        radio: 0
+        radio: 0,
     }),
     // max. 500 undo steps
     500
@@ -134,7 +134,7 @@ const DB = new History(
 const themeForID = (theme: number): Partial<GUITheme> => ({
     ...THEMES[theme % THEMES.length],
     font: FONT,
-    cursorBlink: 0
+    cursorBlink: 0,
 });
 
 // state update handler for `rgb` value
@@ -143,7 +143,7 @@ const themeForID = (theme: number): Partial<GUITheme> => ({
 const setRGB = (gui: IMGUI, res: number[]) =>
     res !== undefined &&
     (gui.isAltDown()
-        ? DB.resetIn("rgb", vecOf(3, res[1]))
+        ? DB.resetIn(["rgb"], vecOf(3, res[1]))
         : DB.resetIn(["rgb", res[0]], res[1]));
 
 // main application
@@ -176,7 +176,7 @@ const app = () => {
                         gestureStream(canv, {}).subscribe({
                             next(e) {
                                 gui.setMouse(e.pos, e.buttons);
-                            }
+                            },
                         }),
                         // keydown & undo/redo handler:
                         // Ctrl/Command + Z = undo
@@ -194,12 +194,12 @@ const app = () => {
                                 } else {
                                     gui.setKey(e);
                                 }
-                            }
+                            },
                         }),
                         fromDOMEvent(window, "keyup").subscribe({
                             next(e) {
                                 gui.setKey(e);
-                            }
+                            },
                         }),
                         fromDOMEvent(window, "resize").subscribe({
                             next() {
@@ -209,15 +209,15 @@ const app = () => {
                                     window.innerWidth,
                                     window.innerHeight
                                 );
-                                DB.swapIn("pos", (pos: Vec) =>
+                                DB.swapIn(["pos"], (pos: Vec) =>
                                     min2([], pos, size)
                                 );
-                            }
-                        })
-                    ]
+                            },
+                        }),
+                    ],
                 })
             );
-        }
+        },
     };
 
     // main GUI update function
@@ -239,7 +239,7 @@ const app = () => {
         if (
             buttonH(gui, grid, "show", state.uiVisible ? "Hide UI" : "Show UI")
         ) {
-            DB.resetIn("uiVisible", !state.uiVisible);
+            DB.resetIn(["uiVisible"], !state.uiVisible);
         }
         if (state.uiVisible) {
             let inner: GridLayout;
@@ -265,7 +265,7 @@ const app = () => {
                     inner = grid.nest(8);
                     // vertical button in 1st column and spanning 3 rows
                     if (buttonV(gui, inner, "toggleAll", 3, "INVERT")) {
-                        DB.swapIn("toggles", (toggles: boolean[]) => toggles.map((x) => !x));
+                        DB.swapIn(["toggles"], (toggles: boolean[]) => toggles.map((x) => !x));
                     }
 
                     // create nested 4 column layout using remaining 7 columns of current layout
@@ -299,17 +299,17 @@ const app = () => {
                     grid.next();
                     // alternative theme override for all components created by given function
                     if ((res = gui.withTheme(themeForID(state.theme + 1), () => radio(gui, grid, "radio2", true, state.radio, true, RADIO_LABELS))) !== undefined) {
-                        DB.resetIn("radio", res);
+                        DB.resetIn(["radio"], res);
                     }
 
                     grid.next();
                     textLabel(gui, grid, "Radio (vertical):");
                     if ((res = radio(gui, grid, "radio3", false, state.radio, false, RADIO_LABELS)) !== undefined) {
-                        DB.resetIn("radio", res);
+                        DB.resetIn(["radio"], res);
                     }
                     grid.next();
                     if ((res = radio(gui, grid, "radio4", false, state.radio, true, RADIO_LABELS)) !== undefined) {
-                        DB.resetIn("radio", res);
+                        DB.resetIn(["radio"], res);
                     }
                     break;
 
@@ -319,10 +319,10 @@ const app = () => {
 
                     inner = grid.nest(2);
                     if ((res = sliderH(gui, inner, "grid", 1, 20, 1, state.gridW, "Grid", undefined, "Grid size")) !== undefined) {
-                        DB.resetIn("gridW", res);
+                        DB.resetIn(["gridW"], res);
                     }
                     if ((res = sliderH(gui, inner, "rad", 2, 20, 1, state.radius, "Radius", undefined, "Dot radius")) !== undefined) {
-                        DB.resetIn("radius", res);
+                        DB.resetIn(["radius"], res);
                     }
 
                     textLabel(gui, grid, "Slider groups:");
@@ -341,7 +341,7 @@ const app = () => {
                     res = xyPad(gui, inner, "xy2", ZERO2, size, 10, state.pos, 4, false, undefined, undefined, "Origin") || res;
                     res = xyPad(gui, inner, "xy3", ZERO2, size, 10, state.pos, -1, false, undefined, undefined, "Origin") || res;
                     res = xyPad(gui, inner, "xy4", ZERO2, size, 10, state.pos, -2, false, undefined, undefined, "Origin") || res;
-                    res !== undefined && DB.resetIn("pos", res);
+                    res !== undefined && DB.resetIn(["pos"], res);
                     break;
 
                 case 2:
@@ -375,11 +375,11 @@ const app = () => {
                     grid.next();
                     textLabel(gui, grid, "Select theme:");
                     if ((res = dropdown(gui, grid, "theme", state.theme, THEME_IDS, "GUI theme")) !== undefined) {
-                        DB.resetIn("theme", res);
+                        DB.resetIn(["theme"], res);
                     }
                     const box = layoutBox(10, 150, 150, 120, 200, 24, 0);
                     if ((res = dropdown(gui, box, "theme2", state.theme, THEME_IDS, "GUI theme")) !== undefined) {
-                        DB.resetIn("theme", res);
+                        DB.resetIn(["theme"], res);
                     }
                     break;
 
@@ -387,7 +387,7 @@ const app = () => {
                     grid.next();
                     textLabel(gui, grid, "Editable textfield:");
                     if ((res = textField(gui, grid, "txt", state.txt, undefined, "Type something...")) !== undefined) {
-                        DB.resetIn("txt", res);
+                        DB.resetIn(["txt"], res);
                     }
                     break;
 
@@ -414,15 +414,15 @@ const app = () => {
                             from: radialPos,
                             to: radialPos,
                             r1: 5,
-                            r2: 300
+                            r2: 300,
                         },
                         [
                             [0, [1, 1, 1, 0.8]],
                             [0.5, [1, 1, 1, 0.66]],
-                            [1, [1, 1, 1, 0]]
-                        ]
+                            [1, [1, 1, 1, 0]],
+                        ],
                     ],
-                    ["circle", { fill: "$shadow" }, radialPos, 300]
+                    ["circle", { fill: "$shadow" }, radialPos, 300],
                 ])
             );
             let res: number | undefined;
@@ -438,7 +438,7 @@ const app = () => {
                 )) !== undefined
             ) {
                 DB.swap((db) =>
-                    setInMany(db, "uiMode", res, "uiVisible", true)
+                    setInManyUnsafe(db, ["uiMode"], res, ["uiVisible"], true)
                 );
             }
             gui.add(
@@ -520,7 +520,7 @@ const app = () => {
                 height,
                 style: { background: gui.theme.globalBg, cursor: gui.cursor },
                 oncontextmenu: (e: Event) => e.preventDefault(),
-                ...gui.attribs
+                ...gui.attribs,
             },
             // GUI resize border line
             line([maxW, 0], [maxW, height], { stroke: "#000" }),
@@ -530,13 +530,13 @@ const app = () => {
                     transform: [0, -1, 1, 0, maxW + 12, height / 2],
                     fill: "#000",
                     font: FONT,
-                    align: "center"
+                    align: "center",
                 },
                 [0, 0],
-                "DRAG TO RESIZE"
+                "DRAG TO RESIZE",
             ],
             // IMGUI implements IToHiccup interface so just supply as is
-            gui
+            gui,
         ];
     };
 };
@@ -548,8 +548,8 @@ const app = () => {
 // updates on demand...
 const main = sync<any, any>({
     src: {
-        state: fromAtom(DB)
-    }
+        state: fromAtom(DB),
+    },
 });
 
 // transform the stream:

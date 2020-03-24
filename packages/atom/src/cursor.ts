@@ -1,29 +1,96 @@
-import { isArray, isFunction } from "@thi.ng/checks";
-import { illegalArgs, illegalArity } from "@thi.ng/errors";
-import { getter, setter } from "@thi.ng/paths";
+import { defGetterUnsafe, defSetterUnsafe } from "@thi.ng/paths";
 import { Atom } from "./atom";
 import { nextID } from "./idgen";
-import { View } from "./view";
 import type {
-    Fn,
-    Fn2,
+    DeepPath,
     IID,
     IRelease,
     Path,
-    Predicate,
-    Watch
+    Path0,
+    Path1,
+    Path2,
+    Path3,
+    Path4,
+    Path5,
+    Path6,
+    Path7,
+    Path8,
+    PathVal1,
+    PathVal2,
+    PathVal3,
+    PathVal4,
+    PathVal5,
+    PathVal6,
+    PathVal7,
+    PathVal8,
+    Watch,
 } from "@thi.ng/api";
-import type {
-    CursorOpts,
-    IAtom,
-    IView,
-    SwapFn,
-    ViewTransform
-} from "./api";
+import type { CursorOpts, IAtom, SwapFn } from "./api";
+
+export function defCursor<T, A>(
+    parent: IAtom<T>,
+    path: Path1<T, A>,
+    opts?: Partial<CursorOpts<PathVal1<T, A>>>
+): Cursor<PathVal1<T, A>>;
+export function defCursor<T, A, B>(
+    parent: IAtom<T>,
+    path: Path2<T, A, B>,
+    opts?: Partial<CursorOpts<PathVal2<T, A, B>>>
+): Cursor<PathVal2<T, A, B>>;
+export function defCursor<T, A, B, C>(
+    parent: IAtom<T>,
+    path: Path3<T, A, B, C>,
+    opts?: Partial<CursorOpts<PathVal3<T, A, B, C>>>
+): Cursor<PathVal3<T, A, B, C>>;
+export function defCursor<T, A, B, C, D>(
+    parent: IAtom<T>,
+    path: Path4<T, A, B, C, D>,
+    opts?: Partial<CursorOpts<PathVal4<T, A, B, C, D>>>
+): Cursor<PathVal4<T, A, B, C, D>>;
+export function defCursor<T, A, B, C, D, E>(
+    parent: IAtom<T>,
+    path: Path5<T, A, B, C, D, E>,
+    opts?: Partial<CursorOpts<PathVal5<T, A, B, C, D, E>>>
+): Cursor<PathVal5<T, A, B, C, D, E>>;
+export function defCursor<T, A, B, C, D, E, F>(
+    parent: IAtom<T>,
+    path: Path6<T, A, B, C, D, E, F>,
+    opts?: Partial<CursorOpts<PathVal6<T, A, B, C, D, E, F>>>
+): Cursor<PathVal6<T, A, B, C, D, E, F>>;
+export function defCursor<T, A, B, C, D, E, F, G>(
+    parent: IAtom<T>,
+    path: Path7<T, A, B, C, D, E, F, G>,
+    opts?: Partial<CursorOpts<PathVal7<T, A, B, C, D, E, F, G>>>
+): Cursor<PathVal7<T, A, B, C, D, E, F, G>>;
+export function defCursor<T, A, B, C, D, E, F, G, H>(
+    parent: IAtom<T>,
+    path: Path8<T, A, B, C, D, E, F, G, H>,
+    opts?: Partial<CursorOpts<PathVal8<T, A, B, C, D, E, F, G, H>>>
+): Cursor<PathVal8<T, A, B, C, D, E, F, G, H>>;
+export function defCursor<T, A, B, C, D, E, F, G, H>(
+    parent: IAtom<T>,
+    path: DeepPath<T, A, B, C, D, E, F, G, H>,
+    opts?: Partial<CursorOpts<any>>
+): Cursor<any>;
+export function defCursor(
+    parent: IAtom<any>,
+    path: Path,
+    opts?: Partial<CursorOpts<any>>
+): Cursor<any> {
+    return new Cursor(parent, path, opts);
+}
+
+export function defCursorUnsafe<T = any>(
+    parent: IAtom<any>,
+    path: Path,
+    opts?: Partial<CursorOpts<any>>
+) {
+    return new Cursor<T>(parent, path, opts);
+}
 
 /**
  * A cursor provides read/write access to a path location within a
- * nested parent state (Atom or another Cursor).
+ * nested (Atom-like) parent state.
  *
  * @remarks
  * Cursors behave like Atoms for all practical purposes, i.e. support
@@ -57,59 +124,22 @@ export class Cursor<T> implements IAtom<T>, IID<string>, IRelease {
     protected local: Atom<T>;
     protected selfUpdate: boolean;
 
-    constructor(opts: CursorOpts<T>);
-    constructor(parent: IAtom<any>, path: Path);
     constructor(
         parent: IAtom<any>,
-        lookup: Fn<any, T>,
-        update: Fn2<any, T, any>
-    );
-    constructor(...args: any[]) {
-        let parent!: IAtom<any>;
-        let lookup: Fn<any, T> | undefined;
-        let update: Fn2<any, T, any> | undefined;
-        let validate: Predicate<T> | undefined;
-        let opts: CursorOpts<T>;
-        let id: string | undefined;
-        switch (args.length) {
-            case 1:
-                opts = args[0];
-                id = opts.id;
-                parent = opts.parent;
-                validate = opts.validate;
-                if (opts.path) {
-                    if (isArray(opts.path) && isFunction(opts.path[0])) {
-                        [lookup, update] = <any>opts.path;
-                    } else {
-                        lookup = getter(<Path>opts.path);
-                        update = setter(<Path>opts.path);
-                    }
-                } else {
-                    illegalArgs("missing path config");
-                }
-                break;
-            case 2:
-                parent = args[0];
-                lookup = getter(args[1]);
-                update = setter(args[1]);
-                break;
-            case 3:
-                [parent, lookup, update] = args;
-                break;
-            default:
-                illegalArity(args.length);
-        }
+        path: Path,
+        opts: Partial<CursorOpts<T>> = {}
+    ) {
+        const validate = opts.validate;
+        const lookup = defGetterUnsafe(path);
+        const update = defSetterUnsafe(path);
         this.parent = parent;
-        this.id = id || `cursor-${nextID()}`;
+        this.id = opts.id || `cursor-${nextID()}`;
         this.selfUpdate = false;
-        if (!lookup || !update) {
-            illegalArgs();
-        }
-        this.local = new Atom<T>(lookup!(parent.deref()), validate);
+        this.local = new Atom<T>(lookup(parent.deref()), validate);
         this.local.addWatch(this.id, (_, prev, curr) => {
             if (prev !== curr) {
                 this.selfUpdate = true;
-                parent.swap((state) => update!(state, curr));
+                parent.swap((state) => update(state, curr));
                 this.selfUpdate = false;
             }
         });
@@ -147,16 +177,94 @@ export class Cursor<T> implements IAtom<T>, IID<string>, IRelease {
         return this.local.reset(val);
     }
 
-    resetIn<V>(path: Path, val: V) {
-        return this.local.resetIn(path, val);
+    resetIn<A>(path: Path0, val: T): T;
+    resetIn<A>(path: Path1<T, A>, val: PathVal1<T, A>): T;
+    resetIn<A, B>(path: Path2<T, A, B>, val: PathVal2<T, A, B>): T;
+    resetIn<A, B, C>(path: Path3<T, A, B, C>, val: PathVal3<T, A, B, C>): T;
+    resetIn<A, B, C, D>(
+        path: Path4<T, A, B, C, D>,
+        val: PathVal4<T, A, B, C, D>
+    ): T;
+    resetIn<A, B, C, D, E>(
+        path: Path5<T, A, B, C, D, E>,
+        val: PathVal5<T, A, B, C, D, E>
+    ): T;
+    resetIn<A, B, C, D, E, F>(
+        path: Path6<T, A, B, C, D, E, F>,
+        val: PathVal6<T, A, B, C, D, E, F>
+    ): T;
+    resetIn<A, B, C, D, E, F, G>(
+        path: Path7<T, A, B, C, D, E, F, G>,
+        val: PathVal7<T, A, B, C, D, E, F, G>
+    ): T;
+    resetIn<A, B, C, D, E, F, G, H>(
+        path: Path8<T, A, B, C, D, E, F, G, H>,
+        val: PathVal8<T, A, B, C, D, E, F, G, H>
+    ): T;
+    resetIn<A, B, C, D, E, F, G, H>(
+        path: DeepPath<T, A, B, C, D, E, F, G, H>,
+        val: any
+    ): T;
+    resetIn(path: Path, val: any) {
+        return this.local.resetInUnsafe(path, val);
+    }
+
+    resetInUnsafe(path: Path, val: any) {
+        return this.local.resetInUnsafe(path, val);
     }
 
     swap(fn: SwapFn<T>, ...args: any[]): T {
         return this.local.swap(fn, ...args);
     }
 
-    swapIn<V>(path: Path, fn: SwapFn<V>, ...args: any[]) {
-        return this.local.swapIn(path, fn, ...args);
+    swapIn<A>(path: Path0, fn: SwapFn<T>, ...args: any[]): T;
+    swapIn<A>(path: Path1<T, A>, fn: SwapFn<PathVal1<T, A>>, ...args: any[]): T;
+    swapIn<A, B>(
+        path: Path2<T, A, B>,
+        fn: SwapFn<PathVal2<T, A, B>>,
+        ...args: any[]
+    ): T;
+    swapIn<A, B, C>(
+        path: Path3<T, A, B, C>,
+        fn: SwapFn<PathVal3<T, A, B, C>>,
+        ...args: any[]
+    ): T;
+    swapIn<A, B, C, D>(
+        path: Path4<T, A, B, C, D>,
+        fn: SwapFn<PathVal4<T, A, B, C, D>>,
+        ...args: any[]
+    ): T;
+    swapIn<A, B, C, D, E>(
+        path: Path5<T, A, B, C, D, E>,
+        fn: SwapFn<PathVal5<T, A, B, C, D, E>>,
+        ...args: any[]
+    ): T;
+    swapIn<A, B, C, D, E, F>(
+        path: Path6<T, A, B, C, D, E, F>,
+        fn: SwapFn<PathVal6<T, A, B, C, D, E, F>>,
+        ...args: any[]
+    ): T;
+    swapIn<A, B, C, D, E, F, G>(
+        path: Path7<T, A, B, C, D, E, F, G>,
+        fn: SwapFn<PathVal7<T, A, B, C, D, E, F, G>>,
+        ...args: any[]
+    ): T;
+    swapIn<A, B, C, D, E, F, G, H>(
+        path: Path8<T, A, B, C, D, E, F, G, H>,
+        fn: SwapFn<PathVal8<T, A, B, C, D, E, F, G, H>>,
+        ...args: any[]
+    ): T;
+    swapIn<A, B, C, D, E, F, G, H>(
+        path: DeepPath<T, A, B, C, D, E, F, G, H>,
+        fn: SwapFn<any>,
+        ...args: any[]
+    ): T;
+    swapIn(path: Path, fn: SwapFn<any>, ...args: any[]) {
+        return this.local.swapInUnsafe(path, fn, ...args);
+    }
+
+    swapInUnsafe(path: Path, fn: SwapFn<any>, ...args: any[]) {
+        return this.local.swapInUnsafe(path, fn, ...args);
     }
 
     addWatch(id: string, fn: Watch<T>) {
@@ -167,12 +275,7 @@ export class Cursor<T> implements IAtom<T>, IID<string>, IRelease {
         return this.local.removeWatch(id);
     }
 
-    /* istanbul ignore next */
     notifyWatches(oldState: T, newState: T) {
         return this.local.notifyWatches(oldState, newState);
-    }
-
-    addView<V>(path: Path, tx?: ViewTransform<V>, lazy = true): IView<V> {
-        return new View<V>(this, path, tx, lazy);
     }
 }

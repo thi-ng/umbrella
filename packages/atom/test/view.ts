@@ -1,106 +1,111 @@
-import { setIn, updateIn } from "@thi.ng/paths";
 import * as assert from "assert";
 import { IView } from "../src/api";
 import { Atom } from "../src/atom";
-import { Cursor } from "../src/cursor";
-import { View } from "../src/view";
+import { defCursor } from "../src/cursor";
+import { defView, View } from "../src/view";
+
+interface State {
+    a: number;
+    b: { c: number; d: number };
+    e: number;
+}
 
 describe("view", () => {
-
-    let a: Atom<any>;
-    let s: IView<number>;
+    let a: Atom<State>;
+    let v: IView<number>;
 
     beforeEach(() => {
         a = new Atom({ a: 1, b: { c: 2, d: 3 }, e: 4 });
     });
 
     it("can be created from atom", () => {
-        s = a.addView("e");
-        assert.ok(s instanceof View);
-        assert.equal(s.deref(), 4);
-        s = a.addView("e", (x) => x * 10);
-        assert.ok(s instanceof View);
-        assert.equal(s.deref(), 40);
+        v = defView(a, ["e"]);
+        assert.ok(v instanceof View);
+        assert.equal(v.deref(), 4);
+        v = defView(a, ["e"], (x) => x * 10);
+        assert.ok(v instanceof View);
+        assert.equal(v.deref(), 40);
     });
 
     it("can be created from cursor", () => {
-        let c = new Cursor(a, "b");
-        s = c.addView("d");
-        assert.ok(s instanceof View);
-        assert.equal(s.deref(), 3);
-        s = c.addView("c", (x: number) => x * 10);
-        assert.ok(s instanceof View);
-        assert.equal(s.deref(), 20);
+        let c = defCursor(a, ["b"]);
+        v = defView(c, ["d"]);
+        assert.ok(v instanceof View);
+        assert.equal(v.deref(), 3);
+        v = defView(c, ["c"], (x: number) => x * 10);
+        assert.ok(v instanceof View);
+        assert.equal(v.deref(), 20);
     });
 
     it("can be deref'd", () => {
-        assert.equal(new View(a, "b.c").deref(), 2);
-        assert.equal(new View(new Cursor(a, "b"), "d").deref(), 3);
+        assert.equal(defView(a, ["b", "c"]).deref(), 2);
+        assert.equal(defView(defCursor(a, ["b"]), ["d"]).deref(), 3);
     });
 
     it("can be deref'd w/ transformer", () => {
-        s = new View(a, "b.c", (x) => x * 10)
-        assert.equal(s.deref(), 20);
-        assert.equal(s.deref(), 20);
+        v = defView(a, ["b", "c"], (x) => x * 10);
+        assert.equal(v.deref(), 20);
+        assert.equal(v.deref(), 20);
     });
 
     it("can read .value", () => {
-        assert.equal(new View(a, "b.c").value, 2);
-        assert.equal(a.addView("b.c").value, 2);
-        assert.equal(new View(new Cursor(a, "b"), "d").value, 3);
-        assert.equal(new Cursor(a, "b").addView("d").value, 3);
+        assert.equal(defView(a, ["b", "c"]).value, 2);
+        assert.equal(defView(defCursor(a, ["b"]), ["d"]).value, 3);
+        // assert.equal(new View(new Cursor(a, "b"), "d").value, 3);
+        // assert.equal(new Cursor(a, "b").addView("d").value, 3);
     });
 
     it("reflects updates", () => {
-        s = new View(a, "b.c", (x) => x * 10);
-        assert.ok(s.changed(), "not dirty");
-        assert.equal(s.deref(), 20);
-        assert.ok(!s.changed(), "changed");
-        a.swap((state) => updateIn(state, "b.c", (x) => x + 1));
-        assert.ok(s.changed(), "not dirty #2");
-        assert.equal(s.deref(), 30);
-        assert.ok(!s.changed(), "changed #2");
+        v = defView(a, ["b", "c"], (x) => x * 10);
+        assert.ok(v.changed(), "not dirty");
+        assert.equal(v.deref(), 20);
+        assert.ok(!v.changed(), "changed");
+        a.swapIn(["b", "c"], (x) => x + 1);
+        assert.ok(v.changed(), "not dirty #2");
+        assert.equal(v.deref(), 30);
+        assert.ok(!v.changed(), "changed #2");
     });
 
     it("reflects updates (initially undefined)", () => {
-        s = new View(a, "f");
-        assert.ok(s.changed(), "not dirty");
-        assert.equal(s.deref(), undefined);
-        assert.ok(!s.changed(), "changed");
-        a.swap((state) => setIn(state, "f", 100));
-        assert.ok(s.changed(), "not dirty #2");
-        assert.equal(s.deref(), 100);
+        const _a = <Atom<any>>a;
+        const v = defView(_a, ["f"]);
+        assert.ok(v.changed(), "not dirty");
+        assert.equal(v.deref(), undefined);
+        assert.ok(!v.changed(), "changed");
+        _a.resetIn(["f"], 100);
+        assert.ok(v.changed(), "not dirty #2");
+        assert.equal(v.deref(), 100);
     });
 
     it("can be released", () => {
-        s = new View(a, "b.c")
-        assert.equal(s.deref(), 2);
-        assert.ok(!s.changed(), "changed");
-        assert.ok(s.release());
-        assert.ok(s.changed(), "not dirty");
-        assert.equal(s.deref(), undefined);
-        assert.ok(!s.changed(), "changed #2");
-        assert.equal(s.deref(), undefined);
+        v = defView(a, ["b", "c"]);
+        assert.equal(v.deref(), 2);
+        assert.ok(!v.changed(), "changed");
+        assert.ok(v.release());
+        assert.ok(v.changed(), "not dirty");
+        assert.equal(v.deref(), undefined);
+        assert.ok(!v.changed(), "changed #2");
+        assert.equal(v.deref(), undefined);
     });
 
     it("is lazy by default", () => {
         let x;
-        s = a.addView("b.c", (y) => (x = y, y * 10));
+        v = defView(a, ["b", "c"], (y) => ((x = y), y * 10));
         assert.equal(x, undefined);
-        assert.equal(s.deref(), 20);
+        assert.equal(v.deref(), 20);
         assert.equal(x, 2);
         x = undefined;
-        assert.equal(s.deref(), 20);
+        assert.equal(v.deref(), 20);
         assert.equal(x, undefined);
     });
 
     it("can be eager", () => {
         let x;
-        s = a.addView("b.c", (y) => (x = y, y * 10), false);
+        v = defView(a, ["b", "c"], (y) => ((x = y), y * 10), false);
         assert.equal(x, 2);
-        assert.equal(s.deref(), 20);
+        assert.equal(v.deref(), 20);
         x = undefined;
-        assert.equal(s.deref(), 20);
+        assert.equal(v.deref(), 20);
         assert.equal(x, undefined);
     });
 });

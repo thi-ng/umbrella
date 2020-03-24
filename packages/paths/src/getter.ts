@@ -1,23 +1,25 @@
 import { toPath } from "./path";
 import type {
+    DeepPath,
     Fn,
-    Keys,
-    Keys1,
-    Keys2,
-    Keys3,
-    Keys4,
-    Keys5,
-    Keys6,
-    Keys7,
     Path,
-    Val1,
-    Val2,
-    Val3,
-    Val4,
-    Val5,
-    Val6,
-    Val7,
-    Val8
+    Path0,
+    Path1,
+    Path2,
+    Path3,
+    Path4,
+    Path5,
+    Path6,
+    Path7,
+    Path8,
+    PathVal1,
+    PathVal2,
+    PathVal3,
+    PathVal4,
+    PathVal5,
+    PathVal6,
+    PathVal7,
+    PathVal8,
 } from "@thi.ng/api";
 
 /**
@@ -38,7 +40,7 @@ import type {
  * If `path` is an empty string or array, the returned getter will
  * simply return the given state arg (identity function).
  *
- * Also see: `getIn()`
+ * Also see: {@link defGetter}, {@link getIn}, {@link getInUnsafe}
  *
  * @example
  * ```ts
@@ -46,14 +48,14 @@ import type {
  *   a: { b: { c: number; } }
  * }
  *
- * // fully typed getter
- * g = getter<Foo, "a", "b", "c">(["a","b","c"]);
+ * // fully type checked getter
+ * g = defGetter<Foo, "a", "b", "c">(["a","b","c"]);
  *
  * // error (wrong `d` key)
- * g = getter<Foo, "a", "b", "d">(["a","b","d"]);
+ * g = defGetter<Foo, "a", "b", "d">(["a","b","d"]);
  *
  * // unchecked (accepts any, returns any)
- * g = getter("a.b.c");
+ * g = defGetterUnsafe("a.b.c");
  *
  * g({ a: { b: { c: 23} } }) // 23
  * g({ x: 23 }) // undefined
@@ -62,83 +64,44 @@ import type {
  *
  * @param path -
  */
-export const getter = (path: Path): Fn<any, any> => getterT(<any>path);
+export const defGetterUnsafe = (path: Path): Fn<any, any> =>
+    defGetter(<any>path);
 
 /**
- * Type checked version of {@link getter}.
+ * Type checked version of {@link defGetter}. Only the first 8 path
+ * levels are type checked.
  *
  * @param path -
  */
-export function getterT<T>(path: []): Fn<T, T>;
-export function getterT<T, A extends Keys<T>>(path: [A]): Fn<T, Val1<T, A>>;
-export function getterT<T, A extends Keys<T>, B extends Keys1<T, A>>(
-    path: [A, B]
-): Fn<T, Val2<T, A, B>>;
-export function getterT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>
->(path: [A, B, C]): Fn<T, Val3<T, A, B, C>>;
-export function getterT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>
->(path: [A, B, C, D]): Fn<T, Val4<T, A, B, C, D>>;
-export function getterT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>,
-    E extends Keys4<T, A, B, C, D>
->(path: [A, B, C, D, E]): Fn<T, Val5<T, A, B, C, D, E>>;
-export function getterT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>,
-    E extends Keys4<T, A, B, C, D>,
-    F extends Keys5<T, A, B, C, D, E>
->(path: [A, B, C, D, E, F]): Fn<T, Val6<T, A, B, C, D, E, F>>;
-export function getterT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>,
-    E extends Keys4<T, A, B, C, D>,
-    F extends Keys5<T, A, B, C, D, E>,
-    G extends Keys6<T, A, B, C, D, E, F>
->(path: [A, B, C, D, E, F, G]): Fn<T, Val7<T, A, B, C, D, E, F, G>>;
-export function getterT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>,
-    E extends Keys4<T, A, B, C, D>,
-    F extends Keys5<T, A, B, C, D, E>,
-    G extends Keys6<T, A, B, C, D, E, F>,
-    H extends Keys7<T, A, B, C, D, E, F, G>
->(path: [A, B, C, D, E, F, G, H]): Fn<T, Val8<T, A, B, C, D, E, F, G, H>>;
-export function getterT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>,
-    E extends Keys4<T, A, B, C, D>,
-    F extends Keys5<T, A, B, C, D, E>,
-    G extends Keys6<T, A, B, C, D, E, F>,
-    H extends Keys7<T, A, B, C, D, E, F, G>
->(path: [A, B, C, D, E, F, G, H, ...any[]]): Fn<T, any>;
-export function getterT(path: Path) {
+export function defGetter<T>(path: Path0): Fn<T, T>;
+export function defGetter<T, A>(path: Path1<T, A>): Fn<T, PathVal1<T, A>>;
+export function defGetter<T, A, B>(
+    path: Path2<T, A, B>
+): Fn<T, PathVal2<T, A, B>>;
+export function defGetter<T, A, B, C>(
+    path: Path3<T, A, B, C>
+): Fn<T, PathVal3<T, A, B, C>>;
+export function defGetter<T, A, B, C, D>(
+    path: Path4<T, A, B, C, D>
+): Fn<T, PathVal4<T, A, B, C, D>>;
+export function defGetter<T, A, B, C, D, E>(
+    path: Path5<T, A, B, C, D, E>
+): Fn<T, PathVal5<T, A, B, C, D, E>>;
+export function defGetter<T, A, B, C, D, E, F>(
+    path: Path6<T, A, B, C, D, E, F>
+): Fn<T, PathVal6<T, A, B, C, D, E, F>>;
+export function defGetter<T, A, B, C, D, E, F, G>(
+    path: Path7<T, A, B, C, D, E, F, G>
+): Fn<T, PathVal7<T, A, B, C, D, E, F, G>>;
+export function defGetter<T, A, B, C, D, E, F, G, H>(
+    path: Path8<T, A, B, C, D, E, F, G, H>
+): Fn<T, PathVal8<T, A, B, C, D, E, F, G, H>>;
+export function defGetter<T, A, B, C, D, E, F, G, H>(
+    path: DeepPath<T, A, B, C, D, E, F, G, H>
+): Fn<T, any>;
+export function defGetter(path: Path) {
     const ks = toPath(path);
-    let [a, b, c, d] = ks;
+    const [a, b, c, d] = ks;
     switch (ks.length) {
         case 0:
             return (s: any) => s;

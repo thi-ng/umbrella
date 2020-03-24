@@ -1,5 +1,5 @@
 import { start } from "@thi.ng/hdom";
-import { getIn, setIn } from "@thi.ng/paths";
+import { getInUnsafe, setInUnsafe } from "@thi.ng/paths";
 
 interface ButtonAttribs {
     // unique button id / local state path
@@ -16,10 +16,10 @@ const button = (
     tooltip: string
 ) => {
     // attempt to read local state
-    let local = getIn(ctx.__local, attribs.id);
+    let local = getInUnsafe(ctx.__local, attribs.id);
     // create if not yet present
     if (!local) {
-        ctx.__local = setIn(
+        ctx.__local = setInUnsafe(
             ctx.__local,
             attribs.id,
             (local = { tooltip: false })
@@ -30,9 +30,9 @@ const button = (
         {
             onclick: attribs.onclick,
             onmouseenter: () => (local.tooltip = true),
-            onmouseleave: () => (local.tooltip = false)
+            onmouseleave: () => (local.tooltip = false),
         },
-        local.tooltip ? tooltip : label
+        local.tooltip ? tooltip : label,
     ];
 };
 
@@ -42,7 +42,7 @@ const APP = [
     // it will be used to lookup state in the hdom user context object
     // passed to each component function
     [button, { id: "button.help" }, "Help", "Whazzup?!"],
-    [button, { id: "button.logout" }, "Logout", "See ya!"]
+    [button, { id: "button.logout" }, "Logout", "See ya!"],
 ];
 
 // start app and define context object skeleton

@@ -1,7 +1,7 @@
 import { isString } from "@thi.ng/checks";
 import { appLink } from "@thi.ng/hdom-components";
 import { EV_SET_VALUE, EV_TOGGLE_VALUE, EventBus } from "@thi.ng/interceptors";
-import { getIn } from "@thi.ng/paths";
+import { getInUnsafe } from "@thi.ng/paths";
 import type { Fn, IObjectOf, Path } from "@thi.ng/api";
 import type { ReadonlyAtom } from "@thi.ng/atom";
 
@@ -43,11 +43,13 @@ export interface DropdownTheme {
 
 export function dropdown(themeCtxPath: Path) {
     return (ctx: any, opts: Partial<DropdownArgs>) => {
-        const ui: DropdownTheme = getIn(ctx, themeCtxPath);
-        const state = opts.statePath ? getIn(ctx, opts.statePath) : opts.state;
+        const ui: DropdownTheme = getInUnsafe(ctx, themeCtxPath);
+        const state = opts.statePath
+            ? getInUnsafe(ctx, opts.statePath)
+            : opts.state;
         const hattribs = {
             onmouseover: opts.onmouseover,
-            onmouseleave: opts.onmouseleave
+            onmouseleave: opts.onmouseleave,
         };
         return state.open
             ? [
@@ -57,7 +59,7 @@ export function dropdown(themeCtxPath: Path) {
                       appLink,
                       { ...hattribs, ...ui.itemSelected },
                       opts.ontoggle,
-                      opts.openLabel || opts.hoverLabel
+                      opts.openLabel || opts.hoverLabel,
                   ],
                   [
                       "div",
@@ -70,12 +72,12 @@ export function dropdown(themeCtxPath: Path) {
                                         ? ui.itemSelected
                                         : ui.item),
                                     href: "#",
-                                    onclick: opts.onchange!(x[0])
+                                    onclick: opts.onchange!(x[0]),
                                 },
-                                ...(isString(x[1]) ? [x[1]] : x[1])
+                                ...(isString(x[1]) ? [x[1]] : x[1]),
                             ])
-                          : ["span", ui.itemDisabled, opts.noItems]
-                  ]
+                          : ["span", ui.itemDisabled, opts.noItems],
+                  ],
               ]
             : [
                   "div",
@@ -88,9 +90,9 @@ export function dropdown(themeCtxPath: Path) {
                           ? opts.hoverLabel
                           : (state.items.find(
                                 (x: any) => x[0] === state.selected
-                            ) || [, opts.hoverLabel])[1]
+                            ) || [, opts.hoverLabel])[1],
                   ],
-                  ["div", ui.bodyClosed]
+                  ["div", ui.bodyClosed],
               ];
     };
 }
@@ -109,5 +111,5 @@ export const dropdownListeners = (
             [EV_SET_VALUE, [[...basePath, "selected"], x]],
             [EV_SET_VALUE, [[...basePath, "open"], false]]
         );
-    }
+    },
 });

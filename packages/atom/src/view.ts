@@ -1,8 +1,124 @@
 import { equiv as _equiv } from "@thi.ng/equiv";
-import { getter, toPath } from "@thi.ng/paths";
+import { defGetterUnsafe, toPath } from "@thi.ng/paths";
 import { nextID } from "./idgen";
-import type { Path } from "@thi.ng/api";
-import type { IView, ReadonlyAtom, ViewTransform } from "./api";
+import type {
+    DeepPath,
+    Fn,
+    Path,
+    Path0,
+    Path1,
+    Path2,
+    Path3,
+    Path4,
+    Path5,
+    Path6,
+    Path7,
+    Path8,
+    PathVal1,
+    PathVal2,
+    PathVal3,
+    PathVal4,
+    PathVal5,
+    PathVal6,
+    PathVal7,
+    PathVal8,
+    Predicate2,
+} from "@thi.ng/api";
+import type { IView, ReadonlyAtom } from "./api";
+
+// const a = defAtom({ a: { b: { c: 1 } } });
+// const v1 = defView(a, ["a", "b", "c"], (x) => "");
+// const v2 = defView(a, ["a", "b", "c"]);
+
+export function defView<T, R = undefined>(
+    parent: ReadonlyAtom<T>,
+    path: Path0,
+    tx?: Fn<T, R>,
+    lazy?: boolean,
+    equiv?: Predicate2<T>
+): View<R extends undefined ? T : R>;
+export function defView<T, A, R = undefined>(
+    parent: ReadonlyAtom<T>,
+    path: Path1<T, A>,
+    tx?: Fn<PathVal1<T, A>, R>,
+    lazy?: boolean,
+    equiv?: Predicate2<PathVal1<T, A>>
+): View<R extends undefined ? PathVal1<T, A> : R>;
+export function defView<T, A, B, R = undefined>(
+    parent: ReadonlyAtom<T>,
+    path: Path2<T, A, B>,
+    tx?: Fn<PathVal2<T, A, B>, R>,
+    lazy?: boolean,
+    equiv?: Predicate2<PathVal2<T, A, B>>
+): View<R extends undefined ? PathVal2<T, A, B> : R>;
+export function defView<T, A, B, C, R = undefined>(
+    parent: ReadonlyAtom<T>,
+    path: Path3<T, A, B, C>,
+    tx?: Fn<PathVal3<T, A, B, C>, R>,
+    lazy?: boolean,
+    equiv?: Predicate2<PathVal3<T, A, B, C>>
+): View<R extends undefined ? PathVal3<T, A, B, C> : R>;
+export function defView<T, A, B, C, D, R = undefined>(
+    parent: ReadonlyAtom<T>,
+    path: Path4<T, A, B, C, D>,
+    tx?: Fn<PathVal4<T, A, B, C, D>, R>,
+    lazy?: boolean,
+    equiv?: Predicate2<PathVal4<T, A, B, C, D>>
+): View<R extends undefined ? PathVal4<T, A, B, C, D> : R>;
+export function defView<T, A, B, C, D, E, R = undefined>(
+    parent: ReadonlyAtom<T>,
+    path: Path5<T, A, B, C, D, E>,
+    tx?: Fn<PathVal5<T, A, B, C, D, E>, R>,
+    lazy?: boolean,
+    equiv?: Predicate2<PathVal5<T, A, B, C, D, E>>
+): View<R extends undefined ? PathVal5<T, A, B, C, D, E> : R>;
+export function defView<T, A, B, C, D, E, F, R = undefined>(
+    parent: ReadonlyAtom<T>,
+    path: Path6<T, A, B, C, D, E, F>,
+    tx?: Fn<PathVal6<T, A, B, C, D, E, F>, R>,
+    lazy?: boolean,
+    equiv?: Predicate2<PathVal6<T, A, B, C, D, E, F>>
+): View<R extends undefined ? PathVal6<T, A, B, C, D, E, F> : R>;
+export function defView<T, A, B, C, D, E, F, G, R = undefined>(
+    parent: ReadonlyAtom<T>,
+    path: Path7<T, A, B, C, D, E, F, G>,
+    tx?: Fn<PathVal7<T, A, B, C, D, E, F, G>, R>,
+    lazy?: boolean,
+    equiv?: Predicate2<PathVal7<T, A, B, C, D, E, F, G>>
+): View<R extends undefined ? PathVal7<T, A, B, C, D, E, F, G> : R>;
+export function defView<T, A, B, C, D, E, F, G, H, R = undefined>(
+    parent: ReadonlyAtom<T>,
+    path: Path8<T, A, B, C, D, E, F, G, H>,
+    tx?: Fn<PathVal8<T, A, B, C, D, E, F, G, H>, R>,
+    lazy?: boolean,
+    equiv?: Predicate2<PathVal8<T, A, B, C, D, E, F, G, H>>
+): View<R extends undefined ? PathVal8<T, A, B, C, D, E, F, G, H> : R>;
+export function defView<T, A, B, C, D, E, F, G, H, R = undefined>(
+    parent: ReadonlyAtom<T>,
+    path: DeepPath<T, A, B, C, D, E, F, G, H>,
+    tx?: Fn<any, R>,
+    lazy?: boolean,
+    equiv?: Predicate2<any>
+): View<R extends undefined ? any : R>;
+export function defView(
+    parent: ReadonlyAtom<any>,
+    path: Path,
+    tx?: Fn<any, any>,
+    lazy?: boolean,
+    equiv?: Predicate2<any>
+) {
+    return new View(parent, path, tx, lazy, equiv);
+}
+
+export function defViewUnsafe(
+    parent: ReadonlyAtom<any>,
+    path: Path,
+    tx?: Fn<any, any>,
+    lazy?: boolean,
+    equiv?: Predicate2<any>
+) {
+    return new View<any>(parent, path, tx, lazy, equiv);
+}
 
 /**
  * This class implements readonly access to a deeply nested value with
@@ -30,33 +146,33 @@ import type { IView, ReadonlyAtom, ViewTransform } from "./api";
  *
  * @example
  * ```ts
- * a = new Atom({a: {b: 1}});
- * v = a.addView("a.b", (x) => x * 10);
+ * a = defAtom({ a: { b: 1 } });
+ * v = defView(a, ["a", "b"], (x) => x * 10);
  *
  * v.deref()
  * // 10
  *
  * // update atom state
- * a.swap((state) => setIn(state, "a.b", 2));
- * // {a: {b: 2}}
+ * a.resetIn(["a", "b"], 2);
+ * // { a: { b: 2 } }
  *
  * v.changed()
  * // true
  * v.deref()
  * // 20
  *
- * v.release()
  * // remove view from parent state
+ * v.release()
  * ```
  */
 export class View<T> implements IView<T> {
     readonly id: string;
 
     readonly parent: ReadonlyAtom<any>;
-    readonly path: PropertyKey[];
+    readonly path: Path;
 
     protected state: T | undefined;
-    protected tx: ViewTransform<T>;
+    protected tx: Fn<any, T>;
     protected unprocessed: any;
     protected isDirty: boolean;
     protected isLazy: boolean;
@@ -64,7 +180,7 @@ export class View<T> implements IView<T> {
     constructor(
         parent: ReadonlyAtom<any>,
         path: Path,
-        tx?: ViewTransform<T>,
+        tx?: Fn<any, T>,
         lazy = true,
         equiv = _equiv
     ) {
@@ -74,7 +190,7 @@ export class View<T> implements IView<T> {
         this.path = toPath(path);
         this.isDirty = true;
         this.isLazy = lazy;
-        const lookup = getter(this.path);
+        const lookup = defGetterUnsafe(this.path);
         const state = this.parent.deref();
         this.unprocessed = state ? lookup(state) : undefined;
         if (!lazy) {

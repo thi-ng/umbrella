@@ -1,13 +1,24 @@
 import * as assert from "assert";
-import { Atom, Transacted } from "../src/index";
+import {
+    Atom,
+    defView,
+    Transacted,
+    defAtom,
+    defTransacted,
+} from "../src/index";
+
+interface State {
+    a: number;
+    b: number;
+}
 
 describe("transacted", () => {
-    let db: Atom<any>;
-    let tx: Transacted<any>;
+    let db: Atom<State>;
+    let tx: Transacted<State>;
 
     beforeEach(() => {
-        db = new Atom({ a: 1, b: 2 });
-        tx = new Transacted(db);
+        db = defAtom({ a: 1, b: 2 });
+        tx = defTransacted(db);
     });
 
     it("initial", () => {
@@ -19,8 +30,8 @@ describe("transacted", () => {
         tx.begin();
         assert.deepEqual(tx.deref(), { a: 1, b: 2 });
         assert.throws(() => tx.begin(), "no nested tx");
-        tx.swapIn("a", (x: number) => x + 10);
-        tx.swapIn("b", (x: number) => x + 20);
+        tx.swapIn(["a"], (x) => x + 10);
+        tx.swapIn(["b"], (x) => x + 20);
         assert.deepEqual(tx.deref(), { a: 11, b: 22 });
         assert.deepEqual(db.deref(), { a: 1, b: 2 });
         assert.deepEqual(tx.commit(), { a: 11, b: 22 });
@@ -31,7 +42,7 @@ describe("transacted", () => {
 
     it("cancel", () => {
         tx.begin();
-        tx.swapIn("a", (x: number) => x + 10);
+        tx.swapIn(["a"], (x) => x + 10);
         assert.deepEqual(tx.deref(), { a: 11, b: 2 });
         tx.cancel();
         assert.deepEqual(tx.deref(), { a: 1, b: 2 });
@@ -40,47 +51,51 @@ describe("transacted", () => {
     });
 
     it("no edits outside tx", () => {
-        assert.throws(() => tx.reset({}), "no reset");
-        assert.throws(() => tx.swap(() => ({})), "no swap");
-        assert.throws(() => tx.resetIn("a", {}), "no resetIn");
-        assert.throws(() => tx.swapIn("a", () => ({})), "no swapIn");
-        assert.throws(() => (tx.value = {}), "no .value");
+        const _tx = <Transacted<any>>tx;
+        assert.throws(() => _tx.reset({}), "no reset");
+        assert.throws(() => _tx.swap(() => ({})), "no swap");
+        assert.throws(() => _tx.resetIn(["a"], {}), "no resetIn");
+        assert.throws(() => _tx.swapIn(["a"], () => ({})), "no swapIn");
+        assert.throws(() => (_tx.value = {}), "no .value");
     });
 
     it("watches", () => {
         let count = 0;
-        tx.addWatch("foo", (id, old, curr) => {
+        const _tx = <Transacted<any>>tx;
+        _tx.addWatch("foo", (id, old, curr) => {
             count++;
             assert.equal(id, "foo");
             assert.deepEqual(old, { a: 1, b: 2 });
             assert.deepEqual(curr, { a: 22 });
         });
-        tx.begin();
-        tx.reset({ a: 11 });
-        tx.reset({ a: 22 });
-        tx.commit();
+        _tx.begin();
+        _tx.reset({ a: 11 });
+        _tx.reset({ a: 22 });
+        _tx.commit();
         assert.equal(count, 1);
     });
 
     it("view (lazy)", () => {
         const acc: any[] = [];
-        const view = tx.addView("a", (x) => (acc.push(x), x), true);
+        const _tx = <Transacted<any>>tx;
+        const view = defView(_tx, ["a"], (x) => (acc.push(x), x), true);
         assert.equal(view.deref(), 1);
-        tx.begin();
-        tx.reset({ a: 11 });
-        tx.reset({ a: 22 });
-        tx.commit();
+        _tx.begin();
+        _tx.reset({ a: 11 });
+        _tx.reset({ a: 22 });
+        _tx.commit();
         assert.equal(view.deref(), 22);
         assert.deepEqual(acc, [1, 22]);
     });
 
     it("view (eager)", () => {
         const acc: any[] = [];
-        const view = tx.addView("a", (x) => (acc.push(x), x), false);
-        tx.begin();
-        tx.reset({ a: 11 });
-        tx.reset({ a: 22 });
-        tx.commit();
+        const _tx = <Transacted<any>>tx;
+        const view = defView(_tx, ["a"], (x) => (acc.push(x), x), false);
+        _tx.begin();
+        _tx.reset({ a: 11 });
+        _tx.reset({ a: 22 });
+        _tx.commit();
         assert.deepEqual(acc, [1, 22]);
         assert.equal(view.deref(), 22);
     });

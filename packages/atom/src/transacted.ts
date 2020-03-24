@@ -1,14 +1,31 @@
 import { assert } from "@thi.ng/api";
-import { setIn, updateIn } from "@thi.ng/paths";
+import { setInUnsafe, updateInUnsafe } from "@thi.ng/paths";
 import { nextID } from "./idgen";
-import { View } from "./view";
-import type { Path, Watch } from "@thi.ng/api";
 import type {
-    IAtom,
-    IView,
-    SwapFn,
-    ViewTransform
-} from "./api";
+    DeepPath,
+    Path,
+    Path0,
+    Path1,
+    Path2,
+    Path3,
+    Path4,
+    Path5,
+    Path6,
+    Path7,
+    Path8,
+    PathVal1,
+    PathVal2,
+    PathVal3,
+    PathVal4,
+    PathVal5,
+    PathVal6,
+    PathVal7,
+    PathVal8,
+    Watch,
+} from "@thi.ng/api";
+import type { IAtom, SwapFn } from "./api";
+
+export const defTransacted = <T>(parent: IAtom<T>) => new Transacted(parent);
 
 export class Transacted<T> implements IAtom<T> {
     parent: IAtom<T>;
@@ -21,7 +38,7 @@ export class Transacted<T> implements IAtom<T> {
         this.parent = parent;
         this.current = undefined;
         this.isActive = false;
-        this.id = `tx${nextID()}-`;
+        this.id = `tx-${nextID()}`;
     }
 
     get value() {
@@ -50,9 +67,41 @@ export class Transacted<T> implements IAtom<T> {
         return val;
     }
 
-    resetIn<V>(path: Path, val: V) {
+    resetIn(path: Path0, val: T): T;
+    resetIn<A>(path: Path1<T, A>, val: PathVal1<T, A>): T;
+    resetIn<A, B>(path: Path2<T, A, B>, val: PathVal2<T, A, B>): T;
+    resetIn<A, B, C>(path: Path3<T, A, B, C>, val: PathVal3<T, A, B, C>): T;
+    resetIn<A, B, C, D>(
+        path: Path4<T, A, B, C, D>,
+        val: PathVal4<T, A, B, C, D>
+    ): T;
+    resetIn<A, B, C, D, E>(
+        path: Path5<T, A, B, C, D, E>,
+        val: PathVal5<T, A, B, C, D, E>
+    ): T;
+    resetIn<A, B, C, D, E, F>(
+        path: Path6<T, A, B, C, D, E, F>,
+        val: PathVal6<T, A, B, C, D, E, F>
+    ): T;
+    resetIn<A, B, C, D, E, F, G>(
+        path: Path7<T, A, B, C, D, E, F, G>,
+        val: PathVal7<T, A, B, C, D, E, F, G>
+    ): T;
+    resetIn<A, B, C, D, E, F, G, H>(
+        path: Path8<T, A, B, C, D, E, F, G, H>,
+        val: PathVal8<T, A, B, C, D, E, F, G, H>
+    ): T;
+    resetIn<A, B, C, D, E, F, G, H>(
+        path: DeepPath<T, A, B, C, D, E, F, G, H>,
+        val: any
+    ): T;
+    resetIn(path: Path, val: any) {
         this.ensureTx();
-        return this.reset(setIn(this.current, path, val));
+        return this.reset(setInUnsafe(this.current, path, val));
+    }
+
+    resetInUnsafe(path: Path, val: any) {
+        return this.resetIn(<any>path, val);
     }
 
     swap(fn: SwapFn<T>, ...args: any[]) {
@@ -60,9 +109,55 @@ export class Transacted<T> implements IAtom<T> {
         return this.reset(fn.apply(null, [this.current!, ...args]));
     }
 
-    swapIn<V>(path: Path, fn: SwapFn<V>, ...args: any[]) {
+    swapIn<A>(path: Path0, fn: SwapFn<T>, ...args: any[]): T;
+    swapIn<A>(path: Path1<T, A>, fn: SwapFn<PathVal1<T, A>>, ...args: any[]): T;
+    swapIn<A, B>(
+        path: Path2<T, A, B>,
+        fn: SwapFn<PathVal2<T, A, B>>,
+        ...args: any[]
+    ): T;
+    swapIn<A, B, C>(
+        path: Path3<T, A, B, C>,
+        fn: SwapFn<PathVal3<T, A, B, C>>,
+        ...args: any[]
+    ): T;
+    swapIn<A, B, C, D>(
+        path: Path4<T, A, B, C, D>,
+        fn: SwapFn<PathVal4<T, A, B, C, D>>,
+        ...args: any[]
+    ): T;
+    swapIn<A, B, C, D, E>(
+        path: Path5<T, A, B, C, D, E>,
+        fn: SwapFn<PathVal5<T, A, B, C, D, E>>,
+        ...args: any[]
+    ): T;
+    swapIn<A, B, C, D, E, F>(
+        path: Path6<T, A, B, C, D, E, F>,
+        fn: SwapFn<PathVal6<T, A, B, C, D, E, F>>,
+        ...args: any[]
+    ): T;
+    swapIn<A, B, C, D, E, F, G>(
+        path: Path7<T, A, B, C, D, E, F, G>,
+        fn: SwapFn<PathVal7<T, A, B, C, D, E, F, G>>,
+        ...args: any[]
+    ): T;
+    swapIn<A, B, C, D, E, F, G, H>(
+        path: Path8<T, A, B, C, D, E, F, G, H>,
+        fn: SwapFn<PathVal8<T, A, B, C, D, E, F, G, H>>,
+        ...args: any[]
+    ): T;
+    swapIn<A, B, C, D, E, F, G, H>(
+        path: DeepPath<T, A, B, C, D, E, F, G, H>,
+        fn: SwapFn<any>,
+        ...args: any[]
+    ): T;
+    swapIn(path: Path, fn: SwapFn<any>, ...args: any[]) {
         this.ensureTx();
-        return this.reset(updateIn(this.current, path, fn, ...args));
+        return this.reset(updateInUnsafe(this.current, path, fn, ...args));
+    }
+
+    swapInUnsafe(path: Path, fn: SwapFn<any>, ...args: any[]) {
+        return this.swapIn(<any>path, fn, ...args);
     }
 
     begin() {
@@ -98,10 +193,6 @@ export class Transacted<T> implements IAtom<T> {
 
     notifyWatches(old: T, curr: T) {
         this.parent.notifyWatches(old, curr);
-    }
-
-    addView<V>(path: Path, tx?: ViewTransform<V>, lazy = true): IView<V> {
-        return new View<V>(this, path, tx, lazy);
     }
 
     release() {

@@ -35,10 +35,10 @@ const app = () => {
                         }),
                         fromDOMEvent(window, "resize").subscribe({
                             next() {
-                                DB.resetIn("size", [
-                                    window.innerWidth,
-                                    window.innerHeight
-                                ]);
+                                DB.resetIn(
+                                    ["size"],
+                                    [window.innerWidth, window.innerHeight]
+                                );
                             }
                         })
                     ]

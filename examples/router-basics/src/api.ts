@@ -1,6 +1,6 @@
 import { EffectDef, EventBus, EventDef } from "@thi.ng/interceptors";
-import type { IObjectOf } from "@thi.ng/api";
-import type { IView, ViewTransform } from "@thi.ng/atom";
+import type { IObjectOf, Fn } from "@thi.ng/api";
+import type { IView, AtomPath } from "@thi.ng/atom";
 import type { HTMLRouterConfig, RouteMatch } from "@thi.ng/router";
 
 // general types defined for the base app
@@ -14,7 +14,7 @@ export type AppComponent = (ctx: AppContext, ...args: any[]) => any;
 /**
  * Derived view configurations.
  */
-export type ViewSpec = string | [string, ViewTransform<any>];
+export type ViewSpec = string | AtomPath | [string | AtomPath, Fn<any, any>];
 
 /**
  * Structure of the overall application config object.
@@ -90,7 +90,7 @@ export enum StatusType {
     DONE,
     INFO,
     SUCCESS,
-    ERROR
+    ERROR,
 }
 
 export interface Status extends Array<any> {

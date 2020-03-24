@@ -1,16 +1,16 @@
 import { isFunction, isPlainObject, isString } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
-import { getIn } from "@thi.ng/paths";
+import { getInUnsafe } from "@thi.ng/paths";
 import { absPath, resolve, ResolveFn } from "@thi.ng/resolve-map";
+import { CloseMode } from "@thi.ng/rstream";
+import { map, Transducer } from "@thi.ng/transducers";
 import {
     fromIterableSync,
     fromView,
     ISubscribable,
     StreamSync,
-    sync
+    sync,
 } from "@thi.ng/rstream";
-import { CloseMode } from "@thi.ng/rstream/api";
-import { map, Transducer } from "@thi.ng/transducers";
 import type { IObjectOf, Tuple } from "@thi.ng/api";
 import type { IAtom } from "@thi.ng/atom";
 import type {
@@ -22,7 +22,7 @@ import type {
     NodeInputSpec,
     NodeOutputs,
     NodeOutputSpec,
-    NodeSpec
+    NodeSpec,
 } from "./api";
 
 /**
@@ -152,7 +152,7 @@ const prepareNodeOutputs = (
             res[id] = ((path) =>
                 node.subscribe(
                     {
-                        next: (x) => state.resetIn(path, x)
+                        next: (x) => state.resetIn(<any>path, x),
                     },
                     { id: `out-${nodeID}` }
                 ))(o);
@@ -160,7 +160,7 @@ const prepareNodeOutputs = (
             res[id] = ((path, id) =>
                 node.subscribe(
                     {
-                        next: (x) => state.resetIn(path, x)
+                        next: (x) => state.resetIn(<any>path, x),
                     },
                     map((x) => (x != null ? x[id] : x)),
                     { id: `out-${nodeID}-${id}` }
@@ -191,7 +191,7 @@ export const addNode = (
         state,
         spec,
         id
-    )((path) => getIn(graph, absPath([id], path))));
+    )((path) => getInUnsafe(graph, absPath([id], path))));
 };
 
 /**

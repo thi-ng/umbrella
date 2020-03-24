@@ -1,11 +1,22 @@
-export const isTypedArray = (x: any): x is ArrayLike<number> =>
+type TypedArray =
+    | Float32Array
+    | Float64Array
+    | Int8Array
+    | Int16Array
+    | Int32Array
+    | Uint8Array
+    | Uint8ClampedArray
+    | Uint16Array
+    | Uint32Array;
+
+export const isTypedArray = (x: any): x is TypedArray =>
     x &&
-    (x.constructor === Float32Array ||
-        x.constructor === Uint32Array ||
-        x.constructor === Uint8Array ||
-        x.constructor === Uint8ClampedArray ||
-        x.constructor === Int8Array ||
-        x.constructor === Uint16Array ||
-        x.constructor === Int16Array ||
-        x.constructor === Int32Array ||
-        x.constructor === Float64Array);
+    (x instanceof Float32Array ||
+        x instanceof Float64Array ||
+        x instanceof Uint32Array ||
+        x instanceof Int32Array ||
+        x instanceof Uint8Array ||
+        x instanceof Int8Array ||
+        x instanceof Uint16Array ||
+        x instanceof Int16Array ||
+        x instanceof Uint8ClampedArray);

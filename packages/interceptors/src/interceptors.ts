@@ -1,4 +1,4 @@
-import { getIn, setter, updater } from "@thi.ng/paths";
+import { defSetterUnsafe, defUpdaterUnsafe, getInUnsafe } from "@thi.ng/paths";
 import {
     Event,
     FX_CANCEL,
@@ -6,7 +6,7 @@ import {
     FX_DISPATCH_NOW,
     FX_STATE,
     InterceptorFn,
-    InterceptorPredicate
+    InterceptorPredicate,
 } from "./api";
 import type { Fn, FnO, Path } from "@thi.ng/api";
 
@@ -34,7 +34,7 @@ export const forwardSideFx = (fxID: string): InterceptorFn => (
  * @param event -
  */
 export const dispatch = (event: Event): InterceptorFn => () => ({
-    [FX_DISPATCH]: event
+    [FX_DISPATCH]: event,
 });
 
 /**
@@ -44,7 +44,7 @@ export const dispatch = (event: Event): InterceptorFn => () => ({
  * @param event -
  */
 export const dispatchNow = (event: Event): InterceptorFn => () => ({
-    [FX_DISPATCH_NOW]: event
+    [FX_DISPATCH_NOW]: event,
 });
 
 /**
@@ -127,7 +127,7 @@ export const ensurePred = (
     !pred(state, e, bus, ctx)
         ? {
               [FX_CANCEL]: true,
-              ...(err ? err(state, e, bus, ctx) : null)
+              ...(err ? err(state, e, bus, ctx) : null),
           }
         : undefined;
 
@@ -135,7 +135,7 @@ const eventPathState = (
     state: any,
     path: Fn<Event, Path> | undefined,
     e: Event
-) => getIn(state, path ? path(e) : e[1]);
+) => getInUnsafe(state, path ? path(e) : e[1]);
 
 /**
  * Specialization of {@link ensurePred} to ensure a state value is less than
@@ -245,7 +245,7 @@ export const ensureParamRange = (
  * @param tx -
  */
 export const valueSetter = <T>(path: Path, tx?: Fn<T, T>): InterceptorFn => {
-    const $ = setter(path);
+    const $ = defSetterUnsafe(path);
     return (state, [_, val]) => ({ [FX_STATE]: $(state, tx ? tx(val) : val) });
 };
 
@@ -273,6 +273,6 @@ export const valueSetter = <T>(path: Path, tx?: Fn<T, T>): InterceptorFn => {
  * @param fn -
  */
 export const valueUpdater = <T>(path: Path, fn: FnO<T, T>): InterceptorFn => {
-    const $ = updater(path, fn);
+    const $ = defUpdaterUnsafe(path, fn);
     return (state, [_, ...args]) => ({ [FX_STATE]: $(state, ...args) });
 };

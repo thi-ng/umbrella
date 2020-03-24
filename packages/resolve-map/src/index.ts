@@ -1,4 +1,4 @@
-import { SEMAPHORE } from "@thi.ng/api";
+import { NumOrString, SEMAPHORE } from "@thi.ng/api";
 import {
     isArray,
     isFunction,
@@ -6,13 +6,13 @@ import {
     isString
 } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
-import { exists, getIn, mutIn } from "@thi.ng/paths";
+import { exists, getInUnsafe, mutInUnsafe } from "@thi.ng/paths";
 
 const RE_ARGS = /^(function\s+\w+)?\s*\(\{([\w\s,:]+)\}/;
 
 export type ResolveFn = (path: string) => any;
 
-export type LookupPath = PropertyKey[];
+export type LookupPath = NumOrString[];
 
 /**
  * Visits all key-value pairs or array items in depth-first order,
@@ -153,7 +153,7 @@ const _resolve = (
         illegalArgs(`cyclic references not allowed: ${pathID}`);
     }
     // console.log(pp, resolved[pp], stack);
-    let v = getIn(root, path);
+    let v = getInUnsafe(root, path);
     if (!resolved[pathID]) {
         let res = SEMAPHORE;
         stack.push(pathID);
@@ -175,7 +175,7 @@ const _resolve = (
             v = resolvePath(root, path, resolved, stack);
         }
         if (res !== SEMAPHORE) {
-            mutIn(root, path, res);
+            mutInUnsafe(root, path, res);
             v = res;
         }
         resolved[pathID] = true;
@@ -297,7 +297,7 @@ export const absPath = (
     curr: LookupPath,
     path: string,
     idx = 1
-): PropertyKey[] => {
+): NumOrString[] => {
     if (path.charAt(idx) === "/") {
         return path.substr(idx + 1).split("/");
     }

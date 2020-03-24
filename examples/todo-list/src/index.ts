@@ -1,6 +1,10 @@
-import { Atom, Cursor, History } from "@thi.ng/atom";
+import {
+    defAtom,
+    defCursor,
+    defHistory,
+    defView
+} from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom";
-import { setIn, updateIn } from "@thi.ng/paths";
 import { map, pairs } from "@thi.ng/transducers";
 import type { IObjectOf } from "@thi.ng/api";
 
@@ -9,52 +13,53 @@ interface Task {
     body: string;
 }
 
+type Tasks = IObjectOf<Task>;
+
+interface State {
+    tasks: Tasks;
+    nextID: number;
+}
+
 // central app state (immutable)
-const db = new Atom({ tasks: {}, nextID: 0 });
+const db = defAtom<State>({ tasks: {}, nextID: 0 });
 // attach undo/redo history for `tasks` branch (arbitrary undo limit of 100 steps)
-const tasks = new History<IObjectOf<Task>>(new Cursor(db, "tasks"), 100);
+const tasks = defHistory(defCursor(db, ["tasks"]), 100);
 // cursor for direct access to `nextID`
-const nextID = new Cursor<number>(db, "nextID");
+const nextID = defCursor(db, ["nextID"]);
 // create derived view of tasks transformed into components
-const items = db.addView("tasks", (tasks) => [
-    ...map(([id, t]) => taskItem(id, t), pairs<Task>(tasks))
+const items = defView(db, ["tasks"], (tasks: Tasks) => [
+    ...map(([id, t]) => taskItem(id, t), pairs(tasks)),
 ]);
 
 // state updaters
 // each applies its updates via the history atom wrapper
 // the `atom.setter` calls produce an immutable update function for given paths
 const addNewTask = () =>
-    tasks.swap((tasks) =>
-        setIn(
-            tasks,
-            nextID.swap((id) => id + 1),
-            { body: "", done: false }
-        )
-    );
+    tasks.resetIn([nextID.swap((id) => id + 1)], { body: "", done: false });
 const toggleTask = (id: string) =>
-    tasks.swap((tasks) => updateIn(tasks, [id, "done"], (done) => !done));
+    tasks.swapIn(<const>[id, "done"], (done) => !done);
 const updateTask = (id: string, body: string) =>
-    tasks.swap((tasks) => setIn(tasks, [id, "body"], body));
+    tasks.resetIn(<const>[id, "body"], body);
 
 // single task component
-const taskItem = (id: string, task: Task) => {
+const taskItem = (id: string, task: Task): any[] => {
     const checkAttribs = {
         type: "checkbox",
         checked: task.done,
-        onclick: () => toggleTask(id)
+        onclick: () => toggleTask(id),
     };
     const textAttribs = {
         type: "text",
         placeholder: "todo...",
         value: task.body,
         onkeydown: (e: any) => e.key === "Enter" && e.target.blur(),
-        onblur: (e: any) => updateTask(id, (<HTMLInputElement>e.target).value)
+        onblur: (e: any) => updateTask(id, (<HTMLInputElement>e.target).value),
     };
     return [
         "div",
         { class: "task" + (task.done ? " done" : "") },
         ["input", checkAttribs],
-        ["input", textAttribs]
+        ["input", textAttribs],
     ];
 };
 
@@ -80,7 +85,7 @@ const toolbar = () => {
         "div#toolbar",
         [btAdd],
         [btUndo, !tasks.canUndo()],
-        [btRedo, !tasks.canRedo()]
+        [btRedo, !tasks.canRedo()],
     ];
 };
 
@@ -95,11 +100,11 @@ const header = [
             "a",
             {
                 href:
-                    "https://github.com/thi-ng/umbrella/tree/develop/packages/hdom"
+                    "https://github.com/thi-ng/umbrella/tree/develop/packages/hdom",
             },
-            "@thi.ng/hdom"
-        ]
-    ]
+            "@thi.ng/hdom",
+        ],
+    ],
 ];
 
 const app = () => {

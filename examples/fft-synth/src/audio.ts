@@ -41,7 +41,7 @@ export const updateAudio = () => {
     }
     delay.next(bins);
     const wave = ifft(conjugate(bins))[0];
-    DB.resetIn("wave", wave);
+    DB.resetIn(["wave"], <Float64Array>wave);
 
     if (!actx) return;
     const left = buf.getChannelData(0);

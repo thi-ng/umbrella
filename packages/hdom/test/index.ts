@@ -1,4 +1,4 @@
-import { Atom } from "@thi.ng/atom";
+import { defAtom, defView } from "@thi.ng/atom";
 import { derefContext } from "@thi.ng/hiccup";
 import { map, range } from "@thi.ng/iterators";
 import * as assert from "assert";
@@ -71,13 +71,13 @@ describe("hdom", () => {
             {},
             ["div", { id: "id0" }, 0],
             ["div", { id: "id1" }, 1],
-            ["div", { id: "id2" }, 2]
+            ["div", { id: "id2" }, 2],
         ]
     );
 
-    check("deref toplevel", new Atom(["a"]), ["a", {}]);
+    check("deref toplevel", defAtom(["a"]), ["a", {}]);
 
-    check("deref child", ["a", new Atom(["b"])], ["a", {}, ["b", {}]]);
+    check("deref child", ["a", defAtom(["b"])], ["a", {}, ["b", {}]]);
 
     it("life cycle", () => {
         let src: any = { render: () => ["div", "foo"] };
@@ -98,15 +98,15 @@ describe("hdom", () => {
             derefContext(
                 {
                     a: 23,
-                    b: new Atom(42),
-                    c: new Atom({ foo: { bar: 66 } }).addView("foo.bar")
+                    b: defAtom(42),
+                    c: defView(defAtom({ foo: { bar: 66 } }), ["foo", "bar"]),
                 },
                 ["a", "b", "c"]
             ),
             {
                 a: 23,
                 b: 42,
-                c: 66
+                c: 66,
             }
         );
     });

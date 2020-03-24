@@ -1,5 +1,5 @@
 import { illegalArgs } from "@thi.ng/errors";
-import { deleteIn, setIn, updateIn } from "@thi.ng/paths";
+import { deleteInUnsafe, setInUnsafe, updateInUnsafe } from "@thi.ng/paths";
 import { reducer, Reducer } from "@thi.ng/transducers";
 import { reduce } from "@thi.ng/transducers";
 import { isNumber } from "util";
@@ -20,11 +20,11 @@ export function patchObj(init?: any, patches?: Iterable<PatchObjOp>) {
     const edit = (acc: any, x: PatchObjOp) => {
         switch (x[0]) {
             case Patch.SET:
-                return setIn(acc, x[1], x[2]);
+                return setInUnsafe(acc, x[1], x[2]);
             case Patch.UPDATE:
-                return updateIn(acc, x[1], x[2], ...x.slice(3));
+                return updateInUnsafe(acc, x[1], x[2], ...x.slice(3));
             case Patch.DELETE:
-                return deleteIn(acc, x[1]);
+                return deleteInUnsafe(acc, x[1]);
             default:
                 illegalArgs(`patch op: ${x}`);
         }

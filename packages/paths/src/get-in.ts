@@ -1,121 +1,83 @@
-import { getterT } from "./getter";
+import { defGetter } from "./getter";
 import type {
-    Keys,
-    Keys1,
-    Keys2,
-    Keys3,
-    Keys4,
-    Keys5,
-    Keys6,
-    Keys7,
+    DeepPath,
     Path,
-    Val1,
-    Val2,
-    Val3,
-    Val4,
-    Val5,
-    Val6,
-    Val7,
-    Val8
+    Path0,
+    Path1,
+    Path3,
+    Path4,
+    Path5,
+    Path6,
+    Path7,
+    Path8,
+    PathVal1,
+    PathVal2,
+    PathVal3,
+    PathVal4,
+    PathVal5,
+    PathVal6,
+    PathVal7,
+    PathVal8,
 } from "@thi.ng/api";
 
 /**
- * Immediate use getter, i.e. same as: `getter(path)(state)`.
- *
- * @remarks
- * Supports type checked paths and values for path lengths <= 8. String
- * paths are always unchecked (i.e. `state` is `any`).
+ * Immediate use getter, i.e. same as: `defGetter(path)(state)`.
  *
  * @example
  * ```ts
- * // checked path and inferred return type
+ * // type checked path and inferred return type
  * getIn({ a: { b: { c: 23 } } }, ["a","b","c"]);
  * // 23
  *
  * // unchecked path
- * getIn({ a: { b: { c: 23 } } }, "a.b.c");
+ * getInUnsafe({ a: { b: { c: 23 } } }, "a.b.c");
  * // 23
  * ```
  *
  * @param state -
  * @param path -
  */
-export const getIn = (state: any, path: Path): any => getterT(<any>path)(state);
+export const getInUnsafe = (state: any, path: Path): any =>
+    defGetter(<any>path)(state);
 
 /**
- * Type checked version of {@link getIn}.
+ * Type checked version of {@link getInUnsafe}. Only the first 8 path
+ * levels are type checked.
  *
  * @param state -
  * @param path -
  */
-export function getInT<T>(state: T, path: []): T;
-export function getInT<T, A extends Keys<T>>(state: T, path: [A]): Val1<T, A>;
-export function getInT<T, A extends Keys<T>, B extends Keys1<T, A>>(
+export function getIn<T>(state: T, path: Path0): T;
+export function getIn<T, A>(state: T, path: Path1<T, A>): PathVal1<T, A>;
+export function getIn<T, A, B>(state: T, path: Path1<A, B>): PathVal2<T, A, B>;
+export function getIn<T, A, B, C>(
     state: T,
-    path: [A, B]
-): Val2<T, A, B>;
-export function getInT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>
->(state: T, path: [A, B, C]): Val3<T, A, B, C>;
-export function getInT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>
->(state: T, path: [A, B, C, D]): Val4<T, A, B, C, D>;
-export function getInT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>,
-    E extends Keys4<T, A, B, C, D>
->(state: T, path: [A, B, C, D, E]): Val5<T, A, B, C, D, E>;
-export function getInT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>,
-    E extends Keys4<T, A, B, C, D>,
-    F extends Keys5<T, A, B, C, D, E>
->(state: T, path: [A, B, C, D, E, F]): Val6<T, A, B, C, D, E, F>;
-export function getInT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>,
-    E extends Keys4<T, A, B, C, D>,
-    F extends Keys5<T, A, B, C, D, E>,
-    G extends Keys6<T, A, B, C, D, E, F>
->(state: T, path: [A, B, C, D, E, F, G]): Val7<T, A, B, C, D, E, F, G>;
-export function getInT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>,
-    E extends Keys4<T, A, B, C, D>,
-    F extends Keys5<T, A, B, C, D, E>,
-    G extends Keys6<T, A, B, C, D, E, F>,
-    H extends Keys7<T, A, B, C, D, E, F, G>
->(state: T, path: [A, B, C, D, E, F, G, H]): Val8<T, A, B, C, D, E, F, G, H>;
-export function getInT<
-    T,
-    A extends Keys<T>,
-    B extends Keys1<T, A>,
-    C extends Keys2<T, A, B>,
-    D extends Keys3<T, A, B, C>,
-    E extends Keys4<T, A, B, C, D>,
-    F extends Keys5<T, A, B, C, D, E>,
-    G extends Keys6<T, A, B, C, D, E, F>,
-    H extends Keys7<T, A, B, C, D, E, F, G>
->(state: T, path: [A, B, C, D, E, F, G, H, ...any[]]): any;
-export function getInT(state: any, path: Path) {
-    return getterT(<any>path)(state);
+    path: Path3<T, A, B, C>
+): PathVal3<T, A, B, C>;
+export function getIn<T, A, B, C, D>(
+    state: T,
+    path: Path4<T, A, B, C, D>
+): PathVal4<T, A, B, C, D>;
+export function getIn<T, A, B, C, D, E>(
+    state: T,
+    path: Path5<T, A, B, C, D, E>
+): PathVal5<T, A, B, C, D, E>;
+export function getIn<T, A, B, C, D, E, F>(
+    state: T,
+    path: Path6<T, A, B, C, D, E, F>
+): PathVal6<T, A, B, C, D, E, F>;
+export function getIn<T, A, B, C, D, E, F, G>(
+    state: T,
+    path: Path7<T, A, B, C, D, E, F, G>
+): PathVal7<T, A, B, C, D, E, F, G>;
+export function getIn<T, A, B, C, D, E, F, G, H>(
+    state: T,
+    path: Path8<T, A, B, C, D, E, F, G, H>
+): PathVal8<T, A, B, C, D, E, F, G, H>;
+export function getIn<T, A, B, C, D, E, F, G, H>(
+    state: T,
+    path: DeepPath<T, A, B, C, D, E, F, G, H>
+): any;
+export function getIn(state: any, path: Path) {
+    return defGetter(<any>path)(state);
 }

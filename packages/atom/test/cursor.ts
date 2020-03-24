@@ -1,88 +1,83 @@
 import { isNumber } from "@thi.ng/checks";
-import { getIn } from "@thi.ng/paths";
 import * as assert from "assert";
-import { Atom, Cursor } from "../src/index";
+import {
+    Atom,
+    Cursor,
+    defAtom,
+    defCursor
+} from "../src/index";
 
-describe("cursor", function() {
-    let a: Atom<any>;
+interface State {
+    a: {
+        b: {
+            c: number;
+            g: {
+                h: number;
+            };
+        };
+        d: {
+            e: number;
+        };
+    };
+    f: number;
+}
+
+describe("cursor", function () {
+    let a: Atom<State>;
     let c: Cursor<any>;
     let src: any;
 
     beforeEach(() => {
         src = { a: { b: { c: 23, g: { h: 88 } }, d: { e: 42 } }, f: 66 };
-        a = new Atom(src);
+        a = defAtom<State>(src);
     });
 
     it("can be deref'd (a)", () => {
-        c = new Cursor(a, "a");
+        c = defCursor(a, ["a"]);
         assert.strictEqual(c.parent, a);
         assert.deepStrictEqual(c.deref(), src.a);
     });
 
     it("can be deref'd (a.b)", () => {
-        c = new Cursor(a, "a.b");
+        c = defCursor(a, ["a", "b"]);
         assert.deepStrictEqual(c.deref(), src.a.b);
     });
 
     it("can be deref'd (a.b.c)", () => {
-        c = new Cursor(a, "a.b.c");
+        c = defCursor(a, ["a", "b", "c"]);
         assert.equal(c.deref(), src.a.b.c);
     });
 
     it("can be deref'd (path array)", () => {
-        c = new Cursor(a, ["a", "b", "g", "h"]);
+        c = defCursor(a, ["a", "b", "g", "h"]);
         assert.equal(c.deref(), src.a.b.g.h);
     });
 
     it("doesn't fail w/ invalid path", () => {
-        c = new Cursor(a, "a.b.x.y.z");
+        c = defCursor(<Atom<any>>a, ["a", "b", "x", "y", "z"]);
         assert.strictEqual(c.deref(), undefined);
-        c = new Cursor(new Atom(null), "a");
+        c = defCursor(new Atom<any>(null), ["a"]);
         assert.strictEqual(c.deref(), undefined);
-        c = new Cursor(new Atom(null), 0);
+        c = defCursor(new Atom<any>(null), [0]);
         assert.strictEqual(c.deref(), undefined);
-    });
-
-    it("works with get/set", () => {
-        c = new Cursor(
-            a,
-            (s) => s.a.b,
-            (s, x) => ({ ...s, a: { ...s.a, b: x } })
-        );
-        assert.strictEqual(c.deref(), src.a.b);
-        c.reset(42);
-        assert.equal(c.deref(), 42);
-        assert.equal(c.deref(), getIn(a.deref(), "a.b"));
-    });
-
-    it("works with get/set opts", () => {
-        c = new Cursor({
-            parent: a,
-            path: [(s) => s.a.b, (s, x) => ({ ...s, a: { ...s.a, b: x } })]
-        });
-        assert.strictEqual(c.deref(), src.a.b);
-        c.reset(42);
-        assert.equal(c.deref(), 42);
-        assert.equal(c.deref(), getIn(a.deref(), "a.b"));
     });
 
     it("can be validated", () => {
-        c = new Cursor({
-            parent: a,
-            path: "a.b.c",
-            validate: isNumber
-        });
+        c = defCursor(a, ["a", "b", "c"], { validate: isNumber });
         assert.equal(c.reset(42), 42);
         assert.equal(c.reset("a"), 42);
         assert.equal(c.reset(null), 42);
-        assert.throws(
-            () => new Cursor({ parent: a, path: "x", validate: isNumber })
+        assert.throws(() =>
+            defCursor(<Atom<any>>a, ["x"], { validate: isNumber })
         );
     });
 
     it("can be swapped'd (a.b.c)", () => {
-        c = new Cursor(a, "a.b.c");
-        assert.equal(c.swap((x) => x + 1), src.a.b.c + 1);
+        c = defCursor(a, ["a", "b", "c"]);
+        assert.equal(
+            c.swap((x) => x + 1),
+            src.a.b.c + 1
+        );
         assert.equal(c.deref(), src.a.b.c + 1);
         assert.equal(a.deref().a.b.c, src.a.b.c + 1);
         assert.strictEqual(a.deref().a.d, src.a.d);
@@ -94,7 +89,7 @@ describe("cursor", function() {
     });
 
     it("can be reset (a.b.c)", () => {
-        c = new Cursor(a, "a.b.c");
+        c = defCursor(a, ["a", "b", "c"]);
         assert.equal(c.reset(100), 100);
         assert.equal(c.deref(), 100);
         assert.equal(a.deref().a.b.c, 100);
@@ -103,7 +98,7 @@ describe("cursor", function() {
     });
 
     it("can update invalid path (x.y.z)", () => {
-        c = new Cursor(a, "x.y.z");
+        c = defCursor(<Atom<any>>a, ["x", "y", "z"]);
         let add = (x: any) => (x != null ? x + 1 : 0);
         assert.equal(c.swap(add), 0);
         assert.equal(c.deref(), 0);
@@ -111,20 +106,20 @@ describe("cursor", function() {
         assert.equal(c.deref(), 1);
         assert.equal(c.reset(100), 100);
         assert.equal(c.deref(), 100);
-        assert.equal(a.deref().x.y.z, 100);
+        assert.equal((<Atom<any>>a).deref().x.y.z, 100);
         assert.strictEqual(src.x, undefined);
     });
 
     it("reflects parent update", () => {
-        c = new Cursor(a, "a.d");
+        c = defCursor(a, ["a", "d"]);
         assert.deepStrictEqual(c.deref(), src.a.d);
         let src2 = { a: { b: { c: 23 }, d: { e: 42 } }, f: 66 };
-        a.reset(src2);
+        (<Atom<any>>a).reset(src2);
         assert.deepStrictEqual(c.deref(), src2.a.d);
     });
 
     it("can be released", () => {
-        c = new Cursor(a, "a");
+        c = defCursor(a, ["a"]);
         let id = c.id;
         assert.notEqual((<any>a)._watches[id], null);
         assert.ok(c.release());
@@ -133,8 +128,11 @@ describe("cursor", function() {
     });
 
     it("can add & remove watch", () => {
-        c = new Cursor(a, "a.b.c");
-        assert.ok(c.addWatch("foo", () => {}), "can't add watch");
+        c = defCursor(a, ["a", "b", "c"]);
+        assert.ok(
+            c.addWatch("foo", () => {}),
+            "can't add watch"
+        );
         assert.ok(
             (<any>c).local._watches && (<any>c).local._watches.foo,
             "watch missing"
@@ -147,7 +145,7 @@ describe("cursor", function() {
     });
 
     it("can be watched", () => {
-        c = new Cursor(a, "a.b.c");
+        c = defCursor(a, ["a", "b", "c"]);
         c.addWatch("foo", (id, prev, curr) => {
             assert.equal(id, "foo", "wrong id");
             assert.equal(prev, 23, "wrong prev");

@@ -1,5 +1,5 @@
 import { isArray, isString } from "@thi.ng/checks";
-import type { Path } from "@thi.ng/api";
+import type { NumOrString, Path } from "@thi.ng/api";
 
 /**
  * Converts the given key path to canonical form (array).
@@ -17,7 +17,7 @@ import type { Path } from "@thi.ng/api";
  *
  * @param path -
  */
-export const toPath = (path: Path) =>
+export const toPath = (path: Path): NumOrString[] =>
     isArray(path)
         ? path
         : isString(path)
