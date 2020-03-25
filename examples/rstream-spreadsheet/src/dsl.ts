@@ -16,10 +16,9 @@ import {
     runtime,
     Str,
     Sym,
-    tokenize
+    tokenize,
 } from "@thi.ng/sexpr";
-import { maybeParseFloat, Z2 } from "@thi.ng/strings";
-import { charRange } from "@thi.ng/strings";
+import { charRange, maybeParseFloat, Z2 } from "@thi.ng/strings";
 import {
     add,
     assocObj,
@@ -37,7 +36,7 @@ import {
     range,
     Reducer,
     sub,
-    transduce
+    transduce,
 } from "@thi.ng/transducers";
 import { RE_CELL_ID, RE_CELL_RANGE } from "./api";
 import { DB, graph, removeCell } from "./state";
@@ -65,7 +64,7 @@ const rt = runtime<Implementations<Env, any>, Env, any>({
     expr: (x, env) =>
         builtins(<Sym>x.children[0], x.children, {
             ...env,
-            depth: env.depth + 1
+            depth: env.depth + 1,
         }),
     // other symbols are interpreted as cell IDs
     sym: (x) =>
@@ -74,7 +73,7 @@ const rt = runtime<Implementations<Env, any>, Env, any>({
             : illegalArgs("invalid cell ID"),
     // strings & number used verbatim
     str: (x) => ({ const: x.value }),
-    num: (x) => ({ const: x.value })
+    num: (x) => ({ const: x.value }),
 });
 
 /**
@@ -108,7 +107,7 @@ const defNode = (spec: NodeSpec, vals: ASTNode[], env: Env) => {
     if (env.depth === 1) {
         id = env.id;
         spec.outs = {
-            "*": [id, "value"]
+            "*": [id, "value"],
         };
     } else {
         id = JSON.stringify(vals);
@@ -162,13 +161,16 @@ const defBuiltin = (fn: Fn<IObjectOf<number>, any>) => (
                             return <NodeInputSpec[]>[rt(i, env)];
                         }
                     }),
+                    // form pairs of [numbered-arg, input]
                     mapIndexed(
                         (i, input) => <[string, NodeInputSpec]>[Z2(i), input]
                     )
                 ),
+                // build object
                 assocObj<NodeInputSpec>(),
+                // only process s-expr args
                 vals.slice(1)
-            )
+            ),
         },
         vals,
         env
@@ -210,9 +212,9 @@ const cellInput = memoize1(
     (id: string): NodeInputSpec => ({
         stream: () =>
             fromView(DB, {
-                path: [id.toUpperCase(), "value"],
-                tx: (x) => maybeParseFloat(x, null)
-            })
+                path: <const>[id.toUpperCase(), "value"],
+                tx: (x) => maybeParseFloat(<string>x, null),
+            }),
     })
 );
 
@@ -261,5 +263,5 @@ builtins.addAll({
     abs: defBuiltin(({ "00": x }) => Math.abs(x)),
     fit: defBuiltin(({ "00": x, "01": a, "02": b, "03": c, "04": d }) =>
         fit(x, a, b, c, d)
-    )
+    ),
 });
