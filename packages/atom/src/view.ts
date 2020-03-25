@@ -26,10 +26,6 @@ import type {
 } from "@thi.ng/api";
 import type { IView, ReadonlyAtom } from "./api";
 
-// const a = defAtom({ a: { b: { c: 1 } } });
-// const v1 = defView(a, ["a", "b", "c"], (x) => "");
-// const v2 = defView(a, ["a", "b", "c"]);
-
 export function defView<T, R = undefined>(
     parent: ReadonlyAtom<T>,
     path: Path0,
