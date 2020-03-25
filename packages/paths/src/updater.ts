@@ -34,6 +34,9 @@ import type { UpdateFn } from "./api";
  * `fn` to given path value (incl. any additional / optional arguments
  * passed) and uses result as new value. Does not modify original state.
  *
+ * The type parameter `T` can be used to indicate the type of the nested
+ * value to be updated (default: `any`).
+ *
  * @example
  * ```ts
  * const incB = defUpdaterUnsafe("a.b", (x, n) => x + n);
@@ -47,8 +50,10 @@ import type { UpdateFn } from "./api";
  * @param path -
  * @param fn -
  */
-export const defUpdaterUnsafe = (path: Path, fn: UpdateFn<any>) =>
-    defUpdater(<any>path, fn);
+export const defUpdaterUnsafe = <T = any>(
+    path: Path,
+    fn: UpdateFn<T>
+): FnO<T, any> => defUpdater(<any>path, fn);
 
 /**
  * Type checked version of {@link defUpdaterUnsafe}. Only the first 8

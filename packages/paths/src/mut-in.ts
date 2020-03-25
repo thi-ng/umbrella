@@ -22,20 +22,14 @@ import type {
 } from "@thi.ng/api";
 
 /**
- * Immediate use mutator, i.e. same as: `defMutatorUnsafe(path)(state,
- * val)`.
+ * Unchecked version of {@link mutIn}.
+ *
+ * @remarks
+ * The type parameter `T` can be used to indicate the type of the nested
+ * value to be mutated (default: `any`).
  *
  * @example
  * ```ts
- * interface Foo {
- *   a: { b: number[]; }
- * }
- *
- * // fully type checked
- * mutIn({ a: { b: [10, 20] } }, ["a", "b", 1], 23)
- * // { a: { b: [ 10, 23 ] } }
- *
- * // unchecked
  * mutIn({ a: { b: [10, 20] } }, "a.b.1", 23);
  * // { a: { b: [ 10, 23 ] } }
  *
@@ -48,12 +42,23 @@ import type {
  * @param path -
  * @param val -
  */
-export const mutInUnsafe = (state: any, path: Path, val: any) =>
+export const mutInUnsafe = <T = any>(state: any, path: Path, val: T): any =>
     defMutator(<any>path)(state, val);
 
 /**
- * Type checked version of {@link mutIn}. Only the first 8 path levels
- * are type checked.
+ * Type checked, immediate use mutator, i.e. same as:
+ * `defMutator(path)(state, val)`.
+ *
+ * @remarks
+ * Only the first 8 path levels are type checked.
+ *
+ * Also see {@link defMutator}, {@link mutInUnsafe}
+ *
+ * @example
+ * ```ts
+ * mutIn({ a: { b: [10, 20] } }, ["a", "b", 1], 23)
+ * // { a: { b: [ 10, 23 ] } }
+ * ```
  *
  * @param state -
  * @param path -

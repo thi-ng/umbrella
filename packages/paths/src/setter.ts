@@ -34,6 +34,9 @@ import type {
  * with the original data for any branches not being updated by the
  * setter.
  *
+ * The type parameter `T` can be used to indicate the type of the nested
+ * value to be updated (default: `any`).
+ *
  * If `path` is given as string, it will be split using `.`. Returns
  * function which accepts single object and when called, **immutably**
  * updates value at given path, i.e. produces a partial deep copy of obj
@@ -79,7 +82,7 @@ import type {
  *
  * @param path -
  */
-export const defSetterUnsafe = (path: Path): Fn2<any, any, any> =>
+export const defSetterUnsafe = <T = any>(path: Path): Fn2<any, T, any> =>
     defSetter(<any>path);
 
 /**

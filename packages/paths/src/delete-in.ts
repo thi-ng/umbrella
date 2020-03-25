@@ -21,33 +21,41 @@ import type {
 } from "@thi.ng/api";
 
 /**
- * Uses {@link updateIn} and returns updated state with key for
- * given path removed. Does not modify original state. Returns
- * `undefined` if `path` is an empty string or array.
+ * Unchecked version of {@link deleteIn}. Path can be given as string or
+ * tuple.
  *
  * @example
  * ```ts
  * // unchecked
  * deleteIn({ a: { b: { c: 23 } } }, "a.b.c");
  * // { a: { b: { } } }
- *
- * // type checked
- * deleteIn({ a: { b: { c: 23 } } }, ["a","b","c"]);
- *
- * // error (wrong path)
- * deleteIn({ a: { b: { c: 23 } } }, ["a","b","d"]);
  * ```
  *
  * @param state -
  * @param path -
  */
-export const deleteInUnsafe = (state: any, path: Path) =>
+export const deleteInUnsafe = (state: any, path: Path): any =>
     deleteIn(state, <any>path);
 
 /**
- * Type checked version of {@link deleteInUnsafe}. Only the first 8 path
- * levels are type checked. The result type will have the path value
- * removed too.
+ * Uses {@link updateIn} and returns updated state with key for given
+ * path removed. Does not modify original state. Returns `undefined` if
+ * `path` is an empty string or array.
+ *
+ * @remarks
+ * Only the first 8 path levels are type checked. The result type will
+ * have the path value removed too.
+ *
+ * See {@link deleteInUnsafe} for unchecked version.
+ *
+ * @example
+ * ```ts
+ * // type checked
+ * deleteIn({ a: { b: { c: 23 } } }, ["a","b","c"]);
+ *
+ * // error (invalid path)
+ * deleteIn({ a: { b: { c: 23 } } }, ["a","b","d"]);
+ * ```
  *
  * @param state -
  * @param path -

@@ -22,8 +22,11 @@ import type {
 } from "@thi.ng/api";
 
 /**
- * Immediate use setter, i.e. same as: `defSetterUnsafe(path)(state,
- * val)`.
+ * Unchecked version of {@link setIn}.
+ *
+ * @remarks
+ * The type parameter `T` can be used to indicate the type of the nested
+ * value to be set (default: `any`).
  *
  * @example
  * ```ts
@@ -34,12 +37,25 @@ import type {
  * @param state -
  * @param path -
  */
-export const setInUnsafe = (state: any, path: Path, val: any): any =>
+export const setInUnsafe = <T>(state: any, path: Path, val: T): any =>
     defSetter(<any>path)(state, val);
 
 /**
- * Type checked version of {@link setInUnsafe}. Only the first 8 path
- * levels are type checked.
+ * Type checked, immediate use setter, i.e. same as:
+ * `defSetterUnsafe(path)(state, val)`.
+ *
+ * @remarks
+ * Only the first 8 path levels are type checked.
+ *
+ * @example
+ * ```ts
+ * // type checked path & value
+ * setIn({ a: { b: { c: 23 } } }, ["a", "b", "c"], 24);
+ * // { a: { b: { c: 24 } } }
+ *
+ * // error (wrong value type)
+ * setIn({ a: { b: { c: 23 } } }, ["a", "b", "c"], "24");
+ * ```
  *
  * @param state -
  * @param path -

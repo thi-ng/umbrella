@@ -8,19 +8,22 @@ import type { Path } from "@thi.ng/api";
  * each.
  *
  * @remarks
- * Any key paths missing in the data structure will be created. Does
- * *not* mutate original (instead use {@link mutInManyUnsafe} for this
- * purpose).
+ * Any intermediate key paths missing in the data structure will be
+ * created. Does NOT mutate original (instead use
+ * {@link mutInManyUnsafe} for this purpose).
+ *
+ * The type parameter `T` can be used to indicate the type of the
+ * overall state value and will also be used as return type.
  *
  * @example
  * ```ts
- * setInMany(
+ * setInManyUnsafe(
  *   {},
  *   // pair #1
  *   "a.b", 10,
  *   // pair #2
  *   "x.y.z", 20
- * )
+ * );
  * // { a: { b: 10 }, x: { y: { z: 20 } } }
  * ```
  *

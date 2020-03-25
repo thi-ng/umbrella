@@ -4,9 +4,15 @@ import type { Path } from "@thi.ng/api";
 
 /**
  * Similar to {@link mutInUnsafe}, but takes any number of path-value
- * pairs as args and applies them in sequence using `mutInUnsafe()`. All
- * key paths must already be present in the given data structure until
- * their penultimate key. Missing leaf values are supported.
+ * pairs as args and applies them in sequence using `mutInUnsafe()`.
+ *
+ * @remarks
+ * All intermediate path keys must already be present in the given data
+ * structure until their penultimate key. Missing leaf keys are
+ * supported.
+ *
+ * The type parameter `T` can be used to indicate the type of the state
+ * value and will also be used as return type.
  *
  * @example
  * ```ts

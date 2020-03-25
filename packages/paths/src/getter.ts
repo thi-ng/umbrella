@@ -23,24 +23,46 @@ import type {
 } from "@thi.ng/api";
 
 /**
- * Composes a getter function for given nested lookup path. Optimized
- * fast execution paths are provided for path lengths <= 4.
+ * Unchecked version of {@link defGetter}.
  *
  * @remarks
+ * The type parameter `T` can be used to indicate the type of the nested
+ * value to be retrieved (default: `any`).
+ *
+ * Also see: {@link getIn}, {@link getInUnsafe}
+ *
+ * @example
+ * ```ts
+ * const g = defGetterUnsafe("a.b.c");
+ *
+ * g({ a: { b: { c: 23} } }) // 23
+ * g({ x: 23 }) // undefined
+ * g() // undefined
+ * ```
+ *
+ * @param path -
+ */
+export const defGetterUnsafe = <T = any>(path: Path): Fn<any, T | undefined> =>
+    defGetter(<any>path);
+
+/**
+ * Creates getter function for given nested lookup path. Returns
+ * function which accepts single object and returns value at given path.
+ *
+ * @remarks
+ * Optimized fast execution paths are provided for path lengths <= 4.
+ * Only the first 8 path levels are type checked.
+ *
  * Supports any `[]`-indexable data structure (arrays, objects,
  * strings).
  *
- * If `path` is given as string, it will be split using `.`. Returns
- * function which accepts single object and when called, returns value
- * at given path.
+ * If any intermediate key is not present in the given obj, further
+ * descent stops and the function returns `undefined`.
  *
- * If any intermediate key is not present in the given obj, descent
- * stops and the function returns `undefined`.
+ * If `path` is an empty array, the returned getter will simply return
+ * the given state arg (aka identity function).
  *
- * If `path` is an empty string or array, the returned getter will
- * simply return the given state arg (identity function).
- *
- * Also see: {@link defGetter}, {@link getIn}, {@link getInUnsafe}
+ * Also see: {@link defGetterUnsafe}, {@link getIn}, {@link getInUnsafe}
  *
  * @example
  * ```ts
@@ -54,22 +76,10 @@ import type {
  * // error (wrong `d` key)
  * g = defGetter<Foo, "a", "b", "d">(["a","b","d"]);
  *
- * // unchecked (accepts any, returns any)
- * g = defGetterUnsafe("a.b.c");
- *
- * g({ a: { b: { c: 23} } }) // 23
- * g({ x: 23 }) // undefined
- * g() // undefined
+ * g({ a: { b: { c: 23} } }); // 23
+ * g({ x: 23 }); // error
+ * g(); // error
  * ```
- *
- * @param path -
- */
-export const defGetterUnsafe = (path: Path): Fn<any, any> =>
-    defGetter(<any>path);
-
-/**
- * Type checked version of {@link defGetter}. Only the first 8 path
- * levels are type checked.
  *
  * @param path -
  */

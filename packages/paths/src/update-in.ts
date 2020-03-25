@@ -30,7 +30,9 @@ import type { UpdateFn } from "./api";
  * state.
  *
  * @remarks
- * Unchecked version of {@link updateIn}.
+ * Unchecked version of {@link updateIn}. The type parameter `T` can be
+ * used to indicate the type of the nested value to be updated (default:
+ * `any`).
  *
  * @example
  * ```ts
@@ -51,10 +53,10 @@ import type { UpdateFn } from "./api";
  * @param fn - update function
  * @param args - optional args for `fn`
  */
-export const updateInUnsafe = (
+export const updateInUnsafe = <T = any>(
     state: any,
     path: Path,
-    fn: UpdateFn<any>,
+    fn: UpdateFn<T>,
     ...args: any[]
 ) =>
     // @ts-ignore

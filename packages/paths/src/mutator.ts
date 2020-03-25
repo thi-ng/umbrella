@@ -23,7 +23,19 @@ import type {
 } from "@thi.ng/api";
 
 /**
- * Higher-order function, similar to {@link defSetterUnsafe}. Returns
+ * Unchecked version of {@link defMutator}.
+ *
+ * @remarks
+ * The type parameter `T` can be used to indicate the type of the nested
+ * value to be mutated (default: `any`).
+ *
+ * @param path -
+ */
+export const defMutatorUnsafe = <T = any>(path: Path): Fn2<any, T, any> =>
+    defMutator(<any>path);
+
+/**
+ * Higher-order function, similar to {@link defSetter}. Returns a
  * function, which when called, mutates given object/array at given path
  * location.
  *
@@ -34,14 +46,9 @@ import type {
  * object, else `undefined`. This function provides optimized versions
  * for path lengths <= 4.
  *
- * @param path -
- */
-export const defMutatorUnsafe = (path: Path): Fn2<any, any, any> =>
-    defMutator(<any>path);
-
-/**
- * Type checked version of {@link mutator}. Only the first 8 path levels
- * are type checked.
+ * Only the first 8 path levels are type checked.
+ *
+ * Also see {@link defMutatorUnsafe}, {@link mutIn}
  *
  * @param path -
  */

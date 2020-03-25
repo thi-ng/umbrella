@@ -21,15 +21,15 @@ import type {
 } from "@thi.ng/api";
 
 /**
- * Immediate use getter, i.e. same as: `defGetter(path)(state)`.
+ * Unchecked version of {@link getIn}. Returns `undefined` if path is
+ * invalid.
+ *
+ * @remarks
+ * The type parameter `T` can be used to indicate the type of the nested
+ * value to be retrieved (default: `any`).
  *
  * @example
  * ```ts
- * // type checked path and inferred return type
- * getIn({ a: { b: { c: 23 } } }, ["a","b","c"]);
- * // 23
- *
- * // unchecked path
  * getInUnsafe({ a: { b: { c: 23 } } }, "a.b.c");
  * // 23
  * ```
@@ -37,12 +37,22 @@ import type {
  * @param state -
  * @param path -
  */
-export const getInUnsafe = (state: any, path: Path): any =>
-    defGetter(<any>path)(state);
+export const getInUnsafe = <T = any>(state: any, path: Path): T | undefined =>
+    defGetter<T>(<any>path)(state);
 
 /**
- * Type checked version of {@link getInUnsafe}. Only the first 8 path
- * levels are type checked.
+ * Type checked, immediate use getter, i.e. same as:
+ * `defGetter(path)(state)`.
+ *
+ * @remarks
+ * Only the first 8 path levels are type checked.
+ *
+ * @example
+ * ```ts
+ * // type checked path and inferred return type
+ * getIn({ a: { b: { c: 23 } } }, ["a","b","c"]);
+ * // 23
+ * ```
  *
  * @param state -
  * @param path -

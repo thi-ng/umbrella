@@ -1,11 +1,5 @@
 import * as assert from "assert";
-import {
-    exists,
-    getIn,
-    getInUnsafe,
-    setIn,
-    setInUnsafe
-} from "../src";
+import { exists, getIn, getInUnsafe, setIn, setInUnsafe } from "../src";
 
 describe("paths", () => {
     it("getIn", () => {
@@ -24,7 +18,7 @@ describe("paths", () => {
         assert.equal(getIn("", [0]), undefined);
         assert.equal(getIn("", ["length"]), 0);
         assert.equal(getIn([""], [0]), "");
-        // assert.equal(getIn([""], [0, "length"]), 0);
+        assert.equal(getInUnsafe([""], [0, "length"]), 0);
         assert.equal(getIn([[""]], [0, 0, "length"]), 0);
         assert.equal(getIn([[[""]]], [0, 0, 0, "length"]), 0);
         assert.equal(getIn([[[[""]]]], [0, 0, 0, 0, "length"]), 0);
