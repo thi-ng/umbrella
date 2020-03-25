@@ -106,13 +106,13 @@ export function defView(
     return new View(parent, path, tx, lazy, equiv);
 }
 
-export function defViewUnsafe(
+export function defViewUnsafe<T = undefined>(
     parent: ReadonlyAtom<any>,
     path: Path,
-    tx?: Fn<any, any>,
+    tx?: Fn<any, T>,
     lazy?: boolean,
     equiv?: Predicate2<any>
-) {
+): View<T extends undefined ? any : T> {
     return new View<any>(parent, path, tx, lazy, equiv);
 }
 
