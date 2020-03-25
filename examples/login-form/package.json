@@ -1,6 +1,6 @@
 {
     "name": "login-form",
-    "description": "Basic SPA example without router",
+    "description": "Basic SPA example with atom-based UI router",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
@@ -18,12 +18,16 @@
     "dependencies": {
         "@thi.ng/atom": "latest",
         "@thi.ng/hdom": "latest",
-        "@thi.ng/paths": "latest"
+        "@thi.ng/paths": "latest",
+        "@thi.ng/strings": "latest"
     },
     "browserslist": [
         "last 3 Chrome versions"
     ],
     "browser": {
         "process": false
+    },
+    "thi.ng": {
+        "readme": true
     }
 }

@@ -1,6 +1,7 @@
-import { AtomPath, defAtom, defView } from "@thi.ng/atom";
+import type { Nullable, Path } from "@thi.ng/api";
+import { defAtom, defView } from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom";
-import type { Nullable } from "@thi.ng/api";
+import { capitalize } from "@thi.ng/strings";
 
 interface State {
     state: string;
@@ -15,38 +16,51 @@ const db = defAtom<State>({ state: "login", user: {} });
 
 // define views for different state values
 const appState = defView(db, ["state"]);
-const error = defView(db, ["error"]);
-// specify a view transformer for the username value
-const user = defView(db, ["user", "name"], (x) =>
-    x ? x.charAt(0).toUpperCase() + x.substr(1) : null
+
+// the error view converts the state value into a UI component array
+const error = defView(db, ["error"], (error) =>
+    error ? ["div.error", error] : null
+);
+
+// view transformer for the username value
+const user = defView(db, ["user", "name"], (name) =>
+    name ? capitalize(name) : null
 );
 
 // state update functions
-const setValue = (path: AtomPath, val: any) => db.resetInUnsafe(path, val);
+
+// trigger new route / UI view
 const setState = (s: string) => setValue(appState.path, s);
+
 const setError = (err: Nullable<string>) => setValue(error.path, err);
+
 const setUser = (e: Event) => setValue(user.path, (<any>e.target).value);
+
+const setValue = (path: Path, val: any) => db.resetInUnsafe(path, val);
+
 const loginUser = () => {
-    if (user.deref() && user.deref()!.toLowerCase() === "admin") {
+    if (user.deref() === "admin") {
         setError(null);
         setState("main");
     } else {
         setError("sorry, wrong username (try 'admin')");
     }
 };
+
 const logoutUser = () => {
     setValue(user.path, null);
     setState("logout");
 };
 
-// components for different app states
+// UI components for different app states
 // note how the value views are used here
 const uiViews: any = {
     // dummy login form
     login: () => [
         "div#login",
         ["h1", "Login"],
-        error.deref() ? ["div.error", error] : undefined,
+        // embedded error view (will auto-deref)
+        error.deref(),
         ["input", { type: "text", onchange: setUser }],
         ["button", { onclick: loginUser }, "Login"],
     ],
@@ -78,15 +92,9 @@ const uiViews: any = {
 const currView = defView(
     db,
     ["state"],
-    (state) =>
-        uiViews[state] || ["div", ["h1", `No component for state: ${state}`]]
+    (state) => uiViews[state] || ["div", ["h1", `No component for state: ${state}`]]
 );
 
 // app root component
-const app = () => [
-    "div",
-    currView,
-    ["footer", "Made with @thi.ng/atom and @thi.ng/hdom"],
-];
-
-start(app);
+// embedded view (will auto-deref)
+start(() => ["div", currView]);
