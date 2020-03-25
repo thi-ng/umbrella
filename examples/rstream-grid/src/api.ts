@@ -1,6 +1,6 @@
 import { EffectDef, EventBus, EventDef } from "@thi.ng/interceptors";
-import type { IObjectOf, Fn } from "@thi.ng/api";
-import type { IView, AtomPath } from "@thi.ng/atom";
+import type { Fn, IObjectOf, Path } from "@thi.ng/api";
+import type { IView } from "@thi.ng/atom";
 
 /**
  * Function signature for main app components.
@@ -11,7 +11,7 @@ export type AppComponent = (ctx: AppContext, ...args: any[]) => any;
 /**
  * Derived view configurations.
  */
-export type ViewSpec = string | AtomPath | [string | AtomPath, Fn<any, any>];
+export type ViewSpec = string | Path | [string | Path, Fn<any, any>];
 
 /**
  * Structure of the overall application config object.

@@ -1,4 +1,4 @@
-import { AtomPath, defView, defViewUnsafe } from "@thi.ng/atom";
+import { defView, defViewUnsafe } from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom";
 import {
     EffectDef,
@@ -13,7 +13,7 @@ import {
     IDispatch,
     trace,
 } from "@thi.ng/interceptors";
-import type { IObjectOf } from "@thi.ng/api";
+import type { IObjectOf, Path } from "@thi.ng/api";
 
 ///////////////////////////////////////////////////////////////////////
 // event name and handler definitions
@@ -91,7 +91,7 @@ const button = (bus: IDispatch, event: Event, label: string, id?: string) => [
 // counter component function
 // calls to this function will be triggered via the "addCounter" event and its side effect
 // (see further below)
-const counter = (bus: IDispatch, path: AtomPath, start = 0, color: string) => {
+const counter = (bus: IDispatch, path: Path, start = 0, color: string) => {
     const view = defViewUnsafe(bus.state, path);
     bus.dispatch([EV_SET_VALUE, [path, start]]);
     return [
