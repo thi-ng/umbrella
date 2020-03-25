@@ -32,7 +32,7 @@ export interface FromAtomOpts<T> extends CommonOpts {
  * emitted on the stream. If `emitFirst` is true (default), also emits
  * atom's current value when first subscriber attaches to stream.
  *
- * Also see {@link fromView}
+ * Also see {@link fromView}, {@link fromViewUnsafe}
  *
  * @example
  * ```ts
@@ -59,7 +59,7 @@ export const fromAtom = <T>(
     opts = optsWithID("atom", <FromAtomOpts<T>>{
         emitFirst: true,
         changed: (a, b) => a !== b,
-        ...opts
+        ...opts,
     });
     return new Stream<T>((stream) => {
         atom.addWatch(stream.id, (_, prev, curr) => {

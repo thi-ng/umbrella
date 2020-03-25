@@ -7,6 +7,7 @@ import {
     take
 } from "@thi.ng/transducers";
 import * as assert from "assert";
+import { TIMEOUT } from "./config";
 import {
     CloseMode,
     fromInterval,
@@ -16,9 +17,8 @@ import {
     State,
     stream,
     sync,
-    transduce
+    transduce,
 } from "../src";
-import { TIMEOUT } from "./config";
 
 describe("StreamSync", () => {
     function adder() {
@@ -38,14 +38,14 @@ describe("StreamSync", () => {
         let a1buf, a2buf;
         const db = new Atom<any>({
             a1: { ins: { a: 1, b: 2 } },
-            a2: { ins: { b: 10 } }
+            a2: { ins: { b: 10 } },
         });
         const a1 = sync({
             src: [
-                (a = fromView(db, { path: "a1.ins.a" })),
-                (b = fromView(db, { path: "a1.ins.b" }))
+                (a = fromView(db, { path: ["a1", "ins", "a"] })),
+                (b = fromView(db, { path: ["a1", "ins", "b"] })),
             ],
-            xform: adder()
+            xform: adder(),
         });
         const a1res = a1.subscribe({
             next(x) {
@@ -53,11 +53,11 @@ describe("StreamSync", () => {
             },
             done() {
                 a1done = true;
-            }
+            },
         });
         const a2 = sync({
-            src: <any>[a1, (c = fromView(db, { path: "a2.ins.b" }))],
-            xform: adder()
+            src: <any>[a1, (c = fromView(db, { path: ["a2", "ins", "b"] }))],
+            xform: adder(),
         });
         const res = a2.subscribe({
             next(x) {
@@ -65,7 +65,7 @@ describe("StreamSync", () => {
             },
             done() {
                 a2done = true;
-            }
+            },
         });
         assert.equal(a1buf, 3);
         assert.equal(a2buf, 13);
@@ -97,7 +97,7 @@ describe("StreamSync", () => {
         const src = {
             a: stream(),
             b: stream(),
-            c: stream()
+            c: stream(),
         };
         const res: any[] = [];
         const main = sync({ src, mergeOnly: true }).subscribe({
@@ -107,10 +107,10 @@ describe("StreamSync", () => {
                     { c: 1 },
                     { c: 1, b: 2 },
                     { c: 1, b: 2, a: 3 },
-                    { c: 1, b: 2, a: 4 }
+                    { c: 1, b: 2, a: 4 },
                 ]);
                 done();
-            }
+            },
         });
 
         src.c.next(1);
@@ -124,12 +124,12 @@ describe("StreamSync", () => {
         const src = {
             a: stream(),
             b: stream(),
-            c: stream()
+            c: stream(),
         };
         const res: any[] = [];
         const main = sync({
             src,
-            mergeOnly: true
+            mergeOnly: true,
         })
             .transform(
                 // ensure `a` & `b` are present
@@ -140,10 +140,10 @@ describe("StreamSync", () => {
                 done: () => {
                     assert.deepEqual(res, [
                         { c: 1, b: 2, a: 3 },
-                        { c: 1, b: 2, a: 4 }
+                        { c: 1, b: 2, a: 4 },
                     ]);
                     done();
-                }
+                },
             });
 
         src.c.next(1);
@@ -162,8 +162,8 @@ describe("StreamSync", () => {
                 src: {
                     t: fromInterval(5),
                     a: fromPromise(delayed("aa", 20)),
-                    b: fromPromise(delayed("bb", 40))
-                }
+                    b: fromPromise(delayed("bb", 40)),
+                },
             }),
             comp(
                 take(1),
@@ -180,18 +180,18 @@ describe("StreamSync", () => {
         const main = sync<number, any>({
             src: [
                 fromIterable([1, 2, 3], { delay: TIMEOUT, id: "a" }),
-                fromIterable([1, 2, 3, 4], { delay: TIMEOUT, id: "b" })
+                fromIterable([1, 2, 3, 4], { delay: TIMEOUT, id: "b" }),
             ],
             closeIn: CloseMode.NEVER,
             closeOut: CloseMode.NEVER,
-            reset: true
+            reset: true,
         });
 
         const acc: any[] = [];
         const sub = main.subscribe({
             next(x) {
                 acc.push(x);
-            }
+            },
         });
 
         setTimeout(() => sub.unsubscribe(), 3.5 * TIMEOUT);
@@ -200,7 +200,7 @@ describe("StreamSync", () => {
             assert.deepEqual(acc, [
                 { a: 1, b: 1 },
                 { a: 2, b: 2 },
-                { a: 3, b: 3 }
+                { a: 3, b: 3 },
             ]);
             done();
         }, 5 * TIMEOUT);
