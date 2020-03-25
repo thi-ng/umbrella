@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/atom](https://media.thi.ng/umbrella/banners/thing-atom.svg?1584814381)
+# ![@thi.ng/atom](https://media.thi.ng/umbrella/banners/thing-atom.svg?1585150217)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/atom.svg)](https://www.npmjs.com/package/@thi.ng/atom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/atom.svg)
@@ -11,6 +11,11 @@ This project is part of the
 
 - [About](#about)
   - [Status](#status)
+- [Breaking changes](#breaking-changes)
+  - [4.0.0](#400)
+    - [Type checked accessors](#type-checked-accessors)
+    - [Factory functions](#factory-functions)
+    - [Deprecated](#deprecated)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -27,22 +32,59 @@ This project is part of the
 
 Mutable wrappers for nested immutable values with optional undo/redo history and transaction support.
 
-Clojure inspired wrappers with infrastructure support for:
+Additional support for:
 
-- watches
-- derived view subscriptions
+- type checked value access for up to 8 levels of nesting (deeper values
+  default to `any`)
+- watches (listeners)
+- derived, eager/lazy view subscriptions (w/ optional transformation)
 - cursors (direct R/W access to nested values)
-- transacted updates
+- transacted updates (incl. nested transactions)
 - undo/redo history
 
-Together these types act as building blocks for various application
+Together, these types act as building blocks for various application
 state handling patterns, specifically aimed (though not exclusively) at
-the concept of using a centralized atom around a nested, immutable object
-as single source of truth within an application.
+the concept of using a centralized atom around a nested, immutable
+object as single source of truth within an application and driving
+reactive updates from performed state changes.
 
 ### Status
 
 **STABLE** - used in production
+
+## Breaking changes
+
+### 4.0.0
+
+#### Type checked accessors
+
+The `resetIn()` and `swapIn()` methods are fully type checked (up to 8
+levels deep), with the given value paths (and the new state value) being
+validated against the structure of the containers's main value type.
+Since that kind of type checking can only be done via tuples, **string
+paths are NOT supported anymore** and instead require using the
+`resetInUnsafe()` and `swapInUnsafe()` methods, which now provide the
+legacy, unchecked update functionality. More details below.
+
+The use of the `Unsafe` suffix is inspired by Rust and, for consistency,
+now used across other umbrella packages providing both checked and
+unchecked variations.
+
+#### Factory functions
+
+Users are encouraged to use the new set of (type checked) factory
+functions in lieu of direct constructor invocations. These functions are
+now considered the defacto way to create new instances are generally
+starting to be provided more consistently across the umbrella ecosystem.
+All of them use the `def` prefix, e.g. `defAtom()`, `defCursor()` etc.
+`Unsafe` versions exist for some types too. [More
+info](https://github.com/thi-ng/umbrella/issues/210)
+
+#### Deprecated
+
+Derived views can now only be created via `defView()`, `defViewUnsafe()`
+(or `new View()`). The `IViewable` interface and `.addView()` methods
+have been removed.
 
 ## Installation
 
@@ -50,7 +92,7 @@ as single source of truth within an application.
 yarn add @thi.ng/atom
 ```
 
-Package sizes (gzipped): ESM: 1.8KB / CJS: 1.8KB / UMD: 1.9KB
+Package sizes (gzipped): CJS: 1.83 KB
 
 ## Dependencies
 
@@ -73,6 +115,7 @@ A selection:
 | -------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 |                                                                                                                            | BMI calculator in a devcards format                                    | [Demo](https://demo.thi.ng/umbrella/devcards/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/devcards)            |
 |                                                                                                                            | Custom dropdown UI component w/ fuzzy search                           | [Demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-dropdown-fuzzy) |
+|                                                                                                                            | Basic SPA example with atom-based UI router                            | [Demo](https://demo.thi.ng/umbrella/login-form/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/login-form)          |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rotating-voronoi.jpg" width="240"/>    | Animated Voronoi diagram, cubic splines & SVG download                 | [Demo](https://demo.thi.ng/umbrella/rotating-voronoi/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rotating-voronoi)    |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/router-basics.jpg" width="240"/>       | Complete mini SPA app w/ router & async content loading                | [Demo](https://demo.thi.ng/umbrella/router-basics/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/router-basics)       |
 |                                                                                                                            | Minimal rstream dataflow graph                                         | [Demo](https://demo.thi.ng/umbrella/rstream-dataflow/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-dataflow)    |
@@ -88,16 +131,21 @@ A selection:
 
 ### Atom
 
-An `Atom` is a mutable wrapper for supposedly immutable values. The
-wrapped value can be obtained via `deref()`, replaced via `reset()` and
-updated using `swap()`. An atom too supports the concept of watches,
-essentially `onchange` event handlers which are called from
-`reset` / `swap` and receive both the old and new atom values.
+An `Atom` is a mutable (typed) wrapper for supposedly immutable values.
+The wrapped value can be obtained via `deref()`, replaced via `reset()`
+and updated using `swap()`. An atom too supports the concept of watches,
+essentially `onchange` event handlers which are called from `reset` /
+`swap` and receive both the old and new atom values.
+
+Note: The [`IDeref`
+interface](https://github.com/thi-ng/umbrella/blob/develop/packages/api/src/api/deref.ts)
+is widely supported across many thi.ng/umbrella packages and implemented
+by most value wrapper types.
 
 ```ts
-import * as atom from "@thi.ng/atom";
+import { defAtom } from "@thi.ng/atom";
 
-const a = new atom.Atom(23);
+const a = defAtom(23);
 
 // obtain value via deref()
 a.deref();
@@ -122,24 +170,52 @@ a.reset(42);
 // foo: 24 -> 42
 ```
 
-When atoms are used to wrap nested object values, the `resetIn()` /
-`swapIn()` methods can be used to directly update nested values. These
-updates are handled via immutable setters provided by
+When `Atom`-like containers are used to wrap nested object values, the
+`resetIn()` / `swapIn()` methods can be used to directly update nested
+values. These updates are handled via immutable setters provided by
 [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths).
 
 ```ts
-const db = new Atom<any>({ a: { b: 1, c: 2 } });
+const db = defAtom({ a: { b: 1, c: 2 } });
 
-db.resetIn("a.b", 100);
+// type checked access
+db.resetIn(["a", "b"], 100);
 // { a: { b: 100, c: 2 } }
 
-db.swapIn("a.c", (x) => x + 1);
+// unchecked access
+db.resetInUnsafe("a.b", 100);
+// { a: { b: 100, c: 2 } }
+
+// type checked access
+// type of `x` in update function is automatically inferred too
+db.swapIn(["a", "c"], (x) => x + 1);
 // { a: { b: 100, c: 3 } }
 
-// alternatively, the lookup path can be given as array
-// see @thi.ng/paths for further reference
-db.swapIn(["a", "c"], (x) => x + 1);
+// unchecked access
+db.swapInUnsafe("a.c", (x) => x + 1);
 // { a: { b: 100, c: 4 } }
+```
+
+If the update path is created dynamically, you will have to use one of
+these approaches:
+
+```ts
+interface Item {
+    name: string;
+}
+
+const db = defAtom<Item[]>([{ name: "thi.ng" }, { name: "atom" }]);
+
+const id = 1;
+
+// using <const> expr
+db.resetIn(<const>[id, "name"], "umbrella");
+
+// unchecked
+db.resetInUnsafe([id, "name"], "umbrella");
+
+// unchecked (string path)
+db.resetInUnsafe(`${id}.name`, "umbrella");
 ```
 
 ### Transacted updates
@@ -158,11 +234,12 @@ will throw an error.
 
 The `Transacted` class can wrap any existing `IAtom` implementation,
 e.g. `Atom`, `Cursor` or `History` instances and implements `IAtom`
-itself...
+itself... **Nested transactions can be achieved by wrapping another
+`Transacted` container.**
 
 ```ts
-const db = new Atom({ a: 1, b: 2 });
-const tx = new Transacted(db);
+const db = defAtom<any>({ a: 1, b: 2 });
+const tx = defTransacted(db);
 
 // start transaction
 tx.begin();
@@ -171,8 +248,8 @@ tx.begin();
 // (none of them are applied until `commit` is called)
 // IMPORTANT: calling any of these update methods without
 // a running transaction will throw an error!
-tx.resetIn("a", 11);
-tx.resetIn("c", 33);
+tx.resetIn(["a"], 11);
+tx.resetIn(["c"], 33);
 
 // tx.deref() will always return latest state
 tx.deref()
@@ -195,8 +272,11 @@ db.deref()
 
 Cursors provide direct & immutable access to a nested value within a
 structured atom. The path to the desired value must be provided when the
-cursor is created and cannot be changed later. The path is then compiled
-into a [getter and
+cursor is created and cannot be changed later. Since v4.0.0, the path
+itself is type checked and MUST be compatible with the type of the
+parent state (or use `defCursorUnsafe()` as fallback, see [breaking
+changes](#breaking-changes)). The path is then compiled into a [getter
+and
 setter](https://github.com/thi-ng/umbrella/tree/develop/packages/paths)
 to allow cursors to be used like atoms and update the parent state in an
 immutable manner (i.e. producing an optimized copy with structural
@@ -206,14 +286,14 @@ below.
 **It's important to remember** that cursors also cause their parent
 state (atom or another cursor) to reflect their updated local state.
 I.e. any change to a cursor's value propagates up the hierarchy of
-parent states.
+parent states and also triggers any watches attached to the parent.
 
 ```ts
-a = new atom.Atom({a: {b: {c: 1}}})
+a = defAtom({a: {b: {c: 1}}})
 // cursor to `b` value
-b=new atom.Cursor(a, "a.b")
+b = defCursor(a, "a.b")
 // cursor to `c` value, relative to `b`
-c=new atom.Cursor(b, "c")
+c = defCursor(b, "c")
 
 c.reset(2);
 
@@ -230,33 +310,24 @@ length of the propagation chain and maximize structural sharing.
 
 ```ts
 // main state
-main = new atom.Atom({ a: { b: { c: 23 }, d: { e: 42 } }, f: 66 });
+main = defAtom({ a: { b: { c: 23 }, d: { e: 42 } }, f: 66 });
 
 // cursor to `c` value
-cursor = new atom.Cursor(main, "a.b.c");
-// or
-cursor = new atom.Cursor(main, ["a","b","c"]);
+cursor = defCursor(main, ["a", "b", "c"]);
 
-// alternatively provide path implicitly via lookup & update functions
-// both fns will be called with cursor's parent state
-// this allows the cursor implementation to work with any data structure
-// as long as the updater DOES NOT mutate in place
-cursor = new atom.Cursor(
-    main,
-    (s) => s.a.b.c,
-    (s, x) => ({...s, a: {...s.a, b: {...s.a.b, c: x}}})
-);
+// or
+cursor = defCursorUnsafe<number>(main, "a.b.c");
 
 // add watch just as with Atom
 cursor.addWatch("foo", console.log);
 
-cursor.deref()
+cursor.deref();
 // 23
 
 cursor.swap(x => x + 1);
 // foo 23 24
 
-main.deref()
+main.deref();
 // { a: { b: { c: 24 }, d: { e: 42 } }, f: 66 }
 ```
 
@@ -268,13 +339,16 @@ and the ability to (optionally) produce transformed versions of such a
 value. The `View` type provides exactly this functionality:
 
 ```ts
-db = new atom.Atom({a: 1, b: {c: 2}});
+db = defAtom({ a: 1, b: { c: 2 } });
 
 // create a view for a's value
-viewA = db.addView("a");
+viewA = defView(db, ["a"]);
 
 // create a view for c's value w/ transformer
-viewC = db.addView("b.c", (x) => x * 10);
+viewC = defView(db, ["b","c"], (x) => x * 10);
+
+// or unchecked
+viewC = defViewUnsafe(db, "b.c", (x) => x * 10);
 
 viewA.deref()
 // 1
@@ -283,7 +357,7 @@ viewC.deref()
 // 20
 
 // update the atom
-db.swap((state) => atom.setIn(state, "b.c", 3))
+db.resetIn(["b","c"], 3)
 
 // views can indicate if their value has changed
 // (will be reset to `false` after each deref)
@@ -320,25 +394,25 @@ Related, the actual value change predicate can be customized. If not
 given, the default `@thi.ng/equiv` will be used.
 
 ```ts
-let x;
-let a = new Atom({value: 1})
+let x = 0;
+let a = defAtom({ value: 1 })
 
 // create an eager view by passing `false` as last arg
-view = a.addView("value", (y) => (x = y, y * 10), false);
+view = defView(["value"], (y) => (x = y, y * 10), false);
 
 // check `x` to verify that transformer already has run
 x === 1
 // true
 
 // reset x
-x = null
+x = 0
 
 // verify transformed value
 view.deref() === 10
 // true
 
 // verify transformer hasn't rerun because of deref()
-x === null
+x === 0
 // true
 ```
 
@@ -364,111 +438,132 @@ This example is also available in standalone form:
 [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/login-form) | [Live demo](https://demo.thi.ng/umbrella/login-form/)
 
 ```ts
-import { Atom, setIn } from "@thi.ng/atom";
+import type { Nullable, Path } from "@thi.ng/api";
+import { defAtom, defView } from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom";
+import { capitalize } from "@thi.ng/strings";
+
+interface State {
+    state: string;
+    error?: string;
+    user: {
+        name?: string;
+    };
+}
 
 // central immutable app state
-const db = new Atom({ state: "login" });
+const db = defAtom<State>({ state: "login", user: {} });
 
 // define views for different state values
-const appState = db.addView<string>("state");
-const error = db.addView<string>("error");
-// specify a view transformer for the username value
-const user = db.addView<string>(
-    "user.name",
-    (x) => x ? x.charAt(0).toUpperCase() + x.substr(1) : null
+const appState = defView(db, ["state"]);
+
+// the error view converts the state value into a UI component array
+const error = defView(db, ["error"], (error) =>
+    error ? ["div.error", error] : null
+);
+
+// view transformer for the username value
+const user = defView(db, ["user", "name"], (name) =>
+    name ? capitalize(name) : null
 );
 
 // state update functions
-const setValue = (path, val) => db.swap((state) => setIn(state, path, val));
-const setState = (s) => setValue(appState.path, s);
-const setError = (err) => setValue(error.path, err);
-const setUser = (e) => setValue(user.path, e.target.value);
+
+// trigger new route / UI view
+const setState = (s: string) => setValue(appState.path, s);
+
+const setError = (err: Nullable<string>) => setValue(error.path, err);
+
+const setUser = (e: Event) => setValue(user.path, (<any>e.target).value);
+
+const setValue = (path: Path, val: any) => db.resetInUnsafe(path, val);
+
 const loginUser = () => {
-    if (user.deref() && user.deref().toLowerCase() === "admin") {
+    if (user.deref() === "admin") {
         setError(null);
         setState("main");
     } else {
         setError("sorry, wrong username (try 'admin')");
     }
 };
+
 const logoutUser = () => {
     setValue(user.path, null);
     setState("logout");
 };
 
-// components for different app states
+// UI components for different app states
 // note how the value views are used here
-const uiViews = {
+const uiViews: any = {
     // dummy login form
-    login: () =>
-        ["div#login",
-            ["h1", "Login"],
-            error.deref() ? ["div.error", error.deref()] : undefined,
-            ["input", { type: "text", onchange: setUser }],
-            ["button", { onclick: loginUser }, "Login"]
+    login: () => [
+        "div#login",
+        ["h1", "Login"],
+        // embedded error view (will auto-deref)
+        error.deref(),
+        ["input", { type: "text", onchange: setUser }],
+        ["button", { onclick: loginUser }, "Login"],
+    ],
+    logout: () => [
+        "div#logout",
+        ["h1", "Good bye"],
+        "You've been logged out. ",
+        ["a", { href: "#", onclick: () => setState("login") }, "Log back in?"],
+    ],
+    main: () => [
+        "div#main",
+        ["h1", `Welcome, ${user.deref()}!`],
+        ["div", "Current app state:"],
+        [
+            "div",
+            [
+                "textarea",
+                { cols: 40, rows: 10 },
+                JSON.stringify(db.deref(), null, 2),
+            ],
         ],
-    logout: () =>
-        ["div#logout",
-            ["h1", "Good bye"],
-            "You've been logged out. ",
-            ["a",
-                { href: "#", onclick: () => setState("login") },
-                "Log back in?"
-            ]
-        ],
-    main: () =>
-        ["div#main",
-            ["h1", `Welcome, ${user.deref()}!`],
-            ["div", "Current app state:"],
-            ["div",
-                ["textarea",
-                    { cols: 40, rows: 10 },
-                    JSON.stringify(db.deref(), null, 2)]],
-            ["button", { onclick: logoutUser }, "Logout"]
-        ]
+        ["button", { onclick: logoutUser }, "Logout"],
+    ],
 };
 
 // finally define another derived view for the app state value
 // including a transformer, which maps the current app state value
 // to its correct UI component (incl. a fallback for illegal app states)
-const currView = db.addView(
-    appState.path,
-    (state) =>
-        uiViews[state] ||
-        ["div", ["h1", `No component for state: ${state}`]]
+const currView = defView(
+    db,
+    ["state"],
+    (state) => uiViews[state] || ["div", ["h1", `No component for state: ${state}`]]
 );
 
 // app root component
-const app = () =>
-    ["div#app",
-        currView.deref(),
-        ["footer", "Made with @thi.ng/atom and @thi.ng/hdom"]];
-
-start(document.body, app);
+// embedded view (will auto-deref)
+start(() => ["div", currView]);
 ```
 
 ### Undo / Redo history
 
-The `History` type can be used with & behaves like an Atom or Cursor,
-but creates snapshots of the current state before applying the new
-state. By default, the history has length of 100 steps, though this is
-configurable via ctor args.
+The `History` type can be used with & behaves just like an `Atom` or
+`Cursor`, but too creates snapshots of the current state before applying
+the new state. These snapshots are stored in a doubly-linked list and
+can be navigated via `.undo()` / `.redo()`. Each time one of these
+methods is called, the parent state will be updated and any attached
+watches are notified. By default, the history has length of 100 steps,
+though this is configurable via ctor args.
 
 ```ts
 // create history w/ max. 100 steps
-db = new atom.History(new atom.Atom({a: 1}), 100)
+db = defHistory(defAtom({ a: 1 }), 100)
 db.deref()
-// {a: 1}
+// { a: 1 }
 
-db.reset({a: 2, b: 3})
-db.reset({b: 4})
-
-db.undo()
-// {a: 2, b: 3}
+db.reset({ a: 2, b: 3 })
+db.reset({ b: 4 })
 
 db.undo()
-// {a: 1}
+// { a: 2, b: 3 }
+
+db.undo()
+// { a: 1 }
 
 db.undo()
 // undefined (no more undo possible)
@@ -476,10 +571,10 @@ db.canUndo()
 // false
 
 db.redo()
-// {a: 2, b: 3}
+// { a: 2, b: 3 }
 
 db.redo()
-// {b: 4}
+// { b: 4 }
 
 db.redo()
 // undefined (no more redo possible)
