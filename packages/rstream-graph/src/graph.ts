@@ -2,11 +2,11 @@ import { isFunction, isPlainObject, isString } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { getInUnsafe } from "@thi.ng/paths";
 import { absPath, resolve, ResolveFn } from "@thi.ng/resolve-map";
-import { CloseMode } from "@thi.ng/rstream";
 import { map, Transducer } from "@thi.ng/transducers";
 import {
+    CloseMode,
     fromIterableSync,
-    fromView,
+    fromViewUnsafe,
     ISubscribable,
     StreamSync,
     sync,
@@ -117,7 +117,7 @@ const prepareNodeInputs = (
         let s;
         const i = ins[id];
         if (i.path) {
-            s = fromView(state, { path: i.path });
+            s = fromViewUnsafe(state, { path: i.path });
         } else if (i.stream) {
             s = isString(i.stream) ? resolve(i.stream) : i.stream(resolve);
         } else if (i.const != null) {
