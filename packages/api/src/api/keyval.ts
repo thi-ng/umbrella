@@ -4,7 +4,7 @@ import type { Head, Tail } from "./tuple";
  * Extracts from A all keys which have values assignable to type B.
  */
 export type TypedKeys<A, B> = {
-    [P in keyof Required<A>]: B extends A[P] ? P : never;
+    [P in Keys<A>]: B extends A[P] ? P : never;
 }[keyof A];
 
 export type NumericKeys<T> = TypedKeys<T, number>;
@@ -14,22 +14,25 @@ export type StringKeys<T> = TypedKeys<T, string>;
 /*
  * Utilities for extracting key types of nested objects.
  */
-export type Keys<T> = keyof T;
-export type Keys1<T, A extends Keys<T>> = Keys<T[A]>;
-export type Keys2<T, A extends Keys<T>, B extends Keys1<T, A>> = Keys1<T[A], B>;
+export type Keys<T> = keyof Required<T>;
+export type Keys1<T, A extends Keys<T>> = Keys<Required<T>[A]>;
+export type Keys2<T, A extends Keys<T>, B extends Keys1<T, A>> = Keys1<
+    Required<T>[A],
+    B
+>;
 export type Keys3<
     T,
     A extends Keys<T>,
     B extends Keys1<T, A>,
     C extends Keys2<T, A, B>
-> = Keys2<T[A], B, C>;
+> = Keys2<Required<T>[A], B, C>;
 export type Keys4<
     T,
     A extends Keys<T>,
     B extends Keys1<T, A>,
     C extends Keys2<T, A, B>,
     D extends Keys3<T, A, B, C>
-> = Keys3<T[A], B, C, D>;
+> = Keys3<Required<T>[A], B, C, D>;
 export type Keys5<
     T,
     A extends Keys<T>,
@@ -37,7 +40,7 @@ export type Keys5<
     C extends Keys2<T, A, B>,
     D extends Keys3<T, A, B, C>,
     E extends Keys4<T, A, B, C, D>
-> = Keys4<T[A], B, C, D, E>;
+> = Keys4<Required<T>[A], B, C, D, E>;
 export type Keys6<
     T,
     A extends Keys<T>,
@@ -46,7 +49,7 @@ export type Keys6<
     D extends Keys3<T, A, B, C>,
     E extends Keys4<T, A, B, C, D>,
     F extends Keys5<T, A, B, C, D, E>
-> = Keys5<T[A], B, C, D, E, F>;
+> = Keys5<Required<T>[A], B, C, D, E, F>;
 export type Keys7<
     T,
     A extends Keys<T>,
@@ -56,7 +59,7 @@ export type Keys7<
     E extends Keys4<T, A, B, C, D>,
     F extends Keys5<T, A, B, C, D, E>,
     G extends Keys6<T, A, B, C, D, E, F>
-> = Keys6<T[A], B, C, D, E, F, G>;
+> = Keys6<Required<T>[A], B, C, D, E, F, G>;
 export type Keys8<
     T,
     A extends Keys<T>,
@@ -67,7 +70,7 @@ export type Keys8<
     F extends Keys5<T, A, B, C, D, E>,
     G extends Keys6<T, A, B, C, D, E, F>,
     H extends Keys7<T, A, B, C, D, E, F, G>
-> = Keys7<T[A], B, C, D, E, F, G, H>;
+> = Keys7<Required<T>[A], B, C, D, E, F, G, H>;
 
 /**
  * Internal type used as a reducer for the KeyN type.
@@ -80,8 +83,8 @@ export type Keys8<
  */
 type KeysNReducer<T, L, R extends unknown[]> = L extends keyof T
     ? {
-          0: keyof T[L];
-          1: KeysNReducer<T[L], Head<R>, Tail<R>>;
+          0: keyof Required<T>[L];
+          1: KeysNReducer<Required<T>[L], Head<R>, Tail<R>>;
       }[R extends [] ? 0 : 1]
     : never;
 
@@ -96,20 +99,20 @@ export type KeysN<T, L extends unknown[]> = L extends []
  * Utilities for extracting value types from nested objects.
  */
 export type Val1<T, A extends Keys<T>> = T[A];
-export type Val2<T, A extends Keys<T>, B extends Keys1<T, A>> = Val1<T, A>[B];
+export type Val2<T, A extends Keys<T>, B extends Keys1<T, A>> = ValN<T, [A, B]>;
 export type Val3<
     T,
     A extends Keys<T>,
     B extends Keys1<T, A>,
     C extends Keys2<T, A, B>
-> = Val2<T, A, B>[C];
+> = ValN<T, [A, B, C]>;
 export type Val4<
     T,
     A extends Keys<T>,
     B extends Keys1<T, A>,
     C extends Keys2<T, A, B>,
     D extends Keys3<T, A, B, C>
-> = Val3<T, A, B, C>[D];
+> = ValN<T, [A, B, C, D]>;
 export type Val5<
     T,
     A extends Keys<T>,
@@ -117,7 +120,7 @@ export type Val5<
     C extends Keys2<T, A, B>,
     D extends Keys3<T, A, B, C>,
     E extends Keys4<T, A, B, C, D>
-> = Val4<T, A, B, C, D>[E];
+> = ValN<T, [A, B, C, D, E]>;
 export type Val6<
     T,
     A extends Keys<T>,
@@ -126,7 +129,7 @@ export type Val6<
     D extends Keys3<T, A, B, C>,
     E extends Keys4<T, A, B, C, D>,
     F extends Keys5<T, A, B, C, D, E>
-> = Val5<T, A, B, C, D, E>[F];
+> = ValN<T, [A, B, C, D, E, F]>;
 export type Val7<
     T,
     A extends Keys<T>,
@@ -136,7 +139,7 @@ export type Val7<
     E extends Keys4<T, A, B, C, D>,
     F extends Keys5<T, A, B, C, D, E>,
     G extends Keys6<T, A, B, C, D, E, F>
-> = Val6<T, A, B, C, D, E, F>[G];
+> = ValN<T, [A, B, C, D, E, F, G]>;
 export type Val8<
     T,
     A extends Keys<T>,
@@ -147,7 +150,7 @@ export type Val8<
     F extends Keys5<T, A, B, C, D, E>,
     G extends Keys6<T, A, B, C, D, E, F>,
     H extends Keys7<T, A, B, C, D, E, F, G>
-> = Val7<T, A, B, C, D, E, F, G>[H];
+> = ValN<T, [A, B, C, D, E, F, G, H]>;
 
 /**
  * Internal reducer for ValN.
@@ -161,7 +164,7 @@ export type Val8<
 type ValNReducer<T, C, R extends unknown[]> = C extends keyof T
     ? {
           0: T[C];
-          1: ValNReducer<T[C], Head<R>, Tail<R>>;
+          1: ValNReducer<Required<T>[C], Head<R>, Tail<R>>;
       }[R extends [] ? 0 : 1]
     : never;
 
