@@ -13,14 +13,8 @@ import type {
     Path6,
     Path7,
     Path8,
-    PathVal1,
-    PathVal2,
-    PathVal3,
-    PathVal4,
-    PathVal5,
-    PathVal6,
-    PathVal7,
-    PathVal8,
+    OptPathVal,
+    PathVal,
 } from "@thi.ng/api";
 import type { UpdateFn } from "./api";
 
@@ -52,7 +46,7 @@ import type { UpdateFn } from "./api";
  */
 export const defUpdaterUnsafe = <T = any>(
     path: Path,
-    fn: UpdateFn<T>
+    fn: UpdateFn<T, T>
 ): FnO<T, any> => defUpdater(<any>path, fn);
 
 /**
@@ -62,44 +56,53 @@ export const defUpdaterUnsafe = <T = any>(
  * @param path -
  * @param fn -
  */
-export function defUpdater<T>(path: Path0, fn: UpdateFn<T>): FnO<T, T>;
+export function defUpdater<T>(path: Path0, fn: UpdateFn<T, T>): FnO<T, T>;
 export function defUpdater<T, A>(
     path: Path1<T, A>,
-    fn: UpdateFn<PathVal1<T, A>>
+    fn: UpdateFn<OptPathVal<T, [A]>, PathVal<T, [A]>>
 ): FnO<T, T>;
 export function defUpdater<T, A, B>(
     path: Path2<T, A, B>,
-    fn: UpdateFn<PathVal2<T, A, B>>
+    fn: UpdateFn<OptPathVal<T, [A, B]>, PathVal<T, [A, B]>>
 ): FnO<T, T>;
 export function defUpdater<T, A, B, C>(
     path: Path3<T, A, B, C>,
-    fn: UpdateFn<PathVal3<T, A, B, C>>
+    fn: UpdateFn<OptPathVal<T, [A, B, C]>, PathVal<T, [A, B, C]>>
 ): FnO<T, T>;
 export function defUpdater<T, A, B, C, D>(
     path: Path4<T, A, B, C, D>,
-    fn: UpdateFn<PathVal4<T, A, B, C, D>>
+    fn: UpdateFn<OptPathVal<T, [A, B, C, D]>, PathVal<T, [A, B, C, D]>>
 ): FnO<T, T>;
 export function defUpdater<T, A, B, C, D, E>(
     path: Path5<T, A, B, C, D, E>,
-    fn: UpdateFn<PathVal5<T, A, B, C, D, E>>
+    fn: UpdateFn<OptPathVal<T, [A, B, C, D, E]>, PathVal<T, [A, B, C, D, E]>>
 ): FnO<T, T>;
 export function defUpdater<T, A, B, C, D, E, F>(
     path: Path6<T, A, B, C, D, E, F>,
-    fn: UpdateFn<PathVal6<T, A, B, C, D, E, F>>
+    fn: UpdateFn<
+        OptPathVal<T, [A, B, C, D, E, F]>,
+        PathVal<T, [A, B, C, D, E, F]>
+    >
 ): FnO<T, T>;
 export function defUpdater<T, A, B, C, D, E, F, G>(
     path: Path7<T, A, B, C, D, E, F, G>,
-    fn: UpdateFn<PathVal7<T, A, B, C, D, E, F, G>>
+    fn: UpdateFn<
+        OptPathVal<T, [A, B, C, D, E, F, G]>,
+        PathVal<T, [A, B, C, D, E, F, G]>
+    >
 ): FnO<T, T>;
 export function defUpdater<T, A, B, C, D, E, F, G, H>(
     path: Path8<T, A, B, C, D, E, F, G, H>,
-    fn: UpdateFn<PathVal8<T, A, B, C, D, E, F, G, H>>
+    fn: UpdateFn<
+        OptPathVal<T, [A, B, C, D, E, F, G, H]>,
+        PathVal<T, [A, B, C, D, E, F, G, H]>
+    >
 ): FnO<T, T>;
 export function defUpdater<T, A, B, C, D, E, F, G, H>(
     path: DeepPath<T, A, B, C, D, E, F, G, H>,
-    fn: UpdateFn<any>
+    fn: UpdateFn<any, any>
 ): FnO<T, T>;
-export function defUpdater(path: Path, fn: UpdateFn<any>): FnO<any, any> {
+export function defUpdater(path: Path, fn: UpdateFn<any, any>): FnO<any, any> {
     const g = defGetter(<any>path);
     const s = defSetter(<any>path);
     return (state: any, ...args: any[]) =>

@@ -12,14 +12,7 @@ import type {
     Path6,
     Path7,
     Path8,
-    PathVal1,
-    PathVal2,
-    PathVal3,
-    PathVal4,
-    PathVal5,
-    PathVal6,
-    PathVal7,
-    PathVal8,
+    OptPathVal,
 } from "@thi.ng/api";
 
 /**
@@ -84,28 +77,28 @@ export const defGetterUnsafe = <T = any>(path: Path): Fn<any, T | undefined> =>
  * @param path -
  */
 export function defGetter<T>(path: Path0): Fn<T, T>;
-export function defGetter<T, A>(path: Path1<T, A>): Fn<T, PathVal1<T, A>>;
+export function defGetter<T, A>(path: Path1<T, A>): Fn<T, OptPathVal<T, [A]>>;
 export function defGetter<T, A, B>(
     path: Path2<T, A, B>
-): Fn<T, PathVal2<T, A, B>>;
+): Fn<T, OptPathVal<T, [A, B]>>;
 export function defGetter<T, A, B, C>(
     path: Path3<T, A, B, C>
-): Fn<T, PathVal3<T, A, B, C>>;
+): Fn<T, OptPathVal<T, [A, B, C]>>;
 export function defGetter<T, A, B, C, D>(
     path: Path4<T, A, B, C, D>
-): Fn<T, PathVal4<T, A, B, C, D>>;
+): Fn<T, OptPathVal<T, [A, B, C, D]>>;
 export function defGetter<T, A, B, C, D, E>(
     path: Path5<T, A, B, C, D, E>
-): Fn<T, PathVal5<T, A, B, C, D, E>>;
+): Fn<T, OptPathVal<T, [A, B, C, D, E]>>;
 export function defGetter<T, A, B, C, D, E, F>(
     path: Path6<T, A, B, C, D, E, F>
-): Fn<T, PathVal6<T, A, B, C, D, E, F>>;
+): Fn<T, OptPathVal<T, [A, B, C, D, E, F]>>;
 export function defGetter<T, A, B, C, D, E, F, G>(
     path: Path7<T, A, B, C, D, E, F, G>
-): Fn<T, PathVal7<T, A, B, C, D, E, F, G>>;
+): Fn<T, OptPathVal<T, [A, B, C, D, E, F, G]>>;
 export function defGetter<T, A, B, C, D, E, F, G, H>(
     path: Path8<T, A, B, C, D, E, F, G, H>
-): Fn<T, PathVal8<T, A, B, C, D, E, F, G, H>>;
+): Fn<T, OptPathVal<T, [A, B, C, D, E, F, G, H]>>;
 export function defGetter<T, A, B, C, D, E, F, G, H>(
     path: DeepPath<T, A, B, C, D, E, F, G, H>
 ): Fn<T, any>;

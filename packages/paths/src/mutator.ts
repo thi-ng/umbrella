@@ -12,14 +12,7 @@ import type {
     Path6,
     Path7,
     Path8,
-    PathVal1,
-    PathVal2,
-    PathVal3,
-    PathVal4,
-    PathVal5,
-    PathVal6,
-    PathVal7,
-    PathVal8,
+    PathVal,
 } from "@thi.ng/api";
 
 /**
@@ -53,28 +46,28 @@ export const defMutatorUnsafe = <T = any>(path: Path): Fn2<any, T, any> =>
  * @param path -
  */
 export function defMutator<T>(path: Path0): Fn2<T, T, T>;
-export function defMutator<T, A>(path: Path1<T, A>): Fn2<T, PathVal1<T, A>, T>;
+export function defMutator<T, A>(path: Path1<T, A>): Fn2<T, PathVal<T, [A]>, T>;
 export function defMutator<T, A, B>(
     path: Path2<T, A, B>
-): Fn2<T, PathVal2<T, A, B>, T>;
+): Fn2<T, PathVal<T, [A, B]>, T>;
 export function defMutator<T, A, B, C>(
     path: Path3<T, A, B, C>
-): Fn2<T, PathVal3<T, A, B, C>, T>;
+): Fn2<T, PathVal<T, [A, B, C]>, T>;
 export function defMutator<T, A, B, C, D>(
     path: Path4<T, A, B, C, D>
-): Fn2<T, PathVal4<T, A, B, C, D>, T>;
+): Fn2<T, PathVal<T, [A, B, C, D]>, T>;
 export function defMutator<T, A, B, C, D, E>(
     path: Path5<T, A, B, C, D, E>
-): Fn2<T, PathVal5<T, A, B, C, D, E>, T>;
+): Fn2<T, PathVal<T, [A, B, C, D, E]>, T>;
 export function defMutator<T, A, B, C, D, E, F>(
     path: Path6<T, A, B, C, D, E, F>
-): Fn2<T, PathVal6<T, A, B, C, D, E, F>, T>;
+): Fn2<T, PathVal<T, [A, B, C, D, E, F]>, T>;
 export function defMutator<T, A, B, C, D, E, F, G>(
     path: Path7<T, A, B, C, D, E, F, G>
-): Fn2<T, PathVal7<T, A, B, C, D, E, F, G>, T>;
+): Fn2<T, PathVal<T, [A, B, C, D, E, F, G]>, T>;
 export function defMutator<T, A, B, C, D, E, F, G, H>(
     path: Path8<T, A, B, C, D, E, F, G, H>
-): Fn2<T, PathVal8<T, A, B, C, D, E, F, G, H>, T>;
+): Fn2<T, PathVal<T, [A, B, C, D, E, F, G, H]>, T>;
 export function defMutator<T, A, B, C, D, E, F, G, H>(
     path: DeepPath<T, A, B, C, D, E, F, G, H>
 ): Fn2<T, any, any>;
