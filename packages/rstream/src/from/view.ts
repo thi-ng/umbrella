@@ -1,9 +1,7 @@
-import { View } from "@thi.ng/atom";
-import { Stream } from "../stream";
-import { optsWithID } from "../utils/idgen";
 import type {
     DeepPath,
     Fn,
+    OptPathVal,
     Path,
     Path0,
     Path1,
@@ -14,18 +12,13 @@ import type {
     Path6,
     Path7,
     Path8,
-    PathVal1,
-    PathVal2,
-    PathVal3,
-    PathVal4,
-    PathVal5,
-    PathVal6,
-    PathVal7,
-    PathVal8,
     Predicate2,
 } from "@thi.ng/api";
+import { View } from "@thi.ng/atom";
 import type { ReadonlyAtom } from "@thi.ng/atom";
 import type { CommonOpts } from "../api";
+import { Stream } from "../stream";
+import { optsWithID } from "../utils/idgen";
 
 export interface FromViewOpts<P, A, B> extends Partial<CommonOpts> {
     path: P;
@@ -104,48 +97,52 @@ export function fromView<T, R = undefined>(
 ): Stream<R extends undefined ? T : R>;
 export function fromView<T, A, R = undefined>(
     parent: ReadonlyAtom<T>,
-    opts: FromViewOpts<Path1<T, A>, PathVal1<T, A>, R>
-): Stream<R extends undefined ? PathVal1<T, A> : R>;
+    opts: FromViewOpts<Path1<T, A>, OptPathVal<T, [A]>, R>
+): Stream<R extends undefined ? OptPathVal<T, [A]> : R>;
 export function fromView<T, A, B, R = undefined>(
     parent: ReadonlyAtom<T>,
-    opts: FromViewOpts<Path2<T, A, B>, PathVal2<T, A, B>, R>
-): Stream<R extends undefined ? PathVal2<T, A, B> : R>;
+    opts: FromViewOpts<Path2<T, A, B>, OptPathVal<T, [A, B]>, R>
+): Stream<R extends undefined ? OptPathVal<T, [A, B]> : R>;
 export function fromView<T, A, B, C, R = undefined>(
     parent: ReadonlyAtom<T>,
-    opts: FromViewOpts<Path3<T, A, B, C>, PathVal3<T, A, B, C>, R>
-): Stream<R extends undefined ? PathVal3<T, A, B, C> : R>;
+    opts: FromViewOpts<Path3<T, A, B, C>, OptPathVal<T, [A, B, C]>, R>
+): Stream<R extends undefined ? OptPathVal<T, [A, B, C]> : R>;
 export function fromView<T, A, B, C, D, R = undefined>(
     parent: ReadonlyAtom<T>,
-    opts: FromViewOpts<Path4<T, A, B, C, D>, PathVal4<T, A, B, C, D>, R>
-): Stream<R extends undefined ? PathVal4<T, A, B, C, D> : R>;
+    opts: FromViewOpts<Path4<T, A, B, C, D>, OptPathVal<T, [A, B, C, D]>, R>
+): Stream<R extends undefined ? OptPathVal<T, [A, B, C, D]> : R>;
 export function fromView<T, A, B, C, D, E, R = undefined>(
     parent: ReadonlyAtom<T>,
-    opts: FromViewOpts<Path5<T, A, B, C, D, E>, PathVal5<T, A, B, C, D, E>, R>
-): Stream<R extends undefined ? PathVal5<T, A, B, C, D, E> : R>;
+    opts: FromViewOpts<
+        Path5<T, A, B, C, D, E>,
+        OptPathVal<T, [A, B, C, D, E]>,
+        R
+    >
+): Stream<R extends undefined ? OptPathVal<T, [A, B, C, D, E]> : R>;
 export function fromView<T, A, B, C, D, E, F, R = undefined>(
     parent: ReadonlyAtom<T>,
     opts: FromViewOpts<
         Path6<T, A, B, C, D, E, F>,
-        PathVal6<T, A, B, C, D, E, F>,
+        OptPathVal<T, [A, B, C, D, E, F]>,
         R
     >
-): Stream<R extends undefined ? PathVal6<T, A, B, C, D, E, F> : R>;
+): Stream<R extends undefined ? OptPathVal<T, [A, B, C, D, E, F]> : R>;
 export function fromView<T, A, B, C, D, E, F, G, R = undefined>(
     parent: ReadonlyAtom<T>,
     opts: FromViewOpts<
         Path7<T, A, B, C, D, E, F, G>,
-        PathVal7<T, A, B, C, D, E, F, G>,
+        OptPathVal<T, [A, B, C, D, E, F, G]>,
         R
     >
-): Stream<R extends undefined ? PathVal7<T, A, B, C, D, E, F, G> : R>;
+): Stream<R extends undefined ? OptPathVal<T, [A, B, C, D, E, F, G]> : R>;
 export function fromView<T, A, B, C, D, E, F, G, H, R = undefined>(
     parent: ReadonlyAtom<T>,
     opts: FromViewOpts<
         Path8<T, A, B, C, D, E, F, G, H>,
-        PathVal8<T, A, B, C, D, E, F, G, H>,
+        OptPathVal<T, [A, B, C, D, E, F, G, H]>,
         R
     >
-): Stream<R extends undefined ? PathVal8<T, A, B, C, D, E, F, G, H> : R>;
+): Stream<R extends undefined ? OptPathVal<T, [A, B, C, D, E, F, G, H]> : R>;
 export function fromView<T, A, B, C, D, E, F, G, H, R = undefined>(
     parent: ReadonlyAtom<T>,
     opts: FromViewOpts<DeepPath<T, A, B, C, D, E, F, G, H>, any, R>
