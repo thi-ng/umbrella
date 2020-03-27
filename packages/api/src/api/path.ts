@@ -8,15 +8,9 @@ import type {
     Keys5,
     Keys6,
     Keys7,
-    Val1,
-    Val2,
-    Val3,
-    Val4,
-    Val5,
-    Val6,
-    Val7,
-    Val8,
+    ValN,
 } from "./keyval";
+import { Head, Tail, IsEmpty } from "./tuple";
 
 /**
  * Unchecked lookup path for nested data structures.
@@ -162,111 +156,53 @@ export type DeepPath<T, A, B, C, D, E, F, G, H> = A extends Keys<T>
     : never;
 
 /**
- * Value type for lookup path (depth 1)
+ * Returns `RES` if `PRED` is `never`, else `RES | undefined`
  */
-export type PathVal1<T, A> = A extends Keys<T> ? Val1<T, A> : never;
+export type OptVal<PRED, RES> = [PRED] extends [never] ? RES : RES | undefined;
 
 /**
- * Value type for lookup path (depth 2)
+ * Returns true if `T` includes undefined.
  */
-export type PathVal2<T, A, B> = A extends Keys<T>
-    ? B extends Keys1<T, A>
-        ? Val2<T, A, B>
-        : never
+export type IsOpt<T> = T extends undefined ? true : never;
+
+/**
+ * Internal recursive helper type for {@link IsOptPath}.
+ */
+type IsOptR<T, K, P extends unknown[]> = K extends Keys<T>
+    ? [true] extends [IsOpt<T[K]>]
+        ? true
+        : {
+              0: IsOptR<Required<T>[K], Head<P>, Tail<P>>;
+              1: never;
+          }[IsEmpty<P>]
     : never;
 
 /**
- * Value type for lookup path (depth 3)
+ * Returns true if given path contains any intermediate properties
+ * declared as optional in type `T`.
+ *
+ * Reference:
+ * https://stackoverflow.com/q/60869412/294515
  */
-export type PathVal3<T, A, B, C> = A extends Keys<T>
-    ? B extends Keys1<T, A>
-        ? C extends Keys2<T, A, B>
-            ? Val3<T, A, B, C>
-            : never
-        : never
-    : never;
+export type IsOptPath<T, P extends unknown[]> = P extends []
+    ? never
+    : IsOptR<T, Head<P>, Tail<P>>;
 
 /**
- * Value type for lookup path (depth 4)
+ * Similar to {@link PathVal}, but also takes into account if given path
+ * contains any intermediate properties declared as optional in type
+ * `T`. If that's the case, returns union of `undefined` and inferred
+ * value for path, else just the latter.
+ *
+ * Context & reference: https://stackoverflow.com/q/60869412/294515
  */
-export type PathVal4<T, A, B, C, D> = A extends Keys<T>
-    ? B extends Keys1<T, A>
-        ? C extends Keys2<T, A, B>
-            ? D extends Keys3<T, A, B, C>
-                ? Val4<T, A, B, C, D>
-                : never
-            : never
-        : never
-    : never;
+export type OptPathVal<T, P extends unknown[]> = OptVal<
+    IsOptPath<T, P>,
+    ValN<T, P>
+>;
 
 /**
- * Value type for lookup path (depth 5)
+ * Returns nested value type for given path into `T` or `never` if path
+ * is incompatible with `T`.
  */
-export type PathVal5<T, A, B, C, D, E> = A extends Keys<T>
-    ? B extends Keys1<T, A>
-        ? C extends Keys2<T, A, B>
-            ? D extends Keys3<T, A, B, C>
-                ? E extends Keys4<T, A, B, C, D>
-                    ? Val5<T, A, B, C, D, E>
-                    : never
-                : never
-            : never
-        : never
-    : never;
-
-/**
- * Value type for lookup path (depth 6)
- */
-export type PathVal6<T, A, B, C, D, E, F> = A extends Keys<T>
-    ? B extends Keys1<T, A>
-        ? C extends Keys2<T, A, B>
-            ? D extends Keys3<T, A, B, C>
-                ? E extends Keys4<T, A, B, C, D>
-                    ? F extends Keys5<T, A, B, C, D, E>
-                        ? Val6<T, A, B, C, D, E, F>
-                        : never
-                    : never
-                : never
-            : never
-        : never
-    : never;
-
-/**
- * Value type for lookup path (depth 7)
- */
-export type PathVal7<T, A, B, C, D, E, F, G> = A extends Keys<T>
-    ? B extends Keys1<T, A>
-        ? C extends Keys2<T, A, B>
-            ? D extends Keys3<T, A, B, C>
-                ? E extends Keys4<T, A, B, C, D>
-                    ? F extends Keys5<T, A, B, C, D, E>
-                        ? G extends Keys6<T, A, B, C, D, E, F>
-                            ? Val7<T, A, B, C, D, E, F, G>
-                            : never
-                        : never
-                    : never
-                : never
-            : never
-        : never
-    : never;
-
-/**
- * Value type for lookup path (depth 8)
- */
-export type PathVal8<T, A, B, C, D, E, F, G, H> = A extends Keys<T>
-    ? B extends Keys1<T, A>
-        ? C extends Keys2<T, A, B>
-            ? D extends Keys3<T, A, B, C>
-                ? E extends Keys4<T, A, B, C, D>
-                    ? F extends Keys5<T, A, B, C, D, E>
-                        ? G extends Keys6<T, A, B, C, D, E, F>
-                            ? H extends Keys7<T, A, B, C, D, E, F, G>
-                                ? Val8<T, A, B, C, D, E, F, G, H>
-                                : never
-                            : never
-                        : never
-                    : never
-                : never
-            : never
-        : never
-    : never;
+export type PathVal<T, P extends unknown[]> = ValN<T, P>;

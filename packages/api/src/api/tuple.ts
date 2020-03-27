@@ -7,14 +7,14 @@ export type Tuple<T, N extends number> = [T, ...T[]] & { length: N } & Iterable<
     >;
 
 /**
- * @deprecated merged w/ {@link Tuple}
- */
-export type IterableTuple<T, N extends number> = Tuple<T, N> & Iterable<T>;
-
-/**
  * Extracts a tuple's length / size.
  */
 export type TupleLength<T extends unknown[]> = T["length"];
+
+/**
+ * Returns 1 if T is empty tuple, else 0
+ */
+export type IsEmpty<T extends unknown[]> = T extends [] ? 1 : 0;
 
 /**
  * Extracts the first element of a tuple.
@@ -68,22 +68,14 @@ export type Reverse<T extends unknown[]> = ReverseReducer<T>;
  * Extracts the last element from a tuple.
  */
 export type Last<T extends unknown[]> = {
-    // We need to use this trick to get around typescripts recursive
-    // type limit.
-    0: Head<T>;
-    1: Last<Tail<T>>;
-}[Tail<T> extends [] ? 0 : 1];
-
-/**
- * Internal version of {@link ButLast} accepting 1 extra argument for
- * the accumulated value.
- */
-type ButLastReducer<T extends unknown[], C extends unknown[] = []> = {
-    0: Reverse<C>;
-    1: ButLastReducer<Tail<T>, Prepend<Head<T>, C>>;
-}[Tail<T> extends [] ? 0 : 1];
+    0: Last<Tail<T>>;
+    1: Head<T>;
+}[IsEmpty<Tail<T>>];
 
 /**
  * Extracts everything except the last element from a tuple.
  */
-export type ButLast<T extends unknown[]> = ButLastReducer<T>;
+export type ButLast<T extends unknown[], C extends unknown[] = []> = {
+    0: ButLast<Tail<T>, Prepend<Head<T>, C>>;
+    1: Reverse<C>;
+}[IsEmpty<Tail<T>>];
