@@ -2,6 +2,7 @@ import { compare } from "@thi.ng/compare";
 import { map } from "@thi.ng/transducers";
 import { dissoc } from "./dissoc";
 import { equivSet } from "./internal/equiv";
+import { inspectable } from "./internal/inspect";
 import { into } from "./into";
 import { SortedMap } from "./sorted-map";
 import type { Fn3, ICompare, Pair } from "@thi.ng/api";
@@ -28,6 +29,7 @@ const __private = new WeakMap<SortedSet<any>, SortedMap<any, any>>();
  * This set uses a {@link SortedMap} as backing store and therefore has
  * the same resizing characteristics.
  */
+@inspectable
 export class SortedSet<T> extends Set<T>
     implements IEquivSet<T>, ICompare<Set<T>>, IReducible<any, T> {
     /**
@@ -72,7 +74,7 @@ export class SortedSet<T> extends Set<T>
     empty() {
         return new SortedSet<T>(null, {
             ...this.opts(),
-            capacity: SortedMap.DEFAULT_CAP
+            capacity: SortedMap.DEFAULT_CAP,
         });
     }
 
@@ -159,4 +161,7 @@ export class SortedSet<T> extends Set<T>
     opts(): SortedSetOpts<T> {
         return __private.get(this)!.opts();
     }
+    // [INSPECT](depth: number, opts: any) {
+    //     return inspectSet(this, depth, opts);
+    // }
 }

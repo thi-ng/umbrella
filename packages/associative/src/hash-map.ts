@@ -2,6 +2,7 @@ import { ceilPow2 } from "@thi.ng/binary";
 import { equiv } from "@thi.ng/equiv";
 import { dissoc } from "./dissoc";
 import { equivMap } from "./internal/equiv";
+import { inspectable } from "./internal/inspect";
 import { into } from "./into";
 import type {
     Fn,
@@ -10,7 +11,7 @@ import type {
     IEmpty,
     IEquiv,
     Pair,
-    Predicate2
+    Predicate2,
 } from "@thi.ng/api";
 import type { HashMapOpts } from "./api";
 
@@ -26,7 +27,7 @@ interface HashMapState<K, V> {
 const __private = new WeakMap<HashMap<any, any>, HashMapState<any, any>>();
 
 const __iterator = <K, V>(map: HashMap<K, V>, id: 0 | 1) =>
-    function*() {
+    function* () {
         for (let p of __private.get(map)!.bins) {
             if (p) yield p[id];
         }
@@ -54,6 +55,7 @@ const DEFAULT_CAP = 16;
  * ```
  *
  */
+@inspectable
 export class HashMap<K, V> extends Map<K, V>
     implements
         Iterable<Pair<K, V>>,
@@ -69,7 +71,7 @@ export class HashMap<K, V> extends Map<K, V>
             load: opts.load || 0.75,
             mask: m,
             bins: new Array(m + 1),
-            size: 0
+            size: 0,
         });
         if (pairs) {
             this.into(pairs);
@@ -129,7 +131,7 @@ export class HashMap<K, V> extends Map<K, V>
         Object.assign(__private.get(m), {
             bins: $this.bins.slice(),
             mask: $this.mask,
-            size: $this.size
+            size: $this.size,
         });
         return m;
     }
@@ -204,7 +206,7 @@ export class HashMap<K, V> extends Map<K, V>
             equiv: $this.equiv,
             load: $this.load,
             cap: $this.mask + 1,
-            ...overrides
+            ...overrides,
         };
     }
 

@@ -3,13 +3,9 @@ import { compare } from "@thi.ng/compare";
 import { isReduced, map } from "@thi.ng/transducers";
 import { dissoc } from "./dissoc";
 import { equivMap } from "./internal/equiv";
+import { inspectable } from "./internal/inspect";
 import { into } from "./into";
-import type {
-    Comparator,
-    Fn3,
-    IObjectOf,
-    Pair,
-} from "@thi.ng/api";
+import type { Comparator, Fn3, IObjectOf, Pair } from "@thi.ng/api";
 import type { ReductionFn } from "@thi.ng/transducers";
 import type { SortedMapOpts } from "./api";
 
@@ -39,6 +35,7 @@ class Node<K, V> {
 // http://fitzgeraldnick.com/2014/01/13/hiding-implementation-details-with-e6-weakmaps.html
 const __private = new WeakMap<SortedMap<any, any>, SortedMapState<any, any>>();
 
+@inspectable
 export class SortedMap<K, V> extends Map<K, V> {
     /**
      * Creates new {@link SortedMap} instance from given object's key-value
@@ -53,7 +50,7 @@ export class SortedMap<K, V> extends Map<K, V> {
     ): SortedMap<string, T> {
         const m = new SortedMap<string, T>(null, {
             capacity: Object.keys(obj).length,
-            ...opts
+            ...opts,
         });
         for (let k in obj) {
             obj.hasOwnProperty(k) && m.set(k, obj[k]);
@@ -85,7 +82,7 @@ export class SortedMap<K, V> extends Map<K, V> {
             p: opts.probability || SortedMap.DEFAULT_P,
             maxh,
             length: 0,
-            h: 0
+            h: 0,
         });
         if (pairs) {
             this.into(pairs);
@@ -146,7 +143,7 @@ export class SortedMap<K, V> extends Map<K, V> {
     empty(): SortedMap<K, V> {
         return new SortedMap<K, V>(null, {
             ...this.opts(),
-            capacity: SortedMap.DEFAULT_CAP
+            capacity: SortedMap.DEFAULT_CAP,
         });
     }
 
@@ -287,7 +284,7 @@ export class SortedMap<K, V> extends Map<K, V> {
         return {
             capacity: $this.cap,
             compare: $this.cmp,
-            probability: $this.p
+            probability: $this.p,
         };
     }
 

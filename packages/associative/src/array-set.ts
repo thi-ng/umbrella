@@ -2,6 +2,7 @@ import { SEMAPHORE } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
 import { dissoc } from "./dissoc";
 import { equivSet } from "./internal/equiv";
+import { inspectable } from "./internal/inspect";
 import { into } from "./into";
 import type { Fn3, Pair, Predicate2 } from "@thi.ng/api";
 import type { EquivSetOpts, IEquivSet } from "./api";
@@ -25,6 +26,7 @@ const __vals = (inst: ArraySet<any>) => __private.get(inst)!.vals;
  * Additionally, the type also implements the {@link @thi.ng/api#ICopy}, {@link @thi.ng/api#IEmpty} and
  * {@link @thi.ng/api#IEquiv} interfaces itself.
  */
+@inspectable
 export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
     constructor(
         vals?: Iterable<T> | null,
@@ -150,4 +152,7 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
     opts(): EquivSetOpts<T> {
         return { equiv: __private.get(this)!.equiv };
     }
+    // [INSPECT](depth: number, opts: any) {
+    //     return inspectSet(this, depth, opts);
+    // }
 }

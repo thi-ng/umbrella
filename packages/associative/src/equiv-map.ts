@@ -3,16 +3,10 @@ import { equiv } from "@thi.ng/equiv";
 import { ArraySet } from "./array-set";
 import { dissoc } from "./dissoc";
 import { equivMap } from "./internal/equiv";
+import { inspectable } from "./internal/inspect";
 import { into } from "./into";
+import type { Fn3, ICopy, IEmpty, IEquiv, IObjectOf, Pair } from "@thi.ng/api";
 import type { EquivMapOpts, IEquivSet } from "./api";
-import type {
-    Fn3,
-    ICopy,
-    IEmpty,
-    IEquiv,
-    IObjectOf,
-    Pair,
-} from "@thi.ng/api";
 
 interface MapProps<K, V> {
     keys: IEquivSet<K>;
@@ -24,6 +18,7 @@ const __private = new WeakMap<EquivMap<any, any>, MapProps<any, any>>();
 
 const __map = (map: EquivMap<any, any>) => __private.get(map)!.map;
 
+@inspectable
 export class EquivMap<K, V> extends Map<K, V>
     implements
         Iterable<Pair<K, V>>,
@@ -44,7 +39,7 @@ export class EquivMap<K, V> extends Map<K, V>
     ): EquivMap<string, T> {
         const m = new EquivMap<string, T>(null, {
             equiv: (a, b) => a === b,
-            ...opts
+            ...opts,
         });
         for (let k in obj) {
             obj.hasOwnProperty(k) && m.set(k, obj[k]);
@@ -70,7 +65,7 @@ export class EquivMap<K, V> extends Map<K, V>
         __private.set(this, {
             keys: new _opts.keys(null, { equiv: _opts.equiv }),
             map: new Map<K, V>(),
-            opts: _opts
+            opts: _opts,
         });
         if (pairs) {
             this.into(pairs);
@@ -109,7 +104,7 @@ export class EquivMap<K, V> extends Map<K, V>
         __private.set(m, {
             keys: $this.keys.copy(),
             map: new Map<K, V>($this.map),
-            opts: $this.opts
+            opts: $this.opts,
         });
         return m;
     }

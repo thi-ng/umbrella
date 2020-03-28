@@ -3,12 +3,9 @@ import { DCons } from "@thi.ng/dcons";
 import { equiv } from "@thi.ng/equiv";
 import { dissoc } from "./dissoc";
 import { equivSet } from "./internal/equiv";
+import { inspectable } from "./internal/inspect";
 import { into } from "./into";
-import type {
-    Fn3,
-    Pair,
-    Predicate2,
-} from "@thi.ng/api";
+import type { Fn3, Pair, Predicate2 } from "@thi.ng/api";
 import type { EquivSetOpts, IEquivSet } from "./api";
 
 interface SetProps<T> {
@@ -30,6 +27,7 @@ const __vals = (inst: LLSet<any>) => __private.get(inst)!.vals;
  * Additionally, the type also implements the {@link @thi.ng/api#ICopy}, {@link @thi.ng/api#IEmpty} and
  * {@link @thi.ng/api#IEquiv} interfaces itself.
  */
+@inspectable
 export class LLSet<T> extends Set<T> implements IEquivSet<T> {
     constructor(
         vals?: Iterable<T> | null,
@@ -38,7 +36,7 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
         super();
         __private.set(this, {
             equiv: opts.equiv || equiv,
-            vals: new DCons<T>()
+            vals: new DCons<T>(),
         });
         vals && this.into(vals);
     }
@@ -160,4 +158,7 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
     opts(): EquivSetOpts<T> {
         return { equiv: __private.get(this)!.equiv };
     }
+    // [INSPECT](depth: number, opts: any) {
+    //     return inspectSet(this, depth, opts);
+    // }
 }

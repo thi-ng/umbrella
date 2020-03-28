@@ -7,7 +7,7 @@ import type {
     IEquiv,
     IGet,
     IInto,
-    Predicate2
+    Predicate2,
 } from "@thi.ng/api";
 
 export interface IEquivSet<T>
