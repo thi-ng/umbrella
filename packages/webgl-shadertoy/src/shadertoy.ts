@@ -4,19 +4,14 @@ import {
     defn,
     FLOAT0,
     FLOAT1,
-    vec4
+    vec4,
 } from "@thi.ng/shader-ast";
-import {
-    compileModel,
-    draw,
-    quad,
-    shader
-} from "@thi.ng/webgl";
+import { compileModel, defQuadModel, defShader, draw } from "@thi.ng/webgl";
 import type {
     MainImageFn,
     ShaderToy,
     ShaderToyOpts,
-    ShaderToyUniforms
+    ShaderToyUniforms,
 } from "./api";
 
 export const shaderToy = <U extends ShaderToyUniforms>(
@@ -24,7 +19,7 @@ export const shaderToy = <U extends ShaderToyUniforms>(
 ) => {
     const gl = opts.gl;
 
-    const model = quad(false);
+    const model = defQuadModel(false);
     model.textures = opts.textures || [];
     compileModel(gl, model);
 
@@ -33,7 +28,7 @@ export const shaderToy = <U extends ShaderToyUniforms>(
         const dpr = window.devicePixelRatio;
         model.uniforms!.mouse = [
             (e.clientX - rect.left) * dpr,
-            (rect.height - (e.clientY - rect.top)) * dpr
+            (rect.height - (e.clientY - rect.top)) * dpr,
         ];
     });
     opts.canvas.addEventListener("mousedown", (e) => {
@@ -77,14 +72,14 @@ export const shaderToy = <U extends ShaderToyUniforms>(
             if (model.shader) {
                 model.shader.release();
             }
-            model.shader = shader(gl, {
+            model.shader = defShader(gl, {
                 vs: (gl, _, ins) => [
                     defMain(() => [
                         assign(
                             gl.gl_Position,
                             vec4(ins.position, FLOAT0, FLOAT1)
-                        )
-                    ])
+                        ),
+                    ]),
                 ],
                 fs: (gl, unis, _, outputs) => [
                     defMain(() => [
@@ -93,22 +88,22 @@ export const shaderToy = <U extends ShaderToyUniforms>(
                             defn("vec4", "mainImage", [], () =>
                                 main(gl, <any>unis)
                             )()
-                        )
-                    ])
+                        ),
+                    ]),
                 ],
                 attribs: {
-                    position: "vec2"
+                    position: "vec2",
                 },
                 uniforms: {
                     resolution: "vec2",
                     mouse: ["vec2", [0, 0]],
                     mouseButtons: ["int", 0],
                     time: "float",
-                    ...opts.uniforms
-                }
+                    ...opts.uniforms,
+                },
             });
         },
-        model
+        model,
     };
     instance.recompile(opts.main);
     return instance;
