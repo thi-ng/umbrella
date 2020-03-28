@@ -7,7 +7,7 @@ export interface CubeOpts {
 }
 
 // prettier-ignore
-export const cube = (opts?: Partial<CubeOpts>) => {
+export const defCubeModel = (opts?: Partial<CubeOpts>) => {
     opts = { size: 1, normal: true, uv: true, ...opts};
     const s = opts.size!;
     const spec: ModelSpec = {

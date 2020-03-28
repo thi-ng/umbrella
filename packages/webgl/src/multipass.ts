@@ -1,25 +1,23 @@
 import { assert, IObjectOf } from "@thi.ng/api";
-import {
-    assocObj,
-    map,
-    range,
-    some,
-    transduce
-} from "@thi.ng/transducers";
+import { assocObj, map, range, some, transduce } from "@thi.ng/transducers";
+import type { ExtensionBehaviors } from "./api/ext";
+import type { Multipass, MultipassOpts, PassOpts } from "./api/multipass";
+import type {
+    ShaderOutputSpec,
+    ShaderSpec,
+    ShaderUniformSpecs,
+} from "./api/shader";
+import type { ITexture } from "./api/texture";
 import { compileModel } from "./buffer";
 import { isFloatTexture, isGL2Context } from "./checks";
 import { draw } from "./draw";
-import { fbo } from "./fbo";
-import { quad } from "./geo/quad";
-import { shader } from "./shader";
+import { defFBO } from "./fbo";
+import { defQuadModel } from "./geo/quad";
+import { defShader } from "./shader";
 import { PASSTHROUGH_VS } from "./shaders/pipeline";
-import { texture } from "./texture";
-import type { ExtensionBehaviors } from "./api/ext";
-import type { Multipass, MultipassOpts, PassOpts } from "./api/multipass";
-import type { ShaderOutputSpec, ShaderSpec, ShaderUniformSpecs } from "./api/shader";
-import type { ITexture } from "./api/texture";
+import { defTexture } from "./texture";
 
-export const multipass = (opts: MultipassOpts) => {
+export const defMultiPass = (opts: MultipassOpts) => {
     const gl = opts.gl;
     const isGL2 = isGL2Context(gl);
     const numPasses = opts.passes.length;
@@ -33,22 +31,22 @@ export const multipass = (opts: MultipassOpts) => {
             vs: pass.vs || PASSTHROUGH_VS,
             fs: pass.fs,
             attribs: pass.attribs || {
-                position: "vec2"
+                position: "vec2",
             },
             varying: pass.varying,
             uniforms: <ShaderUniformSpecs>{
                 ...pass.uniforms,
                 ...(numIns
                     ? {
-                          inputs: ["sampler2D[]", numIns, [...range(numIns)]]
+                          inputs: ["sampler2D[]", numIns, [...range(numIns)]],
                       }
-                    : null)
+                    : null),
             },
             outputs: numOuts
                 ? transduce(
                       map<number, [string, ShaderOutputSpec]>((i) => [
                           `output${i}`,
-                          ["vec4", i]
+                          ["vec4", i],
                       ]),
                       assocObj(),
                       range(numOuts)
@@ -59,7 +57,7 @@ export const multipass = (opts: MultipassOpts) => {
             post: pass.post,
             replacePrelude: pass.replacePrelude,
             generateDecls: pass.generateDecls,
-            ext
+            ext,
         };
         const floatIn = some((id) => isFloatTexture(textures[id]), pass.inputs);
         const floatOut = some(
@@ -74,25 +72,22 @@ export const multipass = (opts: MultipassOpts) => {
             ext[isGL2 ? "EXT_color_buffer_float" : "WEBGL_color_buffer_float"] =
                 "require";
         }
-        return shader(gl, spec);
+        return defShader(gl, spec);
     };
 
-    const textures = Object.keys(opts.textures).reduce(
-        (acc, id) => {
-            acc[id] = texture(gl, {
-                width: opts.width,
-                height: opts.height,
-                filter: gl.NEAREST,
-                wrap: gl.CLAMP_TO_EDGE,
-                image: null,
-                ...opts.textures[id]
-            });
-            return acc;
-        },
-        <IObjectOf<ITexture>>{}
-    );
+    const textures = Object.keys(opts.textures).reduce((acc, id) => {
+        acc[id] = defTexture(gl, {
+            width: opts.width,
+            height: opts.height,
+            filter: gl.NEAREST,
+            wrap: gl.CLAMP_TO_EDGE,
+            image: null,
+            ...opts.textures[id],
+        });
+        return acc;
+    }, <IObjectOf<ITexture>>{});
 
-    const model = compileModel(gl, quad(false));
+    const model = compileModel(gl, defQuadModel(false));
     const models = opts.passes.map((pass) => {
         const m = pass.model ? compileModel(gl, <any>pass.model) : { ...model };
         m.shader = initShader(pass);
@@ -106,7 +101,9 @@ export const multipass = (opts: MultipassOpts) => {
     const fbos = (useMainBuffer
         ? opts.passes.slice(0, numPasses - 1)
         : opts.passes
-    ).map((pass) => fbo(gl, { tex: pass.outputs.map((id) => textures[id]) }));
+    ).map((pass) =>
+        defFBO(gl, { tex: pass.outputs.map((id) => textures[id]) })
+    );
 
     const drawPass = (i: number, time: number) => {
         const pass = opts.passes[i];
@@ -157,7 +154,7 @@ export const multipass = (opts: MultipassOpts) => {
         passes: opts.passes,
         fbos,
         models,
-        textures
+        textures,
     };
 
     return instance;

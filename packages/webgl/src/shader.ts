@@ -1,28 +1,24 @@
+import type { Fn3, IDeref, IObjectOf } from "@thi.ng/api";
 import {
     existsAndNotNull,
     implementsFunction,
     isArray,
     isBoolean,
-    isFunction
+    isFunction,
 } from "@thi.ng/checks";
 import { unsupported } from "@thi.ng/errors";
-import {
-    input,
-    output,
-    program,
-    Sym,
-    sym,
-    uniform
-} from "@thi.ng/shader-ast";
+import { input, output, program, Sym, sym, uniform } from "@thi.ng/shader-ast";
 import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
 import { vals } from "@thi.ng/transducers";
 import {
     ExtensionBehavior,
     ExtensionBehaviors,
     ExtensionName,
-    GL_EXT_INFO
+    GL_EXT_INFO,
 } from "./api/ext";
+import type { GLSL } from "./api/glsl";
 import { LOGGER } from "./api/logger";
+import type { ModelAttributeSpecs, ModelSpec } from "./api/model";
 import {
     DEFAULT_OUTPUT,
     GLSLDeclPrefixes,
@@ -37,16 +33,13 @@ import {
     ShaderUniforms,
     ShaderUniformSpecs,
     UniformValue,
-    UniformValues
+    UniformValues,
 } from "./api/shader";
 import { getExtensions } from "./canvas";
 import { isGL2Context } from "./checks";
 import { error } from "./error";
 import { GLSL_HEADER, NO_PREFIXES, SYNTAX } from "./syntax";
 import { UNIFORM_SETTERS } from "./uniforms";
-import type { Fn3, IDeref, IObjectOf } from "@thi.ng/api";
-import type { GLSL } from "./api/glsl";
-import type { ModelAttributeSpecs, ModelSpec } from "./api/model";
 
 const ERROR_REGEXP = /ERROR: \d+:(\d+): (.*)/;
 
@@ -190,7 +183,7 @@ export class Shader implements IShader {
     }
 }
 
-export const shader = (gl: WebGLRenderingContext, spec: ShaderSpec) => {
+export const defShader = (gl: WebGLRenderingContext, spec: ShaderSpec) => {
     const version = isGL2Context(gl)
         ? GLSLVersion.GLES_300
         : GLSLVersion.GLES_100;
@@ -344,7 +337,7 @@ export const shaderSourceFromAST = (
     const target = targetGLSL({
         type,
         version,
-        prelude
+        prelude,
     });
     return (
         target(
@@ -354,8 +347,8 @@ export const shaderSourceFromAST = (
                 ...vals(outputs),
                 ...(<ShaderFn>spec[type])(target, unis, inputs, {
                     ...outputs,
-                    ...outputAliases
-                })
+                    ...outputAliases,
+                }),
             ])
         ) + (spec.post ? "\n" + spec.post : "")
     );
@@ -451,7 +444,7 @@ const initAttributes = (
         } else {
             res[id] = {
                 type,
-                loc: gl.getAttribLocation(prog, aid)
+                loc: gl.getAttribLocation(prog, aid),
             };
         }
     }
@@ -487,7 +480,7 @@ const initUniforms = (
                     setter: setter(gl, loc, defaultVal),
                     defaultFn,
                     defaultVal,
-                    type
+                    type,
                 };
             } else {
                 error(`invalid uniform type: ${type}`);

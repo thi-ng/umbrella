@@ -2,13 +2,13 @@ import { withoutKeysObj } from "@thi.ng/associative";
 import { isArray } from "@thi.ng/checks";
 import {
     ITexture,
-    TEX_FORMATS,
     TextureFilter,
     TextureFormat,
     TextureOpts,
     TextureRepeat,
     TextureTarget,
-    TextureType
+    TextureType,
+    TEX_FORMATS,
 } from "./api/texture";
 import { isGL2Context } from "./checks";
 import { error } from "./error";
@@ -142,7 +142,7 @@ export class Texture implements ITexture {
                         if (opts.image != null && level == 0) {
                             this.size = [
                                 (<any>opts.image).width,
-                                (<any>opts.image).height
+                                (<any>opts.image).height,
                             ];
                         }
                         gl.texImage2D(
@@ -247,7 +247,7 @@ export class Texture implements ITexture {
     }
 }
 
-export const texture = (
+export const defTexture = (
     gl: WebGLRenderingContext,
     opts?: Partial<TextureOpts>
 ) => new Texture(gl, opts);
@@ -269,7 +269,7 @@ export const texture = (
  * @param faces - in order: +x,-x,+y,-y,+z,-z
  * @param opts -
  */
-export const cubeMap = (
+export const defTextureCubeMap = (
     gl: WebGLRenderingContext,
     faces: (ArrayBufferView | TexImageSource)[],
     opts: Partial<TextureOpts> = {}
@@ -279,7 +279,7 @@ export const cubeMap = (
         "target",
         "image",
         "filter",
-        "mipmap"
+        "mipmap",
     ]);
     for (let i = 0; i < 6; i++) {
         faceOpts.target = gl.TEXTURE_CUBE_MAP_POSITIVE_X + i;
@@ -291,7 +291,7 @@ export const cubeMap = (
 };
 
 /**
- * Creates & configure a new FLOAT texture.
+ * Creates & configure a new float texture.
  *
  * **Important:** Since each texel will hold 4x 32-bit float values, the
  * `data` buffer needs to have a length of at least `4 * width *
@@ -307,7 +307,7 @@ export const cubeMap = (
  * @param format -
  * @param type -
  */
-export const floatTexture = (
+export const defTextureFloat = (
     gl: WebGLRenderingContext,
     data: Float32Array | undefined | null,
     width: number,
@@ -324,5 +324,5 @@ export const floatTexture = (
         type: type || gl.FLOAT,
         image: data,
         width,
-        height
+        height,
     });

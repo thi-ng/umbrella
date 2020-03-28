@@ -1,14 +1,14 @@
+import type { TypedArray } from "@thi.ng/api";
 import { AttribPool } from "@thi.ng/vector-pools";
+import type { IndexBufferSpec, IWebGLBuffer } from "./api/buffers";
 import {
     DrawMode,
     ModelAttributeSpec,
     ModelAttributeSpecs,
-    ModelSpec
+    ModelSpec,
 } from "./api/model";
 import { isGL2Context } from "./checks";
 import { error } from "./error";
-import type { TypedArray } from "@thi.ng/api";
-import type { IndexBufferSpec, IWebGLBuffer } from "./api/buffers";
 
 export class WebGLArrayBuffer<T extends TypedArray> implements IWebGLBuffer<T> {
     gl: WebGLRenderingContext;
@@ -58,7 +58,7 @@ export class WebGLArrayBuffer<T extends TypedArray> implements IWebGLBuffer<T> {
     }
 }
 
-export const buffer = (
+export const defBuffer = (
     gl: WebGLRenderingContext,
     data?: TypedArray,
     target = gl.ARRAY_BUFFER,
@@ -161,7 +161,7 @@ export const compileAttribPool = (
     target = gl.ARRAY_BUFFER,
     mode = gl.STATIC_DRAW
 ) => {
-    const buf = buffer(gl, pool.bytes(), target, mode);
+    const buf = defBuffer(gl, pool.bytes(), target, mode);
     const spec = <ModelAttributeSpecs>{};
     for (let id of ids || Object.keys(pool.specs)) {
         const attr = pool.specs[id];
@@ -170,7 +170,7 @@ export const compileAttribPool = (
             size: attr.size,
             type: attr.type,
             stride: pool.byteStride,
-            offset: attr.byteOffset
+            offset: attr.byteOffset,
         };
     }
     return spec;

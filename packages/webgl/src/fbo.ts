@@ -1,9 +1,9 @@
 import { assert } from "@thi.ng/api";
+import type { FboOpts, IFbo } from "./api/buffers";
 import { ITexture, TEX_FORMATS } from "./api/texture";
 import { isGL2Context } from "./checks";
 import { error } from "./error";
 import { RBO } from "./rbo";
-import type { FboOpts, IFbo } from "./api/buffers";
 
 const GL_COLOR_ATTACHMENT0_WEBGL = 0x8ce0;
 const GL_MAX_COLOR_ATTACHMENTS_WEBGL = 0x8cdf;
@@ -131,5 +131,5 @@ export class FBO implements IFbo {
     }
 }
 
-export const fbo = (gl: WebGLRenderingContext, opts?: Partial<FboOpts>) =>
+export const defFBO = (gl: WebGLRenderingContext, opts?: Partial<FboOpts>) =>
     new FBO(gl, opts);
