@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.5.6...@thi.ng/arrays@0.6.0) (2020-03-28)
+
+
+### Features
+
+* **arrays:** add fillRange() & levenshtein() ([2f98225](https://github.com/thi-ng/umbrella/commit/2f98225d129c7c1ae6b88a4f0bea9227254fcf91))
+
+
+
+
+
 # [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.4.0...@thi.ng/arrays@0.5.0) (2020-01-24)
 
 ### Features

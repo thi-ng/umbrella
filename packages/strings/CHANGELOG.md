@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.7.0...@thi.ng/strings@1.8.0) (2020-03-28)
+
+
+### Features
+
+* **strings:** add join() HOF ([1c5c46f](https://github.com/thi-ng/umbrella/commit/1c5c46f5ac832865266613a6d71024507238b694))
+* **strings:** add slugifyGH(), refactor slugify() ([1ef805b](https://github.com/thi-ng/umbrella/commit/1ef805be3f0347751eba6da0122e1277a5b81e21))
+* **strings:** add trim() HOF ([350a6c6](https://github.com/thi-ng/umbrella/commit/350a6c6cb010e00f2053fb41eeb0f458ee8fb715))
+
+
+
+
+
 # [1.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.6.0...@thi.ng/strings@1.7.0) (2020-03-06)
 
 

@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@3.0.7...@thi.ng/rstream@4.0.0) (2020-03-28)
+
+
+### Features
+
+* **rstream:** update/rename fromView() ([f5df4ab](https://github.com/thi-ng/umbrella/commit/f5df4abbdaa82e666b9fcea9135a6e3d2f563666))
+
+
+### BREAKING CHANGES
+
+* **rstream:** update/rename fromView(), add fromViewUnsafe()
+
+- fromView() now performs type checking on given path and/or view transform
+- existing `fromView()` renamed to `fromViewUnsafe()` (this is in line w/ related
+  updates in thi.ng/atom & thi.ng/paths pkgs)
+
+
+
+
+
 # [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@2.5.6...@thi.ng/rstream@3.0.0) (2019-11-30)
 
 ### Bug Fixes

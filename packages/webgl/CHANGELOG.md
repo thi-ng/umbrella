@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@0.3.4...@thi.ng/webgl@1.0.0) (2020-03-28)
+
+
+### Code Refactoring
+
+* **webgl:** rename factory functions ([633f693](https://github.com/thi-ng/umbrella/commit/633f69387a9ddf35919b9b6dd108068a9e05aec7))
+
+
+### Features
+
+* **webgl:** add DrawMode enums ([5adaa23](https://github.com/thi-ng/umbrella/commit/5adaa23c5aa06b2229cb55d216f424b367875217))
+
+
+### BREAKING CHANGES
+
+* **webgl:** #210, rename factory functions (`defXXX`)
+
+- rename buffer() => defBuffer()
+- rename fbo() => defFBO()
+- rename rbo() => defRBO()
+- rename multipass() => defMultiPass()
+- rename shader() => defShader()
+- rename texture() => defTexture()
+- rename cubeMap() => defTextureCubeMap()
+- rename floatTexture() => defTextureFloat()
+- rename cube() => defCubeModel()
+- rename quad() => defQuadModel()
+
+
+
+
+
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@0.2.4...@thi.ng/webgl@0.3.0) (2020-02-25)
 
 

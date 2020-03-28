@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/resolve-map",
-    "version": "4.1.15",
+    "version": "4.1.16",
     "description": "DAG resolution of vanilla objects & arrays with internally linked values",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -37,10 +37,10 @@
         "typescript": "^3.8.3"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.8.3",
-        "@thi.ng/checks": "^2.5.4",
-        "@thi.ng/errors": "^1.2.7",
-        "@thi.ng/paths": "^3.0.5",
+        "@thi.ng/api": "^6.9.0",
+        "@thi.ng/checks": "^2.6.0",
+        "@thi.ng/errors": "^1.2.8",
+        "@thi.ng/paths": "^4.0.0",
         "tslib": "^1.11.1"
     },
     "keywords": [

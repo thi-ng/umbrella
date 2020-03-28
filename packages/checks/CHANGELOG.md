@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.5.4...@thi.ng/checks@2.6.0) (2020-03-28)
+
+
+### Bug Fixes
+
+* **checks:** typo ([4e4a6e1](https://github.com/thi-ng/umbrella/commit/4e4a6e1062075705d96883f860f23b545fd9ebdf))
+
+
+### Features
+
+* **checks:** add better type assertion for isTypedArray() ([548ba52](https://github.com/thi-ng/umbrella/commit/548ba5205033bcc4a917fa56ede65ba3df4b3eef))
+* **checks:** add new string validators ([9d9e8a8](https://github.com/thi-ng/umbrella/commit/9d9e8a8bcb73efb728faf4a216a9dfcac31a0639))
+
+
+
+
+
 # [2.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.4.2...@thi.ng/checks@2.5.0) (2020-01-24)
 
 ### Features

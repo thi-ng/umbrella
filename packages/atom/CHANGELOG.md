@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@3.1.8...@thi.ng/atom@4.0.0) (2020-03-28)
+
+
+### Bug Fixes
+
+* **atom:** fix defViewUnsafe() type inference ([bb5593a](https://github.com/thi-ng/umbrella/commit/bb5593a6bfeafbfdd8209fa707368634ea30fc28))
+
+
+### Code Refactoring
+
+* **atom:** update path value inference handling ([8c2aab2](https://github.com/thi-ng/umbrella/commit/8c2aab2f702803245d384b21f0e8c149138f73cd))
+
+
+### Features
+
+* **atom:** add typechecking for resetIn(), swapIn() impls ([f114e10](https://github.com/thi-ng/umbrella/commit/f114e10a5d8736d9cfd70b32dd5cbbaa503eeadb))
+* **atom:** update types, API for supporting type-checked & unchecked paths ([82948b8](https://github.com/thi-ng/umbrella/commit/82948b8dc316ba402b2124cd7263c47e8dc7d2eb))
+
+
+### BREAKING CHANGES
+
+* **atom:** update IReset, ISwap, SwapFn generics
+
+- use PathVal & OptPathVal for value type inference
+* **atom:** update types, API for supporting type-checked & unchecked paths
+
+- support path type checking for upto 8 levels (before falling back to `any`)
+- update `resetIn()` / `swapIn()` impls in all types to expect type-checked paths
+- add `resetInUnsafe()` / `swapInUnsafe()` for string-based / unchecked paths
+- remove support for non-atom-like Cursor parent states
+- simplify Cursor ctor
+- remove `IViewable` interface and `.addView()` impls (use `defView()` instead)
+- remove `ViewTransform` type alias
+- add factory fns for typed paths:
+  - defAtom()
+  - defCursor()
+  - defHistory()
+  - defTransacted()
+  - defView()
+- add factory fns for untyped paths:
+  - defCursorUnsafe()
+  - defViewUnsafe()
+* **atom:** add typechecking for resetIn(), swapIn() impls
+
+The more stricter method signatures **could** lead to breaking changes
+in more lax existing code bases
+
+
+
+
+
 # [3.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@3.0.4...@thi.ng/atom@3.1.0) (2019-09-21)
 
 ### Features

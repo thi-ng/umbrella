@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@3.1.8...@thi.ng/associative@4.0.0) (2020-03-28)
+
+
+### Features
+
+* **associative:** [#210](https://github.com/thi-ng/umbrella/issues/210), add `defXXX` factory fns ([48ae24a](https://github.com/thi-ng/umbrella/commit/48ae24a478ba430e123489fbb728fcb7e2d26d06))
+* **associative:** re-add support for nodejs REPL inspection ([49024f7](https://github.com/thi-ng/umbrella/commit/49024f75fd6126f5d6c1991516a411df7d62d893)), closes [nodejs/node#32529](https://github.com/nodejs/node/issues/32529)
+
+
+### BREAKING CHANGES
+
+* **associative:** remove static `fromObject()` map factories
+
+- merged with defHashMap(), defSortedMap()
+
+
+
+
+
 # [3.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@3.0.1...@thi.ng/associative@3.1.0) (2019-11-09)
 
 ### Bug Fixes

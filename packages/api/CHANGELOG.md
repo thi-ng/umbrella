@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.8.3...@thi.ng/api@6.9.0) (2020-03-28)
+
+
+### Features
+
+* **api:** add Derefed & DerefedKeys types ([95f1576](https://github.com/thi-ng/umbrella/commit/95f15765435e877aa92a66ac64933a962fbd2db5))
+* **api:** add optional props in Keys/Val types ([08b88f0](https://github.com/thi-ng/umbrella/commit/08b88f0e74ffae0e4d8edddfbb5dff17f978a149))
+* **api:** add Path0-8, PathVal1-8, DeepPath types ([0c76108](https://github.com/thi-ng/umbrella/commit/0c761085b60d27849650d51e851afd98f0f2b9ea))
+* **api:** update Path alias, add doc strings ([e2b35bc](https://github.com/thi-ng/umbrella/commit/e2b35bc13cdf286d0e1cd60176eeb207525b064f))
+
+
+
+
+
 # [6.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.7.1...@thi.ng/api@6.8.0) (2020-02-25)
 
 

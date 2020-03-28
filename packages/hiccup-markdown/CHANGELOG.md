@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-markdown@1.1.14...@thi.ng/hiccup-markdown@1.2.0) (2020-03-28)
+
+
+### Features
+
+* **hiccup-markdown:** add table caption support ([4b72b92](https://github.com/thi-ng/umbrella/commit/4b72b92da8c832e2593a56554243e477c6bb0741))
+* **hiccup-markdown:** add table serializer & test, update deps ([7cecf24](https://github.com/thi-ng/umbrella/commit/7cecf2440754a25b0b1a4ca967f49171fe83fed7))
+
+
+
+
+
 ## [1.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-markdown@1.1.5...@thi.ng/hiccup-markdown@1.1.6) (2019-11-09)
 
 ### Bug Fixes

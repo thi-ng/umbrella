@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-patch@0.1.4...@thi.ng/transducers-patch@0.1.5) (2020-03-28)
+
+
+### Bug Fixes
+
+* **transducers-patch:** update deps & imports ([71d73c3](https://github.com/thi-ng/umbrella/commit/71d73c3acc41d6cf2c5a4a91432bc85afa38980b))
+
+
+
+
+
 # 0.1.0 (2020-02-25)
 
 

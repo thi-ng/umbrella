@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/paths",
-    "version": "3.0.5",
+    "version": "4.0.0",
     "description": "Immutable, optimized and optionally typed path-based object property / array accessors with structural sharing",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,8 +38,8 @@
         "typescript": "^3.8.3"
     },
     "dependencies": {
-        "@thi.ng/checks": "^2.5.4",
-        "@thi.ng/errors": "^1.2.7",
+        "@thi.ng/checks": "^2.6.0",
+        "@thi.ng/errors": "^1.2.8",
         "tslib": "^1.11.1"
     },
     "keywords": [

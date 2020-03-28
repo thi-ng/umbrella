@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/compose@1.3.12...@thi.ng/compose@1.4.0) (2020-03-28)
+
+
+### Features
+
+* **compose:** add promisify() ([dfcf4ab](https://github.com/thi-ng/umbrella/commit/dfcf4ab7333b25c4332f783d124d86de058feceb))
+
+
+
+
+
 # [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/compose@1.2.5...@thi.ng/compose@1.3.0) (2019-07-07)
 
 ### Features

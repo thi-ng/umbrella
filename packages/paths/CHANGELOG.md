@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@3.0.5...@thi.ng/paths@4.0.0) (2020-03-28)
+
+
+### Code Refactoring
+
+* **paths:** update path value inference ([ab4440e](https://github.com/thi-ng/umbrella/commit/ab4440e6a297559ceb824c5e4b3c7e023ae69710))
+
+
+### Features
+
+* **paths:** add/update unsafe type infer, update doc strings ([5cc5b46](https://github.com/thi-ng/umbrella/commit/5cc5b461e9602011b62c49d8d4a6756e1ad4a404))
+* **paths:** major API update ([b51efc6](https://github.com/thi-ng/umbrella/commit/b51efc69834e178344c4d1c1e47961460acedd8f))
+* **paths:** update typed path sigs ([0b6c155](https://github.com/thi-ng/umbrella/commit/0b6c155d8d6cf9bd3f25bfce723cac2de48ad544))
+
+
+### BREAKING CHANGES
+
+* **paths:** update generics for `UpdateFn`
+
+- UpdateFn now takes input & output type generics
+
+
+
+
+
 # [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@2.1.6...@thi.ng/paths@3.0.0) (2019-11-30)
 
 ### Bug Fixes
