@@ -152,7 +152,4 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
     opts(): EquivSetOpts<T> {
         return { equiv: __private.get(this)!.equiv };
     }
-    // [INSPECT](depth: number, opts: any) {
-    //     return inspectSet(this, depth, opts);
-    // }
 }

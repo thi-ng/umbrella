@@ -161,7 +161,4 @@ export class SortedSet<T> extends Set<T>
     opts(): SortedSetOpts<T> {
         return __private.get(this)!.opts();
     }
-    // [INSPECT](depth: number, opts: any) {
-    //     return inspectSet(this, depth, opts);
-    // }
 }
