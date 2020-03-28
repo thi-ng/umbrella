@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/iges](https://media.thi.ng/umbrella/banners/thing-iges.svg?1584814451)
+# ![@thi.ng/iges](https://media.thi.ng/umbrella/banners/thing-iges.svg?1585427400)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/iges.svg)](https://www.npmjs.com/package/@thi.ng/iges)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/iges.svg)
@@ -36,7 +36,7 @@ applications (e.g. Rhino, Houdini, Fusion 360)
 yarn add @thi.ng/iges
 ```
 
-Package sizes (gzipped): ESM: 2.7KB / CJS: 2.7KB / UMD: 2.7KB
+Package sizes (gzipped): ESM: 2.74 KB / CJS: 2.75 KB / UMD: 2.69 KB
 
 ## Dependencies
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/fsm](https://media.thi.ng/umbrella/banners/thing-fsm.svg?1584814401)
+# ![@thi.ng/fsm](https://media.thi.ng/umbrella/banners/thing-fsm.svg?1585427360)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/fsm.svg)](https://www.npmjs.com/package/@thi.ng/fsm)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/fsm.svg)
@@ -43,7 +43,7 @@ package.
 yarn add @thi.ng/fsm
 ```
 
-Package sizes (gzipped): ESM: 1.4KB / CJS: 1.5KB / UMD: 1.4KB
+Package sizes (gzipped): ESM: 1.35 KB / CJS: 1.45 KB / UMD: 1.44 KB
 
 ## Dependencies
 

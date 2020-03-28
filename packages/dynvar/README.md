@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/dynvar](https://media.thi.ng/umbrella/banners/thing-dynvar.svg?1584814344)
+# ![@thi.ng/dynvar](https://media.thi.ng/umbrella/banners/thing-dynvar.svg?1585427315)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dynvar.svg)](https://www.npmjs.com/package/@thi.ng/dynvar)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dynvar.svg)
@@ -36,7 +36,7 @@ References:
 yarn add @thi.ng/dynvar
 ```
 
-Package sizes (gzipped): ESM: 0.3KB / CJS: 0.3KB / UMD: 0.4KB
+Package sizes (gzipped): ESM: 300 bytes / CJS: 354 bytes / UMD: 439 bytes
 
 ## Dependencies
 

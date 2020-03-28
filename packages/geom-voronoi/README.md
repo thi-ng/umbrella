@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-voronoi](https://media.thi.ng/umbrella/banners/thing-geom-voronoi.svg?1584814502)
+# ![@thi.ng/geom-voronoi](https://media.thi.ng/umbrella/banners/thing-geom-voronoi.svg?1585427439)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-voronoi.svg)](https://www.npmjs.com/package/@thi.ng/geom-voronoi)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-voronoi.svg)
@@ -45,7 +45,7 @@ in ~850ms (Chrome 72, MBP 2016)
 yarn add @thi.ng/geom-voronoi
 ```
 
-Package sizes (gzipped): ESM: 1.3KB / CJS: 1.4KB / UMD: 1.5KB
+Package sizes (gzipped): ESM: 1.34 KB / CJS: 1.42 KB / UMD: 1.53 KB
 
 ## Dependencies
 

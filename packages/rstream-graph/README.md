@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/rstream-graph](https://media.thi.ng/umbrella/banners/thing-rstream-graph.svg?1584814473)
+# ![@thi.ng/rstream-graph](https://media.thi.ng/umbrella/banners/thing-rstream-graph.svg?1585427430)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-graph.svg)](https://www.npmjs.com/package/@thi.ng/rstream-graph)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-graph.svg)
@@ -46,7 +46,7 @@ these and keep any cycles async).
 yarn add @thi.ng/rstream-graph
 ```
 
-Package sizes (gzipped): ESM: 1.0KB / CJS: 1.1KB / UMD: 1.1KB
+Package sizes (gzipped): ESM: 1.01 KB / CJS: 1.11 KB / UMD: 1.14 KB
 
 ## Dependencies
 

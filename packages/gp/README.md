@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/gp](https://media.thi.ng/umbrella/banners/thing-gp.svg?1584814400)
+# ![@thi.ng/gp](https://media.thi.ng/umbrella/banners/thing-gp.svg?1585427360)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/gp.svg)](https://www.npmjs.com/package/@thi.ng/gp)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/gp.svg)
@@ -67,7 +67,7 @@ References:
 yarn add @thi.ng/gp
 ```
 
-Package sizes (gzipped): ESM: 1.2KB / CJS: 1.3KB / UMD: 1.4KB
+Package sizes (gzipped): ESM: 1.25 KB / CJS: 1.29 KB / UMD: 1.38 KB
 
 ## Dependencies
 

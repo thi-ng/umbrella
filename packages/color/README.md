@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/color](https://media.thi.ng/umbrella/banners/thing-color.svg?1584814438)
+# ![@thi.ng/color](https://media.thi.ng/umbrella/banners/thing-color.svg?1585427390)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/color.svg)
@@ -180,7 +180,7 @@ col.multiCosineGradient(
 yarn add @thi.ng/color
 ```
 
-Package sizes (gzipped): ESM: 7.1KB / CJS: 7.4KB / UMD: 6.9KB
+Package sizes (gzipped): ESM: 7.06 KB / CJS: 7.41 KB / UMD: 6.94 KB
 
 ## Dependencies
 

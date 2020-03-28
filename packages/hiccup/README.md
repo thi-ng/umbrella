@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/hiccup](https://media.thi.ng/umbrella/banners/thing-hiccup.svg?1584814388)
+# ![@thi.ng/hiccup](https://media.thi.ng/umbrella/banners/thing-hiccup.svg?1585427350)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup.svg)](https://www.npmjs.com/package/@thi.ng/hiccup)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup.svg)
@@ -137,7 +137,7 @@ iterable
 yarn add @thi.ng/hiccup
 ```
 
-Package sizes (gzipped): ESM: 1.9KB / CJS: 2.0KB / UMD: 2.0KB
+Package sizes (gzipped): ESM: 1.94 KB / CJS: 2.04 KB / UMD: 2.05 KB
 
 ## Dependencies
 

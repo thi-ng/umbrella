@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/webgl](https://media.thi.ng/umbrella/banners/thing-webgl.svg?1584814496)
+# ![@thi.ng/webgl](https://media.thi.ng/umbrella/banners/thing-webgl.svg?1585427442)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/webgl.svg)](https://www.npmjs.com/package/@thi.ng/webgl)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/webgl.svg)
@@ -79,7 +79,7 @@ Largely declarative WebGL 1.0 / 2.0 abstraction layer, partially ported
 yarn add @thi.ng/webgl
 ```
 
-Package sizes (gzipped): ESM: 11.0KB / CJS: 11.2KB / UMD: 11.0KB
+Package sizes (gzipped): ESM: 11.07 KB / CJS: 11.23 KB / UMD: 11.03 KB
 
 ## Dependencies
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-splines](https://media.thi.ng/umbrella/banners/thing-geom-splines.svg?1584814502)
+# ![@thi.ng/geom-splines](https://media.thi.ng/umbrella/banners/thing-geom-splines.svg?1585427439)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-splines.svg)](https://www.npmjs.com/package/@thi.ng/geom-splines)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-splines.svg)
@@ -39,7 +39,7 @@ Current implementations partially based on
 yarn add @thi.ng/geom-splines
 ```
 
-Package sizes (gzipped): ESM: 2.2KB / CJS: 2.3KB / UMD: 2.3KB
+Package sizes (gzipped): ESM: 2.17 KB / CJS: 2.30 KB / UMD: 2.26 KB
 
 ## Dependencies
 

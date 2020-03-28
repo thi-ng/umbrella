@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/unionstruct](https://media.thi.ng/umbrella/banners/thing-unionstruct.svg?1584814341)
+# ![@thi.ng/unionstruct](https://media.thi.ng/umbrella/banners/thing-unionstruct.svg?1585427314)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/unionstruct.svg)](https://www.npmjs.com/package/@thi.ng/unionstruct)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/unionstruct.svg)
@@ -50,7 +50,7 @@ Currently does not support array fields (incl. strings).
 yarn add @thi.ng/unionstruct
 ```
 
-Package sizes (gzipped): ESM: 1.1KB / CJS: 1.1KB / UMD: 1.2KB
+Package sizes (gzipped): ESM: 1.08 KB / CJS: 1.13 KB / UMD: 1.17 KB
 
 ## Dependencies
 

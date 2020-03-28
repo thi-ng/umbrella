@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/soa](https://media.thi.ng/umbrella/banners/thing-soa.svg?1584814462)
+# ![@thi.ng/soa](https://media.thi.ng/umbrella/banners/thing-soa.svg?1585427400)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/soa.svg)](https://www.npmjs.com/package/@thi.ng/soa)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/soa.svg)
@@ -44,7 +44,7 @@ by
 yarn add @thi.ng/soa
 ```
 
-Package sizes (gzipped): ESM: 1.4KB / CJS: 1.5KB / UMD: 1.6KB
+Package sizes (gzipped): ESM: 1.44 KB / CJS: 1.51 KB / UMD: 1.60 KB
 
 ## Dependencies
 

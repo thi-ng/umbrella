@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/rstream-query](https://media.thi.ng/umbrella/banners/thing-rstream-query.svg?1584814489)
+# ![@thi.ng/rstream-query](https://media.thi.ng/umbrella/banners/thing-rstream-query.svg?1585427439)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-query.svg)](https://www.npmjs.com/package/@thi.ng/rstream-query)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-query.svg)
@@ -66,7 +66,7 @@ this time built on the streaming primitives provided by
 yarn add @thi.ng/rstream-query
 ```
 
-Package sizes (gzipped): ESM: 2.6KB / CJS: 2.7KB / UMD: 2.6KB
+Package sizes (gzipped): ESM: 2.65 KB / CJS: 2.73 KB / UMD: 2.60 KB
 
 ## Dependencies
 

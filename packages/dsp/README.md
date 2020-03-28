@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/dsp](https://media.thi.ng/umbrella/banners/thing-dsp.svg?1584814401)
+# ![@thi.ng/dsp](https://media.thi.ng/umbrella/banners/thing-dsp.svg?1585427360)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dsp.svg)](https://www.npmjs.com/package/@thi.ng/dsp)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dsp.svg)
@@ -62,7 +62,7 @@ might be ported to WASM.
 yarn add @thi.ng/dsp
 ```
 
-Package sizes (gzipped): ESM: 6.6KB / CJS: 7.1KB / UMD: 6.6KB
+Package sizes (gzipped): ESM: 6.63 KB / CJS: 7.10 KB / UMD: 6.59 KB
 
 ## Dependencies
 

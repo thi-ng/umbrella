@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/hdom-mock](https://media.thi.ng/umbrella/banners/thing-hdom-mock.svg?1584814425)
+# ![@thi.ng/hdom-mock](https://media.thi.ng/umbrella/banners/thing-hdom-mock.svg?1585427380)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hdom-mock.svg)](https://www.npmjs.com/package/@thi.ng/hdom-mock)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdom-mock.svg)
@@ -36,7 +36,7 @@ custom target implementations.
 yarn add @thi.ng/hdom-mock
 ```
 
-Package sizes (gzipped): ESM: 1.0KB / CJS: 1.1KB / UMD: 1.2KB
+Package sizes (gzipped): ESM: 1.04 KB / CJS: 1.09 KB / UMD: 1.17 KB
 
 ## Dependencies
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/hiccup-carbon-icons](https://media.thi.ng/umbrella/banners/thing-hiccup-carbon-icons.svg?1584814400)
+# ![@thi.ng/hiccup-carbon-icons](https://media.thi.ng/umbrella/banners/thing-hiccup-carbon-icons.svg?1585427359)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-carbon-icons.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-carbon-icons)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-carbon-icons.svg)
@@ -48,7 +48,7 @@ code](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-carbon-ico
 yarn add @thi.ng/hiccup-carbon-icons
 ```
 
-Package sizes (gzipped): ESM: 16.4KB / CJS: 16.9KB / UMD: 16.1KB
+Package sizes (gzipped): ESM: 16.41 KB / CJS: 16.93 KB / UMD: 16.13 KB
 
 ## Dependencies
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/iterators](https://media.thi.ng/umbrella/banners/thing-iterators.svg?1584814425)
+# ![@thi.ng/iterators](https://media.thi.ng/umbrella/banners/thing-iterators.svg?1585427381)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/iterators.svg)](https://www.npmjs.com/package/@thi.ng/iterators)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/iterators.svg)
@@ -87,7 +87,7 @@ more composable & efficient transducers via
 yarn add @thi.ng/iterators
 ```
 
-Package sizes (gzipped): ESM: 2.5KB / CJS: 2.7KB / UMD: 2.5KB
+Package sizes (gzipped): ESM: 2.46 KB / CJS: 2.68 KB / UMD: 2.50 KB
 
 ## Dependencies
 

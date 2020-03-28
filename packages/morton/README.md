@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/morton](https://media.thi.ng/umbrella/banners/thing-morton.svg?1584814365)
+# ![@thi.ng/morton](https://media.thi.ng/umbrella/banners/thing-morton.svg?1585427324)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/morton.svg)](https://www.npmjs.com/package/@thi.ng/morton)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/morton.svg)
@@ -47,7 +47,7 @@ References:
 yarn add @thi.ng/morton
 ```
 
-Package sizes (gzipped): ESM: 2.0KB / CJS: 2.1KB / UMD: 2.1KB
+Package sizes (gzipped): ESM: 2.01 KB / CJS: 2.14 KB / UMD: 2.09 KB
 
 ## Dependencies
 

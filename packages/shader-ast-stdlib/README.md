@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/shader-ast-stdlib](https://media.thi.ng/umbrella/banners/thing-shader-ast-stdlib.svg?1584814488)
+# ![@thi.ng/shader-ast-stdlib](https://media.thi.ng/umbrella/banners/thing-shader-ast-stdlib.svg?1585427438)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/shader-ast-stdlib.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-stdlib)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/shader-ast-stdlib.svg)
@@ -80,7 +80,7 @@ Reference:
 yarn add @thi.ng/shader-ast-stdlib
 ```
 
-Package sizes (gzipped): ESM: 5.8KB / CJS: 6.5KB / UMD: 6.0KB
+Package sizes (gzipped): ESM: 5.76 KB / CJS: 6.53 KB / UMD: 5.99 KB
 
 ## Dependencies
 

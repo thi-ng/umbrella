@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/intervals](https://media.thi.ng/umbrella/banners/thing-intervals.svg?1584814368)
+# ![@thi.ng/intervals](https://media.thi.ng/umbrella/banners/thing-intervals.svg?1585427325)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/intervals.svg)](https://www.npmjs.com/package/@thi.ng/intervals)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/intervals.svg)
@@ -41,7 +41,7 @@ for details.
 yarn add @thi.ng/intervals
 ```
 
-Package sizes (gzipped): ESM: 1.4KB / CJS: 1.5KB / UMD: 1.5KB
+Package sizes (gzipped): ESM: 1.40 KB / CJS: 1.46 KB / UMD: 1.52 KB
 
 ## Dependencies
 

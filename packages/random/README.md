@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/random](https://media.thi.ng/umbrella/banners/thing-random.svg?1584814356)
+# ![@thi.ng/random](https://media.thi.ng/umbrella/banners/thing-random.svg?1585427333)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/random.svg)](https://www.npmjs.com/package/@thi.ng/random)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/random.svg)
@@ -47,7 +47,7 @@ Partially ported from C implementations taken from
 yarn add @thi.ng/random
 ```
 
-Package sizes (gzipped): ESM: 1.2KB / CJS: 1.3KB / UMD: 1.3KB
+Package sizes (gzipped): ESM: 1.23 KB / CJS: 1.33 KB / UMD: 1.34 KB
 
 ## Dependencies
 

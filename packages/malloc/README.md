@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/malloc](https://media.thi.ng/umbrella/banners/thing-malloc.svg?1584814356)
+# ![@thi.ng/malloc](https://media.thi.ng/umbrella/banners/thing-malloc.svg?1585427332)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/malloc.svg)](https://www.npmjs.com/package/@thi.ng/malloc)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/malloc.svg)
@@ -129,7 +129,7 @@ capacity:
 yarn add @thi.ng/malloc
 ```
 
-Package sizes (gzipped): ESM: 1.8KB / CJS: 1.9KB / UMD: 1.8KB
+Package sizes (gzipped): ESM: 1.80 KB / CJS: 1.86 KB / UMD: 1.84 KB
 
 ## Dependencies
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-closest-point](https://media.thi.ng/umbrella/banners/thing-geom-closest-point.svg?1584814450)
+# ![@thi.ng/geom-closest-point](https://media.thi.ng/umbrella/banners/thing-geom-closest-point.svg?1585427392)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-closest-point.svg)](https://www.npmjs.com/package/@thi.ng/geom-closest-point)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-closest-point.svg)
@@ -35,7 +35,7 @@ Current implementations partially based on
 yarn add @thi.ng/geom-closest-point
 ```
 
-Package sizes (gzipped): ESM: 0.8KB / CJS: 0.9KB / UMD: 0.9KB
+Package sizes (gzipped): ESM: 833 bytes / CJS: 930 bytes / UMD: 965 bytes
 
 ## Dependencies
 

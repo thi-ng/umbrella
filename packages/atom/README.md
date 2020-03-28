@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/atom](https://media.thi.ng/umbrella/banners/thing-atom.svg?1585150217)
+# ![@thi.ng/atom](https://media.thi.ng/umbrella/banners/thing-atom.svg?1585427344)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/atom.svg)](https://www.npmjs.com/package/@thi.ng/atom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/atom.svg)
@@ -92,7 +92,7 @@ have been removed.
 yarn add @thi.ng/atom
 ```
 
-Package sizes (gzipped): CJS: 1.83 KB
+Package sizes (gzipped): ESM: 1.76 KB / CJS: 1.83 KB / UMD: 1.87 KB
 
 ## Dependencies
 

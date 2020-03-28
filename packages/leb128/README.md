@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/leb128](https://media.thi.ng/umbrella/banners/thing-leb128.svg?1584814436)
+# ![@thi.ng/leb128](https://media.thi.ng/umbrella/banners/thing-leb128.svg?1585427381)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/leb128.svg)](https://www.npmjs.com/package/@thi.ng/leb128)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/leb128.svg)
@@ -49,7 +49,7 @@ References:
 yarn add @thi.ng/leb128
 ```
 
-Package sizes (gzipped): ESM: 1.0KB / CJS: 1.0KB / UMD: 1.1KB
+Package sizes (gzipped): ESM: 988 bytes / CJS: 1.04 KB / UMD: 1.10 KB
 
 ## Dependencies
 

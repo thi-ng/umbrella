@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/hdom](https://media.thi.ng/umbrella/banners/thing-hdom.svg?1584814400)
+# ![@thi.ng/hdom](https://media.thi.ng/umbrella/banners/thing-hdom.svg?1585427360)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hdom.svg)](https://www.npmjs.com/package/@thi.ng/hdom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdom.svg)
@@ -132,7 +132,7 @@ yarn install
 yarn start
 ```
 
-Package sizes (gzipped): ESM: 3.6KB / CJS: 3.7KB / UMD: 3.6KB
+Package sizes (gzipped): ESM: 3.56 KB / CJS: 3.67 KB / UMD: 3.59 KB
 
 ## Dependencies
 
@@ -168,6 +168,7 @@ A selection:
 |                                                                                                                                      | Event handling w/ interceptors and side effects                                  | [Demo](https://demo.thi.ng/umbrella/interceptor-basics2/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/interceptor-basics2)   |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-isoline.png" width="240"/>                      | Animated sine plasma effect visualized using contour lines                       | [Demo](https://demo.thi.ng/umbrella/iso-plasma/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/iso-plasma)            |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/json-components.jpg" width="240"/>               | Transforming JSON into UI components                                             | [Demo](https://demo.thi.ng/umbrella/json-components/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/json-components)       |
+|                                                                                                                                      | Basic SPA example with atom-based UI router                                      | [Demo](https://demo.thi.ng/umbrella/login-form/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/login-form)            |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ramp-synth.png" width="240"/>                    | Unison wavetable synth with waveform editor                                      | [Demo](https://demo.thi.ng/umbrella/ramp-synth/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ramp-synth)            |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/router-basics.jpg" width="240"/>                 | Complete mini SPA app w/ router & async content loading                          | [Demo](https://demo.thi.ng/umbrella/router-basics/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/router-basics)         |
 |                                                                                                                                      | Minimal rstream dataflow graph                                                   | [Demo](https://demo.thi.ng/umbrella/rstream-dataflow/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-dataflow)      |

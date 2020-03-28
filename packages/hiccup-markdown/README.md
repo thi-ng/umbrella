@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/hiccup-markdown](https://media.thi.ng/umbrella/banners/thing-hiccup-markdown.svg?1584845437)
+# ![@thi.ng/hiccup-markdown](https://media.thi.ng/umbrella/banners/thing-hiccup-markdown.svg?1585427431)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-markdown.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-markdown)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-markdown.svg)
@@ -46,7 +46,7 @@ parser and an extensible Hiccup-to-Markdown converter.
 yarn add @thi.ng/hiccup-markdown
 ```
 
-Package sizes (gzipped): CJS: 2.8KB
+Package sizes (gzipped): ESM: 2.71 KB / CJS: 2.76 KB / UMD: 2.62 KB
 
 ## Dependencies
 

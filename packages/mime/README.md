@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/mime](https://media.thi.ng/umbrella/banners/thing-mime.svg?1584814354)
+# ![@thi.ng/mime](https://media.thi.ng/umbrella/banners/thing-mime.svg?1585427323)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/mime.svg)](https://www.npmjs.com/package/@thi.ng/mime)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/mime.svg)
@@ -34,7 +34,7 @@ All MIME type mappings based on
 yarn add @thi.ng/mime
 ```
 
-Package sizes (gzipped): ESM: 2.4KB / CJS: 2.4KB / UMD: 2.5KB
+Package sizes (gzipped): ESM: 2.38 KB / CJS: 2.43 KB / UMD: 2.53 KB
 
 ## Dependencies
 

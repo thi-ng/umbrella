@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/simd](https://media.thi.ng/umbrella/banners/thing-simd.svg?1584814437)
+# ![@thi.ng/simd](https://media.thi.ng/umbrella/banners/thing-simd.svg?1585427390)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/simd.svg)](https://www.npmjs.com/package/@thi.ng/simd)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/simd.svg)
@@ -95,7 +95,7 @@ hidden behind feature flags.
 yarn add @thi.ng/simd
 ```
 
-Package sizes (gzipped): ESM: 2.3KB / CJS: 2.3KB / UMD: 2.4KB
+Package sizes (gzipped): ESM: 2.28 KB / CJS: 2.34 KB / UMD: 2.45 KB
 
 ## Dependencies
 

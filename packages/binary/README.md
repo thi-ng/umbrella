@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/binary](https://media.thi.ng/umbrella/banners/thing-binary.svg?1584814331)
+# ![@thi.ng/binary](https://media.thi.ng/umbrella/banners/thing-binary.svg?1585427306)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/binary.svg)](https://www.npmjs.com/package/@thi.ng/binary)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/binary.svg)
@@ -32,7 +32,7 @@ This project is part of the
 yarn add @thi.ng/binary
 ```
 
-Package sizes (gzipped): ESM: 1.9KB / CJS: 2.2KB / UMD: 1.8KB
+Package sizes (gzipped): ESM: 1.87 KB / CJS: 2.19 KB / UMD: 1.85 KB
 
 ## Dependencies
 

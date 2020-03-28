@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/shader-ast](https://media.thi.ng/umbrella/banners/thing-shader-ast.svg?1584814463)
+# ![@thi.ng/shader-ast](https://media.thi.ng/umbrella/banners/thing-shader-ast.svg?1585427421)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/shader-ast.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/shader-ast.svg)
@@ -174,7 +174,7 @@ status. The TL;DR list...
 yarn add @thi.ng/shader-ast
 ```
 
-Package sizes (gzipped): ESM: 4.7KB / CJS: 5.2KB / UMD: 4.6KB
+Package sizes (gzipped): ESM: 4.66 KB / CJS: 5.19 KB / UMD: 4.63 KB
 
 ## Dependencies
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/dl-asset](https://media.thi.ng/umbrella/banners/thing-dl-asset.svg?1584814380)
+# ![@thi.ng/dl-asset](https://media.thi.ng/umbrella/banners/thing-dl-asset.svg?1585427343)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dl-asset.svg)](https://www.npmjs.com/package/@thi.ng/dl-asset)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dl-asset.svg)
@@ -32,7 +32,7 @@ Local asset download for web apps, with automatic MIME type detection.
 yarn add @thi.ng/dl-asset
 ```
 
-Package sizes (gzipped): ESM: 0.4KB / CJS: 0.4KB / UMD: 0.5KB
+Package sizes (gzipped): ESM: 399 bytes / CJS: 451 bytes / UMD: 556 bytes
 
 ## Dependencies
 

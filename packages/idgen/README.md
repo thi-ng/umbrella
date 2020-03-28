@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/idgen](https://media.thi.ng/umbrella/banners/thing-idgen.svg?1584814344)
+# ![@thi.ng/idgen](https://media.thi.ng/umbrella/banners/thing-idgen.svg?1585427322)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/idgen.svg)](https://www.npmjs.com/package/@thi.ng/idgen)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/idgen.svg)
@@ -53,7 +53,7 @@ be checked for validity via `.has(id)` (in constant time).
 yarn add @thi.ng/idgen
 ```
 
-Package sizes (gzipped): ESM: 0.8KB / CJS: 0.9KB / UMD: 1.0KB
+Package sizes (gzipped): ESM: 847 bytes / CJS: 895 bytes / UMD: 985 bytes
 
 ## Dependencies
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/rle-pack](https://media.thi.ng/umbrella/banners/thing-rle-pack.svg?1584814369)
+# ![@thi.ng/rle-pack](https://media.thi.ng/umbrella/banners/thing-rle-pack.svg?1585427334)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rle-pack.svg)](https://www.npmjs.com/package/@thi.ng/rle-pack)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rle-pack.svg)
@@ -64,7 +64,7 @@ Then per value:
 yarn add @thi.ng/rle-pack
 ```
 
-Package sizes (gzipped): ESM: 0.7KB / CJS: 0.7KB / UMD: 0.8KB
+Package sizes (gzipped): ESM: 673 bytes / CJS: 727 bytes / UMD: 825 bytes
 
 ## Dependencies
 

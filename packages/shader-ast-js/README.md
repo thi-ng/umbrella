@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/shader-ast-js](https://media.thi.ng/umbrella/banners/thing-shader-ast-js.svg?1584814488)
+# ![@thi.ng/shader-ast-js](https://media.thi.ng/umbrella/banners/thing-shader-ast-js.svg?1585427439)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/shader-ast-js.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-js)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/shader-ast-js.svg)
@@ -59,7 +59,7 @@ which altogether provide ~750 optimized vector/matrix functions.
 yarn add @thi.ng/shader-ast-js
 ```
 
-Package sizes (gzipped): ESM: 4.9KB / CJS: 4.4KB / UMD: 4.4KB
+Package sizes (gzipped): ESM: 4.90 KB / CJS: 4.45 KB / UMD: 4.39 KB
 
 ## Dependencies
 

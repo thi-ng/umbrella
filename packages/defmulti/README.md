@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/defmulti](https://media.thi.ng/umbrella/banners/thing-defmulti.svg?1584814344)
+# ![@thi.ng/defmulti](https://media.thi.ng/umbrella/banners/thing-defmulti.svg?1585427315)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/defmulti.svg)](https://www.npmjs.com/package/@thi.ng/defmulti)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/defmulti.svg)
@@ -43,7 +43,7 @@ any actual JS type relationships).
 yarn add @thi.ng/defmulti
 ```
 
-Package sizes (gzipped): ESM: 0.7KB / CJS: 0.8KB / UMD: 0.8KB
+Package sizes (gzipped): ESM: 750 bytes / CJS: 811 bytes / UMD: 870 bytes
 
 ## Dependencies
 

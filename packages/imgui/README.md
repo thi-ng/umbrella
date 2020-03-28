@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/imgui](https://media.thi.ng/umbrella/banners/thing-imgui.svg?1584814508)
+# ![@thi.ng/imgui](https://media.thi.ng/umbrella/banners/thing-imgui.svg?1585427446)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/imgui.svg)](https://www.npmjs.com/package/@thi.ng/imgui)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/imgui.svg)
@@ -227,7 +227,7 @@ Some of the most obvious missing features:
 yarn add @thi.ng/imgui
 ```
 
-Package sizes (gzipped): ESM: 6.6KB / CJS: 6.8KB / UMD: 6.7KB
+Package sizes (gzipped): ESM: 6.58 KB / CJS: 6.75 KB / UMD: 6.73 KB
 
 ## Dependencies
 

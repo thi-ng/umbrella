@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/sax](https://media.thi.ng/umbrella/banners/thing-sax.svg?1584814437)
+# ![@thi.ng/sax](https://media.thi.ng/umbrella/banners/thing-sax.svg?1585427401)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/sax.svg)
@@ -60,7 +60,7 @@ well (see SVG parsing example further below). The choice is yours!
 yarn add @thi.ng/sax
 ```
 
-Package sizes (gzipped): ESM: 1.9KB / CJS: 2.0KB / UMD: 2.1KB
+Package sizes (gzipped): ESM: 1.93 KB / CJS: 1.98 KB / UMD: 2.07 KB
 
 ## Dependencies
 

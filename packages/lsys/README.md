@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/lsys](https://media.thi.ng/umbrella/banners/thing-lsys.svg?1584814451)
+# ![@thi.ng/lsys](https://media.thi.ng/umbrella/banners/thing-lsys.svg?1585427400)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/lsys.svg)](https://www.npmjs.com/package/@thi.ng/lsys)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/lsys.svg)
@@ -54,7 +54,7 @@ Planned features:
 yarn add @thi.ng/lsys
 ```
 
-Package sizes (gzipped): ESM: 0.7KB / CJS: 0.7KB / UMD: 0.8KB
+Package sizes (gzipped): ESM: 677 bytes / CJS: 749 bytes / UMD: 852 bytes
 
 ## Dependencies
 

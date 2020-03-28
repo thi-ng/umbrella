@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/dcons](https://media.thi.ng/umbrella/banners/thing-dcons.svg?1584814400)
+# ![@thi.ng/dcons](https://media.thi.ng/umbrella/banners/thing-dcons.svg?1585427360)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dcons.svg)](https://www.npmjs.com/package/@thi.ng/dcons)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dcons.svg)
@@ -55,7 +55,7 @@ Double-linked list with comprehensive set of operations.
 yarn add @thi.ng/dcons
 ```
 
-Package sizes (gzipped): ESM: 2.0KB / CJS: 2.1KB / UMD: 2.2KB
+Package sizes (gzipped): ESM: 1.98 KB / CJS: 2.06 KB / UMD: 2.15 KB
 
 ## Dependencies
 

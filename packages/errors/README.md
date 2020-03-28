@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/errors](https://media.thi.ng/umbrella/banners/thing-errors.svg?1584814329)
+# ![@thi.ng/errors](https://media.thi.ng/umbrella/banners/thing-errors.svg?1585427304)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/errors.svg)](https://www.npmjs.com/package/@thi.ng/errors)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/errors.svg)
@@ -34,7 +34,7 @@ Additional error types can be defined using
 yarn add @thi.ng/errors
 ```
 
-Package sizes (gzipped): ESM: 0.3KB / CJS: 0.3KB / UMD: 0.4KB
+Package sizes (gzipped): ESM: 262 bytes / CJS: 338 bytes / UMD: 403 bytes
 
 ## Dependencies
 

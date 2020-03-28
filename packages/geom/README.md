@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom](https://media.thi.ng/umbrella/banners/thing-geom.svg?1584814505)
+# ![@thi.ng/geom](https://media.thi.ng/umbrella/banners/thing-geom.svg?1585427443)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom.svg)
@@ -61,7 +61,7 @@ themselves too):
 yarn add @thi.ng/geom
 ```
 
-Package sizes (gzipped): ESM: 9.4KB / CJS: 9.6KB / UMD: 9.1KB
+Package sizes (gzipped): ESM: 9.42 KB / CJS: 9.62 KB / UMD: 9.14 KB
 
 ## Dependencies
 

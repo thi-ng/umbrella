@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/hiccup-svg](https://media.thi.ng/umbrella/banners/thing-hiccup-svg.svg?1584814476)
+# ![@thi.ng/hiccup-svg](https://media.thi.ng/umbrella/banners/thing-hiccup-svg.svg?1585427412)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-svg.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-svg)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-svg.svg)
@@ -121,7 +121,7 @@ therefore need to be complete, e.g. `{ rotate: "rotate(60)" }`
 yarn add @thi.ng/hiccup-svg
 ```
 
-Package sizes (gzipped): ESM: 2.4KB / CJS: 2.5KB / UMD: 2.4KB
+Package sizes (gzipped): ESM: 2.38 KB / CJS: 2.50 KB / UMD: 2.42 KB
 
 ## Dependencies
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/poisson](https://media.thi.ng/umbrella/banners/thing-poisson.svg?1584814476)
+# ![@thi.ng/poisson](https://media.thi.ng/umbrella/banners/thing-poisson.svg?1585427411)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/poisson.svg)](https://www.npmjs.com/package/@thi.ng/poisson)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/poisson.svg)
@@ -50,7 +50,7 @@ to support other, alternative spatial indexing mechanisms...
 yarn add @thi.ng/poisson
 ```
 
-Package sizes (gzipped): ESM: 0.3KB / CJS: 0.4KB / UMD: 0.5KB
+Package sizes (gzipped): ESM: 337 bytes / CJS: 391 bytes / UMD: 501 bytes
 
 ## Dependencies
 

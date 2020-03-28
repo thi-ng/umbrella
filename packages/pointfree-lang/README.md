@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/pointfree-lang](https://media.thi.ng/umbrella/banners/thing-pointfree-lang.svg?1584814381)
+# ![@thi.ng/pointfree-lang](https://media.thi.ng/umbrella/banners/thing-pointfree-lang.svg?1585427344)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pointfree-lang.svg)](https://www.npmjs.com/package/@thi.ng/pointfree-lang)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pointfree-lang.svg)
@@ -63,7 +63,7 @@ an ES6 embedded DSL for concatenative programming:
 yarn add @thi.ng/pointfree-lang
 ```
 
-Package sizes (gzipped): ESM: 4.8KB / CJS: 4.9KB / UMD: 4.8KB
+Package sizes (gzipped): ESM: 4.84 KB / CJS: 4.85 KB / UMD: 4.78 KB
 
 ## Dependencies
 

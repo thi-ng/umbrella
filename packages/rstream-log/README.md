@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/rstream-log](https://media.thi.ng/umbrella/banners/thing-rstream-log.svg?1584814475)
+# ![@thi.ng/rstream-log](https://media.thi.ng/umbrella/banners/thing-rstream-log.svg?1585427430)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-log.svg)](https://www.npmjs.com/package/@thi.ng/rstream-log)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-log.svg)
@@ -46,7 +46,7 @@ filtering.
 yarn add @thi.ng/rstream-log
 ```
 
-Package sizes (gzipped): ESM: 0.7KB / CJS: 0.8KB / UMD: 0.9KB
+Package sizes (gzipped): ESM: 724 bytes / CJS: 852 bytes / UMD: 907 bytes
 
 ## Dependencies
 

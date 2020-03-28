@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/checks](https://media.thi.ng/umbrella/banners/thing-checks.svg?1584814331)
+# ![@thi.ng/checks](https://media.thi.ng/umbrella/banners/thing-checks.svg?1585427306)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/checks.svg)
@@ -33,7 +33,7 @@ Collection of 50+ type, feature & value checks.
 yarn add @thi.ng/checks
 ```
 
-Package sizes (gzipped): ESM: 1.3KB / CJS: 1.5KB / UMD: 1.3KB
+Package sizes (gzipped): ESM: 1.46 KB / CJS: 1.71 KB / UMD: 1.44 KB
 
 ## Dependencies
 

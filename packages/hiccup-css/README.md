@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/hiccup-css](https://media.thi.ng/umbrella/banners/thing-hiccup-css.svg?1584814401)
+# ![@thi.ng/hiccup-css](https://media.thi.ng/umbrella/banners/thing-hiccup-css.svg?1585427361)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-css.svg)
@@ -94,7 +94,7 @@ Clojure projects:
 yarn add @thi.ng/hiccup-css
 ```
 
-Package sizes (gzipped): ESM: 2.0KB / CJS: 2.2KB / UMD: 2.1KB
+Package sizes (gzipped): ESM: 2.05 KB / CJS: 2.20 KB / UMD: 2.11 KB
 
 ## Dependencies
 

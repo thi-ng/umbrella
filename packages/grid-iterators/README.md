@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/grid-iterators](https://media.thi.ng/umbrella/banners/thing-grid-iterators.svg?1584814401)
+# ![@thi.ng/grid-iterators](https://media.thi.ng/umbrella/banners/thing-grid-iterators.svg?1585427361)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/grid-iterators.svg)](https://www.npmjs.com/package/@thi.ng/grid-iterators)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/grid-iterators.svg)
@@ -135,7 +135,7 @@ Additionally, the following non-exhaustive iterators are available:
 yarn add @thi.ng/grid-iterators
 ```
 
-Package sizes (gzipped): ESM: 1.2KB / CJS: 1.3KB / UMD: 1.4KB
+Package sizes (gzipped): ESM: 1.24 KB / CJS: 1.34 KB / UMD: 1.40 KB
 
 ## Dependencies
 

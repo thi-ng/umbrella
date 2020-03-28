@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/bitfield](https://media.thi.ng/umbrella/banners/thing-bitfield.svg?1584814387)
+# ![@thi.ng/bitfield](https://media.thi.ng/umbrella/banners/thing-bitfield.svg?1585427349)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/bitfield.svg)](https://www.npmjs.com/package/@thi.ng/bitfield)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/bitfield.svg)
@@ -34,7 +34,7 @@ backing the width is always rounded to a multiple of 32.
 yarn add @thi.ng/bitfield
 ```
 
-Package sizes (gzipped): ESM: 0.9KB / CJS: 1.0KB / UMD: 1.1KB
+Package sizes (gzipped): ESM: 947 bytes / CJS: 1008 bytes / UMD: 1.06 KB
 
 ## Dependencies
 

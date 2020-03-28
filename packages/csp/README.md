@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/csp](https://media.thi.ng/umbrella/banners/thing-csp.svg?1584814424)
+# ![@thi.ng/csp](https://media.thi.ng/umbrella/banners/thing-csp.svg?1585427380)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/csp.svg)](https://www.npmjs.com/package/@thi.ng/csp)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/csp.svg)
@@ -54,7 +54,7 @@ for a similar, but alternative (and actively maintained) approach.
 yarn add @thi.ng/csp
 ```
 
-Package sizes (gzipped): ESM: 2.7KB / CJS: 2.8KB / UMD: 2.8KB
+Package sizes (gzipped): ESM: 2.71 KB / CJS: 2.78 KB / UMD: 2.83 KB
 
 ## Dependencies
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/dot](https://media.thi.ng/umbrella/banners/thing-dot.svg?1584814356)
+# ![@thi.ng/dot](https://media.thi.ng/umbrella/banners/thing-dot.svg?1585427325)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dot.svg)](https://www.npmjs.com/package/@thi.ng/dot)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dot.svg)
@@ -43,7 +43,7 @@ details.
 yarn add @thi.ng/dot
 ```
 
-Package sizes (gzipped): ESM: 0.7KB / CJS: 0.8KB / UMD: 0.8KB
+Package sizes (gzipped): ESM: 721 bytes / CJS: 783 bytes / UMD: 866 bytes
 
 ## Dependencies
 

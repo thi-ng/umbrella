@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/diff](https://media.thi.ng/umbrella/banners/thing-diff.svg?1584814368)
+# ![@thi.ng/diff](https://media.thi.ng/umbrella/banners/thing-diff.svg?1585427315)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/diff.svg)](https://www.npmjs.com/package/@thi.ng/diff)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/diff.svg)
@@ -33,7 +33,7 @@ Customizable diff implementations for arrays (sequential) & objects (associative
 yarn add @thi.ng/diff
 ```
 
-Package sizes (gzipped): ESM: 1.2KB / CJS: 1.3KB / UMD: 1.3KB
+Package sizes (gzipped): ESM: 1.22 KB / CJS: 1.27 KB / UMD: 1.30 KB
 
 ## Dependencies
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/transducers-stats](https://media.thi.ng/umbrella/banners/thing-transducers-stats.svg?1584814426)
+# ![@thi.ng/transducers-stats](https://media.thi.ng/umbrella/banners/thing-transducers-stats.svg?1585427379)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-stats.svg)](https://www.npmjs.com/package/@thi.ng/transducers-stats)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-stats.svg)
@@ -62,7 +62,7 @@ transforming ES6 iterator (generator) instead of a transducer.
 yarn add @thi.ng/transducers-stats
 ```
 
-Package sizes (gzipped): ESM: 1.1KB / CJS: 1.3KB / UMD: 1.3KB
+Package sizes (gzipped): ESM: 1.15 KB / CJS: 1.27 KB / UMD: 1.29 KB
 
 ## Dependencies
 

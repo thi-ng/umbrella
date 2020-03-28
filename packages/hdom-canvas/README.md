@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/hdom-canvas](https://media.thi.ng/umbrella/banners/thing-hdom-canvas.svg?1584814475)
+# ![@thi.ng/hdom-canvas](https://media.thi.ng/umbrella/banners/thing-hdom-canvas.svg?1585427412)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hdom-canvas.svg)](https://www.npmjs.com/package/@thi.ng/hdom-canvas)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdom-canvas.svg)
@@ -83,7 +83,7 @@ API draw calls during the hdom update process / cycle.
 yarn add @thi.ng/hdom-canvas
 ```
 
-Package sizes (gzipped): ESM: 3.2KB / CJS: 3.3KB / UMD: 3.3KB
+Package sizes (gzipped): ESM: 3.17 KB / CJS: 3.31 KB / UMD: 3.29 KB
 
 ## Dependencies
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/equiv](https://media.thi.ng/umbrella/banners/thing-equiv.svg?1584814332)
+# ![@thi.ng/equiv](https://media.thi.ng/umbrella/banners/thing-equiv.svg?1585427305)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/equiv.svg)](https://www.npmjs.com/package/@thi.ng/equiv)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/equiv.svg)
@@ -44,7 +44,7 @@ Supports:
 yarn add @thi.ng/equiv
 ```
 
-Package sizes (gzipped): ESM: 0.5KB / CJS: 0.5KB / UMD: 0.6KB
+Package sizes (gzipped): ESM: 487 bytes / CJS: 543 bytes / UMD: 604 bytes
 
 ## Dependencies
 

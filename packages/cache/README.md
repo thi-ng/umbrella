@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/cache](https://media.thi.ng/umbrella/banners/thing-cache.svg?1584814413)
+# ![@thi.ng/cache](https://media.thi.ng/umbrella/banners/thing-cache.svg?1585427371)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/cache.svg)](https://www.npmjs.com/package/@thi.ng/cache)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/cache.svg)
@@ -53,7 +53,7 @@ strategies](https://en.wikipedia.org/wiki/Cache_replacement_policies).
 yarn add @thi.ng/cache
 ```
 
-Package sizes (gzipped): ESM: 1.0KB / CJS: 1.1KB / UMD: 1.2KB
+Package sizes (gzipped): ESM: 1.02 KB / CJS: 1.08 KB / UMD: 1.18 KB
 
 ## Dependencies
 

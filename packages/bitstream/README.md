@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/bitstream](https://media.thi.ng/umbrella/banners/thing-bitstream.svg?1584814344)
+# ![@thi.ng/bitstream](https://media.thi.ng/umbrella/banners/thing-bitstream.svg?1585427314)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/bitstream.svg)](https://www.npmjs.com/package/@thi.ng/bitstream)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/bitstream.svg)
@@ -33,7 +33,7 @@ ES6 iterator based read/write bit streams with support for variable word widths.
 yarn add @thi.ng/bitstream
 ```
 
-Package sizes (gzipped): ESM: 1.1KB / CJS: 1.1KB / UMD: 1.2KB
+Package sizes (gzipped): ESM: 1.09 KB / CJS: 1.14 KB / UMD: 1.21 KB
 
 ## Dependencies
 

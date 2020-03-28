@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-tessellate](https://media.thi.ng/umbrella/banners/thing-geom-tessellate.svg?1584814495)
+# ![@thi.ng/geom-tessellate](https://media.thi.ng/umbrella/banners/thing-geom-tessellate.svg?1585427432)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-tessellate.svg)](https://www.npmjs.com/package/@thi.ng/geom-tessellate)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-tessellate.svg)
@@ -43,7 +43,7 @@ highly dependent on the concavities present. YMMV!
 yarn add @thi.ng/geom-tessellate
 ```
 
-Package sizes (gzipped): ESM: 0.8KB / CJS: 0.9KB / UMD: 0.9KB
+Package sizes (gzipped): ESM: 782 bytes / CJS: 872 bytes / UMD: 921 bytes
 
 ## Dependencies
 

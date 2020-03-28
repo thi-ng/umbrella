@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/hdom-components](https://media.thi.ng/umbrella/banners/thing-hdom-components.svg?1584814462)
+# ![@thi.ng/hdom-components](https://media.thi.ng/umbrella/banners/thing-hdom-components.svg?1585427410)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hdom-components.svg)](https://www.npmjs.com/package/@thi.ng/hdom-components)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdom-components.svg)
@@ -47,7 +47,7 @@ components**. Feedback welcome!
 yarn add @thi.ng/hdom-components
 ```
 
-Package sizes (gzipped): ESM: 2.3KB / CJS: 2.4KB / UMD: 2.4KB
+Package sizes (gzipped): ESM: 2.29 KB / CJS: 2.41 KB / UMD: 2.41 KB
 
 ## Dependencies
 

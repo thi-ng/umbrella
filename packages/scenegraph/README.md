@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/scenegraph](https://media.thi.ng/umbrella/banners/thing-scenegraph.svg?1584814488)
+# ![@thi.ng/scenegraph](https://media.thi.ng/umbrella/banners/thing-scenegraph.svg?1585427421)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/scenegraph.svg)](https://www.npmjs.com/package/@thi.ng/scenegraph)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/scenegraph.svg)
@@ -32,7 +32,7 @@ Extensible 2D/3D scene graph with [@thi.ng/hdom-canvas](https://github.com/thi-n
 yarn add @thi.ng/scenegraph
 ```
 
-Package sizes (gzipped): ESM: 0.8KB / CJS: 0.8KB / UMD: 0.9KB
+Package sizes (gzipped): ESM: 779 bytes / CJS: 822 bytes / UMD: 927 bytes
 
 ## Dependencies
 

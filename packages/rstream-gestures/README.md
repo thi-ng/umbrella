@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/rstream-gestures](https://media.thi.ng/umbrella/banners/thing-rstream-gestures.svg?1584814463)
+# ![@thi.ng/rstream-gestures](https://media.thi.ng/umbrella/banners/thing-rstream-gestures.svg?1585427422)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-gestures.svg)](https://www.npmjs.com/package/@thi.ng/rstream-gestures)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-gestures.svg)
@@ -44,7 +44,7 @@ rewrite of `gestureStream()` and new event data formats.
 yarn add @thi.ng/rstream-gestures
 ```
 
-Package sizes (gzipped): ESM: 1.2KB / CJS: 1.2KB / UMD: 1.3KB
+Package sizes (gzipped): ESM: 1.20 KB / CJS: 1.25 KB / UMD: 1.32 KB
 
 ## Dependencies
 
