@@ -1,8 +1,7 @@
+import { isNumber } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { deleteInUnsafe, setInUnsafe, updateInUnsafe } from "@thi.ng/paths";
-import { reducer, Reducer } from "@thi.ng/transducers";
-import { reduce } from "@thi.ng/transducers";
-import { isNumber } from "util";
+import { reduce, reducer, Reducer } from "@thi.ng/transducers";
 import { Patch, PatchObjOp } from "./api";
 
 /**
