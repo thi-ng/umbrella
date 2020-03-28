@@ -1,5 +1,7 @@
 import { SEMAPHORE } from "@thi.ng/api";
+import { isPlainObject } from "@thi.ng/checks";
 import { equiv } from "@thi.ng/equiv";
+import { pairs } from "@thi.ng/transducers";
 import { ArraySet } from "./array-set";
 import { dissoc } from "./dissoc";
 import { equivMap } from "./internal/equiv";
@@ -25,28 +27,6 @@ export class EquivMap<K, V> extends Map<K, V>
         ICopy<EquivMap<K, V>>,
         IEmpty<EquivMap<K, V>>,
         IEquiv {
-    /**
-     * Converts given vanilla object into an {@link EquivMap} instance with
-     * default (or optionally provided) options and returns it. By
-     * default uses strict `===` equality check for `equiv` option.
-     *
-     * @param obj - source object
-     * @param opts - config options
-     */
-    static fromObject<T>(
-        obj: IObjectOf<T>,
-        opts?: Partial<EquivMapOpts<string>>
-    ): EquivMap<string, T> {
-        const m = new EquivMap<string, T>(null, {
-            equiv: (a, b) => a === b,
-            ...opts,
-        });
-        for (let k in obj) {
-            obj.hasOwnProperty(k) && m.set(k, obj[k]);
-        }
-        return m;
-    }
-
     /**
      * Creates a new instance with optional initial key-value pairs and
      * provided options. If no `opts` are given, uses `ArraySet` for
@@ -178,4 +158,22 @@ export class EquivMap<K, V> extends Map<K, V>
     opts(): EquivMapOpts<K> {
         return __private.get(this)!.opts;
     }
+}
+
+export function defEquivMap<K, V>(
+    pairs?: Iterable<Pair<K, V>> | null,
+    opts?: Partial<EquivMapOpts<K>>
+): EquivMap<K, V>;
+export function defEquivMap<V>(
+    obj: IObjectOf<V>,
+    opts?: Partial<EquivMapOpts<string>>
+): EquivMap<string, V>;
+export function defEquivMap<V>(
+    src: any,
+    opts?: Partial<EquivMapOpts<any>>
+): EquivMap<any, V> {
+    return new EquivMap(
+        isPlainObject(src) ? pairs(<IObjectOf<V>>src) : src,
+        opts
+    );
 }

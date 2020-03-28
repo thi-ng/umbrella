@@ -2,13 +2,13 @@ import { shuffle } from "@thi.ng/arrays";
 import { equiv } from "@thi.ng/equiv";
 import { range, repeat, zip } from "@thi.ng/transducers";
 import * as assert from "assert";
-import { SortedMap } from "../src/sorted-map";
+import { defSortedMap, SortedMap } from "../src/sorted-map";
 
 describe("SortedMap", () => {
     let m: SortedMap<any, any>;
 
     beforeEach(() => {
-        m = SortedMap.fromObject({ a: 1, b: 2, c: 3 });
+        m = defSortedMap({ a: 1, b: 2, c: 3 });
     });
 
     it("size", () => {
@@ -70,7 +70,14 @@ describe("SortedMap", () => {
     });
 
     it("entries", () => {
-        assert.deepEqual([...m], [["a", 1], ["b", 2], ["c", 3]]);
+        assert.deepEqual(
+            [...m],
+            [
+                ["a", 1],
+                ["b", 2],
+                ["c", 3],
+            ]
+        );
     });
 
     // it("entries rev", () => {
@@ -78,7 +85,14 @@ describe("SortedMap", () => {
     // });
 
     it("entries a", () => {
-        assert.deepEqual([...m.entries("a")], [["a", 1], ["b", 2], ["c", 3]]);
+        assert.deepEqual(
+            [...m.entries("a")],
+            [
+                ["a", 1],
+                ["b", 2],
+                ["c", 3],
+            ]
+        );
     });
 
     // it("entries a rev", () => {
@@ -86,7 +100,13 @@ describe("SortedMap", () => {
     // });
 
     it("entries aa", () => {
-        assert.deepEqual([...m.entries("aa")], [["b", 2], ["c", 3]]);
+        assert.deepEqual(
+            [...m.entries("aa")],
+            [
+                ["b", 2],
+                ["c", 3],
+            ]
+        );
     });
 
     // it("entries aa rev", () => {
@@ -110,7 +130,14 @@ describe("SortedMap", () => {
     // });
 
     it("entries 0", () => {
-        assert.deepEqual([...m.entries("0")], [["a", 1], ["b", 2], ["c", 3]]);
+        assert.deepEqual(
+            [...m.entries("0")],
+            [
+                ["a", 1],
+                ["b", 2],
+                ["c", 3],
+            ]
+        );
     });
 
     // it("entries 0 rev", () => {
@@ -140,14 +167,21 @@ describe("SortedMap", () => {
     });
 
     it("comparator", () => {
-        m = SortedMap.fromObject(
+        m = defSortedMap(
             { a: 1, b: 2, c: 3 },
             {
                 compare: (a: string, b: string) =>
-                    a === b ? 0 : a < b ? 1 : -1
+                    a === b ? 0 : a < b ? 1 : -1,
             }
         );
-        assert.deepEqual([["c", 3], ["b", 2], ["a", 1]], [...m.entries()]);
+        assert.deepEqual(
+            [
+                ["c", 3],
+                ["b", 2],
+                ["a", 1],
+            ],
+            [...m.entries()]
+        );
     });
 
     it("fuzz", () => {

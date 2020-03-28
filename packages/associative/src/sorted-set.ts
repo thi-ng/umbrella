@@ -162,3 +162,8 @@ export class SortedSet<T> extends Set<T>
         return __private.get(this)!.opts();
     }
 }
+
+export const defSortedSet = <T>(
+    vals?: Iterable<T> | null,
+    opts?: Partial<SortedSetOpts<T>>
+) => new SortedSet(vals, opts);

@@ -1,5 +1,7 @@
 import { ceilPow2 } from "@thi.ng/binary";
+import { isPlainObject } from "@thi.ng/checks";
 import { equiv } from "@thi.ng/equiv";
+import { map } from "@thi.ng/transducers";
 import { dissoc } from "./dissoc";
 import { equivMap } from "./internal/equiv";
 import { inspectable } from "./internal/inspect";
@@ -12,6 +14,7 @@ import type {
     IEquiv,
     Pair,
     Predicate2,
+    IObjectOf,
 } from "@thi.ng/api";
 import type { HashMapOpts } from "./api";
 
@@ -34,6 +37,7 @@ const __iterator = <K, V>(map: HashMap<K, V>, id: 0 | 1) =>
     };
 
 const DEFAULT_CAP = 16;
+const DEFAULT_LOAD = 0.75;
 
 /**
  * Configurable hash map implementation w/ ES6 Map API. Uses open
@@ -68,7 +72,7 @@ export class HashMap<K, V> extends Map<K, V>
         __private.set(this, {
             hash: opts.hash,
             equiv: opts.equiv || equiv,
-            load: opts.load || 0.75,
+            load: opts.load || DEFAULT_LOAD,
             mask: m,
             bins: new Array(m + 1),
             size: 0,
@@ -233,5 +237,31 @@ export class HashMap<K, V> extends Map<K, V>
         for (let p of src) {
             if (p) this.set(p[0], p[1]);
         }
+    }
+}
+
+export function defHashMap<K, V>(
+    pairs: Iterable<Pair<K, V>> | null,
+    opts: HashMapOpts<K>
+): HashMap<K, V>;
+export function defHashMap<V>(
+    obj: IObjectOf<V>,
+    opts: HashMapOpts<string>
+): HashMap<string, V>;
+export function defHashMap<V>(
+    src: any,
+    opts: HashMapOpts<any>
+): HashMap<any, V> {
+    if (isPlainObject(src)) {
+        const keys = Object.keys(src);
+        return new HashMap<string, V>(
+            map((k) => <Pair<string, V>>[k, (<IObjectOf<V>>src)[k]], keys),
+            {
+                cap: keys.length / (opts.load || DEFAULT_LOAD),
+                ...opts,
+            }
+        );
+    } else {
+        return new HashMap(src, opts);
     }
 }

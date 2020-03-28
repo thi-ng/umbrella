@@ -39,6 +39,12 @@ export interface EquivSetOpts<T> {
 }
 
 export interface EquivMapOpts<K> extends EquivSetOpts<K> {
+    /**
+     * Underlying {@link IEquivSet} implementation for storing the
+     * unique keys of the map.
+     *
+     * @defaultValue {@link ArraySet}
+     */
     keys: EquivSetConstructor<K>;
 }
 

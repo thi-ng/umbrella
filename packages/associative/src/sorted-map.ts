@@ -1,4 +1,5 @@
 import { SEMAPHORE } from "@thi.ng/api";
+import { isPlainObject } from "@thi.ng/checks";
 import { compare } from "@thi.ng/compare";
 import { isReduced, map } from "@thi.ng/transducers";
 import { dissoc } from "./dissoc";
@@ -37,27 +38,6 @@ const __private = new WeakMap<SortedMap<any, any>, SortedMapState<any, any>>();
 
 @inspectable
 export class SortedMap<K, V> extends Map<K, V> {
-    /**
-     * Creates new {@link SortedMap} instance from given object's key-value
-     * pairs.
-     *
-     * @param obj - source object
-     * @param opts - config options
-     */
-    static fromObject<T>(
-        obj: IObjectOf<T>,
-        opts?: Partial<SortedMapOpts<string>>
-    ): SortedMap<string, T> {
-        const m = new SortedMap<string, T>(null, {
-            capacity: Object.keys(obj).length,
-            ...opts,
-        });
-        for (let k in obj) {
-            obj.hasOwnProperty(k) && m.set(k, obj[k]);
-        }
-        return m;
-    }
-
     static DEFAULT_CAP = 8;
     static DEFAULT_P = 1 / Math.E;
 
@@ -309,5 +289,31 @@ export class SortedMap<K, V> extends Map<K, V> {
             level++;
         }
         return level;
+    }
+}
+
+export function defSortedMap<K, V>(
+    pairs?: Iterable<Pair<K, V>> | null,
+    opts?: Partial<SortedMapOpts<K>>
+): SortedMap<K, V>;
+export function defSortedMap<V>(
+    obj: IObjectOf<V>,
+    opts?: Partial<SortedMapOpts<string>>
+): SortedMap<string, V>;
+export function defSortedMap<V>(
+    src: any,
+    opts?: Partial<SortedMapOpts<any>>
+): SortedMap<any, V> {
+    if (isPlainObject(src)) {
+        const keys = Object.keys(src);
+        return new SortedMap<string, V>(
+            map((k) => <Pair<string, V>>[k, (<IObjectOf<V>>src)[k]], keys),
+            {
+                capacity: keys.length,
+                ...opts,
+            }
+        );
+    } else {
+        return new SortedMap(src, opts);
     }
 }

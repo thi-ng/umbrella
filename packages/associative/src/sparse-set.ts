@@ -253,7 +253,7 @@ export class SparseSet32 extends ASparseSet<Uint32Array>
  *
  * @param n - max capacity, ID range: [0...n)
  */
-export const sparseSet = (n: number) =>
+export const defSparseSet = (n: number) =>
     n <= 0x100
         ? new SparseSet8(n)
         : n <= 0x10000

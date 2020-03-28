@@ -2,7 +2,7 @@ import { isSet } from "@thi.ng/checks";
 import { equiv } from "@thi.ng/equiv";
 import * as assert from "assert";
 import {
-    sparseSet,
+    defSparseSet,
     SparseSet16,
     SparseSet32,
     SparseSet8
@@ -16,17 +16,17 @@ describe("SparseSet", () => {
     });
 
     it("factory / max value", () => {
-        let a = sparseSet(0x100);
+        let a = defSparseSet(0x100);
         a.into([0xff, 0x100]);
         assert(a instanceof SparseSet8, "u8");
         assert.deepEqual([...a], [0xff]);
 
-        a = sparseSet(0x10000);
+        a = defSparseSet(0x10000);
         a.into([0xffff, 0x10000]);
         assert(a instanceof SparseSet16, "u16");
         assert.deepEqual([...a], [0xffff]);
 
-        a = sparseSet(0x10001);
+        a = defSparseSet(0x10001);
         a.into([0x10000, 0x10001]);
         assert(a instanceof SparseSet32, "u32");
         assert.deepEqual([...a], [0x10000]);
