@@ -15,6 +15,29 @@ ${pkg.description}
 
 ${status}
 
+## Breaking changes
+
+### 4.0.0
+
+#### Naming convention
+
+As part of a larger effort to enforce more consistent naming conventions
+across various umbrella packages, all higher-order operators in this
+package are now using the `def` prefix: e.g. `getterT()` =>
+`defGetter()`, `setterT()` => `defSetter()`.
+
+#### Type checked accessors
+
+**Type checked accessors are now the default and those functions expect
+paths provided as tuples**. To continue using string based paths (e.g.
+`"a.b.c"`), alternative `Unsafe` versions are provided. E.g. `getIn()`
+(type checked) vs. `getInUnsafe()` (unchecked). Higher-order versions
+also provide fallbacks (e.g. `getter()` => `defGetterUnsafe()`).
+
+Type checking for paths is currently "only" supported for the first 8
+levels of nesting. Deeper paths are supported but only partially checked
+and their value type inferred as `any`.
+
 ${supportPackages}
 
 ${relatedPackages}
@@ -39,31 +62,98 @@ ${examples}
 
 ${docLink}
 
-### Accessors
+### Type checked paths
 
-The `getter()`, `setter()` and `updater()` functions compile a lookup
-path like `a.b.c` into an optimized function operating directly at the
-value the path points to in nested object. For getters, this essentially
-compiles to `val = obj.a.b.c`, with the important difference that the
-function returns `undefined` if any intermediate values along the lookup
-path are undefined (and doesn't throw an error).
+As stated in the [breaking changes](#breaking-changes) section, since
+v4.0.0 paths are now type checked by default. These new functions use
+Typescript generics to validate a given path against the type structure
+of the target state object. Since string paths cannot be checked, only
+path tuples are supported. **Type checking & inference supports path
+lengths up to 8** (i.e. levels of hierarchy) before reverting back to
+`any` for longer/deeper paths (there's no depth limit per se).
 
-The resulting setter function too accepts a single object (or array) to
-operate on and when called, **immutably** replaces the value at the
-given path, i.e. it produces a selective deep copy of obj up until given
-path. If any intermediate key is not present in the given object, it
-creates a plain empty object for that missing key and descends further
-along the path.
+Due to missing type information of the not-yet-known state value, using
+the typed checked higher-order versions (e.g. `defGetter`, `defSetter`
+etc.) is slightly more verbose compared to their immediate use,
+first-order versions (e.g. `getIn()`, `setIn()` etc.), where everything
+can be inferred directly. However, (re)using the HOF-constructed
+accessors *can* be somewhat faster and more convenient... YMMV! More details below.
+
+#### Optional property handling
+
+When accessing data structures with optional properties, not only the
+leaf value type targeted by a lookup path is important, but any
+intermediate optional properties need to be considered too. Furthermore,
+we need to distinguish between read (get) and write (update) use cases
+for correct type inference.
+
+For example, given these types:
 
 ```ts
-s = setter("a.b.c");
-// or
-s = setter(["a","b","c"]);
+type Foo1 = { a: { b: { c?: number; } } };
 
-s({a: {b: {c: 23}}}, 24)
-// {a: {b: {c: 24}}}
+type Foo2 = { a?: { b: { c: number; } } };
+```
 
-s({x: 23}, 24)
+For get/read purposes the inferred type for `c` will both be `number |
+undefined`. Even though `c` in `Foo2` is not marked as optional, the `a`
+property is optional and so attempting to lookup `c` can yield
+`undefined`...
+
+For set/update/write purposes, the type for `c` is inferred verbatim.
+I.e. if a property is marked as optional, a setter will allow
+`undefined` as new value as well.
+
+### Higher-order accessors
+
+The `defGetter()`, `defSetter()` and `defUpdater()` functions compile a
+lookup path tuple into an optimized function, operating directly at the
+value the path points to in a nested object given later. For getters,
+this essentially compiles to:
+
+```ts
+defGetter(["a","b","c"]) => (obj) => obj.a.b.c;
+```
+
+...with the important difference that the function returns `undefined`
+if any intermediate values along the lookup path are undefined (and
+doesn't throw an error).
+
+For setters / updaters, the resulting function too accepts a single
+object (or array) to operate on and when called, **immutably** replaces
+the value at the given path, i.e. it produces a selective deep copy of
+obj up until given path. If any intermediate key is not present in the
+given object, it creates a plain empty object for that missing key and
+descends further along the path.
+
+```ts
+// define state structure (see above example)
+interface State {
+    a: {
+        b?: number;
+        c: string[];
+    }
+}
+
+const state: State = { a: { b: 1, c: ["c1", "c2"] } };
+
+// build type checked getter for `b` & `c`
+const getB = defGetter<State, "a", "b">(["a", "b"]);
+const getFirstC = defGetter<State, "a", "c", 0>(["a", "c", 0]);
+
+const b = getB(state); // b inferred as `number | undefined`
+const c1 = getFirstC(state); // c1 inferred as `string`
+```
+
+Paths can also be defined as dot-separated strings, however cannot be type checked and MUST use the `Unsafe` version of each operation:
+
+```ts
+s = defSetterUnsafe("a.b.c");
+
+s({ a: { b: { c: 23 } } }, 24)
+// { a: { b: { c: 24 } } }
+
+s({ x: 23 }, 24)
 // { x: 23, a: { b: { c: 24 } } }
 
 s(null, 24)
@@ -75,101 +165,66 @@ supplied function to apply to the existing value (incl. any other
 arguments passed):
 
 ```ts
-inc = updater("a.b", (x) => x != null ? x + 1 : 1);
+type State = { a?: { b?: number; } };
 
-inc({a: {b: 10}});
+const inc = defUpdater<State, "a", "b">(
+    ["a","b"],
+    // x inferred as number | undefined
+    (x) => x !== undefined ? x + 1 : 1
+);
+
+inc({ a: { b: 10 } });
 // { a: { b: 11 } }
 inc({});
 // { a: { b: 1 } }
 
 // with additional arguments
-add = updater("a.b", (x, n) => x + n);
+add = defUpdater("a.b", (x, n) => x + n);
 
 add({a: {b: 10}}, 13);
 // { a: { b: 23 } }
 ```
 
+### First order operators
+
 In addition to these higher-order functions, the module also provides
 immediate-use wrappers: `getIn()`, `setIn()`, `updateIn()` and
-`deleteIn()`. These functions are using `getter` / `setter` internally,
-so have same behaviors.
+`deleteIn()`. These functions are using `defGetter` / `defSetter` internally, so come with the same contracts/disclaimers...
 
 ```ts
-state = {a: {b: {c: 23}}};
+const state = { a: { b: { c: 23 } } };
 
-getIn(state, "a.b.c")
+const cPath = <const>["a", "b", "c"];
+
+getIn(state, cPath)
 // 23
 
-setIn(state, "a.b.c", 24)
-// {a: {b: {c: 24}}}
+setIn(state, cPath, 24)
+// { a: { b: { c: 24 } } }
 
 // apply given function to path value
-updateIn(state, "a.b.c", x => x + 1)
-// {a: {b: {c: 24}}}
+// Note: New `c` is 24, since above `setIn()` didn't mutate orig
+updateIn(state, cPath, (x) => x + 1)
+// { a: { b: { c: 24 } } }
 
 // immutably remove path key
-deleteIn(state, "a.b.c.")
-// {a: {b: {}}}
+deleteIn(state, cPath)
+// { a: { b: {} } }
 ```
 
-### Type checked versions
+### Deletions
 
-Since v2.2.0 type checked versions of the above accessors are available:
-
-- `getterT` / `getInT`
-- `setterT` / `setInT`
-- `updaterT` / `updateInT`
-- `deleteInT`
-- `mutatorT` / `mutInT`
-
-These functions use generics (via mapped types) to validate the given
-path against the type structure of the state object. Since string paths
-cannot be type checked, only path tuples are supported. **Type checking &
-inference supports path lengths up to 8** (i.e. levels of
-hierarchy) before reverting back to `any`.
-
-```ts
-const state = { a: { b: 1, c: ["c1", "c2"] } };
-
-const b = getInT(state, ["a", "b"]); // b inferred as number
-const c = getInT(state, ["a", "c"]); // c inferred as string[]
-const c1len = getInT(state, ["a", "c", 0, "length"]); // inferred as number
-
-getIn(state, ["a", "d"]); // compile error
-getIn(state, ["x"]); // compile error
-```
-
-Using the typed checked HOF versions (e.g. `getterT`, `setterT` etc.) is
-slightly more verbose due to missing type information of the not yet
-know state and the way generics are done in TypeScript:
-
-```ts
-// define state structure (see above example)
-interface State {
-    a: {
-        b: number;
-        c: string[];
-    }
-}
-
-// build typed getter for `b` & `c` state
-const getB = getterT<State, "a", "b">(["a", "b"]);
-const getFirstC = getterT<State, "a", "c", 0>(["a", "c", 0]);
-
-// using `state` from previous example
-const b = getB(state); // inferred as number
-const c1 = getFirstC(state); // inferred as string
-```
-
-Since `deleteInT` immutably removes a key from the given state object, it also returns a new type from which the key has been explicitly removed.
+Since `deleteIn` immutably removes a key from the given state object, it
+also returns a new type from which the key has been explicitly removed.
+Those return types come in the form of `Without{1-8}<...>` interfaces.
 
 ```ts
 // again using `state` from above example
 // remove nested key `a.c`
-const state2 = deleteInT(state, ["a","c"]);
+const state2 = deleteIn(state, ["a","b","c"]);
 
 // compile error: "Property `c` does not exist`
-state2.a.c;
+state2.a.b.c;
 ```
 
 ### Structural sharing
@@ -183,12 +238,12 @@ using the ES6 spread op (for objects, `slice()` for arrays) and dynamic
 functional composition to produce the setter/updater).
 
 ```ts
-s = setter("a.b.c");
+const s = defSetterUnsafe("a.b.c");
 
 // original
-a = { x: { y: { z: 1 } }, u: { v: 2 } };
+const a = { x: { y: { z: 1 } }, u: { v: 2 } };
 // updated version
-b = s(a, 3);
+const b = s(a, 3);
 // { x: { y: { z: 1 } }, u: { v: 2 }, a: { b: { c: 3 } } }
 
 // verify anything under keys `x` & `u` is still identical
@@ -199,34 +254,34 @@ a.u === b.u; // true
 
 ### Mutable setter
 
-`mutator()` is the mutable alternative to `setter()`. It returns a
-function, which when called, mutates given object / array at given path
-location and bails if any intermediate path values are non-indexable
-(only the very last path element can be missing in the actual object
-structure). If successful, returns original (mutated) object, else
-`undefined`. This function too provides optimized versions for path
-lengths <= 4.
+`defMutator()`/`defMutatorUnsafe()` are the mutable alternatives to
+`defSetter()`/`defSetterUnsafe()`. Each returns a function, which when
+called, mutates given object / array at given path location and bails if
+any intermediate path values are non-indexable (only the very last path
+element can be missing in the actual target object structure). If
+successful, returns original (mutated) object, else `undefined`. This
+function too provides optimized versions for path lengths <= 4.
 
 As with `setIn`, `mutIn` is the immediate use mutator, i.e. the same as:
-`mutator(path)(state, val)`.
+`defMutator(path)(state, val)`.
 
 ```ts
-mutIn({ a: { b: [10, 20] } }, "a.b.1", 23);
-// or
 mutIn({ a: { b: [10, 20] } }, ["a", "b", 1], 23);
+// or
+mutInUnsafe({ a: { b: [10, 20] } }, "a.b.1", 23);
 // { a: { b: [ 10, 23 ] } }
 
-// fails (because of missing path structure in target object)
-mutIn({}, "a.b.c", 23);
+// no-op (because of missing path structure in target object)
+mutInUnsafe({}, "a.b.c", 23);
 // undefined
 ```
 
 ### Path checking
 
-The `exists()` function takes an arbitrary object and lookup path.
-Descends into object along path and returns true if the full path exists
-(even if final leaf value is `null` or `undefined`). Checks are
-performed using `hasOwnProperty()`.
+The `exists()` function takes an arbitrary object and lookup path
+(string or tuple). Descends into object along path and returns true if
+the full path exists (even if final leaf value is `null` or
+`undefined`). Checks are performed using `hasOwnProperty()`.
 
 ```ts
 exists({ a: { b: { c: [null] } } }, "a.b.c.0");
