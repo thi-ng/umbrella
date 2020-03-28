@@ -16,15 +16,15 @@ import {
     Vec2Sym,
     vec3,
     vec4,
-    Vec4Sym
+    Vec4Sym,
 } from "@thi.ng/shader-ast";
 import { clamp01, fit1101, fragUV } from "@thi.ng/shader-ast-stdlib";
 import {
+    defMultiPass,
     glCanvas,
-    multipass,
     readTexture,
     TextureFormat,
-    TextureType
+    TextureType,
 } from "@thi.ng/webgl";
 
 // create WebGL canvas
@@ -34,17 +34,17 @@ const canvas = glCanvas({
     width: 512,
     height: 512,
     parent: document.body,
-    version: 2
+    version: 2,
 });
 
 // init multipass shader pipeline
-const toy = multipass({
+const toy = defMultiPass({
     gl: canvas.gl,
     width: 32,
     height: 32,
     textures: {
         foo: { format: TextureFormat.RGBA32F },
-        bar: { format: TextureFormat.R32F }
+        bar: { format: TextureFormat.R32F },
     },
     passes: [
         {
@@ -60,19 +60,19 @@ const toy = multipass({
                         assign(
                             outs.output1,
                             vec4(clamp01(length(sub(uv, 0.5))))
-                        )
+                        ),
                     ];
-                })
+                }),
             ],
             inputs: [],
             outputs: ["foo", "bar"],
             uniforms: {
                 time: "float",
-                resolution: "vec2"
+                resolution: "vec2",
             },
             uniformVals: {
                 // foo: () => Math.random()
-            }
+            },
         },
         {
             fs: (gl, unis, _, outs) => [
@@ -92,18 +92,18 @@ const toy = multipass({
                                 ),
                                 1
                             )
-                        )
+                        ),
                     ];
-                })
+                }),
             ],
             inputs: ["foo", "bar"],
             outputs: [],
             uniforms: {
                 resolution: "vec2",
-                time: "float"
-            }
-        }
-    ]
+                time: "float",
+            },
+        },
+    ],
 });
 
 toy.update(0);

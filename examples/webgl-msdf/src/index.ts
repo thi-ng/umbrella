@@ -2,12 +2,7 @@ import { GLType } from "@thi.ng/api";
 import { start } from "@thi.ng/hdom";
 import { canvasWebGL } from "@thi.ng/hdom-components";
 import { fitClamped } from "@thi.ng/math";
-import {
-    concat,
-    lookAt,
-    perspective,
-    transform44
-} from "@thi.ng/matrices";
+import { concat, lookAt, perspective, transform44 } from "@thi.ng/matrices";
 import { SYSTEM } from "@thi.ng/random";
 import { fromDOMEvent, Subscription } from "@thi.ng/rstream";
 import {
@@ -24,7 +19,7 @@ import {
     smoothstep,
     sub,
     vec3,
-    vec4
+    vec4,
 } from "@thi.ng/shader-ast";
 import { map } from "@thi.ng/transducers";
 import { AttribPool } from "@thi.ng/vector-pools";
@@ -35,27 +30,27 @@ import {
     mulN,
     ReadonlyVec,
     Y3,
-    ZERO3
+    ZERO3,
 } from "@thi.ng/vectors";
 import {
     adaptDPI,
     BLEND_NORMAL,
     compileModel,
+    defShader,
+    defTexture,
     draw,
     DrawMode,
     GLMat4,
     ModelSpec,
-    shader,
-    texture,
     TextureFilter,
-    TextureRepeat
+    TextureRepeat,
 } from "@thi.ng/webgl";
 import {
     alignCenter,
     convertGlyphs,
     MSDFFont,
     msdfShader,
-    text
+    text,
 } from "@thi.ng/webgl-msdf";
 import GLYPHS from "../assets/inputmono-extralight-msdf.json";
 import GLYPH_TEX from "../assets/inputmono-extralight.png";
@@ -100,20 +95,20 @@ const createText = (
             leading: 1.4,
             spacing: 1,
             dirY: -1,
-            useColor: true
+            useColor: true,
         }),
-        shader: shader(gl, msdfShader({ color: true })),
+        shader: defShader(gl, msdfShader({ color: true })),
         textures: [
-            texture(gl, {
+            defTexture(gl, {
                 image: img,
                 filter: TextureFilter.LINEAR,
-                wrap: TextureRepeat.CLAMP
-            })
+                wrap: TextureRepeat.CLAMP,
+            }),
         ],
         uniforms: {
             bg: [0, 0, 0, 1],
-            thresh: -0.2
-        }
+            thresh: -0.2,
+        },
     };
     // update bottom vertex colors of each character
     for (let i = 2; i < model.attribPool!.capacity; i += 4) {
@@ -127,12 +122,12 @@ const createStarField = (gl: WebGLRenderingContext, num = 1000) => {
         attribs: {
             position: { type: GLType.F32, size: 3, byteOffset: 0 },
             dir: { type: GLType.F32, size: 3, byteOffset: 12 },
-            id: { type: GLType.F32, size: 1, byteOffset: 24 }
+            id: { type: GLType.F32, size: 1, byteOffset: 24 },
         },
         mem: {
-            size: num * 28 + 8 /* FIXME */ + 40
+            size: num * 28 + 8 /* FIXME */ + 40,
         },
-        num
+        num,
     });
     for (let i = 0, r = SYSTEM; i < num; i++) {
         const pos = [r.minmax(-15, 15), r.minmax(0, 10), 0];
@@ -148,7 +143,7 @@ const createStarField = (gl: WebGLRenderingContext, num = 1000) => {
         attribs: {},
         attribPool: pool,
         uniforms: {},
-        shader: shader(gl, {
+        shader: defShader(gl, {
             vs: (gl, unis, ins, outs) => [
                 defMain(() => [
                     assign(
@@ -177,8 +172,8 @@ const createStarField = (gl: WebGLRenderingContext, num = 1000) => {
                             )
                         )
                     ),
-                    assign(gl.gl_PointSize, div(float(20), $w(gl.gl_Position)))
-                ])
+                    assign(gl.gl_PointSize, div(float(20), $w(gl.gl_Position))),
+                ]),
             ],
             fs: (gl, _, ins, outs) => [
                 defMain(() => [
@@ -195,29 +190,29 @@ const createStarField = (gl: WebGLRenderingContext, num = 1000) => {
                                 )
                             )
                         )
-                    )
-                ])
+                    ),
+                ]),
             ],
             attribs: {
                 position: "vec3",
                 dir: "vec3",
-                id: "float"
+                id: "float",
             },
             varying: {
-                valpha: "float"
+                valpha: "float",
             },
             uniforms: {
                 modelview: "mat4",
                 proj: "mat4",
-                time: "float"
+                time: "float",
             },
             state: {
                 blend: true,
-                blendFn: BLEND_NORMAL
-            }
+                blendFn: BLEND_NORMAL,
+            },
         }),
         mode: DrawMode.POINTS,
-        num
+        num,
     });
 };
 
@@ -285,7 +280,7 @@ const app = () => {
             gl.clearColor(bg, bg, bg, 1);
             gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
             draw([stars, body]);
-        }
+        },
     });
     return [canvas, { width: window.innerWidth, height: window.innerHeight }];
 };

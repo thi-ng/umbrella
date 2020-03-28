@@ -7,16 +7,16 @@ import { normalize, rotateY } from "@thi.ng/vectors";
 import {
     checkerboard,
     compileModel,
-    cube,
+    defCubeModel,
+    defShader,
+    defTexture,
     draw,
     GLMat4,
     GLVec3,
     LAMBERT,
     ModelSpec,
-    shader,
-    texture,
     TextureFilter,
-    TextureRepeat
+    TextureRepeat,
 } from "@thi.ng/webgl";
 
 const app = () => {
@@ -27,7 +27,7 @@ const app = () => {
             const C1 = [0.5, 0.5, 0.5];
             const C2 = [1, 1, 1];
             model = compileModel(gl, {
-                ...cube({ size: 0.9 }),
+                ...defCubeModel({ size: 0.9 }),
                 instances: {
                     attribs: {
                         offset: {
@@ -36,45 +36,45 @@ const app = () => {
                                     ([x, z]) => [
                                         x * 2,
                                         Math.sin(x * 0.4) + Math.sin(z * 0.4),
-                                        z * 2
+                                        z * 2,
                                     ],
                                     range2d(-GRID + 1, GRID, -GRID + 1, GRID)
-                                )
-                            ])
+                                ),
+                            ]),
                         },
                         icol: {
                             data: new Float32Array([
                                 ...mapcat(
                                     () => (Math.random() < 0.5 ? C1 : C2),
                                     range2d(-GRID + 1, GRID, -GRID + 1, GRID)
-                                )
-                            ])
-                        }
+                                ),
+                            ]),
+                        },
                     },
-                    num: (GRID * 2 - 1) ** 2
+                    num: (GRID * 2 - 1) ** 2,
                 },
-                shader: shader(
+                shader: defShader(
                     gl,
                     LAMBERT({
                         uv: "uv",
                         instancePos: "offset",
                         instanceColor: "icol",
-                        state: { cull: true }
+                        state: { cull: true },
                     })
                 ),
                 uniforms: {},
                 textures: [
-                    texture(gl, {
+                    defTexture(gl, {
                         image: checkerboard({
                             size: 8,
                             col1: 0xff808080,
                             col2: 0xffffffff,
-                            corners: true
+                            corners: true,
                         }),
                         filter: TextureFilter.NEAREST,
-                        wrap: TextureRepeat.CLAMP
-                    })
-                ]
+                        wrap: TextureRepeat.CLAMP,
+                    }),
+                ],
             });
         },
         update: (el, gl, __, time) => {
@@ -100,11 +100,11 @@ const app = () => {
             gl.clearColor(bg, bg, bg, 1);
             gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
             draw(model);
-        }
+        },
     });
     return () => [
         canvas,
-        { width: window.innerWidth, height: window.innerHeight }
+        { width: window.innerWidth, height: window.innerHeight },
     ];
 };
 

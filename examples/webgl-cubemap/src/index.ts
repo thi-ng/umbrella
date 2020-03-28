@@ -1,12 +1,7 @@
 import { sin } from "@thi.ng/dsp";
 import { start } from "@thi.ng/hdom";
 import { adaptDPI, canvasWebGL, dropdown } from "@thi.ng/hdom-components";
-import {
-    concat,
-    lookAt,
-    perspective,
-    transform44
-} from "@thi.ng/matrices";
+import { concat, lookAt, perspective, transform44 } from "@thi.ng/matrices";
 import { fromPromise, metaStream, stream } from "@thi.ng/rstream";
 import {
     assign,
@@ -14,54 +9,54 @@ import {
     mul,
     normalize,
     texture,
-    vec4
+    vec4,
 } from "@thi.ng/shader-ast";
 import {
     BLEND_ADD,
     compileModel,
-    cube,
-    cubeMap,
+    defCubeModel,
+    defShader,
+    defTextureCubeMap,
     draw,
     GLMat4,
     ModelSpec,
-    shader,
     ShaderSpec,
-    TextureFilter
+    TextureFilter,
 } from "@thi.ng/webgl";
 
 const CUBEMAP_SHADER: ShaderSpec = {
     vs: (gl, unis, ins, outs) => [
         defMain(() => [
             assign(outs.vnormal, ins.position),
-            assign(gl.gl_Position, mul(unis.mvp, vec4(ins.position, 1)))
-        ])
+            assign(gl.gl_Position, mul(unis.mvp, vec4(ins.position, 1))),
+        ]),
     ],
     fs: (_, unis, ins, outs) => [
         defMain(() => [
-            assign(outs.fragColor, texture(unis.tex, normalize(ins.vnormal)))
-        ])
+            assign(outs.fragColor, texture(unis.tex, normalize(ins.vnormal))),
+        ]),
     ],
     attribs: {
-        position: "vec3"
+        position: "vec3",
     },
     varying: {
-        vnormal: "vec3"
+        vnormal: "vec3",
     },
     uniforms: {
         mvp: "mat4",
-        tex: "samplerCube"
+        tex: "samplerCube",
     },
     state: {
         depth: false,
         blend: true,
-        blendFn: BLEND_ADD
-    }
+        blendFn: BLEND_ADD,
+    },
 };
 
 const CUBE_MAPS = [
     ["langholmen2", "Langholmen"],
     ["golden-gate", "Golden Gate"],
-    ["maskonaive2", "Maskonaive"]
+    ["maskonaive2", "Maskonaive"],
 ];
 
 const app = () => {
@@ -80,18 +75,18 @@ const app = () => {
                     next(faces) {
                         try {
                             model = compileModel(gl, {
-                                ...cube({ normal: false, uv: false }),
-                                shader: shader(gl, CUBEMAP_SHADER),
+                                ...defCubeModel({ normal: false, uv: false }),
+                                shader: defShader(gl, CUBEMAP_SHADER),
                                 uniforms: {},
                                 textures: [
-                                    cubeMap(gl, faces, {
+                                    defTextureCubeMap(gl, faces, {
                                         filter: [
                                             TextureFilter.LINEAR_MIPMAP_LINEAR,
-                                            TextureFilter.LINEAR
+                                            TextureFilter.LINEAR,
                                         ],
-                                        mipmap: true
-                                    })
-                                ]
+                                        mipmap: true,
+                                    }),
+                                ],
                             });
                         } catch (err) {
                             console.warn(err);
@@ -99,7 +94,7 @@ const app = () => {
                     },
                     error(e) {
                         console.warn(e);
-                    }
+                    },
                 });
         },
         // prettier-ignore
@@ -126,12 +121,12 @@ const app = () => {
                 dropdown,
                 {
                     onchange: (e: Event) =>
-                        selection.next((<HTMLSelectElement>e.target).value)
+                        selection.next((<HTMLSelectElement>e.target).value),
                 },
                 CUBE_MAPS,
-                selection.deref()
-            ]
-        ]
+                selection.deref(),
+            ],
+        ],
     ];
 };
 

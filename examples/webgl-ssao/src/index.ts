@@ -1,37 +1,32 @@
+import type { IDeref } from "@thi.ng/api";
 import { sin } from "@thi.ng/dsp";
 import { start } from "@thi.ng/hdom";
 import { canvasWebGL2 } from "@thi.ng/hdom-components";
 import { lookAt, perspective, transform44 } from "@thi.ng/matrices";
 import { fromRAF, tweenNumber } from "@thi.ng/rstream";
-import {
-    benchmark,
-    map,
-    movingAverage,
-    repeatedly
-} from "@thi.ng/transducers";
+import { benchmark, map, movingAverage, repeatedly } from "@thi.ng/transducers";
 import { rotateY } from "@thi.ng/vectors";
 import {
     checkerboard,
     compileModel,
-    cube,
+    defCubeModel,
+    defFBO,
+    defQuadModel,
+    defRBO,
+    defShader,
+    defTexture,
     draw,
-    fbo,
     FBO,
     GLMat4,
     GLVec3,
     ModelSpec,
-    quad,
-    rbo,
-    shader,
-    texture,
     TextureFilter,
     TextureFormat,
     TextureOpts,
-    TextureRepeat
+    TextureRepeat,
 } from "@thi.ng/webgl";
-import { CONTROLS, PARAM_DEFS, PARAMS } from "./params";
+import { CONTROLS, PARAMS, PARAM_DEFS } from "./params";
 import { FINAL_SHADER, LIGHT_SHADER, SSAO_SHADER } from "./shaders";
-import type { IDeref } from "@thi.ng/api";
 
 // FBO size
 const W = 1024;
@@ -43,7 +38,7 @@ const Z_FAR = 20;
 
 // noise texture data for SSAO shader
 const NOISE = new Float32Array([
-    ...repeatedly(() => Math.random() * 2 - 1, W * H * 2)
+    ...repeatedly(() => Math.random() * 2 - 1, W * H * 2),
 ]);
 
 // instance position data for animated cubes
@@ -79,36 +74,36 @@ const app = () => {
                 { format: TextureFormat.RGBA16F },
                 {
                     image: NOISE,
-                    format: TextureFormat.RG16F
+                    format: TextureFormat.RG16F,
                 },
-                {}
+                {},
             ].map((opts: Partial<TextureOpts>) =>
-                texture(gl, {
+                defTexture(gl, {
                     width: W,
                     height: H,
                     image: null,
                     filter: TextureFilter.NEAREST,
                     wrap: TextureRepeat.CLAMP,
-                    ...opts
+                    ...opts,
                 })
             );
-            fboGeo = fbo(gl, {
+            fboGeo = defFBO(gl, {
                 tex: [colorTex, posTex, normTex],
-                depth: rbo(gl, { width: W, height: H })
+                depth: defRBO(gl, { width: W, height: H }),
             });
-            fboSSAO = fbo(gl, {
-                tex: [ssaoTex]
+            fboSSAO = defFBO(gl, {
+                tex: [ssaoTex],
             });
             model = compileModel(gl, {
-                ...cube({ uv: true }),
-                shader: shader(gl, LIGHT_SHADER),
+                ...defCubeModel({ uv: true }),
+                shader: defShader(gl, LIGHT_SHADER),
                 instances: {
                     attribs: {
                         offset: {
-                            data: instancePositions(1.05)
-                        }
+                            data: instancePositions(1.05),
+                        },
                     },
-                    num: 6
+                    num: 6,
                 },
                 uniforms: {
                     eyePos: <IDeref<GLVec3>>(
@@ -133,40 +128,40 @@ const app = () => {
                             )
                         )
                     ),
-                    specular: <IDeref<number>>PARAMS.specular
+                    specular: <IDeref<number>>PARAMS.specular,
                 },
                 textures: [
-                    texture(gl, {
+                    defTexture(gl, {
                         image: checkerboard({
                             size: 16,
                             col1: 0xffc0c0c0,
                             col2: 0xffe0e0e0,
-                            corners: true
+                            corners: true,
                         }),
                         filter: TextureFilter.NEAREST,
-                        wrap: TextureRepeat.CLAMP
-                    })
-                ]
+                        wrap: TextureRepeat.CLAMP,
+                    }),
+                ],
             });
             ssaoQuad = compileModel(gl, {
-                ...quad(false),
-                shader: shader(gl, SSAO_SHADER),
+                ...defQuadModel(false),
+                shader: defShader(gl, SSAO_SHADER),
                 textures: [posTex, normTex, noiseTex],
                 uniforms: {
                     sampleRadius: <IDeref<number>>PARAMS.radius,
                     bias: <IDeref<number>>PARAMS.bias,
                     attenuate: <IDeref<number>>PARAMS.baseAttenuation,
                     attenuateDist: <IDeref<number>>PARAMS.distAttenuation,
-                    depthRange: [Z_NEAR, Z_FAR]
-                }
+                    depthRange: [Z_NEAR, Z_FAR],
+                },
             });
             finalQuad = compileModel(gl, {
-                ...quad(),
-                shader: shader(gl, FINAL_SHADER),
+                ...defQuadModel(),
+                shader: defShader(gl, FINAL_SHADER),
                 textures: [colorTex, ssaoTex],
                 uniforms: {
-                    amp: <IDeref<number>>PARAMS.amp
-                }
+                    amp: <IDeref<number>>PARAMS.amp,
+                },
             });
         },
         update(_, gl, __, time, frame) {
@@ -197,13 +192,13 @@ const app = () => {
             fboSSAO.unbind();
             gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
             draw(finalQuad);
-        }
+        },
     });
     return () => [
         "div.sans-serif.pa3.bg-dark-gray.white",
         [canvas, { width: W, height: H }],
         ["div.fixed.top-0.left-0.z-1.ma3.pa3", fps, " fps"],
-        ["div.mt3", ...CONTROLS]
+        ["div.mt3", ...CONTROLS],
     ];
 };
 
