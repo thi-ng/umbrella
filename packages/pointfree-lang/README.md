@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/pointfree-lang](https://media.thi.ng/umbrella/banners/thing-pointfree-lang.svg?1585510707)
+# ![@thi.ng/pointfree-lang](https://media.thi.ng/umbrella/banners/thing-pointfree-lang.svg?1585510953)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pointfree-lang.svg)](https://www.npmjs.com/package/@thi.ng/pointfree-lang)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pointfree-lang.svg)
@@ -112,13 +112,13 @@ Options:
 
 For CLI usage, in addition to the other language features discussed further below, the following words are available too (more to be added):
 
-| Word         | Stack comment         | Description                                    | NodeJS equiv                           |
-|--------------|-----------------------|------------------------------------------------|----------------------------------------|
-| `@args`      | `( -- arg[] )`      | Places CLI args on stack                       | `process.argv`                                       |
-| `include`    | `( path -- )`         | Includes another pointfree-lang file           |                                        |
-| `read-dir`   | `( path -- file[] )` | Returns array of file names in given directory | `readdirSync(path)`                    |
-| `read-file`  | `( path -- str )`     | Reads file and returns contents as string      | `readFileSync(path).toString()`        |
-| `write-file` | `( body path -- )`    | Writes body to file at given path              | `writeFileSync(path, body.toString())` |
+| Word         | Stack comment        | Description                               | NodeJS equiv                |
+|--------------|----------------------|-------------------------------------------|-----------------------------|
+| `@args`      | `( -- arg[] )`       | Places CLI args on stack                  | `process.argv`              |
+| `include`    | `( path -- )`        | Includes another pointfree-lang file      |                             |
+| `read-dir`   | `( path -- file[] )` | Returns array of file names in given dir  | `readdirSync(path)`         |
+| `read-file`  | `( path -- str )`    | Reads file and returns contents as string | `readFileSync(path)`        |
+| `write-file` | `( body path -- )`   | Writes body to file at given path         | `writeFileSync(path, body)` |
 
 ### Include files / libraries
 
