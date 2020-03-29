@@ -12,6 +12,7 @@ export * from "./math";
 export * from "./run";
 export * from "./safe";
 export * from "./stack";
+export * from "./string";
 export * from "./word";
 
 export { $ as ensureStack, $n as ensureStackN } from "./safe";

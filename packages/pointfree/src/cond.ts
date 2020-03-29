@@ -42,6 +42,21 @@ export const condq = (ctx: StackContext) => {
 };
 
 /**
+ * Similar to {@link condq}, but only expects `test` result and truthy branch
+ * d-stack. Executes word/quotation if `test` is truthy, else does nothing.
+ *
+ * ( test whenq -- ? )
+ *
+ * @param ctx -
+ */
+export const whenq = (ctx: StackContext) => {
+    const stack = ctx[0];
+    $(stack, 2);
+    const _then = stack.pop();
+    return stack.pop() ? $stackFn(_then)(ctx) : ctx;
+};
+
+/**
  * Higher order word. Takes an object of stack programs with keys in the
  * object being used to check for equality with TOS. If a match is
  * found, executes corresponding stack program. If a `default` key is
