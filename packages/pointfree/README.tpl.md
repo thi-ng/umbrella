@@ -917,6 +917,14 @@ at word construction time and return a pre-configured stack function.
 | `vdiv`     | `( a b -- c )`                      | divide 2 arrays (or array + scalar)                     |
 | `op2v(f)`  | `( a b -- c )`                      | HOF word gen, e.g. `vadd` is based on                   |
 
+#### String specific
+
+| Word       | Stack effect         | Description                |
+|------------|----------------------|----------------------------|
+| `ismatch`  | `( str re -- bool )` | Test regexp against string |
+| `fromjson` | `( str -- x )`       | Parse JSON string          |
+| `tojson`   | `( x -- str )`       | JSON stringify             |
+
 ### I/O
 
 | Word      | Stack effect | Description       |
@@ -924,6 +932,25 @@ at word construction time and return a pre-configured stack function.
 | `print`   | `( x -- )`   | `console.log(x)`  |
 | `printds` | `( -- )`     | print out D-stack |
 | `printrs` | `( -- )`     | print out R-stack |
+
+### Error handling
+
+There's currently only one error handling construct available:
+
+`$try` expects a body and error handler quotation on stack. Executes
+body within an implicit `try .. catch` and if an error was thrown pushes
+it on stack and executes error quotation.
+
+```ts
+pf.runU([
+    // body quotation
+    [pf.div],
+    // error handler
+    [pf.drop, "eek", pf.print],
+    pf.$try
+]);
+// eek
+```
 
 ### Control flow
 

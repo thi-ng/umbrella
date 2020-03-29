@@ -28,6 +28,7 @@ an ES6 embedded DSL for concatenative programming:
 - nested quotations (code as data, vanilla JS arrays)
 - array & object literals (optionally w/ computed properties)
 - all other features of @thi.ng/pointfree (combinators, array/vector ops etc.)
+- CLI version w/ basic file I/O, library includes, JSON
 
 ${status}
 
@@ -50,6 +51,115 @@ ${pkg.size}
 ${pkg.deps}
 
 ${examples}
+
+## Command line usage
+
+The package includes a `pointfree` CLI command to evaluate strings or files:
+
+(It's recommended to install the package globally for CLI usage)
+
+```text
+# install globally
+yarn global add @thi.ng/pointfree-lang
+
+pointfree --help
+
+Usage: pointfree [options] [file]
+
+Options:
+  -V, --version     output the version number
+  -d, --debug       print debug info
+  -e, --exec <src>  execute given string
+  -h, --help        display help for command
+```
+
+For CLI usage, in addition to the other language features discussed further below, the following words are available too (more to be added):
+
+| Word         | Stack comment         | Description                                    | NodeJS equiv                           |
+|--------------|-----------------------|------------------------------------------------|----------------------------------------|
+| `@args`      | `( -- arg[] )`      | Places CLI args on stack                       | `process.argv`                                       |
+| `include`    | `( path -- )`         | Includes another pointfree-lang file           |                                        |
+| `read-dir`   | `( path -- file[] )` | Returns array of file names in given directory | `readdirSync(path)`                    |
+| `read-file`  | `( path -- str )`     | Reads file and returns contents as string      | `readFileSync(path).toString()`        |
+| `write-file` | `( body path -- )`    | Writes body to file at given path              | `writeFileSync(path, body.toString())` |
+
+### Include files / libraries
+
+As mentioned in the table above, other pointfree-lang source files can
+be recursively included via `include`. The inclusion mechanism so far is
+basic, but can break cyclical dependencies, though the behavior will
+still be improved in the future. All imported words are added to the
+same environment. Use namespacing if needed (e.g. `prefix.foo` vs
+`foo`), word names can be more flexible than in JS.
+
+File `lib.f`:
+
+```forth
+: lib.hello ( name -- greeting ) "hello, " swap "!" + + ;
+```
+
+```bash
+# eval program string w/ arg
+pointfree -e '"lib.f" include @args 0 at lib.hello .' asterix
+# hello, asterix!
+```
+
+### CLI example
+
+A small example tool to scan a package directory and display package
+names w/ their current versions, with optional support to filter package
+list via regexp:
+
+Save the following file to `semver.f` (Btw. Use `.f` as file ext to
+harness existing syntax coloring support for Forth...)
+
+```forth
+( builds path to package.json )
+: pkg-path ( name base -- path ) swap "/" swap "/package.json" + + + ;
+
+( takes package dir , returns parsed package.json )
+: read-pkg ( name base -- json ) pkg-path read-file json> ;
+
+( extracts semver package name from given package object )
+: pkg-semver ( pkg -- name@version ) dup "name" at "@" rot "version" at + + ;
+
+( package list filter )
+: filter-pkg ( name pat -- name? ) over -rot match? not [ drop ] when ;
+
+( store pattern and base dir in global var )
+@args dup 2 at pattern! 1 at base!
+
+( load packages dir )
+@base read-dir
+
+( filter package list if CLI arg given )
+@args length 2 > [ [ @pattern filter-pkg ] mapll ] when
+
+( try to process all packages, ignoring any errors )
+[ [ @base read-pkg pkg-semver . ] [ drop ] try ] mapl
+```
+
+```bash
+# list all
+pointfree semver.f node_modules
+# JSONStream@1.3.5
+# abab@2.0.3
+# abbrev@1.1.1
+# acorn@6.4.0
+# acorn-globals@4.3.4
+# acorn-walk@6.2.0
+# ... 100's more ...
+
+# filtered w/ pattern (regex)
+pointfree semver.f node_modules ^type
+# type-check@0.3.2
+# type-fest@0.3.1
+# typedarray@0.0.6
+# typedarray-to-buffer@3.1.5
+# typedoc@0.16.10
+# typedoc-default-themes@0.7.2
+# typescript@3.8.3
+```
 
 ## API
 
@@ -212,6 +322,7 @@ aren't valid names in the ES6 context):
 | `if`     | `condq`       |
 | `switch` | `casesq`      |
 | `while`  | `loopq`       |
+| `try`    | `$try`        |
 | `+`      | `add`         |
 | `-`      | `sub`         |
 | `*`      | `mul`         |
@@ -230,11 +341,15 @@ aren't valid names in the ES6 context):
 | `neg?`   | `isneg`       |
 | `nil?`   | `isnil`       |
 | `zero?`  | `iszero`      |
+| `match?` | `ismatch`     |
+| `>json`  | `tojson`      |
+| `json>`  | `fromjson`    |
 | `pi`     | `Math.PI`     |
 | `tau`    | `2 * Math.PI` |
 | `.`      | `print`       |
 | `.s`     | `printds`     |
 | `.r`     | `printrs`     |
+| `.e`     | print env     |
 
 The ID resolution priority is:
 

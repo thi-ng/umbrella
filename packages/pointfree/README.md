@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/pointfree](https://media.thi.ng/umbrella/banners/thing-pointfree.svg?1585427335)
+# ![@thi.ng/pointfree](https://media.thi.ng/umbrella/banners/thing-pointfree.svg?1585510705)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pointfree.svg)](https://www.npmjs.com/package/@thi.ng/pointfree)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pointfree.svg)
@@ -45,7 +45,9 @@ This project is part of the
   - [Logic](#logic)
   - [Environment](#environment)
   - [Arrays, objects, strings](#arrays--objects--strings)
+    - [String specific](#string-specific)
   - [I/O](#i-o)
+  - [Error handling](#error-handling)
   - [Control flow](#control-flow)
     - [cond](#cond)
     - [condq](#condq)
@@ -183,7 +185,7 @@ non-linear control flow.
 
 ### Support packages
 
-- [@thi.ng/pointfree-lang](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree-lang) - Forth style syntax layer/compiler for the [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree) DSL
+- [@thi.ng/pointfree-lang](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree-lang) - Forth style syntax layer/compiler & CLI for the [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree) DSL
 
 ## Installation
 
@@ -191,7 +193,7 @@ non-linear control flow.
 yarn add @thi.ng/pointfree
 ```
 
-Package sizes (gzipped): ESM: 3.11 KB / CJS: 3.61 KB / UMD: 3.39 KB
+Package sizes (gzipped): ESM: 3.23 KB / CJS: 3.75 KB / UMD: 3.52 KB
 
 ## Dependencies
 
@@ -987,6 +989,14 @@ at word construction time and return a pre-configured stack function.
 | `vdiv`     | `( a b -- c )`                      | divide 2 arrays (or array + scalar)                     |
 | `op2v(f)`  | `( a b -- c )`                      | HOF word gen, e.g. `vadd` is based on                   |
 
+#### String specific
+
+| Word       | Stack effect         | Description                |
+|------------|----------------------|----------------------------|
+| `ismatch`  | `( str re -- bool )` | Test regexp against string |
+| `fromjson` | `( str -- x )`       | Parse JSON string          |
+| `tojson`   | `( x -- str )`       | JSON stringify             |
+
 ### I/O
 
 | Word      | Stack effect | Description       |
@@ -994,6 +1004,25 @@ at word construction time and return a pre-configured stack function.
 | `print`   | `( x -- )`   | `console.log(x)`  |
 | `printds` | `( -- )`     | print out D-stack |
 | `printrs` | `( -- )`     | print out R-stack |
+
+### Error handling
+
+There's currently only one error handling construct available:
+
+`$try` expects a body and error handler quotation on stack. Executes
+body within an implicit `try .. catch` and if an error was thrown pushes
+it on stack and executes error quotation.
+
+```ts
+pf.runU([
+    // body quotation
+    [pf.div],
+    // error handler
+    [pf.drop, "eek", pf.print],
+    pf.$try
+]);
+// eek
+```
 
 ### Control flow
 
