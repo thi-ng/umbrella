@@ -7,22 +7,24 @@ import type {
     StackEnv,
     StackFn,
     StackProc,
-    StackProgram
+    StackProgram,
 } from "./api";
 
 export const $stackFn = (f: StackProc) => (isArray(f) ? word(f) : f);
 
 const compile = (prog: StackProgram) =>
-    compL.apply(
-        null,
-        <any>(
-            prog.map((w) =>
-                !isFunction(w)
-                    ? (ctx: StackContext) => (ctx[0].push(w), ctx)
-                    : w
-            )
-        )
-    );
+    prog.length > 0
+        ? compL.apply(
+              null,
+              <any>(
+                  prog.map((w) =>
+                      !isFunction(w)
+                          ? (ctx: StackContext) => (ctx[0].push(w), ctx)
+                          : w
+                  )
+              )
+          )
+        : (ctx: StackContext) => ctx;
 
 /**
  * Takes a result tuple returned by {@link run} and unwraps one or more
@@ -106,6 +108,27 @@ export const wordU = (
 export const exec = (ctx: StackContext) => (
     $(ctx[0], 1), $stackFn(ctx[0].pop())(ctx)
 );
+
+/**
+ * Expects a body and error handler quotation on stack. Executes body
+ * within an implicit `try .. catch` and if an error was thrown pushes
+ * it on stack and executes error quotation.
+ *
+ * ( body catch -- ? )
+ *
+ * @param ctx
+ */
+export const $try = (ctx: StackContext) => {
+    const stack = ctx[0];
+    $(stack, 2);
+    const err = stack.pop();
+    try {
+        return exec(ctx);
+    } catch (e) {
+        stack.push(e, err);
+        return exec(ctx);
+    }
+};
 
 //////////////////// JS host calls ////////////////////
 
