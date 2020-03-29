@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.1.14...@thi.ng/pointfree-lang@1.2.0) (2020-03-29)
+
+
+### Features
+
+* **pointfree-lang:** add `try` alias, fix `include` cli word ([ab61e5b](https://github.com/thi-ng/umbrella/commit/ab61e5b428fbb98d2edfcd69c2582a98ca70779d))
+* **pointfree-lang:** add initial CLI tooling, add new aliases, update deps ([90c9d96](https://github.com/thi-ng/umbrella/commit/90c9d96197d3f84d0c1069f998cf90521a260d11))
+
+
+
+
+
 ## [1.1.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.1.13...@thi.ng/pointfree-lang@1.1.14) (2020-03-28)
 
 **Note:** Version bump only for package @thi.ng/pointfree-lang
