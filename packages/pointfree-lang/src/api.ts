@@ -1,5 +1,5 @@
-import * as pf from "@thi.ng/pointfree";
 import type { IObjectOf } from "@thi.ng/api";
+import * as pf from "@thi.ng/pointfree";
 
 export interface ASTNode {
     type: NodeType;
@@ -28,13 +28,8 @@ export const enum NodeType {
     OBJ,
 
     COMMENT,
-    STACK_COMMENT
+    STACK_COMMENT,
 }
-
-/**
- * Reverse lookup for {@link NodeType} enums
- */
-// export const __NodeType = (<any>exports).NodeType;
 
 export const ALIASES: IObjectOf<pf.StackFn> = {
     "?drop": pf.dropif,
@@ -45,6 +40,7 @@ export const ALIASES: IObjectOf<pf.StackFn> = {
     "r>": pf.movrd,
     "r2>": pf.movrd2,
     if: pf.condq,
+    when: pf.whenq,
     switch: pf.casesq,
     while: pf.loopq,
     "+": pf.add,
@@ -65,9 +61,13 @@ export const ALIASES: IObjectOf<pf.StackFn> = {
     "neg?": pf.isneg,
     "nil?": pf.isnull,
     "zero?": pf.iszero,
+    "match?": pf.ismatch,
+    ">json": pf.tojson,
+    "json>": pf.fromjson,
     pi: pf.push(Math.PI),
     tau: pf.push(2 * Math.PI),
     ".": pf.print,
     ".s": pf.printds,
-    ".r": pf.printrs
+    ".r": pf.printrs,
+    ".e": (ctx) => (console.log(ctx[2]), ctx),
 };

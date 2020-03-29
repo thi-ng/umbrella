@@ -1,6 +1,4 @@
 {
-    // const __NodeType = require("./api").__NodeType;
-
     const NodeType = {};
     NodeType[NodeType["SYM"] = 1] = "SYM";
     NodeType[NodeType["WORD"] = 2] = "WORD";
