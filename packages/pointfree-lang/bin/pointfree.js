@@ -45,7 +45,10 @@ try {
                 // TODO use dgraph
                 includeCache.add(path);
                 logger.debug(`including: ${path}`);
-                pfl.run(fs.readFileSync(path).toString(), ctx[2]);
+                pfl.run(fs.readFileSync(path).toString(), {
+                    ...ctx[2],
+                    __vars: null,
+                });
             } else {
                 logger.debug(`\t${path} already included, skipping...`);
             }
@@ -81,6 +84,6 @@ try {
     logger.debug(`executed in ${time}ms`);
     process.exit(typeof res === "number" ? res : 0);
 } catch (e) {
-    process.stderr.write(String(e));
+    console.log(e);
 }
 process.exit(1);

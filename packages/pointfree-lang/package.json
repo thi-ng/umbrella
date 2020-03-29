@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/pointfree-lang",
     "version": "1.1.14",
-    "description": "Forth style syntax layer/compiler for the @thi.ng/pointfree DSL",
+    "description": "Forth style syntax layer/compiler & CLI for the @thi.ng/pointfree DSL",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -59,6 +59,7 @@
         "grammar",
         "PEG",
         "pointfree",
+        "RPN",
         "syntax",
         "typescript"
     ],

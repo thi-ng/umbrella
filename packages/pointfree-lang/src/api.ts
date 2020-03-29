@@ -43,6 +43,7 @@ export const ALIASES: IObjectOf<pf.StackFn> = {
     when: pf.whenq,
     switch: pf.casesq,
     while: pf.loopq,
+    try: pf.$try,
     "+": pf.add,
     "-": pf.sub,
     "*": pf.mul,

@@ -1,12 +1,7 @@
 import { ILogger, IObjectOf, NULL_LOGGER } from "@thi.ng/api";
 import { illegalArgs, illegalState } from "@thi.ng/errors";
 import * as pf from "@thi.ng/pointfree";
-import {
-    ALIASES,
-    ASTNode,
-    NodeType,
-    VisitorState
-} from "./api";
+import { ALIASES, ASTNode, NodeType, VisitorState } from "./api";
 import { parse, SyntaxError } from "./parser";
 
 export let LOGGER = NULL_LOGGER;
