@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rstream-dot",
-    "version": "1.1.15",
+    "version": "1.1.16",
     "description": "Graphviz DOT conversion of @thi.ng/rstream dataflow graph topologies",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,7 +38,7 @@
         "typescript": "^3.8.3"
     },
     "dependencies": {
-        "@thi.ng/rstream": "^4.0.0",
+        "@thi.ng/rstream": "^4.0.1",
         "tslib": "^1.11.1"
     },
     "keywords": [

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@4.0.0...@thi.ng/atom@4.1.0) (2020-04-01)
+
+
+### Features
+
+* **atom:** protect Transacted against out-of-phase updates ([675a25b](https://github.com/thi-ng/umbrella/commit/675a25b50af563fc3b3093a2484da5aac9095a5f))
+
+
+
+
+
 # [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@3.1.8...@thi.ng/atom@4.0.0) (2020-03-28)
 
 
