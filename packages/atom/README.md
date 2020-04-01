@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/atom](https://media.thi.ng/umbrella/banners/thing-atom.svg?1585427344)
+# ![@thi.ng/atom](https://media.thi.ng/umbrella/banners/thing-atom.svg?1585760725)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/atom.svg)](https://www.npmjs.com/package/@thi.ng/atom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/atom.svg)
@@ -22,6 +22,8 @@ This project is part of the
 - [API](#api)
   - [Atom](#atom)
   - [Transacted updates](#transacted-updates)
+    - [Nested transactions](#nested-transactions)
+    - [External modifications during active transaction](#external-modifications-during-active-transaction)
   - [Cursor](#cursor)
   - [Derived views](#derived-views)
   - [Undo / Redo history](#undo---redo-history)
@@ -92,7 +94,7 @@ have been removed.
 yarn add @thi.ng/atom
 ```
 
-Package sizes (gzipped): ESM: 1.76 KB / CJS: 1.83 KB / UMD: 1.87 KB
+Package sizes (gzipped): ESM: 1.83 KB / CJS: 1.89 KB / UMD: 1.94 KB
 
 ## Dependencies
 
@@ -229,13 +231,12 @@ state is only updated once and watches too are only notified once after
 each commit.
 
 Transactions can also be canceled, thus not impacting the parent state
-at all. Nested transactions are *not* supported and attempting to do so
-will throw an error.
+at all.
 
-The `Transacted` class can wrap any existing `IAtom` implementation,
-e.g. `Atom`, `Cursor` or `History` instances and implements `IAtom`
-itself... **Nested transactions can be achieved by wrapping another
-`Transacted` container.**
+`Transacted` can wrap any existing
+[IAtom](https://github.com/thi-ng/umbrella/blob/develop/packages/atom/src/api.ts#L29)
+implementation, e.g. `Atom`, `Cursor` or `History` instances.
+`Transacted` also implements `IAtom` itself...
 
 ```ts
 const db = defAtom<any>({ a: 1, b: 2 });
@@ -244,8 +245,13 @@ const tx = defTransacted(db);
 // start transaction
 tx.begin();
 
+// alternatively use syntax sugar for:
+// `defTransacted(db).begin()`
+tx = beginTransaction(db);
+
 // perform multiple updates
-// (none of them are applied until `commit` is called)
+// (none of them are applied to the parent state
+// until `commit` is called)
 // IMPORTANT: calling any of these update methods without
 // a running transaction will throw an error!
 tx.resetIn(["a"], 11);
@@ -255,7 +261,8 @@ tx.resetIn(["c"], 33);
 tx.deref()
 // { a: 11, b: 2, c: 33 }
 
-// however, at this point db.deref() still yields pre-transaction state
+// however, at this point the parent
+// still contains pre-transaction state...
 db.deref()
 // { a: 1, b: 2 }
 
@@ -266,6 +273,42 @@ tx.commit();
 // verify parent state
 db.deref()
 // { a: 11, b: 2, c: 33 }
+```
+
+#### Nested transactions
+
+Nested transactions on a single `Transacted` instance are **not**
+supported and attempting to do so will throw an error. However, nested
+transactions can be achieved by wrapping another `Transacted` container.
+
+```ts
+const tx1 = beginTransaction(db);
+tx1.resetIn(["a"], 10);
+
+// nested transaction
+const tx2 = beginTransaction(tx1);
+tx2.resetIn(["b"], 20);
+tx2.commit();
+
+tx1.commit();
+
+db.deref();
+// { a: 10, b: 20 }
+```
+
+#### External modifications during active transaction
+
+An error will be thrown if the parent change receives any updates whilst
+a transaction is active. This is to guarantee general data integrity and
+to signal race conditions due to erroneous / out-of-phase state update
+logic.
+
+```ts
+const tx = beginTransaction(db);
+tx.resetIn(["a"], 10);
+
+// attempting to update parent will throw an error
+db.resetIn(["a"], 2);
 ```
 
 ### Cursor

@@ -1,10 +1,11 @@
 import * as assert from "assert";
 import {
     Atom,
-    defView,
-    Transacted,
+    beginTransaction,
     defAtom,
     defTransacted,
+    defView,
+    Transacted,
 } from "../src/index";
 
 interface State {
@@ -57,6 +58,54 @@ describe("transacted", () => {
         assert.throws(() => _tx.resetIn(["a"], {}), "no resetIn");
         assert.throws(() => _tx.swapIn(["a"], () => ({})), "no swapIn");
         assert.throws(() => (_tx.value = {}), "no .value");
+    });
+
+    it("no ext edits inside tx", () => {
+        tx.begin();
+        tx.resetIn(["a"], 10);
+        assert.throws(() => db.resetIn(["a"], 2));
+        tx.commit();
+        assert.deepEqual(db.deref(), { a: 10, b: 2 });
+        assert.deepEqual(tx.deref(), { a: 10, b: 2 });
+
+        tx.begin();
+        tx.resetIn(["b"], 20);
+        assert.throws(() => db.resetIn(["b"], 3));
+        tx.cancel();
+        // `b=3` because we caught the guard error
+        assert.deepEqual(db.deref(), { a: 10, b: 3 });
+        assert.deepEqual(tx.deref(), { a: 10, b: 3 });
+    });
+
+    it("beginTransaction", () => {
+        tx = beginTransaction(db);
+        assert(tx instanceof Transacted);
+        tx.resetIn(["a"], 10);
+        tx.commit();
+        assert.deepEqual(db.deref(), { a: 10, b: 2 });
+    });
+
+    it("race (2x transactions)", () => {
+        let tx1 = beginTransaction(db);
+        let tx2 = beginTransaction(db);
+        tx1.resetIn(["a"], 10);
+        tx2.resetIn(["b"], 20);
+        assert.throws(() => tx1.commit());
+        tx2.commit();
+        // tx2 succeeds only because we caught tx1.commit() error
+        assert.deepEqual(db.deref(), { a: 1, b: 20 });
+    });
+
+    it("nested transactions", () => {
+        let tx1 = beginTransaction(db);
+        tx1.resetIn(["a"], 10);
+        let tx2 = beginTransaction(tx1);
+        tx2.resetIn(["b"], 20);
+        tx2.commit();
+        assert.deepEqual(tx1.deref(), { a: 10, b: 20 });
+        tx1.commit();
+        assert.deepEqual(db.deref(), { a: 10, b: 20 });
+        assert.deepEqual(tx1.deref(), { a: 10, b: 20 });
     });
 
     it("watches", () => {

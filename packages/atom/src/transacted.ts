@@ -15,11 +15,26 @@ import type {
     PathVal,
     Watch,
 } from "@thi.ng/api";
+import { illegalState } from "@thi.ng/errors";
 import { setInUnsafe, updateInUnsafe } from "@thi.ng/paths";
 import type { IAtom, SwapFn } from "./api";
 import { nextID } from "./idgen";
 
+/**
+ * Return a new {@link Transacted} state wrapper.
+ *
+ * @param parent
+ */
 export const defTransacted = <T>(parent: IAtom<T>) => new Transacted(parent);
+
+/**
+ * Like {@link defTransacted}, but immediately starts new transaction as
+ * well, i.e. same as `defTransacted(state).begin()`.
+ *
+ * @param parent
+ */
+export const beginTransaction = <T>(parent: IAtom<T>) =>
+    new Transacted(parent).begin();
 
 export class Transacted<T> implements IAtom<T> {
     parent: IAtom<T>;
@@ -91,7 +106,7 @@ export class Transacted<T> implements IAtom<T> {
     ): T;
     resetIn(path: Path, val: any) {
         this.ensureTx();
-        return this.reset(setInUnsafe(this.current, path, val));
+        return (this.current = setInUnsafe(this.current, path, val));
     }
 
     resetInUnsafe(path: Path, val: any) {
@@ -100,7 +115,7 @@ export class Transacted<T> implements IAtom<T> {
 
     swap(fn: SwapFn<T, T>, ...args: any[]) {
         this.ensureTx();
-        return this.reset(fn.apply(null, [this.current!, ...args]));
+        return (this.current = fn.apply(null, [this.current!, ...args]));
     }
 
     swapIn<A>(path: Path0, fn: SwapFn<T, T>, ...args: any[]): T;
@@ -160,7 +175,7 @@ export class Transacted<T> implements IAtom<T> {
     ): T;
     swapIn(path: Path, fn: SwapFn<any, any>, ...args: any[]) {
         this.ensureTx();
-        return this.reset(updateInUnsafe(this.current, path, fn, ...args));
+        return (this.current = updateInUnsafe(this.current, path, fn, ...args));
     }
 
     swapInUnsafe(path: Path, fn: SwapFn<any, any>, ...args: any[]) {
@@ -171,21 +186,25 @@ export class Transacted<T> implements IAtom<T> {
         assert(!this.isActive, "transaction already started");
         this.current = this.parent.deref();
         this.isActive = true;
+        this.parent.addWatch(this.id + "--guard--", () =>
+            illegalState(
+                `${this.id} parent state changed during active transaction`
+            )
+        );
+        return this;
     }
 
     commit() {
-        this.ensureTx();
         const val = this.current!;
-        this.parent.reset(this.current!);
-        this.isActive = false;
-        this.current = undefined;
-        return val;
+        this.cancel();
+        return this.parent.reset(val);
     }
 
     cancel() {
         this.ensureTx();
-        this.isActive = false;
+        this.parent.removeWatch(this.id + "--guard--");
         this.current = undefined;
+        this.isActive = false;
     }
 
     addWatch(id: string, watch: Watch<T>) {
