@@ -1,16 +1,24 @@
+import type { ICopy, Pair } from "@thi.ng/api";
 import { ArraySet, EquivMap, union } from "@thi.ng/associative";
 import { equiv } from "@thi.ng/equiv";
 import { illegalArgs } from "@thi.ng/errors";
 import { filter, reduce, reducer } from "@thi.ng/transducers";
-import type { ICopy } from "@thi.ng/api";
+
+export const defDGraph = <T>(edges?: Iterable<Pair<T, T>>) =>
+    new DGraph<T>(edges);
 
 export class DGraph<T> implements Iterable<T>, ICopy<DGraph<T>> {
     dependencies: EquivMap<T, ArraySet<T>>;
     dependents: EquivMap<T, ArraySet<T>>;
 
-    constructor() {
+    constructor(edges?: Iterable<Pair<T, T>>) {
         this.dependencies = new EquivMap<T, ArraySet<T>>();
         this.dependents = new EquivMap<T, ArraySet<T>>();
+        if (edges) {
+            for (let [a, b] of edges) {
+                this.addDependency(a, b);
+            }
+        }
     }
 
     *[Symbol.iterator]() {
@@ -47,6 +55,12 @@ export class DGraph<T> implements Iterable<T>, ICopy<DGraph<T>> {
         deps = this.dependents.get(dep);
         this.dependents.set(dep, deps ? deps.add(node) : new ArraySet([node]));
         return this;
+    }
+
+    addDependencies(node: T, deps: Iterable<T>) {
+        for (let d of deps) {
+            this.addDependency(node, d);
+        }
     }
 
     removeEdge(node: T, dep: T) {
