@@ -13,11 +13,11 @@ const operator: Partial<dot.Node> = {
     fillcolor: "yellow",
     shape: "Mrecord",
     ins: { 0: "a", 1: "b" },
-    outs: { "out": "out" }
+    outs: { out: "out" },
 };
 
 fs.writeFileSync(
-    "../../assets/dot-example.dot",
+    "export/dot-example.dot",
     dot.serializeGraph({
         directed: true, // default
         // graph attributes
@@ -33,14 +33,14 @@ fs.writeFileSync(
             node: {
                 style: "filled",
                 fontname: "Inconsolata",
-                fontsize: 11
+                fontsize: 11,
             },
             // edge defaults
             edge: {
                 arrowsize: 0.75,
                 fontname: "Inconsolata",
-                fontsize: 9
-            }
+                fontsize: 9,
+            },
         },
         // graph nodes (the keys are used as node IDs)
         // use spread operator to inject style presets
@@ -55,9 +55,15 @@ fs.writeFileSync(
         edges: [
             { src: "x", dest: "op1", destPort: 1 },
             { src: "y", dest: "op1", destPort: 0 },
-            { src: "y", dest: "op2", destPort: 0, label: "xform", color: "blue" },
+            {
+                src: "y",
+                dest: "op2",
+                destPort: 0,
+                label: "xform",
+                color: "blue",
+            },
             { src: "op1", srcPort: "out", dest: "op2", destPort: 1 },
             { src: "op2", srcPort: "out", dest: "res" },
-        ]
+        ],
     })
 );

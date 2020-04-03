@@ -1,18 +1,15 @@
-import { isArray } from "@thi.ng/checks";
 import type { IObjectOf } from "@thi.ng/api";
-import type {
-    Edge,
-    Graph,
-    GraphAttribs,
-    Node
-} from "./api";
+import { isArray } from "@thi.ng/checks";
+import type { Edge, Graph, GraphAttribs, Node } from "./api";
+
+let nextID = 0;
+
+const nextSubgraphID = () => "cluster" + nextID++;
 
 const wrapQ = (x: any) => `"${x}"`;
 
 const escape = (x: any) =>
-    String(x)
-        .replace(/\"/g, `\\"`)
-        .replace(/\n/g, "\\n");
+    String(x).replace(/\"/g, `\\"`).replace(/\n/g, "\\n");
 
 const formatGraphAttribs = (attribs: Partial<GraphAttribs>, acc: string[]) => {
     for (let a in attribs) {
@@ -103,9 +100,14 @@ export const serializeEdge = (e: Edge, directed = true) => {
     return acc.join("");
 };
 
-export const serializeGraph = (graph: Graph, acc?: string[]) => {
+export const serializeGraph = (graph: Graph, isSub = false) => {
     const directed = graph.directed !== false;
-    acc || (acc = [`${directed ? "di" : ""}graph ${graph.id || "g"} {`]);
+    const acc = isSub
+        ? [`subgraph ${graph.id || nextSubgraphID()} {`]
+        : [`${directed ? "di" : ""}graph ${graph.id || "g"} {`];
+    if (graph.include) {
+        acc.push(graph.include);
+    }
     if (graph.attribs) {
         formatGraphAttribs(graph.attribs, acc);
     }
@@ -116,8 +118,8 @@ export const serializeGraph = (graph: Graph, acc?: string[]) => {
         acc.push(serializeEdge(e, directed));
     }
     if (graph.sub) {
-        for (let id in graph.sub) {
-            acc.push(serializeGraph(graph.sub[id], [`subgraph ${id} {`]));
+        for (let sub of graph.sub) {
+            acc.push(serializeGraph(sub, true));
         }
     }
     acc.push("}");

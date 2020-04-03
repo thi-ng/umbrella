@@ -63,7 +63,8 @@ export interface Graph {
     edges: Edge[];
     id?: string;
     nodes: IObjectOf<Partial<Node>>;
-    sub?: IObjectOf<Graph>;
+    sub?: Graph[];
+    include?: string;
 }
 
 export interface NodeAttribs {
