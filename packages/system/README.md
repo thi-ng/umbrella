@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/system](https://media.thi.ng/umbrella/banners/thing-system.svg?1585848215)
+# ![@thi.ng/system](https://media.thi.ng/umbrella/banners/thing-system.svg?1585922746)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/system.svg)](https://www.npmjs.com/package/@thi.ng/system)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/system.svg)
@@ -14,6 +14,8 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
+  - [Example system](#example-system)
+  - [System visualization](#system-visualization)
 - [Authors](#authors)
 - [License](#license)
 
@@ -35,7 +37,7 @@ Clojure/ClojureScript.
 yarn add @thi.ng/system
 ```
 
-Package sizes (gzipped): ESM: 377 bytes / CJS: 436 bytes / UMD: 532 bytes
+Package sizes (gzipped): ESM: 415 bytes / CJS: 471 bytes / UMD: 570 bytes
 
 ## Dependencies
 
@@ -48,6 +50,8 @@ Package sizes (gzipped): ESM: 377 bytes / CJS: 436 bytes / UMD: 532 bytes
 [Generated API docs](https://docs.thi.ng/umbrella/system/)
 
 TODO
+
+### Example system
 
 ```ts
 import { defSystem, ILifecycle } from "@thi.ng/system";
@@ -67,7 +71,7 @@ interface FooSys {
 
 class Logger implements ILifecycle {
     info(msg: string) {
-        console.log(msg);
+        console.log(`[info] ${msg}`);
     }
     async start() {
         this.info("start logger");
@@ -142,21 +146,50 @@ const FOO = defSystem<FooSys>({
 
 // Step 4: Asynchronously start all components in dependency order
 FOO.start();
-// start logger
-// start cache
-// start dummy
-// start db
+// [info] start logger
+// [info] start cache
+// [info] start dummy
+// [info] start db
 
 // Step 5 (optional): Async shutdown all (in reverse order)
 FOO.stop();
-// stop db
-// stop dummy
-// stop cache
-// stop logger
+// [info] stop db
+// [info] stop dummy
+// [info] stop cache
+// [info] stop logger
 
 // Calls stop() & if successful followed by start()
 FOO.reset();
 ```
+
+### System visualization
+
+In order for a `System` to initialize its components in the correct order, an internal [dependency graph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph) is constructed. This graph not required any further after system construction, however can be useful for debugging and documentation purposes.
+
+For example, we can utilize the
+[@thi.ng/dgraph-dot](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph-dot)
+package to create [Graphviz](https://graphviz.org) source file to
+visualize the dependencies between the system's components.
+
+```ts
+import { toDot } from "@thi.ng/dgraph-dot";
+
+console.log(toDot(FOO.graph, { id: (node) => node }));
+// digraph g {
+// "db"[label="db"];
+// "logger"[label="logger"];
+// "state"[label="state"];
+// "dummy"[label="dummy"];
+// "db" -> "logger";
+// "db" -> "state";
+// "state" -> "logger";
+// "dummy" -> "logger";
+// }
+```
+
+Resulting visualization:
+
+![graphviz output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/system/basic.png)
 
 ## Authors
 

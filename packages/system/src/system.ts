@@ -8,44 +8,66 @@ export const defSystem = <T extends SystemMap<T>>(map: SystemSpecs<T>) =>
 export class System<T extends SystemMap<T>> implements ILifecycle {
     components: T;
     topology: Keys<T>[];
+    graph: DGraph<Keys<T>>;
 
     constructor(map: SystemSpecs<T>) {
-        const graph = new DGraph<Keys<T>>();
+        this.graph = new DGraph<Keys<T>>();
         for (let id in map) {
             const deps = map[id].deps;
-            if (deps) {
-                for (let d of deps) {
-                    graph.addDependency(<Keys<T>>id, d);
-                }
-            } else {
-                graph.addNode(<Keys<T>>id);
-            }
+            deps
+                ? this.graph.addDependencies(<Keys<T>>id, deps)
+                : this.graph.addNode(<Keys<T>>id);
         }
-        this.topology = graph.sort();
+        this.topology = this.graph.sort();
         this.components = <any>{};
         for (let id of this.topology) {
             this.components[id] = <any>map[id].factory(this.components);
         }
     }
 
+    /**
+     * Initializes all system components in dependency order. If any
+     * component's `start()` method returns false, system start up will
+     * be stopped and this method returns false itself.
+     *
+     * Also any errors thrown during child component startup will not be
+     * intercepted.
+     */
     async start() {
         for (let id of this.topology) {
-            if (!(await this.components[id].start())) {
+            const comp = this.components[id];
+            if (comp.start && !(await comp.start())) {
                 console.warn(`error starting component: ${id}`);
+                return false;
             }
         }
         return true;
     }
 
+    /**
+     * Stops all system components in reverse dependency order. If any
+     * component's `stop()` method returns false, a warning message will
+     * be logged, but unlike {@link System.start}, the shutdown
+     * process of other components will not be stopped.
+     *
+     * Any errors thrown during child component shutdown will not be
+     * intercepted.
+     */
     async stop() {
-        for (let id of this.topology.slice().reverse()) {
-            if (!(await this.components[id].stop())) {
+        const topo = this.topology;
+        for (let i = topo.length; --i >= 0; ) {
+            const id = topo[i];
+            const comp = this.components[id];
+            if (comp.stop && !(await comp.stop())) {
                 console.warn(`error stopping component: ${id}`);
             }
         }
         return true;
     }
 
+    /**
+     * Syntax sugar for `stop() && start()` sequence.
+     */
     async reset() {
         return (await this.stop()) && (await this.start());
     }

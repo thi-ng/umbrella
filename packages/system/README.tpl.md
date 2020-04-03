@@ -45,6 +45,8 @@ ${docLink}
 
 TODO
 
+### Example system
+
 ```ts
 import { defSystem, ILifecycle } from "@thi.ng/system";
 
@@ -153,6 +155,35 @@ FOO.stop();
 // Calls stop() & if successful followed by start()
 FOO.reset();
 ```
+
+### System visualization
+
+In order for a `System` to initialize its components in the correct order, an internal [dependency graph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph) is constructed. This graph not required any further after system construction, however can be useful for debugging and documentation purposes.
+
+For example, we can utilize the
+[@thi.ng/dgraph-dot](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph-dot)
+package to create [Graphviz](https://graphviz.org) source file to
+visualize the dependencies between the system's components.
+
+```ts
+import { toDot } from "@thi.ng/dgraph-dot";
+
+console.log(toDot(FOO.graph, { id: (node) => node }));
+// digraph g {
+// "db"[label="db"];
+// "logger"[label="logger"];
+// "state"[label="state"];
+// "dummy"[label="dummy"];
+// "db" -> "logger";
+// "db" -> "state";
+// "state" -> "logger";
+// "dummy" -> "logger";
+// }
+```
+
+Resulting visualization:
+
+![graphviz output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/system/basic.png)
 
 ## Authors
 

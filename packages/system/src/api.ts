@@ -1,14 +1,43 @@
 import type { Keys, Fn } from "@thi.ng/api";
 
 export interface ILifecycle {
-    start(): Promise<boolean>;
-    stop(): Promise<boolean>;
+    /**
+     * Starts component. Defined as async method to simplify internal
+     * use of `await` for starting any child/sub-components. Usually
+     * called by {@link System.start} which synchronously starts all of
+     * its components in dependency order.
+     *
+     * Returns false to indicate component startup failed and to cancel
+     * initialization of dependent components. Alternatively, an error
+     * can be thrown, but it's the user's responsibility to catch it.
+     */
+    start?(): Promise<boolean>;
+    /**
+     * Similar to {@link ILifecycle.start} but for stopping components.
+     *
+     * Returns false to indicate component startup failed and log a
+     * warning message to the console. Unlike with `start()`, returning
+     * false will NOT stop decommision other components.
+     */
+    stop?(): Promise<boolean>;
 }
 
+/**
+ * Defines the participants of a system. Maps component names to their
+ * respective types
+ */
 export type SystemMap<T> = Record<Keys<T>, ILifecycle>;
 
+/**
+ * Component initialization function.
+ */
 export type ComponentFactory<T extends SystemMap<T>> = Fn<T, ILifecycle>;
 
+/**
+ * Definition object of system component specs, i.e. their factories and
+ * component dependencies. The generic type arg `T` is used to infer &
+ * validate all specs.
+ */
 export type SystemSpecs<T extends SystemMap<T>> = Record<
     Keys<T>,
     {
