@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/dgraph](https://media.thi.ng/umbrella/banners/thing-dgraph.svg?1585427402)
+# ![@thi.ng/dgraph](https://media.thi.ng/umbrella/banners/thing-dgraph.svg?1585923666)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dgraph.svg)](https://www.npmjs.com/package/@thi.ng/dgraph)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dgraph.svg)
@@ -12,6 +12,7 @@ This project is part of the
 - [About](#about)
   - [Features](#features)
   - [Status](#status)
+  - [Support packages](#support-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -36,13 +37,17 @@ maps & sets as backend.
 
 **STABLE** - used in production
 
+### Support packages
+
+- [@thi.ng/dgraph-dot](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph-dot) - Customizable Graphviz DOT serialization for [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph)
+
 ## Installation
 
 ```bash
 yarn add @thi.ng/dgraph
 ```
 
-Package sizes (gzipped): ESM: 738 bytes / CJS: 798 bytes / UMD: 916 bytes
+Package sizes (gzipped): ESM: 790 bytes / CJS: 850 bytes / UMD: 959 bytes
 
 ## Dependencies
 
