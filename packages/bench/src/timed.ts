@@ -17,7 +17,7 @@ export const timed = <T>(fn: () => T, prefix = "") => {
 
 /**
  * Similar to {@link timed}, but produces no output and instead returns
- * tuple of `fn`'s result and the time measurement.
+ * tuple of `fn`'s result and the time measurement (in milliseconds).
  *
  * @param fn - function to time
  */
@@ -27,8 +27,8 @@ export const timedResult = <T>(fn: () => T): TimingResult<T> => {
     const t1 = now();
     return [
         res,
-        typeof BigInt !== "undefined"
-            ? Number(<bigint>t1 - <bigint>t0) * 1e-6
-            : <number>t1 - <number>t0
+        (typeof BigInt !== "undefined"
+            ? Number(<bigint>t1 - <bigint>t0)
+            : <number>t1 - <number>t0) * 1e-6,
     ];
 };
