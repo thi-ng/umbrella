@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph@1.1.25...@thi.ng/dgraph@1.2.0) (2020-04-03)
+
+
+### Features
+
+* **dgraph:** add defDGraph(), update ctor to accept edge pairs ([b45a6da](https://github.com/thi-ng/umbrella/commit/b45a6da939348bd49134d499259889332d0e950f))
+
+
+
+
+
 ## [1.1.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph@1.1.24...@thi.ng/dgraph@1.1.25) (2020-03-28)
 
 **Note:** Version bump only for package @thi.ng/dgraph

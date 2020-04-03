@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@2.0.5...@thi.ng/bench@2.0.6) (2020-04-03)
+
+
+### Bug Fixes
+
+* **bench:** fallback handlingin now() ([6494851](https://github.com/thi-ng/umbrella/commit/64948518a6412cabf53664ac9f89bac2b7ef6892))
+* **bench:** update timedResult() to always downscale to ms ([fb2c632](https://github.com/thi-ng/umbrella/commit/fb2c6327358ccaf93314d2cdbfd3f8ff04becbd1))
+
+
+
+
+
 ## [2.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@2.0.4...@thi.ng/bench@2.0.5) (2020-03-28)
 
 **Note:** Version bump only for package @thi.ng/bench

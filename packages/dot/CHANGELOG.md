@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@1.1.14...@thi.ng/dot@1.2.0) (2020-04-03)
+
+
+### Features
+
+* **dot:** support includes, update subgraph handling ([ed53c90](https://github.com/thi-ng/umbrella/commit/ed53c909f7eb41c85c04f55de279e0d82cfed307))
+
+
+
+
+
 ## [1.1.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@1.1.13...@thi.ng/dot@1.1.14) (2020-03-28)
 
 **Note:** Version bump only for package @thi.ng/dot
