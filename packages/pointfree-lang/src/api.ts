@@ -13,7 +13,7 @@ export interface VisitorState {
     word: boolean;
 }
 
-export const enum NodeType {
+export enum NodeType {
     SYM = 1,
     WORD,
 
