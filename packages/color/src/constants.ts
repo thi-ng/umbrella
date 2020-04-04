@@ -1,6 +1,6 @@
 import { float, percent } from "@thi.ng/strings";
 
-export const enum ColorMode {
+export enum ColorMode {
     RGBA,
     HCYA,
     HSVA,
@@ -9,7 +9,7 @@ export const enum ColorMode {
     INT32,
     CSS,
     XYZA,
-    YCBCRA
+    YCBCRA,
 }
 
 // RGBA constants
@@ -29,7 +29,7 @@ export const RGB_LUMINANCE = [0.299, 0.587, 0.114];
 
 // Hue names
 
-export const enum Hue {
+export enum Hue {
     RED,
     ORANGE,
     YELLOW,
@@ -41,7 +41,7 @@ export const enum Hue {
     BLUE,
     VIOLET,
     MAGENTA,
-    ROSE
+    ROSE,
 }
 
 // internal helpers
@@ -57,7 +57,7 @@ export const RGB_XYZ = [
     0.072175,
     0.0193339,
     0.119192,
-    0.9503041
+    0.9503041,
 ];
 
 export const XYZ_RGB = [
@@ -69,7 +69,7 @@ export const XYZ_RGB = [
     0.041556,
     0.0556434,
     -0.2040259,
-    1.0572252
+    1.0572252,
 ];
 
 export const FF = float(2);
