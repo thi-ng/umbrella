@@ -1,10 +1,10 @@
 import type { FnO, Path } from "@thi.ng/api";
 
-export const enum Patch {
+export enum Patch {
     SET,
     INSERT,
     UPDATE,
-    DELETE
+    DELETE,
 }
 
 export type PatchArrayOp<T> =
