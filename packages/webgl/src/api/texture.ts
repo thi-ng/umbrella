@@ -1,7 +1,7 @@
 import type { IBind, IObjectOf, IRelease } from "@thi.ng/api";
 import type { IConfigure } from "./buffers";
 
-export const enum TextureFormat {
+export enum TextureFormat {
     ALPHA = 0x1906,
     DEPTH_COMPONENT = 0x1902,
     DEPTH_COMPONENT16 = 0x81a5,
@@ -68,10 +68,10 @@ export const enum TextureFormat {
     RGBA8I = 0x8d8e,
     RGBA8UI = 0x8d7c,
     SRGB8 = 0x8c41,
-    SRGB8_ALPHA8 = 0x8c43
+    SRGB8_ALPHA8 = 0x8c43,
 }
 
-export const enum TextureType {
+export enum TextureType {
     BYTE = 0x1400,
     UNSIGNED_BYTE,
     SHORT,
@@ -88,29 +88,29 @@ export const enum TextureType {
     UNSIGNED_INT_10F_11F_11F_REV = 0x8c3b,
     UNSIGNED_INT_5_9_9_9_REV = 0x8c3e,
     HALF_FLOAT_OES = 0x8d61,
-    FLOAT_32_UNSIGNED_INT_24_8_REV = 0x8dad
+    FLOAT_32_UNSIGNED_INT_24_8_REV = 0x8dad,
 }
 
-export const enum TextureTarget {
+export enum TextureTarget {
     TEXTURE_2D = 3553,
     TEXTURE_3D = 32879,
     TEXTURE_CUBE_MAP = 34067,
-    TEXTURE_2D_ARRAY = 35866
+    TEXTURE_2D_ARRAY = 35866,
 }
 
-export const enum TextureFilter {
+export enum TextureFilter {
     LINEAR = 9729,
     NEAREST = 9728,
     NEAREST_MIPMAP_NEAREST = 9984,
     LINEAR_MIPMAP_NEAREST = 9985,
     NEAREST_MIPMAP_LINEAR = 9986,
-    LINEAR_MIPMAP_LINEAR = 9987
+    LINEAR_MIPMAP_LINEAR = 9987,
 }
 
-export const enum TextureRepeat {
+export enum TextureRepeat {
     REPEAT = 10497,
     CLAMP = 33071,
-    REPEAT_MIRROR = 33648
+    REPEAT_MIRROR = 33648,
 }
 
 export interface TextureFormatDecl {
@@ -158,7 +158,7 @@ const $ = (
     render,
     renderExt,
     filter,
-    num
+    num,
 });
 
 export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
@@ -172,7 +172,7 @@ export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
             TextureType.HALF_FLOAT_OES,
             2,
             TextureType.FLOAT,
-            4
+            4,
         ],
         1,
         true,
@@ -230,7 +230,7 @@ export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
             TextureType.HALF_FLOAT_OES,
             4,
             TextureType.FLOAT,
-            8
+            8,
         ],
         2,
         true,
@@ -246,7 +246,7 @@ export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
             TextureType.HALF_FLOAT_OES,
             2,
             TextureType.FLOAT,
-            4
+            4,
         ],
         1,
         true,
@@ -260,7 +260,7 @@ export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
             TextureType.HALF_FLOAT,
             6,
             TextureType.UNSIGNED_INT_10F_11F_11F_REV,
-            4
+            4,
         ],
         3,
         false,
@@ -411,7 +411,7 @@ export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
             TextureType.FLOAT,
             12,
             TextureType.UNSIGNED_SHORT_5_6_5,
-            2
+            2,
         ],
         3,
         true,
@@ -466,7 +466,7 @@ export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
             TextureType.UNSIGNED_SHORT_5_5_5_1,
             2,
             TextureType.UNSIGNED_INT_2_10_10_10_REV,
-            4
+            4,
         ],
         4,
         true,
@@ -511,7 +511,7 @@ export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
             TextureType.HALF_FLOAT,
             6,
             TextureType.UNSIGNED_INT_5_9_9_9_REV,
-            4
+            4,
         ],
         3,
         false,
@@ -531,7 +531,7 @@ export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
             TextureType.UNSIGNED_SHORT_4_4_4_4,
             2,
             TextureType.UNSIGNED_SHORT_5_5_5_1,
-            2
+            2,
         ],
         4,
         true,
@@ -623,7 +623,7 @@ export const TEX_FORMATS: IObjectOf<TextureFormatDecl> = {
         3,
         false,
         true
-    )
+    ),
 };
 
 export type ReadableTextureFormat =

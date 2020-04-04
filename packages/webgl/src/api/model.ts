@@ -4,14 +4,14 @@ import type { IndexBufferSpec, IWebGLBuffer } from "./buffers";
 import type { AttribBufferData, IShader, UniformValues } from "./shader";
 import type { ITexture } from "./texture";
 
-export const enum DrawMode {
+export enum DrawMode {
     POINTS = 0,
     LINES = 1,
     LINE_LOOP = 2,
     LINE_STRIP = 3,
     TRIANGLES = 4,
     TRIANGLE_STRIP = 5,
-    TRIANGLE_FAN = 6
+    TRIANGLE_FAN = 6,
 }
 
 export type ModelAttributeSpecs = IObjectOf<ModelAttributeSpec>;
