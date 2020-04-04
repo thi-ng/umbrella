@@ -1,12 +1,12 @@
 import type { Vec } from "@thi.ng/vectors";
 
-export const enum IntersectionType {
+export enum IntersectionType {
     NONE,
     PARALLEL,
     COINCIDENT,
     COINCIDENT_NO_INTERSECT,
     INTERSECT,
-    INTERSECT_OUTSIDE
+    INTERSECT_OUTSIDE,
 }
 
 export interface IntersectionResult {

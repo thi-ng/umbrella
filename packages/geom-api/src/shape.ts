@@ -1,7 +1,7 @@
 import type { ICopy, IObjectOf, IToHiccup } from "@thi.ng/api";
 import type { Vec } from "@thi.ng/vectors";
 
-export const enum Type {
+export enum Type {
     AABB = 1,
     ARC,
     CIRCLE,
@@ -30,7 +30,7 @@ export const enum Type {
     TRIANGLE,
     TRIANGLE3,
     RAY,
-    RAY3
+    RAY3,
 }
 
 export type Attribs = IObjectOf<any>;

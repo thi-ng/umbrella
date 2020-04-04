@@ -1,14 +1,14 @@
 import type { Vec } from "@thi.ng/vectors";
 import type { IShape } from "./shape";
 
-export const enum SegmentType {
+export enum SegmentType {
     MOVE,
     LINE,
     POLYLINE,
     ARC,
     CUBIC,
     QUADRATIC,
-    CLOSE
+    CLOSE,
 }
 
 export interface PathSegment {
