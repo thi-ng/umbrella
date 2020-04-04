@@ -1,4 +1,4 @@
-export const enum Match {
+export enum Match {
     /**
      * Partial match
      */
@@ -16,7 +16,7 @@ export const enum Match {
     /**
      * Failed match.
      */
-    FAIL = -1
+    FAIL = -1,
 }
 
 export interface MatchResult<T> {
