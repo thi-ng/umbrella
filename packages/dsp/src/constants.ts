@@ -1,4 +1,4 @@
-export const enum FilterType {
+export enum FilterType {
     LP,
     HP,
     BP,
@@ -6,5 +6,5 @@ export const enum FilterType {
     PEAK,
     LOSHELF,
     HISHELF,
-    ALL
+    ALL,
 }

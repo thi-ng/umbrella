@@ -1,23 +1,16 @@
 import { isString } from "@thi.ng/checks";
 import { and, or } from "@thi.ng/dlogic";
 import { illegalArgs } from "@thi.ng/errors";
-import type {
-    Fn,
-    Fn2,
-    ICompare,
-    IContains,
-    ICopy,
-    IEquiv
-} from "@thi.ng/api";
+import type { Fn, Fn2, ICompare, IContains, ICopy, IEquiv } from "@thi.ng/api";
 
-export const enum Classifier {
+export enum Classifier {
     DISJOINT_LEFT,
     DISJOINT_RIGHT,
     EQUIV,
     SUBSET,
     SUPERSET,
     OVERLAP_LEFT,
-    OVERLAP_RIGHT
+    OVERLAP_RIGHT,
 }
 
 const BRACES = "()[]";

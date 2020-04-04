@@ -1,11 +1,11 @@
 import type { IID } from "@thi.ng/api";
 
-export const enum GestureType {
+export enum GestureType {
     START,
     MOVE,
     DRAG,
     END,
-    ZOOM
+    ZOOM,
 }
 
 export interface GestureInfo {

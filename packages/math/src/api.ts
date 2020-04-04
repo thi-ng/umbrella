@@ -25,7 +25,7 @@ export const SIXTH = 1 / 6;
 
 export let EPS = 1e-6;
 
-export const enum Crossing {
+export enum Crossing {
     /**
      * lines A & B are equal
      */
@@ -42,5 +42,5 @@ export const enum Crossing {
      * line A crossed over B
      */
     OVER,
-    OTHER
+    OTHER,
 }

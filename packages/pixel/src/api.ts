@@ -1,36 +1,31 @@
-import type {
-    Fn,
-    Fn2,
-    Type,
-    TypedArray
-} from "@thi.ng/api";
+import type { Fn, Fn2, Type, TypedArray } from "@thi.ng/api";
 
 /**
  * ABGR 8bit lane/channel IDs
  */
-export const enum Lane {
+export enum Lane {
     ALPHA = 0,
     RED = 3,
     GREEN = 2,
-    BLUE = 1
+    BLUE = 1,
 }
 
 /**
  * Wrap behaviors (currently unused)
  */
-export const enum Wrap {
+export enum Wrap {
     NONE,
     U,
     V,
-    UV
+    UV,
 }
 
 /**
  * Filtered access types (currently unused)
  */
-export const enum Filter {
+export enum Filter {
     NEAREST,
-    LINEAR
+    LINEAR,
 }
 
 export type UintType = Type.U8 | Type.U16 | Type.U32;

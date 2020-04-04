@@ -1,6 +1,6 @@
 import type { Tuple } from "@thi.ng/api";
 
-export const enum StencilOp {
+export enum StencilOp {
     KEEP = 7680,
     ZERO = 0,
     REPLACE = 7681,
@@ -8,10 +8,10 @@ export const enum StencilOp {
     INCR_WRAP = 34055,
     DECR = 7683,
     DECR_WRAP = 34056,
-    INVERT = 5386
+    INVERT = 5386,
 }
 
-export const enum StencilFn {
+export enum StencilFn {
     NEVER = 512,
     LESS = 513,
     EQUAL = 514,
@@ -19,7 +19,7 @@ export const enum StencilFn {
     GREATER = 516,
     NOTEQUAL = 517,
     GEQUAL = 518,
-    ALWAYS = 519
+    ALWAYS = 519,
 }
 
 export type StencilOpParams = Tuple<StencilOp, 3>;

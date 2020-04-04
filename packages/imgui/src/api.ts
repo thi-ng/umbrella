@@ -31,20 +31,20 @@ export interface IMGUIOpts {
     theme?: Partial<GUITheme>;
 }
 
-export const enum MouseButton {
+export enum MouseButton {
     LEFT = 1,
     RIGHT = 2,
-    MIDDLE = 4
+    MIDDLE = 4,
 }
 
-export const enum KeyModifier {
+export enum KeyModifier {
     SHIFT = 1,
     CONTROL = 2,
     META = 4,
-    ALT = 8
+    ALT = 8,
 }
 
-export const enum Key {
+export enum Key {
     ALT = "Alt",
     BACKSPACE = "Backspace",
     CAPSLOCK = "CapsLock",
@@ -66,7 +66,7 @@ export const enum Key {
     SHIFT = "Shift",
     SPACE = " ",
     TAB = "Tab",
-    UP = "ArrowUp"
+    UP = "ArrowUp",
 }
 
 export const CONTROL_KEYS = new Set<string>([
@@ -90,7 +90,7 @@ export const CONTROL_KEYS = new Set<string>([
     Key.RIGHT,
     Key.SHIFT,
     Key.TAB,
-    Key.UP
+    Key.UP,
 ]);
 
 export const NONE = "__NONE__";
@@ -115,7 +115,7 @@ export const DEFAULT_THEME: GUITheme = {
     textDisabled: [0.3, 0.3, 0.3, 0.5],
     textHover: [0.2, 0.2, 0.4, 1],
     bgTooltip: [1, 1, 0.8, 0.85],
-    textTooltip: [0, 0, 0, 1]
+    textTooltip: [0, 0, 0, 1],
 };
 
 export const INPUT_ALPHA: Predicate<string> = (x) => /^\w$/.test(x);

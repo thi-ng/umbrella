@@ -1,6 +1,6 @@
 import type { Tuple } from "@thi.ng/api";
 
-export const enum Blend {
+export enum Blend {
     ZERO = 0,
     ONE = 1,
     SRC_COLOR = 768,
@@ -15,15 +15,15 @@ export const enum Blend {
     ONE_MINUS_CONSTANT_COLOR = 32770,
     CONSTANT_ALPHA = 32771,
     ONE_MINUS_CONSTANT_ALPHA = 32772,
-    SRC_ALPHA_SATURATE = 776
+    SRC_ALPHA_SATURATE = 776,
 }
 
-export const enum BlendEquation {
+export enum BlendEquation {
     FUNC_ADD = 32774,
     FUNC_REVERSE_SUBTRACT = 32779,
     FUNC_SUBTRACT = 32778,
     MAX = 32776,
-    MIN = 32775
+    MIN = 32775,
 }
 
 export type BlendFunc = Tuple<Blend, 2>;
@@ -33,7 +33,7 @@ export type BlendFunc = Tuple<Blend, 2>;
 
 export const BLEND_NORMAL: BlendFunc = [
     Blend.SRC_ALPHA,
-    Blend.ONE_MINUS_SRC_ALPHA
+    Blend.ONE_MINUS_SRC_ALPHA,
 ];
 
 export const BLEND_ADD: BlendFunc = [Blend.SRC_ALPHA, Blend.DST_ALPHA];

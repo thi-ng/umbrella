@@ -1,27 +1,21 @@
 import { NULL_LOGGER } from "@thi.ng/api";
 import { Stream } from "./stream";
 import { Subscription } from "./subscription";
-import type {
-    Fn,
-    Fn0,
-    IDeref,
-    IID,
-    ILogger
-} from "@thi.ng/api";
+import type { Fn, Fn0, IDeref, IID, ILogger } from "@thi.ng/api";
 import type { Transducer } from "@thi.ng/transducers";
 
-export const enum State {
+export enum State {
     IDLE,
     ACTIVE,
     DONE,
     ERROR,
-    DISABLED // TODO currently unused
+    DISABLED, // TODO currently unused
 }
 
 /**
  * Closing behaviors.
  */
-export const enum CloseMode {
+export enum CloseMode {
     /**
      * Never close, even if no more inputs/outputs.
      */
@@ -33,7 +27,7 @@ export const enum CloseMode {
     /**
      * Close when last input/output is done / removed.
      */
-    LAST
+    LAST,
 }
 
 /**

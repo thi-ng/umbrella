@@ -10,26 +10,26 @@ export enum Unit {
     MIL, // mils
     UM, // microns
     CM, // centimeters
-    UIN // microinches
+    UIN, // microinches
 }
 
-export const enum Type {
+export enum Type {
     INT,
     FLOAT,
     STR,
     HSTR,
     DATE,
-    POINTER
+    POINTER,
 }
 
-export const enum SpecVersion {
+export enum SpecVersion {
     IGES50 = 8,
     IGES51 = 9,
     IGES52 = 10,
-    IGES53 = 11
+    IGES53 = 11,
 }
 
-export const enum DraftVersion {
+export enum DraftVersion {
     NONE = 0,
     ISO,
     AFNOR,
@@ -37,21 +37,21 @@ export const enum DraftVersion {
     BSI,
     CSA,
     DIN,
-    JIS
+    JIS,
 }
 
 export type SectionType = "G" | "S" | "D" | "P" | "T";
 
-export const enum LineFontPattern {
+export enum LineFontPattern {
     NONE = 0,
     SOLID,
     DASHED,
     PHANTOM,
     CENTERLINE,
-    DOTTED
+    DOTTED,
 }
 
-export const enum Color {
+export enum Color {
     NONE = 0,
     BLACK,
     RED,
@@ -60,47 +60,47 @@ export const enum Color {
     YELLOW,
     MAGENTA,
     CYAN,
-    WHITE
+    WHITE,
 }
 
-export const enum StatusBlank {
+export enum StatusBlank {
     VISIBLE = 0,
-    BLANK
+    BLANK,
 }
 
-export const enum StatusSubord {
+export enum StatusSubord {
     INDEPENDENT = 0,
     PHYSICAL,
     LOGICAL,
-    BOTH
+    BOTH,
 }
 
-export const enum StatusUsage {
+export enum StatusUsage {
     GEOMETRY = 0,
     ANNOTATION,
     DEFINITION,
     OTHER,
     LOGICAL,
     PARAMETRIC2D,
-    CONSTRUCTIVE
+    CONSTRUCTIVE,
 }
 
-export const enum StatusHierarchy {
+export enum StatusHierarchy {
     GLOBAL_TOP_DOWN = 0,
     GLOBAL_DEFER,
-    USE_PROP
+    USE_PROP,
 }
 
-export const enum PolylineMode {
+export enum PolylineMode {
     OPEN,
     CLOSED,
-    FILLED
+    FILLED,
 }
 
-export const enum BooleanOp {
+export enum BooleanOp {
     UNION = 1,
     INTERSECTION,
-    DIFFERENCE
+    DIFFERENCE,
 }
 
 export type BooleanNode = number | BooleanTree;
@@ -109,13 +109,13 @@ export interface BooleanTree extends Array<BooleanNode> {
     [0]: BooleanOp;
 }
 
-export const enum EntityType {
+export enum EntityType {
     POLYLINE = 106,
     LINE = 110,
     POINT = 116,
     CSG_BOX = 150,
     CSG_CYLINDER = 154,
-    BOOLEAN_TREE = 180
+    BOOLEAN_TREE = 180,
 }
 
 export interface EntityOpts {
@@ -211,5 +211,5 @@ export const DEFAULT_GLOBALS: Partial<GlobalParams> = {
     units: Unit.MM,
     precision: 3,
     numLineWeights: 1,
-    maxLineWeight: 0.254
+    maxLineWeight: 0.254,
 };

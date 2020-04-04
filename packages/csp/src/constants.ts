@@ -1,5 +1,5 @@
-export const enum State {
+export enum State {
     OPEN,
     CLOSED,
-    DONE
+    DONE,
 }
