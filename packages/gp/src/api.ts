@@ -1,9 +1,9 @@
 import type { Fn, Fn2 } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
 
-export const enum GeneType {
+export enum GeneType {
     TERMINAL,
-    OP
+    OP,
 }
 
 /**
