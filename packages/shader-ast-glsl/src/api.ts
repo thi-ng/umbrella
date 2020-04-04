@@ -1,15 +1,9 @@
 import type { Fn } from "@thi.ng/api";
-import type {
-    FloatSym,
-    Sym,
-    Term,
-    Vec2Sym,
-    Vec4Sym
-} from "@thi.ng/shader-ast";
+import type { FloatSym, Sym, Term, Vec2Sym, Vec4Sym } from "@thi.ng/shader-ast";
 
-export const enum GLSLVersion {
+export enum GLSLVersion {
     GLES_100 = "100",
-    GLES_300 = "300 es"
+    GLES_300 = "300 es",
 }
 
 export interface GLSLOpts {
