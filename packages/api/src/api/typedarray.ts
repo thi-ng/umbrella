@@ -35,7 +35,7 @@ export type TypedArrayConstructor =
  * {@link GL2TYPE}
  * {@link TYPE2GL}
  */
-export const enum Type {
+export enum Type {
     U8,
     U8C,
     I8,
@@ -44,7 +44,7 @@ export const enum Type {
     U32,
     I32,
     F32,
-    F64
+    F64,
 }
 
 export type UintType = Type.U8 | Type.U16 | Type.U32;
@@ -60,14 +60,14 @@ export type FloatType = Type.F32 | Type.F64;
  * {@link GL2TYPE}
  * {@link TYPE2GL}
  */
-export const enum GLType {
+export enum GLType {
     I8 = 0x1400,
     U8 = 0x1401,
     I16 = 0x1402,
     U16 = 0x1403,
     I32 = 0x1404,
     U32 = 0x1405,
-    F32 = 0x1406
+    F32 = 0x1406,
 }
 
 /**
@@ -80,7 +80,7 @@ export const GL2TYPE: Record<GLType, Type> = {
     [GLType.U16]: Type.U16,
     [GLType.I32]: Type.I32,
     [GLType.U32]: Type.U32,
-    [GLType.F32]: Type.F32
+    [GLType.F32]: Type.F32,
 };
 
 /**
@@ -101,7 +101,7 @@ export const TYPE2GL: Record<Type, GLType | undefined> = {
     [Type.I32]: GLType.I32,
     [Type.U32]: GLType.U32,
     [Type.F32]: GLType.F32,
-    [Type.F64]: undefined
+    [Type.F64]: undefined,
 };
 
 /**
@@ -117,7 +117,7 @@ export const SIZEOF = {
     [Type.U32]: 4,
     [Type.I32]: 4,
     [Type.F32]: 4,
-    [Type.F64]: 8
+    [Type.F64]: 8,
 };
 
 export const TYPEDARRAY_CTORS: Record<Type | GLType, TypedArrayConstructor> = {
@@ -136,7 +136,7 @@ export const TYPEDARRAY_CTORS: Record<Type | GLType, TypedArrayConstructor> = {
     [GLType.I16]: Int16Array,
     [GLType.U32]: Uint32Array,
     [GLType.I32]: Int32Array,
-    [GLType.F32]: Float32Array
+    [GLType.F32]: Float32Array,
 };
 
 export interface TypedArrayTypeMap extends Record<Type | GLType, TypedArray> {
