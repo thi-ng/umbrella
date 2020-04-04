@@ -1,9 +1,9 @@
 import type { Fn2, Pair } from "@thi.ng/api";
 
-export const enum DegreeType {
+export enum DegreeType {
     IN,
     OUT,
-    BOTH
+    BOTH,
 }
 
 export interface IGraph {
