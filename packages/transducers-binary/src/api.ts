@@ -1,4 +1,4 @@
-export const enum Type {
+export enum Type {
     I8,
     I8_ARRAY,
     U8,
@@ -19,7 +19,7 @@ export const enum Type {
     F32_ARRAY,
     F64,
     F64_ARRAY,
-    STR
+    STR,
 }
 
 export type BinStructItem =
