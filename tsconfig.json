@@ -11,7 +11,8 @@
         "preserveConstEnums": true,
         "moduleResolution": "node",
         "strict": true,
-        "strictNullChecks": true
+        "strictNullChecks": true,
+        "isolatedModules": true
     },
     "exclude": ["./**/node_modules"]
 }
