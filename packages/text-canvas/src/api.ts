@@ -1,19 +1,19 @@
 import type { Fn, NumOrString } from "@thi.ng/api";
 
-export const enum Align {
+export enum Align {
     LEFT,
     RIGHT,
-    CENTER
+    CENTER,
 }
 
-export const enum Border {
+export enum Border {
     NONE = 0,
     H = 1,
     V = 2,
     ALL = 3,
     FRAME = 4,
     FRAME_H = 5,
-    FRAME_V = 6
+    FRAME_V = 6,
 }
 
 export interface TableOpts {
@@ -212,7 +212,7 @@ export const STYLE_ASCII: StrokeStyle = {
     tjt: "+",
     tjb: "+",
     jct: "+",
-    dot: "."
+    dot: ".",
 };
 
 export const STYLE_THIN: StrokeStyle = {
@@ -227,7 +227,7 @@ export const STYLE_THIN: StrokeStyle = {
     tjt: "┬",
     tjb: "┴",
     jct: "┼",
-    dot: "•"
+    dot: "•",
 };
 
 export const STYLE_THIN_ROUNDED: StrokeStyle = {
@@ -235,13 +235,13 @@ export const STYLE_THIN_ROUNDED: StrokeStyle = {
     tl: "╭",
     tr: "╮",
     bl: "╰",
-    br: "╯"
+    br: "╯",
 };
 
 export const STYLE_DASHED: StrokeStyle = {
     ...STYLE_THIN,
     hl: "╌",
-    vl: "┆"
+    vl: "┆",
 };
 
 export const STYLE_DASHED_ROUNDED: StrokeStyle = {
@@ -249,7 +249,7 @@ export const STYLE_DASHED_ROUNDED: StrokeStyle = {
     tl: "╭",
     tr: "╮",
     bl: "╰",
-    br: "╯"
+    br: "╯",
 };
 
 export const STYLE_DOUBLE: StrokeStyle = {
@@ -264,7 +264,7 @@ export const STYLE_DOUBLE: StrokeStyle = {
     tjt: "╦",
     tjb: "╩",
     jct: "╬",
-    dot: "•"
+    dot: "•",
 };
 
 export const ENDINGS = "()[]{}<>^v◀▶▲▼•●";
