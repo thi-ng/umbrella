@@ -1,5 +1,6 @@
 .ae
 .cache
+.parcel-cache
 .DS_Store
 .meta
 .nyc_output
@@ -16,6 +17,7 @@
 *.zip
 /.gtm/
 ae-docs
+assets/banners
 build
 bundle.*
 coverage
