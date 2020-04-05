@@ -9,6 +9,8 @@ of them.
 <!-- TOC depthFrom:2 depthTo:3 -->
 
 - [Usage questions & issues](#usage-questions--issues)
+    - [Join our Discord](#join-our-discord)
+    - [Submit an issue](#submit-an-issue)
 - [Documentation, examples & advocacy](#documentation-examples--advocacy)
     - [Changes to readme files](#changes-to-readme-files)
     - [Wiki additions, blog posts, examples](#wiki-additions-blog-posts-examples)
@@ -39,12 +41,28 @@ of them.
 
 ## Usage questions & issues
 
-Please feel free to use the [GH issue
-tracker](https://github.com/thi-ng/umbrella/issues) for submitting any
-questions related to any package in this repo. When doing so, please
-also follow the instructions in the "new issue" template.
+### Join our Discord
 
-When running into code troubles, please try to include a minimal
+We have a [Discord community](https://discord.gg/JhYcmBw) where it's
+usually the faster to get some answers to any burning questions and
+where we generally share & discuss feedback / ideas / interesting things
+loosely related to this project. Come and say Hi!
+
+### Submit an issue
+
+In many cases it might be better to [submit an
+issue](https://github.com/thi-ng/umbrella/issues) here on GitHub,
+especially if you've discovered some kind of bug and/or want to propose
+new features etc., which require longer discussion. I'd also encourage
+using the issue tracker for any topic which might be beneficial to
+know/discover for other users in the future (much like a forum), since
+this format & discussion has more longevity/discoverability than a
+Discord channel.
+
+When submitting an issue, please follow the instructions in the "new
+issue" template.
+
+When running into code troubles, please also try to include a minimal
 reproducible example. If the example is too large for including in the
 issue, please create a gist or repo and add a link to it.
 
@@ -462,7 +480,8 @@ There's been some initial work done on generating a better documentation
 site than the current [docs.thi.ng](https://docs.thi.ng), but currently
 on hold until the TSDoc standard is finalized / stable...
 
-More discussion & context can be found in [this issue](https://github.com/thi-ng/umbrella/issues/174).
+More discussion & context can be found in [this
+issue](https://github.com/thi-ng/umbrella/issues/174).
 
 ### Formatting
 
