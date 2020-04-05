@@ -42,7 +42,7 @@ comparator. See examples below.
 yarn add @thi.ng/compare
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 350 bytes / CJS: 427 bytes / UMD: 464 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 396 bytes / CJS: 471 bytes / UMD: 504 bytes
 
 ## Dependencies
 
