@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/compare@1.2.2...@thi.ng/compare@1.3.0) (2020-04-05)
+
+
+### Features
+
+* **compare:** fix [#215](https://github.com/thi-ng/umbrella/issues/215), add sort key getter support for compareByKeysX() ([f364b4e](https://github.com/thi-ng/umbrella/commit/f364b4e62dcd2ed13689a1ef97799cb53af3ef71))
+
+
+
+
+
 ## [1.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/compare@1.2.1...@thi.ng/compare@1.2.2) (2020-03-28)
 
 **Note:** Version bump only for package @thi.ng/compare

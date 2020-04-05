@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rstream-log-file",
-    "version": "0.1.31",
+    "version": "0.1.32",
     "description": "File output handler for structured, multilevel & hierarchical loggers based on @thi.ng/rstream",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,7 +38,7 @@
         "typescript": "^3.8.3"
     },
     "dependencies": {
-        "@thi.ng/rstream": "^4.0.1",
+        "@thi.ng/rstream": "^4.0.2",
         "tslib": "^1.11.1"
     },
     "keywords": [
