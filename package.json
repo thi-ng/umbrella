@@ -11,7 +11,7 @@
         "gzip-size": "^5.1.0",
         "lerna": "^3.20.2",
         "lodash.template": "^4.5.0",
-        "mocha": "^7.0.1",
+        "mocha": "^7.1.1",
         "nyc": "^15.0.0",
         "parcel-bundler": "^1.12.4",
         "rimraf": "^3.0.2",
