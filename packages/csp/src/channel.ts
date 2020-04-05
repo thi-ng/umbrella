@@ -1,3 +1,4 @@
+import type { Fn, Fn0, Fn2, FnAny, Predicate } from "@thi.ng/api";
 import { shuffle } from "@thi.ng/arrays";
 import { isFunction } from "@thi.ng/checks";
 import { DCons } from "@thi.ng/dcons";
@@ -9,23 +10,21 @@ import {
     range,
     Reducer,
     Transducer,
-    unreduced
+    unreduced,
 } from "@thi.ng/transducers";
-import { FixedBuffer } from "./buffer";
-import { State } from "./constants";
-import type {
-    Fn,
-    Fn0,
-    Fn2,
-    FnAny,
-    Predicate
-} from "@thi.ng/api";
 import type {
     ChannelItem,
     ErrorHandler,
     IBuffer,
     IReadWriteableChannel,
 } from "./api";
+import { FixedBuffer } from "./buffer";
+
+const enum State {
+    OPEN,
+    CLOSED,
+    DONE,
+}
 
 export class Channel<T> implements IReadWriteableChannel<T> {
     static constantly<T>(x: T, delay?: number) {
@@ -278,7 +277,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
     private static RFN: Reducer<DCons<any>, any> = [
         <any>(() => null),
         (acc) => acc,
-        (acc: DCons<any>, x) => acc.push(x)
+        (acc: DCons<any>, x) => acc.push(x),
     ];
 
     id: string;
@@ -384,7 +383,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
                               }
                           }
                         : () => value,
-                    resolve
+                    resolve,
                 });
                 this.process();
             } else {

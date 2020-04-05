@@ -3,9 +3,9 @@
     "compilerOptions": {
         "outDir": ".",
         "module": "es6",
-        "target": "es6"
+        "target": "es6",
+        "preserveConstEnums": false,
+        "isolatedModules": false
     },
-    "include": [
-        "./src/**/*.ts"
-    ]
+    "include": ["./src/**/*.ts"]
 }
