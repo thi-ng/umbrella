@@ -2,7 +2,7 @@
 
 [![Travis status](https://api.travis-ci.org/thi-ng/umbrella.svg?branch=master)](https://travis-ci.org/thi-ng/umbrella)
 [![Code Climate](https://api.codeclimate.com/v1/badges/592940419adb5bf8abaf/maintainability)](https://codeclimate.com/github/thi-ng/umbrella/maintainability)
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org/)
+[![Become a patron](https://img.shields.io/badge/patreon-donate-yellow.svg)](https://www.patreon.com/thing_umbrella)
 [![Discord chat](https://img.shields.io/discord/445761008837984256.svg)](https://discord.gg/JhYcmBw)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?label=%40thing_umbrella&style=social)](https://twitter.com/thing_umbrella)
 
@@ -49,16 +49,16 @@ Most packages:
 
 - have detailed, individual README files w/ small usage examples
 - are versioned independently
-- distributed in ES6 syntax and multiple format (ESM, CommonJS, UMD)
+- distributed in ES6 syntax and multiple formats (ESM, CommonJS, UMD)
   with TypeScript typings & changelogs
 - highly modular with largely only a few closely related functions or
   single function / class per file to help w/ tree shaking
 - provide re-exports of all their publics for full library imports
 - have either none or only @thi.ng internal runtime dependencies
 - have been used in production
-- declare public interfaces, enums & types in an `src/api.ts` file
-  (larger packages only)
-- auto-generated online documentation at [docs.thi.ng](http://docs.thi.ng)
+- declare public interfaces, enums & types in an `api.ts` and/or
+  `constants.ts` file (larger packages only)
+- have auto-generated online documentation at [docs.thi.ng](http://docs.thi.ng)
 - licensed under Apache Software License 2.0
 
 ## Examples
@@ -168,7 +168,7 @@ contribute, please first read [this document](./CONTRIBUTING.md).
 | [`@thi.ng/heaps`](./packages/heaps)             | [![version](https://img.shields.io/npm/v/@thi.ng/heaps.svg)](https://www.npmjs.com/package/@thi.ng/heaps)             | [changelog](./packages/heaps/CHANGELOG.md)       | Binary & d-ary heap impls                |
 | [`@thi.ng/idgen`](./packages/idgen)             | [![version](https://img.shields.io/npm/v/@thi.ng/idgen.svg)](https://www.npmjs.com/package/@thi.ng/idgen)             | [changelog](./packages/idgen/CHANGELOG.md)       | Versioned ID generation / free-list      |
 | [`@thi.ng/intervals`](./packages/intervals)     | [![version](https://img.shields.io/npm/v/@thi.ng/intervals.svg)](https://www.npmjs.com/package/@thi.ng/intervals)     | [changelog](./packages/intervals/CHANGELOG.md)   | Open/closed intervals, queries, set ops  |
-| [`@thi.ng/ramp`](./packages/ramp)               | [![version](https://img.shields.io/npm/v/@thi.ng/ramp.svg)](https://www.npmjs.com/package/@thi.ng/ramp)               | [changelog](./packages/ramp/CHANGELOG.md)        | Parametric, interpolated lookup tables  |
+| [`@thi.ng/ramp`](./packages/ramp)               | [![version](https://img.shields.io/npm/v/@thi.ng/ramp.svg)](https://www.npmjs.com/package/@thi.ng/ramp)               | [changelog](./packages/ramp/CHANGELOG.md)        | Parametric, interpolated lookup tables   |
 | [`@thi.ng/quad-edge`](./packages/quad-edge)     | [![version](https://img.shields.io/npm/v/@thi.ng/quad-edge.svg)](https://www.npmjs.com/package/@thi.ng/quad-edge)     | [changelog](./packages/quad-edge/CHANGELOG.md)   | Quad-edge, dual-graph data structure     |
 | [`@thi.ng/resolve-map`](./packages/resolve-map) | [![version](https://img.shields.io/npm/v/@thi.ng/resolve-map.svg)](https://www.npmjs.com/package/@thi.ng/resolve-map) | [changelog](./packages/resolve-map/CHANGELOG.md) | DAG computations & value resolution      |
 | [`@thi.ng/sparse`](./packages/sparse)           | [![version](https://img.shields.io/npm/v/@thi.ng/sparse.svg)](https://www.npmjs.com/package/@thi.ng/sparse)           | [changelog](./packages/sparse/CHANGELOG.md)      | Sparse matrix & vector impls             |
