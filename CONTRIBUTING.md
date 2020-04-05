@@ -44,13 +44,13 @@ of them.
 ### Join our Discord
 
 We have a [Discord community](https://discord.gg/JhYcmBw) where it's
-usually the faster to get some answers to any burning questions and
-where we generally share & discuss feedback / ideas / interesting things
+usually the fastest to get some answers to any burning questions and
+where we generally share & discuss feedback/ideas/interesting things
 loosely related to this project. Come and say Hi!
 
 ### Submit an issue
 
-In many cases it might be better to [submit an
+In many cases, it might be better to [submit an
 issue](https://github.com/thi-ng/umbrella/issues) here on GitHub,
 especially if you've discovered some kind of bug and/or want to propose
 new features etc., which require longer discussion. I'd also encourage
@@ -92,9 +92,9 @@ lerna run doc:readme --scope @thi.ng/<package-name>
 
 The wiki of this repo is still pretty barebones, however adding some
 gallery, FAQs, tutorials, best practice tips, feature ideas/roadmaps and
-a collection of links to blog posts, 3rd party examples etc. is planned.
-If you have anything to contribute (or have already done so elsewhere),
-please do get in touch.
+a collection of links to blog posts, 3rd party examples, etc. is
+planned. If you have anything to contribute (or have already done so
+elsewhere), please do get in touch.
 
 ### Small, standalone examples in the repo
 
@@ -103,7 +103,7 @@ included in the repo are each focused on specific features and kept
 quite lowkey for reasons of simplicity. Since many of the projects are
 meant to be integrated with other 3rd party projects, I'm always on the
 lookout for similar small demos showcasing these integrations (e.g. w/
-React, WebGL, SVG etc.)
+React, WebGL, SVG, etc.)
 
 The repo contains a generator bash script to create a new example
 project skeleton in the repo's `/examples` dir. Use it like below (and
@@ -136,11 +136,11 @@ interweb), please also read the next section...
 **IMPORTANT:** To avoid misunderstandings or disappointment, please
 always first submit an issue discussing any new feature or large
 refactoring before starting to code and submitting PRs. For small bug
-fixes or new examples it's usually fine without, though. I'm not trying
+fixes or new examples, it's usually fine without, though. I'm not trying
 to complicate things, but it's always a good idea to first talk about
-larger contributions and there're also various (sometime still
+larger contributions and there're also various (sometimes still
 unpublished) feature branches, incl. some existing WIP relevant to your
-issue / proposal...
+issue/proposal...
 
 ### Fork it
 
@@ -183,7 +183,7 @@ convention](https://conventionalcommits.org/) for your commit
 messages.** This format is used to generate changelogs and ensures
 consistency and better filtering. Since this is a mono repository the
 convention ensures commit messages can be easily mapped to their
-sub-project. Also see existing commits for reference
+sub-project. Also, see existing commits for reference
 ([example](https://github.com/thi-ng/umbrella/commit/ebbc4910f64c90df7bb93010a75307df51c80b6e)).
 
 The Conventional Commits classifiers/prefixes used in this project are:
@@ -206,7 +206,7 @@ replacement for a large suite of tests, therefore most packages do have
 a varying (but growing) number of unit tests. If you're adding a new
 feature (or think you've fixed a bug), please add some related tests (if
 possible) too for extra brownie points. Either add a new file under a
-project's `/test` dir or add / edit one of the existing test cases in
+project's `/test` dir or add/edit one of the existing test cases in
 there.
 
 Tests can be run via:
@@ -252,18 +252,18 @@ topically related files are grouped in sub-folders under `/src`.
 
 ### Imports
 
-To encourage small(er) file sizes of production artefacts, most source
-files are organized to only contain a small number of related functions
-/ classes. Package internal imports MUST always refer to the actual
-source file, whereas imports from other packages MUST only use the
-package name. This is because of the way each package is built and
+To encourage small(er) file sizes of production artifacts, most source
+files are organized to only contain a small number of related
+functions/classes. Package internal imports MUST always refer to the
+actual source file, whereas imports from other packages MUST only use
+the package name. This is because of the way each package is built and
 output in 3 different module formats (ES6, CJS, UMD).
 
 ### Sorted imports
 
 Please ensure you're updating the list imports in changed files to be
 sorted by package name. In VSCode it's as easy as hitting `Alt + Shift +
-O` or choosing "Organize imports" from the command pallette.
+O` or choosing "Organize imports" from the command palette.
 
 ### No default exports
 
@@ -281,7 +281,7 @@ get in touch first and explain why it's necessary (in your humble opinion).
 
 ### Inter-repo dependencies
 
-Please use your best judgement before introducing a new dependency on
+Please use your best judgment before introducing a new dependency on
 another package within this repo and remember that even though these
 packages are developed under one "umbrella", the aim is NOT to form a
 tightly coupled framework. In general, it's absolutely fine to depend on
@@ -313,10 +313,10 @@ attention](https://github.com/thi-ng/umbrella/issues/154) (thanks to
 downstream workflows related to Babel transpilation and TypeScript's
 `isolatedModules` compilation feature. For that reason, that latter
 option is now enabled for all packages and exported `const enum`s are
-NOT to be used anymore in this project. The only exception are packages
-where `const enums` are used internally. For all others we have reverted
-to using normal `enum`s, but might introduce alternatives in the
-future...
+NOT to be used anymore in this project. The only exceptions are packages
+where `const enums` are used internally. For all others, we have
+reverted to using normal `enum`s, but might introduce alternatives in
+the future...
 
 ### Arrow functions preferred
 
@@ -374,7 +374,7 @@ const sort = <T>(coll: T[], opts: FooOpts<T>) => {
 
 ### Naming conventions
 
-These are not fully set in stone, but there's been recent effort
+These are not fully set in stone, but there's been a recent effort
 underway to unify naming conventions & patterns for several
 aspects/groups of functions / types:
 
@@ -420,7 +420,7 @@ interface TextureOpts {
 
 Not (yet?) used consistently, but in order to encourage a more function
 driven coding style (regardless of using some OOP concepts internally),
-functions which create some form of resource / object / class instance
+functions which create some form of resource/object/class instance
 *should* be using the `def` prefix (inspired by Clojure and other
 Lisps). For classes, this means adding a factory function delegating to
 the class constructor and potentially performing additional preparation
@@ -500,11 +500,11 @@ For others, the important rules are:
 
 ## Donations
 
-This this project has been in development since early 2016 (some
-packages even older). If you would like to support the continued
-development & ever increasing maintenance effort of this project, please
-consider a financial contribution (anything helps!) via any of the
-following channels:
+This project has been in development since early 2016 (some packages
+even older). If you would like to support the continued development &
+ever-increasing maintenance effort of this project, please consider a
+financial contribution (anything helps!) via any of the following
+channels:
 
 - [GitHub Sponsors](https://github.com/sponsors/postspectacular)
 - [Patreon](https://www.patreon.com/thing_umbrella)
