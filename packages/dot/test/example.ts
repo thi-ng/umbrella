@@ -16,6 +16,10 @@ const operator: Partial<dot.Node> = {
     outs: { out: "out" },
 };
 
+try {
+    fs.mkdirSync("export");
+} catch (e) {}
+
 fs.writeFileSync(
     "export/dot-example.dot",
     dot.serializeGraph({
