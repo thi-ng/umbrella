@@ -2,16 +2,47 @@
 
 Firstly, thanks for taking an interest in these projects!
 
-There're many ways you can contribute and help to improve these projects
-and help spread the word. This doc describes some guidelines for some of
-them.
+There're many ways you can contribute, help to improve these projects
+and spread the word. This doc describes some loose guidelines for some
+of them.
+
+<!-- TOC depthFrom:2 depthTo:3 -->
+
+- [Usage questions & issues](#usage-questions--issues)
+- [Documentation, examples & advocacy](#documentation-examples--advocacy)
+    - [Changes to readme files](#changes-to-readme-files)
+    - [Wiki additions, blog posts, examples](#wiki-additions-blog-posts-examples)
+    - [Small, standalone examples in the repo](#small-standalone-examples-in-the-repo)
+- [Contributing code](#contributing-code)
+    - [Fork it](#fork-it)
+    - [Create a feature branch](#create-a-feature-branch)
+    - [Commit your changes](#commit-your-changes)
+    - [Run & add tests](#run--add-tests)
+    - [Push to the branch](#push-to-the-branch)
+    - [Create new Pull Request](#create-new-pull-request)
+- [Code style guide](#code-style-guide)
+    - [Project layout](#project-layout)
+    - [Imports](#imports)
+    - [Sorted imports](#sorted-imports)
+    - [No default exports](#no-default-exports)
+    - [No 3rd party dependencies](#no-3rd-party-dependencies)
+    - [Inter-repo dependencies](#inter-repo-dependencies)
+    - [No exported `const enums`](#no-exported-const-enums)
+    - [Arrow functions preferred](#arrow-functions-preferred)
+    - [Function / ctor arguments](#function--ctor-arguments)
+    - [Naming conventions](#naming-conventions)
+    - [Doc strings](#doc-strings)
+    - [Formatting](#formatting)
+- [Donations](#donations)
+
+<!-- /TOC -->
 
 ## Usage questions & issues
 
-Please feel free to use the GH issue tracker for submitting any
+Please feel free to use the [GH issue
+tracker](https://github.com/thi-ng/umbrella/issues) for submitting any
 questions related to any package in this repo. When doing so, please
-also follow the instructions in the "new issue" template and use issue
-labels to tag your issue.
+also follow the instructions in the "new issue" template.
 
 When running into code troubles, please try to include a minimal
 reproducible example. If the example is too large for including in the
@@ -19,10 +50,25 @@ issue, please create a gist or repo and add a link to it.
 
 ## Documentation, examples & advocacy
 
-Documentation is still sparse in some areas, so any contributions in the
-form listed below are very welcome. I primarily can only work on this
-project in my spare time, so have to balance between adding new features
-(always my priority) & documentation whenever I can.
+Due to the wide scope of this project, documentation is still sparse in
+some areas, so any contributions in the form listed below are very
+welcome. I primarily can only work on this project in my spare time, so
+have to balance between adding new features (always my priority) &
+documentation whenever I can.
+
+Please also see further information about [doc strings in the source
+code](#doc-strings) below.
+
+### Changes to readme files
+
+The readme files for all packages are generated from their respective
+templated versions (`README.tpl.md` files). Please only ever edit the
+template and then re-generate the actual readme like so:
+
+```bash
+cd umbrella
+lerna run doc:readme --scope @thi.ng/<package-name>
+```
 
 ### Wiki additions, blog posts, examples
 
@@ -34,8 +80,8 @@ please do get in touch.
 
 ### Small, standalone examples in the repo
 
-"Learning by example" has been my life's motto. The ~60 examples
-included in the repo are each focused on a specific feature and kept
+"Learning by example" has been my life's motto. The ~85 examples
+included in the repo are each focused on specific features and kept
 quite lowkey for reasons of simplicity. Since many of the projects are
 meant to be integrated with other 3rd party projects, I'm always on the
 lookout for similar small demos showcasing these integrations (e.g. w/
@@ -45,22 +91,20 @@ The repo contains a generator bash script to create a new example
 project skeleton in the repo's `/examples` dir. Use it like below (and
 make sure the name isn't already taken :)
 
-```
+```bash
 cd umbrella
 scripts/make-example my-example
 
 cd examples/my-example
 ```
 
-(Note 1: the package versions used by this generator MIGHT be
-occasionally out-of-date)
+Currently, it's recommended to install
+[Parcel](https://github.com/parcel-bundler/parcel/) globally for running
+the example. Please consult the [example build
+instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions)
+in the wiki.
 
-(Note 2: **If you've cloned the repo and built all packages, DO NOT run
-`yarn install` in the example dir. `yarn start` will work without and
-re-use the built packages (irrespective of their version) in the project
-root**)
-
-FWIW I usually launch examples from the repo root like this:
+FWIW I usually launch examples from the repo root via a subshell:
 
 ```bash
 (cd examples/webgl-msdf && yarn start)
@@ -75,13 +119,14 @@ interweb), please also read the next section...
 always first submit an issue discussing any new feature or large
 refactoring before starting to code and submitting PRs. For small bug
 fixes or new examples it's usually fine without, though. I'm not trying
-to complicate things, but it's always good to first talk about larger
-contributions and there're also various feature branches, incl. some
-existing WIP relevant to your issue / proposal.
+to complicate things, but it's always a good idea to first talk about
+larger contributions and there're also various (sometime still
+unpublished) feature branches, incl. some existing WIP relevant to your
+issue / proposal...
 
 ### Fork it
 
-```
+```bash
 git clone https://github.com/thi-ng/umbrella.git
 cd umbrella
 
@@ -91,27 +136,36 @@ yarn build
 
 ### Create a feature branch
 
-**Always use `develop` as base branch!**
+**Always use `develop` as base branch, which also is the default branch
+of this repo...**
 
-```
+```bash
 git checkout -b feature/my-feature develop
 ```
 
 This repo is using the `git-flow` branching model and all new
 development should be done on feature branches based off the current
 `develop` branch. PR's submitted directly against the `master` branch
-MIGHT be refused.
+WILL be refused (with a few exceptions).
+
+With the `git-flow` CLI tool installed, you can also run:
+
+```bash
+git-flow feature start my-feature
+```
 
 ### Commit your changes
 
-```
+```bash
 git commit -am 'feat(module): description'
 ```
 
-**Please do use the [Convential Commits convention](https://conventionalcommits.org/) for
-your commit messages.** This format is used to generate changelogs and ensures consistency
-and better filtering. Since this is a mono repository the convention ensures commit messages
-can be easily mapped to their sub-project. Also see existing commits for reference
+**Please do use the [Convential Commits
+convention](https://conventionalcommits.org/) for your commit
+messages.** This format is used to generate changelogs and ensures
+consistency and better filtering. Since this is a mono repository the
+convention ensures commit messages can be easily mapped to their
+sub-project. Also see existing commits for reference
 ([example](https://github.com/thi-ng/umbrella/commit/ebbc4910f64c90df7bb93010a75307df51c80b6e)).
 
 The Conventional Commits classifiers/prefixes used in this project are:
@@ -119,6 +173,7 @@ The Conventional Commits classifiers/prefixes used in this project are:
 - `feat` - new feature
 - `fix` - bug fixes
 - `refactor` - refactoring
+- `test` - testing related
 - `perf` - any type of optimization (not just performance)
 - `build` - build/dependency related updates
 - `doc` - documentation related only (e.g. readme, doc strings...)
@@ -127,14 +182,29 @@ The Conventional Commits classifiers/prefixes used in this project are:
 
 ### Run & add tests
 
-I'm heavily using the node REPL during development and do much of my
+I'm heavily using the Node REPL during development and do much of my
 testing as part of that workflow. Still, I'm aware that this is no full
 replacement for a large suite of tests, therefore most packages do have
-a varying (and growing) number of unit tests. If you're adding a new
+a varying (but growing) number of unit tests. If you're adding a new
 feature (or think you've fixed a bug), please add some related tests (if
 possible) too for extra brownie points. Either add a new file under a
 project's `/test` dir or add / edit one of the existing test cases in
 there.
+
+Tests can be run via:
+
+```bash
+lerna run test --scope @thi.ng/<package-name>
+
+# or
+(cd packages/<package-name> && yarn test)
+
+# or all tests (from repo root)
+
+yarn test # also builds all packages first
+
+yarn test:only # assumes all packages have been build already
+```
 
 ### Push to the branch
 
@@ -150,10 +220,12 @@ Go to your fork on GH and create a PR.
 
 ### Project layout
 
-Most packages in this repo share this pattern:
+Unless the package is very small, all larger ones in this repo share this
+pattern:
 
 - `/src/index.ts` - only used for re-exports
-- `/src/api.ts` - interface, enum, type alias and module global consts definitions
+- `/src/api.ts` - interfaces, enums, type aliases & module global consts
+  definitions
 - `/test` - Mocha unit tests
 
 In larger packages (e.g.
@@ -162,12 +234,18 @@ topically related files are grouped in sub-folders under `/src`.
 
 ### Imports
 
-To encourage small(er) file sizes of production artefacts most source
+To encourage small(er) file sizes of production artefacts, most source
 files are organized to only contain a small number of related functions
 / classes. Package internal imports MUST always refer to the actual
 source file, whereas imports from other packages MUST only use the
 package name. This is because of the way each package is built and
 output in 3 different module formats (ES6, CJS, UMD).
+
+### Sorted imports
+
+Please ensure you're updating the list imports in changed files to be
+sorted by package name. In VSCode it's as easy as hitting `Alt + Shift +
+O` or choosing "Organize imports" from the command pallette.
 
 ### No default exports
 
@@ -181,24 +259,236 @@ too cause inconsistencies compared to the above named import pattern.
 Unless absolutely warranted. Yes, this is somewhat a case of
 _Not-Invented-Here_, but here done for reasons of sanity & clarity, not
 to prove a point. If you plan to submit code with 3rd party deps, please
-get in touch first and explain why it's necessary IYHO.
+get in touch first and explain why it's necessary (in your humble opinion).
 
-### 4 spaces
+### Inter-repo dependencies
 
-Sorry tab folk :)
+Please use your best judgement before introducing a new dependency on
+another package within this repo and remember that even though these
+packages are developed under one "umbrella", the aim is NOT to form a
+tightly coupled framework. In general, it's absolutely fine to depend on
+any of the "low level" packages, e.g.
 
-### Misc
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
+- [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/develop/packages/compare)
+- [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/develop/packages/compose)
+- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
+- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
+- [@thi.ng/defmulti](http://github.com/thi-ng/umbrella/tree/develop/packages/defmulti) etc.
 
-Personally I use VSCode with TSLint's recommended rules
+...since these are purely existing for providing general plumbing and
+are primarily meant for wide re-use. However, consider if adding a
+dependency on one of the larger packages (e.g.
+[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers),
+[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom))
+is absolutely required / beneficial.
+
+If in doubt, please ask first...
+
+### No exported `const enums`
+
+It has been [brought to my
+attention](https://github.com/thi-ng/umbrella/issues/154) (thanks to
+@Bnaya) that exported `const enums` negatively interfere with some
+downstream workflows related to Babel transpilation and TypeScript's
+`isolatedModules` compilation feature. For that reason, that latter
+option is now enabled for all packages and exported `const enum`s are
+NOT to be used anymore in this project. The only exception are packages
+where `const enums` are used internally. For all others we have reverted
+to using normal `enum`s, but might introduce alternatives in the
+future...
+
+### Arrow functions preferred
+
+Again, this is highly subjective - but unless a function requires
+overrides, please use arrow functions for succinctness and avoidance of
+potential scoping issues.
+
+```ts
+const add = (a: number, b: number) => a + b;
+
+// vs.
+
+function add(xs: Iterable<number>): number;
+function add(a: number, b: number): number;
+function add(a: any, b?: number): number {
+    if (typeof a === "number") {
+        return a + b;
+    }
+    let sum = 0;
+    for (let x of a) {
+        sum += x;
+    }
+    return sum;
+};
+```
+
+### Function / ctor arguments
+
+If a function or constructor takes multiple optional arguments, please
+consider using a typed options argument instead of positional args. This
+pattern is used in various existing packages already and involves
+introducing a new `interface` for the options (see [naming
+conventions](#naming-conventions)), e.g.:
+
+```ts
+import type { Fn, Comparator } from "@thi.ng/api";
+
+// type arg is optional / context specific
+interface SortOpts<T> {
+    /**
+     * Key extractor
+     */
+    key: Fn<A, number>;
+    /**
+     * Optional comparator
+     */
+    cmp?: Comparator<number>;
+}
+
+const sort = <T>(coll: T[], opts: FooOpts<T>) => {
+    const cmp = opts.cmp || ((a, b) => a - b);
+    return coll.sort((a, b) => cmp(opts.key(a), opts.key(b)));
+};
+```
+
+### Naming conventions
+
+These are not fully set in stone, but there's been recent effort
+underway to unify naming conventions & patterns for several
+aspects/groups of functions / types:
+
+#### General naming
+
+Prefer short (though not cryptic) names over
+`highlyDescriptiveLongCompoundName` style variable (or function) names,
+which completely destroy formatting and resulting code comprehension (a
+kind of counter-effect of the supposedly more descriptive longer name).
+
+- Packages: `lower-kebab-case`
+- Classes: capitalized `CamelCase`
+- Functions, class methods & Variables: lower-initial `camelCase`
+- Exported constants: `UPPER_SNAKE_CASE`
+- Enums:
+    - type name itself: capitalized `CamelCase`
+    - constants: `UPPER_SNAKE_CASE`
+
+#### Interfaces
+
+If the interface is primarily defining a set of operations, we prefix
+its name with `I` to distinguish it from a data descriptor.
+
+```ts
+interface IBind<T> {
+    bind(opts: T): boolean;
+    unbind(): boolean;
+}
+
+interface BindOpts {
+    texID: string;
+    texOpts: TextureOpts;
+}
+
+interface TextureOpts {
+    filter: Filter;
+    wrap: WrapMode;
+    ...
+}
+```
+
+#### Factory functions
+
+Not (yet?) used consistently, but in order to encourage a more function
+driven coding style (regardless of using some OOP concepts internally),
+functions which create some form of resource / object / class instance
+*should* be using the `def` prefix (inspired by Clojure and other
+Lisps). For classes, this means adding a factory function delegating to
+the class constructor and potentially performing additional preparation
+tasks. This is not just done for stylistic reasons, but also to work
+around the limitation of not being able to provide overrides for class
+ctors (however function overrides are supported, of course).
+
+```ts
+/**
+ * Returns a new {@link Particle} instance with given initial position
+ *
+ * @param pos - initial position
+ */
+export const defParticle = (pos: Vec) => new Particle(pos);
+
+export class Particle {
+    constructor(public pos: Vec) {}
+}
+
+// usage
+
+const particles = [[0, 0], [1, 0], [2, 0]].map(defParticle);
+
+// vs
+
+const particles = [[0, 0], [1, 0], [2, 0]].map((p) => new Particle(p));
+```
+
+There're other situations (e.g.
+[@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
+or
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream))
+where this naming convention is not making much sense, but the above is
+the currently *preferred* approach. Not dogma!
+
+Standalone factory functions are also favored over `static` class
+methods (though some are currently still in use, soon to be refactored).
+
+#### Options objects
+
+As stated [above](#function--ctor-arguments), interfaces describing a
+collection of optional function / ctor arguments should always be
+suffixed with `Opts`.
+
+### Doc strings
+
+In 2019 we refactored doc strings across all 120+ packages to become an
+early adopter of the [TSDoc](https://github.com/microsoft/tsdoc)
+documentation standard and [API extractor](https://api-extractor.com/)
+toolchain, both developed by Microsoft.
+
+Whilst that tooling is still WIP, please familiarize yourself with the
+available documentation tags and use the format when adding/updating doc
+strings.
+
+There's been some initial work done on generating a better documentation
+site than the current [docs.thi.ng](https://docs.thi.ng), but currently
+on hold until the TSDoc standard is finalized / stable...
+
+More discussion & context can be found in [this issue](https://github.com/thi-ng/umbrella/issues/174).
+
+### Formatting
+
+All source code is to be formatted with [Prettier](https://prettier.io)
+and a config file is included in the repo root.
+
+If you're using VSCode, I recommend installing the [Prettier
+extension](https://github.com/prettier/prettier-vscode) and configuring
+it to auto-format on save.
+
+For others, the important rules are:
+
+- 4 spaces, no tabs (sorry!)
+- semicolons enabled
+- unix line breaks
 
 ## Donations
 
-I've been developing this project (as well as several large other open
-source projects since the late '90s) in my spare time since early 2016
-(some packages even older). If you would like to support the continued
-development of this project, your donations to the following addresses
-would be greatly appreciated:
+This this project has been in development since early 2016 (some
+packages even older). If you would like to support the continued
+development & ever increasing maintenance effort of this project, please
+consider a financial contribution (anything helps!) via any of the
+following channels:
 
+- [GitHub Sponsors](https://github.com/sponsors/postspectacular)
+- [Patreon](https://www.patreon.com/thing_umbrella)
 - BTC: 132aMfzNypBPgEy4Lz2tPQsKGimixdFrsb
 - LTC: LMyfhJoXTq62W9zvUBvk9o6pCDZJx12dPV
 - ETH: 0x8530bD57cCfCD5e95939E5bA3d81D8c9C9581941
