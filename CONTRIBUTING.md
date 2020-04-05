@@ -20,7 +20,7 @@ of them.
     - [Create a feature branch](#create-a-feature-branch)
     - [Commit your changes](#commit-your-changes)
     - [Run & add tests](#run--add-tests)
-    - [Push to the branch](#push-to-the-branch)
+    - [Push to your feature branch](#push-to-your-feature-branch)
     - [Create new Pull Request](#create-new-pull-request)
 - [Code style guide](#code-style-guide)
     - [Project layout](#project-layout)
@@ -28,7 +28,7 @@ of them.
     - [Sorted imports](#sorted-imports)
     - [No default exports](#no-default-exports)
     - [No 3rd party dependencies](#no-3rd-party-dependencies)
-    - [Inter-repo dependencies](#inter-repo-dependencies)
+    - [Intra-repo dependencies](#intra-repo-dependencies)
     - [No exported `const enums`](#no-exported-const-enums)
     - [Arrow functions preferred](#arrow-functions-preferred)
     - [Function / ctor arguments](#function--ctor-arguments)
@@ -154,6 +154,10 @@ yarn build
 
 ### Create a feature branch
 
+Creating feature branches is only needed for adding new code or larger
+fixes/refactoring. If you're only updating some docs or other minor
+fixes you can work on your own `develop` branch directly...
+
 **Always use `develop` as base branch, which also is the default branch
 of this repo...**
 
@@ -224,7 +228,7 @@ yarn test # also builds all packages first
 yarn test:only # assumes all packages have been build already
 ```
 
-### Push to the branch
+### Push to your feature branch
 
 ```
 git push origin feature/my-feature
@@ -232,7 +236,8 @@ git push origin feature/my-feature
 
 ### Create new Pull Request
 
-Go to your fork on GH and create a PR.
+Go to your fork on GH and create a PR. If there's no prior issue related
+to the PR, please make sure you explain its purpose.
 
 ## Code style guide
 
@@ -261,8 +266,8 @@ output in 3 different module formats (ES6, CJS, UMD).
 
 ### Sorted imports
 
-Please ensure you're updating the list imports in changed files to be
-sorted by package name. In VSCode it's as easy as hitting `Alt + Shift +
+Please ensure you're updating the list of imports in changed files to be
+sorted by package name. In VSCode it's as easy as hitting `Shift + Alt +
 O` or choosing "Organize imports" from the command palette.
 
 ### No default exports
@@ -279,7 +284,7 @@ _Not-Invented-Here_, but here done for reasons of sanity & clarity, not
 to prove a point. If you plan to submit code with 3rd party deps, please
 get in touch first and explain why it's necessary (in your humble opinion).
 
-### Inter-repo dependencies
+### Intra-repo dependencies
 
 Please use your best judgment before introducing a new dependency on
 another package within this repo and remember that even though these
