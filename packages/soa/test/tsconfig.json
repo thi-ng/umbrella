@@ -3,6 +3,7 @@
     "compilerOptions": {
         "outDir": "../build",
         "module": "commonjs",
+        "isolatedModules": false,
         "noUnusedParameters": false,
         "noUnusedLocals": false
     },

@@ -3,6 +3,7 @@
     "compilerOptions": {
         "outDir": "../build",
         "module": "commonjs",
+        "isolatedModules": false,
         "noImplicitThis": false
     },
     "include": ["./**/*.ts", "../src/**/*.ts"]
