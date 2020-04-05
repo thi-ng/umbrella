@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/range-coder](https://media.thi.ng/umbrella/banners/thing-range-coder.svg?1585427370)
+# ![range-coder](https://media.thi.ng/umbrella/banners/thing-range-coder.svg?c1c2b462)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/range-coder.svg)](https://www.npmjs.com/package/@thi.ng/range-coder)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/range-coder.svg)
@@ -38,7 +38,7 @@ by Joe Halliwell](https://www.winterwell.com/software/compressor.php).
 yarn add @thi.ng/range-coder
 ```
 
-Package sizes (gzipped): ESM: 670 bytes / CJS: 725 bytes / UMD: 762 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 670 bytes / CJS: 725 bytes / UMD: 762 bytes
 
 ## Dependencies
 

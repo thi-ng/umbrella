@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/compose](https://media.thi.ng/umbrella/banners/thing-compose.svg?1585427315)
+# ![compose](https://media.thi.ng/umbrella/banners/thing-compose.svg?591a5769)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/compose.svg)](https://www.npmjs.com/package/@thi.ng/compose)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/compose.svg)
@@ -31,7 +31,7 @@ Optimized functional composition helpers.
 yarn add @thi.ng/compose
 ```
 
-Package sizes (gzipped): ESM: 812 bytes / CJS: 915 bytes / UMD: 935 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 812 bytes / CJS: 915 bytes / UMD: 935 bytes
 
 ## Dependencies
 

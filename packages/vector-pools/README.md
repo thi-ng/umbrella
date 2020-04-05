@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/vector-pools](https://media.thi.ng/umbrella/banners/thing-vector-pools.svg?1585427401)
+# ![vector-pools](https://media.thi.ng/umbrella/banners/thing-vector-pools.svg?4ebed464)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/vector-pools.svg)](https://www.npmjs.com/package/@thi.ng/vector-pools)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/vector-pools.svg)
@@ -59,7 +59,7 @@ This package might be merged with and/or superseded by
 yarn add @thi.ng/vector-pools
 ```
 
-Package sizes (gzipped): ESM: 3.05 KB / CJS: 3.12 KB / UMD: 3.18 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.06 KB / CJS: 3.12 KB / UMD: 3.19 KB
 
 ## Dependencies
 

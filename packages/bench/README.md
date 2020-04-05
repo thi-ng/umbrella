@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/bench](https://media.thi.ng/umbrella/banners/thing-bench.svg?1585923551)
+# ![bench](https://media.thi.ng/umbrella/banners/thing-bench.svg?b7925630)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/bench.svg)](https://www.npmjs.com/package/@thi.ng/bench)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/bench.svg)
@@ -41,7 +41,7 @@ still only sourced via `Date.now()`.
 yarn add @thi.ng/bench
 ```
 
-Package sizes (gzipped): ESM: 685 bytes / CJS: 746 bytes / UMD: 812 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 685 bytes / CJS: 746 bytes / UMD: 812 bytes
 
 ## Dependencies
 

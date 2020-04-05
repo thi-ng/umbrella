@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/interceptors](https://media.thi.ng/umbrella/banners/thing-interceptors.svg?1585427350)
+# ![interceptors](https://media.thi.ng/umbrella/banners/thing-interceptors.svg?4a03c1f3)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/interceptors.svg)](https://www.npmjs.com/package/@thi.ng/interceptors)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/interceptors.svg)
@@ -124,7 +124,7 @@ commented source code and examples for now:
 yarn add @thi.ng/interceptors
 ```
 
-Package sizes (gzipped): ESM: 2.16 KB / CJS: 2.29 KB / UMD: 2.23 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.16 KB / CJS: 2.29 KB / UMD: 2.23 KB
 
 ## Dependencies
 

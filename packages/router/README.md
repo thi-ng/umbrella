@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/router](https://media.thi.ng/umbrella/banners/thing-router.svg?1585427333)
+# ![router](https://media.thi.ng/umbrella/banners/thing-router.svg?c0bc2f6b)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/router.svg)](https://www.npmjs.com/package/@thi.ng/router)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/router.svg)
@@ -45,7 +45,7 @@ Partially based on the Clojure implementation in
 yarn add @thi.ng/router
 ```
 
-Package sizes (gzipped): ESM: 1.50 KB / CJS: 1.55 KB / UMD: 1.64 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.50 KB / CJS: 1.55 KB / UMD: 1.64 KB
 
 ## Dependencies
 

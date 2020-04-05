@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/dlogic](https://media.thi.ng/umbrella/banners/thing-dlogic.svg?1585427306)
+# ![dlogic](https://media.thi.ng/umbrella/banners/thing-dlogic.svg?687b26ef)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dlogic.svg)](https://www.npmjs.com/package/@thi.ng/dlogic)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dlogic.svg)
@@ -38,7 +38,7 @@ for binary versions of most of the ops provided by this package.
 yarn add @thi.ng/dlogic
 ```
 
-Package sizes (gzipped): ESM: 378 bytes / CJS: 478 bytes / UMD: 514 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 378 bytes / CJS: 478 bytes / UMD: 514 bytes
 
 ## Dependencies
 

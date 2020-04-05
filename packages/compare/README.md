@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/compare](https://media.thi.ng/umbrella/banners/thing-compare.svg?1585427314)
+# ![compare](https://media.thi.ng/umbrella/banners/thing-compare.svg?8890b7ed)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/compare.svg)](https://www.npmjs.com/package/@thi.ng/compare)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/compare.svg)
@@ -42,7 +42,7 @@ comparator. See examples below.
 yarn add @thi.ng/compare
 ```
 
-Package sizes (gzipped): ESM: 350 bytes / CJS: 427 bytes / UMD: 464 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 350 bytes / CJS: 427 bytes / UMD: 464 bytes
 
 ## Dependencies
 

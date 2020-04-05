@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/memoize](https://media.thi.ng/umbrella/banners/thing-memoize.svg?1585427323)
+# ![memoize](https://media.thi.ng/umbrella/banners/thing-memoize.svg?fab914f9)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/memoize.svg)](https://www.npmjs.com/package/@thi.ng/memoize)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/memoize.svg)
@@ -46,7 +46,7 @@ based on different strategies. See doc strings for further details.
 yarn add @thi.ng/memoize
 ```
 
-Package sizes (gzipped): ESM: 254 bytes / CJS: 305 bytes / UMD: 376 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 254 bytes / CJS: 305 bytes / UMD: 376 bytes
 
 ## Dependencies
 

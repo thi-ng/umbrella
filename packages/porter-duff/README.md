@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/porter-duff](https://media.thi.ng/umbrella/banners/thing-porter-duff.svg?1585427323)
+# ![porter-duff](https://media.thi.ng/umbrella/banners/thing-porter-duff.svg?418f9b00)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/porter-duff.svg)](https://www.npmjs.com/package/@thi.ng/porter-duff)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/porter-duff.svg)
@@ -58,7 +58,7 @@ ints or RGBA float vectors.
 yarn add @thi.ng/porter-duff
 ```
 
-Package sizes (gzipped): ESM: 998 bytes / CJS: 1.16 KB / UMD: 1.13 KB
+Package sizes (gzipped, pre-treeshake): ESM: 998 bytes / CJS: 1.16 KB / UMD: 1.13 KB
 
 ## Dependencies
 

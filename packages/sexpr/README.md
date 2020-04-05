@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/sexpr](https://media.thi.ng/umbrella/banners/thing-sexpr.svg?1585427342)
+# ![sexpr](https://media.thi.ng/umbrella/banners/thing-sexpr.svg?0424b595)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/sexpr.svg)](https://www.npmjs.com/package/@thi.ng/sexpr)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/sexpr.svg)
@@ -48,7 +48,7 @@ Everything else is parsed as is, i.e. as symbol.
 yarn add @thi.ng/sexpr
 ```
 
-Package sizes (gzipped): ESM: 829 bytes / CJS: 892 bytes / UMD: 976 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 829 bytes / CJS: 892 bytes / UMD: 976 bytes
 
 ## Dependencies
 

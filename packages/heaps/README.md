@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/heaps](https://media.thi.ng/umbrella/banners/thing-heaps.svg?1585427334)
+# ![heaps](https://media.thi.ng/umbrella/banners/thing-heaps.svg?bbf868b8)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/heaps.svg)](https://www.npmjs.com/package/@thi.ng/heaps)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/heaps.svg)
@@ -36,7 +36,7 @@ additional operations.
 yarn add @thi.ng/heaps
 ```
 
-Package sizes (gzipped): ESM: 1.52 KB / CJS: 1.58 KB / UMD: 1.66 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.52 KB / CJS: 1.58 KB / UMD: 1.66 KB
 
 ## Dependencies
 

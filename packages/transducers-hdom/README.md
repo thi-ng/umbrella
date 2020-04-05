@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/transducers-hdom](https://media.thi.ng/umbrella/banners/thing-transducers-hdom.svg?1585427381)
+# ![transducers-hdom](https://media.thi.ng/umbrella/banners/thing-transducers-hdom.svg?203f11e2)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-hdom.svg)](https://www.npmjs.com/package/@thi.ng/transducers-hdom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-hdom.svg)
@@ -67,7 +67,7 @@ Please also see the following hdom references for further details:
 yarn add @thi.ng/transducers-hdom
 ```
 
-Package sizes (gzipped): ESM: 291 bytes / CJS: 343 bytes / UMD: 454 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 291 bytes / CJS: 343 bytes / UMD: 454 bytes
 
 ## Dependencies
 

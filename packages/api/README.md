@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/api](https://media.thi.ng/umbrella/banners/thing-api.svg?1585427305)
+# ![api](https://media.thi.ng/umbrella/banners/thing-api.svg?56b8f72e)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/api.svg)](https://www.npmjs.com/package/@thi.ng/api)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/api.svg)
@@ -44,7 +44,7 @@ repository. It defines:
 yarn add @thi.ng/api
 ```
 
-Package sizes (gzipped): ESM: 1.97 KB / CJS: 2.07 KB / UMD: 2.05 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.01 KB / CJS: 2.14 KB / UMD: 2.12 KB
 
 ## Dependencies
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/ramp](https://media.thi.ng/umbrella/banners/thing-ramp.svg?1585427400)
+# ![ramp](https://media.thi.ng/umbrella/banners/thing-ramp.svg?948b09be)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/ramp.svg)](https://www.npmjs.com/package/@thi.ng/ramp)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/ramp.svg)
@@ -32,7 +32,7 @@ Parametric interpolated 1D lookup tables for remapping values.
 yarn add @thi.ng/ramp
 ```
 
-Package sizes (gzipped): ESM: 966 bytes / CJS: 1.01 KB / UMD: 1.10 KB
+Package sizes (gzipped, pre-treeshake): ESM: 966 bytes / CJS: 1.01 KB / UMD: 1.10 KB
 
 ## Dependencies
 

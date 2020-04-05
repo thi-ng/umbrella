@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/webgl-msdf](https://media.thi.ng/umbrella/banners/thing-webgl-msdf.svg?1585427445)
+# ![webgl-msdf](https://media.thi.ng/umbrella/banners/thing-webgl-msdf.svg?4873cdf9)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/webgl-msdf.svg)](https://www.npmjs.com/package/@thi.ng/webgl-msdf)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/webgl-msdf.svg)
@@ -45,7 +45,7 @@ McCurdy's](https://msdf-bmfont.donmccurdy.com/).
 yarn add @thi.ng/webgl-msdf
 ```
 
-Package sizes (gzipped): ESM: 1.46 KB / CJS: 1.51 KB / UMD: 1.56 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.48 KB / CJS: 1.52 KB / UMD: 1.58 KB
 
 ## Dependencies
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/sparse](https://media.thi.ng/umbrella/banners/thing-sparse.svg?1585427370)
+# ![sparse](https://media.thi.ng/umbrella/banners/thing-sparse.svg?d79a46b0)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/sparse.svg)](https://www.npmjs.com/package/@thi.ng/sparse)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/sparse.svg)
@@ -31,7 +31,7 @@ Sparse vector & matrix implementations.
 yarn add @thi.ng/sparse
 ```
 
-Package sizes (gzipped): ESM: 3.52 KB / CJS: 3.60 KB / UMD: 3.66 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.52 KB / CJS: 3.60 KB / UMD: 3.66 KB
 
 ## Dependencies
 

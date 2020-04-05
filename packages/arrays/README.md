@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/arrays](https://media.thi.ng/umbrella/banners/thing-arrays.svg?1585427344)
+# ![arrays](https://media.thi.ng/umbrella/banners/thing-arrays.svg?f87eb97c)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/arrays.svg)](https://www.npmjs.com/package/@thi.ng/arrays)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/arrays.svg)
@@ -32,7 +32,7 @@ Array / Arraylike utilities.
 yarn add @thi.ng/arrays
 ```
 
-Package sizes (gzipped): ESM: 1.73 KB / CJS: 1.88 KB / UMD: 1.87 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.73 KB / CJS: 1.88 KB / UMD: 1.87 KB
 
 ## Dependencies
 

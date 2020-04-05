@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/vectors](https://media.thi.ng/umbrella/banners/thing-vectors.svg?1585427370)
+# ![vectors](https://media.thi.ng/umbrella/banners/thing-vectors.svg?1e5a5374)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/vectors.svg)
@@ -144,7 +144,7 @@ Partially ported from [thi.ng/geom](http://thi.ng/geom) (Clojure) and
 yarn add @thi.ng/vectors
 ```
 
-Package sizes (gzipped): ESM: 10.88 KB / CJS: 13.71 KB / UMD: 12.06 KB
+Package sizes (gzipped, pre-treeshake): ESM: 10.88 KB / CJS: 13.71 KB / UMD: 12.06 KB
 
 ## Dependencies
 

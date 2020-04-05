@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/pointfree](https://media.thi.ng/umbrella/banners/thing-pointfree.svg?1585510705)
+# ![pointfree](https://media.thi.ng/umbrella/banners/thing-pointfree.svg?e49713a7)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pointfree.svg)](https://www.npmjs.com/package/@thi.ng/pointfree)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pointfree.svg)
@@ -193,7 +193,7 @@ non-linear control flow.
 yarn add @thi.ng/pointfree
 ```
 
-Package sizes (gzipped): ESM: 3.23 KB / CJS: 3.75 KB / UMD: 3.52 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.23 KB / CJS: 3.75 KB / UMD: 3.52 KB
 
 ## Dependencies
 

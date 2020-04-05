@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-arc](https://media.thi.ng/umbrella/banners/thing-geom-arc.svg?1585427432)
+# ![geom-arc](https://media.thi.ng/umbrella/banners/thing-geom-arc.svg?a48f536c)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-arc.svg)](https://www.npmjs.com/package/@thi.ng/geom-arc)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-arc.svg)
@@ -31,7 +31,7 @@ This project is part of the
 yarn add @thi.ng/geom-arc
 ```
 
-Package sizes (gzipped): ESM: 1.01 KB / CJS: 1.06 KB / UMD: 1.15 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.01 KB / CJS: 1.06 KB / UMD: 1.15 KB
 
 ## Dependencies
 

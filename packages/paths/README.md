@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/paths](https://media.thi.ng/umbrella/banners/thing-paths.svg?1585427333)
+# ![paths](https://media.thi.ng/umbrella/banners/thing-paths.svg?a0959fc0)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/paths.svg)](https://www.npmjs.com/package/@thi.ng/paths)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/paths.svg)
@@ -67,7 +67,7 @@ and their value type inferred as `any`.
 yarn add @thi.ng/paths
 ```
 
-Package sizes (gzipped): ESM: 1.09 KB / CJS: 1.19 KB / UMD: 1.14 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.09 KB / CJS: 1.19 KB / UMD: 1.14 KB
 
 ## Dependencies
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/quad-edge](https://media.thi.ng/umbrella/banners/thing-quad-edge.svg?1585427313)
+# ![quad-edge](https://media.thi.ng/umbrella/banners/thing-quad-edge.svg?3ba71775)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/quad-edge.svg)](https://www.npmjs.com/package/@thi.ng/quad-edge)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/quad-edge.svg)
@@ -49,7 +49,7 @@ Reference:
 yarn add @thi.ng/quad-edge
 ```
 
-Package sizes (gzipped): ESM: 495 bytes / CJS: 553 bytes / UMD: 641 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 495 bytes / CJS: 553 bytes / UMD: 641 bytes
 
 ## Dependencies
 

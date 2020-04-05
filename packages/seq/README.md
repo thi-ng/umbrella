@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/seq](https://media.thi.ng/umbrella/banners/thing-seq.svg?1585427334)
+# ![seq](https://media.thi.ng/umbrella/banners/thing-seq.svg?323fc66f)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/seq.svg)](https://www.npmjs.com/package/@thi.ng/seq)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/seq.svg)
@@ -44,7 +44,7 @@ the remaining values at their own pace.
 yarn add @thi.ng/seq
 ```
 
-Package sizes (gzipped): ESM: 537 bytes / CJS: 623 bytes / UMD: 669 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 537 bytes / CJS: 623 bytes / UMD: 669 bytes
 
 ## Dependencies
 

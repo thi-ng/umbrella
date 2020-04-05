@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/dgraph-dot](https://media.thi.ng/umbrella/banners/thing-dgraph-dot.svg?1585923697)
+# ![dgraph-dot](https://media.thi.ng/umbrella/banners/thing-dgraph-dot.svg?b35ed4d0)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dgraph-dot.svg)](https://www.npmjs.com/package/@thi.ng/dgraph-dot)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dgraph-dot.svg)
@@ -39,7 +39,7 @@ readme & source code for visualization options.
 yarn add @thi.ng/dgraph-dot
 ```
 
-Package sizes (gzipped): ESM: 241 bytes / CJS: 292 bytes / UMD: 393 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 241 bytes / CJS: 292 bytes / UMD: 393 bytes
 
 ## Dependencies
 

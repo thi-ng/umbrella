@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/pixel](https://media.thi.ng/umbrella/banners/thing-pixel.svg?1585427343)
+# ![pixel](https://media.thi.ng/umbrella/banners/thing-pixel.svg?c62147b1)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pixel.svg)
@@ -99,7 +99,7 @@ Format specs can freely control channel layout within current limits:
 yarn add @thi.ng/pixel
 ```
 
-Package sizes (gzipped): ESM: 3.08 KB / CJS: 3.22 KB / UMD: 3.21 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.13 KB / CJS: 3.28 KB / UMD: 3.26 KB
 
 ## Dependencies
 

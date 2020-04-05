@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-isoline](https://media.thi.ng/umbrella/banners/thing-geom-isoline.svg?1585427391)
+# ![geom-isoline](https://media.thi.ng/umbrella/banners/thing-geom-isoline.svg?f315a527)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-isoline.svg)](https://www.npmjs.com/package/@thi.ng/geom-isoline)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-isoline.svg)
@@ -35,7 +35,7 @@ the Clojure version of
 yarn add @thi.ng/geom-isoline
 ```
 
-Package sizes (gzipped): ESM: 753 bytes / CJS: 818 bytes / UMD: 862 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 753 bytes / CJS: 818 bytes / UMD: 862 bytes
 
 ## Dependencies
 

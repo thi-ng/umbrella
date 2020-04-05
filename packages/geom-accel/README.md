@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-accel](https://media.thi.ng/umbrella/banners/thing-geom-accel.svg?1585427431)
+# ![geom-accel](https://media.thi.ng/umbrella/banners/thing-geom-accel.svg?63dfd9f0)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-accel.svg)](https://www.npmjs.com/package/@thi.ng/geom-accel)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-accel.svg)
@@ -46,7 +46,7 @@ Currently available:
 yarn add @thi.ng/geom-accel
 ```
 
-Package sizes (gzipped): ESM: 2.85 KB / CJS: 2.93 KB / UMD: 2.92 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.85 KB / CJS: 2.93 KB / UMD: 2.92 KB
 
 ## Dependencies
 

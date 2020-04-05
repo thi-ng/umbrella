@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-resample](https://media.thi.ng/umbrella/banners/thing-geom-resample.svg?1585427421)
+# ![geom-resample](https://media.thi.ng/umbrella/banners/thing-geom-resample.svg?7fa0e99f)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-resample.svg)](https://www.npmjs.com/package/@thi.ng/geom-resample)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-resample.svg)
@@ -39,7 +39,7 @@ Current implementations partially based on
 yarn add @thi.ng/geom-resample
 ```
 
-Package sizes (gzipped): ESM: 1.21 KB / CJS: 1.27 KB / UMD: 1.37 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.21 KB / CJS: 1.27 KB / UMD: 1.37 KB
 
 ## Dependencies
 

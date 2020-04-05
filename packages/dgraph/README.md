@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/dgraph](https://media.thi.ng/umbrella/banners/thing-dgraph.svg?1585923666)
+# ![dgraph](https://media.thi.ng/umbrella/banners/thing-dgraph.svg?55059134)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dgraph.svg)](https://www.npmjs.com/package/@thi.ng/dgraph)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dgraph.svg)
@@ -47,7 +47,7 @@ maps & sets as backend.
 yarn add @thi.ng/dgraph
 ```
 
-Package sizes (gzipped): ESM: 790 bytes / CJS: 850 bytes / UMD: 959 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 790 bytes / CJS: 850 bytes / UMD: 959 bytes
 
 ## Dependencies
 

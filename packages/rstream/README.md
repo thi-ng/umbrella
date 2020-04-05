@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/rstream](https://media.thi.ng/umbrella/banners/thing-rstream.svg?1585427410)
+# ![rstream](https://media.thi.ng/umbrella/banners/thing-rstream.svg?ab63c74c)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream.svg)](https://www.npmjs.com/package/@thi.ng/rstream)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream.svg)
@@ -128,7 +128,7 @@ options](#common-configuration-options) for further details.
 yarn add @thi.ng/rstream
 ```
 
-Package sizes (gzipped): ESM: 5.05 KB / CJS: 5.22 KB / UMD: 5.13 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.09 KB / CJS: 5.27 KB / UMD: 5.21 KB
 
 ## Dependencies
 

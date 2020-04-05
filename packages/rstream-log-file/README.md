@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/rstream-log-file](https://media.thi.ng/umbrella/banners/thing-rstream-log-file.svg?1585427430)
+# ![rstream-log-file](https://media.thi.ng/umbrella/banners/thing-rstream-log-file.svg?673a4b35)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-log-file.svg)](https://www.npmjs.com/package/@thi.ng/rstream-log-file)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-log-file.svg)
@@ -31,7 +31,7 @@ File output handler for structured, multilevel & hierarchical loggers based on [
 yarn add @thi.ng/rstream-log-file
 ```
 
-Package sizes (gzipped): ESM: 129 bytes / CJS: 182 bytes / UMD: 282 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 129 bytes / CJS: 182 bytes / UMD: 282 bytes
 
 ## Dependencies
 

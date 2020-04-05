@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/rstream-csp](https://media.thi.ng/umbrella/banners/thing-rstream-csp.svg?1585427422)
+# ![rstream-csp](https://media.thi.ng/umbrella/banners/thing-rstream-csp.svg?3eb98532)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-csp.svg)](https://www.npmjs.com/package/@thi.ng/rstream-csp)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-csp.svg)
@@ -40,7 +40,7 @@ and synchronous stream subscriptions/transformations of
 yarn add @thi.ng/rstream-csp
 ```
 
-Package sizes (gzipped): ESM: 249 bytes / CJS: 305 bytes / UMD: 405 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 249 bytes / CJS: 305 bytes / UMD: 405 bytes
 
 ## Dependencies
 

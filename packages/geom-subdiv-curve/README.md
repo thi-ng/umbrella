@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-subdiv-curve](https://media.thi.ng/umbrella/banners/thing-geom-subdiv-curve.svg?1585427411)
+# ![geom-subdiv-curve](https://media.thi.ng/umbrella/banners/thing-geom-subdiv-curve.svg?97e73b93)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-subdiv-curve.svg)](https://www.npmjs.com/package/@thi.ng/geom-subdiv-curve)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-subdiv-curve.svg)
@@ -48,7 +48,7 @@ Supplied / implemented subdivision schemes:
 yarn add @thi.ng/geom-subdiv-curve
 ```
 
-Package sizes (gzipped): ESM: 641 bytes / CJS: 722 bytes / UMD: 767 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 641 bytes / CJS: 722 bytes / UMD: 767 bytes
 
 ## Dependencies
 

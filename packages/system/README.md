@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/system](https://media.thi.ng/umbrella/banners/thing-system.svg?1585922746)
+# ![system](https://media.thi.ng/umbrella/banners/thing-system.svg?3fb5a02c)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/system.svg)](https://www.npmjs.com/package/@thi.ng/system)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/system.svg)
@@ -37,7 +37,7 @@ Clojure/ClojureScript.
 yarn add @thi.ng/system
 ```
 
-Package sizes (gzipped): ESM: 415 bytes / CJS: 471 bytes / UMD: 570 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 415 bytes / CJS: 471 bytes / UMD: 570 bytes
 
 ## Dependencies
 

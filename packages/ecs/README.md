@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/ecs](https://media.thi.ng/umbrella/banners/thing-ecs.svg?1585427410)
+# ![ecs](https://media.thi.ng/umbrella/banners/thing-ecs.svg?39642279)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/ecs.svg)](https://www.npmjs.com/package/@thi.ng/ecs)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/ecs.svg)
@@ -42,7 +42,7 @@ Entity Component System based around typed arrays & sparse sets.
 yarn add @thi.ng/ecs
 ```
 
-Package sizes (gzipped): ESM: 2.90 KB / CJS: 2.97 KB / UMD: 3.03 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.91 KB / CJS: 2.98 KB / UMD: 3.04 KB
 
 ## Dependencies
 

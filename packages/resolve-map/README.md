@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/resolve-map](https://media.thi.ng/umbrella/banners/thing-resolve-map.svg?1585427344)
+# ![resolve-map](https://media.thi.ng/umbrella/banners/thing-resolve-map.svg?e2a30dcc)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/resolve-map.svg)](https://www.npmjs.com/package/@thi.ng/resolve-map)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/resolve-map.svg)
@@ -50,7 +50,7 @@ supported.
 yarn add @thi.ng/resolve-map
 ```
 
-Package sizes (gzipped): ESM: 876 bytes / CJS: 927 bytes / UMD: 985 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 876 bytes / CJS: 927 bytes / UMD: 985 bytes
 
 ## Dependencies
 

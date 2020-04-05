@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-hull](https://media.thi.ng/umbrella/banners/thing-geom-hull.svg?1585427391)
+# ![geom-hull](https://media.thi.ng/umbrella/banners/thing-geom-hull.svg?b0095b45)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-hull.svg)](https://www.npmjs.com/package/@thi.ng/geom-hull)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-hull.svg)
@@ -35,7 +35,7 @@ Current implementation is partially based on Clojure version of
 yarn add @thi.ng/geom-hull
 ```
 
-Package sizes (gzipped): ESM: 432 bytes / CJS: 487 bytes / UMD: 581 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 432 bytes / CJS: 487 bytes / UMD: 581 bytes
 
 ## Dependencies
 

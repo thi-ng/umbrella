@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/matrices](https://media.thi.ng/umbrella/banners/thing-matrices.svg?1585427400)
+# ![matrices](https://media.thi.ng/umbrella/banners/thing-matrices.svg?42559f4d)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/matrices.svg)](https://www.npmjs.com/package/@thi.ng/matrices)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/matrices.svg)
@@ -65,7 +65,7 @@ sensible).
 yarn add @thi.ng/matrices
 ```
 
-Package sizes (gzipped): ESM: 4.75 KB / CJS: 5.31 KB / UMD: 4.82 KB
+Package sizes (gzipped, pre-treeshake): ESM: 4.75 KB / CJS: 5.31 KB / UMD: 4.82 KB
 
 ## Dependencies
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/webgl-shadertoy](https://media.thi.ng/umbrella/banners/thing-webgl-shadertoy.svg?1585427445)
+# ![webgl-shadertoy](https://media.thi.ng/umbrella/banners/thing-webgl-shadertoy.svg?9525f97a)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/webgl-shadertoy.svg)](https://www.npmjs.com/package/@thi.ng/webgl-shadertoy)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/webgl-shadertoy.svg)
@@ -39,7 +39,7 @@ Basic WebGL scaffolding for running interactive fragment shaders via [@thi.ng/sh
 yarn add @thi.ng/webgl-shadertoy
 ```
 
-Package sizes (gzipped): ESM: 673 bytes / CJS: 710 bytes / UMD: 810 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 673 bytes / CJS: 710 bytes / UMD: 810 bytes
 
 ## Dependencies
 

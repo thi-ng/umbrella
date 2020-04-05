@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-api](https://media.thi.ng/umbrella/banners/thing-geom-api.svg?1585427390)
+# ![geom-api](https://media.thi.ng/umbrella/banners/thing-geom-api.svg?a66e9014)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-api.svg)](https://www.npmjs.com/package/@thi.ng/geom-api)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-api.svg)
@@ -31,7 +31,7 @@ Shared type & interface declarations for [@thi.ng/geom](https://github.com/thi-n
 yarn add @thi.ng/geom-api
 ```
 
-Package sizes (gzipped): ESM: 603 bytes / CJS: 627 bytes / UMD: 759 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 603 bytes / CJS: 627 bytes / UMD: 759 bytes
 
 ## Dependencies
 

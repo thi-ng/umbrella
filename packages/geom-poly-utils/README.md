@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-poly-utils](https://media.thi.ng/umbrella/banners/thing-geom-poly-utils.svg?1585427411)
+# ![geom-poly-utils](https://media.thi.ng/umbrella/banners/thing-geom-poly-utils.svg?24f54c54)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-poly-utils.svg)](https://www.npmjs.com/package/@thi.ng/geom-poly-utils)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-poly-utils.svg)
@@ -45,7 +45,7 @@ Current implementations partially based on
 yarn add @thi.ng/geom-poly-utils
 ```
 
-Package sizes (gzipped): ESM: 1.06 KB / CJS: 1.13 KB / UMD: 1.19 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.11 KB / CJS: 1.18 KB / UMD: 1.24 KB
 
 ## Dependencies
 

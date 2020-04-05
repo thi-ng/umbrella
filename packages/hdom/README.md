@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/hdom](https://media.thi.ng/umbrella/banners/thing-hdom.svg?1585427360)
+# ![hdom](https://media.thi.ng/umbrella/banners/thing-hdom.svg?50a72fa5)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hdom.svg)](https://www.npmjs.com/package/@thi.ng/hdom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdom.svg)
@@ -132,7 +132,7 @@ yarn install
 yarn start
 ```
 
-Package sizes (gzipped): ESM: 3.56 KB / CJS: 3.67 KB / UMD: 3.59 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.59 KB / CJS: 3.70 KB / UMD: 3.62 KB
 
 ## Dependencies
 

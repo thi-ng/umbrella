@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/transducers-binary](https://media.thi.ng/umbrella/banners/thing-transducers-binary.svg?1585427370)
+# ![transducers-binary](https://media.thi.ng/umbrella/banners/thing-transducers-binary.svg?85c8aaf1)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-binary.svg)](https://www.npmjs.com/package/@thi.ng/transducers-binary)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-binary.svg)
@@ -51,7 +51,7 @@ iterable for direct use.
 yarn add @thi.ng/transducers-binary
 ```
 
-Package sizes (gzipped): ESM: 2.78 KB / CJS: 2.93 KB / UMD: 2.81 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.85 KB / CJS: 3.01 KB / UMD: 2.89 KB
 
 ## Dependencies
 

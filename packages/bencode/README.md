@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/bencode](https://media.thi.ng/umbrella/banners/thing-bencode.svg?1585427381)
+# ![bencode](https://media.thi.ng/umbrella/banners/thing-bencode.svg?a2e48208)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/bencode.svg)](https://www.npmjs.com/package/@thi.ng/bencode)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/bencode.svg)
@@ -58,7 +58,7 @@ semi-open `[1e-6,1e21)` interval can be encoded.
 yarn add @thi.ng/bencode
 ```
 
-Package sizes (gzipped): ESM: 1.17 KB / CJS: 1.23 KB / UMD: 1.28 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.17 KB / CJS: 1.23 KB / UMD: 1.28 KB
 
 ## Dependencies
 

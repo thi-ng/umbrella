@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/shader-ast-glsl](https://media.thi.ng/umbrella/banners/thing-shader-ast-glsl.svg?1585427438)
+# ![shader-ast-glsl](https://media.thi.ng/umbrella/banners/thing-shader-ast-glsl.svg?5c8497f0)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/shader-ast-glsl.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-glsl)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/shader-ast-glsl.svg)
@@ -45,7 +45,7 @@ This package is also used for shader assembly by
 yarn add @thi.ng/shader-ast-glsl
 ```
 
-Package sizes (gzipped): ESM: 1.30 KB / CJS: 1.34 KB / UMD: 1.43 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.31 KB / CJS: 1.35 KB / UMD: 1.45 KB
 
 ## Dependencies
 

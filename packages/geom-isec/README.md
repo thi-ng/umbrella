@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-isec](https://media.thi.ng/umbrella/banners/thing-geom-isec.svg?1585427420)
+# ![geom-isec](https://media.thi.ng/umbrella/banners/thing-geom-isec.svg?78ca30b4)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-isec.svg)](https://www.npmjs.com/package/@thi.ng/geom-isec)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-isec.svg)
@@ -54,7 +54,7 @@ Current implementations partially based on
 yarn add @thi.ng/geom-isec
 ```
 
-Package sizes (gzipped): ESM: 2.30 KB / CJS: 2.45 KB / UMD: 2.40 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.37 KB / CJS: 2.53 KB / UMD: 2.50 KB
 
 ## Dependencies
 

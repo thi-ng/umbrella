@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/transducers-fsm](https://media.thi.ng/umbrella/banners/thing-transducers-fsm.svg?1585427370)
+# ![transducers-fsm](https://media.thi.ng/umbrella/banners/thing-transducers-fsm.svg?2a13df81)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-fsm.svg)](https://www.npmjs.com/package/@thi.ng/transducers-fsm)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-fsm.svg)
@@ -50,7 +50,7 @@ package.
 yarn add @thi.ng/transducers-fsm
 ```
 
-Package sizes (gzipped): ESM: 217 bytes / CJS: 270 bytes / UMD: 368 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 217 bytes / CJS: 270 bytes / UMD: 368 bytes
 
 ## Dependencies
 

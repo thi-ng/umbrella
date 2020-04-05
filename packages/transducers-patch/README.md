@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/transducers-patch](https://media.thi.ng/umbrella/banners/thing-transducers-patch.svg?1585427370)
+# ![transducers-patch](https://media.thi.ng/umbrella/banners/thing-transducers-patch.svg?cb121cc6)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-patch.svg)](https://www.npmjs.com/package/@thi.ng/transducers-patch)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-patch.svg)
@@ -38,7 +38,7 @@ state update. By default all edits are performed non-destructively, but
 yarn add @thi.ng/transducers-patch
 ```
 
-Package sizes (gzipped): ESM: 551 bytes / CJS: 594 bytes / UMD: 684 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 564 bytes / CJS: 609 bytes / UMD: 702 bytes
 
 ## Dependencies
 

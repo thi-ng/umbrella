@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-clip-poly](https://media.thi.ng/umbrella/banners/thing-geom-clip-poly.svg?1585427432)
+# ![geom-clip-poly](https://media.thi.ng/umbrella/banners/thing-geom-clip-poly.svg?890cd15d)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-clip-poly.svg)](https://www.npmjs.com/package/@thi.ng/geom-clip-poly)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-clip-poly.svg)
@@ -37,7 +37,7 @@ This package has been extracted from the former (now obsolete)
 yarn add @thi.ng/geom-clip-poly
 ```
 
-Package sizes (gzipped): ESM: 317 bytes / CJS: 389 bytes / UMD: 503 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 317 bytes / CJS: 389 bytes / UMD: 503 bytes
 
 ## Dependencies
 

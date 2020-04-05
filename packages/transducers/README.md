@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/transducers](https://media.thi.ng/umbrella/banners/thing-transducers.svg?1585427350)
+# ![transducers](https://media.thi.ng/umbrella/banners/thing-transducers.svg?d740a3e8)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers.svg)
@@ -143,7 +143,7 @@ package.
 yarn add @thi.ng/transducers
 ```
 
-Package sizes (gzipped): ESM: 7.86 KB / CJS: 8.38 KB / UMD: 7.58 KB
+Package sizes (gzipped, pre-treeshake): ESM: 7.86 KB / CJS: 8.38 KB / UMD: 7.58 KB
 
 ## Dependencies
 

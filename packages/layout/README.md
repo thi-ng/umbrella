@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/layout](https://media.thi.ng/umbrella/banners/thing-layout.svg?1585427325)
+# ![layout](https://media.thi.ng/umbrella/banners/thing-layout.svg?e3607d7a)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/layout.svg)](https://www.npmjs.com/package/@thi.ng/layout)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/layout.svg)
@@ -38,7 +38,7 @@ to define other layout types / implementations.
 yarn add @thi.ng/layout
 ```
 
-Package sizes (gzipped): ESM: 659 bytes / CJS: 724 bytes / UMD: 788 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 659 bytes / CJS: 724 bytes / UMD: 788 bytes
 
 ## Dependencies
 

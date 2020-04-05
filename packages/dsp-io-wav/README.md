@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/dsp-io-wav](https://media.thi.ng/umbrella/banners/thing-dsp-io-wav.svg?1585427380)
+# ![dsp-io-wav](https://media.thi.ng/umbrella/banners/thing-dsp-io-wav.svg?2f433214)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dsp-io-wav.svg)](https://www.npmjs.com/package/@thi.ng/dsp-io-wav)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dsp-io-wav.svg)
@@ -31,7 +31,7 @@ WAV file format generation. This is a support package for [@thi.ng/dsp](https://
 yarn add @thi.ng/dsp-io-wav
 ```
 
-Package sizes (gzipped): ESM: 502 bytes / CJS: 562 bytes / UMD: 630 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 502 bytes / CJS: 562 bytes / UMD: 630 bytes
 
 ## Dependencies
 

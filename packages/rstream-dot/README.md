@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/rstream-dot](https://media.thi.ng/umbrella/banners/thing-rstream-dot.svg?1585427422)
+# ![rstream-dot](https://media.thi.ng/umbrella/banners/thing-rstream-dot.svg?a7bf4660)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-dot.svg)](https://www.npmjs.com/package/@thi.ng/rstream-dot)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-dot.svg)
@@ -36,7 +36,7 @@ Graphviz DOT conversion of [@thi.ng/rstream](https://github.com/thi-ng/umbrella/
 yarn add @thi.ng/rstream-dot
 ```
 
-Package sizes (gzipped): ESM: 780 bytes / CJS: 825 bytes / UMD: 898 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 780 bytes / CJS: 825 bytes / UMD: 898 bytes
 
 ## Dependencies
 

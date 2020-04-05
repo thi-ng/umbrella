@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![@thi.ng/geom-clip-line](https://media.thi.ng/umbrella/banners/thing-geom-clip-line.svg?1585427390)
+# ![geom-clip-line](https://media.thi.ng/umbrella/banners/thing-geom-clip-line.svg?006770bd)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-clip-line.svg)](https://www.npmjs.com/package/@thi.ng/geom-clip-line)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-clip-line.svg)
@@ -37,7 +37,7 @@ This package has been extracted from the former (now obsolete)
 yarn add @thi.ng/geom-clip-line
 ```
 
-Package sizes (gzipped): ESM: 292 bytes / CJS: 348 bytes / UMD: 454 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 292 bytes / CJS: 348 bytes / UMD: 454 bytes
 
 ## Dependencies
 
