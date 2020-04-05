@@ -1,5 +1,5 @@
-import { IObjectOf } from "@thi.ng/api";
 import { bytes } from "@thi.ng/strings";
+import { execSync } from "child_process";
 import { readdirSync } from "fs";
 import { META_FIELD, Package, RE_PKG } from "../api";
 import { CONFIG } from "../config";
@@ -60,7 +60,7 @@ export const packageStatus = (id = "stable") => {
     return [
         "### Status",
         "",
-        `**${id.toUpperCase()}**${status ? " - " + status : ""}`
+        `**${id.toUpperCase()}**${status ? " - " + status : ""}`,
     ].join("\n");
 };
 
@@ -71,13 +71,16 @@ export const packageSize = () => {
         for (let id in meta) {
             res.push(`${id.toUpperCase()}: ${bytes(meta[id].gzip)}`);
         }
-        return "Package sizes (gzipped): " + res.join(" / ");
+        return "Package sizes (gzipped, pre-treeshake): " + res.join(" / ");
     } catch (_) {
         return "";
     }
 };
 
-export const packageBanner = (name: string) =>
-    `![${name}](${CONFIG.bannerURL}${shortName(name)}.svg?${(Date.now() /
-        1000) |
-        0})`;
+export const packageBanner = (name: string) => {
+    name = shortName(name);
+    const sha1 = execSync(`sha1sum ${CONFIG.bannerBasePath}${name}.svg`)
+        .toString()
+        .substr(0, 8);
+    return `![${name}](${CONFIG.bannerURL}${name}.svg?${sha1})`;
+};

@@ -15,6 +15,7 @@ export interface BaseConfig {
     userURL: string;
     assetURL: string;
     bannerURL: string;
+    bannerBasePath: string;
     demoURL: string;
     docURL: string;
     exampleDir: string;
