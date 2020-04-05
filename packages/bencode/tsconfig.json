@@ -4,9 +4,8 @@
         "outDir": ".",
         "module": "es6",
         "target": "es6",
-        "preserveConstEnums": false
+        "preserveConstEnums": false,
+        "isolatedModules": false
     },
-    "include": [
-        "./src/**/*.ts"
-    ]
+    "include": ["./src/**/*.ts"]
 }
