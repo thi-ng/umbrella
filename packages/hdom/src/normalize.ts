@@ -1,4 +1,8 @@
-import { isArray as isa, isNotStringAndIterable as isi, isPlainObject as iso } from "@thi.ng/checks";
+import {
+    isArray as isa,
+    isNotStringAndIterable as isi,
+    isPlainObject as iso,
+} from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { NO_SPANS, RE_TAG } from "@thi.ng/hiccup";
 import type { HDOMOpts } from "./api";

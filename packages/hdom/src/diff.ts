@@ -1,13 +1,13 @@
 import { SEMAPHORE } from "@thi.ng/api";
+import type { IObjectOf } from "@thi.ng/api";
 import { diffArray, DiffMode, diffObject } from "@thi.ng/diff";
 import {
     equiv as _equiv,
     equivArrayLike,
     equivMap,
     equivObject,
-    equivSet
+    equivSet,
 } from "@thi.ng/equiv";
-import type { IObjectOf } from "@thi.ng/api";
 import type { HDOMImplementation, HDOMOpts } from "./api";
 
 const isArray = Array.isArray;
@@ -217,7 +217,7 @@ const decOffsets = (offsets: any[], j: number, idx: number) => {
  * @param el - DOM element
  * @param prev - previous attributes
  * @param curr - current attributes
- * 
+ *
  * @internal
  */
 export const diffAttributes = <T>(
@@ -232,7 +232,7 @@ export const diffAttributes = <T>(
     let i: number, e, edits;
     for (edits = delta.edits!, i = edits.length; (i -= 2) >= 0; ) {
         e = edits[i];
-        e.indexOf("on") === 0 && impl.removeAttribs(el, [e], prev);
+        e[0] === "o" && e[1] === "n" && impl.removeAttribs(el, [e], prev);
         e !== "value"
             ? impl.setAttrib(el, e, edits[i + 1], curr)
             : (val = edits[i + 1]);

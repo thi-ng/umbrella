@@ -1,6 +1,5 @@
 import { isArray as isa, isNotStringAndIterable as isi } from "@thi.ng/checks";
-import { SVG_NS, SVG_TAGS } from "@thi.ng/hiccup";
-import { css } from "@thi.ng/hiccup";
+import { css, SVG_NS, SVG_TAGS } from "@thi.ng/hiccup";
 import type { HDOMImplementation, HDOMOpts } from "./api";
 
 const isArray = isa;
@@ -106,7 +105,7 @@ export const hydrateTree = <T>(
         }
         maybeInitElement(el, tree);
         for (let a in attribs) {
-            a.indexOf("on") === 0 && impl.setAttrib(el, a, attribs[a]);
+            a[0] === "o" && a[1] === "n" && impl.setAttrib(el, a, attribs[a]);
         }
         for (let n = tree.length, i = 2; i < n; i++) {
             hydrateTree(opts, impl, el, tree[i], i - 2);
@@ -213,7 +212,7 @@ export const setAttribs = (el: Element, attribs: any) => {
  */
 export const setAttrib = (el: Element, id: string, val: any, attribs?: any) => {
     if (id.startsWith("__")) return;
-    const isListener = id.indexOf("on") === 0;
+    const isListener = id[0] === "o" && id[1] === "n";
     if (!isListener && typeof val === "function") {
         val = val(attribs);
     }
@@ -284,7 +283,8 @@ export const updateValueAttrib = (el: HTMLInputElement, value: any) => {
         case "week":
         case "month":
             if ((ev = el.value) !== undefined && typeof value === "string") {
-                const off = value.length - (ev.length - (el.selectionStart || 0));
+                const off =
+                    value.length - (ev.length - (el.selectionStart || 0));
                 el.value = value;
                 el.selectionStart = el.selectionEnd = off;
                 break;
@@ -297,7 +297,7 @@ export const updateValueAttrib = (el: HTMLInputElement, value: any) => {
 export const removeAttribs = (el: Element, attribs: string[], prev: any) => {
     for (let i = attribs.length; --i >= 0; ) {
         const a = attribs[i];
-        if (a.indexOf("on") === 0) {
+        if (a[0] === "o" && a[1] === "n") {
             removeListener(el, a.substr(2), prev[a]);
         } else {
             el.hasAttribute(a) ? el.removeAttribute(a) : ((<any>el)[a] = null);
