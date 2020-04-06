@@ -8,7 +8,7 @@ import {
     push,
     Reducer,
     Transducer,
-    unreduced
+    unreduced,
 } from "@thi.ng/transducers";
 import {
     CloseMode,
@@ -18,7 +18,7 @@ import {
     ITransformable,
     LOGGER,
     State,
-    SubscriptionOpts
+    SubscriptionOpts,
 } from "./api";
 import { nextID } from "./utils/idgen";
 
@@ -136,6 +136,7 @@ export class Subscription<A, B>
     subscribe(...args: any[]): any {
         this.ensureState();
         let sub: Subscription<any, any> | undefined;
+        !peek(args) && args.pop();
         let opts: SubscriptionOpts<any, any> =
             args.length > 1 && isPlainObject(peek(args))
                 ? { ...args.pop() }

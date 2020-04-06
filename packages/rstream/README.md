@@ -128,7 +128,7 @@ options](#common-configuration-options) for further details.
 yarn add @thi.ng/rstream
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.09 KB / CJS: 5.27 KB / UMD: 5.21 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.10 KB / CJS: 5.28 KB / UMD: 5.21 KB
 
 ## Dependencies
 

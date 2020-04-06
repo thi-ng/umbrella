@@ -1,6 +1,12 @@
-import { partition } from "@thi.ng/transducers";
+import { partition, map } from "@thi.ng/transducers";
 import * as assert from "assert";
-import { fromIterable, State, Stream } from "../src/index";
+import {
+    fromIterable,
+    State,
+    Stream,
+    fromIterableSync,
+    CloseMode,
+} from "../src/index";
 import { TIMEOUT } from "./config";
 
 describe("Subscription", () => {
@@ -8,14 +14,14 @@ describe("Subscription", () => {
 
     beforeEach(() => {});
 
-    it("new sub receives last", function(done) {
+    it("new sub receives last", function (done) {
         this.timeout(TIMEOUT * 5);
         let buf: any[] = [];
         src = fromIterable([1, 2, 3], { delay: TIMEOUT });
         src.subscribe({
             next(x) {
                 buf.push(x);
-            }
+            },
         });
         setTimeout(
             () =>
@@ -26,13 +32,13 @@ describe("Subscription", () => {
                     done() {
                         assert.deepEqual(buf, [1, 2, 2, 3, 3]);
                         done();
-                    }
+                    },
                 }),
             TIMEOUT * 2.5
         );
     });
 
-    it("unsub does not trigger Subscription.done()", function(done) {
+    it("unsub does not trigger Subscription.done()", function (done) {
         this.timeout(TIMEOUT * 5);
         let buf: any[] = [];
         let called = false;
@@ -43,7 +49,7 @@ describe("Subscription", () => {
             },
             done() {
                 called = true;
-            }
+            },
         });
         setTimeout(() => sub.unsubscribe(), TIMEOUT * 1.5);
         setTimeout(() => {
@@ -55,7 +61,7 @@ describe("Subscription", () => {
         }, TIMEOUT * 4);
     });
 
-    it("no new values after unsub", function(done) {
+    it("no new values after unsub", function (done) {
         this.timeout(TIMEOUT * 5);
 
         let buf: any[] = [];
@@ -68,7 +74,7 @@ describe("Subscription", () => {
                 },
                 done() {
                     called = true;
-                }
+                },
             },
             partition(2, true)
         );
@@ -93,9 +99,38 @@ describe("Subscription", () => {
                     assert.deepEqual(buf, [[1, 2], [3]]);
                     assert.equal(src.getState(), State.DONE);
                     done();
-                }
+                },
             },
             partition(2, true)
         );
+    });
+
+    it("sub xform only", () => {
+        let buf: any[] = [];
+        fromIterableSync([1], { closeIn: CloseMode.NEVER })
+            .subscribe(
+                map((x: number) => x + 10),
+                undefined
+            )
+            .subscribe({
+                next(x) {
+                    buf.push(x);
+                },
+            });
+        assert.deepEqual(buf, [11]);
+    });
+
+    it("sub w/ xform", () => {
+        let buf: any[] = [];
+        fromIterableSync([1], { closeIn: CloseMode.NEVER }).subscribe(
+            {
+                next(x) {
+                    buf.push(x);
+                },
+            },
+            map((x: number) => x + 10),
+            undefined
+        );
+        assert.deepEqual(buf, [11]);
     });
 });

@@ -1,15 +1,10 @@
+import type { Fn, Predicate2 } from "@thi.ng/api";
 import { EquivMap } from "@thi.ng/associative";
 import { unsupported } from "@thi.ng/errors";
-import {
-    CommonOpts,
-    ISubscriber,
-    LOGGER,
-    SubscriptionOpts
-} from "./api";
+import type { Transducer } from "@thi.ng/transducers";
+import { CommonOpts, ISubscriber, LOGGER, SubscriptionOpts } from "./api";
 import { Subscription, subscription } from "./subscription";
 import { optsWithID } from "./utils/idgen";
-import type { Fn, Predicate2 } from "@thi.ng/api";
-import type { Transducer } from "@thi.ng/transducers";
 
 export interface PubSubOpts<A, B> {
     /**
@@ -72,12 +67,12 @@ export class PubSub<A, B> extends Subscription<A, B> {
         super(
             undefined,
             optsWithID("pubsub", <Partial<SubscriptionOpts<A, B>>>{
-                xform: opts.xform
+                xform: opts.xform,
             })
         );
         this.topicfn = opts.topic;
         this.topics = new EquivMap<any, Subscription<B, B>>(undefined, {
-            equiv: opts.equiv
+            equiv: opts.equiv,
         });
     }
 

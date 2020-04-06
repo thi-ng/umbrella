@@ -1,12 +1,12 @@
 import { EquivMap } from "@thi.ng/associative";
-import { mapIndexed } from "@thi.ng/transducers";
+import { mapIndexed, map } from "@thi.ng/transducers";
 import * as assert from "assert";
 import {
     fromIterable,
     fromIterableSync,
     PubSub,
     pubsub,
-    State
+    State,
 } from "../src/index";
 import { TIMEOUT } from "./config";
 
@@ -32,7 +32,7 @@ describe("PubSub", () => {
             next: (x: any) => {
                 let v = acc.get(x);
                 v ? v.push(x) : acc.set(x, [x]);
-            }
+            },
         };
         pub = pubsub({ topic: (x) => x });
         pub.subscribeTopic(["a", 0], collect);
@@ -43,7 +43,7 @@ describe("PubSub", () => {
             ["a", 1],
             ["b", 2],
             ["a", 0],
-            ["c", 3]
+            ["c", 3],
         ]).subscribe(pub);
         assert.deepEqual(
             [...acc],
@@ -52,11 +52,11 @@ describe("PubSub", () => {
                     ["a", 0],
                     [
                         ["a", 0],
-                        ["a", 0]
-                    ]
+                        ["a", 0],
+                    ],
                 ],
                 [["a", 1], [["a", 1]]],
-                [["b", 2], [["b", 2]]]
+                [["b", 2], [["b", 2]]],
             ]
         );
         assert.equal(pub.getState(), State.DONE);
@@ -67,7 +67,7 @@ describe("PubSub", () => {
         const collect = { next: (x: any) => acc[x[0]].push(x) };
         pub = pubsub({
             topic: (x) => x[0],
-            xform: mapIndexed<string, [string, number]>((i, x) => [x, i])
+            xform: mapIndexed<string, [string, number]>((i, x) => [x, i]),
         });
         pub.subscribeTopic("a", collect);
         pub.subscribeTopic("b", collect);
@@ -76,21 +76,21 @@ describe("PubSub", () => {
             a: [["a", 0]],
             b: [
                 ["b", 1],
-                ["b", 3]
+                ["b", 3],
             ],
             c: [],
-            d: []
+            d: [],
         });
         assert.equal(pub.getState(), State.DONE);
     });
 
-    it("unsubTopic", function(done) {
+    it("unsubTopic", function (done) {
         this.timeout(TIMEOUT * 8);
         const acc: any = { a: [], b: [] };
         const collect = {
             next: (x: any) => {
                 acc[x].push(x);
-            }
+            },
         };
         pub = pubsub({ topic: (x) => x });
         pub.subscribeTopic("a", collect);
@@ -104,5 +104,34 @@ describe("PubSub", () => {
             assert.equal(pub.getState(), State.DONE);
             done();
         }, TIMEOUT * 7.5);
+    });
+
+    it("subTopic xform", () => {
+        const acc: any = [];
+        const collect = {
+            next(x: any) {
+                acc.push(x);
+            },
+        };
+        pub = pubsub({ topic: (x) => x });
+        pub.subscribeTopic(
+            "a",
+            map((x) => x.toUpperCase())
+        ).subscribe(collect);
+        pub.next("a");
+        assert.deepEqual(acc, ["A"]);
+    });
+
+    it("subTopic only", () => {
+        const acc: any[] = [];
+        pub = pubsub({ topic: (x) => x });
+        const topic = pub.subscribeTopic("a");
+        topic.subscribe({
+            next(x) {
+                acc.push(x);
+            },
+        });
+        pub.next("a");
+        assert.deepEqual(acc, ["a"]);
     });
 });
