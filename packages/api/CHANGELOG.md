@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.10.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.9.1...@thi.ng/api@6.10.0) (2020-04-06)
+
+
+### Features
+
+* **api:** add LogLevelName type ([25b6c67](https://github.com/thi-ng/umbrella/commit/25b6c6774645eef6606e76b9e81149863e964d71))
+
+
+
+
+
 ## [6.9.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.9.0...@thi.ng/api@6.9.1) (2020-04-05)
 
 **Note:** Version bump only for package @thi.ng/api

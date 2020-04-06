@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-tessellate@0.2.19...@thi.ng/geom-tessellate@0.2.20) (2020-04-06)
+
+**Note:** Version bump only for package @thi.ng/geom-tessellate
+
+
+
+
+
 ## [0.2.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-tessellate@0.2.18...@thi.ng/geom-tessellate@0.2.19) (2020-04-05)
 
 **Note:** Version bump only for package @thi.ng/geom-tessellate
