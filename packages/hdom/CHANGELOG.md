@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.0.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@8.0.17...@thi.ng/hdom@8.0.18) (2020-04-06)
+
+
+### Performance Improvements
+
+* **hdom:** update event attrib checks ([ab54d3c](https://github.com/thi-ng/umbrella/commit/ab54d3cc670dc9b060984e28066d4a84dde64ec2))
+
+
+
+
+
 ## [8.0.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@8.0.16...@thi.ng/hdom@8.0.17) (2020-04-05)
 
 **Note:** Version bump only for package @thi.ng/hdom
