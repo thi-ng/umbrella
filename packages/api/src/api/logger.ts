@@ -4,8 +4,16 @@ export enum LogLevel {
     INFO,
     WARN,
     SEVERE,
-    NONE
+    NONE,
 }
+
+export type LogLevelName =
+    | "FINE"
+    | "DEBUG"
+    | "INFO"
+    | "WARN"
+    | "SEVERE"
+    | "NONE";
 
 export interface ILogger {
     /**
