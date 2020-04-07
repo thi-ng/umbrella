@@ -193,8 +193,8 @@ export const defShader = (gl: WebGLRenderingContext, spec: ShaderSpec) => {
     const srcFS = isFunction(spec.fs)
         ? shaderSourceFromAST(spec, "fs", version)
         : prepareShaderSource(spec, "fs", version);
-    console.log(srcVS);
-    console.log(srcFS);
+    LOGGER.debug(srcVS);
+    LOGGER.debug(srcFS);
     initShaderExtensions(gl, spec.ext);
     const vs = compileShader(gl, gl.VERTEX_SHADER, srcVS);
     const fs = compileShader(gl, gl.FRAGMENT_SHADER, srcFS);
