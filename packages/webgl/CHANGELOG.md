@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@1.0.3...@thi.ng/webgl@1.0.4) (2020-04-07)
+
+
+### Bug Fixes
+
+* **webgl:** fix [#217](https://github.com/thi-ng/umbrella/issues/217), use logger for shader src ([501c82d](https://github.com/thi-ng/umbrella/commit/501c82dbde7cbb385f35ff8149cfc98e4c6e6405))
+
+
+
+
+
 ## [1.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@1.0.2...@thi.ng/webgl@1.0.3) (2020-04-06)
 
 **Note:** Version bump only for package @thi.ng/webgl
