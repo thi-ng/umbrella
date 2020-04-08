@@ -49,6 +49,12 @@
         "@thi.ng/vectors": "^4.2.4",
         "tslib": "^1.11.1"
     },
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "lib",
+        "internal"
+    ],
     "keywords": [
         "alpha",
         "blending",

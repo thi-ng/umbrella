@@ -47,6 +47,12 @@
         "@thi.ng/vectors": "^4.2.4",
         "tslib": "^1.11.1"
     },
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "lib",
+        "draw"
+    ],
     "keywords": [
         "ES6",
         "canvas",

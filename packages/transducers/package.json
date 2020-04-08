@@ -50,6 +50,16 @@
         "@thi.ng/strings": "^1.8.2",
         "tslib": "^1.11.1"
     },
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "lib",
+        "func",
+        "internal",
+        "iter",
+        "rfn",
+        "xform"
+    ],
     "keywords": [
         "array",
         "composition",

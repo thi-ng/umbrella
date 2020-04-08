@@ -37,6 +37,17 @@
         "typedoc": "^0.16.10",
         "typescript": "^3.8.3"
     },
+    "dependencies": {
+        "tslib": "^1.11.1"
+    },
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "lib",
+        "api",
+        "decorators",
+        "mixins"
+    ],
     "keywords": [
         "compare",
         "equality",
@@ -54,8 +65,5 @@
         "process": false,
         "setTimeout": false
     },
-    "sideEffects": false,
-    "dependencies": {
-        "tslib": "^1.11.1"
-    }
+    "sideEffects": false
 }

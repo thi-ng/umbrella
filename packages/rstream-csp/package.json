@@ -42,6 +42,12 @@
         "@thi.ng/rstream": "^4.0.3",
         "tslib": "^1.11.1"
     },
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "lib",
+        "from"
+    ],
     "keywords": [
         "bridge",
         "csp",

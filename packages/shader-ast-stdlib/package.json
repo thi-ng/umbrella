@@ -41,6 +41,21 @@
         "@thi.ng/shader-ast": "^0.3.14",
         "tslib": "^1.11.1"
     },
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "lib",
+        "color",
+        "fog",
+        "light",
+        "math",
+        "matrix",
+        "noise",
+        "raymarch",
+        "screen",
+        "sdf",
+        "tex"
+    ],
     "keywords": [
         "AST",
         "DSL",

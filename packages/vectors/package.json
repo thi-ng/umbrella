@@ -49,6 +49,12 @@
         "@thi.ng/transducers": "^6.4.4",
         "tslib": "^1.11.1"
     },
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "lib",
+        "internal"
+    ],
     "keywords": [
         "2D",
         "3D",

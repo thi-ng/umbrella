@@ -66,6 +66,15 @@
         "@thi.ng/vectors": "^4.2.4",
         "tslib": "^1.11.1"
     },
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "lib",
+        "api",
+        "ctors",
+        "internal",
+        "ops"
+    ],
     "keywords": [
         "2D",
         "ES6",

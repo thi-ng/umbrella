@@ -45,6 +45,12 @@
         "@thi.ng/transducers-stats": "^1.1.17",
         "tslib": "^1.11.1"
     },
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "lib",
+        "utils"
+    ],
     "keywords": [
         "ES6",
         "typescript"

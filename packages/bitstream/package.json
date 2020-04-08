@@ -26,10 +26,6 @@
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "pub": "yarn build:release && yarn publish --access public"
     },
-    "dependencies": {
-        "@thi.ng/errors": "^1.2.9",
-        "tslib": "^1.11.1"
-    },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
         "@microsoft/api-extractor": "^7.7.8",
@@ -41,6 +37,15 @@
         "typedoc": "^0.16.10",
         "typescript": "^3.8.3"
     },
+    "dependencies": {
+        "@thi.ng/errors": "^1.2.9",
+        "tslib": "^1.11.1"
+    },
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "lib"
+    ],
     "keywords": [
         "binary",
         "bits",

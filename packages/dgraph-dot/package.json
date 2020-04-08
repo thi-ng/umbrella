@@ -42,6 +42,11 @@
         "@thi.ng/dgraph": "^1.2.2",
         "@thi.ng/dot": "^1.2.2"
     },
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "lib"
+    ],
     "keywords": [
         "ES6",
         "dependency graph",

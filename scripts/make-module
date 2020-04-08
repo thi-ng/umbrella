@@ -85,6 +85,11 @@ cat << EOF > "$MODULE"/package.json
     "dependencies": {
         "@thi.ng/api": "^6.9.0"
     },
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "lib"
+    ],
     "keywords": [
         "ES6",
         "typescript"
@@ -165,34 +170,8 @@ cat << EOF > "$MODULE"/api-extractor.json
 }
 EOF
 
-echo "writing .npmignore..."
-cat << EOF > "$MODULE"/.npmignore
-.ae
-.cache
-.meta
-.nyc_output
-*.gz
-*.html
-*.svg
-*.tgz
-*.h
-*.o
-*.wasm
-*.tpl.md
-bench
-build
-coverage
-dev
-doc
-export
-src*
-test
-tools
-tsconfig.json
-EOF
-
-echo "writing README.tpl.md..."
-cat << 'EOF' > "$MODULE"/README.tpl.md
+echo "writing tpl.readme.md..."
+cat << 'EOF' > "$MODULE"/tpl.readme.md
 # ${pkg.banner}
 
 [![npm version](https://img.shields.io/npm/v/${pkg.name}.svg)](https://www.npmjs.com/package/${pkg.name})

@@ -42,6 +42,11 @@
         "@thi.ng/math": "^1.7.5",
         "tslib": "^1.11.1"
     },
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "lib"
+    ],
     "keywords": [
         "alpha blending",
         "color",

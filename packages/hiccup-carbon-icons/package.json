@@ -38,6 +38,12 @@
         "typedoc": "^0.16.10",
         "typescript": "^3.8.3"
     },
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "lib",
+        "utils"
+    ],
     "keywords": [
         "assets",
         "carbon",
