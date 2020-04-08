@@ -14,7 +14,7 @@ import {
     packageSize,
     packageStatus,
     relatedPackages,
-    supportPackages
+    supportPackages,
 } from "./partials/package";
 import { authors } from "./partials/user";
 import { injectTOC } from "./toc";
@@ -36,10 +36,10 @@ try {
         docLink: () => docLink(CONFIG.root.name),
         copyright: () => copyright(CONFIG.meta.year, CONFIG.mainAuthor),
         license: CONFIG.license,
-        authors
+        authors,
     };
 
-    let readme = readText("./README.tpl.md")
+    let readme = readText("./tpl.readme.md")
         .replace(RE_PARTIAL, (orig, id) => {
             if (!partials.hasOwnProperty(id)) {
                 console.warn(`skipping unsupported tpl ID: "${id}"`);
