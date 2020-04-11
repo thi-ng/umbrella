@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@1.0.4...@thi.ng/webgl@1.0.5) (2020-04-11)
+
+
+### Bug Fixes
+
+* **webgl:** `disableVertexAttribArray` in `Shader.unbind` ([d3eab37](https://github.com/thi-ng/umbrella/commit/d3eab37cb5e356aa80207ce445926844cc072261))
+* **webgl:** add missing braces ([5e6d5bf](https://github.com/thi-ng/umbrella/commit/5e6d5bfa3b0529ec7c448d2ec1dde04716fb597e))
+
+
+
+
+
 ## [1.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@1.0.3...@thi.ng/webgl@1.0.4) (2020-04-07)
 
 

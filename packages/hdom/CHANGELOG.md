@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.0.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@8.0.19...@thi.ng/hdom@8.0.20) (2020-04-11)
+
+**Note:** Version bump only for package @thi.ng/hdom
+
+
+
+
+
 ## [8.0.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@8.0.18...@thi.ng/hdom@8.0.19) (2020-04-06)
 
 **Note:** Version bump only for package @thi.ng/hdom

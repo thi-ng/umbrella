@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@2.2.13...@thi.ng/interceptors@2.2.14) (2020-04-11)
+
+**Note:** Version bump only for package @thi.ng/interceptors
+
+
+
+
+
 ## [2.2.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@2.2.12...@thi.ng/interceptors@2.2.13) (2020-04-06)
 
 **Note:** Version bump only for package @thi.ng/interceptors
