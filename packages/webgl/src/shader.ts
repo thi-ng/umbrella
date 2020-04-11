@@ -75,8 +75,9 @@ export class Shader implements IShader {
     }
 
     unbind() {
+        let shaderAttrib: ShaderAttrib;
         for (let id in this.attribs) {
-            if ((shaderAttrib = this.attribs[id]))
+            if ((shaderAttrib = this.attribs[id])) {
                 this.gl.disableVertexAttribArray(shaderAttrib.loc);
             }
         }
