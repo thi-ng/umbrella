@@ -73,11 +73,11 @@ The following env variables are used to control the behavior of some functions i
 
 ### Maintainer
 
-- Karsten Schmidt ([@postspectacular](https://github.com//postspectacular))
+- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
 
 ### Contributors
 
-- Matei Adriel ([@Mateiadrielrafael](https://github.com//Mateiadrielrafael))
+- Matei Adriel ([@Mateiadrielrafael](https://github.com/Mateiadrielrafael))
 
 ## License
 

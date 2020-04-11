@@ -163,11 +163,11 @@ TODO
 
 ### Maintainer
 
-- Karsten Schmidt ([@postspectacular](https://github.com//postspectacular))
+- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
 
 ### Contributors
 
-- Logan Powell ([@loganpowell](https://github.com//loganpowell))
+- Logan Powell ([@loganpowell](https://github.com/loganpowell))
 
 ## License
 

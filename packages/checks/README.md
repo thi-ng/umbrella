@@ -49,12 +49,12 @@ TODO
 
 ### Maintainer
 
--   Karsten Schmidt ([@postspectacular](https://github.com//postspectacular))
+-   Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
 
 ### Contributors
 
--   Gavin Cannizzaro ([@gavinpc-mindgrub](https://github.com//gavinpc-mindgrub))
--   Jay Zawrotny ([@eccentric-j](https://github.com//eccentric-j))
+-   Gavin Cannizzaro ([@gavinpc-mindgrub](https://github.com/gavinpc-mindgrub))
+-   Jay Zawrotny ([@eccentric-j](https://github.com/eccentric-j))
 
 ## License
 

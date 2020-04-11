@@ -47,7 +47,7 @@ References:
 yarn add @thi.ng/morton
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.01 KB / CJS: 2.14 KB / UMD: 2.09 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.02 KB / CJS: 2.16 KB / UMD: 2.11 KB
 
 ## Dependencies
 

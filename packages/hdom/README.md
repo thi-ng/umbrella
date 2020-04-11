@@ -1213,11 +1213,11 @@ Some stress test benchmarks are here:
 
 ### Maintainer
 
-- Karsten Schmidt ([@postspectacular](https://github.com//postspectacular))
+- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
 
 ### Contributors
 
-- Kevin Nolan ([@allforabit](https://github.com//allforabit))
+- Kevin Nolan ([@allforabit](https://github.com/allforabit))
 
 ## License
 

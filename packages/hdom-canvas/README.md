@@ -617,11 +617,11 @@ package for creating different kinds of transformation matrices, e.g.
 
 ### Maintainer
 
-- Karsten Schmidt ([@postspectacular](https://github.com//postspectacular))
+- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
 
 ### Contributors
 
-- Arthur Carabott ([@acarabott](https://github.com//acarabott))
+- Arthur Carabott ([@acarabott](https://github.com/acarabott))
 
 ## License
 

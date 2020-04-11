@@ -736,12 +736,12 @@ Create value stream from worker messages.
 
 ### Maintainer
 
-- Karsten Schmidt ([@postspectacular](https://github.com//postspectacular))
+- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
 
 ### Contributors
 
-- André Wachter ([@andrew8er](https://github.com//andrew8er))
-- Gavin Cannizzaro ([@gavinpc-mindgrub](https://github.com//gavinpc-mindgrub))
+- André Wachter ([@andrew8er](https://github.com/andrew8er))
+- Gavin Cannizzaro ([@gavinpc-mindgrub](https://github.com/gavinpc-mindgrub))
 
 ## License
 

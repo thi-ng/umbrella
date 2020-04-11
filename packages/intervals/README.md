@@ -123,11 +123,11 @@ i.ropen = false;
 
 ### Maintainer
 
-- Karsten Schmidt ([@postspectacular](https://github.com//postspectacular))
+- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
 
 ### Contributors
 
-- [@oljeger](https://github.com//oljeger)
+- [@oljeger](https://github.com/oljeger)
 
 ## License
 

@@ -313,11 +313,11 @@ allocating tiny arrays is slightly slower than the vanilla version... YMMV!
 
 ### Maintainer
 
-- Karsten Schmidt ([@postspectacular](https://github.com//postspectacular))
+- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
 
 ### Contributors
 
-- Bnaya Peretz ([@Bnaya](https://github.com//Bnaya))
+- Bnaya Peretz ([@Bnaya](https://github.com/Bnaya))
 
 ## License
 

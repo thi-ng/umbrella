@@ -74,11 +74,11 @@ TODO
 
 ### Maintainer
 
--   Karsten Schmidt ([@postspectacular](https://github.com//postspectacular))
+-   Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
 
 ### Contributors
 
--   [@nkint](https://github.com//nkint)
+-   [@nkint](https://github.com/nkint)
 
 ## License
 

@@ -165,12 +165,12 @@ gestures.subscribe(
 
 ### Maintainer
 
-- Karsten Schmidt ([@postspectacular](https://github.com//postspectacular))
+- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
 
 ### Contributors
 
-- Arthur Carabott ([@acarabott](https://github.com//acarabott))
-- Matei Adriel ([@Mateiadrielrafael](https://github.com//Mateiadrielrafael))
+- Arthur Carabott ([@acarabott](https://github.com/acarabott))
+- Matei Adriel ([@Mateiadrielrafael](https://github.com/Mateiadrielrafael))
 
 ## License
 

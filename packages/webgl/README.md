@@ -135,12 +135,12 @@ TODO
 
 ### Maintainer
 
-- Karsten Schmidt ([@postspectacular](https://github.com//postspectacular))
+- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
 
 ### Contributors
 
-- [@nkint](https://github.com//nkint)
-- [@stwind](https://github.com//stwind)
+- [@nkint](https://github.com/nkint)
+- [@stwind](https://github.com/stwind)
 
 ## License
 
