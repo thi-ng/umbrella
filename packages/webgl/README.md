@@ -19,6 +19,8 @@ This project is part of the
 - [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
+  - [Maintainer](#maintainer)
+  - [Contributors](#contributors)
 - [License](#license)
 
 ## About
@@ -79,7 +81,7 @@ Largely declarative WebGL 1.0 / 2.0 abstraction layer, partially ported
 yarn add @thi.ng/webgl
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 11.27 KB / CJS: 11.43 KB / UMD: 11.26 KB
+Package sizes (gzipped, pre-treeshake): ESM: 11.30 KB / CJS: 11.46 KB / UMD: 11.29 KB
 
 ## Dependencies
 
@@ -131,7 +133,14 @@ TODO
 
 ## Authors
 
-Karsten Schmidt
+### Maintainer
+
+- Karsten Schmidt ([@postspectacular](https://github.com//postspectacular))
+
+### Contributors
+
+- [@nkint](https://github.com//nkint)
+- [@stwind](https://github.com//stwind)
 
 ## License
 
