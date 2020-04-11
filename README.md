@@ -83,13 +83,18 @@ packages) in the [**examples**](./examples/README.md) directory.
   - [Part 3 - Convolution, 1D/2D Cellular automata](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-3-a1c4e621db9b)
   - [Part 4 - Disjoint Sets, Graph analysis, Signed Distance Fields](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-4-62d8e71e5603)
 
-## Community
+## Community & contributing
 
 Join our little community on our [Discord
 server](https://discord.gg/JhYcmBw) or get in touch via
 [Twitter](https://twitter.com/thing_umbrella) or the [issue
 tracker](https://github.com/thi-ng/umbrella/issues). If you'd like to
 contribute, please first read [this document](./CONTRIBUTING.md).
+
+In general, we welcome contributions of all kinds (docs, examples, bug
+fixes, feature requests, financial contributions etc.). You can find a
+fairly detailed overview for contributors here:
+[CONTRIBUTING.md](https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md).
 
 ## Projects
 
