@@ -23,6 +23,7 @@ This project is part of the
   - [Identifiers](#identifiers)
   - [Word definitions](#word-definitions)
     - [Hyperstatic words](#hyperstatic-words)
+    - [Dynamic word creation from quotations](#dynamic-word-creation-from-quotations)
     - [Local variables](#local-variables)
   - [Boolean](#boolean)
   - [Numbers](#numbers)
@@ -53,6 +54,7 @@ an ES6 embedded DSL for concatenative programming:
 - dynamically scoped variables (stored in environment object)
     - syntax sugar for declaring & autobinding local vars w/ stack values
 - nested quotations (code as data, vanilla JS arrays)
+- dynamic word construction from quotations
 - array & object literals (optionally w/ computed properties)
 - all other features of @thi.ng/pointfree (combinators, array/vector ops etc.)
 - CLI version w/ basic file I/O, library includes, JSON
@@ -67,11 +69,12 @@ an ES6 embedded DSL for concatenative programming:
 yarn add @thi.ng/pointfree-lang
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.02 KB / CJS: 5.01 KB / UMD: 4.93 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.05 KB / CJS: 5.05 KB / UMD: 4.97 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/bench](https://github.com/thi-ng/umbrella/tree/develop/packages/bench)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree)
 - [commander](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
@@ -93,13 +96,8 @@ A selection:
 
 The package includes a `pointfree` CLI command to evaluate strings or files:
 
-(It's recommended to install the package globally for CLI usage)
-
 ```text
-# install globally
-yarn global add @thi.ng/pointfree-lang
-
-pointfree --help
+npx @thi.ng/pointfree-lang
 
 Usage: pointfree [options] [file]
 
@@ -380,6 +378,7 @@ aren't valid names in the ES6 context):
 | `match?` | `ismatch`     |
 | `>json`  | `tojson`      |
 | `json>`  | `fromjson`    |
+| `>word`  | `word`        |
 | `pi`     | `Math.PI`     |
 | `tau`    | `2 * Math.PI` |
 | `.`      | `print`       |
@@ -439,6 +438,26 @@ pf.run(`
 foo bar
 `)[0];
 // [ 'foo1foo2', 'foo1bar' ]
+```
+
+#### Dynamic word creation from quotations
+
+Quotations are used to treat code as data, delay execution of words
+and/or dynamically compose words. The latter can be achieved via the
+`>word`, which takes a quotation and a word name as arguments.
+
+```forth
+( takes min/max values, produces range check quotation )
+( uses local variables `a` and `b`, see section below  )
+
+: range-check ( a b -- q ) ^{ a b } [dup @a >= [@b <=] [drop F] if] ;
+
+( build range check for "0".."9" ASCII interval and define as word `digit?` )
+0 9 range-check "digit?" >word
+
+( now use... )
+"5" digit? . ( true )
+"a" digit? . ( false )
 ```
 
 #### Local variables

@@ -65,6 +65,13 @@ export const ALIASES: IObjectOf<pf.StackFn> = {
     "match?": pf.ismatch,
     ">json": pf.tojson,
     "json>": pf.fromjson,
+    ">word": (ctx) => {
+        const ds = ctx[0];
+        pf.ensureStack(ds, 2);
+        const name = ds.pop();
+        ctx[2].__words[name] = pf.word(ds.pop());
+        return ctx;
+    },
     pi: pf.push(Math.PI),
     tau: pf.push(2 * Math.PI),
     ".": pf.print,
