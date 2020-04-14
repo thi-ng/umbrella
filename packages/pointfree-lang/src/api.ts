@@ -69,11 +69,11 @@ export const ALIASES: IObjectOf<pf.StackFn> = {
         const ds = ctx[0];
         pf.ensureStack(ds, 2);
         const name = ds.pop();
-        ctx[2].__words[name] = pf.word(ds.pop());
+        ctx[2].__words[name] = pf.defWord(ds.pop());
         return ctx;
     },
-    pi: pf.push(Math.PI),
-    tau: pf.push(2 * Math.PI),
+    pi: pf.defPush(Math.PI),
+    tau: pf.defPush(2 * Math.PI),
     ".": pf.print,
     ".s": pf.printds,
     ".r": pf.printrs,

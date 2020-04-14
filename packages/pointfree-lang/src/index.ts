@@ -319,7 +319,7 @@ const visitWord = (
             stack.push(endvar(l[i]));
         }
     }
-    const w = pf.word(wctx[0]);
+    const w = pf.defWord(wctx[0]);
     ctx[2].__words[id] = w;
     state.word = false;
     return ctx;
