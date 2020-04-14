@@ -1,7 +1,7 @@
-import { op1, op2 } from "./ops";
-import { swap } from "./stack";
-import { word } from "./word";
 import type { StackContext } from "./api";
+import { defOp1, defOp2 } from "./ops";
+import { swap } from "./stack";
+import { defWord } from "./word";
 
 //////////////////// Math ops ////////////////////
 
@@ -10,147 +10,147 @@ import type { StackContext } from "./api";
  *
  * @param ctx -
  */
-export const add = op2((b, a) => a + b);
+export const add = defOp2((b, a) => a + b);
 
 /**
  * ( x y -- x*y )
  *
  * @param ctx -
  */
-export const mul = op2((b, a) => a * b);
+export const mul = defOp2((b, a) => a * b);
 
 /**
  * ( x y -- x-y )
  *
  * @param ctx -
  */
-export const sub = op2((b, a) => a - b);
+export const sub = defOp2((b, a) => a - b);
 
 /**
  * ( x y -- x/y )
  *
  * @param ctx -
  */
-export const div = op2((b, a) => a / b);
+export const div = defOp2((b, a) => a / b);
 
 /**
  * ( x -- 1/x )
  *
  * @param ctx -
  */
-export const oneover = word([1, swap, div]);
+export const oneover = defWord([1, swap, div]);
 
 /**
  * ( x y -- x%y )
  *
  * @param ctx -
  */
-export const mod = op2((b, a) => a % b);
+export const mod = defOp2((b, a) => a % b);
 
 /**
  * ( x y -- min(x,y) )
  *
  * @param ctx -
  */
-export const min = op2(Math.min);
+export const min = defOp2(Math.min);
 
 /**
  * ( x y -- max(x,y) )
  *
  * @param ctx -
  */
-export const max = op2(Math.max);
+export const max = defOp2(Math.max);
 
 /**
  * ( x -- -x )
  *
  * @param ctx -
  */
-export const neg = op1((x) => -x);
+export const neg = defOp1((x) => -x);
 
 /**
  * ( x y -- pow(x,y) )
  *
  * @param ctx -
  */
-export const pow = op2((b, a) => Math.pow(a, b));
+export const pow = defOp2((b, a) => Math.pow(a, b));
 
 /**
  * ( x -- sqrt(x) )
  *
  * @param ctx -
  */
-export const sqrt = op1(Math.sqrt);
+export const sqrt = defOp1(Math.sqrt);
 
 /**
  * ( x -- exp(x) )
  *
  * @param ctx -
  */
-export const exp = op1(Math.exp);
+export const exp = defOp1(Math.exp);
 
 /**
  * ( x -- log(x) )
  *
  * @param ctx -
  */
-export const log = op1(Math.log);
+export const log = defOp1(Math.log);
 
 /**
  * ( x -- sin(x) )
  *
  * @param ctx -
  */
-export const sin = op1(Math.sin);
+export const sin = defOp1(Math.sin);
 
 /**
  * ( x -- cos(x) )
  *
  * @param ctx -
  */
-export const cos = op1(Math.cos);
+export const cos = defOp1(Math.cos);
 
 /**
  * ( x -- tan(x) )
  *
  * @param ctx -
  */
-export const tan = op1(Math.tan);
+export const tan = defOp1(Math.tan);
 
 /**
  * ( x -- tanh(x) )
  *
  * @param ctx -
  */
-export const tanh = op1(Math.tanh);
+export const tanh = defOp1(Math.tanh);
 
 /**
  * ( x -- floor(x) )
  *
  * @param ctx -
  */
-export const floor = op1(Math.floor);
+export const floor = defOp1(Math.floor);
 
 /**
  * ( x -- ceil(x) )
  *
  * @param ctx -
  */
-export const ceil = op1(Math.ceil);
+export const ceil = defOp1(Math.ceil);
 
 /**
  * ( x y -- sqrt(x*x+y*y) )
  *
  * @param ctx -
  */
-export const hypot = op2(Math.hypot);
+export const hypot = defOp2(Math.hypot);
 
 /**
  * ( x y -- atan2(y,x) )
  *
  * @param ctx -
  */
-export const atan2 = op2(Math.atan2);
+export const atan2 = defOp2(Math.atan2);
 
 /**
  * ( -- Math.random() )
@@ -164,11 +164,11 @@ export const rand = (ctx: StackContext) => (ctx[0].push(Math.random()), ctx);
  *
  * @param ctx -
  */
-export const even = op1((x) => !(x & 1));
+export const even = defOp1((x) => !(x & 1));
 
 /**
  * ( x -- bool )
  *
  * @param ctx -
  */
-export const odd = op1((x) => !!(x & 1));
+export const odd = defOp1((x) => !!(x & 1));

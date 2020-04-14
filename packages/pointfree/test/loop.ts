@@ -14,18 +14,18 @@ import { StackFn, StackProgram } from "../src/api";
  * @param bodyQ -
  */
 const loop2 = (i: number, j: number, bodyQ: StackProgram) =>
-    pf.word([
+    pf.defWord([
         0,
-        pf.loop(
+        pf.defLoop(
             [pf.dup, i, pf.lt],
             [
                 0,
-                pf.loop([pf.dup, j, pf.lt], [pf.dup2, ...bodyQ, pf.inc]),
+                pf.defLoop([pf.dup, j, pf.lt], [pf.dup2, ...bodyQ, pf.inc]),
                 pf.drop,
-                pf.inc
+                pf.inc,
             ]
         ),
-        pf.drop
+        pf.drop,
     ]);
 
 /**
@@ -40,8 +40,8 @@ const loop2 = (i: number, j: number, bodyQ: StackProgram) =>
  * @param j - inner size
  * @param body - user quotation
  */
-const grid = (i: number, j: number, body: StackProgram = [pf.tuple(2)]) =>
-    pf.word([loop2(i, j, [...body, pf.invrot]), pf.tuple(i * j)]);
+const grid = (i: number, j: number, body: StackProgram = [pf.defTuple(2)]) =>
+    pf.defWord([loop2(i, j, [...body, pf.invrot]), pf.defTuple(i * j)]);
 
 /**
  * Special version of `grid` which transforms `i,j` pairs into strings
@@ -61,7 +61,7 @@ const makeids = (
     sep: string,
     id1: StackFn = pf.nop,
     id2 = id1
-) => grid(i, j, [id2, pf.swap, id1, pf.swap, pf.tuple(2), pf.join(sep)]);
+) => grid(i, j, [id2, pf.swap, id1, pf.swap, pf.defTuple(2), pf.defJoin(sep)]);
 
 // helper word which looks up TOS in given string/array/object, i.e. to
 // transform a number into another value (e.g. string)
@@ -79,6 +79,6 @@ console.log(
     pf.runU([
         makeids(4, 4, "", idgen("abcd")),
         pf.maptos((id) => pf.runU(makeids(4, 4, "/", idgen(id)))),
-        pf.maptos((id) => pf.runU(makeids(4, 4, "-", idgen(id))))
+        pf.maptos((id) => pf.runU(makeids(4, 4, "-", idgen(id)))),
     ])
 );

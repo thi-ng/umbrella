@@ -1,14 +1,8 @@
+import type { StackContext } from "./api";
 import { and, or } from "./logic";
 import { $ } from "./safe";
-import {
-    dup,
-    dup2,
-    dup3,
-    over,
-    swap
-} from "./stack";
-import { $stackFn, exec, word } from "./word";
-import type { StackContext } from "./api";
+import { dup, dup2, dup3, over, swap } from "./stack";
+import { $stackFn, defWord, exec } from "./word";
 
 //////////////////// Dataflow combinators  ////////////////////
 
@@ -42,7 +36,7 @@ export const dip = (ctx: StackContext) => {
  *
  * ( x y q -- x y )
  */
-export const dip2 = word([swap, [dip], dip]);
+export const dip2 = defWord([swap, [dip], dip]);
 
 /**
  * Removes `x y z` from d-stack, calls `q` and restores removed
@@ -50,7 +44,7 @@ export const dip2 = word([swap, [dip], dip]);
  *
  * ( x y z q -- x y z )
  */
-export const dip3 = word([swap, [dip2], dip]);
+export const dip3 = defWord([swap, [dip2], dip]);
 
 /**
  * Removes `x y z w` from d-stack, calls `q` and restores removed
@@ -58,7 +52,7 @@ export const dip3 = word([swap, [dip2], dip]);
  *
  * ( x y z w q -- x y z w )
  */
-export const dip4 = word([swap, [dip3], dip]);
+export const dip4 = defWord([swap, [dip3], dip]);
 
 /**
  * Calls a quotation with a value on the d-stack, restoring the value
@@ -66,7 +60,7 @@ export const dip4 = word([swap, [dip3], dip]);
  *
  * ( x q -- .. x )
  */
-export const keep = word([over, [exec], dip]);
+export const keep = defWord([over, [exec], dip]);
 
 /**
  * Call a quotation with two values on the stack, restoring the values
@@ -74,7 +68,7 @@ export const keep = word([over, [exec], dip]);
  *
  * ( x y q -- .. x y )
  */
-export const keep2 = word([[dup2], dip, dip2]);
+export const keep2 = defWord([[dup2], dip, dip2]);
 
 /**
  * Call a quotation with three values on the stack, restoring the values
@@ -82,7 +76,7 @@ export const keep2 = word([[dup2], dip, dip2]);
  *
  * ( x y z q -- .. x y z )
  */
-export const keep3 = word([[dup3], dip, dip3]);
+export const keep3 = defWord([[dup3], dip, dip3]);
 
 /**
  * First applies `p` to the value `x`, then applies `q` to the same
@@ -90,7 +84,7 @@ export const keep3 = word([[dup3], dip, dip3]);
  *
  * ( x p q -- px qx )
  */
-export const bi = word([[keep], dip, exec]);
+export const bi = defWord([[keep], dip, exec]);
 
 /**
  * First applies `p` to the two input values `x y`, then applies `q` to
@@ -98,7 +92,7 @@ export const bi = word([[keep], dip, exec]);
  *
  * ( x y p q -- pxy qxy )
  */
-export const bi2 = word([[keep2], dip, exec]);
+export const bi2 = defWord([[keep2], dip, exec]);
 
 /**
  * First applies `p` to the three input values `x y z`, then applies `q`
@@ -106,14 +100,14 @@ export const bi2 = word([[keep2], dip, exec]);
  *
  * ( x y z p q -- pxyz qxyz )
  */
-export const bi3 = word([[keep3], dip, exec]);
+export const bi3 = defWord([[keep3], dip, exec]);
 
 /**
  * Applies `p` to `x`, then `q` to `x`, and finally `r` to `x`
  *
  * ( x p q r -- px qx rx )
  */
-export const tri = word([[[keep], dip, keep], dip, exec]);
+export const tri = defWord([[[keep], dip, keep], dip, exec]);
 
 /**
  * Applies `p` to the two input values `x y`, then same with `q`, and
@@ -121,7 +115,7 @@ export const tri = word([[[keep], dip, keep], dip, exec]);
  *
  * ( x y p q r -- pxy qxy rxy )
  */
-export const tri2 = word([[[keep2], dip, keep2], dip, exec]);
+export const tri2 = defWord([[[keep2], dip, keep2], dip, exec]);
 
 /**
  * Applies `p` to the three input values `x y z`, then same with `q`,
@@ -129,63 +123,63 @@ export const tri2 = word([[[keep2], dip, keep2], dip, exec]);
  *
  * ( x y z p q r -- pxyz qxyz rxyz )
  */
-export const tri3 = word([[[keep3], dip, keep3], dip, exec]);
+export const tri3 = defWord([[[keep3], dip, keep3], dip, exec]);
 
 /**
  * Applies `p` to `x`, then applies `q` to `y`.
  *
  * ( x y p q -- px qy )
  */
-export const bis = word([[dip], dip, exec]);
+export const bis = defWord([[dip], dip, exec]);
 
 /**
  * Applies `p` to `a b`, then applies `q` to `c d`.
  *
  * ( a b c d p q -- pab qcd )
  */
-export const bis2 = word([[dip2], dip, exec]);
+export const bis2 = defWord([[dip2], dip, exec]);
 
 /**
  * Applies `p` to `x`, then `q` to `y`, and finally `r` to `z`.
  *
  * ( x y z p q r -- )
  */
-export const tris = word([[[dip2], dip, dip], dip, exec]);
+export const tris = defWord([[[dip2], dip, dip], dip, exec]);
 
 /**
  * Applies `p` to `u v`, then `q` to `w x`, and finally `r` to `y z`.
  *
  * ( u v w x y z p q r -- puv qwx ryz )
  */
-export const tris2 = word([[dip4], dip2, bis2]);
+export const tris2 = defWord([[dip4], dip2, bis2]);
 
 /**
  * Applies the quotation `q` to `x`, then to `y`.
  *
  * ( x y q -- qx qy )
  */
-export const bia = word([dup, bis]);
+export const bia = defWord([dup, bis]);
 
 /**
  * Applies the quotation `q` to `x y`, then to `z w`.
  *
  * ( x y z w q -- qxy qzw )
  */
-export const bia2 = word([dup, bis2]);
+export const bia2 = defWord([dup, bis2]);
 
 /**
  * Applies the `q` to `x`, then to `y`, and finally to `z`.
  *
  * ( x y z q -- qx qy qz )
  */
-export const tria = word([dup, dup, tris]);
+export const tria = defWord([dup, dup, tris]);
 
 /**
  * Applies the quotation to `u v`, then to `w x`, and then to `y z`.
  *
  * ( u v w x y z q -- quv qwx qyz )
  */
-export const tria2 = word([dup, dup, tris2]);
+export const tria2 = defWord([dup, dup, tris2]);
 
 /**
  * Applies `q` individually to both input vals `x y` and combines
@@ -194,7 +188,7 @@ export const tria2 = word([dup, dup, tris2]);
  *
  * ( x y q -- qx && qy )
  */
-export const both = word([bia, and]);
+export const both = defWord([bia, and]);
 
 /**
  * Applies `q` individually to both input vals `x y` and combines results with `or`.
@@ -203,4 +197,4 @@ export const both = word([bia, and]);
  *
  * ( x y q -- qx || qy )
  */
-export const either = word([bia, or]);
+export const either = defWord([bia, or]);

@@ -1,7 +1,5 @@
 import { isArray, isFunction } from "@thi.ng/checks";
 import { compL } from "@thi.ng/compose";
-import { $ } from "./safe";
-import { tos } from "./stack";
 import type {
     StackContext,
     StackEnv,
@@ -9,8 +7,10 @@ import type {
     StackProc,
     StackProgram,
 } from "./api";
+import { $ } from "./safe";
+import { tos } from "./stack";
 
-export const $stackFn = (f: StackProc) => (isArray(f) ? word(f) : f);
+export const $stackFn = (f: StackProc) => (isArray(f) ? defWord(f) : f);
 
 const compile = (prog: StackProgram) =>
     prog.length > 0
@@ -59,7 +59,11 @@ export const unwrap = ([stack]: StackContext, n = 1) =>
  * @param env -
  * @param mergeEnv -
  */
-export const word = (prog: StackProgram, env?: StackEnv, mergeEnv = true) => {
+export const defWord = (
+    prog: StackProgram,
+    env?: StackEnv,
+    mergeEnv = true
+) => {
     const w: StackFn = compile(prog);
     return env
         ? mergeEnv
@@ -82,7 +86,7 @@ export const word = (prog: StackProgram, env?: StackEnv, mergeEnv = true) => {
  * @param env -
  * @param mergeEnv -
  */
-export const wordU = (
+export const defWordU = (
     prog: StackProgram,
     n = 1,
     env?: StackEnv,

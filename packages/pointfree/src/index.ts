@@ -16,4 +16,4 @@ export * from "./string";
 export * from "./word";
 
 export { $ as ensureStack, $n as ensureStackN } from "./safe";
-export { op1 as maptos, op2 as map2, op2v } from "./ops";
+export { defOp1 as maptos, defOp2 as map2, defOp2v as op2v } from "./ops";

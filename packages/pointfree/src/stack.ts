@@ -1,5 +1,5 @@
-import { $, $n } from "./safe";
 import type { Stack, StackContext } from "./api";
+import { $, $n } from "./safe";
 
 const __xsp = (id: 0 | 1) => (ctx: StackContext) => (
     ctx[0].push(ctx[id].length), ctx
@@ -164,7 +164,7 @@ export const dropif = (ctx: StackContext) => (
  *
  * @param args -
  */
-export const push = (...args: any[]) => (ctx: StackContext) => (
+export const defPush = (...args: any[]) => (ctx: StackContext) => (
     ctx[0].push(...args), ctx
 );
 

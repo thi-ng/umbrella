@@ -1,8 +1,8 @@
+import type { Fn, Fn2 } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
-import { $, $n } from "./safe";
-import type { Fn, Fn2 } from "@thi.ng/api";
 import type { StackContext } from "./api";
+import { $, $n } from "./safe";
 
 //////////////////// Operator generators ////////////////////
 
@@ -13,7 +13,7 @@ import type { StackContext } from "./api";
  *
  * @param op -
  */
-export const op1 = (op: Fn<any, any>) => {
+export const defOp1 = (op: Fn<any, any>) => {
     return (ctx: StackContext) => {
         const stack = ctx[0];
         const n = stack.length - 1;
@@ -31,7 +31,7 @@ export const op1 = (op: Fn<any, any>) => {
  *
  * @param op -
  */
-export const op2 = (op: Fn2<any, any, any>) => (ctx: StackContext) => {
+export const defOp2 = (op: Fn2<any, any, any>) => (ctx: StackContext) => {
     const stack = ctx[0];
     const n = stack.length - 2;
     $n(n, 0);
@@ -50,7 +50,7 @@ export const op2 = (op: Fn2<any, any, any>) => (ctx: StackContext) => {
  *
  * @param f -
  */
-export const op2v = (f: Fn2<any, any, any>) => (
+export const defOp2v = (f: Fn2<any, any, any>) => (
     ctx: StackContext
 ): StackContext => {
     $(ctx[0], 2);

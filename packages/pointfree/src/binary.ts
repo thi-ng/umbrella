@@ -1,4 +1,4 @@
-import { op1, op2 } from "./ops";
+import { defOp1, defOp2 } from "./ops";
 
 //////////////////// Binary ops ////////////////////
 
@@ -7,46 +7,46 @@ import { op1, op2 } from "./ops";
  *
  * @param ctx -
  */
-export const bitand = op2((b, a) => a & b);
+export const bitand = defOp2((b, a) => a & b);
 
 /**
  * ( x y -- x|y )
  *
  * @param ctx -
  */
-export const bitor = op2((b, a) => a | b);
+export const bitor = defOp2((b, a) => a | b);
 
 /**
  * ( x y -- x^y )
  *
  * @param ctx -
  */
-export const bitxor = op2((b, a) => a ^ b);
+export const bitxor = defOp2((b, a) => a ^ b);
 
 /**
  * ( x -- ~x )
  *
  * @param ctx -
  */
-export const bitnot = op1((x) => ~x);
+export const bitnot = defOp1((x) => ~x);
 
 /**
  * ( x y -- x<<y )
  *
  * @param ctx -
  */
-export const lsl = op2((b, a) => a << b);
+export const lsl = defOp2((b, a) => a << b);
 
 /**
  * ( x y -- x>>y )
  *
  * @param ctx -
  */
-export const lsr = op2((b, a) => a >> b);
+export const lsr = defOp2((b, a) => a >> b);
 
 /**
  * ( x y -- x>>>y )
  *
  * @param ctx -
  */
-export const lsru = op2((b, a) => a >>> b);
+export const lsru = defOp2((b, a) => a >>> b);

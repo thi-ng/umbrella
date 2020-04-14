@@ -1,6 +1,6 @@
 import { illegalArgs } from "@thi.ng/errors";
-import { $ } from "./safe";
 import type { StackContext } from "./api";
+import { $ } from "./safe";
 
 //////////////////// Environment  ////////////////////
 
@@ -53,7 +53,7 @@ export const store = (ctx: StackContext) => (
  * @param ctx -
  * @param env -
  */
-export const loadkey = (key: PropertyKey) => (ctx: StackContext) => {
+export const defLoadKey = (key: PropertyKey) => (ctx: StackContext) => {
     !ctx[2].hasOwnProperty(key) &&
         illegalArgs(`unknown var: ${key.toString()}`);
     ctx[0].push(ctx[2][key]);
@@ -70,6 +70,6 @@ export const loadkey = (key: PropertyKey) => (ctx: StackContext) => {
  * @param ctx -
  * @param env -
  */
-export const storekey = (key: PropertyKey) => (ctx: StackContext) => (
+export const defStoreKey = (key: PropertyKey) => (ctx: StackContext) => (
     $(ctx[0], 1), (ctx[2][key] = ctx[0].pop()), ctx
 );

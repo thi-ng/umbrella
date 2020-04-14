@@ -1,6 +1,6 @@
+import type { StackContext, StackProc } from "./api";
 import { $ } from "./safe";
 import { $stackFn } from "./word";
-import type { StackContext, StackProc } from "./api";
 
 //////////////////// Loop constructs  ////////////////////
 
@@ -21,7 +21,7 @@ import type { StackContext, StackProc } from "./api";
  * @param test -
  * @param body -
  */
-export const loop = (test: StackProc, body: StackProc) => {
+export const defLoop = (test: StackProc, body: StackProc) => {
     const _test = $stackFn(test);
     const _body = $stackFn(body);
     return (ctx: StackContext) => {
@@ -48,7 +48,7 @@ export const loopq = (ctx: StackContext) => {
     const stack = ctx[0];
     $(stack, 2);
     const body = stack.pop();
-    return loop(stack.pop(), body)(ctx);
+    return defLoop(stack.pop(), body)(ctx);
 };
 
 /**

@@ -1,10 +1,10 @@
 import { isArray, isPlainObject } from "@thi.ng/checks";
 import { illegalArgs, illegalState } from "@thi.ng/errors";
-import { op1, op2, op2v } from "./ops";
+import type { StackContext, StackFn } from "./api";
+import { defOp1, defOp2, defOp2v } from "./ops";
 import { $, $n } from "./safe";
 import { invrot, swap } from "./stack";
-import { $stackFn, word } from "./word";
-import type { StackContext, StackFn } from "./api";
+import { $stackFn, defWord } from "./word";
 
 //////////////////// Array / list ops  ////////////////////
 
@@ -100,15 +100,15 @@ export const popr = (ctx: StackContext) => {
     return ctx;
 };
 
-export const pull = word([popr, swap]);
-export const pull2 = word([pull, pull]);
-export const pull3 = word([pull2, pull]);
-export const pull4 = word([pull2, pull2]);
+export const pull = defWord([popr, swap]);
+export const pull2 = defWord([pull, pull]);
+export const pull3 = defWord([pull2, pull]);
+export const pull4 = defWord([pull2, pull2]);
 
-export const vadd = op2v((b, a) => a + b);
-export const vsub = op2v((b, a) => a - b);
-export const vmul = op2v((b, a) => a * b);
-export const vdiv = op2v((b, a) => a / b);
+export const vadd = defOp2v((b, a) => a + b);
+export const vsub = defOp2v((b, a) => a - b);
+export const vmul = defOp2v((b, a) => a * b);
+export const vdiv = defOp2v((b, a) => a / b);
 
 /**
  * Splits vector / array at given index `x`.
@@ -128,7 +128,7 @@ export const split = (ctx: StackContext) => {
 };
 
 /**
- * Concatenates two arrays on d-stack:
+ * Concatenates `arr2` onto `arr1`:
  *
  * ( arr1 arr2 -- arr )
  *
@@ -139,6 +139,21 @@ export const cat = (ctx: StackContext) => {
     const n = stack.length - 2;
     $n(n, 0);
     stack[n] = stack[n].concat(stack.pop());
+    return ctx;
+};
+
+/**
+ * Similar to {@link cat}, but concatenates `arr1` onto `arr2`:
+ *
+ * ( arr1 arr2 -- arr )
+ *
+ * @param ctx -
+ */
+export const catr = (ctx: StackContext) => {
+    const stack = ctx[0];
+    const n = stack.length - 2;
+    $n(n, 0);
+    stack[n] = stack.pop().concat(stack[n]);
     return ctx;
 };
 
@@ -263,7 +278,7 @@ export const mapll = (ctx: StackContext) => {
  *
  * ( arr q init -- reduction )
  */
-export const foldl = word([invrot, mapl]);
+export const foldl = defWord([invrot, mapl]);
 
 /**
  * Pops TOS (a number) and then forms a tuple of the top `n` remaining
@@ -293,11 +308,11 @@ export const collect = (ctx: StackContext) => {
  *
  * @param n -
  */
-export const tuple = (n: number | StackFn) => word([n, collect]);
+export const defTuple = (n: number | StackFn) => defWord([n, collect]);
 
-export const vec2 = tuple(2);
-export const vec3 = tuple(3);
-export const vec4 = tuple(4);
+export const vec2 = defTuple(2);
+export const vec3 = defTuple(3);
+export const vec4 = defTuple(4);
 
 /**
  * Higher order helper word to convert a TOS tuple/array into a string
@@ -305,7 +320,9 @@ export const vec4 = tuple(4);
  *
  * @param sep -
  */
-export const join = (sep = "") => op1((x) => x.join(sep));
+export const defJoin = (sep = "") => defOp1((x) => x.join(sep));
+
+export const join = defOp2((sep, buf) => buf.join(sep));
 
 /**
  * Pushes length of TOS on d-stack.
@@ -314,14 +331,14 @@ export const join = (sep = "") => op1((x) => x.join(sep));
  *
  * @param ctx -
  */
-export const length = op1((x) => x.length);
+export const length = defOp1((x) => x.length);
 
 /**
  * Replaces TOS with its shallow copy. MUST be an array or plain object.
  *
  * ( x -- copy )
  */
-export const copy = op1((x) =>
+export const copy = defOp1((x) =>
     isArray(x)
         ? x.slice()
         : isPlainObject(x)
@@ -336,7 +353,7 @@ export const copy = op1((x) =>
  *
  * @param ctx -
  */
-export const at = op2((b, a) => a[b]);
+export const at = defOp2((b, a) => a[b]);
 
 /**
  * Writes `val` at key/index in object/array.

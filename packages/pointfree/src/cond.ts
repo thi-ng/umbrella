@@ -1,9 +1,9 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { illegalState } from "@thi.ng/errors";
+import type { StackContext, StackProc } from "./api";
 import { $ } from "./safe";
 import { nop } from "./stack";
 import { $stackFn } from "./word";
-import type { IObjectOf } from "@thi.ng/api";
-import type { StackContext, StackProc } from "./api";
 
 //////////////////// Conditionals  ////////////////////
 
@@ -20,7 +20,7 @@ import type { StackContext, StackProc } from "./api";
  * @param _then -
  * @param _else -
  */
-export const cond = (_then: StackProc, _else: StackProc = nop) => (
+export const defCond = (_then: StackProc, _else: StackProc = nop) => (
     ctx: StackContext
 ) => ($(ctx[0], 1), $stackFn(ctx[0].pop() ? _then : _else)(ctx));
 
@@ -68,7 +68,9 @@ export const whenq = (ctx: StackContext) => {
  *
  * @param cases -
  */
-export const cases = (cases: IObjectOf<StackProc>) => (ctx: StackContext) => {
+export const defCases = (cases: IObjectOf<StackProc>) => (
+    ctx: StackContext
+) => {
     $(ctx[0], 1);
     const stack = ctx[0];
     const tos = stack.pop();
@@ -80,12 +82,11 @@ export const cases = (cases: IObjectOf<StackProc>) => (ctx: StackContext) => {
         stack.push(tos);
         return $stackFn(cases.default)(ctx);
     }
-    illegalState(`no matching case for: ${tos}`);
-    return ctx;
+    return illegalState(`no matching case for: ${tos}`);
 };
 
 export const casesq = (ctx: StackContext) => {
     const stack = ctx[0];
     $(stack, 2);
-    return cases(stack.pop())(ctx);
+    return defCases(stack.pop())(ctx);
 };

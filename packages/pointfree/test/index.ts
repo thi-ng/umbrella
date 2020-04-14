@@ -32,9 +32,9 @@ describe("pointfree", () => {
     });
 
     it("push", () => {
-        assert.deepEqual(pf.push()($())[0], []);
-        assert.deepEqual(pf.push(1)($())[0], [1]);
-        assert.deepEqual(pf.push(2, 3)($([1]))[0], [1, 2, 3]);
+        assert.deepEqual(pf.defPush()($())[0], []);
+        assert.deepEqual(pf.defPush(1)($())[0], [1]);
+        assert.deepEqual(pf.defPush(2, 3)($([1]))[0], [1, 2, 3]);
     });
 
     it("dup", () => {
@@ -329,8 +329,8 @@ describe("pointfree", () => {
 
     it("list", () => {
         assert.deepEqual(pf.list($())[0], [[]]);
-        const foo = pf.word([[], 1, pf.pushr]);
-        const bar = pf.word([pf.list, 1, pf.pushr]);
+        const foo = pf.defWord([[], 1, pf.pushr]);
+        const bar = pf.defWord([pf.list, 1, pf.pushr]);
         assert.deepEqual(foo($())[0], [[1]]);
         assert.deepEqual(foo($())[0], [[1, 1]]);
         assert.deepEqual(bar($())[0], [[1]]);
@@ -426,10 +426,10 @@ describe("pointfree", () => {
     });
 
     it("tuple", () => {
-        assert.throws(() => pf.tuple(1)($()));
-        assert.deepEqual(pf.tuple(1)($([1]))[0], [[1]]);
-        assert.deepEqual(pf.tuple(1)($([1, 2]))[0], [1, [2]]);
-        assert.deepEqual(pf.tuple(2)($([1, 2]))[0], [[1, 2]]);
+        assert.throws(() => pf.defTuple(1)($()));
+        assert.deepEqual(pf.defTuple(1)($([1]))[0], [[1]]);
+        assert.deepEqual(pf.defTuple(1)($([1, 2]))[0], [1, [2]]);
+        assert.deepEqual(pf.defTuple(2)($([1, 2]))[0], [[1, 2]]);
     });
 
     it("length", () => {
@@ -445,9 +445,9 @@ describe("pointfree", () => {
     });
 
     it("join", () => {
-        assert.throws(() => pf.join()($()));
-        assert.deepEqual(pf.join()($([["a", 1]]))[0], ["a1"]);
-        assert.deepEqual(pf.join("-")($([["a", 1]]))[0], ["a-1"]);
+        assert.throws(() => pf.defJoin()($()));
+        assert.deepEqual(pf.defJoin()($([["a", 1]]))[0], ["a1"]);
+        assert.deepEqual(pf.defJoin("-")($([["a", 1]]))[0], ["a-1"]);
     });
 
     it("at", () => {
@@ -484,14 +484,14 @@ describe("pointfree", () => {
     });
 
     it("loadkey", () => {
-        assert.deepEqual(pf.loadkey("a")([[0], [], { a: 1 }])[0], [0, 1]);
-        assert.throws(() => pf.loadkey("a")(pf.ctx()));
+        assert.deepEqual(pf.defLoadKey("a")([[0], [], { a: 1 }])[0], [0, 1]);
+        assert.throws(() => pf.defLoadKey("a")(pf.ctx()));
     });
 
     it("storekey", () => {
-        assert.throws(() => pf.storekey("a")($()));
-        assert.deepEqual(pf.storekey("a")([[10], [], {}]), [[], [], { a: 10 }]);
-        assert.deepEqual(pf.storekey("b")([[10], [], { a: 1 }]), [[], [], { a: 1, b: 10 }]);
+        assert.throws(() => pf.defStoreKey("a")($()));
+        assert.deepEqual(pf.defStoreKey("a")([[10], [], {}]), [[], [], { a: 10 }]);
+        assert.deepEqual(pf.defStoreKey("b")([[10], [], { a: 1 }]), [[], [], { a: 1, b: 10 }]);
     });
 
     it("pushenv", () => {
@@ -522,24 +522,24 @@ describe("pointfree", () => {
     });
 
     it("cond", () => {
-        assert.throws(() => pf.cond([], [])($()));
-        assert.deepEqual(pf.cond([1], [2])($([undefined]))[0], [2]);
-        assert.deepEqual(pf.cond([1], [2])($([null]))[0], [2]);
-        assert.deepEqual(pf.cond([1], [2])($([0]))[0], [2]);
-        assert.deepEqual(pf.cond([1], [2])($([true]))[0], [1]);
-        assert.deepEqual(pf.cond([1], [2])($([-1]))[0], [1]);
-        assert.deepEqual(pf.cond([1, pf.dup], [2, pf.dup])($([-1]))[0], [1, 1]);
-        assert.deepEqual(pf.cond([1, pf.dup], [2, pf.dup])($([0]))[0], [2, 2]);
+        assert.throws(() => pf.defCond([], [])($()));
+        assert.deepEqual(pf.defCond([1], [2])($([undefined]))[0], [2]);
+        assert.deepEqual(pf.defCond([1], [2])($([null]))[0], [2]);
+        assert.deepEqual(pf.defCond([1], [2])($([0]))[0], [2]);
+        assert.deepEqual(pf.defCond([1], [2])($([true]))[0], [1]);
+        assert.deepEqual(pf.defCond([1], [2])($([-1]))[0], [1]);
+        assert.deepEqual(pf.defCond([1, pf.dup], [2, pf.dup])($([-1]))[0], [1, 1]);
+        assert.deepEqual(pf.defCond([1, pf.dup], [2, pf.dup])($([0]))[0], [2, 2]);
     });
 
     it("cases", () => {
         let classify = (x:any) =>
-            pf.cases({
+            pf.defCases({
                 0: ["zero"],
                 1: ["one"],
                 default: [
                     pf.ispos,
-                    pf.cond(["many"], ["invalid"])
+                    pf.defCond(["many"], ["invalid"])
                 ]
             })($([x]))[0];
 
@@ -547,29 +547,29 @@ describe("pointfree", () => {
         assert.equal(classify(1), "one");
         assert.equal(classify(100), "many");
         assert.equal(classify(-1), "invalid");
-        assert.throws(() => pf.cases({})($([0])));
+        assert.throws(() => pf.defCases({})($([0])));
     });
 
     it("word", () => {
-        assert.deepEqual(pf.word([pf.dup, pf.mul])($([2]))[0], [4]);
-        assert.deepEqual(pf.word([pf.pushenv], { a: 1 }, false)([[0], [], { b: 2 }])[0], [0, { a: 1 }]);
-        assert.deepEqual(pf.word([pf.pushenv], { a: 1 })([[0], [], { b: 2 }])[0], [0, { a: 1, b: 2 }]);
-        assert.deepEqual(pf.word([pf.add, pf.mul])($([1, 2, 3]))[0], [5]);
-        assert.deepEqual(pf.word([pf.add, pf.mul, pf.add])($([1, 2, 3, 4]))[0], [15]);
-        assert.deepEqual(pf.word([pf.add, pf.mul, pf.add, pf.mul])($([1, 2, 3, 4, 5]))[0], [29]);
-        assert.deepEqual(pf.word([pf.add, pf.mul, pf.add, pf.mul, pf.add])($([1, 2, 3, 4, 5, 6]))[0], [95]);
-        assert.deepEqual(pf.word([pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul])($([1, 2, 3, 4, 5, 6, 7]))[0], [209]);
-        assert.deepEqual(pf.word([pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add])($([1, 2, 3, 4, 5, 6, 7, 8]))[0], [767]);
-        assert.deepEqual(pf.word([pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul])($([1, 2, 3, 4, 5, 6, 7, 8, 9]))[0], [1889]);
-        assert.deepEqual(pf.word([pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add])($([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))[0], [7679]);
-        assert.deepEqual(pf.word([pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul])($([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]))[0], [20789]);
-        assert.deepEqual(pf.word([pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add])($([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]))[0], [92159]);
+        assert.deepEqual(pf.defWord([pf.dup, pf.mul])($([2]))[0], [4]);
+        assert.deepEqual(pf.defWord([pf.pushenv], { a: 1 }, false)([[0], [], { b: 2 }])[0], [0, { a: 1 }]);
+        assert.deepEqual(pf.defWord([pf.pushenv], { a: 1 })([[0], [], { b: 2 }])[0], [0, { a: 1, b: 2 }]);
+        assert.deepEqual(pf.defWord([pf.add, pf.mul])($([1, 2, 3]))[0], [5]);
+        assert.deepEqual(pf.defWord([pf.add, pf.mul, pf.add])($([1, 2, 3, 4]))[0], [15]);
+        assert.deepEqual(pf.defWord([pf.add, pf.mul, pf.add, pf.mul])($([1, 2, 3, 4, 5]))[0], [29]);
+        assert.deepEqual(pf.defWord([pf.add, pf.mul, pf.add, pf.mul, pf.add])($([1, 2, 3, 4, 5, 6]))[0], [95]);
+        assert.deepEqual(pf.defWord([pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul])($([1, 2, 3, 4, 5, 6, 7]))[0], [209]);
+        assert.deepEqual(pf.defWord([pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add])($([1, 2, 3, 4, 5, 6, 7, 8]))[0], [767]);
+        assert.deepEqual(pf.defWord([pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul])($([1, 2, 3, 4, 5, 6, 7, 8, 9]))[0], [1889]);
+        assert.deepEqual(pf.defWord([pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add])($([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))[0], [7679]);
+        assert.deepEqual(pf.defWord([pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul])($([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]))[0], [20789]);
+        assert.deepEqual(pf.defWord([pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add, pf.mul, pf.add])($([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]))[0], [92159]);
     });
 
     it("wordu", () => {
-        assert.deepEqual(pf.wordU([pf.dup, pf.mul])($([2])), 4);
-        assert.deepEqual(pf.wordU([pf.pushenv], 1, { a: 1 })($()), { a: 1 });
-        assert.deepEqual(pf.wordU([pf.pushenv], 1, { a: 1 }, true)([[], [], { b: 2 }]), { a: 1, b: 2 });
+        assert.deepEqual(pf.defWordU([pf.dup, pf.mul])($([2])), 4);
+        assert.deepEqual(pf.defWordU([pf.pushenv], 1, { a: 1 })($()), { a: 1 });
+        assert.deepEqual(pf.defWordU([pf.pushenv], 1, { a: 1 }, true)([[], [], { b: 2 }]), { a: 1, b: 2 });
     });
 
     it("bindkeys", () => {
