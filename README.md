@@ -98,11 +98,11 @@ fairly detailed overview for contributors here:
 
 ## Projects
 
-<!--
 ### New / unreleased packages in development
 
 (These packages are still unreleased and only available on their feature or `develop` branches)
--->
+
+- [@thi.ng/parse](https://github.com/thi-ng/umbrella/tree/feature/parse/packages/parse) - parser combinators & AST generator
 
 ### Fundamentals
 
