@@ -2,6 +2,7 @@ import type { ParseState, IReader } from "./api";
 
 class StringReader implements IReader<string> {
     constructor(protected input: string) {}
+
     read(state: ParseState<string>): string {
         return this.input[state.p];
     }
@@ -18,13 +19,11 @@ class StringReader implements IReader<string> {
         state.done = ++state.p >= this.input.length;
     }
 
-    set(state: ParseState<string>, pos: number): void {
-        if (state.done) return;
-        state.p = pos;
-        state.done = pos >= this.input.length;
+    isDone(state: ParseState<string>) {
+        return (state.done = state.p >= this.input.length);
     }
 
-    info(state: ParseState<string>) {
+    format(state: ParseState<string>) {
         return `offset ${state.p} (${state.l}:${state.c})`;
     }
 }

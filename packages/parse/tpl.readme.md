@@ -141,6 +141,7 @@ Source: [/combinators](https://github.com/thi-ng/umbrella/tree/feature/parse/pac
 - `alt` -
 - `maybe` -
 - `not` -
+- `oneOrMore` / `zeroOrMore` -
 - `repeat` -
 - `seq` -
 

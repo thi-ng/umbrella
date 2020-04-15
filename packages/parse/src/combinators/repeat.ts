@@ -2,11 +2,11 @@ import type { Parser } from "../api";
 
 export const repeat = <T>(
     parser: Parser<T>,
-    id = "repeat",
     min: number,
-    max = Infinity
+    max: number,
+    id = "repeat"
 ): Parser<T> => (ctx) => {
-    if (ctx.done) return false;
+    if (ctx.done) return min < 1;
     ctx.start(id);
     for (let i = 0; i < max; i++) {
         if (!parser(ctx)) {
@@ -22,8 +22,11 @@ export const repeat = <T>(
 export const zeroOrMore = <T>(
     parser: Parser<T>,
     id = "repeat0",
-    max?: number
-) => repeat(parser, id, 0, max);
+    max = Infinity
+) => repeat(parser, 0, max, id);
 
-export const oneOrMore = <T>(parser: Parser<T>, id = "repeat1", max?: number) =>
-    repeat(parser, id, 1, max);
+export const oneOrMore = <T>(
+    parser: Parser<T>,
+    id = "repeat1",
+    max = Infinity
+) => repeat(parser, 1, max, id);

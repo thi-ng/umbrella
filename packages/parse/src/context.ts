@@ -26,6 +26,7 @@ export class ParseContext<T> {
             result: null,
         };
         this._scopes = [this._curr];
+        reader.isDone(this._curr.state);
     }
 
     start(type: string) {

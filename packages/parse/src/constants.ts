@@ -22,13 +22,13 @@ export const ALPHA = alt([range<string>("a", "z"), range<string>("A", "Z")]);
 
 export const ALPHA_NUM = alt([ALPHA, DIGIT]);
 
-export const SIGN = maybe(oneOf("-+"), "");
-
 export const DIGITS_0 = zeroOrMore(DIGIT);
 
 export const DIGITS_1 = oneOrMore(DIGIT);
 
 export const HEX_DIGITS_1 = oneOrMore(HEX_DIGIT);
+
+const SIGN = maybe(oneOf("-+"));
 
 const EXP = maybe(seq([maybe(oneOf("eE")), SIGN, DIGITS_1]));
 

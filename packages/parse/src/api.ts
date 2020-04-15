@@ -19,8 +19,8 @@ export interface ParseState<T> {
 export interface IReader<T> {
     read(state: ParseState<T>): T;
     next(state: ParseState<T>): void;
-    set(state: ParseState<T>, pos: number): void;
-    info(state: ParseState<T>): string;
+    isDone(state: ParseState<T>): boolean;
+    format(state: ParseState<T>): string;
 }
 
 export type Parser<T> = Fn<ParseContext<T>, boolean>;
