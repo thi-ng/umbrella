@@ -76,6 +76,10 @@ export class ParseContext<T> {
     get done() {
         return this._curr.state.done;
     }
+
+    get result() {
+        return this._curr.children ? this._curr.children[0].result : undefined;
+    }
 }
 
 /**

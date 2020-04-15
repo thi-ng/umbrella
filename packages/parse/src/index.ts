@@ -6,6 +6,7 @@ export * from "./string-reader";
 
 export * from "./combinators/alt";
 export * from "./combinators/check";
+export * from "./combinators/collect";
 export * from "./combinators/discard";
 export * from "./combinators/expect";
 export * from "./combinators/maybe";
@@ -26,6 +27,7 @@ export * from "./prims/range";
 export * from "./prims/satisfy";
 export * from "./prims/string";
 
+export * from "./xform/collect";
 export * from "./xform/comp";
 export * from "./xform/number";
 export * from "./xform/merge";
