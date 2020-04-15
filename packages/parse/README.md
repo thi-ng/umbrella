@@ -14,6 +14,7 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
+  - [SVG path parser example](#svg-path-parser-example)
   - [RPN parser & interpreter example](#rpn-parser--interpreter-example)
   - [Context & reader creation](#context--reader-creation)
   - [Presets parsers](#presets-parsers)
@@ -38,12 +39,11 @@ Purely functional parser combinators & AST generation for generic inputs.
 yarn add @thi.ng/parse
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.97 KB / CJS: 2.17 KB / UMD: 2.08 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.08 KB / CJS: 2.27 KB / UMD: 2.16 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/feature/parse/packages/api)
-- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/feature/parse/packages/arrays)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/feature/parse/packages/checks)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/feature/parse/packages/errors)
 
@@ -53,12 +53,34 @@ Package sizes (gzipped, pre-treeshake): ESM: 1.97 KB / CJS: 2.17 KB / UMD: 2.08 
 
 TODO
 
+### SVG path parser example
+
+```ts
+const ws = discard(zeroOrMore(WS));
+const wsc = discard(zeroOrMore(oneOf(" ,")));
+
+const point = collect(seq([INT, wsc, INT]));
+const move = collect(seq([oneOf("Mm"), ws, point, ws]));
+const line = collect(seq([oneOf("Ll"), ws, point, ws]));
+const curve = collect(seq([oneOf("Cc"), ws, point, wsc, point, wsc, point, ws]));
+const close = xform(oneOf("Zz"), ($) => ($.result = [$.result], $));
+
+const path = collect(zeroOrMore(alt([move, line, curve, close])));
+
+const ctx = defContext("M0,1L2 3c4,5-6,7 8 9z");
+path(ctx);
+// true
+
+ctx.result
+// [["M", [0, 1]], ["L", [2, 3]], ["c", [4, 5], [-6, 7], [8, 9]], ["z"]]
+```
+
 ### RPN parser & interpreter example
 
 ```ts
 import {
     INT, WS,
-    alt, oneOf, repeat0, xform,
+    alt, oneOf, xform, zeroOrMore
     defContext
 } from "@thi.ng/parse";
 
@@ -93,7 +115,7 @@ const op = xform(oneOf(Object.keys(ops)), (scope) => {
 
 // parser for complete RPN program, combines above two parsers
 // and the whitespace preset as alternatives
-const program = repeat0(alt([value, op, WS]));
+const program = zeroOrMore(alt([value, op, zeroOrMore(WS)]))
 
 // prepare parser context (incl. reader) and execute
 program(defContext("10 5 3 * + -2 * 10 /"));
@@ -153,6 +175,7 @@ Source: [/combinators](https://github.com/thi-ng/umbrella/tree/feature/parse/pac
 - `alt` -
 - `maybe` -
 - `not` -
+- `oneOrMore` / `zeroOrMore` -
 - `repeat` -
 - `seq` -
 
@@ -160,6 +183,7 @@ Source: [/combinators](https://github.com/thi-ng/umbrella/tree/feature/parse/pac
 
 - `xform` -
 - `check` -
+- `collect` -
 - `discard` -
 - `expect` -
 - `merge` -
@@ -167,6 +191,7 @@ Source: [/combinators](https://github.com/thi-ng/umbrella/tree/feature/parse/pac
 Source: [/xform](https://github.com/thi-ng/umbrella/tree/feature/parse/packages/parse/src/xform)
 
 - `comp` - transform composition
+- `xfCollect` -
 - `xfFloat` -
 - `xfInt` -
 - `xfMerge` -

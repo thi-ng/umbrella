@@ -41,12 +41,34 @@ ${docLink}
 
 TODO
 
+### SVG path parser example
+
+```ts
+const ws = discard(zeroOrMore(WS));
+const wsc = discard(zeroOrMore(oneOf(" ,")));
+
+const point = collect(seq([INT, wsc, INT]));
+const move = collect(seq([oneOf("Mm"), ws, point, ws]));
+const line = collect(seq([oneOf("Ll"), ws, point, ws]));
+const curve = collect(seq([oneOf("Cc"), ws, point, wsc, point, wsc, point, ws]));
+const close = xform(oneOf("Zz"), ($) => ($.result = [$.result], $));
+
+const path = collect(zeroOrMore(alt([move, line, curve, close])));
+
+const ctx = defContext("M0,1L2 3c4,5-6,7 8 9z");
+path(ctx);
+// true
+
+ctx.result
+// [["M", [0, 1]], ["L", [2, 3]], ["c", [4, 5], [-6, 7], [8, 9]], ["z"]]
+```
+
 ### RPN parser & interpreter example
 
 ```ts
 import {
     INT, WS,
-    alt, oneOf, repeat0, xform,
+    alt, oneOf, xform, zeroOrMore
     defContext
 } from "@thi.ng/parse";
 
@@ -81,7 +103,7 @@ const op = xform(oneOf(Object.keys(ops)), (scope) => {
 
 // parser for complete RPN program, combines above two parsers
 // and the whitespace preset as alternatives
-const program = repeat0(alt([value, op, WS]));
+const program = zeroOrMore(alt([value, op, zeroOrMore(WS)]))
 
 // prepare parser context (incl. reader) and execute
 program(defContext("10 5 3 * + -2 * 10 /"));
@@ -149,6 +171,7 @@ Source: [/combinators](https://github.com/thi-ng/umbrella/tree/feature/parse/pac
 
 - `xform` -
 - `check` -
+- `collect` -
 - `discard` -
 - `expect` -
 - `merge` -
@@ -156,6 +179,7 @@ Source: [/combinators](https://github.com/thi-ng/umbrella/tree/feature/parse/pac
 Source: [/xform](https://github.com/thi-ng/umbrella/tree/feature/parse/packages/parse/src/xform)
 
 - `comp` - transform composition
+- `xfCollect` -
 - `xfFloat` -
 - `xfInt` -
 - `xfMerge` -
