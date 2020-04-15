@@ -19,8 +19,11 @@ export const repeat = <T>(
     return ctx.end();
 };
 
-export const repeat0 = <T>(parser: Parser<T>, id = "repeat0", max?: number) =>
-    repeat(parser, id, 0, max);
+export const zeroOrMore = <T>(
+    parser: Parser<T>,
+    id = "repeat0",
+    max?: number
+) => repeat(parser, id, 0, max);
 
-export const repeat1 = <T>(parser: Parser<T>, id = "repeat1", max?: number) =>
+export const oneOrMore = <T>(parser: Parser<T>, id = "repeat1", max?: number) =>
     repeat(parser, id, 1, max);

@@ -1,5 +1,4 @@
-import type { ParseScope, IReader } from "./api";
-import { peek } from "@thi.ng/arrays";
+import type { IReader, ParseScope } from "./api";
 import { parseError } from "./error";
 import { defStringReader } from "./string-reader";
 
@@ -14,64 +13,67 @@ interface ContextOpts {
 
 export class ParseContext<T> {
     protected _scopes: ParseScope<T>[];
+    protected _curr: ParseScope<T>;
     protected _maxDepth: number;
 
     constructor(public reader: IReader<T>, opts?: Partial<ContextOpts>) {
-        this._scopes = [
-            {
-                id: "root",
-                state: { p: 0, l: 1, c: 1 },
-                children: null,
-                result: null,
-            },
-        ];
         opts = { maxDepth: 32, ...opts };
         this._maxDepth = opts.maxDepth!;
+        this._curr = {
+            id: "root",
+            state: { p: 0, l: 1, c: 1 },
+            children: null,
+            result: null,
+        };
+        this._scopes = [this._curr];
     }
 
     start(type: string) {
         if (this._scopes.length >= this._maxDepth) {
             parseError(this, `recursion limit reached ${this._maxDepth}`);
         }
-        const curr = peek(this._scopes);
+        const scopes = this._scopes;
         const scope: ParseScope<T> = {
             id: type,
-            state: { ...curr.state },
+            state: { ...scopes[scopes.length - 1].state },
             children: null,
             result: null,
         };
-        this._scopes.push(scope);
-        return scope;
+        scopes.push(scope);
+        return (this._curr = scope);
     }
 
     discard() {
-        this._scopes.pop()!;
+        const scopes = this._scopes;
+        scopes.pop();
+        this._curr = scopes[scopes.length - 1];
         return false;
     }
 
     end() {
-        const child = this._scopes.pop()!;
-        const parent = peek(this._scopes);
+        const scopes = this._scopes;
+        const child = scopes.pop()!;
+        const parent = scopes[scopes.length - 1];
         const cstate = child.state;
         const pstate = parent.state;
-        // child.state = pstate;
         child.state = { p: pstate.p, l: pstate.l, c: pstate.c };
         parent.state = cstate;
         const children = parent.children;
         children ? children.push(child) : (parent.children = [child]);
+        this._curr = parent;
         return true;
     }
 
     get scope() {
-        return peek(this._scopes);
+        return this._curr;
     }
 
     get state() {
-        return peek(this._scopes).state;
+        return this._curr.state;
     }
 
     get done() {
-        return peek(this._scopes).state.done;
+        return this._curr.state.done;
     }
 }
 

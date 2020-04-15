@@ -1,4 +1,3 @@
-import { peek } from "@thi.ng/arrays";
 import type { Parser, ScopeTransform } from "../api";
 
 export const xform = <T>(
@@ -8,14 +7,15 @@ export const xform = <T>(
 ): Parser<T> => (ctx) => {
     const res = parser(ctx);
     if (res) {
-        const scope = peek(ctx.scope.children!);
+        const children = ctx.scope.children!;
+        const scope = children[children.length - 1];
         const res = xf(scope, ctx, user);
         if (res) {
             if (scope.children && !scope.children.length) {
                 scope.children = null;
             }
         } else {
-            ctx.scope.children!.pop();
+            children.pop();
         }
         return true;
     }

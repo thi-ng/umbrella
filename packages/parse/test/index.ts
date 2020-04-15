@@ -1,6 +1,15 @@
 import { Fn2 } from "@thi.ng/api";
 import * as assert from "assert";
-import { alt, defContext, FLOAT, INT, oneOf, repeat0, WS, xform } from "../src";
+import {
+    alt,
+    defContext,
+    FLOAT,
+    INT,
+    oneOf,
+    WS,
+    xform,
+    zeroOrMore,
+} from "../src";
 
 describe("parse", () => {
     it("float", () => {
@@ -40,7 +49,7 @@ describe("parse", () => {
             stack.push(ops[scope!.result](a, b));
             return null;
         });
-        const program = repeat0(alt([value, op, WS]));
+        const program = zeroOrMore(alt([value, op, WS]));
         program(defContext("10 5 3 * + -2 * 10 /"));
         assert.deepEqual(stack, [-5]);
     });
