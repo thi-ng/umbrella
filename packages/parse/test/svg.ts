@@ -1,0 +1,54 @@
+import * as assert from "assert";
+import {
+    alt,
+    collect,
+    defContext,
+    discard,
+    INT,
+    oneOf,
+    Parser,
+    seq,
+    WS_0,
+    xform,
+    zeroOrMore,
+} from "../src";
+
+const check = (
+    parser: Parser<string>,
+    src: string,
+    res: boolean,
+    pos: number
+) => {
+    const ctx = defContext(src);
+    assert.equal(parser(ctx), res, `src: '${src}'`);
+    assert.equal(ctx.state!.p, pos, `src: '${src}' pos: ${ctx.state!.p}`);
+};
+
+describe("parse", () => {
+    it("SVG", () => {
+        const wsc = discard(zeroOrMore(oneOf(" \n,")));
+        const point = collect(seq([INT, wsc, INT]));
+        const move = collect(seq([oneOf("Mm"), WS_0, point, WS_0]));
+        const line = collect(seq([oneOf("Ll"), WS_0, point, WS_0]));
+        const curve = collect(
+            seq([oneOf("Cc"), WS_0, point, wsc, point, wsc, point, WS_0])
+        );
+        const close = xform(oneOf("Zz"), ($) => (($!.result = [$!.result]), $));
+        const path = collect(zeroOrMore(alt([move, line, curve, close])));
+        check(point, "1-2", true, 3);
+        check(move, "M1-2", true, 4);
+        check(line, "l1-2", true, 4);
+        check(curve, "c1-2-3 4,5 6", true, 12);
+        check(path, "M0,1L2 3c4,5-6,7 8 9z", true, 21);
+
+        const ctx = defContext("M0,1L2 3c4,5-6,7 8 9z");
+        assert(path(ctx));
+        assert(ctx.done);
+        assert.deepEqual(ctx.result, [
+            ["M", [0, 1]],
+            ["L", [2, 3]],
+            ["c", [4, 5], [-6, 7], [8, 9]],
+            ["z"],
+        ]);
+    });
+});
