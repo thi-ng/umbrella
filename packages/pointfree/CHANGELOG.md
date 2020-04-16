@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@1.3.3...@thi.ng/pointfree@2.0.0) (2020-04-16)
+
+
+### Features
+
+* **pointfree:** add new words, rename HOF words ([0d19c9a](https://github.com/thi-ng/umbrella/commit/0d19c9a23de3fc4188d8d0329783211f5013716b)), closes [#210](https://github.com/thi-ng/umbrella/issues/210)
+
+
+### BREAKING CHANGES
+
+* **pointfree:** rename HOF words
+
+
+
+
+
 ## [1.3.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@1.3.2...@thi.ng/pointfree@1.3.3) (2020-04-11)
 
 **Note:** Version bump only for package @thi.ng/pointfree
