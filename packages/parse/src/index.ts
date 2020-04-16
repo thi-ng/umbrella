@@ -1,5 +1,4 @@
 export * from "./api";
-export * from "./constants";
 export * from "./context";
 export * from "./error";
 export * from "./string-reader";
@@ -32,3 +31,8 @@ export * from "./xform/comp";
 export * from "./xform/number";
 export * from "./xform/merge";
 export * from "./xform/print";
+
+export * from "./presets/alpha";
+export * from "./presets/digits";
+export * from "./presets/numbers";
+export * from "./presets/whitespace";
