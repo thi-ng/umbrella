@@ -1,4 +1,4 @@
-import type { ParseState, IReader } from "./api";
+import type { ParseState, IReader } from "../api";
 
 class StringReader implements IReader<string> {
     constructor(protected input: string) {}

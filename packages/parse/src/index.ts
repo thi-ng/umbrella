@@ -1,7 +1,6 @@
 export * from "./api";
 export * from "./context";
 export * from "./error";
-export * from "./string-reader";
 
 export * from "./combinators/alt";
 export * from "./combinators/check";
@@ -16,6 +15,11 @@ export * from "./combinators/repeat";
 export * from "./combinators/seq";
 export * from "./combinators/xform";
 
+export * from "./presets/alpha";
+export * from "./presets/digits";
+export * from "./presets/numbers";
+export * from "./presets/whitespace";
+
 export * from "./prims/always";
 export * from "./prims/anchor";
 export * from "./prims/lift";
@@ -26,13 +30,11 @@ export * from "./prims/range";
 export * from "./prims/satisfy";
 export * from "./prims/string";
 
+export * from "./readers/array-reader";
+export * from "./readers/string-reader";
+
 export * from "./xform/collect";
 export * from "./xform/comp";
 export * from "./xform/number";
 export * from "./xform/merge";
 export * from "./xform/print";
-
-export * from "./presets/alpha";
-export * from "./presets/digits";
-export * from "./presets/numbers";
-export * from "./presets/whitespace";
