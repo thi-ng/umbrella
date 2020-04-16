@@ -69,7 +69,7 @@ an ES6 embedded DSL for concatenative programming:
 yarn add @thi.ng/pointfree-lang
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.05 KB / CJS: 5.05 KB / UMD: 4.97 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.06 KB / CJS: 5.05 KB / UMD: 4.97 KB
 
 ## Dependencies
 

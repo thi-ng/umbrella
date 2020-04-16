@@ -52,7 +52,7 @@ Purely functional parser combinators & AST generation for generic inputs.
 yarn add @thi.ng/parse
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.38 KB / CJS: 2.59 KB / UMD: 2.47 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.39 KB / CJS: 2.60 KB / UMD: 2.48 KB
 
 ## Dependencies
 

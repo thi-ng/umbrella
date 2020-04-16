@@ -193,7 +193,7 @@ non-linear control flow.
 yarn add @thi.ng/pointfree
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.23 KB / CJS: 3.75 KB / UMD: 3.52 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.31 KB / CJS: 3.84 KB / UMD: 3.55 KB
 
 ## Dependencies
 
