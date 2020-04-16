@@ -7,7 +7,7 @@ export const repeat = <T>(
     id = "repeat"
 ): Parser<T> => (ctx) => {
     if (ctx.done) {
-        return min < 1 ? (ctx.addChild(id), true) : false;
+        return min < 1 ? ctx.addChild(id) : false;
     }
     ctx.start(id);
     for (let i = 0; i < max; i++) {

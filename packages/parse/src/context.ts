@@ -103,7 +103,7 @@ export class ParseContext<T> {
         return true;
     }
 
-    addChild(id: string, result: any = null) {
+    addChild(id: string, result: any = null, consume = false) {
         const curr = this._curr;
         const cstate = curr.state;
         const child: ParseScope<T> = {
@@ -116,7 +116,10 @@ export class ParseContext<T> {
         };
         const children = curr.children;
         children ? children.push(child) : (curr.children = [child]);
-        return child;
+        if (consume) {
+            this.reader.next(cstate!);
+        }
+        return true;
     }
 
     get scope() {
