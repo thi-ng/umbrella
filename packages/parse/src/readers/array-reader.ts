@@ -1,20 +1,20 @@
 import type { ParseState, IReader } from "../api";
 
 class ArrayReader<T> implements IReader<T> {
-    constructor(protected input: ArrayLike<T>) {}
+    constructor(protected _src: ArrayLike<T>) {}
 
     read(state: ParseState<T>): T {
-        return this.input[state.p];
+        return this._src[state.p];
     }
 
     next(state: ParseState<T>): void {
         if (state.done) return;
-        state.last = this.input[state.p];
-        state.done = ++state.p >= this.input.length;
+        state.last = this._src[state.p];
+        state.done = ++state.p >= this._src.length;
     }
 
     isDone(state: ParseState<T>) {
-        return (state.done = state.p >= this.input.length);
+        return (state.done = state.p >= this._src.length);
     }
 
     format(state: ParseState<T>) {

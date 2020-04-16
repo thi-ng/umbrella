@@ -1,26 +1,26 @@
 import type { ParseState, IReader } from "../api";
 
 class StringReader implements IReader<string> {
-    constructor(protected input: string) {}
+    constructor(protected _src: string) {}
 
     read(state: ParseState<string>): string {
-        return this.input[state.p];
+        return this._src[state.p];
     }
 
     next(state: ParseState<string>): void {
         if (state.done) return;
-        state.last = this.input[state.p];
+        state.last = this._src[state.p];
         if (state.last === "\n") {
             state.l++;
             state.c = 1;
         } else {
             state.c++;
         }
-        state.done = ++state.p >= this.input.length;
+        state.done = ++state.p >= this._src.length;
     }
 
     isDone(state: ParseState<string>) {
-        return (state.done = state.p >= this.input.length);
+        return (state.done = state.p >= this._src.length);
     }
 
     format(state: ParseState<string>) {

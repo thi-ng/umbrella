@@ -1,7 +1,8 @@
-import { isString } from "@thi.ng/checks";
+import { isString, isArrayLike } from "@thi.ng/checks";
 import type { IReader, ParseScope } from "./api";
 import { parseError } from "./error";
 import { defStringReader } from "./readers/string-reader";
+import { defArrayReader } from "./readers/array-reader";
 
 interface ContextOpts {
     /**
@@ -155,8 +156,8 @@ export class ParseContext<T> {
 }
 
 /**
- * Creates new {@link ParseContext} for given input string or reader and
- * context options.
+ * Creates new {@link ParseContext} for given input string, array or
+ * reader and context options.
  *
  * @param input -
  * @param opts -
@@ -166,15 +167,23 @@ export function defContext(
     opts?: Partial<ContextOpts>
 ): ParseContext<string>;
 export function defContext<T>(
+    input: ArrayLike<T>,
+    opts?: Partial<ContextOpts>
+): ParseContext<T>;
+export function defContext<T>(
     input: IReader<T>,
     opts?: Partial<ContextOpts>
 ): ParseContext<T>;
 export function defContext(
-    input: string | IReader<any>,
+    input: string | ArrayLike<any> | IReader<any>,
     opts?: Partial<ContextOpts>
 ): ParseContext<any> {
     return new ParseContext<string>(
-        isString(input) ? defStringReader(input) : input,
+        isString(input)
+            ? defStringReader(input)
+            : isArrayLike(input)
+            ? defArrayReader(input)
+            : input,
         opts
     );
 }
