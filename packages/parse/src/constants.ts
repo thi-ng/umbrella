@@ -37,13 +37,13 @@ const DOT = lit(".");
 const FRACT0 = maybe(seq([DOT, maybe(DIGITS_0)]));
 const FRACT1 = seq([DOT, DIGITS_1]);
 
-export const INT = xform(seq([SIGN, DIGITS_1]), xfInt());
+export const INT = xform(seq([SIGN, DIGITS_1], "int"), xfInt());
 
 export const UINT = xform(DIGITS_1, xfInt());
 
 export const HEX_UINT = xform(HEX_DIGITS_1, xfInt(16));
 
 export const FLOAT = xform(
-    seq([SIGN, alt([FRACT1, seq([DIGITS_1, FRACT0])]), EXP]),
+    seq([SIGN, alt([FRACT1, seq([DIGITS_1, FRACT0])]), EXP], "float"),
     xfFloat
 );

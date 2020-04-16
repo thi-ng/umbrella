@@ -9,16 +9,25 @@ interface ContextOpts {
      * @defaultVal 32
      */
     maxDepth: number;
+    /**
+     * True to enable parser debug output.
+     *
+     * @defaultValue false
+     */
+    debug: boolean;
 }
 
 export class ParseContext<T> {
+    maxDepth: number;
+    debug: boolean;
+
     protected _scopes: ParseScope<T>[];
     protected _curr: ParseScope<T>;
-    protected _maxDepth: number;
 
     constructor(public reader: IReader<T>, opts?: Partial<ContextOpts>) {
-        opts = { maxDepth: 32, ...opts };
-        this._maxDepth = opts.maxDepth!;
+        opts = { maxDepth: 32, debug: false, ...opts };
+        this.maxDepth = opts.maxDepth!;
+        this.debug = opts.debug!;
         this._curr = {
             id: "root",
             state: { p: 0, l: 1, c: 1 },
@@ -29,25 +38,33 @@ export class ParseContext<T> {
         reader.isDone(this._curr.state);
     }
 
-    start(type: string) {
-        if (this._scopes.length >= this._maxDepth) {
-            parseError(this, `recursion limit reached ${this._maxDepth}`);
+    start(id: string) {
+        if (this._scopes.length >= this.maxDepth) {
+            parseError(this, `recursion limit reached ${this.maxDepth}`);
         }
         const scopes = this._scopes;
         const scope: ParseScope<T> = {
-            id: type,
+            id,
             state: { ...scopes[scopes.length - 1].state },
             children: null,
             result: null,
         };
         scopes.push(scope);
+        if (this.debug) {
+            console.log(
+                `${" ".repeat(scopes.length)}start: ${id} (${scope.state.p})`
+            );
+        }
         return (this._curr = scope);
     }
 
     discard() {
         const scopes = this._scopes;
-        scopes.pop();
+        const child = scopes.pop()!;
         this._curr = scopes[scopes.length - 1];
+        if (this.debug) {
+            console.log(`${" ".repeat(scopes.length + 1)}discard: ${child.id}`);
+        }
         return false;
     }
 
@@ -57,12 +74,31 @@ export class ParseContext<T> {
         const parent = scopes[scopes.length - 1];
         const cstate = child.state;
         const pstate = parent.state;
+        if (this.debug) {
+            console.log(
+                `${" ".repeat(scopes.length + 1)}end: ${child.id} (${cstate.p})`
+            );
+        }
         child.state = { p: pstate.p, l: pstate.l, c: pstate.c };
         parent.state = cstate;
         const children = parent.children;
         children ? children.push(child) : (parent.children = [child]);
         this._curr = parent;
         return true;
+    }
+
+    addChild(id: string, result: any = null) {
+        const curr = this._curr;
+        const cstate = curr.state;
+        const child: ParseScope<T> = {
+            id,
+            state: { p: cstate.p, l: cstate.l, c: cstate.c },
+            children: null,
+            result,
+        };
+        const children = curr.children;
+        children ? children.push(child) : (curr.children = [child]);
+        return child;
     }
 
     get scope() {

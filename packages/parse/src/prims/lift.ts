@@ -4,7 +4,6 @@ import type { Lift, Parser } from "../api";
 export const lift = <R = any>(result: Lift<R>, id = "lift"): Parser<any> => (
     ctx
 ) => {
-    const scope = ctx.start(id);
-    scope.result = isFunction(result) ? result() : result;
-    return ctx.end();
+    ctx.addChild(id, isFunction(result) ? result() : result);
+    return true;
 };
