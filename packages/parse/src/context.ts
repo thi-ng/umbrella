@@ -1,6 +1,7 @@
+import { isString } from "@thi.ng/checks";
 import type { IReader, ParseScope } from "./api";
 import { parseError } from "./error";
-import { defStringReader } from "./string-reader";
+import { defStringReader } from "./readers/string-reader";
 
 interface ContextOpts {
     /**
@@ -10,24 +11,34 @@ interface ContextOpts {
      */
     maxDepth: number;
     /**
-     * True to enable parser debug output.
+     * True to enable parser debug output. Will emit details of each
+     * parse scope.
      *
      * @defaultValue false
      */
     debug: boolean;
+    /**
+     * True to retain reader state for each AST node. State of root node
+     * is always available.
+     *
+     * @defaultValue false
+     */
+    retain: boolean;
 }
 
 export class ParseContext<T> {
-    maxDepth: number;
-    debug: boolean;
-
     protected _scopes: ParseScope<T>[];
     protected _curr: ParseScope<T>;
 
+    protected _maxDepth: number;
+    protected _debug: boolean;
+    protected _retain: boolean;
+
     constructor(public reader: IReader<T>, opts?: Partial<ContextOpts>) {
-        opts = { maxDepth: 32, debug: false, ...opts };
-        this.maxDepth = opts.maxDepth!;
-        this.debug = opts.debug!;
+        opts = { maxDepth: 32, debug: false, retain: false, ...opts };
+        this._maxDepth = opts.maxDepth!;
+        this._debug = opts.debug!;
+        this._retain = opts.retain!;
         this._curr = {
             id: "root",
             state: { p: 0, l: 1, c: 1 },
@@ -35,24 +46,24 @@ export class ParseContext<T> {
             result: null,
         };
         this._scopes = [this._curr];
-        reader.isDone(this._curr.state);
+        reader.isDone(this._curr.state!);
     }
 
     start(id: string) {
-        if (this._scopes.length >= this.maxDepth) {
-            parseError(this, `recursion limit reached ${this.maxDepth}`);
+        if (this._scopes.length >= this._maxDepth) {
+            parseError(this, `recursion limit reached ${this._maxDepth}`);
         }
         const scopes = this._scopes;
         const scope: ParseScope<T> = {
             id,
-            state: { ...scopes[scopes.length - 1].state },
+            state: { ...scopes[scopes.length - 1].state! },
             children: null,
             result: null,
         };
         scopes.push(scope);
-        if (this.debug) {
+        if (this._debug) {
             console.log(
-                `${" ".repeat(scopes.length)}start: ${id} (${scope.state.p})`
+                `${" ".repeat(scopes.length)}start: ${id} (${scope.state!.p})`
             );
         }
         return (this._curr = scope);
@@ -62,7 +73,7 @@ export class ParseContext<T> {
         const scopes = this._scopes;
         const child = scopes.pop()!;
         this._curr = scopes[scopes.length - 1];
-        if (this.debug) {
+        if (this._debug) {
             console.log(`${" ".repeat(scopes.length + 1)}discard: ${child.id}`);
         }
         return false;
@@ -74,12 +85,16 @@ export class ParseContext<T> {
         const parent = scopes[scopes.length - 1];
         const cstate = child.state;
         const pstate = parent.state;
-        if (this.debug) {
+        if (this._debug) {
             console.log(
-                `${" ".repeat(scopes.length + 1)}end: ${child.id} (${cstate.p})`
+                `${" ".repeat(scopes.length + 1)}end: ${child.id} (${
+                    cstate!.p
+                })`
             );
         }
-        child.state = { p: pstate.p, l: pstate.l, c: pstate.c };
+        child.state = this._retain
+            ? { p: pstate!.p, l: pstate!.l, c: pstate!.c }
+            : null;
         parent.state = cstate;
         const children = parent.children;
         children ? children.push(child) : (parent.children = [child]);
@@ -92,7 +107,9 @@ export class ParseContext<T> {
         const cstate = curr.state;
         const child: ParseScope<T> = {
             id,
-            state: { p: cstate.p, l: cstate.l, c: cstate.c },
+            state: this._retain
+                ? { p: cstate!.p, l: cstate!.l, c: cstate!.c }
+                : null,
             children: null,
             result,
         };
@@ -110,7 +127,7 @@ export class ParseContext<T> {
     }
 
     get done() {
-        return this._curr.state.done;
+        return this._curr.state!.done;
     }
 
     /**
@@ -138,10 +155,26 @@ export class ParseContext<T> {
 }
 
 /**
- * Creates new {@link ParseContext} for given input string and context options.
+ * Creates new {@link ParseContext} for given input string or reader and
+ * context options.
  *
  * @param input -
  * @param opts -
  */
-export const defContext = (input: string, opts?: Partial<ContextOpts>) =>
-    new ParseContext<string>(defStringReader(input), opts);
+export function defContext(
+    input: string,
+    opts?: Partial<ContextOpts>
+): ParseContext<string>;
+export function defContext<T>(
+    input: IReader<T>,
+    opts?: Partial<ContextOpts>
+): ParseContext<T>;
+export function defContext(
+    input: string | IReader<any>,
+    opts?: Partial<ContextOpts>
+): ParseContext<any> {
+    return new ParseContext<string>(
+        isString(input) ? defStringReader(input) : input,
+        opts
+    );
+}

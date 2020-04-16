@@ -3,7 +3,7 @@ import { ParseContext } from "./context";
 
 export interface ParseScope<T> {
     id: string;
-    state: ParseState<T>;
+    state: Nullable<ParseState<T>>;
     children: Nullable<ParseScope<T>[]>;
     result: any;
 }

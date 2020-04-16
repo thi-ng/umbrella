@@ -5,7 +5,7 @@ export const string = <T>(str: ArrayLike<T>, id = "string"): Parser<T> => (
 ) => {
     if (ctx.done) return false;
     const scope = ctx.start(id);
-    const state = scope.state;
+    const state = scope.state!;
     const reader = ctx.reader;
     for (let i = 0, n = str.length; i < n; i++) {
         if (state.done) return false;

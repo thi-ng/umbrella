@@ -6,12 +6,12 @@ export const satisfy = <T>(fn: Predicate<T>, id = "lit"): Parser<T> => (
 ) => {
     if (ctx.done) return false;
     const reader = ctx.reader;
-    const r = reader.read(ctx.state);
+    const r = reader.read(ctx.state!);
     if (!fn(r)) {
         return false;
     }
     const scope = ctx.start(id);
-    reader.next(scope.state);
+    reader.next(scope.state!);
     scope.result = r;
     return ctx.end();
 };

@@ -8,7 +8,7 @@ import {
     oneOf,
     Parser,
     seq,
-    WS,
+    WS_0,
     xform,
     zeroOrMore,
 } from "../src";
@@ -21,18 +21,17 @@ const check = (
 ) => {
     const ctx = defContext(src);
     assert.equal(parser(ctx), res, `src: '${src}'`);
-    assert.equal(ctx.state.p, pos, `src: '${src}' pos: ${ctx.state.p}`);
+    assert.equal(ctx.state!.p, pos, `src: '${src}' pos: ${ctx.state!.p}`);
 };
 
 describe("parse", () => {
     it("SVG", () => {
-        const ws = discard(zeroOrMore(WS));
         const wsc = discard(zeroOrMore(oneOf(" \n,")));
         const point = collect(seq([INT, wsc, INT]));
-        const move = collect(seq([oneOf("Mm"), ws, point, ws]));
-        const line = collect(seq([oneOf("Ll"), ws, point, ws]));
+        const move = collect(seq([oneOf("Mm"), WS_0, point, WS_0]));
+        const line = collect(seq([oneOf("Ll"), WS_0, point, WS_0]));
         const curve = collect(
-            seq([oneOf("Cc"), ws, point, wsc, point, wsc, point, ws])
+            seq([oneOf("Cc"), WS_0, point, wsc, point, wsc, point, WS_0])
         );
         const close = xform(oneOf("Zz"), ($) => (($!.result = [$!.result]), $));
         const path = collect(zeroOrMore(alt([move, line, curve, close])));
