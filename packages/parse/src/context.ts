@@ -113,8 +113,27 @@ export class ParseContext<T> {
         return this._curr.state.done;
     }
 
+    /**
+     * Returns root node.
+     */
+    get root() {
+        return this._scopes[0];
+    }
+
+    /**
+     * Returns root node's `result` or `undefined`.
+     */
     get result() {
-        return this._curr.children ? this._curr.children[0].result : undefined;
+        const children = this.root.children;
+        return children ? children[0].result : undefined;
+    }
+
+    /**
+     * Returns root node's children or `undefined`.
+     */
+    get children() {
+        const children = this.root.children;
+        return children ? children[0].children : undefined;
     }
 }
 

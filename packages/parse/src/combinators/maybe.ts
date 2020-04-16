@@ -5,4 +5,4 @@ export const maybe = <T, R = any>(
     parser: Parser<T>,
     fn?: Lift<R>,
     id = "maybe"
-): Parser<T> => (ctx) => parser(ctx) || lift(fn != null ? fn : null, id)(ctx);
+): Parser<T> => (ctx) => parser(ctx) || lift(fn, id)(ctx);

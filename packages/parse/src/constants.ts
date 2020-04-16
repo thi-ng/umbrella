@@ -8,9 +8,11 @@ import { oneOf } from "./prims/one-of";
 import { range } from "./prims/range";
 import { xfFloat, xfInt } from "./xform/number";
 
-export const WS = oneOf(" \t\n\r");
+export const WS = oneOf(" \t\n\r", "ws");
+export const WS_0 = zeroOrMore(WS, "ws0");
+export const WS_1 = oneOrMore(WS, "ws1");
 
-export const DIGIT = range<string>("0", "9");
+export const DIGIT = range<string>("0", "9", "digit");
 
 export const HEX_DIGIT = alt([
     DIGIT,
@@ -34,7 +36,7 @@ const EXP = maybe(seq([maybe(oneOf("eE")), SIGN, DIGITS_1]));
 
 const DOT = lit(".");
 
-const FRACT0 = maybe(seq([DOT, maybe(DIGITS_0)]));
+const FRACT0 = maybe(seq([DOT, DIGITS_0]));
 const FRACT1 = seq([DOT, DIGITS_1]);
 
 export const INT = xform(seq([SIGN, DIGITS_1], "int"), xfInt());
