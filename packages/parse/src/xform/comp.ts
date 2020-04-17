@@ -1,6 +1,12 @@
 import { ScopeTransform } from "../api";
 
-export const xfComp = <T>(...xs: ScopeTransform<T>[]): ScopeTransform<T> => {
+/**
+ * Takes any number of {@link ScopeTransform}s and composes them into
+ * new xform w/ left to right order of execution.
+ *
+ * @param xs
+ */
+export const comp = <T>(...xs: ScopeTransform<T>[]): ScopeTransform<T> => {
     const [a, b, c, d] = xs;
     switch (xs.length) {
         case 0:

@@ -1,8 +1,8 @@
-import type { Lift, Parser } from "../api";
-import { lift } from "../prims/lift";
+import type { Parser, PassValue } from "../api";
+import { pass } from "../prims/pass";
 
 export const maybe = <T, R = any>(
     parser: Parser<T>,
-    fn?: Lift<R>,
+    result?: PassValue<R>,
     id = "maybe"
-): Parser<T> => (ctx) => parser(ctx) || lift(fn, id)(ctx);
+): Parser<T> => (ctx) => parser(ctx) || pass(result, id)(ctx);

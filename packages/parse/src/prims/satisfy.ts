@@ -6,8 +6,5 @@ export const satisfy = <T>(fn: Predicate<T>, id = "lit"): Parser<T> => (
 ) => {
     if (ctx.done) return false;
     const r = ctx.reader.read(ctx.state!);
-    if (!fn(r)) {
-        return false;
-    }
-    return ctx.addChild(id, r, true);
+    return fn(r) ? ctx.addChild(id, r, true) : false;
 };

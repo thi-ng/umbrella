@@ -52,7 +52,7 @@ Purely functional parser combinators & AST generation for generic inputs.
 yarn add @thi.ng/parse
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.39 KB / CJS: 2.60 KB / UMD: 2.48 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.47 KB / CJS: 2.69 KB / UMD: 2.55 KB
 
 ## Dependencies
 
@@ -94,15 +94,16 @@ Source:
 
 - `anchor`
 - `always`
+- `fail`
 - `inputStart` / `inputEnd`
-- `lift`
 - `lineStart` / `lineEnd`
-- `lit`
+- `lit` / `dlit`
 - `noneOf`
 - `oneOf`
+- `pass`
 - `range`
 - `satisfy`
-- `string`
+- `string` / `dstring`
 
 ### Combinators
 
@@ -110,31 +111,37 @@ Source:
 [/combinators](https://github.com/thi-ng/umbrella/tree/feature/parse/packages/parse/src/combinators)
 
 - `alt`
+- `check`
+- `discard`
+- `expect`
 - `maybe`
 - `not`
 - `oneOrMore` / `zeroOrMore`
 - `repeat`
 - `seq`
+- `xform`
 
 ### Transformers
-
-Syntax sugars for `xform(parser, fn)`:
-
-- `xform`
-- `check`
-- `collect`
-- `discard`
-- `expect`
-- `merge`
 
 Source:
 [/xform](https://github.com/thi-ng/umbrella/tree/feature/parse/packages/parse/src/xform)
 
+Syntax sugars for `xform(parser, fn)`:
+
+- `collect`
+- `hoist`
+- `join`
+- `print`
+
+Actual transforms:
+
 - `comp` - scope transform composition
 - `xfCollect`
 - `xfFloat`
+- `xfHoist`
 - `xfInt`
-- `xfMerge`
+- `xfJoin`
+- `xfPrint`
 
 ### SVG path parser example
 

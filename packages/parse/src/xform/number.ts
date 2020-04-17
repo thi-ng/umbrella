@@ -1,12 +1,12 @@
 import { ScopeTransform } from "../api";
-import { xfMerge } from "./merge";
+import { xfJoin } from "./join";
 
 export const xfInt = (radix = 10): ScopeTransform<string> => (scope) => {
-    scope!.result = parseInt(xfMerge(scope)!.result, radix);
+    scope!.result = parseInt(xfJoin(scope)!.result, radix);
     return scope;
 };
 
 export const xfFloat: ScopeTransform<string> = (scope) => {
-    scope!.result = parseFloat(xfMerge(scope)!.result);
+    scope!.result = parseFloat(xfJoin(scope)!.result);
     return scope;
 };

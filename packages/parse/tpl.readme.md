@@ -82,15 +82,16 @@ Source:
 
 - `anchor`
 - `always`
+- `fail`
 - `inputStart` / `inputEnd`
-- `lift`
 - `lineStart` / `lineEnd`
-- `lit`
+- `lit` / `dlit`
 - `noneOf`
 - `oneOf`
+- `pass`
 - `range`
 - `satisfy`
-- `string`
+- `string` / `dstring`
 
 ### Combinators
 
@@ -98,31 +99,37 @@ Source:
 [/combinators](https://github.com/thi-ng/umbrella/tree/feature/parse/packages/parse/src/combinators)
 
 - `alt`
+- `check`
+- `discard`
+- `expect`
 - `maybe`
 - `not`
 - `oneOrMore` / `zeroOrMore`
 - `repeat`
 - `seq`
+- `xform`
 
 ### Transformers
-
-Syntax sugars for `xform(parser, fn)`:
-
-- `xform`
-- `check`
-- `collect`
-- `discard`
-- `expect`
-- `merge`
 
 Source:
 [/xform](https://github.com/thi-ng/umbrella/tree/feature/parse/packages/parse/src/xform)
 
+Syntax sugars for `xform(parser, fn)`:
+
+- `collect`
+- `hoist`
+- `join`
+- `print`
+
+Actual transforms:
+
 - `comp` - scope transform composition
 - `xfCollect`
 - `xfFloat`
+- `xfHoist`
 - `xfInt`
-- `xfMerge`
+- `xfJoin`
+- `xfPrint`
 
 ### SVG path parser example
 

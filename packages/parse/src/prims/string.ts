@@ -1,4 +1,5 @@
 import type { Parser } from "../api";
+import { discard } from "../combinators/discard";
 
 export const string = <T>(str: ArrayLike<T>, id = "string"): Parser<T> => (
     ctx
@@ -18,3 +19,5 @@ export const string = <T>(str: ArrayLike<T>, id = "string"): Parser<T> => (
     scope.result = str;
     return ctx.end();
 };
+
+export const dstring = <T>(str: ArrayLike<T>) => discard(string(str));

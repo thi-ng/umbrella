@@ -1,8 +1,9 @@
-import { isString, isArrayLike } from "@thi.ng/checks";
-import type { IReader, ParseScope } from "./api";
+import { isArrayLike, isString } from "@thi.ng/checks";
+import type { IReader, ParseScope, ParseState } from "./api";
 import { parseError } from "./error";
-import { defStringReader } from "./readers/string-reader";
 import { defArrayReader } from "./readers/array-reader";
+import { defStringReader } from "./readers/string-reader";
+import { indent } from "./utils";
 
 interface ContextOpts {
     /**
@@ -64,7 +65,7 @@ export class ParseContext<T> {
         scopes.push(scope);
         if (this._debug) {
             console.log(
-                `${" ".repeat(scopes.length)}start: ${id} (${scope.state!.p})`
+                `${indent(scopes.length)}start: ${id} (${scope.state!.p})`
             );
         }
         return (this._curr = scope);
@@ -75,7 +76,7 @@ export class ParseContext<T> {
         const child = scopes.pop()!;
         this._curr = scopes[scopes.length - 1];
         if (this._debug) {
-            console.log(`${" ".repeat(scopes.length + 1)}discard: ${child.id}`);
+            console.log(`${indent(scopes.length + 1)}discard: ${child.id}`);
         }
         return false;
     }
@@ -85,16 +86,15 @@ export class ParseContext<T> {
         const child = scopes.pop()!;
         const parent = scopes[scopes.length - 1];
         const cstate = child.state;
-        const pstate = parent.state;
+        let pstate: ParseState<T>;
         if (this._debug) {
             console.log(
-                `${" ".repeat(scopes.length + 1)}end: ${child.id} (${
-                    cstate!.p
-                })`
+                `${indent(scopes.length + 1)}end: ${child.id} (${cstate!.p})`
             );
         }
         child.state = this._retain
-            ? { p: pstate!.p, l: pstate!.l, c: pstate!.c }
+            ? ((pstate = parent.state!),
+              { p: pstate.p, l: pstate.l, c: pstate.c })
             : null;
         parent.state = cstate;
         const children = parent.children;
