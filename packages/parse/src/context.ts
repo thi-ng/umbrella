@@ -127,7 +127,11 @@ export class ParseContext<T> {
     }
 
     get state() {
-        return this._curr.state;
+        return this._curr.state!;
+    }
+
+    set state(state: ParseState<T>) {
+        this._curr.state = state;
     }
 
     get done() {

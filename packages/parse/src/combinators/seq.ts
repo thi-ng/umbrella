@@ -1,4 +1,5 @@
 import type { Parser } from "../api";
+import { discard } from "./discard";
 
 export const seq = <T>(parsers: Parser<T>[], id = "seq"): Parser<T> => (
     ctx
@@ -12,3 +13,5 @@ export const seq = <T>(parsers: Parser<T>[], id = "seq"): Parser<T> => (
     }
     return ctx.end();
 };
+
+export const dseq = <T>(parsers: Parser<T>[]) => discard(seq(parsers));

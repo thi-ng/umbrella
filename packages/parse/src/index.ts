@@ -26,6 +26,7 @@ export * from "./prims/one-of";
 export * from "./prims/pass";
 export * from "./prims/range";
 export * from "./prims/satisfy";
+export * from "./prims/skip";
 export * from "./prims/string";
 
 export * from "./readers/array-reader";

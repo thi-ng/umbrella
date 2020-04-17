@@ -5,12 +5,10 @@ export const xform = <T>(
     xf: ScopeTransform<T>,
     user?: any
 ): Parser<T> => (ctx) => {
-    const res = parser(ctx);
-    if (res) {
+    if (parser(ctx)) {
         const children = ctx.scope.children!;
         const scope = children[children.length - 1];
-        const res = xf(scope, ctx, user);
-        if (res) {
+        if (xf(scope, ctx, user)) {
             if (scope.children && !scope.children.length) {
                 scope.children = null;
             }

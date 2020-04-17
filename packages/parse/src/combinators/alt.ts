@@ -1,4 +1,5 @@
 import type { Parser } from "../api";
+import { discard } from "./discard";
 
 export const alt = <T>(parsers: Parser<T>[]): Parser<T> => (ctx) => {
     if (ctx.done) return false;
@@ -9,3 +10,5 @@ export const alt = <T>(parsers: Parser<T>[]): Parser<T> => (ctx) => {
     }
     return false;
 };
+
+export const dalt = <T>(parsers: Parser<T>[]) => discard(alt(parsers));
