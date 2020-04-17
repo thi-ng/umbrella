@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.1.0...@thi.ng/parse@0.2.0) (2020-04-17)
+
+
+### Features
+
+* **parse:** add/rename/reorg parsers, xforms, ctx ([ee537f4](https://github.com/thi-ng/umbrella/commit/ee537f49c239de19326865687853e9b2814330bf))
+
+
+### Performance Improvements
+
+* **parse:** major speedup satisfy() (~1.6x faster) ([8ca5c7f](https://github.com/thi-ng/umbrella/commit/8ca5c7f184af3d03f06b03b9136a675fb9e63d64))
+
+
+
+
+
 # 0.1.0 (2020-04-16)
 
 
