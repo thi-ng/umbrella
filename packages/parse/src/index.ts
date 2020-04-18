@@ -1,6 +1,7 @@
 export * from "./api";
 export * from "./context";
 export * from "./error";
+export * from "./grammar";
 
 export * from "./combinators/alt";
 export * from "./combinators/check";

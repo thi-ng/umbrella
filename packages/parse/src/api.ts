@@ -1,4 +1,4 @@
-import type { Fn, Fn0, Nullable } from "@thi.ng/api";
+import type { Fn, Fn0, IObjectOf, Nullable } from "@thi.ng/api";
 import { ParseContext } from "./context";
 
 export interface ParseScope<T> {
@@ -36,3 +36,13 @@ export type ScopeTransform<T> = (
     ctx: ParseContext<T>,
     user?: any
 ) => Nullable<ParseScope<T>>;
+
+export type Rules = IObjectOf<DynamicParser<string>>;
+
+export type RuleTransforms = IObjectOf<ScopeTransform<string>>;
+
+export interface Language {
+    grammar: ParseContext<string>;
+    env: RuleTransforms;
+    rules: Rules;
+}
