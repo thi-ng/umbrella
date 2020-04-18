@@ -25,6 +25,10 @@ export interface IReader<T> {
 
 export type Parser<T> = Fn<ParseContext<T>, boolean>;
 
+export type DynamicParser<T> = Parser<T> & {
+    set: Fn<Parser<T>, void>;
+};
+
 export type PassValue<T> = T | Fn0<T>;
 
 export type ScopeTransform<T> = (

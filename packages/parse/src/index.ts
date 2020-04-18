@@ -5,6 +5,7 @@ export * from "./error";
 export * from "./combinators/alt";
 export * from "./combinators/check";
 export * from "./combinators/discard";
+export * from "./combinators/dynamic";
 export * from "./combinators/expect";
 export * from "./combinators/maybe";
 export * from "./combinators/not";
