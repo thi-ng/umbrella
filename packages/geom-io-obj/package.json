@@ -38,7 +38,8 @@
         "typescript": "^3.8.3"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.9.0"
+        "@thi.ng/api": "^6.10.1",
+        "@thi.ng/vectors": "^4.2.5"
     },
     "files": [
         "*.js",
@@ -47,6 +48,12 @@
     ],
     "keywords": [
         "ES6",
+        "geometry",
+        "mesh",
+        "OBJ",
+        "parser",
+        "polygon",
+        "polyline",
         "typescript"
     ],
     "publishConfig": {
