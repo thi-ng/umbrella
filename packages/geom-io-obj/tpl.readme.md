@@ -15,13 +15,21 @@ ${pkg.description}
 
 ### Features
 
-- geometry split into declared objects & groups (can be disabled)
-- full support for n-gon faces, polylines
-- vertex & normal swizzling (optional, e.g. convert Y-up / Z-up)
-- skip parsing/processing of UVs and/or normals
-- per group `mtllib` and `usemtl` references
-- per group smooth flags
-- fast (~100 verts, normals & faces per ms, MBP2015, Node 13.10)
+- Geometry split into declared objects & groups by default (can be disabled)
+- Full support for n-gon faces, polylines
+- Optional n-gon face tessellation into triangles
+- Support for relative (negative) vertex references
+- Optional vertex, normal & UV transforms (e.g. convert Y-up / Z-up, flip UVs)
+- Skip parsing/processing of UVs and/or normals
+- Per group `mtllib` and `usemtl` references
+- Per group smooth flags
+- Optionally retained comments (e.g. for additional metadata parsing)
+- Fast (~100 verts, normals & faces per millisecond, MBP2015, Node 13.10)
+
+### Planned features
+
+- [ ] OBJ export
+- [ ] MTL parser
 
 ${status}
 
@@ -53,7 +61,7 @@ TODO
 
 See
 [api.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-io-obj/src/api.ts)
-for details about resulting data structure.
+for details about resulting data structure. Also see tests for more.
 
 ```ts
 import { parseObj } from "@thi.ng/geom-io-obj";
@@ -79,6 +87,7 @@ f 7 4 1 6
 f 3 8 5 2
 `;
 
+// parse with defaults
 const model = parseObj(src);
 
 console.log(model.vertices);
@@ -93,6 +102,7 @@ console.log(model.vertices);
 //   [ 0, 0, 0 ]
 // ]
 
+// vertex indices now zero-based (instead of 1-based in OBJ)
 console.log(model.objects[0].groups[0].faces);
 // [
 //   { v: [ 3, 2, 1, 0 ] },
@@ -106,16 +116,25 @@ console.log(model.objects[0].groups[0].faces);
 
 ## Benchmarks
 
-Benchmark uses a quad-mesh model with 143,423 vertices, same number of normals and 142,802 faces (filesize 43.7MB).
+Benchmark uses a quad-mesh model with 143,423 vertices, same number of
+normals and 142,802 quad faces (filesize 43.7MB).
 
 ```text
 benchmarking: parse
-    warmup... 7155.26ms (5 runs)
-    executing...
-    total: 13890.64ms, runs: 10
-    mean: 1389.06ms, median: 1379.48ms, range: [1339.18..1450.96]
-    q1: 1371.56ms, q3: 1427.43ms
-    sd: 2.40%
+        warmup... 7299.40ms (5 runs)
+        executing...
+        total: 13795.25ms, runs: 10
+        mean: 1379.52ms, median: 1379.91ms, range: [1356.43..1431.49]
+        q1: 1362.21ms, q3: 1415.23ms
+        sd: 1.77%
+
+benchmarking: parse w/ tessellation
+        warmup... 7752.45ms (5 runs)
+        executing...
+        total: 15170.43ms, runs: 10
+        mean: 1517.04ms, median: 1540.89ms, range: [1425.28..1616.09]
+        q1: 1487.29ms, q3: 1551.26ms
+        sd: 3.35%
 ```
 
 ## Authors
