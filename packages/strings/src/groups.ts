@@ -16,10 +16,12 @@ const defGroup = (...xs: Iterable<string>[]) => {
  * true. All others undefined.
  */
 export const WS: IObjectOf<boolean> = Object.freeze({
-    "\n": true,
-    "\r": true,
     "\t": true,
-    " ": true
+    "\n": true,
+    "\v": true,
+    "\f": true,
+    "\r": true,
+    " ": true,
 });
 
 /**
@@ -51,10 +53,18 @@ export const LOWER = defGroup(charRange("a", "z"));
 export const UPPER = defGroup(charRange("A", "Z"));
 
 /**
- * Object with ASCII upper & lowercase characters as keys and their
- * values set to true. All others undefined.
+ * Combination of {@link UPPER} and {@link LOWER}.
  */
-export const ALPHA = { ...UPPER, ...LOWER };
+export const ALPHA = Object.freeze({ ...UPPER, ...LOWER });
+
+/**
+ * Combination of {@link ALPHA} and {@link DIGITS} and '_'.
+ */
+export const ALPHA_NUM: IObjectOf<boolean> = Object.freeze({
+    ...ALPHA,
+    ...DIGITS,
+    _: true,
+});
 
 /**
  * Object with ASCII punctuation characters as keys and their values set
