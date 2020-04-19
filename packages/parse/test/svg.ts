@@ -8,7 +8,7 @@ import {
     oneOf,
     Parser,
     seq,
-    WS_0,
+    WS0,
     xform,
     zeroOrMore,
 } from "../src";
@@ -28,10 +28,10 @@ describe("parse", () => {
     it("SVG", () => {
         const wsc = discard(zeroOrMore(oneOf(" \n,")));
         const point = collect(seq([INT, wsc, INT]));
-        const move = collect(seq([oneOf("Mm"), WS_0, point, WS_0]));
-        const line = collect(seq([oneOf("Ll"), WS_0, point, WS_0]));
+        const move = collect(seq([oneOf("Mm"), WS0, point, WS0]));
+        const line = collect(seq([oneOf("Ll"), WS0, point, WS0]));
         const curve = collect(
-            seq([oneOf("Cc"), WS_0, point, wsc, point, wsc, point, WS_0])
+            seq([oneOf("Cc"), WS0, point, wsc, point, wsc, point, WS0])
         );
         const close = xform(oneOf("Zz"), ($) => (($!.result = [$!.result]), $));
         const path = collect(zeroOrMore(alt([move, line, curve, close])));
