@@ -1,5 +1,6 @@
-import { discard } from "../combinators/discard";
-import { satisfy } from "./satisfy";
+import { satisfyD, satisfy } from "./satisfy";
+
+export const litP = <T>(c: T) => (x: T) => x === c;
 
 /**
  * Matches single char/value `c`.
@@ -7,11 +8,11 @@ import { satisfy } from "./satisfy";
  * @param c
  * @param id
  */
-export const lit = <T>(c: T, id = "lit") => satisfy<T>((x) => x === c, id);
+export const lit = <T>(c: T, id = "lit") => satisfy<T>(litP(c), id);
 
 /**
  * Discarded literal. Same as {@link lit}, but result will be discarded.
  *
  * @param c
  */
-export const dlit = <T>(c: T) => discard(lit(c));
+export const litD = <T>(c: T) => satisfyD<T>(litP(c));

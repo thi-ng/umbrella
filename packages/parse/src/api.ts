@@ -25,11 +25,15 @@ export interface IReader<T> {
 
 export type Parser<T> = Fn<ParseContext<T>, boolean>;
 
+export type LitParser<T> = Parser<T> & { __lit: true };
+
 export type DynamicParser<T> = Parser<T> & {
     set: Fn<Parser<T>, void>;
 };
 
 export type PassValue<T> = T | Fn0<T>;
+
+export type CharSet = IObjectOf<boolean>;
 
 export type ScopeTransform<T> = (
     scope: Nullable<ParseScope<T>>,
