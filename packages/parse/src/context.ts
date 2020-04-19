@@ -29,8 +29,8 @@ interface ContextOpts {
 }
 
 export class ParseContext<T> {
-    protected _scopes: ParseScope<T>[];
-    protected _curr: ParseScope<T>;
+    protected _scopes!: ParseScope<T>[];
+    protected _curr!: ParseScope<T>;
 
     protected _maxDepth: number;
     protected _debug: boolean;
@@ -41,6 +41,10 @@ export class ParseContext<T> {
         this._maxDepth = opts.maxDepth!;
         this._debug = opts.debug!;
         this._retain = opts.retain!;
+        this.reset();
+    }
+
+    reset() {
         this._curr = {
             id: "root",
             state: { p: 0, l: 1, c: 1 },
@@ -48,7 +52,8 @@ export class ParseContext<T> {
             result: null,
         };
         this._scopes = [this._curr];
-        reader.isDone(this._curr.state!);
+        this.reader.isDone(this._curr.state!);
+        return this;
     }
 
     start(id: string) {
@@ -103,7 +108,11 @@ export class ParseContext<T> {
         return true;
     }
 
-    addChild(id: string, result: any = null, consume = false) {
+    addChild(
+        id: string,
+        result: any = null,
+        newState: ParseState<T> | boolean = false
+    ) {
         const curr = this._curr;
         const cstate = curr.state;
         const child: ParseScope<T> = {
@@ -116,8 +125,10 @@ export class ParseContext<T> {
         };
         const children = curr.children;
         children ? children.push(child) : (curr.children = [child]);
-        if (consume) {
-            this.reader.next(cstate!);
+        if (newState !== false) {
+            newState === true
+                ? this.reader.next(cstate!)
+                : (this._curr.state = newState);
         }
         return true;
     }
