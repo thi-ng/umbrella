@@ -14,4 +14,4 @@ export const seq = <T>(parsers: Parser<T>[], id = "seq"): Parser<T> => (
     return ctx.end();
 };
 
-export const dseq = <T>(parsers: Parser<T>[]) => discard(seq(parsers));
+export const seqD = <T>(parsers: Parser<T>[]) => discard(seq(parsers));

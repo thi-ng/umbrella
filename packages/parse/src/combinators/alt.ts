@@ -11,4 +11,4 @@ export const alt = <T>(parsers: Parser<T>[]): Parser<T> => (ctx) => {
     return false;
 };
 
-export const dalt = <T>(parsers: Parser<T>[]) => discard(alt(parsers));
+export const altD = <T>(parsers: Parser<T>[]) => discard(alt(parsers));
