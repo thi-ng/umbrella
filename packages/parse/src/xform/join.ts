@@ -2,6 +2,12 @@ import type { Nullable } from "@thi.ng/api";
 import type { Parser, ParseScope } from "../api";
 import { xform } from "../combinators/xform";
 
+/**
+ * Recursively joins non-null results of all children into a single
+ * string, then discards children. Also see {@link join}.
+ *
+ * @param scope
+ */
 export const xfJoin = <T>(scope: Nullable<ParseScope<T>>) => {
     if (!scope || !scope.children) return null;
     const res = [];

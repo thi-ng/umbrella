@@ -1,6 +1,12 @@
 import { Parser, ScopeTransform } from "../api";
 import { xform } from "../combinators/xform";
 
+/**
+ * Collects results of all direct children into an array, then discards
+ * children. Also see {@link collect}.
+ *
+ * @param scope
+ */
 export const xfCollect: ScopeTransform<any> = (scope) => {
     scope!.result = scope!.children!.map((c) => c.result);
     scope!.children = null;
