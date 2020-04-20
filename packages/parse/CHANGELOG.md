@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.2.0...@thi.ng/parse@0.3.0) (2020-04-20)
+
+
+### Features
+
+* **parse:** add discarding combinators, move discard ([e09a2c4](https://github.com/thi-ng/umbrella/commit/e09a2c40d1ad7272a5abc15c8b11e497f79eb0dd))
+* **parse:** add dynamic() & DynamicParser ([b914267](https://github.com/thi-ng/umbrella/commit/b914267b88325d5c94a028aee192268e75736181))
+* **parse:** add grammar default transforms, update/fix rules ([03ed965](https://github.com/thi-ng/umbrella/commit/03ed96592f1598767d5feeac1b49b8cc4b1d6285))
+* **parse:** add more whitespace presets ([1398e2b](https://github.com/thi-ng/umbrella/commit/1398e2b06a8eace8b61333c36db6e82d6e1478f3))
+* **parse:** add ParseContext.reset(), update addChild() ([d47c0a2](https://github.com/thi-ng/umbrella/commit/d47c0a220e4912a30c59a7fd3c81b8376d74d720))
+* **parse:** add skipWhile(), more discarded wrappers ([832c0b7](https://github.com/thi-ng/umbrella/commit/832c0b7e88d87b2da0e37f602e592ad7b548da09))
+* **parse:** add withID() xform, add doc strings ([e16426b](https://github.com/thi-ng/umbrella/commit/e16426b82f0dda94ab9aa92ba6e3af8d769f3fed))
+* **parse:** add/update combinators ([e4eab03](https://github.com/thi-ng/umbrella/commit/e4eab036243f4f646880b974624ae680e77cff7f))
+* **parse:** add/update/rename parser presets ([12f2499](https://github.com/thi-ng/umbrella/commit/12f2499253163a923c42e3be29ce2223a6648e11))
+* **parse:** add/update/rename parser primitives ([328103f](https://github.com/thi-ng/umbrella/commit/328103f55f4bb311470b8767a27d28a78d0dcb4b))
+* **parse:** initial checkin grammar compiler ([38e9c66](https://github.com/thi-ng/umbrella/commit/38e9c66c25c02db4d7fb79837645dfaf654e6788))
+* **parse:** update ESC & whitespace parsers ([069a6ef](https://github.com/thi-ng/umbrella/commit/069a6ef11c9423bdb2974b11823cc39743dfceec))
+* **parse:** update grammar parser & compiler ([822fcba](https://github.com/thi-ng/umbrella/commit/822fcba9a29a05bad98eecf2b341d07a3a90abeb))
+
+
+
+
+
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.1.0...@thi.ng/parse@0.2.0) (2020-04-17)
 
 

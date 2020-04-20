@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/strings",
-    "version": "1.8.3",
+    "version": "1.8.4",
     "description": "Various string formatting & utility functions",
     "module": "./index.js",
     "main": "./lib/index.js",

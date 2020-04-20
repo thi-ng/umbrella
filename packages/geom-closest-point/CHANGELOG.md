@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-closest-point@0.3.21...@thi.ng/geom-closest-point@0.3.22) (2020-04-20)
+
+**Note:** Version bump only for package @thi.ng/geom-closest-point
+
+
+
+
+
 ## [0.3.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-closest-point@0.3.20...@thi.ng/geom-closest-point@0.3.21) (2020-04-11)
 
 **Note:** Version bump only for package @thi.ng/geom-closest-point

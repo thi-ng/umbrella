@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.8.9...@thi.ng/geom@1.8.10) (2020-04-20)
+
+**Note:** Version bump only for package @thi.ng/geom
+
+
+
+
+
 ## [1.8.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.8.8...@thi.ng/geom@1.8.9) (2020-04-11)
 
 **Note:** Version bump only for package @thi.ng/geom
