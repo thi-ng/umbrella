@@ -24,10 +24,14 @@ import { noneOf, noneOfP } from "./prims/none-of";
 import { oneOf } from "./prims/one-of";
 import { range } from "./prims/range";
 import { string, stringD, stringOf } from "./prims/string";
-import { collect } from "./xform/collect";
-import { hoist } from "./xform/hoist";
-import { join } from "./xform/join";
+import { collect, xfCollect } from "./xform/collect";
+import { xfDiscard } from "./xform/discard";
+import { hoist, xfHoist } from "./xform/hoist";
+import { join, xfJoin } from "./xform/join";
+import { xfFloat, xfInt } from "./xform/number";
 import { print } from "./xform/print";
+import { always } from "./prims/always";
+import { withID } from "./xform/with-id";
 
 const apos = litD("'");
 const quote = litD('"');
@@ -50,7 +54,7 @@ const REPEAT = maybe(
     ])
 );
 
-const CHAR_OR_ESC = alt([ALPHA_NUM, UNICODE, ESC]);
+const CHAR_OR_ESC = alt([UNICODE, ESC, always()]);
 
 const CHAR_RANGE = seq([CHAR_OR_ESC, dash, CHAR_OR_ESC], "charRange");
 
@@ -137,7 +141,8 @@ compile.addAll({
             const c = compile(b, lang, opts);
             c && acc.push(c);
         }
-        let parser = acc.length > 1 ? seq(acc, id.result) : acc[0];
+        let parser =
+            acc.length > 1 ? seq(acc, id.result) : withID(id.result, acc[0]);
         if (xfID.result) {
             const xf = lang.env[xfID.result];
             if (!xf) illegalArgs(`missing xform: ${xfID.result}`);
@@ -222,10 +227,20 @@ const compileRepeat = (
 
 export const defGrammar = (
     rules: string,
-    env: RuleTransforms = {},
+    env?: RuleTransforms,
     opts?: Partial<GrammarOpts>
 ) => {
     opts = { debug: false, optimize: true, ...opts };
+    env = {
+        collect: xfCollect,
+        discard: xfDiscard,
+        float: xfFloat,
+        hex: xfInt(16),
+        hoist: xfHoist,
+        int: xfInt(10),
+        join: xfJoin,
+        ...env,
+    };
     const ctx = defContext(rules);
     const result = (opts.debug ? print(GRAMMAR) : GRAMMAR)(ctx);
     if (result) {
