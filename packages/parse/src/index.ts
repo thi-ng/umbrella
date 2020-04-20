@@ -6,7 +6,6 @@ export * from "./grammar";
 export * from "./combinators/alt";
 export * from "./combinators/boundary";
 export * from "./combinators/check";
-export * from "./combinators/discard";
 export * from "./combinators/dynamic";
 export * from "./combinators/expect";
 export * from "./combinators/maybe";
@@ -41,6 +40,7 @@ export * from "./readers/string-reader";
 
 export * from "./xform/collect";
 export * from "./xform/comp";
+export * from "./xform/discard";
 export * from "./xform/hoist";
 export * from "./xform/join";
 export * from "./xform/number";

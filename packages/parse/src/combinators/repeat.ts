@@ -1,4 +1,5 @@
 import type { Parser } from "../api";
+import { discard } from "../xform/discard";
 
 export const repeat = <T>(
     parser: Parser<T>,
@@ -32,3 +33,12 @@ export const oneOrMore = <T>(
     id = "repeat1",
     max = Infinity
 ) => repeat(parser, 1, max, id);
+
+export const repeatD = <T>(parser: Parser<T>, min: number, max: number) =>
+    discard(repeat(parser, min, max));
+
+export const zeroOrMoreD = <T>(parser: Parser<T>, max = Infinity) =>
+    repeatD(parser, 0, max);
+
+export const oneOrMoreD = <T>(parser: Parser<T>, max = Infinity) =>
+    repeatD(parser, 1, max);

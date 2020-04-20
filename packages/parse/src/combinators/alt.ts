@@ -1,5 +1,5 @@
 import type { Parser } from "../api";
-import { discard } from "./discard";
+import { discard } from "../xform/discard";
 
 export const alt = <T>(parsers: Parser<T>[]): Parser<T> => (ctx) => {
     if (ctx.done) return false;

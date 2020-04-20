@@ -1,5 +1,5 @@
 import type { Parser } from "../api";
-import { discard } from "./discard";
+import { discard } from "../xform/discard";
 
 export const seq = <T>(parsers: Parser<T>[], id = "seq"): Parser<T> => (
     ctx
