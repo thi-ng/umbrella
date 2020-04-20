@@ -1,14 +1,30 @@
 import { always } from "../prims/always";
 import { litD } from "../prims/lit";
 import { seq } from "../combinators/seq";
-import { hoist } from "../xform/hoist";
 import { xform } from "../combinators/xform";
 import { repeat } from "../combinators/repeat";
 import { HEX_DIGIT } from "./hex";
 import { stringD } from "../prims/string";
 import { xfInt } from "../xform/number";
+import { IObjectOf } from "@thi.ng/api";
 
-export const ESC = hoist(seq([litD("\\"), always()], "esc"));
+const ESC_VALUES: IObjectOf<string> = {
+    0: "\0",
+    b: "\b",
+    t: "\t",
+    n: "\n",
+    v: "\v",
+    f: "\f",
+    r: "\r",
+};
+
+export const ESC = xform(seq([litD("\\"), always()], "esc"), ($) => {
+    const id = $!.children![0].result;
+    const resolved = ESC_VALUES[id];
+    $!.result = resolved !== undefined ? resolved : id;
+    $!.children = null;
+    return $;
+});
 
 /**
  * Matches a single `\uNNNN` escaped unicode hex literal and transforms

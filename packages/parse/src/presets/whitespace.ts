@@ -1,11 +1,11 @@
-import { discard } from "../combinators/discard";
-import { oneOrMore, zeroOrMore } from "../combinators/repeat";
+import { WS as _WS } from "@thi.ng/strings";
+import { oneOrMoreD, zeroOrMoreD } from "../combinators/repeat";
 import { oneOf, oneOfD } from "../prims/one-of";
 
 /**
  * Matches & discards single whitespace char: ` \t\n\r`.
  */
-export const WS = oneOfD(" \t\n\r");
+export const WS = oneOfD(_WS);
 
 /**
  * Matches & discards single space or tab char.
@@ -25,19 +25,19 @@ export const DNL = oneOfD("\n\r");
 /**
  * Zero or more {@link WS}. Result will be discarded.
  */
-export const WS0 = discard(zeroOrMore(WS));
+export const WS0 = zeroOrMoreD(WS);
 
 /**
  * One or more {@link WS}. Result will be discarded.
  */
-export const WS1 = discard(oneOrMore(WS));
+export const WS1 = oneOrMoreD(WS);
 
 /**
  * Zero or more {@link SPACE}. Result will be discarded.
  */
-export const SPACES0 = discard(zeroOrMore(SPACE));
+export const SPACES0 = zeroOrMoreD(SPACE);
 
 /**
  * One or more {@link SPACE}. Result will be discarded.
  */
-export const SPACES = discard(oneOrMore(SPACE));
+export const SPACES = oneOrMoreD(SPACE);
