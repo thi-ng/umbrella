@@ -213,9 +213,9 @@ print(lang.rules.program)(ctx)
 // program: null
 //   num: 1
 //   num: 2
-//   word: "add"
+//   sym: "add"
 //   num: 3
-//   word: "mul"
+//   sym: "mul"
 
 // parse result
 // true
@@ -224,9 +224,9 @@ ctx.children
 // [
 //   { id: 'num', state: null, children: null, result: 1 },
 //   { id: 'num', state: null, children: null, result: 2 },
-//   { id: 'word', state: null, children: null, result: 'add' },
+//   { id: 'sym', state: null, children: null, result: 'add' },
 //   { id: 'num', state: null, children: null, result: 3 },
-//   { id: 'word', state: null, children: null, result: 'mul' }
+//   { id: 'sym', state: null, children: null, result: 'mul' }
 // ]
 ```
 
