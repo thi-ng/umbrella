@@ -25,6 +25,7 @@ ${pkg.description}
 - each AST node (optionally) retains reader information (position, line
   num, column) - disabled by default to save memory
 - common, re-usable preset parsers & node transforms included
+- parser compilation from grammar DSL strings
 
 ${status}
 
@@ -69,44 +70,54 @@ Source:
 Source:
 [/presets](https://github.com/thi-ng/umbrella/tree/feature/parse/packages/parse/src/presets)
 
-- `WS` / `WS_0` / `WS_1`
+- `WS` / `WS0` / `WS1` / `NL` / `DNL` / `SPACE` / `SPACES` / `SPACES0`
 - `ALPHA` / `LOWER_CASE` / `UPPER_CASE` / `ALPHA_NUM`
-- `DIGIT` / `DIGITS_0` / `DIGITS_1`
-- `HEX_DIGIT` / `HEX_DIGITS_1`
-- `INT` / `UINT` / `HEX_UINT` / `FLOAT` / `SIGN`
+- `ESC` / `UNICODE`
+- `DIGIT` / `DIGITS` / `DIGITS0`
+- `HEX_DIGIT` / `HEX_DIGITS` / `HEX_UINT`
+- `BIT` / `BINARY_UINT`
+- `INT` / `UINT` / `REAL` / `FLOAT` / `SIGN`
 
 ### Primitives
 
 Source:
 [/prims](https://github.com/thi-ng/umbrella/tree/feature/parse/packages/parse/src/prims)
 
-- `anchor`
 - `always`
 - `fail`
+- `lit` / `litD` / `litP`
+- `noneOf` / `noneOfD` / `noneOfP`
+- `oneOf` / `oneOfD` / `oneOfP`
+- `pass`
+- `range` / `rangeD` / `rangeP`
+- `satisfy` / `satisfyD`
+- `skipWhile`
+- `string` / `stringD`
+- `stringOf`
+
+### Anchors
+
+- `anchor`
 - `inputStart` / `inputEnd`
 - `lineStart` / `lineEnd`
-- `lit` / `dlit`
-- `noneOf`
-- `oneOf`
-- `pass`
-- `range`
-- `satisfy`
-- `string` / `dstring`
+- `wordBoundary`
+- `startsWith` / `endsWith`
+- `entireLine`
+- `entirely`
 
 ### Combinators
 
 Source:
 [/combinators](https://github.com/thi-ng/umbrella/tree/feature/parse/packages/parse/src/combinators)
 
-- `alt`
+- `alt` / `altD`
 - `check`
-- `discard`
 - `expect`
 - `maybe`
 - `not`
-- `oneOrMore` / `zeroOrMore`
-- `repeat`
-- `seq`
+- `oneOrMore` / `zeroOrMore` / `oneOrMoreD` / `zeroOrMoreD`
+- `repeat` / `repeatD`
+- `seq` / `seqD`
 - `xform`
 
 ### Transformers
@@ -117,6 +128,7 @@ Source:
 Syntax sugars for `xform(parser, fn)`:
 
 - `collect`
+- `discard`
 - `hoist`
 - `join`
 - `print`
@@ -125,17 +137,106 @@ Actual transforms:
 
 - `comp` - scope transform composition
 - `xfCollect`
+- `xfDiscard`
 - `xfFloat`
 - `xfHoist`
-- `xfInt`
+- `xfInt(radix)`
 - `xfJoin`
 - `xfPrint`
+
+## Grammar definition
+
+Complex parsers can be constructed via
+[`defGrammar()`](https://github.com/thi-ng/umbrella/tree/feature/parse/packages/parse/src/grammar.ts#L228),
+which accepts a string of rule definitions in the built-in (and still
+WIP) grammar rule definition language, similar to PEGs and regular
+expressions:
+
+Example grammar
+
+```text
+ws:      ' '+ => discard ;
+sym:     [a-z] [a-z0-9_]* => join ;
+num:     [0-9]+ => int ;
+program: ( <num> | <sym> | <ws> )* ;
+```
+
+Here, each line is a single parse rule definition, with each rule
+consisting of a sequence of one or more:
+
+- `'x'` - single char literal (also supports `\uXXXX` unicode escapes)
+- `"abc"` - mutli-char string
+- `[a-z0-9!@]` - regex style char set (incl. char range support)
+- `<rule_id>` - rule references (order independent)
+- `( term | ... | )` - choice of sub-terms
+
+Each of these terms can be immediately followed by one of these regexp
+style repetition specs:
+
+- `?` - zero or one occurrence
+- `*` - zero or more
+- `+` - one or more
+- `{min,max}` - min-max repetitions
+
+Furthermore, each rule can specify an optional rule transform function
+which will only be applied after the rule's parser has successfully
+completed. The transform is given at the end of a rule, separated by
+`=>`.
+
+Custom transforms can be supplied via an additional arg to
+`defGrammar()`. The following default transforms are available by
+default (can be overwritten) and correspond to the [above mentioned
+transforms](#transformers):
+
+- `collect` - collect sub terms into array
+- `discard` - discard result
+- `hoist` - use result of 1st child term only
+- `join` - join sub terms into single string
+- `float` - parse as floating point number
+- `int` - parse as integer
+- `hex` - parse as hex int
+
+```ts
+// define language
+const lang = defGrammar(`
+ws:      ' '+ => discard ;
+sym:     [a-z] [a-z0-9_]* => join ;
+num:     [0-9]+ => int ;
+program: ( <num> | <sym> | <ws> )* ;
+`);
+
+// define input & parser context
+const ctx = defContext("1 2 add 3 mul");
+
+// parse & print AST
+print(lang.rules.program)(ctx)
+// program: null
+//   num: 1
+//   num: 2
+//   word: "add"
+//   num: 3
+//   word: "mul"
+
+// parse result
+// true
+
+ctx.children
+// [
+//   { id: 'num', state: null, children: null, result: 1 },
+//   { id: 'num', state: null, children: null, result: 2 },
+//   { id: 'word', state: null, children: null, result: 'add' },
+//   { id: 'num', state: null, children: null, result: 3 },
+//   { id: 'word', state: null, children: null, result: 'mul' }
+// ]
+```
+
+## Examples
 
 ### SVG path parser example
 
 ```ts
 import {
-    INT, WS_0,
+    INT, WS0,
     alt, oneOf, seq, zeroOrMore,
     collect, discard, xform,
     defContext
@@ -147,11 +248,11 @@ const wsc = discard(zeroOrMore(oneOf(" ,")));
 
 // svg path parser rules
 // collect() collects child results in array, then removes children
-// INT & WS_0 are preset parsers (see section above)
+// INT & WS0 are preset parsers (see section above)
 const point = collect(seq([INT, wsc, INT]));
-const move = collect(seq([oneOf("Mm"), WS_0, point, WS_0]));
-const line = collect(seq([oneOf("Ll"), WS_0, point, WS_0]));
-const curve = collect(seq([oneOf("Cc"), WS_0, point, wsc, point, wsc, point, WS_0]));
+const move = collect(seq([oneOf("Mm"), WS0, point, WS0]));
+const line = collect(seq([oneOf("Ll"), WS0, point, WS0]));
+const curve = collect(seq([oneOf("Cc"), WS0, point, wsc, point, wsc, point, WS0]));
 // xform used here to wrap result in array
 // (to produce same result format as parsers above)
 const close = xform(oneOf("Zz"), ($) => ($.result = [$.result], $));
@@ -174,7 +275,7 @@ ctx.result
 
 ```ts
 import {
-    INT, WS_0,
+    INT, WS0,
     alt, oneOf, xform, zeroOrMore
     defContext
 } from "@thi.ng/parse";
@@ -210,7 +311,7 @@ const op = xform(oneOf(Object.keys(ops)), (scope) => {
 
 // parser for complete RPN program, combines above two parsers
 // and the whitespace preset as alternatives
-const program = zeroOrMore(alt([value, op, WS_0]))
+const program = zeroOrMore(alt([value, op, WS0]))
 
 // prepare parser context (incl. reader) and execute
 program(defContext("10 5 3 * + -2 * 10 /"));
