@@ -57,10 +57,10 @@ TODO
 
 ### Context & reader creation
 
-- [`defContext`](https://github.com/thi-ng/umbrella/tree/feature/parse/packages/parse/src/context.ts)
+- [`defContext`](https://github.com/thi-ng/umbrella/tree/develop/packages/parse/src/context.ts)
 
 Source:
-[/readers](https://github.com/thi-ng/umbrella/tree/feature/parse/packages/parse/src/readers)
+[/readers](https://github.com/thi-ng/umbrella/tree/develop/packages/parse/src/readers)
 
 - `defArrayReader`
 - `defStringReader`
@@ -68,7 +68,7 @@ Source:
 ### Presets parsers
 
 Source:
-[/presets](https://github.com/thi-ng/umbrella/tree/feature/parse/packages/parse/src/presets)
+[/presets](https://github.com/thi-ng/umbrella/tree/develop/packages/parse/src/presets)
 
 - `WS` / `WS0` / `WS1` / `NL` / `DNL` / `SPACE` / `SPACES` / `SPACES0`
 - `ALPHA` / `LOWER_CASE` / `UPPER_CASE` / `ALPHA_NUM`
@@ -81,7 +81,7 @@ Source:
 ### Primitives
 
 Source:
-[/prims](https://github.com/thi-ng/umbrella/tree/feature/parse/packages/parse/src/prims)
+[/prims](https://github.com/thi-ng/umbrella/tree/develop/packages/parse/src/prims)
 
 - `always`
 - `fail`
@@ -108,7 +108,7 @@ Source:
 ### Combinators
 
 Source:
-[/combinators](https://github.com/thi-ng/umbrella/tree/feature/parse/packages/parse/src/combinators)
+[/combinators](https://github.com/thi-ng/umbrella/tree/develop/packages/parse/src/combinators)
 
 - `alt` / `altD`
 - `check`
@@ -123,7 +123,7 @@ Source:
 ### Transformers
 
 Source:
-[/xform](https://github.com/thi-ng/umbrella/tree/feature/parse/packages/parse/src/xform)
+[/xform](https://github.com/thi-ng/umbrella/tree/develop/packages/parse/src/xform)
 
 Syntax sugars for `xform(parser, fn)`:
 
@@ -147,7 +147,7 @@ Actual transforms:
 ## Grammar definition
 
 Complex parsers can be constructed via
-[`defGrammar()`](https://github.com/thi-ng/umbrella/tree/feature/parse/packages/parse/src/grammar.ts#L228),
+[`defGrammar()`](https://github.com/thi-ng/umbrella/tree/develop/packages/parse/src/grammar.ts#L228),
 which accepts a string of rule definitions in the built-in (and still
 WIP) grammar rule definition language, similar to PEGs and regular
 expressions:

@@ -69,7 +69,6 @@
     },
     "sideEffects": false,
     "thi.ng": {
-        "branch": "feature/parse",
         "status": "alpha",
         "year": 2020
     }
