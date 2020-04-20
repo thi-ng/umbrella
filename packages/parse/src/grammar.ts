@@ -1,6 +1,12 @@
 import { DEFAULT, defmulti } from "@thi.ng/defmulti";
 import { illegalArgs, unsupported } from "@thi.ng/errors";
-import type { Language, Parser, ParseScope, RuleTransforms } from "./api";
+import type {
+    GrammarOpts,
+    Language,
+    Parser,
+    ParseScope,
+    RuleTransforms,
+} from "./api";
 import { alt } from "./combinators/alt";
 import { dynamic } from "./combinators/dynamic";
 import { maybe } from "./combinators/maybe";
@@ -14,16 +20,17 @@ import { ESC, UNICODE } from "./presets/escape";
 import { UINT } from "./presets/numbers";
 import { WS0, WS1 } from "./presets/whitespace";
 import { lit, litD } from "./prims/lit";
-import { noneOf } from "./prims/none-of";
+import { noneOf, noneOfP } from "./prims/none-of";
 import { oneOf } from "./prims/one-of";
 import { range } from "./prims/range";
-import { stringD } from "./prims/string";
+import { string, stringD, stringOf } from "./prims/string";
 import { collect } from "./xform/collect";
 import { hoist } from "./xform/hoist";
 import { join } from "./xform/join";
-import { xfPrint } from "./xform/print";
+import { print } from "./xform/print";
 
 const apos = litD("'");
+const quote = litD('"');
 const dash = litD("-");
 
 const REPEAT = maybe(
@@ -53,18 +60,19 @@ const CHAR_SEL = seq(
         maybe(lit("^", "invert")),
         oneOrMore(alt([CHAR_RANGE, UNICODE, noneOf("]", "char")]), "choice"),
         litD("]"),
-        REPEAT,
     ],
     "charSel"
 );
 
 const LIT = hoist(seq([apos, CHAR_OR_ESC, apos], "char"));
 
+const STRING = hoist(seq([quote, stringOf(noneOfP('"')), quote], "string"));
+
 const SYM = join(oneOrMore(alt([ALPHA_NUM, oneOf(".-_$")]), "sym"));
 
-const RULE_REF = seq([litD("<"), SYM, litD(">"), REPEAT], "ref");
+const RULE_REF = seq([litD("<"), SYM, litD(">")], "ref");
 
-const TERM = alt([RULE_REF, LIT, CHAR_SEL]);
+const TERM = seq([alt([RULE_REF, LIT, STRING, CHAR_SEL]), REPEAT], "term");
 
 const ALT = seq(
     [
@@ -95,13 +103,13 @@ const RULE = seq(
     "rule"
 );
 
-const GRAMMAR = zeroOrMore(RULE, "rules");
+export const GRAMMAR = zeroOrMore(RULE, "rules");
 
 const first = ($: ParseScope<any>) => $.children![0];
 
 const nth = ($: ParseScope<any>, n: number) => $.children![n];
 
-const compile = defmulti<ParseScope<string>, Language, any>(
+const compile = defmulti<ParseScope<string>, Language, GrammarOpts, any>(
     (scope) => scope.id,
     {
         unicode: ["char"],
@@ -109,7 +117,7 @@ const compile = defmulti<ParseScope<string>, Language, any>(
 );
 
 compile.addAll({
-    root: ($, lang) => {
+    root: ($, lang, opts) => {
         const rules = first($).children!;
         rules.reduce(
             (acc, r) => ((acc[first(r).result] = dynamic()), acc),
@@ -117,16 +125,16 @@ compile.addAll({
         );
         for (let r of rules) {
             const id = first(r).result;
-            lang.rules[id].set(compile(r, lang));
+            lang.rules[id].set(compile(r, lang, opts));
         }
         return lang;
     },
-    rule: ($, lang) => {
+    rule: ($, lang, opts) => {
         const [id, body, xfID] = $.children!;
-        console.log(`rule: ${id.result}`);
+        opts.debug && console.log(`rule: ${id.result}`);
         const acc: Parser<string>[] = [];
         for (let b of body.children!) {
-            const c = compile(b, lang);
+            const c = compile(b, lang, opts);
             c && acc.push(c);
         }
         let parser = acc.length > 1 ? seq(acc, id.result) : acc[0];
@@ -138,46 +146,63 @@ compile.addAll({
         return parser;
     },
     ref: ($, lang) => {
-        const [id, repeat] = $.children!;
-        const ref = lang.rules[id.result];
-        if (!ref) illegalArgs(`invalid rule ref: ${id.result}`);
-        return compileRepeat(ref, repeat);
+        const id = first($).result;
+        const ref = lang.rules[id];
+        return ref || illegalArgs(`invalid rule ref: ${id}`);
     },
-    alt: ($, lang) => {
-        const acc: Parser<string>[] = [compile(first($), lang)];
-        for (let c of nth($, 1).children!) {
-            acc.push(compile(first(c), lang));
+    term: ($, lang, opts) => {
+        const [term, repeat] = $!.children!;
+        opts.debug && console.log(`term: ${term.id}`);
+        return compileRepeat(compile(term, lang, opts), repeat, opts);
+    },
+    alt: ($, lang, opts) => {
+        opts.debug && console.log(`alt: ${$.id}`);
+        const acc: Parser<string>[] = [compile(first($), lang, opts)];
+        const terms = nth($, 1).children!;
+        if (terms) {
+            for (let c of terms) {
+                acc.push(compile(first(c), lang, opts));
+            }
         }
         return compileRepeat(
             acc.length > 1 ? alt(acc) : acc[0],
-            $.children![2]
+            $.children![2],
+            opts
         );
     },
-    char: ($) => {
+    char: ($, _, opts) => {
         const x = $.result;
-        console.log(`lit: '${x}'`);
+        opts.debug && console.log(`lit: '${x}'`);
         return lit(x);
     },
-    charRange: ($) => {
+    string: ($, _, opts) => {
+        const x = $.result;
+        opts.debug && console.log(`string: "${x}"`);
+        return string(x);
+    },
+    charRange: ($, _, opts) => {
         const [a, b] = $.children!;
-        console.log(`range: ${a.result} - ${b.result}`);
+        opts.debug && console.log(`range: ${a.result} - ${b.result}`);
         return range(a.result, b.result);
     },
-    charSel: ($, lang) => {
-        const choices = nth($, 1).children!.map((c) => compile(c, lang));
-        const [invert, , repeat] = $.children!;
-        console.log(`invert: ${invert.result}, repeat: ${repeat.result}`);
-        let parser = choices.length > 1 ? alt(choices) : choices[0];
-        if (invert.result) {
-            parser = not(parser);
-        }
-        return compileRepeat(parser, repeat);
+    charSel: ($, lang, opts) => {
+        opts.debug && console.log("charSel");
+        const choices = nth($, 1).children!.map((c) => compile(c, lang, opts));
+        const invert = first($).result;
+        const parser = choices.length > 1 ? alt(choices) : choices[0];
+        opts.debug && console.log(`invert: ${invert}`);
+        return invert ? not(parser) : parser;
     },
 });
 
 compile.add(DEFAULT, ($) => unsupported(`unknown op: ${$.id}`));
 
-const compileRepeat = (parser: Parser<string>, rspec: ParseScope<string>) => {
+const compileRepeat = (
+    parser: Parser<string>,
+    rspec: ParseScope<string>,
+    opts: GrammarOpts
+) => {
+    opts.debug && console.log(`repeat: ${rspec.id}`);
     if (rspec.id === "repeat") {
         switch (rspec.result) {
             case "?":
@@ -195,10 +220,21 @@ const compileRepeat = (parser: Parser<string>, rspec: ParseScope<string>) => {
     return parser;
 };
 
-export const defGrammar = (rules: string, env: RuleTransforms = {}) => {
+export const defGrammar = (
+    rules: string,
+    env: RuleTransforms = {},
+    opts?: Partial<GrammarOpts>
+) => {
+    opts = { debug: false, optimize: true, ...opts };
     const ctx = defContext(rules);
-    if (GRAMMAR(ctx)) {
-        xfPrint(ctx.root, ctx);
-        return <Language>compile(ctx.root, { env, grammar: ctx, rules: {} });
+    const result = (opts.debug ? print(GRAMMAR) : GRAMMAR)(ctx);
+    if (result) {
+        return <Language>(
+            compile(
+                ctx.root,
+                { env, grammar: ctx, rules: {} },
+                <GrammarOpts>opts
+            )
+        );
     }
 };

@@ -68,11 +68,10 @@ export class ParseContext<T> {
             result: null,
         };
         scopes.push(scope);
-        if (this._debug) {
+        this._debug &&
             console.log(
                 `${indent(scopes.length)}start: ${id} (${scope.state!.p})`
             );
-        }
         return (this._curr = scope);
     }
 
@@ -80,9 +79,8 @@ export class ParseContext<T> {
         const scopes = this._scopes;
         const child = scopes.pop()!;
         this._curr = scopes[scopes.length - 1];
-        if (this._debug) {
+        this._debug &&
             console.log(`${indent(scopes.length + 1)}discard: ${child.id}`);
-        }
         return false;
     }
 
@@ -92,11 +90,10 @@ export class ParseContext<T> {
         const parent = scopes[scopes.length - 1];
         const cstate = child.state;
         let pstate: ParseState<T>;
-        if (this._debug) {
+        this._debug &&
             console.log(
                 `${indent(scopes.length + 1)}end: ${child.id} (${cstate!.p})`
             );
-        }
         child.state = this._retain
             ? ((pstate = parent.state!),
               { p: pstate.p, l: pstate.l, c: pstate.c })
@@ -123,6 +120,12 @@ export class ParseContext<T> {
             children: null,
             result,
         };
+        this._debug &&
+            console.log(
+                `${indent(this._scopes.length + 1)}addChild: ${id} (${
+                    cstate!.p
+                })`
+            );
         const children = curr.children;
         children ? children.push(child) : (curr.children = [child]);
         if (newState !== false) {

@@ -41,6 +41,22 @@ export type ScopeTransform<T> = (
     user?: any
 ) => Nullable<ParseScope<T>>;
 
+export interface GrammarOpts {
+    /**
+     * If true, prints AST and verbose compiler output.
+     *
+     * @defaultValue false
+     */
+    debug: boolean;
+    /**
+     * CURRENTLY UNUSED. If true will apply AST optimizations prior to
+     * compilation.
+     *
+     * @defaultValue true
+     */
+    optimize: boolean;
+}
+
 export type Rules = IObjectOf<DynamicParser<string>>;
 
 export type RuleTransforms = IObjectOf<ScopeTransform<string>>;
