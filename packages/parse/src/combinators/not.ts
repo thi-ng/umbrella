@@ -1,17 +1,23 @@
-import { isFunction } from "@thi.ng/checks";
-import type { Parser, PassValue } from "../api";
+import type { Parser } from "../api";
+import { always } from "../prims/always";
 
-export const not = <T, R = any>(
+/**
+ * Runs `parser`, discards its result and if it passed returns false,
+ * else runs `fail` parser and returns its result. By default `fail` is
+ * using {@link always}, which consumes a single character and always
+ * succeeds. To avoid consuming a character on first `parser`'s failure,
+ * use {@link pass} or {@link passD} instead.
+ *
+ * @param parser -
+ * @param fail -
+ */
+export const not = <T>(
     parser: Parser<T>,
-    result?: PassValue<R>,
-    id = "not"
+    fail: Parser<T> = always()
 ): Parser<T> => (ctx) => {
     if (ctx.done) return false;
-    const scope = ctx.start(id);
-    if (parser(ctx)) {
-        return ctx.discard();
-    }
-    scope.result =
-        result != null ? (isFunction(result) ? result() : result) : null;
-    return ctx.end();
+    ctx.start("");
+    const res = parser(ctx);
+    ctx.discard();
+    return res ? false : fail(ctx);
 };
