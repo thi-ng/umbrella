@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@1.0.6...@thi.ng/webgl@1.0.7) (2020-04-21)
+
+
+### Bug Fixes
+
+* **webgl:** unbind fbo after configure ([25414b5](https://github.com/thi-ng/umbrella/commit/25414b598211c05597714bc07d16a5f6a6249e5f))
+
+
+
+
+
 ## [1.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@1.0.5...@thi.ng/webgl@1.0.6) (2020-04-20)
 
 **Note:** Version bump only for package @thi.ng/webgl

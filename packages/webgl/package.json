@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/webgl",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "description": "WebGL & GLSL abstraction layer",
     "module": "./index.js",
     "main": "./lib/index.js",

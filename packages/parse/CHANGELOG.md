@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.3.0...@thi.ng/parse@0.4.0) (2020-04-21)
+
+
+### Bug Fixes
+
+* **parse:** update not() behavior, add passD() ([1d0f4c4](https://github.com/thi-ng/umbrella/commit/1d0f4c4baef5b1cfb207f606f4e3873a14c3afce))
+
+
+### Features
+
+* **parse:** update grammar DSL, hoist xforms ([861e7f3](https://github.com/thi-ng/umbrella/commit/861e7f32d98a9f693a9271d31235d1603700b36c))
+
+
+
+
+
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.2.0...@thi.ng/parse@0.3.0) (2020-04-20)
 
 
