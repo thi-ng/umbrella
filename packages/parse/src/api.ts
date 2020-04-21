@@ -57,7 +57,7 @@ export interface GrammarOpts {
     optimize: boolean;
 }
 
-export type Rules = IObjectOf<DynamicParser<string>>;
+export type Rules = IObjectOf<Parser<string>>;
 
 export type RuleTransforms = IObjectOf<ScopeTransform<string>>;
 

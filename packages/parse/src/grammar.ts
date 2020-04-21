@@ -1,6 +1,7 @@
 import { DEFAULT, defmulti } from "@thi.ng/defmulti";
 import { illegalArgs, unsupported } from "@thi.ng/errors";
 import type {
+    DynamicParser,
     GrammarOpts,
     Language,
     Parser,
@@ -15,22 +16,24 @@ import { oneOrMore, repeat, zeroOrMore } from "./combinators/repeat";
 import { seq } from "./combinators/seq";
 import { xform } from "./combinators/xform";
 import { defContext } from "./context";
-import { ALPHA_NUM } from "./presets/alpha";
+import { ALPHA, ALPHA_NUM } from "./presets/alpha";
+import { DIGIT } from "./presets/digits";
 import { ESC, UNICODE } from "./presets/escape";
-import { UINT } from "./presets/numbers";
-import { WS0, WS1 } from "./presets/whitespace";
+import { HEX_DIGIT } from "./presets/hex";
+import { FLOAT, INT, UINT } from "./presets/numbers";
+import { WS, WS0, WS1 } from "./presets/whitespace";
+import { always } from "./prims/always";
 import { lit, litD } from "./prims/lit";
-import { noneOf, noneOfP } from "./prims/none-of";
+import { noneOf } from "./prims/none-of";
 import { oneOf } from "./prims/one-of";
 import { range } from "./prims/range";
-import { string, stringD, stringOf } from "./prims/string";
+import { string, stringD } from "./prims/string";
 import { collect, xfCollect } from "./xform/collect";
 import { xfDiscard } from "./xform/discard";
-import { hoist, xfHoist } from "./xform/hoist";
+import { hoistResult, xfHoist, xfHoistResult } from "./xform/hoist";
 import { join, xfJoin } from "./xform/join";
 import { xfFloat, xfInt } from "./xform/number";
 import { print } from "./xform/print";
-import { always } from "./prims/always";
 import { withID } from "./xform/with-id";
 
 const apos = litD("'");
@@ -45,7 +48,7 @@ const REPEAT = maybe(
                 [
                     litD("{"),
                     UINT,
-                    maybe(hoist(seq([litD(","), UINT]))),
+                    maybe(hoistResult(seq([litD(","), UINT]))),
                     litD("}"),
                 ],
                 "repeatN"
@@ -68,9 +71,11 @@ const CHAR_SEL = seq(
     "charSel"
 );
 
-const LIT = hoist(seq([apos, CHAR_OR_ESC, apos], "char"));
+const LIT = hoistResult(seq([apos, CHAR_OR_ESC, apos], "char"));
 
-const STRING = hoist(seq([quote, stringOf(noneOfP('"')), quote], "string"));
+const STRING = join(
+    seq([quote, zeroOrMore(alt([UNICODE, ESC, noneOf('"')])), quote], "string")
+);
 
 const SYM = join(oneOrMore(alt([ALPHA_NUM, oneOf(".-_$")]), "sym"));
 
@@ -91,7 +96,7 @@ const ALT = seq(
     "alt"
 );
 
-const RULE_XF = hoist(seq([stringD("=>"), WS1, SYM, WS1], "xform"));
+const RULE_XF = hoistResult(seq([stringD("=>"), WS1, SYM, WS1], "xform"));
 
 const RULE = seq(
     [
@@ -129,7 +134,7 @@ compile.addAll({
         );
         for (let r of rules) {
             const id = first(r).result;
-            lang.rules[id].set(compile(r, lang, opts));
+            (<DynamicParser<string>>lang.rules[id]).set(compile(r, lang, opts));
         }
         return lang;
     },
@@ -237,6 +242,7 @@ export const defGrammar = (
         float: xfFloat,
         hex: xfInt(16),
         hoist: xfHoist,
+        hoistR: xfHoistResult,
         int: xfInt(10),
         join: xfJoin,
         ...env,
@@ -244,12 +250,27 @@ export const defGrammar = (
     const ctx = defContext(rules);
     const result = (opts.debug ? print(GRAMMAR) : GRAMMAR)(ctx);
     if (result) {
-        return <Language>(
-            compile(
-                ctx.root,
-                { env, grammar: ctx, rules: {} },
-                <GrammarOpts>opts
-            )
+        return <Language>compile(
+            ctx.root,
+            {
+                env,
+                grammar: ctx,
+                rules: {
+                    ALPHA_NUM,
+                    ALPHA,
+                    DIGIT,
+                    ESC,
+                    FLOAT,
+                    HEX_DIGIT,
+                    INT,
+                    STRING,
+                    UNICODE,
+                    WS,
+                    WS0,
+                    WS1,
+                },
+            },
+            <GrammarOpts>opts
         );
     }
 };
