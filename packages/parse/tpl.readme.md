@@ -88,7 +88,7 @@ Source:
 - `lit` / `litD` / `litP`
 - `noneOf` / `noneOfD` / `noneOfP`
 - `oneOf` / `oneOfD` / `oneOfP`
-- `pass`
+- `pass` / `passD`
 - `range` / `rangeD` / `rangeP`
 - `satisfy` / `satisfyD`
 - `skipWhile`
@@ -129,7 +129,7 @@ Syntax sugars for `xform(parser, fn)`:
 
 - `collect`
 - `discard`
-- `hoist`
+- `hoist` / `hoistResult`
 - `join`
 - `print`
 
@@ -139,7 +139,7 @@ Actual transforms:
 - `xfCollect`
 - `xfDiscard`
 - `xfFloat`
-- `xfHoist`
+- `xfHoist` / `xfHoistResult`
 - `xfInt(radix)`
 - `xfJoin`
 - `xfPrint`
@@ -164,13 +164,17 @@ program: ( <num> | <sym> | <ws> )* ;
 Here, each line is a single parse rule definition, with each rule
 consisting of a sequence of one or more:
 
-- `'x'` - single char literal (also supports `\uXXXX` unicode escapes)
-- `"abc"` - mutli-char string
-- `[a-z0-9!@]` - regex style char set (incl. char range support)
+- `'x'` - single char literal
+- `"abc"` - multi-char string
+- `[a-z0-9!@]` - regex style char set (incl. char range support, inversion via `^`)
 - `<rule_id>` - rule references (order independent)
 - `( term | ... | )` - choice of sub-terms
 
-Each of these terms can be immediately followed by one of these regexp
+Literals, strings and char sets can include `\uXXXX` unicode escapes (if
+given within a JS source string, double escaping must be used, i.e.
+`\\uXXXX`).
+
+All of these terms can be immediately followed by one of these regexp
 style repetition specs:
 
 - `?` - zero or one occurrence
