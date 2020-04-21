@@ -23,6 +23,7 @@ This project is part of the
   - [Transformers](#transformers)
 - [Grammar definition](#grammar-definition)
 - [Examples](#examples)
+  - [S-expression DSL](#s-expression-dsl)
   - [SVG path parser example](#svg-path-parser-example)
   - [RPN parser & interpreter example](#rpn-parser--interpreter-example)
 - [Authors](#authors)
@@ -56,7 +57,7 @@ Purely functional parser combinators & AST generation for generic inputs.
 yarn add @thi.ng/parse
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 4.44 KB / CJS: 4.77 KB / UMD: 4.46 KB
+Package sizes (gzipped, pre-treeshake): ESM: 4.49 KB / CJS: 4.83 KB / UMD: 4.55 KB
 
 ## Dependencies
 
@@ -206,47 +207,88 @@ transforms](#transformers):
 
 - `collect` - collect sub terms into array
 - `discard` - discard result
-- `hoist` - use result of 1st child term only
+- `hoist` - replace AST node with its 1st child
+- `hoistR` - use result of 1st child term only
 - `join` - join sub terms into single string
 - `float` - parse as floating point number
 - `int` - parse as integer
 - `hex` - parse as hex int
 
+For convenience, the following built-in parser presets are available as
+rule references in the grammar definition as well:
+
+- `ALPHA`
+- `ALPHA_NUM`
+- `DIGIT`
+- `ESC`
+- `FLOAT`
+- `HEX_DIGIT`
+- `INT`
+- `STRING`
+- `UNICODE`
+- `WS`
+- `WS0`
+- `WS1`
+
+## Examples
+
+### S-expression DSL
+
+(Also see
+[@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
+as a useful tool for processing/interpreting/compiling the result AST)
+
 ```ts
-// define language
+// define language via grammar DSL
+// the upper-cased rule names are built-ins
 const lang = defGrammar(`
-ws:      ' '+ => discard ;
-sym:     [a-z] [a-z0-9_]* => join ;
-num:     [0-9]+ => int ;
-program: ( <num> | <sym> | <ws> )* ;
+lopen: '(' => discard ;
+lclose: ')' => discard ;
+list: <lopen> <expr> <lclose> ;
+sym: ( <ALPHA_NUM> | [?!$+\\u002d*/.~#^=<>] )+ => join ;
+expr: ( <FLOAT> | <STRING> | <sym> | <list> | <WS1> )* ;
 `);
 
 // define input & parser context
-const ctx = defContext("1 2 add 3 mul");
+const ctx = defContext(`
+(def hello (x) (str "hello, " x))
+
+(print (hello 42))
+`);
 
 // parse & print AST
-print(lang.rules.program)(ctx)
-// program: null
-//   num: 1
-//   num: 2
-//   sym: "add"
-//   num: 3
-//   sym: "mul"
+print(lang.rules.expr)(ctx)
+// expr: null
+//   list: null
+//     expr: null
+//       sym: "def"
+//       sym: "hello"
+//       list: null
+//         expr: null
+//           sym: "x"
+//       list: null
+//         expr: null
+//           sym: "str"
+//           string: "hello, "
+//           sym: "x"
+//   list: null
+//     expr: null
+//       sym: "print"
+//       list: null
+//         expr: null
+//           sym: "hello"
+//           real: 42
 
 // parse result
 // true
 
+// the two top-level s-expressions...
 ctx.children
 // [
-//   { id: 'num', state: null, children: null, result: 1 },
-//   { id: 'num', state: null, children: null, result: 2 },
-//   { id: 'sym', state: null, children: null, result: 'add' },
-//   { id: 'num', state: null, children: null, result: 3 },
-//   { id: 'sym', state: null, children: null, result: 'mul' }
+//   { id: 'list', state: null, children: [ [Object] ], result: null },
+//   { id: 'list', state: null, children: [ [Object] ], result: null }
 // ]
 ```
-
-## Examples
 
 ### SVG path parser example
 
