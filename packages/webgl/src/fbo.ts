@@ -108,7 +108,8 @@ export class FBO implements IFbo {
                       0
                   );
         }
-        return this.validate();
+        this.validate();
+        return this.unbind();
     }
 
     validate() {
