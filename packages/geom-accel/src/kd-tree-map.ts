@@ -1,19 +1,13 @@
+import type { Fn, ICopy, IEmpty, Pair } from "@thi.ng/api";
 import { ensureArray } from "@thi.ng/arrays";
+import type { IRegionQuery, ISpatialMap } from "@thi.ng/geom-api";
 import { Heap } from "@thi.ng/heaps";
 import { EPS } from "@thi.ng/math";
 import { map } from "@thi.ng/transducers";
 import { distSq, ReadonlyVec, Vec } from "@thi.ng/vectors";
-import type {
-    Fn,
-    ICopy,
-    IEmpty,
-    Pair
-} from "@thi.ng/api";
-import type { IRegionQuery, ISpatialMap } from "@thi.ng/geom-api";
+import { CMP, addResults } from "./utils";
 
 type MaybeKdNode<K extends ReadonlyVec, V> = KdNode<K, V> | undefined;
-
-const CMP = (a: [number, any], b: [number, any]) => b[0] - a[0];
 
 export class KdNode<K extends ReadonlyVec, V> {
     d: number;
@@ -219,15 +213,11 @@ export class KdTreeMap<K extends ReadonlyVec, V>
             const nodes = new Heap<[number, MaybeKdNode<K, V>]>(
                 [[maxDist, undefined]],
                 {
-                    compare: CMP
+                    compare: CMP,
                 }
             );
             nearest(q, nodes, this.dim, maxNum, this.root!);
-            const sel = nodes.values.sort(CMP);
-            for (let n = sel.length; --n >= 0; ) {
-                const s = sel[n][1];
-                s && acc.push(f(s));
-            }
+            return addResults(f, nodes.values, acc);
         }
         return acc;
     }

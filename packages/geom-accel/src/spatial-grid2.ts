@@ -4,7 +4,7 @@ import { Heap } from "@thi.ng/heaps";
 import { clamp } from "@thi.ng/math";
 import { addN2, distSq2, ReadonlyVec, subN2, Vec } from "@thi.ng/vectors";
 import { ASpatialGrid } from "./aspatial-grid";
-import { CMP } from "./utils";
+import { CMP, addResults } from "./utils";
 
 const TMP: Vec = [];
 
@@ -54,11 +54,7 @@ export class SpatialGrid2<K extends ReadonlyVec, V> extends ASpatialGrid<K, V> {
                 c && c.length && this.queryCell(distSq2, heap, c, k, limit);
             }
         }
-        for (let n = sel.sort(CMP).length; --n >= 0; ) {
-            const s = sel[n][1];
-            s && acc.push(fn(s));
-        }
-        return acc;
+        return addResults(fn, sel, acc);
     }
 
     protected findIndex(k: ReadonlyVec) {

@@ -1,15 +1,11 @@
 import { assert } from "@thi.ng/api";
+import type { Fn, ICopy, IEmpty, Pair } from "@thi.ng/api";
 import { equivArrayLike } from "@thi.ng/equiv";
+import type { IRegionQuery, ISpatialMap } from "@thi.ng/geom-api";
 import { pointInCenteredBox, testCenteredBoxSphere } from "@thi.ng/geom-isec";
 import { Heap } from "@thi.ng/heaps";
 import { EPS } from "@thi.ng/math";
-import {
-    iterate,
-    map,
-    permutations,
-    repeat,
-    take
-} from "@thi.ng/transducers";
+import { iterate, map, permutations, repeat, take } from "@thi.ng/transducers";
 import {
     addmN,
     distSq,
@@ -18,17 +14,9 @@ import {
     MultiVecOpRoVV,
     ReadonlyVec,
     submN,
-    vop
+    vop,
 } from "@thi.ng/vectors";
-import type {
-    Fn,
-    ICopy,
-    IEmpty,
-    Pair
-} from "@thi.ng/api";
-import type { IRegionQuery, ISpatialMap } from "@thi.ng/geom-api";
-
-const CMP = (a: [number, any?], b: [number, any?]) => b[0] - a[0];
+import { CMP, addResults } from "./utils";
 
 export class NdQtNode<K extends ReadonlyVec, V> {
     pos: ReadonlyVec;
@@ -94,19 +82,18 @@ export class NdQtNode<K extends ReadonlyVec, V> {
         max: number,
         acc: T[]
     ) {
-        const sel = this.doQuery(
-            p,
-            r,
-            max,
-            new Heap<[number, NdQtNode<K, V>?]>([[r * r]], {
-                compare: CMP
-            })
-        ).values.sort(CMP);
-        for (let n = sel.length; --n >= 0; ) {
-            const s = sel[n][1];
-            s && acc.push(fn(s));
-        }
-        return acc;
+        return addResults(
+            fn,
+            this.doQuery(
+                p,
+                r,
+                max,
+                new Heap<[number, NdQtNode<K, V>?]>([[r * r]], {
+                    compare: CMP,
+                })
+            ).values,
+            acc
+        );
     }
 
     queryKeys(p: K, r: number, max: number, acc: K[]): K[] {
@@ -350,7 +337,7 @@ const MAX_CHILDREN = [
     ...take(
         NdQuadtreeMap.MAX_DIM + 1,
         iterate((x) => x * 2, 1)
-    )
+    ),
 ];
 
 const CHILD_OFFSETS: ReadonlyVec[][] = [];
