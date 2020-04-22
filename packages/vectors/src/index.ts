@@ -59,6 +59,7 @@ export * from "./dotc";
 export * from "./dots";
 export * from "./empty";
 export * from "./eqdelta";
+export * from "./equals";
 export * from "./every";
 export * from "./exp";
 export * from "./exp_2";
