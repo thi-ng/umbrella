@@ -4,7 +4,7 @@ import { Heap } from "@thi.ng/heaps";
 import { clamp } from "@thi.ng/math";
 import { addN3, distSq3, ReadonlyVec, subN3, Vec } from "@thi.ng/vectors";
 import { ASpatialGrid } from "./aspatial-grid";
-import { CMP, addResults } from "./utils";
+import { addResults, CMP } from "./utils";
 
 const TMP: Vec = [];
 
