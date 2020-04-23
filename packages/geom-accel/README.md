@@ -20,21 +20,19 @@ This project is part of the
 
 ## About
 
-n-D spatial indexing data structures.
+n-D spatial indexing data structures with a shared ES6 Map/Set-like API.
 
 Some implementations were ported from the Clojure version of
 [thi.ng/geom](http://thi.ng/geom).
 
 Currently available:
 
-- [k-D Tree](src/kdtree.ts)
-
-**TODO: reimport / publish**
-
-- [Grid](src/grid.ts)
-- [Quadtree](src/quadtree.ts)
-- [Octree](src/octree.ts)
-- [Morton / Z-order](src/morton.ts)
+- [KdTreeMap](src/kd-tree-map.ts)
+- [KdTreeSet](src/kd-tree-set.ts)
+- [NdQuadtreeMap](src/nd-quadtree-map.ts)
+- [NdQuadtreeSet](src/nd-quadtree-set.ts)
+- [SpatialGrid2](src/spatial-grid2.ts)
+- [SpatialGrid3](src/spatial-grid3.ts)
 
 ### Status
 
@@ -46,12 +44,13 @@ Currently available:
 yarn add @thi.ng/geom-accel
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.85 KB / CJS: 2.93 KB / UMD: 2.92 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.76 KB / CJS: 3.83 KB / UMD: 3.82 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
 - [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-api)
 - [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isec)

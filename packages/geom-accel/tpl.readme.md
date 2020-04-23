@@ -18,14 +18,12 @@ Some implementations were ported from the Clojure version of
 
 Currently available:
 
-- [k-D Tree](src/kdtree.ts)
-
-**TODO: reimport / publish**
-
-- [Grid](src/grid.ts)
-- [Quadtree](src/quadtree.ts)
-- [Octree](src/octree.ts)
-- [Morton / Z-order](src/morton.ts)
+- [KdTreeMap](src/kd-tree-map.ts)
+- [KdTreeSet](src/kd-tree-set.ts)
+- [NdQuadtreeMap](src/nd-quadtree-map.ts)
+- [NdQuadtreeSet](src/nd-quadtree-set.ts)
+- [SpatialGrid2](src/spatial-grid2.ts)
+- [SpatialGrid3](src/spatial-grid3.ts)
 
 ${status}
 
