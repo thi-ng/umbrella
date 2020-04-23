@@ -1,5 +1,7 @@
 #!/bin/sh
 
+readonly OPTS='--file-ext html --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype --minify-css true'
+
 if [ $# = 1 ]; then
     modules="packages/$1/"
 else
@@ -10,6 +12,8 @@ for m in $modules; do
     name=$(echo "$m" | cut -d '/' -f 2)
     echo "sanitizing: $name"
     find "$m"/doc -name "*.html" -exec sed -i '' -E "s/\/([a-zA-Z_0-9\/-]+)\/node_modules\///g" '{}' \;
+    echo "minifying..."
+    html-minifier-terser $OPTS --input-dir $m/doc --output-dir $m/doc
     echo "syncing..."
     aws s3 sync "$m"/doc s3://docs.thi.ng/umbrella/"$name" --profile toxi-s3 --acl public-read
 done
