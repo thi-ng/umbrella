@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.3.0...@thi.ng/vectors@4.3.1) (2020-04-23)
+
+
+### Bug Fixes
+
+* **vectors:** add missing equals2/3/4 exports ([041f590](https://github.com/thi-ng/umbrella/commit/041f590f6c1c29efd01fccc26cbbb2c0992e1147))
+
+
+
+
+
 # [4.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.2.6...@thi.ng/vectors@4.3.0) (2020-04-23)
 
 

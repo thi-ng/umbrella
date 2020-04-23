@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/scenegraph",
-    "version": "0.1.13",
+    "version": "0.1.14",
     "description": "Extensible 2D/3D scene graph with @thi.ng/hdom-canvas support",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -40,8 +40,8 @@
     "dependencies": {
         "@thi.ng/api": "^6.10.1",
         "@thi.ng/checks": "^2.6.2",
-        "@thi.ng/matrices": "^0.6.10",
-        "@thi.ng/vectors": "^4.3.0",
+        "@thi.ng/matrices": "^0.6.11",
+        "@thi.ng/vectors": "^4.3.1",
         "tslib": "^1.11.1"
     },
     "files": [
