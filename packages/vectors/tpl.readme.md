@@ -463,6 +463,7 @@ Functions to transform flat / strided buffers w/ vector operations:
 ### Comparison / equality
 
 -   `comparator2` / `comparator3` / `comparator4`
+-   `equals` / `equals2` / `equals3` / `equals4`
 -   `eqDelta` / `eqDelta2` / `eqDelta3` / `eqDelta4`
 -   `eqDeltaS`
 -   `eqDeltaArray`

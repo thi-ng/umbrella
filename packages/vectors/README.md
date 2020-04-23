@@ -144,7 +144,7 @@ Partially ported from [thi.ng/geom](http://thi.ng/geom) (Clojure) and
 yarn add @thi.ng/vectors
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 10.88 KB / CJS: 13.71 KB / UMD: 12.06 KB
+Package sizes (gzipped, pre-treeshake): ESM: 10.95 KB / CJS: 13.78 KB / UMD: 12.12 KB
 
 ## Dependencies
 
@@ -546,6 +546,7 @@ Functions to transform flat / strided buffers w/ vector operations:
 ### Comparison / equality
 
 -   `comparator2` / `comparator3` / `comparator4`
+-   `equals` / `equals2` / `equals3` / `equals4`
 -   `eqDelta` / `eqDelta2` / `eqDelta3` / `eqDelta4`
 -   `eqDeltaS`
 -   `eqDeltaArray`
