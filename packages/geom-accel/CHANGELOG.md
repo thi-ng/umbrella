@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.0.11...@thi.ng/geom-accel@2.1.0) (2020-04-23)
+
+
+### Features
+
+* **geom-accel:** add 2d/3d spatial grids ([e34c44d](https://github.com/thi-ng/umbrella/commit/e34c44d624026bbce946d904c5b861f7a48fd484))
+
+
+
+
+
 ## [2.0.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.0.10...@thi.ng/geom-accel@2.0.11) (2020-04-20)
 
 **Note:** Version bump only for package @thi.ng/geom-accel

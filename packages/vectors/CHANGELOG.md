@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.2.6...@thi.ng/vectors@4.3.0) (2020-04-23)
+
+
+### Features
+
+* **vectors:** add equals/2/3/4() ([34cad0e](https://github.com/thi-ng/umbrella/commit/34cad0eee8cd6d555ddc8ed718858b6885519f85))
+
+
+
+
+
 ## [4.2.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.2.5...@thi.ng/vectors@4.2.6) (2020-04-20)
 
 **Note:** Version bump only for package @thi.ng/vectors
