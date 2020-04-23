@@ -207,12 +207,17 @@ rule references in the grammar definition as well:
 - `ALPHA`
 - `ALPHA_NUM`
 - `DIGIT`
+- `END` - input end
 - `ESC`
 - `FLOAT`
 - `HEX_DIGIT`
 - `INT`
+- `LEND` - line end
+- `LSTART` - line start
+- `START` - input start
 - `STRING`
 - `UNICODE`
+- `WB` - word boundary
 - `WS`
 - `WS0`
 - `WS1`

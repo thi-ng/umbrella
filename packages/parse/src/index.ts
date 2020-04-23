@@ -21,6 +21,7 @@ export * from "./presets/digits";
 export * from "./presets/escape";
 export * from "./presets/hex";
 export * from "./presets/numbers";
+export * from "./presets/string";
 export * from "./presets/whitespace";
 
 export * from "./prims/always";

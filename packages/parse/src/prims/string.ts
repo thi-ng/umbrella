@@ -1,5 +1,5 @@
+import type { Fn, Predicate } from "@thi.ng/api";
 import type { Parser } from "../api";
-import { Predicate, Fn } from "@thi.ng/api";
 
 export const string = <T>(str: ArrayLike<T>, id = "string"): Parser<T> => (
     ctx

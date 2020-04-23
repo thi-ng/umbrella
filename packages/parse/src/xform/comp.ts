@@ -1,4 +1,4 @@
-import { ScopeTransform } from "../api";
+import type { ScopeTransform } from "../api";
 
 /**
  * Takes any number of {@link ScopeTransform}s and composes them into

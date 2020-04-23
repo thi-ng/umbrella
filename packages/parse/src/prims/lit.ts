@@ -1,5 +1,10 @@
 import { satisfyD, satisfy } from "./satisfy";
 
+/**
+ * HOF predicate for matching given single char literal.
+ *
+ * @param c
+ */
 export const litP = <T>(c: T) => (x: T) => x === c;
 
 /**

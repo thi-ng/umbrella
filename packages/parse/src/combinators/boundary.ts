@@ -1,4 +1,4 @@
-import { Parser } from "../api";
+import type { Parser } from "../api";
 import { inputEnd, inputStart, lineEnd, lineStart } from "../prims/anchor";
 import { seq } from "./seq";
 

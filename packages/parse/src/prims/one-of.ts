@@ -3,6 +3,11 @@ import { isPlainObject, isSet } from "@thi.ng/checks";
 import type { CharSet, LitParser } from "../api";
 import { satisfy, satisfyD } from "./satisfy";
 
+/**
+ * HOF predicate for matching single char against given options.
+ *
+ * @param opts
+ */
 export const oneOfP = (
     opts: string | any[] | Set<any> | CharSet
 ): Predicate<any> =>
@@ -12,12 +17,24 @@ export const oneOfP = (
         ? (x) => (<any>opts)[x]
         : (x) => opts.indexOf(x) >= 0;
 
+/**
+ * Matches single char against given options. Also see {@link noneOf}
+ * for reverse logic.
+ *
+ * @param opts
+ * @param id
+ */
 export function oneOf(opts: string | CharSet, id?: string): LitParser<string>;
 export function oneOf<T>(opts: T[] | Set<T>, id?: string): LitParser<T>;
 export function oneOf(opts: string | CharSet | any[] | Set<any>, id = "oneOf") {
     return satisfy(oneOfP(opts), id);
 }
 
+/**
+ * Like {@link oneOf}, but discards result.
+ *
+ * @param opts
+ */
 export function oneOfD(opts: string | CharSet): LitParser<string>;
 export function oneOfD<T>(opts: T[] | Set<T>): LitParser<T>;
 export function oneOfD(opts: string | CharSet | any[] | Set<any>) {

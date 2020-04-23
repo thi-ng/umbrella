@@ -1,4 +1,4 @@
-import { ScopeTransform } from "../api";
+import type { ScopeTransform } from "../api";
 import { xfJoin } from "./join";
 
 /**

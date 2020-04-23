@@ -57,7 +57,7 @@ Purely functional parser combinators & AST generation for generic inputs.
 yarn add @thi.ng/parse
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 4.49 KB / CJS: 4.83 KB / UMD: 4.55 KB
+Package sizes (gzipped, pre-treeshake): ESM: 4.51 KB / CJS: 4.86 KB / UMD: 4.57 KB
 
 ## Dependencies
 
@@ -225,12 +225,17 @@ rule references in the grammar definition as well:
 - `ALPHA`
 - `ALPHA_NUM`
 - `DIGIT`
+- `END` - input end
 - `ESC`
 - `FLOAT`
 - `HEX_DIGIT`
 - `INT`
+- `LEND` - line end
+- `LSTART` - line start
+- `START` - input start
 - `STRING`
 - `UNICODE`
+- `WB` - word boundary
 - `WS`
 - `WS0`
 - `WS1`

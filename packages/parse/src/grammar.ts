@@ -21,8 +21,16 @@ import { DIGIT } from "./presets/digits";
 import { ESC, UNICODE } from "./presets/escape";
 import { HEX_DIGIT } from "./presets/hex";
 import { FLOAT, INT, UINT } from "./presets/numbers";
+import { STRING } from "./presets/string";
 import { WS, WS0, WS1 } from "./presets/whitespace";
 import { always } from "./prims/always";
+import {
+    inputEnd,
+    inputStart,
+    lineEnd,
+    lineStart,
+    wordBoundary,
+} from "./prims/anchor";
 import { lit, litD } from "./prims/lit";
 import { noneOf } from "./prims/none-of";
 import { oneOf } from "./prims/one-of";
@@ -37,7 +45,6 @@ import { print } from "./xform/print";
 import { withID } from "./xform/with-id";
 
 const apos = litD("'");
-const quote = litD('"');
 const dash = litD("-");
 
 const REPEAT = maybe(
@@ -72,10 +79,6 @@ const CHAR_SEL = seq(
 );
 
 const LIT = hoistResult(seq([apos, CHAR_OR_ESC, apos], "char"));
-
-const STRING = join(
-    seq([quote, zeroOrMore(alt([UNICODE, ESC, noneOf('"')])), quote], "string")
-);
 
 const SYM = join(oneOrMore(alt([ALPHA_NUM, oneOf(".-_$")]), "sym"));
 
@@ -259,12 +262,17 @@ export const defGrammar = (
                     ALPHA_NUM,
                     ALPHA,
                     DIGIT,
+                    END: inputEnd,
                     ESC,
                     FLOAT,
                     HEX_DIGIT,
                     INT,
+                    LEND: lineEnd,
+                    LSTART: lineStart,
+                    START: inputStart,
                     STRING,
                     UNICODE,
+                    WB: wordBoundary,
                     WS,
                     WS0,
                     WS1,

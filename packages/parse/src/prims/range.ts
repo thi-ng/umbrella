@@ -1,11 +1,24 @@
 import type { NumOrString, Predicate } from "@thi.ng/api";
-import { LitParser } from "../api";
+import type { LitParser } from "../api";
 import { satisfy, satisfyD } from "./satisfy";
 
+/**
+ * HOF predicate for matching single char within given range.
+ *
+ * @param min -
+ * @param max -
+ */
 export const rangeP = <T extends NumOrString>(min: T, max: T): Predicate<T> => (
     x
 ) => x >= min && x <= max;
 
+/**
+ * HOF predicate for matching single char within given UTF16 codepoint
+ * range.
+ *
+ * @param min -
+ * @param max -
+ */
 export const utf16RangeP = (min: number, max: number): Predicate<string> => (
     x
 ) => {
@@ -26,7 +39,7 @@ export function rangeD(min: NumOrString, max: NumOrString) {
 }
 
 /**
- * Matches single char in given UTF-16 code range.
+ * Matches single char in given UTF-16 codepoint range.
  *
  * @param min
  * @param max
@@ -36,7 +49,7 @@ export const utf16Range = (min: number, max: number, id = "utfLit") =>
     satisfy(utf16RangeP(min, max), id);
 
 /**
- * Matches single char in given UTF-16 code range.
+ * Matches single char in given UTF-16 codepoint range.
  *
  * @param min
  * @param max

@@ -1,5 +1,5 @@
 import { isFunction } from "@thi.ng/checks";
-import type { PassValue, Parser } from "../api";
+import type { Parser, PassValue } from "../api";
 
 /**
  * Parser which consumes no input and always succeeds. Adds new AST node

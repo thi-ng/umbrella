@@ -1,4 +1,4 @@
-import { ScopeTransform, Parser } from "../api";
+import type { ScopeTransform, Parser } from "../api";
 import { xform } from "../combinators/xform";
 
 /**

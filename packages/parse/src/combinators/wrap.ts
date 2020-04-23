@@ -1,4 +1,4 @@
-import { Parser } from "../api";
+import type { Parser } from "../api";
 import { litD } from "../prims/lit";
 import { hoist } from "../xform/hoist";
 import { seq } from "./seq";
