@@ -16,8 +16,9 @@ export interface VisitorState {
 export interface WordMeta {
     name: string;
     loc: [number, number];
-    arities?: number;
     doc?: string;
+    stack?: string;
+    arities?: number;
 }
 
 export enum NodeType {

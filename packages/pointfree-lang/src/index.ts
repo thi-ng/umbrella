@@ -329,11 +329,11 @@ const visitWord = (
 };
 
 const visitStackComment = (node: ASTNode, state: VisitorState) => {
-    if (state.word && !state.word.doc) {
-        state.word.doc = node.body.join(" -- ");
+    if (state.word && !state.word.stack) {
+        state.word.stack = node.body.join(" -- ");
         state.word.arities = node.body.map((x: string) => {
             const args = x.split(" ");
-            return args[0] === "" ? 0 : args[0] === "?" ? -1 : args.length;
+            return args[0] === "" ? 0 : x.indexOf("?") >= 0 ? -1 : args.length;
         });
     }
 };

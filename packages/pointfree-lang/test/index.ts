@@ -67,6 +67,32 @@ describe("pointfree-lang", () => {
         assert.deepEqual(runU(`// comment\n: foo // ignore me\n42 ; foo`), 42);
     });
 
+    it("word metadata", () => {
+        const ctx = run(`
+: foo ( a b -- x ) 42 ( a -- ) 23 +;
+: bar ( -- ?) 23 ;
+: baz 11 ;
+foo`);
+        assert.deepEqual(ctx[0], [65]);
+        const words = ctx[2].__words;
+        assert.deepEqual(words.foo.__meta, {
+            name: "foo",
+            loc: [1, 1],
+            stack: "a b -- x",
+            arities: [2, 1],
+        });
+        assert.deepEqual(words.bar.__meta, {
+            name: "bar",
+            loc: [3, 1],
+            stack: " -- ?",
+            arities: [0, -1],
+        });
+        assert.deepEqual(words.baz.__meta, {
+            name: "baz",
+            loc: [4, 1],
+        });
+    });
+
     // setDebug(true);
 
     // console.log(run(`"result: " 1 2 + + .`));

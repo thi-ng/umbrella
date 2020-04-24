@@ -253,7 +253,7 @@ to ES6 environments, the semantics and actual implementation differ
 drastically. In this DSL (and most aspects also in @thi.ng/pointfree):
 
 - words and programs are implemented as functional compositions of
-  vanilla JS functions, i.e. `1 2 +` => `add(push(1)(push(2)(ctx)))`
+  vanilla JS functions, i.e. `1 2 +` => `add(push(2)(push(1)(ctx)))`
   - therefore no user controlled context switch between immediate &
     compile modes, as in Forth
   - parsing of word definitions triggers compile mode automatically
@@ -275,8 +275,9 @@ drastically. In this DSL (and most aspects also in @thi.ng/pointfree):
 
 As in Forth, comments are enclosed in `( ... )`. If the comment body
 includes the `--` string, it's marked as a [stack effect
-comment](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree#about-stack-effects)
-in preparation for future tooling additions.
+comment](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree#about-stack-effects).
+The first stack comment of a word is added to the [word's metadata](#word-metadata) in
+preparation for future tooling additions.
 
 Comments current cannot contain `(` or `)`, but can span multiple lines.
 
@@ -375,7 +376,36 @@ However, it's strongly encouraged to include [stack effect
 comments](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree#about-stack-effects)
 as shown in the examples above.
 
-**Word definitions MUST be terminated with `;`.**
+Word definitions MUST be terminated with `;`.
+
+#### Word metadata
+
+The following details are stored in the `__meta` property of each
+compiled word. This metadata is not yet used, but stored in preparation
+for future tooling additions.
+
+- `name` - word name
+- `loc` - source location `[line, col]`
+- `stack` - optional stack effect comment
+- `arities` - optional input/output arities (numeric representation of
+  stack comment)
+- `doc` - optional docstring (currently unused)
+
+Only the first stack comment in a word definition is kept. If either
+side of the comment contains a `?`, the respective arity will be set to
+-1 (i.e. unknown). For example:
+
+- `( -- ? )` - no inputs, unknown output(s)
+- `( -- x )` - no inputs, one output
+- `( a ? -- )` - unknown/flexible number of inputs, no outputs
+- `( a b -- a )` - 2 inputs, 1 output
+
+```ts
+const ctx = run(`: foo ( -- x ) 42;`);
+
+ctx[2].__words.foo.__meta
+// { name: 'foo', loc: [ 1, 1 ], doc: ' -- x', arities: [ 0, 1 ] }
+```
 
 #### Hyperstatic words
 
@@ -432,7 +462,7 @@ A word definition can include an optional declaration of local
 variables, which are automatically bound to stack values each time the
 word is invoked. The declarations are given via the form:
 
-```
+```forth
 : wordname ^{ name1 name2 ... } ... ;
 ```
 
