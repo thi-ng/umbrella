@@ -69,7 +69,7 @@ an ES6 embedded DSL for concatenative programming:
 yarn add @thi.ng/pointfree-lang
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.06 KB / CJS: 5.05 KB / UMD: 4.97 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.13 KB / CJS: 5.13 KB / UMD: 5.04 KB
 
 ## Dependencies
 
@@ -317,7 +317,9 @@ comment](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree#abou
 in preparation for future tooling additions.
 
 Comments current cannot contain `(` or `)`, but can span multiple lines.
-There's no special syntax for single line comments:
+
+Since v1.4.0 line comments are supported, use the standard JS `//`
+prefix and extend until the next newline char.
 
 ```
 ( multiline:
@@ -331,6 +333,8 @@ ______   ____ |__| _____/  |__/ ____\______   ____   ____
 )
 
 1 2 ( embedded single line ) 3
+
+// single line comment
 ```
 
 ### Identifiers

@@ -181,7 +181,7 @@ const endvar = (id: string) => (ctx: pf.StackContext) => {
  * @param state -
  */
 const visit = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
-    LOGGER.fine("visit", node.type, node, ctx[0].toString());
+    LOGGER.fine("visit", NodeType[node.type], node, ctx[0].toString());
     switch (node.type) {
         case NodeType.SYM:
             return visitSym(node, ctx, state);

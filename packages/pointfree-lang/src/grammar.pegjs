@@ -32,6 +32,7 @@ NonWordExpr
     = _ expr:(
         LitQuote
         / Var
+        / LineComment
         / Comment
         / Array
         / Obj
@@ -104,7 +105,7 @@ Sym
     }
 
 SymChars
-    = [*?$%&/\|~<>=_.+\-]
+    = [*?$%&#/\|~<>=_.+\-]
 
 Var
     = VarDeref
@@ -136,6 +137,14 @@ Comment
                 type: NodeType.COMMENT,
                 body: body.trim()
             };
+    }
+
+LineComment
+    = "//" body:$(!"\n" .)* "\n" {
+        return {
+            type: NodeType.COMMENT,
+            body: body.trim()
+        };
     }
 
 String
