@@ -1,3 +1,4 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
 import { IShape, SamplingOpts, Type } from "@thi.ng/geom-api";
 import { Cubic } from "../api/cubic";
@@ -6,7 +7,6 @@ import { Polyline } from "../api/polyline";
 import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
 import { vertices } from "./vertices";
-import type { IObjectOf } from "@thi.ng/api";
 
 export const asPolyline: MultiFn1O<
     IShape,
@@ -19,7 +19,7 @@ asPolyline.addAll(<
         Implementation1O<unknown, number | Partial<SamplingOpts>, Polyline>
     >
 >{
-    [Type.CUBIC]: ($:Cubic, opts) => new Polyline(vertices($, opts)),
+    [Type.CUBIC]: ($: Cubic, opts) => new Polyline(vertices($, opts)),
 
     [Type.POINTS]: ($: IShape, opts) =>
         new Polyline(vertices($, opts), copyAttribs($)),
@@ -35,13 +35,15 @@ asPolyline.addAll(<
     [Type.POLYGON]: ($: IShape, opts) => {
         const pts = vertices($, opts);
         return new Polyline(pts.concat([pts[0]]), copyAttribs($));
-    }
+    },
 });
 
+asPolyline.isa(Type.ARC, Type.CUBIC);
 asPolyline.isa(Type.CIRCLE, Type.POLYGON);
 asPolyline.isa(Type.ELLIPSE, Type.POLYGON);
 asPolyline.isa(Type.LINE, Type.POINTS);
 asPolyline.isa(Type.POLYLINE, Type.POINTS);
 asPolyline.isa(Type.QUAD, Type.POLYGON);
+asPolyline.isa(Type.QUADRATIC, Type.CUBIC);
 asPolyline.isa(Type.RECT, Type.POLYGON);
 asPolyline.isa(Type.TRIANGLE, Type.POLYGON);
