@@ -10,7 +10,14 @@ export interface ASTNode {
 }
 
 export interface VisitorState {
-    word: boolean;
+    word?: WordMeta;
+}
+
+export interface WordMeta {
+    name: string;
+    loc: [number, number];
+    arities?: number;
+    doc?: string;
 }
 
 export enum NodeType {

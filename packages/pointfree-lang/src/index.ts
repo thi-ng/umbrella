@@ -201,6 +201,8 @@ const visit = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
             return visitStore(node, ctx, state);
         case NodeType.WORD:
             return visitWord(node, ctx, state);
+        case NodeType.STACK_COMMENT:
+            visitStackComment(node, state);
         default:
             LOGGER.fine("skipping node...");
     }
@@ -297,7 +299,7 @@ const visitWord = (
         );
     }
     let wctx = pf.ctx([], ctx[2]);
-    state.word = true;
+    state.word = { name: id, loc: node.loc };
     if (node.locals) {
         for (
             let l = node.locals, stack = wctx[0], i = l.length - 1;
@@ -320,9 +322,20 @@ const visitWord = (
         }
     }
     const w = pf.defWord(wctx[0]);
+    (<any>w).__meta = state.word;
     ctx[2].__words[id] = w;
-    state.word = false;
+    state.word = undefined;
     return ctx;
+};
+
+const visitStackComment = (node: ASTNode, state: VisitorState) => {
+    if (state.word && !state.word.doc) {
+        state.word.doc = node.body.join(" -- ");
+        state.word.arities = node.body.map((x: string) => {
+            const args = x.split(" ");
+            return args[0] === "" ? 0 : args[0] === "?" ? -1 : args.length;
+        });
+    }
 };
 
 /**
@@ -455,7 +468,7 @@ const finalizeEnv = (ctx: pf.StackContext) => {
  */
 export const run = (src: string, env?: pf.StackEnv, stack: pf.Stack = []) => {
     let ctx = pf.ctx(stack, ensureEnv(env));
-    const state = { word: false };
+    const state = {};
     try {
         for (let node of parse(src)) {
             ctx = visit(node, ctx, state);
