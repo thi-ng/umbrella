@@ -69,6 +69,7 @@ export * from "./ops/subdiv-curve";
 export * from "./ops/tangent-at";
 export * from "./ops/tessellate";
 export * from "./ops/transform";
+export * from "./ops/transform-vertices";
 export * from "./ops/translate";
 export * from "./ops/union";
 export * from "./ops/unmap-point";
