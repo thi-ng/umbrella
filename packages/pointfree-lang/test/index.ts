@@ -10,7 +10,12 @@ describe("pointfree-lang", () => {
     });
 
     it("number (hex)", () => {
-        assert.deepEqual(run(`0x1 0xa 0xff 0xdecafbad`)[0], [1, 10, 255, 0xdecafbad]);
+        assert.deepEqual(run(`0x1 0xa 0xff 0xdecafbad`)[0], [
+            1,
+            10,
+            255,
+            0xdecafbad,
+        ]);
     });
 
     it("number (decimal)", () => {
@@ -30,7 +35,10 @@ describe("pointfree-lang", () => {
     });
 
     it("var deref (quote)", () => {
-        assert.deepEqual(runU(`[@a [@a {@a: @a} {@a: [@a]}]]`, { a: 1 }), [1, [1, { 1: 1 }, { 1: [1] }]]);
+        assert.deepEqual(runU(`[@a [@a {@a: @a} {@a: [@a]}]]`, { a: 1 }), [
+            1,
+            [1, { 1: 1 }, { 1: [1] }],
+        ]);
     });
 
     it("var deref (litquote)", () => {
@@ -40,10 +48,23 @@ describe("pointfree-lang", () => {
     });
 
     it("var deref (word)", () => {
-        assert.deepEqual(runU(`: foo [@a [@a {@a: @a} {@a: [@a]}]]; foo`, { a: 1 }), [1, [1, { 1: 1 }, { 1: [1] }]]);
         assert.deepEqual(
-            run(`: foo [@a [@a {@a: @a} {@a: [@a]}]]; foo 2 a! foo`, { a: 1 })[0],
-            [[1, [1, { 1: 1 }, { 1: [1] }]], [2, [2, { 2: 2 }, { 2: [2] }]]]);
+            runU(`: foo [@a [@a {@a: @a} {@a: [@a]}]]; foo`, { a: 1 }),
+            [1, [1, { 1: 1 }, { 1: [1] }]]
+        );
+        assert.deepEqual(
+            run(`: foo [@a [@a {@a: @a} {@a: [@a]}]]; foo 2 a! foo`, {
+                a: 1,
+            })[0],
+            [
+                [1, [1, { 1: 1 }, { 1: [1] }]],
+                [2, [2, { 2: 2 }, { 2: [2] }]],
+            ]
+        );
+    });
+
+    it("line comment", () => {
+        assert.deepEqual(runU(`// comment\n: foo // ignore me\n42 ; foo`), 42);
     });
 
     // setDebug(true);
