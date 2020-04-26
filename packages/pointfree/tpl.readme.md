@@ -43,6 +43,8 @@ Current features:
 - stack comments & documentation for most ops/words
 - [over 330 test cases](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree/test/index.ts)
 
+### Reading links
+
 For a great overview & history of this type of this type of programming,
 please see:
 
