@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@4.0.2...@thi.ng/paths@4.0.3) (2020-04-27)
+
+**Note:** Version bump only for package @thi.ng/paths
+
+
+
+
+
 ## [4.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@4.0.1...@thi.ng/paths@4.0.2) (2020-04-11)
 
 **Note:** Version bump only for package @thi.ng/paths

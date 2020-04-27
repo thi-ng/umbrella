@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.3.0...@thi.ng/pointfree-lang@1.4.0) (2020-04-27)
+
+
+### Features
+
+* **pointfree-lang:** add word metadata ([7343116](https://github.com/thi-ng/umbrella/commit/7343116d2e94191b468a37f8c21dc9ef08f0e49c))
+* **pointfree-lang:** update grammar (add line comments) ([a8cdbe8](https://github.com/thi-ng/umbrella/commit/a8cdbe86a96df0b63682d3f7628ff77f75f23ced))
+
+
+
+
+
 # [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.2.3...@thi.ng/pointfree-lang@1.3.0) (2020-04-16)
 
 

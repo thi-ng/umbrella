@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.8.12...@thi.ng/geom@1.9.0) (2020-04-27)
+
+
+### Features
+
+* **geom:** add transformVertices() op ([ef68a27](https://github.com/thi-ng/umbrella/commit/ef68a2703aab83cf1b520a832a6b1c8268759a3b))
+* **geom:** update asPolyline() impls ([cca8574](https://github.com/thi-ng/umbrella/commit/cca85744377c9957af82695236230bc75a005473))
+
+
+
+
+
 ## [1.8.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.8.11...@thi.ng/geom@1.8.12) (2020-04-23)
 
 **Note:** Version bump only for package @thi.ng/geom
