@@ -22,6 +22,7 @@
         "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
         "build:es6": "tsc --declaration",
         "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "build:check": "tsc --isolatedModules --noEmit",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib internal",

@@ -12,7 +12,6 @@
         "moduleResolution": "node",
         "strict": true,
         "strictNullChecks": true
-        // "isolatedModules": true
     },
     "exclude": ["./**/node_modules"]
 }

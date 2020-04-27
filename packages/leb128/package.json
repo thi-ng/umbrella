@@ -23,6 +23,7 @@
         "build:es6": "tsc --declaration",
         "build:test": "rimraf build && tsc -p test/tsconfig.json",
         "build:binary": "echo \"/** @internal */\nexport const BINARY = \\\"$(../../scripts/base64 opt.wasm)\\\";\" > src/binary.ts",
+        "build:check": "tsc --isolatedModules --noEmit",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",

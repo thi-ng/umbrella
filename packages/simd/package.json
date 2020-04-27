@@ -24,6 +24,7 @@
         "build:test": "rimraf build && tsc -p test/tsconfig.json",
         "build:wasm": "asc assembly/index.ts -b simd.wasm -t simd.wat --validate --optimize --enable simd --runtime none --importMemory --memoryBase 0 && yarn build:binary",
         "build:binary": "echo \"/** @internal */\nexport const BINARY = \\\"$(../../scripts/base64 simd.wasm)\\\";\" > src/binary.ts",
+        "build:check": "tsc --isolatedModules --noEmit",
         "test": "yarn build:test && node --experimental-wasm-simd build/test/index.js",
         "cover": "yarn build:test && nyc node --experimental-wasm-simd build/test/*.js && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
