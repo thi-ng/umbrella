@@ -55,7 +55,11 @@ cat << EOF > "$MODULE"/package.json
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
     },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/$1",
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/$1#readme",
+    "funding": {
+        "type": "patreon",
+        "url": "https://patreon.com/thing_umbrella"
+    },
     "author": "$AUTHOR <$EMAIL>",
     "license": "Apache-2.0",
     "scripts": {
@@ -83,7 +87,7 @@ cat << EOF > "$MODULE"/package.json
         "typescript": "^3.8.3"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.10.1"
+        "@thi.ng/api": "^6.10.2"
     },
     "files": [
         "*.js",
