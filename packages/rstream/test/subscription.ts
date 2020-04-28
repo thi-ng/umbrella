@@ -6,6 +6,7 @@ import {
     Stream,
     fromIterableSync,
     CloseMode,
+    subscription,
 } from "../src/index";
 import { TIMEOUT } from "./config";
 
@@ -128,8 +129,20 @@ describe("Subscription", () => {
                     buf.push(x);
                 },
             },
-            map((x: number) => x + 10),
-            undefined
+            map((x: number) => x + 10)
+        );
+        assert.deepEqual(buf, [11]);
+    });
+
+    it("child sub w/ xform", () => {
+        let buf: any[] = [];
+        fromIterableSync([1], { closeIn: CloseMode.NEVER }).subscribe(
+            subscription({
+                next(x) {
+                    buf.push(x);
+                },
+            }),
+            map((x: number) => x + 10)
         );
         assert.deepEqual(buf, [11]);
     });
