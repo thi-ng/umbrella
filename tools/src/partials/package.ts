@@ -84,3 +84,15 @@ export const packageBanner = (name: string) => {
         .substr(0, 8);
     return `![${name}](${CONFIG.bannerURL}${name}.svg?${sha1})`;
 };
+
+export const packageInstallation = (pkg: Package) => `\`\`\`bash
+yarn add ${pkg.name}
+\`\`\`
+
+\`\`\`html
+// ES module
+<script type="module" src="https://unpkg.com/${pkg.name}?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/${pkg.name}/lib/index.umd.js" crossorigin></script>
+\`\`\``;

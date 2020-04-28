@@ -11,6 +11,7 @@ import {
     packageBanner,
     packageDeps,
     packageDesc,
+    packageInstallation,
     packageSize,
     packageStatus,
     relatedPackages,
@@ -24,10 +25,12 @@ try {
 
     const partials: IObjectOf<string | Fn0<Nullable<string>>> = {
         "pkg.name": CONFIG.root.name,
+        "pkg.version": CONFIG.root.version,
         "pkg.description": () => packageDesc(CONFIG.root),
         "pkg.deps": () => packageDeps(CONFIG.root),
         "pkg.size": packageSize,
         "pkg.banner": () => packageBanner(CONFIG.root.name),
+        "pkg.install": () => packageInstallation(CONFIG.root),
         status: () => packageStatus(CONFIG.meta.status),
         examples: () => examplesTable(CONFIG.root.name),
         supportPackages: () => supportPackages(CONFIG.root.name),
