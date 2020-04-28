@@ -38,6 +38,14 @@ to define other layout types / implementations.
 yarn add @thi.ng/layout
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/layout?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/layout/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 659 bytes / CJS: 724 bytes / UMD: 788 bytes
 
 ## Dependencies

@@ -43,6 +43,14 @@ highly dependent on the concavities present. YMMV!
 yarn add @thi.ng/geom-tessellate
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/geom-tessellate?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/geom-tessellate/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 782 bytes / CJS: 872 bytes / UMD: 921 bytes
 
 ## Dependencies

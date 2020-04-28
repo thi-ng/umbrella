@@ -95,6 +95,14 @@ hidden behind feature flags.
 yarn add @thi.ng/simd
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/simd?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/simd/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 2.28 KB / CJS: 2.34 KB / UMD: 2.45 KB
 
 ## Dependencies

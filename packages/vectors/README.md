@@ -144,7 +144,15 @@ Partially ported from [thi.ng/geom](http://thi.ng/geom) (Clojure) and
 yarn add @thi.ng/vectors
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 10.95 KB / CJS: 13.78 KB / UMD: 12.12 KB
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/vectors?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/vectors/lib/index.umd.js" crossorigin></script>
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 10.97 KB / CJS: 13.80 KB / UMD: 12.14 KB
 
 ## Dependencies
 

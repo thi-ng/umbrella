@@ -34,6 +34,14 @@ backing the width is always rounded to a multiple of 32.
 yarn add @thi.ng/bitfield
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/bitfield?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/bitfield/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 947 bytes / CJS: 1008 bytes / UMD: 1.06 KB
 
 ## Dependencies

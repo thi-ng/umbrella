@@ -38,6 +38,14 @@ by Joe Halliwell](https://www.winterwell.com/software/compressor.php).
 yarn add @thi.ng/range-coder
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/range-coder?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/range-coder/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 670 bytes / CJS: 725 bytes / UMD: 762 bytes
 
 ## Dependencies

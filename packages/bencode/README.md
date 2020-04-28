@@ -58,6 +58,14 @@ semi-open `[1e-6,1e21)` interval can be encoded.
 yarn add @thi.ng/bencode
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/bencode?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/bencode/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 1.17 KB / CJS: 1.23 KB / UMD: 1.28 KB
 
 ## Dependencies

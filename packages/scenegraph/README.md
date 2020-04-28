@@ -32,6 +32,14 @@ Extensible 2D/3D scene graph with [@thi.ng/hdom-canvas](https://github.com/thi-n
 yarn add @thi.ng/scenegraph
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/scenegraph?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/scenegraph/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 779 bytes / CJS: 822 bytes / UMD: 927 bytes
 
 ## Dependencies

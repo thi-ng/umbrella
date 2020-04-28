@@ -45,6 +45,14 @@ in ~850ms (Chrome 72, MBP 2016)
 yarn add @thi.ng/geom-voronoi
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/geom-voronoi?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/geom-voronoi/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 1.34 KB / CJS: 1.42 KB / UMD: 1.53 KB
 
 ## Dependencies

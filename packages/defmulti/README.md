@@ -43,6 +43,14 @@ any actual JS type relationships).
 yarn add @thi.ng/defmulti
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/defmulti?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/defmulti/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 750 bytes / CJS: 811 bytes / UMD: 870 bytes
 
 ## Dependencies

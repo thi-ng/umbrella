@@ -38,6 +38,14 @@ state update. By default all edits are performed non-destructively, but
 yarn add @thi.ng/transducers-patch
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/transducers-patch?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/transducers-patch/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 564 bytes / CJS: 609 bytes / UMD: 702 bytes
 
 ## Dependencies

@@ -99,6 +99,14 @@ Format specs can freely control channel layout within current limits:
 yarn add @thi.ng/pixel
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/pixel?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/pixel/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 3.13 KB / CJS: 3.28 KB / UMD: 3.26 KB
 
 ## Dependencies

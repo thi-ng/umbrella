@@ -31,6 +31,14 @@ File output handler for structured, multilevel & hierarchical loggers based on [
 yarn add @thi.ng/rstream-log-file
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/rstream-log-file?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/rstream-log-file/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 129 bytes / CJS: 182 bytes / UMD: 282 bytes
 
 ## Dependencies

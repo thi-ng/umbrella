@@ -53,6 +53,14 @@ be checked for validity via `.has(id)` (in constant time).
 yarn add @thi.ng/idgen
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/idgen?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/idgen/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 847 bytes / CJS: 895 bytes / UMD: 985 bytes
 
 ## Dependencies

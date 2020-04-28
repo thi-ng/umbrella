@@ -47,6 +47,14 @@ components**. Feedback welcome!
 yarn add @thi.ng/hdom-components
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/hdom-components?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/hdom-components/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 2.29 KB / CJS: 2.41 KB / UMD: 2.41 KB
 
 ## Dependencies

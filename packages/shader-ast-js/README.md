@@ -59,6 +59,14 @@ which altogether provide ~750 optimized vector/matrix functions.
 yarn add @thi.ng/shader-ast-js
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/shader-ast-js?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/shader-ast-js/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 4.90 KB / CJS: 4.45 KB / UMD: 4.39 KB
 
 ## Dependencies

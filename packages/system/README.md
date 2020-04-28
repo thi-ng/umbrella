@@ -37,6 +37,14 @@ Clojure/ClojureScript.
 yarn add @thi.ng/system
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/system?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/system/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 415 bytes / CJS: 471 bytes / UMD: 570 bytes
 
 ## Dependencies

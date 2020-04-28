@@ -45,6 +45,14 @@ Current implementations partially based on
 yarn add @thi.ng/geom-poly-utils
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/geom-poly-utils?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/geom-poly-utils/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 1.11 KB / CJS: 1.18 KB / UMD: 1.24 KB
 
 ## Dependencies

@@ -60,7 +60,15 @@ well (see SVG parsing example further below). The choice is yours!
 yarn add @thi.ng/sax
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.01 KB / CJS: 2.06 KB / UMD: 2.14 KB
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/sax?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/sax/lib/index.umd.js" crossorigin></script>
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.93 KB / CJS: 1.98 KB / UMD: 2.07 KB
 
 ## Dependencies
 

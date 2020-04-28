@@ -164,6 +164,14 @@ map.get([3,4], "n/a");
 yarn add @thi.ng/associative
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/associative?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/associative/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 5.28 KB / CJS: 5.45 KB / UMD: 5.27 KB
 
 ## Dependencies

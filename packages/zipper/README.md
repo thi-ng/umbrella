@@ -52,6 +52,14 @@ Reference: https://en.wikipedia.org/wiki/Zipper_(data_structure)
 yarn add @thi.ng/zipper
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/zipper?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/zipper/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 1.03 KB / CJS: 1.09 KB / UMD: 1.17 KB
 
 ## Dependencies

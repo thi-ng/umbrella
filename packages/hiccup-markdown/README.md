@@ -46,7 +46,15 @@ parser and an extensible Hiccup-to-Markdown converter.
 yarn add @thi.ng/hiccup-markdown
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.81 KB / CJS: 2.86 KB / UMD: 2.70 KB
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/hiccup-markdown?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/hiccup-markdown/lib/index.umd.js" crossorigin></script>
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 2.72 KB / CJS: 2.76 KB / UMD: 2.62 KB
 
 ## Dependencies
 

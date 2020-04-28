@@ -50,6 +50,14 @@ supported.
 yarn add @thi.ng/resolve-map
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/resolve-map?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/resolve-map/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 876 bytes / CJS: 927 bytes / UMD: 985 bytes
 
 ## Dependencies

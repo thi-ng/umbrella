@@ -33,6 +33,14 @@ Customizable diff implementations for arrays (sequential) & objects (associative
 yarn add @thi.ng/diff
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/diff?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/diff/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 1.23 KB / CJS: 1.29 KB / UMD: 1.32 KB
 
 ## Dependencies

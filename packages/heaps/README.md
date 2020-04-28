@@ -36,6 +36,14 @@ additional operations.
 yarn add @thi.ng/heaps
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/heaps?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/heaps/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 1.52 KB / CJS: 1.58 KB / UMD: 1.66 KB
 
 ## Dependencies

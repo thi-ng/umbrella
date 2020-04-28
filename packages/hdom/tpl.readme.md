@@ -59,9 +59,7 @@ ${blogPosts}
 
 ## Installation
 
-```bash
-yarn add ${pkg.name}
-```
+${pkg.install}
 
 You can use the
 [create-hdom-app](https://github.com/thi-ng/create-hdom-app) project

@@ -129,6 +129,14 @@ capacity:
 yarn add @thi.ng/malloc
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/malloc?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/malloc/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 1.80 KB / CJS: 1.86 KB / UMD: 1.84 KB
 
 ## Dependencies

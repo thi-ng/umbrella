@@ -33,6 +33,14 @@ Collection of 50+ type, feature & value checks.
 yarn add @thi.ng/checks
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/checks?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/checks/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 1.46 KB / CJS: 1.71 KB / UMD: 1.44 KB
 
 ## Dependencies

@@ -83,6 +83,14 @@ API draw calls during the hdom update process / cycle.
 yarn add @thi.ng/hdom-canvas
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/hdom-canvas?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/hdom-canvas/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 3.19 KB / CJS: 3.33 KB / UMD: 3.31 KB
 
 ## Dependencies

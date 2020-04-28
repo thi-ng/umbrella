@@ -44,6 +44,14 @@ repository. It defines:
 yarn add @thi.ng/api
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/api?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/api/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 2.01 KB / CJS: 2.14 KB / UMD: 2.12 KB
 
 ## Dependencies

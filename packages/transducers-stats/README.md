@@ -62,6 +62,14 @@ transforming ES6 iterator (generator) instead of a transducer.
 yarn add @thi.ng/transducers-stats
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/transducers-stats?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/transducers-stats/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 1.15 KB / CJS: 1.27 KB / UMD: 1.29 KB
 
 ## Dependencies

@@ -57,6 +57,14 @@ Purely functional parser combinators & AST generation for generic inputs.
 yarn add @thi.ng/parse
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/parse?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/parse/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 4.51 KB / CJS: 4.86 KB / UMD: 4.57 KB
 
 ## Dependencies

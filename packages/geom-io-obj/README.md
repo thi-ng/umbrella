@@ -52,7 +52,15 @@ Wavefront OBJ parser (& exporter soon).
 yarn add @thi.ng/geom-io-obj
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 858 bytes / CJS: 911 bytes / UMD: 1012 bytes
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/geom-io-obj?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/geom-io-obj/lib/index.umd.js" crossorigin></script>
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.02 KB / CJS: 1.07 KB / UMD: 1.18 KB
 
 ## Dependencies
 

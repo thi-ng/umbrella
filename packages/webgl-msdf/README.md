@@ -45,6 +45,14 @@ McCurdy's](https://msdf-bmfont.donmccurdy.com/).
 yarn add @thi.ng/webgl-msdf
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/webgl-msdf?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/webgl-msdf/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 1.48 KB / CJS: 1.52 KB / UMD: 1.58 KB
 
 ## Dependencies

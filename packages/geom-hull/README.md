@@ -35,6 +35,14 @@ Current implementation is partially based on Clojure version of
 yarn add @thi.ng/geom-hull
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/geom-hull?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/geom-hull/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 432 bytes / CJS: 487 bytes / UMD: 581 bytes
 
 ## Dependencies

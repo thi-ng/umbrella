@@ -55,6 +55,14 @@ Double-linked list with comprehensive set of operations.
 yarn add @thi.ng/dcons
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/dcons?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/dcons/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 1.98 KB / CJS: 2.06 KB / UMD: 2.15 KB
 
 ## Dependencies

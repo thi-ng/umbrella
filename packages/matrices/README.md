@@ -65,6 +65,14 @@ sensible).
 yarn add @thi.ng/matrices
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/matrices?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/matrices/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 4.75 KB / CJS: 5.31 KB / UMD: 4.82 KB
 
 ## Dependencies

@@ -54,6 +54,14 @@ Planned features:
 yarn add @thi.ng/lsys
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/lsys?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/lsys/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 677 bytes / CJS: 749 bytes / UMD: 852 bytes
 
 ## Dependencies

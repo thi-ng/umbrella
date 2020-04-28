@@ -174,6 +174,14 @@ status. The TL;DR list...
 yarn add @thi.ng/shader-ast
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/shader-ast?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/shader-ast/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 4.66 KB / CJS: 5.19 KB / UMD: 4.63 KB
 
 ## Dependencies

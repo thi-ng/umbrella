@@ -137,6 +137,14 @@ iterable
 yarn add @thi.ng/hiccup
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/hiccup?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/hiccup/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 1.94 KB / CJS: 2.04 KB / UMD: 2.05 KB
 
 ## Dependencies

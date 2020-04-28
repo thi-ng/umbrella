@@ -39,6 +39,14 @@ readme & source code for visualization options.
 yarn add @thi.ng/dgraph-dot
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/dgraph-dot?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/dgraph-dot/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 241 bytes / CJS: 292 bytes / UMD: 393 bytes
 
 ## Dependencies

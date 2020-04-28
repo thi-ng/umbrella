@@ -39,6 +39,14 @@ Basic WebGL scaffolding for running interactive fragment shaders via [@thi.ng/sh
 yarn add @thi.ng/webgl-shadertoy
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/webgl-shadertoy?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/webgl-shadertoy/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 673 bytes / CJS: 710 bytes / UMD: 810 bytes
 
 ## Dependencies

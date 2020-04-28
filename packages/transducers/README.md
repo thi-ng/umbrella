@@ -143,6 +143,14 @@ package.
 yarn add @thi.ng/transducers
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/transducers?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/transducers/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 7.86 KB / CJS: 8.38 KB / UMD: 7.58 KB
 
 ## Dependencies

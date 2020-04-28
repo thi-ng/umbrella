@@ -50,6 +50,14 @@ Currently does not support array fields (incl. strings).
 yarn add @thi.ng/unionstruct
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/unionstruct?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/unionstruct/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 1.08 KB / CJS: 1.13 KB / UMD: 1.17 KB
 
 ## Dependencies

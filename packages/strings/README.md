@@ -42,7 +42,15 @@ Partially based on Clojure version of [thi.ng/strf](http://thi.ng/strf).
 yarn add @thi.ng/strings
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.32 KB / CJS: 2.55 KB / UMD: 2.42 KB
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/strings?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/strings/lib/index.umd.js" crossorigin></script>
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 2.35 KB / CJS: 2.58 KB / UMD: 2.45 KB
 
 ## Dependencies
 

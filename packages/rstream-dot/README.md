@@ -36,6 +36,14 @@ Graphviz DOT conversion of [@thi.ng/rstream](https://github.com/thi-ng/umbrella/
 yarn add @thi.ng/rstream-dot
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/rstream-dot?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/rstream-dot/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 780 bytes / CJS: 825 bytes / UMD: 898 bytes
 
 ## Dependencies

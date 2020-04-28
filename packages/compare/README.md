@@ -42,6 +42,14 @@ comparator. See examples below.
 yarn add @thi.ng/compare
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/compare?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/compare/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 396 bytes / CJS: 471 bytes / UMD: 504 bytes
 
 ## Dependencies

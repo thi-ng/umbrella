@@ -48,6 +48,14 @@ code](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-carbon-ico
 yarn add @thi.ng/hiccup-carbon-icons
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/hiccup-carbon-icons?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/hiccup-carbon-icons/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 16.41 KB / CJS: 16.93 KB / UMD: 16.13 KB
 
 ## Dependencies

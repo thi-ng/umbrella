@@ -46,6 +46,14 @@ Text based canvas, drawing, tables with arbitrary formatting (incl. ANSI/HTML).
 yarn add @thi.ng/text-canvas
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/text-canvas?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/text-canvas/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 5.35 KB / CJS: 5.66 KB / UMD: 5.37 KB
 
 ## Dependencies

@@ -67,6 +67,14 @@ and their value type inferred as `any`.
 yarn add @thi.ng/paths
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/paths?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/paths/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 1.09 KB / CJS: 1.19 KB / UMD: 1.14 KB
 
 ## Dependencies

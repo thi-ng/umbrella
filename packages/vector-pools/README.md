@@ -59,6 +59,14 @@ This package might be merged with and/or superseded by
 yarn add @thi.ng/vector-pools
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/vector-pools?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/vector-pools/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 3.06 KB / CJS: 3.12 KB / UMD: 3.19 KB
 
 ## Dependencies

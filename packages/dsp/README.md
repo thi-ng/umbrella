@@ -62,7 +62,15 @@ might be ported to WASM.
 yarn add @thi.ng/dsp
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 6.70 KB / CJS: 7.17 KB / UMD: 6.67 KB
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/dsp?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/dsp/lib/index.umd.js" crossorigin></script>
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 6.68 KB / CJS: 7.14 KB / UMD: 6.65 KB
 
 ## Dependencies
 

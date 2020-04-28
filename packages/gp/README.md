@@ -67,6 +67,14 @@ References:
 yarn add @thi.ng/gp
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/gp?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/gp/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 1.25 KB / CJS: 1.29 KB / UMD: 1.40 KB
 
 ## Dependencies

@@ -43,6 +43,14 @@ package.
 yarn add @thi.ng/fsm
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/fsm?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/fsm/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 1.37 KB / CJS: 1.49 KB / UMD: 1.50 KB
 
 ## Dependencies

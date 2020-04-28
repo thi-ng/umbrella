@@ -44,6 +44,14 @@ the remaining values at their own pace.
 yarn add @thi.ng/seq
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/seq?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/seq/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 537 bytes / CJS: 623 bytes / UMD: 669 bytes
 
 ## Dependencies

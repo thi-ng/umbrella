@@ -54,6 +54,14 @@ for a similar, but alternative (and actively maintained) approach.
 yarn add @thi.ng/csp
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/csp?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/csp/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 2.65 KB / CJS: 2.72 KB / UMD: 2.78 KB
 
 ## Dependencies

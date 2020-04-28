@@ -46,6 +46,14 @@ based on different strategies. See doc strings for further details.
 yarn add @thi.ng/memoize
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/memoize?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/memoize/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 254 bytes / CJS: 305 bytes / UMD: 376 bytes
 
 ## Dependencies

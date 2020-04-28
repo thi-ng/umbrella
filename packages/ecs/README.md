@@ -42,6 +42,14 @@ Entity Component System based around typed arrays & sparse sets.
 yarn add @thi.ng/ecs
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/ecs?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/ecs/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 2.91 KB / CJS: 2.98 KB / UMD: 3.04 KB
 
 ## Dependencies

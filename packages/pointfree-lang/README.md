@@ -70,6 +70,14 @@ an ES6 embedded DSL for concatenative programming:
 yarn add @thi.ng/pointfree-lang
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/pointfree-lang?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/pointfree-lang/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 5.23 KB / CJS: 5.23 KB / UMD: 5.13 KB
 
 ## Dependencies

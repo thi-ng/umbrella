@@ -135,6 +135,14 @@ Additionally, the following non-exhaustive iterators are available:
 yarn add @thi.ng/grid-iterators
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/grid-iterators?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/grid-iterators/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 1.24 KB / CJS: 1.34 KB / UMD: 1.40 KB
 
 ## Dependencies

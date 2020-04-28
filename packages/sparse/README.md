@@ -31,6 +31,14 @@ Sparse vector & matrix implementations.
 yarn add @thi.ng/sparse
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/sparse?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/sparse/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 3.52 KB / CJS: 3.60 KB / UMD: 3.66 KB
 
 ## Dependencies

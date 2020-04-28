@@ -46,6 +46,14 @@ filtering.
 yarn add @thi.ng/rstream-log
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/rstream-log?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/rstream-log/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 736 bytes / CJS: 863 bytes / UMD: 917 bytes
 
 ## Dependencies

@@ -32,6 +32,14 @@ Local asset download for web apps, with automatic MIME type detection.
 yarn add @thi.ng/dl-asset
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/dl-asset?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/dl-asset/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 399 bytes / CJS: 451 bytes / UMD: 556 bytes
 
 ## Dependencies

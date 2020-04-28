@@ -38,6 +38,14 @@ Partially ported from Clojure version of
 yarn add @thi.ng/math
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/math?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/math/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 3.48 KB / CJS: 4.02 KB / UMD: 3.30 KB
 
 ## Dependencies

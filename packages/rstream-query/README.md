@@ -66,6 +66,14 @@ this time built on the streaming primitives provided by
 yarn add @thi.ng/rstream-query
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/rstream-query?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/rstream-query/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 2.66 KB / CJS: 2.75 KB / UMD: 2.62 KB
 
 ## Dependencies

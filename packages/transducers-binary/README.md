@@ -51,6 +51,14 @@ iterable for direct use.
 yarn add @thi.ng/transducers-binary
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/transducers-binary?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/transducers-binary/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 2.85 KB / CJS: 3.01 KB / UMD: 2.89 KB
 
 ## Dependencies

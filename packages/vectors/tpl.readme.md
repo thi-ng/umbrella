@@ -92,9 +92,7 @@ ${blogPosts}
 
 ## Installation
 
-```bash
-yarn add ${pkg.name}
-```
+${pkg.install}
 
 ${pkg.size}
 

@@ -50,6 +50,14 @@ to support other, alternative spatial indexing mechanisms...
 yarn add @thi.ng/poisson
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/poisson?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/poisson/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 337 bytes / CJS: 391 bytes / UMD: 501 bytes
 
 ## Dependencies

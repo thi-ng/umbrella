@@ -94,6 +94,14 @@ Clojure projects:
 yarn add @thi.ng/hiccup-css
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/hiccup-css?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/hiccup-css/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 2.05 KB / CJS: 2.20 KB / UMD: 2.11 KB
 
 ## Dependencies

@@ -34,6 +34,14 @@ All MIME type mappings based on
 yarn add @thi.ng/mime
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/mime?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/mime/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 2.38 KB / CJS: 2.43 KB / UMD: 2.53 KB
 
 ## Dependencies

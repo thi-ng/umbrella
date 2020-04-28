@@ -180,6 +180,14 @@ col.multiCosineGradient(
 yarn add @thi.ng/color
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/color?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/color/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 7.16 KB / CJS: 7.53 KB / UMD: 7.07 KB
 
 ## Dependencies

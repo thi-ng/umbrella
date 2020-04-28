@@ -38,6 +38,14 @@ for binary versions of most of the ops provided by this package.
 yarn add @thi.ng/dlogic
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/dlogic?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/dlogic/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 378 bytes / CJS: 478 bytes / UMD: 514 bytes
 
 ## Dependencies

@@ -45,6 +45,14 @@ Partially based on the Clojure implementation in
 yarn add @thi.ng/router
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/router?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/router/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 1.50 KB / CJS: 1.55 KB / UMD: 1.64 KB
 
 ## Dependencies

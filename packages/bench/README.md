@@ -41,6 +41,14 @@ still only sourced via `Date.now()`.
 yarn add @thi.ng/bench
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/bench?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/bench/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 685 bytes / CJS: 746 bytes / UMD: 812 bytes
 
 ## Dependencies

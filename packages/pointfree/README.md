@@ -196,6 +196,14 @@ non-linear control flow.
 yarn add @thi.ng/pointfree
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/pointfree?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/pointfree/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 3.31 KB / CJS: 3.84 KB / UMD: 3.55 KB
 
 ## Dependencies

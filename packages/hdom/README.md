@@ -117,6 +117,14 @@ Benefits:
 yarn add @thi.ng/hdom
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/hdom?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/hdom/lib/index.umd.js" crossorigin></script>
+```
+
 You can use the
 [create-hdom-app](https://github.com/thi-ng/create-hdom-app) project
 generator to create one of several pre-configured app skeletons using

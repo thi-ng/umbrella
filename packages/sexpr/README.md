@@ -48,6 +48,14 @@ Everything else is parsed as is, i.e. as symbol.
 yarn add @thi.ng/sexpr
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/sexpr?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/sexpr/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 829 bytes / CJS: 892 bytes / UMD: 976 bytes
 
 ## Dependencies

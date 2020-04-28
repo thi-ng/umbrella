@@ -47,6 +47,14 @@ maps & sets as backend.
 yarn add @thi.ng/dgraph
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/dgraph?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/dgraph/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 790 bytes / CJS: 850 bytes / UMD: 959 bytes
 
 ## Dependencies

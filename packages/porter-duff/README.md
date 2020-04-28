@@ -58,6 +58,14 @@ ints or RGBA float vectors.
 yarn add @thi.ng/porter-duff
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/porter-duff?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/porter-duff/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 998 bytes / CJS: 1.16 KB / UMD: 1.13 KB
 
 ## Dependencies

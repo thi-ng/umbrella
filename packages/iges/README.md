@@ -36,6 +36,14 @@ applications (e.g. Rhino, Houdini, Fusion 360)
 yarn add @thi.ng/iges
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/iges?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/iges/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 2.82 KB / CJS: 2.86 KB / UMD: 2.79 KB
 
 ## Dependencies

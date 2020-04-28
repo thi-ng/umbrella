@@ -46,6 +46,14 @@ these and keep any cycles async).
 yarn add @thi.ng/rstream-graph
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/rstream-graph?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/rstream-graph/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 1.02 KB / CJS: 1.12 KB / UMD: 1.16 KB
 
 ## Dependencies

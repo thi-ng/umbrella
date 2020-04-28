@@ -32,6 +32,14 @@ This project is part of the
 yarn add @thi.ng/binary
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/binary?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/binary/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 1.87 KB / CJS: 2.19 KB / UMD: 1.85 KB
 
 ## Dependencies

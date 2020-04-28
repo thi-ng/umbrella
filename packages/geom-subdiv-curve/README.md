@@ -48,6 +48,14 @@ Supplied / implemented subdivision schemes:
 yarn add @thi.ng/geom-subdiv-curve
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/geom-subdiv-curve?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/geom-subdiv-curve/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 641 bytes / CJS: 722 bytes / UMD: 767 bytes
 
 ## Dependencies

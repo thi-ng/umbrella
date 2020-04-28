@@ -81,6 +81,14 @@ Largely declarative WebGL 1.0 / 2.0 abstraction layer, partially ported
 yarn add @thi.ng/webgl
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/webgl?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/webgl/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 11.30 KB / CJS: 11.46 KB / UMD: 11.29 KB
 
 ## Dependencies

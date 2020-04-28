@@ -124,6 +124,14 @@ commented source code and examples for now:
 yarn add @thi.ng/interceptors
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/interceptors?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/interceptors/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 2.16 KB / CJS: 2.29 KB / UMD: 2.23 KB
 
 ## Dependencies

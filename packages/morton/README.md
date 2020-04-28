@@ -39,12 +39,20 @@ References:
 ### Related packages
 
 - [@thi.ng/grid-iterators](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators) - 2D grid iterators w/ multiple orderings
-- [@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-accel) - n-D spatial indexing data structures
+- [@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-accel) - n-D spatial indexing data structures with a shared ES6 Map/Set-like API
 
 ## Installation
 
 ```bash
 yarn add @thi.ng/morton
+```
+
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/morton?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/morton/lib/index.umd.js" crossorigin></script>
 ```
 
 Package sizes (gzipped, pre-treeshake): ESM: 2.02 KB / CJS: 2.16 KB / UMD: 2.11 KB

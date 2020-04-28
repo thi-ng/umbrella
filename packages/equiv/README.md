@@ -44,6 +44,14 @@ Supports:
 yarn add @thi.ng/equiv
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/equiv?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/equiv/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 487 bytes / CJS: 543 bytes / UMD: 604 bytes
 
 ## Dependencies

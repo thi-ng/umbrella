@@ -41,6 +41,14 @@ for details.
 yarn add @thi.ng/intervals
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/intervals?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/intervals/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 1.43 KB / CJS: 1.48 KB / UMD: 1.55 KB
 
 ## Dependencies

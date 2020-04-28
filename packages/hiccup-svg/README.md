@@ -121,6 +121,14 @@ therefore need to be complete, e.g. `{ rotate: "rotate(60)" }`
 yarn add @thi.ng/hiccup-svg
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/hiccup-svg?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/hiccup-svg/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 2.38 KB / CJS: 2.50 KB / UMD: 2.42 KB
 
 ## Dependencies

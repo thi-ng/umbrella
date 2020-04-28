@@ -32,6 +32,14 @@ Array / Arraylike utilities.
 yarn add @thi.ng/arrays
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/arrays?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/arrays/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 1.73 KB / CJS: 1.88 KB / UMD: 1.87 KB
 
 ## Dependencies

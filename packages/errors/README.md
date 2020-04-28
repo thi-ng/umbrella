@@ -34,6 +34,14 @@ Additional error types can be defined using
 yarn add @thi.ng/errors
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/errors?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/errors/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 262 bytes / CJS: 338 bytes / UMD: 403 bytes
 
 ## Dependencies

@@ -67,6 +67,14 @@ Please also see the following hdom references for further details:
 yarn add @thi.ng/transducers-hdom
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/transducers-hdom?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/transducers-hdom/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 291 bytes / CJS: 343 bytes / UMD: 454 bytes
 
 ## Dependencies

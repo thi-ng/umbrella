@@ -32,6 +32,14 @@ Parametric interpolated 1D lookup tables for remapping values.
 yarn add @thi.ng/ramp
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/ramp?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/ramp/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 966 bytes / CJS: 1.01 KB / UMD: 1.10 KB
 
 ## Dependencies

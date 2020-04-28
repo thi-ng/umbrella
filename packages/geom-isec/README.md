@@ -54,6 +54,14 @@ Current implementations partially based on
 yarn add @thi.ng/geom-isec
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/geom-isec?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/geom-isec/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 2.37 KB / CJS: 2.53 KB / UMD: 2.50 KB
 
 ## Dependencies

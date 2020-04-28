@@ -94,6 +94,14 @@ have been removed.
 yarn add @thi.ng/atom
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/atom?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/atom/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 1.82 KB / CJS: 1.89 KB / UMD: 1.93 KB
 
 ## Dependencies

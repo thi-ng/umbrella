@@ -31,6 +31,14 @@ Optimized functional composition helpers.
 yarn add @thi.ng/compose
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/compose?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/compose/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 812 bytes / CJS: 915 bytes / UMD: 935 bytes
 
 ## Dependencies

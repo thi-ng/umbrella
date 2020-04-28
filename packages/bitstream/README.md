@@ -33,6 +33,14 @@ ES6 iterator based read/write bit streams with support for variable word widths.
 yarn add @thi.ng/bitstream
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/bitstream?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/bitstream/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 1.09 KB / CJS: 1.14 KB / UMD: 1.21 KB
 
 ## Dependencies

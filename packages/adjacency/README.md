@@ -32,6 +32,14 @@ Sparse & bitwise adjacency matrices and related functions for directed & undirec
 yarn add @thi.ng/adjacency
 ```
 
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/adjacency?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/adjacency/lib/index.umd.js" crossorigin></script>
+```
+
 Package sizes (gzipped, pre-treeshake): ESM: 1.80 KB / CJS: 1.88 KB / UMD: 1.96 KB
 
 ## Dependencies
