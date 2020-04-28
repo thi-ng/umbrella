@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@4.0.6...@thi.ng/rstream@4.0.7) (2020-04-28)
+
+
+### Bug Fixes
+
+* **rstream:** subscribe() w/ xform, add test ([20ce586](https://github.com/thi-ng/umbrella/commit/20ce586fdc0b4f9633f93581f7480572334317f1))
+
+
+
+
+
 ## [4.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@4.0.5...@thi.ng/rstream@4.0.6) (2020-04-27)
 
 **Note:** Version bump only for package @thi.ng/rstream

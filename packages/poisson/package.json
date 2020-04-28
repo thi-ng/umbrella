@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/poisson",
-    "version": "1.0.14",
+    "version": "1.0.15",
     "description": "nD Poisson-disc sampling w/ support for spatial density functions and custom PRNGs",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -43,10 +43,10 @@
         "typescript": "^3.8.3"
     },
     "dependencies": {
-        "@thi.ng/checks": "^2.6.3",
-        "@thi.ng/geom-api": "^1.0.14",
-        "@thi.ng/random": "^1.4.6",
-        "@thi.ng/vectors": "^4.3.2",
+        "@thi.ng/checks": "^2.6.4",
+        "@thi.ng/geom-api": "^1.0.15",
+        "@thi.ng/random": "^1.4.7",
+        "@thi.ng/vectors": "^4.3.3",
         "tslib": "^1.11.1"
     },
     "files": [

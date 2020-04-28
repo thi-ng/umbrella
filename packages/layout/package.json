@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/layout",
-    "version": "0.1.8",
+    "version": "0.1.9",
     "description": "TODO",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -43,8 +43,8 @@
         "typescript": "^3.8.3"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.10.2",
-        "@thi.ng/checks": "^2.6.3",
+        "@thi.ng/api": "^6.10.3",
+        "@thi.ng/checks": "^2.6.4",
         "tslib": "^1.11.1"
     },
     "files": [

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.3.16...@thi.ng/shader-ast-stdlib@0.3.17) (2020-04-28)
+
+**Note:** Version bump only for package @thi.ng/shader-ast-stdlib
+
+
+
+
+
 ## [0.3.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.3.15...@thi.ng/shader-ast-stdlib@0.3.16) (2020-04-27)
 
 **Note:** Version bump only for package @thi.ng/shader-ast-stdlib
