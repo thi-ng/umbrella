@@ -37,13 +37,13 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
-        "@microsoft/api-extractor": "^7.7.8",
-        "@types/mocha": "^7.0.1",
-        "@types/node": "^13.7.4",
-        "mocha": "^7.1.1",
+        "@microsoft/api-extractor": "^7.7.13",
+        "@types/mocha": "^7.0.2",
+        "@types/node": "^13.13.4",
+        "mocha": "^7.1.2",
         "pegjs": "^0.11.0-dev.325",
-        "ts-node": "^8.6.2",
-        "typedoc": "^0.16.10",
+        "ts-node": "^8.9.1",
+        "typedoc": "^0.17.6",
         "typescript": "^3.8.3"
     },
     "dependencies": {
@@ -51,7 +51,7 @@
         "@thi.ng/bench": "^2.0.10",
         "@thi.ng/errors": "^1.2.12",
         "@thi.ng/pointfree": "^2.0.2",
-        "commander": "^5.0.0",
+        "commander": "^5.1.0",
         "tslib": "^1.11.1"
     },
     "files": [
