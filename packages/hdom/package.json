@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hdom",
-    "version": "8.0.22",
+    "version": "8.0.23",
     "description": "Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -34,7 +34,7 @@
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
         "@microsoft/api-extractor": "^7.7.13",
-        "@thi.ng/atom": "^4.1.5",
+        "@thi.ng/atom": "^4.1.6",
         "@types/mocha": "^7.0.2",
         "@types/node": "^13.13.4",
         "mocha": "^7.1.2",
@@ -44,12 +44,12 @@
         "typescript": "^3.8.3"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.10.3",
-        "@thi.ng/checks": "^2.6.4",
-        "@thi.ng/diff": "^3.2.18",
-        "@thi.ng/equiv": "^1.0.21",
-        "@thi.ng/errors": "^1.2.12",
-        "@thi.ng/hiccup": "^3.2.20",
+        "@thi.ng/api": "^6.10.4",
+        "@thi.ng/checks": "^2.6.5",
+        "@thi.ng/diff": "^3.2.19",
+        "@thi.ng/equiv": "^1.0.22",
+        "@thi.ng/errors": "^1.2.13",
+        "@thi.ng/hiccup": "^3.2.21",
         "tslib": "^1.11.1"
     },
     "files": [

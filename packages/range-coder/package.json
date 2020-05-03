@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/range-coder",
-    "version": "1.0.41",
+    "version": "1.0.42",
     "description": "Binary data range encoder / decoder",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -34,7 +34,7 @@
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
         "@microsoft/api-extractor": "^7.7.13",
-        "@thi.ng/transducers": "^6.4.8",
+        "@thi.ng/transducers": "^6.4.9",
         "@types/mocha": "^7.0.2",
         "@types/node": "^13.13.4",
         "mocha": "^7.1.2",
@@ -44,7 +44,7 @@
         "typescript": "^3.8.3"
     },
     "dependencies": {
-        "@thi.ng/bitstream": "^1.1.15",
+        "@thi.ng/bitstream": "^1.1.16",
         "tslib": "^1.11.1"
     },
     "files": [

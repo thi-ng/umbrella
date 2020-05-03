@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/compose@1.4.5...@thi.ng/compose@1.4.6) (2020-05-03)
+
+**Note:** Version bump only for package @thi.ng/compose
+
+
+
+
+
 ## [1.4.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/compose@1.4.4...@thi.ng/compose@1.4.5) (2020-04-28)
 
 **Note:** Version bump only for package @thi.ng/compose

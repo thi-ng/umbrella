@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/bitstream",
-    "version": "1.1.15",
+    "version": "1.1.16",
     "description": "ES6 iterator based read/write bit streams with support for variable word widths",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -43,7 +43,7 @@
         "typescript": "^3.8.3"
     },
     "dependencies": {
-        "@thi.ng/errors": "^1.2.12",
+        "@thi.ng/errors": "^1.2.13",
         "tslib": "^1.11.1"
     },
     "files": [

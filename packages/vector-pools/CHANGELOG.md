@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.27](https://github.com/thi-ng/umbrella/compare/@thi.ng/vector-pools@1.0.26...@thi.ng/vector-pools@1.0.27) (2020-05-03)
+
+**Note:** Version bump only for package @thi.ng/vector-pools
+
+
+
+
+
 ## [1.0.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/vector-pools@1.0.25...@thi.ng/vector-pools@1.0.26) (2020-04-28)
 
 **Note:** Version bump only for package @thi.ng/vector-pools

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@4.0.7...@thi.ng/rstream@4.0.8) (2020-05-03)
+
+
+### Bug Fixes
+
+* **rstream:** MetaStream close mode handling ([2d9e907](https://github.com/thi-ng/umbrella/commit/2d9e907e9c5a7ef9b0944473561c7c6d52f82841))
+
+
+
+
+
 ## [4.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@4.0.6...@thi.ng/rstream@4.0.7) (2020-04-28)
 
 
