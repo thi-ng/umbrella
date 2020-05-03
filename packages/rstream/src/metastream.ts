@@ -1,5 +1,5 @@
 import { assert, Fn } from "@thi.ng/api";
-import { CommonOpts, State } from "./api";
+import { CloseMode, CommonOpts, State } from "./api";
 import { Subscription } from "./subscription";
 import { optsWithID } from "./utils/idgen";
 
@@ -123,7 +123,7 @@ export class MetaStream<A, B> extends Subscription<A, B> {
                         }
                     },
                     error: (e) => super.error(e),
-                    __owner: this
+                    __owner: this,
                 });
             }
         }
@@ -131,22 +131,24 @@ export class MetaStream<A, B> extends Subscription<A, B> {
 
     done() {
         if (this.stream) {
-            this.detach();
+            this.detach(true);
         }
-        super.done();
+        this.closeIn !== CloseMode.NEVER && super.done();
     }
 
     unsubscribe(sub?: Subscription<B, any>) {
         if (this.stream && (!sub || this.subs.length === 1)) {
-            this.detach();
+            this.detach(!sub);
         }
-        return super.unsubscribe();
+        return super.unsubscribe(sub);
     }
 
-    protected detach() {
-        assert(!!this.stream, "input stream already removed");
-        this.stream!.unsubscribe(this.sub);
-        delete this.stream;
-        delete this.sub;
+    protected detach(force: boolean) {
+        if (force || this.closeOut !== CloseMode.NEVER) {
+            assert(!!this.stream, "input stream already removed");
+            this.stream!.unsubscribe(this.sub);
+            delete this.stream;
+            delete this.sub;
+        }
     }
 }
