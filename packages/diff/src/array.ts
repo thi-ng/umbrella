@@ -58,6 +58,7 @@ const simpleDiff = <T>(
  * Various optimizations, fixes & refactorings. By default uses
  * {@link @thi.ng/equiv#equiv} for equality checks.
  *
+ * - {@link https://publications.mpi-cbg.de/Wu_1990_6334.pdf}
  * - {@link http://www.itu.dk/stud/speciale/bepjea/xwebtex/litt/an-onp-sequence-comparison-algorithm.pdf}
  * - {@link https://github.com/cubicdaiya/onp}
  *
