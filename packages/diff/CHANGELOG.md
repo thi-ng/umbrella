@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.2.19...@thi.ng/diff@3.2.20) (2020-05-05)
+
+
+### Performance Improvements
+
+* **diff:** diffArray() main loop, add clearCache() ([fa2f692](https://github.com/thi-ng/umbrella/commit/fa2f692ad1c469aa3e5f62857db746341b5fdac7))
+
+
+
+
+
 ## [3.2.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.2.18...@thi.ng/diff@3.2.19) (2020-05-03)
 
 **Note:** Version bump only for package @thi.ng/diff

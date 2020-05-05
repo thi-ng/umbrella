@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hdom-canvas",
-    "version": "2.4.20",
+    "version": "2.4.21",
     "description": "Declarative canvas scenegraph & visualization for @thi.ng/hdom",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -46,8 +46,8 @@
         "@thi.ng/api": "^6.10.4",
         "@thi.ng/checks": "^2.6.5",
         "@thi.ng/color": "^1.1.20",
-        "@thi.ng/diff": "^3.2.19",
-        "@thi.ng/hdom": "^8.0.23",
+        "@thi.ng/diff": "^3.2.20",
+        "@thi.ng/hdom": "^8.0.24",
         "@thi.ng/math": "^1.7.9",
         "@thi.ng/vectors": "^4.3.4",
         "tslib": "^1.11.1"
