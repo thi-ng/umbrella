@@ -38,12 +38,12 @@ for sources:
 - `addn4_f32`
 - `clamp4_f32`
 - `clampn4_f32`
-- `div4_f32` (!)
-- `divn4_f32` (!)
+- `div4_f32`
+- `divn4_f32`
 - `dot2_f32_aos` (2)
 - `dot4_f32_aos`
 - `dot4_f32_soa`
-- `invsqrt4_f32` (!)
+- `invsqrt4_f32`
 - `madd4_f32`
 - `maddn4_f32`
 - `mag2_f32_aos`
@@ -64,7 +64,7 @@ for sources:
 - `neg4_f32`
 - `normalize2_f32_aos` (2)
 - `normalize4_f32_aos`
-- `sqrt4_f32` (!)
+- `sqrt4_f32`
 - `sub4_f32`
 - `subn4_f32`
 - `sum4_f32`
@@ -84,9 +84,11 @@ for documentation about the exposed TS/JS API...
 
 The [WebAssembly SIMD spec](https://github.com/WebAssembly/simd) is
 still WIP and (at the time of writing) only partially implemented and
-hidden behind feature flags.
+hidden behind feature flags. Currently only fully tested (& testable for
+me) on Node 14.1.
 
-- NodeJS (v12.10+): `node --experimental-wasm-simd`
+- [SIMD implementation status](https://github.com/WebAssembly/simd/blob/master/proposals/simd/ImplementationStatus.md)
+- Node (v12.10+): `node --experimental-wasm-simd`
 - Chrome: Enable SIMD support via [chrome://flags](chrome://flags)
 
 ## Installation
