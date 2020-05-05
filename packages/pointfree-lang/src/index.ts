@@ -1,4 +1,4 @@
-import { ILogger, IObjectOf, NULL_LOGGER } from "@thi.ng/api";
+import { Fn2, ILogger, IObjectOf, NULL_LOGGER } from "@thi.ng/api";
 import { illegalArgs, illegalState } from "@thi.ng/errors";
 import * as pf from "@thi.ng/pointfree";
 import { ALIASES, ASTNode, NodeType, VisitorState } from "./api";
@@ -126,7 +126,7 @@ const loadvar = (node: ASTNode) => (ctx: pf.StackContext) => (
  */
 const storevar = (id: string) => (ctx: pf.StackContext) => {
     pf.ensureStack(ctx[0], 1);
-    let v = ctx[2].__vars[id];
+    const v = ctx[2].__vars[id];
     if (v === undefined) {
         ctx[2].__vars[id] = [ctx[0].pop()];
     } else {
@@ -144,7 +144,7 @@ const storevar = (id: string) => (ctx: pf.StackContext) => {
  */
 const beginvar = (id: string) => (ctx: pf.StackContext) => {
     pf.ensureStack(ctx[0], 1);
-    let v = ctx[2].__vars[id];
+    const v = ctx[2].__vars[id];
     if (v === undefined) {
         ctx[2].__vars[id] = [ctx[0].pop()];
     } else {
@@ -241,14 +241,7 @@ const visitDeref = (
     node: ASTNode,
     ctx: pf.StackContext,
     state: VisitorState
-) => {
-    if (state.word) {
-        ctx[0].push(loadvar(node));
-    } else {
-        ctx[0].push(resolveVar(node, ctx));
-    }
-    return ctx;
-};
+) => (ctx[0].push(state.word ? loadvar(node) : resolveVar(node, ctx)), ctx);
 
 /**
  * VAR_STORE visitor. If `state.word` is true, pushes `storevar(id)` on
@@ -264,13 +257,8 @@ const visitStore = (
     ctx: pf.StackContext,
     state: VisitorState
 ) => {
-    const id = node.id!;
-    if (state.word) {
-        ctx[0].push(storevar(id));
-        return ctx;
-    } else {
-        return storevar(id)(ctx);
-    }
+    const store = storevar(node.id!);
+    return state.word ? (ctx[0].push(store), ctx) : store(ctx);
 };
 
 /**
@@ -300,25 +288,18 @@ const visitWord = (
     }
     let wctx = pf.ctx([], ctx[2]);
     state.word = { name: id, loc: node.loc };
-    if (node.locals) {
-        for (
-            let l = node.locals, stack = wctx[0], i = l.length - 1;
-            i >= 0;
-            i--
-        ) {
-            stack.push(beginvar(l[i]));
+    const locals = node.locals;
+    if (locals) {
+        for (let stack = wctx[0], i = locals.length; --i >= 0; ) {
+            stack.push(beginvar(locals[i]));
         }
     }
     for (let n of node.body) {
         wctx = visit(n, wctx, state);
     }
-    if (node.locals) {
-        for (
-            let l = node.locals, stack = wctx[0], i = l.length - 1;
-            i >= 0;
-            i--
-        ) {
-            stack.push(endvar(l[i]));
+    if (locals) {
+        for (let stack = wctx[0], i = locals.length; --i >= 0; ) {
+            stack.push(endvar(locals[i]));
         }
     }
     const w = pf.defWord(wctx[0]);
@@ -329,14 +310,30 @@ const visitWord = (
 };
 
 const visitStackComment = (node: ASTNode, state: VisitorState) => {
-    if (state.word && !state.word.stack) {
-        state.word.stack = node.body.join(" -- ");
-        state.word.arities = node.body.map((x: string) => {
+    const word = state.word;
+    if (word && !word.stack) {
+        word.stack = node.body.join(" -- ");
+        word.arities = node.body.map((x: string) => {
             const args = x.split(" ");
             return args[0] === "" ? 0 : x.indexOf("?") >= 0 ? -1 : args.length;
         });
     }
 };
+
+const visitWithResolver = (resolve: Fn2<ASTNode, pf.StackContext, any>) => (
+    node: ASTNode,
+    ctx: pf.StackContext,
+    state: VisitorState
+) => (
+    ctx[0].push(
+        state.word
+            ? (_ctx: pf.StackContext) => (
+                  _ctx[0].push(resolve(node, _ctx)), _ctx
+              )
+            : resolve(node, ctx)
+    ),
+    ctx
+);
 
 /**
  * ARRAY visitor for arrays/quotations. If `state.word` is true, pushes
@@ -347,22 +344,7 @@ const visitStackComment = (node: ASTNode, state: VisitorState) => {
  * @param ctx -
  * @param state -
  */
-const visitArray = (
-    node: ASTNode,
-    ctx: pf.StackContext,
-    state: VisitorState
-) => {
-    if (state.word) {
-        ctx[0].push(
-            (_ctx: pf.StackContext) => (
-                _ctx[0].push(resolveArray(node, _ctx)), _ctx
-            )
-        );
-    } else {
-        ctx[0].push(resolveArray(node, ctx));
-    }
-    return ctx;
-};
+const visitArray = visitWithResolver(resolveArray);
 
 /**
  * OBJ visitor for object literals. If `state.word` is true, pushes call
@@ -373,22 +355,7 @@ const visitArray = (
  * @param ctx -
  * @param state -
  */
-const visitObject = (
-    node: ASTNode,
-    ctx: pf.StackContext,
-    state: VisitorState
-) => {
-    if (state.word) {
-        ctx[0].push(
-            (_ctx: pf.StackContext) => (
-                _ctx[0].push(resolveObject(node, _ctx)), _ctx
-            )
-        );
-    } else {
-        ctx[0].push(resolveObject(node, ctx));
-    }
-    return ctx;
-};
+const visitObject = visitWithResolver(resolveObject);
 
 /**
  * Prepares a the given environment object and if needed injects/updates
