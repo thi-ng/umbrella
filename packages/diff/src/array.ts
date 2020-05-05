@@ -1,9 +1,10 @@
+import type { Nullable } from "@thi.ng/api";
 import { equiv as _equiv } from "@thi.ng/equiv";
 import { DiffMode } from "./constants";
 import type { ArrayDiff, DiffKeyMap, EditLog } from "./api";
 
-let _cachedFP: Int32Array;
-let _cachedPath: Int32Array;
+let _cachedFP: Nullable<Int32Array>;
+let _cachedPath: Nullable<Int32Array>;
 
 let _cachedEPC: number[] = [];
 let _cachedPathPos: number[] = [];
@@ -17,6 +18,11 @@ const cachedPath = (size: number) =>
     _cachedPath && _cachedPath.length >= size
         ? _cachedPath
         : (_cachedPath = new Int32Array(size));
+
+export const clearCache = () => {
+    _cachedFP = _cachedPath = undefined;
+    _cachedEPC.length = _cachedPathPos.length = 0;
+};
 
 const simpleDiff = <T>(
     state: ArrayDiff<T>,
@@ -71,7 +77,7 @@ export const diffArray = <T>(
         adds: {},
         dels: {},
         const: {},
-        linear: []
+        linear: [],
     };
 
     if (a === b || (a == null && b == null)) {
@@ -103,41 +109,37 @@ export const diffArray = <T>(
     const fp = cachedFP(size).fill(-1, 0, size);
     const epc = _cachedEPC;
     const pathPos = _cachedPathPos;
-    epc.length = 0;
-    pathPos.length = 0;
 
     const snake = (k: number, p: number, pp: number) => {
-        const koff = k + offset;
-        let r, y;
+        let r: number, y: number;
         if (p > pp) {
-            r = path[koff - 1];
+            r = path[k - 1];
             y = p;
         } else {
-            r = path[koff + 1];
+            r = path[k + 1];
             y = pp;
         }
-        let x = y - k;
+        let x = y - (k - offset);
         while (x < na && y < nb && equiv(_a[x], _b[y])) {
             x++;
             y++;
         }
-        path[koff] = pathPos.length / 3;
+        path[k] = pathPos.length / 3;
         pathPos.push(x, y, r);
-        return y;
+        fp[k] = y;
     };
 
-    let p = -1,
-        k,
-        ko;
+    let p = -1;
+    let k: number;
     do {
         p++;
-        for (k = -p, ko = k + offset; k < delta; k++, ko++) {
-            fp[ko] = snake(k, fp[ko - 1] + 1, fp[ko + 1]);
+        for (k = -p + offset; k < doff; k++) {
+            snake(k, fp[k - 1] + 1, fp[k + 1]);
         }
-        for (k = delta + p, ko = k + offset; k > delta; k--, ko--) {
-            fp[ko] = snake(k, fp[ko - 1] + 1, fp[ko + 1]);
+        for (k = doff + p; k > doff; k--) {
+            snake(k, fp[k - 1] + 1, fp[k + 1]);
         }
-        fp[doff] = snake(delta, fp[doff - 1] + 1, fp[doff + 1]);
+        snake(doff, fp[doff - 1] + 1, fp[doff + 1]);
     } while (fp[doff] !== nb);
 
     state.distance = delta + 2 * p;
@@ -163,6 +165,8 @@ export const diffArray = <T>(
             );
         }
     }
+    epc.length = 0;
+    pathPos.length = 0;
     return state;
 };
 
