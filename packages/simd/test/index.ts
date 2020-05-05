@@ -51,11 +51,11 @@ assertEqual(res_f32(1024, 8), [10, 40, 90, 160, 250, 360, 490, 640]);
 simd.muln4_f32(1024, 0, 10, 2, 4, 4);
 assertEqual(res_f32(1024, 8), [10, 20, 30, 40, 50, 60, 70, 80]);
 // div4_f32
-// simd.div4_f32(1024, 0, 48, 2, 4, 4, 4);
-// assertEqualDelta(res_f32(1024, 8), [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]);
+simd.div4_f32(1024, 0, 48, 2, 4, 4, 4);
+assertEqualDelta(res_f32(1024, 8), [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]);
 // divn4_f32
-// simd.divn4_f32(1024, 0, 10, 2, 4, 4);
-// assertEqualDelta(res_f32(1024, 8), [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]);
+simd.divn4_f32(1024, 0, 10, 2, 4, 4);
+assertEqualDelta(res_f32(1024, 8), [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]);
 
 // abs4_f32
 simd.f32.set([-1, 2, -3, 4, 5, -6, 7, -8]);
@@ -178,20 +178,37 @@ assertEqualDelta(res_f32(1024, 4), [
     1 * 1 + 2 * 2,
     10 * 10 + 20 * 20,
     100 * 100 + 200 * 200,
-    100 * 100 + 200 * 200
+    100 * 100 + 200 * 200,
 ]);
 simd.mag2_f32_aos(1024, 0, 4);
 assertEqualDelta(res_f32(1024, 4), [
     Math.sqrt(5),
     Math.sqrt(500),
     Math.sqrt(50000),
-    Math.sqrt(50000)
+    Math.sqrt(50000),
 ]);
 
 simd.magsq4_f32_aos(1024, 0, 2, 1, 4);
 assertEqualDelta(res_f32(1024, 2), [505, 100000]);
 simd.mag4_f32_aos(1024, 0, 2, 1, 4);
 assertEqualDelta(res_f32(1024, 2), [Math.sqrt(505), Math.sqrt(100000)]);
+
+// sqrt4
+simd.f32.set([1, 2, 9, 16, 25, 36, 49, 64]);
+simd.sqrt4_f32(1024, 0, 2, 4, 4);
+assertEqualDelta(res_f32(1024, 8), [1, Math.SQRT2, 3, 4, 5, 6, 7, 8]);
+// invsqrt4
+simd.invsqrt4_f32(1024, 0, 2, 4, 4);
+assertEqualDelta(res_f32(1024, 8), [
+    1,
+    Math.SQRT1_2,
+    1 / 3,
+    1 / 4,
+    1 / 5,
+    1 / 6,
+    1 / 7,
+    1 / 8,
+]);
 
 // mix4_f32
 // mixn4_f32

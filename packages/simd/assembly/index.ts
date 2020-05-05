@@ -4,8 +4,8 @@ export * from "./addn";
 export * from "./clamp";
 
 // TODO waiting for native impl
-// export * from "./div";
-// export * from "./divn";
+export * from "./div";
+export * from "./divn";
 
 export * from "./dot";
 export * from "./madd";
@@ -25,7 +25,7 @@ export * from "./neg";
 export * from "./normalize";
 
 // TODO waiting for native impl
-// export * from "./sqrt";
+export * from "./sqrt";
 
 export * from "./sub";
 export * from "./subn";

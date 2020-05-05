@@ -73,9 +73,7 @@ export interface SIMD {
     dot4_f32_soa(out: number, a: number, b: number, num: number, sa: number, sb: number): number;
 
     /**
-     * FIXME waiting for native impl of SIMD instr
-     *
-     * {@link SIMD.sqrt4_f32}
+     * Also see {@link SIMD.sqrt4_f32}
      *
      * @param out -
      * @param a -
@@ -163,9 +161,7 @@ export interface SIMD {
     normalize4_f32_aos(out: number, a: number, num: number, norm: number, so: number, sa: number): number;
 
     /**
-     * FIXME waiting for native impl of SIMD instr
-     *
-     * {@link SIMD.invsqrt4_f32}
+     * Also see {@link SIMD.invsqrt4_f32}
      *
      * @param out -
      * @param a -
