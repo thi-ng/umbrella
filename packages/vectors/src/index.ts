@@ -97,6 +97,7 @@ export * from "./magsq";
 export * from "./magsqs";
 export * from "./major";
 export * from "./map";
+export * from "./map-vectors";
 export * from "./max";
 export * from "./min";
 export * from "./minor";
