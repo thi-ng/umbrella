@@ -1,12 +1,8 @@
 import { equiv } from "@thi.ng/equiv";
 import { illegalState } from "@thi.ng/errors";
-import {
-    Attribs,
-    IHiccupShape,
-    PathSegment,
-    Type
-} from "@thi.ng/geom-api";
+import { Attribs, IHiccupShape, PathSegment, Type } from "@thi.ng/geom-api";
 import { copyAttribs } from "../internal/copy-attribs";
+import { copy } from "@thi.ng/vectors";
 
 export class Path implements IHiccupShape {
     segments: PathSegment[];
@@ -28,7 +24,15 @@ export class Path implements IHiccupShape {
     }
 
     copy(): Path {
-        const p = new Path([...this.segments], copyAttribs(this));
+        const p = new Path(
+            this.segments.map((s) => {
+                const d: PathSegment = { type: s.type };
+                s.point && (d.point = copy(s.point));
+                s.geo && (d.geo = <any>s.geo.copy());
+                return d;
+            }),
+            copyAttribs(this)
+        );
         p.closed = this.closed;
         return p;
     }
