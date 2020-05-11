@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Experimental exploration for a new [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom) w/ entirely new largely reactive, diff-less approach. WARNING: Your existing code WILL break!.
+Experimental exploration for a new [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/packages/hdom) w/ entirely new, largely reactive & diff-less approach. WARNING: Your existing code WILL break!.
 
 ### Status
 
@@ -51,27 +51,27 @@ Package sizes (gzipped, pre-treeshake): ESM: 3.13 KB / CJS: 3.27 KB / UMD: 3.28 
 
 ## Dependencies
 
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/diff](https://github.com/thi-ng/umbrella/tree/develop/packages/diff)
-- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
-- [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths)
-- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/packages/api)
+- [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/packages/atom)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/packages/checks)
+- [@thi.ng/diff](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/packages/diff)
+- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/packages/equiv)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/packages/errors)
+- [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/packages/hiccup)
+- [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/packages/paths)
+- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/packages/rstream)
 
 ## Usage examples
 
 Several demos in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+[/examples](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/examples)
 directory are using this package.
 
 A selection:
 
-| Descr| Live demo                                             | Source                                                                             |
-| ---- | ----------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| TODO | [Demo](https://demo.thi.ng/umbrella/hdom2020-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom2020-basics) |
+| Descr| Live demo                                             | Source                                                                                      |
+| ---- | ----------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| TODO | [Demo](https://demo.thi.ng/umbrella/hdom2020-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/examples/hdom2020-basics) |
 
 ## API
 

@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/hdom2020",
     "version": "0.0.2-0",
-    "description": "Experimental exploration for a new @thi.ng/hdom w/ entirely new largely reactive, diff-less approach. WARNING: Your existing code WILL break!",
+    "description": "Experimental exploration for a new @thi.ng/hdom w/ entirely new, largely reactive & diff-less approach. WARNING: Your existing code WILL break!",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -66,6 +66,7 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "branch": "feature/hdom2020",
         "status": "alpha",
         "year": 2020
     }
