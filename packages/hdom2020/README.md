@@ -69,9 +69,9 @@ directory are using this package.
 
 A selection:
 
-| Descr| Live demo                                             | Source                                                                                      |
-| ---- | ----------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| TODO | [Demo](https://demo.thi.ng/umbrella/hdom2020-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/examples/hdom2020-basics) |
+| Description                 | Live demo                                             | Source                                                                                      |
+| --------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| hdom2020 test sandbox / POC | [Demo](https://demo.thi.ng/umbrella/hdom2020-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/examples/hdom2020-basics) |
 
 ## API
 
