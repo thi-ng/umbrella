@@ -1,0 +1,75 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
+# ![hdom2020](https://media.thi.ng/umbrella/banners/thing-hdom2020.svg?3e965a03)
+
+[![npm version](https://img.shields.io/npm/v/@thi.ng/hdom2020.svg)](https://www.npmjs.com/package/@thi.ng/hdom2020)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdom2020.svg)
+[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
+- [About](#about)
+  - [Status](#status)
+    - [HIC SUNT DRACONES](#hic-sunt-dracones)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [API](#api)
+- [Authors](#authors)
+- [License](#license)
+
+## About
+
+Experimental exploration for a new [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom) w/ entirely new largely reactive, diff-less approach. WARNING: Your existing code WILL break!.
+
+### Status
+
+**ALPHA** - bleeding edge / work-in-progress
+
+#### HIC SUNT DRACONES
+
+Pretty much **everything** here is still in a state of flux (without
+warning!) and merely shared for those brave souls who'd like to be part
+of the journey, even if just to provide early feedback and such... :)
+
+## Installation
+
+```bash
+yarn add @thi.ng/hdom2020
+```
+
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/hdom2020?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/hdom2020/lib/index.umd.js" crossorigin></script>
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 3.13 KB / CJS: 3.27 KB / UMD: 3.28 KB
+
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/diff](https://github.com/thi-ng/umbrella/tree/develop/packages/diff)
+- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
+- [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths)
+- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/hdom2020/)
+
+TODO
+
+## Authors
+
+Karsten Schmidt
+
+## License
+
+&copy; 2020 Karsten Schmidt // Apache Software License 2.0
