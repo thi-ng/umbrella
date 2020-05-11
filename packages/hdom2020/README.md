@@ -14,6 +14,7 @@ This project is part of the
     - [HIC SUNT DRACONES](#hic-sunt-dracones)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -59,6 +60,18 @@ Package sizes (gzipped, pre-treeshake): ESM: 3.13 KB / CJS: 3.27 KB / UMD: 3.28 
 - [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
 - [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths)
 - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+| Descr| Live demo                                             | Source                                                                             |
+| ---- | ----------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| TODO | [Demo](https://demo.thi.ng/umbrella/hdom2020-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom2020-basics) |
 
 ## API
 

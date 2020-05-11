@@ -30,5 +30,9 @@
     "browser": {
         "process": false
     },
-    "thi.ng": {}
+    "thi.ng": {
+        "readme": [
+            "hdom2020"
+        ]
+    }
 }
