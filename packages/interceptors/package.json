@@ -33,14 +33,14 @@
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
-        "@microsoft/api-extractor": "^7.7.13",
+        "@microsoft/api-extractor": "^7.8.0",
         "@types/mocha": "^7.0.2",
-        "@types/node": "^13.13.4",
+        "@types/node": "^14.0.1",
         "mocha": "^7.1.2",
         "nyc": "^15.0.1",
-        "ts-node": "^8.9.1",
+        "ts-node": "^8.10.1",
         "typedoc": "^0.17.6",
-        "typescript": "^3.8.3"
+        "typescript": "^3.9.2"
     },
     "dependencies": {
         "@thi.ng/api": "^6.10.4",
@@ -48,7 +48,7 @@
         "@thi.ng/checks": "^2.6.5",
         "@thi.ng/errors": "^1.2.13",
         "@thi.ng/paths": "^4.0.5",
-        "tslib": "^1.11.1"
+        "tslib": "^1.12.0"
     },
     "files": [
         "*.js",
