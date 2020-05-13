@@ -137,7 +137,7 @@ export class Subscription<A, B>
         this.ensureState();
         let sub: Subscription<any, any> | undefined;
         !peek(args) && args.pop();
-        let opts: SubscriptionOpts<any, any> =
+        const opts: Partial<SubscriptionOpts<any, any>> =
             args.length > 1 && isPlainObject(peek(args))
                 ? { ...args.pop() }
                 : {};
