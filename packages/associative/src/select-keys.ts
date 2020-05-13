@@ -25,10 +25,10 @@ export const selectKeysMap = <K, V>(
  * @param src - source object
  * @param ks - selected keys
  */
-export const selectKeysObj = <T extends any>(
+export const selectKeysObj = <T extends object>(
     src: T,
     ks: Iterable<PropertyKey>
-): { [id in keyof T]?: T[id] } => {
+): Partial<T> => {
     const dest: any = {};
     for (let k of ks) {
         src.hasOwnProperty(k) && (dest[k] = (<any>src)[<any>k]);
