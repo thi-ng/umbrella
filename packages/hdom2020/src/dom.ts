@@ -3,6 +3,7 @@ import {
     isArray,
     isFunction,
     isNotStringAndIterable,
+    isNumber,
     isString,
 } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
@@ -67,7 +68,7 @@ export const $el = (
     attribs: any,
     body?: any,
     parent?: Element,
-    idx = -1
+    idx: Element | number = -1
 ) => {
     const match = RE_TAG.exec(tag);
     if (match) {
@@ -96,15 +97,25 @@ export const $el = (
     return el;
 };
 
-export const $addChild = (parent: Element, child: Element, idx = -1) => {
-    idx < 0 || idx >= parent.children.length
-        ? parent.appendChild(child)
-        : parent.insertBefore(child, parent.children[idx]);
+export const $addChild = (
+    parent: Element,
+    child: Element,
+    idx: Element | number = -1
+) => {
+    isNumber(idx)
+        ? idx < 0 || idx >= parent.children.length
+            ? parent.appendChild(child)
+            : parent.insertBefore(child, parent.children[idx])
+        : parent.insertBefore(child, idx);
 };
 
 export const $removeChild = (el: Element) => el.parentNode!.removeChild(el);
 
-export const $move = (el: Element, newParent: Element, idx = -1) => {
+export const $move = (
+    el: Element,
+    newParent: Element,
+    idx: Element | number = -1
+) => {
     $removeChild(el);
     $addChild(newParent, el, idx);
 };
