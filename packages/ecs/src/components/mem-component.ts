@@ -1,10 +1,4 @@
-import {
-    assert,
-    INotifyMixin,
-    Type,
-    typedArray,
-    uintType
-} from "@thi.ng/api";
+import { assert, INotifyMixin, Type, typedArray, uintType } from "@thi.ng/api";
 import { AComponent } from "./acomponent";
 import type { TypedArray, UIntArray } from "@thi.ng/api";
 import type { ICache, MemMappedComponentOpts } from "../api";
@@ -28,10 +22,9 @@ export class MemMappedComponent<K extends string> extends AComponent<
         opts: MemMappedComponentOpts<K>
     ) {
         opts = {
-            type: <any>Type.F32,
             size: 1,
             byteOffset: 0,
-            ...opts
+            ...opts,
         };
         const size = opts.size!;
         const stride = opts.stride || size;

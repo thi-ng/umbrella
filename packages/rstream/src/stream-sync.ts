@@ -1,20 +1,21 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { isPlainObject } from "@thi.ng/checks";
 import {
     comp,
     labeled,
     mapVals,
-    partitionSync
+    partitionSync,
+    PartitionSync,
 } from "@thi.ng/transducers";
 import {
     CloseMode,
     ISubscribable,
     LOGGER,
     State,
-    TransformableOpts
+    TransformableOpts,
 } from "./api";
 import { Subscription } from "./subscription";
 import { optsWithID } from "./utils/idgen";
-import type { IObjectOf } from "@thi.ng/api";
 
 export interface StreamSyncOpts<A, B>
     extends TransformableOpts<IObjectOf<A>, B> {
@@ -60,6 +61,13 @@ export interface StreamSyncOpts<A, B>
      * available values...
      */
     backPressure: number;
+    /**
+     * Remove previously received value of an input in result tuple when
+     * input is removed.
+     *
+     * @defaultValue false
+     */
+    clean: boolean;
 }
 
 /**
@@ -89,7 +97,10 @@ export interface StreamSyncOpts<A, B>
  *
  * Input streams can be added and removed dynamically and the emitted
  * tuple size adjusts to the current number of inputs (the next time a
- * value is received from any input).
+ * value is received from any input). After an input is removed (or
+ * done) its last received value can also be removed from the result
+ * tuple. This behavior can be configured via the `clean` option given
+ * to `sync()` (disabled by default).
  *
  * If the `reset` option is enabled, the last emitted tuple is allowed
  * to be incomplete, by default. To only allow complete tuples, also set
@@ -134,20 +145,16 @@ export class StreamSync<A, B> extends Subscription<A, B> {
      * maps real src.id to (potentially aliased) input IDs
      */
     invRealSourceIDs: Map<string, string>;
-    /**
-     * set of (potentially aliased) input IDs
-     * these IDs are used to label inputs in result tuple
-     */
-    sourceIDs: Set<string>;
+    psync: PartitionSync<[string, A]>;
+    clean: boolean;
 
     constructor(opts: Partial<StreamSyncOpts<A, B>>) {
-        const srcIDs = new Set<string>();
-        const psync = partitionSync<[string, A]>(srcIDs, {
+        const psync = partitionSync<[string, A]>(new Set<string>(), {
             key: (x) => x[0],
             mergeOnly: opts.mergeOnly === true,
             reset: opts.reset === true,
             all: opts.all !== false,
-            backPressure: opts.backPressure || 0
+            backPressure: opts.backPressure || 0,
         });
         const mapv = mapVals((x: [string, A]) => x[1]);
         super(
@@ -156,21 +163,22 @@ export class StreamSync<A, B> extends Subscription<A, B> {
                 ...opts,
                 xform: opts.xform
                     ? comp(psync, mapv, opts.xform)
-                    : comp(psync, mapv)
+                    : comp(psync, mapv),
             })
         );
         this.sources = new Map();
         this.realSourceIDs = new Map();
         this.invRealSourceIDs = new Map();
         this.idSources = new Map();
-        this.sourceIDs = srcIDs;
+        this.psync = psync;
+        this.clean = !!opts.clean;
         opts.src && this.addAll(opts.src);
     }
 
     add(src: ISubscribable<A>, id?: string) {
         id || (id = src.id);
         this.ensureState();
-        this.sourceIDs.add(id);
+        this.psync.add(id);
         this.realSourceIDs.set(id, src.id);
         this.invRealSourceIDs.set(src.id, id);
         this.idSources.set(src.id, src);
@@ -186,7 +194,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
                         }
                     },
                     done: () => this.markDone(src),
-                    __owner: this
+                    __owner: this,
                 },
                 labeled<string, A>(id),
                 { id: `in-${id}` }
@@ -198,7 +206,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
         if (isPlainObject(src)) {
             // pre-add all source ids for partitionSync
             for (let id in src) {
-                this.sourceIDs.add(id);
+                this.psync.add(id);
             }
             for (let id in src) {
                 this.add((<any>src)[id], id);
@@ -206,7 +214,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
         } else {
             // pre-add all source ids for partitionSync
             for (let s of <ISubscribable<A>[]>src) {
-                this.sourceIDs.add(s.id);
+                this.psync.add(s.id);
             }
             for (let s of <ISubscribable<A>[]>src) {
                 this.add(s);
@@ -219,7 +227,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
         if (sub) {
             const id = this.invRealSourceIDs.get(src.id)!;
             LOGGER.info(`removing src: ${src.id} (${id})`);
-            this.sourceIDs.delete(id);
+            this.psync.delete(id, this.clean);
             this.realSourceIDs.delete(id);
             this.invRealSourceIDs.delete(src.id);
             this.idSources.delete(src.id);
@@ -238,7 +246,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
     removeAll(src: ISubscribable<A>[]) {
         // pre-remove all source ids for partitionSync
         for (let s of src) {
-            this.sourceIDs.delete(this.invRealSourceIDs.get(s.id)!);
+            this.psync.delete(this.invRealSourceIDs.get(s.id)!);
         }
         let ok = true;
         for (let s of src) {
@@ -274,7 +282,7 @@ export class StreamSync<A, B> extends Subscription<A, B> {
             }
             this.state = State.DONE;
             this.sources.clear();
-            this.sourceIDs.clear();
+            this.psync.clear();
             this.realSourceIDs.clear();
             this.invRealSourceIDs.clear();
             this.idSources.clear();

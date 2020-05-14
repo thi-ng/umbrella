@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.3.4...@thi.ng/vectors@4.4.0) (2020-05-14)
+
+
+### Features
+
+* **vectors:** add mapVectors() ([61ddde7](https://github.com/thi-ng/umbrella/commit/61ddde78c23ded396ed70fd473a92b2495e74b83))
+
+
+
+
+
 ## [4.3.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.3.3...@thi.ng/vectors@4.3.4) (2020-05-03)
 
 **Note:** Version bump only for package @thi.ng/vectors

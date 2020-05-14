@@ -21,7 +21,10 @@ import { empty } from "./utils";
  * @param records - objects to index
  * @param ks - keys used for indexing
  */
-export const indexed = <T>(records: Iterable<T>, ks: (keyof T)[]) => {
+export const indexed = <T extends object>(
+    records: Iterable<T>,
+    ks: (keyof T)[]
+) => {
     const res = new EquivMap<{ [id in keyof T]?: T[id] }, Set<T>>();
     let x, ik, rv;
     for (x of records) {

@@ -13,6 +13,7 @@ export * from "./is-alphanum";
 export * from "./is-array";
 export * from "./is-arraylike";
 export * from "./is-ascii";
+export * from "./is-async-iterable";
 export * from "./is-blob";
 export * from "./is-boolean";
 export * from "./is-chrome";

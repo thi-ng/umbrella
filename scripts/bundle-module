@@ -29,7 +29,7 @@ const INPUT_OPTS = {
 const TERSER_OPTS = {
     compress: true,
     mangle: true,
-    ecma: 6,
+    ecma: 2017,
 };
 
 const buildVersion = async (opts, write = true, compressed = false) => {

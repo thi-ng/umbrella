@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.9.2...@thi.ng/geom@1.9.3) (2020-05-14)
+
+
+### Bug Fixes
+
+* **geom:** Path.copy() deep-clone behavior ([2ade10e](https://github.com/thi-ng/umbrella/commit/2ade10e86e83076fd9499ad7ee863caf7c3b463d))
+
+
+
+
+
 ## [1.9.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.9.1...@thi.ng/geom@1.9.2) (2020-05-03)
 
 **Note:** Version bump only for package @thi.ng/geom

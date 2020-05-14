@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.6.5...@thi.ng/checks@2.7.0) (2020-05-14)
+
+
+### Features
+
+* **checks:** add isAsyncIterable() ([59ac3a9](https://github.com/thi-ng/umbrella/commit/59ac3a9ea2588bf8afc0a8e9bfed72ffb875c47d))
+
+
+
+
+
 ## [2.6.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.6.4...@thi.ng/checks@2.6.5) (2020-05-03)
 
 **Note:** Version bump only for package @thi.ng/checks

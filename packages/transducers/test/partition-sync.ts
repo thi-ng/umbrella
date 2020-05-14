@@ -9,13 +9,16 @@ describe("partitionSync", () => {
         ["b", 10],
         ["b", 11],
         ["c", 0],
-        ["a", 3]
+        ["a", 3],
     ];
 
     it("default behavior", () => {
         assert.deepEqual(
             [...partitionSync(["a", "b"], { key: (x) => x[0] }, src)],
-            [{ a: ["a", 2], b: ["b", 10] }, { b: ["b", 11], a: ["a", 3] }]
+            [
+                { a: ["a", 2], b: ["b", 10] },
+                { b: ["b", 11], a: ["a", 3] },
+            ]
         );
     });
 
@@ -26,25 +29,25 @@ describe("partitionSync", () => {
                     ["a", "b"],
                     {
                         key: (x) => x[0],
-                        reset: false
+                        reset: false,
                     },
                     src
-                )
+                ),
             ],
             [
                 { a: ["a", 2], b: ["b", 10] },
                 { a: ["a", 2], b: ["b", 11] },
-                { a: ["a", 3], b: ["b", 11] }
+                { a: ["a", 3], b: ["b", 11] },
             ]
         );
     });
 
-    it("key removal", () => {
+    it("key removal (via set only)", () => {
         const keys = new Set(["a", "b", "t"]);
         const f = step(
             partitionSync(keys, {
                 key: (x: any) => x[0],
-                reset: false
+                reset: false,
             })
         );
 
@@ -56,13 +59,44 @@ describe("partitionSync", () => {
         assert.deepEqual(f(["b", 2]), {
             a: ["a", 0],
             t: ["t", 1],
-            b: ["b", 2]
+            b: ["b", 2],
         });
         assert.deepEqual(f(["t", 2]), {
             a: ["a", 0],
             t: ["t", 2],
-            b: ["b", 2]
+            b: ["b", 2],
         });
+    });
+
+    it("key add/removal (hook)", () => {
+        const keys = new Set(["a", "b", "t"]);
+        const xform = partitionSync(keys, {
+            key: (x: any) => x[0],
+            reset: false,
+        });
+        const f = step(xform);
+
+        assert.equal(f(["t", 0]), undefined);
+        assert.equal(f(["a", 0]), undefined);
+        xform.delete("a");
+        assert.deepEqual(keys, new Set(["b", "t"]));
+        assert.equal(f(["t", 1]), undefined);
+        assert.equal(f(["a", 1]), undefined);
+        assert.deepEqual(f(["b", 2]), {
+            t: ["t", 1],
+            b: ["b", 2],
+        });
+        xform.add("a");
+        assert.deepEqual(xform.keys(), new Set(["a", "b", "t"]));
+        assert.deepEqual(f(["a", 2]), {
+            a: ["a", 2],
+            t: ["t", 1],
+            b: ["b", 2],
+        });
+        xform.clear();
+        assert.equal(f(["a", 3]), undefined);
+        xform.add("a");
+        assert.deepEqual(f(["a", 4]), { a: ["a", 4] });
     });
 
     it("back pressure", () => {
@@ -73,13 +107,13 @@ describe("partitionSync", () => {
                     { backPressure: 3, key: (x) => x[0], all: false },
                     // prettier-ignore
                     ["a1", "b1", "a2", "c1", "c2", "a3", "a4", "b2", "c3", "b3", "b4", "c4", "c5"]
-                )
+                ),
             ],
             [
                 { a: "a1", b: "b1", c: "c1" },
                 { a: "a2", c: "c2", b: "b2" },
                 { a: "a3", c: "c3", b: "b3" },
-                { a: "a4", b: "b4", c: "c4" }
+                { a: "a4", b: "b4", c: "c4" },
             ]
         );
         assert.throws(() => [
@@ -88,7 +122,7 @@ describe("partitionSync", () => {
                 { backPressure: 1, key: (x) => x[0] },
                 ["a1", "a2"]
             ),
-            "pressure limit"
+            "pressure limit",
         ]);
     });
 });

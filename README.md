@@ -13,43 +13,55 @@
 > the composer of. Geared towards versatility, not any specific type of music."
 > &mdash; [@loganpowell](https://twitter.com/logantpowell/status/1186334119812304901) via Twitter
 
-Mono-repository for ~120 thi.ng TypeScript/ES6 projects, a wide
+Mono-repository for ~125 thi.ng TypeScript/ES6 projects, a wide
 collection of largely data transformation oriented packages and building
 blocks for:
 
-- Functional programming (composition, memoization, transducers, multi-methods)
-- ES6 iterators
-- Stream based, reactive programming, dataflow graphs / pipelines
+- Functional programming (composition, memoization, transducers,
+  multi-methods)
+- ES6 iterators/generators
+- Stream & transducer based, reactive programming, dataflow graphs /
+  pipelines
 - WebWorker workflow abstractions
-- Data structures & data transformations for wide range of use cases (list, sets, maps)
+- Data structures & data transformations for wide range of use cases
+  (list, sets, maps, joins, spatial indexing)
+- Immutable data handling, state containers, transacted state updates,
+  Undo-Redo history
+- Vector & matrix implementations with optional support for strided
+  layouts, SIMD etc.
 - Value-based equivalence
-- FSM primitives, parser generators
-- Data driven UI components, event & side effect handling
-- Canvas-based Immediate mode GUI components
-- Immutable data handling, state containers, transacted state updates, Undo-Redo history
-- 2D geometry generation, processing, conversion & visualization
-- Vector & matrix implementations with optional support for strided layouts, SIMD etc.
-- Color space conversions, cosine gradients
-- Multi-format pixel buffers, conversions, Porter-Duff alpha-blending operators
-- Declarative WebGL 1/2 abstraction layer
+- PEG-style parser combinators, FSM primitives
+- Forth-style pointfree DSL for functional composition
 - S-expression parser & runtime infrastructure for custom DSL creation
-- DSL for shader functions defined in TypeScript and cross-compilation to GLSL, JS, VEX etc.
-- Low-level tooling for binary data, shared memory / WASM / WebGL interop
+- DSL for shader functions defined in TypeScript and cross-compilation
+  to GLSL, JS, VEX etc.
+- 2D geometry generation, shape primitives, processing, conversion &
+  visualization
+- Multi-format pixel buffers, conversions, Porter-Duff alpha-blending
+  operators
+- Color space/format conversions, matrix based color manipulation,
+  cosine gradients
+- Data driven UI components, event & side effect handling
+- Canvas abstraction & SVG conversion
+- Canvas-based Immediate mode GUI components
+- Declarative WebGL 1/2 abstraction layer
+- Low-level tooling for binary data, shared memory/WASM/WebGL interop
 - etc. (see package overview below)
 
 **...all with a keen eye on simplicity, re-use & minimalism without
 sacrificing flexibility.**
 
-**This project is NOT a framework**, provides no turn-key, one-size-fits-all
-approach and instead encourages a mix & match philosophy for various key
-aspects of application design (in & outside the browser). Most customization points only
-expect certain interfaces rather than concrete implementations.
+**This project is NOT a framework**, provides no turn-key,
+one-size-fits-all approach and instead encourages a mix & match
+philosophy for various key aspects of application design (in & outside
+the browser). Most customization points only expect certain interfaces
+rather than concrete implementations.
 
 Most packages:
 
 - have detailed, individual README files w/ small usage examples
 - are versioned independently
-- distributed in ES6 syntax and multiple formats (ESM, CommonJS, UMD)
+- distributed in ES2017 syntax and multiple formats (ESM, CommonJS, UMD)
   with TypeScript typings & changelogs
 - highly modular with largely only a few closely related functions or
   single function / class per file to help w/ tree shaking

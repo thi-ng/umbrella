@@ -1,11 +1,5 @@
 import { Atom } from "@thi.ng/atom";
-import {
-    comp,
-    filter,
-    last,
-    map,
-    take
-} from "@thi.ng/transducers";
+import { comp, filter, last, map, take } from "@thi.ng/transducers";
 import * as assert from "assert";
 import { TIMEOUT } from "./config";
 import {
@@ -204,5 +198,25 @@ describe("StreamSync", () => {
             ]);
             done();
         }, 5 * TIMEOUT);
+    });
+
+    it("input removal (clean)", (done) => {
+        const main = sync<any, any>({
+            src: {
+                a: fromIterable([1]),
+                b: fromIterable([1, 2]),
+            },
+            clean: true,
+        });
+        const acc: any[] = [];
+        main.subscribe({
+            next(x) {
+                acc.push(x);
+            },
+        });
+        setTimeout(() => {
+            assert.deepEqual(acc, [{ a: 1, b: 1 }, { b: 2 }]);
+            done();
+        }, TIMEOUT);
     });
 });

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/pointfree-lang",
-    "version": "1.4.2",
+    "version": "1.4.3",
     "description": "Forth style syntax layer/compiler & CLI for the @thi.ng/pointfree DSL",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -37,22 +37,22 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
-        "@microsoft/api-extractor": "^7.7.13",
+        "@microsoft/api-extractor": "^7.8.0",
         "@types/mocha": "^7.0.2",
-        "@types/node": "^13.13.4",
+        "@types/node": "^14.0.1",
         "mocha": "^7.1.2",
         "pegjs": "^0.11.0-dev.325",
-        "ts-node": "^8.9.1",
+        "ts-node": "^8.10.1",
         "typedoc": "^0.17.6",
-        "typescript": "^3.8.3"
+        "typescript": "^3.9.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.10.4",
-        "@thi.ng/bench": "^2.0.11",
-        "@thi.ng/errors": "^1.2.13",
-        "@thi.ng/pointfree": "^2.0.3",
+        "@thi.ng/api": "^6.10.5",
+        "@thi.ng/bench": "^2.0.12",
+        "@thi.ng/errors": "^1.2.14",
+        "@thi.ng/pointfree": "^2.0.4",
         "commander": "^5.1.0",
-        "tslib": "^1.11.1"
+        "tslib": "^1.12.0"
     },
     "files": [
         "*.js",

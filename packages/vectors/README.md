@@ -152,7 +152,7 @@ yarn add @thi.ng/vectors
 <script src="https://unpkg.com/@thi.ng/vectors/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 10.97 KB / CJS: 13.80 KB / UMD: 12.14 KB
+Package sizes (gzipped, pre-treeshake): ESM: 11.01 KB / CJS: 13.86 KB / UMD: 12.22 KB
 
 ## Dependencies
 

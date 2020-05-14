@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@4.0.8...@thi.ng/rstream@4.1.0) (2020-05-14)
+
+
+### Features
+
+* **rstream:** [#221](https://github.com/thi-ng/umbrella/issues/221), update StreamSync input removal ([52ee040](https://github.com/thi-ng/umbrella/commit/52ee04010814aa6aa3362f8bd1b52ea857ff8ed0))
+
+
+
+
+
 ## [4.0.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@4.0.7...@thi.ng/rstream@4.0.8) (2020-05-03)
 
 

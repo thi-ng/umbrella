@@ -124,16 +124,12 @@ export interface PagerOpts {
  */
 export const pager = (_opts: PagerOpts) => {
     const opts = <PagerOpts>{
-        root: (_, ...body: any[]) => ["div.pager", ...body],
-        groupPrev: (_, ...bts: any[]) => ["div.pager-prev", ...bts],
-        groupNext: (_, ...bts: any[]) => ["div.pager-next", ...bts],
-        groupPages: (_, ...bts: any[]) => ["div.pager-pages", ...bts],
         navStep: 1,
         labelFirst: "<<",
         labelPrev: "<",
         labelNext: ">",
         labelLast: ">>",
-        ..._opts
+        ..._opts,
     };
     return (_: any, id: number, num: number, pageLen = 10, maxBts = 5) => {
         const bt = opts.button;
@@ -145,14 +141,14 @@ export const pager = (_opts: PagerOpts) => {
             [
                 opts.groupPrev,
                 bt(0, id, maxID, opts.labelFirst, !id),
-                bt(Math.max(id - step!, 0), id, maxID, opts.labelPrev, !id)
+                bt(Math.max(id - step!, 0), id, maxID, opts.labelPrev, !id),
             ],
             [
                 opts.groupPages,
                 map(
                     (i: number) => bt(i, id, maxID, i + 1, i === id),
                     pageRange(id, maxID, maxBts)
-                )
+                ),
             ],
             [
                 opts.groupNext,
@@ -163,8 +159,8 @@ export const pager = (_opts: PagerOpts) => {
                     opts.labelNext,
                     id >= maxID
                 ),
-                bt(maxID, id, maxID, opts.labelLast, id >= maxID)
-            ]
+                bt(maxID, id, maxID, opts.labelLast, id >= maxID),
+            ],
         ];
     };
 };

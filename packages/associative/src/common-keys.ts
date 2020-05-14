@@ -30,7 +30,7 @@ export const commonKeysMap = <K>(
  * @param b - other object
  * @param out - result array
  */
-export const commonKeysObj = <A extends any, B extends any>(
+export const commonKeysObj = <A extends object, B extends object>(
     a: A,
     b: B,
     out: string[] = []
