@@ -42,15 +42,15 @@
         "typescript": "^3.8.3"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.10.4",
-        "@thi.ng/atom": "^4.1.6",
-        "@thi.ng/checks": "^2.6.5",
-        "@thi.ng/diff": "^3.2.20",
-        "@thi.ng/equiv": "^1.0.22",
-        "@thi.ng/errors": "^1.2.13",
-        "@thi.ng/hiccup": "^3.2.21",
-        "@thi.ng/paths": "^4.0.5",
-        "@thi.ng/rstream": "^4.0.8"
+        "@thi.ng/api": "^6.10.5",
+        "@thi.ng/atom": "^4.1.7",
+        "@thi.ng/checks": "^2.7.0",
+        "@thi.ng/diff": "^3.2.21",
+        "@thi.ng/equiv": "^1.0.23",
+        "@thi.ng/errors": "^1.2.14",
+        "@thi.ng/hiccup": "^3.2.22",
+        "@thi.ng/paths": "^4.0.6",
+        "@thi.ng/rstream": "^4.1.0"
     },
     "files": [
         "*.js",
