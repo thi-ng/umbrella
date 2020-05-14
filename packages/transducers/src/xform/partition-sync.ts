@@ -6,6 +6,32 @@ import { isReduced } from "../reduced";
 import type { Fn, IObjectOf } from "@thi.ng/api";
 import type { Reducer, Transducer } from "../api";
 
+export interface PartitionSync<T> extends Transducer<T, IObjectOf<T>> {
+    /**
+     * Returns set of currently required input IDs.
+     */
+    keys(): Set<PropertyKey>;
+    /**
+     * Removes all inputs and clears received values.
+     */
+    clear(): void;
+    /**
+     * Adds `id` to set of required inputs.
+     *
+     * @param id
+     */
+    add(id: PropertyKey): void;
+    /**
+     * Removes `id` from required inputs. If `clean` is true (default),
+     * also removes any previously received value(s) for that input in
+     * the result tuple.
+     *
+     * @param id
+     * @param clean
+     */
+    delete(id: PropertyKey, clean?: boolean): void;
+}
+
 export interface PartitionSyncOpts<T> {
     key: Fn<T, PropertyKey>;
     mergeOnly: boolean;
@@ -45,6 +71,9 @@ export interface PartitionSyncOpts<T> {
  * partially populated tuple objects will be emitted for each received
  * input value, however as with the default behavior, tuples will retain
  * the most recent consumed value from other inputs.
+ *
+ * Required keys (input ID labels) can be dynamically added or removed
+ * via `.add(id)` or `.delete(id)` on the returned transducer.
  *
  * @example
  * ```ts
@@ -86,112 +115,130 @@ export interface PartitionSyncOpts<T> {
  * case the input closed). To only allow complete tuples, set the
  * optional `all` arg to false.
  *
- * Note: If the `keys` set of allowed labels is modified externally, the
- * tuple size will adjust accordingly (only if given as set, will not work
- * if keys are provided as array).
- *
  * @param keys - allowed label set
  * @param keyfn - label extraction function
  * @param reset - true if each tuple should contain only new values
  * @param all - true if last tuple is allowed to be incomplete
  */
 // prettier-ignore
-export function partitionSync<T>(keys: PropertyKey[] | Set<PropertyKey>,opts?: Partial<PartitionSyncOpts<T>>): Transducer<T, IObjectOf<T>>;
+export function partitionSync<T>(keys: PropertyKey[] | Set<PropertyKey>, opts?: Partial<PartitionSyncOpts<T>>): PartitionSync<T>;
 // prettier-ignore
 export function partitionSync<T>(keys: PropertyKey[] | Set<PropertyKey>, src: Iterable<T>): IterableIterator<IObjectOf<T>>;
 // prettier-ignore
 export function partitionSync<T>(keys: PropertyKey[] | Set<PropertyKey>, opts: Partial<PartitionSyncOpts<T>>, src: Iterable<T>): IterableIterator<IObjectOf<T>>;
 export function partitionSync<T>(...args: any[]): any {
-    return (
-        $iter(partitionSync, args, iterator) ||
-        (([init, complete, reduce]: Reducer<any, IObjectOf<T>>) => {
-            let curr: IObjectOf<T> = {};
-            let first = true;
-            const currKeys = new Set<PropertyKey>();
-            const { key, mergeOnly, reset, all, backPressure } = <
-                PartitionSyncOpts<T>
-            >{
-                key: <any>identity,
-                mergeOnly: false,
-                reset: true,
-                all: true,
-                backPressure: 0,
-                ...args[1]
-            };
-            const ks: Set<PropertyKey> = isArray(args[0])
-                ? new Set(args[0])
-                : args[0];
-            if (mergeOnly || backPressure < 1) {
-                return <Reducer<any, T>>[
-                    init,
-                    (acc) => {
+    const iter = $iter(partitionSync, args, iterator);
+    if (iter) return iter;
+
+    const { key, mergeOnly, reset, all, backPressure } = <PartitionSyncOpts<T>>{
+        key: <any>identity,
+        mergeOnly: false,
+        reset: true,
+        all: true,
+        backPressure: 0,
+        ...args[1],
+    };
+    const requiredKeys: Set<PropertyKey> = isArray(args[0])
+        ? new Set(args[0])
+        : args[0];
+    const currKeys = new Set<PropertyKey>();
+    const cache: Map<PropertyKey, T[]> = new Map();
+    let curr: IObjectOf<T> = {};
+
+    const xform = ([init, complete, reduce]: Reducer<any, IObjectOf<T>>) => {
+        let first = true;
+        if (mergeOnly || backPressure < 1) {
+            return <Reducer<any, T>>[
+                init,
+                (acc) => {
+                    if (
+                        (reset && all && currKeys.size > 0) ||
+                        (!reset && first)
+                    ) {
+                        acc = reduce(acc, curr);
+                        curr = {};
+                        currKeys.clear();
+                        first = false;
+                    }
+                    return complete(acc);
+                },
+                (acc, x) => {
+                    const k = key(x);
+                    if (requiredKeys.has(k)) {
+                        curr[<any>k] = x;
+                        currKeys.add(k);
                         if (
-                            (reset && all && currKeys.size > 0) ||
-                            (!reset && first)
+                            mergeOnly ||
+                            requiredInputs(requiredKeys, currKeys)
                         ) {
                             acc = reduce(acc, curr);
-                            curr = {};
-                            currKeys.clear();
                             first = false;
-                        }
-                        return complete(acc);
-                    },
-                    (acc, x) => {
-                        const k = key(x);
-                        if (ks.has(k)) {
-                            curr[<any>k] = x;
-                            currKeys.add(k);
-                            if (mergeOnly || requiredInputs(ks, currKeys)) {
-                                acc = reduce(acc, curr);
-                                first = false;
-                                if (reset) {
-                                    curr = {};
-                                    currKeys.clear();
-                                } else {
-                                    curr = { ...curr };
-                                }
+                            if (reset) {
+                                curr = {};
+                                currKeys.clear();
+                            } else {
+                                curr = { ...curr };
                             }
                         }
-                        return acc;
                     }
-                ];
-            } else {
-                // with backpressure / caching...
-                const cache: Map<PropertyKey, T[]> = new Map();
-                return <Reducer<any, T>>[
-                    init,
-                    (acc) => {
-                        if (all && currKeys.size > 0) {
+                    return acc;
+                },
+            ];
+        } else {
+            // with backpressure / caching...
+            return <Reducer<any, T>>[
+                init,
+                (acc) => {
+                    if (all && currKeys.size > 0) {
+                        acc = reduce(acc, collect(cache, currKeys));
+                        cache.clear();
+                        currKeys.clear();
+                    }
+                    return complete(acc);
+                },
+                (acc, x) => {
+                    const k = key(x);
+                    if (requiredKeys.has(k)) {
+                        let slot = cache.get(k);
+                        !slot && cache.set(k, (slot = []));
+                        slot.length >= backPressure &&
+                            illegalState(
+                                `max back pressure (${backPressure}) exceeded for input: ${String(
+                                    k
+                                )}`
+                            );
+                        slot.push(x);
+                        currKeys.add(k);
+                        while (requiredInputs(requiredKeys, currKeys)) {
                             acc = reduce(acc, collect(cache, currKeys));
-                            currKeys.clear();
+                            first = false;
+                            if (isReduced(acc)) break;
                         }
-                        return complete(acc);
-                    },
-                    (acc, x) => {
-                        const k = key(x);
-                        if (ks.has(k)) {
-                            let slot = cache.get(k);
-                            !slot && cache.set(k, (slot = []));
-                            slot.length >= backPressure &&
-                                illegalState(
-                                    `max back pressure (${backPressure}) exceeded for input: ${String(
-                                        k
-                                    )}`
-                                );
-                            slot.push(x);
-                            currKeys.add(k);
-                            while (requiredInputs(ks, currKeys)) {
-                                acc = reduce(acc, collect(cache, currKeys));
-                                first = false;
-                                if (isReduced(acc)) break;
-                            }
-                        }
-                        return acc;
                     }
-                ];
-            }
-        })
-    );
+                    return acc;
+                },
+            ];
+        }
+    };
+    xform.keys = () => requiredKeys;
+    xform.clear = () => {
+        cache.clear();
+        requiredKeys.clear();
+        currKeys.clear();
+        curr = {};
+    };
+    xform.add = (id: PropertyKey) => {
+        requiredKeys.add(id);
+    };
+    xform.delete = (id: PropertyKey, clean = true) => {
+        cache.delete(id);
+        requiredKeys.delete(id);
+        if (clean) {
+            currKeys.delete(id);
+            delete curr[<any>id];
+        }
+    };
+    return xform;
 }
 
 const requiredInputs = (required: Set<PropertyKey>, curr: Set<PropertyKey>) => {
