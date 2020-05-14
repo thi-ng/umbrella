@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/simd@0.1.16...@thi.ng/simd@0.2.0) (2020-05-14)
+
+
+### Features
+
+* **simd:** enable new ops supported in node 14/V8 8.3 ([5c46468](https://github.com/thi-ng/umbrella/commit/5c464682ef1a720cbfca3d79b76a94fc7444b781))
+
+
+
+
+
 ## [0.1.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/simd@0.1.15...@thi.ng/simd@0.1.16) (2020-05-03)
 
 **Note:** Version bump only for package @thi.ng/simd

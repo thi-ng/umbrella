@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@6.4.9...@thi.ng/transducers@6.5.0) (2020-05-14)
+
+
+### Features
+
+* **transducers:** [#221](https://github.com/thi-ng/umbrella/issues/221), add partitionSync() key add/removal ops ([2ab4bf5](https://github.com/thi-ng/umbrella/commit/2ab4bf5858b1c0162f8adb8780507a05cf16a831))
+
+
+
+
+
 ## [6.4.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@6.4.8...@thi.ng/transducers@6.4.9) (2020-05-03)
 
 **Note:** Version bump only for package @thi.ng/transducers
