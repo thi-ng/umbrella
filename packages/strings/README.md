@@ -50,7 +50,7 @@ yarn add @thi.ng/strings
 <script src="https://unpkg.com/@thi.ng/strings/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.35 KB / CJS: 2.58 KB / UMD: 2.45 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.34 KB / CJS: 2.57 KB / UMD: 2.45 KB
 
 ## Dependencies
 

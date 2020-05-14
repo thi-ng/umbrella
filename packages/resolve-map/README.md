@@ -58,7 +58,7 @@ yarn add @thi.ng/resolve-map
 <script src="https://unpkg.com/@thi.ng/resolve-map/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 876 bytes / CJS: 927 bytes / UMD: 985 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 872 bytes / CJS: 921 bytes / UMD: 981 bytes
 
 ## Dependencies
 
