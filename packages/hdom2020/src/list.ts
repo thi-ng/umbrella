@@ -1,5 +1,4 @@
 import type { Fn, Predicate2 } from "@thi.ng/api";
-import { diffArray, DiffMode } from "@thi.ng/diff";
 import { equiv as _equiv } from "@thi.ng/equiv";
 import type { ISubscribable } from "@thi.ng/rstream";
 import type { IComponent, IMountWithState } from "./api";
@@ -47,32 +46,38 @@ export class List<T> implements IMountWithState<T[]> {
     }
 
     async update(curr: T[]) {
-        if (curr) {
-            const root = this.root!.el!;
-            const children = this.children!;
-            const edits = diffArray(
-                this.items,
-                curr,
-                DiffMode.ONLY_DISTANCE_LINEAR_ONLY_CHANGES,
-                this.equiv
-            ).linear!;
-            let offset = 0;
-            console.log(curr.length);
-            for (let i = 0, n = edits.length; i < n; i += 3) {
-                if (edits[i] < 0) {
-                    const idx = <number>edits[i + 1] + offset;
-                    children[idx].unmount();
-                    children.splice(idx, 1);
-                    offset--;
-                } else if (edits[i] > 0) {
-                    const child = $compile(this.childCtor(<T>edits[i + 2]));
-                    const el = await child.mount(root);
-                    $move(el, root, <number>edits[i + 1]);
-                    children.splice(<number>edits[i + 1], 0, child);
-                    offset++;
-                }
+        if (!curr) return;
+        const root = this.root!.el!;
+        const ctor = this.childCtor;
+        const children = this.children!;
+        const prev = this.items!;
+        const nb = curr.length;
+        let na = prev!.length;
+        let n = Math.min(na, nb);
+        for (let i = 0; i < n; i++) {
+            if (prev[i] !== curr[i]) {
+                await children[i].unmount();
+                const val = curr[i];
+                const child = $compile(ctor(val));
+                $move(await child.mount(root), root, i);
+                children[i] = child;
+                prev[i] = val;
             }
-            this.items = curr;
+        }
+        if (na < nb) {
+            for (; n < nb; n++) {
+                const val = curr[n];
+                const child = $compile(ctor(val));
+                child.mount(root);
+                children[n] = child;
+                prev[n] = val;
+            }
+        } else {
+            while (--na >= nb) {
+                children[na].unmount();
+                children.pop();
+                prev.pop();
+            }
         }
     }
 }
