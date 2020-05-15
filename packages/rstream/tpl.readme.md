@@ -230,6 +230,7 @@ s.next(42);
 - [fromDOMEvent()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/from/event.ts#L25) - DOM events
 - [fromInterval()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/from/interval.ts) - interval based counters
 - [fromIterable()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/from/iterable.ts) - arrays, iterators / generators (async & sync)
+- [fromObject()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/from/object.ts) - object property streams
 - [fromPromise()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/from/promise.ts) - single value stream from promise
 - [fromPromises()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/from/promises.ts) - results from multiple promise
 - [fromRAF()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/from/raf.ts) - requestAnimationFrame() counter (w/ node fallback)
