@@ -30,11 +30,7 @@ describe("MetaStream", () => {
             closeIn: CloseMode.NEVER,
         });
         const sub = src.subscribe(meta);
-        const child = sub.subscribe({
-            next(x) {
-                console.log(x);
-            },
-        });
+        const child = sub.subscribe({});
         setTimeout(() => {
             assert.equal(src.getState(), State.DONE);
             assert.equal(meta.getState(), State.ACTIVE);

@@ -62,11 +62,14 @@
     "keywords": [
         "AST",
         "combinator",
+        "compiler",
         "composition",
         "ES6",
         "functional",
         "grammar",
         "parser",
+        "PEG",
+        "regexp",
         "recursive",
         "typescript"
     ],
@@ -75,6 +78,10 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "fsm",
+            "transducers-fsm"
+        ],
         "status": "alpha",
         "year": 2020
     }
