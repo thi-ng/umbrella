@@ -13,6 +13,7 @@ export * from "./from/atom";
 export * from "./from/event";
 export * from "./from/interval";
 export * from "./from/iterable";
+export * from "./from/object";
 export * from "./from/promise";
 export * from "./from/promises";
 export * from "./from/raf";
