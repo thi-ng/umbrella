@@ -145,7 +145,7 @@ Actual transforms:
 ## Grammar definition
 
 Complex parsers can be constructed via
-[`defGrammar()`](https://github.com/thi-ng/umbrella/tree/develop/packages/parse/src/grammar.ts#L228),
+[`defGrammar()`](https://github.com/thi-ng/umbrella/tree/develop/packages/parse/src/grammar.ts#L236),
 which accepts a string of rule definitions in the built-in (and still
 WIP) grammar rule definition language, similar to PEGs and regular
 expressions:

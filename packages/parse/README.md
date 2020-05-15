@@ -12,6 +12,7 @@ This project is part of the
 - [About](#about)
   - [Features](#features)
   - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -50,6 +51,11 @@ Purely functional parser combinators & AST generation for generic inputs.
 ### Status
 
 **ALPHA** - bleeding edge / work-in-progress
+
+### Related packages
+
+- [@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm) - Composable primitives for building declarative, transducer based Finite-State Machines & matchers for arbitrary data streams
+- [@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-fsm) - Transducer-based Finite State Machine transformer
 
 ## Installation
 
@@ -173,7 +179,7 @@ Actual transforms:
 ## Grammar definition
 
 Complex parsers can be constructed via
-[`defGrammar()`](https://github.com/thi-ng/umbrella/tree/develop/packages/parse/src/grammar.ts#L228),
+[`defGrammar()`](https://github.com/thi-ng/umbrella/tree/develop/packages/parse/src/grammar.ts#L236),
 which accepts a string of rule definitions in the built-in (and still
 WIP) grammar rule definition language, similar to PEGs and regular
 expressions:
