@@ -97,7 +97,11 @@ export const $compile = (tree: any): IComponent => {
 
             async unmount() {
                 SCHEDULER.cancel(this);
-                this.children && this.children.forEach((c) => c.unmount());
+                if (this.children) {
+                    for (let c of this.children) {
+                        await c.unmount();
+                    }
+                }
                 this.subs && this.subs.forEach((s) => s.unsubscribe());
                 $removeChild(this.el!);
                 this.children = undefined;
