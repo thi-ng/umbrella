@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@4.1.0...@thi.ng/rstream@4.2.0) (2020-05-15)
+
+
+### Features
+
+* **rstream:** add fromObject(), add docs & tests ([5e854eb](https://github.com/thi-ng/umbrella/commit/5e854eb64c28eac2221b656db528b819449bdcbd))
+* **rstream:** update fromObject(), add StreamObjOpts, update docs ([f3ca3b6](https://github.com/thi-ng/umbrella/commit/f3ca3b6fef4568cb5c8992166e1db931c173ffca))
+
+
+
+
+
 # [4.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@4.0.8...@thi.ng/rstream@4.1.0) (2020-05-14)
 
 
