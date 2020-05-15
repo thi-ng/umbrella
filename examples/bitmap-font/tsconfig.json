@@ -2,7 +2,7 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": ".",
-        "target": "es6",
+        "target": "es2017",
         "sourceMap": true,
         "strictBindCallApply": false
     },

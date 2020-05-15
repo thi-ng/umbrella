@@ -3,7 +3,7 @@
     "compilerOptions": {
         "outDir": "lib",
         "module": "commonjs",
-        "target": "es6",
+        "target": "es2017",
         "noUnusedLocals": false,
         "noUnusedParameters": false
     },
