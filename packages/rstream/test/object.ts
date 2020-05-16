@@ -85,14 +85,14 @@ describe("fromObject", () => {
             },
         });
 
-        obj.next({ a: 1, b: "foo" });
-        obj.next({ b: "bar" });
+        obj.next({ b: "foo" });
+        obj.next({ a: 1, b: "bar" });
         obj.next({ a: 0, b: "bar" });
         obj.next({ a: 2, b: "bar" });
         obj.next({ a: 2, b: "baz" });
         obj.next({ b: "baz" });
         assert.deepEqual(acc, {
-            a: [1, 0, 2, 0],
+            a: [0, 1, 0, 2, 0],
             b: ["foo", "bar", "baz"],
         });
     });
