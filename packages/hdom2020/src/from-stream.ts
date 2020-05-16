@@ -1,7 +1,7 @@
 import type { ISubscribable } from "@thi.ng/rstream";
 import type { IComponent } from "./api";
+import { $compile } from "./compile";
 import { Component } from "./component";
-import { $compile } from "./element";
 import { SCHEDULER } from "./scheduler";
 
 export const fromStream = (src: ISubscribable<any>) => new FromStream(src);

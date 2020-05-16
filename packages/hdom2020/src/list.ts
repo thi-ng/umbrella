@@ -2,8 +2,8 @@ import type { Fn, Predicate2 } from "@thi.ng/api";
 import { equiv as _equiv } from "@thi.ng/equiv";
 import type { ISubscribable } from "@thi.ng/rstream";
 import type { IComponent, IMountWithState } from "./api";
+import { $compile } from "./compile";
 import { $move } from "./dom";
-import { $compile } from "./element";
 import { withStream } from "./with-stream";
 
 export const $list = <T>(

@@ -1,9 +1,9 @@
 import type { Fn, Fn2, NumOrString } from "@thi.ng/api";
 import type { ISubscribable } from "@thi.ng/rstream";
 import type { IComponent } from "./api";
+import { $compile } from "./compile";
 import { Component } from "./component";
 import { $move } from "./dom";
-import { $compile } from "./element";
 import { withStream } from "./with-stream";
 
 interface Child {
