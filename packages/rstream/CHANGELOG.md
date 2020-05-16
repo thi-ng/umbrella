@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@4.2.0...@thi.ng/rstream@4.3.0) (2020-05-16)
+
+
+### Features
+
+* **rstream:** extend fromObject() features/opts ([975f74c](https://github.com/thi-ng/umbrella/commit/975f74c88ccd8ca9560505f0de74cc8d28c05ac0))
+
+
+
+
+
 # [4.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@4.1.0...@thi.ng/rstream@4.2.0) (2020-05-15)
 
 
