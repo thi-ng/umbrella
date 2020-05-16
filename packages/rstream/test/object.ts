@@ -5,14 +5,17 @@ type Foo = { a?: number; b: string };
 
 describe("fromObject", () => {
     it("basic", () => {
-        const obj = fromObject(<{ a?: number; b: string }>{
-            a: 1,
-            b: "foo",
-        });
+        const obj = fromObject(
+            <{ a?: number; b: string }>{
+                a: 1,
+                b: "foo",
+            },
+            { id: "test" }
+        );
         assert(obj.streams.a instanceof Subscription);
         assert(obj.streams.b instanceof Subscription);
-        assert(obj.streams.a.id.startsWith("obj-a-"));
-        assert(obj.streams.b.id.startsWith("obj-b-"));
+        assert(obj.streams.a.id.startsWith("test-a"));
+        assert(obj.streams.b.id.startsWith("test-b"));
 
         const acc: any = { a: [], b: [] };
         obj.streams.a.subscribe({
@@ -38,7 +41,7 @@ describe("fromObject", () => {
 
     it("subscriber", () => {
         const acc: any = { a: [], b: [] };
-        const obj = fromObject(<Foo>{}, ["a", "b"], { initial: false });
+        const obj = fromObject(<Foo>{}, { keys: ["a", "b"], initial: false });
         obj.streams.a.subscribe({
             next(x) {
                 acc.a.push(x);
@@ -62,5 +65,35 @@ describe("fromObject", () => {
         });
         assert.equal(obj.streams.a.getState(), State.DONE);
         assert.equal(obj.streams.b.getState(), State.DONE);
+    });
+
+    it("defaults & dedupe", () => {
+        const acc: any = { a: [], b: [] };
+        const obj = fromObject(<Foo>{}, {
+            keys: ["a", "b"],
+            initial: false,
+            defaults: { a: 0 },
+        });
+        obj.streams.a.subscribe({
+            next(x) {
+                acc.a.push(x);
+            },
+        });
+        obj.streams.b.subscribe({
+            next(x) {
+                acc.b.push(x);
+            },
+        });
+
+        obj.next({ a: 1, b: "foo" });
+        obj.next({ b: "bar" });
+        obj.next({ a: 0, b: "bar" });
+        obj.next({ a: 2, b: "bar" });
+        obj.next({ a: 2, b: "baz" });
+        obj.next({ b: "baz" });
+        assert.deepEqual(acc, {
+            a: [1, 0, 2, 0],
+            b: ["foo", "bar", "baz"],
+        });
     });
 });
