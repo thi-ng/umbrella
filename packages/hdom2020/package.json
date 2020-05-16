@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hdom2020",
-    "version": "0.0.2-1",
+    "version": "0.0.2-2",
     "description": "Experimental exploration for a new @thi.ng/hdom w/ entirely new, largely reactive & diff-less approach. WARNING: Your existing code WILL break!",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -28,7 +28,8 @@
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
-        "pub": "yarn build:release && yarn publish --access public"
+        "pub": "yarn build:release && yarn publish --access public",
+        "pub:wip": "yarn publish --access public --tag alpha --prerelease --no-git-tag-version"
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
