@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@4.0.6...@thi.ng/paths@4.0.7) (2020-05-16)
+
+
+### Bug Fixes
+
+* **paths:** arg type for 2-arity getIn() ([56d5cd0](https://github.com/thi-ng/umbrella/commit/56d5cd02213cf43daaedefb723010351c7e535f7))
+
+
+
+
+
 ## [4.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@4.0.5...@thi.ng/paths@4.0.6) (2020-05-14)
 
 **Note:** Version bump only for package @thi.ng/paths
