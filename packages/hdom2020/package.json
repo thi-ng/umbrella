@@ -44,13 +44,13 @@
     },
     "dependencies": {
         "@thi.ng/api": "^6.10.5",
-        "@thi.ng/atom": "^4.1.7",
+        "@thi.ng/atom": "^4.1.8",
         "@thi.ng/checks": "^2.7.0",
         "@thi.ng/equiv": "^1.0.23",
         "@thi.ng/errors": "^1.2.14",
-        "@thi.ng/hiccup": "^3.2.22",
-        "@thi.ng/paths": "^4.0.6",
-        "@thi.ng/rstream": "^4.3.1"
+        "@thi.ng/hiccup": "^3.2.23",
+        "@thi.ng/paths": "^4.0.7",
+        "@thi.ng/rstream": "^4.3.2"
     },
     "files": [
         "*.js",
