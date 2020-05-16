@@ -1,17 +1,18 @@
-import { defGetter } from "./getter";
 import type {
     DeepPath,
+    OptPathVal,
     Path,
     Path0,
     Path1,
+    Path2,
     Path3,
     Path4,
     Path5,
     Path6,
     Path7,
     Path8,
-    OptPathVal,
 } from "@thi.ng/api";
+import { defGetter } from "./getter";
 
 /**
  * Unchecked version of {@link getIn}. Returns `undefined` if path is
@@ -54,7 +55,7 @@ export function getIn<T>(state: T, path: Path0): T;
 export function getIn<T, A>(state: T, path: Path1<T, A>): OptPathVal<T, [A]>;
 export function getIn<T, A, B>(
     state: T,
-    path: Path1<A, B>
+    path: Path2<T, A, B>
 ): OptPathVal<T, [A, B]>;
 export function getIn<T, A, B, C>(
     state: T,
