@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/transducers-hdom",
-    "version": "2.0.51",
+    "version": "2.0.52",
     "description": "Transducer based UI updater for @thi.ng/hdom",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -43,8 +43,8 @@
         "typescript": "^3.9.2"
     },
     "dependencies": {
-        "@thi.ng/hdom": "^8.0.25",
-        "@thi.ng/hiccup": "^3.2.22",
+        "@thi.ng/hdom": "^8.0.26",
+        "@thi.ng/hiccup": "^3.2.23",
         "@thi.ng/transducers": "^6.5.0",
         "tslib": "^1.12.0"
     },
