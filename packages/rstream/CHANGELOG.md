@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@4.3.0...@thi.ng/rstream@4.3.1) (2020-05-16)
+
+
+### Bug Fixes
+
+* **rstream:** initial default val handling in fromObject() ([25117e3](https://github.com/thi-ng/umbrella/commit/25117e3e6fe145c2a1c30fa5a97d997e1929900c))
+
+
+
+
+
 # [4.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@4.2.0...@thi.ng/rstream@4.3.0) (2020-05-16)
 
 

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rstream-query",
-    "version": "1.1.26",
+    "version": "1.1.27",
     "description": "@thi.ng/rstream based triple store & reactive query engine",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,8 +49,8 @@
         "@thi.ng/equiv": "^1.0.23",
         "@thi.ng/errors": "^1.2.14",
         "@thi.ng/math": "^1.7.10",
-        "@thi.ng/rstream": "^4.3.0",
-        "@thi.ng/rstream-dot": "^1.1.26",
+        "@thi.ng/rstream": "^4.3.1",
+        "@thi.ng/rstream-dot": "^1.1.27",
         "@thi.ng/transducers": "^6.5.0",
         "tslib": "^1.12.0"
     },

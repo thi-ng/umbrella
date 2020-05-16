@@ -137,9 +137,18 @@ export const fromObject = <T, K extends Keys<T>>(
     const keys = opts.keys || <K[]>Object.keys(src);
     const _opts: Partial<SubscriptionOpts<any, any>> =
         opts.dedupe !== false
-            ? { xform: dedupe<any>(opts.equiv || ((a, b) => a === b)), ...opts }
+            ? {
+                  xform: dedupe<any>(opts.equiv || ((a, b) => a === b)),
+                  ...opts,
+              }
             : opts;
     const streams: any = {};
+    for (let k of keys) {
+        streams[k] = subscription(undefined, {
+            ..._opts,
+            id: `${id}-${k}`,
+        });
+    }
     const res = <StreamObj<T, K>>{
         streams,
         next(state) {
@@ -156,9 +165,6 @@ export const fromObject = <T, K extends Keys<T>>(
             }
         },
     };
-    for (let k of keys) {
-        streams[k] = subscription(undefined, { ..._opts, id: `${id}-${k}` });
-        opts.initial !== false && streams[k].next(<any>src[k]);
-    }
+    opts.initial !== false && res.next(src);
     return res;
 };
