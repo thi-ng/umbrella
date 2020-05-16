@@ -14,30 +14,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [4.3.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.3.3...@thi.ng/vectors@4.3.4) (2020-05-03)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.3.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.3.2...@thi.ng/vectors@4.3.3) (2020-04-28)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.3.1...@thi.ng/vectors@4.3.2) (2020-04-27)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
 ## [4.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.3.0...@thi.ng/vectors@4.3.1) (2020-04-23)
 
 
@@ -55,46 +31,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **vectors:** add equals/2/3/4() ([34cad0e](https://github.com/thi-ng/umbrella/commit/34cad0eee8cd6d555ddc8ed718858b6885519f85))
-
-
-
-
-
-## [4.2.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.2.5...@thi.ng/vectors@4.2.6) (2020-04-20)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.2.4...@thi.ng/vectors@4.2.5) (2020-04-11)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.2.3...@thi.ng/vectors@4.2.4) (2020-04-06)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.2.2...@thi.ng/vectors@4.2.3) (2020-04-05)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.2.1...@thi.ng/vectors@4.2.2) (2020-03-28)
-
-**Note:** Version bump only for package @thi.ng/vectors
 
 
 

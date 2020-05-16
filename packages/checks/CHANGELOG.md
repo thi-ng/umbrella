@@ -14,46 +14,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [2.6.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.6.4...@thi.ng/checks@2.6.5) (2020-05-03)
-
-**Note:** Version bump only for package @thi.ng/checks
-
-
-
-
-
-## [2.6.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.6.3...@thi.ng/checks@2.6.4) (2020-04-28)
-
-**Note:** Version bump only for package @thi.ng/checks
-
-
-
-
-
-## [2.6.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.6.2...@thi.ng/checks@2.6.3) (2020-04-27)
-
-**Note:** Version bump only for package @thi.ng/checks
-
-
-
-
-
-## [2.6.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.6.1...@thi.ng/checks@2.6.2) (2020-04-11)
-
-**Note:** Version bump only for package @thi.ng/checks
-
-
-
-
-
-## [2.6.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.6.0...@thi.ng/checks@2.6.1) (2020-04-05)
-
-**Note:** Version bump only for package @thi.ng/checks
-
-
-
-
-
 # [2.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.5.4...@thi.ng/checks@2.6.0) (2020-03-28)
 
 
