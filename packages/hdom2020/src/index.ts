@@ -5,6 +5,7 @@ export * from "./dom";
 export * from "./from-stream";
 export * from "./klist";
 export * from "./list";
+export * from "./object";
 export * from "./router";
 export * from "./scheduler";
 export * from "./sub";
