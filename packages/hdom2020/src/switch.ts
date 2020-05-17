@@ -3,14 +3,14 @@ import { ISubscribable } from "@thi.ng/rstream";
 import type { IComponent, IMountWithState } from "./api";
 import { $compile } from "./compile";
 import { Component } from "./component";
-import { withStream } from "./with-stream";
+import { $sub } from "./sub";
 
 export const $switch = <T>(
     src: ISubscribable<T>,
     keyFn: Fn<T, NumOrString>,
     ctors: Record<NumOrString, Fn<T, Promise<any>>>,
     loader?: IComponent
-) => withStream<T>(src, new Switch<T>(keyFn, ctors, loader));
+) => $sub<T>(src, new Switch<T>(keyFn, ctors, loader));
 
 export const $refresh = <T>(
     src: ISubscribable<T>,

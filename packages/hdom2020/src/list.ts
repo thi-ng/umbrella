@@ -4,7 +4,7 @@ import type { ISubscribable } from "@thi.ng/rstream";
 import type { IComponent, IMountWithState } from "./api";
 import { $compile } from "./compile";
 import { $move } from "./dom";
-import { withStream } from "./with-stream";
+import { $sub } from "./sub";
 
 export const $list = <T>(
     src: ISubscribable<T[]>,
@@ -12,7 +12,7 @@ export const $list = <T>(
     attribs: any,
     childCtor: Fn<T, any>,
     equiv?: Predicate2<T>
-) => withStream<T[]>(src, new List<T>(tag, attribs, childCtor, equiv));
+) => $sub<T[]>(src, new List<T>(tag, attribs, childCtor, equiv));
 
 export class List<T> implements IMountWithState<T[]> {
     el?: Element;

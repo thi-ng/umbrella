@@ -11,6 +11,5 @@ export * from "./sub";
 export * from "./switch";
 export * from "./utils";
 export * from "./with-cursor";
-export * from "./with-stream";
 export * from "./with-view";
 export * from "./wrap";

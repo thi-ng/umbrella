@@ -1,14 +1,19 @@
-import type { IComponent } from "./api";
+import type { IMountWithState } from "./api";
 import { $body, $el, $removeChild } from "./dom";
 
 export const $wrap = <T>(
     tag: string,
     attribs?: any,
     body?: T
-): IComponent<T> => ({
+): IMountWithState<T> => ({
     el: undefined,
-    async mount(parent: Element) {
-        return (this.el = $el(tag, attribs, body, parent));
+    async mount(parent: Element, state: T) {
+        return (this.el = $el(
+            tag,
+            attribs,
+            state != null ? state : body,
+            parent
+        ));
     },
     async unmount() {
         $removeChild(this.el!);

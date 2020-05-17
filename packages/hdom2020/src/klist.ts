@@ -4,7 +4,7 @@ import type { IComponent } from "./api";
 import { $compile } from "./compile";
 import { Component } from "./component";
 import { $move } from "./dom";
-import { withStream } from "./with-stream";
+import { $sub } from "./sub";
 
 interface Child {
     key: NumOrString;
@@ -17,7 +17,7 @@ export const $klist = <T>(
     attribs: any,
     childCtor: Fn<T, any>,
     keyFn?: Fn2<T, number, NumOrString>
-) => withStream<T[]>(src, new KList<T>(tag, attribs, childCtor, keyFn));
+) => $sub<T[]>(src, new KList<T>(tag, attribs, childCtor, keyFn));
 
 export class KList<T> extends Component<T[]> {
     children?: Child[] = [];
