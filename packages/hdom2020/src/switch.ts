@@ -1,4 +1,4 @@
-import { assert, Fn } from "@thi.ng/api";
+import { assert, Fn, NumOrString } from "@thi.ng/api";
 import { ISubscribable } from "@thi.ng/rstream";
 import type { IComponent, IMountWithState } from "./api";
 import { $compile } from "./compile";
@@ -7,10 +7,16 @@ import { withStream } from "./with-stream";
 
 export const $switch = <T>(
     src: ISubscribable<T>,
-    ctors: Record<string, Fn<T, Promise<any>>>,
-    keyFn: Fn<T, string>,
+    keyFn: Fn<T, NumOrString>,
+    ctors: Record<NumOrString, Fn<T, Promise<any>>>,
     loader?: IComponent
-) => withStream<T>(src, new Switch<T>(ctors, keyFn, loader));
+) => withStream<T>(src, new Switch<T>(keyFn, ctors, loader));
+
+export const $refresh = <T>(
+    src: ISubscribable<T>,
+    ctor: Fn<T, Promise<any>>,
+    loader?: IComponent
+) => $switch(src, () => 0, { 0: ctor }, loader);
 
 export class Switch<T> extends Component implements IMountWithState<T> {
     protected val?: T;
@@ -18,8 +24,8 @@ export class Switch<T> extends Component implements IMountWithState<T> {
     protected inner?: IComponent<T>;
 
     constructor(
-        protected ctors: Record<string, Fn<T, Promise<any>>>,
-        protected keyFn: Fn<T, string>,
+        protected keyFn: Fn<T, NumOrString>,
+        protected ctors: Record<NumOrString, Fn<T, Promise<any>>>,
         protected loader?: IComponent
     ) {
         super();
