@@ -2,7 +2,6 @@ export * from "./api";
 export * from "./compile";
 export * from "./component";
 export * from "./dom";
-export * from "./from-stream";
 export * from "./klist";
 export * from "./list";
 export * from "./object";
