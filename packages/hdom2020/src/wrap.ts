@@ -1,5 +1,6 @@
 import type { IMountWithState } from "./api";
 import { $body, $el, $removeChild } from "./dom";
+import { SCHEDULER } from "./scheduler";
 
 export const $wrap = <T>(
     tag: string,
@@ -7,6 +8,7 @@ export const $wrap = <T>(
     body?: T
 ): IMountWithState<T> => ({
     el: undefined,
+
     async mount(parent: Element, state: T) {
         return (this.el = $el(
             tag,
@@ -15,11 +17,13 @@ export const $wrap = <T>(
             parent
         ));
     },
+
     async unmount() {
         $removeChild(this.el!);
         this.el = undefined;
     },
+
     update(body: T) {
-        $body(<any>this.el!, body);
+        SCHEDULER.add(this, () => this.el && $body(<any>this.el!, body));
     },
 });

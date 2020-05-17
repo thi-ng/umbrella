@@ -51,7 +51,7 @@ export class Switch<T> extends Component implements IMountWithState<T> {
             this.loader && (await this.loader.mount(this.parent!));
             const key = this.keyFn(val);
             const next = this.ctors[key];
-            assert(!!next, `no component registered for key: ${key}`);
+            assert(!!next, `missing component for key: ${key}`);
             this.inner = $compile(await next(val));
             this.loader && (await this.loader.unmount());
         } else {

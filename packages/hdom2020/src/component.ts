@@ -1,4 +1,5 @@
 import type { IComponent } from "./api";
+import { $compile } from "./compile";
 import {
     $attribs,
     $body,
@@ -6,8 +7,8 @@ import {
     $el,
     $move,
     $removeChild,
-    $tree,
     $style,
+    $tree,
 } from "./dom";
 
 export abstract class Component<T = any> implements IComponent<T> {
@@ -35,6 +36,10 @@ export abstract class Component<T = any> implements IComponent<T> {
 
     $clear(el = this.el!) {
         return $clear(el);
+    }
+
+    $compile(tree: any) {
+        return $compile(tree);
     }
 
     $tree(tree: any, root = this.el!) {

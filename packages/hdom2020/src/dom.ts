@@ -8,7 +8,7 @@ import {
 } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { RE_TAG, SVG_NS, SVG_TAGS } from "@thi.ng/hiccup";
-import { isDeref } from "./utils";
+import { isComponent, isDeref } from "./utils";
 
 /**
  * hdom-style DOM tree creation from hiccup format. Returns DOM element
@@ -31,7 +31,7 @@ import { isDeref } from "./utils";
  */
 export const $tree = async (
     tree: any,
-    parent?: Element,
+    parent: Element,
     idx = -1
 ): Promise<any> => {
     if (isArray(tree)) {
@@ -44,7 +44,7 @@ export const $tree = async (
             }
             return parent;
         }
-        if (implementsFunction(tag, "mount")) {
+        if (isComponent(tag)) {
             return tag.mount(parent, ...tree.slice(1));
         }
         if (isFunction(tag)) {
@@ -52,7 +52,7 @@ export const $tree = async (
         }
         illegalArgs(`tag not supported: ${tag}`);
     }
-    if (implementsFunction(tree, "mount")) {
+    if (isComponent(tree)) {
         return tree.mount(parent);
     }
     if (isNotStringAndIterable(tree)) {
