@@ -3,38 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@2.0.3...@thi.ng/pointfree@2.0.4) (2020-05-14)
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-
-
-
-
-## [2.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@2.0.2...@thi.ng/pointfree@2.0.3) (2020-05-03)
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-
-
-
-
-## [2.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@2.0.1...@thi.ng/pointfree@2.0.2) (2020-04-28)
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-
-
-
-
-## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@2.0.0...@thi.ng/pointfree@2.0.1) (2020-04-27)
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-
-
-
-
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@1.3.3...@thi.ng/pointfree@2.0.0) (2020-04-16)
 
 
@@ -51,30 +19,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.3.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@1.3.2...@thi.ng/pointfree@1.3.3) (2020-04-11)
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-
-
-
-
-## [1.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@1.3.1...@thi.ng/pointfree@1.3.2) (2020-04-06)
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-
-
-
-
-## [1.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@1.3.0...@thi.ng/pointfree@1.3.1) (2020-04-05)
-
-**Note:** Version bump only for package @thi.ng/pointfree
-
-
-
-
-
 # [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@1.2.10...@thi.ng/pointfree@1.3.0) (2020-03-29)
 
 
@@ -83,14 +27,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **pointfree:** add $try word, update compile() to allow empty quotations ([41de106](https://github.com/thi-ng/umbrella/commit/41de106e776ad102e827ccc062a19a4e637613a0))
 * **pointfree:** add tojson()/fromjson() conversion ops ([829f3ab](https://github.com/thi-ng/umbrella/commit/829f3ab129084619c05b434732b46b6c26d32b5e))
 * **pointfree:** add whenq(), ismatch() ([44ab1d7](https://github.com/thi-ng/umbrella/commit/44ab1d7f5ff52a9226b873b42adada3eac1674e9))
-
-
-
-
-
-## [1.2.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree@1.2.9...@thi.ng/pointfree@1.2.10) (2020-03-28)
-
-**Note:** Version bump only for package @thi.ng/pointfree
 
 
 

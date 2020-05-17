@@ -3,36 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.9.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.9.3...@thi.ng/geom@1.9.4) (2020-05-16)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
 ## [1.9.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.9.2...@thi.ng/geom@1.9.3) (2020-05-14)
 
 
 ### Bug Fixes
 
 * **geom:** Path.copy() deep-clone behavior ([2ade10e](https://github.com/thi-ng/umbrella/commit/2ade10e86e83076fd9499ad7ee863caf7c3b463d))
-
-
-
-
-
-## [1.9.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.9.1...@thi.ng/geom@1.9.2) (2020-05-03)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [1.9.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.9.0...@thi.ng/geom@1.9.1) (2020-04-28)
-
-**Note:** Version bump only for package @thi.ng/geom
 
 
 
@@ -45,70 +21,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **geom:** add transformVertices() op ([ef68a27](https://github.com/thi-ng/umbrella/commit/ef68a2703aab83cf1b520a832a6b1c8268759a3b))
 * **geom:** update asPolyline() impls ([cca8574](https://github.com/thi-ng/umbrella/commit/cca85744377c9957af82695236230bc75a005473))
-
-
-
-
-
-## [1.8.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.8.11...@thi.ng/geom@1.8.12) (2020-04-23)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [1.8.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.8.10...@thi.ng/geom@1.8.11) (2020-04-23)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [1.8.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.8.9...@thi.ng/geom@1.8.10) (2020-04-20)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [1.8.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.8.8...@thi.ng/geom@1.8.9) (2020-04-11)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [1.8.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.8.7...@thi.ng/geom@1.8.8) (2020-04-06)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [1.8.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.8.6...@thi.ng/geom@1.8.7) (2020-04-05)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [1.8.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.8.5...@thi.ng/geom@1.8.6) (2020-04-01)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [1.8.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.8.4...@thi.ng/geom@1.8.5) (2020-03-28)
-
-**Note:** Version bump only for package @thi.ng/geom
 
 
 

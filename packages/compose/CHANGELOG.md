@@ -3,62 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.4.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/compose@1.4.6...@thi.ng/compose@1.4.7) (2020-05-14)
-
-**Note:** Version bump only for package @thi.ng/compose
-
-
-
-
-
-## [1.4.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/compose@1.4.5...@thi.ng/compose@1.4.6) (2020-05-03)
-
-**Note:** Version bump only for package @thi.ng/compose
-
-
-
-
-
-## [1.4.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/compose@1.4.4...@thi.ng/compose@1.4.5) (2020-04-28)
-
-**Note:** Version bump only for package @thi.ng/compose
-
-
-
-
-
-## [1.4.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/compose@1.4.3...@thi.ng/compose@1.4.4) (2020-04-27)
-
-**Note:** Version bump only for package @thi.ng/compose
-
-
-
-
-
-## [1.4.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/compose@1.4.2...@thi.ng/compose@1.4.3) (2020-04-11)
-
-**Note:** Version bump only for package @thi.ng/compose
-
-
-
-
-
-## [1.4.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/compose@1.4.1...@thi.ng/compose@1.4.2) (2020-04-06)
-
-**Note:** Version bump only for package @thi.ng/compose
-
-
-
-
-
-## [1.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/compose@1.4.0...@thi.ng/compose@1.4.1) (2020-04-05)
-
-**Note:** Version bump only for package @thi.ng/compose
-
-
-
-
-
 # [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/compose@1.3.12...@thi.ng/compose@1.4.0) (2020-03-28)
 
 

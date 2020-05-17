@@ -3,92 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.1.4...@thi.ng/geom-accel@2.1.5) (2020-05-14)
-
-**Note:** Version bump only for package @thi.ng/geom-accel
-
-
-
-
-
-## [2.1.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.1.3...@thi.ng/geom-accel@2.1.4) (2020-05-03)
-
-**Note:** Version bump only for package @thi.ng/geom-accel
-
-
-
-
-
-## [2.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.1.2...@thi.ng/geom-accel@2.1.3) (2020-04-28)
-
-**Note:** Version bump only for package @thi.ng/geom-accel
-
-
-
-
-
-## [2.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.1.1...@thi.ng/geom-accel@2.1.2) (2020-04-27)
-
-**Note:** Version bump only for package @thi.ng/geom-accel
-
-
-
-
-
-## [2.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.1.0...@thi.ng/geom-accel@2.1.1) (2020-04-23)
-
-**Note:** Version bump only for package @thi.ng/geom-accel
-
-
-
-
-
 # [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.0.11...@thi.ng/geom-accel@2.1.0) (2020-04-23)
 
 
 ### Features
 
 * **geom-accel:** add 2d/3d spatial grids ([e34c44d](https://github.com/thi-ng/umbrella/commit/e34c44d624026bbce946d904c5b861f7a48fd484))
-
-
-
-
-
-## [2.0.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.0.10...@thi.ng/geom-accel@2.0.11) (2020-04-20)
-
-**Note:** Version bump only for package @thi.ng/geom-accel
-
-
-
-
-
-## [2.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.0.9...@thi.ng/geom-accel@2.0.10) (2020-04-11)
-
-**Note:** Version bump only for package @thi.ng/geom-accel
-
-
-
-
-
-## [2.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.0.8...@thi.ng/geom-accel@2.0.9) (2020-04-06)
-
-**Note:** Version bump only for package @thi.ng/geom-accel
-
-
-
-
-
-## [2.0.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.0.7...@thi.ng/geom-accel@2.0.8) (2020-04-05)
-
-**Note:** Version bump only for package @thi.ng/geom-accel
-
-
-
-
-
-## [2.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.0.6...@thi.ng/geom-accel@2.0.7) (2020-03-28)
-
-**Note:** Version bump only for package @thi.ng/geom-accel
 
 
 

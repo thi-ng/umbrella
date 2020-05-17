@@ -3,30 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.4.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.4.2...@thi.ng/pointfree-lang@1.4.3) (2020-05-14)
-
-**Note:** Version bump only for package @thi.ng/pointfree-lang
-
-
-
-
-
-## [1.4.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.4.1...@thi.ng/pointfree-lang@1.4.2) (2020-05-03)
-
-**Note:** Version bump only for package @thi.ng/pointfree-lang
-
-
-
-
-
-## [1.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.4.0...@thi.ng/pointfree-lang@1.4.1) (2020-04-28)
-
-**Note:** Version bump only for package @thi.ng/pointfree-lang
-
-
-
-
-
 # [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.3.0...@thi.ng/pointfree-lang@1.4.0) (2020-04-27)
 
 
@@ -50,30 +26,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.2.2...@thi.ng/pointfree-lang@1.2.3) (2020-04-11)
-
-**Note:** Version bump only for package @thi.ng/pointfree-lang
-
-
-
-
-
-## [1.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.2.1...@thi.ng/pointfree-lang@1.2.2) (2020-04-06)
-
-**Note:** Version bump only for package @thi.ng/pointfree-lang
-
-
-
-
-
-## [1.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.2.0...@thi.ng/pointfree-lang@1.2.1) (2020-04-05)
-
-**Note:** Version bump only for package @thi.ng/pointfree-lang
-
-
-
-
-
 # [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.1.14...@thi.ng/pointfree-lang@1.2.0) (2020-03-29)
 
 
@@ -81,14 +33,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **pointfree-lang:** add `try` alias, fix `include` cli word ([ab61e5b](https://github.com/thi-ng/umbrella/commit/ab61e5b428fbb98d2edfcd69c2582a98ca70779d))
 * **pointfree-lang:** add initial CLI tooling, add new aliases, update deps ([90c9d96](https://github.com/thi-ng/umbrella/commit/90c9d96197d3f84d0c1069f998cf90521a260d11))
-
-
-
-
-
-## [1.1.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.1.13...@thi.ng/pointfree-lang@1.1.14) (2020-03-28)
-
-**Note:** Version bump only for package @thi.ng/pointfree-lang
 
 
 

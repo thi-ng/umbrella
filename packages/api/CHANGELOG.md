@@ -3,60 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [6.10.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.10.4...@thi.ng/api@6.10.5) (2020-05-14)
-
-**Note:** Version bump only for package @thi.ng/api
-
-
-
-
-
-## [6.10.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.10.3...@thi.ng/api@6.10.4) (2020-05-03)
-
-**Note:** Version bump only for package @thi.ng/api
-
-
-
-
-
-## [6.10.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.10.2...@thi.ng/api@6.10.3) (2020-04-28)
-
-**Note:** Version bump only for package @thi.ng/api
-
-
-
-
-
-## [6.10.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.10.1...@thi.ng/api@6.10.2) (2020-04-27)
-
-**Note:** Version bump only for package @thi.ng/api
-
-
-
-
-
-## [6.10.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.10.0...@thi.ng/api@6.10.1) (2020-04-11)
-
-**Note:** Version bump only for package @thi.ng/api
-
-
-
-
-
 # [6.10.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.9.1...@thi.ng/api@6.10.0) (2020-04-06)
 
 
 ### Features
 
 * **api:** add LogLevelName type ([25b6c67](https://github.com/thi-ng/umbrella/commit/25b6c6774645eef6606e76b9e81149863e964d71))
-
-
-
-
-
-## [6.9.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.9.0...@thi.ng/api@6.9.1) (2020-04-05)
-
-**Note:** Version bump only for package @thi.ng/api
 
 
 

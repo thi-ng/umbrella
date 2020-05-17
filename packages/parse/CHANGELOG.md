@@ -3,60 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.5.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.5.4...@thi.ng/parse@0.5.5) (2020-05-16)
-
-**Note:** Version bump only for package @thi.ng/parse
-
-
-
-
-
-## [0.5.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.5.3...@thi.ng/parse@0.5.4) (2020-05-14)
-
-**Note:** Version bump only for package @thi.ng/parse
-
-
-
-
-
-## [0.5.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.5.2...@thi.ng/parse@0.5.3) (2020-05-03)
-
-**Note:** Version bump only for package @thi.ng/parse
-
-
-
-
-
-## [0.5.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.5.1...@thi.ng/parse@0.5.2) (2020-04-28)
-
-**Note:** Version bump only for package @thi.ng/parse
-
-
-
-
-
-## [0.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.5.0...@thi.ng/parse@0.5.1) (2020-04-27)
-
-**Note:** Version bump only for package @thi.ng/parse
-
-
-
-
-
 # [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.4.1...@thi.ng/parse@0.5.0) (2020-04-23)
 
 
 ### Features
 
 * **parse:** add built-ins, extract STRING, minor updates ([458f5b3](https://github.com/thi-ng/umbrella/commit/458f5b34a4fa1c58f55b23be8455e6bd7b7bb72d))
-
-
-
-
-
-## [0.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.4.0...@thi.ng/parse@0.4.1) (2020-04-21)
-
-**Note:** Version bump only for package @thi.ng/parse
 
 
 
