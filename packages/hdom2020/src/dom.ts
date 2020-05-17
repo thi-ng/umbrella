@@ -189,10 +189,15 @@ const setAttrib = (el: Element, id: string, val: any, attribs: any) => {
 
 const updateClasses = (existing: string, val: any) => {
     const classes = new Set(existing.split(" "));
-    for (let id in val) {
-        let c = val[id];
-        isDeref(c) && (c = c.deref());
-        c ? classes.add(id) : classes.delete(id);
+    val = isDeref(val) ? val.deref() : val;
+    if (isString(val)) {
+        classes.add(val);
+    } else {
+        for (let id in val) {
+            let c = val[id];
+            isDeref(c) && (c = c.deref());
+            c ? classes.add(id) : classes.delete(id);
+        }
     }
     return [...classes].join(" ");
 };
