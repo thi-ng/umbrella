@@ -1,6 +1,6 @@
 import { isString } from "@thi.ng/checks";
 import { delayed } from "@thi.ng/compose";
-import { $compile, $list, fromStream } from "@thi.ng/hdom2020";
+import { $compile, $list, $refresh, $wrap } from "@thi.ng/hdom2020";
 import {
     CloseMode,
     fromDOMEvent,
@@ -73,16 +73,17 @@ const root = $compile([
                 map(([x, y]) => ({ left: x + "px", top: y + "px" }))
             ),
         },
-        fromStream(
+        $refresh(
             sync<any, any>({
                 src: { body, mpos },
-                xform: map((x: any) => [
-                    "span",
-                    {},
-                    x.body,
-                    ["span.ml2.light-green", {}, `[${x.mpos}]`],
-                ]),
-            })
+            }),
+            async (x: any) => [
+                "span",
+                {},
+                x.body,
+                ["span.ml2.light-green", {}, `[${x.mpos}]`],
+            ],
+            $wrap("span")
         ),
     ],
     [
