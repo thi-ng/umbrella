@@ -1,6 +1,6 @@
 import { isString } from "@thi.ng/checks";
 import { delayed } from "@thi.ng/compose";
-import { $compile, $list, $refresh, $wrap } from "@thi.ng/hdom2020";
+import { $compile, $list, $refresh } from "@thi.ng/hdom2020";
 import {
     CloseMode,
     fromDOMEvent,
@@ -82,8 +82,7 @@ const root = $compile([
                 {},
                 x.body,
                 ["span.ml2.light-green", {}, `[${x.mpos}]`],
-            ],
-            $wrap("span")
+            ]
         ),
     ],
     [
@@ -95,23 +94,13 @@ const root = $compile([
     ],
     ["div.hot-pink", {}, date],
     ["div.pink", {}, items.transform(map((x) => `${x.length} items`))],
-    $list(
-        items,
-        "ul.f7",
-        { style: { "column-count": 2 } },
-        (x) => [
-            "li",
-            {
-                class: isString(x)
-                    ? "light-blue"
-                    : x === typing
-                    ? "red"
-                    : "yellow",
-            },
-            x,
-        ],
-        (a, b) => a === b
-    ),
+    $list(items, "ul.f7", { style: { "column-count": 2 } }, (x) => [
+        "li",
+        {
+            class: isString(x) ? "light-blue" : x === typing ? "red" : "yellow",
+        },
+        x,
+    ]),
 ]);
 
 root.mount(document.getElementById("app")!);
