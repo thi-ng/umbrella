@@ -11,3 +11,5 @@ export const isComponent = (x: any): x is IComponent<any> =>
 
 export const isDeref = (x: any): x is IDeref<any> =>
     implementsFunction(x, "deref");
+
+export const tryDeref = (x: any) => (isDeref(x) ? x.deref() : x);

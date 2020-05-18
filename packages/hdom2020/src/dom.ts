@@ -8,7 +8,7 @@ import {
 } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { RE_TAG, SVG_NS, SVG_TAGS } from "@thi.ng/hiccup";
-import { isComponent, isDeref } from "./utils";
+import { isComponent, isDeref, tryDeref } from "./utils";
 
 /**
  * hdom-style DOM tree creation from hiccup format. Returns DOM element
@@ -123,9 +123,7 @@ export const $move = (
 export const $clear = (el: Element) => ((el.innerHTML = ""), el);
 
 export const $body = (el: HTMLElement, body: any) => {
-    el.innerText = String(
-        implementsFunction(body, "deref") ? (<any>body).deref() : body
-    );
+    el.innerText = String(tryDeref(body));
 };
 
 export const $attribs = (el: Element, attribs: any) => {
@@ -189,7 +187,7 @@ const setAttrib = (el: Element, id: string, val: any, attribs: any) => {
 
 const updateClasses = (existing: string, val: any) => {
     const classes = new Set(existing.split(" "));
-    val = isDeref(val) ? val.deref() : val;
+    val = tryDeref(val);
     if (isString(val)) {
         classes.add(val);
     } else {
@@ -239,7 +237,7 @@ export const $style = (el: Element, rules: string | any) => {
             let v = rules[id];
             isDeref(v) && (v = v.deref());
             isFunction(v) && (v = v(rules));
-            style[id] = v || "";
+            style[id] = v != null ? v : "";
         }
     }
 };
