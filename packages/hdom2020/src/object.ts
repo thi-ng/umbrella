@@ -1,6 +1,6 @@
-import { Fn, Keys } from "@thi.ng/api";
+import type { Fn, Keys } from "@thi.ng/api";
 import { fromObject, StreamObj, StreamObjOpts } from "@thi.ng/rstream";
-import { IComponent } from "./api";
+import type { IComponent } from "./api";
 import { Component } from "./component";
 
 export const $object = <T, K extends Keys<T>>(
