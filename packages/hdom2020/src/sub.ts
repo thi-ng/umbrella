@@ -1,6 +1,9 @@
+import type { Fn2 } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks";
+import { defSetterUnsafe } from "@thi.ng/paths";
 import { ISubscribable, Subscription } from "@thi.ng/rstream";
-import { IComponent, IMountWithState } from "./api";
+import type { IComponent, IMountWithState } from "./api";
+import { $attribs } from "./dom";
 import { SCHEDULER } from "./scheduler";
 import { $wrap } from "./wrap";
 
@@ -47,5 +50,23 @@ export class $Sub<T = any> extends Subscription<T, T> {
 
     next(x: T) {
         SCHEDULER.add(this, () => this.el && this.inner.update(x));
+    }
+}
+
+export class $SubA extends Subscription<any, any> {
+    protected setter: Fn2<any, any, any>;
+    protected tmp: any = {};
+
+    constructor(protected comp: IComponent, path: string[]) {
+        super();
+        this.setter = defSetterUnsafe(path);
+    }
+
+    next(a: any) {
+        const $ = this.comp;
+        SCHEDULER.add(
+            $,
+            () => $.el && $attribs($.el, this.setter(this.tmp, a))
+        );
     }
 }

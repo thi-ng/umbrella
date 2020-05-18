@@ -1,10 +1,9 @@
 import type { Fn2 } from "@thi.ng/api";
 import { isArray, isFunction, isPlainObject } from "@thi.ng/checks";
-import { setInUnsafe } from "@thi.ng/paths";
 import type { CompiledComponent, IComponent } from "./api";
-import { $attribs, $el, $removeChild } from "./dom";
+import { $el, $removeChild } from "./dom";
 import { SCHEDULER } from "./scheduler";
-import { $sub } from "./sub";
+import { $sub, $SubA } from "./sub";
 import { isComponent, isSubscribable } from "./utils";
 import { $wrap } from "./wrap";
 
@@ -18,29 +17,15 @@ export const $compile = (tree: any): IComponent => {
             async mount(parent: Element) {
                 this.subs = [];
                 walk((x, path) => {
-                    if (isSubscribable(x)) {
-                        this.subs!.push(
-                            x.subscribe({
-                                next: (a) =>
-                                    SCHEDULER.add(
-                                        this,
-                                        () =>
-                                            this.el &&
-                                            $attribs(
-                                                this.el,
-                                                setInUnsafe({}, path, a)
-                                            )
-                                    ),
-                            })
-                        );
-                    }
+                    isSubscribable(x) &&
+                        this.subs!.push(x.subscribe(new $SubA(this, path)));
                 }, tree[1]);
                 this.children = [];
                 this.el = $el(tag, tree[1], null, parent);
                 for (let i = 2; i < tree.length; i++) {
                     const child = $compile(tree[i]);
-                    this.children.push(child);
                     child.mount(this.el);
+                    this.children.push(child);
                 }
                 return this.el;
             },
@@ -72,7 +57,7 @@ export const $compile = (tree: any): IComponent => {
     return $wrap("span", null, tree);
 };
 
-const walk = (f: Fn2<any, any, void>, x: any, path: string[] = []) => {
+const walk = (f: Fn2<any, string[], void>, x: any, path: string[] = []) => {
     if (isPlainObject(x)) {
         for (const k in x) {
             walk(f, (<any>x)[k], [...path, k]);
