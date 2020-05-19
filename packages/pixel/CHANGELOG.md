@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.1.20...@thi.ng/pixel@0.2.0) (2020-05-19)
+
+
+### Features
+
+* **pixel:** add .copy(), update .blitCanvas() ([f4b2c3e](https://github.com/thi-ng/umbrella/commit/f4b2c3e374b45bd26396e436f3e71e9d3afbc131))
+* **pixel:** update canvas2d(), imageCanvas() ([65929a2](https://github.com/thi-ng/umbrella/commit/65929a2ee6be9915e14bf69389520739073af5ee))
+
+
+
+
+
 ## [0.1.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.1.3...@thi.ng/pixel@0.1.4) (2019-09-21)
 
 ### Bug Fixes

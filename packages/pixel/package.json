@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/pixel",
-    "version": "0.1.20",
+    "version": "0.2.0",
     "description": "Typed array backed, packed pixel buffer w/ customizable formats, blitting, conversions",
     "module": "./index.js",
     "main": "./lib/index.js",
