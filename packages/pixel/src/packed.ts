@@ -1,17 +1,16 @@
-import {
-    Fn,
-    IObjectOf,
-    Type,
-    UIntArray
-} from "@thi.ng/api";
+import { Fn, IObjectOf, Type, UIntArray } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
-import { isPremultipliedInt, postmultiplyInt, premultiplyInt } from "@thi.ng/porter-duff";
+import {
+    isPremultipliedInt,
+    postmultiplyInt,
+    premultiplyInt,
+} from "@thi.ng/porter-duff";
 import {
     BlendFnInt,
     BlitOpts,
     Lane,
     PackedFormat,
-    PackedFormatSpec
+    PackedFormatSpec,
 } from "./api";
 import { canvasPixels, imageCanvas } from "./canvas";
 import { compileGrayFromABGR, compileGrayToABGR } from "./codegen";
@@ -24,7 +23,7 @@ import {
     setChannelConvert,
     setChannelSame,
     setChannelUni,
-    transformABGR
+    transformABGR,
 } from "./utils";
 
 interface UIntArrayConstructor {
@@ -36,7 +35,7 @@ interface UIntArrayConstructor {
 const CTORS: IObjectOf<UIntArrayConstructor> = {
     [Type.U8]: Uint8Array,
     [Type.U16]: Uint16Array,
-    [Type.U32]: Uint32Array
+    [Type.U32]: Uint32Array,
 };
 
 export class PackedBuffer {
@@ -90,6 +89,12 @@ export class PackedBuffer {
 
     as(fmt: PackedFormat) {
         return this.getRegion(0, 0, this.width, this.height, fmt);
+    }
+
+    copy() {
+        const dest = new PackedBuffer(this.width, this.height, this.format);
+        dest.pixels.set(this.pixels);
+        return dest;
     }
 
     getAt(x: number, y: number) {
@@ -190,6 +195,7 @@ export class PackedBuffer {
             dest[i] = fmt(src[i]);
         }
         ctx.putImageData(idata, x, y);
+        return canvas;
     }
 
     getRegion(
@@ -211,7 +217,7 @@ export class PackedBuffer {
             sx,
             sy,
             w,
-            h
+            h,
         });
     }
 
@@ -223,7 +229,7 @@ export class PackedBuffer {
             size: chan.size,
             channels: [{ size: chan.size, lane: Lane.RED }],
             fromABGR: compileGrayFromABGR(chan.size),
-            toABGR: compileGrayToABGR(chan.size)
+            toABGR: compileGrayToABGR(chan.size),
         });
         const src = this.pixels;
         const dest = buf.pixels;
