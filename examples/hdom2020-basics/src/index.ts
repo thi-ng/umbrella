@@ -88,9 +88,9 @@ const root = $compile([
     [
         "div.mv3",
         {},
-        [button, () => blur.next(!blur.deref()), "toggle blur"],
-        [button, randomizeBody, "randomize title"],
-        [button, randomizeList, "randomize list"],
+        button(() => blur.next(!blur.deref()), "toggle blur"),
+        button(randomizeBody, "randomize title"),
+        button(randomizeList, "randomize list"),
     ],
     ["div.hot-pink", {}, date],
     ["div.pink", {}, items.transform(map((x) => `${x.length} items`))],
