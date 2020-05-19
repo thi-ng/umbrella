@@ -3,18 +3,25 @@ import type { CanvasContext, RawPixelBuffer } from "./api";
 
 /**
  * Creates a canvas element of given size, obtains its 2D drawing
- * context and returns object of both.
+ * context and returns object of both. If `parent` is given, the canvas
+ * is appended to it as child.
  *
  * @param width -
  * @param height -
+ * @param parent -
  */
-export const canvas2d = (width: number, height = width): CanvasContext => {
+export const canvas2d = (
+    width: number,
+    height = width,
+    parent?: HTMLElement
+): CanvasContext => {
     const canvas = document.createElement("canvas");
     canvas.width = width;
     canvas.height = height;
+    parent && parent.appendChild(canvas);
     return {
         canvas,
-        ctx: canvas.getContext("2d")!
+        ctx: canvas.getContext("2d")!,
     };
 };
 
@@ -50,20 +57,23 @@ export function canvasPixels(width: HTMLCanvasElement | number, height?: number)
 /**
  * Creates canvas for given image and draws image, optionally with given
  * new size. If no width/height is given, the canvas will be of same
- * size as image.
+ * size as image. If `parent` is given, the canvas is appended to it as
+ * child.
  *
  * @param img -
  * @param width -
  * @param height -
+ * @param parent -
  */
 export const imageCanvas = (
     img: HTMLImageElement,
     width?: number,
-    height = width
+    height = width,
+    parent?: HTMLElement
 ): CanvasContext => {
     const ctx = isNumber(width)
-        ? canvas2d(width, height)
-        : canvas2d(img.width, img.height);
+        ? canvas2d(width, height, parent)
+        : canvas2d(img.width, img.height, parent);
     ctx.ctx.drawImage(img, 0, 0, ctx.canvas.width, ctx.canvas.height);
     return ctx;
 };
