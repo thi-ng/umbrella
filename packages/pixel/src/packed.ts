@@ -9,6 +9,7 @@ import {
     BlendFnInt,
     BlitOpts,
     Lane,
+    PackedChannel,
     PackedFormat,
     PackedFormatSpec,
 } from "./api";
@@ -37,6 +38,21 @@ const CTORS: IObjectOf<UIntArrayConstructor> = {
     [Type.U16]: Uint16Array,
     [Type.U32]: Uint32Array,
 };
+
+/**
+ * Syntax sugar for {@link PackedBuffer} ctor.
+ *
+ * @param w -
+ * @param h -
+ * @param fmt -
+ * @param pixels -
+ */
+export const buffer = (
+    w: number,
+    h: number,
+    fmt: PackedFormat | PackedFormatSpec,
+    pixels?: UIntArray
+) => new PackedBuffer(w, h, fmt, pixels);
 
 export class PackedBuffer {
     static fromImage(
@@ -81,7 +97,7 @@ export class PackedBuffer {
     ) {
         this.width = w;
         this.height = h;
-        this.format = (<any>fmt).__compiled
+        this.format = (<any>fmt).__packed
             ? <PackedFormat>fmt
             : defPackedFormat(fmt);
         this.pixels = pixels || new CTORS[fmt.type](w * h);
@@ -113,7 +129,7 @@ export class PackedBuffer {
     }
 
     getChannelAt(x: number, y: number, id: number, normalized = false) {
-        const chan = ensureChannel(this.format, id);
+        const chan = <PackedChannel>ensureChannel(this.format, id);
         const col = this.getAt(x, y);
         return normalized ? chan.float(col) : chan.int(col);
     }
@@ -125,7 +141,7 @@ export class PackedBuffer {
         col: number,
         normalized = false
     ) {
-        const chan = ensureChannel(this.format, id);
+        const chan = <PackedChannel>ensureChannel(this.format, id);
         const src = this.getAt(x, y);
         normalized ? chan.setFloat(src, col) : chan.setInt(src, col);
         return this;
@@ -187,7 +203,7 @@ export class PackedBuffer {
 
     blitCanvas(canvas: HTMLCanvasElement, x = 0, y = 0) {
         const ctx = canvas.getContext("2d")!;
-        const idata = ctx.getImageData(x, y, this.width, this.height);
+        const idata = new ImageData(this.width, this.height);
         const dest = new Uint32Array(idata.data.buffer);
         const src = this.pixels;
         const fmt = this.format.toABGR;
@@ -222,7 +238,7 @@ export class PackedBuffer {
     }
 
     getChannel(id: number) {
-        const chan = ensureChannel(this.format, id);
+        const chan = <PackedChannel>ensureChannel(this.format, id);
         const buf = new PackedBuffer(this.width, this.height, {
             type:
                 chan.size > 16 ? Type.U32 : chan.size > 8 ? Type.U16 : Type.U8,
@@ -241,7 +257,7 @@ export class PackedBuffer {
     }
 
     setChannel(id: number, src: PackedBuffer | number) {
-        const chan = ensureChannel(this.format, id);
+        const chan = <PackedChannel>ensureChannel(this.format, id);
         const dbuf = this.pixels;
         const set = chan.setInt;
         if (isNumber(src)) {
@@ -304,18 +320,3 @@ export class PackedBuffer {
         return this;
     }
 }
-
-/**
- * Syntax sugar for {@link PackedBuffer} ctor.
- *
- * @param w -
- * @param h -
- * @param fmt -
- * @param pixels -
- */
-export const buffer = (
-    w: number,
-    h: number,
-    fmt: PackedFormat | PackedFormatSpec,
-    pixels?: UIntArray
-) => new PackedBuffer(w, h, fmt, pixels);
