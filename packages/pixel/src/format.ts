@@ -10,6 +10,7 @@ import {
     PackedFormatSpec,
 } from "./api";
 import { compileFromABGR, compileToABGR } from "./codegen";
+import { orderedDither } from "./dither";
 import { luminanceABGR } from "./utils";
 
 const defChannel = (
@@ -17,7 +18,8 @@ const defChannel = (
     idx: number,
     shift: number
 ): PackedChannel => {
-    const mask0 = (1 << ch.size) - 1;
+    const num = 1 << ch.size;
+    const mask0 = num - 1;
     const maskA = (mask0 << shift) >>> 0;
     const invMask = ~maskA >>> 0;
     const lane = ch.lane != null ? ch.lane : idx;
@@ -35,6 +37,8 @@ const defChannel = (
         setInt,
         float: (x) => int(x) / mask0,
         setFloat: (src, x) => setInt(src, clamp01(x) * mask0),
+        dither: (mat, steps, x, y, val) =>
+            orderedDither(mat, steps, num, num, x, y, val),
     };
 };
 

@@ -6,6 +6,8 @@ import {
     premultiplyInt,
 } from "@thi.ng/porter-duff";
 import {
+    BayerMatrix,
+    BayerSize,
     BlendFnInt,
     BlitOpts,
     Lane,
@@ -15,6 +17,7 @@ import {
 } from "./api";
 import { canvasPixels, imageCanvas } from "./canvas";
 import { compileGrayFromABGR, compileGrayToABGR } from "./codegen";
+import { defBayer } from "./dither";
 import { ABGR8888, defPackedFormat } from "./format";
 import {
     clampRegion,
@@ -316,6 +319,57 @@ export class PackedBuffer {
         const pix = this.pixels;
         for (let i = pix.length; --i >= 0; ) {
             pix[i] = f(pix[i]);
+        }
+        return this;
+    }
+
+    /**
+     * Applies in-place, ordered dithering using provided dither matrix
+     * (or matrix size) and desired number of dither levels, optionally
+     * specified individually (per channel). Each channel is be
+     * processed independently. Channels can be excluded from dithering
+     * by setting their target size to zero or negative numbers.
+     *
+     * @remarks
+     * A `size` of 1 will result in simple posterization of each
+     * channel. The `numColors` value(s) MUST be in the `[0 ..
+     * numColorsInChannel]` interval.
+     *
+     * Also see: {@link defBayer}, {@link ditherPixels}.
+     *
+     * @param size - dither matrix/size
+     * @param numColors - num target colors/steps
+     */
+    dither(size: BayerSize | BayerMatrix, numColors: number | number[]) {
+        const { pixels, format, width } = this;
+        const steps = isNumber(numColors)
+            ? new Array<number>(format.channels.length).fill(numColors)
+            : numColors;
+        const mat = isNumber(size) ? defBayer(size) : size;
+        for (
+            let i = 0,
+                n = pixels.length,
+                nc = format.channels.length,
+                x = 0,
+                y = 0;
+            i < n;
+            i++
+        ) {
+            let col = pixels[i];
+            for (let j = 0; j < nc; j++) {
+                const ch = format.channels[j];
+                const cs = steps[j];
+                cs > 0 &&
+                    (col = ch.setInt(
+                        col,
+                        ch.dither(mat, cs, x, y, ch.int(col))
+                    ));
+            }
+            pixels[i] = col;
+            if (++x === width) {
+                x = 0;
+                y++;
+            }
         }
         return this;
     }
