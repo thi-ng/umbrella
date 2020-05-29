@@ -1,4 +1,4 @@
-import type { NumericArray } from "@thi.ng/api";
+import type { ArrayLikeIterable } from "@thi.ng/api";
 import { map } from "../xform/map";
 import { permutations } from "./permutations";
 import { range, Range } from "./range";
@@ -37,7 +37,10 @@ import { zip } from "./zip";
  *
  * @param vec
  */
-export const rangeNd = (min: NumericArray, max?: NumericArray) =>
+export const rangeNd = (
+    min: ArrayLikeIterable<number>,
+    max?: ArrayLikeIterable<number>
+) =>
     permutations.apply(
         null,
         <Range[]>(
