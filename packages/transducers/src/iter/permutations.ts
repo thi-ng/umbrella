@@ -84,7 +84,7 @@ export function* permutations(...src: any[]): IterableIterator<any[]> {
  * //   [1, 0], [1, 1], [1, 2],
  * //   [2, 0], [2, 1], [2, 2] ]
  *
- * [...permutationsN(2, 3, [10, 20])]
+ * [...permutationsN(2, 2, [10, 20])]
  * // [ [ 10, 20 ], [ 10, 21 ], [ 11, 20 ], [ 11, 21 ] ]
  * ```
  *

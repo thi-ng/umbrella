@@ -1,5 +1,5 @@
-import { isReduced, Reduced } from "../reduced";
 import type { IReducible, ReductionFn } from "../api";
+import { isReduced, Reduced } from "../reduced";
 
 export function range(): Range;
 export function range(to: number): Range;
