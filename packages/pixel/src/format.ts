@@ -305,6 +305,10 @@ export const FLOAT_GRAY_ALPHA = defFloatFormat({
     channels: [Lane.RED, Lane.ALPHA],
 });
 
+export const FLOAT_RGB = defFloatFormat({
+    channels: [Lane.RED, Lane.GREEN, Lane.BLUE],
+});
+
 export const FLOAT_RGBA = defFloatFormat({
     alpha: true,
     channels: [Lane.RED, Lane.GREEN, Lane.BLUE, Lane.ALPHA],
