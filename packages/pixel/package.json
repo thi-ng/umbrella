@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/pixel",
     "version": "0.2.0",
-    "description": "Typed array backed, packed pixel buffer w/ customizable formats, blitting, conversions",
+    "description": "Typed array backed, packed integer and unpacked floating point pixel buffers w/ customizable formats, blitting, dithering, conversions",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -57,12 +57,16 @@
     "keywords": [
         "ES6",
         "alpha blending",
+        "bayer matrix",
         "blit",
         "canvas",
         "color channels",
         "conversion",
+        "float",
         "grayscale",
         "image",
+        "ordered dither",
+        "packed",
         "pixel buffer",
         "typescript"
     ],

@@ -11,7 +11,8 @@ This project is part of the
 
 - [About](#about)
   - [WIP features](#wip-features)
-  - [Preset pixel formats](#preset-pixel-formats)
+  - [Packed integer pixel formats](#packed-integer-pixel-formats)
+  - [Floating point pixel formats](#floating-point-pixel-formats)
   - [Status](#status)
   - [Related packages](#related-packages)
 - [Installation](#installation)
@@ -23,7 +24,7 @@ This project is part of the
 
 ## About
 
-Typed array backed, packed pixel buffer w/ customizable formats, blitting, conversions.
+Typed array backed, packed integer and unpacked floating point pixel buffers w/ customizable formats, blitting, dithering, conversions.
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/pixel-basics.png)
 
@@ -38,7 +39,10 @@ Typed array backed, packed pixel buffer w/ customizable formats, blitting, conve
 - Single-channel manipulation / extraction / replacement / conversion
 - Inversion
 - XY pixel accessors
-- 10 preset formats (see table below)
+- 10 packed integer and 4 floating point preset formats (see table
+  below)
+- Ordered dithering w/ customizable Bayer matrix size and target color
+  steps (int formats only)
 - Declarative custom format & optimized code generation
 - HTML canvas creation & `ImageData` utilities
 
@@ -46,12 +50,13 @@ Typed array backed, packed pixel buffer w/ customizable formats, blitting, conve
 
 - [x] Accessors for normalized channel value
 - [x] Pre/Post-multipy (only if alpha is available)
-- [ ] Re-add strided float buffers / formats
+- [x] Re-add strided float buffers / formats
+- [x] Dithering
 - Readonly texture sampling abstraction
     - [ ] Wrap-around behaviors
     - [ ] Filtered access (bilinear interpolation)
 
-### Preset pixel formats
+### Packed integer pixel formats
 
 All packed integer formats use the canvas native ABGR 32bit format as
 common intermediate for conversions. During conversion to ABGR, channels
@@ -63,6 +68,8 @@ Format specs can freely control channel layout within current limits:
 
 - Channel sizes: 1 - 32 bits.
 - Storage: 8, 16 or 32 bits per pixel
+
+New formats can be defined via `defPackedFormat()`.
 
 | Format ID      | Bits per pixel    | Description                                          |
 |----------------|-------------------|------------------------------------------------------|
@@ -84,6 +91,23 @@ Format specs can freely control channel layout within current limits:
   converting from ABGR and in return produce grayscale ABGR
 - In all built-in formats supporting it, the alpha channel always
   occupies the most-significant bits (up to format size)
+
+### Floating point pixel formats
+
+Strided floating point format presets for use with `floatBuffer()`. New
+formats can be defined via `defFloatFormat()`.
+
+| Format ID          | Channel count | Description                 |
+|--------------------|---------------|-----------------------------|
+| `FLOAT_GRAY`       | 1             | Single channel / grayscale  |
+| `FLOAT_GRAY_ALPHA` | 2             | Grayscale and alpha channel |
+| `FLOAT_RGB`        | 3             | Red, Green, Blue            |
+| `FLOAT_RGBA`       | 4             | Red, Green, Blue, Alpha     |
+
+- All color channels are unclamped (but can be clamped via
+  `buf.clamp()`). For conversion to packed int formats assumed to
+  contain normalized data (i.e. [0..1] interval)
+- Conversion between float formats is currently unsupported
 
 ### Status
 
@@ -107,7 +131,7 @@ yarn add @thi.ng/pixel
 <script src="https://unpkg.com/@thi.ng/pixel/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.10 KB / CJS: 3.25 KB / UMD: 3.23 KB
+Package sizes (gzipped, pre-treeshake): ESM: 4.70 KB / CJS: 4.88 KB / UMD: 4.79 KB
 
 ## Dependencies
 
