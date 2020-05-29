@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@6.5.0...@thi.ng/transducers@6.6.0) (2020-05-29)
+
+
+### Features
+
+* **transducers:** add rangeNd(), add/update tests ([9239d6f](https://github.com/thi-ng/umbrella/commit/9239d6fbf4de66300ed924b9de9a0fa67df0235c))
+
+
+
+
+
 # [6.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@6.4.9...@thi.ng/transducers@6.5.0) (2020-05-14)
 
 

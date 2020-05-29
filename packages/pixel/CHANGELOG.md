@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.2.0...@thi.ng/pixel@0.3.0) (2020-05-29)
+
+
+### Features
+
+* **pixel:** add dither support for int buffers/formats ([4475fc1](https://github.com/thi-ng/umbrella/commit/4475fc14c65029e88a7216519350527fa3d2c3dc))
+* **pixel:** add FloatBuffer and float format support ([d6c490f](https://github.com/thi-ng/umbrella/commit/d6c490fb22b3d43f188f85662bb431f59daa7f32))
+* **pixel:** add/update float formats, tests ([6eb1f67](https://github.com/thi-ng/umbrella/commit/6eb1f671858c234e53f231ad8af0f07f2a423d96))
+
+
+
+
+
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.1.20...@thi.ng/pixel@0.2.0) (2020-05-19)
 
 
