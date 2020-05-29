@@ -1,7 +1,7 @@
 import { CONFIG } from "../config";
 
-export const asset = (file: string, alt = "") =>
-    `![${alt}](${CONFIG.assetURL}/${file})`;
+export const asset = (file: string, alt = "", prefix = CONFIG.assetURL) =>
+    `![${alt}](${prefix}/${file})`;
 
-export const thumb = (src: string) =>
-    `<img src="${CONFIG.assetURL}/${src}" width="240"/>`;
+export const thumb = (src: string, prefix = CONFIG.assetURL) =>
+    `<img src="${prefix}/${src}" width="240"/>`;

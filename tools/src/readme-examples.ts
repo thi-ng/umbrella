@@ -7,7 +7,7 @@ import {
     map,
     mapKeys,
     push,
-    transduce
+    transduce,
 } from "@thi.ng/transducers";
 import { existsSync, readdirSync, writeFileSync } from "fs";
 import { META_FIELD } from "./api";
@@ -39,9 +39,9 @@ try {
                     name: (id) => `[${id}](./${id}/)`,
                     img: (_, ex) =>
                         ex[META_FIELD]?.screenshot
-                            ? thumb(ex["thi.ng"].screenshot)
+                            ? thumb(ex["thi.ng"].screenshot, "../assets")
                             : "",
-                    description: (desc) => desc || "TODO"
+                    description: (desc) => desc || "TODO",
                 },
                 false
             )
