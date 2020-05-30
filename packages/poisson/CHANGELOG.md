@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/poisson@1.0.17...@thi.ng/poisson@1.1.0) (2020-05-29)
+
+
+### Features
+
+* **poisson:** add stratifiedGrid(), restructure pkg ([62cd31a](https://github.com/thi-ng/umbrella/commit/62cd31a87236daaf4089543aa49e847827bb8b55))
+
+
+
+
+
 # [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/poisson@0.2.27...@thi.ng/poisson@1.0.0) (2020-01-24)
 
 ### Features

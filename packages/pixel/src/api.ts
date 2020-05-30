@@ -1,13 +1,20 @@
-import type { Fn, Fn2, Type, TypedArray } from "@thi.ng/api";
+import type {
+    Fn,
+    Fn2,
+    IObjectOf,
+    NumericArray,
+    Type,
+    TypedArray,
+} from "@thi.ng/api";
 
 /**
  * ABGR 8bit lane/channel IDs
  */
 export enum Lane {
     ALPHA = 0,
-    RED = 3,
-    GREEN = 2,
     BLUE = 1,
+    GREEN = 2,
+    RED = 3,
 }
 
 /**
@@ -36,10 +43,10 @@ export type UintType = Type.U8 | Type.U16 | Type.U32;
 export type BlendFnInt = Fn2<number, number, number>;
 
 export type BlendFnFloat = (
-    out: number[] | TypedArray | null,
-    src: ArrayLike<number>,
-    dest: ArrayLike<number>
-) => ArrayLike<number>;
+    out: NumericArray | null,
+    src: NumericArray,
+    dest: NumericArray
+) => NumericArray;
 
 /**
  * Color channel getter. Returns 0-based channel value (regardless of
@@ -57,7 +64,7 @@ export interface IABGRConvert<T> {
     /**
      * Converts given ABGR value into internal pixel format.
      */
-    fromABGR: Fn<number, T>;
+    fromABGR: (x: number, out?: T) => T;
     /**
      * Converts given internal pixel format value to packed ABGR.
      */
@@ -119,6 +126,16 @@ export interface PackedChannel {
      * Normalized float accessor
      */
     setFloat: ChannelSetter<number>;
+    /**
+     * Applies ordered dithering to given channel value.
+     */
+    dither: (
+        mat: BayerMatrix,
+        steps: number,
+        x: number,
+        y: number,
+        val: number
+    ) => number;
 }
 
 /**
@@ -155,7 +172,23 @@ export interface PackedFormat extends IABGRConvert<number> {
     alpha: number;
     channels: PackedChannel[];
     // internal marker only
-    readonly __compiled: true;
+    readonly __packed: true;
+}
+
+export interface FloatFormatSpec {
+    alpha?: boolean;
+    gray?: boolean;
+    channels: Lane[];
+}
+
+export interface FloatFormat extends IABGRConvert<NumericArray> {
+    alpha: boolean;
+    gray: boolean;
+    size: number;
+    shift: IObjectOf<number>;
+    channels: Lane[];
+    // internal marker only
+    readonly __float: true;
 }
 
 export interface CanvasContext {
@@ -300,4 +333,12 @@ export interface BlitOpts {
      * @defaultValue buffer height
      */
     h: number;
+}
+
+export type BayerSize = 1 | 2 | 4 | 8 | 16 | 32 | 64;
+
+export interface BayerMatrix {
+    mat: number[][];
+    invSize: number;
+    mask: number;
 }

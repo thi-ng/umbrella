@@ -80,28 +80,30 @@ package.
 
 The following presets are bundled (in [`cosine-gradients.ts`](https://github.com/thi-ng/umbrella/tree/develop/packages/color/src/cosine-gradients.ts)):
 
-|                                                                |                                                                  |
-|----------------------------------------------------------------|------------------------------------------------------------------|
-| ![](http://media.thi.ng/color/presets/rainbow1.svg)            | ![](http://media.thi.ng/color/presets/rainbow2.svg)              |
-| rainbow1                                                       | rainbow2                                                         |
-| ![](http://media.thi.ng/color/presets/rainbow3.svg)            | ![](http://media.thi.ng/color/presets/rainbow4.svg)              |
-| rainbow3                                                       | rainbow4                                                         |
-| ![](http://media.thi.ng/color/presets/yellow-magenta-cyan.svg) | ![](http://media.thi.ng/color/presets/orange-blue.svg)           |
-| yellow-magenta-cyan preset                                     | orange-blue                                                      |
-| ![](http://media.thi.ng/color/presets/green-magenta.svg)       | ![](http://media.thi.ng/color/presets/green-red.svg)             |
-| green-magenta                                                  | green-red                                                        |
-| ![](http://media.thi.ng/color/presets/green-cyan.svg)          | ![](http://media.thi.ng/color/presets/blue-cyan.svg)             |
-| green-cyan                                                     | blue-cyan                                                        |
-| ![](http://media.thi.ng/color/presets/yellow-red.svg)          | ![](http://media.thi.ng/color/presets/red-blue.svg)              |
-| yellow-red                                                     | red-blue                                                         |
-| ![](http://media.thi.ng/color/presets/yellow-green-blue.svg)   | ![](http://media.thi.ng/color/presets/blue-white-red.svg)        |
-| yellow-green-blue                                              | blue-white-red                                                   |
-| ![](http://media.thi.ng/color/presets/cyan-magenta.svg)        | ![](http://media.thi.ng/color/presets/yellow-purple-magenta.svg) |
-| cyan-magenta                                                   | yellow-purple-magenta                                            |
-| ![](http://media.thi.ng/color/presets/green-blue-orange.svg)   | ![](http://media.thi.ng/color/presets/orange-magenta-blue.svg)   |
-| green-blue-orange                                              | orange-magenta-blue                                              |
-| ![](http://media.thi.ng/color/presets/blue-magenta-orange.svg) | ![](http://media.thi.ng/color/presets/magenta-green.svg)         |
-| blue-magenta-orange                                            | magenta-green                                                    |
+| Preview                                                                                                                                       | Gradient ID             |
+|-----------------------------------------------------------------------------------------------------------------------------------------------|-------------------------|
+| ![gradient: blue-cyan](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-blue-cyan.png)                         | `blue-cyan`             |
+| ![gradient: blue-magenta-orange](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-blue-magenta-orange.png)     | `blue-magenta-orange`   |
+| ![gradient: blue-white-red](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-blue-white-red.png)               | `blue-white-red`        |
+| ![gradient: cyan-magenta](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-cyan-magenta.png)                   | `cyan-magenta`          |
+| ![gradient: green-blue-orange](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-green-blue-orange.png)         | `green-blue-orange`     |
+| ![gradient: green-cyan](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-green-cyan.png)                       | `green-cyan`            |
+| ![gradient: green-magenta](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-green-magenta.png)                 | `green-magenta`         |
+| ![gradient: green-red](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-green-red.png)                         | `green-red`             |
+| ![gradient: heat1](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-heat1.png)                                 | `heat1`                 |
+| ![gradient: magenta-green](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-magenta-green.png)                 | `magenta-green`         |
+| ![gradient: orange-blue](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-orange-blue.png)                     | `orange-blue`           |
+| ![gradient: orange-magenta-blue](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-orange-magenta-blue.png)     | `orange-magenta-blue`   |
+| ![gradient: purple-orange-cyan](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-purple-orange-cyan.png)       | `purple-orange-cyan`    |
+| ![gradient: rainbow1](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-rainbow1.png)                           | `rainbow1`              |
+| ![gradient: rainbow2](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-rainbow2.png)                           | `rainbow2`              |
+| ![gradient: rainbow3](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-rainbow3.png)                           | `rainbow3`              |
+| ![gradient: rainbow4](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-rainbow4.png)                           | `rainbow4`              |
+| ![gradient: red-blue](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-red-blue.png)                           | `red-blue`              |
+| ![gradient: yellow-green-blue](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-yellow-green-blue.png)         | `yellow-green-blue`     |
+| ![gradient: yellow-magenta-cyan](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-yellow-magenta-cyan.png)     | `yellow-magenta-cyan`   |
+| ![gradient: yellow-purple-magenta](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-yellow-purple-magenta.png) | `yellow-purple-magenta` |
+| ![gradient: yellow-red](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/gradient-yellow-red.png)                       | `yellow-red`            |
 
 ### Two-color gradients
 

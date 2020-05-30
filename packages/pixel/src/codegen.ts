@@ -31,7 +31,7 @@ export const compileGrayToABGR = (size: number) => {
     if (size !== 8) {
         const mask = (1 << size) - 1;
         // rescale factor
-        const scale = 255 / mask;
+        const scale = 0xff / mask;
         body = `(((x & ${mask}) * ${scale}) | 0)`;
     } else {
         body = "x";
@@ -62,7 +62,7 @@ export const compileToABGR = (chans: PackedChannel[], hasAlpha: boolean) => {
             if (ch.size !== 8) {
                 const mask = ch.mask0;
                 // rescale factor
-                const scale = 255 / mask;
+                const scale = 0xff / mask;
                 const inner = compileRShift("x", ch.shift);
                 return compileLShift(
                     `((${inner} & ${mask}) * ${scale})`,

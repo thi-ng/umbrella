@@ -126,6 +126,7 @@ export * from "./iter/permutations";
 export * from "./iter/range";
 export * from "./iter/range2d";
 export * from "./iter/range3d";
+export * from "./iter/range-nd";
 export * from "./iter/repeat";
 export * from "./iter/repeatedly";
 export * from "./iter/reverse";

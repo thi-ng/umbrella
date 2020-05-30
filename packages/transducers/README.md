@@ -58,9 +58,9 @@ This project is part of the
 
 Lightweight transducer implementations for ES6 / TypeScript.
 
-This library provides altogether ~120 transducers, reducers, sequence
-generators (iterators) and other supporting functions for composing data
-transformation pipelines.
+This library provides altogether ~130 transducers, reducers, sequence
+generators (ES6 generators/iterators) and additional supporting
+functions for composing data transformation pipelines.
 
 The overall concept and many of the core functions offered here are
 directly inspired by the original Clojure implementation by Rich Hickey,
@@ -151,7 +151,7 @@ yarn add @thi.ng/transducers
 <script src="https://unpkg.com/@thi.ng/transducers/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 7.93 KB / CJS: 8.45 KB / UMD: 7.65 KB
+Package sizes (gzipped, pre-treeshake): ESM: 7.97 KB / CJS: 8.49 KB / UMD: 7.67 KB
 
 ## Dependencies
 
@@ -890,6 +890,7 @@ tx.transduce(tx.map((x) => x*10), tx.push(), tx.range(4))
 - [range](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/range.ts)
 - [range2d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/range2d.ts)
 - [range3d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/range3d.ts)
+- [rangeNd](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/range-nd.ts)
 - [repeat](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/repeat.ts)
 - [repeatedly](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/repeatedly.ts)
 - [reverse](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/reverse.ts)

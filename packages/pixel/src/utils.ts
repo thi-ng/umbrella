@@ -1,12 +1,6 @@
-import {
-    assert,
-    Fn,
-    Fn2,
-    TypedArray,
-    UIntArray
-} from "@thi.ng/api";
+import { assert, Fn, Fn2, TypedArray, UIntArray } from "@thi.ng/api";
 import { clamp } from "@thi.ng/math";
-import type { BlitOpts, PackedFormat } from "./api";
+import type { BlitOpts, PackedFormat, FloatFormat } from "./api";
 
 /** @internal */
 export const ensureSize = (
@@ -17,7 +11,7 @@ export const ensureSize = (
 ) => assert(pixels.length >= width * height * stride, "pixel buffer too small");
 
 /** @internal */
-export const ensureChannel = (fmt: PackedFormat, id: number) => {
+export const ensureChannel = (fmt: PackedFormat | FloatFormat, id: number) => {
     const chan = fmt.channels[id];
     assert(chan != null, `invalid channel ID: ${id}`);
     return chan;
@@ -38,6 +32,10 @@ export const clampRegion = (
     dx = 0,
     dy = 0
 ) => {
+    sx |= 0;
+    sy |= 0;
+    w |= 0;
+    h |= 0;
     sx < 0 && ((w += sx), (dx -= sx), (sx = 0));
     sy < 0 && ((h += sy), (dy -= sy), (sy = 0));
     return [sx, sy, clamp(w, 0, maxw - sx), clamp(h, 0, maxh - sy), dx, dy];

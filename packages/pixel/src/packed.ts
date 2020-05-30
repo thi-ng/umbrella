@@ -1,20 +1,23 @@
-import {
-    Fn,
-    IObjectOf,
-    Type,
-    UIntArray
-} from "@thi.ng/api";
+import { Fn, IObjectOf, Type, UIntArray } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
-import { isPremultipliedInt, postmultiplyInt, premultiplyInt } from "@thi.ng/porter-duff";
 import {
+    isPremultipliedInt,
+    postmultiplyInt,
+    premultiplyInt,
+} from "@thi.ng/porter-duff";
+import {
+    BayerMatrix,
+    BayerSize,
     BlendFnInt,
     BlitOpts,
     Lane,
+    PackedChannel,
     PackedFormat,
-    PackedFormatSpec
+    PackedFormatSpec,
 } from "./api";
 import { canvasPixels, imageCanvas } from "./canvas";
 import { compileGrayFromABGR, compileGrayToABGR } from "./codegen";
+import { defBayer } from "./dither";
 import { ABGR8888, defPackedFormat } from "./format";
 import {
     clampRegion,
@@ -24,7 +27,7 @@ import {
     setChannelConvert,
     setChannelSame,
     setChannelUni,
-    transformABGR
+    transformABGR,
 } from "./utils";
 
 interface UIntArrayConstructor {
@@ -36,8 +39,23 @@ interface UIntArrayConstructor {
 const CTORS: IObjectOf<UIntArrayConstructor> = {
     [Type.U8]: Uint8Array,
     [Type.U16]: Uint16Array,
-    [Type.U32]: Uint32Array
+    [Type.U32]: Uint32Array,
 };
+
+/**
+ * Syntax sugar for {@link PackedBuffer} ctor.
+ *
+ * @param w -
+ * @param h -
+ * @param fmt -
+ * @param pixels -
+ */
+export const buffer = (
+    w: number,
+    h: number,
+    fmt: PackedFormat | PackedFormatSpec,
+    pixels?: UIntArray
+) => new PackedBuffer(w, h, fmt, pixels);
 
 export class PackedBuffer {
     static fromImage(
@@ -82,7 +100,7 @@ export class PackedBuffer {
     ) {
         this.width = w;
         this.height = h;
-        this.format = (<any>fmt).__compiled
+        this.format = (<any>fmt).__packed
             ? <PackedFormat>fmt
             : defPackedFormat(fmt);
         this.pixels = pixels || new CTORS[fmt.type](w * h);
@@ -90,6 +108,12 @@ export class PackedBuffer {
 
     as(fmt: PackedFormat) {
         return this.getRegion(0, 0, this.width, this.height, fmt);
+    }
+
+    copy() {
+        const dest = new PackedBuffer(this.width, this.height, this.format);
+        dest.pixels.set(this.pixels);
+        return dest;
     }
 
     getAt(x: number, y: number) {
@@ -108,7 +132,7 @@ export class PackedBuffer {
     }
 
     getChannelAt(x: number, y: number, id: number, normalized = false) {
-        const chan = ensureChannel(this.format, id);
+        const chan = <PackedChannel>ensureChannel(this.format, id);
         const col = this.getAt(x, y);
         return normalized ? chan.float(col) : chan.int(col);
     }
@@ -120,7 +144,7 @@ export class PackedBuffer {
         col: number,
         normalized = false
     ) {
-        const chan = ensureChannel(this.format, id);
+        const chan = <PackedChannel>ensureChannel(this.format, id);
         const src = this.getAt(x, y);
         normalized ? chan.setFloat(src, col) : chan.setInt(src, col);
         return this;
@@ -182,7 +206,7 @@ export class PackedBuffer {
 
     blitCanvas(canvas: HTMLCanvasElement, x = 0, y = 0) {
         const ctx = canvas.getContext("2d")!;
-        const idata = ctx.getImageData(x, y, this.width, this.height);
+        const idata = new ImageData(this.width, this.height);
         const dest = new Uint32Array(idata.data.buffer);
         const src = this.pixels;
         const fmt = this.format.toABGR;
@@ -190,6 +214,7 @@ export class PackedBuffer {
             dest[i] = fmt(src[i]);
         }
         ctx.putImageData(idata, x, y);
+        return canvas;
     }
 
     getRegion(
@@ -211,19 +236,19 @@ export class PackedBuffer {
             sx,
             sy,
             w,
-            h
+            h,
         });
     }
 
     getChannel(id: number) {
-        const chan = ensureChannel(this.format, id);
+        const chan = <PackedChannel>ensureChannel(this.format, id);
         const buf = new PackedBuffer(this.width, this.height, {
             type:
                 chan.size > 16 ? Type.U32 : chan.size > 8 ? Type.U16 : Type.U8,
             size: chan.size,
             channels: [{ size: chan.size, lane: Lane.RED }],
             fromABGR: compileGrayFromABGR(chan.size),
-            toABGR: compileGrayToABGR(chan.size)
+            toABGR: compileGrayToABGR(chan.size),
         });
         const src = this.pixels;
         const dest = buf.pixels;
@@ -235,7 +260,7 @@ export class PackedBuffer {
     }
 
     setChannel(id: number, src: PackedBuffer | number) {
-        const chan = ensureChannel(this.format, id);
+        const chan = <PackedChannel>ensureChannel(this.format, id);
         const dbuf = this.pixels;
         const set = chan.setInt;
         if (isNumber(src)) {
@@ -297,19 +322,55 @@ export class PackedBuffer {
         }
         return this;
     }
-}
 
-/**
- * Syntax sugar for {@link PackedBuffer} ctor.
- *
- * @param w -
- * @param h -
- * @param fmt -
- * @param pixels -
- */
-export const buffer = (
-    w: number,
-    h: number,
-    fmt: PackedFormat | PackedFormatSpec,
-    pixels?: UIntArray
-) => new PackedBuffer(w, h, fmt, pixels);
+    /**
+     * Applies in-place, ordered dithering using provided dither matrix
+     * (or matrix size) and desired number of dither levels, optionally
+     * specified individually (per channel). Each channel is be
+     * processed independently. Channels can be excluded from dithering
+     * by setting their target size to zero or negative numbers.
+     *
+     * @remarks
+     * A `size` of 1 will result in simple posterization of each
+     * channel. The `numColors` value(s) MUST be in the `[0 ..
+     * numColorsInChannel]` interval.
+     *
+     * Also see: {@link defBayer}, {@link ditherPixels}.
+     *
+     * @param size - dither matrix/size
+     * @param numColors - num target colors/steps
+     */
+    dither(size: BayerSize | BayerMatrix, numColors: number | number[]) {
+        const { pixels, format, width } = this;
+        const steps = isNumber(numColors)
+            ? new Array<number>(format.channels.length).fill(numColors)
+            : numColors;
+        const mat = isNumber(size) ? defBayer(size) : size;
+        for (
+            let i = 0,
+                n = pixels.length,
+                nc = format.channels.length,
+                x = 0,
+                y = 0;
+            i < n;
+            i++
+        ) {
+            let col = pixels[i];
+            for (let j = 0; j < nc; j++) {
+                const ch = format.channels[j];
+                const cs = steps[j];
+                cs > 0 &&
+                    (col = ch.setInt(
+                        col,
+                        ch.dither(mat, cs, x, y, ch.int(col))
+                    ));
+            }
+            pixels[i] = col;
+            if (++x === width) {
+                x = 0;
+                y++;
+            }
+        }
+        return this;
+    }
+}

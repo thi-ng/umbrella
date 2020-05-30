@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@1.1.21...@thi.ng/color@1.2.0) (2020-05-29)
+
+
+### Features
+
+* **color:** add gradient presets ([2f93581](https://github.com/thi-ng/umbrella/commit/2f93581ca69f79df38ee6aa2697632c572fb55fc))
+
+
+
+
+
 ## [1.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@1.1.1...@thi.ng/color@1.1.2) (2019-11-09)
 
 ### Bug Fixes
