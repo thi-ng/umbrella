@@ -1,3 +1,4 @@
+import { deref } from "@thi.ng/api";
 import {
     implementsFunction,
     isArray,
@@ -8,7 +9,7 @@ import {
 } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { RE_TAG, SVG_NS, SVG_TAGS } from "@thi.ng/hiccup";
-import { isComponent, isDeref, tryDeref } from "./utils";
+import { isComponent } from "./utils";
 
 /**
  * hdom-style DOM tree creation from hiccup format. Returns DOM element
@@ -123,7 +124,7 @@ export const $move = (
 export const $clear = (el: Element) => ((el.innerHTML = ""), el);
 
 export const $body = (el: HTMLElement, body: any) => {
-    el.innerText = String(tryDeref(body));
+    el.innerText = String(deref(body));
 };
 
 export const $attribs = (el: Element, attribs: any) => {
@@ -187,14 +188,12 @@ const setAttrib = (el: Element, id: string, val: any, attribs: any) => {
 
 const updateClasses = (existing: string, val: any) => {
     const classes = new Set(existing.split(" "));
-    val = tryDeref(val);
+    val = deref(val);
     if (isString(val)) {
         classes.add(val);
     } else {
         for (let id in val) {
-            let c = val[id];
-            isDeref(c) && (c = c.deref());
-            c ? classes.add(id) : classes.delete(id);
+            deref(val[id]) ? classes.add(id) : classes.delete(id);
         }
     }
     return [...classes].join(" ");
@@ -234,8 +233,7 @@ export const $style = (el: Element, rules: string | any) => {
     } else {
         const style: any = (<HTMLElement>el).style;
         for (let id in rules) {
-            let v = rules[id];
-            isDeref(v) && (v = v.deref());
+            let v = deref(rules[id]);
             isFunction(v) && (v = v(rules));
             style[id] = v != null ? v : "";
         }
