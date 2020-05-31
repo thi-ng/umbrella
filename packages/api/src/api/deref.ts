@@ -10,6 +10,8 @@ export interface IDeref<T> {
     deref(): T;
 }
 
+export type MaybeDeref<T> = IDeref<T> | T;
+
 /**
  * If `T` is a {@link IDeref}, returns its value type or else `T`.
  */
@@ -40,3 +42,19 @@ export type DerefedKeys<
 > = {
     [P in K]: Derefed<T[P]>;
 };
+
+/**
+ * Returns true iff `x` implements {@link IDeref}.
+ *
+ * @param x
+ */
+export const isDeref = (x: any): x is IDeref<any> =>
+    x != null && typeof x["deref"] === "function";
+
+/**
+ * If `x` implements {@link IDeref}, returns its wrapped value, else
+ * returns `x` itself.
+ *
+ * @param x -
+ */
+export const deref = <T>(x: MaybeDeref<T>) => (isDeref(x) ? x.deref() : x);
