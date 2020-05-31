@@ -1,7 +1,6 @@
-import type { Fn3, IDeref, IObjectOf } from "@thi.ng/api";
+import { deref, Fn3, IObjectOf } from "@thi.ng/api";
 import {
     existsAndNotNull,
-    implementsFunction,
     isArray,
     isBoolean,
     isFunction,
@@ -122,11 +121,7 @@ export class Shader implements IShader {
             const u = shaderUnis[id];
             if (u) {
                 let val = specUnis[id];
-                val = isFunction(val)
-                    ? val(shaderUnis, specUnis)
-                    : implementsFunction(val, "deref")
-                    ? (<IDeref<any>>val).deref()
-                    : val;
+                val = isFunction(val) ? val(shaderUnis, specUnis) : deref(val);
                 // console.log(id, val);
                 u.setter(<UniformValue>val);
             } else {
