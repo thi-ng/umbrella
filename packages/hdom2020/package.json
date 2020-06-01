@@ -49,7 +49,7 @@
         "@thi.ng/errors": "^1.2.14",
         "@thi.ng/hiccup": "^3.2.24",
         "@thi.ng/paths": "^4.0.7",
-        "@thi.ng/rstream": "^4.3.4"
+        "@thi.ng/rstream": "^4.3.5"
     },
     "files": [
         "*.js",
