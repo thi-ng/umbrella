@@ -14,6 +14,8 @@ describe("flatten", () => {
     it("strings", () => {
         assert.deepEqual([...flatten(["", "a"])], ["", "a"]);
         assert.deepEqual([...flatten([[], ["a"], ""])], ["a", ""]);
+    });
+    it("strings (atomic)", () => {
         assert.deepEqual([...flatten([["abc"]])], ["abc"]);
         assert.deepEqual([...flatten(["abc"])], ["abc"]);
         assert.deepEqual([...flatten("abc")], ["abc"]);
@@ -24,5 +26,5 @@ describe("flatten", () => {
         assert.deepEqual([...flatten(range(0))], []);
         assert.deepEqual([...flatten([range(0)])], []);
         assert.deepEqual([...flatten([range(2), range(0)])], [0, 1]);
-    })
+    });
 });
