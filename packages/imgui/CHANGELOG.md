@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.19...@thi.ng/imgui@0.2.20) (2020-06-01)
+
+**Note:** Version bump only for package @thi.ng/imgui
+
+
+
+
+
 ## [0.2.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.18...@thi.ng/imgui@0.2.19) (2020-06-01)
 
 **Note:** Version bump only for package @thi.ng/imgui

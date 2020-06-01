@@ -15,9 +15,16 @@ describe("flatten", () => {
         assert.deepEqual([...flatten(["", "a"])], ["", "a"]);
         assert.deepEqual([...flatten([[], ["a"], ""])], ["a", ""]);
     });
+    it("strings (atomic)", () => {
+        assert.deepEqual([...flatten([["abc"]])], ["abc"]);
+        assert.deepEqual([...flatten(["abc"])], ["abc"]);
+        assert.deepEqual([...flatten("abc")], ["abc"]);
+        assert.deepEqual([...flatten([""])], [""]);
+        assert.deepEqual([...flatten("")], [""]);
+    });
     it("iterators", () => {
         assert.deepEqual([...flatten(range(0))], []);
         assert.deepEqual([...flatten([range(0)])], []);
         assert.deepEqual([...flatten([range(2), range(0)])], [0, 1]);
-    })
+    });
 });

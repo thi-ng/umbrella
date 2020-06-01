@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/cache",
-    "version": "1.0.45",
+    "version": "1.0.46",
     "description": "In-memory cache implementations with ES6 Map-like API and different eviction strategies",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -44,8 +44,8 @@
     },
     "dependencies": {
         "@thi.ng/api": "^6.11.0",
-        "@thi.ng/dcons": "^2.2.18",
-        "@thi.ng/transducers": "^6.7.0",
+        "@thi.ng/dcons": "^2.2.19",
+        "@thi.ng/transducers": "^7.0.0",
         "tslib": "^1.12.0"
     },
     "files": [

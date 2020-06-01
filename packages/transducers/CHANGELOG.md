@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@6.7.0...@thi.ng/transducers@7.0.0) (2020-06-01)
+
+
+### Bug Fixes
+
+* **transducers:** [#186](https://github.com/thi-ng/umbrella/issues/186), Fix crash when using empty string as source for several transducers. ([ef7a798](https://github.com/thi-ng/umbrella/commit/ef7a798d35c172d50b2f4453f4522260d0fe81e4))
+
+
+### Documentation
+
+* **transducers:** update readme ([47b6cef](https://github.com/thi-ng/umbrella/commit/47b6cefe2344d0e33a9d597b4bb758f2a2f7512e))
+
+
+### BREAKING CHANGES
+
+* **transducers:** `flatten` string handling now *always* atomic
+
+
+
+
+
 # [6.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@6.6.0...@thi.ng/transducers@6.7.0) (2020-06-01)
 
 

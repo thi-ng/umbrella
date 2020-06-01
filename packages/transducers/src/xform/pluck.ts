@@ -1,3 +1,4 @@
+import { isIterable } from "@thi.ng/checks";
 import { iterator1 } from "../iterator";
 import { map } from "./map";
 import type { Transducer } from "../api";
@@ -20,5 +21,7 @@ export function pluck<A, B>(
     src: Iterable<A>
 ): IterableIterator<B>;
 export function pluck<A>(key: PropertyKey, src?: Iterable<A>): any {
-    return src ? iterator1(pluck(key), src) : map((x: any) => x[key]);
+    return isIterable(src)
+        ? iterator1(pluck(key), src)
+        : map((x: any) => x[key]);
 }

@@ -33,6 +33,17 @@ a reduced result of the given input iterable.
 
 ${status}
 
+### 7.0.0 release
+
+Thanks to a [PR](https://github.com/thi-ng/umbrella/pull/223) and
+[related issue](https://github.com/thi-ng/umbrella/issues/186) by
+@gavinpc-mindgrub, various transducers functions have been fixed for the
+case when they're invoked with an _empty_ string as input iterable.
+Furthermore,
+[`flatten()`](https://github.com/thi-ng/umbrella/blob/develop/packages/transducers/src/xform/flatten.ts)
+is _always_ treating strings as atomic values now, whereas before
+top-level strings would be split into individual characters.
+
 ### 6.0.0 release
 
 BREAKING CHANGES:

@@ -1,3 +1,4 @@
+import { isIterable } from "@thi.ng/checks";
 import { comp } from "../func/comp";
 import { iterator } from "../iterator";
 import { cat } from "./cat";
@@ -33,5 +34,5 @@ export function mapcat<A, B>(
     fn: Fn<A, Iterable<B> | null | undefined>,
     src?: Iterable<A>
 ): any {
-    return src ? iterator(mapcat(fn), src) : comp(map(fn), cat());
+    return isIterable(src) ? iterator(mapcat(fn), src) : comp(map(fn), cat());
 }
