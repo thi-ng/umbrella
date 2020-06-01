@@ -88,7 +88,7 @@ actions any component can take. So assigning them to registered side
 effects enables better code reuse. Another use-case is debugging. With a
 break point set at the beginning of `processEffects()` (in
 [`event-bus.ts`](https://github.com/thi-ng/umbrella/blob/develop/packages/interceptors/src/event-bus.ts#L36))
-you can see exactly which side effects have occured at each frame. This
+you can see exactly which side effects have occurred at each frame. This
 can be very helpful for debugging and avoid having to "keep everything
 in your head" or - as Rich Hickey would say - make your app "Easier to
 reason about".

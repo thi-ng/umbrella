@@ -615,7 +615,7 @@ inputs is exhausted.
 
 Signature: `interpose(x: any, input: Iterable<any>) => IterableIterator<any>`
 
-Produces an iterator which injects `x` inbetween each item from input
+Produces an iterator which injects `x` between each item from input
 `iter`.
 
 ```ts
