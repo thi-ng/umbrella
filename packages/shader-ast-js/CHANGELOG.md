@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-js@0.4.23...@thi.ng/shader-ast-js@0.4.24) (2020-06-01)
+
+**Note:** Version bump only for package @thi.ng/shader-ast-js
+
+
+
+
+
 ## [0.4.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-js@0.4.22...@thi.ng/shader-ast-js@0.4.23) (2020-05-29)
 
 **Note:** Version bump only for package @thi.ng/shader-ast-js
