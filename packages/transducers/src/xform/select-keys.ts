@@ -1,3 +1,4 @@
+import { isIterable } from "@thi.ng/checks";
 import { keySelector } from "../func/key-selector";
 import { iterator1 } from "../iterator";
 import { map } from "./map";
@@ -33,5 +34,7 @@ export function selectKeys<T>(
     src: Iterable<T>
 ): IterableIterator<any>;
 export function selectKeys<T>(keys: PropertyKey[], src?: Iterable<T>): any {
-    return src ? iterator1(selectKeys(keys), src) : map(keySelector(keys));
+    return isIterable(src)
+        ? iterator1(selectKeys(keys), src)
+        : map(keySelector(keys));
 }

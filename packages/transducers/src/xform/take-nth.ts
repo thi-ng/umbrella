@@ -1,3 +1,4 @@
+import { isIterable } from "@thi.ng/checks";
 import { iterator1 } from "../iterator";
 import { throttle } from "./throttle";
 import type { Transducer } from "../api";
@@ -17,7 +18,7 @@ import type { Transducer } from "../api";
 export function takeNth<T>(n: number): Transducer<T, T>;
 export function takeNth<T>(n: number, src: Iterable<T>): IterableIterator<T>;
 export function takeNth<T>(n: number, src?: Iterable<T>): any {
-    if (src) {
+    if (isIterable(src)) {
         return iterator1(takeNth(n), src);
     }
     n = Math.max(0, n - 1);

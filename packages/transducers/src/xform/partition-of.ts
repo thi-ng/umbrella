@@ -1,3 +1,4 @@
+import { isIterable } from "@thi.ng/checks";
 import { iterator } from "../iterator";
 import { partitionBy } from "./partition-by";
 import type { Transducer } from "../api";
@@ -26,7 +27,7 @@ export function partitionOf<T>(
     src: Iterable<T>
 ): IterableIterator<T[]>;
 export function partitionOf<T>(sizes: number[], src?: Iterable<T>): any {
-    return src
+    return isIterable(src)
         ? iterator(partitionOf(sizes), src)
         : partitionBy(() => {
               let i = 0,

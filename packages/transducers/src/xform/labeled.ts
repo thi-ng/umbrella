@@ -1,4 +1,4 @@
-import { isFunction } from "@thi.ng/checks";
+import { isFunction, isIterable } from "@thi.ng/checks";
 import { iterator1 } from "../iterator";
 import { map } from "./map";
 import type { Transducer } from "../api";
@@ -11,7 +11,7 @@ export function labeled<L, T>(
     src: Iterable<T>
 ): IterableIterator<[L, T]>;
 export function labeled<L, T>(id: LabelFn<L, T>, src?: Iterable<T>): any {
-    return src
+    return isIterable(src)
         ? iterator1(labeled(id), src)
         : map(isFunction(id) ? (x: T) => [id(x), x] : (x: T) => [id, x]);
 }

@@ -1,3 +1,4 @@
+import { isIterable } from "@thi.ng/checks";
 import { comp } from "../func/comp";
 import { normRange } from "../iter/norm-range";
 import { iterator } from "../iterator";
@@ -51,7 +52,7 @@ export function interpolate<T>(fn: Fn2<T[], number, T>, window: number, n: numbe
 export function interpolate<T>(fn: Fn2<T[], number, T>, window: number, n: number, src: Iterable<number>): IterableIterator<number>;
 // prettier-ignore
 export function interpolate<T>(fn: Fn2<T[], number, T>, window: number, n: number, src?: Iterable<number>) {
-    return src
+  return isIterable(src)
         ? iterator(interpolate(fn, window, n), src)
         : comp(
               partition<T>(window, 1),

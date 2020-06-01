@@ -1,3 +1,4 @@
+import { isIterable } from "@thi.ng/checks";
 import { comp } from "../func/comp";
 import { iterator } from "../iterator";
 import { filter } from "./filter";
@@ -41,7 +42,7 @@ export function matchLast<T>(
     src: Iterable<T>
 ): T | undefined;
 export function matchLast<T>(pred: Predicate<T>, src?: Iterable<T>): any {
-    return src
+    return isIterable(src)
         ? [...iterator(matchLast(pred), src)][0]
         : comp(filter(pred), takeLast(1));
 }

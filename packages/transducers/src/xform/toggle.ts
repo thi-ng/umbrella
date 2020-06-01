@@ -1,3 +1,4 @@
+import { isIterable } from "@thi.ng/checks";
 import { iterator1 } from "../iterator";
 import type { Reducer, Transducer } from "../api";
 
@@ -33,7 +34,7 @@ export function toggle<T>(
     initial = false,
     src?: Iterable<any>
 ): any {
-    return src
+    return isIterable(src)
         ? iterator1(toggle(on, off, initial), src)
         : ([init, complete, reduce]: Reducer<any, T>) => {
               let state = initial;

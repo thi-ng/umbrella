@@ -1,3 +1,4 @@
+import { isIterable, isString } from "@thi.ng/checks";
 import { compR } from "../func/compr";
 import { iterator } from "../iterator";
 import { isReduced } from "../reduced";
@@ -15,8 +16,8 @@ export function flattenWith<T>(
     fn: Fn<T, Iterable<T>>,
     src?: Iterable<T | Iterable<T>>
 ): any {
-    return src
-        ? iterator(flattenWith(fn), src)
+    return isIterable(src)
+        ? iterator(flattenWith(fn), isString(src) ? <any>[src] : src)
         : (rfn: Reducer<any, T>) => {
               const reduce = rfn[2];
               const flatten = (acc: any, x: any) => {

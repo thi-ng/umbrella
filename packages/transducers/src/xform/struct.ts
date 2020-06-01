@@ -1,3 +1,4 @@
+import { isIterable } from "@thi.ng/checks";
 import { comp } from "../func/comp";
 import { iterator } from "../iterator";
 import { mapKeys } from "./map-keys";
@@ -52,7 +53,7 @@ export function struct<T>(
     src: Iterable<any>
 ): IterableIterator<T>;
 export function struct(fields: StructField[], src?: Iterable<any>): any {
-    return src
+    return isIterable(src)
         ? iterator(struct(fields), src)
         : comp(
               partitionOf(fields.map((f) => f[1])),

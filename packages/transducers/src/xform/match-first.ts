@@ -1,3 +1,4 @@
+import { isIterable } from "@thi.ng/checks";
 import { comp } from "../func/comp";
 import { iterator1 } from "../iterator";
 import { filter } from "./filter";
@@ -41,7 +42,7 @@ export function matchFirst<T>(
     src: Iterable<T>
 ): T | undefined;
 export function matchFirst<T>(pred: Predicate<T>, src?: Iterable<T>): any {
-    return src
+    return isIterable(src)
         ? [...iterator1(matchFirst(pred), src)][0]
         : comp(filter(pred), take(1));
 }
