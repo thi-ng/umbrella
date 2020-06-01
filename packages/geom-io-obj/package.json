@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom-io-obj",
-    "version": "0.1.8",
+    "version": "0.1.9",
     "description": "Wavefront OBJ parser (& exporter soon)",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -44,7 +44,7 @@
     },
     "dependencies": {
         "@thi.ng/api": "^6.11.0",
-        "@thi.ng/vectors": "^4.4.2"
+        "@thi.ng/vectors": "^4.4.3"
     },
     "files": [
         "*.js",
