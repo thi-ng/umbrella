@@ -53,6 +53,8 @@ This project is part of the
   - [Generators / Iterators](#generators---iterators)
   - [Reducers](#reducers)
 - [Authors](#authors)
+  - [Maintainer](#maintainer)
+  - [Contributors](#contributors)
 - [License](#license)
 
 ## About
@@ -948,7 +950,13 @@ and return a reduced result (as if it would be called via `reduce()`).
 
 ## Authors
 
-Karsten Schmidt
+### Maintainer
+
+- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
+
+### Contributors
+
+- Gavin Cannizzaro ([@gavinpc-mindgrub](https://github.com/gavinpc-mindgrub))
 
 ## License
 
