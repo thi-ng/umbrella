@@ -1,19 +1,50 @@
+import type { Fn, Nullable } from "@thi.ng/api";
 import { isIterable, isString } from "@thi.ng/checks";
+import type { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { iterator } from "../iterator";
 import { isReduced } from "../reduced";
-import type { Fn } from "@thi.ng/api";
-import type { Reducer, Transducer } from "../api";
 
+type MaybeIterable<T> = Nullable<Iterable<T>>;
+
+/**
+ * Transducer. Takes a function `fn` which will be applied to each input
+ * value. If the function returns an ES6 Iterable, the result will be
+ * recursively flattened (via same user provided fn). If the function
+ * returns null/undefined, the original input value will be used as
+ * result.
+ *
+ * @remarks
+ * Also see {@link flatten}. If `src` is given as well, yields iterator
+ * of results.
+ *
+ * @example
+ * ```ts
+ * // custom predicate which converts objects into key/val tuples,
+ * // returns iterables as is and null for everything else
+ * const pred = (x) =>
+ *   isPlainObject(x)
+ *     ? pairs(x)
+ *     : isNotStringAndIterable(x)
+ *       ? x
+ *       : null;
+ *
+ * [...flattenWith(pred, [{ a: 1, b: 2 }, [[{ c: 3 }]]])]
+ * // [ 'a', 1, 'b', 2, 'c', 3 ]
+ * ```
+ *
+ * @param fn -
+ * @param src -
+ */
 export function flattenWith<T>(
-    fn: Fn<T, Iterable<T>>
+    fn: Fn<T, MaybeIterable<T>>
 ): Transducer<T | Iterable<T>, T>;
 export function flattenWith<T>(
-    fn: Fn<T, Iterable<T>>,
+    fn: Fn<T, MaybeIterable<T>>,
     src: Iterable<T | Iterable<T>>
 ): IterableIterator<T>;
 export function flattenWith<T>(
-    fn: Fn<T, Iterable<T>>,
+    fn: Fn<T, MaybeIterable<T>>,
     src?: Iterable<T | Iterable<T>>
 ): any {
     return isIterable(src)
