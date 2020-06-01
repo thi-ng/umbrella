@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/iges",
-    "version": "1.1.31",
+    "version": "1.1.32",
     "description": "IGES 5.3 serializer for (currently only) polygonal geometry, both open & closed",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -43,12 +43,12 @@
         "typescript": "^3.9.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.10.5",
+        "@thi.ng/api": "^6.11.0",
         "@thi.ng/checks": "^2.7.0",
-        "@thi.ng/defmulti": "^1.2.15",
-        "@thi.ng/strings": "^1.8.8",
-        "@thi.ng/transducers": "^6.6.0",
-        "@thi.ng/vectors": "^4.4.1",
+        "@thi.ng/defmulti": "^1.2.16",
+        "@thi.ng/strings": "^1.8.9",
+        "@thi.ng/transducers": "^6.7.0",
+        "@thi.ng/vectors": "^4.4.2",
         "tslib": "^1.12.0"
     },
     "files": [

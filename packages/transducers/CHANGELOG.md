@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@6.6.0...@thi.ng/transducers@6.7.0) (2020-06-01)
+
+
+### Features
+
+* **transducers:** add IDeref support slidingWindow() ([13f4184](https://github.com/thi-ng/umbrella/commit/13f4184f755fadb0a585b7e443c1218a7e2df5db))
+
+
+
+
+
 # [6.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@6.5.0...@thi.ng/transducers@6.6.0) (2020-05-29)
 
 

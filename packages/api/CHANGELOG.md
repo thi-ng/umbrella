@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.11.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.10.5...@thi.ng/api@6.11.0) (2020-06-01)
+
+
+### Features
+
+* **api:** add deref(), isDeref() fns & MaybeDeref ([722bf3e](https://github.com/thi-ng/umbrella/commit/722bf3e3a368c62575faff26695326dc72954d6d))
+
+
+
+
+
 # [6.10.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.9.1...@thi.ng/api@6.10.0) (2020-04-06)
 
 

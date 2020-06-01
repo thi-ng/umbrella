@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.2.13...@thi.ng/text-canvas@0.2.14) (2020-06-01)
+
+**Note:** Version bump only for package @thi.ng/text-canvas
+
+
+
+
+
 ## [0.2.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.2.12...@thi.ng/text-canvas@0.2.13) (2020-05-29)
 
 **Note:** Version bump only for package @thi.ng/text-canvas
