@@ -1,3 +1,4 @@
+import { isIterable } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { compR } from "../func/compr";
 import { iterator1 } from "../iterator";
@@ -24,7 +25,7 @@ export function movingAverage(period: number): Transducer<number, number>;
 // prettier-ignore
 export function movingAverage(period: number, src: Iterable<number>): IterableIterator<number>;
 export function movingAverage(period: number, src?: Iterable<number>): any {
-    return src
+    return isIterable(src)
         ? iterator1(movingAverage(period), src)
         : (rfn: Reducer<any, number>) => {
               period |= 0;

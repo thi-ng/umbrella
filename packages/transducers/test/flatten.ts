@@ -14,6 +14,11 @@ describe("flatten", () => {
     it("strings", () => {
         assert.deepEqual([...flatten(["", "a"])], ["", "a"]);
         assert.deepEqual([...flatten([[], ["a"], ""])], ["a", ""]);
+        assert.deepEqual([...flatten([["abc"]])], ["abc"]);
+        assert.deepEqual([...flatten(["abc"])], ["abc"]);
+        assert.deepEqual([...flatten("abc")], ["abc"]);
+        assert.deepEqual([...flatten([""])], [""]);
+        assert.deepEqual([...flatten("")], [""]);
     });
     it("iterators", () => {
         assert.deepEqual([...flatten(range(0))], []);
