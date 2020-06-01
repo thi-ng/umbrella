@@ -1,3 +1,4 @@
+import { isIterable } from "@thi.ng/checks";
 import { iterator1 } from "../iterator";
 import { throttle } from "./throttle";
 import type { Transducer } from "../api";
@@ -22,7 +23,7 @@ export function throttleTime<T>(
     src: Iterable<T>
 ): IterableIterator<T>;
 export function throttleTime<T>(delay: number, src?: Iterable<T>): any {
-    return src
+    return isIterable(src)
         ? iterator1(throttleTime(delay), src)
         : throttle<T>(() => {
               let last = 0;

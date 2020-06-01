@@ -1,3 +1,4 @@
+import { isIterable } from "@thi.ng/checks";
 import { iterator } from "../iterator";
 import { isReduced } from "../reduced";
 import type { Reducer, Transducer } from "../api";
@@ -41,7 +42,7 @@ export function padLast<T>(
     src: Iterable<T>
 ): IterableIterator<T>;
 export function padLast<T>(n: number, fill: T, src?: Iterable<T>): any {
-    return src
+    return isIterable(src)
         ? iterator(padLast(n, fill), src)
         : ([init, complete, reduce]: Reducer<any, T>) => {
               let m = 0;

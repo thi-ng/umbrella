@@ -1,4 +1,5 @@
 import { swizzle as _swizzle } from "@thi.ng/arrays";
+import { isIterable } from "@thi.ng/checks";
 import { iterator1 } from "../iterator";
 import { map } from "./map";
 import type { Transducer } from "../api";
@@ -30,5 +31,7 @@ export function swizzle<T>(
     src: Iterable<any>
 ): IterableIterator<any[]>;
 export function swizzle(order: PropertyKey[], src?: Iterable<any>): any {
-    return src ? iterator1(swizzle(order), src) : map(_swizzle(order));
+    return isIterable(src)
+        ? iterator1(swizzle(order), src)
+        : map(_swizzle(order));
 }

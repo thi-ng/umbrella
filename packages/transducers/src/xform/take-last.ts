@@ -1,3 +1,4 @@
+import { isIterable } from "@thi.ng/checks";
 import { __drain } from "../internal/drain";
 import { iterator } from "../iterator";
 import type { Reducer, Transducer } from "../api";
@@ -18,7 +19,7 @@ import type { Reducer, Transducer } from "../api";
 export function takeLast<T>(n: number): Transducer<T, T>;
 export function takeLast<T>(n: number, src: Iterable<T>): IterableIterator<T>;
 export function takeLast<T>(n: number, src?: Iterable<T>): any {
-    return src
+    return isIterable(src)
         ? iterator(takeLast(n), src)
         : ([init, complete, reduce]: Reducer<any, T>) => {
               const buf: T[] = [];

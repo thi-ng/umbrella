@@ -1,3 +1,4 @@
+import { isIterable } from "@thi.ng/checks";
 import { compR } from "../func/compr";
 import { iterator1 } from "../iterator";
 import type { StatefulPredicate } from "@thi.ng/api";
@@ -29,7 +30,7 @@ export function throttle<T>(
     pred: StatefulPredicate<T>,
     src?: Iterable<T>
 ): any {
-    return src
+    return isIterable(src)
         ? iterator1(throttle(pred), src)
         : (rfn: Reducer<any, T>) => {
               const r = rfn[2];
