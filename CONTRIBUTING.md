@@ -182,7 +182,7 @@ git-flow feature start my-feature
 git commit -am 'feat(module): description'
 ```
 
-**Please do use the [Convential Commits
+**Please do use the [Conventional Commits
 convention](https://conventionalcommits.org/) for your commit
 messages.** This format is used to generate changelogs and ensures
 consistency and better filtering. Since this is a mono repository the
