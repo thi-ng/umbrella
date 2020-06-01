@@ -21,6 +21,9 @@ import { map, sideEffect, slidingWindow } from "@thi.ng/transducers";
 const canvas = (size: number[] | Subscription<any, number[]>, attribs?: any) =>
     new Canvas(size, attribs);
 
+/**
+ * Temporary hdom-canvas wrapper, will be re-usable/migrated to package
+ */
 class Canvas extends Component {
     el?: HTMLCanvasElement;
     ctx?: CanvasRenderingContext2D;
@@ -46,6 +49,14 @@ class Canvas extends Component {
         this.resize();
         this.update(tree);
         return this.el;
+    }
+
+    async unmount() {
+        this.inner!.unmount();
+        this.sizeSub.unsubscribe();
+        this.inner = undefined;
+        this.el = undefined;
+        this.ctx = undefined;
     }
 
     resize() {
