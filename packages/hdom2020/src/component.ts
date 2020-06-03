@@ -11,6 +11,11 @@ import {
     $tree,
 } from "./dom";
 
+/**
+ * Abstract base class / {@link IComponent} implementation. Provides
+ * additional convenience methods for DOM element creation &
+ * manipulation.
+ */
 export abstract class Component<T = any> implements IComponent<T> {
     el?: Element;
 

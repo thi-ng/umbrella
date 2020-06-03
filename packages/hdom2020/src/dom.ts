@@ -1,4 +1,4 @@
-import { deref } from "@thi.ng/api";
+import { deref, isDeref } from "@thi.ng/api";
 import {
     implementsFunction,
     isArray,
@@ -13,12 +13,14 @@ import { isComponent } from "./utils";
 
 /**
  * hdom-style DOM tree creation from hiccup format. Returns DOM element
- * of `tree` root.
+ * of `tree` root. See {@link $el} for further details.
  *
  * @remarks
  * Supports elements given in these forms:
  *
  * - {@link IComponent} instance
+ * - {@link IDeref} instance (must resolve to another supported type in
+ *   this list)
  * - `["div#id.class", {...attribs}, ...children]`
  * - `[function, ...args]`
  * - ES6 iterator of the above (as children only!)
@@ -56,6 +58,9 @@ export const $tree = async (
     if (isComponent(tree)) {
         return tree.mount(parent);
     }
+    if (isDeref(tree)) {
+        return $tree(tree.deref(), parent);
+    }
     if (isNotStringAndIterable(tree)) {
         for (let t of tree) {
             $tree(t, parent);
@@ -64,6 +69,23 @@ export const $tree = async (
     return tree != null ? $el("span", null, tree, <HTMLElement>parent) : null;
 };
 
+/**
+ * Create a single DOM element and optionally attaches it to `parent`.
+ *
+ * @remarks
+ * Supports Emmet-style tag names in this form: `tag#id.class1.class2`.
+ * `attribs` is a plain object of element attributes. See
+ * {@link $attribs} for further details.
+ *
+ * If `parent` is given, but no `idx` arg, the new element will be
+ * appended as child.
+ *
+ * @param tag
+ * @param attribs
+ * @param body
+ * @param parent
+ * @param idx
+ */
 export const $el = (
     tag: string,
     attribs: any,

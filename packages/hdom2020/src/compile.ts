@@ -7,6 +7,28 @@ import { $sub, $SubA } from "./sub";
 import { isComponent, isSubscribable } from "./utils";
 import { $wrap } from "./wrap";
 
+/**
+ * Compiles a tree of components given in any supported format incl.
+ * reactive state values into a single {@link IComponent}.
+ *
+ * @remarks
+ * Supported formats:
+ *
+ * - hiccup component trees, i.e. `["tag#id.class", attribs, [...]]`
+ * - hiccup lazy function syntax, i.e. `[func, ...args]`
+ * - {@link IComponent} instances
+ * - {@link @thi.ng/rstream#ISubscribable} instances
+ * - {@link @thi.ng/api#IDeref} instances
+ *
+ * Any other value type will be wrapped in a `<span>` element. Reactive
+ * `ISubscribable` values can be used as element attributes or element
+ * body/children. For the former, a subscription will be added to update
+ * the target attribute. If used as element body, the reactive value
+ * will be wrapped using a {@link $sub} `<span>` with the value as its
+ * reactive body.
+ *
+ * @param tree
+ */
 export const $compile = (tree: any): IComponent => {
     if (isArray(tree)) {
         const tag = tree[0];
