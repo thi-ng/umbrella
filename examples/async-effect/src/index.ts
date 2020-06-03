@@ -52,7 +52,7 @@ const events: IObjectOf<EventDef> = {
         () => ({
             [FX_DISPATCH_NOW]: [
                 EV_SET_STATUS,
-                ["success", "JSON succesfully loaded"]
+                ["success", "JSON successfully loaded"]
             ],
             [FX_DISPATCH_ASYNC]: [
                 FX_DELAY,
