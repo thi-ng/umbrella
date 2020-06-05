@@ -1,4 +1,4 @@
-import { isArray } from "@thi.ng/checks";
+import { implementsFunction, isArray } from "@thi.ng/checks";
 import type { DrawState } from "./api";
 import { circularArc, ellipticArc } from "./arc";
 import { defLinearGradient, defRadialGradient } from "./color";
@@ -15,10 +15,14 @@ import { text } from "./text";
 
 export const draw = (
     ctx: CanvasRenderingContext2D,
-    shape: any[],
+    shape: any,
     pstate: DrawState = { attribs: {}, edits: [] }
 ) => {
     if (!shape) return;
+    if (implementsFunction(shape, "toHiccup")) {
+        draw(ctx, shape.toHiccup(), pstate);
+        return;
+    }
     if (isArray(shape[0])) {
         for (let s of shape) {
             draw(ctx, s, pstate);
