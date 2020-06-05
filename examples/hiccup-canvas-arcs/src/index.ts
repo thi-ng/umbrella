@@ -5,8 +5,7 @@ import {
     pathFromCubics,
     closestPoint,
 } from "@thi.ng/geom";
-import { createElement } from "@thi.ng/hdom";
-import { walk } from "@thi.ng/hdom-canvas";
+import { draw } from "@thi.ng/hiccup-canvas";
 import { hsla } from "@thi.ng/color";
 import { SYSTEM } from "@thi.ng/random";
 import { fit01, TAU } from "@thi.ng/math";
@@ -20,10 +19,9 @@ const ORIGIN = [W / 2, W / 2];
 const PICK_DIST = 10;
 const PICK_COL = "cyan";
 
-const canvas = <HTMLCanvasElement>createElement(document.body, "canvas", {
-    width: W,
-    height: W,
-});
+const canvas: HTMLCanvasElement = document.createElement("canvas");
+canvas.width = canvas.height = W;
+document.body.appendChild(canvas);
 
 const ctx = canvas.getContext("2d")!;
 
@@ -65,10 +63,10 @@ fromRAF().subscribe({
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         // get mouse pos
         const m = mouse.deref();
-        walk(
+        draw(
             ctx,
-            // group arcs and convert to hiccup tree required by `walk()`
-            // (see hdom-canvas readme for details)
+            // group arcs and convert to hiccup tree required by `draw()`
+            // (see hiccup-canvas readme for details)
             group(
                 {},
                 arcs.map(({ r, w, col, theta, spread }) => {
@@ -86,11 +84,7 @@ fromRAF().subscribe({
                                 : col,
                     });
                 })
-            ).toHiccup(),
-            {
-                attribs: {},
-                edits: [],
-            }
+            ).toHiccup()
         );
     },
 });

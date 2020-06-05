@@ -1,6 +1,6 @@
-# hdom-canvas-arcs
+# hiccup-canvas-arcs
 
-[Live demo](http://demo.thi.ng/umbrella/hdom-canvas-arcs/)
+[Live demo](http://demo.thi.ng/umbrella/hiccup-canvas-arcs/)
 
 Please refer to the [example build instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions) on the wiki.
 

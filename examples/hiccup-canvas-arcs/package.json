@@ -1,7 +1,7 @@
 {
-    "name": "hdom-canvas-arcs",
+    "name": "hiccup-canvas-arcs",
     "version": "0.0.1",
-    "description": "Animated arcs & drawing using hdom-canvas without hdom",
+    "description": "Animated arcs & drawing using hiccup-canvas",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
@@ -18,8 +18,7 @@
     },
     "dependencies": {
         "@thi.ng/geom": "latest",
-        "@thi.ng/hdom": "latest",
-        "@thi.ng/hdom-canvas": "latest",
+        "@thi.ng/hiccup-canvas": "latest",
         "@thi.ng/math": "latest",
         "@thi.ng/rstream": "latest",
         "@thi.ng/transducers": "latest"
@@ -33,7 +32,7 @@
     "thi.ng": {
         "readme": [
             "geom",
-            "hdom-canvas"
+            "hiccup-canvas"
         ]
     }
 }
