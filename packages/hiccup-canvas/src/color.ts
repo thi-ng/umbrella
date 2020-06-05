@@ -1,6 +1,6 @@
 import { isString } from "@thi.ng/checks";
 import { resolveAsCSS } from "@thi.ng/color";
-import type { DrawState } from "../api";
+import type { DrawState } from "./api";
 
 export const resolveColor = (v: any) => (isString(v) ? v : resolveAsCSS(v));
 

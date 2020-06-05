@@ -1,28 +1,31 @@
-import { isArray } from "@thi.ng/checks";
-import { circularArc, ellipticArc } from "./draw/arc";
-import { defLinearGradient, defRadialGradient } from "./draw/color";
-import { image } from "./draw/image";
-import { line } from "./draw/line";
-import { packedPoints } from "./draw/packed-points";
-import { path } from "./draw/path";
-import { points } from "./draw/points";
-import { polygon } from "./draw/polygon";
-import { polyline } from "./draw/polyline";
-import { rect } from "./draw/rect";
-import { text } from "./draw/text";
-import { mergeState, registerGradient, restoreState } from "./state";
+import { implementsFunction, isArray } from "@thi.ng/checks";
 import type { DrawState } from "./api";
+import { circularArc, ellipticArc } from "./arc";
+import { defLinearGradient, defRadialGradient } from "./color";
+import { image } from "./image";
+import { line } from "./line";
+import { packedPoints } from "./packed-points";
+import { path } from "./path";
+import { points } from "./points";
+import { polygon } from "./polygon";
+import { polyline } from "./polyline";
+import { rect } from "./rect";
+import { mergeState, registerGradient, restoreState } from "./state";
+import { text } from "./text";
 
-/** @internal */
-export const walk = (
+export const draw = (
     ctx: CanvasRenderingContext2D,
-    shape: any[],
-    pstate: DrawState
+    shape: any,
+    pstate: DrawState = { attribs: {}, edits: [] }
 ) => {
     if (!shape) return;
+    if (implementsFunction(shape, "toHiccup")) {
+        draw(ctx, shape.toHiccup(), pstate);
+        return;
+    }
     if (isArray(shape[0])) {
         for (let s of shape) {
-            walk(ctx, s, pstate);
+            draw(ctx, s, pstate);
         }
         return;
     }
@@ -119,6 +122,6 @@ const defs = (
     const n = shape.length;
     const __state = shape[0] === "g" ? state || pstate : pstate;
     for (let i = 2; i < n; i++) {
-        walk(ctx, shape[i], __state);
+        draw(ctx, shape[i], __state);
     }
 };

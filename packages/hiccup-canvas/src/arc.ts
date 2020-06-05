@@ -1,7 +1,7 @@
-import { TAU } from "@thi.ng/math";
-import { endShape } from "./end-shape";
 import type { IObjectOf } from "@thi.ng/api";
+import { TAU } from "@thi.ng/math";
 import type { ReadonlyVec } from "@thi.ng/vectors";
+import { endShape } from "./end-shape";
 
 export const circularArc = (
     ctx: CanvasRenderingContext2D,

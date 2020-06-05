@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@2.4.26...@thi.ng/hdom-canvas@3.0.0) (2020-06-05)
+
+
+### Features
+
+* **hdom-canvas:** remove obsolete files ([41c8a9d](https://github.com/thi-ng/umbrella/commit/41c8a9d696211b13bde358dae431f110ab7b4be5))
+
+
+### BREAKING CHANGES
+
+* **hdom-canvas:** tree traversal & rendering parts extracted to new
+package @thi.ng/hiccup-canvas
+
+From now on, this package only contains the canvas component wrapper & hdom related interface implementations, allowing canvas rendering parts to be used separately.
+
+
+
+
+
 ## [2.4.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@2.4.25...@thi.ng/hdom-canvas@2.4.26) (2020-06-01)
 
 **Note:** Version bump only for package @thi.ng/hdom-canvas

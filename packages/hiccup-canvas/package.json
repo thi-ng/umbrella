@@ -1,7 +1,7 @@
 {
-    "name": "@thi.ng/hdom-canvas",
-    "version": "3.0.0",
-    "description": "@thi.ng/hdom component wrapper for declarative canvas scenegraphs",
+    "name": "@thi.ng/hiccup-canvas",
+    "version": "1.0.0",
+    "description": "Hiccup shape tree renderer for vanilla Canvas 2D contexts",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -10,7 +10,7 @@
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
     },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas#readme",
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-canvas#readme",
     "funding": {
         "type": "patreon",
         "url": "https://patreon.com/thing_umbrella"
@@ -22,13 +22,12 @@
         "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
         "build:es6": "tsc --declaration",
         "build:test": "rimraf build && tsc -p test/tsconfig.json",
-        "build:check": "tsc --isolatedModules --noEmit",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib draw",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
-        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
@@ -45,9 +44,9 @@
     "dependencies": {
         "@thi.ng/api": "^6.11.0",
         "@thi.ng/checks": "^2.7.0",
-        "@thi.ng/diff": "^3.2.22",
-        "@thi.ng/hdom": "^8.0.27",
-        "@thi.ng/hiccup-canvas": "^1.0.0"
+        "@thi.ng/color": "^1.2.2",
+        "@thi.ng/math": "^1.7.10",
+        "@thi.ng/vectors": "^4.4.3"
     },
     "files": [
         "*.js",
@@ -55,14 +54,12 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
+        "2d",
         "canvas",
-        "data driven",
-        "drawing",
-        "graphics",
-        "hdom",
+        "declarative",
+        "draw",
+        "ES6",
         "hiccup",
-        "scenegraph",
         "typescript"
     ],
     "publishConfig": {
@@ -70,12 +67,9 @@
     },
     "sideEffects": false,
     "thi.ng": {
-        "parent": "@thi.ng/hdom",
         "related": [
-            "geom",
-            "hdom",
-            "hiccup-canvas",
-            "hiccup-svg"
+            "hdom-canvas",
+            "hiccup"
         ],
         "year": 2018
     }

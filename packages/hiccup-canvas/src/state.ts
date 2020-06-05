@@ -1,7 +1,7 @@
-import { isArrayLike } from "@thi.ng/checks";
-import { resolveGradientOrColor } from "./draw/color";
 import type { IObjectOf } from "@thi.ng/api";
+import { isArrayLike } from "@thi.ng/checks";
 import type { DrawState } from "./api";
+import { resolveGradientOrColor } from "./color";
 
 const DEFAULTS: any = {
     align: "left",
@@ -23,7 +23,7 @@ const DEFAULTS: any = {
     shadowY: 0,
     smooth: true,
     stroke: "#000",
-    weight: 1
+    weight: 1,
 };
 
 const CTX_ATTRIBS: IObjectOf<string> = {
@@ -47,14 +47,14 @@ const CTX_ATTRIBS: IObjectOf<string> = {
     shadowY: "shadowOffsetY",
     smooth: "imageSmoothingEnabled",
     stroke: "strokeStyle",
-    weight: "lineWidth"
+    weight: "lineWidth",
 };
 
 const newState = (state: DrawState, restore = false) => ({
     attribs: { ...state.attribs },
     grads: { ...state.grads },
     edits: [],
-    restore
+    restore,
 });
 
 /** @internal */

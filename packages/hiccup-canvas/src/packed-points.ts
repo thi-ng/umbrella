@@ -1,5 +1,5 @@
-import { TAU } from "@thi.ng/math";
 import type { IObjectOf } from "@thi.ng/api";
+import { TAU } from "@thi.ng/math";
 
 export const packedPoints = (
     ctx: CanvasRenderingContext2D,
@@ -28,7 +28,7 @@ const __drawPoints = (
         cstride: 1,
         estride: 2,
         size: 1,
-        ...opts
+        ...opts,
     };
     let num =
         opts && opts.num != null

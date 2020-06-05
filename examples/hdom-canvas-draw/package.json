@@ -31,7 +31,15 @@
         "process": false
     },
     "thi.ng": {
-        "readme": true,
+        "readme": [
+            "hdom-canvas",
+            "hiccup-canvas",
+            "rstream",
+            "rstream-gestures",
+            "transducers",
+            "transducers-hdom",
+            "vectors"
+        ],
         "screenshot": "examples/hdom-canvas-draw.jpg"
     }
 }

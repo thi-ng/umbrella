@@ -1,6 +1,6 @@
-import { path } from "./path";
 import type { IObjectOf } from "@thi.ng/api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
+import { path } from "./path";
 
 export const rect = (
     ctx: CanvasRenderingContext2D,
@@ -24,7 +24,7 @@ export const rect = (
             ["h", -w],
             ["a", [-r, 0], [-r, -r], r],
             ["v", -h],
-            ["a", [0, -r], [r, -r], r]
+            ["a", [0, -r], [r, -r], r],
         ]);
     }
     if ((v = attribs.fill) && v !== "none") {
