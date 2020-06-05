@@ -37,6 +37,7 @@
             "geom",
             "hdom",
             "hdom-canvas",
+            "hiccup-canvas",
             "math",
             "vectors"
         ],
