@@ -1,5 +1,4 @@
 import { IDeref } from "@thi.ng/api";
-import { walk } from "@thi.ng/hdom-canvas";
 import { adaptDPI } from "@thi.ng/hdom-components";
 import {
     $compile,
@@ -8,6 +7,7 @@ import {
     IComponent,
     isSubscribable,
 } from "@thi.ng/hdom2020";
+import { draw } from "@thi.ng/hiccup-canvas";
 import {
     fromDOMEvent,
     fromRAF,
@@ -73,7 +73,7 @@ class Canvas extends Component {
         const scale = window.devicePixelRatio || 1;
         this.ctx!.resetTransform();
         this.ctx!.scale(scale, scale);
-        walk(this.ctx!, tree, { attribs: {}, edits: [] });
+        draw(this.ctx!, tree);
     }
 }
 

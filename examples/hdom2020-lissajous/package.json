@@ -18,10 +18,10 @@
     },
     "dependencies": {
         "@thi.ng/api": "latest",
-        "@thi.ng/rstream": "latest",
-        "@thi.ng/hdom-canvas": "latest",
         "@thi.ng/hdom-components": "latest",
         "@thi.ng/hdom2020": "latest",
+        "@thi.ng/hiccup-canvas": "latest",
+        "@thi.ng/rstream": "latest",
         "@thi.ng/transducers": "latest"
     },
     "browserslist": [
