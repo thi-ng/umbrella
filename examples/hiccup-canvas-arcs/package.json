@@ -33,6 +33,7 @@
         "readme": [
             "geom",
             "hiccup-canvas"
-        ]
+        ],
+        "screenshot": "examples/hiccup-canvas-arcs.png"
     }
 }

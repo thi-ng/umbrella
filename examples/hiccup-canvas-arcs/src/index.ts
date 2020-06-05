@@ -84,7 +84,7 @@ fromRAF().subscribe({
                                 : col,
                     });
                 })
-            ).toHiccup()
+            )
         );
     },
 });
