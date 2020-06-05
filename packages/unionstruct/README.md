@@ -33,7 +33,7 @@ Features:
 - Packed bitfields (signed / unsigned)
 - Auto-alignment of fields to respective word boundaries (can be
   disabled)
-- Configurable endianess (bitfields currently assume network order / big
+- Configurable endianness (bitfields currently assume network order / big
   endian)
 - No runtime dependencies, works in node & browser
 - Small: 2.35KB minified, 1.14KB gzipped
