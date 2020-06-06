@@ -1,81 +1,14 @@
-import { adaptDPI } from "@thi.ng/adapt-dpi";
-import { IDeref } from "@thi.ng/api";
-import {
-    $compile,
-    $sub,
-    Component,
-    IComponent,
-    isSubscribable,
-} from "@thi.ng/hdom2020";
-import { draw } from "@thi.ng/hiccup-canvas";
+import type { IDeref } from "@thi.ng/api";
+import { $canvas, $compile } from "@thi.ng/hdom2020";
 import {
     fromDOMEvent,
     fromRAF,
+    ISubscribable,
     stream,
     Subscription,
     sync,
-    trigger,
 } from "@thi.ng/rstream";
-import { map, sideEffect, slidingWindow } from "@thi.ng/transducers";
-
-const canvas = (size: number[] | Subscription<any, number[]>, attribs?: any) =>
-    new Canvas(size, attribs);
-
-/**
- * Temporary hdom-canvas wrapper, will be re-usable/migrated to package
- */
-class Canvas extends Component {
-    el?: HTMLCanvasElement;
-    ctx?: CanvasRenderingContext2D;
-    inner?: IComponent<any>;
-    size: Subscription<any, number[]>;
-    sizeSub: Subscription<number[], number[]>;
-
-    constructor(
-        size: number[] | Subscription<any, number[]>,
-        protected attribs: any = {}
-    ) {
-        super();
-        this.size = isSubscribable(size)
-            ? <Subscription<any, number[]>>size
-            : trigger(<number[]>size);
-        this.sizeSub = this.size.transform(sideEffect(() => this.resize()));
-    }
-
-    async mount(parent: Element, tree: any[]) {
-        this.inner = this.$compile(["canvas", this.attribs]);
-        this.el = <HTMLCanvasElement>await this.inner.mount(parent);
-        this.ctx = this.el.getContext("2d")!;
-        this.resize();
-        this.update(tree);
-        return this.el;
-    }
-
-    async unmount() {
-        this.inner!.unmount();
-        this.sizeSub.unsubscribe();
-        this.inner = undefined;
-        this.el = undefined;
-        this.ctx = undefined;
-    }
-
-    resize() {
-        if (this.el) {
-            const size = this.size.deref()!;
-            adaptDPI(this.el!, size[0], size[1]);
-        }
-    }
-
-    update(tree: any) {
-        if (tree == null) return;
-        tree[1].__clear !== false &&
-            this.ctx!.clearRect(0, 0, this.el!.width, this.el!.height);
-        const scale = window.devicePixelRatio || 1;
-        this.ctx!.resetTransform();
-        this.ctx!.scale(scale, scale);
-        draw(this.ctx!, tree);
-    }
-}
+import { map, slidingWindow } from "@thi.ng/transducers";
 
 const slider = (
     dest: Subscription<number, number>,
@@ -134,7 +67,7 @@ interface Lissajous {
 
 // combine various reactive parameters
 // and transform via transducers
-const dots = sync<any, Lissajous>({
+const dots: ISubscribable<any[]> = sync<any, Lissajous>({
     src: { a, b, scale, size, time: fromRAF() },
 }).transform(
     // compute next lissajous point
@@ -181,5 +114,5 @@ $compile([
         slider(scale, "Scale", { max: 1, step: 0.01 }),
     ],
     // subscribe canvas component to above reactive value
-    $sub(dots, canvas(size)),
+    $canvas(dots, size),
 ]).mount(document.body);
