@@ -80,7 +80,7 @@ code](#doc-strings) below.
 ### Changes to readme files
 
 The readme files for all packages are generated from their respective
-templated versions (`README.tpl.md` files). Please only ever edit the
+templated versions (`tpl.readme.md` files). Please only ever edit the
 template and then re-generate the actual readme like so:
 
 ```bash
