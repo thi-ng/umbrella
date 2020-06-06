@@ -43,6 +43,7 @@
         "typescript": "^3.9.2"
     },
     "dependencies": {
+        "@thi.ng/adapt-dpi": "^0.0.1",
         "@thi.ng/api": "^6.11.0",
         "@thi.ng/associative": "^4.0.11",
         "@thi.ng/binary": "^2.0.7",
