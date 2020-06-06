@@ -142,7 +142,7 @@ start(() => {
                     { rotate: t % Math.PI, stroke: "red" }
                 ),
                 g.star(25 + 25 * Math.sin(t), 6, [0.5, 1], { stroke: "blue" }),
-            ],
+            ]
         )
     ];
 });
