@@ -1,5 +1,5 @@
+import { adaptDPI } from "@thi.ng/adapt-dpi";
 import { IDeref } from "@thi.ng/api";
-import { adaptDPI } from "@thi.ng/hdom-components";
 import {
     $compile,
     $sub,

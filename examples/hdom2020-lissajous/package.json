@@ -17,8 +17,8 @@
         "typescript": "^3.7.5"
     },
     "dependencies": {
+        "@thi.ng/adapt-dpi": "latest",
         "@thi.ng/api": "latest",
-        "@thi.ng/hdom-components": "latest",
         "@thi.ng/hdom2020": "latest",
         "@thi.ng/hiccup-canvas": "latest",
         "@thi.ng/rstream": "latest",
