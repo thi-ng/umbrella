@@ -1,6 +1,7 @@
+import { adaptDPI } from "@thi.ng/adapt-dpi";
 import { sin } from "@thi.ng/dsp";
 import { start } from "@thi.ng/hdom";
-import { adaptDPI, canvasWebGL, dropdown } from "@thi.ng/hdom-components";
+import { canvasWebGL, dropdown } from "@thi.ng/hdom-components";
 import { concat, lookAt, perspective, transform44 } from "@thi.ng/matrices";
 import { fromPromise, metaStream, stream } from "@thi.ng/rstream";
 import {

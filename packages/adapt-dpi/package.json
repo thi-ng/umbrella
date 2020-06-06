@@ -1,7 +1,7 @@
 {
-    "name": "@thi.ng/webgl",
-    "version": "1.0.17",
-    "description": "WebGL & GLSL abstraction layer",
+    "name": "@thi.ng/adapt-dpi",
+    "version": "0.0.1",
+    "description": "HDPI canvas adapter / styling utility",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -10,7 +10,7 @@
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
     },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/webgl#readme",
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/adapt-dpi#readme",
     "funding": {
         "type": "patreon",
         "url": "https://patreon.com/thing_umbrella"
@@ -22,13 +22,12 @@
         "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
         "build:es6": "tsc --declaration",
         "build:test": "rimraf build && tsc -p test/tsconfig.json",
-        "build:check": "tsc --isolatedModules --noEmit",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib api geo shaders textures",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
-        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
@@ -42,61 +41,25 @@
         "typedoc": "^0.17.6",
         "typescript": "^3.9.2"
     },
-    "dependencies": {
-        "@thi.ng/adapt-dpi": "^0.0.1",
-        "@thi.ng/api": "^6.11.0",
-        "@thi.ng/associative": "^4.0.11",
-        "@thi.ng/binary": "^2.0.7",
-        "@thi.ng/checks": "^2.7.0",
-        "@thi.ng/equiv": "^1.0.23",
-        "@thi.ng/errors": "^1.2.14",
-        "@thi.ng/matrices": "^0.6.18",
-        "@thi.ng/pixel": "^0.3.1",
-        "@thi.ng/shader-ast": "^0.3.23",
-        "@thi.ng/shader-ast-glsl": "^0.1.29",
-        "@thi.ng/shader-ast-stdlib": "^0.3.22",
-        "@thi.ng/transducers": "^7.0.0",
-        "@thi.ng/vector-pools": "^1.0.31",
-        "@thi.ng/vectors": "^4.4.3",
-        "tslib": "^1.12.0"
-    },
+    "dependencies": {},
     "files": [
         "*.js",
         "*.d.ts",
-        "lib",
-        "api",
-        "geo",
-        "shaders",
-        "textures"
+        "lib"
     ],
     "keywords": [
-        "declarative",
+        "canvas",
+        "DPI",
         "ES6",
-        "FBO",
-        "GPGPU",
-        "graphics",
-        "shader",
-        "texture",
-        "typescript",
-        "webgl",
-        "webgl2"
+        "HDPI",
+        "retina",
+        "typescript"
     ],
     "publishConfig": {
         "access": "public"
     },
     "sideEffects": false,
     "thi.ng": {
-        "related": [
-            "ecs",
-            "geom",
-            "imgui",
-            "matrices",
-            "shader-ast",
-            "soa",
-            "vectors",
-            "vector-pools"
-        ],
-        "status": "beta",
-        "year": 2014
+        "year": 2015
     }
 }

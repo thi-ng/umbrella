@@ -1,7 +1,8 @@
+import { adaptDPI } from "@thi.ng/adapt-dpi";
 import { isString } from "@thi.ng/checks";
-import { error } from "./error";
 import type { WeblGLCanvasOpts } from "./api/canvas";
 import type { WebGLExtensionMap } from "./api/ext";
+import { error } from "./error";
 
 const defaultOpts: WebGLContextAttributes = {
     alpha: true,
@@ -9,7 +10,7 @@ const defaultOpts: WebGLContextAttributes = {
     depth: true,
     premultipliedAlpha: true,
     preserveDrawingBuffer: false,
-    stencil: false
+    stencil: false,
 };
 
 export const glCanvas = (opts: Partial<WeblGLCanvasOpts> = {}) => {
@@ -26,7 +27,7 @@ export const glCanvas = (opts: Partial<WeblGLCanvasOpts> = {}) => {
         opts.version === 2 ? "webgl2" : "webgl",
         {
             ...defaultOpts,
-            ...opts.opts
+            ...opts.opts,
         }
     );
     if (!gl) {
@@ -37,7 +38,7 @@ export const glCanvas = (opts: Partial<WeblGLCanvasOpts> = {}) => {
     return {
         canvas,
         gl,
-        ext: getExtensions(gl, opts.ext!)
+        ext: getExtensions(gl, opts.ext!),
     };
 };
 
@@ -54,28 +55,4 @@ export const getExtensions = <K extends keyof WebGLExtensionMap>(
         }
     }
     return ext;
-};
-
-/**
- * Sets the canvas size to given `width` & `height` and adjusts style to
- * compensate for HDPI devices. Note: For 2D canvases, this will
- * automatically clear any prior canvas content.
- *
- * @param canvas -
- * @param width - uncompensated pixel width
- * @param height - uncompensated pixel height
- */
-export const adaptDPI = (
-    canvas: HTMLCanvasElement,
-    width: number,
-    height: number
-) => {
-    const dpr = window.devicePixelRatio || 1;
-    if (dpr != 1) {
-        canvas.style.width = `${width}px`;
-        canvas.style.height = `${height}px`;
-    }
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    return dpr;
 };

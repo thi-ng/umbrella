@@ -17,6 +17,7 @@
         "typescript": "^3.9.2"
     },
     "dependencies": {
+        "@thi.ng/adapt-dpi": "latest",
         "@thi.ng/api": "latest",
         "@thi.ng/ecs": "latest",
         "@thi.ng/hdom": "latest",
@@ -35,6 +36,7 @@
     },
     "thi.ng": {
         "readme": [
+            "adapt-dpi",
             "ecs",
             "hdom",
             "matrices",
