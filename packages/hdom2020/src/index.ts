@@ -1,4 +1,5 @@
 export * from "./api";
+export * from "./canvas";
 export * from "./compile";
 export * from "./component";
 export * from "./dom";
