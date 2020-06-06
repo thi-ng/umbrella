@@ -47,7 +47,7 @@ yarn add @thi.ng/hdom2020
 <script src="https://unpkg.com/@thi.ng/hdom2020/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.32 KB / CJS: 3.46 KB / UMD: 3.48 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.34 KB / CJS: 3.48 KB / UMD: 3.49 KB
 
 ## Dependencies
 
@@ -67,10 +67,10 @@ directory are using this package.
 
 A selection:
 
-| Description                         | Live demo                                                | Source                                                                                         |
-| ----------------------------------- | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| hdom2020 test sandbox / POC         | [Demo](https://demo.thi.ng/umbrella/hdom2020-basics/)    | [Source](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/examples/hdom2020-basics)    |
-| hdom2020 & hdom-canvas interop test | [Demo](https://demo.thi.ng/umbrella/hdom2020-lissajous/) | [Source](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/examples/hdom2020-lissajous) |
+| Description                           | Live demo                                                | Source                                                                                         |
+| ------------------------------------- | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| hdom2020 test sandbox / POC           | [Demo](https://demo.thi.ng/umbrella/hdom2020-basics/)    | [Source](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/examples/hdom2020-basics)    |
+| hdom2020 & hiccup-canvas interop test | [Demo](https://demo.thi.ng/umbrella/hdom2020-lissajous/) | [Source](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/examples/hdom2020-lissajous) |
 
 ## API
 
