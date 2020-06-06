@@ -1,3 +1,4 @@
+import { adaptDPI } from "@thi.ng/adapt-dpi";
 import { GLType } from "@thi.ng/api";
 import { start } from "@thi.ng/hdom";
 import { canvasWebGL } from "@thi.ng/hdom-components";
@@ -33,7 +34,6 @@ import {
     ZERO3,
 } from "@thi.ng/vectors";
 import {
-    adaptDPI,
     BLEND_NORMAL,
     compileModel,
     defShader,

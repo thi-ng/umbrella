@@ -1,5 +1,6 @@
+import { adaptDPI } from "@thi.ng/adapt-dpi";
 import { start } from "@thi.ng/hdom";
-import { adaptDPI, canvasWebGL } from "@thi.ng/hdom-components";
+import { canvasWebGL } from "@thi.ng/hdom-components";
 import { PI } from "@thi.ng/math";
 import { lookAt, ortho, scale44 } from "@thi.ng/matrices";
 import { mapcat, range2d } from "@thi.ng/transducers";

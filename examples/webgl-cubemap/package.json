@@ -17,6 +17,7 @@
         "typescript": "^3.9.2"
     },
     "dependencies": {
+        "@thi.ng/adapt-dpi": "latest",
         "@thi.ng/dsp": "latest",
         "@thi.ng/hdom": "latest",
         "@thi.ng/hdom-components": "latest",
@@ -34,6 +35,7 @@
     },
     "thi.ng": {
         "readme": [
+            "adapt-dpi",
             "matrices",
             "shader-ast",
             "webgl"

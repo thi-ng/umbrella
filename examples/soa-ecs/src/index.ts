@@ -1,7 +1,8 @@
+import { adaptDPI } from "@thi.ng/adapt-dpi";
 import { Type } from "@thi.ng/api";
 import { ECS, GroupInfo, GroupTuple } from "@thi.ng/ecs";
 import { start } from "@thi.ng/hdom";
-import { adaptDPI, canvasWebGL } from "@thi.ng/hdom-components";
+import { canvasWebGL } from "@thi.ng/hdom-components";
 import { fract } from "@thi.ng/math";
 import { ortho } from "@thi.ng/matrices";
 import {
@@ -13,7 +14,7 @@ import {
     mix,
     mul,
     Vec2Sym,
-    vec4
+    vec4,
 } from "@thi.ng/shader-ast";
 import {
     add2,
@@ -30,18 +31,18 @@ import {
     randNormS2,
     rotate,
     rotateS2,
-    setVN4
+    setVN4,
 } from "@thi.ng/vectors";
 import {
     BLEND_ADD,
     compileModel,
+    defShader,
     draw,
     DrawMode,
     GLMat4,
     GLVec4,
     ModelSpec,
-    shader,
-    ShaderSpec
+    ShaderSpec,
 } from "@thi.ng/webgl";
 
 const BATCH_UPDATE = true;
@@ -65,14 +66,14 @@ const ecs = new ECS<CompSpecs>(NUM);
 const pos = ecs.defComponent({
     id: "pos",
     type: Type.F32,
-    size: 2
+    size: 2,
 });
 
 const vel = ecs.defComponent({
     id: "vel",
     type: Type.F32,
     size: 2,
-    default: () => randNormS2([0, 0])
+    default: () => randNormS2([0, 0]),
 });
 
 const group = ecs.defGroup([pos, vel]);
@@ -143,28 +144,28 @@ const pointShader: ShaderSpec = {
                 gl.gl_Position,
                 mul(<Mat4Sym>unis.proj, vec4(<Vec2Sym>ins.position, 0, 1))
             ),
-            assign(gl.gl_PointSize, float(2))
-        ])
+            assign(gl.gl_PointSize, float(2)),
+        ]),
     ],
     fs: (gl, unis, ins, outs) => [
-        defMain(() => [assign(outs.fragColor, ins.vcol)])
+        defMain(() => [assign(outs.fragColor, ins.vcol)]),
     ],
     attribs: {
-        position: "vec2"
+        position: "vec2",
     },
     varying: {
-        vcol: "vec4"
+        vcol: "vec4",
     },
     uniforms: {
         proj: "mat4",
         color: "vec4",
-        color2: "vec4"
+        color2: "vec4",
     },
     state: {
         depth: false,
         blend: true,
-        blendFn: BLEND_ADD
-    }
+        blendFn: BLEND_ADD,
+    },
 };
 
 const app = () => {
@@ -176,17 +177,17 @@ const app = () => {
                 attribs: {
                     position: {
                         data: <Float32Array>pos.packedValues(),
-                        size: 2
-                    }
+                        size: 2,
+                    },
                 },
-                shader: shader(gl, pointShader),
+                shader: defShader(gl, pointShader),
                 uniforms: {
                     proj: <GLMat4>ortho([], -W2, W2, -W2, W2, 0, 1),
                     color: COLOR,
-                    color2: COLOR2
+                    color2: COLOR2,
                 },
                 num: NUM,
-                mode: DrawMode.POINTS
+                mode: DrawMode.POINTS,
             });
         },
         update: (el, gl, __, time) => {
@@ -215,11 +216,11 @@ const app = () => {
             gl.clearColor(0, 0, 0, 1);
             gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
             draw(model);
-        }
+        },
     });
     return () => [
         "div.bg-black.vh-100.flex.flex-column.items-center.justify-center",
-        [canvas, { width: W, height: W }]
+        [canvas, { width: W, height: W }],
     ];
 };
 
