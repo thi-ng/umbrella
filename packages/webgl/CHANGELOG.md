@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@1.0.17...@thi.ng/webgl@2.0.0) (2020-06-07)
+
+
+### Code Refactoring
+
+* **webgl:** remove adaptDPI() ([6d49da6](https://github.com/thi-ng/umbrella/commit/6d49da610bec87fef96c77a39f1181002872f2ba))
+
+
+### BREAKING CHANGES
+
+* **webgl:** re-use adaptDPI() from new @thi.ng/adapt-dpi pkg
+
+- update deps
+
+
+
+
+
 ## [1.0.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@1.0.16...@thi.ng/webgl@1.0.17) (2020-06-01)
 
 **Note:** Version bump only for package @thi.ng/webgl
