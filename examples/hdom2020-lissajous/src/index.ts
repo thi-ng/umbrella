@@ -9,18 +9,27 @@ import {
     sync,
 } from "@thi.ng/rstream";
 import { map, slidingWindow } from "@thi.ng/transducers";
+import { INFO_SOLID as ICON, withSize } from "@thi.ng/hiccup-carbon-icons";
 
 const slider = (
     dest: Subscription<number, number>,
     label: string,
+    tooltip: string,
     attribs?: any
 ) => [
     "div",
     {},
-    ["span.dib.w-50", {}, `${label}: `, dest],
+    [
+        "label.dib.w-50",
+        { for: `input-${label}` },
+        ["i.mr2", { "data-tooltip": tooltip }, withSize(ICON, "12px")],
+        `${label}: `,
+        dest.transform(map((x) => x.toFixed(2))),
+    ],
     [
         "input.dib.w-50",
         {
+            id: `input-${label}`,
             type: "range",
             min: 0,
             max: 10,
@@ -86,7 +95,7 @@ const dots: ISubscribable<any[]> = sync<any, Lissajous>({
     // (drawing done thi.ng/hdom-canvas)
     map((points: number[][]) => {
         const [width, height] = size.deref()!;
-        const r = radius.deref();
+        const r = radius.deref()!;
         return [
             "g",
             { fill: "purple", translate: [width / 2, height / 2] },
@@ -94,7 +103,7 @@ const dots: ISubscribable<any[]> = sync<any, Lissajous>({
                 "circle",
                 { alpha: (i + 1) / points.length },
                 pos,
-                r,
+                (r * (i + 1)) / points.length,
             ]),
         ];
     })
@@ -107,11 +116,21 @@ $compile([
     [
         "div.w-50-ns.center-ns.ma3",
         {},
-        slider(a, "A"),
-        slider(b, "B"),
-        slider(num, "Length", { min: 1, max: 100, step: 1 }),
-        slider(radius, "Radius", { min: 1, max: 50 }),
-        slider(scale, "Scale", { max: 1, step: 0.01 }),
+        slider(a, "A", "Curve parameter"),
+        slider(b, "B", "Curve parameter"),
+        slider(num, "Length", "Trail length / number of dots", {
+            min: 1,
+            max: 100,
+            step: 1,
+        }),
+        slider(radius, "Radius", "Dot radius", {
+            min: 1,
+            max: 50,
+        }),
+        slider(scale, "Scale", "Scale factor", {
+            max: 1,
+            step: 0.01,
+        }),
     ],
     // subscribe canvas component to above reactive value
     $canvas(dots, size),
