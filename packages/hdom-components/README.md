@@ -55,10 +55,11 @@ yarn add @thi.ng/hdom-components
 <script src="https://unpkg.com/@thi.ng/hdom-components/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.25 KB / CJS: 2.37 KB / UMD: 2.37 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.19 KB / CJS: 2.31 KB / UMD: 2.33 KB
 
 ## Dependencies
 
+- [@thi.ng/adapt-dpi](https://github.com/thi-ng/umbrella/tree/develop/packages/adapt-dpi)
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)

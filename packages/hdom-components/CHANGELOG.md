@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@3.2.12...@thi.ng/hdom-components@4.0.0) (2020-06-07)
+
+
+### Code Refactoring
+
+* **hdom-components:** remove adaptDPI() ([2b89ad4](https://github.com/thi-ng/umbrella/commit/2b89ad4135b9c765436fd4a496eecb080a9f59fa))
+
+
+### BREAKING CHANGES
+
+* **hdom-components:** re-use adaptDPI() from new @thi.ng/adapt-dpi pkg
+
+- update deps
+
+
+
+
+
 ## [3.2.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@3.2.11...@thi.ng/hdom-components@3.2.12) (2020-06-01)
 
 **Note:** Version bump only for package @thi.ng/hdom-components

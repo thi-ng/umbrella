@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/adapt-dpi",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "HDPI canvas adapter / styling utility",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -41,7 +41,6 @@
         "typedoc": "^0.17.6",
         "typescript": "^3.9.2"
     },
-    "dependencies": {},
     "files": [
         "*.js",
         "*.d.ts",
