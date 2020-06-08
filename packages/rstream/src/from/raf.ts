@@ -22,7 +22,7 @@ export const fromRAF = (opts?: Partial<CommonOpts>) =>
         : new Stream<number>((stream) => {
               let i = 0;
               let isActive = true;
-              let loop = () => {
+              const loop = () => {
                   isActive && stream.next(i++);
                   isActive && (id = requestAnimationFrame(loop));
               };

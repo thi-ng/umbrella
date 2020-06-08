@@ -56,7 +56,7 @@ export class SidechainToggle<T, S> extends ASidechain<T, S, T> {
         const $this = this;
         this.sideSub = side.subscribe({
             next(x) {
-                if (pred!(x)) {
+                if (pred(x)) {
                     $this.isActive = !$this.isActive;
                 }
             },
