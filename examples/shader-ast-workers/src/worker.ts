@@ -18,7 +18,7 @@ import {
     Vec2Sym,
     vec3,
     Vec3Sym,
-    vec4
+    vec4,
 } from "@thi.ng/shader-ast";
 import { renderPixels, targetJS } from "@thi.ng/shader-ast-js";
 import {
@@ -36,15 +36,9 @@ import {
     sdfBox3,
     sdfRepeat3,
     sdfSmoothUnion,
-    sdfSphere
+    sdfSphere,
 } from "@thi.ng/shader-ast-stdlib";
-import {
-    comp,
-    map,
-    normRange,
-    slidingWindow,
-    step
-} from "@thi.ng/transducers";
+import { comp, map, normRange, slidingWindow, step } from "@thi.ng/transducers";
 import { sma } from "@thi.ng/transducers-stats";
 import { NUM_WORKERS, WorkerJob, WorkerResult } from "./api";
 
@@ -76,7 +70,7 @@ const scene = defn("vec2", "scene", ["vec3"], (pos) => {
                 ),
                 1
             )
-        )
+        ),
     ];
 });
 
@@ -154,7 +148,7 @@ const mainImage = defn(
                     ),
                     1
                 )
-            )
+            ),
         ];
     }
 );
@@ -182,7 +176,7 @@ self.addEventListener("message", (e) => {
                     [
                         Math.cos(job.time) * 2.5,
                         Math.cos(job.time / 2) * 0.7,
-                        Math.sin(job.time) * 2.5
+                        Math.sin(job.time) * 2.5,
                     ],
                     // light dir
                     [0.707, 0.707, 0],

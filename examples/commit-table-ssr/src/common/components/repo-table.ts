@@ -4,7 +4,7 @@ import {
     map,
     mapIndexed,
     partitionBy,
-    repeat
+    repeat,
 } from "@thi.ng/transducers";
 import { commitLink } from "./commit-link";
 import { table } from "./table";
@@ -30,16 +30,16 @@ export const repoTable = (_: AppContext, commits: Iterable<Commit>) => [
                 [commitLink, x.sha, x.msg],
                 x.files,
                 x.add ? ["span.green", `+${x.add}`] : null,
-                x.del ? ["span.red", `-${x.del}`] : null
+                x.del ? ["span.red", `-${x.del}`] : null,
             ]),
             // partition rows by month
             partitionBy((row: any[]) => row[0].split("-")[1]),
             // insert month headers (but not in 1st chunk)
             mapIndexed((i, month) => [
                 i > 0 ? [month[0][0].substr(0, 7), ...repeat("", 5)] : null,
-                month
+                month,
             ])
         ),
         commits
-    )
+    ),
 ];

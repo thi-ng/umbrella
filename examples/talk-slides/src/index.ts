@@ -5,16 +5,10 @@ import {
     fromInterval,
     stream,
     Stream,
-    sync
+    sync,
 } from "@thi.ng/rstream";
 import { padLeft } from "@thi.ng/strings";
-import {
-    dedupe,
-    map,
-    reducer,
-    scan,
-    sideEffect
-} from "@thi.ng/transducers";
+import { dedupe, map, reducer, scan, sideEffect } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { app, printApp } from "./components";
 import { ctx } from "./config";
@@ -66,8 +60,8 @@ const main = sync<any, any>({
         content: slideID.transform(map((id: number) => SLIDES[id])),
         time: fromInterval(1000).transform(
             map((x: number) => `${D2((x / 60) | 0)}:${D2(x % 60)}`)
-        )
-    }
+        ),
+    },
 });
 
 if (INTERACTIVE) {

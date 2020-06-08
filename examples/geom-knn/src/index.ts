@@ -17,7 +17,7 @@ const app = (main: StreamSync<any, any>) => {
     const _canvas = {
         ...canvas,
         init: (el: HTMLCanvasElement) =>
-            main.add(gestureStream(el).transform(map((g) => g.pos)), "mpos")
+            main.add(gestureStream(el).transform(map((g) => g.pos)), "mpos"),
     };
     // initialize 1st point & store in tree for fast KNN searches
     const width = window.innerWidth;
@@ -58,7 +58,7 @@ const app = (main: StreamSync<any, any>) => {
                         .queryKeys(p[0], width / 4, 8)
                         .map((q) => ["line", {}, p[0], q]),
                 selected
-            )
+            ),
         ]);
         return [
             "div.overflow-hidden.sans-serif.f7",
@@ -67,7 +67,7 @@ const app = (main: StreamSync<any, any>) => {
                 "div",
                 `Points: ${tree.size}, Sel: ${selected.length}, `,
                 `Neighbors: ${neighbors.length}, Q1: ${t1}ms, Q2: ${t2}ms, `,
-                `Height: ${tree.height}, Ratio: ${tree.ratio.toFixed(2)}`
+                `Height: ${tree.height}, Ratio: ${tree.ratio.toFixed(2)}`,
             ],
             // visualize
             // the __diff & __normalize control attribs are used to optimize drawing perf
@@ -81,11 +81,11 @@ const app = (main: StreamSync<any, any>) => {
                 [
                     "g",
                     { fill: "rgba(0,192,255,0.5)" },
-                    ...selected.map((p) => ["circle", {}, p[0], p[1]])
+                    ...selected.map((p) => ["circle", {}, p[0], p[1]]),
                 ],
                 // secondary neighbor connections
-                ["g", { stroke: "rgba(0,0,0,0.25)" }, ...neighbors]
-            ]
+                ["g", { stroke: "rgba(0,0,0,0.25)" }, ...neighbors],
+            ],
         ];
     };
 };

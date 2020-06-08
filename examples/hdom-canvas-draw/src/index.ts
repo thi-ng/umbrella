@@ -1,7 +1,11 @@
 import { canvas } from "@thi.ng/hdom-canvas";
 import { HALF_PI, PI } from "@thi.ng/math";
 import { StreamSync, sync, trigger } from "@thi.ng/rstream";
-import { GestureEvent, gestureStream, GestureType } from "@thi.ng/rstream-gestures";
+import {
+    GestureEvent,
+    gestureStream,
+    GestureType,
+} from "@thi.ng/rstream-gestures";
 import {
     filter,
     map,
@@ -9,7 +13,7 @@ import {
     normRange,
     partition,
     repeat,
-    zip
+    zip,
 } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { dist } from "@thi.ng/vectors";
@@ -23,7 +27,7 @@ const line = ([a, b]: number[][]) => (_: any, attribs: any) => [
     "line",
     { ...attribs, weight: dist(a, b) / 4 },
     a,
-    b
+    b,
 ];
 
 // higher order root component function. takes a @thi.ng/rstream
@@ -57,7 +61,7 @@ const app = (main: StreamSync<any, any>) => {
                 ),
                 // name of the new input
                 "gesture"
-            )
+            ),
     };
     // this root component function will produce the actual UI and
     // will be attached to the `main` stream combinator below and executes
@@ -79,11 +83,11 @@ const app = (main: StreamSync<any, any>) => {
                 {
                     fill: "rgba(255,255,255,0.1)",
                     stroke: "black",
-                    dash: [1, 1]
+                    dash: [1, 1],
                 },
                 [0, 0],
                 W,
-                W
+                W,
             ],
             // use a group node to assign attributes common to all children
             [
@@ -102,11 +106,12 @@ const app = (main: StreamSync<any, any>) => {
                                 [
                                     gesture,
                                     {
-                                        stroke: `hsl(${h +
-                                            (delta - 0.5) * 40},100%,50%)`,
+                                        stroke: `hsl(${
+                                            h + (delta - 0.5) * 40
+                                        },100%,50%)`,
                                         rotate: theta + (delta - 0.5) * 0.3,
-                                        translate
-                                    }
+                                        translate,
+                                    },
                                 ],
                             // iterator which forms tuples of `[attribs, counter]`
                             zip(repeat(attribs), normRange(6))
@@ -116,20 +121,20 @@ const app = (main: StreamSync<any, any>) => {
                         [30, [0, 0], 0],
                         [120, [W, W], PI],
                         [210, [W, 0], HALF_PI],
-                        [300, [0, W], -HALF_PI]
+                        [300, [0, W], -HALF_PI],
                     ]
-                )
-            ]
+                ),
+            ],
         ],
         // back in normal DOM
         [
             "a.db.link",
             {
                 href:
-                    "https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-draw"
+                    "https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-draw",
             },
-            "Source code"
-        ]
+            "Source code",
+        ],
     ];
 };
 

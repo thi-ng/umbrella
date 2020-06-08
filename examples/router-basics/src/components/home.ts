@@ -17,9 +17,9 @@ export function home(ctx: AppContext) {
                 externalLink,
                 ctx.ui.bodyLink,
                 "https://github.com/thi-ng/umbrella",
-                "@thi.ng/umbrella"
+                "@thi.ng/umbrella",
             ],
-            " libraries."
+            " libraries.",
         ],
         [
             "p",
@@ -41,15 +41,15 @@ export function home(ctx: AppContext) {
                         externalLink,
                         ctx.ui.bodyLink,
                         "http://tachyons.io/",
-                        "Tachyons CSS"
-                    ]
-                ]
-            ]
+                        "Tachyons CSS",
+                    ],
+                ],
+            ],
         ],
         [
             "p",
-            "Please see the related blog post and the commented source code for more details."
+            "Please see the related blog post and the commented source code for more details.",
         ],
-        ["p", "(total app file size: 11.2KB)"]
+        ["p", "(total app file size: 11.2KB)"],
     ];
 }

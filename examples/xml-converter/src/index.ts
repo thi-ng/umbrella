@@ -14,7 +14,7 @@ const inputs = {
     trailingComma: stream<boolean>(),
     removeAttribs: stream<string>(),
     removeTags: stream<string>(),
-    copyButton: stream<boolean>()
+    copyButton: stream<boolean>(),
 };
 
 // stream combinator to assemble formatter options
@@ -22,13 +22,13 @@ const formatOpts = sync<any, any>({
     src: {
         trailingComma: inputs.trailingComma,
         doubleQuote: inputs.doubleQuote,
-        prettyPrint: inputs.prettyPrint
+        prettyPrint: inputs.prettyPrint,
     },
     xform: map((opts: any) => ({
         ...(opts.prettyPrint ? DEFAULT_FORMAT : COMPACT_FORMAT),
         trailingComma: opts.trailingComma,
-        quote: opts.doubleQuote ? `"` : `'`
-    }))
+        quote: opts.doubleQuote ? `"` : `'`,
+    })),
 });
 
 // stream combinator to assemble conversion options
@@ -36,8 +36,8 @@ const opts = sync<any, any>({
     src: {
         format: formatOpts,
         removeAttribs: inputs.removeAttribs.transform(xformAsSet),
-        removeTags: inputs.removeTags.transform(xformAsSet)
-    }
+        removeTags: inputs.removeTags.transform(xformAsSet),
+    },
 });
 
 // main stream combinator to create & update UI
@@ -45,13 +45,13 @@ const main = sync<any, any>({
     src: {
         src: inputs.xml,
         copy: inputs.copyButton,
-        opts
-    }
+        opts,
+    },
 }).transform(
     // convert xml -> hiccup
     map((state: any) => ({
         ...state,
-        hiccup: convertXML(state.src, state.opts)
+        hiccup: convertXML(state.src, state.opts),
     })),
     // transform into hdom tree
     map(app(UI.main, inputs)),

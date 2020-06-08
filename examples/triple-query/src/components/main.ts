@@ -11,9 +11,9 @@ export function main(ctx: AppContext) {
             triples,
             ctx.views.pagedTriples.deref(),
             ctx.store.triples.length,
-            ctx.views.page.deref()
+            ctx.views.page.deref(),
         ],
         [queryResults, "Cities", ctx.views.cities.deref()],
-        [queryResults, "Countries", ctx.views.countries.deref()]
+        [queryResults, "Countries", ctx.views.countries.deref()],
     ];
 }

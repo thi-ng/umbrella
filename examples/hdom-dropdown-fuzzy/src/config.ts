@@ -199,20 +199,20 @@ export const state = {
             "Vietnam",
             "Yemen",
             "Zambia",
-            "Zimbabwe"
-        ].map((x, i) => [i, x])
-    }
+            "Zimbabwe",
+        ].map((x, i) => [i, x]),
+    },
 };
 
 export const theme = {
     root: {
-        class: "sans-serif"
+        class: "sans-serif",
     },
     column: {
-        class: "fl w-100 w-50-ns w-33-l pa2"
+        class: "fl w-100 w-50-ns w-33-l pa2",
     },
     input: {
-        class: "bg-transparent w-100 bn pa2"
+        class: "bg-transparent w-100 bn pa2",
     },
     dd: {
         root: { class: "" },
@@ -220,28 +220,28 @@ export const theme = {
             style: {
                 "max-height": 0,
                 "overflow-y": "hidden",
-                opacity: 0
-            }
+                opacity: 0,
+            },
         },
         bodyOpen: {
             style: {
                 "max-height": "calc(11 * 1.8rem)",
                 "overflow-y": "scroll",
                 opacity: 1,
-                transition: "all 100ms ease-in"
-            }
+                transition: "all 100ms ease-in",
+            },
         },
         item: {
             class:
-                "pointer link db w-100 ph3 pv2 black hover-bg-washed-green bg-animate bb b--moon-gray"
+                "pointer link db w-100 ph3 pv2 black hover-bg-washed-green bg-animate bb b--moon-gray",
         },
         itemSelected: {
             class:
-                "pointer link db w-100 ph3 pv2 black hover-bg-light-gray bg-animate bb b--moon-gray b"
+                "pointer link db w-100 ph3 pv2 black hover-bg-light-gray bg-animate bb b--moon-gray b",
         },
-        itemDisabled: { class: "db w-100 ph3 pv2 gray bb b--moon-gray" }
+        itemDisabled: { class: "db w-100 ph3 pv2 gray bb b--moon-gray" },
     },
     fuzzy: {
-        class: "b underline"
-    }
+        class: "b underline",
+    },
 };

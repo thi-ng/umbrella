@@ -11,7 +11,7 @@ export const SLIDERS = [
         label: "frequency",
         min: 1,
         max: 10,
-        step: 0.01
+        step: 0.01,
     },
     {
         event: ev.SET_AMP,
@@ -19,14 +19,14 @@ export const SLIDERS = [
         label: "amplitude",
         min: 0,
         max: 4,
-        step: 0.01
+        step: 0.01,
     },
     {
         event: ev.SET_HARMONICS,
         view: "harmonics",
         label: "harmonics",
         min: 1,
-        max: 20
+        max: 20,
     },
     {
         event: ev.SET_HSTEP,
@@ -34,6 +34,6 @@ export const SLIDERS = [
         label: "h step",
         min: 1,
         max: 4,
-        step: 0.01
-    }
+        step: 0.01,
+    },
 ];

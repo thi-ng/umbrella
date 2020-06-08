@@ -180,7 +180,7 @@ const app = (ctx: any) => [
         "Please see ",
         [
             link,
-            "https://github.com/thi-ng/umbrella/blob/master/packages/hdom-components/adr/0003-component-configuration-via-context.md",
+            "https://github.com/thi-ng/umbrella/blob/develop/packages/hdom-components/adr/0003-component-configuration-via-context.md",
             "ADR-0003",
         ],
         " for details of this approach.",
@@ -189,7 +189,7 @@ const app = (ctx: any) => [
         "p",
         [
             link,
-            "https://github.com/thi-ng/umbrella/blob/master/examples/hdom-theme-adr-0003",
+            "https://github.com/thi-ng/umbrella/blob/develop/examples/hdom-theme-adr-0003",
             "Source",
         ],
     ],

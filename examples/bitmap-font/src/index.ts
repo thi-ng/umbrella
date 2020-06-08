@@ -1,11 +1,6 @@
 import { dropdown } from "@thi.ng/hdom-components";
 import { clamp } from "@thi.ng/math";
-import {
-    stream,
-    Stream,
-    Subscription,
-    sync
-} from "@thi.ng/rstream";
+import { stream, Stream, Subscription, sync } from "@thi.ng/rstream";
 import {
     comp,
     map,
@@ -15,7 +10,7 @@ import {
     range,
     str,
     transduce,
-    zip
+    zip,
 } from "@thi.ng/transducers";
 import { bits } from "@thi.ng/transducers-binary";
 import { updateDOM } from "@thi.ng/transducers-hdom";
@@ -54,7 +49,7 @@ const banner = ({ input, on, off }: IObjectOf<string>) =>
             // dynamically create `xfChar` transducers for each char
             // and run them in parallel via `multiplex()`
             multiplex.apply(null, [
-                ...map((i) => xfChar(i, on, off), range(input.length))
+                ...map((i) => xfChar(i, on, off), range(input.length)),
             ]),
             // then join the results for each line
             xfJoin
@@ -70,7 +65,7 @@ const charSelector = (stream: Stream<string>) => [
     dropdown,
     {
         class: "ml3",
-        onchange: emitOnStream(stream)
+        onchange: emitOnStream(stream),
     },
     [
         ["#", "#"],
@@ -82,9 +77,9 @@ const charSelector = (stream: Stream<string>) => [
         ["-", "-"],
         ["^", "^"],
         [".", "."],
-        [" ", "space"]
+        [" ", "space"],
     ],
-    stream.deref()
+    stream.deref(),
 ];
 
 // main UI root component
@@ -96,13 +91,13 @@ const app = ({ raw, result }: any) => [
             "input",
             {
                 oninput: emitOnStream(input),
-                value: raw
-            }
+                value: raw,
+            },
         ],
         charSelector(on),
-        charSelector(off)
+        charSelector(off),
     ],
-    ["pre.code.w-100.pa2.overflow-x-auto.bg-washed-yellow", result]
+    ["pre.code.w-100.pa2.overflow-x-auto.bg-washed-yellow", result],
 ];
 
 // reactive stream setup

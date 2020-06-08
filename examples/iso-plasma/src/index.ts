@@ -10,7 +10,7 @@ import {
     mapcat,
     mapIndexed,
     range,
-    range2d
+    range2d,
 } from "@thi.ng/transducers";
 import type { Fn } from "@thi.ng/api";
 import type { Vec } from "@thi.ng/vectors";
@@ -55,7 +55,7 @@ const app = () => {
     return [
         canvas,
         { width: 600, height: 600 },
-        ["g", { scale: 600 / W, weight: 0.05, __diff: false }, contours]
+        ["g", { scale: 600 / W, weight: 0.05, __diff: false }, contours],
     ];
 };
 

@@ -1,9 +1,4 @@
-import {
-    AST,
-    ASTNode,
-    ASTOpts,
-    GeneType
-} from "@thi.ng/gp";
+import { AST, ASTNode, ASTOpts, GeneType } from "@thi.ng/gp";
 import { roundTo } from "@thi.ng/math";
 import { IRandom, SYSTEM } from "@thi.ng/random";
 import {
@@ -37,16 +32,20 @@ import {
     vec3,
     Vec3Sym,
     Vec3Term,
-    vec4
+    vec4,
 } from "@thi.ng/shader-ast";
 import {
     clamp11,
     fragUV,
     snoise3,
-    snoiseVec3
+    snoiseVec3,
 } from "@thi.ng/shader-ast-stdlib";
 import { glCanvas } from "@thi.ng/webgl";
-import { MainImageFn, shaderToy, ShaderToyUniforms } from "@thi.ng/webgl-shadertoy";
+import {
+    MainImageFn,
+    shaderToy,
+    ShaderToyUniforms,
+} from "@thi.ng/webgl-shadertoy";
 
 const MAX_DEPTH = 11;
 const NORM_SCALE = 1;
@@ -75,7 +74,7 @@ const OP1 = [
     (x: Vec3Term) => $(x, "yxz"),
     (x: Vec3Term) => $(x, "xxx"),
     (x: Vec3Term) => $(x, "yyy"),
-    (x: Vec3Term) => $(x, "zzz")
+    (x: Vec3Term) => $(x, "zzz"),
 ];
 // binary functions
 const OP2 = [
@@ -85,7 +84,7 @@ const OP2 = [
     div,
     mod,
     pow,
-    (x: Vec3Term, y: Vec3Term) => vec3(distance(x, y))
+    (x: Vec3Term, y: Vec3Term) => vec3(distance(x, y)),
 ];
 // ternary functions
 const OP3 = [mix];
@@ -109,10 +108,10 @@ const AST_OPTS: ASTOpts<Function, Vec3Term> = {
     ops: [
         { fn: randomFn(OP1), arity: 1, prob: 0.4 },
         { fn: randomFn(OP2), arity: 2, prob: 0.4 },
-        { fn: randomFn(OP3), arity: 3, prob: 0.1 }
+        { fn: randomFn(OP3), arity: 3, prob: 0.1 },
     ],
     maxDepth: MAX_DEPTH,
-    probMutate: 0.01
+    probMutate: 0.01,
 };
 
 const transpile = (node: ASTNode<Function, Vec3Term>): Term<any> =>
@@ -132,7 +131,7 @@ const shaderFunction = (
                 mul(1, fract(unis.time))
             )
         ),
-        ret(vec4(abs(transpile(ast)), 1))
+        ret(vec4(abs(transpile(ast)), 1)),
         // ret(vec4(fit1101(normalize(transpile(ast))), 1))
     ];
 };
@@ -144,13 +143,13 @@ const canvas = glCanvas({
     width: 640,
     height: 640,
     parent: document.body,
-    version: 1
+    version: 1,
 });
 
 const toy = shaderToy({
     canvas: canvas.canvas,
     gl: canvas.gl,
-    main: shaderFunction(currTree)
+    main: shaderFunction(currTree),
 });
 
 toy.start();

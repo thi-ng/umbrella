@@ -30,7 +30,7 @@ class ImgNode extends Node2D {
             "img",
             { alpha, width: size[0], height: size[1] },
             img,
-            [0, 0]
+            [0, 0],
         ]);
         this.img = img;
     }
@@ -97,13 +97,13 @@ imagePromise(LOGO).then((img) => {
                         const q = geom.mapLocalPointToNode(imgNode, [x, y]);
                         const r = (imgMap.getAt(q[0], q[1]) * 5) / 255;
                         return [x, sin(x, 0.05, r, y)];
-                    }, range(-200, 200))
+                    }, range(-200, 200)),
                 ]),
             range(-200, 200, 5)
         );
 
         geom.body = group({ fill: "none", stroke: "#fff", weight: 0.5 }, [
-            ...waves
+            ...waves,
         ]);
         return [
             "div.sans-serif.pl3",
@@ -115,7 +115,7 @@ imagePromise(LOGO).then((img) => {
                 ", ",
                 ["b", "@thi.ng/pixel"],
                 " and ",
-                ["b", "@thi.ng/hdom-canvas"]
+                ["b", "@thi.ng/hdom-canvas"],
             ],
             ["p", "Click to toggle image overlay"],
             [
@@ -126,12 +126,12 @@ imagePromise(LOGO).then((img) => {
                     width: 600,
                     height: 600,
                     onmousemove: updateMouse,
-                    onclick: toggleImage
+                    onclick: toggleImage,
                 },
                 // only need to pass root node which then expands itself via
                 // .toHiccup() during rendering
-                root
-            ]
+                root,
+            ],
         ];
     };
 

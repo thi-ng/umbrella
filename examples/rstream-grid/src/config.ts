@@ -25,7 +25,7 @@ export const CONFIG: AppConfig = {
     // and only side effect functions execute any "real" work.
 
     // Docs here:
-    // https://github.com/thi-ng/umbrella/blob/master/packages/interceptors/src/event-bus.ts#L14
+    // https://github.com/thi-ng/umbrella/blob/develop/packages/interceptors/src/event-bus.ts#L14
     events: {
         // generate slider event handlers. each uses the `snapshot()`
         // interceptor to record a snapshot of the current app state

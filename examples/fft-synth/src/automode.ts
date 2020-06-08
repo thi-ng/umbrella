@@ -9,7 +9,7 @@ const weights = [
     ...map(
         (x) => 1 - Math.pow((x - 1) / NUM_BINS, 0.15) * 0.99,
         range(1, NUM_BINS)
-    )
+    ),
 ];
 
 const rnd = weightedRandom([...range(0, NUM_BINS)], weights);

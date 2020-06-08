@@ -1,7 +1,11 @@
 import { canvas } from "@thi.ng/hdom-canvas";
 import { memoize1 } from "@thi.ng/memoize";
 import { CloseMode, sync, trigger } from "@thi.ng/rstream";
-import { GestureEvent, GestureInfo, gestureStream } from "@thi.ng/rstream-gestures";
+import {
+    GestureEvent,
+    GestureInfo,
+    gestureStream,
+} from "@thi.ng/rstream-gestures";
 import { map, mapcat } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 
@@ -13,7 +17,7 @@ const MTCanvas = memoize1((id: string) => {
         ...canvas,
         init(el: HTMLElement) {
             main.add(gestureStream(el), el.id);
-        }
+        },
     };
     return (attribs: any, gesture?: GestureEvent) => [
         _canvas,
@@ -28,18 +32,18 @@ const MTCanvas = memoize1((id: string) => {
                     ["circle", {}, i.pos, 20 * (gesture?.zoom || 1)],
                     i.start
                         ? ["line", { stroke: "#333" }, i.start, i.pos]
-                        : null
+                        : null,
                 ],
                 gesture?.active || []
-            )
-        ]
+            ),
+        ],
     ];
 });
 
 // main stream w/ initial trigger input
 const main = sync<any, any>({
     src: { temp: trigger() },
-    closeIn: CloseMode.NEVER
+    closeIn: CloseMode.NEVER,
 });
 
 main.transform(
@@ -48,7 +52,7 @@ main.transform(
         ["h1", "Multitouch"],
         [
             "p",
-            "Click/touch & drag in the yellow area below. Multiple cursors only supported via touch."
+            "Click/touch & drag in the yellow area below. Multiple cursors only supported via touch.",
         ],
         MTCanvas("main")({ width: 480, height: 360 }, main || {}),
         [
@@ -56,9 +60,9 @@ main.transform(
             [
                 "textarea.code.f7",
                 { cols: 60, rows: 25 },
-                JSON.stringify(main, null, 2)
-            ]
-        ]
+                JSON.stringify(main, null, 2),
+            ],
+        ],
     ]),
     updateDOM()
 );

@@ -6,7 +6,7 @@ import {
     circle,
     Polygon,
     polygon,
-    tessellate
+    tessellate,
 } from "@thi.ng/geom";
 import { edgeSplit, quadFan, triFan } from "@thi.ng/geom-tessellate";
 import { canvas } from "@thi.ng/hdom-canvas";
@@ -58,7 +58,7 @@ const arclengthToHSL = (max: number, p: IShape) =>
 const tintedPoly = (tint: Tint, points: Vec[]) => {
     const p = polygon(points);
     p.attribs = {
-        fill: tint(p)
+        fill: tint(p),
         // stroke: tint(p),
     };
     return p;
@@ -79,8 +79,8 @@ const tessellation = (t: number, tessel: Tessellator[], tint: Tint) => {
 
 const main = sync<any, any>({
     src: {
-        time: fromInterval(16)
-    }
+        time: fromInterval(16),
+    },
 }).transform(
     // root component function
     map(({ time }) => {
@@ -103,11 +103,11 @@ const main = sync<any, any>({
                         translate: [300, 300],
                         // rotate: (time / 10) % TAU,
                         stroke: "#000",
-                        weight: 0.25
+                        weight: 0.25,
                     },
-                    ...cells
-                ]
-            ]
+                    ...cells,
+                ],
+            ],
         ];
     }),
     updateDOM()

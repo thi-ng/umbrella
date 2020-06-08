@@ -1,9 +1,4 @@
-import {
-    defAtom,
-    defCursor,
-    defHistory,
-    defView
-} from "@thi.ng/atom";
+import { defAtom, defCursor, defHistory, defView } from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom";
 import { map, pairs } from "@thi.ng/transducers";
 import type { IObjectOf } from "@thi.ng/api";

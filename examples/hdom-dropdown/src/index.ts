@@ -25,10 +25,10 @@ start(
                         state: ctx.bus.state.deref().foo,
                         hoverLabel: [
                             ["span", "Choose a genre..."],
-                            ["i.fr.fas.fa-angle-down"]
-                        ]
-                    }
-                ]
+                            ["i.fr.fas.fa-angle-down"],
+                        ],
+                    },
+                ],
             ],
             [
                 "div",
@@ -40,11 +40,11 @@ start(
                         state: ctx.bus.state.deref().bar,
                         hoverLabel: [
                             ["span", "Region..."],
-                            ["i.fr.fas.fa-angle-down"]
-                        ]
-                    }
-                ]
-            ]
+                            ["i.fr.fas.fa-angle-down"],
+                        ],
+                    },
+                ],
+            ],
         ];
     },
     { ctx: { bus, theme } }

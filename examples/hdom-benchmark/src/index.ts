@@ -9,7 +9,7 @@ import {
     mapIndexed,
     movingAverage,
     partition,
-    range
+    range,
 } from "@thi.ng/transducers";
 
 /**
@@ -23,10 +23,10 @@ const box = (index: number, id: number) => [
     {
         key: index,
         style: {
-            background: "#" + U24(((id & 0x1ff) << 15) | (id << 10) | id)
-        }
+            background: "#" + U24(((id & 0x1ff) << 15) | (id << 10) | id),
+        },
     },
-    U16(id & 0xffff)
+    U16(id & 0xffff),
 ];
 
 /**
@@ -70,7 +70,7 @@ const fpsCounter = (
                     2,
                     height - 4
                 );
-            }
+            },
         },
         // stream transducer to compute the windowed moving avarage
         comp(
@@ -87,8 +87,8 @@ const fpsCounter = (
                 ctx.fillStyle = txtCol;
                 ctx.fillText("sampling...", 2, height - 4);
             },
-            render: () => ["canvas", { width, height }]
-        }
+            render: () => ["canvas", { width, height }],
+        },
     ];
 };
 
@@ -105,14 +105,14 @@ const app = () => {
         {
             onchange: (e: Event) => {
                 num = parseInt((<HTMLInputElement>e.target).value);
-            }
+            },
         },
         [
             [128, 128],
             [192, 192],
             [256, 256],
             [384, 384],
-            [512, 512]
+            [512, 512],
         ]
     );
 
@@ -121,7 +121,7 @@ const app = () => {
         return [
             "div",
             ["div#stats", fps, menu],
-            ["grid", mapIndexed(box, range(j, j + num))]
+            ["grid", mapIndexed(box, range(j, j + num))],
         ];
     };
 };

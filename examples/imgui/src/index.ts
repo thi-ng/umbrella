@@ -8,24 +8,10 @@ import { clamp, PI } from "@thi.ng/math";
 import { setInManyUnsafe } from "@thi.ng/paths";
 import { gestureStream } from "@thi.ng/rstream-gestures";
 import { float } from "@thi.ng/strings";
-import {
-    comp,
-    iterator,
-    map,
-    mapcat,
-    step
-} from "@thi.ng/transducers";
+import { comp, iterator, map, mapcat, step } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { sma } from "@thi.ng/transducers-stats";
-import {
-    add2,
-    hash,
-    min2,
-    setC2,
-    Vec,
-    vecOf,
-    ZERO2
-} from "@thi.ng/vectors";
+import { add2, hash, min2, setC2, Vec, vecOf, ZERO2 } from "@thi.ng/vectors";
 import {
     buttonH,
     buttonV,

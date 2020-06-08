@@ -27,8 +27,8 @@ const randomParticle = () => {
             cx: Math.random() * width,
             cy: Math.random() * height,
             r: (Math.random() * 6 + 3) | 0,
-            fill: "#" + U24((Math.random() * 0x1000000) | 0)
-        }
+            fill: "#" + U24((Math.random() * 0x1000000) | 0),
+        },
     ];
 };
 
@@ -42,7 +42,7 @@ const app = () => {
     return [
         "svg",
         { width, height, __diff: false, __normalize: false },
-        particles
+        particles,
     ];
 };
 

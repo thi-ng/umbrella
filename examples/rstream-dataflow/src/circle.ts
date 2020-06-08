@@ -10,8 +10,8 @@ export const circle = (col: string, x: number, y: number, w: number, h = w) => [
             top: px(y - h / 2),
             width: px(w),
             height: px(h),
-            "line-height": px(h)
-        }
+            "line-height": px(h),
+        },
     },
-    `${x};${y}`
+    `${x};${y}`,
 ];

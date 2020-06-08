@@ -9,23 +9,17 @@ import {
     permutations,
     push,
     range,
-    transduce
+    transduce,
 } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import {
-    CELL_STYLE,
-    MAX_COL,
-    NUM_COLS,
-    NUM_ROWS,
-    UICell
-} from "./api";
+import { CELL_STYLE, MAX_COL, NUM_COLS, NUM_ROWS, UICell } from "./api";
 import {
     blurCell,
     cancelCell,
     DB,
     focusCell,
     graph,
-    updateCell
+    updateCell,
 } from "./state";
 
 const formatCell = (x: string | number) => (isNumber(x) ? x.toFixed(2) : x);
@@ -91,15 +85,15 @@ const cell = ([row, col]: [number, string]) =>
                                 cancelCell(id);
                                 this.element!.blur();
                         }
-                    }
+                    },
                 },
                 String(
                     cell.focus && cell.formula
                         ? cell.formula
                         : cell.error || formatCell(cell.value)
-                )
+                ),
             ];
-        }
+        },
     };
 
 /**
@@ -129,12 +123,12 @@ const app = () => {
                 [
                     `${CELL_STYLE}.w2.b.bg-moon-gray.overflow-y-hidden.overflow-x-scroll`,
                     {},
-                    rowid
+                    rowid,
                 ],
-                ...CELLS[i].map((cell) => [cell, state])
+                ...CELLS[i].map((cell) => [cell, state]),
             ],
             range(1, NUM_ROWS + 1)
-        )
+        ),
     ];
 };
 

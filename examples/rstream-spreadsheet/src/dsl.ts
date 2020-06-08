@@ -3,12 +3,7 @@ import { illegalArgs } from "@thi.ng/errors";
 import { fit } from "@thi.ng/math";
 import { memoize1 } from "@thi.ng/memoize";
 import { fromView } from "@thi.ng/rstream";
-import {
-    addNode,
-    node,
-    NodeInputSpec,
-    NodeSpec
-} from "@thi.ng/rstream-graph";
+import { addNode, node, NodeInputSpec, NodeSpec } from "@thi.ng/rstream-graph";
 import {
     ASTNode,
     Implementations,

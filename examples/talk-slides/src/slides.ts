@@ -8,7 +8,7 @@ import {
     quotePage,
     titlePage,
     twitterLink,
-    ytVideo
+    ytVideo,
 } from "./components";
 
 // each item in this array is an hdom tree of a single slide
@@ -22,7 +22,7 @@ export const SLIDES: any[] = [
         ["br"],
         [twitterLink, "toxi"],
         ["br"],
-        [twitterLink, "thing_umbrella"]
+        [twitterLink, "thing_umbrella"],
     ],
 
     [
@@ -33,7 +33,7 @@ export const SLIDES: any[] = [
         ["br"],
         [twitterLink, "toxi"],
         ["br"],
-        [twitterLink, "thing_umbrella"]
+        [twitterLink, "thing_umbrella"],
     ],
 
     [
@@ -44,7 +44,7 @@ export const SLIDES: any[] = [
         ["br"],
         [twitterLink, "toxi"],
         ["br"],
-        [twitterLink, "thing_umbrella"]
+        [twitterLink, "thing_umbrella"],
     ],
 
     [
@@ -55,7 +55,7 @@ export const SLIDES: any[] = [
         ["br"],
         [twitterLink, "toxi"],
         ["br"],
-        [twitterLink, "thing_umbrella"]
+        [twitterLink, "thing_umbrella"],
     ],
 
     [
@@ -66,7 +66,7 @@ export const SLIDES: any[] = [
         ["br"],
         [twitterLink, "toxi"],
         ["br"],
-        [twitterLink, "thing_umbrella"]
+        [twitterLink, "thing_umbrella"],
     ],
 
     [
@@ -74,7 +74,7 @@ export const SLIDES: any[] = [
         "What brought you to Clojure?",
         [
             "small",
-            "Filling in this pre-meeting questionnaire is mandatory! Answers will be reviewed during session."
+            "Filling in this pre-meeting questionnaire is mandatory! Answers will be reviewed during session.",
         ],
         [
             list,
@@ -86,8 +86,8 @@ export const SLIDES: any[] = [
             "Hosted / x-platform",
             "Amount & clarity of thought",
             "Transducers, core.async, clojure.spec",
-            "Gateway to various awesome tools / concepts"
-        ]
+            "Gateway to various awesome tools / concepts",
+        ],
     ],
 
     [
@@ -104,8 +104,8 @@ export const SLIDES: any[] = [
             "Chris Granger",
             "Anthony Grimes (R.I.P.)",
             "Christophe Grand",
-            ["strong", "...all of you!"]
-        ]
+            ["strong", "...all of you!"],
+        ],
     ],
 
     [
@@ -118,8 +118,8 @@ export const SLIDES: any[] = [
             "1995 - 2011 : C89, Java, JavaScript, Lingo, ActionScript, Processing",
             "1995 - 1997 : Scheme, Common Lisp",
             "2011 - 2017 : Clojure/script, C11, Forth, ARM",
-            "2016 - ...  : TypeScript, C11, Go, Clojurescript"
-        ]
+            "2016 - ...  : TypeScript, C11, Go, Clojurescript",
+        ],
     ],
 
     [
@@ -131,15 +131,15 @@ export const SLIDES: any[] = [
             ["li.transition.red", "1988 - 1994 : Z80 / 6502 assembly, Forth"],
             [
                 "li",
-                "1995 - 2011 : C89, Java, JavaScript, Lingo, ActionScript, Processing"
+                "1995 - 2011 : C89, Java, JavaScript, Lingo, ActionScript, Processing",
             ],
             ["li", "1995 - 1997 : Scheme, Common Lisp"],
             [
                 "li.transition.red",
-                "2011 - 2017 : Clojure/script, C11, Forth, ARM"
+                "2011 - 2017 : Clojure/script, C11, Forth, ARM",
             ],
-            ["li", "2016 - ...  : TypeScript, C11, Go, Clojurescript"]
-        ]
+            ["li", "2016 - ...  : TypeScript, C11, Go, Clojurescript"],
+        ],
     ],
 
     [
@@ -151,12 +151,12 @@ export const SLIDES: any[] = [
             ["li.transition", "1988 - 1994 : Z80 / 6502 assembly, Forth"],
             [
                 "li.transition.red",
-                "1995 - 2011 : C89, Java, JavaScript, Lingo, ActionScript, Processing"
+                "1995 - 2011 : C89, Java, JavaScript, Lingo, ActionScript, Processing",
             ],
             ["li", "1995 - 1997 : Scheme, Common Lisp"],
             ["li.transition", "2011 - 2017 : Clojure/script, C11, Forth, ARM"],
-            ["li", "2016 - ...  : TypeScript, C11, Go, Clojurescript"]
-        ]
+            ["li", "2016 - ...  : TypeScript, C11, Go, Clojurescript"],
+        ],
     ],
 
     [contentPage, "And so it begins..."],
@@ -178,8 +178,8 @@ export const SLIDES: any[] = [
             "Data visualization (SVG / WebGL / rendered)",
             "Declarative WebGL, OpenGL & GPGPU/OpenCL wrappers",
             "Linked data / graph tools, query engines, SPARQL-like DSLs",
-            "Monthly workshops (2015 - 2016)"
-        ]
+            "Monthly workshops (2015 - 2016)",
+        ],
     ],
 
     [titlePage, "bg-black white", "Exponential Growth"],
@@ -191,13 +191,16 @@ export const SLIDES: any[] = [
     [
         contentPage,
         "Gyroid formula",
-        [codeBlock, `g(x, y, z) = abs(dot(cos([x y z]), sin([z x y])))`]
+        [codeBlock, `g(x, y, z) = abs(dot(cos([x y z]), sin([z x y])))`],
     ],
 
     [
         contentPage,
         "Gyroid formula",
-        [codeBlock, `g(x, y, z) = abs(cosx * sinz + cosy * sinx + cosz * siny)`]
+        [
+            codeBlock,
+            `g(x, y, z) = abs(cosx * sinz + cosy * sinx + cosz * siny)`,
+        ],
     ],
 
     [
@@ -217,8 +220,8 @@ export const SLIDES: any[] = [
 (defn gyroid
     [[x y z] t]
     "Evaluates gyroid function at point p and subtracts iso threshold t."
-    (- (abs-gyroid-sum x y z) t))`
-        ]
+    (- (abs-gyroid-sum x y z) t))`,
+        ],
     ],
 
     [
@@ -234,34 +237,34 @@ export const SLIDES: any[] = [
         (+ (* (Math/cos x) (Math/sin z))
            (* (Math/cos y) (Math/sin x))
            (* (Math/cos z) (Math/sin y))))
-        t))`
+        t))`,
         ],
-        "Now evaluate for each XYZ cell in a volumetric grid..."
+        "Now evaluate for each XYZ cell in a volumetric grid...",
     ],
 
     [
         bgImagePage,
         "bg-black",
         "./assets/svo/0000.jpg",
-        ["div.f1.gray", "2", ["sup", "3", ["sup", 3]], ["br"], "8 x 8 x 8"]
+        ["div.f1.gray", "2", ["sup", "3", ["sup", 3]], ["br"], "8 x 8 x 8"],
     ],
     [
         bgImagePage,
         "bg-black",
         "./assets/svo/0001.jpg",
-        ["div.f1.gray", "2", ["sup", "4", ["sup", 3]], ["br"], "16 x 16 x 16"]
+        ["div.f1.gray", "2", ["sup", "4", ["sup", 3]], ["br"], "16 x 16 x 16"],
     ],
     [
         bgImagePage,
         "bg-black",
         "./assets/svo/0002.jpg",
-        ["div.f1.gray", "2", ["sup", "5", ["sup", 3]], ["br"], "32 x 32 x 32"]
+        ["div.f1.gray", "2", ["sup", "5", ["sup", 3]], ["br"], "32 x 32 x 32"],
     ],
     [
         bgImagePage,
         "bg-black",
         "./assets/svo/0003.jpg",
-        ["div.f1.gray", "2", ["sup", "6", ["sup", 3]], ["br"], "64 x 64 x 64"]
+        ["div.f1.gray", "2", ["sup", "6", ["sup", 3]], ["br"], "64 x 64 x 64"],
     ],
     [
         bgImagePage,
@@ -272,8 +275,8 @@ export const SLIDES: any[] = [
             "2",
             ["sup", "7", ["sup", 3]],
             ["br"],
-            "128 x 128 x 128"
-        ]
+            "128 x 128 x 128",
+        ],
     ],
     [
         bgImagePage,
@@ -284,8 +287,8 @@ export const SLIDES: any[] = [
             "2",
             ["sup", "8", ["sup", 3]],
             ["br"],
-            "256 x 256 x 256"
-        ]
+            "256 x 256 x 256",
+        ],
     ],
     [
         bgImagePage,
@@ -296,8 +299,8 @@ export const SLIDES: any[] = [
             "2",
             ["sup", "9", ["sup", 3]],
             ["br"],
-            "512 x 512 x 512"
-        ]
+            "512 x 512 x 512",
+        ],
     ],
     [
         bgImagePage,
@@ -308,8 +311,8 @@ export const SLIDES: any[] = [
             "2",
             ["sup", "10", ["sup", 3]],
             ["br"],
-            "(1+ billion samples!)"
-        ]
+            "(1+ billion samples!)",
+        ],
     ],
     [bgImagePage, "bg-black", "./assets/svo/0008.jpg"],
     [bgImagePage, "bg-black", "./assets/svo/0009.jpg"],
@@ -345,7 +348,7 @@ export const SLIDES: any[] = [
         [
             link,
             "http://www.chilton-computing.org.uk/acl/literature/books/gamesplaying/p004.htm",
-            "chilton-computing.org.uk/acl/literature/books/gamesplaying/"
+            "chilton-computing.org.uk/acl/literature/books/gamesplaying/",
         ],
         [
             codeBlock,
@@ -365,8 +368,8 @@ begin
     next i: end;
     copy next generation into this generation;
     goto loop;
-end;`
-        ]
+end;`,
+        ],
     ],
 
     [imagePage, "bg-black", "./assets/holo/0001.jpg"],
@@ -387,8 +390,8 @@ end;`
     [
         (+ (Math/sin (* a y)) (Math/cos (* (* b x) x)))
         (+ (Math/sin (* (* c x) x)) (Math/cos (* d y)))
-    ])`
-        ]
+    ])`,
+        ],
     ],
 
     [imagePage, "bg-black", "./assets/lcom/0000.jpg"],
@@ -414,8 +417,8 @@ end;`
             ["code", "f-f-f-fs"],
             ["code", "f-f-f-ff-f-f-fs"],
             ["code", "f-f-f-ff-f-f-ff-f-f-fs"],
-            " etc."
-        ]
+            " etc.",
+        ],
     ],
 
     [
@@ -436,8 +439,8 @@ end;`
     {
         :fwd [:fwd], :left [:left], :right [:right]
         :push [:push], :pop [:pop]
-    })`
-        ]
+    })`,
+        ],
     ],
 
     [
@@ -452,8 +455,8 @@ end;`
     (replace valid-syms src))
 
 (parse "-yf+xfx+fy-")
-; (:left :y :fwd :right :x :fwd :x :right :fwd :y :left)`
-        ]
+; (:left :y :fwd :right :x :fwd :x :right :fwd :y :left)`,
+        ],
     ],
 
     [
@@ -475,8 +478,8 @@ end;`
          last))
 
 (def rules
-    {:x (parse "-yf+xfx+fy-") :y (parse "+xf-yfy-fx+") :start [:x]})`
-        ]
+    {:x (parse "-yf+xfx+fy-") :y (parse "+xf-yfy-fx+") :start [:x]})`,
+        ],
     ],
 
     [
@@ -499,8 +502,8 @@ end;`
 ;  :fwd :x :right :left)
 
 (count (expand-with rules 10))
-; 218451`
-        ]
+; 218451`,
+        ],
     ],
 
     [bgImagePage, "bg-black", "./assets/morphogen/20140925-desertrose.jpg"],
@@ -540,18 +543,18 @@ end;`
         [
             `“I still believe in abstraction, but now I know that one ends with
     abstraction, not starts with it. I learned that one has to adapt
-    abstractions to reality and not the other way around.”`
+    abstractions to reality and not the other way around.”`,
         ],
-        " Alexander Stepanov"
+        " Alexander Stepanov",
     ],
 
     [
         quotePage,
         [
             `"I'm never bored by simplicity. Show me a simpler way to do anything
-    that I'm doing. I will jump on it."`
+    that I'm doing. I will jump on it."`,
         ],
-        "Charles Moore"
+        "Charles Moore",
     ],
 
     [
@@ -568,8 +571,8 @@ end;`
             "Transducers, core.async, clojure.spec",
             "Amount & quality of innovation",
             "Maturity / Community",
-            "Gateway to various awesome tools / concepts"
-        ]
+            "Gateway to various awesome tools / concepts",
+        ],
     ],
 
     [
@@ -586,20 +589,23 @@ end;`
             ["li.transition.o-0", "Transducers, core.async, clojure.spec"],
             ["li.transition.o-0", "Amount & quality of innovation"],
             ["li", "Maturity / Community"],
-            ["li.transition.o-0", "Gateway to various awesome tools / concepts"]
-        ]
+            [
+                "li.transition.o-0",
+                "Gateway to various awesome tools / concepts",
+            ],
+        ],
     ],
 
     [
         quotePage,
         [`"Weeks of coding can save you`, `hours of planning."`],
-        "Unknown"
+        "Unknown",
     ],
 
     [
         quotePage,
         [`"Weeks of planning can save you`, `hours of coding."`],
-        "Unknown"
+        "Unknown",
     ],
 
     [
@@ -614,8 +620,8 @@ end;`
             "Implementation effort of custom datatypes",
             "Have to resort to macros to work around quirks / achieve DRY",
             `Effort vs. gain unpredictable/unacceptable (IMHO)`,
-            `Protocol discrepancies between CLJ/CLJS`
-        ]
+            `Protocol discrepancies between CLJ/CLJS`,
+        ],
     ],
 
     [
@@ -630,17 +636,17 @@ end;`
             "Tree editing (GA/GP, spatial accel etc.)",
             "Media processing",
             "Web workers (e.g. w/ SharedArrayBuffer)",
-            "GPU / hardware / low-level interop (e.g. WASM)"
+            "GPU / hardware / low-level interop (e.g. WASM)",
         ],
-        ["div.f4", ["sup", "*"], "realtime"]
+        ["div.f4", ["sup", "*"], "realtime"],
     ],
 
     [
         quotePage,
         [
-            `"I would guess that most computers don't compute, they move bytes around."`
+            `"I would guess that most computers don't compute, they move bytes around."`,
         ],
-        "Charles Moore"
+        "Charles Moore",
     ],
 
     [titlePage, "bg-black white", "CLJ(S) vs ES6"],
@@ -649,7 +655,7 @@ end;`
         contentPage,
         "Multi-methods (CLJS)",
         "Vector addition",
-        [codeBlock, `(defmulti vadd (fn [a b] (count a)))`]
+        [codeBlock, `(defmulti vadd (fn [a b] (count a)))`],
     ],
 
     [
@@ -664,8 +670,8 @@ end;`
     [(+ (a 0) (b 0)) (+ (a 1) (b 1))])
 
 (time (dotimes [i 1e7] (vadd [1 2] [10 20])))
-; "Elapsed time: 3362.786341 msecs"`
-        ]
+; "Elapsed time: 3362.786341 msecs"`,
+        ],
     ],
 
     [
@@ -680,8 +686,8 @@ end;`
     [(+ (a 0) (b 0)) (+ (a 1) (b 1)) (+ (a 2) (b 2))])
 
 (time (dotimes [i 1e7] (vadd [1 2 3] [10 20 30])))
-; "Elapsed time: 3942.254367 msecs"`
-        ]
+; "Elapsed time: 3942.254367 msecs"`,
+        ],
     ],
 
     [
@@ -696,9 +702,9 @@ end;`
     #js [(+ (aget a 0) (aget b 0)) (+ (aget a 1) (aget b 1))])
 
 (time (dotimes [i 1e7] (vadd #js [1 2] #js [10 20])))
-; "Elapsed time: 1905.684968 msecs"`
+; "Elapsed time: 1905.684968 msecs"`,
         ],
-        "~1.8x faster, but brittle solution"
+        "~1.8x faster, but brittle solution",
     ],
 
     [
@@ -713,8 +719,8 @@ end;`
     (mapv (fn [aa bb] (+ aa bb)) a b))
 
 (time (dotimes [i 1e7] (add [1 2 3 4 5 6 7 8] [1 2 3 4 5 6 7 8])))
-; "Elapsed time: 36108.277508 msecs"`
-        ]
+; "Elapsed time: 36108.277508 msecs"`,
+        ],
     ],
 
     [
@@ -732,9 +738,9 @@ end;`
             (persistent! acc))))
 
 (time (dotimes [i 1e7] (add [1 2 3 4 5 6 7 8] [1 2 3 4 5 6 7 8])))
-; "Elapsed time: 15168.490184 msecs"`
+; "Elapsed time: 15168.490184 msecs"`,
         ],
-        "2.4x faster, but hardly idiomatic"
+        "2.4x faster, but hardly idiomatic",
     ],
 
     [
@@ -750,8 +756,8 @@ vadd = defmulti((a, b) => a.length);
 vadd.add(2, (a, b) => [a[0] + b[0], a[1] + b[1]]);
 
 b.bench(() => vadd([1, 2], [10, 20]), 1e7);
-// 544ms`
-        ]
+// 544ms`,
+        ],
     ],
 
     [
@@ -764,9 +770,9 @@ b.bench(() => vadd([1, 2], [10, 20]), 1e7);
 vadd.add(3, (a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]])
 
 bench(() => vadd([1, 2, 3], [10, 20, 30]), 1e7)
-// 584ms`
+// 584ms`,
         ],
-        "6x faster"
+        "6x faster",
     ],
 
     [
@@ -779,10 +785,10 @@ bench(() => vadd([1, 2, 3], [10, 20, 30]), 1e7)
 vadd.add(DEFAULT, (a, b) => a.map((a, i) => a + b[i]))
 
 bench(() => add([1, 2, 3, 4, 5, 6, 7, 8], [1, 2, 3, 4, 5, 6, 7, 8]), 1e7)
-// 698ms`
+// 698ms`,
         ],
         ["div", "only ~100ms more than Vec3"],
-        ["div", "50x faster than idiomatic CLJS"]
+        ["div", "50x faster than idiomatic CLJS"],
     ],
 
     [titlePage, "", [link, "http://thi.ng/umbrella", "thi.ng/umbrella"]],
@@ -793,9 +799,9 @@ bench(() => add([1, 2, 3, 4, 5, 6, 7, 8], [1, 2, 3, 4, 5, 6, 7, 8]), 1e7)
             `"Society created institutions in order to serve society.
 [...] these institutions have all become counterproductive
 to their original intent because they now exist to benefit
-themselves rather than the betterment of society."`
+themselves rather than the betterment of society."`,
         ],
-        "Ivan Illich"
+        "Ivan Illich",
     ],
 
     [
@@ -808,6 +814,6 @@ themselves rather than the betterment of society."`
         ["br"],
         [link, "https://medium.com/@thi.ng", "medium.com/@thi.ng"],
         ["br"],
-        ["p.blue", "media.thi.ng/2018/talks/clojurex/"]
-    ]
+        ["p.blue", "media.thi.ng/2018/talks/clojurex/"],
+    ],
 ];

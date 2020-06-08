@@ -1,9 +1,4 @@
-import {
-    ABGR8888,
-    canvas2d,
-    imagePromise,
-    PackedBuffer
-} from "@thi.ng/pixel";
+import { ABGR8888, canvas2d, imagePromise, PackedBuffer } from "@thi.ng/pixel";
 import {
     DEST_ATOP_I,
     DEST_I,
@@ -16,7 +11,7 @@ import {
     SRC_IN_I,
     SRC_OUT_I,
     SRC_OVER_I,
-    XOR_I
+    XOR_I,
 } from "@thi.ng/porter-duff";
 import IMG2 from "../assets/plus.png";
 import IMG from "../assets/ring.png";
@@ -33,7 +28,7 @@ const MODES: any = {
     SRC_ATOP: SRC_ATOP_I,
     DEST_ATOP: DEST_ATOP_I,
     XOR: XOR_I,
-    PLUS: PLUS_I
+    PLUS: PLUS_I,
 };
 
 const IDS = Object.keys(MODES);

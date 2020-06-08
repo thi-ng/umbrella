@@ -21,9 +21,9 @@ export const slider = (
                     const target = e.target as HTMLInputElement;
                     const value = target && target.value;
                     onChange(parseFloat(value));
-                }
-            }
-        ]
+                },
+            },
+        ],
     ];
 };
 
@@ -44,9 +44,9 @@ export const checkbox = (
                     const target = e.target as HTMLInputElement;
                     const checked = target && target.checked;
                     onChange(checked);
-                }
-            }
+                },
+            },
         ],
-        ["label", { for: label }, label]
+        ["label", { for: label }, label],
     ];
 };

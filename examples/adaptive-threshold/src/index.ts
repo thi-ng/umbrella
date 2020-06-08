@@ -8,7 +8,7 @@ import {
     Event,
     SET_IMAGE,
     SET_KERNEL_OFFSET,
-    SET_KERNEL_WIDTH
+    SET_KERNEL_WIDTH,
 } from "./api";
 import { dispatch } from "./events";
 import { state } from "./state";
@@ -29,10 +29,10 @@ const canvas = <any>{
             "canvas.mv3.pa1.ba",
             {
                 width: pix.width,
-                height: pix.height
-            }
+                height: pix.height,
+            },
         ];
-    }
+    },
 };
 
 /**
@@ -46,9 +46,9 @@ const fileChooser = [
         {
             type: "file",
             accept: "image/png, image/jpeg, image/webp",
-            onchange: (e: any) => dispatch([SET_IMAGE, e.target.files[0]])
-        }
-    ]
+            onchange: (e: any) => dispatch([SET_IMAGE, e.target.files[0]]),
+        },
+    ],
 ];
 
 /**
@@ -69,9 +69,9 @@ const param = (eventID: string, label: string, value: number, opts: any) => [
             value,
             onchange: (e: any) =>
                 dispatch(<Event>[eventID, parseInt(e.target.value)]),
-            ...opts
-        }
-    ]
+            ...opts,
+        },
+    ],
 ];
 
 /**
@@ -85,14 +85,14 @@ const imageEditor = ({ destImg, threshold }: AppState) => [
     param(SET_KERNEL_WIDTH, "Width", threshold.windowSize, {
         min: 3,
         max: 29,
-        step: 2
+        step: 2,
     }),
     param(SET_KERNEL_OFFSET, "Offset", threshold.offset, {
         min: -20,
         max: 20,
-        step: 1
+        step: 1,
     }),
-    [canvas, destImg]
+    [canvas, destImg],
 ];
 
 /**
@@ -105,7 +105,7 @@ const app = (state: AppState) => {
         "div",
         ["h1", "Adaptive thresholding"],
         fileChooser,
-        state.destImg ? imageEditor(state) : null
+        state.destImg ? imageEditor(state) : null,
     ];
 };
 

@@ -12,14 +12,9 @@ import {
     PAD,
     PRESETS,
     SNAP,
-    WIDTH
+    WIDTH,
 } from "./api";
-import {
-    initAudio,
-    isAudioActive,
-    stopAudio,
-    updateAudio
-} from "./audio";
+import { initAudio, isAudioActive, stopAudio, updateAudio } from "./audio";
 import { rampViz } from "./components";
 
 const timeForPos = (x: number) => fitClamped(x, PAD, WIDTH - PAD, 0, 1);
@@ -75,13 +70,13 @@ const gradient = [
         {
             id: "ramp",
             from: [0, 0],
-            to: [0, 1]
+            to: [0, 1],
         },
         [
             [0, "#99b"],
-            [1, "#111"]
-        ]
-    ]
+            [1, "#111"],
+        ],
+    ],
 ];
 
 start(() => {
@@ -117,14 +112,14 @@ start(() => {
                         currID = editRamp(mpos, currID);
                     }
                 }
-            }
+            },
         },
         gradient,
         [
             "g",
             {
                 translate: [PAD, PAD],
-                __diff: false
+                __diff: false,
             },
             rampViz(ramp, CWIDTH, CHEIGHT),
             [
@@ -135,9 +130,9 @@ start(() => {
                     "circle",
                     { fill: "red" },
                     [0, (1 - ramp.at(currT)) * CHEIGHT],
-                    3
-                ]
-            ]
+                    3,
+                ],
+            ],
         ],
         selID !== -1 ||
         currID !== -1 ||
@@ -148,9 +143,9 @@ start(() => {
                   ["line", {}, [mpos[0], PAD], [mpos[0], PAD + CHEIGHT]],
                   mpos[1] < HEIGHT - PAD
                       ? ["line", {}, [PAD, mpos[1]], [PAD + CWIDTH, mpos[1]]]
-                      : null
+                      : null,
               ]
-            : null
+            : null,
     ];
 });
 
@@ -180,7 +175,7 @@ window.addEventListener("keydown", (e) => {
                 ...repeatedly(
                     () => [Math.random(), Math.random()],
                     Math.random() * 37 + 3
-                )
+                ),
             ];
             ramp.sort();
             updateAudio(ramp);

@@ -20,7 +20,7 @@ export const sidebar = (ctx: AppContext, ...specs: SliderOpts[]) => {
             ["code", "Ctrl+Z"],
             " / ",
             ["code", "Ctrl+Y"],
-            ". The last 1000 edits are stored."
+            ". The last 1000 edits are stored.",
         ],
         [
             "div",
@@ -28,11 +28,11 @@ export const sidebar = (ctx: AppContext, ...specs: SliderOpts[]) => {
             [
                 link,
                 "https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-grid",
-                "Source"
+                "Source",
             ],
             ["br"],
             "Made with ",
-            [link, "https://github.com/thi-ng/umbrella/", "@thi.ng/umbrella"]
-        ]
+            [link, "https://github.com/thi-ng/umbrella/", "@thi.ng/umbrella"],
+        ],
     ];
 };

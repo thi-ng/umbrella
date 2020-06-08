@@ -1,14 +1,13 @@
 import { peek } from "@thi.ng/arrays";
 import { identity } from "@thi.ng/compose";
 import { polyline as gPolyline, resample, vertices } from "@thi.ng/geom";
-import {
-    circle,
-    group,
-    polyline,
-    svg
-} from "@thi.ng/hiccup-svg";
+import { circle, group, polyline, svg } from "@thi.ng/hiccup-svg";
 import { fromIterable, merge, sync } from "@thi.ng/rstream";
-import { GestureEvent, gestureStream, GestureType } from "@thi.ng/rstream-gestures";
+import {
+    GestureEvent,
+    gestureStream,
+    GestureType,
+} from "@thi.ng/rstream-gestures";
 import {
     comp,
     filter,
@@ -16,15 +15,10 @@ import {
     multiplexObj,
     partition,
     push,
-    transduce
+    transduce,
 } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import {
-    angleBetween2,
-    mixN2,
-    sub2,
-    Vec
-} from "@thi.ng/vectors";
+import { angleBetween2, mixN2, sub2, Vec } from "@thi.ng/vectors";
 import { CTA } from "./config";
 
 /**
@@ -36,7 +30,7 @@ import { CTA } from "./config";
  */
 const app = ({
     raw,
-    processed
+    processed,
 }: {
     raw: Vec[];
     processed: { path: Vec[]; corners: Vec[] };
@@ -47,7 +41,7 @@ const app = ({
             width: window.innerWidth,
             height: window.innerHeight,
             stroke: "none",
-            fill: "none"
+            fill: "none",
         },
         path(raw || [], processed.path, processed.corners || [])
     ),
@@ -55,8 +49,8 @@ const app = ({
         "div.fixed.top-0.left-0.ma3",
         ["div", `raw: ${(raw && raw.length) || 0}`],
         ["div", `resampled: ${(processed && processed.path.length) || 0}`],
-        ["div", `corners: ${(processed && processed.corners.length) || 0}`]
-    ]
+        ["div", `corners: ${(processed && processed.corners.length) || 0}`],
+    ],
 ];
 
 /**
@@ -148,8 +142,8 @@ const gesture = merge<any, any>({
                 (g) => g.type != GestureType.MOVE && g.type != GestureType.ZOOM
             ),
             map(collectPath())
-        )
-    ]
+        ),
+    ],
 });
 
 // main gesture processor
@@ -177,11 +171,11 @@ sync<any, any>({
                             push(),
                             pts
                         )
-                    )
+                    ),
                 })
             )
-        )
-    }
+        ),
+    },
 }).transform(
     // transform result tuples into HDOM components
     map(app),

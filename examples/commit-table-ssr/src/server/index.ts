@@ -16,7 +16,7 @@ const htmlCache = new TLRUCache<string, string>(null, { ttl: 60 * 60 * 1000 });
 const bundler = new Bundler("index.html", {
     outDir: "./out",
     outFile: "index.html",
-    publicUrl: "/out"
+    publicUrl: "/out",
 });
 
 const getCommits = async () => {

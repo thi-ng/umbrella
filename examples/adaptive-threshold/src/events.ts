@@ -1,11 +1,6 @@
 import { setIn } from "@thi.ng/paths";
 import { GRAY8, PackedBuffer } from "@thi.ng/pixel";
-import {
-    ISubscriber,
-    pubsub,
-    stream,
-    trace
-} from "@thi.ng/rstream";
+import { ISubscriber, pubsub, stream, trace } from "@thi.ng/rstream";
 import { state } from "./state";
 import { adaptiveThreshold } from "./threshold";
 import {

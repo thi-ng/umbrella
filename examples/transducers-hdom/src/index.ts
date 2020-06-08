@@ -14,8 +14,8 @@ const app = ({ ticks, clicks }: any) => [
             [
                 "a.link.white.bb.bw1",
                 { href: "#", onclick: () => clickStream.next(0) },
-                `${clicks} clicks`
-            ]
+                `${clicks} clicks`,
+            ],
         ],
         [
             "div",
@@ -23,12 +23,12 @@ const app = ({ ticks, clicks }: any) => [
                 "a.link.white",
                 {
                     href:
-                        "https://github.com/thi-ng/umbrella/tree/develop/examples/transducers-hdom/"
+                        "https://github.com/thi-ng/umbrella/tree/develop/examples/transducers-hdom/",
                 },
-                "Source code"
-            ]
-        ]
-    ]
+                "Source code",
+            ],
+        ],
+    ],
 ];
 
 // click stream (click counter)
@@ -41,10 +41,10 @@ sync<any, any>({
     // streams to synchronize
     src: {
         ticks: fromInterval(1000),
-        clicks: clickStream
+        clicks: clickStream,
     },
     // only synchronize at first (default)
-    reset: false
+    reset: false,
 }).transform(
     // transform into hdom component
     map(app),

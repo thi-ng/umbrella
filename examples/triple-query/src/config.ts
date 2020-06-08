@@ -13,7 +13,7 @@ export const CONFIG: AppConfig = {
     // and only side effect functions execute any "real" work.
 
     // Docs here:
-    // https://github.com/thi-ng/umbrella/blob/master/packages/interceptors/src/event-bus.ts#L14
+    // https://github.com/thi-ng/umbrella/blob/develop/packages/interceptors/src/event-bus.ts#L14
 
     events: EVENTS,
 
@@ -30,7 +30,7 @@ export const CONFIG: AppConfig = {
     initialState: {
         page: 0,
         pagedTriples: [],
-        sort: [0, false]
+        sort: [0, false],
     },
 
     // derived view declarations
@@ -44,7 +44,7 @@ export const CONFIG: AppConfig = {
         pagedTriples: "pagedTriples",
         cities: "queries.cities",
         countries: "queries.countries",
-        sort: "sort"
+        sort: "sort",
     },
 
     // component CSS class config using http://tachyons.io/ these
@@ -53,10 +53,10 @@ export const CONFIG: AppConfig = {
     ui: {
         button: {
             class:
-                "pointer bg-black hover-bg-blue bg-animate white pa2 mr1 w-100 ttu b tracked-tight noselect"
+                "pointer bg-black hover-bg-blue bg-animate white pa2 mr1 w-100 ttu b tracked-tight noselect",
         },
         buttonDisabled: {
-            class: "bg-gray white pa2 mr1 w-100 ttu b tracked-tight noselect"
+            class: "bg-gray white pa2 mr1 w-100 ttu b tracked-tight noselect",
         },
         buttongroup: { class: "flex mb2" },
         link: { class: "pointer link dim black b" },
@@ -66,14 +66,14 @@ export const CONFIG: AppConfig = {
             head: { class: "tl pv2 ph3 bg-black white" },
             headlink: { class: "pointer white" },
             row: { class: "striped--light-gray" },
-            cell: { class: "pv2 ph3" }
+            cell: { class: "pv2 ph3" },
         },
         pager: {
             root: { class: "w-100 mt3 f7 tc" },
             prev: { class: "fl mr3" },
             next: { class: "fr ml3" },
-            pages: { class: "dib" }
-        }
+            pages: { class: "dib" },
+        },
     },
 
     data: {
@@ -89,7 +89,7 @@ export const CONFIG: AppConfig = {
             ["são paulo", "br"],
             ["shanghai", "cn"],
             ["tokyo", "jp"],
-            ["toronto", "ca"]
+            ["toronto", "ca"],
         ],
         countries: [
             ["au", "australia", "oceania"],
@@ -103,7 +103,7 @@ export const CONFIG: AppConfig = {
             ["jp", "japan", "asia"],
             ["za", "south africa", "africa"],
             ["nz", "new zealand", "oceania"],
-            ["us", "united states", "north-america"]
+            ["us", "united states", "north-america"],
         ],
         regions: [
             "africa",
@@ -114,7 +114,7 @@ export const CONFIG: AppConfig = {
             "north-america",
             "oceania",
             "south-america",
-            "caribbean"
+            "caribbean",
         ],
         queries: {
             cities: {
@@ -125,11 +125,11 @@ export const CONFIG: AppConfig = {
                             ["?city", "locatedIn", "?cid"],
                             ["?cid", "type", "country"],
                             ["?cid", "name", "?country"],
-                            ["?cid", "partOf", "?region"]
-                        ]
-                    }
+                            ["?cid", "partOf", "?region"],
+                        ],
+                    },
                 ],
-                select: ["city", "country", "region"]
+                select: ["city", "country", "region"],
             },
             countries: {
                 q: [
@@ -137,11 +137,11 @@ export const CONFIG: AppConfig = {
                         where: [
                             ["?code", "type", "country"],
                             ["?code", "partOf", "?region"],
-                            ["?region", "type", "region"]
-                        ]
-                    }
-                ]
-            }
-        }
-    }
+                            ["?region", "type", "region"],
+                        ],
+                    },
+                ],
+            },
+        },
+    },
 };

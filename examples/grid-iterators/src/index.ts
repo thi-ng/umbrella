@@ -9,7 +9,7 @@ import {
     zcurve2d,
     zigzagColumns2d,
     zigzagDiagonal2d,
-    zigzagRows2d
+    zigzagRows2d,
 } from "@thi.ng/grid-iterators";
 import { createElement } from "@thi.ng/hdom";
 import { concat, cycle } from "@thi.ng/transducers";
@@ -19,7 +19,7 @@ const H = 256;
 const canvas = <HTMLCanvasElement>(
     createElement(document.getElementById("app")!, "canvas", {
         width: W,
-        height: H
+        height: H,
     })
 );
 const ctx = canvas.getContext("2d")!;

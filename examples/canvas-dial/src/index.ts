@@ -10,13 +10,13 @@ export const ctx = {
     streams: {
         a: stream<number>(),
         b: stream<number>(),
-        c: stream<number>()
+        c: stream<number>(),
     },
     // component styling
     ui: {
         root: { class: "vh-100 flex justify-center items-center" },
-        dial: { width: 100, height: 100, class: "pointer ma1" }
-    }
+        dial: { width: 100, height: 100, class: "pointer ma1" },
+    },
 };
 
 /**
@@ -31,10 +31,17 @@ export const ctx = {
 const app = () => {
     const dialA = dial({
         r1: 0.5,
-        color: { from: [0, 0], to: [1, 1], stops: [[0, "#075"], [1, "#6f9"]] },
+        color: {
+            from: [0, 0],
+            to: [1, 1],
+            stops: [
+                [0, "#075"],
+                [1, "#6f9"],
+            ],
+        },
         font: "20px Menlo",
         label: (x) => percent(0)(x),
-        onchange: (x) => ctx.streams.a.next(x)
+        onchange: (x) => ctx.streams.a.next(x),
     });
     const dialB = dial({
         r1: 0.66,
@@ -43,33 +50,44 @@ const app = () => {
         color: {
             from: [0, 0],
             to: [1, 0.75],
-            stops: [[0, "#00f"], [0.5, "#f60"], [1, "#ff0"]]
+            stops: [
+                [0, "#00f"],
+                [0.5, "#f60"],
+                [1, "#ff0"],
+            ],
         },
         font: "20px Menlo",
         label: (x) => percent(1)(x),
-        onchange: (x) => ctx.streams.b.next(x)
+        onchange: (x) => ctx.streams.b.next(x),
     });
     const dialC = dial({
         r1: 0.75,
         gap: Math.PI,
-        color: { from: [0, 0], to: [1, 0], stops: [[0, "#407"], [1, "#09f"]] },
+        color: {
+            from: [0, 0],
+            to: [1, 0],
+            stops: [
+                [0, "#407"],
+                [1, "#09f"],
+            ],
+        },
         font: "20px Menlo",
         label: (x) => percent(2)(x),
-        onchange: (x) => ctx.streams.c.next(x)
+        onchange: (x) => ctx.streams.c.next(x),
     });
     return ({ a, b, c }: any) => [
         "div",
         ctx.ui.root,
         [dialA, ctx.ui.dial, a],
         [dialB, ctx.ui.dial, b],
-        [dialC, ctx.ui.dial, c]
+        [dialC, ctx.ui.dial, c],
     ];
 };
 
 // stream combinator & reactive DOM update
 sync<any, any>({
     src: ctx.streams,
-    xform: comp(map(app()), updateDOM())
+    xform: comp(map(app()), updateDOM()),
 });
 
 // seed dials with initial values

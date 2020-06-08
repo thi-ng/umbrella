@@ -8,7 +8,7 @@ import {
     multiplex,
     range2d,
     repeat,
-    transduce
+    transduce,
 } from "@thi.ng/transducers";
 
 /**
@@ -43,7 +43,7 @@ export const adaptiveThreshold = (
                         kheight: windowSize,
                         wrap: false,
                         border: 0,
-                        reduce: mean
+                        reduce: mean,
                     })
                 ),
                 map(([[x, y], mean]) =>

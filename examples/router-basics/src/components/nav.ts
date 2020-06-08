@@ -2,7 +2,6 @@ import { CONTACT, HOME, USER_LIST } from "../routes";
 import { routeLink } from "./route-link";
 import type { AppContext } from "../api";
 
-
 /**
  * Main nav component with hard coded routes.
  *
@@ -18,7 +17,7 @@ export function nav(ctx: AppContext) {
             ui.inner,
             [routeLink, HOME.id, null, ui.link, "Home"],
             [routeLink, USER_LIST.id, null, ui.link, "Users"],
-            [routeLink, CONTACT.id, null, ui.linkLast, "Contact"]
-        ]
+            [routeLink, CONTACT.id, null, ui.linkLast, "Contact"],
+        ],
     ];
 }

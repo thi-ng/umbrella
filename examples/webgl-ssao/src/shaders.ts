@@ -7,14 +7,14 @@ import {
     mul,
     sub,
     texture,
-    vec4
+    vec4,
 } from "@thi.ng/shader-ast";
 import { clamp01 } from "@thi.ng/shader-ast-stdlib";
 import {
     FX_SHADER_SPEC,
     FX_SHADER_SPEC_UV,
     ShaderFn,
-    ShaderSpec
+    ShaderSpec,
 } from "@thi.ng/webgl";
 
 export const LIGHT_SHADER: ShaderSpec = {
@@ -43,14 +43,14 @@ export const LIGHT_SHADER: ShaderSpec = {
         position: "vec3",
         normal: "vec3",
         offset: "vec3",
-        uv: "vec2"
+        uv: "vec2",
     },
     varying: {
         v_position: "vec4",
         v_normal: "vec4",
         v_uv: "vec2",
         v_viewPos: "vec4",
-        v_viewNormal: "vec4"
+        v_viewNormal: "vec4",
     },
     uniforms: {
         model: "mat4",
@@ -61,17 +61,17 @@ export const LIGHT_SHADER: ShaderSpec = {
         shininess: ["float", 250],
         specular: "float",
         ambient: ["float", 0.15],
-        tex: "sampler2D"
+        tex: "sampler2D",
     },
     outputs: {
         o_color: ["vec4", 0],
         o_viewPos: ["vec4", 1],
-        o_viewNormal: ["vec4", 2]
+        o_viewNormal: ["vec4", 2],
     },
     state: {
         depth: true,
-        cull: true
-    }
+        cull: true,
+    },
 };
 
 export const SSAO_SHADER: ShaderSpec = {
@@ -117,11 +117,11 @@ void main() {
         bias: ["float", 0.09],
         attenuate: ["float", 1],
         attenuateDist: ["float", 1],
-        depthRange: ["vec2", [0.1, 10]]
+        depthRange: ["vec2", [0.1, 10]],
     },
     outputs: {
-        o_occlusion: "float"
-    }
+        o_occlusion: "float",
+    },
 };
 
 export const FINAL_SHADER: ShaderSpec = mergeDeepObj(FX_SHADER_SPEC_UV, {
@@ -139,12 +139,12 @@ export const FINAL_SHADER: ShaderSpec = mergeDeepObj(FX_SHADER_SPEC_UV, {
                         ),
                         1
                     )
-                )
-            ])
+                ),
+            ]),
         ])
     ),
     uniforms: {
         tex2: ["sampler2D", 1],
-        amp: ["float", 1]
-    }
+        amp: ["float", 1],
+    },
 });

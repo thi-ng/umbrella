@@ -79,7 +79,7 @@ const env = ffi(
         "svg.line": svg.line,
         "svg.circle": svg.circle,
         "svg.svg": svg.svg,
-        shapes: []
+        shapes: [],
     },
     // foreign function interface (FFI)
     // custom words usable by the DSL
@@ -92,7 +92,7 @@ const env = ffi(
             ensureStack(stack, 2);
             fs.writeFileSync(stack.pop(), stack.pop());
             return ctx;
-        }
+        },
     }
 );
 // compile lib (resulting words are stored in env)

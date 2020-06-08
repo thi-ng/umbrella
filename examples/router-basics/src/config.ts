@@ -4,7 +4,7 @@ import {
     FX_DELAY,
     FX_DISPATCH_ASYNC,
     FX_DISPATCH_NOW,
-    valueUpdater
+    valueUpdater,
 } from "@thi.ng/interceptors";
 import { AppConfig, StatusType } from "./api";
 import { allUsers } from "./components/all-users";
@@ -19,7 +19,7 @@ import * as routes from "./routes";
 export const CONFIG: AppConfig = {
     // router configuration
     // docs here:
-    // https://github.com/thi-ng/umbrella/blob/master/packages/router/src/api.ts#L100
+    // https://github.com/thi-ng/umbrella/blob/develop/packages/router/src/api.ts#L100
     router: {
         // use URI hash for routes (KISS)
         useFragment: true,
@@ -31,8 +31,8 @@ export const CONFIG: AppConfig = {
             routes.HOME,
             routes.CONTACT,
             routes.USER_PROFILE,
-            routes.USER_LIST
-        ]
+            routes.USER_LIST,
+        ],
     },
 
     // event handlers events are queued and batch processed in app's RAF
@@ -44,31 +44,31 @@ export const CONFIG: AppConfig = {
     // and only side effect functions execute any "real" work.
 
     // see EventBus docs here:
-    // https://github.com/thi-ng/umbrella/blob/master/packages/atom/src/event-bus.ts#L14
+    // https://github.com/thi-ng/umbrella/blob/develop/packages/atom/src/event-bus.ts#L14
 
     events: {
         // sets status to "done"
         [ev.DONE]: () => ({
-            [FX_DISPATCH_NOW]: [ev.SET_STATUS, [StatusType.DONE, "done"]]
+            [FX_DISPATCH_NOW]: [ev.SET_STATUS, [StatusType.DONE, "done"]],
         }),
 
         // sets status to thrown error's message
         [ev.ERROR]: (_, [__, err]) => ({
-            [FX_DISPATCH_NOW]: [ev.SET_STATUS, [StatusType.ERROR, err.message]]
+            [FX_DISPATCH_NOW]: [ev.SET_STATUS, [StatusType.ERROR, err.message]],
         }),
 
         // triggers loading of JSON for single user, sets status
         [ev.LOAD_USER]: (_, [__, id]) => ({
             [FX_DISPATCH_NOW]: [
                 ev.SET_STATUS,
-                [StatusType.INFO, `loading user data...`]
+                [StatusType.INFO, `loading user data...`],
             ],
             [FX_DISPATCH_ASYNC]: [
                 fx.JSON,
                 `assets/user-${id}.json`,
                 ev.RECEIVE_USER,
-                ev.LOAD_USER_ERROR
-            ]
+                ev.LOAD_USER_ERROR,
+            ],
         }),
 
         // triggered after successful IO
@@ -79,9 +79,9 @@ export const CONFIG: AppConfig = {
                 <Event>[EV_SET_VALUE, [["users", json.id], json]],
                 <Event>[
                     ev.SET_STATUS,
-                    [StatusType.SUCCESS, "JSON successfully loaded", true]
-                ]
-            ]
+                    [StatusType.SUCCESS, "JSON successfully loaded", true],
+                ],
+            ],
         }),
 
         // error event for user profile IO requests (i.e. in this demo for user ID 3)
@@ -92,22 +92,22 @@ export const CONFIG: AppConfig = {
                 FX_DELAY,
                 [1000, [routes.USER_LIST.id]],
                 ev.ROUTE_TO,
-                ev.ERROR
-            ]
+                ev.ERROR,
+            ],
         }),
 
         // triggers loading of JSON summary of all users, sets status
         [ev.LOAD_USER_LIST]: () => ({
             [FX_DISPATCH_NOW]: [
                 ev.SET_STATUS,
-                [StatusType.INFO, `loading user data...`]
+                [StatusType.INFO, `loading user data...`],
             ],
             [FX_DISPATCH_ASYNC]: [
                 fx.JSON,
                 `assets/users.json`,
                 ev.RECEIVE_USERS,
-                ev.ERROR
-            ]
+                ev.ERROR,
+            ],
         }),
 
         // triggered after successful IO
@@ -117,9 +117,9 @@ export const CONFIG: AppConfig = {
                 <Event>[EV_SET_VALUE, ["userlist", json]],
                 <Event>[
                     ev.SET_STATUS,
-                    [StatusType.SUCCESS, "JSON successfully loaded", true]
-                ]
-            ]
+                    [StatusType.SUCCESS, "JSON successfully loaded", true],
+                ],
+            ],
         }),
 
         // stores status (a tuple of `[type, message, done?]`) in app state
@@ -130,11 +130,11 @@ export const CONFIG: AppConfig = {
             [FX_DISPATCH_ASYNC]:
                 status[0] !== StatusType.DONE && status[2]
                     ? [FX_DELAY, [1000], ev.DONE, ev.ERROR]
-                    : undefined
+                    : undefined,
         }),
 
         // toggles debug state flag on/off
-        [ev.TOGGLE_DEBUG]: valueUpdater<number>("debug", (x) => x ^ 1)
+        [ev.TOGGLE_DEBUG]: valueUpdater<number>("debug", (x) => x ^ 1),
     },
 
     // side effects
@@ -146,7 +146,7 @@ export const CONFIG: AppConfig = {
                     throw new Error(resp.statusText);
                 }
                 return resp.json();
-            })
+            }),
     },
 
     // mapping route IDs to their respective UI component functions
@@ -156,7 +156,7 @@ export const CONFIG: AppConfig = {
         [routes.HOME.id]: home,
         [routes.CONTACT.id]: contact,
         [routes.USER_LIST.id]: allUsers,
-        [routes.USER_PROFILE.id]: userProfile
+        [routes.USER_PROFILE.id]: userProfile,
     },
 
     // DOM root element (or ID)
@@ -168,7 +168,7 @@ export const CONFIG: AppConfig = {
         users: {},
         userlist: [],
         route: {},
-        debug: 1
+        debug: 1,
     },
 
     // derived view declarations
@@ -181,7 +181,7 @@ export const CONFIG: AppConfig = {
         users: ["users", (users) => users || {}],
         userlist: "userlist",
         status: "status",
-        debug: "debug"
+        debug: "debug",
     },
 
     // component CSS class config using tachyons-css
@@ -193,51 +193,51 @@ export const CONFIG: AppConfig = {
     // http://tachyons.io/
     ui: {
         bodyCopy: {
-            class: "center measure-narrow measure-ns tc lh-copy black-70"
+            class: "center measure-narrow measure-ns tc lh-copy black-70",
         },
         bodyLink: { class: "link dim black" },
         card: {
             container: {
                 class:
-                    "mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10 tc"
+                    "mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10 tc",
             },
             thumb: { class: "br-100 h3 w3 dib" },
             title: { class: "ma1" },
             sep: { class: "mt3 mw3 bb bw1 b--black-10" },
-            body: { class: "lh-copy measure center f6 black-70" }
+            body: { class: "lh-copy measure center f6 black-70" },
         },
         code: { class: "ma0 ml4 pa2 f7 bg-light-gray code overflow-x-hidden" },
         column: {
             content: [{ class: "w-90-ns ma2" }, { class: "w-50-ns ma2" }],
             debug: [
                 { class: "w-10-ns ma2 close" },
-                { class: "w-50-ns ma2 open" }
-            ]
+                { class: "w-50-ns ma2 open" },
+            ],
         },
         contact: {
-            link: { class: "db pb2 link dim black" }
+            link: { class: "db pb2 link dim black" },
         },
         debugToggle: { class: "toggle pointer" },
         nav: {
             inner: { class: "tc pb3" },
             title: { class: "black f1 lh-title tc db mb2 mb2-ns" },
             link: { class: "pointer link dim gray f6 f5-ns dib mr3" },
-            linkLast: { class: "pointer link dim gray f6 f5-ns dib" }
+            linkLast: { class: "pointer link dim gray f6 f5-ns dib" },
         },
         root: { class: "flex-ns sans-serif ma0" },
         status: {
             [StatusType.DONE]: {
-                class: "pa2 bg-light-yellow gold tc fadeout bg-animate"
+                class: "pa2 bg-light-yellow gold tc fadeout bg-animate",
             },
             [StatusType.INFO]: {
-                class: "pa2 bg-light-yellow gold tc bg-animate"
+                class: "pa2 bg-light-yellow gold tc bg-animate",
             },
             [StatusType.SUCCESS]: {
-                class: "pa2 bg-light-green green tc bg-animate"
+                class: "pa2 bg-light-green green tc bg-animate",
             },
             [StatusType.ERROR]: {
-                class: "pa2 bg-light-red dark-red tc bg-animate"
-            }
+                class: "pa2 bg-light-red dark-red tc bg-animate",
+            },
         },
         userlist: {
             root: { class: "measure center" },
@@ -247,7 +247,7 @@ export const CONFIG: AppConfig = {
             body: { class: "dtc v-mid pl3" },
             title: { class: "pointer f6 f5-ns fw6 lh-title black mv0" },
             subtitle: { class: "f6 fw4 mt0 mb0 black-60" },
-            meta: { class: "dtc tr v-mid black-60 f7" }
-        }
-    }
+            meta: { class: "dtc tr v-mid black-60 f7" },
+        },
+    },
 };

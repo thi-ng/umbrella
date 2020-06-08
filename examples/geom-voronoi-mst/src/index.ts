@@ -10,7 +10,7 @@ import {
     rect,
     scatter,
     star,
-    vertices
+    vertices,
 } from "@thi.ng/geom";
 import { KdTreeMap, KdTreeSet } from "@thi.ng/geom-accel";
 import { DVMesh } from "@thi.ng/geom-voronoi";
@@ -24,14 +24,9 @@ import {
     mapcat,
     mapIndexed,
     push,
-    transduce
+    transduce,
 } from "@thi.ng/transducers";
-import {
-    dist,
-    floor,
-    ReadonlyVec,
-    Vec
-} from "@thi.ng/vectors";
+import { dist, floor, ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 const W = 500;
 const R = W / 2;
@@ -45,7 +40,7 @@ const pts = timed(() =>
         density: (p) => fit(dist(p, closestPoint(poly, p)!), 0, R, 1, 20),
         max: 10000,
         quality: 1000,
-        index: new KdTreeSet(2)
+        index: new KdTreeSet(2),
     })
 );
 
@@ -57,9 +52,9 @@ const _mst = timed(() => {
             (e) => [floor(null, e[0]), floor(null, e[1])],
             mesh.edges(false, [
                 [-R, -R],
-                [R, R]
+                [R, R],
             ])
-        )
+        ),
     ];
 
     const idx = new KdTreeMap<ReadonlyVec, number>(2);
@@ -98,6 +93,6 @@ renderOnce([
             mesh.voronoi(vertices(bounds)).map((p) => polygon(p))
         ),
         points(pts, { fill: "#f09", size: 2 }),
-        group({ stroke: "#000", weight: 1 }, _mst)
-    ])
+        group({ stroke: "#000", weight: 1 }, _mst),
+    ]),
 ]);

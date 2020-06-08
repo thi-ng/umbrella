@@ -16,23 +16,23 @@ const CUSTOM_TAGS: Partial<TagFactories> = {
     codeblock: (lang, body) => [
         "pre.bg-washed-yellow.pa3.f7.overflow-x-scroll",
         { lang: lang || "code" },
-        ["code", body]
+        ["code", body],
     ],
     link: (href, body) => [
         "a.link.dark-blue.hover-white.hover-bg-dark-blue.b",
         { href },
-        body
+        body,
     ],
     strike: (body) => ["del.bg-washed-red", body],
     table: (xs) => ["table.w-100.collapse.ba.b--black-10", ["tbody", ...xs]],
     tr: (_, xs) => ["tr.striped--near-white", ...xs],
-    td: (i, xs) => [i < 1 ? "th.pa2.ttu.tl" : "td.pa2", ...xs]
+    td: (i, xs) => [i < 1 ? "th.pa2.ttu.tl" : "td.pa2", ...xs],
 };
 
 // UI root component
 const app = (input: Stream<string>) => ({
     src,
-    parsed: [hiccup, time]
+    parsed: [hiccup, time],
 }: any) => [
     "div.flex.vh-100.sans-serif.flex-column.flex-row-l",
     [
@@ -42,18 +42,18 @@ const app = (input: Stream<string>) => ({
             {
                 value: src,
                 oninput: (e: Event) =>
-                    input.next((<HTMLTextAreaElement>e.target).value)
-            }
-        ]
+                    input.next((<HTMLTextAreaElement>e.target).value),
+            },
+        ],
     ],
     [
         "div.w-100.h-50.w-50-l.vh-100-l.overflow-y-scroll.pa3.lh-copy",
         [
             "div.pa2.bg-yellow.purple.f7",
-            `Parsed ${src.length} chars in ${time}ms`
+            `Parsed ${src.length} chars in ${time}ms`,
         ],
-        ...hiccup
-    ]
+        ...hiccup,
+    ],
 ];
 
 // markdown input stream
@@ -64,7 +64,9 @@ src.transform(
     map((src) => ({
         src,
         // append exta newline to force last paragraph (see readme)
-        parsed: timedResult(() => [...iterator(parse(CUSTOM_TAGS), src + "\n")])
+        parsed: timedResult(() => [
+            ...iterator(parse(CUSTOM_TAGS), src + "\n"),
+        ]),
     })),
     map(app(src)),
     updateDOM()

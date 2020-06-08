@@ -4,7 +4,6 @@ import { USER_PROFILE } from "../routes";
 import { routeLink } from "./route-link";
 import { status } from "./status";
 
-
 /**
  * Dummy user list component. Triggers JSON I/O request if user data has
  * not been loaded yet.
@@ -32,7 +31,7 @@ function userList(ctx: AppContext) {
         list && [
             "section",
             ctx.ui.userlist.root,
-            list.map((u) => [user, u, !!profiles![u.id]])
+            list.map((u) => [user, u, !!profiles![u.id]]),
         ]
     );
 }
@@ -59,10 +58,10 @@ function user(ctx: AppContext, user: User, cached: boolean) {
             [
                 "h1",
                 ui.title,
-                [routeLink, USER_PROFILE.id, { id: user.id }, null, user.name]
+                [routeLink, USER_PROFILE.id, { id: user.id }, null, user.name],
             ],
-            ["h2", ui.subtitle, `@${user.alias}`]
+            ["h2", ui.subtitle, `@${user.alias}`],
         ],
-        cached ? ["div", ui.meta, "cached"] : undefined
+        cached ? ["div", ui.meta, "cached"] : undefined,
     ];
 }

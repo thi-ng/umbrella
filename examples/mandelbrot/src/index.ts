@@ -2,12 +2,7 @@ import { download } from "@thi.ng/dl-asset";
 import { equiv } from "@thi.ng/equiv";
 import { canvas2D } from "@thi.ng/hdom-components";
 import { fit, mix } from "@thi.ng/math";
-import {
-    stream,
-    Stream,
-    sync,
-    tunnel
-} from "@thi.ng/rstream";
+import { stream, Stream, sync, tunnel } from "@thi.ng/rstream";
 import { gestureStream, GestureType } from "@thi.ng/rstream-gestures";
 import { padLeft } from "@thi.ng/strings";
 import { map } from "@thi.ng/transducers";
@@ -40,7 +35,7 @@ const sel2 = stream<number[] | null>();
 
 // main stream combinator
 const main = sync<any, any>({
-    src: { x1, y1, x2, y2, iter, gradient, sel1, sel2 }
+    src: { x1, y1, x2, y2, iter, gradient, sel1, sel2 },
 });
 
 // URL hash updater
@@ -48,7 +43,7 @@ main.subscribe({
     next: ({ x1, y1, x2, y2, iter, gradient }) =>
         (location.hash = `${ff(x1)};${ff(y1)};${ff(x2)};${ff(
             y2
-        )};${iter};${gradient}`)
+        )};${iter};${gradient}`),
 });
 
 // update param streams to trigger new render
@@ -124,14 +119,14 @@ const app = () => {
                             );
                             setTimeout(() => updateZoom(-0.02), 100);
                         }
-                    }
+                    },
                 });
             // also initialize gesture stream for allowing users to draw
             // target zoom rectangle
             gestureStream(el, {
                 scale: true,
                 absZoom: false,
-                smooth: 1e-3
+                smooth: 1e-3,
             }).subscribe({
                 next(e) {
                     const _x1 = x1.deref()!;
@@ -178,7 +173,7 @@ const app = () => {
                             break;
                         default:
                     }
-                }
+                },
             });
             // key controls fine tuning region
             window.addEventListener("keydown", (e) => {
@@ -223,7 +218,7 @@ const app = () => {
                 ctx.strokeStyle = "red";
                 ctx.strokeRect(a[0], a[1], b[0] - a[0], b[1] - a[1]);
             }
-        }
+        },
     });
     // return actual root component function
     return ({ sel1, sel2 }: any) => {
@@ -243,9 +238,9 @@ const app = () => {
                     "button",
                     {
                         onclick: () =>
-                            newRender.apply(null, <any>DEFAULT_CONFIG)
+                            newRender.apply(null, <any>DEFAULT_CONFIG),
                     },
-                    "reset"
+                    "reset",
                 ],
                 [
                     "div",
@@ -255,11 +250,11 @@ const app = () => {
                         ["li", "Mouse wheel to zoom in / out"],
                         [
                             "li",
-                            "Cursor keys to fine tune region (+ Shift for bigger steps)"
-                        ]
-                    ]
-                ]
-            ]
+                            "Cursor keys to fine tune region (+ Shift for bigger steps)",
+                        ],
+                    ],
+                ],
+            ],
         ];
     };
 };
@@ -285,9 +280,9 @@ const slider = (
             step,
             value: stream.deref(),
             oninput: (e: Event) =>
-                stream.next(parseFloat((<HTMLInputElement>e.target).value))
-        }
-    ]
+                stream.next(parseFloat((<HTMLInputElement>e.target).value)),
+        },
+    ],
 ];
 
 // attach root component & DOM update to main stream
@@ -296,12 +291,11 @@ main.transform(map(app()), updateDOM());
 // init parameter streams, if possible from location.hash
 newRender.apply(
     null,
-    <any>(location.hash.length > 1
-        ? location.hash
-              .substr(1)
-              .split(";")
-              .map(parseFloat)
-        : DEFAULT_CONFIG)
+    <any>(
+        (location.hash.length > 1
+            ? location.hash.substr(1).split(";").map(parseFloat)
+            : DEFAULT_CONFIG)
+    )
 );
 
 // HMR handling

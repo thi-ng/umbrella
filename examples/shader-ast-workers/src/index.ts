@@ -31,7 +31,7 @@ forkJoin<number, WorkerJob, WorkerResult, void>({
         y1: id * rowsPerSlice,
         y2: (id + 1) * rowsPerSlice,
         id,
-        time
+        time,
     }),
     // re-join partial results (here, update canvas)
     join: (parts) => {
@@ -41,7 +41,7 @@ forkJoin<number, WorkerJob, WorkerResult, void>({
         time.next(time.deref()! + 0.05);
     },
     worker: "./worker.js",
-    numWorkers: NUM_WORKERS
+    numWorkers: NUM_WORKERS,
 });
 
 const updatePixels = (parts: WorkerResult[]) => {

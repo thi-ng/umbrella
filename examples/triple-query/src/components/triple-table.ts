@@ -14,11 +14,11 @@ export const tripleTable = () => {
             button,
             [SET_PAGE, i],
             label,
-            disabled
+            disabled,
         ],
         groupPrev: (ctx, ...bts) => ["div", ctx.ui.pager.prev, ...bts],
         groupNext: (ctx, ...bts) => ["div", ctx.ui.pager.next, ...bts],
-        groupPages: (ctx, bts) => ["div", ctx.ui.pager.pages, bts]
+        groupPages: (ctx, bts) => ["div", ctx.ui.pager.pages, bts],
     });
     return (ctx: AppContext, triples: any[], num: number, page: number) => {
         const [sid, sdir] = ctx.views.sort.deref()!;
@@ -36,12 +36,12 @@ export const tripleTable = () => {
                         eventLink,
                         ctx.ui.table.headlink,
                         [SET_SORT, i],
-                        `${x} ${sid === i ? icon : ""}`
-                    ])
+                        `${x} ${sid === i ? icon : ""}`,
+                    ]),
                 ],
-                triples
+                triples,
             ],
-            [_pager, page, num, PAGE_LEN, 5]
+            [_pager, page, num, PAGE_LEN, 5],
         ];
     };
 };

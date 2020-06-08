@@ -14,7 +14,7 @@ const mappedRange = (
 // syntax sugar to create SVG line
 const line = (x1: number, y1: number, x2: number, y2: number) => [
     "line",
-    { x1, y1, x2, y2 }
+    { x1, y1, x2, y2 },
 ];
 
 // reusuable axis tick & label combo
@@ -41,7 +41,7 @@ const axisX = ({ axis: a, domain: d, range: r }: any) => [
     "g",
     { "text-anchor": "middle" },
     line(a[0], a[2], a[1], a[2]),
-    mapcat(tickX(a[2]), mappedRange(d[0], d[1], d[2], r[0], r[1]))
+    mapcat(tickX(a[2]), mappedRange(d[0], d[1], d[2], r[0], r[1])),
 ];
 
 // y-axis with ticks as SVG group
@@ -49,7 +49,7 @@ const axisY = ({ axis: a, domain: d, range: r }: any) => [
     "g",
     { "text-anchor": "end" },
     line(a[2], a[0], a[2], a[1]),
-    mapcat(tickY(a[2]), mappedRange(d[0], d[1], d[2], r[0], r[1]))
+    mapcat(tickY(a[2]), mappedRange(d[0], d[1], d[2], r[0], r[1])),
 ];
 
 // mapping fn to create a single bar from `[domainPos, value]`
@@ -64,8 +64,8 @@ const bar = (
             x: fit(xx, xd[0], xd[1], xr[0], xr[1]) - 5,
             y,
             width: 10,
-            height: yr[0] - y
-        }
+            height: yr[0] - y,
+        },
     ];
 };
 
@@ -74,7 +74,7 @@ const barChart = (_: any, opts: any, values: any) => [
     "svg",
     opts.attribs,
     ["g", { stroke: opts.axis, fill: opts.axis }, axisX(opts.x), axisY(opts.y)],
-    ["g", { fill: opts.fill }, map(bar(opts.x, opts.y), values)]
+    ["g", { fill: opts.fill }, map(bar(opts.x, opts.y), values)],
 ];
 
 // one-off DOM creation
@@ -88,23 +88,23 @@ renderOnce([
                 width: 500,
                 height: 200,
                 "font-size": "10px",
-                "font-family": "Menlo, sans-serif"
+                "font-family": "Menlo, sans-serif",
             },
             x: {
                 axis: [40, 490, 170],
                 domain: [1980, 2021, 10],
-                range: [60, 480]
+                range: [60, 480],
             },
             y: {
                 axis: [170, 10, 40],
                 domain: [0, 101, 25],
-                range: [160, 20]
+                range: [160, 20],
             },
             axis: "#666",
-            fill: "#0cc"
+            fill: "#0cc",
         },
-        map((year) => [year, Math.random() * 100], range(1980, 2020, 2))
-    ]
+        map((year) => [year, Math.random() * 100], range(1980, 2020, 2)),
+    ],
 ]);
 
 if (process.env.NODE_ENV !== "production") {

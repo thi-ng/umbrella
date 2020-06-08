@@ -1,9 +1,4 @@
-import {
-    Atom,
-    Cursor,
-    defViewUnsafe,
-    History
-} from "@thi.ng/atom";
+import { Atom, Cursor, defViewUnsafe, History } from "@thi.ng/atom";
 import { isArray } from "@thi.ng/checks";
 import { start } from "@thi.ng/hdom";
 import { EventBus } from "@thi.ng/interceptors";

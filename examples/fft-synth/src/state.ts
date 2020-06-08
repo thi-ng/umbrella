@@ -12,7 +12,7 @@ export const DB = new Atom({
     feedback: 0.66,
     bins: [...repeat(0, NUM_BINS)],
     wave: new Float64Array(NUM_BINS * 2),
-    size: [window.innerWidth, window.innerHeight]
+    size: [window.innerWidth, window.innerHeight],
 });
 
 export const setGain = (gain: number) => {

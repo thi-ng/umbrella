@@ -6,7 +6,7 @@ import {
     metaStream,
     sidechainToggle,
     stream,
-    sync
+    sync,
 } from "@thi.ng/rstream";
 import {
     buildKernel1d,
@@ -24,7 +24,7 @@ import {
     slidingWindow,
     str,
     transduce,
-    zip
+    zip,
 } from "@thi.ng/transducers";
 import { bits, randomBits } from "@thi.ng/transducers-binary";
 import { updateDOM } from "@thi.ng/transducers-hdom";
@@ -44,12 +44,12 @@ const evolveCA = (src: number[], { kernel, rule, reset }: any) =>
                           src,
                           kernel,
                           width: src.length,
-                          wrap: true
+                          wrap: true,
                       }),
                       map(lookup1d(<number[]>rule))
                   ),
                   range(src.length)
-              )
+              ),
           ];
 
 const triggerReset = () =>
@@ -75,8 +75,8 @@ const app = ({ id, ksize, sim }: any) => [
             {
                 type: "number",
                 value: id,
-                oninput: setRule
-            }
+                oninput: setRule,
+            },
         ],
         "Kernel:",
         [
@@ -84,34 +84,34 @@ const app = ({ id, ksize, sim }: any) => [
             { class: "h2 pa2 mh3", onchange: setKernel },
             [
                 [3, "3"],
-                [5, "5"]
+                [5, "5"],
             ],
-            ksize
+            ksize,
         ],
         [
             "button.mr3.pa2",
             {
-                onclick: triggerReset
+                onclick: triggerReset,
             },
-            "Reset"
+            "Reset",
         ],
         [
             "button.mr3.pa2",
             {
-                onclick: triggerOBJExport
+                onclick: triggerOBJExport,
             },
-            "Export OBJ"
+            "Export OBJ",
         ],
         [
             "a.link.blue",
             {
                 href:
-                    "https://en.wikipedia.org/wiki/Elementary_cellular_automaton#Random_initial_state"
+                    "https://en.wikipedia.org/wiki/Elementary_cellular_automaton#Random_initial_state",
             },
-            "Wikipedia"
-        ]
+            "Wikipedia",
+        ],
     ],
-    ["pre.f7.code", sim]
+    ["pre.f7.code", sim],
 ];
 
 const rule = stream<number>();
@@ -126,9 +126,9 @@ const wolfram = sync<any, any>({
         kernel: kernel.transform(
             map((x) => buildKernel1d([1, 2, 4, 8, 16], x))
         ),
-        _: fromRAF()
+        _: fromRAF(),
     },
-    xform: scan(reducer<number[], any>(resetCA, evolveCA))
+    xform: scan(reducer<number[], any>(resetCA, evolveCA)),
 });
 
 const main = sync<any, any>({
@@ -139,8 +139,8 @@ const main = sync<any, any>({
             map((gen) => gen.map((x: number) => " █"[x]).join("")),
             slidingWindow(HEIGHT),
             map((win: string[]) => win.join("\n"))
-        )
-    }
+        ),
+    },
 }).transform(map(app), updateDOM());
 
 // Wavefront OBJ 3D pointcloud export

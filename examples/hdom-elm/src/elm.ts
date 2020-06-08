@@ -2,7 +2,7 @@ import {
     DEFAULT_IMPL,
     HDOMImplementation,
     HDOMOpts,
-    resolveRoot
+    resolveRoot,
 } from "@thi.ng/hdom";
 import { derefContext } from "@thi.ng/hiccup";
 import type { Fn, Fn2 } from "@thi.ng/api";

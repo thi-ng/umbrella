@@ -92,7 +92,8 @@ const uiViews: any = {
 const currView = defView(
     db,
     ["state"],
-    (state) => uiViews[state] || ["div", ["h1", `No component for state: ${state}`]]
+    (state) =>
+        uiViews[state] || ["div", ["h1", `No component for state: ${state}`]]
 );
 
 // app root component

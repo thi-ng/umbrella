@@ -1,11 +1,6 @@
 import { setIn, updateIn } from "@thi.ng/paths";
 import { Z3 } from "@thi.ng/strings";
-import {
-    DEC,
-    DEFER,
-    INC,
-    RANDOM
-} from "./api";
+import { DEC, DEFER, INC, RANDOM } from "./api";
 import { mount } from "./elm";
 
 mount(

@@ -7,28 +7,28 @@ let db = [
         meta: {
             author: {
                 name: "Alice Bobbera",
-                email: "a@b.it"
+                email: "a@b.it",
             },
             created: "2018-02-03T12:13:14Z",
-            tags: ["drama", "queen"]
+            tags: ["drama", "queen"],
         },
         title: "UI components for Dummies",
         content:
-            "Sed doloribus molestias voluptatem ut delectus vitae quo eum. Ut praesentium sed omnis sequi rerum praesentium aperiam modi. Occaecati voluptatum quis vel facere quis quisquam."
+            "Sed doloribus molestias voluptatem ut delectus vitae quo eum. Ut praesentium sed omnis sequi rerum praesentium aperiam modi. Occaecati voluptatum quis vel facere quis quisquam.",
     },
     {
         meta: {
             author: {
                 name: "Charlie Doran",
-                email: "c@d.es"
+                email: "c@d.es",
             },
             created: "2018-02-02T01:23:45Z",
-            tags: ["simplicity", "rules"]
+            tags: ["simplicity", "rules"],
         },
         title: "Look ma, so simple",
         content:
-            "Ratione necessitatibus doloremque itaque. Nihil hic alias cumque beatae esse sapiente incidunt. Illum vel eveniet officia."
-    }
+            "Ratione necessitatibus doloremque itaque. Nihil hic alias cumque beatae esse sapiente incidunt. Illum vel eveniet officia.",
+    },
 ];
 
 // component functions for individual keys in the JSON objects
@@ -39,18 +39,18 @@ const item = (theme: any) => (item: any) => [
     `div.item.${theme}`,
     item.title,
     item.meta,
-    item.content
+    item.content,
 ];
 const meta = (meta: any) => ["div.meta", meta.author, meta.created, meta.tags];
 const author = (author: any) => [
     "div",
     ["strong", "author: "],
-    link(`mailto:${author.email}`, author.name)
+    link(`mailto:${author.email}`, author.name),
 ];
 const date = (iso: string) => [
     "div",
     ["strong", "date: "],
-    new Date(Date.parse(iso)).toLocaleString()
+    new Date(Date.parse(iso)).toLocaleString(),
 ];
 const link = (href: string, body: any) => ["a", { href }, body];
 const tag = (tag: string) => ["li", link("#", tag)];
@@ -74,11 +74,11 @@ const itemSpec: TransformSubSpec = {
         {
             author,
             tags,
-            created: date
-        }
+            created: date,
+        },
     ],
     title,
-    content
+    content,
 };
 
 // build themed component instances using @thi.ng/tranducers' deepTransform()
@@ -101,9 +101,9 @@ const editor = (() => {
                 try {
                     db = JSON.parse((<HTMLTextAreaElement>e.target).value);
                 } catch (_) {}
-            }
+            },
         },
-        body
+        body,
     ];
 })();
 
@@ -114,6 +114,6 @@ start(() => [
     [
         "div",
         ["div", ["h2", "Light theme"], ...db.map(itemLight)],
-        ["div", ["h2", "Dark theme"], ...db.map(itemDark)]
-    ]
+        ["div", ["h2", "Dark theme"], ...db.map(itemDark)],
+    ],
 ]);

@@ -14,7 +14,7 @@ import {
     sym,
     Vec2Sym,
     vec3,
-    vec4
+    vec4,
 } from "@thi.ng/shader-ast";
 import { targetGLSL } from "@thi.ng/shader-ast-glsl";
 import { canvasRenderer, targetJS } from "@thi.ng/shader-ast-js";
@@ -30,7 +30,11 @@ const main = defn(
     // func name
     "main",
     // args (names are optional)
-    [["vec2", "fragCoord"], ["vec2", "res"], ["float", "time"]],
+    [
+        ["vec2", "fragCoord"],
+        ["vec2", "res"],
+        ["float", "time"],
+    ],
     // bound args given to function body
     (frag, res, time) => {
         let a: FloatSym;
@@ -60,7 +64,7 @@ const main = defn(
                     ),
                     1
                 )
-            )
+            ),
         ];
     }
 );

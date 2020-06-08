@@ -3,7 +3,7 @@ import {
     fromInterval,
     resolve as resolvePromise,
     stream,
-    sync
+    sync,
 } from "@thi.ng/rstream";
 import {
     add,
@@ -11,7 +11,7 @@ import {
     map,
     pluck,
     throttleTime,
-    transduce
+    transduce,
 } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { header } from "../common/components/header";
@@ -28,7 +28,7 @@ const app = (state: any) => [
     "div",
     [header, ctx.repo.name],
     [stats, state],
-    [repoTable, state.commits]
+    [repoTable, state.commits],
 ];
 
 // stats container component
@@ -41,13 +41,13 @@ const stats = (ctx: AppContext, state: any) => [
         ctx.ui.stats.col,
         ["div", `Authors: ${state.authors}`],
         ["div", `Total adds: ${state.adds} (${state.avgAdds} avg / commit)`],
-        ["div", `Total dels: ${state.dels} (${state.avgDels} avg / commit)`]
+        ["div", `Total dels: ${state.dels} (${state.avgDels} avg / commit)`],
     ],
     [
         "div.tr",
         ctx.ui.stats.col,
-        [link, { ...ctx.ui.stats.link, href: ctx.repo.url }, ctx.repo.url]
-    ]
+        [link, { ...ctx.ui.stats.link, href: ctx.repo.url }, ctx.repo.url],
+    ],
 ];
 
 // search filter input component
@@ -64,17 +64,17 @@ const searchFilter = (
             type: "text",
             value: state.search,
             // emit changes on `search` stream
-            oninput: (e: any) => search.next(e.target.value.toLowerCase())
-        }
+            oninput: (e: any) => search.next(e.target.value.toLowerCase()),
+        },
     ],
-    `(${state.commits.length} commits)`
+    `(${state.commits.length} commits)`,
 ];
 
 // transformation function to filter commits with search string
 // doesn't apply filter if search term is empty
 const filterCommits = ({
     commits,
-    search
+    search,
 }: {
     commits: Commit[];
     search: string;
@@ -82,7 +82,7 @@ const filterCommits = ({
     search,
     commits: search
         ? commits.filter((x) => x.msg.toLowerCase().indexOf(search) !== -1)
-        : commits
+        : commits,
 });
 
 // transformation function to compute stats of filtered commits
@@ -105,7 +105,7 @@ const computeStats = (state: any) =>
         authors: ({ commits }: any) =>
             transduce(pluck("author"), conj(), commits).size,
         avgAdds: ({ commits, adds }: any) => (adds / commits.length) | 0,
-        avgDels: ({ commits, dels }: any) => (dels / commits.length) | 0
+        avgDels: ({ commits, dels }: any) => (dels / commits.length) | 0,
     });
 
 // error stream & handler
@@ -139,8 +139,8 @@ sync<any, any>({
         commits,
         // throttle search stream @ 10Hz (100ms) to minimize
         // UI lag for fast typists
-        search: search.transform(throttleTime(100))
-    }
+        search: search.transform(throttleTime(100)),
+    },
 })
     // now transform the combined stream
     // each value is an object tuple of: `{ commits, search }`

@@ -1,15 +1,5 @@
-import {
-    defs,
-    linearGradient,
-    polyline,
-    svg
-} from "@thi.ng/hiccup-svg";
-import {
-    map,
-    range,
-    reduce,
-    reducer
-} from "@thi.ng/transducers";
+import { defs, linearGradient, polyline, svg } from "@thi.ng/hiccup-svg";
+import { map, range, reduce, reducer } from "@thi.ng/transducers";
 import type { AppContext } from "../api";
 
 const TAU = Math.PI * 2;
@@ -42,7 +32,11 @@ export function waveform(ctx: AppContext, opts: WaveformOpts) {
                 "grad",
                 [0, 0],
                 [0, 1],
-                [[0, opts.fill2], [0.5, opts.fill1], [1, opts.fill2]]
+                [
+                    [0, opts.fill2],
+                    [0.5, opts.fill1],
+                    [1, opts.fill2],
+                ]
             )
         ),
         polyline(
@@ -51,16 +45,16 @@ export function waveform(ctx: AppContext, opts: WaveformOpts) {
                 ...map(
                     (x) => [
                         x,
-                        osc(x, phase, fscale, amp, opts.harmonics, opts.hstep)
+                        osc(x, phase, fscale, amp, opts.harmonics, opts.hstep),
                     ],
                     range(opts.res)
                 ),
-                [opts.res, 0]
+                [opts.res, 0],
             ],
             {
                 stroke: opts.stroke,
                 fill: "url(#grad)",
-                "stoke-linejoin": "round"
+                "stoke-linejoin": "round",
             }
         )
     );

@@ -23,7 +23,7 @@ const innerHtmlWrapper = () =>
             this.el.innerHTML = "";
             delete this.prev;
             delete this.el;
-        }
+        },
     };
 
 /**
@@ -36,7 +36,7 @@ const app = () => {
         wrapper,
         new Date().getSeconds() & 1
             ? `<div class="bg-washed-yellow sans-serif pa3">Time now:</div>`
-            : `<div class="bg-washed-green sans-serif pa3 b">${new Date().toLocaleTimeString()}</div>`
+            : `<div class="bg-washed-green sans-serif pa3 b">${new Date().toLocaleTimeString()}</div>`,
     ];
 };
 

@@ -16,7 +16,7 @@ export const CONFIG: AppConfig = {
     // and only side effect functions execute any "real" work.
 
     // Docs here:
-    // https://github.com/thi-ng/umbrella/blob/master/packages/interceptors/src/event-bus.ts#L14
+    // https://github.com/thi-ng/umbrella/blob/develop/packages/interceptors/src/event-bus.ts#L14
 
     events: {
         // generate event handlers from imported slider definitions
@@ -32,10 +32,10 @@ export const CONFIG: AppConfig = {
             events[spec.event] = [
                 ensureParamRange(spec.min, spec.max),
                 snapshot(),
-                valueSetter(spec.view)
+                valueSetter(spec.view),
             ];
             return events;
-        }, {})
+        }, {}),
     },
 
     // custom side effects
@@ -53,7 +53,7 @@ export const CONFIG: AppConfig = {
         freq: 3,
         harmonics: 20,
         hstep: 2,
-        phase: 0
+        phase: 0,
     },
 
     // derived view declarations
@@ -67,7 +67,7 @@ export const CONFIG: AppConfig = {
         freq: "freq",
         phase: "phase",
         harmonics: "harmonics",
-        hstep: "hstep"
+        hstep: "hstep",
     },
 
     // component CSS class config using http://tachyons.io/ these
@@ -76,7 +76,7 @@ export const CONFIG: AppConfig = {
     ui: {
         button: {
             class:
-                "pointer bg-black hover-bg-blue bg-animate white pa2 mr1 w-100 ttu b tracked-tight"
+                "pointer bg-black hover-bg-blue bg-animate white pa2 mr1 w-100 ttu b tracked-tight",
         },
         buttongroup: { class: "flex mb2" },
         footer: { class: "absolute bottom-1" },
@@ -86,8 +86,8 @@ export const CONFIG: AppConfig = {
         slider: {
             root: { class: "mb3 ttu b tracked-tight" },
             range: { class: "w-100" },
-            number: { class: "fr w3 tr ttu bn bg-transparent" }
+            number: { class: "fr w3 tr ttu bn bg-transparent" },
         },
-        waveform: { class: "w-100 h-100" }
-    }
+        waveform: { class: "w-100 h-100" },
+    },
 };

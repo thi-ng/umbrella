@@ -10,7 +10,7 @@ import {
     partition,
     push,
     range,
-    transduce
+    transduce,
 } from "@thi.ng/transducers";
 
 const SIZE = "0.5rem";
@@ -21,8 +21,8 @@ injectStyleSheet(
             (x: number) => [
                 `.cell-${x}`,
                 {
-                    background: `#${U24(splat4_24(x))}`
-                }
+                    background: `#${U24(splat4_24(x))}`,
+                },
             ],
             range(16)
         ),
@@ -30,8 +30,8 @@ injectStyleSheet(
             (x: number) => [
                 `.xcell-${x}`,
                 {
-                    background: `#${U24(splat4_24(x) | 0x00ff00)}`
-                }
+                    background: `#${U24(splat4_24(x) | 0x00ff00)}`,
+                },
             ],
             range(16)
         ),
@@ -40,15 +40,15 @@ injectStyleSheet(
             {
                 display: "inline-block",
                 width: SIZE,
-                height: SIZE
-            }
+                height: SIZE,
+            },
         ],
         [
             ".row",
             {
-                height: SIZE
-            }
-        ]
+                height: SIZE,
+            },
+        ],
     ])
 );
 
@@ -81,8 +81,8 @@ const grid = <any>{
                     "span",
                     {
                         key: "c" + i,
-                        class: `cell ${changed.has(i) ? "xcell" : "cell"}-${x}`
-                    }
+                        class: `cell ${changed.has(i) ? "xcell" : "cell"}-${x}`,
+                    },
                 ]),
                 partition(w),
                 mapIndexed((i, row) => [
@@ -91,9 +91,12 @@ const grid = <any>{
                         key: "r" + i,
                         __skip:
                             !isFirst &&
-                            !(this.prevChangedRows.has(i) || changedRows.has(i))
+                            !(
+                                this.prevChangedRows.has(i) ||
+                                changedRows.has(i)
+                            ),
                     },
-                    row
+                    row,
                 ])
             ),
             push(),
@@ -115,12 +118,12 @@ const grid = <any>{
         this.stats = {
             cells: mergedCells.size,
             rows: mergedRows.size,
-            total: mergedCells.size + mergedRows.size
+            total: mergedCells.size + mergedRows.size,
         };
         this.prevChanged = changed;
         this.prevChangedRows = changedRows;
         return body;
-    }
+    },
 };
 
 const domStats = (_: any, grid: any, res: number, _static: number) =>
@@ -132,8 +135,8 @@ const domStats = (_: any, grid: any, res: number, _static: number) =>
               [
                   "div",
                   ["span.pink", res * res + res + _static],
-                  " DOM nodes total"
-              ]
+                  " DOM nodes total",
+              ],
           ]
         : null;
 
@@ -152,10 +155,10 @@ const resOpts = [
     [40, 40],
     [48, 48],
     [56, 56],
-    [64, 64]
+    [64, 64],
 ];
 const deltaOpts = [
-    ...map((i) => [i, i], [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024])
+    ...map((i) => [i, i], [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024]),
 ];
 
 const cancel = start(() => {
@@ -166,7 +169,7 @@ const cancel = start(() => {
             "div.measure.lh-copy",
             `Each grid cell is one <span> element. Each frame ${delta} random cell states
                 will be updated (highlighted in green), resulting in approx. twice as many
-                DOM updates (due to resetting of updated cells from previous frame).`
+                DOM updates (due to resetting of updated cells from previous frame).`,
         ],
         ["div.mt3", [grid, cells, res, delta, frame]],
         ["div.mt3", [domStats, grid, res, 46]],
@@ -182,11 +185,11 @@ const cancel = start(() => {
                         (res = parseInt((<HTMLSelectElement>e.target).value)),
                         (frame = -1),
                         (cells = newCells(res))
-                    )
+                    ),
                 },
                 resOpts,
-                res
-            ]
+                res,
+            ],
         ],
         [
             "div.mt3",
@@ -196,11 +199,11 @@ const cancel = start(() => {
                 {
                     class: "w3 code",
                     onchange: (e: Event) =>
-                        (delta = parseInt((<HTMLSelectElement>e.target).value))
+                        (delta = parseInt((<HTMLSelectElement>e.target).value)),
                 },
                 deltaOpts,
-                delta
-            ]
+                delta,
+            ],
         ],
         [
             "div.mt3",
@@ -208,11 +211,11 @@ const cancel = start(() => {
                 "a",
                 {
                     href:
-                        "https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-benchmark2"
+                        "https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-benchmark2",
                 },
-                "Source"
-            ]
-        ]
+                "Source",
+            ],
+        ],
     ];
 });
 
