@@ -37,7 +37,7 @@ import type {
     MultiFn7,
     MultiFn7O,
     MultiFn8,
-    MultiFn8O
+    MultiFn8O,
 } from "./api";
 
 /**

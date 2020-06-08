@@ -19,14 +19,9 @@ import type {
     USamplerCubeTerm,
     Vec2Term,
     Vec3Term,
-    Vec4Term
+    Vec4Term,
 } from "../api/terms";
-import type {
-    IVec,
-    Prim,
-    Sampler,
-    Vec
-} from "../api/types";
+import type { IVec, Prim, Sampler, Vec } from "../api/types";
 
 const texRetType = (sampler: Term<Sampler>) => {
     const t = sampler.type[0];

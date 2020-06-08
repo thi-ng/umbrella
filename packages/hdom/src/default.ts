@@ -9,7 +9,7 @@ import {
     removeChild,
     replaceChild,
     setAttrib,
-    setContent
+    setContent,
 } from "./dom";
 import { normalizeTree } from "./normalize";
 import type { HDOMImplementation } from "./api";
@@ -52,5 +52,5 @@ export const DEFAULT_IMPL: HDOMImplementation<any> = {
 
     removeAttribs,
 
-    setAttrib
+    setAttrib,
 };

@@ -63,6 +63,6 @@ export const frustumBounds = (
         bottom: -top,
         top,
         near,
-        far
+        far,
     };
 };

@@ -4,7 +4,7 @@ import {
     SIZEOF,
     TypedArray,
     typedArray,
-    TYPEDARRAY_CTORS
+    TYPEDARRAY_CTORS,
 } from "@thi.ng/api";
 import { prepareSpec } from "./utils";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";

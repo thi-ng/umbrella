@@ -20,7 +20,7 @@ export function node(
     const $: Node = {
         ins: <api.IObjectOf<Channel<any>>>{},
         outs: <api.IObjectOf<Mult<any>>>{},
-        state: init || {}
+        state: init || {},
     };
     for (let k of Object.keys(ins)) {
         const val = ins[k];

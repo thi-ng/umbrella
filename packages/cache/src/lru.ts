@@ -19,7 +19,7 @@ export class LRUCache<K, V> implements ICache<K, V> {
                 maxsize: Infinity,
                 map: () => new Map<K, any>(),
                 ksize: () => 0,
-                vsize: () => 0
+                vsize: () => 0,
             },
             opts
         );

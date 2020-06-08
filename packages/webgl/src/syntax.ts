@@ -7,14 +7,14 @@ export const PREFIXES: GLSLDeclPrefixes = {
     a: "a_",
     v: "v_",
     u: "u_",
-    o: "o_"
+    o: "o_",
 };
 
 export const NO_PREFIXES: GLSLDeclPrefixes = {
     a: "",
     v: "",
     u: "",
-    o: ""
+    o: "",
 };
 
 /**
@@ -30,11 +30,13 @@ export const SYNTAX: Record<GLSLVersion, GLSLSyntax> = {
             `attribute ${isArray(type) ? type[0] : type} ${pre.a}${id};`,
         varying: {
             vs: (id, type, pre) => arrayDecl("varying", type, pre.v + id),
-            fs: (id, type, pre) => arrayDecl("varying", type, pre.v + id)
+            fs: (id, type, pre) => arrayDecl("varying", type, pre.v + id),
         },
         uniform: (id, u, pre) => arrayDecl("uniform", <any>u, pre.u + id),
         output: (id, type, pre) =>
-            isArray(type) ? `#define ${pre.o}${id} gl_FragData[${type[1]}]` : ""
+            isArray(type)
+                ? `#define ${pre.o}${id} gl_FragData[${type[1]}]`
+                : "",
     },
     /**
      * WebGL 2 (GLSL ES 3)
@@ -47,14 +49,14 @@ export const SYNTAX: Record<GLSLVersion, GLSLSyntax> = {
                 : `in ${type} ${pre.a}${id};`,
         varying: {
             vs: (id, type, pre) => arrayDecl("out", type, pre.v + id),
-            fs: (id, type, pre) => arrayDecl("in", type, pre.v + id)
+            fs: (id, type, pre) => arrayDecl("in", type, pre.v + id),
         },
         uniform: (id, u, pre) => arrayDecl("uniform", <any>u, pre.u + id),
         output: (id, type, pre) =>
             isArray(type)
                 ? `layout(location=${type[1]}) out ${type[0]} ${pre.o}${id};`
-                : `out ${type} ${pre.o}${id};`
-    }
+                : `out ${type} ${pre.o}${id};`,
+    },
 };
 
 const arrayDecl = (

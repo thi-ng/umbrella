@@ -1,15 +1,7 @@
 import { peek } from "@thi.ng/arrays";
 import { Attribs, SegmentType } from "@thi.ng/geom-api";
 import { eqDelta } from "@thi.ng/math";
-import {
-    add2,
-    copy,
-    mulN2,
-    set2,
-    sub2,
-    Vec,
-    zeroes
-} from "@thi.ng/vectors";
+import { add2, copy, mulN2, set2, sub2, Vec, zeroes } from "@thi.ng/vectors";
 import { Cubic } from "../api/cubic";
 import { Line } from "../api/line";
 import { Path } from "../api/path";
@@ -56,7 +48,7 @@ export class PathBuilder {
         set2(this.bezierP, p);
         this.curr.add({
             point: p,
-            type: SegmentType.MOVE
+            type: SegmentType.MOVE,
         });
         return this;
     }
@@ -64,7 +56,7 @@ export class PathBuilder {
     lineTo(p: Vec, relative = false): PathBuilder {
         this.curr.add({
             geo: new Line([copy(this.currP), this.updateCurrent(p, relative)]),
-            type: SegmentType.LINE
+            type: SegmentType.LINE,
         });
         set2(this.bezierP, this.currP);
         return this;
@@ -131,7 +123,7 @@ export class PathBuilder {
                 xl,
                 clockwise
             ),
-            type: SegmentType.ARC
+            type: SegmentType.ARC,
         });
         set2(this.bezierP, this.currP);
         return this;
@@ -140,7 +132,7 @@ export class PathBuilder {
     closePath() {
         this.curr.add({
             geo: new Line([copy(this.currP), copy(this.startP)]),
-            type: SegmentType.LINE
+            type: SegmentType.LINE,
         });
         this.curr.closed = true;
         return this;
@@ -161,7 +153,7 @@ export class PathBuilder {
         set2(this.bezierP, this.currP);
         this.curr.add({
             geo: new Line([prev, copy(this.currP)]),
-            type: SegmentType.LINE
+            type: SegmentType.LINE,
         });
     }
 
@@ -173,9 +165,9 @@ export class PathBuilder {
                 copy(this.currP),
                 cp1,
                 cp2,
-                this.updateCurrent(p, relative)
+                this.updateCurrent(p, relative),
             ]),
-            type: SegmentType.CUBIC
+            type: SegmentType.CUBIC,
         });
     }
 
@@ -185,9 +177,9 @@ export class PathBuilder {
             geo: new Quadratic([
                 copy(this.currP),
                 cp,
-                this.updateCurrent(p, relative)
+                this.updateCurrent(p, relative),
             ]),
-            type: SegmentType.QUADRATIC
+            type: SegmentType.QUADRATIC,
         });
     }
 }

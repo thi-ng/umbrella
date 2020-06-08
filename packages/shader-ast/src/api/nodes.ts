@@ -7,18 +7,13 @@ import type {
     Func5,
     Func6,
     Func7,
-    Func8
+    Func8,
 } from "./function";
 import type { Operator } from "./ops";
 import type { SymOpts } from "./syms";
 import type { Tag } from "./tags";
 import type { BoolTerm } from "./terms";
-import type {
-    Assignable,
-    Indexable,
-    Type,
-    Vec
-} from "./types";
+import type { Assignable, Indexable, Type, Vec } from "./types";
 
 export interface Term<T extends Type> {
     tag: Tag;

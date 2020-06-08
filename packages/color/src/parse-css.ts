@@ -23,14 +23,14 @@ export const parseCss = (col: string | IDeref<string>) => {
                     parseChannel(match[2]),
                     parseChannel(match[3]),
                     parseChannel(match[4]),
-                    maybeParseFloat(match[5], 1)
+                    maybeParseFloat(match[5], 1),
                 ];
             } else {
                 return hslaRgba(null, [
                     maybeParseFloat(match[2]) / 360,
                     parseChannel(match[3]),
                     parseChannel(match[4]),
-                    maybeParseFloat(match[5], 1)
+                    maybeParseFloat(match[5], 1),
                 ]);
             }
         } else {

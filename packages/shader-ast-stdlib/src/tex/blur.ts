@@ -11,7 +11,7 @@ import {
     texture,
     vec2,
     Vec2Sym,
-    Vec4Sym
+    Vec4Sym,
 } from "@thi.ng/shader-ast";
 
 /**
@@ -63,7 +63,7 @@ export const blur5 = defn(
             (off = sym(div(mul(vec2(1 + 1 / 3), dir), res))),
             (col = sym(mul(texture(tex, uv), k1))),
             singlePass(col, tex, uv, off, k2),
-            ret(col)
+            ret(col),
         ];
     }
 );
@@ -95,7 +95,7 @@ export const blur9 = defn(
             (col = sym(mul(texture(tex, uv), 0.227027027))),
             singlePass(col, tex, uv, off, k1),
             singlePass(col, tex, uv, off2, k2),
-            ret(col)
+            ret(col),
         ];
     }
 );
@@ -131,7 +131,7 @@ export const blur13 = defn(
             singlePass(col, tex, uv, off, k1),
             singlePass(col, tex, uv, off2, k2),
             singlePass(col, tex, uv, off3, k3),
-            ret(col)
+            ret(col),
         ];
     }
 );

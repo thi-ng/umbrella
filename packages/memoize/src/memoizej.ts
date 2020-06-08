@@ -1,11 +1,4 @@
-import type {
-    Fn,
-    Fn2,
-    Fn3,
-    Fn4,
-    FnAny,
-    IObjectOf
-} from "@thi.ng/api";
+import type { Fn, Fn2, Fn3, Fn4, FnAny, IObjectOf } from "@thi.ng/api";
 
 /**
  * Function memoization for arbitrary argument counts. Returns augmented

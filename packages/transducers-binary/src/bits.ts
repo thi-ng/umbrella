@@ -4,7 +4,7 @@ import {
     isReduced,
     iterator,
     Reducer,
-    Transducer
+    Transducer,
 } from "@thi.ng/transducers";
 
 /**

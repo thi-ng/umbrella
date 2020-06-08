@@ -85,7 +85,7 @@ describe("equiv", () => {
             equiv(1, {
                 equiv(x: number) {
                     return x === 1;
-                }
+                },
             })
         );
         assert.ok(
@@ -93,7 +93,7 @@ describe("equiv", () => {
                 {
                     equiv(x: number) {
                         return x === 1;
-                    }
+                    },
                 },
                 1
             )
@@ -114,7 +114,16 @@ describe("equiv", () => {
         );
         assert.ok(!equiv(a, new Set([3, 2, 0])));
         assert.ok(!equiv(a, [3, 2, 0]));
-        assert.ok(!equiv(a, new Map([[3, 3], [2, 2], [1, 1]])));
+        assert.ok(
+            !equiv(
+                a,
+                new Map([
+                    [3, 3],
+                    [2, 2],
+                    [1, 1],
+                ])
+            )
+        );
         assert.ok(!equiv(a, null));
         assert.ok(!equiv(null, a));
     });

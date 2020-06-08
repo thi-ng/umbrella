@@ -73,7 +73,7 @@ export class TLRUCache<K, V> extends LRUCache<K, V> {
                     k: key,
                     v: value,
                     s: size,
-                    t
+                    t,
                 });
                 this.map.set(key, this.items.tail!);
             }

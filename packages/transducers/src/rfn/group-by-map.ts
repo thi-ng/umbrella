@@ -30,6 +30,6 @@ export function groupByMap<SRC, KEY, GROUP>(...args: any[]): any {
                     ? <GROUP>reduce(acc.get(k)!, x)
                     : <GROUP>reduce(init(), x)
             );
-        }
+        },
     ];
 }

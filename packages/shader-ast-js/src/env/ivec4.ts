@@ -14,7 +14,7 @@ import {
     mulNI4,
     rshiftI4,
     subI4,
-    subNI4
+    subNI4,
 } from "@thi.ng/vectors";
 import { VEC4 } from "./vec4";
 import type { JSBuiltinsIntVec } from "../api";
@@ -41,5 +41,5 @@ export const IVEC4: JSBuiltinsIntVec = {
     bitnot1: (a) => bitNotI4([], a),
     bitor: (a, b) => bitOrI4([], a, b),
     rshift: (a, b) => rshiftI4([], a, b),
-    bitxor: (a, b) => bitXorI4([], a, b)
+    bitxor: (a, b) => bitXorI4([], a, b),
 };

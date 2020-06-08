@@ -8,7 +8,7 @@ import type {
     Fn7,
     Fn8,
     FnAny,
-    IObjectOf
+    IObjectOf,
 } from "@thi.ng/api";
 
 export type DispatchFn = FnAny<PropertyKey>;

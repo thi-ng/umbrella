@@ -28,7 +28,7 @@ import {
     vec3,
     Vec3Sym,
     vec4,
-    Vec4Sym
+    Vec4Sym,
 } from "@thi.ng/shader-ast";
 import { permute4 } from "./permute";
 
@@ -149,7 +149,7 @@ export const snoise3 = defn("float", "snoise3", ["vec3"], (v) => {
                     vec4(dot(p0, x0), dot(p1, x1), dot(p2, x2), dot(p3, x3))
                 )
             )
-        )
+        ),
     ];
 });
 
@@ -165,6 +165,6 @@ export const snoiseVec3 = defn("vec3", "snoiseVec3", ["vec3"], (p) => {
                     vec3(add($z(p), 74.2), sub($x(p), 124.5), add($y(p), 99.4))
                 )
             )
-        )
+        ),
     ];
 });

@@ -14,7 +14,7 @@ export const formatHtml = ({
     bg,
     bold,
     dim,
-    underline
+    underline,
 }: HtmlFormatOpts): StringFormat => ({
     start: memoize1((x: number) => {
         let y = x & 0xf;
@@ -30,7 +30,7 @@ export const formatHtml = ({
     }),
     end: "</span>",
     prefix: "",
-    suffix: "<br/>"
+    suffix: "<br/>",
 });
 
 /**
@@ -54,7 +54,7 @@ export const FMT_HTML_INLINE_CSS = formatHtml({
         "#55f",
         "#f5f",
         "#5ff",
-        "#fff"
+        "#fff",
     ],
     attrib: "style",
     delim: ";",
@@ -62,7 +62,7 @@ export const FMT_HTML_INLINE_CSS = formatHtml({
     bg: "background:",
     bold: "font-weight:bold",
     dim: "opacity:0.5",
-    underline: "text-decoration:underline"
+    underline: "text-decoration:underline",
 });
 
 /**
@@ -86,7 +86,7 @@ export const FMT_HTML_TACHYONS = formatHtml({
         "blue",
         "hot-pink",
         "lightest-blue",
-        "white"
+        "white",
     ],
     attrib: "class",
     delim: " ",
@@ -94,5 +94,5 @@ export const FMT_HTML_TACHYONS = formatHtml({
     bg: "bg-",
     bold: "b",
     dim: "o-50",
-    underline: "underline"
+    underline: "underline",
 });

@@ -4,7 +4,7 @@ import {
     scale23,
     scale44,
     translation23,
-    translation44
+    translation44,
 } from "@thi.ng/matrices";
 import { neg, ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { AABB } from "../api/aabb";

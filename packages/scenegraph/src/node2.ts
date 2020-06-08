@@ -1,10 +1,5 @@
 import { isNumber } from "@thi.ng/checks";
-import {
-    invert23,
-    mulM23,
-    mulV23,
-    transform23
-} from "@thi.ng/matrices";
+import { invert23, mulM23, mulV23, transform23 } from "@thi.ng/matrices";
 import { ANode } from "./anode";
 import type { IToHiccup, Nullable } from "@thi.ng/api";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
@@ -70,7 +65,7 @@ export class Node2D extends ANode<Node2D>
                       this.body
                           ? ["g", { transform: this.mat }, this.body]
                           : undefined,
-                      ...this.children
+                      ...this.children,
                   ]
                 : this.body
                 ? ["g", { transform: this.mat }, this.body]

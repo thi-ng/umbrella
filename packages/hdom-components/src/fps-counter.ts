@@ -37,7 +37,7 @@ export const fpsCounter = (_opts?: Partial<FpsCounterOpts>) => {
         smooth: 5,
         labelPeriod: 250,
         sparkline: {},
-        ..._opts
+        ..._opts,
     };
     return <any>{
         init() {
@@ -62,14 +62,14 @@ export const fpsCounter = (_opts?: Partial<FpsCounterOpts>) => {
                 [
                     sparkline,
                     { min: 0, max: 65, ...opts.sparkline },
-                    this.buffer
+                    this.buffer,
                 ],
                 [
                     "span",
                     { __skip: !updateLabel },
-                    smoothFps ? smoothFps.toFixed(2) + " fps" : ""
-                ]
+                    smoothFps ? smoothFps.toFixed(2) + " fps" : "",
+                ],
             ];
-        }
+        },
     };
 };

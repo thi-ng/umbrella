@@ -39,7 +39,7 @@ export const collateWith = (
         start: 0,
         cstride: 1,
         estride: stride,
-        ...opts
+        ...opts,
     };
     const { start, cstride, estride } = opts;
     return remap(

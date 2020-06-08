@@ -13,7 +13,7 @@ import {
     vec2,
     Vec2Sym,
     vec3,
-    Vec3Sym
+    Vec3Sym,
 } from "@thi.ng/shader-ast";
 import { snoiseVec3 } from "./simplex3";
 
@@ -46,7 +46,7 @@ export const curlNoise3 = defn(
                     ),
                     mul(2, e)
                 )
-            )
+            ),
         ];
     }
 );

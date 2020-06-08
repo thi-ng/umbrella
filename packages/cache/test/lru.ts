@@ -2,17 +2,20 @@ import * as assert from "assert";
 import { LRUCache } from "../src/index";
 
 describe("LRU", () => {
-
     let c: LRUCache<string, number>;
     let evicts: any[];
 
     beforeEach(() => {
         evicts = [];
         c = new LRUCache(
-            [["a", 1], ["b", 2], ["c", 3]],
+            [
+                ["a", 1],
+                ["b", 2],
+                ["c", 3],
+            ],
             {
                 maxlen: 4,
-                release: (k, v) => evicts.push([k, v])
+                release: (k, v) => evicts.push([k, v]),
             }
         );
     });
@@ -37,5 +40,4 @@ describe("LRU", () => {
         assert.deepEqual([...c.values()], [1, 2, 4, 5]);
         assert.deepEqual(evicts, [["c", 3]]);
     });
-
 });

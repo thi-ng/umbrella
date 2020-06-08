@@ -7,7 +7,7 @@ import {
     sub3,
     subN3,
     Vec,
-    ZERO3
+    ZERO3,
 } from "@thi.ng/vectors";
 import { AABB } from "../api/aabb";
 import { Sphere } from "../api/sphere";

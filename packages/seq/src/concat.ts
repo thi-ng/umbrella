@@ -26,7 +26,7 @@ export const concat = <T>(
                   },
                   next() {
                       return $seq(curr!.next(), i);
-                  }
+                  },
               }
             : undefined;
     };
@@ -56,7 +56,7 @@ export const concatA = <T>(...args: Nullable<ArrayLike<T>>[]) => {
                   },
                   next() {
                       return $seq(i, j + 1);
-                  }
+                  },
               }
             : undefined;
     };

@@ -14,7 +14,7 @@ import { isTypedArray } from "../src/is-typedarray";
 import { isNil } from "../src/is-nil";
 import { isHexColor } from "../src/is-hex-color";
 
-describe("checks", function() {
+describe("checks", function () {
     it("existsAndNotNull", () => {
         assert.ok(existsAndNotNull([]), "empty array");
         assert.ok(existsAndNotNull(new Uint8Array(1)), "typedarray");
@@ -90,7 +90,7 @@ describe("checks", function() {
         assert.ok(isPlainObject(new Object()), "obj ctor");
         assert.ok(!isPlainObject(Foo), "fn");
         assert.ok(
-            !isPlainObject((function*(): IterableIterator<any> {})()),
+            !isPlainObject((function* (): IterableIterator<any> {})()),
             "generator"
         );
         assert.ok(!isPlainObject(new Foo()), "class");
@@ -116,7 +116,10 @@ describe("checks", function() {
     });
 
     it("isFunction", () => {
-        assert.ok(isFunction((_: any) => {}), "fn");
+        assert.ok(
+            isFunction((_: any) => {}),
+            "fn"
+        );
         assert.ok(isFunction(Uint8Array), "ctor");
         assert.ok(isFunction("a".toString), "toString");
         assert.ok(!isFunction("a"), "empty string");

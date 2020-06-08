@@ -21,7 +21,7 @@ export const roundedRect = (
         x: ff(p[0]),
         y: ff(p[1]),
         width: ff(width),
-        height: ff(height)
+        height: ff(height),
     });
     if (rx > 0 || ry > 0) {
         attribs.rx = ff(rx);

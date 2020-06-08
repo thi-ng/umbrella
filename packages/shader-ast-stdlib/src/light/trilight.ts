@@ -11,7 +11,7 @@ import {
     neg,
     ret,
     sub,
-    sym
+    sym,
 } from "@thi.ng/shader-ast";
 
 /**
@@ -38,7 +38,7 @@ export const trilight = defn(
                     add(mul(c1, max(d, FLOAT0)), mul(c2, sub(FLOAT1, abs(d)))),
                     mul(c3, max(dot(neg(n), l), FLOAT0))
                 )
-            )
+            ),
         ];
     }
 );

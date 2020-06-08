@@ -1,9 +1,4 @@
-import {
-    add,
-    defn,
-    dot,
-    ret
-} from "@thi.ng/shader-ast";
+import { add, defn, dot, ret } from "@thi.ng/shader-ast";
 
 /**
  * Returns signed distance from `p` to plane defined by `normal` and `w`.

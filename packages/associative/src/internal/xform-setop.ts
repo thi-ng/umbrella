@@ -12,5 +12,5 @@ export const xformSetOp = <T>(
         : <Reducer<Set<T>, Iterable<T>>>[
               () => <any>null,
               (acc) => acc || new Set<T>(),
-              (acc, x) => (!acc ? ensureSet(x) : op(acc, ensureSet(x)))
+              (acc, x) => (!acc ? ensureSet(x) : op(acc, ensureSet(x))),
           ];

@@ -28,5 +28,5 @@ export const uuid = (id: ArrayLike<number>, i = 0) =>
         U8(id[i++]),
         U8(id[i++]),
         U8(id[i++]),
-        U8(id[i++])
+        U8(id[i++]),
     ].join("");

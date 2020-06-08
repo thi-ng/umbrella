@@ -2,7 +2,7 @@ import {
     implementsFunction,
     isFunction,
     isNotStringAndIterable,
-    isString
+    isString,
 } from "@thi.ng/checks";
 import { DEFAULT, defmulti, MultiFn3 } from "@thi.ng/defmulti";
 import { illegalArgs } from "@thi.ng/errors";
@@ -122,7 +122,7 @@ serializeElement.addAll({
         `\n\`\`\`${el[1].lang || ""}\n${body(el, ctx, {
             ...state,
             pre: true,
-            sep: "\n"
+            sep: "\n",
         })}\n\`\`\`\n`,
 
     code: (el, ctx, state) =>
@@ -132,7 +132,7 @@ serializeElement.addAll({
         const cstate: SerializeState = {
             ...state,
             indent: state.indent + 4,
-            sep: "\n"
+            sep: "\n",
         };
         return wrap(state.indent === 0 ? "\n" : "")(body(el, ctx, cstate));
     },
@@ -142,7 +142,7 @@ serializeElement.addAll({
             ...state,
             indent: state.indent + 4,
             id: 0,
-            sep: "\n"
+            sep: "\n",
         };
         return wrap(state.indent === 0 ? "\n" : "")(body(el, ctx, cstate));
     },
@@ -197,7 +197,7 @@ serializeElement.addAll({
                     {
                         cols: colWidths.map((width) => ({ width })),
                         padding: [1, 0],
-                        border: Border.V
+                        border: Border.V,
                     },
                     [...thead, colWidths.map((w) => repeat("-", w)), ...tbody]
                 )
@@ -206,7 +206,7 @@ serializeElement.addAll({
             caption +
             "\n"
         );
-    }
+    },
 });
 
 serializeElement.isa("th", "strong");

@@ -8,7 +8,7 @@ import type {
     Fn6,
     Fn7,
     Fn8,
-    FnAny
+    FnAny,
 } from "@thi.ng/api";
 
 export function complement(f: Fn0<boolean>): Fn0<boolean>;

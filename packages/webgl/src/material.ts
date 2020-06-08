@@ -5,13 +5,13 @@ import type { ShaderUniformSpecs } from "./api/shader";
 export const DEFAULT_MATERIAL: Material = {
     ambientCol: [0.1, 0.1, 0.1],
     diffuseCol: [0.8, 0.8, 0.8],
-    specularCol: [1, 1, 1]
+    specularCol: [1, 1, 1],
 };
 
 const TYPES: Record<keyof Material, GLSL> = {
     ambientCol: "vec3",
     diffuseCol: "vec3",
-    specularCol: "vec3"
+    specularCol: "vec3",
 };
 
 export const defMaterial = (

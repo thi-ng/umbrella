@@ -1,11 +1,6 @@
 import { Type } from "@thi.ng/api";
 import * as assert from "assert";
-import {
-    scalar,
-    serializer,
-    soa,
-    utf8z
-} from "../src";
+import { scalar, serializer, soa, utf8z } from "../src";
 
 describe("serialize", () => {
     it("scalar", () => {
@@ -15,7 +10,7 @@ describe("serialize", () => {
         struct.setIndex(1, ser.encode({ id: 0xaa55aa55 }));
         assert.deepEqual([...struct.values()].map(ser.decode), [
             { id: 0xdecafbad },
-            { id: 0xaa55aa55 }
+            { id: 0xaa55aa55 },
         ]);
     });
 

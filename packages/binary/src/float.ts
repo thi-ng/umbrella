@@ -62,7 +62,7 @@ export const uintBitsToFloat64 = (hi: number, lo: number) => {
  * Converts given float (f32) into a sortable integer representation,
  * using raw bitwise conversion via {@link floatToIntBits}.
  *
- * {@link https://github.com/tzaeschke/phtree/blob/master/PhTreeRevisited.pdf}
+ * {@link https://github.com/tzaeschke/phtree/blob/develop/PhTreeRevisited.pdf}
  * (page 3)
  *
  * @param x - value to convert

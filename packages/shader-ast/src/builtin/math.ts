@@ -17,7 +17,7 @@ import type {
     UVec4Term,
     Vec2Term,
     Vec3Term,
-    Vec4Term
+    Vec4Term,
 } from "../api/terms";
 import type { Mat, Prim, Vec } from "../api/types";
 

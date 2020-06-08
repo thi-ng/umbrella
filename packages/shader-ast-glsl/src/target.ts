@@ -10,7 +10,7 @@ import {
     Sym,
     sym,
     Term,
-    Type
+    Type,
 } from "@thi.ng/shader-ast";
 import { GLSLOpts, GLSLTarget, GLSLVersion } from "./api";
 import type { Fn } from "@thi.ng/api";
@@ -39,7 +39,7 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
         version: GLSLVersion.GLES_300,
         versionPragma: true,
         prelude: "",
-        ...opts
+        ...opts,
     };
     const isVS = _opts.type === "vs";
 
@@ -60,13 +60,13 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
                     type = (<any>{
                         in: "attribute",
                         out: "varying",
-                        uni: "uniform"
+                        uni: "uniform",
                     })[opts.type];
                 } else {
                     type = (<any>{
                         in: "varying",
                         out: null,
-                        uni: "uniform"
+                        uni: "uniform",
                     })[opts.type];
                     !type &&
                         unsupported(
@@ -96,9 +96,7 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
             _opts.version >= GLSLVersion.GLES_300
                 ? `${t.type}(${$list(t.init)})`
                 : unsupported(
-                      `array initializers not available in GLSL ${
-                          _opts.version
-                      }`
+                      `array initializers not available in GLSL ${_opts.version}`
                   ),
 
         assign: (t) => emit(t.l) + " = " + emit(t.r),
@@ -188,7 +186,7 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
 
         ternary: (t) => `(${emit(t.test)} ? ${emit(t.t)} : ${emit(t.f)})`,
 
-        while: (t) => `while (${emit(t.test)}) ${emit(t.scope)}`
+        while: (t) => `while (${emit(t.test)}) ${emit(t.scope)}`,
     });
 
     Object.assign(emit, <GLSLTarget>{
@@ -198,7 +196,7 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
         gl_FrontFacing: sym("bool", "gl_FrontFacing", { const: true }),
         gl_PointCoord: sym("vec2", "gl_PointCoord", { const: true }),
         gl_PointSize: sym("float", "gl_PointSize"),
-        gl_Position: sym("vec4", "gl_Position")
+        gl_Position: sym("vec4", "gl_Position"),
     });
 
     return <GLSLTarget>emit;

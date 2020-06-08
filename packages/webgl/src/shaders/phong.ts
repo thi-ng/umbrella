@@ -14,7 +14,7 @@ import {
     Sym,
     sym,
     ternary,
-    vec4
+    vec4,
 } from "@thi.ng/shader-ast";
 import { diffuseLighting, surfaceNormal } from "@thi.ng/shader-ast-stdlib";
 import { defMaterial } from "../material";
@@ -39,9 +39,12 @@ export const PHONG = (opts: Partial<PhongOpts> = {}): ShaderSpec => ({
                 assign(outs.vlight, sub(unis.lightPos, $(worldPos, "xyz"))),
                 assign(outs.veye, sub(unis.eyePos, $(worldPos, "xyz"))),
                 assign(outs.vcolor, colorAttrib(opts, ins, unis.diffuseCol)),
-                assign(gl.gl_Position, mul(mul(unis.proj, unis.view), worldPos))
+                assign(
+                    gl.gl_Position,
+                    mul(mul(unis.proj, unis.view), worldPos)
+                ),
             ];
-        })
+        }),
     ],
     fs: (_, unis, ins, outs) => [
         defMain(() => {
@@ -80,9 +83,9 @@ export const PHONG = (opts: Partial<PhongOpts> = {}): ShaderSpec => ({
                         ),
                         1
                     )
-                )
+                ),
             ];
-        })
+        }),
     ],
     attribs: {
         position: "vec3",
@@ -91,13 +94,13 @@ export const PHONG = (opts: Partial<PhongOpts> = {}): ShaderSpec => ({
             ? { [opts.color]: "vec3" }
             : null),
         ...(opts.instancePos ? { [opts.instancePos]: "vec3" } : null),
-        ...(opts.instanceColor ? { [opts.instanceColor]: "vec3" } : null)
+        ...(opts.instanceColor ? { [opts.instanceColor]: "vec3" } : null),
     },
     varying: {
         vnormal: "vec3",
         veye: "vec3",
         vlight: "vec3",
-        vcolor: "vec3"
+        vcolor: "vec3",
     },
     uniforms: {
         model: "mat4",
@@ -108,11 +111,11 @@ export const PHONG = (opts: Partial<PhongOpts> = {}): ShaderSpec => ({
         eyePos: "vec3",
         lightPos: ["vec3", [0, 0, 2]],
         lightCol: ["vec3", [1, 1, 1]],
-        ...defMaterial(opts.material)
+        ...defMaterial(opts.material),
     },
     state: {
         depth: true,
         cull: true,
-        ...opts.state
-    }
+        ...opts.state,
+    },
 });

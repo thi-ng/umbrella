@@ -10,7 +10,7 @@ const enum EnvPhase {
     DECAY,
     SUSTAIN,
     RELEASE,
-    IDLE
+    IDLE,
 }
 
 export interface ADSROpts {
@@ -101,7 +101,7 @@ export class ADSR extends AGen<number> implements IReset {
             dcurve: 0.001,
             slen: Infinity,
             gain: 1,
-            ...opts
+            ...opts,
         };
         this.setAttack(opts.a!);
         this.setDecay(opts.d!);

@@ -90,7 +90,7 @@ export enum Type {
     /**
      * Parser error event
      */
-    ERROR
+    ERROR,
 }
 
 interface ParseState extends FSMState {
@@ -125,7 +125,7 @@ const enum State {
     DOCTYPE,
     PROC_DECL,
     PROC_END,
-    CDATA
+    CDATA,
     // H_CHAR,
     // U_CHAR,
 }
@@ -135,7 +135,7 @@ const ENTITIES: IObjectOf<string> = {
     "&lt;": "<",
     "&gt;": ">",
     "&quot;": '"',
-    "&apos;": "'"
+    "&apos;": "'",
 };
 
 const ENTITY_RE = new RegExp(`(${Object.keys(ENTITIES).join("|")})`, "g");
@@ -149,7 +149,7 @@ const ESCAPE_SEQS: IObjectOf<string> = {
     b: "\b",
     '"': '"',
     "'": "'",
-    "\\": "\\"
+    "\\": "\\",
 };
 
 /**
@@ -182,10 +182,10 @@ export function parse(...args: any[]): any {
                     children: true,
                     entities: false,
                     trim: false,
-                    ...args[0]
-                }
+                    ...args[0],
+                },
             },
-        terminate: State.ERROR
+        terminate: State.ERROR,
     });
 }
 
@@ -294,9 +294,9 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
             } else {
                 return error(
                     state,
-                    `unmatched tag: '${state.tag}' @ pos ${state.pos -
-                        state.tag!.length -
-                        2}`
+                    `unmatched tag: '${state.tag}' @ pos ${
+                        state.pos - state.tag!.length - 2
+                    }`
                 );
             }
         }
@@ -313,7 +313,7 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
             }
             return [
                 { type: Type.ELEM_START, ...res },
-                { type: Type.ELEM_END, ...res }
+                { type: Type.ELEM_END, ...res },
             ];
         } else {
             return unexpected(state, ch);
@@ -553,12 +553,12 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
             state.state = State.WAIT;
             state.isProc = false;
             return [
-                { type: Type.PROC, tag: state.tag, attribs: state.attribs }
+                { type: Type.PROC, tag: state.tag, attribs: state.attribs },
             ];
         } else {
             return unexpected(state, ch);
         }
-    }
+    },
 };
 
 const beginElementBody = (state: ParseState) => {

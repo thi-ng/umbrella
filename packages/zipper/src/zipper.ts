@@ -14,7 +14,7 @@ const newPath = <T>(
     r,
     path,
     nodes,
-    changed
+    changed,
 });
 
 const changedPath = <T>(path?: Path<T>) =>
@@ -44,9 +44,9 @@ export class Location<T> {
     }
 
     get depth() {
-        let d =0;
+        let d = 0;
         let path = this._path;
-        while(path) {
+        while (path) {
             d++;
             path = path.path;
         }
@@ -318,7 +318,7 @@ export const arrayZipper = <T>(root: T[]) =>
         {
             branch: isArray,
             children: (x) => <T[]>x,
-            factory: (_, xs) => <T[]>xs
+            factory: (_, xs) => <T[]>xs,
         },
         root
     );

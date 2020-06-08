@@ -6,5 +6,8 @@ export function push<T>(xs: Iterable<T>): T[];
 export function push<T>(xs?: Iterable<T>): any {
     return xs
         ? [...xs]
-        : reducer<T[], T>(() => [], (acc, x) => (acc.push(x), acc));
+        : reducer<T[], T>(
+              () => [],
+              (acc, x) => (acc.push(x), acc)
+          );
 }

@@ -1,9 +1,4 @@
-import {
-    setVV16,
-    setVV4,
-    setVV6,
-    setVV9
-} from "@thi.ng/vectors";
+import { setVV16, setVV4, setVV6, setVV9 } from "@thi.ng/vectors";
 
 /**
  * Initializes 2x2 matrix from 2D column vectors.

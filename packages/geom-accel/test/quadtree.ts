@@ -6,7 +6,7 @@ import { NdQuadtreeMap } from "../src";
 const pts = new Set<ReadonlyVec>([
     [10, 20, 30],
     [60, 70, 80],
-    [44, 55, 66]
+    [44, 55, 66],
 ]);
 
 const pairs = new Set(mapIndexed((i, p) => <[ReadonlyVec, number]>[p, i], pts));
@@ -54,7 +54,7 @@ describe("NdTree", () => {
             new Set(tree.queryKeys([50, 50, 50], 50, Infinity)),
             new Set([
                 [44, 55, 66],
-                [60, 70, 80]
+                [60, 70, 80],
             ]),
             "r=50"
         );

@@ -5,7 +5,7 @@ import {
     partition,
     push,
     transduce,
-    wrapSides
+    wrapSides,
 } from "@thi.ng/transducers";
 import { mixN, ReadonlyVec, Vec } from "@thi.ng/vectors";
 import type { Tessellator } from "@thi.ng/geom-api";

@@ -1,14 +1,9 @@
-import {
-    decode10,
-    decode16,
-    encode10,
-    encode16
-} from "./raw";
+import { decode10, decode16, encode10, encode16 } from "./raw";
 import {
     decodeScaled10,
     decodeScaled16,
     encodeScaled10,
-    encodeScaled16
+    encodeScaled16,
 } from "./scaled";
 
 const MIN = [0, 0, 0];
@@ -25,7 +20,7 @@ export const demux2 = (n: number) => [decode16(n), decode16(n >>> 1)];
 export const demux3 = (n: number) => [
     decode10(n),
     decode10(n >>> 1),
-    decode10(n >>> 2)
+    decode10(n >>> 2),
 ];
 
 export const muxScaled2 = (
@@ -74,7 +69,7 @@ export const demuxScaled3 = (
 ) => [
     decodeScaled10(n, minx, maxx),
     decodeScaled10(n >>> 1, miny, maxy),
-    decodeScaled10(n >>> 2, minz, maxz)
+    decodeScaled10(n >>> 2, minz, maxz),
 ];
 
 export const muxScaled2v = (

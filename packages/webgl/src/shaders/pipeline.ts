@@ -5,27 +5,27 @@ import {
     FLOAT0,
     FLOAT1,
     texture,
-    vec4
+    vec4,
 } from "@thi.ng/shader-ast";
 import type { ShaderFn, ShaderSpec } from "../api/shader";
 
 export const PASSTHROUGH_VS: ShaderFn = (gl, _, ins) => [
-    defMain(() => [assign(gl.gl_Position, vec4(ins.position, FLOAT0, FLOAT1))])
+    defMain(() => [assign(gl.gl_Position, vec4(ins.position, FLOAT0, FLOAT1))]),
 ];
 
 export const PASSTHROUGH_VS_UV: ShaderFn = (gl, _, ins, outs) => [
     defMain(() => [
         assign(outs.v_uv, ins.uv),
-        assign(gl.gl_Position, vec4(ins.position, FLOAT0, FLOAT1))
-    ])
+        assign(gl.gl_Position, vec4(ins.position, FLOAT0, FLOAT1)),
+    ]),
 ];
 
 export const PASSTHROUGH_FS: ShaderFn = (gl, _, __, outs) => [
-    defMain(() => [assign(outs.fragColor, $xy(gl.gl_FragCoord))])
+    defMain(() => [assign(outs.fragColor, $xy(gl.gl_FragCoord))]),
 ];
 
 export const PASSTHROUGH_FS_UV: ShaderFn = (_, unis, ins, outs) => [
-    defMain(() => [assign(outs.fragColor, texture(unis.tex, ins.v_uv))])
+    defMain(() => [assign(outs.fragColor, texture(unis.tex, ins.v_uv))]),
 ];
 
 export const FX_SHADER_SPEC: ShaderSpec = {
@@ -35,7 +35,7 @@ export const FX_SHADER_SPEC: ShaderSpec = {
     varying: {},
     uniforms: {},
     state: { depth: false },
-    ext: {}
+    ext: {},
 };
 
 export const FX_SHADER_SPEC_UV: ShaderSpec = {
@@ -45,5 +45,5 @@ export const FX_SHADER_SPEC_UV: ShaderSpec = {
     varying: { v_uv: "vec2" },
     uniforms: { tex: "sampler2D" },
     state: { depth: false },
-    ext: {}
+    ext: {},
 };

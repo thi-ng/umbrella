@@ -4,7 +4,7 @@ import {
     mat33n,
     mat33v,
     mat44n,
-    mat44v
+    mat44v,
 } from "@thi.ng/matrices";
 import {
     setSwizzle2,
@@ -17,7 +17,7 @@ import {
     swizzle3,
     swizzle4,
     ZERO3,
-    ZERO4
+    ZERO4,
 } from "@thi.ng/vectors";
 import { FLOAT } from "./env/float";
 import { INT } from "./env/int";
@@ -51,7 +51,7 @@ const SAMPLER_TODO: JSBuiltinsSampler = {
     textureOffsetn: () => 0,
     textureProj: () => ZERO4,
     textureProjn: () => 0,
-    textureSize: () => ZERO3
+    textureSize: () => ZERO3,
 };
 
 export const JS_DEFAULT_ENV: JSEnv = {
@@ -94,5 +94,5 @@ export const JS_DEFAULT_ENV: JSEnv = {
     sampler3D: SAMPLER_TODO,
     samplerCube: SAMPLER_TODO,
     sampler2DShadow: SAMPLER_TODO,
-    samplerCubeShadow: SAMPLER_TODO
+    samplerCubeShadow: SAMPLER_TODO,
 };

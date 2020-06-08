@@ -40,7 +40,7 @@ splitAt.addAll(<IObjectOf<Implementation2<unknown, number, IShape[]>>>{
                 $.xl,
                 $.cw,
                 copyAttribs($)
-            )
+            ),
         ];
     },
 
@@ -64,5 +64,5 @@ splitAt.addAll(<IObjectOf<Implementation2<unknown, number, IShape[]>>>{
     [Type.QUADRATIC]: ({ attribs, points }: Quadratic, t: number) =>
         quadraticSplitAt(points[0], points[1], points[2], t).map(
             (pts) => new Quadratic(pts, { ...attribs })
-        )
+        ),
 });

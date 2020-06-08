@@ -1,9 +1,4 @@
-import {
-    Match,
-    Matcher,
-    RES_PARTIAL,
-    SeqCallback
-} from "./api";
+import { Match, Matcher, RES_PARTIAL, SeqCallback } from "./api";
 import { result } from "./result";
 
 /**

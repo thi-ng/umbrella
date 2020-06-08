@@ -1,11 +1,4 @@
-import {
-    add,
-    FloatTerm,
-    mul,
-    normalize,
-    Term,
-    Vec
-} from "@thi.ng/shader-ast";
+import { add, FloatTerm, mul, normalize, Term, Vec } from "@thi.ng/shader-ast";
 
 /**
  * Inline function. Returns point on ray (`p`, `dir`) at distance `t`.

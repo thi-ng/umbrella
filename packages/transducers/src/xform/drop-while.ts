@@ -16,9 +16,8 @@ export function dropWhile<T>(...args: any[]): any {
             const r = rfn[2];
             const pred = args[0];
             let ok = true;
-            return compR(
-                rfn,
-                (acc, x: T) => ((ok = ok && pred(x)) ? acc : r(acc, x))
+            return compR(rfn, (acc, x: T) =>
+                (ok = ok && pred(x)) ? acc : r(acc, x)
             );
         })
     );

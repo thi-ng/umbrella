@@ -57,7 +57,7 @@ export const download = (
         mime: undefined,
         expire: 1e4,
         utf8: false,
-        ...opts
+        ...opts,
     };
     if (_opts.mime === undefined) {
         const match = /\.(\w+)$/.exec(name);
@@ -65,12 +65,10 @@ export const download = (
     }
     if (isString(src) && _opts.utf8) {
         src = new TextEncoder().encode(src);
-        _opts.mime+=";charset=UTF-8";
+        _opts.mime += ";charset=UTF-8";
     }
     const uri = URL.createObjectURL(
-        !(src instanceof Blob)
-            ? new Blob([src], { type: _opts.mime })
-            : src
+        !(src instanceof Blob) ? new Blob([src], { type: _opts.mime }) : src
     );
     const link = document.createElement("a");
     link.setAttribute("download", name);

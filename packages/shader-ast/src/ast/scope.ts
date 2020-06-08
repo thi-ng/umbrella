@@ -15,7 +15,7 @@ import type {
     Scope,
     Sym,
     Term,
-    Ternary
+    Ternary,
 } from "../api/nodes";
 import type { Type } from "../api/types";
 
@@ -121,7 +121,7 @@ export const buildCallGraph = (
 export const decl = <T extends Type>(id: Sym<T>): Decl<T> => ({
     tag: "decl",
     type: id.type,
-    id
+    id,
 });
 
 /**
@@ -145,7 +145,7 @@ export const scope = (body: (Term<any> | null)[], global = false): Scope => ({
             .filter((x) => x != null)
             .map((x) => (x!.tag === "sym" ? decl(<Sym<any>>x) : x))
     ),
-    global
+    global,
 });
 
 /**

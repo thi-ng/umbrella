@@ -1,10 +1,5 @@
 import * as assert from "assert";
-import {
-    fromIterable,
-    fromPromise,
-    resolve,
-    State
-} from "../src/index";
+import { fromIterable, fromPromise, resolve, State } from "../src/index";
 import { TIMEOUT } from "./config";
 
 describe("fromPromise()", () => {
@@ -19,7 +14,7 @@ describe("fromPromise()", () => {
             done() {
                 assert(called, "not called next()");
                 done();
-            }
+            },
         });
     });
 
@@ -38,7 +33,7 @@ describe("fromPromise()", () => {
                 assert.equal(src.getState(), State.ERROR);
                 assert.equal(sub.getState(), State.ERROR);
                 called = true;
-            }
+            },
         });
         setTimeout(() => {
             assert(called, "not called");
@@ -65,7 +60,7 @@ describe("fromPromise()", () => {
                 assert.equal(src.getState(), State.ERROR);
                 assert.equal(sub.getState(), State.ERROR);
                 called = true;
-            }
+            },
         });
         setTimeout(() => {
             assert(called, "not called");
@@ -88,7 +83,7 @@ describe("fromPromise()", () => {
             done() {
                 assert(called, "not called");
                 done();
-            }
+            },
         });
     });
 });

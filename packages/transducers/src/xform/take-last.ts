@@ -32,7 +32,7 @@ export function takeLast<T>(n: number, src?: Iterable<T>): any {
                       }
                       buf.push(x);
                       return acc;
-                  }
+                  },
               ];
           };
 }

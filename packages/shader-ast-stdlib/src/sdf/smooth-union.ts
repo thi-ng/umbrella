@@ -7,7 +7,7 @@ import {
     mul,
     ret,
     sub,
-    sym
+    sym,
 } from "@thi.ng/shader-ast";
 import { clamp01 } from "../math/clamp";
 import { fit1101 } from "../math/fit";
@@ -24,7 +24,7 @@ export const sdfSmoothUnion = defn(
         let h: FloatSym;
         return [
             (h = sym(clamp01(fit1101(div(sub(b, a), k))))),
-            ret(sub(mix(b, a, h), mul(mul(k, h), sub(FLOAT1, h))))
+            ret(sub(mix(b, a, h), mul(mul(k, h), sub(FLOAT1, h)))),
         ];
     }
 );

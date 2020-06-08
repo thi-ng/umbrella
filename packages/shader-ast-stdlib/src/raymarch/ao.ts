@@ -14,7 +14,7 @@ import {
     mul,
     ret,
     sub,
-    sym
+    sym,
 } from "@thi.ng/shader-ast";
 import { clamp01 } from "../math/clamp";
 import type { RaymarchScene } from "../api";
@@ -46,9 +46,9 @@ export const raymarchAO = (scene: RaymarchScene, numSamples = 5) =>
                         r,
                         add(r, mul(w, sub(d0, $x(scene(add(p, mul(n, d0)))))))
                     ),
-                    assign(w, mul(w, FLOAT05))
+                    assign(w, mul(w, FLOAT05)),
                 ]
             ),
-            ret(sub(FLOAT1, clamp01(r)))
+            ret(sub(FLOAT1, clamp01(r))),
         ];
     });

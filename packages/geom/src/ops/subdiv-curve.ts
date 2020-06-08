@@ -21,5 +21,5 @@ subdivCurve.addAll(<
         new Polygon(subdivide($.points, kernel, iter), copyAttribs($)),
 
     [Type.POLYLINE]: ($: Polyline, kernel, iter = 1) =>
-        new Polyline(subdivide($.points, kernel, iter), copyAttribs($))
+        new Polyline(subdivide($.points, kernel, iter), copyAttribs($)),
 });

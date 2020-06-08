@@ -1,9 +1,4 @@
-import {
-    LitCallback,
-    Match,
-    Matcher,
-    RES_PARTIAL
-} from "./api";
+import { LitCallback, Match, Matcher, RES_PARTIAL } from "./api";
 import { result } from "./result";
 
 /**

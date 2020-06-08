@@ -7,7 +7,7 @@ import {
     ifft,
     normalizeFFT,
     spectrumPhase,
-    spectrumPow
+    spectrumPow,
 } from "../src";
 
 const pulse8 = [-1, -1, -1, -1, 1, 1, 1, 1];
@@ -31,14 +31,14 @@ describe("fft", () => {
         assert.ok(
             deltaEqComplex(res, [
                 [0, -2, 0, -2, 0, -2, 0, -2],
-                [0, 4.828, 0, 0.828, 0, -0.828, 0, -4.828]
+                [0, 4.828, 0, 0.828, 0, -0.828, 0, -4.828],
             ])
         );
 
         assert.ok(
             deltaEqComplex(ifft(fft([...pulse8])), [
                 pulse8,
-                [0, 0, 0, 0, 0, 0, 0, 0]
+                [0, 0, 0, 0, 0, 0, 0, 0],
             ])
         );
 
@@ -54,7 +54,7 @@ describe("fft", () => {
         assert.ok(
             deltaEqComplex(norm, [
                 [0, -0.707, 0, -0.707, 0, -0.707, 0, -0.707],
-                [0, 1.707, 0, 0.293, 0, -0.293, 0, -1.707]
+                [0, 1.707, 0, 0.293, 0, -0.293, 0, -1.707],
             ])
         );
 
@@ -65,7 +65,7 @@ describe("fft", () => {
                 -Infinity,
                 -3.698,
                 -Infinity,
-                -11.354
+                -11.354,
             ])
         );
 

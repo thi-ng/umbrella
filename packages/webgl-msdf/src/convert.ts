@@ -20,8 +20,8 @@ export const convertGlyphs = (raw: RawGlyphs): MSDFFont => ({
             pos: [ch.x, ch.y],
             offset: [ch.xoffset, ch.yoffset],
             size: [ch.width, ch.height],
-            step: ch.xadvance
+            step: ch.xadvance,
         };
         return acc;
-    }, {})
+    }, {}),
 });

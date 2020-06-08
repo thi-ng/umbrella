@@ -20,7 +20,7 @@ tangentAt.addAll(<IObjectOf<Implementation2<unknown, number, Vec>>>{
 
     [Type.POLYLINE]: ($: PCLike, t) => new Sampler($.points).tangentAt(t),
 
-    [Type.RECT]: ($: Rect, t) => new Sampler(vertices($), true).tangentAt(t)
+    [Type.RECT]: ($: Rect, t) => new Sampler(vertices($), true).tangentAt(t),
 });
 
 tangentAt.isa(Type.QUAD, Type.POLYGON);

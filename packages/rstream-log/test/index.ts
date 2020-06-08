@@ -8,7 +8,7 @@ const collect = (acc: string[]) => {
         next(x) {
             acc.push(x);
         },
-        result: acc
+        result: acc,
     };
 };
 
@@ -34,7 +34,7 @@ describe("rstream-log", () => {
             "[DEBUG] foo: 2 hello",
             "[INFO] foo: 3 hello",
             "[WARN] foo: 4 hello",
-            "[SEVERE] foo: 5 hello"
+            "[SEVERE] foo: 5 hello",
         ]);
         sub.unsubscribe();
         assert.equal(logger.getState(), State.ACTIVE);

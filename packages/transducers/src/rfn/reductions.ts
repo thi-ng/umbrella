@@ -21,6 +21,6 @@ export function reductions<A, B>(rfn: Reducer<A, B>, xs?: Iterable<B>): any {
                   }
                   acc.push(res);
                   return acc;
-              }
+              },
           ];
 }

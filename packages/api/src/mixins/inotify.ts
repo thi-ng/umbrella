@@ -67,5 +67,5 @@ export const INotifyMixin = mixin(<INotify>{
             }
         }
         return i;
-    }
+    },
 });

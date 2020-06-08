@@ -1,11 +1,6 @@
 import { pointInside } from "@thi.ng/geom";
 import { clamp, roundTo } from "@thi.ng/math";
-import {
-    add2,
-    clamp2,
-    round2,
-    Vec
-} from "@thi.ng/vectors";
+import { add2, clamp2, round2, Vec } from "@thi.ng/vectors";
 import { Key } from "../api";
 import { IMGUI } from "../gui";
 import type { IShape } from "@thi.ng/geom-api";

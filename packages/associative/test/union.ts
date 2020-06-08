@@ -2,7 +2,6 @@ import * as assert from "assert";
 import { ArraySet } from "../src/array-set";
 import { union } from "../src/union";
 
-
 describe("union", () => {
     it("native (numbers)", () => {
         const a = new Set([1, 2, 3, 4]);

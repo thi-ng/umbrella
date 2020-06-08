@@ -57,7 +57,7 @@ export function padLast<T>(n: number, fill: T, src?: Iterable<T>): any {
                       }
                       return complete(acc);
                   },
-                  (acc, x) => (m++, reduce(acc, x))
+                  (acc, x) => (m++, reduce(acc, x)),
               ];
           };
 }

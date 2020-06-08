@@ -26,19 +26,19 @@ describe("hdom-mock", () => {
 
         const a = impl.normalizeTree(opts, (ctx: any) => [
             "div#foo.bar",
-            ["button", { ...ctx.button }, "hi"]
+            ["button", { ...ctx.button }, "hi"],
         ]);
         const b = impl.normalizeTree(opts, [
             "div#foo2.bar.baz",
             [
                 (ctx: any, label: any) => ["button", { ...ctx.button }, label],
-                "hello"
+                "hello",
             ],
-            ["div", "extra"]
+            ["div", "extra"],
         ]);
         const c = impl.normalizeTree(opts, [
             "div#foo3.baz.bux",
-            ["div", "extra"]
+            ["div", "extra"],
         ]);
 
         step([], a, [
@@ -47,8 +47,8 @@ describe("hdom-mock", () => {
             [
                 "div",
                 { id: "foo", class: "bar", key: "0" },
-                ["button", { class: "bt", key: "0-0" }, "hi"]
-            ]
+                ["button", { class: "bt", key: "0-0" }, "hi"],
+            ],
         ]);
 
         step(a, b, [
@@ -58,8 +58,8 @@ describe("hdom-mock", () => {
                 "div",
                 { id: "foo2", class: "bar baz", key: "0" },
                 ["button", { class: "bt", key: "0-0" }, "hello"],
-                ["div", { key: "0-1" }, ["span", { key: "0-1-0" }, "extra"]]
-            ]
+                ["div", { key: "0-1" }, ["span", { key: "0-1-0" }, "extra"]],
+            ],
         ]);
 
         step(b, c, [
@@ -68,8 +68,8 @@ describe("hdom-mock", () => {
             [
                 "div",
                 { id: "foo3", class: "baz bux", key: "0" },
-                ["div", { key: "0-0" }, ["span", { key: "0-0-0" }, "extra"]]
-            ]
+                ["div", { key: "0-0" }, ["span", { key: "0-0-0" }, "extra"]],
+            ],
         ]);
     });
 });

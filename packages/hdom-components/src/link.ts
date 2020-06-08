@@ -3,7 +3,7 @@ import { isString } from "@thi.ng/checks";
 export const link = (attribs: any, body: any) => [
     "a",
     isString(attribs) ? { href: attribs } : attribs,
-    body
+    body,
 ];
 
 export const appLink = (
@@ -19,7 +19,7 @@ export const appLink = (
             e.preventDefault();
             onclick(e);
         },
-        ...attribs
+        ...attribs,
     },
-    body
+    body,
 ];

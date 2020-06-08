@@ -19,7 +19,7 @@ export const units: (
                 <[number, number, string]>[
                     x[0],
                     x[2] != null ? x[2] : prec,
-                    x[1]
+                    x[1],
                 ]
         )
         .sort((a, b) => a[0] - b[0]);
@@ -45,7 +45,7 @@ export const bits = units(
         [1, " bits", 0],
         [KB, " Kb"],
         [KB ** 2, " Mb"],
-        [KB ** 3, " Gb"]
+        [KB ** 3, " Gb"],
     ],
     " bits",
     2
@@ -58,7 +58,7 @@ export const bytes = units(
         [KB ** 2, " MB"],
         [KB ** 3, " GB"],
         [KB ** 4, " TB"],
-        [KB ** 5, " PB"]
+        [KB ** 5, " PB"],
     ],
     " bytes",
     2
@@ -73,7 +73,7 @@ export const seconds = units(
         [1, " secs"],
         [60, " mins"],
         [60 * 60, " hours"],
-        [24 * 60 * 60, " days"]
+        [24 * 60 * 60, " days"],
     ],
     " secs",
     3
@@ -87,7 +87,7 @@ export const meters = units(
         [1e-3, " mm"],
         [1e-2, " cm"],
         [1, " m"],
-        [1e3, " km"]
+        [1e3, " km"],
     ],
     " m",
     2
@@ -103,7 +103,7 @@ export const grams = units(
         [1e3, " kg"],
         [1e6, " t"],
         [1e9, " kt"],
-        [1e12, " Mt"]
+        [1e12, " Mt"],
     ],
     " g",
     2

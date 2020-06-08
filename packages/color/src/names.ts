@@ -147,5 +147,5 @@ export const CSS_NAMES: IObjectOf<string> = {
     white: "fff",
     whitesmoke: "f5f5f5",
     yellow: "ff0",
-    yellowgreen: "9acd32"
+    yellowgreen: "9acd32",
 };

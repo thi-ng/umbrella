@@ -3,7 +3,6 @@ import * as m from "../src/index";
 import { range } from "@thi.ng/transducers";
 
 describe("matrices", () => {
-
     it("identity (fixed)", () => {
         assert.deepEqual(m.identity22([]), m.IDENT22, "m22");
         assert.deepEqual(m.identity23([]), m.IDENT23, "m23");
@@ -17,5 +16,4 @@ describe("matrices", () => {
         assert.deepEqual(m.identity([...range(9)]), m.IDENT33, "m33");
         assert.deepEqual(m.identity([...range(16)]), m.IDENT44, "m44");
     });
-
 });

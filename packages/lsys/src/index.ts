@@ -2,12 +2,7 @@ import { partial, threadLast } from "@thi.ng/compose";
 import { illegalState } from "@thi.ng/errors";
 import { cossin, HALF_PI } from "@thi.ng/math";
 import { IRandom, SYSTEM } from "@thi.ng/random";
-import {
-    iterate,
-    last,
-    mapcat,
-    take
-} from "@thi.ng/transducers";
+import { iterate, last, mapcat, take } from "@thi.ng/transducers";
 import { add, Vec } from "@thi.ng/vectors";
 import type { Fn2, IObjectOf } from "@thi.ng/api";
 
@@ -132,7 +127,7 @@ export const TURTLE_IMPL_2D: RuleImplementations<Turtle2D> = {
         const prev = ctx.stack.pop();
         !prev && illegalState("stack empty");
         Object.assign(ctx, prev);
-    }
+    },
 };
 
 export const turtle2d = (state?: Partial<Turtle2D>): Turtle2D => ({
@@ -150,7 +145,7 @@ export const turtle2d = (state?: Partial<Turtle2D>): Turtle2D => ({
     curr: [[0, 0]],
     paths: [],
     stack: [],
-    ...state
+    ...state,
 });
 
 export const rewrite = (rules: ProductionRules, syms: Iterable<LSysSymbol>) =>

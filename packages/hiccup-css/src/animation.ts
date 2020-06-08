@@ -63,7 +63,7 @@ export const animation = (
     opts = <any>{
         duration: "250ms",
         name: id,
-        ...opts
+        ...opts,
     };
     return [
         at_keyframes.apply(null, <any>[id, ...keyframes]),
@@ -74,7 +74,7 @@ export const animation = (
                     (acc[`animation-${k}`] = (<any>opts)[k]), acc
                 ),
                 {}
-            )
-        ]
+            ),
+        ],
     ];
 };

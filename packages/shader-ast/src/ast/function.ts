@@ -1,12 +1,7 @@
 import { assert } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks";
 import { gensym } from "./idgen";
-import {
-    allChildren,
-    scope,
-    scopedChildren,
-    walk
-} from "./scope";
+import { allChildren, scope, scopedChildren, walk } from "./scope";
 import { sym } from "./sym";
 import type {
     Arg,
@@ -27,7 +22,7 @@ import type {
     FnBody6,
     FnBody7,
     FnBody8,
-    ScopeBody
+    ScopeBody,
 } from "../api/function";
 import type {
     FnCall,
@@ -44,7 +39,7 @@ import type {
     TaggedFn6,
     TaggedFn7,
     TaggedFn8,
-    Term
+    Term,
 } from "../api/nodes";
 import type { SymOpts } from "../api/syms";
 import type { Type } from "../api/types";
@@ -55,7 +50,7 @@ const defArg = <T extends Type>(a: Arg<T>): FuncArg<T> => {
         tag: "arg",
         type,
         id: id || gensym(),
-        opts: { q: "in", ...opts }
+        opts: { q: "in", ...opts },
     };
 };
 
@@ -152,7 +147,7 @@ export function ret(val?: Term<any>): FuncReturn<any> {
     return {
         tag: "ret",
         type: val ? val.type : "void",
-        val
+        val,
     };
 }
 
@@ -201,5 +196,5 @@ export const builtinCall = <T extends Type>(
     tag: "call_i",
     type,
     id,
-    args
+    args,
 });

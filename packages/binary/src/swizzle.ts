@@ -1,9 +1,4 @@
-import type {
-    Lane16,
-    Lane2,
-    Lane4,
-    Lane8
-} from "./api";
+import type { Lane16, Lane2, Lane4, Lane8 } from "./api";
 
 /**
  * Extracts 16-bit lane from given 32bit uint and returns as unsigned

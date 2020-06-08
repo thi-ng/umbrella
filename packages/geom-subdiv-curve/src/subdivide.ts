@@ -4,7 +4,7 @@ import {
     mapcat,
     partition,
     push,
-    transduce
+    transduce,
 } from "@thi.ng/transducers";
 import type { SubdivKernel } from "@thi.ng/geom-api";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";

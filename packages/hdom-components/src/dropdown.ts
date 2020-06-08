@@ -15,7 +15,7 @@ export const option = (
 ) => [
     "option",
     { value, disabled: !!disabled, selected: value === sel },
-    label
+    label,
 ];
 
 export const optgroup = (
@@ -25,7 +25,7 @@ export const optgroup = (
 ) => [
     "optgroup",
     { ...attribs, label: attribs.label || "--" },
-    ...options.map((o) => option(o, sel))
+    ...options.map((o) => option(o, sel)),
 ];
 
 export const dropdown = (

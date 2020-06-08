@@ -15,7 +15,7 @@ export class Quadratic extends APC implements IHiccupShape, IHiccupPathSegment {
         return [
             "path",
             this.attribs,
-            [["M", this.points[0]], ...this.toHiccupPathSegments()]
+            [["M", this.points[0]], ...this.toHiccupPathSegments()],
         ];
     }
 

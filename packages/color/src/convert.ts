@@ -23,12 +23,7 @@ import { rgbaYcbcra } from "./rgba-ycbcra";
 import { xyzaRgba } from "./xyza-rgba";
 import { ycbcraRgba } from "./ycbcra-rgba";
 import type { Implementation2O, MultiFn2O } from "@thi.ng/defmulti";
-import type {
-    Color,
-    ColorConversion,
-    IColor,
-    ReadonlyColor
-} from "./api";
+import type { Color, ColorConversion, IColor, ReadonlyColor } from "./api";
 
 export const convert: MultiFn2O<
     string | number | ReadonlyColor | IColor,
@@ -155,7 +150,7 @@ defConversion(ColorMode.RGBA, ColorMode.CSS, (x: any) => parseCss(x));
     ColorMode.HSVA,
     ColorMode.INT32,
     ColorMode.XYZA,
-    ColorMode.YCBCRA
+    ColorMode.YCBCRA,
 ].forEach((id) =>
     defConversion(id, ColorMode.CSS, (x: any) =>
         convert(parseCss(x), id, ColorMode.RGBA)
@@ -244,7 +239,7 @@ defConversion(ColorMode.HSLA, ColorMode.HSVA, (x: any) => hsvaHsla([], x));
     [ColorMode.HSLA, rgbaHsla],
     [ColorMode.HSVA, rgbaHsva],
     [ColorMode.XYZA, rgbaXyza],
-    [ColorMode.YCBCRA, rgbaYcbcra]
+    [ColorMode.YCBCRA, rgbaYcbcra],
 ]).forEach(([id, fn]) =>
     defConversion(id, ColorMode.RGBA, (x: any) => fn([], x))
 );

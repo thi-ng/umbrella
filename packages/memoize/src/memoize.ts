@@ -1,10 +1,4 @@
-import type {
-    Fn,
-    Fn2,
-    Fn3,
-    Fn4,
-    FnAny
-} from "@thi.ng/api";
+import type { Fn, Fn2, Fn3, Fn4, FnAny } from "@thi.ng/api";
 import type { MapLike } from "./api";
 
 /**

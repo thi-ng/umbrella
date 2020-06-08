@@ -8,7 +8,7 @@ describe("soa", () => {
         const struct = soa(2, {
             a: { type: Type.U16 },
             b: { size: 2, default: [1, 2] },
-            c: { type: Type.I8, size: 2, default: [-3, 4] }
+            c: { type: Type.I8, size: 2, default: [-3, 4] },
         });
         assert.equal(struct.length, 2);
         assert.deepEqual(struct.keys(), ["a", "b", "c"]);
@@ -23,7 +23,7 @@ describe("soa", () => {
                 [...struct.values()],
                 [
                     { a: [0], b: [1, 2], c: [-3, 4] },
-                    { a: [0], b: [1, 2], c: [-3, 4] }
+                    { a: [0], b: [1, 2], c: [-3, 4] },
                 ]
             )
         );
@@ -33,12 +33,12 @@ describe("soa", () => {
         const src = soa(2, {
             a: { type: Type.U16 },
             b: { size: 2, default: [1, 2] },
-            c: { type: Type.I8, size: 2, default: [-3, 4] }
+            c: { type: Type.I8, size: 2, default: [-3, 4] },
         });
         const dest = soa(4, {
             a: { type: Type.U16, default: [0xaa55] },
             b: { size: 2 },
-            c: { type: Type.I8, size: 2 }
+            c: { type: Type.I8, size: 2 },
         });
         src.copyTo(dest, undefined, 2);
         assert(
@@ -48,7 +48,7 @@ describe("soa", () => {
                     { a: [0xaa55], b: [0, 0], c: [0, 0] },
                     { a: [0xaa55], b: [0, 0], c: [0, 0] },
                     { a: [0], b: [1, 2], c: [-3, 4] },
-                    { a: [0], b: [1, 2], c: [-3, 4] }
+                    { a: [0], b: [1, 2], c: [-3, 4] },
                 ]
             )
         );

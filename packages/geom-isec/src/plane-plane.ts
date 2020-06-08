@@ -1,12 +1,6 @@
 import { IntersectionType } from "@thi.ng/geom-api";
 import { eqDelta, eqDeltaFixed } from "@thi.ng/math";
-import {
-    add3,
-    cross3,
-    dot3,
-    mulN3,
-    ReadonlyVec
-} from "@thi.ng/vectors";
+import { add3, cross3, dot3, mulN3, ReadonlyVec } from "@thi.ng/vectors";
 import { NONE } from "./api";
 
 export const intersectPlanePlane = (
@@ -26,7 +20,7 @@ export const intersectPlanePlane = (
         type: IntersectionType.INTERSECT,
         isec: [
             add3(null, mulN3([], na, da), mulN3([], nb, db)),
-            cross3([], na, nb)
-        ]
+            cross3([], na, nb),
+        ],
     };
 };

@@ -8,7 +8,7 @@ import {
     perpendicularCW,
     ReadonlyVec,
     set,
-    Vec
+    Vec,
 } from "@thi.ng/vectors";
 
 const buildSegments = (tangents: Vec[][], t: number, uniform: boolean) => {
@@ -49,7 +49,7 @@ export const openCubicFromBreakPoints = (
     uniform = false
 ) => {
     const tangents: Vec[][] = [
-        [points[0], direction([], points[0], points[1])]
+        [points[0], direction([], points[0], points[1])],
     ];
     const num = points.length - 1;
     for (let i = 1; i < num; i++) {

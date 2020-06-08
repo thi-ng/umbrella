@@ -20,9 +20,10 @@ export class Group implements IHiccupShape {
     }
 
     copy(): Group {
-        return new Group(copyAttribs(this), <IHiccupShape[]>(
-            this.children.map((c) => c.copy())
-        ));
+        return new Group(
+            copyAttribs(this),
+            <IHiccupShape[]>this.children.map((c) => c.copy())
+        );
     }
 
     equiv(o: any) {

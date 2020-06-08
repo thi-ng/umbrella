@@ -4,7 +4,7 @@ import {
     IShape,
     PathSegment,
     SegmentType,
-    Type
+    Type,
 } from "@thi.ng/geom-api";
 import { mulV, ReadonlyMat } from "@thi.ng/matrices";
 import { map } from "@thi.ng/transducers";
@@ -21,7 +21,10 @@ import { Rect } from "../api/rect";
 import { Triangle } from "../api/triangle";
 import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
-import { transformedShape as tx, transformedShape3 as tx3 } from "../internal/transform-points";
+import {
+    transformedShape as tx,
+    transformedShape3 as tx3,
+} from "../internal/transform-points";
 import { asPath } from "./as-path";
 import { asPolygon } from "./as-polygon";
 import type { IObjectOf } from "@thi.ng/api";
@@ -60,14 +63,14 @@ transform.addAll(<IObjectOf<Implementation2<unknown, ReadonlyMat, IShape>>>{
                         s.type === SegmentType.MOVE
                             ? <PathSegment>{
                                   type: s.type,
-                                  point: mulV([], mat, s.point!)
+                                  point: mulV([], mat, s.point!),
                               }
                             : <PathSegment>{
                                   type: s.type,
-                                  geo: transform(s.geo!, mat)
+                                  geo: transform(s.geo!, mat),
                               },
                     $.segments
-                )
+                ),
             ],
             copyAttribs($)
         ),
@@ -86,7 +89,7 @@ transform.addAll(<IObjectOf<Implementation2<unknown, ReadonlyMat, IShape>>>{
 
     [Type.RECT]: ($: Rect, mat) => transform(asPolygon($), mat),
 
-    [Type.TRIANGLE]: tx(Triangle)
+    [Type.TRIANGLE]: tx(Triangle),
 });
 
 transform.isa(Type.CIRCLE, Type.ARC);

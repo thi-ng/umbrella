@@ -15,7 +15,7 @@ import {
     Vec,
     vec2,
     vec3,
-    vec4
+    vec4,
 } from "@thi.ng/shader-ast";
 import * as assert from "assert";
 import { GLSLVersion, targetGLSL } from "../src";
@@ -23,12 +23,12 @@ import { GLSLVersion, targetGLSL } from "../src";
 const vs100 = targetGLSL({
     type: "vs",
     version: GLSLVersion.GLES_100,
-    versionPragma: false
+    versionPragma: false,
 });
 const fs100 = targetGLSL({
     type: "fs",
     version: GLSLVersion.GLES_100,
-    versionPragma: false
+    versionPragma: false,
 });
 const vs300 = targetGLSL({ type: "vs", versionPragma: false });
 const fs300 = targetGLSL({ type: "fs", versionPragma: false });
@@ -116,22 +116,22 @@ describe("shader-ast (glsl)", () => {
                 "attribute vec3 a;",
                 "in vec3 a;",
                 "varying vec3 a;",
-                "in vec3 a;"
+                "in vec3 a;",
             ],
             [
                 input("vec3", "a", { loc: 1 }),
                 "attribute vec3 a;",
                 "layout(location=1) in vec3 a;",
                 "varying vec3 a;",
-                "layout(location=1) in vec3 a;"
+                "layout(location=1) in vec3 a;",
             ],
             [
                 input("vec3", "a", { loc: 1, num: 3 }),
                 "attribute vec3 a[3];",
                 "layout(location=1) in vec3 a[3];",
                 "varying vec3 a[3];",
-                "layout(location=1) in vec3 a[3];"
-            ]
+                "layout(location=1) in vec3 a[3];",
+            ],
         ].forEach(([inp, v100, v300, f100, f300]: any) => {
             const spec = scope([inp], true);
             assert.equal(vs100(spec), v100, "vs100");
@@ -147,13 +147,13 @@ describe("shader-ast (glsl)", () => {
             [
                 uniform("vec3", "a", { loc: 1 }),
                 "uniform vec3 a;",
-                "layout(location=1) uniform vec3 a;"
+                "layout(location=1) uniform vec3 a;",
             ],
             [
                 uniform("vec3", "a", { loc: 1, num: 3 }),
                 "uniform vec3 a[3];",
-                "layout(location=1) uniform vec3 a[3];"
-            ]
+                "layout(location=1) uniform vec3 a[3];",
+            ],
         ].forEach(([uni, gl100, gl300]: any) => {
             const spec = scope([uni], true);
             assert.equal(vs100(spec), gl100, "vs100");
@@ -169,20 +169,20 @@ describe("shader-ast (glsl)", () => {
                 output("vec3", "a"),
                 "varying vec3 a;",
                 "out vec3 a;",
-                "out vec3 a;"
+                "out vec3 a;",
             ],
             [
                 output("vec3", "a", { loc: 1 }),
                 "varying vec3 a;",
                 "layout(location=1) out vec3 a;",
-                "layout(location=1) out vec3 a;"
+                "layout(location=1) out vec3 a;",
             ],
             [
                 output("vec3", "a", { loc: 1, num: 3 }),
                 "varying vec3 a[3];",
                 "layout(location=1) out vec3 a[3];",
-                "layout(location=1) out vec3 a[3];"
-            ]
+                "layout(location=1) out vec3 a[3];",
+            ],
         ].forEach(([out, v100, v300, f300]: any) => {
             const spec = scope([out], true);
             assert.equal(vs100(spec), v100, "vs100");

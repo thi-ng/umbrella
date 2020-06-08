@@ -9,7 +9,7 @@ import {
     mixCubic,
     mixN2,
     mixQuadratic,
-    Vec
+    Vec,
 } from "@thi.ng/vectors";
 import { Arc } from "../api/arc";
 import { Circle } from "../api/circle";
@@ -47,7 +47,7 @@ pointAt.addAll(<IObjectOf<Implementation2<unknown, number, Vec>>>{
 
     [Type.RAY]: ($: Ray, t) => maddN([], $.dir, t, $.pos),
 
-    [Type.RECT]: ($: Rect, t) => new Sampler(vertices($), true).pointAt(t)
+    [Type.RECT]: ($: Rect, t) => new Sampler(vertices($), true).pointAt(t),
 });
 
 pointAt.isa(Type.QUAD, Type.POLYGON);

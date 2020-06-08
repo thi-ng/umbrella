@@ -2,7 +2,7 @@ import {
     DEFAULT_IMPL,
     HDOMImplementation,
     HDOMOpts,
-    resolveRoot
+    resolveRoot,
 } from "@thi.ng/hdom";
 import { derefContext } from "@thi.ng/hiccup";
 import { scan, Transducer } from "@thi.ng/transducers";
@@ -65,6 +65,6 @@ export const updateDOM = (
                 return curr;
             }
             return prev;
-        }
+        },
     ]);
 };

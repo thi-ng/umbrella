@@ -6,7 +6,7 @@ import {
     max,
     Vec2Sym,
     Vec3Sym,
-    Vec4Sym
+    Vec4Sym,
 } from "@thi.ng/shader-ast";
 
 /**

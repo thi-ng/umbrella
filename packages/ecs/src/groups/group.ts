@@ -7,21 +7,16 @@ import {
     EVENT_ADDED,
     EVENT_CHANGED,
     EVENT_PRE_DELETE,
-    LOGGER
+    LOGGER,
 } from "../constants";
-import type {
-    Event,
-    FnO2,
-    FnO3,
-    IID
-} from "@thi.ng/api";
+import type { Event, FnO2, FnO3, IID } from "@thi.ng/api";
 import type {
     ComponentID,
     GroupInfo,
     GroupOpts,
     GroupTuple,
     ICache,
-    IComponent
+    IComponent,
 } from "../api";
 
 export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
@@ -50,7 +45,7 @@ export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
             acc[c.id] = {
                 values: <any>c.vals,
                 size: c.size,
-                stride: c.stride
+                stride: c.stride,
             };
             return acc;
         }, <any>{});

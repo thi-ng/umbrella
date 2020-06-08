@@ -3,7 +3,7 @@ import { DEFAULT_SEED_32 } from "./constants";
 import type { IBuffered, ICopy } from "@thi.ng/api";
 import type { ISeedable } from "./api";
 
-// https://github.com/thi-ng/ct-head/blob/master/random.h
+// https://github.com/thi-ng/ct-head/blob/develop/random.h
 // https://gist.github.com/voidqk/d112165a26b45244a65298933c0349a4
 
 export class Smush32 extends ARandom

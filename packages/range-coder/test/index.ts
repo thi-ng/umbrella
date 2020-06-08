@@ -23,5 +23,5 @@ describe("range-coder", () => {
 const randomArray = (n: number, len: number) =>
     new Uint8Array([
         ...repeatedly(() => ~~(Math.random() * 256), n),
-        ...repeat(0, len - n)
+        ...repeat(0, len - n),
     ]);

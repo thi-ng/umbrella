@@ -98,7 +98,7 @@ export function partition<T>(...args: any[]): any {
                     skip--;
                 }
                 return acc;
-            }
+            },
         ];
     };
 }

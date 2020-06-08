@@ -34,7 +34,7 @@ export const iconButton = (
             {
                 translate: pos,
                 fill: col,
-                stroke: col
+                stroke: col,
             },
             icon,
             label
@@ -43,7 +43,7 @@ export const iconButton = (
                       { fill: col, stroke: "none" },
                       label
                   )
-                : undefined
+                : undefined,
         ];
     };
     return buttonRaw(

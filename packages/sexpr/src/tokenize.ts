@@ -16,7 +16,7 @@ import type { SyntaxOpts, Token } from "./api";
 export function* tokenize(src: Iterable<string>, opts?: Partial<SyntaxOpts>) {
     const { scopes: rawScopes, whiteSpace, string } = {
         ...DEFAULT_SYNTAX,
-        ...opts
+        ...opts,
     };
     const scopes = rawScopes
         .reduce((acc, x) => acc.concat(<any>x), [])
@@ -30,7 +30,7 @@ export function* tokenize(src: Iterable<string>, opts?: Partial<SyntaxOpts>) {
     const $ = (value: string): Token => ({
         value,
         line: tokenLine,
-        col: tokenCol
+        col: tokenCol,
     });
     for (let c of src) {
         if (c === "\n") {

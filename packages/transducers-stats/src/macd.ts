@@ -1,10 +1,4 @@
-import {
-    $iter,
-    compR,
-    Reducer,
-    step,
-    Transducer
-} from "@thi.ng/transducers";
+import { $iter, compR, Reducer, step, Transducer } from "@thi.ng/transducers";
 import { ema } from "./ema";
 
 export interface MACD {
@@ -75,7 +69,7 @@ export function macd(...args: any[]): any {
                     signal,
                     div: macd - signal,
                     fast,
-                    slow
+                    slow,
                 });
             });
         })

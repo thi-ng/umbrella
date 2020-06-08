@@ -15,7 +15,7 @@ export const svg = (attribs: any, ...body: any[]): any[] => [
         version: "1.1",
         xmlns: SVG_NS,
         "xmlns:xlink": XLINK_NS,
-        ...attribs
+        ...attribs,
     }),
-    ...body
+    ...body,
 ];

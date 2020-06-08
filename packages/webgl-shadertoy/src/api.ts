@@ -1,10 +1,5 @@
 import type { Fn2 } from "@thi.ng/api";
-import type {
-    FloatSym,
-    IntSym,
-    ScopeBody,
-    Vec2Sym
-} from "@thi.ng/shader-ast";
+import type { FloatSym, IntSym, ScopeBody, Vec2Sym } from "@thi.ng/shader-ast";
 import type { GLSLTarget } from "@thi.ng/shader-ast-glsl";
 import type { ITexture, ModelSpec, UniformDecl } from "@thi.ng/webgl";
 

@@ -78,7 +78,7 @@ export class GridLayout implements IGridLayout {
             h,
             cw: this.cellW,
             ch: this.cellH,
-            gap
+            gap,
         };
         this.propagateSize(rspan);
         this.currCol = Math.min(this.currCol + cspan, cols) % cols;
@@ -88,7 +88,7 @@ export class GridLayout implements IGridLayout {
     nextSquare() {
         const box = this.next([
             1,
-            Math.ceil(this.cellW / (this.cellH + this.gap)) + 1
+            Math.ceil(this.cellW / (this.cellH + this.gap)) + 1,
         ]);
         box.h = box.w;
         return box;

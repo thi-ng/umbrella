@@ -12,7 +12,7 @@ const PI = Math.PI;
  */
 export const complexArray = (n: number): ComplexArray => [
     new Float64Array(n),
-    new Float64Array(n)
+    new Float64Array(n),
 ];
 
 /**

@@ -38,7 +38,7 @@ flip.addAll(<IObjectOf<Implementation1<unknown, IShape>>>{
     [Type.RAY]: ($: Ray) => {
         $.dir = neg(null, $.dir);
         return $;
-    }
+    },
 });
 
 flip.isa(Type.CUBIC, Type.POINTS);

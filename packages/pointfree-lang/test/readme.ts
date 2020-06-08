@@ -44,7 +44,7 @@ const drawLine = (ctx: StackContext) => {
 const env = pf.ffi(
     {},
     {
-        "gfx.line": drawLine
+        "gfx.line": drawLine,
     }
 );
 

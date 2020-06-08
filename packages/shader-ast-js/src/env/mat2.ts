@@ -9,7 +9,7 @@ import {
     mulV22,
     mulVM22,
     sub22,
-    subN22
+    subN22,
 } from "@thi.ng/matrices";
 import { neg } from "@thi.ng/vectors";
 import type { JSBuiltinsMat } from "../api";
@@ -32,5 +32,5 @@ export const MAT2: JSBuiltinsMat = {
     sub: (a, b) => sub22([], a, b),
     sub1: (a) => neg([], a),
     subnv: (a, b) => sub22(null, [a, a, a, a], b),
-    subvn: (a, b) => subN22([], a, b)
+    subvn: (a, b) => subN22([], a, b),
 };

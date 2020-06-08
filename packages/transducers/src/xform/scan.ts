@@ -54,7 +54,7 @@ export function scan<A, B>(...args: any[]): any {
                         return ensureReduced(reduceo(_acc, (<any>acc).deref()));
                     }
                     return reduceo(_acc, acc);
-                }
+                },
             ];
         })
     );

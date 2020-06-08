@@ -50,7 +50,7 @@ export class OnePole extends AProc<number, number>
     filterCoeffs(): FilterConfig {
         return {
             zeroes: [this._a0],
-            poles: [1, this._type === FilterType.LP ? this._b1 : -this._b1]
+            poles: [1, this._type === FilterType.LP ? this._b1 : -this._b1],
         };
     }
 }

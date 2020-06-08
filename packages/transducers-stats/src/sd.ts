@@ -5,7 +5,7 @@ import {
     map,
     multiplex,
     partition,
-    Transducer
+    Transducer,
 } from "@thi.ng/transducers";
 import { mse } from "./mse";
 import { sma } from "./sma";

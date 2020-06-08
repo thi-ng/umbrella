@@ -63,6 +63,6 @@ export const notification = (opts: Partial<NotificationOpts> = {}) => {
         body,
         opts.close && args.onclose
             ? [appLink, opts.attribsClose, args.onclose, opts.close]
-            : undefined
+            : undefined,
     ];
 };

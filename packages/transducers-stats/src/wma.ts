@@ -5,7 +5,7 @@ import {
     map,
     partition,
     range,
-    Transducer
+    Transducer,
 } from "@thi.ng/transducers";
 import { dot } from "./dot";
 

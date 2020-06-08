@@ -9,7 +9,7 @@ import {
     mulV33,
     mulVM33,
     sub33,
-    subN33
+    subN33,
 } from "@thi.ng/matrices";
 import { neg, vecOf } from "@thi.ng/vectors";
 import type { JSBuiltinsMat } from "../api";
@@ -32,5 +32,5 @@ export const MAT3: JSBuiltinsMat = {
     sub: (a, b) => sub33([], a, b),
     sub1: (a) => neg([], a),
     subnv: (a, b) => sub33(null, vecOf(9, a), b),
-    subvn: (a, b) => subN33([], a, b)
+    subvn: (a, b) => subN33([], a, b),
 };

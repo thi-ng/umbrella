@@ -18,7 +18,7 @@ import type {
     ISeq,
     ISeqable,
     IStack,
-    Predicate
+    Predicate,
 } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
 import type { IReducible, ReductionFn } from "@thi.ng/transducers";
@@ -143,7 +143,7 @@ export class DCons<T>
             },
             next() {
                 return cell !== last && cell.next ? $seq(cell.next) : undefined;
-            }
+            },
         });
         return cell ? $seq(cell) : undefined;
     }

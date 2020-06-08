@@ -1,11 +1,6 @@
 import { map } from "@thi.ng/transducers";
 import * as assert from "assert";
-import {
-    bisect,
-    fromIterable,
-    Stream,
-    subscription
-} from "../src/index";
+import { bisect, fromIterable, Stream, subscription } from "../src/index";
 
 // prettier-ignore
 describe("bisect", () => {

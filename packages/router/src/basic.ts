@@ -3,17 +3,12 @@ import { isString } from "@thi.ng/checks";
 import { equiv } from "@thi.ng/equiv";
 import { illegalArgs, illegalArity } from "@thi.ng/errors";
 import { EVENT_ROUTE_CHANGED } from "./constants";
-import type {
-    Event,
-    INotify,
-    IObjectOf,
-    Listener
-} from "@thi.ng/api";
+import type { Event, INotify, IObjectOf, Listener } from "@thi.ng/api";
 import type {
     Route,
     RouteMatch,
     RouteParamValidator,
-    RouterConfig
+    RouterConfig,
 } from "./api";
 
 @INotifyMixin
@@ -27,7 +22,7 @@ export class BasicRouter implements INotify {
             ((route, _, params) => ({
                 id: route.id,
                 title: route.title,
-                params
+                params,
             }));
         config.prefix = config.prefix === undefined ? "/" : config.prefix;
         config.separator = config.separator || "/";

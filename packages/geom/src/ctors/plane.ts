@@ -3,7 +3,7 @@ import {
     normalize,
     orthoNormal3,
     ReadonlyVec,
-    Vec
+    Vec,
 } from "@thi.ng/vectors";
 import { Plane } from "../api/plane";
 import type { Attribs } from "@thi.ng/geom-api";

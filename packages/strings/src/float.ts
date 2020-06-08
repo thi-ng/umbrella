@@ -12,8 +12,10 @@ import type { Stringer } from "./api";
  * @param len - number of fractional digits
  * @kind function
  */
-export const float: (prec: number) => Stringer<number> = memoizeJ(
-    (prec) => (x: number) => nanOrInf(x) || x.toFixed(prec)
+export const float: (
+    prec: number
+) => Stringer<number> = memoizeJ((prec) => (x: number) =>
+    nanOrInf(x) || x.toFixed(prec)
 );
 
 /**
@@ -38,8 +40,8 @@ export const floatFixedWidth: (
                 (x === 0
                     ? "0"
                     : ax < pr || ax >= pl
-                        ? exp(x, width)
-                        : x.toFixed(prec - (x < pln ? 1 : 0)))
+                    ? exp(x, width)
+                    : x.toFixed(prec - (x < pln ? 1 : 0)))
         );
     };
 });
@@ -59,7 +61,7 @@ const nanOrInf = (x: number) =>
     isNaN(x)
         ? "NaN"
         : x === Infinity
-            ? "+∞"
-            : x === -Infinity
-                ? "-∞"
-                : undefined;
+        ? "+∞"
+        : x === -Infinity
+        ? "-∞"
+        : undefined;

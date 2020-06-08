@@ -12,7 +12,7 @@ import type {
     Swizzle4,
     Swizzle4_1,
     Swizzle4_2,
-    Swizzle4_3
+    Swizzle4_3,
 } from "../api/swizzles";
 import type {
     BVec2Term,
@@ -26,15 +26,9 @@ import type {
     UVec4Term,
     Vec2Term,
     Vec3Term,
-    Vec4Term
+    Vec4Term,
 } from "../api/terms";
-import type {
-    BVec,
-    IVec,
-    Type,
-    UVec,
-    Vec
-} from "../api/types";
+import type { BVec, IVec, Type, UVec, Vec } from "../api/types";
 
 // prettier-ignore
 export function $<T extends Swizzle2>(a: Vec2Term, id: T): Swizzle<Select4<T, Swizzle2_1, Swizzle2_2, Swizzle2_3, "float", "vec2", "vec3", "vec4">>;
@@ -75,7 +69,7 @@ export function $(val: Term<any>, id: string): Swizzle<any> {
                 ? rtype("bool", "bvec")
                 : rtype("float", "vec"),
         val,
-        id
+        id,
     };
 }
 

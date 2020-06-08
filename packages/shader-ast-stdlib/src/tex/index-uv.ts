@@ -9,7 +9,7 @@ import {
     modi,
     mul,
     ret,
-    vec2
+    vec2,
 } from "@thi.ng/shader-ast";
 
 /**
@@ -29,7 +29,7 @@ export const indexToUV = defn(
                 div(float(modi(i, $x(size))), float($x(size))),
                 div(float(div(i, $x(size))), float($y(size)))
             )
-        )
+        ),
     ]
 );
 
@@ -50,6 +50,6 @@ export const uvToIndex = defn(
                 int(mul($x(uv), float(width))),
                 int(mul($y(uv), float(mul(width, width))))
             )
-        )
+        ),
     ]
 );

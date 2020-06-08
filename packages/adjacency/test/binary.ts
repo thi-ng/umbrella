@@ -2,7 +2,12 @@ import { Pair } from "@thi.ng/api";
 import * as assert from "assert";
 import { AdjacencyBitMatrix } from "../src/index";
 
-const edges: Pair<number, number>[] = [[2, 3], [0, 1], [5, 4], [2, 0]];
+const edges: Pair<number, number>[] = [
+    [2, 3],
+    [0, 1],
+    [5, 4],
+    [2, 0],
+];
 
 describe("adjacency (bitmatrix)", () => {
     it("fromEdges, undirected", () => {
@@ -15,14 +20,19 @@ describe("adjacency (bitmatrix)", () => {
                 2415919104,
                 536870912,
                 67108864,
-                134217728
+                134217728,
             ],
             "data"
         );
         assert.equal(m.numEdges(), 4, "numEdges");
         assert.deepEqual(
             [...m.edges()],
-            [[4, 5], [2, 3], [0, 1], [0, 2]],
+            [
+                [4, 5],
+                [2, 3],
+                [0, 1],
+                [0, 2],
+            ],
             "edges"
         );
     });

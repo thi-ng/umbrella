@@ -5,7 +5,7 @@ import {
     normalize,
     perpendicularCCW,
     sub2,
-    Vec
+    Vec,
 } from "@thi.ng/vectors";
 
 export const equilateralTriangle2 = (a: Vec, b: Vec) => {

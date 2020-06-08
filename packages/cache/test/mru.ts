@@ -2,17 +2,20 @@ import * as assert from "assert";
 import { MRUCache } from "../src/index";
 
 describe("MRU", () => {
-
     let c: MRUCache<string, number>;
     let evicts: any[];
 
     beforeEach(() => {
         evicts = [];
         c = new MRUCache(
-            [["a", 1], ["b", 2], ["c", 3]],
+            [
+                ["a", 1],
+                ["b", 2],
+                ["c", 3],
+            ],
             {
                 maxlen: 4,
-                release: (k, v) => evicts.push([k, v])
+                release: (k, v) => evicts.push([k, v]),
             }
         );
     });
@@ -37,5 +40,4 @@ describe("MRU", () => {
         assert.deepEqual([...c.values()], [5, 2, 1, 3]);
         assert.deepEqual(evicts, [["d", 4]]);
     });
-
 });

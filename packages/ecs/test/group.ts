@@ -30,7 +30,7 @@ describe("component", () => {
             equiv(collect(g), [
                 { a: "a", b: [0, 0], id: 0 },
                 { a: "aa", b: [1, 2], id: 1 },
-                { a: "aaa", b: [3, 4], id: 2 }
+                { a: "aaa", b: [3, 4], id: 2 },
             ])
         );
 
@@ -38,7 +38,7 @@ describe("component", () => {
         assert.ok(
             equiv(collect(g), [
                 { a: "aa", b: [1, 2], id: 1 },
-                { a: "aaa", b: [3, 4], id: 2 }
+                { a: "aaa", b: [3, 4], id: 2 },
             ])
         );
         a.delete(2);

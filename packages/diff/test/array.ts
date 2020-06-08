@@ -1,13 +1,13 @@
 import * as assert from "assert";
 import { ArrayDiff, diffArray, DiffMode } from "../src/index";
 
-describe("array", function() {
+describe("array", function () {
     const state = <ArrayDiff<number>>{
         distance: 0,
         adds: {},
         dels: {},
         const: {},
-        linear: []
+        linear: [],
     };
 
     it("simple (null,null)", () => {
@@ -19,7 +19,7 @@ describe("array", function() {
             ...state,
             distance: 3,
             adds: { 0: 1, 1: 2, 2: 3 },
-            linear: [1, 0, 1, 1, 1, 2, 1, 2, 3]
+            linear: [1, 0, 1, 1, 1, 2, 1, 2, 3],
         });
     });
 
@@ -28,7 +28,7 @@ describe("array", function() {
             ...state,
             distance: 3,
             dels: { 0: 1, 1: 2, 2: 3 },
-            linear: [-1, 0, 1, -1, 1, 2, -1, 2, 3]
+            linear: [-1, 0, 1, -1, 1, 2, -1, 2, 3],
         });
     });
 
@@ -38,7 +38,7 @@ describe("array", function() {
             adds: { 2: 4 },
             dels: { 2: 3 },
             const: { 0: 1, 1: 2 },
-            linear: [0, 0, 1, 0, 1, 2, -1, 2, 3, 1, 2, 4]
+            linear: [0, 0, 1, 0, 1, 2, -1, 2, 3, 1, 2, 4],
         });
     });
 
@@ -50,7 +50,7 @@ describe("array", function() {
             adds: { 2: 5 },
             dels: { 2: 3 },
             const: { 0: 1, 1: 2, 3: 4 },
-            linear: [0, 0, 1, 0, 1, 2, -1, 2, 3, 1, 2, 5, 0, 3, 4]
+            linear: [0, 0, 1, 0, 1, 2, -1, 2, 3, 1, 2, 5, 0, 3, 4],
         });
     });
 
@@ -62,7 +62,7 @@ describe("array", function() {
             adds: { 3: 5 },
             dels: {},
             const: { 0: 1, 1: 2, 2: 3, 3: 4 },
-            linear: [0, 0, 1, 0, 1, 2, 0, 2, 3, 1, 3, 5, 0, 3, 4]
+            linear: [0, 0, 1, 0, 1, 2, 0, 2, 3, 1, 3, 5, 0, 3, 4],
         });
     });
 
@@ -78,7 +78,7 @@ describe("array", function() {
                 adds: {},
                 dels: {},
                 const: {},
-                linear: [1, 3, 5]
+                linear: [1, 3, 5],
             }
         );
     });

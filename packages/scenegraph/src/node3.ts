@@ -1,10 +1,5 @@
 import { isNumber } from "@thi.ng/checks";
-import {
-    invert44,
-    mulM44,
-    mulV344,
-    transform44
-} from "@thi.ng/matrices";
+import { invert44, mulM44, mulV344, transform44 } from "@thi.ng/matrices";
 import { ANode } from "./anode";
 import type { IToHiccup, Nullable } from "@thi.ng/api";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
@@ -69,7 +64,7 @@ export class Node3D extends ANode<Node3D>
                       this.body
                           ? ["g", { transform: this.mat }, this.body]
                           : undefined,
-                      ...this.children
+                      ...this.children,
                   ]
                 : this.body
                 ? ["g", { transform: this.mat }, this.body]

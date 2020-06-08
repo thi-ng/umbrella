@@ -1,11 +1,4 @@
-import {
-    defn,
-    FLOAT05,
-    mod,
-    mul,
-    ret,
-    sub
-} from "@thi.ng/shader-ast";
+import { defn, FLOAT05, mod, mul, ret, sub } from "@thi.ng/shader-ast";
 
 /**
  * Domain repetition by wrapping position `p` into period `c`.

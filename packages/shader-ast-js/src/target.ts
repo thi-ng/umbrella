@@ -13,7 +13,7 @@ import {
     Scope,
     Swizzle,
     Sym,
-    Term
+    Term,
 } from "@thi.ng/shader-ast";
 import { JS_DEFAULT_ENV } from "./env";
 import type { Fn } from "@thi.ng/api";
@@ -26,7 +26,7 @@ const CMP_OPS: Partial<Record<Operator, string>> = {
     "==": "eq",
     "!=": "neq",
     ">=": "gte",
-    ">": "gt"
+    ">": "gt",
 };
 const OP_IDS: Record<Operator, string> = {
     ...(<any>CMP_OPS),
@@ -44,7 +44,7 @@ const OP_IDS: Record<Operator, string> = {
     "^": "bitxor",
     "~": "bitnot",
     "<<": "lshift",
-    ">>": "rshift"
+    ">>": "rshift",
 };
 
 const PRELUDE = [
@@ -67,7 +67,7 @@ const PRELUDE = [
     "sampler3D",
     "samplerCube",
     "sampler2DShadow",
-    "samplerCubeShadow"
+    "samplerCubeShadow",
 ]
     .map((x) => `const ${x} = env.${x};`)
     .join("\n");
@@ -243,7 +243,7 @@ export const targetJS = () => {
 
         ternary: (t) => `(${emit(t.test)} ? ${emit(t.t)} : ${emit(t.f)})`,
 
-        while: (t) => `while (${emit(t.test)}) ${emit(t.scope)}`
+        while: (t) => `while (${emit(t.test)}) ${emit(t.scope)}`,
     });
 
     Object.assign(emit, <JSTarget>{
@@ -253,7 +253,7 @@ export const targetJS = () => {
                 "env",
                 [PRELUDE, emit(tree), "return {", exports, "};"].join("\n")
             )(env);
-        }
+        },
     });
 
     return <JSTarget>emit;

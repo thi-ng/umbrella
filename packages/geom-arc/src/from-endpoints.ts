@@ -11,7 +11,7 @@ import {
     sub2,
     submN2,
     Vec,
-    X2
+    X2,
 } from "@thi.ng/vectors";
 
 /**
@@ -64,7 +64,7 @@ export const fromEndPoints = (
     // actual center
     const center: Vec = [
         c * tc[0] - s * tc[1] + (a[0] + b[0]) / 2,
-        s * tc[0] + c * tc[1] + (a[1] + b[1]) / 2
+        s * tc[0] + c * tc[1] + (a[1] + b[1]) / 2,
     ];
     // transformed end points & angles
     const ta = div2(null, sub2([], tp, tc), r);
@@ -85,6 +85,6 @@ export const fromEndPoints = (
         start,
         end: start + sweep,
         xl,
-        cw
+        cw,
     };
 };

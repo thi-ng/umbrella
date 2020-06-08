@@ -11,7 +11,7 @@ import {
     sym,
     tan,
     Vec2Sym,
-    vec3
+    vec3,
 } from "@thi.ng/shader-ast";
 
 /**
@@ -31,7 +31,7 @@ export const raymarchDir = defn(
                 normalize(
                     vec3(uv, neg(div($y(res), tan(div(radians(fov), FLOAT2)))))
                 )
-            )
+            ),
         ];
     }
 );

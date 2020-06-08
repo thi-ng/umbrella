@@ -24,7 +24,7 @@ export const points = (
 ): any[] => {
     const group = [
         "g",
-        fattribs(withoutKeys(attribs, new Set(["shape", "size"])))
+        fattribs(withoutKeys(attribs, new Set(["shape", "size"]))),
     ];
     const href = buildSymbol(group, shape, size);
     for (let p of pts) {
@@ -62,7 +62,7 @@ export const packedPoints = (
         start: 0,
         cstride: 1,
         estride: 2,
-        ...attribs
+        ...attribs,
     };
     const { start, cstride, estride } = attribs;
     let num =
@@ -76,14 +76,14 @@ export const packedPoints = (
                 attribs,
                 new Set(["start", "cstride", "estride", "shape", "size", "num"])
             )
-        )
+        ),
     ];
     const href = buildSymbol(group, shape, size);
     for (let i = start; --num >= 0; i += estride) {
         // TODO replace w/ SVG2 `href` once Safari supports it
         group.push([
             "use",
-            { "xlink:href": href, x: ff(pts[i]), y: ff(pts[i + cstride]) }
+            { "xlink:href": href, x: ff(pts[i]), y: ff(pts[i + cstride]) },
         ]);
     }
     return group;

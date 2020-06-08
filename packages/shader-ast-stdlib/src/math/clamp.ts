@@ -9,7 +9,7 @@ import {
     vec3,
     Vec3Term,
     vec4,
-    Vec4Term
+    Vec4Term,
 } from "@thi.ng/shader-ast";
 
 const __clamp = (min: number, max: number) => <T extends Prim>(

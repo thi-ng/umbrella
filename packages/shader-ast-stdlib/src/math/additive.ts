@@ -14,7 +14,7 @@ import {
     Prim,
     ret,
     sym,
-    Term
+    Term,
 } from "@thi.ng/shader-ast";
 import type { Fn } from "@thi.ng/api";
 
@@ -62,9 +62,9 @@ export const additive = <T extends Prim>(
                         )
                     ),
                     assign(amp, mul(amp, decay)),
-                    assign(pos, <any>mul(<any>pos, 2))
+                    assign(pos, <any>mul(<any>pos, 2)),
                 ]
             ),
-            ret(n)
+            ret(n),
         ];
     });

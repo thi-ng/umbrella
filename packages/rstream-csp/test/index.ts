@@ -3,8 +3,7 @@ import * as rs from "@thi.ng/rstream";
 import * as assert from "assert";
 import { fromChannel } from "../src/index";
 
-
-describe("fromChannel", function() {
+describe("fromChannel", function () {
     it("receives all values", (done) => {
         let ch = csp.Channel.range(5);
         let src = fromChannel(ch);
@@ -18,7 +17,7 @@ describe("fromChannel", function() {
                 assert(ch.isClosed(), "channel not closed");
                 assert.equal(src.getState(), rs.State.DONE, "stream not done");
                 done();
-            }
+            },
         });
     });
 });

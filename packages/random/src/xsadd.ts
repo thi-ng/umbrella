@@ -3,7 +3,7 @@ import { DEFAULT_SEED_32 } from "./constants";
 import type { IBuffered, ICopy } from "@thi.ng/api";
 import type { ISeedable } from "./api";
 
-// https://github.com/MersenneTwister-Lab/XSadd/blob/master/xsadd.h
+// https://github.com/MersenneTwister-Lab/XSadd/blob/develop/xsadd.h
 
 export class XsAdd extends ARandom
     implements IBuffered<Uint32Array>, ICopy<XsAdd>, ISeedable<number> {

@@ -5,7 +5,7 @@ import type {
     SerializedTuple,
     Serializer,
     SerializerPair,
-    SerializerSpecs
+    SerializerSpecs,
 } from "./api";
 
 /**
@@ -13,7 +13,7 @@ import type {
  */
 export const ident = <SerializerPair<Vec>>{
     decode: (x) => x,
-    encode: (x) => x
+    encode: (x) => x,
 };
 
 /**
@@ -21,7 +21,7 @@ export const ident = <SerializerPair<Vec>>{
  */
 export const scalar = <SerializerPair<number>>{
     decode: (v) => v[0],
-    encode: (x) => [x]
+    encode: (x) => [x],
 };
 
 const toUTF8 = utf8Decode();
@@ -51,7 +51,7 @@ export const utf8z = (maxLen: number) =>
             const bytes = [...utf8Encode(v), 0];
             assert(bytes.length <= maxLen, `string too large: "${v}"`);
             return bytes;
-        }
+        },
     };
 
 export const serializer = <T extends SerializerSpecs>(
@@ -70,5 +70,5 @@ export const serializer = <T extends SerializerSpecs>(
             res[id] = specs[id].encode(tuple[id]);
         }
         return res;
-    }
+    },
 });

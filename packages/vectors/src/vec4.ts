@@ -10,7 +10,7 @@ import {
     X4,
     Y4,
     Z4,
-    ZERO4
+    ZERO4,
 } from "./api";
 import { intoStridedBuffer, mapStridedBuffer } from "./buffer";
 import { eqDelta4 } from "./eqdelta";

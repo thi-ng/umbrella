@@ -1,10 +1,5 @@
 import type { Tuple, TypedArray } from "@thi.ng/api";
-import type {
-    IVector,
-    MultiVecOp,
-    ReadonlyVec,
-    Vec
-} from "@thi.ng/vectors";
+import type { IVector, MultiVecOp, ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 export type Mat = Vec;
 export type ReadonlyMat = ReadonlyVec;

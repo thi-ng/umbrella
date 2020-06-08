@@ -13,7 +13,7 @@ import {
     setC2,
     setC3,
     sub,
-    Vec
+    Vec,
 } from "@thi.ng/vectors";
 
 /**

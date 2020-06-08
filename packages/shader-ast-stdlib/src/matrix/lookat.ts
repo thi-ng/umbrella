@@ -9,7 +9,7 @@ import {
     sub,
     sym,
     Vec3Sym,
-    vec4
+    vec4,
 } from "@thi.ng/shader-ast";
 
 /**
@@ -39,7 +39,7 @@ export const lookat = defn(
                     vec4(z, neg(dot(eye, z))),
                     vec4(0, 0, 0, 1)
                 )
-            )
+            ),
         ];
     }
 );

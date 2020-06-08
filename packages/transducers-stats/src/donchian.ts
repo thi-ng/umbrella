@@ -3,7 +3,7 @@ import {
     iterator,
     map,
     partition,
-    Transducer
+    Transducer,
 } from "@thi.ng/transducers";
 import { bounds } from "./bounds";
 

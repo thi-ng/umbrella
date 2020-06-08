@@ -24,7 +24,7 @@ export const mixin = (behaviour: any, sharedBehaviour: any = {}) => {
             if (!existing || existing.configurable) {
                 Object.defineProperty(clazz.prototype, key, {
                     value: behaviour[key],
-                    writable: true
+                    writable: true,
                 });
             } else {
                 console.log(`not patching: ${clazz.name}.${key.toString()}`);
@@ -37,12 +37,12 @@ export const mixin = (behaviour: any, sharedBehaviour: any = {}) => {
     for (let key of sharedKeys) {
         Object.defineProperty(_mixin, key, {
             value: sharedBehaviour[key],
-            enumerable: sharedBehaviour.propertyIsEnumerable(key)
+            enumerable: sharedBehaviour.propertyIsEnumerable(key),
         });
     }
 
     Object.defineProperty(_mixin, Symbol.hasInstance, {
-        value: (x: any) => !!x[typeTag]
+        value: (x: any) => !!x[typeTag],
     });
 
     return _mixin;

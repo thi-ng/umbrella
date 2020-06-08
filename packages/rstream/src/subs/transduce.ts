@@ -51,7 +51,7 @@ export const transduce = <A, B, C>(
                 },
                 error(e) {
                     reject(e);
-                }
+                },
             },
             xform
         );

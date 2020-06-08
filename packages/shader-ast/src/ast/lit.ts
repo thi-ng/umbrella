@@ -8,14 +8,14 @@ import type {
     UintTerm,
     Vec2Term,
     Vec3Term,
-    Vec4Term
+    Vec4Term,
 } from "../api/terms";
 import type {
     NumericB,
     NumericF,
     NumericI,
     NumericU,
-    Type
+    Type,
 } from "../api/types";
 
 export const lit = <T extends Type>(
@@ -26,7 +26,7 @@ export const lit = <T extends Type>(
     tag: "lit",
     type,
     info,
-    val
+    val,
 });
 
 export const bool = (x: NumericB) => lit("bool", isNumber(x) ? !!x : x);

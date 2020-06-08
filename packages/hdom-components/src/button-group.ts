@@ -82,7 +82,7 @@ export const buttonGroup = (opts: ButtonGroupOpts): ButtonGroup => (
 ) => [
     "div",
     mergeAttribs(opts.attribs, args.attribs),
-    ...groupBody(opts, args.disabled, buttons)
+    ...groupBody(opts, args.disabled, buttons),
 ];
 
 const groupBody = (
@@ -98,7 +98,7 @@ const groupBody = (
         case 2:
             return [
                 bt(opts.first, disabled, buttons[0]),
-                bt(opts.last || opts.first, disabled, buttons[1])
+                bt(opts.last || opts.first, disabled, buttons[1]),
             ];
         default: {
             const res = [bt(opts.first, disabled, buttons[0])];

@@ -109,7 +109,7 @@ export const buttonRaw = (
     if (draw) {
         shape.attribs = {
             fill: hover ? gui.fgColor(true) : gui.bgColor(focused),
-            stroke: gui.focusColor(id)
+            stroke: gui.focusColor(id),
         };
         gui.add(shape);
         label && gui.add(hover && labelHover ? labelHover : label);

@@ -8,7 +8,7 @@ import type {
     FnO5,
     FnO6,
     FnO7,
-    FnO8
+    FnO8,
 } from "@thi.ng/api";
 
 export function partial<A, T>(fn: FnO<A, T>, a: A): FnAny<T>;

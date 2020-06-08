@@ -11,7 +11,7 @@ import type { Vec, ReadonlyVec } from "@thi.ng/vectors";
  * outside the rect.
  *
  * - {@link https://en.wikipedia.org/wiki/Liang%E2%80%93Barsky_algorithm}
- * - {@link https://github.com/thi-ng/c-thing/blob/master/src/geom/clip/liangbarsky.c}
+ * - {@link https://github.com/thi-ng/c-thing/blob/develop/src/geom/clip/liangbarsky.c}
  *
  * @param a - line endpoint
  * @param b - line endpoint
@@ -108,7 +108,7 @@ export const liangBarsky2Raw = (
               beta * dx + ax,
               beta * dy + ay,
               alpha,
-              beta
+              beta,
           ]
         : undefined;
 };

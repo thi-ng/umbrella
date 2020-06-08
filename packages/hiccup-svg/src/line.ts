@@ -8,8 +8,8 @@ export const line = (a: Vec2Like, b: Vec2Like, attribs?: any): any[] => [
         x1: ff(a[0]),
         y1: ff(a[1]),
         x2: ff(b[0]),
-        y2: ff(b[1])
-    })
+        y2: ff(b[1]),
+    }),
 ];
 
 export const hline = (y: number, attribs?: any) =>

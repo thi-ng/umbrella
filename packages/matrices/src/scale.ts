@@ -1,10 +1,5 @@
 import { isNumber } from "@thi.ng/checks";
-import {
-    ReadonlyVec,
-    setC,
-    setC4,
-    setC6
-} from "@thi.ng/vectors";
+import { ReadonlyVec, setC, setC4, setC6 } from "@thi.ng/vectors";
 import type { Mat } from "./api";
 
 /**

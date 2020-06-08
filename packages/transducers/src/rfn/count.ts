@@ -19,5 +19,8 @@ export function count(...args: any[]): any {
     }
     let offset: number = args[0] || 0;
     let step: number = args[1] || 1;
-    return reducer(() => offset, (acc, _) => acc + step);
+    return reducer(
+        () => offset,
+        (acc, _) => acc + step
+    );
 }

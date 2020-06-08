@@ -1,9 +1,4 @@
-import {
-    Match,
-    Matcher,
-    RES_PARTIAL,
-    SeqCallback
-} from "./api";
+import { Match, Matcher, RES_PARTIAL, SeqCallback } from "./api";
 import { result } from "./result";
 
 /**
@@ -29,8 +24,8 @@ export const not = <T, C, R>(
         return type === Match.FAIL
             ? result(success && success(ctx, buf))
             : type !== Match.PARTIAL
-                ? // TODO Match.FULL_NC handling?
-                  result(fail && fail(ctx, buf), Match.FAIL)
-                : RES_PARTIAL;
+            ? // TODO Match.FULL_NC handling?
+              result(fail && fail(ctx, buf), Match.FAIL)
+            : RES_PARTIAL;
     };
 };

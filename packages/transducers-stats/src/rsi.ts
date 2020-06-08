@@ -4,7 +4,7 @@ import {
     iterator1,
     map,
     multiplex,
-    Transducer
+    Transducer,
 } from "@thi.ng/transducers";
 import { momentum } from "./momentum";
 import { sma } from "./sma";

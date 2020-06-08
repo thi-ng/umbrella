@@ -27,12 +27,12 @@ const PROPS = new Set<PropertyKey>([
     SYM_O,
     SYM_S,
     SYM_STR,
-    Symbol.iterator
+    Symbol.iterator,
 ]);
 
 const keys = memoize1<number, PropertyKey[]>((size: number) => [
     ...map(String, range(size)),
-    ...PROPS
+    ...PROPS,
 ]);
 
 /**
@@ -131,7 +131,7 @@ export const gvec = (
                 case SYM_STR:
                     return () =>
                         JSON.stringify([
-                            ...stridedValues(obj, size, offset, stride)
+                            ...stridedValues(obj, size, offset, stride),
                         ]);
                 default:
                     const j = parseInt(<string>id);
@@ -166,5 +166,5 @@ export const gvec = (
         },
         ownKeys() {
             return keys(size);
-        }
+        },
     });

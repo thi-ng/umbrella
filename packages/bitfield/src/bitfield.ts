@@ -1,11 +1,5 @@
 import { assert } from "@thi.ng/api";
-import {
-    align,
-    bitAnd,
-    bitNot,
-    bitOr,
-    bitXor
-} from "@thi.ng/binary";
+import { align, bitAnd, bitNot, bitOr, bitXor } from "@thi.ng/binary";
 import { binOp, toString } from "./util";
 import type { Fn2, IClear, ICopy } from "@thi.ng/api";
 

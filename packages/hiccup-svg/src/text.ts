@@ -6,7 +6,7 @@ export const text = (p: Vec2Like, body: string, attribs?: any): any[] => [
     fattribs({
         ...attribs,
         x: ff(p[0]),
-        y: ff(p[1])
+        y: ff(p[1]),
     }),
-    body
+    body,
 ];

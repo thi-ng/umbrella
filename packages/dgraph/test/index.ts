@@ -39,20 +39,41 @@ describe("dgraph", () => {
     });
 
     it("sort", () => {
-        assert.deepEqual(g.sort(), [[30, 40], [3, 4], [10, 20], [1, 2]]);
+        assert.deepEqual(g.sort(), [
+            [30, 40],
+            [3, 4],
+            [10, 20],
+            [1, 2],
+        ]);
         g.addDependency([30, 40], [50, 60]);
         assert.deepEqual(g.sort(), [
             [50, 60],
             [30, 40],
             [3, 4],
             [10, 20],
-            [1, 2]
+            [1, 2],
         ]);
     });
 
     it("iterator", () => {
-        assert.deepEqual([...g], [[30, 40], [3, 4], [10, 20], [1, 2]]);
-        assert.deepEqual([...g], [[30, 40], [3, 4], [10, 20], [1, 2]]);
+        assert.deepEqual(
+            [...g],
+            [
+                [30, 40],
+                [3, 4],
+                [10, 20],
+                [1, 2],
+            ]
+        );
+        assert.deepEqual(
+            [...g],
+            [
+                [30, 40],
+                [3, 4],
+                [10, 20],
+                [1, 2],
+            ]
+        );
     });
 
     it("separate nodes", () => {
@@ -60,6 +81,9 @@ describe("dgraph", () => {
         g.addNode([1, 2]);
         g.addNode([3, 4]);
         g.addNode([3, 4]);
-        assert.deepEqual(g.sort(), [[3, 4], [1, 2]]);
+        assert.deepEqual(g.sort(), [
+            [3, 4],
+            [1, 2],
+        ]);
     });
 });

@@ -8,7 +8,7 @@ import {
     mulN,
     perpendicularCCW,
     ReadonlyVec,
-    sub
+    sub,
 } from "@thi.ng/vectors";
 import { NONE } from "./api";
 
@@ -31,7 +31,7 @@ export const intersectCircleCircle = (
         const t = mulN(null, perpendicularCCW(null, delta), h / d);
         return {
             type: IntersectionType.INTERSECT,
-            isec: [add([], p, t), sub([], p, t)]
+            isec: [add([], p, t), sub([], p, t)],
         };
     }
     return NONE;

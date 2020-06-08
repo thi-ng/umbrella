@@ -8,7 +8,7 @@ import {
     runtime,
     Sym,
     SyntaxOpts,
-    tokenize
+    tokenize,
 } from "../src/index";
 
 const ops = defmulti<ASTNode, ASTNode[], any, any>((x) => (<Sym>x).value);
@@ -16,7 +16,7 @@ const rt = runtime<Implementations<any, any>, any, any>({
     expr: (x, env) => ops(x.children[0], x.children, env),
     sym: (x, env) => env[x.value],
     str: (x) => x.value,
-    num: (x) => x.value
+    num: (x) => x.value,
 });
 
 const $eval = (src: string, env: any = {}) => rt(parse(src).children[0], env);
@@ -32,13 +32,16 @@ ops.addAll({
     "*": op((acc, x) => acc * x),
     "-": op((acc, x) => acc - x),
     "/": op((acc, x) => acc / x),
-    count: (_, [__, x]) => rt(x).length
+    count: (_, [__, x]) => rt(x).length,
 });
 
 ops.add(DEFAULT, (x, [_, ...args], env) => {
     const f = env[(<Sym>x).value];
     assert(!!f, "missing impl");
-    return f.apply(null, args.map((a) => rt(a, env)));
+    return f.apply(
+        null,
+        args.map((a) => rt(a, env))
+    );
 });
 
 describe("sexpr", () => {
@@ -57,19 +60,22 @@ describe("sexpr", () => {
                             value: "(",
                             children: [
                                 { type: "sym", value: "len" },
-                                { type: "str", value: "234" }
-                            ]
-                        }
-                    ]
-                }
-            ]
+                                { type: "str", value: "234" },
+                            ],
+                        },
+                    ],
+                },
+            ],
         });
     });
 
     it("custom syntax", () => {
         const syntax: Partial<SyntaxOpts> = {
-            scopes: [["<", ">"], ["{", "}"]],
-            string: "'"
+            scopes: [
+                ["<", ">"],
+                ["{", "}"],
+            ],
+            string: "'",
         };
         assert.deepEqual(parse(`<nest { a '2' b 3 }>`, syntax), {
             type: "root",
@@ -80,7 +86,7 @@ describe("sexpr", () => {
                     children: [
                         {
                             type: "sym",
-                            value: "nest"
+                            value: "nest",
                         },
                         {
                             type: "expr",
@@ -88,25 +94,25 @@ describe("sexpr", () => {
                             children: [
                                 {
                                     type: "sym",
-                                    value: "a"
+                                    value: "a",
                                 },
                                 {
                                     type: "str",
-                                    value: "2"
+                                    value: "2",
                                 },
                                 {
                                     type: "sym",
-                                    value: "b"
+                                    value: "b",
                                 },
                                 {
                                     type: "num",
-                                    value: 3
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
+                                    value: 3,
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
         });
     });
 
@@ -133,7 +139,7 @@ describe("sexpr", () => {
     it("fn in env", () => {
         assert.equal(
             $eval(`(join (+ 1 2) (+ 3 4))`, {
-                join: (...xs: any[]) => xs.join(",")
+                join: (...xs: any[]) => xs.join(","),
             }),
             "3,7"
         );

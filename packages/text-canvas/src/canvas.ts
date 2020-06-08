@@ -1,11 +1,6 @@
 import { peek } from "@thi.ng/arrays";
 import { clamp } from "@thi.ng/math";
-import {
-    ClipRect,
-    NONE,
-    StrokeStyle,
-    STYLE_ASCII
-} from "./api";
+import { ClipRect, NONE, StrokeStyle, STYLE_ASCII } from "./api";
 import { charCode, intersectRect } from "./utils";
 import type { Fn0, NumOrString } from "@thi.ng/api";
 
@@ -30,7 +25,7 @@ export class Canvas {
         this.format = this.defaultFormat = format;
         this.styles = [style];
         this.clipRects = [
-            { x1: 0, y1: 0, x2: width, y2: height, w: width, h: height }
+            { x1: 0, y1: 0, x2: width, y2: height, w: width, h: height },
         ];
     }
 }

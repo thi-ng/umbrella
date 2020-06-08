@@ -6,14 +6,23 @@ describe("mergeApply", () => {
     it("map", () => {
         assert.deepEqual(
             mergeApplyMap(
-                new Map([["a", 1], ["b", 2], ["c", 3]]),
+                new Map([
+                    ["a", 1],
+                    ["b", 2],
+                    ["c", 3],
+                ]),
                 new Map<string, number | Fn<number, number>>([
                     ["a", (x) => x + 10],
                     ["b", 20],
-                    ["d", 40]
+                    ["d", 40],
                 ])
             ),
-            new Map([["a", 11], ["b", 20], ["c", 3], ["d", 40]])
+            new Map([
+                ["a", 11],
+                ["b", 20],
+                ["c", 3],
+                ["d", 40],
+            ])
         );
     });
     it("object", () => {

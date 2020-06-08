@@ -14,18 +14,18 @@ const examples: Example[] = [
     {
         rules: { s: "[f-f-f-f-f-f-f-f]", f: "f---f+f+f+f+f+f+f---f" },
         delta: Math.PI / 4,
-        iter: 6
+        iter: 6,
     },
     {
         rules: { s: "[x]", x: "-yf+xfx+fy-", y: "+xf-yfy-fx+" },
         delta: Math.PI / 2,
-        iter: 7
+        iter: 7,
     },
     {
         rules: { s: "[a]", a: "a-b--b+a++aa+b-", b: "+a-bb--b-a++a+b" },
         delta: Math.PI / 3,
-        iter: 5
-    }
+        iter: 5,
+    },
 ];
 
 const impl = lsys.TURTLE_IMPL_2D;
@@ -43,7 +43,7 @@ examples.forEach(({ rules, delta, iter }, i) =>
                     stroke: "#00f",
                     "stroke-width": 0.25,
                     width: 600,
-                    height: 600
+                    height: 600,
                 },
                 ...lsys
                     .interpret(

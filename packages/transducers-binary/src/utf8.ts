@@ -4,7 +4,7 @@ import {
     iterator,
     iterator1,
     Reducer,
-    Transducer
+    Transducer,
 } from "@thi.ng/transducers";
 
 /**
@@ -150,14 +150,14 @@ export function utf8Encode(src?: string): any {
                       buf = [
                           0xe0 | (u >> 12),
                           0x80 | ((u >> 6) & 0x3f),
-                          0x80 | (u & 0x3f)
+                          0x80 | (u & 0x3f),
                       ];
                   } else if (u < 0x200000) {
                       buf = [
                           0xf0 | (u >> 18),
                           0x80 | ((u >> 12) & 0x3f),
                           0x80 | ((u >> 6) & 0x3f),
-                          0x80 | (u & 0x3f)
+                          0x80 | (u & 0x3f),
                       ];
                   } else if (u < 0x4000000) {
                       buf = [
@@ -165,7 +165,7 @@ export function utf8Encode(src?: string): any {
                           0x80 | ((u >> 18) & 0x3f),
                           0x80 | ((u >> 12) & 0x3f),
                           0x80 | ((u >> 6) & 0x3f),
-                          0x80 | (u & 0x3f)
+                          0x80 | (u & 0x3f),
                       ];
                   } else {
                       buf = [
@@ -174,7 +174,7 @@ export function utf8Encode(src?: string): any {
                           0x80 | ((u >> 18) & 0x3f),
                           0x80 | ((u >> 12) & 0x3f),
                           0x80 | ((u >> 6) & 0x3f),
-                          0x80 | (u & 0x3f)
+                          0x80 | (u & 0x3f),
                       ];
                   }
                   for (let i = 0, n = buf.length; i < n; i++) {

@@ -5,7 +5,7 @@ import type {
     ICopy,
     IEmpty,
     ILength,
-    IStack
+    IStack,
 } from "@thi.ng/api";
 import type { HeapOpts } from "./api";
 

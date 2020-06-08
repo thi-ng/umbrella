@@ -36,12 +36,12 @@ describe("sax", () => {
                                 ...e.attribs,
                                 cx: parseFloat(e.attribs.cx),
                                 cy: parseFloat(e.attribs.cy),
-                                r: parseFloat(e.attribs.r)
-                            }
+                                r: parseFloat(e.attribs.r),
+                            },
                         ])
                     ),
                     svg
-                )
+                ),
             ],
             [
                 ["circle", { cx: 50, cy: 150, r: 50 }],
@@ -53,9 +53,9 @@ describe("sax", () => {
                         cy: 150,
                         fill: "rgba(0,255,255,0.25)",
                         r: 100,
-                        stroke: "#ff0000"
-                    }
-                ]
+                        stroke: "#ff0000",
+                    },
+                ],
             ]
         );
     });
@@ -69,7 +69,10 @@ describe("sax", () => {
 
         const parsedChildren = (e: ParseElement) =>
             tx.iterator(
-                tx.comp(tx.map(parseElement), tx.filter((e: any) => !!e)),
+                tx.comp(
+                    tx.map(parseElement),
+                    tx.filter((e: any) => !!e)
+                ),
                 e.children
             );
 
@@ -79,12 +82,12 @@ describe("sax", () => {
         // implementations
         parseElement.add("circle", (e) => [
             e.tag,
-            numericAttribs(e, "cx", "cy", "r")
+            numericAttribs(e, "cx", "cy", "r"),
         ]);
 
         parseElement.add("rect", (e) => [
             e.tag,
-            numericAttribs(e, "x", "y", "width", "height")
+            numericAttribs(e, "x", "y", "width", "height"),
         ]);
 
         parseElement.add("g", (e) => [e.tag, e.attribs, ...parsedChildren(e)]);
@@ -92,7 +95,7 @@ describe("sax", () => {
         parseElement.add("svg", (e) => [
             e.tag,
             numericAttribs(e, "width", "height"),
-            ...parsedChildren(e)
+            ...parsedChildren(e),
         ]);
 
         // implementation for unhandled elements (just return undefined)
@@ -106,7 +109,7 @@ describe("sax", () => {
                     version: "1.1",
                     height: 300,
                     width: 300,
-                    xmlns: "http://www.w3.org/2000/svg"
+                    xmlns: "http://www.w3.org/2000/svg",
                 },
                 [
                     "g",
@@ -120,8 +123,8 @@ describe("sax", () => {
                             cy: 150,
                             fill: "rgba(0,255,255,0.25)",
                             r: 100,
-                            stroke: "#ff0000"
-                        }
+                            stroke: "#ff0000",
+                        },
                     ],
                     [
                         "rect",
@@ -131,16 +134,16 @@ describe("sax", () => {
                             width: 140,
                             height: 140,
                             fill: "none",
-                            stroke: "black"
-                        }
-                    ]
+                            stroke: "black",
+                        },
+                    ],
                 ],
                 [
                     "g",
                     { fill: "none", stroke: "black" },
                     ["circle", { cx: 150, cy: 150, r: 50 }],
-                    ["circle", { cx: 150, cy: 150, r: 25 }]
-                ]
+                    ["circle", { cx: 150, cy: 150, r: 25 }],
+                ],
             ]
         );
     });
@@ -155,7 +158,7 @@ describe("sax", () => {
             [
                 { type: 4, tag: "a", attribs: {} },
                 { type: 4, tag: "b", attribs: {} },
-                { type: 7, body: "unmatched tag: 'c' @ pos 7" }
+                { type: 7, body: "unmatched tag: 'c' @ pos 7" },
             ]
         );
     });
@@ -169,8 +172,8 @@ describe("sax", () => {
                     type: 5,
                     tag: "foo",
                     attribs: { a: true, b: "2", c: true },
-                    children: []
-                }
+                    children: [],
+                },
             ],
             "no slash"
         );
@@ -178,7 +181,7 @@ describe("sax", () => {
             [...parse({ boolean: true }, `<foo a b="2" c/>`)],
             [
                 { type: 4, tag: "foo", attribs: { a: true, b: "2", c: true } },
-                { type: 5, tag: "foo", attribs: { a: true, b: "2", c: true } }
+                { type: 5, tag: "foo", attribs: { a: true, b: "2", c: true } },
             ],
             "with slash"
         );

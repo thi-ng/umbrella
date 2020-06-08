@@ -2,17 +2,10 @@ import {
     DEFAULT,
     defmulti,
     Implementation1O,
-    MultiFn1O
+    MultiFn1O,
 } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
-import {
-    ReadonlyVec,
-    set2,
-    set3,
-    submN,
-    ZERO2,
-    ZERO3
-} from "@thi.ng/vectors";
+import { ReadonlyVec, set2, set3, submN, ZERO2, ZERO3 } from "@thi.ng/vectors";
 import { Arc } from "../api/arc";
 import { Circle } from "../api/circle";
 import { Ellipse } from "../api/ellipse";
@@ -56,5 +49,5 @@ center.addAll(<
         new Ellipse(set2([], origin), set2([], $.r), copyAttribs($)),
 
     [Type.SPHERE]: ($: Sphere, origin = ZERO3) =>
-        new Sphere(set3([], origin), $.r, copyAttribs($))
+        new Sphere(set3([], origin), $.r, copyAttribs($)),
 });

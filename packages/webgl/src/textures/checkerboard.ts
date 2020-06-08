@@ -14,7 +14,7 @@ export const checkerboard = (opts: Partial<CheckerboardOpts>) => {
         col1: 0xffffffff,
         col2: 0xff000000,
         cornerCols: [0xffff0000, 0xff00ff00, 0xff0000ff, 0xffffff00],
-        ...opts
+        ...opts,
     };
     const size = opts.size!;
     const col1 = ARGB8888.toABGR(opts.col1!);

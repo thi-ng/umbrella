@@ -1,10 +1,5 @@
 import type { Index, Swizzle, Sym } from "./nodes";
-import type {
-    BoolTerm,
-    FloatTerm,
-    IntTerm,
-    UintTerm
-} from "./terms";
+import type { BoolTerm, FloatTerm, IntTerm, UintTerm } from "./terms";
 
 export type Type =
     | "void"

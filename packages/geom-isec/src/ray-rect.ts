@@ -91,16 +91,16 @@ const intersectWith = (
                   type: IntersectionType.INTERSECT,
                   inside,
                   isec: [maddN([], dir, tmax, rpos)],
-                  alpha: tmax
+                  alpha: tmax,
               }
             : {
                   type: IntersectionType.INTERSECT,
                   isec: [
                       maddN([], dir, tmin, rpos),
-                      maddN([], dir, tmax, rpos)
+                      maddN([], dir, tmax, rpos),
                   ],
                   alpha: tmin,
-                  beta: tmax
+                  beta: tmax,
               }
         : NONE;
 };

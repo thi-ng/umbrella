@@ -31,7 +31,7 @@ export const normalizedPath = (path: Path) =>
                           )
                         : [{ ...s }],
                 path.segments
-            )
+            ),
         ],
         path.attribs
     );

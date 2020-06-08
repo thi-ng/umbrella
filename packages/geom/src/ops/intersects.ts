@@ -4,7 +4,7 @@ import {
     IntersectionType,
     IShape,
     PCLike,
-    Type
+    Type,
 } from "@thi.ng/geom-api";
 import {
     intersectCircleCircle,
@@ -16,7 +16,7 @@ import {
     intersectRayPolyline,
     intersectRayRect,
     testRectCircle,
-    testRectRect
+    testRectRect,
 } from "@thi.ng/geom-isec";
 import { AABB } from "../api/aabb";
 import { Circle } from "../api/circle";
@@ -68,14 +68,14 @@ intersects.addAll(<
     [`${Type.RECT}-${Type.CIRCLE}`]: (rect: Rect, circle: Circle) => ({
         type: testRectCircle(rect.pos, rect.size, circle.pos, circle.r)
             ? IntersectionType.INTERSECT
-            : IntersectionType.NONE
+            : IntersectionType.NONE,
     }),
 
     [`${Type.RECT}-${Type.RECT}`]: (a: Rect, b: Rect) => ({
         type: testRectRect(a.pos, a.size, b.pos, b.size)
             ? IntersectionType.INTERSECT
-            : IntersectionType.NONE
-    })
+            : IntersectionType.NONE,
+    }),
 });
 
 intersects.isa(`${Type.RAY}-${Type.SPHERE}`, `${Type.RAY}-${Type.CIRCLE}`);

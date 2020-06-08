@@ -222,7 +222,7 @@ export const mux = (a: boolean, b: boolean, s: boolean) =>
  */
 export const demux = (i: boolean, s: boolean): [boolean, boolean] => [
     i && !s,
-    i && s
+    i && s,
 ];
 
 /**
@@ -233,7 +233,7 @@ export const demux = (i: boolean, s: boolean): [boolean, boolean] => [
  */
 export const hadd1 = (a: boolean, b: boolean): Sum<boolean> => ({
     s: a !== b,
-    c: a && b
+    c: a && b,
 });
 
 /**
@@ -245,7 +245,7 @@ export const hadd1 = (a: boolean, b: boolean): Sum<boolean> => ({
  */
 export const fadd1 = (a: boolean, b: boolean, c: boolean): Sum<boolean> => ({
     s: (a !== b) !== c,
-    c: (a !== b && c) || (a && b)
+    c: (a !== b && c) || (a && b),
 });
 
 /**

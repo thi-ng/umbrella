@@ -13,5 +13,5 @@ export const __sortOpts = <A, B>(opts?: Partial<SortOpts<A, B>>) =>
     <SortOpts<A, B>>{
         key: identity,
         compare,
-        ...opts
+        ...opts,
     };

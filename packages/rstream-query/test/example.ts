@@ -9,7 +9,7 @@ const store = new q.TripleStore([
     ["portland", "part-of", "usa"],
     ["oregon", "type", "state"],
     ["usa", "type", "country"],
-    ["uk", "type", "country"]
+    ["uk", "type", "country"],
 ]);
 
 // alternatively, convert an object into a sequence of triples
@@ -46,19 +46,19 @@ store
                     // then a city's "part-of" relationships (if any)
                     ["?city", "partOf", "?country"],
                     // the matched ?country must have type = "country"
-                    ["?country", "type", "country"]
-                ]
-            }
+                    ["?country", "type", "country"],
+                ],
+            },
         ],
         // `bind` is an (optional) query post-processor and
         // allows injection of new variables into the result set
         // here we create a new var "answer" whose values are derived from
         // the other two query vars
         bind: {
-            answer: (res) => `${res.city} is located in ${res.country}`
+            answer: (res) => `${res.city} is located in ${res.country}`,
         },
         // another post-processing step, only keeps "answer" var in results
-        select: ["answer"]
+        select: ["answer"],
     })
     .subscribe(trace());
 // Set {
@@ -70,7 +70,7 @@ const addCity = (name: string, country: string) =>
     store.into([
         [name, "type", "city"],
         [name, "partOf", country],
-        [country, "type", "country"]
+        [country, "type", "country"],
     ]);
 
 addCity("berlin", "germany");

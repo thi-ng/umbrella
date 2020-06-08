@@ -1,12 +1,4 @@
-import {
-    defn,
-    exp,
-    FLOAT1,
-    mul,
-    neg,
-    ret,
-    sub
-} from "@thi.ng/shader-ast";
+import { defn, exp, FLOAT1, mul, neg, ret, sub } from "@thi.ng/shader-ast";
 import { clamp01 } from "../math/clamp";
 
 /**

@@ -17,7 +17,7 @@ import {
     sub,
     sym,
     Vec2Term,
-    vec3
+    vec3,
 } from "@thi.ng/shader-ast";
 import { perpendicularCCW } from "../math/orthogonal";
 import { cossin } from "../math/sincos";
@@ -32,7 +32,7 @@ export const rotationX3 = defn("mat3", "rotationX3", ["float"], (theta) => {
     let cs: Vec2Term;
     return [
         (cs = sym(cossin(theta))),
-        ret(mat3(1, 0, 0, 0, $x(cs), $y(cs), 0, neg($y(cs)), $x(cs)))
+        ret(mat3(1, 0, 0, 0, $x(cs), $y(cs), 0, neg($y(cs)), $x(cs))),
     ];
 });
 
@@ -40,7 +40,7 @@ export const rotationY3 = defn("mat3", "rotationY3", ["float"], (theta) => {
     let cs: Vec2Term;
     return [
         (cs = sym(cossin(theta))),
-        ret(mat3($x(cs), 0, neg($y(cs)), 0, 1, 0, $y(cs), 0, $x(cs)))
+        ret(mat3($x(cs), 0, neg($y(cs)), 0, 1, 0, $y(cs), 0, $x(cs))),
     ];
 });
 
@@ -48,7 +48,7 @@ export const rotationZ3 = defn("mat3", "rotationZ3", ["float"], (theta) => {
     let cs: Vec2Term;
     return [
         (cs = sym(cossin(theta))),
-        ret(mat3($x(cs), $y(cs), 0, neg($y(cs)), $x(cs), 0, 0, 0, 1))
+        ret(mat3($x(cs), $y(cs), 0, neg($y(cs)), $x(cs), 0, 0, 0, 1)),
     ];
 });
 
@@ -75,7 +75,7 @@ export const rotationX4 = defn("mat4", "rotationX4", ["float"], (theta) => {
                 0,
                 1
             )
-        )
+        ),
     ];
 });
 
@@ -102,7 +102,7 @@ export const rotationY4 = defn("mat4", "rotationY4", ["float"], (theta) => {
                 0,
                 1
             )
-        )
+        ),
     ];
 });
 
@@ -129,7 +129,7 @@ export const rotationZ4 = defn("mat4", "rotationZ4", ["float"], (theta) => {
                 0,
                 1
             )
-        )
+        ),
     ];
 });
 
@@ -160,7 +160,7 @@ export const rotationAroundAxis3 = defn(
                     $$($y(axis), neg($z(axis)), 1, $x(axis), s, c, s),
                     $$($z(axis), $y(axis), neg($x(axis)), 1, s, s, c)
                 )
-            )
+            ),
         ];
     }
 );

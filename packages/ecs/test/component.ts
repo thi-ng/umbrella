@@ -41,7 +41,7 @@ describe("component", () => {
             id: "b",
             type: Type.F32,
             size: 3,
-            stride: 4
+            stride: 4,
         });
         assert.equal(b.vals.length, ecs.idgen.capacity * 4);
         assert.equal(b.size, 3);
@@ -53,7 +53,7 @@ describe("component", () => {
             id: "a",
             type: Type.F32,
             size: 2,
-            default: [1, 2]
+            default: [1, 2],
         });
         assert(a.add(8));
         assert(a.add(9, [10, 20]));
@@ -69,11 +69,19 @@ describe("component", () => {
             id: "a",
             type: Type.F32,
             size: 2,
-            default: [1, 2]
+            default: [1, 2],
         });
         assert(a.add(8));
         assert(a.add(9, [10, 20]));
         assert.deepEqual([...a.packedValues()], [1, 2, 10, 20]);
-        assert(equiv([...a.values()], [[10, 20], [1, 2]]));
+        assert(
+            equiv(
+                [...a.values()],
+                [
+                    [10, 20],
+                    [1, 2],
+                ]
+            )
+        );
     });
 });

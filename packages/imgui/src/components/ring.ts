@@ -1,14 +1,7 @@
 import { polygon } from "@thi.ng/geom";
 import { pointInRect } from "@thi.ng/geom-isec";
 import { IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
-import {
-    fitClamped,
-    HALF_PI,
-    mix,
-    norm,
-    PI,
-    TAU
-} from "@thi.ng/math";
+import { fitClamped, HALF_PI, mix, norm, PI, TAU } from "@thi.ng/math";
 import { map, normRange } from "@thi.ng/transducers";
 import { cartesian2, hash, Vec } from "@thi.ng/vectors";
 import { dialVal } from "../behaviors/dial";
@@ -102,7 +95,8 @@ export const ringGroup = (
         ? layout.nest(n, [n, 1])
         : layout.nest(1, [
               1,
-              (layout.rowsForHeight(ringHeight(layout.cellW, thetaGap)) + 1) * n
+              (layout.rowsForHeight(ringHeight(layout.cellW, thetaGap)) + 1) *
+                  n,
           ]);
     let res: number | undefined;
     let idx: number = -1;
@@ -188,7 +182,7 @@ export const ringRaw = (
             polygon(
                 [
                     ...arcVerts(pos, r, startTheta, endTheta, numV),
-                    ...arcVerts(pos, r2, endTheta, startTheta, numV)
+                    ...arcVerts(pos, r2, endTheta, startTheta, numV),
                 ],
                 {}
             )
@@ -197,7 +191,7 @@ export const ringRaw = (
             polygon(
                 [
                     ...arcVerts(pos, r, startTheta, valTheta, numV),
-                    ...arcVerts(pos, r2, valTheta, startTheta, numV)
+                    ...arcVerts(pos, r2, valTheta, startTheta, numV),
                 ],
                 {}
             )

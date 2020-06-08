@@ -1,11 +1,4 @@
-import {
-    add,
-    max,
-    min,
-    ReadonlyVec,
-    sub,
-    VecPair
-} from "@thi.ng/vectors";
+import { add, max, min, ReadonlyVec, sub, VecPair } from "@thi.ng/vectors";
 
 /**
  * Takes the position and size vectors of 2

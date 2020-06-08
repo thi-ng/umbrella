@@ -8,7 +8,7 @@ describe("dsp-io-wav", () => {
                 ...wavByteArray(
                     { sampleRate: 48000, channels: 1, length: 4, bits: 16 },
                     [-1, -0.5, 0, 1]
-                )
+                ),
             ],
             // prettier-ignore
             [

@@ -73,7 +73,7 @@ export const toggleRaw = (
     if (draw) {
         box.attribs = {
             fill: val ? gui.fgColor(hover) : gui.bgColor(hover),
-            stroke: gui.focusColor(id)
+            stroke: gui.focusColor(id),
         };
         gui.add(box);
         label &&

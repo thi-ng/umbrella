@@ -1,10 +1,5 @@
 import * as assert from "assert";
-import {
-    fromIterable,
-    State,
-    Stream,
-    Subscription
-} from "../src/index";
+import { fromIterable, State, Stream, Subscription } from "../src/index";
 import { TIMEOUT } from "./config";
 
 describe("fromIterable()", () => {
@@ -37,7 +32,7 @@ describe("fromIterable()", () => {
             done() {
                 assert.deepEqual(buf, data);
                 done();
-            }
+            },
         });
     });
 
@@ -47,7 +42,7 @@ describe("fromIterable()", () => {
                 assert.equal(src.getState(), State.DONE, "src not done");
                 assert.equal(sub.getState(), State.DONE, "sub not done");
                 done();
-            }
+            },
         });
     });
 
@@ -63,11 +58,11 @@ describe("fromIterable()", () => {
                 assert.deepEqual(buf, data);
                 assert(Date.now() - t0 >= (data.length + 1) * 10);
                 done();
-            }
+            },
         });
     });
 
-    it("can be cancelled", function(done) {
+    it("can be cancelled", function (done) {
         this.timeout(TIMEOUT * 5);
         let buf: any[] = [];
         let doneCalled = false;
@@ -78,7 +73,7 @@ describe("fromIterable()", () => {
             },
             done() {
                 doneCalled = true;
-            }
+            },
         });
         setTimeout(() => src.cancel(), TIMEOUT * 1.5);
         setTimeout(() => {

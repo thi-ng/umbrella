@@ -26,14 +26,14 @@ const DEFAULT_OPTS: ToggleOpts = {
     bgOn: { fill: "#000" },
     bgOff: { fill: "#999" },
     fgOn: { fill: "#fff" },
-    fgOff: { fill: "#fff" }
+    fgOff: { fill: "#fff" },
 };
 
 export const slideToggleDot = (opts: Partial<ToggleDotOpts> = {}) => {
     const _opts: ToggleDotOpts = {
         r: 5,
         ...DEFAULT_OPTS,
-        ...opts
+        ...opts,
     };
     const { r, pad, margin, vertical } = _opts;
     const m2 = margin * 2;
@@ -53,25 +53,25 @@ export const slideToggleDot = (opts: Partial<ToggleDotOpts> = {}) => {
         rx: br,
         ry: br,
         ...(vertical ? { width: height, height: width } : { width, height }),
-        ..._opts.bgOn
+        ..._opts.bgOn,
     };
     const bgOff = { ...bgOn, ..._opts.bgOff };
     const shapeOn: any = {
         ...(vertical ? { cx, cy: cx } : { cx: width + margin - br, cy: cx }),
         ..._opts.fgOn,
         style,
-        r
+        r,
     };
     const shapeOff: any = {
         ...shapeOn,
         ...(vertical ? { cy: width + margin - br } : { cx }),
-        ..._opts.fgOff
+        ..._opts.fgOff,
     };
     return (_: any, attribs: any, state: boolean) => [
         "svg",
         { ...svgSize, ...attribs },
         ["rect", state ? bgOn : bgOff],
-        ["circle", state ? shapeOn : shapeOff]
+        ["circle", state ? shapeOn : shapeOff],
     ];
 };
 
@@ -80,7 +80,7 @@ export const slideToggleRect = (opts: Partial<ToggleRectOpts> = {}) => {
         w: 10,
         h: 10,
         ...DEFAULT_OPTS,
-        ...opts
+        ...opts,
     };
     const { w, h, pad, margin, vertical } = _opts;
     const m2 = margin * 2;
@@ -94,7 +94,7 @@ export const slideToggleRect = (opts: Partial<ToggleRectOpts> = {}) => {
         width,
         height,
         x: margin,
-        y: margin
+        y: margin,
     };
     const bgOff = { ...bgOn, ..._opts.bgOff };
     const shapeOn: any = {
@@ -104,17 +104,17 @@ export const slideToggleRect = (opts: Partial<ToggleRectOpts> = {}) => {
         ..._opts.fgOn,
         style,
         width: w,
-        height: h
+        height: h,
     };
     const shapeOff: any = {
         ...shapeOn,
         ...(vertical ? { y: height + margin - pad - h } : { x: pm }),
-        ..._opts.fgOff
+        ..._opts.fgOff,
     };
     return (_: any, attribs: any, state: boolean) => [
         "svg",
         { ...svgSize, ...attribs },
         ["rect", state ? bgOn : bgOff],
-        ["rect", state ? shapeOn : shapeOff]
+        ["rect", state ? shapeOn : shapeOff],
     ];
 };

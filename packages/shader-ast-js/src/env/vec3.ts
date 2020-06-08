@@ -46,7 +46,7 @@ import {
     sub3,
     subN3,
     tan3,
-    ZERO3
+    ZERO3,
 } from "@thi.ng/vectors";
 import type { JSBuiltinsVec3 } from "../api";
 
@@ -106,5 +106,5 @@ export const VEC3: JSBuiltinsVec3 = {
     sub1: (a) => neg([], a),
     subnv: (a, b) => sub3(null, [a, a, a], b),
     subvn: (a, b) => subN3([], a, b),
-    tan: (a) => tan3([], a)
+    tan: (a) => tan3([], a),
 };

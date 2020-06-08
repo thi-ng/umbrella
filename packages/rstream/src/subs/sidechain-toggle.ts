@@ -62,7 +62,7 @@ export class SidechainToggle<T, S> extends ASidechain<T, S, T> {
             },
             done() {
                 $this.done();
-            }
+            },
         });
     }
 

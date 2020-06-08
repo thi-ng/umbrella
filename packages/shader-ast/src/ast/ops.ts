@@ -3,12 +3,7 @@ import { isMat, isVec } from "./checks";
 import { numberWithMatchingType } from "./item";
 import { float } from "./lit";
 import type { IObjectOf } from "@thi.ng/api";
-import type {
-    Op1,
-    Op2,
-    Sym,
-    Term
-} from "../api/nodes";
+import type { Op1, Op2, Sym, Term } from "../api/nodes";
 import type { ComparisonOperator, Operator } from "../api/ops";
 import type {
     BoolTerm,
@@ -20,7 +15,7 @@ import type {
     UintTerm,
     Vec2Term,
     Vec3Term,
-    Vec4Term
+    Vec4Term,
 } from "../api/terms";
 import type {
     Comparable,
@@ -30,7 +25,7 @@ import type {
     Prim,
     Type,
     UVec,
-    Vec
+    Vec,
 } from "../api/types";
 
 export const op1 = <T extends Type>(
@@ -42,7 +37,7 @@ export const op1 = <T extends Type>(
     type: val.type,
     op,
     val,
-    post
+    post,
 });
 
 const OP_INFO: IObjectOf<string> = {
@@ -55,7 +50,7 @@ const OP_INFO: IObjectOf<string> = {
     ivin: "vn",
     iniv: "nv",
     uvui: "vn",
-    uiuv: "nv"
+    uiuv: "nv",
 };
 
 export const op2 = (
@@ -107,7 +102,7 @@ export const op2 = (
         info: info || OP_INFO[l!.type.substr(0, 2) + r!.type.substr(0, 2)],
         op,
         l: l!,
-        r: r!
+        r: r!,
     };
 };
 

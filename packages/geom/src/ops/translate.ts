@@ -1,12 +1,6 @@
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import { IHiccupShape, IShape, Type } from "@thi.ng/geom-api";
-import {
-    add2,
-    add3,
-    ReadonlyVec,
-    set2,
-    set3
-} from "@thi.ng/vectors";
+import { add2, add3, ReadonlyVec, set2, set3 } from "@thi.ng/vectors";
 import { AABB } from "../api/aabb";
 import { Arc } from "../api/arc";
 import { Circle } from "../api/circle";
@@ -59,11 +53,11 @@ translate.addAll(<IObjectOf<Implementation2<unknown, ReadonlyVec, IShape>>>{
                 s.geo
                     ? {
                           type: s.type,
-                          geo: <any>translate(s.geo, delta)
+                          geo: <any>translate(s.geo, delta),
                       }
                     : {
                           type: s.type,
-                          point: add2([], s.point!, delta)
+                          point: add2([], s.point!, delta),
                       }
             ),
             copyAttribs($)
@@ -88,5 +82,5 @@ translate.addAll(<IObjectOf<Implementation2<unknown, ReadonlyVec, IShape>>>{
     [Type.SPHERE]: ($: Sphere, delta) =>
         new Sphere(add3([], $.pos, delta), $.r, copyAttribs($)),
 
-    [Type.TRIANGLE]: tx(Triangle)
+    [Type.TRIANGLE]: tx(Triangle),
 });

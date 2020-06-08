@@ -2,7 +2,11 @@ import { rect } from "@thi.ng/geom";
 import { IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
 import { fit, norm } from "@thi.ng/math";
 import { hash, ZERO2 } from "@thi.ng/vectors";
-import { handleSlider1Keys, isHoverSlider, slider1Val } from "../behaviors/slider";
+import {
+    handleSlider1Keys,
+    isHoverSlider,
+    slider1Val,
+} from "../behaviors/slider";
 import { IMGUI } from "../gui";
 import { valHash } from "../hash";
 import { textLabelRaw, textTransformV } from "./textlabel";
@@ -126,7 +130,7 @@ export const sliderVRaw = (
                 ZERO2,
                 {
                     transform: textTransformV(theme, x, y, w, h),
-                    fill: gui.textColor(false)
+                    fill: gui.textColor(false),
                 },
                 (label ? label + " " : "") + (fmt ? fmt(v!) : v)
             )

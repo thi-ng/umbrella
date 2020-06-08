@@ -20,5 +20,5 @@ volume.add(DEFAULT, () => 0);
 volume.addAll(<IObjectOf<Implementation1<unknown, number>>>{
     [Type.AABB]: ({ size }: AABB) => size[0] * size[1] * size[2],
 
-    [Type.SPHERE]: ($: Sphere) => (4 / 3) * PI * $.r ** 3
+    [Type.SPHERE]: ($: Sphere) => (4 / 3) * PI * $.r ** 3,
 });

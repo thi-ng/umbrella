@@ -5,7 +5,7 @@ import {
     Matcher,
     MatcherInst,
     MatchResult,
-    RES_PARTIAL
+    RES_PARTIAL,
 } from "./api";
 import { result } from "./result";
 

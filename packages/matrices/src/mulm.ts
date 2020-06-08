@@ -1,12 +1,4 @@
-import {
-    dotS2,
-    dotS3,
-    dotS4,
-    setC,
-    setC4,
-    setC6,
-    vop
-} from "@thi.ng/vectors";
+import { dotS2, dotS3, dotS4, setC, setC4, setC6, vop } from "@thi.ng/vectors";
 import type { MultiMatOpMM } from "./api";
 
 /**

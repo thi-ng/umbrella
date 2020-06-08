@@ -6,14 +6,13 @@ import type { Reducer, Transducer } from "../api";
 export function drop<T>(n: number): Transducer<T, T>;
 export function drop<T>(n: number, src: Iterable<T>): IterableIterator<T>;
 export function drop<T>(n: number, src?: Iterable<T>): any {
-  return isIterable(src)
+    return isIterable(src)
         ? iterator1(drop(n), src)
         : (rfn: Reducer<any, T>) => {
               const r = rfn[2];
               let m = n;
-              return compR(
-                  rfn,
-                  (acc, x: T) => (m > 0 ? (m--, acc) : r(acc, x))
+              return compR(rfn, (acc, x: T) =>
+                  m > 0 ? (m--, acc) : r(acc, x)
               );
           };
 }

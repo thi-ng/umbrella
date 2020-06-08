@@ -1,12 +1,4 @@
-import {
-    $,
-    $y,
-    defn,
-    length,
-    ret,
-    sub,
-    vec2
-} from "@thi.ng/shader-ast";
+import { $, $y, defn, length, ret, sub, vec2 } from "@thi.ng/shader-ast";
 
 /**
  * Returns signed distance from `p` to torus centered around Y-axis with
@@ -21,6 +13,6 @@ export const sdfTorus = defn(
     "sdTorus",
     ["vec3", "float", "float"],
     (p, r1, r2) => [
-        ret(sub(length(vec2(sub(length($(p, "xz")), r2), $y(p))), r1))
+        ret(sub(length(vec2(sub(length($(p, "xz")), r2), $y(p))), r1)),
     ]
 );

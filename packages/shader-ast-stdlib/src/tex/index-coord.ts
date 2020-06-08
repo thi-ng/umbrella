@@ -6,7 +6,7 @@ import {
     modi,
     UintTerm,
     uvec2,
-    UVec2Term
+    UVec2Term,
 } from "@thi.ng/shader-ast";
 
 /**

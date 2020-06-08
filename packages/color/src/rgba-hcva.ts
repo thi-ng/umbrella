@@ -5,7 +5,7 @@ import type { ColorOp } from "./api";
 
 /**
  * Based on:
- * {@link https://github.com/tobspr/GLSL-Color-Spaces/blob/master/ColorSpaces.inc.glsl#L159}
+ * {@link https://github.com/tobspr/GLSL-Color-Spaces/blob/develop/ColorSpaces.inc.glsl#L159}
  *
  * @param out - result
  * @param src - source color

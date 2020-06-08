@@ -1,7 +1,7 @@
 import * as assert from "assert";
 import * as bits from "../src/index";
 
-describe("BitInputStream", function() {
+describe("BitInputStream", function () {
     let src = new Uint8Array([
         0xbe,
         0xef,
@@ -11,7 +11,7 @@ describe("BitInputStream", function() {
         0xad,
         0xf0,
         0x0b,
-        0xaa
+        0xaa,
     ]);
     it("iterator", () => {
         assert.equal(

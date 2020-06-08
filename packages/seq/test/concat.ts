@@ -1,11 +1,5 @@
 import * as assert from "assert";
-import {
-    aseq,
-    concat,
-    concatA,
-    iterator,
-    rseq
-} from "../src";
+import { aseq, concat, concatA, iterator, rseq } from "../src";
 
 describe("concat / iterator", () => {
     it("concat", () => {
@@ -24,7 +18,7 @@ describe("concat / iterator", () => {
                         rseq([1, 2, 3]),
                         undefined
                     )
-                )
+                ),
             ],
             [1, 2, 3, 3, 2, 1]
         );

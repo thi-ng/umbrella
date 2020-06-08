@@ -24,7 +24,7 @@ import {
     ternary,
     Vec2Sym,
     vec3,
-    Vec3Sym
+    Vec3Sym,
 } from "@thi.ng/shader-ast";
 import { permute3 } from "./permute";
 
@@ -103,6 +103,6 @@ export const worley2 = (distFn: Func2<"vec3", "vec3", "vec3">) =>
             ),
             assign($(d1, "yz"), min($(d1, "yz"), $(d2, "yz"))),
             assign($y(d1), min(min($y(d1), $z(d1)), $x(d2))),
-            ret(sqrt($xy(d1)))
+            ret(sqrt($xy(d1))),
         ];
     });

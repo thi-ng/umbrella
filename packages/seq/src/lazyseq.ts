@@ -34,6 +34,6 @@ export const lazyseq = <T>(fn: Fn0<ISeq<T> | undefined>): ISeq<T> => {
         },
         next() {
             return ensure() !== undefined ? seq!.next() : undefined;
-        }
+        },
     };
 };

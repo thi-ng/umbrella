@@ -29,6 +29,6 @@ export function groupByObj<SRC, GROUP>(...args: any[]): any {
                 ? <GROUP>_reduce(acc[k], x)
                 : <GROUP>_reduce(_init(), x);
             return acc;
-        }
+        },
     ];
 }

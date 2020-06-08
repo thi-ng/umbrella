@@ -31,7 +31,7 @@ export const bitMux = (a: number, b: number, s: number) =>
 
 export const bitDemux = (a: number, b: number, s: number): [number, number] => [
     (a & ~s) >>> 0,
-    (b & s) >>> 0
+    (b & s) >>> 0,
 ];
 
 export const bitNotM = (n: number, x: number) => maskL(n, ~x);

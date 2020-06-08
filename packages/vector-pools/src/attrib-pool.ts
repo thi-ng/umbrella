@@ -5,7 +5,7 @@ import {
     SIZEOF,
     TypedArray,
     typedArray,
-    TYPEDARRAY_CTORS
+    TYPEDARRAY_CTORS,
 } from "@thi.ng/api";
 import { align, Pow2 } from "@thi.ng/binary";
 import { isNumber } from "@thi.ng/checks";
@@ -41,7 +41,7 @@ export class AttribPool implements IRelease {
     constructor(opts?: AttribPoolOpts) {
         opts = <AttribPoolOpts>{
             resizable: true,
-            ...opts
+            ...opts,
         };
         this.pool = !(opts.mem instanceof MemPool)
             ? new MemPool(opts.mem)
@@ -368,7 +368,7 @@ const resizeAttribs = (
         const dStride = stride / SIZEOF[type];
         newAttribs[id] = [
             typedArray(type, buf, dest + a.byteOffset, num * dStride + a.size),
-            dStride
+            dStride,
         ];
     }
     return newAttribs;

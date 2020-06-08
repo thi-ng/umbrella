@@ -1,22 +1,8 @@
-import {
-    bool,
-    float,
-    int,
-    uint,
-    vec2,
-    vec3,
-    vec4
-} from "./lit";
+import { bool, float, int, uint, vec2, vec3, vec4 } from "./lit";
 import type { IObjectOf } from "@thi.ng/api";
 import type { Term } from "../api/nodes";
 import type { FloatTerm } from "../api/terms";
-import type {
-    Int,
-    IVec,
-    Prim,
-    Type,
-    UVec
-} from "../api/types";
+import type { Int, IVec, Prim, Type, UVec } from "../api/types";
 
 /**
  * Returns base type for given term. Used for array ops.
@@ -69,5 +55,5 @@ export const matchingBoolType = <T extends Prim | Int | IVec | UVec>(
         uvec3: "bvec3",
         vec4: "bvec4",
         ivec4: "bvec4",
-        uvec4: "bvec4"
+        uvec4: "bvec4",
     })[t.type];

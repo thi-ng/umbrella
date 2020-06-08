@@ -12,7 +12,7 @@ export const stripes = (opts: Partial<StripeOpts>) => {
         size: 16,
         col1: 0xffffffff,
         col2: 0xff000000,
-        ...opts
+        ...opts,
     };
     const size = opts.size!;
     const col1 = ARGB8888.toABGR(opts.col1!);

@@ -4,7 +4,7 @@ import {
     IClear,
     INotify,
     INotifyMixin,
-    Listener
+    Listener,
 } from "@thi.ng/api";
 
 export const EVENT_ADDED = "added";

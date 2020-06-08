@@ -6,7 +6,7 @@ import {
     pointInPolygon2,
     pointInRect,
     pointInSegment,
-    pointInTriangle2
+    pointInTriangle2,
 } from "@thi.ng/geom-isec";
 import { isInArray, ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { AABB } from "../api/aabb";
@@ -35,7 +35,7 @@ pointInside.addAll(<IObjectOf<Implementation2<unknown, ReadonlyVec, boolean>>>{
     [Type.RECT]: ($: Rect, p: ReadonlyVec) => pointInRect(p, $.pos, $.size),
 
     [Type.TRIANGLE]: (tri: Triangle, p: ReadonlyVec) =>
-        pointInTriangle2(p, ...(<[Vec, Vec, Vec]>tri.points))
+        pointInTriangle2(p, ...(<[Vec, Vec, Vec]>tri.points)),
 });
 
 pointInside.isa(Type.POINTS3, Type.POINTS);

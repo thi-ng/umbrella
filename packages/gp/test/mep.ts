@@ -12,12 +12,12 @@ describe("gp (mep)", () => {
                 {
                     fn: (rnd) => ["+", "-", "*", "/"][rnd.int() % 4],
                     arity: 2,
-                    prob: 0.9
-                }
+                    prob: 0.9,
+                },
             ],
             chromoSize: 10,
             probMutate: 0.8,
-            rnd: new XsAdd(0x12345678)
+            rnd: new XsAdd(0x12345678),
         });
     });
 
@@ -32,7 +32,7 @@ describe("gp (mep)", () => {
             { type: 1, op: "*", args: [4, 0] },
             { type: 1, op: "-", args: [2, 3] },
             { type: 1, op: "/", args: [1, 4] },
-            { type: 1, op: "-", args: [5, 0] }
+            { type: 1, op: "-", args: [5, 0] },
         ]);
     });
 
@@ -45,8 +45,8 @@ describe("gp (mep)", () => {
                 op: "*",
                 args: [
                     { type: 0, value: 5 },
-                    { type: 0, value: 5 }
-                ]
+                    { type: 0, value: 5 },
+                ],
             },
             {
                 type: 1,
@@ -58,18 +58,18 @@ describe("gp (mep)", () => {
                         op: "*",
                         args: [
                             { type: 0, value: 5 },
-                            { type: 0, value: 5 }
-                        ]
-                    }
-                ]
+                            { type: 0, value: 5 },
+                        ],
+                    },
+                ],
             },
             {
                 type: 1,
                 op: "-",
                 args: [
                     { type: 0, value: 5 },
-                    { type: 0, value: 5 }
-                ]
+                    { type: 0, value: 5 },
+                ],
             },
             {
                 type: 1,
@@ -85,20 +85,20 @@ describe("gp (mep)", () => {
                                 op: "*",
                                 args: [
                                     { type: 0, value: 5 },
-                                    { type: 0, value: 5 }
-                                ]
-                            }
-                        ]
+                                    { type: 0, value: 5 },
+                                ],
+                            },
+                        ],
                     },
                     {
                         type: 1,
                         op: "-",
                         args: [
                             { type: 0, value: 5 },
-                            { type: 0, value: 5 }
-                        ]
-                    }
-                ]
+                            { type: 0, value: 5 },
+                        ],
+                    },
+                ],
             },
             {
                 type: 1,
@@ -109,11 +109,11 @@ describe("gp (mep)", () => {
                         op: "-",
                         args: [
                             { type: 0, value: 5 },
-                            { type: 0, value: 5 }
-                        ]
+                            { type: 0, value: 5 },
+                        ],
                     },
-                    { type: 0, value: 5 }
-                ]
+                    { type: 0, value: 5 },
+                ],
             },
             {
                 type: 1,
@@ -124,8 +124,8 @@ describe("gp (mep)", () => {
                         op: "*",
                         args: [
                             { type: 0, value: 5 },
-                            { type: 0, value: 5 }
-                        ]
+                            { type: 0, value: 5 },
+                        ],
                     },
                     {
                         type: 1,
@@ -137,12 +137,12 @@ describe("gp (mep)", () => {
                                 op: "*",
                                 args: [
                                     { type: 0, value: 5 },
-                                    { type: 0, value: 5 }
-                                ]
-                            }
-                        ]
-                    }
-                ]
+                                    { type: 0, value: 5 },
+                                ],
+                            },
+                        ],
+                    },
+                ],
             },
             {
                 type: 1,
@@ -154,10 +154,10 @@ describe("gp (mep)", () => {
                         op: "-",
                         args: [
                             { type: 0, value: 5 },
-                            { type: 0, value: 5 }
-                        ]
-                    }
-                ]
+                            { type: 0, value: 5 },
+                        ],
+                    },
+                ],
             },
             {
                 type: 1,
@@ -177,24 +177,24 @@ describe("gp (mep)", () => {
                                         op: "*",
                                         args: [
                                             { type: 0, value: 5 },
-                                            { type: 0, value: 5 }
-                                        ]
-                                    }
-                                ]
+                                            { type: 0, value: 5 },
+                                        ],
+                                    },
+                                ],
                             },
                             {
                                 type: 1,
                                 op: "-",
                                 args: [
                                     { type: 0, value: 5 },
-                                    { type: 0, value: 5 }
-                                ]
-                            }
-                        ]
+                                    { type: 0, value: 5 },
+                                ],
+                            },
+                        ],
                     },
-                    { type: 0, value: 5 }
-                ]
-            }
+                    { type: 0, value: 5 },
+                ],
+            },
         ]);
     });
 
@@ -210,10 +210,10 @@ describe("gp (mep)", () => {
                         op: "*",
                         args: [
                             { type: 0, value: 5 },
-                            { type: 0, value: 5 }
-                        ]
-                    }
-                ]
+                            { type: 0, value: 5 },
+                        ],
+                    },
+                ],
             },
             {
                 type: 1,
@@ -229,20 +229,20 @@ describe("gp (mep)", () => {
                                 op: "*",
                                 args: [
                                     { type: 0, value: 5 },
-                                    { type: 0, value: 5 }
-                                ]
-                            }
-                        ]
+                                    { type: 0, value: 5 },
+                                ],
+                            },
+                        ],
                     },
                     {
                         type: 1,
                         op: "-",
                         args: [
                             { type: 0, value: 5 },
-                            { type: 0, value: 5 }
-                        ]
-                    }
-                ]
+                            { type: 0, value: 5 },
+                        ],
+                    },
+                ],
             },
             {
                 type: 1,
@@ -253,11 +253,11 @@ describe("gp (mep)", () => {
                         op: "-",
                         args: [
                             { type: 0, value: 5 },
-                            { type: 0, value: 5 }
-                        ]
+                            { type: 0, value: 5 },
+                        ],
                     },
-                    { type: 0, value: 5 }
-                ]
+                    { type: 0, value: 5 },
+                ],
             },
             {
                 type: 1,
@@ -268,8 +268,8 @@ describe("gp (mep)", () => {
                         op: "*",
                         args: [
                             { type: 0, value: 5 },
-                            { type: 0, value: 5 }
-                        ]
+                            { type: 0, value: 5 },
+                        ],
                     },
                     {
                         type: 1,
@@ -281,12 +281,12 @@ describe("gp (mep)", () => {
                                 op: "*",
                                 args: [
                                     { type: 0, value: 5 },
-                                    { type: 0, value: 5 }
-                                ]
-                            }
-                        ]
-                    }
-                ]
+                                    { type: 0, value: 5 },
+                                ],
+                            },
+                        ],
+                    },
+                ],
             },
             {
                 type: 1,
@@ -298,10 +298,10 @@ describe("gp (mep)", () => {
                         op: "-",
                         args: [
                             { type: 0, value: 5 },
-                            { type: 0, value: 5 }
-                        ]
-                    }
-                ]
+                            { type: 0, value: 5 },
+                        ],
+                    },
+                ],
             },
             {
                 type: 1,
@@ -321,24 +321,24 @@ describe("gp (mep)", () => {
                                         op: "*",
                                         args: [
                                             { type: 0, value: 5 },
-                                            { type: 0, value: 5 }
-                                        ]
-                                    }
-                                ]
+                                            { type: 0, value: 5 },
+                                        ],
+                                    },
+                                ],
                             },
                             {
                                 type: 1,
                                 op: "-",
                                 args: [
                                     { type: 0, value: 5 },
-                                    { type: 0, value: 5 }
-                                ]
-                            }
-                        ]
+                                    { type: 0, value: 5 },
+                                ],
+                            },
+                        ],
                     },
-                    { type: 0, value: 5 }
-                ]
-            }
+                    { type: 0, value: 5 },
+                ],
+            },
         ]);
     });
 
@@ -353,7 +353,7 @@ describe("gp (mep)", () => {
             { type: 1, op: "/", args: [3, 1] },
             { type: 1, op: "/", args: [4, 3] },
             { type: 0, value: 5 },
-            { type: 1, op: "/", args: [6, 4] }
+            { type: 1, op: "/", args: [6, 4] },
         ]);
     });
 
@@ -370,7 +370,7 @@ describe("gp (mep)", () => {
             { type: 1, op: "-", args: [3, 2] },
             { type: 1, op: "-", args: [2, 1] },
             { type: 0, value: 1 },
-            { type: 0, value: 6 }
+            { type: 0, value: 6 },
         ]);
         assert.deepEqual(ast.crossoverSingle(a, b, 5), [
             [
@@ -384,7 +384,7 @@ describe("gp (mep)", () => {
                 { type: 1, op: "-", args: [3, 2] },
                 { type: 1, op: "-", args: [2, 1] },
                 { type: 0, value: 1 },
-                { type: 0, value: 6 }
+                { type: 0, value: 6 },
             ],
             [
                 { type: 0, value: 5 },
@@ -397,8 +397,8 @@ describe("gp (mep)", () => {
                 { type: 1, op: "*", args: [4, 0] },
                 { type: 1, op: "-", args: [2, 3] },
                 { type: 1, op: "/", args: [1, 4] },
-                { type: 1, op: "-", args: [5, 0] }
-            ]
+                { type: 1, op: "-", args: [5, 0] },
+            ],
         ]);
     });
 
@@ -415,7 +415,7 @@ describe("gp (mep)", () => {
             { type: 1, op: "-", args: [3, 2] },
             { type: 1, op: "-", args: [2, 1] },
             { type: 0, value: 1 },
-            { type: 1, op: "-", args: [5, 0] }
+            { type: 1, op: "-", args: [5, 0] },
         ]);
     });
 });

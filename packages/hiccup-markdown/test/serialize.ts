@@ -10,21 +10,21 @@ describe("hiccup-markdown", () => {
         // rest args are converted to list items
         const list = (_: any, type: string, ...xs: any[]) => [
             type,
-            ...xs.map((x) => (Array.isArray(x) ? x : ["li", x]))
+            ...xs.map((x) => (Array.isArray(x) ? x : ["li", x])),
         ];
 
         // code block component w/ lang hint
         const codeblock = (_: any, lang: string, body: any[]) => [
             "pre",
             { lang },
-            ["code", body]
+            ["code", body],
         ];
 
         // link component for thi.ng URLs
         const thingLink = (_: any, id: string, label: any) => [
             "a",
             { href: `http://thi.ng/${id}` },
-            label
+            label,
         ];
 
         // Note: the same hiccup tree can be serialized to HTML via @thi.ng/hiccup or
@@ -38,7 +38,7 @@ describe("hiccup-markdown", () => {
                         "p",
                         "This is a test: ",
                         ["strong", "I am strong and ", ["em", "italic"]],
-                        "..."
+                        "...",
                     ],
                     // anon component fn to demo context lookup
                     [(ctx: any) => ["p", `My magic number is: ${ctx.magic}`]],
@@ -46,7 +46,7 @@ describe("hiccup-markdown", () => {
                     [
                         codeblock,
                         "ts",
-                        `import { serialize } from "@thi.ng/hiccup-markdown";`
+                        `import { serialize } from "@thi.ng/hiccup-markdown";`,
                     ],
                     // nested lists
                     [
@@ -55,7 +55,7 @@ describe("hiccup-markdown", () => {
                         "foo",
                         "bar",
                         [list, "ol", "b1", "b2", "b3"],
-                        "baz"
+                        "baz",
                     ],
                     ["blockquote", "So long and thanks for all the fish."],
                     [
@@ -67,8 +67,8 @@ describe("hiccup-markdown", () => {
                                 "tr",
                                 ["th", "ID"],
                                 ["th", "Name"],
-                                ["th", "Comment"]
-                            ]
+                                ["th", "Comment"],
+                            ],
                         ],
                         [
                             "tbody",
@@ -76,22 +76,22 @@ describe("hiccup-markdown", () => {
                                 "tr",
                                 ["th", 1],
                                 ["td", ["code", "map()"]],
-                                ["td", "Transform"]
+                                ["td", "Transform"],
                             ],
                             [
                                 "tr",
                                 ["th", 2],
                                 ["td", ["code", "filter()"]],
-                                ["td", "Predicate"]
-                            ]
-                        ]
+                                ["td", "Predicate"],
+                            ],
+                        ],
                     ],
                     [
                         "p",
                         "More info ",
                         [thingLink, "hiccup-markdown", "here"],
-                        "."
-                    ]
+                        ".",
+                    ],
                 ],
                 // optional context object passed to all component functions
                 { magic: 42 }

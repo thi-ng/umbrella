@@ -37,7 +37,7 @@ export const useDefaultEventHandlers = (gui: IMGUI) => {
         ontouchstart: touchActive,
         ontouchmove: touchActive,
         ontouchend: touchEnd,
-        ontouchcancel: touchEnd
+        ontouchcancel: touchEnd,
     });
     window.addEventListener("keydown", (e) => {
         gui.setKey(e);

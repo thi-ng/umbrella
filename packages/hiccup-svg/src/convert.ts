@@ -19,7 +19,7 @@ const ATTRIB_ALIASES: { [id: string]: string } = {
     lineCap: "stroke-linecap",
     lineJoin: "stroke-linejoin",
     miterLimit: "stroke-miterlimit",
-    weight: "stroke-width"
+    weight: "stroke-width",
 };
 
 const TEXT_ALIGN: { [id: string]: string } = {
@@ -27,7 +27,7 @@ const TEXT_ALIGN: { [id: string]: string } = {
     right: "end",
     center: "middle",
     start: "start",
-    end: "end"
+    end: "end",
 };
 
 /**
@@ -68,7 +68,7 @@ export const convertTree = (tree: any): any[] => {
                 tree[2],
                 {
                     gradientUnits: attribs.gradientUnits || "userSpaceOnUse",
-                    gradientTransform: attribs.gradientTransform
+                    gradientTransform: attribs.gradientTransform,
                 }
             );
         case "radialGradient":
@@ -81,7 +81,7 @@ export const convertTree = (tree: any): any[] => {
                 tree[2],
                 {
                     gradientUnits: attribs.gradientUnits || "userSpaceOnUse",
-                    gradientTransform: attribs.gradientTransform
+                    gradientTransform: attribs.gradientTransform,
                 }
             );
         case "circle":

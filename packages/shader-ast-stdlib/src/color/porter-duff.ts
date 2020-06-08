@@ -9,7 +9,7 @@ import {
     ret,
     sub,
     vec4,
-    Vec4Sym
+    Vec4Sym,
 } from "@thi.ng/shader-ast";
 import { clamp01 } from "../math/clamp";
 import type { Fn2 } from "@thi.ng/api";
@@ -53,7 +53,7 @@ export const porterDuff = (
                 srcZero && destZero
                     ? vec4()
                     : clamp01(srcZero ? dest : destZero ? src : add(src, dest))
-            )
+            ),
         ];
     });
 

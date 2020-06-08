@@ -1,10 +1,5 @@
 import { IRandom, SYSTEM } from "@thi.ng/random";
-import {
-    ReadonlyVec,
-    VecOpSOO,
-    VecOpSOOO,
-    VecOpSVO
-} from "./api";
+import { ReadonlyVec, VecOpSOO, VecOpSOOO, VecOpSVO } from "./api";
 import { defHofOpS, SARGS_VV } from "./internal/codegen";
 import { normalizeS2, normalizeS3, normalizeS4 } from "./normalizes";
 

@@ -6,7 +6,7 @@ import type {
     ICopy,
     IEmpty,
     ILength,
-    IStack
+    IStack,
 } from "@thi.ng/api";
 import type { HeapOpts } from "./api";
 
@@ -63,7 +63,7 @@ export class PairingHeap<T>
         this.root = this.merge(this.root, {
             v,
             p: undefined,
-            c: []
+            c: [],
         });
         this._size++;
         return this;

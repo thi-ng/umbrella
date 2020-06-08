@@ -39,5 +39,5 @@ export const IEnableMixin = mixin(<IEnable<any>>{
     toggle(this: _IEnable) {
         this._enabled ? this.disable() : this.enable();
         return this._enabled;
-    }
+    },
 });

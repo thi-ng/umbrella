@@ -5,7 +5,7 @@ import {
     IRelease,
     NULL_LOGGER,
     Type,
-    TypedArray
+    TypedArray,
 } from "@thi.ng/api";
 import { MemPool, MemPoolOpts } from "@thi.ng/malloc";
 import type { ReadonlyVec, StridedVec, Vec } from "@thi.ng/vectors";

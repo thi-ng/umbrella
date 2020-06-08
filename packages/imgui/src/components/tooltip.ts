@@ -8,7 +8,7 @@ export const tooltipRaw = (gui: IMGUI, tooltip: string) => {
     const p = add2(null, [0, 10], gui.mouse);
     gui.addOverlay(
         rect(p, [tooltip.length * theme.charWidth + theme.pad, 20], {
-            fill: theme.bgTooltip
+            fill: theme.bgTooltip,
         }),
         textLabelRaw(
             add2(null, [4, 10 + theme.baseLine], p),

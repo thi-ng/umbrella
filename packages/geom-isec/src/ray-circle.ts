@@ -1,11 +1,5 @@
 import { IntersectionResult, IntersectionType } from "@thi.ng/geom-api";
-import {
-    dot,
-    maddN,
-    magSq,
-    ReadonlyVec,
-    sub
-} from "@thi.ng/vectors";
+import { dot, maddN, magSq, ReadonlyVec, sub } from "@thi.ng/vectors";
 import { NONE } from "./api";
 
 export const intersectRayCircle = (

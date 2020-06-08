@@ -1,12 +1,7 @@
 import { isSet } from "@thi.ng/checks";
 import { equiv } from "@thi.ng/equiv";
 import * as assert from "assert";
-import {
-    defSparseSet,
-    SparseSet16,
-    SparseSet32,
-    SparseSet8
-} from "../src";
+import { defSparseSet, SparseSet16, SparseSet32, SparseSet8 } from "../src";
 
 describe("SparseSet", () => {
     let set: SparseSet8;

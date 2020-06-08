@@ -3,18 +3,18 @@ import { timeout } from "../src";
 import { TIMEOUT } from "./config";
 
 describe("Timeout", () => {
-    it("times out", function(done) {
+    it("times out", function (done) {
         this.timeout(TIMEOUT * 2);
 
         timeout(TIMEOUT).subscribe({
             error: (e) => {
                 assert(e instanceof Error);
                 done();
-            }
+            },
         });
     });
 
-    it("times out with error object", function(done) {
+    it("times out with error object", function (done) {
         this.timeout(TIMEOUT * 2);
 
         const error = "error object";
@@ -23,23 +23,23 @@ describe("Timeout", () => {
             error: (err) => {
                 assert.equal(err, error);
                 done();
-            }
+            },
         });
     });
 
-    it("cancels timeout in cleanup()", function(done) {
+    it("cancels timeout in cleanup()", function (done) {
         this.timeout(TIMEOUT * 3);
 
         timeout(TIMEOUT)
             .subscribe({
-                error: () => assert.fail("timed out")
+                error: () => assert.fail("timed out"),
             })
             .unsubscribe();
 
         setTimeout(() => done(), TIMEOUT * 2);
     });
 
-    it("resets timeout when value received", function(done) {
+    it("resets timeout when value received", function (done) {
         this.timeout(TIMEOUT * 4);
 
         const res: any[] = [];
@@ -50,7 +50,7 @@ describe("Timeout", () => {
             },
             error: () => {
                 assert.deepEqual(res, [1, 2]);
-            }
+            },
         });
 
         setTimeout(() => t.next(1), TIMEOUT * 0.7);
