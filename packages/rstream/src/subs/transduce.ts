@@ -1,4 +1,4 @@
-import { isReduced } from "@thi.ng/transducers";
+import { isReduced, Reduced } from "@thi.ng/transducers";
 import { Subscription } from "../subscription";
 import type { Reducer, Transducer } from "@thi.ng/transducers";
 
@@ -39,7 +39,13 @@ export const transduce = <A, B, C>(
         sub = src.subscribe(
             {
                 next(x) {
-                    const _acc = rfn[2](acc, x);
+                    let _acc: C | Reduced<C>;
+                    try {
+                        _acc = rfn[2](acc, x);
+                    } catch (e) {
+                        reject(e);
+                        return;
+                    }
                     if (isReduced(_acc)) {
                         resolve(_acc.deref());
                     } else {
