@@ -1,17 +1,11 @@
 import { serialize } from "@thi.ng/hiccup";
-import {
-    comp,
-    filter,
-    map,
-    push,
-    transduce
-} from "@thi.ng/transducers";
+import { comp, filter, map, push, transduce } from "@thi.ng/transducers";
 import { existsSync, readdirSync, writeFileSync } from "fs";
 import { META_FIELD, Package } from "./api";
 import { readJSON } from "./io";
 import { shortName } from "./partials/package";
 
-const REPO_URL = "https://github.com/thi-ng/umbrella/blob/master/packages";
+const REPO_URL = "https://github.com/thi-ng/umbrella/blob/develop/packages";
 const NPM_URL = "https://www.npmjs.com/package";
 const BADGE_URL = "https://img.shields.io/npm/v";
 const BASE_DIR = "./packages/";
@@ -28,21 +22,21 @@ const pkgDetails = (p: Package) => [
                 "img",
                 {
                     src: `${BADGE_URL}/${p.name}.svg`,
-                    alt: "npm version"
-                }
-            ]
-        ]
+                    alt: "npm version",
+                },
+            ],
+        ],
     ],
     [
         "td",
         [
             "a",
             {
-                href: `${REPO_URL}/${shortName(p.name)}/CHANGELOG.md`
+                href: `${REPO_URL}/${shortName(p.name)}/CHANGELOG.md`,
             },
-            "changelog"
-        ]
-    ]
+            "changelog",
+        ],
+    ],
 ];
 
 const packages = transduce(
@@ -71,17 +65,17 @@ writeFileSync(
                     "meta",
                     {
                         "http-equiv": "Content-Type",
-                        content: "text/html; charset=utf-8"
-                    }
+                        content: "text/html; charset=utf-8",
+                    },
                 ],
                 [
                     "link",
                     {
                         href:
                             "https://unpkg.com/tachyons@4/css/tachyons.min.css",
-                        rel: "stylesheet"
-                    }
-                ]
+                        rel: "stylesheet",
+                    },
+                ],
             ],
             [
                 "body.measure.center.sans-serif.lh-copy",
@@ -90,12 +84,12 @@ writeFileSync(
                     {
                         alt: "docs.thi.ng",
                         src:
-                            "https://media.thi.ng/umbrella/banners/docsthing.svg"
-                    }
+                            "https://media.thi.ng/umbrella/banners/docsthing.svg",
+                    },
                 ],
                 [
                     "p",
-                    "This site hosts auto-generated documentation for the following projects:"
+                    "This site hosts auto-generated documentation for the following projects:",
                 ],
                 ["table.w-100", ["tbody", ...packages]],
                 [
@@ -109,15 +103,15 @@ writeFileSync(
                     [
                         "a",
                         { href: "https://twitter.com/thing_umbrella/" },
-                        "twitter"
+                        "twitter",
                     ],
                     [
                         "p.mt3.f7.gray",
                         "Last updated: ",
-                        new Date().toISOString()
-                    ]
-                ]
-            ]
-        ]
+                        new Date().toISOString(),
+                    ],
+                ],
+            ],
+        ],
     ])
 );
