@@ -20,5 +20,6 @@ export * from "./select-keys";
 export * from "./sorted-map";
 export * from "./sorted-set";
 export * from "./sparse-set";
+export * from "./trie";
 export * from "./union";
 export * from "./without-keys";
