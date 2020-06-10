@@ -194,6 +194,15 @@
       "contributions": [
         "financial"
       ]
+    },
+    {
+      "login": "raphaelsaunier",
+      "name": "Raphael Saunier",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/170256?v=4",
+      "profile": "http://raphaelsaunier.com",
+      "contributions": [
+        "financial"
+      ]
     }
   ],
   "contributorsPerLine": 7,
