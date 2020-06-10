@@ -185,6 +185,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "mhuebert",
+      "name": "Matt Huebert",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/165223?v=4",
+      "profile": "http://matt.is",
+      "contributions": [
+        "financial"
+      ]
     }
   ],
   "contributorsPerLine": 7,
