@@ -371,6 +371,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/Mateiadrielrafael"><img src="https://avatars0.githubusercontent.com/u/39400800?v=4" width="100px;" alt=""/><br /><sub><b>Matei Adriel</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=Mateiadrielrafael" title="Code">💻</a> <a href="https://github.com/thi-ng/umbrella/issues?q=author%3AMateiadrielrafael" title="Bug reports">🐛</a> <a href="#ideas-Mateiadrielrafael" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/pgrimaud"><img src="https://avatars1.githubusercontent.com/u/1866496?v=4" width="100px;" alt=""/><br /><sub><b>Pierre Grimaud</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=pgrimaud" title="Documentation">📖</a></td>
     <td align="center"><a href="http://matt.is"><img src="https://avatars1.githubusercontent.com/u/165223?v=4" width="100px;" alt=""/><br /><sub><b>Matt Huebert</b></sub></a><br /><a href="#financial-mhuebert" title="Financial">💵</a></td>
+    <td align="center"><a href="http://raphaelsaunier.com"><img src="https://avatars2.githubusercontent.com/u/170256?v=4" width="100px;" alt=""/><br /><sub><b>Raphael Saunier</b></sub></a><br /><a href="#financial-raphaelsaunier" title="Financial">💵</a></td>
   </tr>
 </table>
 
