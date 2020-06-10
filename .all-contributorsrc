@@ -203,6 +203,15 @@
       "contributions": [
         "financial"
       ]
+    },
+    {
+      "login": "eihli",
+      "name": "Eric Ihli",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1719584?v=4",
+      "profile": "http://owoga.com",
+      "contributions": [
+        "financial"
+      ]
     }
   ],
   "contributorsPerLine": 7,
