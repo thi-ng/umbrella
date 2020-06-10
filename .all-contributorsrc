@@ -13,7 +13,8 @@
       "contributions": [
         "code",
         "doc",
-        "maintenance"
+        "maintenance",
+        "financial"
       ]
     },
     {
@@ -24,7 +25,9 @@
       "contributions": [
         "code",
         "example",
-        "bug"
+        "bug",
+        "ideas",
+        "financial"
       ]
     },
     {
@@ -36,7 +39,8 @@
         "code",
         "ideas",
         "example",
-        "blog"
+        "blog",
+        "financial"
       ]
     },
     {
@@ -69,7 +73,8 @@
       "contributions": [
         "doc",
         "bug",
-        "ideas"
+        "ideas",
+        "financial"
       ]
     },
     {
@@ -98,7 +103,8 @@
       "contributions": [
         "bug",
         "code",
-        "ideas"
+        "ideas",
+        "financial"
       ]
     },
     {
