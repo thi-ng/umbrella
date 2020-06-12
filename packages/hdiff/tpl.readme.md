@@ -15,6 +15,8 @@ ${pkg.description}
 
 ![screenshot of example output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdiff/hdiff.png)
 
+[Live example](https://demo.thi.ng/umbrella/hdiff/)
+
 ${status}
 
 ${supportPackages}

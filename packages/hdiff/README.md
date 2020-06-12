@@ -27,6 +27,8 @@ String diffing w/ hiccup output for further processing, e.g. with [@thi.ng/hdom]
 
 ![screenshot of example output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdiff/hdiff.png)
 
+[Live example](https://demo.thi.ng/umbrella/hdiff/)
+
 ### Status
 
 **ALPHA** - bleeding edge / work-in-progress
@@ -45,7 +47,7 @@ yarn add @thi.ng/hdiff
 <script src="https://unpkg.com/@thi.ng/hdiff/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.56 KB / CJS: 1.63 KB / UMD: 1.68 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.58 KB / CJS: 1.65 KB / UMD: 1.68 KB
 
 ### CLI installation & usage
 
