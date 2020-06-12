@@ -10,7 +10,7 @@ import { $iter } from "../iterator";
  * accumulation buffer.
  *
  * @remarks
- * If `size` is implements {@link IDeref}, the window size will be
+ * If `size` implements {@link IDeref}, the window size will be
  * re-evaluated for each new input and therefore can be used as
  * mechanism to dynamically adjust the window size.
  *
