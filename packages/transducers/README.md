@@ -165,7 +165,7 @@ yarn add @thi.ng/transducers
 <script src="https://unpkg.com/@thi.ng/transducers/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 8.00 KB / CJS: 8.54 KB / UMD: 7.72 KB
+Package sizes (gzipped, pre-treeshake): ESM: 8.05 KB / CJS: 8.58 KB / UMD: 7.77 KB
 
 ## Dependencies
 
@@ -893,6 +893,7 @@ tx.transduce(tx.map((x) => x*10), tx.push(), tx.range(4))
 - [dup](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/dup.ts)
 - [extendSides](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/extend-sides.ts)
 - [iterate](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/iterate.ts)
+- [keyPermutations](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/key-permutations.ts)
 - [keys](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/keys.ts)
 - [line](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/line.ts)
 - [normRange](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/norm-range.ts)
