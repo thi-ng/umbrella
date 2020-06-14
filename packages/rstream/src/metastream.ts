@@ -3,6 +3,17 @@ import { CloseMode, CommonOpts, State } from "./api";
 import { Subscription } from "./subscription";
 import { optsWithID } from "./utils/idgen";
 
+export interface MetaStreamOpts extends CommonOpts {
+    /**
+     * If true, emits the last received value from the metastream's
+     * current child stream (if any) when the metastream's parent is
+     * calling `.done()`.
+     *
+     * @defaultValue false
+     */
+    emitLast: boolean;
+}
+
 /**
  * Returns a {@link Subscription} which transforms each incoming value
  * into a new {@link Stream}, subscribes to it (via an hidden / internal
@@ -87,20 +98,24 @@ import { optsWithID } from "./utils/idgen";
  */
 export const metaStream = <A, B>(
     factory: Fn<A, Subscription<B, B>>,
-    opts?: Partial<CommonOpts>
+    opts?: Partial<MetaStreamOpts>
 ) => new MetaStream(factory, opts);
 
 export class MetaStream<A, B> extends Subscription<A, B> {
     factory: Fn<A, Subscription<B, B>>;
     stream?: Subscription<B, B>;
     sub?: Subscription<B, B>;
+    emitLast: boolean;
+    doneRequested: boolean;
 
     constructor(
         factory: Fn<A, Subscription<B, B>>,
-        opts?: Partial<CommonOpts>
+        opts: Partial<MetaStreamOpts> = {}
     ) {
         super(undefined, optsWithID("metastram", opts));
         this.factory = factory;
+        this.emitLast = opts.emitLast === true;
+        this.doneRequested = false;
     }
 
     next(x: A) {
@@ -114,6 +129,7 @@ export class MetaStream<A, B> extends Subscription<A, B> {
                 this.sub = this.stream.subscribe({
                     next: (x) => {
                         stream === this.stream && super.dispatch(x);
+                        this.doneRequested && this.done();
                     },
                     done: () => {
                         this.stream!.unsubscribe(this.sub);
@@ -130,10 +146,14 @@ export class MetaStream<A, B> extends Subscription<A, B> {
     }
 
     done() {
-        if (this.stream) {
-            this.detach(true);
+        if (this.emitLast && !this.doneRequested) {
+            this.doneRequested = true;
+        } else {
+            if (this.stream) {
+                this.detach(true);
+            }
+            this.closeIn !== CloseMode.NEVER && super.done();
         }
-        this.closeIn !== CloseMode.NEVER && super.done();
     }
 
     unsubscribe(sub?: Subscription<B, any>) {
