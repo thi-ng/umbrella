@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.0.0...@thi.ng/transducers@7.1.0) (2020-06-14)
+
+
+### Features
+
+* **transducers:** add keyPermutations, tests, update readme ([5110d50](https://github.com/thi-ng/umbrella/commit/5110d50ba0c499c48c288820b9fb73ee42f9142f))
+
+
+
+
+
 # [7.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@6.7.0...@thi.ng/transducers@7.0.0) (2020-06-01)
 
 

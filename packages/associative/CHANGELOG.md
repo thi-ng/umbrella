@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@4.0.11...@thi.ng/associative@4.1.0) (2020-06-14)
+
+
+### Features
+
+* **associative:** add Trie and tests ([84b6517](https://github.com/thi-ng/umbrella/commit/84b6517f8988e5032ac2c7614e62ebf4cf1c9e1b))
+
+
+
+
+
 ## [4.0.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@4.0.10...@thi.ng/associative@4.0.11) (2020-06-01)
 
 **Note:** Version bump only for package @thi.ng/associative

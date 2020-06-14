@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.11.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.11.0...@thi.ng/api@6.11.1) (2020-06-14)
+
+**Note:** Version bump only for package @thi.ng/api
+
+
+
+
+
 # [6.11.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.10.5...@thi.ng/api@6.11.0) (2020-06-01)
 
 

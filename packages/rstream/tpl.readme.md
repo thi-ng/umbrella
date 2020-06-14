@@ -651,6 +651,7 @@ Create value stream from worker messages.
 
 ### Other subscription ops
 
+- [debounce](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/subs/debounce.ts) - ignore high frequency interim values
 - [resolve](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/subs/resolve.ts) - resolve on-stream promises
 - [trace](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/subs/trace.ts) - debug helper
 - [transduce](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/subs/transduce.ts) - transduce or just reduce an entire stream into a promise

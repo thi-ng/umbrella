@@ -172,7 +172,7 @@ yarn add @thi.ng/associative
 <script src="https://unpkg.com/@thi.ng/associative/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.16 KB / CJS: 5.35 KB / UMD: 5.18 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.62 KB / CJS: 5.82 KB / UMD: 5.64 KB
 
 ## Dependencies
 

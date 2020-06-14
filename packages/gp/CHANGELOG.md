@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/gp@0.1.19...@thi.ng/gp@0.1.20) (2020-06-14)
+
+**Note:** Version bump only for package @thi.ng/gp
+
+
+
+
+
 ## [0.1.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/gp@0.1.18...@thi.ng/gp@0.1.19) (2020-06-01)
 
 **Note:** Version bump only for package @thi.ng/gp

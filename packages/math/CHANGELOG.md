@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.7.10...@thi.ng/math@1.7.11) (2020-06-14)
+
+**Note:** Version bump only for package @thi.ng/math
+
+
+
+
+
 # [1.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.6.0...@thi.ng/math@1.7.0) (2020-02-25)
 
 
