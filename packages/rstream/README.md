@@ -136,7 +136,7 @@ yarn add @thi.ng/rstream
 <script src="https://unpkg.com/@thi.ng/rstream/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.26 KB / CJS: 5.45 KB / UMD: 5.38 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.37 KB / CJS: 5.56 KB / UMD: 5.48 KB
 
 ## Dependencies
 
@@ -736,6 +736,7 @@ Create value stream from worker messages.
 
 ### Other subscription ops
 
+- [debounce](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/subs/debounce.ts) - ignore high frequency interim values
 - [resolve](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/subs/resolve.ts) - resolve on-stream promises
 - [trace](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/subs/trace.ts) - debug helper
 - [transduce](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/subs/transduce.ts) - transduce or just reduce an entire stream into a promise
