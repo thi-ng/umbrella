@@ -1,5 +1,5 @@
 import { $compile, $list } from "@thi.ng/hdom2020";
-import { CloseMode, fromIterable, metaStream } from "@thi.ng/rstream";
+import { CloseMode, debounce, fromIterable } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 import { indexSize, search } from "./search";
 // IMPORTANT: this file is not checked into git (~350KB) and must be downloaded from:
@@ -13,10 +13,9 @@ const SIZE = indexSize(INDEX);
 const query = fromIterable(["stream"], { closeIn: CloseMode.NEVER });
 
 // build results as transformation of query stream
-// the intermediate metastream sub acts as a debouncer for fast typers
-// (TODO add to thi.ng/rstream)
+// first debounce query stream (for fast typers)
 const queryResults = query
-    .subscribe(metaStream((x) => fromIterable([x], { delay: 250 })))
+    .subscribe(debounce(250))
     .transform(map((q) => search(INDEX, q, "") || []));
 
 // event handler for input field

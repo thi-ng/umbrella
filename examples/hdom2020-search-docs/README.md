@@ -3,7 +3,8 @@
 [Live demo](http://demo.thi.ng/umbrella/hdom2020-search-docs/)
 
 [@thi.ng/hdom2020](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom2020)
-based docstring search example.
+based docstring search example for the entire thi.ng/umbrella repo
+(currently ~23k search terms and 1540 source files indexed).
 
 ## Building
 
