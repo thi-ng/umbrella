@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@4.3.5...@thi.ng/rstream@4.4.0) (2020-06-14)
+
+
+### Features
+
+* **rstream:** add debounce() sub & tests ([9c53bb4](https://github.com/thi-ng/umbrella/commit/9c53bb4faffee0a06046de64325f0b4ddeedd3a0))
+* **rstream:** add emitLast metastream option ([1073735](https://github.com/thi-ng/umbrella/commit/107373574cd6f15531e6210c016cde1a9939e040))
+* **rstream:** add error handling for transducer phase ([609424e](https://github.com/thi-ng/umbrella/commit/609424e6b332e5f2df89d07b6b5af02fc5b4ba99))
+
+
+
+
+
 ## [4.3.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@4.3.4...@thi.ng/rstream@4.3.5) (2020-06-01)
 
 **Note:** Version bump only for package @thi.ng/rstream

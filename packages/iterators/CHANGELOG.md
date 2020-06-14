@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.27](https://github.com/thi-ng/umbrella/compare/@thi.ng/iterators@5.1.26...@thi.ng/iterators@5.1.27) (2020-06-14)
+
+**Note:** Version bump only for package @thi.ng/iterators
+
+
+
+
+
 ## [5.1.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/iterators@5.1.25...@thi.ng/iterators@5.1.26) (2020-06-01)
 
 **Note:** Version bump only for package @thi.ng/iterators
