@@ -6,7 +6,7 @@ import {
     polyline,
     rect,
     svg,
-    text
+    text,
 } from "@thi.ng/hiccup-svg";
 import { fit } from "@thi.ng/math";
 import { resolve } from "@thi.ng/resolve-map";
@@ -17,7 +17,7 @@ import {
     stream,
     Subscription,
     sync,
-    trace
+    trace,
 } from "@thi.ng/rstream";
 import { padLeft } from "@thi.ng/strings";
 import {
@@ -33,15 +33,10 @@ import {
     push,
     range,
     transduce,
-    Transducer
+    Transducer,
 } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import {
-    ema,
-    hma,
-    sma,
-    wma
-} from "@thi.ng/transducers-stats";
+import { ema, hma, sma, wma } from "@thi.ng/transducers-stats";
 import type { Fn, IObjectOf } from "@thi.ng/api";
 
 // this example demonstrates how to use @thi.ng/rstream &
@@ -70,7 +65,7 @@ interface MarketResponse {
 const TIMEFRAMES: IObjectOf<string> = {
     1: "Minute",
     60: "Hour",
-    1440: "Day"
+    1440: "Day",
 };
 
 // supported symbol pairs
@@ -80,7 +75,7 @@ const SYMBOL_PAIRS: DropDownOption[] = [
     ["ETHUSD", "ETH-USD"],
     ["LTCUSD", "LTC-USD"],
     ["XLMUSD", "XLM-USD"],
-    ["XMRUSD", "XMR-USD"]
+    ["XMRUSD", "XMR-USD"],
 ];
 
 const MA_MODES: IObjectOf<{
@@ -90,7 +85,7 @@ const MA_MODES: IObjectOf<{
     ema: { fn: ema, label: "Exponential" },
     hma: { fn: hma, label: "Hull" },
     sma: { fn: sma, label: "Simple" },
-    wma: { fn: wma, label: "Weighted" }
+    wma: { fn: wma, label: "Weighted" },
 };
 
 // chart settings
@@ -101,7 +96,7 @@ const DAY = 60 * 60 * 24;
 const TIME_TICKS: IObjectOf<number> = {
     1: 15 * 60,
     60: DAY,
-    1440: DAY * 14
+    1440: DAY * 14,
 };
 
 const TIME_FORMATS: IObjectOf<Fn<number, string>> = {
@@ -120,7 +115,7 @@ const TIME_FORMATS: IObjectOf<Fn<number, string>> = {
         return `${d.getUTCFullYear()}-${Z2(d.getUTCMonth() + 1)}-${Z2(
             d.getUTCDate()
         )}`;
-    }
+    },
 };
 
 // UI theme presets
@@ -141,8 +136,8 @@ const THEMES: any = {
             sma50: "#06f",
             sma72: "#00f",
             gridMajor: "#666",
-            gridMinor: "#ccc"
-        }
+            gridMinor: "#ccc",
+        },
     },
     dark: {
         id: "dark",
@@ -160,9 +155,9 @@ const THEMES: any = {
             sma50: "#06f",
             sma72: "#00f",
             gridMajor: "#666",
-            gridMinor: "#333"
-        }
-    }
+            gridMinor: "#333",
+        },
+    },
 };
 
 // constructs request URL from given inputs
@@ -223,7 +218,7 @@ const response = sync<any, any>({
                 (e) => error.next(e.message)
             )
             .then((json) => ({ ...inst, ohlc: json ? json.Data : null }))
-    )
+    ),
 }).subscribe(resolvePromise({ fail: (e) => error.next(e.message) }));
 
 // this stream combinator computes a number of statistics on incoming OHLC data
@@ -231,7 +226,7 @@ const response = sync<any, any>({
 const data = sync<any, any>({
     src: {
         response,
-        avg: avgMode.transform(map((id: string) => MA_MODES[id].fn))
+        avg: avgMode.transform(map((id: string) => MA_MODES[id].fn)),
     },
     xform: comp(
         // bail if response value has no OHLC data
@@ -246,7 +241,7 @@ const data = sync<any, any>({
                     transduce(pluck("high"), max(), ohlc),
                 tbounds: ({ ohlc }: MarketResponse) => [
                     ohlc[0].time,
-                    ohlc[ohlc.length - 1].time
+                    ohlc[ohlc.length - 1].time,
                 ],
                 sma: ({ ohlc }: MarketResponse) =>
                     transduce(
@@ -256,14 +251,14 @@ const data = sync<any, any>({
                                 comp(pluck("close"), avg(period)),
                                 push(),
                                 ohlc
-                            )
+                            ),
                         ]),
                         push(),
                         [12, 24, 50, 72]
-                    )
+                    ),
             })
         )
-    )
+    ),
 });
 
 // this stream combinator (re)computes the SVG chart
@@ -274,7 +269,7 @@ const chart = sync<any, any>({
         theme,
         window: fromEvent(window, "resize").transform(
             map(() => [window.innerWidth, window.innerHeight])
-        )
+        ),
     },
     xform: map(({ data, window, theme }) => {
         let [width, height] = window;
@@ -292,7 +287,7 @@ const chart = sync<any, any>({
             polyline(
                 vals.map((y, x) => [
                     mapX(x + (ohlc.length - vals.length) + 0.5),
-                    mapY(y)
+                    mapY(y),
                 ]),
                 { stroke: col, fill: "none" }
             );
@@ -331,7 +326,7 @@ const chart = sync<any, any>({
                 {
                     stroke: theme.chart.axis,
                     fill: theme.chart.axis,
-                    "text-anchor": "end"
+                    "text-anchor": "end",
                 },
                 line([MARGIN_X, MARGIN_Y], [MARGIN_X, by]),
                 line([MARGIN_X, by], [width - MARGIN_X, by]),
@@ -345,11 +340,11 @@ const chart = sync<any, any>({
                                 price % 100 < 1
                                     ? theme.chart.gridMajor
                                     : theme.chart.gridMinor,
-                            "stroke-dasharray": 2
+                            "stroke-dasharray": 2,
                         }),
                         text([MARGIN_X - 15, y + 4], price.toFixed(4), {
-                            stroke: "none"
-                        })
+                            stroke: "none",
+                        }),
                     ];
                 }, range(Math.ceil(data.min / tickY) * tickY, data.max, tickY)),
                 // X axis ticks
@@ -365,12 +360,12 @@ const chart = sync<any, any>({
                         line([x, by], [x, by + 10]),
                         line([x, MARGIN_Y], [x, by], {
                             stroke: theme.chart.gridMinor,
-                            "stroke-dasharray": 2
+                            "stroke-dasharray": 2,
                         }),
                         text([x, by + 20], fmtTime(t), {
                             stroke: "none",
-                            "text-anchor": "middle"
-                        })
+                            "text-anchor": "middle",
+                        }),
                     ];
                 }, range(Math.ceil(data.tbounds[0] / tickX) * tickX, data.tbounds[1], tickX))
             ),
@@ -405,7 +400,7 @@ const chart = sync<any, any>({
             }, ohlc),
             // price line
             line([MARGIN_X, closeY], [closeX, closeY], {
-                stroke: theme.chart.price
+                stroke: theme.chart.price,
             }),
             // closing price tag
             polygon(
@@ -414,15 +409,15 @@ const chart = sync<any, any>({
                     [closeX + 10, closeY - 8],
                     [width, closeY - 8],
                     [width, closeY + 8],
-                    [closeX + 10, closeY + 8]
+                    [closeX + 10, closeY + 8],
                 ],
                 { fill: theme.chart.price }
             ),
             text([closeX + 12, closeY + 4], lastPrice.toFixed(4), {
-                fill: theme.chart.pricelabel
+                fill: theme.chart.pricelabel,
             })
         );
-    })
+    }),
 });
 
 // stream construct to perform UI update
@@ -441,7 +436,7 @@ sync<any, any>({
                 ...map(
                     ([id, mode]) => <DropDownOption>[id, mode.label],
                     pairs(MA_MODES)
-                )
+                ),
             ])
         ),
         themeSel: theme.transform(
@@ -451,9 +446,9 @@ sync<any, any>({
                     ([id, theme]: [string, any]) =>
                         <DropDownOption>[id, theme.label],
                     pairs(THEMES)
-                )
+                ),
             ])
-        )
+        ),
     },
     xform: comp(
         // combines all inputs into a single root component
@@ -467,8 +462,8 @@ sync<any, any>({
                     style: {
                         top: `1rem`,
                         right: `${MARGIN_X}px`,
-                        width: `calc(100vw - 2 * ${MARGIN_X}px)`
-                    }
+                        width: `calc(100vw - 2 * ${MARGIN_X}px)`,
+                    },
                 },
                 [
                     "div.flex",
@@ -476,9 +471,9 @@ sync<any, any>({
                         symbol,
                         period,
                         avg,
-                        themeSel
-                    ])
-                ]
+                        themeSel,
+                    ]),
+                ],
             ],
             [
                 "div.fixed.tc",
@@ -486,31 +481,31 @@ sync<any, any>({
                     style: {
                         bottom: `1rem`,
                         left: `${MARGIN_X}px`,
-                        width: `calc(100vw - 2 * ${MARGIN_X}px)`
-                    }
+                        width: `calc(100vw - 2 * ${MARGIN_X}px)`,
+                    },
                 },
                 [
                     "a",
                     {
                         class: `mr3 b link ${theme.body}`,
-                        href: "https://min-api.cryptocompare.com/"
+                        href: "https://min-api.cryptocompare.com/",
                     },
-                    "Data by cyptocompare.com"
+                    "Data by cyptocompare.com",
                 ],
                 [
                     "a",
                     {
                         class: `mr3 b link ${theme.body}`,
                         href:
-                            "https://github.com/thi-ng/umbrella/tree/develop/examples/crypto-chart/"
+                            "https://github.com/thi-ng/umbrella/tree/develop/examples/crypto-chart/",
                     },
-                    "Source"
-                ]
-            ]
+                    "Source",
+                ],
+            ],
         ]),
         // perform hdom update / diffing
         updateDOM()
-    )
+    ),
 });
 
 // kick off dataflow

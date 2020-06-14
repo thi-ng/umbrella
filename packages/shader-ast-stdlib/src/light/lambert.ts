@@ -5,7 +5,7 @@ import {
     madd,
     max,
     mul,
-    Vec3Term
+    Vec3Term,
 } from "@thi.ng/shader-ast";
 import { fit1101 } from "../math/fit";
 

@@ -1,13 +1,7 @@
 import { isString } from "@thi.ng/checks";
 import { DEFAULT_SYNTAX } from "./constants";
 import { tokenize } from "./tokenize";
-import type {
-    ASTNode,
-    Expression,
-    Root,
-    SyntaxOpts,
-    Token
-} from "./api";
+import type { ASTNode, Expression, Root, SyntaxOpts, Token } from "./api";
 
 export class ParseError extends Error {
     line: number;
@@ -35,7 +29,7 @@ export const parse = (
 ) => {
     const { scopes } = {
         ...DEFAULT_SYNTAX,
-        ...opts
+        ...opts,
     };
     const scopeOpen = scopes.map((x) => x[0]);
     const scopeClose = scopes.map((x) => x[1]);

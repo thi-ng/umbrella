@@ -1,10 +1,5 @@
 import { Fn2 } from "@thi.ng/api";
-import {
-    comp,
-    drop,
-    iterator,
-    take
-} from "@thi.ng/transducers";
+import { comp, drop, iterator, take } from "@thi.ng/transducers";
 
 interface VScrollOpts {
     /**
@@ -45,7 +40,7 @@ export const virtualScroller = ({
     numVisible,
     numItems,
     itemHeight,
-    items
+    items,
 }: VScrollOpts) => [
     "div.overflow-y-scroll",
     {
@@ -59,18 +54,19 @@ export const virtualScroller = ({
         },
         scrollTop: top,
         style: {
-            height: `${numVisible * itemHeight}px`
-        }
+            height: `${numVisible * itemHeight}px`,
+        },
     },
     [
         "div",
         {
             style: {
                 height: `${numItems * itemHeight}px`,
-                "padding-top": `${Math.min(start, numItems - numVisible) *
-                    itemHeight}px`
-            }
+                "padding-top": `${
+                    Math.min(start, numItems - numVisible) * itemHeight
+                }px`,
+            },
         },
-        iterator(comp(drop(start), take(numVisible + 1)), items)
-    ]
+        iterator(comp(drop(start), take(numVisible + 1)), items),
+    ],
 ];

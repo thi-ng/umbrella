@@ -14,6 +14,6 @@ export const assign = <L extends Type, R extends L>(
         tag: "assign",
         type: l.type,
         l,
-        r
+        r,
     };
 };

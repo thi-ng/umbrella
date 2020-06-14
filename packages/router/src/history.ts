@@ -28,7 +28,7 @@ export class HTMLRouter extends BasicRouter {
             this.route(
                 this.format({
                     id: route.id,
-                    title: route.title
+                    title: route.title,
                 })
             );
         } else {
@@ -120,7 +120,7 @@ export class HTMLRouter extends BasicRouter {
     protected handleRouteFailure() {
         this.ignoreHashChange = true;
         location.hash = this.format({
-            id: this.routeForID(this.config.defaultRouteID)!.id
+            id: this.routeForID(this.config.defaultRouteID)!.id,
         });
         this.ignoreHashChange = false;
         return true;

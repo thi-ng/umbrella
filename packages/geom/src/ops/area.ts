@@ -2,7 +2,7 @@ import {
     DEFAULT,
     defmulti,
     Implementation1O,
-    MultiFn1O
+    MultiFn1O,
 } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
 import { polyArea2 } from "@thi.ng/geom-poly-utils";
@@ -84,7 +84,7 @@ area.addAll(<IObjectOf<Implementation1O<unknown, boolean, number>>>{
     [Type.TRIANGLE]: ($: Triangle, signed?) => {
         const area = 0.5 * signedArea2(...(<[Vec, Vec, Vec]>$.points));
         return signed ? area : Math.abs(area);
-    }
+    },
 });
 
 area.isa(Type.QUAD, Type.POLYGON);

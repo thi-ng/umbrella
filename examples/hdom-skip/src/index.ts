@@ -27,7 +27,7 @@ const timer = (period: number, name = `${period}ms`) => {
                 ? ["div.sans-serif", `${name} @ ${this.val++ || 0}`]
                 : // dummy content (could be an empty div)
                   ["div", { __skip: true }, "I should be never seen"];
-        }
+        },
     };
 };
 
@@ -46,12 +46,12 @@ const app = <any>{
                 "a.db.mt3.link",
                 {
                     href:
-                        "https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-skip"
+                        "https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-skip",
                 },
-                "Source code"
-            ]
+                "Source code",
+            ],
         ];
-    }
+    },
 };
 
 // kick off

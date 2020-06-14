@@ -38,8 +38,8 @@ export const init = (memory: WebAssembly.Memory): SIMD | undefined => {
                         console.error(
                             `abort called in ${file}: ${line}:${column}`
                         );
-                    }
-                }
+                    },
+                },
             }
         ).exports,
         f32: new Float32Array(buf),
@@ -49,6 +49,6 @@ export const init = (memory: WebAssembly.Memory): SIMD | undefined => {
         u16: new Uint16Array(buf),
         i16: new Int16Array(buf),
         u8: new Uint8Array(buf),
-        i8: new Int8Array(buf)
+        i8: new Int8Array(buf),
     };
 };

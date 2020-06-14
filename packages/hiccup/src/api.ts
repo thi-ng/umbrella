@@ -8,7 +8,7 @@ export const PROC_TAGS: { [id: string]: string } = {
     "!DOCTYPE": ">\n",
     "!ENTITY": ">\n",
     "!ELEMENT": ">\n",
-    "!ATTLIST": ">\n"
+    "!ATTLIST": ">\n",
 };
 
 /** @internal */
@@ -17,7 +17,7 @@ export const ENTITIES: { [id: string]: string } = {
     "<": "&lt;",
     ">": "&gt;",
     '"': "&quot;",
-    "'": "&apos;"
+    "'": "&apos;",
 };
 
 /** @internal */
@@ -35,7 +35,7 @@ export const NO_SPANS: {
     button: 1,
     option: 1,
     text: 1,
-    textarea: 1
+    textarea: 1,
 };
 
 const tagMap = (

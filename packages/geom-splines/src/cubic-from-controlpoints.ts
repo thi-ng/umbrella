@@ -5,7 +5,7 @@ import {
     mixN,
     ReadonlyVec,
     set,
-    Vec
+    Vec,
 } from "@thi.ng/vectors";
 
 const buildUniform = (segments: Vec[], t: number) => {
@@ -18,7 +18,7 @@ const buildUniform = (segments: Vec[], t: number) => {
             a,
             add(null, direction([], a, b, t), a),
             add(null, direction([], c, b, t), c),
-            c
+            c,
         ]);
     }
     return res;

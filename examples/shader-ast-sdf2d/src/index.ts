@@ -14,7 +14,7 @@ import {
     vec2,
     Vec2Sym,
     vec3,
-    vec4
+    vec4,
 } from "@thi.ng/shader-ast";
 import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
 import { canvasRenderer, targetJS } from "@thi.ng/shader-ast-js";
@@ -23,14 +23,9 @@ import {
     fit1101,
     sdfBox2,
     sdfSmoothUnion,
-    sdfTriangle2
+    sdfTriangle2,
 } from "@thi.ng/shader-ast-stdlib";
-import {
-    compileModel,
-    draw,
-    quad,
-    shader
-} from "@thi.ng/webgl";
+import { compileModel, draw, quad, shader } from "@thi.ng/webgl";
 
 // set URL hash to "#2d" to enable JS Canvas2D version
 const JS_MODE = location.hash.indexOf("2d") >= 0;
@@ -63,7 +58,7 @@ const scene = defn("float", "scene", ["vec2"], (pos) => {
             d1,
             sdfSmoothUnion(sdfSmoothUnion(d3, d2, float(0.5)), d1, float(0.5))
         ),
-        ret(d1)
+        ret(d1),
     ];
 });
 
@@ -85,7 +80,7 @@ const mainImage = defn("vec4", "mainImage", ["vec2", "vec2"], (frag, res) => {
                 ),
                 1
             )
-        )
+        ),
     ];
 });
 
@@ -130,8 +125,8 @@ if (JS_MODE) {
     model.shader = shader(ctx, {
         vs: (gl, _, attribs) => [
             defMain(() => [
-                assign(gl.gl_Position, vec4(attribs.position, 0, 1))
-            ])
+                assign(gl.gl_Position, vec4(attribs.position, 0, 1)),
+            ]),
         ],
         fs: (gl, unis, _, outs) => [
             mainImage,
@@ -139,15 +134,15 @@ if (JS_MODE) {
                 assign(
                     outs.fragColor,
                     mainImage($xy(gl.gl_FragCoord), unis.resolution)
-                )
-            ])
+                ),
+            ]),
         ],
         attribs: {
-            position: "vec2"
+            position: "vec2",
         },
         uniforms: {
-            resolution: ["vec2", [W, H]]
-        }
+            resolution: ["vec2", [W, H]],
+        },
     });
     // compile model (attrib buffers)
     compileModel(ctx, model);

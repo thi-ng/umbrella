@@ -27,7 +27,7 @@ import {
     vec2,
     Vec2Sym,
     vec3,
-    Vec3Sym
+    Vec3Sym,
 } from "@thi.ng/shader-ast";
 import { hash32 } from "./hash";
 
@@ -98,12 +98,12 @@ export const voronoise2 = defn(
                                 )
                             )),
                             assign(va, madd(w, $z(o), va)),
-                            assign(wt, add(wt, w))
+                            assign(wt, add(wt, w)),
                         ]
-                    )
+                    ),
                 ]
             ),
-            ret(div(va, wt))
+            ret(div(va, wt)),
         ];
     }
 );

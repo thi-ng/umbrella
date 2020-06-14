@@ -31,5 +31,5 @@ export const IWatchMixin = mixin(<IWatch<any>>{
         for (let id in w) {
             w[id](id, oldState, newState);
         }
-    }
+    },
 });

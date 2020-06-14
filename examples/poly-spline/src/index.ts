@@ -7,15 +7,10 @@ import {
     pathFromCubics,
     star,
     svgDoc,
-    withAttribs
+    withAttribs,
 } from "@thi.ng/geom";
 import { convertTree } from "@thi.ng/hiccup-svg";
-import {
-    fromRAF,
-    stream,
-    Stream,
-    sync
-} from "@thi.ng/rstream";
+import { fromRAF, stream, Stream, sync } from "@thi.ng/rstream";
 import {
     comp,
     iterator,
@@ -23,13 +18,13 @@ import {
     mapcat,
     partition,
     reducer,
-    scan
+    scan,
 } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 
 const BUTTONS = {
     blue: "bg-blue white hover-bg-light-blue hover-navy",
-    green: "bg-green white hover-bg-light-green hover-dark-green"
+    green: "bg-green white hover-bg-light-green hover-dark-green",
 };
 
 // HOF event listener to emit a value on given stream
@@ -46,9 +41,9 @@ const button = (
     {
         href: "#",
         onclick,
-        class: "dib w4 mr2 pa2 link " + clazz
+        class: "dib w4 mr2 pa2 link " + clazz,
     },
-    label
+    label,
 ];
 
 // slider UI component
@@ -66,10 +61,10 @@ const slider = (
             type: "range",
             value: stream.deref(),
             oninput: (e: any) => stream.next(parseFloat(e.target.value)),
-            ...attribs
-        }
+            ...attribs,
+        },
     ],
-    stream.deref()!.toFixed(1)
+    stream.deref()!.toFixed(1),
 ];
 
 // main app component / stream transformer
@@ -86,7 +81,7 @@ const app = (
     const cubics = asCubic(poly, {
         breakPoints: mode,
         scale: scale * (uniform ? uniScale : 1),
-        uniform
+        uniform,
     });
     // visualize control points as circles
     const controlPoints = iterator(
@@ -114,26 +109,26 @@ const app = (
                 button,
                 BUTTONS.blue,
                 emitOnStream(_mode, true),
-                mode ? "break points" : "control points"
+                mode ? "break points" : "control points",
             ],
             [
                 button,
                 BUTTONS.green,
                 emitOnStream(_uniform, true),
-                uniform ? "uniform" : "non-uniform"
+                uniform ? "uniform" : "non-uniform",
             ],
             [
                 slider,
                 { min: -1.3, max: 1.3, step: 0.1 },
                 _scale,
-                "tangent scale"
+                "tangent scale",
             ],
             [
                 slider,
                 { min: 0, max: 100, step: 1, disabled: !uniform },
                 _uniScale,
-                "uniform scale"
-            ]
+                "uniform scale",
+            ],
         ],
         [
             "div",
@@ -143,7 +138,7 @@ const app = (
             // using SVG and hence will need to call `convertTree()` to
             // transform the hiccup format into a SVG compatible format
             // see:
-            // https://github.com/thi-ng/umbrella/blob/master/packages/hiccup-svg/src/convert.ts#L34
+            // https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup-svg/src/convert.ts#L34
             convertTree(
                 svgDoc(
                     {
@@ -152,17 +147,17 @@ const app = (
                         viewBox: "-150 -150 300 300",
                         fill: "none",
                         stroke: "#ccc",
-                        "stroke-width": 0.25
+                        "stroke-width": 0.25,
                     },
                     poly,
                     withAttribs(pathFromCubics(cubics), {
                         stroke: mode ? "blue" : "red",
-                        "stroke-width": 1
+                        "stroke-width": 1,
                     }),
                     group({ stroke: "#333" }, [...controlPoints, ...handles])
                 )
-            )
-        ]
+            ),
+        ],
     ];
 };
 
@@ -195,8 +190,8 @@ const main = sync<any, any>({
         mode: mode.transform(toggle),
         uniform: uniform.transform(toggle),
         scale,
-        uniScale
-    }
+        uniScale,
+    },
 });
 
 // transform to create & apply UI

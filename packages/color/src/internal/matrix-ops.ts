@@ -55,5 +55,5 @@ export const mulM45 = (a: ColorMatrix, b: ColorMatrix): ColorMatrix => [
     dotS4(b, a, 15, 1, 1, 5),
     dotS4(b, a, 15, 2, 1, 5),
     dotS4(b, a, 15, 3, 1, 5),
-    dotS4(b, a, 15, 4, 1, 5) + b[19]
+    dotS4(b, a, 15, 4, 1, 5) + b[19],
 ];

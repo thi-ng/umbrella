@@ -17,7 +17,7 @@ export const textLabel = (
             "text",
             { fill: gui.textColor(false) },
             [x + (pad ? theme.pad : 0), y + h / 2 + theme.baseLine],
-            label
+            label,
         ]);
 };
 

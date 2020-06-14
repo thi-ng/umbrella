@@ -1,11 +1,6 @@
 import { isNumber } from "@thi.ng/checks";
 import * as assert from "assert";
-import {
-    Atom,
-    Cursor,
-    defAtom,
-    defCursor
-} from "../src/index";
+import { Atom, Cursor, defAtom, defCursor } from "../src/index";
 
 interface State {
     a: {

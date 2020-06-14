@@ -1,13 +1,6 @@
 import { IntersectionType } from "@thi.ng/geom-api";
 import { EPS, sign } from "@thi.ng/math";
-import {
-    copy,
-    dot,
-    maddN,
-    mulN,
-    ReadonlyVec,
-    sub
-} from "@thi.ng/vectors";
+import { copy, dot, maddN, mulN, ReadonlyVec, sub } from "@thi.ng/vectors";
 import { NONE } from "./api";
 
 export const intersectRayPlane = (
@@ -25,13 +18,13 @@ export const intersectRayPlane = (
         return {
             type: IntersectionType.INTERSECT,
             isec: maddN(isec, dir, alpha, rpos),
-            alpha
+            alpha,
         };
     }
     return cp === 0
         ? {
               type: IntersectionType.COINCIDENT,
-              isec: copy(rpos)
+              isec: copy(rpos),
           }
         : NONE;
 };

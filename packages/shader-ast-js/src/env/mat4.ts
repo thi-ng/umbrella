@@ -9,7 +9,7 @@ import {
     mulV44,
     mulVM44,
     sub44,
-    subN44
+    subN44,
 } from "@thi.ng/matrices";
 import { neg, vecOf } from "@thi.ng/vectors";
 import type { JSBuiltinsMat } from "../api";
@@ -32,5 +32,5 @@ export const MAT4: JSBuiltinsMat = {
     sub: (a, b) => sub44([], a, b),
     sub1: (a) => neg([], a),
     subnv: (a, b) => sub44(null, vecOf(16, a), b),
-    subvn: (a, b) => subN44([], a, b)
+    subvn: (a, b) => subN44([], a, b),
 };

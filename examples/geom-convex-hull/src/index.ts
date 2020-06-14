@@ -7,7 +7,7 @@ import {
     polygon,
     rect,
     scatter,
-    withAttribs
+    withAttribs,
 } from "@thi.ng/geom";
 import { renderOnce } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
@@ -47,16 +47,16 @@ renderOnce([
     withAttribs(clip, {
         fill: COL3(0.5),
         stroke: COL3(1),
-        weight: 3
+        weight: 3,
     }),
     ...(<[IShape, string][]>[
         [hull1, COL1(1)],
         [hull2, COL2(1)],
-        [clip, COL3(1)]
+        [clip, COL3(1)],
     ]).map(([shape, col]) => [
         "text",
         { fill: col },
         centroid(shape),
-        area(shape).toFixed(2)
-    ])
+        area(shape).toFixed(2),
+    ]),
 ]);

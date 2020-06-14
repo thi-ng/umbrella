@@ -160,7 +160,7 @@ export const MIME_TYPES = ((defs: any) => {
         "xv+xml": "mxml,xhvml,xvml,xvm",
         yang: "yang",
         "yin+xml": "yin",
-        zip: "zip"
+        zip: "zip",
     },
     audio: {
         "3gpp": "*3gpp",
@@ -177,14 +177,14 @@ export const MIME_TYPES = ((defs: any) => {
         wav: "wav",
         wave: "*wav",
         webm: "weba",
-        xm: "xm"
+        xm: "xm",
     },
     font: {
         collection: "ttc",
         otf: "otf",
         ttf: "ttf",
         woff: "woff",
-        woff2: "woff2"
+        woff2: "woff2",
     },
     image: {
         aces: "exr",
@@ -215,7 +215,7 @@ export const MIME_TYPES = ((defs: any) => {
         tiff: "tif,tiff",
         "tiff-fx": "tfx",
         webp: "webp",
-        wmf: "wmf"
+        wmf: "wmf",
     },
     message: {
         "disposition-notification": "disposition-notification",
@@ -223,7 +223,7 @@ export const MIME_TYPES = ((defs: any) => {
         "global-delivery-status": "u8dsn",
         "global-disposition-notification": "u8mdn",
         "global-headers": "u8hdr",
-        rfc822: "eml,mime"
+        rfc822: "eml,mime",
     },
     model: {
         "3mf": "3mf",
@@ -239,7 +239,7 @@ export const MIME_TYPES = ((defs: any) => {
         "x3d+fastinfoset": "x3db",
         "x3d+vrml": "*x3dv,x3dvz",
         "x3d+xml": "x3d,x3dz",
-        "x3d-vrml": "x3dv"
+        "x3d-vrml": "x3dv",
     },
     text: {
         "cache-manifest": "appcache,manifest",
@@ -269,7 +269,7 @@ export const MIME_TYPES = ((defs: any) => {
         vcard: "vcard",
         vtt: "vtt",
         xml: "*xml",
-        yaml: "yaml,yml"
+        yaml: "yaml,yml",
     },
     video: {
         "3gpp": "3gp,3gpp",
@@ -286,8 +286,8 @@ export const MIME_TYPES = ((defs: any) => {
         ogg: "ogv",
         quicktime: "qt,mov",
         webm: "webm",
-        "x-msvideo": "avi"
-    }
+        "x-msvideo": "avi",
+    },
 });
 
 /**

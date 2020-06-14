@@ -35,14 +35,14 @@ const button = () =>
                             this.id++;
                             this.enabled = true;
                         }, 500);
-                    }
+                    },
                 },
-                this.id
+                this.id,
             ];
             this.previd = this.id;
             this.prevenabled = this.enabled;
             return body;
-        }
+        },
     };
 
 /**
@@ -67,14 +67,14 @@ const wrapper = () => {
                           onclick: () => {
                               nextSkip = !nextSkip;
                               requestAnimationFrame(() => (skip = nextSkip));
-                          }
+                          },
                       },
-                      nextSkip ? "unskip!" : "skip!"
+                      nextSkip ? "unskip!" : "skip!",
                   ],
                   [bt, id],
                   nextSkip
                       ? ["div.dib.mh3.f7.red", "(counter updates not shown)"]
-                      : null
+                      : null,
               ];
 };
 

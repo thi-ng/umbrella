@@ -1,10 +1,4 @@
-import {
-    $iter,
-    compR,
-    Reducer,
-    step,
-    Transducer
-} from "@thi.ng/transducers";
+import { $iter, compR, Reducer, step, Transducer } from "@thi.ng/transducers";
 import { donchian } from "./donchian";
 import { sma } from "./sma";
 

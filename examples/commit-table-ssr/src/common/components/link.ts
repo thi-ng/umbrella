@@ -10,5 +10,5 @@ import type { AppContext } from "../api";
 export const link = (_: AppContext, attribs: any, body: string) => [
     "a",
     attribs,
-    body
+    body,
 ];

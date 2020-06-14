@@ -8,7 +8,7 @@ import {
     sub,
     Sym,
     sym,
-    Vec
+    Vec,
 } from "@thi.ng/shader-ast";
 import { clamp01 } from "../math/clamp";
 
@@ -24,7 +24,7 @@ const line = <T extends Vec>(p: Sym<T>, a: Sym<T>, b: Sym<T>) => {
     return [
         (pa = sym(sub(p, a))),
         (ba = sym(sub(b, a))),
-        ret(length(sub(pa, mul(ba, clamp01(div(dot(pa, ba), dot(ba, ba)))))))
+        ret(length(sub(pa, mul(ba, clamp01(div(dot(pa, ba), dot(ba, ba))))))),
     ];
 };
 

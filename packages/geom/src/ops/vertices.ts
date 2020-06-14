@@ -1,23 +1,11 @@
 import { isNumber } from "@thi.ng/checks";
 import { defmulti, Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
-import {
-    DEFAULT_SAMPLES,
-    IShape,
-    SamplingOpts,
-    Type
-} from "@thi.ng/geom-api";
+import { DEFAULT_SAMPLES, IShape, SamplingOpts, Type } from "@thi.ng/geom-api";
 import { sample as _arcVertices } from "@thi.ng/geom-arc";
 import { resample } from "@thi.ng/geom-resample";
 import { sampleCubic, sampleQuadratic } from "@thi.ng/geom-splines";
 import { cossin, TAU } from "@thi.ng/math";
-import {
-    add2,
-    add3,
-    cartesian2,
-    madd2,
-    set2,
-    Vec
-} from "@thi.ng/vectors";
+import { add2, add3, cartesian2, madd2, set2, Vec } from "@thi.ng/vectors";
 import { AABB } from "../api/aabb";
 import { Arc } from "../api/arc";
 import { Circle } from "../api/circle";
@@ -61,7 +49,7 @@ vertices.addAll(<
             [px, qy, pz], // e
             [px, qy, qz], // f
             [qx, qy, qz], // g
-            [qx, qy, pz] // h
+            [qx, qy, pz], // h
         ];
     },
 
@@ -128,7 +116,7 @@ vertices.addAll(<
         const q = add2([], p, $.size);
         const verts = [set2([], p), [q[0], p[1]], q, [p[0], q[1]]];
         return opts != null ? vertices(new Polygon(verts), opts) : verts;
-    }
+    },
 });
 
 vertices.isa(Type.LINE, Type.POLYLINE);
@@ -148,5 +136,5 @@ const circleOpts = (
                   : opts.dist
                   ? Math.floor(TAU / (opts.dist / r))
                   : opts.num || DEFAULT_SAMPLES,
-              opts.last === true
+              opts.last === true,
           ];

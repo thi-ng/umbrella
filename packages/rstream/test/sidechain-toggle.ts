@@ -1,11 +1,6 @@
 import { Predicate } from "@thi.ng/api";
 import * as assert from "assert";
-import {
-    sidechainToggle,
-    State,
-    Stream,
-    stream
-} from "../src/index";
+import { sidechainToggle, State, Stream, stream } from "../src/index";
 
 describe("SidechainToggle", () => {
     let src: Stream<any>, side: Stream<any>, buf: any[];
@@ -29,7 +24,7 @@ describe("SidechainToggle", () => {
             done() {
                 assert.deepEqual(buf, expect);
                 done();
-            }
+            },
         });
         src.next(1);
         src.next(2);

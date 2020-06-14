@@ -44,7 +44,7 @@ export function streamSort<A, B>(...args: any[]): any {
                     acc = reduce(acc, buf.shift()!);
                 }
                 return acc;
-            }
+            },
         ];
     };
 }

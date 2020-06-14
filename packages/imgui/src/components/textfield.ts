@@ -101,7 +101,7 @@ export const textFieldRaw = (
                     "line",
                     { stroke: theme.cursor },
                     [xx, y + 4],
-                    [xx, y + h - 4]
+                    [xx, y + h - 4],
                 ]);
         }
         const k = gui.key;

@@ -33,7 +33,7 @@ export const detCoeffs44 = (m: ReadonlyMat) => {
         m30,
         m31,
         m32,
-        m33
+        m33,
     ] = m;
     return [
         dp4(m00, m11, -m01, m10),
@@ -47,7 +47,7 @@ export const detCoeffs44 = (m: ReadonlyMat) => {
         dp4(m20, m33, -m23, m30),
         dp4(m21, m32, -m22, m31),
         dp4(m21, m33, -m23, m31),
-        dp4(m22, m33, -m23, m32)
+        dp4(m22, m33, -m23, m32),
     ];
 };
 

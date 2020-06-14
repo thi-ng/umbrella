@@ -6,7 +6,7 @@ import {
     GestureEvent,
     GestureInfo,
     GestureStreamOpts,
-    GestureType
+    GestureType,
 } from "./api";
 import type { IObjectOf } from "@thi.ng/api";
 
@@ -26,7 +26,7 @@ const startEvents = new Set([
     "mousedown",
     "touchmove",
     "touchstart",
-    "mousemove"
+    "mousemove",
 ]);
 
 const endEvents = new Set(["mouseup", "touchend", "touchcancel"]);
@@ -40,7 +40,7 @@ const eventGestureTypeMap: IObjectOf<GestureType> = {
     touchcancel: GestureType.END,
     mousedown: GestureType.START,
     mouseup: GestureType.END,
-    wheel: GestureType.ZOOM
+    wheel: GestureType.ZOOM,
 };
 
 /**
@@ -88,7 +88,7 @@ export const gestureStream = (
         preventContextMenu: true,
         local: true,
         scale: false,
-        ..._opts
+        ..._opts,
     };
     const dpr = window.devicePixelRatio || 1;
     const active: GestureInfo[] = [];
@@ -102,7 +102,7 @@ export const gestureStream = (
         "touchend",
         "touchcancel",
         "touchmove",
-        "mouseup"
+        "mouseup",
     ];
     !isBody && tempEvents.push("mousemove");
 
@@ -155,7 +155,7 @@ export const gestureStream = (
                         touch.pos = pos;
                         touch.delta = [
                             pos[0] - touch.start![0],
-                            pos[1] - touch.start![1]
+                            pos[1] - touch.start![1],
                         ];
                         if (isTouch) {
                             touch.force = (<Touch>t).force;
@@ -202,9 +202,9 @@ export const gestureStream = (
                 active,
                 zoom,
                 zoomDelta,
-                isTouch
+                isTouch,
             };
-        })
+        }),
     });
 
     return stream;

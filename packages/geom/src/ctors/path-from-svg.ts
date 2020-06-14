@@ -104,7 +104,7 @@ const readFlag = (src: string, i: number): [boolean, number] => {
             : c === "1"
             ? true
             : illegalState(`expected '0' or '1' @ pos: ${i}`),
-        i + 1
+        i + 1,
     ];
 };
 

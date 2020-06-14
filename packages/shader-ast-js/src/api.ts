@@ -1,11 +1,4 @@
-import type {
-    Fn,
-    Fn2,
-    Fn3,
-    Fn4,
-    Fn5,
-    Fn6
-} from "@thi.ng/api";
+import type { Fn, Fn2, Fn3, Fn4, Fn5, Fn6 } from "@thi.ng/api";
 import type { Mat } from "@thi.ng/matrices";
 import type { Term } from "@thi.ng/shader-ast";
 import type { Vec } from "@thi.ng/vectors";

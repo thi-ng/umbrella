@@ -3,7 +3,11 @@ import { isString } from "@thi.ng/checks";
 import { canvas2D } from "@thi.ng/hdom-components";
 import { fitClamped } from "@thi.ng/math";
 import { Subscription } from "@thi.ng/rstream";
-import { GestureEvent, gestureStream, GestureType } from "@thi.ng/rstream-gestures";
+import {
+    GestureEvent,
+    gestureStream,
+    GestureType,
+} from "@thi.ng/rstream-gestures";
 import { heading, sub2 } from "@thi.ng/vectors";
 import type { Fn } from "@thi.ng/api";
 
@@ -126,7 +130,7 @@ export const dial = (_opts: Partial<DialOpts>) => {
         labelColor: "black",
         labelYOffset: 0,
         font: "10px sans-serif",
-        ..._opts
+        ..._opts,
     };
     let events: Subscription<any, GestureEvent>;
     let cx: number, cy: number;
@@ -205,7 +209,7 @@ export const dial = (_opts: Partial<DialOpts>) => {
                                 )
                             );
                         }
-                    }
+                    },
                 });
             }
         },
@@ -230,6 +234,6 @@ export const dial = (_opts: Partial<DialOpts>) => {
                 ctx.fillStyle = opts.labelColor;
                 ctx.fillText(opts.label(val), cx, cy + opts.labelYOffset);
             }
-        }
+        },
     });
 };

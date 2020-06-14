@@ -1,12 +1,6 @@
 import { peek } from "@thi.ng/arrays";
 import { wordWrap } from "@thi.ng/transducers";
-import {
-    beginClip,
-    beginStyle,
-    Canvas,
-    endClip,
-    endStyle
-} from "./canvas";
+import { beginClip, beginStyle, Canvas, endClip, endStyle } from "./canvas";
 import { fillRect, strokeRect } from "./rect";
 import type { TextBoxOpts } from "./api";
 
@@ -103,7 +97,7 @@ export const textBox = (
     const { format, style, padding } = {
         format: canvas.format,
         padding: [0, 0],
-        ...opts
+        ...opts,
     };
     const currFmt = canvas.format;
     canvas.format = format;

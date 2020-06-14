@@ -3,14 +3,9 @@ import {
     Type,
     typedArray,
     TYPEDARRAY_CTORS,
-    TypedArrayTypeMap
+    TypedArrayTypeMap,
 } from "@thi.ng/api";
-import {
-    ReadonlyVec,
-    Vec,
-    VecOpSV,
-    VectorConstructor
-} from "./api";
+import { ReadonlyVec, Vec, VecOpSV, VectorConstructor } from "./api";
 
 /**
  * Takes an `ArrayBuffer` and creates a number of typed array vector

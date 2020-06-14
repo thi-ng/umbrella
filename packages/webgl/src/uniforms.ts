@@ -1,11 +1,6 @@
 import { equivArrayLike } from "@thi.ng/equiv";
 import { IDENT22, IDENT33, IDENT44 } from "@thi.ng/matrices";
-import {
-    ReadonlyVec,
-    ZERO2,
-    ZERO3,
-    ZERO4
-} from "@thi.ng/vectors";
+import { ReadonlyVec, ZERO2, ZERO3, ZERO4 } from "@thi.ng/vectors";
 import type { Fn, Fn3, IObjectOf } from "@thi.ng/api";
 import type { GLVec } from "./api/glsl";
 import type { UniformValue } from "./api/shader";
@@ -75,14 +70,12 @@ const uniformM = (fn: SetterM, sysDefault?: ReadonlyVec) => (
 
 const Z1 = [0];
 
-export const UNIFORM_SETTERS: IObjectOf<
-    Fn3<
-        WebGLRenderingContext,
-        WebGLUniformLocation,
-        number | ReadonlyVec | undefined,
-        Fn<UniformValue | undefined | null, void>
-    >
-> = <any>{
+export const UNIFORM_SETTERS: IObjectOf<Fn3<
+    WebGLRenderingContext,
+    WebGLUniformLocation,
+    number | ReadonlyVec | undefined,
+    Fn<UniformValue | undefined | null, void>
+>> = <any>{
     bool: uniformS("i"),
     float: uniformS("f"),
     int: uniformS("i"),
@@ -124,5 +117,5 @@ export const UNIFORM_SETTERS: IObjectOf<
     "sampler2DShadow[]": uniformV("1iv", Z1),
     "sampler3D[]": uniformV("1iv", Z1),
     "samplerCube[]": uniformV("1iv", Z1),
-    "samplerCubeShadow[]": uniformV("1iv", Z1)
+    "samplerCubeShadow[]": uniformV("1iv", Z1),
 };

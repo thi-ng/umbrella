@@ -10,7 +10,7 @@ import {
     sym,
     vec2,
     Vec2Sym,
-    vec3
+    vec3,
 } from "@thi.ng/shader-ast";
 import type { RaymarchScene } from "../api";
 
@@ -30,6 +30,6 @@ export const raymarchNormal = (scene: RaymarchScene, name = "raymarchNormal") =>
             sub($x(scene(add(p, $(dn, id)))), $x(scene(sub(p, $(dn, id)))));
         return [
             (dn = sym(vec2(smooth, 0))),
-            ret(normalize(vec3(comp("xyy"), comp("yxy"), comp("yyx"))))
+            ret(normalize(vec3(comp("xyy"), comp("yxy"), comp("yyx")))),
         ];
     });

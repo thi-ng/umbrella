@@ -1,12 +1,7 @@
 import { isNumber } from "@thi.ng/checks";
 import { closestPointPlane } from "@thi.ng/geom-closest-point";
 import { alignmentQuat, mulVQ } from "@thi.ng/matrices";
-import {
-    add3,
-    ReadonlyVec,
-    Vec,
-    Z3
-} from "@thi.ng/vectors";
+import { add3, ReadonlyVec, Vec, Z3 } from "@thi.ng/vectors";
 import { Plane } from "../api/plane";
 import { Quad } from "../api/quad";
 import { Quad3 } from "../api/quad3";
@@ -37,9 +32,12 @@ export const quadOnPlane = (
     const [w, h] = isNumber(size) ? [size, size] : size;
     const q = alignmentQuat(Z3, plane.normal);
     return new Quad3(
-        [[-w, -h, 0], [w, -h, 0], [w, h, 0], [-w, h, 0]].map((p) =>
-            add3(null, mulVQ(null, q, p), pos)
-        ),
+        [
+            [-w, -h, 0],
+            [w, -h, 0],
+            [w, h, 0],
+            [-w, h, 0],
+        ].map((p) => add3(null, mulVQ(null, q, p), pos)),
         attribs
     );
 };

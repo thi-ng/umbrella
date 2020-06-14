@@ -4,7 +4,7 @@ import {
     normalize,
     ReadonlyVec,
     setC,
-    sub3
+    sub3,
 } from "@thi.ng/vectors";
 import type { Mat } from "./api";
 

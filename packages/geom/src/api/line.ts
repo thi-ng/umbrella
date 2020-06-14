@@ -18,7 +18,11 @@ export class Line extends APC implements IHiccupShape, IHiccupPathSegment {
     toHiccupPathSegments() {
         const [a, b] = this.points;
         return [
-            a[0] === b[0] ? ["V", b[1]] : a[1] === b[1] ? ["H", b[0]] : ["L", b]
+            a[0] === b[0]
+                ? ["V", b[1]]
+                : a[1] === b[1]
+                ? ["H", b[0]]
+                : ["L", b],
         ];
     }
 }

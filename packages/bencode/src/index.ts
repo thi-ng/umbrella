@@ -6,7 +6,7 @@ import {
     isBoolean,
     isNumber,
     isPlainObject,
-    isString
+    isString,
 } from "@thi.ng/checks";
 import { defmulti } from "@thi.ng/defmulti";
 import { illegalState, unsupported } from "@thi.ng/errors";
@@ -18,7 +18,7 @@ import {
     u8,
     u8array,
     utf8Decode,
-    utf8Length
+    utf8Length,
 } from "@thi.ng/transducers-binary";
 
 const enum Type {
@@ -27,7 +27,7 @@ const enum Type {
     STR,
     BINARY,
     DICT,
-    LIST
+    LIST,
 }
 
 const enum Lit {
@@ -40,7 +40,7 @@ const enum Lit {
     END = 0x65,
     FLOAT = 0x66,
     INT = 0x69,
-    LIST = 0x6c
+    LIST = 0x6c,
 }
 
 const FLOAT_RE = /^[0-9.-]+$/;
@@ -84,7 +84,7 @@ encodeBin.addAll({
     [Type.LIST]: (x: Iterable<any>) => [
         u8(0x6c),
         ...mapcat(encodeBin, x),
-        u8(0x65)
+        u8(0x65),
     ],
 
     [Type.DICT]: (x: any) => [
@@ -93,8 +93,8 @@ encodeBin.addAll({
             (k: string) => encodeBin(k).concat(encodeBin(x[k])),
             Object.keys(x).sort()
         ),
-        u8(0x65)
-    ]
+        u8(0x65),
+    ],
 });
 
 export const decode = (buf: Iterable<number>, utf8 = true) => {

@@ -3,7 +3,7 @@ import {
     isFunction,
     isIterable,
     isPlainObject,
-    isString
+    isString,
 } from "@thi.ng/checks";
 import { COMPACT, CSSOpts, DEFAULT_VENDORS } from "./api";
 import { expand, formatDecls } from "./impl";
@@ -14,7 +14,7 @@ export const css = (rules: any, opts?: Partial<CSSOpts>) => {
         vendors: DEFAULT_VENDORS,
         fns: {},
         depth: 0,
-        ...opts
+        ...opts,
     };
     if (isPlainObject(rules)) {
         return formatDecls(rules, <CSSOpts>opts);

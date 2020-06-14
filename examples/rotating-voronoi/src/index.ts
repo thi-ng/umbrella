@@ -8,7 +8,7 @@ import {
     polygon,
     rect,
     svgDoc,
-    vertices
+    vertices,
 } from "@thi.ng/geom";
 import { simplify } from "@thi.ng/geom-resample";
 import { DVMesh } from "@thi.ng/geom-voronoi";
@@ -25,7 +25,7 @@ import {
     frameStreamConditional,
     keyStreamConditional,
     mainStream,
-    scaleStream
+    scaleStream,
 } from "./stream-state";
 
 const edge = window.innerWidth * 0.7;
@@ -40,7 +40,7 @@ const startingCircles: Array<[number, number, boolean]> = [
     [radius / 1, rndInt(4, 20), true],
     [radius / 2, rndInt(4, 20), false],
     [radius / 4, rndInt(4, 20), true],
-    [radius / 8, rndInt(4, 20), false]
+    [radius / 8, rndInt(4, 20), false],
 ];
 
 const pointsInCircle = (
@@ -52,7 +52,7 @@ const pointsInCircle = (
     ...map(
         (index) => cartesian2(null, [_radius, index * TAU + _angle], _center),
         normRange(_num, false)
-    )
+    ),
 ];
 
 scaleStream.next(1);
@@ -76,7 +76,7 @@ function computeVoronoi(state: AppState) {
                     clockwise ? delta : PI - delta
                 ),
             startingCircles
-        )
+        ),
     ];
 
     const bounds = rect([width, height], { fill: "black" });
@@ -92,7 +92,7 @@ function computeVoronoi(state: AppState) {
             cells.map((cell) =>
                 pathFromCubics(
                     asCubic(polygon(simplify(cell, 0.5, true)), {
-                        scale: state.scaleValue
+                        scale: state.scaleValue,
                     })
                 )
             )
@@ -101,8 +101,8 @@ function computeVoronoi(state: AppState) {
         points(doSave ? [] : startPoints, {
             size: 4,
             shape: "circle",
-            fill: "gray"
-        })
+            fill: "gray",
+        }),
     ];
 
     if (doSave) {
@@ -112,7 +112,7 @@ function computeVoronoi(state: AppState) {
                     width,
                     height,
                     viewBox: `0 0 ${width} ${height}`,
-                    "stroke-width": 0.25
+                    "stroke-width": 0.25,
                 },
                 ...voronoi
             )
@@ -137,9 +137,9 @@ function appRender(state: AppState) {
                         "a",
                         {
                             href:
-                                "https://observablehq.com/@mbostock/rotating-voronoi"
+                                "https://observablehq.com/@mbostock/rotating-voronoi",
                         },
-                        " observablehq sketch"
+                        " observablehq sketch",
                     ],
                     ". ",
 
@@ -148,11 +148,11 @@ function appRender(state: AppState) {
                         "a",
                         {
                             href:
-                                "https://www.flickr.com/photos/quasimondo/8254540763/"
+                                "https://www.flickr.com/photos/quasimondo/8254540763/",
                         },
-                        "ornament"
+                        "ornament",
                     ],
-                    " by Mario Klingemann."
+                    " by Mario Klingemann.",
                 ],
                 ["p", "Press `s` to save the SVG file."],
                 [
@@ -169,14 +169,14 @@ function appRender(state: AppState) {
                         state.animationValue,
                         (x: boolean) => animationStream.next(x),
                         "Animation"
-                    )
-                ]
+                    ),
+                ],
             ],
             [
                 "div.flex.justify-center",
-                [canvas, { width, height }, ...computeVoronoi(state)]
-            ]
-        ]
+                [canvas, { width, height }, ...computeVoronoi(state)],
+            ],
+        ],
     ];
 }
 

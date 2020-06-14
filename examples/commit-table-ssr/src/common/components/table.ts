@@ -6,14 +6,14 @@ const thead = (ctx: AppContext, head: Iterable<any>) => [
     [
         row,
         ctx.ui.table.head.row,
-        map((x) => ["th", ctx.ui.table.head.cell, x], head)
-    ]
+        map((x) => ["th", ctx.ui.table.head.cell, x], head),
+    ],
 ];
 
 const row = (ctx: AppContext, attribs: any, body: Iterable<any>) => [
     "tr",
     { ...ctx.ui.table.row, ...attribs },
-    ...body
+    ...body,
 ];
 
 /**
@@ -66,12 +66,12 @@ export const table = (
                     (cols: any) => [
                         row,
                         null,
-                        map((x) => ["td", ctx.ui.table.cell, x], cols)
+                        map((x) => ["td", ctx.ui.table.cell, x], cols),
                     ],
                     rows
-                )
-            ]
+                ),
+            ],
         ],
         body
-    )
+    ),
 ];

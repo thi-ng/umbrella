@@ -8,7 +8,7 @@ describe("rstream-query", () => {
         ["c", "type", "baz"], // 2
         ["a", "value", 0], // 3
         ["b", "value", 1], // 4
-        ["c", "friend", "a"] // 5
+        ["c", "friend", "a"], // 5
     ];
 
     let store: TripleStore;
@@ -87,7 +87,10 @@ describe("rstream-query", () => {
             .addParamQuery(["a", "?p", "?o"])
             .subscribe({ next: (r) => res.push(r) });
         assert.deepEqual(res, [
-            new Set([{ p: "type", o: "foo" }, { p: "value", o: 0 }])
+            new Set([
+                { p: "type", o: "foo" },
+                { p: "value", o: 0 },
+            ]),
         ]);
     });
 
@@ -100,8 +103,8 @@ describe("rstream-query", () => {
             new Set([
                 { s: "a", o: "foo" },
                 { s: "b", o: "bar" },
-                { s: "c", o: "baz" }
-            ])
+                { s: "c", o: "baz" },
+            ]),
         ]);
     });
 
@@ -153,8 +156,8 @@ describe("rstream-query", () => {
                 { s: "c", p: "type", o: "baz" },
                 { s: "a", p: "value", o: 0 },
                 { s: "b", p: "value", o: 1 },
-                { s: "c", p: "friend", o: "a" }
-            ])
+                { s: "c", p: "friend", o: "a" },
+            ]),
         ]);
     });
 });

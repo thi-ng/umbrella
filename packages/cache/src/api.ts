@@ -5,7 +5,7 @@ import type {
     ICopy,
     IEmpty,
     ILength,
-    IRelease
+    IRelease,
 } from "@thi.ng/api";
 
 export interface ICache<K, V>

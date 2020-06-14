@@ -27,7 +27,7 @@ fs.writeFileSync(
                         decayStep: 0.85,
                         decayAlive: 0.975,
                         aliveProb: 0.999,
-                        rnd: new XsAdd(0xdecafbad)
+                        rnd: new XsAdd(0xdecafbad),
                     }),
                     // customize implementation to process syms "a" & "g" as "f"
                     { ...impl, a: impl.f, g: impl.f },
@@ -36,7 +36,7 @@ fs.writeFileSync(
                         {
                             s: "[f]",
                             f: "a[kp!>/-g]/a[kp!>/+g]",
-                            g: "a[kp!>/+f]/a[kp!>/-f]"
+                            g: "a[kp!>/+f]/a[kp!>/-f]",
                         },
                         "s",
                         13

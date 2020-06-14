@@ -1,20 +1,10 @@
-import {
-    asPolygon,
-    circle,
-    pointInside,
-    rect
-} from "@thi.ng/geom";
+import { asPolygon, circle, pointInside, rect } from "@thi.ng/geom";
 import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { HALF_PI, PI } from "@thi.ng/math";
 import { Node2D, NodeInfo } from "@thi.ng/scenegraph";
 import { cycle, map, range } from "@thi.ng/transducers";
-import {
-    cartesian2,
-    mulN2,
-    ReadonlyVec,
-    Vec
-} from "@thi.ng/vectors";
+import { cartesian2, mulN2, ReadonlyVec, Vec } from "@thi.ng/vectors";
 import type { IShape } from "@thi.ng/geom-api";
 
 /**
@@ -58,7 +48,7 @@ const colors = cycle([
     "#9f0",
     "#0ff",
     "#090",
-    "#f60"
+    "#f60",
 ]);
 
 // scene graph definition
@@ -99,7 +89,7 @@ const satellites = [
                 rect([-0.5, -0.5], [1, 1], { fill: "#cf0" })
             ),
         range(4)
-    )
+    ),
 ];
 
 // this node uses a hdom component function as body to create the dynamic
@@ -119,11 +109,11 @@ const infoNode = new Node2D("info", root, mouse, 0, 1, () => [
                   "text",
                   {},
                   [8, -10],
-                  `${info.p![0].toFixed(2)}, ${info.p![1].toFixed(2)}`
+                  `${info.p![0].toFixed(2)}, ${info.p![1].toFixed(2)}`,
               ],
-              ["text", {}, [8, -24], `ID: ${info.node.id}`]
+              ["text", {}, [8, -24], `ID: ${info.node.id}`],
           ]
-        : undefined
+        : undefined,
 ]);
 
 // mousemove event handler
@@ -158,12 +148,12 @@ const app = () => {
                 width: 600,
                 height: 600,
                 onmousemove: updateMouse,
-                onclick: selectNode
+                onclick: selectNode,
             },
             // only need to pass root node which then expands itself via
             // .toHiccup() during rendering
-            root
-        ]
+            root,
+        ],
     ];
 };
 

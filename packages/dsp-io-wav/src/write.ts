@@ -1,26 +1,7 @@
 import { assert } from "@thi.ng/api";
-import {
-    f32u16,
-    f32u24,
-    f32u32,
-    f32u8
-} from "@thi.ng/binary";
-import {
-    comp,
-    concat,
-    iterator,
-    map,
-    reduce,
-    take
-} from "@thi.ng/transducers";
-import {
-    asBytes,
-    bytes,
-    u16,
-    u24,
-    u32,
-    u8
-} from "@thi.ng/transducers-binary";
+import { f32u16, f32u24, f32u32, f32u8 } from "@thi.ng/binary";
+import { comp, concat, iterator, map, reduce, take } from "@thi.ng/transducers";
+import { asBytes, bytes, u16, u24, u32, u8 } from "@thi.ng/transducers-binary";
 import type { Fn, IObjectOf } from "@thi.ng/api";
 import type { BinStructItem } from "@thi.ng/transducers-binary";
 import type { WavSpec } from "./api";
@@ -31,7 +12,7 @@ const CONVERTERS: IObjectOf<Fn<number, BinStructItem>> = {
     8: (x: number) => u8(f32u8(x)),
     16: (x: number) => u16(f32u16(x), true),
     24: (x: number) => u24(f32u24(x), true),
-    32: (x: number) => u32(f32u32(x), true)
+    32: (x: number) => u32(f32u32(x), true),
 };
 
 export const wavHeader = (spec: WavSpec): BinStructItem[] => {
@@ -51,7 +32,7 @@ export const wavHeader = (spec: WavSpec): BinStructItem[] => {
         u16(blockAlign, true),
         u16(spec.bits, true),
         u32(0x64617461, false), // 'data'
-        u32(dataLength, true)
+        u32(dataLength, true),
     ];
 };
 

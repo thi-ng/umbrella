@@ -10,5 +10,5 @@ import type { Stack, StackContext, StackEnv } from "./api";
 export const ctx = (stack: Stack = [], env: StackEnv = {}): StackContext => [
     stack,
     [],
-    env
+    env,
 ];

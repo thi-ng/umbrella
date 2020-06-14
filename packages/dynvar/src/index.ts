@@ -1,10 +1,5 @@
 import { assert } from "@thi.ng/api";
-import type {
-    Fn0,
-    IBind,
-    ICopy,
-    IDeref
-} from "@thi.ng/api";
+import type { Fn0, IBind, ICopy, IDeref } from "@thi.ng/api";
 
 /**
  * Hidden storage for bound value stacks

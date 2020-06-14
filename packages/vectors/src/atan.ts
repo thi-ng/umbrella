@@ -1,9 +1,4 @@
-import {
-    MultiVecOpV,
-    MultiVecOpVV,
-    VecOpV,
-    VecOpVV
-} from "./api";
+import { MultiVecOpV, MultiVecOpVV, VecOpV, VecOpVV } from "./api";
 import { ARGS_VV, defFnOp, defOp } from "./internal/codegen";
 import { FN2 } from "./internal/templates";
 

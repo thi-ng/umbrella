@@ -3,12 +3,7 @@ import { DEFAULT, defmulti } from "@thi.ng/defmulti";
 import { isLitNumeric } from "./ast/checks";
 import { lit } from "./ast/lit";
 import { allChildren, walk } from "./ast/scope";
-import type {
-    Lit,
-    Op1,
-    Op2,
-    Term
-} from "./api/nodes";
+import type { Lit, Op1, Op2, Term } from "./api/nodes";
 import type { Operator } from "./api/ops";
 
 const replaceNode = (node: any, next: any) => {
@@ -53,7 +48,7 @@ foldNode.addAll({
                 replaceNode(node, lit(op.type, res));
             }
         }
-    }
+    },
 });
 
 /**

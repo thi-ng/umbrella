@@ -9,14 +9,9 @@ import {
     nextID,
     Stream,
     Subscription,
-    sync
+    sync,
 } from "@thi.ng/rstream";
-import {
-    DotOpts,
-    IToDot,
-    toDot,
-    walk
-} from "@thi.ng/rstream-dot";
+import { DotOpts, IToDot, toDot, walk } from "@thi.ng/rstream-dot";
 import {
     assocObj,
     comp,
@@ -24,7 +19,7 @@ import {
     map,
     mapIndexed,
     transduce,
-    Transducer
+    Transducer,
 } from "@thi.ng/transducers";
 import { patternVars, resolvePathPattern } from "./pattern";
 import { isQVar, qvarResolver } from "./qvar";
@@ -36,7 +31,7 @@ import {
     intersect3,
     joinSolutions,
     limitSolutions,
-    resultTriples
+    resultTriples,
 } from "./xforms";
 import type {
     Edit,
@@ -50,7 +45,7 @@ import type {
     Triple,
     TripleIds,
     Triples,
-    WhereQuerySpec
+    WhereQuerySpec,
 } from "./api";
 
 export class TripleStore implements Iterable<Triple>, IToDot {
@@ -80,7 +75,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
         this.indexSelections = {
             s: new Map(),
             p: new Map(),
-            o: new Map()
+            o: new Map(),
         };
         this.streamS = new Stream({ id: "S", closeOut: CloseMode.NEVER });
         this.streamP = new Stream({ id: "P", closeOut: CloseMode.NEVER });
@@ -231,7 +226,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
                     id,
                     src,
                     xform,
-                    reset: true
+                    reset: true,
                 });
                 this.queries.set(key, <ISubscribable<TripleIds>>results);
                 submit(this.indexS, qs, s);
@@ -329,7 +324,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
             xform: comp(
                 map(({ a, b }) => join(a, b)),
                 dedupe(equiv)
-            )
+            ),
         });
     }
 
@@ -341,20 +336,20 @@ export class TripleStore implements Iterable<Triple>, IToDot {
         const src = transduce(
             mapIndexed<QuerySolution, [string, QuerySolution]>((i, q) => [
                 String(i),
-                q
+                q,
             ]),
             assocObj(),
             queries
         );
         let xforms: Transducer<any, any>[] = [
             joinSolutions(Object.keys(src).length),
-            dedupe(equiv)
+            dedupe(equiv),
         ];
         keepVars && xforms.push(filterSolutions(keepVars));
         return sync({
             id,
             src,
-            xform: <Transducer<any, any>>comp.apply(null, <any>xforms)
+            xform: <Transducer<any, any>>comp.apply(null, <any>xforms),
         });
     }
 

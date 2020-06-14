@@ -21,15 +21,15 @@ export function initDataflow(bus: EventBus) {
             fn: grid,
             ins: {
                 cols: { path: paths.COLS },
-                rows: { path: paths.ROWS }
-            }
+                rows: { path: paths.ROWS },
+            },
         },
         rotation: {
             fn: rotate,
             ins: {
                 shapes: { stream: "/grid/node" },
-                theta: { path: paths.THETA }
-            }
+                theta: { path: paths.THETA },
+            },
         },
         svg: {
             fn: createSVG,
@@ -37,16 +37,16 @@ export function initDataflow(bus: EventBus) {
                 shapes: { stream: "/rotation/node" },
                 cols: { path: paths.COLS },
                 rows: { path: paths.ROWS },
-                stroke: { path: paths.STROKE }
+                stroke: { path: paths.STROKE },
             },
             // dispatch SVG result doc as event
             outs: {
                 "*": (node) =>
                     node.subscribe({
-                        next: (svg) => bus.dispatch([ev.UPDATE_SVG, svg])
-                    })
-            }
-        }
+                        next: (svg) => bus.dispatch([ev.UPDATE_SVG, svg]),
+                    }),
+            },
+        },
     });
     return graph;
 }
@@ -59,7 +59,7 @@ const grid = node(
         ...map(
             ([x, y]) => ["rect", { x, y, width: 1, height: 1 }],
             range2d(cols, rows)
-        )
+        ),
     ])
 );
 
@@ -71,8 +71,9 @@ const rotate = node(
     map(({ shapes, theta }) =>
         shapes.map(
             (s: any) => (
-                (s[1].transform = `rotate(${theta} ${s[1].x + 0.5} ${s[1].y +
-                    0.5})`),
+                (s[1].transform = `rotate(${theta} ${s[1].x + 0.5} ${
+                    s[1].y + 0.5
+                })`),
                 s
             )
         )
@@ -89,14 +90,14 @@ const createSVG = node(
             {
                 class: "w-100 h-100",
                 preserveAspectRatio: "xMidYMid",
-                viewBox: `-1 -1 ${cols + 2} ${rows + 2}`
+                viewBox: `-1 -1 ${cols + 2} ${rows + 2}`,
             },
             rect([-1, -1], cols + 2, rows + 2, { fill: "black" }),
             group(
                 {
                     stroke: "white",
                     fill: "none",
-                    "stroke-width": stroke
+                    "stroke-width": stroke,
                 },
                 ...shapes
             )

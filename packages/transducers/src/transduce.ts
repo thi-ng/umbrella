@@ -2,12 +2,7 @@ import { illegalArity } from "@thi.ng/errors";
 import { ensureTransducer } from "./internal/ensure";
 import { reduce } from "./reduce";
 import { map } from "./xform/map";
-import type {
-    IReducible,
-    Reducer,
-    Transducer,
-    TxLike
-} from "./api";
+import type { IReducible, Reducer, Transducer, TxLike } from "./api";
 
 export function transduce<A, B, C>(
     tx: TxLike<A, B>,

@@ -1,9 +1,4 @@
-import {
-    dist,
-    mixN3,
-    ReadonlyVec,
-    Vec
-} from "@thi.ng/vectors";
+import { dist, mixN3, ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { Sphere } from "../api/sphere";
 import { argsVN } from "../internal/args";
 import type { Attribs } from "@thi.ng/geom-api";

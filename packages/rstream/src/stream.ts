@@ -6,7 +6,7 @@ import {
     ISubscriber,
     LOGGER,
     StreamCancel,
-    StreamSource
+    StreamSource,
 } from "./api";
 import { Subscription } from "./subscription";
 import { optsWithID } from "./utils/idgen";

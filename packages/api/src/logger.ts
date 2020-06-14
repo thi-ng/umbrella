@@ -7,7 +7,7 @@ export const NULL_LOGGER: ILogger = Object.freeze({
     debug() {},
     info() {},
     warn() {},
-    severe() {}
+    severe() {},
 });
 
 export class ConsoleLogger implements ILogger {

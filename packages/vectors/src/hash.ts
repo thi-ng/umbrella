@@ -43,7 +43,7 @@ import { ReadonlyVec } from "./api";
  * // 0.0106 %
  * ```
  *
- * - {@link https://github.com/thi-ng/c-thing/blob/master/src/math/hashfn.c}
+ * - {@link https://github.com/thi-ng/c-thing/blob/develop/src/math/hashfn.c}
  * - {@link @thi.ng/morton# | @thi.ng/morton} for Z-curve ordered hashing
  *
  * @param v - vector

@@ -24,5 +24,5 @@ export const FMT_ANSI16: StringFormat = {
     }),
     end: ANSI_RESET,
     prefix: ANSI_RESET,
-    suffix: "\n"
+    suffix: "\n",
 };

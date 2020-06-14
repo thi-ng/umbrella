@@ -6,7 +6,7 @@ import {
     Term,
     vec2,
     vec3,
-    vec4
+    vec4,
 } from "@thi.ng/shader-ast";
 
 const GAMMA = float(2.2);
@@ -16,7 +16,7 @@ const $ = <T extends Prim>(t: Term<T>, x: FloatTerm): Term<T> => <any>{
         float: x,
         vec2: vec2(x),
         vec3: vec3(x),
-        vec4: vec4(x, x, x, 1)
+        vec4: vec4(x, x, x, 1),
     }[t.type];
 
 /**

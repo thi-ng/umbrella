@@ -10,8 +10,8 @@ const tick = (x: number) => [
         [0, -2],
         [4, 3],
         [4, 9],
-        [-4, 9]
-    ]
+        [-4, 9],
+    ],
 ];
 
 export const rampViz = (ramp: IRamp, width: number, height: number) => {
@@ -27,13 +27,13 @@ export const rampViz = (ramp: IRamp, width: number, height: number) => {
                 [0, 1 - cp[0][1]],
                 ...map((p) => [p[0], 1 - p[1]], ramp.interpolatedPoints()),
                 [1, 1 - peek(cp)[1]],
-                [1, 1]
-            ]
+                [1, 1],
+            ],
         ],
         [
             "g",
             { translate: [0, height] },
-            ...ramp.stops.map((p) => tick(width * p[0]))
-        ]
+            ...ramp.stops.map((p) => tick(width * p[0])),
+        ],
     ];
 };

@@ -7,7 +7,7 @@ import {
     Key,
     KeyModifier,
     MouseButton,
-    NONE
+    NONE,
 } from "./api";
 import type { Fn0, IClear, IToHiccup } from "@thi.ng/api";
 
@@ -457,7 +457,7 @@ export class IMGUI implements IClear, IToHiccup {
             "g",
             { font: this.theme.font },
             ...this.layers[0],
-            ...this.layers[1]
+            ...this.layers[1],
         ];
     }
 }

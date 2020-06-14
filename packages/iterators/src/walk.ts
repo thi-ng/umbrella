@@ -67,7 +67,7 @@ export function walkIterator(input: any, ...args: any[]) {
     } else {
         postOrder = args[0];
     }
-    let walk = function*(iter: Iterator<any>): IterableIterator<any> {
+    let walk = function* (iter: Iterator<any>): IterableIterator<any> {
         let v: IteratorResult<any>;
         while (((v = iter.next()), !v.done)) {
             if (!postOrder) {

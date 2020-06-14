@@ -5,7 +5,7 @@ import {
     HDOMImplementation,
     HDOMOpts,
     hydrateTree,
-    normalizeTree
+    normalizeTree,
 } from "@thi.ng/hdom";
 import type { IObjectOf } from "@thi.ng/api";
 

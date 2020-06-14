@@ -20,11 +20,11 @@ export const __sample = (sample: Fn3<Vec[], ReadonlyVec[], number, void>) =>
         opts = isNumber(opts)
             ? {
                   num: opts,
-                  last: true
+                  last: true,
               }
             : {
                   num: DEFAULT_SAMPLES,
-                  ...opts
+                  ...opts,
               };
         const res: Vec[] = [];
         sample(res, pts, opts.num!);
@@ -32,7 +32,9 @@ export const __sample = (sample: Fn3<Vec[], ReadonlyVec[], number, void>) =>
         return res;
     };
 
-export const __sampleArray = (fn: Fn2<ReadonlyVec[], Partial<SamplingOpts>, Vec[]>) => (
+export const __sampleArray = (
+    fn: Fn2<ReadonlyVec[], Partial<SamplingOpts>, Vec[]>
+) => (
     segments: ReadonlyVec[][],
     closed = false,
     opts: number | Partial<SamplingOpts>

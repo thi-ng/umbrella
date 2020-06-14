@@ -12,12 +12,12 @@ describe("gp (ast)", () => {
                 {
                     fn: (rnd) => ["+", "-", "*", "/"][rnd.int() % 4],
                     arity: 2,
-                    prob: 0.9
-                }
+                    prob: 0.9,
+                },
             ],
             maxDepth: 2,
             probMutate: 0.1,
-            rnd: new XsAdd(0x12345678)
+            rnd: new XsAdd(0x12345678),
         });
     });
 
@@ -32,13 +32,13 @@ describe("gp (ast)", () => {
                     args: [
                         {
                             type: 0,
-                            value: 5
+                            value: 5,
                         },
                         {
                             type: 0,
-                            value: 1
-                        }
-                    ]
+                            value: 1,
+                        },
+                    ],
                 },
                 {
                     type: 1,
@@ -46,15 +46,15 @@ describe("gp (ast)", () => {
                     args: [
                         {
                             type: 0,
-                            value: 8
+                            value: 8,
                         },
                         {
                             type: 0,
-                            value: 3
-                        }
-                    ]
-                }
-            ]
+                            value: 3,
+                        },
+                    ],
+                },
+            ],
         });
     });
 });

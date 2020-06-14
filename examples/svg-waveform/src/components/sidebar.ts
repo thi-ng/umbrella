@@ -4,7 +4,6 @@ import { link } from "./link";
 import { slider, SliderOpts } from "./slider";
 import type { AppContext } from "../api";
 
-
 export function sidebar(ctx: AppContext, ...specs: SliderOpts[]) {
     const sliders = specs.map((s) => slider(ctx, s));
     return [
@@ -19,7 +18,7 @@ export function sidebar(ctx: AppContext, ...specs: SliderOpts[]) {
             ["code", "Ctrl+Z"],
             " / ",
             ["code", "Ctrl+Y"],
-            ". The last 1000 edits are stored."
+            ". The last 1000 edits are stored.",
         ],
         [
             "div",
@@ -27,15 +26,15 @@ export function sidebar(ctx: AppContext, ...specs: SliderOpts[]) {
             [
                 link,
                 "https://github.com/thi-ng/umbrella/tree/develop/examples/svg-waveform",
-                "Source"
+                "Source",
             ],
             ["br"],
             "Made with ",
             [
                 link,
                 "https://github.com/thi-ng/umbrella/tree/develop/packages/hdom",
-                "@thi.ng/hdom"
-            ]
-        ]
+                "@thi.ng/hdom",
+            ],
+        ],
     ];
 }

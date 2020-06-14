@@ -9,7 +9,7 @@ import {
     setC2,
     setC3,
     setC4,
-    Vec
+    Vec,
 } from "@thi.ng/vectors";
 import type { ReadonlyMat } from "./api";
 

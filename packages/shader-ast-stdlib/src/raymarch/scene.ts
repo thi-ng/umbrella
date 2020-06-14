@@ -16,7 +16,7 @@ import {
     ret,
     sym,
     vec2,
-    Vec2Sym
+    Vec2Sym,
 } from "@thi.ng/shader-ast";
 import { rayPointAt } from "./point-at";
 import type { RaymarchOpts, RaymarchScene } from "../api";
@@ -49,7 +49,7 @@ export const raymarchScene = (
         steps: 100,
         eps: 0.01,
         bias: 0.7,
-        ..._opts
+        ..._opts,
     };
     return defn("vec2", opts.name, ["vec3", "vec3"], (pos, dir) => {
         let total: FloatSym;
@@ -64,13 +64,13 @@ export const raymarchScene = (
                 () => [
                     assign(res, scene(rayPointAt(pos, dir, total))),
                     ifThen(lt($x(res), float(opts.eps)), [
-                        ret(vec2(total, $y(res)))
+                        ret(vec2(total, $y(res))),
                     ]),
                     assign(total, madd($x(res), float(opts.bias), total)),
-                    ifThen(gt(total, float(opts.far)), [brk])
+                    ifThen(gt(total, float(opts.far)), [brk]),
                 ]
             ),
-            ret(vec2(opts.far, 0))
+            ret(vec2(opts.far, 0)),
         ];
     });
 };

@@ -6,7 +6,7 @@ import {
     mix,
     rad,
     smoothStep,
-    step
+    step,
 } from "@thi.ng/math";
 import type { JSBuiltinsFloat } from "../api";
 
@@ -43,5 +43,5 @@ export const FLOAT: JSBuiltinsFloat<number> = {
     smoothstep: smoothStep,
     sqrt: Math.sqrt,
     step,
-    tan: Math.tan
+    tan: Math.tan,
 };

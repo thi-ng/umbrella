@@ -8,5 +8,5 @@ export const writeFile = (path: string): ISubscriber<string> => ({
                 process.stderr.write(e.message);
             }
         });
-    }
+    },
 });

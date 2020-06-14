@@ -1,10 +1,5 @@
 import { EV_SET_VALUE } from "@thi.ng/interceptors";
-import {
-    comp,
-    filterFuzzy,
-    iterator,
-    map
-} from "@thi.ng/transducers";
+import { comp, filterFuzzy, iterator, map } from "@thi.ng/transducers";
 import { DropdownItem, dropdownListeners, DropdownState } from "./dropdown";
 import type { IView } from "@thi.ng/atom";
 
@@ -28,13 +23,13 @@ export const fuzzyDropdown = (ctx: any, opts: FuzzyArgs) => {
             oninput: (e: Event) =>
                 ctx.bus.dispatch([
                     EV_SET_VALUE,
-                    [opts.filter.path, (<any>e.target).value]
+                    [opts.filter.path, (<any>e.target).value],
                 ]),
             onclear: () =>
                 ctx.bus.dispatch([EV_SET_VALUE, [opts.filter.path, ""]]),
             oncancel: close,
-            onconfirm: close
-        }
+            onconfirm: close,
+        },
     ];
     return () => {
         const state: any = { ...opts.state.deref() };
@@ -44,7 +39,7 @@ export const fuzzyDropdown = (ctx: any, opts: FuzzyArgs) => {
                 ...iterator(
                     comp(
                         filterFuzzy(filter, {
-                            key: (x: DropdownItem) => x[1].toLowerCase()
+                            key: (x: DropdownItem) => x[1].toLowerCase(),
                         }),
                         map(
                             ([id, x]) =>
@@ -54,12 +49,12 @@ export const fuzzyDropdown = (ctx: any, opts: FuzzyArgs) => {
                                         (y) => ["span", ctx.theme.fuzzy, y],
                                         x,
                                         filter
-                                    )
+                                    ),
                                 ]
                         )
                     ),
                     state.items
-                )
+                ),
             ];
         }
         return [
@@ -69,8 +64,8 @@ export const fuzzyDropdown = (ctx: any, opts: FuzzyArgs) => {
                 openLabel: filterInput,
                 hoverLabel: opts.hoverLabel,
                 noItems: "no matches",
-                state
-            }
+                state,
+            },
         ];
     };
 };

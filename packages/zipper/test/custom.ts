@@ -23,8 +23,8 @@ describe("custom", () => {
                     type: "branch",
                     children: [
                         { type: "leaf", value: 1 },
-                        { type: "leaf", value: 2 }
-                    ]
+                        { type: "leaf", value: 2 },
+                    ],
                 },
                 { type: "leaf", value: 3 },
                 {
@@ -33,11 +33,11 @@ describe("custom", () => {
                         { type: "leaf", value: 4 },
                         {
                             type: "branch",
-                            children: [{ type: "leaf", value: 5 }]
-                        }
-                    ]
-                }
-            ]
+                            children: [{ type: "leaf", value: 5 }],
+                        },
+                    ],
+                },
+            ],
         };
         a = zipper<Node>(
             {
@@ -45,8 +45,8 @@ describe("custom", () => {
                 children: (x) => (<Branch>x).children,
                 factory: (src, children) => ({
                     type: (<Branch>src).type,
-                    children
-                })
+                    children,
+                }),
             },
             tree
         );
@@ -99,17 +99,17 @@ describe("custom", () => {
                         type: "branch",
                         children: [
                             { type: "leaf", value: 1 },
-                            { type: "leaf", value: 10 }
-                        ]
+                            { type: "leaf", value: 10 },
+                        ],
                     },
-                    ...tree.children.slice(1)
-                ]
+                    ...tree.children.slice(1),
+                ],
             }
         );
         assert.deepEqual(
             a.next!.rightmost.down!.right!.down!.replace({
                 type: "leaf",
-                value: 10
+                value: 10,
             }).up!.root,
             {
                 type: "root",
@@ -121,11 +121,11 @@ describe("custom", () => {
                             { type: "leaf", value: 4 },
                             {
                                 type: "branch",
-                                children: [{ type: "leaf", value: 10 }]
-                            }
-                        ]
-                    }
-                ]
+                                children: [{ type: "leaf", value: 10 }],
+                            },
+                        ],
+                    },
+                ],
             }
         );
     });

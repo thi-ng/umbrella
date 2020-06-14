@@ -1,10 +1,5 @@
 import { NumOrString, SEMAPHORE } from "@thi.ng/api";
-import {
-    isArray,
-    isFunction,
-    isPlainObject,
-    isString
-} from "@thi.ng/checks";
+import { isArray, isFunction, isPlainObject, isString } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { exists, getInUnsafe, mutInUnsafe } from "@thi.ng/paths";
 

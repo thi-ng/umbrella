@@ -15,7 +15,7 @@ convexHull.addAll(<IObjectOf<Implementation1<unknown, IShape>>>{
     [Type.POINTS]: ($: PCLike) =>
         new Polygon(grahamScan2($.points), copyAttribs($)),
 
-    [Type.TRIANGLE]: ($: IShape) => $.copy()
+    [Type.TRIANGLE]: ($: IShape) => $.copy(),
 });
 
 convexHull.isa(Type.CIRCLE, Type.TRIANGLE);

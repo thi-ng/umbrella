@@ -1,10 +1,5 @@
 import { cossin } from "@thi.ng/math";
-import {
-    MultiVecOpVO,
-    ReadonlyVec,
-    ZERO2,
-    ZERO3
-} from "./api";
+import { MultiVecOpVO, ReadonlyVec, ZERO2, ZERO3 } from "./api";
 import { vop } from "./internal/vop";
 import { maddN2 } from "./maddn";
 import { setC3 } from "./setc";

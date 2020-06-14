@@ -6,7 +6,7 @@ import {
     reducer,
     repeat,
     scan,
-    transduce
+    transduce,
 } from "@thi.ng/transducers";
 import type { Tessellator } from "@thi.ng/geom-api";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";

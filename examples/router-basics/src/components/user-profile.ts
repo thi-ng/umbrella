@@ -30,7 +30,7 @@ function userCard(ctx: AppContext, id: number) {
               ["h3", ui.title, user.name],
               user.job,
               ["hr", ui.sep],
-              ["p", ui.body, user.desc]
+              ["p", ui.body, user.desc],
           ]
         : undefined;
 }

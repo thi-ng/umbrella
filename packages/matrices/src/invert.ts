@@ -7,7 +7,7 @@ import {
     setC4,
     setC6,
     Vec,
-    vop
+    vop,
 } from "@thi.ng/vectors";
 import { det44FromCoeffs, detCoeffs44 } from "./determinant";
 import type { MatOpMU, MultiMatOpMU } from "./api";
@@ -91,7 +91,7 @@ export const invert44: MatOpMU = invert.add(16, (out, m) => {
         m30,
         m31,
         m32,
-        m33
+        m33,
     ] = m;
     const [d00, d01, d02, d03, d04, d05, d06, d07, d08, d09, d10, d11] = coeffs;
     return setC(

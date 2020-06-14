@@ -7,7 +7,7 @@ import type { IDeref } from "@thi.ng/api";
 // basic state container
 const state = new Atom<any>({
     bg: "red",
-    freq: 0.01
+    freq: 0.01,
 });
 
 // state updates
@@ -18,7 +18,7 @@ const setFreq = (x: number) => state.resetIn(["freq"], x);
 const app = () => {
     // HOF canvas component w/ life cycle methods see for further
     // reference:
-    // https://github.com/thi-ng/umbrella/blob/master/packages/hdom-components/src/canvas.ts
+    // https://github.com/thi-ng/umbrella/blob/develop/packages/hdom-components/src/canvas.ts
     //
     // when serializing to html only the component's `render` method
     // will be invoked. the component's `init` is invoked later when
@@ -36,7 +36,7 @@ const app = () => {
                 ctx.lineTo(x, y + y * Math.sin((time + x) * freq));
             }
             ctx.stroke();
-        }
+        },
     });
     // when serializing to HTML all event attributes w/ function values
     // will be excluded, however the event listeners will be attached
@@ -49,7 +49,7 @@ const app = () => {
             "div#root.w-50-ns.flex.ma2.sans-serif",
             [
                 "div.w-50-ns",
-                [canvas, { width: 200, height: 200 }, state.bg, state.freq]
+                [canvas, { width: 200, height: 200 }, state.bg, state.freq],
             ],
             [
                 "div.w-50-ns",
@@ -63,16 +63,16 @@ const app = () => {
                             id: "bg",
                             class: "w-100",
                             onchange: (e: Event) =>
-                                setBg((<HTMLSelectElement>e.target).value)
+                                setBg((<HTMLSelectElement>e.target).value),
                         },
                         [
                             ["", "Choose..."],
                             ["red", "Red"],
                             ["green", "Green"],
-                            ["blue", "Blue"]
+                            ["blue", "Blue"],
                         ],
-                        state.bg
-                    ]
+                        state.bg,
+                    ],
                 ],
                 [
                     "label.db.mb3",
@@ -93,11 +93,11 @@ const app = () => {
                                     parseFloat(
                                         (<HTMLInputElement>e.target).value
                                     )
-                                )
-                        }
-                    ]
-                ]
-            ]
+                                ),
+                        },
+                    ],
+                ],
+            ],
         ];
     };
 };

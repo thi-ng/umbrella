@@ -1,10 +1,5 @@
 import { isNumber } from "@thi.ng/checks";
-import {
-    IDENT44,
-    mulM44,
-    normal44,
-    ortho
-} from "@thi.ng/matrices";
+import { IDENT44, mulM44, normal44, ortho } from "@thi.ng/matrices";
 import type { IObjectOf } from "@thi.ng/api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import type { GLMat4 } from "./api/glsl";

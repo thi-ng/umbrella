@@ -12,14 +12,14 @@ describe("shader-ast", () => {
                 tag: "lit",
                 type: "vec2",
                 info: "n",
-                val: [{ tag: "lit", type: "float", info: undefined, val: 0 }]
+                val: [{ tag: "lit", type: "float", info: undefined, val: 0 }],
             },
             r: {
                 tag: "lit",
                 type: "vec2",
                 info: "n",
-                val: [{ tag: "lit", type: "float", info: undefined, val: 0 }]
-            }
+                val: [{ tag: "lit", type: "float", info: undefined, val: 0 }],
+            },
         });
     });
 
@@ -34,8 +34,8 @@ describe("shader-ast", () => {
                 tag: "lit",
                 type: "vec2",
                 info: "n",
-                val: [{ tag: "lit", type: "float", info: undefined, val: 0 }]
-            }
+                val: [{ tag: "lit", type: "float", info: undefined, val: 0 }],
+            },
         });
     });
 
@@ -49,9 +49,9 @@ describe("shader-ast", () => {
                 tag: "lit",
                 type: "vec2",
                 info: "n",
-                val: [{ tag: "lit", type: "float", info: undefined, val: 0 }]
+                val: [{ tag: "lit", type: "float", info: undefined, val: 0 }],
             },
-            r: { tag: "lit", type: "float", info: undefined, val: 1 }
+            r: { tag: "lit", type: "float", info: undefined, val: 1 },
         });
     });
 });

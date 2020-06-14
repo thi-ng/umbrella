@@ -1,11 +1,5 @@
 import { pointAtTheta } from "@thi.ng/geom-arc";
-import {
-    EPS,
-    HALF_PI,
-    PI,
-    roundEps,
-    sincos
-} from "@thi.ng/math";
+import { EPS, HALF_PI, PI, roundEps, sincos } from "@thi.ng/math";
 import { magSq2, ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { cubicFromLine } from "./cubic-line";
 
@@ -14,7 +8,7 @@ import { cubicFromLine } from "./cubic-line";
  * arc's angle range.
  *
  * Partially based on:
- * {@link https://github.com/chromium/chromium/blob/master/third_party/blink/renderer/core/svg/svg_path_parser.cc#L253}
+ * {@link https://github.com/chromium/chromium/blob/develop/third_party/blink/renderer/core/svg/svg_path_parser.cc#L253}
  *
  * @param pos - ellipse center
  * @param r - ellipse radii
@@ -60,7 +54,7 @@ export const cubicFromArc = (
             mapP(c1, s1),
             mapP(c1 - s1 * t, s1 + c1 * t),
             mapP(c2 + s2 * t, s2 - c2 * t),
-            mapP(c2, s2)
+            mapP(c2, s2),
         ]);
     }
     return res;

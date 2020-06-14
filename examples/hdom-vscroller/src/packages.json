@@ -1,1 +1,245 @@
-[["@thi.ng/api","Common, generic types & interfaces for thi.ng projects"],["@thi.ng/associative","Alternative Set & Map data type implementations with customizable equality semantics & supporting operations"],["@thi.ng/atom","Mutable wrappers for nested immutable values w/ optional undo/redo history"],["@thi.ng/bench","Basic benchmarking helpers"],["@thi.ng/bencode","TODO"],["@thi.ng/binary","Assorted binary / bitwise operations, conversions, utilities."],["@thi.ng/bitstream","ES6 iterator based read/write bit streams & support for variable word widths"],["@thi.ng/cache","In-memory cache implementations with ES6 Map-like API and different eviction strategies"],["@thi.ng/checks","Single-function sub-modules for type, feature & value checks"],["@thi.ng/color","TODO"],["@thi.ng/compare","Comparator with optional delegation for types implementing @thi.ng/api/ICompare interface"],["@thi.ng/compose","Arity-optimized functional composition helpers"],["@thi.ng/csp","ES6 promise based CSP implementation"],["@thi.ng/dcons","Comprehensive doubly linked list structure w/ iterator support"],["@thi.ng/defmulti","Dynamically extensible multiple dispatch via user supplied dispatch function."],["@thi.ng/dgraph","Type-agnostic directed acyclic graph (DAG) & graph operations"],["@thi.ng/diff","Array & object Diff"],["@thi.ng/dlogic","Assorted digital logic ops / constructs."],["@thi.ng/dot","Graphviz DOM abstraction as vanilla JS objects & serialization to DOT format"],["@thi.ng/dsp","Assorted DSP utils, oscillators etc."],["@thi.ng/equiv","Extensible deep equivalence checking for any data types"],["@thi.ng/errors","Custom error types and helper fns."],["@thi.ng/fsm","Composable primitives for building declarative, transducer based Finite-State machines & parsers for arbitrary data streams"],["@thi.ng/geom","TODO"],["@thi.ng/geom-accel","nD spatial indexing data structures"],["@thi.ng/geom-api","Shared type & interface declarations for @thi.ng/geom packages"],["@thi.ng/geom-arc","2D circular / elliptic arc operations"],["@thi.ng/geom-clip","2D line & convex polygon clipping (Liang-Barsky / Sutherland-Hodgeman)"],["@thi.ng/geom-closest-point","Closest point / proximity helpers"],["@thi.ng/geom-hull","Fast 2D convex hull (Graham Scan)"],["@thi.ng/geom-isec","2D/3D shape intersection checks"],["@thi.ng/geom-isoline","Fast 2D contour line extraction / generation"],["@thi.ng/geom-poly-utils","Polygon / triangle analysis & processing utilities"],["@thi.ng/geom-resample","Customizable nD polyline interpolation, re-sampling, splitting & nearest point computation"],["@thi.ng/geom-splines","nD cubic & quadratic curve analysis, conversion, interpolation, splitting"],["@thi.ng/geom-subdiv-curve","Freely customizable, iterative subdivision curves for open / closed input geometries"],["@thi.ng/geom-tessellate","2D/3D polygon tessellators"],["@thi.ng/geom-voronoi","Fast, incremental 2D Delaunay & Voronoi mesh implementation"],["@thi.ng/hdom","Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors"],["@thi.ng/hdom-canvas","Declarative canvas scenegraph & visualization for @thi.ng/hdom"],["@thi.ng/hdom-components","Raw, skinnable UI & SVG components for @thi.ng/hdom"],["@thi.ng/hdom-mock","Mock base implementation for @thi.ng/hdom API"],["@thi.ng/heaps","Generic binary heap & d-ary heap implementations with customizable ordering"],["@thi.ng/hiccup","HTML/SVG/XML serialization of nested data structures, iterables & closures"],["@thi.ng/hiccup-carbon-icons","TODO"],["@thi.ng/hiccup-css","CSS from nested JS data structures"],["@thi.ng/hiccup-markdown","Markdown serialization of hiccup DOM trees"],["@thi.ng/hiccup-svg","SVG element functions for @thi.ng/hiccup & @thi.ng/hdom"],["@thi.ng/iges","IGES 5.3 serializer for (currently only) polygonal geometry, both open & closed"],["@thi.ng/interceptors","Interceptor based event bus, side effect & immutable state handling"],["@thi.ng/intervals","Closed/open/semi-open interval data type, queries & operations"],["@thi.ng/iterators","clojure.core inspired, composable ES6 iterators & generators"],["@thi.ng/malloc","ArrayBuffer based malloc() impl for hybrid JS/WASM use cases, based on thi.ng/tinyalloc"],["@thi.ng/math","Assorted common math functions & utilities"],["@thi.ng/matrices","Matrix & quaternion operations for 2D/3D geometry processing"],["@thi.ng/memoize","Function memoization with configurable caches"],["@thi.ng/morton","Z-order-curve / Morton encoding & decoding for 1D, 2D, 3D"],["@thi.ng/paths","immutable, optimized path-based object property / array accessors"],["@thi.ng/pointfree","Pointfree functional composition / Forth style stack execution engine"],["@thi.ng/pointfree-lang","Forth style syntax layer/compiler for the @thi.ng/pointfree DSL"],["@thi.ng/poisson","nD Poisson-disc sampling w/ support for spatial density functions and custom PRNGs"],["@thi.ng/quad-edge","Quadedge data structure after Guibas & Stolfi"],["@thi.ng/random","Pseudo-random number generators w/ unified API"],["@thi.ng/range-coder","Binary data range encoder / decoder"],["@thi.ng/resolve-map","DAG resolution of vanilla objects & arrays with internally linked values"],["@thi.ng/rle-pack","Binary run-length encoding packer w/ flexible repeat bit widths"],["@thi.ng/router","Generic router for browser & non-browser based applications"],["@thi.ng/rstream","Reactive multi-tap streams, dataflow & transformation pipeline constructs"],["@thi.ng/rstream-csp","@thi.ng/csp bridge module for @thi.ng/rstream"],["@thi.ng/rstream-dot","Graphviz DOT conversion of @thi.ng/rstream dataflow graph topologies"],["@thi.ng/rstream-gestures","Unified mouse, mouse wheel & single-touch event stream abstraction"],["@thi.ng/rstream-graph","Declarative dataflow graph construction for @thi.ng/rstream"],["@thi.ng/rstream-log","Structured, multilevel & hierarchical loggers based on @thi.ng/rstream"],["@thi.ng/rstream-query","@thi.ng/rstream based triple store & reactive query engine"],["@thi.ng/sax","Transducer-based, SAX-like, non-validating, speedy & tiny XML parser"],["@thi.ng/strings","Various string formatting & utility functions"],["@thi.ng/transducers","Lightweight transducer implementations for ES6 / TypeScript"],["@thi.ng/transducers-binary","TODO"],["@thi.ng/transducers-fsm","Transducer-based Finite State Machine transformer"],["@thi.ng/transducers-hdom","Transducer based UI updater for @thi.ng/hdom"],["@thi.ng/transducers-stats","Transducers for statistical / technical analysis"],["@thi.ng/unionstruct","C-style struct, union and bitfield views of ArrayBuffers"],["@thi.ng/vector-pools","TODO"],["@thi.ng/vectors","Optimized 2d/3d/4d and arbitrary length vector operations"]]
+[
+    ["@thi.ng/api", "Common, generic types & interfaces for thi.ng projects"],
+    [
+        "@thi.ng/associative",
+        "Alternative Set & Map data type implementations with customizable equality semantics & supporting operations"
+    ],
+    [
+        "@thi.ng/atom",
+        "Mutable wrappers for nested immutable values w/ optional undo/redo history"
+    ],
+    ["@thi.ng/bench", "Basic benchmarking helpers"],
+    ["@thi.ng/bencode", "TODO"],
+    [
+        "@thi.ng/binary",
+        "Assorted binary / bitwise operations, conversions, utilities."
+    ],
+    [
+        "@thi.ng/bitstream",
+        "ES6 iterator based read/write bit streams & support for variable word widths"
+    ],
+    [
+        "@thi.ng/cache",
+        "In-memory cache implementations with ES6 Map-like API and different eviction strategies"
+    ],
+    [
+        "@thi.ng/checks",
+        "Single-function sub-modules for type, feature & value checks"
+    ],
+    ["@thi.ng/color", "TODO"],
+    [
+        "@thi.ng/compare",
+        "Comparator with optional delegation for types implementing @thi.ng/api/ICompare interface"
+    ],
+    ["@thi.ng/compose", "Arity-optimized functional composition helpers"],
+    ["@thi.ng/csp", "ES6 promise based CSP implementation"],
+    [
+        "@thi.ng/dcons",
+        "Comprehensive doubly linked list structure w/ iterator support"
+    ],
+    [
+        "@thi.ng/defmulti",
+        "Dynamically extensible multiple dispatch via user supplied dispatch function."
+    ],
+    [
+        "@thi.ng/dgraph",
+        "Type-agnostic directed acyclic graph (DAG) & graph operations"
+    ],
+    ["@thi.ng/diff", "Array & object Diff"],
+    ["@thi.ng/dlogic", "Assorted digital logic ops / constructs."],
+    [
+        "@thi.ng/dot",
+        "Graphviz DOM abstraction as vanilla JS objects & serialization to DOT format"
+    ],
+    ["@thi.ng/dsp", "Assorted DSP utils, oscillators etc."],
+    [
+        "@thi.ng/equiv",
+        "Extensible deep equivalence checking for any data types"
+    ],
+    ["@thi.ng/errors", "Custom error types and helper fns."],
+    [
+        "@thi.ng/fsm",
+        "Composable primitives for building declarative, transducer based Finite-State machines & parsers for arbitrary data streams"
+    ],
+    ["@thi.ng/geom", "TODO"],
+    ["@thi.ng/geom-accel", "nD spatial indexing data structures"],
+    [
+        "@thi.ng/geom-api",
+        "Shared type & interface declarations for @thi.ng/geom packages"
+    ],
+    ["@thi.ng/geom-arc", "2D circular / elliptic arc operations"],
+    [
+        "@thi.ng/geom-clip",
+        "2D line & convex polygon clipping (Liang-Barsky / Sutherland-Hodgeman)"
+    ],
+    ["@thi.ng/geom-closest-point", "Closest point / proximity helpers"],
+    ["@thi.ng/geom-hull", "Fast 2D convex hull (Graham Scan)"],
+    ["@thi.ng/geom-isec", "2D/3D shape intersection checks"],
+    ["@thi.ng/geom-isoline", "Fast 2D contour line extraction / generation"],
+    [
+        "@thi.ng/geom-poly-utils",
+        "Polygon / triangle analysis & processing utilities"
+    ],
+    [
+        "@thi.ng/geom-resample",
+        "Customizable nD polyline interpolation, re-sampling, splitting & nearest point computation"
+    ],
+    [
+        "@thi.ng/geom-splines",
+        "nD cubic & quadratic curve analysis, conversion, interpolation, splitting"
+    ],
+    [
+        "@thi.ng/geom-subdiv-curve",
+        "Freely customizable, iterative subdivision curves for open / closed input geometries"
+    ],
+    ["@thi.ng/geom-tessellate", "2D/3D polygon tessellators"],
+    [
+        "@thi.ng/geom-voronoi",
+        "Fast, incremental 2D Delaunay & Voronoi mesh implementation"
+    ],
+    [
+        "@thi.ng/hdom",
+        "Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors"
+    ],
+    [
+        "@thi.ng/hdom-canvas",
+        "Declarative canvas scenegraph & visualization for @thi.ng/hdom"
+    ],
+    [
+        "@thi.ng/hdom-components",
+        "Raw, skinnable UI & SVG components for @thi.ng/hdom"
+    ],
+    ["@thi.ng/hdom-mock", "Mock base implementation for @thi.ng/hdom API"],
+    [
+        "@thi.ng/heaps",
+        "Generic binary heap & d-ary heap implementations with customizable ordering"
+    ],
+    [
+        "@thi.ng/hiccup",
+        "HTML/SVG/XML serialization of nested data structures, iterables & closures"
+    ],
+    ["@thi.ng/hiccup-carbon-icons", "TODO"],
+    ["@thi.ng/hiccup-css", "CSS from nested JS data structures"],
+    ["@thi.ng/hiccup-markdown", "Markdown serialization of hiccup DOM trees"],
+    [
+        "@thi.ng/hiccup-svg",
+        "SVG element functions for @thi.ng/hiccup & @thi.ng/hdom"
+    ],
+    [
+        "@thi.ng/iges",
+        "IGES 5.3 serializer for (currently only) polygonal geometry, both open & closed"
+    ],
+    [
+        "@thi.ng/interceptors",
+        "Interceptor based event bus, side effect & immutable state handling"
+    ],
+    [
+        "@thi.ng/intervals",
+        "Closed/open/semi-open interval data type, queries & operations"
+    ],
+    [
+        "@thi.ng/iterators",
+        "clojure.core inspired, composable ES6 iterators & generators"
+    ],
+    [
+        "@thi.ng/malloc",
+        "ArrayBuffer based malloc() impl for hybrid JS/WASM use cases, based on thi.ng/tinyalloc"
+    ],
+    ["@thi.ng/math", "Assorted common math functions & utilities"],
+    [
+        "@thi.ng/matrices",
+        "Matrix & quaternion operations for 2D/3D geometry processing"
+    ],
+    ["@thi.ng/memoize", "Function memoization with configurable caches"],
+    [
+        "@thi.ng/morton",
+        "Z-order-curve / Morton encoding & decoding for 1D, 2D, 3D"
+    ],
+    [
+        "@thi.ng/paths",
+        "immutable, optimized path-based object property / array accessors"
+    ],
+    [
+        "@thi.ng/pointfree",
+        "Pointfree functional composition / Forth style stack execution engine"
+    ],
+    [
+        "@thi.ng/pointfree-lang",
+        "Forth style syntax layer/compiler for the @thi.ng/pointfree DSL"
+    ],
+    [
+        "@thi.ng/poisson",
+        "nD Poisson-disc sampling w/ support for spatial density functions and custom PRNGs"
+    ],
+    ["@thi.ng/quad-edge", "Quadedge data structure after Guibas & Stolfi"],
+    ["@thi.ng/random", "Pseudo-random number generators w/ unified API"],
+    ["@thi.ng/range-coder", "Binary data range encoder / decoder"],
+    [
+        "@thi.ng/resolve-map",
+        "DAG resolution of vanilla objects & arrays with internally linked values"
+    ],
+    [
+        "@thi.ng/rle-pack",
+        "Binary run-length encoding packer w/ flexible repeat bit widths"
+    ],
+    [
+        "@thi.ng/router",
+        "Generic router for browser & non-browser based applications"
+    ],
+    [
+        "@thi.ng/rstream",
+        "Reactive multi-tap streams, dataflow & transformation pipeline constructs"
+    ],
+    ["@thi.ng/rstream-csp", "@thi.ng/csp bridge module for @thi.ng/rstream"],
+    [
+        "@thi.ng/rstream-dot",
+        "Graphviz DOT conversion of @thi.ng/rstream dataflow graph topologies"
+    ],
+    [
+        "@thi.ng/rstream-gestures",
+        "Unified mouse, mouse wheel & single-touch event stream abstraction"
+    ],
+    [
+        "@thi.ng/rstream-graph",
+        "Declarative dataflow graph construction for @thi.ng/rstream"
+    ],
+    [
+        "@thi.ng/rstream-log",
+        "Structured, multilevel & hierarchical loggers based on @thi.ng/rstream"
+    ],
+    [
+        "@thi.ng/rstream-query",
+        "@thi.ng/rstream based triple store & reactive query engine"
+    ],
+    [
+        "@thi.ng/sax",
+        "Transducer-based, SAX-like, non-validating, speedy & tiny XML parser"
+    ],
+    ["@thi.ng/strings", "Various string formatting & utility functions"],
+    [
+        "@thi.ng/transducers",
+        "Lightweight transducer implementations for ES6 / TypeScript"
+    ],
+    ["@thi.ng/transducers-binary", "TODO"],
+    [
+        "@thi.ng/transducers-fsm",
+        "Transducer-based Finite State Machine transformer"
+    ],
+    [
+        "@thi.ng/transducers-hdom",
+        "Transducer based UI updater for @thi.ng/hdom"
+    ],
+    [
+        "@thi.ng/transducers-stats",
+        "Transducers for statistical / technical analysis"
+    ],
+    [
+        "@thi.ng/unionstruct",
+        "C-style struct, union and bitfield views of ArrayBuffers"
+    ],
+    ["@thi.ng/vector-pools", "TODO"],
+    [
+        "@thi.ng/vectors",
+        "Optimized 2d/3d/4d and arbitrary length vector operations"
+    ]
+]

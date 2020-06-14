@@ -8,7 +8,7 @@ import {
     mapIndexed,
     padLast,
     partition,
-    Transducer
+    Transducer,
 } from "@thi.ng/transducers";
 import type { HexDumpOpts } from "./api";
 

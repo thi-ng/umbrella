@@ -29,10 +29,10 @@ describe("transducers-fsm", () => {
                         state.state = "done";
                     }
                 },
-                done: () => {}
+                done: () => {},
             },
             terminate: "done",
-            init: () => ({ state: "skip", count: 0 })
+            init: () => ({ state: "skip", count: 0 }),
         });
         assert.deepEqual(
             [...tx.iterator(testFSM, tx.range(100))],
@@ -45,9 +45,12 @@ describe("transducers-fsm", () => {
         assert.deepEqual(
             [
                 ...tx.iterator(
-                    tx.comp(testFSM, tx.map((x: number) => x * 10)),
+                    tx.comp(
+                        testFSM,
+                        tx.map((x: number) => x * 10)
+                    ),
                     tx.range(100)
-                )
+                ),
             ],
             [50, 60, 70, 80, 90, 150, 160, 170, 180, 190]
         );

@@ -7,7 +7,7 @@ import {
     ReadonlyVec,
     set2,
     Vec,
-    VecPair
+    VecPair,
 } from "@thi.ng/vectors";
 import { pointAtTheta } from "./point-at";
 

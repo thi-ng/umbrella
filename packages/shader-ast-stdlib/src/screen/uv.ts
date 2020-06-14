@@ -10,7 +10,7 @@ import {
     sym,
     Vec2Sym,
     Vec2Term,
-    Vec4Term
+    Vec4Term,
 } from "@thi.ng/shader-ast";
 import { fit0111 } from "../math/fit";
 
@@ -40,7 +40,7 @@ export const aspectCorrectedUV = defn(
         return [
             (uv = sym("vec2", fit0111(div(pos, res)))),
             assign($x(uv), mul($x(uv), div($x(res), $y(res)))),
-            ret(uv)
+            ret(uv),
         ];
     }
 );

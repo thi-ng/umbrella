@@ -6,6 +6,6 @@ export const polyline = (pts: Vec2Like[], attribs?: any): any[] => [
     fattribs({
         fill: "none",
         points: fpoints(pts),
-        ...attribs
-    })
+        ...attribs,
+    }),
 ];

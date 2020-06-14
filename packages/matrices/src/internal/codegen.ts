@@ -4,7 +4,7 @@ import {
     compile,
     DEFAULT_OUT,
     MATH,
-    MATH_N
+    MATH_N,
 } from "@thi.ng/vectors";
 import type { MultiMatOpMM, MultiMatOpMN } from "../api";
 

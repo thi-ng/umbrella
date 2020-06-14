@@ -10,7 +10,7 @@ import {
     ternary,
     vec2,
     Vec2Term,
-    vec3
+    vec3,
 } from "@thi.ng/shader-ast";
 
 /**
@@ -41,5 +41,5 @@ export const orthogonal3 = defn("vec3", "orthogonal3", ["vec3"], (v) => [
             vec3(neg($y(v)), $x(v), 0),
             vec3(0, neg($z(v)), $y(v))
         )
-    )
+    ),
 ]);

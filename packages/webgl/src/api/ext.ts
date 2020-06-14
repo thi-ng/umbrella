@@ -3,12 +3,12 @@ import type { IObjectOf } from "@thi.ng/api";
 export const GL_EXT_INFO: IObjectOf<ExtensionInfo> = {
     WEBGL_draw_buffers: {
         gl: true,
-        alias: "GL_EXT_draw_buffers"
+        alias: "GL_EXT_draw_buffers",
     },
     OES_standard_derivatives: {
         gl: true,
-        alias: "GL_OES_standard_derivatives"
-    }
+        alias: "GL_OES_standard_derivatives",
+    },
 };
 
 export interface ExtensionInfo {

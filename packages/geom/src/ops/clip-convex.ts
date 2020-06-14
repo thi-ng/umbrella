@@ -29,7 +29,7 @@ clipConvex.addAll(<IObjectOf<Implementation2<unknown, unknown, Polygon>>>{
                 centroid(boundary)
             ),
             copyAttribs($)
-        )
+        ),
 });
 
 clipConvex.isa(Type.CIRCLE, Type.RECT);

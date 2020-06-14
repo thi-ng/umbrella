@@ -1,11 +1,6 @@
 import { isArray } from "@thi.ng/checks";
 import { defmulti } from "@thi.ng/defmulti";
-import {
-    float,
-    hstr,
-    padLeft,
-    padRight
-} from "@thi.ng/strings";
+import { float, hstr, padLeft, padRight } from "@thi.ng/strings";
 import {
     comp,
     map,
@@ -15,7 +10,7 @@ import {
     push,
     transduce,
     wordWrap,
-    wrapSides
+    wrapSides,
 } from "@thi.ng/transducers";
 import {
     BooleanNode,
@@ -31,7 +26,7 @@ import {
     PolylineMode,
     SectionType,
     Type,
-    Unit
+    Unit,
 } from "./api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 
@@ -57,7 +52,7 @@ const $DATE = (d: Date) =>
             ".",
             $Z2(d.getUTCHours()),
             $Z2(d.getUTCMinutes()),
-            $Z2(d.getUTCSeconds())
+            $Z2(d.getUTCSeconds()),
         ].join("")
     );
 
@@ -84,10 +79,10 @@ export const newDocument = (
             S: 0,
             G: 0,
             P: 1,
-            D: 0
+            D: 0,
         },
         $FF,
-        $PARAM
+        $PARAM,
     };
 };
 
@@ -97,7 +92,7 @@ export const serialize = (doc: IGESDocument) =>
         ...formatGlobals(doc),
         ...doc.dict,
         ...doc.param,
-        formatTerminate(doc)
+        formatTerminate(doc),
     ].join("\n");
 
 const formatLine = (body: string, type: SectionType, i: number) =>
@@ -105,7 +100,7 @@ const formatLine = (body: string, type: SectionType, i: number) =>
 
 const formatStart = (doc: IGESDocument) => {
     const res = [
-        ...mapIndexed((i, x: string) => formatLine(x, "S", i), doc.start)
+        ...mapIndexed((i, x: string) => formatLine(x, "S", i), doc.start),
     ];
     doc.offsets.S += res.length;
     return res;
@@ -140,7 +135,7 @@ const formatGlobals = (doc: IGESDocument) => {
             [g.authorOrg, Type.HSTR],
             [g.specVersion, Type.INT],
             [g.draftVersion, Type.INT],
-            [g.modified || new Date(), Type.DATE]
+            [g.modified || new Date(), Type.DATE],
         ],
         (body, i) => `${$BODY(body)}G${$SEQ(i + 1)}`,
         LINEWIDTH_GLOBALS
@@ -193,7 +188,7 @@ const formatDictEntry = (e: DictEntry) =>
             0,
             0,
             e.label || "",
-            e.subscript || 0
+            e.subscript || 0,
         ]
     );
 
@@ -246,7 +241,7 @@ const addEntity = (
             param: pid,
             index: did,
             lineCount: fparams.length,
-            ...entry
+            ...entry,
         })
     );
     doc.param.push(...fparams);
@@ -262,21 +257,21 @@ export const addPolyline = (
     const is2D = pts[0].length == 2;
     const params: Param[] = [
         [is2D ? 1 : 2, Type.INT],
-        [pts.length + (form === PolylineMode.CLOSED ? 1 : 0), Type.INT]
+        [pts.length + (form === PolylineMode.CLOSED ? 1 : 0), Type.INT],
     ];
     is2D && params.push([0, Type.FLOAT]);
     return addEntity(
         doc,
         EntityType.POLYLINE,
         {
-            form: form === PolylineMode.FILLED ? 63 : 11
+            form: form === PolylineMode.FILLED ? 63 : 11,
         },
         [
             ...params,
             ...mapcat<ReadonlyVec, Param>(
                 (p) => map((x) => <Param>[x, Type.FLOAT], p),
                 form === PolylineMode.CLOSED ? wrapSides(pts, 0, 1) : pts
-            )
+            ),
         ],
         opts
     );
@@ -301,7 +296,7 @@ export const addPoint = (
             [p[0], Type.FLOAT],
             [p[1], Type.FLOAT],
             [p[2] || 0, Type.FLOAT],
-            [0, Type.POINTER]
+            [0, Type.POINTER],
         ],
         opts
     );
@@ -322,7 +317,7 @@ export const addLine = (
             [a[2] || 0, Type.FLOAT],
             [b[0], Type.FLOAT],
             [b[1], Type.FLOAT],
-            [b[2] || 0, Type.FLOAT]
+            [b[2] || 0, Type.FLOAT],
         ],
         opts
     );
@@ -377,7 +372,7 @@ export const addCSGBox = (
             [xaxis[2], Type.FLOAT],
             [zaxis[0], Type.FLOAT],
             [zaxis[1], Type.FLOAT],
-            [zaxis[2], Type.FLOAT]
+            [zaxis[2], Type.FLOAT],
         ],
         opts
     );
@@ -402,7 +397,7 @@ export const addCSGCylinder = (
             [normal[1], Type.FLOAT],
             [normal[2], Type.FLOAT],
             [radius, Type.FLOAT],
-            [height, Type.FLOAT]
+            [height, Type.FLOAT],
         ],
         opts
     );

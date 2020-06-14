@@ -6,7 +6,7 @@ import type {
     Indexable,
     IndexTypeMap,
     MatIndexTypeMap,
-    NumericI
+    NumericI,
 } from "../api/types";
 
 export const index = <T extends Indexable>(
@@ -16,7 +16,7 @@ export const index = <T extends Indexable>(
     tag: "idx",
     type: <any>val.type.substr(0, val.type.length - 2),
     id: isNumber(id) ? int(id) : id,
-    val
+    val,
 });
 
 // prettier-ignore
@@ -28,7 +28,7 @@ export function indexMat(m: Sym<any>, a: number, b?: number): Index<any> {
         tag: "idx",
         type: <any>m.type.replace("mat", "vec"),
         id: int(a),
-        val: m
+        val: m,
     };
     return b !== undefined
         ? { tag: "idx", type: "float", id: int(b), val: idx }

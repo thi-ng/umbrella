@@ -18,7 +18,7 @@ export class Range implements ISeqable<number> {
                       },
                       next() {
                           return $seq(i + 1);
-                      }
+                      },
                   }
                 : undefined;
         return $seq(0);

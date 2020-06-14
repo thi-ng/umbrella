@@ -2,15 +2,10 @@ import {
     implementsFunction,
     isFunction,
     isNotStringAndIterable,
-    isString
+    isString,
 } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
-import {
-    COMMENT,
-    NO_SPANS,
-    PROC_TAGS,
-    VOID_TAGS
-} from "./api";
+import { COMMENT, NO_SPANS, PROC_TAGS, VOID_TAGS } from "./api";
 import { escape } from "./escape";
 import { normalize } from "./normalize";
 

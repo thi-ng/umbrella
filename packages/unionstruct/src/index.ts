@@ -24,7 +24,7 @@ const TYPES: { [id: string]: [number, string, boolean] } = {
     u8: [8, "Uint", false],
     i32: [32, "Int", true],
     i16: [16, "Int", true],
-    i8: [8, "Int", true]
+    i8: [8, "Int", true],
 };
 
 const UNION = "union";
@@ -178,7 +178,7 @@ const makeField = (
         Object.defineProperty(obj, id, {
             get: () => f,
             enumerable: true,
-            configurable: false
+            configurable: false,
         });
         bitOffset += (f as any).__size;
     } else {
@@ -208,7 +208,7 @@ const makeField = (
             get,
             set,
             enumerable: true,
-            configurable: false
+            configurable: false,
         });
     }
     return bitOffset;
@@ -229,7 +229,7 @@ export const typedef = (
         __buffer: dv.buffer,
         __spec: spec,
         __size: size,
-        __offsets: <any>{}
+        __offsets: <any>{},
     };
     for (let i = 0; i < spec.length; i++) {
         let f = spec[i];

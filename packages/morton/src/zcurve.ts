@@ -3,7 +3,7 @@ import {
     NumericArray,
     Range1_32,
     Range1_64,
-    RangeValueMap
+    RangeValueMap,
 } from "@thi.ng/api";
 import { MASKS } from "@thi.ng/binary";
 
@@ -181,7 +181,7 @@ export class ZCurve<T extends Range2_64> {
      *
      * @remarks
      * Partially based on:
-     * {@link https://github.com/statgen/LDServer/blob/master/core/src/Morton.cpp#L38}
+     * {@link https://github.com/statgen/LDServer/blob/develop/core/src/Morton.cpp#L38}
      *
      * @param zcurr
      * @param zmin

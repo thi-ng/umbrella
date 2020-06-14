@@ -1,9 +1,4 @@
-import {
-    mix,
-    mixCubicHermite,
-    norm,
-    tangentCardinal
-} from "@thi.ng/math";
+import { mix, mixCubicHermite, norm, tangentCardinal } from "@thi.ng/math";
 import {
     comp,
     extendSides,
@@ -11,7 +6,7 @@ import {
     map,
     mapcat,
     normRange,
-    partition
+    partition,
 } from "@thi.ng/transducers";
 import { ARamp } from "./aramp";
 import type { Vec } from "@thi.ng/vectors";
@@ -48,7 +43,7 @@ export class HermiteRamp extends ARamp {
                     return map(
                         (t) => [
                             mix(bx, cx, t),
-                            mixCubicHermite(by, t1, cy, t2, t)
+                            mixCubicHermite(by, t1, cy, t2, t),
                         ],
                         normRange(res, false)
                     );

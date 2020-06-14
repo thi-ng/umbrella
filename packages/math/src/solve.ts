@@ -101,7 +101,7 @@ export const solveCubic = (
             return [
                 u * Math.cos(t) - ba3,
                 u * Math.cos(t - k) - ba3,
-                u * Math.cos(t - 2 * k) - ba3
+                u * Math.cos(t - 2 * k) - ba3,
             ];
         }
     }

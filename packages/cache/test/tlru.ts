@@ -2,18 +2,21 @@ import * as assert from "assert";
 import { TLRUCache } from "../src/index";
 
 describe("TLRU", () => {
-
     let c: TLRUCache<string, number>;
     let evicts: any[];
 
     beforeEach(() => {
         evicts = [];
         c = new TLRUCache(
-            [["a", 1], ["b", 2], ["c", 3]],
+            [
+                ["a", 1],
+                ["b", 2],
+                ["c", 3],
+            ],
             {
                 maxlen: 4,
                 ttl: 10,
-                release: (k, v) => evicts.push([k, v])
+                release: (k, v) => evicts.push([k, v]),
             }
         );
     });
@@ -44,7 +47,10 @@ describe("TLRU", () => {
         setTimeout(() => {
             assert(!c.has("b"));
             assert(!c.has("c"));
-            assert.deepEqual(evicts, [["b", 2], ["c", 3]]);
+            assert.deepEqual(evicts, [
+                ["b", 2],
+                ["c", 3],
+            ]);
             assert.deepEqual([...c.keys()], ["a"]);
             done();
         }, 20);
@@ -52,16 +58,24 @@ describe("TLRU", () => {
 
     it("getSet ttl", (done) => {
         setTimeout(() => {
-            c.getSet("a", () => Promise.resolve(10)).then(v => {
-                assert.equal(v, 10);
-                assert(!c.has("b"));
-                assert(!c.has("c"));
-                assert.deepEqual([...evicts], [["a", 1], ["b", 2], ["c", 3]]);
-                assert.deepEqual([...c.keys()], ["a"]);
-                assert.deepEqual([...c.values()], [10]);
-                done();
-            }).catch(done)
-        }, 20)
+            c.getSet("a", () => Promise.resolve(10))
+                .then((v) => {
+                    assert.equal(v, 10);
+                    assert(!c.has("b"));
+                    assert(!c.has("c"));
+                    assert.deepEqual(
+                        [...evicts],
+                        [
+                            ["a", 1],
+                            ["b", 2],
+                            ["c", 3],
+                        ]
+                    );
+                    assert.deepEqual([...c.keys()], ["a"]);
+                    assert.deepEqual([...c.values()], [10]);
+                    done();
+                })
+                .catch(done);
+        }, 20);
     });
-
 });

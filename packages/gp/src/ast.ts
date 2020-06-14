@@ -1,18 +1,8 @@
 import { assert } from "@thi.ng/api";
 import { SYSTEM } from "@thi.ng/random";
-import {
-    iterate,
-    iterator,
-    repeatedly,
-    takeWhile
-} from "@thi.ng/transducers";
+import { iterate, iterator, repeatedly, takeWhile } from "@thi.ng/transducers";
 import { Location, zipper } from "@thi.ng/zipper";
-import {
-    ASTNode,
-    ASTOpts,
-    GeneType,
-    OpGene
-} from "./api";
+import { ASTNode, ASTOpts, GeneType, OpGene } from "./api";
 import { opNode, probabilities, terminalNode } from "./utils";
 
 export class AST<OP, T> {
@@ -53,7 +43,7 @@ export class AST<OP, T> {
             ).root,
             this.selectRandomNode(parent2).replace(
                 this.selectRandomNode(parent1).node
-            ).root
+            ).root,
         ];
     }
 
@@ -98,7 +88,7 @@ export class AST<OP, T> {
             ...iterator(
                 takeWhile((x) => !!x),
                 iterate<any>((x) => x.next, this.asZipper(tree))
-            )
+            ),
         ];
     }
 
@@ -138,7 +128,7 @@ export class AST<OP, T> {
             return terminalNode(this.opts.terminal(rnd));
         const op = this.opts.ops[geneID - 1];
         const children = [
-            ...repeatedly(() => this.randomASTNode(d + 1, maxDepth), op.arity)
+            ...repeatedly(() => this.randomASTNode(d + 1, maxDepth), op.arity),
         ];
         return opNode(op.fn(rnd, children), children);
     }
@@ -149,7 +139,7 @@ export class AST<OP, T> {
                 branch: (x) => x.type === GeneType.OP,
                 children: (x) => (<OpGene<OP, ASTNode<OP, T>>>x).args,
                 factory: (n, args) =>
-                    opNode((<OpGene<OP, ASTNode<OP, T>>>n).op, args)
+                    opNode((<OpGene<OP, ASTNode<OP, T>>>n).op, args),
             },
             tree
         );

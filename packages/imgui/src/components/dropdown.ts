@@ -1,10 +1,5 @@
 import { polygon } from "@thi.ng/geom";
-import {
-    gridLayout,
-    IGridLayout,
-    isLayout,
-    LayoutBox
-} from "@thi.ng/layout";
+import { gridLayout, IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
 import { hash } from "@thi.ng/vectors";
 import { Key } from "../api";
 import { IMGUI } from "../gui";
@@ -49,10 +44,10 @@ export const dropdown = (
                         [
                             [tx - 4, ty + 2],
                             [tx + 4, ty + 2],
-                            [tx, ty - 2]
+                            [tx, ty - 2],
                         ],
                         {
-                            fill: gui.textColor(false)
+                            fill: gui.textColor(false),
                         }
                     )
                 )
@@ -94,10 +89,10 @@ export const dropdown = (
                         [
                             [tx - 4, ty - 2],
                             [tx + 4, ty - 2],
-                            [tx, ty + 2]
+                            [tx, ty + 2],
                         ],
                         {
-                            fill: gui.textColor(false)
+                            fill: gui.textColor(false),
                         }
                     )
                 )

@@ -11,7 +11,7 @@ import {
     IEqualsDelta,
     ILength,
     Tuple,
-    TypedArray
+    TypedArray,
 } from "@thi.ng/api";
 
 export interface Vec extends Iterable<number>, ILength {

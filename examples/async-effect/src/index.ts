@@ -5,7 +5,7 @@ import {
     EventDef,
     FX_DISPATCH_ASYNC,
     FX_DISPATCH_NOW,
-    valueSetter
+    valueSetter,
 } from "@thi.ng/interceptors";
 import type { IObjectOf } from "@thi.ng/api";
 
@@ -37,7 +37,7 @@ const events: IObjectOf<EventDef> = {
     // the last items in the array are the event IDs for success & error outcomes
     [EV_LOAD_JSON]: (_, [__, url]) => ({
         [FX_DISPATCH_NOW]: [EV_SET_STATUS, ["idle", `loading: ${url}...`]],
-        [FX_DISPATCH_ASYNC]: [FX_JSON, url, EV_RECEIVE_JSON, EV_ERROR]
+        [FX_DISPATCH_ASYNC]: [FX_JSON, url, EV_RECEIVE_JSON, EV_ERROR],
     }),
 
     // this event will be triggered after JSON data has been successfully loaded
@@ -52,28 +52,28 @@ const events: IObjectOf<EventDef> = {
         () => ({
             [FX_DISPATCH_NOW]: [
                 EV_SET_STATUS,
-                ["success", "JSON successfully loaded"]
+                ["success", "JSON successfully loaded"],
             ],
             [FX_DISPATCH_ASYNC]: [
                 FX_DELAY,
                 [1000, ["idle", "done."]],
                 EV_SET_STATUS,
-                EV_ERROR
-            ]
-        })
+                EV_ERROR,
+            ],
+        }),
     ],
 
     // error event handler
     [EV_ERROR]: (_, [__, err]) => ({
-        [FX_DISPATCH_NOW]: [EV_SET_STATUS, ["error", err.message]]
-    })
+        [FX_DISPATCH_NOW]: [EV_SET_STATUS, ["error", err.message]],
+    }),
 };
 
 const effects: IObjectOf<EffectDef> = {
     // these are async side effects. ALWAYS MUST RETURN A PROMISE
     [FX_JSON]: (url) => fetch(url).then((res) => res.json()),
     [FX_DELAY]: ([x, msg]) =>
-        new Promise((res) => setTimeout(() => res(msg), x))
+        new Promise((res) => setTimeout(() => res(msg), x)),
 };
 
 // main app component
@@ -92,7 +92,7 @@ const app = () => {
             return [
                 "div",
                 ["p#status", { class: status[0] }, `status: ${status[1]}`],
-                ["pre", json]
+                ["pre", json],
             ];
         }
     };

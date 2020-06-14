@@ -76,9 +76,9 @@ class Foo extends LocalReRenderable {
                 onclick: () => {
                     this.col = <string>COLORS.next().value;
                     this.localRender(this.time);
-                }
+                },
             },
-            `${this.id}: ${time}`
+            `${this.id}: ${time}`,
         ];
     }
 }
@@ -105,7 +105,7 @@ const app = ({ time }: any) => [
     // memoized...)
     [foo("a"), time],
     [foo("b"), time],
-    [foo("c"), time]
+    [foo("c"), time],
 ];
 
 // trigger full DOM updates every 2 secs

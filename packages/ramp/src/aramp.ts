@@ -10,7 +10,7 @@ export abstract class ARamp implements IRamp {
     constructor(
         stops: Vec[] = [
             [0, 0],
-            [1, 1]
+            [1, 1],
         ]
     ) {
         this.stops = stops;

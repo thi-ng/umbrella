@@ -5,14 +5,9 @@ import {
     sidechainPartition,
     Subscription,
     subscription,
-    sync
+    sync,
 } from "@thi.ng/rstream";
-import {
-    map,
-    reducer,
-    scan,
-    vals
-} from "@thi.ng/transducers";
+import { map, reducer, scan, vals } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 
 // example user context object
@@ -21,12 +16,12 @@ import { updateDOM } from "@thi.ng/transducers-hdom";
 const ctx = {
     ui: {
         root: {
-            class: "pa2"
+            class: "pa2",
         },
         button: {
-            class: "w4 h2 bg-black white bn br2 mr2 pointer"
-        }
-    }
+            class: "w4 h2 bg-black white bn br2 mr2 pointer",
+        },
+    },
 };
 
 /**
@@ -66,7 +61,7 @@ const domUpdate = (root: HTMLElement, tree: ISubscribable<any>, ctx?: any) =>
 const button = (ctx: any, onclick: EventListener, body: any) => [
     "button",
     { ...ctx.ui.button, onclick },
-    body
+    body,
 ];
 
 /**
@@ -78,7 +73,7 @@ const button = (ctx: any, onclick: EventListener, body: any) => [
 const clickButton = (_: any, stream: Subscription<boolean, number>) => [
     button,
     () => stream.next(true),
-    stream.deref()
+    stream.deref(),
 ];
 
 /**
@@ -90,7 +85,7 @@ const clickButton = (_: any, stream: Subscription<boolean, number>) => [
 const resetButton = (_: any, counters: Subscription<boolean, number>[]) => [
     button,
     () => counters.forEach((c) => c.next(false)),
-    "reset"
+    "reset",
 ];
 
 /**
@@ -105,14 +100,14 @@ const counter = (start: number, step: number) => {
     const s = subscription<boolean, number>(
         undefined,
         // the `scan` transducer is used to provide counter functionality
-        // see: https://github.com/thi-ng/umbrella/blob/master/packages/transducers/src/xform/scan.ts
+        // see: https://github.com/thi-ng/umbrella/blob/develop/packages/transducers/src/xform/scan.ts
         {
             xform: scan(
                 reducer(
                     () => start,
                     (x, y) => (y ? x + step : start)
                 )
-            )
+            ),
         }
     );
     s.next(false);
@@ -137,7 +132,7 @@ const app = (ctx: any, initial: number[][]) => {
                 "div",
                 ctx.ui.root,
                 ...vals(buttons),
-                [resetButton, counters]
+                [resetButton, counters],
             ]
         ),
         // this config ensures that only at the very beginning *all*
@@ -146,9 +141,9 @@ const app = (ctx: any, initial: number[][]) => {
         // however, by stating `reset: false` (actually the default) any
         // subsequent changes to any of the inputs will not be
         // synchronized see here for further details:
-        // https://github.com/thi-ng/umbrella/blob/master/packages/rstream/src/stream-sync.ts#L21
-        // https://github.com/thi-ng/umbrella/blob/master/packages/transducers/src/xform/partition-sync.ts#L7
-        reset: false
+        // https://github.com/thi-ng/umbrella/blob/develop/packages/rstream/src/stream-sync.ts#L21
+        // https://github.com/thi-ng/umbrella/blob/develop/packages/transducers/src/xform/partition-sync.ts#L7
+        reset: false,
     });
 };
 
@@ -158,7 +153,7 @@ domUpdate(
     app(ctx, [
         [10, 1],
         [20, 5],
-        [30, 10]
+        [30, 10],
     ]),
     ctx
 );

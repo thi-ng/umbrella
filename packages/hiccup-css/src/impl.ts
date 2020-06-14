@@ -3,7 +3,7 @@ import {
     isFunction,
     isIterable,
     isPlainObject,
-    isString
+    isString,
 } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import {
@@ -14,7 +14,7 @@ import {
     repeat,
     str,
     transduce,
-    Transducer
+    Transducer,
 } from "@thi.ng/transducers";
 import type { FnAny } from "@thi.ng/api";
 import type { CSSOpts, RuleFn } from "./api";
@@ -98,7 +98,7 @@ const formatRule = (parent: any[], sel: any[], curr: any, opts: CSSOpts) => {
         f.declStart,
         formatDecls(curr, opts),
         space,
-        f.declEnd
+        f.declEnd,
     ].join("");
 };
 

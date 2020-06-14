@@ -20,7 +20,7 @@ export const DEFAULT_FORMAT: FormatOpts = {
     lineSep: "\n",
     prefix: "",
     quote: `"`,
-    ws: " "
+    ws: " ",
 };
 
 export const COMPACT_FORMAT: FormatOpts = {
@@ -30,7 +30,7 @@ export const COMPACT_FORMAT: FormatOpts = {
     lineSep: "",
     prefix: "",
     quote: `"`,
-    ws: ""
+    ws: "",
 };
 
 // memoized indentations
@@ -39,7 +39,7 @@ export const spaces = (n: number) => repeat(" ", n);
 // creates new state with deeper indentation
 const indentState = (opts: FormatOpts): FormatOpts => ({
     ...opts,
-    indent: opts.indent + opts.tabSize
+    indent: opts.indent + opts.tabSize,
 });
 
 // dispatch helper function for the `format` defmulti below
@@ -55,8 +55,8 @@ const formatVal = (opts: FormatOpts, x: any, indent = true) =>
     isNumber(x) || isBoolean(x)
         ? x
         : isPlainObject(x)
-            ? format(indent ? indentState(opts) : opts, "", x)
-            : opts.quote + escape(opts, x) + opts.quote;
+        ? format(indent ? indentState(opts) : opts, "", x)
+        : opts.quote + escape(opts, x) + opts.quote;
 
 // attrib key-value pair formatter w/ indentation
 const formatPair = (opts: FormatOpts, x: any, k: string) =>
@@ -88,7 +88,7 @@ format.add("array", (opts, res, x) => {
         res = format(
             {
                 ...indentState(opts),
-                prefix: `${opts.lineSep}${spaces(opts.indent + opts.tabSize)}`
+                prefix: `${opts.lineSep}${spaces(opts.indent + opts.tabSize)}`,
             },
             res,
             x[1]

@@ -8,7 +8,7 @@ import {
     sub,
     Vec2Term,
     Vec3Term,
-    Vec4Term
+    Vec4Term,
 } from "@thi.ng/shader-ast";
 
 export const distChebyshev2 = (

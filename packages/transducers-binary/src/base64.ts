@@ -6,7 +6,7 @@ import {
     iterator1,
     reduced,
     Reducer,
-    Transducer
+    Transducer,
 } from "@thi.ng/transducers";
 
 const B64_CHARS =
@@ -141,7 +141,7 @@ export function base64Encode(...args: any[]): any {
                         }
                 }
                 return acc;
-            }
+            },
         ];
     };
 }

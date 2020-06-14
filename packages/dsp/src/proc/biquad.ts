@@ -1,10 +1,5 @@
 import { unsupported } from "@thi.ng/errors";
-import {
-    clamp05,
-    PI,
-    SQRT2,
-    SQRT2_2
-} from "@thi.ng/math";
+import { clamp05, PI, SQRT2, SQRT2_2 } from "@thi.ng/math";
 import { FilterType } from "../constants";
 import { dbMag } from "../util/convert";
 import { AProc } from "./aproc";
@@ -117,7 +112,7 @@ export class Biquad extends AProc<number, number> implements IReset, IFilter {
     filterCoeffs(): FilterConfig {
         return {
             zeroes: [this._a0, this._a1, this._a2],
-            poles: [1, this._b1, this._b2]
+            poles: [1, this._b1, this._b2],
         };
     }
 

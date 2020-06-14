@@ -1,9 +1,4 @@
-import type {
-    IClear,
-    ICopy,
-    IEmpty,
-    Pair
-} from "@thi.ng/api";
+import type { IClear, ICopy, IEmpty, Pair } from "@thi.ng/api";
 
 export interface ISpatialMap<K, V>
     extends Iterable<Pair<K, V>>,

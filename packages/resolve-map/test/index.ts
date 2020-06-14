@@ -11,7 +11,7 @@ describe("resolve-map", () => {
         assert.deepEqual(resolve({ a: "@c", b: "@a", c: 1 }), {
             a: 1,
             b: 1,
-            c: 1
+            c: 1,
         });
     });
 
@@ -19,7 +19,7 @@ describe("resolve-map", () => {
         assert.deepEqual(resolve({ a: "@c/1", b: "@a", c: [1, 2] }), {
             a: 2,
             b: 2,
-            c: [1, 2]
+            c: [1, 2],
         });
     });
 
@@ -28,7 +28,7 @@ describe("resolve-map", () => {
             resolve({
                 a1: { b: 1, c: "@b" },
                 a2: { b: 2, c: "@b" },
-                a3: { b: 3, c: "@/a1/b" }
+                a3: { b: 3, c: "@/a1/b" },
             }),
             { a1: { b: 1, c: 1 }, a2: { b: 2, c: 2 }, a3: { b: 3, c: 1 } }
         );
@@ -38,7 +38,7 @@ describe("resolve-map", () => {
         assert.deepEqual(
             resolve({
                 a: { b: { c: "@../c/d", d: "@c", e: "@/c/d" }, c: { d: 1 } },
-                c: { d: 10 }
+                c: { d: 10 },
             }),
             { a: { b: { c: 1, d: 1, e: 10 }, c: { d: 1 } }, c: { d: 10 } }
         );
@@ -57,14 +57,14 @@ describe("resolve-map", () => {
             resolve({
                 a: (x: ResolveFn) => x("b/c") * 10,
                 b: { c: "@d", d: "@/e" },
-                e: () => 1
+                e: () => 1,
             }),
             { a: 10, b: { c: 1, d: 1 }, e: 1 }
         );
         const res = resolve({
             a: (x: ResolveFn) => x("b/c")() * 10,
             b: { c: "@d", d: "@/e" },
-            e: () => () => 1
+            e: () => () => 1,
         });
         assert.equal(res.a, 10);
         assert.strictEqual(res.b.c, res.e);
@@ -78,7 +78,7 @@ describe("resolve-map", () => {
             resolve({
                 a: (x: ResolveFn) => x("b/c"),
                 b: { c: "@d", d: "@/e" },
-                e: () => (n++, 1)
+                e: () => (n++, 1),
             }),
             { a: 1, b: { c: 1, d: 1 }, e: 1 }
         );
@@ -90,7 +90,7 @@ describe("resolve-map", () => {
             resolve({
                 a: "@b/c/d",
                 b: ($: ResolveFn) => ({ c: { d: { e: $("/x") } } }),
-                x: 1
+                x: 1,
             }),
             { a: { e: 1 }, b: { c: { d: { e: 1 } } }, x: 1 }
         );
@@ -128,7 +128,7 @@ describe("resolve-map", () => {
                     tx.push(),
                     tx.range(10, 100, 5)
                 );
-            }
+            },
         };
         // prettier-ignore
         assert.deepEqual(
@@ -149,7 +149,7 @@ describe("resolve-map", () => {
     it("destructures w/ local renames", () => {
         assert.deepEqual(resolve({ a: 1, b: ({ a: aa }: any) => aa }), {
             a: 1,
-            b: 1
+            b: 1,
         });
     });
 
@@ -165,7 +165,7 @@ describe("resolve-map", () => {
             resolve({
                 a: 1,
                 b: 2,
-                c: new Function("{ a, b, }", "return a + b")
+                c: new Function("{ a, b, }", "return a + b"),
             }),
             { a: 1, b: 2, c: 3 },
             "comma & whitespaces"
@@ -174,7 +174,7 @@ describe("resolve-map", () => {
             resolve({
                 a: 1,
                 b: 2,
-                c: new Function("{ a, b: bb,  }", "return a + bb")
+                c: new Function("{ a, b: bb,  }", "return a + bb"),
             }),
             { a: 1, b: 2, c: 3 },
             "comma & whitespaces & rename"

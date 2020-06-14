@@ -39,7 +39,7 @@ edges.addAll(<
             [a, e],
             [b, f], // left
             [c, g],
-            [d, h] // right
+            [d, h], // right
         ];
     },
 
@@ -47,7 +47,7 @@ edges.addAll(<
 
     [Type.POLYLINE]: ($: Polyline) => edgeIterator($.points),
 
-    [Type.RECT]: ($: Rect) => edgeIterator(vertices($), true)
+    [Type.RECT]: ($: Rect) => edgeIterator(vertices($), true),
 });
 
 edges.isa(Type.LINE, Type.POLYLINE);

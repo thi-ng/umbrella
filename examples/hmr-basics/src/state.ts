@@ -10,6 +10,6 @@ export const state = defonce(
     () =>
         new Atom<any>({
             launched: new Date(),
-            seed: (Math.random() * 100) | 0
+            seed: (Math.random() * 100) | 0,
         })
 );

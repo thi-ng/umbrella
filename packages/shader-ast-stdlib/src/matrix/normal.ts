@@ -4,7 +4,7 @@ import {
     mul,
     normalize,
     Vec3Term,
-    vec4
+    vec4,
 } from "@thi.ng/shader-ast";
 
 /**

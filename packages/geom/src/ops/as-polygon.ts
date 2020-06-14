@@ -12,7 +12,7 @@ export const asPolygon: MultiFn1O<
 > = defmulti(dispatch);
 
 asPolygon.addAll({
-    [Type.POINTS]: ($, opts) => new Polygon(vertices($, opts), copyAttribs($))
+    [Type.POINTS]: ($, opts) => new Polygon(vertices($, opts), copyAttribs($)),
 });
 
 asPolygon.isa(Type.CIRCLE, Type.POINTS);

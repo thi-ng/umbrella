@@ -1,11 +1,5 @@
 import * as assert from "assert";
-import {
-    Event,
-    EVENT_ALL,
-    INotify,
-    INotifyMixin,
-    Listener
-} from "../src";
+import { Event, EVENT_ALL, INotify, INotifyMixin, Listener } from "../src";
 
 describe("mixins", () => {
     it("INotify", () => {

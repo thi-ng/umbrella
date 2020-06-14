@@ -13,6 +13,6 @@ export const ellipse = (
         cx: ff(p[0]),
         cy: ff(p[1]),
         rx: ff(rx),
-        ry: ff(ry)
-    })
+        ry: ff(ry),
+    }),
 ];

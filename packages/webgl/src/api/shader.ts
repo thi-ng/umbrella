@@ -8,7 +8,7 @@ import type {
     IDeref,
     IObjectOf,
     IRelease,
-    NumericArray
+    NumericArray,
 } from "@thi.ng/api";
 import type { Func, Sym } from "@thi.ng/shader-ast";
 import type { GLSLTarget } from "@thi.ng/shader-ast-glsl";
@@ -29,7 +29,7 @@ import type {
     GLVec,
     GLVec2,
     GLVec3,
-    GLVec4
+    GLVec4,
 } from "./glsl";
 import type { ModelAttributeSpecs, ModelSpec } from "./model";
 import type { StencilFnParams, StencilOpParams } from "./stencil";

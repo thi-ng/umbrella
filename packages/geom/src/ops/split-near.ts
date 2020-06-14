@@ -2,7 +2,10 @@ import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
 import { closestT } from "@thi.ng/geom-closest-point";
 import { Sampler } from "@thi.ng/geom-resample";
-import { quadraticSplitNearPoint, splitCubicNearPoint } from "@thi.ng/geom-splines";
+import {
+    quadraticSplitNearPoint,
+    splitCubicNearPoint,
+} from "@thi.ng/geom-splines";
 import { clamp01 } from "@thi.ng/math";
 import { Cubic } from "../api/cubic";
 import { Line } from "../api/line";
@@ -61,5 +64,5 @@ splitNearPoint.addAll(<
     [Type.QUADRATIC]: ({ points, attribs }: Quadratic, p) =>
         quadraticSplitNearPoint(p, points[0], points[1], points[2]).map(
             (pts) => new Quadratic(pts, { ...attribs })
-        )
+        ),
 });

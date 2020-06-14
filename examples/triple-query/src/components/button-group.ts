@@ -5,6 +5,6 @@ export function buttonGroup(ctx: AppContext, ...buttons: any[]) {
     return [
         "section",
         ctx.ui.buttongroup,
-        buttons.map((bt) => [button, ...bt])
+        buttons.map((bt) => [button, ...bt]),
     ];
 }

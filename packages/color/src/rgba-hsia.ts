@@ -1,9 +1,4 @@
-import {
-    atan2Abs,
-    SQRT3,
-    TAU,
-    THIRD
-} from "@thi.ng/math";
+import { atan2Abs, SQRT3, TAU, THIRD } from "@thi.ng/math";
 import { setC3 } from "@thi.ng/vectors";
 import { clamp } from "./clamp";
 import type { ColorOp } from "./api";

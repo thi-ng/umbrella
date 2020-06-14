@@ -5,7 +5,7 @@ import {
     sliderH,
     sliderVGroup,
     textLabel,
-    toggle
+    toggle,
 } from "@thi.ng/imgui";
 import { gridLayout, GridLayout } from "@thi.ng/layout";
 import { initAudio, isAudioActive, stopAudio } from "./audio";
@@ -16,14 +16,14 @@ import {
     FMT_PERCENT,
     NUM_BINS,
     PITCH_SCALE,
-    WINDOW_LEN
+    WINDOW_LEN,
 } from "./config";
 import {
     clearSpectrum,
     DB,
     setGain,
     setSpectrumPreset,
-    updateSpectrumBin
+    updateSpectrumBin,
 } from "./state";
 
 export const gui = new IMGUI({
@@ -31,8 +31,8 @@ export const gui = new IMGUI({
         ...DEFAULT_THEME,
         globalBg: "#ccc",
         font: "10px Inconsolata",
-        charWidth: 5
-    }
+        charWidth: 5,
+    },
 });
 
 export const updateGUI = (draw: boolean) => {

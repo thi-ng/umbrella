@@ -9,7 +9,7 @@ import {
     Vec,
     X2,
     Y2,
-    ZERO2
+    ZERO2,
 } from "./api";
 import { intoStridedBuffer, mapStridedBuffer } from "./buffer";
 import { eqDelta2 } from "./eqdelta";

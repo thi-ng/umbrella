@@ -8,8 +8,8 @@ import { state } from "./state";
 const ui = sync<any, any>({
     src: {
         state: fromAtom(state),
-        now: fromInterval(1000).transform(map((_) => new Date()))
-    }
+        now: fromInterval(1000).transform(map((_) => new Date())),
+    },
 });
 // then transform using root component function
 // and hdom differential DOM updater

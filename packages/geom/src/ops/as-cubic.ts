@@ -4,7 +4,7 @@ import {
     closedCubicFromBreakPoints,
     closedCubicFromControlPoints,
     openCubicFromBreakPoints,
-    openCubicFromControlPoints
+    openCubicFromControlPoints,
 } from "@thi.ng/geom-splines";
 import { TAU } from "@thi.ng/math";
 import { mapcat } from "@thi.ng/transducers";
@@ -18,7 +18,11 @@ import { Polyline } from "../api/polyline";
 import { Quadratic } from "../api/quadratic";
 import { Rect } from "../api/rect";
 import { arc } from "../ctors/arc";
-import { cubicFromArc, cubicFromLine, cubicFromQuadratic } from "../ctors/cubic";
+import {
+    cubicFromArc,
+    cubicFromLine,
+    cubicFromQuadratic,
+} from "../ctors/cubic";
 import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
 import { asPolygon } from "./as-polygon";
@@ -39,11 +43,11 @@ asCubic.addAll(<IObjectOf<Implementation1<unknown, Cubic[]>>>{
     [Type.GROUP]: ($: Group) => [...mapcat(asCubic, $.children)],
 
     [Type.LINE]: ({ attribs, points }: Line) => [
-        cubicFromLine(points[0], points[1], { ...attribs })
+        cubicFromLine(points[0], points[1], { ...attribs }),
     ],
 
     [Type.PATH]: ($: Path) => [
-        ...mapcat((s) => (s.geo ? asCubic(s.geo) : null), $.segments)
+        ...mapcat((s) => (s.geo ? asCubic(s.geo) : null), $.segments),
     ],
 
     [Type.POLYGON]: ($: Polygon, opts: Partial<CubicOpts> = {}) => {
@@ -63,11 +67,11 @@ asCubic.addAll(<IObjectOf<Implementation1<unknown, Cubic[]>>>{
     },
 
     [Type.QUADRATIC]: ({ attribs, points }: Quadratic) => [
-        cubicFromQuadratic(points[0], points[1], points[2], { ...attribs })
+        cubicFromQuadratic(points[0], points[1], points[2], { ...attribs }),
     ],
 
     [Type.RECT]: ($: Rect, opts?: Partial<CubicOpts>) =>
-        asCubic(asPolygon($), opts)
+        asCubic(asPolygon($), opts),
 });
 
 asCubic.isa(Type.ELLIPSE, Type.CIRCLE);

@@ -4,7 +4,7 @@ import {
     dispatchNow,
     EventBus,
     FX_STATE,
-    valueUpdater
+    valueUpdater,
 } from "@thi.ng/interceptors";
 import { choices } from "@thi.ng/transducers";
 
@@ -18,13 +18,13 @@ const db = new Atom({});
 // see @thi.ng/interceptors for more details
 const bus = new EventBus(db, {
     init: () => ({
-        [FX_STATE]: { clicks: 0, color: "grey" }
+        [FX_STATE]: { clicks: 0, color: "grey" },
     }),
     "inc-counter": [
         valueUpdater("clicks", (x: number) => x + 1),
-        dispatchNow(["randomize-color"])
+        dispatchNow(["randomize-color"]),
     ],
-    "randomize-color": valueUpdater("color", () => colors.next().value)
+    "randomize-color": valueUpdater("color", () => colors.next().value),
 });
 
 start(
@@ -38,11 +38,11 @@ start(
                   {
                       style: {
                           padding: "1rem",
-                          background: ctx.db.value.color
+                          background: ctx.db.value.color,
                       },
-                      onclick: () => ctx.bus.dispatch(["inc-counter"])
+                      onclick: () => ctx.bus.dispatch(["inc-counter"]),
                   },
-                  `clicks: ${ctx.db.value.clicks}`
+                  `clicks: ${ctx.db.value.clicks}`,
               ]
             : null,
     // hdom options incl.

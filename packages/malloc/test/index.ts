@@ -57,7 +57,7 @@ describe("malloc", () => {
         assert.deepEqual(stats.free, { count: 0, size: 0 });
         assert.deepEqual(stats.used, {
             count: 3,
-            size: 16 + 32 + 24 + 3 * BLOCK_OVERHEAD
+            size: 16 + 32 + 24 + 3 * BLOCK_OVERHEAD,
         });
 
         // free all
@@ -89,7 +89,7 @@ describe("malloc", () => {
         assert.deepEqual(stats.free, { count: 1, size: 24 });
         assert.deepEqual(stats.used, {
             count: 2,
-            size: 24 + 2 * BLOCK_OVERHEAD
+            size: 24 + 2 * BLOCK_OVERHEAD,
         });
         assert.equal(stats.top, base + 32 + 16 + 2 * BLOCK_OVERHEAD, "top4");
 
@@ -103,7 +103,7 @@ describe("malloc", () => {
         assert.deepEqual(stats.free, { count: 0, size: 0 });
         assert.deepEqual(stats.used, {
             count: 2,
-            size: 8 + 64 + 2 * BLOCK_OVERHEAD
+            size: 8 + 64 + 2 * BLOCK_OVERHEAD,
         });
         assert.equal(stats.top, base + 8 + 64 + 2 * BLOCK_OVERHEAD, "top5");
 
@@ -128,7 +128,7 @@ describe("malloc", () => {
         assert.deepEqual(stats.free, { count: 1, size: 8 + BLOCK_OVERHEAD });
         assert.deepEqual(stats.used, {
             count: 2,
-            size: 64 + 32 + 2 * BLOCK_OVERHEAD
+            size: 64 + 32 + 2 * BLOCK_OVERHEAD,
         });
         assert.equal(
             stats.top,
@@ -150,7 +150,7 @@ describe("malloc", () => {
             used: { count: 0, size: 0 },
             available: pool.buf.byteLength - base,
             total: pool.buf.byteLength,
-            top: base
+            top: base,
         });
         pool.release();
     });
@@ -186,7 +186,7 @@ describe("malloc", () => {
                 0x3f800000,
                 0x40000000,
                 0x40400000,
-                0
+                0,
             ]
         );
         assert.deepEqual(
@@ -200,7 +200,7 @@ describe("malloc", () => {
                 0,
                 0x403e0000,
                 0,
-                0
+                0,
             ]
         );
         assert(pool.free(a!), "free a");

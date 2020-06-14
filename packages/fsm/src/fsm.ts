@@ -6,7 +6,7 @@ import {
     Reducer,
     ReductionFn,
     Transducer,
-    unreduced
+    unreduced,
 } from "@thi.ng/transducers";
 import { Match, Matcher } from "./api";
 import type { Fn2, IObjectOf } from "@thi.ng/api";
@@ -86,8 +86,9 @@ export function fsm<T, C, R>(
                                   curr = next();
                               } else {
                                   illegalState(
-                                      `unknown tx: ${currID} -> ${body &&
-                                          body[0]}`
+                                      `unknown tx: ${currID} -> ${
+                                          body && body[0]
+                                      }`
                                   );
                               }
                               if (res) {
@@ -106,7 +107,7 @@ export function fsm<T, C, R>(
                           break;
                       }
                       return acc;
-                  }
+                  },
               ];
           };
 }

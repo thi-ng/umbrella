@@ -6,15 +6,9 @@ import {
     str,
     take,
     transduce,
-    zip
+    zip,
 } from "@thi.ng/transducers";
-import {
-    MultiVecOpVN,
-    MultiVecOpVV,
-    Template,
-    VecOpVN,
-    VecOpVV
-} from "../api";
+import { MultiVecOpVN, MultiVecOpVV, Template, VecOpVN, VecOpVV } from "../api";
 import {
     FN,
     MATH,
@@ -22,7 +16,7 @@ import {
     SIGNED,
     SIGNED_N,
     UNSIGNED,
-    UNSIGNED_N
+    UNSIGNED_N,
 } from "./templates";
 import { vop } from "./vop";
 
@@ -135,7 +129,7 @@ const assemble = (
         )
     ),
     post,
-    ret !== "" ? `return ${ret};` : ""
+    ret !== "" ? `return ${ret};` : "",
 ];
 
 const assembleG = (
@@ -155,7 +149,7 @@ const assembleG = (
     ),
     "}",
     post,
-    ret !== null ? `return ${ret};` : ""
+    ret !== null ? `return ${ret};` : "",
 ];
 
 /** @internal */

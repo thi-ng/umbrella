@@ -26,7 +26,7 @@ export const fork = <T>(src: Iterable<T>, cacheLimit = 16) => {
         }
     };
 
-    return function() {
+    return function () {
         const id = forks.length;
         forks.push(0);
         return <IterableIterator<T>>{
@@ -45,7 +45,7 @@ export const fork = <T>(src: Iterable<T>, cacheLimit = 16) => {
                     }
                     return { done, value };
                 }
-            }
+            },
         };
     };
 };

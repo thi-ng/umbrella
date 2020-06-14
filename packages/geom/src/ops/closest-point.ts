@@ -8,15 +8,10 @@ import {
     closestPointPlane,
     closestPointPolyline,
     closestPointRect,
-    closestPointSegment
+    closestPointSegment,
 } from "@thi.ng/geom-closest-point";
 import { closestPointCubic, closestPointQuadratic } from "@thi.ng/geom-splines";
-import {
-    add2,
-    add3,
-    ReadonlyVec,
-    Vec
-} from "@thi.ng/vectors";
+import { add2, add3, ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { AABB } from "../api/aabb";
 import { Arc } from "../api/arc";
 import { Circle } from "../api/circle";
@@ -68,7 +63,7 @@ closestPoint.addAll(<
         closestPointQuadratic(p, points[0], points[1], points[2], out),
 
     [Type.RECT]: ($: Rect, p, out) =>
-        closestPointRect(p, $.pos, add2([], $.pos, $.size), out)
+        closestPointRect(p, $.pos, add2([], $.pos, $.size), out),
 });
 
 closestPoint.isa(Type.QUAD, Type.POLYGON);

@@ -24,8 +24,8 @@ export function routeLink(
             onclick: (e: Event) => {
                 e.preventDefault();
                 ctx.bus.dispatch([ROUTE_TO, [routeID, routeParams]]);
-            }
+            },
         },
-        body
+        body,
     ];
 }

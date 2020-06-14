@@ -75,9 +75,9 @@ export const tween = <T>(
                     ? fromRAF()
                     : isNumber(clock)
                     ? fromInterval(clock)
-                    : clock
+                    : clock,
         },
-        closeIn: CloseMode.FIRST
+        closeIn: CloseMode.FIRST,
     }).transform(
         scan(
             reducer(

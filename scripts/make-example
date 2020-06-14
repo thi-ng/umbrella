@@ -42,13 +42,11 @@ cat << EOF > "$MODULE"/package.json
     },
     "devDependencies": {
         "parcel-bundler": "^1.12.4",
-        "terser": "^4.6.3",
-        "typescript": "^3.7.5"
+        "terser": "^4.6.13",
+        "typescript": "^3.9.2"
     },
     "dependencies": {
-        "@thi.ng/api": "latest",
-        "@thi.ng/rstream": "latest",
-        "@thi.ng/transducers-hdom": "latest"
+        "@thi.ng/api": "latest"
     },
     "browserslist": [
         "last 3 Chrome versions"

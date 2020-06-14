@@ -49,7 +49,7 @@ export function juxtR<B>(...rs: Reducer<any, B>[]): any {
                         return reduced([unreduced(aa1)]);
                     }
                     return [aa1];
-                }
+                },
             ];
         }
         case 2: {
@@ -65,7 +65,7 @@ export function juxtR<B>(...rs: Reducer<any, B>[]): any {
                         return reduced([unreduced(aa1), unreduced(aa2)]);
                     }
                     return [aa1, aa2];
-                }
+                },
             ];
         }
         case 3: {
@@ -83,11 +83,11 @@ export function juxtR<B>(...rs: Reducer<any, B>[]): any {
                         return reduced([
                             unreduced(aa1),
                             unreduced(aa2),
-                            unreduced(aa3)
+                            unreduced(aa3),
                         ]);
                     }
                     return [aa1, aa2, aa3];
-                }
+                },
             ];
         }
         default:
@@ -106,7 +106,7 @@ export function juxtR<B>(...rs: Reducer<any, B>[]): any {
                         res[i] = a;
                     }
                     return done ? reduced(res) : res;
-                }
+                },
             ];
     }
 }

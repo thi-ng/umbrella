@@ -2,14 +2,7 @@ import { withoutKeysObj } from "@thi.ng/associative";
 import { cosineGradient, GRADIENTS } from "@thi.ng/color";
 import { threadLast } from "@thi.ng/compose";
 import { serialize } from "@thi.ng/hiccup";
-import {
-    defs,
-    group,
-    line,
-    rect,
-    svg,
-    text
-} from "@thi.ng/hiccup-svg";
+import { defs, group, line, rect, svg, text } from "@thi.ng/hiccup-svg";
 import { fit } from "@thi.ng/math";
 import { Z2 } from "@thi.ng/strings";
 import {
@@ -27,7 +20,7 @@ import {
     range,
     sortedKeys,
     transduce,
-    vals
+    vals,
 } from "@thi.ng/transducers";
 import { execSync } from "child_process";
 import * as fs from "fs";
@@ -58,7 +51,7 @@ const IGNORE_PACKAGES = [
     "example",
     "exmples",
     "shadertoy",
-    "transducer"
+    "transducer",
 ];
 
 // heatmap gradient
@@ -69,7 +62,7 @@ const MAX_DATE = Date.now();
 
 const enum LogItem {
     COMMIT,
-    STATS
+    STATS,
 }
 
 type ClassifiedCommit = [LogItem, string | string[]];
@@ -83,7 +76,7 @@ const gitLog = (repoPath: string) =>
     execSync(
         `git log --pretty=format:"%ad${SEP}%s" --date=iso-strict --shortstat`,
         {
-            cwd: resolve(repoPath)
+            cwd: resolve(repoPath),
         }
     )
         .toString()
@@ -131,7 +124,7 @@ const parseCommitTuple = (tuple: ClassifiedCommit[]) => {
             ...map(
                 (x: RegExpMatchArray) => parseInt(x[0]),
                 stats.matchAll(/\d+/g)
-            )
+            ),
         ];
         return <Commit>{
             name: match[1],
@@ -140,7 +133,7 @@ const parseCommitTuple = (tuple: ClassifiedCommit[]) => {
             msg,
             files,
             adds,
-            dels
+            dels,
         };
     }
 };
@@ -162,7 +155,7 @@ const commitsByPackage = withoutKeysObj(
         ),
         groupByObj<Commit, Commit[]>({
             group: pushSort((a, b) => a.epoch - b.epoch),
-            key: (x) => x.name
+            key: (x) => x.name,
         }),
         gitLog(BASE_DIR).split("\n")
     ),
@@ -231,7 +224,7 @@ const timeLineLabels = () =>
             {},
             line([x, 0], [x, NUM_PKG * 10 + 20], {
                 stroke: "#999",
-                "stroke-dasharray": 1
+                "stroke-dasharray": 1,
             }),
             text([x + 5, 8], `${d.getFullYear()}-${Z2(d.getMonth() + 1)}`)
         );
@@ -248,13 +241,13 @@ const packageCommits = (i: number, pkg: string) =>
     group(
         {
             transform: `translate(0, ${(i + 2) * 10})`,
-            "stroke-width": 2
+            "stroke-width": 2,
         },
         text([0, 8], pkg, { stroke: "none" }),
         map((commit) => {
             const x = mapEpoch(commit.epoch);
             return line([x, 0], [x, 8], {
-                stroke: mapColor(commit.adds, maxAdds)
+                stroke: mapColor(commit.adds, maxAdds),
             });
         }, commitsByPackage[pkg])
     );
@@ -262,7 +255,7 @@ const packageCommits = (i: number, pkg: string) =>
 /**
  * Assemble & output full SVG document using hiccup-svg primitives.
  *
- * See: https://github.com/thi-ng/umbrella/blob/master/packages/compose/src/thread-last.ts
+ * See: https://github.com/thi-ng/umbrella/blob/develop/packages/compose/src/thread-last.ts
  */
 threadLast(
     commitsByPackage,
@@ -276,16 +269,16 @@ threadLast(
             viewBox: `-10 -10 ${WIDTH + 20} ${HEIGHT + 20}`,
             "font-family": "Inconsolata",
             "font-size": 9,
-            fill: "white"
+            fill: "white",
         },
         defs([
             "style",
             { type: "text/css" },
-            "<![CDATA[ @import url('https://fonts.googleapis.com/css?family=Inconsolata&display=swap'); ]]>"
+            "<![CDATA[ @import url('https://fonts.googleapis.com/css?family=Inconsolata&display=swap'); ]]>",
         ]),
         // background
         rect([-10, -10], WIDTH + 20, HEIGHT + 20, { fill: "black" }),
-        timeLineLabels()
+        timeLineLabels(),
     ],
     serialize,
     [fs.writeFileSync, "heatmap2.svg"]

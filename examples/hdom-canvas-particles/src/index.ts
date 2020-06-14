@@ -28,7 +28,7 @@ const makeCurve = (i: number) =>
     );
 
 const initCurves = () => [
-    ...map(makeCurve, range(-(NUMC >> 1), (NUMC >> 1) + 1))
+    ...map(makeCurve, range(-(NUMC >> 1), (NUMC >> 1) + 1)),
 ];
 
 const updateCurves = (curves: Cubic[], t: number) => {
@@ -48,7 +48,7 @@ const updateCurves = (curves: Cubic[], t: number) => {
 const makeParticle = (curves: Cubic[]) => ({
     curve: curves[SYSTEM.int() % curves.length],
     pos: 0,
-    vel: SYSTEM.minmax(0.002, 0.01)
+    vel: SYSTEM.minmax(0.002, 0.01),
 });
 
 const updateParticles = (particles: Particle[]) => {
@@ -67,7 +67,7 @@ const particle = (p: Particle) => {
         { translate: pos },
         // compute 2nd end point in local space
         sub2(null, pointAt(p.curve, p.pos - 0.05), pos),
-        ZERO2
+        ZERO2,
     ];
 };
 
@@ -81,8 +81,8 @@ const GRAD = [
         { id: "curve", from: [0, 0], to: [600, 0] },
         [
             [0, [0.6, 0.01, 0]],
-            [1, [0.2, 0, 0.6]]
-        ]
+            [1, [0.2, 0, 0.6]],
+        ],
     ],
     // for particles
     [
@@ -90,9 +90,9 @@ const GRAD = [
         { id: "part", from: [-20, 0], to: [0, 0] },
         [
             [0, [1, 0, 0, 0]],
-            [1, [1, 0.8, 0.5, 0.8]]
-        ]
-    ]
+            [1, [1, 0.8, 0.5, 0.8]],
+        ],
+    ],
 ];
 
 const app = () => {
@@ -115,15 +115,15 @@ const app = () => {
                     translate: [0, height / 2],
                     scale,
                     stroke: "$curve",
-                    compose: "screen"
+                    compose: "screen",
                 },
                 ...curves,
                 [
                     "g",
                     { stroke: "$part", weight: 2 },
-                    ...map(particle, particles)
-                ]
-            ]
+                    ...map(particle, particles),
+                ],
+            ],
         ];
     };
 };

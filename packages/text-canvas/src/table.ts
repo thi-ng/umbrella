@@ -8,7 +8,7 @@ import {
     canvas,
     endClip,
     endStyle,
-    setAt
+    setAt,
 } from "./canvas";
 import { hline, vline } from "./hvline";
 import { fillRect, strokeRect } from "./rect";
@@ -73,7 +73,7 @@ export const initTable = (opts: TableOpts, cells: (string | RawCell)[][]) => {
         bH,
         bV,
         bFH,
-        bFV
+        bFV,
     };
 };
 
@@ -96,7 +96,7 @@ export const drawTable = (
         bH,
         bV,
         bFH,
-        bFV
+        bFV,
     } = opts;
     const fmt = opts.format !== undefined ? opts.format : canvas.format;
     const fmtHd = opts.formatHead !== undefined ? opts.formatHead : fmt;

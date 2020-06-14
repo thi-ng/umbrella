@@ -11,7 +11,7 @@ import {
     GRAY8,
     PackedFormat,
     RGB565,
-    RGB888
+    RGB888,
 } from "../src/index";
 // import { equiv } from "@thi.ng/equiv";
 
@@ -47,7 +47,7 @@ describe("pixel", () => {
             0xffff0000,
             0xffff1d1d,
             0xffff9696,
-            0xffff4c4c
+            0xffff4c4c,
         ]);
     });
 
@@ -90,7 +90,7 @@ describe("pixel", () => {
             0xff000000,
             0xffff0000,
             0xff00ff00,
-            0xff0000ff
+            0xff0000ff,
         ]);
     });
 

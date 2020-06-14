@@ -8,7 +8,7 @@ import {
     MultiVecOpImpl,
     ReadonlyVec,
     signedArea2,
-    vop
+    vop,
 } from "@thi.ng/vectors";
 import type { Fn3 } from "@thi.ng/api";
 

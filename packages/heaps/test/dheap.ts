@@ -3,7 +3,6 @@ import { DHeap } from "../src/index";
 import { compare } from "@thi.ng/compare";
 
 describe("DHeap", () => {
-
     const rcmp: (a: number, b: number) => number = (a, b) => b - a;
 
     const src = [5, 2, 10, 20, 15, 18, 23, 22, -1];
@@ -90,9 +89,8 @@ describe("DHeap", () => {
 function drain(h: DHeap<any>) {
     const res = [];
     let x;
-    while (x = h.pop()) {
+    while ((x = h.pop())) {
         res.push(x);
     }
     return res;
 }
-

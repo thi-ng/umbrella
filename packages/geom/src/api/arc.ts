@@ -3,9 +3,12 @@ import {
     Attribs,
     IHiccupPathSegment,
     IHiccupShape,
-    Type
+    Type,
 } from "@thi.ng/geom-api";
-import { pointAt as arcPointAt, pointAtTheta as arcPointAtTheta } from "@thi.ng/geom-arc";
+import {
+    pointAt as arcPointAt,
+    pointAtTheta as arcPointAtTheta,
+} from "@thi.ng/geom-arc";
 import { set, Vec } from "@thi.ng/vectors";
 import { copyAttribs } from "../internal/copy-attribs";
 
@@ -90,7 +93,7 @@ export class Arc implements IHiccupShape, IHiccupPathSegment {
         return [
             "path",
             this.attribs,
-            [["M", this.pointAt(0)], ...this.toHiccupPathSegments()]
+            [["M", this.pointAt(0)], ...this.toHiccupPathSegments()],
         ];
     }
 
@@ -103,8 +106,8 @@ export class Arc implements IHiccupShape, IHiccupPathSegment {
                 this.axis,
                 this.xl,
                 this.cw,
-                this.pointAt(1)
-            ]
+                this.pointAt(1),
+            ],
         ];
     }
 }

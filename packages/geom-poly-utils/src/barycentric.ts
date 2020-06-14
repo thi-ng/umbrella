@@ -5,7 +5,7 @@ import {
     ReadonlyVec,
     setC3,
     sub,
-    Vec
+    Vec,
 } from "@thi.ng/vectors";
 
 export const toBarycentric = (

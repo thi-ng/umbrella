@@ -1,12 +1,7 @@
 import * as assert from "assert";
-import {
-    sidechainPartition,
-    State,
-    Stream,
-    stream
-} from "../src/index";
+import { sidechainPartition, State, Stream, stream } from "../src/index";
 
-describe("SidechainPartition", function() {
+describe("SidechainPartition", function () {
     let src: Stream<any>, side: Stream<any>, buf: any[];
 
     beforeEach(() => {
@@ -23,10 +18,10 @@ describe("SidechainPartition", function() {
             done() {
                 assert.deepEqual(buf, [
                     [1, 2],
-                    [3, 4, 5]
+                    [3, 4, 5],
                 ]);
                 done();
-            }
+            },
         });
         src.next(1);
         src.next(2);
@@ -50,10 +45,10 @@ describe("SidechainPartition", function() {
             done() {
                 assert.deepEqual(buf, [
                     [1, 2, 3],
-                    [4, 5]
+                    [4, 5],
                 ]);
                 done();
-            }
+            },
         });
         src.next(1);
         src.next(2);

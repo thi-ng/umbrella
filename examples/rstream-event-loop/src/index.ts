@@ -15,7 +15,7 @@ const app = ({ pageID, isLoading }: AppState) =>
     isLoading
         ? [
               "div.w-100.vh-100.flex.items-center.justify-center.bg-black.white",
-              ["div", "Loading..."]
+              ["div", "Loading..."],
           ]
         : [
               "div.ma3",
@@ -27,10 +27,10 @@ const app = ({ pageID, isLoading }: AppState) =>
                   ["button", { onclick: () => dispatch([PREV, 5]) }, "<<"],
                   ["button", { onclick: () => dispatch([PREV, 1]) }, "<"],
                   ["button", { onclick: () => dispatch([NEXT, 1]) }, ">"],
-                  ["button", { onclick: () => dispatch([NEXT, 5]) }, ">>"]
+                  ["button", { onclick: () => dispatch([NEXT, 5]) }, ">>"],
               ],
               // only here to show timestamp of last DOM update
-              ["div.mt3", new Date().toString()]
+              ["div.mt3", new Date().toString()],
           ];
 
 /**

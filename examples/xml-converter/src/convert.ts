@@ -1,10 +1,5 @@
 import { isString } from "@thi.ng/checks";
-import {
-    parse,
-    ParseElement,
-    ParseEvent,
-    Type
-} from "@thi.ng/sax";
+import { parse, ParseElement, ParseEvent, Type } from "@thi.ng/sax";
 import {
     assocObj,
     comp,
@@ -13,7 +8,7 @@ import {
     map,
     pairs,
     push,
-    transduce
+    transduce,
 } from "@thi.ng/transducers";
 import { DEFAULT_FORMAT, format, FormatOpts } from "./format";
 
@@ -26,14 +21,14 @@ export interface ConversionOpts {
 export const DEFAULT_OPTS: ConversionOpts = {
     format: DEFAULT_FORMAT,
     removeAttribs: new Set(),
-    removeTags: new Set()
+    removeTags: new Set(),
 };
 
 // converts given XMLish string into formatted hiccup
 export const convertXML = (src: string, opts: Partial<ConversionOpts> = {}) => {
     let tree = transformTree(parseXML(src), <ConversionOpts>{
         ...DEFAULT_OPTS,
-        ...opts
+        ...opts,
     });
     return format({ ...DEFAULT_FORMAT, ...opts.format }, "", tree);
 };
@@ -80,7 +75,10 @@ const parseAttrib = (attrib: string[]) => {
 // transforms an entire object of attributes
 const transformAttribs = (attribs: any, remove: Set<string> = new Set()) =>
     transduce<any, any, any>(
-        comp(filter((a) => !remove.has(a[0])), map(parseAttrib)),
+        comp(
+            filter((a) => !remove.has(a[0])),
+            map(parseAttrib)
+        ),
         assocObj(),
         {},
         pairs<string>(attribs)
@@ -124,7 +122,10 @@ const transformTree = (
     }
     if (tree.children && tree.children.length) {
         transduce<any, any, any>(
-            comp(map((t: any) => transformTree(t, opts)), filter((t) => !!t)),
+            comp(
+                map((t: any) => transformTree(t, opts)),
+                filter((t) => !!t)
+            ),
             push(),
             res,
             tree.children

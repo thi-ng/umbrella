@@ -6,7 +6,7 @@ import {
     fromIterableSync,
     merge,
     State,
-    StreamMerge
+    StreamMerge,
 } from "../src/index";
 
 describe("StreamMerge", () => {
@@ -24,7 +24,7 @@ describe("StreamMerge", () => {
                     expected
                 );
                 done();
-            }
+            },
         };
     };
 
@@ -33,8 +33,8 @@ describe("StreamMerge", () => {
             src: [
                 fromIterable([1, 2]),
                 fromIterable([10, 20, 30, 40]),
-                fromIterable([100, 200, 300])
-            ]
+                fromIterable([100, 200, 300]),
+            ],
         });
     });
 
@@ -70,7 +70,7 @@ describe("StreamMerge", () => {
     it("applies transducer", (done) => {
         src = merge<number, number>({
             src: [fromIterable([1, 2]), fromIterable([10, 20])],
-            xform: mapcat((x: number) => [x, x + 1])
+            xform: mapcat((x: number) => [x, x + 1]),
         });
         src.subscribe(check([1, 2, 2, 3, 10, 11, 20, 21], done));
     });
@@ -78,7 +78,7 @@ describe("StreamMerge", () => {
     it("transducer streams", (done) => {
         const sources = [
             fromIterable([1, 2, 3]),
-            fromIterable([4, 5, 6])
+            fromIterable([4, 5, 6]),
         ].map((s) => s.subscribe(map((x) => fromIterable([x, x, x]))));
         const main = merge({ src: <any>sources });
         const histogram = frequencies();
@@ -96,11 +96,11 @@ describe("StreamMerge", () => {
                         [3, 3],
                         [4, 3],
                         [5, 3],
-                        [6, 3]
+                        [6, 3],
                     ])
                 );
                 done();
-            }
+            },
         });
     });
 });

@@ -5,19 +5,8 @@ import { getIn } from "@thi.ng/paths";
 import { fromRAF } from "@thi.ng/rstream";
 import { toDot, walk } from "@thi.ng/rstream-dot";
 import { gestureStream } from "@thi.ng/rstream-gestures";
-import {
-    extract,
-    initGraph,
-    mul,
-    node,
-    node1
-} from "@thi.ng/rstream-graph";
-import {
-    choices,
-    comp,
-    dedupe,
-    map
-} from "@thi.ng/transducers";
+import { extract, initGraph, mul, node, node1 } from "@thi.ng/rstream-graph";
+import { choices, comp, dedupe, map } from "@thi.ng/transducers";
 import { circle } from "./circle";
 
 // infinite iterator of randomized colors (Tachyons CSS class names)
@@ -30,7 +19,7 @@ const colors = choices([
     "bg-pink",
     "bg-light-purple",
     "bg-orange",
-    "bg-gray"
+    "bg-gray",
 ]);
 
 // atom for storing dataflow results (optional, here only for
@@ -69,7 +58,7 @@ const graph = initGraph(db, {
     mpos: {
         fn: extract(["pos"]),
         ins: { src: { stream: () => gestures } },
-        outs: { "*": "mpos" }
+        outs: { "*": "mpos" },
     },
 
     // extracts last click position from gesture tuple
@@ -78,7 +67,7 @@ const graph = initGraph(db, {
     clickpos: {
         fn: extract(["active", 0, "click"]),
         ins: { src: { stream: () => gestures } },
-        outs: { "*": "clickpos" }
+        outs: { "*": "clickpos" },
     },
 
     // extracts & computes length of `delta` vector in gesture tuple
@@ -93,7 +82,7 @@ const graph = initGraph(db, {
             })
         ),
         ins: { src: { stream: () => gestures } },
-        outs: { "*": "dist" }
+        outs: { "*": "dist" },
     },
 
     // combines `clickpos`, `dist` and `color` streams to produce a
@@ -114,9 +103,9 @@ const graph = initGraph(db, {
         ins: {
             click: { stream: "/clickpos/node" },
             radius: { stream: "/radius/node" },
-            color: { stream: "/color/node" }
+            color: { stream: "/color/node" },
         },
-        outs: { "*": "circle" }
+        outs: { "*": "circle" },
     },
 
     // produces a new random color for each new drag gesture (and
@@ -133,7 +122,7 @@ const graph = initGraph(db, {
             )
         ),
         ins: { src: { stream: "/clickpos/node" } },
-        outs: { "*": "color" }
+        outs: { "*": "color" },
     },
 
     // transforms a `requestAnimationFrame` event stream (frame counter @ 60fps)
@@ -141,7 +130,7 @@ const graph = initGraph(db, {
     sine: {
         fn: node1(map((x: number) => 0.8 + 0.2 * Math.sin(x * 0.05))),
         ins: { src: { stream: () => raf } },
-        outs: { "*": "sin" }
+        outs: { "*": "sin" },
     },
 
     // multiplies `dist` and `sine` streams to produce an animated
@@ -150,10 +139,10 @@ const graph = initGraph(db, {
         fn: mul,
         ins: {
             a: { stream: "/sine/node" },
-            b: { stream: "/dist/node" }
+            b: { stream: "/dist/node" },
         },
-        outs: { "*": "radius" }
-    }
+        outs: { "*": "radius" },
+    },
 });
 
 // start @thi.ng/hdom update loop
@@ -161,13 +150,13 @@ start(() => [
     "div",
     [
         "pre.absolute.top-1.left-1.pa0.ma0.z-2.f7",
-        JSON.stringify(db.deref(), null, 2)
+        JSON.stringify(db.deref(), null, 2),
     ],
     // note: direct embedding of result stream below. this works
     // since all @thi.ng/rstream subscriptions implement the
     // @thi.ng/api/IDeref interface (like several other types, e.g.
     // @thi.ng/atom's Atom, Cursor, View etc.)
-    graph.circle.node
+    graph.circle.node,
 ]);
 
 // create a GraphViz DOT file of the entire dataflow graph

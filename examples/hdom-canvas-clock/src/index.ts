@@ -13,16 +13,16 @@ const tick = (i: number, r1: number, r2: number) => {
             "line",
             {},
             cartesian2(null, [r1, theta]),
-            cartesian2(null, [r2, theta])
+            cartesian2(null, [r2, theta]),
         ],
         i % 3 == 0
             ? [
                   "text",
                   { stroke: "none" },
                   cartesian2(null, [r1 - 10, theta]),
-                  i > 0 ? i : 12
+                  i > 0 ? i : 12,
               ]
-            : null
+            : null,
     ];
 };
 
@@ -40,8 +40,8 @@ const hand = (
         [
             [r1, theta - eps],
             [r2, theta],
-            [r1, theta + eps]
-        ].map((p) => cartesian2(null, p))
+            [r1, theta + eps],
+        ].map((p) => cartesian2(null, p)),
     ];
 };
 
@@ -70,7 +70,7 @@ const cancel = start(() => {
             // applied in a nested manner...
             //
             // see here for a list of all supported attribs:
-            // https://github.com/thi-ng/umbrella/blob/master/packages/hdom-canvas/src/index.ts#L35
+            // https://github.com/thi-ng/umbrella/blob/develop/packages/hdom-canvas/src/index.ts#L35
             [
                 "g",
                 {
@@ -79,7 +79,7 @@ const cancel = start(() => {
                     fill: "none",
                     align: "center",
                     baseline: "middle",
-                    __normalize: false
+                    __normalize: false,
                 },
                 // rim
                 ["circle", {}, [0, 0], 99],
@@ -94,8 +94,8 @@ const cancel = start(() => {
                         "text",
                         { stroke: "none" },
                         [55, 0],
-                        WEEKDAYS[now.getDay()]
-                    ]
+                        WEEKDAYS[now.getDay()],
+                    ],
                 ],
                 // hands
                 [
@@ -108,20 +108,20 @@ const cancel = start(() => {
                         shadowX: 2,
                         shadowY: 2,
                         shadowBlur: 5,
-                        shadowColor: "rgba(0,0,0,0.4)"
+                        shadowColor: "rgba(0,0,0,0.4)",
                     }),
-                    ["circle", {}, [0, 0], 5]
-                ]
-            ]
+                    ["circle", {}, [0, 0], 5],
+                ],
+            ],
         ],
         [
             "a.link",
             {
                 href:
-                    "https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-clock"
+                    "https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-clock",
             },
-            "Source code"
-        ]
+            "Source code",
+        ],
     ];
 });
 

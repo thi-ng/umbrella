@@ -1,9 +1,4 @@
-import {
-    assert,
-    INotifyMixin,
-    typedArray,
-    uintType
-} from "@thi.ng/api";
+import { assert, INotifyMixin, typedArray, uintType } from "@thi.ng/api";
 import { bitSize } from "@thi.ng/binary";
 import { isArray, isString } from "@thi.ng/checks";
 import { IDGen } from "@thi.ng/idgen";
@@ -13,7 +8,7 @@ import {
     GroupOpts,
     IComponent,
     MemMappedComponentOpts,
-    ObjectComponentOpts
+    ObjectComponentOpts,
 } from "./api";
 import { MemMappedComponent } from "./components/mem-component";
 import { ObjectComponent } from "./components/object-component";
@@ -92,7 +87,7 @@ export class ECS<SPEC> implements INotify {
     ) {
         opts = {
             id: `group${NEXT_GROUP_ID++}`,
-            ...opts
+            ...opts,
         };
         assert(
             !this.groups.has(opts.id!),

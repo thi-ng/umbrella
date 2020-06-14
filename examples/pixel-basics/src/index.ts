@@ -4,7 +4,7 @@ import {
     GRAY8,
     imagePromise,
     PackedBuffer,
-    RGB565
+    RGB565,
 } from "@thi.ng/pixel";
 import { SRC_OVER_I } from "@thi.ng/porter-duff";
 import IMG from "../assets/haystack.jpg";
@@ -21,7 +21,7 @@ Promise.all([IMG, LOGO].map(imagePromise)).then(([img, logo]) => {
         .premultiply()
         .blend(SRC_OVER_I, buf, {
             dx: 10,
-            dy: 10
+            dy: 10,
         });
 
     // extract sub-image

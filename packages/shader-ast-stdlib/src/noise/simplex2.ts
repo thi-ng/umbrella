@@ -26,7 +26,7 @@ import {
     vec3,
     Vec3Sym,
     vec4,
-    Vec4Sym
+    Vec4Sym,
 } from "@thi.ng/shader-ast";
 import { magSq2 } from "../math/magsq";
 import { permute3 } from "./permute";
@@ -102,6 +102,6 @@ export const snoise2 = defn("float", "snoise2", ["vec2"], (v) => {
             $(g, "yz"),
             add(mul($(a0, "yz"), $(x12, "xz")), mul($(h, "yz"), $(x12, "yw")))
         ),
-        ret(mul(130, dot(m, g)))
+        ret(mul(130, dot(m, g))),
     ];
 });

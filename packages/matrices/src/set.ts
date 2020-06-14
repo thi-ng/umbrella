@@ -1,9 +1,4 @@
-import {
-    compile,
-    set as _set,
-    SET,
-    set4
-} from "@thi.ng/vectors";
+import { compile, set as _set, SET, set4 } from "@thi.ng/vectors";
 import type { MatOpM } from "./api";
 
 const $ = (dim: number) => _set.add(dim, compile(dim, SET, "o,a"));

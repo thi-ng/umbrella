@@ -4,7 +4,7 @@ import type { AppContext } from "../api";
 const row = (ctx: AppContext, body: Iterable<any>) => [
     "tr",
     ctx.ui.table.row,
-    ...body
+    ...body,
 ];
 
 export const table = (
@@ -20,5 +20,5 @@ export const table = (
     map(
         (cols: any) => [row, map((x) => ["td", ctx.ui.table.cell, x], cols)],
         body
-    )
+    ),
 ];

@@ -1,11 +1,6 @@
 import { LogLevel } from "@thi.ng/api";
 import { map, Transducer } from "@thi.ng/transducers";
-import type {
-    BodyFormat,
-    DateFormat,
-    LogEntry,
-    LogEntryObj
-} from "../api";
+import type { BodyFormat, DateFormat, LogEntry, LogEntryObj } from "../api";
 
 export const isoDate = (dt: number) => new Date(dt).toISOString();
 
@@ -61,7 +56,7 @@ export const formatJSON = (
             id,
             level: LogLevel[level],
             time: dtfmt!(time),
-            body
+            body,
         })
     );
 };

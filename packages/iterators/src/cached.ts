@@ -4,7 +4,7 @@ export const cached = <T>(input: Iterable<T>) => {
     let cache: T[] = [];
     let iter = iterator(input);
     let done = false;
-    return function() {
+    return function () {
         let i = 0;
         return {
             [Symbol.iterator](): IterableIterator<T> {
@@ -23,7 +23,7 @@ export const cached = <T>(input: Iterable<T>) => {
                     done = true;
                 }
                 return <IteratorResult<T>>{ done };
-            }
+            },
         };
     };
 };

@@ -22,8 +22,8 @@ export const queryResults = (
                 mapIndexed(
                     (i, x) => [i + 1, ...map((k: string) => x[k], keys)],
                     results
-                )
-            ]
+                ),
+            ],
         ];
     }
 };

@@ -3,7 +3,7 @@ import {
     isReduced,
     iterator,
     Reducer,
-    Transducer
+    Transducer,
 } from "@thi.ng/transducers";
 
 /**
@@ -34,8 +34,8 @@ export function partitionBits(...args: any[]): any {
             return destSize < srcSize
                 ? small(rfn, destSize, srcSize)
                 : destSize > srcSize
-                    ? large(rfn, destSize, srcSize)
-                    : rfn;
+                ? large(rfn, destSize, srcSize)
+                : rfn;
         })
     );
 }
@@ -65,7 +65,7 @@ const small = (
             r = wordSize - b;
             y = r > 0 ? (x >>> maxb) & m2 : 0;
             return acc;
-        }
+        },
     ];
 };
 
@@ -96,6 +96,6 @@ const large = (
                 y = (x & ((1 << r) - 1)) << (n - r);
             }
             return acc;
-        }
+        },
     ];
 };

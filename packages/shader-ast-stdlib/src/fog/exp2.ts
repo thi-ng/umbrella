@@ -1,12 +1,4 @@
-import {
-    assign,
-    defn,
-    exp2,
-    FLOAT1,
-    mul,
-    ret,
-    sub
-} from "@thi.ng/shader-ast";
+import { assign, defn, exp2, FLOAT1, mul, ret, sub } from "@thi.ng/shader-ast";
 import { clamp01 } from "../math/clamp";
 
 /**
@@ -23,6 +15,8 @@ export const fogExp2 = defn(
     ["float", "float"],
     (dist, density) => [
         assign(density, mul(density, dist)),
-        ret(sub(FLOAT1, clamp01(exp2(mul(mul(density, density), -Math.LOG2E)))))
+        ret(
+            sub(FLOAT1, clamp01(exp2(mul(mul(density, density), -Math.LOG2E))))
+        ),
     ]
 );

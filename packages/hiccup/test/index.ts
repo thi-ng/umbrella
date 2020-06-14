@@ -114,7 +114,7 @@ describe("serialize", () => {
         [
             "div",
             ["h1.title", "foo"],
-            ["p", ["span.small", "hello"], ["br"], "bye"]
+            ["p", ["span.small", "hello"], ["br"], "bye"],
         ],
         `<div><h1 class="title">foo</h1><p><span class="small">hello</span><br/>bye</p></div>`
     );
@@ -144,9 +144,9 @@ describe("serialize", () => {
             [
                 (_: any, id: string, body: any) => ["div#" + id, body],
                 "foo",
-                "bar"
+                "bar",
             ],
-            "bar2"
+            "bar2",
         ],
         `<div><div id="foo">bar</div>bar2</div>`
     );
@@ -156,7 +156,7 @@ describe("serialize", () => {
         [
             "div",
             [(_: any, [id, body]: any) => ["div#" + id, body], ["foo", "bar"]],
-            "bar2"
+            "bar2",
         ],
         `<div><div id="foo">bar</div>bar2</div>`
     );
@@ -168,21 +168,27 @@ describe("serialize", () => {
     );
 
     it("components nested", () => {
-        const dlItem = ([def, desc]: any) => [["dt", def], ["dd", desc]];
+        const dlItem = ([def, desc]: any) => [
+            ["dt", def],
+            ["dd", desc],
+        ];
         const ulItem = (i: any) => ["li", i];
         const list = (_: any, f: any, items: any[]) => items.map(f);
         const dlList = (_: any, attribs: any, items: any[]) => [
             "dl",
             attribs,
-            [list, dlItem, items]
+            [list, dlItem, items],
         ];
         const ulList = (_: any, attribs: any, items: any[]) => [
             "ul",
             attribs,
-            [list, ulItem, items]
+            [list, ulItem, items],
         ];
 
-        const items = [["a", "foo"], ["b", "bar"]];
+        const items = [
+            ["a", "foo"],
+            ["b", "bar"],
+        ];
 
         const widget1 = [dlList, { id: "foo" }, items];
         const widget2 = [ulList, { id: "foo" }, items.map((i) => i[1])];
@@ -199,7 +205,7 @@ describe("serialize", () => {
         const bar = { render: (_: any, id: any) => [foo, id] };
         assert.equal(
             serialize(["section", [bar, "a"], [bar, "b"]], {
-                foo: { class: "foo" }
+                foo: { class: "foo" },
             }),
             `<section><div class="foo">a</div><div class="foo">b</div></section>`
         );
@@ -209,7 +215,7 @@ describe("serialize", () => {
         "iterators",
         [
             "ul",
-            [(_: any, items: any[]) => items.map((i) => ["li", i]), ["a", "b"]]
+            [(_: any, items: any[]) => items.map((i) => ["li", i]), ["a", "b"]],
         ],
         `<ul><li>a</li><li>b</li></ul>`
     );

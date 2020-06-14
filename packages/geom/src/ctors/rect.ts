@@ -9,7 +9,7 @@ import {
     sub2,
     subN2,
     Vec,
-    ZERO2
+    ZERO2,
 } from "@thi.ng/vectors";
 import { Circle } from "../api/circle";
 import { Polygon } from "../api/polygon";

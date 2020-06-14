@@ -1,7 +1,11 @@
 import { isNumber } from "@thi.ng/checks";
 import { liangBarsky2 } from "@thi.ng/geom-clip-line";
 import { sutherlandHodgeman } from "@thi.ng/geom-clip-poly";
-import { pointInCircumCircle, pointInPolygon2, pointInSegment } from "@thi.ng/geom-isec";
+import {
+    pointInCircumCircle,
+    pointInPolygon2,
+    pointInSegment,
+} from "@thi.ng/geom-isec";
 import { centroid, circumCenter2 } from "@thi.ng/geom-poly-utils";
 import { EPS } from "@thi.ng/math";
 import { Edge } from "@thi.ng/quad-edge";
@@ -11,7 +15,7 @@ import {
     signedArea2,
     Vec,
     VecPair,
-    ZERO2
+    ZERO2,
 } from "@thi.ng/vectors";
 import type { IObjectOf, Pair } from "@thi.ng/api";
 
@@ -65,7 +69,7 @@ export class DVMesh<T> {
         let base = Edge.create<Vertex<T>>(e.origin, {
             pos: p,
             id: this.nextID++,
-            val
+            val,
         });
         base.splice(e);
         const first = base;
@@ -156,7 +160,7 @@ export class DVMesh<T> {
                 const id = this.nextID++;
                 e.origin = {
                     pos: !isBounds ? circumCenter2(a, b, c)! : ZERO2,
-                    id
+                    id,
                 };
                 visitedVerts[id] = true;
             }

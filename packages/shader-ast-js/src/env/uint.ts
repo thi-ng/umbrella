@@ -20,5 +20,5 @@ export const UINT: JSBuiltinsInt<number> = {
     rshift: (a, b) => a >>> b,
     sign: Math.sign,
     sub: (a, b) => (a - b) >>> 0,
-    sub1: (a) => -a >>> 0
+    sub1: (a) => -a >>> 0,
 };

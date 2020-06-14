@@ -5,7 +5,7 @@ import {
     Template,
     ToBVecOpV,
     Vec,
-    VecOpV
+    VecOpV,
 } from "./api";
 import { ARGS_V, defOp, NEW_OUT } from "./internal/codegen";
 

@@ -6,12 +6,12 @@ import {
     mod,
     mul,
     Prim,
-    ret
+    ret,
 } from "@thi.ng/shader-ast";
 
 const __permute = <T extends Prim>(type: T, suffix = "") =>
     defn(type, `permute${suffix}`, [type], (v) => [
-        ret(mod(mul(<any>v, add(mul(<any>v, float(34)), FLOAT1)), float(289)))
+        ret(mod(mul(<any>v, add(mul(<any>v, float(34)), FLOAT1)), float(289))),
     ]);
 
 export const permute = __permute("float");

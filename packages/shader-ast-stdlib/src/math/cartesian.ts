@@ -9,7 +9,7 @@ import {
     sym,
     Vec2Sym,
     Vec2Term,
-    vec3
+    vec3,
 } from "@thi.ng/shader-ast";
 import { cossin } from "./sincos";
 
@@ -42,6 +42,6 @@ export const cartesian3 = defn("vec3", "cartesian3", ["vec3"], (v) => {
                 mul(mul(r, $x(t)), $y(p)),
                 mul(r, $y(t))
             )
-        )
+        ),
     ];
 });

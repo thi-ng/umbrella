@@ -30,9 +30,9 @@ export const html = (doc: HTMLDoc) => {
                 map((s) => script(null, s), doc.head!.scripts || []),
                 map((link) => ["link", link], doc.head!.links || []),
                 map((css) => ["style", css], doc.head!.styles || []),
-                ["title", doc.head!.title || ""]
+                ["title", doc.head!.title || ""],
             ],
-            ["body", doc.ctx!.ui.body, ...doc.body]
+            ["body", doc.ctx!.ui.body, ...doc.body],
         ],
         doc.ctx
     )}`;

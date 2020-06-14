@@ -14,7 +14,7 @@ import {
     mulNI3,
     rshiftI3,
     subI3,
-    subNI3
+    subNI3,
 } from "@thi.ng/vectors";
 import { VEC3 } from "./vec3";
 import type { JSBuiltinsIntVec } from "../api";
@@ -41,5 +41,5 @@ export const IVEC3: JSBuiltinsIntVec = {
     bitnot1: (a) => bitNotI3([], a),
     bitor: (a, b) => bitOrI3([], a, b),
     rshift: (a, b) => rshiftI3([], a, b),
-    bitxor: (a, b) => bitXorI3([], a, b)
+    bitxor: (a, b) => bitXorI3([], a, b),
 };

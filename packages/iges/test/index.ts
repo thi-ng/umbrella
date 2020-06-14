@@ -9,7 +9,7 @@ describe("iges", () => {
             author: "toxi",
             authorOrg: "thi.ng",
             created: new Date(123456789),
-            modified: new Date(123456789)
+            modified: new Date(123456789),
         });
 
         doc.start = ["Example file for @thi.ng/iges"];
@@ -23,7 +23,7 @@ describe("iges", () => {
             [100, 0],
             [0, 0],
             [100, 100],
-            [100, 0]
+            [100, 0],
         ]);
 
         assert.equal(

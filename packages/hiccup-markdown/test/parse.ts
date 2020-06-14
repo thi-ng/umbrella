@@ -9,7 +9,7 @@ describe("parse", () => {
     it("CRLF", () => {
         check(`# hello\r\n\r\nworld\r\n\r\n`, [
             ["h1", " hello "],
-            ["p", "world "]
+            ["p", "world "],
         ]);
     });
 
@@ -23,75 +23,75 @@ describe("parse", () => {
                 ["br"],
                 " two ",
                 ["em", "lines"],
-                ". "
-            ]
+                ". ",
+            ],
         ]);
     });
 
     it("code", () => {
         check("inline `const example = 'indeed!'` code\n\n", [
-            ["p", "inline ", ["code", "const example = 'indeed!'"], " code "]
+            ["p", "inline ", ["code", "const example = 'indeed!'"], " code "],
         ]);
     });
 
     it("code_block", () => {
         check("```js\nconst code = () => 'indeed!'\n```\n", [
-            ["pre", { lang: "js" }, "const code = () => 'indeed!'"]
+            ["pre", { lang: "js" }, "const code = () => 'indeed!'"],
         ]);
     });
 
     it("em", () => {
         check(`some _emphasized_ text\n\n`, [
-            ["p", "some ", ["em", "emphasized"], " text "]
+            ["p", "some ", ["em", "emphasized"], " text "],
         ]);
     });
 
     it("h1", () => {
         check(`# Heading One\n\nbody\n\n`, [
             ["h1", " Heading One "],
-            ["p", "body "]
+            ["p", "body "],
         ]);
     });
 
     it("h2", () => {
         check(`## Heading Two\n\nbody\n\n`, [
             ["h2", " Heading Two "],
-            ["p", "body "]
+            ["p", "body "],
         ]);
     });
 
     it("h3", () => {
         check(`### Heading Three\n\nbody\n\n`, [
             ["h3", " Heading Three "],
-            ["p", "body "]
+            ["p", "body "],
         ]);
     });
 
     it("h4", () => {
         check(`#### Heading Four\n\nbody\n\n`, [
             ["h4", " Heading Four "],
-            ["p", "body "]
+            ["p", "body "],
         ]);
     });
 
     it("h5", () => {
         check(`##### Heading Five\n\nbody\n\n`, [
             ["h5", " Heading Five "],
-            ["p", "body "]
+            ["p", "body "],
         ]);
     });
 
     it("h6", () => {
         check(`###### Heading Six\n\nbody\n\n`, [
             ["h6", " Heading Six "],
-            ["p", "body "]
+            ["p", "body "],
         ]);
     });
 
     it("h7", () => {
         check(`####### Heading Seven\n\nbody\n\n`, [
             ["p", " Heading Seven "],
-            ["p", "body "]
+            ["p", "body "],
         ]);
     });
 
@@ -110,18 +110,18 @@ describe("parse", () => {
                         {
                             src:
                                 "https://media.giphy.com/media/f6qMGmXuOdkwU/giphy.gif",
-                            alt: "thi.ng"
-                        }
+                            alt: "thi.ng",
+                        },
                     ],
-                    " "
-                ]
+                    " ",
+                ],
             ]
         );
     });
 
     it("li", () => {
         check(`- an item\n- another\n\n`, [
-            ["ul", ["li", "an item "], ["li", "another "]]
+            ["ul", ["li", "an item "], ["li", "another "]],
         ]);
     });
 
@@ -131,20 +131,20 @@ describe("parse", () => {
                 "p",
                 "come ",
                 ["a", { href: "http://thi.ng/umbrella" }, "to"],
-                " the light "
-            ]
+                " the light ",
+            ],
         ]);
     });
 
     it("strike", () => {
         check(`I ~~am amazing~~ messed up\n\n`, [
-            ["p", "I ", ["del", "am amazing"], " messed up "]
+            ["p", "I ", ["del", "am amazing"], " messed up "],
         ]);
     });
 
     it("strong", () => {
         check(`I **really** meant that\n\n`, [
-            ["p", "I ", ["strong", "really"], " meant that "]
+            ["p", "I ", ["strong", "really"], " meant that "],
         ]);
     });
 
@@ -155,9 +155,9 @@ describe("parse", () => {
                 [
                     "tbody",
                     ["tr", ["td", " col1 "], ["td", " col2 "]],
-                    ["tr", ["td", " row1 "], ["td", " row2 "]]
-                ]
-            ]
+                    ["tr", ["td", " row1 "], ["td", " row2 "]],
+                ],
+            ],
         ]);
     });
 });

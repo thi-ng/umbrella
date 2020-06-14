@@ -14,7 +14,7 @@ import {
     sub,
     sym,
     vec2,
-    Vec2Sym
+    Vec2Sym,
 } from "@thi.ng/shader-ast";
 import { clamp01 } from "../math/clamp";
 import { cross2 } from "../math/cross2";
@@ -59,7 +59,7 @@ export const sdfTriangle2 = defn(
                     vec2(dot(pq2, pq2), mul(s, cross2(v2, e2)))
                 )
             )),
-            ret(mul(neg(sqrt($x(d))), sign($y(d))))
+            ret(mul(neg(sqrt($x(d))), sign($y(d)))),
         ];
     }
 );

@@ -116,6 +116,7 @@ export * from "./iter/cycle";
 export * from "./iter/dup";
 export * from "./iter/extend-sides";
 export * from "./iter/iterate";
+export * from "./iter/key-permutations";
 export * from "./iter/keys";
 export * from "./iter/line";
 export * from "./iter/norm-range";

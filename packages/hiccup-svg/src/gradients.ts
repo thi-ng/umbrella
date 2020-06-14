@@ -6,7 +6,7 @@ const RE_ALPHA_COLOR = /(rgb|hsl)a\(([a-z0-9.-]+),([0-9.%]+),([0-9.%]+),([0-9.]+
 const gradient = (type: string, attribs: any, stops: GradientStop[]): any[] => [
     type,
     fattribs(attribs),
-    ...stops.map(gradientStop)
+    ...stops.map(gradientStop),
 ];
 
 const gradientStop = ([offset, col]: GradientStop) => {
@@ -37,7 +37,7 @@ export const linearGradient = (
             x1: ff(from[0]),
             y1: ff(from[1]),
             x2: ff(to[0]),
-            y2: ff(to[1])
+            y2: ff(to[1]),
         },
         stops
     );
@@ -61,7 +61,7 @@ export const radialGradient = (
             cx: ff(to[0]),
             cy: ff(to[1]),
             fr: ff(fr),
-            r: ff(r)
+            r: ff(r),
         },
         stops
     );

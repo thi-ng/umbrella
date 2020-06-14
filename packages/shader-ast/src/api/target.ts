@@ -17,7 +17,7 @@ import type {
     Swizzle,
     Sym,
     Ternary,
-    WhileLoop
+    WhileLoop,
 } from "./nodes";
 import type { Tag } from "./tags";
 

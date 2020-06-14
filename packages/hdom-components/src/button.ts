@@ -60,7 +60,7 @@ export const button = (opts?: Partial<ButtonOpts>): Button => {
         tagDisabled: "span",
         preventDefault: true,
         attribs: {},
-        ...opts
+        ...opts,
     };
     !opts.attribs.role && (opts.attribs.role = "button");
     return (_: any, args: ButtonArgs, ...body: any[]) =>
@@ -69,9 +69,9 @@ export const button = (opts?: Partial<ButtonOpts>): Button => {
                   opts!.tagDisabled,
                   {
                       ...mergeAttribs(opts!.attribsDisabled, args.attribs),
-                      disabled: true
+                      disabled: true,
                   },
-                  ...body
+                  ...body,
               ]
             : [
                   opts!.tag,
@@ -79,8 +79,8 @@ export const button = (opts?: Partial<ButtonOpts>): Button => {
                       ...mergeAttribs(opts!.attribs, args.attribs),
                       onclick: opts!.preventDefault
                           ? (e: Event) => (e.preventDefault(), args.onclick(e))
-                          : args.onclick
+                          : args.onclick,
                   },
-                  ...body
+                  ...body,
               ];
 };

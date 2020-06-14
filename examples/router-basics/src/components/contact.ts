@@ -16,8 +16,8 @@ export function contact(ctx: AppContext) {
             [
                 ["https://github.com/thi-ng/umbrella", "GitHub"],
                 ["https://twitter.com/toxi", "Twitter"],
-                ["https://medium.com/@thi.ng", "Medium"]
-            ].map((link) => [externalLink, ctx.ui.contact.link, ...link])
-        ]
+                ["https://medium.com/@thi.ng", "Medium"],
+            ].map((link) => [externalLink, ctx.ui.contact.link, ...link]),
+        ],
     ];
 }

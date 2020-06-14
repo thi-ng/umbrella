@@ -3,7 +3,7 @@ import {
     postmultiply,
     postmultiplyInt,
     premultiply,
-    premultiplyInt
+    premultiplyInt,
 } from "./premultiply";
 import { setC4, setN4 } from "./utils";
 import type { Fn2, Fn3 } from "@thi.ng/api";

@@ -5,15 +5,14 @@ import {
     at_keyframes,
     at_media,
     css,
-    PRETTY
+    PRETTY,
 } from "../src";
-
 
 const rules = {
     a: { color: "red" },
     b: { border: 0 },
     c: { font: [["14px", "Inconsolata"], "monospace"] },
-    f: { foo: (rules: any) => rules.bar, bar: 1 }
+    f: { foo: (rules: any) => rules.bar, bar: 1 },
 };
 
 describe("hiccup-css", () => {
@@ -30,7 +29,10 @@ describe("hiccup-css", () => {
         assert.equal(css(["a"]), "");
         assert.equal(css(["a", rules.a]), "a{color:red;}");
         assert.equal(
-            css([["a", rules.a], ["b", rules.b]]),
+            css([
+                ["a", rules.a],
+                ["b", rules.b],
+            ]),
             "a{color:red;}b{border:0;}"
         );
         assert.equal(
@@ -52,7 +54,7 @@ describe("hiccup-css", () => {
             css([
                 "#id",
                 ["h1", {}, {}],
-                ["h2", "h3", ["div", {}], ["[attr]", ["span", rules.a]]]
+                ["h2", "h3", ["div", {}], ["[attr]", ["span", rules.a]]],
             ]),
             "#id h1{}#id h2 div,#id h3 div{}#id h2[attr] span,#id h3[attr] span{color:red;}"
         );
@@ -68,8 +70,8 @@ describe("hiccup-css", () => {
                         "h2",
                         "h3",
                         ["div", rules.b],
-                        ["[attr]", ["span", rules.a]]
-                    ]
+                        ["[attr]", ["span", rules.a]],
+                    ],
                 ],
                 { format: PRETTY }
             ),
@@ -98,7 +100,7 @@ describe("hiccup-css", () => {
             css(
                 at_keyframes("fadein", {
                     0: { opacity: 0 },
-                    100: { opacity: 1 }
+                    100: { opacity: 1 },
                 })
             ),
             "@keyframes fadein{0%{opacity:0;}100%{opacity:1;}}"
@@ -134,9 +136,9 @@ describe("hiccup-css", () => {
                     [
                         at_media({ print: true, "max-width": "20rem" }, [
                             "div",
-                            rules.b
-                        ])
-                    ]
+                            rules.b,
+                        ]),
+                    ],
                 ])
             ),
             "@media screen and print{div .foo{color:red;}@media print and (max-width:20rem){div{border:0;}}}"

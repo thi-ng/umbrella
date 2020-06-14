@@ -1,21 +1,16 @@
 import { assert } from "@thi.ng/api";
 import { add, choices, range } from "@thi.ng/transducers";
-import {
-    GeneType,
-    GPOpts,
-    OpGene,
-    TerminalGene
-} from "./api";
+import { GeneType, GPOpts, OpGene, TerminalGene } from "./api";
 
 export const terminalNode = <T>(value: T): TerminalGene<T> => ({
     type: GeneType.TERMINAL,
-    value
+    value,
 });
 
 export const opNode = <OP, A>(op: OP, args: A[]): OpGene<OP, A> => ({
     type: GeneType.OP,
     op,
-    args
+    args,
 });
 
 export const probabilities = (opts: GPOpts<any, any, any>) => {
@@ -28,6 +23,6 @@ export const probabilities = (opts: GPOpts<any, any, any>) => {
             [1 - psum, ...probabilities],
             opts.rnd
         ),
-        probTerminal: 1 - psum
+        probTerminal: 1 - psum,
     };
 };

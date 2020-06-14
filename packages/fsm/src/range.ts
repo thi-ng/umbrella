@@ -53,11 +53,7 @@ export const alpha = <C, R>(
 export const alphaNum = <C, R>(
     success?: LitCallback<string, C, R>,
     fail?: LitCallback<string, C, R>
-): Matcher<string, C, R> => altsLitObj(
-    { ...ALPHA, ...DIGITS },
-    success,
-    fail
-);
+): Matcher<string, C, R> => altsLitObj({ ...ALPHA, ...DIGITS }, success, fail);
 
 /**
  * Matcher for single whitespace characters.

@@ -36,19 +36,19 @@ const queryFilter = (_: any, query: EventListener, items: any[]) => [
     "div.pv2.ph3.bg-black.white",
     "Filter: ",
     ["input", { type: "text", oninput: setQuery, value: query }],
-    ` (${items.length})`
+    ` (${items.length})`,
 ];
 
 const repoLink = (_: any, sha: string, body: any) => [
     "a.link.blue",
     { href: `${REPO_BASE}commit/${sha}` },
-    body
+    body,
 ];
 
 const packageLink = (_: any, name: any) => [
     "a.link.blue",
     { href: `${REPO_BASE}tree/develop/packages/${name.substr(8)}` },
-    name
+    name,
 ];
 
 const commit = (i: number, [sha, date, msg]: Commit) => [
@@ -56,15 +56,15 @@ const commit = (i: number, [sha, date, msg]: Commit) => [
     ["div.dib.w-30.w-20-m.w-10-l.ph3", date],
     [
         "div.dib.w-70.w-80-m.w-90-l.ph3.overflow-x-hidden.nowrap",
-        [repoLink, sha, msg]
-    ]
+        [repoLink, sha, msg],
+    ],
 ];
 
 const pkgSummary = ([name, desc]: Package) => [
     "div.flex.items-center.lh-copy.pa3.ph0-l.bb.b--black-10",
     { style: { height: "96px" } },
     ["img.w2.h2", { src: LOGO }],
-    ["div.pl3.flex-auto.f7", ["h3.ma0", [packageLink, name]], desc]
+    ["div.pl3.flex-auto.f7", ["h3.ma0", [packageLink, name]], desc],
 ];
 
 const app = () => [
@@ -80,7 +80,7 @@ const app = () => [
         numVisible: 10,
         numItems: filtered.length,
         itemHeight: 31,
-        items: mapIndexed(commit, 0, filtered)
+        items: mapIndexed(commit, 0, filtered),
     }),
     ["h3.ph2", "Packages"],
     virtualScroller({
@@ -93,8 +93,8 @@ const app = () => [
         numVisible: 2,
         numItems: PACKAGES.length,
         itemHeight: 96,
-        items: map(pkgSummary, PACKAGES)
-    })
+        items: map(pkgSummary, PACKAGES),
+    }),
 ];
 
 const cancel = start(app);

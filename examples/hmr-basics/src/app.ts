@@ -11,26 +11,26 @@ export const app = ({ now, state }: any) => [
         "ul.ma0.pv3.bb",
         [item, "Now:", now],
         [item, "Launched at:", state.launched],
-        [item, "Seed:", state.seed]
+        [item, "Seed:", state.seed],
     ],
     [
         "div.mt3",
         "Edit ",
         [repoLink, "src/app.ts"],
-        " to see hot module replacement in action."
-    ]
+        " to see hot module replacement in action.",
+    ],
 ];
 
 const item = (_: any, label: string, value: any) => [
     "li",
     ["span.dib.b.w4", label],
-    value
+    value,
 ];
 
 const repoLink = (_: any, file: string) => [
     "a.pa1.link.black.bg-light-gray",
     {
-        href: `https://github.com/thi-ng/umbrella/tree/develop/examples/hmr-basics/${file}`
+        href: `https://github.com/thi-ng/umbrella/tree/develop/examples/hmr-basics/${file}`,
     },
-    file
+    file,
 ];

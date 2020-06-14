@@ -5,7 +5,7 @@ import {
     normRange,
     push,
     transduce,
-    zip
+    zip,
 } from "@thi.ng/transducers";
 import { cartesian2, Vec } from "@thi.ng/vectors";
 import { Polygon } from "../api/polygon";

@@ -29,11 +29,11 @@ export const slider = (ctx: AppContext, opts: SliderOpts) => {
             oninput: (e: Event) =>
                 ctx.bus.dispatch([
                     opts.event,
-                    parseFloat((<HTMLInputElement>e.target).value)
+                    parseFloat((<HTMLInputElement>e.target).value),
                 ]),
             min: 0,
             max: 100,
-            step: 1
+            step: 1,
         },
         opts
     );
@@ -47,8 +47,8 @@ export const slider = (ctx: AppContext, opts: SliderOpts) => {
                 ...ui.range,
                 ...opts,
                 type: "range",
-                value: (<any>ctx.views)[opts.view].deref()
-            }
+                value: (<any>ctx.views)[opts.view].deref(),
+            },
         ],
         [
             "div",
@@ -60,9 +60,9 @@ export const slider = (ctx: AppContext, opts: SliderOpts) => {
                     ...ui.number,
                     ...opts,
                     type: "number",
-                    value: (<any>ctx.views)[opts.view].deref()
-                }
-            ]
-        ]
+                    value: (<any>ctx.views)[opts.view].deref(),
+                },
+            ],
+        ],
     ];
 };

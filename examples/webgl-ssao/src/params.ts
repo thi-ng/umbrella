@@ -1,11 +1,5 @@
 import { stream, Stream } from "@thi.ng/rstream";
-import {
-    assocObj,
-    map,
-    pairs,
-    push,
-    transduce
-} from "@thi.ng/transducers";
+import { assocObj, map, pairs, push, transduce } from "@thi.ng/transducers";
 import type { IObjectOf } from "@thi.ng/api";
 
 const slider = (label: string, attribs: any, stream: Stream<number>) => () => [
@@ -18,10 +12,10 @@ const slider = (label: string, attribs: any, stream: Stream<number>) => () => [
             type: "range",
             value: stream.deref(),
             oninput: (e: Event) =>
-                stream.next(parseFloat((<HTMLInputElement>e.target).value))
-        }
+                stream.next(parseFloat((<HTMLInputElement>e.target).value)),
+        },
     ],
-    ["span.ml3", stream.deref()]
+    ["span.ml3", stream.deref()],
 ];
 
 type ParamDef = [string, any, number];

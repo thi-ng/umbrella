@@ -5,5 +5,5 @@ export const button = (ctx: AppContext, event: Event, label: string) => [
     eventLink,
     ctx.ui.button,
     event,
-    label
+    label,
 ];

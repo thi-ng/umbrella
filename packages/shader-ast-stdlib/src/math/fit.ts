@@ -14,7 +14,7 @@ import {
     ret,
     sub,
     Term,
-    ternary
+    ternary,
 } from "@thi.ng/shader-ast";
 
 /**

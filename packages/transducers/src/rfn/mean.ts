@@ -14,6 +14,6 @@ export function mean(xs?: Iterable<number>): any {
         : <Reducer<number, number>>[
               () => (n = 0),
               (acc) => (n > 1 ? acc / n : acc),
-              (acc, x) => (n++, acc + x)
+              (acc, x) => (n++, acc + x),
           ];
 }

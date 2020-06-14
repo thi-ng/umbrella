@@ -20,7 +20,10 @@ export const cubicSplitAt = (
     const abc = mixN([], ab, bc, t);
     const bcd = mixN([], bc, cd, t);
     const p = mixN([], abc, bcd, t);
-    return [[set([], a), ab, abc, set([], p)], [p, bcd, cd, set([], d)]];
+    return [
+        [set([], a), ab, abc, set([], p)],
+        [p, bcd, cd, set([], d)],
+    ];
 };
 
 export const splitCubicNearPoint = (

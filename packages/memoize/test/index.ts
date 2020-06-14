@@ -26,14 +26,18 @@ describe("memoize", () => {
         assert.equal(f([3, 4]), 7);
         assert.equal(f([1, 2]), 3);
         assert.equal(f([5, 6]), 11);
-        assert.deepEqual(calls, [[1, 2], [3, 4], [5, 6]]);
+        assert.deepEqual(calls, [
+            [1, 2],
+            [3, 4],
+            [5, 6],
+        ]);
     });
 
     it("memoize1 (lru)", () => {
         const calls: number[][] = [];
         const cache = new LRUCache(null, {
             maxlen: 3,
-            map: () => new EquivMap()
+            map: () => new EquivMap(),
         });
         const f = m.memoize1<number[], number>(
             (x) => (calls.push(x), x[0] + x[1]),
@@ -46,7 +50,20 @@ describe("memoize", () => {
         assert.equal(f([5, 6]), 11);
         assert.equal(f([7, 8]), 15);
         assert.equal(f([3, 4]), 7); // <-- recompute
-        assert.deepEqual(calls, [[1, 2], [3, 4], [5, 6], [7, 8], [3, 4]]);
-        assert.deepEqual([...cache.keys()], [[5, 6], [7, 8], [3, 4]]);
+        assert.deepEqual(calls, [
+            [1, 2],
+            [3, 4],
+            [5, 6],
+            [7, 8],
+            [3, 4],
+        ]);
+        assert.deepEqual(
+            [...cache.keys()],
+            [
+                [5, 6],
+                [7, 8],
+                [3, 4],
+            ]
+        );
     });
 });

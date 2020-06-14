@@ -60,7 +60,7 @@ export function partitionBy<T>(...args: any[]): any {
                         prev = curr;
                     }
                     return acc;
-                }
+                },
             ];
         })
     );

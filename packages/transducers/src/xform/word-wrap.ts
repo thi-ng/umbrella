@@ -44,7 +44,7 @@ export function wordWrap(...args: any[]): any {
     const { delim, always } = <WordWrapOpts>{
         delim: 1,
         always: true,
-        ...args[1]
+        ...args[1],
     };
     return partitionBy(() => {
         let n = 0;

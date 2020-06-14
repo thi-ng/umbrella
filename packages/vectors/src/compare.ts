@@ -47,14 +47,14 @@ export const comparator3 = (
             ? az === bz
                 ? 0
                 : az < bz
-                    ? -3
-                    : 3
+                ? -3
+                : 3
             : ay < by
-                ? -2
-                : 2
+            ? -2
+            : 2
         : ax < bx
-            ? -1
-            : 1;
+        ? -1
+        : 1;
 };
 
 /**
@@ -88,15 +88,15 @@ export const comparator4 = (
                 ? aw === bw
                     ? 0
                     : aw < bw
-                        ? -4
-                        : 4
+                    ? -4
+                    : 4
                 : az < bz
-                    ? -3
-                    : 3
+                ? -3
+                : 3
             : ay < by
-                ? -2
-                : 2
+            ? -2
+            : 2
         : ax < bx
-            ? -1
-            : 1;
+        ? -1
+        : 1;
 };

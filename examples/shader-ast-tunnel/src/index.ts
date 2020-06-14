@@ -22,16 +22,20 @@ import {
     texture,
     vec2,
     Vec2Sym,
-    vec4
+    vec4,
 } from "@thi.ng/shader-ast";
 import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
-import { canvasRenderer, JS_DEFAULT_ENV, targetJS } from "@thi.ng/shader-ast-js";
+import {
+    canvasRenderer,
+    JS_DEFAULT_ENV,
+    targetJS,
+} from "@thi.ng/shader-ast-js";
 import {
     compileModel,
     draw,
     quad,
     shader,
-    texture as glTexture
+    texture as glTexture,
 } from "@thi.ng/webgl";
 import TEX_URL from "../assets/tex.jpg";
 
@@ -68,7 +72,7 @@ const mainImage = defn(
                     div(atan(div($y(p), $x(p))), float(Math.PI))
                 )
             )),
-            ret(vec4(mul($xyz(texture(tex, uv)), r), float(1)))
+            ret(vec4(mul($xyz(texture(tex, uv)), r), float(1))),
         ];
     }
 );
@@ -149,8 +153,8 @@ if (JS_MODE) {
         model.shader = shader(ctx, {
             vs: (gl, _, attribs) => [
                 defMain(() => [
-                    assign(gl.gl_Position, vec4(attribs.position, 0, 1))
-                ])
+                    assign(gl.gl_Position, vec4(attribs.position, 0, 1)),
+                ]),
             ],
             fs: (gl, unis, _, outs) => [
                 mainImage,
@@ -163,17 +167,17 @@ if (JS_MODE) {
                             unis.time,
                             unis.tex
                         )
-                    )
-                ])
+                    ),
+                ]),
             ],
             attribs: {
-                position: "vec2"
+                position: "vec2",
             },
             uniforms: {
                 resolution: ["vec2", [W, H]],
                 time: "float",
-                tex: ["sampler2D", 0]
-            }
+                tex: ["sampler2D", 0],
+            },
         });
         model.textures = [glTexture(ctx, { image: tex, filter: ctx.LINEAR })];
 

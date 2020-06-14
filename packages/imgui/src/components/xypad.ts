@@ -1,7 +1,11 @@
 import { line, rect } from "@thi.ng/geom";
 import { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { fit2, hash, Vec } from "@thi.ng/vectors";
-import { handleSlider2Keys, isHoverSlider, slider2Val } from "../behaviors/slider";
+import {
+    handleSlider2Keys,
+    isHoverSlider,
+    slider2Val,
+} from "../behaviors/slider";
 import { IMGUI } from "../gui";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
@@ -117,16 +121,16 @@ export const xyPadRaw = (
     if (draw) {
         box.attribs = {
             fill: gui.bgColor(hover || focused),
-            stroke: gui.focusColor(id)
+            stroke: gui.focusColor(id),
         };
         const { 0: cx, 1: cy } = fit2([], v, min, max, pos, maxPos);
         gui.add(
             box,
             line([x, cy], [maxX, cy], {
-                stroke: col
+                stroke: col,
             }),
             line([cx, y], [cx, maxY], {
-                stroke: col
+                stroke: col,
             }),
             textLabelRaw(
                 [x + lx, y + ly],

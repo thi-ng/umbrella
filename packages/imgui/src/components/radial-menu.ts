@@ -1,10 +1,4 @@
-import {
-    centroid,
-    circle,
-    polygon,
-    Polygon,
-    vertices
-} from "@thi.ng/geom";
+import { centroid, circle, polygon, Polygon, vertices } from "@thi.ng/geom";
 import { triFan } from "@thi.ng/geom-tessellate";
 import { fmod } from "@thi.ng/math";
 import { mapIndexed } from "@thi.ng/transducers";
@@ -38,9 +32,9 @@ export const radialMenu = (
                 cell,
                 hash(p),
                 textLabelRaw(p, gui.textColor(false), items[i]),
-                textLabelRaw(p, gui.textColor(true), items[i])
+                textLabelRaw(p, gui.textColor(true), items[i]),
             ];
-        }, triFan(vertices(circle([x, y], r), n)))
+        }, triFan(vertices(circle([x, y], r), n))),
     ]);
     let res: number | undefined;
     let sel = -1;

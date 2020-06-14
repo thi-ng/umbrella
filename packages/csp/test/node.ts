@@ -247,8 +247,8 @@ export function add(spec: Partial<AddSpec>) {
             update: (n) => {
                 const res = n.state.a + n.state.b;
                 return n.outs.out.channel().write(res);
-            }
-        }
+            },
+        },
     });
 }
 
@@ -257,12 +257,12 @@ export const a = add({ id: "a", state: { b: 42 } });
 export const b = add({
     id: "b",
     ins: { a: { src: a.outs.out, tx: tx.map((x) => x * 1) } },
-    state: { b: 100 }
+    state: { b: 100 },
 });
 export const c = add({
     id: "c",
     ins: { a: b.outs.out, b: b.outs.out },
-    outs: { out: res }
+    outs: { out: res },
 });
 
 // b.disable("b");

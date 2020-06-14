@@ -18,7 +18,7 @@ import {
     Vec2Sym,
     vec3,
     Vec3Sym,
-    vec4
+    vec4,
 } from "@thi.ng/shader-ast";
 import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
 import { canvasRenderer, targetJS } from "@thi.ng/shader-ast-js";
@@ -37,15 +37,9 @@ import {
     sdfBox3,
     sdfRepeat3,
     sdfSmoothUnion,
-    sdfSphere
+    sdfSphere,
 } from "@thi.ng/shader-ast-stdlib";
-import {
-    compileModel,
-    draw,
-    GLVec3,
-    quad,
-    shader
-} from "@thi.ng/webgl";
+import { compileModel, draw, GLVec3, quad, shader } from "@thi.ng/webgl";
 
 // set URL hash to "#2d" to enable JS Canvas2D version
 const JS_MODE = location.hash.indexOf("2d") >= 0;
@@ -80,7 +74,7 @@ const scene = defn("vec2", "scene", ["vec3"], (pos) => {
                 ),
                 1
             )
-        )
+        ),
     ];
 });
 
@@ -151,7 +145,7 @@ const mainImage = defn(
                     ),
                     1
                 )
-            )
+            ),
         ];
     }
 );
@@ -191,7 +185,7 @@ if (JS_MODE) {
         const eyePos = [
             Math.cos(time) * 2.5,
             Math.cos(time / 2) * 0.7,
-            Math.sin(time) * 2.5
+            Math.sin(time) * 2.5,
         ];
         rt((frag) => fn(frag, size, eyePos, lightDir));
     }, 16);
@@ -206,8 +200,8 @@ if (JS_MODE) {
     model.shader = shader(ctx, {
         vs: (_, __, attribs) => [
             defMain(() => [
-                assign(GL.gl_Position, vec4(attribs.position, 0, 1))
-            ])
+                assign(GL.gl_Position, vec4(attribs.position, 0, 1)),
+            ]),
         ],
         fs: (gl, unis, _, outputs) => [
             mainImage,
@@ -220,17 +214,17 @@ if (JS_MODE) {
                         unis.eyePos,
                         unis.lightDir
                     )
-                )
-            ])
+                ),
+            ]),
         ],
         attribs: {
-            position: "vec2"
+            position: "vec2",
         },
         uniforms: {
             eyePos: "vec3",
             lightDir: ["vec3", <GLVec3>lightDir],
-            resolution: ["vec2", [W, H]]
-        }
+            resolution: ["vec2", [W, H]],
+        },
     });
     // compile model (attrib buffers)
     compileModel(ctx, model);
@@ -242,7 +236,7 @@ if (JS_MODE) {
         model.uniforms!.eyePos = [
             Math.cos(time) * 2.5,
             Math.cos(time / 2) * 0.7,
-            Math.sin(time) * 2.5
+            Math.sin(time) * 2.5,
         ];
         draw(model);
     });

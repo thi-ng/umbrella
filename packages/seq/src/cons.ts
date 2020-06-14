@@ -12,5 +12,5 @@ export const cons = <T>(head: T, seq?: ISeq<T>): ISeq<T> => ({
     },
     next() {
         return seq;
-    }
+    },
 });

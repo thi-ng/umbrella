@@ -55,7 +55,7 @@ export function sym<T extends Type>(type: any, ...xs: any[]): Sym<any> {
         type,
         id: id! || gensym(),
         opts: opts! || {},
-        init: init!
+        init: init!,
     };
 }
 
@@ -98,9 +98,9 @@ export const arraySym = <T extends keyof ArrayTypeMap>(
             ? {
                   tag: "array_init",
                   type: atype,
-                  init
+                  init,
               }
-            : undefined
+            : undefined,
     };
 };
 

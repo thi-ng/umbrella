@@ -1,9 +1,4 @@
-import {
-    assert,
-    INotifyMixin,
-    typedArray,
-    uintType
-} from "@thi.ng/api";
+import { assert, INotifyMixin, typedArray, uintType } from "@thi.ng/api";
 import { AComponent } from "./acomponent";
 import type { UIntArray } from "@thi.ng/api";
 import type { ObjectComponentOpts } from "../api";

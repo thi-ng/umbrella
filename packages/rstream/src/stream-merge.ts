@@ -1,9 +1,4 @@
-import {
-    CloseMode,
-    ISubscribable,
-    State,
-    TransformableOpts
-} from "./api";
+import { CloseMode, ISubscribable, State, TransformableOpts } from "./api";
 import { Subscription } from "./subscription";
 import { optsWithID } from "./utils/idgen";
 
@@ -94,7 +89,7 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
                         }
                     },
                     done: () => this.markDone(src),
-                    __owner: this
+                    __owner: this,
                 },
                 { id: `in-${src.id}` }
             )

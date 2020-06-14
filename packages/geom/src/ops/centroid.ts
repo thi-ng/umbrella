@@ -1,20 +1,10 @@
 import { defmulti, Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
+import { AABBLike, IShape, PCLike, Type } from "@thi.ng/geom-api";
 import {
-    AABBLike,
-    IShape,
-    PCLike,
-    Type
-} from "@thi.ng/geom-api";
-import { centerOfWeight2, centroid as _centroid } from "@thi.ng/geom-poly-utils";
-import {
-    add,
-    divN,
-    maddN,
-    mixN,
-    mulN,
-    set,
-    Vec
-} from "@thi.ng/vectors";
+    centerOfWeight2,
+    centroid as _centroid,
+} from "@thi.ng/geom-poly-utils";
+import { add, divN, maddN, mixN, mulN, set, Vec } from "@thi.ng/vectors";
 import { Circle } from "../api/circle";
 import { Group } from "../api/group";
 import { Line } from "../api/line";
@@ -53,7 +43,7 @@ centroid.addAll(<IObjectOf<Implementation1O<unknown, Vec, Vec>>>{
             null,
             add(null, add(out || [], points[0], points[1]), points[2]),
             3
-        )
+        ),
 });
 
 centroid.isa(Type.ARC, Type.CIRCLE);

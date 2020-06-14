@@ -81,7 +81,7 @@ export class BitInputStream {
         return out;
     }
 
-    readStruct(fields: ([string, number])[]) {
+    readStruct(fields: [string, number][]) {
         return fields.reduce((acc: any, [id, word]) => {
             return (acc[id] = this.read(word)), acc;
         }, {});

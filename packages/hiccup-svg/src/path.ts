@@ -1,9 +1,4 @@
-import {
-    fattribs,
-    ff,
-    fpoint,
-    fpoints
-} from "./format";
+import { fattribs, ff, fpoint, fpoints } from "./format";
 import type { PathSegment } from "./api";
 
 const DEG = 180 / Math.PI;
@@ -28,7 +23,7 @@ export const path = (segments: PathSegment[], attribs?: any): any[] => {
                         seg[5] ? 1 : 0,
                         // target xy
                         ff(<number>seg[6]![0]),
-                        ff(<number>seg[6]![1])
+                        ff(<number>seg[6]![1]),
                     ].join(",")
                 );
                 break;

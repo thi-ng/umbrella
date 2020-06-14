@@ -3,7 +3,6 @@ import { sidebar } from "./sidebar";
 import { waveform } from "./waveform";
 import type { AppContext } from "../api";
 
-
 export function main(ctx: AppContext) {
     const bar = sidebar(ctx, ...SLIDERS);
     return () => [
@@ -19,7 +18,7 @@ export function main(ctx: AppContext) {
             res: 1000,
             stroke: "#f04",
             fill1: "#f04",
-            fill2: "#ff0"
-        })
+            fill2: "#ff0",
+        }),
     ];
 }

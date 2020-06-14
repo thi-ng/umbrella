@@ -6,7 +6,7 @@ import {
     fromRAF,
     merge,
     sidechainPartition,
-    sync
+    sync,
 } from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
 import { map, mapIndexed } from "@thi.ng/transducers";
@@ -17,8 +17,8 @@ import { DB } from "./state";
 
 const main = sync<any, any>({
     src: {
-        state: fromAtom(DB)
-    }
+        state: fromAtom(DB),
+    },
 });
 
 const app = () => {
@@ -31,7 +31,7 @@ const app = () => {
                         gestureStream(canv, {}).subscribe({
                             next(e) {
                                 gui.setMouse(e.pos, e.buttons);
-                            }
+                            },
                         }),
                         fromDOMEvent(window, "resize").subscribe({
                             next() {
@@ -39,12 +39,12 @@ const app = () => {
                                     ["size"],
                                     [window.innerWidth, window.innerHeight]
                                 );
-                            }
-                        })
-                    ]
+                            },
+                        }),
+                    ],
                 })
             );
-        }
+        },
     };
 
     return () => {
@@ -61,7 +61,7 @@ const app = () => {
                 width,
                 height,
                 style: { background: gui.theme.globalBg, cursor: gui.cursor },
-                ...gui.attribs
+                ...gui.attribs,
             },
             gui,
             // waveform display
@@ -72,12 +72,12 @@ const app = () => {
                     ...mapIndexed(
                         (i, y) => [
                             fit(i, 0, WINDOW_LEN - 1, 10, iwidth),
-                            fitClamped(y, -1, 1, 490, 290)
+                            fitClamped(y, -1, 1, 490, 290),
                         ],
                         DB.value.wave
-                    )
-                ]
-            ]
+                    ),
+                ],
+            ],
         ];
     };
 };

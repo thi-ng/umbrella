@@ -1,20 +1,9 @@
 import { defmulti, Implementation1 } from "@thi.ng/defmulti";
-import {
-    AABBLike,
-    IShape,
-    PathSegment,
-    PCLike,
-    Type
-} from "@thi.ng/geom-api";
+import { AABBLike, IShape, PathSegment, PCLike, Type } from "@thi.ng/geom-api";
 import { bounds as arcBounds } from "@thi.ng/geom-arc";
 import { bounds as _bounds } from "@thi.ng/geom-poly-utils";
 import { cubicBounds, quadraticBounds } from "@thi.ng/geom-splines";
-import {
-    comp,
-    filter,
-    iterator1,
-    map
-} from "@thi.ng/transducers";
+import { comp, filter, iterator1, map } from "@thi.ng/transducers";
 import {
     max,
     MAX2,
@@ -27,7 +16,7 @@ import {
     set2,
     set3,
     sub2,
-    subN2
+    subN2,
 } from "@thi.ng/vectors";
 import { Arc } from "../api/arc";
 import { Circle } from "../api/circle";
@@ -78,7 +67,7 @@ bounds.addAll(<IObjectOf<Implementation1<unknown, AABBLike>>>{
                         filter((s) => !!s)
                     ),
                     path.segments
-                )
+                ),
             ],
             bounds
         );
@@ -94,7 +83,7 @@ bounds.addAll(<IObjectOf<Implementation1<unknown, AABBLike>>>{
     [Type.QUADRATIC]: ({ points }: Quadratic) =>
         rectFromMinMax(...quadraticBounds(points[0], points[1], points[2])),
 
-    [Type.RECT]: ($: IShape) => <AABBLike>$.copy()
+    [Type.RECT]: ($: IShape) => <AABBLike>$.copy(),
 });
 
 bounds.isa(Type.AABB, Type.RECT);

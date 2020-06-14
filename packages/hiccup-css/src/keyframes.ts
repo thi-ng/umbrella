@@ -63,7 +63,7 @@ export function at_keyframes(id: string, ...args: any[]): RuleFn {
                         opts.format.declStart,
                         formatDecls(stops[s], opts),
                         inner,
-                        opts.format.declEnd
+                        opts.format.declEnd,
                     ].join("")
                 );
             }

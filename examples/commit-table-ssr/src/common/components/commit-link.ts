@@ -12,5 +12,5 @@ import type { AppContext } from "../api";
 export const commitLink = (ctx: AppContext, sha: string, body: string) => [
     link,
     { ...ctx.ui.link, href: `${ctx.repo.url}/commit/${sha}` },
-    body
+    body,
 ];

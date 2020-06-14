@@ -7,7 +7,7 @@ import type {
     IRelease,
     Type,
     TypedArray,
-    UIntArray
+    UIntArray,
 } from "@thi.ng/api";
 
 export type ComponentID<S> = keyof S & string;

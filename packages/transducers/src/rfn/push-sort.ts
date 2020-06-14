@@ -20,6 +20,6 @@ export function pushSort<T>(
         : <Reducer<T[], T>>[
               () => [],
               (acc) => acc.sort(cmp),
-              (acc, x) => (acc.push(x), acc)
+              (acc, x) => (acc.push(x), acc),
           ];
 }

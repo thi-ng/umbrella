@@ -56,7 +56,7 @@ arcLength.addAll(<IObjectOf<Implementation1<unknown, number>>>{
     [Type.TRIANGLE]: ({ points }: Triangle) =>
         dist(points[0], points[1]) +
         dist(points[1], points[2]) +
-        dist(points[2], points[0])
+        dist(points[2], points[0]),
 });
 
 arcLength.isa(Type.QUAD, Type.POLYGON);

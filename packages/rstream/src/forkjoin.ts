@@ -1,9 +1,4 @@
-import {
-    comp,
-    map,
-    mapcat,
-    range
-} from "@thi.ng/transducers";
+import { comp, map, mapcat, range } from "@thi.ng/transducers";
 import { sync } from "./stream-sync";
 import { tunnel } from "./subs/tunnel";
 import { Subscription } from "./subscription";
@@ -129,11 +124,11 @@ export const forkJoin = <IN, MSG, RES, OUT>(
                                 transferables: opts.transferables,
                                 interrupt: opts.interrupt === true,
                                 terminate: opts.terminate,
-                                id: String(id)
+                                id: String(id),
                             })
                         ),
                 workerIDs
-            )
+            ),
         ],
         xform: comp(
             // form result tuple in original order
@@ -142,7 +137,7 @@ export const forkJoin = <IN, MSG, RES, OUT>(
             map(opts.join)
         ),
         reset: true,
-        backPressure: opts.backPressure
+        backPressure: opts.backPressure,
     });
 };
 

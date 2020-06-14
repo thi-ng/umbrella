@@ -8,7 +8,7 @@ import {
     seq,
     str,
     untilStr,
-    whitespace
+    whitespace,
 } from "@thi.ng/fsm";
 import { comp, filter } from "@thi.ng/transducers";
 import type { Fn, Fn2 } from "@thi.ng/api";
@@ -38,7 +38,7 @@ const enum State {
     START_CODEBLOCK,
     STRIKE,
     STRONG,
-    TABLE
+    TABLE,
 }
 
 /**
@@ -74,7 +74,7 @@ const DEFAULT_TAGS: TagFactories = {
     strike: (body) => ["del", body],
     table: (rows) => ["table", ["tbody", ...rows]],
     td: (_, xs) => ["td", ...xs],
-    tr: (_, xs) => ["tr", ...xs]
+    tr: (_, xs) => ["tr", ...xs],
 };
 
 const BQUOTE = ">";
@@ -185,7 +185,7 @@ const matchInline = (id: State) => [
     str(STRIKE, push(id, State.STRIKE)),
     str(STRONG, push(id, State.STRONG)),
     str(EM, push(id, State.EMPHASIS)),
-    str(CODE, push(id, State.CODE))
+    str(CODE, push(id, State.CODE)),
 ];
 
 const matchLink = (result: Fn2<string, string, any[]>) =>
@@ -199,7 +199,7 @@ const matchLink = (result: Fn2<string, string, any[]>) =>
             untilStr(
                 LINK_HREF_END,
                 (ctx, body) => ((ctx.href = body), undefined)
-            )
+            ),
         ],
         pop((ctx: FSMCtx) => result(ctx.href!, ctx.title!))
     );
@@ -208,7 +208,7 @@ const matchPara = (id: State, next: State) =>
     alts<string, FSMCtx, any>(
         [
             ...matchInline(id),
-            str(NL, (ctx: FSMCtx) => ((ctx.body += " "), [next]))
+            str(NL, (ctx: FSMCtx) => ((ctx.body += " "), [next])),
         ],
         collect(id)
     );
@@ -257,21 +257,21 @@ export const parse = (_tags?: Partial<TagFactories>) => {
                         alts(
                             [
                                 seq([str(CODE), not(str(CODE))], newParaCode),
-                                str(CODEBLOCK, () => [State.START_CODEBLOCK])
+                                str(CODEBLOCK, () => [State.START_CODEBLOCK]),
                             ],
                             undefined,
                             (_, next) => next
                         ),
                         seq([repeat(str(HR), 3, Infinity), str(NL)], () => [
                             State.START,
-                            [tags.hr()]
+                            [tags.hr()],
                         ]),
                         str(IMG, newParaInline(State.IMG)),
                         str(LINK_LABEL, newParaInline(State.LINK)),
                         str(STRONG, newParaInline(State.STRONG)),
                         str(STRIKE, newParaInline(State.STRIKE)),
                         str(EM, newParaInline(State.EMPHASIS)),
-                        str(TD, newTable)
+                        str(TD, newTable),
                     ],
                     newPara
                 ),
@@ -281,7 +281,7 @@ export const parse = (_tags?: Partial<TagFactories>) => {
                 [State.END_PARA]: alts(
                     [
                         ...matchInline(State.PARA),
-                        str(NL, collectAndRestart(tags.paragraph))
+                        str(NL, collectAndRestart(tags.paragraph)),
                     ],
                     collect(State.PARA)
                 ),
@@ -295,7 +295,7 @@ export const parse = (_tags?: Partial<TagFactories>) => {
                     [
                         ...matchInline(State.BLOCKQUOTE),
                         str(BQUOTE, collectBlockQuote),
-                        str(NL, collectAndRestart(tags.blockquote))
+                        str(NL, collectAndRestart(tags.blockquote)),
                     ],
                     collect(State.BLOCKQUOTE)
                 ),
@@ -305,7 +305,7 @@ export const parse = (_tags?: Partial<TagFactories>) => {
                 [State.END_HEADING]: alts(
                     [
                         ...matchInline(State.HEADING),
-                        str(NL, collectHeading(tags.heading))
+                        str(NL, collectHeading(tags.heading)),
                     ],
                     collect(State.HEADING)
                 ),
@@ -331,7 +331,7 @@ export const parse = (_tags?: Partial<TagFactories>) => {
                                 collectLi(ctx, tags.li),
                                 transition(ctx, State.LI)
                             )
-                        )
+                        ),
                     ],
                     collect(State.LI)
                 ),
@@ -352,15 +352,15 @@ export const parse = (_tags?: Partial<TagFactories>) => {
                     [
                         ...matchInline(State.TABLE),
                         str(TD, collectTD(tags.td)),
-                        str(NL, collectTR(tags.tr))
+                        str(NL, collectTR(tags.tr)),
                     ],
                     collect(State.TABLE)
                 ),
 
                 [State.END_TABLE]: alts([
                     str(NL, collectTable(tags.table)),
-                    str(TD, () => [State.TABLE])
-                ])
+                    str(TD, () => [State.TABLE]),
+                ]),
             },
             { stack: [] },
             State.START

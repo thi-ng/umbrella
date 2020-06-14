@@ -45,7 +45,7 @@ import {
     sub2,
     subN2,
     tan2,
-    ZERO2
+    ZERO2,
 } from "@thi.ng/vectors";
 import type { JSBuiltinsVec } from "../api";
 
@@ -104,5 +104,5 @@ export const VEC2: JSBuiltinsVec = {
     sub1: (a) => neg([], a),
     subnv: (a, b) => sub2(null, [a, a], b),
     subvn: (a, b) => subN2([], a, b),
-    tan: (a) => tan2([], a)
+    tan: (a) => tan2([], a),
 };

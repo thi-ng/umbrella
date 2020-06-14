@@ -1,13 +1,7 @@
 import { inRange } from "@thi.ng/math";
 import { SYSTEM } from "@thi.ng/random";
 import { repeatedly } from "@thi.ng/transducers";
-import {
-    ASTNode,
-    GeneType,
-    MEPChromosome,
-    MEPGene,
-    MEPOpts
-} from "./api";
+import { ASTNode, GeneType, MEPChromosome, MEPGene, MEPOpts } from "./api";
 import { opNode, probabilities, terminalNode } from "./utils";
 
 export class MEP<OP, T> {
@@ -88,7 +82,7 @@ export class MEP<OP, T> {
                   Math.min(chromo1.length, chromo2.length);
         return [
             chromo1.slice(0, cut).concat(chromo2.slice(cut)),
-            chromo2.slice(0, cut).concat(chromo1.slice(cut))
+            chromo2.slice(0, cut).concat(chromo1.slice(cut)),
         ];
     }
 

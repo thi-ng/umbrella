@@ -5,6 +5,6 @@ export const polygon = (pts: Vec2Like[], attribs?: any): any[] => [
     "polygon",
     fattribs({
         ...attribs,
-        points: fpoints(pts)
-    })
+        points: fpoints(pts),
+    }),
 ];

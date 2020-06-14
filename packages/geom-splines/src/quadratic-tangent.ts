@@ -1,10 +1,4 @@
-import {
-    addW2,
-    normalize,
-    ReadonlyVec,
-    sub,
-    Vec
-} from "@thi.ng/vectors";
+import { addW2, normalize, ReadonlyVec, sub, Vec } from "@thi.ng/vectors";
 
 export const quadraticTangentAt = (
     out: Vec,

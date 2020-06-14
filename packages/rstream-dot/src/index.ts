@@ -2,14 +2,9 @@ import {
     ISubscribable,
     Stream,
     StreamMerge,
-    StreamSync
+    StreamSync,
 } from "@thi.ng/rstream";
-import type {
-    DotOpts,
-    Node,
-    NodeType,
-    WalkState
-} from "./api";
+import type { DotOpts, Node, NodeType, WalkState } from "./api";
 
 export * from "./api";
 
@@ -68,7 +63,7 @@ export const walk = (
             body:
                 opts.values && sub.deref
                     ? JSON.stringify(sub.deref())
-                    : undefined
+                    : undefined,
         };
         state.subs.set(sub, desc);
         state.id++;
@@ -98,20 +93,18 @@ export const toDot = (state: WalkState, opts?: Partial<DotOpts>) => {
                 noid: "gray",
                 stream: "blue",
                 streammerge: "red",
-                streamsync: "red"
-            }
+                streamsync: "red",
+            },
         },
         opts
     );
     return [
         "digraph g {",
         `rankdir=${opts.dir};`,
-        `node[fontname=${opts.font},fontsize=${
-            opts.fontsize
-        },style=filled,fontcolor=${opts.text}];`,
+        `node[fontname=${opts.font},fontsize=${opts.fontsize},style=filled,fontcolor=${opts.text}];`,
         `edge[fontname=${opts.font},fontsize=${opts.fontsize}];`,
         ...[...state.subs.values()].map((n) => dotNode(n, <DotOpts>opts)),
         ...state.rels.map((r) => dotEdge(r[0], r[1], <DotOpts>opts)),
-        "}"
+        "}",
     ].join("\n");
 };

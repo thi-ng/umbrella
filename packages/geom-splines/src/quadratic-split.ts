@@ -16,7 +16,10 @@ export const quadraticSplitAt = (
     const ab = mixN([], a, b, t);
     const bc = mixN([], b, c, t);
     const p = mixN([], ab, bc, t);
-    return [[set([], a), ab, p], [p, bc, set([], c)]];
+    return [
+        [set([], a), ab, p],
+        [p, bc, set([], c)],
+    ];
 };
 
 export const quadraticSplitNearPoint = (

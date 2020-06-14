@@ -83,7 +83,7 @@ export const COMPACT: Format = {
     declStart: "{",
     declEnd: "}",
     indent: "",
-    comments: false
+    comments: false,
 };
 
 /**
@@ -98,5 +98,5 @@ export const PRETTY: Format = {
     declStart: " {\n",
     declEnd: "}\n",
     indent: "    ",
-    comments: true
+    comments: true,
 };

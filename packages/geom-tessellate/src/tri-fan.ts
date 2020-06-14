@@ -5,7 +5,7 @@ import {
     partition,
     push,
     transduce,
-    wrapSides
+    wrapSides,
 } from "@thi.ng/transducers";
 import type { Tessellator } from "@thi.ng/geom-api";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
@@ -13,7 +13,10 @@ import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 export const triFan: Tessellator = (points: ReadonlyVec[]) => {
     const c = centroid(points);
     return transduce(
-        comp(partition<Vec>(2, 1), map(([a, b]) => [a, b, c])),
+        comp(
+            partition<Vec>(2, 1),
+            map(([a, b]) => [a, b, c])
+        ),
         push(),
         wrapSides(points, 0, 1)
     );

@@ -31,7 +31,14 @@ export const resize = (canvas: Canvas, newWidth: number, newHeight: number) => {
     canvas.width = newWidth;
     canvas.height = newHeight;
     canvas.clipRects = [
-        { x1: 0, y1: 0, x2: newWidth, y2: newHeight, w: newWidth, h: newHeight }
+        {
+            x1: 0,
+            y1: 0,
+            x2: newWidth,
+            y2: newHeight,
+            w: newWidth,
+            h: newHeight,
+        },
     ];
 };
 
@@ -106,7 +113,7 @@ export const image = (
         gamma: 1,
         invert: false,
         bits: 8,
-        ...opts
+        ...opts,
     };
     const max = (1 << bits) - 1;
     const mask = invert ? max : 0;

@@ -1,16 +1,5 @@
-import {
-    add,
-    osc,
-    saw,
-    sin
-} from "@thi.ng/dsp";
-import {
-    aabb,
-    center,
-    rect,
-    Rect,
-    vertices
-} from "@thi.ng/geom";
+import { add, osc, saw, sin } from "@thi.ng/dsp";
+import { aabb, center, rect, Rect, vertices } from "@thi.ng/geom";
 import {
     concat,
     lookAt,
@@ -18,7 +7,7 @@ import {
     project3,
     rotationX44,
     rotationY44,
-    viewport
+    viewport,
 } from "@thi.ng/matrices";
 import {
     beginClip,
@@ -33,7 +22,7 @@ import {
     FG_YELLOW,
     FMT_HTML_TACHYONS,
     line,
-    toString
+    toString,
 } from "@thi.ng/text-canvas";
 import { add3 } from "@thi.ng/vectors";
 
@@ -57,7 +46,7 @@ const edges = [
     [0, 4],
     [1, 5],
     [2, 6],
-    [3, 7]
+    [3, 7],
 ];
 
 // animated parameters
@@ -78,7 +67,7 @@ const instances = [
     [0, -1, 0],
     [0, 1, 0],
     [0, 0, -1],
-    [0, 0, 1]
+    [0, 0, 1],
 ];
 
 const root = document.getElementById("app");

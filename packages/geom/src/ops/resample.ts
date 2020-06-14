@@ -1,10 +1,5 @@
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
-import {
-    IShape,
-    PCLike,
-    SamplingOpts,
-    Type
-} from "@thi.ng/geom-api";
+import { IShape, PCLike, SamplingOpts, Type } from "@thi.ng/geom-api";
 import { resample as _resample } from "@thi.ng/geom-resample";
 import { Polygon } from "../api/polygon";
 import { Polyline } from "../api/polyline";
@@ -28,7 +23,7 @@ resample.addAll(<
         new Polygon(_resample($.points, opts, true, true), copyAttribs($)),
 
     [Type.POLYLINE]: ($: PCLike, opts) =>
-        new Polyline(_resample($.points, opts, false, true), copyAttribs($))
+        new Polyline(_resample($.points, opts, false, true), copyAttribs($)),
 });
 
 resample.isa(Type.ELLIPSE, Type.CIRCLE);

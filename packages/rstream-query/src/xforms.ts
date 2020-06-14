@@ -8,15 +8,9 @@ import {
     keySelector,
     map,
     Reducer,
-    Transducer
+    Transducer,
 } from "@thi.ng/transducers";
-import {
-    BindFn,
-    Edit,
-    Solutions,
-    Triple,
-    TripleIds
-} from "./api";
+import { BindFn, Edit, Solutions, Triple, TripleIds } from "./api";
 import { TripleStore } from "./store";
 import type { IObjectOf } from "@thi.ng/api";
 

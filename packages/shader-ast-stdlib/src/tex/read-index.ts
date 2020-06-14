@@ -5,7 +5,7 @@ import {
     IntTerm,
     IVec2Term,
     Sampler2DTerm,
-    texture
+    texture,
 } from "@thi.ng/shader-ast";
 import { indexToUV } from "./index-uv";
 

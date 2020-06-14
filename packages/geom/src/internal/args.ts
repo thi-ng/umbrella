@@ -44,7 +44,7 @@ export const argsVN = (args: any[]) => {
         ? args.length === 2
             ? [args[0], args[1], attr]
             : isNumber(args[0])
-                ? [undefined, args[0], attr]
-                : [args[0], undefined, attr]
+            ? [undefined, args[0], attr]
+            : [args[0], undefined, attr]
         : [undefined, undefined, attr];
 };

@@ -65,6 +65,6 @@ export const postWorker = <T>(
                     _worker.terminate();
                 }, terminate);
             }
-        }
+        },
     };
 };

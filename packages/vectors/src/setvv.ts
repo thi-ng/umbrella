@@ -1,9 +1,4 @@
-import {
-    ReadonlyVec,
-    Vec,
-    VecOpVV,
-    VecOpVVV
-} from "./api";
+import { ReadonlyVec, Vec, VecOpVV, VecOpVVV } from "./api";
 import { setC, setC4, setC6 } from "./setc";
 
 /**

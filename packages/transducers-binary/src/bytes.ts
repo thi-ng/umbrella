@@ -1,17 +1,11 @@
-import {
-    bytes16,
-    bytes24,
-    bytes32,
-    bytesF32,
-    bytesF64
-} from "@thi.ng/binary";
+import { bytes16, bytes24, bytes32, bytesF32, bytesF64 } from "@thi.ng/binary";
 import { unsupported } from "@thi.ng/errors";
 import {
     iterator,
     mapcat,
     reduce,
     Reducer,
-    Transducer
+    Transducer,
 } from "@thi.ng/transducers";
 import { BinStructItem, Type } from "./api";
 import { utf8Encode } from "./utf8";
@@ -19,69 +13,69 @@ import { utf8Encode } from "./utf8";
 export const i8 = (x: number): BinStructItem => [Type.I8, x];
 export const i8array = (x: ArrayLike<number>): BinStructItem => [
     Type.I8_ARRAY,
-    x
+    x,
 ];
 
 export const u8 = (x: number): BinStructItem => [Type.U8, x];
 export const u8array = (x: ArrayLike<number>): BinStructItem => [
     Type.U8_ARRAY,
-    x
+    x,
 ];
 
 export const i16 = (x: number, le = false): BinStructItem => [Type.I16, x, le];
 export const i16array = (x: ArrayLike<number>, le = false): BinStructItem => [
     Type.I16_ARRAY,
     x,
-    le
+    le,
 ];
 
 export const u16 = (x: number, le = false): BinStructItem => [Type.U16, x, le];
 export const u16array = (x: ArrayLike<number>, le = false): BinStructItem => [
     Type.U16_ARRAY,
     x,
-    le
+    le,
 ];
 
 export const i24 = (x: number, le = false): BinStructItem => [Type.I24, x, le];
 export const i24array = (x: ArrayLike<number>, le = false): BinStructItem => [
     Type.I24_ARRAY,
     x,
-    le
+    le,
 ];
 
 export const u24 = (x: number, le = false): BinStructItem => [Type.U24, x, le];
 export const u24array = (x: ArrayLike<number>, le = false): BinStructItem => [
     Type.U24_ARRAY,
     x,
-    le
+    le,
 ];
 
 export const i32 = (x: number, le = false): BinStructItem => [Type.I32, x, le];
 export const i32array = (x: ArrayLike<number>, le = false): BinStructItem => [
     Type.I32_ARRAY,
     x,
-    le
+    le,
 ];
 
 export const u32 = (x: number, le = false): BinStructItem => [Type.U32, x, le];
 export const u32array = (x: ArrayLike<number>, le = false): BinStructItem => [
     Type.U32_ARRAY,
     x,
-    le
+    le,
 ];
 
 export const f32 = (x: number, le = false): BinStructItem => [Type.F32, x, le];
 export const f32array = (x: ArrayLike<number>, le = false): BinStructItem => [
     Type.F32_ARRAY,
     x,
-    le
+    le,
 ];
 
 export const f64 = (x: number, le = false): BinStructItem => [Type.F64, x, le];
 export const f64array = (x: ArrayLike<number>, le = false): BinStructItem => [
     Type.F64_ARRAY,
     x,
-    le
+    le,
 ];
 
 export const str = (x: string): BinStructItem => [Type.STR, x];
@@ -293,6 +287,6 @@ export function bytes(cap = 1024, src?: Iterable<BinStructItem>) {
                       default:
                   }
                   return acc;
-              }
+              },
           ];
 }

@@ -7,7 +7,7 @@ import {
     mapcat,
     partitionBy,
     transduce,
-    zip
+    zip,
 } from "@thi.ng/transducers";
 import { execSync } from "child_process";
 import { resolve } from "path";
@@ -84,7 +84,7 @@ export const repoCommits = (repoPath: string) =>
                 (commit) =>
                     <Commit>{
                         ...parseLog(commit),
-                        ...parseStats(commit)
+                        ...parseStats(commit),
                     }
             )
         ),

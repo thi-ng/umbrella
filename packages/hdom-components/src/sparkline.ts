@@ -53,7 +53,7 @@ export const sparkline = (
         height: 16,
         col: "red",
         r: 1.5,
-        ..._opts
+        ..._opts,
     };
     const n = vals.length;
     const s = opts.width / n;
@@ -65,7 +65,7 @@ export const sparkline = (
             width: opts.width + 2 * r,
             height: opts.height,
             stroke: opts.col,
-            fill: "none"
+            fill: "none",
         },
         [
             "polyline",
@@ -75,13 +75,13 @@ export const sparkline = (
                     mapIndexed(
                         (i, y: number) => [
                             (i * s) | 0,
-                            fitClamped(y, opts.min, opts.max, h, r) | 0
+                            fitClamped(y, opts.min, opts.max, h, r) | 0,
                         ],
                         0,
                         vals
                     )
-                )
-            }
+                ),
+            },
         ],
         [
             "circle",
@@ -89,8 +89,8 @@ export const sparkline = (
                 cx: ((n - 1) * s) | 0,
                 cy: fitClamped(vals[n - 1], opts.min, opts.max, h, r) | 0,
                 r,
-                fill: opts.col
-            }
-        ]
+                fill: opts.col,
+            },
+        ],
     ];
 };

@@ -1,11 +1,6 @@
 import { peek } from "@thi.ng/arrays";
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
-import {
-    IShape,
-    PathSegment,
-    SegmentType,
-    Type
-} from "@thi.ng/geom-api";
+import { IShape, PathSegment, SegmentType, Type } from "@thi.ng/geom-api";
 import { simplify as _simplify } from "@thi.ng/geom-resample";
 import { Path } from "../api/path";
 import { Polygon } from "../api/polygon";
@@ -39,7 +34,7 @@ simplify.addAll(<IObjectOf<Implementation2<unknown, number, IShape>>>{
                 points.push(lastP);
                 res.push({
                     geo: new Polyline(_simplify(points, eps)),
-                    type: SegmentType.POLYLINE
+                    type: SegmentType.POLYLINE,
                 });
                 points = null;
             } else {
@@ -50,7 +45,7 @@ simplify.addAll(<IObjectOf<Implementation2<unknown, number, IShape>>>{
             points.push(lastP);
             res.push({
                 geo: new Polyline(points),
-                type: SegmentType.POLYLINE
+                type: SegmentType.POLYLINE,
             });
         }
         return new Path(res, copyAttribs($));
@@ -60,5 +55,5 @@ simplify.addAll(<IObjectOf<Implementation2<unknown, number, IShape>>>{
         new Polygon(_simplify($.points, eps, true), copyAttribs($)),
 
     [Type.POLYLINE]: ($: Polyline, eps = 0.1) =>
-        new Polyline(_simplify($.points, eps), copyAttribs($))
+        new Polyline(_simplify($.points, eps), copyAttribs($)),
 });

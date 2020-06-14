@@ -12,7 +12,7 @@ export const horizontalOnly = ({ hl, dot }: StrokeStyle): StrokeStyle => ({
     tjt: hl,
     tjb: hl,
     jct: hl,
-    dot
+    dot,
 });
 
 export const verticalOnly = ({ vl, dot }: StrokeStyle): StrokeStyle => ({
@@ -27,5 +27,5 @@ export const verticalOnly = ({ vl, dot }: StrokeStyle): StrokeStyle => ({
     tjt: vl,
     tjb: vl,
     jct: vl,
-    dot
+    dot,
 });

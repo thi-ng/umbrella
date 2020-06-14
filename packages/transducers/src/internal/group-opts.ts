@@ -15,5 +15,5 @@ export const __groupByOpts = <SRC, KEY, GROUP>(
     <GroupByOpts<SRC, KEY, GROUP>>{
         key: identity,
         group: push(),
-        ...opts
+        ...opts,
     };

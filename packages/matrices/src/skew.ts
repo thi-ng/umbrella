@@ -14,7 +14,7 @@ import {
     shearZX33,
     shearZX44,
     shearZY33,
-    shearZY44
+    shearZY44,
 } from "./shear";
 import type { Mat, MatOpN } from "./api";
 

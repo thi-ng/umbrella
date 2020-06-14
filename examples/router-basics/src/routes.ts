@@ -6,22 +6,22 @@ import { Route } from "@thi.ng/router";
 
 // the `match` arrays specify the individual route elements
 // docs here:
-// https://github.com/thi-ng/umbrella/blob/master/packages/router/
-// https://github.com/thi-ng/umbrella/blob/master/packages/router/src/api.ts#L31
+// https://github.com/thi-ng/umbrella/blob/develop/packages/router/
+// https://github.com/thi-ng/umbrella/blob/develop/packages/router/src/api.ts#L31
 
 export const HOME: Route = {
     id: "home",
-    match: ["home"]
+    match: ["home"],
 };
 
 export const CONTACT: Route = {
     id: "contact",
-    match: ["contact"]
+    match: ["contact"],
 };
 
 export const USER_LIST: Route = {
     id: "user-list",
-    match: ["users"]
+    match: ["users"],
 };
 
 // this is a parametric route w/ parameter coercion & validation
@@ -35,7 +35,7 @@ export const USER_PROFILE: Route = {
     validate: {
         id: {
             coerce: (x) => parseInt(x),
-            check: (x) => x > 0 && x < 100
-        }
-    }
+            check: (x) => x > 0 && x < 100,
+        },
+    },
 };

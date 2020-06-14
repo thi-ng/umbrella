@@ -7,7 +7,7 @@ import {
     decode5,
     encode10,
     encode16,
-    encode5
+    encode5,
 } from "./raw";
 
 const prescale = (x: number, min: number, max: number, bits: number) => {

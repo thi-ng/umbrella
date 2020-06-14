@@ -3,7 +3,7 @@ import {
     ensureReduced,
     isReduced,
     Reducer,
-    Transducer
+    Transducer,
 } from "@thi.ng/transducers";
 import type { Fn0, IObjectOf } from "@thi.ng/api";
 

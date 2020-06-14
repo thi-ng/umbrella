@@ -8,7 +8,7 @@ import type {
     Sym,
     Term,
     Ternary,
-    WhileLoop
+    WhileLoop,
 } from "../api/nodes";
 import type { BoolTerm } from "../api/terms";
 import type { Type } from "../api/types";
@@ -22,7 +22,7 @@ export const ifThen = (
     type: "void",
     test,
     t: scope(truthy),
-    f: falsey ? scope(falsey) : undefined
+    f: falsey ? scope(falsey) : undefined,
 });
 
 export const ternary = <A extends Type, B extends A>(
@@ -34,7 +34,7 @@ export const ternary = <A extends Type, B extends A>(
     type: t.type,
     test,
     t,
-    f
+    f,
 });
 
 // prettier-ignore
@@ -56,7 +56,7 @@ export function forLoop(...xs: any[]): ForLoop {
         init: init ? decl(init) : undefined,
         test: test(init!),
         iter: iter ? iter(init!) : undefined,
-        scope: scope(body(init!))
+        scope: scope(body(init!)),
     };
 }
 
@@ -64,13 +64,13 @@ export const whileLoop = (test: BoolTerm, body: Term<any>[]): WhileLoop => ({
     tag: "while",
     type: "void",
     test,
-    scope: scope(body)
+    scope: scope(body),
 });
 
 const ctrl = (id: string): ControlFlow => ({
     tag: "ctrl",
     type: "void",
-    id
+    id,
 });
 
 export const brk = ctrl("break");

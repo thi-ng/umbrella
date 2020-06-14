@@ -17,7 +17,7 @@ export const svgDoc = (attribs: Attribs, ...xs: IShape[]) => {
                 viewBox: `${ff(pos[0])} ${ff(pos[1])} ${ff(size[0])} ${ff(
                     size[1]
                 )}`,
-                ...attribs
+                ...attribs,
             };
         }
     }

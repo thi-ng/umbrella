@@ -55,7 +55,7 @@ export function streamShuffle<T>(...args: any[]): any {
                         acc = reduce(acc, buf.shift()!);
                     }
                     return acc;
-                }
+                },
             ];
         })
     );

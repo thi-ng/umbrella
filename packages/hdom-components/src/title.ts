@@ -39,12 +39,12 @@ export const title = (_opts?: Partial<TitleOpts>) => {
         attribs: {},
         subElement: "small",
         subAttribs: {},
-        ..._opts
+        ..._opts,
     };
     return (_: any, title: any, subtitle: any) => [
         opts.element,
         opts.attribs,
         title,
-        subtitle ? [opts.subElement, opts.subAttribs, subtitle] : undefined
+        subtitle ? [opts.subElement, opts.subAttribs, subtitle] : undefined,
     ];
 };

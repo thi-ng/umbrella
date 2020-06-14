@@ -8,7 +8,7 @@ import type {
     ShaderState,
     ShaderVaryingSpecs,
     UniformDecl,
-    UniformValues
+    UniformValues,
 } from "./shader";
 import type { ITexture, TextureOpts } from "./texture";
 

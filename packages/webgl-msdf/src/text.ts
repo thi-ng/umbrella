@@ -1,19 +1,7 @@
 import { GLType } from "@thi.ng/api";
-import {
-    add,
-    map,
-    mapcat,
-    range,
-    transduce
-} from "@thi.ng/transducers";
+import { add, map, mapcat, range, transduce } from "@thi.ng/transducers";
 import { AttribPool } from "@thi.ng/vector-pools";
-import {
-    add2,
-    div2,
-    madd2,
-    mul2,
-    ONE4
-} from "@thi.ng/vectors";
+import { add2, div2, madd2, mul2, ONE4 } from "@thi.ng/vectors";
 import type { GLVec4, ModelSpec } from "@thi.ng/webgl";
 import type { MSDFFont, TextAlign, TextOpts } from "./api";
 
@@ -29,7 +17,7 @@ export const text = (
         dirX: 1,
         dirY: 1,
         color: <GLVec4>ONE4,
-        ...opts
+        ...opts,
     };
     const dir: number[] = [opts.dirX!, opts.dirY!];
     const lineHeight = glyphs.lineHeight * opts.leading! * opts.dirY!;
@@ -44,15 +32,15 @@ export const text = (
                           type: GLType.F32,
                           default: opts.color,
                           size: 4,
-                          byteOffset: 20
-                      }
+                          byteOffset: 20,
+                      },
                   }
-                : null)
+                : null),
         },
         num: len * 4,
         mem: {
-            size: len * 4 * (opts.useColor ? 36 : 20) + 8 + /* FIXME */ 40
-        }
+            size: len * 4 * (opts.useColor ? 36 : 20) + 8 + /* FIXME */ 40,
+        },
     });
     const lines = txt.split("\n");
     for (let i = 0, yy = 0, id = 0; i < lines.length; i++) {
@@ -68,7 +56,7 @@ export const text = (
                     [x, y, 0],
                     [x + sx, y, 0],
                     [x + sx, y + sy, 0],
-                    [x, y + sy, 0]
+                    [x, y + sy, 0],
                 ],
                 id * 4
             );
@@ -78,7 +66,7 @@ export const text = (
                     div2([], g.pos, glyphs.size),
                     div2([], [g.pos[0] + g.size[0], g.pos[1]], glyphs.size),
                     div2([], add2([], g.pos, g.size), glyphs.size),
-                    div2([], [g.pos[0], g.pos[1] + g.size[1]], glyphs.size)
+                    div2([], [g.pos[0], g.pos[1] + g.size[1]], glyphs.size),
                 ],
                 id * 4
             );
@@ -93,12 +81,12 @@ export const text = (
                 ...mapcat(
                     (i) => [i, i + 1, i + 2, i, i + 2, i + 3],
                     range(0, len * 4, 4)
-                )
-            ])
+                ),
+            ]),
         },
         uniforms: {},
         num: len * 6,
-        mode: 4 // TRIANGLES
+        mode: 4, // TRIANGLES
     };
 };
 

@@ -17,7 +17,7 @@ const B3 = 0.453646839257496;
 
 /**
  * Based on:
- * - {@link https://github.com/neilbartlett/color-temperature/blob/master/index.js}
+ * - {@link https://github.com/neilbartlett/color-temperature/blob/develop/index.js}
  * - {@link http://www.zombieprototypes.com/?p=210}
  *
  * Uses adjusted coefficients to produce normalized RGB values.

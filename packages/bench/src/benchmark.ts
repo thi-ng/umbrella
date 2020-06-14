@@ -49,6 +49,6 @@ export const benchmark = (
         max,
         q1,
         q3,
-        sd
+        sd,
     };
 };

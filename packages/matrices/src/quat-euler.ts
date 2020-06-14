@@ -8,7 +8,7 @@ const axisOrder = {
     xzy: [X3, Z3, Y3],
     zxy: [Z3, X3, Y3],
     yzx: [Y3, Z3, X3],
-    zyx: [Z3, Y3, X3]
+    zyx: [Z3, Y3, X3],
 };
 
 /**

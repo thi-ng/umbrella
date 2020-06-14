@@ -12,7 +12,7 @@ import {
     repeatedly,
     step,
     str,
-    transduce
+    transduce,
 } from "@thi.ng/transducers";
 import { bits } from "@thi.ng/transducers-binary";
 
@@ -27,7 +27,7 @@ const presets: DropDownOption[] = [
     ["000001111111111110", "dots"],
     ["000101111000001111", "growth"],
     ["000001111000011111", "organic"],
-    ["000010011000011111", "angular"]
+    ["000010011000011111", "angular"],
 ];
 
 // container for cell states
@@ -43,7 +43,10 @@ const setHash = () => (location.hash = rules.join(""));
 // build transducer to parse rules from string (e.g. location hash or preset)
 // (an older version used a preset format w/ "-" to separate rule groups)
 const parseRules = step(
-    comp(map((x: string) => parseInt(x.replace("-", ""), 2)), bits(18))
+    comp(
+        map((x: string) => parseInt(x.replace("-", ""), 2)),
+        bits(18)
+    )
 );
 
 const applyRules = (raw: string) => {
@@ -56,7 +59,7 @@ const applyRules = (raw: string) => {
 
 // create random bit sequence w/ ones appearing in given probability
 const randomSeq = (num: number, prob = 0.5) => [
-    ...repeatedly(() => (Math.random() < prob ? 1 : 0), num)
+    ...repeatedly(() => (Math.random() < prob ? 1 : 0), num),
 ];
 
 const randomizeGrid = (prob = 0.5) => (grid = randomSeq(W * H, prob));
@@ -110,7 +113,7 @@ const setRule = (i: number, j: number, s: boolean, rstride = 9) => {
 // single checkbox component
 const checkbox = (x: number, onchange: EventListener) => [
     "input",
-    { type: "checkbox", checked: !!x, onchange }
+    { type: "checkbox", checked: !!x, onchange },
 ];
 
 // component for single CA rule group (alive / dead FSM)
@@ -123,7 +126,7 @@ const ruleBoxes = (prefix: string, i: number, rstride = 9) => [
             checkbox(rule, (e) =>
                 setRule(i, j, (<HTMLInputElement>e.target).checked)
             )
-        )
+        ),
 ];
 
 const isPreset = (id: string) => presets.findIndex((x) => x[0] === id) !== -1;
@@ -148,12 +151,12 @@ start(() => {
                 dropdown,
                 {
                     onchange: (e: Event) =>
-                        applyRules((<HTMLSelectElement>e.target).value)
+                        applyRules((<HTMLSelectElement>e.target).value),
                 },
                 presets,
-                isPreset(id) ? id : ""
-            ]
+                isPreset(id) ? id : "",
+            ],
         ],
-        ["pre", format((grid = convolve(grid, rules, W, H)), W)]
+        ["pre", format((grid = convolve(grid, rules, W, H)), W)],
     ];
 });

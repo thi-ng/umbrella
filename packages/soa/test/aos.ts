@@ -10,7 +10,7 @@ describe("aos", () => {
             {
                 a: { type: Type.U16, size: 1 }, // 2, 0
                 b: { type: Type.F32, size: 2 }, // 8, 4
-                c: { type: Type.U8, size: 1 } // 1, 12
+                c: { type: Type.U8, size: 1 }, // 1, 12
             },
             undefined,
             0x100
@@ -28,15 +28,18 @@ describe("aos", () => {
         assert.equal(struct.buffers.a.buffer.byteLength, 0x100 + 0x20);
         struct.setValues({
             a: [[0x1001], [0x2002]],
-            b: [[1, 2], [3, 4]],
-            c: [[0xff], [0xfe]]
+            b: [
+                [1, 2],
+                [3, 4],
+            ],
+            c: [[0xff], [0xfe]],
         });
         assert(
             equiv(
                 [...struct.values()],
                 [
                     { a: [0x1001], b: [1, 2], c: [0xff] },
-                    { a: [0x2002], b: [3, 4], c: [0xfe] }
+                    { a: [0x2002], b: [3, 4], c: [0xfe] },
                 ]
             )
         );

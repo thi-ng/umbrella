@@ -1,10 +1,4 @@
-import {
-    assert,
-    SIZEOF,
-    Type,
-    TypedArray,
-    typedArray
-} from "@thi.ng/api";
+import { assert, SIZEOF, Type, TypedArray, typedArray } from "@thi.ng/api";
 import { align, Pow2 } from "@thi.ng/binary";
 import { isNumber } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
@@ -91,7 +85,7 @@ export class MemPool implements IMemPool {
             used: listStats(this._used),
             top: this.top,
             available: this.end - this.top + free.size,
-            total: this.buf.byteLength
+            total: this.buf.byteLength,
         };
     }
 
@@ -335,8 +329,9 @@ export class MemPool implements IMemPool {
     protected set minSplit(x: number) {
         assert(
             x > SIZEOF_MEM_BLOCK,
-            `illegal min split threshold: ${x}, require at least ${SIZEOF_MEM_BLOCK +
-                1}`
+            `illegal min split threshold: ${x}, require at least ${
+                SIZEOF_MEM_BLOCK + 1
+            }`
         );
         this.state[STATE_MIN_SPLIT] = x;
     }

@@ -12,7 +12,7 @@ import {
     vec2,
     Vec2Sym,
     vec3,
-    vec4
+    vec4,
 } from "@thi.ng/shader-ast";
 import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
 import { canvasRenderer, targetJS } from "@thi.ng/shader-ast-js";
@@ -20,14 +20,9 @@ import {
     additive,
     aspectCorrectedUV,
     fit1101,
-    snoise2
+    snoise2,
 } from "@thi.ng/shader-ast-stdlib";
-import {
-    compileModel,
-    draw,
-    quad,
-    shader
-} from "@thi.ng/webgl";
+import { compileModel, draw, quad, shader } from "@thi.ng/webgl";
 
 // set URL hash to "#2d" to enable JS Canvas2D version
 const JS_MODE = location.hash.indexOf("2d") >= 0;
@@ -52,7 +47,7 @@ const mainImage = defn(
             (col = sym(
                 additive("vec2", snoise2, 4)(add(uv, time), vec2(2), float(0.5))
             )),
-            ret(vec4(vec3(fit1101(col)), 1))
+            ret(vec4(vec3(fit1101(col)), 1)),
         ];
     }
 );
@@ -100,8 +95,8 @@ if (JS_MODE) {
     model.shader = shader(ctx, {
         vs: (gl, _, attribs) => [
             defMain(() => [
-                assign(gl.gl_Position, vec4(attribs.position, 0, 1))
-            ])
+                assign(gl.gl_Position, vec4(attribs.position, 0, 1)),
+            ]),
         ],
         fs: (gl, unis, _, outs) => [
             mainImage,
@@ -109,16 +104,16 @@ if (JS_MODE) {
                 assign(
                     outs.fragColor,
                     mainImage($xy(gl.gl_FragCoord), unis.resolution, unis.time)
-                )
-            ])
+                ),
+            ]),
         ],
         attribs: {
-            position: "vec2"
+            position: "vec2",
         },
         uniforms: {
             resolution: ["vec2", [W, H]],
-            time: "float"
-        }
+            time: "float",
+        },
     });
     // compile model (attrib buffers)
     compileModel(ctx, model);

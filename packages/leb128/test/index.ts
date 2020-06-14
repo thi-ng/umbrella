@@ -4,7 +4,7 @@ import {
     decodeSLEB128,
     decodeULEB128,
     encodeSLEB128,
-    encodeULEB128
+    encodeULEB128,
 } from "../src/index";
 
 describe("leb128", () => {

@@ -4,5 +4,5 @@ import type { AppContext } from "../api";
 export const buttonGroup = (ctx: AppContext, ...buttons: any[]) => [
     "section",
     ctx.ui.buttongroup,
-    buttons.map((bt) => [button, ...bt])
+    buttons.map((bt) => [button, ...bt]),
 ];

@@ -12,7 +12,7 @@ export const SLIDERS = [
         view: "cols",
         label: "cols",
         min: 1,
-        max: 16
+        max: 16,
     },
     {
         event: ev.SET_ROWS,
@@ -20,7 +20,7 @@ export const SLIDERS = [
         view: "rows",
         label: "rows",
         min: 1,
-        max: 16
+        max: 16,
     },
     {
         event: ev.SET_THETA,
@@ -28,7 +28,7 @@ export const SLIDERS = [
         view: "theta",
         label: "rotate",
         min: 0,
-        max: 360
+        max: 360,
     },
     {
         event: ev.SET_STROKE,
@@ -37,6 +37,6 @@ export const SLIDERS = [
         label: "stroke weight",
         min: 0.01,
         max: 0.5,
-        step: 0.01
-    }
+        step: 0.01,
+    },
 ];

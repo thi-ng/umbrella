@@ -10,7 +10,7 @@ import {
     set,
     sub,
     Vec,
-    VecPair
+    VecPair,
 } from "@thi.ng/vectors";
 
 export class Sampler {

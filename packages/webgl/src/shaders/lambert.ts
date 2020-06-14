@@ -5,14 +5,14 @@ import {
     mul,
     normalize,
     texture,
-    vec4
+    vec4,
 } from "@thi.ng/shader-ast";
 import {
     diffuseLighting,
     halfLambert,
     lambert,
     surfaceNormal,
-    transformMVP
+    transformMVP,
 } from "@thi.ng/shader-ast-stdlib";
 import { defMaterial } from "../material";
 import { autoNormalMatrix2 } from "../matrices";
@@ -39,8 +39,8 @@ export const LAMBERT = (opts: Partial<LambertOpts> = {}): ShaderSpec => ({
                     unis.view,
                     unis.proj
                 )
-            )
-        ])
+            ),
+        ]),
     ],
     fs: (_, unis, ins, outs) => [
         defMain(() => [
@@ -63,8 +63,8 @@ export const LAMBERT = (opts: Partial<LambertOpts> = {}): ShaderSpec => ({
                     ),
                     1
                 )
-            )
-        ])
+            ),
+        ]),
     ],
     // pre: ALIAS_TEXTURE,
     attribs: {
@@ -75,12 +75,12 @@ export const LAMBERT = (opts: Partial<LambertOpts> = {}): ShaderSpec => ({
             ? { [opts.color]: "vec3" }
             : null),
         ...(opts.instancePos ? { [opts.instancePos]: "vec3" } : null),
-        ...(opts.instanceColor ? { [opts.instanceColor]: "vec3" } : null)
+        ...(opts.instanceColor ? { [opts.instanceColor]: "vec3" } : null),
     },
     varying: {
         vcolor: "vec3",
         vnormal: "vec3",
-        ...(opts.uv ? { vuv: "vec2" } : null)
+        ...(opts.uv ? { vuv: "vec2" } : null),
     },
     uniforms: {
         model: "mat4",
@@ -93,11 +93,11 @@ export const LAMBERT = (opts: Partial<LambertOpts> = {}): ShaderSpec => ({
             { diffuseCol: [1, 1, 1], ...opts.material },
             { specularCol: false }
         ),
-        ...(opts.uv ? { tex: "sampler2D" } : null)
+        ...(opts.uv ? { tex: "sampler2D" } : null),
     },
     state: {
         depth: true,
         cull: true,
-        ...opts.state
-    }
+        ...opts.state,
+    },
 });

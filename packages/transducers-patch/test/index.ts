@@ -12,7 +12,7 @@ describe("transducers-patch", () => {
                     [Patch.INSERT, 0, [10, 11]],
                     [Patch.UPDATE, 1, (x, n) => x * n, 10],
                     [Patch.DELETE, 3],
-                    [Patch.SET, 2, 200]
+                    [Patch.SET, 2, 200],
                 ]
             ),
             [
@@ -20,7 +20,7 @@ describe("transducers-patch", () => {
                 [10, 11, 1, 2, 3],
                 [10, 110, 1, 2, 3],
                 [10, 110, 1, 3],
-                [10, 110, 200, 3]
+                [10, 110, 200, 3],
             ]
         );
     });
@@ -33,14 +33,14 @@ describe("transducers-patch", () => {
                 [
                     [Patch.SET, ["a", "b"], 1],
                     [Patch.UPDATE, "a.b", (x, n) => x + n, 10],
-                    [Patch.DELETE, "x"]
+                    [Patch.DELETE, "x"],
                 ]
             ),
             [
                 { x: 23 },
                 { x: 23, a: { b: 1 } },
                 { x: 23, a: { b: 11 } },
-                { a: { b: 11 } }
+                { a: { b: 11 } },
             ]
         );
     });
