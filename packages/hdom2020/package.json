@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hdom2020",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "Experimental exploration for a new @thi.ng/hdom w/ entirely new, largely reactive & diff-less approach. WARNING: Your existing code WILL break!",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -43,15 +43,15 @@
         "typescript": "^3.9.2"
     },
     "dependencies": {
-        "@thi.ng/adapt-dpi": "^1.0.0",
-        "@thi.ng/api": "^6.11.0",
-        "@thi.ng/atom": "^4.1.9",
-        "@thi.ng/checks": "^2.7.0",
+        "@thi.ng/adapt-dpi": "^1.0.1",
+        "@thi.ng/api": "^6.11.1",
+        "@thi.ng/atom": "^4.1.10",
+        "@thi.ng/checks": "^2.7.1",
         "@thi.ng/errors": "^1.2.14",
-        "@thi.ng/hiccup": "^3.2.24",
-        "@thi.ng/hiccup-canvas": "^1.0.0",
-        "@thi.ng/paths": "^4.0.7",
-        "@thi.ng/rstream": "^4.3.5"
+        "@thi.ng/hiccup": "^3.2.25",
+        "@thi.ng/hiccup-canvas": "^1.0.1",
+        "@thi.ng/paths": "^4.0.8",
+        "@thi.ng/rstream": "^4.4.0"
     },
     "files": [
         "*.js",
@@ -59,8 +59,18 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
-        "typescript"
+        "aot",
+        "canvas",
+        "css",
+        "dom",
+        "es6",
+        "components",
+        "frontend",
+        "hiccup",
+        "reactive",
+        "rstream",
+        "typescript",
+        "ui"
     ],
     "publishConfig": {
         "access": "public"
