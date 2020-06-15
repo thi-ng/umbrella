@@ -108,7 +108,15 @@ export class EquivMap<K, V> extends Map<K, V>
         return <this>dissoc(this, keys);
     }
 
-    forEach(fn: Fn3<V, Readonly<K>, Map<K, V>, void>, thisArg?: any) {
+    /**
+     * The key & value args given the callback `fn` MUST be treated as
+     * readonly/immutable. This could be enforced via TS, but would
+     * break ES6 Map interface contract.
+     *
+     * @param fn
+     * @param thisArg
+     */
+    forEach(fn: Fn3<V, K, Map<K, V>, void>, thisArg?: any) {
         for (let pair of __map(this)) {
             fn.call(thisArg, pair[1], pair[0], this);
         }

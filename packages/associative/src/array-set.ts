@@ -128,7 +128,15 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
         return equivSet(this, o);
     }
 
-    forEach(fn: Fn3<Readonly<T>, Readonly<T>, Set<T>, void>, thisArg?: any) {
+    /**
+     * The value args given to the callback `fn` MUST be treated as
+     * readonly/immutable. This could be enforced via TS, but would
+     * break ES6 Set interface contract.
+     *
+     * @param fn
+     * @param thisArg
+     */
+    forEach(fn: Fn3<T, T, Set<T>, void>, thisArg?: any) {
         const vals = __vals(this);
         for (let i = vals.length; --i >= 0; ) {
             const v = vals[i];
