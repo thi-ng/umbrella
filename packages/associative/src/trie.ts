@@ -82,9 +82,9 @@ export class Trie<K extends ArrayLike<any>, T> {
         for (let i = 0, n = key.length; i < n; i++) {
             const k = key[i].toString();
             const next = node.next[k];
-            node = !next ? (node.n++, (node.next[k] = new Trie<K, T>())) : next;
+            node = !next ? (node.n++, (node.next[k] = this.makeChild())) : next;
         }
-        if (!node.vals) node.vals = new Set<T>();
+        if (!node.vals) node.vals = this.makeValueSet();
         node.vals.add(val);
     }
 
@@ -119,6 +119,14 @@ export class Trie<K extends ArrayLike<any>, T> {
             if (--node.n) break;
         }
         return true;
+    }
+
+    protected makeChild(): Trie<K, T> {
+        return new Trie();
+    }
+
+    protected makeValueSet(): Set<T> {
+        return new Set<T>();
     }
 
     protected queueChildren(
