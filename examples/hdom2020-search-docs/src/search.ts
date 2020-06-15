@@ -1,4 +1,5 @@
 import { IObjectOf } from "@thi.ng/api";
+import { compareByKeys2 } from "@thi.ng/compare";
 
 type PackedTrie = [IObjectOf<PackedTrie>, number[]?];
 
@@ -31,8 +32,8 @@ export const search = (
     root = find(root, key);
     return root
         ? suffixes(root, prefix)
-              .sort()
               .map(([k, i]) => [k, files[i]])
+              .sort(compareByKeys2(0, 1))
         : undefined;
 };
 

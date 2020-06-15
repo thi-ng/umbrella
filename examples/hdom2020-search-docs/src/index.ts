@@ -57,6 +57,36 @@ const updatePage = (step: number) =>
 
 const setPage = (id: number) => pageID.next(id);
 
+// pagination component
+const pager = [
+    "div.mv2.w-100",
+    {
+        style: {
+            // only show if there's a need for it...
+            display: maxPageID.transform(map((x) => (x > 0 ? "flex" : "none"))),
+        },
+    },
+    [
+        "div.w-33.tl",
+        {},
+        ["button", { onclick: () => setPage(0) }, "<<"],
+        ["button", { onclick: () => updatePage(-1) }, "<"],
+    ],
+    [
+        "div.w-34.tc",
+        {},
+        pageID.transform(map((x) => x + 1)),
+        " / ",
+        maxPageID.transform(map((x) => x + 1)),
+    ],
+    [
+        "div.w-33.tr",
+        {},
+        ["button", { onclick: () => updatePage(1) }, ">"],
+        ["button", { onclick: () => setPage(maxPageID.deref()!) }, ">>"],
+    ],
+];
+
 // compile component tree, including embedded reactive values/streams
 // and controlflow structures (uses tachyons CSS classes for styling)
 $compile([
@@ -76,37 +106,8 @@ $compile([
         queryResults.transform(map((results) => results.length)),
         ` results (total keys: ${INDEX_STATS.keys} in ${INDEX_STATS.files} files)`,
     ],
-    // pagination
-    [
-        "div.mv2.w-100",
-        {
-            style: {
-                // only show if there's a need for it...
-                display: maxPageID.transform(
-                    map((x) => (x > 0 ? "flex" : "none"))
-                ),
-            },
-        },
-        [
-            "div.w-33.tl",
-            {},
-            ["button", { onclick: () => setPage(0) }, "<<"],
-            ["button", { onclick: () => updatePage(-1) }, "<"],
-        ],
-        [
-            "div.w-34.tc",
-            {},
-            pageID.transform(map((x) => x + 1)),
-            " / ",
-            maxPageID.transform(map((x) => x + 1)),
-        ],
-        [
-            "div.w-33.tr",
-            {},
-            ["button", { onclick: () => updatePage(1) }, ">"],
-            ["button", { onclick: () => setPage(maxPageID.deref()!) }, ">>"],
-        ],
-    ],
+    // include/embed pagination controls
+    pager,
     // reactive list component (for search results)
     // the function arg is used to create new list items if needed
     $list(resultPage, "ul.list.pl0", {}, ([suffix, file]) => [
