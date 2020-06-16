@@ -2006,6 +2006,11 @@
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
+"@ygoe/msgpack@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@ygoe/msgpack/-/msgpack-1.0.2.tgz#7237b74179933bb9b73aa09d15d2a4414cfc7377"
+  integrity sha512-GXnUKo8aFiTE1RmhzGXzXNXoN500Zxe0FH62thZi18xI82N+Gcdw9MWjhV0SdTEfjHFwZiw0+ZJSE8sD02pRsQ==
+
 "@zkochan/cmd-shim@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@zkochan/cmd-shim/-/cmd-shim-3.1.0.tgz#2ab8ed81f5bb5452a85f25758eb9b8681982fd2e"
