@@ -2,14 +2,13 @@ import { $compile, $list } from "@thi.ng/hdom2020";
 import { clamp } from "@thi.ng/math";
 import { CloseMode, debounce, fromIterable, sync } from "@thi.ng/rstream";
 import { map, page } from "@thi.ng/transducers";
-import { indexSize, search } from "./search";
+import { search } from "./search";
 // IMPORTANT: this file is not checked into git (~350KB) and must be downloaded from:
 // https://gist.github.com/postspectacular/8370adeaf262299065db4aa5849e40d7
 import INDEX from "./search.json";
 
-const INDEX_STATS = indexSize(INDEX);
 const REPO_URL = "https://github.com/thi-ng/umbrella/";
-const BASE_URL = `${REPO_URL}tree/develop/packages/`;
+const BASE_URL = `${REPO_URL}blob/develop/packages/`;
 const SRC_URL = `${REPO_URL}/tree/feature/hdom2020/examples/hdom2020-search-docs`;
 const PAGE_SIZE = 25;
 
@@ -104,7 +103,7 @@ $compile([
         {},
         // derived view of result stream to compute number of results
         queryResults.transform(map((results) => results.length)),
-        ` results (total keys: ${INDEX_STATS.keys} in ${INDEX_STATS.files} files)`,
+        ` results (total keys: ${INDEX.numKeys} in ${INDEX.packages.length} packages, ${INDEX.numFiles} files)`,
     ],
     // include/embed pagination controls
     pager,

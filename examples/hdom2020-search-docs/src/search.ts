@@ -1,9 +1,15 @@
 import { IObjectOf } from "@thi.ng/api";
 import { compareByKeys2 } from "@thi.ng/compare";
 
-type PackedTrie = [IObjectOf<PackedTrie>, number[]?];
+type PackedTrie = [IObjectOf<PackedTrie>, number[][]?];
 
-type SearchIndex = [string[], PackedTrie];
+interface SearchIndex {
+    packages: string[];
+    files: string[];
+    root: PackedTrie;
+    numFiles: number;
+    numKeys: number;
+}
 
 export const find = (node: PackedTrie, key: string) => {
     for (let i = 0, n = key.length; node && i < n; i++) {
@@ -15,7 +21,7 @@ export const find = (node: PackedTrie, key: string) => {
 export const suffixes = (
     node: PackedTrie,
     prefix: string,
-    acc: [string, number][] = []
+    acc: [string, number[]][] = []
 ) => {
     for (let k in node[0]) {
         acc = suffixes(node[0][k], prefix + k, acc);
@@ -25,24 +31,17 @@ export const suffixes = (
 };
 
 export const search = (
-    [files, root]: SearchIndex,
+    { packages, files, root }: SearchIndex,
     key: string,
     prefix = key
 ) => {
     root = find(root, key);
     return root
         ? suffixes(root, prefix)
-              .map(([k, i]) => [k, files[i]])
+              .map(([k, [p, f, ln]]) => [
+                  k,
+                  `${packages[p]}/src/${files[f]}#L${ln}`,
+              ])
               .sort(compareByKeys2(0, 1))
         : undefined;
-};
-
-export const indexSize = ([files, root]: SearchIndex) => {
-    let num = 0;
-    const walk = (n: PackedTrie) => {
-        num++;
-        for (let k in n[0]) walk(n[0][k]);
-    };
-    walk(root);
-    return { files: files.length, keys: num };
 };
