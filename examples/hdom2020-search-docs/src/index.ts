@@ -1,141 +1,154 @@
-import { $compile, $list } from "@thi.ng/hdom2020";
 import { timed } from "@thi.ng/bench";
-import { clamp } from "@thi.ng/math";
-import { CloseMode, debounce, fromIterable, sync } from "@thi.ng/rstream";
-import { map, page } from "@thi.ng/transducers";
+import {
+    $compile,
+    $list,
+    Component,
+    IComponent,
+    $body,
+} from "@thi.ng/hdom2020";
+import { debounce, Stream, stream, Subscription } from "@thi.ng/rstream";
+import { map } from "@thi.ng/transducers";
 import { deserialize } from "@ygoe/msgpack";
-import { search } from "./search";
+import { pageControls, Pagination } from "./pagination";
+import { search, SearchIndex } from "./search";
 
 const INDEX_URL = "https://docs.thi.ng/umbrella/search-index-latest.bin";
 const REPO_URL = "https://github.com/thi-ng/umbrella/";
 const BASE_URL = `${REPO_URL}blob/develop/packages/`;
 const SRC_URL = `${REPO_URL}/tree/feature/hdom2020/examples/hdom2020-search-docs`;
+const INITIAL_QUERY = "hdom";
 const PAGE_SIZE = 25;
 
-(async () => {
-    // load & decode msgpacked binary search index
-    const buf = await (await fetch(INDEX_URL)).arrayBuffer();
-    const INDEX = timed(() => deserialize(buf));
+class DocSearch extends Component {
+    wrapper!: IComponent;
+    inner!: IComponent;
+    pager!: Pagination<string[][]>;
+    query!: Stream<string>;
+    queryResults!: Subscription<string, string[][]>;
 
-    // search query stream
-    const query = fromIterable(["stream"], { closeIn: CloseMode.NEVER });
-
-    // build results as transformation of query stream
-    // first debounce query stream (for fast typers)
-    const queryResults = query
-        .subscribe(debounce(100))
-        .transform(map((q) => search(INDEX, q, "") || []));
-
-    // pagination state
-    const pageID = fromIterable([0], { closeIn: CloseMode.NEVER });
-    const maxPageID = queryResults.transform(
-        map((res) => ~~(res.length / PAGE_SIZE))
-    );
-
-    // produce search result page using `page()` transducer
-    // the`sync()` construct is a stream combinator which requires all input
-    // streams to produce a value first before it emits its own initial
-    // result...
-    const resultPage = sync<any, string[][]>({
-        src: { queryResults, pageID, maxPageID },
-        xform: map(
-            ({ queryResults, pageID, maxPageID }) =>
-                <string[][]>[
-                    ...page(
-                        clamp(pageID, 0, maxPageID),
-                        PAGE_SIZE,
-                        queryResults
-                    ),
-                ]
-        ),
-    });
-
-    // event handler for input field
-    const updateQuery = (e: InputEvent) => {
+    updateQuery(e: InputEvent) {
         const term = (<HTMLInputElement>e.target).value;
         if (term.length > 0) {
-            query.next(term.toLowerCase());
-            pageID.next(0);
+            this.query.next(term.toLowerCase());
+            this.pager.setPage(0);
         }
-    };
+    }
 
-    // event handlers for pager buttons
-    const updatePage = (step: number) =>
-        pageID.next(clamp(pageID.deref()! + step, 0, maxPageID.deref() || 0));
-
-    const setPage = (id: number) => pageID.next(id);
-
-    // pagination component
-    const pager = [
-        "div.mv2.w-100",
-        {
-            style: {
-                // only show if there's a need for it...
-                display: maxPageID.transform(
-                    map((x) => (x > 0 ? "flex" : "none"))
-                ),
-            },
-        },
-        [
-            "div.w-33.tl",
+    async mount(parent: Element) {
+        this.wrapper = $compile([
+            "div.ma2.measure-ns.center-ns.f7.f6-ns",
             {},
-            ["button", { onclick: () => setPage(0) }, "<<"],
-            ["button", { onclick: () => updatePage(-1) }, "<"],
-        ],
-        [
-            "div.w-34.tc",
-            {},
-            pageID.transform(map((x) => x + 1)),
-            " / ",
-            maxPageID.transform(map((x) => x + 1)),
-        ],
-        [
-            "div.w-33.tr",
-            {},
-            ["button", { onclick: () => updatePage(1) }, ">"],
-            ["button", { onclick: () => setPage(maxPageID.deref()!) }, ">>"],
-        ],
-    ];
-
-    // compile component tree, including embedded reactive values/streams
-    // and controlflow structures (uses tachyons CSS classes for styling)
-    $compile([
-        "div.ma2.measure-ns.center-ns.f7.f6-ns",
-        {},
-        ["h1.mv0", {}, "thi.ng/umbrella doc search"],
-        ["div.mb2.f7", {}, ["a.link.blue", { href: SRC_URL }, "Source code"]],
-        [
-            "input.w-100.mv2.pa2",
-            {
-                type: "text",
-                autofocus: true,
-                oninput: updateQuery,
-                value: query,
-            },
-        ],
-        // query result & search index stats
-        [
-            "div.mv2",
-            {},
-            // derived view of result stream to compute number of results
-            queryResults.transform(map((results) => results.length)),
-            ` results (total keys: ${INDEX.numKeys} in ${INDEX.packages.length} packages, ${INDEX.numFiles} files)`,
-        ],
-        // include/embed pagination controls
-        pager,
-        // reactive list component (for search results)
-        // the function arg is used to create new list items if needed
-        $list(resultPage, "ul.list.pl0", {}, ([suffix, file]) => [
-            "li",
-            {},
+            ["h1.mv0", {}, "thi.ng/umbrella doc search"],
             [
-                "span",
+                "div.mb2.f7",
                 {},
-                // use .deref() here to avoid unnecessary subscriptions
-                ["span.b.bg-washed-green", {}, query.deref()],
-                `${suffix}: `,
+                ["a.link.blue", { href: SRC_URL }, "Source code"],
             ],
-            ["a.link.blue", { href: BASE_URL + file, target: "_new" }, file],
-        ]),
-    ]).mount(document.getElementById("app")!);
-})();
+        ]);
+        this.el = await this.wrapper.mount(parent);
+
+        // show preloader
+        const loader = this.$el(
+            "div.ma2.measure-ns.center-ns.f7.f6-ns",
+            {},
+            "Loading search index...",
+            this.el
+        );
+
+        try {
+            // load & decode msgpacked binary search index
+            const resp = await fetch(INDEX_URL);
+            if (resp.status >= 400)
+                throw new Error("Failed to load search index");
+            const buf = await resp.arrayBuffer();
+            const index: SearchIndex = timed(() => deserialize(buf));
+
+            // remove preloader
+            this.$remove(loader);
+
+            // init local state
+            this.query = stream<string>();
+            this.query.next(INITIAL_QUERY);
+            // build results as transformation of query stream
+            // first debounce query stream (for fast typers)
+            this.queryResults = this.query
+                .subscribe(debounce(100))
+                .transform(map((q) => search(index, q, "") || []));
+
+            // setup pagination
+            this.pager = new Pagination(this.queryResults, PAGE_SIZE);
+
+            // compile inner component tree, including embedded reactive
+            // values/streams and controlflow structures
+            this.inner = $compile([
+                "div",
+                {},
+                [
+                    "input.w-100.mv2.pa2",
+                    {
+                        type: "text",
+                        autofocus: true,
+                        oninput: this.updateQuery.bind(this),
+                        value: this.query,
+                    },
+                ],
+                // query result & search index stats
+                [
+                    "div.mv2",
+                    {},
+                    // derived view of result stream to compute number of results
+                    this.queryResults.transform(
+                        map((results) => results.length)
+                    ),
+                    " results",
+                    [
+                        "div",
+                        {},
+                        `(total: ${index.numVals}, keys: ${index.numKeys} in ${index.packages.length} packages, ${index.numFiles} files)`,
+                    ],
+                ],
+                // pagination controls
+                pageControls(this.pager),
+                // reactive list component of paginated search results
+                // the function arg is used to create new list items if needed
+                $list(
+                    this.pager.resultPage,
+                    "ul.list.pl0",
+                    {},
+                    ([suffix, file]) => [
+                        "li",
+                        {},
+                        [
+                            "span",
+                            {},
+                            // use .deref() here to avoid unnecessary subscriptions
+                            ["span.b.bg-washed-green", {}, this.query.deref()],
+                            `${suffix}: `,
+                        ],
+                        [
+                            "a.link.blue",
+                            {
+                                href: BASE_URL + file,
+                                target: "_new",
+                            },
+                            file,
+                        ],
+                    ]
+                ),
+            ]);
+            this.inner.mount(this.el);
+        } catch (e) {
+            $body(<HTMLElement>loader, e);
+        }
+        return this.el;
+    }
+
+    // not needed here, just for reference...
+    async unmount() {
+        this.inner.unmount();
+        this.wrapper.unmount();
+        this.pager.release();
+    }
+}
+
+new DocSearch().mount(document.getElementById("app")!);

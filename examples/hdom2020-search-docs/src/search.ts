@@ -1,17 +1,21 @@
 import { IObjectOf } from "@thi.ng/api";
 import { compareByKeys2 } from "@thi.ng/compare";
 
-type PackedTrie = [IObjectOf<PackedTrie>, number[]?];
+export type PackedTrie = [IObjectOf<PackedTrie>, number[]?];
 
-interface SearchIndex {
+export interface SearchIndex {
+    bits: number[][];
     packages: string[];
     files: string[];
     root: PackedTrie;
     numFiles: number;
     numKeys: number;
+    numVals: number;
 }
 
-const decode = (id: number) => [id & 0xff, (id >>> 8) & 0xfff, id >>> 20];
+const defDecoder = ([[psh, pmsk], [fsh, fmsk], [lsh, lmsk]]: number[][]) => (
+    id: number
+) => [(id >>> psh) & pmsk, (id >>> fsh) & fmsk, (id >>> lsh) & lmsk];
 
 const find = (node: PackedTrie, key: string) => {
     for (let i = 0, n = key.length; node && i < n; i++) {
@@ -33,11 +37,12 @@ const suffixes = (
 };
 
 export const search = (
-    { packages, files, root }: SearchIndex,
+    { bits, packages, files, root }: SearchIndex,
     key: string,
     prefix = key
 ) => {
     root = find(root, key);
+    const decode = defDecoder(bits);
     return root
         ? suffixes(root, prefix)
               .map(([k, val]) => {
