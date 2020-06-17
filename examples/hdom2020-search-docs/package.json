@@ -1,7 +1,7 @@
 {
     "name": "hdom2020-search-docs",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "Full umbrella repo doc string search w/ paginated results",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
@@ -22,7 +22,8 @@
         "@thi.ng/hdom2020": "latest",
         "@thi.ng/math": "latest",
         "@thi.ng/rstream": "latest",
-        "@thi.ng/transducers": "latest"
+        "@thi.ng/transducers": "latest",
+        "@ygoe/msgpack": "^1.0.2"
     },
     "browserslist": [
         "last 3 Chrome versions"
@@ -30,5 +31,12 @@
     "browser": {
         "process": false
     },
-    "thi.ng": {}
+    "thi.ng": {
+        "readme": [
+            "compare",
+            "hdom2020",
+            "rstream",
+            "transducers"
+        ]
+    }
 }

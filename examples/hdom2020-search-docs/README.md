@@ -4,19 +4,15 @@
 
 [@thi.ng/hdom2020](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom2020)
 based docstring search example for the entire thi.ng/umbrella repo
-(currently ~23k search terms and 1540 source files indexed).
+(currently ~22k results and 1600+ source files indexed).
+
+**IMPORTANT**: The search index will be dynamically loaded from the
+[docs.thi.ng](https://docs.thi.ng) website. It's a binary file created
+by [this tool
+script](https://github.com/thi-ng/umbrella/tree/develop/packages/tools/src/build-search-index.ts)
+and encoded with [msgpack](https://msgpack.org/).
 
 ## Building
-
-**IMPORTANT: The search index (`search.json`) is not checked into git
-(~350KB) and must be downloaded from:**
-
-https://gist.github.com/postspectacular/8370adeaf262299065db4aa5849e40d7
-
-Without it, the example will work. The search index itself was generated
-with a yet-to-be-published source file indexing tool (using the Trie
-implementation of
-[@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative)).
 
 Please refer to the [example build instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions) on the wiki.
 

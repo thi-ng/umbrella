@@ -47,15 +47,17 @@ yarn add @thi.ng/hdom2020
 <script src="https://unpkg.com/@thi.ng/hdom2020/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.34 KB / CJS: 3.48 KB / UMD: 3.49 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.64 KB / CJS: 3.79 KB / UMD: 3.79 KB
 
 ## Dependencies
 
+- [@thi.ng/adapt-dpi](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/packages/adapt-dpi)
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/packages/api)
 - [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/packages/atom)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/packages/checks)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/packages/errors)
 - [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/packages/hiccup)
+- [@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/packages/hiccup-canvas)
 - [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/packages/paths)
 - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/packages/rstream)
 
@@ -67,10 +69,11 @@ directory are using this package.
 
 A selection:
 
-| Description                           | Live demo                                                | Source                                                                                         |
-| ------------------------------------- | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| hdom2020 test sandbox / POC           | [Demo](https://demo.thi.ng/umbrella/hdom2020-basics/)    | [Source](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/examples/hdom2020-basics)    |
-| hdom2020 & hiccup-canvas interop test | [Demo](https://demo.thi.ng/umbrella/hdom2020-lissajous/) | [Source](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/examples/hdom2020-lissajous) |
+| Description                                               | Live demo                                                  | Source                                                                                           |
+| --------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| hdom2020 test sandbox / POC                               | [Demo](https://demo.thi.ng/umbrella/hdom2020-basics/)      | [Source](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/examples/hdom2020-basics)      |
+| hdom2020 & hiccup-canvas interop test                     | [Demo](https://demo.thi.ng/umbrella/hdom2020-lissajous/)   | [Source](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/examples/hdom2020-lissajous)   |
+| Full umbrella repo doc string search w/ paginated results | [Demo](https://demo.thi.ng/umbrella/hdom2020-search-docs/) | [Source](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/examples/hdom2020-search-docs) |
 
 ## API
 
