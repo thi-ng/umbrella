@@ -1,8 +1,13 @@
 import { ArraySet, Trie } from "@thi.ng/associative";
+import { serialize } from "@ygoe/msgpack";
 import { readdirSync, readFileSync, statSync, writeFileSync } from "fs";
 import { readJSON } from "./io";
-import { build, encode } from "./search";
-import { serialize } from "@ygoe/msgpack";
+import { build, defEncoder } from "./search";
+
+const RE_DOC_START = /^\s*\/\*\*$/;
+const RE_DOC_END = /^\s+\*\/$/;
+const RE_DOC_CODE = /^\s+\* \`\`\`/;
+const RE_SYM = /^export (type|interface|class|const|function|enum) (\w+)/;
 
 /**
  * Recursively reads given directory and returns file names matching
@@ -40,6 +45,13 @@ const pkgIDs = new Map<string, number>();
 const index = new EquivTrie<IndexValue>();
 const ignore = new Set(readJSON("./tools/ignore-words.json"));
 
+const encodeConfig = [
+    [0, 0xff],
+    [8, 0xfff],
+    [20, 0xfff],
+];
+const encode = defEncoder(encodeConfig);
+
 let numFiles = 0;
 for (let f of files("packages", ".ts")) {
     if (f.indexOf("/src/") < 0) continue;
@@ -58,21 +70,19 @@ for (let f of files("packages", ".ts")) {
     const knownWords = new Set<string>();
     for (let line of src.split("\n")) {
         ln++;
-        if (line === "/**") {
+        if (RE_DOC_START.test(line)) {
             isComment = true;
             continue;
         }
-        if (line === " */") {
+        if (RE_DOC_END.test(line)) {
             isComment = false;
             continue;
         }
-        if (line.startsWith(" * ```")) {
+        if (RE_DOC_CODE.test(line)) {
             isCode = !isCode;
             continue;
         }
-        const sym = /^export (type|interface|class|const|function|enum) (\w+)/.exec(
-            line
-        );
+        const sym = RE_SYM.exec(line);
         if (sym) {
             const word = sym[2].toLowerCase();
             if (word.length < 3 || ignore.has(word) || word.startsWith("_"))
@@ -103,10 +113,12 @@ for (let f of files("packages", ".ts")) {
 }
 
 const packed = build(
+    encodeConfig,
     pkgIDs,
     fileIDs,
     numFiles,
     [...index.keys()].length,
+    [...index.values()].length,
     index
 );
 

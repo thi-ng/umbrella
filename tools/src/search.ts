@@ -1,23 +1,33 @@
 import { IObjectOf } from "@thi.ng/api";
 import { Trie } from "@thi.ng/associative";
+import { compareByKeys2 } from "@thi.ng/compare";
 
 type PackedTrie = [IObjectOf<PackedTrie>, number[]?];
 
 interface SearchIndex {
+    bits: number[][];
     packages: string[];
     files: string[];
     root: PackedTrie;
     numFiles: number;
     numKeys: number;
+    numVals: number;
 }
 
-export const encode = (pkg: number, file: number, line: number) =>
-    (line << 20) | (file << 8) | pkg;
+export const defEncoder = ([[psh], [fsh], [lsh]]: number[][]) => (
+    pkg: number,
+    file: number,
+    line: number
+) => (line << lsh) | (file << fsh) | (pkg << psh);
 
-export const decode = (id: number) => [
-    id & 0xff,
-    (id >>> 8) & 0xfff,
-    id >>> 20,
+export const defDecoder = ([
+    [psh, pmsk],
+    [fsh, fmsk],
+    [lsh, lmsk],
+]: number[][]) => (id: number) => [
+    (id >>> psh) & pmsk,
+    (id >>> fsh) & fmsk,
+    (id >>> lsh) & lmsk,
 ];
 
 const pack = (trie: Trie<string, number>): PackedTrie => {
@@ -37,17 +47,21 @@ const mapToArray = (m: Map<string, number>) => {
 };
 
 export const build = (
+    bits: number[][],
     pkgs: Map<string, number>,
     files: Map<string, number>,
     numFiles: number,
     numKeys: number,
+    numVals: number,
     trie: Trie<string, number>
 ): SearchIndex => ({
+    bits,
     packages: mapToArray(pkgs),
     files: mapToArray(files),
     root: pack(trie),
     numFiles,
     numKeys,
+    numVals,
 });
 
 export const find = (node: PackedTrie, key: string) => {
@@ -69,12 +83,19 @@ export const suffixes = (
     return acc;
 };
 
-export const search = ({ packages, files, root }: SearchIndex, key: string) => {
+export const search = (
+    { bits, packages, files, root }: SearchIndex,
+    key: string,
+    prefix = key
+) => {
     root = find(root, key);
+    const decode = defDecoder(bits);
     return root
-        ? suffixes(root, key).map(([k, val]) => {
-              const [p, f, ln] = decode(val);
-              return [k, `${packages[p]}/src/${files[f]}.ts#L${ln}`];
-          })
+        ? suffixes(root, prefix)
+              .map(([k, val]) => {
+                  const [p, f, ln] = decode(val);
+                  return [k, `${packages[p]}/src/${files[f]}.ts#L${ln}`];
+              })
+              .sort(compareByKeys2(0, 1))
         : undefined;
 };
