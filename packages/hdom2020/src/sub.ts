@@ -5,7 +5,7 @@ import { ISubscribable, Subscription } from "@thi.ng/rstream";
 import type { IComponent, IMountWithState } from "./api";
 import { $attribs } from "./dom";
 import { SCHEDULER } from "./scheduler";
-import { $wrap } from "./wrap";
+import { $wrapText } from "./wrap";
 
 export function $sub<T>(
     src: ISubscribable<T>,
@@ -22,7 +22,7 @@ export function $sub(
     attribs?: any
 ): IComponent {
     return isString(tag)
-        ? <$Sub>src.subscribe(new $Sub($wrap(tag, attribs)))
+        ? <$Sub>src.subscribe(new $Sub($wrapText(tag, attribs)))
         : <$Sub>src.subscribe(new $Sub(tag));
 }
 

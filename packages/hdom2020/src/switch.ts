@@ -4,7 +4,7 @@ import type { IComponent, IMountWithState } from "./api";
 import { $compile } from "./compile";
 import { Component } from "./component";
 import { $sub } from "./sub";
-import { $wrap } from "./wrap";
+import { $wrapText } from "./wrap";
 
 export const $switch = <T>(
     src: ISubscribable<T>,
@@ -27,7 +27,7 @@ export class Switch<T> extends Component implements IMountWithState<T> {
     constructor(
         protected keyFn: Fn<T, NumOrString>,
         protected ctors: Record<NumOrString, Fn<T, Promise<any>>>,
-        protected loader: IComponent = $wrap("span", { hidden: true })
+        protected loader: IComponent = $wrapText("span", { hidden: true })
     ) {
         super();
     }

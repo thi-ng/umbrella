@@ -5,7 +5,7 @@ import { $el, $removeChild } from "./dom";
 import { SCHEDULER } from "./scheduler";
 import { $sub, $SubA } from "./sub";
 import { isComponent, isSubscribable } from "./utils";
-import { $wrap } from "./wrap";
+import { $wrapText } from "./wrap";
 
 /**
  * Compiles a tree of components given in any supported format incl.
@@ -76,7 +76,7 @@ export const $compile = (tree: any): IComponent => {
     if (isSubscribable(tree)) {
         return $sub(tree, "span");
     }
-    return $wrap("span", null, tree);
+    return $wrapText("span", null, tree);
 };
 
 const walk = (f: Fn2<any, string[], void>, x: any, path: string[] = []) => {

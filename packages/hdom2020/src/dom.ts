@@ -1,4 +1,4 @@
-import { deref, isDeref } from "@thi.ng/api";
+import { deref, isDeref, MaybeDeref } from "@thi.ng/api";
 import {
     implementsFunction,
     isArray,
@@ -115,7 +115,7 @@ export const $el = (
         ? document.createElementNS(SVG_NS, tag)
         : document.createElement(tag);
     attribs && $attribs(el, attribs);
-    body != null && $body(<any>el, body);
+    body != null && $text(<any>el, body);
     parent && $addChild(parent, el, idx);
     return el;
 };
@@ -145,8 +145,12 @@ export const $move = (
 
 export const $clear = (el: Element) => ((el.innerHTML = ""), el);
 
-export const $body = (el: HTMLElement, body: any) => {
+export const $text = (el: HTMLElement, body: any) => {
     el.innerText = String(deref(body));
+};
+
+export const $html = (el: HTMLElement, body: MaybeDeref<string>) => {
+    el.innerHTML = deref(body);
 };
 
 export const $attribs = (el: Element, attribs: any) => {

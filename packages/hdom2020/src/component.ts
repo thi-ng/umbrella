@@ -1,13 +1,15 @@
+import type { MaybeDeref } from "@thi.ng/api";
 import type { IComponent } from "./api";
 import { $compile } from "./compile";
 import {
     $attribs,
-    $body,
     $clear,
     $el,
+    $html,
     $move,
     $removeChild,
     $style,
+    $text,
     $tree,
 } from "./dom";
 
@@ -51,8 +53,12 @@ export abstract class Component<T = any> implements IComponent<T> {
         return $tree(tree, root);
     }
 
-    $body(body: any) {
-        this.el && $body(<any>this.el, body);
+    $text(body: any) {
+        this.el && $text(<any>this.el, body);
+    }
+
+    $html(body: MaybeDeref<string>) {
+        this.el && $html(<any>this.el, body);
     }
 
     $attribs(attribs: any, el = this.el!) {
