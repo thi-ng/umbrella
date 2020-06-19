@@ -47,7 +47,7 @@ yarn add @thi.ng/hdom2020
 <script src="https://unpkg.com/@thi.ng/hdom2020/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.64 KB / CJS: 3.79 KB / UMD: 3.79 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.75 KB / CJS: 3.90 KB / UMD: 3.89 KB
 
 ## Dependencies
 
