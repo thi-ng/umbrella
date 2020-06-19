@@ -135,14 +135,14 @@ export const $addChild = (
         : parent.insertBefore(child, idx);
 };
 
-export const $removeChild = (el: Element) => el.parentNode!.removeChild(el);
+export const $remove = (el: Element) => el.remove(); //el.parentNode!.removeChild(el);
 
 export const $move = (
     el: Element,
     newParent: Element,
     idx: NumOrElement = -1
 ) => {
-    $removeChild(el);
+    $remove(el);
     $addChild(newParent, el, idx);
 };
 

@@ -7,7 +7,7 @@ import {
     $el,
     $html,
     $move,
-    $removeChild,
+    $remove,
     $style,
     $text,
     $tree,
@@ -74,7 +74,7 @@ export abstract class Component<T = any> implements IComponent<T> {
     }
 
     $remove(el = this.el!) {
-        $removeChild(el);
+        $remove(el);
     }
 
     $moveTo(newParent: Element, el = this.el!, idx = -1) {

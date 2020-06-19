@@ -1,6 +1,6 @@
 import type { Fn2 } from "@thi.ng/api";
 import type { IMountWithState, NumOrElement } from "./api";
-import { $el, $html, $removeChild, $text } from "./dom";
+import { $el, $html, $remove, $text } from "./dom";
 import { SCHEDULER } from "./scheduler";
 
 const wrapper = <T>(update: Fn2<HTMLElement, T, void>) => (
@@ -17,7 +17,7 @@ const wrapper = <T>(update: Fn2<HTMLElement, T, void>) => (
     },
 
     async unmount() {
-        $removeChild(this.el!);
+        $remove(this.el!);
         this.el = undefined;
     },
 

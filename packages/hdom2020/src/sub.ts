@@ -1,4 +1,4 @@
-import type { Fn2 } from "@thi.ng/api";
+import type { Fn2, NumOrString } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks";
 import { defSetterUnsafe } from "@thi.ng/paths";
 import { ISubscribable, Subscription } from "@thi.ng/rstream";
@@ -61,7 +61,7 @@ export class $SubA extends Subscription<any, any> {
     protected setter: Fn2<any, any, any>;
     protected tmp: any = {};
 
-    constructor(protected comp: IComponent, path: string[]) {
+    constructor(protected comp: IComponent, path: NumOrString[]) {
         super();
         this.setter = defSetterUnsafe(path);
     }
