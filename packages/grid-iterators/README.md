@@ -42,6 +42,10 @@ Provides the 10 following orderings to generate grid coordinates:
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/diagonal.ts)
 
+Also see the filtered version
+[`diagonalEnds2d()`](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/diagonal-ends.ts),
+which only includes end points of the diagonals.
+
 ### Hilbert curve
 
 ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/hilbert2d-small.gif)
@@ -143,7 +147,7 @@ yarn add @thi.ng/grid-iterators
 <script src="https://unpkg.com/@thi.ng/grid-iterators/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.24 KB / CJS: 1.34 KB / UMD: 1.40 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.30 KB / CJS: 1.42 KB / UMD: 1.48 KB
 
 ## Dependencies
 
