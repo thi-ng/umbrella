@@ -1,6 +1,6 @@
 import type { Fn, Fn2, NumOrString } from "@thi.ng/api";
 import type { ISubscribable } from "@thi.ng/rstream";
-import type { IComponent } from "./api";
+import type { IComponent, NumOrElement } from "./api";
 import { $compile } from "./compile";
 import { Component } from "./component";
 import { $move } from "./dom";
@@ -33,11 +33,11 @@ export class KList<T> extends Component<T[]> {
         super();
     }
 
-    async mount(parent: Element, state: T[]) {
+    async mount(parent: Element, index: NumOrElement, state: T[]) {
         this.children = [];
         this.cache = new Map();
         this.root = $compile([this.tag, this.attribs]);
-        this.el = await this.root.mount(parent);
+        this.el = await this.root.mount(parent, index);
         this.update(state);
         return this.el!;
     }
@@ -90,8 +90,7 @@ export class KList<T> extends Component<T[]> {
                 $move(child.component.el!, root, next);
                 next = child.component.el!;
             } else {
-                const el = await child.component.mount(root);
-                $move(el, root, next);
+                const el = await child.component.mount(root, next);
                 cache!.set(child.key, child);
                 next = el;
             }

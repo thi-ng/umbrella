@@ -1,6 +1,6 @@
 import type { Fn, Keys } from "@thi.ng/api";
 import { fromObject, StreamObj, StreamObjOpts } from "@thi.ng/rstream";
-import type { IComponent } from "./api";
+import type { IComponent, NumOrElement } from "./api";
 import { Component } from "./component";
 
 export const $object = <T, K extends Keys<T>>(
@@ -22,9 +22,9 @@ export class $Object<T, K extends Keys<T>> extends Component {
         this.obj = fromObject(src, opts);
     }
 
-    async mount(parent: Element) {
+    async mount(parent: Element, index: NumOrElement = -1) {
         this.inner = this.$compile(this.ctor(this.obj.streams));
-        this.el = await this.inner.mount(parent);
+        this.el = await this.inner.mount(parent, index);
         return this.el!;
     }
 

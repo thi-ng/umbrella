@@ -1,6 +1,6 @@
 import { assert, Fn, NumOrString } from "@thi.ng/api";
 import type { ISubscribable } from "@thi.ng/rstream";
-import type { IComponent, IMountWithState } from "./api";
+import type { IComponent, IMountWithState, NumOrElement } from "./api";
 import { $compile } from "./compile";
 import { Component } from "./component";
 import { $sub } from "./sub";
@@ -23,6 +23,7 @@ export class Switch<T> extends Component implements IMountWithState<T> {
     protected val?: T;
     protected parent?: Element;
     protected inner?: IComponent<T>;
+    protected index?: NumOrElement;
 
     constructor(
         protected keyFn: Fn<T, NumOrString>,
@@ -32,8 +33,9 @@ export class Switch<T> extends Component implements IMountWithState<T> {
         super();
     }
 
-    async mount(parent: Element, val: T) {
+    async mount(parent: Element, index: NumOrElement, val: T) {
         this.parent = parent;
+        this.index = index;
         await this.update(val);
         return this.inner!.el!;
     }
@@ -49,7 +51,7 @@ export class Switch<T> extends Component implements IMountWithState<T> {
         this.inner && (await this.inner.unmount());
         if (val != null && val !== this.val) {
             this.val = val;
-            this.loader && (await this.loader.mount(this.parent!));
+            this.loader && (await this.loader.mount(this.parent!, this.index!));
             const key = this.keyFn(val);
             const next = this.ctors[key];
             assert(!!next, `missing component for key: ${key}`);
@@ -58,6 +60,6 @@ export class Switch<T> extends Component implements IMountWithState<T> {
         } else {
             this.loader && (this.inner = this.loader);
         }
-        this.inner && (await this.inner.mount(this.parent!));
+        this.inner && (await this.inner.mount(this.parent!, this.index!));
     }
 }

@@ -2,7 +2,7 @@ import type { Fn2 } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks";
 import { defSetterUnsafe } from "@thi.ng/paths";
 import { ISubscribable, Subscription } from "@thi.ng/rstream";
-import type { IComponent, IMountWithState } from "./api";
+import type { IComponent, IMountWithState, NumOrElement } from "./api";
 import { $attribs } from "./dom";
 import { SCHEDULER } from "./scheduler";
 import { $wrapText } from "./wrap";
@@ -33,8 +33,12 @@ export class $Sub<T = any> extends Subscription<T, T> {
         super();
     }
 
-    async mount(parent: Element) {
-        return (this.el = await this.inner.mount(parent, this.parent!.deref()));
+    async mount(parent: Element, index: NumOrElement = -1) {
+        return (this.el = await this.inner.mount(
+            parent,
+            index,
+            this.parent!.deref()
+        ));
     }
 
     async unmount() {

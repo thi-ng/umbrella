@@ -4,7 +4,7 @@ import { implementsFunction } from "@thi.ng/checks";
 import { draw } from "@thi.ng/hiccup-canvas";
 import { ISubscribable, Subscription, trigger } from "@thi.ng/rstream";
 import { sideEffect } from "@thi.ng/transducers";
-import type { IComponent, IMountWithState } from "./api";
+import type { IComponent, IMountWithState, NumOrElement } from "./api";
 import { Component } from "./component";
 import { $sub } from "./sub";
 import { isSubscribable } from "./utils";
@@ -47,9 +47,13 @@ export class $Canvas extends Component
         );
     }
 
-    async mount(parent: Element, shapes: any[] | IToHiccup) {
+    async mount(
+        parent: Element,
+        index: NumOrElement,
+        shapes: any[] | IToHiccup
+    ) {
         this.inner = this.$compile(["canvas", this.attribs]);
-        this.el = <HTMLCanvasElement>await this.inner.mount(parent);
+        this.el = <HTMLCanvasElement>await this.inner.mount(parent, index);
         this.ctx = this.el.getContext("2d")!;
         this.resize(this.size.deref()!);
         this.update(shapes);

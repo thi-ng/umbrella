@@ -17,14 +17,26 @@ export interface IComponent<T = any> {
     el?: Element;
     /**
      * Async component lifecycle method to initialize & attach the
-     * component in the target DOM. The optional additional varargs are
-     * only used by some component wrappers and are context specific to
-     * each.
+     * component in the target DOM.
      *
-     * @param parent
-     * @param xs
+     * The `index` arg is used to define the child index of where to
+     * mount the component in the parent element and SHOULD default to
+     * -1, causing the component to be appended to (rather than inserted
+     * into) the list of children. The `index` arg MUST be passed to any
+     * DOM creation functions used within `mount()` (e.g. {@link el},
+     * {@link $tree}). Likewise, for control-flow or wrapper components,
+     * the `index` arg MUST be used when mounting child components
+     * in-place of the wrapper component itself (e.g. see {@link $list},
+     * {@link $klist}, {@link $sub} etc.).
+     *
+     * The optional additional varargs are only used by some component
+     * wrappers and are context specific to each.
+     *
+     * @param parent -
+     * @param idx -
+     * @param xs -
      */
-    mount(parent: Element, ...xs: any[]): Promise<Element>;
+    mount(parent: Element, idx?: NumOrElement, ...xs: any[]): Promise<Element>;
     /**
      * Async component lifecycle method to remove the component from the
      * target DOM and release any other internal resources (e.g.
@@ -53,9 +65,10 @@ export interface IMountWith<T, M> extends IComponent<T> {
      * state value, presumably meant for populating component.
      *
      * @param parent
+     * @param index
      * @param state
      */
-    mount(parent: Element, state: M): Promise<Element>;
+    mount(parent: Element, index: NumOrElement, state: M): Promise<Element>;
 }
 
 /**
@@ -82,6 +95,8 @@ export type ComponentLike = IComponent | [string | Function, ...(any | null)[]];
 export type Callback = Fn0<void>;
 
 export type Task = Fn0<void>;
+
+export type NumOrElement = number | Element;
 
 /**
  * Interface for task schedulers. See {@link NullScheduler} and

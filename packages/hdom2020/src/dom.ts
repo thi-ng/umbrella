@@ -9,6 +9,7 @@ import {
 } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { RE_TAG, SVG_NS, SVG_TAGS } from "@thi.ng/hiccup";
+import type { NumOrElement } from "./api";
 import { isComponent } from "./utils";
 
 /**
@@ -35,7 +36,7 @@ import { isComponent } from "./utils";
 export const $tree = async (
     tree: any,
     parent: Element,
-    idx = -1
+    idx: NumOrElement = -1
 ): Promise<any> => {
     if (isArray(tree)) {
         const tag = tree[0];
@@ -48,7 +49,7 @@ export const $tree = async (
             return parent;
         }
         if (isComponent(tag)) {
-            return tag.mount(parent, ...tree.slice(1));
+            return tag.mount(parent, idx, ...tree.slice(1));
         }
         if (isFunction(tag)) {
             return $tree(tag.apply(null, tree.slice(1)), parent);
@@ -56,7 +57,7 @@ export const $tree = async (
         illegalArgs(`tag not supported: ${tag}`);
     }
     if (isComponent(tree)) {
-        return tree.mount(parent);
+        return tree.mount(parent, idx);
     }
     if (isDeref(tree)) {
         return $tree(tree.deref(), parent);
@@ -66,7 +67,9 @@ export const $tree = async (
             $tree(t, parent);
         }
     }
-    return tree != null ? $el("span", null, tree, <HTMLElement>parent) : null;
+    return tree != null
+        ? $el("span", null, tree, <HTMLElement>parent, idx)
+        : null;
 };
 
 /**
@@ -91,7 +94,7 @@ export const $el = (
     attribs: any,
     body?: any,
     parent?: Element,
-    idx: Element | number = -1
+    idx: NumOrElement = -1
 ) => {
     const match = RE_TAG.exec(tag);
     if (match) {
@@ -123,7 +126,7 @@ export const $el = (
 export const $addChild = (
     parent: Element,
     child: Element,
-    idx: Element | number = -1
+    idx: NumOrElement = -1
 ) => {
     isNumber(idx)
         ? idx < 0 || idx >= parent.children.length
@@ -137,7 +140,7 @@ export const $removeChild = (el: Element) => el.parentNode!.removeChild(el);
 export const $move = (
     el: Element,
     newParent: Element,
-    idx: Element | number = -1
+    idx: NumOrElement = -1
 ) => {
     $removeChild(el);
     $addChild(newParent, el, idx);

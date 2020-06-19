@@ -1,6 +1,6 @@
 import type { Fn2 } from "@thi.ng/api";
 import { isArray, isFunction, isPlainObject } from "@thi.ng/checks";
-import type { CompiledComponent, IComponent } from "./api";
+import type { CompiledComponent, IComponent, NumOrElement } from "./api";
 import { $el, $removeChild } from "./dom";
 import { SCHEDULER } from "./scheduler";
 import { $sub, $SubA } from "./sub";
@@ -36,17 +36,17 @@ export const $compile = (tree: any): IComponent => {
             return $compile(tag.apply(null, tree.slice(1)));
         }
         const el: CompiledComponent = {
-            async mount(parent: Element) {
+            async mount(parent: Element, index: NumOrElement = -1) {
                 this.subs = [];
                 walk((x, path) => {
                     isSubscribable(x) &&
                         this.subs!.push(x.subscribe(new $SubA(this, path)));
                 }, tree[1]);
                 this.children = [];
-                this.el = $el(tag, tree[1], null, parent);
+                this.el = $el(tag, tree[1], null, parent, index);
                 for (let i = 2; i < tree.length; i++) {
                     const child = $compile(tree[i]);
-                    child.mount(this.el);
+                    child.mount(this.el, i - 2);
                     this.children.push(child);
                 }
                 return this.el;

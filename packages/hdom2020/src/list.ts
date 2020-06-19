@@ -1,8 +1,7 @@
 import type { Fn, Predicate2 } from "@thi.ng/api";
 import type { ISubscribable } from "@thi.ng/rstream";
-import type { IComponent, IMountWithState } from "./api";
+import type { IComponent, IMountWithState, NumOrElement } from "./api";
 import { $compile } from "./compile";
-import { $move } from "./dom";
 import { $sub } from "./sub";
 
 export const $list = <T>(
@@ -26,11 +25,11 @@ export class List<T> implements IMountWithState<T[]> {
         protected equiv: Predicate2<T> = (a, b) => a === b
     ) {}
 
-    async mount(parent: Element, state: T[]) {
+    async mount(parent: Element, index: NumOrElement, state: T[]) {
         this.items = [];
         this.children = [];
         this.root = $compile([this.tag, this.attribs]);
-        this.el = await this.root.mount(parent);
+        this.el = await this.root.mount(parent, index);
         this.update(state);
         return this.el;
     }
@@ -59,7 +58,7 @@ export class List<T> implements IMountWithState<T[]> {
                 await children[i].unmount();
                 const val = curr[i];
                 const child = $compile(ctor(val));
-                $move(await child.mount(root), root, i);
+                await child.mount(root, i);
                 children[i] = child;
                 prev[i] = val;
             }
@@ -68,7 +67,7 @@ export class List<T> implements IMountWithState<T[]> {
             for (; n < nb; n++) {
                 const val = curr[n];
                 const child = $compile(ctor(val));
-                child.mount(root);
+                child.mount(root, -1);
                 children[n] = child;
                 prev[n] = val;
             }

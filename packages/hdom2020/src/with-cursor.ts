@@ -1,7 +1,7 @@
 import type { Path } from "@thi.ng/api";
 import { defCursorUnsafe } from "@thi.ng/atom";
 import type { IAtom } from "@thi.ng/atom";
-import type { IMountWithAtom } from "./api";
+import type { IMountWithAtom, NumOrElement } from "./api";
 import { Component } from "./component";
 import { SCHEDULER } from "./scheduler";
 
@@ -26,8 +26,8 @@ export class WithCursor<T> extends Component<IAtom<T>> {
         });
     }
 
-    async mount(parent: Element) {
-        return (this.el = await this.inner.mount(parent, this.state));
+    async mount(parent: Element, index: NumOrElement = -1) {
+        return (this.el = await this.inner.mount(parent, index, this.state));
     }
 
     async unmount() {

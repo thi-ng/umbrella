@@ -1,5 +1,5 @@
 import type { MaybeDeref } from "@thi.ng/api";
-import type { IComponent } from "./api";
+import type { IComponent, NumOrElement } from "./api";
 import { $compile } from "./compile";
 import {
     $attribs,
@@ -21,7 +21,11 @@ import {
 export abstract class Component<T = any> implements IComponent<T> {
     el?: Element;
 
-    abstract mount(parent: Element, ...xs: any[]): Promise<Element>;
+    abstract mount(
+        parent: Element,
+        index?: NumOrElement,
+        ...xs: any[]
+    ): Promise<Element>;
 
     async unmount() {
         this.$remove();

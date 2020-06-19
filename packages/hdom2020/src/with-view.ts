@@ -1,7 +1,7 @@
 import type { Path } from "@thi.ng/api";
 import { defViewUnsafe } from "@thi.ng/atom";
 import type { IAtom, IView } from "@thi.ng/atom";
-import type { IMountWithState } from "./api";
+import type { IMountWithState, NumOrElement } from "./api";
 import { Component } from "./component";
 import { SCHEDULER } from "./scheduler";
 
@@ -30,8 +30,12 @@ export class WithView<T> extends Component {
         );
     }
 
-    async mount(parent: Element) {
-        return (this.el = await this.inner.mount(parent, this.view.deref()!));
+    async mount(parent: Element, index: NumOrElement = -1) {
+        return (this.el = await this.inner.mount(
+            parent,
+            index,
+            this.view.deref()!
+        ));
     }
 
     async unmount() {
