@@ -4,7 +4,7 @@ import {
     $list,
     Component,
     IComponent,
-    $body,
+    $text,
 } from "@thi.ng/hdom2020";
 import { debounce, Stream, stream, Subscription } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
@@ -138,7 +138,7 @@ class DocSearch extends Component {
             ]);
             this.inner.mount(this.el);
         } catch (e) {
-            $body(<HTMLElement>loader, e);
+            $text(<HTMLElement>loader, e);
         }
         return this.el;
     }
