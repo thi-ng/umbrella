@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hdom2020",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "Experimental exploration for a new @thi.ng/hdom w/ entirely new, largely reactive & diff-less approach. WARNING: Your existing code WILL break!",
     "module": "./index.js",
     "main": "./lib/index.js",
