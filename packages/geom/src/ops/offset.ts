@@ -2,22 +2,22 @@ import type { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
 import {
+    add2,
     addN2,
     max2,
+    normalCW,
     set2,
-    ZERO2,
-    normalCCW,
-    add2,
     sub2,
+    ZERO2,
 } from "@thi.ng/vectors";
 import { Circle } from "../api/circle";
+import { Line } from "../api/line";
+import { Quad } from "../api/quad";
 import { Rect } from "../api/rect";
 import { rectFromCentroid } from "../ctors/rect";
 import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
 import { centroid } from "./centroid";
-import { Line } from "../api/line";
-import { Quad } from "../api/quad";
 
 export const offset = defmulti<IShape, number, IShape>(dispatch);
 
@@ -26,7 +26,7 @@ offset.addAll(<IObjectOf<Implementation2<unknown, number, IShape>>>{
         new Circle(set2([], $.pos), Math.max($.r + n, 0)),
 
     [Type.LINE]: ({ points: [a, b], attribs }: Line, n) => {
-        const norm = normalCCW([], a, b, n);
+        const norm = normalCW([], a, b, n);
         return new Quad(
             [
                 add2([], a, norm),
