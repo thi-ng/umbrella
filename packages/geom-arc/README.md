@@ -39,7 +39,7 @@ yarn add @thi.ng/geom-arc
 <script src="https://unpkg.com/@thi.ng/geom-arc/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.01 KB / CJS: 1.06 KB / UMD: 1.15 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.15 KB / CJS: 1.20 KB / UMD: 1.28 KB
 
 ## Dependencies
 

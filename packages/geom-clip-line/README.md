@@ -45,10 +45,11 @@ yarn add @thi.ng/geom-clip-line
 <script src="https://unpkg.com/@thi.ng/geom-clip-line/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 292 bytes / CJS: 348 bytes / UMD: 454 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 434 bytes / CJS: 499 bytes / UMD: 595 bytes
 
 ## Dependencies
 
+- [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isec)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 - [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
