@@ -43,6 +43,7 @@
         "typescript": "^3.9.2"
     },
     "dependencies": {
+        "@thi.ng/geom-isec": "^0.4.21",
         "@thi.ng/vectors": "^4.4.4",
         "tslib": "^1.12.0"
     },
