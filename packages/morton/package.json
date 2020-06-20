@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/morton",
-    "version": "2.0.15",
+    "version": "2.0.16",
     "description": "Z-order curve / Morton encoding, decoding & range extraction for arbitrary dimensions",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,9 +49,9 @@
         "typescript": "^3.9.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.11.1",
-        "@thi.ng/binary": "^2.0.8",
-        "@thi.ng/math": "^1.7.11",
+        "@thi.ng/api": "^6.11.2",
+        "@thi.ng/binary": "^2.0.9",
+        "@thi.ng/math": "^1.7.12",
         "tslib": "^1.12.0"
     },
     "files": [

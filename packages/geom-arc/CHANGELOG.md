@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-arc@0.2.32...@thi.ng/geom-arc@0.3.0) (2020-06-20)
+
+
+### Features
+
+* **geom-arc:** add sampleCircular() ([d1d4336](https://github.com/thi-ng/umbrella/commit/d1d4336b1ca331e4d367e0fad8e815ad2e669985))
+
+
+
+
+
 ## [0.2.32](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-arc@0.2.31...@thi.ng/geom-arc@0.2.32) (2020-06-14)
 
 **Note:** Version bump only for package @thi.ng/geom-arc
