@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/bencode",
-    "version": "0.3.27",
+    "version": "0.3.28",
     "description": "Bencode binary encoder / decoder with optional UTF8 encoding & floating point support",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -11,10 +11,16 @@
         "url": "https://github.com/thi-ng/umbrella.git"
     },
     "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/bencode#readme",
-    "funding": {
-        "type": "patreon",
-        "url": "https://patreon.com/thing_umbrella"
-    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
@@ -43,13 +49,13 @@
         "typescript": "^3.9.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.11.1",
-        "@thi.ng/arrays": "^0.6.9",
-        "@thi.ng/checks": "^2.7.1",
-        "@thi.ng/defmulti": "^1.2.17",
-        "@thi.ng/errors": "^1.2.14",
-        "@thi.ng/transducers": "^7.1.0",
-        "@thi.ng/transducers-binary": "^0.5.17",
+        "@thi.ng/api": "^6.11.2",
+        "@thi.ng/arrays": "^0.6.10",
+        "@thi.ng/checks": "^2.7.2",
+        "@thi.ng/defmulti": "^1.2.18",
+        "@thi.ng/errors": "^1.2.15",
+        "@thi.ng/transducers": "^7.1.1",
+        "@thi.ng/transducers-binary": "^0.5.18",
         "tslib": "^1.12.0"
     },
     "files": [

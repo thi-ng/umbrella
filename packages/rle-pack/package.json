@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rle-pack",
-    "version": "2.1.18",
+    "version": "2.1.19",
     "description": "Binary run-length encoding packer w/ flexible repeat bit widths",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -11,10 +11,16 @@
         "url": "https://github.com/thi-ng/umbrella.git"
     },
     "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/rle-pack#readme",
-    "funding": {
-        "type": "patreon",
-        "url": "https://patreon.com/thing_umbrella"
-    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
@@ -44,8 +50,8 @@
         "typescript": "^3.9.2"
     },
     "dependencies": {
-        "@thi.ng/bitstream": "^1.1.18",
-        "@thi.ng/errors": "^1.2.14",
+        "@thi.ng/bitstream": "^1.1.19",
+        "@thi.ng/errors": "^1.2.15",
         "tslib": "^1.12.0"
     },
     "files": [

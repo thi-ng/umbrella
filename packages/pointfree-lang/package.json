@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/pointfree-lang",
-    "version": "1.4.5",
+    "version": "1.4.6",
     "description": "Forth style syntax layer/compiler & CLI for the @thi.ng/pointfree DSL",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -14,10 +14,16 @@
         "url": "https://github.com/thi-ng/umbrella.git"
     },
     "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree-lang#readme",
-    "funding": {
-        "type": "patreon",
-        "url": "https://patreon.com/thing_umbrella"
-    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
@@ -47,10 +53,10 @@
         "typescript": "^3.9.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.11.1",
-        "@thi.ng/bench": "^2.0.13",
-        "@thi.ng/errors": "^1.2.14",
-        "@thi.ng/pointfree": "^2.0.6",
+        "@thi.ng/api": "^6.11.2",
+        "@thi.ng/bench": "^2.0.14",
+        "@thi.ng/errors": "^1.2.15",
+        "@thi.ng/pointfree": "^2.0.7",
         "commander": "^5.1.0",
         "tslib": "^1.12.0"
     },

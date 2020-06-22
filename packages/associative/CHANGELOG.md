@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@4.1.0...@thi.ng/associative@4.2.0) (2020-06-20)
+
+
+### Features
+
+* **associative:** add null checks for merge* fns ([7baa3ba](https://github.com/thi-ng/umbrella/commit/7baa3ba29edf5f66d66423b9a33cac6b1ddfec8f))
+* **associative:** update Trie to allow custom value sets ([777829c](https://github.com/thi-ng/umbrella/commit/777829c0e3bbdf0c5149a9366d22d16a32941310))
+
+
+
+
+
 # [4.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@4.0.11...@thi.ng/associative@4.1.0) (2020-06-14)
 
 

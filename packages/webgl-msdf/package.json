@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/webgl-msdf",
-    "version": "0.1.37",
+    "version": "0.1.38",
     "description": "Multi-channel SDF font rendering & basic text layout for WebGL",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -11,10 +11,16 @@
         "url": "https://github.com/thi-ng/umbrella.git"
     },
     "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/webgl-msdf#readme",
-    "funding": {
-        "type": "patreon",
-        "url": "https://patreon.com/thing_umbrella"
-    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
@@ -43,12 +49,12 @@
         "typescript": "^3.9.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.11.1",
-        "@thi.ng/shader-ast": "^0.3.24",
-        "@thi.ng/transducers": "^7.1.0",
-        "@thi.ng/vector-pools": "^1.0.32",
-        "@thi.ng/vectors": "^4.4.4",
-        "@thi.ng/webgl": "^2.0.1",
+        "@thi.ng/api": "^6.11.2",
+        "@thi.ng/shader-ast": "^0.3.25",
+        "@thi.ng/transducers": "^7.1.1",
+        "@thi.ng/vector-pools": "^1.0.33",
+        "@thi.ng/vectors": "^4.5.0",
+        "@thi.ng/webgl": "^2.0.2",
         "tslib": "^1.12.0"
     },
     "files": [

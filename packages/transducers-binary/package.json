@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/transducers-binary",
-    "version": "0.5.17",
+    "version": "0.5.18",
     "description": "Binary data related transducers & reducers",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -11,10 +11,16 @@
         "url": "https://github.com/thi-ng/umbrella.git"
     },
     "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary#readme",
-    "funding": {
-        "type": "patreon",
-        "url": "https://patreon.com/thing_umbrella"
-    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
@@ -43,10 +49,10 @@
         "typescript": "^3.9.2"
     },
     "dependencies": {
-        "@thi.ng/compose": "^1.4.9",
-        "@thi.ng/random": "^1.4.11",
-        "@thi.ng/strings": "^1.8.10",
-        "@thi.ng/transducers": "^7.1.0",
+        "@thi.ng/compose": "^1.4.10",
+        "@thi.ng/random": "^1.4.12",
+        "@thi.ng/strings": "^1.8.11",
+        "@thi.ng/transducers": "^7.1.1",
         "tslib": "^1.12.0"
     },
     "files": [

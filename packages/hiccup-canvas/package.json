@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hiccup-canvas",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Hiccup shape tree renderer for vanilla Canvas 2D contexts",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -11,10 +11,16 @@
         "url": "https://github.com/thi-ng/umbrella.git"
     },
     "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/hiccup-canvas#readme",
-    "funding": {
-        "type": "patreon",
-        "url": "https://patreon.com/thing_umbrella"
-    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
@@ -42,11 +48,11 @@
         "typescript": "^3.9.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.11.1",
-        "@thi.ng/checks": "^2.7.1",
-        "@thi.ng/color": "^1.2.3",
-        "@thi.ng/math": "^1.7.11",
-        "@thi.ng/vectors": "^4.4.4"
+        "@thi.ng/api": "^6.11.2",
+        "@thi.ng/checks": "^2.7.2",
+        "@thi.ng/color": "^1.2.4",
+        "@thi.ng/math": "^1.7.12",
+        "@thi.ng/vectors": "^4.5.0"
     },
     "files": [
         "*.js",

@@ -10,11 +10,13 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
+  - [Columns](#columns)
   - [Diagonal](#diagonal)
   - [Hilbert curve](#hilbert-curve)
   - [Interleave columns](#interleave-columns)
   - [Interleave rows](#interleave-rows)
   - [Random](#random)
+  - [Rows](#rows)
   - [Outward spiral](#outward-spiral)
   - [Z-curve](#z-curve)
   - [Zigzag columns](#zigzag-columns)
@@ -34,13 +36,28 @@ This project is part of the
 
 2D grid iterators w/ multiple orderings.
 
-Provides the 10 following orderings to generate grid coordinates:
+Provides the 15 following orderings to generate grid coordinates and
+additional iterators for shape rasterization:
+
+### Columns
+
+![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/columns2d-small.gif)
+
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/columns.ts)
+
+Also see the filtered version
+[`columnEnds2d()`](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/column-ends.ts),
+which only includes the end points of each column.
 
 ### Diagonal
 
 ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/diagonal2d-small.gif)
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/diagonal.ts)
+
+Also see the filtered version
+[`diagonalEnds2d()`](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/diagonal-ends.ts),
+which only includes the end points of the diagonals.
 
 ### Hilbert curve
 
@@ -72,6 +89,16 @@ Supports custom strides... example uses `step = 4`
 
 Supports custom PRNG implementations via `IRandom` interface defined in
 [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
+
+### Rows
+
+![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/rows2d-small.gif)
+
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/rows.ts)
+
+Also see the filtered version
+[`rowEnds2d()`](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/row-ends.ts),
+which only includes the end points of each row.
 
 ### Outward spiral
 
@@ -113,12 +140,12 @@ in
 
 ### Miscellaneous
 
-Additionally, the following non-exhaustive iterators are available:
+Additionally, the following shape iterators are available:
 
-- [circle](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/circle.ts)
+- [circle](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/circle.ts) (Bresenham)
 - [hline](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/hvline.ts)
 - [vline](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/hvline.ts)
-- [line](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/line.ts)
+- [line](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/line.ts) (Bresenham)
 
 ### Status
 
@@ -143,7 +170,7 @@ yarn add @thi.ng/grid-iterators
 <script src="https://unpkg.com/@thi.ng/grid-iterators/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.24 KB / CJS: 1.34 KB / UMD: 1.40 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.41 KB / CJS: 1.53 KB / UMD: 1.56 KB
 
 ## Dependencies
 

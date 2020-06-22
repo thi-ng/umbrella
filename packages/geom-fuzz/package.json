@@ -1,0 +1,95 @@
+{
+    "name": "@thi.ng/geom-fuzz",
+    "version": "0.1.0",
+    "description": "Highly configurable, fuzzy line & polygon creation with presets and composable fill & stroke styles. Canvas & SVG support",
+    "module": "./index.js",
+    "main": "./lib/index.js",
+    "umd:main": "./lib/index.umd.js",
+    "typings": "./index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thi-ng/umbrella.git"
+    },
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/geom-fuzz#readme",
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
+        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
+        "build:es6": "tsc --declaration",
+        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "test": "mocha test",
+        "cover": "nyc mocha test && nyc report --reporter=lcov",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
+        "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
+        "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
+        "pub": "yarn build:release && yarn publish --access public"
+    },
+    "devDependencies": {
+        "@istanbuljs/nyc-config-typescript": "^1.0.1",
+        "@microsoft/api-extractor": "^7.8.0",
+        "@types/mocha": "^7.0.2",
+        "@types/node": "^14.0.1",
+        "mocha": "^7.1.2",
+        "nyc": "^15.0.1",
+        "ts-node": "^8.10.1",
+        "typedoc": "^0.17.6",
+        "typescript": "^3.9.2"
+    },
+    "dependencies": {
+        "@thi.ng/api": "^6.11.2",
+        "@thi.ng/associative": "^4.2.0",
+        "@thi.ng/geom": "^1.10.0",
+        "@thi.ng/geom-api": "^1.0.22",
+        "@thi.ng/geom-clip-line": "^1.1.0",
+        "@thi.ng/geom-resample": "^0.2.33",
+        "@thi.ng/grid-iterators": "^0.4.0",
+        "@thi.ng/transducers": "^7.1.1",
+        "@thi.ng/vectors": "^4.5.0"
+    },
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "lib"
+    ],
+    "keywords": [
+        "canvas",
+        "es6",
+        "hand drawn",
+        "hatching",
+        "hiccup",
+        "geometry",
+        "jitter",
+        "polka dots",
+        "polygon",
+        "random",
+        "shapes",
+        "style",
+        "svg",
+        "typescript"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "sideEffects": false,
+    "thi.ng": {
+        "parent": "@thi.ng/geom",
+        "related": [
+            "hiccup-canvas",
+            "hiccup-svg"
+        ],
+        "status": "alpha",
+        "year": 2020
+    }
+}

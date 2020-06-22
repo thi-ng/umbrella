@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/strings",
-    "version": "1.8.10",
+    "version": "1.8.11",
     "description": "Various string formatting & utility functions",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -11,10 +11,16 @@
         "url": "https://github.com/thi-ng/umbrella.git"
     },
     "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/format#readme",
-    "funding": {
-        "type": "patreon",
-        "url": "https://patreon.com/thing_umbrella"
-    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
@@ -43,9 +49,9 @@
         "typescript": "^3.9.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.11.1",
-        "@thi.ng/errors": "^1.2.14",
-        "@thi.ng/memoize": "^2.0.13",
+        "@thi.ng/api": "^6.11.2",
+        "@thi.ng/errors": "^1.2.15",
+        "@thi.ng/memoize": "^2.0.14",
         "tslib": "^1.12.0"
     },
     "files": [

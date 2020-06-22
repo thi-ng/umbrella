@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/arrays",
-    "version": "0.6.9",
+    "version": "0.6.10",
     "description": "Array / Arraylike utilities",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -11,10 +11,16 @@
         "url": "https://github.com/thi-ng/umbrella.git"
     },
     "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/arrays#readme",
-    "funding": {
-        "type": "patreon",
-        "url": "https://patreon.com/thing_umbrella"
-    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
@@ -43,12 +49,12 @@
         "typescript": "^3.9.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.11.1",
-        "@thi.ng/checks": "^2.7.1",
-        "@thi.ng/compare": "^1.3.8",
-        "@thi.ng/equiv": "^1.0.23",
-        "@thi.ng/errors": "^1.2.14",
-        "@thi.ng/random": "^1.4.11",
+        "@thi.ng/api": "^6.11.2",
+        "@thi.ng/checks": "^2.7.2",
+        "@thi.ng/compare": "^1.3.9",
+        "@thi.ng/equiv": "^1.0.24",
+        "@thi.ng/errors": "^1.2.15",
+        "@thi.ng/random": "^1.4.12",
         "tslib": "^1.12.0"
     },
     "files": [

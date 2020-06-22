@@ -1,4 +1,4 @@
-import type { IObjectOf } from "@thi.ng/api";
+import type { IObjectOf, Nullable } from "@thi.ng/api";
 
 /**
  * Merges all given maps in left-to-right order into `dest`.
@@ -7,10 +7,15 @@ import type { IObjectOf } from "@thi.ng/api";
  * @param dest - target map
  * @param xs - input maps
  */
-export const mergeMap = <K, V>(dest: Map<K, V>, ...xs: Map<K, V>[]) => {
+export const mergeMap = <K, V>(
+    dest: Map<K, V>,
+    ...xs: Nullable<Map<K, V>>[]
+) => {
     for (let x of xs) {
-        for (let pair of x) {
-            dest.set(pair[0], pair[1]);
+        if (x != null) {
+            for (let pair of x) {
+                dest.set(pair[0], pair[1]);
+            }
         }
     }
     return dest;
@@ -25,5 +30,5 @@ export const mergeMap = <K, V>(dest: Map<K, V>, ...xs: Map<K, V>[]) => {
  */
 export const mergeObj = <T>(
     dest: IObjectOf<T>,
-    ...xs: IObjectOf<T>[]
+    ...xs: Nullable<IObjectOf<T>>[]
 ): IObjectOf<T> => Object.assign(dest, ...xs);

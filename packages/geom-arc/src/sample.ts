@@ -1,8 +1,9 @@
 import { isNumber, isPlainObject } from "@thi.ng/checks";
 import { DEFAULT_SAMPLES, SamplingOpts } from "@thi.ng/geom-api";
 import { Sampler } from "@thi.ng/geom-resample";
+import { TAU } from "@thi.ng/math";
+import { cartesian2, ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { pointAtTheta } from "./point-at";
-import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 export const sample = (
     pos: ReadonlyVec,
@@ -36,4 +37,43 @@ export const sample = (
         pts[i] = pointAtTheta(pos, r, axis, start + i * delta);
     }
     return pts;
+};
+
+/**
+ * Computes `steps` points (default: 8) on the circular arc between
+ * points `a` and `b` with `origin` and radius `r`. Points are added to
+ * optional `out` (or a new array). If `addLast` is falst (default:
+ * true), point `b` will NOT be added.
+ *
+ * @param origin
+ * @param r
+ * @param a
+ * @param b
+ * @param out
+ * @param steps
+ * @param outwards
+ * @param addLast
+ */
+export const sampleCircular = (
+    origin: Vec,
+    r: number,
+    a: Vec,
+    b: Vec,
+    out: Vec[] = [],
+    steps = 8,
+    outwards = true,
+    addLast = true
+) => {
+    let ta = Math.atan2(a[1] - origin[1], a[0] - origin[0]);
+    let tb = Math.atan2(b[1] - origin[1], b[0] - origin[0]);
+    ta < 0 && (ta += TAU);
+    tb < 0 && (tb += TAU);
+    const theta = ta > tb ? ta - tb : ta + TAU - tb;
+    const delta = (outwards ? -theta : TAU - theta) / steps;
+    out.push(a);
+    for (let i = 1; i < steps; i++) {
+        out.push(cartesian2(null, [r, ta + delta * i], origin));
+    }
+    addLast && out.push(b);
+    return out;
 };

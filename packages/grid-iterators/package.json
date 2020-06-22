@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/grid-iterators",
-    "version": "0.3.17",
+    "version": "0.4.0",
     "description": "2D grid iterators w/ multiple orderings",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -11,10 +11,16 @@
         "url": "https://github.com/thi-ng/umbrella.git"
     },
     "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators#readme",
-    "funding": {
-        "type": "patreon",
-        "url": "https://patreon.com/thing_umbrella"
-    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
@@ -44,11 +50,11 @@
         "typescript": "^3.9.2"
     },
     "dependencies": {
-        "@thi.ng/arrays": "^0.6.9",
-        "@thi.ng/binary": "^2.0.8",
-        "@thi.ng/morton": "^2.0.15",
-        "@thi.ng/random": "^1.4.11",
-        "@thi.ng/transducers": "^7.1.0",
+        "@thi.ng/arrays": "^0.6.10",
+        "@thi.ng/binary": "^2.0.9",
+        "@thi.ng/morton": "^2.0.16",
+        "@thi.ng/random": "^1.4.12",
+        "@thi.ng/transducers": "^7.1.1",
         "tslib": "^1.12.0"
     },
     "files": [

@@ -58,6 +58,7 @@ export * from "./ops/fit-into-bounds";
 export * from "./ops/flip";
 export * from "./ops/intersects";
 export * from "./ops/map-point";
+export * from "./ops/offset";
 export * from "./ops/point-at";
 export * from "./ops/point-inside";
 export * from "./ops/resample";

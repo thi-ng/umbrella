@@ -9,6 +9,8 @@ try {
 } catch (e) {}
 
 [
+    gi.columns2d,
+    gi.rows2d,
     gi.diagonal2d,
     gi.hilbert2d,
     gi.interleaveColumns2d,
@@ -18,7 +20,7 @@ try {
     gi.zcurve2d,
     gi.zigzagColumns2d,
     gi.zigzagDiagonal2d,
-    gi.zigzagRows2d
+    gi.zigzagRows2d,
 ].forEach((fn) => {
     console.log(`generating ${fn.name}...`);
     const pts = [...fn(16)];
@@ -33,7 +35,7 @@ try {
                         height: 600,
                         viewBox: "-1 -1 18 18",
                         stroke: "black",
-                        "stroke-width": 0.1
+                        "stroke-width": 0.1,
                     },
                     g.polyline(
                         pts.slice(0, i * 2).map(([x, y]) => [x + 0.5, y + 0.5])
@@ -44,7 +46,7 @@ try {
                     ),
                     g.rect(pts[i * 2 - 1], 1, {
                         fill: [0, 1, 0.5, 0.85],
-                        stroke: "none"
+                        stroke: "none",
                     })
                 )
             )

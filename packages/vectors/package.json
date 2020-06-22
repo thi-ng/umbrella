@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/vectors",
-    "version": "4.4.4",
+    "version": "4.5.0",
     "description": "Optimized 2d/3d/4d and arbitrary length vector operations",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -11,10 +11,16 @@
         "url": "https://github.com/thi-ng/umbrella.git"
     },
     "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/vectors#readme",
-    "funding": {
-        "type": "patreon",
-        "url": "https://patreon.com/thing_umbrella"
-    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
@@ -43,15 +49,15 @@
         "typescript": "^3.9.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.11.1",
-        "@thi.ng/binary": "^2.0.8",
-        "@thi.ng/checks": "^2.7.1",
-        "@thi.ng/equiv": "^1.0.23",
-        "@thi.ng/errors": "^1.2.14",
-        "@thi.ng/math": "^1.7.11",
-        "@thi.ng/memoize": "^2.0.13",
-        "@thi.ng/random": "^1.4.11",
-        "@thi.ng/transducers": "^7.1.0",
+        "@thi.ng/api": "^6.11.2",
+        "@thi.ng/binary": "^2.0.9",
+        "@thi.ng/checks": "^2.7.2",
+        "@thi.ng/equiv": "^1.0.24",
+        "@thi.ng/errors": "^1.2.15",
+        "@thi.ng/math": "^1.7.12",
+        "@thi.ng/memoize": "^2.0.14",
+        "@thi.ng/random": "^1.4.12",
+        "@thi.ng/transducers": "^7.1.1",
         "tslib": "^1.12.0"
     },
     "files": [

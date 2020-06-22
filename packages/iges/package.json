@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/iges",
-    "version": "1.1.34",
+    "version": "1.1.35",
     "description": "IGES 5.3 serializer for (currently only) polygonal geometry, both open & closed",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -11,10 +11,16 @@
         "url": "https://github.com/thi-ng/umbrella.git"
     },
     "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/iges#readme",
-    "funding": {
-        "type": "patreon",
-        "url": "https://patreon.com/thing_umbrella"
-    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
@@ -43,12 +49,12 @@
         "typescript": "^3.9.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.11.1",
-        "@thi.ng/checks": "^2.7.1",
-        "@thi.ng/defmulti": "^1.2.17",
-        "@thi.ng/strings": "^1.8.10",
-        "@thi.ng/transducers": "^7.1.0",
-        "@thi.ng/vectors": "^4.4.4",
+        "@thi.ng/api": "^6.11.2",
+        "@thi.ng/checks": "^2.7.2",
+        "@thi.ng/defmulti": "^1.2.18",
+        "@thi.ng/strings": "^1.8.11",
+        "@thi.ng/transducers": "^7.1.1",
+        "@thi.ng/vectors": "^4.5.0",
         "tslib": "^1.12.0"
     },
     "files": [

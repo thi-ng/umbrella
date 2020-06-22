@@ -1,8 +1,10 @@
+import type { Attribs } from "@thi.ng/geom-api";
 import { centroid } from "@thi.ng/geom-poly-utils";
 import { SQRT2_2, SQRT3 } from "@thi.ng/math";
 import {
     add2,
     dist,
+    maddN2,
     max2,
     min2,
     ReadonlyVec,
@@ -15,7 +17,6 @@ import { Circle } from "../api/circle";
 import { Polygon } from "../api/polygon";
 import { Rect } from "../api/rect";
 import { argsVV } from "../internal/args";
-import type { Attribs } from "@thi.ng/geom-api";
 
 export function rect(pos: Vec, size: number | Vec, attribs?: Attribs): Rect;
 export function rect(size: number | Vec, attribs?: Attribs): Rect;
@@ -26,6 +27,9 @@ export function rect(...args: any[]) {
 
 export const rectFromMinMax = (min: Vec, max: Vec, attribs?: Attribs) =>
     new Rect(min, sub2([], max, min), attribs);
+
+export const rectFromCentroid = (centroid: Vec, size: Vec, attribs?: Attribs) =>
+    new Rect(maddN2([], size, -0.5, centroid), size, attribs);
 
 /**
  * Returns the intersection rect of given inputs or `undefined` if they

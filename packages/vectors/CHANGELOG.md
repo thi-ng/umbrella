@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.4.4...@thi.ng/vectors@4.5.0) (2020-06-20)
+
+
+### Features
+
+* **vectors:** add cornerBisector2() ([aff9bfa](https://github.com/thi-ng/umbrella/commit/aff9bfab86fdc5ca0b2ee88be68692988493ee57))
+
+
+
+
+
 ## [4.4.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.4.3...@thi.ng/vectors@4.4.4) (2020-06-14)
 
 **Note:** Version bump only for package @thi.ng/vectors

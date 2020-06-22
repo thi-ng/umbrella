@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hdiff",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "String diffing w/ hiccup output for further processing, e.g. with @thi.ng/hdom, @thi.ng/hiccup. Includes CLI util to generate HTML, with theme support and code folding",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -14,10 +14,16 @@
         "url": "https://github.com/thi-ng/umbrella.git"
     },
     "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/hdiff#readme",
-    "funding": {
-        "type": "patreon",
-        "url": "https://patreon.com/thing_umbrella"
-    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
@@ -45,10 +51,10 @@
         "typescript": "^3.9.2"
     },
     "dependencies": {
-        "@thi.ng/diff": "^3.2.23",
-        "@thi.ng/hiccup": "^3.2.25",
-        "@thi.ng/hiccup-css": "^1.1.27",
-        "@thi.ng/strings": "^1.8.10"
+        "@thi.ng/diff": "^3.2.24",
+        "@thi.ng/hiccup": "^3.2.26",
+        "@thi.ng/hiccup-css": "^1.1.28",
+        "@thi.ng/strings": "^1.8.11"
     },
     "files": [
         "*.js",

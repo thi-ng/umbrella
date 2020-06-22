@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.9.8...@thi.ng/geom@1.10.0) (2020-06-20)
+
+
+### Features
+
+* **geom:** add offset() & initial impls ([819afd1](https://github.com/thi-ng/umbrella/commit/819afd13896661266653a3b71b96ed0549b406ba))
+* **geom:** add rectFromCentroid() ([7837961](https://github.com/thi-ng/umbrella/commit/78379612addef0563d09fccb3ed8bb9addd739fc))
+
+
+
+
+
 ## [1.9.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.9.7...@thi.ng/geom@1.9.8) (2020-06-14)
 
 **Note:** Version bump only for package @thi.ng/geom

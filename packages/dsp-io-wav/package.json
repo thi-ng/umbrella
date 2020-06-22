@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dsp-io-wav",
-    "version": "0.1.17",
+    "version": "0.1.18",
     "description": "WAV file format generation",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -11,10 +11,16 @@
         "url": "https://github.com/thi-ng/umbrella.git"
     },
     "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/dsp-io-wav#readme",
-    "funding": {
-        "type": "patreon",
-        "url": "https://patreon.com/thing_umbrella"
-    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
@@ -43,10 +49,10 @@
         "typescript": "^3.9.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.11.1",
-        "@thi.ng/binary": "^2.0.8",
-        "@thi.ng/transducers": "^7.1.0",
-        "@thi.ng/transducers-binary": "^0.5.17",
+        "@thi.ng/api": "^6.11.2",
+        "@thi.ng/binary": "^2.0.9",
+        "@thi.ng/transducers": "^7.1.1",
+        "@thi.ng/transducers-binary": "^0.5.18",
         "tslib": "^1.12.0"
     },
     "files": [
