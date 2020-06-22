@@ -40,7 +40,7 @@ export abstract class Component<T = any> implements IComponent<T> {
         attribs?: any,
         body?: any,
         parent = this.el,
-        idx?: number
+        idx?: NumOrElement
     ) {
         return $el(tag, attribs, body, parent, idx);
     }
@@ -77,7 +77,7 @@ export abstract class Component<T = any> implements IComponent<T> {
         $remove(el);
     }
 
-    $moveTo(newParent: Element, el = this.el!, idx = -1) {
+    $moveTo(newParent: Element, el = this.el!, idx?: NumOrElement) {
         $move(el, newParent, idx);
     }
 }
