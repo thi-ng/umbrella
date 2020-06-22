@@ -1,31 +1,38 @@
 import { IRelease } from "@thi.ng/api";
+import { equiv } from "@thi.ng/equiv";
 import { clamp } from "@thi.ng/math";
 import { Stream, stream, Subscription, sync } from "@thi.ng/rstream";
-import { map, page } from "@thi.ng/transducers";
+import { comp, dedupe, map, page } from "@thi.ng/transducers";
 
 export class Pagination<T extends any[]> implements IRelease {
     page: Stream<number>;
     maxPage: Subscription<T, number>;
     resultPage: Subscription<any, T>;
 
-    constructor(public src: Subscription<any, T>, pageSize: number) {
+    constructor(src: Subscription<any, T>, pageSize: number) {
         this.page = stream<number>();
-        this.maxPage = this.src.transform(
-            map((res) => ~~(res.length / pageSize))
-        );
+        this.maxPage = src.transform(map((res) => ~~(res.length / pageSize)));
         // produce search result page using `page()` transducer
         // the`sync()` construct is a stream combinator which requires all input
         // streams to produce a value first before it emits its own initial
         // result...
         this.resultPage = sync<any, T>({
             src: {
-                src: this.src,
+                src,
                 pageID: this.page,
-                maxPageID: this.maxPage,
             },
-            xform: map(
-                ({ src, pageID, maxPageID }) =>
-                    <T>[...page(clamp(pageID, 0, maxPageID), pageSize, src)]
+            xform: comp(
+                dedupe(equiv),
+                map(
+                    ({ src, pageID }) =>
+                        <T>[
+                            ...page(
+                                clamp(pageID, 0, this.maxPage.deref() || 1),
+                                pageSize,
+                                src
+                            ),
+                        ]
+                )
             ),
         });
         this.setPage(0);
