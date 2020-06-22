@@ -47,7 +47,7 @@ yarn add @thi.ng/hdom2020
 <script src="https://unpkg.com/@thi.ng/hdom2020/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.75 KB / CJS: 3.90 KB / UMD: 3.89 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.78 KB / CJS: 3.93 KB / UMD: 3.92 KB
 
 ## Dependencies
 
@@ -72,6 +72,7 @@ A selection:
 | Description                                               | Live demo                                                  | Source                                                                                           |
 | --------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
 | hdom2020 test sandbox / POC                               | [Demo](https://demo.thi.ng/umbrella/hdom2020-basics/)      | [Source](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/examples/hdom2020-basics)      |
+| hdom2020 drag & drop example                              | [Demo](https://demo.thi.ng/umbrella/hdom2020-dnd/)         | [Source](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/examples/hdom2020-dnd)         |
 | hdom2020 & hiccup-canvas interop test                     | [Demo](https://demo.thi.ng/umbrella/hdom2020-lissajous/)   | [Source](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/examples/hdom2020-lissajous)   |
 | Full umbrella repo doc string search w/ paginated results | [Demo](https://demo.thi.ng/umbrella/hdom2020-search-docs/) | [Source](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/examples/hdom2020-search-docs) |
 
