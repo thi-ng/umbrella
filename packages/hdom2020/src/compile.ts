@@ -30,7 +30,7 @@ import { $wrapText } from "./wrap";
  */
 export const $compile = (tree: any): IComponent => {
     if (isArray(tree)) {
-        return isReactiveComponent(tree)
+        return isComplexComponent(tree)
             ? <CompiledComponent>{
                   async mount(parent: Element, index: NumOrElement = -1) {
                       this.subs = [];
@@ -95,15 +95,15 @@ const walk = (
     f(x, path);
 };
 
-const isReactiveComponent = (x: any) => {
+const isComplexComponent = (x: any) => {
     if (isPlainObject(x)) {
         for (const k in x) {
-            if (isReactiveComponent((<any>x)[k])) return true;
+            if (isComplexComponent((<any>x)[k])) return true;
         }
     } else if (isArray(x)) {
         for (let i = 0, n = x.length; i < n; i++) {
-            if (isReactiveComponent(x[i])) return true;
+            if (isComplexComponent(x[i])) return true;
         }
     }
-    return isSubscribable(x);
+    return isSubscribable(x) || isComponent(x);
 };
