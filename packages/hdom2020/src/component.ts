@@ -53,8 +53,8 @@ export abstract class Component<T = any> implements IComponent<T> {
         return $compile(tree);
     }
 
-    $tree(tree: any, root = this.el!) {
-        return $tree(tree, root);
+    $tree(tree: any, root = this.el!, index?: NumOrElement) {
+        return $tree(tree, root, index);
     }
 
     $text(body: any) {
