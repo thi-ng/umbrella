@@ -90,7 +90,7 @@ export interface CompiledComponent extends IComponent {
     children?: IComponent[];
 }
 
-export type ComponentLike = IComponent | [string | Function, ...(any | null)[]];
+export type ComponentLike = IComponent | [string, ...(any | null)[]];
 
 export type Callback = Fn0<void>;
 
