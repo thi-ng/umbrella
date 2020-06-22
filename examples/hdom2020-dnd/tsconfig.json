@@ -1,0 +1,9 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": ".",
+        "target": "es2017",
+        "sourceMap": true
+    },
+    "include": ["./src/**/*.ts"]
+}
