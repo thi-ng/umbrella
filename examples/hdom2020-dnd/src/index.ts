@@ -1,9 +1,10 @@
-import { $compile, ComponentLike } from "@thi.ng/hdom2020";
+import { $compile } from "@thi.ng/hdom2020";
 import {
     ADD_OUTLINE,
     CLOSE_OUTLINE,
     withSize,
 } from "@thi.ng/hiccup-carbon-icons";
+import { div } from "@thi.ng/hiccup-html";
 import { cycle } from "@thi.ng/transducers";
 import { Draggable } from "./draggable";
 import { Notification, NotifyOpts } from "./notification";
@@ -16,34 +17,34 @@ const messages = cycle<NotifyOpts>([
 
 const notify = new Notification();
 
-const dragBank = (id: string, col1: string, col2: string, icon: any) => [
-    "div",
-    { id },
-    dropZone(
-        col1,
-        id,
-        new Draggable(dragButton(icon), {
-            scope: id,
-            dropzone: id,
-            hover: { background: col2 },
-            ondrop: () => notify.update(<NotifyOpts>messages.next().value),
-        })
-    ),
-    dropZone(col1, id),
-    dropZone(col1, id),
-];
+const dragBank = (id: string, col1: string, col2: string, icon: any) =>
+    div(
+        { id },
+        dropZone(
+            col1,
+            id,
+            new Draggable(dragButton(icon), {
+                scope: id,
+                dropzone: id,
+                hover: { background: col2 },
+                ondrop: () => notify.update(<NotifyOpts>messages.next().value),
+            })
+        ),
+        dropZone(col1, id),
+        dropZone(col1, id)
+    );
 
-const dropZone = (col: string, id: string, body?: any) => [
-    `div.v-top.dib.mr2.w4.h4.pa4.bg-${col}`,
-    { "data-dropzone": id },
-    body,
-];
+const dropZone = (col: string, id: string, body?: any) =>
+    div(
+        { class: `v-top dib mr2 w4 h4 pa4 bg-${col}`, data: { dropzone: id } },
+        body
+    );
 
-const dragButton = (icon: any): ComponentLike => [
-    "div.w3.h3.bg-black.white.flex.items-center.justify-center",
-    {},
-    withSize(icon, "24px"),
-];
+const dragButton = (icon: any) =>
+    div(
+        { class: "w3 h3 bg-black white flex items-center justify-center" },
+        withSize(icon, "24px")
+    );
 
 $compile([
     "div",

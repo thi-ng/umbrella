@@ -20,6 +20,7 @@
         "@thi.ng/api": "latest",
         "@thi.ng/hdom2020": "latest",
         "@thi.ng/hiccup-carbon-icons": "latest",
+        "@thi.ng/hiccup-html": "latest",
         "@thi.ng/transducers": "latest"
     },
     "browserslist": [

@@ -1,4 +1,5 @@
 import type { Fn } from "@thi.ng/api";
+import { div } from "@thi.ng/hiccup-html";
 import { Component, ComponentLike, NumOrElement } from "@thi.ng/hdom2020";
 
 interface DraggableOpts {
@@ -30,24 +31,23 @@ export class Draggable extends Component {
     async mount(parent: Element, index: NumOrElement) {
         const opts = this.opts;
         this.el = await this.$tree(
-            [
-                "div",
+            div(
                 {
                     draggable: true,
-                    ondragstart: (e: DragEvent) => {
+                    ondragstart: (e) => {
                         e.dataTransfer!.setData("text/plain", "");
                         this.active = true;
                         this.$style(opts.start);
                         opts.onstart && opts.onstart(e);
                     },
-                    ondragend: (e: DragEvent) => {
+                    ondragend: (e) => {
                         this.active = false;
                         this.$style(opts.end);
                         opts.onend && opts.onend(e);
                     },
                 },
-                this.inner,
-            ],
+                this.inner
+            ),
             parent,
             index
         );

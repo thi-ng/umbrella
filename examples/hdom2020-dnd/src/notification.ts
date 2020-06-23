@@ -5,6 +5,7 @@ import {
     WARNING,
     withSize,
 } from "@thi.ng/hiccup-carbon-icons";
+import { div, span } from "@thi.ng/hiccup-html";
 
 const PRESETS = {
     info: { class: "bg-lightest-blue blue", icon: INFO },
@@ -33,12 +34,11 @@ export class Notification extends Component<NotifyOpts> {
     update(msg: NotifyOpts) {
         const config = PRESETS[msg.type];
         this.$tree(
-            [
-                `div.w-100.ph3.pv2.mv2.br-pill`,
-                { class: config.class },
-                ["span.icon.mr2", null, withSize(config.icon, "16px")],
-                msg.msg,
-            ],
+            div(
+                { class: `w-100 ph3 pv2 mv2 br-pill ${config.class}` },
+                span({ class: "icon mr2" }, withSize(config.icon, "16px")),
+                msg.msg
+            ),
             this.$clear()
         );
         this.$attribs({ hidden: false });
