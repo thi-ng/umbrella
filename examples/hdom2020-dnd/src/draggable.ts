@@ -35,6 +35,7 @@ export class Draggable extends Component {
                 {
                     draggable: true,
                     ondragstart: (e: DragEvent) => {
+                        e.dataTransfer!.setData("text/plain", "");
                         this.active = true;
                         this.$style(opts.start);
                         opts.onstart && opts.onstart(e);
