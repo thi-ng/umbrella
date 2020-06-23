@@ -46,11 +46,12 @@ const dragButton = (icon: any) =>
         withSize(icon, "24px")
     );
 
-$compile([
-    "div",
-    null,
-    notify,
-    ["div.mv2", {}, "Drag & drop the icons..."],
-    dragBank("bank1", "red", "cyan", ADD_OUTLINE),
-    dragBank("bank2", "blue", "orange", CLOSE_OUTLINE),
-]).mount(document.getElementById("app")!);
+$compile(
+    div(
+        null,
+        notify,
+        div(".mv2", null, "Drag & drop the icons..."),
+        dragBank("bank1", "red", "cyan", ADD_OUTLINE),
+        dragBank("bank2", "blue", "orange", CLOSE_OUTLINE)
+    )
+).mount(document.getElementById("app")!);

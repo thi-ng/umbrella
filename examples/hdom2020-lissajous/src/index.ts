@@ -1,5 +1,7 @@
 import type { IDeref } from "@thi.ng/api";
 import { $canvas, $compile } from "@thi.ng/hdom2020";
+import { INFO_SOLID as ICON, withSize } from "@thi.ng/hiccup-carbon-icons";
+import { div, inputRange, label } from "@thi.ng/hiccup-html";
 import {
     fromDOMEvent,
     fromRAF,
@@ -9,28 +11,24 @@ import {
     sync,
 } from "@thi.ng/rstream";
 import { map, slidingWindow } from "@thi.ng/transducers";
-import { INFO_SOLID as ICON, withSize } from "@thi.ng/hiccup-carbon-icons";
 
 const slider = (
     dest: Subscription<number, number>,
-    label: string,
+    desc: string,
     tooltip: string,
     attribs?: any
-) => [
-    "div",
-    {},
-    [
-        "label.dib.w-50",
-        { for: `input-${label}` },
-        ["i.mr2", { "data-tooltip": tooltip }, withSize(ICON, "12px")],
-        `${label}: `,
-        dest.transform(map((x) => x.toFixed(2))),
-    ],
-    [
-        "input.dib.w-50",
-        {
-            id: `input-${label}`,
-            type: "range",
+) =>
+    div(
+        null,
+        label(
+            { class: "dib w-50", for: `input-${desc}` },
+            ["i.mr2", { data: { tooltip } }, withSize(ICON, "12px")],
+            `${desc}: `,
+            dest.transform(map((x) => x.toFixed(2)))
+        ),
+        inputRange({
+            id: `input-${desc}`,
+            class: "dib w-50",
             min: 0,
             max: 10,
             step: 0.1,
@@ -38,9 +36,8 @@ const slider = (
             value: dest,
             oninput: (e: InputEvent) =>
                 dest.next(parseFloat((<HTMLInputElement>e.target).value)),
-        },
-    ],
-];
+        })
+    );
 
 const lissajous = (
     a: number,
@@ -110,28 +107,28 @@ const dots: ISubscribable<any[]> = sync<any, Lissajous>({
 );
 
 // compile UI/DOM component from hiccup syntax
-$compile([
-    "div",
-    {},
-    [
-        "div.w-50-ns.center-ns.ma3",
-        {},
-        slider(a, "A", "Curve parameter"),
-        slider(b, "B", "Curve parameter"),
-        slider(num, "Length", "Trail length / number of dots", {
-            min: 1,
-            max: 100,
-            step: 1,
-        }),
-        slider(radius, "Radius", "Dot radius", {
-            min: 1,
-            max: 50,
-        }),
-        slider(scale, "Scale", "Scale factor", {
-            max: 1,
-            step: 0.01,
-        }),
-    ],
-    // subscribe canvas component to above reactive value
-    $canvas(dots, size),
-]).mount(document.body);
+$compile(
+    div(
+        null,
+        div(
+            { class: "w-50-ns center-ns ma3" },
+            slider(a, "A", "Curve parameter"),
+            slider(b, "B", "Curve parameter"),
+            slider(num, "Length", "Trail length / number of dots", {
+                min: 1,
+                max: 100,
+                step: 1,
+            }),
+            slider(radius, "Radius", "Dot radius", {
+                min: 1,
+                max: 50,
+            }),
+            slider(scale, "Scale", "Scale factor", {
+                max: 1,
+                step: 0.01,
+            })
+        ),
+        // subscribe canvas component to above reactive value
+        $canvas(dots, size)
+    )
+).mount(document.body);

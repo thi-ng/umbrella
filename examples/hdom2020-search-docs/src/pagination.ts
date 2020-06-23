@@ -1,6 +1,7 @@
 import { IRelease } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
 import { clamp } from "@thi.ng/math";
+import { div } from "@thi.ng/hiccup-html";
 import { Stream, stream, Subscription, sync } from "@thi.ng/rstream";
 import { comp, dedupe, map, page } from "@thi.ng/transducers";
 
@@ -59,36 +60,34 @@ export class Pagination<T extends any[]> implements IRelease {
  *
  * @param pager
  */
-export const pageControls = (pager: Pagination<any>) => [
-    "div.mv3.w-100",
-    {
-        style: {
-            // only show if there's a need for it...
-            display: pager.maxPage.transform(
-                map((x) => (x > 0 ? "flex" : "none"))
-            ),
+export const pageControls = (pager: Pagination<any>) =>
+    div(
+        {
+            class: "mv3 w-100",
+            style: {
+                // only show if there's a need for it...
+                display: pager.maxPage.transform(
+                    map((x) => (x > 0 ? "flex" : "none"))
+                ),
+            },
         },
-    },
-    [
-        "div.w-33.tl",
-        {},
-        button(() => pager.setPage(0), "<<"),
-        button(() => pager.updatePage(-1), "<"),
-    ],
-    [
-        "div.w-34.tc",
-        {},
-        pager.page.transform(map((x) => x + 1)),
-        " / ",
-        pager.maxPage.transform(map((x) => x + 1)),
-    ],
-    [
-        "div.w-33.tr",
-        {},
-        button(() => pager.updatePage(1), ">"),
-        button(() => pager.setPage(pager.maxPage.deref()!), ">>"),
-    ],
-];
+        div(
+            { class: "w-33 tl" },
+            button(() => pager.setPage(0), "<<"),
+            button(() => pager.updatePage(-1), "<")
+        ),
+        div(
+            { class: "w-34 tc" },
+            pager.page.transform(map((x) => x + 1)),
+            " / ",
+            pager.maxPage.transform(map((x) => x + 1))
+        ),
+        div(
+            { class: "w-33 tr" },
+            button(() => pager.updatePage(1), ">"),
+            button(() => pager.setPage(pager.maxPage.deref()!), ">>")
+        )
+    );
 
 const button = (onclick: EventListener, label: string) => [
     "button",

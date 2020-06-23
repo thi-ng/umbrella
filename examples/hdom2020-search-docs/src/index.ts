@@ -2,10 +2,11 @@ import { timed } from "@thi.ng/bench";
 import {
     $compile,
     $list,
+    $text,
     Component,
     IComponent,
-    $text,
 } from "@thi.ng/hdom2020";
+import { anchor, div, inputText } from "@thi.ng/hiccup-html";
 import { debounce, Stream, stream, Subscription } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 import { deserialize } from "@ygoe/msgpack";
@@ -35,16 +36,16 @@ class DocSearch extends Component {
     }
 
     async mount(parent: Element) {
-        this.wrapper = $compile([
-            "div.ma2.measure-ns.center-ns.f7.f6-ns",
-            {},
-            ["h1.mv0", {}, "thi.ng/umbrella doc search"],
-            [
-                "div.mb2.f7",
-                {},
-                ["a.link.blue", { href: SRC_URL }, "Source code"],
-            ],
-        ]);
+        this.wrapper = $compile(
+            div(
+                { class: "ma2 measure-ns center-ns f7 f6-ns" },
+                ["h1.mv0", {}, "thi.ng/umbrella doc search"],
+                div(
+                    { class: "mb2 f7" },
+                    anchor({ class: "link blue", href: SRC_URL }, "Source code")
+                )
+            )
+        );
         this.el = await this.wrapper.mount(parent);
 
         // show preloader
@@ -80,62 +81,63 @@ class DocSearch extends Component {
 
             // compile inner component tree, including embedded reactive
             // values/streams and controlflow structures
-            this.inner = $compile([
-                "div",
-                {},
-                [
-                    "input.w-100.mv2.pa2",
-                    {
+            this.inner = $compile(
+                div(
+                    null,
+                    inputText({
+                        class: "w-100 mv2 pa2",
                         type: "text",
                         autofocus: true,
                         oninput: this.updateQuery.bind(this),
                         value: this.query,
-                    },
-                ],
-                // query result & search index stats
-                [
-                    "div.mv2",
-                    {},
-                    // derived view of result stream to compute number of results
-                    this.queryResults.transform(
-                        map((results) => results.length)
+                    }),
+                    // query result & search index stats
+                    div(
+                        { class: "mv2" },
+                        // derived view of result stream to compute number of results
+                        this.queryResults.transform(
+                            map((results) => results.length)
+                        ),
+                        " results",
+                        div(
+                            null,
+                            `(total: ${index.numVals}, keys: ${index.numKeys} in ${index.packages.length} packages, ${index.numFiles} files)`
+                        )
                     ),
-                    " results",
-                    [
-                        "div",
+                    // pagination controls
+                    pageControls(this.pager),
+                    // reactive list component of paginated search results
+                    // the function arg is used to create new list items if needed
+                    $list(
+                        this.pager.resultPage,
+                        "ul.list.pl0",
                         {},
-                        `(total: ${index.numVals}, keys: ${index.numKeys} in ${index.packages.length} packages, ${index.numFiles} files)`,
-                    ],
-                ],
-                // pagination controls
-                pageControls(this.pager),
-                // reactive list component of paginated search results
-                // the function arg is used to create new list items if needed
-                $list(
-                    this.pager.resultPage,
-                    "ul.list.pl0",
-                    {},
-                    ([suffix, file]) => [
-                        "li",
-                        {},
-                        [
-                            "span",
+                        ([suffix, file]) => [
+                            "li",
                             {},
-                            // use .deref() here to avoid unnecessary subscriptions
-                            ["span.b.bg-washed-green", {}, this.query.deref()],
-                            `${suffix}: `,
-                        ],
-                        [
-                            "a.link.blue",
-                            {
-                                href: BASE_URL + file,
-                                target: "_new",
-                            },
-                            file,
-                        ],
-                    ]
-                ),
-            ]);
+                            [
+                                "span",
+                                {},
+                                // use .deref() here to avoid unnecessary subscriptions
+                                [
+                                    "span.b.bg-washed-green",
+                                    {},
+                                    this.query.deref(),
+                                ],
+                                `${suffix}: `,
+                            ],
+                            anchor(
+                                {
+                                    class: "link blue",
+                                    href: BASE_URL + file,
+                                    target: "_new",
+                                },
+                                file
+                            ),
+                        ]
+                    )
+                )
+            );
             this.inner.mount(this.el);
         } catch (e) {
             $text(<HTMLElement>loader, e);
