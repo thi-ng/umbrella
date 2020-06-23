@@ -1,12 +1,11 @@
-import type { MaybeDeref } from "@thi.ng/api";
-import type { Attribs } from "./api";
+import type { Attribs, AttribVal } from "./api";
 import { defElement } from "./def";
 
 export interface ImageAttribs extends Attribs {
-    alt: MaybeDeref<string>;
-    src: MaybeDeref<string>;
-    width: MaybeDeref<number>;
-    height: MaybeDeref<number>;
+    alt: AttribVal<string>;
+    src: AttribVal<string>;
+    width: AttribVal<number>;
+    height: AttribVal<number>;
 }
 
 export const img = defElement<Partial<ImageAttribs>, never>("img");

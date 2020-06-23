@@ -1,40 +1,40 @@
-import { MaybeDeref, NumOrString } from "@thi.ng/api";
-import { Attribs } from "./api";
+import { NumOrString } from "@thi.ng/api";
+import { Attribs, AttribVal } from "./api";
 import { defElement } from "./def";
 
 export interface InputAttribs extends Attribs {
     // https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill
-    autocomplete: MaybeDeref<string>;
-    autofocus: MaybeDeref<boolean>;
-    disabled: MaybeDeref<boolean>;
-    form: MaybeDeref<string>;
-    list: MaybeDeref<string>;
-    name: MaybeDeref<string>;
-    readonly: MaybeDeref<boolean>;
-    required: MaybeDeref<boolean>;
-    type: MaybeDeref<string>;
-    value: MaybeDeref<NumOrString>;
+    autocomplete: AttribVal<string>;
+    autofocus: AttribVal<boolean>;
+    disabled: AttribVal<boolean>;
+    form: AttribVal<string>;
+    list: AttribVal<string>;
+    name: AttribVal<string>;
+    readonly: AttribVal<boolean>;
+    required: AttribVal<boolean>;
+    type: AttribVal<string>;
+    value: AttribVal<NumOrString>;
 }
 
 export interface InputCheckboxAttribs extends InputAttribs {
-    checked: MaybeDeref<boolean>;
-    indeterminate: MaybeDeref<boolean>;
+    checked: AttribVal<boolean>;
+    indeterminate: AttribVal<boolean>;
 }
 
 export interface InputTextAttribs extends InputAttribs {
-    dirname: MaybeDeref<string>;
-    minlength: MaybeDeref<number>;
-    maxlength: MaybeDeref<number>;
-    pattern: MaybeDeref<string>;
-    placeholder: MaybeDeref<string>;
-    size: MaybeDeref<number>;
+    dirname: AttribVal<string>;
+    minlength: AttribVal<number>;
+    maxlength: AttribVal<number>;
+    pattern: AttribVal<string>;
+    placeholder: AttribVal<string>;
+    size: AttribVal<number>;
 }
 
 export interface InputNumericAttribs extends InputAttribs {
-    min: MaybeDeref<number>;
-    max: MaybeDeref<number>;
-    step: MaybeDeref<number>;
-    value: MaybeDeref<number>;
+    min: AttribVal<number>;
+    max: AttribVal<number>;
+    step: AttribVal<number>;
+    value: AttribVal<number>;
 }
 
 export const inputCheck = defElement<Partial<InputCheckboxAttribs>, never>(
@@ -67,42 +67,42 @@ export const inputText = defElement<Partial<InputTextAttribs>, never>("input", {
 });
 
 export interface OptionAttribs {
-    disabled: MaybeDeref<boolean>;
-    label: MaybeDeref<string>;
-    selected: MaybeDeref<boolean>;
-    value: MaybeDeref<NumOrString>;
+    disabled: AttribVal<boolean>;
+    label: AttribVal<string>;
+    selected: AttribVal<boolean>;
+    value: AttribVal<NumOrString>;
 }
 
 export const option = defElement<Partial<OptionAttribs>, string>("option");
 
 export interface OptGroupAttribs {
-    disabled: MaybeDeref<boolean>;
-    label: MaybeDeref<string>;
+    disabled: AttribVal<boolean>;
+    label: AttribVal<string>;
 }
 
 export const optGroup = defElement<Partial<OptGroupAttribs>>("optgroup");
 
 export interface SelectAttribs extends InputAttribs {
-    multiple: MaybeDeref<boolean>;
-    size: MaybeDeref<number>;
+    multiple: AttribVal<boolean>;
+    size: AttribVal<number>;
 }
 
 export const select = defElement<Partial<SelectAttribs>>("select");
 
 export interface LabelAttribs extends Partial<Attribs> {
-    for: MaybeDeref<string>;
+    for: AttribVal<string>;
 }
 
 export const label = defElement<LabelAttribs>("label");
 
 export interface MeterAttribs extends Attribs {
-    min: MaybeDeref<number>;
-    max: MaybeDeref<number>;
-    low: MaybeDeref<number>;
-    high: MaybeDeref<number>;
-    optimum: MaybeDeref<number>;
-    value: MaybeDeref<number>;
-    form: MaybeDeref<string>;
+    min: AttribVal<number>;
+    max: AttribVal<number>;
+    low: AttribVal<number>;
+    high: AttribVal<number>;
+    optimum: AttribVal<number>;
+    value: AttribVal<number>;
+    form: AttribVal<string>;
 }
 
 export const meter = defElement<Partial<MeterAttribs>>("meter");

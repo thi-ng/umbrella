@@ -1,13 +1,12 @@
-import type { MaybeDeref } from "@thi.ng/api";
-import { Attribs } from "./api";
+import { Attribs, AttribVal } from "./api";
 import { defElement } from "./def";
 
 interface AnchorAttribs extends Attribs {
-    download: MaybeDeref<string>;
-    href: MaybeDeref<string>;
-    hreflang: MaybeDeref<string>;
-    ping: MaybeDeref<string | string[]>;
-    referrerpolicy: MaybeDeref<
+    download: AttribVal<string>;
+    href: AttribVal<string>;
+    hreflang: AttribVal<string>;
+    ping: AttribVal<string | string[]>;
+    referrerpolicy: AttribVal<
         | "no-referrer"
         | "no-referrer-when-downgrade"
         | "origin"
@@ -17,9 +16,9 @@ interface AnchorAttribs extends Attribs {
         | "strict-origin-when-cross-origin"
         | "unsafe-url"
     >;
-    rel: MaybeDeref<string>;
-    target: MaybeDeref<string>;
-    type: MaybeDeref<string>;
+    rel: AttribVal<string>;
+    target: AttribVal<string>;
+    type: AttribVal<string>;
 }
 
 export const anchor = defElement<Partial<AnchorAttribs>>("a");

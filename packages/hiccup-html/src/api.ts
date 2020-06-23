@@ -1,9 +1,12 @@
 import type { Fn, IObjectOf, MaybeDeref, NumOrString } from "@thi.ng/api";
 
-export type EventAttribs<K extends string, T> = Record<
-    K,
-    Fn<T, any> | [Fn<T, any>, boolean | AddEventListenerOptions]
->;
+export type AttribVal<T> = MaybeDeref<T | undefined>;
+
+export type EventAttribVal<T> =
+    | Fn<T, any>
+    | [Fn<T, any>, boolean | AddEventListenerOptions];
+
+export type EventAttribs<K extends string, T> = Record<K, EventAttribVal<T>>;
 
 export type AnimationEventAttribs = EventAttribs<
     | "onanimationcancel"
@@ -100,9 +103,9 @@ export interface GlobalEventAttribs
         TouchEventAttribs,
         TransitionEventAttribs,
         WheelEventAttribs {
-    onresize: Fn<UIEvent, any>;
-    onscroll: Fn<Event, any>;
-    onsubmit: Fn<Event, any>;
+    onresize: EventAttribVal<UIEvent>;
+    onscroll: EventAttribVal<Event>;
+    onsubmit: EventAttribVal<Event>;
 }
 
 export interface MicroformatAttribs {
@@ -114,27 +117,27 @@ export interface MicroformatAttribs {
 }
 
 export interface Attribs extends GlobalEventAttribs, MicroformatAttribs {
-    accesskey: MaybeDeref<string>;
-    autocapitalize: MaybeDeref<
+    accesskey: AttribVal<string>;
+    autocapitalize: AttribVal<
         "off" | "on" | "sentences" | "words" | "characters"
     >;
-    class: MaybeDeref<string | IObjectOf<MaybeDeref<boolean>>>;
-    contenteditable: MaybeDeref<boolean>;
-    data: IObjectOf<MaybeDeref<NumOrString>>;
-    dir: MaybeDeref<"rtl" | "ltr">;
-    draggable: MaybeDeref<boolean>;
-    hidden: MaybeDeref<boolean>;
-    id: MaybeDeref<string>;
-    is: MaybeDeref<string>;
-    lang: MaybeDeref<string>;
-    scrollLeft: MaybeDeref<number>;
-    scrollTop: MaybeDeref<number>;
-    spellcheck: MaybeDeref<boolean>;
-    style: MaybeDeref<
-        string | IObjectOf<MaybeDeref<NumOrString | Fn<any, NumOrString>>>
+    class: AttribVal<string | IObjectOf<AttribVal<boolean>>>;
+    contenteditable: AttribVal<boolean>;
+    data: IObjectOf<AttribVal<NumOrString>>;
+    dir: AttribVal<"rtl" | "ltr">;
+    draggable: AttribVal<boolean>;
+    hidden: AttribVal<boolean>;
+    id: AttribVal<string>;
+    is: AttribVal<string>;
+    lang: AttribVal<string>;
+    scrollLeft: AttribVal<number>;
+    scrollTop: AttribVal<number>;
+    spellcheck: AttribVal<boolean>;
+    style: AttribVal<
+        string | IObjectOf<AttribVal<NumOrString | Fn<any, NumOrString>>>
     >;
-    tabindex: MaybeDeref<number>;
-    title: MaybeDeref<string>;
-    translate: MaybeDeref<boolean>;
+    tabindex: AttribVal<number>;
+    title: AttribVal<string>;
+    translate: AttribVal<boolean>;
     [id: string]: any;
 }
