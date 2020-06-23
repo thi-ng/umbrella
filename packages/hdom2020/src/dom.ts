@@ -156,6 +156,38 @@ export const $html = (el: HTMLElement, body: MaybeDeref<string>) => {
     el.innerHTML = deref(body);
 };
 
+/**
+ * Takes an object of attributes and applies them to given DOM element.
+ *
+ * @remarks
+ * The following rules & transformations are applied (in the stated
+ * order):
+ *
+ * - {@link @thi.ng/api#IDeref} values are `deref`d
+ * - attributes prefixed with `on` are considered event listeners and
+ *   can either have a function value or tuple of `[listener, opts]`,
+ *   where `opts` are the standard `.addEventListener()` options
+ * - function values for any other attribs are first called with the
+ *   entire `attribs` object and return value used
+ * - array values are converted into space-delimited string
+ *
+ * CSS classs are to given as `class` attribute, with its value either a
+ * string or an object of booleans. If the latter, the given class names
+ * are either added to or removed from the current list of classes.
+ *
+ * CSS style rules can be defined via the `style` attrib. Please
+ * {@link $style} for further details.
+ *
+ * Data attributes are to be given as object under the `data` attribute
+ * name, with its values being merged with the element's current
+ * `dataset` property.
+ *
+ * Depending on element type the `value` attribute will be updated
+ * keeping the current cursor position / selection intact.
+ *
+ * @param el
+ * @param attribs
+ */
 export const $attribs = (el: Element, attribs: any) => {
     for (let id in attribs) {
         setAttrib(el, id, attribs[id], attribs);
@@ -173,40 +205,41 @@ const setAttrib = (el: Element, id: string, val: any, attribs: any) => {
         return;
     }
     isFunction(val) && (val = val(attribs));
+    isArray(val) && (val = val.join(" "));
     switch (id) {
+        case "class":
+            el.className = isString(val)
+                ? val
+                : updateClasses(el.className, val);
+            break;
         case "style":
             $style(el, val);
             break;
         case "value":
             updateValueAttrib(<HTMLInputElement>el, val);
             break;
-        case "accesskey":
-            (<HTMLElement>el).accessKey = val;
+        case "data":
+            updateDataAttribs(<HTMLElement>el, val);
             break;
-        case "contenteditable":
-            (<HTMLElement>el).contentEditable = val;
-            break;
-        case "tabindex":
-            (<HTMLElement>el).tabIndex = val;
-            break;
-        case "align":
+        case "accessKey":
         case "autocapitalize":
         case "checked":
+        case "contentEditable":
         case "dir":
         case "draggable":
         case "hidden":
         case "id":
+        case "indeterminate":
         case "lang":
-        case "namespaceURI":
-        case "scrollTop":
         case "scrollLeft":
+        case "scrollTop":
+        case "selectionEnd":
+        case "selectionStart":
+        case "slot":
+        case "spellcheck":
+        case "tabIndex":
         case "title":
             (<any>el)[id] = val;
-            break;
-        case "class":
-            el.className = isString(val)
-                ? val
-                : updateClasses(el.className, val);
             break;
         default:
             val === false || val == null
@@ -256,6 +289,29 @@ const updateValueAttrib = (el: HTMLInputElement, value: any) => {
     }
 };
 
+const updateDataAttribs = (el: HTMLElement, attribs: any) => {
+    const data = el.dataset;
+    for (let id in attribs) {
+        let v = deref(attribs[id]);
+        isFunction(v) && (v = v(attribs));
+        data[id] = v;
+    }
+};
+
+/**
+ * Takes an object (or string) of CSS properties, compiles them into a
+ * single CSS string and sets it as `style` attribute on the given
+ * element.
+ *
+ * @remarks
+ * All property values can be {@link @thi.ng/api#IDeref} values, in
+ * which case they're are first `deref`d before use. If the value is a
+ * function, it will be called with the entire `rules` object as arg and
+ * the return value used.
+ *
+ * @param el
+ * @param rules
+ */
 export const $style = (el: Element, rules: string | any) => {
     if (isString(rules)) {
         el.setAttribute("style", rules);
