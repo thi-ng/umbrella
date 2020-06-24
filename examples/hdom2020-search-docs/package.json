@@ -18,9 +18,11 @@
     },
     "dependencies": {
         "@thi.ng/api": "latest",
+        "@thi.ng/bench": "latest",
         "@thi.ng/compare": "latest",
         "@thi.ng/equiv": "latest",
         "@thi.ng/hdom2020": "latest",
+        "@thi.ng/hiccup-html": "latest",
         "@thi.ng/math": "latest",
         "@thi.ng/rstream": "latest",
         "@thi.ng/transducers": "latest",
