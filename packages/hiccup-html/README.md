@@ -13,6 +13,8 @@ This project is part of the
   - [Supported elements](#supported-elements)
     - [Sections](#sections)
     - [Text content](#text-content)
+    - [Lists](#lists)
+    - [Inline](#inline)
     - [Forms / inputs](#forms---inputs)
     - [Media](#media)
   - [Status](#status)
@@ -20,6 +22,8 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
+  - [defElement](#defelement)
+    - [Element creation](#element-creation)
 - [Authors](#authors)
 - [License](#license)
 
@@ -27,11 +31,8 @@ This project is part of the
 
 Type-checked HTML5 element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) related infrastructure.
 
-The following type-checked factory functions are provided _so far_. All
-functions take zero or more args with the first one an element specific
-attribute object (see
-[api.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/api.ts#L116)
-for common base).
+The following type-checked factory functions are provided **so far**.
+See [`defElement()`](#defelement) for more details.
 
 ### Supported elements
 
@@ -46,21 +47,34 @@ for common base).
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/blocks.ts)
 
-`anchor`, `blockquote`, `div`, `figure`, `figcaption`, `hr`, `para`,
+`blockquote`, `div`, `figure`, `figcaption`, `hr`, `para`,
 `pre`, `span`
+
+#### Lists
+
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/lists.ts)
+
+`ol`, `ul`, `li`, `dl`, `dt`, `dd`
+
+#### Inline
+
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/inline.ts)
+
+`abbr`, `anchor`, `br`, `cite`, `code`, `data`, `del`, `em`, `i`, `ins`,
+`kbd`, `mark`, `quote`, `small`, `span`, `strong`, `sub`, `sup`, `time`
 
 #### Forms / inputs
 
-[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/input.ts)
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/forms.ts)
 
-`inputCheck`, `inputNumber`, `inputPass`, `inputRadio`, `inputRange`,
-`inputText`, `label`, `option`, `optGroup`, `select`
+`checkbox`, `inputNumber`, `inputPass`, `inputRange`, `inputText`,
+`label`, `meter`, `option`, `optGroup`, `radio`, `select`
 
 #### Media
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/media.ts)
 
-`img`
+`img`, `picture`, `source`
 
 ### Status
 
@@ -89,7 +103,7 @@ yarn add @thi.ng/hiccup-html
 <script src="https://unpkg.com/@thi.ng/hiccup-html/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 440 bytes / CJS: 576 bytes / UMD: 630 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 766 bytes / CJS: 1.01 KB / UMD: 1012 bytes
 
 ## Dependencies
 
@@ -127,6 +141,104 @@ $compile(
     )
 ).mount(document.body);
 ```
+
+### defElement
+
+All element functions are created via the higher-order function
+`defElement` which produces the typed, variadic factories. `defElement`
+takes an element name and optional set of default attributes. It also
+uses generics to enforce types for the element's attributes (default:
+[`Attribs`](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup-html/src/api.ts#L119)
+and/or children/body (default: `any`).
+
+Define element with defaults:
+
+```ts
+import { defElement } from "@thi.ng/hiccup-html";
+
+const el = defElement("tag")
+```
+
+Define with custom attribs & no children allowed:
+
+```ts
+import { Attribs, AttribVal, defElement } from "@thi.ng/hiccup-html";
+
+// extend global HTML default attribs
+interface MyAttribs extends Attribs {
+    class: AttribVal<string>;
+    width: AttribVal<number>;
+    height: AttribVal<number>;
+}
+
+// provide type constraints and default attribs
+const el = defElement<Partial<MyAttribs>, never>(
+    "tag",
+    { width: 100, height: 100 }
+);
+```
+
+The `Attribs` interface provides a common, fully typed base definition
+of HTML attributes (incl. event listeners) and can be found in
+[api.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/api.ts#L119).
+
+The `AttribVal` type wrapper is used to allow for reactive attribute
+values (in
+[@thi.ng/hdom2020](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/packages/hdom2020))
+and [`IDeref`
+instances](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api/deref.ts)
+when later providing attribute values to an element.
+
+#### Element creation
+
+The function returned by `defElement` has the following signatures:
+
+```ts
+(attribs?: Nullable<T>, ...body: B[]) => [string, Nullable<T>, ...B[]];
+
+(emmet: string, attribs?: Nullable<T>, ...body: B[]) => [string, Nullable<T>, ...B[]];
+```
+
+The result of either form is a simple tuple, defining an HTML element in
+[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
+syntax.
+
+If the second call signature is used, the initial `emmet`-style string
+will be appended to the tag name and merely acts as syntax sugar for
+providing an element ID and/or CSS classes.
+
+```ts
+const el = defElement<any>("a");
+```
+
+| Call                              | Result                           |
+|-----------------------------------|----------------------------------|
+| `el()`                            | `["a", null]`                    |
+| `el(null)`                        | `["a", null]`                    |
+| `el(null, "body")`                | `["a", null, "body"]`            |
+| `el({ c: 2 })`                    | `["a", { c: 2 }]`                |
+| `el({ c: 2 }, "body")`            | `["a", { c: 2 }, "body"]`        |
+| `el("#id.foo")`                   | `["a#id.foo", null]`             |
+| `el("#id.foo", { c: 2 })`         | `["a#id.foo", { c: 2 }]`         |
+| `el("#id.foo", { c: 2 }, "body")` | `["a#id.foo", { c: 2 }, "body"]` |
+| `el("#id.foo", null, "body")`     | `["a#id.foo", null, "body"]`     |
+
+```ts
+// with default attribs
+const el = defElement<any>("a", { b: 1 });
+```
+
+| Call                              | Result                                 |
+|-----------------------------------|----------------------------------------|
+| `el()`                            | `["a", { b: 1 }]`                      |
+| `el(null)`                        | `["a", { b: 1 }]`                      |
+| `el(null, "body")`                | `["a", { b: 1 }, "body"]`              |
+| `el({ c: 2 })`                    | `["a", { b: 1, c: 2 }]`                |
+| `el({ c: 2 }, "body")`            | `["a", { b: 1, c: 2 }, "body"]`        |
+| `el("#id.foo")`                   | `["a#id.foo", { b: 1 }]`               |
+| `el("#id.foo", { c: 2 })`         | `["a#id.foo", { b: 1, c: 2 }]`         |
+| `el("#id.foo", { c: 2 }, "body")` | `["a#id.foo", { b: 1, c: 2 }, "body"]` |
+| `el("#id.foo", null, "body")`     | `["a#id.foo", { b: 1 }, "body"]`       |
 
 ## Authors
 
