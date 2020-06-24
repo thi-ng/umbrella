@@ -8,7 +8,7 @@ import {
     isString,
 } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
-import { RE_TAG, SVG_NS, SVG_TAGS } from "@thi.ng/hiccup";
+import { ATTRIB_JOIN_DELIMS, RE_TAG, SVG_NS, SVG_TAGS } from "@thi.ng/hiccup";
 import type { NumOrElement } from "./api";
 import { isComponent } from "./utils";
 
@@ -205,7 +205,7 @@ const setAttrib = (el: Element, id: string, val: any, attribs: any) => {
         return;
     }
     isFunction(val) && (val = val(attribs));
-    isArray(val) && (val = val.join(" "));
+    isArray(val) && (val = val.join(ATTRIB_JOIN_DELIMS[id] || " "));
     switch (id) {
         case "class":
             el.className = isString(val)
