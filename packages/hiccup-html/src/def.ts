@@ -24,15 +24,12 @@ export const defElement = <T = Partial<Attribs>, B = any>(
     baseAttribs?: Partial<T>
 ): ElementFactory<T, B> => (...args: any[]): any => {
     const $tag = typeof args[0] === "string" ? tag + args.shift() : tag;
-    return args.length > 1
-        ? baseAttribs
-            ? [$tag, { ...baseAttribs, ...args[0] }, ...args.slice(1)]
-            : [$tag, args[0], ...args.slice(1)]
-        : args.length === 1
-        ? baseAttribs
-            ? [$tag, { ...baseAttribs, ...args[0] }]
-            : [$tag, args[0]]
-        : baseAttribs
-        ? [$tag, baseAttribs]
-        : [$tag, null];
+    const n = args.length;
+    const attribs =
+        n > 0
+            ? baseAttribs
+                ? { ...baseAttribs, ...args[0] }
+                : args[0]
+            : baseAttribs || null;
+    return n > 1 ? [$tag, attribs, ...args.slice(1)] : [$tag, attribs];
 };
