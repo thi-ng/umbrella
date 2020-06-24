@@ -1,15 +1,34 @@
 import { NumOrString } from "@thi.ng/api";
-import { Attribs, AttribVal } from "./api";
+import { Attribs, AttribVal, RelAttribs } from "./api";
 import { defElement } from "./def";
 
-export interface InputAttribs extends Attribs {
+export interface FormAttribs extends Attribs, RelAttribs {
+    "accept-charset": AttribVal<string | string[]>;
+    action: AttribVal<string>;
+    autocomplete: AttribVal<"on" | "off">;
+    enctype: AttribVal<string>;
+    method: AttribVal<string>;
+    novalidate: AttribVal<boolean>;
+    target: AttribVal<string>;
+}
+
+export const form = defElement<Partial<FormAttribs>>("form");
+
+export interface FieldsetAttribs extends Attribs {
+    disabled: AttribVal<boolean>;
+    form: AttribVal<string>;
+    name: AttribVal<string>;
+}
+
+export const fieldset = defElement<Partial<FieldsetAttribs>>("fieldset");
+
+export const legend = defElement("legend");
+
+export interface InputAttribs extends Attribs, FieldsetAttribs {
     // https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill
     autocomplete: AttribVal<string>;
     autofocus: AttribVal<boolean>;
-    disabled: AttribVal<boolean>;
-    form: AttribVal<string>;
     list: AttribVal<string>;
-    name: AttribVal<string>;
     readonly: AttribVal<boolean>;
     required: AttribVal<boolean>;
     type: AttribVal<string>;
@@ -19,6 +38,16 @@ export interface InputAttribs extends Attribs {
 export interface InputCheckboxAttribs extends InputAttribs {
     checked: AttribVal<boolean>;
     indeterminate: AttribVal<boolean>;
+}
+
+export interface InputRadioAttribs extends InputAttribs {
+    checked: AttribVal<boolean>;
+}
+
+export interface InputFileAttribs extends InputAttribs {
+    accept: AttribVal<string | string[]>;
+    capture: AttribVal<"user" | "environment">;
+    multiple: AttribVal<boolean>;
 }
 
 export interface InputTextAttribs extends InputAttribs {
@@ -37,6 +66,8 @@ export interface InputNumericAttribs extends InputAttribs {
     value: AttribVal<number>;
 }
 
+export const button = defElement<Partial<InputAttribs>>("button");
+
 export const checkbox = defElement<Partial<InputCheckboxAttribs>, never>(
     "input",
     {
@@ -44,8 +75,16 @@ export const checkbox = defElement<Partial<InputCheckboxAttribs>, never>(
     }
 );
 
-export const radio = defElement<Partial<InputAttribs>, never>("input", {
+export const radio = defElement<Partial<InputRadioAttribs>, never>("input", {
     type: "radio",
+});
+
+export const inputColor = defElement<Partial<InputAttribs>, never>("input", {
+    type: "color",
+});
+
+export const inputFile = defElement<Partial<InputFileAttribs>, never>("input", {
+    type: "file",
 });
 
 export const inputPass = defElement<Partial<InputTextAttribs>, never>("input", {
@@ -54,12 +93,19 @@ export const inputPass = defElement<Partial<InputTextAttribs>, never>("input", {
 
 export const inputNumber = defElement<Partial<InputNumericAttribs>, never>(
     "input",
-    { type: "numeric" }
+    { type: "number" }
 );
 
 export const inputRange = defElement<Partial<InputNumericAttribs>, never>(
     "input",
     { type: "range" }
+);
+
+export const inputSearch = defElement<Partial<InputTextAttribs>, never>(
+    "input",
+    {
+        type: "search",
+    }
 );
 
 export const inputText = defElement<Partial<InputTextAttribs>, never>("input", {
@@ -91,6 +137,7 @@ export const select = defElement<Partial<SelectAttribs>>("select");
 
 export interface LabelAttribs extends Partial<Attribs> {
     for: AttribVal<string>;
+    form?: AttribVal<string>;
 }
 
 export const label = defElement<LabelAttribs>("label");
@@ -106,3 +153,10 @@ export interface MeterAttribs extends Attribs {
 }
 
 export const meter = defElement<Partial<MeterAttribs>>("meter");
+
+export interface ProgressAttribs extends Attribs {
+    max: AttribVal<number>;
+    value: AttribVal<number>;
+}
+
+export const progress = defElement<Partial<ProgressAttribs>>("progress");

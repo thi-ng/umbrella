@@ -1,13 +1,12 @@
-import { Attribs, AttribVal, ReferrerAttribs } from "./api";
+import { Attribs, AttribVal, ReferrerAttribs, RelAttribs } from "./api";
 import { defElement, defElements } from "./def";
 import { NumOrString } from "@thi.ng/api";
 
-interface AnchorAttribs extends Attribs, ReferrerAttribs {
+interface AnchorAttribs extends Attribs, ReferrerAttribs, RelAttribs {
     download: AttribVal<string>;
     href: AttribVal<string>;
     hreflang: AttribVal<string>;
-    ping: AttribVal<string | string[]>; // space
-    rel: AttribVal<string>;
+    ping: AttribVal<string | string[]>;
     target: AttribVal<string>;
     type: AttribVal<string>;
 }

@@ -3,6 +3,7 @@ export * from "./def";
 
 export * from "./blocks";
 export * from "./forms";
+export * from "./head";
 export * from "./inline";
 export * from "./lists";
 export * from "./media";

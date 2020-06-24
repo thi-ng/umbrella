@@ -11,6 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Supported elements](#supported-elements)
+    - [Head / metadata](#head---metadata)
     - [Sections](#sections)
     - [Text content](#text-content)
     - [Lists](#lists)
@@ -32,30 +33,36 @@ This project is part of the
 
 Type-checked HTML5 element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) related infrastructure.
 
-The following type-checked factory functions are provided **so far**.
-See [`defElement()`](#defelement) for more details.
+The following type-checked factory functions are provided **so far** and
+in many cases include specialized type definitions for element-specific
+attributes. See [`defElement()`](#defelement) below for more details.
 
 ### Supported elements
+
+#### Head / metadata
+
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/head.ts)
+
+`base`, `head`, `link`, `meta`, `style`, `title`
 
 #### Sections
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/sections.ts)
 
-`address`, `article`, `aside`, `footer`, `header`, `hgroup`, `main`,
-`nav`, `section`
+`address`, `article`, `aside`, `body`, `footer`, `header`, `hgroup`,
+`main`, `nav`, `section`
 
 #### Text content
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/blocks.ts)
 
-`blockquote`, `div`, `figure`, `figcaption`, `hr`, `para`,
-`pre`, `span`
+`blockquote`, `div`, `figure`, `figcaption`, `hr`, `para`, `pre`, `span`
 
 #### Lists
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/lists.ts)
 
-`ol`, `ul`, `li`, `dl`, `dt`, `dd`
+`datalist`, `dd`, `dl`, `dt`, `li`, `ol`, `ul`
 
 #### Inline
 
@@ -68,8 +75,10 @@ See [`defElement()`](#defelement) for more details.
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/forms.ts)
 
-`checkbox`, `inputNumber`, `inputPass`, `inputRange`, `inputText`,
-`label`, `meter`, `option`, `optGroup`, `radio`, `select`
+`button`, `checkbox`, `fieldset`, `form`, `inputColor`, `inputFile`,
+`inputNumber`, `inputPass`, `inputRange`, `inputSearch`, `inputText`,
+`label`, `legend`, `meter`, `option`, `optGroup`, `progress`, `radio`,
+`select`
 
 #### Media
 
@@ -151,7 +160,7 @@ yarn add @thi.ng/hiccup-html
 <script src="https://unpkg.com/@thi.ng/hiccup-html/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 766 bytes / CJS: 1.01 KB / UMD: 1012 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 943 bytes / CJS: 1.23 KB / UMD: 1.19 KB
 
 ## Dependencies
 

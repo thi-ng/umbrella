@@ -149,3 +149,40 @@ export interface CORSAttribs {
 export interface ReferrerAttribs {
     referrerpolicy: AttribVal<ReferrerPolicy>;
 }
+
+export interface ImportanceAttribs {
+    importance: AttribVal<"high" | "low" | "auto">;
+}
+
+export type LinkRel =
+    | "alternate"
+    | "author"
+    | "bookmark"
+    | "canonical"
+    | "dns-prefetch"
+    | "external"
+    | "help"
+    | "icon"
+    | "import"
+    | "license"
+    | "manifest"
+    | "modulepreload"
+    | "next"
+    | "nofollow"
+    | "noopener"
+    | "noreferrer"
+    | "opener"
+    | "pingback"
+    | "preconnect"
+    | "prefetch"
+    | "preload"
+    | "prerender"
+    | "prev"
+    | "search"
+    | "shortlink"
+    | "stylesheet"
+    | "tag";
+
+export interface RelAttribs {
+    rel: AttribVal<string | LinkRel[]>;
+}

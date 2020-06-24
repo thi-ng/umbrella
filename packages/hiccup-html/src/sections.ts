@@ -1,4 +1,28 @@
 import { defElement, defElements } from "./def";
+import { EventAttribs, Attribs } from "./api";
+
+export type BodyEventAttribs = EventAttribs<
+    | "onafterprint"
+    | "onbeforeprint"
+    | "onbeforeunload"
+    | "onerror"
+    | "onhashchange"
+    | "onlanguagechange"
+    | "onload"
+    | "onmessage"
+    | "onoffline"
+    | "ononline"
+    | "onpopstate"
+    | "onredo"
+    | "onstorage"
+    | "onundo"
+    | "onunload",
+    Event
+>;
+
+export interface BodyAttribs extends Attribs, BodyEventAttribs {}
+
+export const body = defElement<Partial<BodyAttribs>>("body");
 
 export const [
     address,
@@ -11,6 +35,7 @@ export const [
     nav,
     section,
 ] = defElements([
+    "address",
     "article",
     "aside",
     "footer",

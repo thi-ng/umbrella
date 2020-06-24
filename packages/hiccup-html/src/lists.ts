@@ -15,4 +15,10 @@ export const ol = defElement<Partial<OrderedListAttribs>>("ol");
 
 export const li = defElement<Partial<ListItemAttribs>>("li");
 
-export const [ul, dl, dt, dd] = defElements(["ul", "dl", "dt", "dd"]);
+export const [ul, dl, dt, dd, datalist] = defElements([
+    "ul",
+    "dl",
+    "dt",
+    "dd",
+    "datalist",
+]);
