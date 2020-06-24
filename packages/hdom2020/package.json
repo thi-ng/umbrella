@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hdom2020",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "description": "Experimental exploration for a new @thi.ng/hdom w/ entirely new, largely reactive & diff-less approach. WARNING: Your existing code WILL break!",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -54,7 +54,7 @@
         "@thi.ng/atom": "^4.1.11",
         "@thi.ng/checks": "^2.7.2",
         "@thi.ng/errors": "^1.2.15",
-        "@thi.ng/hiccup": "^3.2.26",
+        "@thi.ng/hiccup": "^3.3.0",
         "@thi.ng/hiccup-canvas": "^1.0.2",
         "@thi.ng/paths": "^4.0.9",
         "@thi.ng/rstream": "^4.4.1"
@@ -66,6 +66,7 @@
     ],
     "keywords": [
         "aot",
+        "async",
         "canvas",
         "css",
         "dom",
@@ -73,8 +74,10 @@
         "components",
         "frontend",
         "hiccup",
+        "html",
         "reactive",
         "rstream",
+        "svg",
         "typescript",
         "ui"
     ],
