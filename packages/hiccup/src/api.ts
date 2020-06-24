@@ -57,6 +57,7 @@ export const VOID_TAGS = tagMap(
 );
 
 export const ATTRIB_JOIN_DELIMS: Record<string, string> = {
+    accept: ",",
     sizes: ",",
     srcset: ",",
 };
