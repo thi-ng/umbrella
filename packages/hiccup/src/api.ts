@@ -55,3 +55,8 @@ export const SVG_TAGS = tagMap(
 export const VOID_TAGS = tagMap(
     "area base br circle col command ellipse embed hr img input keygen line link meta param path polygon polyline rect source stop track use wbr ?xml"
 );
+
+export const ATTRIB_JOIN_DELIMS: Record<string, string> = {
+    sizes: ",",
+    srcset: ",",
+};

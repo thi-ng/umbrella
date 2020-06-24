@@ -65,6 +65,18 @@ describe("serialize", () => {
         `<div foo="[object Object]"></div>`
     );
 
+    check(
+        "array attr join (fallback)",
+        ["a", { ping: ["google.com", "fb.com"] }],
+        `<a ping="google.com fb.com"></a>`
+    );
+
+    check(
+        "array attr join (delim)",
+        ["img", { srcset: ["a.jpg", "b.jpg"] }],
+        `<img srcset="a.jpg,b.jpg"/>`
+    );
+
     check("attr fn", ["div", { foo: () => 23 }], `<div foo="23"></div>`);
 
     check(
