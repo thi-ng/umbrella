@@ -3,9 +3,16 @@ import {
     isFunction,
     isNotStringAndIterable,
     isString,
+    isArray,
 } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
-import { COMMENT, NO_SPANS, PROC_TAGS, VOID_TAGS } from "./api";
+import {
+    COMMENT,
+    NO_SPANS,
+    PROC_TAGS,
+    VOID_TAGS,
+    ATTRIB_JOIN_DELIMS,
+} from "./api";
 import { escape } from "./escape";
 import { normalize } from "./normalize";
 
@@ -250,7 +257,9 @@ const serializeAttribs = (attribs: any, esc: boolean) => {
         if (v === true) {
             res += " " + a;
         } else if (v !== false) {
-            v = v.toString();
+            v = isArray(v)
+                ? v.join(ATTRIB_JOIN_DELIMS[a] || " ")
+                : v.toString();
             v.length && (res += ` ${a}="${esc ? escape(v) : v}"`);
         }
     }

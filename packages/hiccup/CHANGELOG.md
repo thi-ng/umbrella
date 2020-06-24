@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.2.26...@thi.ng/hiccup@3.3.0) (2020-06-24)
+
+
+### Features
+
+* **hiccup:** support array attrib values, add tests ([1c4ef8a](https://github.com/thi-ng/umbrella/commit/1c4ef8aa6464dee9e9fed39e8213e52ed67e2ac1))
+* **hiccup:** update `accept` attrib handling ([fabf447](https://github.com/thi-ng/umbrella/commit/fabf447d5ef7f666f16ee11d46188496121766d2))
+
+
+
+
+
 ## [3.2.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.2.25...@thi.ng/hiccup@3.2.26) (2020-06-20)
 
 **Note:** Version bump only for package @thi.ng/hiccup

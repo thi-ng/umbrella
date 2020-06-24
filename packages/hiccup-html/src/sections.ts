@@ -1,19 +1,51 @@
-import { defElement } from "./def";
+import { defElement, defElements } from "./def";
+import { EventAttribs, Attribs } from "./api";
 
-export const address = defElement("address");
+export type BodyEventAttribs = EventAttribs<
+    | "onafterprint"
+    | "onbeforeprint"
+    | "onbeforeunload"
+    | "onerror"
+    | "onhashchange"
+    | "onlanguagechange"
+    | "onload"
+    | "onmessage"
+    | "onoffline"
+    | "ononline"
+    | "onpopstate"
+    | "onredo"
+    | "onstorage"
+    | "onundo"
+    | "onunload",
+    Event
+>;
 
-export const article = defElement("article");
+export interface BodyAttribs extends Attribs, BodyEventAttribs {}
 
-export const aside = defElement("aside");
+export const body = defElement<Partial<BodyAttribs>>("body");
 
-export const footer = defElement("footer");
+export const [
+    address,
+    article,
+    aside,
+    footer,
+    header,
+    hgroup,
+    main,
+    nav,
+    section,
+] = defElements([
+    "address",
+    "article",
+    "aside",
+    "footer",
+    "header",
+    "hgroup",
+    "main",
+    "nav",
+    "section",
+]);
 
-export const header = defElement("header");
-
-export const hgroup = defElement("hgroup");
-
-export const main = defElement("main");
-
-export const nav = defElement("nav");
-
-export const section = defElement("section");
+export const [h1, h2, h3, h4, h5, h6] = [1, 2, 3, 4, 5, 6].map((i) =>
+    defElement("h" + i)
+);
