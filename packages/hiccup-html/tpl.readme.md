@@ -58,6 +58,53 @@ See [`defElement()`](#defelement) for more details.
 
 `img`, `picture`, `source`
 
+### Compatibility
+
+The hiccup syntax is (by design) merely a convention and specific
+feature support and interpretation is down to the actual tooling used.
+
+The type definitions for element attributes used by this package allow
+certain constructs which are only supported by some hiccup consumers
+(however, there're compatible alternative ways of expressing the same
+data).
+
+The table below provides an overview of the _current_ syntax feature
+support by the relevant packages consuming hiccup:
+
+- [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
+- [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
+- [@thi.ng/hdom2020](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/packages/hdom2020)
+
+| Feature                    | Example and HTML equivalent/result                   | hiccup | hdom | hdom2020 |
+|----------------------------|------------------------------------------------------|--------|------|----------|
+| Emmet style tags           | `["div#id.foo", {}]`                                 | ✅      | ✅    | ✅        |
+|                            | `<div id="id" class="foo">`                          |        |      |          |
+| `class` attrib as object   | `["a.bar.baz", { class: { foo: true, bar: false }}]` | ❌      | ❌    | ✅        |
+|                            | `<a class="baz foo">`                                |        |      |          |
+| `style` attrib as object   | `["div", { style: { color: "red" }}]`                | ✅      | ✅    | ✅        |
+|                            | `<div style="color:red;">`                           |        |      |          |
+| Attrib array values        | `["img", { srcset: ["1.jpg", "2.jpg"] }]`            | ✅      | ❌    | ✅        |
+|                            | `<img srcset="1.jpg, 2.jpg">`                        |        |      |          |
+| Data attribs as object     | `["a", { data: { foo: 42 }}]`                        | ❌      | ❌    | ✅        |
+|                            | `<a data-foo="42">`                                  |        |      |          |
+| Function attrib values (1) | `["a", { id: () => "epoch-" + Date.now() }]`         | ✅      | ✅    | ✅        |
+|                            | `<a id="epoch-1593024083666">`                       |        |      |          |
+| `IDeref` attrib values (2) | `["div", { id: { deref() { return "foo"; }}}]`       | ❌      | ❌    | ✅        |
+|                            | `<div id="foo">`                                     |        |      |          |
+
+All other features not explicitly mentioned are supported by all three
+packages.
+
+(1) Excluding event listener attribs, these are always function values
+of course, but will NOT be evaluated to obtain final attrib value
+
+(2) The
+[`IDeref`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api/deref.ts)
+interface is implemented by various data structures in the
+thi.ng/umbrella eco system (most relevant:
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream),
+[@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom)).
+
 ${status}
 
 The current aim is not necessarily to have wrappers for *each* possible
