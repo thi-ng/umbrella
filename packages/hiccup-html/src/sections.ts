@@ -1,19 +1,26 @@
-import { defElement } from "./def";
+import { defElement, defElements } from "./def";
 
-export const address = defElement("address");
+export const [
+    address,
+    article,
+    aside,
+    footer,
+    header,
+    hgroup,
+    main,
+    nav,
+    section,
+] = defElements([
+    "article",
+    "aside",
+    "footer",
+    "header",
+    "hgroup",
+    "main",
+    "nav",
+    "section",
+]);
 
-export const article = defElement("article");
-
-export const aside = defElement("aside");
-
-export const footer = defElement("footer");
-
-export const header = defElement("header");
-
-export const hgroup = defElement("hgroup");
-
-export const main = defElement("main");
-
-export const nav = defElement("nav");
-
-export const section = defElement("section");
+export const [h1, h2, h3, h4, h5, h6] = [1, 2, 3, 4, 5, 6].map((i) =>
+    defElement("h" + i)
+);

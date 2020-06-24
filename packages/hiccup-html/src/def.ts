@@ -33,3 +33,9 @@ export const defElement = <T = Partial<Attribs>, B = any>(
             : baseAttribs || null;
     return n > 1 ? [$tag, attribs, ...args.slice(1)] : [$tag, attribs];
 };
+
+/**
+ * @internal
+ */
+export const defElements = <T = Partial<Attribs>, B = any>(tags: string[]) =>
+    tags.map((t) => defElement<T, B>(t));

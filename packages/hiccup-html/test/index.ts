@@ -34,6 +34,16 @@ describe("hiccup-html", () => {
             { b: 1, c: 2 },
             "body",
         ]);
+        assert.deepEqual(el("#id.foo", null, "body"), [
+            "a#id.foo",
+            null,
+            "body",
+        ]);
+        assert.deepEqual(el2("#id.foo", null, "body"), [
+            "a#id.foo",
+            { b: 1 },
+            "body",
+        ]);
     });
 
     it("compile errors", () => {

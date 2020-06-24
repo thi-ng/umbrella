@@ -1,18 +1,13 @@
 import type { Attribs } from "./api";
-import { defElement } from "./def";
+import { defElement, defElements } from "./def";
 
-export const blockquote = defElement("blockquote");
-
-export const div = defElement("div");
-
-export const figure = defElement("figure");
-
-export const figcaption = defElement("figcaption");
+export const [blockquote, div, figure, figcaption, para, pre] = defElements([
+    "blockquote",
+    "div",
+    "figure",
+    "figcaption",
+    "p",
+    "pre",
+]);
 
 export const hr = defElement<Partial<Attribs>, never>("hr");
-
-export const para = defElement("p");
-
-export const pre = defElement("pre");
-
-export const span = defElement("span");

@@ -109,11 +109,11 @@ export interface GlobalEventAttribs
 }
 
 export interface MicroformatAttribs {
-    itemid: MaybeDeref<string>;
-    itemprop: MaybeDeref<string>;
-    itemref: MaybeDeref<string>;
-    itemscope: MaybeDeref<boolean>;
-    itemtype: MaybeDeref<string>;
+    itemid: AttribVal<string>;
+    itemprop: AttribVal<string>;
+    itemref: AttribVal<string>;
+    itemscope: AttribVal<boolean>;
+    itemtype: AttribVal<string>;
 }
 
 export interface Attribs extends GlobalEventAttribs, MicroformatAttribs {
@@ -140,4 +140,12 @@ export interface Attribs extends GlobalEventAttribs, MicroformatAttribs {
     title: AttribVal<string>;
     translate: AttribVal<boolean>;
     [id: string]: any;
+}
+
+export interface CORSAttribs {
+    crossorigin: AttribVal<"anonymous" | "use-credentials">;
+}
+
+export interface ReferrerAttribs {
+    referrerpolicy: AttribVal<ReferrerPolicy>;
 }

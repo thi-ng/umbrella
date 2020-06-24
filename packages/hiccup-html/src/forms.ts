@@ -37,12 +37,16 @@ export interface InputNumericAttribs extends InputAttribs {
     value: AttribVal<number>;
 }
 
-export const inputCheck = defElement<Partial<InputCheckboxAttribs>, never>(
+export const checkbox = defElement<Partial<InputCheckboxAttribs>, never>(
     "input",
     {
         type: "checkbox",
     }
 );
+
+export const radio = defElement<Partial<InputAttribs>, never>("input", {
+    type: "radio",
+});
 
 export const inputPass = defElement<Partial<InputTextAttribs>, never>("input", {
     type: "password",
@@ -52,10 +56,6 @@ export const inputNumber = defElement<Partial<InputNumericAttribs>, never>(
     "input",
     { type: "numeric" }
 );
-
-export const inputRadio = defElement<Partial<InputAttribs>, never>("input", {
-    type: "radio",
-});
 
 export const inputRange = defElement<Partial<InputNumericAttribs>, never>(
     "input",
