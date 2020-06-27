@@ -8,7 +8,13 @@ import {
     isString,
 } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
-import { ATTRIB_JOIN_DELIMS, RE_TAG, SVG_NS, SVG_TAGS } from "@thi.ng/hiccup";
+import {
+    ATTRIB_JOIN_DELIMS,
+    mergeClasses,
+    RE_TAG,
+    SVG_NS,
+    SVG_TAGS,
+} from "@thi.ng/hiccup";
 import type { NumOrElement } from "./api";
 import { isComponent } from "./utils";
 
@@ -101,16 +107,14 @@ export const $el = (
         let [, mtag, id, clazz] = match;
         attribs = { ...attribs };
         id && (attribs.id = id);
+        const aclass = deref(attribs.class);
         if (clazz) {
             clazz = clazz.replace(/\./g, " ");
-            const aclass = attribs.class;
-            if (aclass) {
-                !isString(aclass) &&
-                    (attribs.class = updateClasses("", aclass));
-                attribs.class += " " + clazz;
-            } else {
-                attribs.class = clazz;
-            }
+            attribs.class = aclass ? mergeClasses(clazz, aclass) : clazz;
+        } else if (aclass) {
+            attribs.class = isString(aclass)
+                ? aclass
+                : mergeClasses("", aclass);
         }
         tag = mtag;
     }
@@ -198,10 +202,14 @@ const setAttrib = (el: Element, id: string, val: any, attribs: any) => {
     implementsFunction(val, "deref") && (val = val.deref());
     const isListener = id.startsWith("on");
     if (isListener) {
-        id = id.substr(2);
-        isArray(val)
-            ? el.addEventListener(id, val[0], val[1])
-            : el.addEventListener(id, val);
+        if (isString(val)) {
+            el.setAttribute(id, val);
+        } else {
+            id = id.substr(2);
+            isArray(val)
+                ? el.addEventListener(id, val[0], val[1])
+                : el.addEventListener(id, val);
+        }
         return;
     }
     isFunction(val) && (val = val(attribs));
@@ -210,7 +218,7 @@ const setAttrib = (el: Element, id: string, val: any, attribs: any) => {
         case "class":
             el.className = isString(val)
                 ? val
-                : updateClasses(el.className, val);
+                : mergeClasses(el.className, val);
             break;
         case "style":
             $style(el, val);
@@ -248,19 +256,6 @@ const setAttrib = (el: Element, id: string, val: any, attribs: any) => {
     }
 };
 
-const updateClasses = (existing: string, val: any) => {
-    const classes = new Set(existing.split(" "));
-    val = deref(val);
-    if (isString(val)) {
-        classes.add(val);
-    } else {
-        for (let id in val) {
-            deref(val[id]) ? classes.add(id) : classes.delete(id);
-        }
-    }
-    return [...classes].join(" ");
-};
-
 const updateValueAttrib = (el: HTMLInputElement, value: any) => {
     let ev;
     switch (el.type) {
@@ -292,9 +287,8 @@ const updateValueAttrib = (el: HTMLInputElement, value: any) => {
 const updateDataAttribs = (el: HTMLElement, attribs: any) => {
     const data = el.dataset;
     for (let id in attribs) {
-        let v = deref(attribs[id]);
-        isFunction(v) && (v = v(attribs));
-        data[id] = v;
+        const v = deref(attribs[id]);
+        data[id] = isFunction(v) ? v(attribs) : v;
     }
 };
 
