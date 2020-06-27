@@ -22,7 +22,7 @@ import { ESC, UNICODE } from "./presets/escape";
 import { HEX_DIGIT } from "./presets/hex";
 import { FLOAT, INT, UINT } from "./presets/numbers";
 import { STRING } from "./presets/string";
-import { WS, WS0, WS1 } from "./presets/whitespace";
+import { NL, WS, WS0, WS1 } from "./presets/whitespace";
 import { always } from "./prims/always";
 import {
     inputEnd,
@@ -37,6 +37,7 @@ import { oneOf } from "./prims/one-of";
 import { range } from "./prims/range";
 import { string, stringD } from "./prims/string";
 import { collect, xfCollect } from "./xform/collect";
+import { xfCount } from "./xform/count";
 import { discard, xfDiscard } from "./xform/discard";
 import { hoistResult, xfHoist, xfHoistResult } from "./xform/hoist";
 import { join, xfJoin } from "./xform/join";
@@ -264,6 +265,7 @@ export const defGrammar = (
     opts = { debug: false, optimize: true, ...opts };
     env = {
         collect: xfCollect,
+        count: xfCount,
         discard: xfDiscard,
         float: xfFloat,
         hex: xfInt(16),
@@ -292,6 +294,7 @@ export const defGrammar = (
                     INT,
                     LEND: lineEnd,
                     LSTART: lineStart,
+                    NL,
                     START: inputStart,
                     STRING,
                     UNICODE,
