@@ -125,16 +125,18 @@ Source:
 
 Syntax sugars for `xform(parser, fn)`:
 
-- `collect`
-- `discard`
-- `hoist` / `hoistResult`
-- `join`
-- `print`
+- `collect` - collect child results into array
+- `count` - count number of children
+- `discard` - discard result
+- `hoist` / `hoistResult` - hoist first child / child result
+- `join` - join child results into string
+- `print` - print AST
 
 Actual transforms:
 
 - `comp` - scope transform composition
 - `xfCollect`
+- `xfCount`
 - `xfDiscard`
 - `xfFloat`
 - `xfHoist` / `xfHoistResult`
@@ -162,15 +164,19 @@ program: ( <num> | <sym> | <ws> )* ;
 Here, each line is a single parse rule definition, with each rule
 consisting of a sequence of one or more:
 
+### Terms
+
 - `'x'` - single char literal
 - `"abc"` - multi-char string
-- `[a-z0-9!@]` - regex style char set (incl. char range support, inversion via `^`)
+- `[a-z0-9_@]` - regex style char set (incl. char range support, inversion via `^`)
 - `<rule_id>` - rule references (order independent)
 - `( term | ... | )` - choice of sub-terms
 
 Literals, strings and char sets can include `\uXXXX` unicode escapes (if
 given within a JS source string, double escaping must be used, i.e.
 `\\uXXXX`).
+
+### Repetitions
 
 All of these terms can be immediately followed by one of these regexp
 style repetition specs:
@@ -179,6 +185,26 @@ style repetition specs:
 - `*` - zero or more
 - `+` - one or more
 - `{min,max}` - min-max repetitions
+
+### Discarding results
+
+All terms can be suffixed with the `!` modifier to discard their results
+and help produce a cleaner result AST.
+
+```text
+link: '['! <linktitle> "]("! <linkurl> ')'! => collect ;
+linktitle: [^\\u005d]+ => join ;
+linkurl: [^\\u0029]+ => join ;
+```
+
+Given a valid input like `[abc](def)`, the `link` parser's result will
+just be the array `["abc", "def"]` with other terms discarded from AST.
+
+Note: A parse rule must produce a result for at least one of its
+successfully matched terms. Use the `discard` rule transform to discard
+the entire result (instead of `!` modifier)...
+
+### Rule transforms
 
 Furthermore, each rule can specify an optional rule transform function
 which will only be applied after the rule's parser has successfully
@@ -232,9 +258,7 @@ as a useful tool for processing/interpreting/compiling the result AST)
 // define language via grammar DSL
 // the upper-cased rule names are built-ins
 const lang = defGrammar(`
-lopen: '(' => discard ;
-lclose: ')' => discard ;
-list: <lopen> <expr> <lclose> ;
+list: '('! <expr> ')'! ;
 sym: ( <ALPHA_NUM> | [?!$+\\u002d*/.~#^=<>] )+ => join ;
 expr: ( <FLOAT> | <STRING> | <sym> | <list> | <WS1> )* ;
 `);
