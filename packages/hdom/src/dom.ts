@@ -1,9 +1,14 @@
-import { isArray as isa, isNotStringAndIterable as isi } from "@thi.ng/checks";
+import {
+    isArray as isa,
+    isNotStringAndIterable as isi,
+    isString as iss,
+} from "@thi.ng/checks";
 import { css, SVG_NS, SVG_TAGS } from "@thi.ng/hiccup";
 import type { HDOMImplementation, HDOMOpts } from "./api";
 
 const isArray = isa;
 const isNotStringAndIterable = isi;
+const isString = iss;
 
 const maybeInitElement = <T>(el: T, tree: any) =>
     tree.__init && tree.__init.apply(tree.__this, [el, ...tree.__args]);
@@ -319,9 +324,14 @@ export const setStyle = (el: Element, styles: any) => (
 export const setListener = (
     el: Element,
     id: string,
-    listener: EventListener | [EventListener, boolean | AddEventListenerOptions]
+    listener:
+        | string
+        | EventListener
+        | [EventListener, boolean | AddEventListenerOptions]
 ) =>
-    isArray(listener)
+    isString(listener)
+        ? el.setAttribute("on" + id, listener)
+        : isArray(listener)
         ? el.addEventListener(id, ...listener)
         : el.addEventListener(id, listener);
 
