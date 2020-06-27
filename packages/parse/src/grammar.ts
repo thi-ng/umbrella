@@ -37,7 +37,7 @@ import { oneOf } from "./prims/one-of";
 import { range } from "./prims/range";
 import { string, stringD } from "./prims/string";
 import { collect, xfCollect } from "./xform/collect";
-import { xfDiscard } from "./xform/discard";
+import { discard, xfDiscard } from "./xform/discard";
 import { hoistResult, xfHoist, xfHoistResult } from "./xform/hoist";
 import { join, xfJoin } from "./xform/join";
 import { xfFloat, xfInt } from "./xform/number";
@@ -64,6 +64,8 @@ const REPEAT = maybe(
     ])
 );
 
+const DISCARD = maybe(lit("!"), undefined, "discard");
+
 const CHAR_OR_ESC = alt([UNICODE, ESC, always()]);
 
 const CHAR_RANGE = seq([CHAR_OR_ESC, dash, CHAR_OR_ESC], "charRange");
@@ -84,7 +86,10 @@ const SYM = join(oneOrMore(alt([ALPHA_NUM, oneOf(".-_$")]), "sym"));
 
 const RULE_REF = seq([litD("<"), SYM, litD(">")], "ref");
 
-const TERM = seq([alt([RULE_REF, LIT, STRING, CHAR_SEL]), REPEAT], "term");
+const TERM = seq(
+    [alt([RULE_REF, LIT, STRING, CHAR_SEL]), REPEAT, DISCARD],
+    "term"
+);
 
 const ALT = seq(
     [
@@ -95,6 +100,7 @@ const ALT = seq(
         WS0,
         litD(")"),
         REPEAT,
+        DISCARD,
     ],
     "alt"
 );
@@ -164,9 +170,13 @@ compile.addAll({
         return ref || illegalArgs(`invalid rule ref: ${id}`);
     },
     term: ($, lang, opts) => {
-        const [term, repeat] = $!.children!;
+        const [term, repeat, discard] = $!.children!;
         opts.debug && console.log(`term: ${term.id}`);
-        return compileRepeat(compile(term, lang, opts), repeat, opts);
+        return compileDiscard(
+            compileRepeat(compile(term, lang, opts), repeat, opts),
+            discard,
+            opts
+        );
     },
     alt: ($, lang, opts) => {
         opts.debug && console.log(`alt: ${$.id}`);
@@ -177,9 +187,13 @@ compile.addAll({
                 acc.push(compile(first(c), lang, opts));
             }
         }
-        return compileRepeat(
-            acc.length > 1 ? alt(acc) : acc[0],
-            $.children![2],
+        return compileDiscard(
+            compileRepeat(
+                acc.length > 1 ? alt(acc) : acc[0],
+                $.children![2],
+                opts
+            ),
+            $.children![3],
             opts
         );
     },
@@ -231,6 +245,15 @@ const compileRepeat = (
         return repeat(parser, rspec.result[0], rspec.result[1]);
     }
     return parser;
+};
+
+const compileDiscard = (
+    parser: Parser<string>,
+    dspec: ParseScope<string>,
+    opts: GrammarOpts
+) => {
+    opts.debug && console.log(`discard:`, dspec.result);
+    return dspec.result === "!" ? discard(parser) : parser;
 };
 
 export const defGrammar = (
