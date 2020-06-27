@@ -34,13 +34,25 @@ describe("hdom", () => {
     check(
         "emmet class + class attr",
         ["div.foo.bar", { class: "baz" }],
-        ["div", { class: "baz foo bar" }]
+        ["div", { class: "foo bar baz" }]
     );
 
     check(
         "emmet id + class + attrib",
         ["div#id.foo.bar", { extra: 23 }, "hi"],
         ["div", { id: "id", class: "foo bar", extra: 23 }, "hi"]
+    );
+
+    check(
+        "emmet class merging (string)",
+        ["div.foo", { class: "bar baz" }],
+        ["div", { class: "foo bar baz" }]
+    );
+
+    check(
+        "emmet class merging (obj)",
+        ["div.foo", { class: { foo: false, bar: true } }],
+        ["div", { class: "bar" }]
     );
 
     check("root fn", () => ["div"], ["div", {}]);
