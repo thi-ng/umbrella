@@ -50,6 +50,7 @@
         "typescript": "^3.9.2"
     },
     "dependencies": {
+        "@thi.ng/api": "^6.11.2",
         "@thi.ng/checks": "^2.7.2",
         "@thi.ng/errors": "^1.2.15",
         "tslib": "^1.12.0"

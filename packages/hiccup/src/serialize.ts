@@ -1,18 +1,21 @@
+import { deref, isDeref } from "@thi.ng/api";
 import {
     implementsFunction,
+    isArray,
     isFunction,
     isNotStringAndIterable,
+    isPlainObject,
     isString,
-    isArray,
 } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import {
+    ATTRIB_JOIN_DELIMS,
     COMMENT,
     NO_SPANS,
     PROC_TAGS,
     VOID_TAGS,
-    ATTRIB_JOIN_DELIMS,
 } from "./api";
+import { css } from "./css";
 import { escape } from "./escape";
 import { normalize } from "./normalize";
 
@@ -175,7 +178,7 @@ const _serialize = (
     if (implementsFunction(tree, "toHiccup")) {
         return _serialize(tree.toHiccup(ctx), ctx, esc, span, keys, path);
     }
-    if (implementsFunction(tree, "deref")) {
+    if (isDeref(tree)) {
         return _serialize(tree.deref(), ctx, esc, span, keys, path);
     }
     if (isNotStringAndIterable(tree)) {
@@ -250,10 +253,17 @@ const serializeAttribs = (attribs: any, esc: boolean) => {
     let res = "";
     for (let a in attribs) {
         if (a.startsWith("__")) continue;
-        let v = attribs[a];
+        let v = deref(attribs[a]);
         if (v == null) continue;
         if (isFunction(v) && (/^on\w+/.test(a) || (v = v(attribs)) == null))
             continue;
+        if (a === "data") {
+            res += serializeDataAttribs(v, esc);
+            continue;
+        }
+        if (a === "style") {
+            isPlainObject(v) && (v = css(v));
+        }
         if (v === true) {
             res += " " + a;
         } else if (v !== false) {
@@ -262,6 +272,16 @@ const serializeAttribs = (attribs: any, esc: boolean) => {
                 : v.toString();
             v.length && (res += ` ${a}="${esc ? escape(v) : v}"`);
         }
+    }
+    return res;
+};
+
+const serializeDataAttribs = (data: any, esc: boolean) => {
+    let res = "";
+    for (let id in data) {
+        let v = deref(data[id]);
+        isFunction(v) && (v = v(data));
+        v != null && (res += ` data-${id}="${esc ? escape(v) : v}"`);
     }
     return res;
 };
