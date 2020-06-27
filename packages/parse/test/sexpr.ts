@@ -2,9 +2,7 @@ import * as assert from "assert";
 import { defContext, defGrammar, ParseScope } from "../src";
 
 const grammar = `
-lopen: '(' => discard ;
-lclose: ')' => discard ;
-list: <lopen> <expr> <lclose> ;
+list: '('! <expr> ')'! ;
 sym: ( <ALPHA_NUM> | [?!$+\\u002d*/.~#^=<>] )+ => join ;
 expr: ( <FLOAT> | <STRING> | <sym> | <list> | <WS1> )* ;
 prog: <START> <expr> <END> => hoist ;
