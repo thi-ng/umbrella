@@ -41,6 +41,7 @@ export * from "./readers/string-reader";
 
 export * from "./xform/collect";
 export * from "./xform/comp";
+export * from "./xform/count";
 export * from "./xform/discard";
 export * from "./xform/hoist";
 export * from "./xform/join";

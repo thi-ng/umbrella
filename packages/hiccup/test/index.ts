@@ -34,7 +34,43 @@ describe("serialize", () => {
     check(
         "div w/ class merging",
         ["div.foo", { class: "bar baz" }, "foo"],
-        `<div class="bar baz foo">foo</div>`
+        `<div class="foo bar baz">foo</div>`
+    );
+
+    check(
+        "div w/ class merging (deref)",
+        [
+            "div.foo",
+            {
+                class: {
+                    deref() {
+                        return "bar baz";
+                    },
+                },
+            },
+            "foo",
+        ],
+        `<div class="foo bar baz">foo</div>`
+    );
+
+    check(
+        "deref attribs",
+        [
+            "div",
+            {
+                id: {
+                    deref() {
+                        return "foo";
+                    },
+                },
+                style: {
+                    deref() {
+                        return { color: "red" };
+                    },
+                },
+            },
+        ],
+        `<div id="foo" style="color:red;"></div>`
     );
 
     check("voidtag (br)", ["br"], `<br/>`);
@@ -120,6 +156,49 @@ describe("serialize", () => {
     );
 
     check("style empty", ["div", { style: {} }, "foo"], `<div>foo</div>`);
+
+    check(
+        "style fn attribs",
+        ["div", { style: { a: (x: any) => x.b, b: 2 } }],
+        `<div style="a:2;b:2;"></div>`
+    );
+
+    check(
+        "style deref attribs",
+        [
+            "div",
+            {
+                style: {
+                    a: {
+                        deref() {
+                            return 1;
+                        },
+                    },
+                },
+            },
+        ],
+        `<div style="a:1;"></div>`
+    );
+
+    check(
+        "data attribs",
+        [
+            "div",
+            {
+                "data-xyz": "xyz",
+                data: {
+                    foo: 1,
+                    bar: (a: any) => a.foo + 1,
+                    baz: {
+                        deref() {
+                            return 3;
+                        },
+                    },
+                },
+            },
+        ],
+        `<div data-xyz="xyz" data-foo="1" data-bar="2" data-baz="3"></div>`
+    );
 
     check(
         "nested",
@@ -237,12 +316,6 @@ describe("serialize", () => {
     check("deref child", ["a", new Atom(["b"])], `<a><b></b></a>`);
 
     check("deref fn result", ["a", () => new Atom(["b"])], `<a><b></b></a>`);
-
-    check(
-        "style fn attribs",
-        ["div", { style: { a: (x: any) => x.b, b: 2 } }],
-        `<div style="a:2;b:2;"></div>`
-    );
 
     check(
         "__skip",

@@ -71,10 +71,11 @@ attributes. See [`defElement()`](#defelement) below for more details.
 The hiccup syntax is (by design) merely a convention and specific
 feature support and interpretation is down to the actual tooling used.
 
-The type definitions for element attributes used by this package allow
-certain constructs which are only supported by some hiccup consumers
-(however, there're compatible alternative ways of expressing the same
-data).
+Whilst not a direct aspect or feature of this package, the type
+definitions for element attributes defined here allow certain constructs
+which are only supported by some hiccup consumers. OTOH not all of
+the constructs are meaningful in the different usage contexts and for
+most there're compatible alternative ways of expressing the same data.
 
 The table below provides an overview of the _current_ syntax feature
 support by the relevant packages consuming hiccup:
@@ -87,17 +88,17 @@ support by the relevant packages consuming hiccup:
 |----------------------------|------------------------------------------------------|--------|------|----------|
 | Emmet style tags           | `["div#id.foo", {}]`                                 | ✅      | ✅    | ✅        |
 |                            | `<div id="id" class="foo">`                          |        |      |          |
-| `class` attrib as object   | `["a.bar.baz", { class: { foo: true, bar: false }}]` | ❌      | ❌    | ✅        |
+| `class` attrib as object   | `["a.bar.baz", { class: { foo: true, bar: false }}]` | ✅      | ✅    | ✅        |
 |                            | `<a class="baz foo">`                                |        |      |          |
 | `style` attrib as object   | `["div", { style: { color: "red" }}]`                | ✅      | ✅    | ✅        |
 |                            | `<div style="color:red;">`                           |        |      |          |
 | Attrib array values        | `["img", { srcset: ["1.jpg", "2.jpg"] }]`            | ✅      | ❌    | ✅        |
 |                            | `<img srcset="1.jpg, 2.jpg">`                        |        |      |          |
-| Data attribs as object     | `["a", { data: { foo: 42 }}]`                        | ❌      | ❌    | ✅        |
+| Data attribs as object     | `["a", { data: { foo: 42 }}]`                        | ✅      | ❌    | ✅        |
 |                            | `<a data-foo="42">`                                  |        |      |          |
 | Function attrib values (1) | `["a", { id: () => "epoch-" + Date.now() }]`         | ✅      | ✅    | ✅        |
 |                            | `<a id="epoch-1593024083666">`                       |        |      |          |
-| `IDeref` attrib values (2) | `["div", { id: { deref() { return "foo"; }}}]`       | ❌      | ❌    | ✅        |
+| `IDeref` attrib values (2) | `["div", { id: { deref() { return "foo"; }}}]`       | ✅      | ❌    | ✅        |
 |                            | `<div id="foo">`                                     |        |      |          |
 
 All other features not explicitly mentioned are supported by all three

@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { defContext, defGrammar, Parser, xfCollect, xfJoin } from "../src";
+import { defContext, defGrammar, Parser } from "../src";
 
 const check = (
     parser: Parser<string>,
@@ -13,13 +13,24 @@ const check = (
     return ctx;
 };
 
-describe("parse", () => {
-    it("grammar", () => {
+describe("grammar", () => {
+    it("basics", () => {
         const lang = defGrammar(
-            "_: [ ]+ => discard ; num: [0-9a-f]+ => join ; prog: (<_> | <num>)* => collect ;",
-            { discard: () => null, join: xfJoin, collect: xfCollect }
+            "_: [ ]+ => discard ; num: [0-9a-f]+ => join ; prog: (<_> | <num>)* => collect ;"
         );
         const ctx = check(lang!.rules.prog, "decafbad 55 aa", true, 14);
         assert.deepEqual(ctx.result, ["decafbad", "55", "aa"]);
+    });
+
+    it("discard flag", () => {
+        const lang = defGrammar(`
+title: [^\\u005d]* => join ;
+url: [^\\u0029]* => join ;
+end: ')' ;
+link: '['! <title> "]("! <url> <end>! => collect ;
+`);
+        const ctx = defContext("[abc](def)");
+        assert(lang!.rules.link(ctx));
+        assert.deepEqual(ctx.result, ["abc", "def"]);
     });
 });

@@ -4,7 +4,8 @@ export type AttribVal<T> = MaybeDeref<T | undefined>;
 
 export type EventAttribVal<T> =
     | Fn<T, any>
-    | [Fn<T, any>, boolean | AddEventListenerOptions];
+    | [Fn<T, any>, boolean | AddEventListenerOptions]
+    | string;
 
 export type EventAttribs<K extends string, T> = Record<K, EventAttribVal<T>>;
 
@@ -123,7 +124,7 @@ export interface Attribs extends GlobalEventAttribs, MicroformatAttribs {
     >;
     class: AttribVal<string | IObjectOf<AttribVal<boolean>>>;
     contenteditable: AttribVal<boolean>;
-    data: IObjectOf<AttribVal<NumOrString>>;
+    data: IObjectOf<AttribVal<string | number | boolean>>;
     dir: AttribVal<"rtl" | "ltr">;
     draggable: AttribVal<boolean>;
     hidden: AttribVal<boolean>;
