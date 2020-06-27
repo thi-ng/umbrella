@@ -2,14 +2,16 @@ import {
     isArray as isa,
     isNotStringAndIterable as isi,
     isPlainObject as iso,
+    isString as iss,
 } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
-import { NO_SPANS, RE_TAG } from "@thi.ng/hiccup";
+import { mergeClasses, NO_SPANS, RE_TAG } from "@thi.ng/hiccup";
 import type { HDOMOpts } from "./api";
 
 const isArray = isa;
 const isNotStringAndIterable = isi;
 const isPlainObject = iso;
+const isString = iss;
 
 /**
  * Expands single hiccup element/component into its canonical form:
@@ -59,16 +61,13 @@ export const normalizeElement = (spec: any[], keys: boolean) => {
     attribs = hasAttribs ? { ...spec[1] } : {};
     id = match![2];
     clazz = match![3];
-    if (id) {
-        attribs.id = id;
-    }
+    id && (attribs.id = id);
+    const aclass = attribs.class;
     if (clazz) {
         clazz = clazz.replace(/\./g, " ");
-        if (attribs.class) {
-            attribs.class += " " + clazz;
-        } else {
-            attribs.class = clazz;
-        }
+        attribs.class = aclass ? mergeClasses(clazz, aclass) : clazz;
+    } else if (aclass) {
+        attribs.class = isString(aclass) ? aclass : mergeClasses("", aclass);
     }
     return attribs.__skip && spec.length < 3
         ? [mtag, attribs]
