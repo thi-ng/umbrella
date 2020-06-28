@@ -147,10 +147,11 @@ yarn add @thi.ng/hiccup
 <script src="https://unpkg.com/@thi.ng/hiccup/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.00 KB / CJS: 2.10 KB / UMD: 2.11 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.17 KB / CJS: 2.27 KB / UMD: 2.27 KB
 
 ## Dependencies
 
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
