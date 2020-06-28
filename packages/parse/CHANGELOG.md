@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.5.8...@thi.ng/parse@0.6.0) (2020-06-28)
+
+
+### Features
+
+* **parse:** add `!` discard modifier to grammar ([456efdc](https://github.com/thi-ng/umbrella/commit/456efdcb6ded913b0f2b137ebe99634421d552c0))
+* **parse:** add count/xfCount transform ([056ae08](https://github.com/thi-ng/umbrella/commit/056ae084c08a826f09c65181c01426bbdff59e87))
+
+
+
+
+
 ## [0.5.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.5.7...@thi.ng/parse@0.5.8) (2020-06-20)
 
 **Note:** Version bump only for package @thi.ng/parse

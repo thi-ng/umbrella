@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.31](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-mock@1.1.30...@thi.ng/hdom-mock@1.1.31) (2020-06-28)
+
+**Note:** Version bump only for package @thi.ng/hdom-mock
+
+
+
+
+
 ## [1.1.30](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-mock@1.1.29...@thi.ng/hdom-mock@1.1.30) (2020-06-24)
 
 **Note:** Version bump only for package @thi.ng/hdom-mock

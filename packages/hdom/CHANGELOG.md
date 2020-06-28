@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@8.0.30...@thi.ng/hdom@8.1.0) (2020-06-28)
+
+
+### Features
+
+* **hdom:** add support `class` attrib object vals ([074985a](https://github.com/thi-ng/umbrella/commit/074985a02df8665e2d80fb74491534ee2897516c))
+* **hdom:** add support for event listener strings ([db8d350](https://github.com/thi-ng/umbrella/commit/db8d35074fbfe620ffebf2c217eec5cd48e9341a))
+
+
+
+
+
 ## [8.0.30](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@8.0.29...@thi.ng/hdom@8.0.30) (2020-06-24)
 
 **Note:** Version bump only for package @thi.ng/hdom

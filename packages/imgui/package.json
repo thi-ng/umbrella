@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/imgui",
-    "version": "0.2.23",
+    "version": "0.2.24",
     "description": "Immediate mode GUI with flexible state handling & data only shape output",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -51,7 +51,7 @@
     "dependencies": {
         "@thi.ng/api": "^6.11.2",
         "@thi.ng/checks": "^2.7.2",
-        "@thi.ng/geom": "^1.10.1",
+        "@thi.ng/geom": "^1.10.2",
         "@thi.ng/geom-api": "^1.0.22",
         "@thi.ng/geom-isec": "^0.4.22",
         "@thi.ng/geom-tessellate": "^0.2.33",
