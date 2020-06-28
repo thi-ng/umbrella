@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.3.0...@thi.ng/hiccup@3.4.0) (2020-06-28)
+
+
+### Features
+
+* **hiccup:** update deps & attrib handling ([09ba171](https://github.com/thi-ng/umbrella/commit/09ba17165e89202fdc48b095ee1e62f65adbcad4))
+
+
+
+
+
 # [3.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.2.26...@thi.ng/hiccup@3.3.0) (2020-06-24)
 
 

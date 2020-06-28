@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-html@0.1.0...@thi.ng/hiccup-html@0.1.1) (2020-06-28)
+
+
+### Bug Fixes
+
+* **hiccup-html:** update attrib types ([7af448f](https://github.com/thi-ng/umbrella/commit/7af448f59ac0210060a508a75be27f8667c7d118))
+
+
+
+
+
 # 0.1.0 (2020-06-24)
 
 
