@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/scenegraph",
     "version": "0.1.23",
-    "description": "Extensible 2D/3D scene graph with @thi.ng/hdom-canvas support",
+    "description": "Extensible 2D/3D scene graph with @thi.ng/hiccup-canvas support",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
