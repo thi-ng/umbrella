@@ -1,4 +1,4 @@
-import { Component, NumOrElement } from "@thi.ng/hdom2020";
+import { Component, NumOrElement } from "@thi.ng/rdom";
 import {
     CHECKMARK_SOLID,
     INFO,

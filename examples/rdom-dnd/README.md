@@ -1,6 +1,6 @@
-# hdom2020-dnd
+# rdom-dnd
 
-[Live demo](http://demo.thi.ng/umbrella/hdom2020-dnd/)
+[Live demo](http://demo.thi.ng/umbrella/rdom-dnd/)
 
 Please refer to the [example build instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions) on the wiki.
 

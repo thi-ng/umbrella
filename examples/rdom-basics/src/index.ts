@@ -1,6 +1,6 @@
 import { isString } from "@thi.ng/checks";
 import { delayed } from "@thi.ng/compose";
-import { $compile, $list, $refresh } from "@thi.ng/hdom2020";
+import { $compile, $list, $refresh } from "@thi.ng/rdom";
 import {
     CloseMode,
     fromDOMEvent,
@@ -30,7 +30,7 @@ const typewriter = (min: number, max: number) => (src: string) =>
         return () => (active = false);
     });
 
-const names = ["TypeScript", "@thi.ng/hdom2020", "toxi", "Discord"];
+const names = ["TypeScript", "@thi.ng/rdom", "toxi", "Discord"];
 
 const typing = fromIterable(choices(names), { delay: 2000 }).subscribe(
     metaStream(typewriter(16, 100), { closeOut: CloseMode.NEVER })

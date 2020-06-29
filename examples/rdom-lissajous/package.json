@@ -1,7 +1,7 @@
 {
-    "name": "hdom2020-basics",
+    "name": "rdom-lissajous",
     "version": "0.0.1",
-    "description": "hdom2020 test sandbox / POC",
+    "description": "rdom & hiccup-canvas interop test",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
@@ -9,19 +9,19 @@
         "clean": "rm -rf .cache build out",
         "build": "yarn clean && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --detailed-report --experimental-scope-hoisting",
         "build:webpack": "../../node_modules/.bin/webpack --mode production",
-        "start": "parcel index.html -p 8080 --open --no-cache",
-        "start2": "parcel --version"
+        "start": "parcel index.html -p 8080 --open"
     },
     "devDependencies": {
         "parcel-bundler": "^1.12.4",
         "terser": "^4.6.3",
-        "typescript": "^3.8.3"
+        "typescript": "^3.7.5"
     },
     "dependencies": {
         "@thi.ng/api": "latest",
-        "@thi.ng/checks": "latest",
-        "@thi.ng/compose": "latest",
-        "@thi.ng/hdom2020": "latest",
+        "@thi.ng/hiccup-carbon-icons": "latest",
+        "@thi.ng/hiccup-html": "latest",
+        "@thi.ng/rdom": "latest",
+        "@thi.ng/rdom-canvas": "latest",
         "@thi.ng/rstream": "latest",
         "@thi.ng/transducers": "latest"
     },
@@ -33,7 +33,8 @@
     },
     "thi.ng": {
         "readme": [
-            "hdom2020"
+            "rdom",
+            "rdom-canvas"
         ]
     }
 }

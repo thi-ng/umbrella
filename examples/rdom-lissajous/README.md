@@ -1,6 +1,6 @@
-# hdom2020-lissajous
+# rdom-lissajous
 
-[Live demo](http://demo.thi.ng/umbrella/hdom2020-lissajous/)
+[Live demo](http://demo.thi.ng/umbrella/rdom-lissajous/)
 
 Please refer to the [example build instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions) on the wiki.
 

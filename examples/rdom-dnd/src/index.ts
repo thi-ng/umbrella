@@ -1,4 +1,4 @@
-import { $compile } from "@thi.ng/hdom2020";
+import { $compile } from "@thi.ng/rdom";
 import {
     ADD_OUTLINE,
     CLOSE_OUTLINE,

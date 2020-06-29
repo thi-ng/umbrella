@@ -1,6 +1,6 @@
-# hdom2020-basics
+# rdom-basics
 
-[Live demo](http://demo.thi.ng/umbrella/hdom2020-basics/)
+[Live demo](http://demo.thi.ng/umbrella/rdom-basics/)
 
 Please refer to the [example build instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions) on the wiki.
 

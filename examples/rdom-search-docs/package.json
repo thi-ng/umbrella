@@ -1,7 +1,7 @@
 {
-    "name": "hdom2020-lissajous",
+    "name": "rdom-search-docs",
     "version": "0.0.1",
-    "description": "hdom2020 & hiccup-canvas interop test",
+    "description": "Full umbrella repo doc string search w/ paginated results",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
@@ -13,16 +13,20 @@
     },
     "devDependencies": {
         "parcel-bundler": "^1.12.4",
-        "terser": "^4.6.3",
-        "typescript": "^3.7.5"
+        "terser": "^4.6.13",
+        "typescript": "^3.9.2"
     },
     "dependencies": {
         "@thi.ng/api": "latest",
-        "@thi.ng/hdom2020": "latest",
-        "@thi.ng/hiccup-carbon-icons": "latest",
+        "@thi.ng/bench": "latest",
+        "@thi.ng/compare": "latest",
+        "@thi.ng/equiv": "latest",
         "@thi.ng/hiccup-html": "latest",
+        "@thi.ng/math": "latest",
+        "@thi.ng/rdom": "latest",
         "@thi.ng/rstream": "latest",
-        "@thi.ng/transducers": "latest"
+        "@thi.ng/transducers": "latest",
+        "@ygoe/msgpack": "^1.0.2"
     },
     "browserslist": [
         "last 3 Chrome versions"
@@ -32,7 +36,10 @@
     },
     "thi.ng": {
         "readme": [
-            "hdom2020"
+            "compare",
+            "rdom",
+            "rstream",
+            "transducers"
         ]
     }
 }
