@@ -1,7 +1,7 @@
 {
-    "name": "@thi.ng/scenegraph",
-    "version": "0.1.23",
-    "description": "Extensible 2D/3D scene graph with @thi.ng/hiccup-canvas support",
+    "name": "@thi.ng/rdom-atom",
+    "version": "0.0.1",
+    "description": "@thi.ng/rdom component wrappers for @thi.ng/atom state containers & derived views",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -10,17 +10,11 @@
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
     },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/scenegraph#readme",
-    "funding": [
-        {
-            "type": "github",
-            "url": "https://github.com/sponsors/postspectacular"
-        },
-        {
-            "type": "patreon",
-            "url": "https://patreon.com/thing_umbrella"
-        }
-    ],
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/rdom-atom#readme",
+    "funding": {
+        "type": "patreon",
+        "url": "https://patreon.com/thing_umbrella"
+    },
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
@@ -28,10 +22,9 @@
         "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
         "build:es6": "tsc --declaration",
         "build:test": "rimraf build && tsc -p test/tsconfig.json",
-        "build:check": "tsc --isolatedModules --noEmit",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
@@ -50,10 +43,8 @@
     },
     "dependencies": {
         "@thi.ng/api": "^6.11.2",
-        "@thi.ng/checks": "^2.7.2",
-        "@thi.ng/matrices": "^0.6.20",
-        "@thi.ng/vectors": "^4.5.0",
-        "tslib": "^1.12.0"
+        "@thi.ng/atom": "^4.1.11",
+        "@thi.ng/rdom": "^0.0.9"
     },
     "files": [
         "*.js",
@@ -61,17 +52,24 @@
         "lib"
     ],
     "keywords": [
-        "2D",
-        "3D",
-        "ES6",
-        "scenegraph",
-        "typescript"
+        "atom",
+        "component",
+        "es6",
+        "derived view",
+        "state",
+        "typescript",
+        "wrapper"
     ],
     "publishConfig": {
         "access": "public"
     },
     "sideEffects": false,
     "thi.ng": {
-        "status": "alpha"
+        "parent": "@thi.ng/rdom",
+        "related": [
+            "atom"
+        ],
+        "status": "alpha",
+        "year": 2020
     }
 }

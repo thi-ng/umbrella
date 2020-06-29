@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>rdom-lissajous</title>
+        <link
+            href="https://unpkg.com/tachyons@4/css/tachyons.min.css"
+            rel="stylesheet"
+        />
+        <style>
+            *[data-tooltip] {
+                position: relative;
+            }
+
+            *[data-tooltip]:after {
+                content: attr(data-tooltip);
+                z-index: 1;
+                position: absolute;
+                top: 0;
+                left: 1rem;
+                width: 4rem;
+                text-align: center;
+                font-size: 0.6rem;
+                background: rgba(0, 0, 0, 0.8);
+                color: white;
+                padding: 0.25rem;
+                opacity: 0;
+                transition: 0.5s opacity;
+            }
+
+            *[data-tooltip]:hover:after {
+                opacity: 1;
+            }
+        </style>
+    </head>
+    <body class="sans-serif ma0 bg-moon-gray">
+        <!-- <div id="app"></div> -->
+        <!-- <div><a class="link" href="https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-lissajous">Source code</a></div> -->
+        <script type="text/javascript" src="./src/index.ts"></script>
+    </body>
+</html>
