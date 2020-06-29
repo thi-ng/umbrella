@@ -1,5 +1,4 @@
 export * from "./api";
-export * from "./canvas";
 export * from "./compile";
 export * from "./component";
 export * from "./dom";
@@ -10,6 +9,4 @@ export * from "./scheduler";
 export * from "./sub";
 export * from "./switch";
 export * from "./utils";
-export * from "./with-cursor";
-export * from "./with-view";
 export * from "./wrap";

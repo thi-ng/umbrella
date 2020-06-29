@@ -1,6 +1,6 @@
 // import * as assert from "assert";
 // import { } from "../src";
 
-describe("hdom2020", () => {
+describe("rdom", () => {
     it("tests pending");
 });

@@ -1,9 +1,9 @@
 import type { Fn0 } from "@thi.ng/api";
-import type { IAtom } from "@thi.ng/atom";
+
 import type { ISubscribable } from "@thi.ng/rstream";
 
 /**
- * Main hdom2020 component interface/contract. Also see
+ * Main rdom component interface/contract. Also see
  * {@link Component} for a flexible base class, implementing this
  * interface.
  */
@@ -70,12 +70,6 @@ export interface IMountWith<T, M> extends IComponent<T> {
      */
     mount(parent: Element, index: NumOrElement, state: M): Promise<Element>;
 }
-
-/**
- * Specialized version of {@link IMountWith} which receives an
- * {@link @thi.ng/atom#IAtom} as state value.
- */
-export type IMountWithAtom<T> = IMountWith<T, IAtom<T>>;
 
 /**
  * Syntax sugar for {@link IMountWith}.

@@ -1,7 +1,7 @@
 {
-    "name": "@thi.ng/hdom2020",
+    "name": "@thi.ng/rdom",
     "version": "0.0.9",
-    "description": "Experimental exploration for a new @thi.ng/hdom w/ entirely new, largely reactive & diff-less approach. WARNING: Your existing code WILL break!",
+    "description": "Lightweight, reactive, VDOM-less UI/DOM components with async lifecycle and @thi.ng/hiccup compatible",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -10,7 +10,7 @@
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
     },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/hdom2020#readme",
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/rdom#readme",
     "funding": [
         {
             "type": "github",
@@ -49,13 +49,10 @@
         "typescript": "^3.9.2"
     },
     "dependencies": {
-        "@thi.ng/adapt-dpi": "^1.0.2",
         "@thi.ng/api": "^6.11.2",
-        "@thi.ng/atom": "^4.1.11",
         "@thi.ng/checks": "^2.7.2",
         "@thi.ng/errors": "^1.2.15",
         "@thi.ng/hiccup": "^3.4.0",
-        "@thi.ng/hiccup-canvas": "^1.0.2",
         "@thi.ng/paths": "^4.0.9",
         "@thi.ng/rstream": "^4.4.1"
     },
@@ -65,14 +62,12 @@
         "lib"
     ],
     "keywords": [
-        "aot",
         "async",
-        "canvas",
         "css",
+        "compiler",
         "dom",
         "es6",
         "components",
-        "frontend",
         "hiccup",
         "html",
         "reactive",
@@ -86,7 +81,6 @@
     },
     "sideEffects": false,
     "thi.ng": {
-        "branch": "feature/hdom2020",
         "status": "alpha",
         "year": 2020
     }
