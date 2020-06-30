@@ -11,7 +11,7 @@
     },
     "devDependencies": {
         "ts-node": "^8.5.2",
-        "typescript": "^3.9.2"
+        "typescript": "^3.9.5"
     },
     "dependencies": {
         "@thi.ng/associative": "latest",

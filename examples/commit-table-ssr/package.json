@@ -14,8 +14,8 @@
     },
     "devDependencies": {
         "parcel-bundler": "^1.12.4",
-        "terser": "^4.6.3",
-        "typescript": "^3.9.2"
+        "terser": "^4.8.0",
+        "typescript": "^3.9.5"
     },
     "dependencies": {
         "express": "^4.16.3",

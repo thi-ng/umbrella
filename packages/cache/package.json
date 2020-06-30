@@ -42,17 +42,17 @@
         "@microsoft/api-extractor": "^7.8.0",
         "@types/mocha": "^7.0.2",
         "@types/node": "^14.0.1",
-        "mocha": "^7.1.2",
-        "nyc": "^15.0.1",
+        "mocha": "^8.0.1",
+        "nyc": "^15.1.0",
         "ts-node": "^8.10.1",
         "typedoc": "^0.17.6",
-        "typescript": "^3.9.2"
+        "typescript": "^3.9.5"
     },
     "dependencies": {
         "@thi.ng/api": "^6.11.2",
         "@thi.ng/dcons": "^2.2.21",
         "@thi.ng/transducers": "^7.1.1",
-        "tslib": "^1.12.0"
+        "tslib": "^2.0.0"
     },
     "files": [
         "*.js",
