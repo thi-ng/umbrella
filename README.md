@@ -112,9 +112,15 @@ fairly detailed overview for contributors here:
 
 ### New / unreleased packages in development
 
-(These packages are still unreleased and only available on their feature or `develop` branches)
+(These packages might be still unreleased and only available on their
+feature or `develop` branches)
 
-- [@thi.ng/hdom2020](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/packages/hdom2020) - Diff-less, reactive version of thi.ng/hdom
+- [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom)
+  - Diff-less, reactive version of thi.ng/hdom
+- [@thi.ng/rdom-atom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom-atom)
+  - Component wrappers for @thi.ng/atom state containers
+- [@thi.ng/rdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom-canvas)
+  - Component wrapper for @thi.ng/hiccup-canvas
 
 ### Fundamentals
 
