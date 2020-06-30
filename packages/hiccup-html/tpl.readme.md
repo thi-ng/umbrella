@@ -82,24 +82,24 @@ support by the relevant packages consuming hiccup:
 
 - [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
 - [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
-- [@thi.ng/hdom2020](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom2020)
+- [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom)
 
-| Feature                    | Example and HTML equivalent/result                   | hiccup | hdom | hdom2020 |
-|----------------------------|------------------------------------------------------|--------|------|----------|
-| Emmet style tags           | `["div#id.foo", {}]`                                 | ✅      | ✅    | ✅        |
-|                            | `<div id="id" class="foo">`                          |        |      |          |
-| `class` attrib as object   | `["a.bar.baz", { class: { foo: true, bar: false }}]` | ✅      | ✅    | ✅        |
-|                            | `<a class="baz foo">`                                |        |      |          |
-| `style` attrib as object   | `["div", { style: { color: "red" }}]`                | ✅      | ✅    | ✅        |
-|                            | `<div style="color:red;">`                           |        |      |          |
-| Attrib array values        | `["img", { srcset: ["1.jpg", "2.jpg"] }]`            | ✅      | ❌    | ✅        |
-|                            | `<img srcset="1.jpg, 2.jpg">`                        |        |      |          |
-| Data attribs as object     | `["a", { data: { foo: 42 }}]`                        | ✅      | ❌    | ✅        |
-|                            | `<a data-foo="42">`                                  |        |      |          |
-| Function attrib values (1) | `["a", { id: () => "epoch-" + Date.now() }]`         | ✅      | ✅    | ✅        |
-|                            | `<a id="epoch-1593024083666">`                       |        |      |          |
-| `IDeref` attrib values (2) | `["div", { id: { deref() { return "foo"; }}}]`       | ✅      | ❌    | ✅        |
-|                            | `<div id="foo">`                                     |        |      |          |
+| Feature                    | Example and HTML equivalent/result                   | hiccup | hdom | rdom |
+|----------------------------|------------------------------------------------------|--------|------|------|
+| Emmet style tags           | `["div#id.foo", {}]`                                 | ✅      | ✅    | ✅    |
+|                            | `<div id="id" class="foo">`                          |        |      |      |
+| `class` attrib as object   | `["a.bar.baz", { class: { foo: true, bar: false }}]` | ✅      | ✅    | ✅    |
+|                            | `<a class="baz foo">`                                |        |      |      |
+| `style` attrib as object   | `["div", { style: { color: "red" }}]`                | ✅      | ✅    | ✅    |
+|                            | `<div style="color:red;">`                           |        |      |      |
+| Attrib array values        | `["img", { srcset: ["1.jpg", "2.jpg"] }]`            | ✅      | ❌    | ✅    |
+|                            | `<img srcset="1.jpg, 2.jpg">`                        |        |      |      |
+| Data attribs as object     | `["a", { data: { foo: 42 }}]`                        | ✅      | ❌    | ✅    |
+|                            | `<a data-foo="42">`                                  |        |      |      |
+| Function attrib values (1) | `["a", { id: () => "epoch-" + Date.now() }]`         | ✅      | ✅    | ✅    |
+|                            | `<a id="epoch-1593024083666">`                       |        |      |      |
+| `IDeref` attrib values (2) | `["div", { id: { deref() { return "foo"; }}}]`       | ✅      | ❌    | ✅    |
+|                            | `<div id="foo">`                                     |        |      |      |
 
 All other features not explicitly mentioned are supported by all three
 packages.
@@ -143,8 +143,8 @@ ${examples}
 ${docLink}
 
 ```ts
-import { $compile } from "@thi.ng/hdom2020";
 import { div, label, option, select } from "@thi.ng/hiccup-html";
+import { $compile } from "@thi.ng/rdom";
 
 const choices = [
     ["#f00", "Red"],
@@ -213,7 +213,7 @@ of HTML attributes (incl. event listeners) and can be found in
 
 The `AttribVal` type wrapper is used to allow for reactive attribute
 values (in
-[@thi.ng/hdom2020](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom2020))
+[@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom))
 and [`IDeref`
 instances](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api/deref.ts)
 when later providing attribute values to an element.

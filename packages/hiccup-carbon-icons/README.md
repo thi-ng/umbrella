@@ -14,6 +14,7 @@ This project is part of the
   - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
 - [Icon conversion process](#icon-conversion-process)
 - [Authors](#authors)
@@ -61,6 +62,18 @@ Package sizes (gzipped, pre-treeshake): ESM: 16.41 KB / CJS: 16.93 KB / UMD: 16.
 ## Dependencies
 
 - [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+| Description              | Live demo                                      | Source                                                                      |
+| ------------------------ | ---------------------------------------------- | --------------------------------------------------------------------------- |
+| rdom drag & drop example | [Demo](https://demo.thi.ng/umbrella/rdom-dnd/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-dnd) |
 
 ## API
 

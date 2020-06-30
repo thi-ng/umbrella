@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Extensible 2D/3D scene graph with [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-canvas) support.
+Extensible 2D/3D scene graph with [@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas) support.
 
 ### Status
 

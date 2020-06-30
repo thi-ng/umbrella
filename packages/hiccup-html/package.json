@@ -71,7 +71,7 @@
         "parent": "@thi.ng/hiccup",
         "related": [
             "hdom",
-            "hdom2020",
+            "rdom",
             "hiccup-svg"
         ],
         "status": "alpha",
