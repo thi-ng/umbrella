@@ -59,6 +59,12 @@ export interface InputTextAttribs extends InputAttribs {
     size: AttribVal<number>;
 }
 
+export interface TextAreaAttribs extends InputTextAttribs {
+    cols: AttribVal<number>;
+    rows: AttribVal<number>;
+    wrap: AttribVal<"hard" | "soft" | "off">;
+}
+
 export interface InputNumericAttribs extends InputAttribs {
     min: AttribVal<number>;
     max: AttribVal<number>;
@@ -111,6 +117,8 @@ export const inputSearch = defElement<Partial<InputTextAttribs>, never>(
 export const inputText = defElement<Partial<InputTextAttribs>, never>("input", {
     type: "text",
 });
+
+export const textArea = defElement<Partial<TextAreaAttribs>, never>("textarea");
 
 export interface OptionAttribs {
     disabled: AttribVal<boolean>;
