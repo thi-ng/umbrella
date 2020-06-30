@@ -29,10 +29,77 @@ export interface MetaAttribs extends Attribs {
         | "set-cookie"
         | "x-ua-compatible"
     >;
-    name: AttribVal<string>;
+    name: AttribVal<
+        | "application-name"
+        | "author"
+        | "color-scheme"
+        | "creator"
+        | "description"
+        | "generator"
+        | "googlebot"
+        | "keywords"
+        | "publisher"
+        | "referrer"
+        | "robots"
+        | "theme-color"
+        | "viewport"
+    >;
 }
 
 export const meta = defElement<Partial<MetaAttribs>, never>("meta");
+
+export interface ViewportOpts {
+    width: number;
+    height: number;
+    min: number;
+    max: number;
+    init: number;
+    user: boolean;
+    fit: "auto" | "cover" | "contain";
+}
+
+export const metaViewport = (opts: Partial<ViewportOpts> = {}) =>
+    meta({
+        name: "viewport",
+        content: [
+            opts.width &&
+                `width=${opts.width < 0 ? "device-width" : opts.width}`,
+            opts.height &&
+                `width=${opts.height < 0 ? "device-height" : opts.height}`,
+            `initial-scale=${opts.init || 1}`,
+            opts.min && `minimum-scale=${opts.min}`,
+            opts.max && `maximum-scale=${opts.max}`,
+            `user-scalable=${opts.user !== false ? "yes" : "no"}`,
+            opts.fit != null && `viewport-fit=${opts.fit}`,
+        ]
+            .filter((x) => !!x)
+            .join(","),
+    });
+
+export const metaRobots = (
+    type:
+        | "index"
+        | "noindex"
+        | "follow"
+        | "nofollow"
+        | "none"
+        | "noarchive"
+        | "nosnippet"
+        | "noimageindex"
+        | "nocache"
+) => meta({ name: "robots", content: type });
+
+export const metaReferrer = (
+    type:
+        | "no-referrer-when-downgrade"
+        | "no-referrer"
+        | "origin-when-cross-origin"
+        | "origin"
+        | "same-origin"
+        | "strict-origin-when-cross-origin"
+        | "strict-origin"
+        | "unsafe-URL"
+) => meta({ name: "referrer", content: type });
 
 export interface LinkAttribs
     extends Attribs,
@@ -64,6 +131,8 @@ export interface LinkAttribs
 }
 
 export const link = defElement<Partial<LinkAttribs>, never>("link");
+
+export const linkCSS = (href: string) => link({ href, rel: "stylesheet" });
 
 export interface StyleAttribs extends Attribs {
     media: AttribVal<string>;
