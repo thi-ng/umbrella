@@ -1,6 +1,18 @@
 import type { Nullable } from "@thi.ng/api";
 import type { Attribs } from "./api";
 
+/**
+ * Variadic element factory function. Takes an element specific attrib
+ * object (or `null` if no user attribs are needed) and any number of
+ * arbitrary body elements (unless children are explicitly disallowed as
+ * is the case for some HTML elements).
+ *
+ * Optionally, an Emmet-style string in the form `#id.class1.class2` or
+ * `.class1.class2` can be given as first argument.
+ *
+ * Returns element as hiccup tuple, e.g. `["tag", attribs|null,
+ * ...body]`
+ */
 export interface ElementFactory<T, B> {
     (attribs?: Nullable<T>, ...body: B[]): [string, Nullable<T>, ...B[]];
     (emmet: string, attribs?: Nullable<T>, ...body: B[]): [

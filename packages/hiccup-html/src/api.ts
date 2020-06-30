@@ -185,5 +185,5 @@ export type LinkRel =
     | "tag";
 
 export interface RelAttribs {
-    rel: AttribVal<string | LinkRel[]>;
+    rel: AttribVal<LinkRel | LinkRel[]>;
 }
