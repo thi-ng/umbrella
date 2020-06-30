@@ -6,7 +6,7 @@ import {
     $clear,
     $el,
     $html,
-    $move,
+    $moveTo,
     $remove,
     $style,
     $text,
@@ -78,6 +78,6 @@ export abstract class Component<T = any> implements IComponent<T> {
     }
 
     $moveTo(newParent: Element, el = this.el!, idx?: NumOrElement) {
-        $move(el, newParent, idx);
+        $moveTo(newParent, el, idx);
     }
 }

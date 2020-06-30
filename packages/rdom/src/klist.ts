@@ -3,7 +3,7 @@ import type { ISubscribable } from "@thi.ng/rstream";
 import type { IComponent, IMountWithState, NumOrElement } from "./api";
 import { $compile } from "./compile";
 import { Component } from "./component";
-import { $move } from "./dom";
+import { $moveTo } from "./dom";
 import { $sub } from "./sub";
 
 interface KListItem {
@@ -83,7 +83,7 @@ export class KList<T> extends Component<T[]> implements IMountWithState<T[]> {
 
         const insert = async (item: KListItem) => {
             if (cache!.has(item.k)) {
-                $move(item.v.el!, parent!, next);
+                $moveTo(parent!, item.v.el!, next);
                 next = item.v.el!;
             } else {
                 cache!.set(item.k, item);

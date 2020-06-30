@@ -11,6 +11,7 @@ import { illegalArgs } from "@thi.ng/errors";
 import {
     ATTRIB_JOIN_DELIMS,
     mergeClasses,
+    NO_SPANS,
     RE_TAG,
     SVG_NS,
     SVG_TAGS,
@@ -29,8 +30,9 @@ import { isComponent } from "./utils";
  * - {@link IDeref} instance (must resolve to another supported type in
  *   this list)
  * - `["div#id.class", {...attribs}, ...children]`
+ * - `[IComponent, ...mountargs]`
  * - `[function, ...args]`
- * - ES6 iterator of the above (as children only!)
+ * - ES6 iterable of the above (for child values only!)
  *
  * Any other values will be cast to strings and added as spans to
  * current `parent`.
@@ -46,17 +48,30 @@ export const $tree = async (
 ): Promise<any> => {
     if (isArray(tree)) {
         const tag = tree[0];
+        // [tag, attribs, ...body]
         if (isString(tag)) {
-            parent = $el(tag, tree[1], null, parent, idx);
             const n = tree.length;
+            const { 1: attribs, 2: body } = tree;
+            if (n === 3 && (isString(body) || isNumber(body))) {
+                // emmet-free base tag
+                const tmp = /^\w+/.exec(tag);
+                if (tmp && NO_SPANS[tmp[0]]) {
+                    // don't wrap single body in <span> here
+                    parent = $el(tag, attribs, body, parent, idx);
+                    return parent;
+                }
+            }
+            parent = $el(tag, attribs, null, parent, idx);
             for (let i = 2; i < n; i++) {
                 $tree(tree[i], parent);
             }
             return parent;
         }
+        // [icomponent, ...args]
         if (isComponent(tag)) {
             return tag.mount(parent, idx, ...tree.slice(1));
         }
+        // [fn, ...args]
         if (isFunction(tag)) {
             return $tree(tag.apply(null, tree.slice(1)), parent);
         }
@@ -72,6 +87,7 @@ export const $tree = async (
         for (let t of tree) {
             $tree(t, parent);
         }
+        return;
     }
     return tree != null
         ? $el("span", null, tree, <HTMLElement>parent, idx)
@@ -139,11 +155,11 @@ export const $addChild = (
         : parent.insertBefore(child, idx);
 };
 
-export const $remove = (el: Element) => el.remove(); //el.parentNode!.removeChild(el);
+export const $remove = (el: Element) => el.remove();
 
-export const $move = (
-    el: Element,
+export const $moveTo = (
     newParent: Element,
+    el: Element,
     idx: NumOrElement = -1
 ) => {
     $remove(el);
