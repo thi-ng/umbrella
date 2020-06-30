@@ -1,14 +1,15 @@
 import type { IDeref } from "@thi.ng/api";
-import { $canvas, $compile } from "@thi.ng/rdom";
 import { INFO_SOLID as ICON, withSize } from "@thi.ng/hiccup-carbon-icons";
 import { div, inputRange, label } from "@thi.ng/hiccup-html";
+import { $compile } from "@thi.ng/rdom";
+import { $canvas } from "@thi.ng/rdom-canvas";
 import {
     fromDOMEvent,
     fromRAF,
     ISubscribable,
     stream,
     Subscription,
-    sync,
+    sync
 } from "@thi.ng/rstream";
 import { map, slidingWindow } from "@thi.ng/transducers";
 

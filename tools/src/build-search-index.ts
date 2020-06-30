@@ -1,4 +1,5 @@
 import { ArraySet, Trie } from "@thi.ng/associative";
+// @ts-ignore
 import { serialize } from "@ygoe/msgpack";
 import { readdirSync, readFileSync, statSync, writeFileSync } from "fs";
 import { readJSON } from "./io";

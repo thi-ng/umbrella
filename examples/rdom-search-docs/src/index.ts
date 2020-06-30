@@ -1,8 +1,9 @@
 import { timed } from "@thi.ng/bench";
-import { $compile, $list, $text, Component, IComponent } from "@thi.ng/rdom";
 import { anchor, div, inputText } from "@thi.ng/hiccup-html";
+import { $compile, $list, $text, Component, IComponent } from "@thi.ng/rdom";
 import { debounce, Stream, stream, Subscription } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
+// @ts-ignore
 import { deserialize } from "@ygoe/msgpack";
 import { pageControls, Pagination } from "./pagination";
 import { search, SearchIndex } from "./search";
@@ -10,7 +11,7 @@ import { search, SearchIndex } from "./search";
 const INDEX_URL = "https://docs.thi.ng/umbrella/search-index-latest.bin";
 const REPO_URL = "https://github.com/thi-ng/umbrella/";
 const BASE_URL = `${REPO_URL}blob/develop/packages/`;
-const SRC_URL = `${REPO_URL}/tree/feature/rdom/examples/rdom-search-docs`;
+const SRC_URL = `${REPO_URL}/tree/develop/examples/rdom-search-docs`;
 const INITIAL_QUERY = "hdom";
 const PAGE_SIZE = 25;
 

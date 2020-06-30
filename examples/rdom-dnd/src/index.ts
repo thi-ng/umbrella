@@ -1,10 +1,10 @@
-import { $compile } from "@thi.ng/rdom";
 import {
     ADD_OUTLINE,
     CLOSE_OUTLINE,
-    withSize,
+    withSize
 } from "@thi.ng/hiccup-carbon-icons";
 import { div } from "@thi.ng/hiccup-html";
+import { $compile } from "@thi.ng/rdom";
 import { cycle } from "@thi.ng/transducers";
 import { Draggable } from "./draggable";
 import { Notification, NotifyOpts } from "./notification";

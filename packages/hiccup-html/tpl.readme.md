@@ -82,7 +82,7 @@ support by the relevant packages consuming hiccup:
 
 - [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
 - [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
-- [@thi.ng/hdom2020](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/packages/hdom2020)
+- [@thi.ng/hdom2020](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom2020)
 
 | Feature                    | Example and HTML equivalent/result                   | hiccup | hdom | hdom2020 |
 |----------------------------|------------------------------------------------------|--------|------|----------|
@@ -213,7 +213,7 @@ of HTML attributes (incl. event listeners) and can be found in
 
 The `AttribVal` type wrapper is used to allow for reactive attribute
 values (in
-[@thi.ng/hdom2020](https://github.com/thi-ng/umbrella/tree/feature/hdom2020/packages/hdom2020))
+[@thi.ng/hdom2020](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom2020))
 and [`IDeref`
 instances](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api/deref.ts)
 when later providing attribute values to an element.
