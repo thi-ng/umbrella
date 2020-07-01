@@ -66,3 +66,15 @@ export interface VideoAttribs extends AudioAttribs, DimensionAttribs {
 }
 
 export const video = defElement<Partial<VideoAttribs>>("video");
+
+export interface TrackAttribs extends Attribs {
+    default: BooleanAttrib;
+    kind: AttribVal<
+        "captions" | "chapters" | "descriptions" | "metadata" | "subtitles"
+    >;
+    label: StringAttrib;
+    src: StringAttrib;
+    srclang: StringAttrib;
+}
+
+export const track = defElement<Partial<TrackAttribs>>("track");

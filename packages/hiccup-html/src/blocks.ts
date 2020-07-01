@@ -16,12 +16,13 @@ export interface BlockquoteAttribs extends Attribs {
 
 export const blockquote = defElement<Partial<BlockquoteAttribs>>("blockquote");
 
-export const [div, figure, figcaption, para, pre] = defElements([
+export const [div, figure, figcaption, para, pre, template] = defElements([
     "div",
     "figure",
     "figcaption",
     "p",
     "pre",
+    "template",
 ]);
 
 export const hr = defElement<Partial<Attribs>, never>("hr");

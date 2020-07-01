@@ -8,3 +8,4 @@ export * from "./inline";
 export * from "./lists";
 export * from "./media";
 export * from "./sections";
+export * from "./table";
