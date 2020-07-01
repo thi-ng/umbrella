@@ -1,7 +1,7 @@
 import { IRelease } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
+import { button, div } from "@thi.ng/hiccup-html";
 import { clamp } from "@thi.ng/math";
-import { div } from "@thi.ng/hiccup-html";
 import { Stream, stream, Subscription, sync } from "@thi.ng/rstream";
 import { comp, dedupe, map, page } from "@thi.ng/transducers";
 
@@ -73,8 +73,8 @@ export const pageControls = (pager: Pagination<any>) =>
         },
         div(
             { class: "w-33 tl" },
-            button(() => pager.setPage(0), "<<"),
-            button(() => pager.updatePage(-1), "<")
+            bt(() => pager.setPage(0), "<<"),
+            bt(() => pager.updatePage(-1), "<")
         ),
         div(
             { class: "w-34 tc" },
@@ -84,13 +84,10 @@ export const pageControls = (pager: Pagination<any>) =>
         ),
         div(
             { class: "w-33 tr" },
-            button(() => pager.updatePage(1), ">"),
-            button(() => pager.setPage(pager.maxPage.deref()!), ">>")
+            bt(() => pager.updatePage(1), ">"),
+            bt(() => pager.setPage(pager.maxPage.deref()!), ">>")
         )
     );
 
-const button = (onclick: EventListener, label: string) => [
-    "button",
-    { onclick },
-    label,
-];
+const bt = (onclick: EventListener, label: string) =>
+    button({ onclick }, label);
