@@ -7,9 +7,9 @@ import {
     fromDOMEvent,
     fromRAF,
     ISubscribable,
-    stream,
+    reactive,
     Subscription,
-    sync
+    sync,
 } from "@thi.ng/rstream";
 import { map, slidingWindow } from "@thi.ng/transducers";
 
@@ -48,20 +48,14 @@ const lissajous = (
     t: number
 ) => [scale * Math.sin(a * t + d), scale * Math.sin(b * t)];
 
-const a = stream<number>();
-const b = stream<number>();
-const num = stream<number>();
-const scale = stream<number>();
-const radius = stream<number>();
+const a = reactive(3);
+const b = reactive(4);
+const num = reactive(50);
+const scale = reactive(10);
+const radius = reactive(0.5);
 const size = fromDOMEvent(window, "resize").transform(
     map(() => [window.innerWidth, window.innerHeight - 100])
 );
-
-a.next(3);
-b.next(4);
-num.next(50);
-radius.next(10);
-scale.next(0.5);
 size.next(<any>null);
 
 interface Lissajous {

@@ -1,6 +1,6 @@
-import { stream, Stream } from "@thi.ng/rstream";
-import { assocObj, map, pairs, push, transduce } from "@thi.ng/transducers";
 import type { IObjectOf } from "@thi.ng/api";
+import { reactive, Stream } from "@thi.ng/rstream";
+import { assocObj, map, pairs, push, transduce } from "@thi.ng/transducers";
 
 const slider = (label: string, attribs: any, stream: Stream<number>) => () => [
     "div.mb2",
@@ -33,11 +33,10 @@ export const PARAM_DEFS: IObjectOf<ParamDef> = {
 };
 
 export const PARAMS = transduce(
-    map<[string, ParamDef], [string, Stream<number>]>(([id, spec]) => {
-        const param = stream<number>();
-        param.next(spec[2]);
-        return [id, param];
-    }),
+    map<[string, ParamDef], [string, Stream<number>]>(([id, spec]) => [
+        id,
+        reactive(spec[2]),
+    ]),
     assocObj(),
     pairs(PARAM_DEFS)
 );

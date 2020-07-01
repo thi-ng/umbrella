@@ -10,7 +10,7 @@ import {
     withAttribs,
 } from "@thi.ng/geom";
 import { convertTree } from "@thi.ng/hiccup-svg";
-import { fromRAF, stream, Stream, sync } from "@thi.ng/rstream";
+import { fromRAF, reactive, Stream, sync } from "@thi.ng/rstream";
 import {
     comp,
     iterator,
@@ -167,13 +167,13 @@ const poly = fromRAF().transform(
 );
 
 // poly spline mode flag (control points vs break points)
-const mode = stream<boolean>();
+const mode = reactive(false);
 // flag for uniform tangent scaling
-const uniform = stream<boolean>();
+const uniform = reactive(false);
 // tangent scale
-const scale = stream<number>();
+const scale = reactive(0.5);
 // uniform scale factor (only used if uniform scaling is enabled)
-const uniScale = stream<number>();
+const uniScale = reactive(25);
 
 // re-usable transducer implementing a toggle switch
 const toggle = scan(
@@ -196,12 +196,6 @@ const main = sync<any, any>({
 
 // transform to create & apply UI
 main.transform(map(app(mode, uniform, scale, uniScale)), updateDOM());
-
-// seed all input streams to kick off
-mode.next(false);
-uniform.next(false);
-scale.next(0.5);
-uniScale.next(25);
 
 // HMR handling (dev builds only)
 if (process.env.NODE_ENV !== "production") {

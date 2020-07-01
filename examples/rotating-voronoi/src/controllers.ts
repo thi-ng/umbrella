@@ -41,7 +41,7 @@ export const checkbox = (
                 type: "checkbox",
                 checked: value,
                 oninput: (e: Event) => {
-                    const target = e.target as HTMLInputElement;
+                    const target = <HTMLInputElement>e.target;
                     const checked = target && target.checked;
                     onChange(checked);
                 },

@@ -3,7 +3,7 @@ import { sin } from "@thi.ng/dsp";
 import { start } from "@thi.ng/hdom";
 import { canvasWebGL, dropdown } from "@thi.ng/hdom-components";
 import { concat, lookAt, perspective, transform44 } from "@thi.ng/matrices";
-import { fromPromise, metaStream, stream } from "@thi.ng/rstream";
+import { fromPromise, metaStream, reactive } from "@thi.ng/rstream";
 import {
     assign,
     defMain,
@@ -61,8 +61,7 @@ const CUBE_MAPS = [
 ];
 
 const app = () => {
-    const selection = stream<string>();
-    selection.next(CUBE_MAPS[0][0]);
+    const selection = reactive(CUBE_MAPS[0][0]);
     let model: ModelSpec;
     const canvas = canvasWebGL({
         init: (_, gl) => {

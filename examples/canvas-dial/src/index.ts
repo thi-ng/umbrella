@@ -1,4 +1,4 @@
-import { stream, sync } from "@thi.ng/rstream";
+import { reactive, sync } from "@thi.ng/rstream";
 import { percent } from "@thi.ng/strings";
 import { comp, map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
@@ -8,9 +8,9 @@ import { dial } from "./dial";
 export const ctx = {
     // streams to hold dial values
     streams: {
-        a: stream<number>(),
-        b: stream<number>(),
-        c: stream<number>(),
+        a: reactive(0.66),
+        b: reactive(1),
+        c: reactive(0.75),
     },
     // component styling
     ui: {
@@ -89,8 +89,3 @@ sync<any, any>({
     src: ctx.streams,
     xform: comp(map(app()), updateDOM()),
 });
-
-// seed dials with initial values
-ctx.streams.a.next(0.66);
-ctx.streams.b.next(1);
-ctx.streams.c.next(0.75);

@@ -1,7 +1,7 @@
 import { timed } from "@thi.ng/bench";
 import { anchor, div, inputText } from "@thi.ng/hiccup-html";
 import { $compile, $list, $text, Component, IComponent } from "@thi.ng/rdom";
-import { debounce, Stream, stream, Subscription } from "@thi.ng/rstream";
+import { debounce, reactive, Stream, Subscription } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 // @ts-ignore
 import { deserialize } from "@ygoe/msgpack";
@@ -63,8 +63,7 @@ class DocSearch extends Component {
             this.$remove(loader);
 
             // init local state
-            this.query = stream<string>();
-            this.query.next(INITIAL_QUERY);
+            this.query = reactive(INITIAL_QUERY);
             // build results as transformation of query stream
             // first debounce query stream (for fast typers)
             this.queryResults = this.query

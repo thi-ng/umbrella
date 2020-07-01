@@ -1,3 +1,4 @@
+import type { Fn, IObjectOf } from "@thi.ng/api";
 import { dropdown, DropDownOption } from "@thi.ng/hdom-components";
 import {
     group,
@@ -13,6 +14,7 @@ import { resolve } from "@thi.ng/resolve-map";
 import {
     fromEvent,
     fromInterval,
+    reactive,
     resolve as resolvePromise,
     stream,
     Subscription,
@@ -37,7 +39,6 @@ import {
 } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { ema, hma, sma, wma } from "@thi.ng/transducers-stats";
-import type { Fn, IObjectOf } from "@thi.ng/api";
 
 // this example demonstrates how to use @thi.ng/rstream &
 // @thi.ng/transducer constructs to create a basic cryptocurrency candle
@@ -192,13 +193,12 @@ const menu = (
         )
     );
 
-// stream definitions
-
-const market = stream<string>();
-const symbol = stream<string>();
-const period = stream<number>();
-const avgMode = stream<string>();
-const theme = stream<string>().transform(map((id) => THEMES[id]));
+// pre-seeded streams/reactive values
+const market = reactive("CCCAGG");
+const symbol = reactive("BTCUSD");
+const period = reactive(60);
+const avgMode = reactive("wma");
+const theme = reactive("dark").transform(map((id) => THEMES[id]));
 const error = stream<any>();
 
 // I/O error handler
@@ -507,12 +507,5 @@ sync<any, any>({
         updateDOM()
     ),
 });
-
-// kick off dataflow
-market.next("CCCAGG");
-symbol.next("BTCUSD");
-period.next(60);
-avgMode.next("wma");
-theme.next("dark");
 
 window.dispatchEvent(new CustomEvent("resize"));

@@ -7,13 +7,14 @@ import {
     fromInterval,
     fromIterable,
     metaStream,
+    reactive,
     stream,
     sync,
 } from "@thi.ng/rstream";
 import { choices, map, take } from "@thi.ng/transducers";
 
-const blur = stream();
-const body = stream();
+const blur = reactive(false);
+const body = stream<string>();
 const date = fromInterval(1000).transform(map(() => new Date()));
 const items = stream<any[]>();
 
@@ -58,7 +59,6 @@ const mpos = fromDOMEvent(window, "mousemove").transform(
     map((e) => [e.pageX, e.pageY])
 );
 
-blur.next(false);
 randomizeBody();
 randomizeList();
 

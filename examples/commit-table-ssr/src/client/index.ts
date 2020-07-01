@@ -1,6 +1,7 @@
 import { resolve as resolveMap } from "@thi.ng/resolve-map";
 import {
     fromInterval,
+    reactive,
     resolve as resolvePromise,
     stream,
     sync,
@@ -14,11 +15,11 @@ import {
     transduce,
 } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
+import type { AppContext, Commit } from "../common/api";
 import { header } from "../common/components/header";
 import { link } from "../common/components/link";
 import { repoTable } from "../common/components/repo-table";
 import { ctx } from "../common/config";
-import type { AppContext, Commit } from "../common/api";
 
 const COMMITS_URL =
     process.env.NODE_ENV === "production" ? "./commits.json" : "/commits";
@@ -130,9 +131,10 @@ const commits = fromInterval(60 * 60 * 1000)
     .subscribe(resolvePromise({ fail: (e) => error.next(e.message) }));
 
 // stream of commit filter terms
-const search = stream<string>();
+const search = reactive("");
 
 // stream combinator & transformation into UI / DOM update
+// will only execute once all of its inputs have delivered a value.
 sync<any, any>({
     // streams to synchronize
     src: {
@@ -152,9 +154,3 @@ sync<any, any>({
         // apply hdom tree to real DOM
         updateDOM({ ctx })
     );
-
-// manual kick off is needed here, since the above stream sync construct
-// will only execute once all of its inputs have delivered a value.
-// the other input `commits` is triggered automatically because it's
-// tied to a timer
-search.next("");

@@ -1,6 +1,6 @@
 import { timedResult } from "@thi.ng/bench";
 import { parse, TagFactories } from "@thi.ng/hiccup-markdown";
-import { stream, Stream } from "@thi.ng/rstream";
+import { reactive, Stream } from "@thi.ng/rstream";
 import { iterator, map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import readme from "../README.txt";
@@ -57,7 +57,8 @@ const app = (input: Stream<string>) => ({
 ];
 
 // markdown input stream
-const src = stream<string>();
+// seed w/ temp input
+const src = reactive("# Loading readme...");
 
 // stream transformer & UI update
 src.transform(
@@ -71,9 +72,6 @@ src.transform(
     map(app(src)),
     updateDOM()
 );
-
-// seed temp input
-src.next(`# Loading readme...`);
 
 // load markdown & seed input
 fetch(readme)

@@ -22,8 +22,6 @@ import { checkbox, slider } from "./controllers";
 import {
     animationStream,
     AppState,
-    frameStreamConditional,
-    keyStreamConditional,
     mainStream,
     scaleStream,
 } from "./stream-state";
@@ -54,11 +52,6 @@ const pointsInCircle = (
         normRange(_num, false)
     ),
 ];
-
-scaleStream.next(1);
-frameStreamConditional.next(0);
-animationStream.next(false);
-keyStreamConditional.next(<any>{});
 
 mainStream.transform(map(appRender), updateDOM());
 

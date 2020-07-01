@@ -2,7 +2,7 @@ import { IRelease } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
 import { button, div } from "@thi.ng/hiccup-html";
 import { clamp } from "@thi.ng/math";
-import { Stream, stream, Subscription, sync } from "@thi.ng/rstream";
+import { reactive, Stream, Subscription, sync } from "@thi.ng/rstream";
 import { comp, dedupe, map, page } from "@thi.ng/transducers";
 
 export class Pagination<T extends any[]> implements IRelease {
@@ -11,7 +11,7 @@ export class Pagination<T extends any[]> implements IRelease {
     resultPage: Subscription<any, T>;
 
     constructor(src: Subscription<any, T>, pageSize: number) {
-        this.page = stream<number>();
+        this.page = reactive(0);
         this.maxPage = src.transform(map((res) => ~~(res.length / pageSize)));
         // produce search result page using `page()` transducer
         // the`sync()` construct is a stream combinator which requires all input
@@ -36,7 +36,6 @@ export class Pagination<T extends any[]> implements IRelease {
                 )
             ),
         });
-        this.setPage(0);
     }
 
     release() {

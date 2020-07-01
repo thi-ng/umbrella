@@ -1,24 +1,22 @@
 import {
     fromDOMEvent,
     fromRAF,
+    reactive,
     sidechainToggle,
-    stream,
     sync,
 } from "@thi.ng/rstream";
-import { add, map, mapcat, scan } from "@thi.ng/transducers";
+import { count, mapcat, scan } from "@thi.ng/transducers";
 
 export const keyStreamConditional = fromDOMEvent(document, "keyup").transform(
     mapcat((x) => [x.key, null])
 );
+keyStreamConditional.next(<any>{});
 
-export const scaleStream = stream<number>();
-export const animationStream = stream<boolean>();
+export const scaleStream = reactive(1);
+export const animationStream = reactive(true);
 export const frameStreamConditional = fromRAF()
     .subscribe(sidechainToggle<number, boolean>(animationStream))
-    .transform(
-        map(() => 1),
-        scan(add())
-    );
+    .transform(scan(count()));
 
 export type AppState = {
     scaleValue: number;

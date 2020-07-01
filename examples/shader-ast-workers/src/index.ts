@@ -1,7 +1,7 @@
-import { polyline } from "@thi.ng/hdom-canvas";
+import { polyline } from "@thi.ng/hiccup-canvas";
 import { fitClamped } from "@thi.ng/math";
 import { canvasPixels } from "@thi.ng/pixel";
-import { forkJoin, stream } from "@thi.ng/rstream";
+import { forkJoin, reactive } from "@thi.ng/rstream";
 import { bounds } from "@thi.ng/transducers-stats";
 import { NUM_WORKERS, WorkerJob, WorkerResult } from "./api";
 
@@ -16,7 +16,7 @@ document.body.appendChild(canvas.canvas);
 
 const imgU32 = new Uint32Array(canvas.img.data.buffer);
 
-const time = stream<number>();
+const time = reactive(0);
 
 // fork worker jobs & re-join results
 forkJoin<number, WorkerJob, WorkerResult, void>({
@@ -66,9 +66,6 @@ const drawStats = (parts: WorkerResult[]) => {
         }
     }
 };
-
-// initial kick off
-time.next(0);
 
 // HMR handling
 if (process.env.NODE_ENV !== "production") {

@@ -1,4 +1,4 @@
-import { stream, sync } from "@thi.ng/rstream";
+import { reactive, sync } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { convertXML } from "./convert";
@@ -8,13 +8,24 @@ import { xformAsSet } from "./utils";
 
 // input streams (reactive state values)
 const inputs = {
-    xml: stream<string>(),
-    prettyPrint: stream<boolean>(),
-    doubleQuote: stream<boolean>(),
-    trailingComma: stream<boolean>(),
-    removeAttribs: stream<string>(),
-    removeTags: stream<string>(),
-    copyButton: stream<boolean>(),
+    xml: reactive(`<html lang="en">
+    <head>
+        <title>foo</title>
+    </head>
+    <body class="foo bar">
+        <h1 style="color:red">
+            HTML &amp; Hiccup walk into a bar...
+        </h1>
+        <div id="app"></div>
+        <input disabled value="42"/>
+    </body>
+</html>`),
+    prettyPrint: reactive(true),
+    doubleQuote: reactive(true),
+    trailingComma: reactive(true),
+    removeAttribs: reactive("id,class"),
+    removeTags: reactive("head"),
+    copyButton: reactive(false),
 };
 
 // stream combinator to assemble formatter options
@@ -57,34 +68,6 @@ const main = sync<any, any>({
     map(app(UI.main, inputs)),
     // apply to real DOM
     updateDOM({ ctx: UI })
-);
-
-// all inputs need to be initialized
-// in order for the UI to be rendered at least once
-
-// initial options
-inputs.removeTags.next("head");
-inputs.removeAttribs.next("id,class");
-inputs.trailingComma.next(true);
-inputs.doubleQuote.next(true);
-inputs.prettyPrint.next(true);
-
-inputs.copyButton.next(false);
-
-// seed input and kick off UI/app
-inputs.xml.next(
-    `<html lang="en">
-    <head>
-        <title>foo</title>
-    </head>
-    <body class="foo bar">
-        <h1 style="color:red">
-            HTML &amp; Hiccup walk into a bar...
-        </h1>
-        <div id="app"></div>
-        <input disabled value="42"/>
-    </body>
-</html>`
 );
 
 // ParcelJS HMR handling

@@ -4,8 +4,8 @@ import {
     fromIterable,
     fromRAF,
     metaStream,
+    reactive,
     sidechainToggle,
-    stream,
     sync,
 } from "@thi.ng/rstream";
 import {
@@ -114,8 +114,8 @@ const app = ({ id, ksize, sim }: any) => [
     ["pre.f7.code", sim],
 ];
 
-const rule = stream<number>();
-const kernel = stream<number>();
+const rule = reactive(105);
+const kernel = reactive(3);
 const objExport = metaStream<any, boolean>(() =>
     fromIterable([true, false], { delay: 17 })
 );
@@ -170,9 +170,6 @@ wolfram
         ),
         map((obj: string) => download(`ca-${rule.deref()}.obj`, obj))
     );
-
-rule.next(105);
-kernel.next(3);
 
 if (process.env.NODE_ENV !== "production") {
     const hot = (<any>module).hot;

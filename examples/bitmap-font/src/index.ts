@@ -1,6 +1,7 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { dropdown } from "@thi.ng/hdom-components";
 import { clamp } from "@thi.ng/math";
-import { stream, Stream, Subscription, sync } from "@thi.ng/rstream";
+import { reactive, Stream, Subscription, sync } from "@thi.ng/rstream";
 import {
     comp,
     map,
@@ -15,7 +16,6 @@ import {
 import { bits } from "@thi.ng/transducers-binary";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { FONT } from "./font";
-import type { IObjectOf } from "@thi.ng/api";
 
 const emitOnStream = (stream: Subscription<any, any>) => (e: Event) =>
     stream.next((<HTMLSelectElement>e.target).value);
@@ -101,9 +101,9 @@ const app = ({ raw, result }: any) => [
 ];
 
 // reactive stream setup
-const input = stream<string>();
-const on = stream<string>();
-const off = stream<string>();
+const input = reactive("8BIT POWER!");
+const on = reactive("/");
+const off = reactive(" ");
 
 // transforming stream combinator
 const xformer = sync<any, any>({ src: { input, on, off } }).transform(
@@ -112,11 +112,6 @@ const xformer = sync<any, any>({ src: { input, on, off } }).transform(
 
 const main = sync<any, any>({ src: { raw: input, result: xformer } });
 main.transform(map(app), updateDOM());
-
-// kick off
-input.next("8BIT POWER!");
-on.next("/");
-off.next(" ");
 
 // input.next(transduce(map((x: number) => String.fromCharCode(x)), str(), range(32, 127)));
 
