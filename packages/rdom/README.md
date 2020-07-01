@@ -12,6 +12,7 @@ This project is part of the
 - [About](#about)
   - [Status](#status)
     - [HIC SUNT DRACONES](#hic-sunt-dracones)
+    - [@thi.ng/atom integration](#thing-atom-integration)
   - [Support packages](#support-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -30,13 +31,29 @@ Lightweight, reactive, VDOM-less UI/DOM components with async lifecycle and [@th
 
 #### HIC SUNT DRACONES
 
-Pretty much **everything** here is still in a state of flux (without
-warning!) and merely shared for those brave souls who'd like to be part
-of the journey, even if just to provide early feedback and such... :)
+This is still a young project. Even though most of the overall approach,
+component lifecycle and API are fairly stable by now (after 65+ commits
+over several months), once there'll be more user feedback, there's
+likely going to be further refactoring required here and there, none of
+which is _expected_ to cause breaking changes in this core package and
+will likely come in the form of additions or alternatives to existing
+control structures (unless they would be entirely subsuming current
+features/approaches)...
+
+#### @thi.ng/atom integration
+
+For the sake of deduplication of functionality and to keep the number of
+dependencies to a minimum, direct
+[@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom)
+integration has been removed in favor of using relevant
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+constructs, which can be used as lightweight adapters, i.e.:
+
+- [`fromAtom()`](https://github.com/thi-ng/umbrella/blob/develop/packages/rstream/src/from/atom.ts)
+- [`fromView()`](https://github.com/thi-ng/umbrella/blob/develop/packages/rstream/src/from/view.ts)
 
 ### Support packages
 
-- [@thi.ng/rdom-atom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom-atom) - [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom) component wrappers for [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom) state containers & derived views
 - [@thi.ng/rdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom-canvas) - [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom) component wrapper for [@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas) and declarative canvas drawing
 
 ## Installation
@@ -53,7 +70,7 @@ yarn add @thi.ng/rdom
 <script src="https://unpkg.com/@thi.ng/rdom/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.34 KB / CJS: 3.47 KB / UMD: 3.47 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.41 KB / CJS: 3.54 KB / UMD: 3.53 KB
 
 ## Dependencies
 
@@ -84,6 +101,43 @@ A selection:
 [Generated API docs](https://docs.thi.ng/umbrella/rdom/)
 
 TODO
+
+Currently, documentation only exists in the form of small examples and
+various doc strings (incomplete). I'm working to alleviate this
+situation ASAP... PRs welcome as well!
+
+```ts
+import { $compile } from "@thi.ng/rdom";
+import { reactive } from "@thi.ng/rstream";
+import { cycle, map } from "@thi.ng/transducers";
+
+// reactive value
+const bg = reactive("gray");
+
+// color options (infinite iteratable)
+const colors = cycle(["magenta", "yellow", "cyan"]);
+
+// event handler
+const nextColor = () => bg.next(<string>colors.next().value);
+
+// define component tree in hiccup syntax, compile & mount component
+// each time `bg` value changes, only the subscribed bits will be updated
+// i.e. title and the button's `style.background` and label
+$compile([
+    "div",
+    {},
+    // transformed color as title
+    ["h1", {}, bg.transform(map((col) => `Hello, ${col}!`))],
+    [
+        "button#foo.w4.pa3.bn",
+        {
+            style: { background: bg },
+            onclick: nextColor,
+        },
+        bg,
+    ],
+]).mount(document.body);
+```
 
 ## Authors
 
