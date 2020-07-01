@@ -1,25 +1,27 @@
-import {
+import type {
     Attribs,
     AttribVal,
+    BooleanAttrib,
     CORSAttribs,
     ImportanceAttribs,
     ReferrerAttribs,
     RelAttribs,
+    StringAttrib,
 } from "./api";
 import { defElement, defElements } from "./def";
 
 export const [head, title] = defElements(["head", "title"]);
 
 export interface BaseAttribs extends Attribs {
-    href: AttribVal<string>;
-    target: AttribVal<string>;
+    href: StringAttrib;
+    target: StringAttrib;
 }
 
 export const base = defElement<Partial<BaseAttribs>, never>("base");
 
 export interface MetaAttribs extends Attribs {
-    charset: AttribVal<string>;
-    content: AttribVal<string>;
+    charset: StringAttrib;
+    content: StringAttrib;
     "http-equiv": AttribVal<
         | "content-language"
         | "content-security-policy"
@@ -101,6 +103,17 @@ export const metaReferrer = (
         | "unsafe-URL"
 ) => meta({ name: "referrer", content: type });
 
+export const metaRefresh = (delay: number, url?: string) =>
+    meta({
+        "http-equiv": "refresh",
+        content: url ? `${delay}; url=${url}` : String(delay),
+    });
+
+export const metaUTF8 = () => meta({ charset: "utf-8" });
+
+export const metaXUA = () =>
+    meta({ "http-equiv": "x-ua-compatible", content: "IE=edge" });
+
 export interface LinkAttribs
     extends Attribs,
         CORSAttribs,
@@ -121,13 +134,13 @@ export interface LinkAttribs
         | "video"
         | "worker"
     >;
-    disabled: AttribVal<boolean>;
-    href: AttribVal<string>;
-    hreflang: AttribVal<string>;
-    integrity: AttribVal<string>;
-    media: AttribVal<string>;
+    disabled: BooleanAttrib;
+    href: StringAttrib;
+    hreflang: StringAttrib;
+    integrity: StringAttrib;
+    media: StringAttrib;
     sizes: AttribVal<string | string[]>;
-    type: AttribVal<string>;
+    type: StringAttrib;
 }
 
 export const link = defElement<Partial<LinkAttribs>, never>("link");
@@ -135,9 +148,21 @@ export const link = defElement<Partial<LinkAttribs>, never>("link");
 export const linkCSS = (href: string) => link({ href, rel: "stylesheet" });
 
 export interface StyleAttribs extends Attribs {
-    media: AttribVal<string>;
-    nonce: AttribVal<string>;
-    type: AttribVal<string>;
+    media: StringAttrib;
+    nonce: StringAttrib;
+    type: StringAttrib;
 }
 
 export const style = defElement<Partial<StyleAttribs>, string>("style");
+
+export interface ScriptAttribs extends Attribs, CORSAttribs, ReferrerAttribs {
+    async: BooleanAttrib;
+    defer: BooleanAttrib;
+    integrity: StringAttrib;
+    nomodule: BooleanAttrib;
+    nonce: StringAttrib;
+    src: StringAttrib;
+    type: StringAttrib;
+}
+
+export const script = defElement<Partial<ScriptAttribs>, string>("script");

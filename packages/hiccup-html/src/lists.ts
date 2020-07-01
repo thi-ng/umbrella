@@ -1,14 +1,14 @@
-import { Attribs, AttribVal } from "./api";
+import type { Attribs, AttribVal, BooleanAttrib, NumericAttrib } from "./api";
 import { defElement, defElements } from "./def";
 
 export interface OrderedListAttribs extends Attribs {
-    reversed: AttribVal<boolean>;
-    start: AttribVal<number>;
+    reversed: BooleanAttrib;
+    start: NumericAttrib;
     type: AttribVal<"1" | "a" | "A" | "i" | "I">;
 }
 
 export interface ListItemAttribs extends Attribs {
-    value: AttribVal<number>;
+    value: NumericAttrib;
 }
 
 export const ol = defElement<Partial<OrderedListAttribs>>("ol");

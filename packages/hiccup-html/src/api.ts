@@ -2,6 +2,12 @@ import type { Fn, IObjectOf, MaybeDeref, NumOrString } from "@thi.ng/api";
 
 export type AttribVal<T> = MaybeDeref<T | undefined>;
 
+export type BooleanAttrib = AttribVal<boolean>;
+
+export type NumericAttrib = AttribVal<number>;
+
+export type StringAttrib = AttribVal<string>;
+
 export type EventAttribVal<T> =
     | Fn<T, any>
     | [Fn<T, any>, boolean | AddEventListenerOptions]
@@ -110,36 +116,36 @@ export interface GlobalEventAttribs
 }
 
 export interface MicroformatAttribs {
-    itemid: AttribVal<string>;
-    itemprop: AttribVal<string>;
-    itemref: AttribVal<string>;
-    itemscope: AttribVal<boolean>;
-    itemtype: AttribVal<string>;
+    itemid: StringAttrib;
+    itemprop: StringAttrib;
+    itemref: StringAttrib;
+    itemscope: BooleanAttrib;
+    itemtype: StringAttrib;
 }
 
 export interface Attribs extends GlobalEventAttribs, MicroformatAttribs {
-    accesskey: AttribVal<string>;
+    accesskey: StringAttrib;
     autocapitalize: AttribVal<
         "off" | "on" | "sentences" | "words" | "characters"
     >;
-    class: AttribVal<string | IObjectOf<AttribVal<boolean>>>;
-    contenteditable: AttribVal<boolean>;
+    class: AttribVal<string | IObjectOf<BooleanAttrib>>;
+    contenteditable: BooleanAttrib;
     data: IObjectOf<AttribVal<string | number | boolean>>;
     dir: AttribVal<"rtl" | "ltr">;
-    draggable: AttribVal<boolean>;
-    hidden: AttribVal<boolean>;
-    id: AttribVal<string>;
-    is: AttribVal<string>;
-    lang: AttribVal<string>;
-    scrollLeft: AttribVal<number>;
-    scrollTop: AttribVal<number>;
-    spellcheck: AttribVal<boolean>;
+    draggable: BooleanAttrib;
+    hidden: BooleanAttrib;
+    id: StringAttrib;
+    is: StringAttrib;
+    lang: StringAttrib;
+    scrollLeft: NumericAttrib;
+    scrollTop: NumericAttrib;
+    spellcheck: BooleanAttrib;
     style: AttribVal<
         string | IObjectOf<AttribVal<NumOrString | Fn<any, NumOrString>>>
     >;
-    tabindex: AttribVal<number>;
-    title: AttribVal<string>;
-    translate: AttribVal<boolean>;
+    tabindex: NumericAttrib;
+    title: StringAttrib;
+    translate: BooleanAttrib;
     [id: string]: any;
 }
 
@@ -186,4 +192,13 @@ export type LinkRel =
 
 export interface RelAttribs {
     rel: AttribVal<LinkRel | LinkRel[]>;
+}
+
+export interface DimensionAttribs {
+    width: NumericAttrib;
+    height: NumericAttrib;
+}
+
+export interface LoadingAttribs {
+    loading: AttribVal<"eager" | "lazy">;
 }

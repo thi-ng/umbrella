@@ -1,23 +1,30 @@
-import { NumOrString } from "@thi.ng/api";
-import { Attribs, AttribVal, RelAttribs } from "./api";
+import type { NumOrString } from "@thi.ng/api";
+import type {
+    Attribs,
+    AttribVal,
+    BooleanAttrib,
+    NumericAttrib,
+    RelAttribs,
+    StringAttrib,
+} from "./api";
 import { defElement } from "./def";
 
 export interface FormAttribs extends Attribs, RelAttribs {
     "accept-charset": AttribVal<string | string[]>;
-    action: AttribVal<string>;
+    action: StringAttrib;
     autocomplete: AttribVal<"on" | "off">;
-    enctype: AttribVal<string>;
-    method: AttribVal<string>;
-    novalidate: AttribVal<boolean>;
-    target: AttribVal<string>;
+    enctype: StringAttrib;
+    method: StringAttrib;
+    novalidate: BooleanAttrib;
+    target: StringAttrib;
 }
 
 export const form = defElement<Partial<FormAttribs>>("form");
 
 export interface FieldsetAttribs extends Attribs {
-    disabled: AttribVal<boolean>;
-    form: AttribVal<string>;
-    name: AttribVal<string>;
+    disabled: BooleanAttrib;
+    form: StringAttrib;
+    name: StringAttrib;
 }
 
 export const fieldset = defElement<Partial<FieldsetAttribs>>("fieldset");
@@ -26,50 +33,50 @@ export const legend = defElement("legend");
 
 export interface InputAttribs extends Attribs, FieldsetAttribs {
     // https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill
-    autocomplete: AttribVal<string>;
-    autofocus: AttribVal<boolean>;
-    list: AttribVal<string>;
-    readonly: AttribVal<boolean>;
-    required: AttribVal<boolean>;
-    type: AttribVal<string>;
+    autocomplete: StringAttrib;
+    autofocus: BooleanAttrib;
+    list: StringAttrib;
+    readonly: BooleanAttrib;
+    required: BooleanAttrib;
+    type: StringAttrib;
     value: AttribVal<NumOrString>;
 }
 
 export interface InputCheckboxAttribs extends InputAttribs {
-    checked: AttribVal<boolean>;
-    indeterminate: AttribVal<boolean>;
+    checked: BooleanAttrib;
+    indeterminate: BooleanAttrib;
 }
 
 export interface InputRadioAttribs extends InputAttribs {
-    checked: AttribVal<boolean>;
+    checked: BooleanAttrib;
 }
 
 export interface InputFileAttribs extends InputAttribs {
     accept: AttribVal<string | string[]>;
     capture: AttribVal<"user" | "environment">;
-    multiple: AttribVal<boolean>;
+    multiple: BooleanAttrib;
 }
 
 export interface InputTextAttribs extends InputAttribs {
-    dirname: AttribVal<string>;
-    minlength: AttribVal<number>;
-    maxlength: AttribVal<number>;
-    pattern: AttribVal<string>;
-    placeholder: AttribVal<string>;
-    size: AttribVal<number>;
+    dirname: StringAttrib;
+    minlength: NumericAttrib;
+    maxlength: NumericAttrib;
+    pattern: StringAttrib;
+    placeholder: StringAttrib;
+    size: NumericAttrib;
 }
 
 export interface TextAreaAttribs extends InputTextAttribs {
-    cols: AttribVal<number>;
-    rows: AttribVal<number>;
+    cols: NumericAttrib;
+    rows: NumericAttrib;
     wrap: AttribVal<"hard" | "soft" | "off">;
 }
 
 export interface InputNumericAttribs extends InputAttribs {
-    min: AttribVal<number>;
-    max: AttribVal<number>;
-    step: AttribVal<number>;
-    value: AttribVal<number>;
+    min: NumericAttrib;
+    max: NumericAttrib;
+    step: NumericAttrib;
+    value: NumericAttrib;
 }
 
 export const button = defElement<Partial<InputAttribs>>("button");
@@ -121,50 +128,50 @@ export const inputText = defElement<Partial<InputTextAttribs>, never>("input", {
 export const textArea = defElement<Partial<TextAreaAttribs>, never>("textarea");
 
 export interface OptionAttribs {
-    disabled: AttribVal<boolean>;
-    label: AttribVal<string>;
-    selected: AttribVal<boolean>;
+    disabled: BooleanAttrib;
+    label: StringAttrib;
+    selected: BooleanAttrib;
     value: AttribVal<NumOrString>;
 }
 
 export const option = defElement<Partial<OptionAttribs>, string>("option");
 
 export interface OptGroupAttribs {
-    disabled: AttribVal<boolean>;
-    label: AttribVal<string>;
+    disabled: BooleanAttrib;
+    label: StringAttrib;
 }
 
 export const optGroup = defElement<Partial<OptGroupAttribs>>("optgroup");
 
 export interface SelectAttribs extends InputAttribs {
-    multiple: AttribVal<boolean>;
-    size: AttribVal<number>;
+    multiple: BooleanAttrib;
+    size: NumericAttrib;
 }
 
 export const select = defElement<Partial<SelectAttribs>>("select");
 
 export interface LabelAttribs extends Partial<Attribs> {
-    for: AttribVal<string>;
-    form?: AttribVal<string>;
+    for: StringAttrib;
+    form?: StringAttrib;
 }
 
 export const label = defElement<LabelAttribs>("label");
 
 export interface MeterAttribs extends Attribs {
-    min: AttribVal<number>;
-    max: AttribVal<number>;
-    low: AttribVal<number>;
-    high: AttribVal<number>;
-    optimum: AttribVal<number>;
-    value: AttribVal<number>;
-    form: AttribVal<string>;
+    min: NumericAttrib;
+    max: NumericAttrib;
+    low: NumericAttrib;
+    high: NumericAttrib;
+    optimum: NumericAttrib;
+    value: NumericAttrib;
+    form: StringAttrib;
 }
 
 export const meter = defElement<Partial<MeterAttribs>>("meter");
 
 export interface ProgressAttribs extends Attribs {
-    max: AttribVal<number>;
-    value: AttribVal<number>;
+    max: NumericAttrib;
+    value: NumericAttrib;
 }
 
 export const progress = defElement<Partial<ProgressAttribs>>("progress");

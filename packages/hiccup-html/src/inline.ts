@@ -1,19 +1,25 @@
-import { Attribs, AttribVal, ReferrerAttribs, RelAttribs } from "./api";
+import type { NumOrString } from "@thi.ng/api";
+import type {
+    Attribs,
+    AttribVal,
+    ReferrerAttribs,
+    RelAttribs,
+    StringAttrib,
+} from "./api";
 import { defElement, defElements } from "./def";
-import { NumOrString } from "@thi.ng/api";
 
 interface AnchorAttribs extends Attribs, ReferrerAttribs, RelAttribs {
-    download: AttribVal<string>;
-    href: AttribVal<string>;
-    hreflang: AttribVal<string>;
+    download: StringAttrib;
+    href: StringAttrib;
+    hreflang: StringAttrib;
     ping: AttribVal<string | string[]>;
-    target: AttribVal<string>;
-    type: AttribVal<string>;
+    target: StringAttrib;
+    type: StringAttrib;
 }
 
-export const anchor = defElement<Partial<AnchorAttribs>>("a");
+export const a = defElement<Partial<AnchorAttribs>>("a");
 
-export const abbr = defElement<{ title: AttribVal<string> } & Partial<Attribs>>(
+export const abbr = defElement<{ title: StringAttrib } & Partial<Attribs>>(
     "abbr"
 );
 
@@ -23,17 +29,15 @@ export const data = defElement<
     { value: AttribVal<NumOrString> } & Partial<Attribs>
 >("data");
 
-export const quote = defElement<{ cite: AttribVal<string> } & Partial<Attribs>>(
-    "q"
+export const quote = defElement<{ cite: StringAttrib } & Partial<Attribs>>("q");
+
+export const time = defElement<{ datetime: StringAttrib } & Partial<Attribs>>(
+    "time"
 );
 
-export const time = defElement<
-    { datetime: AttribVal<string> } & Partial<Attribs>
->("time");
-
 export const [
-    code,
     cite,
+    code,
     em,
     i,
     kbd,
@@ -44,8 +48,8 @@ export const [
     sub,
     sup,
 ] = defElements([
-    "code",
     "cite",
+    "code",
     "em",
     "i",
     "kbd",
@@ -58,8 +62,8 @@ export const [
 ]);
 
 export interface EditAttribs extends Attribs {
-    cite: AttribVal<string>;
-    datetime: AttribVal<string>;
+    cite: StringAttrib;
+    datetime: StringAttrib;
 }
 
 export const [del, ins] = defElements<Partial<EditAttribs>>(["del", "ins"]);

@@ -1,5 +1,11 @@
+import type { Attribs, EventAttribs, StringAttrib } from "./api";
 import { defElement, defElements } from "./def";
-import { EventAttribs, Attribs } from "./api";
+
+export interface HtmlAttribs extends Attribs {
+    xmlns: StringAttrib;
+}
+
+export const html = defElement<Partial<HtmlAttribs>>("html");
 
 export type BodyEventAttribs = EventAttribs<
     | "onafterprint"
@@ -33,6 +39,7 @@ export const [
     hgroup,
     main,
     nav,
+    noscript,
     section,
 ] = defElements([
     "address",
@@ -43,6 +50,7 @@ export const [
     "hgroup",
     "main",
     "nav",
+    "noscript",
     "section",
 ]);
 
