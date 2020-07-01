@@ -17,7 +17,7 @@ interface AnchorAttribs extends Attribs, ReferrerAttribs, RelAttribs {
     type: StringAttrib;
 }
 
-export const a = defElement<Partial<AnchorAttribs>>("a");
+export const anchor = defElement<Partial<AnchorAttribs>>("a");
 
 export const abbr = defElement<{ title: StringAttrib } & Partial<Attribs>>(
     "abbr"
