@@ -13,11 +13,10 @@ This project is part of the
 
 ${pkg.description}
 
-The following ~90 type-checked factory functions are provided **so far**
-and in most cases include specialized type definitions for
-element-specific attributes, incl. enumerated attrib values (where
-applicable/useful). See [`defElement()`](#defelement) below for more
-details.
+The following type-checked factory functions are provided **so far** and
+in most cases include specialized type definitions for element-specific
+attributes, incl. enumerated attrib values (where applicable/useful).
+See [`defElement()`](#defelement) below for more details.
 
 ### Supported elements
 
@@ -48,6 +47,13 @@ details.
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/lists.ts)
 
 `datalist`, `dd`, `dl`, `dt`, `li`, `ol`, `ul`
+
+#### Tables
+
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/table.ts)
+
+`caption`, `col`, `colgroup`, `table`, `tbody`, `td`, `tfoot`, `th`,
+`thead`, `tr`
 
 #### Inline
 

@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/hiccup-html",
     "version": "0.1.1",
-    "description": "Type-checked HTML5 element functions for @thi.ng/hiccup related infrastructure",
+    "description": "100+ type-checked HTML5 element functions for @thi.ng/hiccup related infrastructure",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -56,6 +56,7 @@
         "lib"
     ],
     "keywords": [
+        "attributes",
         "es6",
         "hiccup",
         "html",

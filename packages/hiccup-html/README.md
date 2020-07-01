@@ -15,6 +15,7 @@ This project is part of the
     - [Sections](#sections)
     - [Text content](#text-content)
     - [Lists](#lists)
+    - [Tables](#tables)
     - [Inline](#inline)
     - [Forms / inputs](#forms---inputs)
     - [Media](#media)
@@ -31,13 +32,12 @@ This project is part of the
 
 ## About
 
-Type-checked HTML5 element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) related infrastructure.
+100+ type-checked HTML5 element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) related infrastructure.
 
-The following ~90 type-checked factory functions are provided **so far**
-and in most cases include specialized type definitions for
-element-specific attributes, incl. enumerated attrib values (where
-applicable/useful). See [`defElement()`](#defelement) below for more
-details.
+The following type-checked factory functions are provided **so far** and
+in most cases include specialized type definitions for element-specific
+attributes, incl. enumerated attrib values (where applicable/useful).
+See [`defElement()`](#defelement) below for more details.
 
 ### Supported elements
 
@@ -68,6 +68,13 @@ details.
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/lists.ts)
 
 `datalist`, `dd`, `dl`, `dt`, `li`, `ol`, `ul`
+
+#### Tables
+
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/table.ts)
+
+`caption`, `col`, `colgroup`, `table`, `tbody`, `td`, `tfoot`, `th`,
+`thead`, `tr`
 
 #### Inline
 
@@ -167,7 +174,7 @@ yarn add @thi.ng/hiccup-html
 <script src="https://unpkg.com/@thi.ng/hiccup-html/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.33 KB / CJS: 1.70 KB / UMD: 1.61 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.44 KB / CJS: 1.85 KB / UMD: 1.74 KB
 
 ## Dependencies
 
