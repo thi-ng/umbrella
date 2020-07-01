@@ -69,6 +69,14 @@ export interface IMountWith<T, M> extends IComponent<T> {
      * @param state
      */
     mount(parent: Element, index: NumOrElement, state: M): Promise<Element>;
+
+    /**
+     * Same like {@link IComponent.update}, but new `state` value arg is
+     * mandatory.
+     *
+     * @param state
+     */
+    update(state: T): void;
 }
 
 /**

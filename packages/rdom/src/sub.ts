@@ -1,4 +1,4 @@
-import type { Fn2, NumOrString } from "@thi.ng/api";
+import type { Fn2, Path } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks";
 import { defSetterUnsafe } from "@thi.ng/paths";
 import { ISubscribable, Subscription } from "@thi.ng/rstream";
@@ -59,9 +59,9 @@ export class $Sub<T = any> extends Subscription<T, T> {
 
 export class $SubA extends Subscription<any, any> {
     protected setter: Fn2<any, any, any>;
-    protected tmp: any = {};
+    protected attr: any = {};
 
-    constructor(protected comp: IComponent, path: NumOrString[]) {
+    constructor(protected comp: IComponent, path: Path) {
         super();
         this.setter = defSetterUnsafe(path);
     }
@@ -70,7 +70,7 @@ export class $SubA extends Subscription<any, any> {
         const $ = this.comp;
         SCHEDULER.add(
             $,
-            () => $.el && $attribs($.el, this.setter(this.tmp, a))
+            () => $.el && $attribs($.el, this.setter(this.attr, a))
         );
     }
 }
