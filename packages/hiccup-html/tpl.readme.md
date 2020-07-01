@@ -13,9 +13,11 @@ This project is part of the
 
 ${pkg.description}
 
-The following type-checked factory functions are provided **so far** and
-in many cases include specialized type definitions for element-specific
-attributes. See [`defElement()`](#defelement) below for more details.
+The following ~90 type-checked factory functions are provided **so far**
+and in most cases include specialized type definitions for
+element-specific attributes, incl. enumerated attrib values (where
+applicable/useful). See [`defElement()`](#defelement) below for more
+details.
 
 ### Supported elements
 
@@ -23,20 +25,23 @@ attributes. See [`defElement()`](#defelement) below for more details.
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/head.ts)
 
-`base`, `head`, `link`, `meta`, `style`, `title`
+`base`, `head`, `link`, `linkCSS`, `meta`, `metaReferrer`,
+`metaRefresh`, `metaRobots`, `metaUTF8`, `metaViewport`, `metaXUA`,
+`script`, `style`, `title`
 
 #### Sections
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/sections.ts)
 
-`address`, `article`, `aside`, `body`, `footer`, `header`, `hgroup`,
-`main`, `nav`, `section`
+`address`, `article`, `aside`, `body`, `footer`, `h1`..`h6`, `header`,
+`hgroup`, `html`, `main`, `nav`, `noscript`, `section`
 
 #### Text content
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/blocks.ts)
 
-`blockquote`, `div`, `figure`, `figcaption`, `hr`, `para`, `pre`, `span`
+`blockquote`, `div`, `figure`, `figcaption`, `hr`, `iframe`, `para`,
+`pre`
 
 #### Lists
 
@@ -58,13 +63,13 @@ attributes. See [`defElement()`](#defelement) below for more details.
 `button`, `checkbox`, `fieldset`, `form`, `inputColor`, `inputFile`,
 `inputNumber`, `inputPass`, `inputRange`, `inputSearch`, `inputText`,
 `label`, `legend`, `meter`, `option`, `optGroup`, `progress`, `radio`,
-`select`
+`select`, `textArea`
 
 #### Media
 
 [Source](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/media.ts)
 
-`img`, `picture`, `source`
+`audio`, `canvas`, `img`, `picture`, `source`, `video`
 
 ### Compatibility
 
@@ -208,8 +213,9 @@ const el = defElement<Partial<MyAttribs>, never>(
 ```
 
 The `Attribs` interface provides a common, fully typed base definition
-of HTML attributes (incl. event listeners) and can be found in
-[api.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/api.ts#L119).
+of HTML attributes (incl. event listeners and enumerated attrib options)
+and can be found in
+[api.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/api.ts#L126).
 
 The `AttribVal` type wrapper is used to allow for reactive attribute
 values (in
@@ -220,7 +226,8 @@ when later providing attribute values to an element.
 
 #### Element creation
 
-The function returned by `defElement` has the following signatures:
+The function returned by `defElement` has the [following
+signatures](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup-html/src/def.ts#L4):
 
 ```ts
 (attribs?: Nullable<T>, ...body: B[]) => [string, Nullable<T>, ...B[]];
