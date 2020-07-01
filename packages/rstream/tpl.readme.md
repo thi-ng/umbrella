@@ -181,14 +181,19 @@ b.next(42);
 
 ### IDeref support
 
-`Stream`s (like `Subscription`s) implement the [@thi.ng/api
+`Stream` (like all other types of `Subscription`) implements the
+[@thi.ng/api
 `IDeref`](https://github.com/thi-ng/umbrella/blob/develop/packages/api/src/api/deref.ts)
 interface which provides read access to a stream's last received value.
 This is useful for various purposes, e.g. in combination with
 @thi.ng/hdom, which supports direct embedding of streams (i.e. their
 values) into UI components (and will be deref'd automatically). If the
-stream has not yet emitted a value or if the stream is done, it will
-deref to `undefined`.
+stream has not yet emitted a value or if the stream is already done, it
+will deref to `undefined`.
+
+Furthermore, all subscription types can be configured (via the `cache`
+option) to NOT retain their last emitted value, in which case `.deref()`
+will always return `undefined`.
 
 #### Subscription
 
@@ -224,6 +229,7 @@ s.next(42);
 
 #### Other stream creation helpers
 
+- [reactive()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/stream.ts) - syntax sugar for `stream()` with initial value
 - [fromAtom()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/from/atom.ts) - streams from value changes in atoms/cursors
 - [fromChannel()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-csp) - CSP channel to stream conversion
 - [fromEvent()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/from/event.ts) - events

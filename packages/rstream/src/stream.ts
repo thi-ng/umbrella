@@ -64,8 +64,8 @@ import type { Transducer } from "@thi.ng/transducers";
  * // b2 42
  * ```
  *
- * @param id -
  * @param src -
+ * @param opts -
  */
 export function stream<T>(opts?: Partial<CommonOpts>): Stream<T>;
 // prettier-ignore
@@ -74,14 +74,27 @@ export function stream<T>(src?: any, opts?: Partial<CommonOpts>): Stream<T> {
     return new Stream<T>(src, opts);
 }
 
+/**
+ * Syntax sugar for {@link stream}. Creates new stream which is
+ * immediately seeded with initial `val` and configured with optional
+ * `opts`.
+ *
+ * @param val -
+ * @param opts -
+ */
+export const reactive = <T>(val: T, opts?: Partial<CommonOpts>) => {
+    const res = new Stream<T>(opts);
+    res.next(val);
+    return res;
+};
+
 export class Stream<T> extends Subscription<T, T> implements IStream<T> {
     src?: StreamSource<T>;
 
     protected _cancel: StreamCancel | undefined;
     protected _inited: boolean;
 
-    constructor();
-    constructor(opts: Partial<CommonOpts>);
+    constructor(opts?: Partial<CommonOpts>);
     constructor(src: StreamSource<T>, opts?: Partial<CommonOpts>);
     // prettier-ignore
     constructor(src?: StreamSource<T> | Partial<CommonOpts>, opts?: Partial<CommonOpts>) {
