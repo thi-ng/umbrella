@@ -34,7 +34,9 @@
     "thi.ng": {
         "readme": [
             "rdom",
-            "rdom-canvas"
+            "rdom-canvas",
+            "rstream",
+            "transducers"
         ]
     }
 }

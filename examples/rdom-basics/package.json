@@ -1,7 +1,7 @@
 {
     "name": "rdom-basics",
     "version": "0.0.1",
-    "description": "rdom test sandbox / POC",
+    "description": "Demonstates various rdom usage patterns",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
@@ -33,7 +33,9 @@
     },
     "thi.ng": {
         "readme": [
-            "rdom"
+            "rdom",
+            "rstream",
+            "transducers"
         ]
     }
 }
