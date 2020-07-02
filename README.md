@@ -110,17 +110,10 @@ fairly detailed overview for contributors here:
 
 ## Projects
 
-### New / unreleased packages in development
+<!-- ### New / unreleased packages in development
 
 (These packages might be still unreleased and only available on their
-feature or `develop` branches)
-
-- [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom)
-  - Diff-less, reactive version of thi.ng/hdom
-- [@thi.ng/rdom-atom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom-atom)
-  - Component wrappers for @thi.ng/atom state containers
-- [@thi.ng/rdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom-canvas)
-  - Component wrapper for @thi.ng/hiccup-canvas
+feature or `develop` branches) -->
 
 ### Fundamentals
 
@@ -141,6 +134,7 @@ feature or `develop` branches)
 | [`@thi.ng/mime`](./packages/mime)         | [![version](https://img.shields.io/npm/v/@thi.ng/mime.svg)](https://www.npmjs.com/package/@thi.ng/mime)         | [changelog](./packages/mime/CHANGELOG.md)     | File extension to MIME type mappings                     |
 | [`@thi.ng/parse`](./packages/parse)       | [![version](https://img.shields.io/npm/v/@thi.ng/parse.svg)](https://www.npmjs.com/package/@thi.ng/parse)       | [changelog](./packages/parse/CHANGELOG.md)    | Parser combinators & AST generator/transformer           |
 | [`@thi.ng/paths`](./packages/paths)       | [![version](https://img.shields.io/npm/v/@thi.ng/paths.svg)](https://www.npmjs.com/package/@thi.ng/paths)       | [changelog](./packages/paths/CHANGELOG.md)    | Immutable nested object accessors                        |
+| [`@thi.ng/prefixes`](./packages/prefixes) | [![version](https://img.shields.io/npm/v/@thi.ng/prefixes.svg)](https://www.npmjs.com/package/@thi.ng/prefixes) | [changelog](./packages/prefixes/CHANGELOG.md) | Linked Data & xmlns prefixes/URLs                        |
 | [`@thi.ng/random`](./packages/random)     | [![version](https://img.shields.io/npm/v/@thi.ng/random.svg)](https://www.npmjs.com/package/@thi.ng/random)     | [changelog](./packages/random/CHANGELOG.md)   | Seedable PRNG implementations w/ unified API             |
 | [`@thi.ng/strings`](./packages/strings)   | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)   | [changelog](./packages/strings/CHANGELOG.md)  | Higher-order string formatting utils                     |
 | [`@thi.ng/system`](./packages/system)     | [![version](https://img.shields.io/npm/v/@thi.ng/system.svg)](https://www.npmjs.com/package/@thi.ng/system)     | [changelog](./packages/system/CHANGELOG.md)   | Minimal life cycle container for stateful app components |
@@ -218,6 +212,8 @@ feature or `develop` branches)
 | [`@thi.ng/hiccup-svg`](./packages/hiccup-svg)                   | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-svg.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-svg)                   | [changelog](./packages/hiccup-svg/CHANGELOG.md)          | hiccup based SVG vocab                           |
 | [`@thi.ng/imgui`](./packages/imgui)                             | [![version](https://img.shields.io/npm/v/@thi.ng/imgui.svg)](https://www.npmjs.com/package/@thi.ng/imgui)                             | [changelog](./packages/imgui/CHANGELOG.md)               | Immediate mode GUI                               |
 | [`@thi.ng/interceptors`](./packages/interceptors)               | [![version](https://img.shields.io/npm/v/@thi.ng/interceptors.svg)](https://www.npmjs.com/package/@thi.ng/interceptors)               | [changelog](./packages/interceptors/CHANGELOG.md)        | Composable event handlers & processor            |
+| [`@thi.ng/rdom`](./packages/rdom)                               | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)                               | [changelog](./packages/rdom/CHANGELOG.md)                | Reactive, diff-less, async UI components         |
+| [`@thi.ng/rdom-canvas`](./packages/rdom-canvas)                 | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-canvas.svg)](https://www.npmjs.com/package/@thi.ng/rdom-canvas)                 | [changelog](./packages/rdom-canvas/CHANGELOG.md)         | rdom component wrapper for thi.ng/hiccup-canvas  |
 | [`@thi.ng/router`](./packages/router)                           | [![version](https://img.shields.io/npm/v/@thi.ng/router.svg)](https://www.npmjs.com/package/@thi.ng/router)                           | [changelog](./packages/router/CHANGELOG.md)              | Customizable browser & non-browser router        |
 | [`@thi.ng/text-canvas`](./packages/text-canvas)                 | [![version](https://img.shields.io/npm/v/@thi.ng/text-canvas.svg)](https://www.npmjs.com/package/@thi.ng/text-canvas)                 | [changelog](./packages/text-canvas/CHANGELOG.md)         | Text-mode canvas, drawing, tables, charts        |
 
