@@ -52,6 +52,7 @@
         "@thi.ng/checks": "^2.7.2",
         "@thi.ng/color": "^1.2.4",
         "@thi.ng/hiccup": "^3.4.0",
+        "@thi.ng/prefixes": "^0.0.1",
         "tslib": "^2.0.0"
     },
     "files": [

@@ -1,4 +1,4 @@
-import { SVG_NS, XLINK_NS } from "@thi.ng/hiccup";
+import { SVG, XLINK } from "@thi.ng/prefixes";
 import { fattribs } from "./format";
 
 /**
@@ -13,8 +13,8 @@ export const svg = (attribs: any, ...body: any[]): any[] => [
     "svg",
     fattribs({
         version: "1.1",
-        xmlns: SVG_NS,
-        "xmlns:xlink": XLINK_NS,
+        xmlns: SVG,
+        "xmlns:xlink": XLINK,
         ...attribs,
     }),
     ...body,
