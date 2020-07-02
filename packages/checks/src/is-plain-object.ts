@@ -6,7 +6,7 @@ const OBJP = Object.getPrototypeOf;
  *
  * @param x -
  */
-export const isPlainObject = (x: any): x is object => {
+export const isPlainObject = (x: any): x is Record<string, any> => {
     let p;
     return (
         x != null &&
