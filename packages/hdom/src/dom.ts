@@ -3,7 +3,8 @@ import {
     isNotStringAndIterable as isi,
     isString as iss,
 } from "@thi.ng/checks";
-import { css, SVG_NS, SVG_TAGS } from "@thi.ng/hiccup";
+import { css, SVG_TAGS } from "@thi.ng/hiccup";
+import { SVG } from "@thi.ng/prefixes";
 import type { HDOMImplementation, HDOMOpts } from "./api";
 
 const isArray = isa;
@@ -144,7 +145,7 @@ export const createElement = (
     insert?: number
 ) => {
     const el = SVG_TAGS[tag]
-        ? document.createElementNS(SVG_NS, tag)
+        ? document.createElementNS(SVG, tag)
         : document.createElement(tag);
     attribs && setAttribs(el, attribs);
     return addChild(parent, el, insert);
