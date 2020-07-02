@@ -6,6 +6,7 @@ import type {
     DimensionAttribs,
     ImportanceAttribs,
     LoadingAttribs,
+    MultiStringAttrib,
     ReferrerAttribs,
     StringAttrib,
 } from "./api";
@@ -25,9 +26,9 @@ export interface ImageAttribs
     alt: StringAttrib;
     decoding: AttribVal<"sync" | "async" | "auto">;
     ismap: BooleanAttrib;
-    sizes: AttribVal<string | string[]>;
+    sizes: MultiStringAttrib;
     src: StringAttrib;
-    srcset: AttribVal<string | string[]>;
+    srcset: MultiStringAttrib;
     usemap: BooleanAttrib;
 }
 
@@ -38,8 +39,8 @@ export const picture = defElement("picture");
 export interface SourceAttribs extends Attribs {
     media: StringAttrib;
     src: StringAttrib;
-    sizes: AttribVal<string | string[]>;
-    srcset: AttribVal<string | string[]>;
+    sizes: MultiStringAttrib;
+    srcset: MultiStringAttrib;
     type: StringAttrib;
 }
 

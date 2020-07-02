@@ -1,5 +1,5 @@
-import { defElements, defElement } from "./def";
-import { NumericAttrib, AttribVal, Attribs } from "./api";
+import { Attribs, AttribVal, MultiStringAttrib, NumericAttrib } from "./api";
+import { defElement, defElements } from "./def";
 
 export const [table, tbody, tfoot, thead, tr, caption] = defElements([
     "table",
@@ -12,7 +12,7 @@ export const [table, tbody, tfoot, thead, tr, caption] = defElements([
 
 export interface TableCellAttribs extends Attribs {
     colspan: NumericAttrib;
-    headers: AttribVal<string | string[]>;
+    headers: MultiStringAttrib;
     rowspan: NumericAttrib;
 }
 

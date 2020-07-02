@@ -4,6 +4,7 @@ import type {
     BooleanAttrib,
     CORSAttribs,
     ImportanceAttribs,
+    MultiStringAttrib,
     ReferrerAttribs,
     RelAttribs,
     StringAttrib,
@@ -115,11 +116,10 @@ export const metaXUA = () =>
     meta({ "http-equiv": "x-ua-compatible", content: "IE=edge" });
 
 export interface LinkAttribs
-    extends Attribs,
+    extends RelAttribs,
         CORSAttribs,
         ImportanceAttribs,
-        ReferrerAttribs,
-        RelAttribs {
+        ReferrerAttribs {
     as: AttribVal<
         | "audio"
         | "document"
@@ -139,7 +139,7 @@ export interface LinkAttribs
     hreflang: StringAttrib;
     integrity: StringAttrib;
     media: StringAttrib;
-    sizes: AttribVal<string | string[]>;
+    sizes: MultiStringAttrib;
     type: StringAttrib;
 }
 

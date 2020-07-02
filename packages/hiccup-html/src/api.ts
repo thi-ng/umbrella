@@ -1,12 +1,10 @@
 import type { Fn, IObjectOf, MaybeDeref, NumOrString } from "@thi.ng/api";
 
 export type AttribVal<T> = MaybeDeref<T | undefined>;
-
 export type BooleanAttrib = AttribVal<boolean>;
-
 export type NumericAttrib = AttribVal<number>;
-
 export type StringAttrib = AttribVal<string>;
+export type MultiStringAttrib = AttribVal<string | string[]>;
 
 export type EventAttribVal<T> =
     | Fn<T, any>
@@ -123,7 +121,33 @@ export interface MicroformatAttribs {
     itemtype: StringAttrib;
 }
 
-export interface Attribs extends GlobalEventAttribs, MicroformatAttribs {
+/**
+ * RDFa attributes
+ *
+ * @remarks
+ * - https://www.w3.org/TR/html-rdfa/
+ * - https://www.w3.org/TR/rdfa-core/#rdfa-attributes
+ */
+export interface RDFaAttribs {
+    about: StringAttrib;
+    content: StringAttrib;
+    datatype: StringAttrib;
+    href: StringAttrib;
+    inlist: BooleanAttrib;
+    prefix: MultiStringAttrib;
+    property: MultiStringAttrib;
+    rel: MultiStringAttrib;
+    resource: StringAttrib;
+    rev: MultiStringAttrib;
+    src: StringAttrib;
+    typeof: MultiStringAttrib;
+    vocab: StringAttrib;
+}
+
+export interface Attribs
+    extends GlobalEventAttribs,
+        MicroformatAttribs,
+        RDFaAttribs {
     accesskey: StringAttrib;
     autocapitalize: AttribVal<
         "off" | "on" | "sentences" | "words" | "characters"
@@ -190,7 +214,7 @@ export type LinkRel =
     | "stylesheet"
     | "tag";
 
-export interface RelAttribs {
+export interface RelAttribs extends Omit<Attribs, "rel"> {
     rel: AttribVal<LinkRel | LinkRel[]>;
 }
 

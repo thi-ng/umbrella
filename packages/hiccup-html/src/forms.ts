@@ -3,14 +3,15 @@ import type {
     Attribs,
     AttribVal,
     BooleanAttrib,
+    MultiStringAttrib,
     NumericAttrib,
     RelAttribs,
     StringAttrib,
 } from "./api";
 import { defElement } from "./def";
 
-export interface FormAttribs extends Attribs, RelAttribs {
-    "accept-charset": AttribVal<string | string[]>;
+export interface FormAttribs extends RelAttribs {
+    "accept-charset": MultiStringAttrib;
     action: StringAttrib;
     autocomplete: AttribVal<"on" | "off">;
     enctype: StringAttrib;
@@ -52,7 +53,7 @@ export interface InputRadioAttribs extends InputAttribs {
 }
 
 export interface InputFileAttribs extends InputAttribs {
-    accept: AttribVal<string | string[]>;
+    accept: MultiStringAttrib;
     capture: AttribVal<"user" | "environment">;
     multiple: BooleanAttrib;
 }

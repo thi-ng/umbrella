@@ -2,17 +2,18 @@ import type { NumOrString } from "@thi.ng/api";
 import type {
     Attribs,
     AttribVal,
+    MultiStringAttrib,
     ReferrerAttribs,
     RelAttribs,
     StringAttrib,
 } from "./api";
 import { defElement, defElements } from "./def";
 
-interface AnchorAttribs extends Attribs, ReferrerAttribs, RelAttribs {
+interface AnchorAttribs extends RelAttribs, ReferrerAttribs {
     download: StringAttrib;
     href: StringAttrib;
     hreflang: StringAttrib;
-    ping: AttribVal<string | string[]>;
+    ping: MultiStringAttrib;
     target: StringAttrib;
     type: StringAttrib;
 }
