@@ -1,4 +1,5 @@
 import { Atom } from "@thi.ng/atom";
+import { foaf } from "@thi.ng/prefixes";
 import * as assert from "assert";
 import { serialize } from "../src/index";
 
@@ -108,7 +109,7 @@ describe("serialize", () => {
     );
 
     check(
-        "array attr join (fallback)",
+        "array attr join (default)",
         ["a", { ping: ["google.com", "fb.com"] }],
         `<a ping="google.com fb.com"></a>`
     );
@@ -335,5 +336,11 @@ describe("serialize", () => {
         "?xml",
         ["?xml", { version: "1.0", standalone: "yes" }],
         `<?xml version="1.0" standalone="yes"?>\n`
+    );
+
+    check(
+        "prefix",
+        ["foo:div#bar", { prefix: { thi: "http://thi.ng/#", foaf } }, "body"],
+        `<foo:div prefix="thi: http://thi.ng/# foaf: http://xmlns.com/foaf/0.1/" id="bar">body</foo:div>`
     );
 });

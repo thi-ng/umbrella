@@ -18,6 +18,7 @@ import {
 import { css } from "./css";
 import { escape } from "./escape";
 import { normalize } from "./normalize";
+import { formatPrefixes } from "./prefix";
 
 /**
  * Recursively normalizes and serializes given tree as HTML/SVG/XML
@@ -257,21 +258,26 @@ const serializeAttribs = (attribs: any, esc: boolean) => {
         if (v == null) continue;
         if (isFunction(v) && (/^on\w+/.test(a) || (v = v(attribs)) == null))
             continue;
+        if (v === true) {
+            res += " " + a;
+            continue;
+        } else if (v === false) {
+            continue;
+        }
         if (a === "data") {
             res += serializeDataAttribs(v, esc);
             continue;
         }
-        if (a === "style") {
-            isPlainObject(v) && (v = css(v));
-        }
-        if (v === true) {
-            res += " " + a;
-        } else if (v !== false) {
+        if (a === "style" && isPlainObject(v)) {
+            v = css(v);
+        } else if (a === "prefix" && isPlainObject(v)) {
+            v = formatPrefixes(v);
+        } else {
             v = isArray(v)
                 ? v.join(ATTRIB_JOIN_DELIMS[a] || " ")
                 : v.toString();
-            v.length && (res += ` ${a}="${esc ? escape(v) : v}"`);
         }
+        v.length && (res += ` ${a}="${esc ? escape(v) : v}"`);
     }
     return res;
 };
