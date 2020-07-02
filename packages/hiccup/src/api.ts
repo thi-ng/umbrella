@@ -1,7 +1,3 @@
-export const SVG_NS = "http://www.w3.org/2000/svg";
-export const XLINK_NS = "http://www.w3.org/1999/xlink";
-export const XHTML_NS = "http://www.w3.org/1999/xhtml";
-
 /** @internal */
 export const PROC_TAGS: { [id: string]: string } = {
     "?xml": "?>\n",
@@ -34,8 +30,11 @@ export const NO_SPANS: {
 } = {
     button: 1,
     option: 1,
+    script: 1,
+    style: 1,
     text: 1,
     textarea: 1,
+    title: 1,
 };
 
 const tagMap = (
@@ -56,6 +55,7 @@ export const VOID_TAGS = tagMap(
     "area base br circle col command ellipse embed hr img input keygen line link meta param path polygon polyline rect source stop track use wbr ?xml"
 );
 
+/** @internal */
 export const ATTRIB_JOIN_DELIMS: Record<string, string> = {
     accept: ",",
     sizes: ",",
