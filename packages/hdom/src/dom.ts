@@ -3,8 +3,8 @@ import {
     isNotStringAndIterable as isi,
     isString as iss,
 } from "@thi.ng/checks";
-import { css, SVG_TAGS } from "@thi.ng/hiccup";
-import { SVG } from "@thi.ng/prefixes";
+import { css, formatPrefixes, SVG_TAGS } from "@thi.ng/hiccup";
+import { XML_SVG } from "@thi.ng/prefixes";
 import type { HDOMImplementation, HDOMOpts } from "./api";
 
 const isArray = isa;
@@ -145,7 +145,7 @@ export const createElement = (
     insert?: number
 ) => {
     const el = SVG_TAGS[tag]
-        ? document.createElementNS(SVG, tag)
+        ? document.createElementNS(XML_SVG, tag)
         : document.createElement(tag);
     attribs && setAttribs(el, attribs);
     return addChild(parent, el, insert);
@@ -229,6 +229,9 @@ export const setAttrib = (el: Element, id: string, val: any, attribs?: any) => {
                 break;
             case "value":
                 updateValueAttrib(<HTMLInputElement>el, val);
+                break;
+            case "prefix":
+                el.setAttribute(id, isString(val) ? val : formatPrefixes(val));
                 break;
             case "accesskey":
                 (<any>el).accessKey = val;
