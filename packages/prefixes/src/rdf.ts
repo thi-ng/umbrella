@@ -1,14 +1,17 @@
+export const csvw = "http://www.w3.org/ns/csvw#";
 export const dcat = "http://www.w3.org/ns/dcat#";
 export const http = "http://www.w3.org/2011/http#";
 export const ldp = "http://www.w3.org/ns/ldp#";
 export const owl = "http://www.w3.org/2002/07/owl#";
 export const prov = "http://www.w3.org/ns/prov";
+export const qb = "http://purl.org/linked-data/cube#";
 export const rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 export const rdfa = "http://www.w3.org/ns/rdfa#";
 export const rdfs = "http://www.w3.org/2000/01/rdf-schema#";
 export const shacl = "http://www.w3.org/ns/shacl#";
 export const sioc = "http://rdfs.org/sioc/ns#";
 export const skos = "http://www.w3.org/2004/02/skos/core#";
+export const skosxl = "http://www.w3.org/2008/05/skos-xl#";
 export const sparql = "http://www.w3.org/ns/sparql#";
 export const spin = "http://spinrdf.org/spin#";
 export const vann = "http://purl.org/vocab/vann/";
