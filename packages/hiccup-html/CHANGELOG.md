@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-html@0.1.1...@thi.ng/hiccup-html@0.2.0) (2020-07-02)
+
+
+### Features
+
+* **hiccup-html:** add meta & link variations ([42fb113](https://github.com/thi-ng/umbrella/commit/42fb113141e400b64822daefa746ab236e57965a))
+* **hiccup-html:** add more elems (tables) ([f0616e6](https://github.com/thi-ng/umbrella/commit/f0616e626e187725b31716d6fec7f420288d071e))
+* **hiccup-html:** add new elems, add/update types ([9023724](https://github.com/thi-ng/umbrella/commit/9023724d536a013a896934f9b5db443787be31ce))
+* **hiccup-html:** add RDFa attrib support, update types ([0737a16](https://github.com/thi-ng/umbrella/commit/0737a169668184750e7fe0d09be5d51c61a47e17))
+* **hiccup-html:** add textArea() ([3fceb02](https://github.com/thi-ng/umbrella/commit/3fceb02136de6d8b532c23659cad3f800b159534))
+
+
+### Reverts
+
+* **hiccup-html:** undo accidental anchor rename ([64cc52c](https://github.com/thi-ng/umbrella/commit/64cc52c34ae689396f0729918455d78603ce890c))
+
+
+
+
+
 ## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-html@0.1.0...@thi.ng/hiccup-html@0.1.1) (2020-06-28)
 
 

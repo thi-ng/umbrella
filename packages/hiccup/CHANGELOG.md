@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.4.0...@thi.ng/hiccup@3.5.0) (2020-07-02)
+
+
+### Features
+
+* **hiccup:** add RDFa `prefix` attrib handling, add tests ([24a7748](https://github.com/thi-ng/umbrella/commit/24a7748ddb35632567175d3055f90b41d353e219))
+* **hiccup:** remove obsolete SVG/XLINK urls ([aa34be7](https://github.com/thi-ng/umbrella/commit/aa34be7bedfeae5a4d203aaec0d8d94ed43c07f2))
+
+
+
+
+
 # [3.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.3.0...@thi.ng/hiccup@3.4.0) (2020-06-28)
 
 

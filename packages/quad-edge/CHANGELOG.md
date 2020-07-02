@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/quad-edge@0.2.17...@thi.ng/quad-edge@0.2.18) (2020-07-02)
+
+**Note:** Version bump only for package @thi.ng/quad-edge
+
+
+
+
+
 ## [0.2.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/quad-edge@0.2.16...@thi.ng/quad-edge@0.2.17) (2020-06-20)
 
 **Note:** Version bump only for package @thi.ng/quad-edge

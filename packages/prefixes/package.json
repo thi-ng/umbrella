@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/prefixes",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "50+ Linked Data vocabulary prefixes and their namespace URLs",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -41,7 +41,6 @@
         "typedoc": "^0.17.6",
         "typescript": "^3.9.5"
     },
-    "dependencies": {},
     "files": [
         "*.js",
         "*.d.ts",

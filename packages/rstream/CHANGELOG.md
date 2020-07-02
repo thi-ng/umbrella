@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@4.4.1...@thi.ng/rstream@4.5.0) (2020-07-02)
+
+
+### Features
+
+* **rstream:** add reactive(), update readme ([e508faa](https://github.com/thi-ng/umbrella/commit/e508faa2fa110ddc812e8f3d750a6d7060ee57d6))
+
+
+
+
+
 ## [4.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@4.4.0...@thi.ng/rstream@4.4.1) (2020-06-20)
 
 **Note:** Version bump only for package @thi.ng/rstream

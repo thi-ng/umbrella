@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@8.1.0...@thi.ng/hdom@8.2.0) (2020-07-02)
+
+
+### Features
+
+* **hdom:** add RDFa `prefix` attrib support, update xmlns imports ([f0e7460](https://github.com/thi-ng/umbrella/commit/f0e746006a2058a7ddae8413aeefc6451dd8401e))
+* **hdom:** update deps, update xmlns import ([99fbae7](https://github.com/thi-ng/umbrella/commit/99fbae79cc3ae07fedf2e681c2882e96e62a375f))
+
+
+
+
+
 # [8.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@8.0.30...@thi.ng/hdom@8.1.0) (2020-06-28)
 
 

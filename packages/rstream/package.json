@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rstream",
-    "version": "4.4.1",
+    "version": "4.5.0",
     "description": "Reactive streams & subscription primitives for constructing dataflow graphs / pipelines",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,13 +49,13 @@
         "typescript": "^3.9.5"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.11.2",
-        "@thi.ng/associative": "^4.2.0",
-        "@thi.ng/atom": "^4.1.11",
-        "@thi.ng/checks": "^2.7.2",
-        "@thi.ng/errors": "^1.2.15",
-        "@thi.ng/paths": "^4.0.9",
-        "@thi.ng/transducers": "^7.1.1",
+        "@thi.ng/api": "^6.11.3",
+        "@thi.ng/associative": "^4.2.1",
+        "@thi.ng/atom": "^4.1.12",
+        "@thi.ng/checks": "^2.7.3",
+        "@thi.ng/errors": "^1.2.16",
+        "@thi.ng/paths": "^4.0.10",
+        "@thi.ng/transducers": "^7.1.2",
         "tslib": "^2.0.0"
     },
     "files": [

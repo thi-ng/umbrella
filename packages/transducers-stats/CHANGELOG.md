@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.29](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-stats@1.1.28...@thi.ng/transducers-stats@1.1.29) (2020-07-02)
+
+**Note:** Version bump only for package @thi.ng/transducers-stats
+
+
+
+
+
 ## [1.1.28](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-stats@1.1.27...@thi.ng/transducers-stats@1.1.28) (2020-06-20)
 
 **Note:** Version bump only for package @thi.ng/transducers-stats

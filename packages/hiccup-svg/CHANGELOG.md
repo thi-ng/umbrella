@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.4.26...@thi.ng/hiccup-svg@3.5.0) (2020-07-02)
+
+
+### Bug Fixes
+
+* **hiccup-svg:** update XML ns imports ([32bd8d7](https://github.com/thi-ng/umbrella/commit/32bd8d71a818f06b0fd2f1fe098e477cbce62f1c))
+
+
+### Features
+
+* **hiccup-svg:** update deps, update xmlns import ([aab66bb](https://github.com/thi-ng/umbrella/commit/aab66bb07ac3db85a741e0b1eb42433517470bc1))
+
+
+
+
+
 ## [3.4.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.4.25...@thi.ng/hiccup-svg@3.4.26) (2020-06-28)
 
 **Note:** Version bump only for package @thi.ng/hiccup-svg
