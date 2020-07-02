@@ -1,0 +1,16 @@
+export const DCAT = "http://www.w3.org/ns/dcat#";
+export const HTTP = "http://www.w3.org/2011/http#";
+export const LDP = "http://www.w3.org/ns/ldp#";
+export const OWL = "http://www.w3.org/2002/07/owl#";
+export const PROV = "http://www.w3.org/ns/prov";
+export const RDF = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
+export const RDFA = "http://www.w3.org/ns/rdfa#";
+export const RDFS = "http://www.w3.org/2000/01/rdf-schema#";
+export const SHACL = "http://www.w3.org/ns/shacl#";
+export const SIOC = "http://rdfs.org/sioc/ns#";
+export const SKOS = "http://www.w3.org/2004/02/skos/core#";
+export const SPARQL = "http://www.w3.org/ns/sparql#";
+export const SPIN = "http://spinrdf.org/spin#";
+export const VANN = "http://purl.org/vocab/vann/";
+export const VOID = "http://rdfs.org/ns/void#";
+export const VS = "http://www.w3.org/2003/06/sw-vocab-status/ns#";
