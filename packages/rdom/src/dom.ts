@@ -1,4 +1,4 @@
-import { deref, isDeref, MaybeDeref } from "@thi.ng/api";
+import { deref, IObjectOf, isDeref, MaybeDeref } from "@thi.ng/api";
 import {
     implementsFunction,
     isArray,
@@ -13,9 +13,9 @@ import {
     mergeClasses,
     NO_SPANS,
     RE_TAG,
-    SVG_NS,
     SVG_TAGS,
 } from "@thi.ng/hiccup";
+import { SVG, XLINK } from "@thi.ng/prefixes";
 import type { NumOrElement } from "./api";
 import { isComponent } from "./utils";
 
@@ -134,9 +134,15 @@ export const $el = (
         }
         tag = mtag;
     }
-    const el = SVG_TAGS[tag]
-        ? document.createElementNS(SVG_NS, tag)
-        : document.createElement(tag);
+    let el: Element;
+    const qidx = tag.indexOf(":");
+    if (qidx < 0) {
+        el = SVG_TAGS[tag]
+            ? document.createElementNS(SVG, tag)
+            : document.createElement(tag);
+    } else {
+        el = document.createElementNS(PREFIXES[tag.substr(0, qidx)], tag);
+    }
     attribs && $attribs(el, attribs);
     body != null && $text(<any>el, body);
     parent && $addChild(parent, el, idx);
@@ -265,10 +271,19 @@ const setAttrib = (el: Element, id: string, val: any, attribs: any) => {
         case "title":
             (<any>el)[id] = val;
             break;
-        default:
-            val === false || val == null
-                ? el.removeAttribute(id)
-                : el.setAttribute(id, val);
+        default: {
+            const idx = id.indexOf(":");
+            if (idx < 0) {
+                val === false || val == null
+                    ? el.removeAttribute(id)
+                    : el.setAttribute(id, val);
+            } else {
+                const ns = PREFIXES[id.substr(0, idx)];
+                val === false || val == null
+                    ? el.removeAttributeNS(ns, id)
+                    : el.setAttributeNS(ns, id, val);
+            }
+        }
     }
 };
 
@@ -334,3 +349,23 @@ export const $style = (el: Element, rules: string | any) => {
         }
     }
 };
+
+/**
+ * Only SVG and XLink namespaces are pre-registered.
+ *
+ * @internal
+ */
+const PREFIXES: IObjectOf<string> = {
+    svg: SVG,
+    xlink: XLINK,
+};
+
+/**
+ * Registers an XML namespace prefix and its URL for later use, e.g. to
+ * define namespaced elements/attributes.
+ *
+ * @param prefix
+ * @param url
+ */
+export const registerPrefix = (prefix: string, url: string) =>
+    (PREFIXES[prefix] = url);
