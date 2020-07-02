@@ -1,4 +1,4 @@
-import { deref, IObjectOf, isDeref, MaybeDeref } from "@thi.ng/api";
+import { assert, deref, IObjectOf, isDeref, MaybeDeref } from "@thi.ng/api";
 import {
     implementsFunction,
     isArray,
@@ -10,12 +10,13 @@ import {
 import { illegalArgs } from "@thi.ng/errors";
 import {
     ATTRIB_JOIN_DELIMS,
+    formatPrefixes,
     mergeClasses,
     NO_SPANS,
     RE_TAG,
     SVG_TAGS,
 } from "@thi.ng/hiccup";
-import { SVG, XLINK } from "@thi.ng/prefixes";
+import { XML_SVG, XML_XLINK, XML_XMLNS } from "@thi.ng/prefixes";
 import type { NumOrElement } from "./api";
 import { isComponent } from "./utils";
 
@@ -138,7 +139,7 @@ export const $el = (
     const qidx = tag.indexOf(":");
     if (qidx < 0) {
         el = SVG_TAGS[tag]
-            ? document.createElementNS(SVG, tag)
+            ? document.createElementNS(XML_SVG, tag)
             : document.createElement(tag);
     } else {
         el = document.createElementNS(PREFIXES[tag.substr(0, qidx)], tag);
@@ -251,6 +252,9 @@ const setAttrib = (el: Element, id: string, val: any, attribs: any) => {
         case "data":
             updateDataAttribs(<HTMLElement>el, val);
             break;
+        case "prefix":
+            el.setAttribute(id, isString(val) ? val : formatPrefixes(val));
+            break;
         case "accessKey":
         case "autocapitalize":
         case "checked":
@@ -351,13 +355,12 @@ export const $style = (el: Element, rules: string | any) => {
 };
 
 /**
- * Only SVG and XLink namespaces are pre-registered.
- *
  * @internal
  */
 const PREFIXES: IObjectOf<string> = {
-    svg: SVG,
-    xlink: XLINK,
+    svg: XML_SVG,
+    xlink: XML_XLINK,
+    xmlns: XML_XMLNS,
 };
 
 /**
@@ -367,5 +370,10 @@ const PREFIXES: IObjectOf<string> = {
  * @param prefix
  * @param url
  */
-export const registerPrefix = (prefix: string, url: string) =>
-    (PREFIXES[prefix] = url);
+export const registerPrefix = (prefix: string, url: string) => {
+    assert(
+        !PREFIXES[prefix],
+        `${prefix} already registered: ${PREFIXES[prefix]}`
+    );
+    PREFIXES[prefix] = url;
+};
