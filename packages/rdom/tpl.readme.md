@@ -18,8 +18,9 @@ ${status}
 #### HIC SUNT DRACONES
 
 This is still a young project. Even though most of the overall approach,
-component lifecycle and API are fairly stable by now (after 65+ commits
-over several months), once there'll be more user feedback, there's
+component lifecycle and API are fairly stable by now (after ~70 commits
+over several months), so far there's only sparing documentation and only
+a handful of public examples. After some more user feedback, there's
 likely going to be further refactoring required here and there, none of
 which is _expected_ to cause breaking changes in this core package and
 will likely come in the form of additions or alternatives to existing
@@ -64,7 +65,7 @@ TODO
 
 Currently, documentation only exists in the form of small examples and
 various doc strings (incomplete). I'm working to alleviate this
-situation ASAP... PRs welcome as well!
+situation ASAP... In that respect, PRs are welcome as well!
 
 ```ts
 import { $compile } from "@thi.ng/rdom";
@@ -74,26 +75,32 @@ import { cycle, map } from "@thi.ng/transducers";
 // reactive value
 const bg = reactive("gray");
 
-// color options (infinite iteratable)
+// color options (infinite iterable)
 const colors = cycle(["magenta", "yellow", "cyan"]);
 
 // event handler
 const nextColor = () => bg.next(<string>colors.next().value);
 
-// define component tree in hiccup syntax, compile & mount component
-// each time `bg` value changes, only the subscribed bits will be updated
-// i.e. title and the button's `style.background` and label
+// define component tree in hiccup syntax, compile & mount component.
+// each time `bg` value changes, only subscribed bits will be updated
+// i.e. title, the button's `style.background` and its label
+
+// Note: instead of direct hiccup syntax, you could also use the
+// element functions provided by https://thi.ng/hiccup-html
 $compile([
     "div",
     {},
-    // transformed color as title
+    // transformed color as title (aka derived view)
     ["h1", {}, bg.transform(map((col) => `Hello, ${col}!`))],
     [
+        // tag with Emmet-style ID & classes
         "button#foo.w4.pa3.bn",
         {
+            // reactive CSS background property
             style: { background: bg },
             onclick: nextColor,
         },
+        // reactive button label
         bg,
     ],
 ]).mount(document.body);
