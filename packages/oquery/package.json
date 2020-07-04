@@ -63,9 +63,11 @@
         "datalog",
         "es6",
         "object",
+        "pattern",
         "predicate",
         "query",
-        "typescript"
+        "typescript",
+        "wildcard"
     ],
     "publishConfig": {
         "access": "public"

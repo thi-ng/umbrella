@@ -22,6 +22,22 @@ This project is part of the
 
 Datalog-inspired, optimized pattern/predicate query engine for JS objects.
 
+Currently, there're 125 possible query approaches, which can be
+collapsed into 27 unique query implementations. Each query is based on
+RDF-style
+[Subject-Predicate-Object](https://www.w3.org/TR/rdf11-primer/#section-triple)
+patterns (only without requiring query terms to be URIs), with each term
+one of:
+
+- `null` - wildcard, any non-null value in that position will be
+  selected
+- Predicate function - called with all possible terms in that position
+- Literal value - for subjects and predicates, this can only be a string
+  or number. For "object" position any value type is allowed
+- Array or `Set` - multiple choices (literals) for given query term
+
+See basic query examples below...
+
 ### Status
 
 **ALPHA** - bleeding edge / work-in-progress
@@ -44,7 +60,7 @@ yarn add @thi.ng/oquery
 <script src="https://unpkg.com/@thi.ng/oquery/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 825 bytes / CJS: 881 bytes / UMD: 943 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 823 bytes / CJS: 883 bytes / UMD: 943 bytes
 
 ## Dependencies
 
@@ -59,18 +75,6 @@ Package sizes (gzipped, pre-treeshake): ESM: 825 bytes / CJS: 881 bytes / UMD: 9
 [Generated API docs](https://docs.thi.ng/umbrella/oquery/)
 
 TODO - Please see extensive tests for now...
-
-There're 64 possible query approaches, each based on RDF-style
-[Subject-Predicate-Object](https://www.w3.org/TR/rdf11-primer/#section-triple)
-patterns (only without requiring query terms to be URIs). Each term can
-be one of:
-
-- `null` - wildcard, any non-null value in that position will be
-  selected
-- Predicate function - called with all possible terms in that position
-- Literal value - for subjects and predicates, this can only be a string
-  or number. For "object" position any value type is allowed
-- Array or `Set` - multiple choices (literals) for given query term
 
 ```ts
 import { defQuery } from "@thi.ng/oquery";
