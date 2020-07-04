@@ -2,6 +2,7 @@ import { ArraySet, Trie } from "@thi.ng/associative";
 // @ts-ignore
 import { serialize } from "@ygoe/msgpack";
 import { readdirSync, readFileSync, statSync, writeFileSync } from "fs";
+import { execSync } from "child_process";
 import { readJSON } from "./io";
 import { build, defEncoder } from "./search";
 
@@ -124,6 +125,6 @@ const packed = build(
 );
 
 writeFileSync("search.json", JSON.stringify(packed));
-
 // msgpack'd binary version
 writeFileSync("search.bin", serialize(packed));
+execSync("gzip -9 search.bin");
