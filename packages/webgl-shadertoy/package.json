@@ -53,8 +53,7 @@
         "@thi.ng/shader-ast": "^0.3.26",
         "@thi.ng/shader-ast-glsl": "^0.1.32",
         "@thi.ng/transducers": "^7.1.2",
-        "@thi.ng/webgl": "^2.0.3",
-        "tslib": "^2.0.0"
+        "@thi.ng/webgl": "^2.0.3"
     },
     "files": [
         "*.js",

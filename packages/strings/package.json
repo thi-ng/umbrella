@@ -51,8 +51,7 @@
     "dependencies": {
         "@thi.ng/api": "^6.11.3",
         "@thi.ng/errors": "^1.2.16",
-        "@thi.ng/memoize": "^2.0.15",
-        "tslib": "^2.0.0"
+        "@thi.ng/memoize": "^2.0.15"
     },
     "files": [
         "*.js",

@@ -49,8 +49,7 @@
         "typescript": "^3.9.5"
     },
     "dependencies": {
-        "@thi.ng/errors": "^1.2.16",
-        "tslib": "^2.0.0"
+        "@thi.ng/errors": "^1.2.16"
     },
     "files": [
         "*.js",

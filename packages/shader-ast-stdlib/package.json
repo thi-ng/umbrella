@@ -49,8 +49,7 @@
         "typescript": "^3.9.5"
     },
     "dependencies": {
-        "@thi.ng/shader-ast": "^0.3.26",
-        "tslib": "^2.0.0"
+        "@thi.ng/shader-ast": "^0.3.26"
     },
     "files": [
         "*.js",

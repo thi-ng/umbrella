@@ -52,8 +52,7 @@
         "@thi.ng/errors": "^1.2.16",
         "@thi.ng/geom-api": "^1.0.23",
         "@thi.ng/math": "^1.7.13",
-        "@thi.ng/vectors": "^4.5.1",
-        "tslib": "^2.0.0"
+        "@thi.ng/vectors": "^4.5.1"
     },
     "files": [
         "*.js",

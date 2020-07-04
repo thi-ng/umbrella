@@ -51,8 +51,7 @@
     "dependencies": {
         "@thi.ng/hdom": "^8.2.1",
         "@thi.ng/hiccup": "^3.5.1",
-        "@thi.ng/transducers": "^7.1.2",
-        "tslib": "^2.0.0"
+        "@thi.ng/transducers": "^7.1.2"
     },
     "files": [
         "*.js",

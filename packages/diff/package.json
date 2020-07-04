@@ -49,8 +49,7 @@
     },
     "dependencies": {
         "@thi.ng/api": "^6.11.3",
-        "@thi.ng/equiv": "^1.0.25",
-        "tslib": "^2.0.0"
+        "@thi.ng/equiv": "^1.0.25"
     },
     "files": [
         "*.js",

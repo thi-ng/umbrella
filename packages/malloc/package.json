@@ -52,8 +52,7 @@
         "@thi.ng/api": "^6.11.3",
         "@thi.ng/binary": "^2.0.10",
         "@thi.ng/checks": "^2.7.3",
-        "@thi.ng/errors": "^1.2.16",
-        "tslib": "^2.0.0"
+        "@thi.ng/errors": "^1.2.16"
     },
     "files": [
         "*.js",

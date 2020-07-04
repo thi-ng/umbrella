@@ -50,8 +50,7 @@
         "typescript": "^3.9.5"
     },
     "dependencies": {
-        "@thi.ng/bitstream": "^1.1.20",
-        "tslib": "^2.0.0"
+        "@thi.ng/bitstream": "^1.1.20"
     },
     "files": [
         "*.js",

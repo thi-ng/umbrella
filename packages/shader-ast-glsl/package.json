@@ -52,8 +52,7 @@
         "@thi.ng/api": "^6.11.3",
         "@thi.ng/checks": "^2.7.3",
         "@thi.ng/errors": "^1.2.16",
-        "@thi.ng/shader-ast": "^0.3.26",
-        "tslib": "^2.0.0"
+        "@thi.ng/shader-ast": "^0.3.26"
     },
     "files": [
         "*.js",

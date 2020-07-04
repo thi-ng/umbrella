@@ -53,8 +53,7 @@
         "@thi.ng/math": "^1.7.13",
         "@thi.ng/random": "^1.4.13",
         "@thi.ng/transducers": "^7.1.2",
-        "@thi.ng/zipper": "^0.1.19",
-        "tslib": "^2.0.0"
+        "@thi.ng/zipper": "^0.1.19"
     },
     "files": [
         "*.js",

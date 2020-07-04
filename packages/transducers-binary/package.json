@@ -52,8 +52,7 @@
         "@thi.ng/compose": "^1.4.11",
         "@thi.ng/random": "^1.4.13",
         "@thi.ng/strings": "^1.8.12",
-        "@thi.ng/transducers": "^7.1.2",
-        "tslib": "^2.0.0"
+        "@thi.ng/transducers": "^7.1.2"
     },
     "files": [
         "*.js",

@@ -54,8 +54,7 @@
         "@thi.ng/equiv": "^1.0.25",
         "@thi.ng/errors": "^1.2.16",
         "@thi.ng/strings": "^1.8.12",
-        "@thi.ng/transducers": "^7.1.2",
-        "tslib": "^2.0.0"
+        "@thi.ng/transducers": "^7.1.2"
     },
     "files": [
         "*.js",

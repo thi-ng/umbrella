@@ -50,8 +50,7 @@
     },
     "dependencies": {
         "@thi.ng/csp": "^1.1.29",
-        "@thi.ng/rstream": "^4.5.0",
-        "tslib": "^2.0.0"
+        "@thi.ng/rstream": "^4.5.0"
     },
     "files": [
         "*.js",

@@ -58,8 +58,7 @@
         "@thi.ng/errors": "^1.2.16",
         "@thi.ng/math": "^1.7.13",
         "@thi.ng/random": "^1.4.13",
-        "@thi.ng/strings": "^1.8.12",
-        "tslib": "^2.0.0"
+        "@thi.ng/strings": "^1.8.12"
     },
     "files": [
         "*.js",

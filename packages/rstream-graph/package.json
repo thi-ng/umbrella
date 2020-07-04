@@ -55,8 +55,7 @@
         "@thi.ng/paths": "^4.0.10",
         "@thi.ng/resolve-map": "^4.1.28",
         "@thi.ng/rstream": "^4.5.0",
-        "@thi.ng/transducers": "^7.1.2",
-        "tslib": "^2.0.0"
+        "@thi.ng/transducers": "^7.1.2"
     },
     "files": [
         "*.js",

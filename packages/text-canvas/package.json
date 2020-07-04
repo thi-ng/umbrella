@@ -55,8 +55,7 @@
         "@thi.ng/geom-clip-line": "^1.1.1",
         "@thi.ng/math": "^1.7.13",
         "@thi.ng/memoize": "^2.0.15",
-        "@thi.ng/transducers": "^7.1.2",
-        "tslib": "^2.0.0"
+        "@thi.ng/transducers": "^7.1.2"
     },
     "files": [
         "*.js",

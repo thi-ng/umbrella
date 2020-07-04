@@ -50,8 +50,7 @@
     },
     "dependencies": {
         "@thi.ng/transducers": "^7.1.2",
-        "@thi.ng/vectors": "^4.5.1",
-        "tslib": "^2.0.0"
+        "@thi.ng/vectors": "^4.5.1"
     },
     "files": [
         "*.js",

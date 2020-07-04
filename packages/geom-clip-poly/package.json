@@ -52,8 +52,7 @@
         "@thi.ng/geom-isec": "^0.4.23",
         "@thi.ng/geom-poly-utils": "^0.1.52",
         "@thi.ng/math": "^1.7.13",
-        "@thi.ng/vectors": "^4.5.1",
-        "tslib": "^2.0.0"
+        "@thi.ng/vectors": "^4.5.1"
     },
     "files": [
         "*.js",

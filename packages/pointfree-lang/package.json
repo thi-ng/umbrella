@@ -57,8 +57,7 @@
         "@thi.ng/bench": "^2.0.15",
         "@thi.ng/errors": "^1.2.16",
         "@thi.ng/pointfree": "^2.0.8",
-        "commander": "^5.1.0",
-        "tslib": "^2.0.0"
+        "commander": "^5.1.0"
     },
     "files": [
         "*.js",

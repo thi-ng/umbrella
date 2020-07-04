@@ -49,6 +49,7 @@
         "typedoc": "^0.17.6",
         "typescript": "^3.9.5"
     },
+    "dependencies": {},
     "files": [
         "*.js",
         "*.d.ts",
@@ -71,8 +72,5 @@
         "process": false,
         "setTimeout": false
     },
-    "sideEffects": false,
-    "dependencies": {
-        "tslib": "^2.0.0"
-    }
+    "sideEffects": false
 }
