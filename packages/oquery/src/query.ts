@@ -37,9 +37,8 @@ const collect = (
 ) => {
     if (val != null) {
         const pred = isFunction(o) ? o : ($: any) => opts.equiv(o, $);
-        const isa = isArray(val);
-        if (isa) {
-            val = (<any[]>val).filter(pred);
+        if (isArray(val)) {
+            val = val.filter(pred);
             val.length && addTriple(acc, s, p, val);
         } else if (pred(val)) {
             addTriple(acc, s, p, val);
@@ -120,7 +119,7 @@ const queryNN: QueryImpl = (res, db, _, __, o, opts) => {
     }
 };
 
-const _query = defmulti<
+const impl = defmulti<
     QueryObj,
     QueryObj,
     SPTerm,
@@ -130,7 +129,7 @@ const _query = defmulti<
     void
 >((_, __, s, p, o) => classify(s) + classify(p) + classify(o));
 
-_query.addAll(<QueryImpls>{
+impl.addAll(<QueryImpls>{
     lll: queryLL,
     llf: queryLL,
     lln: (res, db, s, p, _) => {
@@ -227,6 +226,6 @@ export const defQuery = (opts?: Partial<QueryOpts>) => {
         o: OTerm,
         res: QueryObj = {}
     ) => (
-        _query(res, obj, coerce(s), coerce(p), coerce(o), <QueryOpts>opts), res
+        impl(res, obj, coerce(s), coerce(p), coerce(o), <QueryOpts>opts), res
     );
 };
