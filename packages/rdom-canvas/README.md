@@ -48,7 +48,7 @@ yarn add @thi.ng/rdom-canvas
 <script src="https://unpkg.com/@thi.ng/rdom-canvas/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 584 bytes / CJS: 656 bytes / UMD: 769 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 584 bytes / CJS: 656 bytes / UMD: 771 bytes
 
 ## Dependencies
 
@@ -59,6 +59,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 584 bytes / CJS: 656 bytes / UMD: 7
 - [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom)
 - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## Usage examples
 

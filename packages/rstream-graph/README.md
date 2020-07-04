@@ -65,7 +65,6 @@ Package sizes (gzipped, pre-treeshake): ESM: 1.03 KB / CJS: 1.13 KB / UMD: 1.16 
 - [@thi.ng/resolve-map](https://github.com/thi-ng/umbrella/tree/develop/packages/resolve-map)
 - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
-- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## Usage examples
 

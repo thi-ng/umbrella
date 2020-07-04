@@ -140,7 +140,7 @@ yarn install
 yarn start
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.66 KB / CJS: 3.75 KB / UMD: 3.67 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.69 KB / CJS: 3.79 KB / UMD: 3.71 KB
 
 ## Dependencies
 
@@ -150,7 +150,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 3.66 KB / CJS: 3.75 KB / UMD: 3.67 
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
-- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
+- [@thi.ng/prefixes](https://github.com/thi-ng/umbrella/tree/develop/packages/prefixes)
 
 ## Usage examples
 

@@ -50,7 +50,6 @@ Package sizes (gzipped, pre-treeshake): ESM: 1.52 KB / CJS: 1.58 KB / UMD: 1.66 
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/develop/packages/compare)
-- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

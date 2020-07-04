@@ -179,7 +179,6 @@ Package sizes (gzipped, pre-treeshake): ESM: 1.41 KB / CJS: 1.53 KB / UMD: 1.56 
 - [@thi.ng/morton](https://github.com/thi-ng/umbrella/tree/develop/packages/morton)
 - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
-- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## Usage examples
 

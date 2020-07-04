@@ -63,7 +63,6 @@ Package sizes (gzipped, pre-treeshake): ESM: 1.48 KB / CJS: 1.52 KB / UMD: 1.58 
 - [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/develop/packages/vector-pools)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 - [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl)
-- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## Usage examples
 

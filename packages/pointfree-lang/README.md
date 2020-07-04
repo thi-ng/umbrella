@@ -87,7 +87,6 @@ Package sizes (gzipped, pre-treeshake): ESM: 5.24 KB / CJS: 5.24 KB / UMD: 5.13 
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree)
 - [commander](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
-- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## Usage examples
 

@@ -45,7 +45,6 @@ Package sizes (gzipped, pre-treeshake): ESM: 3.53 KB / CJS: 3.61 KB / UMD: 3.66 
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
-- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

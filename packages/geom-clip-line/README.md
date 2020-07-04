@@ -51,7 +51,6 @@ Package sizes (gzipped, pre-treeshake): ESM: 434 bytes / CJS: 499 bytes / UMD: 5
 
 - [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isec)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
-- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 
