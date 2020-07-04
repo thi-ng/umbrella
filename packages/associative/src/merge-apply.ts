@@ -46,11 +46,21 @@ export const mergeApplyMap = <K, V>(
 export const mergeApplyObj = <V>(
     src: IObjectOf<V>,
     xs: IObjectOf<V | Fn<V, V>>
+) => meldApplyObj({ ...src }, xs);
+
+/**
+ * Mutable version of {@link mergeApplyObj}. Returns modified `src` object.
+ *
+ * @param src -
+ * @param xs -
+ */
+export const meldApplyObj = <V>(
+    src: IObjectOf<V>,
+    xs: IObjectOf<V | Fn<V, V>>
 ) => {
-    const res: IObjectOf<V> = { ...src };
     for (let k in xs) {
         const v = xs[k];
-        res[k] = isFunction(v) ? v(res[k]) : v;
+        src[k] = isFunction(v) ? v(src[k]) : v;
     }
-    return res;
+    return src;
 };

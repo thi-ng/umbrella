@@ -1,6 +1,6 @@
 import type { IObjectOf, Nullable } from "@thi.ng/api";
 import { isPlainObject } from "@thi.ng/checks";
-import { mergeObjWith } from "./merge-with";
+import { mergeObjWith, meldObjWith } from "./merge-with";
 
 export const mergeDeepObj = (
     dest: IObjectOf<any>,
@@ -9,6 +9,17 @@ export const mergeDeepObj = (
     mergeObjWith(
         (a, b) =>
             isPlainObject(a) && isPlainObject(b) ? mergeDeepObj(a, b) : b,
+        dest,
+        ...xs
+    );
+
+export const meldDeepObj = (
+    dest: IObjectOf<any>,
+    ...xs: Nullable<IObjectOf<any>>[]
+): any =>
+    meldObjWith(
+        (a, b) =>
+            isPlainObject(a) && isPlainObject(b) ? meldDeepObj(a, b) : b,
         dest,
         ...xs
     );

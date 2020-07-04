@@ -17,19 +17,41 @@ export const mergeMapWith = <K, V>(
     return res;
 };
 
+/**
+ * Immutably merges given objects in a pairwise manner. Applies function
+ * `f` if the same key exists in both objects and uses that function's
+ * return value as new value for that key.
+ *
+ * @param f
+ * @param dest
+ * @param xs
+ */
 export const mergeObjWith = <T>(
     f: Fn2<T, T, T>,
     dest: IObjectOf<T>,
     ...xs: Nullable<IObjectOf<T>>[]
+) => meldObjWith(f, { ...dest }, ...xs);
+
+/**
+ * Mutable version of {@link mergeObjWith}. Returns modified `dest`
+ * object.
+ *
+ * @param f -
+ * @param dest -
+ * @param xs -
+ */
+export const meldObjWith = <T>(
+    f: Fn2<T, T, T>,
+    dest: IObjectOf<T>,
+    ...xs: Nullable<IObjectOf<T>>[]
 ) => {
-    const res: IObjectOf<T> = { ...dest };
     for (let x of xs) {
         if (x != null) {
             for (let k in x) {
                 const v = x[k];
-                res[k] = res.hasOwnProperty(k) ? f(dest[k], v) : v;
+                dest[k] = dest.hasOwnProperty(k) ? f(dest[k], v) : v;
             }
         }
     }
-    return res;
+    return dest;
 };
