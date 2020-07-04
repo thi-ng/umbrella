@@ -50,9 +50,9 @@ const lissajous = (
 
 const a = reactive(3);
 const b = reactive(4);
-const num = reactive(50);
-const scale = reactive(10);
-const radius = reactive(0.5);
+const num = reactive(25);
+const scale = reactive(0.5);
+const radius = reactive(20);
 const size = fromDOMEvent(window, "resize").transform(
     map(() => [window.innerWidth, window.innerHeight - 100])
 );
