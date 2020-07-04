@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/seq",
-    "version": "0.2.17",
+    "version": "0.2.18",
     "description": "Various implementations of the @thi.ng/api `ISeq` interface / sequence abstraction",
     "module": "./index.js",
     "main": "./lib/index.js",

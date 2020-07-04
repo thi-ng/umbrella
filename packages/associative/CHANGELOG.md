@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@4.2.1...@thi.ng/associative@4.3.0) (2020-07-04)
+
+
+### Features
+
+* **associative:** add mutable merge fns ([ec6abe4](https://github.com/thi-ng/umbrella/commit/ec6abe4ece0b6792eda05489df28326c30053e5e))
+
+
+
+
+
 ## [4.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@4.2.0...@thi.ng/associative@4.2.1) (2020-07-02)
 
 **Note:** Version bump only for package @thi.ng/associative

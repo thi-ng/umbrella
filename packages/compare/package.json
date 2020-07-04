@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/compare",
-    "version": "1.3.10",
+    "version": "1.3.11",
     "description": "Comparators with support for types implementing the @thi.ng/api/ICompare interface",
     "module": "./index.js",
     "main": "./lib/index.js",

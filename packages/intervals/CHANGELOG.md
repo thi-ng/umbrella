@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@2.0.18...@thi.ng/intervals@2.0.19) (2020-07-04)
+
+**Note:** Version bump only for package @thi.ng/intervals
+
+
+
+
+
 ## [2.0.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@2.0.17...@thi.ng/intervals@2.0.18) (2020-07-02)
 
 **Note:** Version bump only for package @thi.ng/intervals

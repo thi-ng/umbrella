@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/layout",
-    "version": "0.1.15",
+    "version": "0.1.16",
     "description": "TODO",
     "module": "./index.js",
     "main": "./lib/index.js",
