@@ -39,11 +39,12 @@ import { string, stringD } from "./prims/string";
 import { collect, xfCollect } from "./xform/collect";
 import { xfCount } from "./xform/count";
 import { discard, xfDiscard } from "./xform/discard";
-import { hoistResult, xfHoist, xfHoistResult } from "./xform/hoist";
+import { hoistResult, xfHoist, xfHoistResult, hoist } from "./xform/hoist";
 import { join, xfJoin } from "./xform/join";
 import { xfFloat, xfInt } from "./xform/number";
 import { print } from "./xform/print";
 import { withID } from "./xform/with-id";
+import { lookahead } from "./combinators/lookahead";
 
 const apos = litD("'");
 const dash = litD("-");
@@ -81,16 +82,29 @@ const CHAR_SEL = seq(
     "charSel"
 );
 
+const ANY = lit(".", "any");
+
 const LIT = hoistResult(seq([apos, CHAR_OR_ESC, apos], "char"));
 
 const SYM = join(oneOrMore(alt([ALPHA_NUM, oneOf(".-_$")]), "sym"));
 
 const RULE_REF = seq([litD("<"), SYM, litD(">")], "ref");
 
-const TERM = seq(
-    [alt([RULE_REF, LIT, STRING, CHAR_SEL]), REPEAT, DISCARD],
-    "term"
+const TERM_BODY = alt([RULE_REF, ANY, LIT, STRING, CHAR_SEL]);
+
+const LOOK_AHEAD = maybe(
+    hoist(
+        seq([
+            stringD("(?="),
+            seq([TERM_BODY, REPEAT, DISCARD], "lhterm"),
+            litD(")"),
+        ])
+    ),
+    undefined,
+    "lookahead"
 );
+
+const TERM = seq([TERM_BODY, REPEAT, DISCARD, LOOK_AHEAD], "term");
 
 const ALT = seq(
     [
@@ -171,8 +185,22 @@ compile.addAll({
         return ref || illegalArgs(`invalid rule ref: ${id}`);
     },
     term: ($, lang, opts) => {
-        const [term, repeat, discard] = $!.children!;
+        const [term, repeat, discard, lookahead] = $!.children!;
         opts.debug && console.log(`term: ${term.id}`);
+        return compileLookahead(
+            compileDiscard(
+                compileRepeat(compile(term, lang, opts), repeat, opts),
+                discard,
+                opts
+            ),
+            lookahead,
+            lang,
+            opts
+        );
+    },
+    lhterm: ($, lang, opts) => {
+        const [term, repeat, discard] = $!.children!;
+        opts.debug && console.log(`lhterm: ${term.id}`);
         return compileDiscard(
             compileRepeat(compile(term, lang, opts), repeat, opts),
             discard,
@@ -188,15 +216,24 @@ compile.addAll({
                 acc.push(compile(first(c), lang, opts));
             }
         }
-        return compileDiscard(
-            compileRepeat(
-                acc.length > 1 ? alt(acc) : acc[0],
-                $.children![2],
+        return compileLookahead(
+            compileDiscard(
+                compileRepeat(
+                    acc.length > 1 ? alt(acc) : acc[0],
+                    $.children![2],
+                    opts
+                ),
+                $.children![3],
                 opts
             ),
-            $.children![3],
+            $.children![4],
+            lang,
             opts
         );
+    },
+    any: (_, __, opts) => {
+        opts.debug && console.log(`any`);
+        return always("any");
     },
     char: ($, _, opts) => {
         const x = $.result;
@@ -255,6 +292,18 @@ const compileDiscard = (
 ) => {
     opts.debug && console.log(`discard:`, dspec.result);
     return dspec.result === "!" ? discard(parser) : parser;
+};
+
+const compileLookahead = (
+    parser: Parser<string>,
+    spec: ParseScope<string>,
+    lang: Language,
+    opts: GrammarOpts
+) => {
+    opts.debug && console.log(`lookahead:`, spec);
+    return spec && spec.id === "lhterm"
+        ? lookahead(parser, compile(spec, lang, opts))
+        : parser;
 };
 
 export const defGrammar = (
