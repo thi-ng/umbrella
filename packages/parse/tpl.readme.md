@@ -15,17 +15,17 @@ ${pkg.description}
 
 ### Features
 
-- small API surface, easy-to-grok syntax
-- all parsers implemented as composable, higher-order functions
-- all state centrally kept/managed by a parser context given as arg
-- support for custom readers (currently only string & array-like numeric
+- Parser generation/compilation via built-in grammar DSL
+- Small API surface, easy-to-grok syntax
+- All parsers implemented as composable, higher-order functions
+- All state centrally kept/managed by a parser context given as arg
+- Support for custom readers (currently only string & array-like numeric
   inputs (incl. typed arrays) supported)
-- automatic AST generation & ability to transform/prune nodes during parsing
-- node transforms are composable too
-- each AST node (optionally) retains reader information (position, line
+- Automatic AST generation & ability to transform/prune nodes during parsing
+- Node transforms are composable too
+- Each AST node (optionally) retains reader information (position, line
   num, column) - disabled by default to save memory
-- common, re-usable preset parsers & node transforms included
-- parser compilation from grammar DSL strings
+- Common, re-usable preset parsers & node transforms included
 
 ${status}
 
@@ -81,6 +81,17 @@ Source:
 Source:
 [/prims](https://github.com/thi-ng/umbrella/tree/develop/packages/parse/src/prims)
 
+#### Naming conventions / suffixes
+
+The `D` suffix is used for *discarding* behavior, i.e. parsers
+which do not retain their result in the AST after successful matching.
+These should be preferred whenever possible, for lower memory usage and
+(possibly) better performance...
+
+The `P` suffix is used to indicate **predicate** based parsers, i.e.
+using user provided functions applied to individual inputs (characters)
+in order to decide about successful matching.
+
 - `always`
 - `fail`
 - `lit` / `litD` / `litP`
@@ -111,6 +122,7 @@ Source:
 - `alt` / `altD`
 - `check`
 - `expect`
+- `lookahead`
 - `maybe`
 - `not`
 - `oneOrMore` / `zeroOrMore` / `oneOrMoreD` / `zeroOrMoreD`
