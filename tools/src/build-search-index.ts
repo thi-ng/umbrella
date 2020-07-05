@@ -1,33 +1,15 @@
 import { ArraySet, Trie } from "@thi.ng/associative";
 // @ts-ignore
 import { serialize } from "@ygoe/msgpack";
-import { readdirSync, readFileSync, statSync, writeFileSync } from "fs";
 import { execSync } from "child_process";
-import { readJSON } from "./io";
+import { readFileSync, writeFileSync } from "fs";
+import { files, readJSON } from "./io";
 import { build, defEncoder } from "./search";
 
 const RE_DOC_START = /^\s*\/\*\*$/;
 const RE_DOC_END = /^\s+\*\/$/;
 const RE_DOC_CODE = /^\s+\* \`\`\`/;
 const RE_SYM = /^export (type|interface|class|const|function|enum) (\w+)/;
-
-/**
- * Recursively reads given directory and returns file names matching
- * given extension.
- *
- * @param {*} dir
- * @param {*} ext
- */
-function* files(dir: string, ext: string): IterableIterator<string> {
-    for (let f of readdirSync(dir)) {
-        const curr = dir + "/" + f;
-        if (f.endsWith(ext)) {
-            yield curr;
-        } else if (statSync(curr).isDirectory()) {
-            yield* files(curr, ext);
-        }
-    }
-}
 
 class EquivTrie<T> extends Trie<string, T> {
     makeChild() {
