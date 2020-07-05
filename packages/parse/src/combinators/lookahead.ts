@@ -36,12 +36,14 @@ export const lookahead = <T>(
 ): Parser<T> => (ctx) => {
     if (ctx.done) return false;
     ctx.start(id);
+    let pass = false;
     while (true) {
         const state = { ...ctx.state };
         if (ahead(ctx)) {
             ctx.state = state;
-            return ctx.end();
+            return pass ? ctx.end() : ctx.discard();
         }
         if (!parser(ctx)) return ctx.discard();
+        pass = true;
     }
 };
