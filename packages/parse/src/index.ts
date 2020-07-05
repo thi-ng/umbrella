@@ -8,6 +8,7 @@ export * from "./combinators/boundary";
 export * from "./combinators/check";
 export * from "./combinators/dynamic";
 export * from "./combinators/expect";
+export * from "./combinators/lookahead";
 export * from "./combinators/maybe";
 export * from "./combinators/not";
 export * from "./combinators/repeat";
