@@ -2,6 +2,7 @@ export * from "./api";
 export * from "./compile";
 export * from "./component";
 export * from "./dom";
+export * from "./event";
 export * from "./klist";
 export * from "./list";
 export * from "./object";
