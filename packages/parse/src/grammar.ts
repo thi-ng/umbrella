@@ -140,7 +140,7 @@ const RULE = seq(
     "rule"
 );
 
-const COMMENT = seqD([litD("#"), lookahead(always(), DNL)]);
+const COMMENT = seqD([WS0, litD("#"), lookahead(always(), DNL)]);
 
 export const GRAMMAR = zeroOrMore(alt([RULE, COMMENT]), "rules");
 
@@ -333,7 +333,7 @@ export const defGrammar = (
         hoistR: xfHoistResult,
         int: xfInt(10),
         join: xfJoin,
-        print: xfPrint,
+        print: xfPrint(),
         trim: xfTrim,
         ...env,
     };
