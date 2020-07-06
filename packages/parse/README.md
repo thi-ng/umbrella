@@ -338,6 +338,8 @@ transforms](#transformers):
 - `float` - parse as floating point number
 - `int` - parse as integer
 - `hex` - parse as hex int
+- `print` - print out node's subtree (AST)
+- `trim` - trim result
 
 For convenience, the following built-in parser presets are available as
 rule references in the grammar definition as well:
@@ -346,12 +348,13 @@ rule references in the grammar definition as well:
 - `ALPHA_NUM`
 - `DIGIT`
 - `END` - input end
-- `ESC`
+- `ESC` - escape sequences
 - `FLOAT`
 - `HEX_DIGIT`
 - `INT`
 - `LEND` - line end
 - `LSTART` - line start
+- `NL` - newline chars
 - `START` - input start
 - `STRING`
 - `UNICODE`
