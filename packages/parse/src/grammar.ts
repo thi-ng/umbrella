@@ -10,10 +10,11 @@ import type {
 } from "./api";
 import { alt } from "./combinators/alt";
 import { dynamic } from "./combinators/dynamic";
+import { lookahead } from "./combinators/lookahead";
 import { maybe } from "./combinators/maybe";
 import { not } from "./combinators/not";
 import { oneOrMore, repeat, zeroOrMore } from "./combinators/repeat";
-import { seq } from "./combinators/seq";
+import { seq, seqD } from "./combinators/seq";
 import { xform } from "./combinators/xform";
 import { defContext } from "./context";
 import { ALPHA, ALPHA_NUM } from "./presets/alpha";
@@ -22,7 +23,7 @@ import { ESC, UNICODE } from "./presets/escape";
 import { HEX_DIGIT } from "./presets/hex";
 import { FLOAT, INT, UINT } from "./presets/numbers";
 import { STRING } from "./presets/string";
-import { NL, WS, WS0, WS1 } from "./presets/whitespace";
+import { DNL, NL, WS, WS0, WS1 } from "./presets/whitespace";
 import { always } from "./prims/always";
 import {
     inputEnd,
@@ -39,12 +40,12 @@ import { string, stringD } from "./prims/string";
 import { collect, xfCollect } from "./xform/collect";
 import { xfCount } from "./xform/count";
 import { discard, xfDiscard } from "./xform/discard";
-import { hoistResult, xfHoist, xfHoistResult, hoist } from "./xform/hoist";
+import { hoistResult, xfHoist, xfHoistResult } from "./xform/hoist";
 import { join, xfJoin } from "./xform/join";
 import { xfFloat, xfInt } from "./xform/number";
-import { print } from "./xform/print";
+import { print, xfPrint } from "./xform/print";
+import { xfTrim } from "./xform/trim";
 import { withID } from "./xform/with-id";
-import { lookahead } from "./combinators/lookahead";
 
 const apos = litD("'");
 const dash = litD("-");
@@ -93,15 +94,17 @@ const RULE_REF = seq([litD("<"), SYM, litD(">")], "ref");
 const TERM_BODY = alt([RULE_REF, ANY, LIT, STRING, CHAR_SEL]);
 
 const LOOK_AHEAD = maybe(
-    hoist(
-        seq([
-            stringD("(?="),
+    seq(
+        [
+            stringD("(?"),
+            oneOf("-+"),
             seq([TERM_BODY, REPEAT, DISCARD], "lhterm"),
             litD(")"),
-        ])
+        ],
+        "lhspec"
     ),
     undefined,
-    "lookahead"
+    "lhnone"
 );
 
 const TERM = seq([TERM_BODY, REPEAT, DISCARD, LOOK_AHEAD], "term");
@@ -116,6 +119,7 @@ const ALT = seq(
         litD(")"),
         REPEAT,
         DISCARD,
+        LOOK_AHEAD,
     ],
     "alt"
 );
@@ -136,7 +140,9 @@ const RULE = seq(
     "rule"
 );
 
-export const GRAMMAR = zeroOrMore(RULE, "rules");
+const COMMENT = seqD([litD("#"), lookahead(always(), DNL)]);
+
+export const GRAMMAR = zeroOrMore(alt([RULE, COMMENT]), "rules");
 
 const first = ($: ParseScope<any>) => $.children![0];
 
@@ -280,7 +286,8 @@ const compileRepeat = (
                 return parser;
         }
     } else if (rspec.id === "repeatN") {
-        return repeat(parser, rspec.result[0], rspec.result[1]);
+        const [n, m] = rspec.result;
+        return repeat(parser, n, m || n);
     }
     return parser;
 };
@@ -300,9 +307,13 @@ const compileLookahead = (
     lang: Language,
     opts: GrammarOpts
 ) => {
-    opts.debug && console.log(`lookahead:`, spec);
-    return spec && spec.id === "lhterm"
-        ? lookahead(parser, compile(spec, lang, opts))
+    opts.debug && console.log(`lookahead:`, spec.id);
+    return spec.id === "lhspec"
+        ? lookahead(
+              parser,
+              compile(nth(spec, 1), lang, opts),
+              first(spec).result === "+"
+          )
         : parser;
 };
 
@@ -322,6 +333,8 @@ export const defGrammar = (
         hoistR: xfHoistResult,
         int: xfInt(10),
         join: xfJoin,
+        print: xfPrint,
+        trim: xfTrim,
         ...env,
     };
     const ctx = defContext(rules);

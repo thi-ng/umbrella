@@ -48,4 +48,5 @@ export * from "./xform/hoist";
 export * from "./xform/join";
 export * from "./xform/number";
 export * from "./xform/print";
+export * from "./xform/trim";
 export * from "./xform/with-id";
