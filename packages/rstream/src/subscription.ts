@@ -1,15 +1,16 @@
-import { IDeref, SEMAPHORE } from "@thi.ng/api";
+import { Fn, IDeref, SEMAPHORE } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
 import { implementsFunction, isFunction, isPlainObject } from "@thi.ng/checks";
 import { illegalArity, illegalState } from "@thi.ng/errors";
 import {
     comp,
     isReduced,
+    map,
     push,
+    Reduced,
     Reducer,
     Transducer,
     unreduced,
-    Reduced,
 } from "@thi.ng/transducers";
 import {
     CloseMode,
@@ -214,6 +215,17 @@ export class Subscription<A, B>
         return isPlainObject(xf[n])
             ? this.subscribe((<any>comp)(...xf.slice(0, n)), xf[n])
             : this.subscribe((<any>comp)(...xf));
+    }
+
+    /**
+     * Syntax sugar for {@link Subscription.transform} when using a
+     * single {@link @thi.ng/transducers#map} transducer only. The given
+     * function `fn` is used as `map`'s transformation fn.
+     *
+     * @param fn
+     */
+    map<C>(fn: Fn<B, C>): Subscription<B, C> {
+        return this.subscribe(map(fn));
     }
 
     /**
