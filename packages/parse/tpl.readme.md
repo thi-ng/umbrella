@@ -143,6 +143,8 @@ Syntax sugars for `xform(parser, fn)`:
 - `hoist` / `hoistResult` - hoist first child / child result
 - `join` - join child results into string
 - `print` - print AST
+- `trim` - trim node result (string only)
+- `withID` - assign custom AST node ID
 
 Actual transforms:
 
@@ -155,11 +157,13 @@ Actual transforms:
 - `xfInt(radix)`
 - `xfJoin`
 - `xfPrint`
+- `xfTrim`
+- `xfID`
 
 ## Grammar definition
 
 Complex parsers can be constructed via
-[`defGrammar()`](https://github.com/thi-ng/umbrella/tree/develop/packages/parse/src/grammar.ts#L236),
+[`defGrammar()`](https://github.com/thi-ng/umbrella/tree/develop/packages/parse/src/grammar.ts#L320),
 which accepts a string of rule definitions in the built-in (and still
 WIP) grammar rule definition language, similar to PEGs and regular
 expressions:
@@ -167,17 +171,19 @@ expressions:
 Example grammar
 
 ```text
+# line comment
 ws:      ' '+ => discard ;
 sym:     [a-z] [a-z0-9_]* => join ;
 num:     [0-9]+ => int ;
 program: ( <num> | <sym> | <ws> )* ;
 ```
 
-Here, each line is a single parse rule definition, with each rule
-consisting of a sequence of one or more:
+Here, each line (apart from the first) is a single parse rule
+definition, with each rule consisting of a sequence of one or more:
 
 ### Terms
 
+- `.` - matches **any** single char
 - `'x'` - single char literal
 - `"abc"` - multi-char string
 - `[a-z0-9_@]` - regex style char set (incl. char range support, inversion via `^`)
@@ -196,7 +202,7 @@ style repetition specs:
 - `?` - zero or one occurrence
 - `*` - zero or more
 - `+` - one or more
-- `{min,max}` - min-max repetitions
+- `{n}` or `{min,max}` - fixed size or min-max repetitions
 
 ### Discarding results
 
@@ -209,12 +215,67 @@ linktitle: [^\\u005d]+ => join ;
 linkurl: [^\\u0029]+ => join ;
 ```
 
-Given a valid input like `[abc](def)`, the `link` parser's result will
-just be the array `["abc", "def"]` with other terms discarded from AST.
+Given a valid input like `[abc](def)`, the above `link` parser's result
+will just be the array `["abc", "def"]` with other terms discarded from
+the AST.
 
-Note: A parse rule must produce a result for at least one of its
-successfully matched terms. Use the `discard` rule transform to discard
-the entire result (instead of `!` modifier)...
+**Important**: A parse rule MUST produce a result for at least one of
+its successfully matched terms. Use the `discard` rule transform to
+discard the entire result (instead of the `!` modifier)...
+
+### Lookahead
+
+All terms can be suffixed with an optional, capturing or non-capturing
+lookahead group:
+
+- `(?-...)`: non-capturing
+- `(?+...)`: capturing
+
+```text
+# accept any character until end of current line
+# <NL> is a built-in preset rule to match newline chars...
+rest: .(?-<NL>!) ;
+```
+
+When using lookahead, both the main and look-ahead parsers are run
+repeatedly for as long as the former succeeds and UNTIL the latter
+passes or the end of input is reached. If the `ahead` parser never
+passes, the entire term fails and any partial matches are discarded.
+
+Depending on capture behavior, the result of the `ahead` parser is
+captured or omitted and the final read position is adjusted accordingly.
+
+Currently, iff capture is disabled, the ahead parser MUST discard its
+own result (see section above). On successful match the final read
+position will then be restored to the beginning of ahead pattern.
+
+Iff capture is enabled, the ahead parser MAY discard its own result, but
+the final read position will not be re-adjusted as in the non-capturing
+version.
+
+**Important:** Since the main term will be repeated automatically, DO
+NOT use repetition modifiers `?` or `*`, since both of these will cause
+the parser to go into an infinite loop. This is expected behavior and
+not a bug.
+
+### Term modifier ordering
+
+The above mentioned optional term modifiers MUST always be given in this
+order:
+
+- Repetitions (`?*+` etc.)
+- Discard flag (`!`)
+- Lookahead (`(?-...)` / `(?+...)`)
+
+```text
+[a-z]+!         # valid
+[a-z]{4}!       # valid
+[a-z]!          # valid
+[a-z]!(?+[0-9]) # valid
+[a-z]!+         # invalid
+[a-z]!{4}       # invalid
+[a-z](?+'X')!   # invalid
+```
 
 ### Rule transforms
 
@@ -375,8 +436,8 @@ const ops = {
     "/": (a, b) => a / b,
 };
 
-// signed integer parser (using INT preset) with transform fn
-// user fn here only used for pushing values on data stack
+// signed integer parser (using INT preset) with transform fn.
+// the user fn here is only used for pushing values on data stack
 // also, if a transform returns null, the parse scope will
 // be removed from the result AST
 const value = xform(INT, (scope) => {
@@ -386,6 +447,7 @@ const value = xform(INT, (scope) => {
 
 // parser for any of the registered operators (again w/ transform)
 // the transform here applies the op in RPN fashion to the data stack
+// stack underflow handling omitted for brevity
 const op = xform(oneOf(Object.keys(ops)), (scope) => {
     const b = stack.pop();
     const a = stack.pop();
@@ -401,7 +463,7 @@ const program = zeroOrMore(alt([value, op, WS0]))
 program(defContext("10 5 3 * + -2 * 10 /"));
 
 // print result data stack, i.e. result of:
-// 3 * 5 + 10 * -2 / 10 (in infix notation)
+// (3 * 5 + 10) * -2 / 10 (in infix notation)
 console.log(stack);
 // [-5]
 ```
