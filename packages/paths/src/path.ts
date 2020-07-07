@@ -1,5 +1,5 @@
+import { assert, NumOrString, Path } from "@thi.ng/api";
 import { isArray, isString } from "@thi.ng/checks";
-import type { NumOrString, Path } from "@thi.ng/api";
 
 /**
  * Converts the given key path to canonical form (array).
@@ -54,3 +54,29 @@ export const exists = (obj: any, path: Path) => {
     }
     return true;
 };
+
+/**
+ * Helper function to analyze given lookup path for presence of
+ * `__proto__`. Returns true if the case.
+ *
+ * @remarks
+ * Also see {@link disallowProtoPath}
+ *
+ * @param path
+ */
+export const isProtoPath = (path: Path) =>
+    isArray(path)
+        ? path.some((x) => x === "__proto__")
+        : isString(path)
+        ? path.indexOf("__proto__") >= 0
+        : false;
+
+/**
+ * Helper function to analyze given path using {@link isProtoPath}.
+ * Throws error if path contains `__proto__`.
+ *
+ * @param path
+ */
+export const disallowProtoPath = (path: Path) => (
+    assert(!isProtoPath(path), `unsafe path: '${path}'`), path
+);

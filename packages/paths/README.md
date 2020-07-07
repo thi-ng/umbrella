@@ -24,6 +24,7 @@ This project is part of the
   - [Higher-order accessors](#higher-order-accessors)
   - [First order operators](#first-order-operators)
   - [Deletions](#deletions)
+  - [PPP - Prototype pollution potential](#ppp---prototype-pollution-potential)
   - [Structural sharing](#structural-sharing)
   - [Mutable setter](#mutable-setter)
   - [Path checking](#path-checking)
@@ -75,7 +76,7 @@ yarn add @thi.ng/paths
 <script src="https://unpkg.com/@thi.ng/paths/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.09 KB / CJS: 1.19 KB / UMD: 1.14 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.18 KB / CJS: 1.29 KB / UMD: 1.23 KB
 
 ## Dependencies
 
@@ -186,7 +187,8 @@ const b = getB(state); // b inferred as `number | undefined`
 const c1 = getFirstC(state); // c1 inferred as `string`
 ```
 
-Paths can also be defined as dot-separated strings, however cannot be type checked and MUST use the `Unsafe` version of each operation:
+Paths can also be defined as dot-separated strings, however cannot be
+type checked and MUST use the `Unsafe` version of each operation:
 
 ```ts
 s = defSetterUnsafe("a.b.c");
@@ -266,6 +268,20 @@ const state2 = deleteIn(state, ["a","b","c"]);
 
 // compile error: "Property `c` does not exist`
 state2.a.b.c;
+```
+
+### PPP - Prototype pollution potential
+
+Mainly a potential concern for the non-typechecked versions - currently,
+none of the setter/update/mutation functions explicitly disallow
+updating an object's `__proto__` property. However, the package provides
+the `isProtoPath()` and `disallowProtoPath()` helpers which can & should be
+used in conjunction with the setters in situations where it's advisable
+to do so.
+
+```ts
+setIn({}, disallowProtoPath("__proto__.foo", true));
+// Uncaught Error: unsafe path: '__proto__.foo'
 ```
 
 ### Structural sharing

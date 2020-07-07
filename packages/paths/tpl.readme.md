@@ -143,7 +143,8 @@ const b = getB(state); // b inferred as `number | undefined`
 const c1 = getFirstC(state); // c1 inferred as `string`
 ```
 
-Paths can also be defined as dot-separated strings, however cannot be type checked and MUST use the `Unsafe` version of each operation:
+Paths can also be defined as dot-separated strings, however cannot be
+type checked and MUST use the `Unsafe` version of each operation:
 
 ```ts
 s = defSetterUnsafe("a.b.c");
@@ -223,6 +224,20 @@ const state2 = deleteIn(state, ["a","b","c"]);
 
 // compile error: "Property `c` does not exist`
 state2.a.b.c;
+```
+
+### PPP - Prototype pollution potential
+
+Mainly a potential concern for the non-typechecked versions - currently,
+none of the setter/update/mutation functions explicitly disallow
+updating an object's `__proto__` property. However, the package provides
+the `isProtoPath()` and `disallowProtoPath()` helpers which can & should be
+used in conjunction with the setters in situations where it's advisable
+to do so.
+
+```ts
+setIn({}, disallowProtoPath("__proto__.foo", true));
+// Uncaught Error: unsafe path: '__proto__.foo'
 ```
 
 ### Structural sharing
