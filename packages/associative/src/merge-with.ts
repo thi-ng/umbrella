@@ -1,5 +1,5 @@
-import { copy } from "./utils";
 import type { Fn2, IObjectOf, Nullable } from "@thi.ng/api";
+import { copy } from "./utils";
 
 export const mergeMapWith = <K, V>(
     f: Fn2<V, V, V>,
@@ -22,6 +22,10 @@ export const mergeMapWith = <K, V>(
  * `f` if the same key exists in both objects and uses that function's
  * return value as new value for that key.
  *
+ * @remarks
+ * Since v4.4.0, the `__proto__` property will be ignored to avoid
+ * prototype pollution.
+ *
  * @param f
  * @param dest
  * @param xs
@@ -36,6 +40,10 @@ export const mergeObjWith = <T>(
  * Mutable version of {@link mergeObjWith}. Returns modified `dest`
  * object.
  *
+ * @remarks
+ * Since v4.4.0, the `__proto__` property will be ignored to avoid
+ * prototype pollution.
+ *
  * @param f -
  * @param dest -
  * @param xs -
@@ -48,6 +56,7 @@ export const meldObjWith = <T>(
     for (let x of xs) {
         if (x != null) {
             for (let k in x) {
+                if (k === "__proto__") continue;
                 const v = x[k];
                 dest[k] = dest.hasOwnProperty(k) ? f(dest[k], v) : v;
             }

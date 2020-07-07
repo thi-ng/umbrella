@@ -1,6 +1,6 @@
+import type { Fn, IObjectOf } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks";
 import { copy } from "./utils";
-import type { Fn, IObjectOf } from "@thi.ng/api";
 
 /**
  * Similar to {@link mergeApplyObj}, but for ES6 Maps instead of plain objects.
@@ -23,6 +23,10 @@ export const mergeApplyMap = <K, V>(
  * Similar to {@link mergeObjWith}, but only supports 2 args and any
  * function values in `xs` will be called with respective value in `src`
  * to produce a new / derived value for that key, i.e.
+ *
+ * @remarks
+ * Since v4.4.0, the `__proto__` property will be ignored to avoid
+ * prototype pollution.
  *
  * @example
  * ```ts
@@ -49,7 +53,12 @@ export const mergeApplyObj = <V>(
 ) => meldApplyObj({ ...src }, xs);
 
 /**
- * Mutable version of {@link mergeApplyObj}. Returns modified `src` object.
+ * Mutable version of {@link mergeApplyObj}. Returns modified `src`
+ * object.
+ *
+ * @remarks
+ * Since v4.4.0, the `__proto__` property will be ignored to avoid
+ * prototype pollution.
  *
  * @param src -
  * @param xs -
@@ -59,6 +68,7 @@ export const meldApplyObj = <V>(
     xs: IObjectOf<V | Fn<V, V>>
 ) => {
     for (let k in xs) {
+        if (k === "__proto__") continue;
         const v = xs[k];
         src[k] = isFunction(v) ? v(src[k]) : v;
     }
