@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@4.4.0...@thi.ng/associative@4.4.1) (2020-07-08)
+
+
+### Bug Fixes
+
+* **associative:** set combinator arg types ([1cbbf27](https://github.com/thi-ng/umbrella/commit/1cbbf272d938232f83511dbb79c871aee081bde0))
+
+
+
+
+
 # [4.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@4.3.0...@thi.ng/associative@4.4.0) (2020-07-08)
 
 

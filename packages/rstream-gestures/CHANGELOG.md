@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.29](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@2.0.28...@thi.ng/rstream-gestures@2.0.29) (2020-07-08)
+
+**Note:** Version bump only for package @thi.ng/rstream-gestures
+
+
+
+
+
 ## [2.0.28](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@2.0.27...@thi.ng/rstream-gestures@2.0.28) (2020-07-08)
 
 **Note:** Version bump only for package @thi.ng/rstream-gestures

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dcons",
-    "version": "2.2.24",
+    "version": "2.2.25",
     "description": "Double-linked list with comprehensive set of operations",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -55,7 +55,7 @@
         "@thi.ng/equiv": "^1.0.26",
         "@thi.ng/errors": "^1.2.16",
         "@thi.ng/random": "^1.4.14",
-        "@thi.ng/transducers": "^7.1.4"
+        "@thi.ng/transducers": "^7.1.5"
     },
     "files": [
         "*.js",

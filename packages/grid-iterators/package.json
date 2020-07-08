@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/grid-iterators",
-    "version": "0.4.3",
+    "version": "0.4.4",
     "description": "2D grid iterators w/ multiple orderings",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -54,7 +54,7 @@
         "@thi.ng/binary": "^2.0.10",
         "@thi.ng/morton": "^2.0.18",
         "@thi.ng/random": "^1.4.14",
-        "@thi.ng/transducers": "^7.1.4"
+        "@thi.ng/transducers": "^7.1.5"
     },
     "files": [
         "*.js",

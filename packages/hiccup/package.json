@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hiccup",
-    "version": "3.5.3",
+    "version": "3.5.4",
     "description": "HTML/SVG/XML serialization of nested data structures, iterables & closures",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -40,7 +40,7 @@
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
         "@microsoft/api-extractor": "^7.8.0",
-        "@thi.ng/atom": "^4.1.14",
+        "@thi.ng/atom": "^4.1.15",
         "@types/mocha": "^7.0.2",
         "@types/node": "^14.0.1",
         "mocha": "^8.0.1",
