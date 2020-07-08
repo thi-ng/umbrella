@@ -54,6 +54,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 1.01 KB / CJS: 1.10 KB / UMD: 1.17 
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative)
+- [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color)
 - [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
 - [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-api)
 - [@thi.ng/geom-clip-line](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-clip-line)

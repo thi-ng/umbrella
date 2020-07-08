@@ -135,7 +135,6 @@ Package sizes (gzipped, pre-treeshake): ESM: 2.38 KB / CJS: 2.50 KB / UMD: 2.42 
 
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color)
-- [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
 - [@thi.ng/prefixes](https://github.com/thi-ng/umbrella/tree/develop/packages/prefixes)
 
 ## Usage examples

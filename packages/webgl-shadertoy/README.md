@@ -54,7 +54,6 @@ Package sizes (gzipped, pre-treeshake): ESM: 673 bytes / CJS: 710 bytes / UMD: 8
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
 - [@thi.ng/shader-ast-glsl](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-glsl)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl)
 
 ## Usage examples

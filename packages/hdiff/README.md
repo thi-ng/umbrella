@@ -72,6 +72,7 @@ npx hdiff packages/webgl/src/shader.ts develop~500 HEAD > diff.html
 
 ## Dependencies
 
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/diff](https://github.com/thi-ng/umbrella/tree/develop/packages/diff)
 - [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
 - [@thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-css)

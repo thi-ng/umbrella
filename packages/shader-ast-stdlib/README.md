@@ -92,6 +92,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 5.76 KB / CJS: 6.53 KB / UMD: 5.98 
 
 ## Dependencies
 
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
 
 ## Usage examples

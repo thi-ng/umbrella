@@ -83,6 +83,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 3.75 KB / CJS: 3.89 KB / UMD: 3.85 
 - [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths)
 - [@thi.ng/prefixes](https://github.com/thi-ng/umbrella/tree/develop/packages/prefixes)
 - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 
 ## Usage examples
 
