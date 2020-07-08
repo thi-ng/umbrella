@@ -49,6 +49,7 @@
         "typescript": "^3.9.5"
     },
     "dependencies": {
+        "@thi.ng/api": "^6.11.3",
         "@thi.ng/shader-ast": "^0.3.28"
     },
     "files": [

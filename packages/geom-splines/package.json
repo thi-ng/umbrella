@@ -49,6 +49,7 @@
         "typescript": "^3.9.5"
     },
     "dependencies": {
+        "@thi.ng/api": "^6.11.3",
         "@thi.ng/checks": "^2.7.3",
         "@thi.ng/geom-api": "^1.0.25",
         "@thi.ng/geom-arc": "^0.3.3",

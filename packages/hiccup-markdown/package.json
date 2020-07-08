@@ -49,6 +49,7 @@
         "typescript": "^3.9.5"
     },
     "dependencies": {
+        "@thi.ng/api": "^6.11.3",
         "@thi.ng/arrays": "^0.6.12",
         "@thi.ng/checks": "^2.7.3",
         "@thi.ng/defmulti": "^1.2.20",

@@ -50,6 +50,7 @@
     },
     "dependencies": {
         "@thi.ng/api": "^6.11.3",
+        "@thi.ng/atom": "^4.1.14",
         "@thi.ng/checks": "^2.7.3",
         "@thi.ng/errors": "^1.2.16",
         "@thi.ng/paths": "^4.1.0",
