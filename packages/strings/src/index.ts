@@ -1,6 +1,7 @@
 export * from "./api";
 export * from "./case";
 export * from "./center";
+export * from "./cursor";
 export * from "./float";
 export * from "./format";
 export * from "./groups";
