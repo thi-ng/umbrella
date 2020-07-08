@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/atom",
-    "version": "4.1.13",
+    "version": "4.1.14",
     "description": "Mutable wrappers for nested immutable values with optional undo/redo history and transaction support",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -53,7 +53,7 @@
         "@thi.ng/checks": "^2.7.3",
         "@thi.ng/equiv": "^1.0.26",
         "@thi.ng/errors": "^1.2.16",
-        "@thi.ng/paths": "^4.0.11",
+        "@thi.ng/paths": "^4.1.0",
         "tslib": "^2.0.0"
     },
     "files": [

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@4.5.1...@thi.ng/rstream@4.6.0) (2020-07-08)
+
+
+### Features
+
+* **rstream:** add Subscription.map() syntax sugar ([a00485e](https://github.com/thi-ng/umbrella/commit/a00485e93600783691d6eaf6088d6625fb26630c))
+
+
+
+
+
 ## [4.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@4.5.0...@thi.ng/rstream@4.5.1) (2020-07-04)
 
 **Note:** Version bump only for package @thi.ng/rstream

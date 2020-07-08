@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.8.13...@thi.ng/strings@1.9.0) (2020-07-08)
+
+
+### Features
+
+* **strings:** add computeCursorPos() ([c178d00](https://github.com/thi-ng/umbrella/commit/c178d00edcdbe12cec492a1629c80bf359116b66))
+
+
+
+
+
 ## [1.8.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.8.12...@thi.ng/strings@1.8.13) (2020-07-04)
 
 **Note:** Version bump only for package @thi.ng/strings

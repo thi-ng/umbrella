@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/parse",
-    "version": "0.6.2",
+    "version": "0.7.0",
     "description": "Purely functional parser combinators & AST generation for generic inputs",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -53,7 +53,7 @@
         "@thi.ng/checks": "^2.7.3",
         "@thi.ng/defmulti": "^1.2.20",
         "@thi.ng/errors": "^1.2.16",
-        "@thi.ng/strings": "^1.8.13"
+        "@thi.ng/strings": "^1.9.0"
     },
     "files": [
         "*.js",

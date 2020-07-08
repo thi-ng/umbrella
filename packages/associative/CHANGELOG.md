@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@4.3.0...@thi.ng/associative@4.4.0) (2020-07-08)
+
+
+### Features
+
+* **associative:** disallow `__proto__` in merge fns ([d637996](https://github.com/thi-ng/umbrella/commit/d6379964f364232312b7a65c708f07dd0ecf8ff8))
+
+
+
+
+
 # [4.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@4.2.1...@thi.ng/associative@4.3.0) (2020-07-04)
 
 

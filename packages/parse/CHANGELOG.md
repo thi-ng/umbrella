@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.6.2...@thi.ng/parse@0.7.0) (2020-07-08)
+
+
+### Features
+
+* **parse:** add lookahead() combinator, add tests ([ee35038](https://github.com/thi-ng/umbrella/commit/ee35038cdae0692cc369221eb7623ba7b973d2f1))
+* **parse:** lookahead w/ configurable capture ([542c066](https://github.com/thi-ng/umbrella/commit/542c0662b4901a6cfd32a99e5241dace0ddde807))
+* **parse:** turn xfPrint() into HOF xform ([d86fa53](https://github.com/thi-ng/umbrella/commit/d86fa535a530f0fe84e08e5969ca01c96ef75c23))
+* **parse:** update grammar DSL ([accacf9](https://github.com/thi-ng/umbrella/commit/accacf9fa73b09f6cb8454cd4d85f10bb0f55795))
+* **parse:** update lookahead ([51a8dc5](https://github.com/thi-ng/umbrella/commit/51a8dc55dd3b40fcfbffbcb5f3aeaea618441269))
+* **parse:** update/fix grammar DSL, add trim ([f82ba1f](https://github.com/thi-ng/umbrella/commit/f82ba1f9aeed03571e50953c6d41255a569d121f))
+
+
+
+
+
 ## [0.6.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.6.1...@thi.ng/parse@0.6.2) (2020-07-04)
 
 **Note:** Version bump only for package @thi.ng/parse

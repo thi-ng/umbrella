@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/system@0.2.15...@thi.ng/system@0.2.16) (2020-07-08)
+
+**Note:** Version bump only for package @thi.ng/system
+
+
+
+
+
 ## [0.2.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/system@0.2.14...@thi.ng/system@0.2.15) (2020-07-04)
 
 **Note:** Version bump only for package @thi.ng/system

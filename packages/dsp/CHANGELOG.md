@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@2.0.22...@thi.ng/dsp@2.0.23) (2020-07-08)
+
+**Note:** Version bump only for package @thi.ng/dsp
+
+
+
+
+
 ## [2.0.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@2.0.21...@thi.ng/dsp@2.0.22) (2020-07-04)
 
 **Note:** Version bump only for package @thi.ng/dsp
