@@ -56,6 +56,7 @@ constructs, which can be used as lightweight adapters, i.e.:
 ### Support packages
 
 - [@thi.ng/rdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom-canvas) - [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom) component wrapper for [@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas) and declarative canvas drawing
+- [@thi.ng/rdom-components](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom-components) - Collection of unstyled, customizable components for [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom)
 
 ## Installation
 
@@ -71,7 +72,7 @@ yarn add @thi.ng/rdom
 <script src="https://unpkg.com/@thi.ng/rdom/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.60 KB / CJS: 3.74 KB / UMD: 3.71 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.75 KB / CJS: 3.89 KB / UMD: 3.85 KB
 
 ## Dependencies
 

@@ -13,14 +13,15 @@
 > the composer of. Geared towards versatility, not any specific type of music."
 > &mdash; [@loganpowell](https://twitter.com/logantpowell/status/1186334119812304901) via Twitter
 
-Mono-repository for 125+ thi.ng TypeScript/ES6 projects, a wide
+Mono-repository for ~135 thi.ng TypeScript/ES6 projects, a wide
 collection of largely data transformation oriented packages and building
 blocks for:
 
 - Functional programming (composition, memoization, transducers,
   multi-methods)
+- Data driven UI component toolkits (multiple approaches)
 - ES6 iterators/generators
-- Stream & transducer based, reactive programming, dataflow graphs /
+- Reactive programming, stream / transducer based dataflow graphs /
   pipelines
 - WebWorker workflow abstractions
 - Data structures & data transformations for wide range of use cases
@@ -41,7 +42,6 @@ blocks for:
   operators
 - Color space/format conversions, matrix based color manipulation,
   cosine gradients
-- Data driven UI components, event & side effect handling
 - Canvas abstraction & SVG conversion
 - Canvas-based Immediate mode GUI components
 - Declarative WebGL 1/2 abstraction layer
@@ -54,8 +54,8 @@ sacrificing flexibility.**
 **This project is NOT a framework**, provides no turn-key,
 one-size-fits-all approach and instead encourages a mix & match
 philosophy for various key aspects of application design (in & outside
-the browser). Most customization points only expect certain interfaces
-rather than concrete implementations.
+the browser). Most customization points only expect certain
+interfaces/type signatures rather than concrete implementations.
 
 Most packages:
 
@@ -215,6 +215,7 @@ feature or `develop` branches) -->
 | [`@thi.ng/interceptors`](./packages/interceptors)               | [![version](https://img.shields.io/npm/v/@thi.ng/interceptors.svg)](https://www.npmjs.com/package/@thi.ng/interceptors)               | [changelog](./packages/interceptors/CHANGELOG.md)        | Composable event handlers & processor            |
 | [`@thi.ng/rdom`](./packages/rdom)                               | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)                               | [changelog](./packages/rdom/CHANGELOG.md)                | Reactive, diff-less, async UI components         |
 | [`@thi.ng/rdom-canvas`](./packages/rdom-canvas)                 | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-canvas.svg)](https://www.npmjs.com/package/@thi.ng/rdom-canvas)                 | [changelog](./packages/rdom-canvas/CHANGELOG.md)         | rdom component wrapper for thi.ng/hiccup-canvas  |
+| [`@thi.ng/rdom-components`](./packages/rdom-components)         | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-components.svg)](https://www.npmjs.com/package/@thi.ng/rdom-components)         | [changelog](./packages/rdom-components/CHANGELOG.md)     | Unstyled, customizable component collection      |
 | [`@thi.ng/router`](./packages/router)                           | [![version](https://img.shields.io/npm/v/@thi.ng/router.svg)](https://www.npmjs.com/package/@thi.ng/router)                           | [changelog](./packages/router/CHANGELOG.md)              | Customizable browser & non-browser router        |
 | [`@thi.ng/text-canvas`](./packages/text-canvas)                 | [![version](https://img.shields.io/npm/v/@thi.ng/text-canvas.svg)](https://www.npmjs.com/package/@thi.ng/text-canvas)                 | [changelog](./packages/text-canvas/CHANGELOG.md)         | Text-mode canvas, drawing, tables, charts        |
 
