@@ -1,5 +1,5 @@
-import { range2d } from "@thi.ng/transducers";
 import type { Fn5 } from "@thi.ng/api";
+import { range2d } from "@thi.ng/transducers";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 // flattened [to, clear] tuples
