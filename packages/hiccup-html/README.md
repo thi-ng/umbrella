@@ -36,8 +36,9 @@ This project is part of the
 
 The following type-checked factory functions are provided **so far** and
 in most cases include specialized type definitions for element-specific
-attributes, incl. enumerated attrib values (where applicable/useful).
-See [`defElement()`](#defelement) below for more details.
+attributes, incl. enumerated attrib values (where applicable/useful) and
+all 360+ CSS property names (for `style` attrib). See
+[`defElement()`](#defelement) below for more details.
 
 ### Supported elements
 
@@ -247,6 +248,10 @@ const el = defElement<Partial<MyAttribs>, never>(
     "tag",
     { width: 100, height: 100 }
 );
+
+// or create new versions of existing elements with more limited
+// user customization options...
+const div = defElement<Partial<Pick<Attribs, "class" | "style">>>("div");
 ```
 
 The `Attribs` interface provides a common, fully typed base definition
