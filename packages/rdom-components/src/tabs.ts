@@ -27,7 +27,6 @@ export const tabs = (
     src: Subscription<number, number>,
     { attribs, head, sections }: TabOpts
 ) => {
-    src = src.transform(dedupe());
     return div(
         attribs.wrapper,
         $list(
@@ -39,7 +38,7 @@ export const tabs = (
             ([i, sel]) => head(src, sections[i].title, i, sel)
         ),
         $switch<number>(
-            src,
+            src.transform(dedupe()),
             (x) => x,
             sections.reduce((acc, { content }, i) => {
                 acc[i] = async (i) =>

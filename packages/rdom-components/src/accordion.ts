@@ -29,11 +29,13 @@ export const accordion = (
     src: Subscription<number, number>,
     { attribs, head, sections, error }: AccordionOpts
 ) => {
-    src = src.transform(dedupe());
     return $list(
-        src.map((id) => [
-            ...map((i) => <const>[i, i === id], range(sections.length)),
-        ]),
+        src.transform(
+            dedupe(),
+            map((id) => [
+                ...map((i) => <const>[i, i === id], range(sections.length)),
+            ])
+        ),
         "div",
         attribs.wrapper,
         ([i, sel]) =>
