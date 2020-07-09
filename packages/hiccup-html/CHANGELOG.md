@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-html@0.2.0...@thi.ng/hiccup-html@0.3.0) (2020-07-09)
+
+
+### Features
+
+* **hiccup-html:** add 360+ CSS property names ([d06a4ae](https://github.com/thi-ng/umbrella/commit/d06a4ae0fa916d168bf54e0f003677bf726e8513))
+* **hiccup-html:** add CSS props for SVG elements ([efe61b8](https://github.com/thi-ng/umbrella/commit/efe61b8d0ddfd7f54b2689a792a092122ffe830a))
+
+
+
+
+
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-html@0.1.1...@thi.ng/hiccup-html@0.2.0) (2020-07-02)
 
 
