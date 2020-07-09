@@ -545,6 +545,80 @@ export type CSSProperty =
     | "writing-mode"
     | "z-index";
 
+/**
+ * Additional CSS properties for SVG elements.
+ *
+ * @remarks
+ * Reference:
+ *
+ * - https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/Presentation
+ * - https://css-tricks.com/svg-properties-and-css/
+ */
+export type CSSSVGProperty =
+    | "alignment-baseline"
+    | "baseline-shift"
+    | "clip"
+    | "clip-path"
+    | "clip-rule"
+    | "color-interpolation"
+    | "color-interpolation-filters"
+    | "color-profile"
+    | "color-rendering"
+    | "cursor"
+    | "d"
+    | "direction"
+    | "display"
+    | "dominant-baseline"
+    | "enable-background"
+    | "fill"
+    | "fill-opacity"
+    | "fill-rule"
+    | "filter"
+    | "flood-color"
+    | "flood-opacity"
+    | "font-family"
+    | "font-size"
+    | "font-size-adjust"
+    | "font-stretch"
+    | "font-variant"
+    | "font-weight"
+    | "glyph-orientation-horizontal"
+    | "glyph-orientation-vertical"
+    | "image-rendering"
+    | "kerning"
+    | "letter-spacing"
+    | "lighting-color"
+    | "marker"
+    | "marker-end"
+    | "marker-mid"
+    | "marker-start"
+    | "mask"
+    | "opacity"
+    | "overflow"
+    | "pointer-events"
+    | "shape-rendering"
+    | "solid-color"
+    | "solid-opacity"
+    | "stop-color"
+    | "stop-opacity"
+    | "stroke"
+    | "stroke-dasharray"
+    | "stroke-dashoffset"
+    | "stroke-linecap"
+    | "stroke-linejoin"
+    | "stroke-miterlimit"
+    | "stroke-opacity"
+    | "stroke-width"
+    | "text-anchor"
+    | "text-decoration"
+    | "text-rendering"
+    | "transform"
+    | "unicode-bidi"
+    | "vector-effect"
+    | "visibility"
+    | "word-spacing"
+    | "writing-mode";
+
 export interface Attribs
     extends GlobalEventAttribs,
         MicroformatAttribs,
@@ -568,7 +642,10 @@ export interface Attribs
     style: AttribVal<
         | string
         | Partial<
-              Record<CSSProperty, AttribVal<NumOrString | Fn<any, NumOrString>>>
+              Record<
+                  CSSProperty | CSSSVGProperty,
+                  AttribVal<NumOrString | Fn<any, NumOrString>>
+              >
           >
     >;
     tabindex: NumericAttrib;

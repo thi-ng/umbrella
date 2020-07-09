@@ -16,7 +16,8 @@ ${pkg.description}
 The following type-checked factory functions are provided **so far** and
 in most cases include specialized type definitions for element-specific
 attributes, incl. enumerated attrib values (where applicable/useful) and
-all 360+ CSS property names (for `style` attrib). See
+all 420+ CSS property names (for use with the `style` attrib). See
+[api.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html/src/api.ts)
 [`defElement()`](#defelement) below for more details.
 
 ### Supported elements
