@@ -1,0 +1,53 @@
+{
+    "name": "parse-playground",
+    "version": "0.0.1",
+    "description": "Parser grammar livecoding editor/playground & codegen",
+    "repository": "https://github.com/thi-ng/umbrella",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "clean": "rm -rf .cache build out",
+        "build": "yarn clean && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --detailed-report --experimental-scope-hoisting",
+        "build:webpack": "../../node_modules/.bin/webpack --mode production",
+        "start": "parcel index.html -p 8080 --open"
+    },
+    "devDependencies": {
+        "parcel-bundler": "^1.12.4",
+        "terser": "^4.8.0",
+        "typescript": "^3.9.5"
+    },
+    "dependencies": {
+        "@thi.ng/api": "latest",
+        "@thi.ng/bench": "latest",
+        "@thi.ng/dl-asset": "latest",
+        "@thi.ng/hiccup-carbon-icons": "latest",
+        "@thi.ng/hiccup-html": "latest",
+        "@thi.ng/parse": "latest",
+        "@thi.ng/rdom": "latest",
+        "@thi.ng/rdom-components": "latest",
+        "@thi.ng/rstream": "latest",
+        "@thi.ng/strings": "latest",
+        "@thi.ng/transducers": "latest",
+        "@thi.ng/transducers-binary": "latest",
+        "@ygoe/msgpack": "latest"
+    },
+    "browserslist": [
+        "last 3 Chrome versions"
+    ],
+    "browser": {
+        "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "dl-asset",
+            "hiccup-carbon-icons",
+            "hiccup-html",
+            "parse",
+            "rdom",
+            "rdom-components",
+            "rstream",
+            "transducers-binary"
+        ],
+        "screenshot": "examples/parse-playground.png"
+    }
+}
