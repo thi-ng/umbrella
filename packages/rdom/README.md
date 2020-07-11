@@ -93,12 +93,13 @@ directory are using this package.
 
 A selection:
 
-| Description                                               | Live demo                                              | Source                                                                              |
-| --------------------------------------------------------- | ------------------------------------------------------ | ----------------------------------------------------------------------------------- |
-| Demonstates various rdom usage patterns                   | [Demo](https://demo.thi.ng/umbrella/rdom-basics/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-basics)      |
-| rdom drag & drop example                                  | [Demo](https://demo.thi.ng/umbrella/rdom-dnd/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-dnd)         |
-| rdom & hiccup-canvas interop test                         | [Demo](https://demo.thi.ng/umbrella/rdom-lissajous/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-lissajous)   |
-| Full umbrella repo doc string search w/ paginated results | [Demo](https://demo.thi.ng/umbrella/rdom-search-docs/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-search-docs) |
+| Screenshot                                                                                                              | Description                                               | Live demo                                              | Source                                                                              |
+| ----------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/parse-playground.png" width="240"/> | Parser grammar livecoding editor/playground & codegen     | [Demo](https://demo.thi.ng/umbrella/parse-playground/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/parse-playground) |
+|                                                                                                                         | Demonstates various rdom usage patterns                   | [Demo](https://demo.thi.ng/umbrella/rdom-basics/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-basics)      |
+|                                                                                                                         | rdom drag & drop example                                  | [Demo](https://demo.thi.ng/umbrella/rdom-dnd/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-dnd)         |
+|                                                                                                                         | rdom & hiccup-canvas interop test                         | [Demo](https://demo.thi.ng/umbrella/rdom-lissajous/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-lissajous)   |
+|                                                                                                                         | Full umbrella repo doc string search w/ paginated results | [Demo](https://demo.thi.ng/umbrella/rdom-search-docs/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-search-docs) |
 
 ## API
 

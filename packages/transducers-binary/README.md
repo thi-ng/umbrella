@@ -78,10 +78,11 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                         | Description                                        | Live demo                                         | Source                                                                         |
-| ------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------ |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/bitmap-font.gif" width="240"/> | Figlet-style bitmap font creation with transducers | [Demo](https://demo.thi.ng/umbrella/bitmap-font/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/bitmap-font) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/wolfram.png" width="240"/>     | 1D Wolfram automata with OBJ point cloud export    | [Demo](https://demo.thi.ng/umbrella/wolfram/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/wolfram)     |
+| Screenshot                                                                                                              | Description                                           | Live demo                                              | Source                                                                              |
+| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/bitmap-font.gif" width="240"/>      | Figlet-style bitmap font creation with transducers    | [Demo](https://demo.thi.ng/umbrella/bitmap-font/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/bitmap-font)      |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/parse-playground.png" width="240"/> | Parser grammar livecoding editor/playground & codegen | [Demo](https://demo.thi.ng/umbrella/parse-playground/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/parse-playground) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/wolfram.png" width="240"/>          | 1D Wolfram automata with OBJ point cloud export       | [Demo](https://demo.thi.ng/umbrella/wolfram/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/wolfram)          |
 
 ## API
 
