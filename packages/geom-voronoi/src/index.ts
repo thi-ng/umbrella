@@ -59,7 +59,22 @@ export class DVMesh<T> {
         }
     }
 
-    add(p: ReadonlyVec, val?: T, eps = EPS) {
+    /**
+     * Adds a single new point `p` w/ optional value `val` to the mesh, unless
+     * there already is another point existing within radius `eps`. If `update`
+     * is true (default), the mesh dual will be automatically updated using
+     * {@link DVMesh.computeDual}.
+     *
+     * @remarks
+     * If adding multiple points, ensure `computeDual` will only be called
+     * for/after the last point insertion to avoid computational overhead.
+     *
+     * @param p
+     * @param val
+     * @param eps
+     * @param update
+     */
+    add(p: ReadonlyVec, val?: T, eps = EPS, update = true) {
         let [e, exists] = this.locate(p, eps);
         if (exists) return false;
         if (pointInSegment(p, e.origin.pos, e.dest.pos)) {
@@ -92,19 +107,20 @@ export class DVMesh<T> {
                 break;
             }
         } while (true);
+        update && this.computeDual();
         return true;
     }
 
     addKeys(pts: Iterable<ReadonlyVec>, eps?: number) {
         for (let p of pts) {
-            this.add(p, undefined, eps);
+            this.add(p, undefined, eps, false);
         }
         this.computeDual();
     }
 
     addAll(pairs: Iterable<Pair<ReadonlyVec, T>>, eps?: number) {
         for (let p of pairs) {
-            this.add(p[0], p[1], eps);
+            this.add(p[0], p[1], eps, false);
         }
         this.computeDual();
     }
