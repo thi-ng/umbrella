@@ -66,7 +66,7 @@ export const DEFAULT_INPUTS = [
     `(def hello (x) (str "hello, " x))
 (print (hello -12.3))`,
     "(hello world)",
-    "intentionally left black",
+    "intentionally left blank",
 ];
 
 export const LINK_CLASSES = "link blue";
