@@ -3,15 +3,11 @@ import { set, Vec } from "@thi.ng/vectors";
 import { copyAttribs } from "../internal/copy-attribs";
 
 export class Plane implements IHiccupShape {
-    normal: Vec;
-    w: number;
-    attribs?: Attribs;
-
-    constructor(normal: Vec = [0, 1, 0], w = 0, attribs?: Attribs) {
-        this.normal = normal;
-        this.w = w;
-        this.attribs = attribs;
-    }
+    constructor(
+        public normal: Vec = [0, 1, 0],
+        public w = 0,
+        public attribs?: Attribs
+    ) {}
 
     get type() {
         return Type.PLANE;

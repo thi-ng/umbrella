@@ -4,14 +4,14 @@ import { add2, set, Vec } from "@thi.ng/vectors";
 import { copyAttribs } from "../internal/copy-attribs";
 
 export class Rect implements AABBLike, IHiccupShape {
-    pos: Vec;
     size: Vec;
-    attribs?: Attribs;
 
-    constructor(pos: Vec = [0, 0], size: number | Vec = 1, attribs?: Attribs) {
-        this.pos = pos;
+    constructor(
+        public pos: Vec = [0, 0],
+        size: number | Vec = 1,
+        public attribs?: Attribs
+    ) {
         this.size = isNumber(size) ? [size, size] : size;
-        this.attribs = attribs;
     }
 
     get type() {

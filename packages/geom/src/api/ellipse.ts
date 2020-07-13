@@ -4,18 +4,14 @@ import { set, Vec } from "@thi.ng/vectors";
 import { copyAttribs } from "../internal/copy-attribs";
 
 export class Ellipse implements IHiccupShape {
-    pos: Vec;
     r: Vec;
-    attribs?: Attribs;
 
     constructor(
-        pos: Vec = [0, 0],
+        public pos: Vec = [0, 0],
         r: number | Vec = [1, 1],
-        attribs?: Attribs
+        public attribs?: Attribs
     ) {
-        this.pos = pos;
         this.r = isNumber(r) ? [r, r] : r;
-        this.attribs = attribs;
     }
 
     get type() {

@@ -3,15 +3,7 @@ import { maddN2, set, Vec } from "@thi.ng/vectors";
 import { copyAttribs } from "../internal/copy-attribs";
 
 export class Ray implements IHiccupShape {
-    pos: Vec;
-    dir: Vec;
-    attribs?: Attribs;
-
-    constructor(pos: Vec, dir: Vec, attribs?: Attribs) {
-        this.pos = pos;
-        this.dir = dir;
-        this.attribs = attribs;
-    }
+    constructor(public pos: Vec, public dir: Vec, public attribs?: Attribs) {}
 
     get type() {
         return Type.RAY;
