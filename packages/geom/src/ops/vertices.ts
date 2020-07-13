@@ -1,4 +1,5 @@
-import { isNumber } from "@thi.ng/checks";
+import type { IObjectOf } from "@thi.ng/api";
+import { isArray, isNumber } from "@thi.ng/checks";
 import { defmulti, Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
 import { DEFAULT_SAMPLES, IShape, SamplingOpts, Type } from "@thi.ng/geom-api";
 import { sample as _arcVertices } from "@thi.ng/geom-arc";
@@ -19,7 +20,6 @@ import { Polyline } from "../api/polyline";
 import { Quadratic } from "../api/quadratic";
 import { Rect } from "../api/rect";
 import { dispatch } from "../internal/dispatch";
-import type { IObjectOf } from "@thi.ng/api";
 
 export const vertices: MultiFn1O<
     IShape,
@@ -123,6 +123,15 @@ vertices.isa(Type.LINE, Type.POLYLINE);
 vertices.isa(Type.POINTS3, Type.POINTS);
 vertices.isa(Type.QUAD, Type.POLYGON);
 vertices.isa(Type.TRIANGLE, Type.POLYGON);
+
+/**
+ * Takes array of vectors or an `IShape`. If the latter, calls {@link vertices}
+ * and return result, else returns original array.
+ *
+ * @param shape
+ */
+export const ensureVertices = (shape: IShape | Vec[]) =>
+    isArray(shape) ? shape : vertices(shape);
 
 const circleOpts = (
     opts: number | Partial<SamplingOpts>,
