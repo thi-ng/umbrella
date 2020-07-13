@@ -8,15 +8,29 @@ import { Path } from "../api/path";
 import { Quadratic } from "../api/quadratic";
 import { arcFrom2Points } from "./arc";
 
+export interface PathBuilderOpts {
+    /**
+     * If true (default), "move" commands will start a new path and
+     * {@link PathBuilder} might produce multiple {@link Path}s. In general,
+     * it's NOT recommended to disable this behavior since various path related
+     * operations will not function properly anymore. However, there're some use
+     * cases where auto-splitting is undesirable and this option primarily
+     * exists for those.
+     */
+    autoSplit: boolean;
+}
+
 export class PathBuilder {
     paths: Path[];
-    attribs?: Attribs;
     protected curr!: Path;
     protected currP!: Vec;
     protected bezierP!: Vec;
     protected startP!: Vec;
 
-    constructor(attribs?: Attribs) {
+    constructor(
+        public attribs?: Attribs,
+        public opts: Partial<PathBuilderOpts> = {}
+    ) {
         this.paths = [];
         this.attribs = attribs;
         this.newPath();
@@ -39,8 +53,8 @@ export class PathBuilder {
     }
 
     moveTo(p: Vec, relative = false): PathBuilder {
-        if (this.curr.segments.length > 0) {
-            this.curr = new Path();
+        if (this.opts.autoSplit !== false && this.curr.segments.length > 0) {
+            this.curr = new Path([], this.attribs);
             this.paths.push(this.curr);
         }
         p = this.updateCurrent(p, relative);
@@ -184,4 +198,7 @@ export class PathBuilder {
     }
 }
 
-export const pathBuilder = (attribs?: Attribs) => new PathBuilder(attribs);
+export const pathBuilder = (
+    attribs?: Attribs,
+    opts?: Partial<PathBuilderOpts>
+) => new PathBuilder(attribs, opts);

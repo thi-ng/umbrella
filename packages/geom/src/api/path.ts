@@ -5,15 +5,12 @@ import { copyAttribs } from "../internal/copy-attribs";
 import { copy } from "@thi.ng/vectors";
 
 export class Path implements IHiccupShape {
-    segments: PathSegment[];
-    closed: boolean;
-    attribs?: Attribs;
+    closed = false;
 
-    constructor(segments?: PathSegment[], attribs?: Attribs) {
-        this.segments = segments || [];
-        this.attribs = attribs;
-        this.closed = false;
-    }
+    constructor(
+        public segments: PathSegment[] = [],
+        public attribs?: Attribs
+    ) {}
 
     get type() {
         return Type.PATH;
@@ -51,9 +48,13 @@ export class Path implements IHiccupShape {
         const segments = this.segments;
         const n = segments.length;
         if (n > 1) {
-            dest.push(["M", segments[0].point]);
-            for (let i = 1; i < n; i++) {
-                dest = dest.concat(segments[i].geo!.toHiccupPathSegments());
+            for (let i = 0; i < n; i++) {
+                const s = segments[i];
+                if (s.geo) {
+                    dest = dest.concat(s.geo!.toHiccupPathSegments());
+                } else if (s.point) {
+                    dest.push(["M", s.point]);
+                }
             }
             if (this.closed) {
                 dest.push(["Z"]);
