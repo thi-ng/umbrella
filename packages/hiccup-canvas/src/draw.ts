@@ -3,7 +3,7 @@ import type { DrawState } from "./api";
 import { circularArc, ellipticArc } from "./arc";
 import { defLinearGradient, defRadialGradient } from "./color";
 import { image } from "./image";
-import { line } from "./line";
+import { line, lines } from "./line";
 import { packedPoints } from "./packed-points";
 import { path } from "./path";
 import { points } from "./points";
@@ -59,6 +59,9 @@ export const draw = (
             break;
         case "line":
             line(ctx, attribs, shape[2], shape[3]);
+            break;
+        case "lines":
+            lines(ctx, attribs, shape[2]);
             break;
         case "hline":
             line(ctx, attribs, [-1e6, shape[2]], [1e6, shape[2]]);
