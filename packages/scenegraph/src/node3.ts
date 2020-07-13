@@ -1,15 +1,15 @@
-import { isNumber } from "@thi.ng/checks";
+import { deref, IToHiccup, Nullable } from "@thi.ng/api";
+import { isFunction, isNumber } from "@thi.ng/checks";
 import { invert44, mulM44, mulV344, transform44 } from "@thi.ng/matrices";
-import { ANode } from "./anode";
-import type { IToHiccup, Nullable } from "@thi.ng/api";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { ANode } from "./anode";
 import type { ISceneNode } from "./api";
 
 export class Node3D extends ANode<Node3D>
     implements ISceneNode<Node3D>, IToHiccup {
     translate: Vec;
     rotate: Vec;
-    scale: Vec;
+    scale: Vec | number;
 
     constructor(
         id: string,
@@ -52,22 +52,25 @@ export class Node3D extends ANode<Node3D>
     }
 
     /**
-     * By implementing this method (`IToHiccup` interface), scene graph
-     * nodes can be directly used by hdom-canvas.
+     * Future support planned. No immediate users of this method in a 3D context
+     * available thus far.
+     *
+     * @param ctx - arbitrary user data
      */
-    toHiccup() {
+    toHiccup(ctx?: any): any {
+        const body = isFunction(this.body) ? this.body(ctx) : deref(this.body);
         return this.enabled && this.display
             ? this.children.length
                 ? [
                       "g",
                       {},
                       this.body
-                          ? ["g", { transform: this.mat }, this.body]
+                          ? ["g", { transform: this.mat }, body]
                           : undefined,
-                      ...this.children,
+                      ...this.children.map((c) => c.toHiccup(ctx)),
                   ]
-                : this.body
-                ? ["g", { transform: this.mat }, this.body]
+                : body
+                ? ["g", { transform: this.mat }, body]
                 : undefined
             : undefined;
     }
