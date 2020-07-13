@@ -36,7 +36,6 @@ export interface Vertex<T> {
 
 export class DVMesh<T> {
     first: Edge<Vertex<T>>;
-    boundsTri: ReadonlyVec[];
     nextID: number;
 
     constructor(pts?: ReadonlyVec[] | Pair<ReadonlyVec, T>[], size = 1e5) {
@@ -49,7 +48,6 @@ export class DVMesh<T> {
         eab.sym.splice(ebc);
         ebc.sym.splice(eca);
         eca.sym.splice(eab);
-        this.boundsTri = [a.pos, b.pos, c.pos];
         this.first = eab;
         this.nextID = 3;
         if (pts && pts.length) {
@@ -166,16 +164,16 @@ export class DVMesh<T> {
             if (!e.origin || !visitedVerts[e.origin.id]) {
                 let t = e.rot;
                 const a = t.origin.pos;
-                let isBounds = this.isBoundary(a);
+                let isBoundary = t.origin.id < 3;
                 t = t.lnext;
                 const b = t.origin.pos;
-                isBounds = isBounds && this.isBoundary(b);
+                isBoundary = isBoundary && t.origin.id < 3;
                 t = t.lnext;
                 const c = t.origin.pos;
-                isBounds = isBounds && this.isBoundary(c);
+                isBoundary = isBoundary && t.origin.id < 3;
                 const id = this.nextID++;
                 e.origin = {
-                    pos: !isBounds ? circumCenter2(a, b, c)! : ZERO2,
+                    pos: !isBoundary ? circumCenter2(a, b, c)! : ZERO2,
                     id,
                 };
                 visitedVerts[id] = true;
@@ -259,9 +257,9 @@ export class DVMesh<T> {
         this.traverse(
             (e) => {
                 if (visitedEdges[e.id] || visitedEdges[e.sym.id]) return;
-                const a = e.origin.pos;
-                const b = e.dest.pos;
-                if (!this.isBoundary(a) && !this.isBoundary(b)) {
+                if (e.origin.id > 2 && e.dest.id > 2) {
+                    const a = e.origin.pos;
+                    const b = e.dest.pos;
                     if (boundsMinMax) {
                         const clip = liangBarsky2(
                             a,
@@ -290,21 +288,14 @@ export class DVMesh<T> {
             e = work.pop()!;
             if (visitedEdges[e.id]) continue;
             visitedEdges[e.id] = true;
-            if (
-                !this.isBoundary(e.origin.pos) &&
-                !this.isBoundary(e.rot.origin.pos)
-            ) {
-                if (edges || !visitedVerts[e.origin.id]) {
-                    visitedVerts[e.origin.id] = true;
+            const eoID = e.origin.id;
+            if (eoID > 2 && e.rot.origin.id > 2) {
+                if (edges || !visitedVerts[eoID]) {
+                    visitedVerts[eoID] = true;
                     proc(e, visitedEdges, visitedVerts);
                 }
             }
             work.push(e.sym, e.onext, e.lnext);
         }
-    }
-
-    protected isBoundary(v: ReadonlyVec) {
-        const b = this.boundsTri;
-        return eqDelta2(b[0], v) || eqDelta2(b[1], v) || eqDelta2(b[2], v);
     }
 }
