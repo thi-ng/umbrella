@@ -1,8 +1,8 @@
+import type { Attribs, IShape } from "@thi.ng/geom-api";
 import { serialize } from "@thi.ng/hiccup";
 import { convertTree, ff, svg } from "@thi.ng/hiccup-svg";
 import { collBounds } from "../internal/coll-bounds";
 import { bounds } from "./bounds";
-import type { Attribs, IShape } from "@thi.ng/geom-api";
 
 export const asSvg = (...args: any[]) =>
     args.map((x) => serialize(convertTree(x))).join("");
@@ -10,15 +10,16 @@ export const asSvg = (...args: any[]) =>
 export const svgDoc = (attribs: Attribs, ...xs: IShape[]) => {
     if (xs.length > 0) {
         if (!attribs || !attribs.viewBox) {
-            const [pos, size] = collBounds(xs, bounds)!;
-            attribs = {
-                width: ff(size[0]),
-                height: ff(size[1]),
-                viewBox: `${ff(pos[0])} ${ff(pos[1])} ${ff(size[0])} ${ff(
-                    size[1]
-                )}`,
-                ...attribs,
-            };
+            const cbounds = collBounds(xs, bounds);
+            if (cbounds) {
+                const [[x, y], [w, h]] = cbounds;
+                attribs = {
+                    width: ff(w),
+                    height: ff(h),
+                    viewBox: `${ff(x)} ${ff(y)} ${ff(w)} ${ff(h)}`,
+                    ...attribs,
+                };
+            }
         }
     }
     return svg(attribs, ...xs);
