@@ -131,7 +131,7 @@ const selectNode = () =>
 const app = () => {
     // update scene graph nodes
     hex.rotate += 0.005;
-    mulN2(triangle.scale, [1, 1], Math.sin(hex.rotate * 5) * 0.3 + 0.7);
+    mulN2(<Vec>triangle.scale, [1, 1], Math.sin(hex.rotate * 5) * 0.3 + 0.7);
     satellites.forEach((s) => (s.rotate += 0.02));
     // recompute matrices
     root.update();
