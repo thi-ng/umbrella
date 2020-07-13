@@ -1,4 +1,8 @@
-import { intersectRayPolylineAll } from "@thi.ng/geom-isec";
+import {
+    intersectLinePolylineAll,
+    intersectRayPolylineAll,
+    pointInPolygon2,
+} from "@thi.ng/geom-isec";
 import { direction, ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 /**
@@ -20,6 +24,26 @@ export const clipLinePoly = (
     if (!isecs) return;
     const segments: Vec[][] = [];
     for (let i = 0; i < isecs.length; i += 2) {
+        segments.push([<Vec>isecs[i], <Vec>isecs[i + 1]]);
+    }
+    return segments;
+};
+
+export const clipLineSegmentPoly = (
+    a: ReadonlyVec,
+    b: ReadonlyVec,
+    pts: ReadonlyVec[]
+) => {
+    const isecs = intersectLinePolylineAll(a, b, pts, true).isec;
+    const isAInside = pointInPolygon2(a, pts);
+    const isBInside = pointInPolygon2(b, pts);
+    if (!isecs) {
+        return isAInside && isBInside ? [[a, b]] : undefined;
+    }
+    isAInside && (<Vec[]>isecs).unshift(a);
+    isBInside && (<Vec[]>isecs).push(b);
+    const segments: Vec[][] = [];
+    for (let i = 0, n = isecs.length - 1; i < n; i += 2) {
         segments.push([<Vec>isecs[i], <Vec>isecs[i + 1]]);
     }
     return segments;
