@@ -12,7 +12,7 @@ const assertEqual = (res: any, exp: any, msg?: string) => {
     }
 };
 
-const assertEqualDelta = (res: any, exp: any, eps?: number, msg?: string) => {
+const assertEqualDelta = (res: any, exp: any, eps = 1e-3, msg?: string) => {
     if (!eqDelta(res, exp, eps)) {
         process.stderr.write(msg || `expected: ${exp}, got ${res}\n\n`);
         process.exit(1);
