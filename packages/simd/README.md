@@ -68,9 +68,7 @@ for sources:
 - `sub4_f32`
 - `subn4_f32`
 - `sum4_f32`
-- `swizzle4_32` (!)
-
-(!) Missing native implementation, waiting on...
+- `swizzle4_32` (f32 and u32)
 
 (2) 2x vec2 per iteration
 
@@ -85,7 +83,7 @@ for documentation about the exposed TS/JS API...
 The [WebAssembly SIMD spec](https://github.com/WebAssembly/simd) is
 still WIP and (at the time of writing) only partially implemented and
 hidden behind feature flags. Currently only fully tested (& testable for
-me) on Node 14.1.
+me) on Node 14.1+.
 
 - [SIMD implementation status](https://github.com/WebAssembly/simd/blob/master/proposals/simd/ImplementationStatus.md)
 - Node (v12.10+): `node --experimental-wasm-simd`
@@ -105,7 +103,7 @@ yarn add @thi.ng/simd
 <script src="https://unpkg.com/@thi.ng/simd/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.38 KB / CJS: 2.45 KB / UMD: 2.55 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.53 KB / CJS: 2.59 KB / UMD: 2.69 KB
 
 ## Dependencies
 

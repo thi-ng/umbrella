@@ -180,6 +180,9 @@ export interface SIMD {
 
     sum4_f32(a: number, num: number, sa: number): number;
 
+    // prettier-ignore
+    swizzle4_32_aos(out: number, a: number, x: number, y: number, z: number, w: number, num: number, so: number, sa: number): number;
+
     /**
      * WASM memory instance given to `init()`.
      */
