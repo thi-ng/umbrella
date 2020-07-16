@@ -3,13 +3,10 @@ import { Attribs, IHiccupShape, Type } from "@thi.ng/geom-api";
 import { copyAttribs } from "../internal/copy-attribs";
 
 export class Group implements IHiccupShape {
-    children: IHiccupShape[];
-    attribs: Attribs;
-
-    constructor(attribs: Attribs, children?: IHiccupShape[]) {
-        this.attribs = attribs;
-        this.children = children || [];
-    }
+    constructor(
+        public attribs: Attribs,
+        public children: IHiccupShape[] = []
+    ) {}
 
     get type() {
         return Type.GROUP;

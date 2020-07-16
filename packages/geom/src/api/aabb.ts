@@ -4,18 +4,14 @@ import { add3, set, Vec } from "@thi.ng/vectors";
 import { copyAttribs } from "../internal/copy-attribs";
 
 export class AABB implements AABBLike {
-    pos: Vec;
     size: Vec;
-    attribs?: Attribs;
 
     constructor(
-        pos: Vec = [0, 0, 0],
+        public pos: Vec = [0, 0, 0],
         size: number | Vec = 1,
-        attribs?: Attribs
+        public attribs?: Attribs
     ) {
-        this.pos = pos;
         this.size = isNumber(size) ? [size, size, size] : size;
-        this.attribs = attribs;
     }
 
     get type() {

@@ -40,35 +40,24 @@ export const circumCenter2 = (
         return;
     }
 
-    let m1, m2, mx1, mx2, my1, my2, xc, yc;
-
     const abx2 = (ax + bx) / 2;
     const aby2 = (ay + by) / 2;
     const bcx2 = (bx + cx) / 2;
     const bcy2 = (by + cy) / 2;
 
     if (deltaAB < eps) {
-        m2 = -cbx / cby;
-        mx2 = bcx2;
-        my2 = bcy2;
-        xc = abx2;
-        yc = m2 * (xc - mx2) + my2;
-    } else if (deltaBC < eps) {
-        m1 = -bax / bay;
-        mx1 = abx2;
-        my1 = aby2;
-        xc = bcx2;
-        yc = m1 * (xc - mx1) + my1;
-    } else {
-        m1 = -bax / bay;
-        m2 = -cbx / cby;
-        mx1 = abx2;
-        my1 = aby2;
-        mx2 = bcx2;
-        my2 = bcy2;
-        xc = (m1 * mx1 - m2 * mx2 + my2 - my1) / (m1 - m2);
-        yc = deltaAB > deltaBC ? m1 * (xc - mx1) + my1 : m2 * (xc - mx2) + my2;
+        return [abx2, (-cbx / cby) * (abx2 - bcx2) + bcy2];
     }
-
+    if (deltaBC < eps) {
+        return [bcx2, (-bax / bay) * (bcx2 - abx2) + aby2];
+    }
+    let m1 = -bax / bay;
+    let m2 = -cbx / cby;
+    let mx1 = abx2;
+    let my1 = aby2;
+    let mx2 = bcx2;
+    let my2 = bcy2;
+    let xc = (m1 * mx1 - m2 * mx2 + my2 - my1) / (m1 - m2);
+    let yc = deltaAB > deltaBC ? m1 * (xc - mx1) + my1 : m2 * (xc - mx2) + my2;
     return [xc, yc];
 };

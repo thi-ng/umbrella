@@ -2,13 +2,7 @@ import type { Attribs, IShape, PCLike } from "@thi.ng/geom-api";
 import type { Vec } from "@thi.ng/vectors";
 
 export abstract class APC implements PCLike {
-    points: Vec[];
-    attribs?: Attribs;
-
-    constructor(points?: Vec[], attribs?: Attribs) {
-        this.points = points || [];
-        this.attribs = attribs;
-    }
+    constructor(public points: Vec[] = [], public attribs?: Attribs) {}
 
     abstract get type(): number | string;
     abstract copy(): IShape;

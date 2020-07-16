@@ -3,15 +3,11 @@ import { set3, Vec } from "@thi.ng/vectors";
 import { copyAttribs } from "../internal/copy-attribs";
 
 export class Sphere implements IHiccupShape {
-    pos: Vec;
-    r: number;
-    attribs?: Attribs;
-
-    constructor(pos: Vec = [0, 0, 0], r = 1, attribs?: Attribs) {
-        this.pos = pos;
-        this.r = r;
-        this.attribs = attribs;
-    }
+    constructor(
+        public pos: Vec = [0, 0, 0],
+        public r = 1,
+        public attribs?: Attribs
+    ) {}
 
     get type() {
         return Type.SPHERE;

@@ -13,34 +13,16 @@ import { set, Vec } from "@thi.ng/vectors";
 import { copyAttribs } from "../internal/copy-attribs";
 
 export class Arc implements IHiccupShape, IHiccupPathSegment {
-    pos: Vec;
-    r: Vec;
-    start: number;
-    end: number;
-    axis: number;
-    xl: boolean;
-    cw: boolean;
-    attribs?: Attribs;
-
     constructor(
-        pos: Vec,
-        r: Vec,
-        axis: number,
-        start: number,
-        end: number,
-        xl = false,
-        cw = false,
-        attribs?: Attribs
-    ) {
-        this.pos = pos;
-        this.r = r;
-        this.axis = axis;
-        this.start = start;
-        this.end = end;
-        this.xl = xl;
-        this.cw = cw;
-        this.attribs = attribs;
-    }
+        public pos: Vec,
+        public r: Vec,
+        public axis: number,
+        public start: number,
+        public end: number,
+        public xl = false,
+        public cw = false,
+        public attribs?: Attribs
+    ) {}
 
     get type() {
         return Type.ARC;

@@ -2,6 +2,7 @@ export * from "./point";
 
 export * from "./circle-circle";
 export * from "./line-line";
+export * from "./line-poly";
 export * from "./plane-plane";
 export * from "./ray-circle";
 export * from "./ray-line";

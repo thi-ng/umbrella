@@ -1,15 +1,15 @@
-import { isNumber } from "@thi.ng/checks";
+import { deref, IToHiccup, Nullable } from "@thi.ng/api";
+import { isFunction, isNumber } from "@thi.ng/checks";
 import { invert23, mulM23, mulV23, transform23 } from "@thi.ng/matrices";
-import { ANode } from "./anode";
-import type { IToHiccup, Nullable } from "@thi.ng/api";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { ANode } from "./anode";
 import type { ISceneNode } from "./api";
 
 export class Node2D extends ANode<Node2D>
     implements ISceneNode<Node2D>, IToHiccup {
     translate: Vec;
     rotate: number;
-    scale: Vec;
+    scale: Vec | number;
 
     constructor(
         id: string,
@@ -52,23 +52,26 @@ export class Node2D extends ANode<Node2D>
     }
 
     /**
-     * By implementing this method (`IToHiccup` interface), scene graph
-     * nodes can be directly used by hdom-canvas and/or hiccup-svg (for
-     * the latter one needs to call `convertTree()` first).
+     * By implementing this method (`IToHiccup` interface), scene graph nodes
+     * can be directly used by hdom-canvas, hiccup-canvas, rdom-canvas or
+     * hiccup-svg (for the latter one needs to call `convertTree()` first).
+     *
+     * @param ctx - arbitrary user data
      */
-    toHiccup() {
+    toHiccup(ctx?: any): any {
+        const body = isFunction(this.body) ? this.body(ctx) : deref(this.body);
         return this.enabled && this.display
             ? this.children.length
                 ? [
                       "g",
                       {},
                       this.body
-                          ? ["g", { transform: this.mat }, this.body]
+                          ? ["g", { transform: this.mat }, body]
                           : undefined,
-                      ...this.children,
+                      ...this.children.map((c) => c.toHiccup(ctx)),
                   ]
-                : this.body
-                ? ["g", { transform: this.mat }, this.body]
+                : body
+                ? ["g", { transform: this.mat }, body]
                 : undefined
             : undefined;
     }

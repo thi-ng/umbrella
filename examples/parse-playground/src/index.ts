@@ -194,20 +194,33 @@ $compile(
             // test input editor
             div(
                 {},
+                // tabbed content component (here to wrap multiple editors for
+                // test inputs)
                 tabs(inputID, {
-                    attribs: {},
+                    // facctory function for single tab headings
                     head: (_, title, id, selected) =>
                         div(
                             TAB_CLASSES,
                             {
+                                // the class attrib is defined as object of
+                                // booleans here, where each key's value
+                                // indicates if that class should be used or not
+                                // the classes listed here will be merged with
+                                // the `TAB_CLASSES` given above
                                 class: {
                                     "bg-white black": selected,
                                     "bg-moon-gray gray": !selected,
                                 },
+                                // all tab headers should have an onclick
+                                // handler (unless you want to disable selecting
+                                // tabs in some cases)
                                 onclick: () => inputID.next(id),
                             },
                             title
                         ),
+                    // array of tab specs
+                    // the `content` fn should return a `ComponentLike` data structure
+                    // it's an async fn to support lazy & dynamic import() of tab contents
                     sections: [
                         ...map(
                             (i) => ({
@@ -215,7 +228,7 @@ $compile(
                                 content: async () =>
                                     editor(srcInputs[i], EDITOR_OPTS),
                             }),
-                            range(3)
+                            range(DEFAULT_INPUTS.length)
                         ),
                     ],
                 })

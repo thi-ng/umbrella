@@ -5,11 +5,11 @@ import { Subscription } from "@thi.ng/rstream";
 import { dedupe, map, range } from "@thi.ng/transducers";
 
 export interface TabOpts {
-    attribs: {
-        wrapper?: Partial<Attribs>;
-        tab?: Partial<Attribs>;
-        content?: Partial<Attribs>;
-    };
+    attribs?: Partial<{
+        wrapper: Partial<Attribs>;
+        tab: Partial<Attribs>;
+        content: Partial<Attribs>;
+    }>;
     head: Fn4<
         Subscription<number, number>,
         string,
@@ -23,18 +23,16 @@ export interface TabOpts {
     }[];
 }
 
-export const tabs = (
-    src: Subscription<number, number>,
-    { attribs, head, sections }: TabOpts
-) => {
+export const tabs = (src: Subscription<number, number>, opts: TabOpts) => {
+    const { attribs, head, sections } = <TabOpts>{ attribs: {}, ...opts };
     return div(
-        attribs.wrapper,
+        attribs!.wrapper,
         $list(
             src.map((id) => [
                 ...map((i) => <const>[i, i === id], range(sections.length)),
             ]),
             "div",
-            attribs.tab,
+            attribs!.tab,
             ([i, sel]) => head(src, sections[i].title, i, sel)
         ),
         $switch<number>(
@@ -42,7 +40,7 @@ export const tabs = (
             (x) => x,
             sections.reduce((acc, { content }, i) => {
                 acc[i] = async (i) =>
-                    section(attribs.content, await content(i));
+                    section(attribs!.content, await content(i));
                 return acc;
             }, <Record<number, Fn<number, Promise<ComponentLike>>>>{})
         )
