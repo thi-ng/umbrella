@@ -66,4 +66,9 @@ describe("Trie", () => {
         assert(root.delete("h"));
         assert.deepEqual([...root], []);
     });
+
+    it("known prefix", () => {
+        assert.deepEqual(root.knownPrefix("hole"), ["h", "o", "l"]);
+        assert.deepEqual(root.knownPrefix("whole"), []);
+    });
 });
