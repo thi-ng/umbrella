@@ -55,6 +55,9 @@ cat << EOF > "$MODULE"/package.json
         "process": false
     },
     "thi.ng": {
+        "skip": true,
+        "readme": false,
+        "screenshot": "examples/"
     }
 }
 EOF

@@ -77,6 +77,29 @@ export class Trie<K extends ArrayLike<any>, T> {
         return node;
     }
 
+    /**
+     * Returns longest known prefix for `key` as array. If array is
+     * empty, the given key has no partial matches.
+     *
+     * @param key
+     */
+    knownPrefix(key: K) {
+        let node: Trie<K, T> | undefined = this;
+        const prefix: K[] = [];
+        for (let i = 0, n = key.length; i < n; i++) {
+            const k = key[i].toString();
+            const next: Trie<K, T> | undefined = node!.next[k];
+            if (!next) break;
+            prefix.push(k);
+            node = next;
+        }
+        return prefix;
+    }
+
+    hasKnownPrefix(key: K) {
+        return this.knownPrefix(key).length > 0;
+    }
+
     add(key: K, val: T) {
         let node: Trie<K, T> = this;
         for (let i = 0, n = key.length; i < n; i++) {
