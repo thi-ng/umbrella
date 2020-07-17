@@ -33,4 +33,44 @@ link: '['! <title> "]("! <url> <end>! => collect ;
         assert(lang!.rules.link(ctx));
         assert.deepEqual(ctx.result, ["abc", "def"]);
     });
+
+    const checkDiscard = (grammar: string, input: string) => {
+        const lang = defGrammar(grammar);
+        const ctx = defContext(input);
+        assert(lang!.rules.a(ctx));
+        assert(ctx.done);
+        assert.equal(ctx.children!.length, 1, grammar);
+    };
+
+    it("discard lit", () => {
+        checkDiscard(`a: 'a'! 'b' ;`, "ab");
+    });
+
+    it("discard string", () => {
+        checkDiscard(`a: "a"! 'b' ;`, "ab");
+    });
+
+    it("discard charsel", () => {
+        checkDiscard(`a: [A-B]! 'b' ;`, "Ab");
+    });
+
+    it("discard charsel inv", () => {
+        checkDiscard(`a: [^A-B]! 'b' ;`, "ab");
+    });
+
+    it("discard ref", () => {
+        checkDiscard(`aa: . ; a: <aa>! 'b' ;`, "xb");
+    });
+
+    it("discard alt1", () => {
+        checkDiscard(`a: ('a')! 'b' ;`, "ab");
+    });
+
+    it("discard alt2", () => {
+        checkDiscard(`a: ('a' | 'A')! 'b' ;`, "Ab");
+    });
+
+    it("discard alt2 ref", () => {
+        checkDiscard(`aa: 'a' ; AA: 'A'; a: (<aa> | <AA>)! 'b' ;`, "Ab");
+    });
 });
