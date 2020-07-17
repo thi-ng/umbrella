@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/simd@0.2.9...@thi.ng/simd@0.3.0) (2020-07-17)
+
+
+### Features
+
+* **simd:** update & enable swizzle4_u32_aos() ([ae1ad77](https://github.com/thi-ng/umbrella/commit/ae1ad77a7e5e117bfe8a01f3b33526c6ef6633fe))
+
+
+
+
+
 ## [0.2.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/simd@0.2.8...@thi.ng/simd@0.2.9) (2020-07-08)
 
 **Note:** Version bump only for package @thi.ng/simd

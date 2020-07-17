@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@4.4.1...@thi.ng/associative@4.5.0) (2020-07-17)
+
+
+### Features
+
+* **associative:** add Trie.knownPrefix() ([26ddd2c](https://github.com/thi-ng/umbrella/commit/26ddd2ceaf7d9327cf0d6f65d9153cff476f2081))
+
+
+
+
+
 ## [4.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@4.4.0...@thi.ng/associative@4.4.1) (2020-07-08)
 
 

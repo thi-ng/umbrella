@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom-poly-utils",
-    "version": "0.1.55",
+    "version": "0.1.56",
     "description": "2D polygon / triangle analysis & processing utilities",
     "module": "./index.js",
     "main": "./lib/index.js",

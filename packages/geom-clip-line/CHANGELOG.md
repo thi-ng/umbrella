@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.1.4...@thi.ng/geom-clip-line@1.2.0) (2020-07-17)
+
+
+### Features
+
+* **geom-clip-line:** add clipLineSegmentPoly() ([bec7b93](https://github.com/thi-ng/umbrella/commit/bec7b93f13450a02ca62995992d1f488d2ff24be))
+
+
+
+
+
 ## [1.1.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.1.3...@thi.ng/geom-clip-line@1.1.4) (2020-07-08)
 
 **Note:** Version bump only for package @thi.ng/geom-clip-line

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isec@0.4.26...@thi.ng/geom-isec@0.5.0) (2020-07-17)
+
+
+### Features
+
+* **geom-isec:** add intersectLinePolylineAll() ([1f38d92](https://github.com/thi-ng/umbrella/commit/1f38d92e0d88c855251fa14627975b0bb1c7cf39))
+
+
+
+
+
 ## [0.4.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isec@0.4.25...@thi.ng/geom-isec@0.4.26) (2020-07-08)
 
 **Note:** Version bump only for package @thi.ng/geom-isec

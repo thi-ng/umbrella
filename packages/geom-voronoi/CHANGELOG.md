@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-voronoi@0.1.55...@thi.ng/geom-voronoi@0.2.0) (2020-07-17)
+
+
+### Features
+
+* **geom-voronoi:** update DVMesh.add() ([caa341b](https://github.com/thi-ng/umbrella/commit/caa341b8e40630981ca71db1c7cb84e8b30f4cc6))
+
+
+### Performance Improvements
+
+* **geom-voronoi:** optimize boundary vertex checks ([e4169bd](https://github.com/thi-ng/umbrella/commit/e4169bd73107b4835c0739676bd296c0e4902b1e))
+
+
+
+
+
 ## [0.1.55](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-voronoi@0.1.54...@thi.ng/geom-voronoi@0.1.55) (2020-07-08)
 
 **Note:** Version bump only for package @thi.ng/geom-voronoi

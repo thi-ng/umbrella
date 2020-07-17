@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.10.7...@thi.ng/geom@1.11.0) (2020-07-17)
+
+
+### Bug Fixes
+
+* **geom:** update svgDoc() attrib inject (add null check) ([6898975](https://github.com/thi-ng/umbrella/commit/6898975f9d1604486add067904ac284d3837dba6))
+
+
+### Features
+
+* **geom:** add PathBuilderOpts, update Path.toHiccup() ([deb9892](https://github.com/thi-ng/umbrella/commit/deb98927bd08f717abbee4d9a171bd3e3236cb00))
+* **geom:** add/update clipVertex() impls ([a87c31c](https://github.com/thi-ng/umbrella/commit/a87c31cbb5be4ddd9c6159362386204f396d1f2e))
+
+
+
+
+
 ## [1.10.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.10.6...@thi.ng/geom@1.10.7) (2020-07-08)
 
 **Note:** Version bump only for package @thi.ng/geom

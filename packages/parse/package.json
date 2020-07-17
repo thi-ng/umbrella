@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/parse",
-    "version": "0.7.0",
+    "version": "0.7.1",
     "description": "Purely functional parser combinators & AST generation for generic inputs",
     "module": "./index.js",
     "main": "./lib/index.js",

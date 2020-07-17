@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/scenegraph@0.1.27...@thi.ng/scenegraph@0.2.0) (2020-07-17)
+
+
+### Features
+
+* **scenegraph:** update `.toHiccuo()` impls, update .scale type ([2f0a3cc](https://github.com/thi-ng/umbrella/commit/2f0a3cc6286bf8492c74c4497f13fe300980c353))
+
+
+
+
+
 ## [0.1.27](https://github.com/thi-ng/umbrella/compare/@thi.ng/scenegraph@0.1.26...@thi.ng/scenegraph@0.1.27) (2020-07-08)
 
 **Note:** Version bump only for package @thi.ng/scenegraph

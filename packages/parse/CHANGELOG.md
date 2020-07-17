@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.7.0...@thi.ng/parse@0.7.1) (2020-07-17)
+
+
+### Performance Improvements
+
+* **parse:** update grammar, use discarding parsers where possible ([d269a8a](https://github.com/thi-ng/umbrella/commit/d269a8a3f5b5ee47d60f86343a163c9903ce6923))
+
+
+
+
+
 # [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.6.2...@thi.ng/parse@0.7.0) (2020-07-08)
 
 
