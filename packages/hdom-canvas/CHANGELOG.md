@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@3.0.10...@thi.ng/hdom-canvas@3.0.11) (2020-07-17)
+
+**Note:** Version bump only for package @thi.ng/hdom-canvas
+
+
+
+
+
 ## [3.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@3.0.9...@thi.ng/hdom-canvas@3.0.10) (2020-07-17)
 
 **Note:** Version bump only for package @thi.ng/hdom-canvas
