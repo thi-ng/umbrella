@@ -50,6 +50,8 @@ const parseState = ((): Nullable<string[]> => {
 const [srcGrammar, activeRule, ...srcInputs] = parseState.map((src) =>
     reactive(src, { closeOut: CloseMode.NEVER })
 );
+console.log(srcGrammar.deref());
+console.log(srcInputs[0].deref());
 
 // selected codegen template ID
 const activeTpl = reactive("ts");
@@ -132,10 +134,12 @@ sync<any, any>({
     src: { grammar: srcGrammar, rule: activeRule, _: activeInput },
 }).subscribe({
     next({ grammar, rule }) {
-        location.hash = base64Encode(
+        const hash = base64Encode(
             { safe: true },
             serialize([grammar, rule, ...srcInputs.map((i) => i.deref())])
         ).replace(/=/g, "");
+        location.hash =
+            hash.length < 1024 ? hash : "content-too-large-for-uri-hash";
     },
 });
 
@@ -235,14 +239,14 @@ $compile(
             ),
             // AST output
             div(
-                {},
+                EDITOR_OPTS.wrapper,
                 textArea({
                     class: result.map(formatStatus),
                     value: result.transform(pluck("body")),
                     disabled: true,
                     rows: 16,
                 }),
-                div(".f7", {}, result.map(formatTime))
+                div(EDITOR_OPTS.cursor!.attribs, result.map(formatTime))
             ),
             // user controls
             div(

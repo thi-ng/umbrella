@@ -48,7 +48,7 @@ export const lang = defGrammar(\`\n{2}\n\`);
 
 export const parse = (src: string, opts?: Partial<ContextOpts>) => {
     const ctx = defContext(src, opts);
-    return { result: lang.rules.{3}(ctx), ctx };
+    return { result: lang!.rules.{3}(ctx), ctx };
 };`,
     },
 };
