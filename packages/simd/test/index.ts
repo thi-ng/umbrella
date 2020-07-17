@@ -16,7 +16,7 @@ const assertEqual = (res: any, exp: any, msg?: string) => {
     !equiv(res, exp) && fail(res, exp, msg);
 };
 
-const assertEqualDelta = (res: any, exp: any, eps?: number, msg?: string) => {
+const assertEqualDelta = (res: any, exp: any, eps = 1e-3, msg?: string) => {
     !eqDelta(res, exp, eps) && fail(res, exp, msg);
 };
 
