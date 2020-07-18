@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@4.1.31...@thi.ng/resolve-map@4.2.0) (2020-07-18)
+
+
+### Features
+
+* **resolve-map:** add support for custom lookup prefix ([bf89503](https://github.com/thi-ng/umbrella/commit/bf89503424887018d120d3960d9d86a992c31c91))
+
+
+
+
+
 ## [4.1.31](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@4.1.30...@thi.ng/resolve-map@4.1.31) (2020-07-08)
 
 **Note:** Version bump only for package @thi.ng/resolve-map
