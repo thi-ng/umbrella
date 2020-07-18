@@ -10,25 +10,24 @@ export type ResolveFn = (path: string) => any;
 export type LookupPath = NumOrString[];
 
 /**
- * Visits all key-value pairs or array items in depth-first order,
- * expands any reference values, mutates the original object and returns
- * it. Cyclic references are not allowed and will throw an error.
- * However, refs pointing to other refs are recursively resolved (again,
- * provided there are no cycles).
+ * Visits all key-value pairs or array items in depth-first order, expands any
+ * reference values, mutates the original object and returns it. Cyclic
+ * references are not allowed and will throw an error. However, refs pointing to
+ * other refs are recursively resolved (again, provided there are no cycles).
  *
- * Reference values are special strings representing lookup paths of
- * other values in the object and are prefixed with `@` for relative
- * refs or `@/` for absolute refs and both using `/` as path separator
- * (Note: trailing slashes are NOT allowed!). Relative refs are resolved
- * from the currently visited object and support "../" prefixes to
- * access any parent levels. Absolute refs are always resolved from the
- * root level (the original object passed to this function).
+ * Reference values are special strings representing lookup paths of other
+ * values in the object and are prefixed with given `prefix` string (default:
+ * `@`) for relative refs or `@/` for absolute refs and both using `/` as path
+ * separator (Note: trailing slashes are NOT allowed!). Relative refs are
+ * resolved from the currently visited object and support "../" prefixes to
+ * access any parent levels. Absolute refs are always resolved from the root
+ * level (the original object passed to this function).
  *
  * @example
  * ```ts
  * // `c` references sibling `d`
  * // `d` references parent `a`
- * resolve({a: 1, b: {c: "@d", d: "@/a"} })
+ * resolve({ a: 1, b: { c: "@d", d: "@/a" } })
  * // { a: 1, b: { c: 1, d: 1 } }
  * ```
  *
@@ -52,11 +51,11 @@ export type LookupPath = NumOrString[];
  * ```
  * // `c` uses ES6 destructuring form to look up `a` & `b` values
  * // `d` uses provided resolve fn arg `$` to look up `c`
- * resolve({a: 1, b: 2, c: ({a,b}) => a + b, d: ($) => $("c") })
+ * resolve({ a: 1, b: 2, c: ({ a, b }) => a + b, d: ($) => $("c") })
  * // { a: 1, b: 2, c: 3, d: 3 }
  *
  * // last item references item @ index = 2
- * resolve([1,2, ($) => $("0") + $("1"), "@2"])
+ * resolve([1, 2, ($) => $("0") + $("1"), "@2"])
  * // [1, 2, 3, 3]
  * ```
  *
@@ -87,19 +86,21 @@ export type LookupPath = NumOrString[];
  * // 20
  * ```
  *
- *  @param root -
+ * @param root -
+ * @param prefix -
  */
-export const resolve = (root: any) => {
+export const resolve = (root: any, prefix = "@") => {
     if (isPlainObject(root)) {
-        return resolveMap(root);
+        return resolveMap(root, prefix);
     } else if (isArray(root)) {
-        return resolveArray(root);
+        return resolveArray(root, prefix);
     }
     return root;
 };
 
 const resolveMap = (
     obj: any,
+    prefix: string,
     root?: any,
     path: LookupPath = [],
     resolved: any = {},
@@ -107,13 +108,14 @@ const resolveMap = (
 ) => {
     root = root || obj;
     for (let k in obj) {
-        _resolve(root, [...path, k], resolved, stack);
+        _resolve(root, [...path, k], resolved, stack, prefix);
     }
     return obj;
 };
 
 const resolveArray = (
     arr: any[],
+    prefix: string,
     root?: any,
     path: LookupPath = [],
     resolved: any = {},
@@ -121,7 +123,7 @@ const resolveArray = (
 ) => {
     root = root || arr;
     for (let k = 0, n = arr.length; k < n; k++) {
-        _resolve(root, [...path, k], resolved, stack);
+        _resolve(root, [...path, k], resolved, stack, prefix);
     }
     return arr;
 };
@@ -141,7 +143,8 @@ const _resolve = (
     root: any,
     path: LookupPath,
     resolved: any,
-    stack: string[]
+    stack: string[],
+    prefix: string
 ) => {
     const pathID = path.join("/");
     if (stack.indexOf(pathID) >= 0) {
@@ -153,21 +156,33 @@ const _resolve = (
         let res = SEMAPHORE;
         stack.push(pathID);
         if (isPlainObject(v)) {
-            resolveMap(v, root, path, resolved, stack);
+            resolveMap(v, prefix, root, path, resolved, stack);
         } else if (isArray(v)) {
-            resolveArray(v, root, path, resolved, stack);
-        } else if (isString(v) && v.charAt(0) === "@") {
-            res = _resolve(root, absPath(path, v), resolved, stack);
+            resolveArray(v, prefix, root, path, resolved, stack);
+        } else if (isString(v) && v.startsWith(prefix)) {
+            res = _resolve(
+                root,
+                absPath(path, v, prefix.length),
+                resolved,
+                stack,
+                prefix
+            );
         } else if (isFunction(v)) {
             res = resolveFunction(
                 v,
                 (p: string) =>
-                    _resolve(root, absPath(path, p, 0), resolved, stack),
+                    _resolve(
+                        root,
+                        absPath(path, p, 0),
+                        resolved,
+                        stack,
+                        prefix
+                    ),
                 pathID,
                 resolved
             );
         } else if (!exists(root, path)) {
-            v = resolvePath(root, path, resolved, stack);
+            v = resolvePath(root, path, resolved, stack, prefix);
         }
         if (res !== SEMAPHORE) {
             mutInUnsafe(root, path, res);
@@ -200,13 +215,14 @@ const resolvePath = (
     root: any,
     path: LookupPath,
     resolved: any,
-    stack: string[] = []
+    stack: string[],
+    prefix: string
 ) => {
     // temporarily remove current path to avoid cycle detection
     let pathID = stack.pop();
     let v;
     for (let i = 1, n = path.length; i <= n; i++) {
-        v = _resolve(root, path.slice(0, i), resolved, stack);
+        v = _resolve(root, path.slice(0, i), resolved, stack, prefix);
     }
     // restore
     stack.push(pathID!);

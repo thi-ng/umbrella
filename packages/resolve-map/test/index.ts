@@ -180,4 +180,20 @@ describe("resolve-map", () => {
             "comma & whitespaces & rename"
         );
     });
+
+    it("custom prefix", () => {
+        assert.deepEqual(
+            resolve(
+                {
+                    a: {
+                        b: { c: ">>>../c/d", d: ">>>c", e: ">>>/c/d" },
+                        c: { d: 1 },
+                    },
+                    c: { d: 10 },
+                },
+                ">>>"
+            ),
+            { a: { b: { c: 1, d: 1, e: 10 }, c: { d: 1 } }, c: { d: 10 } }
+        );
+    });
 });
