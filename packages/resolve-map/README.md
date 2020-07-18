@@ -58,7 +58,7 @@ yarn add @thi.ng/resolve-map
 <script src="https://unpkg.com/@thi.ng/resolve-map/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 872 bytes / CJS: 921 bytes / UMD: 981 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 900 bytes / CJS: 953 bytes / UMD: 1010 bytes
 
 ## Dependencies
 
@@ -199,23 +199,27 @@ resolve({
 
 ### `resolve(obj)`
 
-Visits all key-value pairs or array items in depth-first order,
-expands any reference values, mutates the original object and returns
-it. Cyclic references are not allowed and will throw an error.
-However, refs pointing to other refs are recursively resolved (again,
-provided there are no cycles).
-Reference values are special strings representing lookup paths of
-other values in the object and are prefixed with `@` for relative
-refs or `@/` for absolute refs and both using `/` as path separator
-(Note: trailing slashes are NOT allowed!). Relative refs are resolved
-from the currently visited object and support "../" prefixes to
-access any parent levels. Absolute refs are always resolved from the
-root level (the original object passed to this function).
+Visits all key-value pairs or array items in depth-first order, expands any
+reference values, mutates the original object and returns it. Cyclic references
+are not allowed and will throw an error. However, refs pointing to other refs
+are recursively resolved (again, provided there are no cycles).
+
+Reference values are special strings representing lookup paths of other values
+in the object and are prefixed with given `prefix` string (default: `@`) for
+relative refs or `@/` for absolute refs and both using `/` as path separator
+(Note: trailing slashes are NOT allowed!). Relative refs are resolved from the
+currently visited object and support "../" prefixes to access any parent levels.
+Absolute refs are always resolved from the root level (the original object
+passed to this function).
 
 ```ts
 // `c` references sibling `d`
-// `d` references parent `a`
-resolve({a: 1, b: {c: "@d", d: "@/a"} })
+// `d` references top-level `a`
+resolve({ a: 1, b: { c: "@d", d: "@/a"} })
+// { a: 1, b: { c: 1, d: 1 } }
+
+// same with custom lookup prefix
+resolve({ a: 1, b: { c: ">>>d", d: ">>>/a"} }, ">>>")
 // { a: 1, b: { c: 1, d: 1 } }
 ```
 
@@ -241,11 +245,11 @@ object.
 ```ts
 // `c` uses ES6 destructuring form to look up `a` & `b` values
 // `d` uses provided resolve fn arg `$` to look up `c`
-resolve({a: 1, b: 2, c: ({a,b}) => a + b, d: ($) => $("c") })
+resolve({ a: 1, b: 2, c: ({ a, b }) => a + b, d: ($) => $("c") })
 // { a: 1, b: 2, c: 3, d: 3 }
 
 // last item references item @ index = 2
-resolve([1,2, ($) => $("0") + $("1"), "@2"])
+resolve([1, 2, ($) => $("0") + $("1"), "@2"])
 // [1, 2, 3, 3]
 ```
 
