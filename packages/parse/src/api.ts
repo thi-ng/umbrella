@@ -66,3 +66,26 @@ export interface Language {
     env: RuleTransforms;
     rules: Rules;
 }
+
+export interface ContextOpts {
+    /**
+     * Max recursion depth failsafe.
+     *
+     * @defaultVal 32
+     */
+    maxDepth: number;
+    /**
+     * True to enable parser debug output. Will emit details of each
+     * parse scope.
+     *
+     * @defaultValue false
+     */
+    debug: boolean;
+    /**
+     * True to retain reader state for each AST node. State of root node
+     * is always available.
+     *
+     * @defaultValue false
+     */
+    retain: boolean;
+}

@@ -1,32 +1,9 @@
 import { isArrayLike, isString } from "@thi.ng/checks";
-import type { IReader, ParseScope, ParseState } from "./api";
+import type { ContextOpts, IReader, ParseScope, ParseState } from "./api";
 import { parseError } from "./error";
 import { defArrayReader } from "./readers/array-reader";
 import { defStringReader } from "./readers/string-reader";
 import { indent } from "./utils";
-
-interface ContextOpts {
-    /**
-     * Max recursion depth failsafe.
-     *
-     * @defaultVal 32
-     */
-    maxDepth: number;
-    /**
-     * True to enable parser debug output. Will emit details of each
-     * parse scope.
-     *
-     * @defaultValue false
-     */
-    debug: boolean;
-    /**
-     * True to retain reader state for each AST node. State of root node
-     * is always available.
-     *
-     * @defaultValue false
-     */
-    retain: boolean;
-}
 
 export class ParseContext<T> {
     protected _scopes!: ParseScope<T>[];
