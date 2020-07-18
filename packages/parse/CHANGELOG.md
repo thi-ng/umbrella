@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.7.1...@thi.ng/parse@0.7.2) (2020-07-18)
+
+
+### Bug Fixes
+
+* **parse:** export ContextOpts, move to api.ts ([2dfc445](https://github.com/thi-ng/umbrella/commit/2dfc445971dc788abcb6576ef4e6836dec6df33a))
+
+
+
+
+
 ## [0.7.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.7.0...@thi.ng/parse@0.7.1) (2020-07-17)
 
 
