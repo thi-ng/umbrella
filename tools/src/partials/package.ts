@@ -79,7 +79,7 @@ export const packageSize = () => {
 
 export const packageBanner = (name: string) => {
     name = shortName(name);
-    const sha1 = execSync(`sha1sum ${CONFIG.bannerBasePath}${name}.svg`)
+    const sha1 = execSync(`shasum ${CONFIG.bannerBasePath}${name}.svg`)
         .toString()
         .substr(0, 8);
     return `![${name}](${CONFIG.bannerURL}${name}.svg?${sha1})`;
