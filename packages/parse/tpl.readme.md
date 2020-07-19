@@ -47,6 +47,10 @@ ${pkg.deps}
 
 ${examples}
 
+**Note:** Please also see the [dedicated wiki
+page](https://github.com/thi-ng/umbrella/wiki/Parser-grammars) collecting
+various grammar examples and links to their playgrounds.
+
 ## API
 
 ${docLink}

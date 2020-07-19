@@ -101,6 +101,10 @@ A selection:
 | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------ | ----------------------------------------------------------------------------------- |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/parse-playground.png" width="240"/> | Parser grammar livecoding editor/playground & codegen | [Demo](https://demo.thi.ng/umbrella/parse-playground/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/parse-playground) |
 
+**Note:** Please also see the [dedicated wiki
+page](https://github.com/thi-ng/umbrella/wiki/Parser-grammars) collecting
+various grammar examples and links to their playgrounds.
+
 ## API
 
 [Generated API docs](https://docs.thi.ng/umbrella/parse/)
