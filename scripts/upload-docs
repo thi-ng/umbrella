@@ -13,7 +13,7 @@ for m in $modules; do
     echo "sanitizing: $name"
     find "$m"/doc -name "*.html" -exec sed -i '' -E "s/\/([a-zA-Z_0-9\/-]+)\/node_modules\///g" '{}' \;
     echo "minifying..."
-    html-minifier-terser $OPTS --input-dir $m/doc --output-dir $m/doc
+    node_modules/.bin/html-minifier-terser $OPTS --input-dir $m/doc --output-dir $m/doc
     echo "syncing..."
     aws s3 sync "$m"/doc s3://docs.thi.ng/umbrella/"$name" --profile toxi-s3 --acl public-read
 done

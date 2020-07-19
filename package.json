@@ -9,6 +9,7 @@
         "benchmark": "^2.1.4",
         "file-loader": "^6.0.0",
         "gzip-size": "^5.1.0",
+        "html-minifier-terser": "^5.1.1",
         "lerna": "^3.22.1",
         "mocha": "^8.0.1",
         "nyc": "^15.1.0",
