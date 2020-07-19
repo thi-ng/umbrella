@@ -58,7 +58,7 @@ Purely functional parser combinators & AST generation for generic inputs.
 
 ### Status
 
-**ALPHA** - bleeding edge / work-in-progress
+**BETA** - possibly breaking changes forthcoming
 
 ### Related packages
 
@@ -79,7 +79,7 @@ yarn add @thi.ng/parse
 <script src="https://unpkg.com/@thi.ng/parse/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.06 KB / CJS: 5.43 KB / UMD: 5.09 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.21 KB / CJS: 5.59 KB / UMD: 5.23 KB
 
 ## Dependencies
 
@@ -196,6 +196,7 @@ Syntax sugars for `xform(parser, fn)`:
 - `discard` - discard result
 - `hoist` / `hoistResult` - hoist first child / child result
 - `join` - join child results into string
+- `nest` - apply another parser to result
 - `print` - print AST
 - `trim` - trim node result (string only)
 - `withID` - assign custom AST node ID
@@ -210,6 +211,7 @@ Actual transforms:
 - `xfHoist` / `xfHoistResult`
 - `xfInt(radix)`
 - `xfJoin`
+- `xfNest`
 - `xfPrint`
 - `xfTrim`
 - `xfID`
@@ -256,7 +258,8 @@ style repetition specs:
 - `?` - zero or one occurrence
 - `*` - zero or more
 - `+` - one or more
-- `{n}` or `{min,max}` - fixed size or min-max repetitions
+- `{n}`, `{min,}` or `{min,max}` - fixed size, min-infinity or min-max
+  repetitions
 
 ### Discarding results
 
@@ -333,14 +336,18 @@ order:
 
 ### Rule transforms
 
-Furthermore, each rule can specify an optional rule transform function
-which will only be applied after the rule's parser has successfully
-completed. The transform is given at the end of a rule, separated by
-`=>`.
+Furthermore, each rule can specify an optional rule transform function or even
+another parser rule, which will only be applied after the rule's parser has
+successfully completed. The transform is given at the end of a rule, separated
+by `=>`.
 
-Custom transforms can be supplied via an additional arg to
-`defGrammar()`. The following default transforms are available by
-default (can be overwritten) and correspond to the [above mentioned
+If another parser rule is specified (via `<ruleid>`), it will be applied to
+result of the main rule in a separate parse context and its own results will be
+transplanted back into the main AST.
+
+Custom transforms functions can be supplied via an additional arg to
+`defGrammar()`. The following default transforms are available by default (can
+be overwritten) and correspond to the [above mentioned
 transforms](#transformers):
 
 - `collect` - collect sub terms into array

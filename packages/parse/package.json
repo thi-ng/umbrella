@@ -66,17 +66,18 @@
         "xform"
     ],
     "keywords": [
-        "AST",
+        "ast",
         "combinator",
         "compiler",
         "composition",
-        "ES6",
+        "dsl",
+        "es6",
         "functional",
         "grammar",
         "parser",
-        "PEG",
+        "peg",
         "regexp",
-        "recursive",
+        "recursion",
         "typescript"
     ],
     "publishConfig": {
@@ -88,7 +89,7 @@
             "fsm",
             "transducers-fsm"
         ],
-        "status": "alpha",
+        "status": "beta",
         "year": 2020
     }
 }
