@@ -46,6 +46,7 @@ export * from "./xform/count";
 export * from "./xform/discard";
 export * from "./xform/hoist";
 export * from "./xform/join";
+export * from "./xform/nest";
 export * from "./xform/number";
 export * from "./xform/print";
 export * from "./xform/trim";

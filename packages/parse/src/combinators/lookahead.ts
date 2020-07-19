@@ -60,6 +60,7 @@ import type { Parser } from "../api";
  *
  * @param parser
  * @param ahead
+ * @param capture
  * @param id
  */
 export const lookahead = <T>(

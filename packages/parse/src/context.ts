@@ -6,6 +6,7 @@ import { defStringReader } from "./readers/string-reader";
 import { indent } from "./utils";
 
 export class ParseContext<T> {
+    public opts: ContextOpts;
     protected _scopes!: ParseScope<T>[];
     protected _curr!: ParseScope<T>;
 
@@ -14,10 +15,10 @@ export class ParseContext<T> {
     protected _retain: boolean;
 
     constructor(public reader: IReader<T>, opts?: Partial<ContextOpts>) {
-        opts = { maxDepth: 32, debug: false, retain: false, ...opts };
-        this._maxDepth = opts.maxDepth!;
-        this._debug = opts.debug!;
-        this._retain = opts.retain!;
+        this.opts = { maxDepth: 32, debug: false, retain: false, ...opts };
+        this._maxDepth = this.opts.maxDepth!;
+        this._debug = this.opts.debug!;
+        this._retain = this.opts.retain!;
         this.reset();
     }
 
