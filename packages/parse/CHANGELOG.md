@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.7.2...@thi.ng/parse@0.8.0) (2020-07-19)
+
+
+### Features
+
+* **parse:** add nest()/xfNest() transform ([af9c97b](https://github.com/thi-ng/umbrella/commit/af9c97b55cba15175bff917d0b2522be8c98517d))
+* **parse:** update grammar (xform rule refs) ([22188a4](https://github.com/thi-ng/umbrella/commit/22188a41d5db58fb9dae9cb01bd04ad8d1ac788e))
+* **parse:** update repeat grammar ([7aae9ac](https://github.com/thi-ng/umbrella/commit/7aae9ac02d23dd7e5a0643d3a418be67044465bd))
+
+
+
+
+
 ## [0.7.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.7.1...@thi.ng/parse@0.7.2) (2020-07-18)
 
 
