@@ -73,4 +73,19 @@ link: '['! <title> "]("! <url> <end>! => collect ;
     it("discard alt2 ref", () => {
         checkDiscard(`aa: 'a' ; AA: 'A'; a: (<aa> | <AA>)! 'b' ;`, "Ab");
     });
+
+    it("rule ref xform", () => {
+        const lang = defGrammar(
+            `a: [a-z](?+','!) => join ; aa: <a>+ ; b: [a-z,]+ => <aa> ;`
+        );
+        const ctx = defContext("abc,def,g,hij,", { retain: true });
+        assert(lang!.rules.b(ctx));
+        // prettier-ignore
+        assert.deepEqual(ctx.children, [
+            { id: "a", state: { p: 0, l: 1, c: 1 }, children: null, result: "abc" },
+            { id: "a", state: { p: 4, l: 1, c: 5 }, children: null, result: "def" },
+            { id: "a", state: { p: 8, l: 1, c: 9 }, children: null, result: "g" },
+            { id: "a", state: { p: 10, l: 1, c: 11 }, children: null, result: "hij" },
+        ])
+    });
 });

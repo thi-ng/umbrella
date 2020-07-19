@@ -41,8 +41,9 @@ import { string, stringD } from "./prims/string";
 import { collect, xfCollect } from "./xform/collect";
 import { xfCount } from "./xform/count";
 import { discard, xfDiscard } from "./xform/discard";
-import { hoistResult, xfHoist, xfHoistResult } from "./xform/hoist";
+import { hoist, hoistResult, xfHoist, xfHoistResult } from "./xform/hoist";
 import { join, xfJoin } from "./xform/join";
+import { nest } from "./xform/nest";
 import { xfFloat, xfInt } from "./xform/number";
 import { print, xfPrint } from "./xform/print";
 import { xfTrim } from "./xform/trim";
@@ -125,7 +126,9 @@ const ALT = seq(
     "alt"
 );
 
-const RULE_XF = hoistResult(seq([stringD("=>"), WS1, SYM, WS1], "xform"));
+const RULE_XF = hoist(
+    seq([stringD("=>"), WS1, alt([SYM, RULE_REF]), WS1], "xform")
+);
 
 const RULE = seq(
     [
@@ -179,8 +182,8 @@ compile.addAll({
         return lang;
     },
     rule: ($, lang, opts, flags) => {
-        const [id, body, xfID] = $.children!;
-        opts.debug && console.log(`rule: ${id.result}`);
+        const [id, body, xf] = $.children!;
+        opts.debug && console.log(`rule: ${id.result}`, xf);
         const acc: Parser<string>[] = [];
         for (let b of body.children!) {
             const c = compile(b, lang, opts, flags);
@@ -188,10 +191,16 @@ compile.addAll({
         }
         let parser =
             acc.length > 1 ? seq(acc, id.result) : withID(id.result, acc[0]);
-        if (xfID.result) {
-            const xf = lang.env[xfID.result];
-            if (!xf) illegalArgs(`missing xform: ${xfID.result}`);
-            parser = xform(parser, xf);
+        if (xf.id === "sym") {
+            const $xf = lang.env[xf.result];
+            if (!$xf) illegalArgs(`missing xform: ${xf.result}`);
+            parser = xform(parser, $xf);
+        } else if (xf.id === "ref") {
+            const $id = first(xf).result;
+            if ($id === id) illegalArgs(`self-referential: ${$id}`);
+            const $xf = lang.rules[$id];
+            if (!$xf) illegalArgs(`missing xform rule: ${$id}`);
+            parser = nest(parser, $xf);
         }
         return parser;
     },
