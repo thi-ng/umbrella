@@ -57,12 +57,7 @@ const REPEAT = maybe(
         oneOf("?*+", "repeat"),
         collect(
             seq(
-                [
-                    litD("{"),
-                    UINT,
-                    maybe(hoistResult(seq([litD(","), UINT]))),
-                    litD("}"),
-                ],
+                [litD("{"), UINT, maybe(lit(",")), maybe(UINT), litD("}")],
                 "repeatN"
             )
         ),
@@ -320,8 +315,8 @@ const compileRepeat = (
                 return parser;
         }
     } else if (rspec.id === "repeatN") {
-        const [n, m] = rspec.result;
-        return repeat(parser, n, m || n);
+        const [n, sep, m] = rspec.result;
+        return repeat(parser, n, sep ? m || Infinity : m || n);
     }
     return parser;
 };
