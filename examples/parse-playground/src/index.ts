@@ -139,7 +139,7 @@ sync<any, any>({
             serialize([grammar, rule, ...srcInputs.map((i) => i.deref())])
         ).replace(/=/g, "");
         location.hash =
-            hash.length < 1024 ? hash : "content-too-large-for-uri-hash";
+            hash.length < 0x10000 ? hash : "content-too-large-for-uri-hash";
     },
 });
 
