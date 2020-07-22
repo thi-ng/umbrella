@@ -241,6 +241,24 @@ export class FloatBuffer {
         }
     }
 
+    /**
+     * Flips image vertically.
+     */
+    flipY() {
+        const { pixels, rowStride } = this;
+        const tmp = new Float32Array(rowStride);
+        for (
+            let i = 0, j = pixels.length - rowStride;
+            i < j;
+            i += rowStride, j -= rowStride
+        ) {
+            tmp.set(pixels.subarray(i, i + rowStride));
+            pixels.copyWithin(i, j, j + rowStride);
+            pixels.set(tmp, j);
+        }
+        return this;
+    }
+
     protected ensureFormat(dest: FloatBuffer) {
         assert(
             dest.format === this.format,

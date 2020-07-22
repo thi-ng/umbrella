@@ -373,4 +373,22 @@ export class PackedBuffer {
         }
         return this;
     }
+
+    /**
+     * Flips image vertically.
+     */
+    flipY() {
+        const { pixels, width } = this;
+        const tmp = new CTORS[this.format.type](width);
+        for (
+            let i = 0, j = pixels.length - width;
+            i < j;
+            i += width, j -= width
+        ) {
+            tmp.set(pixels.subarray(i, i + width));
+            pixels.copyWithin(i, j, j + width);
+            pixels.set(tmp, j);
+        }
+        return this;
+    }
 }
