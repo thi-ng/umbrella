@@ -16,6 +16,10 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [API](#api)
   - [Basic example](#basic-example)
+- [Syntax](#syntax)
+  - [Node references](#node-references)
+  - [Prefixed IDs](#prefixed-ids)
+  - [Includes](#includes)
 - [Authors](#authors)
 - [License](#license)
 
@@ -44,7 +48,7 @@ line based, plain text data format and package supports:
 - Line comments
 - Configurable parser behavior & syntax feature flags
 - Hand-optimized parser, largely regexp free
-- GraphViz DOT conversion
+- Configurable GraphViz DOT export
 
 ![example graph](https://raw.githubusercontent.com/thi-ng/umbrella/feature/egf/assets/egf/egf-readme2.png)
 
@@ -53,7 +57,7 @@ line based, plain text data format and package supports:
 ### Built-in tag parsers
 
 The following parsers for tagged property values are available by default.
-Custom parsers can be registered via `registerTag()`.
+Custom parsers can be provided via config options.
 
 | Tag       | Description                                 | Result             |
 |-----------|---------------------------------------------|--------------------|
@@ -88,13 +92,12 @@ yarn add @thi.ng/egf
 <script src="https://unpkg.com/@thi.ng/egf/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.06 KB / CJS: 2.14 KB / UMD: 2.14 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.04 KB / CJS: 2.12 KB / UMD: 2.13 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/feature/egf/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/feature/egf/packages/checks)
-- [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/feature/egf/packages/defmulti)
 - [@thi.ng/dot](https://github.com/thi-ng/umbrella/tree/feature/egf/packages/dot)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/feature/egf/packages/errors)
 - [@thi.ng/prefixes](https://github.com/thi-ng/umbrella/tree/feature/egf/packages/prefixes)
@@ -208,6 +211,224 @@ console.log(graph.toxi.account[0].deref());
 //   name: '@toxi',
 //   url: 'http://twitter.com/toxi'
 // }
+```
+
+## Syntax
+
+EGF is a plain text format and largely line based, though supports multi-line
+values. An EGF file consists of node definitions, each with zero or more
+properties and their (optionally tagged) values. EGF does not prescribe any
+other schema or structure and it's entirely up to the user to e.g. allow
+properties themselves to be defined as nodes with their own properties, thus
+allowing the definition of LPG ([Labeled Property
+Graph](https://en.wikipedia.org/wiki/Graph_database#Labeled-property_graph))
+topologies as well.
+
+```text
+; Comment line
+
+; First node definition
+node1
+    prop1 value
+    prop2 #tag value
+    prop3 <<< long, potentially
+multiline
+value >>>
+    prop4 #tag <<< tagged multi-line value >>>
+
+node2
+    ; property comment
+    prop1 value
+...
+```
+
+### Node references
+
+Properties with reference values (via `#ref` tag) to another node constitute
+edges in the graph.
+
+The following graph defines two nodes with circular references between them.
+Each node has a literal (string, by default) property `name` and a reference to
+another node via the `#ref` tag followed by the target node ID. The order of
+references is arbitrary and the parser will automatically produce forward
+declarations for nodes not yet known.
+
+```text
+alice
+    name Alice
+    knows #ref bob
+
+bob
+    name Robert
+    knows #ref alice
+```
+
+Using default parser options, this produces an object as follows. Note, the
+references are encoded as objects with a `$ref` property and implement the
+`IDeref` and `IEquiv` interfaces defined in the
+[@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+package.
+
+```js
+{
+  alice: {
+    '$id': 'alice',
+    name: 'Alice',
+    knows: {
+      '$ref': 'bob',
+      deref: [Function: deref],
+      equiv: [Function: equiv]
+    }
+  },
+  bob: {
+    '$id': 'bob',
+    name: 'Robert',
+    knows: {
+      '$ref': 'alice',
+      deref: [Function: deref],
+      equiv: [Function: equiv]
+    }
+  }
+}
+```
+
+```ts
+// access bob's name via alice
+graph.alice.knows.deref().name
+// "Robert"
+```
+
+If node resolution is enabled (via the `resolve` option) in the parser, the
+referenced nodes will be inlined directly and produce circular references in the
+JS result object. In many cases this more desirable and fine, however will stop
+the graph from being serializable to JSON (for example).
+
+```text
+{
+  alice: <ref *1> {
+    '$id': 'alice',
+    name: 'Alice',
+    knows: { '$id': 'bob', name: 'Robert', knows: [Circular *1] }
+  },
+  bob: <ref *2> {
+    '$id': 'bob',
+    name: 'Robert',
+    knows: <ref *1> {
+      '$id': 'alice',
+      name: 'Alice',
+      knows: [Circular *2]
+    }
+  }
+}
+```
+
+### Prefixed IDs
+
+To enable namespacing and simplify re-use of existing data vocabularies, we're
+borrowing from existing Linked Data formats & tooling to allow node and property
+IDs to be defined in a `prefix:name` format alongside `@prefix` declarations.
+These IDs will be expanded during parsing and usually form complete URIs, but
+could be any string. The various (50+) commonly used Linked Data vocabulary
+prefixes bundled in
+[@thi.ng/prefixes](https://github.com/thi-ng/umbrella/tree/develop/packages/prefixes)
+are available by default, though can be overridden, of course...
+
+```text
+; prefix declaration
+@prefix thi: http://thi.ng/
+
+thi:toxi
+    rdf:type #ref foaf:person
+```
+
+Result:
+
+```js
+{
+  'thi.ng/toxi': {
+    '$id': 'thi.ng/toxi',
+    'http://www.w3.org/1999/02/22-rdf-syntax-ns#type': {
+      '$id': 'http://xmlns.com/foaf/0.1/person'
+    }
+  },
+  'http://xmlns.com/foaf/0.1/person': {
+    '$id': 'http://xmlns.com/foaf/0.1/person'
+  }
+}
+```
+
+### Includes
+
+Currently in NodeJS only, external graph definitions can be included in the main
+graph via the `@include` directive. Any `@prefix` declarations in the included
+file will only be available in that file, however will inherit any pre-existing
+prefixes declared in the main file.
+
+Relative file paths will be relative to the path of the currently processed
+file:
+
+```text
+ |- include
+ |  |- sub1.egf
+ |  |- sub2.egf
+ |- main.egf
+```
+
+(These examples make use of the [schema.org](https://schema.org) ontology)
+
+```text
+; main.egf
+; declare an empty prefix
+@prefix : http://thi.ng/
+
+@include include/sub1.egf
+
+; use empty prefix for this node
+:toxi
+    rdf:type #ref schema:Person
+```
+
+```text
+; sub1.egf
+@include sub2.egf
+
+:sub1.egf
+    rdf:type #ref schema:Dataset
+    schema:dateCreated #date 2020-07-19
+```
+
+```text
+; sub2.egf
+
+:sub2.egf
+    rdf:type #ref schema:Dataset
+    schema:creator #ref :toxi
+```
+
+Parsing the `main.egf` file (with node resolution/inlining) produces:
+
+```js
+{
+  'http://thi.ng/sub2.egf': {
+    '$id': 'http://thi.ng/sub2.egf',
+    'http://www.w3.org/1999/02/22-rdf-syntax-ns#type': { '$id': 'http://schema.org/Dataset' },
+    'http://schema.org/creator': {
+      '$id': 'http://thi.ng/toxi',
+      'http://www.w3.org/1999/02/22-rdf-syntax-ns#type': { '$id': 'http://schema.org/Person' }
+    }
+  },
+  'http://schema.org/Dataset': { '$id': 'http://schema.org/Dataset' },
+  'http://thi.ng/toxi': {
+    '$id': 'http://thi.ng/toxi',
+    'http://www.w3.org/1999/02/22-rdf-syntax-ns#type': { '$id': 'http://schema.org/Person' }
+  },
+  'http://thi.ng/sub1.egf': {
+    '$id': 'http://thi.ng/sub1.egf',
+    'http://www.w3.org/1999/02/22-rdf-syntax-ns#type': { '$id': 'http://schema.org/Dataset' },
+    'http://schema.org/dateCreated': 2020-07-19T00:00:00.000Z
+  },
+  'http://schema.org/Person': { '$id': 'http://schema.org/Person' }
+}
 ```
 
 ## Authors
