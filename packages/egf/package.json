@@ -44,7 +44,6 @@
     "dependencies": {
         "@thi.ng/api": "^6.11.3",
         "@thi.ng/checks": "^2.7.3",
-        "@thi.ng/defmulti": "^1.2.20",
         "@thi.ng/dot": "^1.2.12",
         "@thi.ng/errors": "^1.2.16",
         "@thi.ng/prefixes": "^0.1.0",
@@ -57,7 +56,13 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
+        "es6",
+        "file format",
+        "graph",
+        "graphviz",
+        "linked data",
+        "semweb",
+        "tagged values",
         "typescript"
     ],
     "publishConfig": {
