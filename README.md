@@ -110,10 +110,12 @@ fairly detailed overview for contributors here:
 
 ## Projects
 
-<!-- ### New / unreleased packages in development
+### New / unreleased packages in development
 
 (These packages might be still unreleased and only available on their
-feature or `develop` branches) -->
+feature or `develop` branches)
+
+- [@thi.ng/egf](https://github.com/thi-ng/umbrella/tree/feature/egf/packages/egf) - Extensible Graph Format
 
 ### Fundamentals
 
