@@ -36,7 +36,7 @@ line based, plain text data format and package supports:
 - Hand-optimized parser, largely regexp free
 - GraphViz DOT conversion
 
-![example graph](https://raw.githubusercontent.com/thi-ng/umbrella/feature/egf/assets/egf/egf-readme.png)
+![example graph](https://raw.githubusercontent.com/thi-ng/umbrella/feature/egf/assets/egf/egf-readme2.png)
 
 ([Source for this example graph is further below](#basic-example))
 
