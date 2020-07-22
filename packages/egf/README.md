@@ -12,6 +12,7 @@ This project is part of the
 - [About](#about)
   - [Built-in tag parsers](#built-in-tag-parsers)
   - [Status](#status)
+    - [Feature ideas](#feature-ideas)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -77,6 +78,17 @@ are only available in NodeJS.
 ### Status
 
 **ALPHA** - bleeding edge / work-in-progress
+
+#### Feature ideas
+
+(Non-exhaustive list)
+
+- [ ] JSON -> EGF conversion
+- [ ] Async tag parsing
+- [ ] URL support for `#file` tag
+- [ ] Tag declarations & tag parser import from URL (needs trust config opts)
+- [ ] `#md` tag parser for markdown content
+- [ ] `#gpg` fallback behavior options
 
 ## Installation
 

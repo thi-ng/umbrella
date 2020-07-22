@@ -28,7 +28,8 @@
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
-        "pub": "yarn build:release && yarn publish --access public"
+        "pub": "yarn build:release && yarn publish --access public",
+        "pub:wip": "yarn publish --access public --no-git-tag-version"
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
@@ -56,11 +57,14 @@
         "lib"
     ],
     "keywords": [
+        "datastructure",
         "es6",
         "file format",
         "graph",
         "graphviz",
         "linked data",
+        "lpg",
+        "rdf",
         "semweb",
         "tagged values",
         "typescript"

@@ -62,6 +62,17 @@ are only available in NodeJS.
 
 ${status}
 
+#### Feature ideas
+
+(Non-exhaustive list)
+
+- [ ] JSON -> EGF conversion
+- [ ] Async tag parsing
+- [ ] URL support for `#file` tag
+- [ ] Tag declarations & tag parser import from URL (needs trust config opts)
+- [ ] `#md` tag parser for markdown content
+- [ ] `#gpg` fallback behavior options
+
 ${supportPackages}
 
 ${relatedPackages}
