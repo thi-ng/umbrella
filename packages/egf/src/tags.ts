@@ -1,18 +1,13 @@
-import type { Fn3 } from "@thi.ng/api";
-import { defmulti, DEFAULT } from "@thi.ng/defmulti";
+import type { IObjectOf } from "@thi.ng/api";
 import { maybeParseFloat, maybeParseInt } from "@thi.ng/strings";
 import { base64Decode } from "@thi.ng/transducers-binary";
 import { execSync } from "child_process";
 import { readFileSync } from "fs";
 import { resolve as resolvePath } from "path";
-import { IS_NODE, NODE_ONLY, ParseContext } from "./api";
+import { IS_NODE, NODE_ONLY, TagParser } from "./api";
 import { qualifiedID } from "./utils";
 
-export const parseTag = defmulti<string, string, ParseContext, any>(
-    (tag) => tag
-);
-
-parseTag.addAll({
+export const BUILTINS: IObjectOf<TagParser> = {
     base64: IS_NODE
         ? (_, body) => {
               const buf = Buffer.from(body, "base64");
@@ -55,13 +50,4 @@ parseTag.addAll({
                   },
               };
     },
-});
-
-export const registerTag = (
-    tag: string,
-    fn: Fn3<string, string, ParseContext, any>
-) => parseTag.add(tag, fn);
-
-export const enableUnknownTags = () => parseTag.add(DEFAULT, (_, x) => x);
-
-export const disableUnknownTags = () => parseTag.remove(DEFAULT);
+};

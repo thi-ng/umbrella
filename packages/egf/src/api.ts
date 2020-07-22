@@ -1,4 +1,4 @@
-import type { IDeref, ILogger } from "@thi.ng/api";
+import type { Fn3, IDeref, ILogger, IObjectOf } from "@thi.ng/api";
 import { isNode } from "@thi.ng/checks";
 import { unsupported } from "@thi.ng/errors";
 
@@ -49,7 +49,8 @@ export interface ParseOpts {
      */
     prefixes: boolean;
     /**
-     * If true, tagged `#gpg` values will be decrypted.
+     * If true, tagged `#gpg` values will be decrypted. NodeJS only and requires
+     * GPG with all keys used to encrypt the values installed on host.
      *
      * @defaultValue false
      */
@@ -57,11 +58,18 @@ export interface ParseOpts {
     [id: string]: any;
 }
 
+/**
+ * Function signature for tagged value parsers.
+ */
+export type TagParser = Fn3<string, string, ParseContext, any>;
+
 export interface ParseContext {
     cwd: string;
     file: string;
     prefixes: Prefixes;
     nodes: Nodes;
+    tags: IObjectOf<TagParser>;
+    defaultTag?: TagParser;
     opts: Partial<ParseOpts>;
     logger: ILogger;
 }

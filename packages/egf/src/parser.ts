@@ -1,18 +1,17 @@
 import { NULL_LOGGER } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks";
-import { illegalState } from "@thi.ng/errors";
+import { illegalState, unsupported } from "@thi.ng/errors";
 import * as $prefixes from "@thi.ng/prefixes";
 import { readFileSync } from "fs";
 import { dirname, resolve as resolvePath } from "path";
-import { IS_NODE, Node, ParseContext, ParseOpts } from "./api";
-import { parseTag } from "./tags";
+import { IS_NODE, Node, ParseContext, ParseOpts, TagParser } from "./api";
+import { BUILTINS } from "./tags";
 import { qualifiedID } from "./utils";
 
 const INCLUDE = "@include ";
 const PREFIX = "@prefix ";
 const OPEN = ">>>";
 const CLOSE = "<<<";
-const EOF = "unterminated value, EOF reached";
 
 export const parse = (src: string, ctx: ParseContext) => {
     const lines = src.split(/\r?\n/);
@@ -78,6 +77,13 @@ const parsePrefix = (line: string, ctx: ParseContext) => {
     illegalState(`invalid prefix decl: ${line}`);
 };
 
+const parseTag: TagParser = (tag, body, ctx) => {
+    const parser = ctx.tags[tag] || ctx.defaultTag;
+    return parser
+        ? parser(tag, body, ctx)
+        : unsupported(`missing parser for tag: ${tag}`);
+};
+
 const parseProp = (
     acc: Node,
     ctx: ParseContext,
@@ -117,7 +123,7 @@ const parseProp = (
                     body += "\n" + line;
                 }
             }
-            !closed && illegalState(EOF);
+            !closed && illegalState("unterminated value, EOF reached");
         } else {
             body = body.substr(0, idx);
             i++;
@@ -148,8 +154,9 @@ const initContext = (ctx: Partial<ParseContext> = {}) => {
     return <ParseContext>{
         cwd: ctx.cwd || ".",
         file: ctx.file || "",
-        pid: -1,
         nodes: ctx.nodes || {},
+        tags: { ...BUILTINS, ...ctx.tags },
+        defaultTag: ctx.defaultTag,
         prefixes: ctx.prefixes
             ? { ...ctx.prefixes }
             : { ...$prefixes, void: $prefixes.VOID },
