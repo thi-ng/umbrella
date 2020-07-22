@@ -7,6 +7,9 @@ export const isRef = (x: any): x is NodeRef => isPlainObject(x) && "$ref" in x;
 const RE_QFN = /^([a-z0-9-_$]*):([a-z0-9-_$.+]+)$/i;
 
 export const qualifiedID = (prefixes: Prefixes, id: string) => {
+    if (id[0] === "<" && id[id.length - 1] === ">") {
+        return id.substring(1, id.length - 1);
+    }
     if (id.indexOf(":") !== -1) {
         const match = RE_QFN.exec(id);
         if (match) {

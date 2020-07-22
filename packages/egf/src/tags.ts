@@ -37,7 +37,7 @@ export const BUILTINS: IObjectOf<TagParser> = {
     list: (_, body) => body.split(/[\n\r\t ]+/g),
     num: (_, body) => maybeParseFloat(body, 0),
     ref: (_, id, ctx) => {
-        id = ctx.opts.prefixes ? qualifiedID(ctx.prefixes, id) : id;
+        ctx.opts.prefixes && (id = qualifiedID(ctx.prefixes, id));
         return ctx.opts.resolve
             ? ctx.nodes[id] || (ctx.nodes[id] = { $id: id })
             : {
