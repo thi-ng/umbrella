@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.3.6...@thi.ng/pixel@0.4.0) (2020-07-22)
+
+
+### Features
+
+* **pixel:** add flipY() ([a5593c0](https://github.com/thi-ng/umbrella/commit/a5593c06a6ae61eccb9ecbaa4b3828ce0b29fbc0))
+
+
+
+
+
 ## [0.3.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.3.5...@thi.ng/pixel@0.3.6) (2020-07-17)
 
 **Note:** Version bump only for package @thi.ng/pixel
