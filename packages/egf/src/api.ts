@@ -49,6 +49,18 @@ export interface ParseOpts {
      */
     prefixes: boolean;
     /**
+     * Only used if `resolve` option is enabled. If true, nodes with only the
+     * reserved `$id` property (and no other user defined properties) will be
+     * removed from the graph after parsing is complete.
+     *
+     * Such nodes are usually only indirectly created through forward node
+     * references and they're only removed as top-level items in the result
+     * graph object. Any references from other nodes will remain intact.
+     *
+     * @defaultValue false
+     */
+    prune: boolean;
+    /**
      * If true, tagged `#gpg` values will be decrypted. NodeJS only and requires
      * GPG with all keys used to encrypt the values installed on host.
      *

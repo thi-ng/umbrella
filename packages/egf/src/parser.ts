@@ -41,6 +41,7 @@ export const parse = (src: string, ctx: ParseContext) => {
             } else illegalState(`expected property or comment @ line: ${i}`);
         }
     }
+    ctx.opts.resolve && ctx.opts.prune && pruneNodes(ctx);
     return ctx;
 };
 
@@ -51,6 +52,7 @@ const parseInclude = (line: string, ctx: ParseContext) => {
             ...ctx,
             cwd: dirname(ctx.file),
             prefixes: { ...ctx.prefixes },
+            opts: { ...ctx.opts, prune: false },
         });
     } else {
         ctx.logger.debug("skipping include:", path);
@@ -161,14 +163,23 @@ const parseRef = (id: string, ctx: ParseContext) => {
               },
           };
 };
-    return i;
+
+const pruneNodes = ({ nodes, logger }: ParseContext) => {
+    for (let id in nodes) {
+        const keys = Object.keys(nodes[id]);
+        if (keys.length === 1 && keys[0] === "$id") {
+            logger.debug("pruning node:", id);
+            delete nodes[id];
+        }
+    }
 };
 
 const initContext = (ctx: Partial<ParseContext> = {}) => {
     const opts = <ParseOpts>{
+        decrypt: false,
         includes: true,
         prefixes: false,
-        decrypt: false,
+        prune: false,
         resolve: false,
         ...ctx.opts,
     };
