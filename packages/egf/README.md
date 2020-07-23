@@ -18,6 +18,7 @@ This project is part of the
 - [API](#api)
   - [Basic example](#basic-example)
 - [Syntax](#syntax)
+  - [Grammar](#grammar)
   - [Node references](#node-references)
   - [Prefixed IDs](#prefixed-ids)
   - [Includes](#includes)
@@ -78,6 +79,8 @@ are only available in NodeJS.
 ### Status
 
 **ALPHA** - bleeding edge / work-in-progress
+
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Begf%5D)
 
 #### Feature ideas
 
@@ -253,6 +256,12 @@ node2
     prop1 value
 ...
 ```
+
+### Grammar
+
+A full grammar definition is forthcoming. In the meantime, please see a somewhat outdated older version and related comments in
+[#234](https://github.com/thi-ng/umbrella/issues/234#issuecomment-662878452) for
+more details.
 
 ### Node references
 

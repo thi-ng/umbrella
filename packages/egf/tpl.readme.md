@@ -229,6 +229,12 @@ node2
 ...
 ```
 
+### Grammar
+
+A full grammar definition is forthcoming. In the meantime, please see a somewhat outdated older version and related comments in
+[#234](https://github.com/thi-ng/umbrella/issues/234#issuecomment-662878452) for
+more details.
+
 ### Node references
 
 Properties with reference values (via `#ref` tag) to another node constitute
