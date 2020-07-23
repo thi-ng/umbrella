@@ -61,17 +61,16 @@ line based, plain text data format and package supports:
 The following parsers for tagged property values are available by default.
 Custom parsers can be provided via config options.
 
-| Tag       | Description                                 | Result             |
-|-----------|---------------------------------------------|--------------------|
-| `#base64` | Base64 encoded binary data                  | `Uint8Array`       |
-| `#date`   | `Date.parse()` compatible string            | `Date`             |
-| `#file`   | File path to read value from                | `string`           |
-| `#gpg`    | Calls `gpg` to decrypt given armored string | `string`           |
-| `#hex`    | hex 32bit int (no prefix)                   | `number`           |
-| `#json`   | Arbitrary JSON value                        | `any`              |
-| `#list`   | Whitespace separated list                   | `string[]`         |
-| `#num`    | Floating point value                        | `number`           |
-| `#ref`    | Inlines node for given ID                   | `{ $ref: string }` |
+| Tag       | Description                                     | Result       |
+|-----------|-------------------------------------------------|--------------|
+| `#base64` | Base64 encoded binary data                      | `Uint8Array` |
+| `#date`   | `Date.parse()` compatible string (e.g. ISO8601) | `Date`       |
+| `#file`   | File path to read value from                    | `string`     |
+| `#gpg`    | Calls `gpg` to decrypt given armored string     | `string`     |
+| `#hex`    | hex 32bit int (no prefix)                       | `number`     |
+| `#json`   | Arbitrary JSON value                            | `any`        |
+| `#list`   | Whitespace separated list                       | `string[]`   |
+| `#num`    | Floating point value                            | `number`     |
 
 **Note:** In this reference implementation, the `#file` and `#gpg` tag parsers
 are only available in NodeJS.
@@ -107,7 +106,7 @@ yarn add @thi.ng/egf
 <script src="https://unpkg.com/@thi.ng/egf/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.04 KB / CJS: 2.12 KB / UMD: 2.13 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.14 KB / CJS: 2.21 KB / UMD: 2.23 KB
 
 ## Dependencies
 
@@ -123,12 +122,13 @@ Package sizes (gzipped, pre-treeshake): ESM: 2.04 KB / CJS: 2.12 KB / UMD: 2.13 
 
 [Generated API docs](https://docs.thi.ng/umbrella/egf/)
 
-TODO - Full docs forthcoming...
+**TODO - Full docs forthcoming...**
 
 - [api.ts](https://github.com/thi-ng/umbrella/tree/feature/egf/packages/egf/src/api.ts) - Data structures & options
-- [dot.ts](https://github.com/thi-ng/umbrella/tree/feature/egf/packages/egf/src/api.ts) - Graphviz export
-- [parser.ts](https://github.com/thi-ng/umbrella/tree/feature/egf/packages/egf/src/api.ts) - Parser
-- [tags.ts](https://github.com/thi-ng/umbrella/tree/feature/egf/packages/egf/src/api.ts) - Tagged value parsers
+- [dot.ts](https://github.com/thi-ng/umbrella/tree/feature/egf/packages/egf/src/dot.ts) - Graphviz export (via
+  [@thi.ng/dot](https://github.com/thi-ng/umbrella/tree/develop/packages/egf/))
+- [parser.ts](https://github.com/thi-ng/umbrella/tree/feature/egf/packages/egf/src/parser.ts) - Main parser
+- [tags.ts](https://github.com/thi-ng/umbrella/tree/feature/egf/packages/egf/src/tags.ts) - Tagged value parsers
 
 ### Basic example
 
@@ -144,11 +144,11 @@ TODO - Full docs forthcoming...
 thi:egf
     type project
     ; tagged value property (here: node ref)
-    part-of #ref thi:umbrella
+    part-of -> thi:umbrella
     status alpha
     description Extensible Graph Format
     url https://thi.ng/egf
-    creator #ref toxi
+    creator -> toxi
     ; multi-line value
     ; read as whitespace separated list/array (via #list)
     tag #list >>>
@@ -161,14 +161,14 @@ linked-data
 thi:umbrella
     type project
     url https://thi.ng/umbrella
-    creator #ref toxi
+    creator -> toxi
 
 toxi
     type person
     name Karsten Schmidt
     location London
-    account #ref toxi@twitter
-    account #ref postspectacular@gh
+    account -> toxi@twitter
+    account -> postspectacular@gh
 
 toxi@twitter
     type account
@@ -230,9 +230,9 @@ console.log(graph.toxi.account[0].deref());
 
 ## Syntax
 
-EGF is a plain text format and largely line based, though supports multi-line
-values. An EGF file consists of node definitions, each with zero or more
-properties and their (optionally tagged) values. EGF does not prescribe any
+EGF is a UTF-8 plain text format and largely line based, though supports
+multi-line values. An EGF file consists of node definitions, each with zero or
+more properties and their (optionally tagged) values. EGF does not prescribe any
 other schema or structure and it's entirely up to the user to e.g. allow
 properties themselves to be defined as nodes with their own properties, thus
 allowing the definition of LPG ([Labeled Property
@@ -244,12 +244,16 @@ topologies as well.
 
 ; First node definition
 node1
+    ; property with string value
     prop1 value
-    prop2 #tag value
-    prop3 <<< long, potentially
+    ; property with reference to another node
+    prop2 -> node2
+    ; property with tagged value
+    prop3 #tag value
+    prop4 <<< long, potentially
 multiline
 value >>>
-    prop4 #tag <<< tagged multi-line value >>>
+    prop5 #tag <<< tagged multi-line value >>>
 
 node2
     ; property comment
@@ -259,29 +263,30 @@ node2
 
 ### Grammar
 
-A full grammar definition is forthcoming. In the meantime, please see a somewhat outdated older version and related comments in
+A full grammar definition is forthcoming. In the meantime, please see a somewhat
+outdated older version and related comments in
 [#234](https://github.com/thi-ng/umbrella/issues/234#issuecomment-662878452) for
 more details.
 
 ### Node references
 
-Properties with reference values (via `#ref` tag) to another node constitute
-edges in the graph.
+Properties with reference values to another node constitute edges in the graph.
+References are encoded via `property -> nodeid`.
 
 The following graph defines two nodes with circular references between them.
-Each node has a literal (string, by default) property `name` and a reference to
-another node via the `#ref` tag followed by the target node ID. The order of
-references is arbitrary and the parser will automatically produce forward
-declarations for nodes not yet known.
+Each node has a literal (string, by default) property `name` and a reference
+property `knows` to another node (via its ID). The order of references is
+arbitrary and the parser will automatically produce forward declarations for
+nodes not yet known.
 
 ```text
 alice
     name Alice
-    knows #ref bob
+    knows -> bob
 
 bob
     name Robert
-    knows #ref alice
+    knows -> alice
 ```
 
 Using default parser options, this produces an object as follows. Note, the
@@ -348,9 +353,9 @@ the graph from being serializable to JSON (for example).
 To enable namespacing and simplify re-use of existing data vocabularies, we're
 borrowing from existing Linked Data formats & tooling to allow node and property
 IDs to be defined in a `prefix:name` format alongside `@prefix` declarations.
-These IDs will be expanded during parsing and usually form complete URIs, but
-could be any string. The various (50+) commonly used Linked Data vocabulary
-prefixes bundled in
+Such prefix IDs will be expanded during parsing and usually form complete URIs,
+but could expand to any string. The various (50+) commonly used Linked Data
+vocabulary prefixes bundled in
 [@thi.ng/prefixes](https://github.com/thi-ng/umbrella/tree/develop/packages/prefixes)
 are available by default, though can be overridden, of course...
 
@@ -359,7 +364,7 @@ are available by default, though can be overridden, of course...
 @prefix thi: http://thi.ng/
 
 thi:toxi
-    rdf:type #ref foaf:person
+    rdf:type -> foaf:person
 ```
 
 Result:
@@ -406,7 +411,7 @@ file:
 
 ; use empty prefix for this node
 :toxi
-    rdf:type #ref schema:Person
+    rdf:type -> schema:Person
 ```
 
 ```text
@@ -414,7 +419,7 @@ file:
 @include sub2.egf
 
 :sub1.egf
-    rdf:type #ref schema:Dataset
+    rdf:type -> schema:Dataset
     schema:dateCreated #date 2020-07-19
 ```
 
@@ -422,11 +427,11 @@ file:
 ; sub2.egf
 
 :sub2.egf
-    rdf:type #ref schema:Dataset
-    schema:creator #ref :toxi
+    rdf:type -> schema:Dataset
+    schema:creator -> :toxi
 ```
 
-Parsing the `main.egf` file (with node resolution/inlining) produces:
+Parsing the `main.egf` file (with node resolution/inlining and pruning) produces:
 
 ```js
 {
@@ -438,7 +443,6 @@ Parsing the `main.egf` file (with node resolution/inlining) produces:
       'http://www.w3.org/1999/02/22-rdf-syntax-ns#type': { '$id': 'http://schema.org/Person' }
     }
   },
-  'http://schema.org/Dataset': { '$id': 'http://schema.org/Dataset' },
   'http://thi.ng/toxi': {
     '$id': 'http://thi.ng/toxi',
     'http://www.w3.org/1999/02/22-rdf-syntax-ns#type': { '$id': 'http://schema.org/Person' }
@@ -447,8 +451,7 @@ Parsing the `main.egf` file (with node resolution/inlining) produces:
     '$id': 'http://thi.ng/sub1.egf',
     'http://www.w3.org/1999/02/22-rdf-syntax-ns#type': { '$id': 'http://schema.org/Dataset' },
     'http://schema.org/dateCreated': 2020-07-19T00:00:00.000Z
-  },
-  'http://schema.org/Person': { '$id': 'http://schema.org/Person' }
+  }
 }
 ```
 
