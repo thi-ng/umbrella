@@ -3,7 +3,7 @@ import { ParseContext, parseString, qualifiedID } from "../src";
 
 const $ctx: Partial<ParseContext> = { opts: { prefixes: true } };
 
-describe("egf @prefix", () => {
+describe("@prefix", () => {
     it("@prefix decl", () => {
         assert.throws(() => parseString(`@prefix :`, $ctx), "1");
         assert.throws(() => parseString(`@prefix : `, $ctx), "2");
@@ -29,10 +29,10 @@ describe("egf @prefix", () => {
 @prefix : self/
 @prefix thi: thi.ng/
 :a
-    partof #ref thi:b
+    partof -> thi:b
 
 thi:b
-    parentof #ref :a
+    parentof -> :a
 `,
             { opts: { prefixes: true, resolve: true } }
         );

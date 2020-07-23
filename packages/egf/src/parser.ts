@@ -10,8 +10,6 @@ import { qualifiedID } from "./utils";
 
 const INCLUDE = "@include ";
 const PREFIX = "@prefix ";
-const OPEN = ">>>";
-const CLOSE = "<<<";
 
 export const parse = (src: string, ctx: ParseContext) => {
     const lines = src.split(/\r?\n/);
@@ -85,7 +83,7 @@ const parseTag: TagParser = (tag, body, ctx) => {
 };
 
 const parseProp = (
-    acc: Node,
+    node: Node,
     ctx: ParseContext,
     line: string,
     lines: string[],
@@ -99,21 +97,24 @@ const parseProp = (
     let tag: string | undefined;
     let body: string;
     idx++;
-    if (line[idx] === "#") {
+    if (line[idx] === "-" && line[idx + 1] === ">") {
+        addProp(node, key, parseRef(line.substr(idx + 2).trim(), ctx));
+        return ++i;
+    } else if (line[idx] === "#") {
         const tstart = idx + 1;
         idx = line.indexOf(" ", tstart);
         tag = line.substring(tstart, idx);
         idx++;
     }
-    if (line.substr(idx, 3) === OPEN) {
+    if (line[idx] === ">" && line[idx + 1] === ">" && line[idx + 2] === ">") {
         body = line.substr(idx + 3);
-        idx = body.indexOf(CLOSE);
+        idx = body.indexOf("<<<");
         if (idx < 0) {
             const n = lines.length;
             let closed = false;
             while (++i < n) {
                 line = lines[i];
-                idx = line.indexOf(CLOSE);
+                idx = line.indexOf("<<<");
                 if (idx >= 0) {
                     body += "\n" + line.substr(0, idx);
                     closed = true;
@@ -133,13 +134,33 @@ const parseProp = (
         i++;
     }
     body = body.trim();
-    const val = tag ? parseTag(tag, body, ctx) : body;
+    addProp(node, key, tag ? parseTag(tag, body, ctx) : body);
+    return i;
+};
+
+const addProp = (acc: Node, key: string, val: any) => {
     const exist = acc[key];
     if (exist) {
         isArray(exist) ? exist.push(val) : (acc[key] = [exist, val]);
     } else {
         acc[key] = val;
     }
+};
+
+const parseRef = (id: string, ctx: ParseContext) => {
+    ctx.opts.prefixes && (id = qualifiedID(ctx.prefixes, id));
+    return ctx.opts.resolve
+        ? ctx.nodes[id] || (ctx.nodes[id] = { $id: id })
+        : {
+              $ref: id,
+              deref() {
+                  return ctx.nodes[id];
+              },
+              equiv(o: any) {
+                  return o != null && o.$ref === this.$ref;
+              },
+          };
+};
     return i;
 };
 

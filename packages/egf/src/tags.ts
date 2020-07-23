@@ -5,7 +5,6 @@ import { execSync } from "child_process";
 import { readFileSync } from "fs";
 import { resolve as resolvePath } from "path";
 import { IS_NODE, NODE_ONLY, TagParser } from "./api";
-import { qualifiedID } from "./utils";
 
 export const BUILTINS: IObjectOf<TagParser> = {
     base64: IS_NODE
@@ -36,18 +35,4 @@ export const BUILTINS: IObjectOf<TagParser> = {
     json: (_, body) => JSON.parse(body),
     list: (_, body) => body.split(/[\n\r\t ]+/g),
     num: (_, body) => maybeParseFloat(body, 0),
-    ref: (_, id, ctx) => {
-        ctx.opts.prefixes && (id = qualifiedID(ctx.prefixes, id));
-        return ctx.opts.resolve
-            ? ctx.nodes[id] || (ctx.nodes[id] = { $id: id })
-            : {
-                  $ref: id,
-                  deref() {
-                      return ctx.nodes[id];
-                  },
-                  equiv(o: any) {
-                      return o != null && o.$ref === this.$ref;
-                  },
-              };
-    },
 };

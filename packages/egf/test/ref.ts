@@ -4,18 +4,18 @@ import { parseString } from "../src";
 
 const $ref = (id: string) => ({ $ref: id });
 
-describe("egf #ref", () => {
+describe("refs", () => {
     it("resolve w/ prefix", () => {
         const db = parseString(
             `
 @prefix thi: thi.ng/
 thi:a
-    partof #ref thi:b
-    knows #ref alt.thi.ng/c
+    partof -> thi:b
+    knows -> alt.thi.ng/c
 
 @prefix thi: alt.thi.ng/
 thi:c
-    diff #ref thi:a
+    diff -> thi:a
 `,
             { opts: { prefixes: true, resolve: true } }
         ).nodes;
@@ -28,10 +28,10 @@ thi:c
         const db = parseString(
             `
 a
-    knows #ref b
+    knows -> b
 
 b
-    knows #ref a
+    knows -> a
 `,
             { opts: { resolve: true } }
         ).nodes;
@@ -45,9 +45,9 @@ b
                 parseString(
                     `
 a
-    knows #ref b
-    knows #ref c
-    knows #ref d
+    knows -> b
+    knows -> c
+    knows -> d
 
 b
     name bb
@@ -75,9 +75,9 @@ d
                 parseString(
                     `
 a
-    knows #ref b
-    knows #ref c
-    knows #ref d
+    knows -> b
+    knows -> c
+    knows -> d
 
 b
     name bb
