@@ -1,4 +1,4 @@
-import type { Fn3, IDeref, ILogger, IObjectOf } from "@thi.ng/api";
+import type { Fn3, IDeref, IEquiv, ILogger, IObjectOf } from "@thi.ng/api";
 import { isNode } from "@thi.ng/checks";
 import { unsupported } from "@thi.ng/errors";
 
@@ -7,8 +7,12 @@ export interface Node {
     [id: string]: any;
 }
 
-export interface NodeRef extends IDeref<Node | undefined> {
+export interface NodeRef extends IDeref<Node | undefined>, IEquiv {
     $ref: string;
+}
+
+export interface IToEGFConvert {
+    toEGF(): string;
 }
 
 export type Nodes = Record<string, Node>;

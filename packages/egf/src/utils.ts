@@ -1,8 +1,14 @@
-import { isPlainObject } from "@thi.ng/checks";
+import { TrieMap } from "@thi.ng/associative";
+import { implementsFunction, isPlainObject } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
-import type { NodeRef, Prefixes } from "./api";
+import type { IToEGFConvert, Node, NodeRef, Prefixes } from "./api";
+
+export const isNode = (x: any): x is Node => isPlainObject(x) && "$id" in x;
 
 export const isRef = (x: any): x is NodeRef => isPlainObject(x) && "$ref" in x;
+
+export const isToEGF = (x: any): x is IToEGFConvert =>
+    implementsFunction(x, "toEGF");
 
 const RE_QFN = /^([a-z0-9-_$]*):([a-z0-9-_$.+]+)$/i;
 
@@ -20,4 +26,21 @@ export const qualifiedID = (prefixes: Prefixes, id: string) => {
         }
     }
     return id;
+};
+
+export const defPrefixer = (prefixes: Prefixes) => {
+    const rev = new TrieMap<string>();
+    const used = new Set<string>();
+    Object.entries(prefixes).forEach(([id, url]) => rev.set(url, id));
+    return {
+        used,
+        prefixID(id: string) {
+            const known = rev.knownPrefix(id);
+            if (known) {
+                const pre = rev.get(known)!;
+                used.add(pre);
+                return pre + ":" + id.substr(known.length);
+            }
+        },
+    };
 };

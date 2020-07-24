@@ -44,6 +44,7 @@
     },
     "dependencies": {
         "@thi.ng/api": "^6.11.3",
+        "@thi.ng/associative": "^4.5.1",
         "@thi.ng/checks": "^2.7.3",
         "@thi.ng/dot": "^1.2.12",
         "@thi.ng/errors": "^1.2.16",
