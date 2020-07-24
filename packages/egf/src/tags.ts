@@ -8,10 +8,7 @@ import { IS_NODE, NODE_ONLY, TagParser } from "./api";
 
 export const BUILTINS: IObjectOf<TagParser> = {
     base64: IS_NODE
-        ? (_, body) => {
-              const buf = Buffer.from(body, "base64");
-              return new Uint8Array(buf.buffer, 0, buf.length);
-          }
+        ? (_, body) => Buffer.from(body, "base64")
         : (_, body) => new Uint8Array([...base64Decode(body)]),
     date: (_, body) => new Date(Date.parse(body)),
     file: (_, path, ctx) => {
