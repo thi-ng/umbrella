@@ -1,5 +1,5 @@
-import { IObjectOf } from "@thi.ng/api";
-import { Trie } from "@thi.ng/associative";
+import type { IObjectOf } from "@thi.ng/api";
+import { MultiTrie } from "@thi.ng/associative";
 import { compareByKeys2 } from "@thi.ng/compare";
 
 type PackedTrie = [IObjectOf<PackedTrie>, number[]?];
@@ -30,7 +30,7 @@ export const defDecoder = ([
     (id >>> lsh) & lmsk,
 ];
 
-const pack = (trie: Trie<string, number>): PackedTrie => {
+const pack = (trie: MultiTrie<string, number>): PackedTrie => {
     const next = Object.keys((<any>trie).next).reduce((acc, k) => {
         acc[k] = pack((<any>trie).next[k]);
         return acc;
@@ -53,7 +53,7 @@ export const build = (
     numFiles: number,
     numKeys: number,
     numVals: number,
-    trie: Trie<string, number>
+    trie: MultiTrie<string, number>
 ): SearchIndex => ({
     bits,
     packages: mapToArray(pkgs),
