@@ -1,4 +1,5 @@
-import type { IObjectOf, Pair, Fn0, Nullable } from "@thi.ng/api";
+import type { Fn0, IObjectOf, Nullable, Pair } from "@thi.ng/api";
+import { isArray } from "@thi.ng/checks";
 import { map, vals } from "@thi.ng/transducers";
 
 export interface MultiTrieOpts<V> {
@@ -57,10 +58,17 @@ export class MultiTrie<K extends ArrayLike<any>, V> {
         }
     }
 
-    *suffixes(prefix: K, withPrefix = false) {
+    *suffixes(prefix: K, withPrefix = false, sep = "") {
         const node = this.find(prefix);
         if (node) {
-            yield* node.keys("", withPrefix ? prefix.toString() : "");
+            yield* node.keys(
+                sep,
+                withPrefix
+                    ? isArray(prefix)
+                        ? prefix.join(sep)
+                        : prefix.toString()
+                    : ""
+            );
         }
     }
 
