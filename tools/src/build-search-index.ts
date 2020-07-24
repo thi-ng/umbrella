@@ -1,4 +1,4 @@
-import { ArraySet, Trie } from "@thi.ng/associative";
+import { ArraySet, MultiTrie } from "@thi.ng/associative";
 // @ts-ignore
 import { serialize } from "@ygoe/msgpack";
 import { execSync } from "child_process";
@@ -11,22 +11,14 @@ const RE_DOC_END = /^\s+\*\/$/;
 const RE_DOC_CODE = /^\s+\* \`\`\`/;
 const RE_SYM = /^export (type|interface|class|const|function|enum) (\w+)/;
 
-class EquivTrie<T> extends Trie<string, T> {
-    makeChild() {
-        return new EquivTrie<T>();
-    }
-
-    makeValueSet() {
-        return new ArraySet<T>();
-    }
-}
-
 // pkg, file, line
 type IndexValue = number;
 
 const fileIDs = new Map<string, number>();
 const pkgIDs = new Map<string, number>();
-const index = new EquivTrie<IndexValue>();
+const index = new MultiTrie<string, IndexValue>(null, {
+    vals: () => new ArraySet<IndexValue>(),
+});
 const ignore = new Set(readJSON("./tools/ignore-words.json"));
 
 const encodeConfig = [
