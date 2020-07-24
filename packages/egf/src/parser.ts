@@ -1,5 +1,4 @@
-import { NULL_LOGGER } from "@thi.ng/api";
-import { isArray } from "@thi.ng/checks";
+import { IObjectOf, NULL_LOGGER } from "@thi.ng/api";
 import { illegalState, unsupported } from "@thi.ng/errors";
 import * as $prefixes from "@thi.ng/prefixes";
 import { readFileSync } from "fs";
@@ -100,7 +99,12 @@ const parseProp = (
     let body: string;
     idx++;
     if (line[idx] === "-" && line[idx + 1] === ">") {
-        addProp(node, key, parseRef(line.substr(idx + 2).trim(), ctx));
+        addProp(
+            ctx.index,
+            node,
+            key,
+            parseRef(line.substr(idx + 2).trim(), ctx)
+        );
         return ++i;
     } else if (line[idx] === "#") {
         const tstart = idx + 1;
@@ -136,16 +140,23 @@ const parseProp = (
         i++;
     }
     body = body.trim();
-    addProp(node, key, tag ? parseTag(tag, body, ctx) : body);
+    addProp(ctx.index, node, key, tag ? parseTag(tag, body, ctx) : body);
     return i;
 };
 
-const addProp = (acc: Node, key: string, val: any) => {
+const addProp = (
+    index: IObjectOf<number>,
+    acc: Node,
+    key: string,
+    val: any
+) => {
     const exist = acc[key];
-    if (exist) {
-        isArray(exist) ? exist.push(val) : (acc[key] = [exist, val]);
+    const id = acc.$id + "~" + key;
+    if (exist !== undefined) {
+        ++index[id] > 2 ? exist.push(val) : (acc[key] = [exist, val]);
     } else {
         acc[key] = val;
+        index[id] = 1;
     }
 };
 
@@ -186,7 +197,9 @@ const initContext = (ctx: Partial<ParseContext> = {}) => {
     return <ParseContext>{
         cwd: ctx.cwd || ".",
         file: ctx.file || "",
+        files: ctx.files || [],
         nodes: ctx.nodes || {},
+        index: ctx.index || {},
         tags: { ...BUILTINS, ...ctx.tags },
         defaultTag: ctx.defaultTag,
         prefixes: ctx.prefixes
@@ -200,6 +213,11 @@ const initContext = (ctx: Partial<ParseContext> = {}) => {
 export const parseFile = (path: string, ctx?: Partial<ParseContext>) => {
     const $ctx = initContext(ctx);
     $ctx.file = path = resolvePath($ctx.cwd, path);
+    if ($ctx.files.includes(path)) {
+        $ctx.logger.warn("file already processed, skipping:", path);
+        return $ctx;
+    }
+    $ctx.files.push(path);
     $ctx.logger.debug("loading file:", path);
     return parse(readFileSync(path).toString(), $ctx);
 };

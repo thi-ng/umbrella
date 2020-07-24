@@ -78,8 +78,10 @@ export type TagParser = Fn3<string, string, ParseContext, any>;
 export interface ParseContext {
     cwd: string;
     file: string;
+    files: string[];
     prefixes: Prefixes;
     nodes: Nodes;
+    index: IObjectOf<number>;
     tags: IObjectOf<TagParser>;
     defaultTag?: TagParser;
     opts: Partial<ParseOpts>;
