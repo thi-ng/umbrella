@@ -1,11 +1,11 @@
 import * as assert from "assert";
 
-import { Trie } from "../src/trie";
+import { MultiTrie } from "../src/multi-trie";
 
-describe("Trie", () => {
-    let root: Trie<string, string>;
+describe("MultiTrie", () => {
+    let root: MultiTrie<string, string>;
     beforeEach(() => {
-        root = new Trie();
+        root = new MultiTrie();
         root.add("hey", "en");
         root.add("hello", "en");
         root.add("hallo", "de");
@@ -35,7 +35,7 @@ describe("Trie", () => {
     });
 
     it("keys (words)", () => {
-        const t = new Trie<string[], string>();
+        const t = new MultiTrie<string[], string>();
         t.add("foo bar baz".split(" "), "a");
         t.add("foo boo zoo".split(" "), "b");
         assert.deepEqual(
