@@ -25,6 +25,8 @@ This project is part of the
     - [Ranged queries](#ranged-queries)
   - [SortedSet](#sortedset)
   - [SparseSet8/16/32](#sparseset8-16-32)
+  - [TrieMap](#triemap)
+  - [MultiTrie](#multitrie)
 - [Authors](#authors)
 - [License](#license)
 
@@ -46,6 +48,8 @@ Alternative Map and Set implementations with customizable equality semantics & s
       implementations)
     - getters w/ optional "not-found" default value
     - `fromObject()` converters (for maps only)
+- `TrieMap` for string-based keys and `MultiTrie` for array-like keys and
+  multiple values per key
 - `SparseSet` implementations for numeric values
 - Polymorphic set operations (union, intersection, difference) - works
   with both native and custom Sets and retains their types
@@ -59,7 +63,7 @@ Alternative Map and Set implementations with customizable equality semantics & s
 
 ### Why?
 
-Please see these packages for use cases:
+Please see these packages for some example use cases:
 
 - [@thi.ng/cache](https://github.com/thi-ng/umbrella/tree/develop/packages/cache)
 - [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph)
@@ -99,9 +103,7 @@ map.get(b);
 Using custom implementations:
 
 ```ts
-import * as assoc from "@thi.ng/associative";
-
-set = new assoc.ArraySet();
+set = defArraySet();
 set.add(a);
 set.add({a: 1});
 // ArraySet { [ 1, 2 ], { a: 1 } }
@@ -110,7 +112,7 @@ set.has(b);
 set.has({a: 1});
 // true
 
-set = new assoc.LLSet();
+set = defLLSet();
 set.add(a);
 set.add({a: 1});
 // LLSet { [ 1, 2 ], { a: 1 } }
@@ -120,10 +122,10 @@ set.has({a: 1});
 // true
 
 // by default EquivMap uses ArraySet for its canonical keys
-map = new assoc.EquivMap();
+map = defEquivMap();
 
 // with custom implementation
-map = new assoc.EquivMap(null, { keys: assoc.ArraySet });
+map = defEquivMap(null, { keys: assoc.ArraySet });
 map.set(a, "foo");
 // EquivMap { [ 1, 2 ] => 'foo' }
 map.get(b);
@@ -133,18 +135,18 @@ map.get(b);
 // (here using `hash` function for arrays)
 import { hash } from "@thi.ng/vectors"
 
-m = new assoc.HashMap([], { hash })
+m = defHashMap([], { hash })
 m.set([1, 2], "a");
 m.set([3, 4, 5], "b");
 m.set([1, 2], "c");
 // HashMap { [ 1, 2 ] => 'c', [ 3, 4, 5 ] => 'b' }
 
-set = new assoc.SortedSet([a, [-1, 2], [-1, -2]]);
+set = defSortedSet([a, [-1, 2], [-1, -2]]);
 // SortedSet { [ -1, -2 ], [ -1, 2 ], [ 1, 2 ] }
 set.has(b);
 // true
 
-map = new assoc.SortedMap([[a, "foo"], [[-1,-2], "bar"]]);
+map = defSortedMap([[a, "foo"], [[-1,-2], "bar"]]);
 // SortedMap { [ -1, -2 ] => 'bar', [ 1, 2 ] => 'foo' }
 map.get(b);
 // "foo"
@@ -172,7 +174,7 @@ yarn add @thi.ng/associative
 <script src="https://unpkg.com/@thi.ng/associative/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.90 KB / CJS: 6.08 KB / UMD: 5.88 KB
+Package sizes (gzipped, pre-treeshake): ESM: 6.22 KB / CJS: 6.42 KB / UMD: 6.18 KB
 
 ## Dependencies
 
@@ -243,7 +245,7 @@ Data structure description:
 #### Ranged queries
 
 ```ts
-map = new assoc.SortedMap([
+map = defSortedMap([
     ["c", 3], ["a", 1], ["d", 4], ["b", 2]
 ]);
 // SortedMap { 'a' => 1, 'b' => 2, 'c' => 3, 'd' => 4 }
@@ -295,7 +297,7 @@ deduplication of values), this property can be very useful.
 
 ```ts
 // create sparse set for value range 0 - 99 (uint8 backed)
-const a = sparseSet(100);
+const a = defSparseSet(100);
 a.into([99, 42, 66, 23, 66, 42]);
 // SparseSet8 { 99, 42, 66, 23 }
 
@@ -311,8 +313,65 @@ a.add(100)
 // SparseSet8 { 99, 42, 66, 23 }
 
 // create sparse set for 16 bit value range 0 - 0xffff (uint16 backed)
-const b = sparseSet(0x10000);
+const b = defSparseSet(0x10000);
 // SparseSet16 {}
+```
+
+### TrieMap
+
+[Tries](https://en.wikipedia.org/wiki/Trie) (also called Prefix maps) are useful
+data structures for search based use cases, auto-complete, text indexing etc.
+and provide partial key matching (prefixes), suffix iteration for a common
+prefix, longest matching prefix queries etc.
+
+The implementations here too feature ES6 Map-like API, similar to other types in
+this package, with some further trie-specific additions.
+
+```ts
+const trie = defTrieMap([
+  ["hey", "en"],
+  ["hello", "en"],
+  ["hallo", "de"],
+  ["hallo", "de-at"],
+  ["hola", "es"],
+  ["hold", "en"],
+  ["hej", "se"],
+]);
+
+trie.knownPrefix("hole")
+// "hol"
+
+[...trie.suffixes("he")]
+// [ "j", "llo", "y" ]
+
+// w/ prefix included
+[...trie.suffixes("he", true)]
+// [ "hej", "hello", "hey" ]
+```
+
+### MultiTrie
+
+The `MultiTrie` is similar to `TrieMap`, but supports array-like keys and
+multiple values per key. Values are stored in sets whose implementation can be
+configured via ctor options.
+
+```ts
+// init w/ custom value set type (here only for illustration)
+const t = defMultiTrie<string[], string>(null, { vals: () => new ArraySet() });
+
+t.add("to be or not to be".split(" "), 1);
+t.add("to be or not to be".split(" "), 2);
+t.add("to be and to live".split(" "), 3);
+
+t.get("to be or not to be".split(" "))
+// Set(2) { 1, 2 }
+
+t.knownPrefix(["to", "be", "not"]);
+// [ "to", "be" ]
+
+// auto-complete w/ custom separator between words
+[...t.suffixes(["to", "be"], false, "/")]
+// [ "and/to/live", "or/not/to/be" ]
 ```
 
 ## Authors
