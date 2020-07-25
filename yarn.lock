@@ -2386,12 +2386,12 @@ asn1@~0.2.3:
   dependencies:
     safer-buffer "~2.1.0"
 
-assemblyscript@^0.9.4:
-  version "0.9.4"
-  resolved "https://registry.yarnpkg.com/assemblyscript/-/assemblyscript-0.9.4.tgz#d535ad6e9299c9d3b9881ff08c3101298d53cb1a"
-  integrity sha512-GabjIxYt5uI3nyZNYzw6VtHyZcjVtcw8tbtEbXGvbrp3+A5p3zQ2yrU03tSiRR+WTeGx2aS8c6T+y2gGfjyvqw==
+assemblyscript@^0.14.4:
+  version "0.14.4"
+  resolved "https://registry.yarnpkg.com/assemblyscript/-/assemblyscript-0.14.4.tgz#f2bc302d18518bd2e2eb6dc250553367e79017da"
+  integrity sha512-BGb/WFx2GXOKT/YQJDRccl5YBRoRlwpZhom+RLHgS/nK2vqejMcrwGiBklVqWDYRNLjNy1glA/beO7Bs7+gL1A==
   dependencies:
-    binaryen "91.0.0-nightly.20200310"
+    binaryen "95.0.0-nightly.20200723"
     long "^4.0.0"
 
 assert-plus@1.0.0, assert-plus@^1.0.0:
@@ -2539,10 +2539,10 @@ binary-extensions@^2.0.0:
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-2.1.0.tgz#30fa40c9e7fe07dbc895678cd287024dea241dd9"
   integrity sha512-1Yj8h9Q+QDF5FzhMs/c9+6UntbD5MkRfRwac8DoEm9ZfUBZ7tZ55YcGVAzEe4bXsdQHEk+s9S5wsOKVdZrw0tQ==
 
-binaryen@91.0.0-nightly.20200310:
-  version "91.0.0-nightly.20200310"
-  resolved "https://registry.yarnpkg.com/binaryen/-/binaryen-91.0.0-nightly.20200310.tgz#f2c60020fef1fb5ac0e436b9a0e01b25c484c0b4"
-  integrity sha512-MmDzq267aa61HdEQeYiz+7guJlsYk2/6NxWC8I4w1jijqDwoqyZZxi7UYnTH7QvfLrNdMjweEgfT7FHjkvkPmQ==
+binaryen@95.0.0-nightly.20200723:
+  version "95.0.0-nightly.20200723"
+  resolved "https://registry.yarnpkg.com/binaryen/-/binaryen-95.0.0-nightly.20200723.tgz#a6fa324a51e01df41a951c0275b1ffc9b5f3a8f6"
+  integrity sha512-IUO89yU4l20ocuf7RvcBj2T1ZGafO0XNcbqTFne9Dbp63FOLafDSuV7U22n0bTbK4H6qqGogTQtQJQbrV054lQ==
 
 bindings@^1.5.0:
   version "1.5.0"
