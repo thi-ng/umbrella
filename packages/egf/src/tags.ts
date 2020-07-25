@@ -10,7 +10,7 @@ export const BUILTINS: IObjectOf<TagParser> = {
     base64: IS_NODE
         ? (_, body) => Buffer.from(body, "base64")
         : (_, body) => new Uint8Array([...base64Decode(body)]),
-    date: (_, body) => new Date(Date.parse(body)),
+    date: (_, body) => new Date(body),
     file: (_, path, ctx) => {
         if (IS_NODE && ctx.opts.includes) {
             path = resolvePath(ctx.opts.root!, path);
