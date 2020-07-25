@@ -1,4 +1,19 @@
 import type { IID } from "@thi.ng/api";
+import type { StreamMerge } from "@thi.ng/rstream";
+
+export type GestureStream = StreamMerge<UIEvent, GestureEvent>;
+
+export type UIEvent = MouseEvent | TouchEvent | WheelEvent;
+
+export type UIEventID =
+    | "mousedown"
+    | "mousemove"
+    | "mouseup"
+    | "touchstart"
+    | "touchmove"
+    | "touchend"
+    | "touchcancel"
+    | "wheel";
 
 export enum GestureType {
     START,

@@ -1,3 +1,4 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { isBoolean } from "@thi.ng/checks";
 import { clamp } from "@thi.ng/math";
 import { fromDOMEvent, merge, Stream } from "@thi.ng/rstream";
@@ -5,22 +6,12 @@ import { map } from "@thi.ng/transducers";
 import {
     GestureEvent,
     GestureInfo,
+    GestureStream,
     GestureStreamOpts,
     GestureType,
+    UIEvent,
+    UIEventID,
 } from "./api";
-import type { IObjectOf } from "@thi.ng/api";
-
-type UIEvent = MouseEvent | TouchEvent | WheelEvent;
-
-type UIEventID =
-    | "mousedown"
-    | "mousemove"
-    | "mouseup"
-    | "touchstart"
-    | "touchmove"
-    | "touchend"
-    | "touchcancel"
-    | "wheel";
 
 const startEvents = new Set([
     "mousedown",
@@ -74,7 +65,7 @@ const eventGestureTypeMap: IObjectOf<GestureType> = {
 export const gestureStream = (
     el: Element,
     _opts?: Partial<GestureStreamOpts>
-) => {
+): GestureStream => {
     const opts = <GestureStreamOpts>{
         id: "gestures",
         zoom: 1,
