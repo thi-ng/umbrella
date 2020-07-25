@@ -54,6 +54,8 @@ export class DVMesh<T> {
             isNumber(pts[0][0])
                 ? this.addKeys(<ReadonlyVec[]>pts)
                 : this.addAll(<Pair<ReadonlyVec, T>[]>pts);
+        } else {
+            this.computeDual();
         }
     }
 
