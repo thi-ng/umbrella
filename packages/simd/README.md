@@ -13,7 +13,7 @@ This project is part of the
 - [Available functions](#available-functions)
   - [Status](#status)
   - [BREAKING CHANGES](#breaking-changes)
-    - [1.0.0](#100)
+    - [0.4.0](#040)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -82,6 +82,8 @@ for documentation about the exposed TS/JS API...
 
 **ALPHA** - bleeding edge / work-in-progress
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bsimd%5D)
+
 The [WebAssembly SIMD spec](https://github.com/WebAssembly/simd) is
 still WIP and (at the time of writing) only partially implemented and
 hidden behind feature flags. Currently only fully tested (& testable for
@@ -93,7 +95,7 @@ me) on Node 14.6+.
 
 ### BREAKING CHANGES
 
-#### 1.0.0
+#### 0.4.0
 
 Due to the [opcode renumbering of SIMD
 operations](https://github.com/WebAssembly/simd/pull/209#issuecomment-607282125)
