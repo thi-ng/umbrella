@@ -54,7 +54,7 @@ Custom parsers can be provided via config options.
 | `#hex`    | hex 32bit int (no prefix)                       | `number`     |
 | `#json`   | Arbitrary JSON value                            | `any`        |
 | `#list`   | Whitespace separated list                       | `string[]`   |
-| `#num`    | Floating point value                            | `number`     |
+| `#num`    | Floating point value (IEEE754)                  | `number`     |
 
 **Note:** In this reference implementation, the `#file` and `#gpg` tag parsers
 are only available in NodeJS.
@@ -65,7 +65,7 @@ ${status}
 
 (Non-exhaustive list)
 
-- [ ] JSON -> EGF conversion
+- [x] JSON -> EGF conversion
 - [ ] Async tag parsing
 - [ ] URL support for `#file` tag
 - [ ] Tag declarations & tag parser import from URL (needs trust config opts)
@@ -425,6 +425,58 @@ Parsing the `main.egf` file (with node resolution/inlining and pruning) produces
     'http://schema.org/dateCreated': 2020-07-19T00:00:00.000Z
   }
 }
+```
+
+### EGF generation / serialization
+
+Complying JS objects can be converted to EGF using the `toEGF()` function. This
+function takes an iterable of
+[Node](https://github.com/thi-ng/umbrella/blob/feature/egf/packages/egf/src/api.ts#L5)
+objects, optional prefix mappings and an optional property serialization
+function to deal with custom tagged values. The default property formatter
+(`toEGFProp()`) handles various values for built-in tags and can be used in
+combination with any additional user provided logic.
+
+```js
+import { rdf, schema } from "@thi.ng/prefixes";
+
+const res = toEGF([
+    {
+      $id: "thi:egf",
+      "rdf:type": { $ref: "schema:SoftwareSourceCode" },
+      "schema:isPartOf": { $id: "http://thi.ng/umbrella" },
+      "schema:dateCreated": new Date("2020-02-16")
+    },
+    {
+      $id: "thi:umbrella",
+      "rdf:type": { $ref: "schema:SoftwareSourceCode" },
+      "schema:programmingLanguage": "TypeScript"
+    }
+  ],
+  // prefix mappings (optional)
+  {
+    thi: "http://thi.ng/",
+    schema,
+    rdf
+  }
+  // property serializer (optional)
+  toEGFProp
+);
+```
+
+```text
+@prefix thi: http://thi.ng/
+@prefix schema: http://schema.org/
+@prefix rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+
+thi:egf
+    rdf:type -> schema:SoftwareSourceCode
+    schema:isPartOf -> thi:umbrella
+    schema:dateCreated #date 2020-02-16T00:00:00.000Z
+
+thi:umbrella
+    rdf:type -> schema:SoftwareSourceCode
+    schema:programmingLanguage TypeScript
 ```
 
 ## Authors
