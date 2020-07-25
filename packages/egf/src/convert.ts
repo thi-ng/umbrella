@@ -7,27 +7,25 @@ import {
     isString,
     isTypedArray,
 } from "@thi.ng/checks";
-import * as $prefixes from "@thi.ng/prefixes";
 import { base64Encode } from "@thi.ng/transducers-binary";
 import type { Node, Prefixes } from "./api";
 import { defPrefixer, isNode, isRef, isToEGF } from "./utils";
 
 export const toEGF = (
     nodes: Iterable<Node>,
-    prefixes?: Prefixes,
+    prefixes: Prefixes = {},
     propFn?: Fn2<string, any, string>
 ) => {
-    prefixes = { ...$prefixes, ...prefixes };
-    const { used, prefixID } = defPrefixer(prefixes);
+    const prefixID = defPrefixer(prefixes);
     const res: string[] = [];
+    for (let id in prefixes) {
+        res.push(`@prefix ${id}: ${prefixes[id]}`);
+    }
+    res.push("");
     for (let node of nodes) {
-        res.push(toEGFNode(node, prefixID, propFn), "\n");
+        res.push(toEGFNode(node, prefixID, propFn), "");
     }
-    const pre: string[] = [];
-    for (let id of used) {
-        pre.push(`@prefix ${id}: ${prefixes[id]}`);
-    }
-    return pre.join("\n") + "\n\n" + res.join("\n");
+    return res.join("\n");
 };
 
 export const toEGFNode = (
@@ -68,19 +66,16 @@ export const toEGFNode = (
 export const toEGFProp = (_: string, x: any) =>
     isString(x)
         ? x.indexOf("\n") >= 0
-            ? multiline(x)
+            ? `>>>${x}<<<`
             : x
         : isNumber(x)
         ? `#num ${x}`
         : isDate(x)
         ? `#date ${x.toISOString()}`
         : isTypedArray(x)
-        ? "#base64 " +
-          multiline(
-              base64Encode(new Uint8Array(x.buffer, x.byteOffset, x.byteLength))
-          )
+        ? `#base64 ${base64Encode(
+              new Uint8Array(x.buffer, x.byteOffset, x.byteLength)
+          )}`
         : isArray(x) || isPlainObject(x)
         ? `#json ${JSON.stringify(x)}`
         : x;
-
-const multiline = (x: any) => `>>>${x}<<<`;

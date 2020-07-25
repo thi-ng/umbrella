@@ -29,18 +29,14 @@ export const qualifiedID = (prefixes: Prefixes, id: string) => {
 };
 
 export const defPrefixer = (prefixes: Prefixes) => {
-    const rev = new TrieMap<string>();
-    const used = new Set<string>();
-    Object.entries(prefixes).forEach(([id, url]) => rev.set(url, id));
-    return {
-        used,
-        prefixID(id: string) {
-            const known = rev.knownPrefix(id);
-            if (known) {
-                const pre = rev.get(known)!;
-                used.add(pre);
-                return pre + ":" + id.substr(known.length);
-            }
-        },
+    const uriToID = new TrieMap<string>();
+    Object.entries(prefixes).forEach(([id, url]) => uriToID.set(url, id));
+    return (uri: string) => {
+        const known = uriToID.knownPrefix(uri);
+        return known
+            ? uriToID.get(known)! + ":" + uri.substr(known.length)
+            : undefined;
     };
 };
+
+export const defVocab = (uri: string) => (name = "") => uri + name;
