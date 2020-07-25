@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/associative",
-    "version": "5.0.0",
+    "version": "5.0.1",
     "description": "Alternative Map and Set implementations with customizable equality semantics & supporting operations",
     "module": "./index.js",
     "main": "./lib/index.js",

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.28](https://github.com/thi-ng/umbrella/compare/@thi.ng/ecs@0.3.27...@thi.ng/ecs@0.3.28) (2020-07-25)
+
+**Note:** Version bump only for package @thi.ng/ecs
+
+
+
+
+
 ## [0.3.27](https://github.com/thi-ng/umbrella/compare/@thi.ng/ecs@0.3.26...@thi.ng/ecs@0.3.27) (2020-07-25)
 
 **Note:** Version bump only for package @thi.ng/ecs
