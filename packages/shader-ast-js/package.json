@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/shader-ast-js",
-    "version": "0.4.35",
+    "version": "0.4.36",
     "description": "Customizable JS code generator, compiler & runtime for @thi.ng/shader-ast",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -55,7 +55,7 @@
         "@thi.ng/math": "^2.0.0",
         "@thi.ng/matrices": "^0.6.25",
         "@thi.ng/pixel": "^0.4.0",
-        "@thi.ng/shader-ast": "^0.3.32",
+        "@thi.ng/shader-ast": "^0.3.33",
         "@thi.ng/vectors": "^4.5.5"
     },
     "files": [

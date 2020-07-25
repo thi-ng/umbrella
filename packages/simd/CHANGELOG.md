@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/simd@0.3.1...@thi.ng/simd@0.4.0) (2020-07-25)
+
+
+### Bug Fixes
+
+* **simd:** prepare re-publish 1.0.0 ([e528129](https://github.com/thi-ng/umbrella/commit/e52812952017ea2a29cad1d1bd081f49f5a1bf9d))
+
+
+### Documentation
+
+* **simd:** update readme ([740e742](https://github.com/thi-ng/umbrella/commit/740e74239a8ad6ee0fd54c68016fcf97374054c9))
+
+
+### BREAKING CHANGES
+
+* **simd:** add readme notes about opcode renumbering
+* **simd:** add notes about opcode renumbering
+
+
+
+
+
 ## [0.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/simd@0.3.0...@thi.ng/simd@0.3.1) (2020-07-17)
 
 **Note:** Version bump only for package @thi.ng/simd

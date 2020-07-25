@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rstream-graph",
-    "version": "3.2.34",
+    "version": "3.2.35",
     "description": "Declarative dataflow graph construction for @thi.ng/rstream",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -55,7 +55,7 @@
         "@thi.ng/errors": "^1.2.16",
         "@thi.ng/paths": "^4.1.1",
         "@thi.ng/resolve-map": "^4.2.0",
-        "@thi.ng/rstream": "^4.6.4",
+        "@thi.ng/rstream": "^4.6.5",
         "@thi.ng/transducers": "^7.1.6"
     },
     "files": [
