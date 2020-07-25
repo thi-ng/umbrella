@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/egf",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Extensible Graph Format",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -44,7 +44,7 @@
     },
     "dependencies": {
         "@thi.ng/api": "^6.11.3",
-        "@thi.ng/associative": "^4.5.1",
+        "@thi.ng/associative": "^5.0.0",
         "@thi.ng/checks": "^2.7.3",
         "@thi.ng/dot": "^1.2.12",
         "@thi.ng/errors": "^1.2.16",
@@ -63,6 +63,7 @@
         "file format",
         "graph",
         "graphviz",
+        "json",
         "linked data",
         "lpg",
         "rdf",
