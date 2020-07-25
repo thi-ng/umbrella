@@ -12,6 +12,8 @@ This project is part of the
 - [About](#about)
 - [Available functions](#available-functions)
   - [Status](#status)
+  - [BREAKING CHANGES](#breaking-changes)
+    - [1.0.0](#100)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -83,11 +85,22 @@ for documentation about the exposed TS/JS API...
 The [WebAssembly SIMD spec](https://github.com/WebAssembly/simd) is
 still WIP and (at the time of writing) only partially implemented and
 hidden behind feature flags. Currently only fully tested (& testable for
-me) on Node 14.1+.
+me) on Node 14.6+.
 
 - [SIMD implementation status](https://github.com/WebAssembly/simd/blob/master/proposals/simd/ImplementationStatus.md)
 - Node (v12.10+): `node --experimental-wasm-simd`
 - Chrome: Enable SIMD support via [chrome://flags](chrome://flags)
+
+### BREAKING CHANGES
+
+#### 1.0.0
+
+Due to the [opcode renumbering of SIMD
+operations](https://github.com/WebAssembly/simd/pull/209#issuecomment-607282125)
+proposed in April 2020, the WASM module will only work on engines released after
+2020-05-21 when that change was committed to the WASM spec. For NodeJS this
+means only v14.6.0 or newer will be supported. This was an external change and
+outside our control...
 
 ## Installation
 
@@ -103,7 +116,7 @@ yarn add @thi.ng/simd
 <script src="https://unpkg.com/@thi.ng/simd/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.53 KB / CJS: 2.59 KB / UMD: 2.69 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.50 KB / CJS: 2.56 KB / UMD: 2.67 KB
 
 ## Dependencies
 
