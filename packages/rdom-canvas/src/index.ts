@@ -10,7 +10,7 @@ import {
     isSubscribable,
     NumOrElement,
 } from "@thi.ng/rdom";
-import { ISubscribable, Subscription, trigger } from "@thi.ng/rstream";
+import { ISubscribable, reactive, Subscription } from "@thi.ng/rstream";
 import { sideEffect } from "@thi.ng/transducers";
 
 /**
@@ -45,7 +45,7 @@ export class $Canvas extends Component
         super();
         this.size = isSubscribable(size)
             ? <Subscription<any, number[]>>size
-            : trigger(<number[]>size);
+            : reactive(<number[]>size);
         this.sizeSub = this.size.transform(
             sideEffect((size) => this.resize(size))
         );
