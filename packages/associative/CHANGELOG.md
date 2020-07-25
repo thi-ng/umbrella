@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@4.5.1...@thi.ng/associative@5.0.0) (2020-07-25)
+
+
+### Features
+
+* **associative:** add TrieMap, rename MultiTrie ([cc2d139](https://github.com/thi-ng/umbrella/commit/cc2d139b92e29a5813e67030ada6776f2736ca6c))
+* **associative:** update MultiTrie.suffixes() ([ec110ae](https://github.com/thi-ng/umbrella/commit/ec110ae3f0fe6d0fc64b7544904a96b42534988d))
+
+
+### BREAKING CHANGES
+
+* **associative:** rename Trie => MultiTrie
+
+
+
+
+
 ## [4.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@4.5.0...@thi.ng/associative@4.5.1) (2020-07-17)
 
 **Note:** Version bump only for package @thi.ng/associative

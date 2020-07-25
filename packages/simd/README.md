@@ -85,7 +85,7 @@ for documentation about the exposed TS/JS API...
 The [WebAssembly SIMD spec](https://github.com/WebAssembly/simd) is
 still WIP and (at the time of writing) only partially implemented and
 hidden behind feature flags. Currently only fully tested (& testable for
-me) on Node 14.1+.
+me) on Node 14.6+.
 
 - [SIMD implementation status](https://github.com/WebAssembly/simd/blob/master/proposals/simd/ImplementationStatus.md)
 - Node (v12.10+): `node --experimental-wasm-simd`
