@@ -1,4 +1,9 @@
 /**
+ * Returns an array's value type.
+ */
+export type ArrayValue<T extends any[]> = T[0];
+
+/**
  * Defines a fixed sized, iterable tuple with elements of type `T` and
  * length `N`.
  */
