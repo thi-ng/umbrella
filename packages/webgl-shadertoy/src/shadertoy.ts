@@ -19,7 +19,7 @@ export const shaderToy = <U extends ShaderToyUniforms>(
 ) => {
     const gl = opts.gl;
 
-    const model = defQuadModel(false);
+    const model = defQuadModel({ uv: false });
     model.textures = opts.textures || [];
     compileModel(gl, model);
 
