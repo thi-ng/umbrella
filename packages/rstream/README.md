@@ -12,7 +12,7 @@ This project is part of the
 - [About](#about)
 - [Conceptual differences to RxJS](#conceptual-differences-to-rxjs)
   - [Status](#status)
-  - [Breaking changes in 3.0.0](#breaking-changes-in-300)
+  - [Breaking changes in 5.0.0](#breaking-changes-in-500)
   - [Support packages](#support-packages)
   - [Related packages](#related-packages)
 - [Installation](#installation)
@@ -101,12 +101,61 @@ programming:
 
 **STABLE** - used in production
 
-### Breaking changes in 3.0.0
+### Breaking changes in 5.0.0
 
-The vast majority of stream & subscription constructors and their
-syntax-sugar factory functions have been updated to take their various
-options from a config object arg. Please see [Common configuration
-options](#common-configuration-options) for further details.
+Type inference for `sync()` (aka `StreamSync`), one of the main pillars of this
+package, was semi-broken in earlier versions and has been updated to better
+infer result types from the given object of input streams. For this work, input
+sources now MUST be given as object (array form is not allowed anymore, see
+below). Furthermore, the two generics have different meanings now and unless you
+were using `sync<any,any>(...)` these will need to be updated (or, better yet,
+removed). See
+[source](https://github.com/thi-ng/umbrella/blob/develop/packages/rstream/src/stream-sync.ts)
+for more details.
+
+```ts
+// NEW approach
+const main = sync({
+  src: {
+    a: reactive(23),
+    b: reactive("foo").map((x) => x.toUpperCase()),
+    c: reactive([1, 2])
+  }
+});
+```
+
+`main`'s type can now be inferred as:
+
+```ts
+StreamSync<
+  { a: Stream<number>, b: Subscription<string,string>, c: Stream<number[]> },
+  { a: number, b: string, c: number[] }
+>
+```
+
+If the `xform` (transducer) option is given, the result will be inferred based
+on the transducer's result type...
+
+To compensate for the loss of specifying input sources as array (rather than as
+an object), the [`autoObj()`
+reducer](https://github.com/thi-ng/umbrella/blob/develop/packages/transducers/src/rfn/auto-obj.ts)
+has been added, allowing for quick conversion of an array into an object with
+auto-labeled keys.
+
+```ts
+const main = sync({
+  src: autoObj("input", [reactive(23), reactive("foo"), reactive([1, 2])])
+});
+```
+
+In this case the type of `main` will be inferred as:
+
+```ts
+StreamSync<
+  IObjectOf<Stream<number> | Stream<string> | Stream<number[]>>,
+  IObjectOf<number | string | number[]>
+>
+```
 
 ### Support packages
 
