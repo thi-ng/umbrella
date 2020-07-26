@@ -35,10 +35,10 @@ describe("StreamSync", () => {
             a2: { ins: { b: 10 } },
         });
         const a1 = sync({
-            src: [
-                (a = fromView(db, { path: ["a1", "ins", "a"] })),
-                (b = fromView(db, { path: ["a1", "ins", "b"] })),
-            ],
+            src: {
+                a: a = fromView(db, { path: ["a1", "ins", "a"] }),
+                b: b = fromView(db, { path: ["a1", "ins", "b"] }),
+            },
             xform: adder(),
         });
         const a1res = a1.subscribe({
@@ -148,11 +148,11 @@ describe("StreamSync", () => {
     });
 
     it("fromPromise", (done) => {
-        const delayed = (x: any, t: number) =>
-            new Promise((resolve) => setTimeout(() => resolve(x), t));
+        const delayed = <T>(x: T, t: number) =>
+            new Promise<T>((resolve) => setTimeout(() => resolve(x), t));
 
         transduce(
-            sync<any, any>({
+            sync({
                 src: {
                     t: fromInterval(5),
                     a: fromPromise(delayed("aa", 20)),
@@ -171,11 +171,11 @@ describe("StreamSync", () => {
     });
 
     it("never closes", (done) => {
-        const main = sync<number, any>({
-            src: [
-                fromIterable([1, 2, 3], { delay: TIMEOUT, id: "a" }),
-                fromIterable([1, 2, 3, 4], { delay: TIMEOUT, id: "b" }),
-            ],
+        const main = sync({
+            src: {
+                a: fromIterable([1, 2, 3], { delay: TIMEOUT, id: "a" }),
+                b: fromIterable([1, 2, 3, 4], { delay: TIMEOUT, id: "b" }),
+            },
             closeIn: CloseMode.NEVER,
             closeOut: CloseMode.NEVER,
             reset: true,
@@ -201,7 +201,7 @@ describe("StreamSync", () => {
     });
 
     it("input removal (clean)", (done) => {
-        const main = sync<any, any>({
+        const main = sync({
             src: {
                 a: fromIterable([1]),
                 b: fromIterable([1, 2]),
