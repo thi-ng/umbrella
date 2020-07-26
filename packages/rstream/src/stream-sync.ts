@@ -1,4 +1,4 @@
-import type { Derefed, IDeref, IObjectOf } from "@thi.ng/api";
+import type { Always, Derefed, IObjectOf } from "@thi.ng/api";
 import {
     comp,
     labeled,
@@ -16,14 +16,12 @@ import {
 import { Subscription } from "./subscription";
 import { optsWithID } from "./utils/idgen";
 
-type Always<T> = T extends undefined ? never : T;
-
-type SyncTuple<T extends IObjectOf<ISubscribable<any> & IDeref<any>>> = {
+export type SyncTuple<T extends IObjectOf<ISubscribable<any>>> = {
     [id in keyof T]: Always<Derefed<T[id]>>;
 };
 
 export interface StreamSyncOpts<
-    A extends IObjectOf<ISubscribable<any> & IDeref<any>>,
+    A extends IObjectOf<ISubscribable<any>>,
     B = SyncTuple<A>
 > extends TransformableOpts<SyncTuple<A>, B> {
     /**
@@ -126,15 +124,12 @@ export interface StreamSyncOpts<
  *
  * @param opts -
  */
-export const sync = <
-    A extends IObjectOf<ISubscribable<any> & IDeref<any>>,
-    B = SyncTuple<A>
->(
+export const sync = <A extends IObjectOf<ISubscribable<any>>, B = SyncTuple<A>>(
     opts: Partial<StreamSyncOpts<A, B>>
-) => new StreamSync(opts);
+) => new StreamSync<A, B>(opts);
 
 export class StreamSync<
-    A extends IObjectOf<ISubscribable<any> & IDeref<any>>,
+    A extends IObjectOf<ISubscribable<any>>,
     B = SyncTuple<A>
 > extends Subscription<any, B> {
     /**
@@ -239,7 +234,7 @@ export class StreamSync<
         return src ? this.remove(src) : false;
     }
 
-    removeAll(src: ISubscribable<any>[]) {
+    removeAll(src: Iterable<ISubscribable<any>>) {
         // pre-remove all source ids for partitionSync
         for (let s of src) {
             this.psync.delete(this.invRealSourceIDs.get(s.id)!);
@@ -251,7 +246,7 @@ export class StreamSync<
         return ok;
     }
 
-    removeAllIDs(ids: string[]) {
+    removeAllIDs(ids: Iterable<string>) {
         let ok = true;
         for (let id of ids) {
             ok = this.removeID(id) && ok;
