@@ -75,6 +75,7 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
                 }
             } else {
                 opts.loc != null && res.push(`layout(location=${opts.loc}) `);
+                opts.smooth != null && res.push(opts.smooth + " ");
                 type = opts.type === "uni" ? "uniform" : opts.type;
             }
             res.push(type + " ");
