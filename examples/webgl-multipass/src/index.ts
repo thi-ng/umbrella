@@ -1,4 +1,4 @@
-import { canvas2d, GRAY8, PackedBuffer } from "@thi.ng/pixel";
+import { ABGR8888, canvas2d, PackedBuffer } from "@thi.ng/pixel";
 import {
     $x,
     $xyz,
@@ -113,13 +113,13 @@ document.body.appendChild(canv.canvas);
 new PackedBuffer(
     32,
     32,
-    GRAY8,
+    ABGR8888,
     readTexture(
         canvas.gl,
         toy.textures.bar,
-        TextureFormat.RED,
+        TextureFormat.RGBA,
         TextureType.UNSIGNED_BYTE,
-        new Uint8Array(32 * 32)
+        new Uint8Array(32 * 32 * 4)
     )
 ).blitCanvas(canv.canvas);
 

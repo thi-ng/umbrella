@@ -22,7 +22,7 @@ import {
     fit1101,
     snoise2,
 } from "@thi.ng/shader-ast-stdlib";
-import { compileModel, draw, quad, shader } from "@thi.ng/webgl";
+import { compileModel, defQuadModel, defShader, draw } from "@thi.ng/webgl";
 
 // set URL hash to "#2d" to enable JS Canvas2D version
 const JS_MODE = location.hash.indexOf("2d") >= 0;
@@ -90,9 +90,9 @@ if (JS_MODE) {
     //
     const ctx: WebGLRenderingContext = canvas.getContext("webgl")!;
     // build fullscreen quad
-    const model = quad(false);
+    const model = defQuadModel({ uv: false });
     // set shader
-    model.shader = shader(ctx, {
+    model.shader = defShader(ctx, {
         vs: (gl, _, attribs) => [
             defMain(() => [
                 assign(gl.gl_Position, vec4(attribs.position, 0, 1)),
