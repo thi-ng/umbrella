@@ -1,5 +1,5 @@
 import type { Sym } from "./nodes";
-import type { Precision } from "./precision";
+import type { Interpolation, Precision } from "./precision";
 
 export type SymQualifier = "in" | "out" | "inout";
 
@@ -61,6 +61,10 @@ export interface SymOpts {
      * Precision qualifier
      */
     prec?: Precision;
+    /**
+     * Interpolation qualifier
+     */
+    smooth?: Interpolation;
     /**
      * Arrays only. Length
      */
