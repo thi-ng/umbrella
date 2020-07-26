@@ -9,6 +9,7 @@ export * from "./transduce";
 export * from "./rfn/add";
 export * from "./rfn/assoc-map";
 export * from "./rfn/assoc-obj";
+export * from "./rfn/auto-obj";
 export * from "./rfn/conj";
 export * from "./rfn/count";
 export * from "./rfn/div";
