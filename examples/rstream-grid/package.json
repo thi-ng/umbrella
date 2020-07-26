@@ -28,7 +28,7 @@
         "@types/node": "^13.7.4",
         "parcel-bundler": "^1.12.4",
         "terser": "^4.8.0",
-        "typescript": "^3.9.5"
+        "typescript": "^3.9.7"
     },
     "browserslist": [
         "last 3 Chrome versions"

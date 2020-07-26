@@ -43,21 +43,21 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
-        "@microsoft/api-extractor": "^7.8.0",
-        "@types/mocha": "^7.0.2",
-        "@types/node": "^14.0.1",
+        "@microsoft/api-extractor": "^7.9.2",
+        "@types/mocha": "^8.0.0",
+        "@types/node": "^14.0.26",
         "mocha": "^8.0.1",
         "pegjs": "^0.11.0-dev.325",
         "ts-node": "^8.10.1",
         "typedoc": "^0.17.6",
-        "typescript": "^3.9.5"
+        "typescript": "^3.9.7"
     },
     "dependencies": {
         "@thi.ng/api": "^6.11.3",
         "@thi.ng/bench": "^2.0.15",
         "@thi.ng/errors": "^1.2.16",
         "@thi.ng/pointfree": "^2.0.9",
-        "commander": "^5.1.0"
+        "commander": "^6.0.0"
     },
     "files": [
         "*.js",
