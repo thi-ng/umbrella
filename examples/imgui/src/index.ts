@@ -532,7 +532,7 @@ const app = () => {
 // once the 1st frame renders, the canvas component will create and attach
 // event streams to this stream sync, which are then used to trigger future
 // updates on demand...
-const main = sync<any, any>({
+const main = sync({
     src: {
         state: fromAtom(DB),
     },

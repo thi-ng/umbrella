@@ -34,7 +34,7 @@ const sel1 = stream<number[] | null>();
 const sel2 = stream<number[] | null>();
 
 // main stream combinator
-const main = sync<any, any>({
+const main = sync({
     src: { x1, y1, x2, y2, iter, gradient, sel1, sel2 },
 });
 
@@ -101,16 +101,14 @@ const app = () => {
             // the `interrupt` option and ensures only the most recent
             // configuration is being fully executed without having to
             // wait for older render tasks to complete...
-            sync<any, any>({ src: { x1, y1, x2, y2, iter, gradient } })
-                .transform(
-                    map((obj) => ({ ...obj, w: el.width, h: el.height }))
-                )
+            sync({ src: { x1, y1, x2, y2, iter, gradient } })
+                .map((obj) => ({ ...obj, w: el.width, h: el.height }))
                 .subscribe(
                     tunnel<any, any>({ src: "./worker.js", interrupt: true })
                 )
                 .subscribe({
-                    next: (pix: ArrayBuffer) => {
-                        img.data.set(new Uint8Array(pix));
+                    next(pix: any) {
+                        img.data.set(new Uint8Array(<ArrayBuffer>pix));
                         ctx.putImageData(img, 0, 0);
                         // frame export & auto zoom out
                         if (AUTO_ZOOM) {

@@ -184,7 +184,7 @@ const toggle = scan(
 );
 
 // main stream combinator
-const main = sync<any, any>({
+const main = sync({
     src: {
         poly,
         mode: mode.transform(toggle),

@@ -73,11 +73,11 @@ const root = $compile([
                 map(([x, y]) => ({ left: x + "px", top: y + "px" }))
             ),
         },
-        $refresh(
-            sync<any, any>({
+        $refresh<{ body: string; mpos: number[] }>(
+            sync({
                 src: { body, mpos },
             }),
-            async (x: any) => [
+            async (x) => [
                 "span",
                 {},
                 x.body,

@@ -106,11 +106,9 @@ const on = reactive("/");
 const off = reactive(" ");
 
 // transforming stream combinator
-const xformer = sync<any, any>({ src: { input, on, off } }).transform(
-    map(banner)
-);
+const xformer = sync({ src: { input, on, off } }).transform(map(banner));
 
-const main = sync<any, any>({ src: { raw: input, result: xformer } });
+const main = sync({ src: { raw: input, result: xformer } });
 main.transform(map(app), updateDOM());
 
 // input.next(transduce(map((x: number) => String.fromCharCode(x)), str(), range(32, 127)));

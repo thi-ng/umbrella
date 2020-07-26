@@ -17,7 +17,7 @@ export class Pagination<T extends any[]> implements IRelease {
         // the`sync()` construct is a stream combinator which requires all input
         // streams to produce a value first before it emits its own initial
         // result...
-        this.resultPage = sync<any, T>({
+        this.resultPage = sync({
             src: {
                 src,
                 pageID: this.page,

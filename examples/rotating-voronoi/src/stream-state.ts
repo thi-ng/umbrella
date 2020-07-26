@@ -25,7 +25,7 @@ export type AppState = {
     keyValue: string | null;
 };
 
-export const mainStream = sync<any, any>({
+export const mainStream = sync({
     src: {
         scaleValue: scaleStream,
         animationValue: animationStream,

@@ -152,7 +152,7 @@ const gesture = merge<any, any>({
 // to create a resampled version and apply a corner detector
 // the resulting stream will emit tuple objects of this structure:
 // `{ raw: Vec2[], processed: { path: Vec2[], corners: Vec2[] } }
-sync<any, any>({
+sync({
     src: {
         raw: gesture,
         processed: gesture.transform(

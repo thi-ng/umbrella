@@ -54,7 +54,7 @@ const slideID = slideCTRL.transform<number, number, number>(
     sideEffect((id) => (location.hash = "#" + id))
 );
 
-const main = sync<any, any>({
+const main = sync({
     src: {
         slideID,
         content: slideID.transform(map((id: number) => SLIDES[id])),

@@ -208,7 +208,7 @@ error.subscribe({ next: (e) => alert(`An error occurred:\n${e}`) });
 const refresh = fromInterval(60000).subscribe(trace("refresh"));
 
 // this stream combinator performs API requests to obtain OHLC data
-const response = sync<any, any>({
+const response = sync({
     src: { market, symbol, period, refresh },
     xform: map((inst) =>
         fetch(API_URL(inst.market, inst.symbol, inst.period))
@@ -223,7 +223,7 @@ const response = sync<any, any>({
 
 // this stream combinator computes a number of statistics on incoming OHLC data
 // including calculation of moving averages (based on current mode selection)
-const data = sync<any, any>({
+const data = sync({
     src: {
         response,
         avg: avgMode.transform(map((id: string) => MA_MODES[id].fn)),
@@ -263,7 +263,7 @@ const data = sync<any, any>({
 
 // this stream combinator (re)computes the SVG chart
 // updates whenever data, theme or window size has changed
-const chart = sync<any, any>({
+const chart = sync({
     src: {
         data,
         theme,
@@ -421,7 +421,7 @@ const chart = sync<any, any>({
 });
 
 // stream construct to perform UI update
-sync<any, any>({
+sync({
     src: {
         chart,
         theme,

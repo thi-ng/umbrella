@@ -37,7 +37,7 @@ const clickStream = stream().transform(scan(count(-1)));
 // stream combinator
 // waits until all inputs have produced at least one value,
 // then updates whenever any input has changed
-sync<any, any>({
+sync({
     // streams to synchronize
     src: {
         ticks: fromInterval(1000),
