@@ -6,7 +6,15 @@ import {
     isFunction,
 } from "@thi.ng/checks";
 import { unsupported } from "@thi.ng/errors";
-import { input, output, program, Sym, sym, uniform } from "@thi.ng/shader-ast";
+import {
+    input,
+    output,
+    program,
+    Sym,
+    sym,
+    SymOpts,
+    uniform,
+} from "@thi.ng/shader-ast";
 import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
 import { vals } from "@thi.ng/transducers";
 import {
@@ -31,6 +39,7 @@ import {
     ShaderUniform,
     ShaderUniforms,
     ShaderUniformSpecs,
+    ShaderVaryingSpec,
     UniformValue,
     UniformValues,
 } from "./api/shader";
@@ -300,19 +309,15 @@ export const shaderSourceFromAST = (
         }
         if (spec.varying) {
             for (let id in spec.varying) {
-                const v = spec.varying[id];
-                outputs[id] = isArray(v)
-                    ? output(v[0], id, { num: v[1] })
-                    : output(v, id);
+                const [vtype, opts] = varyingOpts(spec.varying[id]);
+                outputs[id] = output(vtype, id, opts);
             }
         }
     } else {
         if (spec.varying) {
             for (let id in spec.varying) {
-                const v = spec.varying[id];
-                inputs[id] = isArray(v)
-                    ? input(v[0], id, { num: v[1] })
-                    : input(v, id);
+                const [vtype, opts] = varyingOpts(spec.varying[id]);
+                inputs[id] = input(vtype, id, opts);
             }
         }
         const outs = spec.outputs || DEFAULT_OUTPUT;
@@ -353,6 +358,14 @@ export const shaderSourceFromAST = (
             ])
         ) + (spec.post ? "\n" + spec.post : "")
     );
+};
+
+const varyingOpts = (v: ShaderVaryingSpec): [GLSL, SymOpts] => {
+    const [vtype, opts]: [GLSL, SymOpts] = isArray(v)
+        ? [v[0], { num: v[1] }]
+        : [v, {}];
+    /(u?int|[ui]vec[234])/.test(vtype) && (opts.smooth = "flat");
+    return [vtype, opts];
 };
 
 export const prepareShaderSource = (
