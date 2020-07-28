@@ -79,6 +79,7 @@ A selection:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png" width="240"/>           | Canvas based Immediate Mode GUI components                        | [Demo](https://demo.thi.ng/umbrella/imgui/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui)            |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mandelbrot.jpg" width="240"/>       | Worker based, interactive Mandelbrot visualization                | [Demo](https://demo.thi.ng/umbrella/mandelbrot/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/mandelbrot)       |
 |                                                                                                                         | Basic rstream-gestures multi-touch demo                           | [Demo](https://demo.thi.ng/umbrella/multitouch/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/multitouch)       |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-graph.jpg" width="240"/>     | Minimal shader graph developed during livestream #2               | [Demo](https://demo.thi.ng/umbrella/shader-graph/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-graph)     |
 
 ## API
 
