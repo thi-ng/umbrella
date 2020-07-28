@@ -235,7 +235,7 @@ yarn add @thi.ng/imgui
 <script src="https://unpkg.com/@thi.ng/imgui/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 6.65 KB / CJS: 6.84 KB / UMD: 6.94 KB
+Package sizes (gzipped, pre-treeshake): ESM: 6.65 KB / CJS: 6.84 KB / UMD: 6.95 KB
 
 ## Dependencies
 

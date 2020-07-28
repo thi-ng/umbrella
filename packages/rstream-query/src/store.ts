@@ -21,6 +21,19 @@ import {
     transduce,
     Transducer,
 } from "@thi.ng/transducers";
+import type {
+    Edit,
+    PathPattern,
+    PathQuerySpec,
+    Pattern,
+    QuerySolution,
+    QuerySpec,
+    SubQuerySpec,
+    Triple,
+    TripleIds,
+    Triples,
+    WhereQuerySpec,
+} from "./api";
 import { patternVars, resolvePathPattern } from "./pattern";
 import { isQVar, qvarResolver } from "./qvar";
 import {
@@ -33,20 +46,6 @@ import {
     limitSolutions,
     resultTriples,
 } from "./xforms";
-import type {
-    Edit,
-    PathPattern,
-    PathQuerySpec,
-    Pattern,
-    QuerySolution,
-    QuerySpec,
-    Solutions,
-    SubQuerySpec,
-    Triple,
-    TripleIds,
-    Triples,
-    WhereQuerySpec,
-} from "./api";
 
 export class TripleStore implements Iterable<Triple>, IToDot {
     NEXT_ID: number;
@@ -222,7 +221,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
                     src = { s: qs, p: qp, o: qo };
                     xform = intersect3;
                 }
-                results = <ISubscribable<TripleIds>>sync<TripleIds, TripleIds>({
+                results = <ISubscribable<TripleIds>>sync({
                     id,
                     src,
                     xform,
@@ -318,7 +317,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
      * @param b -
      */
     addJoin(a: QuerySolution, b: QuerySolution, id?: string): QuerySolution {
-        return sync<Solutions, Solutions>({
+        return sync({
             id,
             src: { a, b },
             xform: comp(

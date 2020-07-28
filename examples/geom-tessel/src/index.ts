@@ -77,7 +77,7 @@ const tessellation = (t: number, tessel: Tessellator[], tint: Tint) => {
     ).map(partial(tintedPoly, tint));
 };
 
-const main = sync<any, any>({
+const main = sync({
     src: {
         time: fromInterval(16),
     },

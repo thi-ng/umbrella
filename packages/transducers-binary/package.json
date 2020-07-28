@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/transducers-binary",
-    "version": "0.5.23",
+    "version": "0.5.24",
     "description": "Binary data related transducers & reducers",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -39,22 +39,22 @@
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
-        "@microsoft/api-extractor": "^7.8.0",
-        "@types/mocha": "^7.0.2",
-        "@types/node": "^14.0.1",
+        "@microsoft/api-extractor": "^7.9.2",
+        "@types/mocha": "^8.0.0",
+        "@types/node": "^14.0.26",
         "mocha": "^8.0.1",
         "nyc": "^15.1.0",
         "ts-node": "^8.10.1",
         "typedoc": "^0.17.6",
-        "typescript": "^3.9.5"
+        "typescript": "^3.9.7"
     },
     "dependencies": {
-        "@thi.ng/binary": "^2.0.10",
-        "@thi.ng/compose": "^1.4.12",
-        "@thi.ng/errors": "^1.2.16",
-        "@thi.ng/random": "^1.4.14",
-        "@thi.ng/strings": "^1.9.0",
-        "@thi.ng/transducers": "^7.1.6"
+        "@thi.ng/binary": "^2.0.11",
+        "@thi.ng/compose": "^1.4.13",
+        "@thi.ng/errors": "^1.2.17",
+        "@thi.ng/random": "^1.4.15",
+        "@thi.ng/strings": "^1.9.1",
+        "@thi.ng/transducers": "^7.2.0"
     },
     "files": [
         "*.js",

@@ -42,7 +42,7 @@ yarn add @thi.ng/errors
 <script src="https://unpkg.com/@thi.ng/errors/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 262 bytes / CJS: 338 bytes / UMD: 403 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 262 bytes / CJS: 338 bytes / UMD: 416 bytes
 
 ## Dependencies
 

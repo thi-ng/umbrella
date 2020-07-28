@@ -46,7 +46,7 @@ yarn add @thi.ng/dlogic
 <script src="https://unpkg.com/@thi.ng/dlogic/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 378 bytes / CJS: 478 bytes / UMD: 514 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 378 bytes / CJS: 478 bytes / UMD: 529 bytes
 
 ## Dependencies
 

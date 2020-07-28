@@ -52,7 +52,7 @@ yarn add @thi.ng/geom-accel
 <script src="https://unpkg.com/@thi.ng/geom-accel/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.76 KB / CJS: 3.82 KB / UMD: 3.81 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.76 KB / CJS: 3.82 KB / UMD: 3.83 KB
 
 ## Dependencies
 

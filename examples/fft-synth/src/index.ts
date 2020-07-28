@@ -15,7 +15,7 @@ import { WINDOW_LEN } from "./config";
 import { gui, updateGUI } from "./gui";
 import { DB } from "./state";
 
-const main = sync<any, any>({
+const main = sync({
     src: {
         state: fromAtom(DB),
     },

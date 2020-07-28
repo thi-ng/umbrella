@@ -7,7 +7,7 @@ import {
     subscription,
     sync,
 } from "@thi.ng/rstream";
-import { map, reducer, scan, vals } from "@thi.ng/transducers";
+import { autoObj, map, reducer, scan, vals } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 
 // example user context object
@@ -124,8 +124,11 @@ const counter = (start: number, step: number) => {
  */
 const app = (ctx: any, initial: number[][]) => {
     const counters = initial.map(([start, step]) => counter(start, step));
-    return sync<any, any>({
-        src: counters.map((c) => c.transform(map(() => [clickButton, c]))),
+    return sync({
+        src: autoObj(
+            "",
+            counters.map((c) => c.transform(map(() => [clickButton, c])))
+        ),
         xform: map(
             // build the app's actual root component
             (buttons) => [

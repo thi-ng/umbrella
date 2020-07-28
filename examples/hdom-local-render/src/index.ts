@@ -96,20 +96,18 @@ class Foo extends LocalReRenderable {
 // component...
 const foo = memoize1((id: string) => new Foo(id));
 
-const app = ({ time }: any) => [
-    "div",
-    {},
-    // use memoized components (lazy invocation): the `foo(id)` calls
-    // merely return the memoized component (or, in the first frame,
-    // actually create the components, and which are then cached, i.e.
-    // memoized...)
-    [foo("a"), time],
-    [foo("b"), time],
-    [foo("c"), time],
-];
-
 // trigger full DOM updates every 2 secs
-sync<any, any>({ src: { time: fromInterval(2000) } }).transform(
-    map(app),
+sync({ src: { time: fromInterval(2000) } }).transform(
+    map(({ time }) => [
+        "div",
+        {},
+        // use memoized components (lazy invocation): the `foo(id)` calls
+        // merely return the memoized component (or, in the first frame,
+        // actually create the components, and which are then cached, i.e.
+        // memoized...)
+        [foo("a"), time],
+        [foo("b"), time],
+        [foo("c"), time],
+    ]),
     updateDOM()
 );

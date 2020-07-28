@@ -51,7 +51,7 @@ yarn add @thi.ng/defmulti
 <script src="https://unpkg.com/@thi.ng/defmulti/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 750 bytes / CJS: 811 bytes / UMD: 870 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 750 bytes / CJS: 811 bytes / UMD: 885 bytes
 
 ## Dependencies
 

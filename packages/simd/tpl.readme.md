@@ -80,7 +80,7 @@ me) on Node 14.6+.
 
 ### BREAKING CHANGES
 
-#### 1.0.0
+#### 0.4.0
 
 Due to the [opcode renumbering of SIMD
 operations](https://github.com/WebAssembly/simd/pull/209#issuecomment-607282125)

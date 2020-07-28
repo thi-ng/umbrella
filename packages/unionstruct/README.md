@@ -58,7 +58,7 @@ yarn add @thi.ng/unionstruct
 <script src="https://unpkg.com/@thi.ng/unionstruct/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.08 KB / CJS: 1.13 KB / UMD: 1.17 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.08 KB / CJS: 1.13 KB / UMD: 1.19 KB
 
 ## Dependencies
 

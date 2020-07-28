@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hiccup-markdown",
-    "version": "1.2.26",
+    "version": "1.2.27",
     "description": "Markdown parser & serializer from/to Hiccup format",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -39,26 +39,26 @@
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
-        "@microsoft/api-extractor": "^7.8.0",
-        "@types/mocha": "^7.0.2",
-        "@types/node": "^14.0.1",
+        "@microsoft/api-extractor": "^7.9.2",
+        "@types/mocha": "^8.0.0",
+        "@types/node": "^14.0.26",
         "mocha": "^8.0.1",
         "nyc": "^15.1.0",
         "ts-node": "^8.10.1",
         "typedoc": "^0.17.6",
-        "typescript": "^3.9.5"
+        "typescript": "^3.9.7"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.11.3",
-        "@thi.ng/arrays": "^0.6.12",
-        "@thi.ng/checks": "^2.7.3",
-        "@thi.ng/defmulti": "^1.2.20",
-        "@thi.ng/errors": "^1.2.16",
-        "@thi.ng/fsm": "^2.4.19",
-        "@thi.ng/hiccup": "^3.5.4",
-        "@thi.ng/strings": "^1.9.0",
-        "@thi.ng/text-canvas": "^0.2.23",
-        "@thi.ng/transducers": "^7.1.6"
+        "@thi.ng/api": "^6.12.0",
+        "@thi.ng/arrays": "^0.6.13",
+        "@thi.ng/checks": "^2.7.4",
+        "@thi.ng/defmulti": "^1.2.21",
+        "@thi.ng/errors": "^1.2.17",
+        "@thi.ng/fsm": "^2.4.20",
+        "@thi.ng/hiccup": "^3.5.5",
+        "@thi.ng/strings": "^1.9.1",
+        "@thi.ng/text-canvas": "^0.2.24",
+        "@thi.ng/transducers": "^7.2.0"
     },
     "files": [
         "*.js",

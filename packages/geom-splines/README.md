@@ -47,7 +47,7 @@ yarn add @thi.ng/geom-splines
 <script src="https://unpkg.com/@thi.ng/geom-splines/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.17 KB / CJS: 2.30 KB / UMD: 2.26 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.17 KB / CJS: 2.30 KB / UMD: 2.27 KB
 
 ## Dependencies
 

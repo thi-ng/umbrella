@@ -131,7 +131,7 @@ const wolfram = sync<any, any>({
     xform: scan(reducer<number[], any>(resetCA, evolveCA)),
 });
 
-const main = sync<any, any>({
+const main = sync({
     src: {
         id: rule,
         ksize: kernel,

@@ -1,9 +1,16 @@
-import { comp, map, mapcat, range } from "@thi.ng/transducers";
+import type { ArrayLikeIterable, Fn, Fn3, IObjectOf } from "@thi.ng/api";
+import {
+    assocObj,
+    comp,
+    map,
+    mapcat,
+    range,
+    transduce,
+} from "@thi.ng/transducers";
+import type { CommonOpts, ISubscribable, ITransformable } from "./api";
 import { sync } from "./stream-sync";
 import { tunnel } from "./subs/tunnel";
 import { Subscription } from "./subscription";
-import type { ArrayLikeIterable, Fn, Fn3 } from "@thi.ng/api";
-import type { CommonOpts, ITransformable } from "./api";
 
 export interface ForkJoinOpts<IN, MSG, RES, OUT> extends Partial<CommonOpts> {
     /**
@@ -112,24 +119,29 @@ export const forkJoin = <IN, MSG, RES, OUT>(
 ): Subscription<any, OUT> => {
     const numWorkers = opts.numWorkers || navigator.hardwareConcurrency || 4;
     const workerIDs = range(numWorkers);
-    return sync<RES, OUT>({
-        src: [
-            ...map(
-                (id) =>
-                    opts.src
-                        .transform(map((x) => opts.fork(id, numWorkers, x)))
-                        .subscribe(
-                            tunnel<MSG, RES>({
-                                src: opts.worker,
-                                transferables: opts.transferables,
-                                interrupt: opts.interrupt === true,
-                                terminate: opts.terminate,
-                                id: String(id),
-                            })
-                        ),
-                workerIDs
-            ),
-        ],
+    return sync({
+        src: transduce<
+            number,
+            [string, ISubscribable<RES>],
+            IObjectOf<ISubscribable<RES>>
+        >(
+            map((id) => [
+                String(id),
+                opts.src
+                    .transform(map((x) => opts.fork(id, numWorkers, x)))
+                    .subscribe(
+                        tunnel<MSG, RES>({
+                            src: opts.worker,
+                            transferables: opts.transferables,
+                            interrupt: opts.interrupt === true,
+                            terminate: opts.terminate,
+                            id: String(id),
+                        })
+                    ),
+            ]),
+            assocObj(),
+            workerIDs
+        ),
         xform: comp(
             // form result tuple in original order
             map((results) => [...map((id) => results[id], workerIDs)]),

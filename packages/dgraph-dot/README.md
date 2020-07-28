@@ -47,7 +47,7 @@ yarn add @thi.ng/dgraph-dot
 <script src="https://unpkg.com/@thi.ng/dgraph-dot/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 241 bytes / CJS: 292 bytes / UMD: 393 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 241 bytes / CJS: 292 bytes / UMD: 409 bytes
 
 ## Dependencies
 

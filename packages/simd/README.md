@@ -13,7 +13,7 @@ This project is part of the
 - [Available functions](#available-functions)
   - [Status](#status)
   - [BREAKING CHANGES](#breaking-changes)
-    - [1.0.0](#100)
+    - [0.4.0](#040)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -93,7 +93,7 @@ me) on Node 14.6+.
 
 ### BREAKING CHANGES
 
-#### 1.0.0
+#### 0.4.0
 
 Due to the [opcode renumbering of SIMD
 operations](https://github.com/WebAssembly/simd/pull/209#issuecomment-607282125)
@@ -116,7 +116,7 @@ yarn add @thi.ng/simd
 <script src="https://unpkg.com/@thi.ng/simd/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.50 KB / CJS: 2.56 KB / UMD: 2.67 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.50 KB / CJS: 2.56 KB / UMD: 2.68 KB
 
 ## Dependencies
 

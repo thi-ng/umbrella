@@ -57,7 +57,7 @@ yarn add @thi.ng/quad-edge
 <script src="https://unpkg.com/@thi.ng/quad-edge/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 495 bytes / CJS: 553 bytes / UMD: 641 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 495 bytes / CJS: 553 bytes / UMD: 656 bytes
 
 ## Dependencies
 

@@ -135,7 +135,7 @@ const search = reactive("");
 
 // stream combinator & transformation into UI / DOM update
 // will only execute once all of its inputs have delivered a value.
-sync<any, any>({
+sync({
     // streams to synchronize
     src: {
         commits,

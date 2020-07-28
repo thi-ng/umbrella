@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dynvar",
-    "version": "0.1.18",
+    "version": "0.1.19",
     "description": "Dynamically scoped variable bindings",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -39,17 +39,17 @@
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
-        "@microsoft/api-extractor": "^7.8.0",
-        "@types/mocha": "^7.0.2",
-        "@types/node": "^14.0.1",
+        "@microsoft/api-extractor": "^7.9.2",
+        "@types/mocha": "^8.0.0",
+        "@types/node": "^14.0.26",
         "mocha": "^8.0.1",
         "nyc": "^15.1.0",
         "ts-node": "^8.10.1",
         "typedoc": "^0.17.6",
-        "typescript": "^3.9.5"
+        "typescript": "^3.9.7"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.11.3"
+        "@thi.ng/api": "^6.12.0"
     },
     "files": [
         "*.js",

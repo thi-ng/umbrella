@@ -54,7 +54,7 @@ yarn add @thi.ng/memoize
 <script src="https://unpkg.com/@thi.ng/memoize/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 254 bytes / CJS: 305 bytes / UMD: 376 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 254 bytes / CJS: 305 bytes / UMD: 389 bytes
 
 ## Dependencies
 

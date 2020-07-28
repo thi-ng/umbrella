@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom-api",
-    "version": "1.0.27",
+    "version": "1.0.28",
     "description": "Shared type & interface declarations for @thi.ng/geom packages",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -39,18 +39,18 @@
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
-        "@microsoft/api-extractor": "^7.8.0",
-        "@types/mocha": "^7.0.2",
-        "@types/node": "^14.0.1",
+        "@microsoft/api-extractor": "^7.9.2",
+        "@types/mocha": "^8.0.0",
+        "@types/node": "^14.0.26",
         "mocha": "^8.0.1",
         "nyc": "^15.1.0",
         "ts-node": "^8.10.1",
         "typedoc": "^0.17.6",
-        "typescript": "^3.9.5"
+        "typescript": "^3.9.7"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.11.3",
-        "@thi.ng/vectors": "^4.5.5"
+        "@thi.ng/api": "^6.12.0",
+        "@thi.ng/vectors": "^4.5.6"
     },
     "files": [
         "*.js",

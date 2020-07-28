@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@2.0.11...@thi.ng/webgl@3.0.0) (2020-07-28)
+
+
+### Bug Fixes
+
+* **webgl:** bind FBO in readTexture() ([6cb4448](https://github.com/thi-ng/umbrella/commit/6cb4448f75811e9a266ff81065da03ccdf138b6d))
+
+
+### Features
+
+* **webgl:** add varying int support (webgl2) ([c812800](https://github.com/thi-ng/umbrella/commit/c812800cb8d61a19b892a7f802fd03820c7e7310))
+* **webgl:** add/update opts for defQuadModel() ([13b7d9e](https://github.com/thi-ng/umbrella/commit/13b7d9e5ad26622702cfd4f1c4957da50ab704ed))
+
+
+### BREAKING CHANGES
+
+* **webgl:** add/update opts for defQuadModel()
+
+- update callsite in defMultiPass()
+
+
+
+
+
 ## [2.0.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@2.0.10...@thi.ng/webgl@2.0.11) (2020-07-25)
 
 **Note:** Version bump only for package @thi.ng/webgl

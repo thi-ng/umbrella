@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.4.14...@thi.ng/random@1.4.15) (2020-07-28)
+
+**Note:** Version bump only for package @thi.ng/random
+
+
+
+
+
 ## [1.4.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.4.13...@thi.ng/random@1.4.14) (2020-07-04)
 
 **Note:** Version bump only for package @thi.ng/random

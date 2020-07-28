@@ -43,7 +43,7 @@ yarn add @thi.ng/geom-isoline
 <script src="https://unpkg.com/@thi.ng/geom-isoline/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 753 bytes / CJS: 818 bytes / UMD: 862 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 753 bytes / CJS: 818 bytes / UMD: 875 bytes
 
 ## Dependencies
 

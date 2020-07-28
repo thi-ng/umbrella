@@ -45,7 +45,7 @@ yarn add @thi.ng/geom-clip-poly
 <script src="https://unpkg.com/@thi.ng/geom-clip-poly/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 317 bytes / CJS: 389 bytes / UMD: 503 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 317 bytes / CJS: 389 bytes / UMD: 517 bytes
 
 ## Dependencies
 

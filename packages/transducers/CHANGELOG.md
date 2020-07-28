@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.1.6...@thi.ng/transducers@7.2.0) (2020-07-28)
+
+
+### Features
+
+* **transducers:** add autoObj() reducer ([26ad12a](https://github.com/thi-ng/umbrella/commit/26ad12a1ae73c563a944baf1db643930bba3fdb0))
+
+
+
+
+
 ## [7.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.1.5...@thi.ng/transducers@7.1.6) (2020-07-17)
 
 **Note:** Version bump only for package @thi.ng/transducers

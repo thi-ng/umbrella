@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.3.33...@thi.ng/shader-ast@0.4.0) (2020-07-28)
+
+
+### Features
+
+* **shader-ast:** add sym interpolation qualifiers ([0601af2](https://github.com/thi-ng/umbrella/commit/0601af28c43b41576e778b8f2141a43b52460cf4))
+
+
+
+
+
 ## [0.3.33](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.3.32...@thi.ng/shader-ast@0.3.33) (2020-07-25)
 
 **Note:** Version bump only for package @thi.ng/shader-ast

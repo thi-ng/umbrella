@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/zipper@0.1.20...@thi.ng/zipper@0.1.21) (2020-07-28)
+
+**Note:** Version bump only for package @thi.ng/zipper
+
+
+
+
+
 ## [0.1.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/zipper@0.1.19...@thi.ng/zipper@0.1.20) (2020-07-04)
 
 **Note:** Version bump only for package @thi.ng/zipper

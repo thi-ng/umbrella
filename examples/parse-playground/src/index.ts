@@ -88,7 +88,7 @@ const $result = (status: Status, body: string, time?: number): ParseResult => ({
 
 // stream combinator attempting to parse test input and if successful
 // traverse & prettyprint result AST
-const result = sync<any, any>({
+const result = sync({
     src: {
         lang,
         src: activeInput,
@@ -130,7 +130,7 @@ const result = sync<any, any>({
 
 // update URL hash fragment with the msgpack & base64 encoded version of
 // the selected parser rule and contents of all editors
-sync<any, any>({
+sync({
     src: { grammar: srcGrammar, rule: activeRule, _: activeInput },
 }).subscribe({
     next({ grammar, rule }) {

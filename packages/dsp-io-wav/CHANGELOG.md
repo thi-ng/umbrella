@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp-io-wav@0.1.23...@thi.ng/dsp-io-wav@0.1.24) (2020-07-28)
+
+**Note:** Version bump only for package @thi.ng/dsp-io-wav
+
+
+
+
+
 ## [0.1.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp-io-wav@0.1.22...@thi.ng/dsp-io-wav@0.1.23) (2020-07-17)
 
 **Note:** Version bump only for package @thi.ng/dsp-io-wav

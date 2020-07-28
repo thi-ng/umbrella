@@ -27,6 +27,7 @@ export const readTexture = <
     out: T
 ) => {
     const fbo = new FBO(gl, { tex: [tex] });
+    fbo.bind();
     gl.readPixels(0, 0, tex.size[0], tex.size[1], format, type, out);
     fbo.unbind();
     fbo.release();

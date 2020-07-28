@@ -318,7 +318,7 @@ const selection = stream<string>();
 
 // stream combinator updating & normalizing selected test component tree
 // (one of the inputs is linked to RAF to trigger updates)
-const scene = sync<any, any>({
+const scene = sync({
     src: {
         id: selection,
         time: fromRAF(),
@@ -370,7 +370,7 @@ scene.transform(
 
 // stream combinator which triggers SVG conversion and file download
 // when both inputs have triggered (one of them being linked to the export button)
-sync<any, any>({
+sync({
     src: { scene, trigger },
     reset: true,
     xform: map(({ scene }) =>

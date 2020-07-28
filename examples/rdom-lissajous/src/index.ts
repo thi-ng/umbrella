@@ -58,17 +58,9 @@ const size = fromDOMEvent(window, "resize").transform(
 );
 size.next(<any>null);
 
-interface Lissajous {
-    a: number;
-    b: number;
-    time: number;
-    scale: number;
-    size: number[];
-}
-
 // combine various reactive parameters
 // and transform via transducers
-const dots: ISubscribable<any[]> = sync<any, Lissajous>({
+const dots: ISubscribable<any[]> = sync({
     src: { a, b, scale, size, time: fromRAF() },
 }).transform(
     // compute next lissajous point

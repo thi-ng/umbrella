@@ -81,13 +81,8 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
             src,
             src.subscribe(
                 {
-                    next: (x) => {
-                        if (x instanceof Subscription) {
-                            this.add(x);
-                        } else {
-                            this.next(x);
-                        }
-                    },
+                    next: (x) =>
+                        x instanceof Subscription ? this.add(x) : this.next(x),
                     done: () => this.markDone(src),
                     __owner: this,
                 },
@@ -96,7 +91,7 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
         );
     }
 
-    addAll(src: ISubscribable<A>[]) {
+    addAll(src: Iterable<ISubscribable<A>>) {
         for (let s of src) {
             this.add(s);
         }
@@ -121,7 +116,7 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
         return false;
     }
 
-    removeAll(src: ISubscribable<A>[]) {
+    removeAll(src: Iterable<ISubscribable<A>>) {
         let ok = true;
         for (let s of src) {
             ok = this.remove(s) && ok;
@@ -129,7 +124,7 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
         return ok;
     }
 
-    removeAllIDs(ids: string[]) {
+    removeAllIDs(ids: Iterable<string>) {
         let ok = true;
         for (let id of ids) {
             ok = this.removeID(id) && ok;

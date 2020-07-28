@@ -87,7 +87,7 @@ export const defMultiPass = (opts: MultipassOpts) => {
         return acc;
     }, <IObjectOf<ITexture>>{});
 
-    const model = compileModel(gl, defQuadModel(false));
+    const model = compileModel(gl, defQuadModel({ uv: false }));
     const models = opts.passes.map((pass) => {
         const m = pass.model ? compileModel(gl, <any>pass.model) : { ...model };
         m.shader = initShader(pass);

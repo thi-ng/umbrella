@@ -70,7 +70,7 @@ yarn add @thi.ng/hdom-canvas
 <script src="https://unpkg.com/@thi.ng/hdom-canvas/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 910 bytes / CJS: 979 bytes / UMD: 1.05 KB
+Package sizes (gzipped, pre-treeshake): ESM: 910 bytes / CJS: 979 bytes / UMD: 1.06 KB
 
 ## Dependencies
 

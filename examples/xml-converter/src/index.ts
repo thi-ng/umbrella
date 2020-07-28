@@ -29,7 +29,7 @@ const inputs = {
 };
 
 // stream combinator to assemble formatter options
-const formatOpts = sync<any, any>({
+const formatOpts = sync({
     src: {
         trailingComma: inputs.trailingComma,
         doubleQuote: inputs.doubleQuote,
@@ -43,7 +43,7 @@ const formatOpts = sync<any, any>({
 });
 
 // stream combinator to assemble conversion options
-const opts = sync<any, any>({
+const opts = sync({
     src: {
         format: formatOpts,
         removeAttribs: inputs.removeAttribs.transform(xformAsSet),
@@ -52,7 +52,7 @@ const opts = sync<any, any>({
 });
 
 // main stream combinator to create & update UI
-const main = sync<any, any>({
+const main = sync({
     src: {
         src: inputs.xml,
         copy: inputs.copyButton,

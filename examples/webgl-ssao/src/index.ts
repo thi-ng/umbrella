@@ -144,7 +144,7 @@ const app = () => {
                 ],
             });
             ssaoQuad = compileModel(gl, {
-                ...defQuadModel(false),
+                ...defQuadModel({ uv: false }),
                 shader: defShader(gl, SSAO_SHADER),
                 textures: [posTex, normTex, noiseTex],
                 uniforms: {

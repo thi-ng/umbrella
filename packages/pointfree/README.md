@@ -204,7 +204,7 @@ yarn add @thi.ng/pointfree
 <script src="https://unpkg.com/@thi.ng/pointfree/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.30 KB / CJS: 3.83 KB / UMD: 3.54 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.30 KB / CJS: 3.83 KB / UMD: 3.55 KB
 
 ## Dependencies
 

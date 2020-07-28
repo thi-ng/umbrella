@@ -67,7 +67,7 @@ export const tween = <T>(
     stop?: Fn2<T, T, boolean>,
     clock?: ISubscribable<any> | number
 ) =>
-    sync<any, { src: T }>({
+    sync({
         src: {
             src,
             _:
@@ -105,7 +105,7 @@ export const tweenNumber = (
     eps = 1e-3,
     clock?: ISubscribable<any> | number
 ) =>
-    tween<number>(
+    tween(
         src,
         init,
         (a, b) => a + (b - a) * speed,

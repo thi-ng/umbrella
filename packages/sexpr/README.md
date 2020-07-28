@@ -56,7 +56,7 @@ yarn add @thi.ng/sexpr
 <script src="https://unpkg.com/@thi.ng/sexpr/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 829 bytes / CJS: 892 bytes / UMD: 976 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 829 bytes / CJS: 892 bytes / UMD: 990 bytes
 
 ## Dependencies
 

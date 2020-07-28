@@ -51,7 +51,7 @@ yarn add @thi.ng/geom-tessellate
 <script src="https://unpkg.com/@thi.ng/geom-tessellate/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 782 bytes / CJS: 872 bytes / UMD: 921 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 782 bytes / CJS: 872 bytes / UMD: 938 bytes
 
 ## Dependencies
 

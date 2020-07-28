@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@4.6.5...@thi.ng/rstream@5.0.0) (2020-07-28)
+
+
+### Features
+
+* **rstream:** fix/update StreamSync type inference ([c9d983d](https://github.com/thi-ng/umbrella/commit/c9d983dec69f508efb8cd66f377f57c78489abcc))
+
+
+### BREAKING CHANGES
+
+* **rstream:** better StreamSync generics handling/inference &
+updated StreamSyncOpts
+
+- `src` opt (input sources) MUST be given as object now
+  (specifying inputs as array not supported anymore, use `autoObj()`
+  from transducers package to convert array into auto-labeled object)
+- update StreamSync inference rules to better determine result type
+- simplify .addAll()
+- generics now *usually* don't need to manually be specified anymore
+  (with some exceptions)
+- update tests
+
+
+
+
+
 ## [4.6.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@4.6.4...@thi.ng/rstream@4.6.5) (2020-07-25)
 
 **Note:** Version bump only for package @thi.ng/rstream

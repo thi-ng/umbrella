@@ -1,12 +1,12 @@
-import { deref, IToHiccup, Nullable } from "@thi.ng/api";
+import { deref, ICopy, IToHiccup, Nullable } from "@thi.ng/api";
 import { isFunction, isNumber } from "@thi.ng/checks";
 import { invert23, mulM23, mulV23, transform23 } from "@thi.ng/matrices";
-import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { ReadonlyVec, set2, Vec } from "@thi.ng/vectors";
 import { ANode } from "./anode";
 import type { ISceneNode } from "./api";
 
 export class Node2D extends ANode<Node2D>
-    implements ISceneNode<Node2D>, IToHiccup {
+    implements ICopy<Node2D>, ISceneNode<Node2D>, IToHiccup {
     translate: Vec;
     rotate: number;
     scale: Vec | number;
@@ -24,6 +24,17 @@ export class Node2D extends ANode<Node2D>
         this.rotate = rotate;
         this.scale = isNumber(scale) ? [scale, scale] : scale;
         this.update();
+    }
+
+    copy() {
+        return new Node2D(
+            this.id,
+            this.parent,
+            set2([], this.translate),
+            this.rotate,
+            set2([], <Vec>this.scale),
+            this.body
+        );
     }
 
     deleteChild(node: number | Node2D) {

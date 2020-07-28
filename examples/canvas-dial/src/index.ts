@@ -85,7 +85,7 @@ const app = () => {
 };
 
 // stream combinator & reactive DOM update
-sync<any, any>({
+sync({
     src: ctx.streams,
     xform: comp(map(app()), updateDOM()),
 });

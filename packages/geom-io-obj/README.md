@@ -60,7 +60,7 @@ yarn add @thi.ng/geom-io-obj
 <script src="https://unpkg.com/@thi.ng/geom-io-obj/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.02 KB / CJS: 1.07 KB / UMD: 1.18 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.02 KB / CJS: 1.07 KB / UMD: 1.20 KB
 
 ## Dependencies
 

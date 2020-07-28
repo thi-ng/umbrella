@@ -53,7 +53,7 @@ yarn add @thi.ng/geom-voronoi
 <script src="https://unpkg.com/@thi.ng/geom-voronoi/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.30 KB / CJS: 1.38 KB / UMD: 1.49 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.30 KB / CJS: 1.38 KB / UMD: 1.50 KB
 
 ## Dependencies
 

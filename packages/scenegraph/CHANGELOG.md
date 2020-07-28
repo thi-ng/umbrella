@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/scenegraph@0.2.1...@thi.ng/scenegraph@0.3.0) (2020-07-28)
+
+
+### Features
+
+* **scenegraph:** add ICopy impls for Node2/3 ([fd6ffdb](https://github.com/thi-ng/umbrella/commit/fd6ffdb531886e53711de77c2df00c447ea65448))
+
+
+
+
+
 ## [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/scenegraph@0.2.0...@thi.ng/scenegraph@0.2.1) (2020-07-17)
 
 **Note:** Version bump only for package @thi.ng/scenegraph
