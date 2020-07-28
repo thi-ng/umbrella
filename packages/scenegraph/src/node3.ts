@@ -1,12 +1,12 @@
-import { deref, IToHiccup, Nullable } from "@thi.ng/api";
+import { deref, ICopy, IToHiccup, Nullable } from "@thi.ng/api";
 import { isFunction, isNumber } from "@thi.ng/checks";
 import { invert44, mulM44, mulV344, transform44 } from "@thi.ng/matrices";
-import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { ReadonlyVec, set3, Vec } from "@thi.ng/vectors";
 import { ANode } from "./anode";
 import type { ISceneNode } from "./api";
 
 export class Node3D extends ANode<Node3D>
-    implements ISceneNode<Node3D>, IToHiccup {
+    implements ICopy<Node3D>, ISceneNode<Node3D>, IToHiccup {
     translate: Vec;
     rotate: Vec;
     scale: Vec | number;
@@ -15,7 +15,7 @@ export class Node3D extends ANode<Node3D>
         id: string,
         parent?: Nullable<Node3D>,
         translate: Vec = [0, 0, 0],
-        rotate = [0, 0, 0],
+        rotate: Vec = [0, 0, 0],
         scale: Vec | number = 1,
         body?: any
     ) {
@@ -24,6 +24,17 @@ export class Node3D extends ANode<Node3D>
         this.rotate = rotate;
         this.scale = isNumber(scale) ? [scale, scale, scale] : scale;
         this.update();
+    }
+
+    copy() {
+        return new Node3D(
+            this.id,
+            this.parent,
+            set3([], this.translate),
+            set3([], this.rotate),
+            set3([], <Vec>this.scale),
+            this.body
+        );
     }
 
     deleteChild(node: number | Node3D) {
