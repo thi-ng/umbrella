@@ -32,10 +32,13 @@ import {
 } from "@thi.ng/shader-ast-js";
 import {
     compileModel,
+    defQuadModel,
+    defShader,
+    defTexture,
     draw,
-    quad,
-    shader,
-    texture as glTexture,
+    FX_SHADER_SPEC,
+    TextureFilter,
+    TextureRepeat,
 } from "@thi.ng/webgl";
 import TEX_URL from "../assets/tex.jpg";
 
@@ -53,26 +56,20 @@ const mainImage = defn(
     ["vec2", "vec2", "float", "sampler2D"],
     (frag, res, time, tex) => {
         let p: Vec2Sym;
+        let q: Vec2Sym;
         let uv: Vec2Sym;
         let r: FloatSym;
         return [
-            (p = sym(div(add(neg(res), mul(frag, float(2))), $y(res)))),
-            (r = sym(
-                pow(
-                    add(
-                        pow(mul($x(p), $x(p)), float(4)),
-                        pow(mul($y(p), $y(p)), float(4))
-                    ),
-                    float(1 / 8)
-                )
-            )),
+            (p = sym(div(add(neg(res), mul(frag, 2)), $y(res)))),
+            (q = sym(pow(mul(p, p), vec2(4)))),
+            (r = sym(pow(add($x(q), $y(q)), float(1 / 8)))),
             (uv = sym(
                 vec2(
-                    add(div(float(0.3), r), time),
-                    div(atan(div($y(p), $x(p))), float(Math.PI))
+                    add(div(0.3, r), time),
+                    div(atan($y(p), $x(p)), float(Math.PI))
                 )
             )),
-            ret(vec4(mul($xyz(texture(tex, uv)), r), float(1))),
+            ret(vec4(mul($xyz(texture(tex, uv)), r), 1)),
         ];
     }
 );
@@ -148,38 +145,38 @@ if (JS_MODE) {
     preload.then(() => {
         const ctx: WebGLRenderingContext = canvas.getContext("webgl")!;
         // build fullscreen quad
-        const model = quad(false);
-        // set shader
-        model.shader = shader(ctx, {
-            vs: (gl, _, attribs) => [
-                defMain(() => [
-                    assign(gl.gl_Position, vec4(attribs.position, 0, 1)),
-                ]),
+        const model = {
+            ...defQuadModel({ uv: false }),
+            shader: defShader(ctx, {
+                ...FX_SHADER_SPEC,
+                fs: (gl, unis, _, outs) => [
+                    mainImage,
+                    defMain(() => [
+                        assign(
+                            outs.fragColor,
+                            mainImage(
+                                $xy(gl.gl_FragCoord),
+                                unis.resolution,
+                                unis.time,
+                                unis.tex
+                            )
+                        ),
+                    ]),
+                ],
+                uniforms: {
+                    resolution: ["vec2", [W, H]],
+                    time: "float",
+                    tex: ["sampler2D", 0],
+                },
+            }),
+            textures: [
+                defTexture(ctx, {
+                    image: tex,
+                    filter: TextureFilter.LINEAR,
+                    wrap: TextureRepeat.REPEAT,
+                }),
             ],
-            fs: (gl, unis, _, outs) => [
-                mainImage,
-                defMain(() => [
-                    assign(
-                        outs.fragColor,
-                        mainImage(
-                            $xy(gl.gl_FragCoord),
-                            unis.resolution,
-                            unis.time,
-                            unis.tex
-                        )
-                    ),
-                ]),
-            ],
-            attribs: {
-                position: "vec2",
-            },
-            uniforms: {
-                resolution: ["vec2", [W, H]],
-                time: "float",
-                tex: ["sampler2D", 0],
-            },
-        });
-        model.textures = [glTexture(ctx, { image: tex, filter: ctx.LINEAR })];
+        };
 
         // compile model (attrib buffers)
         compileModel(ctx, model);
