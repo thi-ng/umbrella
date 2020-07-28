@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dynvar",
-    "version": "0.1.18",
+    "version": "0.1.19",
     "description": "Dynamically scoped variable bindings",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,7 +49,7 @@
         "typescript": "^3.9.7"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.11.3"
+        "@thi.ng/api": "^6.12.0"
     },
     "files": [
         "*.js",

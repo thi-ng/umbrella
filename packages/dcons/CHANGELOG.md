@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.27](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.2.26...@thi.ng/dcons@2.2.27) (2020-07-28)
+
+**Note:** Version bump only for package @thi.ng/dcons
+
+
+
+
+
 ## [2.2.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.2.25...@thi.ng/dcons@2.2.26) (2020-07-17)
 
 **Note:** Version bump only for package @thi.ng/dcons

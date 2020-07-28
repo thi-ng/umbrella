@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-glsl@0.1.39...@thi.ng/shader-ast-glsl@0.2.0) (2020-07-28)
+
+
+### Features
+
+* **shader-ast-glsl:** add interpolation qualifier support ([bb1c566](https://github.com/thi-ng/umbrella/commit/bb1c56621701bd66cc56062cd258a63c64c029d2))
+
+
+
+
+
 ## [0.1.39](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-glsl@0.1.38...@thi.ng/shader-ast-glsl@0.1.39) (2020-07-25)
 
 **Note:** Version bump only for package @thi.ng/shader-ast-glsl
