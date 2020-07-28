@@ -137,7 +137,7 @@ yarn add @thi.ng/malloc
 <script src="https://unpkg.com/@thi.ng/malloc/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.80 KB / CJS: 1.86 KB / UMD: 1.84 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.80 KB / CJS: 1.86 KB / UMD: 1.86 KB
 
 ## Dependencies
 

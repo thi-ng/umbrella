@@ -75,7 +75,7 @@ yarn add @thi.ng/transducers-hdom
 <script src="https://unpkg.com/@thi.ng/transducers-hdom/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 291 bytes / CJS: 343 bytes / UMD: 454 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 291 bytes / CJS: 343 bytes / UMD: 467 bytes
 
 ## Dependencies
 

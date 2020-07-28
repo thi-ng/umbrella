@@ -50,7 +50,7 @@ yarn add @thi.ng/compare
 <script src="https://unpkg.com/@thi.ng/compare/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 396 bytes / CJS: 471 bytes / UMD: 504 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 396 bytes / CJS: 471 bytes / UMD: 519 bytes
 
 ## Dependencies
 

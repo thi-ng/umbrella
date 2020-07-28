@@ -40,7 +40,7 @@ yarn add @thi.ng/prefixes
 <script src="https://unpkg.com/@thi.ng/prefixes/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 998 bytes / CJS: 1.21 KB / UMD: 1023 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 998 bytes / CJS: 1.21 KB / UMD: 1.01 KB
 
 ## Dependencies
 

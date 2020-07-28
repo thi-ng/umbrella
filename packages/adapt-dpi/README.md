@@ -46,7 +46,7 @@ yarn add @thi.ng/adapt-dpi
 <script src="https://unpkg.com/@thi.ng/adapt-dpi/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 146 bytes / CJS: 193 bytes / UMD: 294 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 146 bytes / CJS: 193 bytes / UMD: 311 bytes
 
 ## Dependencies
 

@@ -42,7 +42,7 @@ yarn add @thi.ng/bitfield
 <script src="https://unpkg.com/@thi.ng/bitfield/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 947 bytes / CJS: 1008 bytes / UMD: 1.06 KB
+Package sizes (gzipped, pre-treeshake): ESM: 947 bytes / CJS: 1008 bytes / UMD: 1.08 KB
 
 ## Dependencies
 

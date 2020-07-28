@@ -61,7 +61,7 @@ yarn add @thi.ng/idgen
 <script src="https://unpkg.com/@thi.ng/idgen/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 843 bytes / CJS: 890 bytes / UMD: 981 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 843 bytes / CJS: 890 bytes / UMD: 997 bytes
 
 ## Dependencies
 

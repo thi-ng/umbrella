@@ -47,7 +47,7 @@ yarn add @thi.ng/webgl-shadertoy
 <script src="https://unpkg.com/@thi.ng/webgl-shadertoy/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 673 bytes / CJS: 710 bytes / UMD: 810 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 677 bytes / CJS: 713 bytes / UMD: 834 bytes
 
 ## Dependencies
 

@@ -82,8 +82,6 @@ for documentation about the exposed TS/JS API...
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bsimd%5D)
-
 The [WebAssembly SIMD spec](https://github.com/WebAssembly/simd) is
 still WIP and (at the time of writing) only partially implemented and
 hidden behind feature flags. Currently only fully tested (& testable for
@@ -118,7 +116,7 @@ yarn add @thi.ng/simd
 <script src="https://unpkg.com/@thi.ng/simd/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.50 KB / CJS: 2.56 KB / UMD: 2.67 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.50 KB / CJS: 2.56 KB / UMD: 2.68 KB
 
 ## Dependencies
 

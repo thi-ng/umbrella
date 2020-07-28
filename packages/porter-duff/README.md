@@ -66,7 +66,7 @@ yarn add @thi.ng/porter-duff
 <script src="https://unpkg.com/@thi.ng/porter-duff/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 998 bytes / CJS: 1.16 KB / UMD: 1.13 KB
+Package sizes (gzipped, pre-treeshake): ESM: 998 bytes / CJS: 1.16 KB / UMD: 1.14 KB
 
 ## Dependencies
 

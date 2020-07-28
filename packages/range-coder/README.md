@@ -46,7 +46,7 @@ yarn add @thi.ng/range-coder
 <script src="https://unpkg.com/@thi.ng/range-coder/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 670 bytes / CJS: 725 bytes / UMD: 762 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 670 bytes / CJS: 725 bytes / UMD: 779 bytes
 
 ## Dependencies
 

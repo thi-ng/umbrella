@@ -48,7 +48,7 @@ yarn add @thi.ng/geom-fuzz
 <script src="https://unpkg.com/@thi.ng/geom-fuzz/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.01 KB / CJS: 1.10 KB / UMD: 1.17 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.01 KB / CJS: 1.10 KB / UMD: 1.19 KB
 
 ## Dependencies
 

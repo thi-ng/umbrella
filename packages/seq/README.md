@@ -52,7 +52,7 @@ yarn add @thi.ng/seq
 <script src="https://unpkg.com/@thi.ng/seq/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 537 bytes / CJS: 623 bytes / UMD: 669 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 537 bytes / CJS: 623 bytes / UMD: 683 bytes
 
 ## Dependencies
 

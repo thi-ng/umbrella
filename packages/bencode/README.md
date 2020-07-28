@@ -66,7 +66,7 @@ yarn add @thi.ng/bencode
 <script src="https://unpkg.com/@thi.ng/bencode/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.16 KB / CJS: 1.22 KB / UMD: 1.28 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.16 KB / CJS: 1.22 KB / UMD: 1.29 KB
 
 ## Dependencies
 

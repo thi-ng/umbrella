@@ -44,7 +44,7 @@ yarn add @thi.ng/dynvar
 <script src="https://unpkg.com/@thi.ng/dynvar/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 300 bytes / CJS: 354 bytes / UMD: 439 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 300 bytes / CJS: 354 bytes / UMD: 455 bytes
 
 ## Dependencies
 

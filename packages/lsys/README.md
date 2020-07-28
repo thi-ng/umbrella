@@ -62,7 +62,7 @@ yarn add @thi.ng/lsys
 <script src="https://unpkg.com/@thi.ng/lsys/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 677 bytes / CJS: 749 bytes / UMD: 852 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 677 bytes / CJS: 749 bytes / UMD: 866 bytes
 
 ## Dependencies
 

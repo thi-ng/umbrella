@@ -55,7 +55,7 @@ yarn add @thi.ng/morton
 <script src="https://unpkg.com/@thi.ng/morton/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.02 KB / CJS: 2.16 KB / UMD: 2.11 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.02 KB / CJS: 2.16 KB / UMD: 2.13 KB
 
 ## Dependencies
 

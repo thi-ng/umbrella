@@ -67,7 +67,7 @@ yarn add @thi.ng/vector-pools
 <script src="https://unpkg.com/@thi.ng/vector-pools/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.06 KB / CJS: 3.13 KB / UMD: 3.20 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.06 KB / CJS: 3.13 KB / UMD: 3.21 KB
 
 ## Dependencies
 

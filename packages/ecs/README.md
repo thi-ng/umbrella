@@ -50,7 +50,7 @@ yarn add @thi.ng/ecs
 <script src="https://unpkg.com/@thi.ng/ecs/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.89 KB / CJS: 2.96 KB / UMD: 3.03 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.89 KB / CJS: 2.96 KB / UMD: 3.04 KB
 
 ## Dependencies
 
