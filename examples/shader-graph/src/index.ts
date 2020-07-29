@@ -52,10 +52,16 @@ const CTX: AppCtx = {
     width: canvas.width,
     height: canvas.height,
     texSize: 256,
+
+    // geometry for offscreen rendering (shader nodes)
     opQuad: compileModel(gl, defQuadModel()),
+
+    // geometry + shader for drawing to main window
     mainQuad: {
         ...compileModel(gl, defQuadModel({ size: 1 })),
         shader: defShader(gl, {
+            // vertex shader
+            // (will be transpiled to GLSL)
             vs: (gl, unis, ins, outs) => [
                 defMain(() => [
                     assign(outs.v_uv, ins.uv),
@@ -68,6 +74,8 @@ const CTX: AppCtx = {
                     ),
                 ]),
             ],
+            // fragment shader (same as in FX_SHADER_SPEC_UV in webgl pkg)
+            // (will be transpiled to GLSL)
             fs: (_, unis, ins, outs) => [
                 defMain(() => [
                     assign(outs.fragColor, texture(unis.tex, ins.v_uv)),
@@ -83,6 +91,7 @@ const CTX: AppCtx = {
             uniforms: {
                 tex: "sampler2D",
                 model: "mat4",
+                // 2D projection matrix
                 proj: [
                     "mat4",
                     <GLMat4>ortho([], 0, canvas.width, canvas.height, 0, -1, 1),
@@ -92,10 +101,15 @@ const CTX: AppCtx = {
     },
 };
 
+// scenegraph root node (no spatial transformation, purely used as reference frame)
 const ROOT = new Node2D("root");
+
+// main conent root in scenegraph
+// all shader nodes will be assigned as children of this node
 const CONTENT = new Node2D("content", ROOT, [CTX.width / 2, CTX.height / 2]);
 
-class GeomNode extends Node2D {
+// scenegraph node for centered quad of unit size
+class QuadNode extends Node2D {
     constructor(
         id: string,
         parent?: Nullable<Node2D>,
@@ -106,27 +120,37 @@ class GeomNode extends Node2D {
         super(id, parent, translate, rotate, scale);
     }
 
+    // hit test impl
     containsLocalPoint([x, y]: ReadonlyVec) {
         return x >= -0.5 && x <= 0.5 && y >= -0.5 && y <= 0.5;
     }
 }
 
+// ring / diamond morph pattern shader node
 const op1 = new OpNode(CTX, {
+    // shader function
+    // (will be transpiled to GLSL)
     main: (_, unis, ins, outs) => [
         defMain(() => [
             assign(
                 outs.fragColor,
                 vec4(
                     vec3(
+                        // map -1 .. +1 => 0 .. 1 interval
                         fit1101(
                             sin(
                                 madd(
                                     mix(
+                                        // circular (eucledian) distance
                                         distance(ins.v_uv, unis.center),
+                                        // diamond (manhattan) distance
                                         distManhattan2(ins.v_uv, unis.center),
+                                        // morph factor
                                         fit1101(sin(mul(unis.u_time, 0.01)))
                                     ),
+                                    // frequency scale (number of rings)
                                     float(unis.rings),
+                                    // phase shift (animation)
                                     mul(unis.u_time, unis.speed)
                                 )
                             )
@@ -137,21 +161,27 @@ const op1 = new OpNode(CTX, {
             ),
         ]),
     ],
+    // will be exposed as user controllable parameters
     unis: {
         center: ["vec2", [0.5, 0.5]],
         rings: ["float", 16],
         speed: ["float", -0.1],
     },
+    // texture inputs from other shader nodes
     inputs: [],
-    node: new GeomNode("op1", CONTENT, [-264, 0], 0, CTX.texSize),
+    // scene graph node for drawing in main canvas
+    node: new QuadNode("op1", CONTENT, [-264, 0], 0, CTX.texSize),
 });
 
+// chromatic aberration shader
 const op2 = new OpNode(CTX, {
     main: (_, unis, ins, outs) => [
         defMain(() => [
             assign(
                 outs.fragColor,
                 vec4(
+                    // read RGB color channels individually
+                    // each with different offset vector
                     $x(texture(unis.u_in0, add(ins.v_uv, unis.shiftR))),
                     $x(texture(unis.u_in0, add(ins.v_uv, unis.shiftG))),
                     $x(texture(unis.u_in0, add(ins.v_uv, unis.shiftB))),
@@ -166,9 +196,10 @@ const op2 = new OpNode(CTX, {
         shiftB: ["vec2", [0.02, 0]],
     },
     inputs: [op1.tex],
-    node: new GeomNode("op4", CONTENT, [0, 132], 0, CTX.texSize),
+    node: new QuadNode("op4", CONTENT, [0, 132], 0, CTX.texSize),
 });
 
+// noise shader node
 const op3 = new OpNode(CTX, {
     main: (_, unis, ins, outs) => [
         defMain(() => [
@@ -177,6 +208,9 @@ const op3 = new OpNode(CTX, {
                 vec4(
                     vec3(
                         fit1101(
+                            // functional programming / composition for shaders
+                            // additive is a HOF to calculate multi-octave noise
+                            // with configurable behavior
                             additive("vec3", snoise3, 2)(
                                 vec3(ins.v_uv, mul(unis.u_time, 0.005)),
                                 vec3(2),
@@ -191,9 +225,12 @@ const op3 = new OpNode(CTX, {
     ],
     unis: {},
     inputs: [],
-    node: new GeomNode("op2", CONTENT, [0, -132], 0, CTX.texSize),
+    node: new QuadNode("op2", CONTENT, [0, -132], 0, CTX.texSize),
 });
 
+// displacement shader node
+// uses value from 2nd texture as displacement factor to manipulate
+// lookup position in 1st texture
 const op4 = new OpNode(CTX, {
     main: (_, unis, ins, outs) => [
         defMain(() => [
@@ -208,16 +245,19 @@ const op4 = new OpNode(CTX, {
     ],
     unis: {},
     inputs: [op2.tex, op3.tex],
-    node: new GeomNode("op3", CONTENT, [264, 0], 0, CTX.texSize),
+    node: new QuadNode("op3", CONTENT, [264, 0], 0, CTX.texSize),
 });
 
+// update loop
 fromRAF().subscribe({
     next(t) {
+        // update all shader nodes, render to their FBOs
         op1.update(t);
         op2.update(t);
         op3.update(t);
         op4.update(t);
 
+        // then draw all in main canvas
         gl.viewport(0, 0, CTX.width, CTX.height);
         gl.clearColor(0, 0, 0, 1);
         gl.clear(gl.COLOR_BUFFER_BIT);
@@ -228,6 +268,7 @@ fromRAF().subscribe({
     },
 });
 
+// mouse event handling
 gestureStream(CTX.canvas, { minZoom: 0.1, maxZoom: 4, smooth: 0.05 }).subscribe(
     {
         next(e) {
@@ -262,7 +303,6 @@ gestureStream(CTX.canvas, { minZoom: 0.1, maxZoom: 4, smooth: 0.05 }).subscribe(
 );
 
 // expose shader nodes in devtools / console
-
 exposeGlobal("op1", op1);
 exposeGlobal("op2", op2);
 exposeGlobal("op3", op3);

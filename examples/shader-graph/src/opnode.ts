@@ -12,6 +12,7 @@ import {
     Shader,
     Texture,
     TextureFilter,
+    ModelSpec,
 } from "@thi.ng/webgl";
 import { AppCtx, OpSpec } from "./api";
 
@@ -21,17 +22,25 @@ export class OpNode {
     shader: Shader;
     params: IObjectOf<number | GLVec>;
 
+    updateSpec: ModelSpec;
+    drawSpec: ModelSpec;
+
     constructor(public ctx: AppCtx, public spec: OpSpec) {
+        // create texture as render target
         this.tex = defTexture(ctx.gl, {
             width: ctx.texSize,
             height: ctx.texSize,
             filter: TextureFilter.LINEAR,
             image: null,
         });
+
+        // wrap texture in frame buffer object
         this.fbo = defFBO(ctx.gl, { tex: [this.tex] });
+
+        // compile shader, incl. user provided fragment shader parts
         this.shader = defShader(ctx.gl, {
             ...FX_SHADER_SPEC_UV,
-            fs: spec.main,
+            fs: <any>spec.main,
             uniforms: {
                 u_in0: ["sampler2D", 0],
                 u_in1: ["sampler2D", 1],
@@ -41,31 +50,53 @@ export class OpNode {
                 ...spec.unis,
             },
         });
+
+        // expose uniforms as plain JS object
         this.params = Object.entries(spec.unis).reduce((acc, [id, val]) => {
             acc[id] = val[1];
             return acc;
         }, <any>{});
-    }
 
-    update(time: number) {
-        this.fbo.bind();
-        this.ctx.gl.viewport(0, 0, this.ctx.texSize, this.ctx.texSize);
-        draw({
+        // define stub ModelSpec's for drawing
+        // re-use pre-defined geometries defined in AppCtx
+        this.updateSpec = {
             ...this.ctx.opQuad,
             shader: this.shader,
             textures: this.spec.inputs,
-            uniforms: { u_time: time, ...this.params },
-        });
-        this.fbo.unbind();
-    }
-
-    draw() {
-        draw({
-            ...this.ctx.mainQuad,
+            uniforms: { u_time: 0 },
+        };
+        this.drawSpec = {
+            ...ctx.mainQuad,
             textures: [this.tex],
             uniforms: {
                 model: <GLMat4>mat23to44([], this.spec.node.mat),
             },
-        });
+        };
+    }
+
+    /**
+     * Takes time value (in frames) and renders shader to offscreen texture.
+     *
+     * @param time
+     */
+    update(time: number) {
+        const unis = this.updateSpec.uniforms!;
+        unis.u_time = time;
+        Object.assign(unis, this.params);
+        this.fbo.bind();
+        this.ctx.gl.viewport(0, 0, this.ctx.texSize, this.ctx.texSize);
+        draw(this.updateSpec);
+        this.fbo.unbind();
+    }
+
+    /**
+     * Draws texture into main canvas at position, size & rotation defined by
+     * associated scenegraph node
+     */
+    draw() {
+        this.drawSpec.uniforms!.model = <GLMat4>(
+            mat23to44([], this.spec.node.mat)
+        );
+        draw(this.drawSpec);
     }
 }
