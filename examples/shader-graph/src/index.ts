@@ -196,7 +196,7 @@ const op2 = new OpNode(CTX, {
         shiftB: ["vec2", [0.02, 0]],
     },
     inputs: [op1.tex],
-    node: new QuadNode("op4", CONTENT, [0, 132], 0, CTX.texSize),
+    node: new QuadNode("op2", CONTENT, [0, 132], 0, CTX.texSize),
 });
 
 // noise shader node
@@ -225,7 +225,7 @@ const op3 = new OpNode(CTX, {
     ],
     unis: {},
     inputs: [],
-    node: new QuadNode("op2", CONTENT, [0, -132], 0, CTX.texSize),
+    node: new QuadNode("op3", CONTENT, [0, -132], 0, CTX.texSize),
 });
 
 // displacement shader node
@@ -245,7 +245,7 @@ const op4 = new OpNode(CTX, {
     ],
     unis: {},
     inputs: [op2.tex, op3.tex],
-    node: new QuadNode("op3", CONTENT, [264, 0], 0, CTX.texSize),
+    node: new QuadNode("op4", CONTENT, [264, 0], 0, CTX.texSize),
 });
 
 // update loop

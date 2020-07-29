@@ -39,15 +39,15 @@ export interface AppCtx {
 /**
  * Options / specification for shader node
  */
-export interface OpSpec {
+export interface OpSpec<T extends UserUniforms> {
     /**
      * Shader function (will be transpiled to GLSL)
      */
-    main: OpShaderFn;
+    main: OpShaderFn<T>;
     /**
      * Additional custom uniforms
      */
-    unis: IObjectOf<[GLSL, number | GLVec]>;
+    unis: T;
     /**
      * Max. 4 texture inputs from other shader nodes
      */
@@ -61,18 +61,26 @@ export interface OpSpec {
 /**
  * Type alias for OpNode shaders
  */
-export type OpShaderFn = Fn4<
+export type OpShaderFn<T extends UserUniforms> = Fn4<
     GLSLTarget,
-    OpUniforms,
+    OpUniforms & UserUniformTypes<T>,
     { v_uv: Vec2Sym },
     { fragColor: Vec4Sym },
     (Sym<any> | Func<any>)[]
 >;
 
-export interface OpUniforms extends IObjectOf<Sym<any>> {
+export interface OpUniforms {
     u_in0: Sampler2DSym;
     u_in1: Sampler2DSym;
     u_in2: Sampler2DSym;
     u_in3: Sampler2DSym;
     u_time: FloatSym;
 }
+
+type UType = "vec2" | "vec3" | "vec4" | "float";
+
+export type UserUniforms = Record<string, [UType, number | number[]]>;
+
+export type UserUniformTypes<T extends UserUniforms> = {
+    [k in keyof T]: Sym<T[k][0]>;
+};

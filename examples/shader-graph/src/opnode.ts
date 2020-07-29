@@ -9,14 +9,14 @@ import {
     FX_SHADER_SPEC_UV,
     GLMat4,
     GLVec,
+    ModelSpec,
     Shader,
     Texture,
     TextureFilter,
-    ModelSpec,
 } from "@thi.ng/webgl";
-import { AppCtx, OpSpec } from "./api";
+import { AppCtx, OpSpec, UserUniforms } from "./api";
 
-export class OpNode {
+export class OpNode<T extends UserUniforms> {
     tex: Texture;
     fbo: FBO;
     shader: Shader;
@@ -25,7 +25,7 @@ export class OpNode {
     updateSpec: ModelSpec;
     drawSpec: ModelSpec;
 
-    constructor(public ctx: AppCtx, public spec: OpSpec) {
+    constructor(public ctx: AppCtx, public spec: OpSpec<T>) {
         // create texture as render target
         this.tex = defTexture(ctx.gl, {
             width: ctx.texSize,
@@ -41,7 +41,7 @@ export class OpNode {
         this.shader = defShader(ctx.gl, {
             ...FX_SHADER_SPEC_UV,
             fs: <any>spec.main,
-            uniforms: {
+            uniforms: <any>{
                 u_in0: ["sampler2D", 0],
                 u_in1: ["sampler2D", 1],
                 u_in2: ["sampler2D", 2],
