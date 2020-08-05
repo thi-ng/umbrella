@@ -219,6 +219,8 @@ export class Texture implements ITexture {
             );
         }
 
+        gl.bindTexture(this.target, null);
+
         return true;
     }
 
