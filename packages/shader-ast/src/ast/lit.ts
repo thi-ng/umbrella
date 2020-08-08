@@ -81,8 +81,8 @@ export const wrapUint = wrap("uint", uint);
  */
 export const wrapBool = wrap("bool", bool);
 
-export const TRUE = lit("bool", true);
-export const FALSE = lit("bool", false);
+export const TRUE = bool(true);
+export const FALSE = bool(false);
 
 export const FLOAT0: FloatTerm = float(0);
 export const FLOAT1: FloatTerm = float(1);
