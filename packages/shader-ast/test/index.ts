@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { mul, vec2 } from "../src";
+import { defn, float, isTerm, mul, ret, TRUE, vec2 } from "../src";
 
 describe("shader-ast", () => {
     it("op2 type infer mulvv", () => {
@@ -53,5 +53,21 @@ describe("shader-ast", () => {
             },
             r: { tag: "lit", type: "float", info: undefined, val: 1 },
         });
+    });
+
+    it("isTerm", () => {
+        assert.ok(isTerm({ tag: "lit", type: "float", val: 1 }));
+        assert.ok(isTerm(float(1)));
+        assert.ok(!isTerm(null));
+        assert.ok(!isTerm(undefined));
+        assert.ok(!isTerm({}));
+        assert.ok(!isTerm(1));
+    });
+
+    it("defn deps", () => {
+        const foo = defn("bool", "foo", [], () => [ret(TRUE)]);
+        const bar = defn("float", "bar", [], () => [ret(float(foo()))]);
+        assert.equal(bar.deps.length, 1);
+        assert.equal(bar.deps[0].id, "foo");
     });
 });

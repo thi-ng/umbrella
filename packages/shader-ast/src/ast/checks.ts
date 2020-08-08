@@ -10,7 +10,7 @@ const RE_MAT = /^mat[234]$/;
  * @param t
  */
 export const isTerm = (t: any): t is Term<any> =>
-    isPlainObject(t) && !!t.tag && !t.type;
+    isPlainObject(t) && !!t.tag && !!t.type;
 
 /**
  * Returns true, if given term evaluates to a boolean value.
