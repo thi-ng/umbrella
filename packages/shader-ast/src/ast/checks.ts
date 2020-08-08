@@ -1,7 +1,16 @@
+import { isPlainObject } from "@thi.ng/checks";
 import type { Term } from "../api/nodes";
 
 const RE_VEC = /^[iub]?vec[234]$/;
 const RE_MAT = /^mat[234]$/;
+
+/**
+ * Returns true if given `t` is a {@link Term}-like object.
+ *
+ * @param t
+ */
+export const isTerm = (t: any): t is Term<any> =>
+    isPlainObject(t) && !!t.tag && !t.type;
 
 /**
  * Returns true, if given term evaluates to a boolean value.

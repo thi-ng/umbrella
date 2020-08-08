@@ -1,7 +1,6 @@
+import type { Fn, Fn2 } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks";
 import { DGraph } from "@thi.ng/dgraph";
-import { isMat, isVec } from "./checks";
-import type { Fn, Fn2 } from "@thi.ng/api";
 import type {
     Assign,
     Branch,
@@ -18,6 +17,7 @@ import type {
     Ternary,
 } from "../api/nodes";
 import type { Type } from "../api/types";
+import { isMat, isTerm, isVec } from "./checks";
 
 /**
  * Helper function for {@link walk}. Returns child nodes for any control
@@ -61,6 +61,8 @@ export const allChildren = (t: Term<any>) =>
         : t.tag === "assign"
         ? [(<Assign<any>>t).r]
         : isVec(t) || isMat(t)
+        ? (<Lit<any>>t).val
+        : isTerm((<Lit<any>>t).val)
         ? (<Lit<any>>t).val
         : undefined);
 
