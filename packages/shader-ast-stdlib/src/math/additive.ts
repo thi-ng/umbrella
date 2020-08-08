@@ -40,7 +40,7 @@ import type { Fn } from "@thi.ng/api";
 export const additive = <T extends Prim>(
     type: T,
     fn: Fn<Term<T>, FloatTerm>,
-    oct = 4,
+    oct: number | FloatTerm = 4,
     name = "additive"
 ) =>
     defn("float", name, [[type], [type], "float"], (pos, shift, decay) => {
