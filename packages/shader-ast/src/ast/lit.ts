@@ -1,22 +1,22 @@
-import { isBoolean, isNumber } from "@thi.ng/checks";
-import { isVec } from "./checks";
 import type { Fn } from "@thi.ng/api";
+import { isBoolean, isNumber } from "@thi.ng/checks";
 import type { Lit, Term } from "../api/nodes";
 import type {
+    BVec2Term,
+    BVec3Term,
     FloatTerm,
     IntTerm,
+    IVec2Term,
+    IVec3Term,
     UintTerm,
+    UVec2Term,
+    UVec3Term,
     Vec2Term,
     Vec3Term,
     Vec4Term,
 } from "../api/terms";
-import type {
-    NumericB,
-    NumericF,
-    NumericI,
-    NumericU,
-    Type,
-} from "../api/types";
+import type { NumericB, NumericF, Type } from "../api/types";
+import { isVec } from "./checks";
 
 export const lit = <T extends Type>(
     type: T,
@@ -81,8 +81,8 @@ export const wrapUint = wrap("uint", uint);
  */
 export const wrapBool = wrap("bool", bool);
 
-export const TRUE = lit("bool", true);
-export const FALSE = lit("bool", false);
+export const TRUE = bool(true);
+export const FALSE = bool(false);
 
 export const FLOAT0: FloatTerm = float(0);
 export const FLOAT1: FloatTerm = float(1);
@@ -146,92 +146,99 @@ const $gmat = <T extends Type>(
 ) => lit(type, (xs = $vec(xs)), info[xs.length]);
 
 export function vec2(): Lit<"vec2">;
-export function vec2(x: NumericF): Lit<"vec2">;
+export function vec2(x: NumericB): Lit<"vec2">;
 // export function vec2(x: Term<Vec | IVec | BVec>): Lit<"vec2">;
 // prettier-ignore
-export function vec2(x: NumericF, y: NumericF): Lit<"vec2">;
+export function vec2(x: NumericB, y: NumericB): Lit<"vec2">;
 // prettier-ignore
 export function vec2(...xs: any[]): Lit<"vec2"> {
     return $gvec2("vec2", $vec, xs);
 }
 
 export function vec3(): Lit<"vec3">;
-export function vec3(x: NumericF): Lit<"vec3">;
-export function vec3(x: Vec2Term, y: NumericF): Lit<"vec3">;
+export function vec3(x: NumericB): Lit<"vec3">;
 // prettier-ignore
-export function vec3(x: NumericF, y: NumericF, z: NumericF): Lit<"vec3">;
+export function vec3(xy: Vec2Term | IVec2Term | UVec2Term | BVec2Term, z: NumericB): Lit<"vec3">;
+// prettier-ignore
+export function vec3(x: NumericB, y: NumericB, z: NumericB): Lit<"vec3">;
 export function vec3(...xs: any[]): Lit<"vec3"> {
     return $gvec3("vec3", $vec, xs);
 }
 
 export function vec4(): Lit<"vec4">;
-export function vec4(x: NumericF): Lit<"vec4">;
-export function vec4(x: Vec3Term, y: NumericF): Lit<"vec4">;
-export function vec4(x: Vec2Term, y: Vec2Term): Lit<"vec4">;
+export function vec4(x: NumericB): Lit<"vec4">;
 // prettier-ignore
-export function vec4(x: Vec2Term, y: NumericF, z: NumericF): Lit<"vec4">;
+export function vec4(xyz: Vec3Term | IVec3Term | UVec3Term | BVec3Term, w: NumericB): Lit<"vec4">;
 // prettier-ignore
-export function vec4(x: NumericF, y: NumericF, z: NumericF, w: NumericF): Lit<"vec4">;
+export function vec4(xy: Vec2Term | IVec2Term | UVec2Term | BVec2Term, zw: Vec2Term | IVec2Term | UVec2Term | BVec2Term): Lit<"vec4">;
+// prettier-ignore
+export function vec4(xy: Vec2Term | IVec2Term | UVec2Term | BVec2Term, z: NumericB, w: NumericB): Lit<"vec4">;
+// prettier-ignore
+export function vec4(x: NumericB, y: NumericB, z: NumericB, w: NumericB): Lit<"vec4">;
 export function vec4(...xs: any[]): Lit<"vec4"> {
     return $gvec4("vec4", $vec, xs);
 }
 
 export function ivec2(): Lit<"ivec2">;
-export function ivec2(x: NumericI): Lit<"ivec2">;
+export function ivec2(x: NumericB): Lit<"ivec2">;
 // prettier-ignore
-export function ivec2(x: NumericI, y: NumericI): Lit<"ivec2">;
+export function ivec2(x: NumericB, y: NumericB): Lit<"ivec2">;
 // prettier-ignore
 export function ivec2(...xs: any[]): Lit<"ivec2"> {
     return $gvec2("ivec2", $ivec, xs);
 }
 
 export function ivec3(): Lit<"ivec3">;
-export function ivec3(x: NumericI): Lit<"ivec3">;
-export function ivec3(x: Vec2Term, y: NumericI): Lit<"ivec3">;
+export function ivec3(x: NumericB): Lit<"ivec3">;
+export function ivec3(xy: Vec2Term | BVec2Term, z: NumericB): Lit<"ivec3">;
 // prettier-ignore
-export function ivec3(x: NumericI, y: NumericI, z: NumericI): Lit<"ivec3">;
+export function ivec3(x: NumericB, y: NumericB, z: NumericB): Lit<"ivec3">;
 export function ivec3(...xs: any[]): Lit<"ivec3"> {
     return $gvec3("ivec3", $ivec, xs);
 }
 
 export function ivec4(): Lit<"ivec4">;
-export function ivec4(x: NumericI): Lit<"ivec4">;
-export function ivec4(x: Vec3Term, y: NumericI): Lit<"ivec4">;
-export function ivec4(x: Vec2Term, y: Vec2Term): Lit<"ivec4">;
+export function ivec4(x: NumericB): Lit<"ivec4">;
+export function ivec4(x: Vec3Term | BVec3Term, y: NumericB): Lit<"ivec4">;
 // prettier-ignore
-export function ivec4(x: Vec2Term, y: NumericI, z: NumericI): Lit<"ivec4">;
+export function ivec4(x: Vec2Term | BVec2Term, y: Vec2Term | BVec2Term): Lit<"ivec4">;
 // prettier-ignore
-export function ivec4(x: NumericI, y: NumericI, z: NumericI, w: NumericI): Lit<"ivec4">;
+export function ivec4(x: Vec2Term | BVec2Term, y: NumericB, z: NumericB): Lit<"ivec4">;
+// prettier-ignore
+export function ivec4(x: NumericB, y: NumericB, z: NumericB, w: NumericB): Lit<"ivec4">;
 export function ivec4(...xs: any[]): Lit<"ivec4"> {
     return $gvec4("ivec4", $ivec, xs);
 }
 
 export function uvec2(): Lit<"uvec2">;
-export function uvec2(x: NumericU): Lit<"uvec2">;
+export function uvec2(x: NumericB): Lit<"uvec2">;
 // prettier-ignore
-export function uvec2(x: NumericU, y: NumericU): Lit<"uvec2">;
+export function uvec2(x: NumericB, y: NumericB): Lit<"uvec2">;
 // prettier-ignore
 export function uvec2(...xs: any[]): Lit<"uvec2"> {
     return $gvec2("uvec2", $uvec, xs);
 }
 
 export function uvec3(): Lit<"uvec3">;
-export function uvec3(x: NumericU): Lit<"uvec3">;
-export function uvec3(x: Vec2Term, y: NumericU): Lit<"uvec3">;
+export function uvec3(x: NumericB): Lit<"uvec3">;
 // prettier-ignore
-export function uvec3(x: NumericU, y: NumericU, z: NumericU): Lit<"uvec3">;
+export function uvec3(xy: Vec2Term | BVec2Term, z: NumericB): Lit<"uvec3">;
+// prettier-ignore
+export function uvec3(x: NumericB, y: NumericB, z: NumericB): Lit<"uvec3">;
 export function uvec3(...xs: any[]): Lit<"uvec3"> {
     return $gvec3("uvec3", $uvec, xs);
 }
 
 export function uvec4(): Lit<"uvec4">;
-export function uvec4(x: NumericU): Lit<"uvec4">;
-export function uvec4(x: Vec3Term, y: NumericU): Lit<"uvec4">;
-export function uvec4(x: Vec2Term, y: Vec2Term): Lit<"uvec4">;
+export function uvec4(x: NumericB): Lit<"uvec4">;
 // prettier-ignore
-export function uvec4(x: Vec2Term, y: NumericU, z: NumericU): Lit<"uvec4">;
+export function uvec4(xyz: Vec3Term | BVec3Term, w: NumericB): Lit<"uvec4">;
 // prettier-ignore
-export function uvec4(x: NumericU, y: NumericU, z: NumericU, w: NumericU): Lit<"uvec4">;
+export function uvec4(xy: Vec2Term | BVec2Term, zw: Vec2Term | BVec2Term): Lit<"uvec4">;
+// prettier-ignore
+export function uvec4(xy: Vec2Term | BVec2Term, z: NumericB, w: NumericB): Lit<"uvec4">;
+// prettier-ignore
+export function uvec4(x: NumericB, y: NumericB, z: NumericB, w: NumericB): Lit<"uvec4">;
 export function uvec4(...xs: any[]): Lit<"uvec4"> {
     return $gvec4("uvec4", $uvec, xs);
 }
@@ -247,7 +254,8 @@ export function bvec2(...xs: any[]): Lit<"bvec2"> {
 
 export function bvec3(): Lit<"bvec3">;
 export function bvec3(x: NumericB): Lit<"bvec3">;
-export function bvec3(x: Vec2Term, y: NumericB): Lit<"bvec3">;
+// prettier-ignore
+export function bvec3(xy: Vec2Term | IVec2Term | UVec2Term | BVec2Term, z: NumericB): Lit<"bvec3">;
 // prettier-ignore
 export function bvec3(x: NumericB, y: NumericB, z: NumericB): Lit<"bvec3">;
 export function bvec3(...xs: any[]): Lit<"bvec3"> {
@@ -256,10 +264,12 @@ export function bvec3(...xs: any[]): Lit<"bvec3"> {
 
 export function bvec4(): Lit<"bvec4">;
 export function bvec4(x: NumericB): Lit<"bvec4">;
-export function bvec4(x: Vec3Term, y: NumericB): Lit<"bvec4">;
-export function bvec4(x: Vec2Term, y: Vec2Term): Lit<"bvec4">;
 // prettier-ignore
-export function bvec4(x: Vec2Term, y: NumericB, z: NumericB): Lit<"bvec4">;
+export function bvec4(xyz: Vec3Term | IVec3Term | UVec3Term | BVec3Term, w: NumericB): Lit<"bvec4">;
+// prettier-ignore
+export function bvec4(xy: Vec2Term | IVec2Term | UVec2Term | BVec2Term, zw: Vec2Term | IVec2Term | UVec2Term | BVec2Term): Lit<"bvec4">;
+// prettier-ignore
+export function bvec4(xy: Vec2Term | IVec2Term | UVec2Term | BVec2Term, z: NumericB, w: NumericB): Lit<"bvec4">;
 // prettier-ignore
 export function bvec4(x: NumericB, y: NumericB, z: NumericB, w: NumericB): Lit<"bvec4">;
 export function bvec4(...xs: any[]): Lit<"bvec4"> {

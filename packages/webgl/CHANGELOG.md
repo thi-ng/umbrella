@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@3.0.0...@thi.ng/webgl@3.0.1) (2020-08-08)
+
+
+### Bug Fixes
+
+* **webgl:** unbind texture after configured ([9612cdd](https://github.com/thi-ng/umbrella/commit/9612cdd86130ccb780eeda2971e780f0c8dc2b52))
+
+
+
+
+
 # [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@2.0.11...@thi.ng/webgl@3.0.0) (2020-07-28)
 
 

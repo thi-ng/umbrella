@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.3.33...@thi.ng/shader-ast-stdlib@0.4.0) (2020-08-08)
+
+
+### Features
+
+* **shader-ast-stdlib:** add borderMask() ([bea00bf](https://github.com/thi-ng/umbrella/commit/bea00bfc465b55f9fbafb35d2a1cc389766ab620))
+
+
+
+
+
 ## [0.3.33](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.3.32...@thi.ng/shader-ast-stdlib@0.3.33) (2020-07-28)
 
 **Note:** Version bump only for package @thi.ng/shader-ast-stdlib

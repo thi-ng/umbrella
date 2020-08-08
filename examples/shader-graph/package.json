@@ -1,0 +1,47 @@
+{
+    "name": "shader-graph",
+    "version": "0.0.1",
+    "description": "Minimal shader graph developed during livestream #2",
+    "repository": "https://github.com/thi-ng/umbrella",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "clean": "rm -rf .cache build out",
+        "build": "yarn clean && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --detailed-report --experimental-scope-hoisting",
+        "build:webpack": "../../node_modules/.bin/webpack --mode production",
+        "start": "parcel index.html -p 8080 --open --no-cache"
+    },
+    "devDependencies": {
+        "parcel-bundler": "^1.12.4",
+        "terser": "^4.8.0",
+        "typescript": "^3.9.5"
+    },
+    "dependencies": {
+        "@thi.ng/api": "latest",
+        "@thi.ng/matrices": "latest",
+        "@thi.ng/rstream": "latest",
+        "@thi.ng/rstream-gestures": "latest",
+        "@thi.ng/scenegraph": "latest",
+        "@thi.ng/shader-ast": "latest",
+        "@thi.ng/shader-ast-glsl": "latest",
+        "@thi.ng/shader-ast-stdlib": "latest",
+        "@thi.ng/vectors": "latest",
+        "@thi.ng/webgl": "latest"
+    },
+    "browserslist": [
+        "last 3 Chrome versions"
+    ],
+    "browser": {
+        "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "matrices",
+            "rstream-gestures",
+            "scenegraph",
+            "shader-ast",
+            "webgl"
+        ],
+        "screenshot": "examples/shader-graph.jpg"
+    }
+}
