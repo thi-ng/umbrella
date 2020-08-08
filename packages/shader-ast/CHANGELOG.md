@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.5.0...@thi.ng/shader-ast@0.5.1) (2020-08-08)
+
+
+### Bug Fixes
+
+* **shader-ast:** update allChildren(), add isTerm() ([267a0c0](https://github.com/thi-ng/umbrella/commit/267a0c0c992a0c0b9917c2d544ac4250b3d611e4))
+
+
+
+
+
 # [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.4.0...@thi.ng/shader-ast@0.5.0) (2020-08-08)
 
 
