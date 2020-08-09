@@ -153,7 +153,7 @@ yarn add @thi.ng/vectors
 <script src="https://unpkg.com/@thi.ng/vectors/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 11.11 KB / CJS: 13.97 KB / UMD: 12.30 KB
+Package sizes (gzipped, pre-treeshake): ESM: 11.14 KB / CJS: 14.02 KB / UMD: 12.34 KB
 
 ## Dependencies
 
@@ -587,15 +587,16 @@ forced accordingly.
 
 ### Boolean vector logic
 
-| Function    | Generic | Fixed | Strided | Int | Comments |
-|-------------|---------|-------|---------|-----|----------|
-| `logicAnd`  | ✓       | 2-4   |         |     |          |
-| `logicAndN` | ✓       | 2-4   |         |     |          |
-| `logicOr`   | ✓       | 2-4   |         |     |          |
-| `logicOrN`  | ✓       | 2-4   |         |     |          |
-| `logicNot`  | ✓       | 2-4   |         |     |          |
-| `every`     | ✓       | 2-4   |         |     |          |
-| `some`      | ✓       | 2-4   |         |     |          |
+| Function    | Generic | Fixed | Strided | Int | Comments          |
+|-------------|---------|-------|---------|-----|-------------------|
+| `logicAnd`  | ✓       | 2-4   |         |     |                   |
+| `logicAndN` | ✓       | 2-4   |         |     |                   |
+| `logicOr`   | ✓       | 2-4   |         |     |                   |
+| `logicOrN`  | ✓       | 2-4   |         |     |                   |
+| `logicNot`  | ✓       | 2-4   |         |     |                   |
+| `every`     | ✓       | 2-4   |         |     | returns `boolean` |
+| `some`      | ✓       | 2-4   |         |     | returns `boolean` |
+| `not`       | ✓       | 2-4   |         |     |                   |
 
 ### Componentwise comparisons
 

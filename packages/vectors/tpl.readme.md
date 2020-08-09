@@ -494,15 +494,16 @@ forced accordingly.
 
 ### Boolean vector logic
 
-| Function    | Generic | Fixed | Strided | Int | Comments |
-|-------------|---------|-------|---------|-----|----------|
-| `logicAnd`  | ✓       | 2-4   |         |     |          |
-| `logicAndN` | ✓       | 2-4   |         |     |          |
-| `logicOr`   | ✓       | 2-4   |         |     |          |
-| `logicOrN`  | ✓       | 2-4   |         |     |          |
-| `logicNot`  | ✓       | 2-4   |         |     |          |
-| `every`     | ✓       | 2-4   |         |     |          |
-| `some`      | ✓       | 2-4   |         |     |          |
+| Function    | Generic | Fixed | Strided | Int | Comments          |
+|-------------|---------|-------|---------|-----|-------------------|
+| `logicAnd`  | ✓       | 2-4   |         |     |                   |
+| `logicAndN` | ✓       | 2-4   |         |     |                   |
+| `logicOr`   | ✓       | 2-4   |         |     |                   |
+| `logicOrN`  | ✓       | 2-4   |         |     |                   |
+| `logicNot`  | ✓       | 2-4   |         |     |                   |
+| `every`     | ✓       | 2-4   |         |     | returns `boolean` |
+| `some`      | ✓       | 2-4   |         |     | returns `boolean` |
+| `not`       | ✓       | 2-4   |         |     |                   |
 
 ### Componentwise comparisons
 
@@ -516,7 +517,6 @@ All resulting in boolean vectors:
 | `gt`     | ✓       | 2-4   |         |     |          |
 | `gte`    | ✓       | 2-4   |         |     |          |
 | `neq`    | ✓       | 2-4   |         |     |          |
-
 
 ### Hashing
 
