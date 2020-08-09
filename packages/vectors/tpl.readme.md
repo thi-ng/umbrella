@@ -485,6 +485,13 @@ forced accordingly.
 | `lshiftN` | ✓       |       |         | I2-I4, U2-U4 |          |
 | `rshiftN` | ✓       |       |         | I2-I4, U2-U4 |          |
 
+### Vector conversions / coercions
+
+- `asIVec` (2-4) -  signed int vector
+- `asUVec` (2-4) -  unsigned int vector
+- `asBVec` (2-4) -  boolean vector
+- `fromBVec` (2-4) -  coerces each component to 0/1
+
 ### Boolean vector logic
 
 | Function    | Generic | Fixed | Strided | Int | Comments |
