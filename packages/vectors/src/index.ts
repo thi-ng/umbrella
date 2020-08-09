@@ -124,6 +124,7 @@ export * from "./neg";
 export * from "./normal";
 export * from "./normalize";
 export * from "./normalizes";
+export * from "./not";
 export * from "./ortho-normal";
 export * from "./perpendicular";
 export * from "./polar";
