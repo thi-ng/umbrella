@@ -1,5 +1,16 @@
 import * as assert from "assert";
-import { defn, float, isTerm, mul, ret, TRUE, vec2 } from "../src";
+import {
+    bvec2,
+    defn,
+    float,
+    isTerm,
+    ivec2,
+    Lit,
+    mul,
+    ret,
+    TRUE,
+    vec2,
+} from "../src";
 
 describe("shader-ast", () => {
     it("op2 type infer mulvv", () => {
@@ -69,5 +80,93 @@ describe("shader-ast", () => {
         const bar = defn("float", "bar", [], () => [ret(float(foo()))]);
         assert.equal(bar.deps.length, 1);
         assert.equal(bar.deps[0].id, "foo");
+    });
+
+    it("vec2 ctor", () => {
+        assert.deepEqual(vec2(), <Lit<"vec2">>{
+            tag: "lit",
+            type: "vec2",
+            info: "n",
+            val: [
+                {
+                    info: undefined,
+                    tag: "lit",
+                    type: "float",
+                    val: 0,
+                },
+            ],
+        });
+        assert.deepEqual(vec2(1), <Lit<"vec2">>{
+            tag: "lit",
+            type: "vec2",
+            info: "n",
+            val: [
+                {
+                    info: undefined,
+                    tag: "lit",
+                    type: "float",
+                    val: 1,
+                },
+            ],
+        });
+        assert.deepEqual(vec2(1, 2), <Lit<"vec2">>{
+            tag: "lit",
+            type: "vec2",
+            info: undefined,
+            val: [
+                {
+                    info: undefined,
+                    tag: "lit",
+                    type: "float",
+                    val: 1,
+                },
+                {
+                    info: undefined,
+                    tag: "lit",
+                    type: "float",
+                    val: 2,
+                },
+            ],
+        });
+        assert.deepEqual(vec2(bvec2(true)), <Lit<"vec2">>{
+            tag: "lit",
+            type: "vec2",
+            info: "b",
+            val: [
+                {
+                    info: "n",
+                    tag: "lit",
+                    type: "bvec2",
+                    val: [
+                        {
+                            info: undefined,
+                            tag: "lit",
+                            type: "bool",
+                            val: true,
+                        },
+                    ],
+                },
+            ],
+        });
+        assert.deepEqual(vec2(ivec2(1)), <Lit<"vec2">>{
+            tag: "lit",
+            type: "vec2",
+            info: "i",
+            val: [
+                {
+                    info: "n",
+                    tag: "lit",
+                    type: "ivec2",
+                    val: [
+                        {
+                            info: undefined,
+                            tag: "lit",
+                            type: "int",
+                            val: 1,
+                        },
+                    ],
+                },
+            ],
+        });
     });
 });
