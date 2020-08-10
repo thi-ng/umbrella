@@ -1,7 +1,7 @@
 import type { Fn, Fn2, Fn3, Fn4, Fn5, Fn6 } from "@thi.ng/api";
 import type { Mat } from "@thi.ng/matrices";
 import type { Term } from "@thi.ng/shader-ast";
-import type { Vec } from "@thi.ng/vectors";
+import type { BVec, Vec } from "@thi.ng/vectors";
 
 export interface JSTarget extends Fn<Term<any>, string> {
     /**
@@ -99,6 +99,12 @@ export interface JSBuiltinsInt<T>
     modi: Fn2<T, T, T>;
 }
 
+export interface JSBuiltinsBool {
+    any: Fn<BVec, boolean>;
+    all: Fn<BVec, boolean>;
+    not: Fn<BVec, BVec>;
+}
+
 export interface JSBuiltinsVecScalar<T> {
     addvn: Fn2<T, number, T>;
     subvn: Fn2<T, number, T>;
@@ -110,10 +116,20 @@ export interface JSBuiltinsVecScalar<T> {
     divnv: Fn2<number, T, T>;
 }
 
+export interface JSBuiltinsVecCompare {
+    equal: Fn2<Vec, Vec, BVec>;
+    notEqual: Fn2<Vec, Vec, BVec>;
+    lessThan: Fn2<Vec, Vec, BVec>;
+    lessThanEqual: Fn2<Vec, Vec, BVec>;
+    greaterThan: Fn2<Vec, Vec, BVec>;
+    greaterThanEqual: Fn2<Vec, Vec, BVec>;
+}
+
 export interface JSBuiltinsVec
     extends JSBuiltinsFloat<Vec>,
         JSBuiltinsMath<Vec>,
-        JSBuiltinsVecScalar<Vec> {
+        JSBuiltinsVecScalar<Vec>,
+        JSBuiltinsVecCompare {
     distance: Fn2<Vec, Vec, number>;
     dot: Fn2<Vec, Vec, number>;
     faceForward: Fn3<Vec, Vec, Vec, Vec>;
@@ -130,7 +146,8 @@ export interface JSBuiltinsVec3 extends JSBuiltinsVec {
 export interface JSBuiltinsIntVec
     extends JSBuiltinsInt<Vec>,
         JSBuiltinsVecScalar<Vec>,
-        JSBuiltinsBinary<Vec> {
+        JSBuiltinsBinary<Vec>,
+        JSBuiltinsVecCompare {
     modivn: Fn2<Vec, number, Vec>;
     modinv: Fn2<number, Vec, Vec>;
 }
@@ -160,10 +177,19 @@ export interface JSBuiltinsSampler {
 }
 
 export interface JSEnv {
+    vec2b: Fn<BVec, Vec>;
+    vec2i: Fn<Vec, Vec>;
     vec2n: Fn<number, Vec>;
+    vec2u: Fn<Vec, Vec>;
+    vec3b: Fn<BVec, Vec>;
+    vec3i: Fn<Vec, Vec>;
     vec3n: Fn<number, Vec>;
+    vec3u: Fn<Vec, Vec>;
     vec3vn: Fn2<Vec, number, Vec>;
+    vec4b: Fn<BVec, Vec>;
+    vec4i: Fn<Vec, Vec>;
     vec4n: Fn<number, Vec>;
+    vec4u: Fn<Vec, Vec>;
     vec4vn: Fn2<Vec, number, Vec>;
     vec4vnn: Fn3<Vec, number, number, Vec>;
     vec4vv: Fn2<Vec, Vec, Vec>;
@@ -187,12 +213,30 @@ export interface JSEnv {
     vec2: JSBuiltinsVec;
     vec3: JSBuiltinsVec3;
     vec4: JSBuiltinsVec;
+    bvec2: JSBuiltinsBool;
+    bvec2n: Fn<boolean | number, BVec>;
+    bvec3: JSBuiltinsBool;
+    bvec3n: Fn<boolean | number, BVec>;
+    bvec4: JSBuiltinsBool;
+    bvec4n: Fn<boolean | number, BVec>;
     ivec2: JSBuiltinsIntVec;
+    ivec2b: Fn<BVec, Vec>;
+    ivec2n: Fn<number, Vec>;
     ivec3: JSBuiltinsIntVec;
+    ivec3b: Fn<BVec, Vec>;
+    ivec3n: Fn<number, Vec>;
     ivec4: JSBuiltinsIntVec;
+    ivec4b: Fn<BVec, Vec>;
+    ivec4n: Fn<number, Vec>;
     uvec2: JSBuiltinsIntVec;
+    uvec2b: Fn<BVec, Vec>;
+    uvec2n: Fn<number, Vec>;
     uvec3: JSBuiltinsIntVec;
+    uvec3b: Fn<BVec, Vec>;
+    uvec3n: Fn<number, Vec>;
     uvec4: JSBuiltinsIntVec;
+    uvec4b: Fn<BVec, Vec>;
+    uvec4n: Fn<number, Vec>;
     mat2: JSBuiltinsMat;
     mat3: JSBuiltinsMat;
     mat4: JSBuiltinsMat;
