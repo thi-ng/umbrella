@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-js@0.4.40...@thi.ng/shader-ast-js@0.5.0) (2020-08-10)
+
+
+### Features
+
+* **shader-ast-js:** add vec coercions & bvec ops ([3f111c9](https://github.com/thi-ng/umbrella/commit/3f111c98190c8c6972033901df391a237d7d8491))
+
+
+
+
+
 ## [0.4.40](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-js@0.4.39...@thi.ng/shader-ast-js@0.4.40) (2020-08-08)
 
 **Note:** Version bump only for package @thi.ng/shader-ast-js

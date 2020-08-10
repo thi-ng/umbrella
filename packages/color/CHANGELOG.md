@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@1.2.10...@thi.ng/color@1.2.11) (2020-08-10)
+
+**Note:** Version bump only for package @thi.ng/color
+
+
+
+
+
 ## [1.2.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@1.2.9...@thi.ng/color@1.2.10) (2020-07-28)
 
 **Note:** Version bump only for package @thi.ng/color

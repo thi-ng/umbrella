@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.5.2...@thi.ng/shader-ast@0.6.0) (2020-08-10)
+
+
+### Features
+
+* **shader-ast:** add/update vec coercions ([764f4e5](https://github.com/thi-ng/umbrella/commit/764f4e5bbd86713775c266e6d4fae6123351700e))
+
+
+
+
+
 ## [0.5.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.5.1...@thi.ng/shader-ast@0.5.2) (2020-08-08)
 
 

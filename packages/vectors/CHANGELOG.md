@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.5.6...@thi.ng/vectors@4.6.0) (2020-08-10)
+
+
+### Features
+
+* **vectors:** add not() bvec op ([a820b8f](https://github.com/thi-ng/umbrella/commit/a820b8fec8f69c82910f61bfeb3c013ceed19b8c))
+* **vectors:** add/update vec coercions & types ([073389e](https://github.com/thi-ng/umbrella/commit/073389e33bbead294d690c60d150a7fd0589f822))
+
+
+
+
+
 ## [4.5.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.5.5...@thi.ng/vectors@4.5.6) (2020-07-28)
 
 **Note:** Version bump only for package @thi.ng/vectors
