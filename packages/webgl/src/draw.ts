@@ -4,15 +4,33 @@ import { error } from "./error";
 import { bindTextures } from "./texture";
 import type { ModelSpec } from "./api/model";
 
-export const draw = (specs: ModelSpec | ModelSpec[]) => {
+export interface DrawFlags {
+    /**
+     * Unless false (default: true), bind modelspec's textures
+     */
+    tex: boolean;
+    /**
+     * Unless false (default: true), bind modelspec's shader
+     */
+    shader: boolean;
+    /**
+     * Unless false (default: true), apply shader's `state` opts
+     */
+    state: boolean;
+}
+
+export const draw = (
+    specs: ModelSpec | ModelSpec[],
+    opts: Partial<DrawFlags> = {}
+) => {
     const _specs = isArray(specs) ? specs : [specs];
     for (let i = 0, n = _specs.length; i < n; i++) {
         const spec = _specs[i];
         const indices = spec.indices;
         const gl = spec.shader.gl;
-        spec.textures && bindTextures(spec.textures);
-        spec.shader.prepareState();
-        spec.shader.bind(spec);
+        opts.tex !== false && spec.textures && bindTextures(spec.textures);
+        opts.state !== false && spec.shader.prepareState();
+        opts.shader !== false && spec.shader.bind(spec);
         if (indices && indices.buffer) {
             indices.buffer.bind();
             if (spec.instances) {
@@ -34,7 +52,7 @@ export const draw = (specs: ModelSpec | ModelSpec[]) => {
                 gl.drawArrays(spec.mode!, 0, spec.num);
             }
         }
-        spec.shader.unbind(<any>null);
+        opts.shader !== false && spec.shader.unbind(<any>null);
     }
 };
 
