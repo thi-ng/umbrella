@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@3.0.4...@thi.ng/webgl@3.1.0) (2020-08-12)
+
+
+### Features
+
+* **webgl:** add DrawFlags opts for draw() ([800382b](https://github.com/thi-ng/umbrella/commit/800382ba1a67a5dd9f8a4edc17f6d791bfa2c627))
+* **webgl:** add opt unbind flag for .configure() ([0e5cc2b](https://github.com/thi-ng/umbrella/commit/0e5cc2bc5b632c7d418715c936d4cc6152b4a57c))
+
+
+
+
+
 ## [3.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@3.0.3...@thi.ng/webgl@3.0.4) (2020-08-10)
 
 **Note:** Version bump only for package @thi.ng/webgl
