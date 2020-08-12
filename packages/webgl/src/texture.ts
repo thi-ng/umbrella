@@ -34,7 +34,7 @@ export class Texture implements ITexture {
         this.configure(opts);
     }
 
-    configure(opts: Partial<TextureOpts> = {}) {
+    configure(opts: Partial<TextureOpts> = {}, unbind = true) {
         const gl = this.gl;
         const isGL2 = isGL2Context(gl);
         const target = opts.target || this.target || TextureTarget.TEXTURE_2D;
@@ -219,7 +219,7 @@ export class Texture implements ITexture {
             );
         }
 
-        gl.bindTexture(this.target, null);
+        unbind && gl.bindTexture(this.target, null);
 
         return true;
     }

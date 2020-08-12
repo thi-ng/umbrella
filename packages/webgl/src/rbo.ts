@@ -30,7 +30,7 @@ export class RBO implements IRenderBuffer {
         return true;
     }
 
-    configure(opts: RboOpts) {
+    configure(opts: RboOpts, unbind = true) {
         const gl = this.gl;
         this.bind();
         this.format = opts.format || gl.DEPTH_COMPONENT16;
@@ -42,8 +42,7 @@ export class RBO implements IRenderBuffer {
             opts.width,
             opts.height
         );
-        this.unbind();
-        return true;
+        return unbind ? this.unbind() : true;
     }
 }
 

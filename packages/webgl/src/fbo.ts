@@ -58,7 +58,7 @@ export class FBO implements IFbo {
         return true;
     }
 
-    configure(opts: Partial<FboOpts>) {
+    configure(opts: Partial<FboOpts>, unbind = true) {
         const gl = this.gl;
         this.bind();
         if (opts.tex) {
@@ -109,7 +109,7 @@ export class FBO implements IFbo {
                   );
         }
         this.validate();
-        return this.unbind();
+        return unbind ? this.unbind() : true;
     }
 
     validate() {
