@@ -1,8 +1,5 @@
-import { isNumber } from "@thi.ng/checks";
-import { isMat, isVec } from "./checks";
-import { numberWithMatchingType } from "./item";
-import { float } from "./lit";
 import type { IObjectOf } from "@thi.ng/api";
+import { isNumber } from "@thi.ng/checks";
 import type { Op1, Op2, Sym, Term } from "../api/nodes";
 import type { ComparisonOperator, Operator } from "../api/ops";
 import type {
@@ -22,11 +19,17 @@ import type {
     Int,
     IVec,
     Mat,
+    NumericF,
+    NumericI,
+    NumericU,
     Prim,
     Type,
     UVec,
     Vec,
 } from "../api/types";
+import { isMat, isVec } from "./checks";
+import { numberWithMatchingType } from "./item";
+import { float } from "./lit";
 
 export const op1 = <T extends Type>(
     op: Operator,
@@ -218,34 +221,40 @@ export const neg = <T extends Prim | Int | IVec | Mat>(val: Term<T>) =>
     op1("-", val);
 
 /**
- * Multiply-add: a * b + c. All must be of same type.
+ * Multiply-add: a * b + c. The `b` and `c` terms must be compatible with `a`.
  *
  * @param a -
  * @param b -
  * @param c -
  */
-export const madd = <
-    A extends Prim | IVec | UVec | "int" | "uint",
-    B extends A,
-    C extends B
->(
-    a: Term<A>,
-    b: Term<B>,
-    c: Term<C>
-): Term<A> => add(mul(<Term<any>>a, b), c);
+// prettier-ignore
+export function madd<A extends Prim, B extends A, C extends B>(a: Term<A>, b: Term<B> | NumericF, c: Term<C> | NumericF): Term<A>;
+// prettier-ignore
+export function madd<A extends IVec | "int", B extends A, C extends B>(a: Term<A>, b: Term<B> | NumericI, c: Term<C> | NumericI): Term<A>;
+// prettier-ignore
+export function madd<A extends UVec | "uint", B extends A, C extends B>(a: Term<A>, b: Term<B> | NumericU, c: Term<C> | NumericU): Term<A>;
+// prettier-ignore
+export function madd(a: Term<any>, b: Term<any> | number, c: Term<any> | number): Term<any> {
+    return add(mul(<Term<any>>a, <any>b), <any>c);
+}
 
 /**
- * Add-multiply: (a + b) * c. All must be of same type.
+ * Add-multiply: (a + b) * c. The `b` and `c` terms must be compatible with `a`.
  *
  * @param a -
  * @param b -
  * @param c -
  */
-export const addm = <A extends Prim, B extends A, C extends B>(
-    a: Term<A>,
-    b: Term<B>,
-    c: Term<C>
-): Term<A> => mul(add(<Term<any>>a, b), c);
+// prettier-ignore
+export function addm<A extends Prim, B extends A, C extends B>(a: Term<A>, b: Term<B> | NumericF, c: Term<C> | NumericF): Term<A>;
+// prettier-ignore
+export function addm<A extends IVec | "int", B extends A, C extends B>(a: Term<A>, b: Term<B> | NumericI, c: Term<C> | NumericI): Term<A>;
+// prettier-ignore
+export function addm<A extends UVec | "uint", B extends A, C extends B>(a: Term<A>, b: Term<B> | NumericU, c: Term<C> | NumericU): Term<A>;
+// prettier-ignore
+export function addm(a: Term<any>, b: Term<any> | number, c: Term<any> | number): Term<any> {
+    return mul(add(<Term<any>>a, <any>b), <any>c);
+}
 
 export const not = (val: BoolTerm) => op1("!", val);
 export const or = (a: BoolTerm, b: BoolTerm) => op2("||", a, b);
