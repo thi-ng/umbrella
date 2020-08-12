@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@3.1.0...@thi.ng/webgl@3.1.1) (2020-08-12)
+
+
+### Bug Fixes
+
+* **webgl:** update/add DrawOpts, add unbindTextures() ([27021fa](https://github.com/thi-ng/umbrella/commit/27021facca516e3d9c598f017819fe0314c72af4))
+
+
+
+
+
 # [3.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@3.0.4...@thi.ng/webgl@3.1.0) (2020-08-12)
 
 
