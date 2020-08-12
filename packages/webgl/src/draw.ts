@@ -1,22 +1,30 @@
 import { isArray } from "@thi.ng/checks";
 import { isGL2Context } from "./checks";
 import { error } from "./error";
-import { bindTextures } from "./texture";
+import { bindTextures, unbindTextures } from "./texture";
 import type { ModelSpec } from "./api/model";
 
 export interface DrawFlags {
     /**
      * Unless false (default: true), bind modelspec's textures
      */
-    tex: boolean;
+    bindTex: boolean;
     /**
-     * Unless false (default: true), bind modelspec's shader
+     * If true (default: false), unbind modelspec's textures after use
      */
-    shader: boolean;
+    unbindTex: boolean;
     /**
-     * Unless false (default: true), apply shader's `state` opts
+     * Unless false (default: true), bind modelspec's shader before use
      */
-    state: boolean;
+    bindShader: boolean;
+    /**
+     * Unless false (default: true), unbind modelspec's shader after use
+     */
+    unbindShader: boolean;
+    /**
+     * Unless false (default: true), apply shader's `state` opts (if any)
+     */
+    shaderState: boolean;
 }
 
 export const draw = (
@@ -28,9 +36,9 @@ export const draw = (
         const spec = _specs[i];
         const indices = spec.indices;
         const gl = spec.shader.gl;
-        opts.tex !== false && spec.textures && bindTextures(spec.textures);
-        opts.state !== false && spec.shader.prepareState();
-        opts.shader !== false && spec.shader.bind(spec);
+        opts.bindTex !== false && bindTextures(spec.textures);
+        opts.shaderState !== false && spec.shader.prepareState();
+        opts.bindShader !== false && spec.shader.bind(spec);
         if (indices && indices.buffer) {
             indices.buffer.bind();
             if (spec.instances) {
@@ -52,7 +60,8 @@ export const draw = (
                 gl.drawArrays(spec.mode!, 0, spec.num);
             }
         }
-        opts.shader !== false && spec.shader.unbind(<any>null);
+        opts.unbindShader !== false && spec.shader.unbind(<any>null);
+        opts.unbindTex && unbindTextures(spec.textures);
     }
 };
 

@@ -13,10 +13,17 @@ import {
 import { isGL2Context } from "./checks";
 import { error } from "./error";
 
-export const bindTextures = (textures: ITexture[]) => {
+export const bindTextures = (textures?: ITexture[]) => {
     if (!textures) return;
     for (let i = textures.length, tex; --i >= 0; ) {
         (tex = textures[i]) && tex.bind(i);
+    }
+};
+
+export const unbindTextures = (textures?: ITexture[]) => {
+    if (!textures) return;
+    for (let i = textures.length, tex; --i >= 0; ) {
+        (tex = textures[i]) && tex.unbind(i);
     }
 };
 
