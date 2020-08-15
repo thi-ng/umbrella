@@ -87,11 +87,13 @@ export const blur9 = defn(
         let col: Vec4Sym;
         let off: Vec2Sym;
         let off2: Vec2Sym;
+        let delta: Vec2Sym;
         const k1 = 0.3162162162;
         const k2 = 0.0702702703;
         return [
-            (off = sym(div(mul(vec2(1.3846153846), dir), res))),
-            (off2 = sym(div(mul(vec2(3.2307692308), dir), res))),
+            (delta = sym(div(dir, res))),
+            (off = sym(mul(delta, 1.3846153846))),
+            (off2 = sym(mul(delta, 3.2307692308))),
             (col = sym(mul(texture(tex, uv), 0.227027027))),
             singlePass(col, tex, uv, off, k1),
             singlePass(col, tex, uv, off2, k2),
@@ -120,13 +122,15 @@ export const blur13 = defn(
         let off: Vec2Sym;
         let off2: Vec2Sym;
         let off3: Vec2Sym;
+        let delta: Vec2Sym;
         const k1 = 0.2969069646728344;
         const k2 = 0.09447039785044732;
         const k3 = 0.010381362401148057;
         return [
-            (off = sym(div(mul(vec2(1.411764705882353), dir), res))),
-            (off2 = sym(div(mul(vec2(3.2941176470588234), dir), res))),
-            (off3 = sym(div(mul(vec2(5.176470588235294), dir), res))),
+            (delta = sym(div(dir, res))),
+            (off = sym(mul(delta, 1.411764705882353))),
+            (off2 = sym(mul(delta, 3.2941176470588234))),
+            (off3 = sym(mul(delta, 5.176470588235294))),
             (col = sym(mul(texture(tex, uv), 0.1964825501511404))),
             singlePass(col, tex, uv, off, k1),
             singlePass(col, tex, uv, off2, k2),
