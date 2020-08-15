@@ -32,13 +32,19 @@ export class Texture implements ITexture {
     tex: WebGLTexture;
     target!: TextureTarget;
     format!: TextureFormat;
+    filter!: TextureFilter[];
+    wrap!: TextureRepeat[];
     type!: TextureType;
     size!: number[];
 
     constructor(gl: WebGLRenderingContext, opts: Partial<TextureOpts> = {}) {
         this.gl = gl;
         this.tex = gl.createTexture() || error("error creating WebGL texture");
-        this.configure(opts);
+        this.configure({
+            filter: TextureFilter.NEAREST,
+            wrap: TextureRepeat.CLAMP,
+            ...opts,
+        });
     }
 
     configure(opts: Partial<TextureOpts> = {}, unbind = true) {
@@ -167,28 +173,31 @@ export class Texture implements ITexture {
 
         opts.mipmap && gl.generateMipmap(target);
 
-        const flt = opts.filter || TextureFilter.NEAREST;
+        const flt = opts.filter || this.filter || TextureFilter.NEAREST;
         if (isArray(flt)) {
             t1 = flt[0];
-            t2 = flt[1]!;
+            t2 = flt[1] || t1;
+            this.filter = [t1, t2];
         } else {
+            this.filter = [flt, flt, flt];
             t1 = t2 = flt;
         }
-        t1 && gl.texParameteri(target, gl.TEXTURE_MIN_FILTER, t1);
-        t2 && gl.texParameteri(target, gl.TEXTURE_MAG_FILTER, t2);
+        gl.texParameteri(target, gl.TEXTURE_MIN_FILTER, t1);
+        gl.texParameteri(target, gl.TEXTURE_MAG_FILTER, t2);
 
-        const wrap = opts.wrap || TextureRepeat.CLAMP;
+        const wrap = opts.wrap || this.wrap || TextureRepeat.CLAMP;
         if (isArray(wrap)) {
             t1 = wrap[0];
-            t2 = wrap[1]!;
-            t3 = wrap[2]!;
+            t2 = wrap[1] || t1;
+            t3 = wrap[2] || t1;
+            this.wrap = [t1, t2, t3];
         } else {
             t1 = t2 = t3 = wrap;
+            this.wrap = [wrap, wrap, wrap];
         }
-        t1 && gl.texParameteri(target, gl.TEXTURE_WRAP_S, t1);
-        t2 && gl.texParameteri(target, gl.TEXTURE_WRAP_T, t2);
-        t3 &&
-            isGL2 &&
+        gl.texParameteri(target, gl.TEXTURE_WRAP_S, t1);
+        gl.texParameteri(target, gl.TEXTURE_WRAP_T, t2);
+        isGL2 &&
             target === (<WebGL2RenderingContext>gl).TEXTURE_3D &&
             gl.texParameteri(
                 target,
@@ -199,13 +208,13 @@ export class Texture implements ITexture {
         if (opts.lod) {
             const [t1, t2] = opts.lod;
             t1 &&
-                gl.texParameteri(
+                gl.texParameterf(
                     target,
                     (<WebGL2RenderingContext>gl).TEXTURE_MIN_LOD,
                     t1
                 );
             t2 &&
-                gl.texParameteri(
+                gl.texParameterf(
                     target,
                     (<WebGL2RenderingContext>gl).TEXTURE_MAX_LOD,
                     t2
