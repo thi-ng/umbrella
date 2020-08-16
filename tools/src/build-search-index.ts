@@ -101,4 +101,4 @@ const packed = build(
 writeFileSync("search.json", JSON.stringify(packed));
 // msgpack'd binary version
 writeFileSync("search.bin", serialize(packed));
-execSync("gzip -9 search.bin");
+execSync("gzip -9 -f search.bin");
