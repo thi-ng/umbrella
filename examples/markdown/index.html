@@ -1,41 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>markdown</title>
+        <link
+            href="https://unpkg.com/tachyons@4/css/tachyons.min.css"
+            rel="stylesheet"
+        />
+        <style>
+            pre {
+                position: relative;
+            }
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>markdown</title>
-    <link href="https://unpkg.com/tachyons@4/css/tachyons.min.css" rel="stylesheet">
-    <style>
-        pre {
-            position: relative;
-        }
+            pre[lang]::before {
+                display: block;
+                position: absolute;
+                background-color: #fbf1a9;
+                top: 0;
+                right: 0;
+                padding: 0.25em 0.5em;
+                border-bottom-left-radius: 8px;
+                border: 0;
+                color: #ffb700;
+                font-family: sans-serif;
+                font-size: 80%;
+            }
 
-        pre[lang]::before {
-            display: block;
-            position: absolute;
-            background-color: #fbf1a9;
-            top: 0;
-            right: 0;
-            padding: 0.25em 0.5em;
-            border-bottom-left-radius: 8px;
-            border: 0;
-            color: #ffb700;
-            font-family: sans-serif;
-            font-size: 80%;
-        }
+            pre[lang]::before {
+                content: attr(lang);
+                text-transform: uppercase;
+            }
+        </style>
+        <script
+            async
+            defer
+            data-domain="thi.ng"
+            src="https://plausible.io/js/plausible.js"
+        ></script>
+    </head>
 
-        pre[lang]::before {
-            content: attr(lang);
-            text-transform: uppercase;
-        }
-    </style>
-</head>
-
-<body>
-    <div id="app"></div>
-    <script type="text/javascript" src="./src/index.ts"></script>
-</body>
-
+    <body>
+        <div id="app"></div>
+        <script type="text/javascript" src="./src/index.ts"></script>
+    </body>
 </html>

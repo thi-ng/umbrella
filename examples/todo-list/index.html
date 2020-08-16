@@ -1,79 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>todo-list</title>
+        <style>
+            html {
+                font: 100%/1.2 Helvetica, Arial, sans-serif;
+            }
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>todo-list</title>
-    <style>
-        html {
-            font: 100%/1.2 Helvetica, Arial, sans-serif;
-        }
+            #app {
+                width: 640px;
+                margin: auto;
+                font-size: 1.2em;
+            }
 
-        #app {
-            width: 640px;
-            margin: auto;
-            font-size: 1.2em;
-        }
+            #toolbar {
+                margin: 1em 0;
+            }
 
-        #toolbar {
-            margin: 1em 0;
-        }
+            .task {
+                background: #ccc;
+                padding: 10px;
+                margin-bottom: 2px;
+            }
 
-        .task {
-            background: #ccc;
-            padding: 10px;
-            margin-bottom: 2px;
-        }
+            .done,
+            .done input[type="text"] {
+                background: #cfc !important;
+                text-decoration: line-through;
+            }
 
-        .done,
-        .done input[type="text"] {
-            background: #cfc !important;
-            text-decoration: line-through;
-        }
+            .task input[type="text"] {
+                display: inline-block;
+                width: 580px;
+                border: 0;
+                background: #ccc;
+                margin-left: 0.5em;
+            }
 
-        .task input[type="text"] {
-            display: inline-block;
-            width: 580px;
-            border: 0;
-            background: #ccc;
-            margin-left: 0.5em;
-        }
+            .task input,
+            button {
+                vertical-align: middle;
+                font-size: 1.2em;
+            }
 
-        .task input,
-        button {
-            vertical-align: middle;
-            font-size: 1.2em;
-        }
+            button {
+                background: #000;
+                color: #fff;
+                border: 0;
+                margin-right: 2px;
+            }
 
-        button {
-            background: #000;
-            color: #fff;
-            border: 0;
-            margin-right: 2px;
-        }
+            button:disabled {
+                background: #ccc;
+            }
 
-        button:disabled {
-            background: #ccc;
-        }
+            small {
+                padding: 0 1em;
+                font-size: 14px;
+                font-weight: 400;
+            }
 
-        small {
-            padding: 0 1em;
-            font-size: 14px;
-            font-weight: 400;
-        }
+            a:link,
+            a:visited {
+                color: #000;
+            }
+        </style>
+        <script
+            async
+            defer
+            data-domain="thi.ng"
+            src="https://plausible.io/js/plausible.js"
+        ></script>
+    </head>
 
-        a:link,
-        a:visited {
-            color: #000;
-        }
-    </style>
-</head>
-
-<body>
-    <div id="app"></div>
-    <script type="text/javascript" src="src/index.ts"></script>
-</body>
-
+    <body>
+        <div id="app"></div>
+        <script type="text/javascript" src="./src/index.ts"></script>
+    </body>
 </html>
