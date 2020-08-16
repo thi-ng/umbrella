@@ -10,6 +10,7 @@
         "prep": "yarn clean && mkdir -p out && cp commits.json out",
         "build-static": "tsc && node build/server/static.js",
         "build": "yarn prep && parcel build index.html -d out --no-source-maps --no-cache --experimental-scope-hoisting --detailed-report --public-url ./",
+        "build:webpack": "../../node_modules/.bin/webpack --mode production",
         "start": "tsc && node build/server/index.js"
     },
     "devDependencies": {
@@ -18,7 +19,7 @@
         "typescript": "^3.9.7"
     },
     "dependencies": {
-        "express": "^4.16.3",
+        "express": "^4.17.1",
         "@thi.ng/api": "latest",
         "@thi.ng/associative": "latest",
         "@thi.ng/cache": "latest",
@@ -27,7 +28,7 @@
         "@thi.ng/rstream": "latest",
         "@thi.ng/transducers": "latest",
         "@thi.ng/transducers-hdom": "latest",
-        "@types/express": "^4.16.0"
+        "@types/express": "^4.17.7"
     },
     "browserslist": [
         "last 3 Chrome versions"

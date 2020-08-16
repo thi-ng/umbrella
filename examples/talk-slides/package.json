@@ -8,6 +8,7 @@
     "scripts": {
         "clean": "rm -rf .cache build out",
         "build": "parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --experimental-scope-hoisting --detailed-report",
+        "build:webpack": "../../node_modules/.bin/webpack --mode production",
         "start": "parcel index.html -p 8080 --open --no-cache"
     },
     "devDependencies": {
