@@ -43,10 +43,10 @@
         "@thi.ng/hiccup": "^3.5.5",
         "@types/mocha": "^8.0.0",
         "@types/node": "^14.0.26",
-        "mocha": "^8.0.1",
+        "mocha": "^8.1.1",
         "nyc": "^15.1.0",
         "ts-node": "^8.10.1",
-        "typedoc": "^0.17.6",
+        "typedoc": "^0.18.0",
         "typescript": "^3.9.7"
     },
     "files": [
@@ -75,6 +75,6 @@
         "year": 2018
     },
     "dependencies": {
-        "tslib": "^2.0.0"
+        "tslib": "^2.0.1"
     }
 }
