@@ -42,8 +42,8 @@ cat << EOF > "$MODULE"/package.json
     },
     "devDependencies": {
         "parcel-bundler": "^1.12.4",
-        "terser": "^4.8.0",
-        "typescript": "^3.9.5"
+        "terser": "^5.1.0",
+        "typescript": "^3.9.7"
     },
     "dependencies": {
         "@thi.ng/api": "latest"
@@ -101,6 +101,7 @@ cat << EOF > "$MODULE"/index.html
     <link href="https://unpkg.com/tachyons@4/css/tachyons.min.css" rel="stylesheet">
     <style>
     </style>
+    <script async defer data-domain="thi.ng" src="https://plausible.io/js/plausible.js"></script>
 </head>
 <body class="sans-serif">
     <div id="app"></div>
