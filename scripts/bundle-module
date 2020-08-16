@@ -38,7 +38,7 @@ const buildVersion = async (opts, write = true, compressed = false) => {
     const bundle = await rollup.rollup(INPUT_OPTS);
     const bundleOut = (await bundle.generate(opts)).output[0];
     const bundleCode = bundleOut.code;
-    const terserOut = terser.minify(bundleCode, TERSER_OPTS).code;
+    const terserOut = (await terser.minify(bundleCode, TERSER_OPTS)).code;
     const gzSize = gz.sync(terserOut);
 
     write && fs.writeFileSync(opts.file, compressed ? terserOut : bundleCode);
