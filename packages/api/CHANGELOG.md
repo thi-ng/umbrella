@@ -14,30 +14,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [6.11.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.11.2...@thi.ng/api@6.11.3) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/api
-
-
-
-
-
-## [6.11.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.11.1...@thi.ng/api@6.11.2) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/api
-
-
-
-
-
-## [6.11.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.11.0...@thi.ng/api@6.11.1) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/api
-
-
-
-
-
 # [6.11.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.10.5...@thi.ng/api@6.11.0) (2020-06-01)
 
 

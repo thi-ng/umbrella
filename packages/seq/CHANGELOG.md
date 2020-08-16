@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.2.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/seq@0.2.18...@thi.ng/seq@0.2.19) (2020-07-28)
-
-**Note:** Version bump only for package @thi.ng/seq
-
-
-
-
-
-## [0.2.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/seq@0.2.17...@thi.ng/seq@0.2.18) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/seq
-
-
-
-
-
-## [0.2.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/seq@0.2.16...@thi.ng/seq@0.2.17) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/seq
-
-
-
-
-
-## [0.2.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/seq@0.2.15...@thi.ng/seq@0.2.16) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/seq
-
-
-
-
-
-## [0.2.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/seq@0.2.14...@thi.ng/seq@0.2.15) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/seq
-
-
-
-
-
-## [0.2.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/seq@0.2.13...@thi.ng/seq@0.2.14) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/seq
-
-
-
-
-
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/seq@0.1.0...@thi.ng/seq@0.2.0) (2020-01-24)
 
 ### Features

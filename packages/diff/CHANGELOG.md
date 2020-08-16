@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [3.2.27](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.2.26...@thi.ng/diff@3.2.27) (2020-07-28)
-
-**Note:** Version bump only for package @thi.ng/diff
-
-
-
-
-
-## [3.2.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.2.25...@thi.ng/diff@3.2.26) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/diff
-
-
-
-
-
-## [3.2.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.2.24...@thi.ng/diff@3.2.25) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/diff
-
-
-
-
-
-## [3.2.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.2.23...@thi.ng/diff@3.2.24) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/diff
-
-
-
-
-
-## [3.2.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.2.22...@thi.ng/diff@3.2.23) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/diff
-
-
-
-
-
-## [3.2.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.2.21...@thi.ng/diff@3.2.22) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/diff
-
-
-
-
-
 ## [3.2.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.2.19...@thi.ng/diff@3.2.20) (2020-05-05)
 
 

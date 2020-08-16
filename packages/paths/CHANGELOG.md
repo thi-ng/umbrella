@@ -3,60 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [4.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@4.1.1...@thi.ng/paths@4.1.2) (2020-07-28)
-
-**Note:** Version bump only for package @thi.ng/paths
-
-
-
-
-
-## [4.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@4.1.0...@thi.ng/paths@4.1.1) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/paths
-
-
-
-
-
 # [4.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@4.0.11...@thi.ng/paths@4.1.0) (2020-07-08)
 
 
 ### Features
 
 * **paths:** add isProtoPath/disallowProtoPath() helpers ([2e6a80f](https://github.com/thi-ng/umbrella/commit/2e6a80f31bba67ef5251c3e2da1c5eef6a530419))
-
-
-
-
-
-## [4.0.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@4.0.10...@thi.ng/paths@4.0.11) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/paths
-
-
-
-
-
-## [4.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@4.0.9...@thi.ng/paths@4.0.10) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/paths
-
-
-
-
-
-## [4.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@4.0.8...@thi.ng/paths@4.0.9) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/paths
-
-
-
-
-
-## [4.0.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@4.0.7...@thi.ng/paths@4.0.8) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/paths
 
 
 

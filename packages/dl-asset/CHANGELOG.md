@@ -3,60 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/dl-asset@0.4.0...@thi.ng/dl-asset@0.4.1) (2020-07-28)
-
-**Note:** Version bump only for package @thi.ng/dl-asset
-
-
-
-
-
 # [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dl-asset@0.3.14...@thi.ng/dl-asset@0.4.0) (2020-07-08)
 
 
 ### Features
 
 * **dl-asset:** split src, extract `downloadWithMime()` ([d749819](https://github.com/thi-ng/umbrella/commit/d74981963ce4bfbfe3465c71085995173826329c))
-
-
-
-
-
-## [0.3.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/dl-asset@0.3.13...@thi.ng/dl-asset@0.3.14) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/dl-asset
-
-
-
-
-
-## [0.3.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/dl-asset@0.3.12...@thi.ng/dl-asset@0.3.13) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/dl-asset
-
-
-
-
-
-## [0.3.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/dl-asset@0.3.11...@thi.ng/dl-asset@0.3.12) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/dl-asset
-
-
-
-
-
-## [0.3.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/dl-asset@0.3.10...@thi.ng/dl-asset@0.3.11) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/dl-asset
-
-
-
-
-
-## [0.3.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/dl-asset@0.3.9...@thi.ng/dl-asset@0.3.10) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/dl-asset
 
 
 

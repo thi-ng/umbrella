@@ -15,92 +15,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [4.5.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.5.5...@thi.ng/vectors@4.5.6) (2020-07-28)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.5.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.5.4...@thi.ng/vectors@4.5.5) (2020-07-17)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.5.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.5.3...@thi.ng/vectors@4.5.4) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.5.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.5.2...@thi.ng/vectors@4.5.3) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.5.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.5.1...@thi.ng/vectors@4.5.2) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.5.0...@thi.ng/vectors@4.5.1) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
 # [4.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.4.4...@thi.ng/vectors@4.5.0) (2020-06-20)
 
 
 ### Features
 
 * **vectors:** add cornerBisector2() ([aff9bfa](https://github.com/thi-ng/umbrella/commit/aff9bfab86fdc5ca0b2ee88be68692988493ee57))
-
-
-
-
-
-## [4.4.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.4.3...@thi.ng/vectors@4.4.4) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.4.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.4.2...@thi.ng/vectors@4.4.3) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.4.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.4.1...@thi.ng/vectors@4.4.2) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.4.0...@thi.ng/vectors@4.4.1) (2020-05-29)
-
-**Note:** Version bump only for package @thi.ng/vectors
 
 
 

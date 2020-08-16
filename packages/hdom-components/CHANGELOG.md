@@ -3,70 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [4.0.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@4.0.7...@thi.ng/hdom-components@4.0.8) (2020-07-28)
-
-**Note:** Version bump only for package @thi.ng/hdom-components
-
-
-
-
-
-## [4.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@4.0.6...@thi.ng/hdom-components@4.0.7) (2020-07-17)
-
-**Note:** Version bump only for package @thi.ng/hdom-components
-
-
-
-
-
-## [4.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@4.0.5...@thi.ng/hdom-components@4.0.6) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/hdom-components
-
-
-
-
-
-## [4.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@4.0.4...@thi.ng/hdom-components@4.0.5) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/hdom-components
-
-
-
-
-
-## [4.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@4.0.3...@thi.ng/hdom-components@4.0.4) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/hdom-components
-
-
-
-
-
-## [4.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@4.0.2...@thi.ng/hdom-components@4.0.3) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/hdom-components
-
-
-
-
-
-## [4.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@4.0.1...@thi.ng/hdom-components@4.0.2) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/hdom-components
-
-
-
-
-
-## [4.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@4.0.0...@thi.ng/hdom-components@4.0.1) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/hdom-components
-
-
-
-
-
 # [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@3.2.12...@thi.ng/hdom-components@4.0.0) (2020-06-07)
 
 
@@ -80,30 +16,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **hdom-components:** re-use adaptDPI() from new @thi.ng/adapt-dpi pkg
 
 - update deps
-
-
-
-
-
-## [3.2.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@3.2.11...@thi.ng/hdom-components@3.2.12) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/hdom-components
-
-
-
-
-
-## [3.2.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@3.2.10...@thi.ng/hdom-components@3.2.11) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/hdom-components
-
-
-
-
-
-## [3.2.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@3.2.9...@thi.ng/hdom-components@3.2.10) (2020-05-29)
-
-**Note:** Version bump only for package @thi.ng/hdom-components
 
 
 

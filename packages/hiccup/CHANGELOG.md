@@ -3,46 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [3.5.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.5.4...@thi.ng/hiccup@3.5.5) (2020-07-28)
-
-**Note:** Version bump only for package @thi.ng/hiccup
-
-
-
-
-
-## [3.5.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.5.3...@thi.ng/hiccup@3.5.4) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/hiccup
-
-
-
-
-
-## [3.5.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.5.2...@thi.ng/hiccup@3.5.3) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/hiccup
-
-
-
-
-
-## [3.5.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.5.1...@thi.ng/hiccup@3.5.2) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/hiccup
-
-
-
-
-
-## [3.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.5.0...@thi.ng/hiccup@3.5.1) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/hiccup
-
-
-
-
-
 # [3.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.4.0...@thi.ng/hiccup@3.5.0) (2020-07-02)
 
 
@@ -73,30 +33,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **hiccup:** support array attrib values, add tests ([1c4ef8a](https://github.com/thi-ng/umbrella/commit/1c4ef8aa6464dee9e9fed39e8213e52ed67e2ac1))
 * **hiccup:** update `accept` attrib handling ([fabf447](https://github.com/thi-ng/umbrella/commit/fabf447d5ef7f666f16ee11d46188496121766d2))
-
-
-
-
-
-## [3.2.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.2.25...@thi.ng/hiccup@3.2.26) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/hiccup
-
-
-
-
-
-## [3.2.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.2.24...@thi.ng/hiccup@3.2.25) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/hiccup
-
-
-
-
-
-## [3.2.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.2.23...@thi.ng/hiccup@3.2.24) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/hiccup
 
 
 

@@ -3,76 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [4.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@4.2.0...@thi.ng/resolve-map@4.2.1) (2020-07-28)
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-
-
-
-
 # [4.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@4.1.31...@thi.ng/resolve-map@4.2.0) (2020-07-18)
 
 
 ### Features
 
 * **resolve-map:** add support for custom lookup prefix ([bf89503](https://github.com/thi-ng/umbrella/commit/bf89503424887018d120d3960d9d86a992c31c91))
-
-
-
-
-
-## [4.1.31](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@4.1.30...@thi.ng/resolve-map@4.1.31) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-
-
-
-
-## [4.1.30](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@4.1.29...@thi.ng/resolve-map@4.1.30) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-
-
-
-
-## [4.1.29](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@4.1.28...@thi.ng/resolve-map@4.1.29) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-
-
-
-
-## [4.1.28](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@4.1.27...@thi.ng/resolve-map@4.1.28) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-
-
-
-
-## [4.1.27](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@4.1.26...@thi.ng/resolve-map@4.1.27) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-
-
-
-
-## [4.1.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@4.1.25...@thi.ng/resolve-map@4.1.26) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-
-
-
-
-## [4.1.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@4.1.24...@thi.ng/resolve-map@4.1.25) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/resolve-map
 
 
 

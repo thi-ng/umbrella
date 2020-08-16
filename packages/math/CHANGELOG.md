@@ -3,14 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@2.0.0...@thi.ng/math@2.0.1) (2020-07-28)
-
-**Note:** Version bump only for package @thi.ng/math
-
-
-
-
-
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.7.13...@thi.ng/math@2.0.0) (2020-07-17)
 
 
@@ -25,30 +17,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - this is essentially a revert to 5018009
 - also keep, but deprecate `eqDeltaFixed()` (synonym for `eqDelta` now)
-
-
-
-
-
-## [1.7.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.7.12...@thi.ng/math@1.7.13) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/math
-
-
-
-
-
-## [1.7.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.7.11...@thi.ng/math@1.7.12) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/math
-
-
-
-
-
-## [1.7.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.7.10...@thi.ng/math@1.7.11) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/math
 
 
 
