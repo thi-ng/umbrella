@@ -116,7 +116,7 @@ yarn add @thi.ng/simd
 <script src="https://unpkg.com/@thi.ng/simd/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.50 KB / CJS: 2.56 KB / UMD: 2.68 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.47 KB / CJS: 2.53 KB / UMD: 2.65 KB
 
 ## Dependencies
 
