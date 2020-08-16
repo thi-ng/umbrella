@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/compose",
-    "version": "1.4.13",
+    "version": "1.4.14",
     "description": "Optimized functional composition helpers",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,8 +49,8 @@
         "typescript": "^3.9.7"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.12.0",
-        "@thi.ng/errors": "^1.2.17"
+        "@thi.ng/api": "^6.12.1",
+        "@thi.ng/errors": "^1.2.18"
     },
     "files": [
         "*.js",

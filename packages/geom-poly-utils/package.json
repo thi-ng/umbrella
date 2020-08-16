@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom-poly-utils",
-    "version": "0.1.59",
+    "version": "0.1.60",
     "description": "2D polygon / triangle analysis & processing utilities",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,10 +49,10 @@
         "typescript": "^3.9.7"
     },
     "dependencies": {
-        "@thi.ng/errors": "^1.2.17",
-        "@thi.ng/geom-api": "^1.0.29",
-        "@thi.ng/math": "^2.0.1",
-        "@thi.ng/vectors": "^4.6.0"
+        "@thi.ng/errors": "^1.2.18",
+        "@thi.ng/geom-api": "^1.0.30",
+        "@thi.ng/math": "^2.0.2",
+        "@thi.ng/vectors": "^4.6.1"
     },
     "files": [
         "*.js",

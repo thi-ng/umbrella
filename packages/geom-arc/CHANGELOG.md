@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-arc@0.3.7...@thi.ng/geom-arc@0.3.8) (2020-08-16)
+
+**Note:** Version bump only for package @thi.ng/geom-arc
+
+
+
+
+
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-arc@0.2.32...@thi.ng/geom-arc@0.3.0) (2020-06-20)
 
 

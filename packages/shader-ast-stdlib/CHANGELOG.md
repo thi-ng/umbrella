@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.4.4...@thi.ng/shader-ast-stdlib@0.4.5) (2020-08-16)
+
+
+### Performance Improvements
+
+* **shader-ast-stdlib:** update blur9/13() ([de632c6](https://github.com/thi-ng/umbrella/commit/de632c642593d5514b6f74c3202b3a60be7f01cf))
+
+
+
+
+
 # [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.3.33...@thi.ng/shader-ast-stdlib@0.4.0) (2020-08-08)
 
 

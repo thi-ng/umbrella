@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@3.1.1...@thi.ng/webgl@3.2.0) (2020-08-16)
+
+
+### Features
+
+* **webgl:** store texture filter/wrap mode ([8a7420e](https://github.com/thi-ng/umbrella/commit/8a7420ee708e92a1670c47330c6c1b262b76cc87))
+
+
+
+
+
 ## [3.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@3.1.0...@thi.ng/webgl@3.1.1) (2020-08-12)
 
 

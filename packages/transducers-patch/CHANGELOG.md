@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-patch@0.1.25...@thi.ng/transducers-patch@0.1.26) (2020-08-16)
+
+**Note:** Version bump only for package @thi.ng/transducers-patch
+
+
+
+
+
 ## [0.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-patch@0.1.4...@thi.ng/transducers-patch@0.1.5) (2020-03-28)
 
 

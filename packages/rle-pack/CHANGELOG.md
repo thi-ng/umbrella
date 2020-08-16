@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/rle-pack@2.1.22...@thi.ng/rle-pack@2.1.23) (2020-08-16)
+
+**Note:** Version bump only for package @thi.ng/rle-pack
+
+
+
+
+
 # [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rle-pack@2.0.6...@thi.ng/rle-pack@2.1.0) (2019-07-07)
 
 ### Features

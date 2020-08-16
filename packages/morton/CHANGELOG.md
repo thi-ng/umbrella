@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/morton@2.0.20...@thi.ng/morton@2.0.21) (2020-08-16)
+
+**Note:** Version bump only for package @thi.ng/morton
+
+
+
+
+
 ## [2.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/morton@2.0.8...@thi.ng/morton@2.0.9) (2020-04-11)
 
 

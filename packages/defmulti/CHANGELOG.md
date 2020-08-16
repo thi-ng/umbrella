@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.2.21...@thi.ng/defmulti@1.2.22) (2020-08-16)
+
+**Note:** Version bump only for package @thi.ng/defmulti
+
+
+
+
+
 # [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.1.4...@thi.ng/defmulti@1.2.0) (2019-11-09)
 
 ### Features
