@@ -1,7 +1,7 @@
+import type { NumericArray } from "@thi.ng/api";
 import { conjugate, Delay, ifft } from "@thi.ng/dsp";
 import { BIN_AMP, NUM_BINS, PITCH_SCALE } from "./config";
 import { DB } from "./state";
-import type { NumericArray } from "@thi.ng/api";
 
 export const makeBins = () => new Array(NUM_BINS).fill(0);
 

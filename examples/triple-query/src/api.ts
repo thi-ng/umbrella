@@ -1,12 +1,12 @@
-import { QuerySpec, TripleStore } from "@thi.ng/rstream-query";
+import type { Fn, IObjectOf, Path } from "@thi.ng/api";
+import type { IView } from "@thi.ng/atom";
 import {
     EffectDef,
     EventBus,
     EventDef,
     InterceptorContext,
 } from "@thi.ng/interceptors";
-import type { Fn, IObjectOf, Path } from "@thi.ng/api";
-import type { IView } from "@thi.ng/atom";
+import { QuerySpec, TripleStore } from "@thi.ng/rstream-query";
 
 /**
  * Function signature for main app components.

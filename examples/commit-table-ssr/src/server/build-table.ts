@@ -1,8 +1,8 @@
+import type { Commit } from "../common/api";
 import { header } from "../common/components/header";
 import { repoTable } from "../common/components/repo-table";
 import { ctx } from "../common/config";
 import { html } from "./html";
-import type { Commit } from "../common/api";
 
 /**
  * Shared function used by both the server and for static file

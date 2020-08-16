@@ -2,8 +2,7 @@ import { serialize } from "@thi.ng/hiccup";
 import * as svg from "@thi.ng/hiccup-svg";
 import { ensureStack, maptos } from "@thi.ng/pointfree";
 import { ffi, run } from "@thi.ng/pointfree-lang";
-
-import * as fs from "fs";
+import { writeFileSync } from "fs";
 
 // rudimentary generic graphics lib & helper words
 const libsrc = `
@@ -90,7 +89,7 @@ const env = ffi(
         "write-file": (ctx) => {
             const stack = ctx[0];
             ensureStack(stack, 2);
-            fs.writeFileSync(stack.pop(), stack.pop());
+            writeFileSync(stack.pop(), stack.pop());
             return ctx;
         },
     }

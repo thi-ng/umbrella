@@ -1,8 +1,8 @@
+import type { Fn } from "@thi.ng/api";
 import { setIn } from "@thi.ng/paths";
 import { GRAY8, PackedBuffer } from "@thi.ng/pixel";
 import { ISubscriber, pubsub, stream, trace } from "@thi.ng/rstream";
-import { state } from "./state";
-import { adaptiveThreshold } from "./threshold";
+import type { Transducer } from "@thi.ng/transducers";
 import {
     Event,
     EventType,
@@ -12,8 +12,8 @@ import {
     SET_KERNEL_WIDTH,
     UPDATE_IMAGE,
 } from "./api";
-import type { Fn } from "@thi.ng/api";
-import type { Transducer } from "@thi.ng/transducers";
+import { state } from "./state";
+import { adaptiveThreshold } from "./threshold";
 
 /**
  * Event input stream (not exported)

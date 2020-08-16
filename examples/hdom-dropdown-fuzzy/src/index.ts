@@ -1,7 +1,6 @@
 import { defAtom, defView } from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom";
-import { EventBus } from "@thi.ng/interceptors";
-import { trace } from "@thi.ng/interceptors";
+import { EventBus, trace } from "@thi.ng/interceptors";
 import { state, theme } from "./config";
 import { dropdown } from "./dropdown";
 import { fuzzyDropdown } from "./fuzzy";

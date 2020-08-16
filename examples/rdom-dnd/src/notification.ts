@@ -2,7 +2,7 @@ import {
     CHECKMARK_SOLID,
     INFO,
     WARNING,
-    withSize
+    withSize,
 } from "@thi.ng/hiccup-carbon-icons";
 import { div, span } from "@thi.ng/hiccup-html";
 import { Component, NumOrElement } from "@thi.ng/rdom";

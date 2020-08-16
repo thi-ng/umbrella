@@ -1,4 +1,4 @@
-import { IRelease } from "@thi.ng/api";
+import type { IRelease } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
 import { button, div } from "@thi.ng/hiccup-html";
 import { clamp } from "@thi.ng/math";

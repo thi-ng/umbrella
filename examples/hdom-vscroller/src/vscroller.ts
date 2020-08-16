@@ -1,4 +1,4 @@
-import { Fn2 } from "@thi.ng/api";
+import type { Fn2 } from "@thi.ng/api";
 import { comp, drop, iterator, take } from "@thi.ng/transducers";
 
 interface VScrollOpts {

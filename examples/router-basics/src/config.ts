@@ -1,6 +1,6 @@
 import {
-    EV_SET_VALUE,
     Event,
+    EV_SET_VALUE,
     FX_DELAY,
     FX_DISPATCH_ASYNC,
     FX_DISPATCH_NOW,

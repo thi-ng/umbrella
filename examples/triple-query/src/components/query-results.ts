@@ -1,7 +1,7 @@
 import { map, mapIndexed, repeat } from "@thi.ng/transducers";
+import type { AppContext } from "../api";
 import { section } from "./section";
 import { table } from "./table";
-import type { AppContext } from "../api";
 
 export const queryResults = (
     _: AppContext,

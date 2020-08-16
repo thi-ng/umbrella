@@ -63,6 +63,12 @@ const PRESETS = <const>[
 const volume = reactive(55);
 
 // interpolated version of volume
+// note: this interpolation is entirely optional. also, the UX for this
+// can/should be improved to avoid jittering when the user just briefly clicks
+// anywhere on the related slider widget without any further dragging. in that
+// case, there should be an additional value/flag to indicate if interpolation
+// is desired or not. multiple ways to achieve that, but out of scope for this
+// small example...
 const smoothedVolume = tweenNumber(volume, 0, 0.2);
 
 // derived view for slider label

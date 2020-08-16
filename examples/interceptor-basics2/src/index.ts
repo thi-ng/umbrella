@@ -1,19 +1,19 @@
+import type { IObjectOf, Path } from "@thi.ng/api";
 import { defView, defViewUnsafe } from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom";
 import {
     EffectDef,
     ensureStateGreaterThan,
     ensureStateLessThan,
-    EV_SET_VALUE,
-    EV_UPDATE_VALUE,
     Event,
     EventBus,
     EventDef,
+    EV_SET_VALUE,
+    EV_UPDATE_VALUE,
     FX_DISPATCH_NOW,
     IDispatch,
     trace,
 } from "@thi.ng/interceptors";
-import type { IObjectOf, Path } from "@thi.ng/api";
 
 ///////////////////////////////////////////////////////////////////////
 // event name and handler definitions

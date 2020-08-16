@@ -1,7 +1,7 @@
 import {
     ADD_OUTLINE,
     CLOSE_OUTLINE,
-    withSize
+    withSize,
 } from "@thi.ng/hiccup-carbon-icons";
 import { div } from "@thi.ng/hiccup-html";
 import { $compile } from "@thi.ng/rdom";

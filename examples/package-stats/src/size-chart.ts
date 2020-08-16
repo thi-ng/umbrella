@@ -2,8 +2,6 @@ import { serialize } from "@thi.ng/hiccup";
 import { group, text } from "@thi.ng/hiccup-svg";
 import { defGetterUnsafe } from "@thi.ng/paths";
 import { bytes } from "@thi.ng/strings";
-import * as fs from "fs";
-import { barChart, labeledTickX, labeledTickY } from "./viz";
 import {
     comp,
     filter,
@@ -14,6 +12,8 @@ import {
     push,
     transduce,
 } from "@thi.ng/transducers";
+import * as fs from "fs";
+import { barChart, labeledTickX, labeledTickY } from "./viz";
 
 const BASE_DIR = "../../packages/";
 

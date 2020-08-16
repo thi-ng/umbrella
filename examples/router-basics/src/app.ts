@@ -1,14 +1,14 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { Atom, defViewUnsafe } from "@thi.ng/atom";
 import { isArray } from "@thi.ng/checks";
 import { start } from "@thi.ng/hdom";
 import { EventBus, trace, valueSetter } from "@thi.ng/interceptors";
 import { EVENT_ROUTE_CHANGED, HTMLRouter } from "@thi.ng/router";
+import type { AppConfig, AppContext, AppViews, ViewSpec } from "./api";
 import { debugContainer } from "./components/debug-container";
 import { nav } from "./components/nav";
 import * as fx from "./effects";
 import * as ev from "./events";
-import type { IObjectOf } from "@thi.ng/api";
-import type { AppConfig, AppContext, AppViews, ViewSpec } from "./api";
 
 /**
  * Generic base app skeleton. You can use this as basis for your own

@@ -1,4 +1,4 @@
-import { IObjectOf } from "@thi.ng/api";
+import type { IObjectOf } from "@thi.ng/api";
 import { compareByKeys2 } from "@thi.ng/compare";
 
 export type PackedTrie = [IObjectOf<PackedTrie>, number[]?];

@@ -1,6 +1,6 @@
+import type { AppContext } from "../api";
 import { TOGGLE_DEBUG } from "../events";
 import { eventLink } from "./event-link";
-import type { AppContext } from "../api";
 
 /**
  * Collapsible component showing stringified app state.

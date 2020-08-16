@@ -1,17 +1,20 @@
 import { TLRUCache } from "@thi.ng/cache";
 import * as express from "express";
 import * as fs from "fs";
+// @ts-ignore
 import * as Bundler from "parcel-bundler";
+import type { Commit } from "../common/api";
 import { ctx } from "../common/config";
 import { buildRepoTableHTML } from "./build-table";
 import { repoCommits } from "./git";
-import type { Commit } from "../common/api";
 
 // building the repo commit table takes quite some time
 // therefore we cache results with 1h expiry time
 // (which is also the default)
-const rawCache = new TLRUCache<string, Commit[]>(null, { ttl: 60 * 60 * 1000 });
-const htmlCache = new TLRUCache<string, string>(null, { ttl: 60 * 60 * 1000 });
+// prettier-ignore
+const rawCache = new TLRUCache<string, Commit[]>(undefined, { ttl: 60 * 60 * 1000 });
+// prettier-ignore
+const htmlCache = new TLRUCache<string, string>(undefined, { ttl: 60 * 60 * 1000 });
 
 const bundler = new Bundler("index.html", {
     outDir: "./out",

@@ -4,12 +4,12 @@ import { snapshot, valueSetter } from "@thi.ng/interceptors";
 import { getInUnsafe } from "@thi.ng/paths";
 import { fromIterable } from "@thi.ng/rstream";
 import { range } from "@thi.ng/transducers";
+import type { AppConfig } from "./api";
 import { main } from "./components/main";
 import * as fx from "./effects";
 import * as ev from "./events";
 import * as paths from "./paths";
 import { SLIDERS } from "./sliders";
-import type { AppConfig } from "./api";
 
 const FG_COL = "light-silver";
 const LINK_COL = "white";

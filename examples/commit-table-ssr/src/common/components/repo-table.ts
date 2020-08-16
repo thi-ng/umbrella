@@ -6,9 +6,9 @@ import {
     partitionBy,
     repeat,
 } from "@thi.ng/transducers";
+import type { AppContext, Commit } from "../api";
 import { commitLink } from "./commit-link";
 import { table } from "./table";
-import type { AppContext, Commit } from "../api";
 
 /**
  * Git commit log table component. Consumes iterable of `Commit` objects

@@ -1,6 +1,6 @@
+import type { AppConfig } from "./api";
 import { main } from "./components/main";
 import { EFFECTS, EVENTS } from "./handlers";
-import type { AppConfig } from "./api";
 
 // main App configuration
 export const CONFIG: AppConfig = {

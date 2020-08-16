@@ -1,7 +1,7 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { defAtom, defCursor, defHistory, defView } from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom";
 import { map, pairs } from "@thi.ng/transducers";
-import type { IObjectOf } from "@thi.ng/api";
 
 interface Task {
     done: boolean;
@@ -18,7 +18,10 @@ interface State {
 // central app state (immutable)
 const db = defAtom<State>({ tasks: {}, nextID: 0 });
 // attach undo/redo history for `tasks` branch (arbitrary undo limit of 100 steps)
-const tasks = defHistory(defCursor(db, ["tasks"]), 100);
+const tasks = defHistory(
+    defCursor<State, "tasks">(db, ["tasks"]),
+    100
+);
 // cursor for direct access to `nextID`
 const nextID = defCursor(db, ["nextID"]);
 // create derived view of tasks transformed into components

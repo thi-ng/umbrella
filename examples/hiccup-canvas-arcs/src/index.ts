@@ -1,15 +1,15 @@
+import { hsla } from "@thi.ng/color";
 import {
     arc,
     asCubic,
+    closestPoint,
     group,
     pathFromCubics,
-    closestPoint,
 } from "@thi.ng/geom";
 import { draw } from "@thi.ng/hiccup-canvas";
-import { hsla } from "@thi.ng/color";
-import { SYSTEM } from "@thi.ng/random";
 import { fit01, TAU } from "@thi.ng/math";
-import { fromRAF, fromDOMEvent } from "@thi.ng/rstream";
+import { SYSTEM } from "@thi.ng/random";
+import { fromDOMEvent, fromRAF } from "@thi.ng/rstream";
 import { map, normRange } from "@thi.ng/transducers";
 import { dist } from "@thi.ng/vectors";
 
