@@ -81,7 +81,6 @@ export const gestureStream = (
         scale: false,
         ..._opts,
     };
-    const dpr = window.devicePixelRatio || 1;
     const active: GestureInfo[] = [];
     let zoom = clamp(opts.zoom, opts.minZoom, opts.maxZoom);
     let zoomDelta = 0;
@@ -125,6 +124,7 @@ export const gestureStream = (
                     y -= b.top;
                 }
                 if (opts.scale) {
+                    const dpr = window.devicePixelRatio || 1;
                     x *= dpr;
                     y *= dpr;
                 }
