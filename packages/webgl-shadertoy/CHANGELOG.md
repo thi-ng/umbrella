@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.43](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-shadertoy@0.2.42...@thi.ng/webgl-shadertoy@0.2.43) (2020-08-17)
+
+**Note:** Version bump only for package @thi.ng/webgl-shadertoy
+
+
+
+
+
 ## [0.2.42](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-shadertoy@0.2.41...@thi.ng/webgl-shadertoy@0.2.42) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/webgl-shadertoy

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rstream-log",
-    "version": "3.1.43",
+    "version": "3.1.44",
     "description": "Structured, multilevel & hierarchical loggers based on @thi.ng/rstream",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,11 +49,11 @@
         "typescript": "^3.9.7"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.12.1",
-        "@thi.ng/checks": "^2.7.5",
-        "@thi.ng/errors": "^1.2.18",
-        "@thi.ng/rstream": "^5.0.1",
-        "@thi.ng/transducers": "^7.2.1"
+        "@thi.ng/api": "^6.12.2",
+        "@thi.ng/checks": "^2.7.6",
+        "@thi.ng/errors": "^1.2.19",
+        "@thi.ng/rstream": "^5.0.2",
+        "@thi.ng/transducers": "^7.2.2"
     },
     "files": [
         "*.js",

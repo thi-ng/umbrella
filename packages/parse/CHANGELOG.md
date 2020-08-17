@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.8.2...@thi.ng/parse@0.9.0) (2020-08-17)
+
+
+### Features
+
+* **parse:** add replace/xfReplace() xform ([7291181](https://github.com/thi-ng/umbrella/commit/7291181f6eb74751aa02dffbb95bb6787a5ef02f))
+* **parse:** enable replacement rule transforms ([ca22432](https://github.com/thi-ng/umbrella/commit/ca224328e55cb525cefd39dd53028a86a580fd7e))
+
+
+
+
+
 ## [0.8.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.8.1...@thi.ng/parse@0.8.2) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/parse

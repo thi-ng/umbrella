@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.36](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@2.0.35...@thi.ng/rstream-gestures@2.0.36) (2020-08-17)
+
+
+### Bug Fixes
+
+* **rstream-gestures:** don't cache DPR value ([bffbedb](https://github.com/thi-ng/umbrella/commit/bffbedb0589bd173de0aa49293b110461b33d579))
+
+
+
+
+
 ## [2.0.35](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@2.0.34...@thi.ng/rstream-gestures@2.0.35) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/rstream-gestures

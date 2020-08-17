@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/webgl",
-    "version": "3.2.0",
+    "version": "3.2.1",
     "description": "WebGL & GLSL abstraction layer",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,20 +49,20 @@
         "typescript": "^3.9.7"
     },
     "dependencies": {
-        "@thi.ng/adapt-dpi": "^1.0.5",
-        "@thi.ng/api": "^6.12.1",
-        "@thi.ng/associative": "^5.0.3",
-        "@thi.ng/checks": "^2.7.5",
-        "@thi.ng/equiv": "^1.0.28",
-        "@thi.ng/errors": "^1.2.18",
-        "@thi.ng/matrices": "^0.6.28",
-        "@thi.ng/pixel": "^0.4.2",
-        "@thi.ng/shader-ast": "^0.6.2",
-        "@thi.ng/shader-ast-glsl": "^0.2.6",
-        "@thi.ng/shader-ast-stdlib": "^0.4.5",
-        "@thi.ng/transducers": "^7.2.1",
-        "@thi.ng/vector-pools": "^1.0.41",
-        "@thi.ng/vectors": "^4.6.1"
+        "@thi.ng/adapt-dpi": "^1.0.6",
+        "@thi.ng/api": "^6.12.2",
+        "@thi.ng/associative": "^5.0.4",
+        "@thi.ng/checks": "^2.7.6",
+        "@thi.ng/equiv": "^1.0.29",
+        "@thi.ng/errors": "^1.2.19",
+        "@thi.ng/matrices": "^0.6.29",
+        "@thi.ng/pixel": "^0.4.3",
+        "@thi.ng/shader-ast": "^0.6.3",
+        "@thi.ng/shader-ast-glsl": "^0.2.7",
+        "@thi.ng/shader-ast-stdlib": "^0.4.6",
+        "@thi.ng/transducers": "^7.2.2",
+        "@thi.ng/vector-pools": "^1.0.42",
+        "@thi.ng/vectors": "^4.6.2"
     },
     "files": [
         "*.js",

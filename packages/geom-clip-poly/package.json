@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom-clip-poly",
-    "version": "1.0.29",
+    "version": "1.0.30",
     "description": "2D convex polygon clipping (Sutherland-Hodgeman)",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,10 +49,10 @@
         "typescript": "^3.9.7"
     },
     "dependencies": {
-        "@thi.ng/geom-isec": "^0.5.4",
-        "@thi.ng/geom-poly-utils": "^0.1.60",
-        "@thi.ng/math": "^2.0.2",
-        "@thi.ng/vectors": "^4.6.1"
+        "@thi.ng/geom-isec": "^0.5.5",
+        "@thi.ng/geom-poly-utils": "^0.1.61",
+        "@thi.ng/math": "^2.0.3",
+        "@thi.ng/vectors": "^4.6.2"
     },
     "files": [
         "*.js",

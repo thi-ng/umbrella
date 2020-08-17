@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.52](https://github.com/thi-ng/umbrella/compare/@thi.ng/sparse@0.1.51...@thi.ng/sparse@0.1.52) (2020-08-17)
+
+**Note:** Version bump only for package @thi.ng/sparse
+
+
+
+
+
 ## [0.1.51](https://github.com/thi-ng/umbrella/compare/@thi.ng/sparse@0.1.50...@thi.ng/sparse@0.1.51) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/sparse
