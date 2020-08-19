@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-carbon-icons@1.0.51...@thi.ng/hiccup-carbon-icons@2.0.0) (2020-08-19)
+
+
+### Features
+
+* **hiccup-carbon-icons:** add/update all icons ([22cfefc](https://github.com/thi-ng/umbrella/commit/22cfefcccaab5448e1117cb55d448cd313c48e95))
+
+
+### BREAKING CHANGES
+
+* **hiccup-carbon-icons:** update all icons to latest carbon version
+
+- some icons have been removed/replaced or renamed
+- full set now counting ~1100 icons
+- add new conversion script
+- update readme
+
+
+
+
+
 ## [1.0.51](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-carbon-icons@1.0.50...@thi.ng/hiccup-carbon-icons@1.0.51) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/hiccup-carbon-icons

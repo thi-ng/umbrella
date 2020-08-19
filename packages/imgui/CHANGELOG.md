@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.36](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.35...@thi.ng/imgui@0.2.36) (2020-08-19)
+
+
+### Bug Fixes
+
+* **imgui:** don't update curr value to click position ([12d6705](https://github.com/thi-ng/umbrella/commit/12d670515ecf7b44ca3143b933a459e760e4d918))
+
+
+
+
+
 ## [0.2.35](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.34...@thi.ng/imgui@0.2.35) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/imgui
