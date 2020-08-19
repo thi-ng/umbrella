@@ -1,12 +1,4 @@
-export const SEARCH = [
-    "svg",
-    { viewBox: "0 0 16 16" },
-    [
-        "path",
-        {
-            "fill-rule": "nonzero",
-            d:
-                "M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z",
-        },
-    ],
-];
+// prettier-ignore
+export const SEARCH =
+    ["svg", { viewBox: "0 0 32 32" },
+        ["path", { d: "M30 28.59L22.45 21A11 11 0 1021 22.45L28.59 30zM5 14a9 9 0 119 9 9 9 0 01-9-9z" }]];

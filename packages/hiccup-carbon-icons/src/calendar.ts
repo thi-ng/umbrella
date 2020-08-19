@@ -1,12 +1,4 @@
-export const CALENDAR = [
-    "svg",
-    { viewBox: "0 0 14 16" },
-    [
-        "path",
-        {
-            "fill-rule": "nonzero",
-            d:
-                "M0 5h14v1H0V5zm3-5h1v4H3V0zm7 0h1v4h-1V0zM0 2.5A1.5 1.5 0 0 1 1.5 1h11A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 0 14.5v-12zm1 0v12a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-12a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5z",
-        },
-    ],
-];
+// prettier-ignore
+export const CALENDAR =
+    ["svg", { viewBox: "0 0 32 32" },
+        ["path", { d: "M26 4h-4V2h-2v2h-8V2h-2v2H6c-1.1 0-2 .9-2 2v20c0 1.1.9 2 2 2h20c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 22H6V12h20v14zm0-16H6V6h4v2h2V6h8v2h2V6h4v4z" }]];

@@ -1,11 +1,5 @@
-export const DOWNLOAD = [
-    "svg",
-    { viewBox: "0 0 14 16" },
-    [
-        "path",
-        {
-            d:
-                "M7.5 11l4.1-4.4.7.7L7 13 1.6 7.3l.7-.7L6.5 11V0h1v11zM13 15v-2h1v2c0 .6-.4 1-1 1H1c-.6 0-1-.4-1-1v-2h1v2h12z",
-        },
-    ],
-];
+// prettier-ignore
+export const DOWNLOAD =
+    ["svg", { viewBox: "0 0 32 32" },
+        ["path", { d: "M26 15l-1.41-1.41L17 21.17V2h-2v19.17l-7.59-7.58L6 15l10 10 10-10z" }],
+        ["path", { d: "M26 24v4H6v-4H4v4a2 2 0 002 2h20a2 2 0 002-2v-4z" }]];

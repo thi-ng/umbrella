@@ -1,12 +1,4 @@
-export const ARROW_UP = [
-    "svg",
-    { viewBox: "0 0 14 16" },
-    [
-        "path",
-        {
-            "fill-rule": "nonzero",
-            d:
-                "M5.993 4.047l-3.905 4.09L.635 6.763 6.992 0l6.366 6.762-1.452 1.376-3.913-4.092V16h-2V4.047z",
-        },
-    ],
-];
+// prettier-ignore
+export const ARROW_UP =
+    ["svg", { viewBox: "0 0 32 32" },
+        ["path", { d: "M16 4L6 14l1.41 1.41L15 7.83V30h2V7.83l7.59 7.58L26 14 16 4z" }]];

@@ -1,31 +1,4 @@
-export const LIST = [
-    "svg",
-    { viewBox: "0 0 16 10" },
-    [
-        "g",
-        { "fill-rule": "evenodd" },
-        [
-            "path",
-            {
-                d: "M6 9V8h10v1zM6 2V1h10v1z",
-                "fill-rule": "nonzero",
-            },
-        ],
-        [
-            "circle",
-            {
-                r: 1.5,
-                cy: 1.5,
-                cx: 1.5,
-            },
-        ],
-        [
-            "circle",
-            {
-                r: 1.5,
-                cy: 8.5,
-                cx: 1.5,
-            },
-        ],
-    ],
-];
+// prettier-ignore
+export const LIST =
+    ["svg", { viewBox: "0 0 32 32" },
+        ["path", { d: "M10 6h18v2H10zM10 24h18v2H10zM10 15h18v2H10zM4 15h2v2H4zM4 6h2v2H4zM4 24h2v2H4z" }]];

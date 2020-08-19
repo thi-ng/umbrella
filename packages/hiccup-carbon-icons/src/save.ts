@@ -1,12 +1,4 @@
-export const SAVE = [
-    "svg",
-    { viewBox: "0 0 16 16" },
-    [
-        "path",
-        {
-            "fill-rule": "nonzero",
-            d:
-                "M12 1.597v2.406a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V1H1v14h3V9a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v6h3V4.702l-3-3.105zM1 0h10.848L16 4.298V15a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V1a1 1 0 0 1 1-1zm10 9H5v5.992l6 .007V9zM5 1v3.003h6V1H5z",
-        },
-    ],
-];
+// prettier-ignore
+export const SAVE =
+    ["svg", { viewBox: "0 0 32 32" },
+        ["path", { d: "M27.71 9.29l-5-5A1 1 0 0022 4H6a2 2 0 00-2 2v20a2 2 0 002 2h20a2 2 0 002-2V10a1 1 0 00-.29-.71zM12 6h8v4h-8zm8 20h-8v-8h8zm2 0v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8H6V6h4v4a2 2 0 002 2h8a2 2 0 002-2V6.41l4 4V26z" }]];

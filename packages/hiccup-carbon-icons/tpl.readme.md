@@ -12,15 +12,15 @@ This project is part of the
 ## About
 
 This package provides the full set of IBM's [Carbon
-icons](https://github.com/IBM/carbon-icons) in hiccup format (i.e. as
-Javascript encoded SVG), ready to be used with
-[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
-/
-[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup).
+icons](https://github.com/IBM/carbon-icons) in hiccup format (i.e. as Javascript
+encoded SVG), counting in at ~1100 and ready to be used within any
+[@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
+supporting scenario.
 
-Each icon is defined in its own source file and can be imported
-individually. The converted icons DO NOT have a fixed size and will
-expand to the available size (see example below).
+Each icon is defined in its own source file and can be imported individually.
+The converted icons are based on the 32x32 pixel versions, but have NO explicit
+size set (only `viewBox` attrib). Use the `withSize()` helper to inject a size,
+e.g. `withSize(DOWNLOAD, "12px")`.
 
 ## Contact sheet
 
@@ -67,33 +67,42 @@ renderOnce(iconButton(CODE, () => alert("hi"), "show me the code"));
 
 ## Icon conversion process
 
-The icon conversion is largely automated via the supplied bash script
-(currently with some additional minor manual cleanup needed) and
-requires `svgo` and a checkout of both the original carbon-icons repo
-and the umbrella mono repo.
+(For contributors only...)
+
+The icon conversion is largely automated via the supplied bash script (currently
+with some additional minor manual cleanup needed) and requires `svgo` and a
+checkout of both the original carbon and the umbrella mono repos.
 
 ```bash
 # install pre-requisites
 yarn global add svgo
 
-git clone https://github.com/IBM/carbon-icons.git
 git clone https://github.com/thi-ng/umbrella.git
 
+# build entire umbrella repo
+cd umbrella
+yarn build
+
 # build xml to hiccup converter CLI tool
-cd umbrella/examples/xml-converter
-yarn install
+cd examples/xml-converter
 yarn build-cli
 
 # switch to package root
 cd ../../hiccup-carbon-icons
+
+# clone carbon repo into local temp dir
+git clone https://github.com/carbon-design-system/carbon.git tmp
 # convert icons and write results to package src folder
-./convert-icons src ../../carbon-icons/src/svg/*.svg
+npx ts-node -P tools/tsconfig.json tools/convert-icons.ts src tmp/packages/icons/src/svg/32
 
 # update contact sheet (will be written to package root)
-yarn test
+npx ts-node -P tools/tsconfig.json tools/contact-sheet.ts
 
 # open in browser
 open contact-sheet.html
+
+# fixup any conversion issues (rinse & repeat...)
+# e.g. in the latest version, several icons use paths w/ opacity=0 which need to be removed
 
 # rebuild package
 yarn build
@@ -104,5 +113,8 @@ yarn build
 ${authors}
 
 ## License
+
+The copyright of the original icons is with IBM. The icons were published under
+the same license as this package.
 
 &copy; ${copyright} // ${license}

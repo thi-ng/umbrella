@@ -1,9 +1,5 @@
-export const UPLOAD = [
-    "svg",
-    {
-        "fill-rule": "evenodd",
-        viewBox: "0 0 24 24",
-    },
-    ["path", { d: "M5 6.6l1.2 1.1L11 3v13h2V3l4.8 4.7L19 6.6 12 0z" }],
-    ["path", { d: "M22 14v6H2v-6H0v10H24V14z" }],
-];
+// prettier-ignore
+export const UPLOAD =
+    ["svg", { viewBox: "0 0 32 32" },
+        ["path", { d: "M6 17l1.41 1.41L15 10.83V30h2V10.83l7.59 7.58L26 17 16 7 6 17z" }],
+        ["path", { d: "M6 8V4h20v4h2V4a2 2 0 00-2-2H6a2 2 0 00-2 2v4z" }]];

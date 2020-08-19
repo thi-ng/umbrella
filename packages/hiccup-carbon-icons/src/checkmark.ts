@@ -1,11 +1,4 @@
-export const CHECKMARK = [
-    "svg",
-    { viewBox: "0 0 10 8" },
-    [
-        "path",
-        {
-            d: "M8.498 0L10 1.502 3.672 7.83 0 4.158l1.502-1.502 2.17 2.17z",
-            "fill-rule": "nonzero",
-        },
-    ],
-];
+// prettier-ignore
+export const CHECKMARK =
+    ["svg", { viewBox: "0 0 32 32" },
+        ["path", { d: "M13 24l-9-9 1.414-1.414L13 21.171 26.586 7.586 28 9 13 24z" }]];

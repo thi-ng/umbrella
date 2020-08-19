@@ -1,12 +1,4 @@
-export const PORTFOLIO = [
-    "svg",
-    { viewBox: "0 0 24 20" },
-    [
-        "path",
-        {
-            "fill-rule": "evenodd",
-            d:
-                "M7 5H6V1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v4h-1V1H7v4zM1 19h22V7H1v12zM23 6H1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h22a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1z",
-        },
-    ],
-];
+// prettier-ignore
+export const PORTFOLIO =
+    ["svg", { viewBox: "0 0 32 32" },
+        ["path", { d: "M28 10h-6V6a2 2 0 00-2-2h-8a2 2 0 00-2 2v4H4a2 2 0 00-2 2v14a2 2 0 002 2h24a2 2 0 002-2V12a2 2 0 00-2-2zM12 6h8v4h-8zM4 26V12h24v14z" }]];

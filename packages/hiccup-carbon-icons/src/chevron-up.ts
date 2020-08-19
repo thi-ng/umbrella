@@ -1,11 +1,4 @@
-export const CHEVRON_UP = [
-    "svg",
-    { viewBox: "0 0 12 7" },
-    [
-        "path",
-        {
-            d: "M5.994 1.45L.726 7 0 6.315 5.994 0l6.002 6.315L11.27 7z",
-            "fill-rule": "nonzero",
-        },
-    ],
-];
+// prettier-ignore
+export const CHEVRON_UP =
+    ["svg", { viewBox: "0 0 32 32" },
+        ["path", { d: "M16 10l10 10-1.4 1.4-8.6-8.6-8.6 8.6L6 20z" }]];

@@ -1,12 +1,4 @@
-export const LOCKED = [
-    "svg",
-    { viewBox: "0 0 16 16" },
-    [
-        "path",
-        {
-            "fill-rule": "nonzero",
-            d:
-                "M4.5 7V3.5a3.5 3.5 0 0 1 7 0V7h1A1.5 1.5 0 0 1 14 8.5v6a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-6A1.5 1.5 0 0 1 3.5 7h1zm1 0h5V3.5a2.5 2.5 0 0 0-5 0V7zm-2 1a.5.5 0 0 0-.5.5v6a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-6a.5.5 0 0 0-.5-.5h-9z",
-        },
-    ],
-];
+// prettier-ignore
+export const LOCKED =
+    ["svg", { viewBox: "0 0 32 32" },
+        ["path", { d: "M24 14h-2V8a6 6 0 00-12 0v6H8a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V16a2 2 0 00-2-2zM12 8a4 4 0 018 0v6h-8zm12 20H8V16h16z" }]];

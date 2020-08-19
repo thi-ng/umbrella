@@ -1,12 +1,4 @@
-export const FOLDER = [
-    "svg",
-    { viewBox: "0 0 14 12" },
-    [
-        "path",
-        {
-            "fill-rule": "nonzero",
-            d:
-                "M13 12H1a1 1 0 0 1-1-1V1.001a1 1 0 0 1 1.002-1l2.293.005a1 1 0 0 1 .704.291L5.707 2H13a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1zm0-9H5.707A1 1 0 0 1 5 2.708L3.293 1.006 1 1V11h12V3z",
-        },
-    ],
-];
+// prettier-ignore
+export const FOLDER =
+    ["svg", { viewBox: "0 0 32 32" },
+        ["path", { d: "M11.17 6l3.42 3.41.58.59H28v16H4V6h7.17m0-2H4a2 2 0 00-2 2v20a2 2 0 002 2h24a2 2 0 002-2V10a2 2 0 00-2-2H16l-3.41-3.41A2 2 0 0011.17 4z" }]];

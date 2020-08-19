@@ -1,15 +1,4 @@
-export const NEW_TAB = [
-    "svg",
-    { viewBox: "0 0 16 15" },
-    [
-        "g",
-        { "fill-rule": "nonzero" },
-        [
-            "path",
-            {
-                d:
-                    "M14 2h2v1h-2v2h-1V3h-2V2h2V0h1v2zM1 3h8V2H1a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7.227h-1V14H1V3z",
-            },
-        ],
-    ],
-];
+// prettier-ignore
+export const NEW_TAB =
+    ["svg", { viewBox: "0 0 32 32" },
+        ["path", { d: "M26 26H6V6h9V4H6a2 2 0 00-2 2v20a2 2 0 002 2h20a2 2 0 002-2v-9h-2zM26 6V2h-2v4h-4v2h4v4h2V8h4V6h-4z" }]];

@@ -1,11 +1,4 @@
-export const CARET_LEFT = [
-    "svg",
-    { viewBox: "0 0 5 10" },
-    [
-        "path",
-        {
-            "fill-rule": "evenodd",
-            d: "M4.998 10L0 5l4.998-5z",
-        },
-    ],
-];
+// prettier-ignore
+export const CARET_LEFT =
+    ["svg", { viewBox: "0 0 32 32" },
+        ["path", { d: "M20 24l-10-8 10-8z" }]];
