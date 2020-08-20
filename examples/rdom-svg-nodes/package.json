@@ -19,6 +19,7 @@
     "dependencies": {
         "@thi.ng/atom": "latest",
         "@thi.ng/equiv": "latest",
+        "@thi.ng/hiccup-svg": "latest",
         "@thi.ng/rdom": "latest",
         "@thi.ng/rstream": "latest",
         "@thi.ng/transducers": "latest",
