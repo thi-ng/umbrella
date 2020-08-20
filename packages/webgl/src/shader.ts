@@ -6,6 +6,7 @@ import {
     isFunction,
 } from "@thi.ng/checks";
 import { unsupported } from "@thi.ng/errors";
+import { doOnce } from "@thi.ng/memoize";
 import {
     input,
     output,
@@ -57,6 +58,13 @@ export class Shader implements IShader {
     attribs: IObjectOf<ShaderAttrib>;
     uniforms: ShaderUniforms;
     state: Partial<ShaderState>;
+
+    protected warnAttrib = doOnce((id: string) =>
+        LOGGER.warn(`unknown attrib: ${id}`)
+    );
+    protected warnUni = doOnce((id: string) =>
+        LOGGER.warn(`unknown uniform: ${id}`)
+    );
 
     constructor(
         gl: WebGLRenderingContext,
@@ -119,7 +127,7 @@ export class Shader implements IShader {
                     attr.offset || 0
                 );
             } else {
-                LOGGER.warn(`unknown attrib: ${id}`);
+                this.warnAttrib(id);
             }
         }
     }
@@ -134,7 +142,7 @@ export class Shader implements IShader {
                 // console.log(id, val);
                 u.setter(<UniformValue>val);
             } else {
-                LOGGER.warn(`unknown uniform: ${id}`);
+                this.warnUni(id);
             }
         }
         // apply defaults for non-specified uniforms in user spec
