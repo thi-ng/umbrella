@@ -83,7 +83,7 @@ const THEME_IDS = ["Default", "Raspberry"];
 // (transforms each path into one only consisting of cubic spline segments)
 const mkIcon = (icon: any[]) => [
     "g",
-    { stroke: "none" },
+    { stroke: "none", scale: 16 / 32 },
     ...iterator(
         comp(
             mapcat((p) => pathFromSvg(p[1].d)),

@@ -37,6 +37,7 @@
             "rdom-canvas",
             "rstream",
             "transducers"
-        ]
+        ],
+        "screenshot": "examples/rdom-lissajous.png"
     }
 }

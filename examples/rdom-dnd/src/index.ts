@@ -1,8 +1,4 @@
-import {
-    ADD_OUTLINE,
-    CLOSE_OUTLINE,
-    withSize,
-} from "@thi.ng/hiccup-carbon-icons";
+import { ADD_ALT, CLOSE_OUTLINE, withSize } from "@thi.ng/hiccup-carbon-icons";
 import { div } from "@thi.ng/hiccup-html";
 import { $compile } from "@thi.ng/rdom";
 import { cycle } from "@thi.ng/transducers";
@@ -51,7 +47,7 @@ $compile(
         null,
         notify,
         div(".mv2", null, "Drag & drop the icons..."),
-        dragBank("bank1", "red", "cyan", ADD_OUTLINE),
+        dragBank("bank1", "red", "cyan", ADD_ALT),
         dragBank("bank2", "blue", "orange", CLOSE_OUTLINE)
     )
 ).mount(document.getElementById("app")!);

@@ -1,16 +1,16 @@
 import {
-    CHECKMARK_SOLID,
-    INFO,
-    WARNING,
+    CHECKMARK_FILLED,
+    INFORMATION_FILLED,
+    WARNING_ALT_FILLED,
     withSize,
 } from "@thi.ng/hiccup-carbon-icons";
 import { div, span } from "@thi.ng/hiccup-html";
 import { Component, NumOrElement } from "@thi.ng/rdom";
 
 const PRESETS = {
-    info: { class: "bg-lightest-blue blue", icon: INFO },
-    success: { class: "bg-washed-green dark-green", icon: CHECKMARK_SOLID },
-    warn: { class: "bg-washed-red dark-red", icon: WARNING },
+    info: { class: "bg-lightest-blue blue", icon: INFORMATION_FILLED },
+    success: { class: "bg-washed-green dark-green", icon: CHECKMARK_FILLED },
+    warn: { class: "bg-washed-red dark-red", icon: WARNING_ALT_FILLED },
 };
 
 export interface NotifyOpts {
