@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-voronoi@0.2.5...@thi.ng/geom-voronoi@0.2.6) (2020-08-20)
+
+**Note:** Version bump only for package @thi.ng/geom-voronoi
+
+
+
+
+
 ## [0.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-voronoi@0.2.4...@thi.ng/geom-voronoi@0.2.5) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/geom-voronoi

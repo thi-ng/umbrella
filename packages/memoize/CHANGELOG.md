@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@2.0.19...@thi.ng/memoize@2.1.0) (2020-08-20)
+
+
+### Features
+
+* **memoize:** add doOnce(), update readme ([889e00d](https://github.com/thi-ng/umbrella/commit/889e00d0376cda39f2a7e5848780bdf26f5fc5ca))
+
+
+
+
+
 ## [2.0.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@2.0.18...@thi.ng/memoize@2.0.19) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/memoize

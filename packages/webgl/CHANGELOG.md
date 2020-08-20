@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@3.2.1...@thi.ng/webgl@3.3.0) (2020-08-20)
+
+
+### Features
+
+* **webgl:** only warn once re: unknown uni/attrib ([7490aa1](https://github.com/thi-ng/umbrella/commit/7490aa1e0d8e69c0be2f0c63f72373983898f04c))
+
+
+
+
+
 ## [3.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@3.2.0...@thi.ng/webgl@3.2.1) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/webgl
