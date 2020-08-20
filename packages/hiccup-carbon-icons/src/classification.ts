@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#CLASSIFICATION
+ */
 // prettier-ignore
-export const CLASSIFICATION =
+export const CLASSIFICATION: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

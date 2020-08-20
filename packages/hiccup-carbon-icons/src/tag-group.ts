@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#TAG_GROUP
+ */
 // prettier-ignore
-export const TAG_GROUP =
+export const TAG_GROUP: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

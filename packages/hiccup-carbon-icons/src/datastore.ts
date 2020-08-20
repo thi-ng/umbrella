@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#DATASTORE
+ */
 // prettier-ignore
-export const DATASTORE =
+export const DATASTORE: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

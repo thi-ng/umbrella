@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#DEPLOY
+ */
 // prettier-ignore
-export const DEPLOY =
+export const DEPLOY: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

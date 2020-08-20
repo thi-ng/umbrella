@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#MEDICATION_ALERT
+ */
 // prettier-ignore
-export const MEDICATION_ALERT =
+export const MEDICATION_ALERT: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", { d: "M22 19h2v5h-2z" }],
         ["path", { d: "M23 31a8 8 0 118-8 8 8 0 01-8 8zm0-14a6 6 0 106 6 6 6 0 00-6-6z" }],

@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#HEARING
+ */
 // prettier-ignore
-export const HEARING =
+export const HEARING: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", { d: "M18 30v-2a10.011 10.011 0 0010-10h2a12.013 12.013 0 01-12 12z" }],
         ["path", { d: "M18 26v-2a6.007 6.007 0 006-6h2a8.01 8.01 0 01-8 8z" }],

@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#NETWORK_3
+ */
 // prettier-ignore
-export const NETWORK_3 =
+export const NETWORK_3: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", { d: "M30 30h-8v-8h8zm-6-2h4v-4h-4zM20 27H8a6 6 0 010-12h2v2H8a4 4 0 000 8h12z" }],
         ["path", { d: "M20 20h-8v-8h8zm-6-2h4v-4h-4z" }],

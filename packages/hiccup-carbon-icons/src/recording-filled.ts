@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#RECORDING_FILLED
+ */
 // prettier-ignore
-export const RECORDING_FILLED =
+export const RECORDING_FILLED: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

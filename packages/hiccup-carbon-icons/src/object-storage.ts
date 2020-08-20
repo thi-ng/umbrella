@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#OBJECT_STORAGE
+ */
 // prettier-ignore
-export const OBJECT_STORAGE =
+export const OBJECT_STORAGE: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", { d: "M28 20h-2v2h2v6H4v-6h10v-2H4a2.002 2.002 0 00-2 2v6a2.002 2.002 0 002 2h24a2.002 2.002 0 002-2v-6a2.002 2.002 0 00-2-2z" }],
         ["circle", 

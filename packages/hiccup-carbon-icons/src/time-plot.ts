@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#TIME_PLOT
+ */
 // prettier-ignore
-export const TIME_PLOT =
+export const TIME_PLOT: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", { d: "M23.586 13L21 10.414V6h2v3.586l2 2L23.586 13z" }],
         ["path", { d: "M22 18a8 8 0 118-8 8.01 8.01 0 01-8 8zm0-14a6 6 0 106 6 6.007 6.007 0 00-6-6z" }],

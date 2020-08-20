@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#CORONAVIRUS
+ */
 // prettier-ignore
-export const CORONAVIRUS =
+export const CORONAVIRUS: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

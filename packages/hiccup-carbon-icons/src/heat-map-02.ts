@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#HEAT_MAP_02
+ */
 // prettier-ignore
-export const HEAT_MAP_02 =
+export const HEAT_MAP_02: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

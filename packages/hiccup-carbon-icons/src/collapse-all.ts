@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#COLLAPSE_ALL
+ */
 // prettier-ignore
-export const COLLAPSE_ALL =
+export const COLLAPSE_ALL: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", { d: "M30 15h-2V7H13V5h15a2.002 2.002 0 012 2z" }],
         ["path", { d: "M25 20h-2v-8H8v-2h15a2.002 2.002 0 012 2z" }],

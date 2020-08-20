@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#FINGERPRINT_RECOGNITION
+ */
 // prettier-ignore
-export const FINGERPRINT_RECOGNITION =
+export const FINGERPRINT_RECOGNITION: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", { d: "M7 5.21a.77.77 0 01-.46-1.38A15.46 15.46 0 0116 1c2.66 0 6.48.45 9.5 2.62a.77.77 0 01.18 1.07.78.78 0 01-1.08.17A15 15 0 0016 2.53a14 14 0 00-8.5 2.52.74.74 0 01-.5.16z" }],
         ["path", { d: "M28.23 12.26a.78.78 0 01-.63-.33C25.87 9.49 22.78 6.24 16 6.24a14 14 0 00-11.63 5.7.77.77 0 01-1.07.17.76.76 0 01-.15-1.11A15.54 15.54 0 0116 4.71c5.61 0 9.81 2.08 12.84 6.34a.77.77 0 01-.19 1.07.79.79 0 01-.42.14z" }],

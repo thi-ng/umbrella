@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#CONTAINER_SOFTWARE
+ */
 // prettier-ignore
-export const CONTAINER_SOFTWARE =
+export const CONTAINER_SOFTWARE: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", { d: "M28 12h-8V4h8zm-6-2h4V6h-4z" }],
         ["path", { d: "M17 15V9H9v14h14v-8zm-6-4h4v4h-4zm4 10h-4v-4h4zm6 0h-4v-4h4z" }],

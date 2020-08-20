@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#WIFI
+ */
 // prettier-ignore
-export const WIFI =
+export const WIFI: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

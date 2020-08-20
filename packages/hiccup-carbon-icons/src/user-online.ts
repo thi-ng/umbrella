@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#USER_ONLINE
+ */
 // prettier-ignore
-export const USER_ONLINE =
+export const USER_ONLINE: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

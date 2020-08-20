@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#VMDK_DISK
+ */
 // prettier-ignore
-export const VMDK_DISK =
+export const VMDK_DISK: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

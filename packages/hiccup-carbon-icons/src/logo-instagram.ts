@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#LOGO_INSTAGRAM
+ */
 // prettier-ignore
-export const LOGO_INSTAGRAM =
+export const LOGO_INSTAGRAM: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

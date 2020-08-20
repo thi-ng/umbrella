@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#OVERFLOW_MENU_HORIZONTAL
+ */
 // prettier-ignore
-export const OVERFLOW_MENU_HORIZONTAL =
+export const OVERFLOW_MENU_HORIZONTAL: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

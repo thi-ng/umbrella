@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#ALARM_SUBTRACT
+ */
 // prettier-ignore
-export const ALARM_SUBTRACT =
+export const ALARM_SUBTRACT: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", { d: "M16 28a11 11 0 1111-11 11 11 0 01-11 11zm0-20a9 9 0 109 9 9 9 0 00-9-9z" }],
         ["path", 

@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#AUGMENTED_REALITY
+ */
 // prettier-ignore
-export const AUGMENTED_REALITY =
+export const AUGMENTED_REALITY: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", { d: "M27.447 9.105l-6-3a1 1 0 00-.894 0l-6 3A1 1 0 0014 10v7a1 1 0 00.553.894l6 3a1.001 1.001 0 00.894 0l6-3A1 1 0 0028 17v-7a1 1 0 00-.553-.895zM21 8.118L24.764 10 21 11.882 17.236 10zm-5 3.5l4 2v4.764l-4-2zm6 6.764v-4.764l4-2v4.764z" }],
         ["circle", 

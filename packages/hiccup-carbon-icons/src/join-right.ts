@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#JOIN_RIGHT
+ */
 // prettier-ignore
-export const JOIN_RIGHT =
+export const JOIN_RIGHT: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", { d: "M20 6a9.95 9.95 0 00-4.003.84 9.99 9.99 0 010 18.32A9.999 9.999 0 1020 6z" }],
         ["path", { d: "M20 16a8.01 8.01 0 00-6.248-7.8 9.976 9.976 0 012.245-1.36 9.99 9.99 0 010 18.32 9.976 9.976 0 01-2.245-1.36A8.01 8.01 0 0020 16z" }],

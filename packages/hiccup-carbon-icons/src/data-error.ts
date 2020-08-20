@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#DATA_ERROR
+ */
 // prettier-ignore
-export const DATA_ERROR =
+export const DATA_ERROR: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

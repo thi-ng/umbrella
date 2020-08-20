@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#VISUAL_RECOGNITION
+ */
 // prettier-ignore
-export const VISUAL_RECOGNITION =
+export const VISUAL_RECOGNITION: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

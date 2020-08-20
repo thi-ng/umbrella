@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#HAIL
+ */
 // prettier-ignore
-export const HAIL =
+export const HAIL: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

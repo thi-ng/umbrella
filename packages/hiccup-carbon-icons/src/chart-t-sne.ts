@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#CHART_T_SNE
+ */
 // prettier-ignore
-export const CHART_T_SNE =
+export const CHART_T_SNE: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

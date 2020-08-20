@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#LEGEND
+ */
 // prettier-ignore
-export const LEGEND =
+export const LEGEND: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", { d: "M16 22h14v2H16z" }],
         ["rect", { rx: 1 }],

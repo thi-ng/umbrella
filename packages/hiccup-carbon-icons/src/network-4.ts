@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#NETWORK_4
+ */
 // prettier-ignore
-export const NETWORK_4 =
+export const NETWORK_4: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

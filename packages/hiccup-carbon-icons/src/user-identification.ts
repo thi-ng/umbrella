@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#USER_IDENTIFICATION
+ */
 // prettier-ignore
-export const USER_IDENTIFICATION =
+export const USER_IDENTIFICATION: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", { d: "M22 11h4a1 1 0 011 1v2h-6v-2a1 1 0 011-1z" }],
         ["circle", 

@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#IMPROVE_RELEVANCE
+ */
 // prettier-ignore
-export const IMPROVE_RELEVANCE =
+export const IMPROVE_RELEVANCE: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", { d: "M22 26.59L19.41 24 18 25.41l4 4 8-8L28.59 20 22 26.59z" }],
         ["circle", 

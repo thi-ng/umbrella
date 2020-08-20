@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#VIRTUAL_COLUMN_KEY
+ */
 // prettier-ignore
-export const VIRTUAL_COLUMN_KEY =
+export const VIRTUAL_COLUMN_KEY: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

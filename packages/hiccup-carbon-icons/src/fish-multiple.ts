@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#FISH_MULTIPLE
+ */
 // prettier-ignore
-export const FISH_MULTIPLE =
+export const FISH_MULTIPLE: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", { d: "M30 14a12.985 12.985 0 00-3.829-9.243L24.414 3 23 4.414l1.757 1.757a11.071 11.071 0 010 15.657L22 24.586 23.414 26l2.757-2.757A12.985 12.985 0 0030 14z" }],
         ["circle", 

@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#CHART_SCATTER
+ */
 // prettier-ignore
-export const CHART_SCATTER =
+export const CHART_SCATTER: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", { d: "M30 30H4a2 2 0 01-2-2V2h2v26h26z" }],
         ["circle", 

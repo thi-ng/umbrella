@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#PENDING
+ */
 // prettier-ignore
-export const PENDING =
+export const PENDING: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#WIRELESS_CHECKOUT
+ */
 // prettier-ignore
-export const WIRELESS_CHECKOUT =
+export const WIRELESS_CHECKOUT: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", { d: "M18 28v-2a10 10 0 0010-10h2a12 12 0 01-12 12z" }],
         ["path", { d: "M18 23v-2a5 5 0 005-5h2a7 7 0 01-7 7z" }],

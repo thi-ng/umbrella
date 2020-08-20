@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#CIRCLE_FILLED
+ */
 // prettier-ignore
-export const CIRCLE_FILLED =
+export const CIRCLE_FILLED: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

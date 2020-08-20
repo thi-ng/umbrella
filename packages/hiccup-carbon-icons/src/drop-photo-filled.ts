@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#DROP_PHOTO_FILLED
+ */
 // prettier-ignore
-export const DROP_PHOTO_FILLED =
+export const DROP_PHOTO_FILLED: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

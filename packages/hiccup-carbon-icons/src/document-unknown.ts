@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#DOCUMENT_UNKNOWN
+ */
 // prettier-ignore
-export const DOCUMENT_UNKNOWN =
+export const DOCUMENT_UNKNOWN: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#LOGO_R_SCRIPT
+ */
 // prettier-ignore
-export const LOGO_R_SCRIPT =
+export const LOGO_R_SCRIPT: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", 
             {

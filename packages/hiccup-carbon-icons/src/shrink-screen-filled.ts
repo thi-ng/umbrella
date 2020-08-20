@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#SHRINK_SCREEN_FILLED
+ */
 // prettier-ignore
-export const SHRINK_SCREEN_FILLED =
+export const SHRINK_SCREEN_FILLED: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["rect", { rx: 2 }],
         ["path", { d: "M12 10v3.586L7.707 9.293l-1.414 1.414L10.586 15H7v2h7v-7h-2z" }],

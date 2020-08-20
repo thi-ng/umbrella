@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#DIRECTION_ROTARY_STRAIGHT_FILLED
+ */
 // prettier-ignore
-export const DIRECTION_ROTARY_STRAIGHT_FILLED =
+export const DIRECTION_ROTARY_STRAIGHT_FILLED: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

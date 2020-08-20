@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#COVARIATE
+ */
 // prettier-ignore
-export const COVARIATE =
+export const COVARIATE: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

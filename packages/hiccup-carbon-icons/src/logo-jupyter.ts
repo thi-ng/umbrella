@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#LOGO_JUPYTER
+ */
 // prettier-ignore
-export const LOGO_JUPYTER =
+export const LOGO_JUPYTER: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["g",
             ["path", { d: "M26.077 3.588a1.69 1.69 0 11-1.76-1.585 1.67 1.67 0 011.76 1.585z" }]],

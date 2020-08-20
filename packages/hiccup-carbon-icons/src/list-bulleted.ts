@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#LIST_BULLETED
+ */
 // prettier-ignore
-export const LIST_BULLETED =
+export const LIST_BULLETED: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#POLICE
+ */
 // prettier-ignore
-export const POLICE =
+export const POLICE: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", { d: "M10 24h2v6h-2z" }],
         ["path", { d: "M21 20H7a3.003 3.003 0 01-3-3V6H2v11a5.006 5.006 0 005 5h14a4.942 4.942 0 012.105.481L17 28.586 18.414 30l6.307-6.307A4.96 4.96 0 0126 27v3h2v-3a7.008 7.008 0 00-7-7z" }],

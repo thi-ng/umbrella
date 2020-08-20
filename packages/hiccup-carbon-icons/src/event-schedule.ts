@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#EVENT_SCHEDULE
+ */
 // prettier-ignore
-export const EVENT_SCHEDULE =
+export const EVENT_SCHEDULE: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", { d: "M21 30a8 8 0 118-8 8 8 0 01-8 8zm0-14a6 6 0 106 6 6 6 0 00-6-6z" }],
         ["path", { d: "M22.59 25L20 22.41V18h2v3.59l2 2L22.59 25z" }],

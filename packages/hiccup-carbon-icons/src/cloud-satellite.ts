@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#CLOUD_SATELLITE
+ */
 // prettier-ignore
-export const CLOUD_SATELLITE =
+export const CLOUD_SATELLITE: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

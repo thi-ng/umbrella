@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#DIAGRAM_REFERENCE
+ */
 // prettier-ignore
-export const DIAGRAM_REFERENCE =
+export const DIAGRAM_REFERENCE: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", { d: "M4 20v2h4.586L2 28.586 3.414 30 10 23.414V28h2v-8H4z" }],
         ["path", { d: "M15 28v-2a9.013 9.013 0 008.945-8H16a2.002 2.002 0 01-2-2V8.055A9.013 9.013 0 006 17H4A11.012 11.012 0 0115 6a1 1 0 011 1v9h9a1 1 0 011 1 11.012 11.012 0 01-11 11z" }],

@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#DATA_CHECK
+ */
 // prettier-ignore
-export const DATA_CHECK =
+export const DATA_CHECK: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", { d: "M23 27.18l-2.59-2.59L19 26l4 4 7-7-1.41-1.41L23 27.18z" }],
         ["circle", 

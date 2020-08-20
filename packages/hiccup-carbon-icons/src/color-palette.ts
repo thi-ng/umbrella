@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#COLOR_PALETTE
+ */
 // prettier-ignore
-export const COLOR_PALETTE =
+export const COLOR_PALETTE: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#SCATTER_MATRIX
+ */
 // prettier-ignore
-export const SCATTER_MATRIX =
+export const SCATTER_MATRIX: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

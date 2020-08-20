@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#QQ_PLOT
+ */
 // prettier-ignore
-export const QQ_PLOT =
+export const QQ_PLOT: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

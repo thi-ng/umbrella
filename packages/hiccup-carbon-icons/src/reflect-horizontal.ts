@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#REFLECT_HORIZONTAL
+ */
 // prettier-ignore
-export const REFLECT_HORIZONTAL =
+export const REFLECT_HORIZONTAL: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", { d: "M19.386 15.21l9-7A1 1 0 0130 9v14a1 1 0 01-1.614.79l-9-7a1 1 0 010-1.58z" }],
         ["path", 

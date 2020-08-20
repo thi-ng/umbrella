@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#SYS_PROVISION
+ */
 // prettier-ignore
-export const SYS_PROVISION =
+export const SYS_PROVISION: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", { d: "M21 20v10l9-5-9-5z" }],
         ["circle", 

@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#FLOW_STREAM_REFERENCE
+ */
 // prettier-ignore
-export const FLOW_STREAM_REFERENCE =
+export const FLOW_STREAM_REFERENCE: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", { d: "M20 24h-4v2h4v3h8v-8h-8zm2-1h4v4h-4z" }],
         ["path", { d: "M4 20v2h4.586L2 28.586 3.414 30 10 23.414V28h2v-8H4z" }],

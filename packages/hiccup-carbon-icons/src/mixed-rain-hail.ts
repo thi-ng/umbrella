@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#MIXED_RAIN_HAIL
+ */
 // prettier-ignore
-export const MIXED_RAIN_HAIL =
+export const MIXED_RAIN_HAIL: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

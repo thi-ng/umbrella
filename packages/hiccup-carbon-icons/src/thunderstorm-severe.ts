@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#THUNDERSTORM_SEVERE
+ */
 // prettier-ignore
-export const THUNDERSTORM_SEVERE =
+export const THUNDERSTORM_SEVERE: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", { d: "M21 30a1 1 0 01-.894-1.447l2-4a1 1 0 111.788.894l-2 4A.998.998 0 0121 30zM9 32a1 1 0 01-.894-1.447l2-4a1 1 0 111.788.894l-2 4A.998.998 0 019 32zM15.901 30.496l-1.736-.992L17.309 24H11.31l4.855-8.496 1.736.992L14.756 22h6.001l-4.856 8.496zM27.952 15a4.399 4.399 0 01.048.5 4.505 4.505 0 01-4.5 4.5H23v2h.5a6.508 6.508 0 006.5-6.5c0-.17-.031-.333-.044-.5z" }],
         ["path", { d: "M25.75 8h-1.5V4h1.5zM25 9a1 1 0 101 1 1 1 0 00-1-1z" }],

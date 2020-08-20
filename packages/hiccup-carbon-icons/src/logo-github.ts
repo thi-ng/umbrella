@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#LOGO_GITHUB
+ */
 // prettier-ignore
-export const LOGO_GITHUB =
+export const LOGO_GITHUB: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["path", 
             {

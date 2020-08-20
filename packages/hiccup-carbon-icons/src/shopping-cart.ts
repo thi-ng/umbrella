@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#SHOPPING_CART
+ */
 // prettier-ignore
-export const SHOPPING_CART =
+export const SHOPPING_CART: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["circle", 
             {

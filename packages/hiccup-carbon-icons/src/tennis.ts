@@ -1,5 +1,8 @@
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#TENNIS
+ */
 // prettier-ignore
-export const TENNIS =
+export const TENNIS: any[] =
     ["svg", { viewBox: "0 0 32 32" },
         ["rect", { rx: 2 }],
         ["path", { d: "M11 16a1 1 0 01-.707-1.707l7-7a1 1 0 111.414 1.414l-7 7A.996.996 0 0111 16z" }],
