@@ -33,6 +33,7 @@
         "readme": [
             "rdom",
             "hiccup-carbon-icons"
-        ]
+        ],
+        "screenshot": "examples/rdom-dnd.png"
     }
 }
