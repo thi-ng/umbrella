@@ -13,7 +13,7 @@ import type { MapLike } from "./api";
  * @param fn -
  * @param cache -
  */
-export function memoize1<A, B>(fn: Fn<A, B>, cache?: MapLike<A, B>) {
+export const memoize1 = <A, B>(fn: Fn<A, B>, cache?: MapLike<A, B>) => {
     !cache && (cache = new Map());
     return (x: A): B => {
         let res;
@@ -21,4 +21,4 @@ export function memoize1<A, B>(fn: Fn<A, B>, cache?: MapLike<A, B>) {
             ? cache!.get(x)!
             : (cache!.set(x, (res = fn(x))), res);
     };
-}
+};
