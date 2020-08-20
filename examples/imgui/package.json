@@ -45,6 +45,7 @@
             "geom",
             "hdom",
             "hdom-canvas",
+            "hiccup-carbon-icons",
             "imgui",
             "layout",
             "rstream",
