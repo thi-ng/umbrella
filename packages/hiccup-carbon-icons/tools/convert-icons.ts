@@ -20,6 +20,7 @@ for (let src of readdirSync(srcDir)) {
     execSync(`svgo -o tmp.svg ${srcDir}/${src}`);
     let res = execSync(interpolate(CONVERT, varName))
         .toString()
+        .replace(/export const [A-Z0-9_]+/, (x) => x + ": any[]")
         .replace(/,\s+\["path", \{ d: "M0 0h32v32H0z" \}\]/, "")
         .replace(/,\s+\["path", \{ d: "M32 32H0V0h32z" \}\]/, "")
         .replace(/,\s+\["path", \{ d: "M32 0v32H0V0z" \}\]/, "")
@@ -27,7 +28,11 @@ for (let src of readdirSync(srcDir)) {
     if (res.indexOf(`"svg", {`) < 0) {
         res = res.replace(`"svg",`, `"svg", { viewBox: "0 0 32 32" },`);
     }
-    res = "// prettier-ignore\n" + res;
+    res =
+        `/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#${varName}
+*/
+// prettier-ignore\n` + res;
     writeFileSync(`${destDir}/${dest}.ts`, res);
     files.push(dest);
 }

@@ -92,17 +92,18 @@ cd ../../hiccup-carbon-icons
 
 # clone carbon repo into local temp dir
 git clone https://github.com/carbon-design-system/carbon.git tmp
-# convert icons and write results to package src folder
-npx ts-node -P tools/tsconfig.json tools/convert-icons.ts src tmp/packages/icons/src/svg/32
+
+# convert original SVG icons and write results to package src folder
+yarn build:convert src tmp/packages/icons/src/svg/32
 
 # update contact sheet (will be written to package root)
-npx ts-node -P tools/tsconfig.json tools/contact-sheet.ts
+yarn build:sheet
 
 # open in browser
 open contact-sheet.html
 
 # fixup any conversion issues (rinse & repeat...)
-# e.g. in the latest version, several icons use paths w/ opacity=0 which need to be removed
+# e.g. in the latest version (2020/08), several icons use paths w/ opacity=0 which need to be removed
 
 # rebuild package
 yarn build

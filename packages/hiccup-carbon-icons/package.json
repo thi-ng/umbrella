@@ -29,6 +29,8 @@
         "build:es6": "tsc --declaration",
         "build:test": "rimraf build && tsc -p test/tsconfig.json",
         "build:check": "tsc --isolatedModules --noEmit",
+        "build:convert": "ts-node -P tools/tsconfig.json tools/convert-icons.ts",
+        "build:sheet": "ts-node -P tools/tsconfig.json tools/contact-sheet.ts",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.map *.d.ts .nyc_output build coverage doc lib",

@@ -73,8 +73,9 @@ A selection:
 
 | Screenshot                                                                                                              | Description                                           | Live demo                                              | Source                                                                              |
 | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png" width="240"/>           | Canvas based Immediate Mode GUI components            | [Demo](https://demo.thi.ng/umbrella/imgui/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui)            |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/parse-playground.png" width="240"/> | Parser grammar livecoding editor/playground & codegen | [Demo](https://demo.thi.ng/umbrella/parse-playground/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/parse-playground) |
-|                                                                                                                         | rdom drag & drop example                              | [Demo](https://demo.thi.ng/umbrella/rdom-dnd/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-dnd)         |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-dnd.png" width="240"/>         | rdom drag & drop example                              | [Demo](https://demo.thi.ng/umbrella/rdom-dnd/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-dnd)         |
 
 ## API
 
@@ -120,17 +121,18 @@ cd ../../hiccup-carbon-icons
 
 # clone carbon repo into local temp dir
 git clone https://github.com/carbon-design-system/carbon.git tmp
-# convert icons and write results to package src folder
-npx ts-node -P tools/tsconfig.json tools/convert-icons.ts src tmp/packages/icons/src/svg/32
+
+# convert original SVG icons and write results to package src folder
+yarn build:convert src tmp/packages/icons/src/svg/32
 
 # update contact sheet (will be written to package root)
-npx ts-node -P tools/tsconfig.json tools/contact-sheet.ts
+yarn build:sheet
 
 # open in browser
 open contact-sheet.html
 
 # fixup any conversion issues (rinse & repeat...)
-# e.g. in the latest version, several icons use paths w/ opacity=0 which need to be removed
+# e.g. in the latest version (2020/08), several icons use paths w/ opacity=0 which need to be removed
 
 # rebuild package
 yarn build
