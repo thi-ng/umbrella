@@ -107,7 +107,7 @@ export const sliderHRaw = (
     if (hover) {
         if (gui.isMouseDown()) {
             gui.activeID = id;
-            res = v = slider1Val(
+            res = slider1Val(
                 fit(gui.mouse[0], x, x + w - 1, min, max),
                 min,
                 max,

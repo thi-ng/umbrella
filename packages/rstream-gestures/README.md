@@ -52,7 +52,7 @@ yarn add @thi.ng/rstream-gestures
 <script src="https://unpkg.com/@thi.ng/rstream-gestures/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.22 KB / CJS: 1.27 KB / UMD: 1.36 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.21 KB / CJS: 1.27 KB / UMD: 1.36 KB
 
 ## Dependencies
 
@@ -77,6 +77,7 @@ A selection:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/gesture-analysis.png" width="240"/> | Mouse gesture / stroke analysis, simplification, corner detection | [Demo](https://demo.thi.ng/umbrella/gesture-analysis/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/gesture-analysis) |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-canvas-draw.jpg" width="240"/> | Interactive pattern drawing demo using transducers                | [Demo](https://demo.thi.ng/umbrella/hdom-canvas-draw/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-draw) |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png" width="240"/>           | Canvas based Immediate Mode GUI components                        | [Demo](https://demo.thi.ng/umbrella/imgui/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui)            |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/imgui-basics.png" width="240"/>     | Minimal IMGUI usage example                                       | [Demo](https://demo.thi.ng/umbrella/imgui-basics/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui-basics)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mandelbrot.jpg" width="240"/>       | Worker based, interactive Mandelbrot visualization                | [Demo](https://demo.thi.ng/umbrella/mandelbrot/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/mandelbrot)       |
 |                                                                                                                         | Basic rstream-gestures multi-touch demo                           | [Demo](https://demo.thi.ng/umbrella/multitouch/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/multitouch)       |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-graph.jpg" width="240"/>     | Minimal shader graph developed during livestream #2               | [Demo](https://demo.thi.ng/umbrella/shader-graph/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-graph)     |

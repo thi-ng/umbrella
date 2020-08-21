@@ -1,6 +1,6 @@
+import type { AppContext } from "../api";
 import { SLIDERS } from "../sliders";
 import { sidebar } from "./sidebar";
-import type { AppContext } from "../api";
 
 export const main = (ctx: AppContext) => {
     const bar = sidebar(ctx, ...SLIDERS);

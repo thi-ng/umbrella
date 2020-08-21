@@ -15,8 +15,14 @@ for e in $examples; do
         if [ ! -r "$e"/package.json ]; then
             continue
         fi
+        if grep --quiet '"skip": true' "$e"/package.json; then
+            continue
+        fi
         if grep --quiet build:webpack "$e"/package.json; then
             (cd "$e" && yarn build:webpack)
+            cp "$e"/index.html "$e"/out/index.html
+            js=$(basename $(ls "$e"/out/bundle*.js))
+            sed -i '' -E 's,<script type="text/javascript" src="\./src/index.ts",<script type="text/javascript" src="'"$js"'",' "$e"/out/index.html
         else
             (cd "$e" && yarn build)
         fi

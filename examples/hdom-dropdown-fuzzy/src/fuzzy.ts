@@ -1,7 +1,8 @@
+import type { IView } from "@thi.ng/atom";
 import { EV_SET_VALUE } from "@thi.ng/interceptors";
+import { toPath } from "@thi.ng/paths";
 import { comp, filterFuzzy, iterator, map } from "@thi.ng/transducers";
 import { DropdownItem, dropdownListeners, DropdownState } from "./dropdown";
-import type { IView } from "@thi.ng/atom";
 
 export interface FuzzyArgs {
     state: IView<DropdownState>;
@@ -60,7 +61,7 @@ export const fuzzyDropdown = (ctx: any, opts: FuzzyArgs) => {
         return [
             opts.dropdown,
             {
-                ...dropdownListeners(ctx, opts.state.path),
+                ...dropdownListeners(ctx, toPath(opts.state.path)),
                 openLabel: filterInput,
                 hoverLabel: opts.hoverLabel,
                 noItems: "no matches",

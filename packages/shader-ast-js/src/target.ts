@@ -54,6 +54,9 @@ const PRELUDE = [
     "vec2",
     "vec3",
     "vec4",
+    "bvec2",
+    "bvec3",
+    "bvec4",
     "ivec2",
     "ivec3",
     "ivec4",
@@ -174,6 +177,9 @@ export const targetJS = () => {
                 case "vec2":
                 case "vec3":
                 case "vec4":
+                case "bvec2":
+                case "bvec3":
+                case "bvec4":
                 case "ivec2":
                 case "ivec3":
                 case "ivec4":

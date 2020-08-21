@@ -1,17 +1,8 @@
-export const WARNING = [
-    "svg",
-    {
-        "fill-rule": "evenodd",
-        viewBox: "0 0 24 21",
-    },
-    ["path", { d: "M12 0L0 21h24L12 0zm0 3l9 16H3l9-16z" }],
-    ["path", { d: "M11.2 8.4V10l.4 4h.8l.4-4V8.4z" }],
-    [
-        "circle",
-        {
-            r: 0.8,
-            cy: 16,
-            cx: 12,
-        },
-    ],
-];
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#WARNING
+ */
+// prettier-ignore
+export const WARNING: any[] =
+    ["svg", { viewBox: "0 0 32 32" },
+        ["path", { d: "M16 2a14 14 0 1014 14A14 14 0 0016 2zm0 26a12 12 0 1112-12 12 12 0 01-12 12z" }],
+        ["path", { d: "M15 8h2v11h-2zM16 22a1.5 1.5 0 101.5 1.5A1.5 1.5 0 0016 22z" }]];

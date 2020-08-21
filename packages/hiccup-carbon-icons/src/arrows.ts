@@ -1,15 +1,7 @@
-export const ARROWS = [
-    "svg",
-    { viewBox: "0 0 16 16" },
-    [
-        "g",
-        { "fill-rule": "nonzero" },
-        [
-            "path",
-            {
-                d:
-                    "M12 14.186l2.724-2.477.686.726-3.875 3.524-3.875-3.524.686-.726L11 14.122V0h1v14.186zM5.038 1.805V16h-1V1.805L1.348 4.25l-.685-.727L4.538 0l3.875 3.523-.686.727-2.69-2.445z",
-            },
-        ],
-    ],
-];
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#ARROWS
+ */
+// prettier-ignore
+export const ARROWS: any[] =
+    ["svg", { viewBox: "0 0 32 32" },
+        ["path", { d: "M27.6 20.6L24 24.2V4h-2v20.2l-3.6-3.6L17 22l6 6 6-6zM9 4l-6 6 1.4 1.4L8 7.8V28h2V7.8l3.6 3.6L15 10z" }]];

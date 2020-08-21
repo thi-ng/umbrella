@@ -261,6 +261,7 @@ export type BVecOpVV = Fn3<BVec | null, ReadonlyBVec, ReadonlyBVec, BVec>;
 export type BVecOpVN = Fn3<BVec | null, ReadonlyBVec, boolean, BVec>;
 
 export type ToBVecOpV = Fn2<BVec | null, ReadonlyVec, BVec>;
+export type FromBVecOpV = Fn2<BVec | null, ReadonlyBVec, Vec>;
 
 export type MultiBVecOpV = MultiVecOpImpl<BVecOpV>;
 export type MultiBVecOpVV = MultiVecOpImpl<BVecOpVV>;
@@ -268,6 +269,7 @@ export type MultiBVecOpVN = MultiVecOpImpl<BVecOpVN>;
 export type MultiBVecOpRoV<T> = MultiVecOpImpl<BVecOpRoV<T>>;
 
 export type MultiToBVecOpV = MultiVecOpImpl<ToBVecOpV>;
+export type MultiFromBVecOpV = MultiVecOpImpl<FromBVecOpV>;
 
 export type CompareOp = Fn3<BVec | null, ReadonlyVec, ReadonlyVec, BVec>;
 export type MultiCompareOp = MultiVecOpImpl<CompareOp>;

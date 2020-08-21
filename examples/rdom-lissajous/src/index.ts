@@ -1,5 +1,5 @@
 import type { IDeref } from "@thi.ng/api";
-import { INFO_SOLID as ICON, withSize } from "@thi.ng/hiccup-carbon-icons";
+import { INFORMATION as ICON, withSize } from "@thi.ng/hiccup-carbon-icons";
 import { div, inputRange, label } from "@thi.ng/hiccup-html";
 import { $compile } from "@thi.ng/rdom";
 import { $canvas } from "@thi.ng/rdom-canvas";

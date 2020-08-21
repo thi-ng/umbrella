@@ -8,6 +8,7 @@
     "scripts": {
         "clean": "rm -rf .cache build out",
         "build": "yarn clean && parcel build index.html -d out --no-source-maps --no-cache --experimental-scope-hoisting --detailed-report --public-url ./",
+        "build:webpack": "../../node_modules/.bin/webpack --mode production",
         "start": "parcel index.html -p 8080 --open --no-cache"
     },
     "dependencies": {
@@ -27,7 +28,7 @@
     "devDependencies": {
         "@types/node": "^13.7.4",
         "parcel-bundler": "^1.12.4",
-        "terser": "^4.8.0",
+        "terser": "^5.1.0",
         "typescript": "^3.9.7"
     },
     "browserslist": [

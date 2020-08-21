@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.2.54](https://github.com/thi-ng/umbrella/compare/@thi.ng/lsys@0.2.53...@thi.ng/lsys@0.2.54) (2020-07-28)
+## [0.2.58](https://github.com/thi-ng/umbrella/compare/@thi.ng/lsys@0.2.57...@thi.ng/lsys@0.2.58) (2020-08-20)
 
 **Note:** Version bump only for package @thi.ng/lsys
 
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.2.53](https://github.com/thi-ng/umbrella/compare/@thi.ng/lsys@0.2.52...@thi.ng/lsys@0.2.53) (2020-07-17)
+## [0.2.57](https://github.com/thi-ng/umbrella/compare/@thi.ng/lsys@0.2.56...@thi.ng/lsys@0.2.57) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/lsys
 
@@ -19,71 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.2.52](https://github.com/thi-ng/umbrella/compare/@thi.ng/lsys@0.2.51...@thi.ng/lsys@0.2.52) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/lsys
-
-
-
-
-
-## [0.2.51](https://github.com/thi-ng/umbrella/compare/@thi.ng/lsys@0.2.50...@thi.ng/lsys@0.2.51) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/lsys
-
-
-
-
-
-## [0.2.50](https://github.com/thi-ng/umbrella/compare/@thi.ng/lsys@0.2.49...@thi.ng/lsys@0.2.50) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/lsys
-
-
-
-
-
-## [0.2.49](https://github.com/thi-ng/umbrella/compare/@thi.ng/lsys@0.2.48...@thi.ng/lsys@0.2.49) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/lsys
-
-
-
-
-
-## [0.2.48](https://github.com/thi-ng/umbrella/compare/@thi.ng/lsys@0.2.47...@thi.ng/lsys@0.2.48) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/lsys
-
-
-
-
-
-## [0.2.47](https://github.com/thi-ng/umbrella/compare/@thi.ng/lsys@0.2.46...@thi.ng/lsys@0.2.47) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/lsys
-
-
-
-
-
-## [0.2.46](https://github.com/thi-ng/umbrella/compare/@thi.ng/lsys@0.2.45...@thi.ng/lsys@0.2.46) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/lsys
-
-
-
-
-
-## [0.2.45](https://github.com/thi-ng/umbrella/compare/@thi.ng/lsys@0.2.44...@thi.ng/lsys@0.2.45) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/lsys
-
-
-
-
-
-## [0.2.44](https://github.com/thi-ng/umbrella/compare/@thi.ng/lsys@0.2.43...@thi.ng/lsys@0.2.44) (2020-05-29)
+## [0.2.56](https://github.com/thi-ng/umbrella/compare/@thi.ng/lsys@0.2.55...@thi.ng/lsys@0.2.56) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/lsys
 

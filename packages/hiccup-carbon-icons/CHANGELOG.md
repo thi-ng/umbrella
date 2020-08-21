@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.0.49](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-carbon-icons@1.0.48...@thi.ng/hiccup-carbon-icons@1.0.49) (2020-07-28)
+## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-carbon-icons@2.0.0...@thi.ng/hiccup-carbon-icons@2.0.1) (2020-08-20)
 
 **Note:** Version bump only for package @thi.ng/hiccup-carbon-icons
 
@@ -11,7 +11,28 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.0.48](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-carbon-icons@1.0.47...@thi.ng/hiccup-carbon-icons@1.0.48) (2020-07-08)
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-carbon-icons@1.0.51...@thi.ng/hiccup-carbon-icons@2.0.0) (2020-08-19)
+
+
+### Features
+
+* **hiccup-carbon-icons:** add/update all icons ([22cfefc](https://github.com/thi-ng/umbrella/commit/22cfefcccaab5448e1117cb55d448cd313c48e95))
+
+
+### BREAKING CHANGES
+
+* **hiccup-carbon-icons:** update all icons to latest carbon version
+
+- some icons have been removed/replaced or renamed
+- full set now counting ~1100 icons
+- add new conversion script
+- update readme
+
+
+
+
+
+## [1.0.51](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-carbon-icons@1.0.50...@thi.ng/hiccup-carbon-icons@1.0.51) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/hiccup-carbon-icons
 
@@ -19,71 +40,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.0.47](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-carbon-icons@1.0.46...@thi.ng/hiccup-carbon-icons@1.0.47) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/hiccup-carbon-icons
-
-
-
-
-
-## [1.0.46](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-carbon-icons@1.0.45...@thi.ng/hiccup-carbon-icons@1.0.46) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/hiccup-carbon-icons
-
-
-
-
-
-## [1.0.45](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-carbon-icons@1.0.44...@thi.ng/hiccup-carbon-icons@1.0.45) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/hiccup-carbon-icons
-
-
-
-
-
-## [1.0.44](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-carbon-icons@1.0.43...@thi.ng/hiccup-carbon-icons@1.0.44) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/hiccup-carbon-icons
-
-
-
-
-
-## [1.0.43](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-carbon-icons@1.0.42...@thi.ng/hiccup-carbon-icons@1.0.43) (2020-06-28)
-
-**Note:** Version bump only for package @thi.ng/hiccup-carbon-icons
-
-
-
-
-
-## [1.0.42](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-carbon-icons@1.0.41...@thi.ng/hiccup-carbon-icons@1.0.42) (2020-06-24)
-
-**Note:** Version bump only for package @thi.ng/hiccup-carbon-icons
-
-
-
-
-
-## [1.0.41](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-carbon-icons@1.0.40...@thi.ng/hiccup-carbon-icons@1.0.41) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/hiccup-carbon-icons
-
-
-
-
-
-## [1.0.40](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-carbon-icons@1.0.39...@thi.ng/hiccup-carbon-icons@1.0.40) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/hiccup-carbon-icons
-
-
-
-
-
-## [1.0.39](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-carbon-icons@1.0.38...@thi.ng/hiccup-carbon-icons@1.0.39) (2020-06-01)
+## [1.0.50](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-carbon-icons@1.0.49...@thi.ng/hiccup-carbon-icons@1.0.50) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/hiccup-carbon-icons
 

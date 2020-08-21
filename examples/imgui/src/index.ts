@@ -3,15 +3,6 @@ import { timedResult } from "@thi.ng/bench";
 import { line, normalizedPath, pathFromSvg } from "@thi.ng/geom";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { DOWNLOAD, RESTART } from "@thi.ng/hiccup-carbon-icons";
-import { gridLayout, GridLayout, layoutBox } from "@thi.ng/layout";
-import { clamp, PI } from "@thi.ng/math";
-import { setInManyUnsafe } from "@thi.ng/paths";
-import { gestureStream } from "@thi.ng/rstream-gestures";
-import { float } from "@thi.ng/strings";
-import { comp, iterator, map, mapcat, step } from "@thi.ng/transducers";
-import { updateDOM } from "@thi.ng/transducers-hdom";
-import { sma } from "@thi.ng/transducers-stats";
-import { add2, hash, min2, setC2, Vec, vecOf, ZERO2 } from "@thi.ng/vectors";
 import {
     buttonH,
     buttonV,
@@ -36,6 +27,9 @@ import {
     toggle,
     xyPad,
 } from "@thi.ng/imgui";
+import { gridLayout, GridLayout, layoutBox } from "@thi.ng/layout";
+import { clamp, PI } from "@thi.ng/math";
+import { setInManyUnsafe } from "@thi.ng/paths";
 import {
     fromAtom,
     fromDOMEvent,
@@ -44,6 +38,12 @@ import {
     sidechainPartition,
     sync,
 } from "@thi.ng/rstream";
+import { gestureStream } from "@thi.ng/rstream-gestures";
+import { float } from "@thi.ng/strings";
+import { comp, iterator, map, mapcat, step } from "@thi.ng/transducers";
+import { updateDOM } from "@thi.ng/transducers-hdom";
+import { sma } from "@thi.ng/transducers-stats";
+import { add2, hash, min2, setC2, Vec, vecOf, ZERO2 } from "@thi.ng/vectors";
 
 // define theme colors in RGBA format for future compatibility with
 // WebGL backend
@@ -83,7 +83,7 @@ const THEME_IDS = ["Default", "Raspberry"];
 // (transforms each path into one only consisting of cubic spline segments)
 const mkIcon = (icon: any[]) => [
     "g",
-    { stroke: "none" },
+    { stroke: "none", scale: 16 / 32 },
     ...iterator(
         comp(
             mapcat((p) => pathFromSvg(p[1].d)),
@@ -97,9 +97,23 @@ const mkIcon = (icon: any[]) => [
 const ICON1 = mkIcon(DOWNLOAD);
 const ICON2 = mkIcon(RESTART);
 
+interface AppState {
+    uiVisible: boolean;
+    uiMode: number;
+    theme: number;
+    radius: number;
+    gridW: number;
+    rgb: number[];
+    pos: Vec;
+    txt: string;
+    toggles: boolean[];
+    flags: boolean[];
+    radio: number;
+}
+
 // main immutable app state wrapper (with time travel)
 const DB = new History(
-    new Atom({
+    new Atom<AppState>({
         uiVisible: true,
         uiMode: 0,
         theme: 0,

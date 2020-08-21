@@ -160,15 +160,7 @@ export const ringRaw = (
         gui.hotID = id;
         if (gui.isMouseDown()) {
             gui.activeID = id;
-            res = v = dialVal(
-                gui.mouse,
-                pos,
-                startTheta,
-                thetaGap,
-                min,
-                max,
-                prec
-            );
+            res = dialVal(gui.mouse, pos, startTheta, thetaGap, min, max, prec);
         }
         info && draw && tooltipRaw(gui, info);
     }

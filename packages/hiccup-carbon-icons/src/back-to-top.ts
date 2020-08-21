@@ -1,15 +1,7 @@
-export const BACK_TO_TOP = [
-    "svg",
-    { viewBox: "0 0 11 16" },
-    [
-        "g",
-        { "fill-rule": "nonzero" },
-        [
-            "path",
-            {
-                d:
-                    "M0 1V0h11v1zM5 4.984L.862 9.357.135 8.67 5.502 3l5.363 5.673-.727.687-4.137-4.376V16H5V4.984z",
-            },
-        ],
-    ],
-];
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#BACK_TO_TOP
+ */
+// prettier-ignore
+export const BACK_TO_TOP: any[] =
+    ["svg", { viewBox: "0 0 32 32" },
+        ["path", { d: "M16 14L6 24l1.4 1.4 8.6-8.6 8.6 8.6L26 24zM4 8h24v2H4z" }]];

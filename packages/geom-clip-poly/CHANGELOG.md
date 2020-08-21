@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.0.27](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-poly@1.0.26...@thi.ng/geom-clip-poly@1.0.27) (2020-07-28)
+## [1.0.31](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-poly@1.0.30...@thi.ng/geom-clip-poly@1.0.31) (2020-08-20)
 
 **Note:** Version bump only for package @thi.ng/geom-clip-poly
 
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.0.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-poly@1.0.25...@thi.ng/geom-clip-poly@1.0.26) (2020-07-17)
+## [1.0.30](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-poly@1.0.29...@thi.ng/geom-clip-poly@1.0.30) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/geom-clip-poly
 
@@ -19,79 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.0.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-poly@1.0.24...@thi.ng/geom-clip-poly@1.0.25) (2020-07-17)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-poly
-
-
-
-
-
-## [1.0.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-poly@1.0.23...@thi.ng/geom-clip-poly@1.0.24) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-poly
-
-
-
-
-
-## [1.0.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-poly@1.0.22...@thi.ng/geom-clip-poly@1.0.23) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-poly
-
-
-
-
-
-## [1.0.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-poly@1.0.21...@thi.ng/geom-clip-poly@1.0.22) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-poly
-
-
-
-
-
-## [1.0.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-poly@1.0.20...@thi.ng/geom-clip-poly@1.0.21) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-poly
-
-
-
-
-
-## [1.0.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-poly@1.0.19...@thi.ng/geom-clip-poly@1.0.20) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-poly
-
-
-
-
-
-## [1.0.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-poly@1.0.18...@thi.ng/geom-clip-poly@1.0.19) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-poly
-
-
-
-
-
-## [1.0.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-poly@1.0.17...@thi.ng/geom-clip-poly@1.0.18) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-poly
-
-
-
-
-
-## [1.0.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-poly@1.0.16...@thi.ng/geom-clip-poly@1.0.17) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-poly
-
-
-
-
-
-## [1.0.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-poly@1.0.15...@thi.ng/geom-clip-poly@1.0.16) (2020-05-29)
+## [1.0.29](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-poly@1.0.28...@thi.ng/geom-clip-poly@1.0.29) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/geom-clip-poly
 

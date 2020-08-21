@@ -1,15 +1,7 @@
-export const CODE = [
-    "svg",
-    { viewBox: "0 0 16 10" },
-    [
-        "g",
-        { "fill-rule": "nonzero" },
-        [
-            "path",
-            {
-                d:
-                    "M1.363 5.098l2.928 3.16-.733.68L0 5.098l3.558-3.84.733.68zM14.637 5.098l-2.928-3.16.733-.68L16 5.098l-3.558 3.84-.733-.68zM6.466 10l-.927-.388L9.56 0l.927.388z",
-            },
-        ],
-    ],
-];
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#CODE
+ */
+// prettier-ignore
+export const CODE: any[] =
+    ["svg", { viewBox: "0 0 32 32" },
+        ["path", { d: "M31 16l-7 7-1.41-1.41L28.17 16l-5.58-5.59L24 9l7 7zM1 16l7-7 1.41 1.41L3.83 16l5.58 5.59L8 23l-7-7zM12.419 25.484L17.639 6l1.932.518L14.35 26z" }]];

@@ -1,5 +1,5 @@
-import { link } from "./link";
 import type { AppContext } from "../api";
+import { link } from "./link";
 
 /**
  * Link component which links to given SHA commit hash using the

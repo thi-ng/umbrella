@@ -3,7 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.4.0...@thi.ng/pixel@0.4.1) (2020-07-28)
+## [0.4.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.4.2...@thi.ng/pixel@0.4.3) (2020-08-17)
+
+**Note:** Version bump only for package @thi.ng/pixel
+
+
+
+
+
+## [0.4.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.4.1...@thi.ng/pixel@0.4.2) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/pixel
 
@@ -17,54 +25,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **pixel:** add flipY() ([a5593c0](https://github.com/thi-ng/umbrella/commit/a5593c06a6ae61eccb9ecbaa4b3828ce0b29fbc0))
-
-
-
-
-
-## [0.3.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.3.5...@thi.ng/pixel@0.3.6) (2020-07-17)
-
-**Note:** Version bump only for package @thi.ng/pixel
-
-
-
-
-
-## [0.3.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.3.4...@thi.ng/pixel@0.3.5) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/pixel
-
-
-
-
-
-## [0.3.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.3.3...@thi.ng/pixel@0.3.4) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/pixel
-
-
-
-
-
-## [0.3.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.3.2...@thi.ng/pixel@0.3.3) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/pixel
-
-
-
-
-
-## [0.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.3.1...@thi.ng/pixel@0.3.2) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/pixel
-
-
-
-
-
-## [0.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.3.0...@thi.ng/pixel@0.3.1) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/pixel
 
 
 

@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.11.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.11.1...@thi.ng/geom@1.11.2) (2020-07-28)
+## [1.11.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.11.5...@thi.ng/geom@1.11.6) (2020-08-20)
 
 **Note:** Version bump only for package @thi.ng/geom
 
@@ -11,7 +11,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.11.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.11.0...@thi.ng/geom@1.11.1) (2020-07-17)
+## [1.11.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.11.4...@thi.ng/geom@1.11.5) (2020-08-17)
+
+**Note:** Version bump only for package @thi.ng/geom
+
+
+
+
+
+## [1.11.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.11.3...@thi.ng/geom@1.11.4) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/geom
 
@@ -36,62 +44,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.10.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.10.6...@thi.ng/geom@1.10.7) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [1.10.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.10.5...@thi.ng/geom@1.10.6) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [1.10.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.10.4...@thi.ng/geom@1.10.5) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [1.10.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.10.3...@thi.ng/geom@1.10.4) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [1.10.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.10.2...@thi.ng/geom@1.10.3) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [1.10.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.10.1...@thi.ng/geom@1.10.2) (2020-06-28)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [1.10.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.10.0...@thi.ng/geom@1.10.1) (2020-06-24)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
 # [1.10.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.9.8...@thi.ng/geom@1.10.0) (2020-06-20)
 
 
@@ -99,38 +51,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **geom:** add offset() & initial impls ([819afd1](https://github.com/thi-ng/umbrella/commit/819afd13896661266653a3b71b96ed0549b406ba))
 * **geom:** add rectFromCentroid() ([7837961](https://github.com/thi-ng/umbrella/commit/78379612addef0563d09fccb3ed8bb9addd739fc))
-
-
-
-
-
-## [1.9.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.9.7...@thi.ng/geom@1.9.8) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [1.9.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.9.6...@thi.ng/geom@1.9.7) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [1.9.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.9.5...@thi.ng/geom@1.9.6) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [1.9.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.9.4...@thi.ng/geom@1.9.5) (2020-05-29)
-
-**Note:** Version bump only for package @thi.ng/geom
 
 
 

@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.0.54](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@1.0.53...@thi.ng/cache@1.0.54) (2020-07-28)
+## [1.0.56](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@1.0.55...@thi.ng/cache@1.0.56) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/cache
 
@@ -11,79 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.0.53](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@1.0.52...@thi.ng/cache@1.0.53) (2020-07-17)
-
-**Note:** Version bump only for package @thi.ng/cache
-
-
-
-
-
-## [1.0.52](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@1.0.51...@thi.ng/cache@1.0.52) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/cache
-
-
-
-
-
-## [1.0.51](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@1.0.50...@thi.ng/cache@1.0.51) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/cache
-
-
-
-
-
-## [1.0.50](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@1.0.49...@thi.ng/cache@1.0.50) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/cache
-
-
-
-
-
-## [1.0.49](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@1.0.48...@thi.ng/cache@1.0.49) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/cache
-
-
-
-
-
-## [1.0.48](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@1.0.47...@thi.ng/cache@1.0.48) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/cache
-
-
-
-
-
-## [1.0.47](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@1.0.46...@thi.ng/cache@1.0.47) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/cache
-
-
-
-
-
-## [1.0.46](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@1.0.45...@thi.ng/cache@1.0.46) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/cache
-
-
-
-
-
-## [1.0.45](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@1.0.44...@thi.ng/cache@1.0.45) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/cache
-
-
-
-
-
-## [1.0.44](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@1.0.43...@thi.ng/cache@1.0.44) (2020-05-29)
+## [1.0.55](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@1.0.54...@thi.ng/cache@1.0.55) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/cache
 

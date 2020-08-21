@@ -1,11 +1,11 @@
 import { pager } from "@thi.ng/hdom-components";
+import type { AppContext } from "../api";
 import { SET_PAGE, SET_SORT } from "../events";
 import { PAGE_LEN } from "../handlers";
 import { button } from "./button";
 import { eventLink } from "./event-link";
 import { section } from "./section";
 import { table } from "./table";
-import type { AppContext } from "../api";
 
 export const tripleTable = () => {
     const _pager = pager({

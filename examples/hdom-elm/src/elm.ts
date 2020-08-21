@@ -1,3 +1,4 @@
+import type { Fn, Fn2 } from "@thi.ng/api";
 import {
     DEFAULT_IMPL,
     HDOMImplementation,
@@ -5,7 +6,6 @@ import {
     resolveRoot,
 } from "@thi.ng/hdom";
 import { derefContext } from "@thi.ng/hiccup";
-import type { Fn, Fn2 } from "@thi.ng/api";
 import type { Event, Signal } from "./api";
 
 export const mount = <T>(

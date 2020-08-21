@@ -1,14 +1,8 @@
-export const DASHBOARD = [
-    "svg",
-    {
-        "fill-rule": "evenodd",
-        viewBox: "0 0 24 24",
-    },
-    [
-        "path",
-        {
-            d:
-                "M0 0v24h24V0H0zm1 23V7h8v16H1zm22 0H10v-8h13v8zm0-9H10V7h13v7zM1 6V1h22v5H1z",
-        },
-    ],
-];
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#DASHBOARD
+ */
+// prettier-ignore
+export const DASHBOARD: any[] =
+    ["svg", { viewBox: "0 0 32 32" },
+        ["path", { d: "M24 21h2v5h-2zM20 16h2v10h-2zM11 26a5.006 5.006 0 01-5-5h2a3 3 0 103-3v-2a5 5 0 010 10z" }],
+        ["path", { d: "M28 2H4a2.002 2.002 0 00-2 2v24a2.002 2.002 0 002 2h24a2.003 2.003 0 002-2V4a2.002 2.002 0 00-2-2zm0 9H14V4h14zM12 4v7H4V4zM4 28V13h24l.002 15z" }]];

@@ -1,15 +1,7 @@
-export const MINIMIZE = [
-    "svg",
-    { viewBox: "0 0 16 16" },
-    [
-        "g",
-        { "fill-rule": "nonzero" },
-        [
-            "path",
-            {
-                d:
-                    "M4.998 11.709L.704 16.004l-.708-.708 4.274-4.273L1.995 11l.01-1 3.992.04L6 14H5l-.002-2.291zM11.707 5H14v1h-3.997L10 2h1l.002 2.291 4.291-4.29.707.706L11.707 5z",
-            },
-        ],
-    ],
-];
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#MINIMIZE
+ */
+// prettier-ignore
+export const MINIMIZE: any[] =
+    ["svg", { viewBox: "0 0 32 32" },
+        ["path", { d: "M6 17v2h5.59L2 28.58 3.41 30 13 20.41V26h2v-9H6zM30 3.42L28.59 2 19 11.59V6h-2v9h9v-2h-5.59L30 3.42z" }]];

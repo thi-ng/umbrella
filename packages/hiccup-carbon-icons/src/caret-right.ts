@@ -1,11 +1,7 @@
-export const CARET_RIGHT = [
-    "svg",
-    { viewBox: "0 0 5 10" },
-    [
-        "path",
-        {
-            "fill-rule": "evenodd",
-            d: "M0 10l4.998-5L0 0z",
-        },
-    ],
-];
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#CARET_RIGHT
+ */
+// prettier-ignore
+export const CARET_RIGHT: any[] =
+    ["svg", { viewBox: "0 0 32 32" },
+        ["path", { d: "M12 8l10 8-10 8z" }]];

@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.2.1...@thi.ng/geom-clip-line@1.2.2) (2020-07-28)
+## [1.2.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.2.5...@thi.ng/geom-clip-line@1.2.6) (2020-08-20)
 
 **Note:** Version bump only for package @thi.ng/geom-clip-line
 
@@ -11,7 +11,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.2.0...@thi.ng/geom-clip-line@1.2.1) (2020-07-17)
+## [1.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.2.4...@thi.ng/geom-clip-line@1.2.5) (2020-08-17)
+
+**Note:** Version bump only for package @thi.ng/geom-clip-line
+
+
+
+
+
+## [1.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.2.3...@thi.ng/geom-clip-line@1.2.4) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/geom-clip-line
 
@@ -30,76 +38,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.1.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.1.3...@thi.ng/geom-clip-line@1.1.4) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-line
-
-
-
-
-
-## [1.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.1.2...@thi.ng/geom-clip-line@1.1.3) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-line
-
-
-
-
-
-## [1.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.1.1...@thi.ng/geom-clip-line@1.1.2) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-line
-
-
-
-
-
-## [1.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.1.0...@thi.ng/geom-clip-line@1.1.1) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-line
-
-
-
-
-
 # [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.0.19...@thi.ng/geom-clip-line@1.1.0) (2020-06-20)
 
 
 ### Features
 
 * **geom-clip-line:** add clipLinePoly(), update deps ([e096efd](https://github.com/thi-ng/umbrella/commit/e096efdbe71549a781daa5b154c47e5e0eea33d1))
-
-
-
-
-
-## [1.0.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.0.18...@thi.ng/geom-clip-line@1.0.19) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-line
-
-
-
-
-
-## [1.0.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.0.17...@thi.ng/geom-clip-line@1.0.18) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-line
-
-
-
-
-
-## [1.0.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.0.16...@thi.ng/geom-clip-line@1.0.17) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-line
-
-
-
-
-
-## [1.0.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.0.15...@thi.ng/geom-clip-line@1.0.16) (2020-05-29)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-line
 
 
 

@@ -1,7 +1,7 @@
 import {
     canvas2d,
-    GRAY_ALPHA8,
     GRAY8,
+    GRAY_ALPHA8,
     imagePromise,
     PackedBuffer,
     RGB565,

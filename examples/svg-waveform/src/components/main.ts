@@ -1,7 +1,7 @@
+import type { AppContext } from "../api";
 import { SLIDERS } from "../sliders";
 import { sidebar } from "./sidebar";
 import { waveform } from "./waveform";
-import type { AppContext } from "../api";
 
 export function main(ctx: AppContext) {
     const bar = sidebar(ctx, ...SLIDERS);

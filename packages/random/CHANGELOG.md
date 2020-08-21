@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.4.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.4.14...@thi.ng/random@1.4.15) (2020-07-28)
+## [1.4.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.4.16...@thi.ng/random@1.4.17) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/random
 
@@ -11,39 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.4.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.4.13...@thi.ng/random@1.4.14) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/random
-
-
-
-
-
-## [1.4.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.4.12...@thi.ng/random@1.4.13) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/random
-
-
-
-
-
-## [1.4.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.4.11...@thi.ng/random@1.4.12) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/random
-
-
-
-
-
-## [1.4.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.4.10...@thi.ng/random@1.4.11) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/random
-
-
-
-
-
-## [1.4.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.4.9...@thi.ng/random@1.4.10) (2020-06-01)
+## [1.4.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@1.4.15...@thi.ng/random@1.4.16) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/random
 

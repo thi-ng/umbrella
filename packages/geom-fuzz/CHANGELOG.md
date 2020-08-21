@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-fuzz@0.1.11...@thi.ng/geom-fuzz@0.1.12) (2020-07-28)
+## [0.1.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-fuzz@0.1.15...@thi.ng/geom-fuzz@0.1.16) (2020-08-20)
 
 **Note:** Version bump only for package @thi.ng/geom-fuzz
 
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.1.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-fuzz@0.1.10...@thi.ng/geom-fuzz@0.1.11) (2020-07-25)
+## [0.1.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-fuzz@0.1.14...@thi.ng/geom-fuzz@0.1.15) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/geom-fuzz
 
@@ -19,79 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.1.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-fuzz@0.1.9...@thi.ng/geom-fuzz@0.1.10) (2020-07-25)
-
-**Note:** Version bump only for package @thi.ng/geom-fuzz
-
-
-
-
-
-## [0.1.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-fuzz@0.1.8...@thi.ng/geom-fuzz@0.1.9) (2020-07-17)
-
-**Note:** Version bump only for package @thi.ng/geom-fuzz
-
-
-
-
-
-## [0.1.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-fuzz@0.1.7...@thi.ng/geom-fuzz@0.1.8) (2020-07-17)
-
-**Note:** Version bump only for package @thi.ng/geom-fuzz
-
-
-
-
-
-## [0.1.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-fuzz@0.1.6...@thi.ng/geom-fuzz@0.1.7) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/geom-fuzz
-
-
-
-
-
-## [0.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-fuzz@0.1.5...@thi.ng/geom-fuzz@0.1.6) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/geom-fuzz
-
-
-
-
-
-## [0.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-fuzz@0.1.4...@thi.ng/geom-fuzz@0.1.5) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/geom-fuzz
-
-
-
-
-
-## [0.1.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-fuzz@0.1.3...@thi.ng/geom-fuzz@0.1.4) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/geom-fuzz
-
-
-
-
-
-## [0.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-fuzz@0.1.2...@thi.ng/geom-fuzz@0.1.3) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/geom-fuzz
-
-
-
-
-
-## [0.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-fuzz@0.1.1...@thi.ng/geom-fuzz@0.1.2) (2020-06-28)
-
-**Note:** Version bump only for package @thi.ng/geom-fuzz
-
-
-
-
-
-## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-fuzz@0.1.0...@thi.ng/geom-fuzz@0.1.1) (2020-06-24)
+## [0.1.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-fuzz@0.1.13...@thi.ng/geom-fuzz@0.1.14) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/geom-fuzz
 

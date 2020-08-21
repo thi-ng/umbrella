@@ -19,6 +19,7 @@ import { seq, seqD } from "./combinators/seq";
 import { xform } from "./combinators/xform";
 import { defContext } from "./context";
 import { ALPHA, ALPHA_NUM } from "./presets/alpha";
+import { BIT } from "./presets/bits";
 import { DIGIT } from "./presets/digits";
 import { ESC, UNICODE } from "./presets/escape";
 import { HEX_DIGIT } from "./presets/hex";
@@ -46,6 +47,7 @@ import { join, xfJoin } from "./xform/join";
 import { nest } from "./xform/nest";
 import { xfFloat, xfInt } from "./xform/number";
 import { print, xfPrint } from "./xform/print";
+import { xfReplace } from "./xform/replace";
 import { xfTrim } from "./xform/trim";
 import { withID } from "./xform/with-id";
 
@@ -122,7 +124,7 @@ const ALT = seq(
 );
 
 const RULE_XF = hoist(
-    seq([stringD("=>"), WS1, alt([SYM, RULE_REF]), WS1], "xform")
+    seq([stringD("=>"), WS1, alt([SYM, RULE_REF, STRING]), WS1], "xform")
 );
 
 const RULE = seq(
@@ -196,6 +198,8 @@ compile.addAll({
             const $xf = lang.rules[$id];
             if (!$xf) illegalArgs(`missing xform rule: ${$id}`);
             parser = nest(parser, $xf);
+        } else if (xf.id === "string") {
+            parser = xform(parser, xfReplace(xf.result));
         }
         return parser;
     },
@@ -377,6 +381,7 @@ export const defGrammar = (
 ) => {
     opts = { debug: false, optimize: true, ...opts };
     env = {
+        binary: xfInt(2),
         collect: xfCollect,
         count: xfCount,
         discard: xfDiscard,
@@ -401,6 +406,7 @@ export const defGrammar = (
                 rules: {
                     ALPHA_NUM,
                     ALPHA,
+                    BIT,
                     DIGIT,
                     DNL,
                     END: inputEnd,

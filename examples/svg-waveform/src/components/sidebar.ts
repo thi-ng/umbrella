@@ -1,8 +1,8 @@
+import type { AppContext } from "../api";
 import * as ev from "../events";
 import { buttonGroup } from "./button-group";
 import { link } from "./link";
 import { slider, SliderOpts } from "./slider";
-import type { AppContext } from "../api";
 
 export function sidebar(ctx: AppContext, ...specs: SliderOpts[]) {
     const sliders = specs.map((s) => slider(ctx, s));

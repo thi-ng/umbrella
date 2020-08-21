@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [3.5.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.5.5...@thi.ng/hiccup-svg@3.5.6) (2020-07-28)
+## [3.5.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.5.9...@thi.ng/hiccup-svg@3.5.10) (2020-08-20)
 
 **Note:** Version bump only for package @thi.ng/hiccup-svg
 
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [3.5.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.5.4...@thi.ng/hiccup-svg@3.5.5) (2020-07-17)
+## [3.5.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.5.8...@thi.ng/hiccup-svg@3.5.9) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/hiccup-svg
 
@@ -19,31 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [3.5.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.5.3...@thi.ng/hiccup-svg@3.5.4) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/hiccup-svg
-
-
-
-
-
-## [3.5.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.5.2...@thi.ng/hiccup-svg@3.5.3) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/hiccup-svg
-
-
-
-
-
-## [3.5.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.5.1...@thi.ng/hiccup-svg@3.5.2) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/hiccup-svg
-
-
-
-
-
-## [3.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.5.0...@thi.ng/hiccup-svg@3.5.1) (2020-07-02)
+## [3.5.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.5.7...@thi.ng/hiccup-svg@3.5.8) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/hiccup-svg
 
@@ -62,62 +38,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **hiccup-svg:** update deps, update xmlns import ([aab66bb](https://github.com/thi-ng/umbrella/commit/aab66bb07ac3db85a741e0b1eb42433517470bc1))
-
-
-
-
-
-## [3.4.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.4.25...@thi.ng/hiccup-svg@3.4.26) (2020-06-28)
-
-**Note:** Version bump only for package @thi.ng/hiccup-svg
-
-
-
-
-
-## [3.4.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.4.24...@thi.ng/hiccup-svg@3.4.25) (2020-06-24)
-
-**Note:** Version bump only for package @thi.ng/hiccup-svg
-
-
-
-
-
-## [3.4.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.4.23...@thi.ng/hiccup-svg@3.4.24) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/hiccup-svg
-
-
-
-
-
-## [3.4.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.4.22...@thi.ng/hiccup-svg@3.4.23) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/hiccup-svg
-
-
-
-
-
-## [3.4.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.4.21...@thi.ng/hiccup-svg@3.4.22) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/hiccup-svg
-
-
-
-
-
-## [3.4.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.4.20...@thi.ng/hiccup-svg@3.4.21) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/hiccup-svg
-
-
-
-
-
-## [3.4.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.4.19...@thi.ng/hiccup-svg@3.4.20) (2020-05-29)
-
-**Note:** Version bump only for package @thi.ng/hiccup-svg
 
 
 

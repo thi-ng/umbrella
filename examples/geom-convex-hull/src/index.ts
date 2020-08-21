@@ -9,9 +9,9 @@ import {
     scatter,
     withAttribs,
 } from "@thi.ng/geom";
+import type { IShape } from "@thi.ng/geom-api";
 import { renderOnce } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
-import type { IShape } from "@thi.ng/geom-api";
 
 // refactored version of an example by Pete Cory
 // http://www.petecorey.com/blog/2019/07/29/clipping-convex-hulls-with-thing/
@@ -30,7 +30,7 @@ const hull1 = convexHull(polygon(pts1));
 const hull2 = convexHull(polygon(pts2));
 
 // Sutherland-Hodgman
-const clip = clipConvex(hull1, hull2);
+const clip = clipConvex(hull1, hull2)!;
 
 const COL1 = (a: number) => `rgba(245,93,62,${a})`;
 const COL2 = (a: number) => `rgba(118,190,208,${a})`;

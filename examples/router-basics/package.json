@@ -9,6 +9,7 @@
         "clean": "rm -rf .cache build out",
         "prep": "yarn clean && mkdir -p out && cp -R assets out",
         "build": "yarn prep && parcel build index.html -d out --no-source-maps --no-cache --experimental-scope-hoisting --detailed-report --public-url ./",
+        "build:webpack": "../../node_modules/.bin/webpack --mode production",
         "start": "yarn prep && parcel index.html -p 8080 --open -d out"
     },
     "dependencies": {
@@ -21,7 +22,7 @@
     },
     "devDependencies": {
         "parcel-bundler": "^1.12.4",
-        "terser": "^4.8.0",
+        "terser": "^5.1.0",
         "typescript": "^3.9.7"
     },
     "browserslist": [

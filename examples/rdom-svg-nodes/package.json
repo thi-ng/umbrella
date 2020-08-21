@@ -1,0 +1,42 @@
+{
+    "name": "rdom-svg-nodes",
+    "version": "0.0.1",
+    "description": "rdom powered SVG graph with draggable nodes",
+    "repository": "https://github.com/thi-ng/umbrella",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "clean": "rm -rf .cache build out",
+        "build": "yarn clean && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --detailed-report --experimental-scope-hoisting",
+        "build:webpack": "../../node_modules/.bin/webpack --mode production",
+        "start": "parcel index.html -p 8080 --open --no-cache"
+    },
+    "devDependencies": {
+        "parcel-bundler": "^1.12.4",
+        "terser": "^5.1.0",
+        "typescript": "^3.9.7"
+    },
+    "dependencies": {
+        "@thi.ng/atom": "latest",
+        "@thi.ng/equiv": "latest",
+        "@thi.ng/hiccup-svg": "latest",
+        "@thi.ng/rdom": "latest",
+        "@thi.ng/rstream": "latest",
+        "@thi.ng/transducers": "latest",
+        "@thi.ng/vectors": "latest"
+    },
+    "browserslist": [
+        "last 3 Chrome versions"
+    ],
+    "browser": {
+        "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "atom",
+            "rdom",
+            "rstream"
+        ],
+        "screenshot": "examples/rdom-svg-nodes.png"
+    }
+}

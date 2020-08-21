@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [3.0.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@3.0.11...@thi.ng/hdom-canvas@3.0.12) (2020-07-28)
+## [3.0.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@3.0.15...@thi.ng/hdom-canvas@3.0.16) (2020-08-20)
 
 **Note:** Version bump only for package @thi.ng/hdom-canvas
 
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [3.0.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@3.0.10...@thi.ng/hdom-canvas@3.0.11) (2020-07-17)
+## [3.0.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@3.0.14...@thi.ng/hdom-canvas@3.0.15) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/hdom-canvas
 
@@ -19,79 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [3.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@3.0.9...@thi.ng/hdom-canvas@3.0.10) (2020-07-17)
-
-**Note:** Version bump only for package @thi.ng/hdom-canvas
-
-
-
-
-
-## [3.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@3.0.8...@thi.ng/hdom-canvas@3.0.9) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/hdom-canvas
-
-
-
-
-
-## [3.0.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@3.0.7...@thi.ng/hdom-canvas@3.0.8) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/hdom-canvas
-
-
-
-
-
-## [3.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@3.0.6...@thi.ng/hdom-canvas@3.0.7) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/hdom-canvas
-
-
-
-
-
-## [3.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@3.0.5...@thi.ng/hdom-canvas@3.0.6) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/hdom-canvas
-
-
-
-
-
-## [3.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@3.0.4...@thi.ng/hdom-canvas@3.0.5) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/hdom-canvas
-
-
-
-
-
-## [3.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@3.0.3...@thi.ng/hdom-canvas@3.0.4) (2020-06-28)
-
-**Note:** Version bump only for package @thi.ng/hdom-canvas
-
-
-
-
-
-## [3.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@3.0.2...@thi.ng/hdom-canvas@3.0.3) (2020-06-24)
-
-**Note:** Version bump only for package @thi.ng/hdom-canvas
-
-
-
-
-
-## [3.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@3.0.1...@thi.ng/hdom-canvas@3.0.2) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/hdom-canvas
-
-
-
-
-
-## [3.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@3.0.0...@thi.ng/hdom-canvas@3.0.1) (2020-06-14)
+## [3.0.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@3.0.13...@thi.ng/hdom-canvas@3.0.14) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/hdom-canvas
 
@@ -113,30 +41,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 package @thi.ng/hiccup-canvas
 
 From now on, this package only contains the canvas component wrapper & hdom related interface implementations, allowing canvas rendering parts to be used separately.
-
-
-
-
-
-## [2.4.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@2.4.25...@thi.ng/hdom-canvas@2.4.26) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/hdom-canvas
-
-
-
-
-
-## [2.4.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@2.4.24...@thi.ng/hdom-canvas@2.4.25) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/hdom-canvas
-
-
-
-
-
-## [2.4.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-canvas@2.4.23...@thi.ng/hdom-canvas@2.4.24) (2020-05-29)
-
-**Note:** Version bump only for package @thi.ng/hdom-canvas
 
 
 

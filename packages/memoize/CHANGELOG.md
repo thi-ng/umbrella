@@ -3,7 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@2.0.16...@thi.ng/memoize@2.0.17) (2020-07-28)
+# [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@2.0.19...@thi.ng/memoize@2.1.0) (2020-08-20)
+
+
+### Features
+
+* **memoize:** add doOnce(), update readme ([889e00d](https://github.com/thi-ng/umbrella/commit/889e00d0376cda39f2a7e5848780bdf26f5fc5ca))
+
+
+
+
+
+## [2.0.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@2.0.18...@thi.ng/memoize@2.0.19) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/memoize
 
@@ -11,39 +22,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [2.0.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@2.0.15...@thi.ng/memoize@2.0.16) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/memoize
-
-
-
-
-
-## [2.0.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@2.0.14...@thi.ng/memoize@2.0.15) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/memoize
-
-
-
-
-
-## [2.0.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@2.0.13...@thi.ng/memoize@2.0.14) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/memoize
-
-
-
-
-
-## [2.0.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@2.0.12...@thi.ng/memoize@2.0.13) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/memoize
-
-
-
-
-
-## [2.0.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@2.0.11...@thi.ng/memoize@2.0.12) (2020-06-01)
+## [2.0.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@2.0.17...@thi.ng/memoize@2.0.18) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/memoize
 

@@ -3,36 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.12.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.12.1...@thi.ng/api@6.12.2) (2020-08-17)
+
+**Note:** Version bump only for package @thi.ng/api
+
+
+
+
+
+## [6.12.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.12.0...@thi.ng/api@6.12.1) (2020-08-16)
+
+**Note:** Version bump only for package @thi.ng/api
+
+
+
+
+
 # [6.12.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.11.3...@thi.ng/api@6.12.0) (2020-07-28)
 
 
 ### Features
 
 * **api:** add Always & ArrayValue types ([dcf9aeb](https://github.com/thi-ng/umbrella/commit/dcf9aebe93d73c06e2bb835b942e83ec6580755f))
-
-
-
-
-
-## [6.11.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.11.2...@thi.ng/api@6.11.3) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/api
-
-
-
-
-
-## [6.11.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.11.1...@thi.ng/api@6.11.2) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/api
-
-
-
-
-
-## [6.11.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.11.0...@thi.ng/api@6.11.1) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/api
 
 
 

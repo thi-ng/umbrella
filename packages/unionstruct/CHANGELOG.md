@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.1.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/unionstruct@1.1.19...@thi.ng/unionstruct@1.1.20) (2020-07-28)
+## [1.1.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/unionstruct@1.1.21...@thi.ng/unionstruct@1.1.22) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/unionstruct
 
@@ -11,23 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.1.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/unionstruct@1.1.18...@thi.ng/unionstruct@1.1.19) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/unionstruct
-
-
-
-
-
-## [1.1.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/unionstruct@1.1.17...@thi.ng/unionstruct@1.1.18) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/unionstruct
-
-
-
-
-
-## [1.1.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/unionstruct@1.1.16...@thi.ng/unionstruct@1.1.17) (2020-06-14)
+## [1.1.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/unionstruct@1.1.20...@thi.ng/unionstruct@1.1.21) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/unionstruct
 

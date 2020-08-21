@@ -1,14 +1,7 @@
-export const INTEGRATION = [
-    "svg",
-    {
-        "fill-rule": "evenodd",
-        viewBox: "0 0 24 21",
-    },
-    [
-        "path",
-        {
-            d:
-                "M18 0H6L0 10.5 6 21h12l6-10.5L18 0zm4.5 10h-9.7l4.8-8.5 4.9 8.5zM6.3 19.4L1.4 11H11l-4.7 8.4zm5.6-7.8l4.8 8.4H7.2l4.7-8.4zm0-2.1L7 1h9.7l-4.8 8.5zM6.2 1.6L11 10H1.5l4.7-8.4zm11.5 18L12.8 11h9.8l-4.9 8.6z",
-        },
-    ],
-];
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#INTEGRATION
+ */
+// prettier-ignore
+export const INTEGRATION: any[] =
+    ["svg", { viewBox: "0 0 32 32" },
+        ["path", { d: "M29.88 15.52l-6-11A1 1 0 0023 4H9a1 1 0 00-.88.52l-6 11a1 1 0 000 1l6 11A1 1 0 009 28h14a1 1 0 00.88-.52l6-11a1 1 0 000-.96zM22.93 7l4.39 8h-9.5zM16 14.14L10.82 6h10.36zM9.07 7l5.11 8h-9.5zM4.68 17h9.5l-5.11 8zm11.32.86L21.18 26H10.82zM22.93 25l-5.11-8h9.5z" }]];

@@ -1,7 +1,5 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare";
-import { getIn, setIn } from "@thi.ng/paths";
-import * as fx from "./effects";
-import * as ev from "./events";
 import {
     dispatchNow,
     EffectDef,
@@ -10,6 +8,8 @@ import {
     FX_STATE,
     valueSetter,
 } from "@thi.ng/interceptors";
+import { getIn, setIn } from "@thi.ng/paths";
+import type { Triple } from "@thi.ng/rstream-query";
 import {
     comp,
     iterator,
@@ -18,9 +18,9 @@ import {
     page,
     repeat,
 } from "@thi.ng/transducers";
-import type { IObjectOf } from "@thi.ng/api";
-import type { Triple } from "@thi.ng/rstream-query";
 import type { AppInterceptorContext } from "./api";
+import * as fx from "./effects";
+import * as ev from "./events";
 
 export const PAGE_LEN = 5;
 

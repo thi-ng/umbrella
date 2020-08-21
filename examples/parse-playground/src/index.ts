@@ -1,4 +1,4 @@
-import { Nullable } from "@thi.ng/api";
+import type { Nullable } from "@thi.ng/api";
 import { timedResult } from "@thi.ng/bench";
 import { downloadWithMime } from "@thi.ng/dl-asset";
 import { DOWNLOAD, withSize } from "@thi.ng/hiccup-carbon-icons";

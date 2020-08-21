@@ -3,7 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.7.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.3...@thi.ng/checks@2.7.4) (2020-07-28)
+## [2.7.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.5...@thi.ng/checks@2.7.6) (2020-08-17)
+
+**Note:** Version bump only for package @thi.ng/checks
+
+
+
+
+
+## [2.7.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.4...@thi.ng/checks@2.7.5) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/checks
 
@@ -17,22 +25,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * **checks:** update isPlainObject() type assertion ([e5ceb7d](https://github.com/thi-ng/umbrella/commit/e5ceb7d3e1ef5be7a4e83319ab1c36bbc3e1b1a8))
-
-
-
-
-
-## [2.7.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.1...@thi.ng/checks@2.7.2) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/checks
-
-
-
-
-
-## [2.7.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.0...@thi.ng/checks@2.7.1) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/checks
 
 
 

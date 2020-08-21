@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [5.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@5.0.1...@thi.ng/associative@5.0.2) (2020-07-28)
+## [5.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@5.0.3...@thi.ng/associative@5.0.4) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/associative
 
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [5.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@5.0.0...@thi.ng/associative@5.0.1) (2020-07-25)
+## [5.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@5.0.2...@thi.ng/associative@5.0.3) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/associative
 
@@ -31,14 +31,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### BREAKING CHANGES
 
 * **associative:** rename Trie => MultiTrie
-
-
-
-
-
-## [4.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@4.5.0...@thi.ng/associative@4.5.1) (2020-07-17)
-
-**Note:** Version bump only for package @thi.ng/associative
 
 
 
@@ -88,14 +80,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [4.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@4.2.0...@thi.ng/associative@4.2.1) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/associative
-
-
-
-
-
 # [4.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@4.1.0...@thi.ng/associative@4.2.0) (2020-06-20)
 
 
@@ -114,30 +98,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **associative:** add Trie and tests ([84b6517](https://github.com/thi-ng/umbrella/commit/84b6517f8988e5032ac2c7614e62ebf4cf1c9e1b))
-
-
-
-
-
-## [4.0.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@4.0.10...@thi.ng/associative@4.0.11) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/associative
-
-
-
-
-
-## [4.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@4.0.9...@thi.ng/associative@4.0.10) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/associative
-
-
-
-
-
-## [4.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@4.0.8...@thi.ng/associative@4.0.9) (2020-05-29)
-
-**Note:** Version bump only for package @thi.ng/associative
 
 
 

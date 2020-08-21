@@ -1,5 +1,5 @@
-import { button } from "./button";
 import type { AppContext } from "../api";
+import { button } from "./button";
 
 export const buttonGroup = (ctx: AppContext, ...buttons: any[]) => [
     "section",

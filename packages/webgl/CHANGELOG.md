@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@3.2.1...@thi.ng/webgl@3.3.0) (2020-08-20)
+
+
+### Features
+
+* **webgl:** only warn once re: unknown uni/attrib ([7490aa1](https://github.com/thi-ng/umbrella/commit/7490aa1e0d8e69c0be2f0c63f72373983898f04c))
+
+
+
+
+
+## [3.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@3.2.0...@thi.ng/webgl@3.2.1) (2020-08-17)
+
+**Note:** Version bump only for package @thi.ng/webgl
+
+
+
+
+
+# [3.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@3.1.1...@thi.ng/webgl@3.2.0) (2020-08-16)
+
+
+### Features
+
+* **webgl:** store texture filter/wrap mode ([8a7420e](https://github.com/thi-ng/umbrella/commit/8a7420ee708e92a1670c47330c6c1b262b76cc87))
+
+
+
+
+
+## [3.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@3.1.0...@thi.ng/webgl@3.1.1) (2020-08-12)
+
+
+### Bug Fixes
+
+* **webgl:** update/add DrawOpts, add unbindTextures() ([27021fa](https://github.com/thi-ng/umbrella/commit/27021facca516e3d9c598f017819fe0314c72af4))
+
+
+
+
+
+# [3.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@3.0.4...@thi.ng/webgl@3.1.0) (2020-08-12)
+
+
+### Features
+
+* **webgl:** add DrawFlags opts for draw() ([800382b](https://github.com/thi-ng/umbrella/commit/800382ba1a67a5dd9f8a4edc17f6d791bfa2c627))
+* **webgl:** add opt unbind flag for .configure() ([0e5cc2b](https://github.com/thi-ng/umbrella/commit/0e5cc2bc5b632c7d418715c936d4cc6152b4a57c))
+
+
+
+
+
 ## [3.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@3.0.0...@thi.ng/webgl@3.0.1) (2020-08-08)
 
 
@@ -38,94 +91,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [2.0.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@2.0.10...@thi.ng/webgl@2.0.11) (2020-07-25)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
-## [2.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@2.0.9...@thi.ng/webgl@2.0.10) (2020-07-25)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
-## [2.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@2.0.8...@thi.ng/webgl@2.0.9) (2020-07-22)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
-## [2.0.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@2.0.7...@thi.ng/webgl@2.0.8) (2020-07-17)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
-## [2.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@2.0.6...@thi.ng/webgl@2.0.7) (2020-07-17)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
-## [2.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@2.0.5...@thi.ng/webgl@2.0.6) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
-## [2.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@2.0.4...@thi.ng/webgl@2.0.5) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
-## [2.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@2.0.3...@thi.ng/webgl@2.0.4) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
-## [2.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@2.0.2...@thi.ng/webgl@2.0.3) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
-## [2.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@2.0.1...@thi.ng/webgl@2.0.2) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
-## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@2.0.0...@thi.ng/webgl@2.0.1) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@1.0.17...@thi.ng/webgl@2.0.0) (2020-06-07)
 
 
@@ -139,38 +104,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **webgl:** re-use adaptDPI() from new @thi.ng/adapt-dpi pkg
 
 - update deps
-
-
-
-
-
-## [1.0.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@1.0.16...@thi.ng/webgl@1.0.17) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
-## [1.0.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@1.0.15...@thi.ng/webgl@1.0.16) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
-## [1.0.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@1.0.14...@thi.ng/webgl@1.0.15) (2020-05-29)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
-## [1.0.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@1.0.13...@thi.ng/webgl@1.0.14) (2020-05-19)
-
-**Note:** Version bump only for package @thi.ng/webgl
 
 
 

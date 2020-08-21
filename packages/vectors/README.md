@@ -41,6 +41,7 @@ This project is part of the
   - [Vector array batch processing](#vector-array-batch-processing)
   - [Comparison / equality](#comparison---equality)
   - [Bitwise operations (int / uint vec)](#bitwise-operations-int---uint-vec)
+  - [Vector conversions / coercions](#vector-conversions---coercions)
   - [Boolean vector logic](#boolean-vector-logic)
   - [Componentwise comparisons](#componentwise-comparisons)
   - [Hashing](#hashing)
@@ -152,7 +153,7 @@ yarn add @thi.ng/vectors
 <script src="https://unpkg.com/@thi.ng/vectors/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 11.12 KB / CJS: 13.96 KB / UMD: 12.30 KB
+Package sizes (gzipped, pre-treeshake): ESM: 11.14 KB / CJS: 14.02 KB / UMD: 12.34 KB
 
 ## Dependencies
 
@@ -577,17 +578,25 @@ forced accordingly.
 | `lshiftN` | ✓       |       |         | I2-I4, U2-U4 |          |
 | `rshiftN` | ✓       |       |         | I2-I4, U2-U4 |          |
 
+### Vector conversions / coercions
+
+- `asIVec` (2-4) -  signed int vector
+- `asUVec` (2-4) -  unsigned int vector
+- `asBVec` (2-4) -  boolean vector
+- `fromBVec` (2-4) -  coerces each component to 0/1
+
 ### Boolean vector logic
 
-| Function    | Generic | Fixed | Strided | Int | Comments |
-|-------------|---------|-------|---------|-----|----------|
-| `logicAnd`  | ✓       | 2-4   |         |     |          |
-| `logicAndN` | ✓       | 2-4   |         |     |          |
-| `logicOr`   | ✓       | 2-4   |         |     |          |
-| `logicOrN`  | ✓       | 2-4   |         |     |          |
-| `logicNot`  | ✓       | 2-4   |         |     |          |
-| `every`     | ✓       | 2-4   |         |     |          |
-| `some`      | ✓       | 2-4   |         |     |          |
+| Function    | Generic | Fixed | Strided | Int | Comments          |
+|-------------|---------|-------|---------|-----|-------------------|
+| `logicAnd`  | ✓       | 2-4   |         |     |                   |
+| `logicAndN` | ✓       | 2-4   |         |     |                   |
+| `logicOr`   | ✓       | 2-4   |         |     |                   |
+| `logicOrN`  | ✓       | 2-4   |         |     |                   |
+| `logicNot`  | ✓       | 2-4   |         |     |                   |
+| `every`     | ✓       | 2-4   |         |     | returns `boolean` |
+| `some`      | ✓       | 2-4   |         |     | returns `boolean` |
+| `not`       | ✓       | 2-4   |         |     |                   |
 
 ### Componentwise comparisons
 

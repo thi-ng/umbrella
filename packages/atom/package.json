@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/atom",
-    "version": "4.1.16",
+    "version": "4.1.18",
     "description": "Mutable wrappers for nested immutable values with optional undo/redo history and transaction support",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -34,7 +34,7 @@
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
-        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc --theme ../../tools/doc/typedoc-theme src",
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
@@ -42,18 +42,18 @@
         "@microsoft/api-extractor": "^7.9.2",
         "@types/mocha": "^8.0.0",
         "@types/node": "^14.0.26",
-        "mocha": "^8.0.1",
+        "mocha": "^8.1.1",
         "nyc": "^15.1.0",
         "ts-node": "^8.10.1",
-        "typedoc": "^0.17.6",
+        "typedoc": "^0.18.0",
         "typescript": "^3.9.7"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.12.0",
-        "@thi.ng/equiv": "^1.0.27",
-        "@thi.ng/errors": "^1.2.17",
-        "@thi.ng/paths": "^4.1.2",
-        "tslib": "^2.0.0"
+        "@thi.ng/api": "^6.12.2",
+        "@thi.ng/equiv": "^1.0.29",
+        "@thi.ng/errors": "^1.2.19",
+        "@thi.ng/paths": "^4.1.4",
+        "tslib": "^2.0.1"
     },
     "files": [
         "*.js",

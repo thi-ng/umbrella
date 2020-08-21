@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.0.27](https://github.com/thi-ng/umbrella/compare/@thi.ng/dlogic@1.0.26...@thi.ng/dlogic@1.0.27) (2020-07-28)
+## [1.0.29](https://github.com/thi-ng/umbrella/compare/@thi.ng/dlogic@1.0.28...@thi.ng/dlogic@1.0.29) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/dlogic
 
@@ -11,23 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.0.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/dlogic@1.0.25...@thi.ng/dlogic@1.0.26) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/dlogic
-
-
-
-
-
-## [1.0.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/dlogic@1.0.24...@thi.ng/dlogic@1.0.25) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/dlogic
-
-
-
-
-
-## [1.0.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/dlogic@1.0.23...@thi.ng/dlogic@1.0.24) (2020-06-14)
+## [1.0.28](https://github.com/thi-ng/umbrella/compare/@thi.ng/dlogic@1.0.27...@thi.ng/dlogic@1.0.28) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/dlogic
 

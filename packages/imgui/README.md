@@ -30,10 +30,12 @@ Immediate mode GUI with flexible state handling & data only shape output.
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png)
 
-Currently still somewhat bare-bones, but already usable & customizable [immediate
-mode GUI](https://github.com/ocornut/imgui#references) implementation,
-primarily for
+Currently still somewhat bare-bones, but already usable & customizable
+[immediate mode GUI](https://github.com/ocornut/imgui#references)
+implementation, primarily for
 [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-canvas)
+/
+[@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas)
 and
 [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl),
 however with no direct dependency on either and only outputting data structures.
@@ -48,7 +50,7 @@ interaction produced a change. Additionally, each component produces a
 number of shapes & text labels, all of which are collected internally
 and are, from the user's POV, a mere side effect. At the end of the
 update cycle IMGUI produces a tree of
-[@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-canvas)
+[@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas)
 compatible elements, which can be easily converted into other formats
 (incl. SVG).
 
@@ -258,10 +260,11 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                       | Description                                | Live demo                                       | Source                                                                       |
-| ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | ----------------------------------------------- | ---------------------------------------------------------------------------- |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fft-synth.png" width="240"/> | Interactive inverse FFT toy synth          | [Demo](https://demo.thi.ng/umbrella/fft-synth/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fft-synth) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png" width="240"/>    | Canvas based Immediate Mode GUI components | [Demo](https://demo.thi.ng/umbrella/imgui/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui)     |
+| Screenshot                                                                                                          | Description                                | Live demo                                          | Source                                                                          |
+| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | -------------------------------------------------- | ------------------------------------------------------------------------------- |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fft-synth.png" width="240"/>    | Interactive inverse FFT toy synth          | [Demo](https://demo.thi.ng/umbrella/fft-synth/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fft-synth)    |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png" width="240"/>       | Canvas based Immediate Mode GUI components | [Demo](https://demo.thi.ng/umbrella/imgui/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui)        |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/imgui-basics.png" width="240"/> | Minimal IMGUI usage example                | [Demo](https://demo.thi.ng/umbrella/imgui-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/imgui-basics) |
 
 ## API
 

@@ -49,5 +49,6 @@ export * from "./xform/join";
 export * from "./xform/nest";
 export * from "./xform/number";
 export * from "./xform/print";
+export * from "./xform/replace";
 export * from "./xform/trim";
 export * from "./xform/with-id";

@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.6.2...@thi.ng/shader-ast@0.6.3) (2020-08-17)
+
+**Note:** Version bump only for package @thi.ng/shader-ast
+
+
+
+
+
+## [0.6.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.6.1...@thi.ng/shader-ast@0.6.2) (2020-08-16)
+
+**Note:** Version bump only for package @thi.ng/shader-ast
+
+
+
+
+
+# [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.5.2...@thi.ng/shader-ast@0.6.0) (2020-08-10)
+
+
+### Features
+
+* **shader-ast:** add/update vec coercions ([764f4e5](https://github.com/thi-ng/umbrella/commit/764f4e5bbd86713775c266e6d4fae6123351700e))
+
+
+
+
+
+## [0.5.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.5.1...@thi.ng/shader-ast@0.5.2) (2020-08-08)
+
+
+### Bug Fixes
+
+* **shader-ast:** fix typo in isTerm(), add tests ([615c8d2](https://github.com/thi-ng/umbrella/commit/615c8d2e5ae19e9744c6cdb60a9906df82f993d1))
+
+
+
+
+
+## [0.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.5.0...@thi.ng/shader-ast@0.5.1) (2020-08-08)
+
+
+### Bug Fixes
+
+* **shader-ast:** update allChildren(), add isTerm() ([267a0c0](https://github.com/thi-ng/umbrella/commit/267a0c0c992a0c0b9917c2d544ac4250b3d611e4))
+
+
+
+
+
 # [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.4.0...@thi.ng/shader-ast@0.5.0) (2020-08-08)
 
 
@@ -20,110 +69,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **shader-ast:** add sym interpolation qualifiers ([0601af2](https://github.com/thi-ng/umbrella/commit/0601af28c43b41576e778b8f2141a43b52460cf4))
-
-
-
-
-
-## [0.3.33](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.3.32...@thi.ng/shader-ast@0.3.33) (2020-07-25)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.3.32](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.3.31...@thi.ng/shader-ast@0.3.32) (2020-07-25)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.3.31](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.3.30...@thi.ng/shader-ast@0.3.31) (2020-07-17)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.3.30](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.3.29...@thi.ng/shader-ast@0.3.30) (2020-07-17)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.3.29](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.3.28...@thi.ng/shader-ast@0.3.29) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.3.28](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.3.27...@thi.ng/shader-ast@0.3.28) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.3.27](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.3.26...@thi.ng/shader-ast@0.3.27) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.3.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.3.25...@thi.ng/shader-ast@0.3.26) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.3.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.3.24...@thi.ng/shader-ast@0.3.25) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.3.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.3.23...@thi.ng/shader-ast@0.3.24) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.3.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.3.22...@thi.ng/shader-ast@0.3.23) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.3.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.3.21...@thi.ng/shader-ast@0.3.22) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.3.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.3.20...@thi.ng/shader-ast@0.3.21) (2020-05-29)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
 
 
 

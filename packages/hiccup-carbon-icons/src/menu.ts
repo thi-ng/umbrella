@@ -1,8 +1,7 @@
-export const MENU = [
-    "svg",
-    {
-        "fill-rule": "evenodd",
-        viewBox: "0 0 20 14",
-    },
-    ["path", { d: "M0 0h20v2H0zM0 6h20v2H0zM0 12h20v2H0z" }],
-];
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#MENU
+ */
+// prettier-ignore
+export const MENU: any[] =
+    ["svg", { viewBox: "0 0 32 32" },
+        ["path", { d: "M4 24h24v2H4zM4 12h24v2H4zM4 18h24v2H4zM4 6h24v2H4z" }]];

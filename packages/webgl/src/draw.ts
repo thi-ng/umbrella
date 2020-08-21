@@ -1,18 +1,44 @@
 import { isArray } from "@thi.ng/checks";
 import { isGL2Context } from "./checks";
 import { error } from "./error";
-import { bindTextures } from "./texture";
+import { bindTextures, unbindTextures } from "./texture";
 import type { ModelSpec } from "./api/model";
 
-export const draw = (specs: ModelSpec | ModelSpec[]) => {
+export interface DrawFlags {
+    /**
+     * Unless false (default: true), bind modelspec's textures
+     */
+    bindTex: boolean;
+    /**
+     * If true (default: false), unbind modelspec's textures after use
+     */
+    unbindTex: boolean;
+    /**
+     * Unless false (default: true), bind modelspec's shader before use
+     */
+    bindShader: boolean;
+    /**
+     * Unless false (default: true), unbind modelspec's shader after use
+     */
+    unbindShader: boolean;
+    /**
+     * Unless false (default: true), apply shader's `state` opts (if any)
+     */
+    shaderState: boolean;
+}
+
+export const draw = (
+    specs: ModelSpec | ModelSpec[],
+    opts: Partial<DrawFlags> = {}
+) => {
     const _specs = isArray(specs) ? specs : [specs];
     for (let i = 0, n = _specs.length; i < n; i++) {
         const spec = _specs[i];
         const indices = spec.indices;
         const gl = spec.shader.gl;
-        spec.textures && bindTextures(spec.textures);
-        spec.shader.prepareState();
-        spec.shader.bind(spec);
+        opts.bindTex !== false && bindTextures(spec.textures);
+        opts.shaderState !== false && spec.shader.prepareState();
+        opts.bindShader !== false && spec.shader.bind(spec);
         if (indices && indices.buffer) {
             indices.buffer.bind();
             if (spec.instances) {
@@ -34,7 +60,8 @@ export const draw = (specs: ModelSpec | ModelSpec[]) => {
                 gl.drawArrays(spec.mode!, 0, spec.num);
             }
         }
-        spec.shader.unbind(<any>null);
+        opts.unbindShader !== false && spec.shader.unbind(<any>null);
+        opts.unbindTex && unbindTextures(spec.textures);
     }
 };
 

@@ -1,6 +1,6 @@
-import { EffectDef, EventBus, EventDef } from "@thi.ng/interceptors";
 import type { Fn, IObjectOf, Path } from "@thi.ng/api";
 import type { IView } from "@thi.ng/atom";
+import { EffectDef, EventBus, EventDef } from "@thi.ng/interceptors";
 
 /**
  * Function signature for main app components.

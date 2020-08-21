@@ -76,6 +76,15 @@ writeFileSync(
                         rel: "stylesheet",
                     },
                 ],
+                [
+                    "script",
+                    {
+                        async: true,
+                        defer: true,
+                        "data-domain": "thi.ng",
+                        src: "https://plausible.io/js/plausible.js",
+                    },
+                ],
             ],
             [
                 "body.measure.center.sans-serif.lh-copy",

@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.2.27](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.2.26...@thi.ng/dcons@2.2.27) (2020-07-28)
+## [2.2.29](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.2.28...@thi.ng/dcons@2.2.29) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/dcons
 
@@ -11,79 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [2.2.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.2.25...@thi.ng/dcons@2.2.26) (2020-07-17)
-
-**Note:** Version bump only for package @thi.ng/dcons
-
-
-
-
-
-## [2.2.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.2.24...@thi.ng/dcons@2.2.25) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/dcons
-
-
-
-
-
-## [2.2.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.2.23...@thi.ng/dcons@2.2.24) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/dcons
-
-
-
-
-
-## [2.2.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.2.22...@thi.ng/dcons@2.2.23) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/dcons
-
-
-
-
-
-## [2.2.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.2.21...@thi.ng/dcons@2.2.22) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/dcons
-
-
-
-
-
-## [2.2.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.2.20...@thi.ng/dcons@2.2.21) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/dcons
-
-
-
-
-
-## [2.2.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.2.19...@thi.ng/dcons@2.2.20) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/dcons
-
-
-
-
-
-## [2.2.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.2.18...@thi.ng/dcons@2.2.19) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/dcons
-
-
-
-
-
-## [2.2.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.2.17...@thi.ng/dcons@2.2.18) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/dcons
-
-
-
-
-
-## [2.2.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.2.16...@thi.ng/dcons@2.2.17) (2020-05-29)
+## [2.2.28](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.2.27...@thi.ng/dcons@2.2.28) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/dcons
 

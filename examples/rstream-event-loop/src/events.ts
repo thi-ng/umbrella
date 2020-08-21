@@ -1,9 +1,9 @@
+import type { Fn } from "@thi.ng/api";
 import { setInManyUnsafe } from "@thi.ng/paths";
 import { ISubscriber, pubsub, stream, trace } from "@thi.ng/rstream";
 import { filter, Transducer } from "@thi.ng/transducers";
 import { Event, EventType, EventTypeMap, NEXT, PAGE_READY, PREV } from "./api";
 import { state } from "./state";
-import type { Fn } from "@thi.ng/api";
 
 /**
  * Event input stream (not exported)

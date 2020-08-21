@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp-io-wav@0.1.23...@thi.ng/dsp-io-wav@0.1.24) (2020-07-28)
+## [0.1.27](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp-io-wav@0.1.26...@thi.ng/dsp-io-wav@0.1.27) (2020-08-20)
 
 **Note:** Version bump only for package @thi.ng/dsp-io-wav
 
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.1.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp-io-wav@0.1.22...@thi.ng/dsp-io-wav@0.1.23) (2020-07-17)
+## [0.1.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp-io-wav@0.1.25...@thi.ng/dsp-io-wav@0.1.26) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/dsp-io-wav
 
@@ -19,71 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.1.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp-io-wav@0.1.21...@thi.ng/dsp-io-wav@0.1.22) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/dsp-io-wav
-
-
-
-
-
-## [0.1.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp-io-wav@0.1.20...@thi.ng/dsp-io-wav@0.1.21) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/dsp-io-wav
-
-
-
-
-
-## [0.1.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp-io-wav@0.1.19...@thi.ng/dsp-io-wav@0.1.20) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/dsp-io-wav
-
-
-
-
-
-## [0.1.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp-io-wav@0.1.18...@thi.ng/dsp-io-wav@0.1.19) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/dsp-io-wav
-
-
-
-
-
-## [0.1.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp-io-wav@0.1.17...@thi.ng/dsp-io-wav@0.1.18) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/dsp-io-wav
-
-
-
-
-
-## [0.1.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp-io-wav@0.1.16...@thi.ng/dsp-io-wav@0.1.17) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/dsp-io-wav
-
-
-
-
-
-## [0.1.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp-io-wav@0.1.15...@thi.ng/dsp-io-wav@0.1.16) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/dsp-io-wav
-
-
-
-
-
-## [0.1.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp-io-wav@0.1.14...@thi.ng/dsp-io-wav@0.1.15) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/dsp-io-wav
-
-
-
-
-
-## [0.1.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp-io-wav@0.1.13...@thi.ng/dsp-io-wav@0.1.14) (2020-05-29)
+## [0.1.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp-io-wav@0.1.24...@thi.ng/dsp-io-wav@0.1.25) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/dsp-io-wav
 

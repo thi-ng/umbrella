@@ -3,7 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.9.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.9.0...@thi.ng/strings@1.9.1) (2020-07-28)
+## [1.9.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.9.3...@thi.ng/strings@1.9.4) (2020-08-20)
+
+**Note:** Version bump only for package @thi.ng/strings
+
+
+
+
+
+## [1.9.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.9.2...@thi.ng/strings@1.9.3) (2020-08-17)
+
+**Note:** Version bump only for package @thi.ng/strings
+
+
+
+
+
+## [1.9.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.9.1...@thi.ng/strings@1.9.2) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/strings
 
@@ -17,46 +33,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **strings:** add computeCursorPos() ([c178d00](https://github.com/thi-ng/umbrella/commit/c178d00edcdbe12cec492a1629c80bf359116b66))
-
-
-
-
-
-## [1.8.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.8.12...@thi.ng/strings@1.8.13) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/strings
-
-
-
-
-
-## [1.8.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.8.11...@thi.ng/strings@1.8.12) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/strings
-
-
-
-
-
-## [1.8.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.8.10...@thi.ng/strings@1.8.11) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/strings
-
-
-
-
-
-## [1.8.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.8.9...@thi.ng/strings@1.8.10) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/strings
-
-
-
-
-
-## [1.8.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.8.8...@thi.ng/strings@1.8.9) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/strings
 
 
 

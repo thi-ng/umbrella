@@ -1,4 +1,4 @@
-import { Fn4, IObjectOf } from "@thi.ng/api";
+import { Fn4 } from "@thi.ng/api";
 import { Node2D } from "@thi.ng/scenegraph";
 import {
     FloatSym,
@@ -9,7 +9,7 @@ import {
     Vec4Sym,
 } from "@thi.ng/shader-ast";
 import { GLSLTarget } from "@thi.ng/shader-ast-glsl";
-import { GLSL, GLVec, ModelSpec, Texture } from "@thi.ng/webgl";
+import { ModelSpec, Texture } from "@thi.ng/webgl";
 
 export interface AppCtx {
     /**

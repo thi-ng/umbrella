@@ -3,7 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.8.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.8.0...@thi.ng/parse@0.8.1) (2020-07-28)
+## [0.9.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.9.0...@thi.ng/parse@0.9.1) (2020-08-20)
+
+**Note:** Version bump only for package @thi.ng/parse
+
+
+
+
+
+# [0.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.8.2...@thi.ng/parse@0.9.0) (2020-08-17)
+
+
+### Features
+
+* **parse:** add replace/xfReplace() xform ([7291181](https://github.com/thi-ng/umbrella/commit/7291181f6eb74751aa02dffbb95bb6787a5ef02f))
+* **parse:** enable replacement rule transforms ([ca22432](https://github.com/thi-ng/umbrella/commit/ca224328e55cb525cefd39dd53028a86a580fd7e))
+
+
+
+
+
+## [0.8.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.8.1...@thi.ng/parse@0.8.2) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/parse
 
@@ -62,22 +82,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.6.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.6.1...@thi.ng/parse@0.6.2) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/parse
-
-
-
-
-
-## [0.6.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.6.0...@thi.ng/parse@0.6.1) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/parse
-
-
-
-
-
 # [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.5.8...@thi.ng/parse@0.6.0) (2020-06-28)
 
 
@@ -85,30 +89,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **parse:** add `!` discard modifier to grammar ([456efdc](https://github.com/thi-ng/umbrella/commit/456efdcb6ded913b0f2b137ebe99634421d552c0))
 * **parse:** add count/xfCount transform ([056ae08](https://github.com/thi-ng/umbrella/commit/056ae084c08a826f09c65181c01426bbdff59e87))
-
-
-
-
-
-## [0.5.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.5.7...@thi.ng/parse@0.5.8) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/parse
-
-
-
-
-
-## [0.5.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.5.6...@thi.ng/parse@0.5.7) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/parse
-
-
-
-
-
-## [0.5.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.5.5...@thi.ng/parse@0.5.6) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/parse
 
 
 

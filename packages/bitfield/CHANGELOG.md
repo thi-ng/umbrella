@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.3.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.3.15...@thi.ng/bitfield@0.3.16) (2020-07-28)
+## [0.3.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.3.18...@thi.ng/bitfield@0.3.19) (2020-08-20)
 
 **Note:** Version bump only for package @thi.ng/bitfield
 
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.3.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.3.14...@thi.ng/bitfield@0.3.15) (2020-07-08)
+## [0.3.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.3.17...@thi.ng/bitfield@0.3.18) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/bitfield
 
@@ -19,39 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.3.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.3.13...@thi.ng/bitfield@0.3.14) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/bitfield
-
-
-
-
-
-## [0.3.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.3.12...@thi.ng/bitfield@0.3.13) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/bitfield
-
-
-
-
-
-## [0.3.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.3.11...@thi.ng/bitfield@0.3.12) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/bitfield
-
-
-
-
-
-## [0.3.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.3.10...@thi.ng/bitfield@0.3.11) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/bitfield
-
-
-
-
-
-## [0.3.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.3.9...@thi.ng/bitfield@0.3.10) (2020-06-01)
+## [0.3.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.3.16...@thi.ng/bitfield@0.3.17) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/bitfield
 

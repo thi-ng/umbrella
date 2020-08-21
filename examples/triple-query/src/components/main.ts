@@ -1,6 +1,6 @@
+import type { AppContext } from "../api";
 import { queryResults } from "./query-results";
 import { tripleTable } from "./triple-table";
-import type { AppContext } from "../api";
 
 export function main(ctx: AppContext) {
     const triples = tripleTable();

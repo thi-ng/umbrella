@@ -1,9 +1,8 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { Atom } from "@thi.ng/atom";
 import { setIn, setInManyUnsafe } from "@thi.ng/paths";
 import { Node, removeNode } from "@thi.ng/rstream-graph";
 import { charRange } from "@thi.ng/strings";
-import { Cell, MAX_COL, NUM_ROWS } from "./api";
-import { $eval } from "./dsl";
 import {
     assocObj,
     map,
@@ -11,7 +10,8 @@ import {
     range,
     transduce,
 } from "@thi.ng/transducers";
-import type { IObjectOf } from "@thi.ng/api";
+import { Cell, MAX_COL, NUM_ROWS } from "./api";
+import { $eval } from "./dsl";
 
 /**
  * Initializes state atom with default cell values. Later on, the

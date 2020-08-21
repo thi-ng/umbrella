@@ -1,17 +1,8 @@
-export const DOCUMENT = [
-    "svg",
-    { viewBox: "0 0 12 16" },
-    [
-        "g",
-        { "fill-rule": "evenodd" },
-        [
-            "path",
-            {
-                "fill-rule": "nonzero",
-                d:
-                    "M10.581 3.996L8.014 1.429l.026 2.559 2.541.008zM7.011 1H1v14h10V4.997l-2.963-.01a1 1 0 0 1-.997-.99L7.01 1zM1 0h7l4 4v11a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V1a1 1 0 0 1 1-1z",
-            },
-        ],
-        ["path", { d: "M3 9h6v1H3zM3 12h6v1H3z" }],
-    ],
-];
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#DOCUMENT
+ */
+// prettier-ignore
+export const DOCUMENT: any[] =
+    ["svg", { viewBox: "0 0 32 32" },
+        ["path", { d: "M25.7 9.3l-7-7c-.2-.2-.4-.3-.7-.3H8c-1.1 0-2 .9-2 2v24c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V10c0-.3-.1-.5-.3-.7zM18 4.4l5.6 5.6H18V4.4zM24 28H8V4h8v6c0 1.1.9 2 2 2h6v16z" }],
+        ["path", { d: "M10 22h12v2H10zM10 16h12v2H10z" }]];

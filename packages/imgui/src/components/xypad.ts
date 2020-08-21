@@ -108,7 +108,7 @@ export const xyPadRaw = (
     if (hover) {
         if (gui.isMouseDown()) {
             gui.activeID = id;
-            res = v = slider2Val(
+            res = slider2Val(
                 fit2([], gui.mouse, pos, maxPos, min, max),
                 min,
                 max,

@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.57](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isoline@0.1.56...@thi.ng/geom-isoline@0.1.57) (2020-07-28)
+## [0.1.61](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isoline@0.1.60...@thi.ng/geom-isoline@0.1.61) (2020-08-20)
 
 **Note:** Version bump only for package @thi.ng/geom-isoline
 
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.1.56](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isoline@0.1.55...@thi.ng/geom-isoline@0.1.56) (2020-07-17)
+## [0.1.60](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isoline@0.1.59...@thi.ng/geom-isoline@0.1.60) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/geom-isoline
 
@@ -19,71 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.1.55](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isoline@0.1.54...@thi.ng/geom-isoline@0.1.55) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/geom-isoline
-
-
-
-
-
-## [0.1.54](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isoline@0.1.53...@thi.ng/geom-isoline@0.1.54) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/geom-isoline
-
-
-
-
-
-## [0.1.53](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isoline@0.1.52...@thi.ng/geom-isoline@0.1.53) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/geom-isoline
-
-
-
-
-
-## [0.1.52](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isoline@0.1.51...@thi.ng/geom-isoline@0.1.52) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/geom-isoline
-
-
-
-
-
-## [0.1.51](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isoline@0.1.50...@thi.ng/geom-isoline@0.1.51) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/geom-isoline
-
-
-
-
-
-## [0.1.50](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isoline@0.1.49...@thi.ng/geom-isoline@0.1.50) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/geom-isoline
-
-
-
-
-
-## [0.1.49](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isoline@0.1.48...@thi.ng/geom-isoline@0.1.49) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/geom-isoline
-
-
-
-
-
-## [0.1.48](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isoline@0.1.47...@thi.ng/geom-isoline@0.1.48) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/geom-isoline
-
-
-
-
-
-## [0.1.47](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isoline@0.1.46...@thi.ng/geom-isoline@0.1.47) (2020-05-29)
+## [0.1.59](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isoline@0.1.58...@thi.ng/geom-isoline@0.1.59) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/geom-isoline
 

@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.5.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-splines@0.5.25...@thi.ng/geom-splines@0.5.26) (2020-07-28)
+## [0.5.30](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-splines@0.5.29...@thi.ng/geom-splines@0.5.30) (2020-08-20)
 
 **Note:** Version bump only for package @thi.ng/geom-splines
 
@@ -11,7 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.5.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-splines@0.5.24...@thi.ng/geom-splines@0.5.25) (2020-07-17)
+## [0.5.29](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-splines@0.5.28...@thi.ng/geom-splines@0.5.29) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/geom-splines
 
@@ -19,71 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.5.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-splines@0.5.23...@thi.ng/geom-splines@0.5.24) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/geom-splines
-
-
-
-
-
-## [0.5.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-splines@0.5.22...@thi.ng/geom-splines@0.5.23) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/geom-splines
-
-
-
-
-
-## [0.5.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-splines@0.5.21...@thi.ng/geom-splines@0.5.22) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/geom-splines
-
-
-
-
-
-## [0.5.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-splines@0.5.20...@thi.ng/geom-splines@0.5.21) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/geom-splines
-
-
-
-
-
-## [0.5.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-splines@0.5.19...@thi.ng/geom-splines@0.5.20) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/geom-splines
-
-
-
-
-
-## [0.5.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-splines@0.5.18...@thi.ng/geom-splines@0.5.19) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/geom-splines
-
-
-
-
-
-## [0.5.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-splines@0.5.17...@thi.ng/geom-splines@0.5.18) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/geom-splines
-
-
-
-
-
-## [0.5.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-splines@0.5.16...@thi.ng/geom-splines@0.5.17) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/geom-splines
-
-
-
-
-
-## [0.5.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-splines@0.5.15...@thi.ng/geom-splines@0.5.16) (2020-05-29)
+## [0.5.28](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-splines@0.5.27...@thi.ng/geom-splines@0.5.28) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/geom-splines
 

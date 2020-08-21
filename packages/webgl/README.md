@@ -89,7 +89,7 @@ yarn add @thi.ng/webgl
 <script src="https://unpkg.com/@thi.ng/webgl/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 11.35 KB / CJS: 11.52 KB / UMD: 11.35 KB
+Package sizes (gzipped, pre-treeshake): ESM: 11.52 KB / CJS: 11.69 KB / UMD: 11.52 KB
 
 ## Dependencies
 
@@ -100,6 +100,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 11.35 KB / CJS: 11.52 KB / UMD: 11.
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/develop/packages/matrices)
+- [@thi.ng/memoize](https://github.com/thi-ng/umbrella/tree/develop/packages/memoize)
 - [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
 - [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
 - [@thi.ng/shader-ast-glsl](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-glsl)

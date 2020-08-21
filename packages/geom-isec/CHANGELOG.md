@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.5.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isec@0.5.1...@thi.ng/geom-isec@0.5.2) (2020-07-28)
+## [0.5.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isec@0.5.5...@thi.ng/geom-isec@0.5.6) (2020-08-20)
 
 **Note:** Version bump only for package @thi.ng/geom-isec
 
@@ -11,7 +11,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isec@0.5.0...@thi.ng/geom-isec@0.5.1) (2020-07-17)
+## [0.5.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isec@0.5.4...@thi.ng/geom-isec@0.5.5) (2020-08-17)
+
+**Note:** Version bump only for package @thi.ng/geom-isec
+
+
+
+
+
+## [0.5.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isec@0.5.3...@thi.ng/geom-isec@0.5.4) (2020-08-16)
 
 **Note:** Version bump only for package @thi.ng/geom-isec
 
@@ -25,78 +33,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **geom-isec:** add intersectLinePolylineAll() ([1f38d92](https://github.com/thi-ng/umbrella/commit/1f38d92e0d88c855251fa14627975b0bb1c7cf39))
-
-
-
-
-
-## [0.4.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isec@0.4.25...@thi.ng/geom-isec@0.4.26) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/geom-isec
-
-
-
-
-
-## [0.4.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isec@0.4.24...@thi.ng/geom-isec@0.4.25) (2020-07-08)
-
-**Note:** Version bump only for package @thi.ng/geom-isec
-
-
-
-
-
-## [0.4.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isec@0.4.23...@thi.ng/geom-isec@0.4.24) (2020-07-04)
-
-**Note:** Version bump only for package @thi.ng/geom-isec
-
-
-
-
-
-## [0.4.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isec@0.4.22...@thi.ng/geom-isec@0.4.23) (2020-07-02)
-
-**Note:** Version bump only for package @thi.ng/geom-isec
-
-
-
-
-
-## [0.4.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isec@0.4.21...@thi.ng/geom-isec@0.4.22) (2020-06-20)
-
-**Note:** Version bump only for package @thi.ng/geom-isec
-
-
-
-
-
-## [0.4.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isec@0.4.20...@thi.ng/geom-isec@0.4.21) (2020-06-14)
-
-**Note:** Version bump only for package @thi.ng/geom-isec
-
-
-
-
-
-## [0.4.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isec@0.4.19...@thi.ng/geom-isec@0.4.20) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/geom-isec
-
-
-
-
-
-## [0.4.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isec@0.4.18...@thi.ng/geom-isec@0.4.19) (2020-06-01)
-
-**Note:** Version bump only for package @thi.ng/geom-isec
-
-
-
-
-
-## [0.4.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isec@0.4.17...@thi.ng/geom-isec@0.4.18) (2020-05-29)
-
-**Note:** Version bump only for package @thi.ng/geom-isec
 
 
 

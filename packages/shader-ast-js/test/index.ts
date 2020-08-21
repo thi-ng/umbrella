@@ -1,6 +1,7 @@
+import { bvec2, defn, greaterThan, ret, vec2 } from "@thi.ng/shader-ast";
 import { eqDelta2 } from "@thi.ng/vectors";
 import * as assert from "assert";
-import { JS_DEFAULT_ENV } from "../src/";
+import { JS_DEFAULT_ENV, targetJS } from "../src/";
 
 describe("shader-ast-js", () => {
     it("vec2", () => {
@@ -57,5 +58,19 @@ describe("shader-ast-js", () => {
         //assert.deepEqual(V2.subnv(), []);
         //assert.deepEqual(V2.subvn(), []);
         //assert.deepEqual(V2.tan(), []);
+    });
+
+    it("vec2 coerce", () => {
+        const emit = targetJS();
+        assert.equal(emit(vec2()), "env.vec2n(0)");
+        assert.equal(emit(vec2(bvec2())), "env.vec2b(env.bvec2n(false))");
+
+        const foo = emit.compile(
+            defn("vec2", "foo", ["vec2"], (a) => [
+                ret(vec2(greaterThan(a, vec2(0.5)))),
+            ])
+        ).foo;
+        assert.deepEqual(foo([0.4, 0.6]), [0, 1]);
+        assert.deepEqual(foo([0.6, 0.4]), [1, 0]);
     });
 });

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom-tessellate",
-    "version": "0.2.40",
+    "version": "0.2.44",
     "description": "2D/3D convex polygon tessellators",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -33,7 +33,7 @@
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
-        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc --theme ../../tools/doc/typedoc-theme src",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "pub": "yarn build:release && yarn publish --access public"
     },
@@ -42,19 +42,19 @@
         "@microsoft/api-extractor": "^7.9.2",
         "@types/mocha": "^8.0.0",
         "@types/node": "^14.0.26",
-        "mocha": "^8.0.1",
+        "mocha": "^8.1.1",
         "nyc": "^15.1.0",
         "ts-node": "^8.10.1",
-        "typedoc": "^0.17.6",
+        "typedoc": "^0.18.0",
         "typescript": "^3.9.7"
     },
     "dependencies": {
-        "@thi.ng/checks": "^2.7.4",
-        "@thi.ng/geom-api": "^1.0.28",
-        "@thi.ng/geom-isec": "^0.5.2",
-        "@thi.ng/geom-poly-utils": "^0.1.58",
-        "@thi.ng/transducers": "^7.2.0",
-        "@thi.ng/vectors": "^4.5.6"
+        "@thi.ng/checks": "^2.7.6",
+        "@thi.ng/geom-api": "^1.0.32",
+        "@thi.ng/geom-isec": "^0.5.6",
+        "@thi.ng/geom-poly-utils": "^0.1.62",
+        "@thi.ng/transducers": "^7.2.2",
+        "@thi.ng/vectors": "^4.6.3"
     },
     "files": [
         "*.js",

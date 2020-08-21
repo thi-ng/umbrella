@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/equiv",
-    "version": "1.0.27",
+    "version": "1.0.29",
     "description": "Extensible deep value equivalence checking for any data types",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -33,7 +33,7 @@
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
-        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc --theme ../../tools/doc/typedoc-theme src",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "pub": "yarn build:release && yarn publish --access public"
     },
@@ -43,10 +43,10 @@
         "@types/mocha": "^8.0.0",
         "@types/node": "^14.0.26",
         "benchmark": "^2.1.4",
-        "mocha": "^8.0.1",
+        "mocha": "^8.1.1",
         "nyc": "^15.1.0",
         "ts-node": "^8.10.1",
-        "typedoc": "^0.17.6",
+        "typedoc": "^0.18.0",
         "typescript": "^3.9.7"
     },
     "files": [

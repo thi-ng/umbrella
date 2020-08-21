@@ -1,12 +1,7 @@
-export const ARROW_RIGHT = [
-    "svg",
-    { viewBox: "0 0 16 14" },
-    [
-        "path",
-        {
-            "fill-rule": "nonzero",
-            d:
-                "M11.95 5.997L7.86 2.092 9.233.639l6.763 6.356-6.763 6.366L7.86 11.91l4.092-3.912H-.003v-2h11.952z",
-        },
-    ],
-];
+/**
+ * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#ARROW_RIGHT
+ */
+// prettier-ignore
+export const ARROW_RIGHT: any[] =
+    ["svg", { viewBox: "0 0 32 32" },
+        ["path", { d: "M18 6l-1.4 1.4 7.5 7.6H3v2h21.1l-7.5 7.6L18 26l10-10z" }]];
