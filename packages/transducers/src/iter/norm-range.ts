@@ -21,3 +21,18 @@ export function* normRange(
         }
     }
 }
+
+export function* normRange2(
+  nx: number,
+  ny: number,
+  includeLastX: boolean = true,
+  includeLastY: boolean = true,
+) {
+  for (let y of normRange(ny, includeLastY)) {
+    const rx = normRange(nx, includeLastX)
+    for (let x of rx) {
+      yield [x, y] as [number, number]
+    }
+  }
+}
+
