@@ -128,7 +128,7 @@ const $gvec3 = <T extends Type>(
     type: T,
     ctor: Fn<any[], (Term<any> | undefined)[]>,
     xs: any[]
-) => lit(type, (xs = ctor(xs)), $info(xs, ["n", "n", "vn"]));
+) => lit(type, (xs = ctor(xs)), xs.length === 2 ? "vn" : $info(xs, ["n", "n"]));
 
 const $gvec4 = <T extends Type>(
     type: T,
