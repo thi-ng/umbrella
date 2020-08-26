@@ -1,13 +1,8 @@
-import { defn, dot, ret } from "@thi.ng/shader-ast";
+import { defn, dot, ret, TaggedFn1 } from "@thi.ng/shader-ast";
 
-export const magSq2 = defn("float", "magSq2", ["vec2"], (v) => [
-    ret(dot(v, v)),
-]);
+const $ = (n: 2 | 3 | 4) =>
+    defn("float", `magSq${n}`, [<any>`vec${n}`], (v) => [ret(dot(v, v))]);
 
-export const magSq3 = defn("float", "magSq3", ["vec3"], (v) => [
-    ret(dot(v, v)),
-]);
-
-export const magSq4 = defn("float", "magSq4", ["vec4"], (v) => [
-    ret(dot(v, v)),
-]);
+export const magSq2: TaggedFn1<"vec2", "float"> = $(2);
+export const magSq3: TaggedFn1<"vec3", "float"> = $(3);
+export const magSq4: TaggedFn1<"vec4", "float"> = $(4);

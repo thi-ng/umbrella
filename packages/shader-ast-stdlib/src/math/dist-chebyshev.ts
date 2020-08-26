@@ -1,5 +1,5 @@
 import {
-    $w,
+    $,
     $x,
     $y,
     $z,
@@ -22,4 +22,4 @@ export const distChebyshev3 = (
 ) => max(distChebyshev2(a, b), abs(sub($z(a), $z(b))));
 
 export const distChebyshev4 = (a: Vec4Term, b: Vec4Term) =>
-    max(distChebyshev3(a, b), abs(sub($w(a), $w(b))));
+    max(distChebyshev2(a, b), distChebyshev2($(a, "zw"), $(b, "zw")));

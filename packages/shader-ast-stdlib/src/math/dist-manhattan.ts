@@ -1,5 +1,5 @@
 import {
-    $w,
+    $,
     $x,
     $y,
     $z,
@@ -22,4 +22,4 @@ export const distManhattan3 = (
 ) => add(distManhattan2(a, b), abs(sub($z(a), $z(b))));
 
 export const distManhattan4 = (a: Vec4Term, b: Vec4Term) =>
-    add(distManhattan3(a, b), abs(sub($w(a), $w(b))));
+    add(distManhattan2(a, b), distManhattan2($(a, "zw"), $(b, "zw")));
