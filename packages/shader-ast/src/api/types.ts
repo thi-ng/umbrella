@@ -152,3 +152,10 @@ export type NumericF = number | FloatTerm;
 export type NumericI = number | IntTerm;
 export type NumericU = number | UintTerm;
 export type NumericB = boolean | Numeric | BoolTerm;
+
+export interface PrimTypeMap {
+    1: "float";
+    2: "vec2";
+    3: "vec3";
+    4: "vec4";
+}

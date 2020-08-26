@@ -28,3 +28,5 @@ export type ISamplerCubeTerm = Term<"isamplerCube">;
 export type USampler2DTerm = Term<"usampler2D">;
 export type USampler3DTerm = Term<"usampler3D">;
 export type USamplerCubeTerm = Term<"usamplerCube">;
+
+export type PrimTerm = FloatTerm | Vec2Term | Vec3Term | Vec4Term;

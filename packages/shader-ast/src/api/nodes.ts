@@ -20,6 +20,8 @@ export interface Term<T extends Type> {
     type: T;
 }
 
+export type TermType<T extends Term<any>> = T["type"];
+
 export interface Scoped {
     scope: Scope;
 }
