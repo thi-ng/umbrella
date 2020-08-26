@@ -1,8 +1,5 @@
-import { assert } from "@thi.ng/api";
+import { assert, Nullable } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks";
-import { gensym } from "./idgen";
-import { allChildren, scope, scopedChildren, walk } from "./scope";
-import { sym } from "./sym";
 import type {
     Arg,
     Arg1,
@@ -43,6 +40,9 @@ import type {
 } from "../api/nodes";
 import type { SymOpts } from "../api/syms";
 import type { Type } from "../api/types";
+import { gensym } from "./idgen";
+import { allChildren, scope, scopedChildren, walk } from "./scope";
+import { sym } from "./sym";
 
 const defArg = <T extends Type>(a: Arg<T>): FuncArg<T> => {
     const [type, id, opts] = isString(a) ? <[T, string?, SymOpts?]>[a] : a;
@@ -64,25 +64,26 @@ const defArg = <T extends Type>(a: Arg<T>): FuncArg<T> => {
  * @param deps - array of userland functions called from this function
  */
 // prettier-ignore
-export function defn<T extends Type>(type: T, name: string, args: [], body: FnBody0): TaggedFn0<T>;
+export function defn<T extends Type>(type: T, name: Nullable<string>, args: [], body: FnBody0): TaggedFn0<T>;
 // prettier-ignore
-export function defn<T extends Type, A extends Type>(type: T, name: string, args: Arg1<A>, body: FnBody1<A>): TaggedFn1<A,T>;
+export function defn<T extends Type, A extends Type>(type: T, name: Nullable<string>, args: Arg1<A>, body: FnBody1<A>): TaggedFn1<A,T>;
 // prettier-ignore
-export function defn<T extends Type, A extends Type, B extends Type>(type: T, name: string, args: Arg2<A,B>, body: FnBody2<A,B>): TaggedFn2<A,B,T>;
+export function defn<T extends Type, A extends Type, B extends Type>(type: T, name: Nullable<string>, args: Arg2<A,B>, body: FnBody2<A,B>): TaggedFn2<A,B,T>;
 // prettier-ignore
-export function defn<T extends Type, A extends Type, B extends Type, C extends Type>(type: T, name: string, args: Arg3<A,B,C>, body: FnBody3<A,B,C>): TaggedFn3<A,B,C,T>;
+export function defn<T extends Type, A extends Type, B extends Type, C extends Type>(type: T, name: Nullable<string>, args: Arg3<A,B,C>, body: FnBody3<A,B,C>): TaggedFn3<A,B,C,T>;
 // prettier-ignore
-export function defn<T extends Type, A extends Type, B extends Type, C extends Type, D extends Type>(type: T, name: string, args: Arg4<A,B,C,D>, body: FnBody4<A,B,C,D>): TaggedFn4<A,B,C,D,T>;
+export function defn<T extends Type, A extends Type, B extends Type, C extends Type, D extends Type>(type: T, name: Nullable<string>, args: Arg4<A,B,C,D>, body: FnBody4<A,B,C,D>): TaggedFn4<A,B,C,D,T>;
 // prettier-ignore
-export function defn<T extends Type, A extends Type, B extends Type, C extends Type, D extends Type, E extends Type>(type: T, name: string, args: Arg5<A,B,C,D,E>, body: FnBody5<A,B,C,D,E>): TaggedFn5<A,B,C,D,E,T>;
+export function defn<T extends Type, A extends Type, B extends Type, C extends Type, D extends Type, E extends Type>(type: T, name: Nullable<string>, args: Arg5<A,B,C,D,E>, body: FnBody5<A,B,C,D,E>): TaggedFn5<A,B,C,D,E,T>;
 // prettier-ignore
-export function defn<T extends Type, A extends Type, B extends Type, C extends Type, D extends Type, E extends Type, F extends Type>(type: T, name: string, args: Arg6<A,B,C,D,E,F>, body: FnBody6<A,B,C,D,E,F>): TaggedFn6<A,B,C,D,E,F,T>;
+export function defn<T extends Type, A extends Type, B extends Type, C extends Type, D extends Type, E extends Type, F extends Type>(type: T, name: Nullable<string>, args: Arg6<A,B,C,D,E,F>, body: FnBody6<A,B,C,D,E,F>): TaggedFn6<A,B,C,D,E,F,T>;
 // prettier-ignore
-export function defn<T extends Type, A extends Type, B extends Type, C extends Type, D extends Type, E extends Type, F extends Type, G extends Type>(type: T, name: string, args: Arg7<A,B,C,D,E,F,G>, body: FnBody7<A,B,C,D,E,F,G>): TaggedFn7<A,B,C,D,E,F,G,T>;
+export function defn<T extends Type, A extends Type, B extends Type, C extends Type, D extends Type, E extends Type, F extends Type, G extends Type>(type: T, name: Nullable<string>, args: Arg7<A,B,C,D,E,F,G>, body: FnBody7<A,B,C,D,E,F,G>): TaggedFn7<A,B,C,D,E,F,G,T>;
 // prettier-ignore
-export function defn<T extends Type, A extends Type, B extends Type, C extends Type, D extends Type, E extends Type, F extends Type, G extends Type, H extends Type>(type: T, name: string, args: Arg8<A,B,C,D,E,F,G,H>, body: FnBody8<A,B,C,D,E,F,G,H>): TaggedFn8<A,B,C,D,E,F,G,H,T>;
+export function defn<T extends Type, A extends Type, B extends Type, C extends Type, D extends Type, E extends Type, F extends Type, G extends Type, H extends Type>(type: T, name: Nullable<string>, args: Arg8<A,B,C,D,E,F,G,H>, body: FnBody8<A,B,C,D,E,F,G,H>): TaggedFn8<A,B,C,D,E,F,G,H,T>;
 // prettier-ignore
-export function defn(type: Type, id: string, _args: Arg<any>[], _body: (...xs: Sym<any>[]) => ScopeBody): Func<any> {
+export function defn(type: Type, id: Nullable<string>, _args: Arg<any>[], _body: (...xs: Sym<any>[]) => ScopeBody): Func<any> {
+    id = id || gensym();
     const args = _args.map(defArg);
     const body = <Term<any>[]>(
         _body(...args.map((x) => sym(x.type, x.id, x.opts))).filter(
