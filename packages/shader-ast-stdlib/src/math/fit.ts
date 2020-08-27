@@ -9,13 +9,14 @@ import {
     mix,
     mul,
     neq,
-    Op2,
-    Prim,
+    PrimTerm,
     ret,
     sub,
     Term,
+    TermType,
     ternary,
 } from "@thi.ng/shader-ast";
+import { clamp01 } from "./clamp";
 
 /**
  * Returns normalized value of `x` WRT to interval [a,b]. Returns 0, if
@@ -33,6 +34,41 @@ export const fitNorm1 = defn(
 );
 
 /**
+ * Fits value `x` from closed interval [a,b] to closed interval [c,d]. No
+ * clamping performed.
+ *
+ * @param x
+ * @param a
+ * @param b
+ * @param c
+ * @param d
+ */
+export const fit = <T extends PrimTerm>(
+    x: T,
+    a: T,
+    b: T,
+    c: T,
+    d: T
+): Term<TermType<T>> => mix(c, d, div(sub(x, a), sub(b, a)));
+
+/**
+ * Same as {@link fit}, but first clamps `x` to closed [a,b] interval.
+ *
+ * @param x
+ * @param a
+ * @param b
+ * @param c
+ * @param d
+ */
+export const fitClamped = <T extends PrimTerm>(
+    x: T,
+    a: T,
+    b: T,
+    c: T,
+    d: T
+): Term<TermType<T>> => mix(c, d, clamp01(div(sub(x, a), sub(b, a))));
+
+/**
  * Inline function. Fits value `a` in [0..1] interval to new interval
  * [b..c]. No clamping performed. Same as `mix(b, c, a)`
  *
@@ -40,11 +76,11 @@ export const fitNorm1 = defn(
  * @param b -
  * @param c -
  */
-export const fit01 = <A extends Prim, B extends A, C extends B>(
-    a: Term<A>,
-    b: Term<B>,
-    c: Term<C>
-) => mix<A, A, A>(b, c, a);
+export const fit01 = <T extends PrimTerm>(
+    a: T,
+    b: T,
+    c: T
+): Term<TermType<T>> => mix(b, c, a);
 
 /**
  * Inline function. Fits value `x` in [-1..+1] interval to [0..1]
@@ -52,8 +88,8 @@ export const fit01 = <A extends Prim, B extends A, C extends B>(
  *
  * @param x -
  */
-export const fit1101 = <T extends Prim>(x: Term<T>): Op2<T> =>
-    <any>add(mul(<any>x, FLOAT05), FLOAT05);
+export const fit1101 = <T extends PrimTerm>(x: T): Term<TermType<T>> =>
+    add(mul(x, FLOAT05), FLOAT05);
 
 /**
  * Inline function. Fits value `x` in [0..1] interval to [-1..+1]
@@ -61,5 +97,5 @@ export const fit1101 = <T extends Prim>(x: Term<T>): Op2<T> =>
  *
  * @param x -
  */
-export const fit0111 = <T extends Prim>(x: Term<T>): Op2<T> =>
-    <any>sub(mul(<any>x, FLOAT2), FLOAT1);
+export const fit0111 = <T extends PrimTerm>(x: T): Term<TermType<T>> =>
+    sub(mul(x, FLOAT2), FLOAT1);
