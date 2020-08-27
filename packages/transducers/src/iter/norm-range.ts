@@ -39,7 +39,7 @@ export function* normRange2d(
 export function* normRange3d(
     nx: number,
     ny: number,
-    nx: number,
+    nz: number,
     includeLastX: boolean = true,
     includeLastY: boolean = true,
     includeLastZ: boolean = true,
