@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/heaps@1.2.22...@thi.ng/heaps@1.2.23) (2020-08-28)
+
+**Note:** Version bump only for package @thi.ng/heaps
+
+
+
+
+
 ## [1.2.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/heaps@1.2.21...@thi.ng/heaps@1.2.22) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/heaps

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@2.0.28...@thi.ng/dsp@2.1.0) (2020-08-28)
+
+
+### Features
+
+* **dsp:** add iterable() wrapper ([94fb8ed](https://github.com/thi-ng/umbrella/commit/94fb8ed3a91ea45dcb53961a3b1c4a6a96cb2fb0))
+
+
+
+
+
 ## [2.0.28](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@2.0.27...@thi.ng/dsp@2.0.28) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/dsp

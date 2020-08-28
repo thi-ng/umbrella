@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.2.2...@thi.ng/transducers@7.3.0) (2020-08-28)
+
+
+### Bug Fixes
+
+* **transducers:** type ([dedce3f](https://github.com/thi-ng/umbrella/commit/dedce3fe874960769c4f6e178fd591bfd6eef263))
+
+
+### Features
+
+* **tranducers:** fix normRange2d, add normRange3d ([db75605](https://github.com/thi-ng/umbrella/commit/db75605a65a7ca47fae146935b78d20ec3569d11))
+* **transducers:** add normRange2 ([1125930](https://github.com/thi-ng/umbrella/commit/1125930e3ea32d80793876daa98729e7ee51fe76))
+
+
+
+
+
 ## [7.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.2.1...@thi.ng/transducers@7.2.2) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/transducers

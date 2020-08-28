@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.6.15...@thi.ng/arrays@0.7.0) (2020-08-28)
+
+
+### Features
+
+* **arrays:** add non-recursive binary search fns ([29a4ee4](https://github.com/thi-ng/umbrella/commit/29a4ee4d888ccb049df9b50a57e3884ce2d4d0f3))
+
+
+
+
+
 ## [0.6.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.6.14...@thi.ng/arrays@0.6.15) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/arrays
