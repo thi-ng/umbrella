@@ -113,7 +113,7 @@ export class Tunnel<A, B> extends Subscription<A, B> {
             setTimeout(() => {
                 LOGGER.info("terminating workers...");
                 this.workers.forEach((worker) => worker && worker.terminate());
-                delete this.workers;
+                delete (<any>this).workers;
             }, this.terminate);
         }
     }

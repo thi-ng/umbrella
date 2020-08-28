@@ -64,7 +64,7 @@ export class SidechainPartition<T, S> extends ASidechain<T, S, T[]> {
                     $this.dispatch($this.buf);
                 }
                 $this.done();
-                delete $this.buf;
+                delete (<any>$this).buf;
             },
         });
     }
