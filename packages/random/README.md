@@ -55,7 +55,7 @@ yarn add @thi.ng/random
 <script src="https://unpkg.com/@thi.ng/random/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.23 KB / CJS: 1.33 KB / UMD: 1.37 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.24 KB / CJS: 1.34 KB / UMD: 1.36 KB
 
 ## Dependencies
 

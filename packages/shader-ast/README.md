@@ -182,7 +182,7 @@ yarn add @thi.ng/shader-ast
 <script src="https://unpkg.com/@thi.ng/shader-ast/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 4.71 KB / CJS: 5.24 KB / UMD: 4.70 KB
+Package sizes (gzipped, pre-treeshake): ESM: 4.72 KB / CJS: 5.25 KB / UMD: 4.71 KB
 
 ## Dependencies
 
