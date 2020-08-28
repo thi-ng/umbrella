@@ -395,7 +395,7 @@ writeFileSync(
 );
 ```
 
-```
+![Result waveform with spectrum](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/colored-noise/hihat-green.png)
 
 ## Authors
 
