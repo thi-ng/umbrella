@@ -181,7 +181,7 @@ export class Atom<T> implements IAtom<T>, IEquiv {
 
     release() {
         delete this._watches;
-        delete this._value;
+        delete (<any>this)._value;
         return true;
     }
 }
