@@ -178,7 +178,7 @@ export class Edge<T> {
     remove() {
         this.splice(this.oprev);
         this.sym.splice(this.sym.oprev);
-        delete this.parent;
+        delete (<any>this).parent;
     }
 
     /**
