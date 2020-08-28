@@ -24,6 +24,7 @@
         "@thi.ng/transducers": "latest"
     },
     "thi.ng": {
+        "online": false,
         "readme": [
             "color",
             "hiccup",

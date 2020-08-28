@@ -33,6 +33,7 @@
         "process": false
     },
     "thi.ng": {
+        "online": false,
         "readme": [
             "dgraph",
             "hiccup",
