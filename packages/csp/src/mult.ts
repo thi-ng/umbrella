@@ -118,8 +118,8 @@ export class Mult<T> implements IWriteableChannel<T> {
         for (let t of this.taps) {
             await t.close();
         }
-        delete this.src;
-        delete this.taps;
-        delete this.tapID;
+        delete (<any>this).src;
+        delete (<any>this).taps;
+        delete (<any>this).tapID;
     }
 }

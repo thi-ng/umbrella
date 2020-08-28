@@ -102,8 +102,8 @@ export class PubSub<T> implements IWriteableChannel<T> {
         for (let id of Object.keys(this.topics)) {
             this.topics[id].close();
         }
-        delete this.src;
-        delete this.topics;
-        delete this.fn;
+        delete (<any>this).src;
+        delete (<any>this).topics;
+        delete (<any>this).fn;
     }
 }
