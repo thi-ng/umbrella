@@ -388,6 +388,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://owoga.com"><img src="https://avatars0.githubusercontent.com/u/1719584?v=4" width="100px;" alt=""/><br /><sub><b>Eric Ihli</b></sub></a><br /><a href="#financial-eihli" title="Financial">💵</a></td>
     <td align="center"><a href="https://davidpham87.github.io"><img src="https://avatars3.githubusercontent.com/u/7083286?v=4" width="100px;" alt=""/><br /><sub><b>David Pham</b></sub></a><br /><a href="#financial-davidpham87" title="Financial">💵</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="http://plugins.ro"><img src="https://avatars0.githubusercontent.com/u/7951?v=4" width="100px;" alt=""/><br /><sub><b>TBD</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Atbd" title="Bug reports">🐛</a> <a href="#ideas-tbd" title="Ideas, Planning, & Feedback">🤔</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-enable -->
