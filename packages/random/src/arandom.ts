@@ -16,20 +16,4 @@ export abstract class ARandom implements IRandom {
     minmax(min: number, max: number) {
         return this.float() * (max - min) + min;
     }
-
-    /**
-     * Returns approx. normal distribution using CLT.
-     *
-     * {@link https://en.wikipedia.org/wiki/Central_limit_theorem}
-     *
-     * @param n -
-     * @param offset -
-     * @param scale -
-     */
-    gaussian(n = 10, offset = -0.5, scale = 1) {
-        let sum = 0;
-        let m = n;
-        while (m-- > 0) sum += this.float(scale);
-        return sum / n + offset;
-    }
 }
