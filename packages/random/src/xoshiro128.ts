@@ -1,12 +1,13 @@
-import { ARandom } from "./arandom";
-import { DEFAULT_SEED_128 } from "./constants";
 import type { IBuffered, ICopy } from "@thi.ng/api";
 import type { ISeedable } from "./api";
+import { ARandom } from "./arandom";
+import { DEFAULT_SEED_128 } from "./constants";
 
 // http://prng.di.unimi.it/
 // http://prng.di.unimi.it/xoshiro128plusplus.c
 
-export class Xoshiro128 extends ARandom
+export class Xoshiro128
+    extends ARandom
     implements
         IBuffered<Uint32Array>,
         ICopy<Xoshiro128>,

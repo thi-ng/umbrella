@@ -1,5 +1,5 @@
-import { SYSTEM } from "./system";
 import type { IRandom } from "./api";
+import { SYSTEM } from "./system";
 
 /**
  * Generates and returns a random string of `len` characters (default
@@ -26,7 +26,8 @@ export const randomID = (
     syms = "abcdefghijklmnopqrstuvwxyz",
     rnd: IRandom = SYSTEM
 ) => {
-    for (const n = syms.length; --len >= 0; ) {
+    const n = syms.length;
+    for (; --len >= 0; ) {
         prefix += syms[rnd.float(n) | 0];
     }
     return prefix;
