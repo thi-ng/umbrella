@@ -21,3 +21,37 @@ export function* normRange(
         }
     }
 }
+
+export function* normRange2d(
+    nx: number,
+    ny: number,
+    includeLastX: boolean = true,
+    includeLastY: boolean = true,
+) { 
+    const rx = normRange(nx, includeLastX);
+    for (let y of normRange(ny, includeLastY)) {
+        for (let x of rx) {
+            yield [x, y];
+        }
+    }
+}
+
+export function* normRange3d(
+    nx: number,
+    ny: number,
+    nz: number,
+    includeLastX: boolean = true,
+    includeLastY: boolean = true,
+    includeLastZ: boolean = true,
+) { 
+    const rx = normRange(nx, includeLastX);
+    const ry = normRange(ny, includeLastY);
+    for (let z of normRange(nz, includeLastZ)) {
+        for (let y of ry) {
+            for (let x of rx) {
+                yield [x, y, z];
+            }
+        }
+    }
+}
+
