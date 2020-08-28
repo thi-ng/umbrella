@@ -13,7 +13,7 @@
 > the composer of. Geared towards versatility, not any specific type of music."
 > &mdash; [@loganpowell](https://twitter.com/logantpowell/status/1186334119812304901) via Twitter
 
-Mono-repository for ~135 thi.ng TypeScript/ES6 projects, a wide
+Mono-repository for 135+ thi.ng TypeScript/ES6 projects, a wide
 collection of largely data transformation oriented packages and building
 blocks for:
 
@@ -57,25 +57,28 @@ philosophy for various key aspects of application design (in & outside
 the browser). Most customization points only expect certain
 interfaces/type signatures rather than concrete implementations.
 
-Most packages:
+All packages:
 
-- have detailed, individual README files w/ small usage examples
 - are versioned independently
 - distributed in ES2017 syntax and multiple formats (ESM, CommonJS, UMD)
-  with TypeScript typings & changelogs
+  with TypeScript typings & change logs
 - highly modular with largely only a few closely related functions or
   single function / class per file to help w/ tree shaking
 - provide re-exports of all their publics for full library imports
 - have either none or only @thi.ng internal runtime dependencies
-- have been used in production
 - declare public interfaces, enums & types in an `api.ts` and/or
   `constants.ts` file (larger packages only)
 - have auto-generated online documentation at [docs.thi.ng](http://docs.thi.ng)
 - licensed under Apache Software License 2.0
 
+Most packages:
+
+- have been used in production
+- have detailed, individual README files w/ small usage examples
+
 ## Examples
 
-There's a steadily growing number (~85) of standalone examples
+There's a steadily growing number (~100) of standalone examples
 (different complexities, often combining functionality from several
 packages) in the [**examples**](./examples/README.md) directory.
 
@@ -119,28 +122,29 @@ feature or `develop` branches)
 
 ### Fundamentals
 
-| Project                                   | Version                                                                                                         | Changelog                                     | Description                                              |
-|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------|----------------------------------------------------------|
-| [`@thi.ng/api`](./packages/api)           | [![version](https://img.shields.io/npm/v/@thi.ng/api.svg)](https://www.npmjs.com/package/@thi.ng/api)           | [changelog](./packages/api/CHANGELOG.md)      | Common types, decorators, mixins                         |
-| [`@thi.ng/bench`](./packages/bench)       | [![version](https://img.shields.io/npm/v/@thi.ng/bench.svg)](https://www.npmjs.com/package/@thi.ng/bench)       | [changelog](./packages/bench/CHANGELOG.md)    | Basic benchmarking helpers                               |
-| [`@thi.ng/checks`](./packages/checks)     | [![version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)     | [changelog](./packages/checks/CHANGELOG.md)   | Type & value checks                                      |
-| [`@thi.ng/compare`](./packages/compare)   | [![version](https://img.shields.io/npm/v/@thi.ng/compare.svg)](https://www.npmjs.com/package/@thi.ng/compare)   | [changelog](./packages/compare/CHANGELOG.md)  | Comparator                                               |
-| [`@thi.ng/compose`](./packages/compose)   | [![version](https://img.shields.io/npm/v/@thi.ng/compose.svg)](https://www.npmjs.com/package/@thi.ng/compose)   | [changelog](./packages/compose/CHANGELOG.md)  | Functional composition helpers                           |
-| [`@thi.ng/defmulti`](./packages/defmulti) | [![version](https://img.shields.io/npm/v/@thi.ng/defmulti.svg)](https://www.npmjs.com/package/@thi.ng/defmulti) | [changelog](./packages/defmulti/CHANGELOG.md) | Dynamic multiple dispatch                                |
-| [`@thi.ng/dsp`](./packages/dsp)           | [![version](https://img.shields.io/npm/v/@thi.ng/dsp.svg)](https://www.npmjs.com/package/@thi.ng/dsp)           | [changelog](./packages/dsp/CHANGELOG.md)      | DSP utils, oscillators                                   |
-| [`@thi.ng/ecs`](./packages/ecs)           | [![version](https://img.shields.io/npm/v/@thi.ng/ecs.svg)](https://www.npmjs.com/package/@thi.ng/ecs)           | [changelog](./packages/ecs/CHANGELOG.md)      | Entity-Component System                                  |
-| [`@thi.ng/equiv`](./packages/equiv)       | [![version](https://img.shields.io/npm/v/@thi.ng/equiv.svg)](https://www.npmjs.com/package/@thi.ng/equiv)       | [changelog](./packages/equiv/CHANGELOG.md)    | Deep value equivalence checking                          |
-| [`@thi.ng/errors`](./packages/errors)     | [![version](https://img.shields.io/npm/v/@thi.ng/errors.svg)](https://www.npmjs.com/package/@thi.ng/errors)     | [changelog](./packages/errors/CHANGELOG.md)   | Custom error types                                       |
-| [`@thi.ng/math`](./packages/math)         | [![version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)         | [changelog](./packages/math/CHANGELOG.md)     | Assorted common math functions & utilities               |
-| [`@thi.ng/memoize`](./packages/memoize)   | [![version](https://img.shields.io/npm/v/@thi.ng/memoize.svg)](https://www.npmjs.com/package/@thi.ng/memoize)   | [changelog](./packages/memoize/CHANGELOG.md)  | Function memoization w/ customizable caching             |
-| [`@thi.ng/mime`](./packages/mime)         | [![version](https://img.shields.io/npm/v/@thi.ng/mime.svg)](https://www.npmjs.com/package/@thi.ng/mime)         | [changelog](./packages/mime/CHANGELOG.md)     | File extension to MIME type mappings                     |
-| [`@thi.ng/oquery`](./packages/oquery)     | [![version](https://img.shields.io/npm/v/@thi.ng/oquery.svg)](https://www.npmjs.com/package/@thi.ng/oquery)     | [changelog](./packages/oquery/CHANGELOG.md)   | Pattern based query engine for JS objects                |
-| [`@thi.ng/parse`](./packages/parse)       | [![version](https://img.shields.io/npm/v/@thi.ng/parse.svg)](https://www.npmjs.com/package/@thi.ng/parse)       | [changelog](./packages/parse/CHANGELOG.md)    | Parser combinators & AST generator/transformer           |
-| [`@thi.ng/paths`](./packages/paths)       | [![version](https://img.shields.io/npm/v/@thi.ng/paths.svg)](https://www.npmjs.com/package/@thi.ng/paths)       | [changelog](./packages/paths/CHANGELOG.md)    | Immutable nested object accessors                        |
-| [`@thi.ng/prefixes`](./packages/prefixes) | [![version](https://img.shields.io/npm/v/@thi.ng/prefixes.svg)](https://www.npmjs.com/package/@thi.ng/prefixes) | [changelog](./packages/prefixes/CHANGELOG.md) | Linked Data & xmlns prefixes/URLs                        |
-| [`@thi.ng/random`](./packages/random)     | [![version](https://img.shields.io/npm/v/@thi.ng/random.svg)](https://www.npmjs.com/package/@thi.ng/random)     | [changelog](./packages/random/CHANGELOG.md)   | Seedable PRNG implementations w/ unified API             |
-| [`@thi.ng/strings`](./packages/strings)   | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)   | [changelog](./packages/strings/CHANGELOG.md)  | Higher-order string formatting utils                     |
-| [`@thi.ng/system`](./packages/system)     | [![version](https://img.shields.io/npm/v/@thi.ng/system.svg)](https://www.npmjs.com/package/@thi.ng/system)     | [changelog](./packages/system/CHANGELOG.md)   | Minimal life cycle container for stateful app components |
+| Project                                             | Version                                                                                                                   | Changelog                                          | Description                                              |
+|-----------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|----------------------------------------------------------|
+| [`@thi.ng/api`](./packages/api)                     | [![version](https://img.shields.io/npm/v/@thi.ng/api.svg)](https://www.npmjs.com/package/@thi.ng/api)                     | [changelog](./packages/api/CHANGELOG.md)           | Common types, decorators, mixins                         |
+| [`@thi.ng/bench`](./packages/bench)                 | [![version](https://img.shields.io/npm/v/@thi.ng/bench.svg)](https://www.npmjs.com/package/@thi.ng/bench)                 | [changelog](./packages/bench/CHANGELOG.md)         | Basic benchmarking helpers                               |
+| [`@thi.ng/checks`](./packages/checks)               | [![version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)               | [changelog](./packages/checks/CHANGELOG.md)        | Type & value checks                                      |
+| [`@thi.ng/colored-noise`](./packages/colored-noise) | [![version](https://img.shields.io/npm/v/@thi.ng/colored-noise.svg)](https://www.npmjs.com/package/@thi.ng/colored-noise) | [changelog](./packages/colored-noise/CHANGELOG.md) | 1D colored noise generators                              |
+| [`@thi.ng/compare`](./packages/compare)             | [![version](https://img.shields.io/npm/v/@thi.ng/compare.svg)](https://www.npmjs.com/package/@thi.ng/compare)             | [changelog](./packages/compare/CHANGELOG.md)       | Comparators                                              |
+| [`@thi.ng/compose`](./packages/compose)             | [![version](https://img.shields.io/npm/v/@thi.ng/compose.svg)](https://www.npmjs.com/package/@thi.ng/compose)             | [changelog](./packages/compose/CHANGELOG.md)       | Functional composition helpers                           |
+| [`@thi.ng/defmulti`](./packages/defmulti)           | [![version](https://img.shields.io/npm/v/@thi.ng/defmulti.svg)](https://www.npmjs.com/package/@thi.ng/defmulti)           | [changelog](./packages/defmulti/CHANGELOG.md)      | Dynamic multiple dispatch                                |
+| [`@thi.ng/dsp`](./packages/dsp)                     | [![version](https://img.shields.io/npm/v/@thi.ng/dsp.svg)](https://www.npmjs.com/package/@thi.ng/dsp)                     | [changelog](./packages/dsp/CHANGELOG.md)           | DSP utils, oscillators                                   |
+| [`@thi.ng/ecs`](./packages/ecs)                     | [![version](https://img.shields.io/npm/v/@thi.ng/ecs.svg)](https://www.npmjs.com/package/@thi.ng/ecs)                     | [changelog](./packages/ecs/CHANGELOG.md)           | Entity-Component System                                  |
+| [`@thi.ng/equiv`](./packages/equiv)                 | [![version](https://img.shields.io/npm/v/@thi.ng/equiv.svg)](https://www.npmjs.com/package/@thi.ng/equiv)                 | [changelog](./packages/equiv/CHANGELOG.md)         | Deep value equivalence checking                          |
+| [`@thi.ng/errors`](./packages/errors)               | [![version](https://img.shields.io/npm/v/@thi.ng/errors.svg)](https://www.npmjs.com/package/@thi.ng/errors)               | [changelog](./packages/errors/CHANGELOG.md)        | Custom error types                                       |
+| [`@thi.ng/math`](./packages/math)                   | [![version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)                   | [changelog](./packages/math/CHANGELOG.md)          | Assorted common math functions & utilities               |
+| [`@thi.ng/memoize`](./packages/memoize)             | [![version](https://img.shields.io/npm/v/@thi.ng/memoize.svg)](https://www.npmjs.com/package/@thi.ng/memoize)             | [changelog](./packages/memoize/CHANGELOG.md)       | Function memoization w/ customizable caching             |
+| [`@thi.ng/mime`](./packages/mime)                   | [![version](https://img.shields.io/npm/v/@thi.ng/mime.svg)](https://www.npmjs.com/package/@thi.ng/mime)                   | [changelog](./packages/mime/CHANGELOG.md)          | File extension to MIME type mappings                     |
+| [`@thi.ng/oquery`](./packages/oquery)               | [![version](https://img.shields.io/npm/v/@thi.ng/oquery.svg)](https://www.npmjs.com/package/@thi.ng/oquery)               | [changelog](./packages/oquery/CHANGELOG.md)        | Pattern based query engine for JS objects                |
+| [`@thi.ng/parse`](./packages/parse)                 | [![version](https://img.shields.io/npm/v/@thi.ng/parse.svg)](https://www.npmjs.com/package/@thi.ng/parse)                 | [changelog](./packages/parse/CHANGELOG.md)         | Parser combinators & AST generator/transformer           |
+| [`@thi.ng/paths`](./packages/paths)                 | [![version](https://img.shields.io/npm/v/@thi.ng/paths.svg)](https://www.npmjs.com/package/@thi.ng/paths)                 | [changelog](./packages/paths/CHANGELOG.md)         | Immutable nested object accessors                        |
+| [`@thi.ng/prefixes`](./packages/prefixes)           | [![version](https://img.shields.io/npm/v/@thi.ng/prefixes.svg)](https://www.npmjs.com/package/@thi.ng/prefixes)           | [changelog](./packages/prefixes/CHANGELOG.md)      | Linked Data & xmlns prefixes/URLs                        |
+| [`@thi.ng/random`](./packages/random)               | [![version](https://img.shields.io/npm/v/@thi.ng/random.svg)](https://www.npmjs.com/package/@thi.ng/random)               | [changelog](./packages/random/CHANGELOG.md)        | Seedable PRNG implementations w/ unified API             |
+| [`@thi.ng/strings`](./packages/strings)             | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)             | [changelog](./packages/strings/CHANGELOG.md)       | Higher-order string formatting utils                     |
+| [`@thi.ng/system`](./packages/system)               | [![version](https://img.shields.io/npm/v/@thi.ng/system.svg)](https://www.npmjs.com/package/@thi.ng/system)               | [changelog](./packages/system/CHANGELOG.md)        | Minimal life cycle container for stateful app components |
 
 ### Iterator, stream & sequence processing
 
@@ -347,7 +351,7 @@ yarn doc
 
 ## License
 
-&copy; 2018 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2020 Karsten Schmidt // Apache Software License 2.0
 
 ## Contributors ✨
 
