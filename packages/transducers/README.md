@@ -897,6 +897,8 @@ tx.transduce(tx.map((x) => x*10), tx.push(), tx.range(4))
 - [keys](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/keys.ts)
 - [line](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/line.ts)
 - [normRange](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/norm-range.ts)
+- [normRange2d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/norm-range.ts)
+- [normRange3d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/norm-range.ts)
 - [padSides](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/pad-sides.ts)
 - [pairs](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/pairs.ts)
 - [palindrome](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/palindrome.ts)
@@ -957,6 +959,7 @@ and return a reduced result (as if it would be called via `reduce()`).
 
 ### Contributors
 
+- Alberto ([@nkint](https://github.com/nkint))
 - Gavin Cannizzaro ([@gavinpc-mindgrub](https://github.com/gavinpc-mindgrub))
 
 ## License
