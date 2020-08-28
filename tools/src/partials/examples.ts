@@ -27,11 +27,14 @@ export const examplesTable = (pkgName: string) => {
                 const body = {
                     img: meta.screenshot ? thumb(meta.screenshot) : "",
                     desc: expkg.description || "",
-                    demo: link("Demo", `${CONFIG.demoURL}/${expkg.name}/`),
+                    demo:
+                        meta.online !== false
+                            ? link("Demo", `${CONFIG.demoURL}/${expkg.name}/`)
+                            : "",
                     src: link(
                         "Source",
                         `${CONFIG.branchURL}/examples/${expkg.name}`
-                    )
+                    ),
                 };
                 examples.push(body);
             }
@@ -53,7 +56,7 @@ export const examplesTable = (pkgName: string) => {
               "",
               "A selection:",
               "",
-              table(headers, <any>keys, examples)
+              table(headers, <any>keys, examples),
           ].join("\n")
         : null;
 };
