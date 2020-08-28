@@ -4,7 +4,7 @@ const random = Math.random;
 
 export class SystemRandom extends ARandom {
     int() {
-        return (random() * 0xffffffff) >>> 0;
+        return (random() * 4294967296) /* 2**32 */ >>> 0;
     }
 
     float(norm = 1) {
