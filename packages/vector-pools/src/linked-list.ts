@@ -119,8 +119,8 @@ export class VecLinkedList<T extends StridedVec> extends AVecList<T> {
             if (this.tail === v) {
                 this.tail = this._length ? v.prev : null;
             }
-            delete v.prev;
-            delete v.next;
+            delete (<any>v).prev;
+            delete (<any>v).next;
             return true;
         }
         return false;
