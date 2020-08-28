@@ -255,10 +255,10 @@ export class MemPool implements IMemPool {
     }
 
     release() {
-        delete this.u8;
-        delete this.u32;
-        delete this.state;
-        delete this.buf;
+        delete (<any>this).u8;
+        delete (<any>this).u32;
+        delete (<any>this).state;
+        delete (<any>this).buf;
         return true;
     }
 
