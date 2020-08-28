@@ -1,0 +1,82 @@
+{
+    "name": "@thi.ng/colored-noise",
+    "version": "0.0.1",
+    "description": "Customizable O(1) ES6 generators for colored noise",
+    "module": "./index.js",
+    "main": "./lib/index.js",
+    "umd:main": "./lib/index.umd.js",
+    "typings": "./index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thi-ng/umbrella.git"
+    },
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/colored-noise#readme",
+    "funding": {
+        "type": "patreon",
+        "url": "https://patreon.com/thing_umbrella"
+    },
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
+        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
+        "build:es6": "tsc --declaration",
+        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "test": "mocha test",
+        "cover": "nyc mocha test && nyc report --reporter=lcov",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
+        "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
+        "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
+        "pub": "yarn build:release && yarn publish --access public"
+    },
+    "devDependencies": {
+        "@istanbuljs/nyc-config-typescript": "^1.0.1",
+        "@microsoft/api-extractor": "^7.9.2",
+        "@thi.ng/api": "^6.12.2",
+        "@thi.ng/dsp": "^2.0.28",
+        "@thi.ng/dsp-io-wav": "^0.1.27",
+        "@thi.ng/text-canvas": "^0.2.28",
+        "@thi.ng/transducers": "^7.2.2",
+        "@thi.ng/vectors": "^4.6.3",
+        "@types/mocha": "^8.0.0",
+        "@types/node": "^14.0.26",
+        "mocha": "^8.1.1",
+        "nyc": "^15.1.0",
+        "ts-node": "^8.10.1",
+        "typedoc": "^0.18.0",
+        "typescript": "^3.9.7"
+    },
+    "dependencies": {
+        "@thi.ng/binary": "^2.0.13",
+        "@thi.ng/random": "^1.4.17"
+    },
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "lib"
+    ],
+    "keywords": [
+        "blue",
+        "brown",
+        "es6",
+        "generator",
+        "green",
+        "noise",
+        "prng",
+        "red",
+        "typescript",
+        "white"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "sideEffects": false,
+    "thi.ng": {
+        "related": [
+            "dsp",
+            "random"
+        ],
+        "year": 2015
+    }
+}
