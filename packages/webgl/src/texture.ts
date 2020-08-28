@@ -257,8 +257,8 @@ export class Texture implements ITexture {
     release() {
         if (this.tex) {
             this.gl.deleteTexture(this.tex);
-            delete this.tex;
-            delete this.gl;
+            delete (<any>this).tex;
+            delete (<any>this).gl;
             return true;
         }
         return false;

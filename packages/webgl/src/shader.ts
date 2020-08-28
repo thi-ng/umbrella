@@ -104,7 +104,7 @@ export class Shader implements IShader {
     release() {
         if (this.program) {
             this.gl.deleteProgram(this.program);
-            delete this.program;
+            delete (<any>this).program;
             return true;
         }
         return false;

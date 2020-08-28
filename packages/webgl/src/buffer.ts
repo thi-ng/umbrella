@@ -42,7 +42,7 @@ export class WebGLArrayBuffer<T extends TypedArray> implements IWebGLBuffer<T> {
     release() {
         if (this.buffer) {
             this.gl.deleteBuffer(this.buffer);
-            delete this.buffer;
+            delete (<any>this).buffer;
         }
         return true;
     }
