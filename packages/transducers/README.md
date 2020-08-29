@@ -165,7 +165,7 @@ yarn add @thi.ng/transducers
 <script src="https://unpkg.com/@thi.ng/transducers/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 8.07 KB / CJS: 8.61 KB / UMD: 7.80 KB
+Package sizes (gzipped, pre-treeshake): ESM: 8.14 KB / CJS: 8.69 KB / UMD: 7.88 KB
 
 ## Dependencies
 
@@ -191,7 +191,7 @@ A selection:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/adaptive-threshold.png" width="240"/>            | Interactive image processing (adaptive threshold)                                | [Demo](https://demo.thi.ng/umbrella/adaptive-threshold/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/adaptive-threshold)  |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/bitmap-font.gif" width="240"/>                   | Figlet-style bitmap font creation with transducers                               | [Demo](https://demo.thi.ng/umbrella/bitmap-font/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/bitmap-font)         |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/cellular-automata.png" width="240"/>             | 2D transducer based cellular automata                                            | [Demo](https://demo.thi.ng/umbrella/cellular-automata/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/cellular-automata)   |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png" width="240"/>                | Heatmap visualization of this mono-repo's commits                                | [Demo](https://demo.thi.ng/umbrella/commit-heatmap/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-heatmap)      |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png" width="240"/>                | Heatmap visualization of this mono-repo's commits                                |                                                           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-heatmap)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-table-ssr.png" width="240"/>              | Filterable commit log UI w/ minimal server to provide commit history             | [Demo](https://demo.thi.ng/umbrella/commit-table-ssr/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-table-ssr)    |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/crypto-chart.png" width="240"/>                  | Basic crypto-currency candle chart with multiple moving averages plots           | [Demo](https://demo.thi.ng/umbrella/crypto-chart/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/crypto-chart)        |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-benchmark2.png" width="240"/>               | hdom update performance benchmark w/ config options                              | [Demo](https://demo.thi.ng/umbrella/hdom-benchmark2/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-benchmark2)     |
@@ -201,10 +201,10 @@ A selection:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-isoline.png" width="240"/>                      | Animated sine plasma effect visualized using contour lines                       | [Demo](https://demo.thi.ng/umbrella/iso-plasma/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/iso-plasma)          |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/json-components.jpg" width="240"/>               | Transforming JSON into UI components                                             | [Demo](https://demo.thi.ng/umbrella/json-components/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/json-components)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mandelbrot.jpg" width="240"/>                    | Worker based, interactive Mandelbrot visualization                               | [Demo](https://demo.thi.ng/umbrella/mandelbrot/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/mandelbrot)          |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/package-stats.png" width="240"/>                 | CLI util to visualize umbrella pkg stats                                         | [Demo](https://demo.thi.ng/umbrella/package-stats/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/package-stats)       |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/package-stats.png" width="240"/>                 | CLI util to visualize umbrella pkg stats                                         |                                                           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/package-stats)       |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ramp-synth.png" width="240"/>                    | Unison wavetable synth with waveform editor                                      | [Demo](https://demo.thi.ng/umbrella/ramp-synth/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ramp-synth)          |
 |                                                                                                                                      | Demonstates various rdom usage patterns                                          | [Demo](https://demo.thi.ng/umbrella/rdom-basics/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-basics)         |
-|                                                                                                                                      | rdom & hiccup-canvas interop test                                                | [Demo](https://demo.thi.ng/umbrella/rdom-lissajous/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-lissajous)      |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-lissajous.png" width="240"/>                | rdom & hiccup-canvas interop test                                                | [Demo](https://demo.thi.ng/umbrella/rdom-lissajous/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-lissajous)      |
 |                                                                                                                                      | Full umbrella repo doc string search w/ paginated results                        | [Demo](https://demo.thi.ng/umbrella/rdom-search-docs/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-search-docs)    |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rotating-voronoi.jpg" width="240"/>              | Animated Voronoi diagram, cubic splines & SVG download                           | [Demo](https://demo.thi.ng/umbrella/rotating-voronoi/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rotating-voronoi)    |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-event-loop.png" width="240"/>            | Minimal demo of using rstream constructs to form an interceptor-style event loop | [Demo](https://demo.thi.ng/umbrella/rstream-event-loop/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-event-loop)  |
@@ -897,6 +897,8 @@ tx.transduce(tx.map((x) => x*10), tx.push(), tx.range(4))
 - [keys](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/keys.ts)
 - [line](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/line.ts)
 - [normRange](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/norm-range.ts)
+- [normRange2d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/norm-range.ts)
+- [normRange3d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/norm-range.ts)
 - [padSides](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/pad-sides.ts)
 - [pairs](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/pairs.ts)
 - [palindrome](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/palindrome.ts)
@@ -957,6 +959,7 @@ and return a reduced result (as if it would be called via `reduce()`).
 
 ### Contributors
 
+- Alberto ([@nkint](https://github.com/nkint))
 - Gavin Cannizzaro ([@gavinpc-mindgrub](https://github.com/gavinpc-mindgrub))
 
 ## License

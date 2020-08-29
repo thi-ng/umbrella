@@ -58,25 +58,27 @@ const SAMPLER_TODO: JSBuiltinsSampler = {
     textureSize: () => ZERO3,
 };
 
+const ident = (x: any) => x;
+
 export const JS_DEFAULT_ENV: JSEnv = {
     vec2: VEC2,
     vec2b: (v) => fromBVec2([], v),
-    vec2i: (v) => v,
+    vec2i: ident,
     vec2n: (n) => [n, n],
-    vec2u: (v) => v,
+    vec2u: ident,
 
     vec3: VEC3,
     vec3b: (v) => fromBVec3([], v),
-    vec3i: (v) => v,
+    vec3i: ident,
     vec3n: (n) => [n, n, n],
-    vec3u: (v) => v,
+    vec3u: ident,
     vec3vn: (a, n) => setVN3([], a, n),
 
     vec4: VEC4,
     vec4b: (v) => fromBVec4([], v),
-    vec4i: (v) => v,
+    vec4i: ident,
     vec4n: (n) => [n, n, n, n],
-    vec4u: (v) => v,
+    vec4u: ident,
     vec4vn: (a, n) => setVN4([], a, n),
     vec4vnn: (a, z, w) => setVV4([], a, [z, w]),
     vec4vv: (a, b) => setVV4([], a, b),

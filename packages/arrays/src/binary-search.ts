@@ -87,6 +87,64 @@ export const binarySearchNumeric = (
 };
 
 /**
+ * Non-recursive, optimized binary search for fixed size numeric arrays of 4
+ * values. Returns index of `x` or `-index-1` if not found.
+ *
+ * @param buf
+ * @param x
+ */
+export const binarySearch4 = (buf: ArrayLike<number>, x: number) => {
+    let idx = buf[2] <= x ? 2 : 0;
+    idx |= buf[idx + 1] <= x ? 1 : 0;
+    return buf[idx] === x ? idx : -idx - 1;
+};
+
+/**
+ * Non-recursive, optimized binary search for fixed size numeric arrays of 8
+ * values. Returns index of `x` or `-index-1` if not found.
+ *
+ * @param buf
+ * @param x
+ */
+export const binarySearch8 = (buf: ArrayLike<number>, x: number) => {
+    let idx = buf[4] <= x ? 4 : 0;
+    idx |= buf[idx + 2] <= x ? 2 : 0;
+    idx |= buf[idx + 1] <= x ? 1 : 0;
+    return buf[idx] === x ? idx : -idx - 1;
+};
+
+/**
+ * Non-recursive, optimized binary search for fixed size numeric arrays of 16
+ * values. Returns index of `x` or `-index-1` if not found.
+ *
+ * @param buf
+ * @param x
+ */
+export const binarySearch16 = (buf: ArrayLike<number>, x: number) => {
+    let idx = buf[8] <= x ? 8 : 0;
+    idx |= buf[idx + 4] <= x ? 4 : 0;
+    idx |= buf[idx + 2] <= x ? 2 : 0;
+    idx |= buf[idx + 1] <= x ? 1 : 0;
+    return buf[idx] === x ? idx : -idx - 1;
+};
+
+/**
+ * Non-recursive, optimized binary search for fixed size numeric arrays of 32
+ * values. Returns index of `x` or `-index-1` if not found.
+ *
+ * @param buf
+ * @param x
+ */
+export const binarySearch32 = (buf: ArrayLike<number>, x: number) => {
+    let idx = buf[16] <= x ? 16 : 0;
+    idx |= buf[idx + 4] <= x ? 8 : 0;
+    idx |= buf[idx + 4] <= x ? 4 : 0;
+    idx |= buf[idx + 2] <= x ? 2 : 0;
+    idx |= buf[idx + 1] <= x ? 1 : 0;
+    return buf[idx] === x ? idx : -idx - 1;
+};
+
+/**
  * {@link binarySearch} result index classifier for predecessor queries.
  * Returns index of last item less than search value or -1 if no such
  * values exist.

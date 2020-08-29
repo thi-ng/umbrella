@@ -50,7 +50,7 @@ export const additive = <T extends Prim>(
             (n = sym(FLOAT0)),
             (amp = sym(FLOAT05)),
             forLoop(
-                sym("float", float(0)),
+                sym(float(0)),
                 (i) => lt(i, float(oct)),
                 inc,
                 (i) => [

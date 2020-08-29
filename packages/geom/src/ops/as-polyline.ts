@@ -1,6 +1,7 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
 import { IShape, SamplingOpts, Type } from "@thi.ng/geom-api";
+import { set } from "@thi.ng/vectors";
 import { Cubic } from "../api/cubic";
 import { Path } from "../api/path";
 import { Polyline } from "../api/polyline";
@@ -26,15 +27,14 @@ asPolyline.addAll(<
 
     [Type.PATH]: ($: Path, opts) => {
         const pts = vertices($, opts);
-        return new Polyline(
-            $.closed ? pts.concat([pts[0]]) : pts,
-            copyAttribs($)
-        );
+        $.closed && pts.push(set([], pts[0]));
+        return new Polyline(pts, copyAttribs($));
     },
 
     [Type.POLYGON]: ($: IShape, opts) => {
         const pts = vertices($, opts);
-        return new Polyline(pts.concat([pts[0]]), copyAttribs($));
+        pts.push(set([], pts[0]));
+        return new Polyline(pts, copyAttribs($));
     },
 });
 

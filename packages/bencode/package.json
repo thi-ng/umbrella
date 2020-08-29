@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/bencode",
-    "version": "0.3.37",
+    "version": "0.3.38",
     "description": "Bencode binary encoder / decoder with optional UTF8 encoding & floating point support",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -39,23 +39,23 @@
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
-        "@microsoft/api-extractor": "^7.9.2",
-        "@types/mocha": "^8.0.0",
-        "@types/node": "^14.0.26",
-        "mocha": "^8.1.1",
+        "@microsoft/api-extractor": "^7.9.11",
+        "@types/mocha": "^8.0.3",
+        "@types/node": "^14.6.1",
+        "mocha": "^8.1.2",
         "nyc": "^15.1.0",
-        "ts-node": "^8.10.1",
+        "ts-node": "^9.0.0",
         "typedoc": "^0.18.0",
-        "typescript": "^3.9.7"
+        "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.12.2",
-        "@thi.ng/arrays": "^0.6.15",
-        "@thi.ng/checks": "^2.7.6",
-        "@thi.ng/defmulti": "^1.2.23",
-        "@thi.ng/errors": "^1.2.19",
-        "@thi.ng/transducers": "^7.2.2",
-        "@thi.ng/transducers-binary": "^0.5.27"
+        "@thi.ng/api": "^6.12.3",
+        "@thi.ng/arrays": "^0.7.0",
+        "@thi.ng/checks": "^2.7.7",
+        "@thi.ng/defmulti": "^1.2.24",
+        "@thi.ng/errors": "^1.2.20",
+        "@thi.ng/transducers": "^7.3.0",
+        "@thi.ng/transducers-binary": "^0.5.28"
     },
     "files": [
         "*.js",

@@ -1,5 +1,6 @@
 export * from "./api";
 
+export * from "./color/aces-film";
 export * from "./color/linear-srgb";
 export * from "./color/luminance";
 export * from "./color/porter-duff";
@@ -21,6 +22,8 @@ export * from "./math/fit";
 export * from "./math/magsq";
 export * from "./math/maxcomp";
 export * from "./math/mincomp";
+export * from "./math/mix-cubic";
+export * from "./math/mix-quadratic";
 export * from "./math/orthogonal";
 export * from "./math/polar";
 export * from "./math/sincos";

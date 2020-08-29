@@ -1,6 +1,6 @@
 import { assert } from "@thi.ng/api";
-import { SYSTEM } from "./system";
 import type { IRandom } from "./api";
+import { SYSTEM } from "./system";
 
 /**
  * Returns a no-arg function which produces a random choice of given

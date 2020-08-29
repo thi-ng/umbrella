@@ -1,11 +1,12 @@
-import { ARandom } from "./arandom";
-import { DEFAULT_SEED_160 } from "./constants";
 import type { IBuffered, ICopy } from "@thi.ng/api";
 import type { ISeedable } from "./api";
+import { ARandom } from "./arandom";
+import { DEFAULT_SEED_160 } from "./constants";
 
 // https://en.wikipedia.org/wiki/Xorshift#xorwow
 
-export class XorWow extends ARandom
+export class XorWow
+    extends ARandom
     implements
         IBuffered<Uint32Array>,
         ICopy<XorWow>,

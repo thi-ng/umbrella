@@ -132,7 +132,7 @@ yarn add @thi.ng/interceptors
 <script src="https://unpkg.com/@thi.ng/interceptors/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.15 KB / CJS: 2.28 KB / UMD: 2.24 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.15 KB / CJS: 2.28 KB / UMD: 2.26 KB
 
 ## Dependencies
 

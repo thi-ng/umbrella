@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/grid-iterators",
-    "version": "0.4.8",
+    "version": "0.4.9",
     "description": "2D grid iterators w/ multiple orderings",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -40,21 +40,21 @@
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
-        "@microsoft/api-extractor": "^7.9.2",
-        "@types/mocha": "^8.0.0",
-        "@types/node": "^14.0.26",
-        "mocha": "^8.1.1",
+        "@microsoft/api-extractor": "^7.9.11",
+        "@types/mocha": "^8.0.3",
+        "@types/node": "^14.6.1",
+        "mocha": "^8.1.2",
         "nyc": "^15.1.0",
-        "ts-node": "^8.10.1",
+        "ts-node": "^9.0.0",
         "typedoc": "^0.18.0",
-        "typescript": "^3.9.7"
+        "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/arrays": "^0.6.15",
-        "@thi.ng/binary": "^2.0.13",
-        "@thi.ng/morton": "^2.0.22",
-        "@thi.ng/random": "^1.4.17",
-        "@thi.ng/transducers": "^7.2.2"
+        "@thi.ng/arrays": "^0.7.0",
+        "@thi.ng/binary": "^2.0.14",
+        "@thi.ng/morton": "^2.0.23",
+        "@thi.ng/random": "^2.0.0",
+        "@thi.ng/transducers": "^7.3.0"
     },
     "files": [
         "*.js",

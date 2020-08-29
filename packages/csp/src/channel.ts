@@ -553,13 +553,13 @@ export class Channel<T> implements IReadWriteableChannel<T> {
             this.state = State.DONE;
             this.flush();
             this.buf.release();
-            delete this.reads;
-            delete this.writes;
-            delete this.buf;
-            delete this.txbuf;
-            delete this.tx;
-            delete this.isBusy;
-            delete this.onerror;
+            delete (<any>this).reads;
+            delete (<any>this).writes;
+            delete (<any>this).buf;
+            delete (<any>this).txbuf;
+            delete (<any>this).tx;
+            delete (<any>this).isBusy;
+            delete (<any>this).onerror;
         }
     }
 

@@ -190,7 +190,7 @@ yarn add @thi.ng/color
 <script src="https://unpkg.com/@thi.ng/color/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 7.19 KB / CJS: 7.56 KB / UMD: 7.12 KB
+Package sizes (gzipped, pre-treeshake): ESM: 7.19 KB / CJS: 7.56 KB / UMD: 7.14 KB
 
 ## Dependencies
 
@@ -214,7 +214,7 @@ A selection:
 
 | Screenshot                                                                                                                | Description                                         | Live demo                                                | Source                                                                                |
 | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png" width="240"/>     | Heatmap visualization of this mono-repo's commits   | [Demo](https://demo.thi.ng/umbrella/commit-heatmap/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-heatmap)     |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png" width="240"/>     | Heatmap visualization of this mono-repo's commits   |                                                          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-heatmap)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/grid-iterators.png" width="240"/>     | Visualization of different grid iterator strategies | [Demo](https://demo.thi.ng/umbrella/grid-iterators/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/grid-iterators)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-workers.jpg" width="240"/> | Fork-join worker-based raymarch renderer            | [Demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-workers) |
 

@@ -222,10 +222,10 @@ export class Transacted<T> implements IAtom<T> {
     }
 
     release() {
-        delete this.parent;
-        delete this.current;
-        delete this.isActive;
-        delete this._watches;
+        delete (<any>this).parent;
+        delete (<any>this).current;
+        delete (<any>this).isActive;
+        delete (<any>this)._watches;
         return true;
     }
 

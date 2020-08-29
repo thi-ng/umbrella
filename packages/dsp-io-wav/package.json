@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dsp-io-wav",
-    "version": "0.1.27",
+    "version": "0.1.28",
     "description": "WAV file format generation",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -39,20 +39,20 @@
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
-        "@microsoft/api-extractor": "^7.9.2",
-        "@types/mocha": "^8.0.0",
-        "@types/node": "^14.0.26",
-        "mocha": "^8.1.1",
+        "@microsoft/api-extractor": "^7.9.11",
+        "@types/mocha": "^8.0.3",
+        "@types/node": "^14.6.1",
+        "mocha": "^8.1.2",
         "nyc": "^15.1.0",
-        "ts-node": "^8.10.1",
+        "ts-node": "^9.0.0",
         "typedoc": "^0.18.0",
-        "typescript": "^3.9.7"
+        "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.12.2",
-        "@thi.ng/binary": "^2.0.13",
-        "@thi.ng/transducers": "^7.2.2",
-        "@thi.ng/transducers-binary": "^0.5.27"
+        "@thi.ng/api": "^6.12.3",
+        "@thi.ng/binary": "^2.0.14",
+        "@thi.ng/transducers": "^7.3.0",
+        "@thi.ng/transducers-binary": "^0.5.28"
     },
     "files": [
         "*.js",

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.6.3...@thi.ng/shader-ast@0.7.0) (2020-08-28)
+
+
+### Bug Fixes
+
+* **shader-ast:** fix vec3(vec2, float) ctor version ([bd5395d](https://github.com/thi-ng/umbrella/commit/bd5395d895ed661a0c587eb79fb3884668cbd98e))
+
+
+### Features
+
+* **shader-ast:** add PrimTerm, PrimTypeMap, TermType ([ffdfe81](https://github.com/thi-ng/umbrella/commit/ffdfe812cb0b48d49a8cd8e3ba508fd1d0b9243e))
+* **shader-ast:** allow nullish defn() func name (autogen) ([d959858](https://github.com/thi-ng/umbrella/commit/d9598580d39d556becde54ffe14015808ee936fb))
+
+
+
+
+
 ## [0.6.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.6.2...@thi.ng/shader-ast@0.6.3) (2020-08-17)
 
 **Note:** Version bump only for package @thi.ng/shader-ast

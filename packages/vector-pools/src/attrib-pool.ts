@@ -68,9 +68,9 @@ export class AttribPool implements IRelease {
         if (releasePool && this.pool) {
             this.pool.release();
         }
-        delete this.pool;
-        delete this.attribs;
-        delete this.specs;
+        delete (<any>this).pool;
+        delete (<any>this).attribs;
+        delete (<any>this).specs;
         return true;
     }
 

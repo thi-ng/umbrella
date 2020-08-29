@@ -93,7 +93,7 @@ export class VecPool implements IVecPool {
 
     release() {
         const res = this.pool.release();
-        res && delete this.pool;
+        res && delete (<any>this).pool;
         return res;
     }
 }

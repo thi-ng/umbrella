@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom-voronoi",
-    "version": "0.2.6",
+    "version": "0.2.7",
     "description": "Fast, incremental 2D Delaunay & Voronoi mesh implementation",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -39,25 +39,25 @@
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
-        "@microsoft/api-extractor": "^7.9.2",
-        "@types/mocha": "^8.0.0",
-        "@types/node": "^14.0.26",
-        "mocha": "^8.1.1",
+        "@microsoft/api-extractor": "^7.9.11",
+        "@types/mocha": "^8.0.3",
+        "@types/node": "^14.6.1",
+        "mocha": "^8.1.2",
         "nyc": "^15.1.0",
-        "ts-node": "^8.10.1",
+        "ts-node": "^9.0.0",
         "typedoc": "^0.18.0",
-        "typescript": "^3.9.7"
+        "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.12.2",
-        "@thi.ng/checks": "^2.7.6",
-        "@thi.ng/geom-clip-line": "^1.2.6",
-        "@thi.ng/geom-clip-poly": "^1.0.31",
-        "@thi.ng/geom-isec": "^0.5.6",
-        "@thi.ng/geom-poly-utils": "^0.1.62",
-        "@thi.ng/math": "^2.0.3",
-        "@thi.ng/quad-edge": "^0.2.21",
-        "@thi.ng/vectors": "^4.6.3"
+        "@thi.ng/api": "^6.12.3",
+        "@thi.ng/checks": "^2.7.7",
+        "@thi.ng/geom-clip-line": "^1.2.7",
+        "@thi.ng/geom-clip-poly": "^1.0.32",
+        "@thi.ng/geom-isec": "^0.5.7",
+        "@thi.ng/geom-poly-utils": "^0.1.63",
+        "@thi.ng/math": "^2.0.4",
+        "@thi.ng/quad-edge": "^0.2.22",
+        "@thi.ng/vectors": "^4.6.4"
     },
     "files": [
         "*.js",

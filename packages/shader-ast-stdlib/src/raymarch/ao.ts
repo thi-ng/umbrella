@@ -37,7 +37,7 @@ export const raymarchAO = (scene: RaymarchScene, numSamples = 5) =>
             (r = sym(FLOAT0)),
             (w = sym(FLOAT1)),
             forLoop(
-                sym("float", float(1)),
+                sym(float(1)),
                 (i) => lte(i, float(numSamples)),
                 (i) => inc(i),
                 (i) => [

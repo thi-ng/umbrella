@@ -360,7 +360,7 @@ export class History<T> implements IHistory<T> {
 
     release() {
         this.state.release();
-        delete this.state;
+        delete (<any>this).state;
         return true;
     }
 

@@ -13,8 +13,8 @@
     },
     "devDependencies": {
         "parcel-bundler": "^1.12.4",
-        "terser": "^5.1.0",
-        "typescript": "^3.9.7"
+        "terser": "^5.2.1",
+        "typescript": "^4.0.2"
     },
     "dependencies": {
         "@thi.ng/atom": "latest",

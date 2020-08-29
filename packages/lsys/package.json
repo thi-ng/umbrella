@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/lsys",
-    "version": "0.2.58",
+    "version": "0.2.59",
     "description": "Functional, extensible L-System architecture w/ support for probabilistic rules",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -39,23 +39,23 @@
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
-        "@microsoft/api-extractor": "^7.9.2",
-        "@types/mocha": "^8.0.0",
-        "@types/node": "^14.0.26",
-        "mocha": "^8.1.1",
+        "@microsoft/api-extractor": "^7.9.11",
+        "@types/mocha": "^8.0.3",
+        "@types/node": "^14.6.1",
+        "mocha": "^8.1.2",
         "nyc": "^15.1.0",
-        "ts-node": "^8.10.1",
+        "ts-node": "^9.0.0",
         "typedoc": "^0.18.0",
-        "typescript": "^3.9.7"
+        "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.12.2",
-        "@thi.ng/compose": "^1.4.15",
-        "@thi.ng/errors": "^1.2.19",
-        "@thi.ng/math": "^2.0.3",
-        "@thi.ng/random": "^1.4.17",
-        "@thi.ng/transducers": "^7.2.2",
-        "@thi.ng/vectors": "^4.6.3"
+        "@thi.ng/api": "^6.12.3",
+        "@thi.ng/compose": "^1.4.16",
+        "@thi.ng/errors": "^1.2.20",
+        "@thi.ng/math": "^2.0.4",
+        "@thi.ng/random": "^2.0.0",
+        "@thi.ng/transducers": "^7.3.0",
+        "@thi.ng/vectors": "^4.6.4"
     },
     "files": [
         "*.js",

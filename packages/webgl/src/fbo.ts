@@ -53,8 +53,8 @@ export class FBO implements IFbo {
 
     release() {
         this.gl.deleteFramebuffer(this.fbo);
-        delete this.fbo;
-        delete this.ext;
+        delete (<any>this).fbo;
+        delete (<any>this).ext;
         return true;
     }
 

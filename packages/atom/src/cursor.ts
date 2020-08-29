@@ -162,8 +162,8 @@ export class Cursor<T> implements IAtom<T>, IID<string>, IRelease {
     release() {
         this.local.release();
         this.parent.removeWatch(this.id);
-        delete this.local;
-        delete this.parent;
+        delete (<any>this).local;
+        delete (<any>this).parent;
         return true;
     }
 

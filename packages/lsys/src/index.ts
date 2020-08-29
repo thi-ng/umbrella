@@ -115,7 +115,7 @@ export const TURTLE_IMPL_2D: RuleImplementations<Turtle2D> = {
     "[": (ctx) => {
         ctx.alive && ctx.curr.length > 1 && ctx.paths.push(ctx.curr);
         ctx.curr = [ctx.pos];
-        const copy = { ...ctx };
+        const copy = <any>{ ...ctx };
         delete copy.paths;
         delete copy.stack;
         ctx.stack.push(copy);

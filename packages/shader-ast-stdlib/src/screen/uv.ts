@@ -30,9 +30,9 @@ export const fragUV = (fragCoord: Vec4Term, res: Vec2Term) =>
     div($xy(fragCoord), res);
 
 /**
- * Takes `pos`, a screen coord (e.g. gl_FragCoord) and viewport
- * resolution `res`, returns aspect corrected uv, with uv.y in [-1..1]
- * interval.
+ * Takes `pos`, a screen coord (e.g. gl_FragCoord) and viewport resolution
+ * `res`, returns aspect corrected uv, with uv.y in [-1..1] interval and uv.x
+ * scaled by the aspect ratio `resx / resy`.
  *
  * @param fragCoord - vec2
  * @param res - vec2
@@ -44,7 +44,7 @@ export const aspectCorrectedUV = defn(
     (pos, res) => {
         let uv: Vec2Sym;
         return [
-            (uv = sym("vec2", fit0111(div(pos, res)))),
+            (uv = sym(fit0111(div(pos, res)))),
             assign($x(uv), mul($x(uv), div($x(res), $y(res)))),
             ret(uv),
         ];

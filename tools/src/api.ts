@@ -42,6 +42,7 @@ export interface Package {
 export interface PackageMeta {
     blog: BlogPost[];
     branch: string;
+    online: boolean;
     parent: string;
     readme: string[] | boolean;
     related: string[];

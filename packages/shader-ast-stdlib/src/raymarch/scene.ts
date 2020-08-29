@@ -58,7 +58,7 @@ export const raymarchScene = (
             (total = sym(float(opts.near))),
             (res = sym("vec2")),
             forLoop(
-                sym("int", int(0)),
+                sym(int(0)),
                 (i) => lt(i, int(opts.steps)),
                 (i) => inc(i),
                 () => [

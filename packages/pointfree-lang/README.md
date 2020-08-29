@@ -78,7 +78,7 @@ yarn add @thi.ng/pointfree-lang
 <script src="https://unpkg.com/@thi.ng/pointfree-lang/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.23 KB / CJS: 5.23 KB / UMD: 5.14 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.29 KB / CJS: 5.29 KB / UMD: 5.21 KB
 
 ## Dependencies
 
@@ -96,9 +96,10 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                           | Description                      | Live demo                                           | Source                                                                           |
-| -------------------------------------------------------------------------------------------------------------------- | -------------------------------- | --------------------------------------------------- | -------------------------------------------------------------------------------- |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-svg.png" width="240"/> | Generate SVG using pointfree DSL | [Demo](https://demo.thi.ng/umbrella/pointfree-svg/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-svg) |
+| Screenshot                                                                                                           | Description                      | Live| Source                                                                           |
+|                                                                                                                      |                                  | demo|                                                                                  |
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------- | --- | -------------------------------------------------------------------------------- |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-svg.png" width="240"/> | Generate SVG using pointfree DSL |     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-svg) |
 
 ## Command line usage
 

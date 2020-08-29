@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/iges",
-    "version": "1.1.45",
+    "version": "1.1.46",
     "description": "IGES 5.3 serializer for (currently only) polygonal geometry, both open & closed",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -39,22 +39,22 @@
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
-        "@microsoft/api-extractor": "^7.9.2",
-        "@types/mocha": "^8.0.0",
-        "@types/node": "^14.0.26",
-        "mocha": "^8.1.1",
+        "@microsoft/api-extractor": "^7.9.11",
+        "@types/mocha": "^8.0.3",
+        "@types/node": "^14.6.1",
+        "mocha": "^8.1.2",
         "nyc": "^15.1.0",
-        "ts-node": "^8.10.1",
+        "ts-node": "^9.0.0",
         "typedoc": "^0.18.0",
-        "typescript": "^3.9.7"
+        "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.12.2",
-        "@thi.ng/checks": "^2.7.6",
-        "@thi.ng/defmulti": "^1.2.23",
-        "@thi.ng/strings": "^1.9.4",
-        "@thi.ng/transducers": "^7.2.2",
-        "@thi.ng/vectors": "^4.6.3"
+        "@thi.ng/api": "^6.12.3",
+        "@thi.ng/checks": "^2.7.7",
+        "@thi.ng/defmulti": "^1.2.24",
+        "@thi.ng/strings": "^1.9.5",
+        "@thi.ng/transducers": "^7.3.0",
+        "@thi.ng/vectors": "^4.6.4"
     },
     "files": [
         "*.js",

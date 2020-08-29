@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.11.6...@thi.ng/geom@1.11.7) (2020-08-28)
+
+
+### Bug Fixes
+
+* **geom:** update asPolyline() for PATH/POLYGON ([243962c](https://github.com/thi-ng/umbrella/commit/243962ce4b2a690eb84e540f9d55d52d355edc39))
+
+
+
+
+
 ## [1.11.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.11.5...@thi.ng/geom@1.11.6) (2020-08-20)
 
 **Note:** Version bump only for package @thi.ng/geom

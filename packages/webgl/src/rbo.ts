@@ -26,7 +26,7 @@ export class RBO implements IRenderBuffer {
 
     release() {
         this.gl.deleteRenderbuffer(this.buffer);
-        delete this.buffer;
+        delete (<any>this).buffer;
         return true;
     }
 

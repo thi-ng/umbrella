@@ -1,11 +1,32 @@
 import type { ICopy } from "@thi.ng/api";
 
-export interface IRandom {
-    int(): number;
-    float(norm?: number): number;
+export interface INorm {
+    /**
+     * Returns float in [-scale..scale) interval.
+     *
+     * @param scale - default 1
+     */
     norm(scale?: number): number;
+}
+
+export interface IRandom extends INorm {
+    /**
+     * Returns unsigned 32bit int
+     */
+    int(): number;
+    /**
+     * Returns float in [0..max) interval.
+     *
+     * @param max - default 1
+     */
+    float(max?: number): number;
+    /**
+     * Returns float in [min..max) interval.
+     *
+     * @param min -
+     * @param max -
+     */
     minmax(min: number, max: number): number;
-    gaussian(samples?: number, offset?: number, scale?: number): number;
 }
 
 export interface ISeedable<T> {

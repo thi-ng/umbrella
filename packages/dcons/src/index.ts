@@ -72,7 +72,7 @@ export class DCons<T>
             next;
         while (cell) {
             next = cell.next;
-            delete cell.value;
+            delete (<any>cell).value;
             delete cell.prev;
             delete cell.next;
             cell = next;
