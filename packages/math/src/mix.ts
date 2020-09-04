@@ -182,13 +182,56 @@ export const tween = (f: (t: number) => number, from: number, to: number) => (
 ) => mix(from, to, f(t));
 
 /**
- * Circular interpolation: `sqrt(1 - (1 - t)^2)`
+ * Circular interpolation (ease out): `sqrt(1 - (1 - t)^2)`
  *
- * @param t - interpolation factor (0.0 .. 1.0)
+ * Reference: https://www.desmos.com/calculator/tisoiazdrw
+ *
+ * @param t - interpolation factor [0..1]
  */
 export const circular = (t: number) => {
     t = 1 - t;
     return Math.sqrt(1 - t * t);
+};
+
+/**
+ * Inverse/flipped version of {@link circular} (ease in).
+ *
+ * Reference: https://www.desmos.com/calculator/tisoiazdrw
+ *
+ * @param t - interpolation factor [0..1]
+ */
+export const invCircular = (t: number) => 1 - circular(1 - t);
+
+/**
+ * Zoomlens interpolation with customizable lens position, behavior and
+ * strength.
+ *
+ * @remarks
+ * Lens position must be given in (0..1) interval. Lens strength must be in
+ * [-1,1] range. If negative, the lens will be bundling values near `pos`, if
+ * positive the lens has dilating characteristics and will spread values near
+ * `pos` towards the edges.
+ *
+ * @example
+ * ```ts
+ * // interpolated position in [100..400] interval for given `t`
+ * y = mix(100, 400, lens(0.5, 1, t));
+ *
+ * // or build tween function via `tween()`
+ * f = tween(partial(lens, 0.5, 1), 100, 400);
+ *
+ * f(t)
+ * ```
+ *
+ * @param pos - lens pos
+ * @param strength - lens strength
+ * @param t - interpolation factor [0..1]
+ */
+export const lens = (pos: number, strength: number, t: number) => {
+    const impl = strength > 0 ? invCircular : circular;
+    const tp = 1 - pos;
+    const tl = t <= pos ? impl(t / pos) * pos : 1 - impl((1 - t) / tp) * tp;
+    return mix(t, tl, Math.abs(strength));
 };
 
 export const cosine = (t: number) => 1 - (Math.cos(t * PI) * 0.5 + 0.5);
@@ -201,7 +244,7 @@ export const bounce = (k: number, amp: number, t: number) => {
 };
 
 /**
- * HOF exponential easing.
+ * Exponential easing.
  *
  * - `ease = 1` -> linear
  * - `ease > 1` -> ease in
@@ -213,7 +256,7 @@ export const bounce = (k: number, amp: number, t: number) => {
 export const ease = (ease: number, t: number) => Math.pow(t, ease);
 
 /**
- * HOF impulse generator. Peaks at `t=1/k`
+ * Impulse generator. Peaks at `t = 1/k`
  *
  * @param k - impulse width (higher values => shorter impulse)
  */

@@ -12,7 +12,7 @@ import { polyline } from "./polyline";
 import { roundedRect } from "./rect";
 import { text } from "./text";
 
-const ATTRIB_ALIASES: { [id: string]: string } = {
+const ATTRIB_ALIASES: Record<string, string> = {
     alpha: "opacity",
     dash: "stroke-dasharray",
     dashOffset: "stroke-dashoffset",
@@ -22,12 +22,17 @@ const ATTRIB_ALIASES: { [id: string]: string } = {
     weight: "stroke-width",
 };
 
-const TEXT_ALIGN: { [id: string]: string } = {
+const TEXT_ALIGN: Record<string, string> = {
     left: "start",
     right: "end",
     center: "middle",
     start: "start",
     end: "end",
+};
+
+const BASE_LINE: Record<string, string> = {
+    top: "text-top",
+    bottom: "text-bottom",
 };
 
 /**
@@ -40,7 +45,8 @@ const TEXT_ALIGN: { [id: string]: string } = {
  *
  * @param tree - shape tree
  */
-export const convertTree = (tree: any): any[] => {
+export const convertTree = (tree: any): any[] | null => {
+    if (tree == null) return null;
     if (implementsFunction(tree, "toHiccup")) {
         return convertTree(tree.toHiccup());
     }
@@ -52,6 +58,7 @@ export const convertTree = (tree: any): any[] => {
     switch (tree[0]) {
         case "svg":
         case "defs":
+        case "a":
         case "g": {
             const res: any[] = [type, fattribs(attribs)];
             for (let i = 2, n = tree.length; i < n; i++) {
@@ -85,33 +92,59 @@ export const convertTree = (tree: any): any[] => {
                 }
             );
         case "circle":
-            return circle(tree[2], tree[3], attribs);
+            return circle(tree[2], tree[3], attribs, ...tree.slice(4));
         case "ellipse":
-            return ellipse(tree[2], tree[3][0], tree[3][1], attribs);
+            return ellipse(
+                tree[2],
+                tree[3][0],
+                tree[3][1],
+                attribs,
+                ...tree.slice(4)
+            );
         case "rect": {
             const r = tree[5] || 0;
-            return roundedRect(tree[2], tree[3], tree[4], r, r, attribs);
+            return roundedRect(
+                tree[2],
+                tree[3],
+                tree[4],
+                r,
+                r,
+                attribs,
+                ...tree.slice(6)
+            );
         }
         case "line":
-            return line(tree[2], tree[3], attribs);
+            return line(tree[2], tree[3], attribs, ...tree.slice(4));
         case "hline":
             return hline(tree[2], attribs);
         case "vline":
             return vline(tree[2], attribs);
         case "polyline":
-            return polyline(tree[2], attribs);
+            return polyline(tree[2], attribs, ...tree.slice(3));
         case "polygon":
-            return polygon(tree[2], attribs);
+            return polygon(tree[2], attribs, ...tree.slice(3));
         case "path":
-            return path(tree[2], attribs);
+            return path(tree[2], attribs, ...tree.slice(3));
         case "text":
-            return text(tree[2], tree[3], attribs);
+            return text(tree[2], tree[3], attribs, ...tree.slice(4));
         case "img":
-            return image(tree[3], tree[2].src, attribs);
+            return image(tree[3], tree[2].src, attribs, ...tree.slice(4));
         case "points":
-            return points(tree[2], attribs.shape, attribs.size, attribs);
+            return points(
+                tree[2],
+                attribs.shape,
+                attribs.size,
+                attribs,
+                ...tree.slice(3)
+            );
         case "packedPoints":
-            return packedPoints(tree[2], attribs.shape, attribs.size, attribs);
+            return packedPoints(
+                tree[2],
+                attribs.shape,
+                attribs.size,
+                attribs,
+                ...tree.slice(3)
+            );
         default:
             return tree;
     }
@@ -145,7 +178,7 @@ const convertAttrib = (res: any, id: string, v: any) => {
             res["text-anchor"] = TEXT_ALIGN[v];
             break;
         case "baseline":
-            // no SVG support?
+            res["dominant-baseline"] = BASE_LINE[v] || v;
             break;
         case "filter":
             // TODO needs to be translated into <filter> def first

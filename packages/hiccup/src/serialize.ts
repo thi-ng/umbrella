@@ -10,9 +10,11 @@ import {
 import { illegalArgs } from "@thi.ng/errors";
 import {
     ATTRIB_JOIN_DELIMS,
+    CDATA,
     COMMENT,
     NO_SPANS,
     PROC_TAGS,
+    NO_CLOSE_EMPTY,
     VOID_TAGS,
 } from "./api";
 import { css } from "./css";
@@ -226,20 +228,21 @@ const serializeElement = (
     if (tag === COMMENT) {
         return serializeComment(tree);
     }
+    if (tag == CDATA) {
+        return serializeCData(tree);
+    }
     if (isString(tag)) {
         tree = normalize(tree);
         tag = tree[0];
         const attribs = tree[1];
-        if (attribs.__skip || attribs.__serialize === false) {
-            return "";
-        }
-        let body = tree[2];
+        if (attribs.__skip || attribs.__serialize === false) return "";
+        const body = tree[2];
         let res = `<${tag}`;
         keys && attribs.key === undefined && (attribs.key = path.join("-"));
         res += serializeAttribs(attribs, esc);
         res += body
             ? serializeBody(tag, body, ctx, esc, span, keys, path)
-            : !VOID_TAGS[tag]
+            : !VOID_TAGS[tag] && !NO_CLOSE_EMPTY[tag]
             ? `></${tag}>`
             : PROC_TAGS[tag] || "/>";
         return res;
@@ -320,6 +323,9 @@ const serializeComment = (tree: any[]) =>
               .map((x) => "    " + x)
               .join("\n")}\n-->\n`
         : `\n<!-- ${tree[1]} -->\n`;
+
+const serializeCData = (tree: any[]) =>
+    `<![CDATA[\n${tree.slice(1).join("\n")}\n]]>`;
 
 const serializeIter = (
     iter: Iterable<any>,

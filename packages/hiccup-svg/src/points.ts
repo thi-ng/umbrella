@@ -20,11 +20,13 @@ export const points = (
     pts: Iterable<Vec2Like>,
     shape: string,
     size = 1,
-    attribs?: any
+    attribs?: any,
+    ...body: any[]
 ): any[] => {
     const group = [
         "g",
         fattribs(withoutKeys(attribs, new Set(["shape", "size"]))),
+        ...body,
     ];
     const href = buildSymbol(group, shape, size);
     for (let p of pts) {
@@ -56,7 +58,8 @@ export const packedPoints = (
     pts: ArrayLike<number>,
     shape: string,
     size = 1,
-    attribs?: any
+    attribs?: any,
+    ...body: any[]
 ): any[] => {
     attribs = {
         start: 0,
@@ -77,6 +80,7 @@ export const packedPoints = (
                 new Set(["start", "cstride", "estride", "shape", "size", "num"])
             )
         ),
+        ...body,
     ];
     const href = buildSymbol(group, shape, size);
     for (let i = start; --num >= 0; i += estride) {
