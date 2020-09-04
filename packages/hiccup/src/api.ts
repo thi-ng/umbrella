@@ -25,6 +25,9 @@ export const RE_ENTITY = new RegExp(`[${Object.keys(ENTITIES).join("")}]`, "g");
 export const COMMENT = "__COMMENT__";
 
 /** @internal */
+export const CDATA = "!CDATA";
+
+/** @internal */
 export const NO_SPANS: {
     [id: string]: number;
 } = {
@@ -52,7 +55,13 @@ export const SVG_TAGS = tagMap(
 /** @internal */
 // tslint:disable-next-line
 export const VOID_TAGS = tagMap(
-    "area base br circle col command ellipse embed hr img input keygen line link meta param path polygon polyline rect source stop track use wbr ?xml"
+    "area base br col command embed hr img input keygen link meta param source stop track use wbr ?xml"
+);
+
+/** @internal */
+// tslint:disable-next-line
+export const NO_CLOSE_EMPTY = tagMap(
+    "animate circle ellipse line path polygon polyline rect"
 );
 
 /** @internal */
