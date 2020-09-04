@@ -5,7 +5,8 @@ export const ellipse = (
     p: Vec2Like,
     rx: number,
     ry: number,
-    attribs?: any
+    attribs?: any,
+    ...body: any[]
 ): any[] => [
     "ellipse",
     fattribs({
@@ -15,4 +16,5 @@ export const ellipse = (
         rx: ff(rx),
         ry: ff(ry),
     }),
+    ...body,
 ];

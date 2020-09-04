@@ -3,7 +3,11 @@ import type { PathSegment } from "./api";
 
 const DEG = 180 / Math.PI;
 
-export const path = (segments: PathSegment[], attribs?: any): any[] => {
+export const path = (
+    segments: PathSegment[],
+    attribs?: any,
+    ...body: any[]
+): any[] => {
     let res = [];
     for (let seg of segments) {
         res.push(seg[0]);
@@ -41,5 +45,5 @@ export const path = (segments: PathSegment[], attribs?: any): any[] => {
                 res.push(fpoints((<any>seg).slice(1), ","));
         }
     }
-    return ["path", fattribs({ ...attribs, d: res.join("") })];
+    return ["path", fattribs({ ...attribs, d: res.join("") }), ...body];
 };
