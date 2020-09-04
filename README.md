@@ -118,7 +118,9 @@ fairly detailed overview for contributors here:
 (These packages might be still unreleased and only available on their
 feature or `develop` branches)
 
+- [@thi.ng/dual-algebra](https://github.com/thi-ng/umbrella/tree/develop/packages/dual-algebra) - Multivariate dual number algebra / automatic differentiation
 - [@thi.ng/egf](https://github.com/thi-ng/umbrella/tree/feature/egf/packages/egf) - Extensible Graph Format
+- [@thi.ng/viz](https://github.com/thi-ng/umbrella/tree/develop/packages/viz) - Declarative, functional & multi-format data visualization toolkit
 
 ### Fundamentals
 
