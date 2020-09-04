@@ -30,6 +30,11 @@ const TEXT_ALIGN: { [id: string]: string } = {
     end: "end",
 };
 
+const BASE_LINE: Record<string, string> = {
+    top: "text-top",
+    bottom: "text-bottom",
+};
+
 /**
  * Takes a normalized hiccup tree of {@link @thi.ng/geom# | @thi.ng/geom} or
  * {@link @thi.ng/hdom-canvas# | @thi.ng/hdom-canvas} shape definitions and recursively
@@ -145,7 +150,7 @@ const convertAttrib = (res: any, id: string, v: any) => {
             res["text-anchor"] = TEXT_ALIGN[v];
             break;
         case "baseline":
-            // no SVG support?
+            res["dominant-baseline"] = BASE_LINE[v] || v;
             break;
         case "filter":
             // TODO needs to be translated into <filter> def first
