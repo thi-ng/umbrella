@@ -1,6 +1,6 @@
+import type { Comparator, Fn3, TypedArray } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare";
 import { swap } from "./swap";
-import type { Comparator, Fn3, TypedArray } from "@thi.ng/api";
 
 /**
  * In-place quicksort implementation with optional comparator & index

@@ -1,5 +1,5 @@
-import { equiv as _eq } from "@thi.ng/equiv";
 import type { Predicate2 } from "@thi.ng/api";
+import { equiv as _eq } from "@thi.ng/equiv";
 
 /**
  * Performs a fuzzy search of `query` in `domain` and returns `true` if

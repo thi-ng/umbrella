@@ -1,4 +1,4 @@
-import { FnO } from "@thi.ng/api";
+import type { FnO } from "@thi.ng/api";
 import * as assert from "assert";
 import { binarySearch, bsEQ, bsGE, bsGT, bsLE, bsLT } from "../src";
 

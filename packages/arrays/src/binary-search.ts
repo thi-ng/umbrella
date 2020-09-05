@@ -1,5 +1,5 @@
+import type { Comparator, Fn, FnU2 } from "@thi.ng/api";
 import { compare, compareNumAsc } from "@thi.ng/compare";
-import type { Comparator, Fn } from "@thi.ng/api";
 
 /**
  * Returns the supposed index of `x` in pre-sorted array-like collection
@@ -185,7 +185,7 @@ export const bsLE = (i: number) => (i < 0 ? -i - 2 : i);
  * @param i - binarySearch result index
  * @param n - array length
  */
-export const bsGT = (i: number, n: number) => (
+export const bsGT: FnU2<number> = (i, n) => (
     (i = i < 0 ? -i - 1 : i + 1), i < n ? i : -1
 );
 
@@ -195,7 +195,7 @@ export const bsGT = (i: number, n: number) => (
  * @param i - binarySearch result index
  * @param n - array length
  */
-export const bsGE = (i: number, n: number) => (
+export const bsGE: FnU2<number> = (i, n) => (
     (i = i < 0 ? -i - 1 : i), i < n ? i : -1
 );
 
