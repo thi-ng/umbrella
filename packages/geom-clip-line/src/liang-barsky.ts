@@ -1,4 +1,5 @@
-import type { Vec, ReadonlyVec } from "@thi.ng/vectors";
+import type { FnU2, FnU8, Tuple } from "@thi.ng/api";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 /**
  * Performs Liang-Barsky clipping of the line segment with endpoints
@@ -60,22 +61,22 @@ export const liangBarsky2 = (
  * @param maxx
  * @param maxy
  */
-export const liangBarsky2Raw = (
-    ax: number,
-    ay: number,
-    bx: number,
-    by: number,
-    minx: number,
-    miny: number,
-    maxx: number,
-    maxy: number
-): [number, number, number, number, number, number] | undefined => {
+export const liangBarsky2Raw: FnU8<number, Tuple<number, 6> | undefined> = (
+    ax,
+    ay,
+    bx,
+    by,
+    minx,
+    miny,
+    maxx,
+    maxy
+) => {
     const dx = bx - ax;
     const dy = by - ay;
     let alpha = 0;
     let beta = 1;
 
-    const clip = (p: number, q: number) => {
+    const clip: FnU2<number, boolean> = (p, q) => {
         if (p < 0) {
             const r = q / p;
             if (r > beta) {
