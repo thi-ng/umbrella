@@ -1,6 +1,6 @@
+import type { IReset } from "@thi.ng/api";
 import { TAU } from "@thi.ng/math";
 import { AGen } from "./agen";
-import type { IReset } from "@thi.ng/api";
 
 /**
  * Approximated cosine generator using given normalized `freq` and `amp`

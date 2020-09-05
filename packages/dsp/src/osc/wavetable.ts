@@ -1,5 +1,5 @@
-import { fract, mix as _mix } from "@thi.ng/math";
 import type { Fn3, NumericArray } from "@thi.ng/api";
+import { fract, mix as _mix } from "@thi.ng/math";
 import type { StatelessOscillator } from "../api";
 
 export const wavetable = (

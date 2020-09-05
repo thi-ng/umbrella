@@ -1,8 +1,8 @@
+import type { FnU3, NumericArray } from "@thi.ng/api";
 import { cossin, TAU } from "@thi.ng/math";
+import type { FilterConfig, FilterResponse } from "../api";
 import { line } from "../gen/line";
 import { magDb } from "./convert";
-import type { NumericArray } from "@thi.ng/api";
-import type { FilterConfig, FilterResponse } from "../api";
 
 /**
  * Returns filter response for given filter coefficients at normalized
@@ -40,7 +40,7 @@ export const filterResponse = (
     db?: boolean
 ) => filterResponseRaw(coeffs.zeroes, coeffs.poles, freq, db);
 
-export const freqRange = (fstart: number, fend: number, num: number) =>
+export const freqRange: FnU3<number, number[]> = (fstart, fend, num) =>
     line(fstart, fend, num - 1).take(num);
 
 const convolve = (coeffs: NumericArray, w0: number) => {

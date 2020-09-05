@@ -1,7 +1,7 @@
+import type { IReset } from "@thi.ng/api";
 import { clamp05, PI } from "@thi.ng/math";
 import { FilterType } from "../constants";
 import { AProc } from "./aproc";
-import type { IReset } from "@thi.ng/api";
 
 type SVFType =
     | FilterType.LP

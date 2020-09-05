@@ -1,4 +1,4 @@
-import type { Fn2, IDeref, NumericArray } from "@thi.ng/api";
+import type { FnN2, IDeref, NumericArray } from "@thi.ng/api";
 
 export type StatelessOscillator = (
     phase: number,
@@ -10,7 +10,7 @@ export type StatelessOscillator = (
 
 export type ComplexArray = [NumericArray, NumericArray];
 
-export type WindowFn = Fn2<number, number, number>;
+export type WindowFn = FnN2;
 
 export interface IGen<T> extends Iterable<T>, IDeref<T> {
     next(): T;

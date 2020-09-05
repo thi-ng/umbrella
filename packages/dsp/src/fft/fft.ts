@@ -1,7 +1,7 @@
+import type { FnN3, NumericArray } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
-import { magDb } from "../util/convert";
-import type { NumericArray } from "@thi.ng/api";
 import type { ComplexArray } from "../api";
+import { magDb } from "../util/convert";
 
 const PI = Math.PI;
 
@@ -333,7 +333,7 @@ export const spectrumPhase = (
  * @param fs - sample rate
  * @param n - window size
  */
-export const freqBin = (f: number, fs: number, n: number) => ((f * n) / fs) | 0;
+export const freqBin: FnN3 = (f, fs, n) => ((f * n) / fs) | 0;
 
 /**
  * Returns frequency for given FFT bin index, sample rate and window
@@ -343,7 +343,7 @@ export const freqBin = (f: number, fs: number, n: number) => ((f * n) / fs) | 0;
  * @param fs - sample rate
  * @param n - window size
  */
-export const binFreq = (bin: number, fs: number, n: number) => (bin * fs) / n;
+export const binFreq: FnN3 = (bin, fs, n) => (bin * fs) / n;
 
 /**
  * Returns array of bin center frequencies for given FFT window size and

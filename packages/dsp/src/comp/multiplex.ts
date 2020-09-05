@@ -1,5 +1,5 @@
-import { AProc } from "../proc/aproc";
 import type { IProc } from "../api";
+import { AProc } from "../proc/aproc";
 
 export function multiplex<T, A, B>(
     a: IProc<T, A>,

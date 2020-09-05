@@ -1,7 +1,7 @@
+import type { Fn0, IClear, ILength, IReset } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks";
 import { wrap } from "@thi.ng/math";
 import { AProc } from "./aproc";
-import type { Fn0, IClear, ILength, IReset } from "@thi.ng/api";
 
 /**
  * Delay line of length `n` for numeric values.

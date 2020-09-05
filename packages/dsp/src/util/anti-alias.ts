@@ -1,3 +1,4 @@
+import type { FnN2 } from "@thi.ng/api";
 import { HALF_PI } from "@thi.ng/math";
 
 /**
@@ -11,8 +12,7 @@ import { HALF_PI } from "@thi.ng/math";
  * @param n - number of octaves
  * @param i - curr octave [1..n]
  */
-export const gibbs = (n: number, i: number) =>
-    Math.cos(((i - 1) * HALF_PI) / n) ** 2;
+export const gibbs: FnN2 = (n, i) => Math.cos(((i - 1) * HALF_PI) / n) ** 2;
 
 /**
  * Fejér weight for `k`-th harmonic in a Fourier series of length `n`.
@@ -25,7 +25,7 @@ export const gibbs = (n: number, i: number) =>
  * @param k -
  * @param n -
  */
-export const fejer = (k: number, n: number) => (n - k) / n;
+export const fejer: FnN2 = (k, n) => (n - k) / n;
 
 /**
  * Polynomial attenuation to create bandlimited version of a signal.
@@ -36,7 +36,7 @@ export const fejer = (k: number, n: number) => (n - k) / n;
  * @param dt - time step
  * @param t - normalized phase
  */
-export const polyBLEP = (dt: number, t: number) =>
+export const polyBLEP: FnN2 = (dt, t) =>
     t < dt
         ? ((t /= dt), t + t - t * t - 1)
         : t > 1 - dt

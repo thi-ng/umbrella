@@ -1,5 +1,5 @@
-import { AProc } from "./aproc";
 import type { IReset } from "@thi.ng/api";
+import { AProc } from "./aproc";
 
 /**
  * Leaky integrator.

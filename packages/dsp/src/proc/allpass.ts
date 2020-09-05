@@ -1,6 +1,6 @@
+import type { IReset } from "@thi.ng/api";
 import { clamp05, PI, QUARTER_PI } from "@thi.ng/math";
 import { AProc } from "./aproc";
-import type { IReset } from "@thi.ng/api";
 
 /**
  * One-pole allpass filter.
