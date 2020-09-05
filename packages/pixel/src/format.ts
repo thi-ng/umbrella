@@ -1,4 +1,4 @@
-import { assert, IObjectOf, NumericArray, Type } from "@thi.ng/api";
+import { assert, FnN, FnN2, IObjectOf, NumericArray, Type } from "@thi.ng/api";
 import { clamp01 } from "@thi.ng/math";
 import {
     FloatFormat,
@@ -23,9 +23,8 @@ const defChannel = (
     const maskA = (mask0 << shift) >>> 0;
     const invMask = ~maskA >>> 0;
     const lane = ch.lane != null ? ch.lane : idx;
-    const int = (x: number) => (x >>> shift) & mask0;
-    const setInt = (src: number, x: number) =>
-        (src & invMask) | ((x & mask0) << shift);
+    const int: FnN = (x) => (x >>> shift) & mask0;
+    const setInt: FnN2 = (src, x) => (src & invMask) | ((x & mask0) << shift);
     return {
         size: ch.size,
         abgrShift: 24 - lane * 8 - shift,
@@ -207,8 +206,7 @@ export const defFloatFormat = (fmt: FloatFormatSpec) => {
     };
     const to = (col: NumericArray, i: number) =>
         ((col[i] * 0xff + 0.5) | 0) << chanShift[chan[i]];
-    const from = (col: number, i: number) =>
-        ((col >>> chanShift[chan[i]]) & 0xff) / 0xff;
+    const from: FnN2 = (col, i) => ((col >>> chanShift[chan[i]]) & 0xff) / 0xff;
     switch (chan.length) {
         case 1:
             if (fmt.gray) {
