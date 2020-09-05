@@ -1,9 +1,10 @@
+import type { Fn } from "@thi.ng/api";
 import type { ISpatialSet } from "@thi.ng/geom-api";
 import type { IRandom } from "@thi.ng/random";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
-export type PointGenerator = (rnd: IRandom) => Vec;
-export type DensityFunction = (pos: ReadonlyVec) => number;
+export type PointGenerator = Fn<IRandom, Vec>;
+export type DensityFunction = Fn<ReadonlyVec, number>;
 
 /**
  * Options for {@link samplePoisson}.
