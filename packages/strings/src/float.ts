@@ -1,6 +1,6 @@
 import { memoizeJ } from "@thi.ng/memoize";
-import { padLeft } from "./pad-left";
 import type { Stringer } from "./api";
+import { padLeft } from "./pad-left";
 
 /**
  * Returns {@link Stringer} which formats numbers to given precision.

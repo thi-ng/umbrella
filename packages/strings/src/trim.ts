@@ -1,5 +1,5 @@
 import { memoize1 } from "@thi.ng/memoize";
-import { Stringer } from "./api";
+import type { Stringer } from "./api";
 
 /**
  * Higher order trim function (both sides) with support for user defined
