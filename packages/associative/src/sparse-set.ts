@@ -1,10 +1,10 @@
+import type { Fn3, IEquiv, Pair, UIntArray } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
+import type { IEquivSet } from "./api";
 import { dissoc } from "./dissoc";
 import { inspectable } from "./internal/inspect";
 import { into } from "./into";
-import type { Fn3, IEquiv, Pair, UIntArray } from "@thi.ng/api";
-import type { IEquivSet } from "./api";
 
 interface SparseSetProps {
     dense: UIntArray;
@@ -25,7 +25,8 @@ const fail = () => illegalArgs(`dense & sparse arrays must be of same size`);
  * - {@link https://blog.molecular-matters.com/2013/07/24/adventures-in-data-oriented-design-part-3c-external-references/}
  */
 @inspectable
-export abstract class ASparseSet<T extends UIntArray> extends Set<number>
+export abstract class ASparseSet<T extends UIntArray>
+    extends Set<number>
     implements IEquiv {
     protected constructor(dense: T, sparse: T) {
         super();
@@ -159,7 +160,8 @@ export abstract class ASparseSet<T extends UIntArray> extends Set<number>
     }
 }
 
-export class SparseSet8 extends ASparseSet<Uint8Array>
+export class SparseSet8
+    extends ASparseSet<Uint8Array>
     implements IEquivSet<number> {
     constructor(dense: Uint8Array, sparse: Uint8Array);
     constructor(n: number);
@@ -188,7 +190,8 @@ export class SparseSet8 extends ASparseSet<Uint8Array>
     }
 }
 
-export class SparseSet16 extends ASparseSet<Uint16Array>
+export class SparseSet16
+    extends ASparseSet<Uint16Array>
     implements IEquivSet<number> {
     constructor(dense: Uint16Array, sparse: Uint16Array);
     constructor(n: number);
@@ -217,7 +220,8 @@ export class SparseSet16 extends ASparseSet<Uint16Array>
     }
 }
 
-export class SparseSet32 extends ASparseSet<Uint32Array>
+export class SparseSet32
+    extends ASparseSet<Uint32Array>
     implements IEquivSet<number> {
     constructor(dense: Uint32Array, sparse: Uint32Array);
     constructor(n: number);

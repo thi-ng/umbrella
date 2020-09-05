@@ -1,6 +1,6 @@
+import type { Fn0 } from "@thi.ng/api";
 import { reduce, Reducer } from "@thi.ng/transducers";
 import { ensureSet } from "../utils";
-import type { Fn0 } from "@thi.ng/api";
 
 export const xformSetOp = <T>(
     rfn: Fn0<Reducer<Set<T>, Iterable<T>>>,

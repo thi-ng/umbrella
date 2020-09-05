@@ -1,14 +1,21 @@
-import { SEMAPHORE } from "@thi.ng/api";
+import {
+    Fn3,
+    ICopy,
+    IEmpty,
+    IEquiv,
+    IObjectOf,
+    Pair,
+    SEMAPHORE,
+} from "@thi.ng/api";
 import { isPlainObject } from "@thi.ng/checks";
 import { equiv } from "@thi.ng/equiv";
 import { pairs } from "@thi.ng/transducers";
+import type { EquivMapOpts, IEquivSet } from "./api";
 import { ArraySet } from "./array-set";
 import { dissoc } from "./dissoc";
 import { equivMap } from "./internal/equiv";
 import { inspectable } from "./internal/inspect";
 import { into } from "./into";
-import type { Fn3, ICopy, IEmpty, IEquiv, IObjectOf, Pair } from "@thi.ng/api";
-import type { EquivMapOpts, IEquivSet } from "./api";
 
 interface MapProps<K, V> {
     keys: IEquivSet<K>;
@@ -21,7 +28,8 @@ const __private = new WeakMap<EquivMap<any, any>, MapProps<any, any>>();
 const __map = (map: EquivMap<any, any>) => __private.get(map)!.map;
 
 @inspectable
-export class EquivMap<K, V> extends Map<K, V>
+export class EquivMap<K, V>
+    extends Map<K, V>
     implements
         Iterable<Pair<K, V>>,
         ICopy<EquivMap<K, V>>,
