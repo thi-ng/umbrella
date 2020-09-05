@@ -24,7 +24,7 @@
         "build:test": "rimraf build && tsc -p test/tsconfig.json",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib plot",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
@@ -52,10 +52,10 @@
         "@thi.ng/transducers": "^7.3.0"
     },
     "files": [
-        "plot",
         "*.js",
         "*.d.ts",
-        "lib"
+        "lib",
+        "plot"
     ],
     "keywords": [
         "2d",
