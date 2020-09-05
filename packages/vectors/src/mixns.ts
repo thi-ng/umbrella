@@ -1,4 +1,4 @@
-import { VecOpSVVN } from "./api";
+import type { VecOpSVVN } from "./api";
 import { ARGS_VVN, defOpS, SARGS_VV } from "./internal/codegen";
 import { MIX_N } from "./internal/templates";
 

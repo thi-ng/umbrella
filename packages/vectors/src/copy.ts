@@ -1,5 +1,5 @@
 import { implementsFunction } from "@thi.ng/checks";
-import { ReadonlyVec, Vec } from "./api";
+import type { ReadonlyVec, Vec } from "./api";
 import { set } from "./set";
 
 export const copy = (v: ReadonlyVec): Vec =>

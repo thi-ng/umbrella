@@ -1,10 +1,11 @@
+import type { FnU2 } from "@thi.ng/api";
 import { absInnerAngle } from "@thi.ng/math";
-import { ReadonlyVec } from "./api";
+import type { ReadonlyVec } from "./api";
 import { cross2 } from "./cross";
 import { dot } from "./dot";
 import { mag } from "./mag";
 
-export const angleRatio = (a: ReadonlyVec, b: ReadonlyVec) =>
+export const angleRatio: FnU2<ReadonlyVec, number> = (a, b) =>
     dot(a, b) / (mag(a) * mag(b));
 
 export const angleBetween2 = (

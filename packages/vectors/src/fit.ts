@@ -1,5 +1,10 @@
 import { fit as _fit, fit01 as _fit01, fit11 as _fit11 } from "@thi.ng/math";
-import { MultiVecOpVVV, MultiVecOpVVVVV, VecOpVVV, VecOpVVVVV } from "./api";
+import type {
+    MultiVecOpVVV,
+    MultiVecOpVVVVV,
+    VecOpVVV,
+    VecOpVVVVV,
+} from "./api";
 import { ARGS_VVV, defHofOp } from "./internal/codegen";
 import { FN3, FN5 } from "./internal/templates";
 

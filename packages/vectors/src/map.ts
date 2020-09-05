@@ -1,4 +1,11 @@
-import { IVector, VecOpV, VecOpVN, VecOpVV, VecOpVVN, VecOpVVV } from "./api";
+import type {
+    IVector,
+    VecOpV,
+    VecOpVN,
+    VecOpVV,
+    VecOpVVN,
+    VecOpVVV,
+} from "./api";
 
 /**
  * Vec2/3/4 view based buffer transformation for {@link VecOpVV} type

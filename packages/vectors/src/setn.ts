@@ -1,4 +1,4 @@
-import { MultiVecOpN, Vec, VecOpN } from "./api";
+import type { MultiVecOpN, Vec, VecOpN } from "./api";
 import { defOp } from "./internal/codegen";
 import { SET_N } from "./internal/templates";
 

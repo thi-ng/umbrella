@@ -1,4 +1,4 @@
-import { VecOpSRoV } from "./api";
+import type { VecOpSRoV } from "./api";
 import { dotS2, dotS3, dotS4 } from "./dots";
 
 export const magSqS2: VecOpSRoV<number> = (a, ia, sa) =>

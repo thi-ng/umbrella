@@ -1,4 +1,4 @@
-import { ReadonlyVec, Vec } from "./api";
+import type { ReadonlyVec, Vec } from "./api";
 import { dot } from "./dot";
 import { magSq } from "./magsq";
 import { mulN } from "./muln";

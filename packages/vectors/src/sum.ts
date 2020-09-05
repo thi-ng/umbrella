@@ -1,5 +1,5 @@
 import { add, reduce } from "@thi.ng/transducers";
-import { MultiVecOpRoV } from "./api";
+import type { MultiVecOpRoV } from "./api";
 import { vop } from "./internal/vop";
 
 /**

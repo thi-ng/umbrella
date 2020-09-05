@@ -1,7 +1,7 @@
 import { EPS } from "@thi.ng/math";
 import { memoize1 } from "@thi.ng/memoize";
 import { map, range } from "@thi.ng/transducers";
-import { IVector, Vec } from "./api";
+import type { IVector, Vec } from "./api";
 import { eqDeltaS } from "./eqdelta";
 import { stridedValues } from "./internal/vec-utils";
 import { zeroes } from "./setn";

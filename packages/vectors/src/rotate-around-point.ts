@@ -1,4 +1,4 @@
-import { VecOpVVN } from "./api";
+import type { VecOpVVN } from "./api";
 import { setC2 } from "./setc";
 
 export const rotateAroundPoint2: VecOpVVN = (out, v, p, theta) => {

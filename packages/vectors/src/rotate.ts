@@ -1,7 +1,8 @@
-import { VecOpVN } from "./api";
+import type { FnU2 } from "@thi.ng/api";
+import type { VecOpVN } from "./api";
 import { set } from "./set";
 
-const _rotate = (u: number, v: number): VecOpVN => (out, a, theta) => {
+const _rotate: FnU2<number, VecOpVN> = (u, v) => (out, a, theta) => {
     out ? out !== a && set(out, a) : (out = a);
     const s = Math.sin(theta);
     const c = Math.cos(theta);

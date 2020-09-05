@@ -1,7 +1,8 @@
-import { ReadonlyVec, Vec } from "./api";
+import type { FnU2 } from "@thi.ng/api";
+import type { ReadonlyVec, Vec } from "./api";
 import { setC3 } from "./setc";
 
-export const cross2 = (a: ReadonlyVec, b: ReadonlyVec) =>
+export const cross2: FnU2<ReadonlyVec, number> = (a, b) =>
     a[0] * b[1] - a[1] * b[0];
 
 export const cross3 = (out: Vec | null, a: ReadonlyVec, b: ReadonlyVec) =>

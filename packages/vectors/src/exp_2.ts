@@ -1,4 +1,4 @@
-import { MultiVecOpV, VecOpV } from "./api";
+import type { MultiVecOpV, VecOpV } from "./api";
 import { ARGS_V, defOp } from "./internal/codegen";
 
 /**

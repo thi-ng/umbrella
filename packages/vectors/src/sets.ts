@@ -1,4 +1,4 @@
-import { ReadonlyVec, Vec, VecOpSV } from "./api";
+import type { ReadonlyVec, Vec, VecOpSV } from "./api";
 import { defOpS, NEW_OUT, SARGS_V } from "./internal/codegen";
 import { SET } from "./internal/templates";
 

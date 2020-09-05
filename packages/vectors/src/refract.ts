@@ -1,4 +1,4 @@
-import { VecOpVVN } from "./api";
+import type { VecOpVVN } from "./api";
 import { dot } from "./dot";
 import { maddN } from "./maddn";
 import { mulN } from "./muln";

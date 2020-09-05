@@ -1,4 +1,4 @@
-import { VecOpSV, VecOpSVN } from "./api";
+import type { VecOpSV, VecOpSVN } from "./api";
 import { setS2, setS3 } from "./sets";
 
 const _rotate = (set: VecOpSV, u: number, v: number): VecOpSVN => (

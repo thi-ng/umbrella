@@ -1,5 +1,5 @@
 import { EPS, sign } from "@thi.ng/math";
-import { ReadonlyVec } from "./api";
+import type { ReadonlyVec } from "./api";
 import { signedArea2 } from "./signed-area";
 
 /**

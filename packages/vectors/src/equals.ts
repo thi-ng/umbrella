@@ -1,5 +1,5 @@
 import { equivArrayLike } from "@thi.ng/equiv";
-import { MultiVecOpRoVV } from "./api";
+import type { MultiVecOpRoVV } from "./api";
 import { vop } from "./internal/vop";
 
 export const equals: MultiVecOpRoVV<boolean> = vop(0);

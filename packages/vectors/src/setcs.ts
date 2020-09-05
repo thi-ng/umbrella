@@ -1,4 +1,4 @@
-import { Vec } from "./api";
+import type { Vec } from "./api";
 
 export const setCS2 = (
     out: Vec | null,

@@ -1,4 +1,4 @@
-import { VecOpV } from "./api";
+import type { VecOpV } from "./api";
 import { setC2 } from "./setc";
 
 /**

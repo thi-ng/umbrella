@@ -1,4 +1,4 @@
-import { StridedVec, Vec } from "../api";
+import type { StridedVec, Vec } from "../api";
 
 export abstract class AVec implements StridedVec {
     buf: Vec;

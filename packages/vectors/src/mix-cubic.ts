@@ -1,5 +1,5 @@
 import { addW4 } from "./addw";
-import { ReadonlyVec, Vec } from "./api";
+import type { ReadonlyVec, Vec } from "./api";
 
 /**
  * Vector version of {@link @thi.ng/math#mixCubic}.

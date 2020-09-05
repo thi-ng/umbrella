@@ -1,4 +1,4 @@
-import { IVector } from "./api";
+import type { IVector } from "./api";
 import { mapV } from "./map";
 import { set } from "./set";
 

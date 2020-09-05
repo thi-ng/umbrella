@@ -1,6 +1,6 @@
 import { implementsFunction } from "@thi.ng/checks";
 import { EPS, eqDelta as _eq } from "@thi.ng/math";
-import { MultiVecOpRoVVO, ReadonlyVec } from "./api";
+import type { MultiVecOpRoVVO, ReadonlyVec } from "./api";
 import { compileHOF } from "./internal/codegen";
 import { vop } from "./internal/vop";
 

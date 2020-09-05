@@ -1,5 +1,5 @@
 import { IRandom, SYSTEM } from "@thi.ng/random";
-import { MultiVecOpOOO, ReadonlyVec, Vec, VecOpOOO } from "./api";
+import type { MultiVecOpOOO, ReadonlyVec, Vec, VecOpOOO } from "./api";
 import { defHofOp } from "./internal/codegen";
 import { normalize } from "./normalize";
 
