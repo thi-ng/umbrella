@@ -1,4 +1,4 @@
-import { assert } from "@thi.ng/api";
+import { assert, FnN4 } from "@thi.ng/api";
 import { MASKS } from "@thi.ng/binary";
 import { fit, fit01, inRange } from "@thi.ng/math";
 import {
@@ -10,7 +10,7 @@ import {
     encode5,
 } from "./raw";
 
-const prescale = (x: number, min: number, max: number, bits: number) => {
+const prescale: FnN4 = (x, min, max, bits) => {
     assert(inRange(x, min, max), `value ${x} not in range [${min}..${max}]`);
     return Math.round(fit(x, min, max, 0, MASKS[bits]));
 };
