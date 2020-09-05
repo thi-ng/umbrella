@@ -1,8 +1,8 @@
 import { neg, ReadonlyVec } from "@thi.ng/vectors";
+import type { Mat } from "./api";
 import { concat } from "./concat";
 import { scale23, scale44 } from "./scale";
 import { translation23, translation44 } from "./translation";
-import type { Mat } from "./api";
 
 /**
  * Computes a 2x3 matrix representing a scale operation with origin `p`

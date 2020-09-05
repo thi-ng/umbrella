@@ -1,4 +1,4 @@
-import { EPS, eqDeltaFixed } from "@thi.ng/math";
+import { EPS, eqDelta } from "@thi.ng/math";
 import type { ReadonlyMat } from "./api";
 
 /**
@@ -21,8 +21,8 @@ export const isOrthagonal = (m: ReadonlyMat, n: number, eps = EPS) => {
                 acc += m[ii + k] * m[jj + k];
             }
             if (
-                (i == j && !eqDeltaFixed(acc, 1, eps)) ||
-                (i != j && !eqDeltaFixed(acc, 0, eps))
+                (i == j && !eqDelta(acc, 1, eps)) ||
+                (i != j && !eqDelta(acc, 0, eps))
             ) {
                 return false;
             }
