@@ -1,3 +1,5 @@
+import type { FnN } from "@thi.ng/api";
+
 /**
  * Converts 32bit unsigned int to Gray code (reflected binary). Gray
  * codes of successive values always have a Hamming distance of 1 (i.e.
@@ -7,14 +9,14 @@
  *
  * @param x - u32
  */
-export const encodeGray32 = (x: number) => (x ^ (x >>> 1)) >>> 0;
+export const encodeGray32: FnN = (x) => (x ^ (x >>> 1)) >>> 0;
 
 /**
  * Converts 32bit Gray code to binary / unsigned int.
  *
  * {@link https://en.wikipedia.org/wiki/Gray_code}
  */
-export const decodeGray32 = (x: number) => {
+export const decodeGray32: FnN = (x) => {
     x = x ^ (x >>> 16);
     x = x ^ (x >>> 8);
     x = x ^ (x >>> 4);

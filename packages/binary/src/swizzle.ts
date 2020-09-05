@@ -1,3 +1,4 @@
+import type { FnN, FnN3 } from "@thi.ng/api";
 import type { Lane16, Lane2, Lane4, Lane8 } from "./api";
 
 /**
@@ -168,15 +169,14 @@ export const swizzle4 = (
  * @param b
  * @param mask
  */
-export const mux = (a: number, b: number, mask: number) =>
-    (~mask & a) | (mask & b);
+export const mux: FnN3 = (a, b, mask) => (~mask & a) | (mask & b);
 
 /**
  * Same as `swizzle8(x, 3, 2, 1, 0)`, but faster.
  *
  * @param x -
  */
-export const flip8 = (x: number) =>
+export const flip8: FnN = (x) =>
     ((x >>> 24) | ((x >> 8) & 0xff00) | ((x & 0xff00) << 8) | (x << 24)) >>> 0;
 
 /**
@@ -190,7 +190,7 @@ export const flip8 = (x: number) =>
  *
  * @param x
  */
-export const flip16 = (x: number) => mux(x << 16, x >>> 16, 0xffff);
+export const flip16: FnN = (x) => mux(x << 16, x >>> 16, 0xffff);
 
 /**
  * @deprecated renamed to {@link flip8}

@@ -1,5 +1,6 @@
-import { defMask } from "./mask";
+import type { FnU3 } from "@thi.ng/api";
 import type { Bit } from "./api";
+import { defMask } from "./mask";
 
 /**
  * Clears bit in given uint `x`.
@@ -35,5 +36,5 @@ export const bitSetWindow = (
     return (x & ~m) | ((y << (1 << from)) & m);
 };
 
-export const bitClearWindow = (x: number, from: number, to: number) =>
+export const bitClearWindow: FnU3<number> = (x, from, to) =>
     x & ~defMask(from, to);
