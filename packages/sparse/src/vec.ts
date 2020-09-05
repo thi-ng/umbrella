@@ -1,12 +1,12 @@
-import { assert } from "@thi.ng/api";
+import { assert, FnN2 } from "@thi.ng/api";
 import type { NzEntry } from "./api";
 
-export type BinOp = (a: number, b: number) => number;
+export type BinOp = FnN2;
 
-const ADD = (a: number, b: number) => a + b;
-const SUB = (a: number, b: number) => a - b;
-const MUL = (a: number, b: number) => a * b;
-const DIV = (a: number, b: number) => a / b;
+const ADD: BinOp = (a, b) => a + b;
+const SUB: BinOp = (a, b) => a - b;
+const MUL: BinOp = (a, b) => a * b;
+const DIV: BinOp = (a, b) => a / b;
 
 export class SparseVec {
     static fromDense(dense: ArrayLike<number>) {

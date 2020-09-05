@@ -1,8 +1,8 @@
 import { partition } from "@thi.ng/transducers";
 import { ASparseMatrix } from "./amatrix";
+import type { NzEntry } from "./api";
 import { CSC } from "./csc";
 import { CSR } from "./csr";
-import type { NzEntry } from "./api";
 
 export class COO extends ASparseMatrix {
     static fromDense(m: number, n: number, data: ArrayLike<number>) {
