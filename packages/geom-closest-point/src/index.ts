@@ -1,3 +1,4 @@
+import type { FnU3 } from "@thi.ng/api";
 import { clamp } from "@thi.ng/math";
 import {
     add,
@@ -37,7 +38,7 @@ import {
  * @param a - line point A
  * @param b - line point B
  */
-export const closestT = (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) => {
+export const closestT: FnU3<ReadonlyVec, number | undefined> = (p, a, b) => {
     const d = sub([], b, a);
     const l = magSq(d);
     return l > 1e-6 ? dot(sub([], p, a), d) / l : undefined;
@@ -54,11 +55,8 @@ export const closestT = (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) => {
  * @param a - line point A
  * @param b - line point B
  */
-export const closestPointLine = (
-    p: ReadonlyVec,
-    a: ReadonlyVec,
-    b: ReadonlyVec
-) => mixN([], a, b, closestT(p, a, b) || 0);
+export const closestPointLine: FnU3<ReadonlyVec, Vec> = (p, a, b) =>
+    mixN([], a, b, closestT(p, a, b) || 0);
 
 /**
  * Returns distance from `p` to closest point to infinite line `a` ->
@@ -71,7 +69,7 @@ export const closestPointLine = (
  * @param a - line point A
  * @param b - line point B
  */
-export const distToLine = (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) =>
+export const distToLine: FnU3<ReadonlyVec, number> = (p, a, b) =>
     dist(p, closestPointLine(p, a, b) || a);
 
 /**
@@ -120,7 +118,7 @@ export const closestPointSegment = (
  * @param a - line point A
  * @param b - line point B
  */
-export const distToSegment = (p: ReadonlyVec, a: ReadonlyVec, b: ReadonlyVec) =>
+export const distToSegment: FnU3<ReadonlyVec, number> = (p, a, b) =>
     dist(p, closestPointSegment(p, a, b) || a);
 
 export const closestPointPolyline = (
