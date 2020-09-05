@@ -1,3 +1,4 @@
+import type { FnU4 } from "@thi.ng/api";
 import { mixCubic } from "@thi.ng/math";
 import type { ReadonlyVec, Vec, VecPair } from "@thi.ng/vectors";
 
@@ -48,12 +49,7 @@ const axisBounds = (
     }
 };
 
-export const cubicBounds = (
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    c: ReadonlyVec,
-    d: ReadonlyVec
-): VecPair => {
+export const cubicBounds: FnU4<ReadonlyVec, VecPair> = (a, b, c, d) => {
     const min: Vec = [];
     const max: Vec = [];
     for (let i = a.length; --i >= 0; ) {

@@ -1,3 +1,4 @@
+import type { FnU2 } from "@thi.ng/api";
 import { mixN, set, Vec } from "@thi.ng/vectors";
 
 /**
@@ -8,7 +9,7 @@ import { mixN, set, Vec } from "@thi.ng/vectors";
  * @param a - line endpoint
  * @param b - line endpoint
  */
-export const cubicFromLine = (a: Vec, b: Vec) => [
+export const cubicFromLine: FnU2<Vec, Vec[]> = (a, b) => [
     set([], a),
     mixN([], a, b, 1 / 3),
     mixN([], b, a, 1 / 3),
