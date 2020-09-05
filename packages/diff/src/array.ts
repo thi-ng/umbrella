@@ -1,7 +1,7 @@
-import type { Nullable } from "@thi.ng/api";
+import type { FnU3, Nullable } from "@thi.ng/api";
 import { equiv as _equiv } from "@thi.ng/equiv";
-import { DiffMode } from "./constants";
 import type { ArrayDiff, DiffKeyMap, EditLog } from "./api";
+import { DiffMode } from "./constants";
 
 let _cachedFP: Nullable<Int32Array>;
 let _cachedPath: Nullable<Int32Array>;
@@ -111,7 +111,7 @@ export const diffArray = <T>(
     const epc = _cachedEPC;
     const pathPos = _cachedPathPos;
 
-    const snake = (k: number, p: number, pp: number) => {
+    const snake: FnU3<number, void> = (k, p, pp) => {
         let r: number, y: number;
         if (p > pp) {
             r = path[k - 1];

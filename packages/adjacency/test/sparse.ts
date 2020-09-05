@@ -1,4 +1,4 @@
-import { Pair } from "@thi.ng/api";
+import type { Pair } from "@thi.ng/api";
 import { AdjacencyMatrix } from "../src/index";
 import * as assert from "assert";
 

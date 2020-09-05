@@ -1,4 +1,4 @@
-import type { Fn } from "@thi.ng/api";
+import type { Fn, FnN } from "@thi.ng/api";
 import * as assert from "assert";
 import {
     meldApplyObj,
@@ -42,7 +42,7 @@ describe("mergeApply", () => {
     });
 
     it("pollute", () => {
-        const inc = (x: number) => x + 1;
+        const inc: FnN = (x) => x + 1;
         assert.deepEqual(
             mergeApplyObj(
                 { a: 1, ["__proto__"]: 1 },

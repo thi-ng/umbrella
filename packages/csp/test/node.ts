@@ -1,28 +1,27 @@
-import { IEnable, IID, IObjectOf } from "@thi.ng/api";
+import type { IEnable, IID, IObjectOf } from "@thi.ng/api";
 import { implementsFunction } from "@thi.ng/checks";
-import * as tx from "@thi.ng/transducers";
-import { IBuffer, IWriteableChannel } from "../src/api";
+import { map, Transducer } from "@thi.ng/transducers";
+import type { IBuffer, IWriteableChannel } from "../src/api";
 import { Channel } from "../src/channel";
 import { Mult } from "../src/mult";
-// import { DCons } from "@thi.ng/dcons";
 
 export type NodeInput =
     | NodeInputSpec
     | Channel<any>
     | Mult<any>
-    | tx.Transducer<any, any>;
+    | Transducer<any, any>;
 export type NodeOutput = NodeOutputSpec | IWriteableChannel<any>;
 
 export interface NodeInputSpec {
     src: Channel<any> | Mult<any>;
     buf?: number | IBuffer<any>;
-    tx?: tx.Transducer<any, any>;
+    tx?: Transducer<any, any>;
 }
 
 export interface NodeOutputSpec {
     dest?: IWriteableChannel<any>;
     buf?: number | IBuffer<any>;
-    tx?: tx.Transducer<any, any>;
+    tx?: Transducer<any, any>;
 }
 
 export interface NodeHandlers {
@@ -256,7 +255,7 @@ export const res = new Channel("res");
 export const a = add({ id: "a", state: { b: 42 } });
 export const b = add({
     id: "b",
-    ins: { a: { src: a.outs.out, tx: tx.map((x) => x * 1) } },
+    ins: { a: { src: a.outs.out, tx: map((x) => x * 1) } },
     state: { b: 100 },
 });
 export const c = add({

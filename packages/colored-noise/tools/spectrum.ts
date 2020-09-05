@@ -1,4 +1,4 @@
-import { Fn, Fn0, NumericArray } from "@thi.ng/api";
+import type { Fn, Fn0, NumericArray } from "@thi.ng/api";
 import { fft, spectrumPow } from "@thi.ng/dsp";
 import { barChartHStr } from "@thi.ng/text-canvas";
 import { map, range, reducer, take, transduce } from "@thi.ng/transducers";
