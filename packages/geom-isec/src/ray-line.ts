@@ -1,5 +1,5 @@
 import { IntersectionType } from "@thi.ng/geom-api";
-import { eqDeltaFixed } from "@thi.ng/math";
+import { eqDelta } from "@thi.ng/math";
 import { maddN, ReadonlyVec } from "@thi.ng/vectors";
 import { NONE } from "./api";
 
@@ -12,7 +12,7 @@ export const intersectRayLine = (
     const bax = b[0] - a[0];
     const bay = b[1] - a[1];
     const d = dir[0] * bay - dir[1] * bax;
-    if (eqDeltaFixed(d, 0)) {
+    if (eqDelta(d, 0)) {
         return NONE;
     }
     const arx = a[0] - rpos[0];

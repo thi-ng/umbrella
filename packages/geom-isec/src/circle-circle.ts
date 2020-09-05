@@ -1,5 +1,5 @@
 import { IntersectionResult, IntersectionType } from "@thi.ng/geom-api";
-import { eqDeltaFixed } from "@thi.ng/math";
+import { eqDelta } from "@thi.ng/math";
 import {
     add,
     distSq,
@@ -20,7 +20,7 @@ export const intersectCircleCircle = (
 ): IntersectionResult => {
     const delta = sub([], b, a);
     const d = mag(delta);
-    if (eqDeltaFixed(d, 0)) {
+    if (eqDelta(d, 0)) {
         return { type: IntersectionType.COINCIDENT };
     }
     if (d <= ar + br && d >= Math.abs(ar - br)) {

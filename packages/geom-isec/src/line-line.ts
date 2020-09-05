@@ -1,6 +1,7 @@
+import type { FnU4 } from "@thi.ng/api";
 import { IntersectionResult, IntersectionType } from "@thi.ng/geom-api";
 import { closestPointSegment } from "@thi.ng/geom-closest-point";
-import { EPS, eqDeltaFixed } from "@thi.ng/math";
+import { EPS, eqDelta } from "@thi.ng/math";
 import { mixN2, ReadonlyVec } from "@thi.ng/vectors";
 
 export const intersectLineLine = (
@@ -19,8 +20,8 @@ export const intersectLineLine = (
     const det = dcy * bax - dcx * bay;
     let alpha = dcx * acy - dcy * acx;
     let beta = bax * acy - bay * acx;
-    if (eqDeltaFixed(det, 0, eps)) {
-        if (eqDeltaFixed(alpha, 0, eps) && eqDeltaFixed(beta, 0, eps)) {
+    if (eqDelta(det, 0, eps)) {
+        if (eqDelta(alpha, 0, eps) && eqDelta(beta, 0, eps)) {
             let isec =
                 closestPointSegment(c, a, b, undefined, true) ||
                 closestPointSegment(d, a, b, undefined, true);
@@ -57,13 +58,5 @@ export const intersectLineLine = (
  * @param c - line 2 start point
  * @param d - line 2 end point
  */
-export const isParallelLine = (
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    c: ReadonlyVec,
-    d: ReadonlyVec
-) =>
-    eqDeltaFixed(
-        (d[1] - c[1]) * (b[0] - a[0]) - (d[0] - c[0]) * (b[1] - a[1]),
-        0
-    );
+export const isParallelLine: FnU4<ReadonlyVec, boolean> = (a, b, c, d) =>
+    eqDelta((d[1] - c[1]) * (b[0] - a[0]) - (d[0] - c[0]) * (b[1] - a[1]), 0);
