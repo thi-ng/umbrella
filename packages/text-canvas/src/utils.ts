@@ -1,10 +1,10 @@
-import type { NumOrString } from "@thi.ng/api";
+import type { FnN3, FnU2, FnU7, NumOrString } from "@thi.ng/api";
 import type { ClipRect } from "./api";
 
 export const charCode = (x: NumOrString, format: number) =>
     (typeof x === "string" ? x.charCodeAt(0) : x) | (format << 16);
 
-export const intersectRect = (a: ClipRect, b: ClipRect): ClipRect => {
+export const intersectRect: FnU2<ClipRect> = (a, b) => {
     const x1 = Math.max(a.x1, b.x1);
     const y1 = Math.max(a.y1, b.y1);
     const x2 = Math.min(a.x2, b.x2);
@@ -12,15 +12,15 @@ export const intersectRect = (a: ClipRect, b: ClipRect): ClipRect => {
     return { x1, y1, x2, y2, w: Math.max(x2 - x1, 0), h: Math.max(y2 - y1, 0) };
 };
 
-const axis = (a: number, b: number, c: number) =>
+const axis: FnN3 = (a, b, c) =>
     (a < b ? a - b : a > b + c ? a - b - c : 0) ** 2;
 
-export const intersectRectCircle = (
-    x: number,
-    y: number,
-    w: number,
-    h: number,
-    cx: number,
-    cy: number,
-    r: number
+export const intersectRectCircle: FnU7<number, boolean> = (
+    x,
+    y,
+    w,
+    h,
+    cx,
+    cy,
+    r
 ) => axis(cx, x, w) + axis(cy, y, h) <= r * r;
