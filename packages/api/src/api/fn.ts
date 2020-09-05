@@ -184,3 +184,83 @@ export type FnAny<T> = (...xs: any[]) => T;
  * A typed vararg arg function from A to B.
  */
 export type FnAnyT<A, B> = (...xs: A[]) => B;
+
+/**
+ * 1-arg function with arg of type A and return type B (defaults
+ * to A)
+ */
+export type FnU<A, B = A> = Fn<A, B>;
+
+/**
+ * 2-arg function with all args uniformly of type A and return type B (defaults
+ * to A)
+ */
+export type FnU2<A, B = A> = Fn2<A, A, B>;
+
+/**
+ * 3-arg function with all args uniformly of type A and return type B (defaults
+ * to A)
+ */
+export type FnU3<A, B = A> = Fn3<A, A, A, B>;
+
+/**
+ * 4-arg function with all args uniformly of type A and return type B (defaults
+ * to A)
+ */
+export type FnU4<A, B = A> = Fn4<A, A, A, A, B>;
+
+/**
+ * 5-arg function with all args uniformly of type A and return type B (defaults
+ * to A)
+ */
+export type FnU5<A, B = A> = Fn5<A, A, A, A, A, B>;
+
+/**
+ * 6-arg function with all args uniformly of type A and return type B (defaults
+ * to A)
+ */
+export type FnU6<A, B = A> = Fn6<A, A, A, A, A, A, B>;
+
+/**
+ * 7-arg function with all args uniformly of type A and return type B (defaults
+ * to A)
+ */
+export type FnU7<A, B = A> = Fn7<A, A, A, A, A, A, A, B>;
+
+/**
+ * 8-arg function with all args uniformly of type A and return type B (defaults
+ * to A)
+ */
+export type FnU8<A, B = A> = Fn8<A, A, A, A, A, A, A, A, B>;
+
+/**
+ * 9-arg function with all args uniformly of type A and return type B (defaults
+ * to A)
+ */
+export type FnU9<A, B = A> = Fn9<A, A, A, A, A, A, A, A, A, B>;
+
+/**
+ * 10-arg function with all args uniformly of type A and return type B (defaults
+ * to A)
+ */
+export type FnU10<A, B = A> = Fn10<A, A, A, A, A, A, A, A, A, A, B>;
+
+export type FnN = FnU<number>;
+
+export type FnN2 = FnU2<number>;
+
+export type FnN3 = FnU3<number>;
+
+export type FnN4 = FnU4<number>;
+
+export type FnN5 = FnU5<number>;
+
+export type FnN6 = FnU6<number>;
+
+export type FnN7 = FnU7<number>;
+
+export type FnN8 = FnU8<number>;
+
+export type FnN9 = FnU9<number>;
+
+export type FnN10 = FnU10<number>;
