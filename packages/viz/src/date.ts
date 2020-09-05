@@ -1,3 +1,4 @@
+import type { FnN } from "@thi.ng/api";
 import type { Domain } from "./api";
 
 export const SECOND = 1000;
@@ -8,33 +9,33 @@ export const WEEK = 7 * DAY;
 export const MONTH = 30.4375 * DAY;
 export const YEAR = 365.25 * DAY;
 
-export const floorDay = (epoch: number) => {
+export const floorDay: FnN = (epoch) => {
     const d = new Date(epoch);
     return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
 };
 
-export const floorMonth = (epoch: number) => {
+export const floorMonth: FnN = (epoch) => {
     const d = new Date(epoch);
     return Date.UTC(d.getUTCFullYear(), d.getUTCMonth());
 };
 
-export const floorYear = (epoch: number) => {
+export const floorYear: FnN = (epoch) => {
     const d = new Date(epoch);
     return Date.UTC(d.getUTCFullYear(), 0);
 };
 
-export const ceilDay = (epoch: number) => {
+export const ceilDay: FnN = (epoch) => {
     const d = new Date(epoch + DAY);
     return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
 };
 
-export const ceilMonth = (epoch: number) => {
+export const ceilMonth: FnN = (epoch) => {
     let d = new Date(epoch);
     d = new Date(epoch + DAYS_IN_MONTH[d.getUTCMonth()] * DAY);
     return Date.UTC(d.getUTCFullYear(), d.getUTCMonth());
 };
 
-export const ceilYear = (epoch: number) => {
+export const ceilYear: FnN = (epoch) => {
     const d = new Date(epoch);
     return Date.UTC(d.getUTCFullYear() + 1, 0);
 };

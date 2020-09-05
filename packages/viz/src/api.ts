@@ -1,9 +1,9 @@
-import type { Fn, Fn2 } from "@thi.ng/api";
+import type { Fn, Fn2, FnN, FnU } from "@thi.ng/api";
 
 export type Domain = number[];
 export type Range = number[];
 
-export type ScaleFn = Fn<number, number>;
+export type ScaleFn = FnN;
 
 export type PlotFn = Fn<VizSpec, any>;
 
@@ -31,6 +31,6 @@ export interface VizSpec {
     attribs?: any;
     xaxis: AxisSpec;
     yaxis: AxisSpec;
-    project?: Fn<number[], number[]>;
+    project?: FnU<number[]>;
     plots: PlotFn[];
 }
