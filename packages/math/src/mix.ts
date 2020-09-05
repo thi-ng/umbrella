@@ -1,6 +1,7 @@
+import { FnN, FnN2, FnN3, FnN4, FnN5, FnN6 } from "@thi.ng/api";
 import { HALF_PI, PI } from "./api";
 
-export const mix = (a: number, b: number, t: number) => a + (b - a) * t;
+export const mix: FnN3 = (a, b, t) => a + (b - a) * t;
 
 /**
  * @example
@@ -19,27 +20,15 @@ export const mix = (a: number, b: number, t: number) => a + (b - a) * t;
  * @param u - 1st interpolation factor
  * @param v - 2nd interpolation factor
  */
-export const mixBilinear = (
-    a: number,
-    b: number,
-    c: number,
-    d: number,
-    u: number,
-    v: number
-) => mix(mix(a, b, u), mix(c, d, u), v);
+export const mixBilinear: FnN6 = (a, b, c, d, u, v) =>
+    mix(mix(a, b, u), mix(c, d, u), v);
 
-export const mixQuadratic = (a: number, b: number, c: number, t: number) => {
+export const mixQuadratic: FnN4 = (a, b, c, t) => {
     const s = 1 - t;
     return a * s * s + b * 2 * s * t + c * t * t;
 };
 
-export const mixCubic = (
-    a: number,
-    b: number,
-    c: number,
-    d: number,
-    t: number
-) => {
+export const mixCubic: FnN5 = (a, b, c, d, t) => {
     const t2 = t * t;
     const s = 1 - t;
     const s2 = s * s;
@@ -71,13 +60,7 @@ export const mixCubic = (
  * @param d -
  * @param t -
  */
-export const mixHermite = (
-    a: number,
-    b: number,
-    c: number,
-    d: number,
-    t: number
-) => {
+export const mixHermite: FnN5 = (a, b, c, d, t) => {
     const y1 = 0.5 * (c - a);
     const y2 = 1.5 * (b - c) + 0.5 * (d - a);
     return ((y2 * t + a - b + y1 - y2) * t + y1) * t + b;
@@ -99,13 +82,7 @@ export const mixHermite = (
  * @param tb -
  * @param t -
  */
-export const mixCubicHermite = (
-    a: number,
-    ta: number,
-    b: number,
-    tb: number,
-    t: number
-) => {
+export const mixCubicHermite: FnN5 = (a, ta, b, tb, t) => {
     const s = t - 1;
     const t2 = t * t;
     const s2 = s * s;
@@ -188,7 +165,7 @@ export const tween = (f: (t: number) => number, from: number, to: number) => (
  *
  * @param t - interpolation factor [0..1]
  */
-export const circular = (t: number) => {
+export const circular: FnN = (t) => {
     t = 1 - t;
     return Math.sqrt(1 - t * t);
 };
@@ -200,7 +177,7 @@ export const circular = (t: number) => {
  *
  * @param t - interpolation factor [0..1]
  */
-export const invCircular = (t: number) => 1 - circular(1 - t);
+export const invCircular: FnN = (t) => 1 - circular(1 - t);
 
 /**
  * Zoomlens interpolation with customizable lens position, behavior and
@@ -227,18 +204,18 @@ export const invCircular = (t: number) => 1 - circular(1 - t);
  * @param strength - lens strength
  * @param t - interpolation factor [0..1]
  */
-export const lens = (pos: number, strength: number, t: number) => {
+export const lens: FnN3 = (pos, strength, t) => {
     const impl = strength > 0 ? invCircular : circular;
     const tp = 1 - pos;
     const tl = t <= pos ? impl(t / pos) * pos : 1 - impl((1 - t) / tp) * tp;
     return mix(t, tl, Math.abs(strength));
 };
 
-export const cosine = (t: number) => 1 - (Math.cos(t * PI) * 0.5 + 0.5);
+export const cosine: FnN = (t) => 1 - (Math.cos(t * PI) * 0.5 + 0.5);
 
-export const decimated = (n: number, t: number) => Math.floor(t * n) / n;
+export const decimated: FnN2 = (n, t) => Math.floor(t * n) / n;
 
-export const bounce = (k: number, amp: number, t: number) => {
+export const bounce: FnN3 = (k, amp, t) => {
     const tk = t * k;
     return 1 - ((amp * Math.sin(tk)) / tk) * Math.cos(t * HALF_PI);
 };
@@ -253,30 +230,29 @@ export const bounce = (k: number, amp: number, t: number) => {
  * @param ease - easing behavior [0.0 .. ∞]
  * @param t -
  */
-export const ease = (ease: number, t: number) => Math.pow(t, ease);
+export const ease: FnN2 = (ease, t) => Math.pow(t, ease);
 
 /**
  * Impulse generator. Peaks at `t = 1/k`
  *
  * @param k - impulse width (higher values => shorter impulse)
  */
-export const impulse = (k: number, t: number) => {
+export const impulse: FnN2 = (k, t) => {
     const h = k * t;
     return h * Math.exp(1 - h);
 };
 
-export const gain = (k: number, t: number) =>
+export const gain: FnN2 = (k, t) =>
     t < 0.5 ? 0.5 * Math.pow(2 * t, k) : 1 - 0.5 * Math.pow(2 - 2 * t, k);
 
-export const parabola = (k: number, t: number) =>
-    Math.pow(4.0 * t * (1.0 - t), k);
+export const parabola: FnN2 = (k, t) => Math.pow(4.0 * t * (1.0 - t), k);
 
-export const cubicPulse = (w: number, c: number, t: number) => {
+export const cubicPulse: FnN3 = (w, c, t) => {
     t = Math.abs(t - c);
     return t > w ? 0 : ((t /= w), 1 - t * t * (3 - 2 * t));
 };
 
-export const sinc = (k: number, t: number) => {
+export const sinc: FnN2 = (k, t) => {
     t = PI * (k * t - 1.0);
     return Math.sin(t) / t;
 };
@@ -287,8 +263,7 @@ export const sinc = (k: number, t: number) => {
  * @param k -
  * @param t -
  */
-export const sigmoid = (k: number, t: number) =>
-    1 / (1 + Math.exp(-k * (2 * t - 1)));
+export const sigmoid: FnN2 = (k, t) => 1 / (1 + Math.exp(-k * (2 * t - 1)));
 
 /**
  * Sigmoid function for inputs in [-1..+1] interval.
@@ -296,7 +271,7 @@ export const sigmoid = (k: number, t: number) =>
  * @param k -
  * @param t -
  */
-export const sigmoid11 = (k: number, t: number) => 1 / (1 + Math.exp(-k * t));
+export const sigmoid11: FnN2 = (k, t) => 1 / (1 + Math.exp(-k * t));
 
 /**
  * Computes exponential factor to interpolate from `a` to `b` over
@@ -307,5 +282,4 @@ export const sigmoid11 = (k: number, t: number) => 1 / (1 + Math.exp(-k * t));
  * @param b
  * @param num
  */
-export const expFactor = (a: number, b: number, num: number) =>
-    (b / a) ** (1 / num);
+export const expFactor: FnN3 = (a, b, num) => (b / a) ** (1 / num);

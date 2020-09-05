@@ -1,3 +1,5 @@
+import type { FnN, FnN2, FnN3, FnN4, FnU3 } from "@thi.ng/api";
+
 /**
  * Clamps value `x` to given closed interval.
  *
@@ -5,29 +7,28 @@
  * @param min - lower bound
  * @param max - upper bound
  */
-export const clamp = (x: number, min: number, max: number) =>
-    x < min ? min : x > max ? max : x;
+export const clamp: FnN3 = (x, min, max) => (x < min ? min : x > max ? max : x);
 
 /**
  * Clamps value `x` to closed [0 .. 1] interval.
  *
  * @param x
  */
-export const clamp01 = (x: number) => (x < 0 ? 0 : x > 1 ? 1 : x);
+export const clamp01: FnN = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
 
 /**
  * Clamps value `x` to closed [-1 .. 1] interval.
  *
  * @param x
  */
-export const clamp11 = (x: number) => (x < -1 ? -1 : x > 1 ? 1 : x);
+export const clamp11: FnN = (x) => (x < -1 ? -1 : x > 1 ? 1 : x);
 
 /**
  * Clamps value `x` to closed [0 .. 0.5] interval.
  *
  * @param x
  */
-export const clamp05 = (x: number) => (x < 0 ? 0 : x > 0.5 ? 0.5 : x);
+export const clamp05: FnN = (x) => (x < 0 ? 0 : x > 0.5 ? 0.5 : x);
 
 /**
  * Folds `x` back inside closed [min..max] interval. Also see
@@ -37,7 +38,7 @@ export const clamp05 = (x: number) => (x < 0 ? 0 : x > 0.5 ? 0.5 : x);
  * @param min -
  * @param max -
  */
-export const wrap = (x: number, min: number, max: number) => {
+export const wrap: FnN3 = (x, min, max) => {
     if (min === max) return min;
     if (x > max) {
         const d = max - min;
@@ -60,7 +61,7 @@ export const wrap = (x: number, min: number, max: number) => {
  * @param min -
  * @param max -
  */
-export const wrapOnce = (x: number, min: number, max: number) =>
+export const wrapOnce: FnN3 = (x, min, max) =>
     x < min ? x - min + max : x > max ? x - max + min : x;
 
 /**
@@ -68,21 +69,21 @@ export const wrapOnce = (x: number, min: number, max: number) =>
  *
  * @param x -
  */
-export const wrap01 = (x: number) => (x < 0 ? x + 1 : x > 1 ? x - 1 : x);
+export const wrap01: FnN = (x) => (x < 0 ? x + 1 : x > 1 ? x - 1 : x);
 
 /**
  * Similar to {@link wrapOnce} for [-1..1] interval.
  *
  * @param x -
  */
-export const wrap11 = (x: number) => (x < -1 ? x + 2 : x > 1 ? x - 2 : x);
+export const wrap11: FnN = (x) => (x < -1 ? x + 2 : x > 1 ? x - 2 : x);
 
-export const min2id = (a: number, b: number) => (a <= b ? 0 : 1);
+export const min2id: FnN2 = (a, b) => (a <= b ? 0 : 1);
 
-export const min3id = (a: number, b: number, c: number) =>
+export const min3id: FnN3 = (a, b, c) =>
     a <= b ? (a <= c ? 0 : 2) : b <= c ? 1 : 2;
 
-export const min4id = (a: number, b: number, c: number, d: number) =>
+export const min4id: FnN4 = (a, b, c, d) =>
     a <= b
         ? a <= c
             ? a <= d
@@ -99,12 +100,12 @@ export const min4id = (a: number, b: number, c: number, d: number) =>
         ? 2
         : 3;
 
-export const max2id = (a: number, b: number) => (a >= b ? 0 : 1);
+export const max2id: FnN2 = (a, b) => (a >= b ? 0 : 1);
 
-export const max3id = (a: number, b: number, c: number) =>
+export const max3id: FnN3 = (a, b, c) =>
     a >= b ? (a >= c ? 0 : 2) : b >= c ? 1 : 2;
 
-export const max4id = (a: number, b: number, c: number, d: number) =>
+export const max4id: FnN4 = (a, b, c, d) =>
     a >= b
         ? a >= c
             ? a >= d
@@ -127,7 +128,7 @@ export const max4id = (a: number, b: number, c: number, d: number) =>
  * @param a
  * @param b
  */
-export const minNonZero2 = (a: number, b: number) =>
+export const minNonZero2: FnN2 = (a, b) =>
     a !== 0 ? (b !== 0 ? Math.min(a, b) : a) : b;
 
 /**
@@ -137,8 +138,7 @@ export const minNonZero2 = (a: number, b: number) =>
  * @param b
  * @param c
  */
-export const minNonZero3 = (a: number, b: number, c: number) =>
-    minNonZero2(minNonZero2(a, b), c);
+export const minNonZero3: FnN3 = (a, b, c) => minNonZero2(minNonZero2(a, b), c);
 
 /**
  * See `smax()`.
@@ -147,7 +147,7 @@ export const minNonZero3 = (a: number, b: number, c: number) =>
  * @param b -
  * @param k - smooth exponent (MUST be > 0)
  */
-export const smin = (a: number, b: number, k: number) => smax(a, b, -k);
+export const smin: FnN3 = (a, b, k) => smax(a, b, -k);
 
 /**
  * Smooth maximum. Note: Result values will be slightly larger than max
@@ -160,7 +160,7 @@ export const smin = (a: number, b: number, k: number) => smax(a, b, -k);
  * @param b -
  * @param k - smooth exponent (MUST be > 0)
  */
-export const smax = (a: number, b: number, k: number) => {
+export const smax: FnN3 = (a, b, k) => {
     const ea = Math.exp(a * k);
     const eb = Math.exp(b * k);
     return (a * ea + b * eb) / (ea + eb);
@@ -174,14 +174,11 @@ export const smax = (a: number, b: number, k: number) => {
  * @param max -
  * @param k -
  */
-export const sclamp = (x: number, min: number, max: number, k: number) =>
-    smin(smax(x, min, k), max, k);
+export const sclamp: FnN4 = (x, min, max, k) => smin(smax(x, min, k), max, k);
 
-export const absMin = (a: number, b: number) =>
-    Math.abs(a) < Math.abs(b) ? a : b;
+export const absMin: FnN2 = (a, b) => (Math.abs(a) < Math.abs(b) ? a : b);
 
-export const absMax = (a: number, b: number) =>
-    Math.abs(a) > Math.abs(b) ? a : b;
+export const absMax: FnN2 = (a, b) => (Math.abs(a) > Math.abs(b) ? a : b);
 
 /**
  * If `abs(x) > abs(e)`, recursively mirrors `x` back into `[-e .. +e]`
@@ -195,7 +192,7 @@ export const absMax = (a: number, b: number) =>
  * @param e - threshold (> 0)
  * @param x - input value
  */
-export const foldback = (e: number, x: number) =>
+export const foldback: FnN2 = (e, x) =>
     x < -e || x > e ? Math.abs(Math.abs((x - e) % (4 * e)) - 2 * e) - e : x;
 
 /**
@@ -205,7 +202,7 @@ export const foldback = (e: number, x: number) =>
  * @param min -
  * @param max -
  */
-export const inRange = (x: number, min: number, max: number) =>
+export const inRange: FnU3<number, boolean> = (x, min, max) =>
     x >= min && x <= max;
 
 /**
@@ -215,5 +212,5 @@ export const inRange = (x: number, min: number, max: number) =>
  * @param min -
  * @param max -
  */
-export const inOpenRange = (x: number, min: number, max: number) =>
+export const inOpenRange: FnU3<number, boolean> = (x, min, max) =>
     x > min && x < max;

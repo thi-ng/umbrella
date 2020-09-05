@@ -1,3 +1,4 @@
+import type { FnN, FnN2, FnN3 } from "@thi.ng/api";
 import { DEG2RAD, HALF_PI, INV_HALF_PI, PI, RAD2DEG, TAU } from "./api";
 
 /**
@@ -27,11 +28,11 @@ export const cossin = (theta: number, n = 1) => [
  *
  * @param theta -
  */
-export const absTheta = (theta: number) => (
+export const absTheta: FnN = (theta) => (
     (theta %= TAU), theta < 0 ? TAU + theta : theta
 );
 
-export const absInnerAngle = (theta: number) => (
+export const absInnerAngle: FnN = (theta) => (
     (theta = Math.abs(theta)), theta > PI ? TAU - theta : theta
 );
 
@@ -42,7 +43,7 @@ export const absInnerAngle = (theta: number) => (
  * @param a -
  * @param b -
  */
-export const angleDist = (a: number, b: number) =>
+export const angleDist: FnN2 = (a, b) =>
     absInnerAngle(absTheta((b % TAU) - (a % TAU)));
 
 /**
@@ -51,49 +52,49 @@ export const angleDist = (a: number, b: number) =>
  * @param y -
  * @param x -
  */
-export const atan2Abs = (y: number, x: number) => absTheta(Math.atan2(y, x));
+export const atan2Abs: FnN2 = (y, x) => absTheta(Math.atan2(y, x));
 
 /**
  * Returns quadrant ID (0-3) of given angle (in radians).
  *
  * @param theta -
  */
-export const quadrant = (theta: number) => (absTheta(theta) * INV_HALF_PI) | 0;
+export const quadrant: FnN = (theta) => (absTheta(theta) * INV_HALF_PI) | 0;
 
 /**
  * Converts angle to degrees.
  *
  * @param theta - angle in radians
  */
-export const deg = (theta: number) => theta * RAD2DEG;
+export const deg: FnN = (theta) => theta * RAD2DEG;
 
 /**
  * Converts angle to radians.
  *
  * @param theta - angle in degrees
  */
-export const rad = (theta: number) => theta * DEG2RAD;
+export const rad: FnN = (theta) => theta * DEG2RAD;
 
 /**
  * Cosecant. Approaches `±Infinity` for `theta` near multiples of π.
  *
  * @param theta - angle in radians
  */
-export const csc = (theta: number) => 1 / Math.sin(theta);
+export const csc: FnN = (theta) => 1 / Math.sin(theta);
 
 /**
  * Secant. Approaches `±Infinity` for `theta` near π/2 ± nπ
  *
  * @param theta - angle in radians
  */
-export const sec = (theta: number) => 1 / Math.cos(theta);
+export const sec: FnN = (theta) => 1 / Math.cos(theta);
 
 /**
  * Cotangent. Approaches `±Infinity` for `theta` near multiples of π.
  *
  * @param theta - angle in radians
  */
-export const cot = (theta: number) => 1 / Math.tan(theta);
+export const cot: FnN = (theta) => 1 / Math.tan(theta);
 
 /**
  * Law of Cosines. Takes length of two sides of a triangle and the inner
@@ -103,7 +104,7 @@ export const cot = (theta: number) => 1 / Math.tan(theta);
  * @param b -
  * @param gamma -
  */
-export const loc = (a: number, b: number, gamma: number) =>
+export const loc: FnN3 = (a, b, gamma) =>
     Math.sqrt(a * a + b * b - 2 * a * b * Math.cos(gamma));
 
 /**
@@ -111,12 +112,12 @@ export const loc = (a: number, b: number, gamma: number) =>
  *
  * @param x -
  */
-export const normCos = (x: number) => {
+export const normCos: FnN = (x) => {
     const x2 = x * x;
     return 1.0 + x2 * (-4 + 2 * x2);
 };
 
-const __fastCos = (x: number) => {
+const __fastCos: FnN = (x) => {
     const x2 = x * x;
     return 0.99940307 + x2 * (-0.49558072 + 0.03679168 * x2);
 };
@@ -129,7 +130,7 @@ const __fastCos = (x: number) => {
  *
  * @param theta - in radians
  */
-export const fastCos = (theta: number) => {
+export const fastCos: FnN = (theta) => {
     theta %= TAU;
     theta < 0 && (theta = -theta);
     switch ((theta * INV_HALF_PI) | 0) {
@@ -149,4 +150,4 @@ export const fastCos = (theta: number) => {
  *
  * @param theta - in radians
  */
-export const fastSin = (theta: number) => fastCos(HALF_PI - theta);
+export const fastSin: FnN = (theta) => fastCos(HALF_PI - theta);
