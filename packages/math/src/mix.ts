@@ -1,4 +1,4 @@
-import { FnN, FnN2, FnN3, FnN4, FnN5, FnN6 } from "@thi.ng/api";
+import type { FnN, FnN2, FnN3, FnN4, FnN5, FnN6 } from "@thi.ng/api";
 import { HALF_PI, PI } from "./api";
 
 export const mix: FnN3 = (a, b, t) => a + (b - a) * t;
