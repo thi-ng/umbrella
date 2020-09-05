@@ -17,9 +17,10 @@ import {
 const prices: any[] = JSON.parse(
     readFileSync("dev/ohlc.json").toString()
 ).Data.map((x: any) => ({ ...x, time: x.time * 1000 }));
+const domain = dataBounds((x) => x.time, prices, 1 * HOUR);
 const res = plotCartesian({
     xaxis: linearAxis({
-        domain: dataBounds((x) => x.time, prices, 1 * HOUR),
+        domain,
         range: [100, 1250],
         pos: 500,
         labelOffset: [0, 20],
@@ -47,12 +48,6 @@ const res = plotCartesian({
         minor: { ticks: linTickMarks(50) },
     }),
     plots: [
-        // areaPlot(vals, {
-        //     attribs: { fill: "red" },
-        // }),
-        // scatterPlot(vals, {
-        //     attribs: { size: 5, fill: "none", stroke: "red" },
-        // }),
         candlePlot(
             prices.map((p: any) => [
                 p.time,
@@ -74,7 +69,7 @@ const res = plotCartesian({
 });
 
 writeFileSync(
-    "export/linechart.svg",
+    "export/candles.svg",
     serialize(
         convertTree(svg({ width: 1280, height: 560, "font-size": "10px" }, res))
     )

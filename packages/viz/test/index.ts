@@ -25,8 +25,8 @@ describe("viz", () => {
                 domain: [0, 4],
                 range: [50, 250],
                 pos: 100,
-                major: { ticks: linTickMarks() },
-                minor: { ticks: linTickMarks() },
+                major: { ticks: linTickMarks(1) },
+                minor: { ticks: linTickMarks(1) },
             })
         );
         assert.deepEqual(axis, [
@@ -80,8 +80,8 @@ describe("viz", () => {
                 pos: 100,
                 labelAttribs: { "text-anchor": "end" },
                 labelOffset: [-15, 5],
-                major: { ticks: linTickMarks(), size: -10 },
-                minor: { ticks: linTickMarks() },
+                major: { ticks: linTickMarks(1), size: -10 },
+                minor: { ticks: linTickMarks(1) },
             })
         );
         assert.deepEqual(axis, [
