@@ -1,4 +1,6 @@
+import type { Fn3, FnN2 } from "@thi.ng/api";
 import { clamp, clamp01 } from "@thi.ng/math";
+import type { Color, ReadonlyColor } from "./api";
 import {
     postmultiply,
     postmultiplyInt,
@@ -6,17 +8,15 @@ import {
     premultiplyInt,
 } from "./premultiply";
 import { setC4, setN4 } from "./utils";
-import type { Fn2, Fn3 } from "@thi.ng/api";
-import type { Color, ReadonlyColor } from "./api";
 
 const min = Math.min;
 
-export const ZERO = () => 0;
-export const ONE = () => 1;
-export const A = (a: number) => a;
-export const B = (_: number, b: number) => b;
-export const ONE_MINUS_A = (a: number) => 1 - a;
-export const ONE_MINUS_B = (_: number, b: number) => 1 - b;
+export const ZERO: FnN2 = () => 0;
+export const ONE: FnN2 = () => 1;
+export const A: FnN2 = (a) => a;
+export const B: FnN2 = (_, b) => b;
+export const ONE_MINUS_A: FnN2 = (a) => 1 - a;
+export const ONE_MINUS_B: FnN2 = (_, b) => 1 - b;
 
 /**
  * General Porter-Duff HOF operator for **pre-multiplied** RGBA. Use
@@ -37,10 +37,11 @@ export const ONE_MINUS_B = (_: number, b: number) => 1 - b;
  * @param fa - fn for src coeff
  * @param fb - fn for dest coeff
  */
-export const porterDuff = (
-    fa: Fn2<number, number, number>,
-    fb: Fn2<number, number, number>
-) => (out: Color | null, src: ReadonlyColor, dest: ReadonlyColor) => {
+export const porterDuff = (fa: FnN2, fb: FnN2) => (
+    out: Color | null,
+    src: ReadonlyColor,
+    dest: ReadonlyColor
+) => {
     const sa = src[3];
     const sb = dest[3];
     const aa = fa(sa, sb);
@@ -54,10 +55,7 @@ export const porterDuff = (
     );
 };
 
-export const porterDuffInt = (
-    fa: Fn2<number, number, number>,
-    fb: Fn2<number, number, number>
-) => (a: number, b: number) => {
+export const porterDuffInt = (fa: FnN2, fb: FnN2): FnN2 => (a, b) => {
     const sa = (a >>> 24) / 255;
     const sb = (b >>> 24) / 255;
     const aa = fa(sa, sb);
@@ -94,10 +92,8 @@ export const porterDuffP = (
  *
  * @param mode -
  */
-export const porterDuffPInt = (mode: Fn2<number, number, number>) => (
-    src: number,
-    dest: number
-) => postmultiplyInt(mode(premultiplyInt(src), premultiplyInt(dest)));
+export const porterDuffPInt = (mode: FnN2): FnN2 => (src, dest) =>
+    postmultiplyInt(mode(premultiplyInt(src), premultiplyInt(dest)));
 
 /**
  * Porter-Duff operator. None of the terms are used. Always results in
@@ -205,7 +201,7 @@ export const PLUS_F = porterDuff(ONE, ONE);
 
 ////////// Packed ARGB / ABGR versions //////////
 
-export const CLEAR_I = <Fn2<number, number, number>>ZERO;
+export const CLEAR_I = ZERO;
 
 /**
  * Porter-Duff operator for packed ints. Always results in `src` color, `dest` ignored.
@@ -342,7 +338,7 @@ export const opacity = (out: Color | null, src: ReadonlyColor, t: number) =>
  * @param src -
  * @param t -
  */
-export const darkenInt = (src: number, t: number) =>
+export const darkenInt: FnN2 = (src, t) =>
     (src & 0xff000000) |
     (min(0xff, ((src >>> 16) & 0xff) * t) << 16) |
     (min(0xff, ((src >>> 8) & 0xff) * t) << 8) |
@@ -355,7 +351,7 @@ export const darkenInt = (src: number, t: number) =>
  * @param src -
  * @param t -
  */
-export const dissolveInt = (src: number, t: number) =>
+export const dissolveInt: FnN2 = (src, t) =>
     (min(0xff, ((src >>> 24) & 0xff) * t) << 24) |
     (min(0xff, ((src >>> 16) & 0xff) * t) << 16) |
     (min(0xff, ((src >>> 8) & 0xff) * t) << 8) |
@@ -368,5 +364,5 @@ export const dissolveInt = (src: number, t: number) =>
  * @param src -
  * @param t -
  */
-export const opacityInt = (src: number, t: number) =>
+export const opacityInt: FnN2 = (src, t) =>
     (min(0xff, ((src >>> 24) & 0xff) * t) << 24) | (src & 0xffffff);
