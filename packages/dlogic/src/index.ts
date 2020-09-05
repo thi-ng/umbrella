@@ -1,3 +1,9 @@
+import type { FnU2, FnU3, FnU4 } from "@thi.ng/api";
+
+type Op2 = FnU2<boolean>;
+type Op3 = FnU3<boolean>;
+type Op4 = FnU4<boolean>;
+
 export interface Sum<T> {
     s: T;
     c: boolean;
@@ -28,7 +34,7 @@ export const not = (x: boolean) => !x;
  * @param a -
  * @param b -
  */
-export const nand = (a: boolean, b: boolean) => !(a && b);
+export const nand: Op2 = (a, b) => !(a && b);
 
 /**
  * {@link https://en.wikipedia.org/wiki/AND_gate}
@@ -43,7 +49,7 @@ export const nand = (a: boolean, b: boolean) => !(a && b);
  * @param a -
  * @param b -
  */
-export const and = (a: boolean, b: boolean) => a && b;
+export const and: Op2 = (a, b) => a && b;
 
 /**
  * {@link https://en.wikipedia.org/wiki/OR_gate}
@@ -58,7 +64,7 @@ export const and = (a: boolean, b: boolean) => a && b;
  * @param a -
  * @param b -
  */
-export const or = (a: boolean, b: boolean) => a || b;
+export const or: Op2 = (a, b) => a || b;
 
 /**
  * {@link https://en.wikipedia.org/wiki/NOR_gate}
@@ -73,7 +79,7 @@ export const or = (a: boolean, b: boolean) => a || b;
  * @param a -
  * @param b -
  */
-export const nor = (a: boolean, b: boolean) => !(a || b);
+export const nor: Op2 = (a, b) => !(a || b);
 
 /**
  * {@link https://en.wikipedia.org/wiki/XOR_gate}
@@ -88,7 +94,7 @@ export const nor = (a: boolean, b: boolean) => !(a || b);
  * @param a -
  * @param b -
  */
-export const xor = (a: boolean, b: boolean) => a !== b;
+export const xor: Op2 = (a, b) => a !== b;
 
 /**
  * {@link https://en.wikipedia.org/wiki/XNOR_gate}
@@ -103,7 +109,7 @@ export const xor = (a: boolean, b: boolean) => a !== b;
  * @param a -
  * @param b -
  */
-export const xnor = (a: boolean, b: boolean) => a === b;
+export const xnor: Op2 = (a, b) => a === b;
 
 /**
  * {@link https://web.archive.org/web/20160304050642/http://www.zigwap.com/digital/gates/imply_gate}
@@ -117,7 +123,7 @@ export const xnor = (a: boolean, b: boolean) => a === b;
  * @param a -
  * @param b -
  */
-export const imply = (a: boolean, b: boolean) => !a || b;
+export const imply: Op2 = (a, b) => !a || b;
 
 /**
  * {@link https://en.wikipedia.org/wiki/AND-OR-Invert}
@@ -139,7 +145,7 @@ export const imply = (a: boolean, b: boolean) => !a || b;
  * @param b -
  * @param c -
  */
-export const aoi21 = (a: boolean, b: boolean, c: boolean) => !(a || (b && c));
+export const aoi21: Op3 = (a, b, c) => !(a || (b && c));
 
 /**
  * {@link https://en.wikipedia.org/wiki/AND-OR-Invert}
@@ -159,8 +165,7 @@ export const aoi21 = (a: boolean, b: boolean, c: boolean) => !(a || (b && c));
  * @param b -
  * @param c -
  */
-export const aoi22 = (a: boolean, b: boolean, c: boolean, d: boolean) =>
-    !((a && b) || (c && d));
+export const aoi22: Op4 = (a, b, c, d) => !((a && b) || (c && d));
 
 /**
  * Complement logic of {@link aoi21}.
@@ -171,7 +176,7 @@ export const aoi22 = (a: boolean, b: boolean, c: boolean, d: boolean) =>
  * @param b -
  * @param c -
  */
-export const oai21 = (a: boolean, b: boolean, c: boolean) => !(a && (b || c));
+export const oai21: Op3 = (a, b, c) => !(a && (b || c));
 
 /**
  * Complement logic of {@link aoi22}.
@@ -183,8 +188,7 @@ export const oai21 = (a: boolean, b: boolean, c: boolean) => !(a && (b || c));
  * @param c -
  * @param d -
  */
-export const oai22 = (a: boolean, b: boolean, c: boolean, d: boolean) =>
-    !((a || b) && (c || d));
+export const oai22: Op4 = (a, b, c, d) => !((a || b) && (c || d));
 
 /**
  * {@link https://en.wikipedia.org/wiki/NAND_logic#MUX}
@@ -204,7 +208,7 @@ export const oai22 = (a: boolean, b: boolean, c: boolean, d: boolean) =>
  * @param b -
  * @param s -
  */
-export const mux = (a: boolean, b: boolean, s: boolean) =>
+export const mux: Op3 = (a: boolean, b: boolean, s: boolean) =>
     (a && !s) || (b && s);
 
 /**
@@ -220,7 +224,7 @@ export const mux = (a: boolean, b: boolean, s: boolean) =>
  * @param i -
  * @param s -
  */
-export const demux = (i: boolean, s: boolean): [boolean, boolean] => [
+export const demux: FnU2<boolean, [boolean, boolean]> = (i, s) => [
     i && !s,
     i && s,
 ];
@@ -231,7 +235,7 @@ export const demux = (i: boolean, s: boolean): [boolean, boolean] => [
  * @param a -
  * @param b -
  */
-export const hadd1 = (a: boolean, b: boolean): Sum<boolean> => ({
+export const hadd1: FnU2<boolean, Sum<boolean>> = (a, b) => ({
     s: a !== b,
     c: a && b,
 });
@@ -243,7 +247,7 @@ export const hadd1 = (a: boolean, b: boolean): Sum<boolean> => ({
  * @param b -
  * @param c -
  */
-export const fadd1 = (a: boolean, b: boolean, c: boolean): Sum<boolean> => ({
+export const fadd1: FnU3<boolean, Sum<boolean>> = (a, b, c) => ({
     s: (a !== b) !== c,
     c: (a !== b && c) || (a && b),
 });
@@ -273,7 +277,7 @@ export const rca = (a: boolean[], b: boolean[], c: boolean): Sum<boolean[]> => {
  * @param n -
  */
 export const delay = (n: number) => {
-    const buf: boolean[] = new Array(n).fill(false);
+    const buf = new Array<boolean>(n).fill(false);
     let i = 0;
     return n > 0
         ? (x: boolean) => {
