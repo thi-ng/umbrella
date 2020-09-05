@@ -1,9 +1,10 @@
+import type { FnN4 } from "@thi.ng/api";
 import { pointInside } from "@thi.ng/geom";
+import type { IShape } from "@thi.ng/geom-api";
 import { clamp, roundTo } from "@thi.ng/math";
 import { add2, clamp2, round2, Vec } from "@thi.ng/vectors";
 import { Key } from "../api";
 import { IMGUI } from "../gui";
-import type { IShape } from "@thi.ng/geom-api";
 
 export const isHoverSlider = (
     gui: IMGUI,
@@ -21,7 +22,7 @@ export const isHoverSlider = (
     return hover;
 };
 
-export const slider1Val = (x: number, min: number, max: number, prec: number) =>
+export const slider1Val: FnN4 = (x, min, max, prec) =>
     clamp(roundTo(x, prec), min, max);
 
 export const slider2Val = (v: Vec, min: Vec, max: Vec, prec: number) =>

@@ -1,13 +1,13 @@
 import { rect } from "@thi.ng/geom";
+import type { IShape } from "@thi.ng/geom-api";
 import { IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
 import { hash, ZERO2 } from "@thi.ng/vectors";
+import type { Color, Hash } from "../api";
 import { handleButtonKeys, isHoverButton } from "../behaviors/button";
 import { IMGUI } from "../gui";
 import { labelHash } from "../hash";
 import { textLabelRaw, textTransformH, textTransformV } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
-import type { IShape } from "@thi.ng/geom-api";
-import type { Color, Hash } from "../api";
 
 const mkLabel = (transform: number[], fill: Color, label: string) =>
     textLabelRaw(ZERO2, { transform, fill }, label);

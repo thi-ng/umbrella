@@ -1,7 +1,7 @@
 import { pointInside } from "@thi.ng/geom";
+import type { IShape } from "@thi.ng/geom-api";
 import { Key } from "../api";
 import { IMGUI } from "../gui";
-import type { IShape } from "@thi.ng/geom-api";
 
 export const isHoverButton = (gui: IMGUI, id: string, shape: IShape) => {
     if (gui.disabled) return false;
