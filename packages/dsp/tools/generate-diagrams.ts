@@ -1,4 +1,4 @@
-import { Fn, IObjectOf } from "@thi.ng/api";
+import type { Fn, IObjectOf } from "@thi.ng/api";
 import { cosineColor, GRADIENTS } from "@thi.ng/color";
 import {
     asSvg,
@@ -6,23 +6,11 @@ import {
     line,
     polyline,
     rect as grect,
-    svgDoc
+    svgDoc,
 } from "@thi.ng/geom";
-import { IHiccupShape } from "@thi.ng/geom-api";
-import {
-    fit,
-    fit11,
-    fitClamped,
-    PI
-} from "@thi.ng/math";
-import {
-    map,
-    mapcat,
-    mapIndexed,
-    range,
-    take,
-    zip
-} from "@thi.ng/transducers";
+import type { IHiccupShape } from "@thi.ng/geom-api";
+import { fit, fit11, fitClamped, PI } from "@thi.ng/math";
+import { map, mapcat, mapIndexed, range, take, zip } from "@thi.ng/transducers";
 import { writeFileSync } from "fs";
 import {
     allpass,
@@ -63,7 +51,7 @@ import {
     svfPeak,
     tri,
     wavetable,
-    whiteNoise
+    whiteNoise,
 } from "../src";
 import { waveShaper, waveshapeSin, waveshapeTan } from "../src/proc/waveshaper";
 
@@ -80,7 +68,7 @@ const OSC: IObjectOf<StatelessOscillator> = {
     parabolic,
     recttri: mixOscHOF(rect, tri),
     dsf: dsfHOF(0.6, 2.04),
-    wt: wavetable(curve(1, -1, 127).take(128))
+    wt: wavetable(curve(1, -1, 127).take(128)),
 };
 
 const BASE_DIR = "export/";
@@ -92,7 +80,7 @@ const label = (x: number, y: number, body: string) =>
     <IHiccupShape>{
         toHiccup() {
             return ["text", { stroke: "none" }, [x, y + 2], body];
-        }
+        },
     };
 
 const color = (i: number) =>
@@ -114,7 +102,7 @@ const write = (
                     viewBox: `-10 -${YSCALE + 10} 570 ${2 * YSCALE + 40}`,
                     "font-family": "Inconsolata",
                     "font-size": "8px",
-                    "text-anchor": "end"
+                    "text-anchor": "end",
                     // "dominant-baseline": "middle"
                 },
                 // axis & labels
@@ -131,11 +119,11 @@ const write = (
                                 [X + 5, y * YSCALE],
                                 [pts.length * 4 + X + 10, y * YSCALE],
                                 { stroke: "#ccc", dash: [1, 2] }
-                            )
+                            ),
                         ],
                         zip(range(), yticks)
                     ),
-                    ...map((y) => label(X - 12, -y * YSCALE, yfmt(y)), yticks)
+                    ...map((y) => label(X - 12, -y * YSCALE, yfmt(y)), yticks),
                 ]),
                 // waveforms
                 group({ translate: [X + 5, 0] }, [
@@ -146,15 +134,15 @@ const write = (
                                     ...mapIndexed(
                                         (i, y) => [i * 4, -y[id] * YSCALE],
                                         pts
-                                    )
+                                    ),
                                 ],
                                 {
                                     stroke: color(id / num),
-                                    "stroke-width": id === 0 ? 1 : 0.5
+                                    "stroke-width": id === 0 ? 1 : 0.5,
                                 }
                             ),
                         range(num)
-                    )
+                    ),
                 ]),
                 // legend
                 grect([-10, YSCALE + 10], [570, 20], { fill: "#fff" }),
@@ -163,13 +151,13 @@ const write = (
                         group(
                             {
                                 translate: [X + 10 + i * 70, YSCALE + 20],
-                                "text-anchor": "start"
+                                "text-anchor": "start",
                             },
                             [
                                 grect([0, -1], [10, 2], {
-                                    fill: color(i / num)
+                                    fill: color(i / num),
                                 }),
-                                label(12, 0, txt)
+                                label(12, 0, txt),
                             ]
                         ),
                     labels
@@ -182,7 +170,7 @@ const compute = (gen: IGen<number>, procs: IProc<number, number>[]) => [
     ...take(
         128,
         map((x) => [x, ...map((p) => p.next(x), procs)], gen)
-    )
+    ),
 ];
 
 const withFilters = (
@@ -310,7 +298,7 @@ withFilters(
         return <IGen<number>>{
             next(x: number) {
                 return flt.high(x);
-            }
+            },
         };
     }
 );
