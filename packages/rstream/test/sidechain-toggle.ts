@@ -1,4 +1,4 @@
-import { Predicate } from "@thi.ng/api";
+import type { Predicate } from "@thi.ng/api";
 import * as assert from "assert";
 import { sidechainToggle, State, Stream, stream } from "../src/index";
 

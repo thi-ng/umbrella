@@ -1,4 +1,5 @@
 import { isFunction } from "@thi.ng/checks";
+import type { Transducer } from "@thi.ng/transducers";
 import {
     CloseMode,
     CommonOpts,
@@ -10,7 +11,6 @@ import {
 } from "./api";
 import { Subscription } from "./subscription";
 import { optsWithID } from "./utils/idgen";
-import type { Transducer } from "@thi.ng/transducers";
 
 /**
  * Creates a new {@link Stream} instance, optionally with given

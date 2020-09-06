@@ -1,8 +1,8 @@
 import { isNode } from "@thi.ng/checks";
+import type { CommonOpts } from "../api";
 import { Stream } from "../stream";
 import { optsWithID } from "../utils/idgen";
 import { fromInterval } from "./interval";
-import type { CommonOpts } from "../api";
 
 /**
  * Yields {@link Stream} of a monotonically increasing counter,

@@ -1,6 +1,6 @@
+import type { CommonOpts } from "../api";
 import { Stream } from "../stream";
 import { optsWithID } from "../utils/idgen";
-import type { CommonOpts } from "../api";
 
 /**
  * Creates a {@link Stream} of events attached to given element / event
