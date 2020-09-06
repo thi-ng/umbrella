@@ -1,5 +1,5 @@
-import { ensureIterable } from "@thi.ng/arrays";
 import type { Nullable } from "@thi.ng/api";
+import { ensureIterable } from "@thi.ng/arrays";
 
 /**
  * Yields iterator producing concatenation of given iterables.

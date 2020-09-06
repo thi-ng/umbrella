@@ -1,12 +1,12 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks";
+import type { Reducer, Transducer } from "../api";
 import { comp } from "../func/comp";
 import { renamer } from "../func/renamer";
 import { $iter } from "../iterator";
 import { transduce } from "../transduce";
 import { filter } from "./filter";
 import { map } from "./map";
-import type { IObjectOf } from "@thi.ng/api";
-import type { Reducer, Transducer } from "../api";
 
 export function rename<A, B>(
     kmap: IObjectOf<PropertyKey> | Array<PropertyKey>,

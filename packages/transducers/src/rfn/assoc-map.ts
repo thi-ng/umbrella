@@ -1,6 +1,6 @@
-import { reduce, reducer } from "../reduce";
 import type { Pair } from "@thi.ng/api";
 import type { Reducer } from "../api";
+import { reduce, reducer } from "../reduce";
 
 /**
  * Reducer accepting key-value pairs / tuples and transforming / adding

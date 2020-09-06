@@ -1,10 +1,10 @@
+import type { Fn } from "@thi.ng/api";
 import { isIterable } from "@thi.ng/checks";
+import type { Transducer } from "../api";
 import { comp } from "../func/comp";
 import { iterator } from "../iterator";
 import { cat } from "./cat";
 import { map } from "./map";
-import type { Fn } from "@thi.ng/api";
-import type { Transducer } from "../api";
 
 /**
  * Transducer. Similar to {@link (map:1)}, but expects the given mapping

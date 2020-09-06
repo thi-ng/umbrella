@@ -1,6 +1,6 @@
 import { NO_OP } from "@thi.ng/api";
-import { reduce, reducer } from "../reduce";
 import type { Reducer } from "../api";
+import { reduce, reducer } from "../reduce";
 
 export function last<T>(): Reducer<T, T>;
 export function last<T>(xs: Iterable<T>): T;

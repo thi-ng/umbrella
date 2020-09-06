@@ -1,4 +1,6 @@
+import type { Fn, Fn0 } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors";
+import type { Reducer, Transducer } from "../api";
 import { range } from "../iter/range";
 import { range2d } from "../iter/range2d";
 import { zip } from "../iter/zip";
@@ -6,8 +8,6 @@ import { iterator1 } from "../iterator";
 import { add } from "../rfn/add";
 import { transduce } from "../transduce";
 import { map } from "./map";
-import type { Fn, Fn0 } from "@thi.ng/api";
-import type { Reducer, Transducer } from "../api";
 
 export type ConvolutionKernel1D = [number, number][];
 export type ConvolutionKernel2D = [number, [number, number]][];

@@ -1,6 +1,6 @@
-import { $$reduce, reducer } from "../reduce";
 import type { NumericArray } from "@thi.ng/api";
 import type { Reducer } from "../api";
+import { $$reduce, reducer } from "../reduce";
 
 /**
  * Reducer which starts filling array with results from given `start`

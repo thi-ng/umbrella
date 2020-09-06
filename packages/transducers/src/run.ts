@@ -1,6 +1,6 @@
 import { Fn, NO_OP } from "@thi.ng/api";
-import { transduce } from "./transduce";
 import type { IReducible, Reducer, TxLike } from "./api";
+import { transduce } from "./transduce";
 
 const NO_OP_REDUCER: Reducer<void, any> = [NO_OP, NO_OP, NO_OP];
 

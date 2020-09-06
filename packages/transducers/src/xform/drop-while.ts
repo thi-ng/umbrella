@@ -1,7 +1,7 @@
-import { compR } from "../func/compr";
-import { $iter } from "../iterator";
 import type { Predicate } from "@thi.ng/api";
 import type { Reducer, Transducer } from "../api";
+import { compR } from "../func/compr";
+import { $iter } from "../iterator";
 
 export function dropWhile<T>(pred?: Predicate<T>): Transducer<T, T>;
 export function dropWhile<T>(src: Iterable<T>): IterableIterator<T>;

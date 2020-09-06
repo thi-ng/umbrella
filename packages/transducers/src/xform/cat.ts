@@ -1,7 +1,7 @@
-import { compR } from "../func/compr";
-import { ensureReduced, isReduced, unreduced } from "../reduced";
 import type { Nullable } from "@thi.ng/api";
 import type { Reducer, Transducer } from "../api";
+import { compR } from "../func/compr";
+import { ensureReduced, isReduced, unreduced } from "../reduced";
 
 /**
  * Transducer to concatenate iterable values. Iterates over each input

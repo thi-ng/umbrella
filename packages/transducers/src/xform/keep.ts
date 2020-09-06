@@ -1,8 +1,8 @@
+import type { Fn, Nullable } from "@thi.ng/api";
 import { identity } from "@thi.ng/compose";
+import type { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { $iter } from "../iterator";
-import type { Fn, Nullable } from "@thi.ng/api";
-import type { Reducer, Transducer } from "../api";
 
 export function keep<T>(
     pred?: Fn<Nullable<T>, any>

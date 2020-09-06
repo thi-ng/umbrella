@@ -1,8 +1,8 @@
+import type { Fn0, FnAny } from "@thi.ng/api";
 import { implementsFunction, isArrayLike, isIterable } from "@thi.ng/checks";
 import { illegalArity } from "@thi.ng/errors";
-import { isReduced, unreduced } from "./reduced";
-import type { Fn0, FnAny } from "@thi.ng/api";
 import type { IReducible, Reducer, ReductionFn } from "./api";
+import { isReduced, unreduced } from "./reduced";
 
 const parseArgs = (args: any[]) =>
     args.length === 2

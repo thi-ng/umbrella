@@ -1,8 +1,8 @@
+import type { Fn } from "@thi.ng/api";
 import { isIterable } from "@thi.ng/checks";
+import type { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { iterator1 } from "../iterator";
-import type { Fn } from "@thi.ng/api";
-import type { Reducer, Transducer } from "../api";
 
 /**
  * Transducer. Applies mapping function `fn` to each received value and
