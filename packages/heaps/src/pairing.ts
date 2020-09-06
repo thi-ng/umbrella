@@ -1,4 +1,3 @@
-import { compare } from "@thi.ng/compare";
 import type {
     Comparator,
     Fn,
@@ -8,6 +7,7 @@ import type {
     ILength,
     IStack,
 } from "@thi.ng/api";
+import { compare } from "@thi.ng/compare";
 import type { HeapOpts } from "./api";
 
 interface Node<T> {

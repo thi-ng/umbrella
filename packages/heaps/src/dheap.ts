@@ -1,7 +1,7 @@
-import { compare } from "@thi.ng/compare";
-import { Heap } from "./heap";
 import type { ICopy, IEmpty, IStack } from "@thi.ng/api";
+import { compare } from "@thi.ng/compare";
 import type { DHeapOpts } from "./api";
+import { Heap } from "./heap";
 
 /**
  * Generic d-ary heap / priority queue with configurable arity (default
@@ -15,7 +15,8 @@ import type { DHeapOpts } from "./api";
  *
  * {@link https://en.wikipedia.org/wiki/D-ary_heap }
  */
-export class DHeap<T> extends Heap<T>
+export class DHeap<T>
+    extends Heap<T>
     implements ICopy<DHeap<T>>, IEmpty<DHeap<T>>, IStack<T, T, DHeap<T>> {
     /**
      * Returns index of parent node or -1 if `idx < 1`.
