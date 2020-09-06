@@ -1,10 +1,10 @@
-import * as api from "@thi.ng/api";
+import type { IObjectOf } from "@thi.ng/api";
 import { Channel, Mult } from "../src";
 // import * as tx from "@thi.ng/transducers";
 
 export interface Node {
-    ins: api.IObjectOf<Channel<any>>;
-    outs: api.IObjectOf<Mult<any>>;
+    ins: IObjectOf<Channel<any>>;
+    outs: IObjectOf<Mult<any>>;
     state: any;
 }
 
@@ -12,14 +12,14 @@ export type NodeFn = (n: Node) => void;
 
 export function node(
     id: string,
-    ins: api.IObjectOf<Channel<any> | Mult<any>>,
+    ins: IObjectOf<Channel<any> | Mult<any>>,
     outs: string[],
     init: any,
     fn: NodeFn
 ) {
     const $: Node = {
-        ins: <api.IObjectOf<Channel<any>>>{},
-        outs: <api.IObjectOf<Mult<any>>>{},
+        ins: <IObjectOf<Channel<any>>>{},
+        outs: <IObjectOf<Mult<any>>>{},
         state: init || {},
     };
     for (let k of Object.keys(ins)) {
@@ -61,7 +61,7 @@ export function node(
 
 export function add(
     id: string,
-    ins?: api.IObjectOf<Channel<any> | Mult<any>>,
+    ins?: IObjectOf<Channel<any> | Mult<any>>,
     init?: any
 ) {
     return node(
@@ -79,7 +79,7 @@ export function add(
 
 export function mul(
     id: string,
-    ins?: api.IObjectOf<Channel<any> | Mult<any>>,
+    ins?: IObjectOf<Channel<any> | Mult<any>>,
     init?: any
 ) {
     return node(
