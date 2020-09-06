@@ -1,10 +1,10 @@
-import { Fn3 } from "@thi.ng/api";
+import type { Fn3 } from "@thi.ng/api";
 import { mergeDeepObj } from "@thi.ng/associative";
 import { line, polyline } from "@thi.ng/geom";
-import { IHiccupShape } from "@thi.ng/geom-api";
+import type { IHiccupShape } from "@thi.ng/geom-api";
 import { resample } from "@thi.ng/geom-resample";
 import { jitter, ReadonlyVec } from "@thi.ng/vectors";
-import { FuzzyLineOpts, DEFAULT_LINE } from "./api";
+import { DEFAULT_LINE, FuzzyLineOpts } from "./api";
 import { jitterPoints } from "./points";
 
 export const defLine = (
