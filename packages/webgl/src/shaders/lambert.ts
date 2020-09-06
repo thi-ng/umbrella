@@ -14,11 +14,11 @@ import {
     surfaceNormal,
     transformMVP,
 } from "@thi.ng/shader-ast-stdlib";
+import type { Material } from "../api/material";
+import type { ShaderOpts, ShaderSpec } from "../api/shader";
 import { defMaterial } from "../material";
 import { autoNormalMatrix2 } from "../matrices";
 import { colorAttrib, positionAttrib } from "../utils";
-import type { Material } from "../api/material";
-import type { ShaderOpts, ShaderSpec } from "../api/shader";
 
 export interface LambertOpts
     extends ShaderOpts<Pick<Material, "ambientCol" | "diffuseCol">> {

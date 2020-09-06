@@ -1,7 +1,7 @@
+import type { Fn, Fn3, IObjectOf } from "@thi.ng/api";
 import { equivArrayLike } from "@thi.ng/equiv";
 import { IDENT22, IDENT33, IDENT44 } from "@thi.ng/matrices";
 import { ReadonlyVec, ZERO2, ZERO3, ZERO4 } from "@thi.ng/vectors";
-import type { Fn, Fn3, IObjectOf } from "@thi.ng/api";
 import type { GLVec } from "./api/glsl";
 import type { UniformValue } from "./api/shader";
 

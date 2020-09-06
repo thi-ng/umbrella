@@ -1,4 +1,3 @@
-import { BlendEquation, BlendFunc } from "./blend";
 import type {
     Fn,
     Fn2,
@@ -13,6 +12,7 @@ import type {
 import type { Func, Sym } from "@thi.ng/shader-ast";
 import type { GLSLTarget } from "@thi.ng/shader-ast-glsl";
 import type { ReadonlyVec } from "@thi.ng/vectors";
+import { BlendEquation, BlendFunc } from "./blend";
 import type { ExtensionBehaviors } from "./ext";
 import type {
     GLIntVec,
