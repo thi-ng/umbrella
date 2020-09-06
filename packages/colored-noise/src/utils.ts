@@ -1,4 +1,4 @@
-import { INorm } from "@thi.ng/random";
+import type { INorm } from "@thi.ng/random";
 
 export const preseed = (n: number, scale: number, rnd: INorm) => {
     const state = new Array(n);

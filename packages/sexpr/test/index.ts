@@ -1,4 +1,4 @@
-import { Fn2 } from "@thi.ng/api";
+import type { Fn2 } from "@thi.ng/api";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti";
 import * as assert from "assert";
 import {
