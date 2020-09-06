@@ -1,4 +1,3 @@
-import { toPath } from "./path";
 import type {
     DeepPath,
     Fn2,
@@ -14,6 +13,7 @@ import type {
     Path8,
     PathVal,
 } from "@thi.ng/api";
+import { toPath } from "./path";
 
 /**
  * Unchecked version of {@link defMutator}.

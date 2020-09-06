@@ -1,4 +1,3 @@
-import { defSetter } from "./setter";
 import type {
     DeepPath,
     Path,
@@ -13,6 +12,7 @@ import type {
     Path8,
     PathVal,
 } from "@thi.ng/api";
+import { defSetter } from "./setter";
 
 /**
  * Unchecked version of {@link setIn}.
