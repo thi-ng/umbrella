@@ -1,22 +1,23 @@
+import type { IDeref, IObjectOf } from "@thi.ng/api";
 import { Atom, IAtom } from "@thi.ng/atom";
-import { illegalArgs } from "@thi.ng/errors";
-import { setInUnsafe, updateInUnsafe } from "@thi.ng/paths";
 import {
     implementsFunction,
     isArray,
     isFunction,
     isPromise,
 } from "@thi.ng/checks";
+import { illegalArgs } from "@thi.ng/errors";
+import { setInUnsafe, updateInUnsafe } from "@thi.ng/paths";
 import {
     EffectDef,
     EffectPriority,
+    Event,
+    EventDef,
     EV_REDO,
     EV_SET_VALUE,
     EV_TOGGLE_VALUE,
     EV_UNDO,
     EV_UPDATE_VALUE,
-    Event,
-    EventDef,
     FX_CANCEL,
     FX_DELAY,
     FX_DISPATCH,
@@ -31,7 +32,6 @@ import {
     LOGGER,
     SideEffect,
 } from "./api";
-import type { IDeref, IObjectOf } from "@thi.ng/api";
 
 /**
  * Batched event processor for using composable interceptors for event
@@ -599,7 +599,8 @@ export class StatelessEventBus implements IDispatch {
  * handlers and side effects to manipulate wrapped state. Prefer this as
  * the default implementation for most use cases.
  */
-export class EventBus extends StatelessEventBus
+export class EventBus
+    extends StatelessEventBus
     implements IDeref<any>, IDispatch {
     readonly state: IAtom<any>;
 
