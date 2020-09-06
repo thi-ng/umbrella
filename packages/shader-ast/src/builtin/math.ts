@@ -1,5 +1,3 @@
-import { builtinCall } from "../ast/function";
-import { matchingBoolType, matchingPrimFor } from "../ast/item";
 import type { FnCall, Sym, Term } from "../api/nodes";
 import type {
     BoolTerm,
@@ -20,6 +18,8 @@ import type {
     Vec4Term,
 } from "../api/terms";
 import type { Mat, Prim, Vec } from "../api/types";
+import { builtinCall } from "../ast/function";
+import { matchingBoolType, matchingPrimFor } from "../ast/item";
 
 const primOp1 = (name: string) => <T extends Prim>(a: Term<T>) =>
     builtinCall(name, a.type, a);

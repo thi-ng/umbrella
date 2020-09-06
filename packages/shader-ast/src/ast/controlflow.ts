@@ -1,6 +1,5 @@
-import { decl, scope } from "./scope";
-import type { FnBody1 } from "../api/function";
 import type { Fn } from "@thi.ng/api";
+import type { FnBody1 } from "../api/function";
 import type {
     Branch,
     ControlFlow,
@@ -12,6 +11,7 @@ import type {
 } from "../api/nodes";
 import type { BoolTerm } from "../api/terms";
 import type { Type } from "../api/types";
+import { decl, scope } from "./scope";
 
 export const ifThen = (
     test: BoolTerm,

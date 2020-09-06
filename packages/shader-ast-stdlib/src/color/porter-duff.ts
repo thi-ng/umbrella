@@ -1,3 +1,4 @@
+import type { Fn2 } from "@thi.ng/api";
 import {
     $w,
     add,
@@ -12,7 +13,6 @@ import {
     Vec4Sym,
 } from "@thi.ng/shader-ast";
 import { clamp01 } from "../math/clamp";
-import type { Fn2 } from "@thi.ng/api";
 
 const coeff = (
     f: Fn2<FloatTerm, FloatTerm, FloatTerm>,

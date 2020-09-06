@@ -1,10 +1,10 @@
 import { assert } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
-import { gensym } from "./idgen";
 import type { Lit, Sym, Term } from "../api/nodes";
 import type { SymOpts } from "../api/syms";
 import type { ArrayTypeMap, Type } from "../api/types";
+import { gensym } from "./idgen";
 
 export function sym<T extends Type>(init: Term<T>): Sym<T>;
 export function sym<T extends Type>(type: T): Sym<T>;

@@ -1,3 +1,4 @@
+import type { Fn } from "@thi.ng/api";
 import { isBoolean, isNumber } from "@thi.ng/checks";
 import { unsupported } from "@thi.ng/errors";
 import {
@@ -15,9 +16,8 @@ import {
     Sym,
     Term,
 } from "@thi.ng/shader-ast";
-import { JS_DEFAULT_ENV } from "./env";
-import type { Fn } from "@thi.ng/api";
 import type { JSTarget } from "./api";
+import { JS_DEFAULT_ENV } from "./env";
 
 const CMP_OPS: Partial<Record<Operator, string>> = {
     "!": "not",
