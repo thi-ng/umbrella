@@ -1,4 +1,4 @@
-import { ISeq } from "@thi.ng/api";
+import type { ISeq } from "@thi.ng/api";
 import * as assert from "assert";
 import { cons, lazyseq } from "../src";
 

@@ -1,6 +1,6 @@
+import type { ISeq, ISeqable, Nullable } from "@thi.ng/api";
 import { implementsFunction, isArrayLike } from "@thi.ng/checks";
 import { aseq } from "./array";
-import type { ISeq, ISeqable, Nullable } from "@thi.ng/api";
 
 export const isSeq = (x: any): x is ISeq<any> =>
     implementsFunction(x, "first") && implementsFunction(x, "next");

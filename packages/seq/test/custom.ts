@@ -1,4 +1,4 @@
-import { ISeqable } from "@thi.ng/api";
+import type { ISeqable } from "@thi.ng/api";
 import * as assert from "assert";
 import { concat, ensureSeq, iterator } from "../src";
 
