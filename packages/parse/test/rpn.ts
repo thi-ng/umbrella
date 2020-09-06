@@ -1,4 +1,4 @@
-import { Fn2 } from "@thi.ng/api";
+import type { Fn2 } from "@thi.ng/api";
 import * as assert from "assert";
 import { alt, defContext, FLOAT, oneOf, WS0, xform, zeroOrMore } from "../src";
 
