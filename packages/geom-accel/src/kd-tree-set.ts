@@ -1,7 +1,7 @@
-import { KdTreeMap } from "./kd-tree-map";
 import type { ICopy, IEmpty, Pair } from "@thi.ng/api";
 import type { IRegionQuery, ISpatialSet } from "@thi.ng/geom-api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
+import { KdTreeMap } from "./kd-tree-map";
 
 export class KdTreeSet<K extends ReadonlyVec>
     implements
