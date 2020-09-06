@@ -1,12 +1,12 @@
+import type { IDeref } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors";
 import { clamp01 } from "@thi.ng/math";
 import { maybeParseFloat, maybeParseInt } from "@thi.ng/strings";
+import type { Color } from "./api";
 import { INV8BIT } from "./constants";
 import { hslaRgba } from "./hsla-rgba";
 import { int32Rgba } from "./int-rgba";
 import { CSS_NAMES } from "./names";
-import type { IDeref } from "@thi.ng/api";
-import type { Color } from "./api";
 
 const RE_HEX = /^#?([0-9a-f]{3,8})$/i;
 const RE_CSS = /^(rgb|hsl)a?\(\s*([0-9.]+?),\s*([0-9.]+%?),\s*([0-9.]+%?),?\s*([0-9.]+)?\s*\)$/;

@@ -1,8 +1,8 @@
 import { clamp01 } from "@thi.ng/math";
 import { setC4 } from "@thi.ng/vectors";
+import type { Color, ReadonlyColor } from "./api";
 import { ensureAlpha } from "./internal/ensure-alpha";
 import { ensureHue } from "./internal/ensure-hue";
-import type { Color, ReadonlyColor } from "./api";
 
 /**
  * Clamps all color channels to [0,1] interval and calls `ensureAlpha`

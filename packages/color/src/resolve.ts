@@ -1,7 +1,7 @@
 import { isArrayLike, isNumber } from "@thi.ng/checks";
+import type { ReadonlyColor } from "./api";
 import { ColorMode } from "./constants";
 import { asCSS } from "./convert";
-import type { ReadonlyColor } from "./api";
 
 /**
  * Takes a color in one of the following formats and tries to convert it

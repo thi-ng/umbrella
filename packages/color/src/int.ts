@@ -1,6 +1,6 @@
-import { ColorMode } from "./constants";
-import type { IColor } from "./api";
 import type { ICopy, IDeref } from "@thi.ng/api";
+import type { IColor } from "./api";
+import { ColorMode } from "./constants";
 
 /**
  * Returns new {@link Int32} wrapping given ARGB int.

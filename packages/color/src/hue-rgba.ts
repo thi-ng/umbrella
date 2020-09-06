@@ -1,8 +1,8 @@
 import { clamp01 } from "@thi.ng/math";
 import { setC4 } from "@thi.ng/vectors";
+import type { Color } from "./api";
 import { Hue } from "./constants";
 import { ensureHue } from "./internal/ensure-hue";
-import type { Color } from "./api";
 
 /**
  * Converts a normalized hue to RGBA with given optional `alpha`

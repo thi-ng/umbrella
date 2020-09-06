@@ -1,7 +1,7 @@
-import { setC4 } from "@thi.ng/vectors";
-import { INV8BIT } from "./constants";
-import type { Color } from "./api";
 import type { IDeref } from "@thi.ng/api";
+import { setC4 } from "@thi.ng/vectors";
+import type { Color } from "./api";
+import { INV8BIT } from "./constants";
 
 export const int32Rgba = (out: Color | null, src: number | IDeref<number>) => {
     src = typeof src === "number" ? src : src.deref();

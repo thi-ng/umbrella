@@ -1,5 +1,5 @@
-import { clampH } from "./clamp";
 import type { ColorOp } from "./api";
+import { clampH } from "./clamp";
 
 export const hslaHsva: ColorOp = (out, src) => {
     out = clampH(out || src, src);

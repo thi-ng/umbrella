@@ -1,8 +1,8 @@
 import { EPS } from "@thi.ng/math";
+import type { ColorOp } from "./api";
 import { hueRgba } from "./hue-rgba";
 import { luminanceRGB } from "./luminance-rgb";
 import { rgbaHcva } from "./rgba-hcva";
-import type { ColorOp } from "./api";
 
 /**
  * Ported from:

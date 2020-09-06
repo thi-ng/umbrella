@@ -1,8 +1,8 @@
 import { declareIndices, IVector } from "@thi.ng/vectors";
+import type { Color } from "./api";
 import { ColorMode } from "./constants";
 import { AColor } from "./internal/acolor";
 import { ensureArgs } from "./internal/ensure-args";
-import type { Color } from "./api";
 
 export function xyza(col: Color, offset?: number, stride?: number): XYZA;
 export function xyza(x?: number, y?: number, z?: number, a?: number): XYZA;

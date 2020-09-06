@@ -1,6 +1,6 @@
+import type { ColorOp } from "./api";
 import { XYZ_RGB } from "./constants";
 import { mulV33 } from "./internal/matrix-ops";
-import type { ColorOp } from "./api";
 
 /**
  * {@link https://en.wikipedia.org/wiki/CIE_1931_color_space}

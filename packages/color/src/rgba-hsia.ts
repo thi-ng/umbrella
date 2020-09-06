@@ -1,7 +1,7 @@
 import { atan2Abs, SQRT3, TAU, THIRD } from "@thi.ng/math";
 import { setC3 } from "@thi.ng/vectors";
-import { clamp } from "./clamp";
 import type { ColorOp } from "./api";
+import { clamp } from "./clamp";
 
 // https://en.wikipedia.org/wiki/HSL_and_HSV#Hue_and_chroma
 

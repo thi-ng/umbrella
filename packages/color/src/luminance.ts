@@ -1,9 +1,9 @@
 import { DEFAULT, defmulti, MultiFn1O } from "@thi.ng/defmulti";
 import { illegalArgs } from "@thi.ng/errors";
+import type { IColor, ReadonlyColor } from "./api";
 import { ColorMode } from "./constants";
 import { convert } from "./convert";
 import { luminanceInt, luminanceRGB } from "./luminance-rgb";
-import type { IColor, ReadonlyColor } from "./api";
 
 /**
  * Multi-method to compute relative luminance from any supported input
