@@ -1,4 +1,4 @@
-import { Comparator } from "@thi.ng/api";
+import type { Comparator } from "@thi.ng/api";
 import type { ReadonlyVec } from "./api";
 
 /**
