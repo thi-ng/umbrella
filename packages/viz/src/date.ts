@@ -57,13 +57,11 @@ export function* years([from, to]: Domain) {
 
 export function* months([from, to]: Domain) {
     const d1 = new Date(from);
-    const d2 = new Date(to);
-    let m1 = d1.getUTCMonth();
     let y1 = d1.getUTCFullYear();
-    const m2 = d2.getUTCMonth();
-    const y2 = d2.getUTCFullYear();
-    while (y1 <= y2 || m1 <= m2) {
-        const epoch = Date.UTC(y1, m1);
+    let m1 = d1.getUTCMonth();
+    let epoch = from;
+    while (epoch < to) {
+        epoch = Date.UTC(y1, m1);
         if (epoch >= from && epoch < to) yield epoch;
         if (++m1 === 12) {
             m1 = 0;
@@ -74,15 +72,12 @@ export function* months([from, to]: Domain) {
 
 export function* days([from, to]: Domain) {
     const t1 = new Date(from);
-    const t2 = new Date(to);
-    let d1 = t1.getUTCDate();
-    let m1 = t1.getUTCMonth();
     let y1 = t1.getUTCFullYear();
-    const d2 = t2.getUTCDate();
-    const m2 = t2.getUTCMonth();
-    const y2 = t2.getUTCFullYear();
-    while (y1 <= y2 || m1 <= m2 || d1 <= d2) {
-        const epoch = Date.UTC(y1, m1, d1);
+    let m1 = t1.getUTCMonth();
+    let d1 = t1.getUTCDate();
+    let epoch = from;
+    while (epoch < to) {
+        epoch = Date.UTC(y1, m1, d1);
         if (epoch >= from && epoch < to) yield epoch;
         if (++d1 > DAYS_IN_MONTH[m1]) {
             d1 = 1;
