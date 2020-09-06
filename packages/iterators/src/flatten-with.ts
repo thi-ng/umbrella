@@ -1,5 +1,5 @@
-import { iterator } from "./iterator";
 import type { Fn } from "@thi.ng/api";
+import { iterator } from "./iterator";
 
 export function* flattenWith(
     tx: Fn<any, any>,

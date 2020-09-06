@@ -1,5 +1,5 @@
-import { iterator } from "./iterator";
 import type { Predicate } from "@thi.ng/api";
+import { iterator } from "./iterator";
 
 export const some = <T>(pred: Predicate<T>, input: Iterable<T>) => {
     let iter = iterator(input);
