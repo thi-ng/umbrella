@@ -13,7 +13,7 @@
 > the composer of. Geared towards versatility, not any specific type of music."
 > &mdash; [@loganpowell](https://twitter.com/logantpowell/status/1186334119812304901) via Twitter
 
-Mono-repository for 135+ thi.ng TypeScript/ES6 projects, a wide
+Mono-repository for 137+ thi.ng TypeScript/ES6 projects, a wide
 collection of largely data transformation oriented packages and building
 blocks for:
 
@@ -118,7 +118,6 @@ fairly detailed overview for contributors here:
 (These packages might be still unreleased and only available on their
 feature or `develop` branches)
 
-- [@thi.ng/dual-algebra](https://github.com/thi-ng/umbrella/tree/develop/packages/dual-algebra) - Multivariate dual number algebra / automatic differentiation
 - [@thi.ng/egf](https://github.com/thi-ng/umbrella/tree/feature/egf/packages/egf) - Extensible Graph Format
 - [@thi.ng/viz](https://github.com/thi-ng/umbrella/tree/develop/packages/viz) - Declarative, functional & multi-format data visualization toolkit
 
@@ -134,6 +133,7 @@ feature or `develop` branches)
 | [`@thi.ng/compose`](./packages/compose)             | [![version](https://img.shields.io/npm/v/@thi.ng/compose.svg)](https://www.npmjs.com/package/@thi.ng/compose)             | [changelog](./packages/compose/CHANGELOG.md)       | Functional composition helpers                           |
 | [`@thi.ng/defmulti`](./packages/defmulti)           | [![version](https://img.shields.io/npm/v/@thi.ng/defmulti.svg)](https://www.npmjs.com/package/@thi.ng/defmulti)           | [changelog](./packages/defmulti/CHANGELOG.md)      | Dynamic multiple dispatch                                |
 | [`@thi.ng/dsp`](./packages/dsp)                     | [![version](https://img.shields.io/npm/v/@thi.ng/dsp.svg)](https://www.npmjs.com/package/@thi.ng/dsp)                     | [changelog](./packages/dsp/CHANGELOG.md)           | DSP utils, oscillators                                   |
+| [`@thi.ng/dual-algebra`](./packages/dual-algebra)   | [![version](https://img.shields.io/npm/v/@thi.ng/dual-algebra.svg)](https://www.npmjs.com/package/@thi.ng/dual-algebra)   | [changelog](./packages/dual-algebra/CHANGELOG.md)  | Dual number algebra / automatic differentiation          |
 | [`@thi.ng/ecs`](./packages/ecs)                     | [![version](https://img.shields.io/npm/v/@thi.ng/ecs.svg)](https://www.npmjs.com/package/@thi.ng/ecs)                     | [changelog](./packages/ecs/CHANGELOG.md)           | Entity-Component System                                  |
 | [`@thi.ng/equiv`](./packages/equiv)                 | [![version](https://img.shields.io/npm/v/@thi.ng/equiv.svg)](https://www.npmjs.com/package/@thi.ng/equiv)                 | [changelog](./packages/equiv/CHANGELOG.md)         | Deep value equivalence checking                          |
 | [`@thi.ng/errors`](./packages/errors)               | [![version](https://img.shields.io/npm/v/@thi.ng/errors.svg)](https://www.npmjs.com/package/@thi.ng/errors)               | [changelog](./packages/errors/CHANGELOG.md)        | Custom error types                                       |
