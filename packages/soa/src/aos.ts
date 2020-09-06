@@ -1,8 +1,8 @@
 import { SIZEOF } from "@thi.ng/api";
 import { align, Pow2 } from "@thi.ng/binary";
+import type { AOSSpecs, SOASpecs } from "./api";
 import { SOA } from "./soa";
 import { prepareSpec } from "./utils";
-import type { AOSSpecs, SOASpecs } from "./api";
 
 /**
  * Constructs SOA instance from given attrib specs and optional

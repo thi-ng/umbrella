@@ -6,9 +6,9 @@ import {
     typedArray,
     TYPEDARRAY_CTORS,
 } from "@thi.ng/api";
-import { prepareSpec } from "./utils";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import type { SOAAttribSpec, SOASpecs, SOATuple } from "./api";
+import { prepareSpec } from "./utils";
 
 export class SOA<K extends string> implements ILength {
     length: number;
