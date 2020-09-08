@@ -62,9 +62,9 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
+        "es6",
         "memory",
-        "memory mapped",
+        "memory-mapped",
         "pool",
         "typedarray",
         "typescript",

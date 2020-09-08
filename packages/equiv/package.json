@@ -56,13 +56,11 @@
     ],
     "keywords": [
         "deep",
-        "equal",
+        "es6",
         "equality",
-        "extensible",
         "interface",
-        "ES6",
         "typescript",
-        "value"
+        "value-semantics"
     ],
     "publishConfig": {
         "access": "public"

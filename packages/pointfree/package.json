@@ -64,14 +64,14 @@
         "composition",
         "concatenative",
         "dataflow",
-        "DSL",
-        "ES6",
-        "Forth",
+        "dsl",
+        "es6",
+        "forth",
         "functional",
         "pipeline",
         "pointfree",
         "stack",
-        "data transformation",
+        "transformation",
         "typescript"
     ],
     "publishConfig": {

@@ -63,15 +63,14 @@
     "keywords": [
         "browser",
         "declarative",
-        "ES6",
+        "es6",
         "html",
         "history",
         "parametric",
         "router",
-        "SPA",
         "typescript",
-        "validation",
-        "UI"
+        "validate",
+        "ui"
     ],
     "publishConfig": {
         "access": "public"

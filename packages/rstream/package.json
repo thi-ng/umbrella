@@ -66,16 +66,21 @@
         "utils"
     ],
     "keywords": [
+        "async",
         "datastructure",
-        "events",
-        "ES6",
+        "event",
+        "es6",
+        "graph",
         "pipeline",
+        "pubsub",
         "reactive",
+        "state",
         "stream",
         "subscription",
         "transducer",
         "transformation",
-        "typescript"
+        "typescript",
+        "webworker"
     ],
     "publishConfig": {
         "access": "public"
@@ -83,7 +88,7 @@
     "sideEffects": false,
     "thi.ng": {
         "related": [
-            "transducers"
+            "transducer"
         ],
         "year": 2017
     }

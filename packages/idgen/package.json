@@ -59,11 +59,11 @@
     ],
     "keywords": [
         "counter",
-        "ES6",
-        "free list",
+        "es6",
+        "freelist",
         "identifier",
         "typescript",
-        "versioned"
+        "versioning"
     ],
     "publishConfig": {
         "access": "public"

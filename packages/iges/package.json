@@ -62,11 +62,16 @@
         "lib"
     ],
     "keywords": [
-        "CAD",
-        "ES6",
+        "bezier",
+        "cad",
+        "es6",
         "export",
-        "IGES",
+        "fileformat",
+        "iges",
         "geometry",
+        "graphics",
+        "polygon",
+        "polyline",
         "serialization",
         "typescript"
     ],

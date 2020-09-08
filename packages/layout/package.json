@@ -57,11 +57,13 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
+        "es6",
         "grid",
         "layout",
+        "recursive",
+        "tree",
         "typescript",
-        "UI"
+        "ui"
     ],
     "publishConfig": {
         "access": "public"

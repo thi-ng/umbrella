@@ -59,8 +59,9 @@
         "lib"
     ],
     "keywords": [
-        "DSL",
-        "ES6",
+        "ast",
+        "dsl",
+        "es6",
         "interpreter",
         "lisp",
         "parser",
@@ -68,7 +69,7 @@
         "s-expression",
         "tokenizer",
         "typescript",
-        "WAST"
+        "wasm"
     ],
     "publishConfig": {
         "access": "public"

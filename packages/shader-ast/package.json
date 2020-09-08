@@ -64,18 +64,17 @@
         "builtin"
     ],
     "keywords": [
-        "AST",
-        "crosscompiler",
-        "code generator",
-        "DSL",
-        "ES6",
-        "GPGPU",
-        "GLSL",
+        "ast",
+        "codegen",
+        "compiler",
+        "dsl",
+        "es6",
+        "gpgpu",
+        "glsl",
         "shader",
         "typecheck",
         "typescript",
-        "webgl",
-        "x-platform"
+        "webgl"
     ],
     "publishConfig": {
         "access": "public"

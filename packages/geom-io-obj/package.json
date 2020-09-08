@@ -58,7 +58,8 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
+        "es6",
+        "fileformat",
         "geometry",
         "mesh",
         "OBJ",

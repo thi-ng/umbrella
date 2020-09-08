@@ -77,7 +77,8 @@
         "parser",
         "peg",
         "regexp",
-        "recursion",
+        "recursive",
+        "tree",
         "typescript"
     ],
     "publishConfig": {

@@ -65,16 +65,17 @@
         "*.d.ts",
         "lib",
         "behaviors",
-        "components"
+        "component"
     ],
     "keywords": [
         "canvas",
-        "components",
-        "ES6",
-        "GUI",
-        "IMGUI",
-        "immediate mode",
-        "typescript"
+        "component",
+        "es6",
+        "gui",
+        "hiccup",
+        "imgui",
+        "typescript",
+        "ui"
     ],
     "publishConfig": {
         "access": "public"

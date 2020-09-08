@@ -61,13 +61,15 @@
         "lib"
     ],
     "keywords": [
-        "AST",
+        "ast",
         "crossover",
-        "ES6",
+        "es6",
         "evolutionary",
-        "genetic algorithm",
-        "genetic programming",
-        "MEP",
+        "generative",
+        "genetic",
+        "algorithm",
+        "multi-expression",
+        "mep",
         "mutation",
         "phenotype",
         "typescript"

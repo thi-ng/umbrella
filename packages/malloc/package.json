@@ -60,8 +60,15 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
-        "typescript"
+        "align",
+        "allocator",
+        "es6",
+        "memory",
+        "memory-mapped",
+        "pool",
+        "typedarray",
+        "typescript",
+        "wasm"
     ],
     "publishConfig": {
         "access": "public"

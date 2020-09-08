@@ -60,16 +60,14 @@
         "lib"
     ],
     "keywords": [
-        "2D",
+        "2d",
         "convex",
         "clipping",
-        "ES6",
+        "es6",
         "geometry",
-        "liang-barsky",
-        "line",
+        "graphics",
         "polygon",
         "rect",
-        "rectangle",
         "sutherland-hodgeman",
         "typescript"
     ],

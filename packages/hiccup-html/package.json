@@ -60,7 +60,7 @@
         "es6",
         "hiccup",
         "html",
-        "typechecked",
+        "typecheck",
         "typescript",
         "wrapper"
     ],

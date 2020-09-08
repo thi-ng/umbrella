@@ -59,9 +59,10 @@
         "lib"
     ],
     "keywords": [
-        "accessors",
+        "accessor",
         "array",
-        "ES6",
+        "deep",
+        "es6",
         "delete",
         "getter",
         "immutable",
@@ -70,8 +71,7 @@
         "path",
         "property",
         "setter",
-        "typescript",
-        "update"
+        "typescript"
     ],
     "publishConfig": {
         "access": "public"

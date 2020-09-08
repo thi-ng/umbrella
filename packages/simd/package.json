@@ -60,13 +60,13 @@
         "lib"
     ],
     "keywords": [
-        "AssemblyScript",
-        "batch process",
-        "ES6",
-        "SIMD",
+        "assemblyscript",
+        "batchprocess",
+        "es6",
+        "simd",
         "typescript",
         "vector",
-        "WASM"
+        "wasm"
     ],
     "publishConfig": {
         "access": "public"

@@ -68,26 +68,28 @@
         "tex"
     ],
     "keywords": [
-        "AST",
-        "DSL",
-        "ES6",
+        "ast",
+        "blur",
+        "dsl",
+        "es6",
         "fog",
         "functional",
-        "higher order",
+        "higher-order",
         "inline",
-        "GLSL",
-        "GPGPU",
+        "glsl",
+        "gpgpu",
+        "lighting",
         "math",
         "matrix",
         "noise",
-        "raymarch",
         "random",
+        "raymarch",
+        "rgb",
         "sdf",
         "shader",
         "texture",
         "typescript",
-        "webgl",
-        "webgl2"
+        "webgl"
     ],
     "publishConfig": {
         "access": "public"

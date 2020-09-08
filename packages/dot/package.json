@@ -58,8 +58,14 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
-        "typescript"
+        "es6",
+        "fileformat",
+        "graph",
+        "graphviz",
+        "serialization",
+        "style",
+        "typescript",
+        "visualization"
     ],
     "publishConfig": {
         "access": "public"

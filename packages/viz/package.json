@@ -30,7 +30,8 @@
         "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
         "pub": "yarn build:release && yarn publish --access public",
         "tool:candles": "ts-node -P tools/tsconfig.json tools/candles.ts",
-        "tool:intervals": "ts-node -P tools/tsconfig.json tools/intervals.ts"
+        "tool:intervals": "ts-node -P tools/tsconfig.json tools/intervals.ts",
+        "tool:tags": "ts-node -P tools/tsconfig.json tools/tagcloud.ts"
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
@@ -59,10 +60,12 @@
     ],
     "keywords": [
         "2d",
-        "dataviz",
+        "declarative",
         "es6",
         "hiccup",
+        "plot",
         "svg",
+        "transducer",
         "typescript",
         "visualization"
     ],

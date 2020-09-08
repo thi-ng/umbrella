@@ -63,7 +63,8 @@
         "csp",
         "reactive",
         "stream",
-        "ES6",
+        "rstream",
+        "es6",
         "typescript"
     ],
     "publishConfig": {

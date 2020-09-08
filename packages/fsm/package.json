@@ -62,17 +62,15 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
+        "es6",
         "composition",
         "declarative",
-        "finite state machine",
-        "FSM",
+        "fsm",
         "functional",
         "parser",
-        "pattern match",
         "regex",
         "string",
-        "transducers",
+        "transducer",
         "typescript"
     ],
     "publishConfig": {

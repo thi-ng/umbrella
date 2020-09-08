@@ -62,10 +62,10 @@
         "lib"
     ],
     "keywords": [
-        "2D",
-        "3D",
+        "2d",
+        "3d",
         "convex",
-        "ES6",
+        "es6",
         "geometry",
         "polygon",
         "tessellation",

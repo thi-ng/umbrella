@@ -59,11 +59,11 @@
     ],
     "keywords": [
         "arity",
-        "ES6",
+        "es6",
         "functional",
         "hierarchy",
         "inheritance",
-        "multiple dispatch",
+        "multiple-dispatch",
         "polymorphic",
         "typescript"
     ],

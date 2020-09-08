@@ -58,11 +58,11 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
         "binary",
+        "compression",
         "entropy",
+        "es6",
         "packer",
-        "range encoding",
         "typescript"
     ],
     "publishConfig": {

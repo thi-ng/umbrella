@@ -65,19 +65,20 @@
     ],
     "keywords": [
         "browser",
-        "components",
-        "data driven",
+        "component",
+        "datadriven",
         "declarative",
         "diff",
-        "DOM",
-        "ES6",
+        "dom",
+        "es6",
         "functional",
-        "IOC",
-        "iterators",
+        "ioc",
+        "iterator",
         "reactive",
+        "tree",
         "typescript",
-        "UI",
-        "VDOM"
+        "ui",
+        "vdom"
     ],
     "publishConfig": {
         "access": "public"

@@ -58,7 +58,8 @@
     ],
     "keywords": [
         "comparator",
-        "ES6",
+        "es6",
+        "sort",
         "typescript"
     ],
     "publishConfig": {

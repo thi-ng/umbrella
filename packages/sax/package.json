@@ -59,11 +59,11 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
+        "es6",
         "FSM",
         "parser",
         "SAX",
-        "transducers",
+        "transducer",
         "typescript",
         "XML"
     ],
@@ -74,7 +74,7 @@
     "thi.ng": {
         "related": [
             "hiccup-svg",
-            "transducers",
+            "transducer",
             "transducers-fsm"
         ],
         "year": 2018

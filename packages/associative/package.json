@@ -66,23 +66,21 @@
         "internal"
     ],
     "keywords": [
-        "data structures",
-        "difference",
+        "datastructure",
         "equality",
-        "ES6",
+        "es6",
         "hashmap",
         "intersection",
         "join",
-        "linear probing",
         "map",
-        "open addressing",
         "set",
         "skiplist",
-        "sorted map",
-        "sorted set",
-        "sparse set",
+        "sort",
+        "sparse",
+        "trie",
         "typescript",
-        "union"
+        "union",
+        "value-semantics"
     ],
     "publishConfig": {
         "access": "public"

@@ -61,18 +61,17 @@
         "lib"
     ],
     "keywords": [
-        "derived views",
         "cursor",
-        "data structure",
-        "ES6",
+        "datastructure",
+        "es6",
         "history",
         "immutable",
         "redo",
         "state",
+        "subscription",
         "transaction",
         "typescript",
         "undo",
-        "update",
         "wrapper"
     ],
     "publishConfig": {
@@ -82,5 +81,13 @@
         "process": false,
         "setTimeout": false
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "related": [
+            "interceptors",
+            "paths",
+            "rstream"
+        ],
+        "year": 2017
+    }
 }

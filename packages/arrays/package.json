@@ -62,10 +62,11 @@
         "lib"
     ],
     "keywords": [
-        "arrays",
-        "binary search",
-        "ES6",
-        "fuzzy search",
+        "array",
+        "binary",
+        "es6",
+        "fuzzy",
+        "search",
         "shuffle",
         "swizzle",
         "typescript"

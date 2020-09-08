@@ -60,13 +60,13 @@
     ],
     "keywords": [
         "cache",
-        "data structure",
-        "ES6",
-        "LRU",
-        "Map",
-        "MRU",
-        "TLRU",
-        "TTL",
+        "datastructure",
+        "es6",
+        "lru",
+        "map",
+        "mru",
+        "tlru",
+        "ttl",
         "typescript"
     ],
     "publishConfig": {

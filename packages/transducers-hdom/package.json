@@ -60,13 +60,13 @@
     ],
     "keywords": [
         "diff",
-        "ES6",
+        "es6",
         "hdom",
         "rstream",
-        "transducers",
+        "transducer",
         "typescript",
-        "UI",
-        "VDOM"
+        "ui",
+        "vdom"
     ],
     "publishConfig": {
         "access": "public"

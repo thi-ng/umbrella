@@ -86,13 +86,17 @@
         "ops"
     ],
     "keywords": [
-        "2D",
-        "ES6",
+        "2d",
+        "centroid",
         "conversion",
+        "es6",
         "intersection",
         "geometry",
+        "graphics",
+        "polymorphic",
+        "sample",
         "shapes",
-        "SVG",
+        "svg",
         "typescript"
     ],
     "publishConfig": {

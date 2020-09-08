@@ -60,9 +60,9 @@
         "lib"
     ],
     "keywords": [
-        "2D",
-        "3D",
-        "ES6",
+        "2d",
+        "3d",
+        "es6",
         "scenegraph",
         "typescript"
     ],

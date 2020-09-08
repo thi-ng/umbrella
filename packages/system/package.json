@@ -59,10 +59,11 @@
     ],
     "keywords": [
         "component",
-        "DI",
-        "dependency graph",
-        "dependency injection",
-        "ES6",
+        "dependency",
+        "es6",
+        "graph",
+        "injection",
+        "topology",
         "typescript"
     ],
     "publishConfig": {

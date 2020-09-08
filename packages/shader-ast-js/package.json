@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/shader-ast-js",
     "version": "0.5.5",
-    "description": "Customizable JS code generator, compiler & runtime for @thi.ng/shader-ast",
+    "description": "Customizable JS codegen, compiler & runtime for @thi.ng/shader-ast",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -65,13 +65,13 @@
         "env"
     ],
     "keywords": [
-        "AST",
-        "crosscompiler",
-        "code generator",
-        "DSL",
+        "ast",
+        "codegen",
+        "compiler",
+        "dsl",
         "emulator",
-        "ES6",
-        "GLSL",
+        "es6",
+        "glsl",
         "shader",
         "typescript",
         "webgl"

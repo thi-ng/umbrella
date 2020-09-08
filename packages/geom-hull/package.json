@@ -58,10 +58,12 @@
         "lib"
     ],
     "keywords": [
-        "2D",
-        "convex hull",
-        "ES6",
+        "2d",
+        "convex",
+        "es6",
         "geometry",
+        "graphics",
+        "hull",
         "points",
         "typescript"
     ],

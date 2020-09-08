@@ -67,9 +67,9 @@
         "binary",
         "bittorrent",
         "encode",
-        "ES6",
-        "structured data",
-        "transducers",
+        "es6",
+        "fileformat",
+        "transducer",
         "typescript"
     ],
     "publishConfig": {

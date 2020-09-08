@@ -62,9 +62,9 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
-        "2D",
+        "2d",
         "diagonal",
+        "es6",
         "grid",
         "hilbert",
         "iterator",
@@ -72,7 +72,7 @@
         "random",
         "spiral",
         "typescript",
-        "Z-curve",
+        "z-curve",
         "zigzag"
     ],
     "publishConfig": {
@@ -82,7 +82,7 @@
     "thi.ng": {
         "related": [
             "morton",
-            "transducers"
+            "transducer"
         ],
         "year": 2019
     }

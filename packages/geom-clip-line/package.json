@@ -59,7 +59,12 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
+        "clipping",
+        "es6",
+        "geometry",
+        "graphics",
+        "liang-barsky",
+        "line",
         "typescript"
     ],
     "publishConfig": {

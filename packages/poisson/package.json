@@ -66,16 +66,15 @@
         "3d",
         "nd",
         "density",
-        "ES6",
+        "es6",
         "grid",
         "points",
-        "poisson disc",
+        "poisson",
         "noise",
         "random",
-        "sampling",
+        "sample",
         "stratified",
-        "typescript",
-        "vectors"
+        "typescript"
     ],
     "publishConfig": {
         "access": "public"

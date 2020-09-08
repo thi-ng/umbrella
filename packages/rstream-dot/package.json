@@ -59,10 +59,11 @@
     "keywords": [
         "conversion",
         "dataflow",
-        "DAG",
-        "ES6",
+        "es6",
+        "fileformat",
         "graph",
         "graphviz",
+        "reactive",
         "stream",
         "topology",
         "typescript",

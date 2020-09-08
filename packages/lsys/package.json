@@ -64,14 +64,16 @@
     ],
     "keywords": [
         "axiom",
+        "1d",
         "2d",
         "3d",
-        "ES6",
+        "es6",
         "generative",
         "geometry",
         "l-system",
         "probabilistic",
-        "rule based",
+        "random",
+        "rulebased",
         "turtle",
         "typescript"
     ],

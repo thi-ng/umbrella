@@ -60,14 +60,13 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
+        "es6",
         "graphics",
         "shader-ast",
         "shadertoy",
         "texture",
         "typescript",
-        "webgl",
-        "webgl2"
+        "webgl"
     ],
     "publishConfig": {
         "access": "public"

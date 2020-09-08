@@ -61,12 +61,11 @@
         "lib"
     ],
     "keywords": [
-        "2D",
-        "ES6",
+        "2d",
+        "es6",
         "area",
-        "bounding box",
+        "bbox",
         "centroid",
-        "center of weight",
         "circumcenter",
         "geometry",
         "perimeter",

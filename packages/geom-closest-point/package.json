@@ -59,14 +59,18 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
+        "aabb",
+        "circle",
         "distance",
+        "ellipse",
+        "es6",
         "geometry",
         "line",
-        "point",
+        "points",
         "polygon",
         "polyline",
         "proximity",
+        "rect",
         "typescript"
     ],
     "publishConfig": {

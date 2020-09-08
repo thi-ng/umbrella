@@ -66,15 +66,16 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
+        "es6",
         "ast",
-        "converter",
+        "conversion",
         "DOM",
         "hiccup",
         "markdown",
         "parser",
-        "serialize",
-        "transducers",
+        "serialization",
+        "tree",
+        "transducer",
         "typescript"
     ],
     "publishConfig": {

@@ -58,13 +58,15 @@
         "lib"
     ],
     "keywords": [
-        "alpha blending",
+        "alpha",
+        "blend",
         "color",
-        "compositing",
-        "ES6",
+        "composition",
+        "es6",
         "pixel",
-        "Porter-Duff",
+        "porter-duff",
         "premultiply",
+        "rgb",
         "typescript"
     ],
     "publishConfig": {

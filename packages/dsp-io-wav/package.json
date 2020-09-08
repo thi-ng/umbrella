@@ -60,7 +60,11 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
+        "audio",
+        "dsp",
+        "es6",
+        "export",
+        "fileformat",
         "typescript"
     ],
     "publishConfig": {

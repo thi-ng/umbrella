@@ -61,12 +61,11 @@
         "lib"
     ],
     "keywords": [
-        "2D",
-        "3D",
-        "nD",
-        "closest point",
+        "2d",
+        "3d",
+        "nd",
         "curve",
-        "ES6",
+        "es6",
         "distance",
         "geometry",
         "interpolation",
@@ -75,11 +74,9 @@
         "polygon",
         "polyline",
         "proximity",
-        "resampling",
-        "spaced",
+        "sample",
         "tangent",
-        "typescript",
-        "uniform"
+        "typescript"
     ],
     "publishConfig": {
         "access": "public"

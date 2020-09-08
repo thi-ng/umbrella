@@ -61,16 +61,17 @@
         "lib"
     ],
     "keywords": [
-        "2D",
+        "2d",
         "arc",
-        "bounding rect",
+        "bbox",
         "circle",
         "circumcenter",
         "elliptic",
-        "ES6",
+        "es6",
+        "geometry",
         "interpolation",
-        "SVG",
-        "resampling",
+        "sample",
+        "svg",
         "typescript"
     ],
     "publishConfig": {

@@ -59,16 +59,17 @@
         "lib"
     ],
     "keywords": [
-        "components",
-        "convert",
-        "ES6",
+        "component",
+        "conversion",
+        "es6",
         "generator",
         "hiccup",
         "hdom",
-        "SVG",
-        "serialize",
+        "svg",
+        "serialization",
+        "tree",
         "typescript",
-        "UI",
+        "ui",
         "visualization"
     ],
     "publishConfig": {

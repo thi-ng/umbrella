@@ -60,13 +60,14 @@
         "mixins"
     ],
     "keywords": [
-        "compare",
-        "equality",
-        "ES6",
+        "assert",
+        "constants",
+        "decorators",
+        "es6",
         "generic",
-        "interfaces",
-        "mixins",
-        "type declarations",
+        "interface",
+        "mixin",
+        "type",
         "typescript"
     ],
     "publishConfig": {

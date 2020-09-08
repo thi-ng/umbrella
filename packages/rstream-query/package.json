@@ -65,17 +65,17 @@
         "lib"
     ],
     "keywords": [
+        "database",
         "dataflow",
         "datalog",
-        "ES6",
+        "es6",
         "graph",
-        "query engine",
+        "query",
         "reactive",
-        "semantic web",
+        "semanticweb",
         "stream",
         "subscription",
         "triples",
-        "triplestore",
         "typescript"
     ],
     "publishConfig": {

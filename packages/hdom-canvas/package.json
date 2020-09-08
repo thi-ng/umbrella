@@ -61,14 +61,15 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
+        "es6",
         "canvas",
-        "data driven",
+        "datadriven",
         "drawing",
         "graphics",
         "hdom",
         "hiccup",
         "scenegraph",
+        "tree",
         "typescript"
     ],
     "publishConfig": {

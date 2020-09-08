@@ -64,11 +64,17 @@
         "*.d.ts",
         "lib",
         "caches",
-        "components",
+        "component",
         "groups"
     ],
     "keywords": [
-        "ES6",
+        "component",
+        "datastructure",
+        "entity",
+        "es6",
+        "memory-mapped",
+        "simd",
+        "typedarray",
         "typescript"
     ],
     "publishConfig": {

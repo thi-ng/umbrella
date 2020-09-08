@@ -67,11 +67,12 @@
     "keywords": [
         "compute",
         "dataflow",
-        "ES6",
+        "es6",
         "graph",
         "reactive",
         "stream",
         "rstream",
+        "topology",
         "typescript"
     ],
     "publishConfig": {

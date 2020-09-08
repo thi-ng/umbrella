@@ -58,8 +58,10 @@
     ],
     "keywords": [
         "binding",
-        "dynamic scope",
-        "ES6",
+        "dynamic",
+        "es6",
+        "scope",
+        "state",
         "typescript",
         "variable"
     ],

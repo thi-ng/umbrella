@@ -59,11 +59,11 @@
         "lib"
     ],
     "keywords": [
-        "1D",
-        "2D",
+        "1d",
+        "2d",
         "binary",
         "bitwise",
-        "ES6",
+        "es6",
         "matrix",
         "typescript",
         "typedarray",

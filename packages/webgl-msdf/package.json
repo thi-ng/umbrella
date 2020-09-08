@@ -62,10 +62,11 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
+        "es6",
         "font",
         "layout",
-        "MSDF",
+        "msdf",
+        "sdf",
         "shader",
         "text",
         "typescript",

@@ -65,13 +65,13 @@
         "lib"
     ],
     "keywords": [
-        "2D",
+        "2d",
         "clipping",
-        "data structure",
+        "datastructure",
         "delaunay",
         "dual",
         "edges",
-        "ES6",
+        "es6",
         "geometry",
         "graph",
         "incremental",

@@ -58,10 +58,10 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
+        "es6",
         "geometry",
-        "interfaces",
-        "types",
+        "interface",
+        "type",
         "typescript"
     ],
     "publishConfig": {

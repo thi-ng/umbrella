@@ -70,12 +70,12 @@
         "csp",
         "channel",
         "datastructure",
-        "ES6",
+        "es6",
         "multiplex",
         "pipeline",
         "promise",
         "pubsub",
-        "transducers",
+        "transducer",
         "typescript"
     ],
     "publishConfig": {

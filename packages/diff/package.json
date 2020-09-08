@@ -57,13 +57,11 @@
         "lib"
     ],
     "keywords": [
-        "additions",
         "array",
         "diff",
-        "edits",
-        "ES6",
-        "nested",
-        "removals",
+        "editlog",
+        "es6",
+        "object",
         "typescript"
     ],
     "publishConfig": {

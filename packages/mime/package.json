@@ -57,11 +57,11 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
-        "file type",
-        "MIME",
-        "mimedb",
         "database",
+        "es6",
+        "fileformat",
+        "mime",
+        "mimedb",
         "typescript"
     ],
     "publishConfig": {

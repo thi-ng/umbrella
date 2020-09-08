@@ -64,8 +64,11 @@
         "canvas",
         "declarative",
         "draw",
-        "ES6",
+        "es6",
+        "graphics",
         "hiccup",
+        "scenegraph",
+        "tree",
         "typescript"
     ],
     "publishConfig": {

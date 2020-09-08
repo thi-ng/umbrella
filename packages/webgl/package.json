@@ -76,15 +76,15 @@
     ],
     "keywords": [
         "declarative",
-        "ES6",
+        "es6",
         "FBO",
         "GPGPU",
         "graphics",
         "shader",
+        "shader-ast",
         "texture",
         "typescript",
-        "webgl",
-        "webgl2"
+        "webgl"
     ],
     "publishConfig": {
         "access": "public"

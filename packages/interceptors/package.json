@@ -61,7 +61,11 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
+        "es6",
+        "event",
+        "functional",
+        "queue",
+        "side-effect",
         "typescript"
     ],
     "publishConfig": {

@@ -61,11 +61,11 @@
         "lib"
     ],
     "keywords": [
-        "2D",
-        "3D",
-        "AABB",
+        "2d",
+        "3d",
+        "aabb",
         "circle",
-        "ES6",
+        "es6",
         "geometry",
         "intersection",
         "line",

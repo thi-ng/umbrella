@@ -61,12 +61,12 @@
     "keywords": [
         "clojure",
         "composition",
-        "ES6",
+        "es6",
         "functional",
-        "generators",
-        "iterators",
+        "generator",
+        "iterator",
         "lazy",
-        "sequences",
+        "sequence",
         "typescript"
     ],
     "publishConfig": {

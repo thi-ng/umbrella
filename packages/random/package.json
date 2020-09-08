@@ -58,7 +58,7 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
+        "es6",
         "generator",
         "PRNG",
         "random",

@@ -61,7 +61,7 @@
         "adjacency",
         "COO",
         "CSR",
-        "ES6",
+        "es6",
         "graph",
         "matrix",
         "sparse",

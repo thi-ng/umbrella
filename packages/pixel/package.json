@@ -60,19 +60,21 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
-        "alpha blending",
-        "bayer matrix",
+        "es6",
+        "alpha",
+        "blend",
         "blit",
         "canvas",
-        "color channels",
+        "color",
+        "channel",
         "conversion",
         "float",
         "grayscale",
         "image",
-        "ordered dither",
-        "packed",
-        "pixel buffer",
+        "multiformat",
+        "dither",
+        "pixelbuffer",
+        "typedarray",
         "typescript"
     ],
     "publishConfig": {

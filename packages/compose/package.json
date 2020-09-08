@@ -58,8 +58,9 @@
         "lib"
     ],
     "keywords": [
+        "async",
         "composition",
-        "ES6",
+        "es6",
         "functional",
         "typescript"
     ],

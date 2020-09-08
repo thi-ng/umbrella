@@ -58,12 +58,12 @@
         "lib"
     ],
     "keywords": [
-        "alignment",
+        "align",
         "binary",
         "bitwise",
         "conversion",
-        "ES6",
-        "gray code",
+        "es6",
+        "graycode",
         "logic",
         "math",
         "splat",

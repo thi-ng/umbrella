@@ -61,11 +61,14 @@
         "lib"
     ],
     "keywords": [
-        "data structure",
-        "dependencies",
-        "DAG",
-        "ES6",
+        "dag",
+        "datastructure",
+        "dependency",
+        "es6",
         "graph",
+        "query",
+        "sort",
+        "topology",
         "typescript"
     ],
     "publishConfig": {

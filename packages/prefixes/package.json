@@ -47,12 +47,13 @@
         "lib"
     ],
     "keywords": [
-        "linked data",
+        "linkeddata",
         "namespace",
         "prefixes",
         "rdf",
-        "semantic web",
+        "semanticweb",
         "vocabulary",
+        "uri",
         "xml"
     ],
     "publishConfig": {

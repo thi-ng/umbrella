@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/shader-ast-glsl",
     "version": "0.2.8",
-    "description": "Customizable GLSL code generator for @thi.ng/shader-ast",
+    "description": "Customizable GLSL codegen for @thi.ng/shader-ast",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -60,15 +60,15 @@
         "lib"
     ],
     "keywords": [
-        "AST",
-        "code generator",
-        "DSL",
-        "ES6",
-        "GLSL",
+        "ast",
+        "codegen",
+        "dsl",
+        "es6",
+        "glsl",
+        "gpgpu",
         "shader",
         "typescript",
-        "webgl",
-        "webgl2"
+        "webgl"
     ],
     "publishConfig": {
         "access": "public"

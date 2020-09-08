@@ -59,9 +59,9 @@
     "keywords": [
         "benchmark",
         "bigint",
-        "ES6",
+        "es6",
         "execution",
-        "function",
+        "functional",
         "hrtime",
         "measure",
         "statistics",

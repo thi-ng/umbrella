@@ -59,12 +59,12 @@
         "lib"
     ],
     "keywords": [
-        "data structure",
+        "datastructure",
         "d-heap",
-        "ES6",
+        "es6",
         "heap",
-        "pairing heap",
-        "priority queue",
+        "pairing-heap",
+        "priority-queue",
         "sort",
         "typescript"
     ],

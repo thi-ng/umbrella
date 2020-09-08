@@ -64,9 +64,8 @@
     ],
     "keywords": [
         "datastructure",
-        "doubly linked",
-        "ES6",
-        "iterators",
+        "es6",
+        "iterator",
         "linkedlist",
         "list",
         "queue",

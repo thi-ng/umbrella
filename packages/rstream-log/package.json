@@ -63,14 +63,13 @@
         "xform"
     ],
     "keywords": [
-        "ES6",
+        "es6",
         "logger",
-        "logging",
         "multilevel",
         "multiplex",
         "pipeline",
         "stream",
-        "transducers",
+        "transducer",
         "typescript"
     ],
     "publishConfig": {

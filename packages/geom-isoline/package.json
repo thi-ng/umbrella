@@ -59,14 +59,12 @@
         "lib"
     ],
     "keywords": [
-        "2D",
-        "bitmap trace",
+        "2d",
         "contours",
-        "ES6",
-        "extraction",
+        "es6",
+        "isoline",
         "iterator",
-        "level sets",
-        "marching squares",
+        "marchingsquares",
         "polygon",
         "threshold",
         "typescript"

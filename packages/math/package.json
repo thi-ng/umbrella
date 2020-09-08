@@ -57,13 +57,17 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
+        "es6",
+        "cubic",
+        "hermite",
         "interpolation",
         "interval",
         "math",
+        "quadratic",
+        "smooth",
         "solver",
-        "typescript",
-        "utilities"
+        "trigonometry",
+        "typescript"
     ],
     "publishConfig": {
         "access": "public"

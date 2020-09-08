@@ -58,16 +58,15 @@
         "utils"
     ],
     "keywords": [
-        "assets",
         "carbon",
-        "ES6",
+        "es6",
         "hdom",
         "hiccup",
-        "IBM",
-        "icons",
+        "ibm",
+        "icon",
         "svg",
         "typescript",
-        "UI"
+        "ui"
     ],
     "publishConfig": {
         "access": "public"
