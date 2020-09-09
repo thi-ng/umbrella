@@ -7438,10 +7438,10 @@ pbkdf2@^3.0.3:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-pegjs@^0.11.0-dev.325:
-  version "0.11.0-master.f69239d"
-  resolved "https://registry.yarnpkg.com/pegjs/-/pegjs-0.11.0-master.f69239d.tgz#4f6e445231cc369f9860a0999a685a79cec520ab"
-  integrity sha512-8PXSaXnLh9hw0R/SfOL1b8JSgiPv1KSl8B1h+sP0uwngmx3Vk+QdB2cuBAT1lXPbP5necVZ2Dl2t4DfR3KKbZg==
+pegjs@0.11.0-master.b7b87ea:
+  version "0.11.0-master.b7b87ea"
+  resolved "https://registry.yarnpkg.com/pegjs/-/pegjs-0.11.0-master.b7b87ea.tgz#dc41190696bc33c8a09210a0bf91e683d4f1d6dc"
+  integrity sha512-fwjzNiYHRUEUe/86Aaslb/ocbbsAupOcsJz+dlPYtgp3feCDRQOLChHO924XGh7fzSJBTdFCQTzmSOQaWjCTew==
 
 perf-regexes@^1.0.1:
   version "1.0.1"
