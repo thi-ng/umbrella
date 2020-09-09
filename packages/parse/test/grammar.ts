@@ -8,8 +8,8 @@ const check = (
     pos: number
 ) => {
     const ctx = defContext(src);
-    assert.equal(parser(ctx), res, `src: '${src}'`);
-    assert.equal(ctx.state!.p, pos, `src: '${src}' pos: ${ctx.state!.p}`);
+    assert.strictEqual(parser(ctx), res, `src: '${src}'`);
+    assert.strictEqual(ctx.state!.p, pos, `src: '${src}' pos: ${ctx.state!.p}`);
     return ctx;
 };
 
@@ -19,7 +19,7 @@ describe("grammar", () => {
             "_: [ ]+ => discard ; num: [0-9a-f]+ => join ; prog: (<_> | <num>)* => collect ;"
         );
         const ctx = check(lang!.rules.prog, "decafbad 55 aa", true, 14);
-        assert.deepEqual(ctx.result, ["decafbad", "55", "aa"]);
+        assert.deepStrictEqual(ctx.result, ["decafbad", "55", "aa"]);
     });
 
     it("discard flag", () => {
@@ -31,7 +31,7 @@ link: '['! <title> "]("! <url> <end>! => collect ;
 `);
         const ctx = defContext("[abc](def)");
         assert(lang!.rules.link(ctx));
-        assert.deepEqual(ctx.result, ["abc", "def"]);
+        assert.deepStrictEqual(ctx.result, ["abc", "def"]);
     });
 
     const checkDiscard = (grammar: string, input: string) => {
@@ -39,7 +39,7 @@ link: '['! <title> "]("! <url> <end>! => collect ;
         const ctx = defContext(input);
         assert(lang!.rules.a(ctx));
         assert(ctx.done);
-        assert.equal(ctx.children!.length, 1, grammar);
+        assert.strictEqual(ctx.children!.length, 1, grammar);
     };
 
     it("discard lit", () => {
@@ -81,7 +81,7 @@ link: '['! <title> "]("! <url> <end>! => collect ;
         const ctx = defContext("abc,def,g,hij,", { retain: true });
         assert(lang!.rules.b(ctx));
         // prettier-ignore
-        assert.deepEqual(ctx.children, [
+        assert. deepStrictEqual(ctx.children, [
             { id: "a", state: { p: 0, l: 1, c: 1 }, children: null, result: "abc" },
             { id: "a", state: { p: 4, l: 1, c: 5 }, children: null, result: "def" },
             { id: "a", state: { p: 8, l: 1, c: 9 }, children: null, result: "g" },

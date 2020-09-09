@@ -14,85 +14,103 @@ describe("paths", () => {
     });
 
     it("getIn (emtpy leaves)", () => {
-        assert.equal(getIn(0, []), 0);
-        assert.equal(getIn("", [0]), undefined);
-        assert.equal(getIn("", ["length"]), 0);
-        assert.equal(getIn([""], [0]), "");
-        assert.equal(getInUnsafe([""], [0, "length"]), 0);
-        assert.equal(getIn([[""]], [0, 0, "length"]), 0);
-        assert.equal(getIn([[[""]]], [0, 0, 0, "length"]), 0);
-        assert.equal(getIn([[[[""]]]], [0, 0, 0, 0, "length"]), 0);
+        assert.strictEqual(getIn(0, []), 0);
+        assert.strictEqual(getIn("", [0]), undefined);
+        assert.strictEqual(getIn("", ["length"]), 0);
+        assert.strictEqual(getIn([""], [0]), "");
+        assert.strictEqual(getInUnsafe([""], [0, "length"]), 0);
+        assert.strictEqual(getIn([[""]], [0, 0, "length"]), 0);
+        assert.strictEqual(getIn([[[""]]], [0, 0, 0, "length"]), 0);
+        assert.strictEqual(getIn([[[[""]]]], [0, 0, 0, 0, "length"]), 0);
     });
 
     it("setIn (len = 0)", () => {
-        assert.deepEqual(setInUnsafe({ a: { b: { c: 23 } } }, "", 1), 1);
-        assert.deepEqual(setInUnsafe({ a: { b: { c: 23 } } }, [], 1), 1);
-        assert.deepEqual(setInUnsafe(null, [], 1), 1);
+        assert.deepStrictEqual(setInUnsafe({ a: { b: { c: 23 } } }, "", 1), 1);
+        assert.deepStrictEqual(setInUnsafe({ a: { b: { c: 23 } } }, [], 1), 1);
+        assert.deepStrictEqual(setInUnsafe(null, [], 1), 1);
     });
 
     it("setIn (len = 1)", () => {
-        assert.deepEqual(setIn({ a: 23 }, ["a"], 24), {
+        assert.deepStrictEqual(setIn({ a: 23 }, ["a"], 24), {
             a: 24,
         });
-        assert.deepEqual(setInUnsafe({ a: { b: { c: 23 } } }, ["d"], 24), {
-            a: { b: { c: 23 } },
-            d: 24,
+        assert.deepStrictEqual(
+            setInUnsafe({ a: { b: { c: 23 } } }, ["d"], 24),
+            {
+                a: { b: { c: 23 } },
+                d: 24,
+            }
+        );
+        assert.deepStrictEqual(setInUnsafe({ x: 23 }, "a", 24), {
+            x: 23,
+            a: 24,
         });
-        assert.deepEqual(setInUnsafe({ x: 23 }, "a", 24), { x: 23, a: 24 });
-        assert.deepEqual(setInUnsafe(null, "a", 24), { a: 24 });
+        assert.deepStrictEqual(setInUnsafe(null, "a", 24), { a: 24 });
     });
 
     it("setIn (len = 2)", () => {
-        assert.deepEqual(setIn({ a: { b: 23 } }, ["a", "b"], 24), {
+        assert.deepStrictEqual(setIn({ a: { b: 23 } }, ["a", "b"], 24), {
             a: { b: 24 },
         });
-        assert.deepEqual(setInUnsafe({ a: { b: { c: 23 } } }, "a.d", 24), {
-            a: { b: { c: 23 }, d: 24 },
-        });
-        assert.deepEqual(setInUnsafe({ x: 23 }, "a.b", 24), {
+        assert.deepStrictEqual(
+            setInUnsafe({ a: { b: { c: 23 } } }, "a.d", 24),
+            {
+                a: { b: { c: 23 }, d: 24 },
+            }
+        );
+        assert.deepStrictEqual(setInUnsafe({ x: 23 }, "a.b", 24), {
             x: 23,
             a: { b: 24 },
         });
-        assert.deepEqual(setInUnsafe(null, "a.b", 24), { a: { b: 24 } });
+        assert.deepStrictEqual(setInUnsafe(null, "a.b", 24), { a: { b: 24 } });
     });
 
     it("setIn (len = 3)", () => {
-        assert.deepEqual(setIn({ a: { b: { c: 23 } } }, ["a", "b", "c"], 24), {
-            a: { b: { c: 24 } },
-        });
-        assert.deepEqual(setInUnsafe({ a: { b: { c: 23 } } }, "a.b.d", 24), {
-            a: { b: { c: 23, d: 24 } },
-        });
-        assert.deepEqual(setInUnsafe({ x: 23 }, "a.b.c", 24), {
+        assert.deepStrictEqual(
+            setIn({ a: { b: { c: 23 } } }, ["a", "b", "c"], 24),
+            {
+                a: { b: { c: 24 } },
+            }
+        );
+        assert.deepStrictEqual(
+            setInUnsafe({ a: { b: { c: 23 } } }, "a.b.d", 24),
+            {
+                a: { b: { c: 23, d: 24 } },
+            }
+        );
+        assert.deepStrictEqual(setInUnsafe({ x: 23 }, "a.b.c", 24), {
             x: 23,
             a: { b: { c: 24 } },
         });
-        assert.deepEqual(setInUnsafe(null, "a.b.c", 24), {
+        assert.deepStrictEqual(setInUnsafe(null, "a.b.c", 24), {
             a: { b: { c: 24 } },
         });
     });
 
     it("setIn (len = 4)", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             setIn({ a: { b: { c: { d: 23 } } } }, ["a", "b", "c", "d"], 24),
             {
                 a: { b: { c: { d: 24 } } },
             }
         );
-        assert.deepEqual(setInUnsafe({ a: { b: { c: 23 } } }, "a.b.d.e", 24), {
-            a: { b: { c: 23, d: { e: 24 } } },
-        });
-        assert.deepEqual(setInUnsafe({ x: 23 }, "a.b.c.d", 24), {
+        assert.deepStrictEqual(
+            setInUnsafe({ a: { b: { c: 23 } } }, "a.b.d.e", 24),
+            {
+                a: { b: { c: 23, d: { e: 24 } } },
+            }
+        );
+        assert.deepStrictEqual(setInUnsafe({ x: 23 }, "a.b.c.d", 24), {
             x: 23,
             a: { b: { c: { d: 24 } } },
         });
-        assert.deepEqual(setInUnsafe(null, "a.b.c.d", 24), {
+        assert.deepStrictEqual(setInUnsafe(null, "a.b.c.d", 24), {
             a: { b: { c: { d: 24 } } },
         });
     });
 
     it("setIn (len = 5)", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             setIn(
                 { a: { b: { c: { d: { e: 23 } } } } },
                 ["a", "b", "c", "d", "e"],
@@ -100,47 +118,50 @@ describe("paths", () => {
             ),
             { a: { b: { c: { d: { e: 24 } } } } }
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             setInUnsafe({ a: { b: { c: 23 } } }, "a.b.d.e.f", 24),
             {
                 a: { b: { c: 23, d: { e: { f: 24 } } } },
             }
         );
-        assert.deepEqual(setInUnsafe({ x: 23 }, "a.b.c.d.e", 24), {
+        assert.deepStrictEqual(setInUnsafe({ x: 23 }, "a.b.c.d.e", 24), {
             x: 23,
             a: { b: { c: { d: { e: 24 } } } },
         });
-        assert.deepEqual(setInUnsafe(null, "a.b.c.d.e", 24), {
+        assert.deepStrictEqual(setInUnsafe(null, "a.b.c.d.e", 24), {
             a: { b: { c: { d: { e: 24 } } } },
         });
     });
 
     it("setIn arr", () => {
-        assert.deepEqual(setIn([1, 2], [0], 10), [10, 2]);
-        assert.deepEqual(setIn(<any[]>[[1, 2], 3], [0, 1], 10), [[1, 10], 3]);
-        assert.deepEqual(setInUnsafe([[1, 2, 3], 4], [0, 1, 2], 10), [
+        assert.deepStrictEqual(setIn([1, 2], [0], 10), [10, 2]);
+        assert.deepStrictEqual(setIn(<any[]>[[1, 2], 3], [0, 1], 10), [
+            [1, 10],
+            3,
+        ]);
+        assert.deepStrictEqual(setInUnsafe([[1, 2, 3], 4], [0, 1, 2], 10), [
             [1, { 2: 10 }, 3],
             4,
         ]);
-        assert.deepEqual(setInUnsafe([[1, 2, 3], 4], [0, 1, 2, "a"], 10), [
-            [1, { 2: { a: 10 } }, 3],
-            4,
-        ]);
-        assert.deepEqual(setInUnsafe([[1, 2, 3], 4], [0, 1, 2, "a", "b"], 10), [
-            [1, { 2: { a: { b: 10 } } }, 3],
-            4,
-        ]);
+        assert.deepStrictEqual(
+            setInUnsafe([[1, 2, 3], 4], [0, 1, 2, "a"], 10),
+            [[1, { 2: { a: 10 } }, 3], 4]
+        );
+        assert.deepStrictEqual(
+            setInUnsafe([[1, 2, 3], 4], [0, 1, 2, "a", "b"], 10),
+            [[1, { 2: { a: { b: 10 } } }, 3], 4]
+        );
     });
 
     it("immutable", () => {
         const a = { x: { y: { z: 1 } }, u: { v: 2 } };
         const b = setInUnsafe(a, "a.b.c", 3);
-        assert.deepEqual(b, {
+        assert.deepStrictEqual(b, {
             x: { y: { z: 1 } },
             u: { v: 2 },
             a: { b: { c: 3 } },
         });
-        assert.deepEqual(a, { x: { y: { z: 1 } }, u: { v: 2 } });
+        assert.deepStrictEqual(a, { x: { y: { z: 1 } }, u: { v: 2 } });
         assert.ok(a.x === b.x);
         assert.ok(a.x.y === b.x.y);
         assert.ok(a.u === b.u);

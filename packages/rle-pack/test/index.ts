@@ -9,12 +9,12 @@ describe("rle-pack", () => {
 
     it("3bit", () => {
         let packed = encode(src1k, src1k.length, 3);
-        assert.deepEqual([...packed], [0, 0, 4, 0, 17, 27, 255, 1, 255, 18, 24, 212, 78, 24, 5, 134, 68, 227, 82, 30, 3, 196, 0]);
+        assert. deepStrictEqual([...packed], [0, 0, 4, 0, 17, 27, 255, 1, 255, 18, 24, 212, 78, 24, 5, 134, 68, 227, 82, 30, 3, 196, 0]);
         let dest = decode(packed);
-        assert.deepEqual(dest, src1k);
+        assert. deepStrictEqual(dest, src1k);
         packed = encode(src1k, src1k.length, 3, [1, 2, 4, 9]);
-        assert.deepEqual([...packed], [0, 0, 4, 0, 16, 9, 199, 255, 140, 134, 234, 206, 96, 89, 150, 119, 89, 15, 241, 0]);
+        assert. deepStrictEqual([...packed], [0, 0, 4, 0, 16, 9, 199, 255, 140, 134, 234, 206, 96, 89, 150, 119, 89, 15, 241, 0]);
         dest = decode(packed);
-        assert.deepEqual(dest, src1k);
+        assert. deepStrictEqual(dest, src1k);
     });
 });

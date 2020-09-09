@@ -31,7 +31,7 @@ describe("parse", () => {
         );
         assert(lang!.rules.prog(ctx));
         const tree = prune(ctx.root);
-        assert.deepEqual(tree, {
+        assert.deepStrictEqual(tree, {
             id: "root",
             children: [
                 {

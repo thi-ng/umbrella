@@ -10,22 +10,22 @@ describe("filter", () => {
     const even = (n: number) => n % 2 === 0;
 
     it("applies predicate over iterable and forwards values testing truthy", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...filter(identity, [true, false, "a", "", 0, 1, []])],
             [true, "a", 1, []]
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...filter(always, [true, false, "a", "", 0, 1, []])],
             [true, false, "a", "", 0, 1, []]
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...filter(never, [true, false, "a", "", 0, 1, []])],
             []
         );
-        assert.deepEqual([...filter(vowel, ["", "a", "bc"])], ["a"]);
-        assert.deepEqual([...filter(even, range(1, 5))], [2, 4]);
-        assert.deepEqual([...filter(always, "")], []);
-        assert.deepEqual([...filter(always, "abc")], ["a", "b", "c"]);
-        assert.deepEqual([...filter(vowel, "abc")], ["a"]);
+        assert.deepStrictEqual([...filter(vowel, ["", "a", "bc"])], ["a"]);
+        assert.deepStrictEqual([...filter(even, range(1, 5))], [2, 4]);
+        assert.deepStrictEqual([...filter(always, "")], []);
+        assert.deepStrictEqual([...filter(always, "abc")], ["a", "b", "c"]);
+        assert.deepStrictEqual([...filter(vowel, "abc")], ["a"]);
     });
 });

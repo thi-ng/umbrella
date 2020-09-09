@@ -24,8 +24,8 @@ describe("component", () => {
         assert.ok(g.has(1));
         assert.ok(g.has(2));
         assert.ok(!g.has(3));
-        assert.deepEqual([...ecs.componentsForID(2)], [a, b]);
-        assert.deepEqual([...ecs.groupsForID(2)], [g]);
+        assert.deepStrictEqual([...ecs.componentsForID(2)], [a, b]);
+        assert.deepStrictEqual([...ecs.groupsForID(2)], [g]);
         assert.ok(
             equiv(collect(g), [
                 { a: "a", b: [0, 0], id: 0 },

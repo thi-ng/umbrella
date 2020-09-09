@@ -21,7 +21,7 @@ describe("Timeout", () => {
 
         timeout(TIMEOUT, { error }).subscribe({
             error: (err) => {
-                assert.equal(err, error);
+                assert.strictEqual(err, error);
                 done();
             },
         });
@@ -49,7 +49,7 @@ describe("Timeout", () => {
                 res.push(x);
             },
             error: () => {
-                assert.deepEqual(res, [1, 2]);
+                assert.deepStrictEqual(res, [1, 2]);
             },
         });
 

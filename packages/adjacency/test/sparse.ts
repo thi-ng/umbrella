@@ -12,10 +12,10 @@ const edges: Pair<number, number>[] = [
 describe("adjacency (sparse)", () => {
     it("fromEdges, undirected", () => {
         const m = AdjacencyMatrix.fromEdges(6, edges, true);
-        assert.deepEqual(m.rows, [0, 2, 3, 5, 6, 7, 8], "rows");
-        assert.deepEqual(m.cols, [1, 2, 0, 0, 3, 2, 5, 4], "cols");
-        assert.equal(m.numEdges(), 4, "numEdges");
-        assert.deepEqual(
+        assert.deepStrictEqual(m.rows, [0, 2, 3, 5, 6, 7, 8], "rows");
+        assert.deepStrictEqual(m.cols, [1, 2, 0, 0, 3, 2, 5, 4], "cols");
+        assert.strictEqual(m.numEdges(), 4, "numEdges");
+        assert.deepStrictEqual(
             [...m.edges()],
             [
                 [0, 1],

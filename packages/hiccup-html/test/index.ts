@@ -7,39 +7,43 @@ describe("hiccup-html", () => {
         type Foo = Partial<{ b: number; c: number }>;
         const el = defElement<Foo>("a");
         const el2 = defElement<Foo>("a", { b: 1 });
-        assert.deepEqual(el(), ["a", null]);
-        assert.deepEqual(el2(), ["a", { b: 1 }]);
-        assert.deepEqual(el(null), ["a", null]);
-        assert.deepEqual(el2(null), ["a", { b: 1 }]);
-        assert.deepEqual(el(null, "body"), ["a", null, "body"]);
-        assert.deepEqual(el2(null, "body"), ["a", { b: 1 }, "body"]);
-        assert.deepEqual(el({ c: 2 }), ["a", { c: 2 }]);
-        assert.deepEqual(el2({ c: 2 }), ["a", { b: 1, c: 2 }]);
-        assert.deepEqual(el({ c: 2 }, "body"), ["a", { c: 2 }, "body"]);
-        assert.deepEqual(el2({ c: 2 }, "body"), ["a", { b: 1, c: 2 }, "body"]);
-        assert.deepEqual(el("#id.foo"), ["a#id.foo", null]);
-        assert.deepEqual(el2("#id.foo"), ["a#id.foo", { b: 1 }]);
-        assert.deepEqual(el("#id.foo", { c: 2 }), ["a#id.foo", { c: 2 }]);
-        assert.deepEqual(el2("#id.foo", { c: 2 }), [
+        assert.deepStrictEqual(el(), ["a", null]);
+        assert.deepStrictEqual(el2(), ["a", { b: 1 }]);
+        assert.deepStrictEqual(el(null), ["a", null]);
+        assert.deepStrictEqual(el2(null), ["a", { b: 1 }]);
+        assert.deepStrictEqual(el(null, "body"), ["a", null, "body"]);
+        assert.deepStrictEqual(el2(null, "body"), ["a", { b: 1 }, "body"]);
+        assert.deepStrictEqual(el({ c: 2 }), ["a", { c: 2 }]);
+        assert.deepStrictEqual(el2({ c: 2 }), ["a", { b: 1, c: 2 }]);
+        assert.deepStrictEqual(el({ c: 2 }, "body"), ["a", { c: 2 }, "body"]);
+        assert.deepStrictEqual(el2({ c: 2 }, "body"), [
+            "a",
+            { b: 1, c: 2 },
+            "body",
+        ]);
+        assert.deepStrictEqual(el("#id.foo"), ["a#id.foo", null]);
+        assert.deepStrictEqual(el2("#id.foo"), ["a#id.foo", { b: 1 }]);
+        assert.deepStrictEqual(el("#id.foo", { c: 2 }), ["a#id.foo", { c: 2 }]);
+        assert.deepStrictEqual(el2("#id.foo", { c: 2 }), [
             "a#id.foo",
             { b: 1, c: 2 },
         ]);
-        assert.deepEqual(el("#id.foo", { c: 2 }, "body"), [
+        assert.deepStrictEqual(el("#id.foo", { c: 2 }, "body"), [
             "a#id.foo",
             { c: 2 },
             "body",
         ]);
-        assert.deepEqual(el2("#id.foo", { c: 2 }, "body"), [
+        assert.deepStrictEqual(el2("#id.foo", { c: 2 }, "body"), [
             "a#id.foo",
             { b: 1, c: 2 },
             "body",
         ]);
-        assert.deepEqual(el("#id.foo", null, "body"), [
+        assert.deepStrictEqual(el("#id.foo", null, "body"), [
             "a#id.foo",
             null,
             "body",
         ]);
-        assert.deepEqual(el2("#id.foo", null, "body"), [
+        assert.deepStrictEqual(el2("#id.foo", null, "body"), [
             "a#id.foo",
             { b: 1 },
             "body",

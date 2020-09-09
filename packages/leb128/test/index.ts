@@ -11,33 +11,42 @@ describe("leb128", () => {
     if (hasWASM()) {
         it("signed", () => {
             let a;
-            assert.deepEqual(
+            assert.deepStrictEqual(
                 [...(a = encodeSLEB128(Number.MAX_SAFE_INTEGER))],
                 [255, 255, 255, 255, 255, 255, 255, 15]
             );
-            assert.deepEqual(decodeSLEB128(a), [Number.MAX_SAFE_INTEGER, 8]);
-            assert.deepEqual(
+            assert.deepStrictEqual(decodeSLEB128(a), [
+                Number.MAX_SAFE_INTEGER,
+                8,
+            ]);
+            assert.deepStrictEqual(
                 [...(a = encodeSLEB128(Number.MIN_SAFE_INTEGER))],
                 [129, 128, 128, 128, 128, 128, 128, 112]
             );
-            assert.deepEqual(decodeSLEB128(a), [Number.MIN_SAFE_INTEGER, 8]);
-            assert.deepEqual(decodeSLEB128(encodeSLEB128(64)), [64, 2]);
-            assert.deepEqual(decodeSLEB128(encodeSLEB128(-64)), [-64, 1]);
+            assert.deepStrictEqual(decodeSLEB128(a), [
+                Number.MIN_SAFE_INTEGER,
+                8,
+            ]);
+            assert.deepStrictEqual(decodeSLEB128(encodeSLEB128(64)), [64, 2]);
+            assert.deepStrictEqual(decodeSLEB128(encodeSLEB128(-64)), [-64, 1]);
         });
 
         it("unsigned", () => {
             let a;
-            assert.deepEqual(
+            assert.deepStrictEqual(
                 [...(a = encodeULEB128(Number.MAX_SAFE_INTEGER))],
                 [255, 255, 255, 255, 255, 255, 255, 15]
             );
-            assert.deepEqual(decodeULEB128(a), [Number.MAX_SAFE_INTEGER, 8]);
-            assert.deepEqual(
+            assert.deepStrictEqual(decodeULEB128(a), [
+                Number.MAX_SAFE_INTEGER,
+                8,
+            ]);
+            assert.deepStrictEqual(
                 [...(a = encodeULEB128(Number.MIN_SAFE_INTEGER))],
                 [0]
             );
-            assert.deepEqual(decodeULEB128(a), [0, 1]);
-            assert.deepEqual(decodeULEB128(encodeULEB128(127)), [127, 1]);
+            assert.deepStrictEqual(decodeULEB128(a), [0, 1]);
+            assert.deepStrictEqual(decodeULEB128(encodeULEB128(127)), [127, 1]);
         });
     } else {
         console.warn("WASM not available, skipping tests...");

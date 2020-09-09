@@ -8,11 +8,17 @@ describe("hdom-mock", () => {
         impl.createTextElement(a, "foo");
         a.appendChild(new HDOMNode("span"));
         impl.createTextElement(a, "bar");
-        assert.deepEqual(a.toHiccup(), ["div", {}, "foo", ["span", {}], "bar"]);
-        assert.deepEqual(impl.getChild(a, 0).toHiccup(), ["span", {}]);
+        assert.deepStrictEqual(a.toHiccup(), [
+            "div",
+            {},
+            "foo",
+            ["span", {}],
+            "bar",
+        ]);
+        assert.deepStrictEqual(impl.getChild(a, 0).toHiccup(), ["span", {}]);
         a.textContent = "foobar";
         assert.strictEqual(impl.getChild(a, 0), undefined);
-        assert.deepEqual(a.toHiccup(), ["div", {}, "foobar"]);
+        assert.deepStrictEqual(a.toHiccup(), ["div", {}, "foobar"]);
     });
 
     it("basic diff", () => {
@@ -21,7 +27,7 @@ describe("hdom-mock", () => {
 
         const step = (prev: any[], curr: any[], expected: any[]) => {
             impl.diffTree(opts, impl.root, prev, curr);
-            assert.deepEqual(impl.root.toHiccup(), expected);
+            assert.deepStrictEqual(impl.root.toHiccup(), expected);
         };
 
         const a = impl.normalizeTree(opts, (ctx: any) => [

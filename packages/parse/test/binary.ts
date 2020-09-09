@@ -8,8 +8,8 @@ const check = (
     pos: number
 ) => {
     const ctx = defContext(src);
-    assert.equal(parser(ctx), res, `src: '${src}'`);
-    assert.equal(ctx.state!.p, pos, `src: '${src}' pos: ${ctx.state!.p}`);
+    assert.strictEqual(parser(ctx), res, `src: '${src}'`);
+    assert.strictEqual(ctx.state!.p, pos, `src: '${src}' pos: ${ctx.state!.p}`);
 };
 
 describe("parse", () => {

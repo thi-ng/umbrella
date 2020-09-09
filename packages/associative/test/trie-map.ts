@@ -17,22 +17,22 @@ describe("TrieMap", () => {
     });
 
     it("keys", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             new Set(root.keys()),
             new Set(["hey", "hello", "hallo", "hallo", "hola", "hold", "hej"])
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             new Set(root.find("he")!.keys()),
             new Set(["y", "llo", "j"])
         );
     });
 
     it("values", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             new Set(root.values()),
             new Set(["en", "es", "de-at", "se"])
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             new Set(root.find("he")!.values()),
             new Set(["en", "se"])
         );
@@ -40,24 +40,24 @@ describe("TrieMap", () => {
 
     it("delete", () => {
         assert(root.delete("he"));
-        assert.deepEqual(
+        assert.deepStrictEqual(
             new Set(root.keys()),
             new Set(["hola", "hold", "hallo"])
         );
         assert(root.delete("hallo"));
-        assert.equal(root.get("hallo"), undefined);
+        assert.strictEqual(root.get("hallo"), undefined);
         assert(root.delete("h"));
-        assert.deepEqual([...root], []);
+        assert.deepStrictEqual([...root], []);
     });
 
     it("known prefix", () => {
-        assert.deepEqual(root.knownPrefix("hole"), "hol");
-        assert.deepEqual(root.knownPrefix("whole"), undefined);
+        assert.deepStrictEqual(root.knownPrefix("hole"), "hol");
+        assert.deepStrictEqual(root.knownPrefix("whole"), undefined);
     });
 
     it("suffixes", () => {
-        assert.deepEqual([...root.suffixes("he")], ["j", "llo", "y"]);
-        assert.deepEqual(
+        assert.deepStrictEqual([...root.suffixes("he")], ["j", "llo", "y"]);
+        assert.deepStrictEqual(
             [...root.suffixes("he", true)],
             ["hej", "hello", "hey"]
         );

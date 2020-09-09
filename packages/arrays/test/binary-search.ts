@@ -7,7 +7,10 @@ const tests = [5, 10, 15, 20, 25, 45];
 
 const checkPred = (pred: FnO<number, number>, res: number[]) => {
     for (let i = tests.length; --i >= 0; ) {
-        assert.equal(pred(binarySearch(src, tests[i]), src.length), res[i]);
+        assert.strictEqual(
+            pred(binarySearch(src, tests[i]), src.length),
+            res[i]
+        );
     }
 };
 

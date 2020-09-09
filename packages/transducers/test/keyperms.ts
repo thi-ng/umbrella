@@ -4,7 +4,7 @@ import * as assert from "assert";
 
 describe("keyPermutations", () => {
     it("basic", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             new Set([
                 ...keyPermutations({
                     a: [1, 2],

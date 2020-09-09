@@ -20,7 +20,7 @@ const svg = `
 
 describe("sax", () => {
     it("svg parse", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [
                 ...tx.iterator(
                     tx.comp(
@@ -101,7 +101,7 @@ describe("sax", () => {
         // implementation for unhandled elements (just return undefined)
         parseElement.add(DEFAULT, () => undefined);
 
-        assert.deepEqual(
+        assert.deepStrictEqual(
             parseElement(<ParseElement>tx.transduce(parse(), tx.last(), svg)),
             [
                 "svg",
@@ -149,11 +149,11 @@ describe("sax", () => {
     });
 
     it("errors", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...parse("a")],
             [{ type: 7, body: "unexpected char: 'a' @ pos 1" }]
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...parse("<a><b></c></a>")],
             [
                 { type: 4, tag: "a", attribs: {} },
@@ -164,7 +164,7 @@ describe("sax", () => {
     });
 
     it("boolean attribs", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...parse({ boolean: true }, `<foo a b="2" c></foo>`)],
             [
                 { type: 4, tag: "foo", attribs: { a: true, b: "2", c: true } },
@@ -177,7 +177,7 @@ describe("sax", () => {
             ],
             "no slash"
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...parse({ boolean: true }, `<foo a b="2" c/>`)],
             [
                 { type: 4, tag: "foo", attribs: { a: true, b: "2", c: true } },

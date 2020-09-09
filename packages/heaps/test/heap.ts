@@ -13,76 +13,79 @@ describe("Heap", () => {
     });
 
     it("length", () => {
-        assert.equal(h.length, src.length);
+        assert.strictEqual(h.length, src.length);
     });
 
     it("copy", () => {
-        assert.deepEqual(drain(h.copy()), drain(h));
+        assert.deepStrictEqual(drain(h.copy()), drain(h));
         h = new Heap(src, { compare: rcmp });
-        assert.deepEqual(drain(h.copy()), drain(h));
+        assert.deepStrictEqual(drain(h.copy()), drain(h));
     });
 
     it("peek", () => {
-        assert.equal(h.peek(), -1);
+        assert.strictEqual(h.peek(), -1);
         h.push(-2);
-        assert.equal(h.peek(), -2);
+        assert.strictEqual(h.peek(), -2);
     });
 
     it("pop", () => {
-        assert.deepEqual(drain(h), src.slice().sort(compare));
+        assert.deepStrictEqual(drain(h), src.slice().sort(compare));
         h = new Heap(src, { compare: rcmp });
-        assert.deepEqual(drain(h), src.slice().sort(compare).reverse());
+        assert.deepStrictEqual(drain(h), src.slice().sort(compare).reverse());
     });
 
     it("into", () => {
-        assert.deepEqual(drain(h.into(src)), src.concat(src).sort(compare));
+        assert.deepStrictEqual(
+            drain(h.into(src)),
+            src.concat(src).sort(compare)
+        );
     });
 
     it("pushPop", () => {
-        assert.equal(h.pushPop(-2), -2);
-        assert.equal(h.length, src.length);
-        assert.equal(h.pushPop(-1), -1);
-        assert.equal(h.length, src.length);
-        assert.equal(h.pushPop(11), -1);
-        assert.equal(h.length, src.length);
-        assert.equal(h.pushPop(24), 2);
-        assert.equal(h.length, src.length);
+        assert.strictEqual(h.pushPop(-2), -2);
+        assert.strictEqual(h.length, src.length);
+        assert.strictEqual(h.pushPop(-1), -1);
+        assert.strictEqual(h.length, src.length);
+        assert.strictEqual(h.pushPop(11), -1);
+        assert.strictEqual(h.length, src.length);
+        assert.strictEqual(h.pushPop(24), 2);
+        assert.strictEqual(h.length, src.length);
     });
 
     it("min", () => {
-        assert.deepEqual(h.min(0), []);
-        assert.deepEqual(h.min(1), [-1]);
-        assert.deepEqual(h.min(2), [-1, 2]);
-        assert.deepEqual(h.min(3), [-1, 2, 5]);
-        assert.deepEqual(h.min(4), [-1, 2, 5, 10]);
-        assert.deepEqual(h.min(), src.slice().sort(compare));
+        assert.deepStrictEqual(h.min(0), []);
+        assert.deepStrictEqual(h.min(1), [-1]);
+        assert.deepStrictEqual(h.min(2), [-1, 2]);
+        assert.deepStrictEqual(h.min(3), [-1, 2, 5]);
+        assert.deepStrictEqual(h.min(4), [-1, 2, 5, 10]);
+        assert.deepStrictEqual(h.min(), src.slice().sort(compare));
     });
 
     it("max", () => {
-        assert.deepEqual(h.max(0), []);
-        assert.deepEqual(h.max(1), [23]);
-        assert.deepEqual(h.max(2), [23, 22]);
-        assert.deepEqual(h.max(3), [23, 22, 20]);
-        assert.deepEqual(h.max(4), [23, 22, 20, 18]);
-        assert.deepEqual(h.max(), src.slice().sort(compare).reverse());
+        assert.deepStrictEqual(h.max(0), []);
+        assert.deepStrictEqual(h.max(1), [23]);
+        assert.deepStrictEqual(h.max(2), [23, 22]);
+        assert.deepStrictEqual(h.max(3), [23, 22, 20]);
+        assert.deepStrictEqual(h.max(4), [23, 22, 20, 18]);
+        assert.deepStrictEqual(h.max(), src.slice().sort(compare).reverse());
     });
 
     it("parent", () => {
-        assert.equal(h.parent(0), undefined);
-        assert.equal(h.parent(1), -1);
-        assert.equal(h.parent(2), -1);
-        assert.equal(h.parent(3), 2);
-        assert.equal(h.parent(4), 2);
-        assert.equal(h.parent(5), 10);
-        assert.equal(h.parent(6), 10);
+        assert.strictEqual(h.parent(0), undefined);
+        assert.strictEqual(h.parent(1), -1);
+        assert.strictEqual(h.parent(2), -1);
+        assert.strictEqual(h.parent(3), 2);
+        assert.strictEqual(h.parent(4), 2);
+        assert.strictEqual(h.parent(5), 10);
+        assert.strictEqual(h.parent(6), 10);
     });
 
     it("children", () => {
-        assert.deepEqual(h.children(0), [2, 10]);
-        assert.deepEqual(h.children(1), [5, 15]);
-        assert.deepEqual(h.children(2), [18, 23]);
-        assert.deepEqual(h.children(3), [22, 20]);
-        assert.deepEqual(h.children(4), undefined);
+        assert.deepStrictEqual(h.children(0), [2, 10]);
+        assert.deepStrictEqual(h.children(1), [5, 15]);
+        assert.deepStrictEqual(h.children(2), [18, 23]);
+        assert.deepStrictEqual(h.children(3), [22, 20]);
+        assert.deepStrictEqual(h.children(4), undefined);
     });
 });
 

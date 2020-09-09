@@ -4,7 +4,7 @@ import * as assert from "assert";
 import { serialize } from "../src/index";
 
 function _check(a: any, b: any) {
-    assert.equal(serialize(a), b);
+    assert.strictEqual(serialize(a), b);
 }
 
 function check(id: string, a: any, b: any) {
@@ -301,7 +301,7 @@ describe("serialize", () => {
     it("comp object", () => {
         const foo = (ctx: any, body: any) => ["div", ctx.foo, body];
         const bar = { render: (_: any, id: any) => [foo, id] };
-        assert.equal(
+        assert.strictEqual(
             serialize(["section", [bar, "a"], [bar, "b"]], {
                 foo: { class: "foo" },
             }),

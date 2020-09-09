@@ -20,7 +20,7 @@ describe("fromIterable()", () => {
     });
 
     it("starts in IDLE state", () => {
-        assert.equal(src.getState(), State.IDLE);
+        assert.strictEqual(src.getState(), State.IDLE);
     });
 
     it("delivers all values", (done) => {
@@ -30,18 +30,18 @@ describe("fromIterable()", () => {
                 buf.push(x);
             },
             done() {
-                assert.deepEqual(buf, data);
+                assert.deepStrictEqual(buf, data);
                 done();
             },
         });
     });
 
-    it("finishes", (done) => {
-        let sub = src.subscribe({
+    it("finishes", (_done) => {
+        let sub: Subscription<any, any> = src.subscribe({
             done() {
-                assert.equal(src.getState(), State.DONE, "src not done");
-                assert.equal(sub.getState(), State.DONE, "sub not done");
-                done();
+                assert.strictEqual(src.getState(), State.DONE, "src not done");
+                assert.strictEqual(sub.getState(), State.DONE, "sub not done");
+                _done();
             },
         });
     });
@@ -55,7 +55,7 @@ describe("fromIterable()", () => {
                 buf.push(x);
             },
             done() {
-                assert.deepEqual(buf, data);
+                assert.deepStrictEqual(buf, data);
                 assert(Date.now() - t0 >= (data.length + 1) * 10);
                 done();
             },
@@ -77,7 +77,7 @@ describe("fromIterable()", () => {
         });
         setTimeout(() => src.cancel(), TIMEOUT * 1.5);
         setTimeout(() => {
-            assert.deepEqual(buf, [data[0]]);
+            assert.deepStrictEqual(buf, [data[0]]);
             assert(!doneCalled);
             done();
         }, TIMEOUT * 4);

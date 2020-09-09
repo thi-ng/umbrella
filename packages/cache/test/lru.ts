@@ -21,23 +21,23 @@ describe("LRU", () => {
     });
 
     it("max length", () => {
-        assert.equal(c.length, 3);
+        assert.strictEqual(c.length, 3);
         c.set("d", 4);
-        assert.equal(c.length, 4);
+        assert.strictEqual(c.length, 4);
         c.set("e", 5);
-        assert.equal(c.length, 4);
-        assert.deepEqual(evicts, [["a", 1]]);
+        assert.strictEqual(c.length, 4);
+        assert.deepStrictEqual(evicts, [["a", 1]]);
     });
 
     it("get", () => {
-        assert.equal(c.get("a"), 1);
-        assert.equal(c.get("b"), 2);
-        assert.deepEqual([...c.keys()], ["c", "a", "b"]);
+        assert.strictEqual(c.get("a"), 1);
+        assert.strictEqual(c.get("b"), 2);
+        assert.deepStrictEqual([...c.keys()], ["c", "a", "b"]);
         c.set("d", 4);
-        assert.deepEqual([...c.keys()], ["c", "a", "b", "d"]);
+        assert.deepStrictEqual([...c.keys()], ["c", "a", "b", "d"]);
         c.set("e", 5);
-        assert.deepEqual([...c.keys()], ["a", "b", "d", "e"]);
-        assert.deepEqual([...c.values()], [1, 2, 4, 5]);
-        assert.deepEqual(evicts, [["c", 3]]);
+        assert.deepStrictEqual([...c.keys()], ["a", "b", "d", "e"]);
+        assert.deepStrictEqual([...c.values()], [1, 2, 4, 5]);
+        assert.deepStrictEqual(evicts, [["c", 3]]);
     });
 });

@@ -3,7 +3,7 @@ import * as assert from "assert";
 import { parse } from "../src";
 
 const check = (src: string, expected: any[]) =>
-    assert.deepEqual([...iterator(parse(), src)], expected);
+    assert.deepStrictEqual([...iterator(parse(), src)], expected);
 
 describe("parse", () => {
     it("CRLF", () => {

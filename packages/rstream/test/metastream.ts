@@ -16,10 +16,10 @@ describe("MetaStream", () => {
             },
         });
         setTimeout(() => {
-            assert.deepEqual(acc, [10, 20, 30, 20, 40, 60, 30, 60, 90]);
-            assert.equal(meta.getState(), State.DONE);
-            assert.equal(sub.getState(), State.DONE);
-            assert.equal(sub2.getState(), State.DONE);
+            assert.deepStrictEqual(acc, [10, 20, 30, 20, 40, 60, 30, 60, 90]);
+            assert.strictEqual(meta.getState(), State.DONE);
+            assert.strictEqual(sub.getState(), State.DONE);
+            assert.strictEqual(sub2.getState(), State.DONE);
             done();
         }, 5 * TIMEOUT);
     });
@@ -32,10 +32,10 @@ describe("MetaStream", () => {
         const sub = src.subscribe(meta);
         const child = sub.subscribe({});
         setTimeout(() => {
-            assert.equal(src.getState(), State.DONE);
-            assert.equal(meta.getState(), State.ACTIVE);
-            assert.equal(sub.getState(), State.ACTIVE);
-            assert.equal(child.getState(), State.IDLE);
+            assert.strictEqual(src.getState(), State.DONE);
+            assert.strictEqual(meta.getState(), State.ACTIVE);
+            assert.strictEqual(sub.getState(), State.ACTIVE);
+            assert.strictEqual(child.getState(), State.IDLE);
             done();
         }, 3 * TIMEOUT);
     });
@@ -56,14 +56,14 @@ describe("MetaStream", () => {
         });
         setTimeout(() => {
             child.unsubscribe();
-            assert.equal(src.getState(), State.DONE);
-            assert.equal(meta.getState(), State.ACTIVE);
+            assert.strictEqual(src.getState(), State.DONE);
+            assert.strictEqual(meta.getState(), State.ACTIVE);
             meta.subscribe({
                 next(x) {
                     acc.push(x);
                 },
             });
-            assert.deepEqual(acc, [10, 10]);
+            assert.deepStrictEqual(acc, [10, 10]);
             done();
         }, 3 * TIMEOUT);
     });

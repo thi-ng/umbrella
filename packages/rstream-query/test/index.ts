@@ -22,7 +22,7 @@ describe("rstream-query", () => {
         store
             .addPatternQuery(["a", null, null], "q", false)
             .subscribe({ next: (r) => res.push(r) });
-        assert.deepEqual(res, [new Set([0, 3])]);
+        assert.deepStrictEqual(res, [new Set([0, 3])]);
     });
 
     it("pattern query (P)", () => {
@@ -30,7 +30,7 @@ describe("rstream-query", () => {
         store
             .addPatternQuery([null, "type", null], "q", false)
             .subscribe({ next: (r) => res.push(r) });
-        assert.deepEqual(res, [new Set([0, 1, 2])]);
+        assert.deepStrictEqual(res, [new Set([0, 1, 2])]);
     });
 
     it("pattern query (O)", () => {
@@ -38,7 +38,7 @@ describe("rstream-query", () => {
         store
             .addPatternQuery([null, null, "a"], "q", false)
             .subscribe({ next: (r) => res.push(r) });
-        assert.deepEqual(res, [new Set([5])]);
+        assert.deepStrictEqual(res, [new Set([5])]);
     });
 
     it("pattern query (SP)", () => {
@@ -46,7 +46,7 @@ describe("rstream-query", () => {
         store
             .addPatternQuery(["a", "value", null], "q", false)
             .subscribe({ next: (r) => res.push(r) });
-        assert.deepEqual(res, [new Set([3])]);
+        assert.deepStrictEqual(res, [new Set([3])]);
     });
 
     it("pattern query (PO)", () => {
@@ -54,7 +54,7 @@ describe("rstream-query", () => {
         store
             .addPatternQuery([null, "value", 0], "q", false)
             .subscribe({ next: (r) => res.push(r) });
-        assert.deepEqual(res, [new Set([3])]);
+        assert.deepStrictEqual(res, [new Set([3])]);
     });
 
     it("pattern query (SO)", () => {
@@ -62,7 +62,7 @@ describe("rstream-query", () => {
         store
             .addPatternQuery(["b", null, "bar"], "q", false)
             .subscribe({ next: (r) => res.push(r) });
-        assert.deepEqual(res, [new Set([1])]);
+        assert.deepStrictEqual(res, [new Set([1])]);
     });
 
     it("pattern query (SPO)", () => {
@@ -70,7 +70,7 @@ describe("rstream-query", () => {
         store
             .addPatternQuery(["c", "type", "baz"], "q", false)
             .subscribe({ next: (r) => res.push(r) });
-        assert.deepEqual(res, [new Set([2])]);
+        assert.deepStrictEqual(res, [new Set([2])]);
     });
 
     it("pattern query (all)", () => {
@@ -78,7 +78,7 @@ describe("rstream-query", () => {
         store
             .addPatternQuery([null, null, null], "q", false)
             .subscribe({ next: (r) => res.push(r) });
-        assert.deepEqual(res, [new Set([0, 1, 2, 3, 4, 5])]);
+        assert.deepStrictEqual(res, [new Set([0, 1, 2, 3, 4, 5])]);
     });
 
     it("param query (S)", () => {
@@ -86,7 +86,7 @@ describe("rstream-query", () => {
         store
             .addParamQuery(["a", "?p", "?o"])
             .subscribe({ next: (r) => res.push(r) });
-        assert.deepEqual(res, [
+        assert.deepStrictEqual(res, [
             new Set([
                 { p: "type", o: "foo" },
                 { p: "value", o: 0 },
@@ -99,7 +99,7 @@ describe("rstream-query", () => {
         store
             .addParamQuery(["?s", "type", "?o"])
             .subscribe({ next: (r) => res.push(r) });
-        assert.deepEqual(res, [
+        assert.deepStrictEqual(res, [
             new Set([
                 { s: "a", o: "foo" },
                 { s: "b", o: "bar" },
@@ -113,7 +113,7 @@ describe("rstream-query", () => {
         store
             .addParamQuery(["?s", "?p", "a"])
             .subscribe({ next: (r) => res.push(r) });
-        assert.deepEqual(res, [new Set([{ s: "c", p: "friend" }])]);
+        assert.deepStrictEqual(res, [new Set([{ s: "c", p: "friend" }])]);
     });
 
     it("param query (SP)", () => {
@@ -121,7 +121,7 @@ describe("rstream-query", () => {
         store
             .addParamQuery(["a", "value", "?o"])
             .subscribe({ next: (r) => res.push(r) });
-        assert.deepEqual(res, [new Set([{ o: 0 }])]);
+        assert.deepStrictEqual(res, [new Set([{ o: 0 }])]);
     });
 
     it("param query (PO)", () => {
@@ -129,7 +129,7 @@ describe("rstream-query", () => {
         store
             .addParamQuery(["?s", "value", 0])
             .subscribe({ next: (r) => res.push(r) });
-        assert.deepEqual(res, [new Set([{ s: "a" }])]);
+        assert.deepStrictEqual(res, [new Set([{ s: "a" }])]);
     });
 
     it("param query (SO)", () => {
@@ -137,7 +137,7 @@ describe("rstream-query", () => {
         store
             .addParamQuery(["b", "?p", "bar"])
             .subscribe({ next: (r) => res.push(r) });
-        assert.deepEqual(res, [new Set([{ p: "type" }])]);
+        assert.deepStrictEqual(res, [new Set([{ p: "type" }])]);
     });
 
     it("param query (SPO)", () => {
@@ -149,7 +149,7 @@ describe("rstream-query", () => {
         store
             .addParamQuery(["?s", "?p", "?o"])
             .subscribe({ next: (r) => res.push(r) });
-        assert.deepEqual(res, [
+        assert.deepStrictEqual(res, [
             new Set([
                 { s: "a", p: "type", o: "foo" },
                 { s: "b", p: "type", o: "bar" },

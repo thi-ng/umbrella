@@ -6,8 +6,8 @@ describe("range-coder", () => {
     it("fixed", () => {
         const src = new Uint8Array([10, 20, 30, 10, 10, 10]);
         const dest = encodeBytes(src);
-        assert.deepEqual([...dest], [10, 10, 224, 160, 49, 91, 88]);
-        assert.deepEqual([...src], [...decodeBytes(dest)]);
+        assert.deepStrictEqual([...dest], [10, 10, 224, 160, 49, 91, 88]);
+        assert.deepStrictEqual([...src], [...decodeBytes(dest)]);
     });
 
     it("fuzz", () => {
@@ -15,7 +15,7 @@ describe("range-coder", () => {
             const src = randomArray(640, 1024);
             const dest = encodeBytes(src);
             console.log(`${((dest.length / src.length) * 100).toFixed(2)}%`);
-            assert.deepEqual([...src], [...decodeBytes(dest)]);
+            assert.deepStrictEqual([...src], [...decodeBytes(dest)]);
         }
     });
 });

@@ -22,7 +22,7 @@ describe("gp (ast)", () => {
     });
 
     it("generate", () => {
-        assert.deepEqual(ast.randomAST(), {
+        assert.deepStrictEqual(ast.randomAST(), {
             type: 1,
             op: "+",
             args: [

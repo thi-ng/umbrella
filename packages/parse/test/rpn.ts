@@ -25,6 +25,6 @@ describe("parse", () => {
         const ctx = defContext("10 5 3 * + -2 * 10 /");
         assert(program(ctx));
         assert(ctx.done);
-        assert.deepEqual(stack, [-5]);
+        assert.deepStrictEqual(stack, [-5]);
     });
 });

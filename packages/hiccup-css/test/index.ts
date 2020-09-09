@@ -17,40 +17,40 @@ const rules = {
 
 describe("hiccup-css", () => {
     it("rules only", () => {
-        assert.equal(css("a"), undefined);
-        assert.equal(css({}), "");
-        assert.equal(css(rules.a), "color:red;");
-        assert.equal(css(rules.b), "border:0;");
-        assert.equal(css(rules.c), "font:14px Inconsolata,monospace;");
-        assert.equal(css(rules.f), "foo:1;bar:1;");
+        assert.strictEqual(css("a"), undefined);
+        assert.strictEqual(css({}), "");
+        assert.strictEqual(css(rules.a), "color:red;");
+        assert.strictEqual(css(rules.b), "border:0;");
+        assert.strictEqual(css(rules.c), "font:14px Inconsolata,monospace;");
+        assert.strictEqual(css(rules.f), "foo:1;bar:1;");
     });
 
     it("simple", () => {
-        assert.equal(css(["a"]), "");
-        assert.equal(css(["a", rules.a]), "a{color:red;}");
-        assert.equal(
+        assert.strictEqual(css(["a"]), "");
+        assert.strictEqual(css(["a", rules.a]), "a{color:red;}");
+        assert.strictEqual(
             css([
                 ["a", rules.a],
                 ["b", rules.b],
             ]),
             "a{color:red;}b{border:0;}"
         );
-        assert.equal(
+        assert.strictEqual(
             css(["a", "b", rules.a, rules.b]),
             "a,b{color:red;border:0;}"
         );
     });
 
     it("nested", () => {
-        assert.equal(
+        assert.strictEqual(
             css(["a", [":link", rules.a], [":visited", rules.b]]),
             "a:link{color:red;}a:visited{border:0;}"
         );
-        assert.equal(
+        assert.strictEqual(
             css(["p", ["a", [":link", rules.a], [":visited", rules.b]]]),
             "p a:link{color:red;}p a:visited{border:0;}"
         );
-        assert.equal(
+        assert.strictEqual(
             css([
                 "#id",
                 ["h1", {}, {}],
@@ -61,7 +61,7 @@ describe("hiccup-css", () => {
     });
 
     it("pretty", () => {
-        assert.equal(
+        assert.strictEqual(
             css(
                 [
                     "#id",
@@ -80,23 +80,23 @@ describe("hiccup-css", () => {
     });
 
     it("@import", () => {
-        assert.equal(css(at_import("foo.css")), "@import url(foo.css);");
-        assert.equal(
+        assert.strictEqual(css(at_import("foo.css")), "@import url(foo.css);");
+        assert.strictEqual(
             css([at_import("foo.css"), ["div", {}]]),
             "@import url(foo.css);div{}"
         );
-        assert.equal(
+        assert.strictEqual(
             css([[at_import("foo.css")], ["div", {}]]),
             "@import url(foo.css);div{}"
         );
-        assert.equal(
+        assert.strictEqual(
             css(at_import("foo.css", "screen", "print")),
             "@import url(foo.css) screen,print;"
         );
     });
 
     it("@keyframes", () => {
-        assert.equal(
+        assert.strictEqual(
             css(
                 at_keyframes("fadein", {
                     0: { opacity: 0 },
@@ -105,31 +105,34 @@ describe("hiccup-css", () => {
             ),
             "@keyframes fadein{0%{opacity:0;}100%{opacity:1;}}"
         );
-        assert.equal(
+        assert.strictEqual(
             css(at_keyframes("fadein", { opacity: 0 }, { opacity: 1 })),
             "@keyframes fadein{0%{opacity:0;}100%{opacity:1;}}"
         );
     });
 
     it("@media", () => {
-        assert.equal(css(at_media({ screen: true }, [])), "@media screen{}");
-        assert.equal(
+        assert.strictEqual(
+            css(at_media({ screen: true }, [])),
+            "@media screen{}"
+        );
+        assert.strictEqual(
             css(at_media({ screen: false }, [])),
             "@media not screen{}"
         );
-        assert.equal(
+        assert.strictEqual(
             css(at_media({ screen: false, print: true }, [])),
             "@media not screen and print{}"
         );
-        assert.equal(
+        assert.strictEqual(
             css(at_media({ screen: "only" }, [])),
             "@media only screen{}"
         );
-        assert.equal(
+        assert.strictEqual(
             css(at_media({ "min-width": "10rem" }, ["div", [".foo", rules.a]])),
             "@media (min-width:10rem){div .foo{color:red;}}"
         );
-        assert.equal(
+        assert.strictEqual(
             css(
                 at_media({ screen: true, print: true }, [
                     ["div", [".foo", rules.a]],
@@ -146,7 +149,7 @@ describe("hiccup-css", () => {
     });
 
     it("animation", () => {
-        assert.equal(
+        assert.strictEqual(
             css(
                 animation(
                     "delayed-fade-in",

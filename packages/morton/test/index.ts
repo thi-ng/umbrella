@@ -15,8 +15,8 @@ describe("morton", () => {
             const p = [$(), $(), $()];
             const tree = cartesianToTree(p);
             const morton = treeToMorton(tree, 3);
-            assert.deepEqual(mortonToTree(morton, 3), tree, "m2t");
-            assert.deepEqual(treeToCartesian(tree, 3), p, "t2c");
+            assert.deepStrictEqual(mortonToTree(morton, 3), tree, "m2t");
+            assert.deepStrictEqual(treeToCartesian(tree, 3), p, "t2c");
         }
     });
 });

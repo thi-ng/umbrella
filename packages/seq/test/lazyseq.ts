@@ -8,14 +8,14 @@ describe("lazyseq", () => {
             a !== undefined
                 ? lazyseq(() => cons(a, fib(b, a + b!)))
                 : fib(0, 1);
-        assert.equal(fib().first(), 0);
+        assert.strictEqual(fib().first(), 0);
         // prettier-ignore
-        assert.equal(fib().next()!.first(), 1);
+        assert.strictEqual(fib().next()!.first(), 1);
         // prettier-ignore
-        assert.equal(fib().next()!.next()!.first(), 1);
+        assert.strictEqual(fib().next()!.next()!.first(), 1);
         // prettier-ignore
-        assert.equal(fib().next()!.next()!.next()!.first(), 2);
+        assert.strictEqual(fib().next()!.next()!.next()!.first(), 2);
         // prettier-ignore
-        assert.equal(fib().next()!.next()!.next()!.next()!.first(), 3);
+        assert.strictEqual(fib().next()!.next()!.next()!.next()!.first(), 3);
     });
 });

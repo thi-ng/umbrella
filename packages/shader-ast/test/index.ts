@@ -14,7 +14,7 @@ import {
 
 describe("shader-ast", () => {
     it("op2 type infer mulvv", () => {
-        assert.deepEqual(mul(vec2(), vec2()), {
+        assert.deepStrictEqual(mul(vec2(), vec2()), {
             tag: "op2",
             type: "vec2",
             info: undefined,
@@ -35,7 +35,7 @@ describe("shader-ast", () => {
     });
 
     it("op2 type infer mulnv", () => {
-        assert.deepEqual(mul(1, vec2()), {
+        assert.deepStrictEqual(mul(1, vec2()), {
             tag: "op2",
             type: "vec2",
             info: "nv",
@@ -51,7 +51,7 @@ describe("shader-ast", () => {
     });
 
     it("op2 type infer mulvn", () => {
-        assert.deepEqual(mul(vec2(), 1), {
+        assert.deepStrictEqual(mul(vec2(), 1), {
             tag: "op2",
             type: "vec2",
             info: "vn",
@@ -78,12 +78,12 @@ describe("shader-ast", () => {
     it("defn deps", () => {
         const foo = defn("bool", "foo", [], () => [ret(TRUE)]);
         const bar = defn("float", "bar", [], () => [ret(float(foo()))]);
-        assert.equal(bar.deps.length, 1);
-        assert.equal(bar.deps[0].id, "foo");
+        assert.strictEqual(bar.deps.length, 1);
+        assert.strictEqual(bar.deps[0].id, "foo");
     });
 
     it("vec2 ctor", () => {
-        assert.deepEqual(vec2(), <Lit<"vec2">>{
+        assert.deepStrictEqual(vec2(), <Lit<"vec2">>{
             tag: "lit",
             type: "vec2",
             info: "n",
@@ -96,7 +96,7 @@ describe("shader-ast", () => {
                 },
             ],
         });
-        assert.deepEqual(vec2(1), <Lit<"vec2">>{
+        assert.deepStrictEqual(vec2(1), <Lit<"vec2">>{
             tag: "lit",
             type: "vec2",
             info: "n",
@@ -109,7 +109,7 @@ describe("shader-ast", () => {
                 },
             ],
         });
-        assert.deepEqual(vec2(1, 2), <Lit<"vec2">>{
+        assert.deepStrictEqual(vec2(1, 2), <Lit<"vec2">>{
             tag: "lit",
             type: "vec2",
             info: undefined,
@@ -128,7 +128,7 @@ describe("shader-ast", () => {
                 },
             ],
         });
-        assert.deepEqual(vec2(bvec2(true)), <Lit<"vec2">>{
+        assert.deepStrictEqual(vec2(bvec2(true)), <Lit<"vec2">>{
             tag: "lit",
             type: "vec2",
             info: "b",
@@ -148,7 +148,7 @@ describe("shader-ast", () => {
                 },
             ],
         });
-        assert.deepEqual(vec2(ivec2(1)), <Lit<"vec2">>{
+        assert.deepStrictEqual(vec2(ivec2(1)), <Lit<"vec2">>{
             tag: "lit",
             type: "vec2",
             info: "i",

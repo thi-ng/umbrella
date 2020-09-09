@@ -20,8 +20,8 @@ describe("bisect", () => {
         );
         src.subscribe({
             done() {
-                assert.deepEqual(odds, [1, 3]);
-                assert.deepEqual(evens, [2, 4]);
+                assert. deepStrictEqual(odds, [1, 3]);
+                assert. deepStrictEqual(evens, [2, 4]);
                 done();
             }
         });
@@ -41,9 +41,9 @@ describe("bisect", () => {
         src.subscribe(bisect((x) => !!(x & 1), subo, sube));
         src.subscribe({
             done() {
-                assert.deepEqual(odds, [10, 30]);
-                assert.deepEqual(evens, [200, 400]);
-                assert.equal(doneCount, 2);
+                assert. deepStrictEqual(odds, [10, 30]);
+                assert. deepStrictEqual(evens, [200, 400]);
+                assert.strictEqual(doneCount, 2);
                 done();
             }
         });

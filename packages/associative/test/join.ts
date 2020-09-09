@@ -7,7 +7,7 @@ describe("join", () => {
     it("simple", () => {
         const a = new ArraySet([{ a: 1 }, { a: 2 }]);
         const b = new ArraySet([{ b: 1 }, { b: 2 }]);
-        assert.deepEqual(
+        assert.deepStrictEqual(
             join(a, b),
             new ArraySet([
                 { a: 1, b: 1 },
@@ -29,7 +29,7 @@ describe("join", () => {
             { type: 2, label: "bar" },
             { type: 3, label: "baz" },
         ]);
-        assert.deepEqual(
+        assert.deepStrictEqual(
             join(a, b),
             new ArraySet([
                 { id: "a", type: 1, label: "foo" },
@@ -50,7 +50,7 @@ describe("join", () => {
             { xyz: 2, label: "bar" },
             { xyz: 3, label: "baz" },
         ]);
-        assert.deepEqual(
+        assert.deepStrictEqual(
             joinWith(a, b, { type: "xyz" }),
             new ArraySet([
                 { id: "a", type: 1, xyz: 1, label: "foo" },

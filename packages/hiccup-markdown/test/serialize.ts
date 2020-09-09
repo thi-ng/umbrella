@@ -29,7 +29,7 @@ describe("hiccup-markdown", () => {
 
         // Note: the same hiccup tree can be serialized to HTML via @thi.ng/hiccup or
         // used interactively in the browser w/ @thi.ng/hdom
-        assert.equal(
+        assert.strictEqual(
             serialize(
                 [
                     "div",

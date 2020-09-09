@@ -16,7 +16,7 @@ describe("SidechainPartition", function () {
                 buf.push(x);
             },
             done() {
-                assert.deepEqual(buf, [
+                assert.deepStrictEqual(buf, [
                     [1, 2],
                     [3, 4, 5],
                 ]);
@@ -43,7 +43,7 @@ describe("SidechainPartition", function () {
                 buf.push(x);
             },
             done() {
-                assert.deepEqual(buf, [
+                assert.deepStrictEqual(buf, [
                     [1, 2, 3],
                     [4, 5],
                 ]);
@@ -64,9 +64,9 @@ describe("SidechainPartition", function () {
         const part = src.subscribe(sidechainPartition(side));
         const sub = part.subscribe({});
         sub.unsubscribe();
-        assert.equal(src.getState(), State.DONE);
-        assert.equal(side.getState(), State.DONE);
-        assert.equal(part.getState(), State.DONE);
-        assert.equal(sub.getState(), State.DONE);
+        assert.strictEqual(src.getState(), State.DONE);
+        assert.strictEqual(side.getState(), State.DONE);
+        assert.strictEqual(part.getState(), State.DONE);
+        assert.strictEqual(sub.getState(), State.DONE);
     });
 });

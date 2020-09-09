@@ -10,7 +10,7 @@ import {
 
 describe("viz", () => {
     it("uniformDomain", () => {
-        assert.deepEqual(uniformDomain([100, 200], range(5)), [
+        assert.deepStrictEqual(uniformDomain([100, 200], range(5)), [
             [100, 0],
             [125, 1],
             [150, 2],
@@ -29,7 +29,7 @@ describe("viz", () => {
                 minor: { ticks: linTickMarks(1) },
             })
         );
-        assert.deepEqual(axis, [
+        assert.deepStrictEqual(axis, [
             "g",
             { stroke: "#000" },
             [
@@ -84,7 +84,7 @@ describe("viz", () => {
                 minor: { ticks: linTickMarks(1) },
             })
         );
-        assert.deepEqual(axis, [
+        assert.deepStrictEqual(axis, [
             "g",
             { stroke: "#000" },
             [

@@ -4,7 +4,7 @@ import { Patch, patchArray, patchObj } from "../src";
 
 describe("transducers-patch", () => {
     it("patchArray", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             reduce(
                 reductions(patchArray<number>()),
                 [[1, 2, 3]],
@@ -26,7 +26,7 @@ describe("transducers-patch", () => {
     });
 
     it("patchObj", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             reduce(
                 reductions(patchObj()),
                 [{ x: 23 }],

@@ -40,12 +40,12 @@ describe("cursor", function () {
 
     it("can be deref'd (a.b.c)", () => {
         c = defCursor(a, ["a", "b", "c"]);
-        assert.equal(c.deref(), src.a.b.c);
+        assert.strictEqual(c.deref(), src.a.b.c);
     });
 
     it("can be deref'd (path array)", () => {
         c = defCursor(a, ["a", "b", "g", "h"]);
-        assert.equal(c.deref(), src.a.b.g.h);
+        assert.strictEqual(c.deref(), src.a.b.g.h);
     });
 
     it("doesn't fail w/ invalid path", () => {
@@ -59,9 +59,9 @@ describe("cursor", function () {
 
     it("can be validated", () => {
         c = defCursor(a, ["a", "b", "c"], { validate: isNumber });
-        assert.equal(c.reset(42), 42);
-        assert.equal(c.reset("a"), 42);
-        assert.equal(c.reset(null), 42);
+        assert.strictEqual(c.reset(42), 42);
+        assert.strictEqual(c.reset("a"), 42);
+        assert.strictEqual(c.reset(null), 42);
         assert.throws(() =>
             defCursor(<Atom<any>>a, ["x"], { validate: isNumber })
         );
@@ -69,25 +69,25 @@ describe("cursor", function () {
 
     it("can be swapped'd (a.b.c)", () => {
         c = defCursor(a, ["a", "b", "c"]);
-        assert.equal(
+        assert.strictEqual(
             c.swap((x) => x + 1),
             src.a.b.c + 1
         );
-        assert.equal(c.deref(), src.a.b.c + 1);
-        assert.equal(a.deref().a.b.c, src.a.b.c + 1);
+        assert.strictEqual(c.deref(), src.a.b.c + 1);
+        assert.strictEqual(a.deref().a.b.c, src.a.b.c + 1);
         assert.strictEqual(a.deref().a.d, src.a.d);
         assert.strictEqual(a.deref().f, src.f);
         let v = c.deref();
-        assert.equal(c.reset(v), v);
+        assert.strictEqual(c.reset(v), v);
         a.reset(a.deref());
-        assert.equal(c.deref(), v);
+        assert.strictEqual(c.deref(), v);
     });
 
     it("can be reset (a.b.c)", () => {
         c = defCursor(a, ["a", "b", "c"]);
-        assert.equal(c.reset(100), 100);
-        assert.equal(c.deref(), 100);
-        assert.equal(a.deref().a.b.c, 100);
+        assert.strictEqual(c.reset(100), 100);
+        assert.strictEqual(c.deref(), 100);
+        assert.strictEqual(a.deref().a.b.c, 100);
         assert.strictEqual(a.deref().a.d, src.a.d);
         assert.strictEqual(a.deref().f, src.f);
     });
@@ -95,13 +95,13 @@ describe("cursor", function () {
     it("can update invalid path (x.y.z)", () => {
         c = defCursor(<Atom<any>>a, ["x", "y", "z"]);
         let add = (x: any) => (x != null ? x + 1 : 0);
-        assert.equal(c.swap(add), 0);
-        assert.equal(c.deref(), 0);
-        assert.equal(c.swap(add), 1);
-        assert.equal(c.deref(), 1);
-        assert.equal(c.reset(100), 100);
-        assert.equal(c.deref(), 100);
-        assert.equal((<Atom<any>>a).deref().x.y.z, 100);
+        assert.strictEqual(c.swap(add), 0);
+        assert.strictEqual(c.deref(), 0);
+        assert.strictEqual(c.swap(add), 1);
+        assert.strictEqual(c.deref(), 1);
+        assert.strictEqual(c.reset(100), 100);
+        assert.strictEqual(c.deref(), 100);
+        assert.strictEqual((<Atom<any>>a).deref().x.y.z, 100);
         assert.strictEqual(src.x, undefined);
     });
 
@@ -142,9 +142,9 @@ describe("cursor", function () {
     it("can be watched", () => {
         c = defCursor(a, ["a", "b", "c"]);
         c.addWatch("foo", (id, prev, curr) => {
-            assert.equal(id, "foo", "wrong id");
-            assert.equal(prev, 23, "wrong prev");
-            assert.equal(curr, 24, "wrong curr");
+            assert.strictEqual(id, "foo", "wrong id");
+            assert.strictEqual(prev, 23, "wrong prev");
+            assert.strictEqual(curr, 24, "wrong curr");
         });
         c.swap((x) => x + 1);
     });

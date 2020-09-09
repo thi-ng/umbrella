@@ -11,39 +11,42 @@ const early = tx.reducer<number, number>(
 
 describe("juxtR", () => {
     it("arity-1", () => {
-        assert.deepEqual(tx.reduce(tx.juxtR(tx.str("-")), src), ["1-2-3-4"]);
-        assert.deepEqual(tx.reduce(tx.juxtR(early), src), [3]);
-        assert.deepEqual(tx.transduce(tx.take(2), tx.juxtR(tx.str("-")), src), [
-            "1-2",
-        ]);
-    });
-    it("arity-2", () => {
-        assert.deepEqual(tx.reduce(tx.juxtR(tx.push(), tx.str("-")), src), [
-            [1, 2, 3, 4],
+        assert.deepStrictEqual(tx.reduce(tx.juxtR(tx.str("-")), src), [
             "1-2-3-4",
         ]);
-        assert.deepEqual(tx.reduce(tx.juxtR(tx.push(), early), src), [
+        assert.deepStrictEqual(tx.reduce(tx.juxtR(early), src), [3]);
+        assert.deepStrictEqual(
+            tx.transduce(tx.take(2), tx.juxtR(tx.str("-")), src),
+            ["1-2"]
+        );
+    });
+    it("arity-2", () => {
+        assert.deepStrictEqual(
+            tx.reduce(tx.juxtR(tx.push(), tx.str("-")), src),
+            [[1, 2, 3, 4], "1-2-3-4"]
+        );
+        assert.deepStrictEqual(tx.reduce(tx.juxtR(tx.push(), early), src), [
             [1, 2, 3],
             3,
         ]);
-        assert.deepEqual(
+        assert.deepStrictEqual(
             tx.transduce(tx.take(2), tx.juxtR(early, tx.str("-")), src),
             [3, "1-2"]
         );
     });
     it("arity-3", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             tx.reduce(
                 tx.juxtR(tx.add(), tx.reductions(tx.add()), tx.str("-")),
                 src
             ),
             [10, [0, 1, 3, 6, 10], "1-2-3-4"]
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             tx.reduce(tx.juxtR(tx.add(), tx.reductions(tx.add()), early), src),
             [6, [0, 1, 3, 6], 3]
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             tx.transduce(
                 tx.take(2),
                 tx.juxtR(early, tx.push(), tx.str("-")),
@@ -53,7 +56,7 @@ describe("juxtR", () => {
         );
     });
     it("arity-4", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             tx.reduce(
                 tx.juxtR(
                     tx.add(),
@@ -65,14 +68,14 @@ describe("juxtR", () => {
             ),
             [10, [0, 1, 3, 6, 10], [1, 2, 3, 4], "1-2-3-4"]
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             tx.reduce(
                 tx.juxtR(tx.add(), tx.reductions(tx.add()), tx.str("-"), early),
                 src
             ),
             [6, [0, 1, 3, 6], "1-2-3", 3]
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             tx.transduce(
                 tx.take(2),
                 tx.juxtR(early, tx.add(), tx.push(), tx.str("-")),

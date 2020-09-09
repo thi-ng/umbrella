@@ -16,19 +16,19 @@ const check = (
     pos: number
 ) => {
     const ctx = defContext(src);
-    assert.equal(parser(ctx), res, `src: '${src}'`);
-    assert.equal(ctx.state!.p, pos, `src: '${src}' pos: ${ctx.state!.p}`);
+    assert.strictEqual(parser(ctx), res, `src: '${src}'`);
+    assert.strictEqual(ctx.state!.p, pos, `src: '${src}' pos: ${ctx.state!.p}`);
 };
 
 describe("parse", () => {
     it("initial ctx", () => {
-        assert.deepEqual(defContext("").state, {
+        assert.deepStrictEqual(defContext("").state, {
             p: 0,
             l: 1,
             c: 1,
             done: true,
         });
-        assert.deepEqual(defContext(" ").state, {
+        assert.deepStrictEqual(defContext(" ").state, {
             p: 0,
             l: 1,
             c: 1,

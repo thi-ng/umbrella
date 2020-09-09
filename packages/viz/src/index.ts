@@ -6,6 +6,7 @@ export * from "./plot";
 export * from "./scale";
 
 export * from "./plot/area";
+export * from "./plot/binpack";
 export * from "./plot/candle";
 export * from "./plot/line";
 export * from "./plot/scatter";

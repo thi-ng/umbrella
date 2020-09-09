@@ -20,7 +20,7 @@ describe("transducers", () => {
                 buf.push(x);
             },
             done() {
-                assert.deepEqual(buf, expected);
+                assert.deepStrictEqual(buf, expected);
                 done();
             },
         };

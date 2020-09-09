@@ -61,28 +61,28 @@ describe("StreamSync", () => {
                 a2done = true;
             },
         });
-        assert.equal(a1buf, 3);
-        assert.equal(a2buf, 13);
+        assert.strictEqual(a1buf, 3);
+        assert.strictEqual(a2buf, 13);
         db.reset({ a1: { ins: { a: 100, b: 200 } }, a2: { ins: { b: 1000 } } });
-        assert.equal(a1buf, 300);
-        assert.equal(a2buf, 1300);
+        assert.strictEqual(a1buf, 300);
+        assert.strictEqual(a2buf, 1300);
         // teardown from end result
         res.unsubscribe();
         assert(!a1done);
         assert(!a2done);
-        assert.equal(a.getState(), State.ACTIVE, "a != ACTIVE");
-        assert.equal(b.getState(), State.ACTIVE, "b != ACTIVE");
-        assert.equal(a1.getState(), State.ACTIVE, "a1 != ACTIVE");
-        assert.equal(a1res.getState(), State.IDLE, "a1res != IDLE");
-        assert.equal(c.getState(), State.DONE, "c != DONE");
-        assert.equal(a2.getState(), State.DONE, "a2 != DONE");
-        assert.equal(res.getState(), State.DONE, "res != DONE");
+        assert.strictEqual(a.getState(), State.ACTIVE, "a != ACTIVE");
+        assert.strictEqual(b.getState(), State.ACTIVE, "b != ACTIVE");
+        assert.strictEqual(a1.getState(), State.ACTIVE, "a1 != ACTIVE");
+        assert.strictEqual(a1res.getState(), State.IDLE, "a1res != IDLE");
+        assert.strictEqual(c.getState(), State.DONE, "c != DONE");
+        assert.strictEqual(a2.getState(), State.DONE, "a2 != DONE");
+        assert.strictEqual(res.getState(), State.DONE, "res != DONE");
         // teardown from a1 result
         a1res.unsubscribe();
-        assert.equal(a.getState(), State.DONE, "a != DONE");
-        assert.equal(b.getState(), State.DONE, "b != DONE");
-        assert.equal(a1.getState(), State.DONE, "a1 != DONE");
-        assert.equal(a1res.getState(), State.DONE, "a1res != DONE");
+        assert.strictEqual(a.getState(), State.DONE, "a != DONE");
+        assert.strictEqual(b.getState(), State.DONE, "b != DONE");
+        assert.strictEqual(a1.getState(), State.DONE, "a1 != DONE");
+        assert.strictEqual(a1res.getState(), State.DONE, "a1res != DONE");
         assert(!a1done);
         assert(!a2done);
     });
@@ -97,7 +97,7 @@ describe("StreamSync", () => {
         const main = sync({ src, mergeOnly: true }).subscribe({
             next: (x) => res.push(x),
             done: () => {
-                assert.deepEqual(res, [
+                assert.deepStrictEqual(res, [
                     { c: 1 },
                     { c: 1, b: 2 },
                     { c: 1, b: 2, a: 3 },
@@ -132,7 +132,7 @@ describe("StreamSync", () => {
             .subscribe({
                 next: (x) => res.push(x),
                 done: () => {
-                    assert.deepEqual(res, [
+                    assert.deepStrictEqual(res, [
                         { c: 1, b: 2, a: 3 },
                         { c: 1, b: 2, a: 4 },
                     ]);
@@ -165,7 +165,7 @@ describe("StreamSync", () => {
             ),
             last()
         ).then((res) => {
-            assert.deepEqual(res, { a: "aa", b: "bb" });
+            assert.deepStrictEqual(res, { a: "aa", b: "bb" });
             done();
         });
     });
@@ -190,8 +190,8 @@ describe("StreamSync", () => {
 
         setTimeout(() => sub.unsubscribe(), 3.5 * TIMEOUT);
         setTimeout(() => {
-            assert.equal(main.getState(), State.ACTIVE);
-            assert.deepEqual(acc, [
+            assert.strictEqual(main.getState(), State.ACTIVE);
+            assert.deepStrictEqual(acc, [
                 { a: 1, b: 1 },
                 { a: 2, b: 2 },
                 { a: 3, b: 3 },
@@ -215,7 +215,7 @@ describe("StreamSync", () => {
             },
         });
         setTimeout(() => {
-            assert.deepEqual(acc, [{ a: 1, b: 1 }, { b: 2 }]);
+            assert.deepStrictEqual(acc, [{ a: 1, b: 1 }, { b: 2 }]);
             done();
         }, TIMEOUT);
     });

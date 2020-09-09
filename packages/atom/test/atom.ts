@@ -10,7 +10,7 @@ describe("atom", function () {
     });
 
     it("can be deref'd", () => {
-        assert.equal(a.deref(), 23);
+        assert.strictEqual(a.deref(), 23);
     });
 
     it("can be equiv'd", () => {
@@ -19,16 +19,16 @@ describe("atom", function () {
     });
 
     it("can be reset", () => {
-        assert.equal(a.reset(24), 24);
-        assert.equal(a.deref(), 24);
+        assert.strictEqual(a.reset(24), 24);
+        assert.strictEqual(a.deref(), 24);
     });
 
     it("can be swapped", () => {
-        assert.equal(
+        assert.strictEqual(
             a.swap((x) => x + 1),
             24
         );
-        assert.equal(a.deref(), 24);
+        assert.strictEqual(a.deref(), 24);
     });
 
     it("can add & remove watch", () => {
@@ -46,9 +46,9 @@ describe("atom", function () {
 
     it("can be watched", () => {
         a.addWatch("foo", (id, prev, curr) => {
-            assert.equal(id, "foo", "wrong id");
-            assert.equal(prev, 23, "wrong prev");
-            assert.equal(curr, 24, "wrong curr");
+            assert.strictEqual(id, "foo", "wrong id");
+            assert.strictEqual(prev, 23, "wrong prev");
+            assert.strictEqual(curr, 24, "wrong curr");
         });
         a.swap((x) => x + 1);
     });
@@ -56,14 +56,14 @@ describe("atom", function () {
     it("can be validated", () => {
         assert.throws(() => new Atom("", isNumber));
         a = new Atom(1, isNumber);
-        assert.equal(a.reset(2), 2);
-        assert.equal(a.reset("3"), 2);
-        assert.equal(a.reset(null), 2);
-        assert.equal(
+        assert.strictEqual(a.reset(2), 2);
+        assert.strictEqual(a.reset("3"), 2);
+        assert.strictEqual(a.reset(null), 2);
+        assert.strictEqual(
             a.swap(() => "3"),
             2
         );
-        assert.equal(
+        assert.strictEqual(
             a.swap(() => null),
             2
         );
