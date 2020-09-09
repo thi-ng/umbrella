@@ -16,6 +16,7 @@ This project is part of the
     - [Type checked accessors](#type-checked-accessors)
     - [Factory functions](#factory-functions)
     - [Deprecated](#deprecated)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -87,6 +88,12 @@ info](https://github.com/thi-ng/umbrella/issues/210)
 Derived views can now only be created via `defView()`, `defViewUnsafe()`
 (or `new View()`). The `IViewable` interface and `.addView()` methods
 have been removed.
+
+### Related packages
+
+- [@thi.ng/interceptors](https://github.com/thi-ng/umbrella/tree/develop/packages/interceptors) - Interceptor based event bus, side effect & immutable state handling
+- [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths) - Immutable, optimized and optionally typed path-based object property / array accessors with structural sharing
+- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream) - Reactive streams & subscription primitives for constructing dataflow graphs / pipelines
 
 ## Installation
 
@@ -640,4 +647,4 @@ Karsten Schmidt
 
 ## License
 
-&copy; 2016 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2017 - 2020 Karsten Schmidt // Apache Software License 2.0

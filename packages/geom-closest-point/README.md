@@ -43,7 +43,7 @@ yarn add @thi.ng/geom-closest-point
 <script src="https://unpkg.com/@thi.ng/geom-closest-point/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 833 bytes / CJS: 930 bytes / UMD: 979 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 1.00 KB / CJS: 1.10 KB / UMD: 1.14 KB
 
 ## Dependencies
 

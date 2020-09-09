@@ -14,7 +14,6 @@ This project is part of the
   - [Status](#status)
   - [Breaking changes in 5.0.0](#breaking-changes-in-500)
   - [Support packages](#support-packages)
-  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -167,10 +166,6 @@ StreamSync<
 - [@thi.ng/rstream-log-file](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-log-file) - File output handler for structured, multilevel & hierarchical loggers based on [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 - [@thi.ng/rstream-query](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-query) - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream) based triple store & reactive query engine
 
-### Related packages
-
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers) - Lightweight transducer implementations for ES6 / TypeScript
-
 ## Installation
 
 ```bash
@@ -185,7 +180,7 @@ yarn add @thi.ng/rstream
 <script src="https://unpkg.com/@thi.ng/rstream/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.39 KB / CJS: 5.58 KB / UMD: 5.53 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.40 KB / CJS: 5.58 KB / UMD: 5.54 KB
 
 ## Dependencies
 
