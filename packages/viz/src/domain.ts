@@ -30,3 +30,16 @@ export const dataMin = <T>(fn: Fn<T, number>, src: T[], pad = 0) =>
 
 export const dataMax = <T>(fn: Fn<T, number>, src: T[], pad = 0) =>
     transduce(map(fn), max(), src) + pad;
+
+export const dataMinLog = <T>(fn: Fn<T, number>, src: T[], base = 10) =>
+    Math.pow(base, Math.floor(Math.log(dataMin(fn, src)) / Math.log(base)));
+
+export const dataMaxLog = <T>(fn: Fn<T, number>, src: T[], base = 10) =>
+    Math.pow(base, Math.ceil(Math.log(dataMax(fn, src)) / Math.log(base)));
+
+export const dataBounds2Log = <T>(
+    min: Fn<T, number>,
+    max: Fn<T, number>,
+    src: T[],
+    base = 10
+) => [dataMinLog(min, src, base), dataMaxLog(max, src, base)];

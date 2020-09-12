@@ -1,12 +1,13 @@
 export * from "./api";
-export * from "./axis";
 export * from "./date";
 export * from "./domain";
 export * from "./plot";
-export * from "./scale";
+
+export * from "./axis/lens";
+export * from "./axis/linear";
+export * from "./axis/log";
 
 export * from "./plot/area";
-export * from "./plot/binpack";
 export * from "./plot/candle";
 export * from "./plot/line";
 export * from "./plot/scatter";

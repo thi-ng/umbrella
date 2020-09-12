@@ -22,6 +22,9 @@ export interface AxisSpec {
     minor: Partial<TickSpec>;
 }
 
+export type InitialAxisSpec = Partial<AxisSpec> &
+    Pick<AxisSpec, "domain" | "range" | "pos">;
+
 export interface TickSpec {
     ticks: Fn<Domain, Iterable<number>>;
     size: number;

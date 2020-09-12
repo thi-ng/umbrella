@@ -2,14 +2,14 @@ import type { Fn } from "@thi.ng/api";
 import { clamp, inRange } from "@thi.ng/math";
 import type { AxisSpec, VizSpec } from "../api";
 
+/** @internal */
 export const valueMapper = (
     { scale: scaleX }: AxisSpec,
     { scale: scaleY, domain: [dmin, dmax] }: AxisSpec,
-    project: Fn<number[], number[]> = identity
+    project: Fn<number[], number[]> = (x) => x
 ) => ([x, y]: number[]) => project([scaleX(x), scaleY(clamp(y, dmin, dmax))]);
 
-const identity = (x: any) => x;
-
+/** @internal */
 export function* processedPoints(
     { xaxis, yaxis, project }: VizSpec,
     data: Iterable<number[]>
