@@ -3,6 +3,7 @@ import { convertTree, svg } from "@thi.ng/hiccup-svg";
 import { float, Z2 } from "@thi.ng/strings";
 import { readFileSync, writeFileSync } from "fs";
 import {
+    candle,
     candlePlot,
     dataBounds,
     dataMax,
@@ -54,15 +55,7 @@ const res = plotCartesian({
                 { o: p.open, h: p.high, l: p.low, c: p.close },
             ]),
             {
-                down: () => ({
-                    stroke: "#c00",
-                    fill: "#fff",
-                }),
-                up: () => ({
-                    stroke: "#0c0",
-                    fill: "#0c0",
-                }),
-                width: 4,
+                shape: candle(),
             }
         ),
     ],
