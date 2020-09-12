@@ -1,3 +1,4 @@
+import { map } from "@thi.ng/transducers";
 import type { PlotFn } from "../api";
 import { processedPoints } from "./utils";
 
@@ -11,5 +12,5 @@ export const linePlot = (
 ): PlotFn => (spec) => [
     "polyline",
     opts.attribs || {},
-    [...processedPoints(spec, data)],
+    [...map((p) => p[0], processedPoints(spec, data))],
 ];
