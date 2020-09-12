@@ -42,14 +42,15 @@ const processRow = <T>(mapper: Fn<number[], number[]>, [d1, d2]: Domain) => ([
     i,
     row,
 ]: [number, Row<T>]) =>
-    row.map(
+    map(
         ([[a, b], item]) =>
             <[number[], number[], T, number]>[
                 mapper([Math.max(d1, a), i]),
                 mapper([Math.min(d2, b), i]),
                 item,
                 i,
-            ]
+            ],
+        row
     );
 
 export const stackedIntervals = <T>(

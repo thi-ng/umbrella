@@ -89,8 +89,8 @@ export const cartesianAxisY = (spec: AxisSpec) => {
                 ["L", [pos, r2]],
             ],
         ],
-        tick(spec.major.size!),
-        tick(spec.minor.size!),
+        tick(-spec.major.size!),
+        tick(-spec.minor.size!),
         (y) => label([pos + lx, scale(y) + ly], format(y))
     );
 };
