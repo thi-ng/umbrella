@@ -1,4 +1,4 @@
-import type { PlotFn } from "../api";
+import type { DomainValues, PlotFn } from "../api";
 import { processedPoints } from "./utils";
 
 export interface ScatterPlotOpts {
@@ -6,10 +6,10 @@ export interface ScatterPlotOpts {
 }
 
 export const scatterPlot = (
-    data: Iterable<number[]>,
+    data: DomainValues,
     opts: Partial<ScatterPlotOpts> = {}
 ): PlotFn => (spec) => [
     "points",
     opts.attribs || {},
-    [...processedPoints(spec, data)],
+    [...processedPoints(spec, data, true)],
 ];

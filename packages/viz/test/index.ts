@@ -10,7 +10,7 @@ import {
 
 describe("viz", () => {
     it("uniformDomain", () => {
-        assert.deepStrictEqual(uniformDomain([100, 200], range(5)), [
+        assert.deepStrictEqual(uniformDomain(range(5))([100, 200]), [
             [100, 0],
             [125, 1],
             [150, 2],
@@ -80,7 +80,7 @@ describe("viz", () => {
                 pos: 100,
                 labelAttribs: { "text-anchor": "end" },
                 labelOffset: [-15, 5],
-                major: { ticks: linearTicks(1), size: -10 },
+                major: { ticks: linearTicks(1) },
                 minor: { ticks: linearTicks(1) },
             })
         );

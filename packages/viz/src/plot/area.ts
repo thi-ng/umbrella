@@ -1,6 +1,5 @@
 import { ensureArray } from "@thi.ng/arrays";
-import { map } from "@thi.ng/transducers";
-import type { PlotFn } from "../api";
+import type { DomainValues, PlotFn } from "../api";
 import { processedPoints, valueMapper } from "./utils";
 
 export interface AreaPlotOpts {
@@ -8,7 +7,7 @@ export interface AreaPlotOpts {
 }
 
 export const areaPlot = (
-    data: Iterable<number[]>,
+    data: DomainValues,
     opts: Partial<AreaPlotOpts> = {}
 ): PlotFn => (spec) => {
     const $data = ensureArray(data);
@@ -19,7 +18,7 @@ export const areaPlot = (
         opts.attribs || {},
         [
             mapper([$data[0][0], y0]),
-            ...map((p) => p[0], processedPoints(spec, data)),
+            ...processedPoints(spec, data, true),
             mapper([$data[$data.length - 1][0], y0]),
         ],
     ];

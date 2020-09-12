@@ -1,5 +1,4 @@
-import { map } from "@thi.ng/transducers";
-import type { PlotFn } from "../api";
+import type { DomainValues, PlotFn } from "../api";
 import { processedPoints } from "./utils";
 
 export interface LinePlotOpts {
@@ -7,10 +6,10 @@ export interface LinePlotOpts {
 }
 
 export const linePlot = (
-    data: Iterable<number[]>,
+    data: DomainValues,
     opts: Partial<LinePlotOpts> = {}
 ): PlotFn => (spec) => [
     "polyline",
     opts.attribs || {},
-    [...map((p) => p[0], processedPoints(spec, data))],
+    [...processedPoints(spec, data, true)],
 ];

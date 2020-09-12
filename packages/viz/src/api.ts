@@ -3,6 +3,9 @@ import type { Fn, Fn2, FnN, FnU } from "@thi.ng/api";
 export type Domain = number[];
 export type Range = number[];
 
+export type DomainValueFn<T = number> = Fn<Domain, Iterable<[number, T]>>;
+export type DomainValues<T = number> = Iterable<[number, T]> | DomainValueFn<T>;
+
 export type ScaleFn = FnN;
 
 export type PlotFn = Fn<VizSpec, any>;

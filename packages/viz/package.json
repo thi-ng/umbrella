@@ -49,6 +49,7 @@
         "@thi.ng/api": "^6.12.3",
         "@thi.ng/arrays": "^0.7.0",
         "@thi.ng/associative": "^5.0.5",
+        "@thi.ng/checks": "^2.7.7",
         "@thi.ng/math": "^2.0.4",
         "@thi.ng/strings": "^1.9.5",
         "@thi.ng/transducers": "^7.3.0"

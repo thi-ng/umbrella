@@ -2,12 +2,14 @@ import type { Fn } from "@thi.ng/api";
 import { ensureArray } from "@thi.ng/arrays";
 import { mix } from "@thi.ng/math";
 import { juxtR, map, max, min, transduce } from "@thi.ng/transducers";
-import type { Domain } from "./api";
+import type { DomainValueFn } from "./api";
 
-export const uniformDomain = ([d1, d2]: Domain, src: Iterable<number>) => {
+export const uniformDomain = (src: Iterable<number>): DomainValueFn => {
     const vals = ensureArray(src);
-    const norm = vals.length > 1 ? 1 / (vals.length - 1) : 0;
-    return vals.map((x, i) => [mix(d1, d2, i * norm), x]);
+    return ([d1, d2]) => {
+        const norm = vals.length > 1 ? 1 / (vals.length - 1) : 0;
+        return vals.map((x, i) => [mix(d1, d2, i * norm), x]);
+    };
 };
 
 export const dataBounds = <T>(fn: Fn<T, number>, src: T[], pad = 0) => {
