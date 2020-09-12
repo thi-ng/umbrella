@@ -10,7 +10,7 @@ import {
     days,
     HOUR,
     linearAxis,
-    linTickMarks,
+    linearTicks,
     plotCartesian,
 } from "../src";
 
@@ -44,8 +44,8 @@ const res = plotCartesian({
         labelOffset: [-15, 3],
         labelAttribs: { "text-anchor": "end" },
         format: (x) => `$${float(2)(x)}`,
-        major: { ticks: linTickMarks(100) },
-        minor: { ticks: linTickMarks(50) },
+        major: { ticks: linearTicks(100) },
+        minor: { ticks: linearTicks(50) },
     }),
     plots: [
         candlePlot(
