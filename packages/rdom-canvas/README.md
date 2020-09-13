@@ -69,9 +69,10 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                            | Description                       | Live demo                                            | Source                                                                            |
-| --------------------------------------------------------------------------------------------------------------------- | --------------------------------- | ---------------------------------------------------- | --------------------------------------------------------------------------------- |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-lissajous.png" width="240"/> | rdom & hiccup-canvas interop test | [Demo](https://demo.thi.ng/umbrella/rdom-lissajous/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-lissajous) |
+| Screenshot                                                                                                               | Description                                             | Live demo                                               | Source                                                                               |
+| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ellipse-proximity.png" width="240"/> | Interactive visualization of closest points on ellipses | [Demo](https://demo.thi.ng/umbrella/ellipse-proximity/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ellipse-proximity) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-lissajous.png" width="240"/>    | rdom & hiccup-canvas interop test                       | [Demo](https://demo.thi.ng/umbrella/rdom-lissajous/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-lissajous)    |
 
 ## API
 
