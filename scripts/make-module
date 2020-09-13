@@ -56,10 +56,16 @@ cat << EOF > "$MODULE"/package.json
         "url": "https://github.com/thi-ng/umbrella.git"
     },
     "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/$1#readme",
-    "funding": {
-        "type": "patreon",
-        "url": "https://patreon.com/thing_umbrella"
-    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
     "author": "$AUTHOR <$EMAIL>",
     "license": "Apache-2.0",
     "scripts": {
@@ -87,7 +93,7 @@ cat << EOF > "$MODULE"/package.json
         "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.12.3"
+        "@thi.ng/api": "^6.13.0"
     },
     "files": [
         "*.js",
@@ -95,7 +101,6 @@ cat << EOF > "$MODULE"/package.json
         "lib"
     ],
     "keywords": [
-        "ES6",
         "typescript"
     ],
     "publishConfig": {
