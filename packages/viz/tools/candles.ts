@@ -42,6 +42,7 @@ const res = plotCartesian({
         major: { ticks: linearTicks(100) },
         minor: { ticks: linearTicks(50) },
     }),
+    grid: { xminor: false },
     plots: [
         candlePlot(
             prices.map((p: any) => [
