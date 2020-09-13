@@ -24,6 +24,8 @@ Multivariate dual number algebra, automatic differentiation.
 - [Wikipedia: Dual numbers](https://en.wikipedia.org/wiki/Dual_number)
 - [Wikipedia: Automatic_differentiation](https://en.wikipedia.org/wiki/Automatic_differentiation#Automatic_differentiation_using_dual_numbers)
 
+(Package name with hat tip to [@paniq](https://www.shadertoy.com/view/4dVGzw))
+
 Dual numbers are an elegant solution to compute **precise**<sup>(1)</sup> derivatives of
 functions which otherwise require complex & brittle numerical solutions.
 Furthermore, multivariate dual numbers can be used to obtain (in parallel)
@@ -93,6 +95,16 @@ Trigonometry:
 - `tan(a)`
 - `atan(a)`
 
+Polynomials:
+
+- `quadratic(x, a, b, c)`
+- `cubic(x, a, b, c, d)`
+- `quartic(x, a, b, c, d)`
+
+For each polynomial, there're scalar versions available too, taking only
+rational numbers as arguments (rather than dual numbers already). These versions
+are suffixed with `S` (for "scalar"): `quadraticS`, `cubicS` and `quarticS`...
+
 ### Status
 
 **ALPHA** - bleeding edge / work-in-progress
@@ -138,15 +150,45 @@ const f = (x: number, y: number) => {
 
 // `evalFn2()` is higher order fn syntax sugar to simplify
 // dealing w/ scalars, here same with that wrapper:
-const g = evalFn2(
-    (x, y) => add(neg(mul(x, x)), mul($2(3), sin(y)))
-);
+const g = evalFn2((x, y) => add(neg(mul(x, x)), mul($2(3), sin(y))));
 
 f(0, 0);
 // [0, 0, 3] => [f(x,y), dFdx(f(x,y)), dFdy(f(x,y))]
 
+g(0, 0);
+// [0, 0, 3]
+
 f(1, Math.PI);
 // [-0.9999999999999997, -2, -3]
+```
+
+Polynomial example (see [interactive
+graph](https://www.desmos.com/calculator/5ot2dpgv0a) of this function):
+
+```ts
+import { add, mul, pow, cubicS } from "@thi.ng/dual-algebra";
+
+// compute the cubic polynomial: f(x) = 2x^3 - 3x^2 - 4x + 5
+
+// using `cubicS()` polynomial helper
+const f1 = (x: number) => cubicS(x, 2, -3, -4, 5);
+
+// ...or expanded out
+const f2 = (x: number) =>
+    add(
+        add(
+            add(
+                mul([2, 0], pow([x, 1], 3)),
+                mul([-3, 0], pow([x, 1], 2))
+            ),
+            mul([-4, 0], [x, 1])
+        ),
+        [5, 0]
+    );
+
+f2(0) // [5, -4] [f(x), dFdx(f(x))]
+f2(1) // [0, -4]
+f2(2) // [1, 8]
 ```
 
 ## Authors
