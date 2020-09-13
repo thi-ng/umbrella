@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/transducers-stats",
-    "version": "1.1.37",
+    "version": "1.1.38",
     "description": "Transducers for statistical / technical analysis",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,10 +49,10 @@
         "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/checks": "^2.7.7",
-        "@thi.ng/dcons": "^2.2.30",
-        "@thi.ng/errors": "^1.2.20",
-        "@thi.ng/transducers": "^7.3.0"
+        "@thi.ng/checks": "^2.7.8",
+        "@thi.ng/dcons": "^2.2.31",
+        "@thi.ng/errors": "^1.2.21",
+        "@thi.ng/transducers": "^7.3.1"
     },
     "files": [
         "*.js",

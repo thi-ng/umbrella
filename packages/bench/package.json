@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/bench",
-    "version": "2.0.19",
+    "version": "2.0.20",
     "description": "Benchmarking utilities w/ optional statistics",
     "module": "./index.js",
     "main": "./lib/index.js",

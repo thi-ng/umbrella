@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.7.0...@thi.ng/arrays@0.8.0) (2020-09-13)
+
+
+### Features
+
+* **arrays:** add first() ([3f5f722](https://github.com/thi-ng/umbrella/commit/3f5f7226e5c0495086c973a33e91fc2666f4c68c))
+
+
+
+
+
 # [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.6.15...@thi.ng/arrays@0.7.0) (2020-08-28)
 
 

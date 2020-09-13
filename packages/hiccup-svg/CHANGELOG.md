@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.5.11...@thi.ng/hiccup-svg@3.6.0) (2020-09-13)
+
+
+### Features
+
+* **hiccup-svg:** allow child elements in shapes ([7447ee1](https://github.com/thi-ng/umbrella/commit/7447ee1e93641921956a8c3194465613576a9697))
+* **hiccup-svg:** fix [#194](https://github.com/thi-ng/umbrella/issues/194), add `baseline` support ([f8d4a38](https://github.com/thi-ng/umbrella/commit/f8d4a3868a59f6ce426b8c6fa258b0dda69f1d97))
+* **hiccup-svg:** fix/update convertTree() ([997dbf6](https://github.com/thi-ng/umbrella/commit/997dbf6eb6da314e8c7f93908a973139fc650eec))
+* **hiccup-svg:** update ff() formatter (int check) ([609d278](https://github.com/thi-ng/umbrella/commit/609d27812b76ebfad96bdc74821840b96ca26307))
+
+
+
+
+
 ## [3.5.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.5.10...@thi.ng/hiccup-svg@3.5.11) (2020-08-28)
 
 **Note:** Version bump only for package @thi.ng/hiccup-svg

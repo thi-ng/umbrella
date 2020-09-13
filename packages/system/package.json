@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/system",
-    "version": "0.2.25",
+    "version": "0.2.26",
     "description": "Minimal DI / life cycle container for stateful app components",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,8 +49,8 @@
         "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.12.3",
-        "@thi.ng/dgraph": "^1.2.25"
+        "@thi.ng/api": "^6.13.0",
+        "@thi.ng/dgraph": "^1.2.26"
     },
     "files": [
         "*.js",
