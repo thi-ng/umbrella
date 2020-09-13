@@ -3,18 +3,13 @@ import { eqDelta } from "@thi.ng/math";
 import { comp, filter, iterator, mapcat } from "@thi.ng/transducers";
 import type { AxisSpec, VizSpec } from "./api";
 
-const axisCommon = (
-    { domain, major, minor, attribs, labelAttribs }: AxisSpec,
-    axis: any,
+const gridAxis = (
+    { domain, major, minor }: AxisSpec,
     majorTickFn: Fn<number, any>,
-    minorTickFn: Fn<number, any>,
-    labelFn: Fn<number, any>
-) => {
+    minorTickFn: Fn<number, any>
+): any[] => {
     const majorTicks = [...major.ticks!(domain)];
     return [
-        "g",
-        attribs,
-        axis,
         ["path", {}, [...mapcat(majorTickFn, majorTicks)]],
         [
             "path",
@@ -33,7 +28,54 @@ const axisCommon = (
                 ),
             ],
         ],
-        ["g", { stroke: "none", ...labelAttribs }, ...majorTicks.map(labelFn)],
+    ];
+};
+
+const NONE = () => null;
+
+const gridCartesian = ({ xaxis, yaxis, grid }: VizSpec) => {
+    grid = {
+        attribs: { stroke: [0, 0, 0, 0.2], "stroke-dasharray": "1 1" },
+        xminor: true,
+        yminor: true,
+        ...grid,
+    };
+    const [x1, x2] = xaxis.range;
+    const [y1, y2] = yaxis.range;
+    const lineX = (x: number) => [
+        ["M", [xaxis.scale(x), y1]],
+        ["V", y2],
+    ];
+    const lineY = (x: number) => [
+        ["M", [x1, yaxis.scale(x)]],
+        ["H", x2],
+    ];
+    return [
+        "g",
+        grid.attribs,
+        ...gridAxis(xaxis, lineX, grid.xminor ? lineX : NONE),
+        ...gridAxis(yaxis, lineY, grid.yminor ? lineY : NONE),
+    ];
+};
+
+const axisCommon = (
+    spec: AxisSpec,
+    axis: any,
+    majorTickFn: Fn<number, any>,
+    minorTickFn: Fn<number, any>,
+    labelFn: Fn<number, any>
+) => {
+    const majorTicks = [...spec.major.ticks!(spec.domain)];
+    return [
+        "g",
+        spec.attribs,
+        axis,
+        ...gridAxis(spec, majorTickFn, minorTickFn),
+        [
+            "g",
+            { stroke: "none", ...spec.labelAttribs },
+            ...majorTicks.map(labelFn),
+        ],
     ];
 };
 
@@ -105,6 +147,7 @@ export const plotCartesian = (spec: VizSpec) => {
     return [
         "g",
         { ...DEFAULT_ATTRIBS, ...spec.attribs },
+        spec.grid ? gridCartesian(spec) : null,
         ...plots.map((fn) => fn(spec)),
         xaxis.visible ? cartesianAxisX(xaxis) : null,
         yaxis.visible ? cartesianAxisY(yaxis) : null,

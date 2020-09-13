@@ -39,4 +39,11 @@ export interface VizSpec {
     yaxis: AxisSpec;
     project?: FnU<number[]>;
     plots: PlotFn[];
+    grid?: Partial<GridSpec>;
+}
+
+export interface GridSpec {
+    attribs: any;
+    xminor: boolean;
+    yminor: boolean;
 }
