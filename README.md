@@ -13,7 +13,7 @@
 > the composer of. Geared towards versatility, not any specific type of music."
 > &mdash; [@loganpowell](https://twitter.com/logantpowell/status/1186334119812304901) via Twitter
 
-Mono-repository for 137+ thi.ng TypeScript/ES6 projects, a wide
+Mono-repository for 138+ thi.ng TypeScript/ES6 projects, a wide
 collection of largely data transformation oriented packages and building
 blocks for:
 
@@ -24,6 +24,13 @@ blocks for:
 - Reactive programming, stream / transducer based dataflow graphs /
   pipelines
 - WebWorker workflow abstractions
+- 2D geometry generation, shape primitives, processing, conversion &
+  visualization
+- Canvas abstraction & SVG conversion
+- Semi-declarative WebGL 1/2 abstraction layer
+- DSL for shader functions defined in TypeScript and cross-compilation
+  to GLSL, JS, VEX etc.
+- Date/time iterators, formatters
 - Data structures & data transformations for wide range of use cases
   (list, sets, maps, joins, spatial indexing)
 - Immutable data handling, state containers, transacted state updates,
@@ -34,17 +41,11 @@ blocks for:
 - PEG-style parser combinators, FSM primitives
 - Forth-style pointfree DSL for functional composition
 - S-expression parser & runtime infrastructure for custom DSL creation
-- DSL for shader functions defined in TypeScript and cross-compilation
-  to GLSL, JS, VEX etc.
-- 2D geometry generation, shape primitives, processing, conversion &
-  visualization
 - Multi-format pixel buffers, conversions, Porter-Duff alpha-blending
   operators
 - Color space/format conversions, matrix based color manipulation,
   cosine gradients
-- Canvas abstraction & SVG conversion
 - Canvas-based Immediate mode GUI components
-- Declarative WebGL 1/2 abstraction layer
 - Low-level tooling for binary data, shared memory/WASM/WebGL interop
 - etc. (see package overview below)
 
@@ -119,7 +120,7 @@ fairly detailed overview for contributors here:
 feature or `develop` branches)
 
 - [@thi.ng/egf](https://github.com/thi-ng/umbrella/tree/feature/egf/packages/egf) - Extensible Graph Format
-- [@thi.ng/viz](https://github.com/thi-ng/umbrella/tree/develop/packages/viz) - Declarative, functional & multi-format data visualization toolkit
+- [@thi.ng/viz](https://github.com/thi-ng/umbrella/tree/develop/packages/viz) -
 
 ### Fundamentals
 
@@ -131,6 +132,7 @@ feature or `develop` branches)
 | [`@thi.ng/colored-noise`](./packages/colored-noise) | [![version](https://img.shields.io/npm/v/@thi.ng/colored-noise.svg)](https://www.npmjs.com/package/@thi.ng/colored-noise) | [changelog](./packages/colored-noise/CHANGELOG.md) | 1D colored noise generators                              |
 | [`@thi.ng/compare`](./packages/compare)             | [![version](https://img.shields.io/npm/v/@thi.ng/compare.svg)](https://www.npmjs.com/package/@thi.ng/compare)             | [changelog](./packages/compare/CHANGELOG.md)       | Comparators                                              |
 | [`@thi.ng/compose`](./packages/compose)             | [![version](https://img.shields.io/npm/v/@thi.ng/compose.svg)](https://www.npmjs.com/package/@thi.ng/compose)             | [changelog](./packages/compose/CHANGELOG.md)       | Functional composition helpers                           |
+| [`@thi.ng/date`](./packages/date)                   | [![version](https://img.shields.io/npm/v/@thi.ng/date.svg)](https://www.npmjs.com/package/@thi.ng/date)                   | [changelog](./packages/date/CHANGELOG.md)          | Date/time iterators, formatters, rounding                |
 | [`@thi.ng/defmulti`](./packages/defmulti)           | [![version](https://img.shields.io/npm/v/@thi.ng/defmulti.svg)](https://www.npmjs.com/package/@thi.ng/defmulti)           | [changelog](./packages/defmulti/CHANGELOG.md)      | Dynamic multiple dispatch                                |
 | [`@thi.ng/dsp`](./packages/dsp)                     | [![version](https://img.shields.io/npm/v/@thi.ng/dsp.svg)](https://www.npmjs.com/package/@thi.ng/dsp)                     | [changelog](./packages/dsp/CHANGELOG.md)           | DSP utils, oscillators                                   |
 | [`@thi.ng/dual-algebra`](./packages/dual-algebra)   | [![version](https://img.shields.io/npm/v/@thi.ng/dual-algebra.svg)](https://www.npmjs.com/package/@thi.ng/dual-algebra)   | [changelog](./packages/dual-algebra/CHANGELOG.md)  | Dual number algebra / automatic differentiation          |
@@ -229,38 +231,39 @@ feature or `develop` branches)
 
 ### Geometry & visualization
 
-| Project                                                       | Version                                                                                                                             | Changelog                                               | Description                              |
-|---------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|------------------------------------------|
-| [`@thi.ng/color`](./packages/color)                           | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)                           | [changelog](./packages/color/CHANGELOG.md)              | Color conversions, gradients             |
-| [`@thi.ng/dgraph-dot`](./packages/dgraph-dot)                 | [![version](https://img.shields.io/npm/v/@thi.ng/dgraph-dot.svg)](https://www.npmjs.com/package/@thi.ng/dgraph-dot)                 | [changelog](./packages/dgraph-dot/CHANGELOG.md)         | Dependency graph -> Graphviz             |
-| [`@thi.ng/dot`](./packages/dot)                               | [![version](https://img.shields.io/npm/v/@thi.ng/dot.svg)](https://www.npmjs.com/package/@thi.ng/dot)                               | [changelog](./packages/dot/CHANGELOG.md)                | Graphviz DOM & export                    |
-| [`@thi.ng/geom`](./packages/geom)                             | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)                             | [changelog](./packages/geom/CHANGELOG.md)               | 2D only geometry types & ops             |
-| [`@thi.ng/geom-accel`](./packages/geom-accel)                 | [![version](https://img.shields.io/npm/v/@thi.ng/geom-accel.svg)](https://www.npmjs.com/package/@thi.ng/geom-accel)                 | [changelog](./packages/geom-accel/CHANGELOG.md)         | Spatial indexing data structures         |
-| [`@thi.ng/geom-api`](./packages/geom-api)                     | [![version](https://img.shields.io/npm/v/@thi.ng/geom-api.svg)](https://www.npmjs.com/package/@thi.ng/geom-api)                     | [changelog](./packages/geom-api/CHANGELOG.md)           | Shared types & interfaces                |
-| [`@thi.ng/geom-arc`](./packages/geom-arc)                     | [![version](https://img.shields.io/npm/v/@thi.ng/geom-arc.svg)](https://www.npmjs.com/package/@thi.ng/geom-arc)                     | [changelog](./packages/geom-arc/CHANGELOG.md)           | 2D elliptic arc utils                    |
-| [`@thi.ng/geom-clip-line`](./packages/geom-clip-line)         | [![version](https://img.shields.io/npm/v/@thi.ng/geom-clip-line.svg)](https://www.npmjs.com/package/@thi.ng/geom-clip-line)         | [changelog](./packages/geom-clip-line/CHANGELOG.md)     | 2D line clipping                         |
-| [`@thi.ng/geom-clip-poly`](./packages/geom-clip-poly)         | [![version](https://img.shields.io/npm/v/@thi.ng/geom-clip-poly.svg)](https://www.npmjs.com/package/@thi.ng/geom-clip-poly)         | [changelog](./packages/geom-clip-poly/CHANGELOG.md)     | 2D convex polygon clipping               |
-| [`@thi.ng/geom-closest-point`](./packages/geom-closest-point) | [![version](https://img.shields.io/npm/v/@thi.ng/geom-closest-point.svg)](https://www.npmjs.com/package/@thi.ng/geom-closest-point) | [changelog](./packages/geom-closest-point/CHANGELOG.md) | Closest point helpers                    |
-| [`@thi.ng/geom-fuzz`](./packages/geom-fuzz)                   | [![version](https://img.shields.io/npm/v/@thi.ng/geom-fuzz.svg)](https://www.npmjs.com/package/@thi.ng/geom-fuzz)                   | [changelog](./packages/geom-fuzz/CHANGELOG.md)          | Fuzzy 2D shape drawing / filling         |
-| [`@thi.ng/geom-hull`](./packages/geom-hull)                   | [![version](https://img.shields.io/npm/v/@thi.ng/geom-hull.svg)](https://www.npmjs.com/package/@thi.ng/geom-hull)                   | [changelog](./packages/geom-hull/CHANGELOG.md)          | 2D convex hull (Graham scan)             |
-| [`@thi.ng/geom-io-obj`](./packages/geom-io-obj)               | [![version](https://img.shields.io/npm/v/@thi.ng/geom-io-obj.svg)](https://www.npmjs.com/package/@thi.ng/geom-io-obj)               | [changelog](./packages/geom-io-obj/CHANGELOG.md)        | Wavefront OBJ model parser               |
-| [`@thi.ng/geom-isec`](./packages/geom-isec)                   | [![version](https://img.shields.io/npm/v/@thi.ng/geom-isec.svg)](https://www.npmjs.com/package/@thi.ng/geom-isec)                   | [changelog](./packages/geom-isec/CHANGELOG.md)          | Point & shape intersection tests         |
-| [`@thi.ng/geom-isoline`](./packages/geom-isoline)             | [![version](https://img.shields.io/npm/v/@thi.ng/geom-isoline.svg)](https://www.npmjs.com/package/@thi.ng/geom-isoline)             | [changelog](./packages/geom-isoline/CHANGELOG.md)       | 2D contour line extraction               |
-| [`@thi.ng/geom-poly-utils`](./packages/geom-poly-utils)       | [![version](https://img.shields.io/npm/v/@thi.ng/geom-poly-utils.svg)](https://www.npmjs.com/package/@thi.ng/geom-poly-utils)       | [changelog](./packages/geom-poly-utils/CHANGELOG.md)    | 2D polygon helpers                       |
-| [`@thi.ng/geom-resample`](./packages/geom-resample)           | [![version](https://img.shields.io/npm/v/@thi.ng/geom-resample.svg)](https://www.npmjs.com/package/@thi.ng/geom-resample)           | [changelog](./packages/geom-resample/CHANGELOG.md)      | nD polyline / curve resampling           |
-| [`@thi.ng/geom-splines`](./packages/geom-splines)             | [![version](https://img.shields.io/npm/v/@thi.ng/geom-splines.svg)](https://www.npmjs.com/package/@thi.ng/geom-splines)             | [changelog](./packages/geom-splines/CHANGELOG.md)       | nD cubic / quadratic spline ops          |
-| [`@thi.ng/geom-subdiv-curve`](./packages/geom-subdiv-curve)   | [![version](https://img.shields.io/npm/v/@thi.ng/geom-subdiv-curve.svg)](https://www.npmjs.com/package/@thi.ng/geom-subdiv-curve)   | [changelog](./packages/geom-subdiv-curve/CHANGELOG.md)  | nD iterative subdivision curves          |
-| [`@thi.ng/geom-tessellate`](./packages/geom-tessellate)       | [![version](https://img.shields.io/npm/v/@thi.ng/geom-tessellate.svg)](https://www.npmjs.com/package/@thi.ng/geom-tessellate)       | [changelog](./packages/geom-tessellate/CHANGELOG.md)    | nD convex polygon tessellators           |
-| [`@thi.ng/geom-voronoi`](./packages/geom-voronoi)             | [![version](https://img.shields.io/npm/v/@thi.ng/geom-voronoi.svg)](https://www.npmjs.com/package/@thi.ng/geom-voronoi)             | [changelog](./packages/geom-voronoi/CHANGELOG.md)       | 2D iterative delaunay/voronoi            |
-| [`@thi.ng/iges`](./packages/iges)                             | [![version](https://img.shields.io/npm/v/@thi.ng/iges.svg)](https://www.npmjs.com/package/@thi.ng/iges)                             | [changelog](./packages/iges/CHANGELOG.md)               | IGES format geometry serialization       |
-| [`@thi.ng/lsys`](./packages/lsys)                             | [![version](https://img.shields.io/npm/v/@thi.ng/lsys.svg)](https://www.npmjs.com/package/@thi.ng/lsys)                             | [changelog](./packages/lsys/CHANGELOG.md)               | Extensible L-System architecture         |
-| [`@thi.ng/matrices`](./packages/matrices)                     | [![version](https://img.shields.io/npm/v/@thi.ng/matrices.svg)](https://www.npmjs.com/package/@thi.ng/matrices)                     | [changelog](./packages/matrices/CHANGELOG.md)           | Matrix operations                        |
-| [`@thi.ng/pixel`](./packages/pixel)                           | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)                           | [changelog](./packages/pixel/CHANGELOG.md)              | Multi-format pixel buffers               |
-| [`@thi.ng/poisson`](./packages/poisson)                       | [![version](https://img.shields.io/npm/v/@thi.ng/poisson.svg)](https://www.npmjs.com/package/@thi.ng/poisson)                       | [changelog](./packages/poisson/CHANGELOG.md)            | nD Poisson disk sampling                 |
-| [`@thi.ng/porter-duff`](./packages/porter-duff)               | [![version](https://img.shields.io/npm/v/@thi.ng/porter-duff.svg)](https://www.npmjs.com/package/@thi.ng/porter-duff)               | [changelog](./packages/porter-duff/CHANGELOG.md)        | Alpha blending / compositing ops         |
-| [`@thi.ng/scenegraph`](./packages/scenegraph)                 | [![version](https://img.shields.io/npm/v/@thi.ng/scenegraph.svg)](https://www.npmjs.com/package/@thi.ng/scenegraph)                 | [changelog](./packages/scenegraph/CHANGELOG.md)         | Extensible 2D/3D scenegraph              |
-| [`@thi.ng/simd`](./packages/simd)                             | [![version](https://img.shields.io/npm/v/@thi.ng/simd.svg)](https://www.npmjs.com/package/@thi.ng/simd)                             | [changelog](./packages/simd/CHANGELOG.md)               | WebAssembly SIMD vector batch processing |
-| [`@thi.ng/vectors`](./packages/vectors)                       | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)                       | [changelog](./packages/vectors/CHANGELOG.md)            | Fixed & arbitrary-length vector ops      |
+| Project                                                       | Version                                                                                                                             | Changelog                                               | Description                                         |
+|---------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|
+| [`@thi.ng/color`](./packages/color)                           | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)                           | [changelog](./packages/color/CHANGELOG.md)              | Color conversions, gradients                        |
+| [`@thi.ng/dgraph-dot`](./packages/dgraph-dot)                 | [![version](https://img.shields.io/npm/v/@thi.ng/dgraph-dot.svg)](https://www.npmjs.com/package/@thi.ng/dgraph-dot)                 | [changelog](./packages/dgraph-dot/CHANGELOG.md)         | Dependency graph -> Graphviz                        |
+| [`@thi.ng/dot`](./packages/dot)                               | [![version](https://img.shields.io/npm/v/@thi.ng/dot.svg)](https://www.npmjs.com/package/@thi.ng/dot)                               | [changelog](./packages/dot/CHANGELOG.md)                | Graphviz DOM & export                               |
+| [`@thi.ng/geom`](./packages/geom)                             | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)                             | [changelog](./packages/geom/CHANGELOG.md)               | 2D only geometry types & ops                        |
+| [`@thi.ng/geom-accel`](./packages/geom-accel)                 | [![version](https://img.shields.io/npm/v/@thi.ng/geom-accel.svg)](https://www.npmjs.com/package/@thi.ng/geom-accel)                 | [changelog](./packages/geom-accel/CHANGELOG.md)         | Spatial indexing data structures                    |
+| [`@thi.ng/geom-api`](./packages/geom-api)                     | [![version](https://img.shields.io/npm/v/@thi.ng/geom-api.svg)](https://www.npmjs.com/package/@thi.ng/geom-api)                     | [changelog](./packages/geom-api/CHANGELOG.md)           | Shared types & interfaces                           |
+| [`@thi.ng/geom-arc`](./packages/geom-arc)                     | [![version](https://img.shields.io/npm/v/@thi.ng/geom-arc.svg)](https://www.npmjs.com/package/@thi.ng/geom-arc)                     | [changelog](./packages/geom-arc/CHANGELOG.md)           | 2D elliptic arc utils                               |
+| [`@thi.ng/geom-clip-line`](./packages/geom-clip-line)         | [![version](https://img.shields.io/npm/v/@thi.ng/geom-clip-line.svg)](https://www.npmjs.com/package/@thi.ng/geom-clip-line)         | [changelog](./packages/geom-clip-line/CHANGELOG.md)     | 2D line clipping                                    |
+| [`@thi.ng/geom-clip-poly`](./packages/geom-clip-poly)         | [![version](https://img.shields.io/npm/v/@thi.ng/geom-clip-poly.svg)](https://www.npmjs.com/package/@thi.ng/geom-clip-poly)         | [changelog](./packages/geom-clip-poly/CHANGELOG.md)     | 2D convex polygon clipping                          |
+| [`@thi.ng/geom-closest-point`](./packages/geom-closest-point) | [![version](https://img.shields.io/npm/v/@thi.ng/geom-closest-point.svg)](https://www.npmjs.com/package/@thi.ng/geom-closest-point) | [changelog](./packages/geom-closest-point/CHANGELOG.md) | Closest point helpers                               |
+| [`@thi.ng/geom-fuzz`](./packages/geom-fuzz)                   | [![version](https://img.shields.io/npm/v/@thi.ng/geom-fuzz.svg)](https://www.npmjs.com/package/@thi.ng/geom-fuzz)                   | [changelog](./packages/geom-fuzz/CHANGELOG.md)          | Fuzzy 2D shape drawing / filling                    |
+| [`@thi.ng/geom-hull`](./packages/geom-hull)                   | [![version](https://img.shields.io/npm/v/@thi.ng/geom-hull.svg)](https://www.npmjs.com/package/@thi.ng/geom-hull)                   | [changelog](./packages/geom-hull/CHANGELOG.md)          | 2D convex hull (Graham scan)                        |
+| [`@thi.ng/geom-io-obj`](./packages/geom-io-obj)               | [![version](https://img.shields.io/npm/v/@thi.ng/geom-io-obj.svg)](https://www.npmjs.com/package/@thi.ng/geom-io-obj)               | [changelog](./packages/geom-io-obj/CHANGELOG.md)        | Wavefront OBJ model parser                          |
+| [`@thi.ng/geom-isec`](./packages/geom-isec)                   | [![version](https://img.shields.io/npm/v/@thi.ng/geom-isec.svg)](https://www.npmjs.com/package/@thi.ng/geom-isec)                   | [changelog](./packages/geom-isec/CHANGELOG.md)          | Point & shape intersection tests                    |
+| [`@thi.ng/geom-isoline`](./packages/geom-isoline)             | [![version](https://img.shields.io/npm/v/@thi.ng/geom-isoline.svg)](https://www.npmjs.com/package/@thi.ng/geom-isoline)             | [changelog](./packages/geom-isoline/CHANGELOG.md)       | 2D contour line extraction                          |
+| [`@thi.ng/geom-poly-utils`](./packages/geom-poly-utils)       | [![version](https://img.shields.io/npm/v/@thi.ng/geom-poly-utils.svg)](https://www.npmjs.com/package/@thi.ng/geom-poly-utils)       | [changelog](./packages/geom-poly-utils/CHANGELOG.md)    | 2D polygon helpers                                  |
+| [`@thi.ng/geom-resample`](./packages/geom-resample)           | [![version](https://img.shields.io/npm/v/@thi.ng/geom-resample.svg)](https://www.npmjs.com/package/@thi.ng/geom-resample)           | [changelog](./packages/geom-resample/CHANGELOG.md)      | nD polyline / curve resampling                      |
+| [`@thi.ng/geom-splines`](./packages/geom-splines)             | [![version](https://img.shields.io/npm/v/@thi.ng/geom-splines.svg)](https://www.npmjs.com/package/@thi.ng/geom-splines)             | [changelog](./packages/geom-splines/CHANGELOG.md)       | nD cubic / quadratic spline ops                     |
+| [`@thi.ng/geom-subdiv-curve`](./packages/geom-subdiv-curve)   | [![version](https://img.shields.io/npm/v/@thi.ng/geom-subdiv-curve.svg)](https://www.npmjs.com/package/@thi.ng/geom-subdiv-curve)   | [changelog](./packages/geom-subdiv-curve/CHANGELOG.md)  | nD iterative subdivision curves                     |
+| [`@thi.ng/geom-tessellate`](./packages/geom-tessellate)       | [![version](https://img.shields.io/npm/v/@thi.ng/geom-tessellate.svg)](https://www.npmjs.com/package/@thi.ng/geom-tessellate)       | [changelog](./packages/geom-tessellate/CHANGELOG.md)    | nD convex polygon tessellators                      |
+| [`@thi.ng/geom-voronoi`](./packages/geom-voronoi)             | [![version](https://img.shields.io/npm/v/@thi.ng/geom-voronoi.svg)](https://www.npmjs.com/package/@thi.ng/geom-voronoi)             | [changelog](./packages/geom-voronoi/CHANGELOG.md)       | 2D iterative delaunay/voronoi                       |
+| [`@thi.ng/iges`](./packages/iges)                             | [![version](https://img.shields.io/npm/v/@thi.ng/iges.svg)](https://www.npmjs.com/package/@thi.ng/iges)                             | [changelog](./packages/iges/CHANGELOG.md)               | IGES format geometry serialization                  |
+| [`@thi.ng/lsys`](./packages/lsys)                             | [![version](https://img.shields.io/npm/v/@thi.ng/lsys.svg)](https://www.npmjs.com/package/@thi.ng/lsys)                             | [changelog](./packages/lsys/CHANGELOG.md)               | Extensible L-System architecture                    |
+| [`@thi.ng/matrices`](./packages/matrices)                     | [![version](https://img.shields.io/npm/v/@thi.ng/matrices.svg)](https://www.npmjs.com/package/@thi.ng/matrices)                     | [changelog](./packages/matrices/CHANGELOG.md)           | Matrix operations                                   |
+| [`@thi.ng/pixel`](./packages/pixel)                           | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)                           | [changelog](./packages/pixel/CHANGELOG.md)              | Multi-format pixel buffers                          |
+| [`@thi.ng/poisson`](./packages/poisson)                       | [![version](https://img.shields.io/npm/v/@thi.ng/poisson.svg)](https://www.npmjs.com/package/@thi.ng/poisson)                       | [changelog](./packages/poisson/CHANGELOG.md)            | nD Poisson disk sampling                            |
+| [`@thi.ng/porter-duff`](./packages/porter-duff)               | [![version](https://img.shields.io/npm/v/@thi.ng/porter-duff.svg)](https://www.npmjs.com/package/@thi.ng/porter-duff)               | [changelog](./packages/porter-duff/CHANGELOG.md)        | Alpha blending / compositing ops                    |
+| [`@thi.ng/scenegraph`](./packages/scenegraph)                 | [![version](https://img.shields.io/npm/v/@thi.ng/scenegraph.svg)](https://www.npmjs.com/package/@thi.ng/scenegraph)                 | [changelog](./packages/scenegraph/CHANGELOG.md)         | Extensible 2D/3D scenegraph                         |
+| [`@thi.ng/simd`](./packages/simd)                             | [![version](https://img.shields.io/npm/v/@thi.ng/simd.svg)](https://www.npmjs.com/package/@thi.ng/simd)                             | [changelog](./packages/simd/CHANGELOG.md)               | WebAssembly SIMD vector batch processing            |
+| [`@thi.ng/vectors`](./packages/vectors)                       | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)                       | [changelog](./packages/vectors/CHANGELOG.md)            | Fixed & arbitrary-length vector ops                 |
+| [`@thi.ng/viz`](./packages/viz)                               | [![version](https://img.shields.io/npm/v/@thi.ng/viz.svg)](https://www.npmjs.com/package/@thi.ng/viz)                               | [changelog](./packages/viz/CHANGELOG.md)                | Declarative & functional data visualization toolkit |
 
 ### WebGL / GPGPU
 
