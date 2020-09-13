@@ -39,7 +39,7 @@ yarn add @thi.ng/date
 <script src="https://unpkg.com/@thi.ng/date/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): CJS: 1.33 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.19 KB / CJS: 1.33 KB / UMD: 1.31 KB
 
 ## Dependencies
 
