@@ -1,12 +1,33 @@
 #!/bin/sh
-mod="packages/*"
 
-echo "package,files,comments,sloc" > cloc.csv
+# usage: stats packages stats.csv (default)
+# usage: stats examples stats-ex.csv
 
-for m in $mod; do
-    echo "$m"
-    echo "$m,$(cloc "$m"/src --csv | grep "TypeScript" | cut -d ',' -f1 -f4-5)" >> cloc.csv
+if [ $# -gt 0 ]; then
+    modules="$1/*"
+else
+    modules="packages/*"
+fi
+
+if [ $# -gt 1 ]; then
+    out="$2"
+else
+    out=stats.csv
+fi
+
+echo "package,files,comments,sloc" > $out
+
+for m in $modules; do
+    if [ -d "$m" ]; then
+        skip=$(grep -e '"skip": true' "$m/package.json")
+        if [ -e "$m/.skip" ] || [ -n "$skip" ]; then
+            echo "\tskipping $m"
+        else
+            echo "$m $skip"
+            echo "$m,$(cloc "$m"/src --csv | grep "TypeScript" | cut -d ',' -f1 -f4-5)" >> $out
+        fi
+    fi
 done
 
 echo "---"
-awk -F ',' '{ files+=$2; comments+=$3; sloc+=$4 } END { print "files:", files, "\tcode:", sloc, "\ttotal:", sloc + comments }' cloc.csv
+awk -F ',' '{ files+=$2; comments+=$3; sloc+=$4 } END { print "files:", files, "\tcode:", sloc, "\ttotal:", sloc + comments }' $out
