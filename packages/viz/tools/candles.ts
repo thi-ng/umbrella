@@ -1,6 +1,7 @@
+import { days, FMT_yyyyMMdd, HOUR, hours } from "@thi.ng/date";
 import { serialize } from "@thi.ng/hiccup";
 import { convertTree, svg } from "@thi.ng/hiccup-svg";
-import { float, Z2 } from "@thi.ng/strings";
+import { float } from "@thi.ng/strings";
 import { readFileSync, writeFileSync } from "fs";
 import {
     candle,
@@ -8,8 +9,6 @@ import {
     dataBounds,
     dataMax,
     dataMin,
-    days,
-    HOUR,
     linearAxis,
     linearTicks,
     plotCartesian,
@@ -26,14 +25,9 @@ const res = plotCartesian({
         pos: 500,
         labelOffset: [0, 20],
         labelAttribs: { "text-anchor": "middle" },
-        format: (x) => {
-            const d = new Date(x);
-            return `${d.getFullYear()}-${Z2(d.getMonth() + 1)}-${Z2(
-                d.getDate()
-            )}`;
-        },
+        format: FMT_yyyyMMdd,
         major: { ticks: days },
-        minor: { ticks: () => [] },
+        minor: { ticks: hours },
     }),
     yaxis: linearAxis({
         domain: [
