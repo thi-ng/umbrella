@@ -64,7 +64,6 @@
         "reactive",
         "stream",
         "rstream",
-        "es6",
         "typescript"
     ],
     "publishConfig": {

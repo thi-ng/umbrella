@@ -62,7 +62,6 @@
         "binary",
         "bitwise",
         "compression",
-        "es6",
         "packer",
         "rle",
         "typescript",

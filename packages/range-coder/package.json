@@ -61,7 +61,6 @@
         "binary",
         "compression",
         "entropy",
-        "es6",
         "packer",
         "typescript"
     ],

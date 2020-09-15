@@ -63,7 +63,6 @@
         "LEB128",
         "binary",
         "conversion",
-        "es6",
         "typescript",
         "WASM"
     ],

@@ -31,7 +31,7 @@ try {
         "pkg.size": packageSize,
         "pkg.banner": () => packageBanner(CONFIG.root.name),
         "pkg.install": () => packageInstallation(CONFIG.root),
-        status: () => packageStatus(CONFIG.meta.status),
+        status: () => packageStatus(CONFIG.root.name, CONFIG.meta.status),
         examples: () => examplesTable(CONFIG.root.name),
         supportPackages: () => supportPackages(CONFIG.root.name),
         relatedPackages: () => relatedPackages(CONFIG.meta.related),

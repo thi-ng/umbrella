@@ -68,7 +68,6 @@
         "bytes",
         "decode",
         "encode",
-        "es6",
         "hexdump",
         "iterator",
         "partition",

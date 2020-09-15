@@ -66,7 +66,6 @@
         "lib"
     ],
     "keywords": [
-        "es6",
         "ast",
         "conversion",
         "DOM",

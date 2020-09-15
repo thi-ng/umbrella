@@ -1,0 +1,84 @@
+{
+    "name": "@thi.ng/egf",
+    "version": "0.2.2",
+    "description": "Extensible Graph Format",
+    "module": "./index.js",
+    "main": "./lib/index.js",
+    "umd:main": "./lib/index.umd.js",
+    "typings": "./index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thi-ng/umbrella.git"
+    },
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/egf#readme",
+    "funding": {
+        "type": "patreon",
+        "url": "https://patreon.com/thing_umbrella"
+    },
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
+        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
+        "build:es6": "tsc --declaration",
+        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "test": "mocha test",
+        "cover": "nyc mocha test && nyc report --reporter=lcov",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
+        "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
+        "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc src",
+        "pub": "yarn build:release && yarn publish --access public",
+        "pub:wip": "yarn publish --access public --no-git-tag-version"
+    },
+    "devDependencies": {
+        "@istanbuljs/nyc-config-typescript": "^1.0.1",
+        "@microsoft/api-extractor": "^7.9.11",
+        "@thi.ng/equiv": "^1.0.31",
+        "@types/mocha": "^8.0.3",
+        "@types/node": "^14.6.1",
+        "mocha": "^8.1.2",
+        "nyc": "^15.1.0",
+        "ts-node": "^9.0.0",
+        "typedoc": "^0.18.0",
+        "typescript": "^4.0.2"
+    },
+    "dependencies": {
+        "@thi.ng/api": "^6.13.0",
+        "@thi.ng/associative": "^5.0.6",
+        "@thi.ng/checks": "^2.7.8",
+        "@thi.ng/dot": "^1.2.17",
+        "@thi.ng/errors": "^1.2.21",
+        "@thi.ng/prefixes": "^0.1.5",
+        "@thi.ng/strings": "^1.9.6",
+        "@thi.ng/transducers-binary": "^0.5.29"
+    },
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "lib"
+    ],
+    "keywords": [
+        "conversion",
+        "datastructure",
+        "file format",
+        "graph",
+        "graphviz",
+        "json",
+        "linked data",
+        "lpg",
+        "rdf",
+        "semweb",
+        "tagged values",
+        "typescript"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "sideEffects": false,
+    "thi.ng": {
+        "branch": "feature/egf",
+        "status": "alpha",
+        "year": 2020
+    }
+}

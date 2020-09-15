@@ -55,12 +55,18 @@ export const packageDeps = (pkg: Package) => {
     return deps.length ? list(deps) : "None";
 };
 
-export const packageStatus = (id = "stable") => {
+export const packageStatus = (pkgName: string, id = "stable") => {
     const status = CONFIG.statuses[id];
+    const name = shortName(pkgName);
     return [
         "### Status",
         "",
         `**${id.toUpperCase()}**${status ? " - " + status : ""}`,
+        "",
+        link(
+            "Search or submit any issues for this package",
+            `https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5B${name}%5D`
+        ),
     ].join("\n");
 };
 

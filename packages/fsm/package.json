@@ -62,7 +62,6 @@
         "lib"
     ],
     "keywords": [
-        "es6",
         "composition",
         "declarative",
         "fsm",

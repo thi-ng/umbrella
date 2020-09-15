@@ -67,7 +67,6 @@
         "component",
         "declarative",
         "hiccup",
-        "es6",
         "scenegraph",
         "typescript",
         "wrapper"

@@ -70,7 +70,6 @@
         "declarative",
         "diff",
         "dom",
-        "es6",
         "functional",
         "ioc",
         "iterator",

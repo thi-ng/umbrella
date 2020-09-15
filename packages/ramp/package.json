@@ -62,7 +62,6 @@
     ],
     "keywords": [
         "animation",
-        "es6",
         "hermite",
         "interpolation",
         "interval",
