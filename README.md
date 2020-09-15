@@ -114,13 +114,10 @@ fairly detailed overview for contributors here:
 
 ## Projects
 
-### New / unreleased packages in development
+<!-- ### New / unreleased packages in development
 
 (These packages might be still unreleased and only available on their
-feature or `develop` branches)
-
-- [@thi.ng/egf](https://github.com/thi-ng/umbrella/tree/feature/egf/packages/egf) - Extensible Graph Format
-- [@thi.ng/viz](https://github.com/thi-ng/umbrella/tree/develop/packages/viz) -
+feature or `develop` branches) -->
 
 ### Fundamentals
 
@@ -193,6 +190,7 @@ feature or `develop` branches)
 | [`@thi.ng/dcons`](./packages/dcons)             | [![version](https://img.shields.io/npm/v/@thi.ng/dcons.svg)](https://www.npmjs.com/package/@thi.ng/dcons)             | [changelog](./packages/dcons/CHANGELOG.md)       | Doubly-linked list                       |
 | [`@thi.ng/diff`](./packages/diff)               | [![version](https://img.shields.io/npm/v/@thi.ng/diff.svg)](https://www.npmjs.com/package/@thi.ng/diff)               | [changelog](./packages/diff/CHANGELOG.md)        | Array & object diffing                   |
 | [`@thi.ng/dgraph`](./packages/dgraph)           | [![version](https://img.shields.io/npm/v/@thi.ng/dgraph.svg)](https://www.npmjs.com/package/@thi.ng/dgraph)           | [changelog](./packages/dgraph/CHANGELOG.md)      | Dependency graph                         |
+| [`@thi.ng/egf`](./packages/egf)                 | [![version](https://img.shields.io/npm/v/@thi.ng/egf.svg)](https://www.npmjs.com/package/@thi.ng/egf)                 | [changelog](./packages/egf/CHANGELOG.md)         | Extensible Graph Format                  |
 | [`@thi.ng/gp`](./packages/gp)                   | [![version](https://img.shields.io/npm/v/@thi.ng/gp.svg)](https://www.npmjs.com/package/@thi.ng/gp)                   | [changelog](./packages/gp/CHANGELOG.md)          | Genetic programming helpers / AST gen    |
 | [`@thi.ng/heaps`](./packages/heaps)             | [![version](https://img.shields.io/npm/v/@thi.ng/heaps.svg)](https://www.npmjs.com/package/@thi.ng/heaps)             | [changelog](./packages/heaps/CHANGELOG.md)       | Binary & d-ary heap impls                |
 | [`@thi.ng/idgen`](./packages/idgen)             | [![version](https://img.shields.io/npm/v/@thi.ng/idgen.svg)](https://www.npmjs.com/package/@thi.ng/idgen)             | [changelog](./packages/idgen/CHANGELOG.md)       | Versioned ID generation / free-list      |
