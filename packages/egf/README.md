@@ -86,6 +86,7 @@ are only available in NodeJS.
 
 (Non-exhaustive list)
 
+- [x] [VSCode syntax highlighting](https://github.com/thi-ng/egf-language-support)
 - [x] JSON -> EGF conversion
 - [ ] Async tag parsing
 - [ ] URL support for `#file` tag
@@ -107,7 +108,7 @@ yarn add @thi.ng/egf
 <script src="https://unpkg.com/@thi.ng/egf/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.70 KB / CJS: 2.77 KB / UMD: 2.77 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.70 KB / CJS: 2.77 KB / UMD: 2.78 KB
 
 ## Dependencies
 

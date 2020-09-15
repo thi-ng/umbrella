@@ -65,6 +65,7 @@ ${status}
 
 (Non-exhaustive list)
 
+- [x] [VSCode syntax highlighting](https://github.com/thi-ng/egf-language-support)
 - [x] JSON -> EGF conversion
 - [ ] Async tag parsing
 - [ ] URL support for `#file` tag
