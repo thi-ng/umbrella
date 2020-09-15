@@ -8,30 +8,30 @@ import * as assert from "assert";
 
 describe("permutations", () => {
     it("empty", () => {
-        assert.deepEqual([...permutations([])], []);
-        assert.deepEqual([...permutations("")], []);
-        assert.deepEqual([...permutations(range(0))], []);
-        assert.deepEqual([...permutations([], [])], []);
-        assert.deepEqual([...permutations([], "")], []);
-        assert.deepEqual([...permutations(range(0), "")], []);
-        assert.deepEqual([...permutations([], "a")], []);
-        assert.deepEqual([...permutations("", "a")], []);
-        assert.deepEqual([...permutations("", "ab")], []);
-        assert.deepEqual([...permutations.apply(null, [])], []);
+        assert.deepStrictEqual([...permutations([])], []);
+        assert.deepStrictEqual([...permutations("")], []);
+        assert.deepStrictEqual([...permutations(range(0))], []);
+        assert.deepStrictEqual([...permutations([], [])], []);
+        assert.deepStrictEqual([...permutations([], "")], []);
+        assert.deepStrictEqual([...permutations(range(0), "")], []);
+        assert.deepStrictEqual([...permutations([], "a")], []);
+        assert.deepStrictEqual([...permutations("", "a")], []);
+        assert.deepStrictEqual([...permutations("", "ab")], []);
+        assert.deepStrictEqual([...permutations.apply(null, [])], []);
     });
     it("single", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...permutations("a", "-", range(1))],
             [["a", "-", 0]]
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...permutations("a", "-", range(2))],
             [
                 ["a", "-", 0],
                 ["a", "-", 1],
             ]
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...permutations("a", "-+", range(2))],
             [
                 ["a", "-", 0],
@@ -42,7 +42,7 @@ describe("permutations", () => {
         );
     });
     it("transformed", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [
                 ...iterator(
                     map((x: any[]) => x.join("")),
@@ -53,7 +53,7 @@ describe("permutations", () => {
         );
     });
     it("swizzle", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [
                 ...iterator(
                     map((x: string[]) => swizzle(x)({ x: 0, y: 1, z: 2 })),
@@ -67,13 +67,13 @@ describe("permutations", () => {
 
 describe("permutationsN", () => {
     it("empty", () => {
-        assert.deepEqual([...permutationsN(0)], []);
+        assert.deepStrictEqual([...permutationsN(0)], []);
     });
     it("one", () => {
-        assert.deepEqual([...permutationsN(1)], [[0]]);
+        assert.deepStrictEqual([...permutationsN(1)], [[0]]);
     });
     it("two", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...permutationsN(2)],
             [
                 [0, 0],
@@ -84,7 +84,7 @@ describe("permutationsN", () => {
         );
     });
     it("two/three", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...permutationsN(2, 3)],
             [
                 [0, 0],
@@ -100,7 +100,7 @@ describe("permutationsN", () => {
         );
     });
     it("with offsets", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...permutationsN(2, 2, [100, 1000])],
             [
                 [100, 1000],

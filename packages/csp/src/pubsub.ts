@@ -1,9 +1,9 @@
-import { illegalArity } from "@thi.ng/errors";
-import { Channel } from "./channel";
-import { Mult } from "./mult";
 import type { IObjectOf } from "@thi.ng/api";
+import { illegalArity } from "@thi.ng/errors";
 import type { Transducer } from "@thi.ng/transducers";
 import type { IWriteableChannel, TopicFn } from "./api";
+import { Channel } from "./channel";
+import { Mult } from "./mult";
 
 export class PubSub<T> implements IWriteableChannel<T> {
     protected static NEXT_ID = 0;

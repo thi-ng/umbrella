@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.62](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-subdiv-curve@0.1.61...@thi.ng/geom-subdiv-curve@0.1.62) (2020-09-13)
+
+**Note:** Version bump only for package @thi.ng/geom-subdiv-curve
+
+
+
+
+
 ## [0.1.61](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-subdiv-curve@0.1.60...@thi.ng/geom-subdiv-curve@0.1.61) (2020-08-28)
 
 **Note:** Version bump only for package @thi.ng/geom-subdiv-curve

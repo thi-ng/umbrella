@@ -1,5 +1,4 @@
-import { assert } from "@thi.ng/api";
-import type { Fn, ICopy, IEmpty, Pair } from "@thi.ng/api";
+import { assert, Fn, ICopy, IEmpty, Pair } from "@thi.ng/api";
 import { equivArrayLike } from "@thi.ng/equiv";
 import type { IRegionQuery, ISpatialMap } from "@thi.ng/geom-api";
 import { pointInCenteredBox, testCenteredBoxSphere } from "@thi.ng/geom-isec";
@@ -16,7 +15,7 @@ import {
     submN,
     vop,
 } from "@thi.ng/vectors";
-import { CMP, addResults } from "./utils";
+import { addResults, CMP } from "./utils";
 
 export class NdQtNode<K extends ReadonlyVec, V> {
     pos: ReadonlyVec;

@@ -1,22 +1,22 @@
-import { ceilPow2 } from "@thi.ng/binary";
-import { isPlainObject } from "@thi.ng/checks";
-import { equiv } from "@thi.ng/equiv";
-import { map } from "@thi.ng/transducers";
-import { dissoc } from "./dissoc";
-import { equivMap } from "./internal/equiv";
-import { inspectable } from "./internal/inspect";
-import { into } from "./into";
 import type {
     Fn,
     Fn3,
     ICopy,
     IEmpty,
     IEquiv,
+    IObjectOf,
     Pair,
     Predicate2,
-    IObjectOf,
 } from "@thi.ng/api";
+import { ceilPow2 } from "@thi.ng/binary";
+import { isPlainObject } from "@thi.ng/checks";
+import { equiv } from "@thi.ng/equiv";
+import { map } from "@thi.ng/transducers";
 import type { HashMapOpts } from "./api";
+import { dissoc } from "./dissoc";
+import { equivMap } from "./internal/equiv";
+import { inspectable } from "./internal/inspect";
+import { into } from "./into";
 
 interface HashMapState<K, V> {
     hash: Fn<K, number>;
@@ -60,7 +60,8 @@ const DEFAULT_LOAD = 0.75;
  *
  */
 @inspectable
-export class HashMap<K, V> extends Map<K, V>
+export class HashMap<K, V>
+    extends Map<K, V>
     implements
         Iterable<Pair<K, V>>,
         ICopy<HashMap<K, V>>,

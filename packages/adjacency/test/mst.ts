@@ -31,7 +31,7 @@ describe("unionfind", () => {
             [7, 8],
         ];
 
-        assert.deepEqual(
+        assert.deepStrictEqual(
             mst(
                 edges,
                 10,

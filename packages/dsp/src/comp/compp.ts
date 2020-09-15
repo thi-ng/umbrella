@@ -1,5 +1,5 @@
-import { AProc } from "../proc/aproc";
 import type { IProc } from "../api";
+import { AProc } from "../proc/aproc";
 
 export function compP<A, B, C>(a: IProc<A, B>, b: IProc<B, C>): IProc<A, C>;
 export function compP<A, B, C, D>(

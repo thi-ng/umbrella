@@ -1,4 +1,4 @@
-import { assert, Fn, Fn2, TypedArray, UIntArray } from "@thi.ng/api";
+import { assert, Fn, Fn2, FnN, TypedArray, UIntArray } from "@thi.ng/api";
 import { clamp } from "@thi.ng/math";
 import type { BlitOpts, PackedFormat, FloatFormat } from "./api";
 
@@ -17,7 +17,7 @@ export const ensureChannel = (fmt: PackedFormat | FloatFormat, id: number) => {
     return chan;
 };
 
-export const luminanceABGR = (c: number) =>
+export const luminanceABGR: FnN = (c) =>
     (((c >>> 16) & 0xff) * 29 + ((c >>> 8) & 0xff) * 150 + (c & 0xff) * 76) /
     255;
 

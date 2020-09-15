@@ -11,11 +11,11 @@ describe("array", function () {
     };
 
     it("simple (null,null)", () => {
-        assert.deepEqual(diffArray(null, null), state);
+        assert.deepStrictEqual(diffArray(null, null), state);
     });
 
     it("simple (null,arr)", () => {
-        assert.deepEqual(diffArray(null, [1, 2, 3]), <ArrayDiff<number>>{
+        assert.deepStrictEqual(diffArray(null, [1, 2, 3]), <ArrayDiff<number>>{
             ...state,
             distance: 3,
             adds: { 0: 1, 1: 2, 2: 3 },
@@ -24,7 +24,7 @@ describe("array", function () {
     });
 
     it("simple (arr, null)", () => {
-        assert.deepEqual(diffArray([1, 2, 3], null), <ArrayDiff<number>>{
+        assert.deepStrictEqual(diffArray([1, 2, 3], null), <ArrayDiff<number>>{
             ...state,
             distance: 3,
             dels: { 0: 1, 1: 2, 2: 3 },
@@ -33,7 +33,9 @@ describe("array", function () {
     });
 
     it("diff last", () => {
-        assert.deepEqual(diffArray([1, 2, 3], [1, 2, 4]), <ArrayDiff<number>>{
+        assert.deepStrictEqual(diffArray([1, 2, 3], [1, 2, 4]), <
+            ArrayDiff<number>
+        >{
             distance: 2,
             adds: { 2: 4 },
             dels: { 2: 3 },
@@ -43,7 +45,7 @@ describe("array", function () {
     });
 
     it("diff 2nd last", () => {
-        assert.deepEqual(diffArray([1, 2, 3, 4], [1, 2, 5, 4]), <
+        assert.deepStrictEqual(diffArray([1, 2, 3, 4], [1, 2, 5, 4]), <
             ArrayDiff<number>
         >{
             distance: 2,
@@ -55,7 +57,7 @@ describe("array", function () {
     });
 
     it("diff insert 2nd last", () => {
-        assert.deepEqual(diffArray([1, 2, 3, 4], [1, 2, 3, 5, 4]), <
+        assert.deepStrictEqual(diffArray([1, 2, 3, 4], [1, 2, 3, 5, 4]), <
             ArrayDiff<number>
         >{
             distance: 1,
@@ -67,7 +69,7 @@ describe("array", function () {
     });
 
     it("diff insert 2nd last (changes only)", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             diffArray(
                 [1, 2, 3, 4],
                 [1, 2, 3, 5, 4],

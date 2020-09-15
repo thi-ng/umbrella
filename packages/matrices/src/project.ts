@@ -1,7 +1,7 @@
 import { fromHomogeneous4, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import type { ReadonlyMat } from "./api";
 import { invert23, invert44 } from "./invert";
 import { mulV23, mulV344, mulV44 } from "./mulv";
-import type { ReadonlyMat } from "./api";
 
 /**
  * Transforms given point `p` (4D, homogeneous coordinates) with 4x4

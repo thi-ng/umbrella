@@ -1,5 +1,5 @@
-import { equiv as _equiv } from "@thi.ng/equiv";
 import type { Predicate2 } from "@thi.ng/api";
+import { equiv as _equiv } from "@thi.ng/equiv";
 
 /**
  * Similar to `Array.find()`, but uses {@link @thi.ng/equiv#equiv} as

@@ -7,12 +7,12 @@ describe("memoize", () => {
     it("memoize1", () => {
         const calls: number[] = [];
         const f = m.memoize1<number, number>((x) => (calls.push(x), x * 10));
-        assert.equal(f(1), 10);
-        assert.equal(f(2), 20);
-        assert.equal(f(2), 20);
-        assert.equal(f(1), 10);
-        assert.equal(f(3), 30);
-        assert.deepEqual(calls, [1, 2, 3]);
+        assert.strictEqual(f(1), 10);
+        assert.strictEqual(f(2), 20);
+        assert.strictEqual(f(2), 20);
+        assert.strictEqual(f(1), 10);
+        assert.strictEqual(f(3), 30);
+        assert.deepStrictEqual(calls, [1, 2, 3]);
     });
 
     it("memoize1 (equivmap)", () => {
@@ -21,12 +21,12 @@ describe("memoize", () => {
             (x) => (calls.push(x), x[0] + x[1]),
             new EquivMap()
         );
-        assert.equal(f([1, 2]), 3);
-        assert.equal(f([3, 4]), 7);
-        assert.equal(f([3, 4]), 7);
-        assert.equal(f([1, 2]), 3);
-        assert.equal(f([5, 6]), 11);
-        assert.deepEqual(calls, [
+        assert.strictEqual(f([1, 2]), 3);
+        assert.strictEqual(f([3, 4]), 7);
+        assert.strictEqual(f([3, 4]), 7);
+        assert.strictEqual(f([1, 2]), 3);
+        assert.strictEqual(f([5, 6]), 11);
+        assert.deepStrictEqual(calls, [
             [1, 2],
             [3, 4],
             [5, 6],
@@ -43,21 +43,21 @@ describe("memoize", () => {
             (x) => (calls.push(x), x[0] + x[1]),
             cache
         );
-        assert.equal(f([1, 2]), 3);
-        assert.equal(f([3, 4]), 7);
-        assert.equal(f([3, 4]), 7);
-        assert.equal(f([1, 2]), 3);
-        assert.equal(f([5, 6]), 11);
-        assert.equal(f([7, 8]), 15);
-        assert.equal(f([3, 4]), 7); // <-- recompute
-        assert.deepEqual(calls, [
+        assert.strictEqual(f([1, 2]), 3);
+        assert.strictEqual(f([3, 4]), 7);
+        assert.strictEqual(f([3, 4]), 7);
+        assert.strictEqual(f([1, 2]), 3);
+        assert.strictEqual(f([5, 6]), 11);
+        assert.strictEqual(f([7, 8]), 15);
+        assert.strictEqual(f([3, 4]), 7); // <-- recompute
+        assert.deepStrictEqual(calls, [
             [1, 2],
             [3, 4],
             [5, 6],
             [7, 8],
             [3, 4],
         ]);
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...cache.keys()],
             [
                 [5, 6],

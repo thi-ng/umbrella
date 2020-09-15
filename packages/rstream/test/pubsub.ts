@@ -20,10 +20,10 @@ describe("PubSub", () => {
         const a = pub.subscribeTopic("a", collect);
         const b = pub.subscribeTopic("b", collect);
         fromIterableSync("abcbd").subscribe(pub);
-        assert.deepEqual(acc, { a: ["a"], b: ["b", "b"] });
-        assert.equal(pub.getState(), State.DONE);
-        assert.equal(a.getState(), State.DONE);
-        assert.equal(b.getState(), State.DONE);
+        assert.deepStrictEqual(acc, { a: ["a"], b: ["b", "b"] });
+        assert.strictEqual(pub.getState(), State.DONE);
+        assert.strictEqual(a.getState(), State.DONE);
+        assert.strictEqual(b.getState(), State.DONE);
     });
 
     it("complex keys", () => {
@@ -45,7 +45,7 @@ describe("PubSub", () => {
             ["a", 0],
             ["c", 3],
         ]).subscribe(pub);
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...acc],
             [
                 [
@@ -59,7 +59,7 @@ describe("PubSub", () => {
                 [["b", 2], [["b", 2]]],
             ]
         );
-        assert.equal(pub.getState(), State.DONE);
+        assert.strictEqual(pub.getState(), State.DONE);
     });
 
     it("transducer", () => {
@@ -72,7 +72,7 @@ describe("PubSub", () => {
         pub.subscribeTopic("a", collect);
         pub.subscribeTopic("b", collect);
         fromIterableSync("abcbd").subscribe(pub);
-        assert.deepEqual(acc, {
+        assert.deepStrictEqual(acc, {
             a: [["a", 0]],
             b: [
                 ["b", 1],
@@ -81,7 +81,7 @@ describe("PubSub", () => {
             c: [],
             d: [],
         });
-        assert.equal(pub.getState(), State.DONE);
+        assert.strictEqual(pub.getState(), State.DONE);
     });
 
     it("unsubTopic", function (done) {
@@ -100,8 +100,8 @@ describe("PubSub", () => {
             pub.unsubscribeTopic("b", b);
         }, TIMEOUT * 2.5);
         setTimeout(() => {
-            assert.deepEqual(acc, { a: ["a"], b: ["b"] });
-            assert.equal(pub.getState(), State.DONE);
+            assert.deepStrictEqual(acc, { a: ["a"], b: ["b"] });
+            assert.strictEqual(pub.getState(), State.DONE);
             done();
         }, TIMEOUT * 7.5);
     });
@@ -119,7 +119,7 @@ describe("PubSub", () => {
             map((x) => x.toUpperCase())
         ).subscribe(collect);
         pub.next("a");
-        assert.deepEqual(acc, ["A"]);
+        assert.deepStrictEqual(acc, ["A"]);
     });
 
     it("subTopic only", () => {
@@ -132,6 +132,6 @@ describe("PubSub", () => {
             },
         });
         pub.next("a");
-        assert.deepEqual(acc, ["a"]);
+        assert.deepStrictEqual(acc, ["a"]);
     });
 });

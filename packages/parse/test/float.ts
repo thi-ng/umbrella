@@ -18,7 +18,7 @@ describe("parse", () => {
         ].forEach((x) => {
             const ctx = defContext(x);
             assert(FLOAT(ctx), x);
-            assert.equal(ctx.scope.children![0].result, parseFloat(x), x);
+            assert.strictEqual(ctx.scope.children![0].result, parseFloat(x), x);
         });
     });
 });

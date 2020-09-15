@@ -1,3 +1,5 @@
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import type { Mat } from "./api";
 import { concat } from "./concat";
 import { mulM44 } from "./mulm";
 import { quatFromEuler } from "./quat-euler";
@@ -5,8 +7,6 @@ import { quatToMat44 } from "./quat-m44";
 import { rotation23 } from "./rotation";
 import { scale23, scale44 } from "./scale";
 import { translation23 } from "./translation";
-import type { ReadonlyVec } from "@thi.ng/vectors";
-import type { Mat } from "./api";
 
 /**
  * Creates 2x3 TRS transformation matrix from given translation vector,

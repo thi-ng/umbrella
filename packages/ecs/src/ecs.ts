@@ -1,4 +1,12 @@
-import { assert, INotifyMixin, typedArray, uintType } from "@thi.ng/api";
+import {
+    assert,
+    Event,
+    INotify,
+    INotifyMixin,
+    Listener,
+    typedArray,
+    uintType,
+} from "@thi.ng/api";
 import { bitSize } from "@thi.ng/binary";
 import { isArray, isString } from "@thi.ng/checks";
 import { IDGen } from "@thi.ng/idgen";
@@ -14,7 +22,6 @@ import { MemMappedComponent } from "./components/mem-component";
 import { ObjectComponent } from "./components/object-component";
 import { EVENT_ADDED, EVENT_PRE_DELETE } from "./constants";
 import { Group } from "./groups/group";
-import type { Event, INotify, Listener } from "@thi.ng/api";
 
 let NEXT_GROUP_ID = 0;
 

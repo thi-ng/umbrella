@@ -1,10 +1,10 @@
 import { NO_OP } from "@thi.ng/api";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti";
+import type { Lit, Op1, Op2, Term } from "./api/nodes";
+import type { Operator } from "./api/ops";
 import { isLitNumeric } from "./ast/checks";
 import { lit } from "./ast/lit";
 import { allChildren, walk } from "./ast/scope";
-import type { Lit, Op1, Op2, Term } from "./api/nodes";
-import type { Operator } from "./api/ops";
 
 const replaceNode = (node: any, next: any) => {
     for (let k in node) {

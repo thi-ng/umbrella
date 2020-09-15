@@ -1,8 +1,8 @@
+import type { Predicate } from "@thi.ng/api";
 import { isIterable } from "@thi.ng/checks";
+import type { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { iterator1 } from "../iterator";
-import type { Predicate } from "@thi.ng/api";
-import type { Reducer, Transducer } from "../api";
 
 export function filter<T>(pred: Predicate<T>): Transducer<T, T>;
 export function filter<T>(

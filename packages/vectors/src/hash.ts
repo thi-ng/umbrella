@@ -1,5 +1,6 @@
+import type { FnN2 } from "@thi.ng/api";
 import { floatToUintBits, rotateLeft } from "@thi.ng/binary";
-import { ReadonlyVec } from "./api";
+import type { ReadonlyVec } from "./api";
 
 /**
  * Returns an unsigned 32-bit hash code for the given vector.
@@ -61,7 +62,7 @@ const M1 = 0xcc9e2d51;
 const M2 = 0x1b873593;
 const M3 = 0xe6546b64;
 
-const mix = (h: number, k: number) => {
+const mix: FnN2 = (h, k) => {
     k = Math.imul(rotateLeft(Math.imul(k, M1) >>> 0, 15), M2) >>> 0;
     return ((Math.imul(rotateLeft(h ^ k, 13), 5) >>> 0) + M3) >>> 0;
 };

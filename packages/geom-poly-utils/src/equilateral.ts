@@ -1,3 +1,4 @@
+import type { FnU2 } from "@thi.ng/api";
 import { THIRD_PI } from "@thi.ng/math";
 import {
     maddN2,
@@ -8,7 +9,7 @@ import {
     Vec,
 } from "@thi.ng/vectors";
 
-export const equilateralTriangle2 = (a: Vec, b: Vec) => {
+export const equilateralTriangle2: FnU2<Vec, Vec[]> = (a, b) => {
     const dir = sub2([], b, a);
     const c = normalize(
         null,

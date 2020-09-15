@@ -1,5 +1,5 @@
-import { empty, ensureSet } from "./utils";
 import type { IObjectOf } from "@thi.ng/api";
+import { empty, ensureSet } from "./utils";
 
 export const withoutKeysMap = <K, V>(src: Map<K, V>, keys: Iterable<K>) => {
     const ks = ensureSet(keys);

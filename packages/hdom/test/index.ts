@@ -5,7 +5,10 @@ import * as assert from "assert";
 import { normalizeTree } from "../src/normalize";
 
 const _check = (a: any, b: any, ctx: any = null) =>
-    assert.deepEqual(normalizeTree({ ctx, keys: false, span: false }, a), b);
+    assert.deepStrictEqual(
+        normalizeTree({ ctx, keys: false, span: false }, a),
+        b
+    );
 
 const check = (id: string, a: any, b: any) => it(id, () => _check(a, b));
 
@@ -81,9 +84,9 @@ describe("hdom", () => {
         [
             "div",
             {},
-            ["div", { id: "id0" }, 0],
-            ["div", { id: "id1" }, 1],
-            ["div", { id: "id2" }, 2],
+            ["div", { id: "id0" }, "0"],
+            ["div", { id: "id1" }, "1"],
+            ["div", { id: "id2" }, "2"],
         ]
     );
 
@@ -96,17 +99,17 @@ describe("hdom", () => {
         let res: any = ["div", {}, ["span", {}, "foo"]];
         res.__this = src;
         res.__init = res.__release = undefined;
-        res.__args = [null];
-        assert.deepEqual(normalizeTree({ keys: false }, [src]), res);
+        res.__args = [undefined];
+        assert.deepStrictEqual(normalizeTree({ keys: false }, [src]), res);
         res = ["div", { key: "0" }, ["span", { key: "0-0" }, "foo"]];
         res.__this = src;
         res.__init = res.__release = undefined;
-        res.__args = [null];
-        assert.deepEqual(normalizeTree({}, [src]), res);
+        res.__args = [undefined];
+        assert.deepStrictEqual(normalizeTree({}, [src]), res);
     });
 
     it("dyn context", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             derefContext(
                 {
                     a: 23,

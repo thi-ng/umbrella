@@ -51,10 +51,10 @@ const cubeFaces = [
 describe("geom-io-obj", () => {
     it("cube (default)", () => {
         const model = parseOBJ(src);
-        assert.deepEqual(model.vertices, cubeVerts);
-        assert.equal(model.objects.length, 2);
-        assert.equal(model.objects[1].id, "cube");
-        assert.deepEqual(model.objects[1].groups, [
+        assert.deepStrictEqual(model.vertices, cubeVerts);
+        assert.strictEqual(model.objects.length, 2);
+        assert.strictEqual(model.objects[1].id, "cube");
+        assert.deepStrictEqual(model.objects[1].groups, [
             {
                 id: "default",
                 smooth: false,
@@ -70,15 +70,15 @@ describe("geom-io-obj", () => {
                 faces: cubeFaces.slice(3),
             },
         ]);
-        assert.deepEqual(model.mtlLibs, ["cube.mtl"]);
+        assert.deepStrictEqual(model.mtlLibs, ["cube.mtl"]);
     });
 
     it("cube (no obj, no groups)", () => {
         const model = parseOBJ(src, { objects: false, groups: false });
-        assert.deepEqual(model.vertices, cubeVerts);
-        assert.equal(model.objects.length, 1);
-        assert.equal(model.objects[0].id, "default");
-        assert.deepEqual(model.objects[0].groups, [
+        assert.deepStrictEqual(model.vertices, cubeVerts);
+        assert.strictEqual(model.objects.length, 1);
+        assert.strictEqual(model.objects[0].id, "default");
+        assert.deepStrictEqual(model.objects[0].groups, [
             {
                 id: "default",
                 smooth: true,
@@ -95,7 +95,7 @@ describe("geom-io-obj", () => {
             groups: false,
             tessellate: true,
         });
-        assert.deepEqual(model.objects[0].groups, [
+        assert.deepStrictEqual(model.objects[0].groups, [
             {
                 id: "default",
                 smooth: true,
@@ -121,6 +121,6 @@ describe("geom-io-obj", () => {
 
     it("comments", () => {
         const model = parseOBJ(src, { comments: true });
-        assert.deepEqual(model.comments, ["test cube", "quad faces"]);
+        assert.deepStrictEqual(model.comments, ["test cube", "quad faces"]);
     });
 });

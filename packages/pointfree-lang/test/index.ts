@@ -5,12 +5,12 @@ import { run, runU } from "../src/index";
 describe("pointfree-lang", () => {
     it("nil", () => {
         assert.strictEqual(runU(`nil`), null);
-        assert.deepEqual(run(`nil nil`)[0], [null, null]);
-        assert.deepEqual(run(`'nil dup`)[0], [[null], [null]]);
+        assert.deepStrictEqual(run(`nil nil`)[0], [null, null]);
+        assert.deepStrictEqual(run(`'nil dup`)[0], [[null], [null]]);
     });
 
     it("number (hex)", () => {
-        assert.deepEqual(run(`0x1 0xa 0xff 0xdecafbad`)[0], [
+        assert.deepStrictEqual(run(`0x1 0xa 0xff 0xdecafbad`)[0], [
             1,
             10,
             255,
@@ -19,40 +19,40 @@ describe("pointfree-lang", () => {
     });
 
     it("number (decimal)", () => {
-        assert.deepEqual(run(`0 -1 +2`)[0], [0, -1, 2]);
-        assert.deepEqual(run(`-123. +12.3`)[0], [-123, 12.3]);
-        assert.deepEqual(run(`-123e4`)[0], [-1230000]);
-        assert.deepEqual(run(`+1.23e-2`)[0], [0.0123]);
-        assert.deepEqual(run(`+1.23e-2 0.0123 =`)[0], [true]);
+        assert.deepStrictEqual(run(`0 -1 +2`)[0], [0, -1, 2]);
+        assert.deepStrictEqual(run(`-123. +12.3`)[0], [-123, 12.3]);
+        assert.deepStrictEqual(run(`-123e4`)[0], [-1230000]);
+        assert.deepStrictEqual(run(`+1.23e-2`)[0], [0.0123]);
+        assert.deepStrictEqual(run(`+1.23e-2 0.0123 =`)[0], [true]);
     });
 
     it("litquote", () => {
-        assert.deepEqual(runU(`'nil`), [null]);
-        assert.deepEqual(runU(`'+`), [pf.add]);
-        assert.deepEqual(run(`1 '1`)[0], [1, [1]]);
-        assert.deepEqual(run(`1 2 '+`)[0], [1, 2, [pf.add]]);
-        assert.deepEqual(run(`1 2 '+ exec`)[0], [3]);
+        assert.deepStrictEqual(runU(`'nil`), [null]);
+        assert.deepStrictEqual(runU(`'+`), [pf.add]);
+        assert.deepStrictEqual(run(`1 '1`)[0], [1, [1]]);
+        assert.deepStrictEqual(run(`1 2 '+`)[0], [1, 2, [pf.add]]);
+        assert.deepStrictEqual(run(`1 2 '+ exec`)[0], [3]);
     });
 
     it("var deref (quote)", () => {
-        assert.deepEqual(runU(`[@a [@a {@a: @a} {@a: [@a]}]]`, { a: 1 }), [
-            1,
-            [1, { 1: 1 }, { 1: [1] }],
-        ]);
+        assert.deepStrictEqual(
+            runU(`[@a [@a {@a: @a} {@a: [@a]}]]`, { a: 1 }),
+            [1, [1, { 1: 1 }, { 1: [1] }]]
+        );
     });
 
     it("var deref (litquote)", () => {
-        assert.deepEqual(runU(`'@a`, { a: 1 }), [1]);
-        assert.deepEqual(runU(`'[@a]`, { a: 1 }), [[1]]);
-        assert.deepEqual(runU(`''@a`, { a: 1 }), [[1]]);
+        assert.deepStrictEqual(runU(`'@a`, { a: 1 }), [1]);
+        assert.deepStrictEqual(runU(`'[@a]`, { a: 1 }), [[1]]);
+        assert.deepStrictEqual(runU(`''@a`, { a: 1 }), [[1]]);
     });
 
     it("var deref (word)", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             runU(`: foo [@a [@a {@a: @a} {@a: [@a]}]]; foo`, { a: 1 }),
             [1, [1, { 1: 1 }, { 1: [1] }]]
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             run(`: foo [@a [@a {@a: @a} {@a: [@a]}]]; foo 2 a! foo`, {
                 a: 1,
             })[0],
@@ -64,7 +64,10 @@ describe("pointfree-lang", () => {
     });
 
     it("line comment", () => {
-        assert.deepEqual(runU(`// comment\n: foo // ignore me\n42 ; foo`), 42);
+        assert.deepStrictEqual(
+            runU(`// comment\n: foo // ignore me\n42 ; foo`),
+            42
+        );
     });
 
     it("word metadata", () => {
@@ -73,21 +76,21 @@ describe("pointfree-lang", () => {
 : bar ( -- ?) 23 ;
 : baz 11 ;
 foo`);
-        assert.deepEqual(ctx[0], [65]);
+        assert.deepStrictEqual(ctx[0], [65]);
         const words = ctx[2].__words;
-        assert.deepEqual(words.foo.__meta, {
+        assert.deepStrictEqual(words.foo.__meta, {
             name: "foo",
             loc: [1, 1],
             stack: "a b -- x",
             arities: [2, 1],
         });
-        assert.deepEqual(words.bar.__meta, {
+        assert.deepStrictEqual(words.bar.__meta, {
             name: "bar",
             loc: [3, 1],
             stack: " -- ?",
             arities: [0, -1],
         });
-        assert.deepEqual(words.baz.__meta, {
+        assert.deepStrictEqual(words.baz.__meta, {
             name: "baz",
             loc: [4, 1],
         });

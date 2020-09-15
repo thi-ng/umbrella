@@ -1,5 +1,5 @@
 import { EPS } from "@thi.ng/math";
-import { VecOpSVO } from "./api";
+import type { VecOpSVO } from "./api";
 import { magS2, magS3, magS4 } from "./mags";
 import { mulNS2, mulNS3, mulNS4 } from "./mulns";
 import { setS2, setS3, setS4 } from "./sets";

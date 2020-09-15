@@ -1,7 +1,7 @@
-import { INotifyMixin } from "@thi.ng/api";
-import type {
+import {
     DeepPath,
     Event,
+    INotifyMixin,
     Listener,
     OptPathVal,
     Path,

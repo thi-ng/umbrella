@@ -80,7 +80,7 @@ describe("system", () => {
         await foo.start();
         await foo.stop();
 
-        assert.deepEqual(log, [
+        assert.deepStrictEqual(log, [
             "start logger",
             "start cache",
             "start dummy",
@@ -90,5 +90,19 @@ describe("system", () => {
             "stop cache",
             "stop logger",
         ]);
+    });
+
+    it("non-lifecycle objects", async () => {
+        interface Foo {
+            x: number;
+        }
+
+        const sys = defSystem<{ foo: Foo; bar: { foo: Foo } }>({
+            foo: { factory: () => ({ x: 42 }) },
+            bar: { factory: ({ foo }) => ({ foo }), deps: ["foo"] },
+        });
+        assert(sys.components.foo === sys.components.bar.foo);
+        await sys.start();
+        await sys.stop();
     });
 });

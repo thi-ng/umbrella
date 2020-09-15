@@ -1,5 +1,5 @@
-import { Comparator } from "@thi.ng/api";
-import { ReadonlyVec } from "./api";
+import type { Comparator } from "@thi.ng/api";
+import type { ReadonlyVec } from "./api";
 
 /**
  * Returns a new 2D vector comparator using given component order. The

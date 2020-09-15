@@ -1,4 +1,6 @@
-import { ReadonlyVec } from "./api";
+import type { FnU2 } from "@thi.ng/api";
+import type { ReadonlyVec } from "./api";
 import { distSq } from "./distsq";
 
-export const dist = (a: ReadonlyVec, b: ReadonlyVec) => Math.sqrt(distSq(a, b));
+export const dist: FnU2<ReadonlyVec, number> = (a, b) =>
+    Math.sqrt(distSq(a, b));

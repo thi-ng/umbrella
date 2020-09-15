@@ -4,11 +4,11 @@ import { resolve, ResolveFn } from "../src/index";
 
 describe("resolve-map", () => {
     it("simple", () => {
-        assert.deepEqual(resolve({ a: 1, b: "@a" }), { a: 1, b: 1 });
+        assert.deepStrictEqual(resolve({ a: 1, b: "@a" }), { a: 1, b: 1 });
     });
 
     it("linked refs", () => {
-        assert.deepEqual(resolve({ a: "@c", b: "@a", c: 1 }), {
+        assert.deepStrictEqual(resolve({ a: "@c", b: "@a", c: 1 }), {
             a: 1,
             b: 1,
             c: 1,
@@ -16,7 +16,7 @@ describe("resolve-map", () => {
     });
 
     it("array refs", () => {
-        assert.deepEqual(resolve({ a: "@c/1", b: "@a", c: [1, 2] }), {
+        assert.deepStrictEqual(resolve({ a: "@c/1", b: "@a", c: [1, 2] }), {
             a: 2,
             b: 2,
             c: [1, 2],
@@ -24,7 +24,7 @@ describe("resolve-map", () => {
     });
 
     it("abs vs rel refs", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             resolve({
                 a1: { b: 1, c: "@b" },
                 a2: { b: 2, c: "@b" },
@@ -35,7 +35,7 @@ describe("resolve-map", () => {
     });
 
     it("rel parent refs", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             resolve({
                 a: { b: { c: "@../c/d", d: "@c", e: "@/c/d" }, c: { d: 1 } },
                 c: { d: 10 },
@@ -53,7 +53,7 @@ describe("resolve-map", () => {
     });
 
     it("function refs", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             resolve({
                 a: (x: ResolveFn) => x("b/c") * 10,
                 b: { c: "@d", d: "@/e" },
@@ -66,7 +66,7 @@ describe("resolve-map", () => {
             b: { c: "@d", d: "@/e" },
             e: () => () => 1,
         });
-        assert.equal(res.a, 10);
+        assert.strictEqual(res.a, 10);
         assert.strictEqual(res.b.c, res.e);
         assert.strictEqual(res.b.d, res.e);
         assert.strictEqual(res.e(), 1);
@@ -74,7 +74,7 @@ describe("resolve-map", () => {
 
     it("function resolves only once", () => {
         let n = 0;
-        assert.deepEqual(
+        assert.deepStrictEqual(
             resolve({
                 a: (x: ResolveFn) => x("b/c"),
                 b: { c: "@d", d: "@/e" },
@@ -82,11 +82,11 @@ describe("resolve-map", () => {
             }),
             { a: 1, b: { c: 1, d: 1 }, e: 1 }
         );
-        assert.equal(n, 1);
+        assert.strictEqual(n, 1);
     });
 
     it("deep resolve of yet unknown refs", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             resolve({
                 a: "@b/c/d",
                 b: ($: ResolveFn) => ({ c: { d: { e: $("/x") } } }),
@@ -131,7 +131,7 @@ describe("resolve-map", () => {
             },
         };
         // prettier-ignore
-        assert.deepEqual(
+        assert. deepStrictEqual(
             resolve({ ...stats, src: () => [1, 6, 7, 2, 4, 11, -3] }),
             {
                 mean: 4,
@@ -147,21 +147,21 @@ describe("resolve-map", () => {
     });
 
     it("destructures w/ local renames", () => {
-        assert.deepEqual(resolve({ a: 1, b: ({ a: aa }: any) => aa }), {
+        assert.deepStrictEqual(resolve({ a: 1, b: ({ a: aa }: any) => aa }), {
             a: 1,
             b: 1,
         });
     });
 
     it("destructures w/ trailing comma", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             // since prettier is running over this file
             // build function dynamically to force trailing comma
             resolve({ a: 1, b: 2, c: new Function("{a,b,}", "return a + b") }),
             { a: 1, b: 2, c: 3 },
             "comma only"
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             resolve({
                 a: 1,
                 b: 2,
@@ -170,7 +170,7 @@ describe("resolve-map", () => {
             { a: 1, b: 2, c: 3 },
             "comma & whitespaces"
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             resolve({
                 a: 1,
                 b: 2,
@@ -182,7 +182,7 @@ describe("resolve-map", () => {
     });
 
     it("custom prefix", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             resolve(
                 {
                     a: {

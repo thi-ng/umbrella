@@ -1,14 +1,12 @@
-import { SEMAPHORE } from "@thi.ng/api";
+import { Comparator, Fn3, IObjectOf, Pair, SEMAPHORE } from "@thi.ng/api";
 import { isPlainObject } from "@thi.ng/checks";
 import { compare } from "@thi.ng/compare";
-import { isReduced, map } from "@thi.ng/transducers";
+import { isReduced, map, ReductionFn } from "@thi.ng/transducers";
+import type { SortedMapOpts } from "./api";
 import { dissoc } from "./dissoc";
 import { equivMap } from "./internal/equiv";
 import { inspectable } from "./internal/inspect";
 import { into } from "./into";
-import type { Comparator, Fn3, IObjectOf, Pair } from "@thi.ng/api";
-import type { ReductionFn } from "@thi.ng/transducers";
-import type { SortedMapOpts } from "./api";
 
 interface SortedMapState<K, V> {
     head: Node<K, V>;

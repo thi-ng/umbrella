@@ -53,44 +53,44 @@ describe("custom", () => {
     });
 
     it("next", () => {
-        assert.deepEqual(a.node, tree);
-        assert.deepEqual(a.next!.node, tree.children[0]);
-        assert.deepEqual(
+        assert.deepStrictEqual(a.node, tree);
+        assert.deepStrictEqual(a.next!.node, tree.children[0]);
+        assert.deepStrictEqual(
             a.next!.next!.node,
             (<any>tree).children[0].children[0]
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             a.next!.next!.next!.node,
             (<any>tree).children[0].children[1]
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             a.next!.next!.next!.next!.node,
             (<any>tree).children[1]
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             a.next!.next!.next!.next!.next!.node,
             (<any>tree).children[2]
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             a.next!.next!.next!.next!.next!.next!.node,
             (<any>tree).children[2].children[0]
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             a.next!.next!.next!.next!.next!.next!.next!.node,
             (<any>tree).children[2].children[1]
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             a.next!.next!.next!.next!.next!.next!.next!.next!.node,
             (<any>tree).children[2].children[1].children[0]
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             a.next!.next!.next!.next!.next!.next!.next!.next!.next,
             undefined
         );
     });
 
     it("replace", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             a.next!.next!.next!.replace({ type: "leaf", value: 10 }).up!.root,
             {
                 type: "root",
@@ -106,7 +106,7 @@ describe("custom", () => {
                 ],
             }
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             a.next!.rightmost.down!.right!.down!.replace({
                 type: "leaf",
                 value: 10,

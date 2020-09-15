@@ -1,7 +1,7 @@
+import type { Fn, Fn2, ICompare, IContains, ICopy, IEquiv } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks";
 import { and, or } from "@thi.ng/dlogic";
 import { illegalArgs } from "@thi.ng/errors";
-import type { Fn, Fn2, ICompare, IContains, ICopy, IEquiv } from "@thi.ng/api";
 
 export enum Classifier {
     DISJOINT_LEFT,

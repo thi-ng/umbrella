@@ -1,5 +1,5 @@
+import type { Comparator, Fn, FnN, FnN2 } from "@thi.ng/api";
 import { compare, compareNumAsc } from "@thi.ng/compare";
-import type { Comparator, Fn } from "@thi.ng/api";
 
 /**
  * Returns the supposed index of `x` in pre-sorted array-like collection
@@ -157,14 +157,14 @@ export const binarySearch32 = (buf: ArrayLike<number>, x: number) => {
  *
  * @param i - binarySearch result index
  */
-export const bsLT = (i: number) => (i < 0 ? -i - 2 : i - 1);
+export const bsLT: FnN = (i) => (i < 0 ? -i - 2 : i - 1);
 
 /**
  * Similar to {@link bsLT}, but for less-than-equals queries.
  *
  * @param i - binarySearch result index
  */
-export const bsLE = (i: number) => (i < 0 ? -i - 2 : i);
+export const bsLE: FnN = (i) => (i < 0 ? -i - 2 : i);
 
 /**
  * {@link binarySearch} result index classifier for successor queries.
@@ -185,7 +185,7 @@ export const bsLE = (i: number) => (i < 0 ? -i - 2 : i);
  * @param i - binarySearch result index
  * @param n - array length
  */
-export const bsGT = (i: number, n: number) => (
+export const bsGT: FnN2 = (i, n) => (
     (i = i < 0 ? -i - 1 : i + 1), i < n ? i : -1
 );
 
@@ -195,9 +195,7 @@ export const bsGT = (i: number, n: number) => (
  * @param i - binarySearch result index
  * @param n - array length
  */
-export const bsGE = (i: number, n: number) => (
-    (i = i < 0 ? -i - 1 : i), i < n ? i : -1
-);
+export const bsGE: FnN2 = (i, n) => ((i = i < 0 ? -i - 1 : i), i < n ? i : -1);
 
 /**
  * {@link binarySearch} result index classifier for equals queries.
@@ -205,4 +203,4 @@ export const bsGE = (i: number, n: number) => (
  *
  * @param i - binarySearch result index
  */
-export const bsEQ = (i: number) => (i < 0 ? -1 : i);
+export const bsEQ: FnN = (i) => (i < 0 ? -1 : i);

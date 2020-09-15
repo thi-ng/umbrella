@@ -1,6 +1,6 @@
+import type { IDeref } from "@thi.ng/api";
 import { U24 } from "@thi.ng/strings";
 import { FF, INV8BIT } from "./constants";
-import type { IDeref } from "@thi.ng/api";
 
 export const int32Css = (src: number | IDeref<number>) => {
     src = typeof src === "number" ? src : src.deref();

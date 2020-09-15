@@ -1,7 +1,6 @@
-import { SYSTEM } from "@thi.ng/random";
-import { AGen } from "./agen";
 import type { IReset } from "@thi.ng/api";
-import type { IRandom } from "@thi.ng/random";
+import { IRandom, SYSTEM } from "@thi.ng/random";
+import { AGen } from "./agen";
 
 /**
  * White noise gen with customizable gain and

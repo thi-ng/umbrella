@@ -1,8 +1,8 @@
 import { mapcat } from "@thi.ng/transducers";
+import type { CommonOpts } from "../api";
 import { Subscription } from "../subscription";
 import { optsWithID } from "../utils/idgen";
 import { fromPromise } from "./promise";
-import type { CommonOpts } from "../api";
 
 /**
  * Wraps given iterable in `Promise.all()` to yield {@link Stream} of

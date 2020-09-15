@@ -1,7 +1,7 @@
+import type { Fn, IID } from "@thi.ng/api";
 import { LOGGER, State } from "../api";
 import { Subscription } from "../subscription";
 import { optsWithID } from "../utils/idgen";
-import type { Fn, IID } from "@thi.ng/api";
 
 export interface ResolverOpts extends IID<string> {
     /**

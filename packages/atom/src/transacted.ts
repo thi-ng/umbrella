@@ -1,5 +1,5 @@
-import { assert } from "@thi.ng/api";
-import type {
+import {
+    assert,
     DeepPath,
     OptPathVal,
     Path,

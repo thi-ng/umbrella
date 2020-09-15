@@ -4,7 +4,7 @@ import { Classifier, interval as i } from "../src";
 describe("intervals", () => {
     it("classify", () => {
         const check = (a: string, b: string, res: Classifier) =>
-            assert.equal(i(a).classify(i(b)), res, String(res));
+            assert.strictEqual(i(a).classify(i(b)), res, String(res));
         check("[0..100]", "[0..100]", Classifier.EQUIV);
         check("[0..100]", "(0..100]", Classifier.SUPERSET);
         check("[0..100]", "[0..100)", Classifier.SUPERSET);
@@ -78,9 +78,9 @@ describe("intervals", () => {
         const b = i("(0..1]");
         const c = i("[0..1)");
         const d = i("(0..1)");
-        assert.equal(a.compare(a), 0, "aa");
-        assert.equal(a.compare(b), -1, "ab");
-        assert.equal(a.compare(c), 1, "ac");
-        assert.equal(a.compare(d), -1, "ad");
+        assert.strictEqual(a.compare(a), 0, "aa");
+        assert.strictEqual(a.compare(b), -1, "ab");
+        assert.strictEqual(a.compare(c), 1, "ac");
+        assert.strictEqual(a.compare(d), -1, "ad");
     });
 });

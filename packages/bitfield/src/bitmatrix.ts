@@ -1,7 +1,6 @@
-import { assert } from "@thi.ng/api";
+import { assert, Fn2, IClear, ICopy } from "@thi.ng/api";
 import { align, bitAnd, bitNot, bitOr, bitXor } from "@thi.ng/binary";
 import { binOp, toString } from "./util";
-import type { Fn2, IClear, ICopy } from "@thi.ng/api";
 
 /**
  * MxN row-major 2D bit matrix, backed by a Uint32Array. Hence the width

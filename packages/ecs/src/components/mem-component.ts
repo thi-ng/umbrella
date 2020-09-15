@@ -1,7 +1,14 @@
-import { assert, INotifyMixin, Type, typedArray, uintType } from "@thi.ng/api";
-import { AComponent } from "./acomponent";
-import type { TypedArray, UIntArray } from "@thi.ng/api";
+import {
+    assert,
+    INotifyMixin,
+    Type,
+    typedArray,
+    TypedArray,
+    UIntArray,
+    uintType,
+} from "@thi.ng/api";
 import type { ICache, MemMappedComponentOpts } from "../api";
+import { AComponent } from "./acomponent";
 
 @INotifyMixin
 export class MemMappedComponent<K extends string> extends AComponent<

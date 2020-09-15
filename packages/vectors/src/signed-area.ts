@@ -1,4 +1,5 @@
-import { ReadonlyVec } from "./api";
+import type { FnN6, FnU3 } from "@thi.ng/api";
+import type { ReadonlyVec } from "./api";
 
 /**
  * Returns area * 2 of the 2D triangle defined by the input vectors.
@@ -20,7 +21,7 @@ import { ReadonlyVec } from "./api";
  * @param b -
  * @param c -
  */
-export const signedArea2 = (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec) => {
+export const signedArea2: FnU3<ReadonlyVec, number> = (a, b, c) => {
     const ax = a[0];
     const ay = a[1];
     return (b[0] - ax) * (c[1] - ay) - (c[0] - ax) * (b[1] - ay);
@@ -37,11 +38,5 @@ export const signedArea2 = (a: ReadonlyVec, b: ReadonlyVec, c: ReadonlyVec) => {
  * @param cx -
  * @param cy -
  */
-export const signedAreaC2 = (
-    ax: number,
-    ay: number,
-    bx: number,
-    by: number,
-    cx: number,
-    cy: number
-) => (bx - ax) * (cy - ay) - (cx - ax) * (by - ay);
+export const signedAreaC2: FnN6 = (ax, ay, bx, by, cx, cy) =>
+    (bx - ax) * (cy - ay) - (cx - ax) * (by - ay);

@@ -24,7 +24,7 @@ describe("dgraph-dot", () => {
                 },
             },
         });
-        assert.equal(
+        assert.strictEqual(
             dot,
             `digraph g {
 node[style="filled", fillcolor="black", fontcolor="white"];

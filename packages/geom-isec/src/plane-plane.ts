@@ -1,5 +1,5 @@
 import { IntersectionType } from "@thi.ng/geom-api";
-import { eqDelta, eqDeltaFixed } from "@thi.ng/math";
+import { eqDelta } from "@thi.ng/math";
 import { add3, cross3, dot3, mulN3, ReadonlyVec } from "@thi.ng/vectors";
 import { NONE } from "./api";
 
@@ -10,7 +10,7 @@ export const intersectPlanePlane = (
     wb: number
 ) => {
     const dn = dot3(na, nb);
-    if (eqDeltaFixed(dn, 1)) {
+    if (eqDelta(dn, 1)) {
         return eqDelta(wa, wb) ? { type: IntersectionType.COINCIDENT } : NONE;
     }
     const det = 1 / (1 - dn * dn);

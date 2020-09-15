@@ -13,7 +13,7 @@ describe("partitionSync", () => {
     ];
 
     it("default behavior", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...partitionSync(["a", "b"], { key: (x) => x[0] }, src)],
             [
                 { a: ["a", 2], b: ["b", 10] },
@@ -23,7 +23,7 @@ describe("partitionSync", () => {
     });
 
     it("no reset", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [
                 ...partitionSync(
                     ["a", "b"],
@@ -51,17 +51,17 @@ describe("partitionSync", () => {
             })
         );
 
-        assert.equal(f(["t", 0]), undefined);
-        assert.equal(f(["a", 0]), undefined);
+        assert.strictEqual(f(["t", 0]), undefined);
+        assert.strictEqual(f(["a", 0]), undefined);
         keys.delete("a");
-        assert.equal(f(["t", 1]), undefined);
-        assert.equal(f(["a", 1]), undefined);
-        assert.deepEqual(f(["b", 2]), {
+        assert.strictEqual(f(["t", 1]), undefined);
+        assert.strictEqual(f(["a", 1]), undefined);
+        assert.deepStrictEqual(f(["b", 2]), {
             a: ["a", 0],
             t: ["t", 1],
             b: ["b", 2],
         });
-        assert.deepEqual(f(["t", 2]), {
+        assert.deepStrictEqual(f(["t", 2]), {
             a: ["a", 0],
             t: ["t", 2],
             b: ["b", 2],
@@ -76,31 +76,31 @@ describe("partitionSync", () => {
         });
         const f = step(xform);
 
-        assert.equal(f(["t", 0]), undefined);
-        assert.equal(f(["a", 0]), undefined);
+        assert.strictEqual(f(["t", 0]), undefined);
+        assert.strictEqual(f(["a", 0]), undefined);
         xform.delete("a");
-        assert.deepEqual(keys, new Set(["b", "t"]));
-        assert.equal(f(["t", 1]), undefined);
-        assert.equal(f(["a", 1]), undefined);
-        assert.deepEqual(f(["b", 2]), {
+        assert.deepStrictEqual(keys, new Set(["b", "t"]));
+        assert.strictEqual(f(["t", 1]), undefined);
+        assert.strictEqual(f(["a", 1]), undefined);
+        assert.deepStrictEqual(f(["b", 2]), {
             t: ["t", 1],
             b: ["b", 2],
         });
         xform.add("a");
-        assert.deepEqual(xform.keys(), new Set(["a", "b", "t"]));
-        assert.deepEqual(f(["a", 2]), {
+        assert.deepStrictEqual(xform.keys(), new Set(["a", "b", "t"]));
+        assert.deepStrictEqual(f(["a", 2]), {
             a: ["a", 2],
             t: ["t", 1],
             b: ["b", 2],
         });
         xform.clear();
-        assert.equal(f(["a", 3]), undefined);
+        assert.strictEqual(f(["a", 3]), undefined);
         xform.add("a");
-        assert.deepEqual(f(["a", 4]), { a: ["a", 4] });
+        assert.deepStrictEqual(f(["a", 4]), { a: ["a", 4] });
     });
 
     it("back pressure", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [
                 ...partitionSync(
                     ["a", "b", "c"],

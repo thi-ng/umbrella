@@ -1,5 +1,11 @@
 import * as assert from "assert";
-import { fromIterable, fromPromise, resolve, State } from "../src/index";
+import {
+    fromIterable,
+    fromPromise,
+    resolve,
+    State,
+    Subscription,
+} from "../src/index";
 import { TIMEOUT } from "./config";
 
 describe("fromPromise()", () => {
@@ -8,7 +14,7 @@ describe("fromPromise()", () => {
         let called = false;
         src.subscribe({
             next(x) {
-                assert.equal(x, 23);
+                assert.strictEqual(x, 23);
                 called = true;
             },
             done() {
@@ -21,7 +27,7 @@ describe("fromPromise()", () => {
     it("rejects to sub", (done) => {
         let src = fromPromise(Promise.reject(23));
         let called = false;
-        let sub = src.subscribe({
+        let sub: Subscription<never, never> = src.subscribe({
             next(_) {
                 assert.fail("called next()");
             },
@@ -29,9 +35,9 @@ describe("fromPromise()", () => {
                 assert.fail("called done()");
             },
             error(x) {
-                assert.equal(x, 23);
-                assert.equal(src.getState(), State.ERROR);
-                assert.equal(sub.getState(), State.ERROR);
+                assert.strictEqual(x, 23);
+                assert.strictEqual(src.getState(), State.ERROR);
+                assert.strictEqual(sub.getState(), State.ERROR);
                 called = true;
             },
         });
@@ -48,7 +54,7 @@ describe("fromPromise()", () => {
             })
         );
         let called = false;
-        let sub = src.subscribe({
+        let sub: Subscription<any, any> = src.subscribe({
             next(_) {
                 assert.fail("called next()");
             },
@@ -56,9 +62,9 @@ describe("fromPromise()", () => {
                 assert.fail("called done()");
             },
             error(x) {
-                assert.equal(x.message, "foo");
-                assert.equal(src.getState(), State.ERROR);
-                assert.equal(sub.getState(), State.ERROR);
+                assert.strictEqual(x.message, "foo");
+                assert.strictEqual(src.getState(), State.ERROR);
+                assert.strictEqual(sub.getState(), State.ERROR);
                 called = true;
             },
         });
@@ -67,7 +73,7 @@ describe("fromPromise()", () => {
             // TODO remove, next() doesn't throw error anymore if already in done or error state
             // assert.throws(() => src.next(Promise.resolve()), "no next() allowed");
             src.done();
-            assert.equal(src.getState(), State.ERROR, "src not ERROR");
+            assert.strictEqual(src.getState(), State.ERROR, "src not ERROR");
             done();
         }, TIMEOUT);
     });
@@ -77,7 +83,7 @@ describe("fromPromise()", () => {
         let called = false;
         src.subscribe(resolve()).subscribe({
             next(x) {
-                assert.equal(x, 23);
+                assert.strictEqual(x, 23);
                 called = true;
             },
             done() {

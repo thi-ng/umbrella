@@ -4,27 +4,30 @@ import * as assert from "assert";
 
 describe("flatten", () => {
     it("empty arrays", () => {
-        assert.deepEqual([...flatten([])], []);
-        assert.deepEqual([...flatten([[], []])], []);
+        assert.deepStrictEqual([...flatten([])], []);
+        assert.deepStrictEqual([...flatten([[], []])], []);
     });
     it("arrays", () => {
-        assert.deepEqual([...flatten([undefined])], [undefined]);
-        assert.deepEqual([...flatten([[undefined], null])], [undefined, null]);
+        assert.deepStrictEqual([...flatten([undefined])], [undefined]);
+        assert.deepStrictEqual(
+            [...flatten([[undefined], null])],
+            [undefined, null]
+        );
     });
     it("strings", () => {
-        assert.deepEqual([...flatten(["", "a"])], ["", "a"]);
-        assert.deepEqual([...flatten([[], ["a"], ""])], ["a", ""]);
+        assert.deepStrictEqual([...flatten(["", "a"])], ["", "a"]);
+        assert.deepStrictEqual([...flatten([[], ["a"], ""])], ["a", ""]);
     });
     it("strings (atomic)", () => {
-        assert.deepEqual([...flatten([["abc"]])], ["abc"]);
-        assert.deepEqual([...flatten(["abc"])], ["abc"]);
-        assert.deepEqual([...flatten("abc")], ["abc"]);
-        assert.deepEqual([...flatten([""])], [""]);
-        assert.deepEqual([...flatten("")], [""]);
+        assert.deepStrictEqual([...flatten([["abc"]])], ["abc"]);
+        assert.deepStrictEqual([...flatten(["abc"])], ["abc"]);
+        assert.deepStrictEqual([...flatten("abc")], ["abc"]);
+        assert.deepStrictEqual([...flatten([""])], [""]);
+        assert.deepStrictEqual([...flatten("")], [""]);
     });
     it("iterators", () => {
-        assert.deepEqual([...flatten(range(0))], []);
-        assert.deepEqual([...flatten([range(0)])], []);
-        assert.deepEqual([...flatten([range(2), range(0)])], [0, 1]);
+        assert.deepStrictEqual([...flatten(range(0))], []);
+        assert.deepStrictEqual([...flatten([range(0)])], []);
+        assert.deepStrictEqual([...flatten([range(2), range(0)])], [0, 1]);
     });
 });

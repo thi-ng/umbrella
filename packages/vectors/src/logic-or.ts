@@ -1,4 +1,4 @@
-import { BVecOpVN, BVecOpVV, MultiBVecOpVN, MultiBVecOpVV } from "./api";
+import type { BVecOpVN, BVecOpVV, MultiBVecOpVN, MultiBVecOpVV } from "./api";
 import { ARGS_VN, defOp } from "./internal/codegen";
 import { MATH, MATH_N } from "./internal/templates";
 

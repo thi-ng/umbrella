@@ -1,3 +1,4 @@
+import type { Fn3, FnN7, FnU4 } from "@thi.ng/api";
 import { closestT } from "@thi.ng/geom-closest-point";
 import { clamp01, EPS, sign } from "@thi.ng/math";
 import {
@@ -10,7 +11,6 @@ import {
     signedArea2,
     vop,
 } from "@thi.ng/vectors";
-import type { Fn3 } from "@thi.ng/api";
 
 export const pointInSegment = (
     p: ReadonlyVec,
@@ -36,24 +36,14 @@ export const classifyPointInCircle = (
     eps = EPS
 ) => sign(r * r - distSq(pos, p), eps);
 
-export const pointInCircumCircle = (
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    c: ReadonlyVec,
-    d: ReadonlyVec
-) =>
+export const pointInCircumCircle: FnU4<ReadonlyVec, boolean> = (a, b, c, d) =>
     magSq(a) * signedArea2(b, c, d) -
         magSq(b) * signedArea2(a, c, d) +
         magSq(c) * signedArea2(a, b, d) -
         magSq(d) * signedArea2(a, b, c) >
     0;
 
-export const pointInTriangle2 = (
-    p: ReadonlyVec,
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    c: ReadonlyVec
-) => {
+export const pointInTriangle2: FnU4<ReadonlyVec, boolean> = (p, a, b, c) => {
     const s = clockwise2(a, b, c) ? 1 : -1;
     return (
         s * signedArea2(a, c, p) >= 0 &&
@@ -93,15 +83,7 @@ export const pointInPolygon2 = (p: ReadonlyVec, pts: ReadonlyVec[]) => {
     return inside;
 };
 
-export const classifyPointPolyPair = (
-    px: number,
-    py: number,
-    ax: number,
-    ay: number,
-    bx: number,
-    by: number,
-    inside: number
-) =>
+export const classifyPointPolyPair: FnN7 = (px, py, ax, ay, bx, by, inside) =>
     ((ay < py && by >= py) || (by < py && ay >= py)) && (ax <= px || bx <= px)
         ? inside ^ (ax + ((py - ay) / (by - ay)) * (bx - ax) < px ? 1 : 0)
         : inside;

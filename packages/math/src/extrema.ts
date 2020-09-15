@@ -1,3 +1,5 @@
+import type { FnU3 } from "@thi.ng/api";
+
 /**
  * Returns true if `b` is a local minima, i.e. iff a > b and b < c.
  *
@@ -5,7 +7,7 @@
  * @param b -
  * @param c -
  */
-export const isMinima = (a: number, b: number, c: number) => a > b && b < c;
+export const isMinima: FnU3<number, boolean> = (a, b, c) => a > b && b < c;
 
 /**
  * Returns true if `b` is a local maxima, i.e. iff a < b and b > c.
@@ -14,7 +16,7 @@ export const isMinima = (a: number, b: number, c: number) => a > b && b < c;
  * @param b -
  * @param c -
  */
-export const isMaxima = (a: number, b: number, c: number) => a < b && b > c;
+export const isMaxima: FnU3<number, boolean> = (a, b, c) => a < b && b > c;
 
 const index = (
     pred: (a: number, b: number, c: number) => boolean,

@@ -19,7 +19,7 @@ describe("StreamMerge", () => {
                 buf.push(x);
             },
             done() {
-                assert.deepEqual(
+                assert.deepStrictEqual(
                     buf.sort((a, b) => a - b),
                     expected
                 );
@@ -88,7 +88,7 @@ describe("StreamMerge", () => {
                 acc = histogram[2](acc, x);
             },
             done() {
-                assert.deepEqual(
+                assert.deepStrictEqual(
                     acc,
                     new Map([
                         [1, 3],

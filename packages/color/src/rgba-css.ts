@@ -1,8 +1,8 @@
 import { clamp01 } from "@thi.ng/math";
 import { U24 } from "@thi.ng/strings";
+import type { ReadonlyColor } from "./api";
 import { FF } from "./constants";
 import { ensureAlpha } from "./internal/ensure-alpha";
-import type { ReadonlyColor } from "./api";
 
 export const rgbaCss = (src: ReadonlyColor) => {
     const r = (clamp01(src[0]) * 0xff + 0.5) | 0;

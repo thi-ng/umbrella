@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/poisson",
-    "version": "1.1.15",
+    "version": "1.1.16",
     "description": "nD Stratified grid and Poisson-disc sampling w/ support for spatial density functions and custom PRNGs",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -31,7 +31,7 @@
         "build:check": "tsc --isolatedModules --noEmit",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc --theme ../../tools/doc/typedoc-theme src",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
@@ -49,11 +49,12 @@
         "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/checks": "^2.7.7",
-        "@thi.ng/geom-api": "^1.0.33",
-        "@thi.ng/random": "^2.0.0",
-        "@thi.ng/transducers": "^7.3.0",
-        "@thi.ng/vectors": "^4.6.4"
+        "@thi.ng/api": "^6.13.0",
+        "@thi.ng/checks": "^2.7.8",
+        "@thi.ng/geom-api": "^1.0.34",
+        "@thi.ng/random": "^2.0.1",
+        "@thi.ng/transducers": "^7.3.1",
+        "@thi.ng/vectors": "^4.6.5"
     },
     "files": [
         "*.js",
@@ -65,16 +66,15 @@
         "3d",
         "nd",
         "density",
-        "ES6",
+        "es6",
         "grid",
         "points",
-        "poisson disc",
+        "poisson",
         "noise",
         "random",
-        "sampling",
+        "sample",
         "stratified",
-        "typescript",
-        "vectors"
+        "typescript"
     ],
     "publishConfig": {
         "access": "public"

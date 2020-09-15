@@ -1,8 +1,14 @@
-import { INotifyMixin } from "@thi.ng/api";
+import {
+    Event,
+    IID,
+    INotify,
+    INotifyMixin,
+    Listener,
+    UIntArray,
+} from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks";
-import { EVENT_ADDED, EVENT_CHANGED, EVENT_PRE_DELETE } from "../constants";
-import type { Event, IID, INotify, Listener, UIntArray } from "@thi.ng/api";
 import type { ComponentDefaultValue, IComponent } from "../api";
+import { EVENT_ADDED, EVENT_CHANGED, EVENT_PRE_DELETE } from "../constants";
 
 @INotifyMixin
 export abstract class AComponent<K extends string, VALUES, GET, SET>

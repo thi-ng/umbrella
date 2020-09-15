@@ -1,5 +1,5 @@
-import { map } from "@thi.ng/transducers";
 import type { IXform } from "@thi.ng/transducers";
+import { map } from "@thi.ng/transducers";
 import type { IProc, IProc2 } from "../api";
 
 /**

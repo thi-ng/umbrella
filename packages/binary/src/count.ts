@@ -1,9 +1,11 @@
+import type { FnN, FnN2 } from "@thi.ng/api";
+
 /**
  * Returns number of 1 bits in `x`.
  *
  * @param x -
  */
-export const popCount = (x: number) => (
+export const popCount: FnN = (x) => (
     (x = x - ((x >>> 1) & 0x55555555)),
     (x = (x & 0x33333333) + ((x >>> 2) & 0x33333333)),
     (((x + (x >>> 4)) & 0xf0f0f0f) * 0x1010101) >>> 24
@@ -17,7 +19,7 @@ export const popCount = (x: number) => (
  * @param x -
  * @param y -
  */
-export const hammingDist = (x: number, y: number) => popCount(x ^ y);
+export const hammingDist: FnN2 = (x, y) => popCount(x ^ y);
 
 /**
  * Math.clz32() polyfill (corrected).
@@ -26,10 +28,10 @@ export const hammingDist = (x: number, y: number) => popCount(x ^ y);
  *
  * @param x -
  */
-export const clz32 = (x: number) =>
+export const clz32: FnN = (x) =>
     x !== 0 ? 31 - ((Math.log(x >>> 0) / Math.LN2) | 0) : 32;
 
-export const ctz32 = (x: number) => {
+export const ctz32: FnN = (x) => {
     let c = 32;
     x &= -x;
     x && c--;
@@ -47,4 +49,4 @@ export const ctz32 = (x: number) => {
  *
  * @param x -
  */
-export const bitSize = (x: number) => (x > 1 ? Math.ceil(Math.log2(x)) : 0);
+export const bitSize: FnN = (x) => (x > 1 ? Math.ceil(Math.log2(x)) : 0);

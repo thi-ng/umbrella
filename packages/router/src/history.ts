@@ -1,9 +1,9 @@
+import type { Fn } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks";
 import { equiv } from "@thi.ng/equiv";
 import { illegalArity } from "@thi.ng/errors";
-import { BasicRouter } from "./basic";
-import type { Fn } from "@thi.ng/api";
 import type { HTMLRouterConfig, RouteMatch, RouterConfig } from "./api";
+import { BasicRouter } from "./basic";
 
 export class HTMLRouter extends BasicRouter {
     protected currentPath!: string;

@@ -1,5 +1,5 @@
 import { clamp as _clamp } from "@thi.ng/math";
-import { MultiVecOpVNN, VecOpVNN } from "./api";
+import type { MultiVecOpVNN, VecOpVNN } from "./api";
 import { defHofOp } from "./internal/codegen";
 
 export const [clampN, clampN2, clampN3, clampN4] = defHofOp<

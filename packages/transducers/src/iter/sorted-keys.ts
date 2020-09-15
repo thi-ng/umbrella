@@ -1,5 +1,5 @@
-import { compare } from "@thi.ng/compare";
 import type { Comparator } from "@thi.ng/api";
+import { compare } from "@thi.ng/compare";
 
 /**
  * Syntax sugar for `Object.keys(x).sort()` with support for custom

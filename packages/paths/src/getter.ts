@@ -1,7 +1,7 @@
-import { toPath } from "./path";
 import type {
     DeepPath,
     Fn,
+    OptPathVal,
     Path,
     Path0,
     Path1,
@@ -12,8 +12,8 @@ import type {
     Path6,
     Path7,
     Path8,
-    OptPathVal,
 } from "@thi.ng/api";
+import { toPath } from "./path";
 
 /**
  * Unchecked version of {@link defGetter}.

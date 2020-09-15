@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom-poly-utils",
-    "version": "0.1.63",
+    "version": "0.1.64",
     "description": "2D polygon / triangle analysis & processing utilities",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -31,7 +31,7 @@
         "build:check": "tsc --isolatedModules --noEmit",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc --theme ../../tools/doc/typedoc-theme src",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
@@ -49,10 +49,11 @@
         "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/errors": "^1.2.20",
-        "@thi.ng/geom-api": "^1.0.33",
-        "@thi.ng/math": "^2.0.4",
-        "@thi.ng/vectors": "^4.6.4"
+        "@thi.ng/api": "^6.13.0",
+        "@thi.ng/errors": "^1.2.21",
+        "@thi.ng/geom-api": "^1.0.34",
+        "@thi.ng/math": "^2.1.0",
+        "@thi.ng/vectors": "^4.6.5"
     },
     "files": [
         "*.js",
@@ -60,12 +61,11 @@
         "lib"
     ],
     "keywords": [
-        "2D",
-        "ES6",
+        "2d",
+        "es6",
         "area",
-        "bounding box",
+        "bbox",
         "centroid",
-        "center of weight",
         "circumcenter",
         "geometry",
         "perimeter",

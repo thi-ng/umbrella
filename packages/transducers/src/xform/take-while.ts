@@ -1,8 +1,8 @@
+import type { Predicate } from "@thi.ng/api";
+import type { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { $iter } from "../iterator";
 import { reduced } from "../reduced";
-import type { Predicate } from "@thi.ng/api";
-import type { Reducer, Transducer } from "../api";
 
 /**
  * Transducer which applies predicate `pred` to each input and only

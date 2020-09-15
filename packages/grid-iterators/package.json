@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/grid-iterators",
-    "version": "0.4.9",
+    "version": "0.4.10",
     "description": "2D grid iterators w/ multiple orderings",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -32,7 +32,7 @@
         "build:check": "tsc --isolatedModules --noEmit",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc --theme ../../tools/doc/typedoc-theme src",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
@@ -50,11 +50,11 @@
         "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/arrays": "^0.7.0",
-        "@thi.ng/binary": "^2.0.14",
-        "@thi.ng/morton": "^2.0.23",
-        "@thi.ng/random": "^2.0.0",
-        "@thi.ng/transducers": "^7.3.0"
+        "@thi.ng/arrays": "^0.8.0",
+        "@thi.ng/binary": "^2.0.15",
+        "@thi.ng/morton": "^2.0.24",
+        "@thi.ng/random": "^2.0.1",
+        "@thi.ng/transducers": "^7.3.1"
     },
     "files": [
         "*.js",
@@ -62,9 +62,9 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
-        "2D",
+        "2d",
         "diagonal",
+        "es6",
         "grid",
         "hilbert",
         "iterator",
@@ -72,7 +72,7 @@
         "random",
         "spiral",
         "typescript",
-        "Z-curve",
+        "z-curve",
         "zigzag"
     ],
     "publishConfig": {
@@ -82,7 +82,7 @@
     "thi.ng": {
         "related": [
             "morton",
-            "transducers"
+            "transducer"
         ],
         "year": 2019
     }

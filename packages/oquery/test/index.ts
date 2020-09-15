@@ -166,7 +166,11 @@ describe("oquery", () => {
             const t = tests[<QueryType>id];
             if (t) {
                 const res = query(DB, t[0], t[1], t[2]);
-                assert.deepEqual(res, t[3], `${id}: ${JSON.stringify(res)}`);
+                assert.deepStrictEqual(
+                    res,
+                    t[3],
+                    `${id}: ${JSON.stringify(res)}`
+                );
             }
         }
     });
@@ -174,51 +178,60 @@ describe("oquery", () => {
     it("coerce terms (array)", () => {
         const query = defQuery();
         // S
-        assert.deepEqual(query(DB, ["alice", "bob"], "type", null), {
+        assert.deepStrictEqual(query(DB, ["alice", "bob"], "type", null), {
             alice: { type: "person" },
             bob: { type: "person" },
         });
-        assert.deepEqual(query(DB, ["alice", "charlie"], "type", null), {
+        assert.deepStrictEqual(query(DB, ["alice", "charlie"], "type", null), {
             alice: { type: "person" },
         });
         // P
-        assert.deepEqual(query(DB, "alice", ["type", "spouse"], null), {
+        assert.deepStrictEqual(query(DB, "alice", ["type", "spouse"], null), {
             alice: { type: "person" },
         });
-        assert.deepEqual(query(DB, "bob", ["type", "spouse"], null), {
+        assert.deepStrictEqual(query(DB, "bob", ["type", "spouse"], null), {
             bob: { type: "person", spouse: "alice" },
         });
         // O
-        assert.deepEqual(query(DB, "alice", ["type", "age"], [33, "person"]), {
-            alice: { type: "person", age: 33 },
-        });
+        assert.deepStrictEqual(
+            query(DB, "alice", ["type", "age"], [33, "person"]),
+            {
+                alice: { type: "person", age: 33 },
+            }
+        );
     });
 
     it("coerce terms (set)", () => {
         const query = defQuery();
         // S
-        assert.deepEqual(query(DB, new Set(["alice", "bob"]), "type", null), {
-            alice: { type: "person" },
-            bob: { type: "person" },
-        });
-        assert.deepEqual(
+        assert.deepStrictEqual(
+            query(DB, new Set(["alice", "bob"]), "type", null),
+            {
+                alice: { type: "person" },
+                bob: { type: "person" },
+            }
+        );
+        assert.deepStrictEqual(
             query(DB, new Set(["alice", "charlie"]), "type", null),
             {
                 alice: { type: "person" },
             }
         );
         // P
-        assert.deepEqual(
+        assert.deepStrictEqual(
             query(DB, "alice", new Set(["type", "spouse"]), null),
             {
                 alice: { type: "person" },
             }
         );
-        assert.deepEqual(query(DB, "bob", new Set(["type", "spouse"]), null), {
-            bob: { type: "person", spouse: "alice" },
-        });
+        assert.deepStrictEqual(
+            query(DB, "bob", new Set(["type", "spouse"]), null),
+            {
+                bob: { type: "person", spouse: "alice" },
+            }
+        );
         // O
-        assert.deepEqual(
+        assert.deepStrictEqual(
             query(
                 DB,
                 "alice",

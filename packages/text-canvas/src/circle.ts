@@ -1,8 +1,8 @@
+import type { NumOrString } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
 import { Canvas } from "./canvas";
 import { hline } from "./hvline";
 import { charCode, intersectRectCircle } from "./utils";
-import type { NumOrString } from "@thi.ng/api";
 
 /**
  * Draws a circle (filled or outline) at given center position and

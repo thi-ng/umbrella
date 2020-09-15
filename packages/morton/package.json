@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/morton",
-    "version": "2.0.23",
+    "version": "2.0.24",
     "description": "Z-order curve / Morton encoding, decoding & range extraction for arbitrary dimensions",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -31,7 +31,7 @@
         "build:check": "tsc --isolatedModules --noEmit",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc --theme ../../tools/doc/typedoc-theme src",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
@@ -49,9 +49,9 @@
         "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.12.3",
-        "@thi.ng/binary": "^2.0.14",
-        "@thi.ng/math": "^2.0.4"
+        "@thi.ng/api": "^6.13.0",
+        "@thi.ng/binary": "^2.0.15",
+        "@thi.ng/math": "^2.1.0"
     },
     "files": [
         "*.js",
@@ -60,20 +60,17 @@
     ],
     "keywords": [
         "binary",
-        "bounding box",
-        "converter",
+        "bbox",
+        "conversion",
         "decode",
         "encode",
-        "ES6",
+        "es6",
         "hash",
         "morton",
-        "multi-dimensional",
-        "nD",
-        "range",
-        "SFC",
-        "space filling curve",
-        "spatial index",
-        "sorting",
+        "nd",
+        "query",
+        "spatial",
+        "sort",
         "typescript",
         "z-curve"
     ],

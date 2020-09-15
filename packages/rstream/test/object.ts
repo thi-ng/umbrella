@@ -31,12 +31,12 @@ describe("fromObject", () => {
         obj.next({ a: 2, b: "bar" });
         obj.next({ b: "baz" });
         obj.done();
-        assert.deepEqual(acc, {
+        assert.deepStrictEqual(acc, {
             a: [1, 2, undefined],
             b: ["foo", "bar", "baz"],
         });
-        assert.equal(obj.streams.a.getState(), State.DONE);
-        assert.equal(obj.streams.b.getState(), State.DONE);
+        assert.strictEqual(obj.streams.a.getState(), State.DONE);
+        assert.strictEqual(obj.streams.b.getState(), State.DONE);
     });
 
     it("subscriber", () => {
@@ -59,12 +59,12 @@ describe("fromObject", () => {
         src.next({ a: 1, b: "foo" });
         src.next({ b: "bar" });
         src.done();
-        assert.deepEqual(acc, {
+        assert.deepStrictEqual(acc, {
             a: [1, undefined],
             b: ["foo", "bar"],
         });
-        assert.equal(obj.streams.a.getState(), State.DONE);
-        assert.equal(obj.streams.b.getState(), State.DONE);
+        assert.strictEqual(obj.streams.a.getState(), State.DONE);
+        assert.strictEqual(obj.streams.b.getState(), State.DONE);
     });
 
     it("defaults & dedupe", () => {
@@ -91,7 +91,7 @@ describe("fromObject", () => {
         obj.next({ a: 2, b: "bar" });
         obj.next({ a: 2, b: "baz" });
         obj.next({ b: "baz" });
-        assert.deepEqual(acc, {
+        assert.deepStrictEqual(acc, {
             a: [0, 1, 0, 2, 0],
             b: ["foo", "bar", "baz"],
         });

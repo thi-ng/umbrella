@@ -2,7 +2,13 @@ import type { Fn, Predicate2 } from "@thi.ng/api";
 import { EquivMap } from "@thi.ng/associative";
 import { unsupported } from "@thi.ng/errors";
 import type { Transducer } from "@thi.ng/transducers";
-import { CommonOpts, ISubscriber, LOGGER, SubscriptionOpts } from "./api";
+import {
+    CloseMode,
+    CommonOpts,
+    ISubscriber,
+    LOGGER,
+    SubscriptionOpts,
+} from "./api";
 import { Subscription, subscription } from "./subscription";
 import { optsWithID } from "./utils/idgen";
 
@@ -110,7 +116,13 @@ export class PubSub<A, B> extends Subscription<A, B> {
         opts?: Partial<CommonOpts>
     ): Subscription<any, any> {
         let t = this.topics.get(topicID);
-        !t && this.topics.set(topicID, (t = subscription<B, B>()));
+        !t &&
+            this.topics.set(
+                topicID,
+                (t = subscription<B, B>(undefined, {
+                    closeOut: CloseMode.NEVER,
+                }))
+            );
         return t.subscribe(sub, opts);
     }
 

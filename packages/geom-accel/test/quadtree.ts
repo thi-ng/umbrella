@@ -18,15 +18,15 @@ describe("NdTree", () => {
     });
 
     it("ctor", () => {
-        assert.deepEqual(tree.root.pos, [50, 50, 50]);
-        assert.deepEqual(tree.root.ext, [50, 50, 50]);
+        assert.deepStrictEqual(tree.root.pos, [50, 50, 50]);
+        assert.deepStrictEqual(tree.root.ext, [50, 50, 50]);
     });
 
     it("into / get / has", () => {
         assert.ok(tree.into(pairs));
         for (let p of pairs) {
             assert(tree.has(p[0]), `has: ${p}`);
-            assert.equal(tree.get(p[0]), p[1], `get ${p}`);
+            assert.strictEqual(tree.get(p[0]), p[1], `get ${p}`);
         }
     });
 
@@ -39,18 +39,18 @@ describe("NdTree", () => {
 
     it("iterators", () => {
         tree.into(pairs);
-        assert.deepEqual(new Set(tree), pairs);
-        assert.deepEqual(new Set(tree.keys()), pts);
+        assert.deepStrictEqual(new Set(tree), pairs);
+        assert.deepStrictEqual(new Set(tree.keys()), pts);
     });
 
     it("selectKeys", () => {
         tree.into(pairs);
-        assert.deepEqual(
+        assert.deepStrictEqual(
             new Set(tree.queryKeys([50, 50, 50], 100, Infinity)),
             pts,
             "r=100"
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             new Set(tree.queryKeys([50, 50, 50], 50, Infinity)),
             new Set([
                 [44, 55, 66],
@@ -58,7 +58,7 @@ describe("NdTree", () => {
             ]),
             "r=50"
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             new Set(tree.queryKeys([20, 20, 20], 15, Infinity)),
             new Set([[10, 20, 30]]),
             "r=25"

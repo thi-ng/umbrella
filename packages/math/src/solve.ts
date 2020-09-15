@@ -1,4 +1,6 @@
+import type { FnN2 } from "@thi.ng/api";
 import { EPS } from "./api";
+import { safeDiv } from "./safe-div";
 
 /**
  * Produces a new function which computes derivative of the given
@@ -23,12 +25,12 @@ export const derivative = (f: (x: number) => number, eps = EPS) => (
 /**
  * Computes solution for linear equation: `ax + b = 0`.
  *
- * Note: `a` MUST NOT be zero.
+ * Note: Returns 0 iff `a == 0`
  *
  * @param a - slope
  * @param b - constant offset
  */
-export const solveLinear = (a: number, b: number) => -b / a;
+export const solveLinear: FnN2 = (a, b) => safeDiv(-b, a);
 
 /**
  * Computes solutions for quadratic equation: `ax^2 + bx + c = 0`.

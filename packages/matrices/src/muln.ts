@@ -1,6 +1,6 @@
 import { mulN as _mulN, mulN4 } from "@thi.ng/vectors";
-import { defMathN } from "./internal/codegen";
 import type { MatOpMN, MultiMatOpMN } from "./api";
+import { defMathN } from "./internal/codegen";
 
 /**
  * Multiplies matrix componentwise with single scalar. If `out` is not

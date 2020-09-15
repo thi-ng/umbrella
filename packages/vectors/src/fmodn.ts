@@ -1,5 +1,5 @@
 import { fmod as _fmod } from "@thi.ng/math";
-import { MultiVecOpVN, VecOpVN } from "./api";
+import type { MultiVecOpVN, VecOpVN } from "./api";
 import { ARGS_V, ARGS_VN, defHofOp } from "./internal/codegen";
 import { FN_N } from "./internal/templates";
 

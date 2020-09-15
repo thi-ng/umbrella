@@ -5,7 +5,7 @@ import { Heap } from "@thi.ng/heaps";
 import { EPS } from "@thi.ng/math";
 import { map } from "@thi.ng/transducers";
 import { distSq, ReadonlyVec, Vec } from "@thi.ng/vectors";
-import { CMP, addResults } from "./utils";
+import { addResults, CMP } from "./utils";
 
 type MaybeKdNode<K extends ReadonlyVec, V> = KdNode<K, V> | undefined;
 

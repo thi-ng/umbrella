@@ -1,7 +1,12 @@
 import { fattribs, ff } from "./format";
 import type { Vec2Like } from "./api";
 
-export const line = (a: Vec2Like, b: Vec2Like, attribs?: any): any[] => [
+export const line = (
+    a: Vec2Like,
+    b: Vec2Like,
+    attribs?: any,
+    ...body: any[]
+): any[] => [
     "line",
     fattribs({
         ...attribs,
@@ -10,6 +15,7 @@ export const line = (a: Vec2Like, b: Vec2Like, attribs?: any): any[] => [
         x2: ff(b[0]),
         y2: ff(b[1]),
     }),
+    ...body,
 ];
 
 export const hline = (y: number, attribs?: any) =>

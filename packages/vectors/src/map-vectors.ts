@@ -1,4 +1,11 @@
-import { ReadonlyVec, VecOpVV, Vec, VecOpVN, VecOpVVV, VecOpVVN } from "./api";
+import type {
+    ReadonlyVec,
+    VecOpVV,
+    Vec,
+    VecOpVN,
+    VecOpVVV,
+    VecOpVVN,
+} from "./api";
 import { isNumber } from "@thi.ng/checks";
 
 /**

@@ -14,8 +14,7 @@ import type {
     Path8,
     Predicate2,
 } from "@thi.ng/api";
-import { View } from "@thi.ng/atom";
-import type { ReadonlyAtom } from "@thi.ng/atom";
+import { ReadonlyAtom, View } from "@thi.ng/atom";
 import type { CommonOpts } from "../api";
 import { Stream } from "../stream";
 import { optsWithID } from "../utils/idgen";

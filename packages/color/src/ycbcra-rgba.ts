@@ -1,7 +1,7 @@
 import { clamp01 } from "@thi.ng/math";
 import { setC4 } from "@thi.ng/vectors";
-import { ensureAlpha } from "./internal/ensure-alpha";
 import type { ColorOp } from "./api";
+import { ensureAlpha } from "./internal/ensure-alpha";
 
 export const ycbcraRgba: ColorOp = (out, src) => {
     const y = src[0];

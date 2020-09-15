@@ -1,3 +1,4 @@
+import type { FnU2 } from "@thi.ng/api";
 import { MASKS } from "./constants";
 
 /**
@@ -13,7 +14,7 @@ import { MASKS } from "./constants";
  * @param a - first bit
  * @param b - last bit
  */
-export const defMask = (a: number, b: number) => (~MASKS[a] & MASKS[b]) >>> 0;
+export const defMask: FnU2<number> = (a, b) => (~MASKS[a] & MASKS[b]) >>> 0;
 
 /**
  * Returns unsigned version of `x` with only lowest `n` bits.
@@ -21,7 +22,7 @@ export const defMask = (a: number, b: number) => (~MASKS[a] & MASKS[b]) >>> 0;
  * @param n - number of LSB bits
  * @param x - value
  */
-export const maskL = (n: number, x: number) => (x & MASKS[n]) >>> 0;
+export const maskL: FnU2<number> = (n, x) => (x & MASKS[n]) >>> 0;
 
 /**
  * Returns unsigned version of `x` with only highest `n` bits.
@@ -29,4 +30,4 @@ export const maskL = (n: number, x: number) => (x & MASKS[n]) >>> 0;
  * @param n - number of MSB bits
  * @param x - value
  */
-export const maskH = (n: number, x: number) => (x & ~MASKS[n]) >>> 0;
+export const maskH: FnU2<number> = (n, x) => (x & ~MASKS[n]) >>> 0;

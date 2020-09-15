@@ -1,4 +1,4 @@
-import { MultiBVecOpRoV } from "./api";
+import type { MultiBVecOpRoV } from "./api";
 import { vop } from "./internal/vop";
 
 /**

@@ -10,7 +10,7 @@ describe("bencode", () => {
 
     it("roundtrip (utf8)", () => {
         let bytes;
-        assert.deepEqual(
+        assert. deepStrictEqual(
             bytes = [...encode(src)],
             [
                 0x64, 0x33, 0x3a, 0x66, 0x6f, 0x6f, 0x6c, 0x69, 0x31, 0x65, 0x31, 0x3a, 0x61, 0x64, 0x33, 0x3a,
@@ -19,7 +19,7 @@ describe("bencode", () => {
             ]
         );
 
-        assert.deepEqual(decode(bytes), src);
+        assert. deepStrictEqual(decode(bytes), src);
     });
 
     it("roundtrip (raw)", () => {

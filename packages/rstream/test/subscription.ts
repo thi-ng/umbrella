@@ -31,7 +31,7 @@ describe("Subscription", () => {
                         buf.push(x);
                     },
                     done() {
-                        assert.deepEqual(buf, [1, 2, 2, 3, 3]);
+                        assert.deepStrictEqual(buf, [1, 2, 2, 3, 3]);
                         done();
                     },
                 }),
@@ -54,9 +54,9 @@ describe("Subscription", () => {
         });
         setTimeout(() => sub.unsubscribe(), TIMEOUT * 1.5);
         setTimeout(() => {
-            assert.deepEqual(buf, [1]);
-            assert.equal(src.getState(), State.DONE);
-            assert.equal((<any>src).subs.length, 0);
+            assert.deepStrictEqual(buf, [1]);
+            assert.strictEqual(src.getState(), State.DONE);
+            assert.strictEqual((<any>src).subs.length, 0);
             assert(!called);
             done();
         }, TIMEOUT * 4);
@@ -81,8 +81,8 @@ describe("Subscription", () => {
         );
         setTimeout(() => sub.unsubscribe(), TIMEOUT * 2.5);
         setTimeout(() => {
-            assert.deepEqual(buf, [[1, 2]]);
-            assert.equal(src.getState(), State.DONE);
+            assert.deepStrictEqual(buf, [[1, 2]]);
+            assert.strictEqual(src.getState(), State.DONE);
             assert(!called);
             done();
         }, TIMEOUT * 4);
@@ -97,8 +97,8 @@ describe("Subscription", () => {
                     buf.push(x);
                 },
                 done() {
-                    assert.deepEqual(buf, [[1, 2], [3]]);
-                    assert.equal(src.getState(), State.DONE);
+                    assert.deepStrictEqual(buf, [[1, 2], [3]]);
+                    assert.strictEqual(src.getState(), State.DONE);
                     done();
                 },
             },
@@ -118,7 +118,7 @@ describe("Subscription", () => {
                     buf.push(x);
                 },
             });
-        assert.deepEqual(buf, [11]);
+        assert.deepStrictEqual(buf, [11]);
     });
 
     it("sub w/ xform", () => {
@@ -131,7 +131,7 @@ describe("Subscription", () => {
             },
             map((x: number) => x + 10)
         );
-        assert.deepEqual(buf, [11]);
+        assert.deepStrictEqual(buf, [11]);
     });
 
     it("child sub w/ xform", () => {
@@ -144,6 +144,6 @@ describe("Subscription", () => {
             }),
             map((x: number) => x + 10)
         );
-        assert.deepEqual(buf, [11]);
+        assert.deepStrictEqual(buf, [11]);
     });
 });

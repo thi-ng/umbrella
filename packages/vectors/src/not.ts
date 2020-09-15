@@ -1,4 +1,4 @@
-import { BVecOpV, MultiBVecOpV } from "./api";
+import type { BVecOpV, MultiBVecOpV } from "./api";
 import { ARGS_V, defOp, NEW_OUT } from "./internal/codegen";
 
 export const [not, not2, not3, not4] = defOp<MultiBVecOpV, BVecOpV>(

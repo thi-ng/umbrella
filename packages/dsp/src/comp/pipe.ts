@@ -1,6 +1,6 @@
-import { MapG1 } from "./mapg";
 import type { FnAny } from "@thi.ng/api";
 import type { IGen, IProc } from "../api";
+import { MapG1 } from "./mapg";
 
 export function pipe<A, B>(src: IGen<A>, proc: IProc<A, B>): IGen<B>;
 export function pipe<A, B, C>(

@@ -3,7 +3,7 @@ import { wavByteArray } from "../src";
 
 describe("dsp-io-wav", () => {
     it("mono 48kHz/16 bits", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [
                 ...wavByteArray(
                     { sampleRate: 48000, channels: 1, length: 4, bits: 16 },

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hdom-canvas",
-    "version": "3.0.17",
+    "version": "3.0.18",
     "description": "@thi.ng/hdom component wrapper for declarative canvas scenegraphs",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -31,7 +31,7 @@
         "build:check": "tsc --isolatedModules --noEmit",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib draw",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib draw",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc --theme ../../tools/doc/typedoc-theme src",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
@@ -49,11 +49,11 @@
         "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.12.3",
-        "@thi.ng/checks": "^2.7.7",
-        "@thi.ng/diff": "^3.2.30",
-        "@thi.ng/hdom": "^8.2.8",
-        "@thi.ng/hiccup-canvas": "^1.1.7"
+        "@thi.ng/api": "^6.13.0",
+        "@thi.ng/checks": "^2.7.8",
+        "@thi.ng/diff": "^3.2.31",
+        "@thi.ng/hdom": "^8.2.9",
+        "@thi.ng/hiccup-canvas": "^1.1.8"
     },
     "files": [
         "*.js",
@@ -61,14 +61,15 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
+        "es6",
         "canvas",
-        "data driven",
+        "datadriven",
         "drawing",
         "graphics",
         "hdom",
         "hiccup",
         "scenegraph",
+        "tree",
         "typescript"
     ],
     "publishConfig": {

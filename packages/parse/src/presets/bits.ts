@@ -1,7 +1,7 @@
-import { oneOf } from "../prims/one-of";
-import { xfInt } from "../xform/number";
 import { repeat } from "../combinators/repeat";
 import { xform } from "../combinators/xform";
+import { oneOf } from "../prims/one-of";
+import { xfInt } from "../xform/number";
 
 export const BIT = oneOf("01");
 

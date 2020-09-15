@@ -1,7 +1,7 @@
 import { assert } from "@thi.ng/api";
 import { ASparseMatrix } from "./amatrix";
-import { at, compress, diag, remove, setAt } from "./compressed";
 import type { NzEntry } from "./api";
+import { at, compress, diag, remove, setAt } from "./compressed";
 
 export class CSR extends ASparseMatrix {
     /**

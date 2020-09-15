@@ -1,7 +1,7 @@
+import type { NumOrString } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
 import { Canvas } from "./canvas";
 import { charCode } from "./utils";
-import type { NumOrString } from "@thi.ng/api";
 
 /**
  * Draws horizontal line from `x`,`y`, taking the current clip rect,

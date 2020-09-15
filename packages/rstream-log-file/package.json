@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rstream-log-file",
-    "version": "0.1.60",
+    "version": "0.1.61",
     "description": "File output handler for structured, multilevel & hierarchical loggers based on @thi.ng/rstream",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -31,7 +31,7 @@
         "build:check": "tsc --isolatedModules --noEmit",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc --theme ../../tools/doc/typedoc-theme src",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
@@ -49,7 +49,7 @@
         "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/rstream": "^5.0.3"
+        "@thi.ng/rstream": "^5.0.4"
     },
     "files": [
         "*.js",
@@ -57,11 +57,9 @@
         "lib"
     ],
     "keywords": [
-        "append",
-        "ES6",
+        "es6",
         "file",
         "logger",
-        "logging",
         "node",
         "output",
         "typescript"

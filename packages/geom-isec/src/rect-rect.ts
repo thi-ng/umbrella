@@ -1,17 +1,18 @@
+import type { FnU4 } from "@thi.ng/api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 
-export const testRectRect = (
-    [ax, ay]: ReadonlyVec,
-    [aw, ah]: ReadonlyVec,
-    [bx, by]: ReadonlyVec,
-    [bw, bh]: ReadonlyVec
+export const testRectRect: FnU4<ReadonlyVec, boolean> = (
+    [ax, ay],
+    [aw, ah],
+    [bx, by],
+    [bw, bh]
 ) => !(ax > bx + bw || bx > ax + aw || ay > by + bh || by > ay + ah);
 
-export const testAabbAabb = (
-    [ax, ay, az]: ReadonlyVec,
-    [aw, ah, ad]: ReadonlyVec,
-    [bx, by, bz]: ReadonlyVec,
-    [bw, bh, bd]: ReadonlyVec
+export const testAabbAabb: FnU4<ReadonlyVec, boolean> = (
+    [ax, ay, az],
+    [aw, ah, ad],
+    [bx, by, bz],
+    [bw, bh, bd]
 ) =>
     !(
         ax > bx + bw ||

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/matrices",
-    "version": "0.6.31",
+    "version": "0.6.32",
     "description": "Matrix & quaternion operations for 2D/3D geometry processing",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -31,7 +31,7 @@
         "build:check": "tsc --isolatedModules --noEmit",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc --theme ../../tools/doc/typedoc-theme src",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
@@ -49,10 +49,10 @@
         "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.12.3",
-        "@thi.ng/checks": "^2.7.7",
-        "@thi.ng/math": "^2.0.4",
-        "@thi.ng/vectors": "^4.6.4"
+        "@thi.ng/api": "^6.13.0",
+        "@thi.ng/checks": "^2.7.8",
+        "@thi.ng/math": "^2.1.0",
+        "@thi.ng/vectors": "^4.6.5"
     },
     "files": [
         "*.js",
@@ -61,17 +61,17 @@
         "internal"
     ],
     "keywords": [
-        "2D",
-        "3D",
-        "ES6",
-        "code generator",
+        "2d",
+        "3d",
+        "es6",
+        "codegen",
         "conversion",
-        "column",
-        "euler angles",
+        "euler-angles",
         "frustum",
         "geometry",
         "invert",
-        "linear algebra",
+        "algebra",
+        "linear",
         "lookat",
         "math",
         "matrix",
@@ -80,12 +80,8 @@
         "projection",
         "quaternion",
         "rotation",
-        "row",
-        "scale",
         "shear",
         "skew",
-        "translation",
-        "transformation",
         "typescript",
         "vector",
         "webgl"

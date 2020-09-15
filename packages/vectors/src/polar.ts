@@ -1,4 +1,4 @@
-import { MultiVecOpV } from "./api";
+import type { MultiVecOpV } from "./api";
 import { vop } from "./internal/vop";
 import { mag } from "./mag";
 import { setC2, setC3 } from "./setc";

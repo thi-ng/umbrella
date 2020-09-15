@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.13.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.12.3...@thi.ng/api@6.13.0) (2020-09-13)
+
+
+### Bug Fixes
+
+* **api:** update assert() & exposeGlobal() detection ([2cdc038](https://github.com/thi-ng/umbrella/commit/2cdc038d5ae3f8efba7c71e708de6eda1d3a4dd5))
+
+
+### Features
+
+* **api:** add DeepPartial type ([0d9a0de](https://github.com/thi-ng/umbrella/commit/0d9a0de2c3b5029bdc49101727d234a065a94869))
+* **api:** add FnU and FnN function types ([4ba48d0](https://github.com/thi-ng/umbrella/commit/4ba48d0dc4324c79c9e9b11d9e55b04b5c5f54c7))
+
+
+
+
+
 ## [6.12.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.12.2...@thi.ng/api@6.12.3) (2020-08-28)
 
 **Note:** Version bump only for package @thi.ng/api

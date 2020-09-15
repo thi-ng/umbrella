@@ -1,4 +1,4 @@
-import { ReadonlyVec, Vec } from "./api";
+import type { ReadonlyVec, Vec } from "./api";
 import { cross3 } from "./cross";
 import { normalize } from "./normalize";
 import { sub3 } from "./sub";

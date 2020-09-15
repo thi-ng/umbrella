@@ -1,4 +1,4 @@
-import { MultiVecOpV, VecOpV } from "./api";
+import type { MultiVecOpV, VecOpV } from "./api";
 import { ARGS_V, defOp } from "./internal/codegen";
 
 export const [bitNotI, bitNotI2, bitNotI3, bitNotI4] = defOp<

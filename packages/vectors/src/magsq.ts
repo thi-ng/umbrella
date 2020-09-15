@@ -1,4 +1,4 @@
-import { MultiVecOpRoV } from "./api";
+import type { MultiVecOpRoV } from "./api";
 import { compile, compileG } from "./internal/codegen";
 import { vop } from "./internal/vop";
 

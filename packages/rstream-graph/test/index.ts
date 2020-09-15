@@ -66,8 +66,8 @@ describe("rstream-graph", () => {
         setTimeout(() => {
             state.resetIn(["a"], 10);
             // console.log(graph);
-            assert.deepEqual(acc, [600, 1200, 1800, 7200]);
-            assert.deepEqual(state.deref(), {
+            assert.deepStrictEqual(acc, [600, 1200, 1800, 7200]);
+            assert.deepStrictEqual(state.deref(), {
                 a: 10,
                 b: 2,
                 foo: { baz: 7200 },

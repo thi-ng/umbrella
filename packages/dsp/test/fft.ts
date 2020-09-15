@@ -1,4 +1,4 @@
-import { NumericArray } from "@thi.ng/api";
+import type { NumericArray } from "@thi.ng/api";
 import * as assert from "assert";
 import {
     ComplexArray,

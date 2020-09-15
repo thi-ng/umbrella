@@ -4,7 +4,7 @@ import * as assert from "assert";
 
 describe("deepTransform", () => {
     it("transforms hiccup", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             deepTransform([
                 ({ type, meta, title, body }) => [
                     "div",

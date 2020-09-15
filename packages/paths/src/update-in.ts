@@ -1,7 +1,6 @@
-import { defGetter } from "./getter";
-import { defSetter } from "./setter";
 import type {
     DeepPath,
+    OptPathVal,
     Path,
     Path0,
     Path1,
@@ -12,10 +11,11 @@ import type {
     Path6,
     Path7,
     Path8,
-    OptPathVal,
     PathVal,
 } from "@thi.ng/api";
 import type { UpdateFn } from "./api";
+import { defGetter } from "./getter";
+import { defSetter } from "./setter";
 
 /**
  * Similar to {@link setInUnsafe}, but applies given function to current

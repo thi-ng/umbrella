@@ -1,4 +1,4 @@
-import { IHash } from "@thi.ng/api";
+import type { IHash } from "@thi.ng/api";
 import { EPS } from "@thi.ng/math";
 import {
     IVector,

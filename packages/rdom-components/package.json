@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rdom-components",
-    "version": "0.1.11",
+    "version": "0.1.12",
     "description": "Collection of unstyled, customizable components for @thi.ng/rdom",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -11,10 +11,16 @@
         "url": "https://github.com/thi-ng/umbrella.git"
     },
     "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/rdom-components#readme",
-    "funding": {
-        "type": "patreon",
-        "url": "https://patreon.com/thing_umbrella"
-    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
@@ -42,13 +48,13 @@
         "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.12.3",
-        "@thi.ng/associative": "^5.0.5",
-        "@thi.ng/hiccup-html": "^0.3.4",
-        "@thi.ng/rdom": "^0.2.10",
-        "@thi.ng/rstream": "^5.0.3",
-        "@thi.ng/strings": "^1.9.5",
-        "@thi.ng/transducers": "^7.3.0"
+        "@thi.ng/api": "^6.13.0",
+        "@thi.ng/associative": "^5.0.6",
+        "@thi.ng/hiccup-html": "^0.3.5",
+        "@thi.ng/rdom": "^0.2.11",
+        "@thi.ng/rstream": "^5.0.4",
+        "@thi.ng/strings": "^1.9.6",
+        "@thi.ng/transducers": "^7.3.1"
     },
     "files": [
         "*.js",
@@ -56,7 +62,7 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
+        "es6",
         "typescript"
     ],
     "publishConfig": {

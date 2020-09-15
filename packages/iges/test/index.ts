@@ -26,7 +26,7 @@ describe("iges", () => {
             [100, 0],
         ]);
 
-        assert.equal(
+        assert.strictEqual(
             iges.serialize(doc),
             `Example file for @thi.ng/iges                                           S      1
 1H,,1H;,,,12H@thi.ng/iges,5H0.0.1,32,38,6,308,15,,1.000,2,2HMM,1,0.254, G      1

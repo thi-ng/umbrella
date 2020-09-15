@@ -1,6 +1,6 @@
 import { sum } from "@thi.ng/vectors";
-import { diag } from "./diag";
 import type { ReadonlyMat } from "./api";
+import { diag } from "./diag";
 
 /**
  * Returns matrix trace of `m`, i.e. component sum of `diag(m)`.

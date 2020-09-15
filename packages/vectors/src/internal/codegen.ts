@@ -1,3 +1,4 @@
+import type { FnU2 } from "@thi.ng/api";
 import {
     comp,
     map,
@@ -8,7 +9,13 @@ import {
     transduce,
     zip,
 } from "@thi.ng/transducers";
-import { MultiVecOpVN, MultiVecOpVV, Template, VecOpVN, VecOpVV } from "../api";
+import type {
+    MultiVecOpVN,
+    MultiVecOpVV,
+    Template,
+    VecOpVN,
+    VecOpVV,
+} from "../api";
 import {
     FN,
     MATH,
@@ -153,7 +160,7 @@ const assembleG = (
 ];
 
 /** @internal */
-export const defaultOut = (o: string, args: string) =>
+export const defaultOut: FnU2<string> = (o, args) =>
     `!${o} && (${o}=${args.split(",")[1]});`;
 
 /** @internal */

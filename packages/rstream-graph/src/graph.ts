@@ -1,8 +1,9 @@
+import type { IObjectOf, Tuple } from "@thi.ng/api";
+import type { IAtom } from "@thi.ng/atom";
 import { isFunction, isPlainObject, isString } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { getInUnsafe } from "@thi.ng/paths";
 import { absPath, resolve, ResolveFn } from "@thi.ng/resolve-map";
-import { map, Transducer } from "@thi.ng/transducers";
 import {
     CloseMode,
     fromIterableSync,
@@ -11,8 +12,7 @@ import {
     StreamSync,
     sync,
 } from "@thi.ng/rstream";
-import type { IObjectOf, Tuple } from "@thi.ng/api";
-import type { IAtom } from "@thi.ng/atom";
+import { map, Transducer } from "@thi.ng/transducers";
 import type {
     Graph,
     GraphSpec,

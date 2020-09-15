@@ -11,7 +11,7 @@ describe("fromAtom", () => {
         let calledNext = false;
         src.subscribe({
             next(x) {
-                assert.equal(x, 23);
+                assert.strictEqual(x, 23);
                 calledNext = true;
             },
             done() {
@@ -34,12 +34,12 @@ describe("fromAtom", () => {
         let calledNext = false;
         src.subscribe({
             next(x) {
-                assert.equal(x, 23);
+                assert.strictEqual(x, 23);
                 calledNext = true;
             },
             done() {
                 assert(calledNext, "not called next()");
-                assert.deepEqual(a.deref(), { a: { b: { c: 23 }, d: { e: 42 } } });
+                assert. deepStrictEqual(a.deref(), { a: { b: { c: 23 }, d: { e: 42 } } });
                 assert.strictEqual(a.deref().a.d, state.a.d);
                 done();
             },
@@ -61,19 +61,19 @@ describe("fromAtom", () => {
         h.reset(1);
         h.reset(2);
         h.reset({ c: 3 });
-        assert.deepEqual(a.deref(), { a: { b: { c: 3 } } });
+        assert. deepStrictEqual(a.deref(), { a: { b: { c: 3 } } });
         h.undo();
-        assert.deepEqual(a.deref(), { a: { b: 2 } });
+        assert. deepStrictEqual(a.deref(), { a: { b: 2 } });
         h.redo();
-        assert.deepEqual(a.deref(), { a: { b: { c: 3 } } });
+        assert. deepStrictEqual(a.deref(), { a: { b: { c: 3 } } });
         h.undo();
-        assert.deepEqual(a.deref(), { a: { b: 2 } });
+        assert. deepStrictEqual(a.deref(), { a: { b: 2 } });
         h.undo();
-        assert.deepEqual(a.deref(), { a: { b: 1 } });
+        assert. deepStrictEqual(a.deref(), { a: { b: 1 } });
         h.undo();
-        assert.deepEqual(a.deref(), { a: { b: undefined } });
+        assert. deepStrictEqual(a.deref(), { a: { b: undefined } });
         src.done();
-        assert.deepEqual(buf, [undefined, 1, 2, { c: 3 }, 2, { c: 3 }, 2, 1, undefined]);
+        assert. deepStrictEqual(buf, [undefined, 1, 2, { c: 3 }, 2, { c: 3 }, 2, 1, undefined]);
     });
 
     it("works with history (multiple)", () => {
@@ -100,8 +100,8 @@ describe("fromAtom", () => {
         h.record();
         c2.reset(20);
 
-        assert.deepEqual(buf1, [undefined, 1, 2, 3]);
-        assert.deepEqual(buf2, [undefined, 10, 20]);
+        assert. deepStrictEqual(buf1, [undefined, 1, 2, 3]);
+        assert. deepStrictEqual(buf2, [undefined, 10, 20]);
 
         h.undo();
         h.undo();
@@ -114,8 +114,8 @@ describe("fromAtom", () => {
         src1.done();
         src2.done();
 
-        assert.deepEqual(buf1, [undefined, 1, 2, 3, 2, 3, 2, 1, undefined]);
-        assert.deepEqual(buf2, [undefined, 10, 20, 10, 20, 10, undefined]);
+        assert. deepStrictEqual(buf1, [undefined, 1, 2, 3, 2, 3, 2, 1, undefined]);
+        assert. deepStrictEqual(buf2, [undefined, 10, 20, 10, 20, 10, undefined]);
     });
 
 });

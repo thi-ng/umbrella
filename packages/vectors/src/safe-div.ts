@@ -1,5 +1,5 @@
 import { safeDiv as _div } from "@thi.ng/math";
-import { MultiVecOpVV, VecOpVV } from "./api";
+import type { MultiVecOpVV, VecOpVV } from "./api";
 import { ARGS_VV, defHofOp } from "./internal/codegen";
 import { FN2 } from "./internal/templates";
 

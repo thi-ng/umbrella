@@ -1,3 +1,4 @@
+import type { Predicate } from "@thi.ng/api";
 import { rect } from "@thi.ng/geom";
 import { IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
 import { fitClamped } from "@thi.ng/math";
@@ -7,7 +8,6 @@ import { isHoverSlider } from "../behaviors/slider";
 import { IMGUI } from "../gui";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
-import type { Predicate } from "@thi.ng/api";
 
 interface TextfieldState {
     cursor: number;

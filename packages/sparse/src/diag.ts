@@ -1,9 +1,9 @@
 import { assert } from "@thi.ng/api";
 import { ASparseMatrix } from "./amatrix";
+import type { NzEntry } from "./api";
 import { CSC } from "./csc";
 import { CSR } from "./csr";
 import { SparseVec } from "./vec";
-import type { NzEntry } from "./api";
 
 export class Diag extends ASparseMatrix {
     static identity(m: number) {

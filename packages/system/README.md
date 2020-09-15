@@ -17,6 +17,8 @@ This project is part of the
   - [Example system](#example-system)
   - [System visualization](#system-visualization)
 - [Authors](#authors)
+  - [Maintainer](#maintainer)
+  - [Contributors](#contributors)
 - [License](#license)
 
 ## About
@@ -200,7 +202,13 @@ Resulting visualization:
 
 ## Authors
 
-Karsten Schmidt
+### Maintainer
+
+- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
+
+### Contributors
+
+- Kevin Nolan ([@allforabit](https://github.com/allforabit))
 
 ## License
 

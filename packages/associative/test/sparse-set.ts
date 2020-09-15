@@ -14,31 +14,31 @@ describe("SparseSet", () => {
         let a = defSparseSet(0x100);
         a.into([0xff, 0x100]);
         assert(a instanceof SparseSet8, "u8");
-        assert.deepEqual([...a], [0xff]);
+        assert.deepStrictEqual([...a], [0xff]);
 
         a = defSparseSet(0x10000);
         a.into([0xffff, 0x10000]);
         assert(a instanceof SparseSet16, "u16");
-        assert.deepEqual([...a], [0xffff]);
+        assert.deepStrictEqual([...a], [0xffff]);
 
         a = defSparseSet(0x10001);
         a.into([0x10000, 0x10001]);
         assert(a instanceof SparseSet32, "u32");
-        assert.deepEqual([...a], [0x10000]);
+        assert.deepStrictEqual([...a], [0x10000]);
     });
 
     it("ctor(n)", () => {
         assert(isSet(set));
-        assert.equal(set.size, 0);
-        assert.equal(set.capacity, 8);
+        assert.strictEqual(set.size, 0);
+        assert.strictEqual(set.capacity, 8);
     });
 
     it("ctor(arrays)", () => {
         const d = new Uint8Array(8);
         const s = new Uint8Array(8);
         set = new SparseSet8(d, s);
-        assert.equal(set.size, 0);
-        assert.equal(set.capacity, 8);
+        assert.strictEqual(set.size, 0);
+        assert.strictEqual(set.capacity, 8);
         assert.throws(() => new SparseSet8(new Uint8Array(4), s));
     });
 

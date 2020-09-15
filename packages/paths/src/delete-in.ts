@@ -1,5 +1,3 @@
-import { toPath } from "./path";
-import { updateIn } from "./update-in";
 import type {
     Keys,
     Keys1,
@@ -19,6 +17,8 @@ import type {
     Without7,
     Without8,
 } from "@thi.ng/api";
+import { toPath } from "./path";
+import { updateIn } from "./update-in";
 
 /**
  * Unchecked version of {@link deleteIn}. Path can be given as string or

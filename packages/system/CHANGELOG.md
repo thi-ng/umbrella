@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/system@0.2.25...@thi.ng/system@0.2.26) (2020-09-13)
+
+
+### Bug Fixes
+
+* **system:** fix [#247](https://github.com/thi-ng/umbrella/issues/247), allow custom keys in ILifecycle ([a7b8680](https://github.com/thi-ng/umbrella/commit/a7b86804255f22cbdbcaf128854ba615fb5cf20f))
+
+
+
+
+
 ## [0.2.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/system@0.2.24...@thi.ng/system@0.2.25) (2020-08-28)
 
 **Note:** Version bump only for package @thi.ng/system

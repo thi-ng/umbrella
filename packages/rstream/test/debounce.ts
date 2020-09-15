@@ -13,7 +13,7 @@ describe("debounce", () => {
                 },
             });
         setTimeout(() => {
-            assert.deepEqual(acc, [3]);
+            assert.deepStrictEqual(acc, [3]);
             done();
         }, TIMEOUT * 5);
     });
@@ -28,7 +28,7 @@ describe("debounce", () => {
                 },
             });
         setTimeout(() => {
-            assert.deepEqual(acc, []);
+            assert.deepStrictEqual(acc, []);
             done();
         }, TIMEOUT * 5);
     });

@@ -1,6 +1,6 @@
 import { addmN } from "./addmn";
 import { addW4 } from "./addw";
-import { ReadonlyVec, Vec } from "./api";
+import type { ReadonlyVec, Vec } from "./api";
 import { submN } from "./submn";
 
 /**

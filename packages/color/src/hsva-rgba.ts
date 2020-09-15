@@ -1,7 +1,7 @@
 import { setC3 } from "@thi.ng/vectors";
+import type { ColorOp } from "./api";
 import { clampH } from "./clamp";
 import { hueRgba } from "./hue-rgba";
-import type { ColorOp } from "./api";
 
 export const hsvaRgba: ColorOp = (out, src) => {
     out = clampH(out || src, src);

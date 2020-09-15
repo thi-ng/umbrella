@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/atom",
-    "version": "4.1.19",
+    "version": "4.1.20",
     "description": "Mutable wrappers for nested immutable values with optional undo/redo history and transaction support",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -31,7 +31,7 @@
         "build:check": "tsc --isolatedModules --noEmit",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc --theme ../../tools/doc/typedoc-theme src",
@@ -49,10 +49,10 @@
         "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.12.3",
-        "@thi.ng/equiv": "^1.0.30",
-        "@thi.ng/errors": "^1.2.20",
-        "@thi.ng/paths": "^4.1.5",
+        "@thi.ng/api": "^6.13.0",
+        "@thi.ng/equiv": "^1.0.31",
+        "@thi.ng/errors": "^1.2.21",
+        "@thi.ng/paths": "^4.1.6",
         "tslib": "^2.0.1"
     },
     "files": [
@@ -61,18 +61,17 @@
         "lib"
     ],
     "keywords": [
-        "derived views",
         "cursor",
-        "data structure",
-        "ES6",
+        "datastructure",
+        "es6",
         "history",
         "immutable",
         "redo",
         "state",
+        "subscription",
         "transaction",
         "typescript",
         "undo",
-        "update",
         "wrapper"
     ],
     "publishConfig": {
@@ -82,5 +81,13 @@
         "process": false,
         "setTimeout": false
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "related": [
+            "interceptors",
+            "paths",
+            "rstream"
+        ],
+        "year": 2017
+    }
 }

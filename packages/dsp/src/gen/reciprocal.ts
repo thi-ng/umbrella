@@ -1,5 +1,5 @@
-import { AGen } from "./agen";
 import type { IReset } from "@thi.ng/api";
+import { AGen } from "./agen";
 
 /**
  * Returns a gen which yield sequence `y(t) = 1 / (y(t - 1) + step)`.

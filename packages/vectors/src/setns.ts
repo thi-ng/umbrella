@@ -1,4 +1,4 @@
-import { VecOpSV } from "./api";
+import type { VecOpSV } from "./api";
 import { defOpS } from "./internal/codegen";
 import { SET_N } from "./internal/templates";
 

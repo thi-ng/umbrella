@@ -20,8 +20,8 @@ describe("compare", () => {
             { a: 2, b: 2 },
             { a: 2, b: 1 },
         ];
-        assert.deepEqual([...src].sort(compareByKey("a")), res);
-        assert.deepEqual([...src].sort(compareByKey((x) => x.a)), res);
+        assert.deepStrictEqual([...src].sort(compareByKey("a")), res);
+        assert.deepStrictEqual([...src].sort(compareByKey((x) => x.a)), res);
     });
     it("compareByKeys2", () => {
         const src = [
@@ -36,8 +36,8 @@ describe("compare", () => {
             { a: 2, b: 1 },
             { a: 2, b: 2 },
         ];
-        assert.deepEqual([...src].sort(compareByKeys2("a", "b")), res);
-        assert.deepEqual(
+        assert.deepStrictEqual([...src].sort(compareByKeys2("a", "b")), res);
+        assert.deepStrictEqual(
             [...src].sort(
                 compareByKeys2(
                     (x) => x.a,
@@ -61,8 +61,11 @@ describe("compare", () => {
             { a: 1, b: 2, c: 1 },
             { a: 1, b: 2, c: 3 },
         ];
-        assert.deepEqual([...src].sort(compareByKeys3("a", "b", "c")), res);
-        assert.deepEqual(
+        assert.deepStrictEqual(
+            [...src].sort(compareByKeys3("a", "b", "c")),
+            res
+        );
+        assert.deepStrictEqual(
             [...src].sort(
                 compareByKeys3(
                     (x) => x.a,
@@ -87,11 +90,11 @@ describe("compare", () => {
             { a: 1, b: 2, c: 3, d: 2 },
             { a: 1, b: 2, c: 3, d: 3 },
         ];
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...src].sort(compareByKeys4("a", "b", "c", "d")),
             res
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...src].sort(
                 compareByKeys4(
                     (x) => x.a,

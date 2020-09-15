@@ -1,5 +1,5 @@
-import { AttribPool } from "@thi.ng/vector-pools";
 import type { IObjectOf } from "@thi.ng/api";
+import { AttribPool } from "@thi.ng/vector-pools";
 import type { IFbo, IndexBufferSpec } from "./buffers";
 import type { InstancingSpec, ModelAttributeSpecs, ModelSpec } from "./model";
 import type {

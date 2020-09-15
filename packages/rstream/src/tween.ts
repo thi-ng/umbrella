@@ -1,10 +1,10 @@
+import type { Fn2 } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
 import { dedupe, reducer, scan } from "@thi.ng/transducers";
 import { CloseMode, ISubscribable } from "./api";
 import { fromInterval } from "./from/interval";
 import { fromRAF } from "./from/raf";
 import { sync } from "./stream-sync";
-import type { Fn2 } from "@thi.ng/api";
 
 /**
  * Takes an existing stream/subscription `src` and attaches new

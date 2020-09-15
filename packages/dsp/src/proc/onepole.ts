@@ -1,8 +1,8 @@
+import type { IClear, IReset } from "@thi.ng/api";
 import { clamp05, TAU } from "@thi.ng/math";
+import type { FilterConfig, IFilter } from "../api";
 import { FilterType } from "../constants";
 import { AProc } from "./aproc";
-import type { IClear, IReset } from "@thi.ng/api";
-import type { FilterConfig, IFilter } from "../api";
 
 type OnepoleType = FilterType.LP | FilterType.HP;
 
@@ -13,7 +13,8 @@ export const onepoleHP = (fc: number) => new OnePole(FilterType.HP, fc);
 /**
  * https://www.earlevel.com/main/2012/12/15/a-one-pole-filter/
  */
-export class OnePole extends AProc<number, number>
+export class OnePole
+    extends AProc<number, number>
     implements IClear, IFilter, IReset {
     protected _a0!: number;
     protected _b1!: number;

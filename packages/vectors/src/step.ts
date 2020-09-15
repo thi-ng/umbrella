@@ -1,5 +1,5 @@
 import { step as _step } from "@thi.ng/math";
-import { MultiVecOpVV, VecOpVV } from "./api";
+import type { MultiVecOpVV, VecOpVV } from "./api";
 import { DEFAULT_OUT, defHofOp } from "./internal/codegen";
 import { FN2 } from "./internal/templates";
 

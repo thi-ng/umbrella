@@ -1,5 +1,5 @@
-import { frustum, frustumBounds } from "./frustum";
 import type { Mat } from "./api";
+import { frustum, frustumBounds } from "./frustum";
 
 /**
  * Creates a 4x4 matrix perspective projection matrix and writes result

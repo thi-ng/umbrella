@@ -12,32 +12,32 @@ describe("SortedMap", () => {
     });
 
     it("size", () => {
-        assert.equal(m.size, 3);
+        assert.strictEqual(m.size, 3);
         m.set("a", 10);
-        assert.equal(m.size, 3);
+        assert.strictEqual(m.size, 3);
         m.set("d", 10);
-        assert.equal(m.size, 4);
+        assert.strictEqual(m.size, 4);
         m.delete("d");
-        assert.equal(m.size, 3);
+        assert.strictEqual(m.size, 3);
         m.delete("d");
-        assert.equal(m.size, 3);
+        assert.strictEqual(m.size, 3);
     });
 
     it("clear", () => {
         m.clear();
-        assert.equal(m.size, 0);
-        assert.deepEqual([...m.entries()], []);
+        assert.strictEqual(m.size, 0);
+        assert.deepStrictEqual([...m.entries()], []);
     });
 
     it("empty", () => {
         const m2 = m.empty();
-        assert.equal(m.size, 3);
-        assert.equal(m2.size, 0);
-        assert.deepEqual([...m2.entries()], []);
+        assert.strictEqual(m.size, 3);
+        assert.strictEqual(m2.size, 0);
+        assert.deepStrictEqual([...m2.entries()], []);
     });
 
     it("copy", () => {
-        assert.deepEqual(m.copy(), m);
+        assert.deepStrictEqual(m.copy(), m);
     });
 
     it("equiv", () => {
@@ -55,9 +55,9 @@ describe("SortedMap", () => {
     });
 
     it("first", () => {
-        assert.deepEqual(["a", 1], m.first());
+        assert.deepStrictEqual(["a", 1], m.first());
         m.set("A", 10);
-        assert.deepEqual(["A", 10], m.first());
+        assert.deepStrictEqual(["A", 10], m.first());
     });
 
     it("get", () => {
@@ -70,7 +70,7 @@ describe("SortedMap", () => {
     });
 
     it("entries", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...m],
             [
                 ["a", 1],
@@ -81,11 +81,11 @@ describe("SortedMap", () => {
     });
 
     // it("entries rev", () => {
-    //     assert.deepEqual([...m.entries(undefined, true)], [["c", 3], ["b", 2], ["a", 1]]);
+    //     assert. deepStrictEqual([...m.entries(undefined, true)], [["c", 3], ["b", 2], ["a", 1]]);
     // });
 
     it("entries a", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...m.entries("a")],
             [
                 ["a", 1],
@@ -96,11 +96,11 @@ describe("SortedMap", () => {
     });
 
     // it("entries a rev", () => {
-    //     assert.deepEqual([...m.entries("a", true)], [["a", 1]]);
+    //     assert. deepStrictEqual([...m.entries("a", true)], [["a", 1]]);
     // });
 
     it("entries aa", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...m.entries("aa")],
             [
                 ["b", 2],
@@ -110,27 +110,27 @@ describe("SortedMap", () => {
     });
 
     // it("entries aa rev", () => {
-    //     assert.deepEqual([...m.entries("aa", true)], [["a", 1]]);
+    //     assert. deepStrictEqual([...m.entries("aa", true)], [["a", 1]]);
     // });
 
     it("entries bb", () => {
-        assert.deepEqual([...m.entries("bb")], [["c", 3]]);
+        assert.deepStrictEqual([...m.entries("bb")], [["c", 3]]);
     });
 
     // it("entries bb rev", () => {
-    //     assert.deepEqual([...m.entries("bb", true)], [["b", 2], ["a", 1]]);
+    //     assert. deepStrictEqual([...m.entries("bb", true)], [["b", 2], ["a", 1]]);
     // });
 
     it("entries c", () => {
-        assert.deepEqual([...m.entries("c")], [["c", 3]]);
+        assert.deepStrictEqual([...m.entries("c")], [["c", 3]]);
     });
 
     // it("entries c rev", () => {
-    //     assert.deepEqual([...m.entries("c", true)], [["c", 3], ["b", 2], ["a", 1]]);
+    //     assert. deepStrictEqual([...m.entries("c", true)], [["c", 3], ["b", 2], ["a", 1]]);
     // });
 
     it("entries 0", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...m.entries("0")],
             [
                 ["a", 1],
@@ -141,29 +141,29 @@ describe("SortedMap", () => {
     });
 
     // it("entries 0 rev", () => {
-    //     assert.deepEqual([...m.entries("0", true)], []);
+    //     assert. deepStrictEqual([...m.entries("0", true)], []);
     // });
 
     it("entries d", () => {
-        assert.deepEqual([...m.entries("d")], []);
+        assert.deepStrictEqual([...m.entries("d")], []);
     });
 
     // it("entries d rev", () => {
-    //     assert.deepEqual([...m.entries("d", true)], [["c", 3], ["b", 2], ["a", 1]]);
+    //     assert. deepStrictEqual([...m.entries("d", true)], [["c", 3], ["b", 2], ["a", 1]]);
     // });
 
     it("keys", () => {
-        assert.deepEqual([...m.keys()], ["a", "b", "c"]);
+        assert.deepStrictEqual([...m.keys()], ["a", "b", "c"]);
         m.set("aa", 0);
         m.set("d", 0);
-        assert.deepEqual([...m.keys()], ["a", "aa", "b", "c", "d"]);
+        assert.deepStrictEqual([...m.keys()], ["a", "aa", "b", "c", "d"]);
     });
 
     it("values", () => {
-        assert.deepEqual([...m.values()], [1, 2, 3]);
+        assert.deepStrictEqual([...m.values()], [1, 2, 3]);
         m.set("aa", 0);
         m.set("d", 0);
-        assert.deepEqual([...m.values()], [1, 0, 2, 3, 0]);
+        assert.deepStrictEqual([...m.values()], [1, 0, 2, 3, 0]);
     });
 
     it("comparator", () => {
@@ -174,7 +174,7 @@ describe("SortedMap", () => {
                     a === b ? 0 : a < b ? 1 : -1,
             }
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [
                 ["c", 3],
                 ["b", 2],
@@ -188,7 +188,7 @@ describe("SortedMap", () => {
         const keys = [...range(32)];
         for (let i = 0; i < 1000; i++) {
             m = new SortedMap(zip(shuffle(keys.slice()), repeat(1)));
-            assert.deepEqual([...m.keys()], keys);
+            assert.deepStrictEqual([...m.keys()], keys);
         }
     });
 });

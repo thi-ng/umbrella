@@ -1,4 +1,4 @@
-import { MultiVecOpV, VecOpV } from "./api";
+import type { MultiVecOpV, VecOpV } from "./api";
 import { defFnOp } from "./internal/codegen";
 
 /**

@@ -1,8 +1,8 @@
+import type { Fn } from "@thi.ng/api";
 import { LOGGER, State } from "../api";
 import { Subscription } from "../subscription";
 import { nextID } from "../utils/idgen";
 import { makeWorker } from "../utils/worker";
-import type { Fn } from "@thi.ng/api";
 
 export interface TunnelOpts<A> {
     /**

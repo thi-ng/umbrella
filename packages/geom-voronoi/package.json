@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom-voronoi",
-    "version": "0.2.7",
+    "version": "0.2.8",
     "description": "Fast, incremental 2D Delaunay & Voronoi mesh implementation",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -31,7 +31,7 @@
         "build:check": "tsc --isolatedModules --noEmit",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc --theme ../../tools/doc/typedoc-theme src",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
@@ -49,15 +49,15 @@
         "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.12.3",
-        "@thi.ng/checks": "^2.7.7",
-        "@thi.ng/geom-clip-line": "^1.2.7",
-        "@thi.ng/geom-clip-poly": "^1.0.32",
-        "@thi.ng/geom-isec": "^0.5.7",
-        "@thi.ng/geom-poly-utils": "^0.1.63",
-        "@thi.ng/math": "^2.0.4",
-        "@thi.ng/quad-edge": "^0.2.22",
-        "@thi.ng/vectors": "^4.6.4"
+        "@thi.ng/api": "^6.13.0",
+        "@thi.ng/checks": "^2.7.8",
+        "@thi.ng/geom-clip-line": "^1.2.8",
+        "@thi.ng/geom-clip-poly": "^1.0.33",
+        "@thi.ng/geom-isec": "^0.5.8",
+        "@thi.ng/geom-poly-utils": "^0.1.64",
+        "@thi.ng/math": "^2.1.0",
+        "@thi.ng/quad-edge": "^0.2.23",
+        "@thi.ng/vectors": "^4.6.5"
     },
     "files": [
         "*.js",
@@ -65,13 +65,13 @@
         "lib"
     ],
     "keywords": [
-        "2D",
+        "2d",
         "clipping",
-        "data structure",
+        "datastructure",
         "delaunay",
         "dual",
         "edges",
-        "ES6",
+        "es6",
         "geometry",
         "graph",
         "incremental",

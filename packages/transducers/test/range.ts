@@ -5,7 +5,7 @@ import { rangeNd } from "../src";
 
 describe("range2d", () => {
     it("forward", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...range2d(0, 3, 1, 3)],
             [
                 [0, 1],
@@ -18,7 +18,7 @@ describe("range2d", () => {
         );
     });
     it("forward w/ step", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...range2d(0, 5, 1, 6, 2, 3)],
             [
                 [0, 1],
@@ -31,7 +31,7 @@ describe("range2d", () => {
         );
     });
     it("reverse", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...range2d(3, 0, 3, 1)],
             [
                 [3, 3],
@@ -44,7 +44,7 @@ describe("range2d", () => {
         );
     });
     it("reverse w/ step", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...range2d(5, 0, 6, 1, -2, -3)],
             [
                 [5, 6],
@@ -57,28 +57,28 @@ describe("range2d", () => {
         );
     });
     it("empty w/ wrong step sign (x)", () => {
-        assert.deepEqual([...range2d(0, 1, 0, 1, -1, 1)], []);
+        assert.deepStrictEqual([...range2d(0, 1, 0, 1, -1, 1)], []);
     });
     it("empty w/ wrong step sign (y)", () => {
-        assert.deepEqual([...range2d(0, 1, 0, 1, 1, -1)], []);
+        assert.deepStrictEqual([...range2d(0, 1, 0, 1, 1, -1)], []);
     });
     it("single output", () => {
-        assert.deepEqual([...range2d(0, 1, 0, 1)], [[0, 0]]);
+        assert.deepStrictEqual([...range2d(0, 1, 0, 1)], [[0, 0]]);
     });
 });
 
 describe("rangeNd", () => {
     it("0d", () => {
-        assert.deepEqual([...rangeNd([])], []);
+        assert.deepStrictEqual([...rangeNd([])], []);
     });
 
     it("1d", () => {
-        assert.deepEqual([...rangeNd([2])], [[0], [1]]);
-        assert.deepEqual([...rangeNd([-2], [2])], [[-2], [-1], [0], [1]]);
+        assert.deepStrictEqual([...rangeNd([2])], [[0], [1]]);
+        assert.deepStrictEqual([...rangeNd([-2], [2])], [[-2], [-1], [0], [1]]);
     });
 
     it("2d", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...rangeNd([2, -2])],
             [
                 [0, 0],
@@ -87,7 +87,7 @@ describe("rangeNd", () => {
                 [1, -1],
             ]
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...rangeNd([-2, -2], [2, 2])],
             [
                 [-2, -2],
@@ -111,7 +111,7 @@ describe("rangeNd", () => {
     });
 
     it("3d", () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...rangeNd([2, 2, 2])],
             [
                 [0, 0, 0],

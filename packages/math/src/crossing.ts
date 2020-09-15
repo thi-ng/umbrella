@@ -1,3 +1,4 @@
+import type { FnU4 } from "@thi.ng/api";
 import { Crossing, EPS } from "./api";
 import { eqDelta } from "./eqdelta";
 
@@ -17,7 +18,7 @@ import { eqDelta } from "./eqdelta";
  * @param b1 -
  * @param b2 -
  */
-export const isCrossOver = (a1: number, a2: number, b1: number, b2: number) =>
+export const isCrossOver: FnU4<number, boolean> = (a1, a2, b1, b2) =>
     a1 < b1 && a2 > b2;
 
 /**
@@ -36,7 +37,7 @@ export const isCrossOver = (a1: number, a2: number, b1: number, b2: number) =>
  * @param b1 -
  * @param b2 -
  */
-export const isCrossUnder = (a1: number, a2: number, b1: number, b2: number) =>
+export const isCrossUnder: FnU4<number, boolean> = (a1, a2, b1, b2) =>
     a1 > b1 && a2 < b2;
 
 /**

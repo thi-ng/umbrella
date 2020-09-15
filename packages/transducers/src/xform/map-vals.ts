@@ -1,7 +1,7 @@
-import { $iter } from "../iterator";
-import { map } from "./map";
 import type { Fn, IObjectOf } from "@thi.ng/api";
 import type { Transducer } from "../api";
+import { $iter } from "../iterator";
+import { map } from "./map";
 
 /**
  * Transducer. Similar to {@link (map:1)}, but expects object values and

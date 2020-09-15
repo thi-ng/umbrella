@@ -1,15 +1,6 @@
-import { assert } from "@thi.ng/api";
+import { assert, Event, FnO2, FnO3, IID } from "@thi.ng/api";
 import { intersectionR } from "@thi.ng/associative";
 import { map, transduce } from "@thi.ng/transducers";
-import { UnboundedCache } from "../caches/unbounded";
-import { ObjectComponent } from "../components/object-component";
-import {
-    EVENT_ADDED,
-    EVENT_CHANGED,
-    EVENT_PRE_DELETE,
-    LOGGER,
-} from "../constants";
-import type { Event, FnO2, FnO3, IID } from "@thi.ng/api";
 import type {
     ComponentID,
     GroupInfo,
@@ -18,6 +9,14 @@ import type {
     ICache,
     IComponent,
 } from "../api";
+import { UnboundedCache } from "../caches/unbounded";
+import { ObjectComponent } from "../components/object-component";
+import {
+    EVENT_ADDED,
+    EVENT_CHANGED,
+    EVENT_PRE_DELETE,
+    LOGGER,
+} from "../constants";
 
 export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
     readonly id: string;

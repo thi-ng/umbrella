@@ -1,3 +1,4 @@
+import type { FnN, FnN2 } from "@thi.ng/api";
 import { TAU } from "@thi.ng/math";
 
 /**
@@ -7,7 +8,7 @@ import { TAU } from "@thi.ng/math";
  * @param f
  * @param fs
  */
-export const normFreq = (f: number, fs: number) => f / fs;
+export const normFreq: FnN2 = (f, fs) => f / fs;
 
 /**
  * Returns frequency `f` in radians, based on sample rate `fs`.
@@ -16,14 +17,14 @@ export const normFreq = (f: number, fs: number) => f / fs;
  * @param f
  * @param fs
  */
-export const freqRad = (f: number, fs: number) => (f / fs) * TAU;
+export const freqRad: FnN2 = (f, fs) => (f / fs) * TAU;
 
 /**
  * Returns period length in milliseconds for given frequency in Hz.
  *
  * @param f
  */
-export const freqMs = (f: number) => 1000 / f;
+export const freqMs: FnN = (f) => 1000 / f;
 
 /**
  * Reverse op of {@link freqRad}.
@@ -31,7 +32,7 @@ export const freqMs = (f: number) => 1000 / f;
  * @param rad
  * @param fs
  */
-export const radFreq = (rad: number, fs: number) => (rad / TAU) * fs;
+export const radFreq: FnN2 = (rad, fs) => (rad / TAU) * fs;
 
 /**
  * Returns number of samples for given millisecond period and samle
@@ -47,7 +48,7 @@ export const radFreq = (rad: number, fs: number) => (rad / TAU) * fs;
  * @param t
  * @param fs
  */
-export const msFrames = (t: number, fs: number) => t * 0.001 * fs;
+export const msFrames: FnN2 = (t, fs) => t * 0.001 * fs;
 
 /**
  * Reverse op of {@link msFrames}.
@@ -55,14 +56,14 @@ export const msFrames = (t: number, fs: number) => t * 0.001 * fs;
  * @param frames
  * @param fs
  */
-export const framesMs = (frames: number, fs: number) => (frames / fs) * 1000;
+export const framesMs: FnN2 = (frames, fs) => (frames / fs) * 1000;
 
 /**
  * Converts given linear magnitude to dBFS (i.e. `20 * log10(x)`)
  *
  * @param x
  */
-export const magDb = (x: number) => (20 * Math.log(x)) / Math.LN10;
+export const magDb: FnN = (x) => (20 * Math.log(x)) / Math.LN10;
 
 /**
  * Converts given dBFS value to linear magnitude
@@ -70,4 +71,4 @@ export const magDb = (x: number) => (20 * Math.log(x)) / Math.LN10;
  *
  * @param x
  */
-export const dbMag = (x: number) => 10 ** (x / 20);
+export const dbMag: FnN = (x) => 10 ** (x / 20);

@@ -1,3 +1,4 @@
+import type { FnN2, FnN3 } from "@thi.ng/api";
 import { decode10, decode16, encode10, encode16 } from "./raw";
 import {
     decodeScaled10,
@@ -9,10 +10,9 @@ import {
 const MIN = [0, 0, 0];
 const MAX = [1, 1, 1];
 
-export const mux2 = (x: number, y: number) =>
-    (encode16(x) | (encode16(y) << 1)) >>> 0;
+export const mux2: FnN2 = (x, y) => (encode16(x) | (encode16(y) << 1)) >>> 0;
 
-export const mux3 = (x: number, y: number, z: number) =>
+export const mux3: FnN3 = (x, y, z) =>
     (encode10(x) | (encode10(y) << 1) | (encode10(z) << 2)) >>> 0;
 
 export const demux2 = (n: number) => [decode16(n), decode16(n >>> 1)];

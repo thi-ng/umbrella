@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/range-coder",
-    "version": "1.0.57",
+    "version": "1.0.58",
     "description": "Binary data range encoder / decoder",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -31,7 +31,7 @@
         "build:check": "tsc --isolatedModules --noEmit",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc --theme ../../tools/doc/typedoc-theme src",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
@@ -40,7 +40,7 @@
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
         "@microsoft/api-extractor": "^7.9.11",
-        "@thi.ng/transducers": "^7.3.0",
+        "@thi.ng/transducers": "^7.3.1",
         "@types/mocha": "^8.0.3",
         "@types/node": "^14.6.1",
         "mocha": "^8.1.2",
@@ -50,7 +50,7 @@
         "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/bitstream": "^1.1.25"
+        "@thi.ng/bitstream": "^1.1.26"
     },
     "files": [
         "*.js",
@@ -58,11 +58,11 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
         "binary",
+        "compression",
         "entropy",
+        "es6",
         "packer",
-        "range encoding",
         "typescript"
     ],
     "publishConfig": {

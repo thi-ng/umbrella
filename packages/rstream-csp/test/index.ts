@@ -13,9 +13,13 @@ describe("fromChannel", function () {
                 buf.push(x);
             },
             done() {
-                assert.deepEqual(buf, [0, 1, 2, 3, 4]);
+                assert.deepStrictEqual(buf, [0, 1, 2, 3, 4]);
                 assert(ch.isClosed(), "channel not closed");
-                assert.equal(src.getState(), rs.State.DONE, "stream not done");
+                assert.strictEqual(
+                    src.getState(),
+                    rs.State.DONE,
+                    "stream not done"
+                );
                 done();
             },
         });

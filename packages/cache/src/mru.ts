@@ -1,6 +1,6 @@
-import { LRUCache } from "./lru";
 import type { ConsCell } from "@thi.ng/dcons";
 import type { CacheEntry, CacheOpts } from "./api";
+import { LRUCache } from "./lru";
 
 export class MRUCache<K, V> extends LRUCache<K, V> {
     constructor(

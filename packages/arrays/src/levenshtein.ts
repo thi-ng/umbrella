@@ -1,5 +1,4 @@
-import { Predicate2 } from "@thi.ng/api";
-import { equiv as _equiv } from "@thi.ng/equiv";
+import type { Predicate2 } from "@thi.ng/api";
 
 const eqStrict = (a: any, b: any) => a === b;
 

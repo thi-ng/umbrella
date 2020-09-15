@@ -1,3 +1,4 @@
+import type { Fn } from "@thi.ng/api";
 import { isBoolean, isNumber } from "@thi.ng/checks";
 import { unsupported } from "@thi.ng/errors";
 import {
@@ -13,7 +14,6 @@ import {
     Type,
 } from "@thi.ng/shader-ast";
 import { GLSLOpts, GLSLTarget, GLSLVersion } from "./api";
-import type { Fn } from "@thi.ng/api";
 
 const RE_SEMI = /[};]$/;
 

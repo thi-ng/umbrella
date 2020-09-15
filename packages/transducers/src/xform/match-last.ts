@@ -1,10 +1,10 @@
+import type { Predicate } from "@thi.ng/api";
 import { isIterable } from "@thi.ng/checks";
+import type { Transducer } from "../api";
 import { comp } from "../func/comp";
 import { iterator } from "../iterator";
 import { filter } from "./filter";
 import { takeLast } from "./take-last";
-import type { Predicate } from "@thi.ng/api";
-import type { Transducer } from "../api";
 
 /**
  * Transducer composition / syntax sugar for:

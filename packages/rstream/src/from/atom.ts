@@ -1,8 +1,8 @@
-import { Stream } from "../stream";
-import { optsWithID } from "../utils/idgen";
 import type { Predicate2 } from "@thi.ng/api";
 import type { ReadonlyAtom } from "@thi.ng/atom";
 import type { CommonOpts } from "../api";
+import { Stream } from "../stream";
+import { optsWithID } from "../utils/idgen";
 
 export interface FromAtomOpts<T> extends CommonOpts {
     /**

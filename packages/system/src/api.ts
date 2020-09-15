@@ -20,6 +20,9 @@ export interface ILifecycle {
      * false will NOT stop decommision other components.
      */
     stop?(): Promise<boolean>;
+    // allow extension and disable weak type detection
+    // https://github.com/thi-ng/umbrella/issues/247#issuecomment-687196363
+    [id: string]: any;
 }
 
 /**

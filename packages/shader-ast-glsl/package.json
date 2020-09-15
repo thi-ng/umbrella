@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/shader-ast-glsl",
-    "version": "0.2.8",
-    "description": "Customizable GLSL code generator for @thi.ng/shader-ast",
+    "version": "0.2.9",
+    "description": "Customizable GLSL codegen for @thi.ng/shader-ast",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -31,7 +31,7 @@
         "build:check": "tsc --isolatedModules --noEmit",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib codegen std",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib codegen std",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc --theme ../../tools/doc/typedoc-theme src",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
@@ -49,10 +49,10 @@
         "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.12.3",
-        "@thi.ng/checks": "^2.7.7",
-        "@thi.ng/errors": "^1.2.20",
-        "@thi.ng/shader-ast": "^0.7.0"
+        "@thi.ng/api": "^6.13.0",
+        "@thi.ng/checks": "^2.7.8",
+        "@thi.ng/errors": "^1.2.21",
+        "@thi.ng/shader-ast": "^0.7.1"
     },
     "files": [
         "*.js",
@@ -60,15 +60,15 @@
         "lib"
     ],
     "keywords": [
-        "AST",
-        "code generator",
-        "DSL",
-        "ES6",
-        "GLSL",
+        "ast",
+        "codegen",
+        "dsl",
+        "es6",
+        "glsl",
+        "gpgpu",
         "shader",
         "typescript",
-        "webgl",
-        "webgl2"
+        "webgl"
     ],
     "publishConfig": {
         "access": "public"

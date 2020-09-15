@@ -1,6 +1,7 @@
+import { sincos } from "@thi.ng/math";
 import { normalize as _normalize, ReadonlyVec, setC } from "@thi.ng/vectors";
-import { mat33to44 } from "./m33-m44";
 import type { Mat } from "./api";
+import { mat33to44 } from "./m33-m44";
 
 /**
  * Constructs a 3x3 matrix representing a rotation of `theta` around
@@ -19,20 +20,25 @@ export const rotationAroundAxis33 = (
     normalize = false
 ) => {
     const [x, y, z] = normalize ? _normalize([], axis) : axis;
-    const s = Math.sin(theta);
-    const c = Math.cos(theta);
+    const [s, c] = sincos(theta);
     const t = 1 - c;
+    const xs = x * s;
+    const ys = y * s;
+    const zs = z * s;
+    const xt = x * t;
+    const yt = y * t;
+    const zt = z * t;
     return setC(
         out || [],
-        x * x * t + c,
-        y * x * t + z * s,
-        z * x * t - y * s,
-        x * y * t - z * s,
-        y * y * t + c,
-        z * y * t + x * s,
-        x * z * t + y * s,
-        y * z * t - x * s,
-        z * z * t + c
+        x * xt + c,
+        y * xt + zs,
+        z * xt - ys,
+        x * yt - zs,
+        y * yt + c,
+        z * yt + xs,
+        x * zt + ys,
+        y * zt - xs,
+        z * zt + c
     );
 };
 

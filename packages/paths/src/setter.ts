@@ -1,8 +1,7 @@
-import { isArray, isTypedArray } from "@thi.ng/checks";
-import { toPath } from "./path";
 import type {
     DeepPath,
     Fn2,
+    NumOrString,
     Path,
     Path0,
     Path1,
@@ -14,8 +13,9 @@ import type {
     Path7,
     Path8,
     PathVal,
-    NumOrString,
 } from "@thi.ng/api";
+import { isArray, isTypedArray } from "@thi.ng/checks";
+import { toPath } from "./path";
 
 /**
  * Composes a setter function for given nested update path. Optimized

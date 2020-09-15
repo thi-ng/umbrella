@@ -1,4 +1,4 @@
-import { Comparator } from "@thi.ng/api";
+import type { Comparator } from "@thi.ng/api";
 
 /**
  * HOF comparator. Returns new comparator with reversed order of given

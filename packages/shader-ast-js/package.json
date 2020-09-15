@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/shader-ast-js",
-    "version": "0.5.5",
-    "description": "Customizable JS code generator, compiler & runtime for @thi.ng/shader-ast",
+    "version": "0.5.6",
+    "description": "Customizable JS codegen, compiler & runtime for @thi.ng/shader-ast",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -31,7 +31,7 @@
         "build:check": "tsc --isolatedModules --noEmit",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib codegen std",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib env",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc --theme ../../tools/doc/typedoc-theme src",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
@@ -49,14 +49,14 @@
         "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.12.3",
-        "@thi.ng/checks": "^2.7.7",
-        "@thi.ng/errors": "^1.2.20",
-        "@thi.ng/math": "^2.0.4",
-        "@thi.ng/matrices": "^0.6.31",
-        "@thi.ng/pixel": "^0.4.4",
-        "@thi.ng/shader-ast": "^0.7.0",
-        "@thi.ng/vectors": "^4.6.4"
+        "@thi.ng/api": "^6.13.0",
+        "@thi.ng/checks": "^2.7.8",
+        "@thi.ng/errors": "^1.2.21",
+        "@thi.ng/math": "^2.1.0",
+        "@thi.ng/matrices": "^0.6.32",
+        "@thi.ng/pixel": "^0.4.5",
+        "@thi.ng/shader-ast": "^0.7.1",
+        "@thi.ng/vectors": "^4.6.5"
     },
     "files": [
         "*.js",
@@ -65,13 +65,13 @@
         "env"
     ],
     "keywords": [
-        "AST",
-        "crosscompiler",
-        "code generator",
-        "DSL",
+        "ast",
+        "codegen",
+        "compiler",
+        "dsl",
         "emulator",
-        "ES6",
-        "GLSL",
+        "es6",
+        "glsl",
         "shader",
         "typescript",
         "webgl"

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/soa",
-    "version": "0.1.35",
+    "version": "0.1.36",
     "description": "SOA & AOS memory mapped structured views with optional & extensible serialization",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -31,7 +31,7 @@
         "build:check": "tsc --isolatedModules --noEmit",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc --theme ../../tools/doc/typedoc-theme src",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
@@ -40,7 +40,7 @@
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
         "@microsoft/api-extractor": "^7.9.11",
-        "@thi.ng/equiv": "^1.0.30",
+        "@thi.ng/equiv": "^1.0.31",
         "@types/mocha": "^8.0.3",
         "@types/node": "^14.6.1",
         "mocha": "^8.1.2",
@@ -50,10 +50,10 @@
         "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.12.3",
-        "@thi.ng/binary": "^2.0.14",
-        "@thi.ng/transducers-binary": "^0.5.28",
-        "@thi.ng/vectors": "^4.6.4"
+        "@thi.ng/api": "^6.13.0",
+        "@thi.ng/binary": "^2.0.15",
+        "@thi.ng/transducers-binary": "^0.5.29",
+        "@thi.ng/vectors": "^4.6.5"
     },
     "files": [
         "*.js",
@@ -61,18 +61,20 @@
         "lib"
     ],
     "keywords": [
-        "AOS",
-        "ES6",
+        "aos",
+        "data-oriented",
+        "datastructure",
+        "es6",
         "interop",
-        "memory mapped",
-        "serialize",
-        "shared memory",
-        "SOA",
-        "struct",
+        "memory-mapped",
+        "layout",
+        "serialization",
+        "soa",
+        "simd",
         "typedarray",
         "typescript",
-        "WASM",
-        "WebGL"
+        "wasm",
+        "webgl"
     ],
     "publishConfig": {
         "access": "public"
@@ -82,6 +84,7 @@
         "related": [
             "ecs",
             "malloc",
+            "simd",
             "unionstruct",
             "vector-pools"
         ],

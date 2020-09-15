@@ -1,4 +1,4 @@
-import { MultiVecOpVVN, VecOpVVN } from "./api";
+import type { MultiVecOpVVN, VecOpVVN } from "./api";
 import { ARGS_VVN, defOp } from "./internal/codegen";
 import { MIX_N } from "./internal/templates";
 

@@ -1,4 +1,4 @@
-import { Fn2 } from "@thi.ng/api";
+import type { Fn2 } from "@thi.ng/api";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti";
 import * as assert from "assert";
 import {
@@ -46,7 +46,7 @@ ops.add(DEFAULT, (x, [_, ...args], env) => {
 
 describe("sexpr", () => {
     it("basic", () => {
-        assert.deepEqual(parse(tokenize(`(+ 1 (len "234"))`)), {
+        assert.deepStrictEqual(parse(tokenize(`(+ 1 (len "234"))`)), {
             type: "root",
             children: [
                 {
@@ -77,7 +77,7 @@ describe("sexpr", () => {
             ],
             string: "'",
         };
-        assert.deepEqual(parse(`<nest { a '2' b 3 }>`, syntax), {
+        assert.deepStrictEqual(parse(`<nest { a '2' b 3 }>`, syntax), {
             type: "root",
             children: [
                 {
@@ -123,7 +123,7 @@ describe("sexpr", () => {
     });
 
     it("math", () => {
-        assert.equal(
+        assert.strictEqual(
             $eval(
                 `(/
                     (-
@@ -137,7 +137,7 @@ describe("sexpr", () => {
     });
 
     it("fn in env", () => {
-        assert.equal(
+        assert.strictEqual(
             $eval(`(join (+ 1 2) (+ 3 4))`, {
                 join: (...xs: any[]) => xs.join(","),
             }),

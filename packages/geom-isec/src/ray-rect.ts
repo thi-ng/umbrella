@@ -1,7 +1,7 @@
-import { IntersectionType } from "@thi.ng/geom-api";
+import type { FnU4 } from "@thi.ng/api";
+import { IntersectionResult, IntersectionType } from "@thi.ng/geom-api";
 import { maddN, ReadonlyVec } from "@thi.ng/vectors";
 import { NONE } from "./api";
-import type { Fn4 } from "@thi.ng/api";
 
 const min = Math.min;
 const max = Math.max;
@@ -15,11 +15,11 @@ const max = Math.max;
  * @param bmin - rect min
  * @param bmax - rect max
  */
-const rayRect = (
-    rpos: ReadonlyVec,
-    dir: ReadonlyVec,
-    bmin: ReadonlyVec,
-    bmax: ReadonlyVec
+const rayRect: FnU4<ReadonlyVec, [number, number]> = (
+    rpos,
+    dir,
+    bmin,
+    bmax
 ) => {
     let p = rpos[0];
     let d = 1 / dir[0];
@@ -31,7 +31,7 @@ const rayRect = (
     d = 1 / dir[1];
     t1 = (bmin[1] - p) * d;
     t2 = (bmax[1] - p) * d;
-    return <[number, number]>[max(tmin, min(t1, t2)), min(tmax, max(t1, t2))];
+    return [max(tmin, min(t1, t2)), min(tmax, max(t1, t2))];
 };
 
 /**
@@ -42,12 +42,7 @@ const rayRect = (
  * @param bmin - box min
  * @param bmax - box max
  */
-const rayBox = (
-    rpos: ReadonlyVec,
-    dir: ReadonlyVec,
-    bmin: ReadonlyVec,
-    bmax: ReadonlyVec
-) => {
+const rayBox: FnU4<ReadonlyVec, [number, number]> = (rpos, dir, bmin, bmax) => {
     let p = rpos[0];
     let d = 1 / dir[0];
     let t1 = (bmin[0] - p) * d;
@@ -64,23 +59,12 @@ const rayBox = (
     t2 = (bmax[2] - p) * d;
     tmin = max(tmin, min(t1, t2));
     tmax = min(tmax, max(t1, t2));
-    return <[number, number]>[max(tmin, min(t1, t2)), min(tmax, max(t1, t2))];
+    return [max(tmin, min(t1, t2)), min(tmax, max(t1, t2))];
 };
 
 const intersectWith = (
-    fn: Fn4<
-        ReadonlyVec,
-        ReadonlyVec,
-        ReadonlyVec,
-        ReadonlyVec,
-        [number, number]
-    >
-) => (
-    rpos: ReadonlyVec,
-    dir: ReadonlyVec,
-    bmin: ReadonlyVec,
-    bmax: ReadonlyVec
-) => {
+    fn: FnU4<ReadonlyVec, [number, number]>
+): FnU4<ReadonlyVec, IntersectionResult> => (rpos, dir, bmin, bmax) => {
     const t = fn(rpos, dir, bmin, bmax);
     const tmin = t[0];
     const tmax = t[1];
@@ -109,21 +93,21 @@ export const intersectRayRect = intersectWith(rayRect);
 
 export const intersectRayAABB = intersectWith(rayBox);
 
-export const testRayRect = (
-    rpos: ReadonlyVec,
-    dir: ReadonlyVec,
-    bmin: ReadonlyVec,
-    bmax: ReadonlyVec
+export const testRayRect: FnU4<ReadonlyVec, boolean> = (
+    rpos,
+    dir,
+    bmin,
+    bmax
 ) => {
     const t = rayRect(rpos, dir, bmin, bmax);
     return t[1] > max(t[0], 0);
 };
 
-export const testRayAABB = (
-    rpos: ReadonlyVec,
-    dir: ReadonlyVec,
-    bmin: ReadonlyVec,
-    bmax: ReadonlyVec
+export const testRayAABB: FnU4<ReadonlyVec, boolean> = (
+    rpos,
+    dir,
+    bmin,
+    bmax
 ) => {
     const t = rayBox(rpos, dir, bmin, bmax);
     return t[1] > max(t[0], 0);

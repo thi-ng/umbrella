@@ -1,8 +1,8 @@
+import type { Fn, Predicate2 } from "@thi.ng/api";
 import { fuzzyMatch } from "@thi.ng/arrays";
+import type { Transducer } from "../api";
 import { $iter } from "../iterator";
 import { filter } from "./filter";
-import type { Fn, Predicate2 } from "@thi.ng/api";
-import type { Transducer } from "../api";
 
 export interface FilterFuzzyOpts<A, B> {
     /**

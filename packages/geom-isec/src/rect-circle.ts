@@ -1,5 +1,5 @@
+import type { Fn4, FnN3 } from "@thi.ng/api";
 import { MultiVecOpImpl, ReadonlyVec, vop } from "@thi.ng/vectors";
-import type { Fn4 } from "@thi.ng/api";
 
 export const testBoxSphere: MultiVecOpImpl<Fn4<
     ReadonlyVec,
@@ -111,5 +111,5 @@ testCenteredBoxSphere.default((boxPos, boxExtent, spherePos, r) => {
     return sum <= r * r;
 });
 
-const axis = (a: number, b: number, c: number) =>
+const axis: FnN3 = (a, b, c) =>
     (a < b ? a - b : a > b + c ? a - b - c : 0) ** 2;

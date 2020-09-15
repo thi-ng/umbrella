@@ -73,7 +73,7 @@ yarn add @thi.ng/matrices
 <script src="https://unpkg.com/@thi.ng/matrices/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 4.75 KB / CJS: 5.31 KB / UMD: 4.83 KB
+Package sizes (gzipped, pre-treeshake): ESM: 4.76 KB / CJS: 5.31 KB / UMD: 4.85 KB
 
 ## Dependencies
 

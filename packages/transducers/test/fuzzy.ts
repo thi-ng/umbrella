@@ -5,17 +5,23 @@ import * as assert from "assert";
 describe("fuzzy", () => {
     it("strings", () => {
         const opts = ["hello", "hallo", "hey", "heyoka"];
-        assert.deepEqual([...filterFuzzy("hl", opts)], ["hello", "hallo"]);
-        assert.deepEqual(
+        assert.deepStrictEqual(
+            [...filterFuzzy("hl", opts)],
+            ["hello", "hallo"]
+        );
+        assert.deepStrictEqual(
             [...filterFuzzy("he", opts)],
             ["hello", "hey", "heyoka"]
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...filterFuzzy("ho", opts)],
             ["hello", "hallo", "heyoka"]
         );
-        assert.deepEqual([...filterFuzzy("hey", opts)], ["hey", "heyoka"]);
-        assert.deepEqual([...filterFuzzy("hk", opts)], ["heyoka"]);
+        assert.deepStrictEqual(
+            [...filterFuzzy("hey", opts)],
+            ["hey", "heyoka"]
+        );
+        assert.deepStrictEqual([...filterFuzzy("hk", opts)], ["heyoka"]);
     });
     it("arrays", () => {
         const opts = [
@@ -24,7 +30,7 @@ describe("fuzzy", () => {
             [4, 5, 6],
             [1, 3, 6],
         ];
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...filterFuzzy([1, 3], opts)],
             [
                 [1, 2, 3],
@@ -32,14 +38,14 @@ describe("fuzzy", () => {
                 [1, 3, 6],
             ]
         );
-        assert.deepEqual(
+        assert.deepStrictEqual(
             [...filterFuzzy([4], opts)],
             [
                 [1, 3, 4],
                 [4, 5, 6],
             ]
         );
-        assert.deepEqual([...filterFuzzy([3, 6], opts)], [[1, 3, 6]]);
-        assert.deepEqual([...filterFuzzy([], opts)], opts);
+        assert.deepStrictEqual([...filterFuzzy([3, 6], opts)], [[1, 3, 6]]);
+        assert.deepStrictEqual([...filterFuzzy([], opts)], opts);
     });
 });

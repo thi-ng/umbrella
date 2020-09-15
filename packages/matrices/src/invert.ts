@@ -9,8 +9,8 @@ import {
     Vec,
     vop,
 } from "@thi.ng/vectors";
-import { det44FromCoeffs, detCoeffs44 } from "./determinant";
 import type { MatOpMU, MultiMatOpMU } from "./api";
+import { det44FromCoeffs, detCoeffs44 } from "./determinant";
 
 const dp4 = dotC4;
 const dp6 = dotC6;

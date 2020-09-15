@@ -1,3 +1,4 @@
+import type { Mat, MatOpN } from "./api";
 import {
     shearX22,
     shearX23,
@@ -16,7 +17,6 @@ import {
     shearZY33,
     shearZY44,
 } from "./shear";
-import type { Mat, MatOpN } from "./api";
 
 const $ = (f: MatOpN) => (m: Mat | null, theta: number) =>
     f(m, Math.tan(theta));

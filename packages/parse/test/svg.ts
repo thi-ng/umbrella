@@ -20,8 +20,8 @@ const check = (
     pos: number
 ) => {
     const ctx = defContext(src);
-    assert.equal(parser(ctx), res, `src: '${src}'`);
-    assert.equal(ctx.state!.p, pos, `src: '${src}' pos: ${ctx.state!.p}`);
+    assert.strictEqual(parser(ctx), res, `src: '${src}'`);
+    assert.strictEqual(ctx.state!.p, pos, `src: '${src}' pos: ${ctx.state!.p}`);
 };
 
 describe("parse", () => {
@@ -44,7 +44,7 @@ describe("parse", () => {
         const ctx = defContext("M0,1L2 3c4,5-6,7 8 9z");
         assert(path(ctx));
         assert(ctx.done);
-        assert.deepEqual(ctx.result, [
+        assert.deepStrictEqual(ctx.result, [
             ["M", [0, 1]],
             ["L", [2, 3]],
             ["c", [4, 5], [-6, 7], [8, 9]],

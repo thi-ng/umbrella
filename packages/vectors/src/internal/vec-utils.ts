@@ -1,4 +1,4 @@
-import { Vec, VectorConstructor } from "../api";
+import type { Vec, VectorConstructor } from "../api";
 
 export function* vecIterator<T>(
     ctor: VectorConstructor<T>,

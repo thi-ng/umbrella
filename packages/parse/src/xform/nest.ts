@@ -1,7 +1,7 @@
-import { ScopeTransform, Parser } from "../api";
+import { Parser, ScopeTransform } from "../api";
+import { xform } from "../combinators/xform";
 import { defContext } from "../context";
 import { xfJoin } from "./join";
-import { xform } from "../combinators/xform";
 
 /**
  * HOF scope transform which applies given parser to result of given scope's

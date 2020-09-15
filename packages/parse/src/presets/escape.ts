@@ -1,12 +1,12 @@
-import { always } from "../prims/always";
-import { litD } from "../prims/lit";
+import type { IObjectOf } from "@thi.ng/api";
+import { repeat } from "../combinators/repeat";
 import { seq } from "../combinators/seq";
 import { xform } from "../combinators/xform";
-import { repeat } from "../combinators/repeat";
-import { HEX_DIGIT } from "./hex";
+import { always } from "../prims/always";
+import { litD } from "../prims/lit";
 import { stringD } from "../prims/string";
 import { xfInt } from "../xform/number";
-import { IObjectOf } from "@thi.ng/api";
+import { HEX_DIGIT } from "./hex";
 
 const ESC_VALUES: IObjectOf<string> = {
     0: "\0",

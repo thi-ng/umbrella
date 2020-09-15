@@ -1,9 +1,9 @@
 import { clamp01 } from "@thi.ng/math";
 import { dot3, setC3 } from "@thi.ng/vectors";
+import type { ColorOp } from "./api";
 import { RGB_LUMINANCE } from "./constants";
 import { hueRgba } from "./hue-rgba";
 import { ensureAlpha } from "./internal/ensure-alpha";
-import type { ColorOp } from "./api";
 
 export const hcyaRgba: ColorOp = (out, src) => {
     const h = src[0];

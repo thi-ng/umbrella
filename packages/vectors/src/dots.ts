@@ -1,4 +1,4 @@
-import { VecOpSRoVV } from "./api";
+import type { VecOpSRoVV } from "./api";
 import { compile, SARGS_V } from "./internal/codegen";
 import { DOT } from "./internal/templates";
 

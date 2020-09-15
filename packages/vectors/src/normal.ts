@@ -1,4 +1,4 @@
-import { ReadonlyVec, Vec } from "./api";
+import type { ReadonlyVec, Vec } from "./api";
 import { direction } from "./direction";
 import { perpendicularCCW, perpendicularCW } from "./perpendicular";
 

@@ -1,7 +1,7 @@
-import { equiv } from "@thi.ng/equiv";
-import { DiffMode } from "./constants";
 import type { IObjectOf, Predicate2 } from "@thi.ng/api";
+import { equiv } from "@thi.ng/equiv";
 import type { ObjectDiff } from "./api";
+import { DiffMode } from "./constants";
 
 export const diffObject = <T>(
     a: IObjectOf<T> | undefined | null,

@@ -11,6 +11,12 @@ export type NumericKeys<T> = TypedKeys<T, number>;
 
 export type StringKeys<T> = TypedKeys<T, string>;
 
+export type DeepPartial<T> = Partial<
+    {
+        [k in keyof T]: DeepPartial<T[k]>;
+    }
+>;
+
 /*
  * Utilities for extracting key types of nested objects.
  */

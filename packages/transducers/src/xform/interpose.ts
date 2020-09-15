@@ -1,9 +1,9 @@
+import type { Fn0 } from "@thi.ng/api";
 import { isIterable } from "@thi.ng/checks";
+import type { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { iterator } from "../iterator";
 import { isReduced } from "../reduced";
-import type { Fn0 } from "@thi.ng/api";
-import type { Reducer, Transducer } from "../api";
 
 export function interpose<A, B>(sep: B | Fn0<B>): Transducer<A, A | B>;
 export function interpose<A, B>(

@@ -1,8 +1,8 @@
 import { Predicate2, SEMAPHORE } from "@thi.ng/api";
+import type { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { $iter } from "../iterator";
 import { ensureReduced } from "../reduced";
-import type { Reducer, Transducer } from "../api";
 
 /**
  * Transducer which for each input `x` (apart from the very first one)

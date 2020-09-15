@@ -1,6 +1,6 @@
+import type { FloatArray, Fn, FnU3, FnU4 } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
 import { PI, TAU } from "@thi.ng/math";
-import type { FloatArray } from "@thi.ng/api";
 import type { WindowFn } from "../api";
 
 // https://en.wikipedia.org/wiki/Window_function
@@ -31,7 +31,7 @@ export const windowRect: WindowFn = () => 1;
 
 export const windowSin: WindowFn = (i, n) => sin((PI * i) / n);
 
-export const windowSinPow = (k: number): WindowFn => (i, n) =>
+export const windowSinPow: Fn<number, WindowFn> = (k) => (i, n) =>
     sin((PI * i) / n) ** k;
 
 export const windowLanczos: WindowFn = (i, n) => {
@@ -39,25 +39,17 @@ export const windowLanczos: WindowFn = (i, n) => {
     return sin(i) / i;
 };
 
-const windowCosSum = (k: number): WindowFn => {
+const windowCosSum: Fn<number, WindowFn> = (k) => {
     let ik = 1 - k;
     return (i, n) => k - ik * cos((TAU * i) / n);
 };
 
-const windowCosSum3 = (k1: number, k2: number, k3: number): WindowFn => (
-    i,
-    n
-) => {
+const windowCosSum3: FnU3<number, WindowFn> = (k1, k2, k3) => (i, n) => {
     i /= n;
     return k1 + k2 * cos(TAU * i) + k3 * cos(PI4 * i);
 };
 
-const windowCosSum4 = (
-    k1: number,
-    k2: number,
-    k3: number,
-    k4: number
-): WindowFn => (i, n) => {
+const windowCosSum4: FnU4<number, WindowFn> = (k1, k2, k3, k4) => (i, n) => {
     i /= n;
     return k1 + k2 * cos(TAU * i) + k3 * cos(PI4 * i) + k4 * cos(PI6 * i);
 };

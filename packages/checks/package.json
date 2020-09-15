@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/checks",
-    "version": "2.7.7",
+    "version": "2.7.8",
     "description": "Collection of 50+ type, feature & value checks",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -31,7 +31,7 @@
         "build:check": "tsc --isolatedModules --noEmit",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc --theme ../../tools/doc/typedoc-theme src",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
@@ -59,12 +59,11 @@
     "keywords": [
         "check",
         "detect",
-        "ES6",
+        "es6",
         "feature",
-        "reflection",
-        "types",
+        "reflect",
         "typescript",
-        "validation"
+        "validate"
     ],
     "publishConfig": {
         "access": "public"

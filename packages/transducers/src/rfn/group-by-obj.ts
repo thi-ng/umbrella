@@ -1,7 +1,7 @@
-import { __groupByOpts } from "../internal/group-opts";
-import { $$reduce } from "../reduce";
 import type { IObjectOf } from "@thi.ng/api";
 import type { GroupByOpts, Reducer } from "../api";
+import { __groupByOpts } from "../internal/group-opts";
+import { $$reduce } from "../reduce";
 
 // prettier-ignore
 export function groupByObj<SRC, GROUP>(opts?: Partial<GroupByOpts<SRC, PropertyKey, GROUP>>): Reducer<IObjectOf<GROUP>, SRC>;

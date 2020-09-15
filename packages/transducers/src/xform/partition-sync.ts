@@ -1,10 +1,10 @@
+import type { Fn, IObjectOf } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks";
 import { identity } from "@thi.ng/compose";
 import { illegalState } from "@thi.ng/errors";
+import type { Reducer, Transducer } from "../api";
 import { $iter, iterator } from "../iterator";
 import { isReduced } from "../reduced";
-import type { Fn, IObjectOf } from "@thi.ng/api";
-import type { Reducer, Transducer } from "../api";
 
 export interface PartitionSync<T> extends Transducer<T, IObjectOf<T>> {
     /**

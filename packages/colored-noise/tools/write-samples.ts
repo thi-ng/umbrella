@@ -1,7 +1,7 @@
+import type { Fn } from "@thi.ng/api";
 import { wavByteArray } from "@thi.ng/dsp-io-wav";
 import { writeFileSync } from "fs";
 import { blue, green, pink, red, violet, white } from "../src";
-import { Fn } from "@thi.ng/api";
 
 const FS = 44100;
 const LENGTH = 5 * FS;

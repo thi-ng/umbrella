@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/transducers-stats",
-    "version": "1.1.37",
+    "version": "1.1.38",
     "description": "Transducers for statistical / technical analysis",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -31,7 +31,7 @@
         "build:check": "tsc --isolatedModules --noEmit",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc --theme ../../tools/doc/typedoc-theme src",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
@@ -49,10 +49,10 @@
         "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/checks": "^2.7.7",
-        "@thi.ng/dcons": "^2.2.30",
-        "@thi.ng/errors": "^1.2.20",
-        "@thi.ng/transducers": "^7.3.0"
+        "@thi.ng/checks": "^2.7.8",
+        "@thi.ng/dcons": "^2.2.31",
+        "@thi.ng/errors": "^1.2.21",
+        "@thi.ng/transducers": "^7.3.1"
     },
     "files": [
         "*.js",
@@ -60,8 +60,20 @@
         "lib"
     ],
     "keywords": [
-        "ES6",
-        "typescript"
+        "bollinger",
+        "donchian",
+        "ema",
+        "es6",
+        "macd",
+        "math",
+        "moving-average",
+        "roc",
+        "sma",
+        "standard-deviation",
+        "stochastic",
+        "trix",
+        "typescript",
+        "wma"
     ],
     "publishConfig": {
         "access": "public"

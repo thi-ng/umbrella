@@ -1,5 +1,5 @@
 import { deg } from "@thi.ng/math";
-import { MultiVecOpV, VecOpV } from "./api";
+import type { MultiVecOpV, VecOpV } from "./api";
 import { defHofOp } from "./internal/codegen";
 import { FN } from "./internal/templates";
 

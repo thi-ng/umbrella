@@ -25,7 +25,7 @@ const xformB = (n: number) =>
     );
 
 const check = (n: number) =>
-    assert.deepEqual(
+    assert.deepStrictEqual(
         [...iterator(xform(n), src)],
         [...iterator(xformB(n), src)],
         `bits=${n}`

@@ -1,3 +1,4 @@
+import type { FnU2 } from "@thi.ng/api";
 import { pointAtTheta } from "@thi.ng/geom-arc";
 import { EPS, HALF_PI, PI, roundEps, sincos } from "@thi.ng/math";
 import { magSq2, ReadonlyVec, Vec } from "@thi.ng/vectors";
@@ -34,7 +35,7 @@ export const cubicFromArc = (
         return [cubicFromLine(p, q)];
     }
 
-    const mapP = (x: number, y: number) => {
+    const mapP: FnU2<number, Vec> = (x, y) => {
         x *= rx;
         y *= ry;
         return [c * x - s * y + pos[0], s * x + c * y + pos[1]];

@@ -1,26 +1,25 @@
-import type { Stringer } from "./api";
+import type { FnS, Stringer } from "./api";
 
 /**
  * Uppercase string formatter.
  *
  * @param x - string to transform
  */
-export const upper: Stringer<string> = (x: string) => x.toUpperCase();
+export const upper: FnS = (x) => x.toUpperCase();
 
 /**
  * Lowercase string formatter.
  *
  * @param x - string to transform
  */
-export const lower: Stringer<string> = (x: string) => x.toLowerCase();
+export const lower: FnS = (x) => x.toLowerCase();
 
 /**
  * String formatter which capitalizes first character.
  *
  * @param x - string to transform
  */
-export const capitalize: Stringer<string> = (x: string) =>
-    x[0].toUpperCase() + x.substr(1);
+export const capitalize: FnS = (x) => x[0].toUpperCase() + x.substr(1);
 
 /**
  * Converts a CamelCase string into kebab case, with optional custom
@@ -40,7 +39,7 @@ export const capitalize: Stringer<string> = (x: string) =>
  * @param x -
  * @param delim -
  */
-export const kebab: Stringer<string> = (x: string, delim = "-") =>
+export const kebab: Stringer<string> = (x, delim = "-") =>
     lower(
         x.replace(
             // TC39
@@ -56,7 +55,7 @@ export const kebab: Stringer<string> = (x: string, delim = "-") =>
  *
  * @param x -
  */
-export const snake = (x: string) => kebab(x, "_");
+export const snake: FnS = (x) => kebab(x, "_");
 
 /**
  * Converts a kebab-case or snake_case string into CamelCase. Uses `-`
@@ -65,5 +64,5 @@ export const snake = (x: string) => kebab(x, "_");
  * @param x -
  * @param delim -
  */
-export const camel: Stringer<string> = (x: string, delim = "-") =>
+export const camel: Stringer<string> = (x, delim = "-") =>
     lower(x).replace(new RegExp(`\\${delim}+(\\w)`, "g"), (_, c) => upper(c));

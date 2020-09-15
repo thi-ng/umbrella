@@ -1,6 +1,6 @@
+import type { Path } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors";
 import { mutIn } from "./mut-in";
-import type { Path } from "@thi.ng/api";
 
 /**
  * Similar to {@link mutInUnsafe}, but takes any number of path-value

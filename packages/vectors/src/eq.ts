@@ -1,4 +1,4 @@
-import { CompareOp, MultiCompareOp } from "./api";
+import type { CompareOp, MultiCompareOp } from "./api";
 import { defOp } from "./internal/codegen";
 import { MATH } from "./internal/templates";
 

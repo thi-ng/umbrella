@@ -1,6 +1,6 @@
 import { addN as _addN, addN4 } from "@thi.ng/vectors";
-import { defMathN } from "./internal/codegen";
 import type { MatOpMN, MultiMatOpMN } from "./api";
+import { defMathN } from "./internal/codegen";
 
 /**
  * Adds single scalar componentwise to matrix. If `out` is not given,

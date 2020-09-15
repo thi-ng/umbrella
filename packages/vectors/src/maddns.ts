@@ -1,4 +1,4 @@
-import { VecOpSVNV } from "./api";
+import type { VecOpSVNV } from "./api";
 import { ARGS_VNV, defOpS, SARGS_VV } from "./internal/codegen";
 import { MATH2A_N } from "./internal/templates";
 

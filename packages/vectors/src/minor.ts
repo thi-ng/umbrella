@@ -1,5 +1,5 @@
 import { min2id, min3id, min4id } from "@thi.ng/math";
-import { MultiVecOpRoV } from "./api";
+import type { MultiVecOpRoV } from "./api";
 import { vop } from "./internal/vop";
 
 const abs = Math.abs;

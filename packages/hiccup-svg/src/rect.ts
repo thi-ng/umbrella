@@ -5,8 +5,9 @@ export const rect = (
     p: Vec2Like,
     width: number,
     height: number,
-    attribs?: any
-) => roundedRect(p, width, height, 0, 0, attribs);
+    attribs?: any,
+    ...body: any[]
+) => roundedRect(p, width, height, 0, 0, attribs, ...body);
 
 export const roundedRect = (
     p: Vec2Like,
@@ -14,7 +15,8 @@ export const roundedRect = (
     height: number,
     rx: number,
     ry: number,
-    attribs?: any
+    attribs?: any,
+    ...body: any[]
 ): any[] => {
     attribs = fattribs({
         ...attribs,
@@ -27,5 +29,5 @@ export const roundedRect = (
         attribs.rx = ff(rx);
         attribs.ry = ff(ry);
     }
-    return ["rect", attribs];
+    return ["rect", attribs, ...body];
 };

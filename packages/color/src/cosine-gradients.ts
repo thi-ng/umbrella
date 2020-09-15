@@ -1,3 +1,4 @@
+import type { FnU2, IObjectOf } from "@thi.ng/api";
 import { partial } from "@thi.ng/compose";
 import { clamp01, TAU } from "@thi.ng/math";
 import {
@@ -8,9 +9,8 @@ import {
     tween,
     zip,
 } from "@thi.ng/transducers";
+import type { Color, CosCoeffs, CosGradientSpec, ReadonlyColor } from "./api";
 import { clamp } from "./clamp";
-import type { IObjectOf } from "@thi.ng/api";
-import type { Color, CosGradientSpec, ReadonlyColor } from "./api";
 
 // see http://dev.thi.ng/gradients/ - unlike the clojure version, these
 // presets are for RGBA (though the alpha channel is configured to
@@ -157,6 +157,7 @@ export const cosineColor = (spec: CosGradientSpec, t: number): Color =>
             clamp01(a + b * Math.cos(TAU * (c * t + d)))
         ),
         push(),
+        // @ts-ignore
         zip(...spec)
     );
 
@@ -170,13 +171,16 @@ export const cosineGradient = (n: number, spec: CosGradientSpec) =>
  * @param from - start color
  * @param to - end color
  */
-export const cosineCoeffs = (from: ReadonlyColor, to: ReadonlyColor) => {
+export const cosineCoeffs: FnU2<ReadonlyColor, CosGradientSpec> = (
+    from,
+    to
+) => {
     from = clamp([], from);
     to = clamp([], to);
     const amp = [...map(([a, b]) => 0.5 * (a - b), zip(from, to))];
-    return <CosGradientSpec>[
-        [...map(([s, a]) => s - a, zip(from, amp))],
-        amp,
+    return [
+        <CosCoeffs>[...map(([s, a]) => s - a, zip(from, amp))],
+        <CosCoeffs>amp,
         [-0.5, -0.5, -0.5, -0.5],
         [0, 0, 0, 0],
     ];

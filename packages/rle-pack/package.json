@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rle-pack",
-    "version": "2.1.25",
+    "version": "2.1.26",
     "description": "Binary run-length encoding packer w/ flexible repeat bit widths",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -31,7 +31,7 @@
         "build:check": "tsc --isolatedModules --noEmit",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts .nyc_output build coverage doc lib",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc": "node_modules/.bin/typedoc --mode modules --out doc --theme ../../tools/doc/typedoc-theme src",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
@@ -50,8 +50,8 @@
         "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/bitstream": "^1.1.25",
-        "@thi.ng/errors": "^1.2.20"
+        "@thi.ng/bitstream": "^1.1.26",
+        "@thi.ng/errors": "^1.2.21"
     },
     "files": [
         "*.js",
@@ -60,14 +60,12 @@
     ],
     "keywords": [
         "binary",
-        "bits",
+        "bitwise",
         "compression",
-        "ES6",
+        "es6",
         "packer",
-        "RLE",
-        "run-length",
+        "rle",
         "typescript",
-        "variable width",
         "wordsize"
     ],
     "publishConfig": {
