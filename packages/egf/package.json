@@ -34,7 +34,7 @@
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
         "@microsoft/api-extractor": "^7.9.11",
-        "@thi.ng/equiv": "^1.0.30",
+        "@thi.ng/equiv": "^1.0.31",
         "@types/mocha": "^8.0.3",
         "@types/node": "^14.6.1",
         "mocha": "^8.1.2",
@@ -44,14 +44,14 @@
         "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.12.3",
-        "@thi.ng/associative": "^5.0.5",
-        "@thi.ng/checks": "^2.7.7",
-        "@thi.ng/dot": "^1.2.16",
-        "@thi.ng/errors": "^1.2.20",
-        "@thi.ng/prefixes": "^0.1.4",
-        "@thi.ng/strings": "^1.9.5",
-        "@thi.ng/transducers-binary": "^0.5.28"
+        "@thi.ng/api": "^6.13.0",
+        "@thi.ng/associative": "^5.0.6",
+        "@thi.ng/checks": "^2.7.8",
+        "@thi.ng/dot": "^1.2.17",
+        "@thi.ng/errors": "^1.2.21",
+        "@thi.ng/prefixes": "^0.1.5",
+        "@thi.ng/strings": "^1.9.6",
+        "@thi.ng/transducers-binary": "^0.5.29"
     },
     "files": [
         "*.js",
