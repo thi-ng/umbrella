@@ -60,7 +60,6 @@
         "lib"
     ],
     "keywords": [
-        "es6",
         "graphics",
         "shader-ast",
         "shadertoy",

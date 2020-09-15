@@ -58,7 +58,6 @@
     ],
     "keywords": [
         "cache",
-        "es6",
         "functional",
         "memoization",
         "typescript"

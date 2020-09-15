@@ -70,7 +70,6 @@
         "compiler",
         "dsl",
         "emulator",
-        "es6",
         "glsl",
         "shader",
         "typescript",

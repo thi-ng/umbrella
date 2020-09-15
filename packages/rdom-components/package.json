@@ -62,7 +62,6 @@
         "lib"
     ],
     "keywords": [
-        "es6",
         "typescript"
     ],
     "publishConfig": {

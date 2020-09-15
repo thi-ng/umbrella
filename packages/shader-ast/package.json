@@ -68,7 +68,6 @@
         "codegen",
         "compiler",
         "dsl",
-        "es6",
         "gpgpu",
         "glsl",
         "shader",

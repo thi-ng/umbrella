@@ -61,7 +61,6 @@
         "lib"
     ],
     "keywords": [
-        "es6",
         "event",
         "functional",
         "queue",

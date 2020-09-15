@@ -71,7 +71,6 @@
         "component",
         "datastructure",
         "entity",
-        "es6",
         "memory-mapped",
         "simd",
         "typedarray",

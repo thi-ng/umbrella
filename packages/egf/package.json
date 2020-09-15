@@ -59,8 +59,8 @@
         "lib"
     ],
     "keywords": [
+        "conversion",
         "datastructure",
-        "es6",
         "file format",
         "graph",
         "graphviz",

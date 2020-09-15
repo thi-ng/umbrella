@@ -64,7 +64,6 @@
         "conversion",
         "decode",
         "encode",
-        "es6",
         "hash",
         "morton",
         "nd",
