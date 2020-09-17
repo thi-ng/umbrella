@@ -1,5 +1,6 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation1, MultiFn1O } from "@thi.ng/defmulti";
-import { CubicOpts, IShape, Type } from "@thi.ng/geom-api";
+import { CubicOpts, IShape, PCLike, Type } from "@thi.ng/geom-api";
 import {
     closedCubicFromBreakPoints,
     closedCubicFromControlPoints,
@@ -8,6 +9,7 @@ import {
 } from "@thi.ng/geom-splines";
 import { TAU } from "@thi.ng/math";
 import { mapcat } from "@thi.ng/transducers";
+import { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { Circle } from "../api/circle";
 import { Cubic } from "../api/cubic";
 import { Group } from "../api/group";
@@ -26,7 +28,6 @@ import {
 import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
 import { asPolygon } from "./as-polygon";
-import type { IObjectOf } from "@thi.ng/api";
 
 export const asCubic: MultiFn1O<IShape, Partial<CubicOpts>, Cubic[]> = defmulti(
     dispatch
@@ -50,21 +51,21 @@ asCubic.addAll(<IObjectOf<Implementation1<unknown, Cubic[]>>>{
         ...mapcat((s) => (s.geo ? asCubic(s.geo) : null), $.segments),
     ],
 
-    [Type.POLYGON]: ($: Polygon, opts: Partial<CubicOpts> = {}) => {
-        opts = { breakPoints: false, scale: 1 / 3, uniform: false, ...opts };
-        return (opts.breakPoints
-            ? closedCubicFromBreakPoints($.points, opts.scale, opts.uniform)
-            : closedCubicFromControlPoints($.points, opts.scale, opts.uniform)
-        ).map((pts) => new Cubic(pts, copyAttribs($)));
-    },
+    [Type.POLYGON]: ($: Polygon, opts: Partial<CubicOpts> = {}) =>
+        polyCubic(
+            $,
+            opts,
+            closedCubicFromBreakPoints,
+            closedCubicFromControlPoints
+        ),
 
-    [Type.POLYLINE]: ($: Polyline, opts: Partial<CubicOpts> = {}) => {
-        opts = { breakPoints: false, scale: 1 / 3, uniform: false, ...opts };
-        return (opts.breakPoints
-            ? openCubicFromBreakPoints($.points, opts.scale, opts.uniform)
-            : openCubicFromControlPoints($.points, opts.scale, opts.uniform)
-        ).map((pts) => new Cubic(pts, copyAttribs($)));
-    },
+    [Type.POLYLINE]: ($: Polyline, opts: Partial<CubicOpts> = {}) =>
+        polyCubic(
+            $,
+            opts,
+            openCubicFromBreakPoints,
+            openCubicFromControlPoints
+        ),
 
     [Type.QUADRATIC]: ({ attribs, points }: Quadratic) => [
         cubicFromQuadratic(points[0], points[1], points[2], { ...attribs }),
@@ -75,3 +76,17 @@ asCubic.addAll(<IObjectOf<Implementation1<unknown, Cubic[]>>>{
 });
 
 asCubic.isa(Type.ELLIPSE, Type.CIRCLE);
+
+// prettier-ignore
+const polyCubic = (
+    $: PCLike,
+    opts: Partial<CubicOpts>,
+    breakPoints: (pts: ReadonlyVec[], t?: number, uniform?: boolean) => Vec[][],
+    controlPoints: (pts: ReadonlyVec[], t?: number, uniform?: boolean) => Vec[][]
+) => {
+    opts = { breakPoints: false, scale: 1 / 3, uniform: false, ...opts };
+    return (opts.breakPoints
+        ? breakPoints($.points, opts.scale, opts.uniform)
+        : controlPoints($.points, opts.scale, opts.uniform)
+    ).map((pts) => new Cubic(pts, copyAttribs($)));
+};
