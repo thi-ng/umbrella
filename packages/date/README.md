@@ -26,6 +26,8 @@ Date/timestamp iterators, formatters, rounding.
 
 **ALPHA** - bleeding edge / work-in-progress
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bdate%5D)
+
 ## Installation
 
 ```bash
@@ -40,7 +42,7 @@ yarn add @thi.ng/date
 <script src="https://unpkg.com/@thi.ng/date/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.19 KB / CJS: 1.33 KB / UMD: 1.31 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.28 KB / CJS: 1.43 KB / UMD: 1.42 KB
 
 ## Dependencies
 

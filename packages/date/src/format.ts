@@ -41,6 +41,13 @@ export const FORMATTERS: Record<string, Fn<Date, string>> = {
      */
     HH: (d) => Z2(d.getHours()),
     /**
+     * Zero-padded hour of day (1-12)
+     */
+    hh: (d) => {
+        const h = d.getHours() % 12;
+        return Z2(h > 0 ? h : 12);
+    },
+    /**
      * Unpadded hour of day (1-12)
      */
     h: (d) => {
