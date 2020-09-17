@@ -48,11 +48,6 @@ export const parseOBJ = (src: string, opts?: Partial<ParseOpts>) => {
         newGroup("default", force);
     };
 
-    const addID = (acc: number[], x: string, num: number) => {
-        const v = parseInt(x);
-        acc.push(v < 0 ? v + num : v - 1);
-    };
-
     const readFace = (line: string[]) => {
         const face = <OBJFace>{ v: [] };
         const n = line.length;
@@ -69,7 +64,7 @@ export const parseOBJ = (src: string, opts?: Partial<ParseOpts>) => {
             case 2:
                 opts!.uvs && (face.uv = []);
                 for (let i = 1; i < n; i++) {
-                    const f = <any[]>line[i].split("/");
+                    const f = line[i].split("/");
                     addID(face.v, f[0], nv);
                     face.uv && addID(face.uv!, f[1], nuv);
                 }
@@ -78,7 +73,7 @@ export const parseOBJ = (src: string, opts?: Partial<ParseOpts>) => {
                 opts!.uvs && items[1].length && (face.uv = []);
                 opts!.normals && items[2].length && (face.n = []);
                 for (let i = 1; i < n; i++) {
-                    const f = <any[]>line[i].split("/");
+                    const f = line[i].split("/");
                     addID(face.v, f[0], nv);
                     face.uv && addID(face.uv!, f[1], nuv);
                     face.n && addID(face.n!, f[2], nn);
@@ -163,6 +158,11 @@ export const parseOBJ = (src: string, opts?: Partial<ParseOpts>) => {
         }
     }
     return result;
+};
+
+const addID = (acc: number[], x: string, num: number) => {
+    const v = parseInt(x);
+    acc.push(v < 0 ? v + num : v - 1);
 };
 
 const readVec2 = (items: string[]) => [
