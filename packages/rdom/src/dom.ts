@@ -12,6 +12,7 @@ import {
     ATTRIB_JOIN_DELIMS,
     formatPrefixes,
     mergeClasses,
+    mergeEmmetAttribs,
     NO_SPANS,
     RE_TAG,
     SVG_TAGS,
@@ -121,19 +122,8 @@ export const $el = (
 ) => {
     const match = RE_TAG.exec(tag);
     if (match) {
-        let [, mtag, id, clazz] = match;
-        attribs = { ...attribs };
-        id && (attribs.id = id);
-        const aclass = deref(attribs.class);
-        if (clazz) {
-            clazz = clazz.replace(/\./g, " ");
-            attribs.class = aclass ? mergeClasses(clazz, aclass) : clazz;
-        } else if (aclass) {
-            attribs.class = isString(aclass)
-                ? aclass
-                : mergeClasses("", aclass);
-        }
-        tag = mtag;
+        attribs = mergeEmmetAttribs({ ...attribs }, match[2], match[3]);
+        tag = match[1];
     }
     let el: Element;
     const qidx = tag.indexOf(":");
