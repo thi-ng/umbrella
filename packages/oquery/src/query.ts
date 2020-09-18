@@ -4,13 +4,13 @@ import { defmulti } from "@thi.ng/defmulti";
 import { equiv } from "@thi.ng/equiv";
 import type {
     FTerm,
+    OTerm,
     QueryImpl,
     QueryImpls,
     QueryObj,
     QueryOpts,
-    SPTerm,
-    OTerm,
     SPInputTerm,
+    SPTerm,
 } from "./api";
 
 const classify = (x: any) => (x != null ? (isFunction(x) ? "f" : "l") : "n");
@@ -51,11 +51,7 @@ const queryLL: QueryImpl = (res, db, s, p, o, opts) =>
 
 const queryLF: QueryImpl = (res, db, s, p, o, opts) => {
     const sval = db[<string>s];
-    if (sval != null) {
-        for (let q in sval) {
-            (<FTerm>p)(q) && collect(res, s, q, o, sval[q], opts);
-        }
-    }
+    sval != null && collectSP(res, sval, s, p, o, opts);
 };
 
 const queryLN: QueryImpl = (res, db, s, _, o, opts) => {
@@ -75,12 +71,7 @@ const queryFL: QueryImpl = (res, db, s, p, o, opts) => {
 
 const queryFF: QueryImpl = (res, db, s, p, o, opts) => {
     for (let $s in db) {
-        if ((<FTerm>s)($s)) {
-            const sval = db[$s];
-            for (let $p in sval) {
-                (<FTerm>p)($p) && collect(res, $s, $p, o, sval[$p], opts);
-            }
-        }
+        (<FTerm>s)($s) && collectSP(res, db[$s], $s, p, o, opts);
     }
 };
 
@@ -119,6 +110,33 @@ const queryNN: QueryImpl = (res, db, _, __, o, opts) => {
     }
 };
 
+const collectSP = (
+    res: QueryObj,
+    sval: any,
+    s: SPTerm,
+    p: SPTerm,
+    o: any,
+    opts: QueryOpts
+) => {
+    for (let $p in sval) {
+        (<FTerm>p)($p) && collect(res, s, $p, o, sval[$p], opts);
+    }
+};
+
+const querySP = (res: QueryObj, sval: any, s: SPTerm, p: SPTerm) => {
+    for (let q in sval) {
+        if ((<FTerm>p)(q)) {
+            const val = sval[q];
+            val != null && addTriple(res, s, q, val);
+        }
+    }
+};
+
+const queryO = (res: QueryObj, db: QueryObj, s: SPTerm, p: SPTerm) => {
+    const val = db[<string>s]?.[<string>p];
+    val != null && addTriple(res, s, p, val);
+};
+
 const impl = defmulti<
     QueryObj,
     QueryObj,
@@ -132,22 +150,12 @@ const impl = defmulti<
 impl.addAll(<QueryImpls>{
     lll: queryLL,
     llf: queryLL,
-    lln: (res, db, s, p, _) => {
-        const val = db[<string>s]?.[<string>p];
-        val != null && addTriple(res, s, p, val);
-    },
+    lln: queryO,
     lfl: queryLF,
     lff: queryLF,
     lfn: (res, db, s, p, _) => {
         const sval = db[<string>s];
-        if (sval != null) {
-            for (let q in sval) {
-                if ((<FTerm>p)(q)) {
-                    const val = sval[q];
-                    val != null && addTriple(res, s, q, val);
-                }
-            }
-        }
+        sval != null && querySP(res, sval, s, p);
     },
     lnl: queryLN,
     lnf: queryLN,
@@ -161,10 +169,7 @@ impl.addAll(<QueryImpls>{
     flf: queryFL,
     fln: (res, db, s, p, _) => {
         for (let $s in db) {
-            if ((<FTerm>s)($s)) {
-                const val = db[$s]?.[<string>p];
-                val != null && addTriple(res, $s, p, val);
-            }
+            (<FTerm>s)($s) && queryO(res, db, $s, p);
         }
     },
     ffl: queryFF,
@@ -203,13 +208,7 @@ impl.addAll(<QueryImpls>{
     nff: queryNF,
     nfn: (res, db, _, p, __) => {
         for (let s in db) {
-            const sval = db[s];
-            for (let $p in sval) {
-                if ((<FTerm>p)($p)) {
-                    const val = sval[$p];
-                    val != null && addTriple(res, s, $p, val);
-                }
-            }
+            querySP(res, db[s], s, p);
         }
     },
     nnl: queryNN,
