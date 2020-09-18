@@ -144,7 +144,7 @@ export const closestPointPolyline = (
             }
         }
     }
-    return out;
+    return minD < Infinity ? out : undefined;
 };
 
 /**
