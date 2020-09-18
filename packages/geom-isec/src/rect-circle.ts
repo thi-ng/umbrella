@@ -99,7 +99,7 @@ export const testCenteredAABBSphere = testCenteredBoxSphere.add(
     (boxPos, { 0: w, 1: h, 2: d }, spherePos, r) =>
         axis(spherePos[0], boxPos[0] - w, w * 2) +
             axis(spherePos[1], boxPos[1] - h, h * 2) +
-            axis(spherePos[2], boxPos[2] - w, d * 2) <=
+            axis(spherePos[2], boxPos[2] - d, d * 2) <=
         r * r
 );
 
