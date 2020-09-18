@@ -36,3 +36,27 @@ export const mergeClasses = (existing: string, val: any) => {
     }
     return [...classes].join(" ");
 };
+
+/**
+ * Takes an attrib object and optional element ID and CSS class names from Emmet-style
+ * hiccup tag, then transforms and merges definitions, returns attribs.
+ *
+ * @param attribs
+ * @param id
+ * @param classes
+ */
+export const mergeEmmetAttribs = (
+    attribs: any,
+    id?: string,
+    classes?: string
+) => {
+    id && (attribs.id = id);
+    let aclass = deref(attribs.class);
+    if (classes) {
+        classes = classes.replace(/\./g, " ");
+        attribs.class = aclass ? mergeClasses(classes, aclass) : classes;
+    } else if (aclass) {
+        attribs.class = isString(aclass) ? aclass : mergeClasses("", aclass);
+    }
+    return attribs;
+};

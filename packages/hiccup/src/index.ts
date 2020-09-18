@@ -1,5 +1,5 @@
 export * from "./api";
-export * from "./classes";
+export * from "./attribs";
 export * from "./css";
 export * from "./deref";
 export * from "./escape";
