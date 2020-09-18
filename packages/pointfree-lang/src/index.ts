@@ -1,4 +1,4 @@
-import { Fn2, ILogger, IObjectOf, NULL_LOGGER } from "@thi.ng/api";
+import { Fn, Fn2, FnU, ILogger, IObjectOf, NULL_LOGGER } from "@thi.ng/api";
 import { illegalArgs, illegalState } from "@thi.ng/errors";
 import * as pf from "@thi.ng/pointfree";
 import { ALIASES, ASTNode, NodeType, VisitorState } from "./api";
@@ -142,7 +142,7 @@ const storevar = (id: string) => (ctx: pf.StackContext) => {
  *
  * @param id -
  */
-const beginvar = (id: string) => (ctx: pf.StackContext) => {
+const beginvar = (id: string): FnU<pf.StackContext> => (ctx) => {
     pf.ensureStack(ctx[0], 1);
     const v = ctx[2].__vars[id];
     if (v === undefined) {
@@ -161,7 +161,7 @@ const beginvar = (id: string) => (ctx: pf.StackContext) => {
  *
  * @param id -
  */
-const endvar = (id: string) => (ctx: pf.StackContext) => {
+const endvar = (id: string): FnU<pf.StackContext> => (ctx) => {
     const v = ctx[2].__vars[id];
     if (v === undefined || v.length === 0) {
         illegalState(`can't end scope for var: ${id}`);
@@ -261,6 +261,18 @@ const visitStore = (
     return state.word ? (ctx[0].push(store), ctx) : store(ctx);
 };
 
+const pushLocals = (
+    fn: Fn<string, any>,
+    wctx: pf.StackContext,
+    locals: string[]
+) => {
+    if (locals) {
+        for (let stack = wctx[0], i = locals.length; --i >= 0; ) {
+            stack.push(fn(locals[i]));
+        }
+    }
+};
+
 /**
  * WORD visitor to create new word definition. Sets `state.word` to
  * true, builds temp stack context and calls {@link visit} for all child
@@ -289,19 +301,11 @@ const visitWord = (
     let wctx = pf.ctx([], ctx[2]);
     state.word = { name: id, loc: node.loc };
     const locals = node.locals;
-    if (locals) {
-        for (let stack = wctx[0], i = locals.length; --i >= 0; ) {
-            stack.push(beginvar(locals[i]));
-        }
-    }
+    pushLocals(beginvar, wctx, locals);
     for (let n of node.body) {
         wctx = visit(n, wctx, state);
     }
-    if (locals) {
-        for (let stack = wctx[0], i = locals.length; --i >= 0; ) {
-            stack.push(endvar(locals[i]));
-        }
-    }
+    pushLocals(endvar, wctx, locals);
     const w = pf.defWord(wctx[0]);
     (<any>w).__meta = state.word;
     ctx[2].__words[id] = w;
