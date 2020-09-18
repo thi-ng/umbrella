@@ -1,6 +1,6 @@
 import { isNumber } from "@thi.ng/checks";
-import { ReadonlyVec, setC, setC4, setC6 } from "@thi.ng/vectors";
-import type { Mat } from "./api";
+import { setC, setC4, setC6 } from "@thi.ng/vectors";
+import type { MatOpNV } from "./api";
 
 /**
  * Computes 2x2 matrix scale matrix and writes result to `out`. If `s`
@@ -9,7 +9,7 @@ import type { Mat } from "./api";
  * @param m -
  * @param s -
  */
-export const scale22 = (m: Mat | null, s: number | ReadonlyVec) => (
+export const scale22: MatOpNV = (m, s) => (
     (s = isNumber(s) ? [s, s] : s), setC4(m || [], s[0], 0, 0, s[1])
 );
 
@@ -20,7 +20,7 @@ export const scale22 = (m: Mat | null, s: number | ReadonlyVec) => (
  * @param m -
  * @param s -
  */
-export const scale23 = (m: Mat | null, s: number | ReadonlyVec) => (
+export const scale23: MatOpNV = (m, s) => (
     (s = isNumber(s) ? [s, s] : s), setC6(m || [], s[0], 0, 0, s[1], 0, 0)
 );
 
@@ -31,7 +31,7 @@ export const scale23 = (m: Mat | null, s: number | ReadonlyVec) => (
  * @param m -
  * @param s -
  */
-export const scale33 = (m: Mat | null, s: number | ReadonlyVec) => (
+export const scale33: MatOpNV = (m, s) => (
     (s = isNumber(s) ? [s, s, s] : s),
     setC(m || [], s[0], 0, 0, 0, s[1], 0, 0, 0, s[2])
 );
@@ -43,7 +43,7 @@ export const scale33 = (m: Mat | null, s: number | ReadonlyVec) => (
  * @param m -
  * @param s -
  */
-export const scale44 = (m: Mat | null, s: number | ReadonlyVec) => (
+export const scale44: MatOpNV = (m, s) => (
     (s = isNumber(s) ? [s, s, s] : s),
     setC(
         m || [],

@@ -16,4 +16,4 @@ export const concat = (
     a: ReadonlyMat,
     b: ReadonlyMat,
     ...xs: ReadonlyMat[]
-) => xs.reduce((acc: Mat, x) => mulM(acc, acc, x), mulM(out, a, b));
+): Mat => xs.reduce((acc: Mat, x) => mulM(acc, acc, x), mulM(out, a, b));

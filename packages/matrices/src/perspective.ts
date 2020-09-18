@@ -17,7 +17,7 @@ export const perspective = (
     aspect: number,
     near: number,
     far: number
-) => {
+): Mat => {
     const f = frustumBounds(fov, aspect, near, far);
     return frustum(out, f.left, f.right, f.bottom, f.top, f.near, f.far);
 };

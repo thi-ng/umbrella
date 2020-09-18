@@ -21,7 +21,7 @@ export const ortho = (
     top: number,
     near: number,
     far: number
-) => {
+): Mat => {
     const dx = 1 / (right - left);
     const dy = 1 / (top - bottom);
     const dz = 1 / (far - near);

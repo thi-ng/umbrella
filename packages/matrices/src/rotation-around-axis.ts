@@ -18,7 +18,7 @@ export const rotationAroundAxis33 = (
     axis: ReadonlyVec,
     theta: number,
     normalize = false
-) => {
+): Mat => {
     const [x, y, z] = normalize ? _normalize([], axis) : axis;
     const [s, c] = sincos(theta);
     const t = 1 - c;

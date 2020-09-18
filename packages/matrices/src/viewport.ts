@@ -19,7 +19,7 @@ export const viewport = (
     right: number,
     bottom: number,
     top: number
-) => {
+): Mat => {
     const x = (left + right) / 2;
     const y = (bottom + top) / 2;
     const w = (right - left) / 2;

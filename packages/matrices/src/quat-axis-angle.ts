@@ -9,7 +9,7 @@ import { normalize, ReadonlyVec } from "@thi.ng/vectors";
  * @param theta -
  */
 export const quatFromAxisAngle = (axis: ReadonlyVec, theta: number) => {
-    theta /= 2;
+    theta *= 0.5;
     return normalize([0, 0, 0, Math.cos(theta)], axis, Math.sin(theta));
 };
 

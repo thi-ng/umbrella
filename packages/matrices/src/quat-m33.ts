@@ -1,5 +1,5 @@
-import { ReadonlyVec, setC } from "@thi.ng/vectors";
-import type { Mat } from "./api";
+import { setC } from "@thi.ng/vectors";
+import type { MatOpV } from "./api";
 
 /**
  * Converts quaternion into 3x3 matrix and writes result to `out`.
@@ -7,7 +7,7 @@ import type { Mat } from "./api";
  * @param out -
  * @param q -
  */
-export const quatToMat33 = (out: Mat | null, q: ReadonlyVec) => {
+export const quatToMat33: MatOpV = (out, q) => {
     const [x, y, z, w] = q;
     const x2 = x + x;
     const y2 = y + y;

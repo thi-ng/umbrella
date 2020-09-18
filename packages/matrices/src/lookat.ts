@@ -23,7 +23,7 @@ export const lookAt = (
     eye: ReadonlyVec,
     target: ReadonlyVec,
     up: ReadonlyVec
-) => {
+): Mat => {
     const z = normalize(null, sub3([], eye, target));
     const x = normalize(null, cross3([], up, z));
     const y = normalize(null, cross3([], z, x));

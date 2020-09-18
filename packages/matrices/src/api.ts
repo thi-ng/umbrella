@@ -14,8 +14,10 @@ export type MultiMatOp<T> = MultiVecOp<T>;
 
 export type MatOp1 = (out: Mat | null) => Mat;
 export type MatOpM = (out: Mat | null, a: ReadonlyMat) => Mat;
+export type MatOpV = (out: Mat | null, a: ReadonlyVec) => Mat;
 export type MatOpMU = (out: Mat | null, a: ReadonlyMat) => Mat | undefined;
 export type MatOpN = (out: Mat | null, n: number) => Mat;
+export type MatOpNV = (out: Mat | null, n: number | ReadonlyVec) => Mat;
 export type MatOpMM = (out: Mat | null, a: ReadonlyMat, b: ReadonlyMat) => Mat;
 export type MatOpMV = (out: Vec | null, a: ReadonlyMat, b: ReadonlyVec) => Vec;
 export type MatOpMN = (out: Mat | null, a: ReadonlyMat, n: number) => Mat;

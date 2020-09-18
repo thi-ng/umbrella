@@ -7,7 +7,7 @@ import type { Mat } from "./api";
  * @param out -
  * @param v -
  */
-export const translation23 = (m: Mat | null, v: ReadonlyVec) =>
+export const translation23 = (m: Mat | null, v: ReadonlyVec): Mat =>
     setC6(m || [], 1, 0, 0, 1, v[0], v[1]);
 
 /**
@@ -16,5 +16,5 @@ export const translation23 = (m: Mat | null, v: ReadonlyVec) =>
  * @param out -
  * @param v -
  */
-export const translation44 = (m: Mat | null, v: ReadonlyVec) =>
+export const translation44 = (m: Mat | null, v: ReadonlyVec): Mat =>
     setC(m || [], 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, v[0], v[1], v[2], 1);

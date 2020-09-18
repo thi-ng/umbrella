@@ -1,7 +1,7 @@
-import type { Mat, MatOp1 } from "./api";
+import type { MatOp1, MatOpN } from "./api";
 import { identity22, identity23, identity33, identity44 } from "./identity";
 
-const $ = (f: MatOp1) => (i: number) => (m: Mat | null, x: number) => (
+const $ = (f: MatOp1) => (i: number): MatOpN => (m, x) => (
     !m && (m = []), f(m), (m[i] = x), m
 );
 
