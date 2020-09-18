@@ -75,7 +75,7 @@ export class TrieMap<T> {
     find(key: string) {
         let node: TrieMap<T> | undefined = this;
         for (let i = 0, n = key.length; i < n; i++) {
-            node = node!.next[key[i].toString()];
+            node = node!.next[key[i]];
             if (!node) return;
         }
         return node;
@@ -107,7 +107,7 @@ export class TrieMap<T> {
     set(key: string, val: T) {
         let node: TrieMap<T> = this;
         for (let i = 0, n = key.length; i < n; i++) {
-            const k = key[i].toString();
+            const k = key[i];
             const next = node.next[k];
             node = !next ? (node.n++, (node.next[k] = new TrieMap<T>())) : next;
         }
@@ -128,7 +128,7 @@ export class TrieMap<T> {
         let i = 0;
         let node: TrieMap<T> | undefined = this;
         for (; i < n; i++) {
-            const k = prefix[i].toString();
+            const k = prefix[i];
             key.push(k);
             path.push(node);
             node = node.next[k];
