@@ -1,4 +1,4 @@
-import type { IObjectOf } from "@thi.ng/api";
+import { ESCAPES } from "@thi.ng/strings";
 import { repeat } from "../combinators/repeat";
 import { seq } from "../combinators/seq";
 import { xform } from "../combinators/xform";
@@ -8,20 +8,10 @@ import { stringD } from "../prims/string";
 import { xfInt } from "../xform/number";
 import { HEX_DIGIT } from "./hex";
 
-const ESC_VALUES: IObjectOf<string> = {
-    0: "\0",
-    b: "\b",
-    t: "\t",
-    n: "\n",
-    v: "\v",
-    f: "\f",
-    r: "\r",
-};
-
 export const ESC = xform(seq([litD("\\"), always()], "esc"), ($) => {
     const id = $!.children![0].result;
-    const resolved = ESC_VALUES[id];
-    $!.result = resolved !== undefined ? resolved : id;
+    const resolved = ESCAPES[id];
+    $!.result = resolved !== undefined ? resolved : `\\${id}`;
     $!.children = null;
     return $;
 });
