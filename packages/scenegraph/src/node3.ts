@@ -1,11 +1,13 @@
-import { deref, ICopy, IToHiccup, Nullable } from "@thi.ng/api";
-import { isFunction, isNumber } from "@thi.ng/checks";
+import { ICopy, IToHiccup, Nullable } from "@thi.ng/api";
+import { isNumber } from "@thi.ng/checks";
 import { invert44, mulM44, mulV344, transform44 } from "@thi.ng/matrices";
 import { ReadonlyVec, set3, Vec } from "@thi.ng/vectors";
 import { ANode } from "./anode";
 import type { ISceneNode } from "./api";
+import { toHiccup } from "./hiccup";
 
-export class Node3D extends ANode<Node3D>
+export class Node3D
+    extends ANode<Node3D>
     implements ICopy<Node3D>, ISceneNode<Node3D>, IToHiccup {
     translate: Vec;
     rotate: Vec;
@@ -69,20 +71,6 @@ export class Node3D extends ANode<Node3D>
      * @param ctx - arbitrary user data
      */
     toHiccup(ctx?: any): any {
-        const body = isFunction(this.body) ? this.body(ctx) : deref(this.body);
-        return this.enabled && this.display
-            ? this.children.length
-                ? [
-                      "g",
-                      {},
-                      this.body
-                          ? ["g", { transform: this.mat }, body]
-                          : undefined,
-                      ...this.children.map((c) => c.toHiccup(ctx)),
-                  ]
-                : body
-                ? ["g", { transform: this.mat }, body]
-                : undefined
-            : undefined;
+        return toHiccup<Node3D>(this, ctx);
     }
 }
