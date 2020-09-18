@@ -2,16 +2,14 @@ import {
     isArray as isa,
     isNotStringAndIterable as isi,
     isPlainObject as iso,
-    isString as iss,
 } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
-import { mergeClasses, NO_SPANS, RE_TAG } from "@thi.ng/hiccup";
+import { mergeEmmetAttribs, NO_SPANS, RE_TAG } from "@thi.ng/hiccup";
 import type { HDOMOpts } from "./api";
 
 const isArray = isa;
 const isNotStringAndIterable = isi;
 const isPlainObject = iso;
-const isString = iss;
 
 /**
  * Expands single hiccup element/component into its canonical form:
@@ -46,32 +44,21 @@ export const normalizeElement = (spec: any[], keys: boolean) => {
     let tag = spec[0];
     let hasAttribs = isPlainObject(spec[1]);
     let match: RegExpExecArray | null;
-    let mtag: string;
-    let id: string;
-    let clazz: string;
+    let name: string;
     let attribs;
     if (typeof tag !== "string" || !(match = RE_TAG.exec(tag))) {
         illegalArgs(`${tag} is not a valid tag name`);
     }
-    mtag = match![1];
+    name = match![1];
     // return orig if already normalized and satisfies key requirement
-    if (tag === mtag && hasAttribs && (!keys || spec[1].key)) {
+    if (tag === name && hasAttribs && (!keys || spec[1].key)) {
         return spec;
     }
     attribs = hasAttribs ? { ...spec[1] } : {};
-    id = match![2];
-    clazz = match![3];
-    id && (attribs.id = id);
-    const aclass = attribs.class;
-    if (clazz) {
-        clazz = clazz.replace(/\./g, " ");
-        attribs.class = aclass ? mergeClasses(clazz, aclass) : clazz;
-    } else if (aclass) {
-        attribs.class = isString(aclass) ? aclass : mergeClasses("", aclass);
-    }
+    mergeEmmetAttribs(attribs, match![2], match![3]);
     return attribs.__skip && spec.length < 3
-        ? [mtag, attribs]
-        : [mtag, attribs, ...spec.slice(hasAttribs ? 2 : 1)];
+        ? [name, attribs]
+        : [name, attribs, ...spec.slice(hasAttribs ? 2 : 1)];
 };
 
 /**
