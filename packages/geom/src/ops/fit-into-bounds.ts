@@ -1,6 +1,9 @@
+import type { IShape } from "@thi.ng/geom-api";
 import { minNonZero2, minNonZero3, safeDiv } from "@thi.ng/math";
 import {
     concat,
+    MatOpNV,
+    MatOpV,
     scale23,
     scale44,
     translation23,
@@ -16,9 +19,10 @@ import { centroid } from "./centroid";
 import { mapPoint } from "./map-point";
 import { transform } from "./transform";
 import { unmapPoint } from "./unmap-point";
-import type { IShape } from "@thi.ng/geom-api";
 
-const translateScale2 = (
+const translateScale = (
+    tmat: MatOpV,
+    smat: MatOpNV,
     shape: IShape,
     preTrans: ReadonlyVec,
     postTrans: ReadonlyVec,
@@ -26,28 +30,7 @@ const translateScale2 = (
 ) =>
     transform(
         shape,
-        concat(
-            [],
-            translation23([], postTrans),
-            scale23([], scale),
-            translation23([], preTrans)
-        )
-    );
-
-const translateScale3 = (
-    shape: IShape,
-    preTrans: ReadonlyVec,
-    postTrans: ReadonlyVec,
-    scale: ReadonlyVec | number
-) =>
-    transform(
-        shape,
-        concat(
-            [],
-            translation44([], postTrans),
-            scale44([], scale),
-            translation44([], preTrans)
-        )
+        concat([], tmat([], postTrans), smat([], scale), tmat([], preTrans))
     );
 
 export const fitIntoBounds2 = (shape: IShape, dest: Rect) => {
@@ -55,7 +38,9 @@ export const fitIntoBounds2 = (shape: IShape, dest: Rect) => {
     if (!src) return;
     const c = centroid(src);
     if (!c) return;
-    return translateScale2(
+    return translateScale(
+        translation23,
+        scale23,
         shape,
         neg(null, c),
         centroid(dest)!,
@@ -71,7 +56,9 @@ export const fitIntoBounds3 = (shape: IShape, dest: AABB) => {
     if (!src) return;
     const c = centroid(src);
     if (!c) return;
-    return translateScale3(
+    return translateScale(
+        translation44,
+        scale44,
         shape,
         neg(null, c),
         centroid(dest)!,
@@ -100,7 +87,16 @@ export const fitAllIntoBounds2 = (shapes: IShape[], dest: Rect) => {
         const sc = centroid(s, c1);
         if (sc) {
             unmapPoint(b, mapPoint(src, sc), c2);
-            res.push(translateScale2(s, neg(null, c1), c2, smat));
+            res.push(
+                translateScale(
+                    translation23,
+                    scale23,
+                    s,
+                    neg(null, c1),
+                    c2,
+                    smat
+                )
+            );
         } else {
             res.push(s);
         }
