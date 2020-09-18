@@ -2,10 +2,9 @@ import type { Fn, Fn2 } from "@thi.ng/api";
 import {
     comp,
     filter,
-    indexed,
     iterator,
     map,
-    mapcat,
+    mapcatIndexed,
     push,
     some,
     transduce,
@@ -38,10 +37,10 @@ const rowStacking = <T>(data: [number[], T][], pad = 0) =>
         }
     }, <Row<T>[]>[]);
 
-const processRow = <T>(mapper: Fn<number[], number[]>, [d1, d2]: Domain) => ([
-    i,
-    row,
-]: [number, Row<T>]) =>
+const processRow = <T>(mapper: Fn<number[], number[]>, [d1, d2]: Domain) => (
+    i: number,
+    row: Row<T>
+) =>
     map(
         ([[a, b], item]) =>
             <[number[], number[], T, number]>[
@@ -64,8 +63,7 @@ export const stackedIntervals = <T>(
         opts.attribs,
         ...iterator(
             comp(
-                indexed(),
-                mapcat(processRow<T>(mapper, domain)),
+                mapcatIndexed(processRow<T>(mapper, domain)),
                 map((x) => opts.shape(x, mapper))
             ),
             rowStacking(
