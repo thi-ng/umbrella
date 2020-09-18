@@ -56,11 +56,7 @@ const queryLF: QueryImpl = (res, db, s, p, o, opts) => {
 
 const queryLN: QueryImpl = (res, db, s, _, o, opts) => {
     const sval = db[<string>s];
-    if (sval != null) {
-        for (let q in sval) {
-            collect(res, s, q, o, sval[q], opts);
-        }
-    }
+    sval != null && collectSO(res, sval, s, o, opts);
 };
 
 const queryFL: QueryImpl = (res, db, s, p, o, opts) => {
@@ -77,12 +73,7 @@ const queryFF: QueryImpl = (res, db, s, p, o, opts) => {
 
 const queryFN: QueryImpl = (res, db, s, _, o, opts) => {
     for (let $s in db) {
-        if ((<FTerm>s)($s)) {
-            const sval = db[$s];
-            for (let p in sval) {
-                collect(res, $s, p, o, sval[p], opts);
-            }
-        }
+        (<FTerm>s)($s) && collectSO(res, db[$s], $s, o, opts);
     }
 };
 
@@ -94,19 +85,13 @@ const queryNL: QueryImpl = (res, db, _, p, o, opts) => {
 
 const queryNF: QueryImpl = (res, db, _, p, o, opts) => {
     for (let s in db) {
-        const sval = db[s];
-        for (let $p in sval) {
-            (<FTerm>p)($p) && collect(res, s, $p, o, sval[$p], opts);
-        }
+        collectSP(res, db[s], s, p, o, opts);
     }
 };
 
 const queryNN: QueryImpl = (res, db, _, __, o, opts) => {
     for (let s in db) {
-        const sval = db[s];
-        for (let p in sval) {
-            collect(res, s, p, o, sval[p], opts);
-        }
+        collectSO(res, db[s], s, o, opts);
     }
 };
 
@@ -120,6 +105,18 @@ const collectSP = (
 ) => {
     for (let $p in sval) {
         (<FTerm>p)($p) && collect(res, s, $p, o, sval[$p], opts);
+    }
+};
+
+const collectSO = (
+    res: QueryObj,
+    sval: any,
+    s: SPTerm,
+    o: any,
+    opts: QueryOpts
+) => {
+    for (let p in sval) {
+        collect(res, s, p, o, sval[p], opts);
     }
 };
 
