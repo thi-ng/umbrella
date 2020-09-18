@@ -1,7 +1,6 @@
 import {
     comp,
-    indexed,
-    mapcat,
+    mapcatIndexed,
     partition,
     push,
     transduce,
@@ -26,8 +25,7 @@ export const subdivide = (
         pts = transduce<ReadonlyVec, ReadonlyVec, Vec[]>(
             comp(
                 partition(size, 1),
-                indexed(),
-                mapcat(([i, pts]) => fn(pts, i, nump))
+                mapcatIndexed((i, pts) => fn(pts, i, nump))
             ),
             push(),
             pre ? pre(pts) : pts
