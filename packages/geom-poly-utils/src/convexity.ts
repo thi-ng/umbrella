@@ -11,16 +11,13 @@ export const convexity = (pts: ReadonlyVec[], eps = EPS) => {
     let a = pts[n - 2];
     let b = pts[n - 1];
     let c = pts[0];
-    for (let i = 0; i < n; a = b, b = c, c = pts[++i]) {
+    for (let i = 0; i < n && type < 3; a = b, b = c, c = pts[++i]) {
         const t = corner2(a, b, c, eps);
-        if (t < 0) {
-            type |= 1;
-        } else if (t > 0) {
-            type |= 2;
-        }
-        if (type === 3) {
-            return Convexity.CONCAVE;
-        }
+        type |= t < 0 ? 1 : t > 0 ? 2 : 0;
     }
-    return type > 0 ? Convexity.CONVEX : Convexity.COLINEAR;
+    return type === 3
+        ? Convexity.CONCAVE
+        : type > 0
+        ? Convexity.CONVEX
+        : Convexity.COLINEAR;
 };
