@@ -1,5 +1,6 @@
-import { CloseMode, ISubscribable, State, TransformableOpts } from "./api";
+import { ISubscribable, State, TransformableOpts } from "./api";
 import { Subscription } from "./subscription";
+import { isFirstOrLastInput } from "./utils/checks";
 import { optsWithID } from "./utils/idgen";
 
 export interface StreamMergeOpts<A, B> extends TransformableOpts<A, B> {
@@ -145,11 +146,6 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
 
     protected markDone(src: ISubscribable<A>) {
         this.remove(src);
-        if (
-            this.closeIn === CloseMode.FIRST ||
-            (this.closeIn === CloseMode.LAST && !this.sources.size)
-        ) {
-            this.done();
-        }
+        isFirstOrLastInput(this.closeIn, this.sources.size) && this.done();
     }
 }

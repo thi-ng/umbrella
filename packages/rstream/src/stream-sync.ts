@@ -6,14 +6,9 @@ import {
     partitionSync,
     PartitionSync,
 } from "@thi.ng/transducers";
-import {
-    CloseMode,
-    ISubscribable,
-    LOGGER,
-    State,
-    TransformableOpts,
-} from "./api";
+import { ISubscribable, LOGGER, State, TransformableOpts } from "./api";
 import { Subscription } from "./subscription";
+import { isFirstOrLastInput } from "./utils/checks";
 import { optsWithID } from "./utils/idgen";
 
 export type SyncTuple<T extends IObjectOf<ISubscribable<any>>> = {
@@ -283,11 +278,6 @@ export class StreamSync<
 
     protected markDone(src: ISubscribable<any>) {
         this.remove(src);
-        if (
-            this.closeIn === CloseMode.FIRST ||
-            (this.closeIn === CloseMode.LAST && !this.sources.size)
-        ) {
-            this.done();
-        }
+        isFirstOrLastInput(this.closeIn, this.sources.size) && this.done();
     }
 }
