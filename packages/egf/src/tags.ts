@@ -1,5 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { maybeParseFloat, maybeParseInt } from "@thi.ng/strings";
+import { maybeParseFloat, maybeParseInt, unescape } from "@thi.ng/strings";
 import { base64Decode } from "@thi.ng/transducers-binary";
 import { execSync } from "child_process";
 import { readFileSync } from "fs";
@@ -13,7 +13,7 @@ export const BUILTINS: IObjectOf<TagParser> = {
     date: (_, body) => new Date(body),
     file: (_, path, ctx) => {
         if (IS_NODE && ctx.opts.includes) {
-            path = resolvePath(ctx.opts.root!, path);
+            path = resolvePath(ctx.opts.root!, unescape(path));
             ctx.logger.debug("loading value from:", path);
             return readFileSync(path).toString();
         } else {
@@ -29,7 +29,7 @@ export const BUILTINS: IObjectOf<TagParser> = {
               ).trim()
         : NODE_ONLY,
     hex: (_, body) => maybeParseInt(body, 0, 16),
-    json: (_, body) => JSON.parse(body),
-    list: (_, body) => body.split(/[\n\r\t ]+/g),
+    json: (_, body) => JSON.parse(unescape(body)),
+    list: (_, body) => body.split(/[\n\r\t ]+/g).map(unescape),
     num: (_, body) => maybeParseFloat(body, 0),
 };

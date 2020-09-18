@@ -1,6 +1,7 @@
 import { IObjectOf, NULL_LOGGER } from "@thi.ng/api";
 import { illegalState, unsupported } from "@thi.ng/errors";
 import * as $prefixes from "@thi.ng/prefixes";
+import { unescape } from "@thi.ng/strings";
 import { readFileSync } from "fs";
 import { dirname, resolve as resolvePath } from "path";
 import { IS_NODE, Node, ParseContext, ParseOpts, TagParser } from "./api";
@@ -26,6 +27,7 @@ export const parse = (src: string, ctx: ParseContext) => {
                 continue;
             }
         }
+        subj = unescape(subj);
         usePrefixes && (subj = qualifiedID(ctx.prefixes, subj));
         const curr: Node = nodes[subj] || (nodes[subj] = { $id: subj });
         while (i < n) {
@@ -45,9 +47,9 @@ export const parse = (src: string, ctx: ParseContext) => {
 };
 
 const parseInclude = (line: string, ctx: ParseContext) => {
-    const path = line.substr(INCLUDE.length);
+    const path = unescape(line.substr(INCLUDE.length));
     if (IS_NODE && ctx.opts.includes) {
-        parseFile(path, {
+        $parseFile(path, {
             ...ctx,
             cwd: dirname(ctx.file),
             prefixes: { ...ctx.prefixes },
@@ -63,9 +65,9 @@ const RE_PREFIX = /^([a-z0-9-_$]*)$/i;
 const parsePrefix = (line: string, ctx: ParseContext) => {
     const idx = line.indexOf(": ", PREFIX.length);
     if (idx > 0) {
-        const id = line.substring(PREFIX.length, idx);
+        const id = unescape(line.substring(PREFIX.length, idx));
         if (RE_PREFIX.test(id)) {
-            const val = line.substr(idx + 2).trim();
+            const val = unescape(line.substr(idx + 2).trim());
             if (val.length) {
                 ctx.logger.debug(`declare prefix: ${id} = ${val}`);
                 ctx.prefixes[id] = val;
@@ -93,7 +95,7 @@ const parseProp = (
     const idx0 = line[0] === "\t" ? 1 : 4;
     if (line[idx0] === ";") return ++i;
     let idx = line.indexOf(" ", idx0);
-    let key = line.substring(idx0, idx);
+    let key = unescape(line.substring(idx0, idx));
     ctx.opts.prefixes && (key = qualifiedID(ctx.prefixes, key));
     let tag: string | undefined;
     let body: string;
@@ -103,13 +105,13 @@ const parseProp = (
             ctx.index,
             node,
             key,
-            parseRef(line.substr(idx + 2).trim(), ctx)
+            parseRef(unescape(line.substr(idx + 2).trim()), ctx)
         );
         return ++i;
     } else if (line[idx] === "#") {
         const tstart = idx + 1;
         idx = line.indexOf(" ", tstart);
-        tag = line.substring(tstart, idx);
+        tag = unescape(line.substring(tstart, idx));
         idx++;
     }
     if (line[idx] === ">" && line[idx + 1] === ">" && line[idx + 2] === ">") {
@@ -140,7 +142,12 @@ const parseProp = (
         i++;
     }
     body = body.trim();
-    addProp(ctx.index, node, key, tag ? parseTag(tag, body, ctx) : body);
+    addProp(
+        ctx.index,
+        node,
+        key,
+        tag ? parseTag(tag, body, ctx) : unescape(body)
+    );
     return i;
 };
 
@@ -210,7 +217,8 @@ const initContext = (ctx: Partial<ParseContext> = {}) => {
     };
 };
 
-export const parseFile = (path: string, ctx?: Partial<ParseContext>) => {
+/** @interal */
+export const $parseFile = (path: string, ctx?: Partial<ParseContext>) => {
     const $ctx = initContext(ctx);
     $ctx.file = path = resolvePath($ctx.cwd, path);
     if ($ctx.files.includes(path)) {
@@ -222,5 +230,26 @@ export const parseFile = (path: string, ctx?: Partial<ParseContext>) => {
     return parse(readFileSync(path).toString(), $ctx);
 };
 
-export const parseString = (src: string, ctx?: Partial<ParseContext>) =>
-    parse(src, initContext(ctx));
+/**
+ * Parses EGF graph from given local file name, using provided options (if any)
+ * to customize the parser. Returns object of graph `nodes` and `prefixes`.
+ *
+ * @param path
+ * @param ctx
+ */
+export const parseFile = (path: string, ctx?: Partial<ParseContext>) => {
+    const res = $parseFile(path, ctx);
+    return { nodes: res.nodes, prefixes: res.prefixes };
+};
+
+/**
+ * Parses EGF graph from given string and provided options (if any) to customize
+ * the parser. Returns object of graph `nodes` and `prefixes`.
+ *
+ * @param path
+ * @param ctx
+ */
+export const parseString = (src: string, ctx?: Partial<ParseContext>) => {
+    const res = parse(src, initContext(ctx));
+    return { nodes: res.nodes, prefixes: res.prefixes };
+};
