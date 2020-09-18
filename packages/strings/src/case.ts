@@ -25,11 +25,6 @@ export const capitalize: FnS = (x) => x[0].toUpperCase() + x.substr(1);
  * Converts a CamelCase string into kebab case, with optional custom
  * delimiter (`-` by default).
  *
- * TODO: Switch back to currently broken Regex w/ positive lookbehind,
- * once avail in FF & Safari (currently TC39 stage 4)
- *
- * {@link https://github.com/tc39/proposal-regexp-lookbehind}
- *
  * @example
  * ```ts
  * kebab("FooBar23Baz");
@@ -56,6 +51,13 @@ export const kebab: Stringer<string> = (x, delim = "-") =>
  * @param x -
  */
 export const snake: FnS = (x) => kebab(x, "_");
+
+/**
+ * Uppercase version of {@link snake}.
+ *
+ * @param x
+ */
+export const upperSnake: FnS = (x) => snake(x).toUpperCase();
 
 /**
  * Converts a kebab-case or snake_case string into CamelCase. Uses `-`

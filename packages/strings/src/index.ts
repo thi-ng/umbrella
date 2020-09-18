@@ -20,6 +20,7 @@ export * from "./splice";
 export * from "./trim";
 export * from "./truncate";
 export * from "./truncate-left";
+export * from "./unescape";
 export * from "./units";
 export * from "./uuid";
 export * from "./wrap";
