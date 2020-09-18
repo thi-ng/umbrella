@@ -63,6 +63,7 @@
         "center",
         "composition",
         "conversion",
+        "escape",
         "float",
         "format",
         "functional",
@@ -75,6 +76,7 @@
         "slugify",
         "string",
         "typescript",
+        "unicode",
         "wordwrap"
     ],
     "publishConfig": {
