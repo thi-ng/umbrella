@@ -1,4 +1,8 @@
-import { closestPointSegment, closestT } from "@thi.ng/geom-closest-point";
+import {
+    closestPointPolyline,
+    closestPointSegment,
+    closestT,
+} from "@thi.ng/geom-closest-point";
 import { fit01 } from "@thi.ng/math";
 import {
     dist,
@@ -59,20 +63,7 @@ export class Sampler {
     }
 
     closestPoint(p: ReadonlyVec) {
-        const pts = this.points;
-        const tmp: Vec = [];
-        const closest: Vec = [];
-        let minD = Infinity;
-        for (let i = 0, n = pts.length - 1; i < n; i++) {
-            if (closestPointSegment(p, pts[i], pts[i + 1], tmp)) {
-                const d = distSq(p, tmp);
-                if (d < minD) {
-                    minD = d;
-                    set(closest, tmp);
-                }
-            }
-        }
-        return minD < Infinity ? closest : undefined;
+        return closestPointPolyline(p, this.points);
     }
 
     closestT(p: ReadonlyVec) {
