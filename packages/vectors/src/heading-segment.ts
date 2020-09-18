@@ -2,6 +2,9 @@ import type { FnU2 } from "@thi.ng/api";
 import { atan2Abs } from "@thi.ng/math";
 import type { ReadonlyVec } from "./api";
 
+const $ = (u: number, v: number): FnU2<ReadonlyVec, number> => (a, b) =>
+    atan2Abs(b[u] - a[u], b[v] - a[v]);
+
 /**
  * Computes direction angle (in radians) of line segment `a` -> `b` in
  * XY plane.
@@ -9,8 +12,7 @@ import type { ReadonlyVec } from "./api";
  * @param a -
  * @param b -
  */
-export const headingSegmentXY: FnU2<ReadonlyVec, number> = (a, b) =>
-    atan2Abs(b[1] - a[1], b[0] - a[0]);
+export const headingSegmentXY = $(1, 0);
 
 /**
  * Computes direction angle (in radians) of line segment `a` -> `b` in
@@ -19,8 +21,7 @@ export const headingSegmentXY: FnU2<ReadonlyVec, number> = (a, b) =>
  * @param a -
  * @param b -
  */
-export const headingSegmentXZ: FnU2<ReadonlyVec, number> = (a, b) =>
-    atan2Abs(b[2] - a[2], b[0] - a[0]);
+export const headingSegmentXZ = $(2, 0);
 
 /**
  * Computes direction angle (in radians) of line segment `a` -> `b` in
@@ -29,8 +30,7 @@ export const headingSegmentXZ: FnU2<ReadonlyVec, number> = (a, b) =>
  * @param a -
  * @param b -
  */
-export const headingSegmentYZ: FnU2<ReadonlyVec, number> = (a, b) =>
-    atan2Abs(b[2] - a[2], b[1] - a[1]);
+export const headingSegmentYZ = $(2, 1);
 
 /**
  * Same as {@link headingSegmentXY}.
