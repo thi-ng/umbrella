@@ -1,4 +1,4 @@
-import type { IObjectOf, Tuple } from "@thi.ng/api";
+import type { IObjectOf, Path, Tuple } from "@thi.ng/api";
 import type { IAtom } from "@thi.ng/atom";
 import { isFunction, isPlainObject, isString } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
@@ -114,24 +114,20 @@ const prepareNodeInputs = (
     const res: NodeInputs = {};
     if (!ins) return res;
     for (let id in ins) {
-        let s;
         const i = ins[id];
-        if (i.path) {
-            s = fromViewUnsafe(state, { path: i.path });
-        } else if (i.stream) {
-            s = isString(i.stream) ? resolve(i.stream) : i.stream(resolve);
-        } else if (i.const != null) {
-            s = fromIterableSync(
-                [isFunction(i.const) ? i.const(resolve) : i.const],
-                { closeIn: CloseMode.NEVER }
-            );
-        } else {
-            illegalArgs(`invalid node input: ${id}`);
-        }
-        if (i.xform) {
-            s = s.subscribe(i.xform, id);
-        }
-        res[id] = s;
+        const src = i.path
+            ? fromViewUnsafe(state, { path: i.path })
+            : i.stream
+            ? isString(i.stream)
+                ? resolve(i.stream)
+                : i.stream(resolve)
+            : i.const !== undefined
+            ? fromIterableSync(
+                  [isFunction(i.const) ? i.const(resolve) : i.const],
+                  { closeIn: CloseMode.NEVER }
+              )
+            : illegalArgs(`invalid node input: ${id}`);
+        res[id] = i.xform ? src.subscribe(i.xform, id) : src;
     }
     return res;
 };
@@ -145,30 +141,43 @@ const prepareNodeOutputs = (
     const res: NodeOutputs = {};
     if (!outs) return res;
     for (let id in outs) {
-        const o = outs[id];
-        if (isFunction(o)) {
-            res[id] = o(node, id);
-        } else if (id == "*") {
-            res[id] = ((path) =>
-                node.subscribe(
-                    {
-                        next: (x) => state.resetIn(<any>path, x),
-                    },
-                    { id: `out-${nodeID}` }
-                ))(o);
-        } else {
-            res[id] = ((path, id) =>
-                node.subscribe(
-                    {
-                        next: (x) => state.resetIn(<any>path, x),
-                    },
-                    map((x) => (x != null ? x[id] : x)),
-                    { id: `out-${nodeID}-${id}` }
-                ))(o, id);
-        }
+        const out = outs[id];
+        res[id] = isFunction(out)
+            ? out(node, id)
+            : id == "*"
+            ? nodeOutAll(node, state, nodeID, out)
+            : nodeOutID(node, state, nodeID, out, id);
     }
     return res;
 };
+
+const nodeOutAll = (
+    node: ISubscribable<any>,
+    state: IAtom<any>,
+    nodeID: string,
+    path: Path
+) =>
+    node.subscribe(
+        {
+            next: (x) => state.resetIn(<any>path, x),
+        },
+        { id: `out-${nodeID}` }
+    );
+
+const nodeOutID = (
+    node: ISubscribable<any>,
+    state: IAtom<any>,
+    nodeID: string,
+    path: Path,
+    id: string
+) =>
+    node.subscribe(
+        {
+            next: (x) => state.resetIn(<any>path, x),
+        },
+        map((x) => (x != null ? x[id] : x)),
+        { id: `out-${nodeID}-${id}` }
+    );
 
 /**
  * Compiles given {@link NodeSpec} and adds it to graph. Returns compiled
