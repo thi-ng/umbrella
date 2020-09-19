@@ -13,19 +13,16 @@ import {
 import { isGL2Context } from "./checks";
 import { error } from "./error";
 
-export const bindTextures = (textures?: ITexture[]) => {
+const $bind = (op: "bind" | "unbind") => (textures?: ITexture[]) => {
     if (!textures) return;
     for (let i = textures.length, tex; --i >= 0; ) {
-        (tex = textures[i]) && tex.bind(i);
+        (tex = textures[i]) && tex[op](i);
     }
 };
 
-export const unbindTextures = (textures?: ITexture[]) => {
-    if (!textures) return;
-    for (let i = textures.length, tex; --i >= 0; ) {
-        (tex = textures[i]) && tex.unbind(i);
-    }
-};
+export const bindTextures = $bind("bind");
+
+export const unbindTextures = $bind("unbind");
 
 export class Texture implements ITexture {
     gl: WebGLRenderingContext;
@@ -49,18 +46,14 @@ export class Texture implements ITexture {
 
     configure(opts: Partial<TextureOpts> = {}, unbind = true) {
         const gl = this.gl;
-        const isGL2 = isGL2Context(gl);
         const target = opts.target || this.target || TextureTarget.TEXTURE_2D;
         const format = opts.format || this.format || TextureFormat.RGBA;
         const decl = TEX_FORMATS[format];
-        const baseFormat = decl.format;
         const type = opts.type || this.type || decl.types[0];
 
         !this.target && (this.target = target);
         this.format = format;
         this.type = type;
-
-        let t1: GLenum, t2: GLenum, t3: GLenum;
 
         gl.bindTexture(this.target, this.tex);
 
@@ -73,6 +66,29 @@ export class Texture implements ITexture {
                 opts.premultiply ? 1 : 0
             );
 
+        this.configureImage(target, opts);
+
+        opts.mipmap && gl.generateMipmap(target);
+
+        this.configureFilter(target, opts);
+        this.configureWrap(target, opts);
+        this.configureLOD(target, opts);
+        this.configureLevels(target, opts);
+
+        unbind && gl.bindTexture(this.target, null);
+
+        return true;
+    }
+
+    protected configureImage(
+        target: TextureTarget,
+        opts: Partial<TextureOpts>
+    ) {
+        const gl = this.gl;
+        const decl = TEX_FORMATS[this.format];
+        const baseFormat = decl.format;
+        const type = this.type;
+        const format = this.format;
         if (opts.image !== undefined) {
             const level = opts.level || 0;
             const pos = opts.pos || [0, 0, 0];
@@ -170,10 +186,15 @@ export class Texture implements ITexture {
                 }
             }
         }
+    }
 
-        opts.mipmap && gl.generateMipmap(target);
-
+    protected configureFilter(
+        target: TextureTarget,
+        opts: Partial<TextureOpts>
+    ) {
+        const gl = this.gl;
         const flt = opts.filter || this.filter || TextureFilter.NEAREST;
+        let t1: GLenum, t2: GLenum;
         if (isArray(flt)) {
             t1 = flt[0];
             t2 = flt[1] || t1;
@@ -184,8 +205,12 @@ export class Texture implements ITexture {
         }
         gl.texParameteri(target, gl.TEXTURE_MIN_FILTER, t1);
         gl.texParameteri(target, gl.TEXTURE_MAG_FILTER, t2);
+    }
 
+    protected configureWrap(target: TextureTarget, opts: Partial<TextureOpts>) {
+        const gl = this.gl;
         const wrap = opts.wrap || this.wrap || TextureRepeat.CLAMP;
+        let t1: GLenum, t2: GLenum, t3: GLenum;
         if (isArray(wrap)) {
             t1 = wrap[0];
             t2 = wrap[1] || t1;
@@ -197,14 +222,17 @@ export class Texture implements ITexture {
         }
         gl.texParameteri(target, gl.TEXTURE_WRAP_S, t1);
         gl.texParameteri(target, gl.TEXTURE_WRAP_T, t2);
-        isGL2 &&
+        isGL2Context(gl) &&
             target === (<WebGL2RenderingContext>gl).TEXTURE_3D &&
             gl.texParameteri(
                 target,
                 (<WebGL2RenderingContext>gl).TEXTURE_WRAP_R,
                 t3
             );
+    }
 
+    protected configureLOD(target: TextureTarget, opts: Partial<TextureOpts>) {
+        const gl = this.gl;
         if (opts.lod) {
             const [t1, t2] = opts.lod;
             t1 &&
@@ -220,7 +248,13 @@ export class Texture implements ITexture {
                     t2
                 );
         }
+    }
 
+    protected configureLevels(
+        target: TextureTarget,
+        opts: Partial<TextureOpts>
+    ) {
+        const gl = this.gl;
         if (opts.minMaxLevel) {
             const [t1, t2] = opts.minMaxLevel;
             gl.texParameteri(
@@ -234,10 +268,6 @@ export class Texture implements ITexture {
                 t2
             );
         }
-
-        unbind && gl.bindTexture(this.target, null);
-
-        return true;
     }
 
     bind(id = 0) {
