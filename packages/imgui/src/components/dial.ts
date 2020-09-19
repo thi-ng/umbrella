@@ -6,8 +6,7 @@ import { cartesian2, hash } from "@thi.ng/vectors";
 import { dialVal } from "../behaviors/dial";
 import { handleSlider1Keys, isHoverSlider } from "../behaviors/slider";
 import { IMGUI } from "../gui";
-import { valHash } from "../hash";
-import { textLabelRaw } from "./textlabel";
+import { dialValueLabel } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 
 export const dial = (
@@ -131,12 +130,15 @@ export const dialRaw = (
                 {}
             )
         );
-        const valLabel = gui.resource(id, valHash(key, v, gui.disabled), () =>
-            textLabelRaw(
-                [x + lx, y + ly],
-                gui.textColor(false),
-                (label ? label + " " : "") + (fmt ? fmt(v!) : v)
-            )
+        const valLabel = dialValueLabel(
+            gui,
+            id,
+            key,
+            v,
+            x + lx,
+            y + ly,
+            label,
+            fmt
         );
         bgShape.attribs.fill = gui.bgColor(hover || focused);
         bgShape.attribs.stroke = gui.focusColor(id);

@@ -1,8 +1,10 @@
+import { Fn } from "@thi.ng/api";
 import { isPlainObject } from "@thi.ng/checks";
 import { IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import type { Color, GUITheme } from "../api";
 import { IMGUI } from "../gui";
+import { valHash } from "../hash";
 
 export const textLabel = (
     gui: IMGUI,
@@ -42,3 +44,21 @@ export const textTransformV = (
     w: number,
     h: number
 ) => [0, -1, 1, 0, x + w / 2 + theme.baseLine, y + h - theme.pad];
+
+export const dialValueLabel = (
+    gui: IMGUI,
+    id: string,
+    key: number,
+    v: number,
+    x: number,
+    y: number,
+    label: string | undefined,
+    fmt: Fn<number, string> | undefined
+) =>
+    gui.resource(id, valHash(key, v, gui.disabled), () =>
+        textLabelRaw(
+            [x, y],
+            gui.textColor(false),
+            (label ? label + " " : "") + (fmt ? fmt(v!) : v)
+        )
+    );
