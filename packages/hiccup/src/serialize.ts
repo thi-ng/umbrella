@@ -168,30 +168,22 @@ const _serialize = (
     span: boolean,
     keys: boolean,
     path: any[]
-): string => {
-    if (tree == null) {
-        return "";
-    }
-    if (Array.isArray(tree)) {
-        return serializeElement(tree, ctx, esc, span, keys, path);
-    }
-    if (isFunction(tree)) {
-        return _serialize(tree(ctx), ctx, esc, span, keys, path);
-    }
-    if (implementsFunction(tree, "toHiccup")) {
-        return _serialize(tree.toHiccup(ctx), ctx, esc, span, keys, path);
-    }
-    if (isDeref(tree)) {
-        return _serialize(tree.deref(), ctx, esc, span, keys, path);
-    }
-    if (isNotStringAndIterable(tree)) {
-        return serializeIter(tree, ctx, esc, span, keys, path);
-    }
-    tree = esc ? escape(tree.toString()) : tree;
-    return span
+): string =>
+    tree == null
+        ? ""
+        : Array.isArray(tree)
+        ? serializeElement(tree, ctx, esc, span, keys, path)
+        : isFunction(tree)
+        ? _serialize(tree(ctx), ctx, esc, span, keys, path)
+        : implementsFunction(tree, "toHiccup")
+        ? _serialize(tree.toHiccup(ctx), ctx, esc, span, keys, path)
+        : isDeref(tree)
+        ? _serialize(tree.deref(), ctx, esc, span, keys, path)
+        : isNotStringAndIterable(tree)
+        ? serializeIter(tree, ctx, esc, span, keys, path)
+        : ((tree = esc ? escape(String(tree)) : String(tree)), span)
         ? `<span${keys ? ` key="${path.join("-")}"` : ""}>${tree}</span>`
         : tree;
-};
 
 const serializeElement = (
     tree: any[],
@@ -201,56 +193,60 @@ const serializeElement = (
     keys: boolean,
     path: any[]
 ) => {
-    if (!tree.length) {
-        return "";
-    }
     let tag = tree[0];
-    if (isFunction(tag)) {
-        return _serialize(
-            tag.apply(null, [ctx, ...tree.slice(1)]),
-            ctx,
-            esc,
-            span,
-            keys,
-            path
-        );
-    }
-    if (implementsFunction(tag, "render")) {
-        return _serialize(
-            tag.render.apply(null, [ctx, ...tree.slice(1)]),
-            ctx,
-            esc,
-            span,
-            keys,
-            path
-        );
-    }
-    if (tag === COMMENT) {
-        return serializeComment(tree);
-    }
-    if (tag == CDATA) {
-        return serializeCData(tree);
-    }
-    if (isString(tag)) {
-        tree = normalize(tree);
-        tag = tree[0];
-        const attribs = tree[1];
-        if (attribs.__skip || attribs.__serialize === false) return "";
-        const body = tree[2];
-        let res = `<${tag}`;
-        keys && attribs.key === undefined && (attribs.key = path.join("-"));
-        res += serializeAttribs(attribs, esc);
-        res += body
-            ? serializeBody(tag, body, ctx, esc, span, keys, path)
-            : !VOID_TAGS[tag] && !NO_CLOSE_EMPTY[tag]
-            ? `></${tag}>`
-            : PROC_TAGS[tag] || "/>";
-        return res;
-    }
-    if (isNotStringAndIterable(tree)) {
-        return serializeIter(tree, ctx, esc, span, keys, path);
-    }
-    return illegalArgs(`invalid tree node: ${tree}`);
+    return !tree.length
+        ? ""
+        : isFunction(tag)
+        ? _serialize(
+              tag.apply(null, [ctx, ...tree.slice(1)]),
+              ctx,
+              esc,
+              span,
+              keys,
+              path
+          )
+        : implementsFunction(tag, "render")
+        ? _serialize(
+              tag.render.apply(null, [ctx, ...tree.slice(1)]),
+              ctx,
+              esc,
+              span,
+              keys,
+              path
+          )
+        : tag === COMMENT
+        ? serializeComment(tree)
+        : tag == CDATA
+        ? serializeCData(tree)
+        : isString(tag)
+        ? serializeTag(tree, ctx, esc, span, keys, path)
+        : isNotStringAndIterable(tree)
+        ? serializeIter(tree, ctx, esc, span, keys, path)
+        : illegalArgs(`invalid tree node: ${tree}`);
+};
+
+const serializeTag = (
+    tree: any[],
+    ctx: any,
+    esc: boolean,
+    span: boolean,
+    keys: boolean,
+    path: any[]
+) => {
+    tree = normalize(tree);
+    const tag = tree[0];
+    const attribs = tree[1];
+    if (attribs.__skip || attribs.__serialize === false) return "";
+    const body = tree[2];
+    let res = `<${tag}`;
+    keys && attribs.key === undefined && (attribs.key = path.join("-"));
+    res += serializeAttribs(attribs, esc);
+    res += body
+        ? serializeBody(tag, body, ctx, esc, span, keys, path)
+        : !VOID_TAGS[tag] && !NO_CLOSE_EMPTY[tag]
+        ? `></${tag}>`
+        : PROC_TAGS[tag] || "/>";
+    return res;
 };
 
 const serializeAttribs = (attribs: any, esc: boolean) => {
