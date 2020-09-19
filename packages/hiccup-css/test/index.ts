@@ -17,7 +17,7 @@ const rules = {
 
 describe("hiccup-css", () => {
     it("rules only", () => {
-        assert.strictEqual(css("a"), undefined);
+        assert.throws(() => css("a"));
         assert.strictEqual(css({}), "");
         assert.strictEqual(css(rules.a), "color:red;");
         assert.strictEqual(css(rules.b), "border:0;");

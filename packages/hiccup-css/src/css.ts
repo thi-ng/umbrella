@@ -1,10 +1,10 @@
 import {
     isArray,
     isFunction,
-    isIterable,
+    isNotStringAndIterable,
     isPlainObject,
-    isString,
 } from "@thi.ng/checks";
+import { illegalArgs } from "@thi.ng/errors";
 import { COMPACT, CSSOpts, DEFAULT_VENDORS } from "./api";
 import { expand, formatDecls } from "./impl";
 
@@ -16,19 +16,19 @@ export const css = (rules: any, opts?: Partial<CSSOpts>) => {
         depth: 0,
         ...opts,
     };
-    if (isPlainObject(rules)) {
-        return formatDecls(rules, <CSSOpts>opts);
-    }
-    if (isArray(opts.autoprefix)) {
-        opts.autoprefix = new Set(opts.autoprefix);
-    }
-    if (isIterable(rules) && !isString(rules)) {
-        rules = [...rules];
-    }
-    if (isArray(rules)) {
-        return expand([], [], rules, <CSSOpts>opts).join(opts.format!.rules);
-    }
-    if (isFunction(rules)) {
-        return rules([], opts).join(opts.format!.rules);
-    }
+    isArray(opts.autoprefix) && (opts.autoprefix = new Set(opts.autoprefix));
+    return isPlainObject(rules)
+        ? formatDecls(rules, <CSSOpts>opts)
+        : isFunction(rules)
+        ? rules([], <CSSOpts>opts).join(opts.format!.rules)
+        : expand(
+              [],
+              [],
+              isArray(rules)
+                  ? rules
+                  : isNotStringAndIterable(rules)
+                  ? [...rules]
+                  : illegalArgs(`invalid rules`),
+              <CSSOpts>opts
+          ).join(opts.format!.rules);
 };
