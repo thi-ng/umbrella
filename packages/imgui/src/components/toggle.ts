@@ -1,11 +1,10 @@
 import { rect } from "@thi.ng/geom";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { hash } from "@thi.ng/vectors";
-import { handleButtonKeys, isHoverButton } from "../behaviors/button";
+import { handleButtonKeys, hoverButton } from "../behaviors/button";
 import { IMGUI } from "../gui";
 import { layoutBox } from "../layout";
 import { textLabelRaw } from "./textlabel";
-import { tooltipRaw } from "./tooltip";
 
 /**
  * If `square` is true, the clickable area will not fill the entire
@@ -61,17 +60,12 @@ export const toggleRaw = (
     gui.registerID(id, key);
     let res: boolean | undefined;
     const box = gui.resource(id, key, () => rect([x, y], [w, h]));
-    const hover = isHoverButton(gui, id, box);
-    const draw = gui.draw;
-    if (hover) {
-        gui.isMouseDown() && (gui.activeID = id);
-        info && draw && tooltipRaw(gui, info);
-    }
+    const hover = hoverButton(gui, id, box, info);
     const focused = gui.requestFocus(id);
     let changed = !gui.buttons && gui.hotID === id && gui.activeID === id;
     focused && (changed = handleButtonKeys(gui) || changed);
     changed && (res = val = !val);
-    if (draw) {
+    if (gui.draw) {
         box.attribs = {
             fill: val ? gui.fgColor(hover) : gui.bgColor(hover),
             stroke: gui.focusColor(id),

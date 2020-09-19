@@ -1,15 +1,23 @@
 import { pointInside } from "@thi.ng/geom";
 import type { IShape } from "@thi.ng/geom-api";
 import { Key } from "../api";
+import { tooltipRaw } from "../components/tooltip";
 import { IMGUI } from "../gui";
 
-export const isHoverButton = (gui: IMGUI, id: string, shape: IShape) => {
+export const hoverButton = (
+    gui: IMGUI,
+    id: string,
+    shape: IShape,
+    info?: string
+) => {
     if (gui.disabled) return false;
     const aid = gui.activeID;
     const hover = (aid === "" || aid === id) && pointInside(shape, gui.mouse);
     if (hover) {
         gui.setCursor("pointer");
         gui.hotID = id;
+        gui.isMouseDown() && (gui.activeID = id);
+        info && gui.draw && tooltipRaw(gui, info);
     }
     return hover;
 };

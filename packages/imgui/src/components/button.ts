@@ -4,12 +4,11 @@ import type { IShape } from "@thi.ng/geom-api";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { hash, ZERO2 } from "@thi.ng/vectors";
 import type { GUITheme, Hash } from "../api";
-import { handleButtonKeys, isHoverButton } from "../behaviors/button";
+import { handleButtonKeys, hoverButton } from "../behaviors/button";
 import { IMGUI } from "../gui";
 import { labelHash } from "../hash";
 import { layoutBox } from "../layout";
 import { textLabelRaw, textTransformH, textTransformV } from "./textlabel";
-import { tooltipRaw } from "./tooltip";
 
 const mkLabel = (
     gui: IMGUI,
@@ -97,14 +96,9 @@ export const buttonRaw = (
     info?: string
 ) => {
     gui.registerID(id, hash);
-    const hover = isHoverButton(gui, id, shape);
-    const draw = gui.draw;
-    if (hover) {
-        gui.isMouseDown() && (gui.activeID = id);
-        info && draw && tooltipRaw(gui, info);
-    }
+    const hover = hoverButton(gui, id, shape, info);
     const focused = gui.requestFocus(id);
-    if (draw) {
+    if (gui.draw) {
         shape.attribs = {
             fill: hover ? gui.fgColor(true) : gui.bgColor(focused),
             stroke: gui.focusColor(id),
