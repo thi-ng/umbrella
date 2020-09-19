@@ -234,51 +234,52 @@ const serializeTag = (
     path: any[]
 ) => {
     tree = normalize(tree);
-    const tag = tree[0];
     const attribs = tree[1];
     if (attribs.__skip || attribs.__serialize === false) return "";
-    const body = tree[2];
-    let res = `<${tag}`;
     keys && attribs.key === undefined && (attribs.key = path.join("-"));
-    res += serializeAttribs(attribs, esc);
-    res += body
-        ? serializeBody(tag, body, ctx, esc, span, keys, path)
+    const tag = tree[0];
+    const body = tree[2]
+        ? serializeBody(tag, tree[2], ctx, esc, span, keys, path)
         : !VOID_TAGS[tag] && !NO_CLOSE_EMPTY[tag]
         ? `></${tag}>`
         : PROC_TAGS[tag] || "/>";
-    return res;
+    return `<${tag}${serializeAttribs(attribs, esc)}${body}`;
 };
 
 const serializeAttribs = (attribs: any, esc: boolean) => {
     let res = "";
     for (let a in attribs) {
         if (a.startsWith("__")) continue;
-        let v = deref(attribs[a]);
-        if (v == null) continue;
-        if (isFunction(v) && (/^on\w+/.test(a) || (v = v(attribs)) == null))
-            continue;
-        if (v === true) {
-            res += " " + a;
-            continue;
-        } else if (v === false) {
-            continue;
-        }
-        if (a === "data") {
-            res += serializeDataAttribs(v, esc);
-            continue;
-        }
-        if (a === "style" && isPlainObject(v)) {
-            v = css(v);
-        } else if (a === "prefix" && isPlainObject(v)) {
-            v = formatPrefixes(v);
-        } else {
-            v = isArray(v)
-                ? v.join(ATTRIB_JOIN_DELIMS[a] || " ")
-                : v.toString();
-        }
-        v.length && (res += ` ${a}="${esc ? escape(v) : v}"`);
+        const v = serializeAttrib(attribs, a, deref(attribs[a]), esc);
+        v != null && (res += v);
     }
     return res;
+};
+
+const serializeAttrib = (attribs: any, a: string, v: any, esc: boolean) => {
+    return v == null
+        ? null
+        : isFunction(v) && (/^on\w+/.test(a) || (v = v(attribs)) == null)
+        ? null
+        : v === true
+        ? " " + a
+        : v === false
+        ? null
+        : a === "data"
+        ? serializeDataAttribs(v, esc)
+        : attribPair(a, v, esc);
+};
+
+const attribPair = (a: string, v: any, esc: boolean) => {
+    v =
+        a === "style" && isPlainObject(v)
+            ? css(v)
+            : a === "prefix" && isPlainObject(v)
+            ? formatPrefixes(v)
+            : isArray(v)
+            ? v.join(ATTRIB_JOIN_DELIMS[a] || " ")
+            : v.toString();
+    return v.length ? ` ${a}="${esc ? escape(v) : v}"` : null;
 };
 
 const serializeDataAttribs = (data: any, esc: boolean) => {
