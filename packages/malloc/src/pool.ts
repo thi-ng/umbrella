@@ -162,34 +162,7 @@ export class MemPool implements IMemPool {
         let blockEnd = 0;
         while (block) {
             if (block === oldAddr) {
-                const blockSize = this.blockSize(block);
-                blockEnd = oldAddr + blockSize;
-                const isTop = blockEnd >= this.top;
-                const paddedSize = align(bytes + SIZEOF_MEM_BLOCK, this.align);
-                // shrink & possibly split existing block
-                if (paddedSize <= blockSize) {
-                    if (this.doSplit) {
-                        const excess = blockSize - paddedSize;
-                        if (excess >= this.minSplit) {
-                            this.splitBlock(block, paddedSize, excess);
-                        } else if (isTop) {
-                            this.top = oldAddr + paddedSize;
-                        }
-                    } else if (isTop) {
-                        this.top = oldAddr + paddedSize;
-                    }
-                    newAddr = oldAddr;
-                    break;
-                }
-                // try to enlarge block if current top
-                if (isTop && oldAddr + paddedSize < this.end) {
-                    this.top = oldAddr + this.setBlockSize(block, paddedSize);
-                    newAddr = oldAddr;
-                    break;
-                }
-                // fallback to free & malloc
-                this.free(oldAddr);
-                newAddr = blockSelfAddress(this.malloc(bytes));
+                [newAddr, blockEnd] = this.reallocBlock(block, bytes);
                 break;
             }
             block = this.blockNext(block);
@@ -203,6 +176,35 @@ export class MemPool implements IMemPool {
             );
         }
         return blockDataAddress(newAddr);
+    }
+
+    private reallocBlock(block: number, bytes: number) {
+        const blockSize = this.blockSize(block);
+        const blockEnd = block + blockSize;
+        const isTop = blockEnd >= this.top;
+        const paddedSize = align(bytes + SIZEOF_MEM_BLOCK, this.align);
+        // shrink & possibly split existing block
+        if (paddedSize <= blockSize) {
+            if (this.doSplit) {
+                const excess = blockSize - paddedSize;
+                if (excess >= this.minSplit) {
+                    this.splitBlock(block, paddedSize, excess);
+                } else if (isTop) {
+                    this.top = block + paddedSize;
+                }
+            } else if (isTop) {
+                this.top = block + paddedSize;
+            }
+            return [block, blockEnd];
+        }
+        // try to enlarge block if current top
+        if (isTop && block + paddedSize < this.end) {
+            this.top = block + this.setBlockSize(block, paddedSize);
+            return [block, blockEnd];
+        }
+        // fallback to free & malloc
+        this.free(block);
+        return [blockSelfAddress(this.malloc(bytes)), blockEnd];
     }
 
     reallocArray<T extends TypedArray>(array: T, num: number): T | undefined {
@@ -475,7 +477,7 @@ export class MemPool implements IMemPool {
  * @param blockAddress -
  */
 const blockDataAddress = (blockAddress: number) =>
-    blockAddress + SIZEOF_MEM_BLOCK;
+    blockAddress > 0 ? blockAddress + SIZEOF_MEM_BLOCK : 0;
 
 /**
  * Returns block start address for given data address and alignment.
@@ -483,4 +485,4 @@ const blockDataAddress = (blockAddress: number) =>
  * @param dataAddress -
  */
 const blockSelfAddress = (dataAddress: number) =>
-    dataAddress - SIZEOF_MEM_BLOCK;
+    dataAddress > 0 ? dataAddress - SIZEOF_MEM_BLOCK : 0;
