@@ -28,59 +28,16 @@ import { $wrapText } from "./wrap";
  *
  * @param tree
  */
-export const $compile = (tree: any): IComponent => {
-    if (isArray(tree)) {
-        return isComplexComponent(tree)
-            ? <CompiledComponent>{
-                  async mount(parent: Element, index: NumOrElement = -1) {
-                      this.subs = [];
-                      walk((x, path) => {
-                          isSubscribable(x) &&
-                              this.subs!.push(
-                                  x.subscribe(new $SubA(this, path))
-                              );
-                      }, tree[1]);
-                      this.children = [];
-                      this.el = $el(tree[0], tree[1], null, parent, index);
-                      for (let i = 2; i < tree.length; i++) {
-                          const child = $compile(tree[i]);
-                          child.mount(this.el, i - 2);
-                          this.children.push(child);
-                      }
-                      return this.el;
-                  },
-                  async unmount() {
-                      SCHEDULER.cancel(this);
-                      if (this.children) {
-                          for (let c of this.children) {
-                              await c.unmount();
-                          }
-                      }
-                      this.subs && this.subs.forEach((s) => s.unsubscribe());
-                      $remove(this.el!);
-                      this.children = undefined;
-                      this.subs = undefined;
-                      this.el = undefined;
-                  },
-                  update() {},
-              }
-            : <CompiledComponent>{
-                  async mount(parent: Element, index: NumOrElement = -1) {
-                      return (this.el = await $tree(tree, parent, index));
-                  },
-                  async unmount() {
-                      $remove(this.el!);
-                      this.el = undefined;
-                  },
-                  update() {},
-              };
-    } else if (isComponent(tree)) {
-        return tree;
-    } else if (isSubscribable(tree)) {
-        return $sub(tree, "span");
-    }
-    return $wrapText("span", null, tree);
-};
+export const $compile = (tree: any): IComponent =>
+    isArray(tree)
+        ? isComplexComponent(tree)
+            ? complexComponent(tree)
+            : basicComponent(tree)
+        : isComponent(tree)
+        ? tree
+        : isSubscribable(tree)
+        ? $sub(tree, "span")
+        : $wrapText("span", null, tree);
 
 const walk = (
     f: Fn2<any, NumOrString[], void>,
@@ -107,3 +64,46 @@ const isComplexComponent = (x: any) => {
     }
     return isSubscribable(x) || isComponent(x);
 };
+
+const complexComponent = (tree: any[]): CompiledComponent => ({
+    async mount(parent: Element, index: NumOrElement = -1) {
+        this.subs = [];
+        walk((x, path) => {
+            isSubscribable(x) &&
+                this.subs!.push(x.subscribe(new $SubA(this, path)));
+        }, tree[1]);
+        this.children = [];
+        this.el = $el(tree[0], tree[1], null, parent, index);
+        for (let i = 2; i < tree.length; i++) {
+            const child = $compile(tree[i]);
+            child.mount(this.el, i - 2);
+            this.children.push(child);
+        }
+        return this.el;
+    },
+    async unmount() {
+        SCHEDULER.cancel(this);
+        if (this.children) {
+            for (let c of this.children) {
+                await c.unmount();
+            }
+        }
+        this.subs && this.subs.forEach((s) => s.unsubscribe());
+        $remove(this.el!);
+        this.children = undefined;
+        this.subs = undefined;
+        this.el = undefined;
+    },
+    update() {},
+});
+
+const basicComponent = (tree: any): CompiledComponent => ({
+    async mount(parent: Element, index: NumOrElement = -1) {
+        return (this.el = await $tree(tree, parent, index));
+    },
+    async unmount() {
+        $remove(this.el!);
+        this.el = undefined;
+    },
+    update() {},
+});
