@@ -119,24 +119,13 @@ export class MemPool implements IMemPool {
             const blockSize = this.blockSize(block);
             const isTop = block + blockSize >= top;
             if (isTop || blockSize >= paddedSize) {
-                if (isTop && block + paddedSize > end) {
-                    return 0;
-                }
-                if (prev) {
-                    this.unlinkBlock(prev, block);
-                } else {
-                    this._free = this.blockNext(block);
-                }
-                this.setBlockNext(block, this._used);
-                this._used = block;
-                if (isTop) {
-                    this.top = block + this.setBlockSize(block, paddedSize);
-                } else if (this.doSplit) {
-                    const excess = blockSize - paddedSize;
-                    excess >= this.minSplit &&
-                        this.splitBlock(block, paddedSize, excess);
-                }
-                return blockDataAddress(block);
+                return this.mallocTop(
+                    block,
+                    prev,
+                    blockSize,
+                    paddedSize,
+                    isTop
+                );
             }
             prev = block;
             block = this.blockNext(block);
@@ -150,6 +139,31 @@ export class MemPool implements IMemPool {
             return blockDataAddress(block);
         }
         return 0;
+    }
+
+    private mallocTop(
+        block: number,
+        prev: number,
+        blockSize: number,
+        paddedSize: number,
+        isTop: boolean
+    ) {
+        if (isTop && block + paddedSize > this.end) return 0;
+        if (prev) {
+            this.unlinkBlock(prev, block);
+        } else {
+            this._free = this.blockNext(block);
+        }
+        this.setBlockNext(block, this._used);
+        this._used = block;
+        if (isTop) {
+            this.top = block + this.setBlockSize(block, paddedSize);
+        } else if (this.doSplit) {
+            const excess = blockSize - paddedSize;
+            excess >= this.minSplit &&
+                this.splitBlock(block, paddedSize, excess);
+        }
+        return blockDataAddress(block);
     }
 
     realloc(ptr: number, bytes: number) {
