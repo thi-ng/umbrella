@@ -9,11 +9,6 @@ import { IMGUI } from "../gui";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 
-interface TextfieldState {
-    cursor: number;
-    offset: number;
-}
-
 export const textField = (
     gui: IMGUI,
     layout: IGridLayout | LayoutBox,
@@ -104,6 +99,16 @@ export const textFieldRaw = (
                     [xx, y + h - 4],
                 ]);
         }
+
+        const move = (next: number, delta: number) => {
+            state.cursor = next;
+            if (drawCursor + delta < 0) {
+                state.offset = Math.max(offset + delta, 0);
+            } else if (drawCursor + delta > maxLen) {
+                state.offset = Math.min(offset + delta, maxOffset);
+            }
+        };
+
         const k = gui.key;
         switch (k) {
             case "":
@@ -118,15 +123,7 @@ export const textFieldRaw = (
                     const next = gui.isAltDown()
                         ? prevNonAlpha(txt, cursor - 1)
                         : cursor - 1;
-                    move(
-                        state,
-                        next,
-                        next - cursor,
-                        drawCursor,
-                        offset,
-                        maxLen,
-                        maxOffset
-                    );
+                    move(next, next - cursor);
                     return txt.substr(0, next) + txt.substr(cursor);
                 }
                 break;
@@ -143,15 +140,7 @@ export const textFieldRaw = (
                     const next = gui.isAltDown()
                         ? prevNonAlpha(txt, cursor - 1)
                         : cursor - 1;
-                    move(
-                        state,
-                        next,
-                        next - cursor,
-                        drawCursor,
-                        offset,
-                        maxLen,
-                        maxOffset
-                    );
+                    move(next, next - cursor);
                 }
                 break;
             case Key.RIGHT:
@@ -159,42 +148,18 @@ export const textFieldRaw = (
                     const next = gui.isAltDown()
                         ? nextNonAlpha(txt, cursor + 1)
                         : cursor + 1;
-                    move(
-                        state,
-                        next,
-                        next - cursor,
-                        drawCursor,
-                        offset,
-                        maxLen,
-                        maxOffset
-                    );
+                    move(next, next - cursor);
                 }
                 break;
             case Key.HOME:
-                move(state, 0, -cursor, drawCursor, offset, maxLen, maxOffset);
+                move(0, -cursor);
                 break;
             case Key.END:
-                move(
-                    state,
-                    txtLen,
-                    txtLen - cursor,
-                    drawCursor,
-                    offset,
-                    maxLen,
-                    maxOffset
-                );
+                move(txtLen, txtLen - cursor);
                 break;
             default: {
                 if (k.length === 1 && filter(k)) {
-                    move(
-                        state,
-                        cursor + 1,
-                        1,
-                        drawCursor,
-                        offset,
-                        maxLen,
-                        maxOffset
-                    );
+                    move(cursor + 1, 1);
                     return txt.substr(0, cursor) + k + txt.substr(cursor);
                 }
             }
@@ -216,21 +181,4 @@ const prevNonAlpha = (src: string, i: number) => {
     while (i > 0 && WS.test(src[i])) i--;
     for (; i > 0 && !WS.test(src[i]); i--) {}
     return i;
-};
-
-const move = (
-    state: TextfieldState,
-    next: number,
-    delta: number,
-    drawCursor: number,
-    offset: number,
-    maxLen: number,
-    maxOffset: number
-) => {
-    state.cursor = next;
-    if (drawCursor + delta < 0) {
-        state.offset = Math.max(offset + delta, 0);
-    } else if (drawCursor + delta > maxLen) {
-        state.offset = Math.min(offset + delta, maxOffset);
-    }
 };
