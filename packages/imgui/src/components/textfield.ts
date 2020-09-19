@@ -1,11 +1,12 @@
 import type { Predicate } from "@thi.ng/api";
 import { rect } from "@thi.ng/geom";
-import { IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
+import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { fitClamped } from "@thi.ng/math";
 import { hash } from "@thi.ng/vectors";
 import { Key } from "../api";
 import { isHoverSlider } from "../behaviors/slider";
 import { IMGUI } from "../gui";
+import { layoutBox } from "../layout";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 
@@ -17,7 +18,7 @@ export const textField = (
     filter: Predicate<string> = () => true,
     info?: string
 ) => {
-    const box = isLayout(layout) ? layout.next() : layout;
+    const box = layoutBox(layout);
     return textFieldRaw(
         gui,
         id,

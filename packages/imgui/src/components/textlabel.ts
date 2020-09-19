@@ -1,10 +1,11 @@
 import { Fn } from "@thi.ng/api";
 import { isPlainObject } from "@thi.ng/checks";
-import { IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
+import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import type { Color, GUITheme } from "../api";
 import { IMGUI } from "../gui";
 import { valHash } from "../hash";
+import { layoutBox } from "../layout";
 
 export const textLabel = (
     gui: IMGUI,
@@ -13,7 +14,7 @@ export const textLabel = (
     pad = false
 ) => {
     const theme = gui.theme;
-    const { x, y, h } = isLayout(layout) ? layout.next() : layout;
+    const { x, y, h } = layoutBox(layout);
     gui.draw &&
         gui.add([
             "text",

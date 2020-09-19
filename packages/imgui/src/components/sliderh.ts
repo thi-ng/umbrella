@@ -1,6 +1,6 @@
 import type { Fn } from "@thi.ng/api";
 import { rect } from "@thi.ng/geom";
-import { IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
+import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { fit, norm } from "@thi.ng/math";
 import { hash } from "@thi.ng/vectors";
 import {
@@ -10,6 +10,7 @@ import {
 } from "../behaviors/slider";
 import { IMGUI } from "../gui";
 import { valHash } from "../hash";
+import { layoutBox } from "../layout";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 
@@ -25,7 +26,7 @@ export const sliderH = (
     fmt?: Fn<number, string>,
     info?: string
 ) => {
-    const box = isLayout(layout) ? layout.next() : layout;
+    const box = layoutBox(layout);
     return sliderHRaw(
         gui,
         id,

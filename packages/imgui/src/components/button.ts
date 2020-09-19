@@ -1,12 +1,13 @@
 import { Fn5 } from "@thi.ng/api";
 import { rect } from "@thi.ng/geom";
 import type { IShape } from "@thi.ng/geom-api";
-import { IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
+import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { hash, ZERO2 } from "@thi.ng/vectors";
 import type { GUITheme, Hash } from "../api";
 import { handleButtonKeys, isHoverButton } from "../behaviors/button";
 import { IMGUI } from "../gui";
 import { labelHash } from "../hash";
+import { layoutBox } from "../layout";
 import { textLabelRaw, textTransformH, textTransformV } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 
@@ -41,7 +42,7 @@ export const buttonH = (
     labelHover = label,
     info?: string
 ) => {
-    const { x, y, w, h } = isLayout(layout) ? layout.next() : layout;
+    const { x, y, w, h } = layoutBox(layout);
     const key = hash([x, y, w, h]);
     return buttonRaw(
         gui,
@@ -68,7 +69,7 @@ export const buttonV = (
     labelHover = label,
     info?: string
 ) => {
-    const { x, y, w, h } = isLayout(layout) ? layout.next([1, rows]) : layout;
+    const { x, y, w, h } = layoutBox(layout, [1, rows]);
     const key = hash([x, y, w, h]);
     return buttonRaw(
         gui,

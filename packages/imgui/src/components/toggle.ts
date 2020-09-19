@@ -1,8 +1,9 @@
 import { rect } from "@thi.ng/geom";
-import { IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
+import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { hash } from "@thi.ng/vectors";
 import { handleButtonKeys, isHoverButton } from "../behaviors/button";
 import { IMGUI } from "../gui";
+import { layoutBox } from "../layout";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 
@@ -28,7 +29,7 @@ export const toggle = (
     label?: string,
     info?: string
 ) => {
-    const { x, y, w, h } = isLayout(layout) ? layout.next() : layout;
+    const { x, y, w, h } = layoutBox(layout);
     return toggleRaw(
         gui,
         id,
