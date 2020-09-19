@@ -39,18 +39,7 @@ export const dropdown = (
         const bt = buttonH(gui, box, `${id}-title`, title);
         draw &&
             gui.add(
-                gui.resource(id, key + 1, () =>
-                    polygon(
-                        [
-                            [tx - 4, ty + 2],
-                            [tx + 4, ty + 2],
-                            [tx, ty - 2],
-                        ],
-                        {
-                            fill: gui.textColor(false),
-                        }
-                    )
-                )
+                gui.resource(id, key + 1, () => triangle(gui, tx, ty, true))
             );
         if (bt) {
             gui.setState(id, false);
@@ -84,18 +73,7 @@ export const dropdown = (
         }
         draw &&
             gui.add(
-                gui.resource(id, key + 2, () =>
-                    polygon(
-                        [
-                            [tx - 4, ty - 2],
-                            [tx + 4, ty - 2],
-                            [tx, ty + 2],
-                        ],
-                        {
-                            fill: gui.textColor(false),
-                        }
-                    )
-                )
+                gui.resource(id, key + 2, () => triangle(gui, tx, ty, false))
             );
     }
     return res;
@@ -104,4 +82,18 @@ export const dropdown = (
 const update = (gui: IMGUI, id: string, next: number) => {
     gui.focusID = `${id}-${next}`;
     return next;
+};
+
+const triangle = (gui: IMGUI, x: number, y: number, open: boolean) => {
+    const s = open ? 2 : -2;
+    return polygon(
+        [
+            [x - 4, y + s],
+            [x + 4, y + s],
+            [x, y - s],
+        ],
+        {
+            fill: gui.textColor(false),
+        }
+    );
 };
