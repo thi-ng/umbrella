@@ -26,7 +26,7 @@ describe("serialize", () => {
             }
         );
         writeFileSync("out.egf", res);
-        assert.equal(
+        assert.strictEqual(
             res,
             `@prefix thi: http://thi.ng/
 @prefix schema: http://schema.org/

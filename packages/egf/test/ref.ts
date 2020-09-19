@@ -19,9 +19,9 @@ thi:c
 `,
             { opts: { prefixes: true, resolve: true } }
         ).nodes;
-        assert.deepEqual(db["thi.ng/a"].partof, { $id: "thi.ng/b" });
-        assert.equal(db["thi.ng/a"].knows.$id, "alt.thi.ng/c");
-        assert.equal(db["alt.thi.ng/c"].diff.$id, "alt.thi.ng/a");
+        assert.deepStrictEqual(db["thi.ng/a"].partof, { $id: "thi.ng/b" });
+        assert.strictEqual(db["thi.ng/a"].knows.$id, "alt.thi.ng/c");
+        assert.strictEqual(db["alt.thi.ng/c"].diff.$id, "alt.thi.ng/a");
     });
 
     it("resolve circular", () => {
@@ -35,8 +35,8 @@ b
 `,
             { opts: { resolve: true } }
         ).nodes;
-        assert.equal(db.a.knows.$id, "b");
-        assert.equal(db.b.knows.$id, "a");
+        assert.strictEqual(db.a.knows.$id, "b");
+        assert.strictEqual(db.b.knows.$id, "a");
     });
 
     it("ref array item (unresolved)", () => {

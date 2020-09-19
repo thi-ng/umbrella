@@ -63,19 +63,19 @@ export const toEGFNode = (
     return res.join("\n");
 };
 
-export const toEGFProp = (_: string, x: any) =>
-    isString(x)
-        ? x.indexOf("\n") >= 0
-            ? `>>>${x}<<<`
-            : x
-        : isNumber(x)
-        ? `#num ${x}`
-        : isDate(x)
-        ? `#date ${x.toISOString()}`
-        : isTypedArray(x)
+export const toEGFProp = (_: string, val: any) =>
+    isString(val)
+        ? val.indexOf("\n") >= 0
+            ? `>>>${val}<<<`
+            : val
+        : isNumber(val)
+        ? `#num ${val}`
+        : isDate(val)
+        ? `#date ${val.toISOString()}`
+        : isTypedArray(val)
         ? `#base64 ${base64Encode(
-              new Uint8Array(x.buffer, x.byteOffset, x.byteLength)
+              new Uint8Array(val.buffer, val.byteOffset, val.byteLength)
           )}`
-        : isArray(x) || isPlainObject(x)
-        ? `#json ${JSON.stringify(x)}`
-        : x;
+        : isArray(val) || isPlainObject(val)
+        ? `#json ${JSON.stringify(val)}`
+        : String(val);
