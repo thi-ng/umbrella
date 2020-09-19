@@ -7,7 +7,7 @@ import {
     isNumber,
     isString,
 } from "@thi.ng/checks";
-import { illegalArgs } from "@thi.ng/errors";
+import { unsupported } from "@thi.ng/errors";
 import {
     ATTRIB_JOIN_DELIMS,
     formatPrefixes,
@@ -47,53 +47,58 @@ export const $tree = async (
     tree: any,
     parent: Element,
     idx: NumOrElement = -1
-): Promise<any> => {
-    if (isArray(tree)) {
-        const tag = tree[0];
-        // [tag, attribs, ...body]
-        if (isString(tag)) {
-            const n = tree.length;
-            const { 1: attribs, 2: body } = tree;
-            if (n === 3 && (isString(body) || isNumber(body))) {
-                // emmet-free base tag
-                const tmp = /^\w+/.exec(tag);
-                if (tmp && NO_SPANS[tmp[0]]) {
-                    // don't wrap single body in <span> here
-                    parent = $el(tag, attribs, body, parent, idx);
-                    return parent;
-                }
-            }
-            parent = $el(tag, attribs, null, parent, idx);
-            for (let i = 2; i < n; i++) {
-                $tree(tree[i], parent);
-            }
-            return parent;
-        }
-        // [icomponent, ...args]
-        if (isComponent(tag)) {
-            return tag.mount(parent, idx, ...tree.slice(1));
-        }
-        // [fn, ...args]
-        if (isFunction(tag)) {
-            return $tree(tag.apply(null, tree.slice(1)), parent);
-        }
-        illegalArgs(`tag not supported: ${tag}`);
-    }
-    if (isComponent(tree)) {
-        return tree.mount(parent, idx);
-    }
-    if (isDeref(tree)) {
-        return $tree(tree.deref(), parent);
-    }
-    if (isNotStringAndIterable(tree)) {
-        for (let t of tree) {
-            $tree(t, parent);
-        }
-        return;
-    }
-    return tree != null
+): Promise<any> =>
+    isArray(tree)
+        ? $treeElem(tree, parent, idx)
+        : isComponent(tree)
+        ? tree.mount(parent, idx)
+        : isDeref(tree)
+        ? $tree(tree.deref(), parent)
+        : isNotStringAndIterable(tree)
+        ? $treeIter(tree, parent)
+        : tree != null
         ? $el("span", null, tree, <HTMLElement>parent, idx)
         : null;
+
+const $treeElem = (tree: any, parent: Element, idx: NumOrElement) => {
+    const tag = tree[0];
+    // [tag, attribs, ...body]
+    return isString(tag)
+        ? $treeTag(tree, parent, idx)
+        : // [icomponent, ...args]
+        isComponent(tag)
+        ? tag.mount(parent, idx, ...tree.slice(1))
+        : // [fn, ...args]
+        isFunction(tag)
+        ? $tree(tag.apply(null, tree.slice(1)), parent)
+        : // unsupported
+          unsupported(`tag: ${tag}`);
+};
+
+const $treeTag = (tree: any, parent: Element, idx: NumOrElement) => {
+    const n = tree.length;
+    const { 0: tag, 1: attribs, 2: body } = tree;
+    if (n === 3 && (isString(body) || isNumber(body))) {
+        // emmet-free base tag
+        const tmp = /^\w+/.exec(tag);
+        if (tmp && NO_SPANS[tmp[0]]) {
+            // don't wrap single body in <span> here
+            parent = $el(tag, attribs, body, parent, idx);
+            return parent;
+        }
+    }
+    parent = $el(tag, attribs, null, parent, idx);
+    for (let i = 2; i < n; i++) {
+        $tree(tree[i], parent);
+    }
+    return parent;
+};
+
+const $treeIter = (tree: any, parent: Element) => {
+    for (let t of tree) {
+        $tree(t, parent);
+    }
+    return null;
 };
 
 /**
