@@ -15,7 +15,7 @@ import {
     submN,
     vop,
 } from "@thi.ng/vectors";
-import { addResults, CMP } from "./utils";
+import { addResults, CMP, into } from "./utils";
 
 export class NdQtNode<K extends ReadonlyVec, V> {
     pos: ReadonlyVec;
@@ -273,11 +273,7 @@ export class NdQuadtreeMap<K extends ReadonlyVec, V>
     }
 
     into(pairs: Iterable<Pair<K, V>>, eps = EPS) {
-        let ok = true;
-        for (let [k, v] of pairs) {
-            ok = this.set(k, v, eps) && ok;
-        }
-        return ok;
+        return into(this, pairs, eps);
     }
 
     remove(p: K) {

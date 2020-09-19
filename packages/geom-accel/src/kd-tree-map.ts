@@ -5,7 +5,7 @@ import { Heap } from "@thi.ng/heaps";
 import { EPS } from "@thi.ng/math";
 import { map } from "@thi.ng/transducers";
 import { distSq, ReadonlyVec, Vec } from "@thi.ng/vectors";
-import { addResults, CMP } from "./utils";
+import { addResults, CMP, into } from "./utils";
 
 type MaybeKdNode<K extends ReadonlyVec, V> = KdNode<K, V> | undefined;
 
@@ -139,11 +139,7 @@ export class KdTreeMap<K extends ReadonlyVec, V>
     }
 
     into(pairs: Iterable<Pair<K, V>>, eps = EPS) {
-        let ok = true;
-        for (let [k, v] of pairs) {
-            ok = this.set(k, v, eps) && ok;
-        }
-        return ok;
+        return into(this, pairs, eps);
     }
 
     remove(key: K) {

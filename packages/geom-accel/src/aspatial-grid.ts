@@ -11,6 +11,7 @@ import {
     subN,
     VecOpRoVV,
 } from "@thi.ng/vectors";
+import { into } from "./utils";
 
 /**
  * Common base class for {@link SpatialGrid2} and {@link SpatialGrid3}.
@@ -95,11 +96,7 @@ export abstract class ASpatialGrid<K extends ReadonlyVec, V>
     }
 
     into(pairs: Iterable<Pair<K, V>>, eps = EPS) {
-        let ok = true;
-        for (let [k, v] of pairs) {
-            ok = this.set(k, v, eps) && ok;
-        }
-        return ok;
+        return into(this, pairs, eps);
     }
 
     remove(k: K) {
