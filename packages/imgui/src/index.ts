@@ -20,3 +20,4 @@ export * from "./components/xypad";
 export * from "./behaviors/button";
 export * from "./behaviors/dial";
 export * from "./behaviors/slider";
+export * from "./behaviors/text";
