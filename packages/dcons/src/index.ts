@@ -104,22 +104,20 @@ export class DCons<T>
 
     equiv(o: any) {
         if (
-            (o instanceof DCons || isArrayLike(o)) &&
-            this._length === o.length
+            !(o instanceof DCons || isArrayLike(o)) ||
+            this._length !== o.length
         ) {
-            if (this._length === 0) {
-                return true;
-            }
-            let cell = this.head;
-            for (let x of <any>o) {
-                if (!equiv(cell!.value, x)) {
-                    return false;
-                }
-                cell = cell!.next;
-            }
-            return true;
+            return false;
         }
-        return false;
+        if (!this._length || this === o) return true;
+        let cell = this.head;
+        for (let x of <any>o) {
+            if (!equiv(cell!.value, x)) {
+                return false;
+            }
+            cell = cell!.next;
+        }
+        return true;
     }
 
     *[Symbol.iterator]() {
