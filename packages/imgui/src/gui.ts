@@ -145,8 +145,7 @@ export class IMGUI implements IClear, IToHiccup {
      * Removes current theme from stack (unless only one theme left).
      */
     endTheme() {
-        const stack = this.themeStack;
-        stack.length > 1 && stack.pop();
+        popIfNotLast(this.themeStack);
     }
 
     /**
@@ -178,8 +177,7 @@ export class IMGUI implements IClear, IToHiccup {
      * Removes current disabled flag from stack (unless only one theme left).
      */
     endDisabled() {
-        const stack = this.disabledStack;
-        stack.length > 1 && stack.pop();
+        popIfNotLast(this.disabledStack);
     }
 
     /**
@@ -313,7 +311,13 @@ export class IMGUI implements IClear, IToHiccup {
         }
         this.key === Key.TAB && (this.focusID = "");
         this.key = "";
-        // garbage collect unused component state / resources
+        this.gc();
+    }
+
+    /**
+     * Garbage collect unused component state / resources.
+     */
+    gc() {
         const prev = this.prevIDs;
         const curr = this.currIDs;
         for (let id of prev) {
@@ -461,3 +465,5 @@ export class IMGUI implements IClear, IToHiccup {
         ];
     }
 }
+
+const popIfNotLast = (stack: any[]) => stack.length > 1 && stack.pop();
