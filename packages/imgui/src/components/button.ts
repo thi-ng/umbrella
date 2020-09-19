@@ -1,16 +1,37 @@
+import { Fn5 } from "@thi.ng/api";
 import { rect } from "@thi.ng/geom";
 import type { IShape } from "@thi.ng/geom-api";
 import { IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
 import { hash, ZERO2 } from "@thi.ng/vectors";
-import type { Color, Hash } from "../api";
+import type { GUITheme, Hash } from "../api";
 import { handleButtonKeys, isHoverButton } from "../behaviors/button";
 import { IMGUI } from "../gui";
 import { labelHash } from "../hash";
 import { textLabelRaw, textTransformH, textTransformV } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 
-const mkLabel = (transform: number[], fill: Color, label: string) =>
-    textLabelRaw(ZERO2, { transform, fill }, label);
+const mkLabel = (
+    gui: IMGUI,
+    tx: Fn5<GUITheme, number, number, number, number, number[]>,
+    id: string,
+    key: number,
+    x: number,
+    y: number,
+    w: number,
+    h: number,
+    hover: boolean,
+    label: string
+) =>
+    gui.resource(id, labelHash(key, label, gui.disabled), () =>
+        textLabelRaw(
+            ZERO2,
+            {
+                transform: tx(gui.theme, x, y, w, h),
+                fill: gui.textColor(hover),
+            },
+            label
+        )
+    );
 
 export const buttonH = (
     gui: IMGUI,
@@ -20,7 +41,6 @@ export const buttonH = (
     labelHover = label,
     info?: string
 ) => {
-    const theme = gui.theme;
     const { x, y, w, h } = isLayout(layout) ? layout.next() : layout;
     const key = hash([x, y, w, h]);
     return buttonRaw(
@@ -29,22 +49,11 @@ export const buttonH = (
         gui.resource(id, key, () => rect([x, y], [w, h])),
         key,
         label
-            ? gui.resource(id, labelHash(key, label, gui.disabled), () =>
-                  mkLabel(
-                      textTransformH(theme, x, y, w, h),
-                      gui.textColor(false),
-                      label
-                  )
-              )
+            ? mkLabel(gui, textTransformH, id, key, x, y, w, h, false, label)
             : undefined,
         labelHover
-            ? gui.resource(id, labelHash(key, labelHover, gui.disabled), () =>
-                  mkLabel(
-                      textTransformH(theme, x, y, w, h),
-                      gui.textColor(true),
-                      labelHover
-                  )
-              )
+            ? // prettier-ignore
+              mkLabel(gui, textTransformH, id, key, x, y, w, h, true, labelHover)
             : undefined,
         info
     );
@@ -59,7 +68,6 @@ export const buttonV = (
     labelHover = label,
     info?: string
 ) => {
-    const theme = gui.theme;
     const { x, y, w, h } = isLayout(layout) ? layout.next([1, rows]) : layout;
     const key = hash([x, y, w, h]);
     return buttonRaw(
@@ -68,22 +76,11 @@ export const buttonV = (
         gui.resource(id, key, () => rect([x, y], [w, h])),
         key,
         label
-            ? gui.resource(id, labelHash(key, label, gui.disabled), () =>
-                  mkLabel(
-                      textTransformV(theme, x, y, w, h),
-                      gui.textColor(false),
-                      label
-                  )
-              )
+            ? mkLabel(gui, textTransformV, id, key, x, y, w, h, false, label)
             : undefined,
         labelHover
-            ? gui.resource(id, labelHash(key, labelHover, gui.disabled), () =>
-                  mkLabel(
-                      textTransformV(theme, x, y, w, h),
-                      gui.textColor(true),
-                      labelHover
-                  )
-              )
+            ? // prettier-ignore
+              mkLabel(gui, textTransformV, id, key, x, y, w, h, true, labelHover)
             : undefined,
         info
     );
