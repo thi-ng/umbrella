@@ -3,13 +3,14 @@ import { days, defFormat, FMT_yyyyMMdd, hours, months, years } from "../src";
 
 describe("date", () => {
     it("hours", () => {
+        const fmt = defFormat(["dd", " ", "h", ":", "mm", " ", "A"]);
         assert.deepStrictEqual(
             [
                 ...hours(
                     Date.UTC(2019, 11, 30, 15, 1),
                     Date.UTC(2019, 11, 31, 15, 1)
                 ),
-            ].map(defFormat(["dd", " ", "h", ":", "mm", " ", "A"])),
+            ].map((x) => fmt(x)),
             [
                 "30 4:00 PM",
                 "30 5:00 PM",
@@ -41,9 +42,9 @@ describe("date", () => {
 
     it("days", () => {
         assert.deepStrictEqual(
-            [...days(Date.UTC(2019, 11, 30, 15), Date.UTC(2020, 1, 1, 1))].map(
-                FMT_yyyyMMdd
-            ),
+            [
+                ...days(Date.UTC(2019, 11, 30, 15), Date.UTC(2020, 1, 1, 1)),
+            ].map((x) => FMT_yyyyMMdd(x)),
             [
                 "2019-12-31",
                 "2020-01-01",
@@ -86,7 +87,7 @@ describe("date", () => {
         assert.deepStrictEqual(
             [
                 ...months(Date.UTC(2019, 10, 30, 15), Date.UTC(2020, 10, 1, 1)),
-            ].map(FMT_yyyyMMdd),
+            ].map((x) => FMT_yyyyMMdd(x)),
             [
                 "2019-12-01",
                 "2020-01-01",
@@ -108,7 +109,7 @@ describe("date", () => {
         assert.deepStrictEqual(
             [
                 ...years(Date.UTC(1996, 10, 30, 15), Date.UTC(2005, 10, 1, 1)),
-            ].map(FMT_yyyyMMdd),
+            ].map((x) => FMT_yyyyMMdd(x)),
             [
                 "1997-01-01",
                 "1998-01-01",
