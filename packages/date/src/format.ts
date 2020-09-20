@@ -1,9 +1,10 @@
-import type { Fn } from "@thi.ng/api";
-import { MONTH_NAMES, WEEKDAYS } from "./api";
+import { DAY, FormatFn, HOUR, MINUTE, SECOND } from "./api";
+import { DateTime } from "./datetime";
+import { LOCALE } from "./i18n";
 
 const Z2 = (x: number) => (x < 10 ? "0" + x : String(x));
 
-export const FORMATTERS: Record<string, Fn<Date, string>> = {
+export const FORMATTERS: Record<string, FormatFn> = {
     /**
      * Full year (4 digits)
      */
@@ -15,7 +16,7 @@ export const FORMATTERS: Record<string, Fn<Date, string>> = {
     /**
      * 3-letter month name (e.g. `Feb`)
      */
-    MMM: (d) => MONTH_NAMES[d.getMonth()],
+    MMM: (d) => LOCALE.months[d.getMonth()],
     /**
      * Zero-padded 2-digit month
      */
@@ -35,7 +36,7 @@ export const FORMATTERS: Record<string, Fn<Date, string>> = {
     /**
      * 3-letter weekday name (e.g. `Mon`)
      */
-    E: (d) => WEEKDAYS[d.getDay()],
+    E: (d) => LOCALE.days[d.getDay()],
     /**
      * Zero-padded 2-digit hour of day (0-23)
      */
@@ -89,8 +90,10 @@ export const FORMATTERS: Record<string, Fn<Date, string>> = {
 };
 
 /**
- * Returns a new date formatter for given format string. The returned function
- * accepts timestamps or `Date` instances.
+ * Returns a new date formatter for given array of format strings (or
+ * functions). The returned function accepts timestamps (epoch), `Date` or
+ * `DateTime` instances and accepts an optional boolean arg to output UTC
+ * instead of local time (default).
  *
  * @remarks
  * See {@link FORMATTERS} for available date component format IDs.
@@ -99,29 +102,76 @@ export const FORMATTERS: Record<string, Fn<Date, string>> = {
  * ```ts
  * const fmt = defFormat(["yyyy", "-", "MM", "-", "dd"]);
  *
- * fmt(Date.UTC(2015, 4, 23))
+ * fmt(new Date(2015, 3, 23))
  * // 2015-04-23
  * ```
  *
  * @param fmt
  */
-export const defFormat = (fmt: string[]) => (x: Date | number) => {
-    const d = typeof x === "number" ? new Date(x) : x;
+export const defFormat = (fmt: (string | FormatFn)[]) => (
+    x: DateTime | Date | number,
+    utc = false
+) => {
+    let d =
+        typeof x === "number"
+            ? new Date(x)
+            : x instanceof DateTime
+            ? x.toDate()
+            : x;
+    utc && (d = new Date(d.getTime() + d.getTimezoneOffset() * MINUTE));
     return fmt
-        .map((f) => {
-            const fmt = FORMATTERS[f];
-            return fmt ? fmt(d) : f;
+        .map((x) => {
+            let fmt: FormatFn;
+            return typeof x === "string"
+                ? (fmt = FORMATTERS[x])
+                    ? fmt(d)
+                    : x
+                : typeof x === "function"
+                ? x(d)
+                : x;
         })
         .join("");
 };
 
+/**
+ * Format preset, e.g. `2020-09-19`
+ */
 export const FMT_yyyyMMdd = defFormat(["yyyy", "-", "MM", "-", "dd"]);
-export const FMT_MMddyyyy = defFormat(["MM", "/", "dd", "/", "yyyy"]);
-export const FMT_MMMddyyyy = defFormat(["MMM", " ", "dd", " ", "yyyy"]);
-export const FMT_ddMMyyyy = defFormat(["dd", "/", "MM", "/", "yyyy"]);
-export const FMT_ddMMMyyyy = defFormat(["dd", " ", "MMM", " ", "yyyy"]);
-
+/**
+ * Format preset, e.g. `9/19/2020`
+ */
+export const FMT_Mdyyyy = defFormat(["M", "/", "d", "/", "yyyy"]);
+/**
+ * Format preset, e.g. `Sep 19 2020`. Uses current `LOCALE`, see
+ * {@link setLocale}.
+ */
+export const FMT_MMMdyyyy = defFormat(["MMM", " ", "d", " ", "yyyy"]);
+/**
+ * Format preset, e.g. `19/9/2020`
+ */
+export const FMT_dMyyyy = defFormat(["d", "/", "M", "/", "yyyy"]);
+/**
+ * Format preset, e.g. `19 Sep 2020`
+ */
+export const FMT_dMMMyyyy = defFormat(["d", " ", "MMM", " ", "yyyy"]);
+/**
+ * Format preset, e.g. `17:08`
+ */
 export const FMT_HHmm = defFormat(["HH", ":", "mm"]);
+/**
+ * Format preset, e.g. `5:08 PM`
+ */
 export const FMT_hm = defFormat(["h", ":", "mm", " ", "A"]);
+/**
+ * Format preset, e.g. `17:08:01`
+ */
 export const FMT_HHmmss = defFormat(["HH", ":", "mm", ":", "ss"]);
+/**
+ * Format preset, e.g. `5:08:01 PM`
+ */
 export const FMT_hms = defFormat(["h", ":", "mm", ":", "ss", " ", "A"]);
+/**
+ * Format preset, e.g. `20200919-170801`
+ */
+// prettier-ignore
+export const FMT_yyyyMMdd_HHmmss = defFormat(["yyyy", "MM", "dd", "-", "HH", "mm", "ss"]);
