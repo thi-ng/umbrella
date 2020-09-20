@@ -79,6 +79,7 @@
         "proximity",
         "quadratic",
         "sample",
+        "shape",
         "spline",
         "split",
         "typescript"

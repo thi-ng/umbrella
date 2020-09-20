@@ -61,8 +61,8 @@
         "lib"
     ],
     "keywords": [
-        "clojure",
         "component",
+        "fileformat",
         "functional",
         "hiccup",
         "html",

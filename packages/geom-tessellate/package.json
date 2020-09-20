@@ -67,6 +67,8 @@
         "convex",
         "geometry",
         "polygon",
+        "shape",
+        "subdivision",
         "tessellation",
         "typescript"
     ],

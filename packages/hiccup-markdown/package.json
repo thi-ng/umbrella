@@ -68,7 +68,8 @@
     "keywords": [
         "ast",
         "conversion",
-        "DOM",
+        "dom",
+        "fileformat",
         "hiccup",
         "markdown",
         "parser",

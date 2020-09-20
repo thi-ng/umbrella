@@ -64,7 +64,8 @@
         "dsp",
         "export",
         "fileformat",
-        "typescript"
+        "typescript",
+        "wav"
     ],
     "publishConfig": {
         "access": "public"

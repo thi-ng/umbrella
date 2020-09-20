@@ -59,17 +59,21 @@
         "lib"
     ],
     "keywords": [
-        "component",
+        "color",
+        "codegen",
         "conversion",
-        "generator",
+        "fileformat",
+        "gradient",
         "hiccup",
         "hdom",
         "svg",
         "serialization",
+        "shape",
         "tree",
         "typescript",
         "ui",
-        "visualization"
+        "visualization",
+        "xml"
     ],
     "publishConfig": {
         "access": "public"

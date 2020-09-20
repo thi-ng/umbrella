@@ -67,6 +67,7 @@
         "graphics",
         "hiccup",
         "scenegraph",
+        "svg",
         "tree",
         "typescript"
     ],

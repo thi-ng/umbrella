@@ -56,7 +56,8 @@
         "lib"
     ],
     "keywords": [
-        "attributes",
+        "dsl",
+        "fileformat",
         "hiccup",
         "html",
         "typecheck",

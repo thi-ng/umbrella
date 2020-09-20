@@ -61,8 +61,11 @@
         "interval",
         "iterator",
         "math",
+        "presets",
+        "smpte",
         "time",
-        "typescript"
+        "typescript",
+        "utc"
     ],
     "publishConfig": {
         "access": "public"

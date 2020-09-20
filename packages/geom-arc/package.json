@@ -70,6 +70,7 @@
         "geometry",
         "interpolation",
         "sample",
+        "shape",
         "svg",
         "typescript"
     ],

@@ -60,17 +60,16 @@
         "lib"
     ],
     "keywords": [
-        "clojure",
+        "css",
+        "codegen",
         "component",
-        "hiccup",
-        "html",
+        "dsl",
+        "fileformat",
         "iterator",
+        "hiccup",
         "json",
         "serialization",
-        "svg",
-        "template",
-        "typescript",
-        "xml"
+        "typescript"
     ],
     "publishConfig": {
         "access": "public"
