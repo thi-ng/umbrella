@@ -1,6 +1,14 @@
+import type { ICopy } from "@thi.ng/api";
 import { DAYS_IN_MONTH, Precision } from "./api";
 
-export class DateTime {
+export const dateTime = (epoch?: Date | number, prec?: Precision) =>
+    new DateTime(epoch, prec);
+
+/**
+ * Epoch abstraction with adjustable coarseness/precision. All date fields in
+ * UTC only.
+ */
+export class DateTime implements ICopy<DateTime> {
     t: number;
     s: number;
     m: number;
@@ -9,20 +17,33 @@ export class DateTime {
     M: number;
     y: number;
 
-    constructor(epoch: number, id: Precision = "t") {
-        const x = new Date(epoch);
-        const prec = "yMdhmst".indexOf(id);
-        this.y = prec >= 0 ? x.getUTCFullYear() : 1970;
-        this.M = prec >= 1 ? x.getUTCMonth() : 0;
-        this.d = prec >= 2 ? x.getUTCDate() : 1;
-        this.h = prec >= 3 ? x.getUTCHours() : 0;
-        this.m = prec >= 4 ? x.getUTCMinutes() : 0;
-        this.s = prec >= 5 ? x.getUTCSeconds() : 0;
-        this.t = prec >= 6 ? x.getUTCMilliseconds() : 0;
+    constructor(epoch: Date | number = Date.now(), prec: Precision = "t") {
+        const x = typeof epoch === "number" ? new Date(epoch) : epoch;
+        const id = "yMdhmst".indexOf(prec);
+        this.y = x.getUTCFullYear();
+        this.M = id >= 1 ? x.getUTCMonth() : 0;
+        this.d = id >= 2 ? x.getUTCDate() : 1;
+        this.h = id >= 3 ? x.getUTCHours() : 0;
+        this.m = id >= 4 ? x.getUTCMinutes() : 0;
+        this.s = id >= 5 ? x.getUTCSeconds() : 0;
+        this.t = id >= 6 ? x.getUTCMilliseconds() : 0;
+    }
+
+    copy() {
+        return new DateTime(this.getTime());
     }
 
     getTime() {
         return Date.UTC(this.y, this.M, this.d, this.h, this.m, this.s, this.t);
+    }
+
+    daysInMonth() {
+        const days = DAYS_IN_MONTH[this.M];
+        return days + (this.M === 1 && this.isLeapYear() ? 1 : 0);
+    }
+
+    isLeapYear() {
+        return this.y % 4 === 0;
     }
 
     incMillisecond() {
@@ -58,7 +79,7 @@ export class DateTime {
     }
 
     incDay() {
-        if (++this.d > DAYS_IN_MONTH[this.M]) {
+        if (++this.d > this.daysInMonth()) {
             this.d = 1;
             this.incMonth();
         }
@@ -76,5 +97,21 @@ export class DateTime {
     incYear() {
         // TODO epoch overflow handling, throw error?
         return ++this.y;
+    }
+
+    toDate() {
+        return new Date(this.getTime());
+    }
+
+    toJSON() {
+        return this.toISOString();
+    }
+
+    toString() {
+        return this.toDate().toString();
+    }
+
+    toISOString() {
+        return this.toDate().toISOString();
     }
 }
