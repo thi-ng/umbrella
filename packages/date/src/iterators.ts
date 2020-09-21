@@ -7,7 +7,9 @@ export const defIterator = (
     tick: Fn<DateTime, void>
 ): EpochIteratorConstructor => {
     return function* (...xs: any[]): EpochIterator {
-        const [from, to] = xs.length > 1 ? xs : xs[0];
+        let [from, to] = (<number[]>(xs.length > 1 ? xs : xs[0])).map((x) =>
+            new DateTime(x).getTime()
+        );
         let state = new DateTime(from, prec);
         let epoch = from;
         while (epoch < to) {

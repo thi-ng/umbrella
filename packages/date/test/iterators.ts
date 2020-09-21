@@ -1,5 +1,14 @@
 import * as assert from "assert";
-import { days, defFormat, FMT_yyyyMMdd, hours, months, years } from "../src";
+import {
+    dateTime,
+    days,
+    defFormat,
+    FMT_yyyyMMdd,
+    hours,
+    months,
+    YEAR,
+    years,
+} from "../src";
 
 describe("date", () => {
     it("hours", () => {
@@ -121,6 +130,17 @@ describe("date", () => {
                 "2004-01-01",
                 "2005-01-01",
             ]
+        );
+    });
+
+    it("arg coercion", () => {
+        assert.deepStrictEqual(
+            [...years(dateTime(0), dateTime(YEAR))].map((x) => FMT_yyyyMMdd(x)),
+            ["1970-01-01", "1971-01-01"]
+        );
+        assert.deepStrictEqual(
+            [...years(new Date(0), new Date(YEAR))].map((x) => FMT_yyyyMMdd(x)),
+            ["1970-01-01", "1971-01-01"]
         );
     });
 });

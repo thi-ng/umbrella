@@ -1,5 +1,5 @@
 import { DAY, FormatFn, HOUR, MINUTE, SECOND } from "./api";
-import { DateTime } from "./datetime";
+import { DateTime, ensureDate } from "./datetime";
 import { LOCALE } from "./i18n";
 
 const Z2 = (x: number) => (x < 10 ? "0" + x : String(x));
@@ -112,12 +112,7 @@ export const defFormat = (fmt: (string | FormatFn)[]) => (
     x: DateTime | Date | number,
     utc = false
 ) => {
-    let d =
-        typeof x === "number"
-            ? new Date(x)
-            : x instanceof DateTime
-            ? x.toDate()
-            : x;
+    let d = ensureDate(x);
     utc && (d = new Date(d.getTime() + d.getTimezoneOffset() * MINUTE));
     return fmt
         .map((x) => {
@@ -177,7 +172,7 @@ export const FMT_hms = defFormat(["h", ":", "mm", ":", "ss", " ", "A"]);
 export const FMT_yyyyMMdd_HHmmss = defFormat(["yyyy", "MM", "dd", "-", "HH", "mm", "ss"]);
 
 /**
- * Returns a time formatter for given FPS (frames / second, in [1..100] range),
+ * Returns a time formatter for given FPS (frames / second, in [1..1000] range),
  * e.g. `HH:mm:ss:ff`. The returned function takes a single arg (time in
  * milliseconds) and returns formatted string.
  *

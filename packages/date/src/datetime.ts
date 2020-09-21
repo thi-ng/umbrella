@@ -17,8 +17,11 @@ export class DateTime implements ICopy<DateTime> {
     M: number;
     y: number;
 
-    constructor(epoch: Date | number = Date.now(), prec: Precision = "t") {
-        const x = typeof epoch === "number" ? new Date(epoch) : epoch;
+    constructor(
+        epoch: DateTime | Date | number = Date.now(),
+        prec: Precision = "t"
+    ) {
+        const x = ensureDate(epoch);
         const id = "yMdhmst".indexOf(prec);
         this.y = x.getUTCFullYear();
         this.M = id >= 1 ? x.getUTCMonth() : 0;
@@ -108,10 +111,17 @@ export class DateTime implements ICopy<DateTime> {
     }
 
     toString() {
-        return this.toDate().toString();
+        return this.toDate().toUTCString();
     }
 
     toISOString() {
         return this.toDate().toISOString();
     }
 }
+
+export const ensureDate = (x: number | DateTime | Date) =>
+    typeof x === "number"
+        ? new Date(x)
+        : x instanceof DateTime
+        ? x.toDate()
+        : x;
