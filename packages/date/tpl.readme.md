@@ -39,43 +39,165 @@ ${docLink}
 
 TODO - Please see tests and doc strings in source for now...
 
+### DateTime & iterators
+
+The `DateTime` class acts as a thin wrapper around **UTC** epochs/timestamps,
+with the constructor supporting coercions and varying granularity/precision
+(from years to milliseconds). The main use case of this class is as backend for
+the various epoch iterators provided by this package, which in turn are largely
+intended for visualization purposes (axis tick label generators in
+[@thi.ng/viz](https://github.com/thi-ng/umbrella/tree/develop/packages/viz)).
+
+```ts
+// create w/ current date (or pass epoch, Date or DateTime instances)
+const a = dateTime();
+// DateTime { y: 2020, M: 8, d: 19, h: 12, m: 17, s: 16, t: 884 }
+
+// provide additional precision (here year only)
+const b = dateTime(a, "y");
+// DateTime { y: 2020, M: 0, d: 1, h: 0, m: 0, s: 0, t: 0 }
+
+a.toString();
+// Sat Sep 19 2020 12:17:16 GMT'
+a.toISOString()
+// '2020-09-19T12:17:16.884Z'
+
+b.toISOString();
+// 2020-01-01T00:00:00.000Z
+
+a.isLeapYear()
+// true
+
+a.daysInMonth()
+// 30
+
+[...months(b, a)]
+// [
+//   1577836800000,
+//   1580515200000,
+//   1583020800000,
+//   1585699200000,
+//   1588291200000,
+//   1590969600000,
+//   1593561600000,
+//   1596240000000,
+//   1598918400000
+// ]
+
+[...months(b, a)].map((x) => FMT_yyyyMMdd(x))
+// [
+//   '2020-01-01',
+//   '2020-02-01',
+//   '2020-03-01',
+//   '2020-04-01',
+//   '2020-05-01',
+//   '2020-06-01',
+//   '2020-07-01',
+//   '2020-08-01',
+//   '2020-09-01'
+// ]
+```
+
 ### Formatters
 
 Custom date/time formatters can be assembled via
-[`defFormat()`](https://github.com/thi-ng/umbrella/blob/develop/packages/date/src/format.ts#L85),
-using the following partial format identifiers.
+[`defFormat()`](https://github.com/thi-ng/umbrella/blob/develop/packages/date/src/format.ts#L93),
+using the following partial format identifiers. The `MMM` and `E` formatters use the currently active [locale](#locale).
 
-| ID     | Description                              |
-|--------|------------------------------------------|
-| `yyyy` | Full year (4 digits)                     |
-| `yy`   | Short year (2 digits)                    |
-| `MMM`  | 3-letter month name (e.g. `Feb`)         |
-| `MM`   | Zero-padded 2-digit month                |
-| `M`    | Unpadded month                           |
-| `dd`   | Zero-padded 2-digit day of month         |
-| `d`    | Unpadded day of month                    |
-| `E`    | 3-letter weekday name (e.g. `Mon`)       |
-| `HH`   | Zero-padded 2-digit hour of day (0-23)   |
-| `h`    | Unpadded hour of day (1-12)              |
-| `mm`   | Zero-padded 2-digit minute of hour       |
-| `m`    | Unpadded minute of hour                  |
-| `ss`   | Zero-padded 2-digit second of minute     |
-| `s`    | Unpadded second of minute                |
-| `S`    | Unpadded millisecond of second           |
-| `A`    | 12-hour AM/PM marker                     |
-| `Z`    | Timezone offset in signed `HH:mm` format |
+| ID     | Description                                 |
+|--------|---------------------------------------------|
+| `yyyy` | Full year (4 digits)                        |
+| `yy`   | Short year (2 digits)                       |
+| `MMM`  | Month name in current locale (e.g. `Feb`)   |
+| `MM`   | Zero-padded 2-digit month                   |
+| `M`    | Unpadded month                              |
+| `dd`   | Zero-padded 2-digit day of month            |
+| `d`    | Unpadded day of month                       |
+| `E`    | Weekday name in current locale (e.g. `Mon`) |
+| `HH`   | Zero-padded 2-digit hour of day (0-23)      |
+| `h`    | Unpadded hour of day (1-12)                 |
+| `mm`   | Zero-padded 2-digit minute of hour          |
+| `m`    | Unpadded minute of hour                     |
+| `ss`   | Zero-padded 2-digit second of minute        |
+| `s`    | Unpadded second of minute                   |
+| `S`    | Unpadded millisecond of second              |
+| `A`    | 12-hour AM/PM marker                        |
+| `Z`    | Timezone offset in signed `HH:mm` format    |
 
-Furthermore, the following preset formatters are available:
+<small>(Format IDs somewhat based on Java's [SimpleDateFormat](https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/text/SimpleDateFormat.html))</small>
+
+The following preset formatters are available:
 
 - `FMT_yyyyMMdd` - `"2020-09-13"`
-- `FMT_MMddyyyy` - `"09/13/2020"`
-- `FMT_MMMddyyyy` - `"Sep 13 2020"`
-- `FMT_ddMMyyyy` - `"13/09/2020"`
-- `FMT_ddMMMyyyy` - `"13 Sep 2020"`
+- `FMT_Mdyyyy` - `"9/13/2020"`
+- `FMT_MMMdyyyy` - `"Sep 13 2020"`
+- `FMT_dMyyyy` - `"13/9/2020"`
+- `FMT_dMMMyyyy` - `"13 Sep 2020"`
+- `FMT_yyyyMMdd_HHmmss` - `20200913-214207`
 - `FMT_HHmm` - `"21:42"`
 - `FMT_hm` - `"9:42 PM"`
 - `FMT_HHmmss` - `"21:42:07"`
 - `FMT_hms` - `"9:42:07 PM"`
+
+### Timecodes
+
+For timebased media applications, the higher-order `defTimecode()` can be used
+to create a formatter for a given FPS (frames / second, in [1..1000] range),
+e.g. `HH:mm:ss:ff`. The returned function takes a single arg (time in
+milliseconds) and returns formatted string.
+
+The timecode considers days too, but only includes them in the result if the day
+part is non-zero. The 4 separators between each field can be customized via 2nd
+arg (default: all `:`).
+
+```ts
+a = defTimecode(30);
+a(HOUR + 2*MINUTE + 3*SECOND + 4*1000/30)
+// "01:02:03:04"
+
+a(DAY);
+// "01:00:00:00:00"
+
+b = defTimecode(30, ["d ", "h ", "' ", '" ']);
+b(Day + HOUR + 2*MINUTE + 3*SECOND + 999)
+// "01d 01h 02' 03" 29"
+```
+
+### Locales
+
+The `MMM` (month) and `E` (weekday) formatters make use of the strings provided
+by the current `LOCALE` (default: `EN_SHORT`) and can be set/changed via the
+`setLocale()` function:
+
+```ts
+const fmt = defFormat(["E", " ", "d", " ", "MMM", " ", "yyyy"]);
+
+setLocale(EN_SHORT); // default
+// {
+//   months: [
+//     'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+//     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+//   ],
+//   days: [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ]
+// }
+
+fmt(dateTime());
+// Sat 19 Sep 2020
+
+setLocale(EN_LONG);
+// {
+//   months: [
+//     'January', 'February', 'March', 'April', 'May', 'June',
+//     'July', 'August', 'September', 'October', 'November', 'December'
+//   ],
+//   days: [
+//     'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+//   ]
+// }
+
+fmt(dateTime());
+// Saturday 19 September 2020
+```
 
 ## Authors
 
