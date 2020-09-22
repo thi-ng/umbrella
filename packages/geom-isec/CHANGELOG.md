@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isec@0.5.8...@thi.ng/geom-isec@0.6.0) (2020-09-22)
+
+
+### Bug Fixes
+
+* **geom-isec:** testCenteredAABBSphere() ([95a29b1](https://github.com/thi-ng/umbrella/commit/95a29b199077c741c83f4f78871f9627264f198d))
+
+
+### Features
+
+* **geom-isec:** update ray-line/polyline fns ([b3775b0](https://github.com/thi-ng/umbrella/commit/b3775b08e1c33cf7c2e94e0a4b119b33e4a104ba))
+
+
+
+
+
 ## [0.5.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isec@0.5.7...@thi.ng/geom-isec@0.5.8) (2020-09-13)
 
 **Note:** Version bump only for package @thi.ng/geom-isec

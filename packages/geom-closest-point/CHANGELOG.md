@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-closest-point@0.4.0...@thi.ng/geom-closest-point@0.5.0) (2020-09-22)
+
+
+### Bug Fixes
+
+* **geom-closest-point:** update closestPointPolyline() ([1358bac](https://github.com/thi-ng/umbrella/commit/1358bac1a95359340b19adb91b1813edf3e1645a))
+
+
+### Features
+
+* **geom-closest-point:** add support for custom dist fn ([95557f6](https://github.com/thi-ng/umbrella/commit/95557f6716071a92433868ce8536ca1c38a54073))
+
+
+
+
+
 # [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-closest-point@0.3.44...@thi.ng/geom-closest-point@0.4.0) (2020-09-13)
 
 

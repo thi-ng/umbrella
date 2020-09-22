@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.32](https://github.com/thi-ng/umbrella/compare/@thi.ng/router@2.0.31...@thi.ng/router@2.0.32) (2020-09-22)
+
+**Note:** Version bump only for package @thi.ng/router
+
+
+
+
+
 ## [2.0.31](https://github.com/thi-ng/umbrella/compare/@thi.ng/router@2.0.30...@thi.ng/router@2.0.31) (2020-09-13)
 
 **Note:** Version bump only for package @thi.ng/router

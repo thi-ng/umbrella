@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.11.8...@thi.ng/geom@1.12.0) (2020-09-22)
+
+
+### Features
+
+* **geom:** add basic text support ([9d1424d](https://github.com/thi-ng/umbrella/commit/9d1424d1c57e4d2c55fb6cfdd507f3ca7cd85dc3))
+
+
+
+
+
 ## [1.11.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.11.7...@thi.ng/geom@1.11.8) (2020-09-13)
 
 **Note:** Version bump only for package @thi.ng/geom

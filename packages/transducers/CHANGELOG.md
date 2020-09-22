@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.3.1...@thi.ng/transducers@7.4.0) (2020-09-22)
+
+
+### Features
+
+* **transducers:** add mapcatIndexed() xform ([4f3d6e0](https://github.com/thi-ng/umbrella/commit/4f3d6e02a0ff3fe7307cd03404277c03123f83e9))
+
+
+
+
+
 ## [7.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.3.0...@thi.ng/transducers@7.3.1) (2020-09-13)
 
 **Note:** Version bump only for package @thi.ng/transducers

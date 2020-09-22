@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.9.6...@thi.ng/strings@1.10.0) (2020-09-22)
+
+
+### Features
+
+* **strings:** add BOM const, update pkg meta ([b6751fc](https://github.com/thi-ng/umbrella/commit/b6751fc506a28a075ea9fee1a5f6d3520449f5af))
+* **strings:** add escape(), update unescape(), add tests ([e0d5f1e](https://github.com/thi-ng/umbrella/commit/e0d5f1edcdf78b075908c4973586a0f1732fe006))
+* **strings:** add unescape() ([924466b](https://github.com/thi-ng/umbrella/commit/924466bc5d5f16ced3da95fa2f24dab2bfad0679))
+
+
+
+
+
 ## [1.9.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.9.5...@thi.ng/strings@1.9.6) (2020-09-13)
 
 **Note:** Version bump only for package @thi.ng/strings
