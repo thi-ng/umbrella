@@ -54,8 +54,11 @@ export const normalizeElement = (spec: any[], keys: boolean) => {
     if (tag === name && hasAttribs && (!keys || spec[1].key)) {
         return spec;
     }
-    attribs = hasAttribs ? { ...spec[1] } : {};
-    mergeEmmetAttribs(attribs, match![2], match![3]);
+    attribs = mergeEmmetAttribs(
+        hasAttribs ? { ...spec[1] } : {},
+        match![2],
+        match![3]
+    );
     return attribs.__skip && spec.length < 3
         ? [name, attribs]
         : [name, attribs, ...spec.slice(hasAttribs ? 2 : 1)];
@@ -144,69 +147,63 @@ const _normalizeTree = (
         if (keys && nattribs.key === undefined) {
             nattribs.key = path.join("-");
         }
-        if (norm.length > 2) {
-            const tag = norm[0];
-            const res = [tag, nattribs];
-            span = span && !NO_SPANS[tag];
-            for (let i = 2, j = 2, k = 0, n = norm.length; i < n; i++) {
-                let el = norm[i];
-                if (el != null) {
-                    const isarray = isArray(el);
-                    if (
-                        (isarray && isArray(el[0])) ||
-                        (!isarray && isNotStringAndIterable(el))
-                    ) {
-                        for (let c of el) {
-                            c = _normalizeTree(
-                                c,
-                                opts,
-                                ctx,
-                                path.concat(k),
-                                keys,
-                                span
-                            );
-                            if (c !== undefined) {
-                                res[j++] = c;
-                            }
-                            k++;
-                        }
-                    } else {
-                        el = _normalizeTree(
-                            el,
-                            opts,
-                            ctx,
-                            path.concat(k),
-                            keys,
-                            span
-                        );
-                        if (el !== undefined) {
-                            res[j++] = el;
-                        }
-                        k++;
-                    }
-                }
-            }
-            return res;
-        }
-        return norm;
+        return norm.length > 2
+            ? normalizeChildren(norm, nattribs, opts, ctx, path, keys, span)
+            : norm;
     }
-    if (typeof tree === "function") {
-        return _normalizeTree(tree(ctx), opts, ctx, path, keys, span);
-    }
-    if (typeof tree.toHiccup === "function") {
-        return _normalizeTree(
-            tree.toHiccup(opts.ctx),
-            opts,
-            ctx,
-            path,
-            keys,
-            span
-        );
-    }
-    if (typeof tree.deref === "function") {
-        return _normalizeTree(tree.deref(), opts, ctx, path, keys, span);
-    }
-    return span
+    return typeof tree === "function"
+        ? _normalizeTree(tree(ctx), opts, ctx, path, keys, span)
+        : typeof tree.toHiccup === "function"
+        ? _normalizeTree(tree.toHiccup(opts.ctx), opts, ctx, path, keys, span)
+        : typeof tree.deref === "function"
+        ? _normalizeTree(tree.deref(), opts, ctx, path, keys, span)
+        : span
         ? ["span", keys ? { key: path.join("-") } : {}, tree.toString()]
         : tree.toString();
+};
+
+const normalizeChildren = (
+    norm: any[],
+    nattribs: any,
+    opts: Partial<HDOMOpts>,
+    ctx: any,
+    path: number[],
+    keys: boolean,
+    span: boolean
+) => {
+    const tag = norm[0];
+    const res = [tag, nattribs];
+    span = span && !NO_SPANS[tag];
+    for (let i = 2, j = 2, k = 0, n = norm.length; i < n; i++) {
+        let el = norm[i];
+        if (el != null) {
+            const isarray = isArray(el);
+            if (
+                (isarray && isArray(el[0])) ||
+                (!isarray && isNotStringAndIterable(el))
+            ) {
+                for (let c of el) {
+                    c = _normalizeTree(
+                        c,
+                        opts,
+                        ctx,
+                        path.concat(k),
+                        keys,
+                        span
+                    );
+                    if (c !== undefined) {
+                        res[j++] = c;
+                    }
+                    k++;
+                }
+            } else {
+                el = _normalizeTree(el, opts, ctx, path.concat(k), keys, span);
+                if (el !== undefined) {
+                    res[j++] = el;
+                }
+                k++;
+            }
+        }
+    }
+    return res;
 };
