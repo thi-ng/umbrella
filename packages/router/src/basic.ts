@@ -83,17 +83,7 @@ export class BasicRouter implements INotify {
             src = src.substr(1);
         }
         src = src.substr(this.config.prefix!.length);
-        const routes = this.config.routes,
-            curr = src.split(this.config.separator!);
-        let match;
-        for (let i = 0, n = routes.length; i < n; i++) {
-            const route = routes[i],
-                m = this.matchRoute(curr, route);
-            if (m) {
-                match = m;
-                break;
-            }
-        }
+        let match = this.matchRoutes(src);
         if (!match) {
             if (!this.handleRouteFailure()) {
                 return;
@@ -162,6 +152,17 @@ export class BasicRouter implements INotify {
 
     routeForID(id: string) {
         return this.config.routes.find((route) => route.id === id);
+    }
+
+    protected matchRoutes(src: string) {
+        const routes = this.config.routes;
+        const curr = src.split(this.config.separator!);
+        for (let i = 0, n = routes.length; i < n; i++) {
+            const match = this.matchRoute(curr, routes[i]);
+            if (match) {
+                return match;
+            }
+        }
     }
 
     protected matchRoute(curr: string[], route: Route): RouteMatch | undefined {
