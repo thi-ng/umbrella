@@ -5,10 +5,10 @@ import { cossin, fit01, TAU } from "@thi.ng/math";
 import {
     cartesian2,
     madd2,
-    maddN,
     mixCubic,
     mixN2,
     mixQuadratic,
+    pointAtOnRay,
     Vec,
 } from "@thi.ng/vectors";
 import { Arc } from "../api/arc";
@@ -45,7 +45,7 @@ pointAt.addAll(<IObjectOf<Implementation2<unknown, number, Vec>>>{
     [Type.QUADRATIC]: ({ points }: Quadratic, t) =>
         mixQuadratic([], points[0], points[1], points[2], t),
 
-    [Type.RAY]: ($: Ray, t) => maddN([], $.dir, t, $.pos),
+    [Type.RAY]: ($: Ray, t) => pointAtOnRay([], $.dir, t, $.pos),
 
     [Type.RECT]: ($: Rect, t) => new Sampler(vertices($), true).pointAt(t),
 });
