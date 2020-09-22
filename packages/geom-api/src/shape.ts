@@ -31,6 +31,9 @@ export enum Type {
     TRIANGLE3,
     RAY,
     RAY3,
+
+    TEXT,
+    TEXT3,
 }
 
 export type Attribs = IObjectOf<any>;
