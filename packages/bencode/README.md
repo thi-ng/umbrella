@@ -52,6 +52,8 @@ semi-open `[1e-6,1e21)` interval can be encoded.
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bbencode%5D)
+
 ## Installation
 
 ```bash

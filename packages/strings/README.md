@@ -36,6 +36,8 @@ Partially based on Clojure version of [thi.ng/strf](http://thi.ng/strf).
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bstrings%5D)
+
 ## Installation
 
 ```bash
@@ -50,7 +52,7 @@ yarn add @thi.ng/strings
 <script src="https://unpkg.com/@thi.ng/strings/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.44 KB / CJS: 2.67 KB / UMD: 2.55 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.72 KB / CJS: 2.97 KB / UMD: 2.84 KB
 
 ## Dependencies
 

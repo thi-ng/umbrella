@@ -53,6 +53,8 @@ Then per value:
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Brle-pack%5D)
+
 ### Related packages
 
 - [@thi.ng/bitstream](https://github.com/thi-ng/umbrella/tree/develop/packages/bitstream) - ES6 iterator based read/write bit streams with support for variable word widths

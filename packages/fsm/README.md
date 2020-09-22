@@ -33,6 +33,8 @@ case.
 
 **ALPHA** - bleeding edge / work-in-progress
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bfsm%5D)
+
 This package will be merged with and update the existing
 [@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-fsm)
 package.

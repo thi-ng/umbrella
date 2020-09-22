@@ -37,6 +37,8 @@ details.
 
 **BETA** - possibly breaking changes forthcoming
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bdot%5D)
+
 ## Installation
 
 ```bash

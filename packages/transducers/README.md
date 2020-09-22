@@ -83,6 +83,8 @@ a reduced result of the given input iterable.
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Btransducers%5D)
+
 ### 7.0.0 release
 
 Thanks to a [PR](https://github.com/thi-ng/umbrella/pull/223) and
@@ -165,7 +167,7 @@ yarn add @thi.ng/transducers
 <script src="https://unpkg.com/@thi.ng/transducers/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 8.14 KB / CJS: 8.69 KB / UMD: 7.88 KB
+Package sizes (gzipped, pre-treeshake): ESM: 8.17 KB / CJS: 8.71 KB / UMD: 7.89 KB
 
 ## Dependencies
 

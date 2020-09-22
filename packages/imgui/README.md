@@ -223,6 +223,8 @@ Some of the most obvious missing features:
 
 **ALPHA** - bleeding edge / work-in-progress
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bimgui%5D)
+
 ## Installation
 
 ```bash
@@ -237,7 +239,7 @@ yarn add @thi.ng/imgui
 <script src="https://unpkg.com/@thi.ng/imgui/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 6.64 KB / CJS: 6.83 KB / UMD: 6.94 KB
+Package sizes (gzipped, pre-treeshake): ESM: 6.73 KB / CJS: 6.92 KB / UMD: 6.97 KB
 
 ## Dependencies
 

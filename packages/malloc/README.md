@@ -123,6 +123,8 @@ capacity:
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bmalloc%5D)
+
 ## Installation
 
 ```bash
@@ -137,7 +139,7 @@ yarn add @thi.ng/malloc
 <script src="https://unpkg.com/@thi.ng/malloc/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.80 KB / CJS: 1.86 KB / UMD: 1.86 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.83 KB / CJS: 1.90 KB / UMD: 1.89 KB
 
 ## Dependencies
 

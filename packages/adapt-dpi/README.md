@@ -32,6 +32,8 @@ buffer itself based on DPR (e.g. 2x size).
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Badapt-dpi%5D)
+
 ## Installation
 
 ```bash

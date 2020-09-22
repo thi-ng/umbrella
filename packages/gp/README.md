@@ -49,6 +49,8 @@ References:
 
 **ALPHA** - bleeding edge / work-in-progress
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bgp%5D)
+
 ### Related packages
 
 - [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti) - Dynamic, extensible multiple dispatch via user supplied dispatch function.

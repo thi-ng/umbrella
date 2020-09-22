@@ -160,6 +160,8 @@ map.get([3,4], "n/a");
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bassociative%5D)
+
 ## Installation
 
 ```bash
@@ -174,7 +176,7 @@ yarn add @thi.ng/associative
 <script src="https://unpkg.com/@thi.ng/associative/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 6.22 KB / CJS: 6.42 KB / UMD: 6.20 KB
+Package sizes (gzipped, pre-treeshake): ESM: 6.23 KB / CJS: 6.42 KB / UMD: 6.20 KB
 
 ## Dependencies
 

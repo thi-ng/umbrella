@@ -55,6 +55,8 @@ reactive updates from performed state changes.
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Batom%5D)
+
 ## Breaking changes
 
 ### 4.0.0

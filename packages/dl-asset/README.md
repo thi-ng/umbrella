@@ -26,6 +26,8 @@ Local asset download for web apps, with automatic MIME type detection.
 
 **ALPHA** - bleeding edge / work-in-progress
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bdl-asset%5D)
+
 ## Installation
 
 ```bash

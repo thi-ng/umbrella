@@ -38,6 +38,8 @@ Currently available:
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bgeom-accel%5D)
+
 ## Installation
 
 ```bash
@@ -52,7 +54,7 @@ yarn add @thi.ng/geom-accel
 <script src="https://unpkg.com/@thi.ng/geom-accel/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.76 KB / CJS: 3.82 KB / UMD: 3.83 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.78 KB / CJS: 3.84 KB / UMD: 3.84 KB
 
 ## Dependencies
 

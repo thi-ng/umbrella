@@ -32,6 +32,8 @@ state update. By default all edits are performed non-destructively, but
 
 **ALPHA** - bleeding edge / work-in-progress
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Btransducers-patch%5D)
+
 ## Installation
 
 ```bash

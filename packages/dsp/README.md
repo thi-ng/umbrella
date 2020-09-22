@@ -45,6 +45,8 @@ Partially ported from other thi.ng projects (e.g.
 
 **BETA** - possibly breaking changes forthcoming
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bdsp%5D)
+
 Even though this library is now at v2.0.0 and still retains most of the
 features from earlier versions, all recently added features (IGen's,
 IProc's, composition ops etc.) should be considered "beta" and are

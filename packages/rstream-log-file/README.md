@@ -25,6 +25,8 @@ File output handler for structured, multilevel & hierarchical loggers based on [
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Brstream-log-file%5D)
+
 ## Installation
 
 ```bash

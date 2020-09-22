@@ -64,6 +64,8 @@ an ES6 embedded DSL for concatenative programming:
 
 **ALPHA** - bleeding edge / work-in-progress
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bpointfree-lang%5D)
+
 ## Installation
 
 ```bash
@@ -78,7 +80,7 @@ yarn add @thi.ng/pointfree-lang
 <script src="https://unpkg.com/@thi.ng/pointfree-lang/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.29 KB / CJS: 5.29 KB / UMD: 5.20 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.30 KB / CJS: 5.30 KB / UMD: 5.21 KB
 
 ## Dependencies
 

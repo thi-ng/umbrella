@@ -154,6 +154,8 @@ thi.ng/umbrella eco system (most relevant:
 
 **ALPHA** - bleeding edge / work-in-progress
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bhiccup-html%5D)
+
 The current aim is not necessarily to have wrappers for *each* possible
 HTML5 element, but certainly to support the most commonly used ones. PRs
 welcome!

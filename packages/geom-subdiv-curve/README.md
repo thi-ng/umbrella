@@ -42,6 +42,8 @@ Supplied / implemented subdivision schemes:
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bgeom-subdiv-curve%5D)
+
 ## Installation
 
 ```bash
@@ -56,7 +58,7 @@ yarn add @thi.ng/geom-subdiv-curve
 <script src="https://unpkg.com/@thi.ng/geom-subdiv-curve/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 640 bytes / CJS: 721 bytes / UMD: 780 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 657 bytes / CJS: 734 bytes / UMD: 788 bytes
 
 ## Dependencies
 

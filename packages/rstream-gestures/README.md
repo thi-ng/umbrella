@@ -33,6 +33,8 @@ Unified mouse, mouse wheel & multi-touch event stream abstraction. This is a sup
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Brstream-gestures%5D)
+
 ### Breaking changes
 
 Multi-touch support has been added in v2.0.0, resulting in a complete

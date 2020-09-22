@@ -100,6 +100,8 @@ programming:
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Brstream%5D)
+
 ### Breaking changes in 5.0.0
 
 Type inference for `sync()` (aka `StreamSync`), one of the main pillars of this
@@ -180,7 +182,7 @@ yarn add @thi.ng/rstream
 <script src="https://unpkg.com/@thi.ng/rstream/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.40 KB / CJS: 5.58 KB / UMD: 5.54 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.41 KB / CJS: 5.60 KB / UMD: 5.54 KB
 
 ## Dependencies
 

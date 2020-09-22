@@ -46,6 +46,8 @@ Wavefront OBJ parser (& exporter soon).
 
 **ALPHA** - bleeding edge / work-in-progress
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bgeom-io-obj%5D)
+
 ## Installation
 
 ```bash
@@ -60,7 +62,7 @@ yarn add @thi.ng/geom-io-obj
 <script src="https://unpkg.com/@thi.ng/geom-io-obj/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.02 KB / CJS: 1.07 KB / UMD: 1.20 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.03 KB / CJS: 1.08 KB / UMD: 1.19 KB
 
 ## Dependencies
 

@@ -35,6 +35,8 @@ still only sourced via `Date.now()`.
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bbench%5D)
+
 ## Installation
 
 ```bash

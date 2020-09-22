@@ -33,6 +33,8 @@ Current implementations partially based on
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bgeom-resample%5D)
+
 ## Installation
 
 ```bash
@@ -47,7 +49,7 @@ yarn add @thi.ng/geom-resample
 <script src="https://unpkg.com/@thi.ng/geom-resample/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.21 KB / CJS: 1.27 KB / UMD: 1.38 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.18 KB / CJS: 1.24 KB / UMD: 1.35 KB
 
 ## Dependencies
 

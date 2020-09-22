@@ -27,6 +27,8 @@ Basic WebGL scaffolding for running interactive fragment shaders via [@thi.ng/sh
 
 **ALPHA** - bleeding edge / work-in-progress
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bwebgl-shadertoy%5D)
+
 ### Related packages
 
 - [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast) - DSL to define shader code in TypeScript and cross-compile to GLSL, JS and other targets

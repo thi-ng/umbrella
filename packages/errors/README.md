@@ -28,6 +28,8 @@ Additional error types can be defined using
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Berrors%5D)
+
 ## Installation
 
 ```bash

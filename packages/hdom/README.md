@@ -100,6 +100,8 @@ Benefits:
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bhdom%5D)
+
 ### Support packages
 
 - [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-canvas) - [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom) component wrapper for declarative canvas scenegraphs
@@ -140,7 +142,7 @@ yarn install
 yarn start
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.69 KB / CJS: 3.79 KB / UMD: 3.72 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.65 KB / CJS: 3.75 KB / UMD: 3.67 KB
 
 ## Dependencies
 

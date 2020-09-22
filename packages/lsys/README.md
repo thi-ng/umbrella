@@ -44,6 +44,8 @@ Planned features:
 
 **BETA** - possibly breaking changes forthcoming
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Blsys%5D)
+
 ### Blog posts
 
 - [Workshop report: Generative design with Clojure](https://medium.com/@thi.ng/workshop-report-generative-design-with-clojure-7d6d8ea9a6e8)

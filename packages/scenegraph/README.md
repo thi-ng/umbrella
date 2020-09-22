@@ -26,6 +26,8 @@ Extensible 2D/3D scene graph with [@thi.ng/hiccup-canvas](https://github.com/thi
 
 **ALPHA** - bleeding edge / work-in-progress
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bscenegraph%5D)
+
 ## Installation
 
 ```bash
@@ -40,7 +42,7 @@ yarn add @thi.ng/scenegraph
 <script src="https://unpkg.com/@thi.ng/scenegraph/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 881 bytes / CJS: 923 bytes / UMD: 1.01 KB
+Package sizes (gzipped, pre-treeshake): ESM: 898 bytes / CJS: 937 bytes / UMD: 1.03 KB
 
 ## Dependencies
 

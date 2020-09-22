@@ -59,6 +59,8 @@ Largely declarative WebGL 1.0 / 2.0 abstraction layer, partially ported
 
 **BETA** - possibly breaking changes forthcoming
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bwebgl%5D)
+
 ### Support packages
 
 - [@thi.ng/webgl-msdf](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl-msdf) - Multi-channel SDF font rendering & basic text layout for WebGL
@@ -89,7 +91,7 @@ yarn add @thi.ng/webgl
 <script src="https://unpkg.com/@thi.ng/webgl/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 11.52 KB / CJS: 11.69 KB / UMD: 11.52 KB
+Package sizes (gzipped, pre-treeshake): ESM: 11.56 KB / CJS: 11.74 KB / UMD: 11.58 KB
 
 ## Dependencies
 

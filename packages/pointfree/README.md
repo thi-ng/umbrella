@@ -186,6 +186,8 @@ non-linear control flow.
 
 **ALPHA** - bleeding edge / work-in-progress
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bpointfree%5D)
+
 ### Support packages
 
 - [@thi.ng/pointfree-lang](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree-lang) - Forth style syntax layer/compiler & CLI for the [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree) DSL

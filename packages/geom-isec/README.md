@@ -48,6 +48,8 @@ Current implementations partially based on
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bgeom-isec%5D)
+
 ## Installation
 
 ```bash
@@ -62,7 +64,7 @@ yarn add @thi.ng/geom-isec
 <script src="https://unpkg.com/@thi.ng/geom-isec/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.48 KB / CJS: 2.64 KB / UMD: 2.60 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.45 KB / CJS: 2.61 KB / UMD: 2.60 KB
 
 ## Dependencies
 

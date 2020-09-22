@@ -40,6 +40,8 @@ these and keep any cycles async).
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Brstream-graph%5D)
+
 ## Installation
 
 ```bash
@@ -54,7 +56,7 @@ yarn add @thi.ng/rstream-graph
 <script src="https://unpkg.com/@thi.ng/rstream-graph/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.03 KB / CJS: 1.13 KB / UMD: 1.17 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.04 KB / CJS: 1.14 KB / UMD: 1.19 KB
 
 ## Dependencies
 

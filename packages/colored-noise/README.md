@@ -343,6 +343,8 @@ white
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bcolored-noise%5D)
+
 ### Related packages
 
 - [@thi.ng/dsp](https://github.com/thi-ng/umbrella/tree/develop/packages/dsp) - Composable signal generators, oscillators, filters, FFT, spectrum, windowing & related DSP utils

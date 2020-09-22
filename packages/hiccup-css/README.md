@@ -88,6 +88,8 @@ Clojure projects:
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bhiccup-css%5D)
+
 ## Installation
 
 ```bash
@@ -102,7 +104,7 @@ yarn add @thi.ng/hiccup-css
 <script src="https://unpkg.com/@thi.ng/hiccup-css/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.04 KB / CJS: 2.19 KB / UMD: 2.13 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.05 KB / CJS: 2.21 KB / UMD: 2.13 KB
 
 ## Dependencies
 

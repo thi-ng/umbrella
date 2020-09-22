@@ -39,6 +39,8 @@ in ~850ms (Chrome 72, MBP 2016)
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bgeom-voronoi%5D)
+
 ## Installation
 
 ```bash

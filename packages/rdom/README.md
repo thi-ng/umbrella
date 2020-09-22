@@ -29,6 +29,8 @@ Lightweight, reactive, VDOM-less UI/DOM components with async lifecycle and [@th
 
 **ALPHA** - bleeding edge / work-in-progress
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Brdom%5D)
+
 #### HIC SUNT DRACONES
 
 This is still a young project. Even though most of the overall approach,
@@ -72,7 +74,7 @@ yarn add @thi.ng/rdom
 <script src="https://unpkg.com/@thi.ng/rdom/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.75 KB / CJS: 3.89 KB / UMD: 3.86 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.71 KB / CJS: 3.86 KB / UMD: 3.84 KB
 
 ## Dependencies
 

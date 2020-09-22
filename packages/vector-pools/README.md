@@ -39,6 +39,8 @@ region of a WebGL or WASM memory buffer.
 
 **ALPHA** - bleeding edge / work-in-progress
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bvector-pools%5D)
+
 This package might be merged with and/or superseded by
 [@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/develop/packages/ecs)
 /

@@ -25,6 +25,8 @@ Shared type & interface declarations for [@thi.ng/geom](https://github.com/thi-n
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bgeom-api%5D)
+
 ## Installation
 
 ```bash
@@ -39,7 +41,7 @@ yarn add @thi.ng/geom-api
 <script src="https://unpkg.com/@thi.ng/geom-api/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 603 bytes / CJS: 627 bytes / UMD: 773 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 618 bytes / CJS: 643 bytes / UMD: 791 bytes
 
 ## Dependencies
 

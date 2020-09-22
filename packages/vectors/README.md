@@ -115,6 +115,8 @@ Partially ported from [thi.ng/geom](http://thi.ng/geom) (Clojure) and
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bvectors%5D)
+
 ### Breaking changes in v3.0.0
 
 - to avoid confusion, the arg order of `madd` and `maddN` functions have
@@ -153,7 +155,7 @@ yarn add @thi.ng/vectors
 <script src="https://unpkg.com/@thi.ng/vectors/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 11.14 KB / CJS: 14.02 KB / UMD: 12.38 KB
+Package sizes (gzipped, pre-treeshake): ESM: 11.15 KB / CJS: 14.03 KB / UMD: 12.40 KB
 
 ## Dependencies
 

@@ -35,6 +35,8 @@ transformation pipeline.
 
 **BETA** - possibly breaking changes forthcoming
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Btransducers-fsm%5D)
+
 This package might be merged with (or deprecated by) the newer
 [@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm)
 package.

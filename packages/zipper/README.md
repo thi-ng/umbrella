@@ -38,6 +38,8 @@ Reference: https://en.wikipedia.org/wiki/Zipper_(data_structure)
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bzipper%5D)
+
 ### Related packages
 
 - [@thi.ng/gp](https://github.com/thi-ng/umbrella/tree/develop/packages/gp) - Genetic programming helpers & strategies (tree based & multi-expression programming)

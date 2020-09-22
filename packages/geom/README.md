@@ -57,6 +57,8 @@ themselves too):
 
 **BETA** - possibly breaking changes forthcoming
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bgeom%5D)
+
 ## Installation
 
 ```bash
@@ -71,7 +73,7 @@ yarn add @thi.ng/geom
 <script src="https://unpkg.com/@thi.ng/geom/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 10.33 KB / CJS: 10.65 KB / UMD: 10.01 KB
+Package sizes (gzipped, pre-treeshake): ESM: 10.42 KB / CJS: 10.76 KB / UMD: 10.11 KB
 
 ## Dependencies
 

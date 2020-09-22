@@ -39,6 +39,8 @@ iterable for direct use.
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Btransducers-binary%5D)
+
 ### Related packages
 
 - [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary) - 95+ assorted binary / bitwise operations, conversions, utilities

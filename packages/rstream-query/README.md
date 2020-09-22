@@ -55,6 +55,8 @@ feature is currently WIP).
 
 **ALPHA** - bleeding edge / work-in-progress
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Brstream-query%5D)
+
 This project is currently still in early development and intended as a
 continuation of the Clojure based [thi.ng/fabric](http://thi.ng/fabric),
 this time built on the streaming primitives provided by

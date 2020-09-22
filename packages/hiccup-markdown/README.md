@@ -40,6 +40,8 @@ parser and an extensible Hiccup-to-Markdown converter.
 
 **ALPHA** - bleeding edge / work-in-progress
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bhiccup-markdown%5D)
+
 ## Installation
 
 ```bash

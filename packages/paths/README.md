@@ -39,6 +39,8 @@ Immutable, optimized and optionally typed path-based object property / array acc
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bpaths%5D)
+
 ## Breaking changes
 
 ### 4.0.0

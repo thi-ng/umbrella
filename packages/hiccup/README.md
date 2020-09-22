@@ -114,6 +114,8 @@ iterable
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bhiccup%5D)
+
 ### Support packages
 
 - [@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas) - Hiccup shape tree renderer for vanilla Canvas 2D contexts
@@ -147,7 +149,7 @@ yarn add @thi.ng/hiccup
 <script src="https://unpkg.com/@thi.ng/hiccup/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.24 KB / CJS: 2.34 KB / UMD: 2.35 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.28 KB / CJS: 2.39 KB / UMD: 2.41 KB
 
 ## Dependencies
 

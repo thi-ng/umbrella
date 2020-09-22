@@ -44,6 +44,8 @@ ES6 promise based CSP primitives & operations.
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bcsp%5D)
+
 This package might possibly become deprecated soon. See
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 for a similar, but alternative (and actively maintained) approach.

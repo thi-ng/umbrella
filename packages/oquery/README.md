@@ -42,6 +42,8 @@ See basic query examples below...
 
 **ALPHA** - bleeding edge / work-in-progress
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Boquery%5D)
+
 ### Related packages
 
 - [@thi.ng/rstream-query](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-query) - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream) based triple store & reactive query engine
@@ -60,7 +62,7 @@ yarn add @thi.ng/oquery
 <script src="https://unpkg.com/@thi.ng/oquery/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 823 bytes / CJS: 883 bytes / UMD: 957 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 846 bytes / CJS: 903 bytes / UMD: 962 bytes
 
 ## Dependencies
 

@@ -31,6 +31,8 @@ This package has been extracted from the former (now obsolete)
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bgeom-clip-line%5D)
+
 ## Installation
 
 ```bash

@@ -26,6 +26,8 @@ Sparse & bitwise adjacency matrices and related functions for directed & undirec
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Badjacency%5D)
+
 ## Installation
 
 ```bash

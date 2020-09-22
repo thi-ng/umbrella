@@ -40,6 +40,8 @@ Text based canvas, drawing, tables with arbitrary formatting (incl. ANSI/HTML).
 
 **ALPHA** - bleeding edge / work-in-progress
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Btext-canvas%5D)
+
 ## Installation
 
 ```bash

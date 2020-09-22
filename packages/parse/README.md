@@ -60,6 +60,8 @@ Purely functional parser combinators & AST generation for generic inputs.
 
 **BETA** - possibly breaking changes forthcoming
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bparse%5D)
+
 ### Related packages
 
 - [@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm) - Composable primitives for building declarative, transducer based Finite-State Machines & matchers for arbitrary data streams
@@ -79,7 +81,7 @@ yarn add @thi.ng/parse
 <script src="https://unpkg.com/@thi.ng/parse/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.27 KB / CJS: 5.65 KB / UMD: 5.31 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.23 KB / CJS: 5.62 KB / UMD: 5.29 KB
 
 ## Dependencies
 

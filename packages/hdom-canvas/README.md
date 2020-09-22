@@ -43,6 +43,8 @@ API draw calls during the hdom update process / cycle.
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bhdom-canvas%5D)
+
 ### BREAKING CHANGES 3.0.0
 
 The actual tree traversal & drawing has been extracted to the new

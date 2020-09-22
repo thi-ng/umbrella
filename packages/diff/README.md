@@ -27,6 +27,8 @@ Customizable diff implementations for arrays (sequential) & objects (associative
 
 **STABLE** - used in production
 
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bdiff%5D)
+
 ## Installation
 
 ```bash
