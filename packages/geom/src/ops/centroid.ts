@@ -1,3 +1,4 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
 import { AABBLike, IShape, PCLike, Type } from "@thi.ng/geom-api";
 import {
@@ -13,7 +14,6 @@ import { Polygon } from "../api/polygon";
 import { Triangle } from "../api/triangle";
 import { dispatch } from "../internal/dispatch";
 import { bounds } from "./bounds";
-import type { IObjectOf } from "@thi.ng/api";
 
 export const centroid: MultiFn1O<IShape, Vec, Vec | undefined> = defmulti(
     dispatch
@@ -54,4 +54,5 @@ centroid.isa(Type.POINTS3, Type.POINTS);
 centroid.isa(Type.POLYLINE, Type.POINTS);
 centroid.isa(Type.QUAD, Type.POLYGON);
 centroid.isa(Type.SPHERE, Type.CIRCLE);
+centroid.isa(Type.TEXT, Type.CIRCLE);
 centroid.isa(Type.TRIANGLE3, Type.TRIANGLE);

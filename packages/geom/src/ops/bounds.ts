@@ -1,3 +1,4 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation1 } from "@thi.ng/defmulti";
 import { AABBLike, IShape, PathSegment, PCLike, Type } from "@thi.ng/geom-api";
 import { bounds as arcBounds } from "@thi.ng/geom-arc";
@@ -27,11 +28,11 @@ import { Line } from "../api/line";
 import { Path } from "../api/path";
 import { Quadratic } from "../api/quadratic";
 import { Rect } from "../api/rect";
+import { Text } from "../api/text";
 import { aabbFromMinMax } from "../ctors/aabb";
 import { rectFromMinMax } from "../ctors/rect";
 import { collBounds } from "../internal/coll-bounds";
 import { dispatch } from "../internal/dispatch";
-import type { IObjectOf } from "@thi.ng/api";
 
 export const bounds = defmulti<IShape, AABBLike | undefined>(dispatch);
 
@@ -84,6 +85,8 @@ bounds.addAll(<IObjectOf<Implementation1<unknown, AABBLike>>>{
         rectFromMinMax(...quadraticBounds(points[0], points[1], points[2])),
 
     [Type.RECT]: ($: IShape) => <AABBLike>$.copy(),
+
+    [Type.TEXT]: ($: Text) => new Rect(set2([], $.pos), [0, 0]),
 });
 
 bounds.isa(Type.AABB, Type.RECT);

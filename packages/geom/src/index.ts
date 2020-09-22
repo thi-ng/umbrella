@@ -17,6 +17,7 @@ export * from "./api/quadratic";
 export * from "./api/ray";
 export * from "./api/rect";
 export * from "./api/sphere";
+export * from "./api/text";
 export * from "./api/triangle";
 
 export * from "./ctors/aabb";
@@ -37,6 +38,7 @@ export * from "./ctors/quad";
 export * from "./ctors/quadratic";
 export * from "./ctors/ray";
 export * from "./ctors/rect";
+export * from "./ctors/text";
 export * from "./ctors/triangle";
 
 export * from "./ops/arc-length";

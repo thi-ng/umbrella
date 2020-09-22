@@ -1,3 +1,4 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import { IHiccupShape, IShape, Type } from "@thi.ng/geom-api";
 import { add2, add3, ReadonlyVec, set2, set3 } from "@thi.ng/vectors";
@@ -15,11 +16,11 @@ import { Quad } from "../api/quad";
 import { Ray } from "../api/ray";
 import { Rect } from "../api/rect";
 import { Sphere } from "../api/sphere";
+import { Text } from "../api/text";
 import { Triangle } from "../api/triangle";
 import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
 import { translatedShape as tx } from "../internal/translate-points";
-import type { IObjectOf } from "@thi.ng/api";
 
 export const translate = defmulti<IShape, ReadonlyVec, IShape>(dispatch);
 
@@ -81,6 +82,9 @@ translate.addAll(<IObjectOf<Implementation2<unknown, ReadonlyVec, IShape>>>{
 
     [Type.SPHERE]: ($: Sphere, delta) =>
         new Sphere(add3([], $.pos, delta), $.r, copyAttribs($)),
+
+    [Type.TEXT]: ($: Text, delta) =>
+        new Text(add2([], $.pos, delta), $.body, copyAttribs($)),
 
     [Type.TRIANGLE]: tx(Triangle),
 });

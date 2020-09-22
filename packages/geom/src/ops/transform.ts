@@ -1,3 +1,4 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import {
     IHiccupShape,
@@ -18,6 +19,7 @@ import { Polyline } from "../api/polyline";
 import { Quad } from "../api/quad";
 import { Quadratic } from "../api/quadratic";
 import { Rect } from "../api/rect";
+import { Text } from "../api/text";
 import { Triangle } from "../api/triangle";
 import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
@@ -27,7 +29,6 @@ import {
 } from "../internal/transform-points";
 import { asPath } from "./as-path";
 import { asPolygon } from "./as-polygon";
-import type { IObjectOf } from "@thi.ng/api";
 
 /**
  * Transforms given shape with provided matrix. Some shape types will be
@@ -88,6 +89,9 @@ transform.addAll(<IObjectOf<Implementation2<unknown, ReadonlyMat, IShape>>>{
     [Type.QUADRATIC]: tx(Quadratic),
 
     [Type.RECT]: ($: Rect, mat) => transform(asPolygon($), mat),
+
+    [Type.TEXT]: ($: Text, mat) =>
+        new Text(mulV([], mat, $.pos!), $.body, copyAttribs($)),
 
     [Type.TRIANGLE]: tx(Triangle),
 });
