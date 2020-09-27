@@ -110,10 +110,10 @@ export const gestureStream = (
                         ? GestureType.DRAG
                         : GestureType.MOVE
                     : eventGestureTypeMap[etype];
-            let isTouch = !!(<TouchEvent>event).touches;
+            let isTouch = !!(<TouchEvent>e).touches;
             let events: Array<Touch | MouseEvent | WheelEvent> = isTouch
-                ? Array.from((<TouchEvent>event).changedTouches)
-                : [<MouseEvent | WheelEvent>event];
+                ? Array.from((<TouchEvent>e).changedTouches)
+                : [<MouseEvent | WheelEvent>e];
             const b = el.getBoundingClientRect();
 
             const getPos = (e: Touch | MouseEvent | WheelEvent) => {
@@ -188,7 +188,7 @@ export const gestureStream = (
             return {
                 event: e,
                 pos: getPos(events[0]),
-                buttons: isTouch ? active.length : (<MouseEvent>event).buttons,
+                buttons: isTouch ? active.length : (<MouseEvent>e).buttons,
                 type,
                 active,
                 zoom,
