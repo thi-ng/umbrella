@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.40](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@2.0.39...@thi.ng/rstream-gestures@2.0.40) (2020-09-27)
+
+
+### Bug Fixes
+
+* **rstream-gestures:** use correct event var ([6c7c0a9](https://github.com/thi-ng/umbrella/commit/6c7c0a941c06945dea997d5b4ae950379a54c422))
+
+
+
+
+
 ## [2.0.39](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@2.0.38...@thi.ng/rstream-gestures@2.0.39) (2020-09-22)
 
 **Note:** Version bump only for package @thi.ng/rstream-gestures
