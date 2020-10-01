@@ -10,29 +10,29 @@ import { maddN2, maddN3 } from "./maddn";
  * @param rayOrigin -
  * @param dist -
  */
-export function pointAtOnRay(
+export const pointOnRay = (
     out: Vec | null,
-    rayDir: Vec,
     rayOrigin: Vec,
+    rayDir: Vec,
     dist: number
-) {
+) => {
     return maddN(out, rayDir, dist, rayOrigin);
-}
+};
 
-export function pointAtOnRay2(
+export const pointOnRay2 = (
     out: Vec | null,
-    rayDir: Vec,
     rayOrigin: Vec,
+    rayDir: Vec,
     dist: number
-) {
+) => {
     return maddN2(out, rayDir, dist, rayOrigin);
-}
+};
 
-export function pointAtOnRay3(
+export const pointOnRay3 = (
     out: Vec | null,
-    rayDir: Vec,
     rayOrigin: Vec,
+    rayDir: Vec,
     dist: number
-) {
+) => {
     return maddN3(out, rayDir, dist, rayOrigin);
-}
+};
