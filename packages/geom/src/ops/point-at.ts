@@ -1,3 +1,4 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
 import { Sampler } from "@thi.ng/geom-resample";
@@ -8,7 +9,8 @@ import {
     mixCubic,
     mixN2,
     mixQuadratic,
-    pointAtOnRay,
+    pointOnRay2,
+    pointOnRay3,
     Vec,
 } from "@thi.ng/vectors";
 import { Arc } from "../api/arc";
@@ -22,7 +24,6 @@ import { Ray } from "../api/ray";
 import { Rect } from "../api/rect";
 import { dispatch } from "../internal/dispatch";
 import { vertices } from "./vertices";
-import type { IObjectOf } from "@thi.ng/api";
 
 export const pointAt = defmulti<IShape, number, Vec>(dispatch);
 
@@ -45,7 +46,9 @@ pointAt.addAll(<IObjectOf<Implementation2<unknown, number, Vec>>>{
     [Type.QUADRATIC]: ({ points }: Quadratic, t) =>
         mixQuadratic([], points[0], points[1], points[2], t),
 
-    [Type.RAY]: ($: Ray, t) => pointAtOnRay([], $.dir, t, $.pos),
+    [Type.RAY]: ($: Ray, t) => pointOnRay2([], $.pos, $.dir, t),
+
+    [Type.RAY3]: ($: Ray, t) => pointOnRay3([], $.pos, $.dir, t),
 
     [Type.RECT]: ($: Rect, t) => new Sampler(vertices($), true).pointAt(t),
 });
