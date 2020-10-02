@@ -128,6 +128,7 @@ export * from "./not";
 export * from "./ortho-normal";
 export * from "./perpendicular";
 export * from "./polar";
+export * from "./point-at";
 export * from "./pow";
 export * from "./pown";
 export * from "./project";
