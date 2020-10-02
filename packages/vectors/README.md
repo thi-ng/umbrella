@@ -155,7 +155,7 @@ yarn add @thi.ng/vectors
 <script src="https://unpkg.com/@thi.ng/vectors/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 11.15 KB / CJS: 14.03 KB / UMD: 12.40 KB
+Package sizes (gzipped, pre-treeshake): ESM: 11.19 KB / CJS: 14.08 KB / UMD: 12.43 KB
 
 ## Dependencies
 
@@ -446,12 +446,13 @@ Component wise op with one input vector and single scalar:
 
 ### Distances
 
-| Function        | Generic | Fixed | Strided | Int | Comments |
-|-----------------|---------|-------|---------|-----|----------|
-| `dist`          | ✓       |       |         |     |          |
-| `distSq`        | ✓       | 2-4   |         |     |          |
-| `distChebyshev` | ✓       | 2-4   |         |     |          |
-| `distManhattan` | ✓       | 2-4   |         |     |          |
+| Function        | Generic | Fixed | Strided | Int | Comments          |
+|-----------------|---------|-------|---------|-----|-------------------|
+| `dist`          | ✓       |       |         |     |                   |
+| `distSq`        | ✓       | 2-4   |         |     |                   |
+| `distChebyshev` | ✓       | 2-4   |         |     |                   |
+| `distManhattan` | ✓       | 2-4   |         |     |                   |
+| `pointOnRay`    | ✓       | 2-3   |         |     | point at distance |
 
 ### Orientation
 
