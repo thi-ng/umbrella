@@ -350,12 +350,13 @@ Component wise op with one input vector and single scalar:
 
 ### Distances
 
-| Function        | Generic | Fixed | Strided | Int | Comments |
-|-----------------|---------|-------|---------|-----|----------|
-| `dist`          | ✓       |       |         |     |          |
-| `distSq`        | ✓       | 2-4   |         |     |          |
-| `distChebyshev` | ✓       | 2-4   |         |     |          |
-| `distManhattan` | ✓       | 2-4   |         |     |          |
+| Function        | Generic | Fixed | Strided | Int | Comments          |
+|-----------------|---------|-------|---------|-----|-------------------|
+| `dist`          | ✓       |       |         |     |                   |
+| `distSq`        | ✓       | 2-4   |         |     |                   |
+| `distChebyshev` | ✓       | 2-4   |         |     |                   |
+| `distManhattan` | ✓       | 2-4   |         |     |                   |
+| `pointOnRay`    | ✓       | 2-3   |         |     | point at distance |
 
 ### Orientation
 

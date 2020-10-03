@@ -127,6 +127,7 @@ export * from "./normalizes";
 export * from "./not";
 export * from "./ortho-normal";
 export * from "./perpendicular";
+export * from "./point-on-ray";
 export * from "./polar";
 export * from "./pow";
 export * from "./pown";
