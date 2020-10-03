@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.12.0...@thi.ng/geom@1.13.0) (2020-10-03)
+
+
+### Bug Fixes
+
+* **geom:** arg order pointAt() impl (RAY/RAY3) ([6ec9b46](https://github.com/thi-ng/umbrella/commit/6ec9b462ff4f6aaa0da8634f303ff37c329c8fdf))
+
+
+### Features
+
+* **vectors, geom:** point on ray at distance ([0b04b80](https://github.com/thi-ng/umbrella/commit/0b04b80f1eaa700e262f99d4726651c90d4fed2b))
+
+
+
+
+
 # [1.12.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.11.8...@thi.ng/geom@1.12.0) (2020-09-22)
 
 

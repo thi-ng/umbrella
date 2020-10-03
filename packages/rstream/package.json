@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rstream",
-    "version": "5.0.5",
+    "version": "5.0.6",
     "description": "Reactive streams & subscription primitives for constructing dataflow graphs / pipelines",
     "module": "./index.js",
     "main": "./lib/index.js",

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/color",
-    "version": "1.2.17",
+    "version": "1.2.18",
     "description": "Array-based color ops, conversions, multi-color gradients, presets",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -57,7 +57,7 @@
         "@thi.ng/math": "^2.1.1",
         "@thi.ng/strings": "^1.10.0",
         "@thi.ng/transducers": "^7.4.0",
-        "@thi.ng/vectors": "^4.6.6"
+        "@thi.ng/vectors": "^4.7.0"
     },
     "files": [
         "*.js",
