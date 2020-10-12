@@ -25,7 +25,7 @@ This project is part of the
 
 ## About
 
-Double-linked list with comprehensive set of operations.
+Double-linked lists with comprehensive set of operations (incl. optional self-organizing behaviors).
 
 - ES6 iterator support
 - Stack & queue API (front and/or back)
@@ -44,6 +44,21 @@ Double-linked list with comprehensive set of operations.
 - `map()` / `filter()` / `reduce()`
 - `compare()` / `equiv()`
 - `toJSON()` transform (-> array)
+
+v2.3.0 adds [self-organizing list](https://en.wikipedia.org/wiki/Self-organizing_list)
+types which re-order their items based on certain access patterns:
+
+- `DConsMTF` / `defMTF()` - moves currently accessed element to front of list
+- `DConsTranspose` / `defTranspose()` - swaps currently accessed element with its predecessor
+
+Both types extend `DCons`. Only the following operations will trigger the
+self-organizing behaviors:
+
+- `nth()`
+- `setNth()`
+- `setTail()`
+- `find()`
+- `findWith()`
 
 ### Status
 
@@ -65,7 +80,7 @@ yarn add @thi.ng/dcons
 <script src="https://unpkg.com/@thi.ng/dcons/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.98 KB / CJS: 2.06 KB / UMD: 2.17 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.18 KB / CJS: 2.27 KB / UMD: 2.36 KB
 
 ## Dependencies
 

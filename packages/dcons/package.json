@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/dcons",
     "version": "2.2.32",
-    "description": "Double-linked list with comprehensive set of operations",
+    "description": "Double-linked lists with comprehensive set of operations (incl. optional self-organizing behaviors)",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -64,10 +64,12 @@
     ],
     "keywords": [
         "datastructure",
+        "heuristic",
         "iterator",
         "linkedlist",
         "list",
         "queue",
+        "self-organization",
         "stack",
         "typescript"
     ],
