@@ -31,14 +31,15 @@ ${pkg.description}
 - `compare()` / `equiv()`
 - `toJSON()` transform (-> array)
 
-v2.3.0 adds [self-organizing list](https://en.wikipedia.org/wiki/Self-organizing_list)
-types which re-order their items based on certain access patterns:
+v2.3.0 adds the [self-organizing
+list](https://en.wikipedia.org/wiki/Self-organizing_list) type `SOL` (an
+extension of `DCons`), which dynamically re-orders items based on certain
+accesses and offers these two built-in strategies:
 
-- `DConsMTF` / `defMTF()` - moves currently accessed element to front of list
-- `DConsTranspose` / `defTranspose()` - swaps currently accessed element with its predecessor
+- `defMTF()` - moves currently accessed element to front of list
+- `defTranspose()` - swaps currently accessed element with its predecessor
 
-Both types extend `DCons`. Only the following operations will trigger the
-self-organizing behaviors:
+Only the following operations will trigger the self-organizing behavior:
 
 - `nth()`
 - `setNth()`
