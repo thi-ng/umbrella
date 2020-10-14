@@ -16,11 +16,11 @@ export type UIEventID =
     | "wheel";
 
 export enum GestureType {
-    START,
-    MOVE,
-    DRAG,
-    END,
-    ZOOM,
+    START = "START",
+    MOVE = "MOVE",
+    DRAG = "DRAG",
+    END = "END",
+    ZOOM = "ZOOM",
 }
 
 export interface GestureInfo {
