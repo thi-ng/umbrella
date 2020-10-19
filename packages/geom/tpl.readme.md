@@ -7,6 +7,8 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+For the Clojure version, please visit: [thi.ng/geom-clj](https://thi.ng/geom-clj)
+
 <!-- TOC -->
 
 ## About
@@ -14,7 +16,7 @@ This project is part of the
 ${pkg.description}
 
 This project is a partially ported from the [Clojure version of the same
-name](http://thi.ng/geom). All polymorphic operations built on
+name](http://thi.ng/geom-clj). All polymorphic operations built on
 [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti).
 
 [**Up-to-date feature matrix spreadsheet**](https://docs.google.com/spreadsheets/d/1GxJm-zOQaGECui2MJUmy3gQPTF-T6BJ6vhNlUnPsmDs/edit?usp=sharing)

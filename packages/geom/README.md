@@ -9,6 +9,8 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+For the Clojure version, please visit: [thi.ng/geom-clj](https://thi.ng/geom-clj)
+
 - [About](#about)
   - [Support packages](#support-packages)
   - [Status](#status)
@@ -24,7 +26,7 @@ This project is part of the
 Functional, polymorphic API for 2D geometry types & SVG generation.
 
 This project is a partially ported from the [Clojure version of the same
-name](http://thi.ng/geom). All polymorphic operations built on
+name](http://thi.ng/geom-clj). All polymorphic operations built on
 [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti).
 
 [**Up-to-date feature matrix spreadsheet**](https://docs.google.com/spreadsheets/d/1GxJm-zOQaGECui2MJUmy3gQPTF-T6BJ6vhNlUnPsmDs/edit?usp=sharing)
@@ -73,7 +75,7 @@ yarn add @thi.ng/geom
 <script src="https://unpkg.com/@thi.ng/geom/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 10.42 KB / CJS: 10.76 KB / UMD: 10.11 KB
+Package sizes (gzipped, pre-treeshake): ESM: 10.44 KB / CJS: 10.77 KB / UMD: 10.12 KB
 
 ## Dependencies
 
