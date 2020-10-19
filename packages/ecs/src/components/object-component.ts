@@ -1,10 +1,5 @@
-import {
-    assert,
-    INotifyMixin,
-    typedArray,
-    UIntArray,
-    uintType,
-} from "@thi.ng/api";
+import { assert, INotifyMixin, UIntArray } from "@thi.ng/api";
+import type { IMemPoolAs } from "@thi.ng/malloc";
 import type { ObjectComponentOpts } from "../api";
 import { AComponent } from "./acomponent";
 
@@ -35,16 +30,14 @@ export class ObjectComponent<K extends string, T> extends AComponent<
         return this.vals.slice(0, this.n);
     }
 
-    resize(cap: number) {
+    resize(pool: IMemPoolAs, cap: number) {
         assert(cap >= this.dense.length, "can't decrease capacity");
         if (cap === this.dense.length) return;
-        const utype = uintType(cap);
-        const sparse = typedArray(utype, cap);
-        const dense = typedArray(utype, cap);
-        sparse.set(this.sparse);
-        dense.set(this.dense);
-        this.sparse = sparse;
-        this.dense = dense;
+        const sparse = pool.reallocArray(this.sparse, cap);
+        const dense = pool.reallocArray(this.dense, cap);
+        assert(!!(sparse && dense), `couldn't resize component: ${this.id}`);
+        this.sparse = sparse!;
+        this.dense = dense!;
     }
 
     get(id: number) {

@@ -5,8 +5,8 @@ import {
     typedArray,
     TypedArray,
     UIntArray,
-    uintType,
 } from "@thi.ng/api";
+import type { IMemPoolAs } from "@thi.ng/malloc";
 import type { ICache, MemMappedComponentOpts } from "../api";
 import { AComponent } from "./acomponent";
 
@@ -59,20 +59,20 @@ export class MemMappedComponent<K extends string> extends AComponent<
         return this.vals.subarray(0, this.n * this.stride);
     }
 
-    resize(cap: number) {
+    resize(pool: IMemPoolAs, cap: number) {
         assert(cap >= this.dense.length, "can't decrease capacity");
         if (cap === this.dense.length) return;
-        const utype = uintType(cap);
-        const sparse = typedArray(utype, cap);
-        const dense = typedArray(utype, cap);
-        const vals = typedArray(this.type, cap * this.stride);
-        sparse.set(this.sparse);
-        dense.set(this.dense);
-        vals.set(this.vals);
-        this.sparse = sparse;
-        this.dense = dense;
-        this.vals = vals;
-        this.cache && this.cache.release();
+        const sparse = pool.reallocArray(this.sparse, cap);
+        const dense = pool.reallocArray(this.dense, cap);
+        const vals = pool.reallocArray(this.vals, cap * this.stride);
+        assert(
+            !!(sparse && dense && vals),
+            `couldn't resize component: ${this.id}`
+        );
+        this.sparse = sparse!;
+        this.dense = dense!;
+        this.vals = vals!;
+        this.cache && this.cache.clear();
     }
 
     get(id: number) {

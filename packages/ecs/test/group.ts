@@ -11,11 +11,11 @@ const collect = (g: Group<any, any>) => {
 describe("component", () => {
     let ecs: ECS<any>;
 
-    beforeEach(() => (ecs = new ECS(16)));
+    beforeEach(() => (ecs = new ECS({ capacity: 16 })));
 
     it("group", () => {
-        const a = ecs.defComponent({ id: "a", default: () => "a" });
-        const b = ecs.defComponent({ id: "b", type: 7, size: 2 });
+        const a = ecs.defComponent({ id: "a", default: () => "a" })!;
+        const b = ecs.defComponent({ id: "b", type: 7, size: 2 })!;
         const g = ecs.defGroup([a, b]);
         ecs.defEntity(["a", "b"]);
         ecs.defEntity({ a: "aa", b: [1, 2] });

@@ -9,6 +9,7 @@ import type {
     TypedArray,
     UIntArray,
 } from "@thi.ng/api";
+import type { IMemPoolAs } from "@thi.ng/malloc";
 
 export type ComponentID<S> = keyof S & string;
 
@@ -38,7 +39,7 @@ export interface IComponent<K extends string, VALUES, GET, SET>
 
     owner?: IID<string>;
 
-    resize(cap: number): void;
+    resize(pool: IMemPoolAs, cap: number): void;
     has(id: number): boolean;
     add(id: number, val?: SET): boolean;
     delete(id: number): boolean;
@@ -90,4 +91,19 @@ export interface ICache<T> extends IClear, IRelease {
     get(key: number): T | undefined;
     getSet(key: number, notFound: Fn0<T>): T;
     delete(key: number): boolean;
+}
+
+export interface ECSOpts {
+    /**
+     * Max. number of entities
+     *
+     * @defaultValue 1000
+     */
+    capacity: number;
+    /**
+     * Optional {@link @thi.ng/malloc#IMemPoolAs} implementation
+     *
+     * @defaultValue {@link @thi.ng/malloc#NativePool}
+     */
+    pool: IMemPoolAs;
 }

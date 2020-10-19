@@ -4,15 +4,16 @@ import {
     INotify,
     INotifyMixin,
     Listener,
-    typedArray,
     uintType,
 } from "@thi.ng/api";
 import { bitSize } from "@thi.ng/binary";
 import { isArray, isString } from "@thi.ng/checks";
 import { IDGen } from "@thi.ng/idgen";
+import { IMemPoolAs, NativePool } from "@thi.ng/malloc";
 import { filter } from "@thi.ng/transducers";
 import {
     ComponentID,
+    ECSOpts,
     GroupOpts,
     IComponent,
     MemMappedComponentOpts,
@@ -28,14 +29,17 @@ let NEXT_GROUP_ID = 0;
 @INotifyMixin
 export class ECS<SPEC> implements INotify {
     idgen: IDGen;
+    pool: IMemPoolAs;
     components: Map<
         ComponentID<SPEC>,
         IComponent<ComponentID<SPEC>, any, any, any>
     >;
     groups: Map<string, Group<SPEC, any>>;
 
-    constructor(capacity = 1000) {
-        this.idgen = new IDGen(bitSize(capacity), 0);
+    constructor(opts?: Partial<ECSOpts>) {
+        opts = { capacity: 1000, pool: new NativePool(), ...opts };
+        this.idgen = new IDGen(bitSize(opts.capacity!), 0);
+        this.pool = opts.pool!;
         this.components = new Map();
         this.groups = new Map();
     }
@@ -66,10 +70,10 @@ export class ECS<SPEC> implements INotify {
 
     defComponent<K extends ComponentID<SPEC>>(
         opts: MemMappedComponentOpts<K>
-    ): MemMappedComponent<K>;
+    ): MemMappedComponent<K> | undefined;
     defComponent<K extends ComponentID<SPEC>>(
         opts: ObjectComponentOpts<K, SPEC[K]>
-    ): ObjectComponent<K, SPEC[K]>;
+    ): ObjectComponent<K, SPEC[K]> | undefined;
     defComponent<K extends ComponentID<SPEC>>(opts: any) {
         assert(
             !this.components.has(opts.id),
@@ -77,8 +81,9 @@ export class ECS<SPEC> implements INotify {
         );
         const cap = this.idgen.capacity;
         const utype = uintType(cap);
-        const sparse = typedArray(utype, cap);
-        const dense = typedArray(utype, cap);
+        const sparse = this.pool.mallocAs(utype, cap);
+        const dense = this.pool.mallocAs(utype, cap);
+        if (!(sparse && dense)) return;
         const comp: IComponent<K, any, any, any> =
             opts.type !== undefined
                 ? new MemMappedComponent(dense, sparse, opts)
@@ -130,8 +135,9 @@ export class ECS<SPEC> implements INotify {
 
     setCapacity(newCap: number) {
         this.idgen.capacity = newCap;
+        const pool = this.pool;
         for (let comp of this.components.values()) {
-            comp.resize(newCap);
+            comp.resize(pool, newCap);
         }
     }
 
