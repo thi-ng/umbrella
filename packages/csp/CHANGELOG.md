@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.40](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@1.1.39...@thi.ng/csp@1.1.40) (2020-10-19)
+
+**Note:** Version bump only for package @thi.ng/csp
+
+
+
+
+
 ## [1.1.39](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@1.1.38...@thi.ng/csp@1.1.39) (2020-09-22)
 
 **Note:** Version bump only for package @thi.ng/csp

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.2.32...@thi.ng/dcons@2.3.0) (2020-10-19)
+
+
+### Features
+
+* **dcons:** add self-organizing list types, add tests ([d7fd88f](https://github.com/thi-ng/umbrella/commit/d7fd88fe37d3fcc758c632395b2e354e3fbdbcae))
+
+
+
+
+
 ## [2.2.32](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.2.31...@thi.ng/dcons@2.2.32) (2020-09-22)
 
 **Note:** Version bump only for package @thi.ng/dcons

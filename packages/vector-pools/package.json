@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/vector-pools",
-    "version": "1.0.47",
+    "version": "1.0.48",
     "description": "Data structures for managing & working with strided, memory mapped vectors",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -52,7 +52,7 @@
         "@thi.ng/api": "^6.13.1",
         "@thi.ng/binary": "^2.0.16",
         "@thi.ng/checks": "^2.7.9",
-        "@thi.ng/malloc": "^4.1.26",
+        "@thi.ng/malloc": "^4.2.0",
         "@thi.ng/transducers": "^7.4.0",
         "@thi.ng/vectors": "^4.7.0"
     },
