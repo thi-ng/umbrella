@@ -74,14 +74,23 @@ export class IDGen implements Iterable<number>, IClear, INotify {
         }
     }
 
+    /**
+     * Number of available IDs.
+     */
     get available() {
         return this._capacity - this.num - this.start;
     }
 
+    /**
+     * Number of used IDs.
+     */
     get used() {
         return this.num;
     }
 
+    /**
+     * Next available free ID.
+     */
     get freeID() {
         return this._freeID;
     }
@@ -93,6 +102,9 @@ export class IDGen implements Iterable<number>, IClear, INotify {
         }
     }
 
+    /**
+     * Frees all existing IDs and resets counter to zero.
+     */
     clear() {
         this.ids.length = 0;
         this.nextID = this.start;
@@ -100,6 +112,10 @@ export class IDGen implements Iterable<number>, IClear, INotify {
         this._freeID = -1;
     }
 
+    /**
+     * Returns next available ID or throws error (assertion) if no further IDs
+     * are currently available.
+     */
     next() {
         let id: number;
         if (this._freeID !== -1) {
@@ -117,6 +133,12 @@ export class IDGen implements Iterable<number>, IClear, INotify {
         return id;
     }
 
+    /**
+     * Marks given ID as available again and increases its version (if
+     * versioning is enabled).
+     *
+     * @param id
+     */
     free(id: number) {
         if (!this.has(id)) return false;
         this.ids[this.id(id)] = this._freeID;
@@ -126,6 +148,11 @@ export class IDGen implements Iterable<number>, IClear, INotify {
         return true;
     }
 
+    /**
+     * Returns true iff the given ID is valid and currently used.
+     *
+     * @param id
+     */
     has(id: number) {
         const rawID = this.id(id);
         return id >= 0 && rawID < this.nextID && this.ids[rawID] === id;
