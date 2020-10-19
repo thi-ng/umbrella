@@ -61,20 +61,20 @@ interface CompSpecs {
     vel: Float32Array;
 }
 
-const ecs = new ECS<CompSpecs>(NUM);
+const ecs = new ECS<CompSpecs>({ capacity: NUM });
 
 const pos = ecs.defComponent({
     id: "pos",
     type: Type.F32,
     size: 2,
-});
+})!;
 
 const vel = ecs.defComponent({
     id: "vel",
     type: Type.F32,
     size: 2,
     default: () => randNormS2([0, 0]),
-});
+})!;
 
 const group = ecs.defGroup([pos, vel]);
 
