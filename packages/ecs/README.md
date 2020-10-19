@@ -52,7 +52,7 @@ yarn add @thi.ng/ecs
 <script src="https://unpkg.com/@thi.ng/ecs/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.89 KB / CJS: 2.96 KB / UMD: 3.04 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.98 KB / CJS: 3.05 KB / UMD: 3.14 KB
 
 ## Dependencies
 
@@ -62,6 +62,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 2.89 KB / CJS: 2.96 KB / UMD: 3.04 
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/develop/packages/dcons)
 - [@thi.ng/idgen](https://github.com/thi-ng/umbrella/tree/develop/packages/idgen)
+- [@thi.ng/malloc](https://github.com/thi-ng/umbrella/tree/develop/packages/malloc)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
