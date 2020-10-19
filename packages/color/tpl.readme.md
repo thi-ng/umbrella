@@ -7,6 +7,8 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+For the Clojure version, please visit: [thi.ng/color-clj](https://thi.ng/color-clj)
+
 <!-- TOC -->
 
 ## About
