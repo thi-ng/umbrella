@@ -38,7 +38,7 @@ The new memory layout is as follows:
 
 ![Memory layout diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/malloc/malloc-layout.png)
 
-## Free block compaction / coalescing
+### Free block compaction / coalescing
 
 The allocator supports coalescing of free memory blocks to minimize
 fragmentation of the managed address space. This feature is enabled by
@@ -72,7 +72,7 @@ the array buffer).
 
 ![Block compaction (result)](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/malloc/compact-03.png)
 
-## Block splitting
+### Block splitting
 
 In order to avoid unnecessary growing of the heap `top`, the allocator
 can split existing free blocks if the user requests allocating a smaller
@@ -258,6 +258,25 @@ after.
 ### `stats()`
 
 Returns pool statistics (see above example).
+
+### NativePool
+
+The `NativePool` class provides a stub/polyfill implementation of the
+`IMemPoolAs` interface and is merely delegating to JS-native typed array ctors
+with no further management of the returned arrays.
+
+```ts
+const pool = new NativePool();
+
+const a = pool.mallocAs(Type.F32, 4);
+// Float32Array [ 0, 0, 0, 0 ]
+
+const a2 = pool.callocAs(Type.F32, 4, 1);
+// Float32Array [ 1, 1, 1, 1 ]
+
+const b = pool.reallocArray(a2, 8);
+// Float32Array [ 1, 1, 1, 1, 0, 0, 0, 0 ]
+```
 
 ## Benchmarks
 
