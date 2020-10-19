@@ -101,7 +101,62 @@ export interface MemPoolStats {
     total: number;
 }
 
-export interface IMemPool extends IRelease {
+export interface IMemPoolAs extends IRelease {
+    /**
+     * Takes a {@link @thi.ng/api#Type} enum and element count `num` (in
+     * units of given type). Similar to {@link IMemPool.malloc} and if
+     * successful returns typed array of given `type`.
+     * Returns undefined if allocation failed.
+     *
+     * @param type -
+     * @param num -
+     */
+    mallocAs<T extends Type>(
+        type: T,
+        num: number
+    ): TypedArrayTypeMap[T] | undefined;
+
+    /**
+     * Similar to {@link IMemPoolAs.mallocAs}, but if allocation was
+     * successful also clears the allocated block w/ `fill` value
+     * (default: 0).
+     *
+     * @param type -
+     * @param num -
+     * @param fill -
+     */
+    callocAs<T extends Type>(
+        type: T,
+        num: number,
+        fill?: number
+    ): TypedArrayTypeMap[T] | undefined;
+
+    /**
+     * Similar to {@link IMemPool.realloc}, but takes a typed array (one
+     * previously allocated with {@link IMemPoolAs.mallocAs} or
+     * {@link IMemPoolAs.callocAs}) and if successul returns new typed array of
+     * same type. Implementation is free to return `arr` if new size is same as
+     * original. Returns undefined on failure.
+     *
+     * @param arr -
+     * @param num -
+     */
+    reallocArray<T extends TypedArray>(arr: T, num: number): T | undefined;
+
+    /**
+     * Frees mem block associated with given typed array
+     *
+     * @param arr -
+     */
+    free(arr: TypedArray): boolean;
+
+    /**
+     * Frees all previously allocated blocks and resests allocator state.
+     */
+    freeAll(): void;
+}
+
+export interface IMemPool extends IMemPoolAs {
     /**
      * Attempts to allocate a new memory block of given `size` (in
      * bytes). Returns block address or zero if unsuccessful
@@ -121,35 +176,6 @@ export interface IMemPool extends IRelease {
     calloc(size: number, fill?: number): number;
 
     /**
-     * Takes a {@link @thi.ng/api#Type} enum and element count `num` (in
-     * units of given type), calls {@link IMemPool.malloc} and if
-     * successful wraps allocated block as typed array of given `type`.
-     * Returns undefined if allocation failed.
-     *
-     * @param type -
-     * @param num -
-     */
-    mallocAs<T extends Type>(
-        type: T,
-        num: number
-    ): TypedArrayTypeMap[T] | undefined;
-
-    /**
-     * Similar to {@link IMemPool.mallocAs}, but if allocation was
-     * successful also clears the allocated block w/ `fill` value
-     * (default: 0).
-     *
-     * @param type -
-     * @param num -
-     * @param fill -
-     */
-    callocAs<T extends Type>(
-        type: T,
-        num: number,
-        fill?: number
-    ): TypedArrayTypeMap[T] | undefined;
-
-    /**
      * Attempts to reallocate given memory block to new `size` (in
      * bytes). If new `size` is larger than the original, attempts to
      * grow block or else allocates new one and moves contents to new
@@ -164,17 +190,6 @@ export interface IMemPool extends IRelease {
     realloc(ptr: number, size: number): number;
 
     /**
-     * Similar to {@link IMemPool.realloc}, but takes a typed array (one
-     * previously allocated with {@link IMemPool.mallocAs} or
-     * {@link IMemPool.callocAs}) and if successul returns new typed
-     * array of same type. Returns undefined on failure.
-     *
-     * @param arr -
-     * @param num -
-     */
-    reallocArray<T extends TypedArray>(arr: T, num: number): T | undefined;
-
-    /**
      * Takes a memory block address and attempts to return the block to
      * the pool. Depending on `compact` config option, this operation
      * might cause compaction of consecutive free memory blocks to help
@@ -187,11 +202,6 @@ export interface IMemPool extends IRelease {
      * @param ptr -
      */
     free(ptr: number | TypedArray): boolean;
-
-    /**
-     * Frees all previously allocated blocks and resests allocator state.
-     */
-    freeAll(): void;
 
     /**
      * Returns an information object of the pool's state.
