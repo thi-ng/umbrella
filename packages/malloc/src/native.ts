@@ -1,11 +1,11 @@
 import { Type, TypedArray, typedArray, TypedArrayTypeMap } from "@thi.ng/api";
-import { IMemPoolAs } from "./api";
+import { IMemPoolArray } from "./api";
 
 /**
- * Stub/polyfill implementation of {@link IMemPoolAs}, merely delegating to JS
- * typed array ctors with no further management of returned arrays.
+ * Stub/polyfill implementation of {@link IMemPoolArray}, merely delegating to
+ * JS typed array ctors with no further management of returned arrays.
  */
-export class NativePool implements IMemPoolAs {
+export class NativePool implements IMemPoolArray {
     mallocAs<T extends Type>(
         type: T,
         num: number

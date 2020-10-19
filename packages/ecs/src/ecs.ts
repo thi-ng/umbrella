@@ -9,7 +9,7 @@ import {
 import { bitSize } from "@thi.ng/binary";
 import { isArray, isString } from "@thi.ng/checks";
 import { IDGen } from "@thi.ng/idgen";
-import { IMemPoolAs, NativePool } from "@thi.ng/malloc";
+import { IMemPoolArray, NativePool } from "@thi.ng/malloc";
 import { filter } from "@thi.ng/transducers";
 import {
     ComponentID,
@@ -29,7 +29,7 @@ let NEXT_GROUP_ID = 0;
 @INotifyMixin
 export class ECS<SPEC> implements INotify {
     idgen: IDGen;
-    pool: IMemPoolAs;
+    pool: IMemPoolArray;
     components: Map<
         ComponentID<SPEC>,
         IComponent<ComponentID<SPEC>, any, any, any>

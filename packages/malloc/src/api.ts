@@ -101,7 +101,7 @@ export interface MemPoolStats {
     total: number;
 }
 
-export interface IMemPoolAs extends IRelease {
+export interface IMemPoolArray extends IRelease {
     /**
      * Takes a {@link @thi.ng/api#Type} enum and element count `num` (in
      * units of given type). Similar to {@link IMemPool.malloc} and if
@@ -117,9 +117,8 @@ export interface IMemPoolAs extends IRelease {
     ): TypedArrayTypeMap[T] | undefined;
 
     /**
-     * Similar to {@link IMemPoolAs.mallocAs}, but if allocation was
-     * successful also clears the allocated block w/ `fill` value
-     * (default: 0).
+     * Similar to {@link IMemPoolArray.mallocAs}, but if allocation was
+     * successful also clears the allocated block w/ `fill` value (default: 0).
      *
      * @param type -
      * @param num -
@@ -133,10 +132,10 @@ export interface IMemPoolAs extends IRelease {
 
     /**
      * Similar to {@link IMemPool.realloc}, but takes a typed array (one
-     * previously allocated with {@link IMemPoolAs.mallocAs} or
-     * {@link IMemPoolAs.callocAs}) and if successul returns new typed array of
-     * same type. Implementation is free to return `arr` if new size is same as
-     * original. Returns undefined on failure.
+     * previously allocated with {@link IMemPoolArray.mallocAs} or
+     * {@link IMemPoolArray.callocAs}) and if successul returns new typed array
+     * of same type. Implementation is free to return `arr` if new size is same
+     * as original. Returns undefined on failure.
      *
      * @param arr -
      * @param num -
@@ -156,7 +155,7 @@ export interface IMemPoolAs extends IRelease {
     freeAll(): void;
 }
 
-export interface IMemPool extends IMemPoolAs {
+export interface IMemPool extends IMemPoolArray {
     /**
      * Attempts to allocate a new memory block of given `size` (in
      * bytes). Returns block address or zero if unsuccessful

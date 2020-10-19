@@ -7,7 +7,7 @@ import {
     UIntArray,
 } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks";
-import type { IMemPoolAs } from "@thi.ng/malloc";
+import type { IMemPoolArray } from "@thi.ng/malloc";
 import type { ComponentDefaultValue, IComponent } from "../api";
 import { EVENT_ADDED, EVENT_CHANGED, EVENT_PRE_DELETE } from "../constants";
 
@@ -44,7 +44,7 @@ export abstract class AComponent<K extends string, VALUES, GET, SET>
         }
     }
 
-    abstract resize(pool: IMemPoolAs, newCap: number): void;
+    abstract resize(pool: IMemPoolArray, newCap: number): void;
 
     has(id: number): boolean {
         const i = this.sparse[id];
