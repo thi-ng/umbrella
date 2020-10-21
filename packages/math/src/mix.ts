@@ -1,5 +1,5 @@
 import type { FnN, FnN2, FnN3, FnN4, FnN5, FnN6 } from "@thi.ng/api";
-import { HALF_PI, PI } from "./api";
+import { EPS, HALF_PI, PI } from "./api";
 
 export const mix: FnN3 = (a, b, t) => a + (b - a) * t;
 
@@ -272,6 +272,19 @@ export const sigmoid: FnN2 = (k, t) => 1 / (1 + Math.exp(-k * (2 * t - 1)));
  * @param t -
  */
 export const sigmoid11: FnN2 = (k, t) => 1 / (1 + Math.exp(-k * t));
+
+/**
+ * Generalized Schlick bias, based on:
+ * https://arxiv.org/abs/2010.09714
+ *
+ * @param a - curve strength. recommended (0..64]
+ * @param b - pivot position [0..1]
+ * @param t - input val [0..1]
+ */
+export const schlick: FnN3 = (a, b, t) =>
+    t <= b
+        ? (b * t) / (t + a * (b - t) + EPS)
+        : ((1 - b) * (t - 1)) / (1 - t - a * (b - t) + EPS) + 1;
 
 /**
  * Computes exponential factor to interpolate from `a` to `b` over
