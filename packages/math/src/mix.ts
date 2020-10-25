@@ -161,6 +161,7 @@ export const tween = (f: (t: number) => number, from: number, to: number) => (
 /**
  * Circular interpolation (ease out): `sqrt(1 - (1 - t)^2)`
  *
+ * @remarks
  * Reference: https://www.desmos.com/calculator/tisoiazdrw
  *
  * @param t - interpolation factor [0..1]
@@ -173,6 +174,7 @@ export const circular: FnN = (t) => {
 /**
  * Inverse/flipped version of {@link circular} (ease in).
  *
+ * @remarks
  * Reference: https://www.desmos.com/calculator/tisoiazdrw
  *
  * @param t - interpolation factor [0..1]
@@ -188,6 +190,8 @@ export const invCircular: FnN = (t) => 1 - circular(1 - t);
  * [-1,1] range. If negative, the lens will be bundling values near `pos`, if
  * positive the lens has dilating characteristics and will spread values near
  * `pos` towards the edges.
+ *
+ * Also see {@link schlick} for an alternative approach.
  *
  * @example
  * ```ts
@@ -274,8 +278,12 @@ export const sigmoid: FnN2 = (k, t) => 1 / (1 + Math.exp(-k * (2 * t - 1)));
 export const sigmoid11: FnN2 = (k, t) => 1 / (1 + Math.exp(-k * t));
 
 /**
- * Generalized Schlick bias, based on:
+ * Generalized Schlick bias gain curve, based on:
  * https://arxiv.org/abs/2010.09714
+ *
+ * @remarks
+ * Interactive graph:
+ * https://www.desmos.com/calculator/u6bkm5rb7t
  *
  * @param a - curve strength. recommended (0..64]
  * @param b - pivot position [0..1]
