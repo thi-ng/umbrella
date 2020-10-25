@@ -45,8 +45,12 @@ export class DateTime implements ICopy<DateTime> {
         return days + (this.M === 1 && this.isLeapYear() ? 1 : 0);
     }
 
+    /**
+     * Leap years are multiple of 4, excludingcentennial years that aren’t
+     * multiples of 400.
+     */
     isLeapYear() {
-        return this.y % 4 === 0;
+        return !(this.y % 4) && (!!(this.y % 100) || !(this.y % 400));
     }
 
     incMillisecond() {
