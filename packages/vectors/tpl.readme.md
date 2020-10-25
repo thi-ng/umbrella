@@ -285,6 +285,7 @@ Component wise op with one input vector and single scalar:
 | `fmodN`  | ✓       | 2-4   |         |              | (GLSL behavior)            |
 | `modN`   | ✓       | 2-4   |         |              | (JS behavior)              |
 | `powN`   | ✓       | 2-4   |         |              |                            |
+| `roundN` | ✓       | 2-4   |         |              |                            |
 
 ### Combined operations
 
