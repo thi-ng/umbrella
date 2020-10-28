@@ -108,7 +108,7 @@ ops for signed & unsigned integer vectors.
   to work with custom (P)RNGs. If omitted, the built-in `Math.random()`
   will be used.
 
-Partially ported from [thi.ng/geom](http://thi.ng/geom) (Clojure) and
+Partially ported from [thi.ng/geom-clj](http://thi.ng/geom-clj) (Clojure) and
 [c.thi.ng](http://c.thi.ng) (C11).
 
 ### Status
@@ -155,7 +155,7 @@ yarn add @thi.ng/vectors
 <script src="https://unpkg.com/@thi.ng/vectors/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 11.19 KB / CJS: 14.08 KB / UMD: 12.43 KB
+Package sizes (gzipped, pre-treeshake): ESM: 11.21 KB / CJS: 14.11 KB / UMD: 12.46 KB
 
 ## Dependencies
 
@@ -381,6 +381,7 @@ Component wise op with one input vector and single scalar:
 | `fmodN`  | ✓       | 2-4   |         |              | (GLSL behavior)            |
 | `modN`   | ✓       | 2-4   |         |              | (JS behavior)              |
 | `powN`   | ✓       | 2-4   |         |              |                            |
+| `roundN` | ✓       | 2-4   |         |              |                            |
 
 ### Combined operations
 

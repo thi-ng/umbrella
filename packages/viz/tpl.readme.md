@@ -14,7 +14,7 @@ This project is part of the
 ${pkg.description}
 
 This package largely started as a port of the visualization module of the
-Clojure version of [thi.ng/geom](https://github.com/thi-ng/geom/) and is still
+Clojure version [thi.ng/geom-clj](https://github.com/thi-ng/geom/) and is still
 undergoing major redesigns.
 
 For reference & what to expect (links to the Clojure version):

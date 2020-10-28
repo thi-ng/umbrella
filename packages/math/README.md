@@ -9,6 +9,8 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+For the Clojure version, please visit: [thi.ng/math-clj](https://thi.ng/math-clj)
+
 - [About](#about)
   - [Status](#status)
 - [Installation](#installation)
@@ -24,8 +26,9 @@ This project is part of the
 
 Assorted common math functions & utilities.
 
-Partially ported from Clojure version of
-[thi.ng/math](https://github.com/thi-ng/math) and
+Partially ported from Clojure version
+[thi.ng/math-clj](https://github.com/thi-ng/math),
+[c.thi.ng](https://github.com/thi-ng/c-thing) and
 [thi.ng/vexed-generation](https://github.com/thi-ng/vexed-generation).
 
 ### Status
@@ -48,7 +51,7 @@ yarn add @thi.ng/math
 <script src="https://unpkg.com/@thi.ng/math/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.56 KB / CJS: 4.12 KB / UMD: 3.40 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.60 KB / CJS: 4.16 KB / UMD: 3.43 KB
 
 ## Dependencies
 

@@ -7,14 +7,17 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+For the Clojure version, please visit: [thi.ng/math-clj](https://thi.ng/math-clj)
+
 <!-- TOC -->
 
 ## About
 
 ${pkg.description}
 
-Partially ported from Clojure version of
-[thi.ng/math](https://github.com/thi-ng/math) and
+Partially ported from Clojure version
+[thi.ng/math-clj](https://github.com/thi-ng/math),
+[c.thi.ng](https://github.com/thi-ng/c-thing) and
 [thi.ng/vexed-generation](https://github.com/thi-ng/vexed-generation).
 
 ${status}

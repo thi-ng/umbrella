@@ -17,7 +17,7 @@ Based in principle on:
 
 - [Generating subdivision curves with L−systems on a
   GPU](http://algorithmicbotany.org/papers/subgpu.sig2003.pdf)
-- Clojure version of [thi.ng/geom](http://thi.ng/geom).
+- Clojure version [thi.ng/geom-clj](http://thi.ng/geom-clj).
 
 Supplied / implemented subdivision schemes:
 

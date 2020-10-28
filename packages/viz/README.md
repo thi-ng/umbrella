@@ -22,7 +22,7 @@ This project is part of the
 Declarative, functional & multi-format data visualization toolkit based around [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup).
 
 This package largely started as a port of the visualization module of the
-Clojure version of [thi.ng/geom](https://github.com/thi-ng/geom/) and is still
+Clojure version [thi.ng/geom-clj](https://github.com/thi-ng/geom/) and is still
 undergoing major redesigns.
 
 For reference & what to expect (links to the Clojure version):

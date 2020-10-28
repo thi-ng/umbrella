@@ -68,7 +68,7 @@ ops for signed & unsigned integer vectors.
   to work with custom (P)RNGs. If omitted, the built-in `Math.random()`
   will be used.
 
-Partially ported from [thi.ng/geom](http://thi.ng/geom) (Clojure) and
+Partially ported from [thi.ng/geom-clj](http://thi.ng/geom-clj) (Clojure) and
 [c.thi.ng](http://c.thi.ng) (C11).
 
 ${status}
