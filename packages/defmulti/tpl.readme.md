@@ -70,6 +70,7 @@ function, but also exposes the following operations:
 - `.rels()` - return all dispatch value relationships
 - `.parents(id)` - direct parents of dispatch value `id`
 - `.ancestors(id)` - transitive parents of dispatch value `id`
+- `.dependencies()` - returns iterator of all dispatch value relationship pairs
 
 #### Dispatch value hierarchies
 
@@ -291,6 +292,46 @@ apr({type: "savings", balance: 10000});
 apr({type: "isa", balance: 10000});
 // Error: invalid account type: isa
 ```
+
+#### Dispatch value graph visualization
+
+To facilitate better introspection of dynamically constructed/added `defmulti()`
+implementations (with possibly deep hierarchies of dispatch values), we can
+utilize the `.dependencies()` method to extract all dispatch value relationships
+and use these to build [dependency
+graph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph), which
+then can also be visualized.
+
+```ts
+import { defDGraph } from "@thi.ng/dgraph";
+import { toDot } from "@thi.ng/dgraph-dot";
+
+const fn = defmulti((x) => x);
+
+// dummy impls
+fn.add("a", () => {});
+fn.add("d", () => {});
+
+// dispatch value relationships
+fn.isa("b", "a");
+fn.isa("c", "b");
+fn.isa("e", "d");
+
+// build dependency graph and export as Graphviz DOT format
+console.log(toDot(defDGraph(fn.dependencies()), { id: (id) => id }));
+// digraph g {
+// "b"[label="b"];
+// "c"[label="c"];
+// "e"[label="e"];
+// "a"[label="a"];
+// "d"[label="d"];
+// "b" -> "a";
+// "c" -> "b";
+// "e" -> "d";
+// }
+```
+
+![Graphviz output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/defmulti/readme.dot.svg)
 
 ## Authors
 
