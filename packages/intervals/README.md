@@ -51,7 +51,7 @@ yarn add @thi.ng/intervals
 <script src="https://unpkg.com/@thi.ng/intervals/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.43 KB / CJS: 1.48 KB / UMD: 1.57 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.50 KB / CJS: 1.56 KB / UMD: 1.65 KB
 
 ## Dependencies
 
@@ -126,6 +126,24 @@ i.ropen = false;
 
 [...i.values(0.25)];
 // [ 0, 0.25, 0.5, 0.75, 1 ] => now includes 1
+
+// constrain values to interval (taking openness into account)
+interval("(0..1)").max(-2)
+// 0.000001
+
+// if given value is outside interval, uses opt epsilon value
+// to return closest inside value (default: 1e-6)...
+interval("(0..1)").max(-2, 1e-3)
+// 0.001
+
+interval("(0..1)").min(2, 1e-3)
+// 0.999
+
+// clamp on both sides
+interval("[0..1)").clamp(-2, 1e-3)
+// 0
+interval("[0..1)").clamp(2, 1e-3)
+// 0.999
 ```
 
 ## Authors

@@ -83,4 +83,18 @@ describe("intervals", () => {
         assert.strictEqual(a.compare(c), 1, "ac");
         assert.strictEqual(a.compare(d), -1, "ad");
     });
+
+    it("clamp", () => {
+        const eps = 1e-3;
+        for (let [x, a, b, c, d] of [
+            [-1, 0, eps, 0, eps],
+            [2, 1, 1, 1 - eps, 1 - eps],
+            [0.5, 0.5, 0.5, 0.5, 0.5],
+        ]) {
+            assert.strictEqual(i("[0,1]").clamp(x, eps), a);
+            assert.strictEqual(i("(0,1]").clamp(x, eps), b);
+            assert.strictEqual(i("[0,1)").clamp(x, eps), c);
+            assert.strictEqual(i("(0,1)").clamp(x, eps), d);
+        }
+    });
 });

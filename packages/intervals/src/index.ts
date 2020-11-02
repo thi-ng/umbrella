@@ -1,4 +1,12 @@
-import type { Fn, Fn2, ICompare, IContains, ICopy, IEquiv } from "@thi.ng/api";
+import {
+    DEFAULT_EPS,
+    Fn,
+    Fn2,
+    ICompare,
+    IContains,
+    ICopy,
+    IEquiv,
+} from "@thi.ng/api";
 import { isString } from "@thi.ng/checks";
 import { and, or } from "@thi.ng/dlogic";
 import { illegalArgs } from "@thi.ng/errors";
@@ -378,6 +386,53 @@ export class Interval
 
     map(f: Fn<number, number>) {
         return new Interval(f(this.l), f(this.r), this.lopen, this.ropen);
+    }
+
+    /**
+     * Returns the lesser value of either `x` or this interval's RHS value. If
+     * the interval is open on the RHS, and `x >= r`, then `r - eps` will be
+     * returned.
+     *
+     * @param x
+     * @param eps
+     */
+    min(x: number, eps = DEFAULT_EPS) {
+        return this.ropen
+            ? x >= this.r
+                ? this.r - eps
+                : x
+            : x > this.r
+            ? this.r
+            : x;
+    }
+
+    /**
+     * Returns the greater value of either `x` or this interval's LHS value. If
+     * the interval is open on the LHS, and `x <= l`, then `l + eps` will be
+     * returned.
+     *
+     * @param x
+     * @param eps
+     */
+    max(x: number, eps = DEFAULT_EPS) {
+        return this.lopen
+            ? x <= this.l
+                ? this.l + eps
+                : x
+            : x < this.l
+            ? this.l
+            : x;
+    }
+
+    /**
+     * Clamps `x` to this interval, using {@link Interval.min} and
+     * {@link Interval.max}.
+     *
+     * @param x
+     * @param eps
+     */
+    clamp(x: number, eps = DEFAULT_EPS) {
+        return this.min(this.max(x, eps), eps);
     }
 
     toString() {
