@@ -1,22 +1,29 @@
-import type { ICopy, Pair } from "@thi.ng/api";
+import type { ICopy, Nullable, Pair } from "@thi.ng/api";
 import { ArraySet, EquivMap, union } from "@thi.ng/associative";
 import { equiv } from "@thi.ng/equiv";
 import { illegalArgs } from "@thi.ng/errors";
 import { filter, reduce, reducer } from "@thi.ng/transducers";
 
-export const defDGraph = <T>(edges?: Iterable<Pair<T, T>>) =>
+/**
+ * {@link DGraph} factory function using optional provided edge pairs. If given,
+ * each pair is a `[node, parent]` tuple, or using `[node, null]` to merely
+ * register a node in the graph (without dependencies).
+ *
+ * @param edges
+ */
+export const defDGraph = <T>(edges?: Iterable<Pair<T, Nullable<T>>>) =>
     new DGraph<T>(edges);
 
 export class DGraph<T> implements Iterable<T>, ICopy<DGraph<T>> {
     dependencies: EquivMap<T, ArraySet<T>>;
     dependents: EquivMap<T, ArraySet<T>>;
 
-    constructor(edges?: Iterable<Pair<T, T>>) {
+    constructor(edges?: Iterable<Pair<T, Nullable<T>>>) {
         this.dependencies = new EquivMap<T, ArraySet<T>>();
         this.dependents = new EquivMap<T, ArraySet<T>>();
         if (edges) {
             for (let [a, b] of edges) {
-                this.addDependency(a, b);
+                b != null ? this.addDependency(a, b) : this.addNode(a);
             }
         }
     }
