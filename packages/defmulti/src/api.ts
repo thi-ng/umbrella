@@ -9,6 +9,7 @@ import type {
     Fn8,
     FnAny,
     IObjectOf,
+    Pair,
 } from "@thi.ng/api";
 
 export type DispatchFn = FnAny<PropertyKey>;
@@ -230,6 +231,15 @@ export interface MultiFnBase<I> {
      * @param id - implementation ID
      */
     ancestors(id: PropertyKey): Set<PropertyKey>;
+    /**
+     * Returns iterator of all known dispatch values and their dependencies in
+     * the hierarchy of dispatch values. Each dependency is encoded as `[value,
+     * parent-value?]`. If `parent-value` is undefined, the dispatch value has
+     * no parent.
+     */
+    dependencies(): IterableIterator<
+        Pair<PropertyKey, PropertyKey | undefined>
+    >;
 }
 
 export interface MultiFn<T>

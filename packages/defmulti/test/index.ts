@@ -129,4 +129,25 @@ describe("defmulti", () => {
         assert.strictEqual(foo({ id: "a", val: "alice" }), "foo: alice");
         assert.strictEqual(bar({ id: "a", val: "alice" }), "bar: ALICE");
     });
+
+    it("dependencies", () => {
+        const a = defmulti((x) => x);
+        assert.deepStrictEqual([...a.dependencies()], []);
+        a.add("a", () => { });
+        assert.deepStrictEqual([...a.dependencies()], [["a",undefined]]);
+        a.add("d",()=>{});
+        a.isa("b", "a");
+        a.isa("c", "b");
+        a.isa("e", "b");
+        assert.deepStrictEqual(
+            new Set([...a.dependencies()]),
+            new Set([
+                ["b", "a"],
+                ["c", "b"],
+                ["e", "b"],
+                ["a", undefined],
+                ["d", undefined]
+            ])
+        );
+    });
 });

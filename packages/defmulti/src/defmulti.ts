@@ -151,6 +151,14 @@ export function defmulti<T>(f: any, ancestors?: AncestorDefs) {
     fn.parents = (id: PropertyKey) => rels[<any>id];
     fn.ancestors = (id: PropertyKey) =>
         new Set<PropertyKey>(findAncestors([], rels, id));
+    fn.dependencies = function* () {
+        for (let a in rels) {
+            for (let b of rels[a]) yield [a, b];
+        }
+        for (let id in impls) {
+            !rels[id] && (yield [id, undefined]);
+        }
+    };
     return fn;
 }
 
