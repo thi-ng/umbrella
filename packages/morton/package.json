@@ -59,8 +59,12 @@
         "lib"
     ],
     "keywords": [
-        "binary",
+        "2d",
+        "3d",
+        "acceleration",
         "bbox",
+        "bigint",
+        "binary",
         "conversion",
         "decode",
         "encode",
@@ -68,8 +72,8 @@
         "morton",
         "nd",
         "query",
-        "spatial",
         "sort",
+        "spatial",
         "typescript",
         "z-curve"
     ],

@@ -59,7 +59,9 @@
         "lib"
     ],
     "keywords": [
-        "aabb",
+        "2d",
+        "3d",
+        "bbox",
         "circle",
         "distance",
         "ellipse",

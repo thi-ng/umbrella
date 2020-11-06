@@ -62,13 +62,17 @@
         "lib"
     ],
     "keywords": [
+        "align",
+        "aos",
+        "array",
+        "data-oriented",
         "memory",
         "memory-mapped",
         "pool",
         "typedarray",
         "typescript",
-        "webgl",
-        "wasm"
+        "wasm",
+        "webgl"
     ],
     "publishConfig": {
         "access": "public"

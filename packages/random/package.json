@@ -58,8 +58,8 @@
         "lib"
     ],
     "keywords": [
+        "binary",
         "generator",
-        "PRNG",
         "random",
         "typescript"
     ],

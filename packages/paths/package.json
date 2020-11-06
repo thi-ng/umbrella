@@ -59,11 +59,10 @@
         "lib"
     ],
     "keywords": [
-        "accessor",
         "array",
+        "clojure",
         "deep",
         "delete",
-        "getter",
         "immutable",
         "nested",
         "object",

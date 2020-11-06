@@ -66,6 +66,7 @@
         "bbox",
         "circle",
         "circumcenter",
+        "clipping",
         "elliptic",
         "geometry",
         "interpolation",

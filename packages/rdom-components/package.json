@@ -62,7 +62,15 @@
         "lib"
     ],
     "keywords": [
-        "typescript"
+        "browser",
+        "component",
+        "dom",
+        "hiccup",
+        "html",
+        "reactive",
+        "rstream",
+        "typescript",
+        "ui"
     ],
     "publishConfig": {
         "access": "public"

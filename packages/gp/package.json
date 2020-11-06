@@ -61,16 +61,20 @@
         "lib"
     ],
     "keywords": [
+        "agent",
+        "array",
         "ast",
+        "codegen",
         "crossover",
         "evolutionary",
         "generative",
         "genetic",
-        "algorithm",
-        "multi-expression",
         "mep",
+        "multi-expression",
         "mutation",
         "phenotype",
+        "self-organization",
+        "tree",
         "typescript"
     ],
     "publishConfig": {

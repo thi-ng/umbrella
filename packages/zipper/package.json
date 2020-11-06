@@ -59,6 +59,10 @@
         "lib"
     ],
     "keywords": [
+        "adjacency",
+        "agent",
+        "array",
+        "clojure",
         "datastructure",
         "edit",
         "functional",

@@ -58,7 +58,8 @@
         "lib"
     ],
     "keywords": [
-        "arity",
+        "agent",
+        "clojure",
         "functional",
         "hierarchy",
         "inheritance",

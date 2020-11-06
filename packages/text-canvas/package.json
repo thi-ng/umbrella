@@ -64,13 +64,14 @@
         "lib"
     ],
     "keywords": [
-        "ASCII",
-        "ANSI",
+        "ansi",
+        "array",
+        "ascii",
+        "binary",
         "canvas",
         "circle",
         "drawing",
         "format",
-        "HTML",
         "line",
         "rect",
         "table",

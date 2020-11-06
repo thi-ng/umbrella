@@ -59,6 +59,7 @@
         "lib"
     ],
     "keywords": [
+        "array",
         "binary",
         "bitwise",
         "compression",

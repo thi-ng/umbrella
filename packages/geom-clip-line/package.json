@@ -59,6 +59,8 @@
         "lib"
     ],
     "keywords": [
+        "2d",
+        "bbox",
         "clipping",
         "geometry",
         "graphics",

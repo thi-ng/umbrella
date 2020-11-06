@@ -63,6 +63,7 @@
         "graph",
         "graphviz",
         "reactive",
+        "rstream",
         "stream",
         "topology",
         "typescript",

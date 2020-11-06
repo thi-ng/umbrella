@@ -55,14 +55,18 @@
     ],
     "keywords": [
         "align",
+        "aos",
+        "array",
         "binary",
         "bitfield",
         "c",
+        "codegen",
         "cpp",
         "interop",
         "struct",
         "typescript",
-        "union"
+        "union",
+        "wasm"
     ],
     "publishConfig": {
         "access": "public"

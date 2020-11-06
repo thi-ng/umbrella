@@ -56,12 +56,15 @@
         "lib"
     ],
     "keywords": [
+        "browser",
+        "component",
         "dsl",
         "fileformat",
         "hiccup",
         "html",
         "typecheck",
         "typescript",
+        "ui",
         "wrapper"
     ],
     "publishConfig": {

@@ -59,6 +59,8 @@
         "lib"
     ],
     "keywords": [
+        "browser",
+        "canvas",
         "file",
         "typescript"
     ],

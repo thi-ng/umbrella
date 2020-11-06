@@ -59,8 +59,9 @@
         "lib"
     ],
     "keywords": [
-        "datastructure",
+        "array",
         "d-heap",
+        "datastructure",
         "heap",
         "pairing-heap",
         "priority-queue",

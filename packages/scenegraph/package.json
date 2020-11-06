@@ -62,6 +62,8 @@
     "keywords": [
         "2d",
         "3d",
+        "animation",
+        "canvas",
         "scenegraph",
         "typescript"
     ],

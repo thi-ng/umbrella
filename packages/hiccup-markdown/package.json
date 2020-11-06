@@ -69,13 +69,13 @@
         "ast",
         "conversion",
         "dom",
+        "export",
         "fileformat",
         "hiccup",
         "markdown",
         "parser",
-        "serialization",
-        "tree",
         "transducer",
+        "tree",
         "typescript"
     ],
     "publishConfig": {

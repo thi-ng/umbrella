@@ -61,6 +61,7 @@
     ],
     "keywords": [
         "ast",
+        "canvas",
         "codegen",
         "dsl",
         "glsl",

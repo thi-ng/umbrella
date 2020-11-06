@@ -64,6 +64,7 @@
     ],
     "keywords": [
         "adjacency",
+        "binary",
         "bitwise",
         "degree",
         "directed",

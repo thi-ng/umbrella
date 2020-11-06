@@ -68,24 +68,25 @@
     "keywords": [
         "alpha",
         "blend",
-        "css",
+        "channel",
         "cie1931",
         "color",
         "conversion",
         "cosine",
+        "css",
         "filter",
         "gradient",
         "hcy",
+        "hsi",
         "hsl",
         "hsv",
-        "hsi",
         "matrix",
         "porter-duff",
         "rgb",
         "srgb",
+        "typescript",
         "xyz",
-        "ycbcr",
-        "typescript"
+        "ycbcr"
     ],
     "publishConfig": {
         "access": "public"
@@ -95,7 +96,5 @@
         "setTimeout": false
     },
     "sideEffects": false,
-    "thi.ng": {
-        "shortlink": false
-    }
+    "thi.ng": {}
 }

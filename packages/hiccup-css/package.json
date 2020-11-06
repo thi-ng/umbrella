@@ -60,16 +60,19 @@
         "lib"
     ],
     "keywords": [
-        "css",
+        "array",
+        "browser",
         "codegen",
         "component",
+        "css",
         "dsl",
+        "export",
         "fileformat",
-        "iterator",
         "hiccup",
+        "iterator",
         "json",
-        "serialization",
-        "typescript"
+        "typescript",
+        "ui"
     ],
     "publishConfig": {
         "access": "public"

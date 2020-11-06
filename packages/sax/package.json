@@ -59,12 +59,12 @@
         "lib"
     ],
     "keywords": [
-        "FSM",
+        "async",
+        "fsm",
         "parser",
-        "SAX",
         "transducer",
         "typescript",
-        "XML"
+        "xml"
     ],
     "publishConfig": {
         "access": "public"

@@ -61,11 +61,13 @@
     "keywords": [
         "1d",
         "2d",
+        "array",
         "binary",
+        "bitfield",
         "bitwise",
         "matrix",
-        "typescript",
         "typedarray",
+        "typescript",
         "vector"
     ],
     "publishConfig": {

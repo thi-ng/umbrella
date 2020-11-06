@@ -57,6 +57,8 @@
         "lib"
     ],
     "keywords": [
+        "animation",
+        "bezier",
         "cubic",
         "hermite",
         "interpolation",
@@ -71,5 +73,8 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "year": 2013
+    }
 }

@@ -63,12 +63,16 @@
         "lib"
     ],
     "keywords": [
+        "animation",
+        "browser",
         "canvas",
         "component",
         "declarative",
+        "graphics",
         "hiccup",
         "scenegraph",
         "typescript",
+        "ui",
         "wrapper"
     ],
     "publishConfig": {

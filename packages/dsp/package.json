@@ -68,10 +68,12 @@
         "util"
     ],
     "keywords": [
-        "additive",
         "allpass",
+        "analysis",
         "audio",
         "biquad",
+        "channel",
+        "clipping",
         "composition",
         "delay",
         "dsp",

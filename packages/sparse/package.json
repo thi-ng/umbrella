@@ -58,9 +58,9 @@
         "lib"
     ],
     "keywords": [
-        "adjacency",
         "COO",
         "CSR",
+        "adjacency",
         "graph",
         "matrix",
         "sparse",

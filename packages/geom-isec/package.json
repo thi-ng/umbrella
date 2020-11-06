@@ -63,7 +63,7 @@
     "keywords": [
         "2d",
         "3d",
-        "aabb",
+        "bbox",
         "circle",
         "geometry",
         "intersection",

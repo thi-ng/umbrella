@@ -62,6 +62,8 @@
         "lib"
     ],
     "keywords": [
+        "browser",
+        "canvas",
         "font",
         "layout",
         "msdf",

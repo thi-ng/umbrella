@@ -54,6 +54,9 @@
         "lib"
     ],
     "keywords": [
+        "2d",
+        "3d",
+        "adjacency",
         "dual",
         "geometry",
         "graph",

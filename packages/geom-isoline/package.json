@@ -60,6 +60,8 @@
     ],
     "keywords": [
         "2d",
+        "binary",
+        "clipping",
         "contours",
         "isoline",
         "iterator",

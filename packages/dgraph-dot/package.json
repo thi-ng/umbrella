@@ -59,11 +59,12 @@
         "lib"
     ],
     "keywords": [
+        "2d",
         "dependency",
+        "export",
         "fileformat",
         "graph",
         "graphviz",
-        "serialization",
         "typescript",
         "visualization"
     ],

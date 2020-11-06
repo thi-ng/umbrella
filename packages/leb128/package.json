@@ -60,11 +60,11 @@
         "lib"
     ],
     "keywords": [
-        "LEB128",
+        "bigint",
         "binary",
         "conversion",
         "typescript",
-        "WASM"
+        "wasm"
     ],
     "publishConfig": {
         "access": "public"

@@ -65,10 +65,11 @@
     ],
     "keywords": [
         "async",
-        "css",
+        "browser",
         "compiler",
-        "dom",
         "component",
+        "css",
+        "dom",
         "hiccup",
         "html",
         "reactive",

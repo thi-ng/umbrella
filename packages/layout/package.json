@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/layout",
     "version": "0.1.23",
-    "description": "TODO",
+    "description": "Configurable nested 2D grid layout manager",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -57,6 +57,9 @@
         "lib"
     ],
     "keywords": [
+        "2d",
+        "align",
+        "design",
         "grid",
         "layout",
         "recursive",

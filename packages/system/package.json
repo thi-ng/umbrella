@@ -58,6 +58,7 @@
         "lib"
     ],
     "keywords": [
+        "clojure",
         "component",
         "dependency",
         "graph",

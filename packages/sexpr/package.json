@@ -60,6 +60,7 @@
     ],
     "keywords": [
         "ast",
+        "clojure",
         "dsl",
         "interpreter",
         "lisp",

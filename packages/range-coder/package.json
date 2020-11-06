@@ -58,6 +58,7 @@
         "lib"
     ],
     "keywords": [
+        "array",
         "binary",
         "compression",
         "entropy",

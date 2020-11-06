@@ -73,6 +73,7 @@
         "pipeline",
         "pubsub",
         "reactive",
+        "rstream",
         "state",
         "stream",
         "subscription",

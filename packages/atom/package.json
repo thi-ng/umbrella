@@ -61,6 +61,7 @@
         "lib"
     ],
     "keywords": [
+        "clojure",
         "cursor",
         "datastructure",
         "history",

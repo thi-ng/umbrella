@@ -60,9 +60,13 @@
         "lib"
     ],
     "keywords": [
+        "acceleration",
+        "array",
         "assemblyscript",
-        "batchprocess",
+        "data-oriented",
+        "interval",
         "simd",
+        "soa",
         "typescript",
         "vector",
         "wasm"

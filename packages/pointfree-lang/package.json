@@ -67,10 +67,10 @@
     ],
     "keywords": [
         "ast",
-        "concatenative",
-        "compiler",
-        "dataflow",
         "cli",
+        "compiler",
+        "concatenative",
+        "dataflow",
         "dsl",
         "forth",
         "functional",

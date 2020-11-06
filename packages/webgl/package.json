@@ -75,9 +75,14 @@
         "textures"
     ],
     "keywords": [
+        "2d",
+        "3d",
+        "animation",
+        "blend",
+        "browser",
+        "canvas",
         "declarative",
-        "FBO",
-        "GPGPU",
+        "gpgpu",
         "graphics",
         "shader",
         "shader-ast",

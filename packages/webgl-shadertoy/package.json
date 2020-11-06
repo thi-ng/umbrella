@@ -60,6 +60,9 @@
         "lib"
     ],
     "keywords": [
+        "animation",
+        "browser",
+        "canvas",
         "graphics",
         "shader-ast",
         "shadertoy",

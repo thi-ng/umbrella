@@ -59,6 +59,7 @@
         "lib"
     ],
     "keywords": [
+        "acceleration",
         "cache",
         "datastructure",
         "lru",

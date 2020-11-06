@@ -61,14 +61,16 @@
         "lib"
     ],
     "keywords": [
+        "array",
+        "clojure",
         "component",
+        "export",
         "fileformat",
         "functional",
         "hiccup",
         "html",
         "iterator",
         "json",
-        "serialization",
         "svg",
         "template",
         "tree",

@@ -60,10 +60,9 @@
     ],
     "keywords": [
         "configuration",
+        "dag",
         "datastructure",
-        "DAG",
         "graph",
-        "JSON",
         "typescript"
     ],
     "publishConfig": {

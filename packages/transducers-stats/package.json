@@ -60,6 +60,8 @@
         "lib"
     ],
     "keywords": [
+        "analysis",
+        "array",
         "bollinger",
         "donchian",
         "ema",

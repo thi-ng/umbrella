@@ -70,8 +70,11 @@
     ],
     "keywords": [
         "2d",
+        "analysis",
         "area",
+        "canvas",
         "chart",
+        "clipping",
         "declarative",
         "hiccup",
         "interval",

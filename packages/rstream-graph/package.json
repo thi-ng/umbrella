@@ -65,12 +65,14 @@
         "nodes"
     ],
     "keywords": [
+        "animation",
+        "async",
         "compute",
         "dataflow",
         "graph",
         "reactive",
-        "stream",
         "rstream",
+        "stream",
         "topology",
         "typescript"
     ],

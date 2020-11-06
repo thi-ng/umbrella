@@ -62,16 +62,15 @@
         "lib"
     ],
     "keywords": [
+        "2d",
         "bezier",
-        "cad",
         "export",
         "fileformat",
-        "iges",
         "geometry",
         "graphics",
+        "iges",
         "polygon",
         "polyline",
-        "serialization",
         "typescript"
     ],
     "publishConfig": {

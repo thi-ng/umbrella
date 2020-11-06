@@ -61,6 +61,8 @@
         "lib"
     ],
     "keywords": [
+        "async",
+        "browser",
         "event",
         "functional",
         "queue",

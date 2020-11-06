@@ -67,6 +67,7 @@
         "multilevel",
         "multiplex",
         "pipeline",
+        "rstream",
         "stream",
         "transducer",
         "typescript"

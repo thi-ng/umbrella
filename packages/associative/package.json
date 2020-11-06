@@ -66,9 +66,10 @@
         "internal"
     ],
     "keywords": [
+        "cache",
         "datastructure",
         "equality",
-        "hashmap",
+        "hash",
         "intersection",
         "join",
         "map",

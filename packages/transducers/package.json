@@ -70,11 +70,12 @@
     ],
     "keywords": [
         "array",
+        "clojure",
         "composition",
         "functional",
         "generator",
-        "iterator",
         "interleave",
+        "iterator",
         "pipeline",
         "reducer",
         "stepwise",

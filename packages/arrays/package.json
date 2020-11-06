@@ -62,6 +62,7 @@
         "lib"
     ],
     "keywords": [
+        "aos",
         "array",
         "binary",
         "fuzzy",

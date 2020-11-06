@@ -61,6 +61,7 @@
         "lib"
     ],
     "keywords": [
+        "animation",
         "dataflow",
         "event",
         "interaction",
@@ -68,8 +69,8 @@
         "mousewheel",
         "multitouch",
         "reactive",
-        "stream",
         "rstream",
+        "stream",
         "touch",
         "typescript"
     ],

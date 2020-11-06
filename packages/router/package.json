@@ -63,13 +63,13 @@
     "keywords": [
         "browser",
         "declarative",
-        "html",
         "history",
+        "html",
         "parametric",
         "router",
         "typescript",
-        "validate",
-        "ui"
+        "ui",
+        "validate"
     ],
     "publishConfig": {
         "access": "public"

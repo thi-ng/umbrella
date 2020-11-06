@@ -61,14 +61,15 @@
         "lib"
     ],
     "keywords": [
+        "1d",
         "animation",
+        "envelope",
         "hermite",
         "interpolation",
         "interval",
         "keyframe",
         "linear",
         "lut",
-        "envelope",
         "timeline",
         "typescript"
     ],

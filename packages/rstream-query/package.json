@@ -71,6 +71,7 @@
         "graph",
         "query",
         "reactive",
+        "rstream",
         "semanticweb",
         "stream",
         "subscription",

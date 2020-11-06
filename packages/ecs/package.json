@@ -69,7 +69,13 @@
         "groups"
     ],
     "keywords": [
+        "acceleration",
+        "animation",
+        "aos",
+        "array",
+        "cache",
         "component",
+        "data-oriented",
         "datastructure",
         "entity",
         "memory-mapped",

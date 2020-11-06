@@ -67,8 +67,8 @@
     ],
     "keywords": [
         "async",
-        "csp",
         "channel",
+        "csp",
         "datastructure",
         "multiplex",
         "pipeline",

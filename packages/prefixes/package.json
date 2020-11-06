@@ -58,8 +58,8 @@
         "prefixes",
         "rdf",
         "semanticweb",
-        "vocabulary",
         "uri",
+        "vocabulary",
         "xml"
     ],
     "publishConfig": {

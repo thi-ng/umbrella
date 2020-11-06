@@ -64,6 +64,7 @@
         "lib"
     ],
     "keywords": [
+        "array",
         "browser",
         "component",
         "datadriven",

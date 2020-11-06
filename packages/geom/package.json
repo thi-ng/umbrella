@@ -87,11 +87,18 @@
     ],
     "keywords": [
         "2d",
+        "analysis",
+        "arc",
+        "area",
+        "bbox",
+        "bezier",
         "centroid",
+        "circle",
+        "clipping",
         "conversion",
-        "intersection",
         "geometry",
         "graphics",
+        "intersection",
         "polymorphic",
         "sample",
         "shape",
@@ -103,7 +110,6 @@
     },
     "sideEffects": false,
     "thi.ng": {
-        "shortlink": false,
         "status": "beta",
         "year": 2013
     }

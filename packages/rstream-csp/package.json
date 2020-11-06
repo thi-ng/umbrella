@@ -59,11 +59,11 @@
         "from"
     ],
     "keywords": [
-        "bridge",
+        "async",
         "csp",
         "reactive",
-        "stream",
         "rstream",
+        "stream",
         "typescript"
     ],
     "publishConfig": {

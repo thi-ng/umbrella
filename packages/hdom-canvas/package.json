@@ -61,7 +61,10 @@
         "lib"
     ],
     "keywords": [
+        "array",
+        "browser",
         "canvas",
+        "circle",
         "datadriven",
         "drawing",
         "graphics",

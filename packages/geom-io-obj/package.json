@@ -58,10 +58,10 @@
         "lib"
     ],
     "keywords": [
+        "3d",
         "fileformat",
         "geometry",
         "mesh",
-        "OBJ",
         "parser",
         "polygon",
         "polyline",

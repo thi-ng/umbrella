@@ -61,7 +61,6 @@
         "boolean",
         "digital",
         "functional",
-        "gates",
         "logic",
         "simulation",
         "typescript"

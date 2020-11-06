@@ -63,9 +63,9 @@
         "lib"
     ],
     "keywords": [
+        "array",
         "bencode",
         "binary",
-        "bittorrent",
         "encode",
         "fileformat",
         "transducer",

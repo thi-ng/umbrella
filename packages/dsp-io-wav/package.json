@@ -61,6 +61,8 @@
     ],
     "keywords": [
         "audio",
+        "binary",
+        "channel",
         "dsp",
         "export",
         "fileformat",
