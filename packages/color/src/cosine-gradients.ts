@@ -1,4 +1,4 @@
-import type { FnU2, IObjectOf } from "@thi.ng/api";
+import type { FnU2 } from "@thi.ng/api";
 import { partial } from "@thi.ng/compose";
 import { clamp01, TAU } from "@thi.ng/math";
 import {
@@ -12,11 +12,36 @@ import {
 import type { Color, CosCoeffs, CosGradientSpec, ReadonlyColor } from "./api";
 import { clamp } from "./clamp";
 
+export type GradientPresets = Record<
+    | "blue-cyan"
+    | "blue-magenta-orange"
+    | "blue-white-red"
+    | "cyan-magenta"
+    | "green-blue-orange"
+    | "green-cyan"
+    | "green-magenta"
+    | "green-red"
+    | "heat1"
+    | "magenta-green"
+    | "orange-blue"
+    | "orange-magenta-blue"
+    | "purple-orange-cyan"
+    | "rainbow1"
+    | "rainbow2"
+    | "rainbow3"
+    | "rainbow4"
+    | "red-blue"
+    | "yellow-green-blue"
+    | "yellow-magenta-cyan"
+    | "yellow-purple-magenta"
+    | "yellow-red",
+    CosGradientSpec
+>;
+
 // see http://dev.thi.ng/gradients/ - unlike the clojure version, these
 // presets are for RGBA (though the alpha channel is configured to
 // always be 1.0)
-
-export const GRADIENTS: IObjectOf<CosGradientSpec> = {
+export const GRADIENTS: GradientPresets = {
     "blue-cyan": [
         [0, 0.5, 0.5, 1],
         [0, 0.5, 0.5, 0],
@@ -65,6 +90,12 @@ export const GRADIENTS: IObjectOf<CosGradientSpec> = {
         [0.5, 0.5, 0, 0],
         [0.5, 0, 0, 0],
     ],
+    heat1: [
+        [0.5, 0.4, 0.25, 1],
+        [0.5, 0.5, 0.666, 0],
+        [0.5, 0.666, 0.8, 0],
+        [0.5, 0.666, 0.8, 0],
+    ],
     "magenta-green": [
         [0.59, 0.811, 0.12, 1],
         [0.41, 0.392, 0.59, 0],
@@ -82,6 +113,12 @@ export const GRADIENTS: IObjectOf<CosGradientSpec> = {
         [0.659, 0.481, 0.896, 0],
         [0.612, 0.34, 0.296, 0],
         [2.82, 3.026, -0.273, 0],
+    ],
+    "purple-orange-cyan": [
+        [0.5, 0.5, 0.5, 1],
+        [0.5, 0.5, 0.5, 0],
+        [0.5, 0.5, 1, 0],
+        [-0.25, 0.5, 1, 0],
     ],
     rainbow1: [
         [0.5, 0.5, 0.5, 1],
@@ -136,18 +173,6 @@ export const GRADIENTS: IObjectOf<CosGradientSpec> = {
         [0.5, 0.5, 0, 0],
         [0.1, 0.5, 0, 0],
         [0, 0, 0, 0],
-    ],
-    "purple-orange-cyan": [
-        [0.5, 0.5, 0.5, 1],
-        [0.5, 0.5, 0.5, 0],
-        [0.5, 0.5, 1, 0],
-        [-0.25, 0.5, 1, 0],
-    ],
-    heat1: [
-        [0.5, 0.4, 0.25, 1],
-        [0.5, 0.5, 0.666, 0],
-        [0.5, 0.666, 0.8, 0],
-        [0.5, 0.666, 0.8, 0],
     ],
 };
 
