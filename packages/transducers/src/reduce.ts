@@ -35,6 +35,27 @@ export function reduce<A, B>(...args: any[]): A {
     );
 }
 
+export function reduceRight<A, B>(rfn: Reducer<A, B>, xs: ArrayLike<B>): A;
+// prettier-ignore
+export function reduceRight<A, B>(rfn: Reducer<A, B>, acc: A, xs: ArrayLike<B>): A;
+export function reduceRight<A, B>(...args: any[]): A {
+    const rfn: Reducer<A, B> = args[0];
+    const init = rfn[0];
+    const complete = rfn[1];
+    const reduce = rfn[2];
+    args = parseArgs(args);
+    let acc: A = args[0] == null ? init() : args[0];
+    const xs: Array<B> = args[1];
+    for (let i = xs.length; --i >= 0; ) {
+        acc = <any>reduce(acc, xs[i]);
+        if (isReduced(acc)) {
+            acc = (<any>acc).deref();
+            break;
+        }
+    }
+    return unreduced(complete(acc));
+}
+
 const reduceArray = <A, B>(
     rfn: ReductionFn<A, B>,
     acc: A,

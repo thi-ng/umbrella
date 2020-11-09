@@ -26,10 +26,10 @@ highly useful operators have been added. See full list below.
 Furthermore, most transducers & reducers provided here accept an
 optional input iterable, which allows them to be used directly as
 transformers instead of having to wrap them in one of the execution
-functions (i.e. `transduce()`, `reduce()`, `iterator()`, `run()`,
-`step()`). If called this way, transducer functions will return a
-transforming ES6 iterator (generator) and reducing functions will return
-a reduced result of the given input iterable.
+functions (i.e. `transduce()`/`transduceRight()`, `reduce()`/`reduceRight()`,
+`iterator()`, `run()`, `step()`). If called this way, transducer functions
+will return a transforming ES6 iterator (generator) and reducing functions
+will return a reduced result of the given input iterable.
 
 ${status}
 
@@ -653,19 +653,33 @@ doesn't use a reduction function).
 
 #### reduce
 
-`reduce<A, B>(rfn: Reducer<A, B>, acc: A, xs: Iterable<B>): A`
+`reduce<A, B>(rfn: Reducer<A, B>, acc?: A, xs: Iterable<B>): A`
 
 Reduces `xs` using given reducer and optional initial
 accumulator/result. If `xs` implements the `IReducible` interface,
 delegates to that implementation. Likewise, uses a fast route if `xs` is
 an `ArrayLike` type.
 
+#### reduceRight
+
+`reduceRight<A, B>(rfn: Reducer<A, B>, acc?: A, xs: ArrayLike<B>): A`
+
+Similar to `reduce`, however only accepts `ArrayLike` sources and reduces them
+into right-to-left order.
+
 #### transduce
 
-`transduce<A, B, C>(tx: Transducer<A, B>, rfn: Reducer<C, B>, acc: C, xs: Iterable<A>): C`
+`transduce<A, B, C>(tx: Transducer<A, B>, rfn: Reducer<C, B>, acc?: C, xs: Iterable<A>): C`
 
 Transforms iterable using given transducer and combines results with
 given reducer and optional initial accumulator/result.
+
+#### transduceRight
+
+`transduceRight<A, B, C>(tx: Transducer<A, B>, rfn: Reducer<C, B>, acc?: C, xs: ArrayLike<A>): C`
+
+Similar to `transduce`, however only accepts `ArrayLike` sources and processes
+them into right-to-left order.
 
 #### run
 
