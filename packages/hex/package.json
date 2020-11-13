@@ -1,0 +1,73 @@
+{
+    "name": "@thi.ng/hex",
+    "version": "0.0.1",
+    "description": "Hex string formatters for 4/8/16/24/32/48/64bit words",
+    "module": "./index.js",
+    "main": "./lib/index.js",
+    "umd:main": "./lib/index.umd.js",
+    "typings": "./index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thi-ng/umbrella.git"
+    },
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/hex#readme",
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
+        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
+        "build:es6": "tsc --declaration",
+        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "build:check": "tsc --isolatedModules --noEmit",
+        "test": "mocha test",
+        "cover": "nyc mocha test && nyc report --reporter=lcov",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
+        "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc --theme ../../tools/doc/typedoc-theme src",
+        "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
+        "pub": "yarn build:release && yarn publish --access public"
+    },
+    "devDependencies": {
+        "@istanbuljs/nyc-config-typescript": "^1.0.1",
+        "@microsoft/api-extractor": "^7.9.11",
+        "@types/mocha": "^8.0.3",
+        "@types/node": "^14.6.1",
+        "mocha": "^8.1.2",
+        "nyc": "^15.1.0",
+        "ts-node": "^9.0.0",
+        "typedoc": "^0.18.0",
+        "typescript": "^4.0.2"
+    },
+    "dependencies": {
+    },
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "lib"
+    ],
+    "keywords": [
+        "binary",
+        "format",
+        "hex",
+        "string",
+        "typescript"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "sideEffects": false,
+    "thi.ng": {
+        "status": "alpha",
+        "year": 2020
+    }
+}
