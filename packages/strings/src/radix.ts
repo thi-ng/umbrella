@@ -1,10 +1,21 @@
+import {
+    U16 as $16,
+    U24 as $24,
+    U32 as $32,
+    U64HL,
+    U8 as $8,
+} from "@thi.ng/hex";
 import { memoizeJ } from "@thi.ng/memoize";
 import type { Stringer } from "./api";
 import { repeat } from "./repeat";
 
 /**
- * Returns a {@link Stringer} which formats given numbers to `radix`, `len`
- * and with optional prefix (not included in `len`).
+ * Returns a {@link Stringer} which formats given numbers to `radix`, `len` and
+ * with optional prefix (not included in `len`).
+ *
+ * @remarks
+ * Only bases 2 - 36 are supported, due to native `Number.toString()`
+ * limitations.
  *
  * @param radix -
  * @param len -
@@ -43,28 +54,28 @@ export const B32 = radix(2, 32);
  * 8bit hex conversion preset.
  * Assumes unsigned inputs.
  */
-export const U8 = radix(16, 2);
+export const U8 = $8;
 
 /**
  * 16bit hex conversion preset.
  * Assumes unsigned inputs.
  */
-export const U16 = radix(16, 4);
+export const U16 = $16;
 
 /**
  * 24bit hex conversion preset.
  * Assumes unsigned inputs.
  */
-export const U24 = radix(16, 6);
+export const U24 = $24;
 
 /**
  * 32bit hex conversion preset.
  * Assumes unsigned inputs.
  */
-export const U32 = radix(16, 8);
+export const U32 = $32;
 
 /**
  * 64bit hex conversion preset (2x 32bit ints)
  * Assumes unsigned inputs.
  */
-export const U64 = (hi: number, lo: number) => U32(hi) + U32(lo);
+export const U64 = U64HL;
