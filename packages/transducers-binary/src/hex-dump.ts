@@ -1,5 +1,5 @@
 import { juxt } from "@thi.ng/compose";
-import { U32, U8 } from "@thi.ng/strings";
+import { U32, U8 } from "@thi.ng/hex";
 import {
     $iter,
     comp,

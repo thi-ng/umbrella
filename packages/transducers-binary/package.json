@@ -52,8 +52,8 @@
         "@thi.ng/binary": "^2.0.16",
         "@thi.ng/compose": "^1.4.18",
         "@thi.ng/errors": "^1.2.22",
+        "@thi.ng/hex": "^0.0.1",
         "@thi.ng/random": "^2.0.2",
-        "@thi.ng/strings": "^1.10.0",
         "@thi.ng/transducers": "^7.4.0"
     },
     "files": [
@@ -72,6 +72,7 @@
         "partition",
         "stream",
         "transducer",
+        "typedarray",
         "typescript",
         "utf8"
     ],
