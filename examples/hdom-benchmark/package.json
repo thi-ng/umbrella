@@ -18,8 +18,8 @@
     "dependencies": {
         "@thi.ng/hdom": "latest",
         "@thi.ng/hdom-components": "latest",
+        "@thi.ng/hex": "latest",
         "@thi.ng/rstream": "latest",
-        "@thi.ng/strings": "latest",
         "@thi.ng/transducers": "latest"
     },
     "browserslist": [

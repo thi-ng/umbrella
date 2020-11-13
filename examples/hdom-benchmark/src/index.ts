@@ -1,7 +1,7 @@
 import { start } from "@thi.ng/hdom";
 import { dropdown } from "@thi.ng/hdom-components";
+import { U16, U24 } from "@thi.ng/hex";
 import { fromRAF, Stream } from "@thi.ng/rstream";
-import { U16, U24 } from "@thi.ng/strings";
 import {
     benchmark,
     comp,
