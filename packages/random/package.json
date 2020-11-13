@@ -50,7 +50,8 @@
     },
     "dependencies": {
         "@thi.ng/api": "^6.13.1",
-        "@thi.ng/checks": "^2.7.9"
+        "@thi.ng/checks": "^2.7.9",
+        "@thi.ng/hex": "^0.0.1"
     },
     "files": [
         "*.js",
@@ -59,8 +60,10 @@
     ],
     "keywords": [
         "binary",
+        "datastructure",
         "generator",
         "random",
+        "typedarray",
         "typescript"
     ],
     "publishConfig": {
