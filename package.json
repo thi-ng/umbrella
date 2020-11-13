@@ -40,7 +40,9 @@
         "examples": "scripts/build-examples",
         "pub": "lerna publish --registry https://registry.npmjs.org/ && yarn doc && scripts/upload-docs",
         "test": "yarn build && yarn test:only",
-        "test:only": "lerna run test"
+        "test:only": "lerna run test",
+        "tool:imports": "ts-node -P tools/tsconfig.json tools/src/check-imports.ts",
+        "tool:searchindex": "ts-node -P tools/tsconfig.json tools/src/build-search-index.ts"
     },
     "resolutions": {
         "typescript": "^4.0.2"
