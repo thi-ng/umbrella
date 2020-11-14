@@ -566,10 +566,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
     protected async process() {
         if (!this.isBusy) {
             this.isBusy = true;
-            const reads = this.reads;
-            const writes = this.writes;
-            const buf = this.buf;
-            const txbuf = this.txbuf;
+            const { buf, txbuf, reads, writes } = this;
             let doProcess: any = true;
             while (doProcess) {
                 while (reads.length && (txbuf.length || buf.length)) {
