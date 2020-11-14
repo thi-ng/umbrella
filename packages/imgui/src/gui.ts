@@ -318,18 +318,17 @@ export class IMGUI implements IClear, IToHiccup {
      * Garbage collect unused component state / resources.
      */
     gc() {
-        const prev = this.prevIDs;
-        const curr = this.currIDs;
-        for (let id of prev) {
-            if (!curr.has(id)) {
+        const { currIDs, prevIDs } = this;
+        for (let id of prevIDs) {
+            if (!currIDs.has(id)) {
                 this.resources.delete(id);
                 this.sizes.delete(id);
                 this.states.delete(id);
             }
         }
-        this.prevIDs = curr;
-        this.currIDs = prev;
-        prev.clear();
+        this.prevIDs = currIDs;
+        this.currIDs = prevIDs;
+        prevIDs.clear();
     }
 
     bgColor(hover: boolean) {
