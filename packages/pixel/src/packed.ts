@@ -285,11 +285,10 @@ export class PackedBuffer {
     }
 
     invert() {
-        const pix = this.pixels;
-        const fmt = this.format;
-        const mask = Math.pow(2, fmt.size - fmt.alpha) - 1;
-        for (let i = pix.length; --i >= 0; ) {
-            pix[i] ^= mask;
+        const { format, pixels } = this;
+        const mask = Math.pow(2, format.size - format.alpha) - 1;
+        for (let i = pixels.length; --i >= 0; ) {
+            pixels[i] ^= mask;
         }
         return this;
     }
