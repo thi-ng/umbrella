@@ -152,17 +152,16 @@ export class Heap<T>
      * @param n - number of values
      */
     max(n = this.values.length) {
-        const vals = this.values;
-        const cmp = this.compare;
-        const res = vals.slice(0, n);
+        const { compare, values } = this;
+        const res = values.slice(0, n);
         if (!n) {
             return res;
         }
         this.heapify(res);
-        for (let m = vals.length; n < m; n++) {
-            this.pushPop(vals[n], res);
+        for (let m = values.length; n < m; n++) {
+            this.pushPop(values[n], res);
         }
-        return res.sort((a, b) => cmp(b, a));
+        return res.sort((a, b) => compare(b, a));
     }
 
     /**
@@ -172,18 +171,17 @@ export class Heap<T>
      * @param n - number of values
      */
     min(n = this.values.length) {
-        const vals = this.values;
-        const cmp = this.compare;
-        const res = vals.slice(0, n).sort(cmp);
+        const { compare, values } = this;
+        const res = values.slice(0, n).sort(compare);
         if (!n) {
             return res;
         }
         let x = res[n - 1],
             y: T;
-        for (let i = n, m = vals.length; i < m; i++) {
-            y = vals[i];
-            if (cmp(y, x) < 0) {
-                res.splice(binarySearch(y, res, 0, n, cmp), 0, y);
+        for (let i = n, m = values.length; i < m; i++) {
+            y = values[i];
+            if (compare(y, x) < 0) {
+                res.splice(binarySearch(y, res, 0, n, compare), 0, y);
                 res.pop();
                 x = res[n - 1];
             }

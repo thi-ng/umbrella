@@ -85,12 +85,11 @@ export class DHeap<T>
 
     protected percolateUp(i: number, vals = this.values) {
         const node = vals[i];
-        const d = this.d;
-        const cmp = this.compare;
+        const { d, compare } = this;
         while (i > 0) {
             const pi = ((i - 1) / d) | 0;
             const parent = vals[pi];
-            if (cmp(node, parent) >= 0) {
+            if (compare(node, parent) >= 0) {
                 break;
             }
             vals[pi] = node;
