@@ -74,11 +74,10 @@ export class SparseVec {
     }
 
     binopN(op: BinOp, n: number) {
-        const d = this.data;
-        const m = this.m;
+        const { data, m } = this;
         const res = [];
-        for (let i = 0, j = 0, k = d[j]; i < m; i++) {
-            let v = op(i === k ? ((j += 2), (k = d[j]), d[j - 1]) : 0, n);
+        for (let i = 0, j = 0, k = data[j]; i < m; i++) {
+            let v = op(i === k ? ((j += 2), (k = data[j]), data[j - 1]) : 0, n);
             v !== 0 && res.push(i, v);
         }
         return new SparseVec(this.m, res);

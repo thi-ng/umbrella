@@ -107,11 +107,10 @@ export class COO extends ASparseMatrix {
     }
 
     toDense() {
-        const n = this.n;
-        const d = this.data;
+        const { data, n } = this;
         const res = new Array(this.m * n).fill(0);
-        for (let i = d.length - 3; i >= 0; i -= 3) {
-            res[d[i] * n + d[i + 1]] = d[i + 2];
+        for (let i = data.length - 3; i >= 0; i -= 3) {
+            res[data[i] * n + data[i + 1]] = data[i + 2];
         }
         return res;
     }

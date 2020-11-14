@@ -69,11 +69,10 @@ export class Diag extends ASparseMatrix {
     }
 
     toDense() {
-        const n = this.n;
-        const d = this.data;
+        const { data, n } = this;
         const res = new Array(n * n).fill(0);
         for (let i = 0; i < n; i++) {
-            res[i * n + i] = d.at(i, false);
+            res[i * n + i] = data.at(i, false);
         }
         return res;
     }

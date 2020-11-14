@@ -72,9 +72,7 @@ export class CSR extends ASparseMatrix {
     }
 
     *nzEntries() {
-        const rows = this.rows;
-        const cols = this.cols;
-        const data = this.data;
+        const { cols, rows, data } = this;
         for (let i = 0; i < this.m; i++) {
             for (let j = rows[i], jj = rows[i + 1]; j < jj; j++) {
                 yield <NzEntry>[i, cols[j], data[j]];
@@ -83,9 +81,7 @@ export class CSR extends ASparseMatrix {
     }
 
     reshape(m: number, n = m) {
-        const data = this.data;
-        const rows = this.rows;
-        const cols = this.cols;
+        const { cols, rows, data } = this;
         if (m > this.m) {
             for (let i = m - this.m, nnz = this.nnz(); i > 0; i--) {
                 rows.push(nnz);
@@ -117,9 +113,7 @@ export class CSR extends ASparseMatrix {
         const maxrow = m + rows;
         const maxcol = n + cols;
         //assert(maxrow <= this.m && maxcol <= this.n, "invalid region");
-        const srows = this.rows;
-        const scols = this.cols;
-        const sdata = this.data;
+        const { cols: scols, rows: srows, data: sdata } = this;
         const drows = [0];
         const dcols = [];
         const ddata = [];
@@ -164,8 +158,7 @@ export class CSR extends ASparseMatrix {
 
     denseRow(m: number) {
         const res = new Array<number>(this.n).fill(0);
-        const cols = this.cols;
-        const data = this.data;
+        const { cols, data } = this;
         for (let i = this.rows[m], ii = this.rows[m + 1]; i < ii; i++) {
             res[cols[i]] = data[i];
         }
@@ -258,9 +251,7 @@ export class CSR extends ASparseMatrix {
 
     mulV(vec: number[]) {
         assert(this.m === vec.length, `vector length != ${this.m}`);
-        const rows = this.rows;
-        const cols = this.cols;
-        const data = this.data;
+        const { cols, rows, data } = this;
         const res = new Array(vec.length).fill(0);
         for (let i = 0; i < this.m; i++) {
             const jj = rows[i + 1];
@@ -310,8 +301,7 @@ export class CSR extends ASparseMatrix {
     }
 
     nzColVals(n: number) {
-        const cols = this.cols;
-        const data = this.data;
+        const { cols, data } = this;
         const res = [];
         for (let i = 0, num = cols.length; i < num; i++) {
             if (cols[i] === n) {
@@ -333,8 +323,7 @@ export class CSR extends ASparseMatrix {
 
     transpose() {
         const res = CSR.empty(this.n, this.m);
-        const cols = this.cols;
-        const data = this.data;
+        const { cols, data } = this;
         for (let i = 0; i < this.m; i++) {
             const jj = this.rows[i + 1];
             for (let j = this.rows[i]; j < jj; j++) {

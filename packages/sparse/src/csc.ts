@@ -72,9 +72,7 @@ export class CSC extends ASparseMatrix {
     }
 
     *nzEntries() {
-        const cols = this.cols;
-        const rows = this.rows;
-        const data = this.data;
+        const { cols, rows, data } = this;
         for (let i = 0; i < this.n; i++) {
             for (let j = cols[i], jj = cols[i + 1]; j < jj; j++) {
                 yield <NzEntry>[rows[j], i, data[j]];
@@ -133,9 +131,7 @@ export class CSC extends ASparseMatrix {
 
     mulV(vec: number[]) {
         assert(this.m === vec.length, `vector length != ${this.m}`);
-        const cols = this.cols;
-        const rows = this.rows;
-        const data = this.data;
+        const { cols, rows, data } = this;
         const res = new Array(this.m).fill(0);
         for (let i = 0; i < this.n; i++) {
             const jj = cols[i + 1];
@@ -174,8 +170,7 @@ export class CSC extends ASparseMatrix {
     }
 
     nzRowVals(m: number) {
-        const rows = this.rows;
-        const data = this.data;
+        const { rows, data } = this;
         const res = [];
         for (let i = 0, num = rows.length; i < num; i++) {
             if (rows[i] === m) {
@@ -197,8 +192,7 @@ export class CSC extends ASparseMatrix {
 
     transpose() {
         const res = CSC.empty(this.n, this.m);
-        const rows = this.rows;
-        const data = this.data;
+        const { rows, data } = this;
         for (let i = 0; i < this.n; i++) {
             const jj = this.cols[i + 1];
             for (let j = this.cols[i]; j < jj; j++) {
@@ -211,8 +205,7 @@ export class CSC extends ASparseMatrix {
     denseCol(n: number) {
         const res = new Array(this.m).fill(0);
         const ii = this.cols[n + 1];
-        const rows = this.rows;
-        const data = this.data;
+        const { rows, data } = this;
         for (let i = this.cols[n]; i < ii; i++) {
             res[rows[i]] = data[i];
         }
