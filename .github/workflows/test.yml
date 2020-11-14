@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+    branches:
+    - develop
+    - master
+  pull_request:
+    branches:
+    - develop
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: '>=14.6.0'
+      - run: yarn test
