@@ -87,8 +87,7 @@ export class Texture implements ITexture {
         const gl = this.gl;
         const decl = TEX_FORMATS[this.format];
         const baseFormat = decl.format;
-        const type = this.type;
-        const format = this.format;
+        const { type, format } = this;
         if (opts.image !== undefined) {
             const level = opts.level || 0;
             const pos = opts.pos || [0, 0, 0];
