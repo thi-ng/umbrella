@@ -59,8 +59,7 @@ export abstract class AVecList<T extends StridedVec> {
     abstract nth(n: number): T | undefined;
 
     indices(res: Vec = [], i = 0, local = true) {
-        const start = this.start;
-        const estride = this.estride;
+        const { start, estride } = this;
         if (local) {
             for (let v of this) {
                 res[i++] = (v.offset - start) / estride;

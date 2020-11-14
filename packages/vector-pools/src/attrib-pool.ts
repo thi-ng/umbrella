@@ -325,8 +325,7 @@ export class AttribPool implements IRelease {
         }
         const sameBlock = newAddr === this.addr;
         const num = this.capacity - 1;
-        const attribs = this.attribs;
-        const specs = this.specs;
+        const { attribs, specs } = this;
         const order = grow ? [...this.order].reverse() : this.order;
         // create resized attrib views (in old or new address space)
         const newAttribs = resizeAttribs(
