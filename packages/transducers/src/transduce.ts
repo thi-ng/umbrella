@@ -1,3 +1,4 @@
+import type { FnAny } from "@thi.ng/api";
 import { illegalArity } from "@thi.ng/errors";
 import type { IReducible, Reducer, Transducer, TxLike } from "./api";
 import { ensureTransducer } from "./internal/ensure";
@@ -31,21 +32,7 @@ export function transduce<A, B, C>(
     xs: IReducible<C, A>
 ): C;
 export function transduce(...args: any[]): any {
-    let acc, xs;
-    switch (args.length) {
-        case 4:
-            xs = args[3];
-            acc = args[2];
-            break;
-        case 3:
-            xs = args[2];
-            break;
-        case 2:
-            return map((x: Iterable<any>) => transduce(args[0], args[1], x));
-        default:
-            illegalArity(args.length);
-    }
-    return reduce(ensureTransducer(args[0])(args[1]), acc, xs);
+    return $transduce(transduce, reduce, args);
 }
 
 export function transduceRight<A, B, C>(
@@ -64,6 +51,10 @@ export function transduceRight<A, B, C>(
     xs: ArrayLike<A>
 ): C;
 export function transduceRight(...args: any[]): any {
+    return $transduce(transduceRight, reduceRight, args);
+}
+
+const $transduce = (tfn: FnAny<any>, rfn: FnAny<any>, args: any[]) => {
     let acc, xs;
     switch (args.length) {
         case 4:
@@ -74,11 +65,9 @@ export function transduceRight(...args: any[]): any {
             xs = args[2];
             break;
         case 2:
-            return map((x: ArrayLike<any>) =>
-                transduceRight(args[0], args[1], x)
-            );
+            return map((x: ArrayLike<any>) => tfn(args[0], args[1], x));
         default:
             illegalArity(args.length);
     }
-    return reduceRight(ensureTransducer(args[0])(args[1]), acc, xs);
-}
+    return rfn(ensureTransducer(args[0])(args[1]), acc, xs);
+};
