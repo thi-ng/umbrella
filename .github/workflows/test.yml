@@ -4,6 +4,11 @@ on:
         branches:
             - develop
             - master
+        paths:
+            - "packages/**"
+            - ".github/workflows/**"
+            - "package.json"
+            - "!**.md"
     pull_request:
         branches:
             - develop
