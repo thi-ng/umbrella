@@ -37,9 +37,7 @@ export class Range implements Iterable<number>, IReducible<any, number> {
     }
 
     *[Symbol.iterator]() {
-        const step = this.step;
-        const to = this.to;
-        let from = this.from;
+        let { from, to, step } = this;
         if (step > 0) {
             while (from < to) {
                 yield from;
