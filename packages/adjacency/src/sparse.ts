@@ -47,8 +47,7 @@ export class AdjacencyMatrix extends CSR implements IGraph {
     }
 
     *edges() {
-        const rows = this.rows;
-        const cols = this.cols;
+        const { cols, rows } = this;
         const directed = !this.undirected;
         for (let i = 0; i < this.m; i++) {
             const jj = rows[i + 1];

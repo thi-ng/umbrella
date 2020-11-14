@@ -20,9 +20,7 @@ export class BFS {
 
     search(ids: Iterable<number>, cost: CostFn = () => 1) {
         const queue = new DCons<number>(ids);
-        const dist = this.dist;
-        const edges = this.edges;
-        const marked = this.marked;
+        const { dist, edges, marked } = this;
         dist.fill(0xffffffff);
         for (let id of ids) {
             dist[id] = 0;
@@ -49,8 +47,7 @@ export class BFS {
     pathTo(id: number) {
         if (!this.hasPathTo(id)) return;
         const path: number[] = [];
-        const dist = this.dist;
-        const edges = this.edges;
+        const { dist, edges } = this;
         let i = id;
         for (; dist[i] > 0; i = edges[i]) {
             path.push(i);
