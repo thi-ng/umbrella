@@ -67,14 +67,13 @@ export class Sampler {
     }
 
     closestT(p: ReadonlyVec) {
-        const pts = this.points;
-        const idx = this.index;
+        const { index, points } = this;
         const tmp: Vec = [];
         const closest: Vec = [];
         let minD = Infinity;
         let minI = -1;
-        for (let i = 0, n = idx.length - 1; i < n; i++) {
-            if (closestPointSegment(p, pts[i], pts[i + 1], tmp)) {
+        for (let i = 0, n = index.length - 1; i < n; i++) {
+            if (closestPointSegment(p, points[i], points[i + 1], tmp)) {
                 const d = distSq(p, tmp);
                 if (d < minD) {
                     minD = d;
@@ -85,9 +84,9 @@ export class Sampler {
         }
         return minI >= 0
             ? fit01(
-                  closestT(p, pts[minI], pts[minI + 1]) || 0,
-                  idx[minI],
-                  idx[minI + 1]
+                  closestT(p, points[minI], points[minI + 1]) || 0,
+                  index[minI],
+                  index[minI + 1]
               ) / this.totalLength()
             : undefined;
     }
@@ -151,8 +150,7 @@ export class Sampler {
     }
 
     sampleUniform(dist: number, includeLast = false, result: Vec[] = []) {
-        const index = this.index;
-        const pts = this.points;
+        const { index, points } = this;
         const total = this.totalLength();
         const delta = dist / total;
         const n = index.length;
@@ -164,11 +162,11 @@ export class Sampler {
             if (i >= n) break;
             const p = index[i - 1];
             result.push(
-                mixN([], pts[i - 1], pts[i], (ct - p) / (index[i] - p))
+                mixN([], points[i - 1], points[i], (ct - p) / (index[i] - p))
             );
         }
         if (includeLast) {
-            result.push(set([], pts[pts.length - 1]));
+            result.push(set([], points[points.length - 1]));
         }
         return result;
     }
