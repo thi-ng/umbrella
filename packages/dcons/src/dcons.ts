@@ -630,13 +630,7 @@ export class DCons<T>
         let res: any = [];
         let cell = this.head;
         while (cell) {
-            res.push(
-                cell.value != null
-                    ? String(cell.value)
-                    : cell.value === undefined
-                    ? "undefined"
-                    : "null"
-            );
+            res.push(String(cell.value));
             cell = cell.next;
         }
         return res.join(", ");
