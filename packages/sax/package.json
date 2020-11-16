@@ -63,6 +63,7 @@
         "fsm",
         "parser",
         "transducer",
+        "tree",
         "typescript",
         "xml"
     ],

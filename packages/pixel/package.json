@@ -69,6 +69,7 @@
         "channel",
         "color",
         "conversion",
+        "datastructure",
         "dither",
         "float",
         "grayscale",

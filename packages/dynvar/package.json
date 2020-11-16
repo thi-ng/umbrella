@@ -58,6 +58,7 @@
     ],
     "keywords": [
         "clojure",
+        "datastructure",
         "dynamic",
         "scope",
         "state",

@@ -75,6 +75,7 @@
         "channel",
         "clipping",
         "composition",
+        "datastructure",
         "delay",
         "dsp",
         "envelope",

@@ -69,11 +69,13 @@
         "codegen",
         "compiler",
         "dag",
+        "datastructure",
         "dsl",
         "glsl",
         "gpgpu",
         "interval",
         "shader",
+        "tree",
         "typecheck",
         "typescript",
         "webgl"

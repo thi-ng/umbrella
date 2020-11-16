@@ -67,6 +67,7 @@
         "interval",
         "simd",
         "soa",
+        "typedarray",
         "typescript",
         "vector",
         "wasm"

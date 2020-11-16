@@ -66,6 +66,7 @@
         "bigint",
         "binary",
         "conversion",
+        "datastructure",
         "decode",
         "encode",
         "hash",

@@ -67,6 +67,7 @@
         "math",
         "splat",
         "swizzle",
+        "typedarray",
         "typescript"
     ],
     "publishConfig": {

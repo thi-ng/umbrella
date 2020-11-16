@@ -66,6 +66,7 @@
         "ast",
         "codegen",
         "crossover",
+        "datastructure",
         "evolutionary",
         "generative",
         "genetic",

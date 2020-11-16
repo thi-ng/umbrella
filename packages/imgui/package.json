@@ -71,6 +71,7 @@
         "browser",
         "canvas",
         "component",
+        "datastructure",
         "gui",
         "hiccup",
         "imgui",

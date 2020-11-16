@@ -62,8 +62,10 @@
         "c",
         "codegen",
         "cpp",
+        "datastructure",
         "interop",
         "struct",
+        "typedarray",
         "typescript",
         "union",
         "wasm"

@@ -65,6 +65,7 @@
         "composition",
         "concatenative",
         "dataflow",
+        "datastructure",
         "dsl",
         "forth",
         "functional",

@@ -58,9 +58,11 @@
         "lib"
     ],
     "keywords": [
-        "COO",
-        "CSR",
         "adjacency",
+        "coo",
+        "csc",
+        "csr",
+        "datastructure",
         "graph",
         "matrix",
         "sparse",

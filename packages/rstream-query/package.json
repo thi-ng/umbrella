@@ -68,6 +68,7 @@
         "database",
         "dataflow",
         "datalog",
+        "datastructure",
         "graph",
         "query",
         "reactive",

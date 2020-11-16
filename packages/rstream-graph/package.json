@@ -69,6 +69,7 @@
         "async",
         "compute",
         "dataflow",
+        "datastructure",
         "graph",
         "reactive",
         "rstream",

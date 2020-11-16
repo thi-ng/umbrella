@@ -64,7 +64,9 @@
         "3d",
         "animation",
         "canvas",
+        "datastructure",
         "scenegraph",
+        "tree",
         "typescript"
     ],
     "publishConfig": {

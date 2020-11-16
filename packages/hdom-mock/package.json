@@ -59,6 +59,7 @@
         "lib"
     ],
     "keywords": [
+        "datastructure",
         "typescript"
     ],
     "publishConfig": {

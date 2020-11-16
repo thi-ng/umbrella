@@ -64,6 +64,7 @@
         "2d",
         "3d",
         "curve",
+        "datastructure",
         "distance",
         "geometry",
         "interpolation",

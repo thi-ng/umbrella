@@ -61,6 +61,7 @@
     "keywords": [
         "clojure",
         "composition",
+        "filter",
         "functional",
         "generator",
         "iterator",

@@ -59,6 +59,7 @@
     ],
     "keywords": [
         "clojure",
+        "datastructure",
         "typescript"
     ],
     "publishConfig": {

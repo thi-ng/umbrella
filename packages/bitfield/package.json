@@ -65,6 +65,7 @@
         "binary",
         "bitfield",
         "bitwise",
+        "datastructure",
         "matrix",
         "typedarray",
         "typescript",
