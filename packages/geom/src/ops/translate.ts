@@ -5,6 +5,7 @@ import { add2, add3, ReadonlyVec, set2, set3 } from "@thi.ng/vectors";
 import { AABB } from "../api/aabb";
 import { Arc } from "../api/arc";
 import { Circle } from "../api/circle";
+import { Cubic } from "../api/cubic";
 import { Ellipse } from "../api/ellipse";
 import { Group } from "../api/group";
 import { Line } from "../api/line";
@@ -13,6 +14,7 @@ import { Points, Points3 } from "../api/points";
 import { Polygon } from "../api/polygon";
 import { Polyline } from "../api/polyline";
 import { Quad } from "../api/quad";
+import { Quadratic } from "../api/quadratic";
 import { Ray } from "../api/ray";
 import { Rect } from "../api/rect";
 import { Sphere } from "../api/sphere";
@@ -36,6 +38,8 @@ translate.addAll(<IObjectOf<Implementation2<unknown, ReadonlyVec, IShape>>>{
 
     [Type.CIRCLE]: ($: Circle, delta) =>
         new Circle(add2([], $.pos, delta), $.r, copyAttribs($)),
+
+    [Type.CUBIC]: tx(Cubic),
 
     [Type.ELLIPSE]: ($: Ellipse, delta) =>
         new Ellipse(add2([], $.pos, delta), set2([], $.r), copyAttribs($)),
@@ -73,6 +77,8 @@ translate.addAll(<IObjectOf<Implementation2<unknown, ReadonlyVec, IShape>>>{
     [Type.POLYLINE]: tx(Polyline),
 
     [Type.QUAD]: tx(Quad),
+
+    [Type.QUADRATIC]: tx(Quadratic),
 
     [Type.RAY]: ($: Ray, delta) =>
         new Ray(add2([], $.pos, delta), $.dir, copyAttribs($)),
