@@ -1,10 +1,12 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { illegalState } from "@thi.ng/errors";
 import { rad } from "@thi.ng/math";
 import { WS } from "@thi.ng/strings";
-import { PathBuilder } from "./path-builder";
 import type { Vec } from "@thi.ng/vectors";
+import { PathBuilder } from "./path-builder";
 
 const CMD_RE = /[achlmqstvz]/i;
+const WSC: IObjectOf<boolean> = { ...WS, ",": true };
 
 export const pathFromSvg = (svg: string) => {
     const b = new PathBuilder();
@@ -83,7 +85,7 @@ export const pathFromSvg = (svg: string) => {
 
 const skipWS = (src: string, i: number) => {
     const n = src.length;
-    while (i < n && WS[src.charAt(i)]) i++;
+    while (i < n && WSC[src.charAt(i)]) i++;
     return i;
 };
 
