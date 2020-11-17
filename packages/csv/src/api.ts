@@ -2,15 +2,19 @@ import type { Fn2 } from "@thi.ng/api";
 
 export type CSVRow = Record<string, any>;
 
+export type CoercionFn = Fn2<string, CSVRow, any>;
+
 export interface ColumnSpec {
     /**
      * Rename column to given name in result objects.
      */
     alias?: string;
     /**
-     * Value transformer.
+     * Cell value transformer. This is a 2-arg function receiving string value
+     * and (incomplete) result object of current row. Return value is used as
+     * actual value for the cell.
      */
-    coerce?: Fn2<string, CSVRow, any>;
+    coerce?: CoercionFn;
 }
 
 export interface CSVOpts {
