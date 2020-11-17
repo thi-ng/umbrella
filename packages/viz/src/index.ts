@@ -7,6 +7,7 @@ export * from "./axis/linear";
 export * from "./axis/log";
 
 export * from "./plot/area";
+export * from "./plot/bar";
 export * from "./plot/candle";
 export * from "./plot/line";
 export * from "./plot/scatter";
