@@ -63,10 +63,19 @@ export function parseCSV(opts?: Partial<CSVOpts>, src?: Iterable<string>): any {
                       record = [];
                       return reduce(acc, row);
                   } else {
-                      const names = line.split(delim);
-                      cols && (index = initIndex(names, cols));
-                      all && (revIndex = initRevIndex(names));
-                      first = false;
+                      isQuoted = tokenizeLine(
+                          line,
+                          record,
+                          isQuoted,
+                          delim,
+                          quote
+                      );
+                      if (!isQuoted) {
+                          cols && (index = initIndex(record, cols));
+                          all && (revIndex = initRevIndex(record));
+                          first = false;
+                          record = [];
+                      }
                       return acc;
                   }
               });

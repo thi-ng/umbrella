@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { parseCSV } from "../src";
+import { parseCSV, parseCSVString } from "../src";
 
 describe("csv", () => {
     it("header", () => {
@@ -32,16 +32,23 @@ describe("csv", () => {
 
     it("quotes", () => {
         assert.deepStrictEqual(
-            [
-                ...parseCSV(
-                    {},
-                    `a,b,c\n"ha ""he""\nho","2,",3\n4,,6`.split("\n")
-                ),
-            ],
+            [...parseCSVString({}, `a,b,c\n"ha ""he""\nho","2,",3\n4,,6`)],
             [
                 { a: `ha "he"\nho`, b: "2,", c: "3" },
                 { a: "4", b: "", c: "6" },
             ]
+        );
+    });
+
+    it("quotes in header", () => {
+        assert.deepStrictEqual(
+            [
+                ...parseCSVString(
+                    {},
+                    `"foo","bar\nbaz","fin,\n#ignore"\n#ignore2\n1,2,3\n`
+                ),
+            ],
+            [{ foo: "1", "bar\nbaz": "2", "fin,\n#ignore": "3" }]
         );
     });
 });
