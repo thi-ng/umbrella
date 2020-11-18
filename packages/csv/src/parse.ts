@@ -22,8 +22,8 @@ const DEFAULT_OPTS: Partial<CSVOpts> = {
 
 /**
  * Configurable CSV parsing transducer, operating on line-based string iterables
- * and yielding tuple objects of CSV records. If called with input, returns ES6
- * iterator instead.
+ * and yielding tuple objects of CSV row records. If called with input, returns
+ * ES6 iterator instead.
  *
  * @remarks
  * Parsing behavior can be customized via given {@link CSVOpts}. The default
@@ -39,7 +39,10 @@ const DEFAULT_OPTS: Partial<CSVOpts> = {
  * coerced/transformed. Additionally, if `all` option is `false`, then the
  * result objects will only contain values of the columns specified in `cols`.
  *
- * Also see {@link parseCSVString}.
+ * Also see:
+ * - thi.ng/transducers
+ * - {@link CSVOpts}
+ * - {@link parseCSVString}.
  *
  * @example
  * ```ts
@@ -185,10 +188,8 @@ export const parseCSVString = (opts: Partial<CSVOpts>, src: string) =>
  * @param isQuoted
  * @param delim
  * @param quote
- *
- * @internal
  */
-export const parseLine = (
+const parseLine = (
     line: string,
     acc: string[],
     isQuoted: boolean,
@@ -218,8 +219,7 @@ export const parseLine = (
         }
         // field delimiter
         else if (!isQuoted && c === delim) {
-            if (openQuote) acc[acc.length - 1] += "\n" + curr;
-            else acc.push(curr);
+            collectCell(acc, curr, openQuote);
             openQuote = false;
             curr = "";
         }
@@ -229,12 +229,12 @@ export const parseLine = (
         }
         p = c;
     }
-    if (curr !== "") {
-        if (openQuote) acc[acc.length - 1] += "\n" + curr;
-        else acc.push(curr);
-    }
+    curr !== "" && collectCell(acc, curr, openQuote);
     return isQuoted;
 };
+
+const collectCell = (acc: string[], curr: string, openQuote: boolean) =>
+    openQuote ? (acc[acc.length - 1] += "\n" + curr) : acc.push(curr);
 
 const initIndex = (
     line: string[],
