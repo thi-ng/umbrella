@@ -9,23 +9,68 @@ describe("csv", () => {
         );
     });
 
-    it("column mapping", () => {
+    it("column mapping (obj)", () => {
         assert.deepStrictEqual(
             [
                 ...parseCSV(
                     {
-                        all: false,
                         cols: {
-                            a: { alias: "aa", coerce: (x) => x.toUpperCase() },
-                            b: { alias: "bb", coerce: (x, row) => row.aa + x },
+                            a: { alias: "aa", tx: (x) => x.toUpperCase() },
+                            b: { alias: "bb", tx: (x, row) => row.aa + x },
                         },
                     },
                     ["a,b,c", "foo,23,42", "bar,66,88"]
                 ),
             ],
             [
-                { aa: "FOO", bb: "FOO23" },
-                { aa: "BAR", bb: "BAR66" },
+                { aa: "FOO", bb: "FOO23", c: "42" },
+                { aa: "BAR", bb: "BAR66", c: "88" },
+            ]
+        );
+    });
+
+    it("column mapping (array, no header)", () => {
+        assert.deepStrictEqual(
+            [
+                ...parseCSV(
+                    {
+                        all: false,
+                        header: [],
+                        cols: [
+                            { tx: (x) => x.toUpperCase() },
+                            null,
+                            { alias: "cc", tx: (x, row) => row[0] + x },
+                        ],
+                    },
+                    ["foo,23,42", "bar,66,88"]
+                ),
+            ],
+            [
+                { 0: "FOO", cc: "FOO42" },
+                { 0: "BAR", cc: "BAR88" },
+            ]
+        );
+    });
+
+    it("column mapping (array, w/ header)", () => {
+        assert.deepStrictEqual(
+            [
+                ...parseCSV(
+                    {
+                        all: false,
+                        header: ["a", "b", "c"],
+                        cols: [
+                            { tx: (x) => x.toUpperCase() },
+                            null,
+                            { alias: "cc", tx: (x, row) => row.a + x },
+                        ],
+                    },
+                    ["foo,23,42", "bar,66,88"]
+                ),
+            ],
+            [
+                { a: "FOO", cc: "FOO42" },
+                { a: "BAR", cc: "BAR88" },
             ]
         );
     });

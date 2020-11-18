@@ -1,8 +1,8 @@
-import type { Fn2 } from "@thi.ng/api";
+import type { Fn2, Nullable } from "@thi.ng/api";
 
 export type CSVRow = Record<string, any>;
 
-export type CoercionFn = Fn2<string, CSVRow, any>;
+export type CellTransform = Fn2<string, CSVRow, any>;
 
 export interface ColumnSpec {
     /**
@@ -14,20 +14,26 @@ export interface ColumnSpec {
      * and (incomplete) result object of current row. Return value is used as
      * actual value for the cell.
      */
-    coerce?: CoercionFn;
+    tx?: CellTransform;
 }
 
 export interface CSVOpts {
     /**
      * Field delimiter character.
      *
-     * @defaultValue ","
+     * @defaultValue `,`
      */
     delim: string;
     /**
+     * Field value quote character.
+     *
+     * @defaultValue `"`
+     */
+    quote: string;
+    /**
      * Line comment prefix.
      *
-     * @defaultValue "#"
+     * @defaultValue `#`
      */
     comment: string;
     /**
@@ -44,9 +50,20 @@ export interface CSVOpts {
      */
     all: boolean;
     /**
-     * Object of column specific options/transformations.
+     * Array or object of column specific options/transformations.
+     *
+     * If given as array:
+     *
+     * - each item will be related to its respective column (array order)
+     * - any nullish {@link ColumnSpec} values will be skipped
+     * - if a spec provides no `alias` and no column name is made available
+     *   otherwise (i.e. either via 1st data row or the `header` option), then
+     *   that column will be named numerically
+     *
+     * If given as object, each key must match an existing/original column name
+     * (either as per 1st data row or the `header` option).
      */
-    cols: Record<string, ColumnSpec>;
+    cols: Nullable<ColumnSpec>[] | Record<string, ColumnSpec>;
     /**
      * If true, all leading and trailing whitespace for each field value will be
      * trimmed.
