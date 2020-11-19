@@ -4,6 +4,10 @@ export interface INorm {
     /**
      * Returns float in [-scale..scale) interval.
      *
+     * @remarks
+     * Not to be confused with the {@link normal} distribution function. The
+     * name here refers to "normalized".
+     *
      * @param scale - default 1
      */
     norm(scale?: number): number;

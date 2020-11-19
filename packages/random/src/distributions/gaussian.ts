@@ -1,5 +1,5 @@
-import type { IRandom } from "./api";
-import { SYSTEM } from "./system";
+import type { IRandom } from "../api";
+import { SYSTEM } from "../system";
 
 /**
  * Higher order function. Takes a {@link IRandom} instance and returns a no-arg
@@ -7,7 +7,7 @@ import { SYSTEM } from "./system";
  * (Central Limit Theorem).
  *
  * @remarks
- * The default configuration produces samples in the approx. [-0.5 .. 0.5] range
+ * The default configuration produces samples in the approx. [-0.5,0.5] range
  * with a ~12% standard deviation.
  *
  * Reference: {@link https://en.wikipedia.org/wiki/Central_limit_theorem}
