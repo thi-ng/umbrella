@@ -1,4 +1,4 @@
-import type { Fn3, FnN7, FnU4 } from "@thi.ng/api";
+import type { Fn3, FnN7, FnU4, FnU5 } from "@thi.ng/api";
 import { closestT } from "@thi.ng/geom-closest-point";
 import { clamp01, EPS, sign } from "@thi.ng/math";
 import {
@@ -35,6 +35,105 @@ export const classifyPointInCircle = (
     r: number,
     eps = EPS
 ) => sign(r * r - distSq(pos, p), eps);
+
+/**
+ * Returns positive value if `p` lies inside the circle passing through a,b,c.
+ * Returns negative value if `p` is outside and zero if all 4 points are
+ * cocircular.
+ *
+ * @remarks
+ * Assumes a,b,c are in ccw order or else result will be have inverted sign.
+ *
+ * Based on Jonathan R. Shewchuck:
+ * http://www.cs.cmu.edu/afs/cs/project/quake/public/code/predicates.c
+ *
+ * Also see {@link pointInCircumCircle}
+ *
+ * @param p
+ * @param a
+ * @param b
+ * @param c
+ */
+export const pointIn3Circle: FnU4<ReadonlyVec, number> = (
+    [px, py],
+    a,
+    b,
+    c
+) => {
+    const apx = a[0] - px;
+    const apy = a[1] - py;
+    const bpx = b[0] - px;
+    const bpy = b[1] - py;
+    const cpx = c[0] - px;
+    const cpy = c[1] - py;
+
+    const abdet = apx * bpy - bpx * apy;
+    const bcdet = bpx * cpy - cpx * bpy;
+    const cadet = cpx * apy - apx * cpy;
+    const alift = apx * apx + apy * apy;
+    const blift = bpx * bpx + bpy * bpy;
+    const clift = cpx * cpx + cpy * cpy;
+
+    return alift * bcdet + blift * cadet + clift * abdet;
+};
+
+/**
+ * Returns positive value if `p` lies inside the sphere passing through a,b,c,d.
+ * Returns negative value if `p` is outside and zero if all 5 points are
+ * cospherical.
+ *
+ * @remarks
+ * Assumes a,b,c,d are in ccw order or else result will be have inverted sign.
+ *
+ * Based on Jonathan R. Shewchuck:
+ * http://www.cs.cmu.edu/afs/cs/project/quake/public/code/predicates.c
+ *
+ * @param p
+ * @param a
+ * @param b
+ * @param c
+ * @param d
+ */
+export const pointIn4Sphere: FnU5<ReadonlyVec, number> = (
+    [px, py, pz],
+    a,
+    b,
+    c,
+    d
+) => {
+    const apx = a[0] - px;
+    const bpx = b[0] - px;
+    const cpx = c[0] - px;
+    const dpx = d[0] - px;
+    const apy = a[1] - py;
+    const bpy = b[1] - py;
+    const cpy = c[1] - py;
+    const dpy = d[1] - py;
+    const apz = a[2] - pz;
+    const bpz = b[2] - pz;
+    const cpz = c[2] - pz;
+    const dpz = d[2] - pz;
+
+    const ab = apx * bpy - bpx * apy;
+    const bc = bpx * cpy - cpx * bpy;
+    const cd = cpx * dpy - dpx * cpy;
+    const da = dpx * apy - apx * dpy;
+
+    const ac = apx * cpy - cpx * apy;
+    const bd = bpx * dpy - dpx * bpy;
+
+    const abc = apz * bc - bpz * ac + cpz * ab;
+    const bcd = bpz * cd - cpz * bd + dpz * bc;
+    const cda = cpz * da + dpz * ac + apz * cd;
+    const dab = dpz * ab + apz * bd + bpz * da;
+
+    const alift = apx * apx + apy * apy + apz * apz;
+    const blift = bpx * bpx + bpy * bpy + bpz * bpz;
+    const clift = cpx * cpx + cpy * cpy + cpz * cpz;
+    const dlift = dpx * dpx + dpy * dpy + dpz * dpz;
+
+    return dlift * abc - clift * dab + (blift * cda - alift * bcd);
+};
 
 export const pointInCircumCircle: FnU4<ReadonlyVec, boolean> = (a, b, c, d) =>
     magSq(a) * signedArea2(b, c, d) -
