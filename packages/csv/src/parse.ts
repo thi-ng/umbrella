@@ -1,8 +1,15 @@
 import { compR, iterator1, Reducer, Transducer } from "@thi.ng/transducers";
 import { ESCAPES, split } from "@thi.ng/strings";
-import { isArray, isIterable } from "@thi.ng/checks";
+import { isArray, isFunction, isIterable } from "@thi.ng/checks";
 import type { Nullable } from "@thi.ng/api";
-import type { ColumnSpec, CSVOpts, CSVRow } from "./api";
+import type {
+    ColumnSpec,
+    CommonCSVOpts,
+    CSVOpts,
+    CSVRecord,
+    CSVRow,
+    SimpleCSVOpts,
+} from "./api";
 
 /** @internal */
 type IndexEntry = { i: number; spec: ColumnSpec };
@@ -12,8 +19,7 @@ type IndexEntry = { i: number; spec: ColumnSpec };
  *
  * @internal
  */
-const DEFAULT_OPTS: Partial<CSVOpts> = {
-    all: true,
+const DEFAULT_OPTS: Partial<CommonCSVOpts> = {
     delim: ",",
     quote: '"',
     comment: "#",
@@ -42,7 +48,7 @@ const DEFAULT_OPTS: Partial<CSVOpts> = {
  * Also see:
  * - thi.ng/transducers
  * - {@link CSVOpts}
- * - {@link parseCSVString}.
+ * - {@link parseCSVFromString}.
  *
  * @example
  * ```ts
@@ -74,16 +80,19 @@ const DEFAULT_OPTS: Partial<CSVOpts> = {
  *
  * @param opts
  */
-export function parseCSV(opts?: Partial<CSVOpts>): Transducer<string, CSVRow>;
+export function parseCSV(
+    opts?: Partial<CSVOpts>
+): Transducer<string, CSVRecord>;
 export function parseCSV(
     opts: Partial<CSVOpts>,
     src: Iterable<string>
-): IterableIterator<CSVRow>;
+): IterableIterator<CSVRecord>;
 export function parseCSV(opts?: Partial<CSVOpts>, src?: Iterable<string>): any {
     return isIterable(src)
         ? iterator1(parseCSV(opts), src)
-        : (rfn: Reducer<any, CSVRow>) => {
+        : (rfn: Reducer<any, CSVRecord>) => {
               const { all, cols, delim, quote, comment, trim, header } = {
+                  all: true,
                   ...DEFAULT_OPTS,
                   ...opts,
               };
@@ -100,7 +109,7 @@ export function parseCSV(opts?: Partial<CSVOpts>, src?: Iterable<string>): any {
                   first = false;
               };
 
-              const collectAll = (row: CSVRow) =>
+              const collectAll = (row: CSVRecord) =>
                   record.reduce(
                       (acc, x, i) => (
                           (acc[revIndex[i]] = trim ? x.trim() : x), acc
@@ -108,7 +117,7 @@ export function parseCSV(opts?: Partial<CSVOpts>, src?: Iterable<string>): any {
                       row
                   );
 
-              const collectIndexed = (row: CSVRow) =>
+              const collectIndexed = (row: CSVRecord) =>
                   Object.entries(index).reduce((acc, [id, { i, spec }]) => {
                       let val = record[i];
                       if (val !== undefined) {
@@ -136,7 +145,7 @@ export function parseCSV(opts?: Partial<CSVOpts>, src?: Iterable<string>): any {
                       );
                       if (isQuoted) return acc;
 
-                      const row: CSVRow = {};
+                      const row: CSVRecord = {};
                       all && collectAll(row);
                       index && collectIndexed(row);
                       record = [];
@@ -160,6 +169,90 @@ export function parseCSV(opts?: Partial<CSVOpts>, src?: Iterable<string>): any {
 }
 
 /**
+ * Simplified version of {@link parseCSV} for use cases when no object mapping
+ * is desired/required. Here, each CSV row will be emitted as simple array,
+ * optionally with only filtered or transformed columns.
+ *
+ * @remarks
+ * See {@link SimpleCSVOpts} for available options. Defaults are similar to
+ * those used by {@link parseCSV}.
+ *
+ * @example
+ * ```ts
+ * [...parseCSVSimple({ cols: [float(), ,float()]}, ["a,b,c","1,2,3","4,5,6"])]
+ * // [ [ 1, 3 ], [ 4, 6 ] ]
+ * ```
+ *
+ * @param opts
+ */
+export function parseCSVSimple(
+    opts?: Partial<SimpleCSVOpts>
+): Transducer<string, CSVRow>;
+export function parseCSVSimple(
+    opts: Partial<SimpleCSVOpts>,
+    src: Iterable<string>
+): IterableIterator<CSVRow>;
+export function parseCSVSimple(
+    opts?: Partial<SimpleCSVOpts>,
+    src?: Iterable<string>
+): any {
+    return isIterable(src)
+        ? iterator1(parseCSVSimple(opts), src)
+        : (rfn: Reducer<any, CSVRecord>) => {
+              const { cols, delim, quote, comment, trim, header } = {
+                  header: true,
+                  ...DEFAULT_OPTS,
+                  ...opts,
+              };
+              const reduce = rfn[2];
+              let first = header;
+              let isQuoted = false;
+              let record: string[] = [];
+
+              const collect = () =>
+                  cols!.reduce((acc, col, i) => {
+                      if (col) {
+                          let val = record[i];
+                          if (val !== undefined) {
+                              trim && (val = val.trim());
+                              acc.push(isFunction(col) ? col(val, acc) : val);
+                          }
+                      }
+                      return acc;
+                  }, <CSVRow>[]);
+
+              return compR(rfn, (acc, line: string) => {
+                  if ((!line.length || line.startsWith(comment!)) && !isQuoted)
+                      return acc;
+                  if (!first) {
+                      isQuoted = parseLine(
+                          line,
+                          record,
+                          isQuoted,
+                          delim!,
+                          quote!
+                      );
+                      if (isQuoted) return acc;
+                      const row: CSVRow = cols ? collect() : record;
+                      record = [];
+                      return reduce(acc, row);
+                  } else {
+                      isQuoted = parseLine(
+                          line,
+                          record,
+                          isQuoted,
+                          delim!,
+                          quote!
+                      );
+                      first = false;
+                      record = [];
+                      return acc;
+                  }
+              });
+          };
+}
+
+/**
  * Syntax sugar for iterator version of {@link parseCSV}, efficiently splitting
  * given source string into a line based input using
  * {@link @thi.ng/strings#split}.
@@ -167,8 +260,21 @@ export function parseCSV(opts?: Partial<CSVOpts>, src?: Iterable<string>): any {
  * @param opts
  * @param src
  */
-export const parseCSVString = (opts: Partial<CSVOpts>, src: string) =>
+export const parseCSVFromString = (opts: Partial<CSVOpts>, src: string) =>
     parseCSV(opts, split(src));
+
+/**
+ * Syntax sugar for iterator version of {@link parseCSVSimple}, efficiently
+ * splitting given source string into a line based input using
+ * {@link @thi.ng/strings#split}.
+ *
+ * @param opts
+ * @param src
+ */
+export const parseCSVSimpleFromString = (
+    opts: Partial<SimpleCSVOpts>,
+    src: string
+) => parseCSVSimple(opts, split(src));
 
 /**
  * Parses line into `acc`, taking quoted cell values and linebreaks into

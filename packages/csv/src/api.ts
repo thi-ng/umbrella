@@ -1,8 +1,21 @@
 import type { Fn2, Nullable } from "@thi.ng/api";
 
-export type CSVRow = Record<string, any>;
+/**
+ * Tuple representing a single CSV row/record.
+ */
+export type CSVRow = any[];
 
-export type CellTransform = Fn2<string, CSVRow, any>;
+/**
+ * Tuple object representing a single CSV row/record
+ */
+export type CSVRecord = Record<string, any>;
+
+/**
+ * Cell value transformer used to coerce cell values. The 2nd arg provided is
+ * the (incomplete) result array/object of the current row, useful for creating
+ * derived values, taking other columns into account.
+ */
+export type CellTransform = Fn2<string, any, any>;
 
 export interface ColumnSpec {
     /**
@@ -17,7 +30,7 @@ export interface ColumnSpec {
     tx?: CellTransform;
 }
 
-export interface CSVOpts {
+export interface CommonCSVOpts {
     /**
      * Field delimiter character.
      *
@@ -36,6 +49,32 @@ export interface CSVOpts {
      * @defaultValue `#`
      */
     comment: string;
+    /**
+     * If true, all leading and trailing whitespace for each field value will be
+     * trimmed.
+     *
+     * @defaultValue false
+     */
+    trim: boolean;
+}
+
+export interface SimpleCSVOpts extends CommonCSVOpts {
+    /**
+     * If true (default), the first row (usually containing CSV column names)
+     * will be skipped.
+     *
+     * @defaultValue true
+     */
+    header: boolean;
+    /**
+     * Array of booleans or {@link CellTransform}s (in column order), indicating
+     * which columns to retain in the result {@link CSVRow} tuples. If omitted
+     * ALL columns will be kept.
+     */
+    cols: Nullable<boolean | CellTransform>[];
+}
+
+export interface CSVOpts extends CommonCSVOpts {
     /**
      * If given, this array will be used as column names (and order) and
      * overrides the default CSV behavior in which the first line defines the
@@ -64,11 +103,4 @@ export interface CSVOpts {
      * (either as per 1st data row or the `header` option).
      */
     cols: Nullable<ColumnSpec>[] | Record<string, ColumnSpec>;
-    /**
-     * If true, all leading and trailing whitespace for each field value will be
-     * trimmed.
-     *
-     * @defaultValue false
-     */
-    trim: boolean;
 }

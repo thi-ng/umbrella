@@ -10,6 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
+  - [Features](#features)
   - [Status](#status)
   - [Planned features](#planned-features)
 - [Installation](#installation)
@@ -20,7 +21,7 @@ This project is part of the
 
 ## About
 
-Customizable, transducer-based CSV parser/object mapper.
+Customizable, transducer-based CSV parser/object mapper and transformer.
 
 Partially ported and extended from the Clojure versions of the
 [ws-ldn-1](https://github.com/thi-ng/ws-ldn-1/blob/master/src/ws_ldn_1/day1/csv.clj)
@@ -28,17 +29,31 @@ and
 [resonate-2014](https://github.com/learn-postspectacular/resonate-workshop-2014)
 workshop repos.
 
+### Features
+
+The parser supports customizable delimiters, quoted and unquoted cells, line
+breaks within quoted cells. Being transducer based, memory usage is kept at a
+minimum by only processing single lines of (pre-split) text. For CSV records
+spanning multiple lines (due to line breaks), new results are only
+emitted/processed downstream once a _logical_ CSV row is complete.
+
+Also, being transducer based means the parser can be easily integrated into more
+complex data preparation, cleaning or conversion workflows. See
+[@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+for more details/ideas.
+
 ### Status
 
-**STABLE** - used in production
+**BETA** - possibly breaking changes forthcoming
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bcsv%5D)
 
 ### Planned features
 
+- [x] Simple CSV row parsing w/o object mapping (`parseCSVSimple()`)
 - [ ] CSV output from structured data
 - [ ] CSVW support (#257)
-- [ ] integration with thi.ng/egf
+- [ ] Integration with thi.ng/egf
 
 ## Installation
 
@@ -54,7 +69,7 @@ yarn add @thi.ng/csv
 <script src="https://unpkg.com/@thi.ng/csv/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 919 bytes / CJS: 990 bytes / UMD: 1.02 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.07 KB / CJS: 1.14 KB / UMD: 1.15 KB
 
 ## Dependencies
 
@@ -67,7 +82,9 @@ Package sizes (gzipped, pre-treeshake): ESM: 919 bytes / CJS: 990 bytes / UMD: 1
 
 [Generated API docs](https://docs.thi.ng/umbrella/csv/)
 
-Also see extensive doc strings for `parseCSV()` and `CSVOpts`. See `parseCSVString()` for alternative/syntax sugar.
+Also see extensive doc strings for `parseCSV()` and `CSVOpts`. See
+`parseCSVSimple()` and `parseCSVFromString()` for alternatives and syntax sugar
+forms.
 
 ```ts
 import { parseCSV, upper, float } from "@thi.ng/csv";
@@ -77,8 +94,8 @@ import { parseCSV, upper, float } from "@thi.ng/csv";
     all: false,
     cols: {
       "country": { tx: upper },
-      "latitude": { alias: "lat", tx: float() },
-      "longitude": { alias: "lon", tx: float() },
+      "latitude": { alias: "lat", tx: float(0) },
+      "longitude": { alias: "lon", tx: float(0) },
     }
   },
   [
