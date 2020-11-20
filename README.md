@@ -13,7 +13,7 @@
 > the composer of. Geared towards versatility, not any specific type of music."
 > &mdash; [@loganpowell](https://twitter.com/logantpowell/status/1186334119812304901) via Twitter
 
-Mono-repository for 138+ thi.ng TypeScript/ES6 projects, a wide
+Mono-repository for 140+ thi.ng TypeScript/ES6 projects, a wide
 collection of largely data transformation oriented packages and building
 blocks for:
 
@@ -136,6 +136,7 @@ feature or `develop` branches) -->
 | [`@thi.ng/ecs`](./packages/ecs)                     | [![version](https://img.shields.io/npm/v/@thi.ng/ecs.svg)](https://www.npmjs.com/package/@thi.ng/ecs)                     | [changelog](./packages/ecs/CHANGELOG.md)           | Entity-Component System                                  |
 | [`@thi.ng/equiv`](./packages/equiv)                 | [![version](https://img.shields.io/npm/v/@thi.ng/equiv.svg)](https://www.npmjs.com/package/@thi.ng/equiv)                 | [changelog](./packages/equiv/CHANGELOG.md)         | Deep value equivalence checking                          |
 | [`@thi.ng/errors`](./packages/errors)               | [![version](https://img.shields.io/npm/v/@thi.ng/errors.svg)](https://www.npmjs.com/package/@thi.ng/errors)               | [changelog](./packages/errors/CHANGELOG.md)        | Custom error types                                       |
+| [`@thi.ng/hex`](./packages/hex)                     | [![version](https://img.shields.io/npm/v/@thi.ng/hex.svg)](https://www.npmjs.com/package/@thi.ng/hex)                     | [changelog](./packages/hex/CHANGELOG.md)           | Hex value formatters for U4-64 words                     |
 | [`@thi.ng/math`](./packages/math)                   | [![version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)                   | [changelog](./packages/math/CHANGELOG.md)          | Assorted common math functions & utilities               |
 | [`@thi.ng/memoize`](./packages/memoize)             | [![version](https://img.shields.io/npm/v/@thi.ng/memoize.svg)](https://www.npmjs.com/package/@thi.ng/memoize)             | [changelog](./packages/memoize/CHANGELOG.md)       | Function memoization w/ customizable caching             |
 | [`@thi.ng/mime`](./packages/mime)                   | [![version](https://img.shields.io/npm/v/@thi.ng/mime.svg)](https://www.npmjs.com/package/@thi.ng/mime)                   | [changelog](./packages/mime/CHANGELOG.md)          | File extension to MIME type mappings                     |
@@ -187,6 +188,7 @@ feature or `develop` branches) -->
 | [`@thi.ng/atom`](./packages/atom)               | [![version](https://img.shields.io/npm/v/@thi.ng/atom.svg)](https://www.npmjs.com/package/@thi.ng/atom)               | [changelog](./packages/atom/CHANGELOG.md)        | Immutable value wrappers, views, history |
 | [`@thi.ng/bitfield`](./packages/bitfield)       | [![version](https://img.shields.io/npm/v/@thi.ng/bitfield.svg)](https://www.npmjs.com/package/@thi.ng/bitfield)       | [changelog](./packages/bitfield/CHANGELOG.md)    | 1D/2D bit field implementations          |
 | [`@thi.ng/cache`](./packages/cache)             | [![version](https://img.shields.io/npm/v/@thi.ng/cache.svg)](https://www.npmjs.com/package/@thi.ng/cache)             | [changelog](./packages/cache/CHANGELOG.md)       | In-memory caches / strategies            |
+| [`@thi.ng/csv`](./packages/csv)                 | [![version](https://img.shields.io/npm/v/@thi.ng/csv.svg)](https://www.npmjs.com/package/@thi.ng/csv)                 | [changelog](./packages/csv/CHANGELOG.md)         | Customizable CSV parser/object mapper    |
 | [`@thi.ng/dcons`](./packages/dcons)             | [![version](https://img.shields.io/npm/v/@thi.ng/dcons.svg)](https://www.npmjs.com/package/@thi.ng/dcons)             | [changelog](./packages/dcons/CHANGELOG.md)       | Doubly-linked list                       |
 | [`@thi.ng/diff`](./packages/diff)               | [![version](https://img.shields.io/npm/v/@thi.ng/diff.svg)](https://www.npmjs.com/package/@thi.ng/diff)               | [changelog](./packages/diff/CHANGELOG.md)        | Array & object diffing                   |
 | [`@thi.ng/dgraph`](./packages/dgraph)           | [![version](https://img.shields.io/npm/v/@thi.ng/dgraph.svg)](https://www.npmjs.com/package/@thi.ng/dgraph)           | [changelog](./packages/dgraph/CHANGELOG.md)      | Dependency graph                         |
@@ -294,11 +296,11 @@ feature or `develop` branches) -->
 
 ### DSLs
 
-| Project                                               | Version                                                                                                                     | Changelog                                           | Description                                    |
-|-------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|------------------------------------------------|
-| [`@thi.ng/pointfree`](./packages/pointfree)           | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree.svg)](https://www.npmjs.com/package/@thi.ng/pointfree)           | [changelog](./packages/pointfree/CHANGELOG.md)      | Stack-based DSL & functional composition       |
-| [`@thi.ng/pointfree-lang`](./packages/pointfree-lang) | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree-lang.svg)](https://www.npmjs.com/package/@thi.ng/pointfree-lang) | [changelog](./packages/pointfree-lang/CHANGELOG.md) | Forth-like syntax layer for @thi.ng/pointfree  |
-| [`@thi.ng/sexpr`](./packages/sexpr)                   | [![version](https://img.shields.io/npm/v/@thi.ng/sexpr.svg)](https://www.npmjs.com/package/@thi.ng/sexpr)                   | [changelog](./packages/sexpr/CHANGELOG.md)          | S-Expression parser & runtime infrastructure   |
+| Project                                               | Version                                                                                                                     | Changelog                                           | Description                                   |
+|-------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|-----------------------------------------------|
+| [`@thi.ng/pointfree`](./packages/pointfree)           | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree.svg)](https://www.npmjs.com/package/@thi.ng/pointfree)           | [changelog](./packages/pointfree/CHANGELOG.md)      | Stack-based DSL & functional composition      |
+| [`@thi.ng/pointfree-lang`](./packages/pointfree-lang) | [![version](https://img.shields.io/npm/v/@thi.ng/pointfree-lang.svg)](https://www.npmjs.com/package/@thi.ng/pointfree-lang) | [changelog](./packages/pointfree-lang/CHANGELOG.md) | Forth-like syntax layer for @thi.ng/pointfree |
+| [`@thi.ng/sexpr`](./packages/sexpr)                   | [![version](https://img.shields.io/npm/v/@thi.ng/sexpr.svg)](https://www.npmjs.com/package/@thi.ng/sexpr)                   | [changelog](./packages/sexpr/CHANGELOG.md)          | S-Expression parser & runtime infrastructure  |
 
 ## Building
 
