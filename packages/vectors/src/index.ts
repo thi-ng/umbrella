@@ -154,6 +154,7 @@ export * from "./setvn";
 export * from "./setvv";
 export * from "./sign";
 export * from "./signed-area";
+export * from "./signed-volume";
 export * from "./sin";
 export * from "./sinh";
 export * from "./some";

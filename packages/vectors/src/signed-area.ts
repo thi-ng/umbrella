@@ -2,16 +2,17 @@ import type { FnN6, FnU3 } from "@thi.ng/api";
 import type { ReadonlyVec } from "./api";
 
 /**
- * Returns area * 2 of the 2D triangle defined by the input vectors.
- * This is a useful classifier for many geometry processing tasks. In
- * addition to the triangle area, the result can also be interpreted as
- * follows:
+ * Returns 2x the signed area of the 2D triangle defined by the given points.
+ *
+ * @remarks
+ * This is a useful classifier for many geometry processing tasks. In addition
+ * to the triangle area, the result can also be interpreted as follows:
  *
  * - `> 0`: points are ordered counterclockwise
  * - `< 0`: points are ordered clockwise
  * - `0`: points are co-linear
  *
- * Same as: `cross2(sub2([], b, a), sub2([], c, a))`
+ * Functionally same as: `cross2(sub2([], b, a), sub2([], c, a))`
  *
  * - {@link corner2}
  * - {@link clockwise2}
