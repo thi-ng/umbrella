@@ -6,3 +6,4 @@
 *.png	-text
 *.gz    -text
 tools/doc/typedoc-theme/* linguist-vendored
+yarn.lock -diff

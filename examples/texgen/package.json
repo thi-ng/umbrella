@@ -1,0 +1,32 @@
+{
+    "name": "texgen",
+    "version": "0.0.1",
+    "repository": "https://github.com/thi-ng/umbrella",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "clean": "rm -rf .cache build out",
+        "build": "yarn clean && parcel build index.html --no-source-maps --no-cache",
+        "build:webpack": "../../node_modules/.bin/webpack --mode production",
+        "start": "parcel index.html -p 8080 --open"
+    },
+    "devDependencies": {
+        "parcel": "^2.0.0-nightly.193",
+        "terser": "^5.2.1",
+        "typescript": "^4.1.2"
+    },
+    "dependencies": {
+        "@thi.ng/api": "latest",
+        "@thi.ng/rstream": "latest",
+        "@thi.ng/transducers-hdom": "latest"
+    },
+    "browserslist": [
+        "last 3 Chrome versions"
+    ],
+    "browser": {
+        "process": false
+    },
+    "thi.ng": {
+        "skip": true
+    }
+}
