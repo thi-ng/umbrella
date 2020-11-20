@@ -1,4 +1,4 @@
-import type { Fn, Fn0, Fn2, FnAny, Predicate } from "@thi.ng/api";
+import type { Fn, Fn0, Fn2, FnAny, Nullable, Predicate } from "@thi.ng/api";
 import { shuffle } from "@thi.ng/arrays";
 import { isFunction } from "@thi.ng/checks";
 import { DCons } from "@thi.ng/dcons";
@@ -394,10 +394,10 @@ export class Channel<T> implements IReadWriteableChannel<T> {
         });
     }
 
-    read(): Promise<T> {
+    read(): Promise<T | undefined> {
         return new Promise((resolve) => {
             if (this.state === State.DONE) {
-                resolve();
+                resolve(undefined);
             }
             this.reads.push(resolve);
             this.process();
@@ -435,7 +435,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
 
     consume(fn: Fn<T, any> = (x) => console.log(this.id, ":", x)) {
         return (async () => {
-            let x: T | null;
+            let x: Nullable<T>;
             while (((x = null), (x = await this.read())) !== undefined) {
                 await fn(x);
             }
@@ -473,7 +473,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
         return (async () => {
             const [init, complete, reduce] = rfn;
             acc = acc != null ? acc : init();
-            let x: T | null;
+            let x: Nullable<T>;
             while (((x = null), (x = await this.read())) !== undefined) {
                 acc = <any>reduce(acc!, x);
                 if (isReduced(acc)) {

@@ -19,7 +19,7 @@ export interface IChannel<T> extends IID<string> {
 }
 
 export interface IReadableChannel<T> extends IChannel<T> {
-    read(): Promise<T>;
+    read(): Promise<T | undefined>;
 }
 
 export interface IWriteableChannel<T> extends IChannel<T> {
