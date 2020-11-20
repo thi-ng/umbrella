@@ -36,7 +36,9 @@ const NONE = () => null;
 const gridCartesian = ({ xaxis, yaxis, grid }: VizSpec) => {
     grid = {
         attribs: { stroke: [0, 0, 0, 0.2], "stroke-dasharray": "1 1" },
+        xmajor: true,
         xminor: true,
+        ymajor: true,
         yminor: true,
         ...grid,
     };
@@ -53,8 +55,16 @@ const gridCartesian = ({ xaxis, yaxis, grid }: VizSpec) => {
     return [
         "g",
         grid.attribs,
-        ...gridAxis(xaxis, lineX, grid.xminor ? lineX : NONE),
-        ...gridAxis(yaxis, lineY, grid.yminor ? lineY : NONE),
+        ...gridAxis(
+            xaxis,
+            grid.xmajor ? lineX : NONE,
+            grid.xminor ? lineX : NONE
+        ),
+        ...gridAxis(
+            yaxis,
+            grid.ymajor ? lineY : NONE,
+            grid.yminor ? lineY : NONE
+        ),
     ];
 };
 

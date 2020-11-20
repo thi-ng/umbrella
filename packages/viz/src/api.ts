@@ -44,6 +44,8 @@ export interface VizSpec {
 
 export interface GridSpec {
     attribs: any;
+    xmajor: boolean;
     xminor: boolean;
+    ymajor: boolean;
     yminor: boolean;
 }
