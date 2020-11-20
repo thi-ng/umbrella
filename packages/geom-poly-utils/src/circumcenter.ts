@@ -1,5 +1,14 @@
 import { EPS } from "@thi.ng/math";
-import type { ReadonlyVec } from "@thi.ng/vectors";
+import {
+    add3,
+    addmN3,
+    cross3,
+    magSq3,
+    mulN3,
+    ReadonlyVec,
+    sub3,
+    Vec,
+} from "@thi.ng/vectors";
 
 /**
  * Computes and returns the center of the circumcircle of the given 2D
@@ -16,7 +25,7 @@ export const circumCenter2 = (
     b: ReadonlyVec,
     c: ReadonlyVec,
     eps = EPS
-) => {
+): Vec | undefined => {
     const ax = a[0],
         ay = a[1];
     const bx = b[0],
@@ -60,4 +69,42 @@ export const circumCenter2 = (
     let xc = (m1 * mx1 - m2 * mx2 + my2 - my1) / (m1 - m2);
     let yc = deltaAB > deltaBC ? m1 * (xc - mx1) + my1 : m2 * (xc - mx2) + my2;
     return [xc, yc];
+};
+
+/**
+ * Computes and returns the center of the circumsphere of the given 3D
+ * triangle points. Returns `undefined` if the points are colinear or
+ * coincident.
+ *
+ * @remarks
+ * Based on Jonathan R Shewchuk:
+ * https://www.ics.uci.edu/~eppstein/junkyard/circumcenter.html
+ *
+ * @param a
+ * @param b
+ * @param c
+ * @param eps
+ */
+export const circumCenter3 = (
+    a: ReadonlyVec,
+    b: ReadonlyVec,
+    c: ReadonlyVec,
+    eps = EPS
+): Vec | undefined => {
+    const ab = sub3([], b, a);
+    const ac = sub3([], c, a);
+    const d = cross3([], ab, ac);
+    const m = magSq3(d);
+    return m >= eps
+        ? add3(
+              null,
+              addmN3(
+                  null,
+                  mulN3(null, cross3([], d, ab), magSq3(ac)),
+                  mulN3(null, cross3([], ac, d), magSq3(ab)),
+                  0.5 / m
+              ),
+              a
+          )
+        : undefined;
 };
