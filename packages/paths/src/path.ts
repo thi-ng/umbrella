@@ -17,7 +17,7 @@ import { isArray, isString } from "@thi.ng/checks";
  *
  * @param path -
  */
-export const toPath = (path: Path): NumOrString[] =>
+export const toPath = (path: Path): readonly NumOrString[] =>
     isArray(path)
         ? path
         : isString(path)
