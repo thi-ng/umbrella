@@ -42,7 +42,7 @@ yarn add @thi.ng/adjacency
 <script src="https://unpkg.com/@thi.ng/adjacency/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.80 KB / CJS: 1.87 KB / UMD: 1.97 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.81 KB / CJS: 1.88 KB / UMD: 1.98 KB
 
 ## Dependencies
 

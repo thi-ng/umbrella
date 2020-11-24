@@ -42,7 +42,7 @@ yarn add @thi.ng/scenegraph
 <script src="https://unpkg.com/@thi.ng/scenegraph/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 898 bytes / CJS: 937 bytes / UMD: 1.03 KB
+Package sizes (gzipped, pre-treeshake): ESM: 900 bytes / CJS: 938 bytes / UMD: 1.03 KB
 
 ## Dependencies
 

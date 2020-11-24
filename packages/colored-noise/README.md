@@ -364,7 +364,7 @@ yarn add @thi.ng/colored-noise
 <script src="https://unpkg.com/@thi.ng/colored-noise/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 493 bytes / CJS: 566 bytes / UMD: 678 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 496 bytes / CJS: 567 bytes / UMD: 681 bytes
 
 ## Dependencies
 

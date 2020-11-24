@@ -74,7 +74,7 @@ yarn add @thi.ng/rle-pack
 <script src="https://unpkg.com/@thi.ng/rle-pack/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 673 bytes / CJS: 727 bytes / UMD: 837 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 676 bytes / CJS: 730 bytes / UMD: 839 bytes
 
 ## Dependencies
 

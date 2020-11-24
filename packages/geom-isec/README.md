@@ -64,7 +64,7 @@ yarn add @thi.ng/geom-isec
 <script src="https://unpkg.com/@thi.ng/geom-isec/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.45 KB / CJS: 2.61 KB / UMD: 2.60 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.71 KB / CJS: 2.88 KB / UMD: 2.84 KB
 
 ## Dependencies
 

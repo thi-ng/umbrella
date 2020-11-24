@@ -41,7 +41,7 @@ yarn add @thi.ng/compose
 <script src="https://unpkg.com/@thi.ng/compose/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 812 bytes / CJS: 915 bytes / UMD: 949 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 815 bytes / CJS: 916 bytes / UMD: 955 bytes
 
 ## Dependencies
 

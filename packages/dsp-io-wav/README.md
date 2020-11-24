@@ -41,7 +41,7 @@ yarn add @thi.ng/dsp-io-wav
 <script src="https://unpkg.com/@thi.ng/dsp-io-wav/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 498 bytes / CJS: 559 bytes / UMD: 642 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 502 bytes / CJS: 562 bytes / UMD: 645 bytes
 
 ## Dependencies
 

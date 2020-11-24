@@ -111,7 +111,7 @@ yarn add @thi.ng/atom
 <script src="https://unpkg.com/@thi.ng/atom/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.81 KB / CJS: 1.88 KB / UMD: 1.94 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.83 KB / CJS: 1.90 KB / UMD: 1.95 KB
 
 ## Dependencies
 

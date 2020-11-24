@@ -49,7 +49,7 @@ yarn add @thi.ng/geom-resample
 <script src="https://unpkg.com/@thi.ng/geom-resample/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.18 KB / CJS: 1.24 KB / UMD: 1.35 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.19 KB / CJS: 1.25 KB / UMD: 1.36 KB
 
 ## Dependencies
 

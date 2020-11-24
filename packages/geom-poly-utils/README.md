@@ -55,7 +55,7 @@ yarn add @thi.ng/geom-poly-utils
 <script src="https://unpkg.com/@thi.ng/geom-poly-utils/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.08 KB / CJS: 1.15 KB / UMD: 1.23 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.17 KB / CJS: 1.24 KB / UMD: 1.30 KB
 
 ## Dependencies
 

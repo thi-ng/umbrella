@@ -53,7 +53,7 @@ yarn add @thi.ng/fsm
 <script src="https://unpkg.com/@thi.ng/fsm/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.37 KB / CJS: 1.49 KB / UMD: 1.51 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.38 KB / CJS: 1.49 KB / UMD: 1.51 KB
 
 ## Dependencies
 

@@ -125,7 +125,7 @@ yarn add @thi.ng/dual-algebra
 <script src="https://unpkg.com/@thi.ng/dual-algebra/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 911 bytes / CJS: 1.02 KB / UMD: 1.07 KB
+Package sizes (gzipped, pre-treeshake): ESM: 916 bytes / CJS: 1.03 KB / UMD: 1.08 KB
 
 ## Dependencies
 

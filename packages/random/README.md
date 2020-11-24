@@ -57,12 +57,13 @@ yarn add @thi.ng/random
 <script src="https://unpkg.com/@thi.ng/random/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.24 KB / CJS: 1.34 KB / UMD: 1.36 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.51 KB / CJS: 1.62 KB / UMD: 1.63 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/hex](https://github.com/thi-ng/umbrella/tree/develop/packages/hex)
 
 ## Usage examples
 

@@ -64,7 +64,7 @@ yarn add @thi.ng/poisson
 <script src="https://unpkg.com/@thi.ng/poisson/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 455 bytes / CJS: 514 bytes / UMD: 631 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 459 bytes / CJS: 516 bytes / UMD: 633 bytes
 
 ## Dependencies
 

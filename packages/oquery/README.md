@@ -62,7 +62,7 @@ yarn add @thi.ng/oquery
 <script src="https://unpkg.com/@thi.ng/oquery/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 846 bytes / CJS: 903 bytes / UMD: 962 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 847 bytes / CJS: 904 bytes / UMD: 964 bytes
 
 ## Dependencies
 

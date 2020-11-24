@@ -169,7 +169,7 @@ yarn add @thi.ng/transducers
 <script src="https://unpkg.com/@thi.ng/transducers/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 8.24 KB / CJS: 8.79 KB / UMD: 8.00 KB
+Package sizes (gzipped, pre-treeshake): ESM: 8.35 KB / CJS: 8.91 KB / UMD: 8.07 KB
 
 ## Dependencies
 
@@ -955,11 +955,13 @@ and return a reduced result (as if it would be called via `reduce()`).
 - [groupByMap](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/group-by-map.ts)
 - [groupByObj](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/group-by-obj.ts)
 - [last](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/last.ts)
-- [maxCompare](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/max-compare.ts)
 - [max](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/max.ts)
+- [maxCompare](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/max-compare.ts)
+- [maxMag](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/max-mag.ts)
 - [mean](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/mean.ts)
-- [minCompare](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/min-compare.ts)
 - [min](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/min.ts)
+- [minCompare](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/min-compare.ts)
+- [minMag](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/min-mag.ts)
 - [mul](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/mul.ts)
 - [push](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/push.ts)
 - [pushCopy](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/push-copy.ts)

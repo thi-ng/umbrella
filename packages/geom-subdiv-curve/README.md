@@ -58,7 +58,7 @@ yarn add @thi.ng/geom-subdiv-curve
 <script src="https://unpkg.com/@thi.ng/geom-subdiv-curve/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 657 bytes / CJS: 734 bytes / UMD: 788 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 658 bytes / CJS: 736 bytes / UMD: 791 bytes
 
 ## Dependencies
 

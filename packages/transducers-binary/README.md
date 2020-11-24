@@ -61,15 +61,15 @@ yarn add @thi.ng/transducers-binary
 <script src="https://unpkg.com/@thi.ng/transducers-binary/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.85 KB / CJS: 3.01 KB / UMD: 2.90 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.86 KB / CJS: 3.01 KB / UMD: 2.91 KB
 
 ## Dependencies
 
 - [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
 - [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/develop/packages/compose)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/hex](https://github.com/thi-ng/umbrella/tree/develop/packages/hex)
 - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
-- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 
 ## Usage examples

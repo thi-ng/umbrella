@@ -69,7 +69,7 @@ yarn add @thi.ng/sax
 <script src="https://unpkg.com/@thi.ng/sax/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.93 KB / CJS: 1.98 KB / UMD: 2.08 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.93 KB / CJS: 1.99 KB / UMD: 2.09 KB
 
 ## Dependencies
 

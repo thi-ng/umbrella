@@ -108,7 +108,7 @@ yarn add @thi.ng/egf
 <script src="https://unpkg.com/@thi.ng/egf/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.76 KB / CJS: 2.84 KB / UMD: 2.84 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.77 KB / CJS: 2.85 KB / UMD: 2.85 KB
 
 ## Dependencies
 
