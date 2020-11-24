@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.33](https://github.com/thi-ng/umbrella/compare/@thi.ng/equiv@1.0.32...@thi.ng/equiv@1.0.33) (2020-11-24)
+
+**Note:** Version bump only for package @thi.ng/equiv
+
+
+
+
+
 ## [1.0.32](https://github.com/thi-ng/umbrella/compare/@thi.ng/equiv@1.0.31...@thi.ng/equiv@1.0.32) (2020-09-22)
 
 **Note:** Version bump only for package @thi.ng/equiv

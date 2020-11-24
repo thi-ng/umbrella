@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.27](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.4.26...@thi.ng/fsm@2.4.27) (2020-11-24)
+
+**Note:** Version bump only for package @thi.ng/fsm
+
+
+
+
+
 ## [2.4.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.4.25...@thi.ng/fsm@2.4.26) (2020-09-22)
 
 **Note:** Version bump only for package @thi.ng/fsm

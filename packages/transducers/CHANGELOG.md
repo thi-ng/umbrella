@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.4.0...@thi.ng/transducers@7.5.0) (2020-11-24)
+
+
+### Features
+
+* **transducers:** add minMag/maxMag() reducers ([f7496b3](https://github.com/thi-ng/umbrella/commit/f7496b3989c0209f51c561cdba9b50d19f976357))
+* **transducers:** add reduceRight/transduceRight() ([b71ff9c](https://github.com/thi-ng/umbrella/commit/b71ff9c63ea158d44187b1ab5b25d1833eebde3c))
+
+
+
+
+
 # [7.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.3.1...@thi.ng/transducers@7.4.0) (2020-09-22)
 
 

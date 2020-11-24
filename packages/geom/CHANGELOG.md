@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.13.0...@thi.ng/geom@1.13.1) (2020-11-24)
+
+
+### Bug Fixes
+
+* **geom:** add missing translate() impls for Cubic/Quadratic ([fe4c027](https://github.com/thi-ng/umbrella/commit/fe4c027e8a652ccd7bf7513e9348f21560f50b9c))
+* **geom:** update whitespace check in pathFromSvg() ([2ce5ec1](https://github.com/thi-ng/umbrella/commit/2ce5ec178bce371f3b8029ea1041f89e10500ead))
+
+
+
+
+
 # [1.13.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.12.0...@thi.ng/geom@1.13.0) (2020-10-03)
 
 

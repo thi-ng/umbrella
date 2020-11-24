@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@2.0.2...@thi.ng/random@2.1.0) (2020-11-24)
+
+
+### Features
+
+* **random:** add distribution HOFs, move gaussian() ([9328821](https://github.com/thi-ng/umbrella/commit/9328821b20e9534c4c66c353d36dfd7dbb5edda6))
+* **random:** add randomBytesFrom(), update UUID fns ([b31c872](https://github.com/thi-ng/umbrella/commit/b31c872cb67708510d68d6b2e2260cba843ee86d))
+
+
+
+
+
 ## [2.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@2.0.1...@thi.ng/random@2.0.2) (2020-09-22)
 
 **Note:** Version bump only for package @thi.ng/random

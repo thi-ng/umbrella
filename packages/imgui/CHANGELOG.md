@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.42](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.41...@thi.ng/imgui@0.2.42) (2020-11-24)
+
+
+### Bug Fixes
+
+* **imgui:** update XY-pad value rounding/snapping ([d45c073](https://github.com/thi-ng/umbrella/commit/d45c073cea07dd35035a3be3e0ba94e2bc89cf69))
+
+
+
+
+
 ## [0.2.41](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.40...@thi.ng/imgui@0.2.41) (2020-10-03)
 
 **Note:** Version bump only for package @thi.ng/imgui

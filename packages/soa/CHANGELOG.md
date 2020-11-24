@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.39](https://github.com/thi-ng/umbrella/compare/@thi.ng/soa@0.1.38...@thi.ng/soa@0.1.39) (2020-11-24)
+
+**Note:** Version bump only for package @thi.ng/soa
+
+
+
+
+
 ## [0.1.38](https://github.com/thi-ng/umbrella/compare/@thi.ng/soa@0.1.37...@thi.ng/soa@0.1.38) (2020-10-03)
 
 **Note:** Version bump only for package @thi.ng/soa

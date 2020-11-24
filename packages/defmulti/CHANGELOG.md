@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.2.26...@thi.ng/defmulti@1.3.0) (2020-11-24)
+
+
+### Features
+
+* **defmulti:** add .dependencies(), add tests ([d15a159](https://github.com/thi-ng/umbrella/commit/d15a1594750ac171b1ab93da18d908f1ca6c3897))
+
+
+
+
+
 ## [1.2.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.2.25...@thi.ng/defmulti@1.2.26) (2020-09-22)
 
 **Note:** Version bump only for package @thi.ng/defmulti

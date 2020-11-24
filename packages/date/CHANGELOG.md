@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/date@0.2.0...@thi.ng/date@0.2.1) (2020-11-24)
+
+
+### Bug Fixes
+
+* **date:** isLeapYear(), add centennial exceptions, tests ([7de0cd8](https://github.com/thi-ng/umbrella/commit/7de0cd873977556c8252c3746e742b5d2357bf5d))
+
+
+
+
+
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/date@0.1.0...@thi.ng/date@0.2.0) (2020-09-22)
 
 

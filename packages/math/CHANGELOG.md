@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@2.1.1...@thi.ng/math@2.2.0) (2020-11-24)
+
+
+### Features
+
+* **math:** add generalized schlick curve ([4b6eb84](https://github.com/thi-ng/umbrella/commit/4b6eb844f3588679ee78d0e7d60b52cfcec8eb87))
+
+
+
+
+
 ## [2.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@2.1.0...@thi.ng/math@2.1.1) (2020-09-22)
 
 **Note:** Version bump only for package @thi.ng/math

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/transducers-patch",
-    "version": "0.1.30",
+    "version": "0.1.31",
     "description": "Reducers for patch-based, immutable-by-default array & object editing",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,11 +49,11 @@
         "typescript": "^4.1.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.13.1",
-        "@thi.ng/checks": "^2.7.9",
-        "@thi.ng/errors": "^1.2.22",
-        "@thi.ng/paths": "^4.1.7",
-        "@thi.ng/transducers": "^7.4.0"
+        "@thi.ng/api": "^6.13.2",
+        "@thi.ng/checks": "^2.7.10",
+        "@thi.ng/errors": "^1.2.23",
+        "@thi.ng/paths": "^4.1.8",
+        "@thi.ng/transducers": "^7.5.0"
     },
     "files": [
         "*.js",

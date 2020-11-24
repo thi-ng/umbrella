@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph@1.2.28...@thi.ng/dgraph@1.3.0) (2020-11-24)
+
+
+### Features
+
+* **dgraph:** update defDGraph, DGraph ctor ([8aee78a](https://github.com/thi-ng/umbrella/commit/8aee78ab370cc21b250ec1db07153a1ed7305b59))
+
+
+
+
+
 ## [1.2.28](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph@1.2.27...@thi.ng/dgraph@1.2.28) (2020-10-19)
 
 **Note:** Version bump only for package @thi.ng/dgraph

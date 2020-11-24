@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.10.0...@thi.ng/strings@1.11.0) (2020-11-24)
+
+
+### Features
+
+* **strings:** add split() iterator ([6d2ec4f](https://github.com/thi-ng/umbrella/commit/6d2ec4fccc688acf5a541ea51c9705faca1c9835))
+
+
+
+
+
 # [1.10.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.9.6...@thi.ng/strings@1.10.0) (2020-09-22)
 
 

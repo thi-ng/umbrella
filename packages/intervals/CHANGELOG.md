@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@2.0.25...@thi.ng/intervals@2.1.0) (2020-11-24)
+
+
+### Features
+
+* **intervals:** add min/max/clamp() impls ([2747f9c](https://github.com/thi-ng/umbrella/commit/2747f9c5282c29fa39ac9d8aac1aaefbd683eb44))
+
+
+
+
+
 ## [2.0.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@2.0.24...@thi.ng/intervals@2.0.25) (2020-09-22)
 
 **Note:** Version bump only for package @thi.ng/intervals

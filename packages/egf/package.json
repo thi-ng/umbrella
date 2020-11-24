@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/egf",
-    "version": "0.3.1",
+    "version": "0.3.2",
     "description": "Extensible Graph Format",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -35,7 +35,7 @@
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
         "@microsoft/api-extractor": "^7.12.0",
-        "@thi.ng/equiv": "^1.0.32",
+        "@thi.ng/equiv": "^1.0.33",
         "@types/mocha": "^8.0.3",
         "@types/node": "^14.6.1",
         "mocha": "^8.2.1",
@@ -45,14 +45,14 @@
         "typescript": "^4.1.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.13.1",
-        "@thi.ng/associative": "^5.0.8",
-        "@thi.ng/checks": "^2.7.9",
-        "@thi.ng/dot": "^1.2.18",
-        "@thi.ng/errors": "^1.2.22",
-        "@thi.ng/prefixes": "^0.1.6",
-        "@thi.ng/strings": "^1.10.0",
-        "@thi.ng/transducers-binary": "^0.5.30"
+        "@thi.ng/api": "^6.13.2",
+        "@thi.ng/associative": "^5.0.9",
+        "@thi.ng/checks": "^2.7.10",
+        "@thi.ng/dot": "^1.2.19",
+        "@thi.ng/errors": "^1.2.23",
+        "@thi.ng/prefixes": "^0.1.7",
+        "@thi.ng/strings": "^1.11.0",
+        "@thi.ng/transducers-binary": "^0.5.31"
     },
     "files": [
         "*.js",

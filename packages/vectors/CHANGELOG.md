@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.7.0...@thi.ng/vectors@4.8.0) (2020-11-24)
+
+
+### Features
+
+* **vectors:** add roundN(), update round() ([36f07e6](https://github.com/thi-ng/umbrella/commit/36f07e62de03afe376ddc48497dfe463e3b10eb4))
+* **vectors:** add signedVolume() ([907438e](https://github.com/thi-ng/umbrella/commit/907438e2b94b475018468128e7d4987dcbf44eb7))
+
+
+
+
+
 # [4.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.6.6...@thi.ng/vectors@4.7.0) (2020-10-03)
 
 

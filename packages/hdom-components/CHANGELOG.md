@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@4.0.14...@thi.ng/hdom-components@4.0.15) (2020-11-24)
+
+**Note:** Version bump only for package @thi.ng/hdom-components
+
+
+
+
+
 ## [4.0.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@4.0.13...@thi.ng/hdom-components@4.0.14) (2020-10-19)
 
 **Note:** Version bump only for package @thi.ng/hdom-components
