@@ -327,7 +327,7 @@ export class PackedBuffer {
      * (or matrix size) and desired number of dither levels, optionally
      * specified individually (per channel). Each channel is be
      * processed independently. Channels can be excluded from dithering
-     * by setting their target size to zero or negative numbers.
+     * by setting their target colors to zero or negative numbers.
      *
      * @remarks
      * A `size` of 1 will result in simple posterization of each
