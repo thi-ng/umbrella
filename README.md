@@ -13,38 +13,37 @@
 > the composer of. Geared towards versatility, not any specific type of music."
 > &mdash; [@loganpowell](https://twitter.com/logantpowell/status/1186334119812304901) via Twitter
 
-Mono-repository for 140+ thi.ng TypeScript/ES6 projects, a wide
+Mono-repository for 142+ thi.ng TypeScript/ES6 projects, a wide
 collection of largely data transformation oriented packages and building
-blocks for:
+blocks for (non-exhaustive list of topics):
 
-- Functional programming (composition, memoization, transducers,
-  multi-methods)
-- Data driven UI component toolkits (multiple approaches)
+- Functional programming (composition, memoization, transducers, multi-methods)
+- Data structures & data transformations for wide range of use cases (list,
+  sets, maps, joins, spatial indexing, clocks)
 - ES6 iterators/generators
-- Reactive programming, stream / transducer based dataflow graphs /
-  pipelines
+- Immutable data handling, state containers, transacted state updates, Undo-Redo
+  history
+- Vector & matrix implementations with optional support for strided layouts,
+  SIMD etc.
+- Value-based equivalence
+- Data driven UI component toolkits (multiple approaches)
+- Reactive programming, stream / transducer based dataflow graphs / pipelines
 - WebWorker workflow abstractions
+- DSP building blocks: oscillators, noise generators, filters, 1D FFT/IFFT,
+  muxers, rate converters
 - 2D geometry generation, shape primitives, processing, conversion &
   visualization
-- Canvas abstraction & SVG conversion
+- Canvas abstractions & SVG conversion
 - Semi-declarative WebGL 1/2 abstraction layer
-- DSL for shader functions defined in TypeScript and cross-compilation
-  to GLSL, JS, VEX etc.
-- Date/time iterators, formatters
-- Data structures & data transformations for wide range of use cases
-  (list, sets, maps, joins, spatial indexing)
-- Immutable data handling, state containers, transacted state updates,
-  Undo-Redo history
-- Vector & matrix implementations with optional support for strided
-  layouts, SIMD etc.
-- Value-based equivalence
+- DSL for shader functions defined in TypeScript and cross-compilation to GLSL,
+  JS, VEX etc.
+- Date/time iterators, formatters, math
 - PEG-style parser combinators, FSM primitives
 - Forth-style pointfree DSL for functional composition
 - S-expression parser & runtime infrastructure for custom DSL creation
-- Multi-format pixel buffers, conversions, Porter-Duff alpha-blending
-  operators
-- Color space/format conversions, matrix based color manipulation,
-  cosine gradients
+- Multi-format pixel buffers, conversions, Porter-Duff alpha-blending operators
+- Color space/format conversions, matrix based color manipulation, cosine
+  gradients
 - Canvas-based Immediate mode GUI components
 - Low-level tooling for binary data, shared memory/WASM/WebGL interop
 - etc. (see package overview below)
@@ -201,6 +200,7 @@ feature or `develop` branches) -->
 | [`@thi.ng/quad-edge`](./packages/quad-edge)     | [![version](https://img.shields.io/npm/v/@thi.ng/quad-edge.svg)](https://www.npmjs.com/package/@thi.ng/quad-edge)     | [changelog](./packages/quad-edge/CHANGELOG.md)   | Quad-edge, dual-graph data structure     |
 | [`@thi.ng/resolve-map`](./packages/resolve-map) | [![version](https://img.shields.io/npm/v/@thi.ng/resolve-map.svg)](https://www.npmjs.com/package/@thi.ng/resolve-map) | [changelog](./packages/resolve-map/CHANGELOG.md) | DAG computations & value resolution      |
 | [`@thi.ng/sparse`](./packages/sparse)           | [![version](https://img.shields.io/npm/v/@thi.ng/sparse.svg)](https://www.npmjs.com/package/@thi.ng/sparse)           | [changelog](./packages/sparse/CHANGELOG.md)      | Sparse matrix & vector impls             |
+| [`@thi.ng/vclock`](./packages/vclock)           | [![version](https://img.shields.io/npm/v/@thi.ng/vclock.svg)](https://www.npmjs.com/package/@thi.ng/vclock)           | [changelog](./packages/vclock/CHANGELOG.md)      | Vector clock functions / comparators     |
 | [`@thi.ng/zipper`](./packages/zipper)           | [![version](https://img.shields.io/npm/v/@thi.ng/zipper.svg)](https://www.npmjs.com/package/@thi.ng/zipper)           | [changelog](./packages/zipper/CHANGELOG.md)      | Immutable tree editing / navigation      |
 
 ### Frontend / UI
