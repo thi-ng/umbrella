@@ -56,7 +56,8 @@
     "files": [
         "*.js",
         "*.d.ts",
-        "lib"
+        "lib",
+        "distributions"
     ],
     "keywords": [
         "binary",
