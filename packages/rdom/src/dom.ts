@@ -170,12 +170,27 @@ export const $moveTo = (
 
 export const $clear = (el: Element) => ((el.innerHTML = ""), el);
 
+/**
+ * Same as `el.innerText = body`, however if `body` is an
+ * {@link @thi.ng/api#IDeref} it'll be automatically deref'd.
+ *
+ * @param el
+ * @param body
+ */
 export const $text = (el: HTMLElement, body: any) => {
     el.innerText = String(deref(body));
 };
 
+/**
+ * Same as `el.innerHtml = body`, use with caution! If `body` is an
+ * {@link @thi.ng/api#IDeref} it'll be automatically deref'd.
+ *
+ * @param elß
+ * @param body
+ */
+
 export const $html = (el: HTMLElement, body: MaybeDeref<string>) => {
-    el.innerHTML = deref(body);
+    el.innerHTML = String(deref(body));
 };
 
 /**

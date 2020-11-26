@@ -2,6 +2,23 @@ import type { Fn } from "@thi.ng/api";
 import type { ComponentLike, IComponent, NumOrElement } from "./api";
 import { Component } from "./component";
 
+/**
+ * Simple component wrapper for {@link ComponentLike} promises. When this
+ * component mounts it will `await` the given promise or if it fails, compile
+ * the result of the given (optional) `error` handler as component body.
+ *
+ * @example
+ * ```ts
+ * const prom = Promise.resolve<ComponentLike>(
+ *   ["div", {}, "Resolved!"]
+ * );
+ *
+ * $promise(prom).mount(document.body);
+ * ```
+ *
+ * @param prom
+ * @param error
+ */
 export const $promise = (
     prom: Promise<ComponentLike>,
     error?: Fn<Error, any>

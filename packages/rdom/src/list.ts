@@ -5,6 +5,53 @@ import { $compile } from "./compile";
 import { Component } from "./component";
 import { $sub } from "./sub";
 
+/**
+ * Creates a generalized and dynamically updating list component from items of
+ * the given `src` stream.
+ *
+ * @remarks
+ * Only very basic key-less diffing of list items is performed (using the
+ * `equiv` equality predicate arg, i.e. `equiv(prev[i], curr[i])`).
+ *
+ * Use this list component only for cases when the child item components do not
+ * involve complex lifecycles (e.g. preloaders, intro animations etc.). Any list
+ * items changing position will be first unmounted, then remounted. To avoid
+ * this full lifecycle transition, consider using {@link $klist}, which employs
+ * a more elaborate diffing mechanism and keying to uniquely identify list items
+ * (regardless of their position in the array).
+ *
+ * @example
+ * ```ts
+ * const items = reactive([{id: "a"}, {id: "b"}, {id: "c"}]);
+ *
+ * $list(
+ *   // data source (rstream subsribable)
+ *   items,
+ *   // outer list element & attribs
+ *   "ul",
+ *   { class: "list red" },
+ *   // list item component constructor
+ *   (x) => ["li", {}, x.id],
+ *   // optional equality predicate (default this.ng/equiv)
+ *   (a, b) => a.id === b.id
+ * ).mount(document.body);
+ *
+ * // update list
+ * items.next([{id: "b"}, {id: "d"}, {id: "c"}]);
+ *
+ * // removes component for item A
+ * // recreates B in new position
+ * // creates D
+ * // keeps C
+ * ```
+ *
+ *
+ * @param src
+ * @param tag
+ * @param attribs
+ * @param ctor
+ * @param equiv
+ */
 export const $list = <T>(
     src: ISubscribable<T[]>,
     tag: string,

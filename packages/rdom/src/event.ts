@@ -20,8 +20,8 @@ export const $input = (stream: ISubscriber<string>) => (e: Event) =>
 
 /**
  * Similar to {@link $input}, but attempts to first coerce value using
- * `parseFloat()`. Uses given `fallback` value (default: 0) if coercion
- * failed.
+ * `parseFloat()`. Uses given `fallback` value (default: 0) if coercion failed
+ * (i.e. if the event target's `.value` isn't numeric).
  *
  * @param stream -
  * @param fallback -

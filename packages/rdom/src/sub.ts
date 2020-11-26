@@ -7,6 +7,29 @@ import { $attribs } from "./dom";
 import { SCHEDULER } from "./scheduler";
 import { $wrapText } from "./wrap";
 
+/**
+ * Takes an {@link @thi.ng/rstream#ISubscribable} and creates a simple component
+ * wrapper for its reactively produced values.
+ *
+ * @remarks
+ * If given an {@link IMountWithState} component, new stream values are applied
+ * via the `.update()` life cycle value. If given a `tag` and `attribs`, a
+ * corrresponding element wrapper component will be created automatically (using
+ * {@link $wrapText} and stream values will be applied using {@link $text} (aka
+ * setting `el.innerText`).
+ *
+ * @example
+ * ```ts
+ * const src = reactive(42).map((x) => `value: ${x}`);
+ *
+ * $sub(src, "div", { class: "red" }).mount(document.body);
+ *
+ * src.next(43);
+ * ```
+ *
+ * @param src
+ * @param inner
+ */
 export function $sub<T>(
     src: ISubscribable<T>,
     inner: IMountWithState<T>

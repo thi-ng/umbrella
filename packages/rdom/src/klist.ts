@@ -11,6 +11,42 @@ interface KListItem {
     v: IComponent;
 }
 
+/**
+ * Similar to {@link $list}, however additionally uses keying to establish list
+ * item identities and uses them in a more complex diffing algorithm to avoid
+ * re-initialization of list items if they've been re-ordered or changed
+ * positions due to removal/insertion of other items in the list.
+ *
+ * @remarks
+ * The given `keyFn` is used to obtain a *unique* key value for each list item
+ * obtained from the reactive arrays obtained from `src`.
+ *
+ * @example
+ * ```ts
+ * const items = reactive([{id: "a"}, {id: "b"}, {id: "c"}]);
+ *
+ * $klist(
+ *   // data source (rstream subsribable)
+ *   items,
+ *   // outer list element & attribs
+ *   "ul",
+ *   { class: "list red" },
+ *   // list item component constructor
+ *   (x) => ["li", {}, x.id],
+ *   // key function
+ *   (x) => x.id
+ * ).mount(document.body);
+ *
+ * // update list
+ * items.next([{id: "b"}, {id: "d"}, {id: "c"}]);
+ * ```
+ *
+ * @param src
+ * @param tag
+ * @param attribs
+ * @param childCtor
+ * @param keyFn
+ */
 export const $klist = <T>(
     src: ISubscribable<T[]>,
     tag: string,

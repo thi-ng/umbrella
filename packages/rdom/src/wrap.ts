@@ -26,6 +26,22 @@ const wrapper = <T>(update: Fn2<HTMLElement, T, void>) => (
     },
 });
 
+/**
+ * Returns a component wrapper for a single DOM element whose TEXT body can be
+ * later updated/replaced via `.update()`, similarly to setting `.innerText`.
+ *
+ * @param tag - element name
+ * @param attribs - element attribs
+ * @param body - optional initial body
+ */
 export const $wrapText = wrapper($text);
 
+/**
+ * Returns a component wrapper for a single DOM element whose HTML body can be
+ * later updated/replaced via `.update()`, similarly to setting `.innerHTML`.
+ *
+ * @param tag - element name
+ * @param attribs - element attribs
+ * @param body - optional initial body
+ */
 export const $wrapHtml = wrapper($html);

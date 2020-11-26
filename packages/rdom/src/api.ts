@@ -91,6 +91,9 @@ export interface CompiledComponent extends IComponent {
     children?: IComponent[];
 }
 
+/**
+ * Any value which is either an {@link IComponent} or hiccup-style array/tree
+ */
 export type ComponentLike = IComponent | [string, ...(any | null)[]];
 
 export type Callback = Fn0<void>;
