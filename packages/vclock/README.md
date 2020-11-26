@@ -36,18 +36,18 @@ Vector clock functions for synchronizing distributed states & processes.
 The package provides the following **immutable** vector clock operations, where
 vector clocks are plain JS objects:
 
-- `inc(clock, id)` - increment clock component
+- `inc(clock, id)` - increment (or create) clock component
 - `remove(clock, id)` - remove clock component
 - `merge(a, b)` - merge two vector clocks
 - `signedSkew(a, b)` - max signed difference between vector clocks
 - `absSkew(a, b)` - max unsigned difference between vector clocks
 - `compare(a, b)` - comparator for logically ordering vector clocks
-- `orderAsc(a, b)` - alias for `compare()`
-- `orderDesc(a, b)` - reverse order to `orderAsc()`
-- `equiv(a, b)` - equality predicate
 - `isBefore(a, b)` - true if a < b
 - `isAfter(a, b)` - true if a > b
 - `isConcurrent(a, b)` - if both clocks represent concurrent updates
+- `equiv(a, b)` - equality predicate
+- `orderAsc(a, b)` - alias for `compare()`
+- `orderDesc(a, b)` - reverse order to `orderAsc()`
 
 References:
 
@@ -80,7 +80,7 @@ yarn add @thi.ng/vclock
 <script src="https://unpkg.com/@thi.ng/vclock/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 448 bytes / CJS: 526 bytes / UMD: 584 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 478 bytes / CJS: 558 bytes / UMD: 614 bytes
 
 ## Dependencies
 
