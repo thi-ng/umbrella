@@ -48,6 +48,7 @@
         "typedoc": "^0.19.2",
         "typescript": "^4.1.2"
     },
+    "dependencies": {},
     "files": [
         "*.js",
         "*.d.ts",
@@ -75,8 +76,5 @@
             "geom-voronoi"
         ],
         "year": 2015
-    },
-    "dependencies": {
-        "tslib": "^2.0.3"
     }
 }

@@ -54,8 +54,7 @@
         "@thi.ng/hiccup-canvas": "^1.1.11",
         "@thi.ng/rdom": "^0.2.15",
         "@thi.ng/rstream": "^5.0.8",
-        "@thi.ng/transducers": "^7.5.0",
-        "tslib": "^2.0.3"
+        "@thi.ng/transducers": "^7.5.0"
     },
     "files": [
         "*.js",
