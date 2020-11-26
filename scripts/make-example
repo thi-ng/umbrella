@@ -68,7 +68,7 @@ cat << EOF > "$MODULE"/tsconfig.json
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": ".",
-        "target": "es6",
+        "target": "es2017",
         "sourceMap": true
     },
     "include": [

@@ -94,7 +94,7 @@ cat << EOF > "$MODULE"/package.json
         "typescript": "^4.0.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.13.1"
+        "@thi.ng/api": "^6.13.3"
     },
     "files": [
         "*.js",
@@ -120,9 +120,7 @@ cat << EOF > "$MODULE"/tsconfig.json
 {
     "extends": "../../tsconfig.json",
     "compilerOptions": {
-        "outDir": ".",
-        "module": "es6",
-        "target": "es6"
+        "outDir": "."
     },
     "include": [
         "./src/**/*.ts"
