@@ -10,7 +10,9 @@ import {
 } from "../src/index";
 import { TIMEOUT } from "./config";
 
-describe("Subscription", () => {
+describe("Subscription", function () {
+    this.retries(3);
+
     let src: Stream<number>;
 
     beforeEach(() => {});

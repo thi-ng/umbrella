@@ -10,7 +10,9 @@ import {
 } from "../src/index";
 import { TIMEOUT } from "./config";
 
-describe("PubSub", () => {
+describe("PubSub", function () {
+    this.retries(3);
+
     let pub: PubSub<any, any>;
 
     it("simple", () => {

@@ -2,7 +2,9 @@ import * as assert from "assert";
 import { CloseMode, fromIterable, metaStream, State } from "../src/index";
 import { TIMEOUT } from "./config";
 
-describe("MetaStream", () => {
+describe("MetaStream", function () {
+    this.retries(3);
+
     it("basic", (done) => {
         const src = fromIterable([1, 2, 3], { delay: TIMEOUT });
         const meta = metaStream<number, number>((x) =>

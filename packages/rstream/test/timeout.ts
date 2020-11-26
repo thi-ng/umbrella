@@ -2,7 +2,9 @@ import * as assert from "assert";
 import { timeout } from "../src";
 import { TIMEOUT } from "./config";
 
-describe("Timeout", () => {
+describe("Timeout", function () {
+    this.retries(3);
+
     it("times out", function (done) {
         this.timeout(TIMEOUT * 2);
 

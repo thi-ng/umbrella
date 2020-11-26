@@ -14,7 +14,9 @@ import {
     transduce,
 } from "../src";
 
-describe("StreamSync", () => {
+describe("StreamSync", function () {
+    this.retries(3);
+
     function adder() {
         return map((ports: any) => {
             let sum = 0;
@@ -36,8 +38,8 @@ describe("StreamSync", () => {
         });
         const a1 = sync({
             src: {
-                a: a = fromView(db, { path: ["a1", "ins", "a"] }),
-                b: b = fromView(db, { path: ["a1", "ins", "b"] }),
+                a: (a = fromView(db, { path: ["a1", "ins", "a"] })),
+                b: (b = fromView(db, { path: ["a1", "ins", "b"] })),
             },
             xform: adder(),
         });

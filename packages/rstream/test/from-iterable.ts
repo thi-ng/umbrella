@@ -2,7 +2,9 @@ import * as assert from "assert";
 import { fromIterable, State, Stream, Subscription } from "../src/index";
 import { TIMEOUT } from "./config";
 
-describe("fromIterable()", () => {
+describe("fromIterable()", function () {
+    this.retries(3);
+
     let src: Stream<number>;
     let data = [10, 20, 30];
 

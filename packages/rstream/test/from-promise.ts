@@ -8,7 +8,9 @@ import {
 } from "../src/index";
 import { TIMEOUT } from "./config";
 
-describe("fromPromise()", () => {
+describe("fromPromise()", function () {
+    this.retries(3);
+
     it("resolves to sub", (done) => {
         let src = fromPromise(Promise.resolve(23));
         let called = false;
