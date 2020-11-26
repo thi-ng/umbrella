@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.64](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-msdf@0.1.63...@thi.ng/webgl-msdf@0.1.64) (2020-11-26)
+
+**Note:** Version bump only for package @thi.ng/webgl-msdf
+
+
+
+
+
 ## [0.1.63](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-msdf@0.1.62...@thi.ng/webgl-msdf@0.1.63) (2020-11-24)
 
 **Note:** Version bump only for package @thi.ng/webgl-msdf

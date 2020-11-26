@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@2.1.0...@thi.ng/random@2.1.1) (2020-11-26)
+
+
+### Bug Fixes
+
+* **random:** add missing subdir to pkg "files" ([916dbe7](https://github.com/thi-ng/umbrella/commit/916dbe7eb12815215b3905ea6ad924b7d397264c))
+
+
+
+
+
 # [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@2.0.2...@thi.ng/random@2.1.0) (2020-11-24)
 
 

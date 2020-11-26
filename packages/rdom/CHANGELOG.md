@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.2.15...@thi.ng/rdom@0.2.16) (2020-11-26)
+
+**Note:** Version bump only for package @thi.ng/rdom
+
+
+
+
+
 ## [0.2.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.2.14...@thi.ng/rdom@0.2.15) (2020-11-24)
 
 **Note:** Version bump only for package @thi.ng/rdom

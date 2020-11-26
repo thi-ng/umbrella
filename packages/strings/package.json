@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/strings",
-    "version": "1.11.0",
+    "version": "1.11.1",
     "description": "Various string formatting & utility functions",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,10 +49,10 @@
         "typescript": "^4.1.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.13.2",
-        "@thi.ng/errors": "^1.2.23",
-        "@thi.ng/hex": "^0.1.0",
-        "@thi.ng/memoize": "^2.1.4"
+        "@thi.ng/api": "^6.13.3",
+        "@thi.ng/errors": "^1.2.24",
+        "@thi.ng/hex": "^0.1.1",
+        "@thi.ng/memoize": "^2.1.5"
     },
     "files": [
         "*.js",
