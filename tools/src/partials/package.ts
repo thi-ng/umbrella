@@ -65,7 +65,7 @@ export const packageStatus = (pkgName: string, id = "stable") => {
         "",
         link(
             "Search or submit any issues for this package",
-            `https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5B${name}%5D`
+            `https://github.com/thi-ng/umbrella/issues?q=%5B${name}%5D+in%3Atitle`
         ),
     ].join("\n");
 };
