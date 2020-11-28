@@ -248,11 +248,15 @@ export const scaleFFT = (
     return [real, img];
 };
 
-export const normalizeFFT = (complex: ComplexArray): ComplexArray =>
-    scaleFFT(complex, 1 / Math.sqrt(complex[0].length));
+export const normalizeFFT = (
+    complex: ComplexArray,
+    N: number = complex[0].length
+): ComplexArray => scaleFFT(complex, 2 / N);
 
-export const denormalizeFFT = (complex: ComplexArray): ComplexArray =>
-    scaleFFT(complex, Math.sqrt(complex[0].length));
+export const denormalizeFFT = (
+    complex: ComplexArray,
+    N: number = complex[0].length
+): ComplexArray => scaleFFT(complex, N / 2);
 
 /**
  * Computes magnitude spectrum for given FFT. By default only the first
@@ -294,13 +298,13 @@ export const spectrumPow = (
     complex: ComplexArray,
     db = false,
     n = complex[0].length / 2,
-    out: NumericArray = []
+    out: NumericArray = [],
+    scale: number = 1 / Math.sqrt(complex[0].length)
 ) => {
     const [real, img] = complex;
-    const scale = 1 / real.length;
     for (let i = 0; i < n; i++) {
-        const p = real[i] ** 2 + img[i] ** 2;
-        out[i] = db ? magDb(Math.sqrt(p) * scale) : p * scale;
+        const p = (scale * real[i]) ** 2 + (scale * img[i]) ** 2;
+        out[i] = db ? magDb(Math.sqrt(p)) : p;
     }
     return out;
 };
@@ -333,7 +337,8 @@ export const spectrumPhase = (
  * @param fs - sample rate
  * @param n - window size
  */
-export const freqBin: FnN3 = (f, fs, n) => ((f * n) / fs) | 0;
+export const freqBin: FnN3 = (f: number, fs: number, n: number) =>
+    ((f * n) / fs) | 0;
 
 /**
  * Returns frequency for given FFT bin index, sample rate and window
@@ -343,7 +348,8 @@ export const freqBin: FnN3 = (f, fs, n) => ((f * n) / fs) | 0;
  * @param fs - sample rate
  * @param n - window size
  */
-export const binFreq: FnN3 = (bin, fs, n) => (bin * fs) / n;
+export const binFreq: FnN3 = (bin: number, fs: number, n: number) =>
+    (bin * fs) / n;
 
 /**
  * Returns array of bin center frequencies for given FFT window size and

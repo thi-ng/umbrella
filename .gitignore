@@ -34,3 +34,5 @@ lib
 node_modules
 tachyons.min.css
 zig-cache
+.vscode
+package-lock.json
