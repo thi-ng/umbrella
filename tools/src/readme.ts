@@ -9,6 +9,7 @@ import { examplesTable } from "./partials/examples";
 import { copyright } from "./partials/license";
 import {
     packageBanner,
+    packageCitation,
     packageDeps,
     packageDesc,
     packageInstallation,
@@ -31,6 +32,7 @@ try {
         "pkg.size": packageSize,
         "pkg.banner": () => packageBanner(CONFIG.root.name),
         "pkg.install": () => packageInstallation(CONFIG.root),
+        "pkg.cite": () => packageCitation(CONFIG.root.name),
         status: () => packageStatus(CONFIG.root.name, CONFIG.meta.status),
         examples: () => examplesTable(CONFIG.root.name),
         supportPackages: () => supportPackages(CONFIG.root.name),

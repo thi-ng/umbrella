@@ -3,11 +3,13 @@ import { execSync } from "child_process";
 import { readdirSync } from "fs";
 import { META_FIELD, Package, RE_PKG } from "../api";
 import { CONFIG } from "../config";
-import { readJSON } from "../io";
+import { readJSON, readText } from "../io";
 import { link } from "./link";
 import { list } from "./list";
 
 export const shortName = (name: string) => name.split("/")[1];
+
+export const packageURL = (name: string) => `https://${name.substr(1)}`;
 
 export const pkgLink = (name: string) =>
     link(name, `${CONFIG.branchURL}/packages/${shortName(name)}`);
@@ -102,3 +104,20 @@ yarn add ${pkg.name}
 // UMD
 <script src="https://unpkg.com/${pkg.name}/lib/index.umd.js" crossorigin></script>
 \`\`\``;
+
+export const packageCitation = (name: string) => {
+    let hasAuthors = false;
+    try {
+        hasAuthors = !!readText("./AUTHORS.md").length;
+    } catch (_) {}
+    return `If this project contributes to an academic publication, please cite it as:
+
+\`\`\`bibtex
+@misc{thing-${shortName(name)},
+  title = "${name}",
+  author = "${CONFIG.mainAuthor}${hasAuthors ? " and others" : ""}",
+  note = "${packageURL(name)}",
+  year = ${CONFIG.meta.year}
+}
+\`\`\``;
+};
