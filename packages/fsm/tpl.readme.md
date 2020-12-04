@@ -100,6 +100,8 @@ transforming iterator of the FSM results.
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

@@ -64,6 +64,8 @@ gsc.subdivide([[0,0], [100,0], [100,100], [0,100]], gsc.SUBDIV_CHAIKIN_CLOSED, 4
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

@@ -495,6 +495,8 @@ Desmos](https://www.desmos.com/calculator/lkyf2ag3ta) to experiment.
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

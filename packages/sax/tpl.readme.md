@@ -297,6 +297,8 @@ The `type` key in each emitted result object is a TypeScript enum with the follo
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

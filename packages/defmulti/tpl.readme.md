@@ -337,6 +337,8 @@ console.log(toDot(defDGraph(fn.dependencies()), { id: (id) => id }));
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

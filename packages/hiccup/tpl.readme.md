@@ -572,6 +572,8 @@ considered](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup/src/
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

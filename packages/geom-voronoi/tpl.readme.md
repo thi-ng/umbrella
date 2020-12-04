@@ -84,6 +84,8 @@ document.body.innerHtml = g.asSvg(
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

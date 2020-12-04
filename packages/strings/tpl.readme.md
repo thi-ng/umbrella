@@ -121,6 +121,8 @@ fmt("eur", 1.2345, 0.25)
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

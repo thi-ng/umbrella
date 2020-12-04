@@ -91,6 +91,8 @@ decode(bytes, false)
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

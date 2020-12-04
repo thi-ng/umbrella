@@ -59,6 +59,8 @@ fs.writeFileSync(
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

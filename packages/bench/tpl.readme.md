@@ -116,6 +116,8 @@ benchmark(() => fib(40), { title: "fib", iter: 10, warmup: 5 });
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

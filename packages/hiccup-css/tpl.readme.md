@@ -601,6 +601,8 @@ const QUOTED_FNS = {
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

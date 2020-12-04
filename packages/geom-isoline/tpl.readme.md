@@ -96,6 +96,8 @@ fs.writeFileSync("contours.svg", g.asSvg(doc));
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

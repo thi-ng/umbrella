@@ -89,6 +89,8 @@ unpacked = new Uint8Array(decode(alt));
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

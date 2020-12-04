@@ -96,6 +96,8 @@ equiv(new Node([1,2,3], "foo"), new Node([1,2,3], "bar"));
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

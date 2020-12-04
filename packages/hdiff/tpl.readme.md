@@ -97,6 +97,8 @@ Compiles a theme config into a complete CSS stylesheet string (using
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

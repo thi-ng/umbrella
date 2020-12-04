@@ -1115,6 +1115,8 @@ Some stress test benchmarks are here:
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

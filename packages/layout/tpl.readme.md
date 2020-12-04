@@ -99,6 +99,8 @@ twoCols.next([1, 2]);
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

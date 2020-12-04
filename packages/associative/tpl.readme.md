@@ -345,6 +345,8 @@ t.knownPrefix(["to", "be", "not"]);
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

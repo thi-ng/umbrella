@@ -140,6 +140,8 @@ edge[arrowsize="0.75", fontname="Inconsolata", fontsize="9"];
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

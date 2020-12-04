@@ -90,6 +90,8 @@ rnd.gaussian()
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

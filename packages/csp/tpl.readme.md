@@ -219,6 +219,8 @@ pub.channel().into(["alice", "bert", "bella", "charlie", "arthur"]);
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

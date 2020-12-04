@@ -847,6 +847,8 @@ and return a reduced result (as if it would be called via `reduce()`).
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

@@ -147,6 +147,8 @@ code](https://github.com/thi-ng/umbrella/blob/develop/packages/router/src/api.ts
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

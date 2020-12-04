@@ -83,6 +83,8 @@ console.log(toDot(graph, { id: (node) => node }));
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

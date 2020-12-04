@@ -66,6 +66,8 @@ The following env variables are used to control the behavior of some functions i
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

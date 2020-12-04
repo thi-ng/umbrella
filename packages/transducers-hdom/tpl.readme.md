@@ -106,6 +106,8 @@ clickStream.next(0);
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

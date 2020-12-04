@@ -91,6 +91,8 @@ fragColor = vec4(color, 1.0);
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

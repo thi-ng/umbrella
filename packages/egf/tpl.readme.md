@@ -484,6 +484,8 @@ thi:umbrella
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

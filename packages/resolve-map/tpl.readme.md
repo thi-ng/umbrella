@@ -252,6 +252,8 @@ res.e(2);
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

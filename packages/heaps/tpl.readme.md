@@ -73,6 +73,8 @@ h.push(24);
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

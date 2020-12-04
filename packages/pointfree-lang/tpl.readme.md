@@ -658,6 +658,8 @@ pf.runU(src, {bingo: 42}, [43]);
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

@@ -78,6 +78,8 @@ each vertex corner, taking into the convexity of each poly vertex.
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

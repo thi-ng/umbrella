@@ -73,6 +73,8 @@ download("hello.txt", src, {
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

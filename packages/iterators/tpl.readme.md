@@ -1092,6 +1092,8 @@ ti.zip(ti.map((x)=> x.id, langs), langs)
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

@@ -393,6 +393,8 @@ for reference.
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

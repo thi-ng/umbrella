@@ -113,6 +113,8 @@ yarn build
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 The copyright of the original icons is with IBM. The icons were published under

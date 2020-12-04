@@ -293,6 +293,8 @@ const el = defElement<any>("a", { b: 1 });
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

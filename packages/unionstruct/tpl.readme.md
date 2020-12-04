@@ -224,6 +224,8 @@ bitfields.__offsets
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

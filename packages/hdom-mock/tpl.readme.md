@@ -90,6 +90,8 @@ impl.root.children[0].toHiccup();
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

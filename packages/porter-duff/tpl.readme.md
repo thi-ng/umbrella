@@ -146,6 +146,8 @@ Note: HTML Canvas `ImageData` is using non-premultiplied colors.
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

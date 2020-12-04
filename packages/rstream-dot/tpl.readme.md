@@ -93,6 +93,8 @@ This will generate this diagram:
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

@@ -183,6 +183,8 @@ f2(2) // [1, 8]
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

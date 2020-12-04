@@ -187,6 +187,8 @@ Resulting visualization:
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

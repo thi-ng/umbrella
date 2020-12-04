@@ -68,6 +68,8 @@ stream.subscribe(rs.trace("tentimes"), tx.map(x => x * 10));
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

@@ -189,6 +189,8 @@ The source code for the above example is
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

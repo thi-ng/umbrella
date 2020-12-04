@@ -73,6 +73,8 @@ res.type === isec.IntersectionType.INTERSECT
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

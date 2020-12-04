@@ -165,6 +165,8 @@ import * as gi from "@thi.ng/grid-iterators";
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

@@ -68,6 +68,8 @@ The order of optional args to both functions has been swapped to:
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

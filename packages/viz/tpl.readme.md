@@ -74,6 +74,10 @@ TODO
 
 ${authors}
 
+${pkg.cite}
+
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

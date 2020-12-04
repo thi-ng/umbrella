@@ -500,6 +500,8 @@ constantFolding(ast)
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

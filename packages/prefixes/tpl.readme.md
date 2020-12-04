@@ -95,6 +95,8 @@ Serialized HTML/RDFa result:
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

@@ -120,6 +120,8 @@ m.demuxScaled2(m.muxScaled2(0.25, 0.75))
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

@@ -117,6 +117,8 @@ dotProduct([1,2], [3,4]);
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

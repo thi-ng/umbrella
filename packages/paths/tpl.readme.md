@@ -308,6 +308,8 @@ exists({ a: { b: { c: [null] } } }, "a.b.c.1");
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

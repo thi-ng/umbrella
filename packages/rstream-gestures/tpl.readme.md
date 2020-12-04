@@ -130,6 +130,8 @@ gestures.subscribe(
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

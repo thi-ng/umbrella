@@ -131,6 +131,8 @@ interval("[0..1)").clamp(2, 1e-3)
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

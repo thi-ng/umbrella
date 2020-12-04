@@ -137,6 +137,8 @@ faster `readBit()` for reading single bits.
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

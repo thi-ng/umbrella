@@ -87,6 +87,8 @@ mat.toString();
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

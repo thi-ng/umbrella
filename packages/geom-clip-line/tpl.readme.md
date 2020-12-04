@@ -71,6 +71,8 @@ liangBarsky2(
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

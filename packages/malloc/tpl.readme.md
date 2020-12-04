@@ -307,6 +307,8 @@ allocating tiny arrays is slightly slower than the vanilla version... YMMV!
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

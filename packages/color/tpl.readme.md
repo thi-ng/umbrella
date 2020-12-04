@@ -226,6 +226,8 @@ col.transform([], filter, col.RED);
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

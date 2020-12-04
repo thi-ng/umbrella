@@ -139,6 +139,8 @@ benchmarking: parse w/ tessellation
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

@@ -716,6 +716,8 @@ Create value stream from worker messages.
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

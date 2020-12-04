@@ -125,6 +125,8 @@ const src = [
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

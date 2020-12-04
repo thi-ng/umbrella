@@ -250,6 +250,8 @@ tx.transduce(tx.comp(txb.base64Decode(), txb.utf8Decode()), tx.str(), buf);
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

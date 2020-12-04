@@ -249,6 +249,8 @@ parse(`<nest { a '2' b 3 }>`, syntax);
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

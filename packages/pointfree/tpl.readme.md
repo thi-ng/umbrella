@@ -1081,6 +1081,8 @@ Like `run()`, but returns result environment. Syntax sugar for:
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

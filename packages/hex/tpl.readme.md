@@ -81,6 +81,8 @@ h.U32LE(BUF, 4)
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

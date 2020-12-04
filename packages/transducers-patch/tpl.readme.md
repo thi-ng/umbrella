@@ -145,6 +145,8 @@ state.next([Patch.DELETE, "x"]);
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

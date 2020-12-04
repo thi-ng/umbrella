@@ -105,6 +105,8 @@ query(DB, (id) => id > "a" && id < "c", null, null)
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

@@ -104,6 +104,8 @@ yarn test
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

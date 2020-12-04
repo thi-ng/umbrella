@@ -227,6 +227,8 @@ const geo = new vp.AttribPool(
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

@@ -67,6 +67,8 @@ xor(true, true)
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

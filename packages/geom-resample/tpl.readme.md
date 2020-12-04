@@ -66,6 +66,8 @@ simplify(pts, 0, true)
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

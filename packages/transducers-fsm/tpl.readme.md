@@ -171,6 +171,8 @@ to the configured `terminate` state, processing is terminated (by calling
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

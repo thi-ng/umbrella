@@ -187,6 +187,8 @@ mru = new cache.MRUCache();
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

@@ -354,6 +354,8 @@ More info [here](http://thi.ng/hiccup-markdown).
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

@@ -120,6 +120,8 @@ total: 4616ms, mean: 0.4616ms, runs: 10000
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

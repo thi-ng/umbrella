@@ -164,6 +164,8 @@ document.body.innerHTML = asSvg(
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

@@ -62,6 +62,8 @@ writer.done();
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

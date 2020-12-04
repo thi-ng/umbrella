@@ -84,6 +84,8 @@ bsGT(binarySearch(src, 40), src.length)
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

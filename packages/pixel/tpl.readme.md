@@ -189,6 +189,8 @@ TODO see examples & source comments for now
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

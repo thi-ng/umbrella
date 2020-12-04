@@ -98,6 +98,8 @@ import { parseCSV, upper, float } from "@thi.ng/csv";
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

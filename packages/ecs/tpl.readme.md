@@ -120,6 +120,8 @@ group.forEach((x) => console.log(x));
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

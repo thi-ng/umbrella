@@ -55,6 +55,8 @@ adaptDPI(canvas, 640, 480);
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

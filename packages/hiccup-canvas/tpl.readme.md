@@ -417,6 +417,8 @@ package for creating different kinds of transformation matrices, e.g.
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

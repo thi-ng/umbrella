@@ -92,6 +92,8 @@ S0000002G0000003D0000002P0000003                                        T      1
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

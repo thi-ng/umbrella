@@ -79,6 +79,8 @@ preferredType("foo", "text/plain")
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

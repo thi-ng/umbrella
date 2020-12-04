@@ -541,6 +541,8 @@ For more information about the code generator see:
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}

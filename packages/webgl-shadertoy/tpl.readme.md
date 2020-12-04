@@ -105,6 +105,8 @@ toy.start();
 
 ${authors}
 
+${pkg.cite}
+
 ## License
 
 &copy; ${copyright} // ${license}
