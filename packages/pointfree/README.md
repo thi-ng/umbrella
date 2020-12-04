@@ -186,7 +186,7 @@ non-linear control flow.
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bpointfree%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bpointfree%5D+in%3Atitle)
 
 ### Support packages
 
@@ -1165,6 +1165,17 @@ Like `run()`, but returns result environment. Syntax sugar for:
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-pointfree,
+  title = "@thi.ng/pointfree",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/pointfree",
+  year = 2015
+}
+```
 
 ## License
 

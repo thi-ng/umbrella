@@ -154,7 +154,7 @@ thi.ng/umbrella eco system (most relevant:
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bhiccup-html%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bhiccup-html%5D+in%3Atitle)
 
 The current aim is not necessarily to have wrappers for *each* possible
 HTML5 element, but certainly to support the most commonly used ones. PRs
@@ -338,6 +338,17 @@ const el = defElement<any>("a", { b: 1 });
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-hiccup-html,
+  title = "@thi.ng/hiccup-html",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/hiccup-html",
+  year = 2020
+}
+```
 
 ## License
 

@@ -39,7 +39,7 @@ Immutable, optimized and optionally typed path-based object property / array acc
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bpaths%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bpaths%5D+in%3Atitle)
 
 ## Breaking changes
 
@@ -354,6 +354,17 @@ exists({ a: { b: { c: [null] } } }, "a.b.c.1");
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-paths,
+  title = "@thi.ng/paths",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/paths",
+  year = 2016
+}
+```
 
 ## License
 

@@ -39,7 +39,7 @@ iterable for direct use.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Btransducers-binary%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btransducers-binary%5D+in%3Atitle)
 
 ### Related packages
 
@@ -297,6 +297,17 @@ tx.transduce(tx.comp(txb.base64Decode(), txb.utf8Decode()), tx.str(), buf);
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-transducers-binary,
+  title = "@thi.ng/transducers-binary",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/transducers-binary",
+  year = 2018
+}
+```
 
 ## License
 

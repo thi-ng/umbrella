@@ -36,7 +36,7 @@ comparator. See examples below.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bcompare%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bcompare%5D+in%3Atitle)
 
 ## Installation
 
@@ -153,6 +153,17 @@ const src = [
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-compare,
+  title = "@thi.ng/compare",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/compare",
+  year = 2016
+}
+```
 
 ## License
 

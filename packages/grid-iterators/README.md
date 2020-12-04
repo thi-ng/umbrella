@@ -151,7 +151,7 @@ Additionally, the following shape iterators are available:
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bgrid-iterators%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bgrid-iterators%5D+in%3Atitle)
 
 ### Related packages
 
@@ -214,6 +214,17 @@ import * as gi from "@thi.ng/grid-iterators";
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-grid-iterators,
+  title = "@thi.ng/grid-iterators",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/grid-iterators",
+  year = 2019
+}
+```
 
 ## License
 

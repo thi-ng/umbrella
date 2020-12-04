@@ -101,7 +101,7 @@ programming:
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Brstream%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Brstream%5D+in%3Atitle)
 
 ### Breaking changes in 5.0.0
 
@@ -813,6 +813,17 @@ Create value stream from worker messages.
 
 - André Wachter ([@andrew8er](https://github.com/andrew8er))
 - Gavin Cannizzaro ([@gavinpc-mindgrub](https://github.com/gavinpc-mindgrub))
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-rstream,
+  title = "@thi.ng/rstream",
+  author = "Karsten Schmidt and others",
+  note = "https://thi.ng/rstream",
+  year = 2017
+}
+```
 
 ## License
 

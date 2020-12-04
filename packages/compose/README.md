@@ -25,7 +25,7 @@ Optimized functional composition helpers.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bcompose%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bcompose%5D+in%3Atitle)
 
 ## Installation
 
@@ -63,6 +63,17 @@ Package sizes (gzipped, pre-treeshake): ESM: 815 bytes / CJS: 916 bytes / UMD: 9
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-compose,
+  title = "@thi.ng/compose",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/compose",
+  year = 2016
+}
+```
 
 ## License
 

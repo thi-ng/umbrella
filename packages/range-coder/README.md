@@ -27,7 +27,7 @@ by Joe Halliwell](https://www.winterwell.com/software/compressor.php).
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Brange-coder%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Brange-coder%5D+in%3Atitle)
 
 ### Related packages
 
@@ -81,6 +81,17 @@ dest = rc.decodeBytes(packed);
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-range-coder,
+  title = "@thi.ng/range-coder",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/range-coder",
+  year = 2017
+}
+```
 
 ## License
 

@@ -48,7 +48,7 @@ which altogether provide ~750 optimized vector/matrix functions.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bshader-ast-js%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bshader-ast-js%5D+in%3Atitle)
 
 ### Related packages
 
@@ -132,6 +132,17 @@ Module.hello(10);
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-shader-ast-js,
+  title = "@thi.ng/shader-ast-js",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/shader-ast-js",
+  year = 2019
+}
+```
 
 ## License
 

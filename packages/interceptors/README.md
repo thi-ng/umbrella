@@ -118,7 +118,7 @@ commented source code and examples for now:
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Binterceptors%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Binterceptors%5D+in%3Atitle)
 
 ## Installation
 
@@ -177,6 +177,17 @@ TODO
 ### Contributors
 
 - Logan Powell ([@loganpowell](https://github.com/loganpowell))
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-interceptors,
+  title = "@thi.ng/interceptors",
+  author = "Karsten Schmidt and others",
+  note = "https://thi.ng/interceptors",
+  year = 2016
+}
+```
 
 ## License
 

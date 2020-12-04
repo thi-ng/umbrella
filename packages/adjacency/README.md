@@ -26,7 +26,7 @@ Sparse & bitwise adjacency matrices and related functions for directed & undirec
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Badjacency%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Badjacency%5D+in%3Atitle)
 
 ## Installation
 
@@ -74,6 +74,17 @@ TODO
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-adjacency,
+  title = "@thi.ng/adjacency",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/adjacency",
+  year = 2018
+}
+```
 
 ## License
 

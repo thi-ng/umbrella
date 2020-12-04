@@ -40,7 +40,7 @@ parser and an extensible Hiccup-to-Markdown converter.
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bhiccup-markdown%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bhiccup-markdown%5D+in%3Atitle)
 
 ## Installation
 
@@ -399,6 +399,17 @@ More info [here](http://thi.ng/hiccup-markdown).
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-hiccup-markdown,
+  title = "@thi.ng/hiccup-markdown",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/hiccup-markdown",
+  year = 2018
+}
+```
 
 ## License
 

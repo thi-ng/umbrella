@@ -28,7 +28,7 @@ All MIME type mappings based on
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bmime%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bmime%5D+in%3Atitle)
 
 ## Installation
 
@@ -92,6 +92,17 @@ preferredType("foo", "text/plain")
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-mime,
+  title = "@thi.ng/mime",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/mime",
+  year = 2020
+}
+```
 
 ## License
 

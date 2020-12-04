@@ -36,7 +36,7 @@ Entity Component System based around typed arrays & sparse sets.
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Becs%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Becs%5D+in%3Atitle)
 
 ## Installation
 
@@ -155,6 +155,17 @@ group.forEach((x) => console.log(x));
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-ecs,
+  title = "@thi.ng/ecs",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/ecs",
+  year = 2019
+}
+```
 
 ## License
 

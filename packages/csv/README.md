@@ -46,7 +46,7 @@ for more details/ideas.
 
 **BETA** - possibly breaking changes forthcoming
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bcsv%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bcsv%5D+in%3Atitle)
 
 ### Planned features
 
@@ -116,6 +116,17 @@ import { parseCSV, upper, float } from "@thi.ng/csv";
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-csv,
+  title = "@thi.ng/csv",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/csv",
+  year = 2014
+}
+```
 
 ## License
 

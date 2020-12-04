@@ -64,7 +64,7 @@ an ES6 embedded DSL for concatenative programming:
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bpointfree-lang%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bpointfree-lang%5D+in%3Atitle)
 
 ## Installation
 
@@ -708,6 +708,17 @@ pf.runU(src, {bingo: 42}, [43]);
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-pointfree-lang,
+  title = "@thi.ng/pointfree-lang",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/pointfree-lang",
+  year = 2018
+}
+```
 
 ## License
 

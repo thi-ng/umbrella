@@ -29,7 +29,7 @@ Current implementation is partially based on Clojure version of
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bgeom-hull%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bgeom-hull%5D+in%3Atitle)
 
 ## Installation
 
@@ -78,6 +78,17 @@ grahamScan2([[0, 0], [50, 10], [100, 0], [80, 50], [100, 100], [50, 90], [0, 100
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-geom-hull,
+  title = "@thi.ng/geom-hull",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/geom-hull",
+  year = 2013
+}
+```
 
 ## License
 

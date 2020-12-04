@@ -113,7 +113,7 @@ formats can be defined via `defFloatFormat()`.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bpixel%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bpixel%5D+in%3Atitle)
 
 ### Related packages
 
@@ -229,6 +229,17 @@ TODO see examples & source comments for now
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-pixel,
+  title = "@thi.ng/pixel",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/pixel",
+  year = 2019
+}
+```
 
 ## License
 

@@ -38,7 +38,7 @@ any actual JS type relationships).
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bdefmulti%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bdefmulti%5D+in%3Atitle)
 
 ## Installation
 
@@ -372,6 +372,17 @@ console.log(toDot(defDGraph(fn.dependencies()), { id: (id) => id }));
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-defmulti,
+  title = "@thi.ng/defmulti",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/defmulti",
+  year = 2018
+}
+```
 
 ## License
 

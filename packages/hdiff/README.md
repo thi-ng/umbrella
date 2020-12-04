@@ -33,7 +33,7 @@ String diffing w/ hiccup output for further processing, e.g. with [@thi.ng/hdom]
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bhdiff%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bhdiff%5D+in%3Atitle)
 
 ## Installation
 
@@ -118,6 +118,17 @@ Compiles a theme config into a complete CSS stylesheet string (using
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-hdiff,
+  title = "@thi.ng/hdiff",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/hdiff",
+  year = 2018
+}
+```
 
 ## License
 

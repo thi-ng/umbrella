@@ -25,7 +25,7 @@ Shared type & interface declarations for [@thi.ng/geom](https://github.com/thi-n
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bgeom-api%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bgeom-api%5D+in%3Atitle)
 
 ## Installation
 
@@ -57,6 +57,17 @@ TODO
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-geom-api,
+  title = "@thi.ng/geom-api",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/geom-api",
+  year = 2013
+}
+```
 
 ## License
 

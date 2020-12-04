@@ -29,7 +29,7 @@ and synchronous stream subscriptions/transformations of
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Brstream-csp%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Brstream-csp%5D+in%3Atitle)
 
 ### Related packages
 
@@ -88,6 +88,17 @@ stream.subscribe(rs.trace("tentimes"), tx.map(x => x * 10));
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-rstream-csp,
+  title = "@thi.ng/rstream-csp",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/rstream-csp",
+  year = 2018
+}
+```
 
 ## License
 

@@ -33,7 +33,7 @@ Current implementations partially based on
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bgeom-splines%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bgeom-splines%5D+in%3Atitle)
 
 ## Installation
 
@@ -113,6 +113,17 @@ each vertex corner, taking into the convexity of each poly vertex.
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-geom-splines,
+  title = "@thi.ng/geom-splines",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/geom-splines",
+  year = 2016
+}
+```
 
 ## License
 

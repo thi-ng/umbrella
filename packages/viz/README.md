@@ -56,7 +56,7 @@ For reference & what to expect (links to the Clojure version):
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bviz%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bviz%5D+in%3Atitle)
 
 ## Installation
 
@@ -93,6 +93,28 @@ TODO
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-viz,
+  title = "@thi.ng/viz",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/viz",
+  year = 2014
+}
+```
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-viz,
+  title = "@thi.ng/viz",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/viz",
+  year = 2014
+}
+```
 
 ## License
 

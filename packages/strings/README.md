@@ -36,7 +36,7 @@ Partially based on Clojure version of [thi.ng/strf](http://thi.ng/strf).
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bstrings%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bstrings%5D+in%3Atitle)
 
 ## Installation
 
@@ -160,6 +160,17 @@ fmt("eur", 1.2345, 0.25)
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-strings,
+  title = "@thi.ng/strings",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/strings",
+  year = 2015
+}
+```
 
 ## License
 

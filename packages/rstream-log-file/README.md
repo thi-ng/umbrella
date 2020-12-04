@@ -25,7 +25,7 @@ File output handler for structured, multilevel & hierarchical loggers based on [
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Brstream-log-file%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Brstream-log-file%5D+in%3Atitle)
 
 ## Installation
 
@@ -75,6 +75,17 @@ writer.done();
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-rstream-log-file,
+  title = "@thi.ng/rstream-log-file",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/rstream-log-file",
+  year = 2017
+}
+```
 
 ## License
 

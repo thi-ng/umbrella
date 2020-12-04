@@ -42,7 +42,7 @@ Everything else is parsed as is, i.e. as symbol.
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bsexpr%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bsexpr%5D+in%3Atitle)
 
 ## Installation
 
@@ -281,6 +281,17 @@ parse(`<nest { a '2' b 3 }>`, syntax);
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-sexpr,
+  title = "@thi.ng/sexpr",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/sexpr",
+  year = 2019
+}
+```
 
 ## License
 

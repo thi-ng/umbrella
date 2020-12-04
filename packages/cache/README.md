@@ -47,7 +47,7 @@ strategies](https://en.wikipedia.org/wiki/Cache_replacement_policies).
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bcache%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bcache%5D+in%3Atitle)
 
 ## Installation
 
@@ -221,6 +221,17 @@ mru = new cache.MRUCache();
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-cache,
+  title = "@thi.ng/cache",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/cache",
+  year = 2018
+}
+```
 
 ## License
 

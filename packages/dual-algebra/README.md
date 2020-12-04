@@ -109,7 +109,7 @@ are suffixed with `S` (for "scalar"): `quadraticS`, `cubicS` and `quarticS`...
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bdual-algebra%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bdual-algebra%5D+in%3Atitle)
 
 ## Installation
 
@@ -196,6 +196,17 @@ f2(2) // [1, 8]
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-dual-algebra,
+  title = "@thi.ng/dual-algebra",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/dual-algebra",
+  year = 2020
+}
+```
 
 ## License
 

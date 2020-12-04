@@ -60,7 +60,7 @@ Purely functional parser combinators & AST generation for generic inputs.
 
 **BETA** - possibly breaking changes forthcoming
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bparse%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bparse%5D+in%3Atitle)
 
 ### Related packages
 
@@ -549,6 +549,17 @@ console.log(stack);
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-parse,
+  title = "@thi.ng/parse",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/parse",
+  year = 2020
+}
+```
 
 ## License
 

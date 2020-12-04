@@ -41,7 +41,7 @@ Partially ported from C implementations taken from
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Brandom%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Brandom%5D+in%3Atitle)
 
 ## Installation
 
@@ -120,6 +120,17 @@ rnd.gaussian()
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-random,
+  title = "@thi.ng/random",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/random",
+  year = 2016
+}
+```
 
 ## License
 

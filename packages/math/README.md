@@ -35,7 +35,7 @@ Partially ported from Clojure version
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bmath%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bmath%5D+in%3Atitle)
 
 ## Installation
 
@@ -91,6 +91,17 @@ TODO
 ### Contributors
 
 -   [@nkint](https://github.com/nkint)
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-math,
+  title = "@thi.ng/math",
+  author = "Karsten Schmidt and others",
+  note = "https://thi.ng/math",
+  year = 2013
+}
+```
 
 ## License
 

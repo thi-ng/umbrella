@@ -52,7 +52,7 @@ semi-open `[1e-6,1e21)` interval can be encoded.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bbencode%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bbencode%5D+in%3Atitle)
 
 ## Installation
 
@@ -113,6 +113,17 @@ decode(bytes, false)
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-bencode,
+  title = "@thi.ng/bencode",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/bencode",
+  year = 2016
+}
+```
 
 ## License
 

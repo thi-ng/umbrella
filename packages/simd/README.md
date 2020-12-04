@@ -82,7 +82,7 @@ for documentation about the exposed TS/JS API...
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bsimd%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bsimd%5D+in%3Atitle)
 
 The [WebAssembly SIMD spec](https://github.com/WebAssembly/simd) is
 still WIP and (at the time of writing) only partially implemented and
@@ -195,6 +195,17 @@ points
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-simd,
+  title = "@thi.ng/simd",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/simd",
+  year = 2019
+}
+```
 
 ## License
 

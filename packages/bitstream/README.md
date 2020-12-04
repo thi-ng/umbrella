@@ -27,7 +27,7 @@ ES6 iterator based read/write bit streams with support for variable word widths.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bbitstream%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bbitstream%5D+in%3Atitle)
 
 ## Installation
 
@@ -152,6 +152,17 @@ faster `readBit()` for reading single bits.
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-bitstream,
+  title = "@thi.ng/bitstream",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/bitstream",
+  year = 2016
+}
+```
 
 ## License
 

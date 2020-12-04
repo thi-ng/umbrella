@@ -115,7 +115,7 @@ therefore need to be complete, e.g. `{ rotate: "rotate(60)" }`
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bhiccup-svg%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bhiccup-svg%5D+in%3Atitle)
 
 ## Installation
 
@@ -230,6 +230,17 @@ Result:
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-hiccup-svg,
+  title = "@thi.ng/hiccup-svg",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/hiccup-svg",
+  year = 2016
+}
+```
 
 ## License
 

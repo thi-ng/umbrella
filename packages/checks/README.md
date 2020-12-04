@@ -27,7 +27,7 @@ Collection of 50+ type, feature & value checks.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bchecks%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bchecks%5D+in%3Atitle)
 
 ## Installation
 
@@ -65,6 +65,17 @@ TODO
 
 -   Gavin Cannizzaro ([@gavinpc-mindgrub](https://github.com/gavinpc-mindgrub))
 -   Jay Zawrotny ([@eccentric-j](https://github.com/eccentric-j))
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-checks,
+  title = "@thi.ng/checks",
+  author = "Karsten Schmidt and others",
+  note = "https://thi.ng/checks",
+  year = 2016
+}
+```
 
 ## License
 

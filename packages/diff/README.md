@@ -27,7 +27,7 @@ Customizable diff implementations for arrays (sequential) & objects (associative
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bdiff%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bdiff%5D+in%3Atitle)
 
 ## Installation
 
@@ -84,6 +84,17 @@ The order of optional args to both functions has been swapped to:
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-diff,
+  title = "@thi.ng/diff",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/diff",
+  year = 2016
+}
+```
 
 ## License
 

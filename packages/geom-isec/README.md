@@ -48,7 +48,7 @@ Current implementations partially based on
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bgeom-isec%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bgeom-isec%5D+in%3Atitle)
 
 ## Installation
 
@@ -91,6 +91,17 @@ res.type === isec.IntersectionType.INTERSECT
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-geom-isec,
+  title = "@thi.ng/geom-isec",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/geom-isec",
+  year = 2016
+}
+```
 
 ## License
 

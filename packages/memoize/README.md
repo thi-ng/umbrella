@@ -40,7 +40,7 @@ based on different strategies. See doc strings for further details.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bmemoize%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bmemoize%5D+in%3Atitle)
 
 ## Installation
 
@@ -147,6 +147,17 @@ dotProduct([1,2], [3,4]);
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-memoize,
+  title = "@thi.ng/memoize",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/memoize",
+  year = 2018
+}
+```
 
 ## License
 

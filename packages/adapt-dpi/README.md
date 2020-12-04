@@ -32,7 +32,7 @@ buffer itself based on DPR (e.g. 2x size).
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Badapt-dpi%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Badapt-dpi%5D+in%3Atitle)
 
 ## Installation
 
@@ -84,6 +84,17 @@ adaptDPI(canvas, 640, 480);
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-adapt-dpi,
+  title = "@thi.ng/adapt-dpi",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/adapt-dpi",
+  year = 2015
+}
+```
 
 ## License
 

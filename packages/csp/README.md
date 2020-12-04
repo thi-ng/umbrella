@@ -44,7 +44,7 @@ ES6 promise based CSP primitives & operations.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bcsp%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bcsp%5D+in%3Atitle)
 
 This package might possibly become deprecated soon. See
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
@@ -240,6 +240,17 @@ pub.channel().into(["alice", "bert", "bella", "charlie", "arthur"]);
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-csp,
+  title = "@thi.ng/csp",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/csp",
+  year = 2016
+}
+```
 
 ## License
 

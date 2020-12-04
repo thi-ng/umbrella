@@ -43,7 +43,7 @@ API draw calls during the hdom update process / cycle.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bhdom-canvas%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bhdom-canvas%5D+in%3Atitle)
 
 ### BREAKING CHANGES 3.0.0
 
@@ -282,6 +282,17 @@ transformations.
 ### Contributors
 
 - Arthur Carabott ([@acarabott](https://github.com/acarabott))
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-hdom-canvas,
+  title = "@thi.ng/hdom-canvas",
+  author = "Karsten Schmidt and others",
+  note = "https://thi.ng/hdom-canvas",
+  year = 2018
+}
+```
 
 ## License
 

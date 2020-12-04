@@ -38,7 +38,7 @@ repository. It defines:
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bapi%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bapi%5D+in%3Atitle)
 
 ## Installation
 
@@ -88,6 +88,17 @@ The following env variables are used to control the behavior of some functions i
 ### Contributors
 
 - Matei Adriel ([@Mateiadrielrafael](https://github.com/Mateiadrielrafael))
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-api,
+  title = "@thi.ng/api",
+  author = "Karsten Schmidt and others",
+  note = "https://thi.ng/api",
+  year = 2016
+}
+```
 
 ## License
 

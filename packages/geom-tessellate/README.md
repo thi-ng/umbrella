@@ -37,7 +37,7 @@ highly dependent on the concavities present. YMMV!
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bgeom-tessellate%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bgeom-tessellate%5D+in%3Atitle)
 
 ## Installation
 
@@ -85,6 +85,17 @@ TODO
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-geom-tessellate,
+  title = "@thi.ng/geom-tessellate",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/geom-tessellate",
+  year = 2016
+}
+```
 
 ## License
 

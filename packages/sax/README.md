@@ -48,7 +48,7 @@ well (see SVG parsing example further below). The choice is yours!
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bsax%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bsax%5D+in%3Atitle)
 
 ### Related packages
 
@@ -337,6 +337,17 @@ The `type` key in each emitted result object is a TypeScript enum with the follo
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-sax,
+  title = "@thi.ng/sax",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/sax",
+  year = 2018
+}
+```
 
 ## License
 

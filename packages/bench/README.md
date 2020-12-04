@@ -35,7 +35,7 @@ still only sourced via `Date.now()`.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bbench%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bbench%5D+in%3Atitle)
 
 ## Installation
 
@@ -143,6 +143,17 @@ benchmark(() => fib(40), { title: "fib", iter: 10, warmup: 5 });
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-bench,
+  title = "@thi.ng/bench",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/bench",
+  year = 2018
+}
+```
 
 ## License
 

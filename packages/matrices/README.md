@@ -52,7 +52,7 @@ sensible).
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bmatrices%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bmatrices%5D+in%3Atitle)
 
 ### Related packages
 
@@ -211,6 +211,17 @@ A selection:
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-matrices,
+  title = "@thi.ng/matrices",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/matrices",
+  year = 2018
+}
+```
 
 ## License
 

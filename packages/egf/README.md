@@ -80,7 +80,7 @@ are only available in NodeJS.
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Begf%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Begf%5D+in%3Atitle)
 
 #### Feature ideas
 
@@ -513,6 +513,17 @@ thi:umbrella
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-egf,
+  title = "@thi.ng/egf",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/egf",
+  year = 2020
+}
+```
 
 ## License
 

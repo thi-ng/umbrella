@@ -33,7 +33,7 @@ Unified mouse, mouse wheel & multi-touch event stream abstraction. This is a sup
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Brstream-gestures%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Brstream-gestures%5D+in%3Atitle)
 
 ### Breaking changes
 
@@ -183,6 +183,17 @@ gestures.subscribe(
 
 - Arthur Carabott ([@acarabott](https://github.com/acarabott))
 - Matei Adriel ([@Mateiadrielrafael](https://github.com/Mateiadrielrafael))
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-rstream-gestures,
+  title = "@thi.ng/rstream-gestures",
+  author = "Karsten Schmidt and others",
+  note = "https://thi.ng/rstream-gestures",
+  year = 2018
+}
+```
 
 ## License
 

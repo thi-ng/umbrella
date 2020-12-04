@@ -59,7 +59,7 @@ Largely declarative WebGL 1.0 / 2.0 abstraction layer, partially ported
 
 **BETA** - possibly breaking changes forthcoming
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bwebgl%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bwebgl%5D+in%3Atitle)
 
 ### Support packages
 
@@ -152,6 +152,17 @@ TODO
 
 - [@nkint](https://github.com/nkint)
 - [@stwind](https://github.com/stwind)
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-webgl,
+  title = "@thi.ng/webgl",
+  author = "Karsten Schmidt and others",
+  note = "https://thi.ng/webgl",
+  year = 2014
+}
+```
 
 ## License
 

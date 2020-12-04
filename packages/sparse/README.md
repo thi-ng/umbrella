@@ -25,7 +25,7 @@ Sparse vector & matrix implementations.
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bsparse%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bsparse%5D+in%3Atitle)
 
 ## Installation
 
@@ -57,6 +57,17 @@ TODO
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-sparse,
+  title = "@thi.ng/sparse",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/sparse",
+  year = 2018
+}
+```
 
 ## License
 

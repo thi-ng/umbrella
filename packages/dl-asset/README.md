@@ -26,7 +26,7 @@ Local asset download for web apps, with automatic MIME type detection.
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bdl-asset%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bdl-asset%5D+in%3Atitle)
 
 ## Installation
 
@@ -105,6 +105,17 @@ download("hello.txt", src, {
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-dl-asset,
+  title = "@thi.ng/dl-asset",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/dl-asset",
+  year = 2020
+}
+```
 
 ## License
 

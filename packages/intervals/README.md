@@ -35,7 +35,7 @@ for details.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bintervals%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bintervals%5D+in%3Atitle)
 
 ## Installation
 
@@ -155,6 +155,17 @@ interval("[0..1)").clamp(2, 1e-3)
 ### Contributors
 
 - [@oljeger](https://github.com/oljeger)
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-intervals,
+  title = "@thi.ng/intervals",
+  author = "Karsten Schmidt and others",
+  note = "https://thi.ng/intervals",
+  year = 2018
+}
+```
 
 ## License
 

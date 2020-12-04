@@ -27,7 +27,7 @@ Basic WebGL scaffolding for running interactive fragment shaders via [@thi.ng/sh
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bwebgl-shadertoy%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bwebgl-shadertoy%5D+in%3Atitle)
 
 ### Related packages
 
@@ -142,6 +142,17 @@ toy.start();
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-webgl-shadertoy,
+  title = "@thi.ng/webgl-shadertoy",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/webgl-shadertoy",
+  year = 2019
+}
+```
 
 ## License
 

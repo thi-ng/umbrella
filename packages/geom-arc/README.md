@@ -25,7 +25,7 @@ This project is part of the
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bgeom-arc%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bgeom-arc%5D+in%3Atitle)
 
 ## Installation
 
@@ -60,6 +60,17 @@ TODO
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-geom-arc,
+  title = "@thi.ng/geom-arc",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/geom-arc",
+  year = 2018
+}
+```
 
 ## License
 

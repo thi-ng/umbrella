@@ -33,7 +33,7 @@ Clojure/ClojureScript.
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bsystem%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bsystem%5D+in%3Atitle)
 
 ## Installation
 
@@ -211,6 +211,17 @@ Resulting visualization:
 ### Contributors
 
 - Kevin Nolan ([@allforabit](https://github.com/allforabit))
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-system,
+  title = "@thi.ng/system",
+  author = "Karsten Schmidt and others",
+  note = "https://thi.ng/system",
+  year = 2020
+}
+```
 
 ## License
 

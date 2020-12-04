@@ -69,7 +69,7 @@ for more LRU, MRU implementations based on managed `DCons` impls...
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bdcons%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bdcons%5D+in%3Atitle)
 
 ## Installation
 
@@ -155,6 +155,17 @@ TODO
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-dcons,
+  title = "@thi.ng/dcons",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/dcons",
+  year = 2017
+}
+```
 
 ## License
 

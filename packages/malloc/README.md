@@ -124,7 +124,7 @@ capacity:
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bmalloc%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bmalloc%5D+in%3Atitle)
 
 ## Installation
 
@@ -347,6 +347,17 @@ allocating tiny arrays is slightly slower than the vanilla version... YMMV!
 ### Contributors
 
 - Bnaya Peretz ([@Bnaya](https://github.com/Bnaya))
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-malloc,
+  title = "@thi.ng/malloc",
+  author = "Karsten Schmidt and others",
+  note = "https://thi.ng/malloc",
+  year = 2016
+}
+```
 
 ## License
 

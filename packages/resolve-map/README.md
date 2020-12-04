@@ -44,7 +44,7 @@ supported.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bresolve-map%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bresolve-map%5D+in%3Atitle)
 
 ## Installation
 
@@ -285,6 +285,17 @@ res.e(2);
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-resolve-map,
+  title = "@thi.ng/resolve-map",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/resolve-map",
+  year = 2018
+}
+```
 
 ## License
 

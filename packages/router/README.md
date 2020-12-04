@@ -39,7 +39,7 @@ Partially based on the Clojure implementation in
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Brouter%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Brouter%5D+in%3Atitle)
 
 ## Installation
 
@@ -176,6 +176,17 @@ code](https://github.com/thi-ng/umbrella/blob/develop/packages/router/src/api.ts
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-router,
+  title = "@thi.ng/router",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/router",
+  year = 2014
+}
+```
 
 ## License
 

@@ -43,7 +43,7 @@ References:
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bleb128%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bleb128%5D+in%3Atitle)
 
 ## Installation
 
@@ -120,6 +120,17 @@ yarn test
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-leb128,
+  title = "@thi.ng/leb128",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/leb128",
+  year = 2019
+}
+```
 
 ## License
 

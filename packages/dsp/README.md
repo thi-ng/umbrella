@@ -45,7 +45,7 @@ Partially ported from other thi.ng projects (e.g.
 
 **BETA** - possibly breaking changes forthcoming
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bdsp%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bdsp%5D+in%3Atitle)
 
 Even though this library is now at v2.0.0 and still retains most of the
 features from earlier versions, all recently added features (IGen's,
@@ -547,6 +547,17 @@ Desmos](https://www.desmos.com/calculator/lkyf2ag3ta) to experiment.
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-dsp,
+  title = "@thi.ng/dsp",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/dsp",
+  year = 2015
+}
+```
 
 ## License
 

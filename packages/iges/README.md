@@ -30,7 +30,7 @@ applications (e.g. Rhino, Houdini, Fusion 360)
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Biges%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Biges%5D+in%3Atitle)
 
 ## Installation
 
@@ -110,6 +110,17 @@ S0000002G0000003D0000002P0000003                                        T      1
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-iges,
+  title = "@thi.ng/iges",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/iges",
+  year = 2016
+}
+```
 
 ## License
 

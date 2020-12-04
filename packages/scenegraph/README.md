@@ -26,7 +26,7 @@ Extensible 2D/3D scene graph with [@thi.ng/hiccup-canvas](https://github.com/thi
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bscenegraph%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bscenegraph%5D+in%3Atitle)
 
 ## Installation
 
@@ -74,6 +74,17 @@ TODO
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-scenegraph,
+  title = "@thi.ng/scenegraph",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/scenegraph",
+  year = 2016
+}
+```
 
 ## License
 

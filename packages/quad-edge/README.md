@@ -39,7 +39,7 @@ Reference:
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bquad-edge%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bquad-edge%5D+in%3Atitle)
 
 ### Related packages
 
@@ -74,6 +74,17 @@ TODO
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-quad-edge,
+  title = "@thi.ng/quad-edge",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/quad-edge",
+  year = 2015
+}
+```
 
 ## License
 

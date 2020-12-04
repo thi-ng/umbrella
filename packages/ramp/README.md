@@ -26,7 +26,7 @@ Parametric interpolated 1D lookup tables for remapping values.
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bramp%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bramp%5D+in%3Atitle)
 
 ## Installation
 
@@ -98,6 +98,17 @@ for(let i = 0; i <= 10; i++) {
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-ramp,
+  title = "@thi.ng/ramp",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/ramp",
+  year = 2019
+}
+```
 
 ## License
 

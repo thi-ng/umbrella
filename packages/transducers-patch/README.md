@@ -32,7 +32,7 @@ state update. By default all edits are performed non-destructively, but
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Btransducers-patch%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btransducers-patch%5D+in%3Atitle)
 
 ## Installation
 
@@ -164,6 +164,17 @@ state.next([Patch.DELETE, "x"]);
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-transducers-patch,
+  title = "@thi.ng/transducers-patch",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/transducers-patch",
+  year = 2020
+}
+```
 
 ## License
 

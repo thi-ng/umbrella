@@ -29,7 +29,7 @@ Highly configurable, fuzzy line & polygon creation with presets and composable f
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bgeom-fuzz%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bgeom-fuzz%5D+in%3Atitle)
 
 ### Related packages
 
@@ -86,6 +86,17 @@ TODO
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-geom-fuzz,
+  title = "@thi.ng/geom-fuzz",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/geom-fuzz",
+  year = 2020
+}
+```
 
 ## License
 

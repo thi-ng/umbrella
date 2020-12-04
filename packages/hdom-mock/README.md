@@ -30,7 +30,7 @@ custom target implementations.
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bhdom-mock%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bhdom-mock%5D+in%3Atitle)
 
 ## Installation
 
@@ -105,6 +105,17 @@ impl.root.children[0].toHiccup();
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-hdom-mock,
+  title = "@thi.ng/hdom-mock",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/hdom-mock",
+  year = 2018
+}
+```
 
 ## License
 

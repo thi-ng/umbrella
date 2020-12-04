@@ -115,7 +115,7 @@ Partially ported from [thi.ng/geom-clj](http://thi.ng/geom-clj) (Clojure) and
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bvectors%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bvectors%5D+in%3Atitle)
 
 ### Breaking changes in v3.0.0
 
@@ -636,6 +636,17 @@ For more information about the code generator see:
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-vectors,
+  title = "@thi.ng/vectors",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/vectors",
+  year = 2015
+}
+```
 
 ## License
 

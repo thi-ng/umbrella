@@ -28,7 +28,7 @@ Additional error types can be defined using
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Berrors%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Berrors%5D+in%3Atitle)
 
 ## Installation
 
@@ -88,6 +88,17 @@ try {
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-errors,
+  title = "@thi.ng/errors",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/errors",
+  year = 2018
+}
+```
 
 ## License
 

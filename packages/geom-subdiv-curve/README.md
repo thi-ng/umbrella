@@ -42,7 +42,7 @@ Supplied / implemented subdivision schemes:
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bgeom-subdiv-curve%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bgeom-subdiv-curve%5D+in%3Atitle)
 
 ## Installation
 
@@ -79,6 +79,17 @@ gsc.subdivide([[0,0], [100,0], [100,100], [0,100]], gsc.SUBDIV_CHAIKIN_CLOSED, 4
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-geom-subdiv-curve,
+  title = "@thi.ng/geom-subdiv-curve",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/geom-subdiv-curve",
+  year = 2016
+}
+```
 
 ## License
 

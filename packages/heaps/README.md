@@ -30,7 +30,7 @@ additional operations.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bheaps%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bheaps%5D+in%3Atitle)
 
 ## Installation
 
@@ -87,6 +87,17 @@ h.push(24);
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-heaps,
+  title = "@thi.ng/heaps",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/heaps",
+  year = 2017
+}
+```
 
 ## License
 

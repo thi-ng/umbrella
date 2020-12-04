@@ -55,7 +55,7 @@ feature is currently WIP).
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Brstream-query%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Brstream-query%5D+in%3Atitle)
 
 This project is currently still in early development and intended as a
 continuation of the Clojure based [thi.ng/fabric](http://thi.ng/fabric),
@@ -224,6 +224,17 @@ The source code for the above example is
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-rstream-query,
+  title = "@thi.ng/rstream-query",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/rstream-query",
+  year = 2018
+}
+```
 
 ## License
 

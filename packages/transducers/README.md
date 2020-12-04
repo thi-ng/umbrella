@@ -85,7 +85,7 @@ will return a reduced result of the given input iterable.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Btransducers%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btransducers%5D+in%3Atitle)
 
 ### 7.0.0 release
 
@@ -981,6 +981,17 @@ and return a reduced result (as if it would be called via `reduce()`).
 
 - Alberto ([@nkint](https://github.com/nkint))
 - Gavin Cannizzaro ([@gavinpc-mindgrub](https://github.com/gavinpc-mindgrub))
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-transducers,
+  title = "@thi.ng/transducers",
+  author = "Karsten Schmidt and others",
+  note = "https://thi.ng/transducers",
+  year = 2016
+}
+```
 
 ## License
 

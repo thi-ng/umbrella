@@ -47,7 +47,7 @@ be checked for validity via `.has(id)` (in constant time).
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bidgen%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bidgen%5D+in%3Atitle)
 
 ## Installation
 
@@ -174,6 +174,17 @@ ids.next();
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-idgen,
+  title = "@thi.ng/idgen",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/idgen",
+  year = 2019
+}
+```
 
 ## License
 

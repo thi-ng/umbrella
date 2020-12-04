@@ -160,7 +160,7 @@ map.get([3,4], "n/a");
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bassociative%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bassociative%5D+in%3Atitle)
 
 ## Installation
 
@@ -379,6 +379,17 @@ t.knownPrefix(["to", "be", "not"]);
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-associative,
+  title = "@thi.ng/associative",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/associative",
+  year = 2017
+}
+```
 
 ## License
 

@@ -41,7 +41,7 @@ components**. Feedback welcome!
 
 **BETA** - possibly breaking changes forthcoming
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bhdom-components%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bhdom-components%5D+in%3Atitle)
 
 ## Installation
 
@@ -116,6 +116,17 @@ A selection:
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-hdom-components,
+  title = "@thi.ng/hdom-components",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/hdom-components",
+  year = 2018
+}
+```
 
 ## License
 

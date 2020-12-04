@@ -88,7 +88,7 @@ Clojure projects:
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bhiccup-css%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bhiccup-css%5D+in%3Atitle)
 
 ## Installation
 
@@ -649,6 +649,17 @@ const QUOTED_FNS = {
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-hiccup-css,
+  title = "@thi.ng/hiccup-css",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/hiccup-css",
+  year = 2016
+}
+```
 
 ## License
 

@@ -59,7 +59,7 @@ themselves too):
 
 **BETA** - possibly breaking changes forthcoming
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bgeom%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bgeom%5D+in%3Atitle)
 
 ## Installation
 
@@ -140,6 +140,17 @@ TODO
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-geom,
+  title = "@thi.ng/geom",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/geom",
+  year = 2013
+}
+```
 
 ## License
 

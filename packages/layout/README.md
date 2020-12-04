@@ -32,7 +32,7 @@ to define other layout types / implementations.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Blayout%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Blayout%5D+in%3Atitle)
 
 ## Installation
 
@@ -128,6 +128,17 @@ twoCols.next([1, 2]);
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-layout,
+  title = "@thi.ng/layout",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/layout",
+  year = 2019
+}
+```
 
 ## License
 

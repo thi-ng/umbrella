@@ -68,7 +68,7 @@ Reference:
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bshader-ast-stdlib%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bshader-ast-stdlib%5D+in%3Atitle)
 
 ### Related packages
 
@@ -452,6 +452,17 @@ for reference.
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-shader-ast-stdlib,
+  title = "@thi.ng/shader-ast-stdlib",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/shader-ast-stdlib",
+  year = 2019
+}
+```
 
 ## License
 

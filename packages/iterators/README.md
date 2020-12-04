@@ -81,7 +81,7 @@ more composable & efficient transducers via
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Biterators%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Biterators%5D+in%3Atitle)
 
 ## Installation
 
@@ -1159,6 +1159,17 @@ ti.zip(ti.map((x)=> x.id, langs), langs)
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-iterators,
+  title = "@thi.ng/iterators",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/iterators",
+  year = 2017
+}
+```
 
 ## License
 

@@ -56,7 +56,7 @@ transforming ES6 iterator (generator) instead of a transducer.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Btransducers-stats%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btransducers-stats%5D+in%3Atitle)
 
 ## Installation
 
@@ -139,6 +139,17 @@ tx.transduce(
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-transducers-stats,
+  title = "@thi.ng/transducers-stats",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/transducers-stats",
+  year = 2017
+}
+```
 
 ## License
 

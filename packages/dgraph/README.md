@@ -37,7 +37,7 @@ maps & sets as backend.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bdgraph%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bdgraph%5D+in%3Atitle)
 
 ### Support packages
 
@@ -104,6 +104,17 @@ g.sort();
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-dgraph,
+  title = "@thi.ng/dgraph",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/dgraph",
+  year = 2015
+}
+```
 
 ## License
 

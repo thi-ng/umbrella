@@ -43,7 +43,7 @@ indices are supported as well...
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bpoisson%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bpoisson%5D+in%3Atitle)
 
 ### Related packages
 
@@ -205,6 +205,17 @@ document.body.innerHTML = asSvg(
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-poisson,
+  title = "@thi.ng/poisson",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/poisson",
+  year = 2016
+}
+```
 
 ## License
 

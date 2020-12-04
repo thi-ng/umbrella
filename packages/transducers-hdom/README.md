@@ -55,7 +55,7 @@ Please also see the following hdom references for further details:
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Btransducers-hdom%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btransducers-hdom%5D+in%3Atitle)
 
 ### Related packages
 
@@ -156,6 +156,17 @@ clickStream.next(0);
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-transducers-hdom,
+  title = "@thi.ng/transducers-hdom",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/transducers-hdom",
+  year = 2018
+}
+```
 
 ## License
 

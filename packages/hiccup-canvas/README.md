@@ -65,7 +65,7 @@ implementations) and then translates these into canvas API draw calls.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bhiccup-canvas%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bhiccup-canvas%5D+in%3Atitle)
 
 ### Related packages
 
@@ -489,6 +489,17 @@ package for creating different kinds of transformation matrices, e.g.
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-hiccup-canvas,
+  title = "@thi.ng/hiccup-canvas",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/hiccup-canvas",
+  year = 2018
+}
+```
 
 ## License
 

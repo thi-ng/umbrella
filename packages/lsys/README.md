@@ -44,7 +44,7 @@ Planned features:
 
 **BETA** - possibly breaking changes forthcoming
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Blsys%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Blsys%5D+in%3Atitle)
 
 ### Blog posts
 
@@ -247,6 +247,17 @@ rnd: IRandom;
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-lsys,
+  title = "@thi.ng/lsys",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/lsys",
+  year = 2019
+}
+```
 
 ## License
 

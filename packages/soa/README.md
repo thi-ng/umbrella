@@ -27,7 +27,7 @@ SOA & AOS memory mapped structured views with optional & extensible serializatio
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bsoa%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bsoa%5D+in%3Atitle)
 
 See tests for usage. This package might be merged with and/or superseded
 by
@@ -86,6 +86,17 @@ TODO
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-soa,
+  title = "@thi.ng/soa",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/soa",
+  year = 2019
+}
+```
 
 ## License
 

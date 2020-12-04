@@ -40,7 +40,7 @@ Text based canvas, drawing, tables with arbitrary formatting (incl. ANSI/HTML).
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Btext-canvas%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btext-canvas%5D+in%3Atitle)
 
 ## Installation
 
@@ -432,6 +432,17 @@ setInterval(() => {
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-text-canvas,
+  title = "@thi.ng/text-canvas",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/text-canvas",
+  year = 2020
+}
+```
 
 ## License
 

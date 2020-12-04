@@ -156,7 +156,7 @@ status. The TL;DR list...
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bshader-ast%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bshader-ast%5D+in%3Atitle)
 
 ### Support packages
 
@@ -589,6 +589,17 @@ constantFolding(ast)
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-shader-ast,
+  title = "@thi.ng/shader-ast",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/shader-ast",
+  year = 2019
+}
+```
 
 ## License
 

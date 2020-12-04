@@ -33,7 +33,7 @@ readme & source code for visualization options.
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bdgraph-dot%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bdgraph-dot%5D+in%3Atitle)
 
 ## Installation
 
@@ -98,6 +98,17 @@ console.log(toDot(graph, { id: (node) => node }));
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-dgraph-dot,
+  title = "@thi.ng/dgraph-dot",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/dgraph-dot",
+  year = 2020
+}
+```
 
 ## License
 

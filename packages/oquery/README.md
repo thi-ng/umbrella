@@ -42,7 +42,7 @@ See basic query examples below...
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Boquery%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Boquery%5D+in%3Atitle)
 
 ### Related packages
 
@@ -62,7 +62,7 @@ yarn add @thi.ng/oquery
 <script src="https://unpkg.com/@thi.ng/oquery/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 847 bytes / CJS: 904 bytes / UMD: 964 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 1.15 KB / CJS: 1.20 KB / UMD: 1.23 KB
 
 ## Dependencies
 
@@ -127,6 +127,17 @@ query(DB, (id) => id > "a" && id < "c", null, null)
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-oquery,
+  title = "@thi.ng/oquery",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/oquery",
+  year = 2020
+}
+```
 
 ## License
 

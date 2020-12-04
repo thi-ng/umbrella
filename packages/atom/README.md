@@ -55,7 +55,7 @@ reactive updates from performed state changes.
 
 **STABLE** - used in production
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Batom%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Batom%5D+in%3Atitle)
 
 ## Breaking changes
 
@@ -646,6 +646,17 @@ db.canRedo()
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-atom,
+  title = "@thi.ng/atom",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/atom",
+  year = 2017
+}
+```
 
 ## License
 

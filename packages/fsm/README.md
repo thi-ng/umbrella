@@ -33,7 +33,7 @@ case.
 
 **ALPHA** - bleeding edge / work-in-progress
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=is%3Aissue+is%3Aopen+%5Bfsm%5D)
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bfsm%5D+in%3Atitle)
 
 This package will be merged with and update the existing
 [@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-fsm)
@@ -133,6 +133,17 @@ transforming iterator of the FSM results.
 ## Authors
 
 Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-fsm,
+  title = "@thi.ng/fsm",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/fsm",
+  year = 2018
+}
+```
 
 ## License
 
