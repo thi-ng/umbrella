@@ -24,6 +24,10 @@ coverage
 dev
 doc
 docs
+examples/delaunay-draw
+examples/diagram
+examples/formgen
+examples/growth
 examples/dataflow-scenegraph
 examples/hdc
 examples/hdom-class
