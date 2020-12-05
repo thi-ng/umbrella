@@ -101,40 +101,42 @@ export interface QueryFn {
 
 export interface QueryOpts {
     /**
-     * If true, the full object is included in the solution as soon as any of
-     * its P(redicate)-O(bject) terms matches. If false, only successfully
+     * If false, an entire object is included in the solution as soon as any of
+     * its P(redicate)-O(bject) terms matches. If true, only successfully
      * matched property values will be included for each result.
      *
      * @example
      * ```ts
      * const DB = { a: { id: 1, name: "alice" }, b: { name: "bob" } };
      *
-     * defQuery({ full: true })(DB, null, "id", 1)
+     * defQuery({ partial: false })(DB, null, "id", 1)
      * // { a: { id: 1, name: "alice" } }
      *
-     * defQuery({ full: false })(DB, null, "id", 1)
+     * defQuery({ partial: true })(DB, null, "id", 1)
      * // { a: { id: 1 } }
      * ```
      *
-     * @defaultValue true
+     * @defaultValue false
      */
-    full: boolean;
+    partial: boolean;
     /**
      * If true (default), any array values in the target object's O(bject)
-     * position will be inspected elementwise rather than matched as array value
+     * position will be matched componentwise rather than matched as array value
      * themselves.
      *
      * @example
      * ```ts
      * const DB = { a: { knows: ["b","c"] }, b: { knows: ["a","c"] }};
-     * defQuery({ inspect: true })(DB, null, "knows", "b")
+     * defQuery({ cwise: true })(DB, null, "knows", "b")
      * // { a: { knows: ["b","c"] } }
      *
-     * defQuery({ inspect: false })(DB, null, "knows", (x) => x.includes("b"))
+     * defQuery({ cwise: false })(DB, null, "knows", (x) => x.includes("b"))
      * // { a: { knows: ["b","c"] } }
      * ```
+     *
+     * @defaultValue true
      */
-    inspect: boolean;
+    cwise: boolean;
     /**
      * Equality predicate applied for matching literals in O(bject) position.
      *

@@ -46,7 +46,7 @@ const match = (o: any, val: any, opts: QueryOpts) => {
         const pred = <Predicate<any>>(
             (isFunction(o) ? o : ($: any) => opts.equiv(o, $))
         );
-        return opts.inspect && isArray(val) ? val.some(pred) : pred(val);
+        return opts.cwise && isArray(val) ? val.some(pred) : pred(val);
     }
     return false;
 };
@@ -61,7 +61,7 @@ const collect = (
 ) => {
     if (val != null) {
         const pred = isFunction(o) ? o : ($: any) => opts.equiv(o, $);
-        if (opts.inspect && isArray(val)) {
+        if (opts.cwise && isArray(val)) {
             val = val.filter(pred);
             val.length && addTriple(acc, s, p, val);
         } else if (pred(val)) {
@@ -80,16 +80,16 @@ const collectSP = (
     o: any,
     opts: QueryOpts
 ) => {
-    if (opts.full) {
+    if (opts.partial) {
+        for (let $p in sval) {
+            (<FTerm>p)($p) && collect(res, s, $p, o, sval[$p], opts);
+        }
+    } else {
         for (let $p in sval) {
             if ((<FTerm>p)($p) && match(o, sval[$p], opts)) {
                 collectFull(res, s, sval);
                 return;
             }
-        }
-    } else {
-        for (let $p in sval) {
-            (<FTerm>p)($p) && collect(res, s, $p, o, sval[$p], opts);
         }
     }
 };
@@ -101,16 +101,16 @@ const collectSO = (
     o: any,
     opts: QueryOpts
 ) => {
-    if (opts.full) {
+    if (opts.partial) {
+        for (let p in sval) {
+            collect(res, s, p, o, sval[p], opts);
+        }
+    } else {
         for (let p in sval) {
             if (match(o, sval[p], opts)) {
                 collectFull(res, s, sval);
                 return;
             }
-        }
-    } else {
-        for (let p in sval) {
-            collect(res, s, p, o, sval[p], opts);
         }
     }
 };
@@ -118,10 +118,10 @@ const collectSO = (
 const queryLL: QueryImpl = (res, db: any, s, p, o, opts) => {
     const sval = db[<any>s];
     const val = sval?.[<string>p];
-    if (opts.full) {
-        match(o, val, opts) && collectFull(res, s, sval);
-    } else {
+    if (opts.partial) {
         collect(res, s, p, o, val, opts);
+    } else {
+        match(o, val, opts) && collectFull(res, s, sval);
     }
 };
 
@@ -136,16 +136,16 @@ const queryLN: QueryImpl = (res, db: any, s, _, o, opts) => {
 };
 
 const queryFL: QueryImpl = (res, db: any, s, p, o, opts) => {
-    if (opts.full) {
+    if (opts.partial) {
+        for (let $s in db) {
+            (<FTerm>s)($s) && collect(res, $s, p, o, db[$s]?.[<string>p], opts);
+        }
+    } else {
         for (let $s in db) {
             const sval = db[$s];
             (<FTerm>s)($s) &&
                 match(o, sval?.[<string>p], opts) &&
                 collectFull(res, $s, sval);
-        }
-    } else {
-        for (let $s in db) {
-            (<FTerm>s)($s) && collect(res, $s, p, o, db[$s]?.[<string>p], opts);
         }
     }
 };
@@ -163,14 +163,14 @@ const queryFN: QueryImpl = (res, db: any, s, _, o, opts) => {
 };
 
 const queryNL: QueryImpl = (res, db: any, _, p, o, opts) => {
-    if (opts.full) {
+    if (opts.partial) {
         for (let s in db) {
-            const sval = db[s];
-            match(o, sval[<string>p], opts) && collectFull(res, s, sval);
+            collect(res, s, p, o, db[s][<string>p], opts);
         }
     } else {
         for (let s in db) {
-            collect(res, s, p, o, db[s][<string>p], opts);
+            const sval = db[s];
+            match(o, sval[<string>p], opts) && collectFull(res, s, sval);
         }
     }
 };
@@ -188,18 +188,18 @@ const queryNN: QueryImpl = (res, db: any, _, __, o, opts) => {
 };
 
 const querySP: QueryImpl = (res, sval: any, s, p, _, opts) => {
-    if (opts.full) {
+    if (opts.partial) {
         for (let q in sval) {
             if ((<FTerm>p)(q)) {
-                collectFull(res, s, sval);
-                return;
+                const val = sval[q];
+                val != null && addTriple(res, s, q, val);
             }
         }
     } else {
         for (let q in sval) {
             if ((<FTerm>p)(q)) {
-                const val = sval[q];
-                val != null && addTriple(res, s, q, val);
+                collectFull(res, s, sval);
+                return;
             }
         }
     }
@@ -209,7 +209,7 @@ const queryO: QueryImpl = (res, db: any, s, p, _, opts) => {
     const sval = db[<string>s];
     const val = sval?.[<string>p];
     val != null &&
-        (opts.full ? collectFull(res, s, sval) : addTriple(res, s, p, val));
+        (opts.partial ? addTriple(res, s, p, val) : collectFull(res, s, sval));
 };
 
 const impl = defmulti<
@@ -248,15 +248,12 @@ impl.addAll(<QueryImpls>{
     ffl: queryFF,
     fff: queryFF,
     ffn: (res, db: any, s, p, _, opts) => {
-        if (opts.full) {
+        if (opts.partial) {
             for (let $s in db) {
                 if ((<FTerm>s)($s)) {
                     const sval = db[$s];
                     for (let $p in sval) {
-                        if ((<FTerm>p)($p)) {
-                            collectFull(res, $s, sval);
-                            break;
-                        }
+                        (<FTerm>p)($p) && addTriple(res, $s, $p, sval[$p]);
                     }
                 }
             }
@@ -265,7 +262,10 @@ impl.addAll(<QueryImpls>{
                 if ((<FTerm>s)($s)) {
                     const sval = db[$s];
                     for (let $p in sval) {
-                        (<FTerm>p)($p) && addTriple(res, $s, $p, sval[$p]);
+                        if ((<FTerm>p)($p)) {
+                            collectFull(res, $s, sval);
+                            break;
+                        }
                     }
                 }
             }
@@ -284,16 +284,16 @@ impl.addAll(<QueryImpls>{
     nll: queryNL,
     nlf: queryNL,
     nln: (res, db: any, _, p, __, opts) => {
-        if (opts.full) {
+        if (opts.partial) {
+            for (let s in db) {
+                const val = db[s][<string>p];
+                val != null && addTriple(res, s, p, val);
+            }
+        } else {
             for (let s in db) {
                 const sval = db[s];
                 const val = sval[<string>p];
                 val != null && collectFull(res, s, sval);
-            }
-        } else {
-            for (let s in db) {
-                const val = db[s][<string>p];
-                val != null && addTriple(res, s, p, val);
             }
         }
     },
@@ -310,7 +310,7 @@ impl.addAll(<QueryImpls>{
 });
 
 export const defQuery = (opts?: Partial<QueryOpts>): QueryFn => {
-    opts = { full: true, inspect: false, equiv, ...opts };
+    opts = { partial: false, cwise: true, equiv, ...opts };
     return (src: any, ...args: any[]) => {
         if (isArray(src)) {
             let [p, o, res] = args;

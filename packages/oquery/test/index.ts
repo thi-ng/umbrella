@@ -216,8 +216,8 @@ describe("oquery", () => {
             nnn: [null, null, null, DB, DB],
         };
 
-        const q1 = defQuery({ full: false, inspect: true });
-        const q2 = defQuery({ full: true, inspect: true });
+        const q1 = defQuery({ partial: true });
+        const q2 = defQuery({ partial: false });
         for (let id in tests) {
             const t = tests[<QueryType>id];
             if (t) {
@@ -238,7 +238,7 @@ describe("oquery", () => {
     });
 
     it("coerce terms (array)", () => {
-        const query = defQuery({ full: false });
+        const query = defQuery({ partial: true });
         // S
         assert.deepStrictEqual(query(DB, ["alice", "bob"], "type", null), {
             alice: { type: "person" },
@@ -264,7 +264,7 @@ describe("oquery", () => {
     });
 
     it("coerce terms (set)", () => {
-        const query = defQuery({ full: false });
+        const query = defQuery({ partial: true });
         // S
         assert.deepStrictEqual(
             query(DB, new Set(["alice", "bob"]), "type", null),
@@ -307,7 +307,7 @@ describe("oquery", () => {
     });
 
     it("full option", () => {
-        const query = defQuery({ full: true });
+        const query = defQuery();
         // S
         assert.deepStrictEqual(query(DB, ["alice", "bob"], "type", null), {
             alice: DB.alice,
@@ -349,7 +349,7 @@ describe("oquery", () => {
             nn: [null, null, [...db]],
         };
 
-        const query = defQuery({ full: false });
+        const query = defQuery({ partial: true });
         for (let id in tests) {
             const t = tests[<keyof typeof tests>id];
             if (t) {
