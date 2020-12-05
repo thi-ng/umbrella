@@ -1,4 +1,4 @@
-import { Subscription } from "@thi.ng/rstream";
+import type { Subscription } from "@thi.ng/rstream";
 import { splice } from "@thi.ng/strings";
 import { map } from "@thi.ng/transducers";
 

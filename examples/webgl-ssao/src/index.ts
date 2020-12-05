@@ -195,7 +195,7 @@ const app = () => {
         },
     });
     return () => [
-        "div.sans-serif.pa3.bg-dark-gray.white",
+        "div",
         [canvas, { width: W, height: H }],
         ["div.fixed.top-0.left-0.z-1.ma3.pa3", fps, " fps"],
         ["div.mt3", ...CONTROLS],
@@ -204,7 +204,8 @@ const app = () => {
 
 const cancel = start(app());
 
-if (process.env.NODE_ENV !== "production") {
-    const hot = (<any>module).hot;
-    hot && hot.dispose(cancel);
+if (import.meta.hot) {
+    import.meta.hot.accept(() => {
+        cancel();
+    });
 }
