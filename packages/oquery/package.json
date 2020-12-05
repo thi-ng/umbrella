@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/oquery",
     "version": "0.1.15",
-    "description": "Datalog-inspired, optimized pattern/predicate query engine for JS objects",
+    "description": "Datalog-inspired, optimized pattern/predicate query engine for JS objects & arrays",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -60,11 +60,14 @@
         "lib"
     ],
     "keywords": [
+        "array",
         "datalog",
+        "graph",
         "object",
         "pattern",
         "predicate",
         "query",
+        "triples",
         "typescript",
         "wildcard"
     ],
@@ -74,6 +77,8 @@
     "sideEffects": false,
     "thi.ng": {
         "related": [
+            "associative",
+            "egf",
             "rstream-query"
         ],
         "status": "alpha",
