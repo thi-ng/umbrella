@@ -1,6 +1,6 @@
 import { isNumber } from "@thi.ng/checks";
 import * as assert from "assert";
-import { defQuery, QueryType, SPInputTerm, OTerm } from "../src";
+import { defKeyQuery, defQuery, OTerm, QueryType, SPInputTerm } from "../src";
 
 const DB = {
     alice: {
@@ -19,6 +19,8 @@ const DB = {
         knows: ["alice", "bob", "dori"],
     },
 };
+
+const DB_A: any[] = [{ id: 1 }, { id: 11, name: "b" }, { name: "c" }];
 
 describe("oquery", () => {
     it("all patterns", () => {
@@ -333,7 +335,6 @@ describe("oquery", () => {
     });
 
     it("arrays", () => {
-        const db = [{ id: 1 }, { id: 11, name: "b" }, { name: "c" }];
         const tests: Record<
             "ff" | "fl" | "fn" | "lf" | "ll" | "ln" | "nf" | "nl" | "nn",
             [SPInputTerm, OTerm, any]
@@ -346,14 +347,14 @@ describe("oquery", () => {
             ln: ["id", null, [{ id: 1 }, { id: 11 }]],
             nf: [null, isNumber, [{ id: 1 }, { id: 11 }]],
             nl: [null, 11, [{ id: 11 }]],
-            nn: [null, null, [...db]],
+            nn: [null, null, [...DB_A]],
         };
 
-        const query = defQuery({ partial: true });
+        const query = defQuery<any[]>({ partial: true });
         for (let id in tests) {
             const t = tests[<keyof typeof tests>id];
             if (t) {
-                const res = query(db, t[0], t[1]);
+                const res = query(DB_A, t[0], t[1]);
                 assert.deepStrictEqual(
                     res,
                     t[2],
@@ -361,5 +362,26 @@ describe("oquery", () => {
                 );
             }
         }
+    });
+
+    it("key query", () => {
+        assert.deepStrictEqual(
+            defKeyQuery()(DB, null, "type", "person"),
+            new Set(["alice", "bob"])
+        );
+        const res1 = new Set(["xxx"]);
+        assert.deepStrictEqual(
+            defKeyQuery()(DB, null, "type", "person", res1),
+            new Set(["alice", "bob", "xxx"])
+        );
+        assert.deepStrictEqual(
+            defKeyQuery<any[]>()(DB_A, "name", null),
+            new Set([1, 2])
+        );
+        const res2 = new Set([-1]);
+        assert.deepStrictEqual(
+            defKeyQuery<any[]>()(DB_A, "name", null, res2),
+            new Set([1, 2, -1])
+        );
     });
 });

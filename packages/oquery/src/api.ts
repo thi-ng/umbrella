@@ -23,6 +23,8 @@ export type QueryObj = IObjectOf<any>;
  * - l => literal
  * - n => null / wildcard
  * - f => function / predicate
+ *
+ * @internal
  */
 export type QueryType =
     | "lll"
@@ -53,6 +55,9 @@ export type QueryType =
     | "nnf"
     | "nnn";
 
+/**
+ * @internal
+ */
 export type QueryImpl = Fn6<
     QueryObj,
     QueryObj,
@@ -63,42 +68,85 @@ export type QueryImpl = Fn6<
     void
 >;
 
+/**
+ * @internal
+ */
 export type QueryImpls = Record<QueryType, QueryImpl>;
 
 /**
- * Query function overloads.
+ * Takes an object of this structure `{ s1: { p1: o, p2: ... }, s2: { p1: o
+ * }...}`, matches all entries using provided `s`(ubject), `p`(redicate) and
+ * `o`(object) terms. Returns new object of matched results (format depends
+ * on query config given to {@link defQuery}).
+ *
+ * @remarks
+ * If `res` is provided, results will be injected in that object. Otherwise
+ * a new result object will be created.
  */
-export interface QueryFn {
-    /**
-     * Takes an object of this structure `{ s1: { p1: o, p2: ... }, s2: { p1: o
-     * }...}`, matches all entries using provided `s`(ubject), `p`(redicate) and
-     * `o`(object) terms. Returns new object of matched results (format depends
-     * on query config given to {@link defQuery}).
-     *
-     * @remarks
-     * If `res` is provided, results will be injected in that object. Otherwise
-     * a new result object will be created.
-     */
-    (
-        obj: QueryObj,
-        s: SPInputTerm,
-        p: SPInputTerm,
-        o: OTerm,
-        res?: QueryObj
-    ): QueryObj;
+export type ObjQueryFn<T extends QueryObj> = (
+    obj: T,
+    s: SPInputTerm,
+    p: SPInputTerm,
+    o: OTerm,
+    res?: QueryObj
+) => QueryObj;
 
-    /**
-     * Takes a source array of objects with this structure: [{p1: o, p2: ...},
-     * ...]`, and matches each using provided `p`(redicate) and `o`bject terms.
-     * Returns new array of matched results (result object format depends on
-     * query config given to {@link defQuery}).
-     * @remarks
-     * If `res` is provided, results will be appended to that array. Otherwise
-     * a new result array will be created.
-     */
-    (obj: QueryObj[], p: SPInputTerm, o: OTerm, res?: any[]): QueryObj[];
-}
+/**
+ * Takes a source array of objects with this structure: [{p1: o, p2: ...},
+ * ...]`, and matches each item using provided `p`(redicate) and `o`bject terms.
+ * Returns new array of matched results (result object format depends on query
+ * config given to {@link defQuery}).
+ * @remarks
+ * If `res` is provided, results will be appended to that array. Otherwise a new
+ * result array will be created.
+ */
+export type ArrayQueryFn<T extends QueryObj[]> = (
+    src: T,
+    p: SPInputTerm,
+    o: OTerm,
+    res?: QueryObj[]
+) => QueryObj[];
 
+/**
+ * Similar to {@link ObjQueryFn}, but only collects and returns a set of
+ * matching `s` keys.
+ */
+export type ObjKeyQueryFn<T extends QueryObj> = (
+    obj: T,
+    s: SPInputTerm,
+    p: SPInputTerm,
+    o: OTerm,
+    res?: Set<string>
+) => Set<string>;
+
+/**
+ * Similar to {@link ArrayQueryFn}, but only collects and returns a set of
+ * indices of matching objects.
+ */
+export type ArrayKeyQueryFn<T extends QueryObj[]> = (
+    src: T,
+    p: SPInputTerm,
+    o: OTerm,
+    res?: Set<number>
+) => Set<number>;
+
+/**
+ * Conditional return type for {@link defQuery}.
+ */
+export type QueryFn<T extends QueryObj | QueryObj[]> = T extends QueryObj[]
+    ? ArrayQueryFn<T>
+    : ObjQueryFn<T>;
+
+/**
+ * Conditional return type for {@link defKeyQuery}.
+ */
+export type KeyQueryFn<T extends QueryObj | QueryObj[]> = T extends QueryObj[]
+    ? ArrayKeyQueryFn<T>
+    : ObjKeyQueryFn<T>;
+
+/**
+ * Query behavior options.
+ */
 export interface QueryOpts {
     /**
      * If false, an entire object is included in the solution as soon as any of
@@ -144,3 +192,8 @@ export interface QueryOpts {
      */
     equiv: Predicate2<any>;
 }
+
+/**
+ * Subset of {@link QueryOpts} applicable to {@link defKeyQuery}.
+ */
+export interface KeyQueryOpts extends Pick<QueryOpts, "cwise" | "equiv"> {}

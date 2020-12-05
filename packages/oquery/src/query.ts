@@ -1,15 +1,19 @@
-import type { Predicate } from "@thi.ng/api";
+import type { Fn2, Predicate } from "@thi.ng/api";
 import { isArray, isFunction, isSet } from "@thi.ng/checks";
 import { defmulti } from "@thi.ng/defmulti";
 import { equiv } from "@thi.ng/equiv";
 import type {
     FTerm,
+    KeyQueryFn,
+    KeyQueryOpts,
     OTerm,
     QueryFn,
     QueryImpl,
     QueryImpls,
     QueryObj,
     QueryOpts,
+    QueryType,
+    SPInputTerm,
     SPTerm,
 } from "./api";
 
@@ -212,17 +216,7 @@ const queryO: QueryImpl = (res, db: any, s, p, _, opts) => {
         (opts.partial ? addTriple(res, s, p, val) : collectFull(res, s, sval));
 };
 
-const impl = defmulti<
-    QueryObj,
-    QueryObj,
-    SPTerm,
-    SPTerm,
-    OTerm,
-    QueryOpts,
-    void
->((_, __, s, p, o) => classify(s) + classify(p) + classify(o));
-
-impl.addAll(<QueryImpls>{
+const IMPLS = <QueryImpls>{
     lll: queryLL,
     llf: queryLL,
     lln: queryO,
@@ -307,34 +301,104 @@ impl.addAll(<QueryImpls>{
     nnl: queryNN,
     nnf: queryNN,
     nnn: (res, db) => Object.assign(res, db),
-});
+};
 
-export const defQuery = (opts?: Partial<QueryOpts>): QueryFn => {
-    opts = { partial: false, cwise: true, equiv, ...opts };
-    return (src: any, ...args: any[]) => {
+/**
+ * Query function implementation, dispatches to one of the 27 optimized
+ * functions based on given query pattern.
+ *
+ * @internal
+ */
+const impl = defmulti<
+    QueryObj,
+    QueryObj,
+    SPTerm,
+    SPTerm,
+    OTerm,
+    QueryOpts,
+    void
+>((_, __, s, p, o) => classify(s) + classify(p) + classify(o));
+impl.addAll(IMPLS);
+
+const objQuery = (src: QueryObj[], opts: QueryOpts, args: any[]) => {
+    let [s, p, o, out] = <[SPInputTerm, SPInputTerm, OTerm, QueryObj?]>args;
+    out = out || {};
+    impl(out, src, coerceStr(s), coerceStr(p), coerce(o), <QueryOpts>opts);
+    return out;
+};
+
+const arrayQuery = (
+    src: QueryObj[],
+    opts: QueryOpts,
+    p: SPInputTerm,
+    o: OTerm,
+    collect: Fn2<any, number, void>
+) => {
+    const $p = coerceStr(p);
+    const $o = coerce(o);
+    // pre-select implementation to avoid dynamic dispatch
+    const impl = IMPLS[<QueryType>("n" + classify($p) + classify($o))];
+    for (let i = 0, n = src.length; i < n; i++) {
+        const res: QueryObj = {};
+        impl(res, { _: src[i] }, null, $p, $o, opts);
+        res._ && collect(res._, i);
+    }
+};
+
+/**
+ * Generic Higher-order function to return an actual query function based on
+ * given behavior options.
+ *
+ * @remarks
+ * @see {@link QueryOpts}
+ * @see {@link ObjQueryFn}
+ * @see {@link ArrayQueryFn}
+ * @see {@link defKeyQuery}
+ *
+ * @param opts
+ */
+export const defQuery = <T extends QueryObj | QueryObj[] = QueryObj>(
+    opts?: Partial<QueryOpts>
+): QueryFn<T> => {
+    const $opts: QueryOpts = { partial: false, cwise: true, equiv, ...opts };
+    return <QueryFn<T>>((src: any, ...args: any[]): any => {
         if (isArray(src)) {
-            let [p, o, res] = args;
-            res = res || [];
-            p = coerceStr(p);
-            o = coerce(o);
-            for (let i = 0, n = src.length; i < n; i++) {
-                const curr: QueryObj = {};
-                impl(curr, { _: src[i] }, null, p, o, <QueryOpts>opts);
-                curr._ && res.push(curr._);
-            }
-            return res;
+            const out: QueryObj[] = args[2] || [];
+            arrayQuery(src, $opts, args[0], args[1], (x) => out.push(x));
+            return out;
         } else {
-            let [s, p, o, res] = args;
-            res = res || {};
-            impl(
-                res,
-                src,
-                coerceStr(s),
-                coerceStr(p),
-                coerce(o),
-                <QueryOpts>opts
-            );
-            return res;
+            return objQuery(src, $opts, args);
         }
-    };
+    });
+};
+
+/**
+ * Generic Higher-order function to return an actual query function based on
+ * given behavior options. Unlike {@link defQuery}, key query functions only
+ * return sets of keys (or indices) of matching objects.
+ *
+ * @remarks
+ * @see {@link KeyQueryOpts}
+ * @see {@link ObjKeyQueryFn}
+ * @see {@link ArrayKeyQueryFn}
+ *
+ * @param opts
+ */
+export const defKeyQuery = <T extends QueryObj | QueryObj[] = QueryObj>(
+    opts?: Partial<KeyQueryOpts>
+) => {
+    const $opts: QueryOpts = { partial: false, cwise: true, equiv, ...opts };
+    return <KeyQueryFn<T>>((src: any, ...args: any[]): any => {
+        if (isArray(src)) {
+            const out = args[2] || new Set<number>();
+            arrayQuery(src, $opts, args[0], args[1], (_, i) => out.add(i));
+            return out;
+        } else {
+            const res = objQuery(src, $opts, args.slice(0, 3));
+            const out = args[3];
+            if (!out) return new Set<string>(Object.keys(res));
+            for (let k in res) out.add(k);
+            return out;
+        }
+    });
 };
