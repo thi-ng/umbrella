@@ -99,7 +99,7 @@ export function dropdown(themeCtxPath: Path) {
 
 export const dropdownListeners = (
     ctx: BaseContext,
-    basePath: NumOrString[]
+    basePath: readonly NumOrString[]
 ) => ({
     onmouseover: () =>
         ctx.bus.dispatch([EV_SET_VALUE, [[...basePath, "hover"], true]]),

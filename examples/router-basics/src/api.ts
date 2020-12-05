@@ -28,14 +28,23 @@ export interface AppConfig {
     initialState: any;
     router: HTMLRouterConfig;
     ui: UIAttribs;
-    views: Partial<Record<keyof AppViews, ViewSpec>>;
+    views: Partial<Record<AppViewIDs, ViewSpec>>;
 }
+
+export type AppViewIDs =
+    | "route"
+    | "routeComponent"
+    | "users"
+    | "userlist"
+    | "status"
+    | "debug"
+    | "json";
 
 /**
  * Derived views exposed by the app.
  * Add more declarations here as needed.
  */
-export interface AppViews extends Record<keyof AppViews, IView<any>> {
+export interface AppViews extends Record<AppViewIDs, IView<any>> {
     route: IView<RouteMatch>;
     routeComponent: IView<any>;
     users: IView<IObjectOf<User>>;

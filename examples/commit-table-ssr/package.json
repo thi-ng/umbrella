@@ -37,6 +37,7 @@
         "process": false
     },
     "thi.ng": {
+        "skip": true,
         "readme": [
             "cache",
             "hiccup",

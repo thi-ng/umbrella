@@ -29,7 +29,7 @@ export interface AppConfig {
     initialState: any;
     rootComponent: AppComponent;
     ui: UIAttribs;
-    views: Partial<Record<keyof AppViews, ViewSpec>>;
+    views: Partial<Record<AppViewIDs, ViewSpec>>;
     data: {
         cities: string[][];
         countries: string[][];
@@ -38,11 +38,18 @@ export interface AppConfig {
     };
 }
 
+export type AppViewIDs =
+    | "page"
+    | "pagedTriples"
+    | "cities"
+    | "countries"
+    | "sort";
+
 /**
  * Base structure of derived views exposed by the base app.
  * Add more declarations here as needed.
  */
-export interface AppViews extends Record<keyof AppViews, IView<any>> {
+export interface AppViews extends Record<AppViewIDs, IView<any>> {
     page: IView<number>;
     pagedTriples: IView<any>;
     cities: IView<any>;

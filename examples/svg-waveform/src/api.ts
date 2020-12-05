@@ -23,14 +23,16 @@ export interface AppConfig {
     initialState: any;
     rootComponent: AppComponent;
     ui: UIAttribs;
-    views: Partial<Record<keyof AppViews, ViewSpec>>;
+    views: Partial<Record<AppViewIDs, ViewSpec>>;
 }
+
+export type AppViewIDs = "amp" | "freq" | "phase" | "harmonics" | "hstep";
 
 /**
  * Base structure of derived views exposed by the base app.
  * Add more declarations here as needed.
  */
-export interface AppViews extends Record<keyof AppViews, IView<any>> {
+export interface AppViews extends Record<AppViewIDs, IView<any>> {
     amp: IView<number>;
     freq: IView<number>;
     phase: IView<number>;
