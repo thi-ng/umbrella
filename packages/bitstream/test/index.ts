@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import * as bits from "../src/index";
+import * as bits from "../src";
 
 describe("BitInputStream", function () {
     let src = new Uint8Array([
