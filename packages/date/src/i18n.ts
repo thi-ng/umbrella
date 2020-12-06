@@ -1,4 +1,4 @@
-import { Locale } from "./api";
+import type { Locale } from "./api";
 
 export const EN_SHORT: Locale = {
     months: [
