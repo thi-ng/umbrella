@@ -13,8 +13,8 @@ import {
     Vec,
     ZERO2,
 } from "@thi.ng/vectors";
-import { Circle } from "../api/circle";
-import { Polygon } from "../api/polygon";
+import type { Circle } from "../api/circle";
+import type { Polygon } from "../api/polygon";
 import { Rect } from "../api/rect";
 import { argsVV } from "../internal/args";
 

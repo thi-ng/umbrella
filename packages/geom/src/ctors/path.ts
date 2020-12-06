@@ -2,7 +2,7 @@ import { isNumber } from "@thi.ng/checks";
 import { Attribs, PathSegment, SegmentType } from "@thi.ng/geom-api";
 import { map, mapcat } from "@thi.ng/transducers";
 import { maddN2, Vec } from "@thi.ng/vectors";
-import { Cubic } from "../api/cubic";
+import type { Cubic } from "../api/cubic";
 import { Path } from "../api/path";
 import { asCubic } from "../ops/as-cubic";
 import { PathBuilder } from "./path-builder";

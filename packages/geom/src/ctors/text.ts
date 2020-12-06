@@ -1,5 +1,5 @@
 import type { Attribs } from "@thi.ng/geom-api";
-import { Vec } from "@thi.ng/vectors";
+import type { Vec } from "@thi.ng/vectors";
 import { Text } from "../api/text";
 
 export const text = (pos: Vec, body: any, attribs?: Attribs) =>

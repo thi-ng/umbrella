@@ -1,17 +1,17 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation1 } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
 import { perimeter } from "@thi.ng/geom-poly-utils";
 import { PI, TAU } from "@thi.ng/math";
 import { dist } from "@thi.ng/vectors";
-import { Circle } from "../api/circle";
-import { Ellipse } from "../api/ellipse";
-import { Group } from "../api/group";
-import { Line } from "../api/line";
-import { Polygon } from "../api/polygon";
-import { Rect } from "../api/rect";
-import { Triangle } from "../api/triangle";
+import type { Circle } from "../api/circle";
+import type { Ellipse } from "../api/ellipse";
+import type { Group } from "../api/group";
+import type { Line } from "../api/line";
+import type { Polygon } from "../api/polygon";
+import type { Rect } from "../api/rect";
+import type { Triangle } from "../api/triangle";
 import { dispatch } from "../internal/dispatch";
-import type { IObjectOf } from "@thi.ng/api";
 
 /**
  * Returns the arc length / perimeter / circumference of the given

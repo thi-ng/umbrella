@@ -13,15 +13,15 @@ import {
     pointOnRay3,
     Vec,
 } from "@thi.ng/vectors";
-import { Arc } from "../api/arc";
-import { Circle } from "../api/circle";
-import { Cubic } from "../api/cubic";
-import { Ellipse } from "../api/ellipse";
-import { Line } from "../api/line";
-import { Polygon } from "../api/polygon";
-import { Quadratic } from "../api/quadratic";
-import { Ray } from "../api/ray";
-import { Rect } from "../api/rect";
+import type { Arc } from "../api/arc";
+import type { Circle } from "../api/circle";
+import type { Cubic } from "../api/cubic";
+import type { Ellipse } from "../api/ellipse";
+import type { Line } from "../api/line";
+import type { Polygon } from "../api/polygon";
+import type { Quadratic } from "../api/quadratic";
+import type { Ray } from "../api/ray";
+import type { Rect } from "../api/rect";
 import { dispatch } from "../internal/dispatch";
 import { vertices } from "./vertices";
 

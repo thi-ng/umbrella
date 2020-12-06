@@ -18,13 +18,13 @@ import {
     testRectCircle,
     testRectRect,
 } from "@thi.ng/geom-isec";
-import { AABB } from "../api/aabb";
-import { Circle } from "../api/circle";
-import { Line } from "../api/line";
-import { Plane } from "../api/plane";
-import { Ray } from "../api/ray";
-import { Rect } from "../api/rect";
-import { Sphere } from "../api/sphere";
+import type { AABB } from "../api/aabb";
+import type { Circle } from "../api/circle";
+import type { Line } from "../api/line";
+import type { Plane } from "../api/plane";
+import type { Ray } from "../api/ray";
+import type { Rect } from "../api/rect";
+import type { Sphere } from "../api/sphere";
 import { dispatch2 } from "../internal/dispatch";
 import type { IObjectOf } from "@thi.ng/api";
 

@@ -1,3 +1,4 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2O, MultiFn2O } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
 import {
@@ -6,11 +7,10 @@ import {
 } from "@thi.ng/geom-isec";
 import { EPS, sign } from "@thi.ng/math";
 import { dot, ReadonlyVec } from "@thi.ng/vectors";
-import { Circle } from "../api/circle";
-import { Plane } from "../api/plane";
-import { Triangle } from "../api/triangle";
+import type { Circle } from "../api/circle";
+import type { Plane } from "../api/plane";
+import type { Triangle } from "../api/triangle";
 import { dispatch } from "../internal/dispatch";
-import type { IObjectOf } from "@thi.ng/api";
 
 export const classifyPoint: MultiFn2O<
     IShape,

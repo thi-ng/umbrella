@@ -6,12 +6,12 @@ import {
     centroid as _centroid,
 } from "@thi.ng/geom-poly-utils";
 import { add, divN, maddN, mixN, mulN, set, Vec } from "@thi.ng/vectors";
-import { Circle } from "../api/circle";
-import { Group } from "../api/group";
-import { Line } from "../api/line";
-import { Plane } from "../api/plane";
-import { Polygon } from "../api/polygon";
-import { Triangle } from "../api/triangle";
+import type { Circle } from "../api/circle";
+import type { Group } from "../api/group";
+import type { Line } from "../api/line";
+import type { Plane } from "../api/plane";
+import type { Polygon } from "../api/polygon";
+import type { Triangle } from "../api/triangle";
 import { dispatch } from "../internal/dispatch";
 import { bounds } from "./bounds";
 

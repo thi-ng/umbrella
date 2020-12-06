@@ -1,3 +1,4 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2O, MultiFn2O } from "@thi.ng/defmulti";
 import { IShape, PCLike, Type } from "@thi.ng/geom-api";
 import { closestPoint as closestPointArc } from "@thi.ng/geom-arc";
@@ -12,16 +13,15 @@ import {
 } from "@thi.ng/geom-closest-point";
 import { closestPointCubic, closestPointQuadratic } from "@thi.ng/geom-splines";
 import { add2, add3, ReadonlyVec, Vec } from "@thi.ng/vectors";
-import { AABB } from "../api/aabb";
-import { Arc } from "../api/arc";
-import { Circle } from "../api/circle";
-import { Cubic } from "../api/cubic";
-import { Line } from "../api/line";
-import { Plane } from "../api/plane";
-import { Quadratic } from "../api/quadratic";
-import { Rect } from "../api/rect";
+import type { AABB } from "../api/aabb";
+import type { Arc } from "../api/arc";
+import type { Circle } from "../api/circle";
+import type { Cubic } from "../api/cubic";
+import type { Line } from "../api/line";
+import type { Plane } from "../api/plane";
+import type { Quadratic } from "../api/quadratic";
+import type { Rect } from "../api/rect";
 import { dispatch } from "../internal/dispatch";
-import type { IObjectOf } from "@thi.ng/api";
 
 export const closestPoint: MultiFn2O<
     IShape,

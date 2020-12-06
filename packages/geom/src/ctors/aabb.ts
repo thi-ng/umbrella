@@ -1,3 +1,4 @@
+import type { Attribs } from "@thi.ng/geom-api";
 import { SQRT2_2 } from "@thi.ng/math";
 import {
     add3,
@@ -10,9 +11,8 @@ import {
     ZERO3,
 } from "@thi.ng/vectors";
 import { AABB } from "../api/aabb";
-import { Sphere } from "../api/sphere";
+import type { Sphere } from "../api/sphere";
 import { argsVV } from "../internal/args";
-import type { Attribs } from "@thi.ng/geom-api";
 
 export function aabb(pos: Vec, size: number | Vec, attribs?: Attribs): AABB;
 export function aabb(size: number | Vec, attribs?: Attribs): AABB;

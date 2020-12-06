@@ -19,16 +19,16 @@ import {
     sub2,
     subN2,
 } from "@thi.ng/vectors";
-import { Arc } from "../api/arc";
-import { Circle } from "../api/circle";
-import { Cubic } from "../api/cubic";
-import { Ellipse } from "../api/ellipse";
-import { Group } from "../api/group";
-import { Line } from "../api/line";
-import { Path } from "../api/path";
-import { Quadratic } from "../api/quadratic";
+import type { Arc } from "../api/arc";
+import type { Circle } from "../api/circle";
+import type { Cubic } from "../api/cubic";
+import type { Ellipse } from "../api/ellipse";
+import type { Group } from "../api/group";
+import type { Line } from "../api/line";
+import type { Path } from "../api/path";
+import type { Quadratic } from "../api/quadratic";
 import { Rect } from "../api/rect";
-import { Text } from "../api/text";
+import type { Text } from "../api/text";
 import { aabbFromMinMax } from "../ctors/aabb";
 import { rectFromMinMax } from "../ctors/rect";
 import { collBounds } from "../internal/coll-bounds";

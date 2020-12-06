@@ -1,13 +1,13 @@
 import { isNumber } from "@thi.ng/checks";
+import type { Attribs } from "@thi.ng/geom-api";
 import { closestPointPlane } from "@thi.ng/geom-closest-point";
 import { alignmentQuat, mulVQ } from "@thi.ng/matrices";
 import { add3, ReadonlyVec, Vec, Z3 } from "@thi.ng/vectors";
-import { Plane } from "../api/plane";
+import type { Plane } from "../api/plane";
 import { Quad } from "../api/quad";
 import { Quad3 } from "../api/quad3";
 import { argAttribs } from "../internal/args";
 import { pclike } from "../internal/pclike";
-import type { Attribs } from "@thi.ng/geom-api";
 
 export function quad(a: Vec, b: Vec, c: Vec, d: Vec, attribs?: Attribs): Quad;
 export function quad(pts: Vec[], attribs?: Attribs): Quad;

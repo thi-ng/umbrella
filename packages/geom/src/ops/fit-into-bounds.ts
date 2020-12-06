@@ -10,7 +10,7 @@ import {
     translation44,
 } from "@thi.ng/matrices";
 import { neg, ReadonlyVec, Vec } from "@thi.ng/vectors";
-import { AABB } from "../api/aabb";
+import type { AABB } from "../api/aabb";
 import { Rect } from "../api/rect";
 import { collBounds } from "../internal/coll-bounds";
 import { bounds } from "./bounds";

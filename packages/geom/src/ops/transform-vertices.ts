@@ -9,7 +9,7 @@ import {
 } from "@thi.ng/geom-api";
 import { mulV, ReadonlyMat } from "@thi.ng/matrices";
 import { map } from "@thi.ng/transducers";
-import { ReadonlyVec } from "@thi.ng/vectors";
+import type { ReadonlyVec } from "@thi.ng/vectors";
 import { Cubic } from "../api/cubic";
 import { Group } from "../api/group";
 import { Line } from "../api/line";
@@ -19,7 +19,7 @@ import { Polygon } from "../api/polygon";
 import { Polyline } from "../api/polyline";
 import { Quad } from "../api/quad";
 import { Quadratic } from "../api/quadratic";
-import { Rect } from "../api/rect";
+import type { Rect } from "../api/rect";
 import { Triangle } from "../api/triangle";
 import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";

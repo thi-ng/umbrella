@@ -3,7 +3,7 @@ import { defmulti, Implementation2 } from "@thi.ng/defmulti";
 import { IHiccupShape, IShape, Type } from "@thi.ng/geom-api";
 import { add2, add3, ReadonlyVec, set2, set3 } from "@thi.ng/vectors";
 import { AABB } from "../api/aabb";
-import { Arc } from "../api/arc";
+import type { Arc } from "../api/arc";
 import { Circle } from "../api/circle";
 import { Cubic } from "../api/cubic";
 import { Ellipse } from "../api/ellipse";
