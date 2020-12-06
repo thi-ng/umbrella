@@ -1,7 +1,6 @@
 import { equiv } from "@thi.ng/equiv";
 import * as assert from "assert";
-import { ArraySet } from "../src/array-set";
-import { difference } from "../src/difference";
+import { ArraySet, difference } from "../src";
 
 describe("difference", () => {
     it("native (numbers)", () => {

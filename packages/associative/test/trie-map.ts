@@ -1,6 +1,5 @@
 import * as assert from "assert";
-
-import { TrieMap } from "../src/trie-map";
+import { TrieMap } from "../src";
 
 describe("TrieMap", () => {
     let root: TrieMap<string>;
