@@ -48,6 +48,7 @@ const banner = ({ input, on, off }: IObjectOf<string>) =>
         comp(
             // dynamically create `xfChar` transducers for each char
             // and run them in parallel via `multiplex()`
+            // @ts-ignore
             multiplex.apply(null, [
                 ...map((i) => xfChar(i, on, off), range(input.length)),
             ]),
@@ -57,6 +58,7 @@ const banner = ({ input, on, off }: IObjectOf<string>) =>
         // use `str()` reducer to build string result
         str("\n"),
         // convert input string into stream of row-major bitmap font tuples
+        // @ts-ignore
         zip.apply(null, [...map(lookupChar, input || " ")])
     );
 
@@ -113,8 +115,8 @@ main.transform(map(app), updateDOM());
 
 // input.next(transduce(map((x: number) => String.fromCharCode(x)), str(), range(32, 127)));
 
-// HMR handling
-if (process.env.NODE_ENV !== "production") {
-    const hot = (<any>module).hot;
-    hot && hot.dispose(() => main.done());
-}
+// // HMR handling
+// if (process.env.NODE_ENV !== "production") {
+//     const hot = (<any>module).hot;
+//     hot && hot.dispose(() => main.done());
+// }

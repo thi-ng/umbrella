@@ -46,9 +46,4 @@ const APP = [
 ];
 
 // start app and define context object skeleton
-const cancel = start(APP, { ctx: { __local: {} } });
-
-if (process.env.NODE_ENV !== "production") {
-    const hot = (<any>module).hot;
-    hot && hot.dispose(cancel);
-}
+start(APP, { ctx: { __local: {} } });

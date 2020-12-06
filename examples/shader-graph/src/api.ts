@@ -1,6 +1,6 @@
-import { Fn4 } from "@thi.ng/api";
-import { Node2D } from "@thi.ng/scenegraph";
-import {
+import type { Fn4 } from "@thi.ng/api";
+import type { Node2D } from "@thi.ng/scenegraph";
+import type {
     FloatSym,
     Func,
     Sampler2DSym,
@@ -8,8 +8,8 @@ import {
     Vec2Sym,
     Vec4Sym,
 } from "@thi.ng/shader-ast";
-import { GLSLTarget } from "@thi.ng/shader-ast-glsl";
-import { ModelSpec, Texture } from "@thi.ng/webgl";
+import type { GLSLTarget } from "@thi.ng/shader-ast-glsl";
+import type { ModelSpec, Texture } from "@thi.ng/webgl";
 
 export interface AppCtx {
     /**

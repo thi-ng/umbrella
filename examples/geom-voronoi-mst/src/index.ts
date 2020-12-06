@@ -14,7 +14,7 @@ import {
 } from "@thi.ng/geom";
 import { KdTreeMap, KdTreeSet } from "@thi.ng/geom-accel";
 import { DVMesh } from "@thi.ng/geom-voronoi";
-import { renderOnce } from "@thi.ng/hdom";
+import { clearDOM, renderOnce } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { fit } from "@thi.ng/math";
 import { samplePoisson } from "@thi.ng/poisson";
@@ -83,6 +83,8 @@ const _mst = timed(() => {
         (e) => [e[0], e[1]]
     ).map((e) => line(e[2], e[3]));
 });
+
+clearDOM(document.getElementById("app")!);
 
 renderOnce([
     canvas,

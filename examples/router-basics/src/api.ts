@@ -1,6 +1,6 @@
 import type { Fn, IObjectOf, Path } from "@thi.ng/api";
 import type { IView } from "@thi.ng/atom";
-import { EffectDef, EventBus, EventDef } from "@thi.ng/interceptors";
+import type { EffectDef, EventBus, EventDef } from "@thi.ng/interceptors";
 import type { HTMLRouterConfig, RouteMatch } from "@thi.ng/router";
 
 // general types defined for the base app

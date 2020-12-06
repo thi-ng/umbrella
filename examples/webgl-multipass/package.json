@@ -24,5 +24,8 @@
     },
     "thi.ng": {
         "readme": true
+    },
+    "devDependencies": {
+        "@types/snowpack-env": "^2.3.2"
     }
 }

@@ -1,5 +1,6 @@
-.cache
-out
+build
+dev
 node_modules
 yarn.lock
-*.js
+!snowpack.config.js
+!*.d.ts

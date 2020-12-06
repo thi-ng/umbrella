@@ -1,4 +1,4 @@
-import type { Nullable, Path } from "@thi.ng/api";
+import { exposeGlobal, Nullable, Path } from "@thi.ng/api";
 import { defAtom, defView } from "@thi.ng/atom";
 import { start } from "@thi.ng/hdom";
 import { capitalize } from "@thi.ng/strings";
@@ -39,7 +39,7 @@ const setUser = (e: Event) => setValue(user.path, (<any>e.target).value);
 const setValue = (path: Path, val: any) => db.resetInUnsafe(path, val);
 
 const loginUser = () => {
-    if (user.deref() === "admin") {
+    if (user.deref() === "Admin") {
         setError(null);
         setState("main");
     } else {
@@ -99,3 +99,5 @@ const currView = defView(
 // app root component
 // embedded view (will auto-deref)
 start(() => ["div", currView]);
+
+exposeGlobal("db", db);

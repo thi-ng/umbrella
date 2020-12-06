@@ -40,7 +40,7 @@ import {
     TextureFilter,
     TextureRepeat,
 } from "@thi.ng/webgl";
-import TEX_URL from "../assets/tex.jpg";
+import TEX_URL from "./tex.jpg";
 
 // set URL hash to "#2d" to enable JS Canvas2D version
 const JS_MODE = location.hash.indexOf("2d") >= 0;

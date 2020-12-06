@@ -47,13 +47,7 @@ const app = ({ theme, themeID }: any) => [
 ];
 
 // kick off hdom render loop
-const cancel = start(app, {
+start(app, {
     ctx,
     autoDerefKeys: Object.keys(ctx),
 });
-
-// HMR handling
-if (process.env.NODE_ENV !== "production") {
-    const hot = (<any>module).hot;
-    hot && hot.dispose(cancel);
-}

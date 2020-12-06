@@ -1,5 +1,5 @@
 import { ensureParamRange, snapshot, valueSetter } from "@thi.ng/interceptors";
-import { AppConfig } from "./api";
+import type { AppConfig } from "./api";
 import { main } from "./components/main";
 import { SLIDERS } from "./sliders";
 // import * as ev from "./events";

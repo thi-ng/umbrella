@@ -173,7 +173,7 @@ function appRender(state: AppState) {
     ];
 }
 
-if (process.env.NODE_ENV !== "production") {
-    const hot = (<any>module).hot;
-    hot && hot.dispose(() => mainStream.done());
-}
+// if (process.env.NODE_ENV !== "production") {
+//     const hot = (<any>module).hot;
+//     hot && hot.dispose(() => mainStream.done());
+// }

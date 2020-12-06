@@ -55,7 +55,7 @@ export const EVENTS: IObjectOf<EventDef> = {
 
     [ev.SET_PAGE]: [valueSetter("page"), dispatchNow([ev.UPDATE_PAGE])],
 
-    [ev.UPDATE_PAGE]: (state, _, __, ctx: AppInterceptorContext) => {
+    [ev.UPDATE_PAGE]: (state, _, __, ctx) => {
         const maxPage = Math.floor(
             Math.max(0, ctx.store.triples.length - 1) / PAGE_LEN
         );
@@ -71,7 +71,7 @@ export const EVENTS: IObjectOf<EventDef> = {
                 [
                     ...iterator(
                         comp(
-                            page(curr, PAGE_LEN),
+                            page<any>(curr, PAGE_LEN),
                             mapIndexed(
                                 (i, x: Triple) => [i + 1, ...x],
                                 curr * PAGE_LEN
@@ -89,11 +89,11 @@ export const EVENTS: IObjectOf<EventDef> = {
 };
 
 export const EFFECTS: IObjectOf<EffectDef> = {
-    [fx.ADD_TRIPLE]: (triple: Triple, bus, ctx: AppInterceptorContext) => {
+    [fx.ADD_TRIPLE]: (triple: Triple, bus, ctx) => {
         ctx.store.add(triple);
         bus.dispatch([ev.UPDATE_PAGE]);
     },
-    [fx.REMOVE_TRIPLE]: (triple: Triple, bus, ctx: AppInterceptorContext) => {
+    [fx.REMOVE_TRIPLE]: (triple: Triple, bus, ctx) => {
         ctx.store.delete(triple);
         bus.dispatch([ev.UPDATE_PAGE]);
     },

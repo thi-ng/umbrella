@@ -32,5 +32,8 @@
             "transducers-binary"
         ],
         "screenshot": "examples/wolfram.png"
+    },
+    "devDependencies": {
+        "@types/snowpack-env": "^2.3.2"
     }
 }

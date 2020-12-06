@@ -35,5 +35,8 @@
             "webgl"
         ],
         "screenshot": "examples/webgl-cubemap.jpg"
+    },
+    "devDependencies": {
+        "@types/snowpack-env": "^2.3.2"
     }
 }

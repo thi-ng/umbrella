@@ -94,11 +94,13 @@ const graph = initGraph(db, {
     // with multiple inputs
     circle: {
         fn: node(
-            map(({ click, radius, color }) =>
-                click && radius && color
+            map((ins) => {
+                console.log(ins);
+                const { click, radius, color } = ins;
+                return click && radius && color
                     ? circle(color, click[0], click[1], radius * 2)
-                    : undefined
-            )
+                    : undefined;
+            })
         ),
         ins: {
             click: { stream: "/clickpos/node" },

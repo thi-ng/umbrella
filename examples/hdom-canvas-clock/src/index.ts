@@ -45,7 +45,7 @@ const hand = (
     ];
 };
 
-const cancel = start(() => {
+start(() => {
     const now = new Date();
     const t = now.getTime() / 1000 - now.getTimezoneOffset() * 60;
     const sec = (t % 60) / 60;
@@ -124,8 +124,3 @@ const cancel = start(() => {
         ],
     ];
 });
-
-const hot = (<any>module).hot;
-if (hot) {
-    hot.dispose(cancel);
-}

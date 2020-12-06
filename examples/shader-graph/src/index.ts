@@ -32,7 +32,7 @@ import {
     glCanvas,
     GLMat4,
 } from "@thi.ng/webgl";
-import { AppCtx } from "./api";
+import type { AppCtx } from "./api";
 import { OpNode } from "./opnode";
 
 // setLogger(new ConsoleLogger("webgl", LogLevel.DEBUG));

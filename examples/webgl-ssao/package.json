@@ -38,5 +38,8 @@
             "webgl"
         ],
         "screenshot": "examples/webgl-ssao.jpg"
+    },
+    "devDependencies": {
+        "@types/snowpack-env": "^2.3.2"
     }
 }

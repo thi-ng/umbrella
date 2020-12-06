@@ -6,8 +6,8 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && ts-node src/index.ts",
-        "clean": "rm -rf *.js"
+        "clean": "rm -rf *.js",
+        "build": "yarn clean && ../../node_modules/.bin/ts-node src/index.ts"
     },
     "dependencies": {
         "@thi.ng/hiccup": "latest",
@@ -16,7 +16,7 @@
         "@thi.ng/pointfree-lang": "latest"
     },
     "devDependencies": {
-        "ts-node": "^8.2.0",
+        "ts-node": "^9.1.0",
         "typescript": "^4.1.2"
     },
     "thi.ng": {

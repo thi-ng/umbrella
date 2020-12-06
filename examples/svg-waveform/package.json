@@ -6,10 +6,9 @@
     "author": "Karsten Schmidt",
     "license": "MIT",
     "scripts": {
-        "clean": "rm -rf .cache build out",
-        "build": "yarn clean && parcel build index.html -d out --no-source-maps --no-cache --experimental-scope-hoisting --detailed-report --public-url ./",
-        "build:webpack": "../../node_modules/.bin/webpack --mode production",
-        "start": "parcel index.html -p 8080 --open --no-cache"
+        "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
+        "start": "../../node_modules/.bin/snowpack dev",
+        "build": "../../node_modules/.bin/snowpack build"
     },
     "dependencies": {
         "@thi.ng/api": "latest",
@@ -19,12 +18,6 @@
         "@thi.ng/hiccup-svg": "latest",
         "@thi.ng/interceptors": "latest",
         "@thi.ng/transducers": "latest"
-    },
-    "devDependencies": {
-        "@types/node": "^13.7.4",
-        "parcel-bundler": "^1.12.4",
-        "terser": "^5.2.1",
-        "typescript": "^4.1.2"
     },
     "browserslist": [
         "last 3 Chrome versions"
@@ -41,5 +34,8 @@
             "transducers"
         ],
         "screenshot": "examples/svg-waveform.jpg"
+    },
+    "devDependencies": {
+        "@types/snowpack-env": "^2.3.2"
     }
 }

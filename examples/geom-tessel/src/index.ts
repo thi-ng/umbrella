@@ -112,9 +112,3 @@ const main = sync({
     }),
     updateDOM()
 );
-
-// HMR handling
-if (process.env.NODE_ENV !== "production") {
-    const hot = (<any>module).hot;
-    hot && hot.dispose(() => main.done());
-}

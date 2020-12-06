@@ -8,8 +8,7 @@
     "scripts": {
         "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
         "start": "../../node_modules/.bin/snowpack dev",
-        "build": "../../node_modules/.bin/snowpack build",
-        "build-cli": "tsc -p tsconfig-cli.json"
+        "build": "../../node_modules/.bin/snowpack build"
     },
     "dependencies": {
         "@thi.ng/arrays": "latest",
@@ -36,5 +35,8 @@
             "transducers"
         ],
         "screenshot": "examples/xml-converter.png"
+    },
+    "devDependencies": {
+        "@types/snowpack-env": "^2.3.2"
     }
 }

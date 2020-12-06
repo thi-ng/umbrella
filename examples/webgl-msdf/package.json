@@ -44,5 +44,8 @@
             "webgl-msdf"
         ],
         "screenshot": "examples/webgl-msdf.jpg"
+    },
+    "devDependencies": {
+        "@types/snowpack-env": "^2.3.2"
     }
 }

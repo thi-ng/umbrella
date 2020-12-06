@@ -37,5 +37,8 @@
             "webgl"
         ],
         "screenshot": "examples/webgl-grid.jpg"
+    },
+    "devDependencies": {
+        "@types/snowpack-env": "^2.3.2"
     }
 }

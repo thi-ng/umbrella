@@ -55,10 +55,4 @@ const app = <any>{
 };
 
 // kick off
-const cancel = start([app]);
-
-// HMR handling
-if (process.env.NODE_ENV !== "production") {
-    const hot = (<any>module).hot;
-    hot && hot.dispose(cancel);
-}
+start([app]);

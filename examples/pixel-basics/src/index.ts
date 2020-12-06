@@ -7,8 +7,8 @@ import {
     RGB565,
 } from "@thi.ng/pixel";
 import { SRC_OVER_I } from "@thi.ng/porter-duff";
-import IMG from "../assets/haystack.jpg";
-import LOGO from "../assets/logo-64.png";
+import IMG from "./haystack.jpg";
+import LOGO from "./logo-64.png";
 
 Promise.all([IMG, LOGO].map(imagePromise)).then(([img, logo]) => {
     // init 16bit packed RGB pixel buffer from image (resized to 256x256)

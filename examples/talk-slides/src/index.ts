@@ -72,11 +72,11 @@ if (INTERACTIVE) {
     renderOnce(() => [printApp, SLIDES], { ctx });
 }
 
-if (process.env.NODE_ENV !== "production") {
-    const hot = (<any>module).hot;
-    hot &&
-        hot.dispose(() => {
-            slideCTRL.done();
-            main.done();
-        });
-}
+// if (process.env.NODE_ENV !== "production") {
+//     const hot = (<any>module).hot;
+//     hot &&
+//         hot.dispose(() => {
+//             slideCTRL.done();
+//             main.done();
+//         });
+// }

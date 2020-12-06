@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>hdom-skip-nested</title>
+        <link
+            href="https://unpkg.com/tachyons@4/css/tachyons.min.css"
+            rel="stylesheet"
+        />
+        <style></style>
+        <script
+            async
+            defer
+            data-domain="demo.thi.ng"
+            src="https://plausible.io/js/plausible.js"
+        ></script>
+    </head>
+    <body class="ma3 measure sans-serif">
+        <div>
+            <p>
+                Click buttons to increase counters or click <b>skip!</b> to
+                toggle the <code>__skip</code> attrib for that component.
+            </p>
+            <p>
+                If <code>__skip</code> is enabled, the counters remains
+                clickable, but no updates are shown until <code>__skip</code> is
+                disabled again.
+            </p>
+        </div>
+        <div id="app" class="mv3"></div>
+        <div>
+            <a
+                class="link"
+                href="https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-skip-nested"
+                >Source code</a
+            >
+        </div>
+        <script type="module" src="/_dist_/index.js"></script>
+    </body>
+</html>

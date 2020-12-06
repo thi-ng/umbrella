@@ -6,12 +6,8 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "clean": "rm -rf .cache build out",
-        "build": "ts-node src/index.ts"
-    },
-    "devDependencies": {
-        "ts-node": "^8.5.2",
-        "typescript": "^4.1.2"
+        "clean": "../../node_modules/.bin/rimraf .cache build out",
+        "build": "../../node_modules/.bin/ts-node src/index.ts"
     },
     "dependencies": {
         "@thi.ng/associative": "latest",
