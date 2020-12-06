@@ -3,9 +3,10 @@
     "compilerOptions": {
         "outDir": "bin",
         "target": "es6",
-        "module": "commonjs"
+        "module": "commonjs",
+        "declaration": false,
+        "declarationMap": false,
+        "sourceMap": false
     },
-    "include": [
-        "./src/**/*.ts"
-    ]
+    "include": ["./src/**/*.ts"]
 }

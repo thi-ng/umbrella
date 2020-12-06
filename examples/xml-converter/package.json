@@ -8,7 +8,8 @@
     "scripts": {
         "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
         "start": "../../node_modules/.bin/snowpack dev",
-        "build": "../../node_modules/.bin/snowpack build"
+        "build": "../../node_modules/.bin/snowpack build",
+        "build:cli": "../../node_modules/.bin/tsc -p tsconfig-cli.json"
     },
     "dependencies": {
         "@thi.ng/arrays": "latest",
