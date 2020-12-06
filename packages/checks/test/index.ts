@@ -1,18 +1,20 @@
 import * as assert from "assert";
 import * as vm from "vm";
-import { existsAndNotNull } from "../src/exists-not-null";
-import { implementsFunction } from "../src/implements-function";
-import { isArray } from "../src/is-array";
-import { isArrayLike } from "../src/is-arraylike";
-import { isFunction } from "../src/is-function";
-import { isObject } from "../src/is-object";
-import { isPlainObject } from "../src/is-plain-object";
-import { isString } from "../src/is-string";
-import { isSymbol } from "../src/is-symbol";
-import { isTransferable } from "../src/is-transferable";
-import { isTypedArray } from "../src/is-typedarray";
-import { isNil } from "../src/is-nil";
-import { isHexColor } from "../src/is-hex-color";
+import {
+    existsAndNotNull,
+    implementsFunction,
+    isArray,
+    isArrayLike,
+    isFunction,
+    isHexColor,
+    isNil,
+    isObject,
+    isPlainObject,
+    isString,
+    isSymbol,
+    isTransferable,
+    isTypedArray,
+} from "../src";
 
 describe("checks", function () {
     it("existsAndNotNull", () => {
