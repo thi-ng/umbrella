@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { TLRUCache } from "../src/index";
+import { TLRUCache } from "../src";
 
 describe("TLRU", () => {
     let c: TLRUCache<string, number>;
