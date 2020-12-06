@@ -31,7 +31,6 @@
         "process": false
     },
     "thi.ng": {
-        "skip": true,
         "online": false,
         "readme": [
             "dgraph",
