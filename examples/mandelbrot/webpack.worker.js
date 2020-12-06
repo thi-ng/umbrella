@@ -2,7 +2,7 @@ module.exports = {
     entry: "./src/worker.ts",
     output: {
         filename: "worker.js",
-        path: __dirname + "/out",
+        path: __dirname + "/public",
     },
     resolve: {
         extensions: [".ts", ".js"],
@@ -14,7 +14,17 @@ module.exports = {
                 loader: "file-loader",
                 options: { name: "[path][hash].[ext]" },
             },
-            { test: /\.ts$/, use: "ts-loader" },
+            {
+                test: /\.ts$/,
+                use: [
+                    {
+                        loader: "ts-loader",
+                        options: {
+                            configFile: "tsconfig.worker.json",
+                        },
+                    },
+                ],
+            },
         ],
     },
     node: {
