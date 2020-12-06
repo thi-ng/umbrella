@@ -1,5 +1,5 @@
-import { IObjectOf } from "../api/object";
-import { IWatch, Watch } from "../api/watch";
+import type { IObjectOf } from "../api/object";
+import type { IWatch, Watch } from "../api/watch";
 import { mixin } from "../mixin";
 
 interface _IWatch extends IWatch<any> {

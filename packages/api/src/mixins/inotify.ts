@@ -1,5 +1,5 @@
-import { Event, INotify, Listener } from "../api/event";
-import { IObjectOf } from "../api/object";
+import type { Event, INotify, Listener } from "../api/event";
+import type { IObjectOf } from "../api/object";
 import { EVENT_ALL } from "../constants";
 import { mixin } from "../mixin";
 

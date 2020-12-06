@@ -1,5 +1,5 @@
-import { IEnable } from "../api/enable";
-import { Event } from "../api/event";
+import type { IEnable } from "../api/enable";
+import type { Event } from "../api/event";
 import { EVENT_DISABLE, EVENT_ENABLE } from "../constants";
 import { mixin } from "../mixin";
 
