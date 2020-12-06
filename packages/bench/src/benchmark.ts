@@ -1,6 +1,6 @@
+import type { BenchmarkOpts, BenchmarkResult } from "./api";
 import { benchResult } from "./bench";
 import { timedResult } from "./timed";
-import type { BenchmarkOpts, BenchmarkResult } from "./api";
 
 export const benchmark = (
     fn: () => void,
