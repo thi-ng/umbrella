@@ -1,9 +1,7 @@
 import type { IEnable, IID, IObjectOf } from "@thi.ng/api";
 import { implementsFunction } from "@thi.ng/checks";
 import { map, Transducer } from "@thi.ng/transducers";
-import type { IBuffer, IWriteableChannel } from "../src/api";
-import { Channel } from "../src/channel";
-import { Mult } from "../src/mult";
+import { Channel, IBuffer, IWriteableChannel, Mult } from "../src";
 
 export type NodeInput =
     | NodeInputSpec
