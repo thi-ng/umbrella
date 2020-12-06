@@ -1,6 +1,6 @@
 import { isNumber } from "@thi.ng/checks";
 import * as assert from "assert";
-import { Atom } from "../src/index";
+import { Atom } from "../src";
 
 describe("atom", function () {
     let a: Atom<any>;
