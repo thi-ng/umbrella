@@ -2,7 +2,7 @@ import { defAtom, defView } from "@thi.ng/atom";
 import { derefContext } from "@thi.ng/hiccup";
 import { map, range } from "@thi.ng/iterators";
 import * as assert from "assert";
-import { normalizeTree } from "../src/normalize";
+import { normalizeTree } from "../src";
 
 const _check = (a: any, b: any, ctx: any = null) =>
     assert.deepStrictEqual(

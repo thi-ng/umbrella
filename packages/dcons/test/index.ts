@@ -2,7 +2,7 @@ import { compareNumDesc } from "@thi.ng/compare";
 import { XsAdd } from "@thi.ng/random";
 import { range } from "@thi.ng/transducers";
 import * as assert from "assert";
-import { DCons, defDCons } from "../src/index";
+import { DCons, defDCons } from "../src";
 
 describe("DCons", () => {
     let a: DCons<any>, src: number[];

@@ -1,6 +1,6 @@
-import * as assert from "assert";
-import * as m from "../src/index";
 import { range } from "@thi.ng/transducers";
+import * as assert from "assert";
+import * as m from "../src";
 
 describe("matrices", () => {
     it("identity (fixed)", () => {

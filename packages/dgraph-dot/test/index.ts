@@ -1,5 +1,5 @@
-import * as assert from "assert";
 import { defDGraph } from "@thi.ng/dgraph";
+import * as assert from "assert";
 import { toDot } from "../src";
 
 describe("dgraph-dot", () => {

@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { HDOMNode, MockHDOM } from "../src/index";
+import { HDOMNode, MockHDOM } from "../src";
 
 describe("hdom-mock", () => {
     it("node", () => {

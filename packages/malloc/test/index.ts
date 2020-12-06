@@ -1,7 +1,7 @@
 import { Type, TypedArray } from "@thi.ng/api";
 import { align } from "@thi.ng/binary";
 import * as assert from "assert";
-import { MemPool } from "../src/index";
+import { MemPool } from "../src";
 
 const POOL_OVERHEAD = 7 * 4;
 const BLOCK_OVERHEAD = 2 * 4;

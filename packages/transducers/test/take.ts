@@ -1,6 +1,5 @@
-import { take, range } from "../src";
-
 import * as assert from "assert";
+import { range, take } from "../src";
 
 describe("take", () => {
     it("iterates up to N items", () => {

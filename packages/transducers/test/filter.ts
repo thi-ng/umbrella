@@ -1,6 +1,5 @@
-import { filter, range } from "../src";
-
 import * as assert from "assert";
+import { filter, range } from "../src";
 
 describe("filter", () => {
     const identity = (x: any) => x;

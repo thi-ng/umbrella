@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { serialize } from "../src/serialize";
+import { serialize } from "../src";
 
 describe("hiccup-markdown", () => {
     it("serialize", () => {

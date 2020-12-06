@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { fromIterable, State, Stream, Subscription } from "../src/index";
+import { fromIterable, State, Stream, Subscription } from "../src";
 import { TIMEOUT } from "./config";
 
 describe("fromIterable()", function () {

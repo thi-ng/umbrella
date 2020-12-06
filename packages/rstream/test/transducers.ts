@@ -7,7 +7,7 @@ import {
     take,
 } from "@thi.ng/transducers";
 import * as assert from "assert";
-import { fromIterable, Stream } from "../src/index";
+import { fromIterable, Stream } from "../src";
 
 describe("transducers", () => {
     let src: Stream<number>;

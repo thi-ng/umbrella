@@ -1,7 +1,7 @@
 import { DEFAULT, defmulti } from "@thi.ng/defmulti";
 import * as tx from "@thi.ng/transducers";
 import * as assert from "assert";
-import { parse, ParseElement, Type } from "../src/index";
+import { parse, ParseElement, Type } from "../src";
 
 const svg = `
 <?xml version="1.0"?>

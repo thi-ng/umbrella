@@ -1,10 +1,10 @@
 import * as assert from "assert";
 import {
     cartesianToTree,
+    mortonToTree,
     treeToCartesian,
     treeToMorton,
-    mortonToTree,
-} from "../src/index";
+} from "../src";
 
 describe("morton", () => {
     it("tree <> cartesian3 fuzz", function () {

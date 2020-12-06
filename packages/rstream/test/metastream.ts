@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { CloseMode, fromIterable, metaStream, State } from "../src/index";
+import { CloseMode, fromIterable, metaStream, State } from "../src";
 import { TIMEOUT } from "./config";
 
 describe("MetaStream", function () {

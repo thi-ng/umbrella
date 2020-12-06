@@ -1,6 +1,5 @@
-import * as tx from "../src";
-
 import * as assert from "assert";
+import * as tx from "../src";
 
 const src = [1, 2, 3, 4];
 

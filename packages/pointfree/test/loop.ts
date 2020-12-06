@@ -1,5 +1,5 @@
+import type { StackFn, StackProgram } from "../src";
 import * as pf from "../src";
-import { StackFn, StackProgram } from "../src/api";
 
 /**
  * This higher order word defines a 2D loop construct, executing a user

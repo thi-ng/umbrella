@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { FLOAT_GRAY, FLOAT_RGBA, FLOAT_GRAY_ALPHA, FLOAT_RGB } from "../src";
+import { FLOAT_GRAY, FLOAT_GRAY_ALPHA, FLOAT_RGB, FLOAT_RGBA } from "../src";
 
 describe("float", () => {
     it("FLOAT_GRAY", () => {

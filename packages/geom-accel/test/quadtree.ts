@@ -1,5 +1,5 @@
 import { mapIndexed } from "@thi.ng/transducers";
-import { ReadonlyVec } from "@thi.ng/vectors";
+import type { ReadonlyVec } from "@thi.ng/vectors";
 import * as assert from "assert";
 import { NdQuadtreeMap } from "../src";
 

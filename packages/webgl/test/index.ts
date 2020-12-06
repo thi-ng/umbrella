@@ -1,5 +1,5 @@
 // import * as assert from "assert";
-// import * as w from "../src/index";
+// import * as w from "../src";
 
 describe("webgl", () => {
     it("tests pending");

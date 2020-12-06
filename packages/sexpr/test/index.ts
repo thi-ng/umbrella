@@ -8,8 +8,8 @@ import {
     runtime,
     Sym,
     SyntaxOpts,
-    tokenize,
-} from "../src/index";
+    tokenize
+} from "../src";
 
 const ops = defmulti<ASTNode, ASTNode[], any, any>((x) => (<Sym>x).value);
 const rt = runtime<Implementations<any, any>, any, any>({

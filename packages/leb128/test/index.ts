@@ -5,7 +5,7 @@ import {
     decodeULEB128,
     encodeSLEB128,
     encodeULEB128,
-} from "../src/index";
+} from "../src";
 
 describe("leb128", () => {
     if (hasWASM()) {

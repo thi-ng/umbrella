@@ -1,13 +1,13 @@
-import { partition, map } from "@thi.ng/transducers";
+import { map, partition } from "@thi.ng/transducers";
 import * as assert from "assert";
 import {
+    CloseMode,
     fromIterable,
+    fromIterableSync,
     State,
     Stream,
-    fromIterableSync,
-    CloseMode,
     subscription,
-} from "../src/index";
+} from "../src";
 import { TIMEOUT } from "./config";
 
 describe("Subscription", function () {

@@ -1,5 +1,5 @@
-import * as dot from "../src/";
 import * as fs from "fs";
+import * as dot from "../src";
 
 // node type style presets
 const terminal: Partial<dot.Node> = {

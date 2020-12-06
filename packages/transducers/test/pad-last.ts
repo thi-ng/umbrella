@@ -1,6 +1,5 @@
-import { padLast } from "../src";
-
 import * as assert from "assert";
+import { padLast } from "../src";
 
 describe("padLast", () => {
     it("all", () => {

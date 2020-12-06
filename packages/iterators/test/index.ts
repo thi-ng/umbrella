@@ -1,5 +1,5 @@
-import * as ti from "../src/index";
 import * as assert from "assert";
+import * as ti from "../src";
 
 describe("iterators", function () {
     it("butLast", () => {

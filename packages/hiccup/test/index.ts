@@ -1,7 +1,7 @@
 import { Atom } from "@thi.ng/atom";
 import { foaf } from "@thi.ng/prefixes";
 import * as assert from "assert";
-import { serialize } from "../src/index";
+import { serialize } from "../src";
 
 function _check(a: any, b: any) {
     assert.strictEqual(serialize(a), b);

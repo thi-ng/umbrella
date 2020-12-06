@@ -1,7 +1,6 @@
 import { Atom } from "@thi.ng/atom";
 import { comp, filter, last, map, take } from "@thi.ng/transducers";
 import * as assert from "assert";
-import { TIMEOUT } from "./config";
 import {
     CloseMode,
     fromInterval,
@@ -13,6 +12,7 @@ import {
     sync,
     transduce,
 } from "../src";
+import { TIMEOUT } from "./config";
 
 describe("StreamSync", function () {
     this.retries(3);

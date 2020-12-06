@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { ArrayDiff, diffArray, DiffMode } from "../src/index";
+import { ArrayDiff, diffArray, DiffMode } from "../src";
 
 describe("array", function () {
     const state = <ArrayDiff<number>>{

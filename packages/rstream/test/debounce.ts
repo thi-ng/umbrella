@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { debounce, fromIterable } from "../src/index";
+import { debounce, fromIterable } from "../src";
 import { TIMEOUT } from "./config";
 
 describe("debounce", function () {

@@ -1,15 +1,14 @@
-import * as assert from "assert";
 import { radix } from "@thi.ng/strings";
-
 import {
     comp,
+    iterator,
     map,
     padLast,
     partition,
-    iterator,
     range,
     run,
 } from "@thi.ng/transducers";
+import * as assert from "assert";
 import { bits, partitionBits } from "../src";
 
 const src = [0xff, 0xa5, 0xfe, 0xf7];

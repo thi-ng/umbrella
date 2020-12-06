@@ -5,7 +5,7 @@ import {
     resolve,
     State,
     Subscription,
-} from "../src/index";
+} from "../src";
 import { TIMEOUT } from "./config";
 
 describe("fromPromise()", function () {

@@ -1,6 +1,5 @@
-import { keyPermutations } from "../src";
-
 import * as assert from "assert";
+import { keyPermutations } from "../src";
 
 describe("keyPermutations", () => {
     it("basic", () => {

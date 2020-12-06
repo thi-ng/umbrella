@@ -1,7 +1,7 @@
 import * as csp from "@thi.ng/csp";
 import * as rs from "@thi.ng/rstream";
 import * as assert from "assert";
-import { fromChannel } from "../src/index";
+import { fromChannel } from "../src";
 
 describe("fromChannel", function () {
     it("receives all values", (done) => {
