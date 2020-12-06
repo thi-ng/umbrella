@@ -1,6 +1,6 @@
-import { distSq, comparator2 } from "@thi.ng/vectors";
+import { comparator2, distSq } from "@thi.ng/vectors";
 import * as assert from "assert";
-import { mst } from "../src/mst";
+import { mst } from "../src";
 
 describe("unionfind", () => {
     it("mst", () => {
