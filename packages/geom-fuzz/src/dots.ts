@@ -2,7 +2,7 @@ import { mergeDeepObj } from "@thi.ng/associative";
 import { bounds, pointInside, points, unmapPoint } from "@thi.ng/geom";
 import { range2d } from "@thi.ng/transducers";
 import { div2, jitter, Vec } from "@thi.ng/vectors";
-import { DotFillOpts, FillFn } from "./api";
+import type { DotFillOpts, FillFn } from "./api";
 
 export const defDots = (opts: Partial<DotFillOpts> = {}): FillFn => {
     opts = mergeDeepObj(

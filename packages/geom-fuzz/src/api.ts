@@ -1,6 +1,6 @@
 import type { Fn } from "@thi.ng/api";
 import type { IColor } from "@thi.ng/color";
-import { Polygon } from "@thi.ng/geom";
+import type { Polygon } from "@thi.ng/geom";
 import type { IHiccupShape } from "@thi.ng/geom-api";
 
 export type Color = string | number[] | IColor;
