@@ -1,9 +1,9 @@
+import type { SortOpts, Transducer } from "../api";
 import { comp } from "../func/comp";
 import { __sortOpts } from "../internal/sort-opts";
 import { $iter } from "../iterator";
 import { map } from "./map";
 import { partition } from "./partition";
-import type { SortOpts, Transducer } from "../api";
 
 /**
  * Transducer. Similar to {@link (movingAverage:1)}, but yields median

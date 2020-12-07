@@ -1,7 +1,7 @@
 import { isIterable } from "@thi.ng/checks";
+import type { Transducer } from "../api";
 import { iterator1 } from "../iterator";
 import { throttle } from "./throttle";
-import type { Transducer } from "../api";
 
 export function dropNth<T>(n: number): Transducer<T, T>;
 export function dropNth<T>(n: number, src: Iterable<T>): IterableIterator<T>;

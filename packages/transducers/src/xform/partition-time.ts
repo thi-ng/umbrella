@@ -1,7 +1,7 @@
 import { isIterable } from "@thi.ng/checks";
+import type { Transducer } from "../api";
 import { iterator } from "../iterator";
 import { partitionBy } from "./partition-by";
-import type { Transducer } from "../api";
 
 /**
  * Transducer. Yields tumbling, non-overlapping windows/partitions of

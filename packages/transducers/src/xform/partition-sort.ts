@@ -1,9 +1,9 @@
+import type { SortOpts, Transducer } from "../api";
 import { comp } from "../func/comp";
 import { __sortOpts } from "../internal/sort-opts";
 import { $iter, iterator } from "../iterator";
 import { mapcat } from "./mapcat";
 import { partition } from "./partition";
-import type { SortOpts, Transducer } from "../api";
 
 /**
  * Transducer. Composition of {@link (partition:1)} and

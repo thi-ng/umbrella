@@ -1,6 +1,6 @@
+import type { Reducer, Transducer } from "../api";
 import { $iter, iterator } from "../iterator";
 import { ensureReduced, isReduced, unreduced } from "../reduced";
-import type { Reducer, Transducer } from "../api";
 
 /**
  * Transducer which performs "scan" operation via given reducer.

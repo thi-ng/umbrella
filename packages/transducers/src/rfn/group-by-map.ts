@@ -1,6 +1,6 @@
+import type { GroupByOpts, Reducer } from "../api";
 import { __groupByOpts } from "../internal/group-opts";
 import { $$reduce } from "../reduce";
-import type { GroupByOpts, Reducer } from "../api";
 
 // prettier-ignore
 export function groupByMap<SRC, KEY, GROUP>(opts?: Partial<GroupByOpts<SRC, KEY, GROUP>>): Reducer<Map<KEY, GROUP>, SRC>;

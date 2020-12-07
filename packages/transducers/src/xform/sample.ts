@@ -1,7 +1,7 @@
 import { IRandom, SYSTEM } from "@thi.ng/random";
+import type { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { $iter } from "../iterator";
-import type { Reducer, Transducer } from "../api";
 
 /**
  * Transducer which only yields values with given `prob` probability

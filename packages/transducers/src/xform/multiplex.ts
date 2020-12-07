@@ -1,7 +1,7 @@
 import { juxt } from "@thi.ng/compose";
+import type { Transducer, TxLike } from "../api";
 import { step } from "../step";
 import { map } from "./map";
-import type { Transducer, TxLike } from "../api";
 
 /**
  * Yields a new transducer which applies given transducers in parallel

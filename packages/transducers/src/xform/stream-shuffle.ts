@@ -1,7 +1,7 @@
 import { shuffle } from "@thi.ng/arrays";
+import type { Reducer, Transducer } from "../api";
 import { $iter, iterator } from "../iterator";
 import { isReduced } from "../reduced";
-import type { Reducer, Transducer } from "../api";
 
 /**
  * Transducer. Creates internal sliding window of `n` values and

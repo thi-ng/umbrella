@@ -1,5 +1,5 @@
-import { isReduced, reduced, unreduced } from "../reduced";
 import type { Reducer } from "../api";
+import { isReduced, reduced, unreduced } from "../reduced";
 
 /**
  * Composes a new reducer from the ones given, in order to produce

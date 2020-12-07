@@ -1,6 +1,6 @@
 import { mix } from "@thi.ng/math";
-import { interpolate } from "./interpolate";
 import type { Transducer } from "../api";
+import { interpolate } from "./interpolate";
 
 /**
  * Pre-configured version of {@link (interpolate:1)} for numeric values
