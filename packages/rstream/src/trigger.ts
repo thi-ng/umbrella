@@ -1,6 +1,6 @@
-import { CommonOpts } from "./api";
+import type { CommonOpts } from "./api";
 import { fromIterableSync } from "./from/iterable";
-import { Stream } from "./stream";
+import type { Stream } from "./stream";
 import { optsWithID } from "./utils/idgen";
 
 /**

@@ -1,7 +1,7 @@
 import { Fn, Fn0, IDeref, IID, ILogger, NULL_LOGGER } from "@thi.ng/api";
 import type { Transducer } from "@thi.ng/transducers";
-import { Stream } from "./stream";
-import { Subscription } from "./subscription";
+import type { Stream } from "./stream";
+import type { Subscription } from "./subscription";
 
 export enum State {
     IDLE,
