@@ -1,4 +1,4 @@
-import { StackContext } from "./api";
+import type { StackContext } from "./api";
 import { $n, $ } from "./safe";
 
 /**
