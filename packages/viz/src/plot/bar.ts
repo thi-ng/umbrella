@@ -1,7 +1,7 @@
-import { Fn3 } from "@thi.ng/api";
+import type { Fn3 } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks";
 import { map } from "@thi.ng/transducers";
-import { DomainValues, PlotFn } from "../api";
+import type { DomainValues, PlotFn } from "../api";
 import { valueMapper } from "./utils";
 
 export interface BarPlotOpts {
