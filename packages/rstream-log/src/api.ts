@@ -1,4 +1,4 @@
-import { IID, ILogger as APILogger, LogLevel } from "@thi.ng/api";
+import type { IID, ILogger as APILogger, LogLevel } from "@thi.ng/api";
 import type { ISubscribable } from "@thi.ng/rstream";
 
 export interface LogEntry extends Array<any> {
