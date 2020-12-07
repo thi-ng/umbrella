@@ -1,6 +1,6 @@
-import { Channel } from "@thi.ng/csp";
-import { LOGGER, Stream } from "@thi.ng/rstream";
+import type { Channel } from "@thi.ng/csp";
 import type { CommonOpts } from "@thi.ng/rstream";
+import { LOGGER, Stream } from "@thi.ng/rstream";
 
 export interface FromChannelOpts extends CommonOpts {
     /**
