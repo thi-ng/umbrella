@@ -7,7 +7,7 @@ import {
     Type,
     TypedArray,
 } from "@thi.ng/api";
-import { MemPool, MemPoolOpts } from "@thi.ng/malloc";
+import type { MemPool, MemPoolOpts } from "@thi.ng/malloc";
 import type { ReadonlyVec, StridedVec, Vec } from "@thi.ng/vectors";
 
 export interface AttribSpec {
