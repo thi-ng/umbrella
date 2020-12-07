@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/oquery",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "Datalog-inspired, optimized pattern/predicate query engine for JS objects & arrays",
     "module": "./index.js",
     "main": "./lib/index.js",
