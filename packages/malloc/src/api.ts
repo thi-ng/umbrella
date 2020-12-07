@@ -1,4 +1,9 @@
-import { IRelease, Type, TypedArray, TypedArrayTypeMap } from "@thi.ng/api";
+import type {
+    IRelease,
+    Type,
+    TypedArray,
+    TypedArrayTypeMap,
+} from "@thi.ng/api";
 import type { Pow2 } from "@thi.ng/binary";
 
 export interface MemPoolOpts {
