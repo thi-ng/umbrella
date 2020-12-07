@@ -74,7 +74,7 @@
     "thi.ng": {
         "related": [
             "hiccup-svg",
-            "transducer",
+            "transducers",
             "transducers-fsm"
         ],
         "year": 2018
