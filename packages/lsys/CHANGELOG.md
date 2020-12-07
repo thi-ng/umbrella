@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.65](https://github.com/thi-ng/umbrella/compare/@thi.ng/lsys@0.2.64...@thi.ng/lsys@0.2.65) (2020-12-07)
+
+**Note:** Version bump only for package @thi.ng/lsys
+
+
+
+
+
 ## [0.2.64](https://github.com/thi-ng/umbrella/compare/@thi.ng/lsys@0.2.63...@thi.ng/lsys@0.2.64) (2020-11-26)
 
 **Note:** Version bump only for package @thi.ng/lsys

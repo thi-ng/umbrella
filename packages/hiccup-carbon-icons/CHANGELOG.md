@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-carbon-icons@2.0.6...@thi.ng/hiccup-carbon-icons@2.0.7) (2020-12-07)
+
+**Note:** Version bump only for package @thi.ng/hiccup-carbon-icons
+
+
+
+
+
 ## [2.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-carbon-icons@2.0.5...@thi.ng/hiccup-carbon-icons@2.0.6) (2020-11-26)
 
 **Note:** Version bump only for package @thi.ng/hiccup-carbon-icons

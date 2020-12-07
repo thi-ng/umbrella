@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.2.16...@thi.ng/rdom@0.3.0) (2020-12-07)
+
+
+### Features
+
+* **rdom:** add $subObject() wrapper, add docs ([cd5cf08](https://github.com/thi-ng/umbrella/commit/cd5cf08d6ae0ffb5ff8a89a19918a563fb889cbd))
+
+
+
+
+
 ## [0.2.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.2.15...@thi.ng/rdom@0.2.16) (2020-11-26)
 
 **Note:** Version bump only for package @thi.ng/rdom

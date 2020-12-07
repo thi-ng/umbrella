@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.37](https://github.com/thi-ng/umbrella/compare/@thi.ng/leb128@1.0.36...@thi.ng/leb128@1.0.37) (2020-12-07)
+
+**Note:** Version bump only for package @thi.ng/leb128
+
+
+
+
+
 ## [1.0.36](https://github.com/thi-ng/umbrella/compare/@thi.ng/leb128@1.0.35...@thi.ng/leb128@1.0.36) (2020-11-26)
 
 **Note:** Version bump only for package @thi.ng/leb128

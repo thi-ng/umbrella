@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@5.0.10...@thi.ng/associative@5.0.11) (2020-12-07)
+
+**Note:** Version bump only for package @thi.ng/associative
+
+
+
+
+
 ## [5.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@5.0.9...@thi.ng/associative@5.0.10) (2020-11-26)
 
 **Note:** Version bump only for package @thi.ng/associative
