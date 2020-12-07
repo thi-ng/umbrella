@@ -1,4 +1,4 @@
-import { Fn0, IObjectOf, Nullable } from "@thi.ng/api";
+import type { Fn0, IObjectOf, Nullable } from "@thi.ng/api";
 import { writeFileSync } from "fs";
 import { RE_PARTIAL } from "./api";
 import { CONFIG, initConfig } from "./config";
