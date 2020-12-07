@@ -1,4 +1,4 @@
-import { ICopy, IToHiccup, Nullable } from "@thi.ng/api";
+import type { ICopy, IToHiccup, Nullable } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
 import { invert23, mulM23, mulV23, transform23 } from "@thi.ng/matrices";
 import { ReadonlyVec, set2, Vec } from "@thi.ng/vectors";
