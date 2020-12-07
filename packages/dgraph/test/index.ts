@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { DGraph } from "../src/index";
+import { DGraph } from "../src";
 
 describe("dgraph", () => {
     let g: DGraph<any>;

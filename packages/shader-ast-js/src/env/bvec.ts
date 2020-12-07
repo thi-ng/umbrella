@@ -9,7 +9,7 @@ import {
     some3,
     some4,
 } from "@thi.ng/vectors";
-import { JSBuiltinsBool } from "../api";
+import type { JSBuiltinsBool } from "../api";
 
 export const BVEC2: JSBuiltinsBool = {
     all: every2,

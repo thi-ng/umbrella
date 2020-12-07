@@ -1,7 +1,7 @@
 import { defmulti, Implementation2O, MultiFn2O } from "@thi.ng/defmulti";
 import { IShape, Type } from "@thi.ng/geom-api";
 import { div, ReadonlyVec, sub, Vec } from "@thi.ng/vectors";
-import { Rect } from "../api/rect";
+import type { Rect } from "../api/rect";
 import { dispatch } from "../internal/dispatch";
 import type { IObjectOf } from "@thi.ng/api";
 

@@ -1,6 +1,6 @@
 import { canvas } from "@thi.ng/hdom-canvas";
 import { HALF_PI, PI } from "@thi.ng/math";
-import { StreamSync, sync, trigger } from "@thi.ng/rstream";
+import { CloseMode, StreamSync, sync, trigger } from "@thi.ng/rstream";
 import {
     GestureEvent,
     gestureStream,
@@ -143,7 +143,10 @@ const app = (main: StreamSync<any, any>) => {
 // component's `init` method is called which attaches the above gesture
 // stream dynamically. the entire UI then only updates when there are new
 // user interactions...
-const main = sync<any, any>({ src: { trigger: trigger() } });
+const main = sync<any, any>({
+    src: { trigger: trigger() },
+    closeIn: CloseMode.NEVER,
+});
 // transform result stream using the
 // root component fn and the hdom differential
 // update transducer

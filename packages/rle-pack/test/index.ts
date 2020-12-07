@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { decode, encode } from "../src/index";
+import { decode, encode } from "../src";
 
 // prettier-ignore
 describe("rle-pack", () => {

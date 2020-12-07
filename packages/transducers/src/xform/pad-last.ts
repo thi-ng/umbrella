@@ -1,7 +1,7 @@
 import { isIterable } from "@thi.ng/checks";
+import type { Reducer, Transducer } from "../api";
 import { iterator } from "../iterator";
 import { isReduced } from "../reduced";
-import type { Reducer, Transducer } from "../api";
 
 /**
  * Ensures the total number of transformed values will be multiples of

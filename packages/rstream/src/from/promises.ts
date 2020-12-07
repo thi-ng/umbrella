@@ -1,6 +1,6 @@
 import { mapcat } from "@thi.ng/transducers";
 import type { CommonOpts } from "../api";
-import { Subscription } from "../subscription";
+import type { Subscription } from "../subscription";
 import { optsWithID } from "../utils/idgen";
 import { fromPromise } from "./promise";
 

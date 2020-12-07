@@ -4,7 +4,7 @@ import { IHiccupShape, IShape, Type } from "@thi.ng/geom-api";
 import { clipLineSegmentPoly } from "@thi.ng/geom-clip-line";
 import { sutherlandHodgeman } from "@thi.ng/geom-clip-poly";
 import { centroid } from "@thi.ng/geom-poly-utils";
-import { ReadonlyVec } from "@thi.ng/vectors";
+import type { ReadonlyVec } from "@thi.ng/vectors";
 import { Group } from "../api/group";
 import { Line } from "../api/line";
 import { Polygon } from "../api/polygon";

@@ -1,9 +1,9 @@
 import { defmulti, Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
 import { IShape, SamplingOpts, Type } from "@thi.ng/geom-api";
-import { AABB } from "../api/aabb";
-import { Polygon } from "../api/polygon";
-import { Polyline } from "../api/polyline";
-import { Rect } from "../api/rect";
+import type { AABB } from "../api/aabb";
+import type { Polygon } from "../api/polygon";
+import type { Polyline } from "../api/polyline";
+import type { Rect } from "../api/rect";
 import { dispatch } from "../internal/dispatch";
 import { edgeIterator } from "../internal/edges";
 import { vertices } from "./vertices";

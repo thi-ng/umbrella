@@ -4,7 +4,7 @@ import { fmod } from "@thi.ng/math";
 import { mapIndexed } from "@thi.ng/transducers";
 import { add2, hash } from "@thi.ng/vectors";
 import { Hash, Key } from "../api";
-import { IMGUI } from "../gui";
+import type { IMGUI } from "../gui";
 import { buttonRaw } from "./button";
 import { textLabelRaw } from "./textlabel";
 

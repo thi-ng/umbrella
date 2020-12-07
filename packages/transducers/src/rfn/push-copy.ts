@@ -1,5 +1,5 @@
-import { reducer } from "../reduce";
 import type { Reducer } from "../api";
+import { reducer } from "../reduce";
 
 export const pushCopy = <T>(): Reducer<T[], T> =>
     reducer<T[], T>(

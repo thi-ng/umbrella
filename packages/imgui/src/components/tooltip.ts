@@ -1,6 +1,6 @@
 import { rect } from "@thi.ng/geom";
 import { add2 } from "@thi.ng/vectors";
-import { IMGUI } from "../gui";
+import type { IMGUI } from "../gui";
 import { textLabelRaw } from "./textlabel";
 
 export const tooltipRaw = (gui: IMGUI, tooltip: string) => {

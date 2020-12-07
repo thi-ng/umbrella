@@ -1,4 +1,4 @@
-import { IObjectOf } from "@thi.ng/api";
+import type { IObjectOf } from "@thi.ng/api";
 import { idgen } from "@thi.ng/idgen";
 import { Z3 } from "@thi.ng/strings";
 import {

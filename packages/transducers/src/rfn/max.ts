@@ -1,5 +1,5 @@
-import { reduce, reducer } from "../reduce";
 import type { Reducer } from "../api";
+import { reduce, reducer } from "../reduce";
 
 export function max(): Reducer<number, number>;
 export function max(xs: Iterable<number>): number;

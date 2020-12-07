@@ -1,6 +1,6 @@
 import * as tx from "@thi.ng/transducers";
 import * as assert from "assert";
-import { fsm } from "../src/index";
+import { fsm } from "../src";
 
 describe("transducers-fsm", () => {
     it("readme example", () => {

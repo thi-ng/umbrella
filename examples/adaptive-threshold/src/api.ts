@@ -1,5 +1,5 @@
 import type { Val1 } from "@thi.ng/api";
-import { PackedBuffer } from "@thi.ng/pixel";
+import type { PackedBuffer } from "@thi.ng/pixel";
 
 // event ID constants
 export const SET_IMAGE = "set-image";

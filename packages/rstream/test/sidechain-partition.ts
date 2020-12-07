@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { sidechainPartition, State, Stream, stream } from "../src/index";
+import { sidechainPartition, State, Stream, stream } from "../src";
 
 describe("SidechainPartition", function () {
     let src: Stream<any>, side: Stream<any>, buf: any[];

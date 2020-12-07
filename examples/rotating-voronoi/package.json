@@ -14,15 +14,9 @@
         "rstream"
     ],
     "scripts": {
-        "clean": "rm -rf .cache build out",
-        "build": "yarn clean && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --detailed-report --experimental-scope-hoisting",
-        "build:webpack": "../../node_modules/.bin/webpack --mode production",
-        "start": "parcel index.html -p 8080 --open --no-cache"
-    },
-    "devDependencies": {
-        "parcel-bundler": "^1.12.4",
-        "terser": "^5.2.1",
-        "typescript": "^4.1.2"
+        "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
+        "start": "../../node_modules/.bin/snowpack dev",
+        "build": "../../node_modules/.bin/snowpack build"
     },
     "dependencies": {
         "@thi.ng/dl-asset": "latest",
@@ -58,5 +52,8 @@
             "vectors"
         ],
         "screenshot": "examples/rotating-voronoi.jpg"
+    },
+    "devDependencies": {
+        "@types/snowpack-env": "^2.3.2"
     }
 }

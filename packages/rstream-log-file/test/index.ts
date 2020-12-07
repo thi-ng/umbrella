@@ -1,5 +1,5 @@
 // import * as assert from "assert";
-// import * as rlf from "../src/index";
+// import * as rlf from "../src";
 
 describe("rstream-log-file", () => {
     it("tests pending");

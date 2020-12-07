@@ -1,5 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { MultiTrie } from "@thi.ng/associative";
+import type { MultiTrie } from "@thi.ng/associative";
 import { compareByKeys2 } from "@thi.ng/compare";
 
 type PackedTrie = [IObjectOf<PackedTrie>, number[]?];

@@ -7,3 +7,5 @@
  * Effect description
  */
 // export const FOO = "foo";
+
+export {};

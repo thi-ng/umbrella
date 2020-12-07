@@ -1,5 +1,5 @@
-import { Field, union, struct } from "../src/index";
 import * as assert from "assert";
+import { Field, struct, union } from "../src";
 
 describe("nested struct + union", () => {
     let i = <Field[]>[

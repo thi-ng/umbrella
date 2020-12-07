@@ -1,6 +1,6 @@
 import type { Fn, Nullable, Pair } from "@thi.ng/api";
 import type { IRegionQuery, ISpatialMap } from "@thi.ng/geom-api";
-import { Heap } from "@thi.ng/heaps";
+import type { Heap } from "@thi.ng/heaps";
 import { EPS } from "@thi.ng/math";
 import { map } from "@thi.ng/transducers";
 import {

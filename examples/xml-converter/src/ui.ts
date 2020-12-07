@@ -1,4 +1,4 @@
-import { Subscription } from "@thi.ng/rstream";
+import type { Subscription } from "@thi.ng/rstream";
 import { mapIndexed } from "@thi.ng/transducers";
 import { handleTab } from "./utils";
 

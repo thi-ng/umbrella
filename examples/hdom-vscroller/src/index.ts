@@ -10,8 +10,8 @@ type Package = [string, string];
 
 const LOGO = _logo;
 const REPO_BASE = "https://github.com/thi-ng/umbrella/";
-const COMMITS: Commit[] = _commits;
-const PACKAGES: Package[] = _packages;
+const COMMITS = <Commit[]>_commits;
+const PACKAGES = <Package[]>_packages;
 
 let query = "";
 let filtered = COMMITS;
@@ -97,9 +97,4 @@ const app = () => [
     }),
 ];
 
-const cancel = start(app);
-
-if (process.env.NODE_ENV !== "production") {
-    const hot = (<any>module).hot;
-    hot && hot.dispose(cancel);
-}
+start(app);

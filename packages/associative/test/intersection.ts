@@ -1,6 +1,5 @@
 import * as assert from "assert";
-import { ArraySet } from "../src/array-set";
-import { intersection } from "../src/intersection";
+import { ArraySet, intersection } from "../src";
 
 describe("intersection", () => {
     it("native (numbers)", () => {

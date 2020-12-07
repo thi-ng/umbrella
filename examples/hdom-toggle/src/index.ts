@@ -70,7 +70,7 @@ const toggleGroup = (_: any, toggle: any) => [
     ]),
 ];
 
-const cancel = start(() => [
+start(() => [
     "div",
     [toggleGroup, toggleH],
     [toggleGroup, toggleHStroke],
@@ -81,8 +81,3 @@ const cancel = start(() => [
     [toggleGroup, toggleVSq],
     [toggleGroup, toggleVSqStroke],
 ]);
-
-if (process.env.NODE_ENV !== "production") {
-    const hot = (<any>module).hot;
-    hot && hot.dispose(cancel);
-}

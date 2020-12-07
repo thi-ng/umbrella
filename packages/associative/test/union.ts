@@ -1,6 +1,5 @@
 import * as assert from "assert";
-import { ArraySet } from "../src/array-set";
-import { union } from "../src/union";
+import { ArraySet, union } from "../src";
 
 describe("union", () => {
     it("native (numbers)", () => {

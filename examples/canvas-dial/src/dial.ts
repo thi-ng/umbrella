@@ -3,7 +3,7 @@ import { peek } from "@thi.ng/arrays";
 import { isString } from "@thi.ng/checks";
 import { canvas2D } from "@thi.ng/hdom-components";
 import { fitClamped } from "@thi.ng/math";
-import { Subscription } from "@thi.ng/rstream";
+import type { Subscription } from "@thi.ng/rstream";
 import {
     GestureEvent,
     gestureStream,

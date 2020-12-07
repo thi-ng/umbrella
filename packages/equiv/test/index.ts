@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { equiv } from "../src/";
+import { equiv } from "../src";
 
 describe("equiv", () => {
     it("null", () => {

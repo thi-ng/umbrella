@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { Triple, TripleIds, TripleStore } from "../src/index";
+import { Triple, TripleIds, TripleStore } from "../src";
 
 describe("rstream-query", () => {
     const triples: Triple[] = [

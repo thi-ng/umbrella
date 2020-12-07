@@ -5,14 +5,14 @@ import {
     ARGB4444,
     ARGB8888,
     BGR888,
-    GRAY_ALPHA16,
-    GRAY_ALPHA8,
     GRAY16,
     GRAY8,
+    GRAY_ALPHA16,
+    GRAY_ALPHA8,
     PackedFormat,
     RGB565,
     RGB888,
-} from "../src/index";
+} from "../src";
 // import { equiv } from "@thi.ng/equiv";
 
 const testFromABGR = (fmt: PackedFormat, specs: number[]) => {

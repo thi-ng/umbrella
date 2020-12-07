@@ -6,16 +6,10 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "clean": "rm -rf .cache build out",
-        "build": "yarn clean && yarn build:worker && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --detailed-report --experimental-scope-hoisting",
-        "build:worker": "../../node_modules/.bin/webpack --mode production --config webpack.worker.config.js",
-        "build:webpack": "yarn build:worker && ../../node_modules/.bin/webpack --mode production",
-        "start": "yarn build:worker && parcel index.html -d out -p 8080 --open"
-    },
-    "devDependencies": {
-        "parcel-bundler": "^1.12.3",
-        "terser": "^3.17.0",
-        "typescript": "^4.1.2"
+        "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
+        "start": "yarn build:worker && ../../node_modules/.bin/snowpack dev",
+        "build": "yarn build:worker && ../../node_modules/.bin/snowpack build",
+        "build:worker": "../../node_modules/.bin/webpack --config webpack.worker.js --mode production"
     },
     "dependencies": {
         "@thi.ng/api": "latest",

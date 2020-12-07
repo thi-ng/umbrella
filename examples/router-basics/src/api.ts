@@ -1,6 +1,6 @@
 import type { Fn, IObjectOf, Path } from "@thi.ng/api";
 import type { IView } from "@thi.ng/atom";
-import { EffectDef, EventBus, EventDef } from "@thi.ng/interceptors";
+import type { EffectDef, EventBus, EventDef } from "@thi.ng/interceptors";
 import type { HTMLRouterConfig, RouteMatch } from "@thi.ng/router";
 
 // general types defined for the base app
@@ -28,14 +28,23 @@ export interface AppConfig {
     initialState: any;
     router: HTMLRouterConfig;
     ui: UIAttribs;
-    views: Partial<Record<keyof AppViews, ViewSpec>>;
+    views: Partial<Record<AppViewIDs, ViewSpec>>;
 }
+
+export type AppViewIDs =
+    | "route"
+    | "routeComponent"
+    | "users"
+    | "userlist"
+    | "status"
+    | "debug"
+    | "json";
 
 /**
  * Derived views exposed by the app.
  * Add more declarations here as needed.
  */
-export interface AppViews extends Record<keyof AppViews, IView<any>> {
+export interface AppViews extends Record<AppViewIDs, IView<any>> {
     route: IView<RouteMatch>;
     routeComponent: IView<any>;
     users: IView<IObjectOf<User>>;

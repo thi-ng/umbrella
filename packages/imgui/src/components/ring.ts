@@ -7,7 +7,7 @@ import { map, normRange } from "@thi.ng/transducers";
 import { cartesian2, hash, Vec } from "@thi.ng/vectors";
 import { dialVal } from "../behaviors/dial";
 import { handleSlider1Keys } from "../behaviors/slider";
-import { IMGUI } from "../gui";
+import type { IMGUI } from "../gui";
 import { dialValueLabel } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 

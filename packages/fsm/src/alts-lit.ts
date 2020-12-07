@@ -1,6 +1,6 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { LitCallback, Match, Matcher } from "./api";
 import { result } from "./result";
-import type { IObjectOf } from "@thi.ng/api";
 
 export const altsLit = <T, C, R>(
     opts: Set<T>,

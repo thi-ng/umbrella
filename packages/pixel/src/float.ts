@@ -1,7 +1,7 @@
 import { assert, Fn, NumericArray } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
 import { clamp01 } from "@thi.ng/math";
-import {
+import type {
     BlendFnFloat,
     BlitOpts,
     FloatFormat,

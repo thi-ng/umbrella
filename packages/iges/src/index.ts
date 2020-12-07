@@ -12,6 +12,7 @@ import {
     wordWrap,
     wrapSides,
 } from "@thi.ng/transducers";
+import type { ReadonlyVec } from "@thi.ng/vectors";
 import {
     BooleanNode,
     BooleanTree,
@@ -28,7 +29,6 @@ import {
     Type,
     Unit,
 } from "./api";
-import type { ReadonlyVec } from "@thi.ng/vectors";
 
 // https://wiki.eclipse.org/IGES_file_Specification
 // http://paulbourke.net/dataformats/iges/IGES.pdf

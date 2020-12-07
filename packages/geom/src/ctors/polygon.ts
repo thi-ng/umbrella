@@ -1,3 +1,4 @@
+import type { Attribs } from "@thi.ng/geom-api";
 import { TAU } from "@thi.ng/math";
 import {
     cycle,
@@ -9,7 +10,6 @@ import {
 } from "@thi.ng/transducers";
 import { cartesian2, Vec } from "@thi.ng/vectors";
 import { Polygon } from "../api/polygon";
-import type { Attribs } from "@thi.ng/geom-api";
 
 export const polygon = (pts: Vec[], attribs?: Attribs) =>
     new Polygon(pts, attribs);

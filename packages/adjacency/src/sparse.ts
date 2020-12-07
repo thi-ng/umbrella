@@ -1,7 +1,6 @@
-import { CSR } from "@thi.ng/sparse";
-import { DegreeType } from "./api";
-import type { IGraph } from "./api";
 import type { Pair } from "@thi.ng/api";
+import { CSR } from "@thi.ng/sparse";
+import { DegreeType, IGraph } from "./api";
 
 export class AdjacencyMatrix extends CSR implements IGraph {
     static newEmpty(n: number, undirected = false) {

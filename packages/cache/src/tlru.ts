@@ -1,5 +1,5 @@
 import type { Fn0 } from "@thi.ng/api";
-import { ConsCell, DCons } from "@thi.ng/dcons";
+import type { ConsCell, DCons } from "@thi.ng/dcons";
 import type { CacheEntry, CacheOpts } from "./api";
 import { LRUCache } from "./lru";
 

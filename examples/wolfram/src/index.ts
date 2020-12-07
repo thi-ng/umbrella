@@ -1,4 +1,4 @@
-import { download } from "@thi.ng/dl-asset";
+import { downloadWithMime } from "@thi.ng/dl-asset";
 import { dropdown } from "@thi.ng/hdom-components";
 import {
     fromIterable,
@@ -131,7 +131,7 @@ const wolfram = sync<any, any>({
     xform: scan(reducer<number[], any>(resetCA, evolveCA)),
 });
 
-const main = sync({
+sync({
     src: {
         id: rule,
         ksize: kernel,
@@ -168,10 +168,9 @@ wolfram
                 zip(range2d(WIDTH, WIDTH), flatten(grid))
             )
         ),
-        map((obj: string) => download(`ca-${rule.deref()}.obj`, obj))
+        map((obj: string) =>
+            downloadWithMime(`ca-${rule.deref()}.obj`, obj, {
+                mime: "model/obj",
+            })
+        )
     );
-
-if (process.env.NODE_ENV !== "production") {
-    const hot = (<any>module).hot;
-    hot && hot.dispose(() => main.done());
-}

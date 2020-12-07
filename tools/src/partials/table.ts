@@ -1,4 +1,4 @@
-import { IObjectOf, Keys } from "@thi.ng/api";
+import type { IObjectOf, Keys } from "@thi.ng/api";
 import { juxt } from "@thi.ng/compose";
 import { repeat } from "@thi.ng/strings";
 import { Border, tableCanvas, toString } from "@thi.ng/text-canvas";
@@ -9,7 +9,7 @@ import {
     max,
     multiplex,
     scan,
-    transduce
+    transduce,
 } from "@thi.ng/transducers";
 
 const maxLen = (key: string) =>
@@ -36,14 +36,14 @@ export const table = <T extends IObjectOf<string>>(
             // @ts-ignore
             juxt(...keys.map((k) => (x: any) => x[k])),
             items
-        )
+        ),
     ];
     return toString(
         tableCanvas(
             {
                 cols: [...map((width) => ({ width }), colWidths)],
                 padding: [1, 0],
-                border: Border.V
+                border: Border.V,
             },
             rows
         )

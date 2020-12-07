@@ -1,12 +1,8 @@
 {
-    "extends": "../../tsconfig.json",
+    "extends": "../tsconfig.json",
+    "include": ["src"],
     "compilerOptions": {
-        "outDir": ".",
-        "module": "es2020",
-        "target": "es2017",
-        "sourceMap": true,
-        "noUnusedLocals": false,
-        "noUnusedParameters": false
-    },
-    "include": ["./src/**/*.ts"]
+        "baseUrl": "./",
+        "paths": { "*": ["web_modules/.types/*"] }
+    }
 }

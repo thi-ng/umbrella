@@ -1,5 +1,5 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
-import { DGraph } from "@thi.ng/dgraph";
+import type { DGraph } from "@thi.ng/dgraph";
 import { Edge, Graph, GraphAttribs, Node, serializeGraph } from "@thi.ng/dot";
 
 export interface DGraphDotOpts<T> {

@@ -2,7 +2,7 @@ import { shuffle } from "@thi.ng/arrays";
 import { equiv } from "@thi.ng/equiv";
 import { range, repeat, zip } from "@thi.ng/transducers";
 import * as assert from "assert";
-import { defSortedMap, SortedMap } from "../src/sorted-map";
+import { defSortedMap, SortedMap } from "../src";
 
 describe("SortedMap", () => {
     let m: SortedMap<any, any>;

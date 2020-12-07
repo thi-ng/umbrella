@@ -11,7 +11,7 @@ import { fromRAF, stream, Subscription, sync } from "@thi.ng/rstream";
 import { map, range, repeatedly } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { addN } from "@thi.ng/vectors";
-import logo from "../assets/logo-64.png";
+import logo from "./logo-64.png";
 
 // for testing SVG conversion
 
@@ -397,10 +397,10 @@ selection.next(
         : "shape morph"
 );
 
-// HMR handling
-// terminate `scene` rstream to avoid multiple running instances after HMR
-// (this will also terminate all attached child streams/subscriptions)
-const hot = (<any>module).hot;
-if (hot) {
-    hot.dispose(() => scene.done());
-}
+// // HMR handling
+// // terminate `scene` rstream to avoid multiple running instances after HMR
+// // (this will also terminate all attached child streams/subscriptions)
+// const hot = (<any>module).hot;
+// if (hot) {
+//     hot.dispose(() => scene.done());
+// }

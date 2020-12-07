@@ -1,10 +1,8 @@
+import { exposeGlobal } from "@thi.ng/api";
 import { App } from "./app";
 import { CONFIG } from "./config";
 
-// export app to global var in dev mode
-// (for interaction via browser dev tools)
-if (process.env.NODE_ENV === "development") {
-    ((<any>window)["APP"] = new App(CONFIG)).start();
-} else {
-    new App(CONFIG).start();
-}
+const APP = new App(CONFIG);
+exposeGlobal("APP", APP);
+
+APP.start();

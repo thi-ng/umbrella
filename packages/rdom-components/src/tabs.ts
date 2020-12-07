@@ -1,7 +1,7 @@
 import type { Fn, Fn4 } from "@thi.ng/api";
 import { Attribs, div, section } from "@thi.ng/hiccup-html";
 import { $list, $switch, ComponentLike } from "@thi.ng/rdom";
-import { Subscription } from "@thi.ng/rstream";
+import type { Subscription } from "@thi.ng/rstream";
 import { dedupe, map, range } from "@thi.ng/transducers";
 
 export interface TabOpts {

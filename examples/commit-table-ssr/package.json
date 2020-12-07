@@ -6,20 +6,16 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "clean": "rm -rf .cache build out",
-        "prep": "yarn clean && mkdir -p out && cp commits.json out",
-        "build-static": "tsc && node build/server/static.js",
-        "build": "yarn prep && parcel build index.html -d out --no-source-maps --no-cache --experimental-scope-hoisting --detailed-report --public-url ./",
+        "clean": "../../node_modules/.bin/rimraf node_modules/.cache build out",
+        "build-static": "../../node_modules/.bin/ts-node src/server/static.ts",
         "build:webpack": "../../node_modules/.bin/webpack --mode production",
-        "start": "tsc && node build/server/index.js"
+        "start": "../../node_modules/.bin/ts-node src/server/index.ts"
     },
     "devDependencies": {
-        "parcel-bundler": "^1.12.4",
-        "terser": "^5.2.1",
+        "ts-node": "^9.1.0",
         "typescript": "^4.1.2"
     },
     "dependencies": {
-        "express": "^4.17.1",
         "@thi.ng/api": "latest",
         "@thi.ng/associative": "latest",
         "@thi.ng/cache": "latest",
@@ -28,7 +24,8 @@
         "@thi.ng/rstream": "latest",
         "@thi.ng/transducers": "latest",
         "@thi.ng/transducers-hdom": "latest",
-        "@types/express": "^4.17.7"
+        "@types/express": "^4.17.7",
+        "express": "^4.17.1"
     },
     "browserslist": [
         "last 3 Chrome versions"

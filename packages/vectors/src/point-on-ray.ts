@@ -1,4 +1,4 @@
-import { Vec } from "./api";
+import type { ReadonlyVec, Vec } from "./api";
 import { maddN, maddN2, maddN3 } from "./maddn";
 
 /**
@@ -12,8 +12,8 @@ import { maddN, maddN2, maddN3 } from "./maddn";
  */
 export const pointOnRay = (
     out: Vec | null,
-    rayOrigin: Vec,
-    rayDir: Vec,
+    rayOrigin: ReadonlyVec,
+    rayDir: ReadonlyVec,
     dist: number
 ) => maddN(out, rayDir, dist, rayOrigin);
 
@@ -27,8 +27,8 @@ export const pointOnRay = (
  */
 export const pointOnRay2 = (
     out: Vec | null,
-    rayOrigin: Vec,
-    rayDir: Vec,
+    rayOrigin: ReadonlyVec,
+    rayDir: ReadonlyVec,
     dist: number
 ) => maddN2(out, rayDir, dist, rayOrigin);
 
@@ -42,7 +42,7 @@ export const pointOnRay2 = (
  */
 export const pointOnRay3 = (
     out: Vec | null,
-    rayOrigin: Vec,
-    rayDir: Vec,
+    rayOrigin: ReadonlyVec,
+    rayDir: ReadonlyVec,
     dist: number
 ) => maddN3(out, rayDir, dist, rayOrigin);

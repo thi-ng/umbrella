@@ -1,7 +1,7 @@
 import { timedResult } from "@thi.ng/bench";
 import { KdTreeMap } from "@thi.ng/geom-accel";
 import { canvas } from "@thi.ng/hdom-canvas";
-import { StreamSync, sync, trigger } from "@thi.ng/rstream";
+import { CloseMode, StreamSync, sync, trigger } from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
 import { map, mapcat } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
@@ -95,13 +95,11 @@ const app = (main: StreamSync<any, any>) => {
 // component's `init` method is called which attaches the above gesture
 // stream dynamically. the entire UI then only updates when there are new
 // user interactions...
-const main = sync<any, any>({ src: { trigger: trigger() } });
+const main = sync<any, any>({
+    src: { trigger: trigger() },
+    closeIn: CloseMode.NEVER,
+});
 // transform result stream using the
 // root component fn and the hdom differential
 // update transducer
 main.transform(map(app(main)), updateDOM());
-
-if (process.env.NODE_ENV !== "production") {
-    const hot = (<any>module).hot;
-    hot && hot.dispose(() => main.done());
-}

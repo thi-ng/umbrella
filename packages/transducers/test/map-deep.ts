@@ -1,6 +1,5 @@
-import { deepTransform } from "../src/func/deep-transform";
-
 import * as assert from "assert";
+import { deepTransform } from "../src";
 
 describe("deepTransform", () => {
     it("transforms hiccup", () => {

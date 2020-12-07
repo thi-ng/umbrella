@@ -2,7 +2,7 @@ import { rect } from "@thi.ng/geom";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { hash } from "@thi.ng/vectors";
 import { handleButtonKeys, hoverButton } from "../behaviors/button";
-import { IMGUI } from "../gui";
+import type { IMGUI } from "../gui";
 import { layoutBox } from "../layout";
 import { textLabelRaw } from "./textlabel";
 

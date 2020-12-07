@@ -1,14 +1,14 @@
+import type { Attribs } from "@thi.ng/geom-api";
 import {
     cubicFromArc as _arc,
     cubicFromLine as _line,
     cubicFromQuadratic as _quad,
 } from "@thi.ng/geom-splines";
-import { Arc } from "../api/arc";
+import type { Vec } from "@thi.ng/vectors";
+import type { Arc } from "../api/arc";
 import { Cubic } from "../api/cubic";
 import { copyAttribs } from "../internal/copy-attribs";
 import { pclike } from "../internal/pclike";
-import type { Attribs } from "@thi.ng/geom-api";
-import type { Vec } from "@thi.ng/vectors";
 
 export function cubic(a: Vec, b: Vec, c: Vec, d: Vec, attribs?: Attribs): Cubic;
 export function cubic(pts: Vec[], attribs?: Attribs): Cubic;

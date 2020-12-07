@@ -1,7 +1,5 @@
 import * as assert from "assert";
-
-import { ArraySet } from "../src/array-set";
-import { join, joinWith } from "../src/join";
+import { ArraySet, join, joinWith } from "../src";
 
 describe("join", () => {
     it("simple", () => {

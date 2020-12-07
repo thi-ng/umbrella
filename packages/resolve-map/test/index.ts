@@ -1,6 +1,6 @@
 import * as tx from "@thi.ng/transducers";
 import * as assert from "assert";
-import { resolve, ResolveFn } from "../src/index";
+import { resolve, ResolveFn } from "../src";
 
 describe("resolve-map", () => {
     it("simple", () => {

@@ -9,6 +9,9 @@ spec. See source code for config options.
 
 ## Generating the visualization
 
+The instructions below assume the [entire umbrella repo has already been
+built](https://github.com/thi-ng/umbrella/blob/develop/README.md#building):
+
 ```bash
 cd umbrella/examples/commit-heatmap
 yarn build

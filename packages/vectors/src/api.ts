@@ -1,4 +1,4 @@
-import {
+import type {
     ArrayLikeIterable,
     Fn,
     Fn2,

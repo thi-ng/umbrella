@@ -8,7 +8,7 @@ import { GRAY8, imagePromise, PackedBuffer } from "@thi.ng/pixel";
 import { Node2D } from "@thi.ng/scenegraph";
 import { map, range } from "@thi.ng/transducers";
 import { ReadonlyVec, setN2, Vec } from "@thi.ng/vectors";
-import LOGO from "../assets/logo-256.png";
+import LOGO from "./logo-256.png";
 
 /**
  * Specialized scene graph node for images.
@@ -135,10 +135,5 @@ imagePromise(LOGO).then((img) => {
         ];
     };
 
-    cancel = start(app);
+    start(app);
 });
-
-if (process.env.NODE_ENV !== "production") {
-    const hot = (<any>module).hot;
-    hot && cancel! && hot.dispose(cancel!);
-}

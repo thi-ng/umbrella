@@ -1,3 +1,4 @@
+import type { Tessellator } from "@thi.ng/geom-api";
 import { centroid } from "@thi.ng/geom-poly-utils";
 import {
     comp,
@@ -8,7 +9,6 @@ import {
     wrapSides,
 } from "@thi.ng/transducers";
 import { mixN, ReadonlyVec, Vec } from "@thi.ng/vectors";
-import type { Tessellator } from "@thi.ng/geom-api";
 
 export const quadFan: Tessellator = (points: ReadonlyVec[]) => {
     const p = centroid(points);

@@ -1,7 +1,5 @@
-import { range2d } from "../src/iter/range2d";
-
 import * as assert from "assert";
-import { rangeNd } from "../src";
+import { range2d, rangeNd } from "../src";
 
 describe("range2d", () => {
     it("forward", () => {

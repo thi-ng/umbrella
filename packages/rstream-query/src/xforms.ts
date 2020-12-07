@@ -12,7 +12,7 @@ import {
     Transducer,
 } from "@thi.ng/transducers";
 import type { BindFn, Edit, Solutions, Triple, TripleIds } from "./api";
-import { TripleStore } from "./store";
+import type { TripleStore } from "./store";
 
 export const intersect2: Transducer<IObjectOf<TripleIds>, TripleIds> = comp(
     map(({ a, b }) => intersection(a, b)),

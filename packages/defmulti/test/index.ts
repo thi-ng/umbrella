@@ -6,7 +6,7 @@ import {
     defmultiN,
     implementations,
     setLogger,
-} from "../src/index";
+} from "../src";
 
 // prettier-ignore
 describe("defmulti", () => {

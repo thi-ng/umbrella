@@ -110,7 +110,7 @@ const app = () => {
             gl.clearColor(bg, bg, bg, 1);
             gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
             draw(model);
-        }
+        },
     });
     return () => [
         "div.sans-serif",
@@ -148,9 +148,4 @@ const loadCubeMap = (base: string) =>
         )
     );
 
-const cancel = start(app());
-
-if (process.env.NODE_ENV !== "production") {
-    const hot = (<any>module).hot;
-    hot && hot.dispose(cancel);
-}
+start(app());

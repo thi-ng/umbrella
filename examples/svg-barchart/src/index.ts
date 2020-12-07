@@ -106,8 +106,3 @@ renderOnce([
         map((year) => [year, Math.random() * 100], range(1980, 2020, 2)),
     ],
 ]);
-
-if (process.env.NODE_ENV !== "production") {
-    const hot = (<any>module).hot;
-    hot && hot.dispose(() => clearDOM(document.getElementById("app")!));
-}

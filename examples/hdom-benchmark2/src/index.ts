@@ -161,7 +161,7 @@ const deltaOpts = [
     ...map((i) => [i, i], [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024]),
 ];
 
-const cancel = start(() => {
+start(() => {
     frame++;
     return [
         "div.ma3.code.f7",
@@ -218,8 +218,3 @@ const cancel = start(() => {
         ],
     ];
 });
-
-const hot = (<any>module).hot;
-if (hot) {
-    hot.dispose(cancel);
-}

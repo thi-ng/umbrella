@@ -1,7 +1,7 @@
 import { ALPHA, DIGITS, WS } from "@thi.ng/strings";
 import { altsLitObj } from "./alts-lit";
-import { result } from "./result";
 import type { LitCallback, Matcher } from "./api";
+import { result } from "./result";
 
 /**
  * Returns a single input matcher which returns `Match.FULL` if the

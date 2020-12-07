@@ -1,5 +1,5 @@
 import type { Fn, IID, ILength, IRelease } from "@thi.ng/api";
-import { Channel } from "./channel";
+import type { Channel } from "./channel";
 
 export interface ChannelItem<T> {
     value(): Promise<T>;

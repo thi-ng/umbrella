@@ -9,16 +9,16 @@ import {
 } from "@thi.ng/geom-splines";
 import { TAU } from "@thi.ng/math";
 import { mapcat } from "@thi.ng/transducers";
-import { ReadonlyVec, Vec } from "@thi.ng/vectors";
-import { Circle } from "../api/circle";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import type { Circle } from "../api/circle";
 import { Cubic } from "../api/cubic";
-import { Group } from "../api/group";
-import { Line } from "../api/line";
-import { Path } from "../api/path";
-import { Polygon } from "../api/polygon";
-import { Polyline } from "../api/polyline";
-import { Quadratic } from "../api/quadratic";
-import { Rect } from "../api/rect";
+import type { Group } from "../api/group";
+import type { Line } from "../api/line";
+import type { Path } from "../api/path";
+import type { Polygon } from "../api/polygon";
+import type { Polyline } from "../api/polyline";
+import type { Quadratic } from "../api/quadratic";
+import type { Rect } from "../api/rect";
 import { arc } from "../ctors/arc";
 import {
     cubicFromArc,

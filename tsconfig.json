@@ -8,6 +8,7 @@
         "importHelpers": true,
         "noUnusedParameters": true,
         "noUnusedLocals": true,
+        "importsNotUsedAsValues": "error",
         "preserveConstEnums": true,
         "moduleResolution": "node",
         "strict": true,

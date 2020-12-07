@@ -281,5 +281,5 @@ threadLast(
         timeLineLabels(),
     ],
     serialize,
-    [fs.writeFileSync, "heatmap2.svg"]
+    [fs.writeFileSync, "heatmap.svg"]
 );

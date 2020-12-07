@@ -1,4 +1,4 @@
-import { IObjectOf } from "@thi.ng/api";
+import type { IObjectOf } from "@thi.ng/api";
 
 export const RE_PKG = /@thi\.ng\/[a-z0-9-]+/g;
 export const RE_USER = /@([a-z0-9_-]+)/gi;

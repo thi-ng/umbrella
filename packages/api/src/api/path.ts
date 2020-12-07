@@ -1,4 +1,4 @@
-import { NumOrString } from "./prim";
+import type { NumOrString } from "./prim";
 import type {
     Keys,
     Keys1,
@@ -10,7 +10,7 @@ import type {
     Keys7,
     ValN,
 } from "./keyval";
-import { Head, Tail, IsEmpty } from "./tuple";
+import type { Head, Tail, IsEmpty } from "./tuple";
 
 /**
  * Unchecked lookup path for nested data structures.

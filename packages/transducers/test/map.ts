@@ -1,6 +1,5 @@
-import { map, range } from "../src";
-
 import * as assert from "assert";
+import { map, range } from "../src";
 
 describe("map", () => {
     const identity = <T>(t: T): T => t;

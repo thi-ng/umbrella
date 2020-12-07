@@ -10,7 +10,7 @@ import {
 import type { CommonOpts, ISubscribable, ITransformable } from "./api";
 import { sync } from "./stream-sync";
 import { tunnel } from "./subs/tunnel";
-import { Subscription } from "./subscription";
+import type { Subscription } from "./subscription";
 
 export interface ForkJoinOpts<IN, MSG, RES, OUT> extends Partial<CommonOpts> {
     /**

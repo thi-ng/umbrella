@@ -1,6 +1,6 @@
 import * as assert from "assert";
-import { StackContext } from "../src/api";
-import * as pf from "../src/index";
+import * as pf from "../src";
+import type { StackContext } from "../src";
 
 // prettier-ignore
 describe("pointfree", () => {

@@ -1,6 +1,6 @@
-import * as assert from "assert";
 import * as pf from "@thi.ng/pointfree";
-import { run, runU } from "../src/index";
+import * as assert from "assert";
+import { run, runU } from "../src";
 
 describe("pointfree-lang", () => {
     it("nil", () => {

@@ -1,6 +1,6 @@
+import type { Transducer } from "../api";
 import { $iter } from "../iterator";
 import { mapIndexed } from "./map-indexed";
-import type { Transducer } from "../api";
 
 export function indexed<T>(from?: number): Transducer<T, [number, T]>;
 export function indexed<T>(src: Iterable<T>): IterableIterator<[number, T]>;

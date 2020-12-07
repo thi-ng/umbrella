@@ -1,10 +1,6 @@
 import { swizzle } from "@thi.ng/arrays";
-import { permutations, permutationsN } from "../src/iter/permutations";
-import { range } from "../src/iter/range";
-import { iterator } from "../src/iterator";
-import { map } from "../src/xform/map";
-
 import * as assert from "assert";
+import { iterator, map, permutations, permutationsN, range } from "../src";
 
 describe("permutations", () => {
     it("empty", () => {

@@ -52,8 +52,8 @@ import {
     msdfShader,
     text,
 } from "@thi.ng/webgl-msdf";
-import GLYPHS from "../assets/inputmono-extralight-msdf.json";
-import GLYPH_TEX from "../assets/inputmono-extralight.png";
+import GLYPHS from "./inputmono-extralight-msdf.json";
+import GLYPH_TEX from "./inputmono-extralight.png";
 
 const TEXT = `Do not go gentle into that good night,
 Old age should burn and rave at close of day;
@@ -285,9 +285,4 @@ const app = () => {
     return [canvas, { width: window.innerWidth, height: window.innerHeight }];
 };
 
-const cancel = start(app());
-
-if (process.env.NODE_ENV !== "production") {
-    const hot = (<any>module).hot;
-    hot && hot.dispose(cancel);
-}
+start(app());

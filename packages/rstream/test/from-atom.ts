@@ -1,6 +1,6 @@
 import { Atom, Cursor, History } from "@thi.ng/atom";
 import * as assert from "assert";
-import { fromAtom } from "../src/from/atom";
+import { fromAtom } from "../src";
 
 // prettier-ignore
 describe("fromAtom", () => {

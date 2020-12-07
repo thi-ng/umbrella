@@ -1,6 +1,6 @@
-import * as assert from "assert";
-import { DHeap } from "../src/index";
 import { compare } from "@thi.ng/compare";
+import * as assert from "assert";
+import { DHeap } from "../src";
 
 describe("DHeap", () => {
     const rcmp: (a: number, b: number) => number = (a, b) => b - a;

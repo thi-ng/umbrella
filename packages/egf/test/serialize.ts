@@ -1,7 +1,7 @@
-import * as assert from "assert";
-import { toEGF } from "../src";
 import { rdf, schema } from "@thi.ng/prefixes";
+import * as assert from "assert";
 import { writeFileSync } from "fs";
+import { toEGF } from "../src";
 
 describe("serialize", () => {
     it("basics", () => {

@@ -1,8 +1,5 @@
 import * as assert from "assert";
-import { IView } from "../src/api";
-import { Atom } from "../src/atom";
-import { defCursor } from "../src/cursor";
-import { defView, View } from "../src/view";
+import { Atom, defCursor, defView, IView, View } from "../src";
 
 interface State {
     a: number;

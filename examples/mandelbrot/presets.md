@@ -1,0 +1,10 @@
+https://demo.thi.ng/umbrella/mandelbrot/#-5.61419758e-1;6.43037295e-1;-5.61375745e-1;6.43081308e-1;393
+https://demo.thi.ng/umbrella/mandelbrot/#2.32309162e-1;5.33944731e-1;2.33688159e-1;5.35323728e-1;284
+https://demo.thi.ng/umbrella/mandelbrot/#-2.21069336e-1;6.48425782e-1;-2.11669922e-1;6.57602050e-1;320
+https://demo.thi.ng/umbrella/mandelbrot/#2.82117920e-1;-1.37133789e-2;2.86918945e-1;-8.91235352e-3;420
+https://demo.thi.ng/umbrella/mandelbrot/#2.85553654e-1;-1.21380424e-2;2.86618881e-1;-1.10728149e-2;622
+https://demo.thi.ng/umbrella/mandelbrot/#2.86301940e-1;-1.16972577e-2;2.86310366e-1;-1.16888316e-2;760
+https://demo.thi.ng/umbrella/mandelbrot/#-1.47730469e+0;-5.58593750e-3;-1.47387695e+0;-2.15820313e-3;128
+https://demo.thi.ng/umbrella/mandelbrot/#-1.47538194e+0;-3.46502686e-3;-1.47474995e+0;-2.83303730e-3;160
+https://demo.thi.ng/umbrella/mandelbrot/#-1.47499188e+0;-3.11150770e-3;-1.47497510e+0;-3.09472048e-3;224
+https://demo.thi.ng/umbrella/mandelbrot/#3.35639648e-1;-5.04687500e-1;3.37836914e-1;-5.02490234e-1;88

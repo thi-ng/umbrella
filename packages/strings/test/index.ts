@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import * as str from "../src/index";
+import * as str from "../src";
 
 describe("strings", () => {
     it("padLeft", () => {

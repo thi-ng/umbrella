@@ -1,6 +1,6 @@
 import { asCubic, group, pathFromCubics, polygon } from "@thi.ng/geom";
-import { ReadonlyVec } from "@thi.ng/vectors";
-import { FuzzyPolygonOpts } from "./api";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import type { FuzzyPolygonOpts } from "./api";
 import { jitterPoints } from "./points";
 
 export const fuzzyPoly = (

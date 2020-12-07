@@ -1,8 +1,8 @@
+import type { Transducer } from "../api";
 import { comp } from "../func/comp";
 import { $iter } from "../iterator";
 import { drop } from "./drop";
 import { take } from "./take";
-import type { Transducer } from "../api";
 
 /**
  * Pagination helper. Returns transducer which extracts only items for

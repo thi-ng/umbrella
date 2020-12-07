@@ -1,6 +1,5 @@
-import { filterFuzzy } from "../src";
-
 import * as assert from "assert";
+import { filterFuzzy } from "../src";
 
 describe("fuzzy", () => {
     it("strings", () => {

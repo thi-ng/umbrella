@@ -30,7 +30,8 @@ export const $canvas = (
     attribs?: any
 ) => $sub(body, new $Canvas(size, attribs));
 
-export class $Canvas extends Component
+export class $Canvas
+    extends Component
     implements IMountWithState<any[] | IToHiccup> {
     el?: HTMLCanvasElement;
     ctx?: CanvasRenderingContext2D;

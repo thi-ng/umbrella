@@ -25,7 +25,7 @@ forkJoin<number, WorkerJob, WorkerResult, void>({
     // this function is called for each worker ID to define a region of
     // the image to compute. the results of that function are the messages
     // sent to the workers...
-    fork: (id, numWorkers, time) => ({
+    fork: (id, _, time) => ({
         width: W,
         height: H,
         y1: id * rowsPerSlice,
@@ -66,9 +66,3 @@ const drawStats = (parts: WorkerResult[]) => {
         }
     }
 };
-
-// HMR handling
-if (process.env.NODE_ENV !== "production") {
-    const hot = (<any>module).hot;
-    hot && hot.dispose(() => time.done());
-}

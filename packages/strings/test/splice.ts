@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { splice } from "../src/splice";
+import { splice } from "../src";
 
 const SRC = "abc";
 

@@ -197,8 +197,8 @@ const main = sync({
 // transform to create & apply UI
 main.transform(map(app(mode, uniform, scale, uniScale)), updateDOM());
 
-// HMR handling (dev builds only)
-if (process.env.NODE_ENV !== "production") {
-    const hot = (<any>module).hot;
-    hot && hot.dispose(() => main.done());
-}
+// // HMR handling (dev builds only)
+// if (process.env.NODE_ENV !== "production") {
+//     const hot = (<any>module).hot;
+//     hot && hot.dispose(() => main.done());
+// }

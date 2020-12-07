@@ -7,7 +7,7 @@ import {
     merge,
     State,
     StreamMerge,
-} from "../src/index";
+} from "../src";
 
 describe("StreamMerge", () => {
     let src: StreamMerge<number, number>;

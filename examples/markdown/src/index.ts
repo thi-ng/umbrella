@@ -3,7 +3,7 @@ import { parse, TagFactories } from "@thi.ng/hiccup-markdown";
 import { reactive, Stream } from "@thi.ng/rstream";
 import { iterator, map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import readme from "../README.txt";
+import readme from "./README.md";
 
 // ignore error, resolved by parcel
 // const readme = "README.af35c500.md"
@@ -50,7 +50,7 @@ const app = (input: Stream<string>) => ({
         "div.w-100.h-50.w-50-l.vh-100-l.overflow-y-scroll.pa3.lh-copy",
         [
             "div.pa2.bg-yellow.purple.f7",
-            `Parsed ${src.length} chars in ${time}ms`,
+            `Parsed ${src.length} chars in ${time | 0}ms`,
         ],
         ...hiccup,
     ],
@@ -79,8 +79,8 @@ fetch(readme)
     .then((txt) => src.next(txt))
     .catch((e) => src.next(`# Error loading file: ${e}`));
 
-// HMR handling
-if (process.env.NODE_ENV !== "production") {
-    const hot = (<any>module).hot;
-    hot && hot.dispose(() => src.done());
-}
+// // HMR handling
+// if (process.env.NODE_ENV !== "production") {
+//     const hot = (<any>module).hot;
+//     hot && hot.dispose(() => src.done());
+// }

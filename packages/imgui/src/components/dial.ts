@@ -5,7 +5,7 @@ import { HALF_PI, norm, PI, TAU } from "@thi.ng/math";
 import { cartesian2, hash } from "@thi.ng/vectors";
 import { dialVal } from "../behaviors/dial";
 import { handleSlider1Keys, isHoverSlider } from "../behaviors/slider";
-import { IMGUI } from "../gui";
+import type { IMGUI } from "../gui";
 import { dialValueLabel } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 

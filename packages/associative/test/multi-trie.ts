@@ -1,6 +1,5 @@
 import * as assert from "assert";
-
-import { MultiTrie } from "../src/multi-trie";
+import { MultiTrie } from "../src";
 
 describe("MultiTrie", () => {
     let root: MultiTrie<string, string>;

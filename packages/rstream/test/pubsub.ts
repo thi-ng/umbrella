@@ -1,13 +1,7 @@
 import { EquivMap } from "@thi.ng/associative";
-import { mapIndexed, map } from "@thi.ng/transducers";
+import { map, mapIndexed } from "@thi.ng/transducers";
 import * as assert from "assert";
-import {
-    fromIterable,
-    fromIterableSync,
-    PubSub,
-    pubsub,
-    State,
-} from "../src/index";
+import { fromIterable, fromIterableSync, PubSub, pubsub, State } from "../src";
 import { TIMEOUT } from "./config";
 
 describe("PubSub", function () {

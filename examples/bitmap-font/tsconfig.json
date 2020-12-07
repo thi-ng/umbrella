@@ -1,10 +1,8 @@
 {
-    "extends": "../../tsconfig.json",
+    "extends": "../tsconfig.json",
+    "include": ["src"],
     "compilerOptions": {
-        "outDir": ".",
-        "target": "es2017",
-        "sourceMap": true,
-        "strictBindCallApply": false
-    },
-    "include": ["./src/**/*.ts"]
+        "baseUrl": "./",
+        "paths": { "*": ["web_modules/.types/*"] }
+    }
 }

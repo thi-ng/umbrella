@@ -1,5 +1,5 @@
-import { reduce, reducer } from "../reduce";
 import type { Reducer } from "../api";
+import { reduce, reducer } from "../reduce";
 
 /**
  * Reducer. Like {@link (push:1)}, but for ES6 Sets.

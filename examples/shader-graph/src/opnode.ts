@@ -1,4 +1,4 @@
-import { IObjectOf } from "@thi.ng/api";
+import type { IObjectOf } from "@thi.ng/api";
 import { mat23to44 } from "@thi.ng/matrices";
 import {
     defFBO,
@@ -14,7 +14,7 @@ import {
     Texture,
     TextureFilter,
 } from "@thi.ng/webgl";
-import { AppCtx, OpSpec, UserUniforms } from "./api";
+import type { AppCtx, OpSpec, UserUniforms } from "./api";
 
 export class OpNode<T extends UserUniforms> {
     tex: Texture;

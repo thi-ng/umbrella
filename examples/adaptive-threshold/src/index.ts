@@ -1,5 +1,5 @@
 import { peek } from "@thi.ng/arrays";
-import { PackedBuffer } from "@thi.ng/pixel";
+import type { PackedBuffer } from "@thi.ng/pixel";
 import { fromRAF, sidechainPartition } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";

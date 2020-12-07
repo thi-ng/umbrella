@@ -1,4 +1,9 @@
-import { Attribs, AttribVal, MultiStringAttrib, NumericAttrib } from "./api";
+import type {
+    Attribs,
+    AttribVal,
+    MultiStringAttrib,
+    NumericAttrib,
+} from "./api";
 import { defElement, defElements } from "./def";
 
 export const [table, tbody, tfoot, thead, tr, caption] = defElements([

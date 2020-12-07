@@ -18,7 +18,7 @@ import { Polygon } from "../api/polygon";
 import { Polyline } from "../api/polyline";
 import { Quad } from "../api/quad";
 import { Quadratic } from "../api/quadratic";
-import { Rect } from "../api/rect";
+import type { Rect } from "../api/rect";
 import { Text } from "../api/text";
 import { Triangle } from "../api/triangle";
 import { copyAttribs } from "../internal/copy-attribs";

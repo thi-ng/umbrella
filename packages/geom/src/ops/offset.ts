@@ -11,9 +11,9 @@ import {
     ZERO2,
 } from "@thi.ng/vectors";
 import { Circle } from "../api/circle";
-import { Line } from "../api/line";
+import type { Line } from "../api/line";
 import { Quad } from "../api/quad";
-import { Rect } from "../api/rect";
+import type { Rect } from "../api/rect";
 import { rectFromCentroid } from "../ctors/rect";
 import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";

@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { fromObject, State, stream, Subscription } from "../src/index";
+import { fromObject, State, stream, Subscription } from "../src";
 
 type Foo = { a?: number; b: string };
 

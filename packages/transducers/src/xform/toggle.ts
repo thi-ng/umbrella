@@ -1,6 +1,6 @@
 import { isIterable } from "@thi.ng/checks";
-import { iterator1 } from "../iterator";
 import type { Reducer, Transducer } from "../api";
+import { iterator1 } from "../iterator";
 
 /**
  * Stateful transducer which accepts any input and flips between given

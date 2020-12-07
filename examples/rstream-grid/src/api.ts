@@ -1,6 +1,6 @@
 import type { Fn, IObjectOf, Path } from "@thi.ng/api";
 import type { IView } from "@thi.ng/atom";
-import { EffectDef, EventBus, EventDef } from "@thi.ng/interceptors";
+import type { EffectDef, EventBus, EventDef } from "@thi.ng/interceptors";
 
 /**
  * Function signature for main app components.
@@ -24,14 +24,16 @@ export interface AppConfig {
     events: IObjectOf<EventDef>;
     initialState: any;
     ui: UIAttribs;
-    views: Partial<Record<keyof AppViews, ViewSpec>>;
+    views: Partial<Record<AppViewIDs, ViewSpec>>;
 }
+
+export type AppViewIDs = "svg" | "cols" | "rows" | "theta" | "stroke";
 
 /**
  * Base structure of derived views exposed by the base app.
  * Add more declarations here as needed.
  */
-export interface AppViews extends Record<keyof AppViews, IView<any>> {
+export interface AppViews extends Record<AppViewIDs, IView<any>> {
     svg: IView<any[]>;
     cols: IView<number>;
     rows: IView<number>;

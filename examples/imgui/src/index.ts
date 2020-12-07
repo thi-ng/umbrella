@@ -559,9 +559,3 @@ main
     .subscribe(sidechainPartition<any, number>(fromRAF()))
     // then apply main compoment function & apply hdom
     .transform(map(app()), updateDOM());
-
-// HMR handling / cleanup
-if (process.env.NODE_ENV !== "production") {
-    const hot = (<any>module).hot;
-    hot && hot.dispose(() => main.done());
-}

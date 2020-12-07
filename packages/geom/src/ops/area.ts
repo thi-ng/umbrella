@@ -1,3 +1,4 @@
+import type { IObjectOf } from "@thi.ng/api";
 import {
     DEFAULT,
     defmulti,
@@ -8,17 +9,16 @@ import { IShape, Type } from "@thi.ng/geom-api";
 import { polyArea2 } from "@thi.ng/geom-poly-utils";
 import { PI } from "@thi.ng/math";
 import { signedArea2, Vec } from "@thi.ng/vectors";
-import { AABB } from "../api/aabb";
-import { Arc } from "../api/arc";
-import { Circle } from "../api/circle";
-import { Ellipse } from "../api/ellipse";
-import { Group } from "../api/group";
-import { Polygon } from "../api/polygon";
-import { Rect } from "../api/rect";
-import { Sphere } from "../api/sphere";
-import { Triangle } from "../api/triangle";
+import type { AABB } from "../api/aabb";
+import type { Arc } from "../api/arc";
+import type { Circle } from "../api/circle";
+import type { Ellipse } from "../api/ellipse";
+import type { Group } from "../api/group";
+import type { Polygon } from "../api/polygon";
+import type { Rect } from "../api/rect";
+import type { Sphere } from "../api/sphere";
+import type { Triangle } from "../api/triangle";
 import { dispatch } from "../internal/dispatch";
-import type { IObjectOf } from "@thi.ng/api";
 
 /**
  * Returns the possibly signed (unsigned by default) surface area of given

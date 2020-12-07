@@ -109,9 +109,4 @@ const app = () => {
     ];
 };
 
-const cancel = start(app());
-
-if (process.env.NODE_ENV !== "production") {
-    const hot = (<any>module).hot;
-    hot && hot.dispose(cancel);
-}
+start(app());

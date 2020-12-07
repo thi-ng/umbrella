@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import * as iges from "../src/index";
+import * as iges from "../src";
 
 describe("iges", () => {
     it("basic", () => {

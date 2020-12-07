@@ -13,8 +13,8 @@ import {
     SRC_OVER_I,
     XOR_I,
 } from "@thi.ng/porter-duff";
-import IMG2 from "../assets/plus.png";
-import IMG from "../assets/ring.png";
+import IMG2 from "./plus.png";
+import IMG from "./ring.png";
 
 const MODES: any = {
     SRC: SRC_I,
@@ -70,8 +70,3 @@ Promise.all([IMG, IMG2].map(imagePromise))
         }
     })
     .catch((e) => console.log(e));
-
-if (process.env.NODE_ENV !== "production") {
-    const hot = (<any>module).hot;
-    hot && hot.dispose(() => {});
-}

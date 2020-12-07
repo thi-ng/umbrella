@@ -1,5 +1,5 @@
 import { group, rect, svg } from "@thi.ng/hiccup-svg";
-import { EventBus } from "@thi.ng/interceptors";
+import type { EventBus } from "@thi.ng/interceptors";
 import { initGraph, node } from "@thi.ng/rstream-graph";
 import { map, range2d } from "@thi.ng/transducers";
 import * as ev from "./events";

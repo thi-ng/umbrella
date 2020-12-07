@@ -1,6 +1,6 @@
 import type { Pair } from "@thi.ng/api";
 import * as assert from "assert";
-import { AdjacencyBitMatrix } from "../src/index";
+import { AdjacencyBitMatrix } from "../src";
 
 const edges: Pair<number, number>[] = [
     [2, 3],

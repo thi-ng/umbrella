@@ -1,5 +1,5 @@
 import { maybeParseFloat, maybeParseInt } from "@thi.ng/strings";
-import { CellTransform } from "./api";
+import type { CellTransform } from "./api";
 
 export const upper: CellTransform = (x) => x.toUpperCase();
 

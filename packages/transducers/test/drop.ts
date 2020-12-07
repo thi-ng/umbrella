@@ -1,6 +1,5 @@
-import { drop, range } from "../src";
-
 import * as assert from "assert";
+import { drop, range } from "../src";
 
 describe("drop", () => {
     it("starts iterating after N items", () => {

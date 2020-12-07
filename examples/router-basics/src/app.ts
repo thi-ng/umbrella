@@ -1,4 +1,4 @@
-import type { IObjectOf } from "@thi.ng/api";
+import type { Fn, IObjectOf } from "@thi.ng/api";
 import { Atom, defViewUnsafe } from "@thi.ng/atom";
 import { isArray } from "@thi.ng/checks";
 import { start } from "@thi.ng/hdom";
@@ -85,7 +85,7 @@ export class App {
         for (let id in specs) {
             const spec = specs[id];
             views[id] = isArray(spec)
-                ? defViewUnsafe(this.state, spec[0], spec[1])
+                ? defViewUnsafe(this.state, spec[0], <Fn<any, any>>spec[1])
                 : defViewUnsafe(this.state, spec);
         }
     }

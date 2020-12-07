@@ -6,7 +6,7 @@ import {
     defTransacted,
     defView,
     Transacted,
-} from "../src/index";
+} from "../src";
 
 interface State {
     a: number;

@@ -1,3 +1,4 @@
+import { exposeGlobal } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
 import { fromAtom } from "@thi.ng/rstream";
 import { charRange } from "@thi.ng/strings";
@@ -143,10 +144,5 @@ const main = fromAtom(DB);
 // in hdom
 main.transform(map(app()), updateDOM({ span: false }));
 
-(<any>window)["DB"] = DB;
-(<any>window)["graph"] = graph;
-
-if (process.env.NODE_ENV !== "production") {
-    const hot = (<any>module).hot;
-    hot && hot.dispose(() => main.done());
-}
+exposeGlobal("DB", DB);
+exposeGlobal("graph", graph);

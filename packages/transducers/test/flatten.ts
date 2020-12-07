@@ -1,6 +1,5 @@
-import { flatten, range } from "../src";
-
 import * as assert from "assert";
+import { flatten, range } from "../src";
 
 describe("flatten", () => {
     it("empty arrays", () => {

@@ -1,7 +1,7 @@
 import type { Fn } from "@thi.ng/api";
 import { option, select, SelectAttribs } from "@thi.ng/hiccup-html";
 import { $input, $list } from "@thi.ng/rdom";
-import { ISubscribable, Subscription } from "@thi.ng/rstream";
+import type { ISubscribable, Subscription } from "@thi.ng/rstream";
 
 export interface DropdownOpts<T> {
     attribs: Partial<SelectAttribs>;

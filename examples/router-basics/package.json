@@ -6,11 +6,9 @@
     "author": "Karsten Schmidt",
     "license": "Apache-2.0",
     "scripts": {
-        "clean": "rm -rf .cache build out",
-        "prep": "yarn clean && mkdir -p out && cp -R assets out",
-        "build": "yarn prep && parcel build index.html -d out --no-source-maps --no-cache --experimental-scope-hoisting --detailed-report --public-url ./",
-        "build:webpack": "../../node_modules/.bin/webpack --mode production",
-        "start": "yarn prep && parcel index.html -p 8080 --open -d out"
+        "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
+        "start": "../../node_modules/.bin/snowpack dev",
+        "build": "../../node_modules/.bin/snowpack build"
     },
     "dependencies": {
         "@thi.ng/api": "latest",
@@ -19,11 +17,6 @@
         "@thi.ng/hdom": "latest",
         "@thi.ng/interceptors": "latest",
         "@thi.ng/router": "latest"
-    },
-    "devDependencies": {
-        "parcel-bundler": "^1.12.4",
-        "terser": "^5.2.1",
-        "typescript": "^4.1.2"
     },
     "browserslist": [
         "last 3 Chrome versions"
@@ -39,5 +32,8 @@
             "router"
         ],
         "screenshot": "examples/router-basics.jpg"
+    },
+    "devDependencies": {
+        "@types/snowpack-env": "^2.3.2"
     }
 }

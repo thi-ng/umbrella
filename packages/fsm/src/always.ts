@@ -1,5 +1,5 @@
-import { result } from "./result";
 import type { LitCallback, Matcher } from "./api";
+import { result } from "./result";
 
 /**
  * Returns a matcher which always succeeds (produces a `Match.FULL` result) for

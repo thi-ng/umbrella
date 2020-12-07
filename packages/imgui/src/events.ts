@@ -1,5 +1,5 @@
 import { MouseButton } from "./api";
-import { IMGUI } from "./gui";
+import type { IMGUI } from "./gui";
 
 /**
  * Injects default mouse & touch event handlers into `gui.attribs` and

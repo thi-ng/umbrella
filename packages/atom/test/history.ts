@@ -1,7 +1,5 @@
 import * as assert from "assert";
-import { Atom } from "../src/atom";
-import { defCursor } from "../src/cursor";
-import { defHistory } from "../src/history";
+import { Atom, defCursor, defHistory } from "../src";
 
 describe("history", () => {
     let a: Atom<any>;

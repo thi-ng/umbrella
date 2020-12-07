@@ -1,13 +1,13 @@
 import type { Fn } from "@thi.ng/api";
 import { line, rect } from "@thi.ng/geom";
-import { IGridLayout, LayoutBox } from "@thi.ng/layout";
+import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { fit2, hash, Vec } from "@thi.ng/vectors";
 import {
     handleSlider2Keys,
     isHoverSlider,
     slider2Val,
 } from "../behaviors/slider";
-import { IMGUI } from "../gui";
+import type { IMGUI } from "../gui";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";
 

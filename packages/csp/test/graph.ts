@@ -1,6 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { Channel, Mult } from "../src";
-// import * as tx from "@thi.ng/transducers";
 
 export interface Node {
     ins: IObjectOf<Channel<any>>;

@@ -1,3 +1,4 @@
+import type { Tessellator } from "@thi.ng/geom-api";
 import { centroid } from "@thi.ng/geom-poly-utils";
 import {
     comp,
@@ -9,7 +10,6 @@ import {
     zip,
 } from "@thi.ng/transducers";
 import { mixN, ReadonlyVec, Vec } from "@thi.ng/vectors";
-import type { Tessellator } from "@thi.ng/geom-api";
 
 export const tesselInset = (inset = 0.5, keepInterior = false): Tessellator => (
     points: ReadonlyVec[]

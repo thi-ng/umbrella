@@ -1,5 +1,5 @@
-import { DisjointSet } from "./disjoint-set";
 import type { Fn } from "@thi.ng/api";
+import { DisjointSet } from "./disjoint-set";
 
 /**
  * Computes the Minimum Spanning Tree from given weighted `edges`, using

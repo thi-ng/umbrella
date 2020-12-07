@@ -1,5 +1,5 @@
-import { reduce, reducer } from "../reduce";
 import type { Reducer } from "../api";
+import { reduce, reducer } from "../reduce";
 
 /**
  * Reducer which returns the value with the smallest magnitude, regardless of
