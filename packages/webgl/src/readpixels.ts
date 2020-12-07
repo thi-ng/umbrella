@@ -1,4 +1,8 @@
-import { ITexture, ReadableTextureFormat, TextureType } from "./api/texture";
+import type {
+    ITexture,
+    ReadableTextureFormat,
+    TextureType,
+} from "./api/texture";
 import { FBO } from "./fbo";
 
 export const readPixels = <

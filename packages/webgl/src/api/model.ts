@@ -1,5 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { AttribPool } from "@thi.ng/vector-pools";
+import type { AttribPool } from "@thi.ng/vector-pools";
 import type { IndexBufferSpec, IWebGLBuffer } from "./buffers";
 import type { AttribBufferData, IShader, UniformValues } from "./shader";
 import type { ITexture } from "./texture";
