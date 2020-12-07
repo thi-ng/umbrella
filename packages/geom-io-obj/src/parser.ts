@@ -1,5 +1,5 @@
 import { assert } from "@thi.ng/api";
-import { Vec } from "@thi.ng/vectors";
+import type { Vec } from "@thi.ng/vectors";
 import type { OBJFace, OBJGroup, OBJModel, ParseOpts } from "./api";
 
 export const parseOBJ = (src: string, opts?: Partial<ParseOpts>) => {
@@ -35,7 +35,7 @@ export const parseOBJ = (src: string, opts?: Partial<ParseOpts>) => {
                 (currGroup = {
                     id,
                     smooth: false,
-                    faces: faces = [],
+                    faces: (faces = []),
                     lines: [],
                     mtl: currGroup ? currGroup.mtl : undefined,
                 })

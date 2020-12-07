@@ -1,5 +1,5 @@
 import type { Fn } from "@thi.ng/api";
-import { MapLike } from "./api";
+import type { MapLike } from "./api";
 
 /**
  * Similar to {@link memoize1}, however optimized for side effects only, i.e.

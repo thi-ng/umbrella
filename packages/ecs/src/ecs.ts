@@ -11,7 +11,7 @@ import { isArray, isString } from "@thi.ng/checks";
 import { IDGen } from "@thi.ng/idgen";
 import { IMemPoolArray, NativePool } from "@thi.ng/malloc";
 import { filter } from "@thi.ng/transducers";
-import {
+import type {
     ComponentID,
     ECSOpts,
     GroupOpts,

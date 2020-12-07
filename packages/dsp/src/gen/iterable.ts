@@ -1,4 +1,4 @@
-import { IGen } from "../api";
+import type { IGen } from "../api";
 
 /**
  * Wraps given ES6 iterable to provide full {@link IGen} implementation.

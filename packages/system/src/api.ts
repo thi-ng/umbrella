@@ -1,4 +1,4 @@
-import type { Keys, Fn } from "@thi.ng/api";
+import type { Fn, Keys } from "@thi.ng/api";
 
 export interface ILifecycle {
     /**
