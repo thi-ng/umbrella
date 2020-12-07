@@ -5,7 +5,7 @@ import { fitClamped } from "@thi.ng/math";
 import { hash } from "@thi.ng/vectors";
 import { isHoverSlider } from "../behaviors/slider";
 import { handleTextfieldKeys } from "../behaviors/text";
-import { IMGUI } from "../gui";
+import type { IMGUI } from "../gui";
 import { layoutBox } from "../layout";
 import { textLabelRaw } from "./textlabel";
 import { tooltipRaw } from "./tooltip";

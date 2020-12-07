@@ -2,7 +2,7 @@ import { polygon } from "@thi.ng/geom";
 import { gridLayout, IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
 import { hash } from "@thi.ng/vectors";
 import { Key } from "../api";
-import { IMGUI } from "../gui";
+import type { IMGUI } from "../gui";
 import { buttonH } from "./button";
 
 /**

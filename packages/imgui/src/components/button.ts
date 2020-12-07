@@ -1,11 +1,11 @@
-import { Fn5 } from "@thi.ng/api";
+import type { Fn5 } from "@thi.ng/api";
 import { rect } from "@thi.ng/geom";
 import type { IShape } from "@thi.ng/geom-api";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { hash, ZERO2 } from "@thi.ng/vectors";
 import type { GUITheme, Hash } from "../api";
 import { handleButtonKeys, hoverButton } from "../behaviors/button";
-import { IMGUI } from "../gui";
+import type { IMGUI } from "../gui";
 import { labelHash } from "../hash";
 import { layoutBox } from "../layout";
 import { textLabelRaw, textTransformH, textTransformV } from "./textlabel";

@@ -1,6 +1,6 @@
-import { Predicate } from "@thi.ng/api";
+import type { Predicate } from "@thi.ng/api";
 import { Key } from "../api";
-import { IMGUI } from "../gui";
+import type { IMGUI } from "../gui";
 
 const WS = /\s/;
 

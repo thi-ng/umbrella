@@ -1,5 +1,5 @@
 import { gridLayout, IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
-import { IMGUI } from "../gui";
+import type { IMGUI } from "../gui";
 import { toggle } from "./toggle";
 
 export const radio = (

@@ -4,7 +4,7 @@ import type { IShape } from "@thi.ng/geom-api";
 import { clamp, roundTo } from "@thi.ng/math";
 import { add2, clamp2, roundN2, Vec } from "@thi.ng/vectors";
 import { Key } from "../api";
-import { IMGUI } from "../gui";
+import type { IMGUI } from "../gui";
 
 export const isHoverSlider = (
     gui: IMGUI,

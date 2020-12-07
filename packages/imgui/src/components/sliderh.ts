@@ -8,7 +8,7 @@ import {
     isHoverSlider,
     slider1Val,
 } from "../behaviors/slider";
-import { IMGUI } from "../gui";
+import type { IMGUI } from "../gui";
 import { valHash } from "../hash";
 import { layoutBox } from "../layout";
 import { textLabelRaw } from "./textlabel";

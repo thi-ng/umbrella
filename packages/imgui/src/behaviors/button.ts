@@ -2,7 +2,7 @@ import { pointInside } from "@thi.ng/geom";
 import type { IShape } from "@thi.ng/geom-api";
 import { Key } from "../api";
 import { tooltipRaw } from "../components/tooltip";
-import { IMGUI } from "../gui";
+import type { IMGUI } from "../gui";
 
 export const hoverButton = (
     gui: IMGUI,

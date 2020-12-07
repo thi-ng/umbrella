@@ -1,9 +1,9 @@
-import { Fn } from "@thi.ng/api";
+import type { Fn } from "@thi.ng/api";
 import { isPlainObject } from "@thi.ng/checks";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import type { Color, GUITheme } from "../api";
-import { IMGUI } from "../gui";
+import type { IMGUI } from "../gui";
 import { valHash } from "../hash";
 import { layoutBox } from "../layout";
 
