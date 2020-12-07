@@ -10,19 +10,63 @@ mkdir -p "$MODULE"
 echo "creating /src folder..."
 mkdir -p "$MODULE"/src
 cat << EOF > "$MODULE"/src/index.ts
-import { } from "@thi.ng/hdom";
+import { \$compile } from "@thi.ng/rdom";
 
-if (process.env.NODE_ENV !== "production") {
-    const hot = (<any>module).hot;
-    hot && hot.dispose(() => {});
-}
+\$compile(["div", {}, "hello"]).mount(document.getElementById("app")!);
 EOF
 
-cat << EOF > "$MODULE"/src/webpack.d.ts
-declare module "*.jpg";
-declare module "*.png";
-declare module "*.svg";
-declare module "*.json";
+cat << EOF > "$MODULE"/src/static.d.ts
+/* Use this file to declare any custom file extensions for importing */
+/* Use this folder to also add/extend a package d.ts file, if needed. */
+
+/* CSS MODULES */
+declare module "*.module.css" {
+    const classes: { [key: string]: string };
+    export default classes;
+}
+declare module "*.module.scss" {
+    const classes: { [key: string]: string };
+    export default classes;
+}
+declare module "*.module.sass" {
+    const classes: { [key: string]: string };
+    export default classes;
+}
+declare module "*.module.less" {
+    const classes: { [key: string]: string };
+    export default classes;
+}
+declare module "*.module.styl" {
+    const classes: { [key: string]: string };
+    export default classes;
+}
+
+/* CSS */
+declare module "*.css";
+declare module "*.scss";
+declare module "*.sass";
+declare module "*.less";
+declare module "*.styl";
+
+/* IMAGES */
+declare module "*.svg" {
+    const ref: string;
+    export default ref;
+}
+declare module "*.gif" {
+    const ref: string;
+    export default ref;
+}
+declare module "*.jpg" {
+    const ref: string;
+    export default ref;
+}
+declare module "*.png" {
+    const ref: string;
+    export default ref;
+}
+
+/* CUSTOM: ADD YOUR OWN HERE */
 EOF
 
 echo "writing package.json..."
@@ -35,15 +79,9 @@ cat << EOF > "$MODULE"/package.json
     "author": "$AUTHOR <$EMAIL>",
     "license": "Apache-2.0",
     "scripts": {
-        "clean": "rm -rf .cache build out",
-        "build": "yarn clean && parcel build index.html -d out --public-url ./ --no-source-maps --no-cache --detailed-report --experimental-scope-hoisting",
-        "build:webpack": "../../node_modules/.bin/webpack --mode production",
-        "start": "parcel index.html -p 8080 --open --no-cache"
-    },
-    "devDependencies": {
-        "parcel-bundler": "^1.12.4",
-        "terser": "^5.1.0",
-        "typescript": "^3.9.7"
+        "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
+        "start": "../../node_modules/.bin/snowpack dev",
+        "build": "../../node_modules/.bin/snowpack build"
     },
     "dependencies": {
         "@thi.ng/api": "latest"
@@ -65,32 +103,61 @@ EOF
 echo "writing tsconfig.json..."
 cat << EOF > "$MODULE"/tsconfig.json
 {
-    "extends": "../../tsconfig.json",
+    "extends": "../tsconfig.json",
+    "include": ["src"],
     "compilerOptions": {
-        "outDir": ".",
-        "target": "es2017",
-        "sourceMap": true
-    },
-    "include": [
-        "./src/**/*.ts"
-    ]
+        "baseUrl": "./",
+        "paths": { "*": ["web_modules/.types/*"] }
+    }
 }
+EOF
+
+echo "writing snowpack.config.js..."
+cat << EOF > "$MODULE"/snowpack.config.js
+/** @type {import("snowpack").SnowpackUserConfig } */
+module.exports = {
+    mount: {
+        public: "/",
+        src: "/_dist_",
+    },
+    plugins: [
+        "@snowpack/plugin-typescript",
+        [
+            "@snowpack/plugin-webpack",
+            {
+                extendConfig: (config) => {
+                    config.node = {
+                        process: false,
+                        setImmediate: false,
+                        util: "empty",
+                    };
+                    return config;
+                },
+            },
+        ],
+    ],
+    installOptions: {
+        installTypes: true,
+    },
+    buildOptions: {
+        baseUrl: "/$1",
+    },
+};
 EOF
 
 echo "writing .gitignore..."
 cat << EOF > "$MODULE"/.gitignore
-.cache
-out
+build
+dev
 node_modules
 yarn.lock
-*.js
-*.map
-!src/*.d.ts
-!*.config.js
+!snowpack.config.js
+!*.d.ts
 EOF
 
 echo "writing index.html..."
-cat << EOF > "$MODULE"/index.html
+mkdir -p "$MODULE"/public
+cat << EOF > "$MODULE"/public/index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -106,7 +173,7 @@ cat << EOF > "$MODULE"/index.html
 <body class="sans-serif">
     <div id="app"></div>
     <div><a class="link" href="https://github.com/thi-ng/umbrella/tree/develop/examples/$1">Source code</a></div>
-    <script type="text/javascript" src="./src/index.ts"></script>
+    <script type="module" src="/_dist_/index.js"></script>
 </body>
 </html>
 EOF
@@ -126,31 +193,4 @@ Please refer to the [example build instructions](https://github.com/thi-ng/umbre
 ## License
 
 &copy; 2020 $AUTHOR // Apache Software License 2.0
-EOF
-
-echo "writing webpack.config.js..."
-cat << EOF > "$MODULE"/webpack.config.js
-module.exports = {
-    entry: "./src/index.ts",
-    output: {
-        filename: "bundle.[hash].js",
-        path: __dirname + "/out"
-    },
-    resolve: {
-        extensions: [".ts", ".js"]
-    },
-    module: {
-        rules: [
-            {
-                test: /\.(png|jpg|gif)$/,
-                loader: "file-loader",
-                options: { name: "[path][hash].[ext]" }
-            },
-            { test: /\.ts$/, use: "ts-loader" }
-        ]
-    },
-    node: {
-        process: false
-    }
-};
 EOF
