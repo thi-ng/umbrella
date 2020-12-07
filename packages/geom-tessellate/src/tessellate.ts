@@ -1,4 +1,5 @@
 import { isFunction } from "@thi.ng/checks";
+import type { Tessellator } from "@thi.ng/geom-api";
 import {
     last,
     mapcat,
@@ -8,7 +9,6 @@ import {
     scan,
     transduce,
 } from "@thi.ng/transducers";
-import type { Tessellator } from "@thi.ng/geom-api";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 export function tessellate(
