@@ -1,4 +1,5 @@
 #!/bin/sh
+BUILD=build
 
 if [ $# = 1 ]; then
     examples="examples/$1"
@@ -8,10 +9,11 @@ fi
 
 for e in $examples; do
     if [ -d "$e" ] && [ ! -e "$e/.skip" ]; then
+        ebuild="$e/$BUILD"
         echo "------------------------------"
         echo "building $e..."
         echo "------------------------------"
-        rm -rf "$e"/out "$e"/.cache
+        rm -rf "$ebuild" "$e/.cache"
         if [ ! -r "$e"/package.json ]; then
             continue
         fi
@@ -20,14 +22,15 @@ for e in $examples; do
         fi
         if grep --quiet build:webpack "$e"/package.json; then
             (cd "$e" && yarn build:webpack)
-            cp "$e"/index.html "$e"/out/index.html
-            js=$(basename $(ls "$e"/out/bundle*.js))
-            sed -i '' -E 's,<script type="text/javascript" src="\./src/index.ts",<script type="text/javascript" src="'"$js"'",' "$e"/out/index.html
+            cp "$e/index.html" "$ebuild"/index.html
+            js=$(basename $(ls "$ebuild"/bundle*.js))
+            sed -i '' -E 's,<script type="text/javascript" src="\./src/index.ts",<script type="text/javascript" src="'"$js"'",' "$ebuild"/index.html
         else
             (cd "$e" && yarn build)
         fi
         if [ 0 -eq $? ]; then
-            src=$(ls "$e"/out/*.js)
+            rm -rf "$ebuild"/__snowpack__ "$ebuild"/_dist_ "$ebuild"/web_modules
+            src=$(find "$ebuild" -name '*.js')
             for js in $src; do
                 node_modules/.bin/terser -c -m --ecma 6 -o "$js" "$js"
                 sed -i '' -E 's/Object\.defineProperty([a-z]\+,"__esModule",{value:\!0});//g' "$js"
