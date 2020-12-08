@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/gesture-analysis",
+        baseUrl: "/umbrella/gesture-analysis",
     },
 };

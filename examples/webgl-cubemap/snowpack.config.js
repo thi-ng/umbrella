@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/webgl-cubemap",
+        baseUrl: "/umbrella/webgl-cubemap",
     },
 };

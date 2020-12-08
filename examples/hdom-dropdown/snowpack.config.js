@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/hdom-dropdown",
+        baseUrl: "/umbrella/hdom-dropdown",
     },
 };

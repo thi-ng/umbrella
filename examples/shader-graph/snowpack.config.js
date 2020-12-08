@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/shader-graph",
+        baseUrl: "/umbrella/shader-graph",
     },
 };

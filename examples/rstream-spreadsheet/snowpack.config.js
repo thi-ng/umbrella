@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/rstream-spreadsheet",
+        baseUrl: "/umbrella/rstream-spreadsheet",
     },
 };

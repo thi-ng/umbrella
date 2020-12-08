@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/rdom-search-docs",
+        baseUrl: "/umbrella/rdom-search-docs",
     },
 };

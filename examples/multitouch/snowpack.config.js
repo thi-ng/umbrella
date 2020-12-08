@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/multitouch",
+        baseUrl: "/umbrella/multitouch",
     },
 };

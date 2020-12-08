@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/async-effect",
+        baseUrl: "/umbrella/async-effect",
     },
 };

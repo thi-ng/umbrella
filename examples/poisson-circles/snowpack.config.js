@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/poisson-circles",
+        baseUrl: "/umbrella/poisson-circles",
     },
 };

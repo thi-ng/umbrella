@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/rstream-event-loop",
+        baseUrl: "/umbrella/rstream-event-loop",
     },
 };

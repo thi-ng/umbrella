@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/crypto-chart",
+        baseUrl: "/umbrella/crypto-chart",
     },
 };

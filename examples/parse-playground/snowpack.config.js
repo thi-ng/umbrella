@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/parse-playground",
+        baseUrl: "/umbrella/parse-playground",
     },
 };

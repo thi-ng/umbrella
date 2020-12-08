@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/hdom-canvas-particles",
+        baseUrl: "/umbrella/hdom-canvas-particles",
     },
 };

@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/login-form",
+        baseUrl: "/umbrella/login-form",
     },
 };

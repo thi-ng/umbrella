@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/hdom-localstate",
+        baseUrl: "/umbrella/hdom-localstate",
     },
 };

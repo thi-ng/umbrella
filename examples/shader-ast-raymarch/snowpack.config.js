@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/shader-ast-raymarch",
+        baseUrl: "/umbrella/shader-ast-raymarch",
     },
 };

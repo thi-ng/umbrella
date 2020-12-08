@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/todo-list",
+        baseUrl: "/umbrella/todo-list",
     },
 };

@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/shader-ast-canvas2d",
+        baseUrl: "/umbrella/shader-ast-canvas2d",
     },
 };

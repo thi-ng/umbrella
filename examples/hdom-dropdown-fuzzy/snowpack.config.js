@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/hdom-dropdown-fuzzy",
+        baseUrl: "/umbrella/hdom-dropdown-fuzzy",
     },
 };

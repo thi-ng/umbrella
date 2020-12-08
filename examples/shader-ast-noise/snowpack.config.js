@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/shader-ast-noise",
+        baseUrl: "/umbrella/shader-ast-noise",
     },
 };

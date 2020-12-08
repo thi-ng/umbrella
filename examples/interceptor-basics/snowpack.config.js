@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/interceptor-basics",
+        baseUrl: "/umbrella/interceptor-basics",
     },
 };

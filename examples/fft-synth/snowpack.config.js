@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/fft-synth",
+        baseUrl: "/umbrella/fft-synth",
     },
 };

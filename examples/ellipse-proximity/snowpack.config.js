@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/ellipse-proximity",
+        baseUrl: "/umbrella/ellipse-proximity",
     },
 };

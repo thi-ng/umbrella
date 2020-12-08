@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/bitmap-font",
+        baseUrl: "/umbrella/bitmap-font",
     },
 };

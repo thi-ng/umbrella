@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/stratified-grid",
+        baseUrl: "/umbrella/stratified-grid",
     },
 };

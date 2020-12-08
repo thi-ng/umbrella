@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/webgl-shadertoy",
+        baseUrl: "/umbrella/webgl-shadertoy",
     },
 };

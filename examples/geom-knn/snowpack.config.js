@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/geom-knn",
+        baseUrl: "/umbrella/geom-knn",
     },
 };

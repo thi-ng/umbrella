@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/geom-tessel",
+        baseUrl: "/umbrella/geom-tessel",
     },
 };

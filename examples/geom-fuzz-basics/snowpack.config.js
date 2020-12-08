@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/geom-fuzz-basics",
+        baseUrl: "/umbrella/geom-fuzz-basics",
     },
 };

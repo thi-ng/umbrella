@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/iso-plasma",
+        baseUrl: "/umbrella/iso-plasma",
     },
 };

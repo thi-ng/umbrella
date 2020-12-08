@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/pixel-basics",
+        baseUrl: "/umbrella/pixel-basics",
     },
 };

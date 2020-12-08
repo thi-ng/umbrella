@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/rdom-basics",
+        baseUrl: "/umbrella/rdom-basics",
     },
 };

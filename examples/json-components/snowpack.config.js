@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/json-components",
+        baseUrl: "/umbrella/json-components",
     },
 };

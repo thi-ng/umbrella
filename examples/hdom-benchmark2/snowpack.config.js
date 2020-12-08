@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/hdom-benchmark2",
+        baseUrl: "/umbrella/hdom-benchmark2",
     },
 };

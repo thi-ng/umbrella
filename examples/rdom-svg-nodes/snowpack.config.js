@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/rdom-svg-nodes",
+        baseUrl: "/umbrella/rdom-svg-nodes",
     },
 };

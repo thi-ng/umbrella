@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/rstream-grid",
+        baseUrl: "/umbrella/rstream-grid",
     },
 };

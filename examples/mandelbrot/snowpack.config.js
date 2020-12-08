@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/umbrella/text-canvas",
+        baseUrl: "/umbrella/mandelbrot",
     },
 };

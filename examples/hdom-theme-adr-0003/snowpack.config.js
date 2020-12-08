@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/hdom-theme-adr-0003",
+        baseUrl: "/umbrella/hdom-theme-adr-0003",
     },
 };

@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/geom-convex-hull",
+        baseUrl: "/umbrella/geom-convex-hull",
     },
 };

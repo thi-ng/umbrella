@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/hdom-dyn-context",
+        baseUrl: "/umbrella/hdom-dyn-context",
     },
 };

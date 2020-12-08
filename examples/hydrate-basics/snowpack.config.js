@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/hydrate-basics",
+        baseUrl: "/umbrella/hydrate-basics",
     },
 };

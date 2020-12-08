@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/rdom-lissajous",
+        baseUrl: "/umbrella/rdom-lissajous",
     },
 };

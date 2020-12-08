@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/rotating-voronoi",
+        baseUrl: "/umbrella/rotating-voronoi",
     },
 };

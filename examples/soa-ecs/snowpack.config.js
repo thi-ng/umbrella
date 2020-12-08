@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/soa-ecs",
+        baseUrl: "/umbrella/soa-ecs",
     },
 };

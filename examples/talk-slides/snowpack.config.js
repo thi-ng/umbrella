@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/talk-slides",
+        baseUrl: "/umbrella/talk-slides",
     },
 };

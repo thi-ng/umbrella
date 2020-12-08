@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/markdown",
+        baseUrl: "/umbrella/markdown",
     },
 };

@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/hdom-inner-html",
+        baseUrl: "/umbrella/hdom-inner-html",
     },
 };

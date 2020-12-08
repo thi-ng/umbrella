@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/transducers-hdom",
+        baseUrl: "/umbrella/transducers-hdom",
     },
 };

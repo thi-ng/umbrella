@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/xml-converter",
+        baseUrl: "/umbrella/xml-converter",
     },
 };

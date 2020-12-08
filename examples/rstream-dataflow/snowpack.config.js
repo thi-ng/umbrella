@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/rstream-dataflow",
+        baseUrl: "/umbrella/rstream-dataflow",
     },
 };

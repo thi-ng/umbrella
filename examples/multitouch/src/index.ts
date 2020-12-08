@@ -19,7 +19,7 @@ const MTCanvas = memoize1((id: string) => {
             main.add(gestureStream(el), el.id);
         },
     };
-    return (attribs: any, gesture?: GestureEvent) => [
+    return (attribs: any, gesture: GestureEvent = <any>{}) => [
         _canvas,
         { id, class: "bg-washed-yellow", ...attribs },
         [
@@ -29,12 +29,12 @@ const MTCanvas = memoize1((id: string) => {
             ...mapcat(
                 (i: GestureInfo) => [
                     ["circle", { stroke: "#333", fill: "none" }, i.start, 20],
-                    ["circle", {}, i.pos, 20 * (gesture?.zoom || 1)],
+                    ["circle", {}, i.pos, 20 * (gesture.zoom || 1)],
                     i.start
                         ? ["line", { stroke: "#333" }, i.start, i.pos]
                         : null,
                 ],
-                gesture?.active || []
+                gesture.active || []
             ),
         ],
     ];

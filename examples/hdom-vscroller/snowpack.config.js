@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/hdom-vscroller",
+        baseUrl: "/umbrella/hdom-vscroller",
     },
 };

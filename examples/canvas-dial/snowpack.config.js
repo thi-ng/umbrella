@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/canvas-dial",
+        baseUrl: "/umbrella/canvas-dial",
     },
 };

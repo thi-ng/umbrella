@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/hdom-canvas-clock",
+        baseUrl: "/umbrella/hdom-canvas-clock",
     },
 };

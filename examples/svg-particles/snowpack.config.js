@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/svg-particles",
+        baseUrl: "/umbrella/svg-particles",
     },
 };

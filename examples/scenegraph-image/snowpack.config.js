@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/scenegraph-image",
+        baseUrl: "/umbrella/scenegraph-image",
     },
 };

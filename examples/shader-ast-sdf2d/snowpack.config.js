@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/shader-ast-sdf2d",
+        baseUrl: "/umbrella/shader-ast-sdf2d",
     },
 };

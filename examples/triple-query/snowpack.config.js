@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/triple-query",
+        baseUrl: "/umbrella/triple-query",
     },
 };

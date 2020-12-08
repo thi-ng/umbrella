@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/devcards",
+        baseUrl: "/umbrella/devcards",
     },
 };

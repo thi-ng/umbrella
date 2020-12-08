@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/hdom-canvas-shapes",
+        baseUrl: "/umbrella/hdom-canvas-shapes",
     },
 };

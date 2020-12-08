@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/ramp-synth",
+        baseUrl: "/umbrella/ramp-synth",
     },
 };

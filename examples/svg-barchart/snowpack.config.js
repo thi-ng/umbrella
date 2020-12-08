@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/svg-barchart",
+        baseUrl: "/umbrella/svg-barchart",
     },
 };

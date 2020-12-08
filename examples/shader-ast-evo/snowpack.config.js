@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/shader-ast-evo",
+        baseUrl: "/umbrella/shader-ast-evo",
     },
 };

@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/adaptive-threshold",
+        baseUrl: "/umbrella/adaptive-threshold",
     },
 };

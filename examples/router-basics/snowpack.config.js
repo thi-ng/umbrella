@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/router-basics",
+        baseUrl: "/umbrella/router-basics",
     },
 };

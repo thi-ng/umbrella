@@ -24,6 +24,6 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/hdom-elm",
+        baseUrl: "/umbrella/hdom-elm",
     },
 };
