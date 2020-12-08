@@ -140,7 +140,7 @@ module.exports = {
         installTypes: true,
     },
     buildOptions: {
-        baseUrl: "/$1",
+        baseUrl: "/umbrella/$1",
     },
 };
 EOF
