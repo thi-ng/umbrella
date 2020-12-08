@@ -231,6 +231,15 @@
         "bug",
         "ideas"
       ]
+    },
+    {
+      "login": "pedroteixeira",
+      "name": "Pedro Henriques dos Santos Teixeira",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/14740?v=4",
+      "profile": "http://twitter.com/pedroteixeira",
+      "contributions": [
+        "financial"
+      ]
     }
   ],
   "contributorsPerLine": 7,
