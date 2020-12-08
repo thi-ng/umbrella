@@ -111,6 +111,12 @@ fixes, feature requests, financial contributions etc.). You can find a
 fairly detailed overview for contributors here:
 [CONTRIBUTING.md](https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md).
 
+**Note:**: The default branch for this repo is `default`. As of 2020-12-08,
+we've also renamed `master` to the more suitable `main` branch. If you have
+local clones, please follow the [advice & short instructions in this
+article](https://www.hanselman.com/blog/easily-rename-your-git-default-branch-from-master-to-main)
+to update your local version.
+
 ## Projects
 
 <!-- ### New / unreleased packages in development
