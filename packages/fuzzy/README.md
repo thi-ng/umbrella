@@ -35,6 +35,13 @@ Fuzzy logic operators & configurable rule inferencing engine.
 - Linguistic variable creation and term/set classification for given domain
   values
 
+References:
+
+- https://en.wikipedia.org/wiki/Fuzzy_logic
+- https://en.wikipedia.org/wiki/Defuzzification
+- https://en.wikipedia.org/wiki/T-Norm
+- http://aisii.azc.uam.mx/mcbc/Cursos/IntCompt/Lectura15.pdf
+
 ### Status
 
 **ALPHA** - bleeding edge / work-in-progress
@@ -55,7 +62,7 @@ yarn add @thi.ng/fuzzy
 <script src="https://unpkg.com/@thi.ng/fuzzy/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 773 bytes / CJS: 850 bytes / UMD: 901 bytes
+Package sizes (gzipped, pre-treeshake): CJS: 850 bytes
 
 ## Dependencies
 

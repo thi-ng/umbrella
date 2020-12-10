@@ -26,6 +26,13 @@ ${pkg.description}
 - Linguistic variable creation and term/set classification for given domain
   values
 
+References:
+
+- https://en.wikipedia.org/wiki/Fuzzy_logic
+- https://en.wikipedia.org/wiki/Defuzzification
+- https://en.wikipedia.org/wiki/T-Norm
+- http://aisii.azc.uam.mx/mcbc/Cursos/IntCompt/Lectura15.pdf
+
 ${status}
 
 ${supportPackages}
