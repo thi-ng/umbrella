@@ -26,6 +26,18 @@ export type RuleFn = (
  * overall global domain.
  */
 export interface LVar {
+    /**
+     * Value domain/interval used to evaluate (and integrate) all terms during
+     * {@link defuzz}. Interval is semi-open, i.e. `[min, max)`
+     *
+     * @remarks
+     * The domain can be smaller or larger than the actual union bounds of the
+     * defined sets. However, for precision and performance reasons, it's
+     * recommended to keep this interval as compact as possible.
+     */
     domain: [number, number];
+    /**
+     * Object of named fuzzy sets.
+     */
     terms: Record<string, FuzzyFn>;
 }
