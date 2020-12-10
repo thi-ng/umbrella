@@ -119,11 +119,12 @@ to update your local version.
 
 ## Projects
 
-<!-- ### New / unreleased packages in development
+### New / unreleased packages in development
 
 (These packages might be still unreleased and only available on their
-feature or `develop` branches) -->
+feature or `develop` branches)
 
+- [@thi.ng/fuzzy](https://github.com/thi-ng/umbrella/tree/feature/fuzzy/packages/fuzzy) - Fuzzy logic ops & rule inference engine
 ### Fundamentals
 
 | Project                                             | Version                                                                                                                   | Changelog                                          | Description                                              |
