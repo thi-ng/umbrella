@@ -30,9 +30,9 @@
         "@ygoe/msgpack": "^1.0.2"
     },
     "scripts": {
-        "bootstrap": "lerna bootstrap",
-        "build": "yarn install && lerna -v && lerna bootstrap && lerna run build --sort",
-        "build:release": "yarn install && lerna -v && lerna bootstrap && lerna run build:release --sort",
+        "bootstrap": "yarn install && lerna -v && lerna bootstrap",
+        "build": "yarn bootstrap && lerna run build --sort",
+        "build:release": "yarn bootstrap && lerna run build:release --sort",
         "build:es6only": "lerna run clean && lerna run build:es6 --sort",
         "build:check": "lerna run build:check",
         "cover": "lerna run cover",
