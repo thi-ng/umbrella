@@ -16,6 +16,9 @@ export const tnormNilpotent: FnN2 = (a, b) => (a + b > 1 ? Math.min(a, b) : 0);
 /**
  * HOF T-norm. Parametric Hamacher with `p` controlling curvature.
  *
+ * @remarks
+ * Interactive graph: https://www.desmos.com/calculator/rklntdutlt
+ *
  * @param p - curve param (default: 2)
  */
 export const tnormHamacher = (p = 2): FnN2 => (a, b) =>
