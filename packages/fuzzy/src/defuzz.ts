@@ -33,7 +33,9 @@ export const defuzz = (
         const weight = (acc || 0) * r.weight;
         const terms: IObjectOf<FuzzyFn> = {};
         for (let id in r.then) {
-            terms[id] = weightedTerm(outs[id].terms[r.then[id]], weight);
+            if (outs[id]) {
+                terms[id] = weightedTerm(outs[id].terms[r.then[id]], weight);
+            }
         }
         return terms;
     });
