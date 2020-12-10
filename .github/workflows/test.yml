@@ -23,5 +23,5 @@ jobs:
             - run: |
                   yarn bootstrap
                   sed -i'' -e 's/readonly url: string/url: string/' node_modules/@types/snowpack-env/index.d.ts
-                  lerna run build --sort
+                  node_modules/.bin/lerna run build --sort
                   yarn test:only
