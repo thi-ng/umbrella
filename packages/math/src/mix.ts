@@ -325,3 +325,16 @@ export const schlick: FnN3 = (a, b, t) =>
  * @param num
  */
 export const expFactor: FnN3 = (a, b, num) => (b / a) ** (1 / num);
+
+/**
+ * Computes gaussian bell curve for given center `bias` and `sigma` (spread).
+ *
+ * @remarks
+ * Interactive graph: https://www.desmos.com/calculator/aq6hdzxprv
+ *
+ * @param bias
+ * @param sigma
+ * @param t
+ */
+export const gaussian: FnN3 = (bias, sigma, t) =>
+    Math.exp(-((t - bias) ** 2) / (2 * sigma * sigma));
