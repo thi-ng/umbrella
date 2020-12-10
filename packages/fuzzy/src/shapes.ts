@@ -95,3 +95,30 @@ export const gaussian: FnU2<number, FuzzyFn> = (bias, sigma) => (x) =>
  * @param fn
  */
 export const negate: FnU<FuzzyFn> = (fn) => (x) => 1 - fn(x);
+
+/**
+ * Inverse of {@link ramp}, i.e. a falling slope from `a` -> `b`.
+ *
+ * @param a
+ * @param b
+ */
+export const invRamp: FnU2<number, FuzzyFn> = (a, b) => negate(ramp(a, b));
+
+/**
+ * Inverse of {@link sigmoid}.
+ *
+ * @param bias
+ * @param steep
+ */
+export const invSigmoid: FnU2<number, FuzzyFn> = (bias, steep) =>
+    negate(sigmoid(bias, steep));
+
+/**
+ * Higher-order function: Takes an existing {@link FuzzyFn} `fn` and `weight`
+ * factor. Returns new function which computes: `weight * fn(x)`.
+ *
+ * @param fn
+ * @param weight
+ */
+export const weighted = (fn: FuzzyFn, weight: number): FuzzyFn => (x) =>
+    weight * fn(x);

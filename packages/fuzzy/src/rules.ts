@@ -1,5 +1,5 @@
 import type { FnN2 } from "@thi.ng/api";
-import { snormMax, tnormMin } from "@thi.ng/math";
+import { snormMax, tnormMin, tnormProduct } from "@thi.ng/math";
 import type { Rule, RuleFn, RuleInputs, RuleOutputs } from "./api";
 
 const rule = (
@@ -16,6 +16,9 @@ const rule = (
 
 export const and: RuleFn = ($if, $then, weight) =>
     rule(tnormMin, $if, $then, weight);
+
+export const strongAnd: RuleFn = ($if, $then, weight) =>
+    rule(tnormProduct, $if, $then, weight);
 
 export const or: RuleFn = ($if, $then, weight) =>
     rule(snormMax, $if, $then, weight);

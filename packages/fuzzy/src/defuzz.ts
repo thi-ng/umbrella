@@ -1,6 +1,7 @@
 import type { FnN2, IObjectOf, Nullable } from "@thi.ng/api";
 import { snormMax } from "@thi.ng/math";
 import type { DefuzzStrategy, FuzzyFn, LVar, Rule } from "./api";
+import { weighted } from "./shapes";
 
 /**
  * Takes an object of input {@link variable}s, an object of output variable,
@@ -34,7 +35,7 @@ export const defuzz = (
         const terms: IObjectOf<FuzzyFn> = {};
         for (let id in r.then) {
             if (outs[id]) {
-                terms[id] = weightedTerm(outs[id].terms[r.then[id]], weight);
+                terms[id] = weighted(outs[id].terms[r.then[id]], weight);
             }
         }
         return terms;
@@ -49,9 +50,6 @@ export const defuzz = (
     }
     return res;
 };
-
-const weightedTerm = (fn: FuzzyFn, weight: number): FuzzyFn => (x) =>
-    weight * fn(x);
 
 export interface COGOpts {
     combine: FnN2;
@@ -90,11 +88,17 @@ export const cog = (opts?: Partial<COGOpts>): DefuzzStrategy => {
 /**
  * Takes an array of fuzzy set term functions, evaluates each with input `x`
  * (skipping any nullish terms) and combines results using `op` (usually an
- * S-norm / T-conorm operation, e.g. `max(a,b)`).
+ * S-norm / T-conorm operation, e.g. `max(a,b)`). Returns `initial` if no valid
+ * terms were processed (e.g. due to empty array or null values)
  *
  * @param op
  * @param terms
  * @param x
+ * @param initial - initial value
  */
-export const combineTerms = (op: FnN2, terms: Nullable<FuzzyFn>[], x: number) =>
-    terms.reduce((acc, term) => (term ? op(acc, term(x)) : acc), 0);
+export const combineTerms = (
+    op: FnN2,
+    terms: Nullable<FuzzyFn>[],
+    x: number,
+    initial = 0
+) => terms.reduce((acc, term) => (term ? op(acc, term(x)) : acc), initial);
