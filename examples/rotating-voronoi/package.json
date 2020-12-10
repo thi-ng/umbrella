@@ -54,6 +54,6 @@
         "screenshot": "examples/rotating-voronoi.jpg"
     },
     "devDependencies": {
-        "@types/snowpack-env": "^2.3.2"
+        "@thi.ng/snowpack-env": "^2.3.2"
     }
 }

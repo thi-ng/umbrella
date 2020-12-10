@@ -202,10 +202,4 @@ const app = () => {
     ];
 };
 
-const cancel = start(app());
-
-if (import.meta.hot) {
-    import.meta.hot.accept(() => {
-        cancel();
-    });
-}
+start(app());

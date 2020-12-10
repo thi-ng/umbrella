@@ -43,6 +43,6 @@
         "screenshot": "examples/crypto-chart.png"
     },
     "devDependencies": {
-        "@types/snowpack-env": "^2.3.2"
+        "@thi.ng/snowpack-env": "^2.3.2"
     }
 }

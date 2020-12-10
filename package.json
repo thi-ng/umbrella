@@ -8,7 +8,7 @@
         "@microsoft/api-extractor": "^7.12.0",
         "@snowpack/plugin-typescript": "^1.1.1",
         "@snowpack/plugin-webpack": "^2.1.2",
-        "@types/snowpack-env": "^2.3.2",
+        "@thi.ng/snowpack-env": "^2.3.2",
         "benchmark": "^2.1.4",
         "file-loader": "^6.2.0",
         "gzip-size": "^6.0.0",
