@@ -14,3 +14,4 @@ export * from "./ratio";
 export * from "./safe-div";
 export * from "./solve";
 export * from "./step";
+export * from "./tnorms";
