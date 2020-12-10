@@ -65,7 +65,7 @@
         "*.d.ts",
         "lib",
         "caches",
-        "component",
+        "components",
         "groups"
     ],
     "keywords": [

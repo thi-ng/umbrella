@@ -10,6 +10,8 @@ mkdir -p "$MODULE"
 echo "creating /src folder..."
 mkdir -p "$MODULE"/src
 cat << EOF > "$MODULE"/src/index.ts
+/// <reference types="@thi.ng/snowpack-env" />
+
 import { \$compile } from "@thi.ng/rdom";
 
 \$compile(["div", {}, "hello"]).mount(document.getElementById("app")!);
@@ -83,8 +85,12 @@ cat << EOF > "$MODULE"/package.json
         "start": "../../node_modules/.bin/snowpack dev",
         "build": "../../node_modules/.bin/snowpack build"
     },
+    "devDependencies": {
+        "@thi.ng/snowpack-env": "^2.3.2"
+    },
     "dependencies": {
-        "@thi.ng/api": "latest"
+        "@thi.ng/api": "latest",
+        "@thi.ng/rdom": "latest",
     },
     "browserslist": [
         "last 3 Chrome versions"
