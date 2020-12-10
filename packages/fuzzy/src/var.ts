@@ -10,7 +10,7 @@ import type { LVar } from "./api";
  * ```ts
  * // temperature sets (in celsius)
  * const temp = variable([-20, 40], {
- *   freezing: negate(sigmoid(0, 2)),
+ *   freezing: invSigmoid(0, 2),
  *   cold: trapezoid(0, 4, 16, 20),
  *   warm: trapezoid(15, 20, 25, 30),
  *   hot: sigmoid(30, 2)
@@ -30,13 +30,15 @@ export const variable = (
 
 /**
  * Takes an LVar and a domain value `x`. Returns the ID of the var's term which
- * produces the largest value for given `x`.
+ * produces the largest value for given `x`. If `strict` is enabled (default),
+ * that max value MUST also be > 0.5 to be considered. Function returns
+ * undefined if classification failed.
  *
  * @example
  * ```ts
  * // temperature sets (in celsius)
  * const temp = variable([-20, 40], {
- *   freezing: negate(sigmoid(0, 2)),
+ *   freezing: invSigmoid(0, 2),
  *   cold: trapezoid(0, 4, 16, 20),
  *   warm: trapezoid(15, 20, 25, 30),
  *   hot: sigmoid(30, 2)
@@ -48,13 +50,14 @@ export const variable = (
  *
  * @param var
  * @param x
+ * @param strict
  */
-export const classify = ({ terms }: LVar, x: number) => {
+export const classify = ({ terms }: LVar, x: number, strict = true) => {
     let max = -Infinity;
     let maxID: string | undefined;
     for (let id in terms) {
         const t = terms[id](x);
-        if (t > max) {
+        if (t > max && (!strict || t > 0.5)) {
             max = t;
             maxID = id;
         }
@@ -70,7 +73,7 @@ export const classify = ({ terms }: LVar, x: number) => {
  * ```ts
  * // temperature sets (in celsius)
  * const temp = variable([-20, 40], {
- *   freezing: negate(sigmoid(0, 2)),
+ *   freezing: invSigmoid(0, 2),
  *   cold: trapezoid(0, 4, 16, 20),
  *   warm: trapezoid(15, 20, 25, 30),
  *   hot: sigmoid(30, 2)
