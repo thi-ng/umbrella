@@ -32,10 +32,12 @@ Fuzzy logic operators & configurable rule inferencing engine.
 - Fuzzy set domain shaping functions (incl. negated/inverse)
 - Rules with multiple inputs/outputs and arbitrary term combinators (e.g.
   [T-norms](https://en.wikipedia.org/wiki/T-norm) from
-  [@thi.ng/math](https://github.com/thi-ng/umbrella/blob/feature/fuzzy/packages/math/src/tnorms.ts)
+  [@thi.ng/math](https://github.com/thi-ng/umbrella/blob/develop/packages/math/src/tnorms.ts)
   package). Syntax sugar for common `and`/`or` rules.
-- Defuzzing via customizable strategies (so far Center-of-Gravity (COG) only)
-  and options to balance precision vs. performance.
+- Defuzzing via customizable strategies and options to balance precision vs.
+  performance
+  - Maxima: First, Last, Mean
+  - Center-of-Gravity (COG)
 - Linguistic variable creation and term/set classification for given domain
   values
 
@@ -69,7 +71,7 @@ yarn add @thi.ng/fuzzy
 <script src="https://unpkg.com/@thi.ng/fuzzy/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 857 bytes / CJS: 951 bytes / UMD: 984 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 1.09 KB / CJS: 1.19 KB / UMD: 1.21 KB
 
 ## Dependencies
 
@@ -91,6 +93,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 857 bytes / CJS: 951 bytes / UMD: 9
 - `gaussian()`
 - `negate()`
 - `weighted()`
+- `compose()`
 
 TODO
 
@@ -127,9 +130,7 @@ classify(temp, 28)
 
 ### Rule creation & inferencing
 
-```ts
-const
-```
+TODO
 
 ## Authors
 
