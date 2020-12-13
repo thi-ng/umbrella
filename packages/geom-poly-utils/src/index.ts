@@ -7,3 +7,4 @@ export * from "./circumcenter";
 export * from "./convexity";
 export * from "./equilateral";
 export * from "./perimeter";
+export * from "./tangent";

@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/geom-poly-utils",
     "version": "0.2.2",
-    "description": "2D polygon / triangle analysis & processing utilities",
+    "description": "2D polygon/polyline analysis & processing utilities",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
