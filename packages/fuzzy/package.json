@@ -1,7 +1,7 @@
 {
-    "name": "@thi.ng/math",
-    "version": "2.2.2",
-    "description": "Assorted common math functions & utilities",
+    "name": "@thi.ng/fuzzy",
+    "version": "0.0.1",
+    "description": "Fuzzy logic operators & configurable rule inferencing engine",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -10,7 +10,7 @@
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
     },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/math#readme",
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/fuzzy#readme",
     "funding": [
         {
             "type": "github",
@@ -33,8 +33,8 @@
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
-        "doc": "node_modules/.bin/typedoc --mode modules --out doc --theme ../../tools/doc/typedoc-theme src",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
+        "doc": "node_modules/.bin/typedoc --mode modules --out doc --theme ../../tools/doc/typedoc-theme src",
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
@@ -49,7 +49,8 @@
         "typescript": "^4.1.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.13.4"
+        "@thi.ng/api": "^6.13.4",
+        "@thi.ng/math": "^2.2.2"
     },
     "files": [
         "*.js",
@@ -57,18 +58,14 @@
         "lib"
     ],
     "keywords": [
-        "animation",
-        "bezier",
-        "cubic",
-        "hermite",
-        "interpolation",
-        "interval",
+        "agent",
+        "functional",
         "math",
-        "quadratic",
-        "smooth",
-        "solver",
+        "fuzzy",
+        "inference",
+        "logic",
+        "rule",
         "t-norm",
-        "trigonometry",
         "typescript"
     ],
     "publishConfig": {
@@ -76,6 +73,7 @@
     },
     "sideEffects": false,
     "thi.ng": {
-        "year": 2013
+        "status": "alpha",
+        "year": 2020
     }
 }
