@@ -1,4 +1,4 @@
-import type { FnU, FnU2, FnU3, FnU4 } from "@thi.ng/api";
+import type { FnN2, FnU, FnU2, FnU3, FnU4 } from "@thi.ng/api";
 import {
     EPS,
     eqDelta,
@@ -8,6 +8,7 @@ import {
     sigmoid as $sigmoid,
 } from "@thi.ng/math";
 import type { FuzzyFn } from "./api";
+import { combineTerms } from "./combine";
 
 /**
  * HOF {@link FuzzyFn} always yielding given `x` (should be in [0,1]
@@ -122,3 +123,45 @@ export const invSigmoid: FnU2<number, FuzzyFn> = (bias, steep) =>
  */
 export const weighted = (fn: FuzzyFn, weight: number): FuzzyFn => (x) =>
     weight * fn(x);
+
+/**
+ * Complex shape generator. Takes a T-norm (or S-norm) as reduction function
+ * `op` and any number of {@link FuzzyFn}s. Returns new `FuzzyFn` which
+ * evaluates all given `fns` and combines/reduces their results with `op`.
+ *
+ * @remarks
+ * Depending on the use case and choice of `op`, the `initial` value should
+ * either be set to:
+ *
+ * - T-norm like function: 1.0
+ * - S-norm like function: 0.0
+ *
+ * References:
+ * - https://www.desmos.com/calculator/pnq6kqzfb5 (interactive graph)
+ * - https://en.wikipedia.org/wiki/T-norm
+ * - https://github.com/thi-ng/umbrella/blob/develop/packages/math/src/tnorms.ts
+ *
+ * @example
+ * ```ts
+ * // M-like shape w/ peaks at 3 & 5
+ * const M = compose(
+ *   Math.max,
+ *   0,
+ *   triangle(1,3,5),
+ *   triangle(3,5,7)
+ * )
+ *
+ * M(3) // 1
+ * M(4) // 0.5
+ * M(5) // 1
+ * ```
+ *
+ * @param op
+ * @param initial
+ * @param fns
+ */
+export const compose = (
+    op: FnN2,
+    initial: number,
+    ...fns: FuzzyFn[]
+): FuzzyFn => (x) => combineTerms(op, fns, x, initial);
