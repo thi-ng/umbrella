@@ -20,8 +20,4 @@ jobs:
             - uses: actions/setup-node@v1
               with:
                   node-version: ">=14.6.0"
-            - run: |
-                  yarn bootstrap
-                  sed -i'' -e 's/readonly url: string/url: string/' node_modules/@types/snowpack-env/index.d.ts
-                  lerna run build --sort
-                  yarn test:only
+            - run: yarn test
