@@ -53,8 +53,10 @@ export * from "./osc/tri";
 export * from "./osc/wavetable";
 
 export * from "./fft/fft";
+export * from "./fft/power";
 export * from "./fft/window";
 
 export * from "./util/anti-alias";
+export * from "./util/complex";
 export * from "./util/convert";
 export * from "./util/filter-response";
