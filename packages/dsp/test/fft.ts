@@ -1,5 +1,5 @@
 import type { NumericArray } from "@thi.ng/api";
-import { eqDelta } from "@thi.ng/math";
+import { eqDelta, TAU } from "@thi.ng/math";
 import * as assert from "assert";
 import {
     add,
@@ -9,6 +9,7 @@ import {
     fft,
     freqBin,
     ifft,
+    magDb,
     normalizeFFT,
     osc,
     powerMeanSquared,
@@ -52,6 +53,8 @@ describe("fft", () => {
         const FS = 512;
         const A = 0.5;
         const N = 2 * FS;
+        const I = freqBin(FC, FS, N);
+
         const src = osc(cos, add(FC / FS, 1 / 12), A).take(N);
         const win = window(windowRect, N);
         const fwd = fft([...src], win);
@@ -62,85 +65,22 @@ describe("fft", () => {
                 (acc, x, i) => acc + x ** 2 + fwd[1][i] ** 2,
                 0
             ) / N;
-        console.log(
-            sumT,
-            sumF,
-            powerMeanSquared(fwd),
-            powerTimeIntegral(src, FS),
-            powerTimeIntegral(fwd, FS)
-        );
+
         assert(eqDelta(powerSumSquared(src), sumT), "sumT1");
         assert(eqDelta(powerSumSquared(fwd), sumF), "sumF1");
         assert(eqDelta(powerMeanSquared(src), sumT / N), "sumT2");
         assert(eqDelta(powerMeanSquared(fwd), sumF / N), "sumF2");
 
-        const normF = normalizeFFT(copyComplex(fwd), win);
-        const sumF2 = powerSumSquared(normF);
-
-        const thresh = thresholdFFT(copyComplex(fwd), 1 / 10000);
-        const phase = spectrumPhase(thresh);
-
-        const I = freqBin(FC, FS, N);
-        console.log(
-            "fwd",
-            spectrumMag(fwd)[I],
-            spectrumPow(fwd, false, N / 2, win)[I],
-            spectrumPow(fwd, true, N / 2, win)[I],
-            phase[I]
-        );
-        console.log(
-            "norm",
-            spectrumMag(normF)[I],
-            spectrumPow(normF)[I],
-            spectrumPow(normF, true)[I]
-        );
-        console.log(sumF2);
-    });
-
-    it("issue", () => {
-        const FC = 64;
-        const FS = 512;
-        const A = 0.5;
-        const N = 2 * FS;
-        const I = freqBin(FC, FS, N);
-
-        // cosine osc w/ 30 degree phase shift (= 2π/12)
-        const src = osc(cos, add(FC / FS, 1 / 12), A).take(N);
-
-        // compute window LUT
-        const win = window(windowRect, N);
-
-        const fwd = fft(src.slice(), win);
-
-        console.log(
-            "powSumSq: src =",
-            powerSumSquared(src),
-            "fft =",
-            powerSumSquared(fwd)
-        );
-        console.log(
-            "powMeanSq: src =",
-            powerMeanSquared(src),
-            "fft =",
-            powerMeanSquared(fwd)
-        );
-
-        const spMag = spectrumMag(fwd);
-        const spPow = spectrumPow(fwd, false, N / 2, win);
-        const spDb = spectrumPow(fwd, true, N / 2, win);
-
-        const spPhase = spectrumPhase(thresholdFFT(copyComplex(fwd)));
-
-        console.log("mag[I] =", spMag[I]);
-        console.log("pow[I] =", spPow[I]);
-        console.log("dB[I] =", spDb[I]);
-        console.log("phase[I] =", (spPhase[I] * 180) / Math.PI, "deg");
+        assert(eqDelta(spectrumMag(fwd)[I], 2 * sumF));
+        assert(eqDelta(spectrumPow(fwd)[I], sumF));
+        assert(eqDelta(spectrumPow(fwd, true)[I], magDb(A)));
+        assert(eqDelta(spectrumPhase(fwd)[I], (1 / 12) * TAU));
 
         const norm = normalizeFFT(copyComplex(fwd), win);
-        const spMagNorm = spectrumMag(norm);
-        // since `norm` already includes the window weight adjustments
-        // we use a scale factor of 1.0 here
-        const spPowNorm = spectrumPow(norm, false, N / 2, 1);
-        console.log("norm mag[I] =", spMagNorm[I], "pow[I] =", spPowNorm[I]);
+
+        assert(eqDelta(spectrumMag(norm)[I], A));
+        assert(eqDelta(spectrumPow(norm, false, N / 2, 1)[I], A / 2));
+        assert(eqDelta(spectrumPow(norm, true, N / 2, 1)[I], magDb(A)));
+        assert(eqDelta(spectrumPhase(norm)[I], (1 / 12) * TAU));
     });
 });
