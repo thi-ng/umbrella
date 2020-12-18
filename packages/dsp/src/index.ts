@@ -43,6 +43,7 @@ export * from "./proc/svf";
 export * from "./proc/waveshaper";
 
 export * from "./osc/additive";
+export * from "./osc/cos";
 export * from "./osc/dsf";
 export * from "./osc/mix";
 export * from "./osc/parabolic";

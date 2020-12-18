@@ -1,9 +1,9 @@
 import type { FnN3, NumericArray } from "@thi.ng/api";
-import { isNumber } from "@thi.ng/checks";
 import type { ComplexArray } from "../api";
+import { isComplex } from "../util/complex";
 import { magDb } from "../util/convert";
-
-const PI = Math.PI;
+import { invPowerScale, powerScale } from "./power";
+import { applyWindow } from "./window";
 
 /**
  * Returns a new tuple of real/img F64 buffers of given size.
@@ -13,6 +13,16 @@ const PI = Math.PI;
 export const complexArray = (n: number): ComplexArray => [
     new Float64Array(n),
     new Float64Array(n),
+];
+
+/**
+ * Creates a deep copy of given {@link ComplexArray}.
+ *
+ * @param complex
+ */
+export const copyComplex = (complex: ComplexArray): ComplexArray => [
+    complex[0].slice(),
+    complex[1].slice(),
 ];
 
 /**
@@ -62,15 +72,7 @@ export const complexArray = (n: number): ComplexArray => [
 export function conjugate(src: NumericArray, isImg?: boolean): NumericArray;
 export function conjugate(complex: ComplexArray): ComplexArray;
 export function conjugate(src: NumericArray | ComplexArray, isImg = true): any {
-    if (isNumber(src[0])) {
-        const n = src.length;
-        const dest = new Float64Array(n * 2);
-        dest.set(<NumericArray>src);
-        for (let i = 1, j = n * 2 - 1; i < n; i++, j--) {
-            dest[j] = isImg ? -(<NumericArray>src)[i] : (<NumericArray>src)[i];
-        }
-        return dest;
-    } else {
+    if (isComplex(src)) {
         const n = src[0].length;
         const res = complexArray(n * 2);
         const [sreal, simg] = <ComplexArray>src;
@@ -82,6 +84,14 @@ export function conjugate(src: NumericArray | ComplexArray, isImg = true): any {
             dimg[j] = -simg[i];
         }
         return res;
+    } else {
+        const n = src.length;
+        const dest = new Float64Array(n * 2);
+        dest.set(<NumericArray>src);
+        for (let i = 1, j = n * 2 - 1; i < n; i++, j--) {
+            dest[j] = isImg ? -(<NumericArray>src)[i] : (<NumericArray>src)[i];
+        }
+        return dest;
     }
 }
 
@@ -147,7 +157,7 @@ const transform = (real: NumericArray, img: NumericArray, n: number) => {
         step <<= 1;
         ur = 1;
         ui = 0;
-        t = PI / prevStep;
+        t = Math.PI / prevStep;
         wr = Math.cos(t);
         wi = -Math.sin(t);
         for (j = 1; j <= prevStep; j++) {
@@ -192,19 +202,16 @@ export const fft = (
     window?: NumericArray
 ): ComplexArray => {
     let real: NumericArray, img: NumericArray | undefined;
-    if (isNumber(complex[0])) {
-        real = <NumericArray>complex;
-    } else {
+    if (isComplex(complex)) {
         real = complex[0];
         img = <NumericArray>complex[1];
+    } else {
+        real = <NumericArray>complex;
+    }
+    if (window) {
+        applyWindow(real, window);
     }
     const n = real.length;
-    if (window) {
-        for (let i = 0; i < n; i++) {
-            real[i] *= window[i];
-        }
-    }
-
     if (img) {
         swapRI(real, img, n);
     } else {
@@ -218,8 +225,9 @@ export const fft = (
 };
 
 /**
- * Inverse FFT via computing forward transform with swapped
- * real/imaginary components. Expects denormalized inputs.
+ * Inverse FFT via computing forward transform with swapped real/imaginary
+ * components. Expects denormalized inputs (i.e. the same as the result of
+ * {@link fft}).
  *
  * @remarks
  *
@@ -228,9 +236,9 @@ export const fft = (
  * @param complex
  */
 export const ifft = (src: NumericArray | ComplexArray): ComplexArray => {
-    let complex: ComplexArray = isNumber(src[0])
-        ? [new Float64Array(src.length), <NumericArray>src]
-        : <ComplexArray>src;
+    let complex: ComplexArray = isComplex(src)
+        ? src
+        : [new Float64Array(src.length), <NumericArray>src];
     fft([complex[1], complex[0]]);
     return scaleFFT(complex, 1 / complex[0].length);
 };
@@ -248,15 +256,74 @@ export const scaleFFT = (
     return [real, img];
 };
 
-export const normalizeFFT = (complex: ComplexArray): ComplexArray =>
-    scaleFFT(complex, 1 / Math.sqrt(complex[0].length));
-
-export const denormalizeFFT = (complex: ComplexArray): ComplexArray =>
-    scaleFFT(complex, Math.sqrt(complex[0].length));
+/**
+ * Normalizes the complex FFT array by scaling each complex bin value with given
+ * scale factor (or, if given as array, the scale factor derived from these
+ * window function samples).
+ *
+ * @remarks
+ * By default assumes a rectangular window and the resulting scale factor of 2 /
+ * N.
+ *
+ * References:
+ * - https://holometer.fnal.gov/GH_FFT.pdf
+ *
+ * @param complex
+ * @param window
+ */
+export const normalizeFFT = (
+    complex: ComplexArray,
+    window: number | NumericArray = 2 / complex[0].length
+): ComplexArray => scaleFFT(complex, powerScale(window, 2));
 
 /**
- * Computes magnitude spectrum for given FFT. By default only the first
- * N/2 values are returned.
+ * Inverse operation of {@link normalizeFFT}. De-normalizes the complex FFT
+ * array by scaling each complex bin value with given scale factor (or, if given
+ * as array, the scale factor derived from these window function samples).
+ *
+ * @remarks
+ * By default assumes a rectangular window and the resulting scale factor of N /
+ * 2.
+ *
+ * References:
+ * - https://holometer.fnal.gov/GH_FFT.pdf
+ *
+ * @param complex
+ * @param window
+ */
+export const denormalizeFFT = (
+    complex: ComplexArray,
+    window: number | NumericArray = complex[0].length / 2
+): ComplexArray => scaleFFT(complex, invPowerScale(window, 2));
+
+/**
+ * Computes the magnitude of each FFT bin and if less than given `eps`
+ * threshold, sets that bin to zero. Returns input FFT array.
+ *
+ * @remarks
+ * It's recommended to apply this function prior computing
+ * {@link spectrumPhase}. The `eps` value might have to be adjusted and should
+ * be approx. `max(spectrumMag(fft))/10000`.
+ *
+ * References:
+ * - https://www.gaussianwaves.com/2015/11/interpreting-fft-results-obtaining-magnitude-and-phase-information/
+ *
+ * @param complex
+ * @param eps
+ */
+export const thresholdFFT = (complex: ComplexArray, eps = 1e-12) => {
+    const [real, img] = complex;
+    for (let i = 0, n = real.length; i < n; i++) {
+        if (Math.hypot(real[i], img[i]) < eps) {
+            real[i] = img[i] = 0;
+        }
+    }
+    return complex;
+};
+
+/**
+ * Computes magnitude spectrum for given FFT: y(i) = abs(c(i)). By default only
+ * the first N/2 values are returned.
  *
  * @param complex - FFT result
  * @param n - bin count
@@ -269,35 +336,48 @@ export const spectrumMag = (
 ) => {
     const [real, img] = complex;
     for (let i = 0; i < n; i++) {
-        out[i] = Math.sqrt(real[i] ** 2 + img[i] ** 2);
+        out[i] = Math.hypot(real[i], img[i]);
     }
     return out;
 };
 
 /**
- * Computes power spectrum (optionally as dBFS) for the given raw,
- * unnormalized FFT result arrays (length = N) and writes result to
- * `out`.
+ * Computes power spectrum (optionally as dBFS) for the given FFT result arrays
+ * (length = N) and optional `window`. Writes result to `out` or a new array.
  *
  * @remarks
- * By default only the first N/2 values are returned. If `db` is true,
- * the spectrum values are converted to dBFS.
+ * If `window` is given (scale factor or array), it will be used as (if number)
+ * or to compute the scaling factor (if array) for each FFT bin's value. The
+ * default (`window=1`) is the equivalent to a rectangular window (i.e. a
+ * no-op). If windowing was used to compute the FFT, the same should be provided
+ * to this function for correct results.
  *
+ * **IMPORTANT:** If the FFT result has already been normalized using
+ * {@link normalizeFFT}, the scaling factor (`window` arg) MUST be set 1.0.
+ *
+ * By default only the first N/2 values are returned. If `db` is true, the
+ * spectrum values are converted to dBFS.
+ *
+ * - https://holometer.fnal.gov/GH_FFT.pdf
+ * - https://dsp.stackexchange.com/a/32080
+ * - https://dsp.stackexchange.com/a/14935
  * - https://www.kvraudio.com/forum/viewtopic.php?t=276092
  *
  * @param complex
  * @param db
  * @param n
+ * @param window
  * @param out
  */
 export const spectrumPow = (
     complex: ComplexArray,
     db = false,
     n = complex[0].length / 2,
+    window: number | NumericArray = 2 / complex[0].length,
     out: NumericArray = []
 ) => {
     const [real, img] = complex;
-    const scale = 1 / real.length;
+    const scale = powerScale(window, 2);
     for (let i = 0; i < n; i++) {
         const p = real[i] ** 2 + img[i] ** 2;
         out[i] = db ? magDb(Math.sqrt(p) * scale) : p * scale;
@@ -306,8 +386,12 @@ export const spectrumPow = (
 };
 
 /**
- * Computes phase spectrum for given FFT and writes results to `out`. By
- * default only the first N/2 values are returned.
+ * Computes phase spectrum for given FFT and writes results to `out`. By default
+ * only the first N/2 values are returned.
+ *
+ * @remarks
+ * Consider applying {@link thresholdFFT} prior to computing the phase spectrum
+ * to avoid exploding floating point error magnitudes.
  *
  * @param complex - FFT result
  * @param n - bin count
@@ -346,16 +430,17 @@ export const freqBin: FnN3 = (f, fs, n) => ((f * n) / fs) | 0;
 export const binFreq: FnN3 = (bin, fs, n) => (bin * fs) / n;
 
 /**
- * Returns array of bin center frequencies for given FFT window size and
- * sample rate. By default only the first N/2 values are returned.
+ * Returns array of bin center frequencies for given FFT window size and sample
+ * rate. By default only the first N/2+1 values are returned (`m` and including
+ * 0Hz).
  *
- * @param n
- * @param fs
- * @param m
+ * @param n - window size
+ * @param fs - sample rate
+ * @param m - number of result values
  */
 export const fftFreq = (n: number, fs: number, m = n / 2) => {
     const res = new Float64Array(m);
-    for (let i = 0; i < m; i++) {
+    for (let i = 0; i <= m; i++) {
         res[i] = binFreq(i, fs, n);
     }
     return res;
