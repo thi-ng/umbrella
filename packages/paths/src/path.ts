@@ -19,7 +19,7 @@ import { isArray, isString } from "@thi.ng/checks";
  */
 export const toPath = (path: Path): readonly NumOrString[] =>
     isArray(path)
-        ? path
+        ? <any[]>path
         : isString(path)
         ? path.length > 0
             ? path.split(".")
