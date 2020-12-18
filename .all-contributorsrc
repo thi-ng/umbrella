@@ -249,6 +249,16 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "rkesters",
+      "name": "Robert Kesteson",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/5572145?v=4",
+      "profile": "https://github.com/rkesters",
+      "contributions": [
+        "bug",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
