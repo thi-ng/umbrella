@@ -2079,11 +2079,6 @@
   dependencies:
     defer-to-connect "^2.0.0"
 
-"@thi.ng/snowpack-env@^2.3.2":
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/@thi.ng/snowpack-env/-/snowpack-env-2.3.2.tgz#d1b68b696b140e2da63f992d64b4345d4c2a86d4"
-  integrity sha512-K1r30Txjl0iHOUlWWeGbKFAaBJsKnAiAQzDLKlqCto329kepfjgzHdfLglpc03RZ8hjTKqwY7sqDNBMgIykmgQ==
-
 "@types/argparse@1.0.38":
   version "1.0.38"
   resolved "https://registry.yarnpkg.com/@types/argparse/-/argparse-1.0.38.tgz#a81fd8606d481f873a3800c6ebae4f1d768a56a9"
@@ -2204,6 +2199,11 @@
   integrity sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==
   dependencies:
     "@types/node" "*"
+
+"@types/snowpack-env@^2.3.3":
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/@types/snowpack-env/-/snowpack-env-2.3.3.tgz#d2dfb1fb8557aa8bb517606d5dfa249cc861c3ff"
+  integrity sha512-riJuu2fR3qhBfpWJtqQtNwYJFvquiXfqdprXvZjSNmscnZbIVyHoM49ZVEM1bciKM1mWOCdjXymOYHyGh2WLtg==
 
 "@ungap/promise-all-settled@1.1.2":
   version "1.1.2"

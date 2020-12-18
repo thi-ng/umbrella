@@ -25,6 +25,6 @@
         "screenshot": "porter-duff/porter-duff2.png"
     },
     "devDependencies": {
-        "@thi.ng/snowpack-env": "^2.3.2"
+        "@types/snowpack-env": "^2.3.3"
     }
 }

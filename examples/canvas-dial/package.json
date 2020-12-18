@@ -38,6 +38,6 @@
         "screenshot": "examples/canvas-dial.png"
     },
     "devDependencies": {
-        "@thi.ng/snowpack-env": "^2.3.2"
+        "@types/snowpack-env": "^2.3.3"
     }
 }

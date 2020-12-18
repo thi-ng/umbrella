@@ -25,6 +25,6 @@
         "screenshot": "examples/json-components.jpg"
     },
     "devDependencies": {
-        "@thi.ng/snowpack-env": "^2.3.2"
+        "@types/snowpack-env": "^2.3.3"
     }
 }
