@@ -411,6 +411,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="http://plugins.ro"><img src="https://avatars0.githubusercontent.com/u/7951?v=4" width="100px;" alt=""/><br /><sub><b>TBD</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Atbd" title="Bug reports">🐛</a> <a href="#ideas-tbd" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="http://twitter.com/pedroteixeira"><img src="https://avatars3.githubusercontent.com/u/14740?v=4" width="100px;" alt=""/><br /><sub><b>Pedro Henriques dos Santos Teixeira</b></sub></a><br /><a href="#financial-pedroteixeira" title="Financial">💵</a></td>
+    <td align="center"><a href="http://jamieowen.com"><img src="https://avatars3.githubusercontent.com/u/248957?v=4" width="100px;" alt=""/><br /><sub><b>Jamie Owen</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Ajamieowen" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
