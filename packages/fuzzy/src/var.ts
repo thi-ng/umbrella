@@ -29,10 +29,10 @@ export const variable = (
 });
 
 /**
- * Takes an LVar and a domain value `x`. Returns the ID of the var's term which
- * produces the largest value for given `x`. If `strict` is enabled (default),
- * that max value MUST also be > 0.5 to be considered. Function returns
- * undefined if classification failed.
+ * Takes an LVar and a domain value `x`. Returns the ID of the var's fuzzy set
+ * term which yields the max truth value for given `x`. If `threshold` is
+ * enabled (default: 0.5), any truth value MUST also be > `threshold` to be
+ * considered. The function returns undefined if classification failed.
  *
  * @example
  * ```ts
@@ -50,14 +50,14 @@ export const variable = (
  *
  * @param var
  * @param x
- * @param strict
+ * @param threshold
  */
-export const classify = ({ terms }: LVar, x: number, strict = true) => {
-    let max = -Infinity;
+export const classify = ({ terms }: LVar, x: number, threshold = 0.5) => {
+    let max = threshold;
     let maxID: string | undefined;
     for (let id in terms) {
         const t = terms[id](x);
-        if (t > max && (!strict || t > 0.5)) {
+        if (t >= max) {
             max = t;
             maxID = id;
         }
