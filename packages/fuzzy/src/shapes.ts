@@ -1,4 +1,4 @@
-import type { FnN2, FnU, FnU2, FnU3, FnU4 } from "@thi.ng/api";
+import type { FnN2, FnU, FnU2, FnU3, FnU4, Nullable } from "@thi.ng/api";
 import {
     EPS,
     eqDelta,
@@ -210,5 +210,5 @@ export const implication = (tnorm: FnN2, a: FuzzyFn, b: FuzzyFn): FuzzyFn => (
 export const compose = (
     op: FnN2,
     initial: number,
-    ...fns: FuzzyFn[]
+    ...fns: Nullable<FuzzyFn>[]
 ): FuzzyFn => (x) => combineTerms(op, fns, x, initial);

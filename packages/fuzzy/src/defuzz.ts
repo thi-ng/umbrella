@@ -1,8 +1,8 @@
 import type { IObjectOf } from "@thi.ng/api";
 import type { FuzzyFn, LVar, Rule } from "./api";
 import { cogStrategy } from "./cog";
-import { constant, implication, weighted } from "./shapes";
-import { tnormMin } from "./tnorms";
+import { compose, constant, implication, weighted } from "./shapes";
+import { snormMax, tnormMin } from "./tnorms";
 
 /**
  * Takes an object of input {@link variable}s, an object of output variable,
@@ -18,12 +18,16 @@ import { tnormMin } from "./tnorms";
  * set shapes and different results, even if the defuzz strategy remains
  * constant.
  *
+ * The `combine` S-norm (default: {@link snormMax}) is used to combine all
+ * relevant output sets for integration/analysis by the given `strategy`.
+ *
  * @param ins
  * @param outs
  * @param rules
  * @param vals
  * @param strategy
  * @param imply
+ * @param combine
  */
 export const defuzz = (
     ins: IObjectOf<LVar>,
@@ -31,7 +35,8 @@ export const defuzz = (
     rules: Rule[],
     vals: IObjectOf<number>,
     strategy = cogStrategy(),
-    imply = tnormMin
+    imply = tnormMin,
+    combine = snormMax
 ) => {
     const ruleTerms = rules.map((r) => {
         let alpha: number | null = null;
@@ -61,7 +66,7 @@ export const defuzz = (
     const res: IObjectOf<number> = {};
     for (let id in outs) {
         res[id] = strategy(
-            ruleTerms.map((r) => r[id]),
+            compose(combine, 0, ...ruleTerms.map((r) => r[id])),
             outs[id].domain
         );
     }

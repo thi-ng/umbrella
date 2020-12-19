@@ -1,4 +1,4 @@
-import type { Fn2, FnN, FnN2, IObjectOf, Nullable } from "@thi.ng/api";
+import type { Fn2, FnN, FnN2, IObjectOf } from "@thi.ng/api";
 
 export type FuzzyFn = FnN;
 
@@ -6,7 +6,7 @@ export type RuleInputs = IObjectOf<string>;
 export type RuleOutputs = IObjectOf<string>;
 export type RuleOp = (x: number, a: FuzzyFn, b: FuzzyFn) => number;
 
-export type DefuzzStrategy = Fn2<Nullable<FuzzyFn>[], [number, number], number>;
+export type DefuzzStrategy = Fn2<FuzzyFn, [number, number], number>;
 
 export interface Rule {
     op: FnN2;

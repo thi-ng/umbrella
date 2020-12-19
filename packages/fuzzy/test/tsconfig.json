@@ -2,10 +2,9 @@
     "extends": "../../../tsconfig.json",
     "compilerOptions": {
         "outDir": "../build",
-        "module": "commonjs"
+        "module": "commonjs",
+        "noUnusedLocals": false,
+        "noUnusedParameters": false
     },
-    "include": [
-        "./**/*.ts",
-        "../src/**/*.ts"
-    ]
+    "include": ["./**/*.ts", "../src/**/*.ts"]
 }
