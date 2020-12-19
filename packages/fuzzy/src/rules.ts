@@ -1,6 +1,6 @@
 import type { FnN2 } from "@thi.ng/api";
-import { snormMax, tnormMin, tnormProduct } from "@thi.ng/math";
 import type { Rule, RuleFn, RuleInputs, RuleOutputs } from "./api";
+import { snormMax, tnormMin, tnormProduct } from "./tnorms";
 
 /**
  * Defines and returns a new rule object. Takes a T-norm (or S-norm) `op`, an

@@ -1,7 +1,8 @@
 import type { FnN2 } from "@thi.ng/api";
-import { EPS, eqDelta, snormMax } from "@thi.ng/math";
+import { EPS, eqDelta } from "@thi.ng/math";
 import type { DefuzzStrategy } from "./api";
 import { combineTerms } from "./combine";
+import { snormMax } from "./tnorms";
 
 export interface MaximaOpts {
     mode: "first" | "last" | "mean";

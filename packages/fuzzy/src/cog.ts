@@ -1,7 +1,7 @@
 import type { FnN2 } from "@thi.ng/api";
-import { snormMax } from "@thi.ng/math";
 import type { DefuzzStrategy } from "./api";
 import { combineTerms } from "./combine";
+import { snormMax } from "./tnorms";
 
 export interface COGOpts {
     combine: FnN2;
