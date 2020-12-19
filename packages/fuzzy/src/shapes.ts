@@ -125,9 +125,56 @@ export const weighted = (fn: FuzzyFn, weight: number): FuzzyFn => (x) =>
     weight * fn(x);
 
 /**
- * Complex shape generator. Takes a T-norm (or S-norm) as reduction function
- * `op` and any number of {@link FuzzyFn}s. Returns new `FuzzyFn` which
- * evaluates all given `fns` and combines/reduces their results with `op`.
+ * Higher order function. Returns new function which selects subset of given
+ * fuzzy set where `fn(x) > alpha`, or else returns 0.
+ *
+ * @param fn
+ * @param alpha
+ */
+export const alphaCut = (fn: FuzzyFn, alpha = 0.5): FuzzyFn => (x) => {
+    const y = fn(x);
+    return y > alpha ? y : 0;
+};
+
+/**
+ * Higher order function. Returns new function which selects subset of given
+ * fuzzy set where `fn(x) < alpha`, or else returns 0.
+ *
+ * @param fn
+ * @param alpha
+ */
+export const invAlphaCut = (fn: FuzzyFn, alpha = 0.5): FuzzyFn => (x) => {
+    const y = fn(x);
+    return y < alpha ? y : 0;
+};
+
+/**
+ * Higher order function. Takes a T-norm and two {@link FuzzyFn}s. Returns new
+ * function which combines results of a(x) and b(x) using given T-norm
+ * implication.
+ *
+ * @example
+ * ```ts
+ * const f = implication(tnormMin, triangle(0,2,4), triangle(1,3,5));
+ * f(1); // 0
+ * f(2); // 0.5
+ * f(3); // 0.5
+ * f(4); // 0
+ * ```
+ *
+ * @param tnorm
+ * @param a
+ * @param b
+ */
+export const implication = (tnorm: FnN2, a: FuzzyFn, b: FuzzyFn): FuzzyFn => (
+    x
+) => tnorm(a(x), b(x));
+
+/**
+ * Complex shape generator and a more generalized version of
+ * {@link implication}. Takes a T-norm (or S-norm) as reduction function `op`
+ * and any number of {@link FuzzyFn}s. Returns new `FuzzyFn` which evaluates all
+ * given `fns` and combines/reduces their results with `op`.
  *
  * @remarks
  * Depending on the use case and choice of `op`, the `initial` value should
