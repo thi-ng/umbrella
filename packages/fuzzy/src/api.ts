@@ -1,31 +1,26 @@
-import type { Fn2, FnN, FnN2, IObjectOf } from "@thi.ng/api";
+import type { Fn2, FnN, FnN2 } from "@thi.ng/api";
 
 export type FuzzyFn = FnN;
 
-export type RuleInputs = IObjectOf<string>;
-export type RuleOutputs = IObjectOf<string>;
 export type RuleOp = (x: number, a: FuzzyFn, b: FuzzyFn) => number;
 
 export type DefuzzStrategy = Fn2<FuzzyFn, [number, number], number>;
 
-export interface Rule {
-    op: FnN2;
-    if: RuleInputs;
-    then: RuleOutputs;
-    weight: number;
-}
+export type LVarSet<I extends string> = Record<I, LVar<any>>;
 
-export type RuleFn = (
-    $if: RuleInputs,
-    $then: RuleOutputs,
-    weight?: number
-) => Rule;
+export type LVarKeys<T extends LVar<any>> = keyof T["terms"];
+
+export type LVarKeySet<I extends LVarSet<string>, K extends keyof I> = Partial<
+    {
+        [k in K]: LVarKeys<I[k]>;
+    }
+>;
 
 /**
  * Linguistic Variable, defining several (possibly overlapping) fuzzy sets in an
  * overall global domain.
  */
-export interface LVar {
+export interface LVar<K extends string> {
     /**
      * Value domain/interval used to evaluate (and integrate) all terms during
      * {@link defuzz}. Interval is semi-open, i.e. `[min, max)`
@@ -39,5 +34,12 @@ export interface LVar {
     /**
      * Object of named fuzzy sets.
      */
-    terms: Record<string, FuzzyFn>;
+    terms: Record<K, FuzzyFn>;
+}
+
+export interface Rule<I extends LVarSet<string>, O extends LVarSet<string>> {
+    op: FnN2;
+    if: LVarKeySet<I, keyof I>;
+    then: LVarKeySet<O, keyof O>;
+    weight: number;
 }

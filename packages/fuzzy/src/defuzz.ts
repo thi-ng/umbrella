@@ -1,5 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
-import type { FuzzyFn, LVar, Rule } from "./api";
+import type { FuzzyFn, LVarSet, Rule } from "./api";
 import { cogStrategy } from "./cog";
 import { compose, constant, implication, weighted } from "./shapes";
 import { snormMax, tnormMin } from "./tnorms";
@@ -18,8 +18,9 @@ import { snormMax, tnormMin } from "./tnorms";
  * set shapes and different results, even if the defuzz strategy remains
  * constant.
  *
- * The `combine` S-norm (default: {@link snormMax}) is used to combine all
- * relevant output sets for integration/analysis by the given `strategy`.
+ * The `combine` S-norm (default: {@link snormMax}) is used to combine the
+ * relevant output sets of all rules for integration/analysis by the given
+ * defuzz `strategy` actually producing the crisp result.
  *
  * @param ins
  * @param outs
@@ -29,11 +30,11 @@ import { snormMax, tnormMin } from "./tnorms";
  * @param imply
  * @param combine
  */
-export const defuzz = (
-    ins: IObjectOf<LVar>,
-    outs: IObjectOf<LVar>,
-    rules: Rule[],
-    vals: IObjectOf<number>,
+export const defuzz = <I extends LVarSet<string>, O extends LVarSet<string>>(
+    ins: I,
+    outs: O,
+    rules: Rule<I, O>[],
+    vals: Partial<Record<keyof I, number>>,
     strategy = cogStrategy(),
     imply = tnormMin,
     combine = snormMax
@@ -42,7 +43,7 @@ export const defuzz = (
         let alpha: number | null = null;
         for (let id in vals) {
             if (r.if[id]) {
-                const v = ins[id].terms[r.if[id]](vals[id]);
+                const v = ins[id].terms[<string>r.if[id]](vals[id]!);
                 alpha = alpha !== null ? r.op(alpha, v) : v;
             }
         }
@@ -51,7 +52,7 @@ export const defuzz = (
             const aterm = constant(alpha);
             for (let id in r.then) {
                 if (outs[id]) {
-                    const oterm = outs[id].terms[r.then[id]];
+                    const oterm = outs[id].terms[<string>r.then[id]];
                     terms[id] = implication(
                         imply,
                         r.weight == 1 ? oterm : weighted(oterm, r.weight),
@@ -63,7 +64,7 @@ export const defuzz = (
         return terms;
     });
 
-    const res: IObjectOf<number> = {};
+    const res: Partial<Record<keyof O, number>> = {};
     for (let id in outs) {
         res[id] = strategy(
             compose(combine, 0, ...ruleTerms.map((r) => r[id])),

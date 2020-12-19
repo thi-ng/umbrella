@@ -18,28 +18,39 @@ import {
 describe("defuzz", () => {
     it("strategies", () => {
         // https://www.researchgate.net/publication/267041266_Introduction_to_fuzzy_logic
-        const food = variable([0, 10], {
-            awful: invRamp(1, 3),
-            delicious: ramp(7, 9),
-        });
-        const service = variable([0, 10], {
-            poor: gaussian(0, 1.5),
-            good: gaussian(5, 1.5),
-            excellent: gaussian(10, 1.5),
-        });
-        const tip = variable([0, 30], {
-            low: triangle(0, 5, 10),
-            medium: triangle(10, 15, 20),
-            high: triangle(20, 25, 30),
-        });
+        const inputs = {
+            food: variable([0, 10], {
+                awful: invRamp(1, 3),
+                delicious: ramp(7, 9),
+            }),
+            service: variable([0, 10], {
+                poor: gaussian(0, 1.5),
+                good: gaussian(5, 1.5),
+                excellent: gaussian(10, 1.5),
+            }),
+        };
+
+        const outputs = {
+            tip: variable([0, 30], {
+                low: triangle(0, 5, 10),
+                medium: triangle(10, 15, 20),
+                high: triangle(20, 25, 30),
+            }),
+        };
+
+        type I = typeof inputs;
+        type O = typeof outputs;
 
         // if service is poor OR food is awful -> tip is low
         // if service is normal -> tip is medium
         // if service is excellent OR food is delicious -> tip is high
         const rules = [
-            or({ food: "awful", service: "poor" }, { tip: "low" }),
-            or({ service: "good" }, { tip: "medium" }),
-            or({ food: "delicious", service: "excellent" }, { tip: "high" }),
+            or<I, O>({ food: "awful", service: "poor" }, { tip: "low" }),
+            or<I, O>({ service: "good" }, { tip: "medium" }),
+            or<I, O>(
+                { food: "delicious", service: "excellent" },
+                { tip: "high" }
+            ),
         ];
 
         const testStrategy = (
@@ -51,15 +62,15 @@ describe("defuzz", () => {
             for (let i = 0, k = 0; i <= 10; i++) {
                 for (let j = 0; j <= 10; j++, k++) {
                     let res = defuzz(
-                        { food, service },
-                        { tip },
+                        inputs,
+                        outputs,
                         rules,
                         { food: i, service: j },
                         // trace(strategy)
                         strategy
                     );
                     assert(
-                        eqDelta(res.tip, expected[k]),
+                        eqDelta(res.tip!, expected[k]),
                         `${id}(${i},${j}): expected: ${expected[k]}, got: ${res.tip}`
                     );
                     // all.push(res.tip.toFixed(2));

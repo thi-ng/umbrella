@@ -1,4 +1,3 @@
-import type { IObjectOf } from "@thi.ng/api";
 import type { LVar } from "./api";
 
 /**
@@ -20,10 +19,10 @@ import type { LVar } from "./api";
  * @param domain
  * @param terms
  */
-export const variable = (
+export const variable = <K extends string>(
     domain: [number, number],
-    terms: LVar["terms"]
-): LVar => ({
+    terms: LVar<K>["terms"]
+): LVar<K> => ({
     domain,
     terms,
 });
@@ -52,9 +51,13 @@ export const variable = (
  * @param x
  * @param threshold
  */
-export const classify = ({ terms }: LVar, x: number, threshold = 0.5) => {
+export const classify = <K extends string>(
+    { terms }: LVar<K>,
+    x: number,
+    threshold = 0.5
+) => {
     let max = threshold;
-    let maxID: string | undefined;
+    let maxID: K | undefined;
     for (let id in terms) {
         const t = terms[id](x);
         if (t >= max) {
@@ -86,8 +89,8 @@ export const classify = ({ terms }: LVar, x: number, threshold = 0.5) => {
  * @param var
  * @param x
  */
-export const evaluate = ({ terms }: LVar, x: number) => {
-    const res: IObjectOf<number> = {};
+export const evaluate = <K extends string>({ terms }: LVar<K>, x: number) => {
+    const res = <Record<K, number>>{};
     for (let id in terms) {
         res[id] = terms[id](x);
     }

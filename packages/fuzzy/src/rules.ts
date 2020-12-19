@@ -1,5 +1,5 @@
 import type { FnN2 } from "@thi.ng/api";
-import type { Rule, RuleFn, RuleInputs, RuleOutputs } from "./api";
+import type { LVarKeySet, LVarSet, Rule } from "./api";
 import { snormMax, tnormMin, tnormProduct } from "./tnorms";
 
 /**
@@ -36,23 +36,32 @@ import { snormMax, tnormMin, tnormProduct } from "./tnorms";
  * @param then
  * @param weight
  */
-export const rule = (
+export const rule = <I extends LVarSet<string>, O extends LVarSet<string>>(
     op: FnN2,
-    $if: RuleInputs,
-    then: RuleOutputs,
+    $if: LVarKeySet<I, keyof I>,
+    then: LVarKeySet<O, keyof O>,
     weight = 1
-): Rule => ({
+): Rule<I, O> => ({
     if: $if,
     then,
     op,
     weight,
 });
 
-export const and: RuleFn = ($if, $then, weight) =>
-    rule(tnormMin, $if, $then, weight);
+export const and = <I extends LVarSet<string>, O extends LVarSet<string>>(
+    $if: LVarKeySet<I, keyof I>,
+    then: LVarKeySet<O, keyof O>,
+    weight?: number
+) => rule(tnormMin, $if, then, weight);
 
-export const strongAnd: RuleFn = ($if, $then, weight) =>
-    rule(tnormProduct, $if, $then, weight);
+export const strongAnd = <I extends LVarSet<string>, O extends LVarSet<string>>(
+    $if: LVarKeySet<I, keyof I>,
+    then: LVarKeySet<O, keyof O>,
+    weight?: number
+) => rule(tnormProduct, $if, then, weight);
 
-export const or: RuleFn = ($if, $then, weight) =>
-    rule(snormMax, $if, $then, weight);
+export const or = <I extends LVarSet<string>, O extends LVarSet<string>>(
+    $if: LVarKeySet<I, keyof I>,
+    then: LVarKeySet<O, keyof O>,
+    weight?: number
+) => rule(snormMax, $if, then, weight);
