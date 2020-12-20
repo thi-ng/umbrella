@@ -18,7 +18,9 @@ ${pkg.description}
 - Entirely declarative & functional approach
 - Fully type checked
 - Fuzzy set domain shaping & composition functions (incl. negated / inverse)
-- Various [T-norms & S-norms](https://github.com/thi-ng/umbrella/blob/develop/packages/fuzzy/src/tnorms.ts), incl. parametric versions
+- Various [T-norms &
+  S-norms](https://github.com/thi-ng/umbrella/blob/develop/packages/fuzzy/src/tnorms.ts),
+  incl. parametric versions
 - Rules with multiple inputs/outputs and arbitrary term combinators (i.e.
   T-norms). Syntax sugar for common `and`/`or` rules.
 - Defuzzification via customizable strategies and options to balance precision
@@ -27,6 +29,8 @@ ${pkg.description}
   - Center-of-Gravity (COG)
 - Linguistic variable creation and term/set classification for given domain
   values
+- Fuzzy set visualization (via
+  [@thi.ng/fuzzy-viz](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy-viz))
 
 ### References / Further reading
 
@@ -62,6 +66,10 @@ ${examples}
 
 ${docLink}
 
+(See
+[tests](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy/test) for
+more usage examples).
+
 ### Fuzzy set generators & combinators
 
 Generators:
@@ -84,29 +92,44 @@ Combinators:
 
 ### Linguistic variables
 
+Linguistic variables (short: **L-var**s) are groupings of named (and possibly
+overlapping) fuzzy sets within a given value domain. The can be used standalone
+or as inputs/outputs in rules (further below).
+
+The
+[@thi.ng/fuzzy-viz](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy-viz)
+package provides utilities to visualize the fuzzy sets of an L-var.
+
+![fuzzy set visualization of the example
+l-var](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/fuzzy/temperature-lvar.svg)
+
 ```ts
 // temperature sets (in celsius)
-const temp = variable([-20, 40], {
-  freezing: invSigmoid(0, 2),
-  cold: trapezoid(0, 4, 16, 20),
-  warm: trapezoid(15, 20, 25, 30),
-  hot: sigmoid(30, 2)
-});
+const temp = variable(
+  // value domain
+  [-20, 40],
+  {
+    freezing: invSigmoid(0, 2),
+    cold: trapezoid(-1, 2, 16, 20),
+    warm: trapezoid(15, 20, 30, 34),
+    hot: sigmoid(32, 2)
+  }
+);
 
 evaluate(temp, 18)
 // {
 //   freezing: 2.220446049250313e-16,
 //   cold: 0.5,
 //   warm: 0.6,
-//   hot: 3.7751345441365816e-11
+//   hot: 6.914400106935423e-13
 // }
 
 evaluate(temp, 28)
 // {
 //   freezing: 0,
 //   cold: 0,
-//   warm: 0.4,
-//   hot: 0.01798620996209156
+//   warm: 1,
+//   hot: 0.0003353501304664781
 // }
 
 // classify temperature (min confidence 33%, default: 50%)
@@ -118,6 +141,9 @@ classify(temp, 28, 0.33)
 
 Example taken from Franck Dernoncourt's [Introduction to Fuzzy
 Logic](https://www.researchgate.net/publication/267041266_Introduction_to_fuzzy_logic):
+
+![fuzzy set illustration from F.Dernoncourt's
+tutorial](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/fuzzy/fuzzy-matrix-dernoncourt.png)
 
 ```ts
 // define fuzzy input variables
@@ -158,11 +184,8 @@ const rules = [
 
 // defuzzification using default center-of-gravity strategy
 defuzz(
-  // input variables
-  { food, service },
-  // output variables
-  { tip },
-  // rules (see above)
+  inputs,
+  outputs,
   rules,
   // input values
   { food: 7.32, service: 7.83 },
@@ -171,11 +194,8 @@ defuzz(
 
 // defuzz with custom strategy (note: each has further config options)
 defuzz(
-  // input variables
-  { food, service },
-  // output variables
-  { tip },
-  // rules (see above)
+  inputs,
+  outputs,
   rules,
   // input values
   { food: 7.32, service: 7.83 },
@@ -186,15 +206,16 @@ defuzz(
 ```
 
 Note: The results are slightly different than those in the textbook example, due
-to different `gaussian` fuzzy sets used for the `service` lvar.
+to different `gaussian` fuzzy sets used for the `service` L-var.
 
-Using `traceStrategy` from the upcoming
-[@thi.ng/fuzzy-utils](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy-utils)
-package, we can also visualize the fuzzy sets and highlight the position of the
-crisp result value.
+Using `instrumentStrategy` from the upcoming
+[@thi.ng/fuzzy-viz](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy-viz)
+package, we can also visualize the final, transformed fuzzy sets used to compute
+crisp results and highlight the position of the crisp result value.
 
-Here is the result for COG strategy and using `tnormMin` (the default) to
-transform each rule's output set(s):
+Here is the result for the [COG
+strategy](https://github.com/thi-ng/umbrella/blob/develop/packages/fuzzy/src/cog.ts)
+and using `tnormMin` (the default) to transform each rule's output set(s):
 
 ```text
 ...........................................................................|........................
