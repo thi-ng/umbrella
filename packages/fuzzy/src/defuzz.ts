@@ -1,7 +1,7 @@
 import type { IObjectOf } from "@thi.ng/api";
 import type { FuzzyFn, LVarSet, Rule } from "./api";
 import { cogStrategy } from "./cog";
-import { compose, constant, implication, weighted } from "./shapes";
+import { constant, intersect, union, weighted } from "./shapes";
 import { snormMax, tnormMin } from "./tnorms";
 
 /**
@@ -53,7 +53,7 @@ export const defuzz = <I extends LVarSet<string>, O extends LVarSet<string>>(
             for (let id in r.then) {
                 if (outs[id]) {
                     const oterm = outs[id].terms[<string>r.then[id]];
-                    terms[id] = implication(
+                    terms[id] = intersect(
                         imply,
                         r.weight == 1 ? oterm : weighted(oterm, r.weight),
                         aterm
@@ -67,7 +67,7 @@ export const defuzz = <I extends LVarSet<string>, O extends LVarSet<string>>(
     const res: Partial<Record<keyof O, number>> = {};
     for (let id in outs) {
         res[id] = strategy(
-            compose(combine, 0, ...ruleTerms.map((r) => r[id])),
+            union(combine, ...ruleTerms.map((r) => r[id]).filter((f) => !!f)),
             outs[id].domain
         );
     }

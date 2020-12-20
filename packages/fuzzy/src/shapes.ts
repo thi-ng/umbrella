@@ -1,4 +1,4 @@
-import type { FnN2, FnU, FnU2, FnU3, FnU4, Nullable } from "@thi.ng/api";
+import type { FnN2, FnU, FnU2, FnU3, FnU4 } from "@thi.ng/api";
 import {
     EPS,
     eqDelta,
@@ -8,7 +8,6 @@ import {
     sigmoid as $sigmoid,
 } from "@thi.ng/math";
 import type { FuzzyFn } from "./api";
-import { combineTerms } from "./combine";
 
 /**
  * HOF {@link FuzzyFn} always yielding given `x` (should be in [0,1]
@@ -149,32 +148,10 @@ export const invAlphaCut = (fn: FuzzyFn, alpha = 0.5): FuzzyFn => (x) => {
 };
 
 /**
- * Higher order function. Takes a T-norm and two {@link FuzzyFn}s. Returns new
- * function which combines results of a(x) and b(x) using given T-norm
- * implication.
- *
- * @example
- * ```ts
- * const f = implication(tnormMin, triangle(0,2,4), triangle(1,3,5));
- * f(1); // 0
- * f(2); // 0.5
- * f(3); // 0.5
- * f(4); // 0
- * ```
- *
- * @param tnorm
- * @param a
- * @param b
- */
-export const implication = (tnorm: FnN2, a: FuzzyFn, b: FuzzyFn): FuzzyFn => (
-    x
-) => tnorm(a(x), b(x));
-
-/**
- * Complex shape generator and a more generalized version of
- * {@link implication}. Takes a T-norm (or S-norm) as reduction function `op`
- * and any number of {@link FuzzyFn}s. Returns new `FuzzyFn` which evaluates all
- * given `fns` and combines/reduces their results with `op`.
+ * Higher order function, complex shape generator. Takes a T-norm (or S-norm) as
+ * reduction function `op` and any number of {@link FuzzyFn}s. Returns new
+ * `FuzzyFn` which evaluates all given `fns` and combines/reduces their results
+ * with `op`.
  *
  * @remarks
  * Depending on the use case and choice of `op`, the `initial` value should
@@ -187,6 +164,15 @@ export const implication = (tnorm: FnN2, a: FuzzyFn, b: FuzzyFn): FuzzyFn => (
  * - https://www.desmos.com/calculator/pnq6kqzfb5 (interactive graph)
  * - https://en.wikipedia.org/wiki/T-norm
  * - https://github.com/thi-ng/umbrella/blob/develop/packages/math/src/tnorms.ts
+ *
+ * @example
+ * ```ts
+ * const f = compose(tnormMin, 1, triangle(0,2,4), triangle(1,3,5));
+ * f(1); // 0
+ * f(2); // 0.5
+ * f(3); // 0.5
+ * f(4); // 0
+ * ```
  *
  * @example
  * ```ts
@@ -210,5 +196,36 @@ export const implication = (tnorm: FnN2, a: FuzzyFn, b: FuzzyFn): FuzzyFn => (
 export const compose = (
     op: FnN2,
     initial: number,
-    ...fns: Nullable<FuzzyFn>[]
-): FuzzyFn => (x) => combineTerms(op, fns, x, initial);
+    ...fns: FuzzyFn[]
+): FuzzyFn => {
+    const [a, b] = fns;
+    switch (fns.length) {
+        case 0:
+            throw new Error("no fuzzy sets given");
+        case 1:
+            return a;
+        case 2:
+            return (x) => op(a(x), b(x));
+        default:
+            return (x) => fns.reduce((acc, f) => op(acc, f(x)), initial);
+    }
+};
+
+/**
+ * Syntax sugar for {@link compose} with an initial value of 1.0. The `op` is
+ * supposed to be a T-norm.
+ *
+ * @param op
+ * @param fns
+ */
+export const intersect = (op: FnN2, ...fns: FuzzyFn[]) =>
+    compose(op, 1, ...fns);
+
+/**
+ * Syntax sugar for {@link compose} with an initial value of 0.0. The `op` is
+ * supposed to be a S-norm.
+ *
+ * @param op
+ * @param fns
+ */
+export const union = (op: FnN2, ...fns: FuzzyFn[]) => compose(op, 0, ...fns);

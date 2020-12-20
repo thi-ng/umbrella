@@ -4,7 +4,11 @@ export type FuzzyFn = FnN;
 
 export type RuleOp = (x: number, a: FuzzyFn, b: FuzzyFn) => number;
 
-export type DefuzzStrategy = Fn2<FuzzyFn, [number, number], number>;
+export type DefuzzStrategy = Fn2<FuzzyFn, LVarDomain, number>;
+
+export type LVarDomain = [number, number];
+
+export type LVarTerms<K extends string> = Record<K, FuzzyFn>;
 
 export type LVarSet<I extends string> = Record<I, LVar<any>>;
 
@@ -30,11 +34,11 @@ export interface LVar<K extends string> {
      * defined sets. However, for precision and performance reasons, it's
      * recommended to keep this interval as compact as possible.
      */
-    domain: [number, number];
+    domain: LVarDomain;
     /**
      * Object of named fuzzy sets.
      */
-    terms: Record<K, FuzzyFn>;
+    terms: LVarTerms<K>;
 }
 
 export interface Rule<I extends LVarSet<string>, O extends LVarSet<string>> {
