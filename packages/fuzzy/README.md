@@ -64,7 +64,7 @@ Fuzzy logic operators & configurable rule inferencing engine.
 
 ### Support packages
 
-- [@thi.ng/fuzzy-viz](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy-viz) - Visualization & introspection utilities for [@thi.ng/fuzzy](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy)
+- [@thi.ng/fuzzy-viz](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy-viz) - Visualization, instrumentation & introspection utils for [@thi.ng/fuzzy](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy)
 
 ## Installation
 
@@ -80,7 +80,7 @@ yarn add @thi.ng/fuzzy
 <script src="https://unpkg.com/@thi.ng/fuzzy/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.54 KB / CJS: 1.72 KB / UMD: 1.62 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.61 KB / CJS: 1.79 KB / UMD: 1.70 KB
 
 ## Dependencies
 
@@ -112,8 +112,7 @@ Combinators:
 - `negate()`
 - `weighted()`
 - `alphaCut()` / `invAlphaCut()`
-- `implication()`
-- `compose()`
+- `compose()` / `intersect()` / `union()`
 
 ### Linguistic variables
 
@@ -126,7 +125,7 @@ The
 package provides utilities to visualize the fuzzy sets of an L-var.
 
 ![fuzzy set visualization of the example
-l-var](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/fuzzy/temperature-lvar.svg)
+l-var](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/fuzzy/temperature-lvar-2.svg)
 
 ```ts
 // temperature sets (in celsius)
@@ -233,12 +232,12 @@ defuzz(
 Note: The results are slightly different than those in the textbook example, due
 to different `gaussian` fuzzy sets used for the `service` L-var.
 
-Using `instrumentStrategy` from the upcoming
+Using `instrumentStrategy()` from the upcoming
 [@thi.ng/fuzzy-viz](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy-viz)
 package, we can also visualize the final, transformed fuzzy sets used to compute
 crisp results and highlight the position of the crisp result value.
 
-Here is the result for the [COG
+Here is the ASCII art output for the [COG
 strategy](https://github.com/thi-ng/umbrella/blob/develop/packages/fuzzy/src/cog.ts)
 and using `tnormMin` (the default) to transform each rule's output set(s):
 
@@ -307,6 +306,11 @@ output sets, here using `tnormHamacher(2)`.
 ..................................▃▇█████████████████████████████▇▃▂████████|██████████████████████▇
                                                                             ^ 22.95
 ```
+
+Just for illustration purposes, SVG output can be obtained by merely switching
+to another instrumentation function (here `fuzzySetToSvg()`):
+
+![fuzzySetToSvg() visualization example](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/fuzzy/strategy-viz.svg)
 
 ## Authors
 

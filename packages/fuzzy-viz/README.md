@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Visualization & introspection utilities for [@thi.ng/fuzzy](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy).
+Visualization, instrumentation & introspection utils for [@thi.ng/fuzzy](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy).
 
 ### Status
 
@@ -43,14 +43,16 @@ yarn add @thi.ng/fuzzy-viz
 <script src="https://unpkg.com/@thi.ng/fuzzy-viz/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 794 bytes / CJS: 860 bytes / UMD: 984 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 1.04 KB / CJS: 1.12 KB / UMD: 1.23 KB
 
 ## Dependencies
 
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/fuzzy](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy)
 - [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
 - [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
+- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 - [@thi.ng/text-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/text-canvas)
 
 ## API
@@ -62,7 +64,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 794 bytes / CJS: 860 bytes / UMD: 9
 Generate an SVG visualization of all fuzzy sets defined in a [linguistic
 variable](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy#linguistic-variables):
 
-![fuzzy set visualization of the example l-var](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/fuzzy/temperature-lvar.svg)
+![fuzzy set visualization of the example l-var](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/fuzzy/temperature-lvar-2.svg)
 
 ```ts
 import { varToSvg } from "@thi.ng/fuzzy-viz";
@@ -82,11 +84,59 @@ const temp = variable(
 writeFileSync("temperature.svg", varToSvg(temp, { samples: 200 }));
 ```
 
-See [`VizualizeVarOpts`]() for further options to configure the visualization.
+See
+[`VizualizeVarOpts`](https://github.com/thi-ng/umbrella/blob/develop/packages/fuzzy-viz/src/api.ts)
+for further options to configure the visualization.
 
 ### Instrument a DefuzzStrategy
 
-TODO
+`instrumentStrategy()` is an higher order function. It takes an existing
+`DefuzzStrategy` and an instrumentation function. Returns new `DefuzzStrategy`
+which first executes original `strategy`, then calls `instrument` with the same
+args AND the computed result obtained from `strategy`. Returns result of
+original `strategy`.
+
+The instrumentation function is intended to perform side effects (e.g. debug
+outputs) and/or produce secondary results (e.g. visualizations). The latter can
+be obtained through the `IDeref` mechanism implemented by the returned function.
+Since `defuzz()` might call the strategy multiple times (i.e. if there are
+multiple output vars used), `.deref()` will always return an array of secondary
+results.
+
+**Note:** The secondary results from the instrumentation function will persist &
+accumulate. If re-using the instrumented strategy for multiple `defuzz()`
+invocations, it's highly recommended to clear any previous results using
+`.clear()`.
+
+```ts
+const strategy = instrumentStrategy(
+  cogStrategy({ samples: 1000 }),
+  fuzzySetToAscii({ width: 40, height: 8 })
+);
+
+// apply strategy as normal (well, usually done via defuzz())
+strategy(gaussian(5, 2), [0, 10]);
+// 4.995
+
+strategy.deref().forEach((viz) => console.log(viz));
+// .................▄▆█|█▆▄.................
+// ...............▅████|████▅...............
+// .............▄██████|██████▄.............
+// ...........▂▇███████|███████▇▂...........
+// ..........▅█████████|█████████▅..........
+// .......▁▅███████████|███████████▅▁.......
+// .....▃▆█████████████|█████████████▆▃.....
+// ▃▄▅▇████████████████|████████████████▇▅▄▃
+//                     ^ 5.00
+
+// cleanup (optional)
+strategy.clear();
+```
+
+Using `fuzzySetToHiccup()`/`fuzzySetToSvg()` visualizations like below can be
+created following the same pattern as above:
+
+![fuzzySetToSvg() visualization example](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/fuzzy/strategy-viz.svg)
 
 ## Authors
 
