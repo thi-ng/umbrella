@@ -145,19 +145,5 @@ describe("defuzz", () => {
             15.00, 24.90, 24.90, 24.90, 24.90, 15.00, 24.90, 24.90, 24.90, 24.90, 24.90,
         ];
         testStrategy("mean", meanOfMaximaStrategy(), meoMaResults);
-
-        // console.log(
-        //     defuzz(
-        //         { food, service },
-        //         { tip },
-        //         rules,
-        //         {
-        //             food: 7.32,
-        //             service: 7.83,
-        //         },
-        //         trace(cogStrategy(), 16),
-        //         tnormHamacher()
-        //     )
-        // );
     });
 });
