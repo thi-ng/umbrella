@@ -1,26 +1,8 @@
 import type { LVar } from "@thi.ng/fuzzy";
 import { serialize } from "@thi.ng/hiccup";
 import { convertTree, svg } from "@thi.ng/hiccup-svg";
-import { fit } from "@thi.ng/math";
-
-export interface VizualizeVarOpts {
-    /**
-     * Number of samples to evaluate for each fuzzy set.
-     */
-    samples: number;
-    /**
-     * Visualization width
-     */
-    width: number;
-    /**
-     * Visualization height
-     */
-    height: number;
-    /**
-     * If true, includes a legend of color coded labels of the fuzzy sets.
-     */
-    labels: boolean;
-}
+import { fit, inRange } from "@thi.ng/math";
+import type { VizualizeVarOpts } from "./api";
 
 /**
  * Takes an {@link @thi.ng/fuzzy#LVar} and visualization options. Evaluates all
@@ -35,24 +17,26 @@ export const varToHiccup = (
     { domain: [min, max], terms }: LVar<any>,
     opts: Partial<VizualizeVarOpts> = {}
 ) => {
-    const { samples, width, height, labels } = {
+    const { samples, width, height, labels, stroke: strokeFn, fill: fillFn } = {
         samples: 200,
         width: 600,
         height: 100,
         labels: true,
+        stroke: (x: number) => `hsl(${(x * 360) | 0},100%,40%)`,
+        fill: (x: number) => `hsla(${(x * 360) | 0},100%,50%,20%)`,
         ...opts,
     };
     const keys = Object.keys(terms);
     const dt = (max - min) / samples;
     const ds = width / samples;
-    const dh = 360 / keys.length;
+    const dn = 1 / keys.length;
     const curves: any[] = [];
     const legend: any[] = [];
     for (let i = 0; i < keys.length; i++) {
         const id = keys[i];
         const f = terms[id];
         const y = (i + 1) * 12;
-        const stroke = `hsl(${(i * dh) | 0},100%,40%)`;
+        const stroke = strokeFn(i * dn);
         const curr: number[][] = [];
         for (let i = 0; i <= samples; i++) {
             curr.push([i * ds, (1 - f(min + i * dt)) * height]);
@@ -62,7 +46,7 @@ export const varToHiccup = (
             "polygon",
             {
                 stroke,
-                fill: `hsla(${(i * dh) | 0},100%,50%,20%)`,
+                fill: fillFn(i * dn),
             },
             curr,
         ]);
@@ -92,21 +76,32 @@ export const varToHiccup = (
         },
         ...curves,
         ...legend,
+        inRange(zero, width * 0.05, width * 0.95)
+            ? [
+                  "g",
+                  {},
+                  [
+                      "line",
+                      {
+                          stroke: "black",
+                          dash: [1, 1],
+                      },
+                      [zero, 0],
+                      [zero, height],
+                  ],
+                  [
+                      "text",
+                      { align: "center", fill: "black" },
+                      [zero, height + 10],
+                      "0.00",
+                  ],
+              ]
+            : null,
         [
             "g",
-            { fill: "black", translate: [0, height + 10] },
-            [
-                "line",
-                {
-                    stroke: "black",
-                    dash: [2, 2],
-                },
-                [zero, 0],
-                [zero, height],
-            ],
-            ["text", {}, [0, 0], min.toFixed(2)],
-            ["text", { align: "center" }, [zero, 0], "0.00"],
-            ["text", { align: "end" }, [width, 0], max.toFixed(2)],
+            { fill: "black" },
+            ["text", {}, [0, height + 10], min.toFixed(2)],
+            ["text", { align: "end" }, [width, height + 10], max.toFixed(2)],
         ]
     );
 };
