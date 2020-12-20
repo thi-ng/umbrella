@@ -10,7 +10,7 @@ import { varToHiccup } from "./var";
 
 /**
  * Higher order function. Takes an existing {@link @thi.ng/fuzzy#DefuzzStrategy}
- * and an intrumentation function. Returns new `DefuzzStrategy` which first
+ * and an instrumentation function. Returns new `DefuzzStrategy` which first
  * executes original `strategy`, then calls `instrument` with the same args AND
  * the computed result obtained from `strategy`. Returns result of original
  * `strategy`.
@@ -24,13 +24,13 @@ import { varToHiccup } from "./var";
  * always return an array of secondary results.
  *
  * Note: The secondary results from the instrumentation function will persist &
- * accumulate. If re-using the intrumented strategy for multiple `defuzz()`
+ * accumulate. If re-using the instrumented strategy for multiple `defuzz()`
  * invocations, it's highly recommended to clear any previous results using
  * `.clear()`.
  *
  * @example
  * ```ts
- * const strategy = instrumentStategy(
+ * const strategy = instrumentStrategy(
  *   cogStrategy({ samples: 1000 }),
  *   fuzzySetToAscii({ width: 40, height: 8 })
  * );
@@ -77,7 +77,7 @@ export const fuzzySetToHiccup = (
     const tree = varToHiccup(variable(domain, { main: fn }), {
         labels: false,
         stroke: () => "#333",
-        fill: () => "rgba(0,0,0,0.2)",
+        fill: () => "#999",
         ...opts,
     });
     const { width, height } = tree[1];
