@@ -1,28 +1,127 @@
-import type { DefuzzStrategy } from "@thi.ng/fuzzy";
+import type { Fn3, IClear, IDeref } from "@thi.ng/api";
+import { DefuzzStrategy, FuzzyFn, LVarDomain, variable } from "@thi.ng/fuzzy";
+import { serialize } from "@thi.ng/hiccup";
+import { convertTree } from "@thi.ng/hiccup-svg";
 import { fit } from "@thi.ng/math";
+import { repeat } from "@thi.ng/strings";
 import { barChartHStr } from "@thi.ng/text-canvas";
+import type { AsciiVizOpts, InstrumentFn, VizualizeVarOpts } from "./api";
+import { varToHiccup } from "./var";
 
-export interface VisualizeStrategyOpts {
-    samples: number;
-    height: number;
-}
-
-export const instrumentStrategy = (
+/**
+ * Higher order function. Takes an existing {@link @thi.ng/fuzzy#DefuzzStrategy}
+ * and an intrumentation function. Returns new `DefuzzStrategy` which first
+ * executes original `strategy`, then calls `instrument` with the same args AND
+ * the computed result obtained from `strategy`. Returns result of original
+ * `strategy`.
+ *
+ * @remarks
+ * The instrumentation function is intended to perform side effects (e.g. debug
+ * outputs) and/or produce secondary results (e.g. visualizations). The latter
+ * can be obtained through the {@link @thi.ng/api#IDeref} mechanism implemented
+ * by the returned function. Since {@link defuzz} might call the strategy
+ * multiple times (i.e. if there are multiple output vars used), `.deref()` will
+ * always return an array of secondary results.
+ *
+ * Note: The secondary results from the instrumentation function will persist &
+ * accumulate. If re-using the intrumented strategy for multiple `defuzz()`
+ * invocations, it's highly recommended to clear any previous results using
+ * `.clear()`.
+ *
+ * @example
+ * ```ts
+ * const strategy = instrumentStategy(
+ *   cogStrategy({ samples: 1000 }),
+ *   fuzzySetToAscii({ width: 40, height: 8 })
+ * );
+ *
+ * strategy(gaussian(5, 2), [0, 10]);
+ * // 4.995
+ *
+ * console.log(strategy.deref()[0])
+ * // .................▄▆█|█▆▄.................
+ * // ...............▅████|████▅...............
+ * // .............▄██████|██████▄.............
+ * // ...........▂▇███████|███████▇▂...........
+ * // ..........▅█████████|█████████▅..........
+ * // .......▁▅███████████|███████████▅▁.......
+ * // .....▃▆█████████████|█████████████▆▃.....
+ * // ▃▄▅▇████████████████|████████████████▇▅▄▃
+ * //                     ^ 5.00
+ *
+ * // cleanup (optional)
+ * strategy.clear();
+ * ```
+ *
+ * @param strategy
+ * @param instrument
+ */
+export const instrumentStrategy = <T>(
     strategy: DefuzzStrategy,
-    opts: Partial<VisualizeStrategyOpts> = {}
-): DefuzzStrategy => (fn, domain) => {
-    const { samples, height } = { samples: 100, height: 16, ...opts };
-    const res = strategy(fn, domain);
+    instrument: Fn3<FuzzyFn, LVarDomain, number, T>
+) => {
+    const acc: T[] = [];
+    const impl: DefuzzStrategy & IClear & IDeref<T[]> = (fn, domain) => {
+        const res = strategy(fn, domain);
+        acc.push(instrument(fn, domain, res));
+        return res;
+    };
+    impl.clear = () => (acc.length = 0);
+    impl.deref = () => acc;
+    return impl;
+};
+
+export const fuzzySetToHiccup = (
+    opts?: Partial<VizualizeVarOpts>
+): InstrumentFn<any[]> => (fn, domain, res) => {
+    const tree = varToHiccup(variable(domain, { main: fn }), {
+        labels: false,
+        stroke: () => "#333",
+        fill: () => "rgba(0,0,0,0.2)",
+        ...opts,
+    });
+    const { width, height } = tree[1];
+    const x = fit(res, domain[0], domain[1], 0, width);
+    tree.push([
+        "g",
+        { translate: [x, 0] },
+        ["line", { stroke: "red" }, [0, 0], [0, height - 12]],
+        [
+            "text",
+            { align: "center", fill: "red" },
+            [0, height - 2],
+            res.toFixed(2),
+        ],
+    ]);
+    return tree;
+};
+
+export const fuzzySetToSvg = (
+    opts?: Partial<VizualizeVarOpts>
+): InstrumentFn<string> => (fn, domain, res) =>
+    serialize(convertTree(fuzzySetToHiccup(opts)(fn, domain, res)));
+
+export const fuzzySetToAscii = (
+    opts?: Partial<AsciiVizOpts>
+): InstrumentFn<string> => (fn, domain, res) => {
+    const { width, height, empty } = {
+        width: 100,
+        height: 16,
+        empty: ".",
+        ...opts,
+    };
     const [min, max] = domain;
-    const delta = (max - min) / samples;
+    const delta = (max - min) / width;
     const vals: number[] = [];
     for (let i = min; i <= max; i += delta) {
         vals.push(fn(i));
     }
-    const chart = barChartHStr(height, vals, 0, 1).replace(/ /g, ".");
     const index = Math.round(fit(res, min, max, 0, vals.length));
-    const legend = new Array(Math.max(index - 1, 0)).fill(" ").join("") + "^";
-    console.log(chart);
-    console.log(legend);
-    return res;
+    let chart = barChartHStr(height, vals, 0, 1)
+        .split("\n")
+        .map((line) => line.substr(0, index) + "|" + line.substr(index + 1))
+        .join("\n")
+        .replace(/ /g, empty);
+    const legend = repeat(" ", index) + "^ " + res.toFixed(2);
+    return chart + "\n" + legend;
 };
