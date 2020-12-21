@@ -47,3 +47,19 @@ export interface Rule<I extends LVarSet<string>, O extends LVarSet<string>> {
     then: LVarKeySet<O, keyof O>;
     weight: number;
 }
+
+export interface DefuzzStrategyOpts {
+    /**
+     * Number of samples/steps to use for integration of the fuzzy set.
+     *
+     * @defaultValue 100
+     */
+    samples: number;
+    /**
+     * Tolerance value (only used by some strategies, e.g.
+     * {@link meanOfMaximaStrategy}).
+     *
+     * @defaultValue 1e-6
+     */
+    eps: number;
+}

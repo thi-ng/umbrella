@@ -1,14 +1,14 @@
 import type { IObjectOf } from "@thi.ng/api";
 import type { FuzzyFn, LVarSet, Rule } from "./api";
-import { cogStrategy } from "./cog";
 import { constant, intersect, union, weighted } from "./shapes";
+import { centroidStrategy } from "./strategies/centroid";
 import { snormMax, tnormMin } from "./tnorms";
 
 /**
  * Takes an object of input {@link variable}s, an object of output variable,
  * rule array and an object of input values. Evaluates relevant terms of input
  * variables in all matching rules, then combines and defuzzes them using given
- * optional strategy (by default {@link cogStrategy} w/ its own default
+ * optional strategy (by default {@link centroidStrategy} w/ its own default
  * options). Returns object of computed output variable values.
  *
  * @remarks
@@ -35,7 +35,7 @@ export const defuzz = <I extends LVarSet<string>, O extends LVarSet<string>>(
     outs: O,
     rules: Rule<I, O>[],
     vals: Partial<Record<keyof I, number>>,
-    strategy = cogStrategy(),
+    strategy = centroidStrategy(),
     imply = tnormMin,
     combine = snormMax
 ) => {
