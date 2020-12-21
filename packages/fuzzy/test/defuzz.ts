@@ -1,5 +1,4 @@
 import { assert } from "@thi.ng/api";
-import { fuzzySetToAscii, instrumentStrategy } from "@thi.ng/fuzzy-viz";
 import { eqDelta, roundTo } from "@thi.ng/math";
 import {
     bisectorStrategy,
@@ -163,5 +162,16 @@ describe("defuzz", () => {
             15.00, 24.90, 24.90, 24.90, 24.90, 15.00, 24.90, 24.90, 24.90, 24.90, 24.90,
         ];
         testStrategy("mean", meanOfMaximaStrategy(), meoMaResults);
+
+        // const strat = instrumentStrategy(centroidStrategy(), fuzzySetToAscii());
+        // defuzz(
+        //     inputs,
+        //     outputs,
+        //     rules,
+        //     { food: 7.32, service: 7.83 },
+        //     strat,
+        //     tnormAczelAlsina(2)
+        // );
+        // console.log(strat.deref()[0]);
     });
 });
