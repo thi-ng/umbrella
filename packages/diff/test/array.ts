@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { ArrayDiff, diffArray, DiffMode } from "../src";
+import { ArrayDiff, diffArray } from "../src";
 
 describe("array", function () {
     const state = <ArrayDiff<number>>{
@@ -70,11 +70,7 @@ describe("array", function () {
 
     it("diff insert 2nd last (changes only)", () => {
         assert.deepStrictEqual(
-            diffArray(
-                [1, 2, 3, 4],
-                [1, 2, 3, 5, 4],
-                DiffMode.ONLY_DISTANCE_LINEAR_ONLY_CHANGES
-            ),
+            diffArray([1, 2, 3, 4], [1, 2, 3, 5, 4], "minimal"),
             <ArrayDiff<number>>{
                 distance: 1,
                 adds: {},

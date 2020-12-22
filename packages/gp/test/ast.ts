@@ -23,33 +23,33 @@ describe("gp (ast)", () => {
 
     it("generate", () => {
         assert.deepStrictEqual(ast.randomAST(), {
-            type: 1,
+            type: "op",
             op: "+",
             args: [
                 {
-                    type: 1,
+                    type: "op",
                     op: "-",
                     args: [
                         {
-                            type: 0,
+                            type: "term",
                             value: 5,
                         },
                         {
-                            type: 0,
+                            type: "term",
                             value: 1,
                         },
                     ],
                 },
                 {
-                    type: 1,
+                    type: "op",
                     op: "*",
                     args: [
                         {
-                            type: 0,
+                            type: "term",
                             value: 8,
                         },
                         {
-                            type: 0,
+                            type: "term",
                             value: 3,
                         },
                     ],

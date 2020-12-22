@@ -462,19 +462,27 @@ Desmos](https://www.desmos.com/calculator/lkyf2ag3ta) to experiment.
 - `scaleFFT()`
 - `complexArray()`
 - `conjugate()`
+- `powerSumSquared()`
+- `powerMeanSquared()`
+- `powerTimeIntegral()`
 - `spectrumMag()`
 - `spectrumPow()` (optionally as dBFS)
 - `spectrumPhase()`
 - `binFreq()`
 - `freqBin()`
 - `fftFreq()`
+- `integralT()` / `integralTSquared()`
+- `integralF()` / `integralFSquared()`
 
 #### Window functions
 
 [Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/fft/window.ts)
 
 - `window()`
+- `applyWindow()`
 - `windowRect()`
+- `windowBartlett()`
+- `windowWelch()`
 - `windowSin()`
 - `windowSinPow()`
 - `windowLanczos()`

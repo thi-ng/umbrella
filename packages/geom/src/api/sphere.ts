@@ -1,4 +1,4 @@
-import { Attribs, IHiccupShape, Type } from "@thi.ng/geom-api";
+import type { Attribs, IHiccupShape } from "@thi.ng/geom-api";
 import { set3, Vec } from "@thi.ng/vectors";
 import { copyAttribs } from "../internal/copy-attribs";
 
@@ -10,7 +10,7 @@ export class Sphere implements IHiccupShape {
     ) {}
 
     get type() {
-        return Type.SPHERE;
+        return "sphere";
     }
 
     copy(): Sphere {

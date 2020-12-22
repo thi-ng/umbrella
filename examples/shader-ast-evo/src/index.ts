@@ -1,4 +1,4 @@
-import { AST, ASTNode, ASTOpts, GeneType } from "@thi.ng/gp";
+import { AST, ASTNode, ASTOpts } from "@thi.ng/gp";
 import { roundTo } from "@thi.ng/math";
 import { IRandom, SYSTEM } from "@thi.ng/random";
 import {
@@ -115,7 +115,7 @@ const AST_OPTS: ASTOpts<Function, Vec3Term> = {
 };
 
 const transpile = (node: ASTNode<Function, Vec3Term>): Term<any> =>
-    node.type === GeneType.OP
+    node.type === "op"
         ? node.op.apply(null, node.args.map(transpile))
         : node.value;
 

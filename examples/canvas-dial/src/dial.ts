@@ -4,11 +4,7 @@ import { isString } from "@thi.ng/checks";
 import { canvas2D } from "@thi.ng/hdom-components";
 import { fitClamped } from "@thi.ng/math";
 import type { Subscription } from "@thi.ng/rstream";
-import {
-    GestureEvent,
-    gestureStream,
-    GestureType,
-} from "@thi.ng/rstream-gestures";
+import { GestureEvent, gestureStream } from "@thi.ng/rstream-gestures";
 import { heading, sub2 } from "@thi.ng/vectors";
 
 /**
@@ -190,10 +186,7 @@ export const dial = (_opts: Partial<DialOpts>) => {
                 // configure stream to return scaled coords (devicePixelRatio)
                 events = gestureStream(el, { scale: true }).subscribe({
                     next: (e) => {
-                        if (
-                            e.type === GestureType.START ||
-                            e.type === GestureType.DRAG
-                        ) {
+                        if (e.type === "start" || e.type === "drag") {
                             let theta =
                                 heading(sub2([], e.pos, [cx, cy])) - startTheta;
                             if (theta < 0) theta += TAU;

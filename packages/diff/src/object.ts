@@ -1,17 +1,16 @@
 import type { IObjectOf, Predicate2 } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
 import type { ObjectDiff } from "./api";
-import { DiffMode } from "./constants";
 
 export const diffObject = <T>(
     a: IObjectOf<T> | undefined | null,
     b: IObjectOf<T> | undefined | null,
-    mode = DiffMode.FULL,
+    mode: "full" | "only-distance" = "full",
     _equiv: Predicate2<any> = equiv
 ): ObjectDiff<T> =>
     a === b
         ? { distance: 0 }
-        : mode === DiffMode.ONLY_DISTANCE
+        : mode === "only-distance"
         ? diffObjectDist(a, b, _equiv)
         : diffObjectFull(a, b, _equiv);
 

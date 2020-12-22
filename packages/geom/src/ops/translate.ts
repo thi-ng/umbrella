@@ -1,6 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
-import { IHiccupShape, IShape, Type } from "@thi.ng/geom-api";
+import type { IHiccupShape, IShape } from "@thi.ng/geom-api";
 import { add2, add3, ReadonlyVec, set2, set3 } from "@thi.ng/vectors";
 import { AABB } from "../api/aabb";
 import type { Arc } from "../api/arc";
@@ -27,32 +27,32 @@ import { translatedShape as tx } from "../internal/translate-points";
 export const translate = defmulti<IShape, ReadonlyVec, IShape>(dispatch);
 
 translate.addAll(<IObjectOf<Implementation2<unknown, ReadonlyVec, IShape>>>{
-    [Type.AABB]: ($: AABB, delta) =>
+    aabb: ($: AABB, delta) =>
         new AABB(add3([], $.pos, delta), set3([], $.size), copyAttribs($)),
 
-    [Type.ARC]: ($: Arc, delta) => {
+    arc: ($: Arc, delta) => {
         const a = $.copy();
         add2(null, a.pos, delta);
         return a;
     },
 
-    [Type.CIRCLE]: ($: Circle, delta) =>
+    circle: ($: Circle, delta) =>
         new Circle(add2([], $.pos, delta), $.r, copyAttribs($)),
 
-    [Type.CUBIC]: tx(Cubic),
+    cubic: tx(Cubic),
 
-    [Type.ELLIPSE]: ($: Ellipse, delta) =>
+    ellipse: ($: Ellipse, delta) =>
         new Ellipse(add2([], $.pos, delta), set2([], $.r), copyAttribs($)),
 
-    [Type.GROUP]: ($: Group, delta) =>
+    group: ($: Group, delta) =>
         new Group(
             copyAttribs($),
             $.children.map((s) => <IHiccupShape>translate(s, delta))
         ),
 
-    [Type.LINE]: tx(Line),
+    line: tx(Line),
 
-    [Type.PATH]: ($: Path, delta: ReadonlyVec) =>
+    path: ($: Path, delta: ReadonlyVec) =>
         new Path(
             $.segments.map((s) =>
                 s.geo
@@ -68,29 +68,29 @@ translate.addAll(<IObjectOf<Implementation2<unknown, ReadonlyVec, IShape>>>{
             copyAttribs($)
         ),
 
-    [Type.POINTS]: tx(Points),
+    points: tx(Points),
 
-    [Type.POINTS3]: tx(Points3),
+    points3: tx(Points3),
 
-    [Type.POLYGON]: tx(Polygon),
+    poly: tx(Polygon),
 
-    [Type.POLYLINE]: tx(Polyline),
+    polyline: tx(Polyline),
 
-    [Type.QUAD]: tx(Quad),
+    quad: tx(Quad),
 
-    [Type.QUADRATIC]: tx(Quadratic),
+    quadratic: tx(Quadratic),
 
-    [Type.RAY]: ($: Ray, delta) =>
+    ray: ($: Ray, delta) =>
         new Ray(add2([], $.pos, delta), $.dir, copyAttribs($)),
 
-    [Type.RECT]: ($: Rect, delta) =>
+    rect: ($: Rect, delta) =>
         new Rect(add2([], $.pos, delta), set2([], $.size), copyAttribs($)),
 
-    [Type.SPHERE]: ($: Sphere, delta) =>
+    sphere: ($: Sphere, delta) =>
         new Sphere(add3([], $.pos, delta), $.r, copyAttribs($)),
 
-    [Type.TEXT]: ($: Text, delta) =>
+    text: ($: Text, delta) =>
         new Text(add2([], $.pos, delta), $.body, copyAttribs($)),
 
-    [Type.TRIANGLE]: tx(Triangle),
+    tri: tx(Triangle),
 });

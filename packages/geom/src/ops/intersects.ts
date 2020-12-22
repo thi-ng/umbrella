@@ -1,10 +1,10 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2O, MultiFn2O } from "@thi.ng/defmulti";
 import {
     IntersectionResult,
     IntersectionType,
     IShape,
     PCLike,
-    Type,
 } from "@thi.ng/geom-api";
 import {
     intersectCircleCircle,
@@ -26,7 +26,6 @@ import type { Ray } from "../api/ray";
 import type { Rect } from "../api/rect";
 import type { Sphere } from "../api/sphere";
 import { dispatch2 } from "../internal/dispatch";
-import type { IObjectOf } from "@thi.ng/api";
 
 export const intersects: MultiFn2O<
     IShape,
@@ -38,50 +37,47 @@ export const intersects: MultiFn2O<
 intersects.addAll(<
     IObjectOf<Implementation2O<unknown, unknown, any, IntersectionResult>>
 >{
-    [`${Type.CIRCLE}-${Type.CIRCLE}`]: (a: Sphere, b: Sphere) =>
+    "circle-circle": (a: Sphere, b: Sphere) =>
         intersectCircleCircle(a.pos, b.pos, a.r, b.r),
 
-    [`${Type.LINE}-${Type.LINE}`]: ({ points: a }: Line, { points: b }: Line) =>
+    "line-line": ({ points: a }: Line, { points: b }: Line) =>
         intersectLineLine(a[0], a[1], b[0], b[1]),
 
-    [`${Type.PLANE}-${Type.PLANE}`]: (a: Plane, b: Plane) =>
+    "plane-plane": (a: Plane, b: Plane) =>
         intersectPlanePlane(a.normal, a.w, b.normal, b.w),
 
-    [`${Type.RAY}-${Type.AABB}`]: (ray: Ray, box: AABB) =>
+    "ray-aabb": (ray: Ray, box: AABB) =>
         intersectRayAABB(ray.pos, ray.dir, box.pos, box.max()),
 
-    [`${Type.RAY}-${Type.CIRCLE}`]: (ray: Ray, sphere: Sphere) =>
+    "ray-circle": (ray: Ray, sphere: Sphere) =>
         intersectRayCircle(ray.pos, ray.dir, sphere.pos, sphere.r),
 
-    [`${Type.RAY}-${Type.PLANE}`]: (ray: Ray, plane: Plane) =>
+    "ray-plane": (ray: Ray, plane: Plane) =>
         intersectRayPlane(ray.pos, ray.dir, plane.normal, plane.w),
 
-    [`${Type.RAY}-${Type.POLYGON}`]: (ray: Ray, poly: PCLike) =>
+    "ray-poly": (ray: Ray, poly: PCLike) =>
         intersectRayPolyline(ray.pos, ray.dir, poly.points, true),
 
-    [`${Type.RAY}-${Type.POLYLINE}`]: (ray: Ray, poly: PCLike) =>
+    "ray-polyline": (ray: Ray, poly: PCLike) =>
         intersectRayPolyline(ray.pos, ray.dir, poly.points, false),
 
-    [`${Type.RAY}-${Type.RECT}`]: (ray: Ray, rect: Rect) =>
+    "ray-rect": (ray: Ray, rect: Rect) =>
         intersectRayRect(ray.pos, ray.dir, rect.pos, rect.max()),
 
-    [`${Type.RECT}-${Type.CIRCLE}`]: (rect: Rect, circle: Circle) => ({
+    "rect-circle": (rect: Rect, circle: Circle) => ({
         type: testRectCircle(rect.pos, rect.size, circle.pos, circle.r)
             ? IntersectionType.INTERSECT
             : IntersectionType.NONE,
     }),
 
-    [`${Type.RECT}-${Type.RECT}`]: (a: Rect, b: Rect) => ({
+    "rect-rect": (a: Rect, b: Rect) => ({
         type: testRectRect(a.pos, a.size, b.pos, b.size)
             ? IntersectionType.INTERSECT
             : IntersectionType.NONE,
     }),
 });
 
-intersects.isa(`${Type.RAY}-${Type.SPHERE}`, `${Type.RAY}-${Type.CIRCLE}`);
-intersects.isa(`${Type.RAY}-${Type.QUAD}`, `${Type.RAY}-${Type.POLYGON}`);
-intersects.isa(`${Type.RAY}-${Type.TRIANGLE}`, `${Type.RAY}-${Type.POLYGON}`);
-intersects.isa(
-    `${Type.SPHERE}-${Type.SPHERE}`,
-    `${Type.CIRCLE}-${Type.CIRCLE}`
-);
+intersects.isa(`ray-sphere`, `ray-circle`);
+intersects.isa(`ray-quad`, `ray-poly`);
+intersects.isa(`ray-tri`, `ray-poly`);
+intersects.isa(`sphere-sphere`, `circle-circle`);

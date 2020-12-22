@@ -1,6 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2O, MultiFn2O } from "@thi.ng/defmulti";
-import { IShape, PCLike, Type } from "@thi.ng/geom-api";
+import type { IShape, PCLike } from "@thi.ng/geom-api";
 import { closestPoint as closestPointArc } from "@thi.ng/geom-arc";
 import {
     closestPointAABB,
@@ -33,39 +33,36 @@ export const closestPoint: MultiFn2O<
 closestPoint.addAll(<
     IObjectOf<Implementation2O<unknown, ReadonlyVec, Vec, Vec>>
 >{
-    [Type.AABB]: ($: AABB, p, out) =>
+    aabb: ($: AABB, p, out) =>
         closestPointAABB(p, $.pos, add3([], $.pos, $.size), out),
 
-    [Type.ARC]: ($: Arc, p, out) =>
+    arc: ($: Arc, p, out) =>
         closestPointArc(p, $.pos, $.r, $.axis, $.start, $.end, out),
 
-    [Type.CIRCLE]: ($: Circle, p, out) =>
-        closestPointCircle(p, $.pos, $.r, out),
+    circle: ($: Circle, p, out) => closestPointCircle(p, $.pos, $.r, out),
 
-    [Type.CUBIC]: ({ points }: Cubic, p, out) =>
+    cubic: ({ points }: Cubic, p, out) =>
         closestPointCubic(p, points[0], points[1], points[2], points[3], out),
 
-    [Type.LINE]: ({ points }: Line, p, out) =>
+    line: ({ points }: Line, p, out) =>
         closestPointSegment(p, points[0], points[1], out),
 
-    [Type.PLANE]: ($: Plane, p, out) =>
-        closestPointPlane(p, $.normal, $.w, out),
+    plane: ($: Plane, p, out) => closestPointPlane(p, $.normal, $.w, out),
 
-    [Type.POINTS]: ($: PCLike, p, out) => closestPointArray(p, $.points, out),
+    points: ($: PCLike, p, out) => closestPointArray(p, $.points, out),
 
-    [Type.POLYGON]: ($: PCLike, p, out) =>
-        closestPointPolyline(p, $.points, true, out),
+    poly: ($: PCLike, p, out) => closestPointPolyline(p, $.points, true, out),
 
-    [Type.POLYLINE]: ($: PCLike, p, out) =>
+    polyline: ($: PCLike, p, out) =>
         closestPointPolyline(p, $.points, false, out),
 
-    [Type.QUADRATIC]: ({ points }: Quadratic, p, out) =>
+    quadratic: ({ points }: Quadratic, p, out) =>
         closestPointQuadratic(p, points[0], points[1], points[2], out),
 
-    [Type.RECT]: ($: Rect, p, out) =>
+    rect: ($: Rect, p, out) =>
         closestPointRect(p, $.pos, add2([], $.pos, $.size), out),
 });
 
-closestPoint.isa(Type.QUAD, Type.POLYGON);
-closestPoint.isa(Type.SPHERE, Type.CIRCLE);
-closestPoint.isa(Type.TRIANGLE, Type.POLYGON);
+closestPoint.isa("quad", "poly");
+closestPoint.isa("sphere", "circle");
+closestPoint.isa("tri", "poly");

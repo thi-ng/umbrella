@@ -1,6 +1,5 @@
 import type { ICopy, IDeref } from "@thi.ng/api";
-import type { IColor } from "./api";
-import { ColorMode } from "./constants";
+import type { ColorMode, IColor } from "./api";
 
 /**
  * Returns new {@link Int32} wrapping given ARGB int.
@@ -25,7 +24,7 @@ export class Int32 implements IColor, ICopy<Int32>, IDeref<number> {
     }
 
     get mode() {
-        return ColorMode.INT32;
+        return <ColorMode>"int";
     }
 
     copy() {

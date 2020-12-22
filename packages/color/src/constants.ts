@@ -1,17 +1,5 @@
 import { float, percent } from "@thi.ng/strings";
 
-export enum ColorMode {
-    RGBA,
-    HCYA,
-    HSVA,
-    HSLA,
-    HSIA,
-    INT32,
-    CSS,
-    XYZA,
-    YCBCRA,
-}
-
 // RGBA constants
 
 export const BLACK = Object.freeze([0, 0, 0, 1]);

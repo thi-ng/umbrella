@@ -7,78 +7,72 @@ import {
     Reducer,
     Transducer,
 } from "@thi.ng/transducers";
-import { BinStructItem, Type } from "./api";
+import type { BinStructItem } from "./api";
 import { utf8Encode } from "./utf8";
 
-export const i8 = (x: number): BinStructItem => [Type.I8, x];
-export const i8array = (x: ArrayLike<number>): BinStructItem => [
-    Type.I8_ARRAY,
-    x,
-];
+export const i8 = (x: number): BinStructItem => ["i8", x];
+export const i8array = (x: ArrayLike<number>): BinStructItem => ["i8a", x];
 
-export const u8 = (x: number): BinStructItem => [Type.U8, x];
-export const u8array = (x: ArrayLike<number>): BinStructItem => [
-    Type.U8_ARRAY,
-    x,
-];
+export const u8 = (x: number): BinStructItem => ["u8", x];
+export const u8array = (x: ArrayLike<number>): BinStructItem => ["u8a", x];
 
-export const i16 = (x: number, le = false): BinStructItem => [Type.I16, x, le];
+export const i16 = (x: number, le = false): BinStructItem => ["i16", x, le];
 export const i16array = (x: ArrayLike<number>, le = false): BinStructItem => [
-    Type.I16_ARRAY,
+    "i16a",
     x,
     le,
 ];
 
-export const u16 = (x: number, le = false): BinStructItem => [Type.U16, x, le];
+export const u16 = (x: number, le = false): BinStructItem => ["u16", x, le];
 export const u16array = (x: ArrayLike<number>, le = false): BinStructItem => [
-    Type.U16_ARRAY,
+    "u16a",
     x,
     le,
 ];
 
-export const i24 = (x: number, le = false): BinStructItem => [Type.I24, x, le];
+export const i24 = (x: number, le = false): BinStructItem => ["i24", x, le];
 export const i24array = (x: ArrayLike<number>, le = false): BinStructItem => [
-    Type.I24_ARRAY,
+    "i24a",
     x,
     le,
 ];
 
-export const u24 = (x: number, le = false): BinStructItem => [Type.U24, x, le];
+export const u24 = (x: number, le = false): BinStructItem => ["u24", x, le];
 export const u24array = (x: ArrayLike<number>, le = false): BinStructItem => [
-    Type.U24_ARRAY,
+    "u24a",
     x,
     le,
 ];
 
-export const i32 = (x: number, le = false): BinStructItem => [Type.I32, x, le];
+export const i32 = (x: number, le = false): BinStructItem => ["i32", x, le];
 export const i32array = (x: ArrayLike<number>, le = false): BinStructItem => [
-    Type.I32_ARRAY,
+    "i32a",
     x,
     le,
 ];
 
-export const u32 = (x: number, le = false): BinStructItem => [Type.U32, x, le];
+export const u32 = (x: number, le = false): BinStructItem => ["u32", x, le];
 export const u32array = (x: ArrayLike<number>, le = false): BinStructItem => [
-    Type.U32_ARRAY,
+    "u32a",
     x,
     le,
 ];
 
-export const f32 = (x: number, le = false): BinStructItem => [Type.F32, x, le];
+export const f32 = (x: number, le = false): BinStructItem => ["f32", x, le];
 export const f32array = (x: ArrayLike<number>, le = false): BinStructItem => [
-    Type.F32_ARRAY,
+    "f32a",
     x,
     le,
 ];
 
-export const f64 = (x: number, le = false): BinStructItem => [Type.F64, x, le];
+export const f64 = (x: number, le = false): BinStructItem => ["f64", x, le];
 export const f64array = (x: ArrayLike<number>, le = false): BinStructItem => [
-    Type.F64_ARRAY,
+    "f64a",
     x,
     le,
 ];
 
-export const str = (x: string): BinStructItem => [Type.STR, x];
+export const str = (x: string): BinStructItem => ["str", x];
 
 /**
  * Transducer which converts {@link BinStructItem} inputs to bytes. If
@@ -105,39 +99,39 @@ export function asBytes(src?: Iterable<BinStructItem>): any {
               const val = <number>x[1];
               const le = x[2];
               switch (x[0]) {
-                  case Type.I8:
-                  case Type.U8:
+                  case "i8":
+                  case "u8":
                       return [val];
-                  case Type.I8_ARRAY:
-                  case Type.U8_ARRAY:
+                  case "i8a":
+                  case "u8a":
                       return <number[]>x[1];
-                  case Type.I16:
-                  case Type.U16:
+                  case "i16":
+                  case "u16":
                       return bytes16(val, le);
-                  case Type.I16_ARRAY:
-                  case Type.U16_ARRAY:
+                  case "i16a":
+                  case "u16a":
                       return mapcat((x) => bytes16(x, le), <number[]>x[1]);
-                  case Type.I24:
-                  case Type.U24:
+                  case "i24":
+                  case "u24":
                       return bytes24(val, le);
-                  case Type.I24_ARRAY:
-                  case Type.U24_ARRAY:
+                  case "i24a":
+                  case "u24a":
                       return mapcat((x) => bytes24(x, le), <number[]>x[1]);
-                  case Type.I32:
-                  case Type.U32:
+                  case "i32":
+                  case "u32":
                       return bytes32(val, le);
-                  case Type.I32_ARRAY:
-                  case Type.U32_ARRAY:
+                  case "i32a":
+                  case "u32a":
                       return mapcat((x) => bytes32(x, le), <number[]>x[1]);
-                  case Type.F32:
+                  case "f32":
                       return bytesF32(val, le);
-                  case Type.F32_ARRAY:
+                  case "f32a":
                       return mapcat((x) => bytesF32(x, le), <number[]>x[1]);
-                  case Type.F64:
+                  case "f64":
                       return bytesF64(val, le);
-                  case Type.F64_ARRAY:
+                  case "f64a":
                       return mapcat((x) => bytesF64(x, le), <number[]>x[1]);
-                  case Type.STR:
+                  case "str":
                       return utf8Encode(<string>x[1]);
                   default:
                       unsupported(`invalid struct item: ${x[0]}`);
@@ -186,12 +180,12 @@ export function bytes(cap = 1024, src?: Iterable<BinStructItem>) {
                       view = new DataView(acc.buffer, acc.byteOffset);
                   }
                   switch (type) {
-                      case Type.I8:
+                      case "i8":
                           acc = ensure(acc, 1);
                           view.setInt8(pos, <number>x);
                           pos++;
                           break;
-                      case Type.I8_ARRAY: {
+                      case "i8a": {
                           const n = (<ArrayLike<number>>x).length;
                           acc = ensure(acc, n);
                           new Int8Array(acc.buffer, acc.byteOffset).set(
@@ -201,83 +195,83 @@ export function bytes(cap = 1024, src?: Iterable<BinStructItem>) {
                           pos += n;
                           break;
                       }
-                      case Type.U8:
+                      case "u8":
                           acc = ensure(acc, 1);
                           view.setUint8(pos, <number>x);
                           pos++;
                           break;
-                      case Type.U8_ARRAY: {
+                      case "u8a": {
                           const n = (<ArrayLike<number>>x).length;
                           acc = ensure(acc, n);
                           acc.set(<ArrayLike<number>>x, pos);
                           pos += n;
                           break;
                       }
-                      case Type.I16:
+                      case "i16":
                           acc = ensure(acc, 2);
                           view.setInt16(pos, <number>x, le);
                           pos += 2;
                           break;
-                      case Type.I16_ARRAY:
+                      case "i16a":
                           acc = setArray("setInt16", 2, acc, x, le);
                           break;
-                      case Type.U16:
+                      case "u16":
                           acc = ensure(acc, 2);
                           view.setUint16(pos, <number>x, le);
                           pos += 2;
                           break;
-                      case Type.U16_ARRAY:
+                      case "u16a":
                           acc = setArray("setUint16", 2, acc, x, le);
                           break;
-                      case Type.I24:
+                      case "i24":
                           acc = ensure(acc, 4);
                           view.setInt32(pos, <number>x, le);
                           pos += 3;
                           break;
-                      case Type.I24_ARRAY:
+                      case "i24a":
                           acc = setArray("setInt32", 3, acc, x, le);
                           break;
-                      case Type.U24:
+                      case "u24":
                           acc = ensure(acc, 4);
                           view.setUint32(pos, <number>x, le);
                           pos += 3;
                           break;
-                      case Type.U24_ARRAY:
+                      case "u24a":
                           acc = setArray("setUint32", 3, acc, x, le);
                           break;
-                      case Type.I32:
+                      case "i32":
                           acc = ensure(acc, 4);
                           view.setInt32(pos, <number>x, le);
                           pos += 4;
                           break;
-                      case Type.I32_ARRAY:
+                      case "i32a":
                           acc = setArray("setInt32", 4, acc, x, le);
                           break;
-                      case Type.U32:
+                      case "u32":
                           acc = ensure(acc, 4);
                           view.setUint32(pos, <number>x, le);
                           pos += 4;
                           break;
-                      case Type.U32_ARRAY:
+                      case "u32a":
                           acc = setArray("setUint32", 4, acc, x, le);
                           break;
-                      case Type.F32:
+                      case "f32":
                           acc = ensure(acc, 4);
                           view.setFloat32(pos, <number>x, le);
                           pos += 4;
                           break;
-                      case Type.F32_ARRAY:
+                      case "f32a":
                           acc = setArray("setFloat32", 4, acc, x, le);
                           break;
-                      case Type.F64:
+                      case "f64":
                           acc = ensure(acc, 8);
                           view.setFloat64(pos, <number>x, le);
                           pos += 8;
                           break;
-                      case Type.F64_ARRAY:
+                      case "f64a":
                           acc = setArray("setFloat64", 8, acc, x, le);
                           break;
-                      case Type.STR: {
+                      case "str": {
                           let utf = [...utf8Encode(<string>x)];
                           acc = ensure(acc, utf.length);
                           acc.set(utf, pos);

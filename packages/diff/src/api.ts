@@ -1,5 +1,11 @@
 import type { IObjectOf } from "@thi.ng/api";
 
+export type DiffMode =
+    | "only-distance"
+    | "only-distance-linear"
+    | "minimal"
+    | "full";
+
 export type DiffKeyMap<T> = IObjectOf<T>;
 
 export interface ArrayDiff<T> {

@@ -1,49 +1,48 @@
-export enum Type {
-    I8,
-    I8_ARRAY,
-    U8,
-    U8_ARRAY,
-    I16,
-    I16_ARRAY,
-    U16,
-    U16_ARRAY,
-    I24,
-    I24_ARRAY,
-    U24,
-    U24_ARRAY,
-    I32,
-    I32_ARRAY,
-    U32,
-    U32_ARRAY,
-    F32,
-    F32_ARRAY,
-    F64,
-    F64_ARRAY,
-    STR,
-}
+export type Type =
+    | "i8"
+    | "i8a"
+    | "u8"
+    | "u8a"
+    | "i16"
+    | "i16a"
+    | "u16"
+    | "u16a"
+    | "i24"
+    | "i24a"
+    | "u24"
+    | "u24a"
+    | "i32"
+    | "i32a"
+    | "u32"
+    | "u32a"
+    | "f32"
+    | "f32a"
+    | "f64"
+    | "f64a"
+    | "str";
 
 export type BinStructItem =
-    | [Type.I8, number]
-    | [Type.I8_ARRAY, ArrayLike<number>]
-    | [Type.U8, number]
-    | [Type.U8_ARRAY, ArrayLike<number>]
-    | [Type.I16, number, boolean?]
-    | [Type.I16_ARRAY, ArrayLike<number>, boolean?]
-    | [Type.U16, number, boolean?]
-    | [Type.U16_ARRAY, ArrayLike<number>, boolean?]
-    | [Type.I24, number, boolean?]
-    | [Type.I24_ARRAY, ArrayLike<number>, boolean?]
-    | [Type.U24, number, boolean?]
-    | [Type.U24_ARRAY, ArrayLike<number>, boolean?]
-    | [Type.I32, number, boolean?]
-    | [Type.I32_ARRAY, ArrayLike<number>, boolean?]
-    | [Type.U32, number, boolean?]
-    | [Type.U32_ARRAY, ArrayLike<number>, boolean?]
-    | [Type.F32, number, boolean?]
-    | [Type.F32_ARRAY, ArrayLike<number>, boolean?]
-    | [Type.F64, number, boolean?]
-    | [Type.F64_ARRAY, ArrayLike<number>, boolean?]
-    | [Type.STR, string];
+    | ["i8", number]
+    | ["i8a", ArrayLike<number>]
+    | ["u8", number]
+    | ["u8a", ArrayLike<number>]
+    | ["i16", number, boolean?]
+    | ["i16a", ArrayLike<number>, boolean?]
+    | ["u16", number, boolean?]
+    | ["u16a", ArrayLike<number>, boolean?]
+    | ["i24", number, boolean?]
+    | ["i24a", ArrayLike<number>, boolean?]
+    | ["u24", number, boolean?]
+    | ["u24a", ArrayLike<number>, boolean?]
+    | ["i32", number, boolean?]
+    | ["i32a", ArrayLike<number>, boolean?]
+    | ["u32", number, boolean?]
+    | ["u32a", ArrayLike<number>, boolean?]
+    | ["f32", number, boolean?]
+    | ["f32a", ArrayLike<number>, boolean?]
+    | ["f64", number, boolean?]
+    | ["f64a", ArrayLike<number>, boolean?]
+    | ["str", string];
 
 export interface HexDumpOpts {
     /**

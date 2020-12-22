@@ -3,7 +3,7 @@ import { isBoolean } from "@thi.ng/checks";
 import { clamp } from "@thi.ng/math";
 import { fromDOMEvent, merge, Stream } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
-import {
+import type {
     GestureEvent,
     GestureInfo,
     GestureStream,
@@ -25,13 +25,13 @@ const endEvents = new Set(["mouseup", "touchend", "touchcancel"]);
 const baseEvents = <const>["mousemove", "mousedown", "touchstart", "wheel"];
 
 const eventGestureTypeMap: IObjectOf<GestureType> = {
-    touchstart: GestureType.START,
-    touchmove: GestureType.DRAG,
-    touchend: GestureType.END,
-    touchcancel: GestureType.END,
-    mousedown: GestureType.START,
-    mouseup: GestureType.END,
-    wheel: GestureType.ZOOM,
+    touchstart: "start",
+    touchmove: "drag",
+    touchend: "end",
+    touchcancel: "end",
+    mousedown: "start",
+    mouseup: "end",
+    wheel: "zoom",
 };
 
 /**
@@ -42,7 +42,7 @@ const eventGestureTypeMap: IObjectOf<GestureType> = {
  * In multi-touch environments, a `GestureEvent` can contain multiple
  * such `GestureInfo` objects (one per active touch). In general, the
  * `click` and `delta` values are only present if the abstracted event
- * `type == GestureType.DRAG`. Both (and `pos` too) are 2-element arrays
+ * `type == "drag"`. Both (and `pos` too) are 2-element arrays
  * of `[x,y]` coordinates.
  *
  * The `zoom` value is always present, but is only updated with wheel
@@ -107,8 +107,8 @@ export const gestureStream = (
             const type =
                 etype === "mousemove"
                     ? tempStreams
-                        ? GestureType.DRAG
-                        : GestureType.MOVE
+                        ? "drag"
+                        : "move"
                     : eventGestureTypeMap[etype];
             let isTouch = !!(<TouchEvent>e).touches;
             let events: Array<Touch | MouseEvent | WheelEvent> = isTouch
@@ -174,7 +174,7 @@ export const gestureStream = (
                     !isBody && stream.add(eventSource(el, "mousemove", opts));
                     tempStreams = undefined;
                 }
-            } else if (type === GestureType.ZOOM) {
+            } else if (type === "zoom") {
                 const zdelta =
                     opts.smooth *
                     ("wheelDeltaY" in (e as any)

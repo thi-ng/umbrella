@@ -5,7 +5,7 @@ import {
     Implementation1O,
     MultiFn1O,
 } from "@thi.ng/defmulti";
-import { IShape, Type } from "@thi.ng/geom-api";
+import type { IShape } from "@thi.ng/geom-api";
 import { polyArea2 } from "@thi.ng/geom-poly-utils";
 import { PI } from "@thi.ng/math";
 import { signedArea2, Vec } from "@thi.ng/vectors";
@@ -57,34 +57,34 @@ export const area: MultiFn1O<IShape, boolean, number> = defmulti(dispatch);
 area.add(DEFAULT, () => 0);
 
 area.addAll(<IObjectOf<Implementation1O<unknown, boolean, number>>>{
-    [Type.AABB]: ({ size: [w, h, d] }: AABB) => 2 * (w * h + w * d + h * d),
+    aabb: ({ size: [w, h, d] }: AABB) => 2 * (w * h + w * d + h * d),
 
-    [Type.ARC]:
+    arc:
         // http://cut-the-knot.org/Generalization/Cavalieri2.shtml
         ($: Arc) => 0.5 * Math.abs($.start - $.end) * $.r[0] * $.r[1],
 
-    [Type.CIRCLE]: ($: Circle) => PI * $.r ** 2,
+    circle: ($: Circle) => PI * $.r ** 2,
 
-    [Type.ELLIPSE]: ($: Ellipse) => PI * $.r[0] * $.r[1],
+    ellipse: ($: Ellipse) => PI * $.r[0] * $.r[1],
 
-    [Type.GROUP]: ({ children }: Group) =>
+    group: ({ children }: Group) =>
         children.reduce((sum, $) => sum + area($, false), 0),
 
-    [Type.PLANE]: () => Infinity,
+    plane: () => Infinity,
 
-    [Type.POLYGON]: ($: Polygon, signed?) => {
+    poly: ($: Polygon, signed?) => {
         const area = polyArea2($.points);
         return signed ? area : Math.abs(area);
     },
 
-    [Type.RECT]: ($: Rect) => $.size[0] * $.size[1],
+    rect: ($: Rect) => $.size[0] * $.size[1],
 
-    [Type.SPHERE]: ($: Sphere) => 4 * PI * $.r ** 2,
+    sphere: ($: Sphere) => 4 * PI * $.r ** 2,
 
-    [Type.TRIANGLE]: ($: Triangle, signed?) => {
+    tri: ($: Triangle, signed?) => {
         const area = 0.5 * signedArea2(...(<[Vec, Vec, Vec]>$.points));
         return signed ? area : Math.abs(area);
     },
 });
 
-area.isa(Type.QUAD, Type.POLYGON);
+area.isa("quad", "poly");

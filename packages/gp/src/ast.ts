@@ -2,7 +2,7 @@ import { assert } from "@thi.ng/api";
 import { SYSTEM } from "@thi.ng/random";
 import { iterate, iterator, repeatedly, takeWhile } from "@thi.ng/transducers";
 import { Location, zipper } from "@thi.ng/zipper";
-import { ASTNode, ASTOpts, GeneType, OpGene } from "./api";
+import type { ASTNode, ASTOpts, OpGene } from "./api";
 import { opNode, probabilities, terminalNode } from "./utils";
 
 export class AST<OP, T> {
@@ -136,7 +136,7 @@ export class AST<OP, T> {
     protected asZipper(tree: ASTNode<OP, T>) {
         return zipper<ASTNode<OP, T>>(
             {
-                branch: (x) => x.type === GeneType.OP,
+                branch: (x) => x.type === "op",
                 children: (x) => (<OpGene<OP, ASTNode<OP, T>>>x).args,
                 factory: (n, args) =>
                     opNode((<OpGene<OP, ASTNode<OP, T>>>n).op, args),

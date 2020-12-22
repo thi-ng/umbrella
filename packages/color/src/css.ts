@@ -1,6 +1,5 @@
 import type { ICopy, IDeref } from "@thi.ng/api";
-import type { IColor } from "./api";
-import { ColorMode } from "./constants";
+import type { ColorMode, IColor } from "./api";
 
 export const css = (col: string) => new CSS(col);
 
@@ -12,7 +11,7 @@ export class CSS implements IColor, ICopy<CSS>, IDeref<string> {
     }
 
     get mode() {
-        return ColorMode.CSS;
+        return <ColorMode>"css";
     }
 
     copy() {

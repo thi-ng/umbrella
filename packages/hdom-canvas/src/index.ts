@@ -1,6 +1,6 @@
 import { assert, NO_OP } from "@thi.ng/api";
 import { isArray, isNotStringAndIterable } from "@thi.ng/checks";
-import { diffArray, DiffMode } from "@thi.ng/diff";
+import { diffArray } from "@thi.ng/diff";
 import { equiv, HDOMImplementation, HDOMOpts, releaseTree } from "@thi.ng/hdom";
 import { draw } from "@thi.ng/hiccup-canvas";
 
@@ -158,7 +158,7 @@ export const diffTree = (
     if (impl && impl !== IMPL) {
         return impl.diffTree(opts, parent, prev, curr, child);
     }
-    const delta = diffArray(prev, curr, DiffMode.ONLY_DISTANCE, equiv);
+    const delta = diffArray(prev, curr, "only-distance", equiv);
     if (delta.distance > 0) {
         return createTree(opts, parent, curr);
     }

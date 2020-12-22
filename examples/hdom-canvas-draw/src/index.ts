@@ -1,11 +1,7 @@
 import { canvas } from "@thi.ng/hdom-canvas";
 import { HALF_PI, PI } from "@thi.ng/math";
 import { CloseMode, StreamSync, sync, trigger } from "@thi.ng/rstream";
-import {
-    GestureEvent,
-    gestureStream,
-    GestureType,
-} from "@thi.ng/rstream-gestures";
+import { GestureEvent, gestureStream } from "@thi.ng/rstream-gestures";
 import {
     filter,
     map,
@@ -49,8 +45,7 @@ const app = (main: StreamSync<any, any>) => {
                     // only interested in some gesture types
                     filter(
                         (e: GestureEvent) =>
-                            e.type === GestureType.START ||
-                            e.type === GestureType.DRAG
+                            e.type === "start" || e.type === "drag"
                     ),
                     // get current mouse / touch position
                     map((e) => e.pos),

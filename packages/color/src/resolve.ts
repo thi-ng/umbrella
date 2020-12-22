@@ -1,6 +1,5 @@
 import { isArrayLike, isNumber } from "@thi.ng/checks";
 import type { ReadonlyColor } from "./api";
-import { ColorMode } from "./constants";
 import { asCSS } from "./convert";
 
 /**
@@ -18,7 +17,7 @@ export const resolveAsCSS = (col: any) =>
     isArrayLike(col)
         ? isNumber((<any>col).mode)
             ? asCSS(<any>col)
-            : asCSS(<ReadonlyColor>col, ColorMode.RGBA)
+            : asCSS(<ReadonlyColor>col, "rgb")
         : isNumber(col)
-        ? asCSS(col, ColorMode.INT32)
+        ? asCSS(col, "int")
         : col;

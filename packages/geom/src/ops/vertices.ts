@@ -1,7 +1,7 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { isArray, isNumber } from "@thi.ng/checks";
 import { defmulti, Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
-import { DEFAULT_SAMPLES, IShape, SamplingOpts, Type } from "@thi.ng/geom-api";
+import { DEFAULT_SAMPLES, IShape, SamplingOpts } from "@thi.ng/geom-api";
 import { sample as _arcVertices } from "@thi.ng/geom-arc";
 import { resample } from "@thi.ng/geom-resample";
 import { sampleCubic, sampleQuadratic } from "@thi.ng/geom-splines";
@@ -38,7 +38,7 @@ vertices.addAll(<
     //    \|   \|
     //   b +----+ c
     //
-    [Type.AABB]: ({ pos, size }: AABB) => {
+    aabb: ({ pos, size }: AABB) => {
         const [px, py, pz] = pos;
         const [qx, qy, qz] = add3([], pos, size);
         return [
@@ -53,10 +53,10 @@ vertices.addAll(<
         ];
     },
 
-    [Type.ARC]: ($: Arc, opts?: number | Partial<SamplingOpts>): Vec[] =>
+    arc: ($: Arc, opts?: number | Partial<SamplingOpts>): Vec[] =>
         _arcVertices($.pos, $.r, $.axis, $.start, $.end, opts),
 
-    [Type.CIRCLE]: ($: Circle, opts = DEFAULT_SAMPLES) => {
+    circle: ($: Circle, opts = DEFAULT_SAMPLES) => {
         const pos = $.pos;
         const r = $.r;
         let [num, last] = circleOpts(opts, r);
@@ -69,10 +69,10 @@ vertices.addAll(<
         return buf;
     },
 
-    [Type.CUBIC]: ($: Cubic, opts?: number | Partial<SamplingOpts>) =>
+    cubic: ($: Cubic, opts?: number | Partial<SamplingOpts>) =>
         sampleCubic($.points, opts),
 
-    [Type.ELLIPSE]: ($: Ellipse, opts = DEFAULT_SAMPLES) => {
+    ellipse: ($: Ellipse, opts = DEFAULT_SAMPLES) => {
         const buf: Vec[] = [];
         const pos = $.pos;
         const r = $.r;
@@ -85,10 +85,10 @@ vertices.addAll(<
         return buf;
     },
 
-    [Type.GROUP]: ({ children }: Group) =>
+    group: ({ children }: Group) =>
         children.reduce((acc, $) => acc.concat(vertices($)), <Vec[]>[]),
 
-    [Type.PATH]: ($: Path, opts?: number | Partial<SamplingOpts>) => {
+    path: ($: Path, opts?: number | Partial<SamplingOpts>) => {
         const _opts = isNumber(opts) ? { num: opts } : opts;
         let verts: Vec[] = [];
         for (let segs = $.segments, n = segs.length - 1, i = 0; i <= n; i++) {
@@ -102,16 +102,16 @@ vertices.addAll(<
         return verts;
     },
 
-    [Type.POINTS]: ($: Points) => $.points,
+    points: ($: Points) => $.points,
 
-    [Type.POLYGON]: ($: Polygon, opts?) => resample($.points, opts, true),
+    poly: ($: Polygon, opts?) => resample($.points, opts, true),
 
-    [Type.POLYLINE]: ($: Polyline, opts?) => resample($.points, opts),
+    polyline: ($: Polyline, opts?) => resample($.points, opts),
 
-    [Type.QUADRATIC]: ($: Quadratic, opts?: number | Partial<SamplingOpts>) =>
+    quadratic: ($: Quadratic, opts?: number | Partial<SamplingOpts>) =>
         sampleQuadratic($.points, opts),
 
-    [Type.RECT]: ($: Rect, opts) => {
+    rect: ($: Rect, opts) => {
         const p = $.pos;
         const q = add2([], p, $.size);
         const verts = [set2([], p), [q[0], p[1]], q, [p[0], q[1]]];
@@ -119,10 +119,10 @@ vertices.addAll(<
     },
 });
 
-vertices.isa(Type.LINE, Type.POLYLINE);
-vertices.isa(Type.POINTS3, Type.POINTS);
-vertices.isa(Type.QUAD, Type.POLYGON);
-vertices.isa(Type.TRIANGLE, Type.POLYGON);
+vertices.isa("line", "polyline");
+vertices.isa("points3", "points");
+vertices.isa("quad", "poly");
+vertices.isa("tri", "poly");
 
 /**
  * Takes array of vectors or an `IShape`. If the latter, calls {@link vertices}

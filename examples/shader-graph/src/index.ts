@@ -1,7 +1,7 @@
 import { exposeGlobal, Nullable } from "@thi.ng/api";
 import { ortho } from "@thi.ng/matrices";
 import { fromRAF } from "@thi.ng/rstream";
-import { gestureStream, GestureType } from "@thi.ng/rstream-gestures";
+import { gestureStream } from "@thi.ng/rstream-gestures";
 import { Node2D } from "@thi.ng/scenegraph";
 import {
     $x,
@@ -273,7 +273,7 @@ gestureStream(CTX.canvas, { minZoom: 0.1, maxZoom: 4, smooth: 0.05 }).subscribe(
     {
         next(e) {
             switch (e.type) {
-                case GestureType.START:
+                case "start":
                     const info = ROOT.childForPoint(e.pos);
                     this.sel = info ? info.node : CONTENT;
                     this.startTheta = this.sel.rotate;
@@ -282,7 +282,7 @@ gestureStream(CTX.canvas, { minZoom: 0.1, maxZoom: 4, smooth: 0.05 }).subscribe(
                         copy(this.sel.translate)
                     );
                     break;
-                case GestureType.DRAG:
+                case "drag":
                     if (e.buttons == 2) {
                         this.sel.rotate =
                             this.startTheta + e.active[0].delta![0] * 0.01;
@@ -294,7 +294,7 @@ gestureStream(CTX.canvas, { minZoom: 0.1, maxZoom: 4, smooth: 0.05 }).subscribe(
                     }
                     CONTENT.update();
                     break;
-                case GestureType.ZOOM:
+                case "zoom":
                     CONTENT.scale = e.zoom;
                     CONTENT.update();
             }

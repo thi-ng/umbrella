@@ -1,18 +1,4 @@
 {
-    const NodeType = {};
-    NodeType[NodeType["SYM"] = 1] = "SYM";
-    NodeType[NodeType["WORD"] = 2] = "WORD";
-    NodeType[NodeType["VAR_DEREF"] = 3] = "VAR_DEREF";
-    NodeType[NodeType["VAR_STORE"] = 4] = "VAR_STORE";
-    NodeType[NodeType["NIL"] = 5] = "NIL";
-    NodeType[NodeType["NUMBER"] = 6] = "NUMBER";
-    NodeType[NodeType["BOOLEAN"] = 7] = "BOOLEAN";
-    NodeType[NodeType["STRING"] = 8] = "STRING";
-    NodeType[NodeType["ARRAY"] = 9] = "ARRAY";
-    NodeType[NodeType["OBJ"] = 10] = "OBJ";
-    NodeType[NodeType["COMMENT"] = 11] = "COMMENT";
-    NodeType[NodeType["STACK_COMMENT"] = 12] = "STACK_COMMENT";
-
     const ast = (node) => {
         const loc = location().start;
         node.loc = [loc.line, loc.column];
@@ -41,7 +27,7 @@ NonWordExpr
 
 Word
     = ":" __ id:Sym locals:LocalVars? body:NonWordExpr+ ";" {
-        return { type: NodeType.WORD, id: id.id, locals, body};
+        return { type: "word", id: id.id, locals, body};
     }
 
 LocalVars
@@ -54,12 +40,12 @@ SymList
 
 Array
     = "[" body:NonWordExpr* "]" {
-        return { type: NodeType.ARRAY, body };
+        return { type: "array", body };
     }
 
 Obj
     = "{" _ body:ObjPair* "}" {
-        return { type: NodeType.OBJ, body };
+        return { type: "obj", body };
     }
 
 ObjPair
@@ -91,17 +77,17 @@ Atom
 
 Nil
     = "nil" {
-        return {type: NodeType.NIL, body: null};
+        return {type: "nil", body: null};
     }
 
 Boolean
     = $("T" / "F") {
-        return {type: NodeType.BOOLEAN, body: text() == "T"};
+        return {type: "boolean", body: text() == "T"};
     }
 
 Sym
     = id:$((Alpha / SymChars) (AlphaNum / SymChars)*) {
-        return {type: NodeType.SYM, id};
+        return {type: "sym", id};
     }
 
 SymChars
@@ -113,28 +99,28 @@ Var
 
 VarDeref
     = "@" id:Sym {
-        return {type: NodeType.VAR_DEREF, id: id.id}
+        return {type: "var_deref", id: id.id}
     }
 
 VarStore
     = id:Sym "!" {
-        return {type: NodeType.VAR_STORE, id: id.id}
+        return {type: "var_store", id: id.id}
     }
 
 LitQuote
     = "'" body:NonWordExpr {
-        return {type: NodeType.ARRAY, body: [body]};
+        return {type: "array", body: [body]};
     }
 
 Comment
     = "("+ body:$(!")" .)* ")" {
         return body.indexOf("--") > 0 ?
             {
-                type: NodeType.STACK_COMMENT,
+                type: "stack_comment",
                 body: body.split("--").map(x => x.trim())
             } :
             {
-                type: NodeType.COMMENT,
+                type: "comment",
                 body: body.trim()
             };
     }
@@ -142,14 +128,14 @@ Comment
 LineComment
     = "//" body:$(!"\n" .)* "\n" {
         return {
-            type: NodeType.COMMENT,
+            type: "comment",
             body: body.trim()
         };
     }
 
 String
     = "\"" body:$(!"\"" .)* "\"" {
-        return {type: NodeType.STRING, body };
+        return {type: "string", body };
     }
 
 Number
@@ -161,12 +147,12 @@ Sign = [-+]
 
 Binary
     = "0b" n:$[01]+ {
-        return {type: NodeType.NUMBER, radix: 2, body: parseInt(n, 2)};
+        return {type: "number", radix: 2, body: parseInt(n, 2)};
     }
 
 Hex
     = "0x" n:$[0-9a-fA-F]+ {
-        return {type: NodeType.NUMBER, radix: 16, body: parseInt(n, 16)};
+        return {type: "number", radix: 16, body: parseInt(n, 16)};
     }
 
 Int
@@ -177,7 +163,7 @@ Uint
 
 Decimal
     = Int ("." Uint?)? ("e" Int)? {
-        return {type: NodeType.NUMBER, body: parseFloat(text())};
+        return {type: "number", body: parseFloat(text())};
     }
 
 AlphaNum
