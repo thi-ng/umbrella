@@ -1,5 +1,5 @@
 import { IObjectOf, SEMAPHORE } from "@thi.ng/api";
-import { diffArray, DiffMode, diffObject } from "@thi.ng/diff";
+import { diffArray, diffObject } from "@thi.ng/diff";
 import {
     equiv as _equiv,
     equivArrayLike,
@@ -75,7 +75,7 @@ export const diffTree = <T>(
     if (_impl && _impl !== impl) {
         return _impl.diffTree(opts, _impl, parent, prev, curr, child);
     }
-    const delta = diffArray(prev, curr, DiffMode.ONLY_DISTANCE_LINEAR, equiv);
+    const delta = diffArray(prev, curr, "only-distance-linear", equiv);
     if (delta.distance === 0) {
         return;
     }
@@ -225,7 +225,7 @@ export const diffAttributes = <T>(
     prev: any,
     curr: any
 ) => {
-    const delta = diffObject<any>(prev, curr, DiffMode.FULL, _equiv);
+    const delta = diffObject<any>(prev, curr, "full", _equiv);
     impl.removeAttribs(el, delta.dels!, prev);
     let val = SEMAPHORE;
     let i: number, e, edits;
