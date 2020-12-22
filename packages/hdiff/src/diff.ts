@@ -1,4 +1,4 @@
-import { diffArray, DiffMode } from "@thi.ng/diff";
+import { diffArray } from "@thi.ng/diff";
 import { escape } from "@thi.ng/hiccup";
 import { padLeft } from "@thi.ng/strings";
 
@@ -8,7 +8,7 @@ export const computeDiff = (a: string, b: string) => {
     const edits = diffArray(
         a.split("\n"),
         b.split("\n"),
-        DiffMode.ONLY_DISTANCE_LINEAR
+        "only-distance-linear"
     ).linear!;
     for (let i = 0; i < edits.length; i += 3) {
         const lineID = <number>edits[i];
