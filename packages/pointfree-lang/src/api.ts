@@ -21,23 +21,19 @@ export interface WordMeta {
     arities?: number;
 }
 
-export enum NodeType {
-    SYM = 1,
-    WORD,
-
-    VAR_DEREF,
-    VAR_STORE,
-
-    NIL,
-    NUMBER,
-    BOOLEAN,
-    STRING,
-    ARRAY,
-    OBJ,
-
-    COMMENT,
-    STACK_COMMENT,
-}
+export type NodeType =
+    | "sym"
+    | "word"
+    | "var_deref"
+    | "var_store"
+    | "nil"
+    | "number"
+    | "boolean"
+    | "string"
+    | "array"
+    | "obj"
+    | "comment"
+    | "stack_comment";
 
 export const ALIASES: IObjectOf<pf.StackFn> = {
     "?drop": pf.dropif,

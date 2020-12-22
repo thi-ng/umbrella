@@ -1,7 +1,7 @@
 import { Fn, Fn2, FnU, ILogger, IObjectOf, NULL_LOGGER } from "@thi.ng/api";
 import { illegalArgs, illegalState } from "@thi.ng/errors";
 import * as pf from "@thi.ng/pointfree";
-import { ALIASES, ASTNode, NodeType, VisitorState } from "./api";
+import { ALIASES, ASTNode, VisitorState } from "./api";
 import { parse, SyntaxError } from "./parser";
 
 export let LOGGER = NULL_LOGGER;
@@ -62,15 +62,15 @@ const resolveVar = (node: ASTNode, ctx: pf.StackContext) => {
  */
 const resolveNode = (node: ASTNode, ctx: pf.StackContext): any => {
     switch (node.type) {
-        case NodeType.SYM:
+        case "sym":
             return resolveSym(node, ctx);
-        case NodeType.VAR_DEREF:
+        case "var_deref":
             return resolveVar(node, ctx);
-        case NodeType.VAR_STORE:
+        case "var_store":
             return storevar(node.id!);
-        case NodeType.ARRAY:
+        case "array":
             return resolveArray(node, ctx);
-        case NodeType.OBJ:
+        case "obj":
             return resolveObject(node, ctx);
         default:
             return node.body;
@@ -100,7 +100,7 @@ const resolveArray = (node: ASTNode, ctx: pf.StackContext) => {
 const resolveObject = (node: ASTNode, ctx: pf.StackContext) => {
     const res: any = {};
     for (let [k, v] of node.body) {
-        res[k.type === NodeType.SYM ? k.id : resolveNode(k, ctx)] = resolveNode(
+        res[k.type === "sym" ? k.id : resolveNode(k, ctx)] = resolveNode(
             v,
             ctx
         );
@@ -181,27 +181,27 @@ const endvar = (id: string): FnU<pf.StackContext> => (ctx) => {
  * @param state -
  */
 const visit = (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
-    LOGGER.fine("visit", NodeType[node.type], node, ctx[0].toString());
+    LOGGER.fine("visit", node.type, node, ctx[0].toString());
     switch (node.type) {
-        case NodeType.SYM:
+        case "sym":
             return visitSym(node, ctx, state);
-        case NodeType.NUMBER:
-        case NodeType.BOOLEAN:
-        case NodeType.STRING:
-        case NodeType.NIL:
+        case "number":
+        case "boolean":
+        case "string":
+        case "nil":
             ctx[0].push(node.body);
             return ctx;
-        case NodeType.ARRAY:
+        case "array":
             return visitArray(node, ctx, state);
-        case NodeType.OBJ:
+        case "obj":
             return visitObject(node, ctx, state);
-        case NodeType.VAR_DEREF:
+        case "var_deref":
             return visitDeref(node, ctx, state);
-        case NodeType.VAR_STORE:
+        case "var_store":
             return visitStore(node, ctx, state);
-        case NodeType.WORD:
+        case "word":
             return visitWord(node, ctx, state);
-        case NodeType.STACK_COMMENT:
+        case "stack_comment":
             visitStackComment(node, state);
         default:
             LOGGER.fine("skipping node...");
