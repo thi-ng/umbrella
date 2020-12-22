@@ -54,7 +54,7 @@ yarn add @thi.ng/rstream-gestures
 <script src="https://unpkg.com/@thi.ng/rstream-gestures/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.22 KB / CJS: 1.27 KB / UMD: 1.36 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.13 KB / CJS: 1.18 KB / UMD: 1.28 KB
 
 ## Dependencies
 
@@ -93,11 +93,11 @@ A selection:
 
 All native events are abstracted into one of the following event types:
 
-- `START` - mousedown / touchstart
-- `MOVE` - movemove
-- `DRAG` - mousemove (whilst dragging) / touchmove
-- `END` - mouseup / touchend / touchcancel
-- `ZOOM` -  wheel
+- `move` - movemove
+- `start` - mousedown / touchstart
+- `drag` - mousemove (whilst dragging) / touchmove
+- `end` - mouseup / touchend / touchcancel
+- `zoom` -  wheel
 
 ### GestureEvent
 
@@ -121,7 +121,7 @@ objects of:
 ```ts
 // example mouse gesture event
 {
-  "type": 2, // GestureType.DRAG
+  "type": "drag"
   "event": MouseEvent,
   "pos": [254, 169],
   "active": [
@@ -148,7 +148,7 @@ config options for further details.
 ### Basic usage
 
 ```ts
-import { GestureType, gestureStream } from "@thi.ng/rstream-gestures";
+import { gestureStream } from "@thi.ng/rstream-gestures";
 import { trace } from "@thi.ng/rstream";
 import { comp, dedupe, filter, map, pluck } from "@thi.ng/transducers";
 
@@ -167,7 +167,7 @@ gestures.subscribe(
 gestures.subscribe(
     trace("distance"),
     comp(
-        filter((e) => e.type === GestureType.DRAG),
+        filter((e) => e.type === "drag"),
         map((e) => e.active.map((g) => Math.hypot(...g.delta)))
     )
 );

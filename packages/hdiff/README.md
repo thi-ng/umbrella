@@ -49,7 +49,7 @@ yarn add @thi.ng/hdiff
 <script src="https://unpkg.com/@thi.ng/hdiff/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.58 KB / CJS: 1.65 KB / UMD: 1.70 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.57 KB / CJS: 1.64 KB / UMD: 1.68 KB
 
 ### CLI installation & usage
 

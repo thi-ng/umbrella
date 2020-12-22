@@ -41,7 +41,7 @@ yarn add @thi.ng/geom-api
 <script src="https://unpkg.com/@thi.ng/geom-api/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 618 bytes / CJS: 643 bytes / UMD: 791 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 287 bytes / CJS: 318 bytes / UMD: 441 bytes
 
 ## Dependencies
 
