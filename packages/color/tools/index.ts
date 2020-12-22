@@ -10,9 +10,10 @@ Object.keys(GRADIENTS).forEach((id) => {
         asSvg(
             svgDoc(
                 {},
-                ...cosineGradient(100, GRADIENTS[id]).map((col, i) =>
-                    rect([i * 5, 0], [5, 50], { fill: col })
-                )
+                ...cosineGradient(
+                    100,
+                    GRADIENTS[<keyof typeof GRADIENTS>id]
+                ).map((col, i) => rect([i * 5, 0], [5, 50], { fill: col }))
             )
         )
     );
