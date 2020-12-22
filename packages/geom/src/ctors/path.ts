@@ -1,5 +1,5 @@
 import { isNumber } from "@thi.ng/checks";
-import { Attribs, PathSegment, SegmentType } from "@thi.ng/geom-api";
+import type { Attribs, PathSegment } from "@thi.ng/geom-api";
 import { map, mapcat } from "@thi.ng/transducers";
 import { maddN2, Vec } from "@thi.ng/vectors";
 import type { Cubic } from "../api/cubic";
@@ -12,9 +12,9 @@ export const path = (segments: PathSegment[], attribs?: Attribs) =>
 
 export const pathFromCubics = (cubics: Cubic[], attribs?: Attribs) => {
     const path = new Path([], attribs || cubics[0].attribs);
-    path.segments.push({ type: SegmentType.MOVE, point: cubics[0].points[0] });
+    path.segments.push({ type: "m", point: cubics[0].points[0] });
     for (let c of cubics) {
-        path.segments.push({ type: SegmentType.CUBIC, geo: c });
+        path.segments.push({ type: "c", geo: c });
     }
     return path;
 };
@@ -26,7 +26,7 @@ export const normalizedPath = (path: Path) =>
                 (s) =>
                     s.geo
                         ? map<Cubic, PathSegment>(
-                              (c) => ({ type: SegmentType.CUBIC, geo: c }),
+                              (c) => ({ type: "c", geo: c }),
                               asCubic(s.geo)
                           )
                         : [{ ...s }],

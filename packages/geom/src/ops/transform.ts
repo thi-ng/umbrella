@@ -1,12 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
-import {
-    IHiccupShape,
-    IShape,
-    PathSegment,
-    SegmentType,
-    Type,
-} from "@thi.ng/geom-api";
+import { IHiccupShape, IShape, PathSegment, Type } from "@thi.ng/geom-api";
 import { mulV, ReadonlyMat } from "@thi.ng/matrices";
 import { map } from "@thi.ng/transducers";
 import { Cubic } from "../api/cubic";
@@ -61,7 +55,7 @@ transform.addAll(<IObjectOf<Implementation2<unknown, ReadonlyMat, IShape>>>{
             [
                 ...map(
                     (s) =>
-                        s.type === SegmentType.MOVE
+                        s.type === "m"
                             ? <PathSegment>{
                                   type: s.type,
                                   point: mulV([], mat, s.point!),

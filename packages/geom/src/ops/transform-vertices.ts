@@ -1,12 +1,6 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
-import {
-    IHiccupShape,
-    IShape,
-    PathSegment,
-    SegmentType,
-    Type,
-} from "@thi.ng/geom-api";
+import { IHiccupShape, IShape, PathSegment, Type } from "@thi.ng/geom-api";
 import { mulV, ReadonlyMat } from "@thi.ng/matrices";
 import { map } from "@thi.ng/transducers";
 import type { ReadonlyVec } from "@thi.ng/vectors";
@@ -69,7 +63,7 @@ transformVertices.addAll(<
             [
                 ...map(
                     (s) =>
-                        s.type === SegmentType.MOVE
+                        s.type === "m"
                             ? <PathSegment>{
                                   type: s.type,
                                   point: mulV([], fn(s.point!), s.point!),
