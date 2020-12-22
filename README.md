@@ -13,9 +13,12 @@
 > the composer of. Geared towards versatility, not any specific type of music."
 > &mdash; [@loganpowell](https://twitter.com/logantpowell/status/1186334119812304901) via Twitter
 
-Mono-repository for 142+ thi.ng TypeScript/ES6 projects, a wide
+Mono-repository for 144+ thi.ng TypeScript/ES6 projects, a wide
 collection of largely data transformation oriented packages and building
 blocks for (non-exhaustive list of topics):
+
+**Please visit [thi.ng](https://thi.ng) for additional information & topic based
+search of packages relevant to your use cases...**
 
 - Functional programming (composition, memoization, transducers, multi-methods)
 - Data structures & data transformations for wide range of use cases (list,
@@ -119,12 +122,18 @@ to update your local version.
 
 ## Projects
 
-### New / unreleased packages in development
+<!-- ### New / unreleased packages in development
 
 (These packages might be still unreleased and only available on their
-feature or `develop` branches)
+feature or `develop` branches) -->
 
-- [@thi.ng/fuzzy](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy) - Fuzzy logic ops & rule inference engine
+### Latest additions (2020-12-22)
+
+| Project                                     | Version                                                                                                           | Changelog                                      | Description                                      |
+|---------------------------------------------|-------------------------------------------------------------------------------------------------------------------|------------------------------------------------|--------------------------------------------------|
+| [`@thi.ng/fuzzy`](./packages/fuzzy)         | [![version](https://img.shields.io/npm/v/@thi.ng/fuzzy.svg)](https://www.npmjs.com/package/@thi.ng/fuzzy)         | [changelog](./packages/fuzzy/CHANGELOG.md)     | Fuzzy logic primitives & rule inference engine   |
+| [`@thi.ng/fuzzy-viz`](./packages/fuzzy-viz) | [![version](https://img.shields.io/npm/v/@thi.ng/fuzzy-viz.svg)](https://www.npmjs.com/package/@thi.ng/fuzzy-viz) | [changelog](./packages/fuzzy-viz/CHANGELOG.md) | Visualization, instrumentation for @thi.ng/fuzzy |
+| [`@thi.ng/vclock`](./packages/vclock)       | [![version](https://img.shields.io/npm/v/@thi.ng/vclock.svg)](https://www.npmjs.com/package/@thi.ng/vclock)       | [changelog](./packages/vclock/CHANGELOG.md)    | Vector clock functions / comparators             |
 
 ### Fundamentals
 
@@ -143,6 +152,7 @@ feature or `develop` branches)
 | [`@thi.ng/ecs`](./packages/ecs)                     | [![version](https://img.shields.io/npm/v/@thi.ng/ecs.svg)](https://www.npmjs.com/package/@thi.ng/ecs)                     | [changelog](./packages/ecs/CHANGELOG.md)           | Entity-Component System                                  |
 | [`@thi.ng/equiv`](./packages/equiv)                 | [![version](https://img.shields.io/npm/v/@thi.ng/equiv.svg)](https://www.npmjs.com/package/@thi.ng/equiv)                 | [changelog](./packages/equiv/CHANGELOG.md)         | Deep value equivalence checking                          |
 | [`@thi.ng/errors`](./packages/errors)               | [![version](https://img.shields.io/npm/v/@thi.ng/errors.svg)](https://www.npmjs.com/package/@thi.ng/errors)               | [changelog](./packages/errors/CHANGELOG.md)        | Custom error types                                       |
+| [`@thi.ng/fuzzy`](./packages/fuzzy)                 | [![version](https://img.shields.io/npm/v/@thi.ng/fuzzy.svg)](https://www.npmjs.com/package/@thi.ng/fuzzy)                 | [changelog](./packages/fuzzy/CHANGELOG.md)         | Fuzzy logic primitives & rule inference engine           |
 | [`@thi.ng/hex`](./packages/hex)                     | [![version](https://img.shields.io/npm/v/@thi.ng/hex.svg)](https://www.npmjs.com/package/@thi.ng/hex)                     | [changelog](./packages/hex/CHANGELOG.md)           | Hex value formatters for U4-64 words                     |
 | [`@thi.ng/math`](./packages/math)                   | [![version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)                   | [changelog](./packages/math/CHANGELOG.md)          | Assorted common math functions & utilities               |
 | [`@thi.ng/memoize`](./packages/memoize)             | [![version](https://img.shields.io/npm/v/@thi.ng/memoize.svg)](https://www.npmjs.com/package/@thi.ng/memoize)             | [changelog](./packages/memoize/CHANGELOG.md)       | Function memoization w/ customizable caching             |
@@ -154,7 +164,6 @@ feature or `develop` branches)
 | [`@thi.ng/random`](./packages/random)               | [![version](https://img.shields.io/npm/v/@thi.ng/random.svg)](https://www.npmjs.com/package/@thi.ng/random)               | [changelog](./packages/random/CHANGELOG.md)        | Seedable PRNG implementations w/ unified API             |
 | [`@thi.ng/strings`](./packages/strings)             | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)             | [changelog](./packages/strings/CHANGELOG.md)       | Higher-order string formatting utils                     |
 | [`@thi.ng/system`](./packages/system)               | [![version](https://img.shields.io/npm/v/@thi.ng/system.svg)](https://www.npmjs.com/package/@thi.ng/system)               | [changelog](./packages/system/CHANGELOG.md)        | Minimal life cycle container for stateful app components |
-
 ### Iterator, stream & sequence processing
 
 | Project                                                       | Version                                                                                                                             | Changelog                                               | Description                             |
@@ -244,6 +253,7 @@ feature or `develop` branches)
 | [`@thi.ng/color`](./packages/color)                           | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)                           | [changelog](./packages/color/CHANGELOG.md)              | Color conversions, gradients                        |
 | [`@thi.ng/dgraph-dot`](./packages/dgraph-dot)                 | [![version](https://img.shields.io/npm/v/@thi.ng/dgraph-dot.svg)](https://www.npmjs.com/package/@thi.ng/dgraph-dot)                 | [changelog](./packages/dgraph-dot/CHANGELOG.md)         | Dependency graph -> Graphviz                        |
 | [`@thi.ng/dot`](./packages/dot)                               | [![version](https://img.shields.io/npm/v/@thi.ng/dot.svg)](https://www.npmjs.com/package/@thi.ng/dot)                               | [changelog](./packages/dot/CHANGELOG.md)                | Graphviz DOM & export                               |
+| [`@thi.ng/fuzzy-viz`](./packages/fuzzy-viz)                   | [![version](https://img.shields.io/npm/v/@thi.ng/fuzzy-viz.svg)](https://www.npmjs.com/package/@thi.ng/fuzzy-viz)                   | [changelog](./packages/fuzzy-viz/CHANGELOG.md)          | Visualization, instrumentation for @thi.ng/fuzzy    |
 | [`@thi.ng/geom`](./packages/geom)                             | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)                             | [changelog](./packages/geom/CHANGELOG.md)               | 2D only geometry types & ops                        |
 | [`@thi.ng/geom-accel`](./packages/geom-accel)                 | [![version](https://img.shields.io/npm/v/@thi.ng/geom-accel.svg)](https://www.npmjs.com/package/@thi.ng/geom-accel)                 | [changelog](./packages/geom-accel/CHANGELOG.md)         | Spatial indexing data structures                    |
 | [`@thi.ng/geom-api`](./packages/geom-api)                     | [![version](https://img.shields.io/npm/v/@thi.ng/geom-api.svg)](https://www.npmjs.com/package/@thi.ng/geom-api)                     | [changelog](./packages/geom-api/CHANGELOG.md)           | Shared types & interfaces                           |
