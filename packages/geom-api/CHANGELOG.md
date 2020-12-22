@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@1.1.4...@thi.ng/geom-api@2.0.0) (2020-12-22)
+
+
+### Code Refactoring
+
+* **geom-api:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) remove Type enum ([e2cd24a](https://github.com/thi-ng/umbrella/commit/e2cd24a7fc24af4c2541cd426e5b03431cc8fe86))
+* **geom-api:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enum w/ type alias ([c079a2a](https://github.com/thi-ng/umbrella/commit/c079a2ac620ef731429501d88580b4baada98ab6))
+
+
+### BREAKING CHANGES
+
+* **geom-api:** remove obsolete shape Type enum
+* **geom-api:** replace SegmentType enum w/ type alias
+
+
+
+
+
 # [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@1.0.34...@thi.ng/geom-api@1.1.0) (2020-09-22)
 
 

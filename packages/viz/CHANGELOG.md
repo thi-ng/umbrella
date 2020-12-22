@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/viz@0.2.2...@thi.ng/viz@0.2.3) (2020-12-22)
+
+**Note:** Version bump only for package @thi.ng/viz
+
+
+
+
+
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/viz@0.1.2...@thi.ng/viz@0.2.0) (2020-11-24)
 
 

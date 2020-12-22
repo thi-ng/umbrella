@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@2.1.5...@thi.ng/dsp@3.0.0) (2020-12-22)
+
+
+### Code Refactoring
+
+* **adjacency:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enums w/ type aliases ([b9cfacb](https://github.com/thi-ng/umbrella/commit/b9cfacbbb67fcb89d72090bdad512edaffa1adcf))
+
+
+### Features
+
+* **dsp:** add applyWindow(), windowBartlett() ([d51a17c](https://github.com/thi-ng/umbrella/commit/d51a17c10dd6cbfbb69bb1cf09f46e59d2dd8ba2))
+* **dsp:** add cos() stateless oscillator ([276c6b7](https://github.com/thi-ng/umbrella/commit/276c6b76a6b69498f3b37c94fc34c4915b95b9b6))
+* **dsp:** add power & integral fns ([88edaac](https://github.com/thi-ng/umbrella/commit/88edaac0b93fb811738cbfd06d41063d8c4b9aff))
+* **dsp:** add windowWelch(), add docs ([84cd476](https://github.com/thi-ng/umbrella/commit/84cd4763a2a897d6b15b21b680fe2c8bd15c9d4a))
+* **dsp:** add/update power & integral fns ([f455fad](https://github.com/thi-ng/umbrella/commit/f455fad649394cd386839d983d8ae25895f9f1a2))
+* **dsp:** add/update various FFT & spectrum fns (fix [#258](https://github.com/thi-ng/umbrella/issues/258)) ([e351acb](https://github.com/thi-ng/umbrella/commit/e351acb98b1c776a6c8efe9ba910c2ec3b2df831))
+
+
+### BREAKING CHANGES
+
+* **adjacency:** replace filter type enums w/ type aliases
+
+- FilterType
+- BiquadType
+- SVFType
+- OnepoleType
+* **dsp:** new args for normalizeFFT(),denormalizeFFT(), spectrumPow()
+
+- add support for windowing adjustments in above functions
+- add thresholdFFT()
+- add copyComplex()
+- update various real/complex checks using isComplex()
+- update docs, add references
+
+
+
+
+
 # [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@2.0.28...@thi.ng/dsp@2.1.0) (2020-08-28)
 
 

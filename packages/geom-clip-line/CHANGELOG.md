@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.2.13...@thi.ng/geom-clip-line@1.2.14) (2020-12-22)
+
+**Note:** Version bump only for package @thi.ng/geom-clip-line
+
+
+
+
+
 # [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.1.4...@thi.ng/geom-clip-line@1.2.0) (2020-07-17)
 
 

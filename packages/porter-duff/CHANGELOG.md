@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.35](https://github.com/thi-ng/umbrella/compare/@thi.ng/porter-duff@0.1.34...@thi.ng/porter-duff@0.1.35) (2020-12-22)
+
+**Note:** Version bump only for package @thi.ng/porter-duff
+
+
+
+
+
 # 0.1.0 (2019-07-31)
 
 ### Bug Fixes

@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.13.4...@thi.ng/geom@2.0.0) (2020-12-22)
+
+
+### Bug Fixes
+
+* **geom:** fix [#268](https://github.com/thi-ng/umbrella/issues/268) add Group.copyTransformed() ([2da6c63](https://github.com/thi-ng/umbrella/commit/2da6c63b5a2dbc45bc1272eaf592d3d74d8ce74e))
+
+
+### Code Refactoring
+
+* **geom:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enum w/ type alias ([67988ad](https://github.com/thi-ng/umbrella/commit/67988ad31f478b28de85e40d8ab7c51501ef4acb))
+* **geom:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace Type enum w/ alias ([ef7ba74](https://github.com/thi-ng/umbrella/commit/ef7ba74c189755d760d84c700b0c970a281a3b04))
+
+
+### BREAKING CHANGES
+
+* **geom:** replace Type enum returned by IShape.type w/ string consts
+
+- update all shape classes
+- update all ops/multimethod dispatches
+* **geom:** replace SegmentType w/ type alias
+
+
+
+
+
 ## [1.13.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.13.0...@thi.ng/geom@1.13.1) (2020-11-24)
 
 

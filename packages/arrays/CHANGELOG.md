@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.8.4...@thi.ng/arrays@0.8.5) (2020-12-22)
+
+**Note:** Version bump only for package @thi.ng/arrays
+
+
+
+
+
 # [0.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.7.0...@thi.ng/arrays@0.8.0) (2020-09-13)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/gp@0.1.35...@thi.ng/gp@0.2.0) (2020-12-22)
+
+
+### Code Refactoring
+
+* **gp:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enum w/ type alias ([6fd4291](https://github.com/thi-ng/umbrella/commit/6fd4291eb2be4baae93b3f365478f73990e044b0))
+
+
+### BREAKING CHANGES
+
+* **gp:** replace GeneType w/ type alias
+
+
+
+
+
 # 0.1.0 (2019-11-30)
 
 ### Bug Fixes

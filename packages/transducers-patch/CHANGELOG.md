@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-patch@0.1.33...@thi.ng/transducers-patch@0.2.0) (2020-12-22)
+
+
+### Code Refactoring
+
+* **transducers-patch:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enum ([5086a33](https://github.com/thi-ng/umbrella/commit/5086a330698992fc65ce2e774fc495e0d2e3e58a))
+
+
+### BREAKING CHANGES
+
+* **transducers-patch:** replace Patch enum w/ type alias,
+update PatchArrayOp/PatchObjOp
+
+
+
+
+
 ## [0.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-patch@0.1.4...@thi.ng/transducers-patch@0.1.5) (2020-03-28)
 
 

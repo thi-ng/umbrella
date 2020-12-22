@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.2.35...@thi.ng/diff@4.0.0) (2020-12-22)
+
+
+### Code Refactoring
+
+* **diff:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace DiffMode enum ([cc77c71](https://github.com/thi-ng/umbrella/commit/cc77c711746eabebb4af58421282c50830613915))
+
+
+### BREAKING CHANGES
+
+* **diff:** replace DiffMode enum w/ type alias
+
+- rename DiffMode.ONLY_DISTANCE_LINEAR_ONLY_CHANGES => "minimal"
+- update diffObject() mode arg to only allow: "full" or "only-distance"
+
+
+
+
+
 ## [3.2.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.2.19...@thi.ng/diff@3.2.20) (2020-05-05)
 
 

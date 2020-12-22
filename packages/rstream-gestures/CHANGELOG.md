@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@2.0.45...@thi.ng/rstream-gestures@3.0.0) (2020-12-22)
+
+
+### Code Refactoring
+
+* **rstream-gestures:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace GestureType enum ([80ef1e1](https://github.com/thi-ng/umbrella/commit/80ef1e1558070421cf6ed2d707a55b91fe1c290d))
+
+
+### BREAKING CHANGES
+
+* **rstream-gestures:** replace GestureType w/ type alias
+
+
+
+
+
 ## [2.0.40](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@2.0.39...@thi.ng/rstream-gestures@2.0.40) (2020-09-27)
 
 

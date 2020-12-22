@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-binary@0.5.33...@thi.ng/transducers-binary@0.6.0) (2020-12-22)
+
+
+### Code Refactoring
+
+* **transducers-binary:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enum w/ type alias ([50cc52a](https://github.com/thi-ng/umbrella/commit/50cc52a84b135535053370e022309aee5b670625))
+
+
+### BREAKING CHANGES
+
+* **transducers-binary:** replace Type enum w/ type alias, update BinStructItem
+
+
+
+
+
 # [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-binary@0.4.9...@thi.ng/transducers-binary@0.5.0) (2020-02-25)
 
 

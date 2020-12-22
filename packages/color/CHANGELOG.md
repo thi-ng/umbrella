@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@1.3.2...@thi.ng/color@2.0.0) (2020-12-22)
+
+
+### Code Refactoring
+
+* **color:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enum w/ type alias ([17e2449](https://github.com/thi-ng/umbrella/commit/17e244969d2d39e17cdea739308928adc17d5392))
+
+
+### BREAKING CHANGES
+
+* **color:** replace ColorMode w/ type alias
+
+
+
+
+
 # [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@1.2.18...@thi.ng/color@1.3.0) (2020-11-24)
 
 

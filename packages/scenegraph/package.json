@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/scenegraph",
-    "version": "0.3.11",
+    "version": "0.3.12",
     "description": "Extensible 2D/3D scene graph with @thi.ng/hiccup-canvas support",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,10 +49,10 @@
         "typescript": "^4.1.3"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.13.4",
-        "@thi.ng/checks": "^2.7.11",
-        "@thi.ng/matrices": "^0.6.37",
-        "@thi.ng/vectors": "^4.8.2"
+        "@thi.ng/api": "^6.13.5",
+        "@thi.ng/checks": "^2.7.12",
+        "@thi.ng/matrices": "^0.6.38",
+        "@thi.ng/vectors": "^4.8.3"
     },
     "files": [
         "*.js",

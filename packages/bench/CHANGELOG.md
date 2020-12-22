@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@2.0.24...@thi.ng/bench@2.0.25) (2020-12-22)
+
+**Note:** Version bump only for package @thi.ng/bench
+
+
+
+
+
 ## [2.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@2.0.5...@thi.ng/bench@2.0.6) (2020-04-03)
 
 

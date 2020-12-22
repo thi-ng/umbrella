@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-poly-utils@0.2.2...@thi.ng/geom-poly-utils@0.3.0) (2020-12-22)
+
+
+### Features
+
+* **geom-poly-utils:** add tangents(), smoothTangents() ([12a9d8a](https://github.com/thi-ng/umbrella/commit/12a9d8a641672f4c3e007a80dd08cfe9b54ce650))
+
+
+
+
+
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-poly-utils@0.1.66...@thi.ng/geom-poly-utils@0.2.0) (2020-11-24)
 
 

@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@2.2.2...@thi.ng/math@3.0.0) (2020-12-22)
+
+
+### Bug Fixes
+
+* **math:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enum w/ type alias ([8f00375](https://github.com/thi-ng/umbrella/commit/8f00375722ff3e207f1711229acff69c3bd1343f))
+
+
+### Code Refactoring
+
+* **math:** update/fix sigmoid() behavior ([07a278f](https://github.com/thi-ng/umbrella/commit/07a278fdd82004610aa9b7acb585c3c841af24ba))
+
+
+### Features
+
+* **math:** add gaussian() ([138befe](https://github.com/thi-ng/umbrella/commit/138befe1f2d14eb9a4fb3829179b8d03d49e6bbc))
+* **math:** add more parametric T-norms ([38bd40e](https://github.com/thi-ng/umbrella/commit/38bd40e1595e318c6472a526e03c8c8a06ebf396))
+* **math:** add various T-norm functions ([ab4a810](https://github.com/thi-ng/umbrella/commit/ab4a810981c08c54365d5ea3212cd465d2589cf0))
+
+
+### BREAKING CHANGES
+
+* **math:** replace Crossing enum w/ type alias
+* **math:** add new bias arg for sigmoid() to satisfy more use cases.
+Use sigmoid01() for old behavior.
+
+- add/update docstrings
+- add desmos links
+
+
+
+
+
 # [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@2.1.1...@thi.ng/math@2.2.0) (2020-11-24)
 
 

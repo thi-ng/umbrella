@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/adjacency@0.1.67...@thi.ng/adjacency@0.2.0) (2020-12-22)
+
+
+### Code Refactoring
+
+* **adjacency:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enum w/ type alias ([88edbe1](https://github.com/thi-ng/umbrella/commit/88edbe10ffe9ceb9f5e8494c9a60b8067a7d57d1))
+
+
+### BREAKING CHANGES
+
+* **adjacency:** replace DegreeType w/ type alias
+
+
+
+
+
 ## [0.1.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/adjacency@0.1.6...@thi.ng/adjacency@0.1.7) (2019-03-18)
 
 ### Performance Improvements
