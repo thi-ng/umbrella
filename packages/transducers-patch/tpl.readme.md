@@ -47,7 +47,7 @@ TODO
 ### Basic usage
 
 ```ts
-import { Patch, patchArray, patchObj } from "@thi.ng/transducers-patch";
+import { patchArray, patchObj } from "@thi.ng/transducers-patch";
 import { reduce, reductions } from "@thi.ng/transducers";
 
 // flat array editing
@@ -59,13 +59,13 @@ patchArray(
     // edits
     [
         // set idx #0 to 42
-        [Patch.SET, 0, 42],
+        ["set", 0, 42],
         // update idx #1 (here: times 10)
-        [Patch.UPDATE, 1, (x, n) => x * n, 10],
+        ["update", 1, (x, n) => x * n, 10],
         // insert values @ idx #2
-        [Patch.INSERT, 2, [10, 11]],
+        ["insert", 2, [10, 11]],
         // delete (remove) idx #3
-        [Patch.DELETE, 3]
+        ["delete", 3]
     ]
 );
 // [ 42, 20, 10, 3 ]
@@ -77,10 +77,10 @@ reduce(
     // original array (wrapped here only for `reductions`)
     [[1, 2, 3]],
     [
-        [Patch.INSERT, 0, [10, 11]],
-        [Patch.UPDATE, 1, (x, n) => x * n, 10],
-        [Patch.DELETE, 3],
-        [Patch.SET, 2, 200]
+        ["insert", 0, [10, 11]],
+        ["update", 1, (x, n) => x * n, 10],
+        ["delete", 3],
+        ["set", 2, 200]
     ]
 );
 // [
@@ -97,9 +97,9 @@ reduce(
     reductions(patchObj()),
     [{ x: 23 }],
     [
-        [Patch.SET, ["a", "b"], 1],
-        [Patch.UPDATE, ["a", "b"], (x, n) => x + n, 10],
-        [Patch.DELETE, ["x"]]
+        ["set", ["a", "b"], 1],
+        ["update", ["a", "b"], (x, n) => x + n, 10],
+        ["delete", ["x"]]
     ]
 ),
 // [
@@ -131,13 +131,13 @@ export const state = stream<PatchObjOp>().transform(
 // add debug subscription
 state.subscribe(trace("state: "));
 
-state.next([Patch.SET, "a.b", 1]);
+state.next(["set", "a.b", 1]);
 // state: { x: 23, a: { b: 1 } }
 
-state.next([Patch.UPDATE, ["a", "b"], (x, n)=> x + n, 10]);
+state.next(["update", ["a", "b"], (x, n)=> x + n, 10]);
 // state: { x: 23, a: { b: 11 } }
 
-state.next([Patch.DELETE, "x"]);
+state.next(["delete", "x"]);
 // state: { a: { b: 11 } }
 ```
 

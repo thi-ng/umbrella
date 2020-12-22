@@ -195,7 +195,7 @@ const b = col.parseCss("hsla(30,100%,50%,0.75)");
 
 // route #3: convert() multi-method: CSS -> RGBA -> HSVA
 // (see convert.ts)
-const c = col.convert("rgb(0,255,255)", col.ColorMode.HSVA, col.ColorMode.CSS);
+const c = col.convert("rgb(0,255,255)", "hsv", "css");
 // [ 0.4999999722222268, 0.9999990000010001, 1, 1 ]
 
 // route #4: direct conversion RGBA -> HSLA -> CSS
@@ -205,7 +205,7 @@ col.hslaCss(col.rgbaHsla([], [1, 0.5, 0.5, 1]))
 // "hsl(0.00,100.00%,75.00%)"
 
 col.luminance(col.css("white"))
-col.luminance(0xffffff, col.ColorMode.INT32)
+col.luminance(0xffffff, "int")
 // 1
 
 // apply color matrix (RGBA only)
