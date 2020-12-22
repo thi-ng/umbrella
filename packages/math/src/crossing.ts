@@ -61,15 +61,13 @@ export const classifyCrossing = (
     b1: number,
     b2: number,
     eps = EPS
-) => {
-    if (isCrossOver(a1, a2, b1, b2)) {
-        return Crossing.OVER;
-    } else if (isCrossUnder(a1, a2, b1, b2)) {
-        return Crossing.UNDER;
-    }
-    return eqDelta(a1, b1, eps) && eqDelta(a2, b2, eps)
+): Crossing =>
+    eqDelta(a1, b1, eps) && eqDelta(a2, b2, eps)
         ? eqDelta(a1, b2, eps)
-            ? Crossing.FLAT
-            : Crossing.EQUAL
-        : Crossing.OTHER;
-};
+            ? "flat"
+            : "equal"
+        : isCrossOver(a1, a2, b1, b2)
+        ? "over"
+        : isCrossUnder(a1, a2, b1, b2)
+        ? "under"
+        : "other";
