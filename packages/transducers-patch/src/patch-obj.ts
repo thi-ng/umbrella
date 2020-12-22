@@ -1,8 +1,8 @@
-import { isNumber } from "@thi.ng/checks";
+import { isString } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { deleteInUnsafe, setInUnsafe, updateInUnsafe } from "@thi.ng/paths";
 import { reduce, reducer, Reducer } from "@thi.ng/transducers";
-import { Patch, PatchObjOp } from "./api";
+import type { PatchObjOp } from "./api";
 
 /**
  * Reducer for {@link Patch} based immutable object updates.
@@ -18,11 +18,11 @@ export function patchObj(init: any, patches: Iterable<PatchObjOp>): any;
 export function patchObj(init?: any, patches?: Iterable<PatchObjOp>) {
     const edit = (acc: any, x: PatchObjOp) => {
         switch (x[0]) {
-            case Patch.SET:
+            case "set":
                 return setInUnsafe(acc, x[1], x[2]);
-            case Patch.UPDATE:
+            case "update":
                 return updateInUnsafe(acc, x[1], x[2], ...x.slice(3));
-            case Patch.DELETE:
+            case "delete":
                 return deleteInUnsafe(acc, x[1]);
             default:
                 illegalArgs(`patch op: ${x}`);
@@ -33,7 +33,7 @@ export function patchObj(init?: any, patches?: Iterable<PatchObjOp>) {
         : reducer<any, PatchObjOp>(
               () => <any>{},
               (acc, x) => {
-                  if (isNumber(x[0])) {
+                  if (isString(x[0])) {
                       acc = edit(acc, x);
                   } else {
                       for (let e of <PatchObjOp[]>x) {
