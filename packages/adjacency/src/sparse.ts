@@ -1,6 +1,6 @@
 import type { Pair } from "@thi.ng/api";
 import { CSR } from "@thi.ng/sparse";
-import { DegreeType, IGraph } from "./api";
+import type { DegreeType, IGraph } from "./api";
 
 export class AdjacencyMatrix extends CSR implements IGraph {
     static newEmpty(n: number, undirected = false) {
@@ -96,21 +96,21 @@ export class AdjacencyMatrix extends CSR implements IGraph {
      *
      * @param deg - degree type
      */
-    degreeMat(deg: DegreeType = DegreeType.OUT) {
+    degreeMat(deg: DegreeType = "out") {
         const res = CSR.empty(this.m);
         switch (deg) {
-            case DegreeType.OUT:
+            case "out":
             default:
                 for (let i = this.m; --i >= 0; ) {
                     res.setAt(i, i, this.nnzRow(i));
                 }
                 break;
-            case DegreeType.IN:
+            case "in":
                 for (let i = this.m; --i >= 0; ) {
                     res.setAt(i, i, this.nnzCol(i));
                 }
                 break;
-            case DegreeType.BOTH:
+            case "both":
                 for (let i = this.m; --i >= 0; ) {
                     res.setAt(i, i, this.nnzRow(i) + this.nnzCol(i));
                 }
