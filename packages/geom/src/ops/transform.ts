@@ -1,6 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
-import { IHiccupShape, IShape, PathSegment, Type } from "@thi.ng/geom-api";
+import type { IHiccupShape, IShape, PathSegment } from "@thi.ng/geom-api";
 import { mulV, ReadonlyMat } from "@thi.ng/matrices";
 import { map } from "@thi.ng/transducers";
 import { Cubic } from "../api/cubic";
@@ -38,19 +38,19 @@ import { asPolygon } from "./as-polygon";
 export const transform = defmulti<IShape, ReadonlyMat, IShape>(dispatch);
 
 transform.addAll(<IObjectOf<Implementation2<unknown, ReadonlyMat, IShape>>>{
-    [Type.ARC]: ($: IShape, mat) => transform(asPath($), mat),
+    arc: ($: IShape, mat) => transform(asPath($), mat),
 
-    [Type.CUBIC]: tx(Cubic),
+    cubic: tx(Cubic),
 
-    [Type.GROUP]: ($: Group, mat) =>
+    group: ($: Group, mat) =>
         new Group(
             copyAttribs($),
             $.children.map((x) => <IHiccupShape>transform(x, mat))
         ),
 
-    [Type.LINE]: tx(Line),
+    line: tx(Line),
 
-    [Type.PATH]: ($: Path, mat) =>
+    path: ($: Path, mat) =>
         new Path(
             [
                 ...map(
@@ -70,25 +70,25 @@ transform.addAll(<IObjectOf<Implementation2<unknown, ReadonlyMat, IShape>>>{
             copyAttribs($)
         ),
 
-    [Type.POINTS]: tx(Points),
+    points: tx(Points),
 
-    [Type.POINTS3]: tx3(Points3),
+    points3: tx3(Points3),
 
-    [Type.POLYGON]: tx(Polygon),
+    poly: tx(Polygon),
 
-    [Type.POLYLINE]: tx(Polyline),
+    polyline: tx(Polyline),
 
-    [Type.QUAD]: tx(Quad),
+    quad: tx(Quad),
 
-    [Type.QUADRATIC]: tx(Quadratic),
+    quadratic: tx(Quadratic),
 
-    [Type.RECT]: ($: Rect, mat) => transform(asPolygon($), mat),
+    rect: ($: Rect, mat) => transform(asPolygon($), mat),
 
-    [Type.TEXT]: ($: Text, mat) =>
+    text: ($: Text, mat) =>
         new Text(mulV([], mat, $.pos!), $.body, copyAttribs($)),
 
-    [Type.TRIANGLE]: tx(Triangle),
+    tri: tx(Triangle),
 });
 
-transform.isa(Type.CIRCLE, Type.ARC);
-transform.isa(Type.ELLIPSE, Type.CIRCLE);
+transform.isa("circle", "arc");
+transform.isa("ellipse", "circle");

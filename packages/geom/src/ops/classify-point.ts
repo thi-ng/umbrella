@@ -1,6 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2O, MultiFn2O } from "@thi.ng/defmulti";
-import { IShape, Type } from "@thi.ng/geom-api";
+import type { IShape } from "@thi.ng/geom-api";
 import {
     classifyPointInCircle,
     classifyPointInTriangle2,
@@ -22,13 +22,13 @@ export const classifyPoint: MultiFn2O<
 classifyPoint.addAll(<
     IObjectOf<Implementation2O<unknown, ReadonlyVec, number, number>>
 >{
-    [Type.CIRCLE]: ($: Circle, p, eps = EPS) =>
+    circle: ($: Circle, p, eps = EPS) =>
         classifyPointInCircle(p, $.pos, $.r, eps),
 
-    [Type.PLANE]: ($: Plane, p, eps) => sign(dot($.normal, p) - $.w, eps),
+    plane: ($: Plane, p, eps) => sign(dot($.normal, p) - $.w, eps),
 
-    [Type.TRIANGLE]: ({ points }: Triangle, p: ReadonlyVec, eps = EPS) =>
+    tri: ({ points }: Triangle, p: ReadonlyVec, eps = EPS) =>
         classifyPointInTriangle2(p, points[0], points[1], points[2], eps),
 });
 
-classifyPoint.isa(Type.SPHERE, Type.CIRCLE);
+classifyPoint.isa("sphere", "circle");

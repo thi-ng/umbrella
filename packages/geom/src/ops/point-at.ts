@@ -1,6 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
-import { IShape, Type } from "@thi.ng/geom-api";
+import type { IShape } from "@thi.ng/geom-api";
 import { Sampler } from "@thi.ng/geom-resample";
 import { cossin, fit01, TAU } from "@thi.ng/math";
 import {
@@ -28,30 +28,30 @@ import { vertices } from "./vertices";
 export const pointAt = defmulti<IShape, number, Vec>(dispatch);
 
 pointAt.addAll(<IObjectOf<Implementation2<unknown, number, Vec>>>{
-    [Type.ARC]: ($: Arc, t: number) => $.pointAtTheta(fit01(t, $.start, $.end)),
+    arc: ($: Arc, t: number) => $.pointAtTheta(fit01(t, $.start, $.end)),
 
-    [Type.CIRCLE]: ($: Circle, t) => cartesian2(null, [$.r, TAU * t], $.pos),
+    circle: ($: Circle, t) => cartesian2(null, [$.r, TAU * t], $.pos),
 
-    [Type.CUBIC]: ({ points }: Cubic, t) =>
+    cubic: ({ points }: Cubic, t) =>
         mixCubic([], points[0], points[1], points[2], points[3], t),
 
-    [Type.ELLIPSE]: ($: Ellipse, t) => madd2([], cossin(TAU * t), $.r, $.pos),
+    ellipse: ($: Ellipse, t) => madd2([], cossin(TAU * t), $.r, $.pos),
 
-    [Type.LINE]: ({ points }: Line, t) => mixN2([], points[0], points[1], t),
+    line: ({ points }: Line, t) => mixN2([], points[0], points[1], t),
 
-    [Type.POLYGON]: ($: Polygon, t) => new Sampler($.points, true).pointAt(t),
+    poly: ($: Polygon, t) => new Sampler($.points, true).pointAt(t),
 
-    [Type.POLYLINE]: ($: Polygon, t) => new Sampler($.points).pointAt(t),
+    polyline: ($: Polygon, t) => new Sampler($.points).pointAt(t),
 
-    [Type.QUADRATIC]: ({ points }: Quadratic, t) =>
+    quadratic: ({ points }: Quadratic, t) =>
         mixQuadratic([], points[0], points[1], points[2], t),
 
-    [Type.RAY]: ($: Ray, t) => pointOnRay2([], $.pos, $.dir, t),
+    ray: ($: Ray, t) => pointOnRay2([], $.pos, $.dir, t),
 
-    [Type.RAY3]: ($: Ray, t) => pointOnRay3([], $.pos, $.dir, t),
+    ray3: ($: Ray, t) => pointOnRay3([], $.pos, $.dir, t),
 
-    [Type.RECT]: ($: Rect, t) => new Sampler(vertices($), true).pointAt(t),
+    rect: ($: Rect, t) => new Sampler(vertices($), true).pointAt(t),
 });
 
-pointAt.isa(Type.QUAD, Type.POLYGON);
-pointAt.isa(Type.TRIANGLE, Type.POLYGON);
+pointAt.isa("quad", "poly");
+pointAt.isa("tri", "poly");

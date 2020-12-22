@@ -1,8 +1,8 @@
 import { equiv } from "@thi.ng/equiv";
 import { illegalState } from "@thi.ng/errors";
-import { Attribs, IHiccupShape, PathSegment, Type } from "@thi.ng/geom-api";
-import { copyAttribs } from "../internal/copy-attribs";
+import type { Attribs, IHiccupShape, PathSegment } from "@thi.ng/geom-api";
 import { copy } from "@thi.ng/vectors";
+import { copyAttribs } from "../internal/copy-attribs";
 
 export class Path implements IHiccupShape {
     closed = false;
@@ -13,7 +13,7 @@ export class Path implements IHiccupShape {
     ) {}
 
     get type() {
-        return Type.PATH;
+        return "path";
     }
 
     *[Symbol.iterator]() {

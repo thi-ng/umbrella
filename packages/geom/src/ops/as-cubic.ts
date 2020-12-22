@@ -1,6 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation1, MultiFn1O } from "@thi.ng/defmulti";
-import { CubicOpts, IShape, PCLike, Type } from "@thi.ng/geom-api";
+import type { CubicOpts, IShape, PCLike } from "@thi.ng/geom-api";
 import {
     closedCubicFromBreakPoints,
     closedCubicFromControlPoints,
@@ -34,24 +34,23 @@ export const asCubic: MultiFn1O<IShape, Partial<CubicOpts>, Cubic[]> = defmulti(
 );
 
 asCubic.addAll(<IObjectOf<Implementation1<unknown, Cubic[]>>>{
-    [Type.ARC]: cubicFromArc,
+    arc: cubicFromArc,
 
-    [Type.CIRCLE]: ($: Circle) =>
-        asCubic(arc($.pos, $.r, 0, 0, TAU, true, true)),
+    circle: ($: Circle) => asCubic(arc($.pos, $.r, 0, 0, TAU, true, true)),
 
-    [Type.CUBIC]: ($: Cubic) => [$],
+    cubic: ($: Cubic) => [$],
 
-    [Type.GROUP]: ($: Group) => [...mapcat(asCubic, $.children)],
+    group: ($: Group) => [...mapcat(asCubic, $.children)],
 
-    [Type.LINE]: ({ attribs, points }: Line) => [
+    line: ({ attribs, points }: Line) => [
         cubicFromLine(points[0], points[1], { ...attribs }),
     ],
 
-    [Type.PATH]: ($: Path) => [
+    path: ($: Path) => [
         ...mapcat((s) => (s.geo ? asCubic(s.geo) : null), $.segments),
     ],
 
-    [Type.POLYGON]: ($: Polygon, opts: Partial<CubicOpts> = {}) =>
+    poly: ($: Polygon, opts: Partial<CubicOpts> = {}) =>
         polyCubic(
             $,
             opts,
@@ -59,7 +58,7 @@ asCubic.addAll(<IObjectOf<Implementation1<unknown, Cubic[]>>>{
             closedCubicFromControlPoints
         ),
 
-    [Type.POLYLINE]: ($: Polyline, opts: Partial<CubicOpts> = {}) =>
+    polyline: ($: Polyline, opts: Partial<CubicOpts> = {}) =>
         polyCubic(
             $,
             opts,
@@ -67,15 +66,16 @@ asCubic.addAll(<IObjectOf<Implementation1<unknown, Cubic[]>>>{
             openCubicFromControlPoints
         ),
 
-    [Type.QUADRATIC]: ({ attribs, points }: Quadratic) => [
+    quadratic: ({ attribs, points }: Quadratic) => [
         cubicFromQuadratic(points[0], points[1], points[2], { ...attribs }),
     ],
 
-    [Type.RECT]: ($: Rect, opts?: Partial<CubicOpts>) =>
-        asCubic(asPolygon($), opts),
+    rect: ($: Rect, opts?: Partial<CubicOpts>) => asCubic(asPolygon($), opts),
 });
 
-asCubic.isa(Type.ELLIPSE, Type.CIRCLE);
+asCubic.isa("ellipse", "circle");
+asCubic.isa("quad", "poly");
+asCubic.isa("tri", "poly");
 
 // prettier-ignore
 const polyCubic = (

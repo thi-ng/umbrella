@@ -1,5 +1,5 @@
 import { equiv } from "@thi.ng/equiv";
-import { Attribs, IHiccupShape, Type } from "@thi.ng/geom-api";
+import type { Attribs, IHiccupShape } from "@thi.ng/geom-api";
 import { copyAttribs } from "../internal/copy-attribs";
 
 export class Group implements IHiccupShape {
@@ -9,7 +9,7 @@ export class Group implements IHiccupShape {
     ) {}
 
     get type() {
-        return Type.GROUP;
+        return "group";
     }
 
     *[Symbol.iterator]() {

@@ -1,6 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
-import { IHiccupShape, IShape, Type } from "@thi.ng/geom-api";
+import type { IHiccupShape, IShape } from "@thi.ng/geom-api";
 import { clipLineSegmentPoly } from "@thi.ng/geom-clip-line";
 import { sutherlandHodgeman } from "@thi.ng/geom-clip-poly";
 import { centroid } from "@thi.ng/geom-poly-utils";
@@ -23,7 +23,7 @@ clipConvex.addAll(<
         Implementation2<unknown, IShape | ReadonlyVec[], IShape | undefined>
     >
 >{
-    [Type.GROUP]: ({ children, attribs }: Group, boundary) => {
+    group: ({ children, attribs }: Group, boundary) => {
         boundary = ensureVertices(boundary);
         const clipped: IHiccupShape[] = [];
         for (let c of children) {
@@ -33,7 +33,7 @@ clipConvex.addAll(<
         return new Group({ ...attribs }, clipped);
     },
 
-    [Type.LINE]: ($: Line, boundary) => {
+    line: ($: Line, boundary) => {
         const segments = clipLineSegmentPoly(
             $.points[0],
             $.points[1],
@@ -44,13 +44,13 @@ clipConvex.addAll(<
             : undefined;
     },
 
-    [Type.POLYGON]: ($: Polygon, boundary) => {
+    poly: ($: Polygon, boundary) => {
         boundary = ensureVertices(boundary);
         const pts = sutherlandHodgeman($.points, boundary, centroid(boundary));
         return pts.length ? new Polygon(pts, copyAttribs($)) : undefined;
     },
 
-    [Type.RECT]: ($: IShape, boundary) => {
+    rect: ($: IShape, boundary) => {
         boundary = ensureVertices(boundary);
         const pts = sutherlandHodgeman(
             vertices($),
@@ -61,8 +61,8 @@ clipConvex.addAll(<
     },
 });
 
-clipConvex.isa(Type.CIRCLE, Type.RECT);
-clipConvex.isa(Type.ELLIPSE, Type.RECT);
-clipConvex.isa(Type.PATH, Type.RECT);
-clipConvex.isa(Type.QUAD, Type.POLYGON);
-clipConvex.isa(Type.TRIANGLE, Type.POLYGON);
+clipConvex.isa("circle", "rect");
+clipConvex.isa("ellipse", "rect");
+clipConvex.isa("path", "rect");
+clipConvex.isa("quad", "poly");
+clipConvex.isa("tri", "poly");

@@ -1,7 +1,7 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
-import { IShape, PathSegment, Type } from "@thi.ng/geom-api";
+import type { IShape, PathSegment } from "@thi.ng/geom-api";
 import { simplify as _simplify } from "@thi.ng/geom-resample";
 import type { Vec } from "@thi.ng/vectors";
 import { Path } from "../api/path";
@@ -14,7 +14,7 @@ import { vertices } from "./vertices";
 export const simplify = defmulti<IShape, number, IShape>(dispatch);
 
 simplify.addAll(<IObjectOf<Implementation2<unknown, number, IShape>>>{
-    [Type.PATH]: ($: Path, eps = 0.1) => {
+    path: ($: Path, eps = 0.1) => {
         const res: PathSegment[] = [];
         const orig = $.segments;
         const n = orig.length;
@@ -48,9 +48,9 @@ simplify.addAll(<IObjectOf<Implementation2<unknown, number, IShape>>>{
         return new Path(res, copyAttribs($));
     },
 
-    [Type.POLYGON]: ($: Polygon, eps = 0.1) =>
+    poly: ($: Polygon, eps = 0.1) =>
         new Polygon(_simplify($.points, eps, true), copyAttribs($)),
 
-    [Type.POLYLINE]: ($: Polyline, eps = 0.1) =>
+    polyline: ($: Polyline, eps = 0.1) =>
         new Polyline(_simplify($.points, eps), copyAttribs($)),
 });
