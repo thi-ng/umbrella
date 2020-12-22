@@ -1,10 +1,7 @@
 import type { Fn, Fn2 } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
 
-export enum GeneType {
-    TERMINAL,
-    OP,
-}
+export type GeneType = "term" | "op";
 
 /**
  * Type alias for S-expression based AST
@@ -66,12 +63,12 @@ export interface MEPOpts<OP, T> extends GPOpts<OP, T, number> {
 }
 
 export interface TerminalGene<T> {
-    type: GeneType.TERMINAL;
+    type: "term";
     value: T;
 }
 
 export interface OpGene<OP, A> {
-    type: GeneType.OP;
+    type: "op";
     op: OP;
     args: A[];
 }

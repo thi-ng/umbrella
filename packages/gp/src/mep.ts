@@ -1,7 +1,7 @@
 import { inRange } from "@thi.ng/math";
 import { SYSTEM } from "@thi.ng/random";
 import { repeatedly } from "@thi.ng/transducers";
-import { ASTNode, GeneType, MEPChromosome, MEPGene, MEPOpts } from "./api";
+import type { ASTNode, MEPChromosome, MEPGene, MEPOpts } from "./api";
 import { opNode, probabilities, terminalNode } from "./utils";
 
 export class MEP<OP, T> {
@@ -55,7 +55,7 @@ export class MEP<OP, T> {
         const depths: number[] = [];
         for (let i = 0; i < chromosome.length; i++) {
             const gene = chromosome[i];
-            if (gene.type == GeneType.TERMINAL) {
+            if (gene.type == "term") {
                 res[i] = gene;
                 depths[i] = 1;
             } else {

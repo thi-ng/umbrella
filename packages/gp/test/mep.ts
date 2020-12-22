@@ -23,121 +23,121 @@ describe("gp (mep)", () => {
 
     it("generate", () => {
         assert.deepStrictEqual(ast.randomChromosome(), [
-            { type: 0, value: 5 },
-            { type: 0, value: 5 },
-            { type: 1, op: "*", args: [1, 1] },
-            { type: 1, op: "-", args: [1, 2] },
-            { type: 1, op: "-", args: [0, 0] },
-            { type: 1, op: "-", args: [3, 4] },
-            { type: 1, op: "*", args: [4, 0] },
-            { type: 1, op: "-", args: [2, 3] },
-            { type: 1, op: "/", args: [1, 4] },
-            { type: 1, op: "-", args: [5, 0] },
+            { type: "term", value: 5 },
+            { type: "term", value: 5 },
+            { type: "op", op: "*", args: [1, 1] },
+            { type: "op", op: "-", args: [1, 2] },
+            { type: "op", op: "-", args: [0, 0] },
+            { type: "op", op: "-", args: [3, 4] },
+            { type: "op", op: "*", args: [4, 0] },
+            { type: "op", op: "-", args: [2, 3] },
+            { type: "op", op: "/", args: [1, 4] },
+            { type: "op", op: "-", args: [5, 0] },
         ]);
     });
 
     it("decode", () => {
         assert.deepStrictEqual(ast.decodeChromosome(ast.randomChromosome()), [
-            { type: 0, value: 5 },
-            { type: 0, value: 5 },
+            { type: "term", value: 5 },
+            { type: "term", value: 5 },
             {
-                type: 1,
+                type: "op",
                 op: "*",
                 args: [
-                    { type: 0, value: 5 },
-                    { type: 0, value: 5 },
+                    { type: "term", value: 5 },
+                    { type: "term", value: 5 },
                 ],
             },
             {
-                type: 1,
+                type: "op",
                 op: "-",
                 args: [
-                    { type: 0, value: 5 },
+                    { type: "term", value: 5 },
                     {
-                        type: 1,
+                        type: "op",
                         op: "*",
                         args: [
-                            { type: 0, value: 5 },
-                            { type: 0, value: 5 },
+                            { type: "term", value: 5 },
+                            { type: "term", value: 5 },
                         ],
                     },
                 ],
             },
             {
-                type: 1,
+                type: "op",
                 op: "-",
                 args: [
-                    { type: 0, value: 5 },
-                    { type: 0, value: 5 },
+                    { type: "term", value: 5 },
+                    { type: "term", value: 5 },
                 ],
             },
             {
-                type: 1,
+                type: "op",
                 op: "-",
                 args: [
                     {
-                        type: 1,
+                        type: "op",
                         op: "-",
                         args: [
-                            { type: 0, value: 5 },
+                            { type: "term", value: 5 },
                             {
-                                type: 1,
+                                type: "op",
                                 op: "*",
                                 args: [
-                                    { type: 0, value: 5 },
-                                    { type: 0, value: 5 },
+                                    { type: "term", value: 5 },
+                                    { type: "term", value: 5 },
                                 ],
                             },
                         ],
                     },
                     {
-                        type: 1,
+                        type: "op",
                         op: "-",
                         args: [
-                            { type: 0, value: 5 },
-                            { type: 0, value: 5 },
+                            { type: "term", value: 5 },
+                            { type: "term", value: 5 },
                         ],
                     },
                 ],
             },
             {
-                type: 1,
+                type: "op",
                 op: "*",
                 args: [
                     {
-                        type: 1,
+                        type: "op",
                         op: "-",
                         args: [
-                            { type: 0, value: 5 },
-                            { type: 0, value: 5 },
+                            { type: "term", value: 5 },
+                            { type: "term", value: 5 },
                         ],
                     },
-                    { type: 0, value: 5 },
+                    { type: "term", value: 5 },
                 ],
             },
             {
-                type: 1,
+                type: "op",
                 op: "-",
                 args: [
                     {
-                        type: 1,
+                        type: "op",
                         op: "*",
                         args: [
-                            { type: 0, value: 5 },
-                            { type: 0, value: 5 },
+                            { type: "term", value: 5 },
+                            { type: "term", value: 5 },
                         ],
                     },
                     {
-                        type: 1,
+                        type: "op",
                         op: "-",
                         args: [
-                            { type: 0, value: 5 },
+                            { type: "term", value: 5 },
                             {
-                                type: 1,
+                                type: "op",
                                 op: "*",
                                 args: [
-                                    { type: 0, value: 5 },
-                                    { type: 0, value: 5 },
+                                    { type: "term", value: 5 },
+                                    { type: "term", value: 5 },
                                 ],
                             },
                         ],
@@ -145,54 +145,54 @@ describe("gp (mep)", () => {
                 ],
             },
             {
-                type: 1,
+                type: "op",
                 op: "/",
                 args: [
-                    { type: 0, value: 5 },
+                    { type: "term", value: 5 },
                     {
-                        type: 1,
+                        type: "op",
                         op: "-",
                         args: [
-                            { type: 0, value: 5 },
-                            { type: 0, value: 5 },
+                            { type: "term", value: 5 },
+                            { type: "term", value: 5 },
                         ],
                     },
                 ],
             },
             {
-                type: 1,
+                type: "op",
                 op: "-",
                 args: [
                     {
-                        type: 1,
+                        type: "op",
                         op: "-",
                         args: [
                             {
-                                type: 1,
+                                type: "op",
                                 op: "-",
                                 args: [
-                                    { type: 0, value: 5 },
+                                    { type: "term", value: 5 },
                                     {
-                                        type: 1,
+                                        type: "op",
                                         op: "*",
                                         args: [
-                                            { type: 0, value: 5 },
-                                            { type: 0, value: 5 },
+                                            { type: "term", value: 5 },
+                                            { type: "term", value: 5 },
                                         ],
                                     },
                                 ],
                             },
                             {
-                                type: 1,
+                                type: "op",
                                 op: "-",
                                 args: [
-                                    { type: 0, value: 5 },
-                                    { type: 0, value: 5 },
+                                    { type: "term", value: 5 },
+                                    { type: "term", value: 5 },
                                 ],
                             },
                         ],
                     },
-                    { type: 0, value: 5 },
+                    { type: "term", value: 5 },
                 ],
             },
         ]);
@@ -203,87 +203,87 @@ describe("gp (mep)", () => {
             ast.decodeChromosome(ast.randomChromosome(), 3),
             [
                 {
-                    type: 1,
+                    type: "op",
                     op: "-",
                     args: [
-                        { type: 0, value: 5 },
+                        { type: "term", value: 5 },
                         {
-                            type: 1,
+                            type: "op",
                             op: "*",
                             args: [
-                                { type: 0, value: 5 },
-                                { type: 0, value: 5 },
+                                { type: "term", value: 5 },
+                                { type: "term", value: 5 },
                             ],
                         },
                     ],
                 },
                 {
-                    type: 1,
+                    type: "op",
                     op: "-",
                     args: [
                         {
-                            type: 1,
+                            type: "op",
                             op: "-",
                             args: [
-                                { type: 0, value: 5 },
+                                { type: "term", value: 5 },
                                 {
-                                    type: 1,
+                                    type: "op",
                                     op: "*",
                                     args: [
-                                        { type: 0, value: 5 },
-                                        { type: 0, value: 5 },
+                                        { type: "term", value: 5 },
+                                        { type: "term", value: 5 },
                                     ],
                                 },
                             ],
                         },
                         {
-                            type: 1,
+                            type: "op",
                             op: "-",
                             args: [
-                                { type: 0, value: 5 },
-                                { type: 0, value: 5 },
+                                { type: "term", value: 5 },
+                                { type: "term", value: 5 },
                             ],
                         },
                     ],
                 },
                 {
-                    type: 1,
+                    type: "op",
                     op: "*",
                     args: [
                         {
-                            type: 1,
+                            type: "op",
                             op: "-",
                             args: [
-                                { type: 0, value: 5 },
-                                { type: 0, value: 5 },
+                                { type: "term", value: 5 },
+                                { type: "term", value: 5 },
                             ],
                         },
-                        { type: 0, value: 5 },
+                        { type: "term", value: 5 },
                     ],
                 },
                 {
-                    type: 1,
+                    type: "op",
                     op: "-",
                     args: [
                         {
-                            type: 1,
+                            type: "op",
                             op: "*",
                             args: [
-                                { type: 0, value: 5 },
-                                { type: 0, value: 5 },
+                                { type: "term", value: 5 },
+                                { type: "term", value: 5 },
                             ],
                         },
                         {
-                            type: 1,
+                            type: "op",
                             op: "-",
                             args: [
-                                { type: 0, value: 5 },
+                                { type: "term", value: 5 },
                                 {
-                                    type: 1,
+                                    type: "op",
                                     op: "*",
                                     args: [
-                                        { type: 0, value: 5 },
-                                        { type: 0, value: 5 },
+                                        { type: "term", value: 5 },
+                                        { type: "term", value: 5 },
                                     ],
                                 },
                             ],
@@ -291,54 +291,54 @@ describe("gp (mep)", () => {
                     ],
                 },
                 {
-                    type: 1,
+                    type: "op",
                     op: "/",
                     args: [
-                        { type: 0, value: 5 },
+                        { type: "term", value: 5 },
                         {
-                            type: 1,
+                            type: "op",
                             op: "-",
                             args: [
-                                { type: 0, value: 5 },
-                                { type: 0, value: 5 },
+                                { type: "term", value: 5 },
+                                { type: "term", value: 5 },
                             ],
                         },
                     ],
                 },
                 {
-                    type: 1,
+                    type: "op",
                     op: "-",
                     args: [
                         {
-                            type: 1,
+                            type: "op",
                             op: "-",
                             args: [
                                 {
-                                    type: 1,
+                                    type: "op",
                                     op: "-",
                                     args: [
-                                        { type: 0, value: 5 },
+                                        { type: "term", value: 5 },
                                         {
-                                            type: 1,
+                                            type: "op",
                                             op: "*",
                                             args: [
-                                                { type: 0, value: 5 },
-                                                { type: 0, value: 5 },
+                                                { type: "term", value: 5 },
+                                                { type: "term", value: 5 },
                                             ],
                                         },
                                     ],
                                 },
                                 {
-                                    type: 1,
+                                    type: "op",
                                     op: "-",
                                     args: [
-                                        { type: 0, value: 5 },
-                                        { type: 0, value: 5 },
+                                        { type: "term", value: 5 },
+                                        { type: "term", value: 5 },
                                     ],
                                 },
                             ],
                         },
-                        { type: 0, value: 5 },
+                        { type: "term", value: 5 },
                     ],
                 },
             ]
@@ -347,16 +347,16 @@ describe("gp (mep)", () => {
 
     it("mutate", () => {
         assert.deepStrictEqual(ast.mutate(ast.randomChromosome()), [
-            { type: 0, value: 0 },
-            { type: 0, value: 5 },
-            { type: 1, op: "*", args: [1, 0] },
-            { type: 1, op: "+", args: [2, 1] },
-            { type: 1, op: "-", args: [0, 0] },
-            { type: 1, op: "+", args: [4, 2] },
-            { type: 1, op: "/", args: [3, 1] },
-            { type: 1, op: "/", args: [4, 3] },
-            { type: 0, value: 5 },
-            { type: 1, op: "/", args: [6, 4] },
+            { type: "term", value: 0 },
+            { type: "term", value: 5 },
+            { type: "op", op: "*", args: [1, 0] },
+            { type: "op", op: "+", args: [2, 1] },
+            { type: "op", op: "-", args: [0, 0] },
+            { type: "op", op: "+", args: [4, 2] },
+            { type: "op", op: "/", args: [3, 1] },
+            { type: "op", op: "/", args: [4, 3] },
+            { type: "term", value: 5 },
+            { type: "op", op: "/", args: [6, 4] },
         ]);
     });
 
@@ -364,43 +364,43 @@ describe("gp (mep)", () => {
         const a = ast.randomChromosome();
         const b = ast.randomChromosome();
         assert.deepStrictEqual(b, [
-            { type: 0, value: 5 },
-            { type: 1, op: "*", args: [0, 0] },
-            { type: 0, value: 5 },
-            { type: 1, op: "-", args: [0, 0] },
-            { type: 1, op: "/", args: [1, 0] },
-            { type: 1, op: "*", args: [2, 1] },
-            { type: 1, op: "-", args: [3, 2] },
-            { type: 1, op: "-", args: [2, 1] },
-            { type: 0, value: 1 },
-            { type: 0, value: 6 },
+            { type: "term", value: 5 },
+            { type: "op", op: "*", args: [0, 0] },
+            { type: "term", value: 5 },
+            { type: "op", op: "-", args: [0, 0] },
+            { type: "op", op: "/", args: [1, 0] },
+            { type: "op", op: "*", args: [2, 1] },
+            { type: "op", op: "-", args: [3, 2] },
+            { type: "op", op: "-", args: [2, 1] },
+            { type: "term", value: 1 },
+            { type: "term", value: 6 },
         ]);
         assert.deepStrictEqual(ast.crossoverSingle(a, b, 5), [
             [
-                { type: 0, value: 5 },
-                { type: 0, value: 5 },
-                { type: 1, op: "*", args: [1, 1] },
-                { type: 1, op: "-", args: [1, 2] },
-                { type: 1, op: "-", args: [0, 0] },
+                { type: "term", value: 5 },
+                { type: "term", value: 5 },
+                { type: "op", op: "*", args: [1, 1] },
+                { type: "op", op: "-", args: [1, 2] },
+                { type: "op", op: "-", args: [0, 0] },
                 // cut
-                { type: 1, op: "*", args: [2, 1] },
-                { type: 1, op: "-", args: [3, 2] },
-                { type: 1, op: "-", args: [2, 1] },
-                { type: 0, value: 1 },
-                { type: 0, value: 6 },
+                { type: "op", op: "*", args: [2, 1] },
+                { type: "op", op: "-", args: [3, 2] },
+                { type: "op", op: "-", args: [2, 1] },
+                { type: "term", value: 1 },
+                { type: "term", value: 6 },
             ],
             [
-                { type: 0, value: 5 },
-                { type: 1, op: "*", args: [0, 0] },
-                { type: 0, value: 5 },
-                { type: 1, op: "-", args: [0, 0] },
-                { type: 1, op: "/", args: [1, 0] },
+                { type: "term", value: 5 },
+                { type: "op", op: "*", args: [0, 0] },
+                { type: "term", value: 5 },
+                { type: "op", op: "-", args: [0, 0] },
+                { type: "op", op: "/", args: [1, 0] },
                 // cut
-                { type: 1, op: "-", args: [3, 4] },
-                { type: 1, op: "*", args: [4, 0] },
-                { type: 1, op: "-", args: [2, 3] },
-                { type: 1, op: "/", args: [1, 4] },
-                { type: 1, op: "-", args: [5, 0] },
+                { type: "op", op: "-", args: [3, 4] },
+                { type: "op", op: "*", args: [4, 0] },
+                { type: "op", op: "-", args: [2, 3] },
+                { type: "op", op: "/", args: [1, 4] },
+                { type: "op", op: "-", args: [5, 0] },
             ],
         ]);
     });
@@ -409,16 +409,16 @@ describe("gp (mep)", () => {
         const a = ast.randomChromosome();
         const b = ast.randomChromosome();
         assert.deepStrictEqual(ast.crossoverUniform(a, b), [
-            { type: 0, value: 5 },
-            { type: 1, op: "*", args: [0, 0] },
-            { type: 0, value: 5 },
-            { type: 1, op: "-", args: [1, 2] },
-            { type: 1, op: "-", args: [0, 0] },
-            { type: 1, op: "-", args: [3, 4] },
-            { type: 1, op: "-", args: [3, 2] },
-            { type: 1, op: "-", args: [2, 1] },
-            { type: 0, value: 1 },
-            { type: 1, op: "-", args: [5, 0] },
+            { type: "term", value: 5 },
+            { type: "op", op: "*", args: [0, 0] },
+            { type: "term", value: 5 },
+            { type: "op", op: "-", args: [1, 2] },
+            { type: "op", op: "-", args: [0, 0] },
+            { type: "op", op: "-", args: [3, 4] },
+            { type: "op", op: "-", args: [3, 2] },
+            { type: "op", op: "-", args: [2, 1] },
+            { type: "term", value: 1 },
+            { type: "op", op: "-", args: [5, 0] },
         ]);
     });
 });
