@@ -1,8 +1,7 @@
 import type { IDeref } from "@thi.ng/api";
 import { EPS } from "@thi.ng/math";
 import { eqDelta4, stridedValues } from "@thi.ng/vectors";
-import type { Color, IColor } from "../api";
-import type { ColorMode } from "../constants";
+import type { Color, ColorMode, IColor } from "../api";
 
 export abstract class AColor<T extends Color> implements IColor, IDeref<Color> {
     buf: Color;

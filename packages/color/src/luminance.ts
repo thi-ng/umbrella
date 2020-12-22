@@ -1,7 +1,6 @@
 import { DEFAULT, defmulti, MultiFn1O } from "@thi.ng/defmulti";
 import { illegalArgs } from "@thi.ng/errors";
-import type { IColor, ReadonlyColor } from "./api";
-import { ColorMode } from "./constants";
+import type { ColorMode, IColor, ReadonlyColor } from "./api";
 import { convert } from "./convert";
 import { luminanceInt, luminanceRGB } from "./luminance-rgb";
 
@@ -22,12 +21,12 @@ export const luminance: MultiFn1O<
         : illegalArgs(`missing color mode`)
 );
 
-luminance.add(ColorMode.RGBA, (x: any) => luminanceRGB(x));
+luminance.add("rgb", (x: any) => luminanceRGB(x));
 
-luminance.add(ColorMode.INT32, (x: any) =>
+luminance.add("int", (x: any) =>
     luminanceInt(typeof x === "number" ? x : x.deref())
 );
 
 luminance.add(DEFAULT, (x: any, mode) =>
-    luminanceRGB(<ReadonlyColor>convert(x, ColorMode.RGBA, mode))
+    luminanceRGB(<ReadonlyColor>convert(x, "rgb", mode))
 );

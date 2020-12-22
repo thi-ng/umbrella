@@ -1,6 +1,16 @@
 import type { Tuple } from "@thi.ng/api";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
-import type { ColorMode } from "./constants";
+
+export type ColorMode =
+    | "rgb"
+    | "hcy"
+    | "hsv"
+    | "hsl"
+    | "hsi"
+    | "int"
+    | "css"
+    | "xyz"
+    | "ycbcr";
 
 export type Color = Vec;
 export type ReadonlyColor = ReadonlyVec;
