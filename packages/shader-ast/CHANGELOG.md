@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.7.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.7.5...@thi.ng/shader-ast@0.7.6) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.7.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.7.4...@thi.ng/shader-ast@0.7.5) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.7.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.7.3...@thi.ng/shader-ast@0.7.4) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.7.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.7.2...@thi.ng/shader-ast@0.7.3) (2020-10-19)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.7.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.7.1...@thi.ng/shader-ast@0.7.2) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.7.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.7.0...@thi.ng/shader-ast@0.7.1) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
 # [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.6.3...@thi.ng/shader-ast@0.7.0) (2020-08-28)
 
 
@@ -63,22 +15,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **shader-ast:** add PrimTerm, PrimTypeMap, TermType ([ffdfe81](https://github.com/thi-ng/umbrella/commit/ffdfe812cb0b48d49a8cd8e3ba508fd1d0b9243e))
 * **shader-ast:** allow nullish defn() func name (autogen) ([d959858](https://github.com/thi-ng/umbrella/commit/d9598580d39d556becde54ffe14015808ee936fb))
-
-
-
-
-
-## [0.6.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.6.2...@thi.ng/shader-ast@0.6.3) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.6.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.6.1...@thi.ng/shader-ast@0.6.2) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
 
 
 

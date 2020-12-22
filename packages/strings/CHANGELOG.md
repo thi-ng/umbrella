@@ -3,22 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.11.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.11.1...@thi.ng/strings@1.11.2) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/strings
-
-
-
-
-
-## [1.11.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.11.0...@thi.ng/strings@1.11.1) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/strings
-
-
-
-
-
 # [1.11.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.10.0...@thi.ng/strings@1.11.0) (2020-11-24)
 
 
@@ -38,46 +22,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **strings:** add BOM const, update pkg meta ([b6751fc](https://github.com/thi-ng/umbrella/commit/b6751fc506a28a075ea9fee1a5f6d3520449f5af))
 * **strings:** add escape(), update unescape(), add tests ([e0d5f1e](https://github.com/thi-ng/umbrella/commit/e0d5f1edcdf78b075908c4973586a0f1732fe006))
 * **strings:** add unescape() ([924466b](https://github.com/thi-ng/umbrella/commit/924466bc5d5f16ced3da95fa2f24dab2bfad0679))
-
-
-
-
-
-## [1.9.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.9.5...@thi.ng/strings@1.9.6) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/strings
-
-
-
-
-
-## [1.9.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.9.4...@thi.ng/strings@1.9.5) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/strings
-
-
-
-
-
-## [1.9.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.9.3...@thi.ng/strings@1.9.4) (2020-08-20)
-
-**Note:** Version bump only for package @thi.ng/strings
-
-
-
-
-
-## [1.9.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.9.2...@thi.ng/strings@1.9.3) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/strings
-
-
-
-
-
-## [1.9.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.9.1...@thi.ng/strings@1.9.2) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/strings
 
 
 

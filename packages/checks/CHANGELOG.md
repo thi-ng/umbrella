@@ -3,62 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.7.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.10...@thi.ng/checks@2.7.11) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/checks
-
-
-
-
-
-## [2.7.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.9...@thi.ng/checks@2.7.10) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/checks
-
-
-
-
-
-## [2.7.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.8...@thi.ng/checks@2.7.9) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/checks
-
-
-
-
-
-## [2.7.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.7...@thi.ng/checks@2.7.8) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/checks
-
-
-
-
-
-## [2.7.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.6...@thi.ng/checks@2.7.7) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/checks
-
-
-
-
-
-## [2.7.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.5...@thi.ng/checks@2.7.6) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/checks
-
-
-
-
-
-## [2.7.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.4...@thi.ng/checks@2.7.5) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/checks
-
-
-
-
-
 ## [2.7.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.2...@thi.ng/checks@2.7.3) (2020-07-02)
 
 

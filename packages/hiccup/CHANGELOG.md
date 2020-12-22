@@ -3,68 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [3.6.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.6.3...@thi.ng/hiccup@3.6.4) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/hiccup
-
-
-
-
-
-## [3.6.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.6.2...@thi.ng/hiccup@3.6.3) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/hiccup
-
-
-
-
-
-## [3.6.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.6.1...@thi.ng/hiccup@3.6.2) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/hiccup
-
-
-
-
-
-## [3.6.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.6.0...@thi.ng/hiccup@3.6.1) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/hiccup
-
-
-
-
-
 # [3.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.5.8...@thi.ng/hiccup@3.6.0) (2020-09-13)
 
 
 ### Features
 
 * **hiccup:** add CDATA support, update void tag handling ([5989427](https://github.com/thi-ng/umbrella/commit/59894274cffff6c9776e0edc366005ff1da14139))
-
-
-
-
-
-## [3.5.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.5.7...@thi.ng/hiccup@3.5.8) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/hiccup
-
-
-
-
-
-## [3.5.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.5.6...@thi.ng/hiccup@3.5.7) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/hiccup
-
-
-
-
-
-## [3.5.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.5.5...@thi.ng/hiccup@3.5.6) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/hiccup
 
 
 

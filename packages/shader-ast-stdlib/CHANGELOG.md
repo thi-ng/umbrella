@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.5.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.5.5...@thi.ng/shader-ast-stdlib@0.5.6) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-stdlib
-
-
-
-
-
-## [0.5.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.5.4...@thi.ng/shader-ast-stdlib@0.5.5) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-stdlib
-
-
-
-
-
-## [0.5.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.5.3...@thi.ng/shader-ast-stdlib@0.5.4) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-stdlib
-
-
-
-
-
-## [0.5.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.5.2...@thi.ng/shader-ast-stdlib@0.5.3) (2020-10-19)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-stdlib
-
-
-
-
-
-## [0.5.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.5.1...@thi.ng/shader-ast-stdlib@0.5.2) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-stdlib
-
-
-
-
-
-## [0.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.5.0...@thi.ng/shader-ast-stdlib@0.5.1) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-stdlib
-
-
-
-
-
 # [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.4.6...@thi.ng/shader-ast-stdlib@0.5.0) (2020-08-28)
 
 
@@ -59,14 +11,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **shader-ast-stdlib:** add ACES film tonemapping ([8a0b1a3](https://github.com/thi-ng/umbrella/commit/8a0b1a3ab37181c565acde1ce6399f8e8af7834d))
 * **shader-ast-stdlib:** add fit()/fitClamped() ([64ba64c](https://github.com/thi-ng/umbrella/commit/64ba64ceef223efdfce85d35ed3053147107b63c))
 * **shader-ast-stdlib:** add mixCubic()/mixQuadratic() ([4dfc020](https://github.com/thi-ng/umbrella/commit/4dfc020d63f01d376a5f9397b77f344c9f0e7a1e))
-
-
-
-
-
-## [0.4.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.4.5...@thi.ng/shader-ast-stdlib@0.4.6) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-stdlib
 
 
 

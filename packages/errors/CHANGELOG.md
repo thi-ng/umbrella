@@ -3,62 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.2.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/errors@1.2.23...@thi.ng/errors@1.2.24) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/errors
-
-
-
-
-
-## [1.2.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/errors@1.2.22...@thi.ng/errors@1.2.23) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/errors
-
-
-
-
-
-## [1.2.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/errors@1.2.21...@thi.ng/errors@1.2.22) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/errors
-
-
-
-
-
-## [1.2.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/errors@1.2.20...@thi.ng/errors@1.2.21) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/errors
-
-
-
-
-
-## [1.2.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/errors@1.2.19...@thi.ng/errors@1.2.20) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/errors
-
-
-
-
-
-## [1.2.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/errors@1.2.18...@thi.ng/errors@1.2.19) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/errors
-
-
-
-
-
-## [1.2.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/errors@1.2.17...@thi.ng/errors@1.2.18) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/errors
-
-
-
-
-
 # [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/errors@1.1.2...@thi.ng/errors@1.2.0) (2019-08-21)
 
 ### Features

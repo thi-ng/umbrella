@@ -3,68 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@2.1.1...@thi.ng/intervals@2.1.2) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/intervals
-
-
-
-
-
-## [2.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@2.1.0...@thi.ng/intervals@2.1.1) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/intervals
-
-
-
-
-
 # [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@2.0.25...@thi.ng/intervals@2.1.0) (2020-11-24)
 
 
 ### Features
 
 * **intervals:** add min/max/clamp() impls ([2747f9c](https://github.com/thi-ng/umbrella/commit/2747f9c5282c29fa39ac9d8aac1aaefbd683eb44))
-
-
-
-
-
-## [2.0.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@2.0.24...@thi.ng/intervals@2.0.25) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/intervals
-
-
-
-
-
-## [2.0.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@2.0.23...@thi.ng/intervals@2.0.24) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/intervals
-
-
-
-
-
-## [2.0.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@2.0.22...@thi.ng/intervals@2.0.23) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/intervals
-
-
-
-
-
-## [2.0.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@2.0.21...@thi.ng/intervals@2.0.22) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/intervals
-
-
-
-
-
-## [2.0.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@2.0.20...@thi.ng/intervals@2.0.21) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/intervals
 
 
 

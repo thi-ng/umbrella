@@ -3,84 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.1.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@1.1.3...@thi.ng/geom-api@1.1.4) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/geom-api
-
-
-
-
-
-## [1.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@1.1.2...@thi.ng/geom-api@1.1.3) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/geom-api
-
-
-
-
-
-## [1.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@1.1.1...@thi.ng/geom-api@1.1.2) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/geom-api
-
-
-
-
-
-## [1.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@1.1.0...@thi.ng/geom-api@1.1.1) (2020-10-03)
-
-**Note:** Version bump only for package @thi.ng/geom-api
-
-
-
-
-
 # [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@1.0.34...@thi.ng/geom-api@1.1.0) (2020-09-22)
 
 
 ### Features
 
 * **geom-api:** add Type.TEXT/3 ([0a45ef8](https://github.com/thi-ng/umbrella/commit/0a45ef8aa99d3dab1bb98c503cf87d1bef0ab8e2))
-
-
-
-
-
-## [1.0.34](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@1.0.33...@thi.ng/geom-api@1.0.34) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/geom-api
-
-
-
-
-
-## [1.0.33](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@1.0.32...@thi.ng/geom-api@1.0.33) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/geom-api
-
-
-
-
-
-## [1.0.32](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@1.0.31...@thi.ng/geom-api@1.0.32) (2020-08-20)
-
-**Note:** Version bump only for package @thi.ng/geom-api
-
-
-
-
-
-## [1.0.31](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@1.0.30...@thi.ng/geom-api@1.0.31) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/geom-api
-
-
-
-
-
-## [1.0.30](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@1.0.29...@thi.ng/geom-api@1.0.30) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/geom-api
 
 
 

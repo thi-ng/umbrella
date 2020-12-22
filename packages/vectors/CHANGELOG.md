@@ -3,22 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [4.8.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.8.1...@thi.ng/vectors@4.8.2) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.8.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.8.0...@thi.ng/vectors@4.8.1) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
 # [4.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.7.0...@thi.ng/vectors@4.8.0) (2020-11-24)
 
 
@@ -37,54 +21,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **vectors, geom:** point on ray at distance ([0b04b80](https://github.com/thi-ng/umbrella/commit/0b04b80f1eaa700e262f99d4726651c90d4fed2b))
-
-
-
-
-
-## [4.6.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.6.5...@thi.ng/vectors@4.6.6) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.6.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.6.4...@thi.ng/vectors@4.6.5) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.6.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.6.3...@thi.ng/vectors@4.6.4) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.6.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.6.2...@thi.ng/vectors@4.6.3) (2020-08-20)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.6.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.6.1...@thi.ng/vectors@4.6.2) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.6.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.6.0...@thi.ng/vectors@4.6.1) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/vectors
 
 
 

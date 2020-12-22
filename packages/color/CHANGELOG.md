@@ -3,84 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@1.3.1...@thi.ng/color@1.3.2) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/color
-
-
-
-
-
-## [1.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@1.3.0...@thi.ng/color@1.3.1) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/color
-
-
-
-
-
 # [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@1.2.18...@thi.ng/color@1.3.0) (2020-11-24)
 
 
 ### Features
 
 * **color:** add GradientPresets type, update GRADIENTS ([985b719](https://github.com/thi-ng/umbrella/commit/985b719b61475dfebe080dc1f74e2de9bb005018))
-
-
-
-
-
-## [1.2.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@1.2.17...@thi.ng/color@1.2.18) (2020-10-03)
-
-**Note:** Version bump only for package @thi.ng/color
-
-
-
-
-
-## [1.2.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@1.2.16...@thi.ng/color@1.2.17) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/color
-
-
-
-
-
-## [1.2.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@1.2.15...@thi.ng/color@1.2.16) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/color
-
-
-
-
-
-## [1.2.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@1.2.14...@thi.ng/color@1.2.15) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/color
-
-
-
-
-
-## [1.2.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@1.2.13...@thi.ng/color@1.2.14) (2020-08-20)
-
-**Note:** Version bump only for package @thi.ng/color
-
-
-
-
-
-## [1.2.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@1.2.12...@thi.ng/color@1.2.13) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/color
-
-
-
-
-
-## [1.2.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@1.2.11...@thi.ng/color@1.2.12) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/color
 
 
 

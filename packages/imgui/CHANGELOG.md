@@ -3,30 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.2.45](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.44...@thi.ng/imgui@0.2.45) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/imgui
-
-
-
-
-
-## [0.2.44](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.43...@thi.ng/imgui@0.2.44) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/imgui
-
-
-
-
-
-## [0.2.43](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.42...@thi.ng/imgui@0.2.43) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/imgui
-
-
-
-
-
 ## [0.2.42](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.41...@thi.ng/imgui@0.2.42) (2020-11-24)
 
 
@@ -38,68 +14,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.2.41](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.40...@thi.ng/imgui@0.2.41) (2020-10-03)
-
-**Note:** Version bump only for package @thi.ng/imgui
-
-
-
-
-
-## [0.2.40](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.39...@thi.ng/imgui@0.2.40) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/imgui
-
-
-
-
-
-## [0.2.39](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.38...@thi.ng/imgui@0.2.39) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/imgui
-
-
-
-
-
-## [0.2.38](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.37...@thi.ng/imgui@0.2.38) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/imgui
-
-
-
-
-
-## [0.2.37](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.36...@thi.ng/imgui@0.2.37) (2020-08-20)
-
-**Note:** Version bump only for package @thi.ng/imgui
-
-
-
-
-
 ## [0.2.36](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.35...@thi.ng/imgui@0.2.36) (2020-08-19)
 
 
 ### Bug Fixes
 
 * **imgui:** don't update curr value to click position ([12d6705](https://github.com/thi-ng/umbrella/commit/12d670515ecf7b44ca3143b933a459e760e4d918))
-
-
-
-
-
-## [0.2.35](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.34...@thi.ng/imgui@0.2.35) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/imgui
-
-
-
-
-
-## [0.2.34](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.33...@thi.ng/imgui@0.2.34) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/imgui
 
 
 

@@ -3,76 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.4.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/ecs@0.4.2...@thi.ng/ecs@0.4.3) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/ecs
-
-
-
-
-
-## [0.4.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/ecs@0.4.1...@thi.ng/ecs@0.4.2) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/ecs
-
-
-
-
-
-## [0.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/ecs@0.4.0...@thi.ng/ecs@0.4.1) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/ecs
-
-
-
-
-
 # [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/ecs@0.3.34...@thi.ng/ecs@0.4.0) (2020-10-19)
 
 
 ### Features
 
 * **ecs:** add custom mempool support ([1a59405](https://github.com/thi-ng/umbrella/commit/1a59405bb99c6024294d1361dc35bca8fc770463))
-
-
-
-
-
-## [0.3.34](https://github.com/thi-ng/umbrella/compare/@thi.ng/ecs@0.3.33...@thi.ng/ecs@0.3.34) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/ecs
-
-
-
-
-
-## [0.3.33](https://github.com/thi-ng/umbrella/compare/@thi.ng/ecs@0.3.32...@thi.ng/ecs@0.3.33) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/ecs
-
-
-
-
-
-## [0.3.32](https://github.com/thi-ng/umbrella/compare/@thi.ng/ecs@0.3.31...@thi.ng/ecs@0.3.32) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/ecs
-
-
-
-
-
-## [0.3.31](https://github.com/thi-ng/umbrella/compare/@thi.ng/ecs@0.3.30...@thi.ng/ecs@0.3.31) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/ecs
-
-
-
-
-
-## [0.3.30](https://github.com/thi-ng/umbrella/compare/@thi.ng/ecs@0.3.29...@thi.ng/ecs@0.3.30) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/ecs
 
 
 

@@ -3,76 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [4.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/malloc@4.2.2...@thi.ng/malloc@4.2.3) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/malloc
-
-
-
-
-
-## [4.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/malloc@4.2.1...@thi.ng/malloc@4.2.2) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/malloc
-
-
-
-
-
-## [4.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/malloc@4.2.0...@thi.ng/malloc@4.2.1) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/malloc
-
-
-
-
-
 # [4.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/malloc@4.1.26...@thi.ng/malloc@4.2.0) (2020-10-19)
 
 
 ### Features
 
 * **malloc:** add NativePool & tests ([8b2b4f6](https://github.com/thi-ng/umbrella/commit/8b2b4f6629bf0be5d1bf538b15973298474d0f8d))
-
-
-
-
-
-## [4.1.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/malloc@4.1.25...@thi.ng/malloc@4.1.26) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/malloc
-
-
-
-
-
-## [4.1.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/malloc@4.1.24...@thi.ng/malloc@4.1.25) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/malloc
-
-
-
-
-
-## [4.1.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/malloc@4.1.23...@thi.ng/malloc@4.1.24) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/malloc
-
-
-
-
-
-## [4.1.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/malloc@4.1.22...@thi.ng/malloc@4.1.23) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/malloc
-
-
-
-
-
-## [4.1.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/malloc@4.1.21...@thi.ng/malloc@4.1.22) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/malloc
 
 
 
