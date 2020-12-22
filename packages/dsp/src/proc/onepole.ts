@@ -1,14 +1,11 @@
 import type { IClear, IReset } from "@thi.ng/api";
 import { clamp05, TAU } from "@thi.ng/math";
-import type { FilterConfig, IFilter } from "../api";
-import { FilterType } from "../constants";
+import type { FilterConfig, IFilter, OnepoleType } from "../api";
 import { AProc } from "./aproc";
 
-type OnepoleType = FilterType.LP | FilterType.HP;
+export const onepoleLP = (fc: number) => new OnePole("lp", fc);
 
-export const onepoleLP = (fc: number) => new OnePole(FilterType.LP, fc);
-
-export const onepoleHP = (fc: number) => new OnePole(FilterType.HP, fc);
+export const onepoleHP = (fc: number) => new OnePole("hp", fc);
 
 /**
  * https://www.earlevel.com/main/2012/12/15/a-one-pole-filter/
@@ -39,7 +36,7 @@ export class OnePole
 
     setFreq(fc: number) {
         this._freq = fc = clamp05(fc);
-        if (this._type === FilterType.LP) {
+        if (this._type === "lp") {
             this._b1 = Math.exp(-TAU * fc);
             this._a0 = 1 - this._b1;
         } else {
@@ -51,7 +48,7 @@ export class OnePole
     filterCoeffs(): FilterConfig {
         return {
             zeroes: [this._a0],
-            poles: [1, this._type === FilterType.LP ? this._b1 : -this._b1],
+            poles: [1, this._type === "lp" ? this._b1 : -this._b1],
         };
     }
 }

@@ -1,19 +1,9 @@
 import type { IReset } from "@thi.ng/api";
 import { unsupported } from "@thi.ng/errors";
 import { clamp05, PI, SQRT2, SQRT2_2 } from "@thi.ng/math";
-import type { FilterConfig, IFilter } from "../api";
-import { FilterType } from "../constants";
+import type { BiquadType, FilterConfig, IFilter } from "../api";
 import { dbMag } from "../util/convert";
 import { AProc } from "./aproc";
-
-type BiquadType =
-    | FilterType.LP
-    | FilterType.HP
-    | FilterType.BP
-    | FilterType.NOTCH
-    | FilterType.PEAK
-    | FilterType.LOSHELF
-    | FilterType.HISHELF;
 
 export const biquad = (
     type: BiquadType,
@@ -22,26 +12,23 @@ export const biquad = (
     gain?: number
 ) => new Biquad(type, fc, q, gain);
 
-export const biquadLP = (fc: number, q?: number) =>
-    new Biquad(FilterType.LP, fc, q);
+export const biquadLP = (fc: number, q?: number) => new Biquad("lp", fc, q);
 
-export const biquadHP = (fc: number, q?: number) =>
-    new Biquad(FilterType.HP, fc, q);
+export const biquadHP = (fc: number, q?: number) => new Biquad("hp", fc, q);
 
-export const biquadBP = (fc: number, q?: number) =>
-    new Biquad(FilterType.BP, fc, q);
+export const biquadBP = (fc: number, q?: number) => new Biquad("bp", fc, q);
 
 export const biquadNotch = (fc: number, q?: number) =>
-    new Biquad(FilterType.NOTCH, fc, q);
+    new Biquad("notch", fc, q);
 
 export const biquadPeak = (fc: number, q?: number, gain = 6) =>
-    new Biquad(FilterType.PEAK, fc, q, gain);
+    new Biquad("peak", fc, q, gain);
 
 export const biquadLoShelf = (fc: number, gain = -6) =>
-    new Biquad(FilterType.LOSHELF, fc, undefined, gain);
+    new Biquad("loshelf", fc, undefined, gain);
 
 export const biquadHiShelf = (fc: number, gain = -6) =>
-    new Biquad(FilterType.HISHELF, fc, undefined, gain);
+    new Biquad("hishelf", fc, undefined, gain);
 
 export class Biquad extends AProc<number, number> implements IReset, IFilter {
     protected _a0!: number;
@@ -129,7 +116,7 @@ export class Biquad extends AProc<number, number> implements IReset, IFilter {
         const ksqrt2v = k * Math.sqrt(2 * v);
         let norm = 1 / k2kqp1;
         switch (this._type) {
-            case FilterType.LP:
+            case "lp":
                 this._a0 = k2 * norm;
                 this._a1 = 2 * this._a0;
                 this._a2 = this._a0;
@@ -137,7 +124,7 @@ export class Biquad extends AProc<number, number> implements IReset, IFilter {
                 this._b2 = k2kqm1 * norm;
                 break;
 
-            case FilterType.HP:
+            case "hp":
                 this._a0 = norm;
                 this._a1 = -2 * this._a0;
                 this._a2 = this._a0;
@@ -145,7 +132,7 @@ export class Biquad extends AProc<number, number> implements IReset, IFilter {
                 this._b2 = k2kqm1 * norm;
                 break;
 
-            case FilterType.BP:
+            case "bp":
                 this._a0 = kq * norm;
                 this._a1 = 0;
                 this._a2 = -this._a0;
@@ -153,7 +140,7 @@ export class Biquad extends AProc<number, number> implements IReset, IFilter {
                 this._b2 = k2kqm1 * norm;
                 break;
 
-            case FilterType.NOTCH:
+            case "notch":
                 this._a0 = (1 + k2) * norm;
                 this._a1 = k22 * norm;
                 this._a2 = this._a0;
@@ -161,7 +148,7 @@ export class Biquad extends AProc<number, number> implements IReset, IFilter {
                 this._b2 = k2kqm1 * norm;
                 break;
 
-            case FilterType.PEAK: {
+            case "peak": {
                 const z1 = 1 + kvq + k2;
                 const z2 = 1 - kvq + k2;
                 if (this._gain >= 0) {
@@ -181,7 +168,7 @@ export class Biquad extends AProc<number, number> implements IReset, IFilter {
                 break;
             }
 
-            case FilterType.LOSHELF: {
+            case "loshelf": {
                 const z1 = 1 + ksqrt2 + k2;
                 const z2 = 1 - ksqrt2 + k2;
                 const vk2 = v * k2;
@@ -206,7 +193,7 @@ export class Biquad extends AProc<number, number> implements IReset, IFilter {
                 break;
             }
 
-            case FilterType.HISHELF: {
+            case "hishelf": {
                 const z1 = 1 + ksqrt2 + k2;
                 const z2 = 1 - ksqrt2 + k2;
                 const y1 = v + ksqrt2v + k2;

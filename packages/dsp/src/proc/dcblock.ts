@@ -1,4 +1,3 @@
-import { FilterType } from "../constants";
 import { OnePole } from "./onepole";
 
 /**
@@ -6,7 +5,7 @@ import { OnePole } from "./onepole";
  *
  * @param freq
  */
-export const dcBlock = (freq: number) => new DCBlock(FilterType.LP, freq);
+export const dcBlock = (freq: number) => new DCBlock("lp", freq);
 
 export class DCBlock extends OnePole {
     next(x: number) {

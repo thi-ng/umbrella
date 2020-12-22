@@ -14,16 +14,12 @@ import {
     osc,
     powerMeanSquared,
     powerSumSquared,
-    powerTimeIntegral,
     spectrumMag,
     spectrumPhase,
     spectrumPow,
-    thresholdFFT,
     window,
     windowRect,
 } from "../src";
-
-const pulse8 = [-1, -1, -1, -1, 1, 1, 1, 1];
 
 const deltaEq = (a: NumericArray, b: NumericArray, eps = 1e-3) => {
     if (a.length != b.length) return false;

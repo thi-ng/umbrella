@@ -43,3 +43,26 @@ export interface IFilter {
      */
     filterCoeffs(): FilterConfig;
 }
+
+export type FilterType =
+    | "lp"
+    | "hp"
+    | "bp"
+    | "notch"
+    | "peak"
+    | "loshelf"
+    | "hishelf"
+    | "all";
+
+export type BiquadType =
+    | "lp"
+    | "hp"
+    | "bp"
+    | "notch"
+    | "peak"
+    | "loshelf"
+    | "hishelf";
+
+export type OnepoleType = "lp" | "hp";
+
+export type SVFType = "lp" | "hp" | "bp" | "notch" | "peak" | "all";
