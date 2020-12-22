@@ -4,7 +4,7 @@ import type { IHiccupShape, IShape, PathSegment } from "@thi.ng/geom-api";
 import { mulV, ReadonlyMat } from "@thi.ng/matrices";
 import { map } from "@thi.ng/transducers";
 import { Cubic } from "../api/cubic";
-import { Group } from "../api/group";
+import type { Group } from "../api/group";
 import { Line } from "../api/line";
 import { Path } from "../api/path";
 import { Points, Points3 } from "../api/points";
@@ -43,10 +43,7 @@ transform.addAll(<IObjectOf<Implementation2<unknown, ReadonlyMat, IShape>>>{
     cubic: tx(Cubic),
 
     group: ($: Group, mat) =>
-        new Group(
-            copyAttribs($),
-            $.children.map((x) => <IHiccupShape>transform(x, mat))
-        ),
+        $.copyTransformed((x) => <IHiccupShape>transform(x, mat)),
 
     line: tx(Line),
 

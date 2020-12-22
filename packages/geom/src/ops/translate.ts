@@ -7,7 +7,7 @@ import type { Arc } from "../api/arc";
 import { Circle } from "../api/circle";
 import { Cubic } from "../api/cubic";
 import { Ellipse } from "../api/ellipse";
-import { Group } from "../api/group";
+import type { Group } from "../api/group";
 import { Line } from "../api/line";
 import { Path } from "../api/path";
 import { Points, Points3 } from "../api/points";
@@ -45,10 +45,7 @@ translate.addAll(<IObjectOf<Implementation2<unknown, ReadonlyVec, IShape>>>{
         new Ellipse(add2([], $.pos, delta), set2([], $.r), copyAttribs($)),
 
     group: ($: Group, delta) =>
-        new Group(
-            copyAttribs($),
-            $.children.map((s) => <IHiccupShape>translate(s, delta))
-        ),
+        $.copyTransformed((x) => <IHiccupShape>translate(x, delta)),
 
     line: tx(Line),
 

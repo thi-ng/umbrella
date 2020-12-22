@@ -5,7 +5,7 @@ import { mulV, ReadonlyMat } from "@thi.ng/matrices";
 import { map } from "@thi.ng/transducers";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { Cubic } from "../api/cubic";
-import { Group } from "../api/group";
+import type { Group } from "../api/group";
 import { Line } from "../api/line";
 import { Path } from "../api/path";
 import { Points, Points3 } from "../api/points";
@@ -51,10 +51,7 @@ transformVertices.addAll(<
     cubic: tx(Cubic),
 
     group: ($: Group, fn) =>
-        new Group(
-            copyAttribs($),
-            $.children.map((x) => <IHiccupShape>transformVertices(x, fn))
-        ),
+        $.copyTransformed((x) => <IHiccupShape>transformVertices(x, fn)),
 
     line: tx(Line),
 
