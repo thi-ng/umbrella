@@ -35,6 +35,7 @@
         "build:release": "yarn bootstrap && lerna run build:release --sort",
         "build:es6only": "lerna run clean && lerna run build:es6 --sort",
         "build:check": "lerna run build:check",
+        "clean": "lerna run clean",
         "cover": "lerna run cover",
         "doc": "lerna run doc",
         "doc:readme": "lerna run doc:readme",
