@@ -115,6 +115,7 @@ const temp = variable(
   }
 );
 
+// evaluate all fuzzy sets for given domain value
 evaluate(temp, 18)
 // {
 //   freezing: 2.220446049250313e-16,
@@ -212,8 +213,8 @@ Using `instrumentStrategy()` from the upcoming
 package, we can also visualize the final, transformed fuzzy sets used to compute
 crisp results and highlight the position of the crisp result value.
 
-Here is the ASCII art output for the [COG
-strategy](https://github.com/thi-ng/umbrella/blob/develop/packages/fuzzy/src/strategy/centroid.ts)
+Here is the ASCII art output for the
+[`centroidStrategy`](https://github.com/thi-ng/umbrella/blob/develop/packages/fuzzy/src/strategies/centroid.ts)
 and using `tnormMin` (the default) to transform each rule's output set(s):
 
 ```ts

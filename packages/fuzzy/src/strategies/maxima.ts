@@ -103,7 +103,7 @@ export const firstOfMaximaStrategy = (
 };
 
 /**
- * Higher-order function. Returns First-of-Maxima defuzzification strategy,
+ * Higher-order function. Returns Last-of-Maxima defuzzification strategy,
  * yielding the approx. final position of the maximum region of a given fuzzy
  * set.
  *
@@ -115,7 +115,7 @@ export const firstOfMaximaStrategy = (
  * @example
  * ```ts
  * lastOfMaximaStrategy()(trapezoid(0,1,5,6), [0,6])
- * // 1.02
+ * // 4.98
  *
  * // ......▁██████████████████████████|▁.....
  * // ......███████████████████████████|█.....
