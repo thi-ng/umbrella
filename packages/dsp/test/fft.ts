@@ -75,8 +75,8 @@ describe("fft", () => {
         const norm = normalizeFFT(copyComplex(fwd), win);
 
         assert(eqDelta(spectrumMag(norm)[I], A));
-        assert(eqDelta(spectrumPow(norm, false, N / 2, 1)[I], A / 2));
-        assert(eqDelta(spectrumPow(norm, true, N / 2, 1)[I], magDb(A)));
+        assert(eqDelta(spectrumPow(norm, false, 1)[I], A / 2));
+        assert(eqDelta(spectrumPow(norm, true, 1)[I], magDb(A)));
         assert(eqDelta(spectrumPhase(norm)[I], (1 / 12) * TAU));
     });
 });

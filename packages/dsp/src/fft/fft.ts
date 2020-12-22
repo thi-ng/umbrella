@@ -365,15 +365,15 @@ export const spectrumMag = (
  *
  * @param complex
  * @param db
- * @param n
  * @param window
+ * @param n
  * @param out
  */
 export const spectrumPow = (
     complex: ComplexArray,
     db = false,
-    n = complex[0].length / 2,
     window: number | NumericArray = 2 / complex[0].length,
+    n = complex[0].length / 2,
     out: NumericArray = []
 ) => {
     const [real, img] = complex;
