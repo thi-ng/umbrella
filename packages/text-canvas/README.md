@@ -21,6 +21,8 @@ This project is part of the
     - [Variations](#variations)
     - [Combined formats](#combined-formats)
   - [String conversion format presets](#string-conversion-format-presets)
+  - [256 color ANSI format](#256-color-ansi-format)
+  - [16bit color HTML format](#16bit-color-html-format)
   - [Stroke styles](#stroke-styles)
   - [Clipping](#clipping)
   - [Drawing functions](#drawing-functions)
@@ -56,7 +58,7 @@ yarn add @thi.ng/text-canvas
 <script src="https://unpkg.com/@thi.ng/text-canvas/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.35 KB / CJS: 5.66 KB / UMD: 5.41 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.59 KB / CJS: 5.91 KB / UMD: 5.69 KB
 
 ## Dependencies
 
@@ -77,9 +79,10 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                         | Description                | Live demo                                         | Source                                                                         |
-| ------------------------------------------------------------------------------------------------------------------ | -------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------ |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas.png" width="240"/> | 3D wireframe textmode demo | [Demo](https://demo.thi.ng/umbrella/text-canvas/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas) |
+| Screenshot                                                                                                               | Description                | Live demo                                              | Source                                                                              |
+| ------------------------------------------------------------------------------------------------------------------------ | -------------------------- | ------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas.png" width="240"/>       | 3D wireframe textmode demo | [Demo](https://demo.thi.ng/umbrella/text-canvas/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas)      |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas-image.png" width="240"/> | TODO                       | [Demo](https://demo.thi.ng/umbrella/textcanvas-image/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/textcanvas-image) |
 
 ## API
 
@@ -96,7 +99,7 @@ const c = canvas(width, height, format?, style?);
 The text canvas stores all characters in a `Uint32Array` with the lower
 16 bits used for the UTF-16 code and the upper 16 bits for **abitrary**
 formatting data. The package [provides its own format
-IDs](https://github.com/thi-ng/umbrella/blob/develop/packages/text-canvas/src/api.ts#L144)
+IDs](https://github.com/thi-ng/umbrella/blob/develop/packages/text-canvas/src/api.ts#L146)
 which are tailored for the bundled ANSI & HTML formatters, but users are
 free to choose use any other system (but then will also need to
 implement a custom string formatter impl).
@@ -108,7 +111,16 @@ The default format ID layout is as shown:
 Most drawing functions accept an optional `format` arg, but a default
 format can also be set via `setFormat(canvas, formatID)`.
 
-List of built-in format IDs:
+The following built-in format IDs are only compatible with these formatters:
+
+- `FMT_ANSI16`
+- `FMT_HTML_INLINE_CSS`
+- `FMT_HTML_TACHYONS`
+
+Custom formatters are discussed further below:
+
+- [`FMT_ANSI256`](#256-color-ansi-format)
+- [`FMT_HTML_565`](#16bit-color-html-format)
 
 #### Colors
 
@@ -150,10 +162,11 @@ setFormat(canvas, FG_BLACK | BG_LIGHT_CYAN | BOLD | UNDERLINE);
 
 Canvas-to-string conversion is completely customizable via the
 [`StringFormat`
-interface](https://github.com/thi-ng/umbrella/blob/develop/packages/text-canvas/src/api.ts#L76)
+interface](https://github.com/thi-ng/umbrella/blob/develop/packages/text-canvas/src/api.ts#L78)
 and the following presets are supplied:
 
 - `FMT_ANSI16` - translate built-in format IDs to 4bit ANSI escape sequences
+- `FMT_ANSI256` - uses all 16 format bits for fg & bg colors (ANSI esc sequences)
 - `FMT_ANSI_RAW` - verbatim use of format IDs to ANSI sequences
 - `FMT_HTML_INLINE_CSS` - HTML `<span>` elements with inline CSS
 - `FMT_HTML_TACHYONS` - HTML `<span>` elements with [Tachyons
@@ -162,10 +175,45 @@ and the following presets are supplied:
 ```ts
 // Terminal
 console.log(toString(canvas, FMT_ANSI16));
+// or
+console.log(toString(canvas, FMT_ANSI256));
 
 // Browser
 const el = document.createElement("pre");
 el.innerHTML = toString(canvas, FMT_HTML_TACHYONS);
+```
+
+### 256 color ANSI format
+
+If targeting this output format, all 16 bits available for formatting
+information are used to encode 2x 8bit foreground/background colors. Therefore,
+none of the above mentioned preset color names and/or any additional formatting
+flags (e.g. bold, underline etc.) **cannot be used**. Instead, use the
+`format256()` function to compute a format ID based on given FG, BG colors.
+
+```ts
+// deep purple on yellow bg
+textLine(canvas, 1, 1, "hello color!", format256(19, 226));
+```
+
+![ANSI256 color pallette](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/ansi256.png)
+
+Source: [Wikipedia](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)
+
+### 16bit color HTML format
+
+Similar to the above custom ANSI format, here all available 16 bits are used to
+store color information, in the standard RGB565 format (5bits red, 6bits green,
+5bits blue). This also means, only either the text or background color can be
+controlled and no other formatting flag (bold, underline etc.) are available.
+
+```ts
+const el = document.createElement("pre");
+// format and assign text colors
+el.innerHTML = toString(canvas, FMT_HTML_565());
+
+// assign bg colors
+el.innerHTML = toString(canvas, FMT_HTML_565("background"));
 ```
 
 ### Stroke styles
