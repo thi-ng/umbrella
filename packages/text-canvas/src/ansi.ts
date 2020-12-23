@@ -26,3 +26,22 @@ export const FMT_ANSI16: StringFormat = {
     prefix: ANSI_RESET,
     suffix: "\n",
 };
+
+export const FMT_ANSI256: StringFormat = {
+    start: (x: number) => `\x1b[38;5;${x & 0xff};48;5;${x >>> 16}m`,
+    end: ANSI_RESET,
+    prefix: ANSI_RESET,
+    suffix: "\n",
+};
+
+/**
+ * Takes 2 ANSI256 values and returns a combined 16bit format ID.
+ *
+ * @remarks
+ * https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit
+ *
+ * @param fg
+ * @param bg
+ */
+export const format256 = (fg: number, bg = 0) =>
+    ((bg & 0xff) << 8) | (fg & 0xff);
