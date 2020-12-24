@@ -1,6 +1,6 @@
 import { peek } from "@thi.ng/arrays";
 import { isNumber } from "@thi.ng/checks";
-import { ImageOpts, SHADES_BLOCK } from "./api";
+import { ClipRect, ImageOpts, SHADES_BLOCK } from "./api";
 import { Canvas } from "./canvas";
 import { charCode, intersectRect } from "./utils";
 
@@ -101,13 +101,14 @@ export const image = (
     w |= 0;
     h |= 0;
     const { buf, width } = canvas;
-    const { x1, y1, x2, y2, w: iw, h: ih } = intersectRect(
-        { x1: x, y1: y, x2: x + w, y2: y + h, w, h },
-        peek(canvas.clipRects)
+    const { x1, y1, x2, y2, sx, sy, w: iw, h: ih } = imgRect(
+        canvas,
+        x,
+        y,
+        w,
+        h
     );
     if (!iw || !ih) return;
-    const sx = Math.max(0, x1 - x);
-    const sy = Math.max(0, y1 - y);
     const { chars, format, gamma, invert, bits } = {
         chars: SHADES_BLOCK,
         format: canvas.format,
@@ -157,13 +158,14 @@ export const imageRaw = (
     w |= 0;
     h |= 0;
     const { buf, width } = canvas;
-    const { x1, y1, x2, y2, w: iw, h: ih } = intersectRect(
-        { x1: x, y1: y, x2: x + w, y2: y + h, w, h },
-        peek(canvas.clipRects)
+    const { x1, y1, x2, y2, sx, sy, w: iw, h: ih } = imgRect(
+        canvas,
+        x,
+        y,
+        w,
+        h
     );
     if (!iw || !ih) return;
-    const sx = Math.max(0, x1 - x);
-    const sy = Math.max(0, y1 - y);
     const code = char.charCodeAt(0);
     for (let yy = sy, dy = y1; dy < y2; yy++, dy++) {
         let sidx = sx + yy * w;
@@ -172,4 +174,22 @@ export const imageRaw = (
             buf[didx++] = code | ((pixels[sidx++] & 0xffff) << 16);
         }
     }
+};
+
+const imgRect = (
+    canvas: Canvas,
+    x: number,
+    y: number,
+    w: number,
+    h: number
+) => {
+    const rect: ClipRect & { sx: number; sy: number } = <any>(
+        intersectRect(
+            { x1: x, y1: y, x2: x + w, y2: y + h, w, h },
+            peek(canvas.clipRects)
+        )
+    );
+    rect.sx = Math.max(0, rect.x1 - x);
+    rect.sy = Math.max(0, rect.y1 - y);
+    return rect;
 };
