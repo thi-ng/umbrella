@@ -53,12 +53,12 @@ const rayBox: FnU4<ReadonlyVec, [number, number]> = (rpos, dir, bmin, bmax) => {
     d = 1 / dir[1];
     t1 = (bmin[1] - p) * d;
     t2 = (bmax[1] - p) * d;
+    tmin = max(tmin, min(t1, t2));
+    tmax = min(tmax, max(t1, t2));
     p = rpos[2];
     d = 1 / dir[2];
     t1 = (bmin[2] - p) * d;
     t2 = (bmax[2] - p) * d;
-    tmin = max(tmin, min(t1, t2));
-    tmax = min(tmax, max(t1, t2));
     return [max(tmin, min(t1, t2)), min(tmax, max(t1, t2))];
 };
 
@@ -73,9 +73,9 @@ const intersectWith = (
         ? inside
             ? {
                   type: IntersectionType.INTERSECT,
-                  inside,
                   isec: [maddN([], dir, tmax, rpos)],
                   alpha: tmax,
+                  inside,
               }
             : {
                   type: IntersectionType.INTERSECT,
