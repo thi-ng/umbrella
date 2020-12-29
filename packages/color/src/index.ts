@@ -42,6 +42,7 @@ export * from "./xyza";
 export * from "./ycbcr";
 
 export * from "./alpha";
+export * from "./checks";
 export * from "./clamp";
 export * from "./closest-hue";
 export * from "./cosine-gradients";
