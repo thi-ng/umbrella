@@ -45,6 +45,7 @@ export * from "./alpha";
 export * from "./clamp";
 export * from "./closest-hue";
 export * from "./cosine-gradients";
+export * from "./distance";
 export * from "./invert";
 export * from "./luminance";
 export * from "./luminance-rgb";

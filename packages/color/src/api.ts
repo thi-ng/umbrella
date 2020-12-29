@@ -1,4 +1,4 @@
-import type { Tuple } from "@thi.ng/api";
+import type { FnU2, Tuple } from "@thi.ng/api";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 export type ColorMode =
@@ -198,6 +198,8 @@ export type CosGradientSpec = Tuple<CosCoeffs, 4>;
 
 export type ColorConversion<T> = (out: Color, src: T) => Color;
 export type ColorOp = (out: Color | null, src: ReadonlyColor) => Color;
+
+export type ColorDistance = FnU2<ReadonlyColor, number>;
 
 export interface IColor {
     readonly mode: ColorMode;
