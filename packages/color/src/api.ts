@@ -161,6 +161,19 @@ export type CSSColorName =
     | "yellow"
     | "yellowgreen";
 
+export type ColorRangePreset =
+    | "light"
+    | "dark"
+    | "bright"
+    | "weak"
+    | "neutral"
+    | "fresh"
+    | "soft"
+    | "hard"
+    | "warm"
+    | "cool"
+    | "intense";
+
 export type CosineGradientPreset =
     | "blue-cyan"
     | "blue-magenta-orange"
@@ -204,3 +217,42 @@ export type ColorDistance = FnU2<ReadonlyColor, number>;
 export interface IColor {
     readonly mode: ColorMode;
 }
+
+export type Range = [number, number];
+
+export interface ColorRange {
+    /**
+     * Hue ranges
+     */
+    h?: Range[];
+    /**
+     * Saturation ranges
+     */
+    s?: Range[];
+    /**
+     * Brightness ranges
+     */
+    v?: Range[];
+    /**
+     * Alpha ranges
+     */
+    a?: Range[];
+    /**
+     * Black point ranges
+     */
+    b?: Range[];
+    /**
+     * White point ranges
+     */
+    w?: Range[];
+}
+
+export interface ColorThemePart {
+    range?: ColorRange | ColorRangePreset;
+    base?: ReadonlyColor | CSSColorName;
+    weight?: number;
+}
+
+export type ColorThemePartString =
+    | `${ColorRangePreset} ${CSSColorName} ${number}`
+    | `${ColorRangePreset | CSSColorName} ${number}`;

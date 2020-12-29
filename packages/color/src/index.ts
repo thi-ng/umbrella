@@ -42,9 +42,11 @@ export * from "./xyza";
 export * from "./ycbcr";
 
 export * from "./alpha";
+export * from "./analog";
 export * from "./checks";
 export * from "./clamp";
 export * from "./closest-hue";
+export * from "./color-range";
 export * from "./cosine-gradients";
 export * from "./distance";
 export * from "./invert";
