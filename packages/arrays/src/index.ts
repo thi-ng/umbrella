@@ -1,5 +1,6 @@
 export * from "./api";
 export * from "./binary-search";
+export * from "./bisect";
 export * from "./ends-with";
 export * from "./ensure-array";
 export * from "./ensure-iterable";
