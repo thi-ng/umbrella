@@ -1,6 +1,6 @@
-import type { IObjectOf } from "@thi.ng/api";
+import type { CSSColorName } from "./api";
 
-export const CSS_NAMES: IObjectOf<string> = {
+export const CSS_NAMES: Record<CSSColorName, string> = {
     aliceblue: "f0f8ff",
     antiquewhite: "faebd7",
     aqua: "0ff",

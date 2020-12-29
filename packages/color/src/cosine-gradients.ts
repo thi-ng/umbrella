@@ -9,39 +9,19 @@ import {
     tween,
     zip,
 } from "@thi.ng/transducers";
-import type { Color, CosCoeffs, CosGradientSpec, ReadonlyColor } from "./api";
+import type {
+    Color,
+    CosCoeffs,
+    CosGradientSpec,
+    CosineGradientPreset,
+    ReadonlyColor,
+} from "./api";
 import { clamp } from "./clamp";
 
-export type GradientPresets = Record<
-    | "blue-cyan"
-    | "blue-magenta-orange"
-    | "blue-white-red"
-    | "cyan-magenta"
-    | "green-blue-orange"
-    | "green-cyan"
-    | "green-magenta"
-    | "green-red"
-    | "heat1"
-    | "magenta-green"
-    | "orange-blue"
-    | "orange-magenta-blue"
-    | "purple-orange-cyan"
-    | "rainbow1"
-    | "rainbow2"
-    | "rainbow3"
-    | "rainbow4"
-    | "red-blue"
-    | "yellow-green-blue"
-    | "yellow-magenta-cyan"
-    | "yellow-purple-magenta"
-    | "yellow-red",
-    CosGradientSpec
->;
-
-// see http://dev.thi.ng/gradients/ - unlike the clojure version, these
-// presets are for RGBA (though the alpha channel is configured to
-// always be 1.0)
-export const GRADIENTS: GradientPresets = {
+// see http://dev.thi.ng/gradients/ - Note: unlike the original Clojure version,
+// these presets are for RGBA (though the alpha channel is configured to always
+// be 1.0)
+export const GRADIENTS: Record<CosineGradientPreset, CosGradientSpec> = {
     "blue-cyan": [
         [0, 0.5, 0.5, 1],
         [0, 0.5, 0.5, 0],

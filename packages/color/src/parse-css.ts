@@ -2,7 +2,7 @@ import type { IDeref } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors";
 import { clamp01 } from "@thi.ng/math";
 import { maybeParseFloat, maybeParseInt } from "@thi.ng/strings";
-import type { Color } from "./api";
+import type { Color, CSSColorName } from "./api";
 import { INV8BIT } from "./constants";
 import { hslaRgba } from "./hsla-rgba";
 import { int32Rgba } from "./int-rgba";
@@ -34,7 +34,7 @@ export const parseCss = (col: string | IDeref<string>) => {
                 ]);
             }
         } else {
-            const c = CSS_NAMES[col];
+            const c = CSS_NAMES[<CSSColorName>col];
             !c && illegalArgs(`invalid color: "${col}"`);
             return int32Rgba([], parseHex(c));
         }
