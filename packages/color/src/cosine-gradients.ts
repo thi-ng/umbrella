@@ -167,7 +167,7 @@ export const cosineColor = (spec: CosGradientSpec, t: number): Color =>
     );
 
 export const cosineGradient = (n: number, spec: CosGradientSpec) =>
-    transduce(map(partial(cosineColor, spec)), push(), normRange(n - 1));
+    transduce(map(partial(cosineColor, spec)), push<Color>(), normRange(n - 1));
 
 /**
  * Returns coefficients to produce a cosine gradient between the two
