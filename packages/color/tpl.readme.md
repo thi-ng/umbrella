@@ -50,12 +50,50 @@ functions). Wrapper factory functions are provided for convenience.
 
 ### Color theme generation
 
+The package provides several methods for procedural & declarative color theme
+generations. The latter relies on the concept of HSV color ranges, which can be
+sampled directly and/or mixed with a base color to produce randomized
+variations. Furthermore, multiple such ranges can be combined into a weighted
+set to define probabilistic color themes.
+
 ```ts
-// infinite iterator of cool reds, w/ 10% hue variance
-colorsFromRange(RANGES.cool, [0, 0.8, 1], { num: Infinity, variance: 0.1 })
+// single random color drawn from the "bright" color range preset
+colorFromRange(RANGES.bright);
+// [ 0.7302125322518669, 0.8519945301256682, 0.8134374983367859, 1 ]
+
+// single random color based on given HSV base color and preset
+colorFromRange(RANGES.warm, [0.33, 1, 1])
+// [ 0.3065587375218628, 0.8651353734302525, 0.748781892650323, 1 ]
+
+// infinite iterator of colors sampled from the preset
+// (see table below)
+const colors = colorsFromRange(RANGES.bright);
+colors.next();
+// {
+//   value: [ 0.006959075656347791, 0.8760165887192115, 0.912149937028727, 1 ],
+//   done: false
+// }
+
+// 10 cool reds, w/ 10% hue variance
+[...colorsFromRange(RANGES.cool, [0, 0.8, 1], { num: 10, variance: 0.1 })]
 
 // generate colors based on given weighted textual description(s)
-[...colorsFromTheme(["warm goldenrod 1.0", "cool springgreen 0.1"], { num: 100, variance: 0.05 })]
+[...colorsFromTheme(
+    ["warm goldenrod 1.0", "cool springgreen 0.1"],
+    { num: 100, variance: 0.05 }
+)]
+
+// theme parts can also be given in this format
+// note: base colors are always in HSV
+// all keys are optional (range, base, weight),
+// but at least `range` or `base` must be given...
+[...colorsFromTheme(
+    [
+        { range: "warm", base: "goldenrod", weight: 1 },
+        { range: RANGES.cool, base: [0, 1, 0.5], weight: 0.1 }
+    ],
+    { num: 100, variance: 0.05 }
+)]
 ```
 
 | ID        | 100 colors drawn from color range preset only, sorted by hue                                                       |
