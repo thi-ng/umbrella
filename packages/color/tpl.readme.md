@@ -87,7 +87,7 @@ colorsFromRange(RANGES.cool, [0, 0.8, 1], { num: Infinity, variance: 0.1 })
 | `weak`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-weak.svg)    |
 
 | ID        | 100 colors, 2 base colors w/ color range preset, sorted by brightness                                            |
-|-----------|---------------------------------------------------- -------------------------------------------------------------|
+|-----------|------------------------------------------------------------------------------------------------------------------|
 | `bright`  | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-bright.svg)  |
 | `cool`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-cool.svg)    |
 | `dark`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-dark.svg)    |
