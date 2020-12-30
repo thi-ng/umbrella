@@ -14,6 +14,7 @@ For the Clojure version, please visit: [thi.ng/color-clj](https://thi.ng/color-c
 - [About](#about)
   - [Color spaces / modes](#color-spaces---modes)
     - [Class wrappers](#class-wrappers)
+  - [Color theme generation](#color-theme-generation)
   - [RGBA transformations](#rgba-transformations)
   - [RGBA Porter-Duff compositing](#rgba-porter-duff-compositing)
   - [Cosine gradients](#cosine-gradients)
@@ -29,7 +30,7 @@ For the Clojure version, please visit: [thi.ng/color-clj](https://thi.ng/color-c
 
 ## About
 
-Array-based color ops, conversions, multi-color gradients, presets.
+Array-based color types, conversions, transformations, declarative theme generation, multi-color gradients, presets.
 
 ### Color spaces / modes
 
@@ -63,6 +64,58 @@ support striding (for mapped memory views), named channel accessor
 aliases (in addition to array indexing) and are fully compatible with
 all functions (and act as syntax sugar for generic conversion
 functions). Wrapper factory functions are provided for convenience.
+
+### Color theme generation
+
+```ts
+// infinite iterator of cool reds, w/ 10% hue variance
+colorsFromRange(RANGES.cool, [0, 0.8, 1], { num: Infinity, variance: 0.1 })
+
+// generate colors based on given weighted textual description(s)
+[...colorsFromTheme(["warm goldenrod 1.0", "cool springgreen 0.1"], { num: 100, variance: 0.05 })]
+```
+
+| ID        | 100 colors drawn from color range preset only, sorted by hue                                                       |
+|-----------|--------------------------------------------------------------------------------------------------------------------|
+| `bright`  | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-bright.svg)  |
+| `cool`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-cool.svg)    |
+| `dark`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-dark.svg)    |
+| `fresh`   | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-fresh.svg)   |
+| `hard`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-hard.svg)    |
+| `intense` | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-intense.svg) |
+| `light`   | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-light.svg)   |
+| `neutral` | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-neutral.svg) |
+| `soft`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-soft.svg)    |
+| `warm`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-warm.svg)    |
+| `weak`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-weak.svg)    |
+
+| ID        | 100 colors, single base color w/ color range preset, sorted by brightness                                          |
+|-----------|--------------------------------------------------------------------------------------------------------------------|
+| `bright`  | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-bright.svg)  |
+| `cool`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-cool.svg)    |
+| `dark`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-dark.svg)    |
+| `fresh`   | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-fresh.svg)   |
+| `hard`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-hard.svg)    |
+| `intense` | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-intense.svg) |
+| `light`   | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-light.svg)   |
+| `neutral` | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-neutral.svg) |
+| `soft`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-soft.svg)    |
+| `warm`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-warm.svg)    |
+| `weak`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-weak.svg)    |
+
+| ID        | 100 colors, two base colors w/ same color range preset, sorted by brightness                                          |
+|-----------|--------------------------------------------------------------------------------------------------------------------|
+| `bright`  | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-bright.svg)  |
+| `cool`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-cool.svg)    |
+| `dark`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-dark.svg)    |
+| `fresh`   | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-fresh.svg)   |
+| `hard`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-hard.svg)    |
+| `intense` | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-intense.svg) |
+| `light`   | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-light.svg)   |
+| `neutral` | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-neutral.svg) |
+| `soft`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-soft.svg)    |
+| `warm`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-warm.svg)    |
+| `weak`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-weak.svg)    |
 
 ### RGBA transformations
 
@@ -194,7 +247,7 @@ yarn add @thi.ng/color
 <script src="https://unpkg.com/@thi.ng/color/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 7.08 KB / CJS: 7.44 KB / UMD: 7.00 KB
+Package sizes (gzipped, pre-treeshake): ESM: 8.40 KB / CJS: 8.82 KB / UMD: 8.29 KB
 
 ## Dependencies
 
