@@ -113,7 +113,7 @@ const $rnd = (ranges: Range[], rnd: IRandom) =>
 export const colorFromRange = (
     range: ColorRange,
     base?: ReadonlyColor,
-    opts?: Partial<ColorRangeOpts>
+    opts?: Partial<Pick<ColorRangeOpts, "variance" | "rnd">>
 ): Color => {
     range = { ...DEFAULT_RANGE, ...range };
     const { variance, rnd } = { ...DEFAULT_OPTS, ...opts };
@@ -127,7 +127,7 @@ export const colorFromRange = (
             return [
                 h,
                 0,
-                $rnd(rnd.float(1) < 0.5 ? range.b! : range.w!, rnd),
+                $rnd(rnd.float() < 0.5 ? range.b! : range.w!, rnd),
                 a,
             ];
         h = ensureHue(h + rnd.norm(variance));
@@ -143,48 +143,58 @@ export function* colorsFromRange(
     base?: ReadonlyColor,
     opts: Partial<ColorRangeOpts> = {}
 ) {
-    let num = opts.num || Infinity;
+    let num = opts.num != undefined ? opts.num : Infinity;
     while (--num >= 0) yield colorFromRange(range, base, opts);
 }
 
 const asThemePart = (p: ColorThemePart | ColorThemePartString) => {
-    if (!isString(p)) return p;
-    const items = p.split(" ");
-    let weight = parseFloat(peek(items));
-    if (isNaN(weight)) {
-        weight = 1;
+    let spec: ColorThemePart;
+    if (isString(p)) {
+        const items = p.split(" ");
+        let weight = parseFloat(peek(items));
+        if (isNaN(weight)) {
+            weight = 1;
+        } else {
+            items.pop();
+        }
+        spec = <ColorThemePart>(
+            (items.length === 2
+                ? { range: items[0], base: items[1], weight }
+                : items.length === 1
+                ? RANGES[<ColorRangePreset>items[0]]
+                    ? { range: items[0], weight }
+                    : { base: items[0], weight }
+                : illegalArgs(`invalid theme part: "${p}"`))
+        );
     } else {
-        items.pop();
+        spec = p;
+        spec.weight == null && (spec.weight = 1);
     }
-    return <ColorThemePart>(
-        (items.length === 2
-            ? { range: items[0], base: items[1], weight }
-            : items.length === 1
-            ? RANGES[<ColorRangePreset>items[0]]
-                ? { range: items[0], weight }
-                : { base: items[0], weight }
-            : illegalArgs(`invalid theme part: "${p}"`))
-    );
+    isString(spec.range) && (spec.range = RANGES[spec.range]);
+    isString(spec.base) && (spec.base = rgbaHsva([], parseCss(spec.base)));
+    return spec;
 };
 
 export function* colorsFromTheme(
     parts: (ColorThemePart | ColorThemePartString)[],
     opts: Partial<ColorRangeOpts> = {}
 ) {
-    opts = { ...DEFAULT_OPTS, ...opts };
-    let { num, variance } = opts;
+    let { num, variance } = { ...DEFAULT_OPTS, ...opts };
     const theme = parts.map(asThemePart);
     const choice = weightedRandom(
         theme,
-        theme.map((x) => (x.weight != null ? x.weight : 1))
+        theme.map((x) => x.weight!)
     );
     while (--num! >= 0) {
         const spec = choice();
-        const base = isString(spec.base)
-            ? rgbaHsva([], parseCss(spec.base))
-            : spec.base;
-        const range = isString(spec.range) ? RANGES[spec.range] : spec.range;
-        if (range) yield colorFromRange(range, base, opts);
-        else if (base) yield analogHSV([], base, variance!);
+        if (spec.range) {
+            yield colorFromRange(
+                <ColorRange>spec.range,
+                <ReadonlyColor>spec.base,
+                opts
+            );
+        } else if (spec.base) {
+            yield analogHSV([], <ReadonlyColor>spec.base, variance!);
+        }
     }
 }
