@@ -54,4 +54,5 @@ export * from "./luminance";
 export * from "./luminance-rgb";
 export * from "./mix";
 export * from "./sort";
+export * from "./swatches";
 export * from "./transform";
