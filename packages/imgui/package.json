@@ -33,7 +33,7 @@
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib behaviors components",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
-        "doc": "node_modules/.bin/typedoc --mode modules --out doc --theme ../../tools/doc/typedoc-theme src",
+        "doc": "node_modules/.bin/typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "pub": "yarn build:release && yarn publish --access public"
     },
@@ -45,7 +45,7 @@
         "mocha": "^8.2.1",
         "nyc": "^15.1.0",
         "ts-node": "^9.1.1",
-        "typedoc": "^0.19.2",
+        "typedoc": "^0.20.4",
         "typescript": "^4.1.3"
     },
     "dependencies": {
