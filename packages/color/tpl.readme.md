@@ -86,8 +86,8 @@ colorsFromRange(RANGES.cool, [0, 0.8, 1], { num: Infinity, variance: 0.1 })
 | `warm`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-warm.svg)    |
 | `weak`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-weak.svg)    |
 
-| ID        | 100 colors, two base colors w/ same color range preset, sorted by brightness                                          |
-|-----------|--------------------------------------------------------------------------------------------------------------------|
+| ID        | 100 colors, 2 base colors w/ color range preset, sorted by brightness                                            |
+|-----------|---------------------------------------------------- -------------------------------------------------------------|
 | `bright`  | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-bright.svg)  |
 | `cool`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-cool.svg)    |
 | `dark`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-dark.svg)    |
@@ -99,6 +99,38 @@ colorsFromRange(RANGES.cool, [0, 0.8, 1], { num: Infinity, variance: 0.1 })
 | `soft`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-soft.svg)    |
 | `warm`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-warm.svg)    |
 | `weak`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-weak.svg)    |
+
+Full example:
+
+```ts
+import { colorsFromTheme, hsva, swatchesH } from "@thi.ng/color";
+import { serialize } from "@thi.ng/hiccup";
+import { svg } from "@thi.ng/hiccup-svg";
+import { writeFileSync } from "fs";
+
+// color theme definition using:
+// color range preset names, CSS colors and weights
+const theme = <ColorThemePartString[]>[
+    "fresh hotpink 0.1",
+    "cool goldenrod 1",
+    "light springgreen 0.1",
+];
+
+// generate 200 HSV colors based on above description
+const colors = [...colorsFromTheme(theme, { num: 200, variance: 0.05 })];
+
+// create SVG doc of color swatches (hiccup format)
+// (convert colors to RGB for smaller file size)
+const doc = svg(
+    { width: 1000, height: 50, convert: true },
+    swatchesH(colors.map((x) => hsvaRgba([], x)), 5, 50)
+);
+
+// serialize to SVG file
+writeFileSync("export/swatches-ex01.svg", serialize(doc));
+```
+
+![example result color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-ex01.svg)
 
 ### RGBA transformations
 
