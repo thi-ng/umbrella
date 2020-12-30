@@ -1,17 +1,20 @@
-import type { Comparator, Fn } from "@thi.ng/api";
+import { assert, Comparator, Fn } from "@thi.ng/api";
+import { isFunction } from "@thi.ng/checks";
 import { compare } from "@thi.ng/compare";
 import { quickSort } from "./quicksort";
 import { multiSwap } from "./swap";
 
 /**
- * Takes a `src` array and `key` function to obtain the sort key of each item.
- * Applies `key` to pre-compute a new array of all sort keys and then uses
- * {@link quickSort} to sort `src` array, based on the ordering of cached keys
- * and the optionally given comparator. Returns `src`.
+ * Takes a `src` array and `key` array of function to provide the sort key of
+ * each item. If a function, it will be first applied to pre-compute a new array
+ * of all sort keys. Then uses {@link quickSort} to sort `src` array, based on
+ * the ordering of cached keys and the optionally given comparator. Returns
+ * `src`.
  *
  * @remarks
- * This function is primarily intended for use cases where sort keys are derived
- * from non-trivial computations and need to be cached, rather than be
+ * This function is primarily intended for use cases where an array needs to be
+ * sorted based on the item order of another array, or where sort keys are
+ * derived from non-trivial computations and need to be cached, rather than be
  * re-evaluated multiple times from within a comparator.
  *
  * @example
@@ -19,6 +22,9 @@ import { multiSwap } from "./swap";
  * // sort by length in descending order
  * sortByCachedKey(["a","bbbb","ccc","dd"], (x) => x.length, (a, b) => b - a);
  * // [ 'bbbb', 'ccc', 'dd', 'a' ]
+ *
+ * sortByCachedKey(["a", "b", "c", "d"], [3, 2, 1, 0])
+ * // [ 'd', 'c', 'b', 'a' ]
  * ```
  *
  * @param src
@@ -27,6 +33,11 @@ import { multiSwap } from "./swap";
  */
 export const sortByCachedKey = <T, K>(
     src: T[],
-    key: Fn<T, K>,
+    key: K[] | Fn<T, K>,
     cmp: Comparator<K> = compare
-) => (quickSort(src.map(key), cmp, multiSwap(src)), src);
+) => {
+    const keys = isFunction(key) ? src.map(key) : key;
+    assert(keys.length === src.length, `keys.length != src.length`);
+    quickSort(keys, cmp, multiSwap(src));
+    return src;
+};
