@@ -94,19 +94,20 @@ colors.next();
 // 10 cool reds, w/ 10% hue variance
 [...colorsFromRange(RANGES.cool, [0, 0.8, 1], { num: 10, variance: 0.1 })]
 
-// generate colors based on given weighted textual description(s)
+// generate colors based on given (weighted) textual description(s)
+// here using named CSS colors, but could also be HSV tuples
 [...colorsFromTheme(
-    ["warm goldenrod 1.0", "cool springgreen 0.1"],
+    [["warm", "goldenrod"], ["cool", "springgreen", 0.1]],
     { num: 100, variance: 0.05 }
 )]
 
-// theme parts can also be given in this format
+// theme parts can also be given in the format used internally
 // note: base colors are always in HSV
 // all keys are optional (range, base, weight),
 // but at least `range` or `base` must be given...
 [...colorsFromTheme(
     [
-        { range: "warm", base: "goldenrod", weight: 1 },
+        { range: "warm", base: "goldenrod" },
         { range: RANGES.cool, base: [0, 1, 0.5], weight: 0.1 }
     ],
     { num: 100, variance: 0.05 }
@@ -127,7 +128,7 @@ colors.next();
 | `warm`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-warm.svg)    |
 | `weak`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-weak.svg)    |
 
-| ID        | 100 colors, single base color w/ color range preset, sorted by brightness                                          |
+| ID        | 100 colors, single base color w/ color range preset, sorted by hue                                                 |
 |-----------|--------------------------------------------------------------------------------------------------------------------|
 | `bright`  | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-bright.svg)  |
 | `cool`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-cool.svg)    |
@@ -165,10 +166,10 @@ import { writeFileSync } from "fs";
 
 // color theme definition using:
 // color range preset names, CSS colors and weights
-const theme = <ColorThemePartString[]>[
-    "fresh hotpink 0.1",
-    "cool goldenrod 1",
-    "light springgreen 0.1",
+const theme = <ColorThemePartTuple[]>[
+    ["cool", "goldenrod"],
+    ["fresh", "hotpink", 0.1],
+    ["light", "springgreen", 0.1],
 ];
 
 // generate 200 HSV colors based on above description
@@ -317,7 +318,7 @@ yarn add @thi.ng/color
 <script src="https://unpkg.com/@thi.ng/color/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 8.40 KB / CJS: 8.83 KB / UMD: 8.29 KB
+Package sizes (gzipped, pre-treeshake): ESM: 8.41 KB / CJS: 8.85 KB / UMD: 8.31 KB
 
 ## Dependencies
 
