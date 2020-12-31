@@ -3,7 +3,7 @@ import { svg } from "@thi.ng/hiccup-svg";
 import { writeFileSync } from "fs";
 import {
     colorsFromTheme,
-    ColorThemePartString,
+    ColorThemePartTuple,
     cosineGradient,
     CosineGradientPreset,
     GRADIENTS,
@@ -31,10 +31,10 @@ Object.keys(GRADIENTS).forEach((id) => {
 
 ////////////////////////////////////////////////////////////
 
-const theme = <ColorThemePartString[]>[
-    "fresh hotpink 0.1",
-    "cool goldenrod 1",
-    "light springgreen 0.1",
+const theme = <ColorThemePartTuple[]>[
+    ["cool", "goldenrod"],
+    ["fresh", "hotpink", 0.1],
+    ["light", "springgreen", 0.1],
 ];
 
 const colors = [...colorsFromTheme(theme, { num: 200, variance: 0.05 })];

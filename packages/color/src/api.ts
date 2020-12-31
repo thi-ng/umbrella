@@ -253,11 +253,8 @@ export interface ColorThemePart {
     weight?: number;
 }
 
-export type ColorThemePartString =
-    | `${ColorRangePreset} ${CSSColorName} ${number}`
-    | `${ColorRangePreset | CSSColorName} ${number}`;
-// TODO the next 2 lines currently cause geometric slowdown
-// of TS type checker & compiler, re-enable once TS4.2 is released
-// Playground link to try behavior: https://is.gd/4wTxJm
-// | `${ColorRangePreset} ${CSSColorName}`
-// | `${ColorRangePreset | CSSColorName}`;
+export type ColorThemePartTuple =
+    | [ColorRangePreset, CSSColorName, number?]
+    | [ColorRangePreset | CSSColorName, number?]
+    | ColorRangePreset
+    | CSSColorName;

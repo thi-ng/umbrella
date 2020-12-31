@@ -1,5 +1,5 @@
 import { peek } from "@thi.ng/arrays";
-import { isString } from "@thi.ng/checks";
+import { isArray, isNumber, isString } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { IRandom, SYSTEM, weightedRandom } from "@thi.ng/random";
 import { analogHSV } from "./analog";
@@ -8,7 +8,7 @@ import type {
     ColorRange,
     ColorRangePreset,
     ColorThemePart,
-    ColorThemePartString,
+    ColorThemePartTuple,
     Range,
     ReadonlyColor,
 } from "./api";
@@ -147,24 +147,31 @@ export function* colorsFromRange(
     while (--num >= 0) yield colorFromRange(range, base, opts);
 }
 
-const asThemePart = (p: ColorThemePart | ColorThemePartString) => {
+const asThemePart = (p: ColorThemePart | ColorThemePartTuple) => {
     let spec: ColorThemePart;
-    if (isString(p)) {
-        const items = p.split(" ");
-        let weight = parseFloat(peek(items));
-        if (isNaN(weight)) {
-            weight = 1;
+    let weight: number;
+    if (isArray(p)) {
+        const [a, ...xs] = p;
+        if (isNumber(peek(xs))) {
+            weight = <number>peek(xs);
+            xs.pop();
         } else {
-            items.pop();
+            weight = 1;
         }
         spec = <ColorThemePart>(
-            (items.length === 2
-                ? { range: items[0], base: items[1], weight }
-                : items.length === 1
-                ? RANGES[<ColorRangePreset>items[0]]
-                    ? { range: items[0], weight }
-                    : { base: items[0], weight }
+            (xs.length === 1
+                ? { range: a, base: xs[0], weight }
+                : xs.length === 0
+                ? RANGES[<ColorRangePreset>a]
+                    ? { range: a, weight }
+                    : { base: a, weight }
                 : illegalArgs(`invalid theme part: "${p}"`))
+        );
+    } else if (isString(p)) {
+        spec = <ColorThemePart>(
+            (RANGES[<ColorRangePreset>p]
+                ? { range: p, weight: 1 }
+                : { base: p, weight: 1 })
         );
     } else {
         spec = p;
@@ -176,7 +183,7 @@ const asThemePart = (p: ColorThemePart | ColorThemePartString) => {
 };
 
 export function* colorsFromTheme(
-    parts: (ColorThemePart | ColorThemePartString)[],
+    parts: (ColorThemePart | ColorThemePartTuple)[],
     opts: Partial<ColorRangeOpts> = {}
 ) {
     let { num, variance } = { ...DEFAULT_OPTS, ...opts };
