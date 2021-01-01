@@ -15,7 +15,7 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [Command line usage](#command-line-usage)
-  - [Include files / libraries](#include-files---libraries)
+  - [Include files / libraries](#include-files--libraries)
   - [CLI example](#cli-example)
 - [API](#api)
 - [Language & Syntax](#language--syntax)
@@ -34,7 +34,7 @@ This project is part of the
   - [Variables](#variables)
     - [Dynamic scoping](#dynamic-scoping)
   - [Objects](#objects)
-- [Ideas / Todos](#ideas---todos)
+- [Ideas / Todos](#ideas--todos)
 - [Authors](#authors)
 - [License](#license)
 
@@ -722,4 +722,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2021 Karsten Schmidt // Apache Software License 2.0

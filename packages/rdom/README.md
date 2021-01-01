@@ -12,7 +12,7 @@ This project is part of the
 - [About](#about)
   - [Status](#status)
     - [HIC SUNT DRACONES](#hic-sunt-dracones)
-    - [@thi.ng/atom integration](#thing-atom-integration)
+    - [@thi.ng/atom integration](#thingatom-integration)
   - [Support packages](#support-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -171,4 +171,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2020 - 2021 Karsten Schmidt // Apache Software License 2.0

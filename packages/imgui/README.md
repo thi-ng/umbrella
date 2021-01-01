@@ -11,7 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Current features](#current-features)
-  - [Available components / widgets](#available-components---widgets)
+  - [Available components / widgets](#available-components--widgets)
   - [State handling](#state-handling)
   - [Layout support](#layout-support)
   - [Key controls](#key-controls)
@@ -291,4 +291,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2019 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2019 - 2021 Karsten Schmidt // Apache Software License 2.0

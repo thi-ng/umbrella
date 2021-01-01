@@ -25,11 +25,11 @@ This project is part of the
   - [Fuzzy search](#fuzzy-search)
   - [Histogram generation & result grouping](#histogram-generation--result-grouping)
   - [Pagination](#pagination)
-  - [Multiplexing / parallel transducer application](#multiplexing---parallel-transducer-application)
+  - [Multiplexing / parallel transducer application](#multiplexing--parallel-transducer-application)
   - [Moving average using sliding window](#moving-average-using-sliding-window)
   - [Benchmark function execution time](#benchmark-function-execution-time)
   - [Apply inspectors to debug transducer pipeline](#apply-inspectors-to-debug-transducer-pipeline)
-  - [Stream parsing / structuring](#stream-parsing---structuring)
+  - [Stream parsing / structuring](#stream-parsing--structuring)
   - [CSV parsing](#csv-parsing)
   - [Early termination](#early-termination)
   - [Scan operator](#scan-operator)
@@ -52,7 +52,7 @@ This project is part of the
     - [transduceRight](#transduceright)
     - [run](#run)
   - [Transducers](#transducers)
-  - [Generators / Iterators](#generators---iterators)
+  - [Generators / Iterators](#generators--iterators)
   - [Reducers](#reducers)
 - [Authors](#authors)
   - [Maintainer](#maintainer)
@@ -995,4 +995,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2021 Karsten Schmidt // Apache Software License 2.0

@@ -10,9 +10,9 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Standard library of common, higher level operations](#standard-library-of-common--higher-level-operations)
+  - [Standard library of common, higher level operations](#standard-library-of-common-higher-level-operations)
   - [Benefits](#benefits)
-  - [Prior art / influences](#prior-art---influences)
+  - [Prior art / influences](#prior-art--influences)
   - [Future goals](#future-goals)
   - [Status](#status)
   - [Support packages](#support-packages)
@@ -28,7 +28,7 @@ This project is part of the
     - [Bitwise](#bitwise)
     - [Swizzling](#swizzling)
     - [Array index lookups](#array-index-lookups)
-  - [Symbol definitions / assignments](#symbol-definitions---assignments)
+  - [Symbol definitions / assignments](#symbol-definitions--assignments)
   - [Control flow](#control-flow)
     - [If-Then-Else](#if-then-else)
     - [Ternary operator](#ternary-operator)
@@ -39,7 +39,7 @@ This project is part of the
     - [Function arguments](#function-arguments)
     - [Inline functions](#inline-functions)
   - [Global scope](#global-scope)
-    - [Input / output variables / declarations](#input---output-variables---declarations)
+    - [Input / output variables / declarations](#input--output-variables--declarations)
     - [Program definition](#program-definition)
   - [Code generation](#code-generation)
     - [GLSL (ES)](#glsl-es)
@@ -603,4 +603,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2019 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2019 - 2021 Karsten Schmidt // Apache Software License 2.0

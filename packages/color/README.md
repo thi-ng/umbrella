@@ -12,7 +12,7 @@ This project is part of the
 For the Clojure version, please visit: [thi.ng/color-clj](https://thi.ng/color-clj)
 
 - [About](#about)
-  - [Color spaces / modes](#color-spaces---modes)
+  - [Color spaces / modes](#color-spaces--modes)
     - [Class wrappers](#class-wrappers)
   - [Color theme generation](#color-theme-generation)
   - [RGBA transformations](#rgba-transformations)
@@ -318,7 +318,7 @@ yarn add @thi.ng/color
 <script src="https://unpkg.com/@thi.ng/color/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 8.41 KB / CJS: 8.85 KB / UMD: 8.31 KB
+Package sizes (gzipped, pre-treeshake): ESM: 8.41 KB / CJS: 8.84 KB / UMD: 8.30 KB
 
 ## Dependencies
 
@@ -410,4 +410,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2021 Karsten Schmidt // Apache Software License 2.0

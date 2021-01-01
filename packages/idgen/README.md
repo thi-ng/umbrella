@@ -15,7 +15,7 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [API](#api)
   - [ID generator with 16 bit range and no versioning](#id-generator-with-16-bit-range-and-no-versioning)
-  - [ID generator w/ 24 bit range & 8 bit version range](#id-generator-w--24-bit-range--8-bit-version-range)
+  - [ID generator w/ 24 bit range & 8 bit version range](#id-generator-w-24-bit-range--8-bit-version-range)
   - [IDGen is iterable](#idgen-is-iterable)
 - [Authors](#authors)
 - [License](#license)
@@ -63,7 +63,7 @@ yarn add @thi.ng/idgen
 <script src="https://unpkg.com/@thi.ng/idgen/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 843 bytes / CJS: 890 bytes / UMD: 1006 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 857 bytes / CJS: 906 bytes / UMD: 1019 bytes
 
 ## Dependencies
 
@@ -188,4 +188,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2019 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2019 - 2021 Karsten Schmidt // Apache Software License 2.0

@@ -11,7 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Important](#important)
-  - [SVG conversion of @thi.ng/geom & @thi.ng/hdom-canvas shape trees](#svg-conversion-of-thing-geom--thing-hdom-canvas-shape-trees)
+  - [SVG conversion of @thi.ng/geom & @thi.ng/hdom-canvas shape trees](#svg-conversion-of-thinggeom--thinghdom-canvas-shape-trees)
   - [Automatic attribute conversions](#automatic-attribute-conversions)
     - [Colors](#colors)
     - [Transforms](#transforms)
@@ -266,4 +266,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2021 Karsten Schmidt // Apache Software License 2.0

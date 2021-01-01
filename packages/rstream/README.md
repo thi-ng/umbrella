@@ -27,14 +27,14 @@ This project is part of the
     - [Other stream creation helpers](#other-stream-creation-helpers)
   - [Meta streams](#meta-streams)
   - [Stream merging](#stream-merging)
-    - [Unordered merge from multiple inputs (dynamic add/remove)](#unordered-merge-from-multiple-inputs-dynamic-add-remove)
+    - [Unordered merge from multiple inputs (dynamic add/remove)](#unordered-merge-from-multiple-inputs-dynamic-addremove)
     - [Synchronized merge and labeled tuple objects](#synchronized-merge-and-labeled-tuple-objects)
   - [Stream splitting](#stream-splitting)
     - [Topic based splitting](#topic-based-splitting)
     - [Splitting via predicate](#splitting-via-predicate)
   - [Side-chaining](#side-chaining)
-    - [Input chunking / buffering, controlled by sidechain](#input-chunking---buffering--controlled-by-sidechain)
-    - [Input toggling, controlled by sidechain](#input-toggling--controlled-by-sidechain)
+    - [Input chunking / buffering, controlled by sidechain](#input-chunking--buffering-controlled-by-sidechain)
+    - [Input toggling, controlled by sidechain](#input-toggling-controlled-by-sidechain)
   - [Worker support](#worker-support)
     - [Parallel stream processing via workers](#parallel-stream-processing-via-workers)
     - [Stream processing via workers](#stream-processing-via-workers)
@@ -827,4 +827,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2017 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2017 - 2021 Karsten Schmidt // Apache Software License 2.0

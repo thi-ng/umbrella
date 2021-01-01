@@ -20,7 +20,7 @@ This project is part of the
   - [Streaming hexdump](#streaming-hexdump)
   - [Structured byte buffer construction](#structured-byte-buffer-construction)
   - [Bitstream](#bitstream)
-  - [Base64 & UTF-8 en/decoding](#base64--utf-8-en-decoding)
+  - [Base64 & UTF-8 en/decoding](#base64--utf-8-endecoding)
   - [Transducers](#transducers)
   - [Reducers](#reducers)
 - [Authors](#authors)
@@ -311,4 +311,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2021 Karsten Schmidt // Apache Software License 2.0

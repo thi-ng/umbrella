@@ -16,7 +16,7 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [API](#api)
-  - [WebGL geometry definition / manipulation](#webgl-geometry-definition---manipulation)
+  - [WebGL geometry definition / manipulation](#webgl-geometry-definition--manipulation)
   - [WASM interop](#wasm-interop)
 - [Authors](#authors)
 - [License](#license)
@@ -284,4 +284,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2021 Karsten Schmidt // Apache Software License 2.0

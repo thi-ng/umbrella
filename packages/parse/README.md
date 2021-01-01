@@ -20,7 +20,7 @@ This project is part of the
   - [Context & reader creation](#context--reader-creation)
   - [Presets parsers](#presets-parsers)
   - [Primitives](#primitives)
-    - [Naming conventions / suffixes](#naming-conventions---suffixes)
+    - [Naming conventions / suffixes](#naming-conventions--suffixes)
   - [Anchors](#anchors)
   - [Combinators](#combinators)
   - [Transformers](#transformers)
@@ -563,4 +563,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2020 - 2021 Karsten Schmidt // Apache Software License 2.0

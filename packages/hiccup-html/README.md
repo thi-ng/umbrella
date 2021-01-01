@@ -11,13 +11,13 @@ This project is part of the
 
 - [About](#about)
   - [Supported elements](#supported-elements)
-    - [Head / metadata](#head---metadata)
+    - [Head / metadata](#head--metadata)
     - [Sections](#sections)
     - [Text content](#text-content)
     - [Lists](#lists)
     - [Tables](#tables)
     - [Inline](#inline)
-    - [Forms / inputs](#forms---inputs)
+    - [Forms / inputs](#forms--inputs)
     - [Media](#media)
   - [Compatibility](#compatibility)
   - [Status](#status)
@@ -352,4 +352,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2020 - 2021 Karsten Schmidt // Apache Software License 2.0

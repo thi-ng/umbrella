@@ -27,7 +27,7 @@ This project is part of the
   - [Lighting](#lighting)
   - [Math](#math)
   - [Matrix operations](#matrix-operations)
-  - [Noise / randomness](#noise---randomness)
+  - [Noise / randomness](#noise--randomness)
   - [Raymarching](#raymarching)
   - [Screen coordinates](#screen-coordinates)
   - [Signed Distance Fields](#signed-distance-fields)
@@ -466,4 +466,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2019 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2019 - 2021 Karsten Schmidt // Apache Software License 2.0

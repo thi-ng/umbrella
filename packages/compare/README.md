@@ -16,7 +16,7 @@ This project is part of the
 - [Usage examples](#usage-examples)
 - [API](#api)
   - [ICompare support](#icompare-support)
-  - [Cluster sort w/ multiple sort keys](#cluster-sort-w--multiple-sort-keys)
+  - [Cluster sort w/ multiple sort keys](#cluster-sort-w-multiple-sort-keys)
 - [Authors](#authors)
 - [License](#license)
 
@@ -167,4 +167,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2021 Karsten Schmidt // Apache Software License 2.0

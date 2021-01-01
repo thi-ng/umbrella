@@ -20,8 +20,8 @@ This project is part of the
   - [Basic usage](#basic-usage)
   - [Operators](#operators)
   - [Custom operators](#custom-operators)
-  - [Additional operators / modifiers](#additional-operators---modifiers)
-  - [Pre/post-multiplied colors](#pre-post-multiplied-colors)
+  - [Additional operators / modifiers](#additional-operators--modifiers)
+  - [Pre/post-multiplied colors](#prepost-multiplied-colors)
 - [Authors](#authors)
 - [License](#license)
 
@@ -200,4 +200,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2021 Karsten Schmidt // Apache Software License 2.0

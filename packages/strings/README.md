@@ -19,7 +19,7 @@ This project is part of the
   - [General](#general)
   - [Case](#case)
   - [Numeric & radix-based](#numeric--radix-based)
-  - [Padding / truncation](#padding---truncation)
+  - [Padding / truncation](#padding--truncation)
   - [Units](#units)
   - [String creation & editing](#string-creation--editing)
 - [Authors](#authors)
@@ -52,7 +52,7 @@ yarn add @thi.ng/strings
 <script src="https://unpkg.com/@thi.ng/strings/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.87 KB / CJS: 3.10 KB / UMD: 2.98 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.93 KB / CJS: 3.16 KB / UMD: 3.03 KB
 
 ## Dependencies
 
@@ -174,4 +174,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2015 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2021 Karsten Schmidt // Apache Software License 2.0

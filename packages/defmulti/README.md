@@ -20,7 +20,7 @@ This project is part of the
   - [implementations()](#implementations)
   - [defmultiN()](#defmultin)
 - [Usage examples](#usage-examples)
-    - [Dynamic dispatch: Simple S-expression interpreter](#dynamic-dispatch--simple-s-expression-interpreter)
+    - [Dynamic dispatch: Simple S-expression interpreter](#dynamic-dispatch-simple-s-expression-interpreter)
     - [True multiple arg dispatch](#true-multiple-arg-dispatch)
     - [Dispatch value graph visualization](#dispatch-value-graph-visualization)
 - [Authors](#authors)
@@ -386,4 +386,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2021 Karsten Schmidt // Apache Software License 2.0
