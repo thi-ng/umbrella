@@ -52,8 +52,7 @@
     "dependencies": {
         "@thi.ng/api": "^6.13.5",
         "@thi.ng/checks": "^2.7.12",
-        "@thi.ng/errors": "^1.2.25",
-        "@thi.ng/prefixes": "^0.1.9"
+        "@thi.ng/errors": "^1.2.25"
     },
     "files": [
         "*.js",
