@@ -423,6 +423,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://twitter.com/pedroteixeira"><img src="https://avatars3.githubusercontent.com/u/14740?v=4" width="100px;" alt=""/><br /><sub><b>Pedro Henriques dos Santos Teixeira</b></sub></a><br /><a href="#financial-pedroteixeira" title="Financial">💵</a></td>
     <td align="center"><a href="http://jamieowen.com"><img src="https://avatars3.githubusercontent.com/u/248957?v=4" width="100px;" alt=""/><br /><sub><b>Jamie Owen</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Ajamieowen" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/rkesters"><img src="https://avatars3.githubusercontent.com/u/5572145?v=4" width="100px;" alt=""/><br /><sub><b>Robert Kesteson</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Arkesters" title="Bug reports">🐛</a> <a href="https://github.com/thi-ng/umbrella/commits?author=rkesters" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/chancyk"><img src="https://avatars1.githubusercontent.com/u/1731217?v=4" width="100px;" alt=""/><br /><sub><b>Chancy Kennedy</b></sub></a><br /><a href="#financial-chancyk" title="Financial">💵</a></td>
+    <td align="center"><a href="https://jarredsumner.com"><img src="https://avatars1.githubusercontent.com/u/709451?v=4" width="100px;" alt=""/><br /><sub><b>Jarred Sumner</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3AJarred-Sumner" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
