@@ -12,7 +12,6 @@
     },
     "dependencies": {
         "@thi.ng/dl-asset": "latest",
-        "@thi.ng/hdom": "latest",
         "@thi.ng/hdom-components": "latest",
         "@thi.ng/rstream": "latest",
         "@thi.ng/transducers": "latest",

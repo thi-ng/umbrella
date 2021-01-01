@@ -23,7 +23,6 @@
         "@thi.ng/geom": "latest",
         "@thi.ng/geom-resample": "latest",
         "@thi.ng/geom-voronoi": "latest",
-        "@thi.ng/hdom": "latest",
         "@thi.ng/hdom-canvas": "latest",
         "@thi.ng/math": "latest",
         "@thi.ng/random": "latest",

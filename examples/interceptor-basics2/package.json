@@ -12,9 +12,9 @@
     },
     "dependencies": {
         "@thi.ng/api": "latest",
+        "@thi.ng/atom": "latest",
         "@thi.ng/hdom": "latest",
-        "@thi.ng/interceptors": "latest",
-        "@thi.ng/paths": "latest"
+        "@thi.ng/interceptors": "latest"
     },
     "browserslist": [
         "last 3 Chrome versions"

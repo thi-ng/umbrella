@@ -12,10 +12,9 @@
         "build:worker": "../../node_modules/.bin/webpack --config webpack.worker.js --mode production"
     },
     "dependencies": {
-        "@thi.ng/api": "latest",
         "@thi.ng/bench": "latest",
         "@thi.ng/color": "latest",
-        "@thi.ng/hdom-canvas": "latest",
+        "@thi.ng/hiccup-canvas": "latest",
         "@thi.ng/math": "latest",
         "@thi.ng/pixel": "latest",
         "@thi.ng/rstream": "latest",

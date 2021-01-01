@@ -14,7 +14,6 @@
         "@thi.ng/api": "latest",
         "@thi.ng/atom": "latest",
         "@thi.ng/hdom": "latest",
-        "@thi.ng/paths": "latest",
         "@thi.ng/transducers": "latest"
     },
     "browserslist": [

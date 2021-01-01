@@ -11,9 +11,9 @@
         "build": "../../node_modules/.bin/snowpack build"
     },
     "dependencies": {
+        "@thi.ng/api": "latest",
         "@thi.ng/atom": "latest",
         "@thi.ng/hdom": "latest",
-        "@thi.ng/paths": "latest",
         "@thi.ng/strings": "latest"
     },
     "browserslist": [

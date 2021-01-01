@@ -11,8 +11,10 @@
         "build": "../../node_modules/.bin/snowpack build"
     },
     "dependencies": {
-        "@thi.ng/api": "latest",
+        "@thi.ng/hdom": "latest",
+        "@thi.ng/memoize": "latest",
         "@thi.ng/rstream": "latest",
+        "@thi.ng/transducers": "latest",
         "@thi.ng/transducers-hdom": "latest"
     },
     "browserslist": [

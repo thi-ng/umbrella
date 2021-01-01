@@ -11,6 +11,7 @@
         "build": "../../node_modules/.bin/snowpack build"
     },
     "dependencies": {
+        "@thi.ng/api": "latest",
         "@thi.ng/atom": "latest",
         "@thi.ng/dsp": "latest",
         "@thi.ng/hdom-canvas": "latest",

@@ -21,8 +21,7 @@
         "@thi.ng/math": "latest",
         "@thi.ng/paths": "latest",
         "@thi.ng/strings": "latest",
-        "@thi.ng/transducers": "latest",
-        "@thi.ng/vectors": "latest"
+        "@thi.ng/transducers": "latest"
     },
     "browserslist": [
         "last 3 Chrome versions"
