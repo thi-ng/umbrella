@@ -10,7 +10,7 @@ import {
     mapcat,
     transduce,
 } from "@thi.ng/transducers";
-import { readFileSync } from "fs";
+import { readdirSync, readFileSync, statSync } from "fs";
 import { files, readJSON } from "./io";
 import { shortName } from "./partials/package";
 
@@ -18,6 +18,7 @@ const RE_IMPORT = /\}? from "(?!\.)([a-z0-9@/.-]+)";/;
 
 const xform = comp(
     mapcat((f: string) => readFileSync(f).toString().split("\n")),
+    filter((line) => !line.startsWith(" * ")),
     map((line) => RE_IMPORT.exec(line)),
     filter((x) => !!x),
     map((x) => x![1])
@@ -26,9 +27,10 @@ const xform = comp(
 const usedDependencies = (rootDir: string) =>
     transduce(xform, conj(), files(rootDir, ".ts"));
 
-const updateImports = (project: string) => {
-    const pkgPath = project + "/package.json";
-    const deps = usedDependencies(project + "/src");
+const updateImports = (root: string, latest = false) => {
+    console.log(root);
+    const pkgPath = root + "/package.json";
+    const deps = usedDependencies(root + "/src");
     const pkg = readJSON(pkgPath);
     !pkg.dependencies && (pkg.dependencies = {});
     const mergedDeps = unionR<string>([deps, keys(pkg.dependencies)]);
@@ -38,7 +40,7 @@ const updateImports = (project: string) => {
         if (!d.startsWith("@thi.ng")) continue;
         if (deps.has(d) && !pkg.dependencies[d]) {
             const depPkg = readJSON(`packages/${shortName(d)}/package.json`);
-            pairs.push([d, `^${depPkg.version}`]);
+            pairs.push([d, latest ? "latest" : `^${depPkg.version}`]);
             edit = true;
         } else if (!deps.has(d)) {
             delete pkg.dependencies[d];
@@ -55,5 +57,19 @@ const updateImports = (project: string) => {
     }
 };
 
+const updateProjects = (parent: string, latest = false) => {
+    for (let pkg of readdirSync(parent)) {
+        pkg = `${parent}/${pkg}`;
+        if (statSync(pkg).isDirectory()) {
+            updateImports(pkg, latest);
+        }
+    }
+};
+
 const project = process.argv[2];
-updateImports(project);
+
+project
+    ? project === "examples"
+        ? updateProjects("examples", true)
+        : updateImports(project)
+    : updateProjects("packages");
