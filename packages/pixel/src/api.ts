@@ -209,6 +209,7 @@ export interface RawPixelBuffer extends CanvasContext {
 export interface IPixelBuffer<T extends TypedArray, P> {
     width: number;
     height: number;
+    format: IABGRConvert<any>;
     pixels: T;
 
     /**

@@ -6,6 +6,7 @@ import type {
     BlitOpts,
     FloatFormat,
     FloatFormatSpec,
+    IPixelBuffer,
     PackedFormat,
 } from "./api";
 import { defFloatFormat, FLOAT_GRAY } from "./format";
@@ -27,13 +28,34 @@ export const floatBuffer = (
     pixels?: Float32Array
 ) => new FloatBuffer(w, h, fmt, pixels);
 
-export class FloatBuffer {
+export class FloatBuffer implements IPixelBuffer<Float32Array, NumericArray> {
+    /**
+     * Creates a new `FloatBuffer` from given {@link PackedBuffer} and using
+     * provided {@link FloatFormat}.
+     *
+     * @remarks
+     * See {@link FloatBuffer.as} for reverse operation.
+     *
+     * @param src
+     * @param fmt
+     */
+    static fromPacked(src: PackedBuffer, fmt: FloatFormat | FloatFormatSpec) {
+        const dest = new FloatBuffer(src.width, src.height, fmt);
+        const { pixels: dbuf, format: dfmt, stride } = dest;
+        const { pixels: sbuf, format: sfmt } = src;
+        for (let i = sbuf.length; --i >= 0; ) {
+            dbuf.set(dfmt.fromABGR(sfmt.toABGR(sbuf[i])), i * stride);
+        }
+        return dest;
+    }
+
     width: number;
     height: number;
     stride: number;
     rowStride: number;
     pixels: Float32Array;
     format: FloatFormat;
+    protected __empty: NumericArray;
 
     constructor(
         w: number,
@@ -49,6 +71,9 @@ export class FloatBuffer {
         this.stride = fmt.channels.length;
         this.rowStride = w * this.stride;
         this.pixels = pixels || new Float32Array(w * h * this.stride);
+        this.__empty = <NumericArray>(
+            Object.freeze(new Array<number>(this.stride).fill(0))
+        );
     }
 
     as(fmt: PackedFormat) {
@@ -75,6 +100,7 @@ export class FloatBuffer {
             const idx = (x | 0) * stride + (y | 0) * this.rowStride;
             return this.pixels.subarray(idx, idx + stride);
         }
+        return this.__empty;
     }
 
     setAt(x: number, y: number, col: NumericArray) {
