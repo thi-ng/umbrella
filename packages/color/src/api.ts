@@ -1,4 +1,5 @@
 import type { FnU2, Tuple } from "@thi.ng/api";
+import type { IRandom } from "@thi.ng/random";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 export type ColorMode =
@@ -247,9 +248,48 @@ export interface ColorRange {
     w?: Range[];
 }
 
+export interface ColorRangeOpts {
+    /**
+     * Nunber of result colors.
+     *
+     * @defaultValue ∞
+     */
+    num: number;
+    /**
+     * Max. normalized & randomized hue shift for result colors. Only used if a
+     * base color is given.
+     *
+     * @defaultValue 0.025
+     */
+    variance: number;
+    /**
+     * Tolerance for grayscale check (used for both saturation and brightness).
+     *
+     * @defaultValue 0.001
+     */
+    eps: number;
+    /**
+     * PRNG instance to use for randomized values
+     *
+     * @defaultValue {@link @thi.ng/random#SYSTEM}
+     */
+    rnd: IRandom;
+}
+
 export interface ColorThemePart {
+    /**
+     * Color range spec to use
+     */
     range?: ColorRange | ColorRangePreset;
+    /**
+     * HSV(A) base color
+     */
     base?: ReadonlyColor | CSSColorName;
+    /**
+     * Relative weight of this theme part
+     *
+     * @defaultValue 1.0
+     */
     weight?: number;
 }
 

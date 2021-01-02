@@ -6,6 +6,7 @@ import { analogHSV } from "./analog";
 import type {
     Color,
     ColorRange,
+    ColorRangeOpts,
     ColorRangePreset,
     ColorThemePart,
     ColorThemePartTuple,
@@ -18,12 +19,10 @@ import { ensureHue } from "./internal/ensure-hue";
 import { parseCss } from "./parse-css";
 import { rgbaHsva } from "./rgba-hsva";
 
-export interface ColorRangeOpts {
-    num: number;
-    variance: number;
-    rnd: IRandom;
-}
-
+/**
+ * Preset {@link ColorRange}s for use with {@link colorsFromRange},
+ * {@link colorsFromTheme} etc.
+ */
 export const RANGES: Record<ColorRangePreset, ColorRange> = {
     light: {
         s: [[0.3, 0.7]],
@@ -104,26 +103,48 @@ const DEFAULT_RANGE: ColorRange = {
 const DEFAULT_OPTS: ColorRangeOpts = {
     num: Infinity,
     variance: 0.025,
+    eps: 1e-3,
     rnd: SYSTEM,
 };
 
 const $rnd = (ranges: Range[], rnd: IRandom) =>
     rnd.minmax(...ranges[rnd.int() % ranges.length]);
 
+/**
+ * Takes a {@link ColorRange}, optional base color (HSV(A)) and options to produce
+ * a single new result color. This color is randomized within the channel limits
+ * of the given `range`. If a `base` color is provided, its hue is used as bias
+ * and the `variance` option defines the max. -/+ normalized hue shift of the
+ * result color.
+ *
+ * @remarks
+ * If the base color is a shade of gray (incl. black & white), the result will
+ * be another gray and is based on the range's black and white point sub-ranges.
+ *
+ * The alpha channel of the result color will only be randomized (based on
+ * `range.a` settings) iff no `base` color was provided. If `base` is given, the
+ * result will used the same alpha.
+ *
+ * A custom PRNG can be defined via the `rnd` option (default: `Math.random`).
+ *
+ * @param range
+ * @param base
+ * @param opts
+ */
 export const colorFromRange = (
     range: ColorRange,
     base?: ReadonlyColor,
-    opts?: Partial<Pick<ColorRangeOpts, "variance" | "rnd">>
+    opts?: Partial<Pick<ColorRangeOpts, "variance" | "eps" | "rnd">>
 ): Color => {
     range = { ...DEFAULT_RANGE, ...range };
-    const { variance, rnd } = { ...DEFAULT_OPTS, ...opts };
+    const { variance, rnd, eps } = { ...DEFAULT_OPTS, ...opts };
     let h: number, a: number;
     if (base) {
         h = base[0];
         a = ensureAlpha(base[3]);
-        if (isBlackHsv(base)) return [h, 0, $rnd(range.b!, rnd), a];
-        if (isWhiteHsv(base)) return [h, 0, $rnd(range.w!, rnd), a];
-        if (isGrayHsv(base))
+        if (isBlackHsv(base, eps)) return [h, 0, $rnd(range.b!, rnd), a];
+        if (isWhiteHsv(base, eps)) return [h, 0, $rnd(range.w!, rnd), a];
+        if (isGrayHsv(base, eps))
             return [
                 h,
                 0,
@@ -138,6 +159,15 @@ export const colorFromRange = (
     return [h, $rnd(range.s!, rnd), $rnd(range.v!, rnd), a];
 };
 
+/**
+ * Generator version of {@link colorFromRange}, by default yielding an infinite
+ * sequence of random colors based on given range, base color (optional) and
+ * other opts. Use `num` option to limit number of results.
+ *
+ * @param range
+ * @param base
+ * @param opts
+ */
 export function* colorsFromRange(
     range: ColorRange,
     base?: ReadonlyColor,
@@ -147,6 +177,7 @@ export function* colorsFromRange(
     while (--num >= 0) yield colorFromRange(range, base, opts);
 }
 
+/** @internal */
 const asThemePart = (p: ColorThemePart | ColorThemePartTuple) => {
     let spec: ColorThemePart;
     let weight: number;
@@ -182,6 +213,33 @@ const asThemePart = (p: ColorThemePart | ColorThemePartTuple) => {
     return spec;
 };
 
+/**
+ * Probabilistic color theme generator. Yield randomized colors based on given
+ * weighted set of theme part specs.
+ *
+ * @remarks
+ * Each theme part is a tuple of either:
+ *
+ * - `[range, color, weight?]`
+ * - `[range, weight?]`
+ * - `[color, weight?]`
+ *
+ * `range` can be either a {@link ColorRange} or the name of a {@link RANGE}
+ * preset. Likewise, `color` can be an HSV(A) color tuple or a CSS color name.
+ * The `weight` of each part defines the relative importance/probability of this
+ * theme part, compared to others. Default weight is 1.0.
+ *
+ * @example
+ * ```ts
+ * [...colorsFromTheme(
+ *   [["cool", "aliceblue"], ["bright", "orange", 0.25], ["hotpink", 0.1]],
+ *   { num: 10 }
+ * )]
+ * ```
+ *
+ * @param parts
+ * @param opts
+ */
 export function* colorsFromTheme(
     parts: (ColorThemePart | ColorThemePartTuple)[],
     opts: Partial<ColorRangeOpts> = {}
