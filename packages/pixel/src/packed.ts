@@ -10,6 +10,7 @@ import {
     BayerSize,
     BlendFnInt,
     BlitOpts,
+    IPixelBuffer,
     Lane,
     PackedChannel,
     PackedFormat,
@@ -57,7 +58,7 @@ export const buffer = (
     pixels?: UIntArray
 ) => new PackedBuffer(w, h, fmt, pixels);
 
-export class PackedBuffer {
+export class PackedBuffer implements IPixelBuffer<UIntArray, number> {
     static fromImage(
         img: HTMLImageElement,
         fmt: PackedFormat,
