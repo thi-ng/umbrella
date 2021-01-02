@@ -171,6 +171,24 @@ writeFileSync("export/swatches-ex01.svg", serialize(doc));
 
 ![example result color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-ex01.svg)
 
+### Color sorting
+
+The `sortColors()` function can be used to sort an array of colors using
+arbitrary sort criteria. The following comparators are bundled:
+
+- `selectChannel(i)` - sort by channel
+- `proximityHSV(target)` - sort by distance to target color (HSV colors)
+- `proximityRGB(target)` - sort by distance to target color (RGB colors)
+
+```ts
+// (see above example)
+const colors = [...colorsFromTheme(theme, { num: 200, variance: 0.05 })];
+
+sortColors(colors, proximityHSV([0,1,0.5]));
+```
+
+![sorted color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-ex02.svg)
+
 ### RGBA transformations
 
 RGBA [color matrix
