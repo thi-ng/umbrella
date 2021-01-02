@@ -166,7 +166,7 @@ import { writeFileSync } from "fs";
 
 // color theme definition using:
 // color range preset names, CSS colors and weights
-const theme = <ColorThemePartTuple[]>[
+const theme: ColorThemePartTuple[] = [
     ["cool", "goldenrod"],
     ["fresh", "hotpink", 0.1],
     ["light", "springgreen", 0.1],
@@ -318,7 +318,7 @@ yarn add @thi.ng/color
 <script src="https://unpkg.com/@thi.ng/color/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 8.41 KB / CJS: 8.84 KB / UMD: 8.30 KB
+Package sizes (gzipped, pre-treeshake): ESM: 8.42 KB / CJS: 8.85 KB / UMD: 8.31 KB
 
 ## Dependencies
 

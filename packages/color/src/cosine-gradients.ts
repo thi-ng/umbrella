@@ -18,9 +18,15 @@ import type {
 } from "./api";
 import { clamp } from "./clamp";
 
-// see http://dev.thi.ng/gradients/ - Note: unlike the original Clojure version,
-// these presets are for RGBA (though the alpha channel is configured to always
-// be 1.0)
+/**
+ * Preset cosine gradient definitions. See previews at:
+ * https://github.com/thi-ng/umbrella/tree/develop/packages/color#cosine-gradients
+ *
+ * @remarks
+ * See http://dev.thi.ng/gradients/ for a gradient designer. Note: unlike the
+ * linked original Clojure version, these presets here are for RGBA (though the
+ * alpha channel is configured to always be 1.0)
+ */
 export const GRADIENTS: Record<CosineGradientPreset, CosGradientSpec> = {
     "blue-cyan": [
         [0, 0.5, 0.5, 1],
@@ -156,6 +162,13 @@ export const GRADIENTS: Record<CosineGradientPreset, CosGradientSpec> = {
     ],
 };
 
+/**
+ * Computes a single RGBA color for given gradient spec and normalized position
+ * `t` (in [0..1] interval).
+ *
+ * @param spec
+ * @param t
+ */
 export const cosineColor = (spec: CosGradientSpec, t: number): Color =>
     transduce(
         map<number[], number>(([a, b, c, d]) =>
@@ -166,6 +179,13 @@ export const cosineColor = (spec: CosGradientSpec, t: number): Color =>
         zip(...spec)
     );
 
+/**
+ * Computes a full cosine gradient and returns an array of `n` sampled RGBA
+ * colors.
+ *
+ * @param n
+ * @param spec
+ */
 export const cosineGradient = (n: number, spec: CosGradientSpec) =>
     transduce(map(partial(cosineColor, spec)), push<Color>(), normRange(n - 1));
 

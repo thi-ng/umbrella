@@ -149,7 +149,7 @@ import { writeFileSync } from "fs";
 
 // color theme definition using:
 // color range preset names, CSS colors and weights
-const theme = <ColorThemePartTuple[]>[
+const theme: ColorThemePartTuple[] = [
     ["cool", "goldenrod"],
     ["fresh", "hotpink", 0.1],
     ["light", "springgreen", 0.1],
