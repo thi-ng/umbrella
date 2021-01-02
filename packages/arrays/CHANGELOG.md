@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.8.5...@thi.ng/arrays@0.9.0) (2021-01-02)
+
+
+### Features
+
+* **arrays:** add bisect(), bisectWith() ([17d06a4](https://github.com/thi-ng/umbrella/commit/17d06a43e338aca5f2dc61110382363639daecc5))
+* **arrays:** add into(), sortByCachedKey() ([b94f64c](https://github.com/thi-ng/umbrella/commit/b94f64c2c351cfed5ea9ade5e42ad0b7076ef9e9))
+* **arrays:** update sortByCachedKey(), add tests ([64e8f6e](https://github.com/thi-ng/umbrella/commit/64e8f6e4e83c26c73e23a4831483bd328b78bc49))
+
+
+
+
+
 ## [0.8.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.8.4...@thi.ng/arrays@0.8.5) (2020-12-22)
 
 **Note:** Version bump only for package @thi.ng/arrays

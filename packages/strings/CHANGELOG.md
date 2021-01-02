@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.11.3...@thi.ng/strings@1.11.4) (2021-01-02)
+
+
+### Bug Fixes
+
+* **strings:** update slugifyGH() replacements ([#174](https://github.com/thi-ng/umbrella/issues/174)) ([98a9135](https://github.com/thi-ng/umbrella/commit/98a91351728d730446f9654fc93317c1bece77ed))
+
+
+
+
+
 ## [1.11.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.11.2...@thi.ng/strings@1.11.3) (2020-12-22)
 
 **Note:** Version bump only for package @thi.ng/strings

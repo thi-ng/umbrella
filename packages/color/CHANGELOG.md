@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@2.0.0...@thi.ng/color@2.1.0) (2021-01-02)
+
+
+### Bug Fixes
+
+* **color:** fix cosineGradient() return type ([651590c](https://github.com/thi-ng/umbrella/commit/651590c2f3c4365e06f4bab85d2c9f9b99d3c4c1))
+
+
+### Features
+
+* **color:** add color swatch hiccup helpers ([5ecc528](https://github.com/thi-ng/umbrella/commit/5ecc5285fdea2d35535e5469d4d81a2b4d6878e9))
+* **color:** add declarative range/theme iterators ([971d5dc](https://github.com/thi-ng/umbrella/commit/971d5dcbf061b0c4c52ffa1aca24d7150dea81e9))
+* **color:** add HSV/RGB distance fns ([3bd3969](https://github.com/thi-ng/umbrella/commit/3bd396927c3aab7942853ec9b9f6013a1248389c))
+* **color:** add HSV/RGB gray axis checks ([927202b](https://github.com/thi-ng/umbrella/commit/927202b77deaa808b57ee189ff483839975804d0))
+* **color:** add sortColors(), comparators ([6761feb](https://github.com/thi-ng/umbrella/commit/6761feb65e24545290547408b8ba62a3ba4baedc))
+* **color:** update ColorRangeOpts, add docstrings ([350fbe5](https://github.com/thi-ng/umbrella/commit/350fbe568b8abfc968a104cbada5abdeeb2b4107))
+
+
+
+
+
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@1.3.2...@thi.ng/color@2.0.0) (2020-12-22)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.2.36...@thi.ng/text-canvas@0.3.0) (2021-01-02)
+
+
+### Features
+
+* **text-canvas:** add ANSI256 & HTML_565 formatters ([1f2d35b](https://github.com/thi-ng/umbrella/commit/1f2d35b306c30bfecd168f25abd0ead18e2fdf2a))
+* **text-canvas:** add imageRaw(), update image() ([34037ad](https://github.com/thi-ng/umbrella/commit/34037ad4ec87027779c72b683c3a4194f1995e79))
+
+
+
+
+
 ## [0.2.36](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.2.35...@thi.ng/text-canvas@0.2.36) (2020-12-22)
 
 **Note:** Version bump only for package @thi.ng/text-canvas

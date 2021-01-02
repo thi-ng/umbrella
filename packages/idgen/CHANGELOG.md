@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.29](https://github.com/thi-ng/umbrella/compare/@thi.ng/idgen@0.2.28...@thi.ng/idgen@0.2.29) (2021-01-02)
+
+
+### Performance Improvements
+
+* **idgen:** minor updates IDGen, add doc strings ([1c0e284](https://github.com/thi-ng/umbrella/commit/1c0e284e9f48d4a37a55f74db0fb2b6eade9dc89))
+
+
+
+
+
 ## [0.2.28](https://github.com/thi-ng/umbrella/compare/@thi.ng/idgen@0.2.27...@thi.ng/idgen@0.2.28) (2020-12-22)
 
 **Note:** Version bump only for package @thi.ng/idgen

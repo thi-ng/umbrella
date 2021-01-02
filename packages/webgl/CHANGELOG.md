@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@3.3.9...@thi.ng/webgl@3.3.10) (2021-01-02)
+
+**Note:** Version bump only for package @thi.ng/webgl
+
+
+
+
+
 ## [3.3.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@3.3.8...@thi.ng/webgl@3.3.9) (2020-12-22)
 
 **Note:** Version bump only for package @thi.ng/webgl

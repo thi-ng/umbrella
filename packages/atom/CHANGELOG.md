@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@4.1.25...@thi.ng/atom@4.1.26) (2021-01-02)
+
+**Note:** Version bump only for package @thi.ng/atom
+
+
+
+
+
 ## [4.1.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/atom@4.1.24...@thi.ng/atom@4.1.25) (2020-12-22)
 
 **Note:** Version bump only for package @thi.ng/atom

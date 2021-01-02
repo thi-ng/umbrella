@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hiccup-markdown",
-    "version": "1.2.39",
+    "version": "1.2.40",
     "description": "Markdown parser & serializer from/to Hiccup format",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,16 +49,16 @@
         "typescript": "^4.1.3"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.13.5",
-        "@thi.ng/arrays": "^0.8.5",
-        "@thi.ng/checks": "^2.7.12",
-        "@thi.ng/defmulti": "^1.3.3",
-        "@thi.ng/errors": "^1.2.25",
-        "@thi.ng/fsm": "^2.4.30",
-        "@thi.ng/hiccup": "^3.6.5",
-        "@thi.ng/strings": "^1.11.3",
-        "@thi.ng/text-canvas": "^0.2.36",
-        "@thi.ng/transducers": "^7.5.3"
+        "@thi.ng/api": "^6.13.6",
+        "@thi.ng/arrays": "^0.9.0",
+        "@thi.ng/checks": "^2.7.13",
+        "@thi.ng/defmulti": "^1.3.4",
+        "@thi.ng/errors": "^1.2.26",
+        "@thi.ng/fsm": "^2.4.31",
+        "@thi.ng/hiccup": "^3.6.6",
+        "@thi.ng/strings": "^1.11.4",
+        "@thi.ng/text-canvas": "^0.3.0",
+        "@thi.ng/transducers": "^7.5.4"
     },
     "files": [
         "*.js",
