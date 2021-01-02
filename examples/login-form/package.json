@@ -23,7 +23,11 @@
         "process": false
     },
     "thi.ng": {
-        "readme": true
+        "readme": [
+            "atom",
+            "hdom",
+            "strings"
+        ]
     },
     "devDependencies": {
         "@types/snowpack-env": "^2.3.3"

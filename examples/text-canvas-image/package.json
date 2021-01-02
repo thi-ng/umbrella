@@ -1,7 +1,7 @@
 {
     "name": "text-canvas-image",
     "version": "0.0.1",
-    "description": "Texture warping w/ 16bit color output",
+    "description": "Textmode image warping w/ 16bit color output",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
