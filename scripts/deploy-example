@@ -9,7 +9,7 @@ const BUILD = `examples/${EXAMPLE}/build/`;
 const DEST_DIR = `/umbrella/${EXAMPLE}`;
 const BUCKET = `s3://demo.thi.ng${DEST_DIR}`;
 const CF_DISTRO = "EL2F1HMDPZ2RL";
-const PROFILE = "toxi-full";
+const PROFILE = "thing-umbrella";
 const OPTS = `--profile ${PROFILE} --acl public-read`;
 const GZOPTS = `${OPTS} --content-encoding gzip`;
 

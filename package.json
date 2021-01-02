@@ -42,7 +42,7 @@
         "doc:ae": "lerna run doc:ae && scripts/collect-apis",
         "doc:examples": "ts-node -P tools/tsconfig.json tools/src/readme-examples.ts",
         "examples": "scripts/build-examples",
-        "pub": "lerna publish --registry https://registry.npmjs.org/ && yarn doc && scripts/upload-docs",
+        "pub": "lerna publish --registry https://registry.npmjs.org/ && yarn doc && scripts/deploy-docs",
         "test": "yarn build && yarn test:only",
         "test:only": "lerna run test",
         "tool:imports": "ts-node -P tools/tsconfig.json tools/src/check-imports.ts",
