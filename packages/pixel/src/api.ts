@@ -179,6 +179,11 @@ export interface FloatFormatSpec {
     alpha?: boolean;
     gray?: boolean;
     channels: Lane[];
+    /**
+     * If given, {@link defFloatFormat} won't generate conversions and use those
+     * provided instead.
+     */
+    convert?: IABGRConvert<NumericArray>;
 }
 
 export interface FloatFormat extends IABGRConvert<NumericArray> {
