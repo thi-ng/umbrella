@@ -2,12 +2,16 @@ import { serialize } from "@thi.ng/hiccup";
 import { svg } from "@thi.ng/hiccup-svg";
 import { writeFileSync } from "fs";
 import {
+    ColorRangePreset,
     colorsFromTheme,
     ColorThemePartTuple,
     cosineGradient,
     CosineGradientPreset,
     GRADIENTS,
     hsvaRgba,
+    proximityHSV,
+    RANGES,
+    sortColors,
     swatchesH,
 } from "../src";
 
@@ -28,6 +32,38 @@ Object.keys(GRADIENTS).forEach((id) => {
         )
     );
 });
+
+////////////////////////////////////////////////////////////
+
+for (let id in RANGES) {
+    writeFileSync(
+        `export/swatches-green-${id}.svg`,
+        serialize(
+            svg(
+                { width: 500, height: 50, convert: true },
+                swatchesH(
+                    sortColors(
+                        [
+                            ...colorsFromTheme(
+                                [
+                                    [<ColorRangePreset>id, "goldenrod"],
+                                    [<ColorRangePreset>id, "turquoise"],
+                                ],
+                                {
+                                    num: 100,
+                                    variance: 0.05,
+                                }
+                            ),
+                        ],
+                        proximityHSV([0, 1, 1])
+                    ).map((x) => hsvaRgba([], x)),
+                    5,
+                    50
+                )
+            )
+        )
+    );
+}
 
 ////////////////////////////////////////////////////////////
 
