@@ -1,5 +1,6 @@
 import { memoize1 } from "@thi.ng/memoize";
 import type { StringFormat } from "./api";
+import { defFormat } from "./string";
 
 const ANSI_RESET = `\x1b[0m`;
 
@@ -45,3 +46,17 @@ export const FMT_ANSI256: StringFormat = {
  */
 export const format256 = (fg: number, bg = 0) =>
     ((bg & 0xff) << 8) | (fg & 0xff);
+
+/**
+ * Syntax sugar for `defFormat(FMT_ANSI16, ...)`
+ *
+ * @param col
+ */
+export const defAnsi16 = (col: number) => defFormat(FMT_ANSI16, col);
+
+/**
+ * Syntax sugar for `defFormat(FMT_ANSI256, ...)`
+ *
+ * @param col
+ */
+export const defAnsi256 = (col: number) => defFormat(FMT_ANSI256, col);
