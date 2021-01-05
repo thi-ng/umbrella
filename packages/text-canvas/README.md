@@ -23,6 +23,7 @@ This project is part of the
   - [String conversion format presets](#string-conversion-format-presets)
   - [256 color ANSI format](#256-color-ansi-format)
   - [16bit color HTML format](#16bit-color-html-format)
+  - [Ad-hoc formatting of strings](#ad-hoc-formatting-of-strings)
   - [Stroke styles](#stroke-styles)
   - [Clipping](#clipping)
   - [Drawing functions](#drawing-functions)
@@ -58,7 +59,7 @@ yarn add @thi.ng/text-canvas
 <script src="https://unpkg.com/@thi.ng/text-canvas/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.63 KB / CJS: 5.94 KB / UMD: 5.71 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.83 KB / CJS: 6.16 KB / UMD: 5.88 KB
 
 ## Dependencies
 
@@ -96,13 +97,13 @@ const c = canvas(width, height, format?, style?);
 
 ### Format identifiers
 
-The text canvas stores all characters in a `Uint32Array` with the lower
-16 bits used for the UTF-16 code and the upper 16 bits for **abitrary**
-formatting data. The package [provides its own format
+The text canvas stores all characters in a `Uint32Array` with the lower 16 bits
+used for the UTF-16 code and the upper 16 bits for **abitrary** formatting data.
+The package [provides its own format
 IDs](https://github.com/thi-ng/umbrella/blob/develop/packages/text-canvas/src/api.ts#L146)
-which are tailored for the bundled ANSI & HTML formatters, but users are
-free to choose use any other system (but then will also need to
-implement a custom string formatter impl).
+which are tailored for the bundled ANSI & HTML formatters, but users are free to
+choose use any other system (but then will also need to implement a custom
+string formatter impl).
 
 The default format ID layout is as shown:
 
@@ -160,8 +161,7 @@ setFormat(canvas, FG_BLACK | BG_LIGHT_CYAN | BOLD | UNDERLINE);
 
 ### String conversion format presets
 
-Canvas-to-string conversion is completely customizable via the
-[`StringFormat`
+Canvas-to-string conversion is completely customizable via the [`StringFormat`
 interface](https://github.com/thi-ng/umbrella/blob/develop/packages/text-canvas/src/api.ts#L78)
 and the following presets are supplied:
 
@@ -203,8 +203,9 @@ Source: [Wikipedia](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)
 ### 16bit color HTML format
 
 Similar to the above custom ANSI format, here all available 16 bits are used to
-store color information, in the standard RGB565 format (5bits red, 6bits green,
-5bits blue). This also means, only either the text or background color can be
+store color information, in the standard [RGB565
+format](https://en.wikipedia.org/wiki/High_color) (5bits red, 6bits green, 5bits
+blue). This also means, only either the text or background color can be
 controlled and no other formatting flag (bold, underline etc.) are available.
 
 ```ts
@@ -214,6 +215,39 @@ el.innerHTML = toString(canvas, FMT_HTML_565());
 
 // assign bg colors
 el.innerHTML = toString(canvas, FMT_HTML_565("background"));
+```
+
+### Ad-hoc formatting of strings
+
+String formatters can also be used in an ad-hoc manner, without requiring any of
+the other text canvas functionality.
+
+```ts
+// create & use a HTML formatter
+defFormat(FMT_HTML_INLINE_CSS, FG_LIGHT_RED | BG_GRAY)("hello")
+// "<span style="color:#f55;background:#555;">hello</span>"
+
+// create & use an ANSI formatter
+defFormat(FMT_ANSI16, FG_LIGHT_RED | BG_GRAY)("hello")
+// "\x1B[91;100mhello\x1B[0m"
+
+// ANSI syntax sugar (same result as above)
+defAnsi16(FG_LIGHT_RED | BG_GRAY)("hello")
+// "\x1B[91;100mhello\x1B[0m"
+```
+
+Furthermore, `defFormatPresets()` can be used to create formatting functions for
+all 16 preset [foreground color IDs](#colors) for a given string format
+strategy:
+
+```ts
+const ansi = defFormatPresets(FMT_ANSI16);
+
+`${ansi.green("hello")} ${ansi.lightRed("world")}!`;
+// '\x1B[32mhello\x1B[0m \x1B[91mworld\x1B[0m!'
+
+const html = defFormatPresets(FMT_HTML_TACHYONS);
+// '<span class="dark-green ">hello</span> <span class="red ">world</span>!'
 ```
 
 ### Stroke styles
@@ -234,9 +268,9 @@ Functions:
 
 ### Clipping
 
-All drawing operations are constrained to the currently active clipping
-rect (by default full canvas). The canvas maintains a stack of such
-clipping regions, each newly pushed one being intersected with the previous top-of-stack rect:
+All drawing operations are constrained to the currently active clipping rect (by
+default full canvas). The canvas maintains a stack of such clipping regions,
+each newly pushed one being intersected with the previous top-of-stack rect:
 
 - `beginClip(canvas, x, y, w, h)` - push new clip rect
 - `endClip(canvas)` - restore previous clip rect
