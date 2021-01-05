@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.3.0...@thi.ng/text-canvas@0.4.0) (2021-01-05)
+
+
+### Features
+
+* **text-canvas:** add formatter fns/utils ([fb4470d](https://github.com/thi-ng/umbrella/commit/fb4470d5a708e3d1f700bab5274463f754489940))
+
+
+
+
+
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.2.36...@thi.ng/text-canvas@0.3.0) (2021-01-02)
 
 

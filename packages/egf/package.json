@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/egf",
-    "version": "0.3.6",
+    "version": "0.3.7",
     "description": "Extensible Graph Format",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -51,7 +51,7 @@
         "@thi.ng/dot": "^1.2.23",
         "@thi.ng/errors": "^1.2.26",
         "@thi.ng/prefixes": "^0.1.10",
-        "@thi.ng/strings": "^1.11.4",
+        "@thi.ng/strings": "^1.12.0",
         "@thi.ng/transducers-binary": "^0.6.1"
     },
     "files": [

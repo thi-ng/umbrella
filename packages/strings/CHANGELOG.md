@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.11.4...@thi.ng/strings@1.12.0) (2021-01-05)
+
+
+### Features
+
+* **strings:** add interpolateKeys() ([bd78d1d](https://github.com/thi-ng/umbrella/commit/bd78d1dba5e467e6cda452e6db6fcd0fb9a3cf19))
+
+
+
+
+
 ## [1.11.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.11.3...@thi.ng/strings@1.11.4) (2021-01-02)
 
 
