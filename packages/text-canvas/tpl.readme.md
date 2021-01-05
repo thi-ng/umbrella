@@ -195,6 +195,8 @@ const ansi = defFormatPresets(FMT_ANSI16);
 // '\x1B[32mhello\x1B[0m \x1B[91mworld\x1B[0m!'
 
 const html = defFormatPresets(FMT_HTML_TACHYONS);
+
+`${html.green("hello")} ${html.lightRed("world")}!`;
 // '<span class="dark-green ">hello</span> <span class="red ">world</span>!'
 ```
 
