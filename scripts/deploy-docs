@@ -4,10 +4,12 @@ const execSync = require("child_process").execSync;
 
 const PKG = process.argv[2];
 
-const BUCKET = "s3://docs.thi.ng";
-const PREFIX = "/umbrella";
-const S3_OPTS = `--profile thing-umbrella --acl public-read`;
+const AWS_PROFILE = "--profile thing-umbrella";
+const S3_BUCKET = "s3://docs.thi.ng";
+const S3_PREFIX = "/umbrella";
+const S3_OPTS = `${AWS_PROFILE} --acl public-read`;
 const SYNC_OPTS = `${S3_OPTS} --include "*" --exclude "*.sass" --exclude "*.ts"`;
+const CF_DISTRO = "E2855K70PVNL1D";
 
 const MINIFY_OPTS =
     "--file-ext html --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype --minify-css true";
@@ -31,14 +33,14 @@ const sanitizeFile = (f) => {
             /\{@link @thi\.ng\/([a-z0-9-]+)(#(\w+))?\s*\|\s*([^\}]+)\}/g,
             (_, id, label) => {
                 updated = true;
-                return `<a href="${PREFIX}/${id}/">${label}</a>`;
+                return `<a href="${S3_PREFIX}/${id}/">${label}</a>`;
             }
         )
         .replace(
             /\{@link @thi\.ng\/([a-z0-9-]+)#(\w+)?\s*\}/g,
             (_, id, sym) => {
                 updated = true;
-                let path = `${PREFIX}/${id}/`;
+                let path = `${S3_PREFIX}/${id}/`;
                 if (sym.startsWith("I")) {
                     path += `interfaces/${sym.toLowerCase()}.html`;
                 } else if (/^[a-z]/.test(sym)) {
@@ -49,7 +51,7 @@ const sanitizeFile = (f) => {
         )
         .replace(/\{@link @thi\.ng\/([a-z0-9-]+)#?\s*\}/g, (_, id) => {
             updated = true;
-            return `<a href="${PREFIX}/${id}/">@thi.ng/${id}</a>`;
+            return `<a href="${S3_PREFIX}/${id}/">@thi.ng/${id}</a>`;
         });
     if (updated) {
         console.log("sanitizing:", f);
@@ -74,10 +76,15 @@ const syncPackage = (id, root) => {
     console.log("syncing", root);
     console.log(
         execSync(
-            `aws s3 sync ${root} ${BUCKET}${PREFIX}/${id} ${SYNC_OPTS}`
+            `aws s3 sync ${root} ${S3_BUCKET}${S3_PREFIX}/${id} ${SYNC_OPTS}`
         ).toString()
     );
 };
+
+const invalidatePackage = (id) =>
+    execSync(
+        `aws cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths "${S3_PREFIX}/${id}/*" ${AWS_PROFILE}`
+    );
 
 const processPackage = (id) => {
     console.log("processing", id);
@@ -86,6 +93,7 @@ const processPackage = (id) => {
         sanitizePackage(root);
         minifyPackage(root);
         syncPackage(id, root);
+        invalidatePackage(id);
     } catch (e) {
         console.warn(e);
     }
@@ -105,4 +113,4 @@ execSync(
     `node_modules/.bin/ts-node -P tools/tsconfig.json tools/src/doc-table.ts`
 );
 
-execSync(`aws s3 cp docs.html ${BUCKET}/index.html ${S3_OPTS}`);
+execSync(`aws s3 cp docs.html ${S3_BUCKET}/index.html ${S3_OPTS}`);
