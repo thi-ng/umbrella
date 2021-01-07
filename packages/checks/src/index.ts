@@ -41,6 +41,7 @@ export * from "./is-node";
 export * from "./is-not-string-iterable";
 export * from "./is-null";
 export * from "./is-number";
+export * from "./is-numeric";
 export * from "./is-object";
 export * from "./is-odd";
 export * from "./is-plain-object";
