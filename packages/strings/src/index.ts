@@ -21,6 +21,7 @@ export * from "./repeat";
 export * from "./slugify";
 export * from "./splice";
 export * from "./split";
+export * from "./tabs";
 export * from "./trim";
 export * from "./truncate";
 export * from "./truncate-left";
