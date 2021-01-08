@@ -1,33 +1,91 @@
+import type { Fn } from "@thi.ng/api";
 import type { ArgSpec } from "./api";
-import { int, ints, json, oneOf } from "./coerce";
+import {
+    coerceFloat,
+    coerceFloats,
+    coerceHexInt,
+    coerceHexInts,
+    coerceInt,
+    coerceInts,
+    coerceJson,
+    coerceOneOf,
+} from "./coerce";
 
-export const argFlag = (spec: Partial<ArgSpec<boolean>>) => ({
-    flag: <const>true,
+const $single = <T = number>(coerce: Fn<string, T>, hint: string) => <
+    S extends Partial<ArgSpec<T>>
+>(
+    spec: S
+): S & { coerce: Fn<string, T>; hint: string } => ({
+    coerce,
+    hint,
     ...spec,
 });
 
-export const argInt = (spec: Partial<ArgSpec<number>>) => ({
-    coerce: int,
-    hint: "INT",
+const $multi = <T = number>(coerce: Fn<string[], T[]>, hint: string) => <
+    S extends Partial<ArgSpec<T[]> & { comma: boolean }>
+>(
+    spec: S
+): S & { coerce: Fn<string[], T[]>; hint: string; multi: true } => ({
+    hint: hint + (spec.comma ? "[,..]" : ""),
+    multi: true,
+    coerce,
     ...spec,
 });
 
-export const argInts = (spec: Partial<ArgSpec<number[]>>) => ({
-    coerce: ints,
-    hint: "INT",
-    multi: <const>true,
-    ...spec,
-});
+export const flag = <S extends Partial<ArgSpec<boolean>>>(
+    spec: S
+): S & { flag: true } => ({ flag: true, ...spec });
 
-export const argJSON = <T>(spec: Partial<ArgSpec<T>>) => ({
-    coerce: json,
+export const string = <S extends Partial<ArgSpec<string>>>(
+    spec: S
+): S & { hint: string } => ({ hint: "STR", ...spec });
+
+export const strings = $multi<string>((x) => x, "STR");
+
+export const float = $single(coerceFloat, "NUM");
+
+export const hex = $single(coerceHexInt, "HEX");
+
+export const int = $single(coerceInt, "INT");
+
+export const floats = $multi(coerceFloats, "NUM");
+
+export const hexes = $multi(coerceHexInts, "HEX");
+
+export const ints = $multi(coerceInts, "INT");
+
+export const json = <T, S extends Partial<ArgSpec<T>>>(
+    spec: S
+): S & { coerce: Fn<string, T>; hint: string } => ({
+    coerce: coerceJson,
     hint: "JSON",
     ...spec,
 });
 
-export const argEnum = (opts: string[], spec: Partial<ArgSpec<string>>) => ({
-    coerce: oneOf(opts),
+export const oneOf = <K extends string, S extends Partial<ArgSpec<K>>>(
+    opts: readonly K[],
+    spec: S
+): S & { coerce: Fn<string, K>; hint: string; desc: string } => ({
+    coerce: coerceOneOf(opts),
     hint: "ID",
+    ...spec,
+    desc: `${spec.desc}: ${opts.map((x) => `'${x}'`).join(", ")}`,
+});
+
+export const oneOfMulti = <
+    K extends string,
+    S extends Partial<ArgSpec<K[]> & { comma: boolean }>
+>(
+    opts: readonly K[],
+    spec: S
+): S & {
+    coerce: Fn<string[], K[]>;
+    hint: string;
+    multi: true;
+} & { desc: string } => ({
+    coerce: (xs) => xs.map(coerceOneOf(opts)),
+    hint: "ID" + (spec.comma ? "[,..]" : ""),
+    multi: true,
     ...spec,
     desc: `${spec.desc}: ${opts.map((x) => `'${x}'`).join(", ")}`,
 });
