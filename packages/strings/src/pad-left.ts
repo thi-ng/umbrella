@@ -9,16 +9,18 @@ import { repeat } from "./repeat";
 export const padLeft: (
     n: number,
     ch?: string | number
-) => Stringer<any> = memoizeJ<
+) => (x: any, length?: number) => string = memoizeJ<
     number,
     string | number | undefined,
     Stringer<any>
 >((n, ch = " ") => {
     const buf = repeat(String(ch), n);
-    return (x: any) =>
-        x != null
-            ? ((x = x.toString()), x.length < n ? buf.substr(x.length) + x : x)
-            : buf;
+    return (x: any, len?: number) => {
+        if (x == null) return buf;
+        x = x.toString();
+        len = len !== undefined ? len : x.length;
+        return len! < n ? buf.substr(len!) + x : x;
+    };
 });
 
 /**
