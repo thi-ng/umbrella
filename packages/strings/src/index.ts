@@ -27,3 +27,4 @@ export * from "./truncate-left";
 export * from "./units";
 export * from "./uuid";
 export * from "./wrap";
+export * from "./word-wrap";
