@@ -12,11 +12,7 @@
  * @param delim
  * @param includeDelim
  */
-export function* split(
-    src: string,
-    delim = /(\r\n)|\n|\r/g,
-    includeDelim = false
-) {
+export function* split(src: string, delim = /\r?\n/g, includeDelim = false) {
     let i = 0;
     const n = src.length;
     const include = ~~includeDelim;

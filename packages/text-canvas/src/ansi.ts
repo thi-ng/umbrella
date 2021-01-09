@@ -29,7 +29,7 @@ export const FMT_ANSI16: StringFormat = {
 };
 
 export const FMT_ANSI256: StringFormat = {
-    start: (x: number) => `\x1b[38;5;${x & 0xff};48;5;${x >>> 16}m`,
+    start: (x: number) => `\x1b[38;5;${x & 0xff};48;5;${x >>> 8}m`,
     end: ANSI_RESET,
     prefix: ANSI_RESET,
     suffix: "\n",

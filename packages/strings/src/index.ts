@@ -1,4 +1,6 @@
 export * from "./api";
+
+export * from "./ansi";
 export * from "./case";
 export * from "./center";
 export * from "./cursor";
@@ -19,9 +21,11 @@ export * from "./repeat";
 export * from "./slugify";
 export * from "./splice";
 export * from "./split";
+export * from "./tabs";
 export * from "./trim";
 export * from "./truncate";
 export * from "./truncate-left";
 export * from "./units";
 export * from "./uuid";
 export * from "./wrap";
+export * from "./word-wrap";
