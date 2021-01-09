@@ -1,5 +1,6 @@
 import { isHex, isNumericFloat, isNumericInt } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
+import type { KVDict } from "./api";
 
 export const coerceFloat = (x: string) =>
     isNumericFloat(x)
@@ -23,3 +24,12 @@ export const coerceJson = <T>(x: string): T => JSON.parse(x);
 export const coerceOneOf = <K extends string>(xs: readonly K[]) => (
     x: string
 ) => (xs.includes(<K>x) ? <K>x : illegalArgs(`invalid option: ${x}`));
+
+export const coerceKV = (delim = "=") => (pairs: string[]) =>
+    pairs.reduce((acc, x) => {
+        const idx = x.indexOf(delim);
+        idx < 0 &&
+            illegalArgs(`got '${x}', but expected a 'key${delim}value' pair`);
+        acc[x.substr(0, idx)] = x.substr(idx + 1);
+        return acc;
+    }, <KVDict>{});

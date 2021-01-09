@@ -4,6 +4,7 @@ export interface ArgSpecBase {
     alias?: string;
     desc?: string;
     hint?: string;
+    fn?: Fn<string, boolean>;
 }
 
 export type ArgSpecRestrict<T> = undefined extends T
@@ -16,16 +17,17 @@ export type ArgSpecExt = ArgSpec<any> & {
     coerce?: Fn<any, any>;
     comma?: boolean;
     default?: any;
-    optional?: any;
-    multi?: boolean;
     flag?: boolean;
+    fn?: Fn<string, boolean>;
+    multi?: boolean;
+    optional?: any;
 };
 
 export type Args<T extends IObjectOf<any>> = {
     [id in keyof T]: boolean extends T[id]
         ? ArgSpec<T[id]> & { flag: true }
         : any[] extends T[id]
-        ? T[id] extends string[]
+        ? string[] extends T[id]
             ? ArgSpec<T[id]> & {
                   coerce?: Fn<string[], Exclude<T[id], undefined>>;
                   multi: true;
@@ -36,10 +38,19 @@ export type Args<T extends IObjectOf<any>> = {
                   multi: true;
                   comma?: boolean;
               }
+        : KVDict extends T[id]
+        ? ArgSpec<T[id]> & {
+              coerce: Fn<string[], Exclude<T[id], undefined>>;
+              multi: true;
+          }
         : string extends T[id]
         ? ArgSpec<T[id]> & { coerce?: Fn<string, Exclude<T[id], undefined>> }
-        : ArgSpec<T[id]> & { coerce: Fn<string, Exclude<T[id], undefined>> };
+        : ArgSpec<T[id]> & {
+              coerce: Fn<string, Exclude<T[id], undefined>>;
+          };
 };
+
+export type KVDict = IObjectOf<string>;
 
 export interface ParseResult<T> {
     result: T;
@@ -86,9 +97,19 @@ export interface UsageOpts {
      *
      * @defaultValue true
      */
-    color: boolean;
-    colorParam: number;
-    colorRequired: number;
-    colorMulti: number;
-    colorHint: number;
+    color: Partial<ColorTheme> | false;
 }
+
+export interface ColorTheme {
+    hint: number;
+    multi: number;
+    param: number;
+    required: number;
+}
+
+export const DEFAULT_THEME: ColorTheme = {
+    hint: 90,
+    multi: 90,
+    param: 96,
+    required: 33,
+};

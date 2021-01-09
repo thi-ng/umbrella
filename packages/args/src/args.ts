@@ -1,5 +1,5 @@
 import type { Fn } from "@thi.ng/api";
-import type { ArgSpec } from "./api";
+import type { ArgSpec, KVDict } from "./api";
 import {
     coerceFloat,
     coerceFloats,
@@ -8,6 +8,7 @@ import {
     coerceInt,
     coerceInts,
     coerceJson,
+    coerceKV,
     coerceOneOf,
 } from "./coerce";
 
@@ -88,4 +89,14 @@ export const oneOfMulti = <
     multi: true,
     ...spec,
     desc: `${spec.desc}: ${opts.map((x) => `'${x}'`).join(", ")}`,
+});
+
+export const kvPairs = <S extends Partial<ArgSpec<KVDict>>>(
+    spec: S,
+    delim = "="
+): S & { coerce: Fn<string[], KVDict>; hint: string; multi: true } => ({
+    coerce: coerceKV(delim),
+    hint: `key${delim}val`,
+    multi: true,
+    ...spec,
 });

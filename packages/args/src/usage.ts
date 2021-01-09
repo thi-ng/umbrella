@@ -6,7 +6,7 @@ import {
     stripAnsi,
     wordWrapLines,
 } from "@thi.ng/strings";
-import type { Args, ArgSpecExt, UsageOpts } from "./api";
+import { Args, ArgSpecExt, ColorTheme, DEFAULT_THEME, UsageOpts } from "./api";
 
 export const usage = <T extends IObjectOf<any>>(
     specs: Args<T>,
@@ -15,26 +15,23 @@ export const usage = <T extends IObjectOf<any>>(
     opts = {
         lineWidth: 80,
         paramWidth: 32,
-        color: true,
-        colorParam: 96,
-        colorRequired: 33,
-        colorMulti: 90,
-        colorHint: 90,
         ...opts,
     };
+    const theme =
+        opts.color !== false
+            ? { ...DEFAULT_THEME, ...opts.color }
+            : <ColorTheme>{};
     const indent = repeat(" ", opts.paramWidth!);
     const ansi = (x: string, col: number) =>
-        opts.color ? `\x1b[${col}m${x}\x1b[0m` : x;
+        col != null ? `\x1b[${col}m${x}\x1b[0m` : x;
     return Object.keys(specs)
         .sort()
         .map((id) => {
             const spec: ArgSpecExt = specs[id];
-            const hint = spec.hint
-                ? ansi(" " + spec.hint, opts.colorHint!)
-                : "";
-            const name = ansi(`--${kebab(id)}`, opts.colorParam!);
+            const hint = spec.hint ? ansi(" " + spec.hint, theme.hint!) : "";
+            const name = ansi(`--${kebab(id)}`, theme.param!);
             const alias = spec.alias
-                ? `${ansi("-" + spec.alias, opts.colorParam!)}${hint}, `
+                ? `${ansi("-" + spec.alias, theme.param!)}${hint}, `
                 : "";
             const params = `${alias}${name}${hint}`;
             const isRequired = spec.optional === false;
@@ -44,18 +41,18 @@ export const usage = <T extends IObjectOf<any>>(
             const prefix = prefixes.length
                 ? ansi(
                       `[${prefixes.join(", ")}] `,
-                      isRequired ? opts.colorRequired! : opts.colorMulti!
+                      isRequired ? theme.required! : theme.multi!
                   )
                 : "";
-            const res: string =
+            return (
                 padRight(opts.paramWidth!)(params, stripAnsi(params).length) +
                 wordWrapLines(
                     prefix + (spec.desc || ""),
                     opts.lineWidth! - opts.paramWidth!
                 )
                     .map((l, i) => (i > 0 ? indent : "") + l)
-                    .join("\n");
-            return res;
+                    .join("\n")
+            );
         })
         .join("\n");
 };
