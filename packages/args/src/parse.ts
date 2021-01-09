@@ -63,7 +63,7 @@ export const parse = <T extends IObjectOf<any>>(
             }
         }
         id && illegalArgs(`missing value for: --${id}`);
-        for (let id in specs) {
+        for (id in specs) {
             spec = specs[id];
             if (acc[id] === undefined) {
                 if (spec.default !== undefined) {
