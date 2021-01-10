@@ -1,7 +1,7 @@
 import type { IObjectOf, Nullable } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
-import { camel, kebab } from "@thi.ng/strings";
+import { camel } from "@thi.ng/strings";
 import type { Args, ArgSpecExt, ParseOpts, ParseResult } from "./api";
 import { usage } from "./usage";
 
@@ -25,10 +25,13 @@ export const parse = <T extends IObjectOf<any>>(
             if (!id) {
                 if (a[0] === "-") {
                     if (a[1] === "-") {
-                        if (a === "--") break;
+                        if (a === "--") {
+                            i++;
+                            break;
+                        }
                         id = camel(a.substr(2));
                     } else {
-                        id = aliases[a.substr(1)];
+                        id = aliases[a[1]];
                         !id && illegalArgs(`unknown alias: ${a}`);
                     }
                     if (id === "help") {
@@ -43,15 +46,9 @@ export const parse = <T extends IObjectOf<any>>(
                         id = null;
                         if (spec.fn && !spec.fn("true")) break;
                     }
-                } else {
-                    illegalArgs(
-                        `got '${a}', but expected one of: ${Object.keys(specs)
-                            .map((x) => `--${kebab(x)}`)
-                            .join(", ")}`
-                    );
-                }
+                } else break;
             } else {
-                a[0] === "-" && illegalArgs(`missing value for: --${id}`);
+                /^-[a-z]/i.test(a) && illegalArgs(`missing value for: --${id}`);
                 if (spec!.multi) {
                     isArray(acc[id]) ? acc[id].push(a) : (acc[id] = [a]);
                 } else {
@@ -74,9 +71,11 @@ export const parse = <T extends IObjectOf<any>>(
             } else {
                 if (spec.coerce) {
                     try {
-                        if (spec.multi && spec.comma) {
+                        if (spec.multi && spec.delim) {
                             acc[id] = (<string[]>acc[id]).reduce(
-                                (acc, x) => (acc.push(...x.split(",")), acc),
+                                (acc, x) => (
+                                    acc.push(...x.split(spec!.delim!)), acc
+                                ),
                                 <string[]>[]
                             );
                         }
@@ -87,7 +86,12 @@ export const parse = <T extends IObjectOf<any>>(
                 }
             }
         }
-        return { result: acc, index: i };
+        return {
+            result: acc,
+            index: i,
+            rest: argv.slice(i),
+            done: i >= argv.length,
+        };
     } catch (e) {
         if (opts.showUsage) {
             console.log(e.message + "\n\n" + usage(specs, opts.usageOpts));

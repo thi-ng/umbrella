@@ -34,7 +34,8 @@ export const usage = <T extends IObjectOf<any>>(
                 ? `${ansi("-" + spec.alias, theme.param!)}${hint}, `
                 : "";
             const params = `${alias}${name}${hint}`;
-            const isRequired = spec.optional === false;
+            const isRequired =
+                spec.optional === false && spec.default === undefined;
             const prefixes: string[] = [];
             isRequired && prefixes.push("required");
             spec.multi && prefixes.push("multiple");

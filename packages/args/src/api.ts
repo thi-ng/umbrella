@@ -15,7 +15,7 @@ export type ArgSpec<T> = ArgSpecBase & ArgSpecRestrict<T>;
 
 export type ArgSpecExt = ArgSpec<any> & {
     coerce?: Fn<any, any>;
-    comma?: boolean;
+    delim?: string;
     default?: any;
     flag?: boolean;
     fn?: Fn<string, boolean>;
@@ -27,24 +27,16 @@ export type Args<T extends IObjectOf<any>> = {
     [id in keyof T]: boolean extends T[id]
         ? ArgSpec<T[id]> & { flag: true }
         : any[] extends T[id]
-        ? string[] extends T[id]
-            ? ArgSpec<T[id]> & {
-                  coerce?: Fn<string[], Exclude<T[id], undefined>>;
-                  multi: true;
-                  comma?: boolean;
-              }
-            : ArgSpec<T[id]> & {
-                  coerce: Fn<string[], Exclude<T[id], undefined>>;
-                  multi: true;
-                  comma?: boolean;
-              }
+        ? ArgSpec<T[id]> & {
+              coerce: Fn<string[], Exclude<T[id], undefined>>;
+              multi: true;
+              delim?: string;
+          }
         : KVDict extends T[id]
         ? ArgSpec<T[id]> & {
               coerce: Fn<string[], Exclude<T[id], undefined>>;
               multi: true;
           }
-        : string extends T[id]
-        ? ArgSpec<T[id]> & { coerce?: Fn<string, Exclude<T[id], undefined>> }
         : ArgSpec<T[id]> & {
               coerce: Fn<string, Exclude<T[id], undefined>>;
           };
@@ -55,6 +47,8 @@ export type KVDict = IObjectOf<string>;
 export interface ParseResult<T> {
     result: T;
     index: number;
+    done: boolean;
+    rest: string[];
 }
 
 export interface ParseOpts {

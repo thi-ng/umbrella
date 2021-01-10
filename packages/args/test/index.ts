@@ -19,25 +19,25 @@ describe("args", () => {
             parse<{ a?: string }>({ a: string({}) }, ["--a", "a"], {
                 start: 0,
             }),
-            { result: { a: "a" }, index: 2 }
+            { result: { a: "a" }, index: 2, done: true, rest: [] }
         );
         assert.deepStrictEqual(
             parse<{ a?: string }>({ a: string({ alias: "A" }) }, ["-A", "a"], {
                 start: 0,
             }),
-            { result: { a: "a" }, index: 2 }
+            { result: { a: "a" }, index: 2, done: true, rest: [] }
         );
         assert.deepStrictEqual(
             parse<{ a?: string }>({ a: string({}) }, [], {
                 start: 0,
             }),
-            { result: {}, index: 0 }
+            { result: {}, index: 0, done: true, rest: [] }
         );
         assert.deepStrictEqual(
             parse<{ a: string }>({ a: string({ default: "a" }) }, [], {
                 start: 0,
             }),
-            { result: { a: "a" }, index: 0 }
+            { result: { a: "a" }, index: 0, done: true, rest: [] }
         );
         assert.throws(() =>
             parse<{ a: string }>({ a: string({ optional: false }) }, [], {
@@ -51,13 +51,13 @@ describe("args", () => {
             parse<{ a?: boolean }>({ a: flag({}) }, ["--a"], {
                 start: 0,
             }),
-            { result: { a: true }, index: 1 }
+            { result: { a: true }, index: 1, done: true, rest: [] }
         );
         assert.deepStrictEqual(
             parse<{ a: boolean }>({ a: flag({ default: false }) }, [], {
                 start: 0,
             }),
-            { result: { a: false }, index: 0 }
+            { result: { a: false }, index: 0, done: true, rest: [] }
         );
     });
 
@@ -66,19 +66,19 @@ describe("args", () => {
             parse<{ a?: number }>({ a: float({}) }, ["--a", "1.23"], {
                 start: 0,
             }),
-            { result: { a: 1.23 }, index: 2 }
+            { result: { a: 1.23 }, index: 2, done: true, rest: [] }
         );
         assert.deepStrictEqual(
             parse<{ a?: number }>({ a: int({}) }, ["--a", "123"], {
                 start: 0,
             }),
-            { result: { a: 123 }, index: 2 }
+            { result: { a: 123 }, index: 2, done: true, rest: [] }
         );
         assert.deepStrictEqual(
             parse<{ a?: number }>({ a: hex({}) }, ["--a", "123"], {
                 start: 0,
             }),
-            { result: { a: 0x123 }, index: 2 }
+            { result: { a: 0x123 }, index: 2, done: true, rest: [] }
         );
         assert.throws(() =>
             parse<{ a?: number }>({ a: int({}) }, ["--a", "a"], {
@@ -95,11 +95,11 @@ describe("args", () => {
             parse<{ a?: E }>({ a: oneOf(opts, {}) }, ["--a", "abc"], {
                 start: 0,
             }),
-            { result: { a: "abc" }, index: 2 }
+            { result: { a: "abc" }, index: 2, done: true, rest: [] }
         );
         assert.deepStrictEqual(
             parse<{ a?: E }>({ a: oneOf(opts, { default: "xyz" }) }, []),
-            { result: { a: "xyz" }, index: 2 }
+            { result: { a: "xyz" }, index: 2, done: true, rest: [] }
         );
         assert.throws(() =>
             parse<{ a?: E }>({ a: oneOf(opts, {}) }, ["--a", "def"], {
@@ -118,13 +118,18 @@ describe("args", () => {
                     start: 0,
                 }
             ),
-            { result: { a: { foo: "bar", baz: "true" } }, index: 4 }
+            {
+                result: { a: { foo: "bar", baz: "true" } },
+                index: 4,
+                done: true,
+                rest: [],
+            }
         );
         assert.deepStrictEqual(
             parse<{ a?: KVDict }>({ a: kvPairs({}, ":") }, ["--a", "foo:bar"], {
                 start: 0,
             }),
-            { result: { a: { foo: "bar" } }, index: 2 }
+            { result: { a: { foo: "bar" } }, index: 2, done: true, rest: [] }
         );
         assert.throws(() =>
             parse<{ a?: KVDict }>(
@@ -147,7 +152,7 @@ describe("args", () => {
                     start: 0,
                 }
             ),
-            { result: { a: { foo: [23] } }, index: 2 }
+            { result: { a: { foo: [23] } }, index: 2, done: true, rest: [] }
         );
     });
 
@@ -156,17 +161,36 @@ describe("args", () => {
             parse<{ a?: number[] }>({ a: ints({}) }, ["--a", "1", "--a", "2"], {
                 start: 0,
             }),
-            { result: { a: [1, 2] }, index: 4 }
+            { result: { a: [1, 2] }, index: 4, done: true, rest: [] }
         );
         assert.deepStrictEqual(
             parse<{ a?: number[] }>(
-                { a: ints({ comma: true }) },
+                { a: ints({ delim: "," }) },
                 ["--a", "1,2", "--a", "3,4"],
                 {
                     start: 0,
                 }
             ),
-            { result: { a: [1, 2, 3, 4] }, index: 4 }
+            { result: { a: [1, 2, 3, 4] }, index: 4, done: true, rest: [] }
+        );
+    });
+
+    it("stop early", () => {
+        assert.deepStrictEqual(
+            parse<{ a?: number }>({ a: int({}) }, ["--a", "1", "foo"], {
+                start: 0,
+            }),
+            { result: { a: 1 }, index: 2, done: false, rest: ["foo"] }
+        );
+        assert.deepStrictEqual(
+            parse<{ a?: number }>(
+                { a: int({}) },
+                ["--a", "1", "--", "ignore"],
+                {
+                    start: 0,
+                }
+            ),
+            { result: { a: 1 }, index: 3, done: false, rest: ["ignore"] }
         );
     });
 });

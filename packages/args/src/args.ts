@@ -23,33 +23,39 @@ const $single = <T = number>(coerce: Fn<string, T>, hint: string) => <
 });
 
 const $multi = <T = number>(coerce: Fn<string[], T[]>, hint: string) => <
-    S extends Partial<ArgSpec<T[]> & { comma: boolean }>
+    S extends Partial<ArgSpec<T[]> & { delim: string }>
 >(
     spec: S
 ): S & { coerce: Fn<string[], T[]>; hint: string; multi: true } => ({
-    hint: hint + (spec.comma ? "[,..]" : ""),
+    hint: $hint(hint, spec.delim),
     multi: true,
     coerce,
     ...spec,
 });
 
+const $hint = (hint: string, delim?: string) =>
+    hint + (delim ? `[${delim}..]` : "");
+
 /**
- * Returns a full {@link ArgSpec} for a boolean flag.
+ * Returns a full {@link ArgSpec} for a boolean flag. The mere presence of this
+ * arg will enable the flag.
  *
  * @param spec
  */
 export const flag = <S extends Partial<ArgSpec<boolean>>>(
     spec: S
-): S & { flag: true } => ({ flag: true, ...spec });
+): S & { flag: true; default: boolean } => ({
+    flag: true,
+    default: false,
+    ...spec,
+});
 
 /**
  * Returns a full {@link ArgSpec} for a string value arg.
  *
  * @param spec
  */
-export const string = <S extends Partial<ArgSpec<string>>>(
-    spec: S
-): S & { hint: string } => ({ hint: "STR", ...spec });
+export const string = $single<string>((x) => x, "STR");
 
 /**
  * Multi-arg version of {@link string}. Returns a full {@link ArgSpec} for a
@@ -125,6 +131,9 @@ export const json = <T, S extends Partial<ArgSpec<T>>>(
     ...spec,
 });
 
+const $desc = (opts: readonly string[], prefix?: string) =>
+    `${prefix ? prefix + ": " : ""}${opts.map((x) => `'${x}'`).join(", ")}`;
+
 /**
  * Returns full {@link ArgSpec} for an enum-like string value arg. The raw CLI
  * value string will be automcatically validated using {@link coerceOneOf}.
@@ -135,11 +144,11 @@ export const json = <T, S extends Partial<ArgSpec<T>>>(
 export const oneOf = <K extends string, S extends Partial<ArgSpec<K>>>(
     opts: readonly K[],
     spec: S
-): S & { coerce: Fn<string, K>; hint: string; desc: string } => ({
+): S & { coerce: Fn<string, K>; hint: string } & { desc: string } => ({
     coerce: coerceOneOf(opts),
     hint: "ID",
     ...spec,
-    desc: `${spec.desc}: ${opts.map((x) => `'${x}'`).join(", ")}`,
+    desc: $desc(opts, spec.desc),
 });
 
 /**
@@ -152,7 +161,7 @@ export const oneOf = <K extends string, S extends Partial<ArgSpec<K>>>(
  */
 export const oneOfMulti = <
     K extends string,
-    S extends Partial<ArgSpec<K[]> & { comma: boolean }>
+    S extends Partial<ArgSpec<K[]> & { delim: string }>
 >(
     opts: readonly K[],
     spec: S
@@ -162,10 +171,10 @@ export const oneOfMulti = <
     multi: true;
 } & { desc: string } => ({
     coerce: (xs) => xs.map(coerceOneOf(opts)),
-    hint: "ID" + (spec.comma ? "[,..]" : ""),
+    hint: $hint("ID", spec.delim),
     multi: true,
     ...spec,
-    desc: `${spec.desc}: ${opts.map((x) => `'${x}'`).join(", ")}`,
+    desc: $desc(opts, spec.desc),
 });
 
 /**
