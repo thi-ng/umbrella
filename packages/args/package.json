@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/args",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "Declarative, functional & typechecked CLI argument/options parser, value coercions etc.",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -35,8 +35,7 @@
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "doc": "node_modules/.bin/typedoc --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
-        "pub": "yarn build:release && yarn publish --access public",
-        "tool:foo": "ts-node -P tools/tsconfig.json tools/index.ts"
+        "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
@@ -61,14 +60,25 @@
         "lib"
     ],
     "keywords": [
-        "typescript"
+        "argument",
+        "cli",
+        "coerce",
+        "convert",
+        "declarative",
+        "functional",
+        "hex",
+        "node",
+        "parser",
+        "tuple",
+        "typescript",
+        "validate"
     ],
     "publishConfig": {
         "access": "public"
     },
     "sideEffects": false,
     "thi.ng": {
-        "status": "alpha",
-        "year": 2021
+        "status": "beta",
+        "year": 2018
     }
 }

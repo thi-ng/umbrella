@@ -1,17 +1,28 @@
-# ${pkg.banner}
+<!-- This file is generated - DO NOT EDIT! -->
 
-[![npm version](https://img.shields.io/npm/v/${pkg.name}.svg)](https://www.npmjs.com/package/${pkg.name})
-![npm downloads](https://img.shields.io/npm/dm/${pkg.name}.svg)
+# ![args](https://media.thi.ng/umbrella/banners/thing-args.svg?396fd2a1)
+
+[![npm version](https://img.shields.io/npm/v/@thi.ng/args.svg)](https://www.npmjs.com/package/@thi.ng/args)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/args.svg)
 [![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
-<!-- TOC -->
+- [About](#about)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [API](#api)
+  - [Basic usage](#basic-usage)
+    - [Generate & display help](#generate--display-help)
+    - [Parsing, value coercions & side effects](#parsing-value-coercions--side-effects)
+- [Authors](#authors)
+- [License](#license)
 
 ## About
 
-${pkg.description}
+Declarative, functional & typechecked CLI argument/options parser, value coercions etc..
 
 Includes built-in support for the following argument types (of course custom arg types are supported too):
 
@@ -30,29 +41,38 @@ collected into an array (apart from KV pairs, which will yield an object).
 Furthermore, for multi-args, an optional delimiter can be specified to extract
 individual values, e.g. `-a 1,2,3` equals `-a 1 -a 2 -a 3`
 
-${status}
+### Status
 
-${supportPackages}
+**BETA** - possibly breaking changes forthcoming
 
-${relatedPackages}
-
-${blogPosts}
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bargs%5D+in%3Atitle)
 
 ## Installation
 
-${pkg.install}
+```bash
+yarn add @thi.ng/args
+```
 
-${pkg.size}
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/args?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/args/lib/index.umd.js" crossorigin></script>
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.79 KB / CJS: 1.92 KB / UMD: 1.92 KB
 
 ## Dependencies
 
-${pkg.deps}
-
-${examples}
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 
 ## API
 
-${docLink}
+[Generated API docs](https://docs.thi.ng/umbrella/args/)
 
 ### Basic usage
 
@@ -172,10 +192,19 @@ ts-node index.ts \
 
 ## Authors
 
-${authors}
+Karsten Schmidt
 
-${pkg.cite}
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-args,
+  title = "@thi.ng/args",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/args",
+  year = 2018
+}
+```
 
 ## License
 
-&copy; ${copyright} // ${license}
+&copy; 2018 - 2021 Karsten Schmidt // Apache Software License 2.0
