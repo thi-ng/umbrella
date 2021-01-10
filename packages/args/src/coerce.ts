@@ -1,6 +1,9 @@
+import type { Fn } from "@thi.ng/api";
 import { isHex, isNumericFloat, isNumericInt } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
-import type { KVDict } from "./api";
+import { KVDict, Tuple } from "./api";
+
+export const coerceString = (x: string) => x;
 
 export const coerceFloat = (x: string) =>
     isNumericFloat(x)
@@ -36,3 +39,14 @@ export const coerceKV = (delim = "=", strict = false) => (pairs: string[]) =>
             : (acc[x] = "true");
         return acc;
     }, <KVDict>{});
+
+export const coerceTuple = <T>(
+    coerce: Fn<string, T>,
+    size: number,
+    delim = ","
+) => (src: string) => {
+    const parts = src.split(delim);
+    parts.length !== size &&
+        illegalArgs(`got '${src}', but expected a tuple of ${size} values`);
+    return new Tuple(parts.map(coerce));
+};

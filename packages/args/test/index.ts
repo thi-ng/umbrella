@@ -1,5 +1,6 @@
 import * as assert from "assert";
 import {
+    coerceInt,
     flag,
     float,
     hex,
@@ -10,7 +11,10 @@ import {
     kvPairs,
     oneOf,
     parse,
+    size,
     string,
+    tuple,
+    Tuple,
 } from "../src";
 
 describe("args", () => {
@@ -172,6 +176,35 @@ describe("args", () => {
                 }
             ),
             { result: { a: [1, 2, 3, 4] }, index: 4, done: true, rest: [] }
+        );
+    });
+
+    it("tuple", () => {
+        const res = {
+            result: { a: new Tuple([1, 2, 3]) },
+            index: 2,
+            done: true,
+            rest: [],
+        };
+        assert.deepStrictEqual(
+            parse<{ a?: Tuple<number> }>(
+                { a: tuple(coerceInt, 3, {}) },
+                ["--a", "1,2,3"],
+                {
+                    start: 0,
+                }
+            ),
+            res
+        );
+        assert.deepStrictEqual(
+            parse<{ a?: Tuple<number> }>(
+                { a: size(3, {}, "x") },
+                ["--a", "1x2x3"],
+                {
+                    start: 0,
+                }
+            ),
+            res
         );
     });
 

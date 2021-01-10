@@ -1,4 +1,4 @@
-import type { Fn, IObjectOf } from "@thi.ng/api";
+import type { Fn, IDeref, IObjectOf } from "@thi.ng/api";
 
 export interface ArgSpecBase {
     alias?: string;
@@ -107,3 +107,14 @@ export const DEFAULT_THEME: ColorTheme = {
     param: 96,
     required: 33,
 };
+
+/**
+ * Wrapper for fixed size tuple values produced by {@link tuple}.
+ */
+export class Tuple<T> implements IDeref<T[]> {
+    constructor(public value: T[]) {}
+
+    deref() {
+        return this.value;
+    }
+}

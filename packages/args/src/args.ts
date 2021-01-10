@@ -1,5 +1,6 @@
 import type { Fn } from "@thi.ng/api";
-import type { ArgSpec, KVDict } from "./api";
+import { repeat } from "@thi.ng/strings";
+import type { ArgSpec, KVDict, Tuple } from "./api";
 import {
     coerceFloat,
     coerceFloats,
@@ -10,6 +11,7 @@ import {
     coerceJson,
     coerceKV,
     coerceOneOf,
+    coerceTuple,
 } from "./coerce";
 
 const $single = <T = number>(coerce: Fn<string, T>, hint: string) => <
@@ -199,3 +201,53 @@ export const kvPairs = <S extends Partial<ArgSpec<KVDict>>>(
     multi: true,
     ...spec,
 });
+
+/**
+ * Returns a full {@link ArgSpec} for a fixed `size` tuple extracted from a
+ * single value string. The individual values are delimited by `delim` and will
+ * be coerced into their target type via `coerce`. The result tuple will be
+ * wrapped in a {@link Tuple} instance.
+ *
+ * @remarks
+ * An error will be thrown if the number of extracted values differs from the
+ * specified tuple size or any value coercion fails.
+ *
+ * @example
+ * ```ts
+ * parse({ a: tuple(coerceInt, 2, {})}, ["--a", "1,2"])
+ * // {
+ * //   result: { a: Tuple { value: [1, 2] } },
+ * //   index: 2,
+ * //   rest: [],
+ * //   done: true
+ * // }
+ * ```
+ *
+ * @param coerce
+ * @param size
+ * @param spec
+ * @param delim
+ */
+export const tuple = <T, S extends Partial<ArgSpec<Tuple<T>>>>(
+    coerce: Fn<string, T>,
+    size: number,
+    spec: S,
+    delim = ","
+): S & { coerce: Fn<string, Tuple<T>>; hint: string } => ({
+    coerce: coerceTuple(coerce, size, delim),
+    hint: [...repeat("N", size)].join(delim),
+    ...spec,
+});
+
+/**
+ * Syntax sugar for `tuple(coerceInt, size, {...}, delim)`.
+ *
+ * @param size
+ * @param spec
+ * @param delim
+ */
+export const size = <S extends Partial<ArgSpec<Tuple<number>>>>(
+    size: number,
+    spec: S,
+    delim = "x"
+) => tuple(coerceInt, size, spec, delim);
