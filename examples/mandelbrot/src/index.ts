@@ -4,7 +4,7 @@ import { canvas2D } from "@thi.ng/hdom-components";
 import { fit, mix } from "@thi.ng/math";
 import { stream, Stream, sync, tunnel } from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
-import { padLeft } from "@thi.ng/strings";
+import { Z4 } from "@thi.ng/strings";
 import { map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 
@@ -14,7 +14,6 @@ const AUTO_ZOOM = false;
 
 // frame export helpers
 let frame = 0;
-const Z4 = padLeft(4, "0");
 
 // canvas size
 const SIZE = 640;
