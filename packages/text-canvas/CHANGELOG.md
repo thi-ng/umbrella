@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.4.0...@thi.ng/text-canvas@0.4.1) (2021-01-10)
+
+
+### Bug Fixes
+
+* **text-canvas:** fix FMT_ANSI256 bg bitshift ([b50a0f9](https://github.com/thi-ng/umbrella/commit/b50a0f9c0464774f3b62888d718da89381b3014c))
+
+
+
+
+
 # [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.3.0...@thi.ng/text-canvas@0.4.0) (2021-01-05)
 
 

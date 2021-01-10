@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.33](https://github.com/thi-ng/umbrella/compare/@thi.ng/sexpr@0.2.32...@thi.ng/sexpr@0.2.33) (2021-01-10)
+
+**Note:** Version bump only for package @thi.ng/sexpr
+
+
+
+
+
 ## [0.2.32](https://github.com/thi-ng/umbrella/compare/@thi.ng/sexpr@0.2.31...@thi.ng/sexpr@0.2.32) (2021-01-02)
 
 **Note:** Version bump only for package @thi.ng/sexpr

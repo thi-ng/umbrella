@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/pixel",
-    "version": "0.5.0",
+    "version": "0.5.1",
     "description": "Typed array backed, packed integer and unpacked floating point pixel buffers w/ customizable formats, blitting, dithering, conversions",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -50,9 +50,9 @@
     },
     "dependencies": {
         "@thi.ng/api": "^6.13.6",
-        "@thi.ng/checks": "^2.7.13",
-        "@thi.ng/math": "^3.0.1",
-        "@thi.ng/porter-duff": "^0.1.36"
+        "@thi.ng/checks": "^2.8.0",
+        "@thi.ng/math": "^3.1.0",
+        "@thi.ng/porter-duff": "^0.1.37"
     },
     "files": [
         "*.js",

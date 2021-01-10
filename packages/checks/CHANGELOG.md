@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.13...@thi.ng/checks@2.8.0) (2021-01-10)
+
+
+### Features
+
+* **checks:** add isNumericInt/Float() checks ([7e054c1](https://github.com/thi-ng/umbrella/commit/7e054c14b06850800869ba0bc8c8174e233dda53))
+
+
+
+
+
 ## [2.7.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.12...@thi.ng/checks@2.7.13) (2021-01-02)
 
 **Note:** Version bump only for package @thi.ng/checks

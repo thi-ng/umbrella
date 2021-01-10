@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/egf",
-    "version": "0.3.7",
+    "version": "0.3.8",
     "description": "Extensible Graph Format",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -46,13 +46,13 @@
     },
     "dependencies": {
         "@thi.ng/api": "^6.13.6",
-        "@thi.ng/associative": "^5.0.13",
-        "@thi.ng/checks": "^2.7.13",
-        "@thi.ng/dot": "^1.2.23",
+        "@thi.ng/associative": "^5.0.14",
+        "@thi.ng/checks": "^2.8.0",
+        "@thi.ng/dot": "^1.2.24",
         "@thi.ng/errors": "^1.2.26",
         "@thi.ng/prefixes": "^0.1.10",
-        "@thi.ng/strings": "^1.12.0",
-        "@thi.ng/transducers-binary": "^0.6.1"
+        "@thi.ng/strings": "^1.13.0",
+        "@thi.ng/transducers-binary": "^0.6.2"
     },
     "files": [
         "*.js",

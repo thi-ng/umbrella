@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@3.0.1...@thi.ng/math@3.1.0) (2021-01-10)
+
+
+### Features
+
+* **math:** add floorTo/ceilTo() ([595fe83](https://github.com/thi-ng/umbrella/commit/595fe83475f4a4080408033d3448fd4c36ef1652))
+
+
+
+
+
 ## [3.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@3.0.0...@thi.ng/math@3.0.1) (2021-01-02)
 
 **Note:** Version bump only for package @thi.ng/math

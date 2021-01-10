@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.12.0...@thi.ng/strings@1.13.0) (2021-01-10)
+
+
+### Features
+
+* **strings:** add stripAnsi(), lengthAnsi() fns ([86fa81a](https://github.com/thi-ng/umbrella/commit/86fa81acb7dfcf1dc3d6f5600cbf427ee44cf722))
+* **strings:** add tab conversion fns ([aefdd97](https://github.com/thi-ng/umbrella/commit/aefdd97e27fce2405860e817b9c5b4aedb6e59e4))
+* **strings:** add wordWrap*() fns ([2a283c0](https://github.com/thi-ng/umbrella/commit/2a283c018592d8cc76f4ef83b69c6ce3c378aca6))
+* **strings:** update padLeft/Right() args ([118f97f](https://github.com/thi-ng/umbrella/commit/118f97f1fca27671c53d184484a7b435e6eedf88))
+
+
+### Performance Improvements
+
+* **strings:** simplify string default delim regexp ([bb62760](https://github.com/thi-ng/umbrella/commit/bb62760f2069a1f7edeaa09ce0e0639047789af3))
+
+
+
+
+
 # [1.12.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.11.4...@thi.ng/strings@1.12.0) (2021-01-05)
 
 
