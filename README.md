@@ -127,18 +127,20 @@ to update your local version.
 (These packages might be still unreleased and only available on their
 feature or `develop` branches) -->
 
-### Latest additions (2020-12-22)
+### Latest additions (2021-01-10)
 
-| Project                                     | Version                                                                                                           | Changelog                                      | Description                                      |
-|---------------------------------------------|-------------------------------------------------------------------------------------------------------------------|------------------------------------------------|--------------------------------------------------|
-| [`@thi.ng/fuzzy`](./packages/fuzzy)         | [![version](https://img.shields.io/npm/v/@thi.ng/fuzzy.svg)](https://www.npmjs.com/package/@thi.ng/fuzzy)         | [changelog](./packages/fuzzy/CHANGELOG.md)     | Fuzzy logic primitives & rule inference engine   |
-| [`@thi.ng/fuzzy-viz`](./packages/fuzzy-viz) | [![version](https://img.shields.io/npm/v/@thi.ng/fuzzy-viz.svg)](https://www.npmjs.com/package/@thi.ng/fuzzy-viz) | [changelog](./packages/fuzzy-viz/CHANGELOG.md) | Visualization, instrumentation for @thi.ng/fuzzy |
-| [`@thi.ng/vclock`](./packages/vclock)       | [![version](https://img.shields.io/npm/v/@thi.ng/vclock.svg)](https://www.npmjs.com/package/@thi.ng/vclock)       | [changelog](./packages/vclock/CHANGELOG.md)    | Vector clock functions / comparators             |
+| Project                                     | Version                                                                                                           | Changelog                                      | Description                                          |
+|---------------------------------------------|-------------------------------------------------------------------------------------------------------------------|------------------------------------------------|------------------------------------------------------|
+| [`@thi.ng/args`](./packages/args)           | [![version](https://img.shields.io/npm/v/@thi.ng/args.svg)](https://www.npmjs.com/package/@thi.ng/args)           | [changelog](./packages/args/CHANGELOG.md)      | Declarative & functional CLI arg parsing & coercions |
+| [`@thi.ng/fuzzy`](./packages/fuzzy)         | [![version](https://img.shields.io/npm/v/@thi.ng/fuzzy.svg)](https://www.npmjs.com/package/@thi.ng/fuzzy)         | [changelog](./packages/fuzzy/CHANGELOG.md)     | Fuzzy logic primitives & rule inference engine       |
+| [`@thi.ng/fuzzy-viz`](./packages/fuzzy-viz) | [![version](https://img.shields.io/npm/v/@thi.ng/fuzzy-viz.svg)](https://www.npmjs.com/package/@thi.ng/fuzzy-viz) | [changelog](./packages/fuzzy-viz/CHANGELOG.md) | Visualization, instrumentation for @thi.ng/fuzzy     |
+| [`@thi.ng/vclock`](./packages/vclock)       | [![version](https://img.shields.io/npm/v/@thi.ng/vclock.svg)](https://www.npmjs.com/package/@thi.ng/vclock)       | [changelog](./packages/vclock/CHANGELOG.md)    | Vector clock functions / comparators                 |
 
 ### Fundamentals
 
 | Project                                             | Version                                                                                                                   | Changelog                                          | Description                                              |
 |-----------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|----------------------------------------------------------|
+| [`@thi.ng/args`](./packages/args)                   | [![version](https://img.shields.io/npm/v/@thi.ng/args.svg)](https://www.npmjs.com/package/@thi.ng/args)                   | [changelog](./packages/args/CHANGELOG.md)          | Declarative & functional CLI arg parsing & coercions     |
 | [`@thi.ng/api`](./packages/api)                     | [![version](https://img.shields.io/npm/v/@thi.ng/api.svg)](https://www.npmjs.com/package/@thi.ng/api)                     | [changelog](./packages/api/CHANGELOG.md)           | Common types, decorators, mixins                         |
 | [`@thi.ng/bench`](./packages/bench)                 | [![version](https://img.shields.io/npm/v/@thi.ng/bench.svg)](https://www.npmjs.com/package/@thi.ng/bench)                 | [changelog](./packages/bench/CHANGELOG.md)         | Basic benchmarking helpers                               |
 | [`@thi.ng/checks`](./packages/checks)               | [![version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)               | [changelog](./packages/checks/CHANGELOG.md)        | Type & value checks                                      |
@@ -164,6 +166,7 @@ feature or `develop` branches) -->
 | [`@thi.ng/random`](./packages/random)               | [![version](https://img.shields.io/npm/v/@thi.ng/random.svg)](https://www.npmjs.com/package/@thi.ng/random)               | [changelog](./packages/random/CHANGELOG.md)        | Seedable PRNG implementations w/ unified API             |
 | [`@thi.ng/strings`](./packages/strings)             | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)             | [changelog](./packages/strings/CHANGELOG.md)       | Higher-order string formatting utils                     |
 | [`@thi.ng/system`](./packages/system)               | [![version](https://img.shields.io/npm/v/@thi.ng/system.svg)](https://www.npmjs.com/package/@thi.ng/system)               | [changelog](./packages/system/CHANGELOG.md)        | Minimal life cycle container for stateful app components |
+
 ### Iterator, stream & sequence processing
 
 | Project                                                       | Version                                                                                                                             | Changelog                                               | Description                             |
