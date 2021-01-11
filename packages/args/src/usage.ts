@@ -3,6 +3,7 @@ import {
     kebab,
     padRight,
     repeat,
+    stringify,
     stripAnsi,
     wordWrapLines,
 } from "@thi.ng/strings";
@@ -15,6 +16,7 @@ export const usage = <T extends IObjectOf<any>>(
     opts = {
         lineWidth: 80,
         paramWidth: 32,
+        showDefaults: true,
         ...opts,
     };
     const theme =
@@ -45,10 +47,21 @@ export const usage = <T extends IObjectOf<any>>(
                       isRequired ? theme.required! : theme.multi!
                   )
                 : "";
+            const defaults =
+                opts.showDefaults && spec.default
+                    ? ansi(
+                          ` (default: ${stringify()(
+                              spec.defaultHint != undefined
+                                  ? spec.defaultHint
+                                  : spec.default
+                          )})`,
+                          theme.default
+                      )
+                    : "";
             return (
                 padRight(opts.paramWidth!)(params, stripAnsi(params).length) +
                 wordWrapLines(
-                    prefix + (spec.desc || ""),
+                    prefix + (spec.desc || "") + defaults,
                     opts.lineWidth! - opts.paramWidth!
                 )
                     .map((l, i) => (i > 0 ? indent : "") + l)

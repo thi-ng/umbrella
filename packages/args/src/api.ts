@@ -4,6 +4,7 @@ export interface ArgSpecBase {
     alias?: string;
     desc?: string;
     hint?: string;
+    defaultHint?: string;
     fn?: Fn<string, boolean>;
 }
 
@@ -92,9 +93,21 @@ export interface UsageOpts {
      * @defaultValue true
      */
     color: Partial<ColorTheme> | false;
+    /**
+     * If true (default), display argument default values.
+     *
+     * @defaultValue true
+     */
+    showDefaults: boolean;
 }
 
+/**
+ * Color theme for {@link usage}. Each item is an ANSI color code:
+ *
+ * https://en.wikipedia.org/wiki/ANSI_escape_code#3-bit_and_4-bit
+ */
 export interface ColorTheme {
+    default: number;
     hint: number;
     multi: number;
     param: number;
@@ -102,6 +115,7 @@ export interface ColorTheme {
 }
 
 export const DEFAULT_THEME: ColorTheme = {
+    default: 95,
     hint: 90,
     multi: 90,
     param: 96,
