@@ -28,13 +28,13 @@ describe("rstream-log", () => {
         logger.debug("hello");
         logger.info("hello");
         logger.warn("hello");
-        logger.severe("hello");
+        logger.severe("hello", 42, [{ a: [23] }]);
         assert.deepStrictEqual(acc, [
             "[FINE] foo: 1 hello",
             "[DEBUG] foo: 2 hello",
             "[INFO] foo: 3 hello",
             "[WARN] foo: 4 hello",
-            "[SEVERE] foo: 5 hello",
+            `[SEVERE] foo: 5 hello 42 [{"a":[23]}]`,
         ]);
         sub.unsubscribe();
         assert.strictEqual(logger.getState(), State.ACTIVE);

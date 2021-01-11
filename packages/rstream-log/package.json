@@ -53,6 +53,7 @@
         "@thi.ng/checks": "^2.8.0",
         "@thi.ng/errors": "^1.2.26",
         "@thi.ng/rstream": "^5.0.13",
+        "@thi.ng/strings": "^1.13.0",
         "@thi.ng/transducers": "^7.5.5"
     },
     "files": [
