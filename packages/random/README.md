@@ -27,7 +27,7 @@ This package provides the `IRandom` interface and various (mostly
 seedable) pseudo-random number generator implementations, incl. a
 `IRandom` wrapper for `Math.random()`:
 
-- [Smush32](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/smush.ts)
+- [Smush32](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/smush32.ts)
 - [System](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/system.ts)
 - [Xoshiro128](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/xoshiro128.ts)
 - [XorShift128](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/xorshift128.ts)
