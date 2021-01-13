@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.74](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-hull@0.0.73...@thi.ng/geom-hull@0.0.74) (2021-01-13)
+
+**Note:** Version bump only for package @thi.ng/geom-hull
+
+
+
+
+
 ## [0.0.73](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-hull@0.0.72...@thi.ng/geom-hull@0.0.73) (2021-01-10)
 
 **Note:** Version bump only for package @thi.ng/geom-hull

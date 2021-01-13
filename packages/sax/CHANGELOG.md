@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.46](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@1.1.45...@thi.ng/sax@1.1.46) (2021-01-13)
+
+**Note:** Version bump only for package @thi.ng/sax
+
+
+
+
+
 ## [1.1.45](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@1.1.44...@thi.ng/sax@1.1.45) (2021-01-10)
 
 **Note:** Version bump only for package @thi.ng/sax

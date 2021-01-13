@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hdom",
-    "version": "8.2.16",
+    "version": "8.2.17",
     "description": "Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -56,7 +56,7 @@
         "@thi.ng/equiv": "^1.0.35",
         "@thi.ng/errors": "^1.2.26",
         "@thi.ng/hiccup": "^3.6.7",
-        "@thi.ng/prefixes": "^0.1.10"
+        "@thi.ng/prefixes": "^0.1.11"
     },
     "files": [
         "*.js",

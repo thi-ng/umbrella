@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.13.0...@thi.ng/strings@1.14.0) (2021-01-13)
+
+
+### Features
+
+* **strings:** add stringify() HOF ([4ab7e72](https://github.com/thi-ng/umbrella/commit/4ab7e72bf87cbf058a38ca85b5e2853a5f432d9d))
+
+
+
+
+
 # [1.13.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.12.0...@thi.ng/strings@1.13.0) (2021-01-10)
 
 

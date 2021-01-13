@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/args@0.1.0...@thi.ng/args@0.2.0) (2021-01-13)
+
+
+### Features
+
+* **args:** add defaultHint opt, update usage() ([f8a4146](https://github.com/thi-ng/umbrella/commit/f8a414605a0d5c93fcef83ab931911c6c2f39f7d))
+
+
+
+
+
 # 0.1.0 (2021-01-10)
 
 

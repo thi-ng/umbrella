@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@2.1.5...@thi.ng/random@2.2.0) (2021-01-13)
+
+
+### Bug Fixes
+
+* **random:** add opt start index arg for uuid() ([268ec3f](https://github.com/thi-ng/umbrella/commit/268ec3f47470184068fd66b5cc147d8c2e0e0ccb))
+
+
+### Features
+
+* **random:** add CRYPTO IRandom impl ([94e69c1](https://github.com/thi-ng/umbrella/commit/94e69c1021ec67c63be78e0467bfc82be6cabc00))
+* **random:** add opt start/end for randomBytes() ([4d095da](https://github.com/thi-ng/umbrella/commit/4d095da557b1f3ee9ce46778aeba25f0c6aa94f9))
+
+
+### Performance Improvements
+
+* **random:** minor update weightedRandom() ([258fd7b](https://github.com/thi-ng/umbrella/commit/258fd7b25930c41025b7337b44c36e1f00924b47))
+
+
+
+
+
 ## [2.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@2.1.4...@thi.ng/random@2.1.5) (2021-01-10)
 
 **Note:** Version bump only for package @thi.ng/random
