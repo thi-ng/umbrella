@@ -2,9 +2,12 @@ import type { IRandom } from "./api";
 import { SYSTEM } from "./system";
 
 /**
- * Generates and returns a random string of `len` characters (default
- * 4), plus optional given `prefix` and using only provided `syms`
- * characters (default lowercase a-z).
+ * Generates and returns a random string of `len` characters (default 4), plus
+ * optional given `prefix` and using only provided `syms` characters (default
+ * lowercase a-z).
+ *
+ * @remarks
+ * See {@link @thi.ng/ksuid#} for a more advanced and collision-free approach.
  *
  * @example
  * ```ts
@@ -28,7 +31,7 @@ export const randomID = (
 ) => {
     const n = syms.length;
     for (; --len >= 0; ) {
-        prefix += syms[rnd.float(n) | 0];
+        prefix += syms[rnd.int() % n];
     }
     return prefix;
 };
