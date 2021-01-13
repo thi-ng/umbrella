@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/base-n",
     "version": "0.0.1",
-    "description": "Arbitrary base-n encoding/decoding with presets for base32/36/58/62/64/85 and support for bigints",
+    "description": "Arbitrary base-n conversions w/ presets for base16/32/36/58/62/64/85, support for arrays & bigints",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -57,6 +57,20 @@
         "lib"
     ],
     "keywords": [
+        "array",
+        "base16",
+        "base32",
+        "base36",
+        "base58",
+        "base62",
+        "base64",
+        "base85",
+        "bigint",
+        "binary",
+        "conversion",
+        "encode",
+        "decode",
+        "string",
         "typescript"
     ],
     "publishConfig": {

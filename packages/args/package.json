@@ -61,9 +61,11 @@
     ],
     "keywords": [
         "argument",
+        "ansi",
         "cli",
         "coerce",
-        "convert",
+        "color",
+        "conversion",
         "declarative",
         "functional",
         "hex",

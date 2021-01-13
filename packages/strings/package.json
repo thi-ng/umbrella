@@ -60,6 +60,7 @@
         "lib"
     ],
     "keywords": [
+        "ansi",
         "composition",
         "conversion",
         "escape",
@@ -67,14 +68,17 @@
         "format",
         "functional",
         "hex",
-        "higher-order",
+        "hollerith",
         "interpolation",
         "number",
         "padding",
         "percent",
         "radix",
         "slugify",
+        "split",
         "string",
+        "tab",
+        "trim",
         "typescript",
         "unicode",
         "wordwrap"
