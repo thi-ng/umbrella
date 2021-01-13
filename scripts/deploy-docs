@@ -41,6 +41,8 @@ const sanitizeFile = (f) => {
             (_, id, sym) => {
                 updated = true;
                 let path = `${S3_PREFIX}/${id}/`;
+                if (!sym)
+                    return `<a href="${S3_PREFIX}/${id}/">@thi.ng/${id}</a>`;
                 if (sym.startsWith("I")) {
                     path += `interfaces/${sym.toLowerCase()}.html`;
                 } else if (/^[a-z]/.test(sym)) {
