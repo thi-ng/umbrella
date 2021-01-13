@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.5.1...@thi.ng/pixel@0.6.0) (2021-01-13)
+
+
+### Features
+
+* **pixel:** add downsample() for both buffer types ([0b9b0fa](https://github.com/thi-ng/umbrella/commit/0b9b0fad5ce7edcfaf50be767a73f8cc3fe7ebfe))
+
+
+
+
+
 ## [0.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.5.0...@thi.ng/pixel@0.5.1) (2021-01-10)
 
 **Note:** Version bump only for package @thi.ng/pixel
