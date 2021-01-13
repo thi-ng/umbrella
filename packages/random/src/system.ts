@@ -2,6 +2,10 @@ import { ARandom } from "./arandom";
 
 const random = Math.random;
 
+/**
+ * A `Math.random()` based {@link IRandom} implementation. Also @see
+ * {@link SYSTEM}.
+ */
 export class SystemRandom extends ARandom {
     int() {
         return (random() * 4294967296) /* 2**32 */ >>> 0;
@@ -16,4 +20,8 @@ export class SystemRandom extends ARandom {
     }
 }
 
+/**
+ * Used as default PRNG throughout most other thi.ng projects, though usually is
+ * configurable.
+ */
 export const SYSTEM = new SystemRandom();

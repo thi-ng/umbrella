@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/random",
     "version": "2.1.5",
-    "description": "Pseudo-random number generators w/ unified API",
+    "description": "Pseudo-random number generators w/ unified API, distributions, weighted choices, ID generation",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -61,14 +61,30 @@
     ],
     "keywords": [
         "binary",
+        "crypto",
         "datastructure",
+        "distribution",
+        "exponential",
+        "gaussian",
         "generator",
+        "geometric",
+        "normal",
+        "prng",
         "random",
         "typedarray",
-        "typescript"
+        "typescript",
+        "weighted",
+        "uuid",
+        "uniform"
     ],
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "year": 2015,
+        "related": [
+            "ksuid"
+        ]
+    }
 }

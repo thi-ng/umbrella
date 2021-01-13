@@ -3,8 +3,10 @@ import type { ISeedable } from "./api";
 import { ARandom } from "./arandom";
 import { DEFAULT_SEED_128 } from "./constants";
 
-// https://en.wikipedia.org/wiki/Xorshift
-
+/**
+ * @remarks
+ * Reference: https://en.wikipedia.org/wiki/Xorshift
+ */
 export class XorShift128
     extends ARandom
     implements

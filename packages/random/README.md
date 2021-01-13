@@ -10,23 +10,26 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
+  - [Random distributions](#random-distributions)
+  - [Other utilities](#other-utilities)
   - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [API](#api)
-  - [Other utilities](#other-utilities)
 - [Authors](#authors)
 - [License](#license)
 
 ## About
 
-Pseudo-random number generators w/ unified API.
+Pseudo-random number generators w/ unified API, distributions, weighted choices, ID generation.
 
-This package provides the `IRandom` interface and various (mostly
-seedable) pseudo-random number generator implementations, incl. a
-`IRandom` wrapper for `Math.random()`:
+This package provides the `IRandom` interface and various (mostly seedable)
+pseudo-random number generator implementations, incl. `IRandom` wrappers for
+`Math.random()` and `window.crypto`:
 
+- [Crypto](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/crypto.ts)
 - [Smush32](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/smush32.ts)
 - [System](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/system.ts)
 - [Xoshiro128](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/xoshiro128.ts)
@@ -34,14 +37,32 @@ seedable) pseudo-random number generator implementations, incl. a
 - [XorWow](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/xorwow.ts)
 - [XsAdd](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/xsadd.ts)
 
-Partially ported from C implementations taken from
-[c.thi.ng](http://c.thi.ng).
+Partially ported from C implementations taken from [c.thi.ng](http://c.thi.ng).
+
+### Random distributions
+
+- [`exponential()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/distributions/exponential.ts)
+- [`gaussian()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/distributions/gaussian.ts)
+- [`geometric()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/distributions/geometric.ts)
+- [`normal()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/distributions/normal.ts)
+- [`uniform()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/distributions/uniform.ts)
+
+### Other utilities
+
+- [`randomBytes()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/random-bytes.ts)
+- [`randomID()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/random-id.ts)
+- [`weightedRandom()](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/weighted-random.ts)
+- [`uuidv4Bytes()` / `uuid()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/uuid.ts)
 
 ### Status
 
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Brandom%5D+in%3Atitle)
+
+### Related packages
+
+- [@thi.ng/ksuid](https://github.com/thi-ng/umbrella/tree/develop/packages/ksuid) - Configurable K-sortable unique identifiers, binary & base-N encoded
 
 ## Installation
 
@@ -57,7 +78,7 @@ yarn add @thi.ng/random
 <script src="https://unpkg.com/@thi.ng/random/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.51 KB / CJS: 1.62 KB / UMD: 1.63 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.63 KB / CJS: 1.75 KB / UMD: 1.74 KB
 
 ## Dependencies
 
@@ -112,11 +133,6 @@ rnd.gaussian()
 // 0.10632886109089679
 ```
 
-### Other utilities
-
-- [randomBytes](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/random-bytes.ts)
-- [randomID](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/random-id.ts)
-
 ## Authors
 
 Karsten Schmidt
@@ -128,10 +144,10 @@ If this project contributes to an academic publication, please cite it as:
   title = "@thi.ng/random",
   author = "Karsten Schmidt",
   note = "https://thi.ng/random",
-  year = 2016
+  year = 2015
 }
 ```
 
 ## License
 
-&copy; 2016 - 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2021 Karsten Schmidt // Apache Software License 2.0
