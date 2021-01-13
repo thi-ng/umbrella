@@ -1,0 +1,97 @@
+# ${pkg.banner}
+
+[![npm version](https://img.shields.io/npm/v/${pkg.name}.svg)](https://www.npmjs.com/package/${pkg.name})
+![npm downloads](https://img.shields.io/npm/dm/${pkg.name}.svg)
+[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
+<!-- TOC -->
+
+## About
+
+${pkg.description}
+
+Idea based on [segmentio/ksuid](https://github.com/segmentio/ksuid), though with
+added flexibility in terms of configuration & implementation:
+
+- Configurable bit size (default: 128bits)
+- Base-N encoding scheme (default: base62, see
+  [@thi.ng/base-n](https://github.com/thi-ng/umbrella/tree/develop/packages/base-n)
+  for alternatives)
+- Epoch start time offset
+- RNG source (default: `window.crypto`)
+
+KSUIDs generated w/ this package consist of the lower 32bits of an Unix epoch
+(potentially time shifted to free up bits for future timestamps) and N bits of a
+random payload (from a configurable source). IDs can be generated as byte arrays
+or base-N encoded strings. For the latter, the JS runtime MUST support
+[`BigInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt).
+
+
+${status}
+
+${supportPackages}
+
+${relatedPackages}
+
+${blogPosts}
+
+## Installation
+
+${pkg.install}
+
+${pkg.size}
+
+## Dependencies
+
+${pkg.deps}
+
+${examples}
+
+## API
+
+${docLink}
+
+```ts
+import { defKSUID } from "@thi.ng/ksuid";
+
+// init w/ defaults
+const id = defKSUID();
+
+id.next();
+// '05XCWbXa3akRqLDBUw4ogCVKGkd'
+
+const a = id.nextBinary()
+// Uint8Array(20) [
+//     0, 160,  48, 77, 101, 251,
+//   244,  17, 155, 97,  24, 101,
+//    70,  71, 207, 23,  32,  21,
+//   244, 116
+// ]
+
+// format a binary KSUID
+id.format(a);
+// '05XCZ32AaDZfZt0SWE2C22o6cqK'
+```
+
+Creating custom IDs:
+
+```ts
+import { BASE36 } from "@thi.ng/base-n";
+
+// no time shift, 64bit random
+const id36 = defKSUID({ base: BASE36, epoch: 0, bytes: 8 });
+// '2VOUKH4K59AG0RXR4XH'
+```
+
+## Authors
+
+${authors}
+
+${pkg.cite}
+
+## License
+
+&copy; ${copyright} // ${license}
