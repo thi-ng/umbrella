@@ -1,3 +1,4 @@
+import { U8 } from "@thi.ng/hex";
 import type { IBase } from "./api";
 
 export const defBase = (chars: string) => new BaseN(chars);
@@ -38,6 +39,12 @@ export class BaseN implements IBase {
         return res;
     }
 
+    encodeBytes(buf: Uint8Array) {
+        let hex = "";
+        for (let i = 0, n = buf.length; i < n; i++) hex += U8(buf[i]);
+        return this.encodeBigInt(BigInt(`0x${hex}`));
+    }
+
     decode(x: string) {
         const { index, N } = this;
         let res = 0;
@@ -57,7 +64,22 @@ export class BaseN implements IBase {
         return res;
     }
 
+    decodeBytes(x: string, buf: Uint8Array): Uint8Array {
+        let y = this.decodeBigInt(x);
+        const M = BigInt(255);
+        const SHIFT = BigInt(8);
+        for (let i = buf.length; --i >= 0; ) {
+            buf[i] = Number(y & M);
+            y >>= SHIFT;
+        }
+        return buf;
+    }
+
     validate(x: string) {
         return new RegExp(`^[${this.base}]+$`).test(x);
+    }
+
+    size(x: number) {
+        return Math.ceil(Math.log(x) / Math.log(this.N));
     }
 }
