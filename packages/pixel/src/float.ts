@@ -285,6 +285,34 @@ export class FloatBuffer implements IPixelBuffer<Float32Array, NumericArray> {
         return this;
     }
 
+    /**
+     * Returns new buffer of downscaled version (by given integer factor) using
+     * simple nearest neighbor sampling.
+     *
+     * @param res
+     */
+    downsample(res: number) {
+        res |= 0;
+        const { width, height, stride, pixels: sbuf } = this;
+        const dest = new FloatBuffer(
+            (width / res) | 0,
+            (height / res) | 0,
+            this.format
+        );
+        const { width: dwidth, height: dheight, pixels: dbuf } = dest;
+        res *= stride;
+        for (let y = 0, i = 0; y < dheight; y++) {
+            for (
+                let x = 0, j = y * res * width;
+                x < dwidth;
+                x++, i += stride, j += res
+            ) {
+                dbuf.set(sbuf.subarray(j, j + stride), i);
+            }
+        }
+        return dest;
+    }
+
     protected ensureFormat(dest: FloatBuffer) {
         assert(
             dest.format === this.format,

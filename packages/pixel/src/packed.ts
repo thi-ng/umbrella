@@ -391,4 +391,31 @@ export class PackedBuffer implements IPixelBuffer<UIntArray, number> {
         }
         return this;
     }
+
+    /**
+     * Returns new buffer of downscaled version (by given integer factor) using
+     * simple nearest neighbor sampling.
+     *
+     * @param res
+     */
+    downsample(res: number) {
+        res |= 0;
+        const { width, height, pixels: sbuf } = this;
+        const dest = new PackedBuffer(
+            (width / res) | 0,
+            (height / res) | 0,
+            this.format
+        );
+        const { width: dwidth, height: dheight, pixels: dbuf } = dest;
+        for (let y = 0, i = 0; y < dheight; y++) {
+            for (
+                let x = 0, j = y * res * width;
+                x < dwidth;
+                x++, i++, j += res
+            ) {
+                dbuf[i] = sbuf[j];
+            }
+        }
+        return dest;
+    }
 }
