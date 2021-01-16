@@ -10,6 +10,10 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
+  - [Supported memory layouts](#supported-memory-layouts)
+    - [AOS (Array Of Structures)](#aos-array-of-structures)
+    - [SOA (Structure of Arrays)](#soa-structure-of-arrays)
+    - [Hybrid](#hybrid)
   - [Status](#status)
   - [Related packages](#related-packages)
 - [Installation](#installation)
@@ -22,6 +26,20 @@ This project is part of the
 ## About
 
 SOA & AOS memory mapped structured views with optional & extensible serialization.
+
+### Supported memory layouts
+
+#### AOS (Array Of Structures)
+
+![AOS memory block diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/soa/aos.png)
+
+#### SOA (Structure of Arrays)
+
+![SOA memory block diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/soa/soa.png)
+
+#### Hybrid
+
+![Hybrid memory block diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/soa/hybrid.png)
 
 ### Status
 

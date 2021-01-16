@@ -13,6 +13,20 @@ This project is part of the
 
 ${pkg.description}
 
+### Supported memory layouts
+
+#### AOS (Array Of Structures)
+
+![AOS memory block diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/soa/aos.png)
+
+#### SOA (Structure of Arrays)
+
+![SOA memory block diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/soa/soa.png)
+
+#### Hybrid
+
+![Hybrid memory block diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/soa/hybrid.png)
+
 ${status}
 
 See tests for usage. This package might be merged with and/or superseded
