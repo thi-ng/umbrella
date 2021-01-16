@@ -1,0 +1,22 @@
+<mxfile host="65bd71144e" modified="2021-01-16T12:02:19.093Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.52.1 Chrome/83.0.4103.122 Electron/9.3.5 Safari/537.36" etag="LJ5YXsUs8akvSnNwIFt8" version="13.10.0" type="embed">
+    <diagram id="puqlMnuzA39FSYj3CqCd" name="Page-1">
+        <mxGraphModel dx="1248" dy="346" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="YW-yvg-cvtD3WTY6bGQl-1" value="epoch" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=IBM Plex Mono;fillColor=#FFFFCC;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="120" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="YW-yvg-cvtD3WTY6bGQl-2" value="random" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=IBM Plex Mono;fillColor=#CCFFE6;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="120" width="240" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="YW-yvg-cvtD3WTY6bGQl-3" value="32 bits" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=IBM Plex Mono;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="170" width="60" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="YW-yvg-cvtD3WTY6bGQl-4" value="128 bits" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=IBM Plex Mono;" parent="1" vertex="1">
+                    <mxGeometry x="205" y="170" width="70" height="20" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
