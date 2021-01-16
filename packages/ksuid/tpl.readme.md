@@ -29,6 +29,7 @@ random payload (from a configurable source). IDs can be generated as byte arrays
 or base-N encoded strings. For the latter, the JS runtime MUST support
 [`BigInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt).
 
+![KSUID bit layout diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/ksuid/ksuid.png)
 
 ${status}
 
