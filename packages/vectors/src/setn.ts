@@ -14,5 +14,5 @@ export const [setN, setN2, setN3, setN4] = defOp<MultiVecOpN, VecOpN>(
 export const zero = (a: Vec) => setN(a, 0);
 export const one = (a: Vec) => setN(a, 1);
 
-export const zeroes = (n: number) => new Array(n).fill(0);
-export const ones = (n: number) => new Array(n).fill(1);
+export const zeroes = (n: number): Vec => new Array<number>(n).fill(0);
+export const ones = (n: number): Vec => new Array<number>(n).fill(1);
