@@ -88,9 +88,9 @@ export abstract class ASpatialGrid<K extends ReadonlyVec, V>
         const cell = this._cells[id];
         if (!cell) {
             this._cells[id] = [[k, v]];
-            return true;
+        } else {
+            cell.push([k, v]);
         }
-        cell.push([k, v]);
         this._num++;
         return true;
     }
