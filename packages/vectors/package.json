@@ -105,7 +105,7 @@
         "smoothstep",
         "step",
         "typescript",
-        "value-semantics",
+        "vector",
         "wasm",
         "webgl"
     ],
@@ -120,11 +120,13 @@
     "thi.ng": {
         "related": [
             "color",
+            "distance",
             "ecs",
             "geom",
             "hdom-canvas",
             "imgui",
             "matrices",
+            "simd",
             "soa",
             "shader-ast-js",
             "vector-pools",
