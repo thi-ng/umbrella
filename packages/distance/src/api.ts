@@ -27,6 +27,10 @@ export interface IDistance<T> {
 
 export interface INeighborhood<P, T> extends IReset {
     /**
+     * The distance metric used by this neighborhood
+     */
+    readonly dist: IDistance<P>;
+    /**
      * The neighborhood's target position / centroid
      */
     readonly target: P;

@@ -71,26 +71,26 @@ describe("distance", () => {
     });
 
     it("knearestN (inf)", () => {
-        const a = knearestN<number>(10, 2, Infinity, DIST_SQ1);
+        const a = knearestN<number>(10, 2, Infinity, DIST_SQ1, true);
         assert.deepStrictEqual(
-            [5, 9, 12, 11].map((x) => a.consider(x, x)),
-            [25, 1, 4, 1]
+            [5, 8, 13, 11].map((x) => a.consider(x, x)),
+            [25, 4, 9, 1]
         );
         assert.deepStrictEqual(a.deref(), [
             [1, 11],
-            [1, 9],
+            [4, 8],
         ]);
     });
 
     it("knearestN (radius)", () => {
-        const a = knearestN<number>(10, 2, 2, DIST_SQ1);
+        const a = knearestN<number>(10, 2, 2, DIST_SQ1, true);
         assert.deepStrictEqual(
-            [5, 9, 12, 11].map((x) => a.consider(x, x)),
-            [25, 1, 4, 1]
+            [5, 8, 13, 11].map((x) => a.consider(x, x)),
+            [25, 4, 9, 1]
         );
         assert.deepStrictEqual(a.deref(), [
-            [1, 9],
             [1, 11],
+            [4, 8],
         ]);
     });
 });

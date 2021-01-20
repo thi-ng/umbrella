@@ -53,7 +53,7 @@ export class Nearest<D, T>
 
 /**
  * Defines a {@link Nearest} instance for arbitrary length vector positions, by
- * default, using an infinite region radius and {@link DIST_SQ3} distance
+ * default, using an infinite region radius and {@link DIST_SQ} distance
  * metric.
  *
  * @param p
