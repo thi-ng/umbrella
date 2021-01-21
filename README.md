@@ -13,7 +13,7 @@
 > the composer of. Geared towards versatility, not any specific type of music."
 > &mdash; [@loganpowell](https://twitter.com/logantpowell/status/1186334119812304901) via Twitter
 
-Mono-repository for 147+ thi.ng TypeScript/ES6 projects, a wide
+Mono-repository for 148+ thi.ng TypeScript/ES6 projects, a wide
 collection of largely data transformation oriented packages and building
 blocks for (non-exhaustive list of topics):
 
@@ -127,13 +127,14 @@ to update your local version.
 (These packages might be still unreleased and only available on their
 feature or `develop` branches) -->
 
-### Latest additions (2021-01-13)
+### Latest additions (2021-01-21)
 
-| Project                               | Version                                                                                                     | Changelog                                   | Description                                            |
-|---------------------------------------|-------------------------------------------------------------------------------------------------------------|---------------------------------------------|--------------------------------------------------------|
-| [`@thi.ng/args`](./packages/args)     | [![version](https://img.shields.io/npm/v/@thi.ng/args.svg)](https://www.npmjs.com/package/@thi.ng/args)     | [changelog](./packages/args/CHANGELOG.md)   | Declarative & functional CLI arg parsing & coercions   |
-| [`@thi.ng/base-n`](./packages/base-n) | [![version](https://img.shields.io/npm/v/@thi.ng/base-n.svg)](https://www.npmjs.com/package/@thi.ng/base-n) | [changelog](./packages/base-n/CHANGELOG.md) | Arbitrary base-n encoding/decoding with presets        |
-| [`@thi.ng/ksuid`](./packages/ksuid)   | [![version](https://img.shields.io/npm/v/@thi.ng/ksuid.svg)](https://www.npmjs.com/package/@thi.ng/ksuid)   | [changelog](./packages/ksuid/CHANGELOG.md)  | K-sortable unique identifiers, binary & base-N encoded |
+| Project                                   | Version                                                                                                         | Changelog                                     | Description                                            |
+|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------|--------------------------------------------------------|
+| [`@thi.ng/args`](./packages/args)         | [![version](https://img.shields.io/npm/v/@thi.ng/args.svg)](https://www.npmjs.com/package/@thi.ng/args)         | [changelog](./packages/args/CHANGELOG.md)     | Declarative & functional CLI arg parsing & coercions   |
+| [`@thi.ng/distance`](./packages/distance) | [![version](https://img.shields.io/npm/v/@thi.ng/distance.svg)](https://www.npmjs.com/package/@thi.ng/distance) | [changelog](./packages/distance/CHANGELOG.md) | n-D distance metrics & K-nearest neighborhoods         |
+| [`@thi.ng/base-n`](./packages/base-n)     | [![version](https://img.shields.io/npm/v/@thi.ng/base-n.svg)](https://www.npmjs.com/package/@thi.ng/base-n)     | [changelog](./packages/base-n/CHANGELOG.md)   | Arbitrary base-n encoding/decoding with presets        |
+| [`@thi.ng/ksuid`](./packages/ksuid)       | [![version](https://img.shields.io/npm/v/@thi.ng/ksuid.svg)](https://www.npmjs.com/package/@thi.ng/ksuid)       | [changelog](./packages/ksuid/CHANGELOG.md)    | K-sortable unique identifiers, binary & base-N encoded |
 
 ### Fundamentals
 
@@ -147,6 +148,7 @@ feature or `develop` branches) -->
 | [`@thi.ng/compose`](./packages/compose)   | [![version](https://img.shields.io/npm/v/@thi.ng/compose.svg)](https://www.npmjs.com/package/@thi.ng/compose)   | [changelog](./packages/compose/CHANGELOG.md)  | Functional composition helpers                           |
 | [`@thi.ng/date`](./packages/date)         | [![version](https://img.shields.io/npm/v/@thi.ng/date.svg)](https://www.npmjs.com/package/@thi.ng/date)         | [changelog](./packages/date/CHANGELOG.md)     | Date/time iterators, formatters, rounding                |
 | [`@thi.ng/defmulti`](./packages/defmulti) | [![version](https://img.shields.io/npm/v/@thi.ng/defmulti.svg)](https://www.npmjs.com/package/@thi.ng/defmulti) | [changelog](./packages/defmulti/CHANGELOG.md) | Dynamic multiple dispatch                                |
+| [`@thi.ng/distance`](./packages/distance) | [![version](https://img.shields.io/npm/v/@thi.ng/distance.svg)](https://www.npmjs.com/package/@thi.ng/distance) | [changelog](./packages/distance/CHANGELOG.md) | n-D distance metrics & K-nearest neighborhoods           |
 | [`@thi.ng/equiv`](./packages/equiv)       | [![version](https://img.shields.io/npm/v/@thi.ng/equiv.svg)](https://www.npmjs.com/package/@thi.ng/equiv)       | [changelog](./packages/equiv/CHANGELOG.md)    | Deep value equivalence checking                          |
 | [`@thi.ng/errors`](./packages/errors)     | [![version](https://img.shields.io/npm/v/@thi.ng/errors.svg)](https://www.npmjs.com/package/@thi.ng/errors)     | [changelog](./packages/errors/CHANGELOG.md)   | Custom error types                                       |
 | [`@thi.ng/hex`](./packages/hex)           | [![version](https://img.shields.io/npm/v/@thi.ng/hex.svg)](https://www.npmjs.com/package/@thi.ng/hex)           | [changelog](./packages/hex/CHANGELOG.md)      | Hex value formatters for U4-64 words                     |

@@ -46,7 +46,7 @@ yarn add @thi.ng/iges
 <script src="https://unpkg.com/@thi.ng/iges/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.83 KB / CJS: 2.87 KB / UMD: 2.80 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.83 KB / CJS: 2.87 KB / UMD: 2.81 KB
 
 ## Dependencies
 

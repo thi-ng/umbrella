@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-Arbitrary base-n encoding/decoding with presets for base32/36/58/62/64/85 and support for bigints.
+Arbitrary base-n conversions w/ presets for base16/32/36/58/62/64/85, support for arrays & bigints.
 
 ### Status
 
@@ -41,11 +41,11 @@ yarn add @thi.ng/base-n
 <script src="https://unpkg.com/@thi.ng/base-n/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 626 bytes / CJS: 715 bytes / UMD: 800 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 789 bytes / CJS: 892 bytes / UMD: 970 bytes
 
 ## Dependencies
 
-None
+- [@thi.ng/hex](https://github.com/thi-ng/umbrella/tree/develop/packages/hex)
 
 ## API
 

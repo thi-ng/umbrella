@@ -56,7 +56,7 @@ yarn add @thi.ng/rstream-log
 <script src="https://unpkg.com/@thi.ng/rstream-log/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 742 bytes / CJS: 868 bytes / UMD: 939 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 760 bytes / CJS: 886 bytes / UMD: 957 bytes
 
 ## Dependencies
 
@@ -64,6 +64,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 742 bytes / CJS: 868 bytes / UMD: 9
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 
 ## API
