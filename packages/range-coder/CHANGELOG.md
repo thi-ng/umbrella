@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.67](https://github.com/thi-ng/umbrella/compare/@thi.ng/range-coder@1.0.66...@thi.ng/range-coder@1.0.67) (2021-01-21)
+
+**Note:** Version bump only for package @thi.ng/range-coder
+
+
+
+
+
 ## [1.0.66](https://github.com/thi-ng/umbrella/compare/@thi.ng/range-coder@1.0.65...@thi.ng/range-coder@1.0.66) (2021-01-13)
 
 **Note:** Version bump only for package @thi.ng/range-coder

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.9.2...@thi.ng/arrays@0.10.0) (2021-01-21)
+
+
+### Bug Fixes
+
+* **arrays:** fixed-length binarySearch2/4/8/16/32 ([39e5c37](https://github.com/thi-ng/umbrella/commit/39e5c3736135f9a49daceee1fe4da9fbdbb96eab))
+
+
+### Features
+
+* **arrays:** add insert/insertUnsafe() ([2a78598](https://github.com/thi-ng/umbrella/commit/2a7859823d2fb56eef4ee7a6919fe70072475f42))
+
+
+
+
+
 ## [0.9.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.9.1...@thi.ng/arrays@0.9.2) (2021-01-13)
 
 **Note:** Version bump only for package @thi.ng/arrays

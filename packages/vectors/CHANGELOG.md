@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.8.6...@thi.ng/vectors@4.9.0) (2021-01-21)
+
+
+### Bug Fixes
+
+* **vectors:** add explicit return types (zeroes/ones()) ([fc2f662](https://github.com/thi-ng/umbrella/commit/fc2f6623033b5caf1d8a25bf174d51a8db8b1a91))
+
+
+### Features
+
+* **vectors:** add dist2/3 ([eb334fa](https://github.com/thi-ng/umbrella/commit/eb334fa764dc3d7093b1c64afb1fbdb1b1053831))
+
+
+
+
+
 ## [4.8.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.8.5...@thi.ng/vectors@4.8.6) (2021-01-13)
 
 **Note:** Version bump only for package @thi.ng/vectors
