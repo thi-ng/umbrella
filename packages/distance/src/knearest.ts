@@ -17,8 +17,9 @@ import { DIST_SQ, DIST_SQ1, DIST_SQ2, DIST_SQ3 } from "./squared";
  */
 export class KNearest<D, T>
     implements INeighborhood<D, T>, IDeref<Neighbor<T>[]> {
-    protected maxR!: number;
-    protected heap = new Heap<Neighbor<T>>(null, {
+    readonly radius;
+    protected _currR!: number;
+    protected _heap = new Heap<Neighbor<T>>(null, {
         compare: (a, b) => b[0] - a[0],
     });
 
@@ -26,15 +27,16 @@ export class KNearest<D, T>
         public readonly dist: IDistance<D>,
         public readonly target: D,
         public readonly k: number,
-        public readonly radius = Infinity,
+        radius = Infinity,
         public sorted = false
     ) {
+        this.radius = Math.max(0, radius);
         this.reset();
     }
 
     reset() {
-        this.maxR = this.dist.to(this.radius);
-        this.heap.clear();
+        this._currR = this.dist.to(this.radius);
+        this._heap.clear();
         return this;
     }
 
@@ -48,7 +50,7 @@ export class KNearest<D, T>
      * metrics.
      */
     deref() {
-        return this.sorted ? this.heap.max() : this.heap.values;
+        return this.sorted ? this._heap.max() : this._heap.values;
     }
 
     /**
@@ -60,16 +62,16 @@ export class KNearest<D, T>
     }
 
     includesDistance(d: number, eucledian = true) {
-        return (eucledian ? this.dist.to(d) : d) <= this.maxR;
+        return (eucledian ? this.dist.to(d) : d) <= this._currR;
     }
 
     consider(pos: D, val: T) {
         const d = this.dist.metric(this.target, pos);
-        if (d <= this.maxR) {
-            const heap = this.heap;
+        if (d <= this._currR) {
+            const heap = this._heap;
             if (heap.length === this.k) {
                 heap.pushPop([d, val]);
-                this.maxR = heap.peek()[0];
+                this._currR = heap.peek()[0];
             } else {
                 heap.push([d, val]);
             }

@@ -10,19 +10,21 @@ import { DIST_SQ, DIST_SQ1, DIST_SQ2, DIST_SQ3 } from "./squared";
  */
 export class Nearest<D, T>
     implements INeighborhood<D, T>, IDeref<Neighbor<T> | undefined> {
-    maxR!: number;
+    readonly radius;
+    protected _currR!: number;
     value?: T;
 
     constructor(
         public readonly dist: IDistance<D>,
         public readonly target: D,
-        public readonly radius = Infinity
+        radius = Infinity
     ) {
+        this.radius = Math.max(0, radius);
         this.reset();
     }
 
     reset() {
-        this.maxR = this.dist.to(this.radius);
+        this._currR = this.dist.to(this.radius);
         this.value = undefined;
         return this;
     }
@@ -33,18 +35,18 @@ export class Nearest<D, T>
      */
     deref() {
         return this.value != undefined
-            ? <Neighbor<T>>[this.maxR, this.value]
+            ? <Neighbor<T>>[this._currR, this.value]
             : undefined;
     }
 
     includesDistance(d: number, eucledian = true) {
-        return (eucledian ? this.dist.to(d) : d) <= this.maxR;
+        return (eucledian ? this.dist.to(d) : d) <= this._currR;
     }
 
     consider(pos: D, val: T) {
         const d = this.dist.metric(this.target, pos);
-        if (d <= this.maxR) {
-            this.maxR = d;
+        if (d <= this._currR) {
+            this._currR = d;
             this.value = val;
         }
         return d;

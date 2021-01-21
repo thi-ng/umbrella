@@ -42,7 +42,8 @@ export interface INeighborhood<P, T> extends IReset {
     /**
      * Returns true, if distance `d` is <= current radius of this neighborhood.
      * If `eucledian` is true (default: true), then `d` will first be converted
-     * into the metric used by this neighborhood using {@link IDistance.to}.
+     * into the metric used by this neighborhood using {@link IDistance.to},
+     * otherwise it is expected to be already in that metric space.
      *
      * @param d
      * @param eucledian
