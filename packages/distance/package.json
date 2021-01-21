@@ -76,6 +76,9 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "geom-accel"
+        ],
         "status": "alpha",
         "year": 2021
     }
