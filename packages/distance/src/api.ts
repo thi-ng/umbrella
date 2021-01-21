@@ -1,9 +1,18 @@
 import type { FnU2, IReset, Pair } from "@thi.ng/api";
 
+/**
+ * Distance metric function
+ */
 export type Metric<T> = FnU2<T, number>;
 
+/**
+ * Tuple of `[distance, T]`
+ */
 export type Neighbor<T> = Pair<number, T>;
 
+/**
+ * Distance metric implementation & conversions from/to raw distances.
+ */
 export interface IDistance<T> {
     /**
      * The actual distance function metric.
