@@ -98,7 +98,14 @@ const packed = build(
     index
 );
 
-writeFileSync("search.json", JSON.stringify(packed));
+writeFileSync("assets/search.json", JSON.stringify(packed));
 // msgpack'd binary version
-writeFileSync("search.bin", serialize(packed));
-execSync("gzip -9 -f search.bin");
+writeFileSync("assets/search.bin", serialize(packed));
+execSync("gzip -9 -f assets/search.bin");
+
+console.log("uploading...");
+console.log(
+    execSync(
+        `aws s3 cp assets/search.bin.gz s3://docs.thi.ng/umbrella/search-index-latest.bin --content-encoding gzip --acl public-read --profile thing-umbrella`
+    ).toString()
+);
