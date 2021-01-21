@@ -8,6 +8,7 @@ export * from "./find";
 export * from "./fill-range";
 export * from "./fuzzy-match";
 export * from "./is-sorted";
+export * from "./insert";
 export * from "./into";
 export * from "./iterator";
 export * from "./levenshtein";
