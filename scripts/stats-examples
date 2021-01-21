@@ -6,16 +6,16 @@
 if [ $# -gt 0 ]; then
     modules="$1/*"
 else
-    modules="packages/*"
+    modules="examples/*"
 fi
 
 if [ $# -gt 1 ]; then
     out="$2"
 else
-    out=assets/stats.csv
+    out=assets/stats-examples.csv
 fi
 
-echo "package,files,comments,sloc" > $out
+echo "example,files,comments,sloc" > $out
 
 for m in $modules; do
     if [ -d "$m" ]; then
