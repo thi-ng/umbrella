@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom-components@0.1.24...@thi.ng/rdom-components@0.1.25) (2021-01-22)
+
+**Note:** Version bump only for package @thi.ng/rdom-components
+
+
+
+
+
 ## [0.1.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom-components@0.1.23...@thi.ng/rdom-components@0.1.24) (2021-01-21)
 
 **Note:** Version bump only for package @thi.ng/rdom-components

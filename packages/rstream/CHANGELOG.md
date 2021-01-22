@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@5.0.15...@thi.ng/rstream@5.1.0) (2021-01-22)
+
+
+### Features
+
+* **rstream:** add CommonOpts for .map() ([6324123](https://github.com/thi-ng/umbrella/commit/63241231a93c34fa5fb834706f26e024adf3100b))
+
+
+
+
+
 ## [5.0.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@5.0.14...@thi.ng/rstream@5.0.15) (2021-01-21)
 
 **Note:** Version bump only for package @thi.ng/rstream

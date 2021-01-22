@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@3.2.1...@thi.ng/rstream-log@3.2.2) (2021-01-22)
+
+**Note:** Version bump only for package @thi.ng/rstream-log
+
+
+
+
+
 ## [3.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@3.2.0...@thi.ng/rstream-log@3.2.1) (2021-01-21)
 
 **Note:** Version bump only for package @thi.ng/rstream-log
