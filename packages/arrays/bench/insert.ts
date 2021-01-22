@@ -12,6 +12,12 @@ const insertCopyWithin = (buf: any[], x: any, i: number, k = Infinity) => {
     return buf;
 };
 
+const splice = (buf: any[], x: any, i: number, k = Infinity) => {
+    buf.splice(i, 0, x);
+    buf.length > k && buf.pop();
+    return buf;
+};
+
 const run = (
     fn: typeof insert,
     k: 2 | 4 | 8 | 16 | 32 | 64 | 128 | 256 = 8,
@@ -23,27 +29,10 @@ const run = (
     assert(buf.length === k, `len=${buf.length}`);
 };
 
-benchmark(() => run(insert), { title: "insert8", ...opts });
-benchmark(() => run(insertUnsafe), { title: "insertUnsafe8", ...opts });
-benchmark(() => run(insertCopyWithin), { title: "insertCopyWithin8", ...opts });
-
-benchmark(() => run(insert, 16), { title: "insert16", ...opts });
-benchmark(() => run(insertUnsafe, 16), { title: "insertUnsafe16", ...opts });
-benchmark(() => run(insertCopyWithin, 16), {
-    title: "insertCopyWithin16",
-    ...opts,
-});
-
-benchmark(() => run(insert, 32), { title: "insert32", ...opts });
-benchmark(() => run(insertUnsafe, 32), { title: "insertUnsafe32", ...opts });
-benchmark(() => run(insertCopyWithin, 32), {
-    title: "insertCopyWithin32",
-    ...opts,
-});
-
-benchmark(() => run(insert, 64), { title: "insert64", ...opts });
-benchmark(() => run(insertUnsafe, 64), { title: "insertUnsafe64", ...opts });
-benchmark(() => run(insertCopyWithin, 64), {
-    title: "insertCopyWithin64",
-    ...opts,
-});
+// prettier-ignore
+for (let k of <const>[4, 8, 16, 32, 64]) {
+    benchmark(() => run(splice, k), { title: `splice${k}`, ...opts });
+    benchmark(() => run(insert, k), { title: `insert${k}`, ...opts });
+    benchmark(() => run(insertUnsafe, k), { title: `insertUnsafe${k}`, ...opts });
+    benchmark(() => run(insertCopyWithin, k), { title: `insertCopyWithin${k}`, ...opts });
+}

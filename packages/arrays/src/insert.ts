@@ -7,8 +7,9 @@
  * `buf.length` is larger than `k`, only the index range [i..k) will be
  * modified.
  *
- * In benchmarking with 8, 16, 32, 64 element arrays, this function is
- * consistently 7-16x faster than `Array.prototype.copyWithin`. See
+ * In benchmarking with 4, 8, 16, 32, 64 element arrays, this function is
+ * consistently 7-16x faster than `Array.prototype.copyWithin()` and 1.5-2x
+ * faster than `Array.prototype.splice()` (for sizes < ~32). See
  * `/bench/insert.ts`
  *
  * @param buf
