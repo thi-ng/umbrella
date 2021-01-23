@@ -163,7 +163,10 @@ export type CSSColorName =
     | "white"
     | "whitesmoke"
     | "yellow"
-    | "yellowgreen";
+    | "yellowgreen"
+    // additions
+    | "transparent"
+    | "rebeccapurple";
 
 export type ColorRangePreset =
     | "light"

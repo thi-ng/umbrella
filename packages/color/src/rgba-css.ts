@@ -9,6 +9,7 @@ export const rgbaCss = (src: ReadonlyColor) => {
     const g = (clamp01(src[1]) * 0xff + 0.5) | 0;
     const b = (clamp01(src[2]) * 0xff + 0.5) | 0;
     const a = ensureAlpha(src[3]);
+    // TODO update to `rgb(${r} ${g} ${b}/${FF(a)})` (CSS L4 syntax)
     return a < 1
         ? `rgba(${r},${g},${b},${FF(a)})`
         : `#${U24((r << 16) | (g << 8) | b)}`;

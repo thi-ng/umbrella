@@ -148,4 +148,7 @@ export const CSS_NAMES: Record<CSSColorName, string> = {
     whitesmoke: "f5f5f5",
     yellow: "ff0",
     yellowgreen: "9acd32",
+    // additions
+    transparent: "0000",
+    rebeccapurple: "639",
 };
