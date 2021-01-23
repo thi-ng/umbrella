@@ -9,6 +9,8 @@ export type ColorMode =
     | "hsl"
     | "hsv"
     | "int"
+    | "lab"
+    | "lch"
     | "oklab"
     | "rgb"
     | "xyz"

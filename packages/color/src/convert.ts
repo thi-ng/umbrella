@@ -18,6 +18,8 @@ import { hsvaHsla } from "./hsva-hsla";
 import { hsvaRgba } from "./hsva-rgba";
 import { int32Css } from "./int-css";
 import { int32Rgba } from "./int-rgba";
+import { labCss } from "./lab-css";
+import { lchCss } from "./lch-css";
 import { oklabCss } from "./oklab-css";
 import { oklabRgba } from "./oklab-rgba";
 import { parseCss } from "./parse-css";
@@ -103,6 +105,24 @@ export function asHSVA(
 ): Color;
 export function asHSVA(col: any, mode?: ColorMode) {
     return <Color>convert(col, "hsv", mode);
+}
+
+export function asLAB(col: IColor): Color;
+export function asLAB(
+    col: string | number | ReadonlyColor,
+    mode: ColorMode
+): Color;
+export function asLAB(col: any, mode?: ColorMode) {
+    return <Color>convert(col, "lab", mode);
+}
+
+export function asLCH(col: IColor): Color;
+export function asLCH(
+    col: string | number | ReadonlyColor,
+    mode: ColorMode
+): Color;
+export function asLCH(col: any, mode?: ColorMode) {
+    return <Color>convert(col, "lch", mode);
 }
 
 export function asOklab(col: IColor): Color;
@@ -231,6 +251,14 @@ defConversions("hsv", hsvaRgba, "hcy", "hsi", "int", "oklab", "xyz", "ycbcr");
 defConversion("css", "hsv", (x: any) => hsvaCss(x));
 
 defConversion("hsl", "hsv", (x: any) => hsvaHsla([], x));
+
+// LAB
+
+defConversion("css", "lab", (x: any) => labCss(x));
+
+// LCH
+
+defConversion("css", "lch", (x: any) => lchCss(x));
 
 // Oklab
 
