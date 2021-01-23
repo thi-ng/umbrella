@@ -43,6 +43,7 @@ Fast color space conversions (any direction) between:
 - HSLA (float4)
 - HSVA (float4)
 - Int32 (uint32, `0xaarrggbb`)
+- [Oklab](https://bottosson.github.io/posts/oklab/) (float4)
 - RGBA (float4)
 - XYZA (float4, aka CIE 1931)
 - YCbCr (float4)
@@ -337,7 +338,7 @@ yarn add @thi.ng/color
 <script src="https://unpkg.com/@thi.ng/color/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 8.42 KB / CJS: 8.85 KB / UMD: 8.31 KB
+Package sizes (gzipped, pre-treeshake): ESM: 8.94 KB / CJS: 9.39 KB / UMD: 8.81 KB
 
 ## Dependencies
 

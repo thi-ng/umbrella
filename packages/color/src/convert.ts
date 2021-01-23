@@ -18,6 +18,7 @@ import { hsvaHsla } from "./hsva-hsla";
 import { hsvaRgba } from "./hsva-rgba";
 import { int32Css } from "./int-css";
 import { int32Rgba } from "./int-rgba";
+import { oklabRgba } from "./oklab-rgba";
 import { parseCss } from "./parse-css";
 import { rgbaCss } from "./rgba-css";
 import { rgbaHcya } from "./rgba-hcya";
@@ -25,6 +26,7 @@ import { rgbaHsia } from "./rgba-hsia";
 import { rgbaHsla } from "./rgba-hsla";
 import { rgbaHsva } from "./rgba-hsva";
 import { rgbaInt } from "./rgba-int";
+import { rgbaOklab } from "./rgba-oklab";
 import { rgbaXyza } from "./rgba-xyza";
 import { rgbaYcbcra } from "./rgba-ycbcra";
 import { xyzaRgba } from "./xyza-rgba";
@@ -102,6 +104,15 @@ export function asHSVA(col: any, mode?: ColorMode) {
     return <Color>convert(col, "hsv", mode);
 }
 
+export function asOklab(col: IColor): Color;
+export function asOklab(
+    col: string | number | ReadonlyColor,
+    mode: ColorMode
+): Color;
+export function asOklab(col: any, mode?: ColorMode) {
+    return <Color>convert(col, "oklab", mode);
+}
+
 export function asXYZA(col: IColor): Color;
 export function asXYZA(
     col: string | number | ReadonlyColor,
@@ -152,6 +163,7 @@ defConversion("rgb", "css", (x: any) => parseCss(x));
     "hsl",
     "hsv",
     "int",
+    "oklab",
     "xyz",
     "ycbcr",
 ]).forEach((id) =>
@@ -160,13 +172,33 @@ defConversion("rgb", "css", (x: any) => parseCss(x));
 
 // Int
 
-defConversions("int", int32Rgba, "hcy", "hsi", "hsl", "hsv", "xyz", "ycbcr");
+defConversions(
+    "int",
+    int32Rgba,
+    "hcy",
+    "hsi",
+    "hsl",
+    "hsv",
+    "oklab",
+    "xyz",
+    "ycbcr"
+);
 
 defConversion("css", "int", (x: any) => int32Css(x));
 
 // HCYA
 
-defConversions("hcy", hcyaRgba, "css", "int", "hsl", "hsv", "xyz", "ycbcr");
+defConversions(
+    "hcy",
+    hcyaRgba,
+    "css",
+    "int",
+    "hsl",
+    "hsv",
+    "oklab",
+    "xyz",
+    "ycbcr"
+);
 
 // HSIA
 
@@ -178,13 +210,14 @@ defConversions(
     "hcy",
     "hsl",
     "hsv",
+    "oklab",
     "xyz",
     "ycbcr"
 );
 
 // HSLA
 
-defConversions("hsl", hslaRgba, "hcy", "hsi", "int", "xyz", "ycbcr");
+defConversions("hsl", hslaRgba, "hcy", "hsi", "int", "oklab", "xyz", "ycbcr");
 
 defConversion("css", "hsl", (x: any) => hslaCss(x));
 
@@ -192,11 +225,26 @@ defConversion("hsv", "hsl", (x: any) => hslaHsva([], x));
 
 // HSVA
 
-defConversions("hsv", hsvaRgba, "hcy", "hsi", "int", "xyz", "ycbcr");
+defConversions("hsv", hsvaRgba, "hcy", "hsi", "int", "oklab", "xyz", "ycbcr");
 
 defConversion("css", "hsv", (x: any) => hsvaCss(x));
 
 defConversion("hsl", "hsv", (x: any) => hsvaHsla([], x));
+
+// Oklab
+
+defConversions(
+    "oklab",
+    oklabRgba,
+    "css",
+    "hcy",
+    "hsi",
+    "hsl",
+    "hsv",
+    "int",
+    "xyz",
+    "ycbcr"
+);
 
 // RGBA
 
@@ -205,6 +253,7 @@ defConversion("hsl", "hsv", (x: any) => hsvaHsla([], x));
     ["hsi", rgbaHsia],
     ["hsl", rgbaHsla],
     ["hsv", rgbaHsva],
+    ["oklab", rgbaOklab],
     ["xyz", rgbaXyza],
     ["ycbcr", rgbaYcbcra],
 ]).forEach(([id, fn]) => defConversion(id, "rgb", (x: any) => fn([], x)));
@@ -224,6 +273,7 @@ defConversions(
     "hsl",
     "hsv",
     "int",
+    "oklab",
     "ycbcr"
 );
 
@@ -238,5 +288,6 @@ defConversions(
     "hsl",
     "hsv",
     "int",
+    "oklab",
     "xyz"
 );

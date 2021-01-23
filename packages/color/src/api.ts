@@ -3,13 +3,14 @@ import type { IRandom } from "@thi.ng/random";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 export type ColorMode =
-    | "rgb"
-    | "hcy"
-    | "hsv"
-    | "hsl"
-    | "hsi"
-    | "int"
     | "css"
+    | "hcy"
+    | "hsi"
+    | "hsl"
+    | "hsv"
+    | "int"
+    | "oklab"
+    | "rgb"
     | "xyz"
     | "ycbcr";
 

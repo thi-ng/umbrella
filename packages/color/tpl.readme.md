@@ -25,6 +25,7 @@ Fast color space conversions (any direction) between:
 - HSLA (float4)
 - HSVA (float4)
 - Int32 (uint32, `0xaarrggbb`)
+- [Oklab](https://bottosson.github.io/posts/oklab/) (float4)
 - RGBA (float4)
 - XYZA (float4, aka CIE 1931)
 - YCbCr (float4)
