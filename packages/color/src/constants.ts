@@ -36,30 +36,90 @@ export enum Hue {
 
 export const SRGB_ALPHA = 0.055;
 
+/**
+ * sRGB to XYZ D65 conversion matrix
+ *
+ * @reference
+ * http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
+ */
 export const RGB_XYZ = [
     0.4124564,
-    0.3575761,
-    0.1804375,
     0.2126729,
-    0.7151522,
-    0.072175,
     0.0193339,
+    0.3575761,
+    0.7151522,
     0.119192,
+    0.1804375,
+    0.072175,
     0.9503041,
 ];
 
+/**
+ * XYZ D65 to sRGB conversion matrix
+ *
+ * @reference
+ * http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
+ */
 export const XYZ_RGB = [
     3.2404542,
-    -1.5371385,
-    -0.4985314,
     -0.969266,
-    1.8760108,
-    0.041556,
     0.0556434,
+    -1.5371385,
+    1.8760108,
     -0.2040259,
+    -0.4985314,
+    0.041556,
     1.0572252,
 ];
 
-export const FF = float(2);
-export const PC = percent(2);
+export const FF = float(3);
+export const PC = percent(3);
 export const INV8BIT = 1 / 0xff;
+
+export const OKLAB_M1 = [
+    0.8189330101,
+    0.0329845436,
+    0.0482003018,
+    0.3618667424,
+    0.9293118715,
+    0.2643662691,
+    -0.1288597137,
+    0.0361456387,
+    0.633851707,
+];
+
+export const OKLAB_M2 = [
+    0.2104542553,
+    1.9779984951,
+    0.0259040371,
+    0.793617785,
+    -2.428592205,
+    0.7827717662,
+    -0.0040720468,
+    0.4505937099,
+    -0.808675766,
+];
+
+export const OKLAB_CONE_LMS = [
+    0.412165612,
+    0.211859107,
+    0.0883097947,
+    0.536275208,
+    0.6807189584,
+    0.2818474174,
+    0.0514575653,
+    0.107406579,
+    0.6302613616,
+];
+
+export const OKLAB_LMS_CONE = [
+    4.0767245293,
+    -1.2681437731,
+    -0.0041119885,
+    -3.3072168827,
+    2.6093323231,
+    -0.7034763098,
+    0.2307590544,
+    -0.341134429,
+    1.7068625689,
+];

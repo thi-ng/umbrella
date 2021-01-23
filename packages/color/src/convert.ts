@@ -18,6 +18,7 @@ import { hsvaHsla } from "./hsva-hsla";
 import { hsvaRgba } from "./hsva-rgba";
 import { int32Css } from "./int-css";
 import { int32Rgba } from "./int-rgba";
+import { oklabCss } from "./oklab-css";
 import { oklabRgba } from "./oklab-rgba";
 import { parseCss } from "./parse-css";
 import { rgbaCss } from "./rgba-css";
@@ -236,7 +237,6 @@ defConversion("hsl", "hsv", (x: any) => hsvaHsla([], x));
 defConversions(
     "oklab",
     oklabRgba,
-    "css",
     "hcy",
     "hsi",
     "hsl",
@@ -245,6 +245,8 @@ defConversions(
     "xyz",
     "ycbcr"
 );
+
+defConversion("css", "oklab", (x: any) => oklabCss(x));
 
 // RGBA
 
