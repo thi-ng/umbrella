@@ -1,4 +1,5 @@
 import type { Predicate } from "@thi.ng/api";
+import { clamp0 } from "@thi.ng/math";
 import { Key } from "../api";
 import type { IMGUI } from "../gui";
 
@@ -41,7 +42,7 @@ export const handleTextfieldKeys = (
         } else if (drawCursor + delta > maxLen) {
             state.offset = Math.min(
                 state.offset + delta,
-                Math.max(0, txtLen - maxLen)
+                clamp0(txtLen - maxLen)
             );
         }
     };

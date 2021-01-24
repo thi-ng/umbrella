@@ -1,5 +1,6 @@
 import { polygon } from "@thi.ng/geom";
 import { gridLayout, IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
+import { clamp0 } from "@thi.ng/math";
 import { hash } from "@thi.ng/vectors";
 import { Key } from "../api";
 import type { IMGUI } from "../gui";
@@ -56,7 +57,7 @@ export const dropdown = (
                         gui.setState(id, false);
                         break;
                     case Key.UP:
-                        return update(gui, id, Math.max(0, sel - 1));
+                        return update(gui, id, clamp0(sel - 1));
                     case Key.DOWN:
                         return update(
                             gui,
