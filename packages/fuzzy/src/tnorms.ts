@@ -1,5 +1,5 @@
 import type { FnN2 } from "@thi.ng/api";
-import { norm } from "@thi.ng/math";
+import { clamp0, norm } from "@thi.ng/math";
 
 // https://en.wikipedia.org/wiki/T-norm
 
@@ -7,7 +7,7 @@ export const tnormMin: FnN2 = (x, y) => Math.min(x, y);
 
 export const tnormProduct: FnN2 = (x, y) => x * y;
 
-export const tnormLukasiewicz: FnN2 = (x, y) => Math.max(0, x + y - 1);
+export const tnormLukasiewicz: FnN2 = (x, y) => clamp0(x + y - 1);
 
 export const tnormDrastic: FnN2 = (x, y) => (x === 1 ? y : y === 1 ? x : 0);
 
@@ -35,7 +35,7 @@ export const tnormHamacher = (p = 2): FnN2 => (x, y) =>
 export const tnormYager = (p = 2): FnN2 =>
     p === 0
         ? () => 0
-        : (x, y) => Math.max(0, 1 - ((1 - x) ** p + (1 - y) ** p) ** (1 / p));
+        : (x, y) => clamp0(1 - ((1 - x) ** p + (1 - y) ** p) ** (1 / p));
 
 /**
  * HOF T-norm. Parametric Dombi with `p` controlling curvature.
