@@ -1,6 +1,7 @@
 import type { IDeref } from "@thi.ng/api";
+import { clamp0 } from "@thi.ng/math";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import type { IDistance, Neighbor, INeighborhood } from "./api";
+import type { IDistance, INeighborhood, Neighbor } from "./api";
 import { DIST_SQ, DIST_SQ1, DIST_SQ2, DIST_SQ3 } from "./squared";
 
 /**
@@ -19,7 +20,7 @@ export class Nearest<D, T>
         public readonly target: D,
         radius = Infinity
     ) {
-        this.radius = Math.max(0, radius);
+        this.radius = clamp0(radius);
         this.reset();
     }
 

@@ -1,5 +1,6 @@
 import type { IDeref } from "@thi.ng/api";
 import { Heap } from "@thi.ng/heaps";
+import { clamp0 } from "@thi.ng/math";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import type { IDistance, INeighborhood, Neighbor } from "./api";
 import { DIST_SQ, DIST_SQ1, DIST_SQ2, DIST_SQ3 } from "./squared";
@@ -31,7 +32,7 @@ export class KNearest<D, T>
         radius = Infinity,
         public sorted = false
     ) {
-        this.radius = Math.max(0, radius);
+        this.radius = clamp0(radius);
         this.reset();
     }
 
