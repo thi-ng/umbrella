@@ -8,31 +8,45 @@ import type {
     IColor,
     ReadonlyColor,
 } from "./api";
+import { HCYA, hcya } from "./hcya";
 import { hcyaRgba } from "./hcya-rgba";
+import { HSIA, hsia } from "./hsia";
 import { hsiaRgba } from "./hsia-rgba";
+import { HSLA, hsla } from "./hsla";
 import { hslaCss } from "./hsla-css";
 import { hslaHsva } from "./hsla-hsva";
 import { hslaRgba } from "./hsla-rgba";
+import { HSVA, hsva } from "./hsva";
 import { hsvaCss } from "./hsva-css";
 import { hsvaHsla } from "./hsva-hsla";
 import { hsvaRgba } from "./hsva-rgba";
 import { int32Css } from "./int-css";
 import { int32Rgba } from "./int-rgba";
+import { int32Srgba } from "./int-srgba";
+import { LAB, lab } from "./lab";
 import { labCss } from "./lab-css";
+import { LCH, lch } from "./lch";
 import { lchCss } from "./lch-css";
-import { oklabCss } from "./oklab-css";
+import { Oklab, oklab } from "./oklab";
 import { oklabRgba } from "./oklab-rgba";
 import { parseCss } from "./parse-css";
+import { RGBA, rgba } from "./rgba";
 import { rgbaCss } from "./rgba-css";
 import { rgbaHcya } from "./rgba-hcya";
 import { rgbaHsia } from "./rgba-hsia";
 import { rgbaHsla } from "./rgba-hsla";
 import { rgbaHsva } from "./rgba-hsva";
-import { rgbaInt } from "./rgba-int";
 import { rgbaOklab } from "./rgba-oklab";
+import { rgbaSrgba } from "./rgba-srgba";
 import { rgbaXyza } from "./rgba-xyza";
 import { rgbaYcbcra } from "./rgba-ycbcra";
+import { SRGBA, srgba } from "./srgba";
+import { srgbaCss } from "./srgba-css";
+import { srgbaInt } from "./srgba-int";
+import { srgbaRgba } from "./srgba-rgba";
+import { XYZA, xyza } from "./xyza";
 import { xyzaRgba } from "./xyza-rgba";
+import { YCbCrA, ycbcra } from "./ycbcr";
 import { ycbcraRgba } from "./ycbcra-rgba";
 
 export const convert: MultiFn2O<
@@ -50,7 +64,9 @@ export const convert: MultiFn2O<
 convert.add(DEFAULT, (col: any, mdest, msrc) =>
     (col.mode !== undefined && col.mode === mdest) || mdest === msrc
         ? col
-        : illegalArgs(`missing conversion for mode ${msrc} -> ${mdest}`)
+        : illegalArgs(
+              `missing conversion for mode ${col.mode || msrc} -> ${mdest}`
+          )
 );
 
 export function asCSS(col: IColor): string;
@@ -62,94 +78,103 @@ export function asCSS(col: any, mode?: ColorMode) {
     return <string>convert(col, "css", mode);
 }
 
-export function asRGBA(col: IColor): Color;
-export function asRGBA(
-    col: string | number | ReadonlyColor,
-    mode: ColorMode
-): Color;
-export function asRGBA(col: any, mode?: ColorMode) {
-    return <Color>convert(col, "rgb", mode);
-}
-
-export function asHCYA(col: IColor): Color;
+export function asHCYA(col: IColor): HCYA;
 export function asHCYA(
     col: string | number | ReadonlyColor,
     mode: ColorMode
-): Color;
+): HCYA;
 export function asHCYA(col: any, mode?: ColorMode) {
-    return <Color>convert(col, "hcy", mode);
+    return hcya(<Color>convert(col, "hcy", mode));
 }
 
-export function asHSIA(col: IColor): Color;
+export function asHSIA(col: IColor): HSIA;
 export function asHSIA(
     col: string | number | ReadonlyColor,
     mode: ColorMode
-): Color;
+): HSIA;
 export function asHSIA(col: any, mode?: ColorMode) {
-    return <Color>convert(col, "hsi", mode);
+    return hsia(<Color>convert(col, "hsi", mode));
 }
 
-export function asHSLA(col: IColor): Color;
+export function asHSLA(col: IColor): HSLA;
 export function asHSLA(
     col: string | number | ReadonlyColor,
     mode: ColorMode
-): Color;
+): HSLA;
 export function asHSLA(col: any, mode?: ColorMode) {
-    return <Color>convert(col, "hsl", mode);
+    return hsla(<Color>convert(col, "hsl", mode));
 }
 
-export function asHSVA(col: IColor): Color;
+export function asHSVA(col: IColor): HSVA;
 export function asHSVA(
     col: string | number | ReadonlyColor,
     mode: ColorMode
-): Color;
+): HSVA;
 export function asHSVA(col: any, mode?: ColorMode) {
-    return <Color>convert(col, "hsv", mode);
+    return hsva(<Color>convert(col, "hsv", mode));
 }
 
-export function asLAB(col: IColor): Color;
+export function asLAB(col: IColor): LAB;
 export function asLAB(
     col: string | number | ReadonlyColor,
     mode: ColorMode
-): Color;
+): LAB;
 export function asLAB(col: any, mode?: ColorMode) {
-    return <Color>convert(col, "lab", mode);
+    return lab(<Color>convert(col, "lab", mode));
 }
 
-export function asLCH(col: IColor): Color;
+export function asLCH(col: IColor): LCH;
 export function asLCH(
     col: string | number | ReadonlyColor,
     mode: ColorMode
-): Color;
+): LCH;
 export function asLCH(col: any, mode?: ColorMode) {
-    return <Color>convert(col, "lch", mode);
+    return lch(<Color>convert(col, "lch", mode));
 }
 
-export function asOklab(col: IColor): Color;
+export function asOklab(col: IColor): Oklab;
 export function asOklab(
     col: string | number | ReadonlyColor,
     mode: ColorMode
-): Color;
+): Oklab;
 export function asOklab(col: any, mode?: ColorMode) {
-    return <Color>convert(col, "oklab", mode);
+    return oklab(<Color>convert(col, "oklab", mode));
 }
 
-export function asXYZA(col: IColor): Color;
+export function asRGBA(col: IColor): RGBA;
+export function asRGBA(
+    col: string | number | ReadonlyColor,
+    mode: ColorMode
+): RGBA;
+export function asRGBA(col: any, mode?: ColorMode) {
+    return rgba(<Color>convert(col, "rgb", mode));
+}
+
+export function asSRGBA(col: IColor): SRGBA;
+export function asSRGBA(
+    col: string | number | ReadonlyColor,
+    mode: ColorMode
+): SRGBA;
+export function asSRGBA(col: any, mode?: ColorMode) {
+    return srgba(<Color>convert(col, "srgb", mode));
+}
+
+export function asXYZA(col: IColor): XYZA;
 export function asXYZA(
     col: string | number | ReadonlyColor,
     mode: ColorMode
-): Color;
+): XYZA;
 export function asXYZA(col: any, mode?: ColorMode) {
-    return <Color>convert(col, "xyz", mode);
+    return xyza(<Color>convert(col, "xyz", mode));
 }
 
-export function asYCbCrA(col: IColor): Color;
+export function asYCbCrA(col: IColor): YCbCrA;
 export function asYCbCrA(
     col: string | number | ReadonlyColor,
     mode: ColorMode
-): Color;
+): YCbCrA;
 export function asYCbCrA(col: any, mode?: ColorMode) {
-    return <Color>convert(col, "ycbcr", mode);
+    return ycbcra(<Color>convert(col, "ycbcr", mode));
 }
 
 const defConversion = (
@@ -176,7 +201,7 @@ const defConversions = (
 
 // CSS
 
-defConversion("rgb", "css", (x: any) => parseCss(x));
+// defConversion("rgb", "css", (x: any) => parseCss(x));
 
 (<ColorMode[]>[
     "hcy",
@@ -184,11 +209,15 @@ defConversion("rgb", "css", (x: any) => parseCss(x));
     "hsl",
     "hsv",
     "int",
+    "lab",
+    "lch",
     "oklab",
+    "rgb",
+    "srgb",
     "xyz",
     "ycbcr",
 ]).forEach((id) =>
-    defConversion(id, "css", (x: any) => convert(parseCss(x), id, "rgb"))
+    defConversion(id, "css", (x: any) => convert(parseCss(x), id))
 );
 
 // Int
@@ -205,6 +234,8 @@ defConversions(
     "ycbcr"
 );
 
+defConversion("srgb", "int", (x: any) => int32Srgba([], x));
+
 defConversion("css", "int", (x: any) => int32Css(x));
 
 // HCYA
@@ -217,6 +248,7 @@ defConversions(
     "hsl",
     "hsv",
     "oklab",
+    "srgb",
     "xyz",
     "ycbcr"
 );
@@ -232,13 +264,24 @@ defConversions(
     "hsl",
     "hsv",
     "oklab",
+    "srgb",
     "xyz",
     "ycbcr"
 );
 
 // HSLA
 
-defConversions("hsl", hslaRgba, "hcy", "hsi", "int", "oklab", "xyz", "ycbcr");
+defConversions(
+    "hsl",
+    hslaRgba,
+    "hcy",
+    "hsi",
+    "int",
+    "oklab",
+    "srgb",
+    "xyz",
+    "ycbcr"
+);
 
 defConversion("css", "hsl", (x: any) => hslaCss(x));
 
@@ -246,7 +289,17 @@ defConversion("hsv", "hsl", (x: any) => hslaHsva([], x));
 
 // HSVA
 
-defConversions("hsv", hsvaRgba, "hcy", "hsi", "int", "oklab", "xyz", "ycbcr");
+defConversions(
+    "hsv",
+    hsvaRgba,
+    "hcy",
+    "hsi",
+    "int",
+    "oklab",
+    "srgb",
+    "xyz",
+    "ycbcr"
+);
 
 defConversion("css", "hsv", (x: any) => hsvaCss(x));
 
@@ -265,16 +318,16 @@ defConversion("css", "lch", (x: any) => lchCss(x));
 defConversions(
     "oklab",
     oklabRgba,
+    "css",
     "hcy",
     "hsi",
     "hsl",
     "hsv",
     "int",
+    "srgb",
     "xyz",
     "ycbcr"
 );
-
-defConversion("css", "oklab", (x: any) => oklabCss(x));
 
 // RGBA
 
@@ -284,13 +337,31 @@ defConversion("css", "oklab", (x: any) => oklabCss(x));
     ["hsl", rgbaHsla],
     ["hsv", rgbaHsva],
     ["oklab", rgbaOklab],
+    ["srgb", rgbaSrgba],
     ["xyz", rgbaXyza],
     ["ycbcr", rgbaYcbcra],
 ]).forEach(([id, fn]) => defConversion(id, "rgb", (x: any) => fn([], x)));
 
 defConversion("css", "rgb", (x: any) => rgbaCss(x));
 
-defConversion("int", "rgb", (x: any) => rgbaInt(x));
+// SRGBA
+
+defConversion("css", "srgb", (x: any) => srgbaCss(x));
+
+defConversion("int", "srgb", (x: any) => srgbaInt(x));
+
+defConversions(
+    "srgb",
+    srgbaRgba,
+    "hcy",
+    "hsi",
+    "hsl",
+    "hsv",
+    "int",
+    "oklab",
+    "xyz",
+    "ycbcr"
+);
 
 // XYZA
 
@@ -304,6 +375,7 @@ defConversions(
     "hsv",
     "int",
     "oklab",
+    "srgb",
     "ycbcr"
 );
 
@@ -319,5 +391,6 @@ defConversions(
     "hsv",
     "int",
     "oklab",
+    "srgb",
     "xyz"
 );

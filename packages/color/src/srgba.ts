@@ -1,58 +1,35 @@
-import { setC4 } from "@thi.ng/vectors";
-import type { ColorOp } from "./api";
-import { SRGB_ALPHA } from "./constants";
-import { ensureAlpha } from "./internal/ensure-alpha";
+import { declareIndices, IVector } from "@thi.ng/vectors";
+import type { Color, ColorMode } from "./api";
+import { AColor } from "./internal/acolor";
+import { ensureArgs } from "./internal/ensure-args";
 
-/**
- * Maps a single linear RGB channel value to sRGB.
- *
- * {@link https://en.wikipedia.org/wiki/SRGB}
- *
- * @param x - channel value
- */
-export const linearSrgb = (x: number) =>
-    x <= 0.0031308
-        ? 12.92 * x
-        : (1.0 + SRGB_ALPHA) * Math.pow(x, 1.0 / 2.4) - SRGB_ALPHA;
+export function srgba(col: Color, offset?: number, stride?: number): SRGBA;
+export function srgba(r?: number, g?: number, b?: number, a?: number): SRGBA;
+export function srgba(...args: any[]) {
+    return new SRGBA(...ensureArgs(args));
+}
 
-/**
- * Maps a single linear sRGB channel value to linear RGB.
- *
- * {@link https://en.wikipedia.org/wiki/SRGB}
- *
- * @param x - channel value
- */
-export const srgbLinear = (x: number) =>
-    x <= 0.04045
-        ? x / 12.92
-        : Math.pow((x + SRGB_ALPHA) / (1 + SRGB_ALPHA), 2.4);
+export class SRGBA extends AColor<SRGBA> implements IVector<SRGBA> {
+    r!: number;
+    g!: number;
+    b!: number;
+    a!: number;
 
-/**
- * Converts linear RGB to sRGB.
- *
- * @param out - result
- * @param src - source color
- */
-export const rgbaSrgba: ColorOp = (out, src) =>
-    setC4(
-        out || src,
-        linearSrgb(src[0]),
-        linearSrgb(src[1]),
-        linearSrgb(src[2]),
-        ensureAlpha(src[3])
-    );
+    get mode(): ColorMode {
+        return "srgb";
+    }
 
-/**
- * Converts sRGB to linear RGB.
- *
- * @param out - result
- * @param src - source color
- */
-export const srgbaRgba: ColorOp = (out, src) =>
-    setC4(
-        out || src,
-        srgbLinear(src[0]),
-        srgbLinear(src[1]),
-        srgbLinear(src[2]),
-        ensureAlpha(src[3])
-    );
+    copy() {
+        return new SRGBA(this.deref());
+    }
+
+    copyView() {
+        return new SRGBA(this.buf, this.offset, this.stride);
+    }
+
+    empty() {
+        return new SRGBA();
+    }
+}
+
+declareIndices(SRGBA.prototype, ["r", "g", "b", "a"]);

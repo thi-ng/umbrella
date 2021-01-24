@@ -1,20 +1,10 @@
 import type { IDeref } from "@thi.ng/api";
-import { setC4 } from "@thi.ng/vectors";
 import type { Color } from "./api";
-import { INV8BIT } from "./constants";
+import { int24Srgba, int32Srgba } from "./int-srgba";
+import { srgbaRgba } from "./srgba-rgba";
 
-export const int32Rgba = (out: Color | null, src: number | IDeref<number>) => {
-    src = typeof src === "number" ? src : src.deref();
-    return setC4(
-        out || [],
-        ((src >>> 16) & 0xff) * INV8BIT,
-        ((src >>> 8) & 0xff) * INV8BIT,
-        (src & 0xff) * INV8BIT,
-        ((src >>> 24) & 0xff) * INV8BIT
-    );
-};
+export const int32Rgba = (out: Color | null, src: number | IDeref<number>) =>
+    srgbaRgba(null, int32Srgba(out, src));
 
-export const int24Rgba = (out: Color | null, src: number | IDeref<number>) => {
-    src = typeof src === "number" ? src : src.deref();
-    return int32Rgba(out, src | 0xff000000);
-};
+export const int24Rgba = (out: Color | null, src: number | IDeref<number>) =>
+    srgbaRgba(null, int24Srgba(out, src));

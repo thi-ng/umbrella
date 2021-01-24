@@ -9,7 +9,7 @@ import { mulV33 } from "./internal/matrix-ops";
  * @param out
  * @param src
  */
-export const oklabRgba: ColorOp = (out, [l, a, b, alpha]) =>
+export const oklabRgba: ColorOp = (out, { 0: l, 1: a, 2: b, 3: alpha }) =>
     mulV33(out, OKLAB_LMS_CONE, [
         (l + 0.3963377774 * a + 0.2158037573 * b) ** 3,
         (l - 0.1055613458 * a - 0.0638541728 * b) ** 3,

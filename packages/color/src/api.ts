@@ -13,6 +13,7 @@ export type ColorMode =
     | "lch"
     | "oklab"
     | "rgb"
+    | "srgb"
     | "xyz"
     | "ycbcr";
 
