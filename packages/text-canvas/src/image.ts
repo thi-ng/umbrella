@@ -1,5 +1,6 @@
 import { peek } from "@thi.ng/arrays";
 import { isNumber } from "@thi.ng/checks";
+import { clamp0 } from "@thi.ng/math";
 import { ClipRect, ImageOpts, SHADES_BLOCK } from "./api";
 import { Canvas } from "./canvas";
 import { charCode, intersectRect } from "./utils";
@@ -14,8 +15,8 @@ export const blit = (canvas: Canvas, x: number, y: number, src: Canvas) => {
         peek(canvas.clipRects)
     );
     if (!iw || !ih) return;
-    const sx = Math.max(0, x1 - x);
-    const sy = Math.max(0, y1 - y);
+    const sx = clamp0(x1 - x);
+    const sy = clamp0(y1 - y);
     for (let yy = sy, dy = y1; dy < y2; yy++, dy++) {
         let sidx = sx + yy * sw;
         let didx = x1 + dy * dw;
@@ -189,7 +190,7 @@ const imgRect = (
             peek(canvas.clipRects)
         )
     );
-    rect.sx = Math.max(0, rect.x1 - x);
-    rect.sy = Math.max(0, rect.y1 - y);
+    rect.sx = clamp0(rect.x1 - x);
+    rect.sy = clamp0(rect.y1 - y);
     return rect;
 };
