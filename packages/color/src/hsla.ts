@@ -15,8 +15,8 @@ export class HSLA extends AColor<HSLA> implements IVector<HSLA> {
     l!: number;
     a!: number;
 
-    get mode() {
-        return <ColorMode>"hsl";
+    get mode(): ColorMode {
+        return "hsl";
     }
 
     copy() {

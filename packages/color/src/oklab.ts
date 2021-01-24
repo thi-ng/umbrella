@@ -23,8 +23,8 @@ export class Oklab extends AColor<Oklab> implements IVector<Oklab> {
     b!: number;
     alpha!: number;
 
-    get mode() {
-        return <ColorMode>"oklab";
+    get mode(): ColorMode {
+        return "oklab";
     }
 
     copy() {

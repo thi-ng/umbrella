@@ -15,8 +15,8 @@ export class XYZA extends AColor<XYZA> implements IVector<XYZA> {
     z!: number;
     a!: number;
 
-    get mode() {
-        return <ColorMode>"xyz";
+    get mode(): ColorMode {
+        return "xyz";
     }
 
     copy() {

@@ -15,8 +15,8 @@ export class HCYA extends AColor<HCYA> implements IVector<HCYA> {
     y!: number;
     a!: number;
 
-    get mode() {
-        return <ColorMode>"hcy";
+    get mode(): ColorMode {
+        return "hcy";
     }
 
     copy() {

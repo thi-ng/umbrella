@@ -15,8 +15,8 @@ export class YCbCrA extends AColor<YCbCrA> implements IVector<YCbCrA> {
     r!: number;
     a!: number;
 
-    get mode() {
-        return <ColorMode>"ycbcr";
+    get mode(): ColorMode {
+        return "ycbcr";
     }
 
     copy() {

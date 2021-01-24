@@ -10,8 +10,8 @@ export class CSS implements IColor, ICopy<CSS>, IDeref<string> {
         this.value = col;
     }
 
-    get mode() {
-        return <ColorMode>"css";
+    get mode(): ColorMode {
+        return "css";
     }
 
     copy() {

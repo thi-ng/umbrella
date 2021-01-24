@@ -23,8 +23,8 @@ export class Int32 implements IColor, ICopy<Int32>, IDeref<number> {
         this.value = col >>> 0;
     }
 
-    get mode() {
-        return <ColorMode>"int";
+    get mode(): ColorMode {
+        return "int";
     }
 
     copy() {

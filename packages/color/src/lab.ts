@@ -15,8 +15,8 @@ export class LAB extends AColor<LAB> implements IVector<LAB> {
     b!: number;
     alpha!: number;
 
-    get mode() {
-        return <ColorMode>"lab";
+    get mode(): ColorMode {
+        return "lab";
     }
 
     copy() {

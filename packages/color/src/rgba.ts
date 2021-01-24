@@ -15,8 +15,8 @@ export class RGBA extends AColor<RGBA> implements IVector<RGBA> {
     b!: number;
     a!: number;
 
-    get mode() {
-        return <ColorMode>"rgb";
+    get mode(): ColorMode {
+        return "rgb";
     }
 
     copy() {

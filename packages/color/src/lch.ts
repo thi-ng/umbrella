@@ -15,8 +15,8 @@ export class LCH extends AColor<LCH> implements IVector<LCH> {
     b!: number;
     alpha!: number;
 
-    get mode() {
-        return <ColorMode>"lch";
+    get mode(): ColorMode {
+        return "lch";
     }
 
     copy() {

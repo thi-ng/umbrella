@@ -15,8 +15,8 @@ export class HSVA extends AColor<HSVA> implements IVector<HSVA> {
     v!: number;
     a!: number;
 
-    get mode() {
-        return <ColorMode>"hsv";
+    get mode(): ColorMode {
+        return "hsv";
     }
 
     copy() {

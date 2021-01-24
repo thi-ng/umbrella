@@ -15,8 +15,8 @@ export class HSIA extends AColor<HSIA> implements IVector<HSIA> {
     i!: number;
     a!: number;
 
-    get mode() {
-        return <ColorMode>"hsi";
+    get mode(): ColorMode {
+        return "hsi";
     }
 
     copy() {
