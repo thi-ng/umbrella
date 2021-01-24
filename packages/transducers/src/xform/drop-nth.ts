@@ -1,4 +1,5 @@
 import { isIterable } from "@thi.ng/checks";
+import { clamp0 } from "@thi.ng/math";
 import type { Transducer } from "../api";
 import { iterator1 } from "../iterator";
 import { throttle } from "./throttle";
@@ -9,7 +10,7 @@ export function dropNth<T>(n: number, src?: Iterable<T>): any {
     if (isIterable(src)) {
         return iterator1(dropNth(n), src);
     }
-    n = Math.max(0, n - 1);
+    n = clamp0(n - 1);
     return throttle(() => {
         let skip = n;
         return () => (skip-- > 0 ? true : ((skip = n), false));
