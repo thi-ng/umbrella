@@ -25,11 +25,25 @@ export abstract class AColor<T extends Color> implements IColor, IDeref<Color> {
         return 4;
     }
 
+    /**
+     * Returns a new array of this color's channel values.
+     */
     deref(): Color {
         return [this[0], this[1], this[2], this[3]];
     }
 
     eqDelta(o: T, eps = EPS): boolean {
         return eqDelta4(this, o, eps);
+    }
+
+    /**
+     * For memory mapped colors, this ensures only the elements used by this
+     * color are being serialized (as array) by `JSON.stringify()`.
+     *
+     * @remarks
+     * Returns result of {@link AColor.deref}.
+     */
+    toJSON() {
+        return this.deref();
     }
 }
