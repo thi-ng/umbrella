@@ -1,4 +1,4 @@
-import { hueRgba, srgbaCss } from "@thi.ng/color";
+import { hueRgb, srgbCss } from "@thi.ng/color";
 import {
     diagonal2d,
     hilbert2d,
@@ -49,6 +49,6 @@ setInterval(() => {
     let [x, y] = <number[]>b.value;
     x *= BW;
     y *= BH;
-    ctx.fillStyle = srgbaCss(hueRgba([], frame++ / (NB * NB)));
+    ctx.fillStyle = srgbCss(hueRgb([], frame++ / (NB * NB)));
     ctx.fillRect(x, y, BW, BH);
 }, 16);

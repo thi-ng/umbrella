@@ -1,4 +1,4 @@
-import { hsla } from "@thi.ng/color";
+import { hsl } from "@thi.ng/color";
 import {
     arc,
     asCubic,
@@ -34,7 +34,7 @@ const arcs = [
             // stroke width
             w: SYSTEM.minmax(1, 5),
             // randomized HSLA color
-            col: hsla([SYSTEM.norm(0.1), SYSTEM.minmax(0.5, 1), 0.5]),
+            col: hsl([SYSTEM.norm(0.1), SYSTEM.minmax(0.5, 1), 0.5]),
             // start angle
             theta: SYSTEM.float(TAU),
             // angle spread

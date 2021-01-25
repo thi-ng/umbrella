@@ -1,5 +1,5 @@
 import { withoutKeysObj } from "@thi.ng/associative";
-import { cosineGradient, GRADIENTS } from "@thi.ng/color";
+import { cosineGradient, COSINE_GRADIENTS } from "@thi.ng/color";
 import { threadLast } from "@thi.ng/compose";
 import { serialize } from "@thi.ng/hiccup";
 import { defs, group, line, rect, svg, text } from "@thi.ng/hiccup-svg";
@@ -55,7 +55,7 @@ const IGNORE_PACKAGES = [
 ];
 
 // heatmap gradient
-const GRAD = <any[]>cosineGradient(32, GRADIENTS["blue-magenta-orange"]);
+const GRAD = <any[]>cosineGradient(32, COSINE_GRADIENTS["blue-magenta-orange"]);
 
 const MIN_DATE = Date.parse("2018-01-01T00:00:00+00:00");
 const MAX_DATE = Date.now();
