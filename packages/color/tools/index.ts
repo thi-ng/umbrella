@@ -5,18 +5,18 @@ import {
     ColorRangePreset,
     colorsFromTheme,
     ColorThemePartTuple,
+    COLOR_RANGES,
     cosineGradient,
     CosineGradientPreset,
-    GRADIENTS,
-    hsvaRgba,
+    COSINE_GRADIENTS,
     proximityHSV,
-    RANGES,
+    selectChannel,
     sortColors,
     swatchesH,
 } from "../src";
 
-Object.keys(GRADIENTS).forEach((id) => {
-    const fname = `export/gradient-${id}.svg`;
+Object.keys(COSINE_GRADIENTS).forEach((id) => {
+    const fname = `export/gradient-${id}-srgb.svg`;
     console.log(fname);
     writeFileSync(
         fname,
@@ -24,7 +24,10 @@ Object.keys(GRADIENTS).forEach((id) => {
             svg(
                 { width: 500, height: 50, convert: true },
                 swatchesH(
-                    cosineGradient(100, GRADIENTS[<CosineGradientPreset>id]),
+                    cosineGradient(
+                        100,
+                        COSINE_GRADIENTS[<CosineGradientPreset>id]
+                    ),
                     5,
                     50
                 )
@@ -35,7 +38,7 @@ Object.keys(GRADIENTS).forEach((id) => {
 
 ////////////////////////////////////////////////////////////
 
-for (let id in RANGES) {
+for (let id in COLOR_RANGES) {
     writeFileSync(
         `export/swatches-green-${id}.svg`,
         serialize(
@@ -56,7 +59,7 @@ for (let id in RANGES) {
                             ),
                         ],
                         proximityHSV([0, 1, 1])
-                    ).map((x) => hsvaRgba([], x)),
+                    ),
                     5,
                     50
                 )
@@ -75,13 +78,11 @@ const theme = <ColorThemePartTuple[]>[
 
 const colors = [...colorsFromTheme(theme, { num: 200, variance: 0.05 })];
 
+sortColors(colors, selectChannel(0), true);
+
 const doc = svg(
     { width: 1000, height: 50, convert: true },
-    swatchesH(
-        colors.map((x) => hsvaRgba([], x)),
-        5,
-        50
-    )
+    swatchesH(colors, 5, 50)
 );
 
 writeFileSync("export/swatches-ex01.svg", serialize(doc));
