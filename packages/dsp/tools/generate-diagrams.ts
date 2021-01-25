@@ -1,5 +1,5 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
-import { cosineColor, GRADIENTS } from "@thi.ng/color";
+import { cosineColor, COSINE_GRADIENTS } from "@thi.ng/color";
 import {
     asSvg,
     group,
@@ -84,7 +84,7 @@ const label = (x: number, y: number, body: string) =>
     };
 
 const color = (i: number) =>
-    cosineColor(GRADIENTS["orange-magenta-blue"], 1 - i);
+    cosineColor(COSINE_GRADIENTS["orange-magenta-blue"], 1 - i);
 
 const write = (
     fname: string,
