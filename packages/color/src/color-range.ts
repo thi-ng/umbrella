@@ -2,9 +2,8 @@ import { peek } from "@thi.ng/arrays";
 import { isArray, isNumber, isString } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { IRandom, SYSTEM, weightedRandom } from "@thi.ng/random";
-import { analogHSV } from "./analog";
+import { analogHsv } from "./analog";
 import type {
-    Color,
     ColorRange,
     ColorRangeOpts,
     ColorRangePreset,
@@ -14,16 +13,17 @@ import type {
     ReadonlyColor,
 } from "./api";
 import { isBlackHsv, isGrayHsv, isWhiteHsv } from "./checks";
+import { asHsv } from "./convert";
+import { HSV, hsv } from "./hsv";
 import { ensureAlpha } from "./internal/ensure-alpha";
 import { ensureHue } from "./internal/ensure-hue";
 import { parseCss } from "./parse-css";
-import { rgbaHsva } from "./rgba-hsva";
 
 /**
  * Preset {@link ColorRange}s for use with {@link colorsFromRange},
  * {@link colorsFromTheme} etc.
  */
-export const RANGES: Record<ColorRangePreset, ColorRange> = {
+export const COLOR_RANGES: Record<ColorRangePreset, ColorRange> = {
     light: {
         s: [[0.3, 0.7]],
         v: [[0.9, 1]],
@@ -135,28 +135,28 @@ export const colorFromRange = (
     range: ColorRange,
     base?: ReadonlyColor,
     opts?: Partial<Pick<ColorRangeOpts, "variance" | "eps" | "rnd">>
-): Color => {
+): HSV => {
     range = { ...DEFAULT_RANGE, ...range };
     const { variance, rnd, eps } = { ...DEFAULT_OPTS, ...opts };
     let h: number, a: number;
     if (base) {
         h = base[0];
         a = ensureAlpha(base[3]);
-        if (isBlackHsv(base, eps)) return [h, 0, $rnd(range.b!, rnd), a];
-        if (isWhiteHsv(base, eps)) return [h, 0, $rnd(range.w!, rnd), a];
+        if (isBlackHsv(base, eps)) return hsv([h, 0, $rnd(range.b!, rnd), a]);
+        if (isWhiteHsv(base, eps)) return hsv([h, 0, $rnd(range.w!, rnd), a]);
         if (isGrayHsv(base, eps))
-            return [
+            return hsv([
                 h,
                 0,
                 $rnd(rnd.float() < 0.5 ? range.b! : range.w!, rnd),
                 a,
-            ];
+            ]);
         h = ensureHue(h + rnd.norm(variance));
     } else {
         h = $rnd(range.h!, rnd);
         a = $rnd(range.a!, rnd);
     }
-    return [h, $rnd(range.s!, rnd), $rnd(range.v!, rnd), a];
+    return hsv([h, $rnd(range.s!, rnd), $rnd(range.v!, rnd), a]);
 };
 
 /**
@@ -193,14 +193,14 @@ const asThemePart = (p: ColorThemePart | ColorThemePartTuple) => {
             (xs.length === 1
                 ? { range: a, base: xs[0], weight }
                 : xs.length === 0
-                ? RANGES[<ColorRangePreset>a]
+                ? COLOR_RANGES[<ColorRangePreset>a]
                     ? { range: a, weight }
                     : { base: a, weight }
                 : illegalArgs(`invalid theme part: "${p}"`))
         );
     } else if (isString(p)) {
         spec = <ColorThemePart>(
-            (RANGES[<ColorRangePreset>p]
+            (COLOR_RANGES[<ColorRangePreset>p]
                 ? { range: p, weight: 1 }
                 : { base: p, weight: 1 })
         );
@@ -208,8 +208,8 @@ const asThemePart = (p: ColorThemePart | ColorThemePartTuple) => {
         spec = p;
         spec.weight == null && (spec.weight = 1);
     }
-    isString(spec.range) && (spec.range = RANGES[spec.range]);
-    isString(spec.base) && (spec.base = rgbaHsva([], parseCss(spec.base)));
+    isString(spec.range) && (spec.range = COLOR_RANGES[spec.range]);
+    isString(spec.base) && (spec.base = asHsv(parseCss(spec.base)));
     return spec;
 };
 
@@ -224,10 +224,11 @@ const asThemePart = (p: ColorThemePart | ColorThemePartTuple) => {
  * - `[range, weight?]`
  * - `[color, weight?]`
  *
- * `range` can be either a {@link ColorRange} or the name of a {@link RANGE}
- * preset. Likewise, `color` can be an HSV(A) color tuple or a CSS color name.
- * The `weight` of each part defines the relative importance/probability of this
- * theme part, compared to others. Default weight is 1.0.
+ * `range` can be either a {@link ColorRange} or the name of a
+ * {@link COLOR_RANGES} preset. Likewise, `color` can be an HSV color tuple or a
+ * CSS color name. The `weight` of each part defines the relative
+ * importance/probability of this theme part, compared to others. Default weight
+ * is 1.0.
  *
  * @example
  * ```ts
@@ -259,7 +260,7 @@ export function* colorsFromTheme(
                 opts
             );
         } else if (spec.base) {
-            yield analogHSV([], <ReadonlyColor>spec.base, variance!);
+            yield hsv(analogHsv([], <ReadonlyColor>spec.base, variance!));
         }
     }
 }

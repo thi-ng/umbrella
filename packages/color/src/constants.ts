@@ -15,27 +15,6 @@ export const YELLOW = Object.freeze([1, 1, 0, 1]);
 
 export const RGB_LUMINANCE = [0.299, 0.587, 0.114];
 
-// Hue names
-
-export enum Hue {
-    RED,
-    ORANGE,
-    YELLOW,
-    CHARTREUSE,
-    GREEN,
-    SPRING_GREEN,
-    CYAN,
-    AZURE,
-    BLUE,
-    VIOLET,
-    MAGENTA,
-    ROSE,
-}
-
-// internal helpers
-
-export const SRGB_ALPHA = 0.055;
-
 /**
  * sRGB to XYZ D65 conversion matrix
  *
@@ -98,28 +77,4 @@ export const OKLAB_M2 = [
     -0.0040720468,
     0.4505937099,
     -0.808675766,
-];
-
-export const OKLAB_CONE_LMS = [
-    0.412165612,
-    0.211859107,
-    0.0883097947,
-    0.536275208,
-    0.6807189584,
-    0.2818474174,
-    0.0514575653,
-    0.107406579,
-    0.6302613616,
-];
-
-export const OKLAB_LMS_CONE = [
-    4.0767245293,
-    -1.2681437731,
-    -0.0041119885,
-    -3.3072168827,
-    2.6093323231,
-    -0.7034763098,
-    0.2307590544,
-    -0.341134429,
-    1.7068625689,
 ];

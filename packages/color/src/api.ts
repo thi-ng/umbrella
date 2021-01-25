@@ -15,7 +15,7 @@ export type ColorMode =
     | "rgb"
     | "srgb"
     | "xyz"
-    | "ycbcr";
+    | "ycc";
 
 export type CSSColorName =
     | "aliceblue"
@@ -206,18 +206,42 @@ export type CosineGradientPreset =
     | "yellow-purple-magenta"
     | "yellow-red";
 
+/**
+ * Hue names in radial order, e.g. used by {@link namedHueRgb}.
+ */
+export enum Hue {
+    RED,
+    ORANGE,
+    YELLOW,
+    CHARTREUSE,
+    GREEN,
+    SPRING_GREEN,
+    CYAN,
+    AZURE,
+    BLUE,
+    VIOLET,
+    MAGENTA,
+    ROSE,
+}
+
 export type Color = Vec;
 export type ReadonlyColor = ReadonlyVec;
+
+export type ColorOp = (out: Color | null, src: ReadonlyColor) => Color;
 
 /**
  * A 4x5 matrix in column-major order
  */
 export type ColorMatrix = Tuple<number, 20>;
 
-export type ColorConversion<T> = (out: Color, src: T) => Color;
-export type ColorOp = (out: Color | null, src: ReadonlyColor) => Color;
-
 export type ColorDistance = FnU2<ReadonlyColor, number>;
+
+export type ColorConversion<T> = (out: Color, src: T) => Color;
+
+export interface ColorTargetConversion<T> {
+    (col: IColor): T;
+    (col: string | number | ReadonlyColor, mode: ColorMode): T;
+}
 
 export interface IColor {
     readonly mode: ColorMode;

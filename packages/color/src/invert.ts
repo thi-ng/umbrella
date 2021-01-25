@@ -8,7 +8,7 @@ import { clamp } from "./clamp";
  * @param out - result
  * @param src - source color
  */
-export const invertRGB: ColorOp = (out, src) => (
+export const invertRgb: ColorOp = (out, src) => (
     (out = clamp(out || src, src)), sub3(out, ONE3, out)
 );
 

@@ -3,13 +3,13 @@ import type { Color, ColorMode } from "./api";
 import { AColor } from "./internal/acolor";
 import { ensureArgs } from "./internal/ensure-args";
 
-export function lab(col: Color, offset?: number, stride?: number): LAB;
-export function lab(l?: number, a?: number, b?: number, alpha?: number): LAB;
+export function lab(col: Color, offset?: number, stride?: number): Lab;
+export function lab(l?: number, a?: number, b?: number, alpha?: number): Lab;
 export function lab(...args: any[]) {
-    return new LAB(...ensureArgs(args));
+    return new Lab(...ensureArgs(args));
 }
 
-export class LAB extends AColor<LAB> implements IVector<LAB> {
+export class Lab extends AColor<Lab> implements IVector<Lab> {
     l!: number;
     a!: number;
     b!: number;
@@ -20,16 +20,16 @@ export class LAB extends AColor<LAB> implements IVector<LAB> {
     }
 
     copy() {
-        return new LAB(this.deref());
+        return new Lab(this.deref());
     }
 
     copyView() {
-        return new LAB(this.buf, this.offset, this.stride);
+        return new Lab(this.buf, this.offset, this.stride);
     }
 
     empty() {
-        return new LAB();
+        return new Lab();
     }
 }
 
-declareIndices(LAB.prototype, ["l", "a", "b", "alpha"]);
+declareIndices(Lab.prototype, ["l", "a", "b", "alpha"]);

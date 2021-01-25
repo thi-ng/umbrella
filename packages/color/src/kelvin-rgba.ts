@@ -26,7 +26,7 @@ const B3 = 0.453646839257496;
  * @param kelvin - color temperature
  * @param alpha - target alpha channel
  */
-export const kelvinRgba = (out: Color | null, kelvin: number, alpha = 1) => {
+export const kelvinRgb = (out: Color | null, kelvin: number, alpha = 1) => {
     kelvin *= 0.01;
     let t: number;
     return kelvin < 66

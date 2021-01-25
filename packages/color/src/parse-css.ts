@@ -4,13 +4,13 @@ import { isString } from "@thi.ng/checks";
 import { illegalArgs, unsupported } from "@thi.ng/errors";
 import { clamp01, TAU } from "@thi.ng/math";
 import { maybeParseInt } from "@thi.ng/strings";
-import { hsla } from "./hsla";
-import { int32Srgba } from "./int-srgba";
+import { hsl } from "./hsl";
+import { int32Srgb } from "./int-srgb";
 import { ensureHue } from "./internal/ensure-hue";
 import { lab } from "./lab";
 import { lch } from "./lch";
 import { CSS_NAMES } from "./names";
-import { srgba } from "./srgba";
+import { srgb } from "./srgb";
 import { CSS_SYSTEM_COLORS } from "./system";
 
 /**
@@ -51,7 +51,7 @@ export const parseCss = (src: string | IDeref<string>) => {
     src = (isString(src) ? src : src.deref()).toLowerCase();
     const named = (<any>CSS_NAMES)[src] || (<any>CSS_SYSTEM_COLORS)[src];
     if (named || src[0] === "#")
-        return srgba(int32Srgba([], parseHex(named || src)));
+        return srgb(int32Srgb([], parseHex(named || src)));
     const parts = src.split(/[(),/ ]+/);
     const [mode, a, b, c, d] = parts;
     assert(
@@ -61,7 +61,7 @@ export const parseCss = (src: string | IDeref<string>) => {
     switch (mode) {
         case "rgb":
         case "rgba":
-            return srgba([
+            return srgb([
                 parseNumOrPercent(a),
                 parseNumOrPercent(b),
                 parseNumOrPercent(c),
@@ -69,7 +69,7 @@ export const parseCss = (src: string | IDeref<string>) => {
             ]);
         case "hsl":
         case "hsla":
-            return hsla(
+            return hsl(
                 parseHue(a),
                 parsePercent(b),
                 parsePercent(c),

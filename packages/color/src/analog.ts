@@ -31,7 +31,7 @@ const $alpha = (a: number, delta: number, rnd: IRandom) =>
  * @param deltaA
  * @param rnd
  */
-export const analogHSV = (
+export const analogHsv = (
     out: Color | null,
     src: ReadonlyColor,
     deltaH: number,
@@ -64,7 +64,7 @@ export const analogHSV = (
  * @param deltaA
  * @param rnd
  */
-export const analogRGB = (
+export const analogRgb = (
     out: Color | null,
     src: ReadonlyColor,
     deltaR: number,
