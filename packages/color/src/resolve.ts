@@ -1,5 +1,5 @@
-import { isArrayLike, isNumber, isString } from "@thi.ng/checks";
-import type { ReadonlyColor } from "./api";
+import { isArrayLike, isString } from "@thi.ng/checks";
+import type { IColor, ReadonlyColor } from "./api";
 import { asCss } from "./convert";
 
 /**
@@ -13,11 +13,11 @@ import { asCss } from "./convert";
  *
  * @param col - source color
  */
-export const resolveAsCss = (col: any) =>
-    isArrayLike(col)
+export const resolveAsCss = (col: string | number | ReadonlyColor | IColor) =>
+    isString(col)
+        ? col
+        : isArrayLike(col)
         ? isString((<any>col).mode)
             ? asCss(<any>col)
             : asCss(<ReadonlyColor>col, "srgb")
-        : isNumber(col)
-        ? asCss(col, "int")
-        : col;
+        : asCss(<any>col, "int");
