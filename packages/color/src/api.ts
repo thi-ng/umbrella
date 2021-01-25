@@ -1,4 +1,4 @@
-import type { FnU2, Tuple } from "@thi.ng/api";
+import type { FnN, FnU, FnU2, Tuple } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
@@ -214,9 +214,6 @@ export type ReadonlyColor = ReadonlyVec;
  */
 export type ColorMatrix = Tuple<number, 20>;
 
-export type CosCoeffs = Tuple<number, 4>;
-export type CosGradientSpec = Tuple<CosCoeffs, 4>;
-
 export type ColorConversion<T> = (out: Color, src: T) => Color;
 export type ColorOp = (out: Color | null, src: ReadonlyColor) => Color;
 
@@ -373,4 +370,19 @@ export interface SystemColors {
      * Disabled text. (Often, but not necessarily, gray.)
      */
     graytext: string;
+}
+
+export type CosCoeffs = Tuple<number, 4>;
+export type CosGradientSpec = Tuple<CosCoeffs, 4>;
+
+/**
+ * A tuple of normalized position and color for a gradient stop.
+ */
+export type GradientColorStop = [number, ReadonlyColor];
+
+export interface MultiGradientOpts {
+    num: number;
+    stops: GradientColorStop[];
+    easing?: FnN;
+    tx?: FnU<Color>;
 }
