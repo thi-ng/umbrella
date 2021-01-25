@@ -1,7 +1,7 @@
 import type { IDeref } from "@thi.ng/api";
 import { EPS } from "@thi.ng/math";
 import { eqDelta4, stridedValues } from "@thi.ng/vectors";
-import type { Color, ColorMode, IColor } from "../api";
+import type { Color, ColorMode, IColor, ReadonlyColor } from "../api";
 
 export abstract class AColor<T extends Color> implements IColor, IDeref<Color> {
     buf: Color;
@@ -23,6 +23,14 @@ export abstract class AColor<T extends Color> implements IColor, IDeref<Color> {
 
     get length() {
         return 4;
+    }
+
+    set(src: ReadonlyColor) {
+        this[0] = src[0];
+        this[1] = src[1];
+        this[2] = src[2];
+        this[3] = src[3];
+        return this;
     }
 
     /**
