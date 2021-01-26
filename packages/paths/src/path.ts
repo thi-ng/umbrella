@@ -1,5 +1,5 @@
 import { assert, NumOrString, Path } from "@thi.ng/api";
-import { isArray, isString } from "@thi.ng/checks";
+import { isArray, isString, isPrototypePolluted } from "@thi.ng/checks";
 
 /**
  * Converts the given key path to canonical form (array).
@@ -66,9 +66,9 @@ export const exists = (obj: any, path: Path) => {
  */
 export const isProtoPath = (path: Path) =>
     isArray(path)
-        ? path.some((x) => x === "__proto__")
+        ? path.some((x) => isPrototypePolluted(x))
         : isString(path)
-        ? path.indexOf("__proto__") >= 0
+        ? isPrototypePolluted(path)
         : false;
 
 /**
