@@ -17,3 +17,14 @@ export const rgbSrgb: ColorOp = (out, src) =>
         linearSrgb(src[2]),
         ensureAlpha(src[3])
     );
+
+const GAMMA = 1 / 2.2;
+
+export const rgbSrgbApprox: ColorOp = (out, src) =>
+    setC4(
+        out || src,
+        src[0] ** GAMMA,
+        src[1] ** GAMMA,
+        src[2] ** GAMMA,
+        ensureAlpha(src[3])
+    );
