@@ -1,1 +1,2 @@
-export const isPrototypePolluted = (key: string): Boolean => ['__proto__', 'prototype', 'constructor'].includes(key);
+const ILLEGAL_KEYS = new Set(["__proto__", "prototype", "constructor"]);
+export const isPrototypePolluted = (key: string): Boolean => ILLEGAL_KEYS.includes(key);
