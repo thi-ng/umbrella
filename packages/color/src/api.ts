@@ -14,6 +14,7 @@ export type ColorMode =
     | "oklab"
     | "rgb"
     | "srgb"
+    | "xyy"
     | "xyz"
     | "ycc";
 

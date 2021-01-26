@@ -46,8 +46,11 @@ import { SRGB, srgb } from "./srgb";
 import { srgbCss } from "./srgb-css";
 import { srgbInt } from "./srgb-int";
 import { srgbRgb } from "./srgb-rgb";
+import { xyy, XYY } from "./xyy";
+import { xyyXyz } from "./xyy-xyz";
 import { XYZ, xyz } from "./xyz";
 import { xyzRgb } from "./xyz-rgb";
+import { xyzXyy } from "./xyz-xyy";
 import { YCC, ycc } from "./ycc";
 import { yccRgb } from "./ycc-rgb";
 
@@ -106,6 +109,9 @@ export const asSrgb: ColorTargetConversion<SRGB> = (
     col: any,
     mode?: ColorMode
 ) => srgb(<Color>convert(col, "srgb", mode));
+
+export const asXyy: ColorTargetConversion<XYY> = (col: any, mode?: ColorMode) =>
+    xyy(<Color>convert(col, "xyy", mode));
 
 export const asXyz: ColorTargetConversion<XYZ> = (col: any, mode?: ColorMode) =>
     xyz(<Color>convert(col, "xyz", mode));
@@ -301,6 +307,10 @@ defConversions(
     "ycc"
 );
 
+// XYY
+
+defConversion("xyy", "xyz", (x: any) => xyzXyy([], x));
+
 // XYZA
 
 defConversions(
@@ -316,6 +326,8 @@ defConversions(
     "srgb",
     "ycc"
 );
+
+defConversion("xyz", "xyy", (x: any) => xyyXyz([], x));
 
 // YCbCr
 
