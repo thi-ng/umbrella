@@ -62,3 +62,4 @@ export * from "./is-undefined";
 export * from "./is-uuid";
 export * from "./is-uuid4";
 export * from "./is-zero";
+export * from "./is-prototype-polluted";
