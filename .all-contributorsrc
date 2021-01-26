@@ -277,6 +277,26 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "JamieSlome",
+      "name": "Jamie Slome",
+      "avatar_url": "https://avatars.githubusercontent.com/u/55323451?v=4",
+      "profile": "https://418sec.com",
+      "contributions": [
+        "bug",
+        "security"
+      ]
+    },
+    {
+      "login": "d3v53c",
+      "name": "d3v53c",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64132745?v=4",
+      "profile": "https://github.com/d3v53c",
+      "contributions": [
+        "bug",
+        "security"
+      ]
     }
   ],
   "contributorsPerLine": 7,

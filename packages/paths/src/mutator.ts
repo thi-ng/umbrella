@@ -13,7 +13,7 @@ import type {
     Path8,
     PathVal,
 } from "@thi.ng/api";
-import { toPath } from "./path";
+import { disallowProtoPath, toPath } from "./path";
 
 /**
  * Unchecked version of {@link defMutator}.
@@ -73,6 +73,7 @@ export function defMutator<T, A, B, C, D, E, F, G, H>(
 ): Fn2<T, any, any>;
 export function defMutator(path: Path): any {
     const ks = toPath(path);
+    disallowProtoPath(ks);
     let [a, b, c, d] = ks;
     switch (ks.length) {
         case 0:
