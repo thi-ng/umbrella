@@ -13,6 +13,14 @@ export const CYAN = Object.freeze([0, 1, 1, 1]);
 export const MAGENTA = Object.freeze([1, 0, 1, 1]);
 export const YELLOW = Object.freeze([1, 1, 0, 1]);
 
+/**
+ * Linear RGB luminance coeffs
+ */
+export const LINEAR_RGB_LUMINANCE = [0.2126, 0.7152, 0.0722];
+
+/**
+ * RGB luminance coeffs
+ */
 export const RGB_LUMINANCE = [0.299, 0.587, 0.114];
 
 /**

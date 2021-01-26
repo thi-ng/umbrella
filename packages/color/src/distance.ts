@@ -1,6 +1,6 @@
 import { cossin, TAU } from "@thi.ng/math";
 import type { ColorDistance } from "./api";
-import { luminanceRgb } from "./luminance-rgb";
+import { luminanceRgb, luminanceSrgb } from "./luminance-rgb";
 
 /**
  * Higher order function. Returns {@link ColorDistance} function for given color
@@ -57,6 +57,9 @@ export const distRgb: ColorDistance = (a, b) =>
  */
 export const distRgbLuma: ColorDistance = (a, b) =>
     Math.abs(luminanceRgb(a) - luminanceRgb(b));
+
+export const distSrgbLuma: ColorDistance = (a, b) =>
+    Math.abs(luminanceSrgb(a) - luminanceSrgb(b));
 
 /**
  * Computes red difference between two RGB colors.

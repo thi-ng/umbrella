@@ -2,7 +2,7 @@ import { DEFAULT, defmulti, MultiFn1O } from "@thi.ng/defmulti";
 import { illegalArgs } from "@thi.ng/errors";
 import type { ColorMode, IColor, ReadonlyColor } from "./api";
 import { convert } from "./convert";
-import { luminanceInt, luminanceRgb } from "./luminance-rgb";
+import { luminanceInt, luminanceRgb, luminanceSrgb } from "./luminance-rgb";
 
 /**
  * Multi-method to compute relative luminance from any supported input
@@ -22,6 +22,8 @@ export const luminance: MultiFn1O<
 );
 
 luminance.add("rgb", (x: any) => luminanceRgb(x));
+
+luminance.add("srgb", (x: any) => luminanceSrgb(x));
 
 luminance.add("int", (x: any) =>
     luminanceInt(typeof x === "number" ? x : x.deref())
