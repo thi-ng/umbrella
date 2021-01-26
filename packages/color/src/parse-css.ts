@@ -78,14 +78,14 @@ export const parseCss = (src: string | IDeref<string>) => {
         case "lab":
             return lab(
                 parsePercent(a),
-                parseNumber(b) / 100,
-                parseNumber(c) / 100,
+                parseNumber(b) * 0.01,
+                parseNumber(c) * 0.01,
                 parseAlpha(d)
             );
         case "lch":
             return lch(
                 parsePercent(a),
-                parseNumber(b) / 100,
+                parseNumber(b) * 0.01,
                 parseHue(c),
                 parseAlpha(d)
             );
