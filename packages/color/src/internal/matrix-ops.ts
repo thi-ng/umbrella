@@ -7,7 +7,7 @@ export const mulV33 = (
     out: Color | null,
     mat: ReadonlyVec,
     src: ReadonlyColor,
-    clampOut = true
+    clampOut = false
 ) => {
     const x = dotS3(mat, src, 0, 0, 3);
     const y = dotS3(mat, src, 1, 0, 3);

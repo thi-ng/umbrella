@@ -1,17 +1,29 @@
-import type { ColorOp } from "./api";
+import type { Color, ColorOp, ReadonlyColor } from "./api";
 import { clamp } from "./clamp";
-import { RGB_XYZ } from "./constants";
-import { ensureAlpha } from "./internal/ensure-alpha";
+import { RGB_XYZ_D50, RGB_XYZ_D65 } from "./constants";
 import { mulV33 } from "./internal/matrix-ops";
 
 /**
+ * Converts RGB to XYZ using provided transformation matrix (default:
+ * {@link RGB_XYZ_D50}).
+ *
  * {@link https://en.wikipedia.org/wiki/CIE_1931_color_space}
  *
  * @param out - result
  * @param src - source color
+ * @param mat - transform matrix
  */
-export const rgbXyz: ColorOp = (out, src) => {
-    out = mulV33(null, RGB_XYZ, clamp(out || src, src), false);
-    out[3] = ensureAlpha(src[3]);
-    return out;
-};
+export const rgbXyz = (
+    out: Color | null,
+    src: ReadonlyColor,
+    mat = RGB_XYZ_D50
+) => mulV33(null, mat, clamp(out, src));
+
+/**
+ * Same as {@link rgbXyz}, but hard coded to use {@link D65} white point (via
+ * {@link RGB_XYZ_D65} matrix).
+ *
+ * @param out
+ * @param src
+ */
+export const rgbXyzD65: ColorOp = (out, src) => rgbXyz(out, src, RGB_XYZ_D65);

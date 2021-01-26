@@ -23,9 +23,4 @@ const CONE_LMS = [
  * @param src
  */
 export const rgbOklab: ColorOp = (out, src) =>
-    mulV33(
-        out,
-        OKLAB_M2,
-        powN3(null, mulV33([], CONE_LMS, src, false), 1 / 3),
-        false
-    );
+    mulV33(null, OKLAB_M2, powN3(null, mulV33(out, CONE_LMS, src), 1 / 3));

@@ -21,7 +21,43 @@ export const RGB_LUMINANCE = [0.299, 0.587, 0.114];
  * @reference
  * http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
  */
-export const RGB_XYZ = [
+export const RGB_XYZ_D50 = [
+    0.4360747,
+    0.2225045,
+    0.0139322,
+    0.3850649,
+    0.7168786,
+    0.0971045,
+    0.1430804,
+    0.0606169,
+    0.7141733,
+];
+
+/**
+ * XYZ D50 to sRGB conversion matrix
+ *
+ * @reference
+ * http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
+ */
+export const XYZ_RGB_D50 = [
+    3.1338561,
+    -0.9787684,
+    0.0719453,
+    -1.6168667,
+    1.9161415,
+    -0.2289914,
+    -0.4906146,
+    0.033454,
+    1.4052427,
+];
+
+/**
+ * sRGB to XYZ D65 conversion matrix
+ *
+ * @reference
+ * http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
+ */
+export const RGB_XYZ_D65 = [
     0.4124564,
     0.2126729,
     0.0193339,
@@ -39,7 +75,7 @@ export const RGB_XYZ = [
  * @reference
  * http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
  */
-export const XYZ_RGB = [
+export const XYZ_RGB_D65 = [
     3.2404542,
     -0.969266,
     0.0556434,
@@ -50,6 +86,53 @@ export const XYZ_RGB = [
     0.041556,
     1.0572252,
 ];
+
+/**
+ * D50 -> D65 chromatic adaptation matrix. Inverse of {@link BRADFORD_D65_D50}.
+ *
+ * http://www.brucelindbloom.com/index.html?Eqn_ChromAdapt.html
+ */
+export const BRADFORD_D50_D65 = [
+    0.9555766,
+    -0.0282895,
+    0.0122982,
+    -0.0230393,
+    1.0099416,
+    -0.020483,
+    0.0631636,
+    0.0210077,
+    1.3299098,
+];
+
+/**
+ * D65 -> D50 chromatic adaptation matrix. Inverse of {@link BRADFORD_D50_D65}.
+ *
+ * http://www.brucelindbloom.com/index.html?Eqn_ChromAdapt.html
+ */
+export const BRADFORD_D65_D50 = [
+    1.0478112,
+    0.0295424,
+    -0.0092345,
+    0.0228866,
+    0.9904844,
+    0.0150436,
+    -0.050127,
+    -0.0170491,
+    0.7521316,
+];
+
+/**
+ * CIE Standard Illuminant D50
+ */
+export const D50 = [0.96422, 1, 0.82521];
+
+/**
+ * CIE Standard Illuminant D65
+ *
+ * Reference:
+ * https://en.wikipedia.org/wiki/Illuminant_D65
+ */
+export const D65 = [0.95047, 1, 1.08883];
 
 export const FF = float(3);
 export const PC = percent(3);
