@@ -449,6 +449,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://jarredsumner.com"><img src="https://avatars1.githubusercontent.com/u/709451?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jarred Sumner</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3AJarred-Sumner" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://418sec.com"><img src="https://avatars.githubusercontent.com/u/55323451?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jamie Slome</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3AJamieSlome" title="Bug reports">🐛</a> <a href="#security-JamieSlome" title="Security">🛡️</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/d3v53c"><img src="https://avatars.githubusercontent.com/u/64132745?v=4?s=100" width="100px;" alt=""/><br /><sub><b>d3v53c</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Ad3v53c" title="Bug reports">🐛</a> <a href="#security-d3v53c" title="Security">🛡️</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
