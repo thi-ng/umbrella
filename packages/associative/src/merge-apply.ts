@@ -1,5 +1,5 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
-import { isFunction } from "@thi.ng/checks";
+import { isFunction, isIllegalKey } from "@thi.ng/checks";
 import { copy } from "./utils";
 
 /**
@@ -68,7 +68,7 @@ export const meldApplyObj = <V>(
     xs: IObjectOf<V | Fn<V, V>>
 ) => {
     for (let k in xs) {
-        if (k === "__proto__") continue;
+        if (isIllegalKey(k)) continue;
         const v = xs[k];
         src[k] = isFunction(v) ? v(src[k]) : v;
     }

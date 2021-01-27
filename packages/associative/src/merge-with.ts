@@ -1,4 +1,5 @@
 import type { Fn2, IObjectOf, Nullable } from "@thi.ng/api";
+import { isIllegalKey } from "@thi.ng/checks";
 import { copy } from "./utils";
 
 export const mergeMapWith = <K, V>(
@@ -56,7 +57,7 @@ export const meldObjWith = <T>(
     for (let x of xs) {
         if (x != null) {
             for (let k in x) {
-                if (k === "__proto__") continue;
+                if (isIllegalKey(k)) continue;
                 const v = x[k];
                 dest[k] = dest.hasOwnProperty(k) ? f(dest[k], v) : v;
             }
