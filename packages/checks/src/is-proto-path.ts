@@ -3,7 +3,15 @@ import { isString } from "./is-string";
 
 const ILLEGAL_KEYS = new Set(["__proto__", "prototype", "constructor"]);
 
-const isIllegal = (x: any) => ILLEGAL_KEYS.has(x);
+/**
+ * Returns true, if given `x` is an illegal object key as per
+ * {@link ILLEGAL_KEYS}.
+ *
+ * @see {@link isProtoPath} for more details
+ *
+ * @param x
+ */
+export const isIllegalKey = (x: any) => ILLEGAL_KEYS.has(x);
 
 /**
  * Returns true if given `path` contains any {@link ILLEGAL_KEYS}, i.e. could be
@@ -23,9 +31,9 @@ export const isProtoPath = (
     path: string | number | readonly (string | number)[]
 ) =>
     isArray(path)
-        ? path.some(isIllegal)
+        ? path.some(isIllegalKey)
         : isString(path)
         ? path.indexOf(".") !== -1
-            ? path.split(".").some(isIllegal)
-            : isIllegal(path)
+            ? path.split(".").some(isIllegalKey)
+            : isIllegalKey(path)
         : false;
