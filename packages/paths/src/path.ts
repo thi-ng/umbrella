@@ -1,5 +1,5 @@
 import { assert, NumOrString, Path } from "@thi.ng/api";
-import { isArray, isString, isPrototypePolluted } from "@thi.ng/checks";
+import { isArray, isProtoPath, isString } from "@thi.ng/checks";
 
 /**
  * Converts the given key path to canonical form (array).
@@ -56,24 +56,16 @@ export const exists = (obj: any, path: Path) => {
 };
 
 /**
- * Helper function to analyze given lookup path for presence of
- * `__proto__`. Returns true if the case.
+ * Helper function to analyze given `path` using
+ * {@link @thi.ng/checks#isProtoPath}. Throws an error if path contains any
+ * property which might lead to prototype poisoning.
  *
  * @remarks
- * Also see {@link disallowProtoPath}
+ * The following properties are considered illegal.
  *
- * @param path
- */
-export const isProtoPath = (path: Path) =>
-    isArray(path)
-        ? path.some((x) => isPrototypePolluted(x))
-        : isString(path)
-        ? isPrototypePolluted(path)
-        : false;
-
-/**
- * Helper function to analyze given path using {@link isProtoPath}.
- * Throws error if path contains `__proto__`.
+ * - `__proto__`
+ * - `prototype`
+ * - `constructor`
  *
  * @param path
  */
