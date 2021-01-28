@@ -1,14 +1,12 @@
-import type { FnN, FnU, FnU2, Tuple } from "@thi.ng/api";
+import type { FnN, FnU, FnU2, IDeref, Tuple } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
-import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import type { IVector, ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 export type ColorMode =
-    | "css"
     | "hcy"
     | "hsi"
     | "hsl"
     | "hsv"
-    | "int"
     | "lab"
     | "lch"
     | "oklab"
@@ -167,8 +165,8 @@ export type CSSColorName =
     | "yellow"
     | "yellowgreen"
     // additions
-    | "transparent"
-    | "rebeccapurple";
+    | "rebeccapurple"
+    | "transparent";
 
 export type ColorRangePreset =
     | "light"
@@ -246,6 +244,52 @@ export interface ColorTargetConversion<T> {
 
 export interface IColor {
     readonly mode: ColorMode;
+}
+
+export interface ChannelSpec {
+    /**
+     * @defaultValue [0,1]
+     */
+    range?: [number, number];
+    default?: number;
+}
+
+export interface ColorSpec<M extends ColorMode, K extends string> {
+    mode: M;
+    channels: Record<K, ChannelSpec>;
+    order: readonly K[];
+    from: Partial<Record<ColorMode, ColorOp>> & { rgb: ColorOp };
+}
+
+export interface ColorFactory<T extends ColorType<any>> {
+    (
+        col: ColorType<any> | ParsedColor | string | number,
+        buf?: Color,
+        idx?: number,
+        stride?: number
+    ): T;
+    (col?: Color, idx?: number, stride?: number): T;
+    (a: number, b: number, c: number, ...xs: number[]): T;
+
+    random(rnd?: IRandom): T;
+}
+
+export interface ColorType<T> extends IDeref<Color>, IVector<T> {
+    readonly mode: ColorMode;
+    readonly length: number;
+    buf: Color;
+    offset: number;
+    stride: number;
+    set(src: ReadonlyColor): this;
+    toJSON(): number[];
+}
+
+export class ParsedColor implements IDeref<Color> {
+    constructor(public readonly mode: ColorMode, public value: Color) {}
+
+    deref() {
+        return this.value;
+    }
 }
 
 export type Range = [number, number];

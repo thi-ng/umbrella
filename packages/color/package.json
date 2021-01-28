@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/color",
     "version": "2.1.5",
-    "description": "Array-based color types, conversions, transformations, declarative theme generation, multi-color gradients, presets",
+    "description": "Array-based color types, conversions, transformations, declarative theme generation, gradients, presets",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -67,7 +67,23 @@
         "*.js",
         "*.d.ts",
         "lib",
-        "internal"
+        "api",
+        "css",
+        "hcy",
+        "hsi",
+        "hsl",
+        "hsv",
+        "int",
+        "internal",
+        "lab",
+        "lch",
+        "oklab",
+        "ops",
+        "rgb",
+        "srgb",
+        "xyy",
+        "xyz",
+        "ycc"
     ],
     "keywords": [
         "alpha",
@@ -103,5 +119,7 @@
         "setTimeout": false
     },
     "sideEffects": false,
-    "thi.ng": {}
+    "thi.ng": {
+        "related": "pixel"
+    }
 }
