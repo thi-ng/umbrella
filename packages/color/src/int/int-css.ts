@@ -12,7 +12,5 @@ export const int32Css = (src: number | IDeref<number>) => {
         : `#${U24(src & 0xffffff)}`;
 };
 
-export const int24Css = (src: number | IDeref<number>) => {
-    src = typeof src === "number" ? src : src.deref();
-    return int32Css(src | 0xff000000);
-};
+export const int24Css = (src: number | IDeref<number>) =>
+    `#${U24((typeof src === "number" ? src : src.deref()) & 0xffffff)}`;
