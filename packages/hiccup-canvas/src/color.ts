@@ -1,15 +1,15 @@
 import { isString } from "@thi.ng/checks";
-import { resolveAsCss } from "@thi.ng/color";
+import { css } from "@thi.ng/color";
 import type { DrawState } from "./api";
 
-export const resolveColor = resolveAsCss;
+export const resolveColor = css;
 
 export const resolveGradientOrColor = (state: DrawState, v: any) =>
     isString(v)
         ? v[0] === "$"
             ? state.grads![v.substr(1)]
             : v
-        : resolveAsCss(v);
+        : resolveColor(v);
 
 export const defLinearGradient = (
     ctx: CanvasRenderingContext2D,
