@@ -30,10 +30,10 @@ export declare class XYY implements TypedColor<XYY> {
 export const xyy = <ColorFactory<XYY>>defColor({
     mode: "xyy",
     channels: {
-        x: {},
-        y: {},
-        Y: {},
-        alpha: { default: 1 },
+        // x: {},
+        // y: {},
+        // Y: {},
+        // alpha: { default: 1 },
     },
     order: <const>["x", "y", "Y", "alpha"],
     from: { rgb: (out, src) => xyzXyy(null, rgbXyz(out, src)), xyz: xyzXyy },

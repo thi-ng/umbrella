@@ -37,10 +37,10 @@ export declare class RGB implements TypedColor<RGB> {
 export const rgb = <ColorFactory<RGB>>defColor({
     mode: "rgb",
     channels: {
-        r: {},
-        g: {},
-        b: {},
-        alpha: { default: 1 },
+        // r: {},
+        // g: {},
+        // b: {},
+        // alpha: { default: 1 },
     },
     order: <const>["r", "g", "b", "alpha"],
     from: {

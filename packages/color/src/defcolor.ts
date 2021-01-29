@@ -17,6 +17,7 @@ import {
     stridedValues,
 } from "@thi.ng/vectors";
 import type {
+    ChannelSpec,
     Color,
     ColorFactory,
     ColorMode,
@@ -39,15 +40,22 @@ type $DefColor<M extends ColorMode, K extends string> = {
     toJSON(): number[];
 } & TypedColor<$DefColor<M, K>>;
 
+const prepareSpec = (id: string, spec?: ChannelSpec): ChannelSpec => ({
+    ...(id === "alpha" ? { range: [1, 1], default: 1 } : { range: [0, 1] }),
+    ...spec,
+});
+
 export const defColor = <M extends ColorMode, K extends string>(
     spec: ColorSpec<M, K>
 ) => {
-    const channels = Object.keys(spec.channels);
+    const channels = spec.order;
     const numChannels = channels.length;
-    const min = spec.order.map((id) =>
-        id !== "alpha" ? (spec.channels[id].range || [0, 1])[0] : 1
+    channels.reduce(
+        (acc, id) => ((acc[id] = prepareSpec(id, spec.channels[id])), acc),
+        spec.channels
     );
-    const max = spec.order.map((id) => (spec.channels[id].range || [0, 1])[1]);
+    const min = channels.map((id) => spec.channels[id]!.range![0]);
+    const max = channels.map((id) => spec.channels[id]!.range![1]);
 
     const $clazz = class implements TypedColor<$DefColor<any, any>> {
         buf: Color;
@@ -111,7 +119,7 @@ export const defColor = <M extends ColorMode, K extends string>(
             return <any>randMinMax(this, min, max, rnd);
         }
     };
-    declareIndices($clazz.prototype, channels);
+    declareIndices($clazz.prototype, <any[]>channels);
     CONVERSIONS[spec.mode] = spec.from;
 
     const fromColor = (src: ReadonlyColor, mode: ColorMode, xs: any[]) => {

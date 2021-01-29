@@ -31,12 +31,12 @@ export declare class Lab implements TypedColor<Lab> {
 export const lab = <ColorFactory<Lab>>defColor({
     mode: "lab",
     channels: {
-        l: {},
+        // l: {},
         // ranges based on sRGB:
         // https://stackoverflow.com/a/19099064
         a: { range: [-0.86185, 0.98254] },
         b: { range: [-1.07863, 0.94482] },
-        alpha: { default: 1 },
+        // alpha: { default: 1 },
     },
     order: <const>["l", "a", "b", "alpha"],
     from: { rgb: rgbLab, lch: lchLab, xyz: xyzLab },

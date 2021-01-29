@@ -30,10 +30,10 @@ export declare class Oklab implements TypedColor<Oklab> {
 export const oklab = <ColorFactory<Oklab>>defColor({
     mode: "oklab",
     channels: {
-        l: {},
+        // l: {},
         a: { range: [-1, 1] },
         b: { range: [-1, 1] },
-        alpha: { default: 1 },
+        // alpha: { default: 1 },
     },
     order: <const>["l", "a", "b", "alpha"],
     from: { rgb: rgbOklab, xyz: xyzOklab },

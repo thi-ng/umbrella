@@ -29,10 +29,10 @@ export declare class HSI implements TypedColor<HSI> {
 export const hsi = <ColorFactory<HSI>>defColor({
     mode: "hsi",
     channels: {
-        h: {},
-        s: {},
-        i: {},
-        alpha: { default: 1 },
+        // h: {},
+        // s: {},
+        // i: {},
+        // alpha: { default: 1 },
     },
     order: <const>["h", "s", "i", "alpha"],
     from: { rgb: rgbHsi },

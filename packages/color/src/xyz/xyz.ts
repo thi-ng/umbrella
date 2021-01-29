@@ -36,7 +36,7 @@ export const xyz = <ColorFactory<XYZ>>defColor({
         x: { range: [0, D50[0]] },
         y: { range: [0, D50[1]] },
         z: { range: [0, D50[2]] },
-        alpha: { default: 1 },
+        // alpha: { default: 1 },
     },
     order: <const>["x", "y", "z", "alpha"],
     from: { rgb: rgbXyz, lab: labXyz, oklab: oklabXyz, xyy: xyyXyz },

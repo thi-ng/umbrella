@@ -29,10 +29,10 @@ export declare class SRGB implements TypedColor<SRGB> {
 export const srgb = <ColorFactory<SRGB>>defColor({
     mode: "srgb",
     channels: {
-        r: {},
-        g: {},
-        b: {},
-        alpha: { default: 1 },
+        // r: {},
+        // g: {},
+        // b: {},
+        // alpha: { default: 1 },
     },
     order: <const>["r", "g", "b", "alpha"],
     from: { rgb: rgbSrgb },

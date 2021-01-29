@@ -63,7 +63,7 @@ export interface ChannelSpec {
 
 export interface ColorSpec<M extends ColorMode, K extends string> {
     mode: M;
-    channels: Record<K, ChannelSpec>;
+    channels: Partial<Record<K, ChannelSpec>>;
     order: readonly K[];
     from: Partial<Record<ColorMode, ColorOp>> & { rgb: ColorOp };
 }
