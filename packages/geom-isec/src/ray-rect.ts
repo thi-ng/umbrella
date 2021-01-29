@@ -1,4 +1,4 @@
-import type { FnU4 } from "@thi.ng/api";
+import type { FnU4, Range } from "@thi.ng/api";
 import { IntersectionResult, IntersectionType } from "@thi.ng/geom-api";
 import { maddN, ReadonlyVec } from "@thi.ng/vectors";
 import { NONE } from "./api";
@@ -15,12 +15,7 @@ const max = Math.max;
  * @param bmin - rect min
  * @param bmax - rect max
  */
-const rayRect: FnU4<ReadonlyVec, [number, number]> = (
-    rpos,
-    dir,
-    bmin,
-    bmax
-) => {
+const rayRect: FnU4<ReadonlyVec, Range> = (rpos, dir, bmin, bmax) => {
     let p = rpos[0];
     let d = 1 / dir[0];
     let t1 = (bmin[0] - p) * d;
@@ -42,7 +37,7 @@ const rayRect: FnU4<ReadonlyVec, [number, number]> = (
  * @param bmin - box min
  * @param bmax - box max
  */
-const rayBox: FnU4<ReadonlyVec, [number, number]> = (rpos, dir, bmin, bmax) => {
+const rayBox: FnU4<ReadonlyVec, Range> = (rpos, dir, bmin, bmax) => {
     let p = rpos[0];
     let d = 1 / dir[0];
     let t1 = (bmin[0] - p) * d;
@@ -63,7 +58,7 @@ const rayBox: FnU4<ReadonlyVec, [number, number]> = (rpos, dir, bmin, bmax) => {
 };
 
 const intersectWith = (
-    fn: FnU4<ReadonlyVec, [number, number]>
+    fn: FnU4<ReadonlyVec, Range>
 ): FnU4<ReadonlyVec, IntersectionResult> => (rpos, dir, bmin, bmax) => {
     const t = fn(rpos, dir, bmin, bmax);
     const tmin = t[0];
