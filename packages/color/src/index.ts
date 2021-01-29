@@ -9,7 +9,6 @@ export * from "./defcolor";
 
 export * from "./css/css";
 export * from "./css/parse-css";
-export * from "./css/resolve";
 
 export * from "./hcy/hcy-rgb";
 export * from "./hcy/hcy";

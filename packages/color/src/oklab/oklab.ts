@@ -22,7 +22,7 @@ export declare class Oklab implements TypedColor<Oklab> {
     deref(): Color;
     empty(): Oklab;
     eqDelta(o: Oklab, eps?: number): boolean;
-    random(rnd?: IRandom): this;
+    randomize(rnd?: IRandom): this;
     set(src: ReadonlyColor): this;
     toJSON(): number[];
 }

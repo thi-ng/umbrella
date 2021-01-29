@@ -23,7 +23,7 @@ export declare class Lab implements TypedColor<Lab> {
     deref(): Color;
     empty(): Lab;
     eqDelta(o: Lab, eps?: number): boolean;
-    random(rnd?: IRandom): this;
+    randomize(rnd?: IRandom): this;
     set(src: ReadonlyColor): this;
     toJSON(): number[];
 }

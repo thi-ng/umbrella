@@ -22,7 +22,7 @@ export declare class XYY implements TypedColor<XYY> {
     deref(): Color;
     empty(): XYY;
     eqDelta(o: XYY, eps?: number): boolean;
-    random(rnd?: IRandom): this;
+    randomize(rnd?: IRandom): this;
     set(src: ReadonlyColor): this;
     toJSON(): number[];
 }

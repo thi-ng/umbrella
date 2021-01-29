@@ -21,7 +21,7 @@ export declare class HSI implements TypedColor<HSI> {
     deref(): Color;
     empty(): HSI;
     eqDelta(o: HSI, eps?: number): boolean;
-    random(rnd?: IRandom): this;
+    randomize(rnd?: IRandom): this;
     set(src: ReadonlyColor): this;
     toJSON(): number[];
 }

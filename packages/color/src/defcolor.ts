@@ -1,4 +1,4 @@
-import type { FloatArray, IDeref } from "@thi.ng/api";
+import type { FloatArray } from "@thi.ng/api";
 import {
     implementsFunction,
     isArrayLike,
@@ -11,9 +11,9 @@ import type { IRandom } from "@thi.ng/random";
 import {
     declareIndices,
     eqDelta,
-    IVector,
     mapStridedBuffer,
     randMinMax,
+    set,
     stridedValues,
 } from "@thi.ng/vectors";
 import type {
@@ -21,13 +21,14 @@ import type {
     ColorFactory,
     ColorMode,
     ColorSpec,
-    IColor,
+    MaybeColor,
     ReadonlyColor,
+    TypedColor,
 } from "./api";
 import { CONVERSIONS, convert } from "./convert";
+import { parseCss } from "./css/parse-css";
 import { int32Rgb } from "./int/int-rgba";
 import { ensureArgs } from "./internal/ensure-args";
-import { parseCss } from "./css/parse-css";
 
 type $DefColor<M extends ColorMode, K extends string> = {
     [k in K]: number;
@@ -36,9 +37,7 @@ type $DefColor<M extends ColorMode, K extends string> = {
     random(rnd?: IRandom): $DefColor<M, K>;
     set(src: ReadonlyColor): $DefColor<M, K>;
     toJSON(): number[];
-} & IColor &
-    IDeref<Color> &
-    IVector<$DefColor<M, K>>;
+} & TypedColor<$DefColor<M, K>>;
 
 export const defColor = <M extends ColorMode, K extends string>(
     spec: ColorSpec<M, K>
@@ -50,8 +49,7 @@ export const defColor = <M extends ColorMode, K extends string>(
     );
     const max = spec.order.map((id) => (spec.channels[id].range || [0, 1])[1]);
 
-    const $clazz = class
-        implements IColor, IVector<$DefColor<any, any>>, IDeref<Color> {
+    const $clazz = class implements TypedColor<$DefColor<any, any>> {
         buf: Color;
         offset: number;
         stride: number;
@@ -92,15 +90,12 @@ export const defColor = <M extends ColorMode, K extends string>(
             return <any>new $clazz();
         }
 
-        deref(): Color {
+        deref() {
             return [this[0], this[1], this[2], this[3]];
         }
 
         set(src: ReadonlyColor) {
-            this[0] = src[0];
-            this[1] = src[1];
-            this[2] = src[2];
-            this[3] = src[3];
+            set(this, src);
             return this;
         }
 
@@ -112,9 +107,8 @@ export const defColor = <M extends ColorMode, K extends string>(
             return this.deref();
         }
 
-        random(rnd?: IRandom) {
-            randMinMax(this, min, max, rnd);
-            return this;
+        randomize(rnd?: IRandom): this {
+            return <any>randMinMax(this, min, max, rnd);
         }
     };
     declareIndices($clazz.prototype, channels);
@@ -129,10 +123,7 @@ export const defColor = <M extends ColorMode, K extends string>(
         return res;
     };
 
-    const factory = (
-        src?: string | number | ReadonlyColor | IColor,
-        ...xs: any[]
-    ): $DefColor<any, any> => {
+    const factory = (src?: MaybeColor, ...xs: any[]): $DefColor<any, any> => {
         if (src == null) return <any>new $clazz();
         if (isString(src)) {
             return factory(parseCss(src), ...xs);
@@ -152,9 +143,7 @@ export const defColor = <M extends ColorMode, K extends string>(
             ) {
                 return <any>new $clazz(...ensureArgs([src, ...xs]));
             }
-            // FIXME disallow (since wrong for anything but rgb)
-            // or enforce mandatory `from` int conversion
-            return factory(<any>int32Rgb([], src), ...xs);
+            return <any>fromColor(int32Rgb([], src), "rgb", xs);
         }
         illegalArgs(`can't create a ${spec.mode} color from: ${src}`);
     };
@@ -164,11 +153,7 @@ export const defColor = <M extends ColorMode, K extends string>(
         buf?: Color,
         idx?: number,
         stride?: number
-    ) => {
-        const res = new $clazz(buf, idx, stride);
-        randMinMax(res, min, max, rnd);
-        return <any>res;
-    };
+    ) => <any>new $clazz(buf, idx, stride).randomize(rnd);
 
     factory.mapBuffer = (
         buf: FloatArray,

@@ -21,7 +21,7 @@ export declare class YCC implements TypedColor<YCC> {
     deref(): Color;
     empty(): YCC;
     eqDelta(o: YCC, eps?: number): boolean;
-    random(rnd?: IRandom): this;
+    randomize(rnd?: IRandom): this;
     set(src: ReadonlyColor): this;
     toJSON(): number[];
 }

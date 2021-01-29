@@ -3,7 +3,7 @@ import { assert } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks";
 import { illegalArgs, unsupported } from "@thi.ng/errors";
 import { clamp01, TAU } from "@thi.ng/math";
-import { ParsedColor } from "../api";
+import { IParsedColor, ParsedColor } from "../api";
 import { CSS_NAMES } from "../api/names";
 import { CSS_SYSTEM_COLORS } from "../api/system";
 import { int32Srgb } from "../int/int-srgb";
@@ -43,7 +43,7 @@ import { ensureHue } from "../internal/ensure-hue";
  *
  * @param src
  */
-export const parseCss = (src: string | IDeref<string>) => {
+export const parseCss = (src: string | IDeref<string>): IParsedColor => {
     src = (isString(src) ? src : src.deref()).toLowerCase();
     const named = (<any>CSS_NAMES)[src] || (<any>CSS_SYSTEM_COLORS)[src];
     if (named || src[0] === "#")

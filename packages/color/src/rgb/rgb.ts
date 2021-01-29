@@ -29,7 +29,7 @@ export declare class RGB implements TypedColor<RGB> {
     deref(): Color;
     empty(): RGB;
     eqDelta(o: RGB, eps?: number): boolean;
-    random(rnd?: IRandom): this;
+    randomize(rnd?: IRandom): this;
     set(src: ReadonlyColor): this;
     toJSON(): number[];
 }

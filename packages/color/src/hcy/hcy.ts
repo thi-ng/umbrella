@@ -21,7 +21,7 @@ export declare class HCY implements TypedColor<HCY> {
     deref(): Color;
     empty(): HCY;
     eqDelta(o: HCY, eps?: number): boolean;
-    random(rnd?: IRandom): this;
+    randomize(rnd?: IRandom): this;
     set(src: ReadonlyColor): this;
     toJSON(): number[];
 }

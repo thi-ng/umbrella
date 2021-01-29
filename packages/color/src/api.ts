@@ -5,7 +5,12 @@ import type { IVector, ReadonlyVec, Vec } from "@thi.ng/vectors";
 export type Color = Vec;
 export type ReadonlyColor = ReadonlyVec;
 
-export type MaybeColor = string | number | ReadonlyColor | IColor;
+export type MaybeColor =
+    | TypedColor<any>
+    | IParsedColor
+    | ReadonlyColor
+    | string
+    | number;
 
 export type ColorOp = (out: Color | null, src: ReadonlyColor) => Color;
 
@@ -64,13 +69,8 @@ export interface ColorSpec<M extends ColorMode, K extends string> {
 }
 
 export interface ColorFactory<T extends TypedColor<any>> {
-    (
-        col: TypedColor<any> | ParsedColor | string | number,
-        buf?: Color,
-        idx?: number,
-        stride?: number
-    ): T;
-    (col?: Color, idx?: number, stride?: number): T;
+    (col: MaybeColor, buf?: Vec, idx?: number, stride?: number): T;
+    (col?: Vec, idx?: number, stride?: number): T;
     (a: number, b: number, c: number, ...xs: number[]): T;
 
     /**
@@ -124,7 +124,14 @@ export interface TypedColor<T> extends IColor, IDeref<Color>, IVector<T> {
      * Step size between channels
      */
     stride: number;
-    random(rnd?: IRandom): this;
+    /**
+     * Randomizes all color channels based on channel ranges defined for this
+     * color type (usually [0..1] interval). Alpha channel will remain
+     * untouched.
+     *
+     * @param rnd
+     */
+    randomize(rnd?: IRandom): this;
     /**
      * Copies `src` into this color's array.
      *
@@ -138,7 +145,13 @@ export interface TypedColor<T> extends IColor, IDeref<Color>, IVector<T> {
     toJSON(): number[];
 }
 
-export class ParsedColor implements IDeref<Color> {
+export interface IParsedColor extends IColor, IDeref<Color> {}
+
+/**
+ * Result type returned by {@link parseCss}, a simple wrapper for a raw color
+ * array and color mode.
+ */
+export class ParsedColor implements IParsedColor {
     constructor(public readonly mode: ColorMode, public value: Color) {}
 
     deref() {

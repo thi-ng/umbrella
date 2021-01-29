@@ -22,7 +22,7 @@ export declare class LCH implements TypedColor<LCH> {
     deref(): Color;
     empty(): LCH;
     eqDelta(o: LCH, eps?: number): boolean;
-    random(rnd?: IRandom): this;
+    randomize(rnd?: IRandom): this;
     set(src: ReadonlyColor): this;
     toJSON(): number[];
 }

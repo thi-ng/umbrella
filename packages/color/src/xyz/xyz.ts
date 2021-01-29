@@ -25,7 +25,7 @@ export declare class XYZ implements TypedColor<XYZ> {
     deref(): Color;
     empty(): XYZ;
     eqDelta(o: XYZ, eps?: number): boolean;
-    random(rnd?: IRandom): this;
+    randomize(rnd?: IRandom): this;
     set(src: ReadonlyColor): this;
     toJSON(): number[];
 }

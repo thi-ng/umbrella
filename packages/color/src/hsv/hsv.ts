@@ -53,7 +53,7 @@ export declare class HSV implements TypedColor<HSV> {
     deref(): Color;
     empty(): HSV;
     eqDelta(o: HSV, eps?: number): boolean;
-    random(rnd?: IRandom): this;
+    randomize(rnd?: IRandom): this;
     set(src: ReadonlyColor): this;
     toJSON(): number[];
 }

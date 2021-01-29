@@ -21,7 +21,7 @@ export declare class SRGB implements TypedColor<SRGB> {
     deref(): Color;
     empty(): SRGB;
     eqDelta(o: SRGB, eps?: number): boolean;
-    random(rnd?: IRandom): this;
+    randomize(rnd?: IRandom): this;
     set(src: ReadonlyColor): this;
     toJSON(): number[];
 }

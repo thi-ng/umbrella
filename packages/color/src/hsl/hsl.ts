@@ -53,7 +53,7 @@ export declare class HSL implements TypedColor<HSL> {
     deref(): Color;
     empty(): HSL;
     eqDelta(o: HSL, eps?: number): boolean;
-    random(rnd?: IRandom): this;
+    randomize(rnd?: IRandom): this;
     set(src: ReadonlyColor): this;
     toJSON(): number[];
 }
