@@ -31,31 +31,45 @@ For the Clojure version, please visit: [thi.ng/color-clj](https://thi.ng/color-c
 
 ## About
 
-Array-based color types, conversions, transformations, declarative theme generation, multi-color gradients, presets.
+Array-based color types, conversions, transformations, declarative theme generation, gradients, presets.
 
+Note: This readme is a work-in-progress and will apply to the still unreleased
+version 3.0.0. Please see [main
+branch](https://github.com/thi-ng/umbrella/blob/main/packages/color/README.md)
+for current version...
 ### Color spaces / modes
 
 Fast color space conversions (any direction) between:
 
 - CSS (string, hex3/hex4/hex6/hex8, rgba(), hsla(), named colors)
-- HCYA (float4)
-- HSIA (float4)
-- HSLA (float4)
-- HSVA (float4)
-- Int32 (uint32, `0xaarrggbb`)
+- HCY (float4)
+- HSI (float4)
+- HSL (float4)
+- HSV (float4)
+- Int32 (uint32, `0xaarrggbb`, aka sRGBA as packed int)
+- Lab (float4, D50/D65 versions)
+- LCH (float4)
 - [Oklab](https://bottosson.github.io/posts/oklab/) (float4)
-- RGBA (float4)
-- XYZA (float4, aka CIE 1931)
-- YCbCr (float4)
+- RGB (float4, linear RGB)
+- SRGB (float4)
+- XYY (float4)
+- XYZ (float4, aka CIE 1931, D50/D65 versions)
+- YCC (float4, aka YCbCr)
 
-Apart from `CSS` and `Int32` colors, all others can be stored as plain
-arrays, typed array or custom array-like types of (mostly) normalized
-values (`[0,1]` interval). Where applicable, the hue too is stored in
-that range, NOT in degrees.
+Preliminary support for:
 
-Apart from conversions, most other operations provided by this package
-are currently only supporting RGBA colors. These can also be converted
-to / from sRGB (i.e. linear vs gamma corrected).
+- Lab{A} (float4)
+- LCH{A} (float4)
+
+Apart from `CSS` and `Int32` colors, all others can be stored as plain arrays,
+typed array or custom array-like types of (mostly) normalized values (`[0,1]`
+interval). Where applicable, the hue too is stored in that range (similar to
+[CSS `turn`](https://drafts.csswg.org/css-values-3/#ref-for-turn) units), NOT in
+degrees.
+
+Apart from conversions, most other operations provided by this package are
+currently only supporting RGBA colors. These can also be converted to / from
+sRGBA (i.e. linear vs gamma corrected).
 
 #### Class wrappers
 
@@ -338,7 +352,7 @@ yarn add @thi.ng/color
 <script src="https://unpkg.com/@thi.ng/color/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 8.94 KB / CJS: 9.39 KB / UMD: 8.81 KB
+Package sizes (gzipped, pre-treeshake): CJS: 11.60 KB
 
 ## Dependencies
 
