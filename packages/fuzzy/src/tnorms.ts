@@ -1,4 +1,4 @@
-import type { FnN2 } from "@thi.ng/api";
+import type { FnN2, Range } from "@thi.ng/api";
 import { clamp0, norm } from "@thi.ng/math";
 
 // https://en.wikipedia.org/wiki/T-norm
@@ -122,9 +122,10 @@ export const snormEinstein: FnN2 = (x, y) => (x + y) / (1 + x * y);
  *
  * @param specs
  */
-export const ordinalSum = (
-    specs: { domain: [number, number]; tnorm: FnN2 }[]
-): FnN2 => (x, y) => {
+export const ordinalSum = (specs: { domain: Range; tnorm: FnN2 }[]): FnN2 => (
+    x,
+    y
+) => {
     for (let s of specs) {
         const [a, b] = s.domain;
         if (x >= a && x <= b && y >= a && y <= b) {

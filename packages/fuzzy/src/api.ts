@@ -1,4 +1,4 @@
-import type { Fn2, FnN, FnN2 } from "@thi.ng/api";
+import type { Fn2, FnN, FnN2, Range } from "@thi.ng/api";
 
 export type FuzzyFn = FnN;
 
@@ -6,7 +6,7 @@ export type RuleOp = (x: number, a: FuzzyFn, b: FuzzyFn) => number;
 
 export type DefuzzStrategy = Fn2<FuzzyFn, LVarDomain, number>;
 
-export type LVarDomain = [number, number];
+export type LVarDomain = Range;
 
 export type LVarTerms<K extends string> = Record<K, FuzzyFn>;
 

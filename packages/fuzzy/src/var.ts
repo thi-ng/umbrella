@@ -1,4 +1,4 @@
-import type { LVar } from "./api";
+import type { LVar, LVarDomain } from "./api";
 
 /**
  * Takes a `domain` interval and on object of named fuzzy sets and returns a new
@@ -20,7 +20,7 @@ import type { LVar } from "./api";
  * @param terms
  */
 export const variable = <K extends string>(
-    domain: [number, number],
+    domain: LVarDomain,
     terms: LVar<K>["terms"]
 ): LVar<K> => ({
     domain,
