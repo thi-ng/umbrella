@@ -31,14 +31,16 @@ const CSS_CONVERSIONS: Partial<Record<ColorMode, Fn<any, string>>> = {
  * @param col - source color
  */
 export const css = (src: Exclude<MaybeColor, IParsedColor>) => {
-    if (isString(src)) return src;
-    if (isNumber(src)) return int32Css(src);
-    if ((<TypedColor<any>>src).mode) {
-        const asCss = CSS_CONVERSIONS[(<TypedColor<any>>src).mode];
-        if (asCss) return asCss(src);
-        return CSS_CONVERSIONS.rgb!(
-            convert([], src, "rgb", (<TypedColor<any>>src).mode)
-        );
-    }
-    return srgbCss(src);
+    let asCss: Fn<any, string> | undefined;
+    return isString(src)
+        ? src
+        : isNumber(src)
+        ? int32Css(src)
+        : (<TypedColor<any>>src).mode
+        ? (asCss = CSS_CONVERSIONS[(<TypedColor<any>>src).mode])
+            ? asCss(src)
+            : CSS_CONVERSIONS.rgb!(
+                  convert([], src, "rgb", (<TypedColor<any>>src).mode)
+              )
+        : srgbCss(src);
 };
