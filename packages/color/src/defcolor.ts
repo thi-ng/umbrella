@@ -1,4 +1,4 @@
-import type { IDeref } from "@thi.ng/api";
+import type { FloatArray, IDeref } from "@thi.ng/api";
 import {
     implementsFunction,
     isArrayLike,
@@ -12,6 +12,7 @@ import {
     declareIndices,
     eqDelta,
     IVector,
+    mapStridedBuffer,
     randMinMax,
     stridedValues,
 } from "@thi.ng/vectors";
@@ -32,6 +33,7 @@ type $DefColor<M extends ColorMode, K extends string> = {
     [k in K]: number;
 } & {
     readonly mode: M;
+    random(rnd?: IRandom): $DefColor<M, K>;
     set(src: ReadonlyColor): $DefColor<M, K>;
     toJSON(): number[];
 } & IColor &
@@ -43,6 +45,11 @@ export const defColor = <M extends ColorMode, K extends string>(
 ) => {
     const channels = Object.keys(spec.channels);
     const numChannels = channels.length;
+    const min = spec.order.map((id) =>
+        id !== "alpha" ? (spec.channels[id].range || [0, 1])[0] : 1
+    );
+    const max = spec.order.map((id) => (spec.channels[id].range || [0, 1])[1]);
+
     const $clazz = class
         implements IColor, IVector<$DefColor<any, any>>, IDeref<Color> {
         buf: Color;
@@ -101,12 +108,13 @@ export const defColor = <M extends ColorMode, K extends string>(
             return eqDelta(this, <any>o, eps);
         }
 
-        /**
-         * For memory mapped colors, this ensures only the elements used by this
-         * color are being serialized (as array) by `JSON.stringify()`.
-         */
         toJSON() {
             return this.deref();
+        }
+
+        random(rnd?: IRandom) {
+            randMinMax(this, min, max, rnd);
+            return this;
         }
     };
     declareIndices($clazz.prototype, channels);
@@ -151,13 +159,24 @@ export const defColor = <M extends ColorMode, K extends string>(
         illegalArgs(`can't create a ${spec.mode} color from: ${src}`);
     };
 
-    const min = spec.order.map((id) =>
-        id !== "alpha" ? (spec.channels[id].range || [0, 1])[0] : 1
-    );
-    const max = spec.order.map((id) => (spec.channels[id].range || [0, 1])[1]);
+    factory.random = (
+        rnd?: IRandom,
+        buf?: Color,
+        idx?: number,
+        stride?: number
+    ) => {
+        const res = new $clazz(buf, idx, stride);
+        randMinMax(res, min, max, rnd);
+        return <any>res;
+    };
 
-    factory.random = (rnd?: IRandom) =>
-        <any>new $clazz(randMinMax([], min, max, rnd));
+    factory.mapBuffer = (
+        buf: FloatArray,
+        num = (buf.length / numChannels) | 0,
+        start = 0,
+        cstride = 1,
+        estride = numChannels
+    ) => <any[]>mapStridedBuffer($clazz, buf, num, start, cstride, estride);
 
     return <ColorFactory<$DefColor<M, K>>>factory;
 };

@@ -1,11 +1,12 @@
+import type { IRandom } from "@thi.ng/random";
 import type { Vec } from "@thi.ng/vectors";
-import type { Color, ColorFactory, ColorType, ReadonlyColor } from "../api";
+import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
 import { defColor } from "../defcolor";
-import { lchLab } from "./lab-lch";
 import { rgbLab } from "../rgb/rgb-lab";
 import { xyzLab } from "../xyz/xyz-lab";
+import { lchLab } from "./lab-lch";
 
-export declare class Lab implements ColorType<Lab> {
+export declare class Lab implements TypedColor<Lab> {
     buf: Vec;
     offset: number;
     stride: number;
@@ -22,6 +23,7 @@ export declare class Lab implements ColorType<Lab> {
     deref(): Color;
     empty(): Lab;
     eqDelta(o: Lab, eps?: number): boolean;
+    random(rnd?: IRandom): this;
     set(src: ReadonlyColor): this;
     toJSON(): number[];
 }

@@ -1,9 +1,10 @@
+import type { IRandom } from "@thi.ng/random";
 import type { Vec } from "@thi.ng/vectors";
-import type { Color, ColorFactory, ColorType, ReadonlyColor } from "../api";
+import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
 import { defColor } from "../defcolor";
 import { rgbYcc } from "../rgb/rgb-ycc";
 
-export declare class YCC implements ColorType<YCC> {
+export declare class YCC implements TypedColor<YCC> {
     buf: Vec;
     offset: number;
     stride: number;
@@ -20,6 +21,7 @@ export declare class YCC implements ColorType<YCC> {
     deref(): Color;
     empty(): YCC;
     eqDelta(o: YCC, eps?: number): boolean;
+    random(rnd?: IRandom): this;
     set(src: ReadonlyColor): this;
     toJSON(): number[];
 }

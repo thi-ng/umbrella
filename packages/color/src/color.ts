@@ -3,7 +3,7 @@ import type {
     Color,
     ColorFactory,
     ColorMode,
-    ColorType,
+    TypedColor,
     ParsedColor,
 } from "./api";
 import { hcy } from "./hcy/hcy";
@@ -39,19 +39,19 @@ export function color(
     buf?: Color,
     idx?: number,
     stride?: number
-): ColorType<any>;
+): TypedColor<any>;
 export function color(
     mode: ColorMode,
     buf: Color,
     idx?: number,
     stride?: number
-): ColorType<any>;
+): TypedColor<any>;
 export function color(
     src: any,
     buf?: any,
     idx?: number,
     stride?: number
-): ColorType<any> {
+): TypedColor<any> {
     if (isString(src)) {
         return FACTORIES[<ColorMode>src](buf, idx, stride);
     }

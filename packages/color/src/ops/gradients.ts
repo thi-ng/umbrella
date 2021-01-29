@@ -1,6 +1,7 @@
 import { map, noop, push, transduce, tween } from "@thi.ng/transducers";
 import { mixN } from "@thi.ng/vectors";
-import type { Color, MultiGradientOpts, ReadonlyColor } from "../api";
+import type { Color, ReadonlyColor } from "../api";
+import type { GradientOpts } from "../api/gradients";
 
 /**
  * Similar to {@link multiCosineGradient}, computes a multi-stop color gradient,
@@ -47,7 +48,7 @@ import type { Color, MultiGradientOpts, ReadonlyColor } from "../api";
  * @param tx
  * @param ease
  */
-export const multiColorGradient = (opts: MultiGradientOpts): Color[] =>
+export const multiColorGradient = (opts: GradientOpts): Color[] =>
     transduce(
         opts.tx ? map(opts.tx) : noop(),
         push<Color>(),

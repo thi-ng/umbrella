@@ -1,6 +1,6 @@
 import type { Fn } from "@thi.ng/api";
 import { isNumber, isString } from "@thi.ng/checks";
-import type { ColorMode, ColorType } from "../api";
+import type { ColorMode, TypedColor, ReadonlyColor } from "../api";
 import { convert } from "../convert";
 import { hslCss } from "../hsl/hsl-css";
 import { hsvCss } from "../hsv/hsv-css";
@@ -19,10 +19,15 @@ const CSS_CONVERSIONS: Partial<Record<ColorMode, Fn<any, string>>> = {
     srgb: srgbCss,
 };
 
-export const css = (src: ColorType<any> | string | number) => {
+export const css = (src: TypedColor<any> | ReadonlyColor | string | number) => {
     if (isString(src)) return src;
     if (isNumber(src)) return int32Css(src);
-    const asCss = CSS_CONVERSIONS[src.mode];
-    if (asCss) return asCss(src);
-    return CSS_CONVERSIONS.rgb!(convert([], src, "rgb", src.mode));
+    if ((<TypedColor<any>>src).mode) {
+        const asCss = CSS_CONVERSIONS[(<TypedColor<any>>src).mode];
+        if (asCss) return asCss(src);
+        return CSS_CONVERSIONS.rgb!(
+            convert([], src, "rgb", (<TypedColor<any>>src).mode)
+        );
+    }
+    return srgbCss(src);
 };

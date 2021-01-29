@@ -1,6 +1,6 @@
 import { DEFAULT, defmulti, MultiFn1O } from "@thi.ng/defmulti";
 import { eqDelta } from "@thi.ng/math";
-import type { ColorType, ReadonlyColor } from "../api";
+import type { TypedColor, ReadonlyColor } from "../api";
 import { rgb } from "../rgb/rgb";
 
 const EPS = 1 / 256;
@@ -10,7 +10,7 @@ export const isGrayHsv = (x: ReadonlyColor, eps = EPS) => x[1] <= eps;
 export const isGrayRGB = (x: ReadonlyColor, eps = EPS) =>
     eqDelta(x[0], x[1], eps) && eqDelta(x[0], x[2], eps);
 
-const isGray: MultiFn1O<ColorType<any>, number, boolean> = defmulti(
+const isGray: MultiFn1O<TypedColor<any>, number, boolean> = defmulti(
     (x) => x.mode
 );
 

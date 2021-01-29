@@ -11,14 +11,13 @@ import {
     tween,
     zip,
 } from "@thi.ng/transducers";
+import type { Color, ReadonlyColor } from "../api";
 import type {
-    Color,
-    CosCoeffs,
+    CosineCoeffs,
     CosGradientSpec,
     CosineGradientPreset,
-    MultiGradientOpts,
-    ReadonlyColor,
-} from "../api";
+    GradientOpts,
+} from "../api/gradients";
 import { clamp } from "./clamp";
 
 /**
@@ -221,8 +220,8 @@ export const cosineCoeffs: FnU2<ReadonlyColor, CosGradientSpec> = (
     to = clamp([], to);
     const amp = [...map(([a, b]) => 0.5 * (a - b), zip(from, to))];
     return [
-        <CosCoeffs>[...map(([s, a]) => s - a, zip(from, amp))],
-        <CosCoeffs>amp,
+        <CosineCoeffs>[...map(([s, a]) => s - a, zip(from, amp))],
+        <CosineCoeffs>amp,
         [-0.5, -0.5, -0.5, -0.5],
         [0, 0, 0, 0],
     ];
@@ -249,7 +248,7 @@ export const cosineCoeffs: FnU2<ReadonlyColor, CosGradientSpec> = (
  * @param num - number of color steps to produce
  * @param stops - gradient stops
  */
-export const multiCosineGradient = (opts: MultiGradientOpts): Color[] =>
+export const multiCosineGradient = (opts: GradientOpts): Color[] =>
     transduce(
         opts.tx ? map(opts.tx) : noop(),
         push<Color>(),

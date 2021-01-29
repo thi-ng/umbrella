@@ -1,16 +1,17 @@
+import type { Range } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
 import { isArray, isNumber, isString } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { IRandom, SYSTEM, weightedRandom } from "@thi.ng/random";
+import type { ReadonlyColor } from "../api";
 import type {
     ColorRange,
     ColorRangeOpts,
     ColorRangePreset,
     ColorThemePart,
     ColorThemePartTuple,
-    Range,
-    ReadonlyColor,
-} from "../api";
+} from "../api/ranges";
+import { parseCss } from "../css/parse-css";
 import { HSV, hsv } from "../hsv/hsv";
 import { ensureAlpha } from "../internal/ensure-alpha";
 import { ensureHue } from "../internal/ensure-hue";
@@ -18,7 +19,6 @@ import { analogHsv } from "./analog";
 import { isBlackHsv } from "./is-black";
 import { isGrayHsv } from "./is-gray";
 import { isWhiteHsv } from "./is-white";
-import { parseCss } from "../css/parse-css";
 
 /**
  * Preset {@link ColorRange}s for use with {@link colorsFromRange},

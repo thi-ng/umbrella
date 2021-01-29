@@ -1,5 +1,5 @@
 import { DEFAULT, defmulti, MultiFn1O } from "@thi.ng/defmulti";
-import type { ColorType, ReadonlyColor } from "../api";
+import type { TypedColor, ReadonlyColor } from "../api";
 import { rgb } from "../rgb/rgb";
 
 const EPS = 1 / 256;
@@ -12,7 +12,7 @@ export const isWhiteRGB = (x: ReadonlyColor, eps = EPS) => {
     return x[0] >= eps && x[1] >= eps && x[2] >= eps;
 };
 
-const isWhite: MultiFn1O<ColorType<any>, number, boolean> = defmulti(
+const isWhite: MultiFn1O<TypedColor<any>, number, boolean> = defmulti(
     (x) => x.mode
 );
 

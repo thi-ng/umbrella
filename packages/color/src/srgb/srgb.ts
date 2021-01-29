@@ -1,9 +1,10 @@
+import type { IRandom } from "@thi.ng/random";
 import type { Vec } from "@thi.ng/vectors";
-import type { Color, ColorFactory, ColorType, ReadonlyColor } from "../api";
+import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
 import { defColor } from "../defcolor";
 import { rgbSrgb } from "../rgb/rgb-srgb";
 
-export declare class SRGB implements ColorType<SRGB> {
+export declare class SRGB implements TypedColor<SRGB> {
     buf: Vec;
     offset: number;
     stride: number;
@@ -20,6 +21,7 @@ export declare class SRGB implements ColorType<SRGB> {
     deref(): Color;
     empty(): SRGB;
     eqDelta(o: SRGB, eps?: number): boolean;
+    random(rnd?: IRandom): this;
     set(src: ReadonlyColor): this;
     toJSON(): number[];
 }

@@ -1,4 +1,71 @@
-import type { SystemColors } from "../api";
+/**
+ * @remarks
+ * Reference: https://drafts.csswg.org/css-color/#typedef-system-color
+ */
+export interface SystemColors {
+    /**
+     * Background of application content or documents.
+     */
+    canvas: string;
+    /**
+     * Text in application content or documents.
+     */
+    canvastext: string;
+    /**
+     * Text in non-active, non-visited links. For light backgrounds,
+     * traditionally blue.
+     */
+    linktext: string;
+    /**
+     * Text in visited links. For light backgrounds, traditionally purple.
+     */
+    visitedtext: string;
+    /**
+     * Text in active links. For light backgrounds, traditionally red.
+     */
+    activetext: string;
+    /**
+     * The face background color for push buttons.
+     */
+    buttonface: string;
+    /**
+     * Text on push buttons.
+     */
+    buttontext: string;
+    /**
+     * The base border color for push buttons.
+     */
+    buttonborder: string;
+    /**
+     * Background of input fields.
+     */
+    field: string;
+    /**
+     * Text in input fields.
+     */
+    fieldtext: string;
+    /**
+     * Background of selected items/text.
+     */
+    highlight: string;
+    /**
+     * Text of selected items/text.
+     */
+    highlighttext: string;
+    /**
+     * Background of text that has been specially marked (such as by the HTML
+     * mark element).
+     */
+    mark: string;
+    /**
+     * Text that has been specially marked (such as by the HTML mark element).
+     */
+    marktext: string;
+    /**
+     * Disabled text. (Often, but not necessarily, gray.)
+     */
+    graytext: string;
+}
 
 /**
  * Default CSS system colors used by {@link parseCss}. Use

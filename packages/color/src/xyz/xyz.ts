@@ -1,5 +1,6 @@
+import type { IRandom } from "@thi.ng/random";
 import type { Vec } from "@thi.ng/vectors";
-import type { Color, ColorFactory, ColorType, ReadonlyColor } from "../api";
+import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
 import { D50 } from "../api/constants";
 import { defColor } from "../defcolor";
 import { labXyz } from "../lab/lab-xyz";
@@ -7,7 +8,7 @@ import { oklabXyz } from "../oklab/oklab-xyz";
 import { rgbXyz } from "../rgb/rgb-xyz";
 import { xyyXyz } from "../xyy/xyy-xyz";
 
-export declare class XYZ implements ColorType<XYZ> {
+export declare class XYZ implements TypedColor<XYZ> {
     buf: Vec;
     offset: number;
     stride: number;
@@ -24,6 +25,7 @@ export declare class XYZ implements ColorType<XYZ> {
     deref(): Color;
     empty(): XYZ;
     eqDelta(o: XYZ, eps?: number): boolean;
+    random(rnd?: IRandom): this;
     set(src: ReadonlyColor): this;
     toJSON(): number[];
 }
