@@ -1,4 +1,4 @@
-import type { FloatArray } from "@thi.ng/api";
+import type { FloatArray, IDeref } from "@thi.ng/api";
 import {
     implementsFunction,
     isArrayLike,
@@ -22,6 +22,7 @@ import type {
     ColorFactory,
     ColorMode,
     ColorSpec,
+    IColor,
     MaybeColor,
     ReadonlyColor,
     TypedColor,
@@ -122,39 +123,29 @@ export const defColor = <M extends ColorMode, K extends string>(
     declareIndices($clazz.prototype, <any[]>channels);
     CONVERSIONS[spec.mode] = spec.from;
 
-    const fromColor = (src: ReadonlyColor, mode: ColorMode, xs: any[]) => {
+    const fromColor = (src: ReadonlyColor, mode: ColorMode, xs: any[]): any => {
         const res = new $clazz(...xs);
-        if (mode !== spec.mode) {
-            return convert(res, src, spec.mode, mode);
-        }
-        res.set(src);
-        return res;
+        return mode !== spec.mode
+            ? convert(res, src, spec.mode, mode)
+            : res.set(src);
     };
 
-    const factory = (src?: MaybeColor, ...xs: any[]): $DefColor<any, any> => {
-        if (src == null) return <any>new $clazz();
-        if (isString(src)) {
-            return factory(parseCss(src), ...xs);
-        } else if (isArrayLike(src)) {
-            if (isString((<any>src).mode)) {
-                return <any>fromColor(src, (<any>src).mode, xs);
-            } else {
-                return <any>new $clazz(src, ...xs);
-            }
-        } else if (implementsFunction(src, "deref")) {
-            return <any>fromColor((<any>src).deref(), (<any>src).mode, xs);
-        } else if (isNumber(src)) {
-            if (
-                (xs.length === numChannels - 1 ||
-                    xs.length === numChannels - 2) &&
-                xs.every(isNumber)
-            ) {
-                return <any>new $clazz(...ensureArgs([src, ...xs]));
-            }
-            return <any>fromColor(int32Rgb([], src), "rgb", xs);
-        }
-        illegalArgs(`can't create a ${spec.mode} color from: ${src}`);
-    };
+    const factory = (src?: MaybeColor, ...xs: any[]): $DefColor<any, any> =>
+        src == null
+            ? <any>new $clazz()
+            : isString(src)
+            ? factory(parseCss(src), ...xs)
+            : isArrayLike(src)
+            ? isString((<IColor>src).mode)
+                ? fromColor(src, (<IColor>src).mode, xs)
+                : <any>new $clazz(src, ...xs)
+            : implementsFunction(src, "deref")
+            ? fromColor((<IDeref<any>>src).deref(), (<IColor>src).mode, xs)
+            : isNumber(src)
+            ? xs.length && xs.every(isNumber)
+                ? <any>new $clazz(...ensureArgs([src, ...xs]))
+                : fromColor(int32Rgb([], src), "rgb", xs)
+            : illegalArgs(`can't create a ${spec.mode} color from: ${src}`);
 
     factory.random = (
         rnd?: IRandom,
