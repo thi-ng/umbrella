@@ -72,15 +72,14 @@ export const parseCss = (src: string | IDeref<string>): IParsedColor => {
                 parseAlpha(d),
             ]);
         case "lab":
-            return new ParsedColor("lab", [
-                parsePercent(a),
+                parsePercent(a, false),
                 parseNumber(b) * 0.01,
                 parseNumber(c) * 0.01,
                 parseAlpha(d),
             ]);
         case "lch":
             return new ParsedColor("lch", [
-                parsePercent(a),
+                parsePercent(a, false),
                 parseNumber(b) * 0.01,
                 parseHue(c),
                 parseAlpha(d),
@@ -90,28 +89,26 @@ export const parseCss = (src: string | IDeref<string>): IParsedColor => {
     }
 };
 
+const HUE_NORMS: Record<string, number> = {
+    rad: TAU,
+    grad: 400,
+    turn: 1,
+    deg: 360,
+    undefined: 360,
+};
+
 const parseHue = (x: string) => {
     const match = /^(-?[0-9.]+)(deg|rad|grad|turn)?$/.exec(x);
     assert(!!match, `expected hue, got: ${x}`);
-    const hue = parseFloat(match![1]);
-    switch (match![2]) {
-        case "rad":
-            return ensureHue(hue / TAU);
-        case "grad":
-            return ensureHue(hue / 400);
-        case "turn":
-            return ensureHue(hue);
-        case "deg":
-        default:
-            return ensureHue(hue / 360);
-    }
+    return ensureHue(parseFloat(match![1]) / HUE_NORMS[match![2]]);
 };
 
-const parseAlpha = (x?: string) => (x ? clamp01(parseNumOrPercent(x, 1)) : 1);
+const parseAlpha = (x?: string) => (x ? parseNumOrPercent(x, 1) : 1);
 
-const parsePercent = (x: string) => {
+const parsePercent = (x: string, clamp = true) => {
     assert(/^([0-9.]+)%$/.test(x), `expected percentage, got: ${x}`);
-    return parseFloat(x) / 100;
+    const res = parseFloat(x) / 100;
+    return clamp ? clamp01(res) : res;
 };
 
 const parseNumber = (x: string) => {
@@ -119,9 +116,10 @@ const parseNumber = (x: string) => {
     return parseFloat(x);
 };
 
-const parseNumOrPercent = (x: string, norm = 255) => {
-    assert(/^[0-9.]+%?$/.test(x), `expected number or percentage, got: ${x}`);
-    return parseFloat(x) / (x.endsWith("%") ? 100 : norm);
+const parseNumOrPercent = (x: string, norm = 255, clamp = true) => {
+    assert(/^-?[0-9.]+%?$/.test(x), `expected number or percentage, got: ${x}`);
+    const res = parseFloat(x) / (x.endsWith("%") ? 100 : norm);
+    return clamp ? clamp01(res) : res;
 };
 
 export const parseHex = (src: string): number => {
@@ -141,7 +139,7 @@ export const parseHex = (src: string): number => {
                 return parseInt(`${a}${a}${r}${r}${g}${g}${b}${b}`, 16) >>> 0;
             }
             case 6:
-                return (parseInt(hex, 6) | 0xff000000) >>> 0;
+                return (parseInt(hex, 16) | 0xff000000) >>> 0;
             case 8:
                 return parseInt(hex, 16) >>> 0;
             default:
