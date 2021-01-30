@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/color",
     "version": "2.1.5",
-    "description": "Array-based color types, conversions, transformations, declarative theme generation, gradients, presets",
+    "description": "Array-based color types, CSS parsing, conversions, transformations, declarative theme generation, gradients, presets",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -86,30 +86,34 @@
         "ycc"
     ],
     "keywords": [
-        "alpha",
-        "blend",
-        "channel",
-        "cie1931",
         "color",
         "conversion",
         "cosine",
         "css",
-        "declarative",
+        "distance",
         "filter",
+        "generator",
         "gradient",
         "hcy",
         "hsi",
         "hsl",
         "hsv",
+        "iterator",
+        "lab",
+        "lch",
         "matrix",
-        "porter-duff",
+        "oklab",
+        "random",
         "rgb",
+        "sort",
         "srgb",
         "swatches",
         "theme",
         "typescript",
+        "xyy",
         "xyz",
-        "ycbcr"
+        "ycbcr",
+        "ycc"
     ],
     "publishConfig": {
         "access": "public"
@@ -120,6 +124,8 @@
     },
     "sideEffects": false,
     "thi.ng": {
-        "related": "pixel"
+        "related": [
+            "pixel"
+        ]
     }
 }

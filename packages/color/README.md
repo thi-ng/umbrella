@@ -22,6 +22,7 @@ For the Clojure version, please visit: [thi.ng/color-clj](https://thi.ng/color-c
   - [Two-color gradients](#two-color-gradients)
   - [Multi-stop gradients](#multi-stop-gradients)
   - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -31,12 +32,17 @@ For the Clojure version, please visit: [thi.ng/color-clj](https://thi.ng/color-c
 
 ## About
 
-Array-based color types, conversions, transformations, declarative theme generation, gradients, presets.
+Array-based color types, CSS parsing, conversions, transformations, declarative theme generation, gradients, presets.
 
-Note: This readme is a work-in-progress and will apply to the still unreleased
-version 3.0.0. Please see [main
+---
+
+**Note: This readme is a work-in-progress, partially outdated and will apply to
+the still unreleased version 3.0.0. Please see [main
 branch](https://github.com/thi-ng/umbrella/blob/main/packages/color/README.md)
-for current version...
+for current version...**
+
+---
+
 ### Color spaces / modes
 
 Fast color space conversions (any direction) between:
@@ -50,16 +56,33 @@ Fast color space conversions (any direction) between:
 - Lab (float4, D50/D65 versions)
 - LCH (float4)
 - [Oklab](https://bottosson.github.io/posts/oklab/) (float4)
-- RGB (float4, linear RGB)
-- SRGB (float4)
+- RGB (float4, linear)
+- SRGB (float4, gamma corrected)
 - XYY (float4)
 - XYZ (float4, aka CIE 1931, D50/D65 versions)
 - YCC (float4, aka YCbCr)
 
-Preliminary support for:
+| From/To   | CSS | HCY | HSI | HSL | HSV | Int  | LAB | LCH | Oklab | RGB | sRGB | XYY | XYZ  | YCC |
+|-----------|-----|-----|-----|-----|-----|------|-----|-----|-------|-----|------|-----|------|-----|
+| **CSS**   | ✅   | 🆎  | 🆎  | ✅   | 🆎  | ✅(1) | ✅   | ✅   | 🆎    | ✅   | ✅    | 🆎  | 🆎   | 🆎  |
+| **HCY**   | 🆎  | ✅   | 🆎  | 🆎  | 🆎  | ❌    | 🆎  | 🆎  | 🆎    | ✅   | 🆎   | 🆎  | 🆎   | 🆎  |
+| **HSI**   | 🆎  | 🆎  | ✅   | 🆎  | 🆎  | ❌    | 🆎  | 🆎  | 🆎    | ✅   | 🆎   | 🆎  | 🆎   | 🆎  |
+| **HSL**   | ✅   | 🆎  | 🆎  | ✅   | 🆎  | ❌    | 🆎  | 🆎  | 🆎    | ✅   | 🆎   | 🆎  | 🆎   | 🆎  |
+| **HSV**   | 🆎  | 🆎  | 🆎  | ✅   | ✅   | ❌    | 🆎  | 🆎  | 🆎    | ✅   | 🆎   | 🆎  | 🆎   | 🆎  |
+| **Int**   | ✅   | 🆎  | 🆎  | 🆎  | 🆎  | ❌    | 🆎  | 🆎  | 🆎    | 🆎  | ✅    | 🆎  | 🆎   | 🆎  |
+| **Lab**   | ✅   | 🆎  | 🆎  | 🆎  | 🆎  | ❌    | ✅   | ✅   | 🆎    | ✅   | 🆎   | 🆎  | ✅(2) | 🆎  |
+| **LCH**   | ✅   | 🆎  | 🆎  | 🆎  | 🆎  | ❌    | ✅   | ✅   | 🆎    | 🆎  | 🆎   | 🆎  | 🆎   | 🆎  |
+| **Oklab** | 🆎  | 🆎  | 🆎  | 🆎  | 🆎  | ❌    | 🆎  | 🆎  | 🆎    | ✅   | 🆎   | 🆎  | ✅    | 🆎  |
+| **RGB**   | 🆎  | ✅   | ✅   | ✅   | ✅   | ❌    | ✅   | ✅   | ✅     | ✅   | ✅    | 🆎  | ✅    | ✅   |
+| **sRGB**  | ✅   | 🆎  | 🆎  | 🆎  | 🆎  | ❌    | 🆎  | 🆎  | 🆎    | ✅   | ✅    | 🆎  | 🆎   | 🆎  |
+| **XYY**   | 🆎  | 🆎  | 🆎  | 🆎  | 🆎  | ❌    | 🆎  | 🆎  | 🆎    | 🆎  | 🆎   | ✅   | ✅    | 🆎  |
+| **XYZ**   | 🆎  | 🆎  | 🆎  | 🆎  | 🆎  | ❌    | ✅   | 🆎  | 🆎    | ✅   | 🆎   | ✅   | ✅(2) | 🆎  |
+| **YCC**   | 🆎  | 🆎  | 🆎  | 🆎  | 🆎  | ❌    | 🆎  | 🆎  | 🆎    | ✅   | 🆎   | 🆎  | 🆎   | ✅   |
 
-- Lab{A} (float4)
-- LCH{A} (float4)
+- ✅ - direct conversion
+- 🆎 - indirect conversion (mostly via RGB/sRGB)
+- (1) - only direct if CSS is an hex or `rgb(a)` color
+- (2) - including [D50/D65 illuminant](https://en.wikipedia.org/wiki/Illuminant_D65) options
 
 Apart from `CSS` and `Int32` colors, all others can be stored as plain arrays,
 typed array or custom array-like types of (mostly) normalized values (`[0,1]`
@@ -338,6 +361,10 @@ col.multiCosineGradient(
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bcolor%5D+in%3Atitle)
 
+### Related packages
+
+- [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel) - Typed array backed, packed integer and unpacked floating point pixel buffers w/ customizable formats, blitting, dithering, conversions
+
 ## Installation
 
 ```bash
@@ -352,7 +379,7 @@ yarn add @thi.ng/color
 <script src="https://unpkg.com/@thi.ng/color/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): CJS: 11.60 KB
+Package sizes (gzipped, pre-treeshake): CJS: 11.91 KB
 
 ## Dependencies
 
