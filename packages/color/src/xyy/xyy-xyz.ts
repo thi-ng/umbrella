@@ -1,3 +1,4 @@
+import { safeDiv } from "@thi.ng/math";
 import { setC4 } from "@thi.ng/vectors";
 import type { ColorOp } from "../api";
 import { ensureAlpha } from "../internal/ensure-alpha";
@@ -14,9 +15,9 @@ export const xyyXyz: ColorOp = (out, src) => {
     const { 0: x, 1: y, 2: Y } = src;
     return setC4(
         out || src,
-        (Y * x) / y,
+        safeDiv(Y * x, y),
         Y,
-        (Y * (1 - x - y)) / y,
+        safeDiv(Y * (1 - x - y), y),
         ensureAlpha(src[3])
     );
 };
