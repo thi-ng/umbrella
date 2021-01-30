@@ -72,6 +72,7 @@ export const parseCss = (src: string | IDeref<string>): IParsedColor => {
                 parseAlpha(d),
             ]);
         case "lab":
+            return new ParsedColor("lab50", [
                 parsePercent(a, false),
                 parseNumber(b) * 0.01,
                 parseNumber(c) * 0.01,

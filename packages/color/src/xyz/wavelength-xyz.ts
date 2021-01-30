@@ -1,6 +1,6 @@
 import type { FnU5 } from "@thi.ng/api";
 import { setC4 } from "@thi.ng/vectors";
-import { xyz, XYZ } from "./xyz";
+import { xyzD65, XYZD65 } from "./xyz65";
 
 /**
  * Computes XYZA for given wavelength (in nanometers) and optional alpha channel
@@ -21,11 +21,15 @@ import { xyz, XYZ } from "./xyz";
  * @param lambda
  * @param alpha
  */
-export const wavelengthXyz = (out: XYZ | null, lambda: number, alpha = 1) => {
+export const wavelengthXyz = (
+    out: XYZD65 | null,
+    lambda: number,
+    alpha = 1
+) => {
     lambda *= 10;
-    return <XYZ>(
+    return <XYZD65>(
         setC4(
-            out || xyz(),
+            out || xyzD65(),
             gaussian(lambda, 1.056, 5998, 379, 310) +
                 gaussian(lambda, 0.362, 4420, 160, 267) +
                 gaussian(lambda, -0.065, 5011, 204, 262),

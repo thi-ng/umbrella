@@ -16,6 +16,7 @@ export declare class SRGB implements TypedColor<SRGB> {
     readonly mode: "srgb";
     readonly length: 4;
     [Symbol.iterator](): Iterator<number, any, undefined>;
+    clamp(): this;
     copy(): SRGB;
     copyView(): SRGB;
     deref(): Color;
@@ -28,12 +29,6 @@ export declare class SRGB implements TypedColor<SRGB> {
 
 export const srgb = <ColorFactory<SRGB>>defColor({
     mode: "srgb",
-    channels: {
-        // r: {},
-        // g: {},
-        // b: {},
-        // alpha: { default: 1 },
-    },
     order: <const>["r", "g", "b", "alpha"],
     from: { rgb: rgbSrgb },
 });

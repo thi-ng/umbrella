@@ -6,10 +6,12 @@ import { hcyRgb } from "../hcy/hcy-rgb";
 import { hsiRgb } from "../hsi/hsi-rgb";
 import { hslRgb } from "../hsl/hsl-rgb";
 import { hsvRgb } from "../hsv/hsv-rgb";
-import { labRgb } from "../lab/lab-rgb";
+import { lchLab } from "../lab/lab-lch";
+import { labRgb, labRgbD65 } from "../lab/lab-rgb";
 import { oklabRgb } from "../oklab/oklab-rgb";
 import { srgbRgb } from "../srgb/srgb-rgb";
-import { xyzRgb } from "../xyz/xyz-rgb";
+import { xyyXyz } from "../xyy/xyy-xyz";
+import { xyzRgb, xyzRgbD65 } from "../xyz/xyz-rgb";
 import { yccRgb } from "../ycc/ycc-rgb";
 
 export declare class RGB implements TypedColor<RGB> {
@@ -24,6 +26,7 @@ export declare class RGB implements TypedColor<RGB> {
     readonly mode: "rgb";
     readonly length: 4;
     [Symbol.iterator](): Iterator<number, any, undefined>;
+    clamp(): this;
     copy(): RGB;
     copyView(): RGB;
     deref(): Color;
@@ -36,23 +39,21 @@ export declare class RGB implements TypedColor<RGB> {
 
 export const rgb = <ColorFactory<RGB>>defColor({
     mode: "rgb",
-    channels: {
-        // r: {},
-        // g: {},
-        // b: {},
-        // alpha: { default: 1 },
-    },
     order: <const>["r", "g", "b", "alpha"],
     from: {
         hcy: hcyRgb,
         hsi: hsiRgb,
         hsl: hslRgb,
         hsv: hsvRgb,
-        lab: labRgb,
+        lab50: labRgb,
+        lab65: labRgbD65,
+        lch: [lchLab, labRgbD65],
         oklab: oklabRgb,
         rgb: set4,
         srgb: srgbRgb,
-        xyz: xyzRgb,
+        xyy: [xyyXyz, xyzRgbD65],
+        xyz50: xyzRgb,
+        xyz65: xyzRgbD65,
         ycc: yccRgb,
     },
 });

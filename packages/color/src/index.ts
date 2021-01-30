@@ -34,7 +34,8 @@ export * from "./lab/lab-css";
 export * from "./lab/lab-lch";
 export * from "./lab/lab-rgb";
 export * from "./lab/lab-xyz";
-export * from "./lab/lab";
+export * from "./lab/lab50";
+export * from "./lab/lab65";
 
 export * from "./lch/lch-css";
 export * from "./lch/lch";
@@ -90,7 +91,8 @@ export * from "./xyz/xyz-oklab";
 export * from "./xyz/xyz-rgb";
 export * from "./xyz/xyz-xyy";
 export * from "./xyz/xyz-xyz";
-export * from "./xyz/xyz";
+export * from "./xyz/xyz50";
+export * from "./xyz/xyz65";
 
 export * from "./ycc/ycc-rgb";
 export * from "./ycc/ycc";

@@ -9,6 +9,7 @@ import { illegalArgs } from "@thi.ng/errors";
 import { EPS } from "@thi.ng/math";
 import type { IRandom } from "@thi.ng/random";
 import {
+    clamp,
     declareIndices,
     eqDelta,
     mapStridedBuffer,
@@ -27,7 +28,7 @@ import type {
     ReadonlyColor,
     TypedColor,
 } from "./api";
-import { CONVERSIONS, convert } from "./convert";
+import { convert, defConversions } from "./convert";
 import { parseCss } from "./css/parse-css";
 import { int32Rgb } from "./int/int-rgba";
 import { ensureArgs } from "./internal/ensure-args";
@@ -41,22 +42,25 @@ type $DefColor<M extends ColorMode, K extends string> = {
     toJSON(): number[];
 } & TypedColor<$DefColor<M, K>>;
 
-const prepareSpec = (id: string, spec?: ChannelSpec): ChannelSpec => ({
-    ...(id === "alpha" ? { range: [1, 1], default: 1 } : { range: [0, 1] }),
-    ...spec,
-});
-
 export const defColor = <M extends ColorMode, K extends string>(
     spec: ColorSpec<M, K>
 ) => {
-    const channels = spec.order;
-    const numChannels = channels.length;
-    channels.reduce(
-        (acc, id) => ((acc[id] = prepareSpec(id, spec.channels[id])), acc),
-        spec.channels
-    );
-    const min = channels.map((id) => spec.channels[id]!.range![0]);
-    const max = channels.map((id) => spec.channels[id]!.range![1]);
+    const channels: Partial<Record<K, ChannelSpec>> = spec.channels || {};
+    const order = spec.order;
+    const numChannels = order.length;
+    order.reduce((acc, id) => {
+        acc[id] = {
+            range: [0, 1],
+            ...channels[id],
+        };
+        return acc;
+    }, channels);
+    const min = order.map((id) => channels[id]!.range![0]);
+    const max = order.map((id) => channels[id]!.range![1]);
+    // fix alpha channel for randomize()
+    const minR = set([], min);
+    const maxR = set([], max);
+    minR[numChannels - 1] = 1;
 
     const $clazz = class implements TypedColor<$DefColor<any, any>> {
         buf: Color;
@@ -104,8 +108,11 @@ export const defColor = <M extends ColorMode, K extends string>(
         }
 
         set(src: ReadonlyColor) {
-            set(this, src);
-            return this;
+            return <this>set(this, src);
+        }
+
+        clamp() {
+            return <this>clamp(null, this, min, max);
         }
 
         eqDelta(o: $DefColor<any, any>, eps = EPS): boolean {
@@ -117,11 +124,12 @@ export const defColor = <M extends ColorMode, K extends string>(
         }
 
         randomize(rnd?: IRandom): this {
-            return <any>randMinMax(this, min, max, rnd);
+            return <any>randMinMax(this, minR, maxR, rnd);
         }
     };
-    declareIndices($clazz.prototype, <any[]>channels);
-    CONVERSIONS[spec.mode] = spec.from;
+
+    declareIndices($clazz.prototype, <any[]>order);
+    defConversions(spec);
 
     const fromColor = (src: ReadonlyColor, mode: ColorMode, xs: any[]): any => {
         const res = new $clazz(...xs);

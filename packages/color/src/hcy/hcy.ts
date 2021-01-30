@@ -16,6 +16,7 @@ export declare class HCY implements TypedColor<HCY> {
     readonly mode: "hcy";
     readonly length: 4;
     [Symbol.iterator](): Iterator<number, any, undefined>;
+    clamp(): this;
     copy(): HCY;
     copyView(): HCY;
     deref(): Color;
@@ -28,12 +29,6 @@ export declare class HCY implements TypedColor<HCY> {
 
 export const hcy = <ColorFactory<HCY>>defColor({
     mode: "hcy",
-    channels: {
-        // h: {},
-        // c: {},
-        // y: {},
-        // alpha: { default: 1 },
-    },
     order: <const>["h", "c", "y", "alpha"],
     from: { rgb: rgbHcy },
 });

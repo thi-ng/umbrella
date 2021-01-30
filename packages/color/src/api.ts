@@ -19,13 +19,15 @@ export type ColorMode =
     | "hsi"
     | "hsl"
     | "hsv"
-    | "lab"
+    | "lab50"
+    | "lab65"
     | "lch"
     | "oklab"
     | "rgb"
     | "srgb"
     | "xyy"
-    | "xyz"
+    | "xyz50"
+    | "xyz65"
     | "ycc";
 
 /**
@@ -55,17 +57,15 @@ export interface ChannelSpec {
      * @defaultValue [0,1]
      */
     range?: Range;
-    /**
-     * @defaultValue 0
-     */
-    default?: number;
 }
 
 export interface ColorSpec<M extends ColorMode, K extends string> {
     mode: M;
-    channels: Partial<Record<K, ChannelSpec>>;
+    channels?: Partial<Record<K, ChannelSpec>>;
     order: readonly K[];
-    from: Partial<Record<ColorMode, ColorOp>> & { rgb: ColorOp };
+    from: Partial<Record<ColorMode, ColorOp | [ColorOp, ColorOp]>> & {
+        rgb: ColorOp;
+    };
 }
 
 export interface ColorFactory<T extends TypedColor<any>> {
@@ -132,6 +132,14 @@ export interface TypedColor<T> extends IColor, IDeref<Color>, IVector<T> {
      * @param rnd
      */
     randomize(rnd?: IRandom): this;
+    /**
+     * Clamps all color channels so that colors is inside RGB gamut.
+     *
+     * @remarks
+     * Note: This is not a 100% guarantee, due to each channel being clamped
+     * individually based on pre-determined limits.
+     */
+    clamp(): this;
     /**
      * Copies `src` into this color's array.
      *

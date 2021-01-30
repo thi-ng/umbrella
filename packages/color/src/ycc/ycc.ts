@@ -16,6 +16,7 @@ export declare class YCC implements TypedColor<YCC> {
     readonly mode: "ycc";
     readonly length: 4;
     [Symbol.iterator](): Iterator<number, any, undefined>;
+    clamp(): this;
     copy(): YCC;
     copyView(): YCC;
     deref(): Color;
@@ -29,10 +30,8 @@ export declare class YCC implements TypedColor<YCC> {
 export const ycc = <ColorFactory<YCC>>defColor({
     mode: "ycc",
     channels: {
-        // y: {},
-        cb: { range: [-1, 1] },
-        cr: { range: [-1, 1] },
-        // alpha: { default: 1 },
+        cb: { range: [-0.5, 0.5] },
+        cr: { range: [-0.5, 0.5] },
     },
     order: <const>["y", "cb", "cr", "alpha"],
     from: { rgb: rgbYcc },

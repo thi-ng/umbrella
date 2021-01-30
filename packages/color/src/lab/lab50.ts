@@ -2,11 +2,12 @@ import type { IRandom } from "@thi.ng/random";
 import type { Vec } from "@thi.ng/vectors";
 import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
 import { defColor } from "../defcolor";
-import { rgbOklab } from "../rgb/rgb-oklab";
-import { xyzOklab } from "../xyz/xyz-oklab";
-import { xyzXyzD50_65 } from "../xyz/xyz-xyz";
+import { rgbLab } from "../rgb/rgb-lab";
+import { xyzLab } from "../xyz/xyz-lab";
+import { xyzXyzD65_50 } from "../xyz/xyz-xyz";
+import { lchLab } from "./lab-lch";
 
-export declare class Oklab implements TypedColor<Oklab> {
+export declare class LabD50 implements TypedColor<LabD50> {
     buf: Vec;
     offset: number;
     stride: number;
@@ -15,30 +16,31 @@ export declare class Oklab implements TypedColor<Oklab> {
     b: number;
     alpha: number;
     [id: number]: number;
-    readonly mode: "oklab";
+    readonly mode: "lab50";
     readonly length: 4;
     [Symbol.iterator](): Iterator<number, any, undefined>;
     clamp(): this;
-    copy(): Oklab;
-    copyView(): Oklab;
+    copy(): LabD50;
+    copyView(): LabD50;
     deref(): Color;
-    empty(): Oklab;
-    eqDelta(o: Oklab, eps?: number): boolean;
+    empty(): LabD50;
+    eqDelta(o: LabD50, eps?: number): boolean;
     randomize(rnd?: IRandom): this;
     set(src: ReadonlyColor): this;
     toJSON(): number[];
 }
 
-export const oklab = <ColorFactory<Oklab>>defColor({
-    mode: "oklab",
+export const labD50 = <ColorFactory<LabD50>>defColor({
+    mode: "lab50",
     channels: {
-        a: { range: [-0.2339, 0.2763] },
-        b: { range: [-0.3116, 0.1985] },
+        a: { range: [-0.7929, 0.9355] },
+        b: { range: [-1.1203, 0.9339] },
     },
     order: <const>["l", "a", "b", "alpha"],
     from: {
-        rgb: rgbOklab,
-        xyz50: [xyzXyzD50_65, xyzOklab],
-        xyz65: xyzOklab,
+        rgb: rgbLab,
+        lch: lchLab,
+        xyz50: xyzLab,
+        xyz65: [xyzXyzD65_50, xyzLab],
     },
 });

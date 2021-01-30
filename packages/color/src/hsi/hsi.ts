@@ -16,6 +16,7 @@ export declare class HSI implements TypedColor<HSI> {
     readonly mode: "hsi";
     readonly length: 4;
     [Symbol.iterator](): Iterator<number, any, undefined>;
+    clamp(): this;
     copy(): HSI;
     copyView(): HSI;
     deref(): Color;
@@ -28,12 +29,6 @@ export declare class HSI implements TypedColor<HSI> {
 
 export const hsi = <ColorFactory<HSI>>defColor({
     mode: "hsi",
-    channels: {
-        // h: {},
-        // s: {},
-        // i: {},
-        // alpha: { default: 1 },
-    },
     order: <const>["h", "s", "i", "alpha"],
     from: { rgb: rgbHsi },
 });

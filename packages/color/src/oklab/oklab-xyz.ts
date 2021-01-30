@@ -28,5 +28,5 @@ const M2I = [
     -1.2914855378640917,
 ];
 
-export const oklabXyz: ColorOp = (out, src) =>
+export const oklabXyzD65: ColorOp = (out, src) =>
     mulV33(null, M1I, powN3(null, mulV33(out, M2I, src), 3));

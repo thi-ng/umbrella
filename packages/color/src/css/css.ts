@@ -13,7 +13,8 @@ import { srgbCss } from "../srgb/srgb-css";
 const CSS_CONVERSIONS: Partial<Record<ColorMode, Fn<any, string>>> = {
     hsl: hslCss,
     hsv: hsvCss,
-    lab: labCss,
+    lab50: labCss,
+    lab65: labCss,
     lch: lchCss,
     rgb: rgbCss,
     srgb: srgbCss,

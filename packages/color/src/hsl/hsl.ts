@@ -48,6 +48,7 @@ export declare class HSL implements TypedColor<HSL> {
     readonly mode: "hsl";
     readonly length: 4;
     [Symbol.iterator](): Iterator<number, any, undefined>;
+    clamp(): this;
     copy(): HSL;
     copyView(): HSL;
     deref(): Color;
@@ -60,12 +61,6 @@ export declare class HSL implements TypedColor<HSL> {
 
 export const hsl = <ColorFactory<HSL>>defColor({
     mode: "hsl",
-    channels: {
-        // h: {},
-        // s: {},
-        // l: {},
-        // alpha: { default: 1 },
-    },
     order: <const>["h", "s", "l", "alpha"],
     from: { rgb: rgbHsl, hsv: hsvHsl },
 });

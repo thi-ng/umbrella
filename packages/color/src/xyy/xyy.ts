@@ -2,7 +2,7 @@ import type { IRandom } from "@thi.ng/random";
 import type { Vec } from "@thi.ng/vectors";
 import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
 import { defColor } from "../defcolor";
-import { rgbXyz } from "../rgb/rgb-xyz";
+import { rgbXyzD65 } from "../rgb/rgb-xyz";
 import { xyzXyy } from "../xyz/xyz-xyy";
 
 export declare class XYY implements TypedColor<XYY> {
@@ -17,6 +17,7 @@ export declare class XYY implements TypedColor<XYY> {
     readonly mode: "xyy";
     readonly length: 4;
     [Symbol.iterator](): Iterator<number, any, undefined>;
+    clamp(): this;
     copy(): XYY;
     copyView(): XYY;
     deref(): Color;
@@ -30,11 +31,13 @@ export declare class XYY implements TypedColor<XYY> {
 export const xyy = <ColorFactory<XYY>>defColor({
     mode: "xyy",
     channels: {
-        // x: {},
-        // y: {},
-        // Y: {},
-        // alpha: { default: 1 },
+        x: { range: [0, 0.6484] },
+        y: { range: [0, 0.5979] },
     },
     order: <const>["x", "y", "Y", "alpha"],
-    from: { rgb: (out, src) => xyzXyy(null, rgbXyz(out, src)), xyz: xyzXyy },
+    from: {
+        rgb: (out, src) => xyzXyy(null, rgbXyzD65(out, src)),
+        xyz50: xyzXyy,
+        xyz65: xyzXyy,
+    },
 });

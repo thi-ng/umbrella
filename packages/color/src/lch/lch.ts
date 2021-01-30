@@ -2,7 +2,7 @@ import type { IRandom } from "@thi.ng/random";
 import type { Vec } from "@thi.ng/vectors";
 import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
 import { defColor } from "../defcolor";
-import { labLch, lchLab } from "../lab/lab-lch";
+import { labLch } from "../lab/lab-lch";
 import { rgbLab } from "../rgb/rgb-lab";
 
 export declare class LCH implements TypedColor<LCH> {
@@ -17,6 +17,7 @@ export declare class LCH implements TypedColor<LCH> {
     readonly mode: "lch";
     readonly length: 4;
     [Symbol.iterator](): Iterator<number, any, undefined>;
+    clamp(): this;
     copy(): LCH;
     copyView(): LCH;
     deref(): Color;
@@ -31,10 +32,14 @@ export const lch = <ColorFactory<LCH>>defColor({
     mode: "lch",
     channels: {
         // l: {},
-        // c: {},
+        c: { range: [0, 1.312] },
         // h: {},
-        // alpha: { default: 1 },
+        // alpha: {},
     },
     order: <const>["l", "c", "h", "alpha"],
-    from: { rgb: (out, src) => labLch(null, rgbLab(out, src)), lch: lchLab },
+    from: {
+        rgb: (out, src) => labLch(null, rgbLab(out, src)),
+        lab50: labLch,
+        lab65: labLch,
+    },
 });
