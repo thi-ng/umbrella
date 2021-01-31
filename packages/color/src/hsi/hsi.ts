@@ -30,5 +30,5 @@ export declare class HSI implements TypedColor<HSI> {
 export const hsi = <ColorFactory<HSI>>defColor({
     mode: "hsi",
     order: <const>["h", "s", "i", "alpha"],
-    from: { rgb: rgbHsi },
+    from: { rgb: rgbHsi, srgb: rgbHsi },
 });

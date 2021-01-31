@@ -9,9 +9,7 @@ const SQRT32 = SQRT3 / 2;
 
 export const rgbHsi: ColorOp = (out, src) => {
     out = clamp(out || src, src);
-    const r = out[0];
-    const g = out[1];
-    const b = out[2];
+    const { 0: r, 1: g, 2: b } = out;
     const i = THIRD * (r + g + b);
     return i < 1e-6 || (r === g && r === b)
         ? setC3(out, 0, 0, i)

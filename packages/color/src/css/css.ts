@@ -6,6 +6,7 @@ import { hslCss } from "../hsl/hsl-css";
 import { hsvCss } from "../hsv/hsv-css";
 import { int32Css } from "../int/int-css";
 import { labCss } from "../lab/lab-css";
+import { labLabD65_50 } from "../lab/lab-lab";
 import { lchCss } from "../lch/lch-css";
 import { rgbCss } from "../rgb/rgb-css";
 import { srgbCss } from "../srgb/srgb-css";
@@ -14,7 +15,7 @@ const CSS_CONVERSIONS: Partial<Record<ColorMode, Fn<any, string>>> = {
     hsl: hslCss,
     hsv: hsvCss,
     lab50: labCss,
-    lab65: labCss,
+    lab65: (x) => labCss(labLabD65_50([], x)),
     lch: lchCss,
     rgb: rgbCss,
     srgb: srgbCss,

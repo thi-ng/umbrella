@@ -5,6 +5,7 @@ import { defColor } from "../defcolor";
 import { rgbLab } from "../rgb/rgb-lab";
 import { xyzLab } from "../xyz/xyz-lab";
 import { xyzXyzD65_50 } from "../xyz/xyz-xyz";
+import { labLabD65_50 } from "./lab-lab";
 import { lchLab } from "./lab-lch";
 
 export declare class LabD50 implements TypedColor<LabD50> {
@@ -40,6 +41,7 @@ export const labD50 = <ColorFactory<LabD50>>defColor({
     from: {
         rgb: rgbLab,
         lch: lchLab,
+        lab65: labLabD65_50,
         xyz50: xyzLab,
         xyz65: [xyzXyzD65_50, xyzLab],
     },

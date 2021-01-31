@@ -62,5 +62,5 @@ export declare class HSL implements TypedColor<HSL> {
 export const hsl = <ColorFactory<HSL>>defColor({
     mode: "hsl",
     order: <const>["h", "s", "l", "alpha"],
-    from: { rgb: rgbHsl, hsv: hsvHsl },
+    from: { rgb: rgbHsl, srgb: rgbHsl, hsv: hsvHsl },
 });

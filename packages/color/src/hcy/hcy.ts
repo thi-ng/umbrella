@@ -30,5 +30,5 @@ export declare class HCY implements TypedColor<HCY> {
 export const hcy = <ColorFactory<HCY>>defColor({
     mode: "hcy",
     order: <const>["h", "c", "y", "alpha"],
-    from: { rgb: rgbHcy },
+    from: { rgb: rgbHcy, srgb: rgbHcy },
 });
