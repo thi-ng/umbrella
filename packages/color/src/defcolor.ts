@@ -30,7 +30,7 @@ import type {
 } from "./api";
 import { convert, defConversions } from "./convert";
 import { parseCss } from "./css/parse-css";
-import { int32Rgb } from "./int/int-rgba";
+import { int32Rgb } from "./int/int-rgb";
 import { ensureArgs } from "./internal/ensure-args";
 
 type $DefColor<M extends ColorMode, K extends string> = {
@@ -62,7 +62,7 @@ export const defColor = <M extends ColorMode, K extends string>(
     const maxR = set([], max);
     minR[numChannels - 1] = 1;
 
-    const $clazz = class implements TypedColor<$DefColor<any, any>> {
+    const $Color = class implements TypedColor<$DefColor<any, any>> {
         buf: Color;
         offset: number;
         stride: number;
@@ -92,15 +92,15 @@ export const defColor = <M extends ColorMode, K extends string>(
         }
 
         copy(): $DefColor<any, any> {
-            return <any>new $clazz(this.deref());
+            return <any>new $Color(this.deref());
         }
 
         copyView(): $DefColor<any, any> {
-            return <any>new $clazz(this.buf, this.offset, this.stride);
+            return <any>new $Color(this.buf, this.offset, this.stride);
         }
 
         empty(): $DefColor<any, any> {
-            return <any>new $clazz();
+            return <any>new $Color();
         }
 
         deref() {
@@ -128,11 +128,11 @@ export const defColor = <M extends ColorMode, K extends string>(
         }
     };
 
-    declareIndices($clazz.prototype, <any[]>order);
+    declareIndices($Color.prototype, <any[]>order);
     defConversions(spec);
 
     const fromColor = (src: ReadonlyColor, mode: ColorMode, xs: any[]): any => {
-        const res = new $clazz(...xs);
+        const res = new $Color(...xs);
         return mode !== spec.mode
             ? convert(res, src, spec.mode, mode)
             : res.set(src);
@@ -140,18 +140,18 @@ export const defColor = <M extends ColorMode, K extends string>(
 
     const factory = (src?: MaybeColor, ...xs: any[]): $DefColor<any, any> =>
         src == null
-            ? <any>new $clazz()
+            ? <any>new $Color()
             : isString(src)
             ? factory(parseCss(src), ...xs)
             : isArrayLike(src)
             ? isString((<IColor>src).mode)
                 ? fromColor(src, (<IColor>src).mode, xs)
-                : <any>new $clazz(src, ...xs)
+                : <any>new $Color(src, ...xs)
             : implementsFunction(src, "deref")
             ? fromColor((<IDeref<any>>src).deref(), (<IColor>src).mode, xs)
             : isNumber(src)
             ? xs.length && xs.every(isNumber)
-                ? <any>new $clazz(...ensureArgs([src, ...xs]))
+                ? <any>new $Color(...ensureArgs([src, ...xs]))
                 : fromColor(int32Rgb([], src), "rgb", xs)
             : illegalArgs(`can't create a ${spec.mode} color from: ${src}`);
 
@@ -160,7 +160,7 @@ export const defColor = <M extends ColorMode, K extends string>(
         buf?: Color,
         idx?: number,
         stride?: number
-    ) => <any>new $clazz(buf, idx, stride).randomize(rnd);
+    ) => <any>new $Color(buf, idx, stride).randomize(rnd);
 
     factory.mapBuffer = (
         buf: FloatArray,
@@ -168,7 +168,7 @@ export const defColor = <M extends ColorMode, K extends string>(
         start = 0,
         cstride = 1,
         estride = numChannels
-    ) => <any[]>mapStridedBuffer($clazz, buf, num, start, cstride, estride);
+    ) => <any[]>mapStridedBuffer($Color, buf, num, start, cstride, estride);
 
     return <ColorFactory<$DefColor<M, K>>>factory;
 };
