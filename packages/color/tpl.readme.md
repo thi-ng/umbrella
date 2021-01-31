@@ -18,17 +18,18 @@ ${pkg.description}
 ---
 
 **Note: This readme is a work-in-progress, partially outdated and will apply to
-the still unreleased version 3.0.0. Please see [main
+the still unreleased version 3.0.0, a major overhaul of the entire package.
+Please see readme on [main
 branch](https://github.com/thi-ng/umbrella/blob/main/packages/color/README.md)
-for current version...**
+for the current version...**
 
 ---
 
-### Color spaces / modes
+### Supported color spaces / modes
 
 Fast color space conversions (any direction) between:
 
-- CSS (string, hex3/hex4/hex6/hex8, rgba(), hsla(), named colors)
+- CSS (string, hex3/hex4/hex6/hex8, named colors, rgba(), hsla(), etc.)
 - HCY (float4)
 - HSI (float4)
 - HSL (float4)
@@ -43,47 +44,71 @@ Fast color space conversions (any direction) between:
 - XYZ (float4, aka CIE 1931, D50/D65 versions)
 - YCC (float4, aka YCbCr)
 
-| From/To   | CSS | HCY | HSI | HSL | HSV | Int  | LAB | LCH | Oklab | RGB | sRGB | XYY | XYZ  | YCC |
-|-----------|-----|-----|-----|-----|-----|------|-----|-----|-------|-----|------|-----|------|-----|
-| **CSS**   | ✅   | 🆎  | 🆎  | ✅   | 🆎  | ✅(1) | ✅   | ✅   | 🆎    | ✅   | ✅    | 🆎  | 🆎   | 🆎  |
-| **HCY**   | 🆎  | ✅   | 🆎  | 🆎  | 🆎  | ❌    | 🆎  | 🆎  | 🆎    | ✅   | 🆎   | 🆎  | 🆎   | 🆎  |
-| **HSI**   | 🆎  | 🆎  | ✅   | 🆎  | 🆎  | ❌    | 🆎  | 🆎  | 🆎    | ✅   | 🆎   | 🆎  | 🆎   | 🆎  |
-| **HSL**   | ✅   | 🆎  | 🆎  | ✅   | 🆎  | ❌    | 🆎  | 🆎  | 🆎    | ✅   | 🆎   | 🆎  | 🆎   | 🆎  |
-| **HSV**   | 🆎  | 🆎  | 🆎  | ✅   | ✅   | ❌    | 🆎  | 🆎  | 🆎    | ✅   | 🆎   | 🆎  | 🆎   | 🆎  |
-| **Int**   | ✅   | 🆎  | 🆎  | 🆎  | 🆎  | ❌    | 🆎  | 🆎  | 🆎    | 🆎  | ✅    | 🆎  | 🆎   | 🆎  |
-| **Lab**   | ✅   | 🆎  | 🆎  | 🆎  | 🆎  | ❌    | ✅   | ✅   | 🆎    | ✅   | 🆎   | 🆎  | ✅(2) | 🆎  |
-| **LCH**   | ✅   | 🆎  | 🆎  | 🆎  | 🆎  | ❌    | ✅   | ✅   | 🆎    | 🆎  | 🆎   | 🆎  | 🆎   | 🆎  |
-| **Oklab** | 🆎  | 🆎  | 🆎  | 🆎  | 🆎  | ❌    | 🆎  | 🆎  | 🆎    | ✅   | 🆎   | 🆎  | ✅    | 🆎  |
-| **RGB**   | 🆎  | ✅   | ✅   | ✅   | ✅   | ❌    | ✅   | ✅   | ✅     | ✅   | ✅    | 🆎  | ✅    | ✅   |
-| **sRGB**  | ✅   | 🆎  | 🆎  | 🆎  | 🆎  | ❌    | 🆎  | 🆎  | 🆎    | ✅   | ✅    | 🆎  | 🆎   | 🆎  |
-| **XYY**   | 🆎  | 🆎  | 🆎  | 🆎  | 🆎  | ❌    | 🆎  | 🆎  | 🆎    | 🆎  | 🆎   | ✅   | ✅    | 🆎  |
-| **XYZ**   | 🆎  | 🆎  | 🆎  | 🆎  | 🆎  | ❌    | ✅   | 🆎  | 🆎    | ✅   | 🆎   | ✅   | ✅(2) | 🆎  |
-| **YCC**   | 🆎  | 🆎  | 🆎  | 🆎  | 🆎  | ❌    | 🆎  | 🆎  | 🆎    | ✅   | 🆎   | 🆎  | 🆎   | ✅   |
+| From/To   | CSS | HCY  | HSI  | HSL  | HSV  | Int  | Lab  | LCH | Oklab | RGB  | sRGB | XYY | XYZ  | YCC  |
+|-----------|-----|------|------|------|------|------|------|-----|-------|------|------|-----|------|------|
+| **CSS**   | ✅   | 🆎   | 🆎   | ✅    | 🆎   | ✅(1) | ✅(4) | ✅   | 🆎    | ✅    | ✅    | 🆎  | 🆎   | 🆎   |
+| **HCY**   | 🆎  | ✅    | 🆎   | 🆎   | 🆎   | ❌    | 🆎   | 🆎  | 🆎    | ✅(2) | ✅(2) | 🆎  | 🆎   | 🆎   |
+| **HSI**   | 🆎  | 🆎   | ✅    | 🆎   | 🆎   | ❌    | 🆎   | 🆎  | 🆎    | ✅(2) | ✅(2) | 🆎  | 🆎   | 🆎   |
+| **HSL**   | ✅   | 🆎   | 🆎   | ✅    | 🆎   | ❌    | 🆎   | 🆎  | 🆎    | ✅(2) | ✅(2) | 🆎  | 🆎   | 🆎   |
+| **HSV**   | 🆎  | 🆎   | 🆎   | ✅    | ✅    | ❌    | 🆎   | 🆎  | 🆎    | ✅(2) | ✅(2) | 🆎  | 🆎   | 🆎   |
+| **Int**   | ✅   | 🆎   | 🆎   | 🆎   | 🆎   | ❌    | 🆎   | 🆎  | 🆎    | 🆎   | ✅    | ✅   | 🆎   | 🆎   |
+| **Lab**   | ✅   | 🆎   | 🆎   | 🆎   | 🆎   | ❌    | ✅(3) | ✅   | 🆎    | ✅(3) | 🆎   | 🆎  | ✅(3) | 🆎   |
+| **LCH**   | ✅   | 🆎   | 🆎   | 🆎   | 🆎   | ❌    | ✅    | ✅   | 🆎    | 🆎   | 🆎   | 🆎  | 🆎   | 🆎   |
+| **Oklab** | 🆎  | 🆎   | 🆎   | 🆎   | 🆎   | ❌    | 🆎   | 🆎  | ✅     | ✅    | 🆎   | 🆎  | ✅    | 🆎   |
+| **RGB**   | 🆎  | ✅(2) | ✅(2) | ✅(2) | ✅(2) | ✅    | ✅(3) | ✅   | ✅     | ✅    | ✅    | 🆎  | ✅(3) | ✅(2) |
+| **sRGB**  | ✅   | ✅(2) | ✅(2) | ✅(2) | ✅(2) | ✅    | 🆎   | 🆎  | 🆎    | ✅    | ✅    | 🆎  | 🆎   | 🆎   |
+| **XYY**   | 🆎  | 🆎   | 🆎   | 🆎   | 🆎   | ❌    | 🆎   | 🆎  | 🆎    | 🆎   | 🆎   | ✅   | ✅    | 🆎   |
+| **XYZ**   | 🆎  | 🆎   | 🆎   | 🆎   | 🆎   | ❌    | ✅    | 🆎  | 🆎    | ✅    | 🆎   | ✅   | ✅(3) | 🆎   |
+| **YCC**   | 🆎  | 🆎   | 🆎   | 🆎   | 🆎   | ❌    | 🆎   | 🆎  | 🆎    | ✅(2) | 🆎   | 🆎  | 🆎   | ✅    |
 
 - ✅ - direct conversion
 - 🆎 - indirect conversion (mostly via RGB/sRGB)
-- (1) - only direct if CSS is an hex or `rgb(a)` color
-- (2) - including [D50/D65 illuminant](https://en.wikipedia.org/wiki/Illuminant_D65) options
+- (1) - only via `parseHex()`
+- (2) - no consideration for linear/gamma encoded RGB/sRGB
+  (see [Wikipedia](https://en.wikipedia.org/wiki/HSL_and_HSV#cite_note-26))
+- (3) - including [D50/D65
+  illuminant](https://en.wikipedia.org/wiki/Illuminant_D65) options
+- (4) - parsed as Lab w/ D50 illuminant as per [CSS Color Module Level 4](https://drafts.csswg.org/css-color/#lab-colors)
 
-Apart from `CSS` and `Int32` colors, all others can be stored as plain arrays,
-typed array or custom array-like types of (mostly) normalized values (`[0,1]`
-interval). Where applicable, the hue too is stored in that range (similar to
-[CSS `turn`](https://drafts.csswg.org/css-values-3/#ref-for-turn) units), NOT in
-degrees.
+#### Color creation / conversion
 
-Apart from conversions, most other operations provided by this package are
-currently only supporting RGBA colors. These can also be converted to / from
-sRGBA (i.e. linear vs gamma corrected).
+Each color space provides a factory function to create & convert color
+instances. These functions can take the following arguments:
 
-#### Class wrappers
+- CSS string
+- number (interpreted as packed ARGB int32)
+- array (interpreted as linear RGB)
+- scalars (one per channel)
+- color instance (triggers conversion)
 
-The package provides lightweight class wrappers for each color mode /
-space. These wrappers act similarly to the `Vec2/3/4` wrappers in
+Additionally, an optional target backing buffer, start index and stride can be
+given. See [next section](#storage--memory-mapping).
+
+```ts
+// convert RGB CSS into HSL CSS
+// (internally: string -> int32 -> srgb -> hsl -> string)
+css(hsl("#4ff0"))
+// 'hsla(60.000,100.000%,50.000%,0.267)'
+```
+
+### Storage & memory mapping
+
+All color types store their channel values in plain arrays, typed arrays of
+(mostly) normalized values (`[0,1]` interval). Where applicable, the hue too is
+stored in that range (similar to [CSS
+`turn`](https://drafts.csswg.org/css-values-3/#ref-for-turn) units), NOT in
+degrees. Likewise, luminance is always stored in the `[0,1]` too, even for Lab,
+LCH where often the `[0,100]` range is used instead.
+
+As a fairly unique feature, all color types can be used to provided views of a
+backing memory buffer (e.g. for WASM/WebGL/WebGPU interop, pixel buffers etc.),
+incl. support for arbitrary component strides.
+
+The lightweight class wrappers act similarly to the `Vec2/3/4` wrappers in
 [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors),
 support striding (for mapped memory views), named channel accessor
 aliases (in addition to array indexing) and are fully compatible with
-all functions (and act as syntax sugar for generic conversion
-functions). Wrapper factory functions are provided for convenience.
+all vector functions.
 
 ### Color theme generation
 
