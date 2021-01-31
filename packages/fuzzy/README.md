@@ -80,7 +80,7 @@ yarn add @thi.ng/fuzzy
 <script src="https://unpkg.com/@thi.ng/fuzzy/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.63 KB / CJS: 1.81 KB / UMD: 1.74 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.64 KB / CJS: 1.82 KB / UMD: 1.74 KB
 
 ## Dependencies
 

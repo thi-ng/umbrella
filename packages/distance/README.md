@@ -106,12 +106,13 @@ yarn add @thi.ng/distance
 <script src="https://unpkg.com/@thi.ng/distance/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 818 bytes / CJS: 919 bytes / UMD: 959 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 825 bytes / CJS: 929 bytes / UMD: 970 bytes
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/heaps](https://github.com/thi-ng/umbrella/tree/develop/packages/heaps)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 
 ## API

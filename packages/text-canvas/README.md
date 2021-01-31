@@ -59,7 +59,7 @@ yarn add @thi.ng/text-canvas
 <script src="https://unpkg.com/@thi.ng/text-canvas/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.83 KB / CJS: 6.16 KB / UMD: 5.88 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.83 KB / CJS: 6.17 KB / UMD: 5.90 KB
 
 ## Dependencies
 

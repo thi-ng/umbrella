@@ -130,7 +130,7 @@ Partially ported from [thi.ng/geom-clj](http://thi.ng/geom-clj) (Clojure) and
 
 ### Related packages
 
-- [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color) - Array-based color types, conversions, transformations, declarative theme generation, multi-color gradients, presets
+- [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color) - Array-based color types, CSS parsing, conversions, transformations, declarative theme generation, gradients, presets
 - [@thi.ng/distance](https://github.com/thi-ng/umbrella/tree/develop/packages/distance) - N-dimensional distance metrics & K-nearest neighborhoods for point queries
 - [@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/develop/packages/ecs) - Entity Component System based around typed arrays & sparse sets
 - [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom) - Functional, polymorphic API for 2D geometry types & SVG generation
