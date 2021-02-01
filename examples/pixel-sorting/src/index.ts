@@ -1,7 +1,9 @@
-import { luminanceSrgb, sortMapped, srgb } from "@thi.ng/color";
+import { timed } from "@thi.ng/bench";
+import { abgr32, luminanceAbgr32, sortMapped } from "@thi.ng/color";
 import {
     checkbox,
     div,
+    h1,
     inputFile,
     inputNumber,
     InputNumericAttribs,
@@ -9,7 +11,7 @@ import {
     label,
 } from "@thi.ng/hiccup-html";
 import { Interval } from "@thi.ng/intervals";
-import { ABGR8888, FloatBuffer, FLOAT_RGBA, PackedBuffer } from "@thi.ng/pixel";
+import { ABGR8888, PackedBuffer } from "@thi.ng/pixel";
 import { SYSTEM } from "@thi.ng/random";
 import { $compile, $refresh, Component, NumOrElement } from "@thi.ng/rdom";
 import { CloseMode, reactive, Stream, stream, sync } from "@thi.ng/rstream";
@@ -24,18 +26,17 @@ interface ProcessParams {
 }
 
 /**
- * Takes a floating point pixel buffer and performs randomized pixel sorting
- * based on given config options.
+ * Takes a ABGR pixel buffer and performs randomized pixel sorting based on
+ * given config options.
  *
  * @param buf
  * @param param1
  */
 const pixelSortBuffer = (
-    buf: FloatBuffer,
+    buf: PackedBuffer,
     { iter, horizontal, reverse, min, max }: ProcessParams
 ) => {
     const { pixels, width, height } = buf;
-    const w4 = width * 4;
     const row = Interval.closedOpen(0, width);
     const column = Interval.closedOpen(0, height);
     for (let i = iter; --i >= 0; ) {
@@ -51,23 +52,23 @@ const pixelSortBuffer = (
         // skip if interval is empty
         if (!(ix && iy) || !ix.size() || !iy.size()) continue;
         // memory map selected pixels in either horizontal or vertical order
-        // `mapBuffer()` returns an array of sRGB views of the underlying pixel buffer
-        // if horizontal=false, there will be width*4 elements between each selected pixel
-        const strip = srgb.mapBuffer(
+        // `mapBuffer()` returns an array of sRGB views of the underlying pixel buffer.
+        // if vertical order, there will be `width` elements between each selected pixel
+        const strip = abgr32.mapBuffer(
             // buffer to map
             pixels,
             // num pixels to map
             (horizontal ? ix : iy).size(),
             // start index in pixel buffer
-            (iy.l * width + ix.l) << 2,
-            // channel stride
+            iy.l * width + ix.l,
+            // channel stride (ignored in our case)
             1,
             // pixel stride
-            horizontal ? 4 : w4
+            horizontal ? 1 : width
         );
         // now we're sorting these selected pixels in place (i.e. directly
         // within the pixel buffer) and by luminance
-        sortMapped(strip, luminanceSrgb, reverse);
+        sortMapped(strip, luminanceAbgr32, reverse);
         // mark sorted pixels
         // strip.forEach((x) => ((x[0] += 0.05), x.clamp()));
     }
@@ -75,13 +76,7 @@ const pixelSortBuffer = (
 };
 
 const processImage = (img: HTMLImageElement, opts: ProcessParams) =>
-    pixelSortBuffer(
-        FloatBuffer.fromPacked(
-            PackedBuffer.fromImage(img, ABGR8888),
-            FLOAT_RGBA
-        ),
-        opts
-    );
+    timed(() => pixelSortBuffer(PackedBuffer.fromImage(img, ABGR8888), opts));
 
 // stream of input files
 const file = stream<File>();
@@ -132,7 +127,7 @@ file.subscribe({
 // creates a canvas element and blits given pixel buffer into it
 // when the component mounts
 class PixelCanvas extends Component {
-    constructor(protected buffer: FloatBuffer) {
+    constructor(protected buffer: PackedBuffer) {
         super();
     }
 
@@ -201,7 +196,7 @@ const labeledCheckbox = (
 $compile(
     div(
         {},
-        ["h1", {}, "Glitch my pic!"],
+        h1({}, "Glitch my pic!"),
         div(
             ".mb2",
             {},
@@ -233,7 +228,7 @@ $compile(
         labeledCheckbox(reverse, "order", "Reverse order"),
         div(
             {},
-            $refresh<FloatBuffer>(result, async (buf) => new PixelCanvas(buf))
+            $refresh<PackedBuffer>(result, async (buf) => new PixelCanvas(buf))
         )
     )
 ).mount(document.getElementById("app")!);
