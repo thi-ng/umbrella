@@ -1,5 +1,6 @@
+import type { NumericArray } from "@thi.ng/api";
+import type { StridedVec } from "@thi.ng/vectors";
 import { AVecList } from "./alist";
-import type { StridedVec, Vec } from "@thi.ng/vectors";
 import type { VecFactory } from "./api";
 
 interface Cell<T extends StridedVec> {
@@ -29,7 +30,7 @@ export class VecLinkedList<T extends StridedVec> extends AVecList<T> {
      */
     constructor(
         closed: boolean,
-        buffer: Vec,
+        buffer: NumericArray,
         capacity: number,
         size: number,
         start = 0,
