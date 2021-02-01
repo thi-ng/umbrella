@@ -1,14 +1,15 @@
-import type { StridedVec, Vec } from "@thi.ng/vectors";
+import type { NumericArray } from "@thi.ng/api";
+import type { StridedVec } from "@thi.ng/vectors";
 
 export interface CollateOpts {
-    buf: Vec;
+    buf: NumericArray;
     start: number;
     cstride: number;
     estride: number;
 }
 
 export const remap = (
-    buf: Vec,
+    buf: NumericArray,
     pts: StridedVec[],
     start: number,
     cstride: number,
@@ -25,12 +26,12 @@ export const remap = (
 
 export const collateWith = (
     fn: (
-        buf: Vec,
+        buf: NumericArray,
         src: Iterable<Readonly<StridedVec>>,
         start: number,
         cstride: number,
         estride: number
-    ) => Vec,
+    ) => NumericArray,
     pts: StridedVec[],
     opts: Partial<CollateOpts>,
     stride: number
