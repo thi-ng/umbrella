@@ -9,7 +9,8 @@ import type {
     IPixelBuffer,
     PackedFormat,
 } from "./api";
-import { defFloatFormat, FLOAT_GRAY } from "./format";
+import { defFloatFormat } from "./format/float-format";
+import { FLOAT_GRAY } from "./format/float-gray";
 import { PackedBuffer } from "./packed";
 import { clampRegion, ensureChannel, ensureSize, prepRegions } from "./utils";
 
@@ -49,12 +50,12 @@ export class FloatBuffer implements IPixelBuffer<Float32Array, NumericArray> {
         return dest;
     }
 
-    width: number;
-    height: number;
-    stride: number;
-    rowStride: number;
-    pixels: Float32Array;
-    format: FloatFormat;
+    readonly width: number;
+    readonly height: number;
+    readonly stride: number;
+    readonly rowStride: number;
+    readonly pixels: Float32Array;
+    readonly format: FloatFormat;
     protected __empty: NumericArray;
 
     constructor(

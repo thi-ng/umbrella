@@ -206,11 +206,12 @@ export interface RawPixelBuffer extends CanvasContext {
     pixels: Uint32Array;
 }
 
-export interface IPixelBuffer<T extends TypedArray, P> {
-    width: number;
-    height: number;
-    format: IABGRConvert<any>;
-    pixels: T;
+export interface IPixelBuffer<T extends TypedArray = TypedArray, P = any> {
+    readonly width: number;
+    readonly height: number;
+    readonly format: IABGRConvert<any>;
+    readonly stride: number;
+    readonly pixels: T;
 
     /**
      * Returns pixel value at given position. If pos is outside the

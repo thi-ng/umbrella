@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/pixel",
     "version": "0.6.0",
-    "description": "Typed array backed, packed integer and unpacked floating point pixel buffers w/ customizable formats, blitting, dithering, conversions",
+    "description": "Typed array backed, integer and floating point pixel buffers w/ customizable formats, blitting, dithering, conversions",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -57,7 +57,8 @@
     "files": [
         "*.js",
         "*.d.ts",
-        "lib"
+        "lib",
+        "format"
     ],
     "keywords": [
         "alpha",
@@ -73,6 +74,7 @@
         "datastructure",
         "dither",
         "float",
+        "format",
         "grayscale",
         "image",
         "interval",

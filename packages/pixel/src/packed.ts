@@ -19,7 +19,8 @@ import {
 import { canvasPixels, imageCanvas } from "./canvas";
 import { compileGrayFromABGR, compileGrayToABGR } from "./codegen";
 import { defBayer } from "./dither";
-import { ABGR8888, defPackedFormat } from "./format";
+import { ABGR8888 } from "./format/abgr8888";
+import { defPackedFormat } from "./format/packed-format";
 import {
     clampRegion,
     ensureChannel,
@@ -51,12 +52,17 @@ const CTORS: IObjectOf<UIntArrayConstructor> = {
  * @param fmt -
  * @param pixels -
  */
-export const buffer = (
+export const packedBuffer = (
     w: number,
     h: number,
     fmt: PackedFormat | PackedFormatSpec,
     pixels?: UIntArray
 ) => new PackedBuffer(w, h, fmt, pixels);
+
+/**
+ * @deprecated use {@link packedBuffer} instead.
+ */
+export const buffer = packedBuffer;
 
 export class PackedBuffer implements IPixelBuffer<UIntArray, number> {
     static fromImage(
@@ -88,10 +94,10 @@ export class PackedBuffer implements IPixelBuffer<UIntArray, number> {
         );
     }
 
-    width: number;
-    height: number;
-    pixels: UIntArray;
-    format: PackedFormat;
+    readonly width: number;
+    readonly height: number;
+    readonly format: PackedFormat;
+    readonly pixels: UIntArray;
 
     constructor(
         w: number,
@@ -105,6 +111,10 @@ export class PackedBuffer implements IPixelBuffer<UIntArray, number> {
             ? <PackedFormat>fmt
             : defPackedFormat(fmt);
         this.pixels = pixels || new CTORS[fmt.type](w * h);
+    }
+
+    get stride() {
+        return 1;
     }
 
     as(fmt: PackedFormat) {
