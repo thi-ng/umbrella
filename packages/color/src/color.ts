@@ -24,8 +24,8 @@ import { ycc } from "./ycc/ycc";
 const FACTORIES: Record<ColorMode, ColorFactory<any>> = {
     hcy,
     hsi,
-    hsl: hsl,
-    hsv: hsv,
+    hsl,
+    hsv,
     lab50: labD50,
     lab65: labD65,
     lch,
@@ -56,9 +56,7 @@ export function color(
     idx?: number,
     stride?: number
 ): TypedColor<any> {
-    if (isString(src)) {
-        return FACTORIES[<ColorMode>src](buf, idx, stride);
-    }
+    if (isString(src)) return FACTORIES[<ColorMode>src](buf, idx, stride);
     if (buf) {
         const res = FACTORIES[(<ParsedColor>src).mode](buf, idx, stride);
         res.set(src.deref());

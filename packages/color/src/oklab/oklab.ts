@@ -1,5 +1,5 @@
+import type { NumericArray } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
-import type { Vec } from "@thi.ng/vectors";
 import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
 import { defColor } from "../defcolor";
 import { rgbOklab } from "../rgb/rgb-oklab";
@@ -7,7 +7,7 @@ import { xyzOklab } from "../xyz/xyz-oklab";
 import { xyzXyzD50_65 } from "../xyz/xyz-xyz";
 
 export declare class Oklab implements TypedColor<Oklab> {
-    buf: Vec;
+    buf: NumericArray;
     offset: number;
     stride: number;
     l: number;

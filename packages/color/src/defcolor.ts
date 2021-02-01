@@ -1,4 +1,4 @@
-import type { FloatArray, IDeref } from "@thi.ng/api";
+import type { IDeref, NumericArray } from "@thi.ng/api";
 import {
     implementsFunction,
     isArrayLike,
@@ -19,7 +19,6 @@ import {
 } from "@thi.ng/vectors";
 import type {
     ChannelSpec,
-    Color,
     ColorFactory,
     ColorMode,
     ColorSpec,
@@ -63,12 +62,10 @@ export const defColor = <M extends ColorMode, K extends string>(
     minR[numChannels - 1] = 1;
 
     const $Color = class implements TypedColor<$DefColor<any, any>> {
-        buf: Color;
-        offset: number;
-        stride: number;
+        buf: NumericArray;
         [id: number]: number;
 
-        constructor(buf?: Color, offset = 0, stride = 1) {
+        constructor(buf?: NumericArray, public offset = 0, public stride = 1) {
             this.buf = buf || [0, 0, 0, 0];
             this.offset = offset;
             this.stride = stride;
@@ -146,7 +143,7 @@ export const defColor = <M extends ColorMode, K extends string>(
             : isArrayLike(src)
             ? isString((<IColor>src).mode)
                 ? fromColor(src, (<IColor>src).mode, xs)
-                : <any>new $Color(src, ...xs)
+                : <any>new $Color(<NumericArray>src, ...xs)
             : implementsFunction(src, "deref")
             ? fromColor((<IDeref<any>>src).deref(), (<IColor>src).mode, xs)
             : isNumber(src)
@@ -157,13 +154,13 @@ export const defColor = <M extends ColorMode, K extends string>(
 
     factory.random = (
         rnd?: IRandom,
-        buf?: Color,
+        buf?: NumericArray,
         idx?: number,
         stride?: number
     ) => <any>new $Color(buf, idx, stride).randomize(rnd);
 
     factory.mapBuffer = (
-        buf: FloatArray,
+        buf: NumericArray,
         num = (buf.length / numChannels) | 0,
         start = 0,
         cstride = 1,

@@ -1,5 +1,5 @@
+import type { NumericArray } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
-import type { Vec } from "@thi.ng/vectors";
 import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
 import { D50 } from "../api/constants";
 import { defColor } from "../defcolor";
@@ -10,7 +10,7 @@ import { xyyXyz } from "../xyy/xyy-xyz";
 import { xyzXyzD65_50 } from "./xyz-xyz";
 
 export declare class XYZD50 implements TypedColor<XYZD50> {
-    buf: Vec;
+    buf: NumericArray;
     offset: number;
     stride: number;
     x: number;

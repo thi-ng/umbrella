@@ -142,10 +142,6 @@ export const D50 = [0.96422, 1, 0.82521];
  */
 export const D65 = [0.95047, 1, 1.08883];
 
-export const FF = float(3);
-export const PC = percent(3);
-export const INV8BIT = 1 / 0xff;
-
 export const OKLAB_M1 = [
     0.8189330101,
     0.0329845436,
@@ -169,3 +165,8 @@ export const OKLAB_M2 = [
     0.4505937099,
     -0.808675766,
 ];
+
+export const FF = float(3);
+export const PC = percent(3);
+
+export const INV8BIT = 1 / 0xff;

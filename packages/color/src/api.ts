@@ -1,4 +1,4 @@
-import type { FloatArray, FnU2, IDeref, Range, Tuple } from "@thi.ng/api";
+import type { FnU2, IDeref, NumericArray, Range, Tuple } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
 import type { IVector, ReadonlyVec, Vec } from "@thi.ng/vectors";
 
@@ -69,7 +69,7 @@ export interface ColorSpec<M extends ColorMode, K extends string> {
 }
 
 export interface ColorFactory<T extends TypedColor<any>> {
-    (col: MaybeColor, buf?: Vec, idx?: number, stride?: number): T;
+    (col: MaybeColor, buf?: NumericArray, idx?: number, stride?: number): T;
     (col?: Vec, idx?: number, stride?: number): T;
     (a: number, b: number, c: number, ...xs: number[]): T;
 
@@ -83,7 +83,12 @@ export interface ColorFactory<T extends TypedColor<any>> {
      * @param index
      * @param stride
      */
-    random(rnd?: IRandom, buf?: Color, index?: number, stride?: number): T;
+    random(
+        rnd?: IRandom,
+        buf?: NumericArray,
+        index?: number,
+        stride?: number
+    ): T;
 
     /**
      * Returns array of memory mapped colors using given backing array and
@@ -103,7 +108,7 @@ export interface ColorFactory<T extends TypedColor<any>> {
      * @param estride - element stride (default: numChannels)
      */
     mapBuffer(
-        buf: FloatArray,
+        buf: NumericArray,
         num?: number,
         start?: number,
         cstride?: number,
@@ -115,7 +120,7 @@ export interface TypedColor<T> extends IColor, IDeref<Color>, IVector<T> {
     /**
      * Backing array / memory
      */
-    buf: Color;
+    buf: NumericArray;
     /**
      * Start index in array
      */

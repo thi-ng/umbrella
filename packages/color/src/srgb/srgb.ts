@@ -1,11 +1,11 @@
+import type { NumericArray } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
-import type { Vec } from "@thi.ng/vectors";
 import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
 import { defColor } from "../defcolor";
 import { rgbSrgb } from "../rgb/rgb-srgb";
 
 export declare class SRGB implements TypedColor<SRGB> {
-    buf: Vec;
+    buf: NumericArray;
     offset: number;
     stride: number;
     r: number;

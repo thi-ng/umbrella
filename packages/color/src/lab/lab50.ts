@@ -1,5 +1,5 @@
+import type { NumericArray } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
-import type { Vec } from "@thi.ng/vectors";
 import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
 import { defColor } from "../defcolor";
 import { rgbLab } from "../rgb/rgb-lab";
@@ -9,7 +9,7 @@ import { labLabD65_50 } from "./lab-lab";
 import { lchLab } from "./lab-lch";
 
 export declare class LabD50 implements TypedColor<LabD50> {
-    buf: Vec;
+    buf: NumericArray;
     offset: number;
     stride: number;
     l: number;

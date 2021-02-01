@@ -1,11 +1,11 @@
+import type { NumericArray } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
-import type { Vec } from "@thi.ng/vectors";
 import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
 import { defColor } from "../defcolor";
 import { rgbHcy } from "../rgb/rgb-hcy";
 
 export declare class HCY implements TypedColor<HCY> {
-    buf: Vec;
+    buf: NumericArray;
     offset: number;
     stride: number;
     h: number;

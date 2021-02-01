@@ -1,5 +1,5 @@
+import type { NumericArray } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
-import type { Vec } from "@thi.ng/vectors";
 import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
 import { defColor } from "../defcolor";
 import { hsvHsl } from "../hsv/hsv-hsl";
@@ -37,7 +37,7 @@ import { rgbHsl } from "../rgb/rgb-hsl";
 // declareIndices(HSL.prototype, ["h", "s", "l", "alpha"]);
 
 export declare class HSL implements TypedColor<HSL> {
-    buf: Vec;
+    buf: NumericArray;
     offset: number;
     stride: number;
     h: number;

@@ -1,5 +1,6 @@
+import type { NumericArray } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
-import { set4, Vec } from "@thi.ng/vectors";
+import { set4 } from "@thi.ng/vectors";
 import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
 import { defColor } from "../defcolor";
 import { hcyRgb } from "../hcy/hcy-rgb";
@@ -15,7 +16,7 @@ import { xyzRgb, xyzRgbD65 } from "../xyz/xyz-rgb";
 import { yccRgb } from "../ycc/ycc-rgb";
 
 export declare class RGB implements TypedColor<RGB> {
-    buf: Vec;
+    buf: NumericArray;
     offset: number;
     stride: number;
     r: number;
