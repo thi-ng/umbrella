@@ -71,5 +71,5 @@ const project = process.argv[2];
 project
     ? project === "examples"
         ? updateProjects("examples", true)
-        : updateImports(project)
+        : updateImports(project, project.startsWith("examples"))
     : updateProjects("packages");
