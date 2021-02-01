@@ -175,6 +175,20 @@ export function typedArray<T extends Type | GLType>(type: T, ...xs: any[]) {
 }
 
 /**
+ * Takes an {@link NumericArray} and returns its corresponding {@link Type} ID.
+ * Standard JS arrays will default to {@link Type.F64}.
+ *
+ * @param x
+ */
+export const typedArrayType = (x: NumericArray) => {
+    if (Array.isArray(x)) return Type.F64;
+    for (let id in TYPEDARRAY_CTORS) {
+        if (x instanceof (<any>TYPEDARRAY_CTORS)[id]) return <Type>Number(id);
+    }
+    return Type.F64;
+};
+
+/**
  * Returns the smallest possible *unsigned* int type enum for given `x`.
  * E.g. if `x <= 256`, the function returns `Type.U8`.
  *
