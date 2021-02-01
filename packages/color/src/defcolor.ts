@@ -9,12 +9,12 @@ import { illegalArgs } from "@thi.ng/errors";
 import { EPS } from "@thi.ng/math";
 import type { IRandom } from "@thi.ng/random";
 import {
-    clamp,
+    clamp4,
     declareIndices,
-    eqDelta,
+    eqDelta4,
     mapStridedBuffer,
     randMinMax,
-    set,
+    set4,
     stridedValues,
 } from "@thi.ng/vectors";
 import type {
@@ -57,8 +57,8 @@ export const defColor = <M extends ColorMode, K extends string>(
     const min = order.map((id) => channels[id]!.range![0]);
     const max = order.map((id) => channels[id]!.range![1]);
     // fix alpha channel for randomize()
-    const minR = set([], min);
-    const maxR = set([], max);
+    const minR = set4([], min);
+    const maxR = set4([], max);
     minR[numChannels - 1] = 1;
 
     const $Color = class implements TypedColor<$DefColor<any, any>> {
@@ -105,15 +105,15 @@ export const defColor = <M extends ColorMode, K extends string>(
         }
 
         set(src: ReadonlyColor) {
-            return <this>set(this, src);
+            return <this>set4(this, src);
         }
 
         clamp() {
-            return <this>clamp(null, this, min, max);
+            return <this>clamp4(null, this, min, max);
         }
 
         eqDelta(o: $DefColor<any, any>, eps = EPS): boolean {
-            return eqDelta(this, <any>o, eps);
+            return eqDelta4(this, <any>o, eps);
         }
 
         toJSON() {
