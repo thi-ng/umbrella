@@ -4,19 +4,12 @@ import { unsupported } from "@thi.ng/errors";
 import type {
     Color,
     ColorMode,
-    ColorOp,
     ColorSpec,
+    Conversions,
     ReadonlyColor,
 } from "./api";
 
-export const CONVERSIONS: Partial<
-    Record<
-        ColorMode,
-        Partial<Record<ColorMode, ColorOp>> & {
-            rgb: ColorOp | [ColorOp, ColorOp];
-        }
-    >
-> = {};
+export const CONVERSIONS: Partial<Record<ColorMode, Conversions>> = {};
 
 /**
  * Registers conversions for given {@link ColorSpec}. Called by
@@ -26,17 +19,18 @@ export const CONVERSIONS: Partial<
  *
  * @internal
  */
-export const defConversions = <M extends ColorMode, K extends string>(
-    spec: ColorSpec<M, K>
+export const defConversions = (
+    mode: ColorMode,
+    spec: ColorSpec<any, any>["from"]
 ) => {
-    for (let id in spec.from) {
-        const val = spec.from[<ColorMode>id];
+    for (let id in spec) {
+        const val = spec[<ColorMode>id];
         if (isArray(val)) {
             const [a, b] = val;
-            spec.from[<ColorMode>id] = (out, src) => b(out, a(out, src));
+            spec[<ColorMode>id] = (out, src) => b(out, a(out, src));
         }
     }
-    CONVERSIONS[spec.mode] = spec.from;
+    CONVERSIONS[mode] = <Conversions>spec;
 };
 
 export const convert = <T extends Color>(

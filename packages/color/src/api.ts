@@ -15,6 +15,8 @@ export type MaybeColor =
 export type ColorOp = (out: Color | null, src: ReadonlyColor) => Color;
 
 export type ColorMode =
+    | "argb32"
+    | "abgr32"
     | "hcy"
     | "hsi"
     | "hsl"
@@ -67,6 +69,10 @@ export interface ColorSpec<M extends ColorMode, K extends string> {
         rgb: ColorOp;
     };
 }
+
+export type Conversions = Partial<Record<ColorMode, ColorOp>> & {
+    rgb: ColorOp;
+};
 
 export interface ColorFactory<T extends TypedColor<any>> {
     (col: MaybeColor, buf?: NumericArray, idx?: number, stride?: number): T;

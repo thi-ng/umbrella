@@ -1,7 +1,12 @@
 import { DEFAULT, defmulti, MultiFn1 } from "@thi.ng/defmulti";
 import type { MaybeColor } from "../api";
 import { rgb } from "../rgb/rgb";
-import { luminanceRgb, luminanceSrgb } from "./luminance-rgb";
+import {
+    luminanceAbgr32,
+    luminanceArgb32,
+    luminanceRgb,
+    luminanceSrgb,
+} from "./luminance-rgb";
 
 /**
  * Multi-method to compute relative luminance from any supported input color
@@ -18,10 +23,12 @@ export const luminance: MultiFn1<MaybeColor, number> = defmulti(
 );
 
 luminance.addAll({
+    argb32: <any>luminanceArgb32,
+    abgr32: <any>luminanceAbgr32,
     hcy: (x: any) => x[2],
     lab: (x: any) => x[0],
-    rgb: (x: any) => luminanceRgb(x),
-    srgb: (x: any) => luminanceSrgb(x),
+    rgb: <any>luminanceRgb,
+    srgb: <any>luminanceSrgb,
     xyz: (x: any) => x[1],
 });
 

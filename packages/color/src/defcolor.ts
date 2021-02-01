@@ -29,7 +29,7 @@ import type {
 } from "./api";
 import { convert, defConversions } from "./convert";
 import { parseCss } from "./css/parse-css";
-import { int32Rgb } from "./int/int-rgb";
+import { intArgb32Rgb } from "./int/int-rgb";
 import { ensureArgs } from "./internal/ensure-args";
 
 type $DefColor<M extends ColorMode, K extends string> = {
@@ -126,7 +126,7 @@ export const defColor = <M extends ColorMode, K extends string>(
     };
 
     declareIndices($Color.prototype, <any[]>order);
-    defConversions(spec);
+    defConversions(spec.mode, spec.from);
 
     const fromColor = (src: ReadonlyColor, mode: ColorMode, xs: any[]): any => {
         const res = new $Color(...xs);
@@ -149,7 +149,7 @@ export const defColor = <M extends ColorMode, K extends string>(
             : isNumber(src)
             ? xs.length && xs.every(isNumber)
                 ? <any>new $Color(...ensureArgs([src, ...xs]))
-                : fromColor(int32Rgb([], src), "rgb", xs)
+                : fromColor(intArgb32Rgb([], src), "rgb", xs)
             : illegalArgs(`can't create a ${spec.mode} color from: ${src}`);
 
     factory.random = (

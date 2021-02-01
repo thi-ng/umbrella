@@ -1,10 +1,20 @@
-import type { IDeref } from "@thi.ng/api";
 import type { Color } from "../api";
-import { int24Srgb, int32Srgb } from "./int-srgb";
 import { srgbRgb } from "../srgb/srgb-rgb";
+import {
+    intAbgr32Srgb,
+    intArgb32Srgb,
+    intBgr24Srgb,
+    intRgb24Srgb,
+} from "./int-srgb";
 
-export const int32Rgb = (out: Color | null, src: number | IDeref<number>) =>
-    srgbRgb(null, int32Srgb(out, src));
+export const intArgb32Rgb = (out: Color | null, src: number) =>
+    srgbRgb(null, intArgb32Srgb(out, src));
 
-export const int24Rgb = (out: Color | null, src: number | IDeref<number>) =>
-    srgbRgb(null, int24Srgb(out, src));
+export const intRgb24Rgb = (out: Color | null, src: number) =>
+    srgbRgb(null, intRgb24Srgb(out, src));
+
+export const intAbgr32Rgb = (out: Color | null, src: number) =>
+    srgbRgb(null, intAbgr32Srgb(out, src));
+
+export const intBgr24Rgb = (out: Color | null, src: number) =>
+    srgbRgb(null, intBgr24Srgb(out, src));

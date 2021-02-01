@@ -6,7 +6,7 @@ import { clamp01, TAU } from "@thi.ng/math";
 import { IParsedColor, ParsedColor } from "../api";
 import { CSS_NAMES } from "../api/names";
 import { CSS_SYSTEM_COLORS } from "../api/system";
-import { int32Srgb } from "../int/int-srgb";
+import { intArgb32Srgb } from "../int/int-srgb";
 import { ensureHue } from "../internal/ensure-hue";
 
 /**
@@ -47,7 +47,10 @@ export const parseCss = (src: string | IDeref<string>): IParsedColor => {
     src = (isString(src) ? src : src.deref()).toLowerCase();
     const named = (<any>CSS_NAMES)[src] || (<any>CSS_SYSTEM_COLORS)[src];
     if (named || src[0] === "#")
-        return new ParsedColor("srgb", int32Srgb([], parseHex(named || src)));
+        return new ParsedColor(
+            "srgb",
+            intArgb32Srgb([], parseHex(named || src))
+        );
     const parts = src.split(/[(),/ ]+/);
     const [mode, a, b, c, d] = parts;
     assert(

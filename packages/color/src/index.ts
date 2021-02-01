@@ -31,6 +31,7 @@ export * from "./hsv/hsv";
 export * from "./int/int-css";
 export * from "./int/int-rgb";
 export * from "./int/int-srgb";
+export * from "./int/int";
 
 export * from "./lab/lab-css";
 export * from "./lab/lab-lch";

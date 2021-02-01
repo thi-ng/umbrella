@@ -10,6 +10,7 @@ import { hcy } from "./hcy/hcy";
 import { hsi } from "./hsi/hsi";
 import { hsl } from "./hsl/hsl";
 import { hsv } from "./hsv/hsv";
+import { argb32, abgr32 } from "./int/int";
 import { labD50 } from "./lab/lab50";
 import { labD65 } from "./lab/lab65";
 import { lch } from "./lch/lch";
@@ -22,6 +23,8 @@ import { xyzD65 } from "./xyz/xyz65";
 import { ycc } from "./ycc/ycc";
 
 const FACTORIES: Record<ColorMode, ColorFactory<any>> = {
+    argb32,
+    abgr32,
     hcy,
     hsi,
     hsl,
