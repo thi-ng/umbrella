@@ -1,9 +1,10 @@
 import {
+    NumericArray,
     SIZEOF,
     Type,
     typedArray,
-    TYPEDARRAY_CTORS,
     TypedArrayTypeMap,
+    TYPEDARRAY_CTORS,
 } from "@thi.ng/api";
 import type { ReadonlyVec, Vec, VecOpSV, VectorConstructor } from "./api";
 
@@ -81,7 +82,7 @@ export const intoBuffer = <T extends Type>(
 
 export const mapStridedBuffer = <T>(
     ctor: VectorConstructor<T>,
-    buf: Vec,
+    buf: NumericArray,
     num: number,
     start: number,
     cstride: number,
@@ -97,7 +98,7 @@ export const mapStridedBuffer = <T>(
 
 export const intoStridedBuffer = (
     set: VecOpSV,
-    buf: Vec,
+    buf: NumericArray,
     src: Iterable<Vec>,
     start: number,
     cstride: number,

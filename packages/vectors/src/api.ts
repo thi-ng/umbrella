@@ -10,6 +10,7 @@ import type {
     IEmpty,
     IEqualsDelta,
     ILength,
+    NumericArray,
     Tuple,
     TypedArray,
 } from "@thi.ng/api";
@@ -33,7 +34,7 @@ export type BVec3Like = Tuple<boolean, 3>;
 export type BVec4Like = Tuple<boolean, 4>;
 
 export interface StridedVec {
-    buf: Vec;
+    buf: NumericArray;
     offset: number;
     stride: number;
 }
@@ -51,7 +52,7 @@ export interface ICopyView<T> {
 }
 
 export interface VectorConstructor<T> {
-    new (buf: Vec, offset?: number, stride?: number): T;
+    new (buf: NumericArray, offset?: number, stride?: number): T;
 }
 
 export interface MultiVecOp<VOP> {

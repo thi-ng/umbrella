@@ -1,8 +1,9 @@
-import type { Vec, VectorConstructor } from "../api";
+import type { NumericArray } from "@thi.ng/api";
+import type { VectorConstructor } from "../api";
 
 export function* vecIterator<T>(
     ctor: VectorConstructor<T>,
-    buf: Vec,
+    buf: NumericArray,
     num: number,
     start: number,
     cstride: number,
@@ -15,7 +16,7 @@ export function* vecIterator<T>(
 }
 
 export function* stridedValues(
-    buf: Vec,
+    buf: NumericArray,
     num: number,
     start: number,
     stride: number

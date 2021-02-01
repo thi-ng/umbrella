@@ -1,4 +1,4 @@
-import type { IHash } from "@thi.ng/api";
+import type { IHash, NumericArray } from "@thi.ng/api";
 import { EPS } from "@thi.ng/math";
 import {
     IVector,
@@ -36,7 +36,7 @@ export class Vec3 extends AVec implements IHash<number>, IVector<Vec3> {
      * @param estride - element stride
      */
     static mapBuffer(
-        buf: Vec,
+        buf: NumericArray,
         num: number = (buf.length / 3) | 0,
         start = 0,
         cstride = 1,
@@ -60,7 +60,7 @@ export class Vec3 extends AVec implements IHash<number>, IVector<Vec3> {
      * @param estride -
      */
     static intoBuffer(
-        buf: Vec,
+        buf: NumericArray,
         src: Iterable<Vec3>,
         start = 0,
         cstride = 1,
@@ -70,7 +70,7 @@ export class Vec3 extends AVec implements IHash<number>, IVector<Vec3> {
     }
 
     static iterator(
-        buf: Vec,
+        buf: NumericArray,
         num: number,
         start = 0,
         cstride = 1,
@@ -79,20 +79,20 @@ export class Vec3 extends AVec implements IHash<number>, IVector<Vec3> {
         return vecIterator(Vec3, buf, num, start, cstride, estride);
     }
 
-    static readonly X_AXIS = new Vec3(X3);
-    static readonly Y_AXIS = new Vec3(Y3);
-    static readonly Z_AXIS = new Vec3(Z3);
-    static readonly MIN = new Vec3(MIN3);
-    static readonly MAX = new Vec3(MAX3);
-    static readonly ZERO = new Vec3(ZERO3);
-    static readonly ONE = new Vec3(ONE3);
+    static readonly X_AXIS = new Vec3(<NumericArray>X3);
+    static readonly Y_AXIS = new Vec3(<NumericArray>Y3);
+    static readonly Z_AXIS = new Vec3(<NumericArray>Z3);
+    static readonly MIN = new Vec3(<NumericArray>MIN3);
+    static readonly MAX = new Vec3(<NumericArray>MAX3);
+    static readonly ZERO = new Vec3(<NumericArray>ZERO3);
+    static readonly ONE = new Vec3(<NumericArray>ONE3);
 
     x!: number;
     y!: number;
     z!: number;
     [id: number]: number;
 
-    constructor(buf?: Vec, offset = 0, stride = 1) {
+    constructor(buf?: NumericArray, offset = 0, stride = 1) {
         super(buf || [0, 0, 0], offset, stride);
     }
 
@@ -142,4 +142,8 @@ export const vec3n = (n: number) => new Vec3([n, n, n]);
 export const asVec3 = (x: Vec) =>
     x instanceof Vec3
         ? x
-        : new Vec3(x.length >= 3 ? x : [x[0] || 0, x[1] || 0, x[2] || 0]);
+        : new Vec3(
+              x.length >= 3
+                  ? <NumericArray>x
+                  : [x[0] || 0, x[1] || 0, x[2] || 0]
+          );

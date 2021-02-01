@@ -1,7 +1,8 @@
+import type { NumericArray } from "@thi.ng/api";
 import { EPS } from "@thi.ng/math";
 import { memoize1 } from "@thi.ng/memoize";
 import { map, range } from "@thi.ng/transducers";
-import type { IVector, Vec } from "./api";
+import type { IVector } from "./api";
 import { eqDeltaS } from "./eqdelta";
 import { stridedValues } from "./internal/vec-utils";
 import { zeroes } from "./setn";
@@ -102,7 +103,7 @@ const keys = memoize1<number, PropertyKey[]>((size: number) => [
  * @param stride - component stride
  */
 export const gvec = (
-    buf: Vec,
+    buf: NumericArray,
     size: number,
     offset = 0,
     stride = 1
