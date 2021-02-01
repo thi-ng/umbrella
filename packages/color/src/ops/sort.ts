@@ -1,4 +1,4 @@
-import type { Fn } from "@thi.ng/api";
+import { Fn, typedArray, typedArrayType } from "@thi.ng/api";
 import { quickSort, sortByCachedKey, swap } from "@thi.ng/arrays";
 import { compareNumAsc, compareNumDesc } from "@thi.ng/compare";
 import type { ReadonlyColor, TypedColor } from "../api";
@@ -61,8 +61,9 @@ export const sortMapped = <T extends TypedColor<any>>(
     key: Fn<ReadonlyColor, number>,
     isReverse = false
 ) => {
+    if (!colors.length) return colors;
     const keys = colors.map(key);
-    const tmp = new Float32Array(colors[0].length);
+    const tmp = typedArray(typedArrayType(colors[0].buf), colors[0].length);
     quickSort(keys, isReverse ? compareNumDesc : compareNumAsc, (_, x, y) => {
         swap(keys, x, y);
         tmp.set(colors[x]);
