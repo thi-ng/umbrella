@@ -8,9 +8,9 @@ describe("aos", () => {
         const struct = aos(
             2,
             {
-                a: { type: Type.U16, size: 1 }, // 2, 0
-                b: { type: Type.F32, size: 2 }, // 8, 4
-                c: { type: Type.U8, size: 1 }, // 1, 12
+                a: { type: "u16", size: 1 }, // 2, 0
+                b: { type: "f32", size: 2 }, // 8, 4
+                c: { type: "u8", size: 1 }, // 1, 12
             },
             undefined,
             0x100
