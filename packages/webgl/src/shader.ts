@@ -1,4 +1,4 @@
-import { deref, Fn3, IObjectOf } from "@thi.ng/api";
+import { asGLType, deref, Fn3, IObjectOf } from "@thi.ng/api";
 import {
     existsAndNotNull,
     isArray,
@@ -121,7 +121,7 @@ export class Shader implements IShader {
                 gl.vertexAttribPointer(
                     shaderAttrib.loc,
                     attr.size || 3,
-                    attr.type || gl.FLOAT,
+                    asGLType(attr.type || gl.FLOAT)!,
                     attr.normalized || false,
                     attr.stride || 0,
                     attr.offset || 0

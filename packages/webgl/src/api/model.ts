@@ -1,4 +1,4 @@
-import type { IObjectOf } from "@thi.ng/api";
+import type { GLType, IObjectOf, Type } from "@thi.ng/api";
 import type { AttribPool } from "@thi.ng/vector-pools";
 import type { IndexBufferSpec, IWebGLBuffer } from "./buffers";
 import type { AttribBufferData, IShader, UniformValues } from "./shader";
@@ -95,7 +95,7 @@ export interface ModelAttributeSpec {
      * Attribute's WebGL data type.
      * Default: gl.FLOAT
      */
-    type?: GLenum;
+    type?: Type | GLType;
     /**
      * Only used for instanced attributes.
      * See: {@link https://www.khronos.org/registry/OpenGL/extensions/ANGLE/ANGLE_instanced_arrays.txt}
