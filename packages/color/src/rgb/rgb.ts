@@ -51,7 +51,7 @@ export const rgb = <ColorFactory<RGB>>defColor({
         hsv: hsvRgb,
         lab50: labRgb,
         lab65: labRgbD65,
-        lch: [lchLab, labRgbD65],
+        lch: [lchLab, labRgb],
         oklab: oklabRgb,
         rgb: set4,
         srgb: srgbRgb,

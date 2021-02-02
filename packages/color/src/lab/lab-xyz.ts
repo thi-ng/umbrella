@@ -17,12 +17,12 @@ const transform = (x: number) => {
  * @param white
  */
 export const labXyz = (out: Color | null, src: ReadonlyColor, white = D50) => {
-    const y = (src[0] + 16) / 116;
+    const y = (src[0] + 0.16) / 1.16;
     return setC4(
         out || src,
-        transform(src[1] / 500 + y) * white[0],
+        transform(src[1] / 5.0 + y) * white[0],
         transform(y) * white[1],
-        transform(y - src[2] / 200) * white[2],
+        transform(y - src[2] / 2.0) * white[2],
         ensureAlpha(src[3])
     );
 };
