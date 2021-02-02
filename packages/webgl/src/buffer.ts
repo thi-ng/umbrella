@@ -1,5 +1,5 @@
 import type { TypedArray } from "@thi.ng/api";
-import type { AttribPool } from "@thi.ng/vector-pools";
+import { asGLType, AttribPool } from "@thi.ng/vector-pools";
 import type { IndexBufferSpec, IWebGLBuffer } from "./api/buffers";
 import {
     DrawMode,
@@ -168,7 +168,7 @@ export const compileAttribPool = (
         spec[id] = {
             buffer: buf,
             size: attr.size,
-            type: attr.type,
+            type: asGLType(attr.type),
             stride: pool.byteStride,
             offset: attr.byteOffset,
         };
