@@ -10,7 +10,7 @@ import {
     inputRange,
     label,
 } from "@thi.ng/hiccup-html";
-import { Interval } from "@thi.ng/intervals";
+import { closedOpen, intersection } from "@thi.ng/intervals";
 import { ABGR8888, PackedBuffer } from "@thi.ng/pixel";
 import { SYSTEM } from "@thi.ng/random";
 import { $compile, $refresh, Component, NumOrElement } from "@thi.ng/rdom";
@@ -37,8 +37,8 @@ const pixelSortBuffer = (
     { iter, horizontal, reverse, min, max }: ProcessParams
 ) => {
     const { pixels, width, height } = buf;
-    const row = Interval.closedOpen(0, width);
-    const column = Interval.closedOpen(0, height);
+    const row = closedOpen(0, width);
+    const column = closedOpen(0, height);
     for (let i = iter; --i >= 0; ) {
         const num = SYSTEM.minmax(min, max) | 0;
         const n2 = num >> 1;
@@ -47,10 +47,10 @@ const pixelSortBuffer = (
         const y = SYSTEM.minmax(horizontal ? 0 : -n2, height) | 0;
         // build & clamp intervals so that depending on process direction
         // we're not reading beyond RHS of selected row or bottom of selected column
-        const ix = Interval.closedOpen(x, x + num).intersection(row)!;
-        const iy = Interval.closedOpen(y, y + num).intersection(column)!;
+        const ix = intersection(closedOpen(x, x + num), row)!;
+        const iy = intersection(closedOpen(y, y + num), column)!;
         // skip if interval is empty
-        if (!(ix && iy) || !ix.size() || !iy.size()) continue;
+        if (!(ix && iy && ix.size && iy.size)) continue;
         // memory map selected pixels in either horizontal or vertical order
         // `mapBuffer()` returns an array of sRGB views of the underlying pixel buffer.
         // if vertical order, there will be `width` elements between each selected pixel
@@ -58,7 +58,7 @@ const pixelSortBuffer = (
             // buffer to map
             pixels,
             // num pixels to map
-            (horizontal ? ix : iy).size(),
+            (horizontal ? ix : iy).size,
             // start index in pixel buffer
             iy.l * width + ix.l,
             // channel stride (ignored in our case)
