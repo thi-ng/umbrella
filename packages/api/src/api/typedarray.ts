@@ -13,20 +13,35 @@ export type TypedArray =
     | Uint16Array
     | Uint32Array;
 
-export type IntArray = Int8Array | Int16Array | Int32Array;
-export type UIntArray = Uint8Array | Uint16Array | Uint32Array;
 export type FloatArray = Float32Array | Float64Array;
 
-export type TypedArrayConstructor =
-    | Uint8ArrayConstructor
-    | Uint8ClampedArrayConstructor
-    | Int8ArrayConstructor
-    | Uint16ArrayConstructor
-    | Int16ArrayConstructor
-    | Uint32ArrayConstructor
-    | Int32ArrayConstructor
+export type IntArray = Int8Array | Int16Array | Int32Array;
+
+export type UIntArray =
+    | Uint8Array
+    | Uint8ClampedArray
+    | Uint16Array
+    | Uint32Array;
+
+export type FloatArrayConstructor =
     | Float32ArrayConstructor
     | Float64ArrayConstructor;
+
+export type IntArrayConstructor =
+    | Int8ArrayConstructor
+    | Int16ArrayConstructor
+    | Int32ArrayConstructor;
+
+export type UIntArrayConstructor =
+    | Uint8ArrayConstructor
+    | Uint8ClampedArrayConstructor
+    | Uint16ArrayConstructor
+    | Uint32ArrayConstructor;
+
+export type TypedArrayConstructor =
+    | FloatArrayConstructor
+    | IntArrayConstructor
+    | UIntArrayConstructor;
 
 /**
  * Type IDs for typed array backed buffers and generally describing binary data
@@ -45,7 +60,7 @@ export type Type =
     | "f32"
     | "f64";
 
-export type UintType = "u8" | "u16" | "u32";
+export type UintType = "u8" | "u8c" | "u16" | "u32";
 
 export type IntType = "i8" | "i16" | "i32";
 
@@ -116,16 +131,28 @@ export const SIZEOF = {
     f64: 8,
 };
 
-export const TYPEDARRAY_CTORS: Record<Type, TypedArrayConstructor> = {
-    u8: Uint8Array,
-    u8c: Uint8ClampedArray,
-    i8: Int8Array,
-    u16: Uint16Array,
-    i16: Int16Array,
-    u32: Uint32Array,
-    i32: Int32Array,
+export const FLOAT_ARRAY_CTORS: Record<FloatType, FloatArrayConstructor> = {
     f32: Float32Array,
     f64: Float64Array,
+};
+
+export const INT_ARRAY_CTORS: Record<IntType, IntArrayConstructor> = {
+    i8: Int8Array,
+    i16: Int16Array,
+    i32: Int32Array,
+};
+
+export const UINT_ARRAY_CTORS: Record<UintType, UIntArrayConstructor> = {
+    u8: Uint8Array,
+    u8c: Uint8ClampedArray,
+    u16: Uint16Array,
+    u32: Uint32Array,
+};
+
+export const TYPEDARRAY_CTORS: Record<Type, TypedArrayConstructor> = {
+    ...FLOAT_ARRAY_CTORS,
+    ...INT_ARRAY_CTORS,
+    ...UINT_ARRAY_CTORS,
 };
 
 export interface TypedArrayTypeMap extends Record<Type | GLType, TypedArray> {
