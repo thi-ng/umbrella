@@ -1,4 +1,4 @@
-import { Type, TypedArray } from "@thi.ng/api";
+import type { TypedArray } from "@thi.ng/api";
 import { align } from "@thi.ng/binary";
 import * as assert from "assert";
 import { MemPool } from "../src";
@@ -184,15 +184,15 @@ describe("malloc", () => {
     });
 
     it("mallocAs", () => {
-        assert.deepStrictEqual(pool.mallocAs(Type.U8, 257), undefined);
-        assert.deepStrictEqual(pool.mallocAs(Type.U16, 129), undefined);
-        assert.deepStrictEqual(pool.mallocAs(Type.U32, 65), undefined);
-        assert.deepStrictEqual(pool.mallocAs(Type.F64, 33), undefined);
-        assert.deepStrictEqual(pool.mallocAs(Type.U8, -1), undefined);
+        assert.deepStrictEqual(pool.mallocAs("u8", 257), undefined);
+        assert.deepStrictEqual(pool.mallocAs("u16", 129), undefined);
+        assert.deepStrictEqual(pool.mallocAs("u32", 65), undefined);
+        assert.deepStrictEqual(pool.mallocAs("f64", 33), undefined);
+        assert.deepStrictEqual(pool.mallocAs("u8", -1), undefined);
 
         const base = pool.stats().top;
-        let a = pool.mallocAs(Type.F32, 3);
-        let b = pool.mallocAs(Type.F64, 3);
+        let a = pool.mallocAs("f32", 3);
+        let b = pool.mallocAs("f64", 3);
         assert(a instanceof Float32Array, "a type");
         assert(b instanceof Float64Array, "b type");
         assert.strictEqual(a!.byteOffset, base + BLOCK_OVERHEAD, "a addr");
@@ -251,8 +251,8 @@ describe("malloc", () => {
     it("callocAs", () => {
         const u8: Uint8Array = (<any>pool).u8;
         u8.fill(0xff, pool.stats().top);
-        let a: TypedArray | undefined = pool.callocAs(Type.F32, 3);
-        let b: TypedArray | undefined = pool.callocAs(Type.F64, 3);
+        let a: TypedArray | undefined = pool.callocAs("f32", 3);
+        let b: TypedArray | undefined = pool.callocAs("f64", 3);
         let t = [0, 0, 0];
         assert(a instanceof Float32Array, "a type");
         assert(b instanceof Float64Array, "b type");
@@ -263,8 +263,8 @@ describe("malloc", () => {
         assert(pool.free(a!), "free a");
         assert(pool.free(b!), "free b");
         // returned arrays are filled w/ given arg
-        a = pool.callocAs(Type.U32, 3, 0xaa55aa55);
-        b = pool.callocAs(Type.U32, 3, 0xaa55aa55);
+        a = pool.callocAs("u32", 3, 0xaa55aa55);
+        b = pool.callocAs("u32", 3, 0xaa55aa55);
         t = [0xaa55aa55, 0xaa55aa55, 0xaa55aa55];
         assert.deepStrictEqual([...a!], t);
         assert.deepStrictEqual([...b!], t);
@@ -285,7 +285,7 @@ describe("malloc", () => {
             "malloc top"
         );
         assert.strictEqual(
-            pool.mallocAs(Type.U8, pool.buf.byteLength - d + 1),
+            pool.mallocAs("u8", pool.buf.byteLength - d + 1),
             undefined,
             "mallocAs top"
         );
@@ -334,7 +334,7 @@ describe("malloc", () => {
     });
 
     it("reallocArray", () => {
-        const a = pool.callocAs(Type.F32, 4, 1);
+        const a = pool.callocAs("f32", 4, 1);
         assert.deepStrictEqual(
             [...pool.reallocArray(a!, 8)!],
             [1, 1, 1, 1, 0, 0, 0, 0]
@@ -393,11 +393,11 @@ describe("malloc", () => {
         pool = new MemPool({ size: 0x100, align: 16 });
         let p: any = pool;
         const base = pool.stats().top;
-        let a = pool.callocAs(Type.U8, 15);
-        let b = pool.callocAs(Type.U8, 11);
-        let c = pool.callocAs(Type.U8, 7);
-        let d = pool.callocAs(Type.U8, 3);
-        let e = pool.callocAs(Type.U8, 1);
+        let a = pool.callocAs("u8", 15);
+        let b = pool.callocAs("u8", 11);
+        let c = pool.callocAs("u8", 7);
+        let d = pool.callocAs("u8", 3);
+        let e = pool.callocAs("u8", 1);
         assert.strictEqual(a!.byteOffset, base + BLOCK_OVERHEAD, "a");
         assert.strictEqual(
             b!.byteOffset,
@@ -448,8 +448,8 @@ describe("malloc", () => {
     it("freeAll (align 16)", () => {
         pool = new MemPool({ size: 0x100, align: 16 });
         const base = pool.stats().top;
-        pool.callocAs(Type.U8, 15);
-        pool.callocAs(Type.U8, 11);
+        pool.callocAs("u8", 15);
+        pool.callocAs("u8", 11);
         pool.freeAll();
         assert.strictEqual(pool.stats().top, base);
     });

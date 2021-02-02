@@ -1,9 +1,8 @@
-import { GLType, Type, TypedArray } from "@thi.ng/api";
+import { asNativeType, GLType, Type, TypedArray } from "@thi.ng/api";
 import { isTypedArray } from "@thi.ng/checks";
 import { MemPool, MemPoolOpts, MemPoolStats } from "@thi.ng/malloc";
 import type { StridedVec } from "@thi.ng/vectors";
 import type { IVecPool } from "./api";
-import { asNativeType } from "./convert";
 import { wrap } from "./wrap";
 
 export class VecPool implements IVecPool {
@@ -19,17 +18,14 @@ export class VecPool implements IVecPool {
         return this.pool.stats();
     }
 
-    malloc(
-        size: number,
-        type: GLType | Type = Type.F32
-    ): TypedArray | undefined {
+    malloc(size: number, type: GLType | Type = "f32"): TypedArray | undefined {
         return this.pool.callocAs(asNativeType(type), size);
     }
 
     mallocWrapped(
         size: number,
         stride = 1,
-        type: GLType | Type = Type.F32
+        type: GLType | Type = "f32"
     ): StridedVec | undefined {
         const buf = this.pool.callocAs(asNativeType(type), size * stride);
         return buf ? wrap(buf, size, 0, stride) : undefined;
@@ -64,7 +60,7 @@ export class VecPool implements IVecPool {
         size: number,
         cstride = 1,
         estride = size,
-        type: GLType | Type = Type.F32
+        type: GLType | Type = "f32"
     ): StridedVec[] | undefined {
         const buf = this.malloc(
             Math.max(cstride, estride, size) * num,

@@ -1,10 +1,9 @@
-import { Type } from "@thi.ng/api";
 import { Lane } from "../api";
 import { luminanceABGR } from "../utils";
 import { defPackedFormat } from "./packed-format";
 
 export const GRAY16 = defPackedFormat({
-    type: Type.U16,
+    type: "u16",
     size: 16,
     channels: [{ size: 16, lane: Lane.RED }],
     fromABGR: (x) => ((luminanceABGR(x) + 0.5) | 0) * 0x0101,
