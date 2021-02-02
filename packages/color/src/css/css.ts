@@ -4,7 +4,8 @@ import type { ColorMode, IParsedColor, MaybeColor, TypedColor } from "../api";
 import { convert } from "../convert";
 import { hslCss } from "../hsl/hsl-css";
 import { hsvCss } from "../hsv/hsv-css";
-import { int32Css } from "../int/int-css";
+import { intArgb32Css } from "../int/int-css";
+import { intAbgr32Argb32 } from "../int/int-int";
 import { labCss } from "../lab/lab-css";
 import { labLabD65_50 } from "../lab/lab-lab";
 import { lchCss } from "../lch/lch-css";
@@ -12,6 +13,8 @@ import { rgbCss } from "../rgb/rgb-css";
 import { srgbCss } from "../srgb/srgb-css";
 
 const CSS_CONVERSIONS: Partial<Record<ColorMode, Fn<any, string>>> = {
+    abgr32: (x) => intArgb32Css(intAbgr32Argb32(x[0])),
+    argb32: (x) => intArgb32Css(x[0]),
     hsl: hslCss,
     hsv: hsvCss,
     lab50: labCss,
@@ -37,7 +40,7 @@ export const css = (src: Exclude<MaybeColor, IParsedColor>) => {
     return isString(src)
         ? src
         : isNumber(src)
-        ? int32Css(src)
+        ? intArgb32Css(src)
         : (<TypedColor<any>>src).mode
         ? (asCss = CSS_CONVERSIONS[(<TypedColor<any>>src).mode])
             ? asCss(src)

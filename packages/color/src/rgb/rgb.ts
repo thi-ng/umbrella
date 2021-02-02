@@ -7,6 +7,7 @@ import { hcyRgb } from "../hcy/hcy-rgb";
 import { hsiRgb } from "../hsi/hsi-rgb";
 import { hslRgb } from "../hsl/hsl-rgb";
 import { hsvRgb } from "../hsv/hsv-rgb";
+import { intAbgr32Rgb, intArgb32Rgb } from "../int/int-rgb";
 import { lchLab } from "../lab/lab-lch";
 import { labRgb, labRgbD65 } from "../lab/lab-rgb";
 import { oklabRgb } from "../oklab/oklab-rgb";
@@ -42,6 +43,8 @@ export const rgb = <ColorFactory<RGB>>defColor({
     mode: "rgb",
     order: <const>["r", "g", "b", "alpha"],
     from: {
+        abgr32: (out, src) => intAbgr32Rgb(out, src[0]),
+        argb32: (out, src) => intArgb32Rgb(out, src[0]),
         hcy: hcyRgb,
         hsi: hsiRgb,
         hsl: hslRgb,

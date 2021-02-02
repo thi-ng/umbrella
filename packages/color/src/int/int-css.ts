@@ -1,9 +1,7 @@
-import type { IDeref } from "@thi.ng/api";
 import { U24 } from "@thi.ng/strings";
 import { FF, INV8BIT } from "../api/constants";
 
-export const int32Css = (src: number | IDeref<number>) => {
-    src = typeof src === "number" ? src : src.deref();
+export const intArgb32Css = (src: number) => {
     const a = src >>> 24;
     return a < 255
         ? `rgba(${(src >> 16) & 0xff},${(src >> 8) & 0xff},${src & 0xff},${FF(
@@ -12,5 +10,4 @@ export const int32Css = (src: number | IDeref<number>) => {
         : `#${U24(src & 0xffffff)}`;
 };
 
-export const int24Css = (src: number | IDeref<number>) =>
-    `#${U24((typeof src === "number" ? src : src.deref()) & 0xffffff)}`;
+export const intRgb24Css = (src: number) => `#${U24(src & 0xffffff)}`;

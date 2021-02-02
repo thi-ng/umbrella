@@ -2,6 +2,7 @@ import type { NumericArray } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
 import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
 import { defColor } from "../defcolor";
+import { intAbgr32Srgb, intArgb32Srgb } from "../int/int-srgb";
 import { rgbSrgb } from "../rgb/rgb-srgb";
 
 export declare class SRGB implements TypedColor<SRGB> {
@@ -30,5 +31,9 @@ export declare class SRGB implements TypedColor<SRGB> {
 export const srgb = <ColorFactory<SRGB>>defColor({
     mode: "srgb",
     order: <const>["r", "g", "b", "alpha"],
-    from: { rgb: rgbSrgb },
+    from: {
+        abgr32: (out, src) => intAbgr32Srgb(out, src[0]),
+        argb32: (out, src) => intArgb32Srgb(out, src[0]),
+        rgb: rgbSrgb,
+    },
 });
