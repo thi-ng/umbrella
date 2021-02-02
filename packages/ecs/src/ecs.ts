@@ -4,7 +4,7 @@ import {
     INotify,
     INotifyMixin,
     Listener,
-    uintType,
+    uintTypeForSize,
 } from "@thi.ng/api";
 import { bitSize } from "@thi.ng/binary";
 import { isArray, isString } from "@thi.ng/checks";
@@ -80,7 +80,7 @@ export class ECS<SPEC> implements INotify {
             `component '${opts.id}' already existing`
         );
         const cap = this.idgen.capacity;
-        const utype = uintType(cap);
+        const utype = uintTypeForSize(cap);
         const sparse = this.pool.mallocAs(utype, cap);
         const dense = this.pool.mallocAs(utype, cap);
         if (!(sparse && dense)) return;
