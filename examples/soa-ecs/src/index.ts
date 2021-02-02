@@ -1,5 +1,4 @@
 import { adaptDPI } from "@thi.ng/adapt-dpi";
-import { Type } from "@thi.ng/api";
 import { ECS, GroupInfo, GroupTuple } from "@thi.ng/ecs";
 import { start } from "@thi.ng/hdom";
 import { canvasWebGL } from "@thi.ng/hdom-components";
@@ -65,13 +64,13 @@ const ecs = new ECS<CompSpecs>({ capacity: NUM });
 
 const pos = ecs.defComponent({
     id: "pos",
-    type: Type.F32,
+    type: "f32",
     size: 2,
 })!;
 
 const vel = ecs.defComponent({
     id: "vel",
-    type: Type.F32,
+    type: "f32",
     size: 2,
     default: () => randNormS2([0, 0]),
 })!;

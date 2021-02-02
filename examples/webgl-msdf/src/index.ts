@@ -1,5 +1,4 @@
 import { adaptDPI } from "@thi.ng/adapt-dpi";
-import { GLType } from "@thi.ng/api";
 import { start } from "@thi.ng/hdom";
 import { canvasWebGL } from "@thi.ng/hdom-components";
 import { fitClamped } from "@thi.ng/math";
@@ -120,9 +119,9 @@ const createText = (
 const createStarField = (gl: WebGLRenderingContext, num = 1000) => {
     const pool = new AttribPool({
         attribs: {
-            position: { type: GLType.F32, size: 3, byteOffset: 0 },
-            dir: { type: GLType.F32, size: 3, byteOffset: 12 },
-            id: { type: GLType.F32, size: 1, byteOffset: 24 },
+            position: { type: "f32", size: 3, byteOffset: 0 },
+            dir: { type: "f32", size: 3, byteOffset: 12 },
+            id: { type: "f32", size: 1, byteOffset: 24 },
         },
         mem: {
             size: num * 28 + 8 /* FIXME */ + 40,
