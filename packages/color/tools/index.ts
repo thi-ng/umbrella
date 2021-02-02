@@ -11,7 +11,7 @@ import {
     COSINE_GRADIENTS,
     proximityHSV,
     selectChannel,
-    sortColors,
+    sort,
     swatchesH,
 } from "../src";
 
@@ -45,7 +45,7 @@ for (let id in COLOR_RANGES) {
             svg(
                 { width: 500, height: 50, convert: true },
                 swatchesH(
-                    sortColors(
+                    sort(
                         [
                             ...colorsFromTheme(
                                 [
@@ -78,7 +78,7 @@ const theme = <ColorThemePartTuple[]>[
 
 const colors = [...colorsFromTheme(theme, { num: 200, variance: 0.05 })];
 
-sortColors(colors, selectChannel(0), true);
+sort(colors, selectChannel(0), true);
 
 const doc = svg(
     { width: 1000, height: 50, convert: true },
