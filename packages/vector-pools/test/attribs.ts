@@ -1,4 +1,3 @@
-import { Type } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
 import * as assert from "assert";
 import { AttribPool } from "../src/attrib-pool";
@@ -10,7 +9,7 @@ describe("vector-pools", () => {
             num: 8,
             attribs: {
                 pos: {
-                    type: Type.F32,
+                    type: "f32",
                     size: 2, // 8 bytes
                     byteOffset: 0,
                     data: [
@@ -19,20 +18,20 @@ describe("vector-pools", () => {
                     ],
                 },
                 id: {
-                    type: Type.U32,
+                    type: "u32",
                     size: 1, // 4 bytes
                     byteOffset: 8,
                     data: [1, 2],
                     index: 4,
                 },
                 index: {
-                    type: Type.U16,
+                    type: "u16",
                     size: 1, // 2 bytes
                     byteOffset: 12,
                     data: [10, 20],
                 },
                 col: {
-                    type: Type.U8,
+                    type: "u8",
                     size: 4, // 4 bytes
                     byteOffset: 14,
                     data: [

@@ -2,10 +2,9 @@ import {
     assert,
     IObjectOf,
     IRelease,
-    SIZEOF,
+    sizeOf,
     TypedArray,
     typedArray,
-    TYPEDARRAY_CTORS,
 } from "@thi.ng/api";
 import { align, Pow2 } from "@thi.ng/binary";
 import { isNumber } from "@thi.ng/checks";
@@ -13,7 +12,6 @@ import { MemPool } from "@thi.ng/malloc";
 import { range } from "@thi.ng/transducers";
 import { ReadonlyVec, Vec, zeroes } from "@thi.ng/vectors";
 import { AttribPoolOpts, AttribSpec, LOGGER } from "./api";
-import { asNativeType } from "./convert";
 
 /*
  *              0x00            0x08            0x10            0x18
@@ -125,7 +123,7 @@ export class AttribPool implements IRelease {
         const size = spec.size;
         const stride = spec.stride!;
         const src = this.attribs[id];
-        const dest = new TYPEDARRAY_CTORS[asNativeType(spec.type)](n * size);
+        const dest = typedArray(spec.type, n * size);
         if (size > 1) {
             for (let i = 0, j = 0; i < n; i++, j += stride) {
                 dest.set(src.subarray(j, j + size), i * size);
@@ -207,7 +205,7 @@ export class AttribPool implements IRelease {
         for (let id in this.specs) {
             const a = this.specs[id];
             const buf = typedArray(
-                asNativeType(a.type),
+                a.type,
                 this.pool.buf,
                 newAddr + (a.byteOffset || 0),
                 (newCapacity - 1) * a.stride! + a.size
@@ -227,7 +225,7 @@ export class AttribPool implements IRelease {
         let maxSize = inclExisting ? this.maxAttribSize : 1;
         for (let id in specs) {
             const a = specs[id];
-            const size = SIZEOF[asNativeType(a.type)];
+            const size = sizeOf(a.type);
             maxSize = Math.max(maxSize, size);
             maxStride = Math.max(maxStride, a.byteOffset + a.size * size);
         }
@@ -242,7 +240,7 @@ export class AttribPool implements IRelease {
             assert(!this.attribs[id], `attrib: ${id} already exists`);
             const a = specs[id];
             assert(a.size > 0, `attrib ${id}: illegal or missing size`);
-            const size = SIZEOF[asNativeType(a.type)];
+            const size = sizeOf(a.type);
             a.default == null && (a.default = a.size > 1 ? zeroes(a.size) : 0);
             const isNum = isNumber(a.default);
             assert(
@@ -275,7 +273,7 @@ export class AttribPool implements IRelease {
         for (let id in specs) {
             const a = specs[id];
             this.attribs[id] = typedArray(
-                asNativeType(a.type),
+                a.type,
                 this.pool.buf,
                 this.addr + (a.byteOffset || 0),
                 (this.capacity - 1) * a.stride! + a.size
@@ -363,10 +361,14 @@ const resizeAttribs = (
     const newAttribs: IObjectOf<[TypedArray, number]> = {};
     for (let id in specs) {
         const a = specs[id];
-        const type = asNativeType(a.type);
-        const dStride = stride / SIZEOF[type];
+        const dStride = stride / sizeOf(a.type);
         newAttribs[id] = [
-            typedArray(type, buf, dest + a.byteOffset, num * dStride + a.size),
+            typedArray(
+                a.type,
+                buf,
+                dest + a.byteOffset,
+                num * dStride + a.size
+            ),
             dStride,
         ];
     }
