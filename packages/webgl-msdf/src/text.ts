@@ -1,7 +1,6 @@
-import { GLType } from "@thi.ng/api";
 import { add, map, mapcat, range, transduce } from "@thi.ng/transducers";
 import { AttribPool } from "@thi.ng/vector-pools";
-import { add2, div2, madd2, mul2, ONE4 } from "@thi.ng/vectors";
+import { addm2, invert2, madd2, mul2, ONE4 } from "@thi.ng/vectors";
 import type { GLVec4, ModelSpec } from "@thi.ng/webgl";
 import type { MSDFFont, TextAlign, TextOpts } from "./api";
 
@@ -24,12 +23,12 @@ export const text = (
     const len = txt.replace("\n", "").length;
     const attribs = new AttribPool({
         attribs: {
-            position: { type: GLType.F32, size: 3, byteOffset: 0 },
-            uv: { type: GLType.F32, size: 2, byteOffset: 12 },
+            position: { type: "f32", size: 3, byteOffset: 0 },
+            uv: { type: "f32", size: 2, byteOffset: 12 },
             ...(opts.useColor
                 ? {
                       color: {
-                          type: GLType.F32,
+                          type: "f32",
                           default: opts.color,
                           size: 4,
                           byteOffset: 20,
@@ -43,13 +42,14 @@ export const text = (
         },
     });
     const lines = txt.split("\n");
+    const invSize = invert2([], glyphs.size);
     for (let i = 0, yy = 0, id = 0; i < lines.length; i++) {
         const line = lines[i];
         let xx = opts.align!(glyphs, <TextOpts>opts, line);
         for (let j = 0; j < line.length; j++, id++) {
-            const g = glyphs.chars[line[j]];
-            const [sx, sy] = mul2([], g.size, dir);
-            const [x, y] = madd2([], g.offset, dir, [xx, yy]);
+            const { pos, size, offset, step } = glyphs.chars[line[j]];
+            const [sx, sy] = mul2([], size, dir);
+            const [x, y] = madd2([], offset, dir, [xx, yy]);
             attribs.setAttribValues(
                 "position",
                 [
@@ -63,14 +63,14 @@ export const text = (
             attribs.setAttribValues(
                 "uv",
                 [
-                    div2([], g.pos, glyphs.size),
-                    div2([], [g.pos[0] + g.size[0], g.pos[1]], glyphs.size),
-                    div2([], add2([], g.pos, g.size), glyphs.size),
-                    div2([], [g.pos[0], g.pos[1] + g.size[1]], glyphs.size),
+                    mul2([], pos, invSize),
+                    mul2([], [pos[0] + size[0], pos[1]], invSize),
+                    addm2([], pos, size, invSize),
+                    mul2([], [pos[0], pos[1] + size[1]], invSize),
                 ],
                 id * 4
             );
-            xx += g.step * opts.dirX! * opts.spacing!;
+            xx += step * opts.dirX! * opts.spacing!;
         }
         yy += lineHeight;
     }
