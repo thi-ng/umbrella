@@ -1,9 +1,8 @@
-import { Type } from "@thi.ng/api";
 import { Lane } from "../api";
 import { defPackedFormat } from "./packed-format";
 
 export const ARGB8888 = defPackedFormat({
-    type: Type.U32,
+    type: "u32",
     size: 32,
     alpha: 8,
     channels: [

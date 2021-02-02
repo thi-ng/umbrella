@@ -1,4 +1,4 @@
-import { Fn, IObjectOf, Type, UIntArray } from "@thi.ng/api";
+import { Fn, typedArray, UIntArray, uintTypeForBits } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
 import {
     isPremultipliedInt,
@@ -31,18 +31,6 @@ import {
     setChannelUni,
     transformABGR,
 } from "./utils";
-
-interface UIntArrayConstructor {
-    new (size: number): UIntArray;
-    new (elements: Iterable<number>): UIntArray;
-    new (buf: ArrayBuffer, offset?: number, size?: number): UIntArray;
-}
-
-const CTORS: IObjectOf<UIntArrayConstructor> = {
-    [Type.U8]: Uint8Array,
-    [Type.U16]: Uint16Array,
-    [Type.U32]: Uint32Array,
-};
 
 /**
  * Syntax sugar for {@link PackedBuffer} ctor.
@@ -77,7 +65,7 @@ export class PackedBuffer implements IPixelBuffer<UIntArray, number> {
         const src = new Uint32Array(
             ctx.ctx.getImageData(0, 0, w, h).data.buffer
         );
-        const dest = new CTORS[fmt.type](w * h);
+        const dest = typedArray(fmt.type, w * h);
         const from = fmt.fromABGR;
         for (let i = dest.length; --i >= 0; ) {
             dest[i] = from(src[i]);
@@ -110,7 +98,7 @@ export class PackedBuffer implements IPixelBuffer<UIntArray, number> {
         this.format = (<any>fmt).__packed
             ? <PackedFormat>fmt
             : defPackedFormat(fmt);
-        this.pixels = pixels || new CTORS[fmt.type](w * h);
+        this.pixels = pixels || typedArray(fmt.type, w * h);
     }
 
     get stride() {
@@ -254,8 +242,7 @@ export class PackedBuffer implements IPixelBuffer<UIntArray, number> {
     getChannel(id: number) {
         const chan = <PackedChannel>ensureChannel(this.format, id);
         const buf = new PackedBuffer(this.width, this.height, {
-            type:
-                chan.size > 16 ? Type.U32 : chan.size > 8 ? Type.U16 : Type.U8,
+            type: uintTypeForBits(chan.size),
             size: chan.size,
             channels: [{ size: chan.size, lane: Lane.RED }],
             fromABGR: compileGrayFromABGR(chan.size),
@@ -389,7 +376,7 @@ export class PackedBuffer implements IPixelBuffer<UIntArray, number> {
      */
     flipY() {
         const { pixels, width } = this;
-        const tmp = new CTORS[this.format.type](width);
+        const tmp = typedArray(this.format.type, width);
         for (
             let i = 0, j = pixels.length - width;
             i < j;

@@ -3,8 +3,8 @@ import type {
     Fn2,
     IObjectOf,
     NumericArray,
-    Type,
     TypedArray,
+    UintType,
 } from "@thi.ng/api";
 
 /**
@@ -34,8 +34,6 @@ export enum Filter {
     NEAREST,
     LINEAR,
 }
-
-export type UintType = Type.U8 | Type.U16 | Type.U32;
 
 /**
  * Blend function (for packed integers) given to IBlend implementations.
