@@ -10,9 +10,9 @@ import { intArgb32Srgb } from "../int/int-srgb";
 import { ensureHue } from "../internal/ensure-hue";
 
 /**
- * Attempts to parse given CSS color into a {@link SRGBA}, {@link HSLA},
- * {@link LAB} or {@link LCH} color type. Throws an error if any of the
- * validations during parsing failed.
+ * Attempts to parse given CSS color into an interim {@link ParsedColor} type
+ * with {@link srgb}, {@link hsl}, {@link labD50} or {@link lch} color modes.
+ * Throws an error if any of the validations during parsing failed.
  *
  * @remarks
  * The following syntax versions are supported:
@@ -31,15 +31,16 @@ import { ensureHue } from "../internal/ensure-hue";
  * - `lch(l c h / alpha?)`
  *
  * Hue values can be given according to CSS Color L4 spec (raw, deg, rad, grad,
- * turn): https://drafts.csswg.org/css-color/#typedef-hue
+ * turn): https://www.w3.org/TR/css-color-4/#typedef-hue
  *
  * If no alpha channel is given, it will default to 1.0 (fully opaque).
  *
- * Note that any named CSS colors, CSS system colors or RGB colors will be
- * returned as sRGB instance. In former versions of this library (pre 3.0.0),
+ * Note that any named or system CSS colors, hex colors and any RGB colors will
+ * be returned as sRGB instance. In former versions of this library (pre 3.0.0),
  * there was only a single RGB type with undefined behaviour re: linear or
  * gamma-encoded versions. Since v3.0.0, {@link rgb} is only used for _linear_
- * and {@link srgb} for non-linear (gamma encoded) RGB colors.
+ * and {@link srgb} for non-linear (gamma encoded) RGB colors (CSS uses sRGB by
+ * default).
  *
  * @param src
  */

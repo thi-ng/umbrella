@@ -7,7 +7,7 @@ import { ensureHue } from "../internal/ensure-hue";
 /**
  * @remarks
  * Only supported in CSS Color Level 4 onwards
- * https://drafts.csswg.org/css-color/#specifying-lab-lch
+ * https://www.w3.org/TR/css-color-4/#specifying-lab-lch
  * https://test.csswg.org/harness/results/css-color-4_dev/grouped/ (test reports)
  *
  * @param src

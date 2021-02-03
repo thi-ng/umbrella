@@ -17,7 +17,7 @@ For the Clojure version, please visit: [thi.ng/color-clj](https://thi.ng/color-c
   - [Storage & memory mapping](#storage--memory-mapping)
   - [Color theme generation](#color-theme-generation)
   - [Color sorting](#color-sorting)
-  - [RGBA transformations](#rgba-transformations)
+  - [RGB color transformations](#rgb-color-transformations)
   - [RGBA Porter-Duff compositing](#rgba-porter-duff-compositing)
   - [Cosine gradients](#cosine-gradients)
   - [Two-color gradients](#two-color-gradients)
@@ -47,22 +47,25 @@ for the current version...**
 
 ### Supported color spaces / modes
 
-Fast color space conversions (any direction) between:
+Fast color model/space conversions (any direction) between (in alphabetical
+order). All types support an alpha channel, which defaults to 100% opaque (apart
+from the integer types).
 
-- CSS (string, hex3/hex4/hex6/hex8, named colors, rgba(), hsla(), etc.)
-- HCY (float4)
-- HSI (float4)
-- HSL (float4)
-- HSV (float4)
-- Int32 (uint32, `0xaarrggbb`, aka sRGBA as packed int)
-- Lab (float4, D50/D65 versions)
-- LCH (float4)
+- ABGR (uint32, `0xaabbggrr`, aka sRGB(A) as packed int)
+- [ARGB](https://en.wikipedia.org/wiki/RGBA_color_model#ARGB32) (uint32, `0xaarrggbb`, aka sRGB(A) as packed int)
+- [CSS](https://www.w3.org/TR/css-color-4/) (string, hex3/hex4/hex6/hex8, named colors, rgba(), hsla(), etc.)
+- [HCY](http://www.chilliant.com/rgb2hsv.html) (float4, similar to LCH)
+- [HSI](https://en.wikipedia.org/wiki/HSL_and_HSV#HSI_to_RGB) (float4)
+- [HSL](https://en.wikipedia.org/wiki/HSL_and_HSV) (float4)
+- [HSV](https://en.wikipedia.org/wiki/HSL_and_HSV) (float4)
+- [Lab](https://en.wikipedia.org/wiki/CIELAB_color_space) (float4, D50/D65 versions)
+- [LCH](https://en.wikipedia.org/wiki/HCL_color_space) (float4)
 - [Oklab](https://bottosson.github.io/posts/oklab/) (float4)
-- RGB (float4, linear)
-- SRGB (float4, gamma corrected)
-- XYY (float4)
-- XYZ (float4, aka CIE 1931, D50/D65 versions)
-- YCC (float4, aka YCbCr)
+- [RGB](https://en.wikipedia.org/wiki/RGB_color_space) (float4, _linear_)
+- [sRGB](https://en.wikipedia.org/wiki/SRGB) (float4, [gamma corrected](https://en.wikipedia.org/wiki/Gamma_correction))
+- [XYY](https://en.wikipedia.org/wiki/CIE_1931_color_space#CIE_xy_chromaticity_diagram_and_the_CIE_xyY_color_space) (float4)
+- [XYZ](https://en.wikipedia.org/wiki/CIE_1931_color_space) (float4, aka CIE 1931, D50/D65 versions)
+- [YCC](https://en.wikipedia.org/wiki/YCbCr) (float4, aka YCbCr)
 
 | From/To   | CSS | HCY  | HSI  | HSL  | HSV  | Int  | Lab  | LCH | Oklab | RGB  | sRGB | XYY | XYZ  | YCC  |
 |-----------|-----|------|------|------|------|------|------|-----|-------|------|------|-----|------|------|
@@ -88,7 +91,8 @@ Fast color space conversions (any direction) between:
   (see [Wikipedia](https://en.wikipedia.org/wiki/HSL_and_HSV#cite_note-26))
 - (3) - including [D50/D65
   illuminant](https://en.wikipedia.org/wiki/Illuminant_D65) options
-- (4) - parsed as Lab w/ D50 illuminant as per [CSS Color Module Level 4](https://drafts.csswg.org/css-color/#lab-colors)
+- (4) - parsed as Lab w/ D50 illuminant as per [CSS Color Module Level
+  4](https://www.w3.org/TR/css-color-4/#lab-colors)
 
 #### Color creation / conversion
 
@@ -116,9 +120,9 @@ css(hsl("#4ff0"))
 All color types store their channel values in plain arrays, typed arrays of
 (mostly) normalized values (`[0,1]` interval). Where applicable, the hue too is
 stored in that range (similar to [CSS
-`turn`](https://drafts.csswg.org/css-values-3/#ref-for-turn) units), NOT in
-degrees. Likewise, luminance is always stored in the `[0,1]` too, even for Lab,
-LCH where often the `[0,100]` range is used instead.
+`turn`](https://www.w3.org/TR/css-values-3/#angle-value) units), NOT in degrees.
+Likewise, luminance is always stored in the `[0,1]` too, even for Lab, LCH where
+often the `[0,100]` range is used instead.
 
 As a fairly unique feature, all color types can be used to provided views of a
 backing memory buffer (e.g. for WASM/WebGL/WebGPU interop, pixel buffers etc.),
@@ -271,9 +275,9 @@ sortColors(colors, proximityHSV([0,1,0.5]));
 
 ![sorted color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-ex02.svg)
 
-### RGBA transformations
+### RGB color transformations
 
-RGBA [color matrix
+RGB [color matrix
 transformations](https://github.com/thi-ng/umbrella/tree/develop/packages/color/src/transform.ts),
 including parametric preset transforms:
 
@@ -352,15 +356,15 @@ cosineGradient(10, cosineCoeffs([1,0,0,1], [0,1,0,1])).map(rgbaCss)
 
 ### Multi-stop gradients
 
-The `multiCosineGradient()` function returns an iterator of raw RGBA
+The `multiCosineGradient()` function returns an iterator of raw RGB
 colors based on given gradient stops. This iterator computes a cosine
-gradient between each color stop and yields a sequence of RGBA values.
+gradient between each color stop and yields a sequence of RGB values.
 
 ```ts
 col.multiCosineGradient(
     // num colors to produce
     10,
-    // gradient stops (normalized positions, only RGBA colors supported)
+    // gradient stops (normalized positions, only RGB colors supported)
     [0.1, col.RED], [0.5, col.GREEN], [0.9, col.BLUE]
 )
 // convert to CSS
@@ -389,7 +393,7 @@ col.multiCosineGradient(
 
 ### Related packages
 
-- [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel) - Typed array backed, packed integer and unpacked floating point pixel buffers w/ customizable formats, blitting, dithering, conversions
+- [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel) - Typed array backed, integer and floating point pixel buffers w/ customizable formats, blitting, dithering, conversions
 
 ## Installation
 
@@ -405,12 +409,13 @@ yarn add @thi.ng/color
 <script src="https://unpkg.com/@thi.ng/color/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 11.49 KB / CJS: 12.05 KB / UMD: 11.27 KB
+Package sizes (gzipped, pre-treeshake): ESM: 12.09 KB / CJS: 12.73 KB / UMD: 11.89 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
+- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/develop/packages/compare)
 - [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/develop/packages/compose)

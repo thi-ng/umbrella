@@ -1,6 +1,6 @@
 /**
  * @remarks
- * Reference: https://drafts.csswg.org/css-color/#typedef-system-color
+ * Reference: https://www.w3.org/TR/css-color-4/#typedef-system-color
  */
 export interface SystemColors {
     /**
