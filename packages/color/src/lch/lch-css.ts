@@ -14,7 +14,7 @@ import { ensureHue } from "../internal/ensure-hue";
  */
 export const lchCss = (src: ReadonlyColor) => {
     const l = PC(clamp0(src[0]));
-    const c = FF(clamp0(src[1]));
+    const c = FF(clamp0(src[1]) * 100);
     const h = FF(ensureHue(src[2]) * 360);
     const a = ensureAlpha(src[3]);
     return `lch(${l} ${c} ${h}` + (a < 1 ? `/${FF(a)})` : ")");

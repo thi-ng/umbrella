@@ -31,10 +31,7 @@ export declare class LCH implements TypedColor<LCH> {
 export const lch = <ColorFactory<LCH>>defColor({
     mode: "lch",
     channels: {
-        // l: {},
         c: { range: [0, 1.312] },
-        // h: {},
-        // alpha: {},
     },
     order: <const>["l", "c", "h", "alpha"],
     from: {

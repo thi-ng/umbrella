@@ -166,7 +166,18 @@ export const OKLAB_M2 = [
     -0.808675766,
 ];
 
-export const FF = float(3);
-export const PC = percent(3);
+export let FF = float(3);
+export let PC = percent(3);
+
+/**
+ * Sets precision for CSS formatted values to `x` significant digits (default:
+ * 3).
+ *
+ * @param x
+ */
+export const setPrecision = (x: number) => {
+    FF = float(x);
+    PC = percent(x);
+};
 
 export const INV8BIT = 1 / 0xff;

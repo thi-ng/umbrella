@@ -35,11 +35,11 @@ import { ensureHue } from "../internal/ensure-hue";
  *
  * If no alpha channel is given, it will default to 1.0 (fully opaque).
  *
- * Note that any named CSS or RGB colors will be returned as SRGBA instance. In
- * former versions of this library (pre 3.0.0), there was only a single RGB(A)
- * type with undefined behaviour re: linear or gamma-corrected versions. Since
- * v3.0.0, {@link RGBA} is only used for linear and {@link SRGB} for non-linear
- * RGB colors.
+ * Note that any named CSS colors, CSS system colors or RGB colors will be
+ * returned as sRGB instance. In former versions of this library (pre 3.0.0),
+ * there was only a single RGB type with undefined behaviour re: linear or
+ * gamma-encoded versions. Since v3.0.0, {@link rgb} is only used for _linear_
+ * and {@link srgb} for non-linear (gamma encoded) RGB colors.
  *
  * @param src
  */
