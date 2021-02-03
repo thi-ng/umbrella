@@ -1,3 +1,4 @@
+import { swapLane13 } from "@thi.ng/binary";
 import { Lane } from "../api";
 import { defPackedFormat } from "./packed-format";
 
@@ -11,4 +12,6 @@ export const ARGB8888 = defPackedFormat({
         { size: 8, lane: Lane.GREEN },
         { size: 8, lane: Lane.BLUE },
     ],
+    fromABGR: swapLane13,
+    toABGR: swapLane13,
 });
