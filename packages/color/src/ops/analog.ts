@@ -1,10 +1,9 @@
 import type { FnN } from "@thi.ng/api";
-import { clamp01 } from "@thi.ng/math";
+import { clamp01, fract } from "@thi.ng/math";
 import { IRandom, SYSTEM } from "@thi.ng/random";
 import { setC4 } from "@thi.ng/vectors";
 import type { Color, ReadonlyColor } from "../api";
 import { ensureAlpha } from "../internal/ensure-alpha";
-import { ensureHue } from "../internal/ensure-hue";
 
 const $analog = (x: number, delta: number, rnd: IRandom, post: FnN = clamp01) =>
     delta !== 0 ? post(x + rnd.norm(delta)) : x;
@@ -42,7 +41,7 @@ export const analogHsv = (
 ) =>
     setC4(
         out || src,
-        $analog(src[0], deltaH, rnd, ensureHue),
+        $analog(src[0], deltaH, rnd, fract),
         $analog(src[1], deltaS, rnd),
         $analog(src[2], deltaV, rnd),
         $alpha(src[3], deltaA, rnd)

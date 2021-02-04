@@ -1,7 +1,6 @@
-import { clamp01 } from "@thi.ng/math";
+import { clamp01, fract } from "@thi.ng/math";
 import { setC4 } from "@thi.ng/vectors";
 import type { Color, Hue } from "../api";
-import { ensureHue } from "../internal/ensure-hue";
 
 /**
  * Converts a normalized hue to RGBA with given optional `alpha`
@@ -11,7 +10,7 @@ import { ensureHue } from "../internal/ensure-hue";
  * @param hue - normalized hue
  */
 export const hueRgb = (out: Color | null, hue: number, alpha = 1): Color => {
-    hue = ensureHue(hue) * 6;
+    hue = fract(hue) * 6;
     return setC4(
         out || [],
         clamp01(Math.abs(hue - 3) - 1),

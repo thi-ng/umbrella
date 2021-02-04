@@ -1,8 +1,7 @@
-import { clamp01 } from "@thi.ng/math";
+import { clamp01, fract } from "@thi.ng/math";
 import { setC4 } from "@thi.ng/vectors";
 import type { Color, ReadonlyColor } from "../api";
 import { ensureAlpha } from "../internal/ensure-alpha";
-import { ensureHue } from "../internal/ensure-hue";
 
 /**
  * Clamps all color channels to [0,1] interval and calls `ensureAlpha`
@@ -33,7 +32,7 @@ export const clamp = (out: Color | null, src: ReadonlyColor, alpha = 1) =>
 export const clampH = (out: Color | null, src: ReadonlyColor, alpha = 1) =>
     setC4(
         out || src,
-        ensureHue(src[0]),
+        fract(src[0]),
         clamp01(src[1]),
         clamp01(src[2]),
         ensureAlpha(src[3], alpha)

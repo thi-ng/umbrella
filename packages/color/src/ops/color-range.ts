@@ -2,6 +2,7 @@ import type { Range } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
 import { isArray, isNumber, isString } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
+import { fract } from "@thi.ng/math";
 import { IRandom, SYSTEM, weightedRandom } from "@thi.ng/random";
 import type { ReadonlyColor } from "../api";
 import type {
@@ -14,7 +15,6 @@ import type {
 import { parseCss } from "../css/parse-css";
 import { HSV, hsv } from "../hsv/hsv";
 import { ensureAlpha } from "../internal/ensure-alpha";
-import { ensureHue } from "../internal/ensure-hue";
 import { analogHsv } from "./analog";
 import { isBlackHsv } from "./is-black";
 import { isGrayHsv } from "./is-gray";
@@ -152,7 +152,7 @@ export const colorFromRange = (
                 $rnd(rnd.float() < 0.5 ? range.b! : range.w!, rnd),
                 a,
             ]);
-        h = ensureHue(h + rnd.norm(variance));
+        h = fract(h + rnd.norm(variance));
     } else {
         h = $rnd(range.h!, rnd);
         a = $rnd(range.a!, rnd);

@@ -2,12 +2,11 @@ import type { IDeref } from "@thi.ng/api";
 import { assert } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks";
 import { illegalArgs, unsupported } from "@thi.ng/errors";
-import { clamp01, TAU } from "@thi.ng/math";
+import { clamp01, fract, TAU } from "@thi.ng/math";
 import { IParsedColor, ParsedColor } from "../api";
 import { CSS_NAMES } from "../api/names";
 import { CSS_SYSTEM_COLORS } from "../api/system";
 import { intArgb32Srgb } from "../int/int-srgb";
-import { ensureHue } from "../internal/ensure-hue";
 
 /**
  * Attempts to parse given CSS color into an interim {@link ParsedColor} type
@@ -105,7 +104,7 @@ const HUE_NORMS: Record<string, number> = {
 const parseHue = (x: string) => {
     const match = /^(-?[0-9.]+)(deg|rad|grad|turn)?$/.exec(x);
     assert(!!match, `expected hue, got: ${x}`);
-    return ensureHue(parseFloat(match![1]) / HUE_NORMS[match![2]]);
+    return fract(parseFloat(match![1]) / HUE_NORMS[match![2]]);
 };
 
 const parseAlpha = (x?: string) => (x ? parseNumOrPercent(x, 1) : 1);
