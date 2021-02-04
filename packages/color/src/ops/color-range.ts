@@ -139,25 +139,35 @@ export const colorFromRange = (
 ): HSV => {
     range = { ...DEFAULT_RANGE, ...range };
     const { variance, rnd, eps } = { ...DEFAULT_OPTS, ...opts };
-    let h: number, a: number;
+    let h: number;
+    let s: number | undefined;
+    let v: number | undefined;
+    let a: number;
     if (base) {
         h = base[0];
         a = ensureAlpha(base[3]);
-        if (isBlackHsv(base, eps)) return hsv([h, 0, $rnd(range.b!, rnd), a]);
-        if (isWhiteHsv(base, eps)) return hsv([h, 0, $rnd(range.w!, rnd), a]);
-        if (isGrayHsv(base, eps))
-            return hsv([
-                h,
-                0,
-                $rnd(rnd.float() < 0.5 ? range.b! : range.w!, rnd),
-                a,
-            ]);
-        h = fract(h + rnd.norm(variance));
+        if (isBlackHsv(base, eps)) {
+            s = 0;
+            v = $rnd(range.b!, rnd);
+        } else if (isWhiteHsv(base, eps)) {
+            s = 0;
+            v = $rnd(range.w!, rnd);
+        } else if (isGrayHsv(base, eps)) {
+            s = 0;
+            v = $rnd(rnd.float() < 0.5 ? range.b! : range.w!, rnd);
+        } else {
+            h = fract(h + rnd.norm(variance));
+        }
     } else {
         h = $rnd(range.h!, rnd);
         a = $rnd(range.a!, rnd);
     }
-    return hsv([h, $rnd(range.s!, rnd), $rnd(range.v!, rnd), a]);
+    return hsv([
+        h,
+        s !== undefined ? s : $rnd(range.s!, rnd),
+        v != undefined ? v : $rnd(range.v!, rnd),
+        a,
+    ]);
 };
 
 /**
@@ -179,40 +189,49 @@ export function* colorsFromRange(
 }
 
 /** @internal */
-const asThemePart = (p: ColorThemePart | ColorThemePartTuple) => {
+const asThemePart = (part: ColorThemePart | ColorThemePartTuple) => {
     let spec: ColorThemePart;
-    let weight: number;
-    if (isArray(p)) {
-        const [a, ...xs] = p;
-        if (isNumber(peek(xs))) {
-            weight = <number>peek(xs);
-            xs.pop();
-        } else {
-            weight = 1;
-        }
-        spec = <ColorThemePart>(
-            (xs.length === 1
-                ? { range: a, base: xs[0], weight }
-                : xs.length === 0
-                ? COLOR_RANGES[<ColorRangePreset>a]
-                    ? { range: a, weight }
-                    : { base: a, weight }
-                : illegalArgs(`invalid theme part: "${p}"`))
-        );
-    } else if (isString(p)) {
-        spec = <ColorThemePart>(
-            (COLOR_RANGES[<ColorRangePreset>p]
-                ? { range: p, weight: 1 }
-                : { base: p, weight: 1 })
-        );
+    if (isArray(part)) {
+        spec = themePartFromTuple(part);
+    } else if (isString(part)) {
+        spec = themePartFromString(part);
     } else {
-        spec = p;
+        spec = part;
         spec.weight == null && (spec.weight = 1);
     }
     isString(spec.range) && (spec.range = COLOR_RANGES[spec.range]);
     isString(spec.base) && (spec.base = hsv(parseCss(spec.base)));
     return spec;
 };
+
+/** @internal */
+const themePartFromTuple = (part: ColorThemePartTuple) => {
+    let weight: number;
+    const [range, ...xs] = part;
+    if (isNumber(peek(xs))) {
+        weight = <number>peek(xs);
+        xs.pop();
+    } else {
+        weight = 1;
+    }
+    return <ColorThemePart>(
+        (xs.length === 1
+            ? { range, base: xs[0], weight }
+            : xs.length === 0
+            ? COLOR_RANGES[<ColorRangePreset>range]
+                ? { range, weight }
+                : { base: range, weight }
+            : illegalArgs(`invalid theme part: "${part}"`))
+    );
+};
+
+/** @internal */
+const themePartFromString = (part: string) =>
+    <ColorThemePart>(
+        (COLOR_RANGES[<ColorRangePreset>part]
+            ? { range: part, weight: 1 }
+            : { base: part, weight: 1 })
+    );
 
 /**
  * Probabilistic color theme generator. Yield randomized colors based on given
