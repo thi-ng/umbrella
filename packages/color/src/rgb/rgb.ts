@@ -27,6 +27,7 @@ export declare class RGB implements TypedColor<RGB> {
     [id: number]: number;
     readonly mode: "rgb";
     readonly length: 4;
+    readonly range: [ReadonlyColor, ReadonlyColor];
     [Symbol.iterator](): Iterator<number, any, undefined>;
     clamp(): this;
     copy(): RGB;

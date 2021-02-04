@@ -15,6 +15,7 @@ export declare class HSI implements TypedColor<HSI> {
     [id: number]: number;
     readonly mode: "hsi";
     readonly length: 4;
+    readonly range: [ReadonlyColor, ReadonlyColor];
     [Symbol.iterator](): Iterator<number, any, undefined>;
     clamp(): this;
     copy(): HSI;

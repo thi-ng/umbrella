@@ -79,6 +79,10 @@ export const defColor = <M extends ColorMode, K extends string>(
             return numChannels;
         }
 
+        get range(): [ReadonlyColor, ReadonlyColor] {
+            return [min, max];
+        }
+
         [Symbol.iterator]() {
             return stridedValues(
                 this.buf,
@@ -151,6 +155,8 @@ export const defColor = <M extends ColorMode, K extends string>(
                 ? <any>new $Color(...ensureArgs([src, ...xs]))
                 : fromColor(intArgb32Rgb([], src), "rgb", xs)
             : illegalArgs(`can't create a ${spec.mode} color from: ${src}`);
+
+    factory.range = <[ReadonlyColor, ReadonlyColor]>[min, max];
 
     factory.random = (
         rnd?: IRandom,

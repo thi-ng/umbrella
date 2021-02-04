@@ -15,6 +15,7 @@ export declare class YCC implements TypedColor<YCC> {
     [id: number]: number;
     readonly mode: "ycc";
     readonly length: 4;
+    readonly range: [ReadonlyColor, ReadonlyColor];
     [Symbol.iterator](): Iterator<number, any, undefined>;
     clamp(): this;
     copy(): YCC;

@@ -5,37 +5,6 @@ import { defColor } from "../defcolor";
 import { hslHsv } from "../hsl/hsl-hsv";
 import { rgbHsv } from "../rgb/rgb-hsv";
 
-// export function hsv(col: Color, offset?: number, stride?: number): HSV;
-// export function hsv(h?: number, s?: number, v?: number, a?: number): HSV;
-// export function hsv(...args: any[]) {
-//     return new HSV(...ensureArgs(args));
-// }
-
-// export class HSV extends AColor<HSV> implements IVector<HSV> {
-//     h!: number;
-//     s!: number;
-//     v!: number;
-//     alpha!: number;
-
-//     get mode(): ColorMode {
-//         return "hsv";
-//     }
-
-//     copy() {
-//         return new HSV(this.deref());
-//     }
-
-//     copyView() {
-//         return new HSV(this.buf, this.offset, this.stride);
-//     }
-
-//     empty() {
-//         return new HSV();
-//     }
-// }
-
-// declareIndices(HSV.prototype, ["h", "s", "v", "alpha"]);
-
 export declare class HSV implements TypedColor<HSV> {
     buf: NumericArray;
     offset: number;
@@ -47,6 +16,7 @@ export declare class HSV implements TypedColor<HSV> {
     [id: number]: number;
     readonly mode: "hsv";
     readonly length: 4;
+    readonly range: [ReadonlyColor, ReadonlyColor];
     [Symbol.iterator](): Iterator<number, any, undefined>;
     clamp(): this;
     copy(): HSV;

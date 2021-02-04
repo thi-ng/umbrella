@@ -34,6 +34,9 @@ export abstract class Int32 {
         return 1;
     }
 
+    get range(): [ReadonlyColor, ReadonlyColor] {
+        return [[0], [0xffffffff]];
+    }
     *[Symbol.iterator]() {
         yield this[0];
     }
@@ -148,6 +151,8 @@ const defInt = <T extends Int32>(
             : implementsFunction(src, "deref")
             ? new ctor([fromSrgb(srgb(src))], ...xs)
             : illegalArgs(`can't create a ARGB32 color from: ${src}`);
+
+    factory.range = <[ReadonlyColor, ReadonlyColor]>[[0], [0xffffffff]];
 
     factory.random = (
         rnd?: IRandom,

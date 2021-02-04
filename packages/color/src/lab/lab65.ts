@@ -19,6 +19,7 @@ export declare class LabD65 implements TypedColor<LabD65> {
     [id: number]: number;
     readonly mode: "lab65";
     readonly length: 4;
+    readonly range: [ReadonlyColor, ReadonlyColor];
     [Symbol.iterator](): Iterator<number, any, undefined>;
     clamp(): this;
     copy(): LabD65;

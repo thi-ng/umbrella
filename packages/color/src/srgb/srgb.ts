@@ -16,6 +16,7 @@ export declare class SRGB implements TypedColor<SRGB> {
     [id: number]: number;
     readonly mode: "srgb";
     readonly length: 4;
+    readonly range: [ReadonlyColor, ReadonlyColor];
     [Symbol.iterator](): Iterator<number, any, undefined>;
     clamp(): this;
     copy(): SRGB;
