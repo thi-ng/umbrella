@@ -1,4 +1,4 @@
-import { U16BE, U32BE, U48BE } from "@thi.ng/hex";
+import { uuid as $uuid } from "@thi.ng/hex";
 import type { IRandom } from "./api";
 import { randomBytes, randomBytesFrom } from "./random-bytes";
 
@@ -25,8 +25,5 @@ export const uuidv4Bytes = (buf?: Uint8Array, rnd?: IRandom) => {
  * @param id - byte array
  * @param i - start index
  */
-export const uuid = (id?: ArrayLike<number>, i = 0) => {
-    id = id || uuidv4Bytes();
-    // prettier-ignore
-    return `${U32BE(id, i)}-${U16BE(id, i + 4)}-${U16BE(id, i + 6)}-${U16BE(id, i + 8)}-${U48BE(id, i + 10)}`;
-};
+export const uuid = (id?: ArrayLike<number>, i = 0) =>
+    $uuid(id || uuidv4Bytes(), i);
