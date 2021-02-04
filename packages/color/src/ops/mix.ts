@@ -1,7 +1,8 @@
 import type { FnN3, FnU4 } from "@thi.ng/api";
+import { DEFAULT, defmulti } from "@thi.ng/defmulti";
+import { fract, mix as $mix } from "@thi.ng/math";
 import { mixN4, setC4 } from "@thi.ng/vectors";
-import type { ColorMixFn } from "../api";
-import { ensureHue } from "../internal/ensure-hue";
+import type { Color, ColorMixFn, TypedColor } from "../api";
 
 /**
  * HOF color mix function. Takes 4 scalar mix fns (one per color channel) and
@@ -27,10 +28,61 @@ export const defMix: FnU4<FnN3, ColorMixFn> = (x, y, z, alpha) => (
     );
 
 /**
+ * Single channel interpolation for (normalized) hues. Always interpolates via
+ * smallest angle difference, i.e. such that the effective `abs(a-b) <= 0.5`.
+ *
+ * @param a - start hue in [0,1) interval
+ * @param b - end hue in [0,1) interval
+ * @param t - interpolation factor
+ */
+export const mixH: FnN3 = (a, b, t) => {
+    a = fract(a);
+    b = fract(b);
+    const delta = b - a;
+    return fract(
+        a +
+            (Math.abs(delta) > 0.5
+                ? delta < 0
+                    ? delta + 1
+                    : -(1 - delta)
+                : delta) *
+                t
+    );
+};
+
+/**
+ * Single channel linear interpolation function.
+ *
+ * @param a
+ * @param b
+ * @param t
+ */
+export const mixN = $mix;
+
+export const mixHNNN = defMix(mixH, mixN, mixN, mixN);
+
+export const mixNNHN = defMix(mixN, mixN, mixH, mixN);
+
+/**
  * Channelwise linear interpolation between colors `a` and `b` using `t` [0..1]
  * as blend factor.
  *
+ * @param out -
+ * @param a -
+ * @param b -
+ * @param t -
+ */
+export const mixNNNN: ColorMixFn = mixN4;
+
+/**
+ * Channelwise and {@link ColorMode}-aware interpolation between colors `a` and
+ * `b` using `t` [0..1] as blend factor. `a` and `b` need to be of same color
+ * type.
+ *
  * @remarks
+ * Any hue channel will always be interpolated using the smallest angle
+ * difference (using {@link mixH}).
+ *
  * The {@link @thi.ng/math#} package provides various easing functions to create
  * non-linear interpolations. For example:
  *
@@ -38,7 +90,7 @@ export const defMix: FnU4<FnN3, ColorMixFn> = (x, y, z, alpha) => (
  * ```ts
  * import { circular } from "@thi.ng/math";
  *
- * mix([], RED, GREEN, 0.5);
+ * mix([], rgb("#f00"), rgb("#0f0"), 0.5);
  * // [ 0.5, 0.5, 0, 1 ]
  *
  * mix([], RED, GREEN, circular(0.5));
@@ -50,25 +102,17 @@ export const defMix: FnU4<FnN3, ColorMixFn> = (x, y, z, alpha) => (
  * @param b -
  * @param t -
  */
-export const mix: ColorMixFn = mixN4;
+export const mix = defmulti(
+    (_: Color | null, a: TypedColor<any>, __: TypedColor<any>, ___: number) =>
+        a.mode
+);
 
-export const mixHue: FnN3 = (a, b, t) => {
-    a = ensureHue(a);
-    b = ensureHue(b);
-    const delta = b - a;
-    return ensureHue(
-        a +
-            (Math.abs(delta) > 0.5
-                ? delta < 0
-                    ? delta + 1
-                    : -(1 - delta)
-                : delta) *
-                t
-    );
-};
+mix.add(DEFAULT, mixN4);
 
-export const mixScalar: FnN3 = (a, b, t) => a + (b - a) * t;
-
-export const mixHsl = defMix(mixHue, mixScalar, mixScalar, mixScalar);
-
-export const mixLch = defMix(mixScalar, mixScalar, mixHue, mixScalar);
+mix.addAll({
+    hcy: mixHNNN,
+    hsi: mixHNNN,
+    hsl: mixHNNN,
+    hsv: mixHNNN,
+    lch: mixNNHN,
+});
