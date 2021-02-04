@@ -1,23 +1,24 @@
 import { dot3 } from "@thi.ng/vectors";
 import type { ReadonlyColor } from "../api";
-import { LINEAR_RGB_LUMINANCE, RGB_LUMINANCE } from "../api/constants";
+import { RGB_LUMINANCE_REC709, RGB_LUMINANCE_REC601 } from "../api/constants";
 
 /**
  * Computes RGB luminance, optionally using provided weights (by default:
- * {@link LINEAR_RGB_LUMINANCE}).
+ * {@link RGB_LUMINANCE_REC709}).
  *
  * @param rgb
  * @param weights
  */
 export const luminanceRgb = (
     rgb: ReadonlyColor,
-    weights = LINEAR_RGB_LUMINANCE
+    weights = RGB_LUMINANCE_REC709
 ) => dot3(rgb, weights);
 
 /**
- * Similar to {@link luminanceRgb}, but uses {@link RGB_LUMINANCE} coeffs
+ * Similar to {@link luminanceRgb}, but uses {@link RGB_LUMINANCE_REC601} coeffs
  */
-export const luminanceSrgb = (rgb: ReadonlyColor) => dot3(rgb, RGB_LUMINANCE);
+export const luminanceSrgb = (rgb: ReadonlyColor) =>
+    dot3(rgb, RGB_LUMINANCE_REC601);
 
 export const luminanceIntArgb32 = (rgb: number) =>
     (((rgb >>> 16) & 0xff) * 76 +

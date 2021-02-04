@@ -14,19 +14,37 @@ export const MAGENTA = Object.freeze([1, 0, 1, 1]);
 export const YELLOW = Object.freeze([1, 1, 0, 1]);
 
 /**
- * Linear RGB luminance coeffs
+ * ITU-R BT.601 RGB luminance coeffs
+ *
+ * @remarks
+ * Reference:
+ * https://en.wikipedia.org/wiki/YCbCr#ITU-R_BT.601_conversion
  */
-export const LINEAR_RGB_LUMINANCE = [0.2126, 0.7152, 0.0722];
+export const RGB_LUMINANCE_REC601 = [0.299, 0.587, 0.114];
 
 /**
- * RGB luminance coeffs
+ * ITU-R BT.709 RGB luminance coeffs
+ *
+ * @remarks
+ * Reference:
+ * https://en.wikipedia.org/wiki/YCbCr#ITU-R_BT.709_conversion
  */
-export const RGB_LUMINANCE = [0.299, 0.587, 0.114];
+export const RGB_LUMINANCE_REC709 = [0.2126, 0.7152, 0.0722];
+
+/**
+ * ITU-R BT.2020 RGB luminance coeffs
+ *
+ * @remarks
+ * Reference:
+ * https://en.wikipedia.org/wiki/YCbCr#ITU-R_BT.2020_conversion
+ */
+export const RGB_LUMINANCE_REC2020 = [0.2627, 0.678, 0.0593];
 
 /**
  * sRGB to XYZ D65 conversion matrix
  *
- * @reference
+ * @remarks
+ * Reference:
  * http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
  */
 export const RGB_XYZ_D50 = [
@@ -44,7 +62,8 @@ export const RGB_XYZ_D50 = [
 /**
  * XYZ D50 to sRGB conversion matrix
  *
- * @reference
+ * @remarks
+ * Reference:
  * http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
  */
 export const XYZ_RGB_D50 = [
@@ -62,7 +81,8 @@ export const XYZ_RGB_D50 = [
 /**
  * sRGB to XYZ D65 conversion matrix
  *
- * @reference
+ * @remarks
+ * Reference:
  * http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
  */
 export const RGB_XYZ_D65 = [
@@ -80,7 +100,8 @@ export const RGB_XYZ_D65 = [
 /**
  * XYZ D65 to sRGB conversion matrix
  *
- * @reference
+ * @remarks
+ * Reference:
  * http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
  */
 export const XYZ_RGB_D65 = [
@@ -98,6 +119,8 @@ export const XYZ_RGB_D65 = [
 /**
  * D50 -> D65 chromatic adaptation matrix. Inverse of {@link BRADFORD_D65_D50}.
  *
+ * @remarks
+ * Reference:
  * http://www.brucelindbloom.com/index.html?Eqn_ChromAdapt.html
  */
 export const BRADFORD_D50_D65 = [
@@ -115,6 +138,8 @@ export const BRADFORD_D50_D65 = [
 /**
  * D65 -> D50 chromatic adaptation matrix. Inverse of {@link BRADFORD_D50_D65}.
  *
+ * @remarks
+ * Reference:
  * http://www.brucelindbloom.com/index.html?Eqn_ChromAdapt.html
  */
 export const BRADFORD_D65_D50 = [

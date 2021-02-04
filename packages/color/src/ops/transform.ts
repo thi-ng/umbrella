@@ -1,6 +1,6 @@
 import { mix } from "@thi.ng/math";
 import type { ColorMatrix, ReadonlyColor } from "../api";
-import { LINEAR_RGB_LUMINANCE, WHITE } from "../api/constants";
+import { RGB_LUMINANCE_REC709, WHITE } from "../api/constants";
 import { mulM45, mulV45 } from "../internal/matrix-ops";
 
 // https://drafts.fxtf.org/filter-effects/#feColorMatrixElement
@@ -152,13 +152,13 @@ export const tint = (x: number): ColorMatrix => [
  * (optionally with custom coefficients). Does NOT modify alpha channel.
  *
  * @remarks
- * See {@link LINEAR_RGB_LUMINANCE} for default coefficients
+ * See {@link RGB_LUMINANCE_REC709} for default coefficients
  *
  * @param coeffs - luminance coefficients
  * @param offset - brightness offset
  */
 // prettier-ignore
-export const grayscale = ([r, g, b] = LINEAR_RGB_LUMINANCE, offset = 0): ColorMatrix => [
+export const grayscale = ([r, g, b] = RGB_LUMINANCE_REC709, offset = 0): ColorMatrix => [
     r, g, b, 0, offset,
     r, g, b, 0, offset,
     r, g, b, 0, offset,
@@ -171,12 +171,12 @@ export const grayscale = ([r, g, b] = LINEAR_RGB_LUMINANCE, offset = 0): ColorMa
  * and clears RGB channels (all set to zero).
  *
  * @remarks
- * See {@link LINEAR_RGB_LUMINANCE} for default coefficients
+ * See {@link RGB_LUMINANCE_REC709} for default coefficients
  *
  * @param coeffs - luminance coefficients
  */
 // prettier-ignore
-export const luminanceAlpha = ([r, g, b] = LINEAR_RGB_LUMINANCE): ColorMatrix => [
+export const luminanceAlpha = ([r, g, b] = RGB_LUMINANCE_REC709): ColorMatrix => [
     0, 0, 0, 0, 0,
     0, 0, 0, 0, 0,
     0, 0, 0, 0, 0,

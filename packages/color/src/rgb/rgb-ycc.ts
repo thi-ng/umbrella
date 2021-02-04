@@ -1,6 +1,6 @@
 import { dot3, setC4 } from "@thi.ng/vectors";
 import type { Color, ReadonlyColor } from "../api";
-import { LINEAR_RGB_LUMINANCE } from "../api/constants";
+import { RGB_LUMINANCE_REC709 } from "../api/constants";
 import { ensureAlpha } from "../internal/ensure-alpha";
 
 /**
@@ -8,7 +8,7 @@ import { ensureAlpha } from "../internal/ensure-alpha";
  * https://en.wikipedia.org/wiki/YCbCr#YCbCr
  *
  * By default uses luminance weights as per BT.709 (aka
- * {@link LINEAR_RGB_LUMINANCE}):
+ * {@link RGB_LUMINANCE_REC709}):
  *
  * - https://en.wikipedia.org/wiki/YCbCr#ITU-R_BT.709_conversion
  * - https://en.wikipedia.org/wiki/Rec._709
@@ -20,7 +20,7 @@ import { ensureAlpha } from "../internal/ensure-alpha";
 export const rgbYcc = (
     out: Color | null,
     src: ReadonlyColor,
-    luma = LINEAR_RGB_LUMINANCE
+    luma = RGB_LUMINANCE_REC709
 ) => {
     const y = dot3(src, luma);
     return setC4(
@@ -30,5 +30,4 @@ export const rgbYcc = (
         (0.5 * (src[0] - y)) / (1 - luma[0]),
         ensureAlpha(src[3])
     );
-    // return setC3(out||src, y, (src[2] - y) * 0.565, (src[0] - y) * 0.713);
 };
