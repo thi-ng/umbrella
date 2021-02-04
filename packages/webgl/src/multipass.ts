@@ -19,103 +19,25 @@ import { defTexture } from "./texture";
 
 export const defMultiPass = (opts: MultipassOpts) => {
     const gl = opts.gl;
-    const isGL2 = isGL2Context(gl);
     const numPasses = opts.passes.length;
     assert(numPasses > 0, "require at least one shader pass");
 
-    const initShader = (pass: PassOpts) => {
-        const numIns = pass.inputs.length;
-        const numOuts = pass.outputs.length;
-        const ext: ExtensionBehaviors = {};
-        const spec: ShaderSpec = {
-            vs: pass.vs || PASSTHROUGH_VS,
-            fs: pass.fs,
-            attribs: pass.attribs || {
-                position: "vec2",
-            },
-            varying: pass.varying,
-            uniforms: <ShaderUniformSpecs>{
-                ...pass.uniforms,
-                ...(numIns
-                    ? {
-                          inputs: ["sampler2D[]", numIns, [...range(numIns)]],
-                      }
-                    : null),
-            },
-            outputs: numOuts
-                ? transduce(
-                      map<number, [string, ShaderOutputSpec]>((i) => [
-                          `output${i}`,
-                          ["vec4", i],
-                      ]),
-                      assocObj(),
-                      range(numOuts)
-                  )
-                : undefined,
-            state: pass.state,
-            pre: pass.pre,
-            post: pass.post,
-            replacePrelude: pass.replacePrelude,
-            generateDecls: pass.generateDecls,
-            ext,
-        };
-        const floatIn = some((id) => isFloatTexture(textures[id]), pass.inputs);
-        const floatOut = some(
-            (id) => isFloatTexture(textures[id]),
-            pass.outputs
-        );
-        if (!isGL2) {
-            floatIn && (ext.OES_texture_float = "require");
-            numOuts > 1 && (ext.WEBGL_draw_buffers = "require");
-        }
-        if (floatOut) {
-            ext[isGL2 ? "EXT_color_buffer_float" : "WEBGL_color_buffer_float"] =
-                "require";
-        }
-        return defShader(gl, spec);
-    };
-
-    const textures = Object.keys(opts.textures).reduce((acc, id) => {
-        acc[id] = defTexture(gl, {
-            width: opts.width,
-            height: opts.height,
-            filter: gl.NEAREST,
-            wrap: gl.CLAMP_TO_EDGE,
-            image: null,
-            ...opts.textures[id],
-        });
-        return acc;
-    }, <IObjectOf<ITexture>>{});
-
-    const model = compileModel(gl, defQuadModel({ uv: false }));
-    const models = opts.passes.map((pass) => {
-        const m = pass.model ? compileModel(gl, <any>pass.model) : { ...model };
-        m.shader = initShader(pass);
-        m.uniforms = { ...pass.uniformVals };
-        pass.inputs.length > 0 &&
-            (m.textures = pass.inputs.map((id) => textures[id]));
-        return m;
-    });
-
     const useMainBuffer = !opts.passes[numPasses - 1].outputs.length;
-    const fbos = (useMainBuffer
-        ? opts.passes.slice(0, numPasses - 1)
-        : opts.passes
-    ).map((pass) =>
-        defFBO(gl, { tex: pass.outputs.map((id) => textures[id]) })
-    );
+    const textures = initTextures(opts);
+    const passes = initPasses(opts, textures);
+    const fbos = initBuffers(opts, textures, useMainBuffer);
 
     const drawPass = (i: number, time: number) => {
-        const pass = opts.passes[i];
-        const model = models[i];
-        const shader = model.shader;
-        const size = pass.outputs.length
-            ? textures[pass.outputs[0]].size
+        const spec = opts.passes[i];
+        const pass = passes[i];
+        const shader = pass.shader;
+        const size = spec.outputs.length
+            ? textures[spec.outputs[0]].size
             : [gl.drawingBufferWidth, gl.drawingBufferHeight];
-        shader.uniforms.resolution && (model.uniforms!.resolution = size);
-        shader.uniforms.time && (model.uniforms!.time = time);
+        shader.uniforms.resolution && (pass.uniforms!.resolution = size);
+        shader.uniforms.time && (pass.uniforms!.time = time);
         gl.viewport(0, 0, size[0], size[1]);
-        draw(model);
+        draw(pass);
     };
 
     const update = (time: number) => {
@@ -153,9 +75,101 @@ export const defMultiPass = (opts: MultipassOpts) => {
         },
         passes: opts.passes,
         fbos,
-        models,
+        models: passes,
         textures,
     };
 
     return instance;
 };
+
+const initPasses = (opts: MultipassOpts, textures: IObjectOf<ITexture>) => {
+    const gl = opts.gl;
+    const model = compileModel(gl, defQuadModel({ uv: false }));
+    return opts.passes.map((pass) => {
+        const m = pass.model ? compileModel(gl, <any>pass.model) : { ...model };
+        m.shader = initShader(gl, pass, textures);
+        m.uniforms = { ...pass.uniformVals };
+        pass.inputs.length > 0 &&
+            (m.textures = pass.inputs.map((id) => textures[id]));
+        return m;
+    });
+};
+
+const initShader = (
+    gl: WebGLRenderingContext,
+    pass: PassOpts,
+    textures: IObjectOf<ITexture>
+) => {
+    const isGL2 = isGL2Context(gl);
+    const numIns = pass.inputs.length;
+    const numOuts = pass.outputs.length;
+    const ext: ExtensionBehaviors = {};
+    const spec: ShaderSpec = {
+        vs: pass.vs || PASSTHROUGH_VS,
+        fs: pass.fs,
+        attribs: pass.attribs || {
+            position: "vec2",
+        },
+        varying: pass.varying,
+        uniforms: <ShaderUniformSpecs>{
+            ...pass.uniforms,
+            ...(numIns
+                ? {
+                      inputs: ["sampler2D[]", numIns, [...range(numIns)]],
+                  }
+                : null),
+        },
+        outputs: numOuts
+            ? transduce(
+                  map<number, [string, ShaderOutputSpec]>((i) => [
+                      `output${i}`,
+                      ["vec4", i],
+                  ]),
+                  assocObj(),
+                  range(numOuts)
+              )
+            : undefined,
+        state: pass.state,
+        pre: pass.pre,
+        post: pass.post,
+        replacePrelude: pass.replacePrelude,
+        generateDecls: pass.generateDecls,
+        ext,
+    };
+    const floatIn = some((id) => isFloatTexture(textures[id]), pass.inputs);
+    const floatOut = some((id) => isFloatTexture(textures[id]), pass.outputs);
+    if (!isGL2) {
+        floatIn && (ext.OES_texture_float = "require");
+        numOuts > 1 && (ext.WEBGL_draw_buffers = "require");
+    }
+    if (floatOut) {
+        ext[isGL2 ? "EXT_color_buffer_float" : "WEBGL_color_buffer_float"] =
+            "require";
+    }
+    return defShader(gl, spec);
+};
+
+const initTextures = (opts: MultipassOpts) =>
+    Object.keys(opts.textures).reduce((acc, id) => {
+        acc[id] = defTexture(opts.gl, {
+            width: opts.width,
+            height: opts.height,
+            filter: opts.gl.NEAREST,
+            wrap: opts.gl.CLAMP_TO_EDGE,
+            image: null,
+            ...opts.textures[id],
+        });
+        return acc;
+    }, <IObjectOf<ITexture>>{});
+
+const initBuffers = (
+    opts: MultipassOpts,
+    textures: IObjectOf<ITexture>,
+    useMainBuffer: boolean
+) =>
+    (useMainBuffer
+        ? opts.passes.slice(0, opts.passes.length - 1)
+        : opts.passes
+    ).map((pass) =>
+        defFBO(opts.gl, { tex: pass.outputs.map((id) => textures[id]) })
+    );
