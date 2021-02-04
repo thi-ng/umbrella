@@ -13,18 +13,18 @@ import type {
     UIEventID,
 } from "./api";
 
-const startEvents = new Set([
+const START_EVENTS = new Set([
     "mousedown",
     "touchmove",
     "touchstart",
     "mousemove",
 ]);
 
-const endEvents = new Set(["mouseup", "touchend", "touchcancel"]);
+const END_EVENTS = new Set(["mouseup", "touchend", "touchcancel"]);
 
-const baseEvents = <const>["mousemove", "mousedown", "touchstart", "wheel"];
+const BASE_EVENTS = <const>["mousemove", "mousedown", "touchstart", "wheel"];
 
-const eventGestureTypeMap: IObjectOf<GestureType> = {
+const EVENT_GESTURETYPES: IObjectOf<GestureType> = {
     touchstart: "start",
     touchmove: "drag",
     touchend: "end",
@@ -99,95 +99,92 @@ export const gestureStream = (
     opts.preventContextMenu &&
         el.addEventListener("contextmenu", (e) => e.preventDefault());
 
+    const gestureStart = (
+        etype: string,
+        events: Array<Touch | MouseEvent | WheelEvent>,
+        bounds: DOMRect,
+        isTouch: boolean
+    ) => {
+        const isStart = etype === "mousedown" || etype === "touchstart";
+        for (let t of events) {
+            const id = (<Touch>t).identifier || 0;
+            const pos = getPos(t, bounds, opts.local, opts.scale);
+            let touch = active.find((t) => t.id === id);
+            if (!touch && isStart) {
+                touch = <GestureInfo>{ id, start: pos };
+                active.push(touch);
+                numTouches++;
+            }
+            if (touch) {
+                touch.pos = pos;
+                touch.delta = [
+                    pos[0] - touch.start![0],
+                    pos[1] - touch.start![1],
+                ];
+                if (isTouch) {
+                    touch.force = (<Touch>t).force;
+                }
+            }
+        }
+        if (isStart && !tempStreams) {
+            tempStreams = tempEvents.map((id) =>
+                eventSource(document.body, id, opts, "-temp")
+            );
+            stream.addAll(tempStreams);
+            !isBody && stream.removeID("mousemove");
+        }
+    };
+
+    const gestureEnd = (events: Array<Touch | MouseEvent | WheelEvent>) => {
+        for (let t of events) {
+            const id = (<Touch>t).identifier || 0;
+            const idx = active.findIndex((t) => t.id === id);
+            if (idx !== -1) {
+                active.splice(idx, 1);
+                numTouches--;
+            }
+        }
+        if (numTouches === 0) {
+            stream.removeAll(tempStreams!);
+            !isBody && stream.add(eventSource(el, "mousemove", opts));
+            tempStreams = undefined;
+        }
+    };
+
+    const updateZoom = (e: UIEvent) => {
+        const zdelta =
+            opts.smooth *
+            ("wheelDeltaY" in <any>e
+                ? -(<any>e).wheelDeltaY / 120
+                : (<WheelEvent>e).deltaY / 40);
+        zoom = opts.absZoom
+            ? clamp(zoom + zdelta, opts.minZoom, opts.maxZoom)
+            : zdelta;
+        zoomDelta = zdelta;
+    };
+
     const stream = merge<UIEvent, GestureEvent>({
-        src: baseEvents.map((id) => eventSource(el, id, opts)),
+        src: BASE_EVENTS.map((id) => eventSource(el, id, opts)),
         xform: map((e) => {
             opts.preventDefault && e.preventDefault();
             const etype = e.type;
-            const type =
-                etype === "mousemove"
-                    ? tempStreams
-                        ? "drag"
-                        : "move"
-                    : eventGestureTypeMap[etype];
+            const type = classifyEventType(etype, !!tempStreams);
             let isTouch = !!(<TouchEvent>e).touches;
             let events: Array<Touch | MouseEvent | WheelEvent> = isTouch
                 ? Array.from((<TouchEvent>e).changedTouches)
                 : [<MouseEvent | WheelEvent>e];
-            const b = el.getBoundingClientRect();
+            const bounds = el.getBoundingClientRect();
 
-            const getPos = (e: Touch | MouseEvent | WheelEvent) => {
-                let x = e.clientX;
-                let y = e.clientY;
-                if (opts.local) {
-                    x -= b.left;
-                    y -= b.top;
-                }
-                if (opts.scale) {
-                    const dpr = window.devicePixelRatio || 1;
-                    x *= dpr;
-                    y *= dpr;
-                }
-                return [x | 0, y | 0];
-            };
-
-            if (startEvents.has(etype)) {
-                const isStart = etype === "mousedown" || etype === "touchstart";
-                for (let t of events) {
-                    const id = (<Touch>t).identifier || 0;
-                    const pos = getPos(t);
-                    let touch = active.find((t) => t.id === id);
-                    if (!touch && isStart) {
-                        touch = <GestureInfo>{ id, start: pos };
-                        active.push(touch);
-                        numTouches++;
-                    }
-                    if (touch) {
-                        touch.pos = pos;
-                        touch.delta = [
-                            pos[0] - touch.start![0],
-                            pos[1] - touch.start![1],
-                        ];
-                        if (isTouch) {
-                            touch.force = (<Touch>t).force;
-                        }
-                    }
-                }
-                if (isStart && !tempStreams) {
-                    tempStreams = tempEvents.map((id) =>
-                        eventSource(document.body, id, opts, "-temp")
-                    );
-                    stream.addAll(tempStreams);
-                    !isBody && stream.removeID("mousemove");
-                }
-            } else if (endEvents.has(etype)) {
-                for (let t of events) {
-                    const id = (<Touch>t).identifier || 0;
-                    const idx = active.findIndex((t) => t.id === id);
-                    if (idx !== -1) {
-                        active.splice(idx, 1);
-                        numTouches--;
-                    }
-                }
-                if (numTouches === 0) {
-                    stream.removeAll(tempStreams!);
-                    !isBody && stream.add(eventSource(el, "mousemove", opts));
-                    tempStreams = undefined;
-                }
+            if (START_EVENTS.has(etype)) {
+                gestureStart(etype, events, bounds, isTouch);
+            } else if (END_EVENTS.has(etype)) {
+                gestureEnd(events);
             } else if (type === "zoom") {
-                const zdelta =
-                    opts.smooth *
-                    ("wheelDeltaY" in (e as any)
-                        ? -(e as any).wheelDeltaY / 120
-                        : (<WheelEvent>e).deltaY / 40);
-                zoom = opts.absZoom
-                    ? clamp(zoom + zdelta, opts.minZoom, opts.maxZoom)
-                    : zdelta;
-                zoomDelta = zdelta;
+                updateZoom(e);
             }
             return {
                 event: e,
-                pos: getPos(events[0]),
+                pos: getPos(events[0], bounds, opts.local, opts.scale),
                 buttons: isTouch ? active.length : (<MouseEvent>e).buttons,
                 type,
                 active,
@@ -214,4 +211,31 @@ const eventSource = (
             : { ...eventOpts, passive: false };
     }
     return fromDOMEvent(el, type, eventOpts, { id: type + suffix });
+};
+
+const classifyEventType = (etype: string, isActive: boolean) =>
+    etype === "mousemove"
+        ? isActive
+            ? "drag"
+            : "move"
+        : EVENT_GESTURETYPES[etype];
+
+const getPos = (
+    e: Touch | MouseEvent | WheelEvent,
+    bounds: DOMRect,
+    isLocal: boolean,
+    doScale: boolean
+) => {
+    let x = e.clientX;
+    let y = e.clientY;
+    if (isLocal) {
+        x -= bounds.left;
+        y -= bounds.top;
+    }
+    if (doScale) {
+        const dpr = window.devicePixelRatio || 1;
+        x *= dpr;
+        y *= dpr;
+    }
+    return [x | 0, y | 0];
 };
