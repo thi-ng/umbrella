@@ -14,6 +14,7 @@ import {
     Sym,
     sym,
     SymOpts,
+    Type,
     uniform,
 } from "@thi.ng/shader-ast";
 import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
@@ -274,13 +275,8 @@ const initShaderExtensions = (
     }
 };
 
-export const shaderSourceFromAST = (
-    spec: ShaderSpec,
-    type: ShaderType,
-    version: GLSLVersion
-) => {
-    let prelude = "";
-    prelude += spec.pre
+const compilePrelude = (spec: ShaderSpec, version: GLSLVersion) => {
+    let prelude = spec.pre
         ? spec.replacePrelude
             ? spec.pre
             : spec.pre + "\n" + GLSL_HEADER
@@ -294,6 +290,34 @@ export const shaderSourceFromAST = (
             );
         }
     }
+    return prelude;
+};
+
+const varyingOpts = (v: ShaderVaryingSpec): [GLSL, SymOpts] => {
+    const [vtype, opts]: [GLSL, SymOpts] = isArray(v)
+        ? [v[0], { num: v[1] }]
+        : [v, {}];
+    /(u?int|[ui]vec[234])/.test(vtype) && (opts.smooth = "flat");
+    return [vtype, opts];
+};
+
+const compileVarying = (
+    spec: ShaderSpec,
+    decl: (type: Type, id: string, opts?: SymOpts) => Sym<Type>,
+    acc: any
+) => {
+    for (let id in spec.varying) {
+        const [vtype, opts] = varyingOpts(spec.varying[id]);
+        acc[id] = decl(vtype, id, opts);
+    }
+};
+
+export const shaderSourceFromAST = (
+    spec: ShaderSpec,
+    type: ShaderType,
+    version: GLSLVersion
+) => {
+    let prelude = compilePrelude(spec, version);
     const inputs: IObjectOf<Sym<any>> = {};
     const outputs: IObjectOf<Sym<any>> = {};
     const outputAliases: IObjectOf<Sym<any>> = {};
@@ -302,9 +326,11 @@ export const shaderSourceFromAST = (
         for (let id in spec.uniforms) {
             const u = spec.uniforms[id];
             unis[id] = isArray(u)
-                ? u[0].indexOf("[]") > 0
-                    ? uniform(u[0], id, { num: <number>u[1] })
-                    : uniform(u[0], id)
+                ? uniform(
+                      u[0],
+                      id,
+                      u[0].indexOf("[]") > 0 ? { num: <number>u[1] } : undefined
+                  )
                 : uniform(u, id);
         }
     }
@@ -315,19 +341,9 @@ export const shaderSourceFromAST = (
                 ? input(a[0], id, { loc: a[1] })
                 : input(a, id);
         }
-        if (spec.varying) {
-            for (let id in spec.varying) {
-                const [vtype, opts] = varyingOpts(spec.varying[id]);
-                outputs[id] = output(vtype, id, opts);
-            }
-        }
+        spec.varying && compileVarying(spec, output, outputs);
     } else {
-        if (spec.varying) {
-            for (let id in spec.varying) {
-                const [vtype, opts] = varyingOpts(spec.varying[id]);
-                inputs[id] = input(vtype, id, opts);
-            }
-        }
+        spec.varying && compileVarying(spec, input, inputs);
         const outs = spec.outputs || DEFAULT_OUTPUT;
         if (version >= GLSLVersion.GLES_300) {
             for (let id in outs) {
@@ -368,14 +384,6 @@ export const shaderSourceFromAST = (
     );
 };
 
-const varyingOpts = (v: ShaderVaryingSpec): [GLSL, SymOpts] => {
-    const [vtype, opts]: [GLSL, SymOpts] = isArray(v)
-        ? [v[0], { num: v[1] }]
-        : [v, {}];
-    /(u?int|[ui]vec[234])/.test(vtype) && (opts.smooth = "flat");
-    return [vtype, opts];
-};
-
 export const prepareShaderSource = (
     spec: ShaderSpec,
     type: ShaderType,
@@ -386,20 +394,7 @@ export const prepareShaderSource = (
     const isVS = type === "vs";
     let src = "";
     src += `#version ${version}\n`;
-    src += spec.pre
-        ? spec.replacePrelude
-            ? spec.pre
-            : spec.pre + "\n" + GLSL_HEADER
-        : GLSL_HEADER;
-    if (spec.ext) {
-        for (let id in spec.ext) {
-            src += compileExtensionPragma(
-                id,
-                spec.ext[<ExtensionName>id]!,
-                version
-            );
-        }
-    }
+    src += compilePrelude(spec, version);
     if (spec.generateDecls !== false) {
         src += isVS
             ? compileVars(spec.attribs, syntax.attrib, prefixes)
