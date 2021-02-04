@@ -6,6 +6,7 @@ import {
     isString,
 } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
+import { clamp01 } from "@thi.ng/math";
 import { IRandom, SYSTEM } from "@thi.ng/random";
 import { declareIndex, eqDelta4, mapStridedBuffer } from "@thi.ng/vectors";
 import type {
@@ -37,6 +38,15 @@ export abstract class Int32 {
     get range(): [ReadonlyColor, ReadonlyColor] {
         return [[0], [0xffffffff]];
     }
+
+    get alpha() {
+        return (this[0] >>> 24) / 255;
+    }
+
+    set alpha(a: number) {
+        this[0] = (this[0] & 0xffffff) | ((clamp01(a) * 0xff + 0.5) << 24);
+    }
+
     *[Symbol.iterator]() {
         yield this[0];
     }
@@ -155,11 +165,16 @@ const defInt = <T extends Int32>(
     factory.range = <[ReadonlyColor, ReadonlyColor]>[[0], [0xffffffff]];
 
     factory.random = (
-        rnd?: IRandom,
+        rnd: IRandom = SYSTEM,
         buf?: NumericArray,
         idx?: number,
         stride?: number
-    ) => <any>new ctor(buf, idx, stride).randomize(rnd);
+    ) =>
+        <any>(
+            new ctor(buf, idx, stride).set([
+                (rnd.int() & 0xffffff) | 0xff000000,
+            ])
+        );
 
     factory.mapBuffer = (
         buf: NumericArray,

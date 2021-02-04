@@ -8,7 +8,7 @@ export const intArgb32Srgb = (out: Color | null, src: number) =>
         ((src >>> 16) & 0xff) * INV8BIT,
         ((src >>> 8) & 0xff) * INV8BIT,
         (src & 0xff) * INV8BIT,
-        ((src >>> 24) & 0xff) * INV8BIT
+        (src >>> 24) * INV8BIT
     );
 
 export const intAbgr32Srgb = (out: Color | null, src: number) =>
@@ -17,7 +17,7 @@ export const intAbgr32Srgb = (out: Color | null, src: number) =>
         (src & 0xff) * INV8BIT,
         ((src >>> 8) & 0xff) * INV8BIT,
         ((src >>> 16) & 0xff) * INV8BIT,
-        ((src >>> 24) & 0xff) * INV8BIT
+        (src >>> 24) * INV8BIT
     );
 
 export const intRgb24Srgb = (out: Color | null, src: number) =>
