@@ -33,8 +33,10 @@ import {
     GLSLDeclPrefixes,
     IShader,
     ShaderAttrib,
+    ShaderAttribSpec,
     ShaderAttribSpecs,
     ShaderFn,
+    ShaderOutputSpec,
     ShaderSpec,
     ShaderState,
     ShaderType,
@@ -293,6 +295,19 @@ const compilePrelude = (spec: ShaderSpec, version: GLSLVersion) => {
     return prelude;
 };
 
+const compileIODecls = <T extends ShaderAttribSpec | ShaderOutputSpec>(
+    decl: (type: Type, id: string, opts?: SymOpts) => Sym<Type>,
+    src: IObjectOf<T>,
+    dest: IObjectOf<Sym<any>>
+) => {
+    for (let id in src) {
+        const a = src[id];
+        dest[id] = isArray(a)
+            ? decl(a[0], id, { loc: a[1] })
+            : decl(<any>a, id);
+    }
+};
+
 const varyingOpts = (v: ShaderVaryingSpec): [GLSL, SymOpts] => {
     const [vtype, opts]: [GLSL, SymOpts] = isArray(v)
         ? [v[0], { num: v[1] }]
@@ -301,14 +316,27 @@ const varyingOpts = (v: ShaderVaryingSpec): [GLSL, SymOpts] => {
     return [vtype, opts];
 };
 
-const compileVarying = (
+const compileVaryingDecls = (
     spec: ShaderSpec,
     decl: (type: Type, id: string, opts?: SymOpts) => Sym<Type>,
-    acc: any
+    acc: IObjectOf<Sym<any>>
 ) => {
     for (let id in spec.varying) {
         const [vtype, opts] = varyingOpts(spec.varying[id]);
         acc[id] = decl(vtype, id, opts);
+    }
+};
+
+const compileUniformDecls = (spec: ShaderSpec, acc: IObjectOf<Sym<any>>) => {
+    for (let id in spec.uniforms) {
+        const u = spec.uniforms[id];
+        acc[id] = isArray(u)
+            ? uniform(
+                  u[0],
+                  id,
+                  u[0].indexOf("[]") > 0 ? { num: <number>u[1] } : undefined
+              )
+            : uniform(u, id);
     }
 };
 
@@ -322,36 +350,15 @@ export const shaderSourceFromAST = (
     const outputs: IObjectOf<Sym<any>> = {};
     const outputAliases: IObjectOf<Sym<any>> = {};
     const unis: IObjectOf<Sym<any>> = {};
-    if (spec.uniforms) {
-        for (let id in spec.uniforms) {
-            const u = spec.uniforms[id];
-            unis[id] = isArray(u)
-                ? uniform(
-                      u[0],
-                      id,
-                      u[0].indexOf("[]") > 0 ? { num: <number>u[1] } : undefined
-                  )
-                : uniform(u, id);
-        }
-    }
+    spec.uniforms && compileUniformDecls(spec, unis);
     if (type === "vs") {
-        for (let id in spec.attribs) {
-            const a = spec.attribs[id];
-            inputs[id] = isArray(a)
-                ? input(a[0], id, { loc: a[1] })
-                : input(a, id);
-        }
-        spec.varying && compileVarying(spec, output, outputs);
+        compileIODecls(input, spec.attribs, inputs);
+        spec.varying && compileVaryingDecls(spec, output, outputs);
     } else {
-        spec.varying && compileVarying(spec, input, inputs);
+        spec.varying && compileVaryingDecls(spec, input, inputs);
         const outs = spec.outputs || DEFAULT_OUTPUT;
         if (version >= GLSLVersion.GLES_300) {
-            for (let id in outs) {
-                const o = outs[id];
-                outputs[id] = isArray(o)
-                    ? output(o[0], id, { loc: o[1] })
-                    : output(o, id);
-            }
+            compileIODecls(output, outs, outputs);
         } else {
             for (let id in outs) {
                 const o = outs[id];
