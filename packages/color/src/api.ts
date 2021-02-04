@@ -184,3 +184,10 @@ export class ParsedColor implements IParsedColor {
 export type ColorMatrix = Tuple<number, 20>;
 
 export type ColorDistance = FnU2<ReadonlyColor, number>;
+
+export type ColorMixFn = (
+    out: Color | null,
+    a: ReadonlyColor,
+    b: ReadonlyColor,
+    t: number
+) => Color;

@@ -1,4 +1,4 @@
-import type { FnU, FnU2 } from "@thi.ng/api";
+import type { FnU, FnU2, NumericArray } from "@thi.ng/api";
 import { partial } from "@thi.ng/compose";
 import { clamp01, TAU } from "@thi.ng/math";
 import {
@@ -11,6 +11,7 @@ import {
     tween,
     zip,
 } from "@thi.ng/transducers";
+import { setS4 } from "@thi.ng/vectors";
 import type { Color, ReadonlyColor } from "../api";
 import type {
     CosineCoeffs,
@@ -204,6 +205,36 @@ export const cosineGradient = (
         push<Color>(),
         normRange(n - 1)
     );
+
+/**
+ * Similar to {@link cosineGradient}, but writes results into `buffer` from
+ * given `offset` and component/element strides. Returns buffer.
+ *
+ * @remarks
+ * Intended use case for this function: 1D texturemap/tonemap generation, e.g.
+ * for dataviz etc. Also @see {@link multiColorGradientBuffer}.
+ *
+ * @param n -  number of colors
+ * @param spec - gradient spec
+ * @param buffer - target buffer/array
+ * @param offset - start index (default: 0)
+ * @param cstride - channel stride (default: 1)
+ * @param estride - element stride (default: 4)
+ */
+export const cosineGradientBuffer = (
+    n: number,
+    spec: CosGradientSpec,
+    buffer: NumericArray = [],
+    offset = 0,
+    cstride = 1,
+    estride = 4
+) => {
+    for (let t of normRange(n - 1)) {
+        setS4(buffer, cosineColor(spec, t), offset, 0, cstride);
+        offset += estride;
+    }
+    return buffer;
+};
 
 /**
  * Returns coefficients to produce a cosine gradient between the two

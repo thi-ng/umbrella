@@ -1,5 +1,5 @@
 import type { FnN, FnU, Tuple } from "@thi.ng/api";
-import type { Color, ReadonlyColor } from "../api";
+import type { Color, ColorMixFn, ReadonlyColor } from "../api";
 
 export type CosineGradientPreset =
     | "blue-cyan"
@@ -37,6 +37,7 @@ export type GradientColorStop = [number, ReadonlyColor];
 export interface GradientOpts {
     num: number;
     stops: GradientColorStop[];
+    mix?: ColorMixFn;
     easing?: FnN;
     tx?: FnU<Color>;
 }
