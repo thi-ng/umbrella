@@ -6,20 +6,26 @@ import { hslCss } from "../hsl/hsl-css";
 import { hsvCss } from "../hsv/hsv-css";
 import { intArgb32Css } from "../int/int-css";
 import { intAbgr32Argb32 } from "../int/int-int";
-import { labCss } from "../lab/lab-css";
-import { labLabD65_50 } from "../lab/lab-lab";
-import { lchCss } from "../lch/lch-css";
+import { lchLab } from "../lab/lab-lch";
+import { labRgb, labRgbD65 } from "../lab/lab-rgb";
 import { rgbCss } from "../rgb/rgb-css";
+import { rgbSrgb } from "../rgb/rgb-srgb";
 import { srgbCss } from "../srgb/srgb-css";
 
+/** @internal */
 const CSS_CONVERSIONS: Partial<Record<ColorMode, Fn<any, string>>> = {
     abgr32: (x) => intArgb32Css(intAbgr32Argb32(x[0])),
     argb32: (x) => intArgb32Css(x[0]),
     hsl: hslCss,
     hsv: hsvCss,
-    lab50: labCss,
-    lab65: (x) => labCss(labLabD65_50([], x)),
-    lch: lchCss,
+    // TODO temporarily disabled until CSS L4 is officially supported in browsers
+    // currently serializing as sRGB CSS
+    // lab50: labCss,
+    // lab65: (x) => labCss(labLabD65_50([], x)),
+    // lch: lchCss,
+    lab50: (src) => srgbCss(rgbSrgb(null, labRgb([], src))),
+    lab65: (src) => srgbCss(rgbSrgb(null, labRgbD65([], src))),
+    lch: (src) => srgbCss(rgbSrgb(null, labRgb(null, lchLab([], src)))),
     rgb: rgbCss,
     srgb: srgbCss,
 };
