@@ -1,21 +1,29 @@
-import { DEFAULT, defmulti, MultiFn1O } from "@thi.ng/defmulti";
-import type { TypedColor, ReadonlyColor } from "../api";
+import { DEFAULT, defmulti } from "@thi.ng/defmulti";
+import type { ReadonlyColor, TypedColor } from "../api";
+import { EPS } from "../api/constants";
 import { rgb } from "../rgb/rgb";
 
-const EPS = 1 / 256;
+const isBlackHsv = (x: ReadonlyColor, eps = EPS) => x[2] <= eps;
 
-export const isBlackHsv = (x: ReadonlyColor, eps = EPS) => x[2] <= eps;
-
-export const isBlackRGB = (x: ReadonlyColor, eps = EPS) =>
+const isBlackRgb = (x: ReadonlyColor, eps = EPS) =>
     x[0] <= eps && x[1] <= eps && x[2] <= eps;
 
-const isBlack: MultiFn1O<TypedColor<any>, number, boolean> = defmulti(
+const isBlackLch = (x: ReadonlyColor, eps = EPS) => x[0] <= eps;
+
+export const isBlack = defmulti<TypedColor<any>, number | undefined, boolean>(
     (x) => x.mode
 );
 
 isBlack.addAll({
+    hcy: isBlackHsv,
+    hsi: isBlackHsv,
+    hsl: isBlackHsv,
     hsv: isBlackHsv,
-    rgb: isBlackRGB,
+    labD50: isBlackLch,
+    labD65: isBlackLch,
+    lch: isBlackLch,
+    rgb: isBlackRgb,
+    ycc: isBlackRgb,
 });
 
-isBlack.add(DEFAULT, (x: any) => isBlackRGB(rgb(x)));
+isBlack.add(DEFAULT, (x: any) => isBlackRgb(rgb(x)));

@@ -206,3 +206,5 @@ export const setPrecision = (x: number) => {
 };
 
 export const INV8BIT = 1 / 0xff;
+
+export const EPS = 1 / 256;

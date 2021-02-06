@@ -4,7 +4,6 @@ import { isArray, isNumber, isString } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { fract } from "@thi.ng/math";
 import { IRandom, SYSTEM, weightedRandom } from "@thi.ng/random";
-import type { ReadonlyColor } from "../api";
 import type {
     ColorRange,
     ColorRangeOpts,
@@ -13,12 +12,12 @@ import type {
     ColorThemePartTuple,
 } from "../api/ranges";
 import { parseCss } from "../css/parse-css";
-import { HSV, hsv } from "../hsv/hsv";
 import { ensureAlpha } from "../internal/ensure-alpha";
-import { analogHsv } from "./analog";
-import { isBlackHsv } from "./is-black";
-import { isGrayHsv } from "./is-gray";
-import { isWhiteHsv } from "./is-white";
+import { LCH, lch } from "../lch/lch";
+import { analog } from "./analog";
+import { isBlack } from "./is-black";
+import { isGray } from "./is-gray";
+import { isWhite } from "./is-white";
 
 /**
  * Preset {@link ColorRange}s for use with {@link colorsFromRange},
@@ -26,64 +25,64 @@ import { isWhiteHsv } from "./is-white";
  */
 export const COLOR_RANGES: Record<ColorRangePreset, ColorRange> = {
     light: {
-        s: [[0.3, 0.7]],
-        v: [[0.9, 1]],
+        c: [[0.3, 0.7]],
+        l: [[0.9, 1]],
         b: [[0.15, 0.3]],
         w: [[0.3, 1]],
     },
     dark: {
-        s: [[0.7, 1]],
-        v: [[0.15, 0.4]],
+        c: [[0.7, 1]],
+        l: [[0.15, 0.4]],
         b: [[0, 0.5]],
         w: [[0.5, 0.75]],
     },
     bright: {
-        s: [[0.8, 1]],
-        v: [[0.8, 1]],
+        c: [[0.8, 1]],
+        l: [[0.8, 1]],
     },
     weak: {
-        s: [[0.15, 0.3]],
-        v: [[0.7, 1]],
+        c: [[0.15, 0.3]],
+        l: [[0.7, 1]],
         b: [[0.2, 0.2]],
         w: [[0.2, 1]],
     },
     neutral: {
-        s: [[0.25, 0.35]],
-        v: [[0.3, 0.7]],
+        c: [[0.25, 0.35]],
+        l: [[0.3, 0.7]],
         b: [[0.15, 0.15]],
         w: [[0.9, 1]],
     },
     fresh: {
-        s: [[0.4, 0.8]],
-        v: [[0.8, 1]],
+        c: [[0.4, 0.8]],
+        l: [[0.8, 1]],
         b: [[0.05, 0.3]],
         w: [[0.8, 1]],
     },
     soft: {
-        s: [[0.2, 0.3]],
-        v: [[0.6, 0.9]],
+        c: [[0.2, 0.3]],
+        l: [[0.6, 0.9]],
         b: [[0.05, 0.15]],
         w: [[0.6, 0.9]],
     },
     hard: {
-        s: [[0.9, 1]],
-        v: [[0.4, 1]],
+        c: [[0.9, 1]],
+        l: [[0.4, 1]],
     },
     warm: {
-        s: [[0.6, 0.9]],
-        v: [[0.4, 0.9]],
+        c: [[0.6, 0.9]],
+        l: [[0.4, 0.9]],
         b: [[0.2, 0.2]],
         w: [[0.8, 1]],
     },
     cool: {
-        s: [[0.05, 0.2]],
-        v: [[0.9, 1]],
+        c: [[0.05, 0.2]],
+        l: [[0.9, 1]],
         b: [[0, 0.95]],
         w: [[0.95, 1]],
     },
     intense: {
-        s: [[0.9, 1]],
-        v: [
+        c: [[0.9, 1]],
+        l: [
             [0.2, 0.35],
             [0.8, 1],
         ],
@@ -94,8 +93,8 @@ const FULL: Range[] = [[0, 1]];
 
 const DEFAULT_RANGE: ColorRange = {
     h: FULL,
-    s: FULL,
-    v: FULL,
+    c: FULL,
+    l: FULL,
     b: FULL,
     w: FULL,
     a: [[1, 1]],
@@ -134,28 +133,29 @@ const $rnd = (ranges: Range[], rnd: IRandom) =>
 export const colorFromRange = (
     range: ColorRange | keyof typeof COLOR_RANGES,
     opts?: Partial<Pick<ColorRangeOpts, "variance" | "eps" | "rnd">>
-): HSV => {
+): LCH => {
     range = {
         ...DEFAULT_RANGE,
         ...(isString(range) ? COLOR_RANGES[range] : range),
     };
     const { base, variance, rnd, eps } = { ...DEFAULT_OPTS, ...opts };
     let h: number;
-    let s: number | undefined;
-    let v: number | undefined;
+    let c: number | undefined;
+    let l: number | undefined;
     let a: number;
     if (base) {
-        h = base[0];
-        a = ensureAlpha(base[3]);
-        if (isBlackHsv(base, eps)) {
-            s = 0;
-            v = $rnd(range.b!, rnd);
-        } else if (isWhiteHsv(base, eps)) {
-            s = 0;
-            v = $rnd(range.w!, rnd);
-        } else if (isGrayHsv(base, eps)) {
-            s = 0;
-            v = $rnd(rnd.float() < 0.5 ? range.b! : range.w!, rnd);
+        const col = lch(base);
+        h = col[2];
+        a = ensureAlpha(col[3]);
+        if (isBlack(col, eps)) {
+            c = 0;
+            l = $rnd(range.b!, rnd);
+        } else if (isWhite(col, eps)) {
+            c = 0;
+            l = $rnd(range.w!, rnd);
+        } else if (isGray(col, eps)) {
+            c = 0;
+            l = $rnd(rnd.float() < 0.5 ? range.b! : range.w!, rnd);
         } else {
             h = fract(h + rnd.norm(variance));
         }
@@ -163,10 +163,10 @@ export const colorFromRange = (
         h = $rnd(range.h!, rnd);
         a = $rnd(range.a!, rnd);
     }
-    return hsv([
+    return lch([
+        l != undefined ? l : $rnd(range.l!, rnd),
+        c !== undefined ? c : $rnd(range.c!, rnd),
         h,
-        s !== undefined ? s : $rnd(range.s!, rnd),
-        v != undefined ? v : $rnd(range.v!, rnd),
         a,
     ]);
 };
@@ -202,7 +202,7 @@ const compileThemePart = (
         spec.weight == null && (spec.weight = 1);
     }
     isString(spec.range) && (spec.range = COLOR_RANGES[spec.range]);
-    isString(spec.base) && (spec.base = hsv(parseCss(spec.base)));
+    isString(spec.base) && (spec.base = lch(parseCss(spec.base)));
     if (spec.base !== undefined) {
         opts = { ...opts, base: spec.base };
     }
@@ -250,8 +250,8 @@ const themePartFromString = (part: string) =>
  * - `[color, weight?]`
  *
  * `range` can be either a {@link ColorRange} or the name of a
- * {@link COLOR_RANGES} preset. Likewise, `color` can be an HSV color tuple or a
- * CSS color name. The `weight` of each part defines the relative
+ * {@link COLOR_RANGES} preset. Likewise, `color` can be a color instance or CSS
+ * color name. The `weight` of each part defines the relative
  * importance/probability of this theme part, compared to others. Default weight
  * is 1.0.
  *
@@ -282,9 +282,7 @@ export function* colorsFromTheme(
         if (spec.range) {
             yield colorFromRange(<ColorRange>spec.range, opts);
         } else if (spec.base) {
-            yield hsv(
-                analogHsv([], <ReadonlyColor>spec.base, variance!, 0, 0, 0, rnd)
-            );
+            yield analog(lch(), lch(spec.base), variance!, rnd);
         }
     }
 }

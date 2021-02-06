@@ -24,11 +24,11 @@ export interface ColorRange {
     /**
      * Saturation ranges
      */
-    s?: Range[];
+    c?: Range[];
     /**
      * Brightness ranges
      */
-    v?: Range[];
+    l?: Range[];
     /**
      * Alpha ranges
      */
@@ -51,10 +51,11 @@ export interface ColorRangeOpts {
      */
     num: number;
     /**
-     * If given, MUST be an HSV color and its hue will be used as bias to create
-     * a randomized variation (based on {@link ColorRangeOpts.variance}).
+     * Base color. Either a {@link TypedColor} instance, {@link CSSColorName} or
+     * raw LCH tuple. Its hue will be used as bias to create a randomized
+     * variation (based on {@link ColorRangeOpts.variance}).
      */
-    base?: ReadonlyColor;
+    base?: ReadonlyColor | CSSColorName;
     /**
      * Max. normalized & randomized hue shift for result colors. Only used if a
      * base color is given.
@@ -82,7 +83,8 @@ export interface ColorThemePart {
      */
     range?: ColorRange | ColorRangePreset;
     /**
-     * HSV(A) base color
+     * Base color. Either a {@link TypedColor} instance, {@link CSSColorName} or
+     * raw LCH tuple.
      */
     base?: ReadonlyColor | CSSColorName;
     /**
