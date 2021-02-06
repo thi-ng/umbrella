@@ -1,16 +1,36 @@
 import { float, percent } from "@thi.ng/strings";
 
-// RGBA constants
-
+/**
+ * RGB black
+ */
 export const BLACK = Object.freeze([0, 0, 0, 1]);
+/**
+ * RGB white
+ */
 export const WHITE = Object.freeze([1, 1, 1, 1]);
-
+/**
+ * RGB red
+ */
 export const RED = Object.freeze([1, 0, 0, 1]);
+/**
+ * RGB green
+ */
 export const GREEN = Object.freeze([0, 1, 0, 1]);
+/**
+ * RGB blue
+ */
 export const BLUE = Object.freeze([0, 0, 1, 1]);
-
+/**
+ * RGB cyan
+ */
 export const CYAN = Object.freeze([0, 1, 1, 1]);
+/**
+ * RGB magenta
+ */
 export const MAGENTA = Object.freeze([1, 0, 1, 1]);
+/**
+ * RGB yellow
+ */
 export const YELLOW = Object.freeze([1, 1, 0, 1]);
 
 /**
@@ -191,7 +211,17 @@ export const OKLAB_M2 = [
     -0.808675766,
 ];
 
+/**
+ * Float value formatter
+ *
+ * @internal
+ */
 export let FF = float(3);
+/**
+ * Percentage value formatter
+ *
+ * @internal
+ */
 export let PC = percent(3);
 
 /**

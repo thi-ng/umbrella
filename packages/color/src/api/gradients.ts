@@ -35,9 +35,24 @@ export type CosGradientSpec = Tuple<CosineCoeffs, 4>;
 export type GradientColorStop = [number, ReadonlyColor];
 
 export interface GradientOpts {
+    /**
+     * Number of colors to generate
+     */
     num: number;
+    /**
+     * Gradient color stops, each a `[pos, color]`
+     */
     stops: GradientColorStop[];
+    /**
+     * Interpolation function
+     */
     mix?: ColorMixFn;
+    /**
+     * Easing function
+     */
     easing?: FnN;
+    /**
+     * Post transformation function for each color
+     */
     tx?: FnU<Color>;
 }

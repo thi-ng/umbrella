@@ -6,10 +6,10 @@ import { distHsv, distRgb } from "./distance";
 
 export const selectChannel = (id: number) => (col: ReadonlyColor) => col[id];
 
-export const proximityHSV = (target: ReadonlyColor) => (col: ReadonlyColor) =>
+export const proximityHsv = (target: ReadonlyColor) => (col: ReadonlyColor) =>
     distHsv(target, col);
 
-export const proximityRGB = (target: ReadonlyColor) => (col: ReadonlyColor) =>
+export const proximityRgb = (target: ReadonlyColor) => (col: ReadonlyColor) =>
     distRgb(target, col);
 
 export const sort = (
