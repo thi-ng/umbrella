@@ -51,10 +51,15 @@ export interface ColorRangeOpts {
      */
     num: number;
     /**
+     * If given, MUST be an HSV color and its hue will be used as bias to create
+     * a randomized variation (based on {@link ColorRangeOpts.variance}).
+     */
+    base?: ReadonlyColor;
+    /**
      * Max. normalized & randomized hue shift for result colors. Only used if a
      * base color is given.
      *
-     * @defaultValue 0.025
+     * @defaultValue 0.025 (i.e. +/- 9 degrees)
      */
     variance: number;
     /**

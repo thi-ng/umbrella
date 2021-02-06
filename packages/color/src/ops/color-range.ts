@@ -1,4 +1,4 @@
-import type { Range } from "@thi.ng/api";
+import type { Range, Without } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
 import { isArray, isNumber, isString } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
@@ -112,11 +112,11 @@ const $rnd = (ranges: Range[], rnd: IRandom) =>
     rnd.minmax(...ranges[rnd.int() % ranges.length]);
 
 /**
- * Takes a {@link ColorRange}, optional base color (HSV(A)) and options to produce
- * a single new result color. This color is randomized within the channel limits
- * of the given `range`. If a `base` color is provided, its hue is used as bias
- * and the `variance` option defines the max. -/+ normalized hue shift of the
- * result color.
+ * Takes a {@link ColorRange} and options to produce a single new result color.
+ * This color is randomized within the channel limits of the given `range`
+ * descriptor. If a `base` color is provided (via {@link ColorRangeOpts}), its
+ * hue is used as bias and the `variance` option defines the max. -/+ normalized
+ * hue shift of the result color.
  *
  * @remarks
  * If the base color is a shade of gray (incl. black & white), the result will
@@ -129,16 +129,17 @@ const $rnd = (ranges: Range[], rnd: IRandom) =>
  * A custom PRNG can be defined via the `rnd` option (default: `Math.random`).
  *
  * @param range
- * @param base
  * @param opts
  */
 export const colorFromRange = (
-    range: ColorRange,
-    base?: ReadonlyColor,
+    range: ColorRange | keyof typeof COLOR_RANGES,
     opts?: Partial<Pick<ColorRangeOpts, "variance" | "eps" | "rnd">>
 ): HSV => {
-    range = { ...DEFAULT_RANGE, ...range };
-    const { variance, rnd, eps } = { ...DEFAULT_OPTS, ...opts };
+    range = {
+        ...DEFAULT_RANGE,
+        ...(isString(range) ? COLOR_RANGES[range] : range),
+    };
+    const { base, variance, rnd, eps } = { ...DEFAULT_OPTS, ...opts };
     let h: number;
     let s: number | undefined;
     let v: number | undefined;
@@ -176,20 +177,21 @@ export const colorFromRange = (
  * other opts. Use `num` option to limit number of results.
  *
  * @param range
- * @param base
  * @param opts
  */
 export function* colorsFromRange(
-    range: ColorRange,
-    base?: ReadonlyColor,
+    range: ColorRange | keyof typeof COLOR_RANGES,
     opts: Partial<ColorRangeOpts> = {}
 ) {
     let num = opts.num != undefined ? opts.num : Infinity;
-    while (--num >= 0) yield colorFromRange(range, base, opts);
+    while (--num >= 0) yield colorFromRange(range, opts);
 }
 
 /** @internal */
-const asThemePart = (part: ColorThemePart | ColorThemePartTuple) => {
+const compileThemePart = (
+    part: ColorThemePart | ColorThemePartTuple,
+    opts: Partial<ColorRangeOpts>
+) => {
     let spec: ColorThemePart;
     if (isArray(part)) {
         spec = themePartFromTuple(part);
@@ -201,7 +203,10 @@ const asThemePart = (part: ColorThemePart | ColorThemePartTuple) => {
     }
     isString(spec.range) && (spec.range = COLOR_RANGES[spec.range]);
     isString(spec.base) && (spec.base = hsv(parseCss(spec.base)));
-    return spec;
+    if (spec.base !== undefined) {
+        opts = { ...opts, base: spec.base };
+    }
+    return { spec, opts };
 };
 
 /** @internal */
@@ -263,24 +268,23 @@ const themePartFromString = (part: string) =>
  */
 export function* colorsFromTheme(
     parts: (ColorThemePart | ColorThemePartTuple)[],
-    opts: Partial<ColorRangeOpts> = {}
+    opts: Partial<Without<ColorRangeOpts, "base">> = {}
 ) {
-    let { num, variance } = { ...DEFAULT_OPTS, ...opts };
-    const theme = parts.map(asThemePart);
+    let { num, variance, rnd } = { ...DEFAULT_OPTS, ...opts };
+    const theme = parts.map((p) => compileThemePart(p, opts));
     const choice = weightedRandom(
         theme,
-        theme.map((x) => x.weight!)
+        theme.map((x) => x.spec.weight!),
+        rnd
     );
     while (--num! >= 0) {
-        const spec = choice();
+        const { spec, opts } = choice();
         if (spec.range) {
-            yield colorFromRange(
-                <ColorRange>spec.range,
-                <ReadonlyColor>spec.base,
-                opts
-            );
+            yield colorFromRange(<ColorRange>spec.range, opts);
         } else if (spec.base) {
-            yield hsv(analogHsv([], <ReadonlyColor>spec.base, variance!));
+            yield hsv(
+                analogHsv([], <ReadonlyColor>spec.base, variance!, 0, 0, 0, rnd)
+            );
         }
     }
 }
