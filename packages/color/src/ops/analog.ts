@@ -7,6 +7,10 @@ import type { Color, ReadonlyColor, TypedColor } from "../api";
 import { ensureAlpha } from "../internal/ensure-alpha";
 
 /** @internal */
+const analogU = (x: number, delta: number, rnd: IRandom) =>
+    delta !== 0 ? x + rnd.norm(delta) : x;
+
+/** @internal */
 const analogN = (x: number, delta: number, rnd: IRandom, post: FnN = clamp01) =>
     delta !== 0 ? post(x + rnd.norm(delta)) : x;
 
@@ -38,6 +42,9 @@ const analogHNN = defAnalog(analogH, analogN, analogN);
 /** @internal */
 const analogNNN = defAnalog(analogN, analogN, analogN);
 
+/** @internal */
+const analogNUU = defAnalog(analogN, analogU, analogU);
+
 /**
  * Returns a random analog color based on given `src` color and variance
  * `delta`. Each channel will be randomized by +/- `delta`, optionally using
@@ -58,7 +65,10 @@ analog.addAll({
     hsi: analogHNN,
     hsl: analogHNN,
     hsv: analogHNN,
+    lab50: analogNUU,
+    lab65: analogNUU,
     lch: defAnalog(analogN, analogN, analogH),
+    ycc: analogNUU,
 });
 
 /**
