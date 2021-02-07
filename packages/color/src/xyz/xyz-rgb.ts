@@ -15,7 +15,7 @@ export const xyzRgb = (
     out: Color | null,
     src: ReadonlyColor,
     mat = XYZ_RGB_D50
-) => mulV33(out, mat, src, true);
+) => mulV33(out, mat, src);
 
 /**
  * Same as {@link xyzRgb}, but hard coded to use {@link D65} white point (via
