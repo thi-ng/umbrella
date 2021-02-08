@@ -1,8 +1,16 @@
 import { serialize } from "@thi.ng/hiccup";
 import { svg } from "@thi.ng/hiccup-svg";
+import { schlick } from "@thi.ng/math";
 import { map, normRange, push, transduce } from "@thi.ng/transducers";
 import { writeFileSync } from "fs";
-import { Color, lchLab, multiColorGradient, oklab, swatchesH } from "../src";
+import {
+    Color,
+    lch,
+    lchLab,
+    multiColorGradient,
+    oklab,
+    swatchesH,
+} from "../src";
 
 for (let l of [0.5, 0.6, 0.7, 0.8, 0.9]) {
     const cols = transduce(
@@ -22,20 +30,22 @@ for (let l of [0.5, 0.6, 0.7, 0.8, 0.9]) {
     );
 }
 
+const L = 0.8;
+const C = 0.8;
+
 const gradient = multiColorGradient({
     num: 100,
     stops: [
-        [0, lchLab([], [0.8, 0.2, 0])],
-        [1 / 3, lchLab([], [0.8, 0.2, 1 / 3])],
-        [1 / 2, lchLab([], [0.8, 0.2, 1 / 4])],
-        [2 / 3, lchLab([], [0.8, 0.2, 2 / 3])],
-        [1, lchLab([], [0.8, 0, 1])],
+        [0, lch(L, C, 0)],
+        [1 / 3, lch(L, C, 1 / 3)],
+        [2 / 3, lch(L, C, 2 / 3)],
+        [1, lch(L, 0, 1)],
     ],
-    tx: oklab,
+    // easing: (t) => schlick(2, 0.5, t),
 });
 
 writeFileSync(
-    `export/oklab-multigradient2.svg`,
+    `export/lch-multigradient3.svg`,
     serialize(
         svg(
             { width: 500, height: 50, convert: true },
