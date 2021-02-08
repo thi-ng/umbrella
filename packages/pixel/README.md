@@ -14,6 +14,7 @@ This project is part of the
   - [Packed integer pixel formats](#packed-integer-pixel-formats)
   - [Floating point pixel formats](#floating-point-pixel-formats)
   - [Status](#status)
+  - [Support packages](#support-packages)
   - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -115,6 +116,10 @@ formats can be defined via `defFloatFormat()`.
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bpixel%5D+in%3Atitle)
 
+### Support packages
+
+- [@thi.ng/pixel-io-netpbm](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-io-netpbm) - Multi-format NetPBM reader & writer support for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
+
 ### Related packages
 
 - [@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/develop/packages/porter-duff) - Porter-Duff operators for packed ints & float-array alpha compositing
@@ -133,7 +138,7 @@ yarn add @thi.ng/pixel
 <script src="https://unpkg.com/@thi.ng/pixel/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.31 KB / CJS: 5.50 KB / UMD: 5.46 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.35 KB / CJS: 5.55 KB / UMD: 5.51 KB
 
 ## Dependencies
 

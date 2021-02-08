@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/pixel-io-netpbm",
     "version": "0.0.1",
-    "description": "NetPBM reader & writer support for @thi.ng/pixel",
+    "description": "Multi-format NetPBM reader & writer support for @thi.ng/pixel",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -66,6 +66,7 @@
         "grayscale",
         "image",
         "pixel",
+        "rgb",
         "typescript"
     ],
     "publishConfig": {

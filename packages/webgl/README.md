@@ -91,7 +91,7 @@ yarn add @thi.ng/webgl
 <script src="https://unpkg.com/@thi.ng/webgl/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 11.58 KB / CJS: 11.76 KB / UMD: 11.60 KB
+Package sizes (gzipped, pre-treeshake): ESM: 11.79 KB / CJS: 11.96 KB / UMD: 11.76 KB
 
 ## Dependencies
 
