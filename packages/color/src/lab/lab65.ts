@@ -41,7 +41,7 @@ export const labD65 = <ColorFactory<LabD65>>defColor({
     order: <const>["l", "a", "b", "alpha"],
     from: {
         rgb: rgbLabD65,
-        lch: lchLab,
+        lch: [lchLab, labLabD50_65],
         lab50: labLabD50_65,
         xyz50: [xyzXyzD50_65, xyzLabD65],
         xyz65: xyzLabD65,

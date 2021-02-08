@@ -2,8 +2,11 @@ import type { NumericArray } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
 import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
 import { defColor } from "../defcolor";
+import { labLabD65_50 } from "../lab/lab-lab";
 import { labLch } from "../lab/lab-lch";
 import { rgbLab } from "../rgb/rgb-lab";
+import { xyzLab } from "../xyz/xyz-lab";
+import { xyzXyzD65_50 } from "../xyz/xyz-xyz";
 
 export declare class LCH implements TypedColor<LCH> {
     buf: NumericArray;
@@ -29,6 +32,10 @@ export declare class LCH implements TypedColor<LCH> {
     toJSON(): number[];
 }
 
+/**
+ * Luminance Chroma Hue (conversions assume {@link D50} white point, as per CSS
+ * spec).
+ */
 export const lch = <ColorFactory<LCH>>defColor({
     mode: "lch",
     channels: {
@@ -38,6 +45,8 @@ export const lch = <ColorFactory<LCH>>defColor({
     from: {
         rgb: (out, src) => labLch(null, rgbLab(out, src)),
         lab50: labLch,
-        lab65: labLch,
+        lab65: [labLabD65_50, labLch],
+        xyz50: [xyzLab, labLch],
+        xyz65: [xyzXyzD65_50, xyzLab, labLch],
     },
 });

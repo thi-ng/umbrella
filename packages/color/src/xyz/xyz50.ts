@@ -3,6 +3,7 @@ import type { IRandom } from "@thi.ng/random";
 import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
 import { D50 } from "../api/constants";
 import { defColor } from "../defcolor";
+import { lchLab } from "../lab/lab-lch";
 import { labXyz, labXyzD65 } from "../lab/lab-xyz";
 import { oklabXyzD65 } from "../oklab/oklab-xyz";
 import { rgbXyz } from "../rgb/rgb-xyz";
@@ -45,6 +46,7 @@ export const xyzD50 = <ColorFactory<XYZD50>>defColor({
         rgb: rgbXyz,
         lab50: labXyz,
         lab65: [labXyzD65, xyzXyzD65_50],
+        lch: [lchLab, labXyz],
         oklab: [oklabXyzD65, xyzXyzD65_50],
         xyy: xyyXyz,
     },

@@ -2,6 +2,10 @@ import type { NumericArray } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
 import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
 import { defColor } from "../defcolor";
+import { hcyRgb } from "../hcy/hcy-rgb";
+import { hsiRgb } from "../hsi/hsi-rgb";
+import { hslRgb } from "../hsl/hsl-rgb";
+import { hsvRgb } from "../hsv/hsv-rgb";
 import { intAbgr32Srgb, intArgb32Srgb } from "../int/int-srgb";
 import { rgbSrgb } from "../rgb/rgb-srgb";
 
@@ -35,6 +39,10 @@ export const srgb = <ColorFactory<SRGB>>defColor({
     from: {
         abgr32: (out, src) => intAbgr32Srgb(out, src[0]),
         argb32: (out, src) => intArgb32Srgb(out, src[0]),
+        hcy: hcyRgb,
+        hsi: hsiRgb,
+        hsl: hslRgb,
+        hsv: hsvRgb,
         rgb: rgbSrgb,
     },
 });
