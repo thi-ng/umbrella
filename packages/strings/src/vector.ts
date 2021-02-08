@@ -1,4 +1,3 @@
-import { isNumber } from "@thi.ng/checks";
 import { memoizeJ } from "@thi.ng/memoize";
 import type { Stringer } from "./api";
 import { float } from "./float";
@@ -27,7 +26,7 @@ export const vector: (
         pre = "[",
         post = "]"
     ) => {
-        const f = isNumber(prec) ? float(prec) : prec;
+        const f = typeof prec === "number" ? float(prec) : prec;
         switch (size) {
             case 1:
                 return (v: ArrayLike<number>) => `${pre}${f(v[0])}${post}`;
