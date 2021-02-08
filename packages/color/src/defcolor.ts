@@ -83,6 +83,10 @@ export const defColor = <M extends ColorMode, K extends string>(
             return [min, max];
         }
 
+        get [Symbol.toStringTag]() {
+            return spec.mode;
+        }
+
         [Symbol.iterator]() {
             return stridedValues(
                 this.buf,
@@ -155,6 +159,8 @@ export const defColor = <M extends ColorMode, K extends string>(
                 ? <any>new $Color(...ensureArgs([src, ...xs]))
                 : fromColor(intArgb32Rgb([], src), "rgb", xs)
             : illegalArgs(`can't create a ${spec.mode} color from: ${src}`);
+
+    factory.class = <any>$Color;
 
     factory.range = <[ReadonlyColor, ReadonlyColor]>[min, max];
 

@@ -162,6 +162,8 @@ const defInt = <T extends Int32>(
             ? new ctor([fromSrgb(srgb(src))], ...xs)
             : illegalArgs(`can't create a ARGB32 color from: ${src}`);
 
+    factory.class = <any>ctor;
+
     factory.range = <[ReadonlyColor, ReadonlyColor]>[[0], [0xffffffff]];
 
     factory.random = (

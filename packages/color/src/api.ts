@@ -56,6 +56,7 @@ export interface IColor {
 
 export interface ChannelSpec {
     /**
+     * Acceptable value range for this channel. Used by {@link TypedColor.clamp}.
      * @defaultValue [0,1]
      */
     range?: Range;
@@ -63,9 +64,21 @@ export interface ChannelSpec {
 
 export interface ColorSpec<M extends ColorMode, K extends string> {
     mode: M;
+    /**
+     * Define additional per-channel constraints, information. Currently only
+     * used to define limits.
+     */
     channels?: Partial<Record<K, ChannelSpec>>;
+    /**
+     * Channel names in index order (used to define channel accessors).
+     */
     order: readonly K[];
-    from: Partial<Record<ColorMode, ColorOp | [ColorOp, ColorOp]>> & {
+    /**
+     * Conversions from source modes. `rgb` is mandatory, others optional. If a
+     * key specifies an array of functions, these will be applied to source
+     * color in LTR order.
+     */
+    from: Partial<Record<ColorMode, ColorOp | Tuple<ColorOp, 2 | 3 | 4>>> & {
         rgb: ColorOp;
     };
 }
@@ -78,6 +91,8 @@ export interface ColorFactory<T extends TypedColor<any>> {
     (col: MaybeColor, buf?: NumericArray, idx?: number, stride?: number): T;
     (col?: Vec, idx?: number, stride?: number): T;
     (a: number, b: number, c: number, ...xs: number[]): T;
+
+    readonly class: TypedColorConstructor<T>;
 
     /**
      * Returns a new random color, optionally backed by given memory. I.e. if
@@ -125,6 +140,10 @@ export interface ColorFactory<T extends TypedColor<any>> {
         cstride?: number,
         estride?: number
     ): T[];
+}
+
+export interface TypedColorConstructor<T extends TypedColor<any>> {
+    new (buf?: NumericArray, offset?: number, stride?: number): T;
 }
 
 export interface TypedColor<T> extends IColor, IDeref<Color>, IVector<T> {

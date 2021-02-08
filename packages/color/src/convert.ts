@@ -26,8 +26,13 @@ export const defConversions = (
     for (let id in spec) {
         const val = spec[<ColorMode>id];
         if (isArray(val)) {
-            const [a, b] = val;
-            spec[<ColorMode>id] = (out, src) => b(out, a(out, src));
+            const [a, b, c, d] = val;
+            spec[<ColorMode>id] =
+                val.length === 2
+                    ? (out, src) => b(out, a(out, src))
+                    : val.length === 3
+                    ? (out, src) => c!(out, b(out, a(out, src)))
+                    : (out, src) => d!(out, c!(out, b(out, a(out, src))));
         }
     }
     CONVERSIONS[mode] = <Conversions>spec;
@@ -42,10 +47,9 @@ export const convert = <T extends Color>(
     const spec = CONVERSIONS[destMode];
     assert(!!spec, `no conversions available for ${destMode}`);
     let $convert = spec![srcMode];
-    if ($convert) {
-        return <T>$convert(res, src);
-    } else if (CONVERSIONS.rgb![srcMode]) {
-        return <T>spec!.rgb(res, CONVERSIONS.rgb![srcMode]!([], src));
-    }
-    unsupported(`can't convert: ${srcMode} -> ${destMode}`);
+    return $convert
+        ? <T>$convert(res, src)
+        : CONVERSIONS.rgb![srcMode]
+        ? <T>spec!.rgb(res, CONVERSIONS.rgb![srcMode]!([], src))
+        : unsupported(`can't convert: ${srcMode} -> ${destMode}`);
 };
