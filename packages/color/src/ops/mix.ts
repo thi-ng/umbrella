@@ -102,10 +102,13 @@ export const mixNNNN: ColorMixFn = mixN4;
  * @param b -
  * @param t -
  */
-export const mix = defmulti(
-    (_: Color | null, a: TypedColor<any>, __: TypedColor<any>, ___: number) =>
-        a.mode
-);
+export const mix = defmulti<
+    Color | null,
+    TypedColor<any>,
+    TypedColor<any>,
+    number,
+    Color
+>((_, a) => a.mode);
 
 mix.add(DEFAULT, mixN4);
 

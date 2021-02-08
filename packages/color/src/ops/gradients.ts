@@ -1,8 +1,9 @@
-import type { NumericArray, Without } from "@thi.ng/api";
-import { map, noop, push, transduce, tween } from "@thi.ng/transducers";
-import { mixN, setS4 } from "@thi.ng/vectors";
-import type { Color, ReadonlyColor } from "../api";
+import type { NumericArray } from "@thi.ng/api";
+import { tween } from "@thi.ng/transducers";
+import { setS4 } from "@thi.ng/vectors";
+import type { TypedColor } from "../api";
 import type { GradientOpts } from "../api/gradients";
+import { mix as $mix } from "../ops/mix";
 
 /**
  * Similar to {@link multiCosineGradient}, but using any number of gradient
@@ -18,23 +19,19 @@ import type { GradientOpts } from "../api/gradients";
  *   // LAB color stops
  *   stops: [
  *     // pink red
- *     [0, lchLab([], [0.8, 0.2, 0])],
+ *     [0, lch(0.8, 0.8, 0)],
  *     // green
- *     [1 / 3, lchLab([], [0.8, 0.2, 1 / 3])],
+ *     [1 / 3, lch(0.8, 0.8, 1 / 3)],
  *     // blue
- *     [2 / 3, lchLab([], [0.8, 0.2, 2 / 3])],
+ *     [2 / 3, lch(0.8, 0.8, 2 / 3)],
  *     // gray
- *     [1, lchLab([], [0.8, 0, 1])],
- *   ],
- *   // optional easing function (per interval)
- *   easing: (t) => schlick(2, t),
- *   // coerce result colors to Oklab
- *   tx: oklab,
+ *     [1, lch(0.8, 0, 1)],
+ *   ]
  * });
  *
  * // write gradient as SVG swatches
  * writeFileSync(
- *   `export/oklab-multigradient.svg`,
+ *   `export/lch-multigradient.svg`,
  *   serialize(
  *     svg(
  *       { width: 500, height: 50, convert: true },
@@ -46,8 +43,9 @@ import type { GradientOpts } from "../api/gradients";
  *
  * @param opts
  */
-export const multiColorGradient = (opts: GradientOpts): Color[] =>
-    transduce(opts.tx ? map(opts.tx) : noop(), push<Color>(), gradient(opts));
+export const multiColorGradient = <T extends TypedColor<any>>(
+    opts: GradientOpts<T>
+) => [...gradient(opts)];
 
 /**
  * Similar to {@link multiColorGradient}, but writes results into `buffer` from
@@ -63,8 +61,8 @@ export const multiColorGradient = (opts: GradientOpts): Color[] =>
  * @param cstride - channel stride (default: 1)
  * @param estride - element stride (default: 4)
  */
-export const multiColorGradientBuffer = (
-    opts: Without<GradientOpts, "tx">,
+export const multiColorGradientBuffer = <T extends TypedColor<any>>(
+    opts: GradientOpts<T>,
     buffer: NumericArray = [],
     offset = 0,
     cstride = 1,
@@ -78,8 +76,13 @@ export const multiColorGradientBuffer = (
 };
 
 /** @internal */
-const gradient = ({ num, stops, easing, mix }: GradientOpts): Iterable<Color> =>
-    tween<ReadonlyColor, ReadonlyColor[], Color>({
+const gradient = <T extends TypedColor<any>>({
+    num,
+    stops,
+    easing,
+    mix,
+}: GradientOpts<T>): Iterable<T> =>
+    tween<T, T[], T>({
         num: num - 1,
         stops,
         easing,
@@ -87,6 +90,6 @@ const gradient = ({ num, stops, easing, mix }: GradientOpts): Iterable<Color> =>
         max: 1,
         init: (a, b) => [a, b],
         mix: mix
-            ? ([a, b], t) => mix([], a, b, t)
-            : ([a, b], t) => mixN([], a, b, t),
+            ? ([a, b], t) => <T>mix(a.empty(), a, b, t)
+            : ([a, b], t) => <T>$mix(a.empty(), a, b, t),
     });

@@ -3,7 +3,7 @@ import { peek } from "@thi.ng/arrays";
 import { isArray, isNumber, isString } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { fract } from "@thi.ng/math";
-import { IRandom, SYSTEM, weightedRandom } from "@thi.ng/random";
+import { coin, IRandom, SYSTEM, weightedRandom } from "@thi.ng/random";
 import type {
     ColorRange,
     ColorRangeOpts,
@@ -155,7 +155,7 @@ export const colorFromRange = (
             l = $rnd(range.w!, rnd);
         } else if (isGray(col, eps)) {
             c = 0;
-            l = $rnd(rnd.float() < 0.5 ? range.b! : range.w!, rnd);
+            l = $rnd(coin(rnd) ? range.b! : range.w!, rnd);
         } else {
             h = fract(h + rnd.norm(variance));
         }
@@ -282,7 +282,7 @@ export function* colorsFromTheme(
         if (spec.range) {
             yield colorFromRange(<ColorRange>spec.range, opts);
         } else if (spec.base) {
-            yield analog(lch(), lch(spec.base), variance!, rnd);
+            yield <LCH>analog(lch(), lch(spec.base), variance!, rnd);
         }
     }
 }

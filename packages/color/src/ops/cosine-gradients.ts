@@ -14,10 +14,10 @@ import {
 import { setS4 } from "@thi.ng/vectors";
 import type { Color, ReadonlyColor } from "../api";
 import type {
-    CosineCoeffs,
     CosGradientSpec,
+    CosineCoeffs,
+    CosineGradientOpts,
     CosineGradientPreset,
-    GradientOpts,
 } from "../api/gradients";
 import { clamp } from "./clamp";
 
@@ -279,7 +279,7 @@ export const cosineCoeffs: FnU2<ReadonlyColor, CosGradientSpec> = (
  * @param num - number of color steps to produce
  * @param stops - gradient stops
  */
-export const multiCosineGradient = (opts: GradientOpts): Color[] =>
+export const multiCosineGradient = (opts: CosineGradientOpts): Color[] =>
     transduce(
         opts.tx ? map(opts.tx) : noop(),
         push<Color>(),

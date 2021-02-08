@@ -32,9 +32,9 @@ export type CosGradientSpec = Tuple<CosineCoeffs, 4>;
 /**
  * A tuple of normalized position and color for a gradient stop.
  */
-export type GradientColorStop = [number, ReadonlyColor];
+export type GradientColorStop<T> = [number, T];
 
-export interface GradientOpts {
+export interface GradientOpts<T = ReadonlyColor> {
     /**
      * Number of colors to generate
      */
@@ -42,15 +42,18 @@ export interface GradientOpts {
     /**
      * Gradient color stops, each a `[pos, color]`
      */
-    stops: GradientColorStop[];
+    stops: GradientColorStop<T>[];
     /**
      * Interpolation function
      */
-    mix?: ColorMixFn;
+    mix?: ColorMixFn<T>;
     /**
      * Easing function
      */
     easing?: FnN;
+}
+
+export interface CosineGradientOpts extends GradientOpts {
     /**
      * Post transformation function for each color
      */

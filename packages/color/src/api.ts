@@ -225,9 +225,9 @@ export type ColorMatrix = Tuple<number, 20>;
 
 export type ColorDistance = FnU2<ReadonlyColor, number>;
 
-export type ColorMixFn = (
+export type ColorMixFn<T = ReadonlyColor> = (
     out: Color | null,
-    a: ReadonlyColor,
-    b: ReadonlyColor,
+    a: T,
+    b: T,
     t: number
 ) => Color;
