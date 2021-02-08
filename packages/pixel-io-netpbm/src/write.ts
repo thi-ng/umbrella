@@ -1,5 +1,5 @@
 import { MSB_BITS8 } from "@thi.ng/binary";
-import { luminanceABGR, PackedBuffer } from "@thi.ng/pixel";
+import { GRAY16, luminanceABGR, PackedBuffer } from "@thi.ng/pixel";
 
 /**
  * Initializes byte array & PBM header for given {@link PackedBuffer} and format
@@ -34,7 +34,7 @@ const init = (
  *
  * @param buf
  */
-export const asNetPBM = (buf: PackedBuffer) => {
+export const asPBM = (buf: PackedBuffer) => {
     const { pixels, width, height } = buf;
     const { dest, start, abgr } = init(
         "P4",
@@ -66,11 +66,31 @@ export const asNetPBM = (buf: PackedBuffer) => {
  *
  * @param buf
  */
-export const asNetPGM = (buf: PackedBuffer) => {
+export const asPGM = (buf: PackedBuffer) => {
     const { pixels, width, height } = buf;
-    const { dest, start, abgr } = init("P5", 255, width * height, buf);
+    const { dest, start, abgr } = init("P5", 0xff, width * height, buf);
     for (let i = start, j = 0; j < pixels.length; i++, j++) {
         dest[i] = luminanceABGR(abgr(pixels[j]));
+    }
+    return dest;
+};
+
+/**
+ * Converts a {@link PackedBuffer} into a 16bit grayscale PGM byte array (binary
+ * format).
+ *
+ * @remarks
+ * Reference: http://netpbm.sourceforge.net/doc/pgm.html
+ *
+ * @param buf
+ */
+export const asPGM16 = (buf: PackedBuffer) => {
+    if (buf.format !== GRAY16) buf = buf.as(GRAY16);
+    const { pixels, width, height } = buf;
+    const { dest, start } = init("P5", 0xffff, width * height * 2, buf);
+    for (let i = start, j = 0; j < pixels.length; i += 2, j++) {
+        dest[i] = pixels[j] >> 8;
+        dest[i + 1] = pixels[j] & 0xff;
     }
     return dest;
 };
@@ -83,7 +103,7 @@ export const asNetPGM = (buf: PackedBuffer) => {
  *
  * @param buf
  */
-export const asNetPPM = (buf: PackedBuffer) => {
+export const asPPM = (buf: PackedBuffer) => {
     const { pixels, width, height } = buf;
     const { dest, start, abgr } = init("P6", 255, width * 3 * height, buf);
     for (let i = start, j = 0; j < pixels.length; i += 3, j++) {
