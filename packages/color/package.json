@@ -31,7 +31,7 @@
         "build:check": "tsc --isolatedModules --noEmit",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib internal",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib api css hcy hsi hsl hsv int internal lab lch oklab ops rgb srgb xyy xyz ycc",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc": "node_modules/.bin/typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
@@ -91,14 +91,18 @@
         "conversion",
         "cosine",
         "css",
+        "D50",
+        "D65",
         "distance",
         "filter",
+        "gamma",
         "generator",
         "gradient",
         "hcy",
         "hsi",
         "hsl",
         "hsv",
+        "interpolation",
         "iterator",
         "lab",
         "lch",
@@ -126,7 +130,8 @@
     "sideEffects": false,
     "thi.ng": {
         "related": [
-            "pixel"
+            "pixel",
+            "vectors"
         ]
     }
 }
