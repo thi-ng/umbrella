@@ -35,6 +35,7 @@ export * from "./int/int-srgb";
 export * from "./int/int";
 
 export * from "./lab/lab-css";
+export * from "./lab/lab-lab";
 export * from "./lab/lab-lch";
 export * from "./lab/lab-rgb";
 export * from "./lab/lab-xyz";
