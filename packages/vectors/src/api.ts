@@ -6,6 +6,7 @@ import type {
     Fn4,
     Fn6,
     Fn7,
+    FnU2,
     ICopy,
     IEmpty,
     IEqualsDelta,
@@ -121,7 +122,7 @@ export type VecOpOOO<A, B, C> = (out: Vec | null, a?: A, b?: B, c?: C) => Vec;
 export type VecOpNNO<T> = (out: Vec | null, a: number, b: number, c?: T) => Vec;
 
 export type VecOpRoV<T> = Fn<ReadonlyVec, T>;
-export type VecOpRoVV<T> = Fn2<ReadonlyVec, ReadonlyVec, T>;
+export type VecOpRoVV<T> = FnU2<ReadonlyVec, T>;
 export type VecOpRoVVO<T, O> = (a: ReadonlyVec, b: ReadonlyVec, c?: O) => T;
 
 export type VecOpSV = (
@@ -274,6 +275,8 @@ export type MultiFromBVecOpV = MultiVecOpImpl<FromBVecOpV>;
 
 export type CompareOp = Fn3<BVec | null, ReadonlyVec, ReadonlyVec, BVec>;
 export type MultiCompareOp = MultiVecOpImpl<CompareOp>;
+
+export type DistanceFn = VecOpRoVV<number>;
 
 const mi = -Infinity;
 const mx = Infinity;
