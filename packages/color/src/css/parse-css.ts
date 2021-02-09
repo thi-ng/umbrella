@@ -1,5 +1,6 @@
 import type { IDeref } from "@thi.ng/api";
 import { assert } from "@thi.ng/api";
+import { interleave4_12_24, interleave4_16_32 } from "@thi.ng/binary";
 import { isString } from "@thi.ng/checks";
 import { illegalArgs, unsupported } from "@thi.ng/errors";
 import { clamp01, fract, TAU } from "@thi.ng/math";
@@ -131,17 +132,12 @@ export const parseHex = (src: string): number => {
     if (match) {
         const hex = match[1];
         switch (hex.length) {
-            case 3: {
-                const [r, g, b] = hex;
+            case 3:
                 return (
-                    (parseInt(`${r}${r}${g}${g}${b}${b}`, 16) | 0xff000000) >>>
-                    0
+                    (interleave4_12_24(parseInt(hex, 16)) | 0xff000000) >>> 0
                 );
-            }
-            case 4: {
-                const [a, r, g, b] = hex;
-                return parseInt(`${a}${a}${r}${r}${g}${g}${b}${b}`, 16) >>> 0;
-            }
+            case 4:
+                return interleave4_16_32(parseInt(hex, 16)) >>> 0;
             case 6:
                 return (parseInt(hex, 16) | 0xff000000) >>> 0;
             case 8:
