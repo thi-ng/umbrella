@@ -8,6 +8,9 @@ import { DIST_SQ, DIST_SQ1, DIST_SQ2, DIST_SQ3 } from "./squared";
  * A {@link INeighborhood} implementation for nearest neighbor queries around a
  * given target location, initial query radius and {@link IDistance} metric to
  * determine proximity.
+ *
+ * @typeParam D - spatial position for distance metric
+ * @typeParam T - indexed value
  */
 export class Nearest<D, T>
     implements INeighborhood<D, T>, IDeref<Neighbor<T> | undefined> {
