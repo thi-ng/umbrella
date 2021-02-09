@@ -1,16 +1,23 @@
 import { Fn, typedArray, typedArrayType } from "@thi.ng/api";
 import { quickSort, sortByCachedKey, swap } from "@thi.ng/arrays";
 import { compareNumAsc, compareNumDesc } from "@thi.ng/compare";
-import type { ReadonlyColor, TypedColor } from "../api";
-import { distHsv, distRgb } from "./distance";
+import type { ColorDistance, ReadonlyColor, TypedColor } from "../api";
+import { distEucledian3 } from "./distance";
 
 export const selectChannel = (id: number) => (col: ReadonlyColor) => col[id];
 
-export const proximityHsv = (target: ReadonlyColor) => (col: ReadonlyColor) =>
-    distHsv(target, col);
-
-export const proximityRgb = (target: ReadonlyColor) => (col: ReadonlyColor) =>
-    distRgb(target, col);
+/**
+ * Takes a `target` color and optional `distance` function. Returns a new
+ * function which can be used as `key` function for {@link sort} to compute the
+ * distance metric of a color to the given `target`.
+ *
+ * @param target
+ * @param dist
+ */
+export const proximity = (
+    target: ReadonlyColor,
+    dist: ColorDistance = distEucledian3
+) => (col: ReadonlyColor) => dist(target, col);
 
 export const sort = (
     colors: ReadonlyColor[],
