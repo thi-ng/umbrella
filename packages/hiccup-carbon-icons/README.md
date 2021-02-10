@@ -59,7 +59,7 @@ yarn add @thi.ng/hiccup-carbon-icons
 <script src="https://unpkg.com/@thi.ng/hiccup-carbon-icons/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 100.29 KB / CJS: 103.47 KB / UMD: 96.35 KB
+Package sizes (gzipped, pre-treeshake): ESM: 99.12 KB / CJS: 102.27 KB / UMD: 96.97 KB
 
 ## Dependencies
 
