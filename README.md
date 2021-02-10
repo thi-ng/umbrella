@@ -101,7 +101,7 @@ packages) in the [**examples**](./examples/README.md) directory.
   - [Part 3 - Convolution, 1D/2D Cellular automata](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-3-a1c4e621db9b)
   - [Part 4 - Disjoint Sets, Graph analysis, Signed Distance Fields](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-4-62d8e71e5603)
 
-## Community & contributing
+## Community, contributing, getting help
 
 Join our little community on our [Discord
 server](https://discord.gg/JhYcmBw) or get in touch via
@@ -120,12 +120,18 @@ local clones, please follow the [advice & short instructions in this
 article](https://www.hanselman.com/blog/easily-rename-your-git-default-branch-from-master-to-main)
 to update your local version.
 
+Also please be sure to check the [wiki](https://github.com/thi-ng/umbrella/wiki)
+for other project-wide information, tidbits, useful snippets etc.
+
 ## Projects
 
-<!-- ### New / unreleased packages in development
+### New / unreleased packages in development
 
 (These packages might be still unreleased and only available on their
-feature or `develop` branches) -->
+feature or `develop` branches)
+
+- [`@thi.ng/color`](./packages/color) - Complete refactor/overhaul/extension of color package
+- [`@thi.ng/pixel-io-netpbm`](./packages/pixel-io-netpbm) - 1/8/16/24bit NetPBM image format reader/writer
 
 ### Latest additions (2021-01-21)
 
