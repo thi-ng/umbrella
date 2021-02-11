@@ -195,7 +195,7 @@ export const readPGM16 = (
 
 /**
  * Reads pixels from given 24bit PPM file byte buffer, starting at index `i` and
- * returns {@link @thi.ng/pixel#PackedBuffer} in `ARGB888` format. Color channel
+ * returns {@link @thi.ng/pixel#PackedBuffer} in `RGB888` format. Color channel
  * values are rescaled given `max` value defined in PGM header (MUST be <=
  * 0xff).
  *
@@ -217,16 +217,15 @@ export const readPPM = (
 ) => {
     const buf = packedBuffer(width, height, RGB888);
     const pixels = buf.pixels;
+    assert(max <= 0xff, `unsupported max value: ${max}`);
     if (max === 0xff) {
         for (let j = 0, n = pixels.length; j < n; i += 3, j++) {
-            pixels[j] =
-                0xff000000 | (src[i] << 16) | (src[i + 1] << 8) | src[i + 2];
+            pixels[j] = (src[i] << 16) | (src[i + 1] << 8) | src[i + 2];
         }
     } else {
         max = 0xff / max;
         for (let j = 0, n = pixels.length; j < n; i += 3, j++) {
             pixels[j] =
-                0xff000000 |
                 ((src[i] * max) << 16) |
                 ((src[i + 1] * max) << 8) |
                 (src[i + 2] * max);
