@@ -60,9 +60,14 @@
         "lib"
     ],
     "keywords": [
+        "1bit",
+        "8bit",
+        "16bit",
+        "24bit",
         "binary",
         "bitmap",
         "color",
+        "fileformat",
         "grayscale",
         "image",
         "pixel",

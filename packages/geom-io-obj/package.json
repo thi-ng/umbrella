@@ -64,6 +64,7 @@
         "geometry",
         "mesh",
         "parser",
+        "points",
         "polygon",
         "polyline",
         "typescript"

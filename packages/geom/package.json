@@ -102,6 +102,7 @@
         "intersection",
         "polymorphic",
         "sample",
+        "scatter",
         "shape",
         "svg",
         "typescript"

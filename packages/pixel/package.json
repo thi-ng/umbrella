@@ -62,6 +62,10 @@
         "format"
     ],
     "keywords": [
+        "8bit",
+        "16bit",
+        "24bit",
+        "32bit",
         "alpha",
         "array",
         "argb",

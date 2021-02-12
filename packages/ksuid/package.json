@@ -61,7 +61,7 @@
         "lib"
     ],
     "keywords": [
-        "base",
+        "base62",
         "bigint",
         "binary",
         "bytes",
@@ -83,6 +83,10 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "base-n",
+            "random"
+        ],
         "status": "alpha",
         "year": 2020
     }

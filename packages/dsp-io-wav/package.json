@@ -60,12 +60,18 @@
         "lib"
     ],
     "keywords": [
+        "8bit",
+        "16bit",
+        "24bit",
+        "32bit",
         "audio",
         "binary",
         "channel",
         "dsp",
         "export",
         "fileformat",
+        "mono",
+        "stereo",
         "typescript",
         "wav"
     ],

@@ -59,6 +59,7 @@
     ],
     "keywords": [
         "agent",
+        "arity",
         "clojure",
         "functional",
         "hierarchy",
