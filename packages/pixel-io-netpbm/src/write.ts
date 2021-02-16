@@ -1,4 +1,3 @@
-import { MSB_BITS8 } from "@thi.ng/binary";
 import { GRAY16, luminanceABGR, PackedBuffer } from "@thi.ng/pixel";
 
 const formatComments = (
@@ -16,7 +15,7 @@ const formatComments = (
  *
  * @internal
  */
-const init = (
+const initHeader = (
     magic: string,
     limits: number,
     size: number,
@@ -24,7 +23,10 @@ const init = (
     comments?: string[]
 ) => {
     const { width, height } = buf;
-    let header = `${magic}\n${formatComments(comments)}\n${width} ${height}\n`;
+    let header = magic + "\n";
+    const comm = formatComments(comments);
+    if (comm.length) header += comm + "\n";
+    header += `${width} ${height}\n`;
     if (limits > 0) header += limits + "\n";
     const dest = new Uint8Array(size + header.length);
     dest.set([...header].map((x) => x.charCodeAt(0)));
@@ -42,7 +44,7 @@ const init = (
  */
 export const asPBM = (buf: PackedBuffer, comments?: string[]) => {
     const { pixels, width, height } = buf;
-    const { dest, start, abgr } = init(
+    const { dest, start, abgr } = initHeader(
         "P4",
         0,
         Math.ceil(width / 8) * height,
@@ -52,10 +54,11 @@ export const asPBM = (buf: PackedBuffer, comments?: string[]) => {
     const w1 = width - 1;
     for (let y = 0, i = start, j = 0; y < height; y++) {
         for (let x = 0, b = 0; x <= w1; x++, j++) {
+            const xx = ~x & 7;
             if (luminanceABGR(abgr(pixels[j])) < 128) {
-                b |= MSB_BITS8[x & 7];
+                b |= 1 << xx;
             }
-            if ((x & 7) === 7 || x === w1) {
+            if (xx === 0 || x === w1) {
                 dest[i++] = b;
                 b = 0;
             }
@@ -76,7 +79,7 @@ export const asPBM = (buf: PackedBuffer, comments?: string[]) => {
  */
 export const asPGM = (buf: PackedBuffer, comments?: string[]) => {
     const { pixels, width, height } = buf;
-    const { dest, start, abgr } = init(
+    const { dest, start, abgr } = initHeader(
         "P5",
         0xff,
         width * height,
@@ -102,7 +105,7 @@ export const asPGM = (buf: PackedBuffer, comments?: string[]) => {
 export const asPGM16 = (buf: PackedBuffer, comments?: string[]) => {
     if (buf.format !== GRAY16) buf = buf.as(GRAY16);
     const { pixels, width, height } = buf;
-    const { dest, start } = init(
+    const { dest, start } = initHeader(
         "P5",
         0xffff,
         width * height * 2,
@@ -127,7 +130,7 @@ export const asPGM16 = (buf: PackedBuffer, comments?: string[]) => {
  */
 export const asPPM = (buf: PackedBuffer, comments?: string[]) => {
     const { pixels, width, height } = buf;
-    const { dest, start, abgr } = init(
+    const { dest, start, abgr } = initHeader(
         "P6",
         255,
         width * 3 * height,

@@ -121,7 +121,7 @@ export const readPBM = (
     const w1 = width - 1;
     for (let y = 0, j = 0; y < height; y++) {
         for (let x = 0; x < width; x++, j++) {
-            pixels[j] = (src[i] >> (7 - (x & 7))) & 1 ? 0 : 0xff;
+            pixels[j] = src[i] & (1 << (~x & 7)) ? 0 : 0xff;
             if ((x & 7) === 7 || x === w1) i++;
         }
     }
