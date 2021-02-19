@@ -1,8 +1,7 @@
-import type { Pair } from "@thi.ng/api";
 import * as assert from "assert";
-import { AdjacencyBitMatrix } from "../src";
+import { defAdjBitMatrix, Edge } from "../src";
 
-const edges: Pair<number, number>[] = [
+const edges: Edge[] = [
     [2, 3],
     [0, 1],
     [5, 4],
@@ -10,8 +9,18 @@ const edges: Pair<number, number>[] = [
 ];
 
 describe("adjacency (bitmatrix)", () => {
-    it("fromEdges, undirected", () => {
-        const m = AdjacencyBitMatrix.fromEdges(6, edges, true);
+    it("directed", () => {
+        const m = defAdjBitMatrix(4, [[1, 2]], false);
+        assert(m.hasEdge(1, 2));
+        assert.deepStrictEqual(m.neighbors(1), [2]);
+        assert.deepStrictEqual(m.neighbors(2), []);
+        assert.deepStrictEqual(m.valence(1), 1);
+        assert.deepStrictEqual([...m.edges()], [[1, 2]]);
+        console.log(m.toString());
+    });
+
+    it("undirected", () => {
+        const m = defAdjBitMatrix(6, edges, true);
         assert.deepStrictEqual(
             [...m.mat.data.slice(0, 6)],
             [
