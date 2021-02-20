@@ -52,7 +52,6 @@
     "dependencies": {
         "@thi.ng/api": "^6.13.6",
         "@thi.ng/arrays": "^0.10.1",
-        "@thi.ng/binary": "^2.0.21",
         "@thi.ng/bitfield": "^0.3.30",
         "@thi.ng/dcons": "^2.3.9",
         "@thi.ng/sparse": "^0.1.64"
@@ -72,6 +71,7 @@
         "disjointset",
         "graph",
         "laplacian",
+        "list",
         "matrix",
         "neighbors",
         "path",
@@ -82,7 +82,8 @@
         "typescript",
         "undirected",
         "unionfind",
-        "valence"
+        "valence",
+        "vertex"
     ],
     "publishConfig": {
         "access": "public"
