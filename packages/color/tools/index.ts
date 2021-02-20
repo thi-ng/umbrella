@@ -15,6 +15,7 @@ import {
     lch,
     proximity,
     ReadonlyColor,
+    selectChannel,
     sort,
     swatchesH,
 } from "../src";
@@ -57,6 +58,27 @@ const sortedRange = (id: string, base: CSSColorName, num: number) =>
     ]);
 
 for (let id in COLOR_RANGES) {
+    writeFileSync(
+        `export/swatches-range-${id}-hue.svg`,
+        serialize(
+            svg(
+                { width: 500, height: 50, convert: true },
+                swatchesH(
+                    sort(
+                        [
+                            ...colorsFromRange(<ColorRangePreset>id, {
+                                num: 100,
+                                variance: V,
+                            }),
+                        ],
+                        selectChannel(2)
+                    ),
+                    5,
+                    50
+                )
+            )
+        )
+    );
     writeFileSync(
         `export/swatches-range-${id}-chunks.svg`,
         serialize(
@@ -106,19 +128,32 @@ for (let id in COLOR_RANGES) {
 
 ////////////////////////////////////////////////////////////
 
-const theme = <ColorThemePartTuple[]>[
+const theme: ColorThemePartTuple[] = [
     ["cool", "goldenrod"],
     ["hard", "hotpink", 0.1],
     ["fresh", "springgreen", 0.1],
 ];
 
-const colors = sorted([
-    ...colorsFromTheme(theme, { num: 200, variance: 0.05 }),
-]);
+const colors = [...colorsFromTheme(theme, { num: 200, variance: 0.05 })];
 
-const doc = svg(
-    { width: 1000, height: 50, convert: true },
-    swatchesH(colors, 5, 50)
+writeFileSync(
+    "export/swatches-ex01.svg",
+    serialize(
+        svg(
+            { width: 1000, height: 50, convert: true },
+            swatchesH(colors, 5, 50)
+        )
+    )
 );
 
-writeFileSync("export/swatches-ex01.svg", serialize(doc));
+sorted(colors);
+
+writeFileSync(
+    "export/swatches-ex02.svg",
+    serialize(
+        svg(
+            { width: 1000, height: 50, convert: true },
+            swatchesH(colors, 5, 50)
+        )
+    )
+);
