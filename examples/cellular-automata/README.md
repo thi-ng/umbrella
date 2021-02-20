@@ -1,5 +1,7 @@
 # Cellular automata
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/cellular-automata.png)
+
 [Live demo](https://demo.thi.ng/umbrella/cellular-automata/)
 
 Please refer to the [example build

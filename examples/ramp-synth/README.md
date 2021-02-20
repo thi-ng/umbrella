@@ -1,6 +1,6 @@
 # ramp-synth
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/ramp-synth.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ramp-synth.png)
 
 [Live demo](http://demo.thi.ng/umbrella/ramp-synth/)
 

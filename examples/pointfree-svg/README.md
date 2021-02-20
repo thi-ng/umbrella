@@ -1,14 +1,14 @@
 # pointfree-svg
 
-This is a non-browser demo combining the following packages to generate
-the SVG graphic below:
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-svg.png)
+
+This is a non-browser demo combining the following packages to generate the
+above SVG graphic:
 
 - [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
 - [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg)
 - [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree)
 - [@thi.ng/pointfree-lang](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree-lang)
-
-![generated result](https://raw.githubusercontent.com/thi-ng/umbrella/master/examples/pointfree-svg/output.svg)
 
 Most of the [source
 code](https://raw.githubusercontent.com/thi-ng/umbrella/master/examples/pointfree-svg/src/index.ts)

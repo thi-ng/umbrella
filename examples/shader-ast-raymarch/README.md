@@ -1,5 +1,7 @@
 # shader-ast-raymarch
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/shader-ast/shader-ast-raymarch.jpg)
+
 - [Live demo (WebGL)](http://demo.thi.ng/umbrella/shader-ast-raymarch/)
 - [Live demo (Canvas 2D)](http://demo.thi.ng/umbrella/shader-ast-raymarch/#2d)
 

@@ -1,5 +1,7 @@
 # poisson-circles
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/poisson/poisson.jpg)
+
 [Live demo](http://demo.thi.ng/umbrella/poisson-circles/)
 
 Please refer to the [example build instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions) on the wiki.

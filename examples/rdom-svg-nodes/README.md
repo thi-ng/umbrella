@@ -1,5 +1,7 @@
 # rdom-svg-nodes
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-svg-nodes.png)
+
 [Live demo](http://demo.thi.ng/umbrella/rdom-svg-nodes/)
 
 Please refer to the [example build instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions) on the wiki.

@@ -1,5 +1,7 @@
 # scenegraph
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph.png)
+
 [Live demo](http://demo.thi.ng/umbrella/scenegraph/)
 
 Minimal 2D scene graph with support for

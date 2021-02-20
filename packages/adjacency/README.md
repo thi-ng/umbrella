@@ -42,14 +42,13 @@ yarn add @thi.ng/adjacency
 <script src="https://unpkg.com/@thi.ng/adjacency/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.74 KB / CJS: 1.82 KB / UMD: 1.92 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.29 KB / CJS: 2.38 KB / UMD: 2.44 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
+- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
 - [@thi.ng/bitfield](https://github.com/thi-ng/umbrella/tree/develop/packages/bitfield)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/develop/packages/dcons)
 - [@thi.ng/sparse](https://github.com/thi-ng/umbrella/tree/develop/packages/sparse)
 

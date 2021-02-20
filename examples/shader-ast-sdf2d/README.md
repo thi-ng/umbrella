@@ -1,5 +1,7 @@
 # shader-ast-sdf2
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-sdf2d.jpg)
+
 - [Live demo (WebGL)](http://demo.thi.ng/umbrella/shader-ast-sdf2d/)
 - [Live demo (Canvas 2D)](http://demo.thi.ng/umbrella/shader-ast-sdf2d/#2d)
 

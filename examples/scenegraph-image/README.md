@@ -1,5 +1,7 @@
 # scenegraph-image
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-image.png)
+
 [Live demo](http://demo.thi.ng/umbrella/scenegraph-image/)
 
 Similar to the other [scenegraph](../scenegraph/) example, only here

@@ -1,5 +1,7 @@
 # gesture-analysis
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/gesture-analysis.png)
+
 [Live demo](http://demo.thi.ng/umbrella/gesture-analysis/)
 
 Mouse / touch gesture processing, analysis and SVG visualization, using

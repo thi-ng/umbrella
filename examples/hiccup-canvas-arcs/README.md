@@ -1,5 +1,7 @@
 # hiccup-canvas-arcs
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hiccup-canvas-arcs.png)
+
 [Live demo](http://demo.thi.ng/umbrella/hiccup-canvas-arcs/)
 
 Please refer to the [example build instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions) on the wiki.

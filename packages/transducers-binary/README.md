@@ -43,7 +43,7 @@ iterable for direct use.
 
 ### Related packages
 
-- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary) - 95+ assorted binary / bitwise operations, conversions, utilities
+- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary) - 100+ assorted binary / bitwise operations, conversions, utilities, lookup tables
 - [@thi.ng/bitstream](https://github.com/thi-ng/umbrella/tree/develop/packages/bitstream) - ES6 iterator based read/write bit streams with support for variable word widths
 - [@thi.ng/unionstruct](https://github.com/thi-ng/umbrella/tree/develop/packages/unionstruct) - C-style struct, union and bitfield read/write views of ArrayBuffers
 

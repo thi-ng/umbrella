@@ -1,5 +1,7 @@
 # commit-table-ssr
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-table-ssr.png)
+
 [Live version](http://demo.thi.ng/umbrella/commit-table-ssr/)
 
 This example demonstrates isomorphic,

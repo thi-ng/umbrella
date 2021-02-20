@@ -1,5 +1,7 @@
 # svg-barchart
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-barchart.png)
+
 [Live demo](http://demo.thi.ng/umbrella/svg-barchart/)
 
 SVG bar chart component & one-off rendering.

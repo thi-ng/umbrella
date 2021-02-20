@@ -60,12 +60,11 @@ yarn add @thi.ng/pixel-io-netpbm
 <script src="https://unpkg.com/@thi.ng/pixel-io-netpbm/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.30 KB / CJS: 1.38 KB / UMD: 1.46 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.31 KB / CJS: 1.39 KB / UMD: 1.49 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
 

@@ -1,5 +1,7 @@
 # rstream-grid
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-grid.jpg)
+
 ## About
 
 [Live demo](https://demo.thi.ng/umbrella/rstream-grid/)

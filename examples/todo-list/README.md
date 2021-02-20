@@ -1,4 +1,6 @@
-# @thi.ng/hdom todo list example
+# Todo list with undo/redo
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/todo-list.png)
 
 [Live demo here](https://demo.thi.ng/umbrella/todo-list/)
 

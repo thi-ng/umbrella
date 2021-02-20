@@ -1,5 +1,7 @@
 # mandelbrot
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mandelbrot.jpg)
+
 [Live demo](http://demo.thi.ng/umbrella/mandelbrot/)
 
 Please refer to the [example build

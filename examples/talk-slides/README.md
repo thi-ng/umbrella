@@ -1,5 +1,7 @@
 # talk-slides
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/talk-slides.png)
+
 [Live demo](http://media.thi.ng/2018/talks/clojurex/index.html) |
 [Exported PDF](http://media.thi.ng/2018/talks/clojurex/slides.pdf)
 

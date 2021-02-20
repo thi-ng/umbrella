@@ -1,5 +1,7 @@
 # hdom-toggle
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-toggle.png)
+
 [Live demo](http://demo.thi.ng/umbrella/hdom-toggle/)
 
 Please refer to the [example build instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions) on the wiki.

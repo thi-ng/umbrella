@@ -1,5 +1,7 @@
 # hdom-canvas-draw
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-canvas-draw.jpg)
+
 [Live demo](http://demo.thi.ng/umbrella/hdom-canvas-draw/)
 
 Please refer to the [example build

@@ -1,5 +1,7 @@
 # geom-tessel
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/tessel.png)
+
 [Live demo](http://demo.thi.ng/umbrella/geom-tessel/)
 
 Test example of

@@ -1,5 +1,7 @@
 # pixel-sorting
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-sorting.png)
+
 [Live demo](http://demo.thi.ng/umbrella/pixel-sorting/)
 
 Please refer to the [example build instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions) on the wiki.

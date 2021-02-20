@@ -1,5 +1,7 @@
 # rotating-voronoi
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rotating-voronoi.jpg)
+
 [Live demo](http://demo.thi.ng/umbrella/rotating-voronoi/)
 
 Example to show 2d spline in combination with voronoi tessellation.
@@ -9,7 +11,7 @@ Please refer to the [example build instructions](https://github.com/thi-ng/umbre
 
 ## Authors
 
--   Alberto Massa
+- Alberto Massa
 
 ## License
 

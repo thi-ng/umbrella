@@ -1,5 +1,7 @@
 # webgl-cubemap
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-cubemap.jpg)
+
 WebGL 360˚ panorama / cube map example. Images by [Emil
 Persson](http://www.humus.name/index.php?page=Textures).
 

@@ -1,5 +1,7 @@
 # shader-ast-canvas2d
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/shader-ast/shader-ast-01.jpg)
+
 [Live demo](http://demo.thi.ng/umbrella/shader-ast-canvas2d/)
 
 WIP example of using

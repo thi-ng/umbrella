@@ -1,6 +1,6 @@
 # fft-synth
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/fft-synth.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fft-synth.png)
 
 [Live demo](http://demo.thi.ng/umbrella/fft-synth/)
 
