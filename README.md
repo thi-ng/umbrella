@@ -125,22 +125,24 @@ for other project-wide information, tidbits, useful snippets etc.
 
 ## Projects
 
+<!--
 ### New / unreleased packages in development
 
 (These packages might be still unreleased and only available on their
 feature or `develop` branches)
+-->
 
-- [`@thi.ng/color`](./packages/color) - Complete refactor/overhaul/extension of color package
-- [`@thi.ng/pixel-io-netpbm`](./packages/pixel-io-netpbm) - 1/8/16/24bit NetPBM image format reader/writer
+### Latest additions / major updates (2021-02-20)
 
-### Latest additions (2021-01-21)
-
-| Project                                   | Version                                                                                                         | Changelog                                     | Description                                            |
-|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------|--------------------------------------------------------|
-| [`@thi.ng/args`](./packages/args)         | [![version](https://img.shields.io/npm/v/@thi.ng/args.svg)](https://www.npmjs.com/package/@thi.ng/args)         | [changelog](./packages/args/CHANGELOG.md)     | Declarative & functional CLI arg parsing & coercions   |
-| [`@thi.ng/distance`](./packages/distance) | [![version](https://img.shields.io/npm/v/@thi.ng/distance.svg)](https://www.npmjs.com/package/@thi.ng/distance) | [changelog](./packages/distance/CHANGELOG.md) | n-D distance metrics & K-nearest neighborhoods         |
-| [`@thi.ng/base-n`](./packages/base-n)     | [![version](https://img.shields.io/npm/v/@thi.ng/base-n.svg)](https://www.npmjs.com/package/@thi.ng/base-n)     | [changelog](./packages/base-n/CHANGELOG.md)   | Arbitrary base-n encoding/decoding with presets        |
-| [`@thi.ng/ksuid`](./packages/ksuid)       | [![version](https://img.shields.io/npm/v/@thi.ng/ksuid.svg)](https://www.npmjs.com/package/@thi.ng/ksuid)       | [changelog](./packages/ksuid/CHANGELOG.md)    | K-sortable unique identifiers, binary & base-N encoded |
+| Project                                                 | Version                                                                                                                       | Changelog                                            | Description                                           |
+|---------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|-------------------------------------------------------|
+| [`@thi.ng/api`](./packages/api)                         | [![version](https://img.shields.io/npm/v/@thi.ng/api.svg)](https://www.npmjs.com/package/@thi.ng/api)                         | [changelog](./packages/api/CHANGELOG.md)             | repo wide type alias replacements                     |
+| [`@thi.ng/color`](./packages/color)                     | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)                     | [changelog](./packages/color/CHANGELOG.md)           | Complete refactor/overhaul/extension of color package |
+| [`@thi.ng/malloc`](./packages/malloc)                   | [![version](https://img.shields.io/npm/v/@thi.ng/malloc.svg)](https://www.npmjs.com/package/@thi.ng/malloc)                   | [changelog](./packages/malloc/CHANGELOG.md)          | repo wide type alias replacements                     |
+| [`@thi.ng/pixel-io-netpbm`](./packages/pixel-io-netpbm) | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-netpbm.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-netpbm) | [changelog](./packages/pixel-io-netpbm/CHANGELOG.md) | 1/8/16/24bit NetPBM image format reader/writer        |
+| [`@thi.ng/vectors`](./packages/vectors)                 | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)                 | [changelog](./packages/vectors/CHANGELOG.md)         | repo wide type alias replacements                     |
+| [`@thi.ng/vector-pools`](./packages/vector-pools)       | [![version](https://img.shields.io/npm/v/@thi.ng/vector-pools.svg)](https://www.npmjs.com/package/@thi.ng/vector-pools)       | [changelog](./packages/vector-pools/CHANGELOG.md)    | repo wide type alias replacements                     |
+| [`@thi.ng/webgl`](./packages/webgl)                     | [![version](https://img.shields.io/npm/v/@thi.ng/webgl.svg)](https://www.npmjs.com/package/@thi.ng/webgl)                     | [changelog](./packages/webgl/CHANGELOG.md)           | repo wide type alias replacements                     |
 
 ### Fundamentals
 
@@ -201,6 +203,7 @@ feature or `develop` branches)
 | [`@thi.ng/hiccup-svg`](./packages/hiccup-svg)           | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-svg.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-svg)           | [changelog](./packages/hiccup-svg/CHANGELOG.md)      | hiccup based SVG vocab                         |
 | [`@thi.ng/iges`](./packages/iges)                       | [![version](https://img.shields.io/npm/v/@thi.ng/iges.svg)](https://www.npmjs.com/package/@thi.ng/iges)                       | [changelog](./packages/iges/CHANGELOG.md)            | IGES format geometry serialization             |
 | [`@thi.ng/mime`](./packages/mime)                       | [![version](https://img.shields.io/npm/v/@thi.ng/mime.svg)](https://www.npmjs.com/package/@thi.ng/mime)                       | [changelog](./packages/mime/CHANGELOG.md)            | File extension to MIME type mappings           |
+| [`@thi.ng/pixel-io-netpbm`](./packages/pixel-io-netpbm) | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-netpbm.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-netpbm) | [changelog](./packages/pixel-io-netpbm/CHANGELOG.md) | 1/8/16/24bit NetPBM image format reader/writer |
 | [`@thi.ng/prefixes`](./packages/prefixes)               | [![version](https://img.shields.io/npm/v/@thi.ng/prefixes.svg)](https://www.npmjs.com/package/@thi.ng/prefixes)               | [changelog](./packages/prefixes/CHANGELOG.md)        | Linked Data, RDF & xmlns prefixes/URLs         |
 | [`@thi.ng/sax`](./packages/sax)                         | [![version](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax)                         | [changelog](./packages/sax/CHANGELOG.md)             | SAX-like XML parser / transducer               |
 
