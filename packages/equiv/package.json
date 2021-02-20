@@ -43,11 +43,11 @@
         "@types/mocha": "^8.2.0",
         "@types/node": "^14.14.14",
         "benchmark": "^2.1.4",
-        "mocha": "^8.2.1",
+        "mocha": "^8.3.0",
         "nyc": "^15.1.0",
         "ts-node": "^9.1.1",
-        "typedoc": "^0.20.23",
-        "typescript": "^4.1.4"
+        "typedoc": "^0.20.26",
+        "typescript": "^4.1.5"
     },
     "files": [
         "*.js",
