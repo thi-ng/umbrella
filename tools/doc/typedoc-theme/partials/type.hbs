@@ -118,6 +118,13 @@ if an inner type may result in invalid output without them. For example:
     <span class="tsd-signature-symbol"> }</span>
 {{/inline}}
 
+{{#*inline 'optional'}}
+    {{#with elementType}}
+        {{> type}}
+    {{/with}}
+    <span class="tsd-signature-symbol">?</span>
+{{/inline}}
+
 {{#*inline 'predicate'}}
     {{#if asserts}}
         <span class="tsd-signature-symbol">asserts </span>
@@ -165,17 +172,56 @@ if an inner type may result in invalid output without them. For example:
             {{#unless @first}}
                 <span class="tsd-signature-symbol">; </span>
             {{/unless}}
-            {{name}}
-            {{#if flags.isOptional }}
-                <span class="tsd-signature-symbol">?: </span>
+
+            {{#if getSignature}}
+                {{#if setSignature}}
+                    {{name}}
+                    <span class="tsd-signature-symbol">: </span>
+                    {{#with getSignature.type}}
+                        {{> type}}
+                    {{else}}
+                        <span class="tsd-signature-type">any</span>
+                    {{/with}}
+                {{else}}
+                    <span class="tsd-signature-symbol">get </span>
+                    {{name}}
+                    <span class="tsd-signature-symbol">(): </span>
+                    {{#with getSignature.type}}
+                        {{> type}}
+                    {{else}}
+                        <span class="tsd-signature-type">any</span>
+                    {{/with}}
+                {{/if}}
             {{else}}
-                <span class="tsd-signature-symbol">: </span>
+                {{#if setSignature}}
+                    <span class="tsd-signature-symbol">set </span>
+                    {{name}}
+                    <span class="tsd-signature-symbol">(</span>
+                    {{! Rather hacky to use each here... but we know there is exactly one. }}
+                    {{#each setSignature.parameters}}
+                        {{name}}
+                        <span class="tsd-signature-symbol">: </span>
+                        {{#with type}}
+                            {{> type}}
+                        {{else}}
+                            <span class="tsd-signature-type">any</span>
+                        {{/with}}
+                    {{/each}}
+                    <span class="tsd-signature-symbol">)</span>
+                {{else}}
+                    {{name}}
+                    {{#if flags.isOptional }}
+                        <span class="tsd-signature-symbol">?: </span>
+                    {{else}}
+                        <span class="tsd-signature-symbol">: </span>
+                    {{/if}}
+                    {{#with type}}
+                        {{> type}}
+                    {{else}}
+                        <span class="tsd-signature-type">any</span>
+                    {{/with}}
+                {{/if}}
             {{/if}}
-            {{#with type}}
-                {{> type}}
-            {{else}}
-                <span class="tsd-signature-type">any</span>
-            {{/with}}
         {{/each}}
         <span class="tsd-signature-symbol"> }</span>
     {{else if declaration.signatures}}
@@ -202,6 +248,13 @@ if an inner type may result in invalid output without them. For example:
     {{else}}
         <span class="tsd-signature-symbol">{}</span>
     {{/if}}
+{{/inline}}
+
+{{#*inline 'rest'}}
+    <span class="tsd-signature-symbol">...</span>
+    {{#with elementType}}
+        {{> type}}
+    {{/with}}
 {{/inline}}
 
 {{#*inline 'tuple'}}

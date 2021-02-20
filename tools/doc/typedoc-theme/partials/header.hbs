@@ -52,7 +52,9 @@
                 </ul>
             {{/if}}
             <h1>{{#compact}}
-                {{model.kindString}}&nbsp;
+                {{#ifCond model.kindString "!==" "Project" }}
+                    {{model.kindString}}&nbsp;
+                {{/ifCond}}
                 {{model.name}}
                 {{#if model.typeParameters}}
                     &lt;
