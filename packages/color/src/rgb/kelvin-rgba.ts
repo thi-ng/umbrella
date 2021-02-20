@@ -1,6 +1,6 @@
 import { clamp01 } from "@thi.ng/math";
 import { setC4 } from "@thi.ng/vectors";
-import { rgb, RGB } from "./rgb";
+import { SRGB, srgb } from "../srgb/srgb";
 
 const G1 = -0.6088425710866344;
 const G2 = -0.001748900018414868;
@@ -20,19 +20,19 @@ const B3 = 0.453646839257496;
  * - {@link https://github.com/neilbartlett/color-temperature/blob/develop/index.js}
  * - {@link http://www.zombieprototypes.com/?p=210}
  *
- * Uses adjusted coefficients to produce normalized RGB values.
+ * Uses adjusted coefficients to produce normalized sRGB values.
  *
  * @param out - result
  * @param kelvin - color temperature
  * @param alpha - target alpha channel
  */
-export const kelvinRgb = (out: RGB | null, kelvin: number, alpha = 1) => {
+export const kelvinRgb = (out: SRGB | null, kelvin: number, alpha = 1) => {
     kelvin *= 0.01;
     let t: number;
     return kelvin < 66
-        ? <RGB>(
+        ? <SRGB>(
               setC4(
-                  out || rgb(),
+                  out || srgb(),
                   1,
                   clamp01(G1 + G2 * (t = kelvin - 2) + G3 * Math.log(t)),
                   kelvin < 20
@@ -41,9 +41,9 @@ export const kelvinRgb = (out: RGB | null, kelvin: number, alpha = 1) => {
                   alpha
               )
           )
-        : <RGB>(
+        : <SRGB>(
               setC4(
-                  out || rgb(),
+                  out || srgb(),
                   clamp01(R1 + R2 * (t = kelvin - 55) + R3 * Math.log(t)),
                   clamp01(G4 + G5 * (t = kelvin - 50) - G6 * Math.log(t)),
                   1,
