@@ -33,7 +33,7 @@ from the integer types).
 
 - ABGR (uint32, `0xaabbggrr`, aka sRGB(A) as packed int)
 - [ARGB](https://en.wikipedia.org/wiki/RGBA_color_model#ARGB32) (uint32, `0xaarrggbb`, aka sRGB(A) as packed int)
-- [CSS](https://www.w3.org/TR/css-color-4/) (string, hex3/hex4/hex6/hex8, named colors, rgba(), hsla(), etc.)
+- [CSS](https://www.w3.org/TR/css-color-4/) (string, hex3/4/6/8, named colors, system colors, rgba(), hsla(), lch(), lab(), etc.)
 - [HCY](http://www.chilliant.com/rgb2hsv.html) (float4, similar to LCH)
 - [HSI](https://en.wikipedia.org/wiki/HSL_and_HSV#HSI_to_RGB) (float4)
 - [HSL](https://en.wikipedia.org/wiki/HSL_and_HSV) (float4)
@@ -47,32 +47,30 @@ from the integer types).
 - [XYZ](https://en.wikipedia.org/wiki/CIE_1931_color_space) (float4, aka CIE 1931, D50/D65 versions)
 - [YCC](https://en.wikipedia.org/wiki/YCbCr) (float4, aka YCbCr)
 
-| From/To   | CSS | HCY  | HSI  | HSL  | HSV  | Int  | Lab  | LCH | Oklab | RGB  | sRGB | XYY | XYZ  | YCC  |
-|-----------|-----|------|------|------|------|------|------|-----|-------|------|------|-----|------|------|
-| **CSS**   | ✅   | 🆎   | 🆎   | ✅    | 🆎   | ✅(1) | ✅(4) | ✅   | 🆎    | ✅    | ✅    | 🆎  | 🆎   | 🆎   |
-| **HCY**   | 🆎  | ✅    | 🆎   | 🆎   | 🆎   | ❌    | 🆎   | 🆎  | 🆎    | ✅(2) | ✅(2) | 🆎  | 🆎   | 🆎   |
-| **HSI**   | 🆎  | 🆎   | ✅    | 🆎   | 🆎   | ❌    | 🆎   | 🆎  | 🆎    | ✅(2) | ✅(2) | 🆎  | 🆎   | 🆎   |
-| **HSL**   | ✅   | 🆎   | 🆎   | ✅    | 🆎   | ❌    | 🆎   | 🆎  | 🆎    | ✅(2) | ✅(2) | 🆎  | 🆎   | 🆎   |
-| **HSV**   | 🆎  | 🆎   | 🆎   | ✅    | ✅    | ❌    | 🆎   | 🆎  | 🆎    | ✅(2) | ✅(2) | 🆎  | 🆎   | 🆎   |
-| **Int**   | ✅   | 🆎   | 🆎   | 🆎   | 🆎   | ❌    | 🆎   | 🆎  | 🆎    | 🆎   | ✅    | ✅   | 🆎   | 🆎   |
-| **Lab**   | ✅   | 🆎   | 🆎   | 🆎   | 🆎   | ❌    | ✅(3) | ✅   | 🆎    | ✅(3) | 🆎   | 🆎  | ✅(3) | 🆎   |
-| **LCH**   | ✅   | 🆎   | 🆎   | 🆎   | 🆎   | ❌    | ✅    | ✅   | 🆎    | 🆎   | 🆎   | 🆎  | 🆎   | 🆎   |
-| **Oklab** | 🆎  | 🆎   | 🆎   | 🆎   | 🆎   | ❌    | 🆎   | 🆎  | ✅     | ✅    | 🆎   | 🆎  | ✅    | 🆎   |
-| **RGB**   | 🆎  | ✅(2) | ✅(2) | ✅(2) | ✅(2) | ✅    | ✅(3) | ✅   | ✅     | ✅    | ✅    | 🆎  | ✅(3) | ✅(2) |
-| **sRGB**  | ✅   | ✅(2) | ✅(2) | ✅(2) | ✅(2) | ✅    | 🆎   | 🆎  | 🆎    | ✅    | ✅    | 🆎  | 🆎   | 🆎   |
-| **XYY**   | 🆎  | 🆎   | 🆎   | 🆎   | 🆎   | ❌    | 🆎   | 🆎  | 🆎    | 🆎   | 🆎   | ✅   | ✅    | 🆎   |
-| **XYZ**   | 🆎  | 🆎   | 🆎   | 🆎   | 🆎   | ❌    | ✅    | 🆎  | 🆎    | ✅    | 🆎   | ✅   | ✅(3) | 🆎   |
-| **YCC**   | 🆎  | 🆎   | 🆎   | 🆎   | 🆎   | ❌    | 🆎   | 🆎  | 🆎    | ✅(2) | 🆎   | 🆎  | 🆎   | ✅    |
+| From/To   | CSS | HCY             | HSI             | HSL             | HSV             | Int             | Lab             | LCH | Oklab | RGB             | sRGB            | XYY | XYZ             | YCC             |
+|-----------|-----|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|-----|-------|-----------------|-----------------|-----|-----------------|-----------------|
+| **CSS**   | ✅   | 🆎              | 🆎              | ✅               | 🆎              | ✅<sup>(1)</sup> | ✅<sup>(4)</sup> | ✅   | 🆎    | ✅               | ✅               | 🆎  | 🆎              | 🆎              |
+| **HCY**   | 🆎  | ✅               | 🆎              | 🆎              | 🆎              | ❌               | 🆎              | 🆎  | 🆎    | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | 🆎  | 🆎              | 🆎              |
+| **HSI**   | 🆎  | 🆎              | ✅               | 🆎              | 🆎              | ❌               | 🆎              | 🆎  | 🆎    | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | 🆎  | 🆎              | 🆎              |
+| **HSL**   | ✅   | 🆎              | 🆎              | ✅               | 🆎              | ❌               | 🆎              | 🆎  | 🆎    | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | 🆎  | 🆎              | 🆎              |
+| **HSV**   | 🆎  | 🆎              | 🆎              | ✅               | ✅               | ❌               | 🆎              | 🆎  | 🆎    | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | 🆎  | 🆎              | 🆎              |
+| **Int**   | ✅   | 🆎              | 🆎              | 🆎              | 🆎              | ❌               | 🆎              | 🆎  | 🆎    | 🆎              | ✅               | ✅   | 🆎              | 🆎              |
+| **Lab**   | ✅   | 🆎              | 🆎              | 🆎              | 🆎              | ❌               | ✅<sup>(3)</sup> | ✅   | 🆎    | ✅<sup>(3)</sup> | 🆎              | 🆎  | ✅<sup>(3)</sup> | 🆎              |
+| **LCH**   | ✅   | 🆎              | 🆎              | 🆎              | 🆎              | ❌               | ✅               | ✅   | 🆎    | 🆎              | 🆎              | 🆎  | 🆎              | 🆎              |
+| **Oklab** | 🆎  | 🆎              | 🆎              | 🆎              | 🆎              | ❌               | 🆎              | 🆎  | ✅     | ✅               | 🆎              | 🆎  | ✅               | 🆎              |
+| **RGB**   | 🆎  | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | ✅               | ✅<sup>(3)</sup> | ✅   | ✅     | ✅               | ✅               | 🆎  | ✅<sup>(3)</sup> | ✅<sup>(2)</sup> |
+| **sRGB**  | ✅   | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | ✅               | 🆎              | 🆎  | 🆎    | ✅               | ✅               | 🆎  | 🆎              | 🆎              |
+| **XYY**   | 🆎  | 🆎              | 🆎              | 🆎              | 🆎              | ❌               | 🆎              | 🆎  | 🆎    | 🆎              | 🆎              | ✅   | ✅               | 🆎              |
+| **XYZ**   | 🆎  | 🆎              | 🆎              | 🆎              | 🆎              | ❌               | ✅               | 🆎  | 🆎    | ✅               | 🆎              | ✅   | ✅<sup>(3)</sup> | 🆎              |
+| **YCC**   | 🆎  | 🆎              | 🆎              | 🆎              | 🆎              | ❌               | 🆎              | 🆎  | 🆎    | ✅<sup>(2)</sup> | 🆎              | 🆎  | 🆎              | ✅               |
 
 - ✅ - direct conversion
 - 🆎 - indirect conversion (mostly via RGB/sRGB)
 - (1) - only via `parseHex()`
 - (2) - no consideration for linear/gamma encoded RGB/sRGB
   (see [Wikipedia](https://en.wikipedia.org/wiki/HSL_and_HSV#cite_note-26))
-- (3) - including [D50/D65
-  illuminant](https://en.wikipedia.org/wiki/Illuminant_D65) options
-- (4) - parsed as Lab w/ D50 illuminant as per [CSS Color Module Level
-  4](https://www.w3.org/TR/css-color-4/#lab-colors)
+- (3) - including [D50/D65 illuminant](https://en.wikipedia.org/wiki/Illuminant_D65) options
+- (4) - parsed as Lab w/ D50 illuminant as per [CSS Color Module Level 4](https://www.w3.org/TR/css-color-4/#lab-colors)
 
 #### Color creation / conversion
 
@@ -199,8 +197,8 @@ css(colors[2])
 
 ### Color theme generation
 
-The package provides several methods for procedural & declarative color theme
-generations. The latter relies on the concept of LCH color ranges, which can be
+The package provides several methods for declarative & probabilistic color theme
+generation. The latter relies on the concept of LCH color ranges, which can be
 sampled directly and/or mixed with a base color (of any type) to produce
 randomized variations. Furthermore, multiple such ranges can be combined into a
 weighted set to define probabilistic color themes.
@@ -211,7 +209,6 @@ colorFromRange("bright");
 // [ 0.7302125322518669, 0.8519945301256682, 0.8134374983367859, 1 ]
 
 // single random color based on given raw HSV base color and preset
-// ()
 colorFromRange("warm", { base: hsv(0.33, 1, 1) })
 // $Color {
 //   offset: 0,
@@ -228,8 +225,8 @@ colors.next();
 //   done: false
 // }
 
-// 10 cool reds, w/ 10% hue variance
-[...colorsFromRange("cool", { num: 10, base: hsv(0, 0.8, 1), variance: 0.1 })]
+// 10 cool reds, w/ ±10% hue variance
+[...colorsFromRange("cool", { num: 10, base: lch(1, 0.8, 0), variance: 0.1 })]
 
 // generate colors based on given (weighted) textual description(s)
 // here using named CSS colors, but could also be or typed colors or raw LCH tuples
@@ -250,47 +247,51 @@ colors.next();
 )]
 ```
 
-| ID        | 100 colors drawn from color range preset only, sorted by hue                                                       |
-|-----------|--------------------------------------------------------------------------------------------------------------------|
-| `bright`  | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-bright.svg)  |
-| `cool`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-cool.svg)    |
-| `dark`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-dark.svg)    |
-| `fresh`   | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-fresh.svg)   |
-| `hard`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-hard.svg)    |
-| `intense` | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-intense.svg) |
-| `light`   | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-light.svg)   |
-| `neutral` | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-neutral.svg) |
-| `soft`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-soft.svg)    |
-| `warm`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-warm.svg)    |
-| `weak`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-weak.svg)    |
+This table below shows three sets of sample swatches for each color range preset
+and the following color theme (raw samples and chunked & sorted):
 
-| ID        | 100 colors, single base color w/ color range preset, sorted by hue                                                 |
-|-----------|--------------------------------------------------------------------------------------------------------------------|
-| `bright`  | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-bright.svg)  |
-| `cool`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-cool.svg)    |
-| `dark`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-dark.svg)    |
-| `fresh`   | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-fresh.svg)   |
-| `hard`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-hard.svg)    |
-| `intense` | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-intense.svg) |
-| `light`   | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-light.svg)   |
-| `neutral` | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-neutral.svg) |
-| `soft`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-soft.svg)    |
-| `warm`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-warm.svg)    |
-| `weak`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-green-weak.svg)    |
+- 1/3 goldenrod
+- 1/3 turquoise
+- 1/3 pink
+- 1/6 black
+- 1/6 gray
+- 1/6 white
 
-| ID        | 100 colors, 2 base colors w/ color range preset, sorted by brightness                                            |
-|-----------|------------------------------------------------------------------------------------------------------------------|
-| `bright`  | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-bright.svg)  |
-| `cool`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-cool.svg)    |
-| `dark`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-dark.svg)    |
-| `fresh`   | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-fresh.svg)   |
-| `hard`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-hard.svg)    |
-| `intense` | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-intense.svg) |
-| `light`   | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-light.svg)   |
-| `neutral` | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-neutral.svg) |
-| `soft`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-soft.svg)    |
-| `warm`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-warm.svg)    |
-| `weak`    | ![color swatch](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-duo-weak.svg)    |
+| ID        | 100 colors drawn from color range preset                                                                                    |
+|-----------|-----------------------------------------------------------------------------------------------------------------------------|
+| `bright`  | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-bright-hue.svg)     |
+|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-bright-mixed.svg)   |
+|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-bright-chunks.svg)  |
+| `cool`    | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-cool-hue.svg)       |
+|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-cool-mixed.svg)     |
+|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-cool-chunks.svg)    |
+| `dark`    | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-dark-hue.svg)       |
+|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-dark-mixed.svg)     |
+|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-dark-chunks.svg)    |
+| `fresh`   | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-fresh-hue.svg)      |
+|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-fresh-mixed.svg)    |
+|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-fresh-chunks.svg)   |
+| `hard`    | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-hard-hue.svg)       |
+|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-hard-mixed.svg)     |
+|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-hard-chunks.svg)    |
+| `intense` | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-intense-hue.svg)    |
+|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-intense-mixed.svg)  |
+|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-intense-chunks.svg) |
+| `light`   | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-light-hue.svg)      |
+|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-light-mixed.svg)    |
+|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-light-chunks.svg)   |
+| `neutral` | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-neutral-hue.svg)    |
+|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-neutral-mixed.svg)  |
+|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-neutral-chunks.svg) |
+| `soft`    | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-soft-hue.svg)       |
+|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-soft-mixed.svg)     |
+|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-soft-chunks.svg)    |
+| `warm`    | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-warm-hue.svg)       |
+|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-warm-mixed.svg)     |
+|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-warm-chunks.svg)    |
+| `weak`    | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-weak-hue.svg)       |
+|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-weak-mixed.svg)     |
+|           | ![color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-range-weak-chunks.svg)    |
 
 Full example:
 
@@ -304,9 +305,10 @@ import { writeFileSync } from "fs";
 // color range preset names, CSS colors and weights
 const theme: ColorThemePartTuple[] = [
     ["cool", "goldenrod"],
-    ["fresh", "hotpink", 0.1],
-    ["light", "springgreen", 0.1],
+    ["hard", "hotpink", 0.1],
+    ["fresh", "springgreen", 0.1],
 ];
+
 
 // generate 200 LCH colors based on above description
 const colors = [...colorsFromTheme(theme, { num: 200, variance: 0.05 })];
@@ -323,23 +325,73 @@ writeFileSync("export/swatches-ex01.svg", serialize(doc));
 
 ![example result color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-ex01.svg)
 
-### Color sorting
+### Color sorting & distance
 
-The `sort()` function can be used to sort an array of colors using
-arbitrary sort criteria. The following comparators are bundled:
+The package provides several functions to compute full or channel-wise distances
+between colors. These functions can also be used for sorting color arrays (see below).
+
+- `distChannel` - single channel distance only
+- `distHsv` / `distHsvSat` / `distHsvLuma`
+- `distEucledian3` / `distEucledian4`
+- `distRgbLuma` / `distSrgbLuma`
+- `distCIEDE2000`
+- `distCMC`
+
+The `sort()` function can be used to sort an array of colors using arbitrary
+sort criteria (basically any function which can transform a color into a
+number). The following comparators are bundled:
 
 - `selectChannel(i)` - sort by channel
-- `proximityHsv(target)` - sort by distance to target color (HSV colors)
-- `proximityRgb(target)` - sort by distance to target color (RGB colors)
+- `proximity(target, distFn)` - sort by distance to target color using given distance function
+- `luminance` / `luminanceRgb` / `luminanceSrgb` etc.
 
 ```ts
 // (see above example)
 const colors = [...colorsFromTheme(theme, { num: 200, variance: 0.05 })];
 
-sortColors(colors, proximityHsv([0,1,0.5]));
+sortColors(colors, proximity(lch("#fff"), distCIEDE2000()));
 ```
 
 ![sorted color swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/swatches-ex02.svg)
+
+#### Sorting memory-mapped colors
+
+Memory mapped colors (e.g. a mapped pixel buffer) can be sorted (in place) via
+`sortMapped()`. This function does NOT change the order of elements in the given
+colors array, BUT instead sorts the apparent order by swapping the contents of
+the backing memory.
+
+See the [pixel sorting
+example](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-sorting)
+for a concrete use case...
+
+```ts
+// memory buffer of 4 sRGB colors
+const buf = new Float32Array([0,1,0,1, 0,0.5,0,1, 0,0.25,0,1, 0,0.75,0,1]);
+
+// map buffer (creates 4 SRGB instances linked to the buffer)
+const pix = srgb.mapBuffer(buf);
+
+// display original order
+pix.map(css);
+// [ '#00ff00', '#008000', '#004000', '#00bf00' ]
+
+// sort colors (buffer!) by luminance
+sortMapped(pix, luminanceSrgb);
+
+// new order
+pix.map(css);
+// [ '#004000', '#008000', '#00bf00', '#00ff00' ]
+
+// buffer contents have been re-ordered
+buf
+// Float32Array(16) [
+//     0, 0.25, 0, 1,    0,
+//   0.5,    0, 1, 0, 0.75,
+//     0,    1, 0, 1,    0,
+//     1
+// ]
+```
 
 ### Gradients
 
