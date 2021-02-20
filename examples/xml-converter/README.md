@@ -17,7 +17,7 @@ This diagram illustrates the
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 dataflow topology used by the browser app:
 
-![dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/xml-converter-dflow.png)
+![dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/xml-converter-dflow.png)
 
 ## Browser version
 
