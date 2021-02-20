@@ -37,11 +37,9 @@ Array-based color types, CSS parsing, conversions, transformations, declarative 
 
 ---
 
-**Note: This readme is a work-in-progress, partially outdated and will apply to
-the still unreleased version 3.0.0, a major overhaul of the entire package.
-Please see readme on [main
-branch](https://github.com/thi-ng/umbrella/blob/main/packages/color/README.md)
-for the current version...**
+**Note: Version 3.0.0 constitutes an almost complete overhaul of the entire
+package, providing a more simple and flexible API, as well as various new
+additional features (compared to previous versions).**
 
 ---
 
