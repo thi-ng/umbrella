@@ -3,14 +3,18 @@ import { svg } from "@thi.ng/hiccup-svg";
 import { writeFileSync } from "fs";
 import {
     ColorRangePreset,
+    colorsFromRange,
     colorsFromTheme,
     ColorThemePartTuple,
     COLOR_RANGES,
     cosineGradient,
     CosineGradientPreset,
     COSINE_GRADIENTS,
-    proximityHSV,
-    selectChannel,
+    CSSColorName,
+    distCIEDE2000,
+    lch,
+    proximity,
+    ReadonlyColor,
     sort,
     swatchesH,
 } from "../src";
@@ -38,28 +42,60 @@ Object.keys(COSINE_GRADIENTS).forEach((id) => {
 
 ////////////////////////////////////////////////////////////
 
+const V = 0.05;
+
+const sorted = (cols: ReadonlyColor[]) =>
+    sort(cols, proximity(lch("#fff"), distCIEDE2000()));
+
+const sortedRange = (id: string, base: CSSColorName, num: number) =>
+    sorted([
+        ...colorsFromRange(<ColorRangePreset>id, {
+            variance: V,
+            base,
+            num,
+        }),
+    ]);
+
 for (let id in COLOR_RANGES) {
     writeFileSync(
-        `export/swatches-green-${id}.svg`,
+        `export/swatches-range-${id}-chunks.svg`,
         serialize(
             svg(
                 { width: 500, height: 50, convert: true },
                 swatchesH(
-                    sort(
-                        [
-                            ...colorsFromTheme(
-                                [
-                                    [<ColorRangePreset>id, "goldenrod"],
-                                    [<ColorRangePreset>id, "turquoise"],
-                                ],
-                                {
-                                    num: 100,
-                                    variance: 0.05,
-                                }
-                            ),
-                        ],
-                        proximityHSV([0, 1, 1])
-                    ),
+                    [
+                        ...sortedRange(id, "goldenrod", 22),
+                        ...sortedRange(id, "turquoise", 22),
+                        ...sortedRange(id, "pink", 22),
+                        ...sortedRange(id, "black", 11),
+                        ...sortedRange(id, "gray", 11),
+                        ...sortedRange(id, "white", 11),
+                    ],
+                    5,
+                    50
+                )
+            )
+        )
+    );
+    writeFileSync(
+        `export/swatches-range-${id}-mixed.svg`,
+        serialize(
+            svg(
+                { width: 500, height: 50, convert: true },
+                swatchesH(
+                    [
+                        ...colorsFromTheme(
+                            [
+                                [<ColorRangePreset>id, "goldenrod", 22],
+                                [<ColorRangePreset>id, "turquoise", 22],
+                                [<ColorRangePreset>id, "pink", 22],
+                                [<ColorRangePreset>id, "black", 11],
+                                [<ColorRangePreset>id, "gray", 11],
+                                [<ColorRangePreset>id, "white", 11],
+                            ],
+                            { num: 100, variance: V }
+                        ),
+                    ],
                     5,
                     50
                 )
@@ -72,13 +108,13 @@ for (let id in COLOR_RANGES) {
 
 const theme = <ColorThemePartTuple[]>[
     ["cool", "goldenrod"],
-    ["fresh", "hotpink", 0.1],
-    ["light", "springgreen", 0.1],
+    ["hard", "hotpink", 0.1],
+    ["fresh", "springgreen", 0.1],
 ];
 
-const colors = [...colorsFromTheme(theme, { num: 200, variance: 0.05 })];
-
-sort(colors, selectChannel(0), true);
+const colors = sorted([
+    ...colorsFromTheme(theme, { num: 200, variance: 0.05 }),
+]);
 
 const doc = svg(
     { width: 1000, height: 50, convert: true },
