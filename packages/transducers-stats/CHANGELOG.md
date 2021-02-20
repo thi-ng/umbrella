@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.1.49](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-stats@1.1.48...@thi.ng/transducers-stats@1.1.49) (2021-01-22)
-
-**Note:** Version bump only for package @thi.ng/transducers-stats
-
-
-
-
-
-## [1.1.48](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-stats@1.1.47...@thi.ng/transducers-stats@1.1.48) (2021-01-21)
-
-**Note:** Version bump only for package @thi.ng/transducers-stats
-
-
-
-
-
-## [1.1.47](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-stats@1.1.46...@thi.ng/transducers-stats@1.1.47) (2021-01-13)
-
-**Note:** Version bump only for package @thi.ng/transducers-stats
-
-
-
-
-
-## [1.1.46](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-stats@1.1.45...@thi.ng/transducers-stats@1.1.46) (2021-01-10)
-
-**Note:** Version bump only for package @thi.ng/transducers-stats
-
-
-
-
-
-## [1.1.45](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-stats@1.1.44...@thi.ng/transducers-stats@1.1.45) (2021-01-02)
-
-**Note:** Version bump only for package @thi.ng/transducers-stats
-
-
-
-
-
-## [1.1.44](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-stats@1.1.43...@thi.ng/transducers-stats@1.1.44) (2020-12-22)
-
-**Note:** Version bump only for package @thi.ng/transducers-stats
-
-
-
-
-
 # [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-stats@1.0.19...@thi.ng/transducers-stats@1.1.0) (2019-07-07)
 
 ### Features

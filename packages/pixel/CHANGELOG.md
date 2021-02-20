@@ -14,14 +14,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.5.0...@thi.ng/pixel@0.5.1) (2021-01-10)
-
-**Note:** Version bump only for package @thi.ng/pixel
-
-
-
-
-
 # [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.4.10...@thi.ng/pixel@0.5.0) (2021-01-02)
 
 
@@ -29,14 +21,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **pixel:** add FLOAT_HSVA format, update FloatFormatSpec ([118c4ed](https://github.com/thi-ng/umbrella/commit/118c4edbacd75249262f26962153f614148cedec))
 * **pixel:** add FloatBuffer.fromPacked() ([abd1ca8](https://github.com/thi-ng/umbrella/commit/abd1ca80d455999dd8c3af87d24b4f1905d7806d))
-
-
-
-
-
-## [0.4.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.4.9...@thi.ng/pixel@0.4.10) (2020-12-22)
-
-**Note:** Version bump only for package @thi.ng/pixel
 
 
 

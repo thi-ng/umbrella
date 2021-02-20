@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.0.69](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@1.0.68...@thi.ng/cache@1.0.69) (2021-01-22)
-
-**Note:** Version bump only for package @thi.ng/cache
-
-
-
-
-
-## [1.0.68](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@1.0.67...@thi.ng/cache@1.0.68) (2021-01-21)
-
-**Note:** Version bump only for package @thi.ng/cache
-
-
-
-
-
-## [1.0.67](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@1.0.66...@thi.ng/cache@1.0.67) (2021-01-13)
-
-**Note:** Version bump only for package @thi.ng/cache
-
-
-
-
-
-## [1.0.66](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@1.0.65...@thi.ng/cache@1.0.66) (2021-01-10)
-
-**Note:** Version bump only for package @thi.ng/cache
-
-
-
-
-
-## [1.0.65](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@1.0.64...@thi.ng/cache@1.0.65) (2021-01-02)
-
-**Note:** Version bump only for package @thi.ng/cache
-
-
-
-
-
-## [1.0.64](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@1.0.63...@thi.ng/cache@1.0.64) (2020-12-22)
-
-**Note:** Version bump only for package @thi.ng/cache
-
-
-
-
-
 # [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@0.2.40...@thi.ng/cache@1.0.0) (2019-01-21)
 
 ### Bug Fixes

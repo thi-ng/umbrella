@@ -3,62 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.3.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.3.6...@thi.ng/rdom@0.3.7) (2021-01-22)
-
-**Note:** Version bump only for package @thi.ng/rdom
-
-
-
-
-
-## [0.3.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.3.5...@thi.ng/rdom@0.3.6) (2021-01-21)
-
-**Note:** Version bump only for package @thi.ng/rdom
-
-
-
-
-
-## [0.3.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.3.4...@thi.ng/rdom@0.3.5) (2021-01-13)
-
-**Note:** Version bump only for package @thi.ng/rdom
-
-
-
-
-
-## [0.3.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.3.3...@thi.ng/rdom@0.3.4) (2021-01-10)
-
-**Note:** Version bump only for package @thi.ng/rdom
-
-
-
-
-
-## [0.3.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.3.2...@thi.ng/rdom@0.3.3) (2021-01-05)
-
-**Note:** Version bump only for package @thi.ng/rdom
-
-
-
-
-
-## [0.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.3.1...@thi.ng/rdom@0.3.2) (2021-01-02)
-
-**Note:** Version bump only for package @thi.ng/rdom
-
-
-
-
-
-## [0.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.3.0...@thi.ng/rdom@0.3.1) (2020-12-22)
-
-**Note:** Version bump only for package @thi.ng/rdom
-
-
-
-
-
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.2.16...@thi.ng/rdom@0.3.0) (2020-12-07)
 
 

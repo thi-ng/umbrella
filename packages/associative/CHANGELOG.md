@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [5.0.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@5.0.16...@thi.ng/associative@5.0.17) (2021-01-22)
-
-**Note:** Version bump only for package @thi.ng/associative
-
-
-
-
-
-## [5.0.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@5.0.15...@thi.ng/associative@5.0.16) (2021-01-21)
-
-**Note:** Version bump only for package @thi.ng/associative
-
-
-
-
-
-## [5.0.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@5.0.14...@thi.ng/associative@5.0.15) (2021-01-13)
-
-**Note:** Version bump only for package @thi.ng/associative
-
-
-
-
-
-## [5.0.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@5.0.13...@thi.ng/associative@5.0.14) (2021-01-10)
-
-**Note:** Version bump only for package @thi.ng/associative
-
-
-
-
-
-## [5.0.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@5.0.12...@thi.ng/associative@5.0.13) (2021-01-02)
-
-**Note:** Version bump only for package @thi.ng/associative
-
-
-
-
-
-## [5.0.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@5.0.11...@thi.ng/associative@5.0.12) (2020-12-22)
-
-**Note:** Version bump only for package @thi.ng/associative
-
-
-
-
-
 # [5.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@4.5.1...@thi.ng/associative@5.0.0) (2020-07-25)
 
 

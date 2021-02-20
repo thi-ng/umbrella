@@ -3,62 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.4.36](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.4.35...@thi.ng/fsm@2.4.36) (2021-01-22)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [2.4.35](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.4.34...@thi.ng/fsm@2.4.35) (2021-01-21)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [2.4.34](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.4.33...@thi.ng/fsm@2.4.34) (2021-01-13)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [2.4.33](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.4.32...@thi.ng/fsm@2.4.33) (2021-01-10)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [2.4.32](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.4.31...@thi.ng/fsm@2.4.32) (2021-01-05)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [2.4.31](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.4.30...@thi.ng/fsm@2.4.31) (2021-01-02)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
-## [2.4.30](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.4.29...@thi.ng/fsm@2.4.30) (2020-12-22)
-
-**Note:** Version bump only for package @thi.ng/fsm
-
-
-
-
-
 # [2.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/fsm@2.3.7...@thi.ng/fsm@2.4.0) (2020-03-06)
 
 

@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.2.56](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-resample@0.2.55...@thi.ng/geom-resample@0.2.56) (2021-01-22)
-
-**Note:** Version bump only for package @thi.ng/geom-resample
-
-
-
-
-
-## [0.2.55](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-resample@0.2.54...@thi.ng/geom-resample@0.2.55) (2021-01-21)
-
-**Note:** Version bump only for package @thi.ng/geom-resample
-
-
-
-
-
-## [0.2.54](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-resample@0.2.53...@thi.ng/geom-resample@0.2.54) (2021-01-13)
-
-**Note:** Version bump only for package @thi.ng/geom-resample
-
-
-
-
-
-## [0.2.53](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-resample@0.2.52...@thi.ng/geom-resample@0.2.53) (2021-01-10)
-
-**Note:** Version bump only for package @thi.ng/geom-resample
-
-
-
-
-
-## [0.2.52](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-resample@0.2.51...@thi.ng/geom-resample@0.2.52) (2021-01-02)
-
-**Note:** Version bump only for package @thi.ng/geom-resample
-
-
-
-
-
-## [0.2.51](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-resample@0.2.50...@thi.ng/geom-resample@0.2.51) (2020-12-22)
-
-**Note:** Version bump only for package @thi.ng/geom-resample
-
-
-
-
-
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-resample@0.1.17...@thi.ng/geom-resample@0.2.0) (2019-07-07)
 
 ### Features

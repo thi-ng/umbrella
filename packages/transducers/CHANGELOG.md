@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [7.5.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.5.7...@thi.ng/transducers@7.5.8) (2021-01-22)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
-## [7.5.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.5.6...@thi.ng/transducers@7.5.7) (2021-01-21)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
-## [7.5.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.5.5...@thi.ng/transducers@7.5.6) (2021-01-13)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
-## [7.5.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.5.4...@thi.ng/transducers@7.5.5) (2021-01-10)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
-## [7.5.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.5.3...@thi.ng/transducers@7.5.4) (2021-01-02)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
-## [7.5.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.5.2...@thi.ng/transducers@7.5.3) (2020-12-22)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
 # [7.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.4.0...@thi.ng/transducers@7.5.0) (2020-11-24)
 
 

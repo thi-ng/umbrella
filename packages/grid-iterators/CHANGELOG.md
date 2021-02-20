@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.4.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/grid-iterators@0.4.20...@thi.ng/grid-iterators@0.4.21) (2021-01-22)
-
-**Note:** Version bump only for package @thi.ng/grid-iterators
-
-
-
-
-
-## [0.4.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/grid-iterators@0.4.19...@thi.ng/grid-iterators@0.4.20) (2021-01-21)
-
-**Note:** Version bump only for package @thi.ng/grid-iterators
-
-
-
-
-
-## [0.4.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/grid-iterators@0.4.18...@thi.ng/grid-iterators@0.4.19) (2021-01-13)
-
-**Note:** Version bump only for package @thi.ng/grid-iterators
-
-
-
-
-
-## [0.4.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/grid-iterators@0.4.17...@thi.ng/grid-iterators@0.4.18) (2021-01-10)
-
-**Note:** Version bump only for package @thi.ng/grid-iterators
-
-
-
-
-
-## [0.4.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/grid-iterators@0.4.16...@thi.ng/grid-iterators@0.4.17) (2021-01-02)
-
-**Note:** Version bump only for package @thi.ng/grid-iterators
-
-
-
-
-
-## [0.4.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/grid-iterators@0.4.15...@thi.ng/grid-iterators@0.4.16) (2020-12-22)
-
-**Note:** Version bump only for package @thi.ng/grid-iterators
-
-
-
-
-
 # [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/grid-iterators@0.3.17...@thi.ng/grid-iterators@0.4.0) (2020-06-20)
 
 

@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.3.49](https://github.com/thi-ng/umbrella/compare/@thi.ng/bencode@0.3.48...@thi.ng/bencode@0.3.49) (2021-01-22)
-
-**Note:** Version bump only for package @thi.ng/bencode
-
-
-
-
-
-## [0.3.48](https://github.com/thi-ng/umbrella/compare/@thi.ng/bencode@0.3.47...@thi.ng/bencode@0.3.48) (2021-01-21)
-
-**Note:** Version bump only for package @thi.ng/bencode
-
-
-
-
-
-## [0.3.47](https://github.com/thi-ng/umbrella/compare/@thi.ng/bencode@0.3.46...@thi.ng/bencode@0.3.47) (2021-01-13)
-
-**Note:** Version bump only for package @thi.ng/bencode
-
-
-
-
-
-## [0.3.46](https://github.com/thi-ng/umbrella/compare/@thi.ng/bencode@0.3.45...@thi.ng/bencode@0.3.46) (2021-01-10)
-
-**Note:** Version bump only for package @thi.ng/bencode
-
-
-
-
-
-## [0.3.45](https://github.com/thi-ng/umbrella/compare/@thi.ng/bencode@0.3.44...@thi.ng/bencode@0.3.45) (2021-01-02)
-
-**Note:** Version bump only for package @thi.ng/bencode
-
-
-
-
-
-## [0.3.44](https://github.com/thi-ng/umbrella/compare/@thi.ng/bencode@0.3.43...@thi.ng/bencode@0.3.44) (2020-12-22)
-
-**Note:** Version bump only for package @thi.ng/bencode
-
-
-
-
-
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/bencode@0.2.17...@thi.ng/bencode@0.3.0) (2019-07-07)
 
 ### Features

@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.5.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.5.11...@thi.ng/shader-ast-stdlib@0.5.12) (2021-01-22)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-stdlib
-
-
-
-
-
-## [0.5.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.5.10...@thi.ng/shader-ast-stdlib@0.5.11) (2021-01-21)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-stdlib
-
-
-
-
-
-## [0.5.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.5.9...@thi.ng/shader-ast-stdlib@0.5.10) (2021-01-13)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-stdlib
-
-
-
-
-
-## [0.5.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.5.8...@thi.ng/shader-ast-stdlib@0.5.9) (2021-01-10)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-stdlib
-
-
-
-
-
-## [0.5.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.5.7...@thi.ng/shader-ast-stdlib@0.5.8) (2021-01-02)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-stdlib
-
-
-
-
-
-## [0.5.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.5.6...@thi.ng/shader-ast-stdlib@0.5.7) (2020-12-22)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-stdlib
-
-
-
-
-
 # [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.4.6...@thi.ng/shader-ast-stdlib@0.5.0) (2020-08-28)
 
 

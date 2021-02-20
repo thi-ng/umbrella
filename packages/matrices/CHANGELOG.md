@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.6.43](https://github.com/thi-ng/umbrella/compare/@thi.ng/matrices@0.6.42...@thi.ng/matrices@0.6.43) (2021-01-22)
-
-**Note:** Version bump only for package @thi.ng/matrices
-
-
-
-
-
-## [0.6.42](https://github.com/thi-ng/umbrella/compare/@thi.ng/matrices@0.6.41...@thi.ng/matrices@0.6.42) (2021-01-21)
-
-**Note:** Version bump only for package @thi.ng/matrices
-
-
-
-
-
-## [0.6.41](https://github.com/thi-ng/umbrella/compare/@thi.ng/matrices@0.6.40...@thi.ng/matrices@0.6.41) (2021-01-13)
-
-**Note:** Version bump only for package @thi.ng/matrices
-
-
-
-
-
-## [0.6.40](https://github.com/thi-ng/umbrella/compare/@thi.ng/matrices@0.6.39...@thi.ng/matrices@0.6.40) (2021-01-10)
-
-**Note:** Version bump only for package @thi.ng/matrices
-
-
-
-
-
-## [0.6.39](https://github.com/thi-ng/umbrella/compare/@thi.ng/matrices@0.6.38...@thi.ng/matrices@0.6.39) (2021-01-02)
-
-**Note:** Version bump only for package @thi.ng/matrices
-
-
-
-
-
-## [0.6.38](https://github.com/thi-ng/umbrella/compare/@thi.ng/matrices@0.6.37...@thi.ng/matrices@0.6.38) (2020-12-22)
-
-**Note:** Version bump only for package @thi.ng/matrices
-
-
-
-
-
 # [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/matrices@0.5.12...@thi.ng/matrices@0.6.0) (2020-02-25)
 
 

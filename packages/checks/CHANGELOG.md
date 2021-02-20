@@ -14,22 +14,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [2.7.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.12...@thi.ng/checks@2.7.13) (2021-01-02)
-
-**Note:** Version bump only for package @thi.ng/checks
-
-
-
-
-
-## [2.7.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.11...@thi.ng/checks@2.7.12) (2020-12-22)
-
-**Note:** Version bump only for package @thi.ng/checks
-
-
-
-
-
 ## [2.7.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.2...@thi.ng/checks@2.7.3) (2020-07-02)
 
 

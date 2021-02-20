@@ -3,30 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.4.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.4.3...@thi.ng/text-canvas@0.4.4) (2021-01-22)
-
-**Note:** Version bump only for package @thi.ng/text-canvas
-
-
-
-
-
-## [0.4.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.4.2...@thi.ng/text-canvas@0.4.3) (2021-01-21)
-
-**Note:** Version bump only for package @thi.ng/text-canvas
-
-
-
-
-
-## [0.4.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.4.1...@thi.ng/text-canvas@0.4.2) (2021-01-13)
-
-**Note:** Version bump only for package @thi.ng/text-canvas
-
-
-
-
-
 ## [0.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.4.0...@thi.ng/text-canvas@0.4.1) (2021-01-10)
 
 
@@ -56,14 +32,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **text-canvas:** add ANSI256 & HTML_565 formatters ([1f2d35b](https://github.com/thi-ng/umbrella/commit/1f2d35b306c30bfecd168f25abd0ead18e2fdf2a))
 * **text-canvas:** add imageRaw(), update image() ([34037ad](https://github.com/thi-ng/umbrella/commit/34037ad4ec87027779c72b683c3a4194f1995e79))
-
-
-
-
-
-## [0.2.36](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.2.35...@thi.ng/text-canvas@0.2.36) (2020-12-22)
-
-**Note:** Version bump only for package @thi.ng/text-canvas
 
 
 

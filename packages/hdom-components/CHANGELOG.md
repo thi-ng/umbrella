@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [4.0.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@4.0.22...@thi.ng/hdom-components@4.0.23) (2021-01-22)
-
-**Note:** Version bump only for package @thi.ng/hdom-components
-
-
-
-
-
-## [4.0.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@4.0.21...@thi.ng/hdom-components@4.0.22) (2021-01-21)
-
-**Note:** Version bump only for package @thi.ng/hdom-components
-
-
-
-
-
-## [4.0.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@4.0.20...@thi.ng/hdom-components@4.0.21) (2021-01-13)
-
-**Note:** Version bump only for package @thi.ng/hdom-components
-
-
-
-
-
-## [4.0.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@4.0.19...@thi.ng/hdom-components@4.0.20) (2021-01-10)
-
-**Note:** Version bump only for package @thi.ng/hdom-components
-
-
-
-
-
-## [4.0.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@4.0.18...@thi.ng/hdom-components@4.0.19) (2021-01-02)
-
-**Note:** Version bump only for package @thi.ng/hdom-components
-
-
-
-
-
-## [4.0.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@4.0.17...@thi.ng/hdom-components@4.0.18) (2020-12-22)
-
-**Note:** Version bump only for package @thi.ng/hdom-components
-
-
-
-
-
 # [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom-components@3.2.12...@thi.ng/hdom-components@4.0.0) (2020-06-07)
 
 

@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.3.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-arc@0.3.22...@thi.ng/geom-arc@0.3.23) (2021-01-22)
-
-**Note:** Version bump only for package @thi.ng/geom-arc
-
-
-
-
-
-## [0.3.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-arc@0.3.21...@thi.ng/geom-arc@0.3.22) (2021-01-21)
-
-**Note:** Version bump only for package @thi.ng/geom-arc
-
-
-
-
-
-## [0.3.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-arc@0.3.20...@thi.ng/geom-arc@0.3.21) (2021-01-13)
-
-**Note:** Version bump only for package @thi.ng/geom-arc
-
-
-
-
-
-## [0.3.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-arc@0.3.19...@thi.ng/geom-arc@0.3.20) (2021-01-10)
-
-**Note:** Version bump only for package @thi.ng/geom-arc
-
-
-
-
-
-## [0.3.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-arc@0.3.18...@thi.ng/geom-arc@0.3.19) (2021-01-02)
-
-**Note:** Version bump only for package @thi.ng/geom-arc
-
-
-
-
-
-## [0.3.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-arc@0.3.17...@thi.ng/geom-arc@0.3.18) (2020-12-22)
-
-**Note:** Version bump only for package @thi.ng/geom-arc
-
-
-
-
-
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-arc@0.2.32...@thi.ng/geom-arc@0.3.0) (2020-06-20)
 
 

@@ -3,62 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.2.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/viz@0.2.8...@thi.ng/viz@0.2.9) (2021-01-22)
-
-**Note:** Version bump only for package @thi.ng/viz
-
-
-
-
-
-## [0.2.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/viz@0.2.7...@thi.ng/viz@0.2.8) (2021-01-21)
-
-**Note:** Version bump only for package @thi.ng/viz
-
-
-
-
-
-## [0.2.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/viz@0.2.6...@thi.ng/viz@0.2.7) (2021-01-13)
-
-**Note:** Version bump only for package @thi.ng/viz
-
-
-
-
-
-## [0.2.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/viz@0.2.5...@thi.ng/viz@0.2.6) (2021-01-10)
-
-**Note:** Version bump only for package @thi.ng/viz
-
-
-
-
-
-## [0.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/viz@0.2.4...@thi.ng/viz@0.2.5) (2021-01-05)
-
-**Note:** Version bump only for package @thi.ng/viz
-
-
-
-
-
-## [0.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/viz@0.2.3...@thi.ng/viz@0.2.4) (2021-01-02)
-
-**Note:** Version bump only for package @thi.ng/viz
-
-
-
-
-
-## [0.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/viz@0.2.2...@thi.ng/viz@0.2.3) (2020-12-22)
-
-**Note:** Version bump only for package @thi.ng/viz
-
-
-
-
-
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/viz@0.1.2...@thi.ng/viz@0.2.0) (2020-11-24)
 
 

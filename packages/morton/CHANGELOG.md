@@ -3,30 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.31](https://github.com/thi-ng/umbrella/compare/@thi.ng/morton@2.0.30...@thi.ng/morton@2.0.31) (2021-01-10)
-
-**Note:** Version bump only for package @thi.ng/morton
-
-
-
-
-
-## [2.0.30](https://github.com/thi-ng/umbrella/compare/@thi.ng/morton@2.0.29...@thi.ng/morton@2.0.30) (2021-01-02)
-
-**Note:** Version bump only for package @thi.ng/morton
-
-
-
-
-
-## [2.0.29](https://github.com/thi-ng/umbrella/compare/@thi.ng/morton@2.0.28...@thi.ng/morton@2.0.29) (2020-12-22)
-
-**Note:** Version bump only for package @thi.ng/morton
-
-
-
-
-
 ## [2.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/morton@2.0.8...@thi.ng/morton@2.0.9) (2020-04-11)
 
 

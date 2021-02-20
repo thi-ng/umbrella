@@ -55,14 +55,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.11.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.11.2...@thi.ng/strings@1.11.3) (2020-12-22)
-
-**Note:** Version bump only for package @thi.ng/strings
-
-
-
-
-
 # [1.11.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.10.0...@thi.ng/strings@1.11.0) (2020-11-24)
 
 

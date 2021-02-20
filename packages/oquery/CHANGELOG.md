@@ -3,30 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/oquery@0.2.3...@thi.ng/oquery@0.2.4) (2021-01-10)
-
-**Note:** Version bump only for package @thi.ng/oquery
-
-
-
-
-
-## [0.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/oquery@0.2.2...@thi.ng/oquery@0.2.3) (2021-01-02)
-
-**Note:** Version bump only for package @thi.ng/oquery
-
-
-
-
-
-## [0.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/oquery@0.2.1...@thi.ng/oquery@0.2.2) (2020-12-22)
-
-**Note:** Version bump only for package @thi.ng/oquery
-
-
-
-
-
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/oquery@0.1.15...@thi.ng/oquery@0.2.0) (2020-12-07)
 
 

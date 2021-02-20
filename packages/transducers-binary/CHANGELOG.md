@@ -3,46 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.6.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-binary@0.6.4...@thi.ng/transducers-binary@0.6.5) (2021-01-22)
-
-**Note:** Version bump only for package @thi.ng/transducers-binary
-
-
-
-
-
-## [0.6.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-binary@0.6.3...@thi.ng/transducers-binary@0.6.4) (2021-01-21)
-
-**Note:** Version bump only for package @thi.ng/transducers-binary
-
-
-
-
-
-## [0.6.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-binary@0.6.2...@thi.ng/transducers-binary@0.6.3) (2021-01-13)
-
-**Note:** Version bump only for package @thi.ng/transducers-binary
-
-
-
-
-
-## [0.6.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-binary@0.6.1...@thi.ng/transducers-binary@0.6.2) (2021-01-10)
-
-**Note:** Version bump only for package @thi.ng/transducers-binary
-
-
-
-
-
-## [0.6.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-binary@0.6.0...@thi.ng/transducers-binary@0.6.1) (2021-01-02)
-
-**Note:** Version bump only for package @thi.ng/transducers-binary
-
-
-
-
-
 # [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-binary@0.5.33...@thi.ng/transducers-binary@0.6.0) (2020-12-22)
 
 

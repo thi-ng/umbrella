@@ -14,14 +14,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.2.28](https://github.com/thi-ng/umbrella/compare/@thi.ng/idgen@0.2.27...@thi.ng/idgen@0.2.28) (2020-12-22)
-
-**Note:** Version bump only for package @thi.ng/idgen
-
-
-
-
-
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/idgen@0.1.0...@thi.ng/idgen@0.2.0) (2020-01-24)
 
 ### Features

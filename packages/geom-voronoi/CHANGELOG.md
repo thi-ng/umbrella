@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.2.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-voronoi@0.2.18...@thi.ng/geom-voronoi@0.2.19) (2021-01-22)
-
-**Note:** Version bump only for package @thi.ng/geom-voronoi
-
-
-
-
-
-## [0.2.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-voronoi@0.2.17...@thi.ng/geom-voronoi@0.2.18) (2021-01-21)
-
-**Note:** Version bump only for package @thi.ng/geom-voronoi
-
-
-
-
-
-## [0.2.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-voronoi@0.2.16...@thi.ng/geom-voronoi@0.2.17) (2021-01-13)
-
-**Note:** Version bump only for package @thi.ng/geom-voronoi
-
-
-
-
-
-## [0.2.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-voronoi@0.2.15...@thi.ng/geom-voronoi@0.2.16) (2021-01-10)
-
-**Note:** Version bump only for package @thi.ng/geom-voronoi
-
-
-
-
-
-## [0.2.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-voronoi@0.2.14...@thi.ng/geom-voronoi@0.2.15) (2021-01-02)
-
-**Note:** Version bump only for package @thi.ng/geom-voronoi
-
-
-
-
-
-## [0.2.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-voronoi@0.2.13...@thi.ng/geom-voronoi@0.2.14) (2020-12-22)
-
-**Note:** Version bump only for package @thi.ng/geom-voronoi
-
-
-
-
-
 ## [0.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-voronoi@0.2.1...@thi.ng/geom-voronoi@0.2.2) (2020-07-28)
 
 

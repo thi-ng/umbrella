@@ -3,30 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [4.2.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@4.2.11...@thi.ng/resolve-map@4.2.12) (2021-01-10)
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-
-
-
-
-## [4.2.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@4.2.10...@thi.ng/resolve-map@4.2.11) (2021-01-02)
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-
-
-
-
-## [4.2.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@4.2.9...@thi.ng/resolve-map@4.2.10) (2020-12-22)
-
-**Note:** Version bump only for package @thi.ng/resolve-map
-
-
-
-
-
 # [4.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/resolve-map@4.1.31...@thi.ng/resolve-map@4.2.0) (2020-07-18)
 
 

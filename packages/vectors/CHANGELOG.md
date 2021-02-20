@@ -3,14 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [4.9.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.9.0...@thi.ng/vectors@4.9.1) (2021-01-22)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
 # [4.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.8.6...@thi.ng/vectors@4.9.0) (2021-01-21)
 
 
@@ -22,38 +14,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **vectors:** add dist2/3 ([eb334fa](https://github.com/thi-ng/umbrella/commit/eb334fa764dc3d7093b1c64afb1fbdb1b1053831))
-
-
-
-
-
-## [4.8.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.8.5...@thi.ng/vectors@4.8.6) (2021-01-13)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.8.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.8.4...@thi.ng/vectors@4.8.5) (2021-01-10)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.8.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.8.3...@thi.ng/vectors@4.8.4) (2021-01-02)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.8.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.8.2...@thi.ng/vectors@4.8.3) (2020-12-22)
-
-**Note:** Version bump only for package @thi.ng/vectors
 
 
 

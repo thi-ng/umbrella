@@ -3,62 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.2.59](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-shadertoy@0.2.58...@thi.ng/webgl-shadertoy@0.2.59) (2021-01-22)
-
-**Note:** Version bump only for package @thi.ng/webgl-shadertoy
-
-
-
-
-
-## [0.2.58](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-shadertoy@0.2.57...@thi.ng/webgl-shadertoy@0.2.58) (2021-01-21)
-
-**Note:** Version bump only for package @thi.ng/webgl-shadertoy
-
-
-
-
-
-## [0.2.57](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-shadertoy@0.2.56...@thi.ng/webgl-shadertoy@0.2.57) (2021-01-13)
-
-**Note:** Version bump only for package @thi.ng/webgl-shadertoy
-
-
-
-
-
-## [0.2.56](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-shadertoy@0.2.55...@thi.ng/webgl-shadertoy@0.2.56) (2021-01-13)
-
-**Note:** Version bump only for package @thi.ng/webgl-shadertoy
-
-
-
-
-
-## [0.2.55](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-shadertoy@0.2.54...@thi.ng/webgl-shadertoy@0.2.55) (2021-01-10)
-
-**Note:** Version bump only for package @thi.ng/webgl-shadertoy
-
-
-
-
-
-## [0.2.54](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-shadertoy@0.2.53...@thi.ng/webgl-shadertoy@0.2.54) (2021-01-02)
-
-**Note:** Version bump only for package @thi.ng/webgl-shadertoy
-
-
-
-
-
-## [0.2.53](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-shadertoy@0.2.52...@thi.ng/webgl-shadertoy@0.2.53) (2020-12-22)
-
-**Note:** Version bump only for package @thi.ng/webgl-shadertoy
-
-
-
-
-
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-shadertoy@0.1.4...@thi.ng/webgl-shadertoy@0.2.0) (2020-02-25)
 
 

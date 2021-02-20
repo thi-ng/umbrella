@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.2.71](https://github.com/thi-ng/umbrella/compare/@thi.ng/lsys@0.2.70...@thi.ng/lsys@0.2.71) (2021-01-22)
-
-**Note:** Version bump only for package @thi.ng/lsys
-
-
-
-
-
-## [0.2.70](https://github.com/thi-ng/umbrella/compare/@thi.ng/lsys@0.2.69...@thi.ng/lsys@0.2.70) (2021-01-21)
-
-**Note:** Version bump only for package @thi.ng/lsys
-
-
-
-
-
-## [0.2.69](https://github.com/thi-ng/umbrella/compare/@thi.ng/lsys@0.2.68...@thi.ng/lsys@0.2.69) (2021-01-13)
-
-**Note:** Version bump only for package @thi.ng/lsys
-
-
-
-
-
-## [0.2.68](https://github.com/thi-ng/umbrella/compare/@thi.ng/lsys@0.2.67...@thi.ng/lsys@0.2.68) (2021-01-10)
-
-**Note:** Version bump only for package @thi.ng/lsys
-
-
-
-
-
-## [0.2.67](https://github.com/thi-ng/umbrella/compare/@thi.ng/lsys@0.2.66...@thi.ng/lsys@0.2.67) (2021-01-02)
-
-**Note:** Version bump only for package @thi.ng/lsys
-
-
-
-
-
-## [0.2.66](https://github.com/thi-ng/umbrella/compare/@thi.ng/lsys@0.2.65...@thi.ng/lsys@0.2.66) (2020-12-22)
-
-**Note:** Version bump only for package @thi.ng/lsys
-
-
-
-
-
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/lsys@0.1.0...@thi.ng/lsys@0.2.0) (2019-02-26)
 
 ### Features
