@@ -1,6 +1,6 @@
 import { assert, Fn2, IClear, ICopy } from "@thi.ng/api";
 import { align, bitAnd, bitNot, bitOr, bitXor } from "@thi.ng/binary";
-import { binOp, toString } from "./util";
+import { binOp, popCount, toString } from "./util";
 
 /**
  * 1D bit field, backed by a Uint32Array. Hence size is always rounded
@@ -10,7 +10,7 @@ export class BitField implements IClear, ICopy<BitField> {
     data: Uint32Array;
     n: number;
 
-    constructor(bits: number | string | ArrayLike<boolean>) {
+    constructor(bits: number | string | ArrayLike<boolean | number>) {
         const isNumber = typeof bits === "number";
         this.n = align(isNumber ? <number>bits : (<any>bits).length, 32);
         this.data = new Uint32Array(this.n >>> 5);
@@ -50,7 +50,7 @@ export class BitField implements IClear, ICopy<BitField> {
      * @param n - bit number
      */
     at(n: number) {
-        return this.data[n >>> 5] & (0x80000000 >>> (n & 31));
+        return this.data[n >>> 5] & (1 << (~n & 31));
     }
 
     /**
@@ -60,9 +60,9 @@ export class BitField implements IClear, ICopy<BitField> {
      * @param n - bit number
      * @param v - new bit value
      */
-    setAt(n: number, v = true) {
+    setAt(n: number, v: boolean | number = true) {
         const id = n >>> 5;
-        const mask = 0x80000000 >>> (n & 31);
+        const mask = 1 << (~n & 31);
         const r = this.data[id] & mask;
         if (v) {
             this.data[id] |= mask;
@@ -79,14 +79,14 @@ export class BitField implements IClear, ICopy<BitField> {
      * @param start -
      * @param vals -
      */
-    setRange(start: number, vals: string | ArrayLike<boolean>) {
+    setRange(start: number, vals: string | ArrayLike<boolean | number>) {
         const isString = typeof vals === "string";
-        for (let i = 0, n = vals.length; i < n; i++) {
+        for (let i = 0, n = Math.min(this.n, i + vals.length); i < n; i++) {
             this.setAt(
                 start + i,
                 isString
                     ? (<string>vals)[i] === "1"
-                    : (<ArrayLike<boolean>>vals)[i]
+                    : (<ArrayLike<boolean | number>>vals)[i]
             );
         }
     }
@@ -99,7 +99,7 @@ export class BitField implements IClear, ICopy<BitField> {
      */
     toggleAt(n: number) {
         const id = n >>> 5;
-        const mask = 0x80000000 >>> (n & 31);
+        const mask = 1 << (~n & 31);
         const r = this.data[id] & mask;
         if (r) {
             this.data[id] &= ~mask;
@@ -107,6 +107,13 @@ export class BitField implements IClear, ICopy<BitField> {
             this.data[id] |= mask;
         }
         return r;
+    }
+
+    /**
+     * Returns number of set bits (1's) in the bitfield.
+     */
+    popCount() {
+        return popCount(this.data);
     }
 
     and(field: BitField) {
@@ -140,5 +147,6 @@ export class BitField implements IClear, ICopy<BitField> {
     }
 }
 
-export const bitField = (bits: number | string | ArrayLike<boolean>) =>
-    new BitField(bits);
+export const defBitField = (
+    bits: number | string | ArrayLike<boolean | number>
+) => new BitField(bits);
