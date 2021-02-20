@@ -60,7 +60,7 @@ yarn add @thi.ng/intervals
 <script src="https://unpkg.com/@thi.ng/intervals/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.63 KB / CJS: 1.77 KB / UMD: 1.72 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.63 KB / CJS: 1.78 KB / UMD: 1.73 KB
 
 ## Dependencies
 
