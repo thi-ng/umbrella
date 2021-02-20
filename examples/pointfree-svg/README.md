@@ -11,7 +11,7 @@ above SVG graphic:
 - [@thi.ng/pointfree-lang](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree-lang)
 
 Most of the [source
-code](https://raw.githubusercontent.com/thi-ng/umbrella/master/examples/pointfree-svg/src/index.ts)
+code](https://raw.githubusercontent.com/thi-ng/umbrella/develop/examples/pointfree-svg/src/index.ts)
 is written in the pointfree DSL syntax and includes a rudimentary
 graphics lib to generate SVG shapes in hiccup format (basically a DOM
 defined by nested arrays). The example also demonstrates how to define

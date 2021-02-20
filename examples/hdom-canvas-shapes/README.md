@@ -32,7 +32,7 @@ Related examples:
 
 Dataflow diagram:
 
-![dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/hdom-canvas/hdom-canvas-shapes.png)
+![dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-canvas/hdom-canvas-shapes.png)
 
 ## Building
 

@@ -119,6 +119,15 @@ css(rgb(labD50("#ff0")))
 // '#ffff00'
 ```
 
+Additionally, colors can be created from black body temperatures
+([`kelvinRgb()`](https://github.com/thi-ng/umbrella/blob/develop/packages/color/src/rgb/kelvin-rgba.ts))
+or wavelengths
+([`wavelengthXyz()`](https://github.com/thi-ng/umbrella/blob/develop/packages/color/src/xyz/wavelength-xyz.ts)).
+
+![kelvinRgb() result swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/blackbody.svg)
+
+![wavelengthXyz() result swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/wavelength.svg)
+
 ### Storage & memory mapping
 
 All color types store their channel values in plain arrays, typed arrays of
