@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@2.0.6...@thi.ng/geom@2.1.0) (2021-02-20)
+
+
+### Bug Fixes
+
+* **geom:** fix regression/update buffer arg types ([9cf5e5d](https://github.com/thi-ng/umbrella/commit/9cf5e5d43d648eecfdcba861f44acc4d3e9fd17c))
+
+
+### Features
+
+* **geom:** add tangentAt() support for cubic/quadratic ([4302f58](https://github.com/thi-ng/umbrella/commit/4302f58dd4d490fbb0b97754ae7d54f28a8fa269))
+
+
+
+
+
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.13.4...@thi.ng/geom@2.0.0) (2020-12-22)
 
 

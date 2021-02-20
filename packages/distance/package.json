@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/distance",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "N-dimensional distance metrics & K-nearest neighborhoods for point queries",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,10 +49,10 @@
         "typescript": "^4.1.5"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.13.6",
-        "@thi.ng/heaps": "^1.2.31",
-        "@thi.ng/math": "^3.1.0",
-        "@thi.ng/vectors": "^4.9.1"
+        "@thi.ng/api": "^7.0.0",
+        "@thi.ng/heaps": "^1.2.32",
+        "@thi.ng/math": "^3.2.0",
+        "@thi.ng/vectors": "^5.0.0"
     },
     "files": [
         "*.js",

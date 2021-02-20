@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/intervals",
-    "version": "2.1.5",
+    "version": "3.0.0",
     "description": "Closed/open/semi-open interval data type, queries & operations",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,10 +49,10 @@
         "typescript": "^4.1.5"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.13.6",
-        "@thi.ng/checks": "^2.8.0",
-        "@thi.ng/dlogic": "^1.0.37",
-        "@thi.ng/errors": "^1.2.26"
+        "@thi.ng/api": "^7.0.0",
+        "@thi.ng/checks": "^2.9.0",
+        "@thi.ng/dlogic": "^1.0.38",
+        "@thi.ng/errors": "^1.2.27"
     },
     "files": [
         "*.js",

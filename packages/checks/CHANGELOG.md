@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.8.0...@thi.ng/checks@2.9.0) (2021-02-20)
+
+
+### Features
+
+* **checks:** add isIllegalKey() (make public) ([507fc80](https://github.com/thi-ng/umbrella/commit/507fc806903e766e42a98ddd569ba4031925204b))
+* **checks:** replace isPrototypePolluted() w/ isProtoPath() ([d276b84](https://github.com/thi-ng/umbrella/commit/d276b8465eda21a32f3613d20c043ea50fce7f57))
+
+
+
+
+
 # [2.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.13...@thi.ng/checks@2.8.0) (2021-01-10)
 
 

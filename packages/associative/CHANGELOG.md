@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@5.0.17...@thi.ng/associative@5.1.0) (2021-02-20)
+
+
+### Features
+
+* **associative:** update meldApplyObj/meldObjWith() ([97dda16](https://github.com/thi-ng/umbrella/commit/97dda16a8766314b137c5af2d504eb599d6cf2c5))
+
+
+
+
+
 # [5.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@4.5.1...@thi.ng/associative@5.0.0) (2020-07-25)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-carbon-icons@2.0.10...@thi.ng/hiccup-carbon-icons@2.0.11) (2021-02-20)
+
+
+### Performance Improvements
+
+* **hiccup-carbon-icons:** extract SVG root into shared fn ([760ea9f](https://github.com/thi-ng/umbrella/commit/760ea9f964b3098d75cad1a5ca006ae7404df603))
+
+
+
+
+
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-carbon-icons@1.0.51...@thi.ng/hiccup-carbon-icons@2.0.0) (2020-08-19)
 
 

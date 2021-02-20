@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@4.1.13...@thi.ng/paths@4.2.0) (2021-02-20)
+
+
+### Features
+
+* **paths:** use updated/more safe isProtoPath() ([456fac1](https://github.com/thi-ng/umbrella/commit/456fac19a0178de589f31cdd7e7ec2d8a6406c6c))
+
+
+
+
+
 # [4.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@4.0.11...@thi.ng/paths@4.1.0) (2020-07-08)
 
 

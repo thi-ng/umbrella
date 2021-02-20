@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.13.6...@thi.ng/api@7.0.0) (2021-02-20)
+
+
+### Features
+
+* **api:** add Range type ([5d94974](https://github.com/thi-ng/umbrella/commit/5d94974c34ca81513d40743f2a9b9a3ed20146d3))
+* **api:** add typedArrayType() classifier ([5c81fd8](https://github.com/thi-ng/umbrella/commit/5c81fd859514401c2c419b2ed3ec0f12025356c3))
+* **api:** more finely grained typedarray types ([8316d05](https://github.com/thi-ng/umbrella/commit/8316d058f0b5f760afd89e8590619670210a970a))
+* **api:** replace Type enum w/ strings consts ([a333d41](https://github.com/thi-ng/umbrella/commit/a333d418222972373cc1f9b256def2f79610d3fa))
+
+
+### BREAKING CHANGES
+
+* **api:** replace Type enum w/ string consts
+
+- update Type, UintType, IntType, FloatType aliases
+- update GL2TYPE, TYPE2GL, SIZEOF, TYPEDARRAY_CTORS tables
+- add asNativeType(), asGLType() conversions
+- add sizeOf()
+- add uintTypeForBits(), intTypeForBits()
+- update/rename uintTypeForSize(), intTypeForSize()
+
+
+
+
+
 # [6.13.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.12.3...@thi.ng/api@6.13.0) (2020-09-13)
 
 

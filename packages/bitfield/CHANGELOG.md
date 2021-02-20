@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.3.30...@thi.ng/bitfield@0.4.0) (2021-02-20)
+
+
+### Features
+
+* **bitfield:** add row/column extracts, popcounts, rename factories ([0c4c112](https://github.com/thi-ng/umbrella/commit/0c4c1127cbb9bd6fb071837adef2d7b65e2de533))
+
+
+### BREAKING CHANGES
+
+* **bitfield:** rename factory fns to follow umbrella-wide naming conventions
+
+- rename bitField() => defBitField()
+- rename bitMatrix() => defBitMatrix()
+- add BitMatrix.row()/column() bitfield extraction
+- add BitMatrix.popCountRow/Column()
+- add BitField.popCount()
+- update masks in bit accessors
+- update BitField ctor & accessors to allow numbers (not just booleans)
+
+
+
+
+
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.2.8...@thi.ng/bitfield@0.3.0) (2020-03-06)
 
 

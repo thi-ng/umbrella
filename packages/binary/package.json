@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/binary",
-    "version": "2.0.21",
+    "version": "2.1.0",
     "description": "100+ assorted binary / bitwise operations, conversions, utilities, lookup tables",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,7 +49,7 @@
         "typescript": "^4.1.5"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.13.6"
+        "@thi.ng/api": "^7.0.0"
     },
     "files": [
         "*.js",

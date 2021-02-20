@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@3.1.0...@thi.ng/math@3.2.0) (2021-02-20)
+
+
+### Features
+
+* **math:** add clamp0() ([d18c869](https://github.com/thi-ng/umbrella/commit/d18c869b59499ee081bee7c75e6ed0ebd4720efb))
+
+
+
+
+
 # [3.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@3.0.1...@thi.ng/math@3.1.0) (2021-01-10)
 
 

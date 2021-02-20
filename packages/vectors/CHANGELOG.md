@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.9.1...@thi.ng/vectors@5.0.0) (2021-02-20)
+
+
+### Code Refactoring
+
+* **vectors:** update mem mapped type handling ([4a6e9b1](https://github.com/thi-ng/umbrella/commit/4a6e9b16a1c871d305d99eeb53e9efeab4b78209))
+
+
+### Features
+
+* **vectors:** add weightedDistance HOF ([8500a79](https://github.com/thi-ng/umbrella/commit/8500a7938467339810362cc0d91555778218231d))
+
+
+### BREAKING CHANGES
+
+* **vectors:** buffer mapping fns use new type string consts
+
+- part of umbrella-wide changes to thi.ng/api Type aliases (see a333d4182)
+
+
+
+
+
 # [4.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.8.6...@thi.ng/vectors@4.9.0) (2021-01-21)
 
 

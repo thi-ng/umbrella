@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/binary@2.0.21...@thi.ng/binary@2.1.0) (2021-02-20)
+
+
+### Features
+
+* **binary:** add interleave4_12_24/4_16_32() ([89044d2](https://github.com/thi-ng/umbrella/commit/89044d2dfe4035028729fff4d9e7c890bdb008ff))
+* **binary:** add MSB_BITS8/16/32 LUTs ([e0eb47b](https://github.com/thi-ng/umbrella/commit/e0eb47bf4293832347b99a6706d257b391fd31b9))
+* **binary:** add swapLane02/13 ([2e45f48](https://github.com/thi-ng/umbrella/commit/2e45f48e946aa09943b01b4a7b7a9daee9e520ca))
+
+
+
+
+
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/binary@1.3.2...@thi.ng/binary@2.0.0) (2020-03-06)
 
 

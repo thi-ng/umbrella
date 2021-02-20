@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.27](https://github.com/thi-ng/umbrella/compare/@thi.ng/errors@1.2.26...@thi.ng/errors@1.2.27) (2021-02-20)
+
+**Note:** Version bump only for package @thi.ng/errors
+
+
+
+
+
 # [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/errors@1.1.2...@thi.ng/errors@1.2.0) (2019-08-21)
 
 ### Features

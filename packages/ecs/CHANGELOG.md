@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/ecs@0.4.9...@thi.ng/ecs@0.5.0) (2021-02-20)
+
+
+### Code Refactoring
+
+* **ecs:** update mem-mapped component type handling ([3207200](https://github.com/thi-ng/umbrella/commit/3207200367fbe905b7f425690c772a7d388f92e3))
+
+
+### BREAKING CHANGES
+
+* **ecs:** component buffer data type use string consts
+
+- part of unified umbrella-wide changes to thi.ng/api Type alias
+  (see a333d4182)
+
+
+
+
+
 # [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/ecs@0.3.34...@thi.ng/ecs@0.4.0) (2020-10-19)
 
 

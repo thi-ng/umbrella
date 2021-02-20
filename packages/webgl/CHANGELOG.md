@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@3.3.15...@thi.ng/webgl@4.0.0) (2021-02-20)
+
+
+### Bug Fixes
+
+* **webgl:** update compileAttribPool() ([6b5dd8e](https://github.com/thi-ng/umbrella/commit/6b5dd8e0c5167ac44a7d0358ccd106b7899fbccf))
+
+
+### Code Refactoring
+
+* **webgl:** update attrib type handling ([542850b](https://github.com/thi-ng/umbrella/commit/542850bc0f9c93abe8634f9d899e391905ff93ec))
+
+
+### BREAKING CHANGES
+
+* **webgl:** attrib buffer data type use string consts
+
+- part of unified umbrella-wide changes to thi.ng/api Type alias
+  (see a333d4182)
+
+
+
+
+
 # [3.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@3.2.1...@thi.ng/webgl@3.3.0) (2020-08-20)
 
 

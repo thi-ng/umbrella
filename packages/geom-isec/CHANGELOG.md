@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isec@0.7.8...@thi.ng/geom-isec@0.7.9) (2021-02-20)
+
+**Note:** Version bump only for package @thi.ng/geom-isec
+
+
+
+
+
 ## [0.7.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isec@0.7.3...@thi.ng/geom-isec@0.7.4) (2021-01-02)
 
 

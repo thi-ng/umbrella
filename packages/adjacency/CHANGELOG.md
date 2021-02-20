@@ -3,6 +3,43 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/adjacency@0.2.6...@thi.ng/adjacency@0.3.0) (2021-02-20)
+
+
+### Features
+
+* **adjacency:** add AdjacencyList impl & initial tests ([8f44c97](https://github.com/thi-ng/umbrella/commit/8f44c9762c0856a9b96e4548d2386eca6dcbf397))
+* **adjacency:** add IGraph.degree() & impls ([9fb02ac](https://github.com/thi-ng/umbrella/commit/9fb02ac7467785a0802c544cbc3100d6ac52fb87))
+* **adjacency:** major update Adjacency(Bit)Matrix classes & API ([cd71a5f](https://github.com/thi-ng/umbrella/commit/cd71a5fca3b2d8525c5b1c6e9032e55e39fea2dd))
+
+
+### Performance Improvements
+
+* **adjacency:** pre-cache MST edge costs ([290f3a6](https://github.com/thi-ng/umbrella/commit/290f3a6e1f9d71ddf3bb33f4bc6e9552896903a9))
+
+
+### BREAKING CHANGES
+
+* **adjacency:** replace .valence() w/ more flexible .degree() methods
+
+- add IGraph.degree() with same default behavior as .valence(),
+  but supporting diff degree types (in/out/inout)
+- add .degree() impls for all
+- remove old .valence() methods
+- update tests
+* **adjacency:** fixed order add/removeEdge(), valence(), neighbors(),
+remove static methods
+
+- update IGraph, add/update methods, return types, generics
+- remove/replace static methods in Adjacency(Bit)Matrix
+- add defAdjBitMatrix/defAdjMatrix
+- refactor/extract/re-use .toDot() graphviz conversion
+- update tests
+
+
+
+
+
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/adjacency@0.1.67...@thi.ng/adjacency@0.2.0) (2020-12-22)
 
 

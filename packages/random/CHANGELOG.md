@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@2.2.0...@thi.ng/random@2.3.0) (2021-02-20)
+
+
+### Features
+
+* **random:** add coin()/fairCoin() ([ed66a64](https://github.com/thi-ng/umbrella/commit/ed66a64a7e5efb63b4bbab89bba5100d1aa7ec49))
+
+
+
+
+
 # [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@2.1.5...@thi.ng/random@2.2.0) (2021-01-13)
 
 

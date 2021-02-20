@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/soa@0.1.47...@thi.ng/soa@0.2.0) (2021-02-20)
+
+
+### Code Refactoring
+
+* **soa:** update attrib type handling ([274dadf](https://github.com/thi-ng/umbrella/commit/274dadf2507ac4daeea59c53a0f408343d582d8e))
+
+
+### BREAKING CHANGES
+
+* **soa:** attrib buffer data type use string consts
+
+- part of unified umbrella-wide changes to thi.ng/api Type alias
+  (see a333d4182)
+
+
+
+
+
 # 0.1.0 (2019-11-09)
 
 ### Bug Fixes

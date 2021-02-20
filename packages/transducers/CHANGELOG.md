@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.5.8...@thi.ng/transducers@7.6.0) (2021-02-20)
+
+
+### Features
+
+* **transducers:** add TweenOpts.easing, update tween() ([f3a50f4](https://github.com/thi-ng/umbrella/commit/f3a50f46c800c23e8aa3e42ebd90e6b028c6a0db))
+
+
+
+
+
 # [7.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.4.0...@thi.ng/transducers@7.5.0) (2020-11-24)
 
 
