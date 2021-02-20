@@ -1,6 +1,6 @@
 import type { Fn2, Pair } from "@thi.ng/api";
 
-export type DegreeType = "in" | "out" | "both";
+export type DegreeType = "in" | "out" | "inout";
 
 /**
  * @typeParam T - vertex type (default: `number`)
@@ -42,14 +42,18 @@ export interface IGraph<T = number> {
      */
     hasEdge(from: T, to: T): boolean;
     /**
-     * Returns number of outgoing edges for given vertex.
+     * Returns number of edges for given vertex. By default only outgoing edges
+     * are counted, but can be customized via given {@link DegreeType}. Note: In
+     * undirected graphs the `type` has no relevance and essentially is always
+     * `"inout"`.
      *
      * @param id
+     * @param type
      */
-    valence(id: T): number;
+    degree(id: T, type?: DegreeType): number;
     /**
      * Returns neighbor IDs for given vertex, i.e. those vertices connected via
-     * edges starting from given vertex (or, in undirected graphs, the other
+     * edges starting *from* given vertex (or, in undirected graphs, the other
      * vertices of edges which the given vertex is part of).
      *
      * @param id

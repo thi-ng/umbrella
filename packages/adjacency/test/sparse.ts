@@ -16,7 +16,7 @@ describe("adjacency (sparse)", () => {
         assert(m.hasEdge(1, 2));
         assert.deepStrictEqual(m.neighbors(1), [2]);
         assert.deepStrictEqual(m.neighbors(2), []);
-        assert.deepStrictEqual(m.valence(1), 1);
+        assert.strictEqual(m.degree(1), 1);
         assert.deepStrictEqual([...m.edges()], [[1, 2]]);
     });
 

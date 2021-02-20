@@ -1,12 +1,12 @@
 import { DCons } from "@thi.ng/dcons";
-import type { Edge, IGraph } from "./api";
+import type { DegreeType, Edge, IGraph } from "./api";
 import { into, invert, toDot } from "./utils";
 
 export class AdjacencyList implements IGraph<number> {
     vertices: DCons<number>[] = [];
     indegree: number[] = [];
-    numE = 0;
-    numV = 0;
+    protected numE = 0;
+    protected numV = 0;
 
     constructor(edges?: Iterable<Edge>) {
         edges && into(this, edges);
@@ -83,9 +83,14 @@ export class AdjacencyList implements IGraph<number> {
         return vertex ? !!vertex.find(to) : false;
     }
 
-    valence(id: number): number {
+    degree(id: number, type: DegreeType = "out") {
+        let degree = 0;
         const vertex = this.vertices[id];
-        return vertex ? vertex.length : 0;
+        if (vertex) {
+            if (type !== "in") degree += vertex.length;
+            if (type !== "out") degree += this.indegree[id];
+        }
+        return degree;
     }
 
     neighbors(id: number): Iterable<number> {

@@ -61,8 +61,12 @@ export class AdjacencyMatrix extends CSR implements IGraph<number> {
         return this.m;
     }
 
-    valence(id: number): number {
-        return this.nnzRow(id);
+    degree(id: number, type: DegreeType = "out") {
+        let degree = 0;
+        this.ensureIndex(id, id);
+        if (this.undirected || type !== "in") degree += this.nnzRow(id);
+        if (!this.undirected && type !== "out") degree += this.nnzCol(id);
+        return degree;
     }
 
     neighbors(id: number): number[] {
@@ -100,7 +104,7 @@ export class AdjacencyMatrix extends CSR implements IGraph<number> {
                     res.setAt(i, i, this.nnzCol(i));
                 }
                 break;
-            case "both":
+            case "inout":
                 for (let i = this.m; --i >= 0; ) {
                     res.setAt(i, i, this.nnzRow(i) + this.nnzCol(i));
                 }

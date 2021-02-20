@@ -1,8 +1,13 @@
-import { popCount } from "@thi.ng/binary";
 import { BitMatrix } from "@thi.ng/bitfield";
-import type { Edge, IGraph } from "./api";
+import type { DegreeType, Edge, IGraph } from "./api";
 import { into, invert, toDot } from "./utils";
 
+/**
+ * Adjacency matrix representation for both directed and undirected graphs and
+ * using a compact bit matrix to store edges. Each edge requires only 1 bit
+ * in directed graphs or 2 bits in undirected graphs. E.g. this is allows
+ * storing 16384 directed edges in just 2KB of memory (128 * 128 / 8 = 2048).
+ */
 export class AdjacencyBitMatrix implements IGraph<number> {
     mat: BitMatrix;
     protected undirected: boolean;
@@ -66,14 +71,13 @@ export class AdjacencyBitMatrix implements IGraph<number> {
         return this.mat.at(from, to) !== 0;
     }
 
-    valence(id: number) {
-        let res = 0;
-        const { data, stride } = this.mat;
-        id *= stride;
-        for (let i = id + stride; --i >= id; ) {
-            data[i] !== 0 && (res += popCount(data[i]));
-        }
-        return res;
+    degree(id: number, type: DegreeType = "out") {
+        let degree = 0;
+        if (this.undirected || type !== "in")
+            degree += this.mat.popCountRow(id);
+        if (!this.undirected && type !== "out")
+            degree += this.mat.popCountColumn(id);
+        return degree;
     }
 
     neighbors(id: number) {
