@@ -47,13 +47,9 @@ const $call = (
     uv: Term<Vec>,
     bias?: FloatTerm
 ) => {
-    const f = builtinCall(
-        name,
-        texRetType(sampler),
-        sampler,
-        uv,
-        bias || FLOAT0
-    );
+    const f = bias
+        ? builtinCall(name, texRetType(sampler), sampler, uv, bias)
+        : builtinCall(name, texRetType(sampler), sampler, uv);
     !isVec(f) && (f.info = "n");
     return f;
 };
