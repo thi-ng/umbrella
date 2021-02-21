@@ -21,7 +21,6 @@ import type {
 import type { IVec, Prim, Sampler, Vec } from "../api/types";
 import { isVec } from "../ast/checks";
 import { builtinCall } from "../ast/function";
-import { FLOAT0, INT0 } from "../ast/lit";
 
 const texRetType = (sampler: Term<Sampler>) => {
     const t = sampler.type[0];
@@ -161,13 +160,19 @@ export function textureOffset(sampler: USampler3DTerm, uvw: Vec3Term, off: IVec3
 export function textureOffset(sampler: Term<"sampler2DShadow">, uvw: Vec3Term, off: IVec2Term, bias?: FloatTerm): FnCall<"float">;
 // prettier-ignore
 export function textureOffset(sampler: Term<Sampler>, uv: Term<Vec>, off: Term<IVec>, bias?: FloatTerm): FnCall<any> {
-    const f = builtinCall(
+    const f = bias ? builtinCall(
         "textureOffset",
         texRetType(sampler),
         sampler,
         uv,
         off,
-        bias || FLOAT0
+        bias
+    ) : builtinCall(
+        "textureOffset",
+        texRetType(sampler),
+        sampler,
+        uv,
+        off
     );
     !isVec(f) && (f.info = "n");
     return f;
@@ -187,12 +192,17 @@ export function texelFetch(sampler: USampler2DTerm, uv: IVec2Term, lod?: IntTerm
 export function texelFetch(sampler: USampler3DTerm, uvw: IVec3Term, lod?: IntTerm): FnCall<"uvec4">;
 // prettier-ignore
 export function texelFetch(sampler: Term<Sampler>, uv: Term<IVec>, lod?: IntTerm): FnCall<any> {
-    return builtinCall(
+    return lod ? builtinCall(
         "texelFetch",
         texRetType(sampler),
         sampler,
         uv,
-        lod || INT0
+        lod
+    ) : builtinCall(
+        "texelFetch",
+        texRetType(sampler),
+        sampler,
+        uv
     );
 }
 
