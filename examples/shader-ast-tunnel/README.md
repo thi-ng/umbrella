@@ -1,5 +1,7 @@
 # shader-ast-tunnel
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-tunnel.jpg)
+
 - [Live demo (WebGL)](http://demo.thi.ng/umbrella/shader-ast-tunnel/)
 - [Live demo (Canvas 2D)](http://demo.thi.ng/umbrella/shader-ast-tunnel/#2d)
 

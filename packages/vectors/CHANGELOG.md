@@ -3,17 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [4.8.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.8.1...@thi.ng/vectors@4.8.2) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/vectors
+# [5.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.9.1...@thi.ng/vectors@5.0.0) (2021-02-20)
 
 
+### Code Refactoring
+
+* **vectors:** update mem mapped type handling ([4a6e9b1](https://github.com/thi-ng/umbrella/commit/4a6e9b16a1c871d305d99eeb53e9efeab4b78209))
+
+
+### Features
+
+* **vectors:** add weightedDistance HOF ([8500a79](https://github.com/thi-ng/umbrella/commit/8500a7938467339810362cc0d91555778218231d))
+
+
+### BREAKING CHANGES
+
+* **vectors:** buffer mapping fns use new type string consts
+
+- part of umbrella-wide changes to thi.ng/api Type aliases (see a333d4182)
 
 
 
-## [4.8.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.8.0...@thi.ng/vectors@4.8.1) (2020-11-26)
 
-**Note:** Version bump only for package @thi.ng/vectors
+
+# [4.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.8.6...@thi.ng/vectors@4.9.0) (2021-01-21)
+
+
+### Bug Fixes
+
+* **vectors:** add explicit return types (zeroes/ones()) ([fc2f662](https://github.com/thi-ng/umbrella/commit/fc2f6623033b5caf1d8a25bf174d51a8db8b1a91))
+
+
+### Features
+
+* **vectors:** add dist2/3 ([eb334fa](https://github.com/thi-ng/umbrella/commit/eb334fa764dc3d7093b1c64afb1fbdb1b1053831))
 
 
 
@@ -37,54 +60,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **vectors, geom:** point on ray at distance ([0b04b80](https://github.com/thi-ng/umbrella/commit/0b04b80f1eaa700e262f99d4726651c90d4fed2b))
-
-
-
-
-
-## [4.6.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.6.5...@thi.ng/vectors@4.6.6) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.6.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.6.4...@thi.ng/vectors@4.6.5) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.6.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.6.3...@thi.ng/vectors@4.6.4) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.6.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.6.2...@thi.ng/vectors@4.6.3) (2020-08-20)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.6.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.6.1...@thi.ng/vectors@4.6.2) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [4.6.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@4.6.0...@thi.ng/vectors@4.6.1) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/vectors
 
 
 

@@ -3,89 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.0.51](https://github.com/thi-ng/umbrella/compare/@thi.ng/vector-pools@1.0.50...@thi.ng/vector-pools@1.0.51) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/vector-pools
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vector-pools@1.0.57...@thi.ng/vector-pools@2.0.0) (2021-02-20)
 
 
+### Bug Fixes
+
+* **vector-pools:** fix regression/update buffer arg types ([27a3614](https://github.com/thi-ng/umbrella/commit/27a36148ace1bd19d346137d80e897c91b67a5c6))
 
 
+### Code Refactoring
 
-## [1.0.50](https://github.com/thi-ng/umbrella/compare/@thi.ng/vector-pools@1.0.49...@thi.ng/vector-pools@1.0.50) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/vector-pools
-
+* **vector-pools:** update attrib type handling ([0ebd889](https://github.com/thi-ng/umbrella/commit/0ebd8893d3651df6c033d40ce59fd7e77a66f790))
 
 
+### Features
+
+* **vector-pools:** export asNativeType/asGLType() ([d4b397b](https://github.com/thi-ng/umbrella/commit/d4b397b99f5d6c0daef76c86011b165ecda31b4d))
 
 
-## [1.0.49](https://github.com/thi-ng/umbrella/compare/@thi.ng/vector-pools@1.0.48...@thi.ng/vector-pools@1.0.49) (2020-11-24)
+### BREAKING CHANGES
 
-**Note:** Version bump only for package @thi.ng/vector-pools
+* **vector-pools:** update attrib types to use string consts
 
-
-
-
-
-## [1.0.48](https://github.com/thi-ng/umbrella/compare/@thi.ng/vector-pools@1.0.47...@thi.ng/vector-pools@1.0.48) (2020-10-19)
-
-**Note:** Version bump only for package @thi.ng/vector-pools
-
-
-
-
-
-## [1.0.47](https://github.com/thi-ng/umbrella/compare/@thi.ng/vector-pools@1.0.46...@thi.ng/vector-pools@1.0.47) (2020-10-03)
-
-**Note:** Version bump only for package @thi.ng/vector-pools
-
-
-
-
-
-## [1.0.46](https://github.com/thi-ng/umbrella/compare/@thi.ng/vector-pools@1.0.45...@thi.ng/vector-pools@1.0.46) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/vector-pools
-
-
-
-
-
-## [1.0.45](https://github.com/thi-ng/umbrella/compare/@thi.ng/vector-pools@1.0.44...@thi.ng/vector-pools@1.0.45) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/vector-pools
-
-
-
-
-
-## [1.0.44](https://github.com/thi-ng/umbrella/compare/@thi.ng/vector-pools@1.0.43...@thi.ng/vector-pools@1.0.44) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/vector-pools
-
-
-
-
-
-## [1.0.43](https://github.com/thi-ng/umbrella/compare/@thi.ng/vector-pools@1.0.42...@thi.ng/vector-pools@1.0.43) (2020-08-20)
-
-**Note:** Version bump only for package @thi.ng/vector-pools
-
-
-
-
-
-## [1.0.42](https://github.com/thi-ng/umbrella/compare/@thi.ng/vector-pools@1.0.41...@thi.ng/vector-pools@1.0.42) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/vector-pools
-
-
-
-
-
-## [1.0.41](https://github.com/thi-ng/umbrella/compare/@thi.ng/vector-pools@1.0.40...@thi.ng/vector-pools@1.0.41) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/vector-pools
+- part of umbrella-wide changes to thi.ng/api Type aliases
+  (see a333d4182)
+- remove obsolete asNativeType()/asGLType() fns
+  (moved to thi.ng/api for better re-use)
 
 
 

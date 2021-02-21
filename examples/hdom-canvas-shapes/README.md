@@ -1,6 +1,6 @@
 # hdom-canvas-shapes
 
-![screenshots](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/hdom-canvas/hdom-canvas-shapes-results.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-canvas/hdom-canvas-shapes-results.png)
 
 [Live demo](http://demo.thi.ng/umbrella/hdom-canvas-shapes/)
 
@@ -32,7 +32,7 @@ Related examples:
 
 Dataflow diagram:
 
-![dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/hdom-canvas/hdom-canvas-shapes.png)
+![dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdom-canvas/hdom-canvas-shapes.png)
 
 ## Building
 

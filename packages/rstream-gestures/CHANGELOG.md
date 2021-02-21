@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.45](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@2.0.44...@thi.ng/rstream-gestures@2.0.45) (2020-12-07)
+## [3.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@3.0.5...@thi.ng/rstream-gestures@3.0.6) (2021-02-20)
 
 **Note:** Version bump only for package @thi.ng/rstream-gestures
 
@@ -11,33 +11,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [2.0.44](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@2.0.43...@thi.ng/rstream-gestures@2.0.44) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/rstream-gestures
+# [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@2.0.45...@thi.ng/rstream-gestures@3.0.0) (2020-12-22)
 
 
+### Code Refactoring
+
+* **rstream-gestures:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace GestureType enum ([80ef1e1](https://github.com/thi-ng/umbrella/commit/80ef1e1558070421cf6ed2d707a55b91fe1c290d))
 
 
+### BREAKING CHANGES
 
-## [2.0.43](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@2.0.42...@thi.ng/rstream-gestures@2.0.43) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/rstream-gestures
-
-
-
-
-
-## [2.0.42](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@2.0.41...@thi.ng/rstream-gestures@2.0.42) (2020-10-19)
-
-**Note:** Version bump only for package @thi.ng/rstream-gestures
-
-
-
-
-
-## [2.0.41](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@2.0.40...@thi.ng/rstream-gestures@2.0.41) (2020-10-03)
-
-**Note:** Version bump only for package @thi.ng/rstream-gestures
+* **rstream-gestures:** replace GestureType w/ type alias
 
 
 
@@ -54,44 +38,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [2.0.39](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@2.0.38...@thi.ng/rstream-gestures@2.0.39) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/rstream-gestures
-
-
-
-
-
-## [2.0.38](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@2.0.37...@thi.ng/rstream-gestures@2.0.38) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/rstream-gestures
-
-
-
-
-
-## [2.0.37](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@2.0.36...@thi.ng/rstream-gestures@2.0.37) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/rstream-gestures
-
-
-
-
-
 ## [2.0.36](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@2.0.35...@thi.ng/rstream-gestures@2.0.36) (2020-08-17)
 
 
 ### Bug Fixes
 
 * **rstream-gestures:** don't cache DPR value ([bffbedb](https://github.com/thi-ng/umbrella/commit/bffbedb0589bd173de0aa49293b110461b33d579))
-
-
-
-
-
-## [2.0.35](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@2.0.34...@thi.ng/rstream-gestures@2.0.35) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/rstream-gestures
 
 
 

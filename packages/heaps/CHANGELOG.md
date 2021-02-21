@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.2.28](https://github.com/thi-ng/umbrella/compare/@thi.ng/heaps@1.2.27...@thi.ng/heaps@1.2.28) (2020-12-07)
+## [1.2.32](https://github.com/thi-ng/umbrella/compare/@thi.ng/heaps@1.2.31...@thi.ng/heaps@1.2.32) (2021-02-20)
 
 **Note:** Version bump only for package @thi.ng/heaps
 
@@ -11,57 +11,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.2.27](https://github.com/thi-ng/umbrella/compare/@thi.ng/heaps@1.2.26...@thi.ng/heaps@1.2.27) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/heaps
+## [1.2.31](https://github.com/thi-ng/umbrella/compare/@thi.ng/heaps@1.2.30...@thi.ng/heaps@1.2.31) (2021-01-21)
 
 
+### Bug Fixes
 
-
-
-## [1.2.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/heaps@1.2.25...@thi.ng/heaps@1.2.26) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/heaps
-
-
-
-
-
-## [1.2.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/heaps@1.2.24...@thi.ng/heaps@1.2.25) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/heaps
-
-
-
-
-
-## [1.2.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/heaps@1.2.23...@thi.ng/heaps@1.2.24) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/heaps
-
-
-
-
-
-## [1.2.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/heaps@1.2.22...@thi.ng/heaps@1.2.23) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/heaps
-
-
-
-
-
-## [1.2.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/heaps@1.2.21...@thi.ng/heaps@1.2.22) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/heaps
-
-
-
-
-
-## [1.2.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/heaps@1.2.20...@thi.ng/heaps@1.2.21) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/heaps
+* **heaps:** update pushPop() comparison ([f530236](https://github.com/thi-ng/umbrella/commit/f5302368a56435cda92bbdc205b9467acaf9c64b))
 
 
 

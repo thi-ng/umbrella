@@ -1,5 +1,7 @@
 # triple-query
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/triple-query.png)
+
 [Live demo](https://demo.thi.ng/umbrella/triple-query/)
 
 Please refer to the [example build

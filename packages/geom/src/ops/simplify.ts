@@ -1,20 +1,20 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
-import { IShape, PathSegment, SegmentType, Type } from "@thi.ng/geom-api";
+import type { IShape, PathSegment } from "@thi.ng/geom-api";
 import { simplify as _simplify } from "@thi.ng/geom-resample";
+import type { Vec } from "@thi.ng/vectors";
 import { Path } from "../api/path";
 import { Polygon } from "../api/polygon";
 import { Polyline } from "../api/polyline";
 import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
 import { vertices } from "./vertices";
-import type { IObjectOf } from "@thi.ng/api";
-import type { Vec } from "@thi.ng/vectors";
 
 export const simplify = defmulti<IShape, number, IShape>(dispatch);
 
 simplify.addAll(<IObjectOf<Implementation2<unknown, number, IShape>>>{
-    [Type.PATH]: ($: Path, eps = 0.1) => {
+    path: ($: Path, eps = 0.1) => {
         const res: PathSegment[] = [];
         const orig = $.segments;
         const n = orig.length;
@@ -22,10 +22,7 @@ simplify.addAll(<IObjectOf<Implementation2<unknown, number, IShape>>>{
         let lastP!: Vec;
         for (let i = 0; i < n; i++) {
             const s = orig[i];
-            if (
-                s.type === SegmentType.LINE ||
-                s.type === SegmentType.POLYLINE
-            ) {
+            if (s.type === "l" || s.type === "p") {
                 points = points
                     ? points.concat(vertices(s.geo!))
                     : vertices(s.geo!);
@@ -34,7 +31,7 @@ simplify.addAll(<IObjectOf<Implementation2<unknown, number, IShape>>>{
                 points.push(lastP);
                 res.push({
                     geo: new Polyline(_simplify(points, eps)),
-                    type: SegmentType.POLYLINE,
+                    type: "p",
                 });
                 points = null;
             } else {
@@ -45,15 +42,15 @@ simplify.addAll(<IObjectOf<Implementation2<unknown, number, IShape>>>{
             points.push(lastP);
             res.push({
                 geo: new Polyline(points),
-                type: SegmentType.POLYLINE,
+                type: "p",
             });
         }
         return new Path(res, copyAttribs($));
     },
 
-    [Type.POLYGON]: ($: Polygon, eps = 0.1) =>
+    poly: ($: Polygon, eps = 0.1) =>
         new Polygon(_simplify($.points, eps, true), copyAttribs($)),
 
-    [Type.POLYLINE]: ($: Polyline, eps = 0.1) =>
+    polyline: ($: Polyline, eps = 0.1) =>
         new Polyline(_simplify($.points, eps), copyAttribs($)),
 });

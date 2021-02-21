@@ -1,4 +1,3 @@
-import { Type } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
 import * as assert from "assert";
 import { ECS, MemMappedComponent } from "../src";
@@ -9,7 +8,7 @@ describe("component", () => {
     beforeEach(() => (ecs = new ECS({ capacity: 16 })));
 
     it("defComponent (minimal)", () => {
-        const a = ecs.defComponent({ id: "a", type: Type.F32 });
+        const a = ecs.defComponent({ id: "a", type: "f32" });
         assert(a instanceof MemMappedComponent);
         assert(a.dense instanceof Uint8Array);
         assert(a.sparse instanceof Uint8Array);
@@ -22,7 +21,7 @@ describe("component", () => {
     });
 
     it("defComponent (w/ type)", () => {
-        const a = ecs.defComponent({ id: "a", type: Type.U8 })!;
+        const a = ecs.defComponent({ id: "a", type: "u8" })!;
         assert(a.vals instanceof Uint8Array);
         assert.strictEqual(a.dense.length, ecs.idgen.capacity);
         assert.strictEqual(a.sparse.length, ecs.idgen.capacity);
@@ -32,14 +31,14 @@ describe("component", () => {
     });
 
     it("defComponent (w/ size)", () => {
-        const a = ecs.defComponent({ id: "a", type: Type.F32, size: 2 })!;
+        const a = ecs.defComponent({ id: "a", type: "f32", size: 2 })!;
         assert(a.vals instanceof Float32Array);
         assert.strictEqual(a.vals.length, ecs.idgen.capacity * 2);
         assert.strictEqual(a.size, 2);
         assert.strictEqual(a.stride, 2);
         const b = ecs.defComponent({
             id: "b",
-            type: Type.F32,
+            type: "f32",
             size: 3,
             stride: 4,
         })!;
@@ -51,7 +50,7 @@ describe("component", () => {
     it("add (w/ default val)", () => {
         const a = ecs.defComponent({
             id: "a",
-            type: Type.F32,
+            type: "f32",
             size: 2,
             default: [1, 2],
         })!;
@@ -67,7 +66,7 @@ describe("component", () => {
     it("values / packedValues", () => {
         const a = ecs.defComponent({
             id: "a",
-            type: Type.F32,
+            type: "f32",
             size: 2,
             default: [1, 2],
         })!;
@@ -88,7 +87,7 @@ describe("component", () => {
     it("resize", () => {
         const a = ecs.defComponent({
             id: "a",
-            type: Type.F32,
+            type: "f32",
             size: 2,
             default: [1, 2],
         })!;

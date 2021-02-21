@@ -1,5 +1,5 @@
 import { peek } from "@thi.ng/arrays";
-import { Attribs, SegmentType } from "@thi.ng/geom-api";
+import type { Attribs } from "@thi.ng/geom-api";
 import { eqDelta } from "@thi.ng/math";
 import { add2, copy, mulN2, set2, sub2, Vec, zeroes } from "@thi.ng/vectors";
 import { Cubic } from "../api/cubic";
@@ -62,7 +62,7 @@ export class PathBuilder {
         set2(this.bezierP, p);
         this.curr.add({
             point: p,
-            type: SegmentType.MOVE,
+            type: "m",
         });
         return this;
     }
@@ -70,7 +70,7 @@ export class PathBuilder {
     lineTo(p: Vec, relative = false): PathBuilder {
         this.curr.add({
             geo: new Line([copy(this.currP), this.updateCurrent(p, relative)]),
-            type: SegmentType.LINE,
+            type: "l",
         });
         set2(this.bezierP, this.currP);
         return this;
@@ -101,8 +101,7 @@ export class PathBuilder {
     cubicChainTo(cp2: Vec, p: Vec, relative = false) {
         const prevMode = peek(this.curr.segments).type;
         const c1 = copy(this.currP);
-        prevMode === SegmentType.CUBIC &&
-            add2(null, sub2([], c1, this.bezierP), c1);
+        prevMode === "c" && add2(null, sub2([], c1, this.bezierP), c1);
         this.addCubic(c1, cp2, p, relative);
         return this;
     }
@@ -110,8 +109,7 @@ export class PathBuilder {
     quadraticChainTo(p: Vec, relative = false) {
         const prevMode = peek(this.curr.segments).type;
         const c1 = copy(this.currP);
-        prevMode === SegmentType.QUADRATIC &&
-            sub2(null, mulN2(null, c1, 2), this.bezierP);
+        prevMode === "q" && sub2(null, mulN2(null, c1, 2), this.bezierP);
         this.addQuadratic(c1, p, relative);
         return this;
     }
@@ -137,7 +135,7 @@ export class PathBuilder {
                 xl,
                 clockwise
             ),
-            type: SegmentType.ARC,
+            type: "a",
         });
         set2(this.bezierP, this.currP);
         return this;
@@ -146,7 +144,7 @@ export class PathBuilder {
     closePath() {
         this.curr.add({
             geo: new Line([copy(this.currP), copy(this.startP)]),
-            type: SegmentType.LINE,
+            type: "l",
         });
         this.curr.closed = true;
         return this;
@@ -167,7 +165,7 @@ export class PathBuilder {
         set2(this.bezierP, this.currP);
         this.curr.add({
             geo: new Line([prev, copy(this.currP)]),
-            type: SegmentType.LINE,
+            type: "l",
         });
     }
 
@@ -181,7 +179,7 @@ export class PathBuilder {
                 cp2,
                 this.updateCurrent(p, relative),
             ]),
-            type: SegmentType.CUBIC,
+            type: "c",
         });
     }
 
@@ -193,7 +191,7 @@ export class PathBuilder {
                 cp,
                 this.updateCurrent(p, relative),
             ]),
-            type: SegmentType.QUADRATIC,
+            type: "q",
         });
     }
 }

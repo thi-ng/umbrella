@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-2D polygon / triangle analysis & processing utilities.
+2D polygon/polyline analysis & processing utilities.
 
 - signed 2D polygon & triangle area
 - triangle barycentric coord conversion
@@ -55,7 +55,7 @@ yarn add @thi.ng/geom-poly-utils
 <script src="https://unpkg.com/@thi.ng/geom-poly-utils/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.17 KB / CJS: 1.24 KB / UMD: 1.30 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.44 KB / CJS: 1.51 KB / UMD: 1.57 KB
 
 ## Dependencies
 
@@ -88,4 +88,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2021 Karsten Schmidt // Apache Software License 2.0

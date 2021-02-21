@@ -1,4 +1,4 @@
-import type { Fn2 } from "@thi.ng/api";
+import type { Fn2, FnN } from "@thi.ng/api";
 import { normRange } from "./norm-range";
 import { repeat } from "./repeat";
 
@@ -25,6 +25,11 @@ export interface TweenOpts<A, B, C> {
      * Interval interpolator
      */
     mix: Fn2<B, number, C>;
+    /**
+     * Optional easing function to transform the interval relative `time` param
+     * for `mix`.
+     */
+    easing?: FnN;
     /**
      * Keyframe definitions, i.e. `[time, value]` tuples
      */
@@ -99,6 +104,7 @@ export interface TweenOpts<A, B, C> {
  */
 export function* tween<A, B, C>(opts: TweenOpts<A, B, C>): IterableIterator<C> {
     const { min, max, num, init, mix, stops } = opts;
+    const easing = opts.easing || ((x: number) => x);
     let l = stops.length;
     if (l < 1) return;
     if (l === 1) {
@@ -123,6 +129,6 @@ export function* tween<A, B, C>(opts: TweenOpts<A, B, C>): IterableIterator<C> {
             delta = end - start;
             interval = init(stops[i - 1][1], stops[i][1]);
         }
-        yield mix(interval, delta !== 0 ? (t - start) / delta : 0);
+        yield mix(interval, easing(delta !== 0 ? (t - start) / delta : 0));
     }
 }

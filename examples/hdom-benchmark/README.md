@@ -1,5 +1,7 @@
 # hdom-benchmark
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-benchmark.png)
+
 [Live demo](https://demo.thi.ng/umbrella/hdom-benchmark/)
 
 Please refer to the [example build

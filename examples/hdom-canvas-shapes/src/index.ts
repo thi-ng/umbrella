@@ -1,4 +1,4 @@
-import { hsva } from "@thi.ng/color";
+import { hsv } from "@thi.ng/color";
 import { download } from "@thi.ng/dl-asset";
 import { pathBuilder, points } from "@thi.ng/geom";
 import { canvas, normalizeTree } from "@thi.ng/hdom-canvas";
@@ -284,7 +284,7 @@ const TESTS: any = {
                 map(
                     (x) => [
                         "ellipse",
-                        { stroke: hsva(x / 20, 1, 1) },
+                        { stroke: hsv(x / 20, 1, 1) },
                         [150, 150], // pos
                         addN(null, sincos(t + x * 0.1, 75), 75), // radii
                         Math.sin(t * 0.25), // axis

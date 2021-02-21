@@ -55,7 +55,7 @@ yarn add @thi.ng/shader-ast-glsl
 <script src="https://unpkg.com/@thi.ng/shader-ast-glsl/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.32 KB / CJS: 1.36 KB / UMD: 1.48 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.32 KB / CJS: 1.37 KB / UMD: 1.48 KB
 
 ## Dependencies
 
@@ -147,4 +147,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2019 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2019 - 2021 Karsten Schmidt // Apache Software License 2.0

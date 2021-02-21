@@ -3,19 +3,22 @@ import type { Stringer } from "./api";
 import { padLeft } from "./pad-left";
 
 /**
- * Returns {@link Stringer} which formats numbers to given precision.
- * Exceptions:
+ * Returns {@link Stringer} which formats numbers to given precision. If
+ * `special` is true, then exceptional handling for:
  *
  * - NaN => "NaN"
  * - Infinity => "+/-∞"
  *
  * @param len - number of fractional digits
- * @kind function
+ * @param special - true, if special handling for NaN/Infinity values
  */
 export const float: (
-    prec: number
-) => Stringer<number> = memoizeJ((prec) => (x: number) =>
-    nanOrInf(x) || x.toFixed(prec)
+    prec: number,
+    special?: boolean
+) => Stringer<number> = memoizeJ((prec, special = false) =>
+    special
+        ? (x: number) => nanOrInf(x) || x.toFixed(prec)
+        : (x: number) => x.toFixed(prec)
 );
 
 /**

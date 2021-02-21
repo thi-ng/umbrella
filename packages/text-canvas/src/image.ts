@@ -1,5 +1,7 @@
 import { peek } from "@thi.ng/arrays";
-import { ImageOpts, SHADES_BLOCK } from "./api";
+import { isNumber } from "@thi.ng/checks";
+import { clamp0 } from "@thi.ng/math";
+import { ClipRect, ImageOpts, SHADES_BLOCK } from "./api";
 import { Canvas } from "./canvas";
 import { charCode, intersectRect } from "./utils";
 
@@ -13,8 +15,8 @@ export const blit = (canvas: Canvas, x: number, y: number, src: Canvas) => {
         peek(canvas.clipRects)
     );
     if (!iw || !ih) return;
-    const sx = Math.max(0, x1 - x);
-    const sy = Math.max(0, y1 - y);
+    const sx = clamp0(x1 - x);
+    const sy = clamp0(y1 - y);
     for (let yy = sy, dy = y1; dy < y2; yy++, dy++) {
         let sidx = sx + yy * sw;
         let didx = x1 + dy * dw;
@@ -100,13 +102,14 @@ export const image = (
     w |= 0;
     h |= 0;
     const { buf, width } = canvas;
-    const { x1, y1, x2, y2, w: iw, h: ih } = intersectRect(
-        { x1: x, y1: y, x2: x + w, y2: y + h, w, h },
-        peek(canvas.clipRects)
+    const { x1, y1, x2, y2, sx, sy, w: iw, h: ih } = imgRect(
+        canvas,
+        x,
+        y,
+        w,
+        h
     );
     if (!iw || !ih) return;
-    const sx = Math.max(0, x1 - x);
-    const sy = Math.max(0, y1 - y);
     const { chars, format, gamma, invert, bits } = {
         chars: SHADES_BLOCK,
         format: canvas.format,
@@ -115,6 +118,7 @@ export const image = (
         bits: 8,
         ...opts,
     };
+    const fmt = isNumber(format) ? () => format : format;
     const max = (1 << bits) - 1;
     const mask = invert ? max : 0;
     const norm = 1 / max;
@@ -123,14 +127,70 @@ export const image = (
         let sidx = sx + yy * w;
         let didx = x1 + dy * width;
         for (let xx = sx, dx = x1; dx < x2; xx++, dx++) {
-            buf[didx++] = charCode(
-                chars[
-                    (Math.pow((pixels[sidx++] ^ mask) * norm, gamma) * num +
-                        0.5) |
-                        0
-                ],
-                format
-            );
+            const col = Math.pow((pixels[sidx++] ^ mask) * norm, gamma);
+            buf[didx++] = charCode(chars[(col * num + 0.5) | 0], fmt(col));
         }
     }
+};
+
+/**
+ * Optimized version of {@link image}, which only uses a single char for all
+ * pixels and applies pixel values directly as formatting data (for each pixel).
+ *
+ * @param canvas
+ * @param x
+ * @param y
+ * @param w
+ * @param h
+ * @param pixels
+ * @param char
+ */
+export const imageRaw = (
+    canvas: Canvas,
+    x: number,
+    y: number,
+    w: number,
+    h: number,
+    pixels: ArrayLike<number>,
+    char = "█"
+) => {
+    x |= 0;
+    y |= 0;
+    w |= 0;
+    h |= 0;
+    const { buf, width } = canvas;
+    const { x1, y1, x2, y2, sx, sy, w: iw, h: ih } = imgRect(
+        canvas,
+        x,
+        y,
+        w,
+        h
+    );
+    if (!iw || !ih) return;
+    const code = char.charCodeAt(0);
+    for (let yy = sy, dy = y1; dy < y2; yy++, dy++) {
+        let sidx = sx + yy * w;
+        let didx = x1 + dy * width;
+        for (let xx = sx, dx = x1; dx < x2; xx++, dx++) {
+            buf[didx++] = code | ((pixels[sidx++] & 0xffff) << 16);
+        }
+    }
+};
+
+const imgRect = (
+    canvas: Canvas,
+    x: number,
+    y: number,
+    w: number,
+    h: number
+) => {
+    const rect: ClipRect & { sx: number; sy: number } = <any>(
+        intersectRect(
+            { x1: x, y1: y, x2: x + w, y2: y + h, w, h },
+            peek(canvas.clipRects)
+        )
+    );
+    rect.sx = clamp0(rect.x1 - x);
+    rect.sy = clamp0(rect.y1 - y);
+    return rect;
 };

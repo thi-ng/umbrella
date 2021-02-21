@@ -1,6 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
-import { AABBLike, IShape, PCLike, Type } from "@thi.ng/geom-api";
+import type { AABBLike, IShape, PCLike } from "@thi.ng/geom-api";
 import {
     centerOfWeight2,
     centroid as _centroid,
@@ -20,25 +20,25 @@ export const centroid: MultiFn1O<IShape, Vec, Vec | undefined> = defmulti(
 );
 
 centroid.addAll(<IObjectOf<Implementation1O<unknown, Vec, Vec>>>{
-    [Type.CIRCLE]: ($: Circle, out?) => set(out || [], $.pos),
+    circle: ($: Circle, out?) => set(out || [], $.pos),
 
-    [Type.GROUP]: ($: Group) => {
+    group: ($: Group) => {
         const b = bounds($);
         return b ? centroid(b) : undefined;
     },
 
-    [Type.LINE]: ({ points }: Line, out?) =>
+    line: ({ points }: Line, out?) =>
         mixN(out || [], points[0], points[1], 0.5),
 
-    [Type.POINTS]: ($: PCLike, out?) => _centroid($.points, out),
+    points: ($: PCLike, out?) => _centroid($.points, out),
 
-    [Type.PLANE]: ($: Plane, out?) => mulN(out || [], $.normal, $.w),
+    plane: ($: Plane, out?) => mulN(out || [], $.normal, $.w),
 
-    [Type.POLYGON]: ($: Polygon, out?) => centerOfWeight2($.points, out),
+    poly: ($: Polygon, out?) => centerOfWeight2($.points, out),
 
-    [Type.RECT]: ($: AABBLike, out?) => maddN(out || [], $.size, 0.5, $.pos),
+    rect: ($: AABBLike, out?) => maddN(out || [], $.size, 0.5, $.pos),
 
-    [Type.TRIANGLE]: ({ points }: Triangle, out?) =>
+    tri: ({ points }: Triangle, out?) =>
         divN(
             null,
             add(null, add(out || [], points[0], points[1]), points[2]),
@@ -46,13 +46,13 @@ centroid.addAll(<IObjectOf<Implementation1O<unknown, Vec, Vec>>>{
         ),
 });
 
-centroid.isa(Type.ARC, Type.CIRCLE);
-centroid.isa(Type.AABB, Type.RECT);
-centroid.isa(Type.ELLIPSE, Type.CIRCLE);
-centroid.isa(Type.LINE3, Type.LINE);
-centroid.isa(Type.POINTS3, Type.POINTS);
-centroid.isa(Type.POLYLINE, Type.POINTS);
-centroid.isa(Type.QUAD, Type.POLYGON);
-centroid.isa(Type.SPHERE, Type.CIRCLE);
-centroid.isa(Type.TEXT, Type.CIRCLE);
-centroid.isa(Type.TRIANGLE3, Type.TRIANGLE);
+centroid.isa("arc", "circle");
+centroid.isa("aabb", "rect");
+centroid.isa("ellipse", "circle");
+centroid.isa("line3", "line");
+centroid.isa("points3", "points");
+centroid.isa("polyline", "points");
+centroid.isa("quad", "poly");
+centroid.isa("sphere", "circle");
+centroid.isa("text", "circle");
+centroid.isa("tri3", "tri");

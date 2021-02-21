@@ -14,7 +14,7 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
-  - [Usage with @thi.ng/hiccup](#usage-with-thing-hiccup)
+  - [Usage with @thi.ng/hiccup](#usage-with-thinghiccup)
 - [Authors](#authors)
 - [License](#license)
 
@@ -123,4 +123,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2020 - 2021 Karsten Schmidt // Apache Software License 2.0

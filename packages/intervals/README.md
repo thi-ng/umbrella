@@ -11,8 +11,10 @@ This project is part of the
 
 - [About](#about)
   - [Status](#status)
+    - [Breaking changes](#breaking-changes)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
   - [Maintainer](#maintainer)
@@ -28,7 +30,7 @@ Supports point & range queries and set operations with other intervals
 
 Furthermore, a parser for [ISO 80000-2 / ISO 31-11 interval
 notation](https://en.wikipedia.org/wiki/ISO_31-11#Sets) is provided. See
-[`Interval.parse()`](https://github.com/thi-ng/umbrella/blob/develop/packages/intervals/src/index.ts#L25)
+[`parse()`](https://github.com/thi-ng/umbrella/blob/develop/packages/intervals/src/index.ts#L108)
 for details.
 
 ### Status
@@ -36,6 +38,13 @@ for details.
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bintervals%5D+in%3Atitle)
+
+#### Breaking changes
+
+With version 3.0.0 the API has been updated to be largely functional rather than
+OOP, with all static (and most instance) `Interval` methods converted into
+standalone functions. The only class methods remaining are to implement these
+standard interfaces: `ICompare`, `IContains`, `ICopy`, `IEquiv`.
 
 ## Installation
 
@@ -51,7 +60,7 @@ yarn add @thi.ng/intervals
 <script src="https://unpkg.com/@thi.ng/intervals/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.50 KB / CJS: 1.56 KB / UMD: 1.65 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.63 KB / CJS: 1.78 KB / UMD: 1.73 KB
 
 ## Dependencies
 
@@ -60,20 +69,30 @@ Package sizes (gzipped, pre-treeshake): ESM: 1.50 KB / CJS: 1.56 KB / UMD: 1.65 
 - [@thi.ng/dlogic](https://github.com/thi-ng/umbrella/tree/develop/packages/dlogic)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+| Screenshot                                                                                                           | Description                                                      | Live demo                                           | Source                                                                           |
+| -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | --------------------------------------------------- | -------------------------------------------------------------------------------- |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-sorting.png" width="240"/> | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-sorting) |
+
 ## API
 
 [Generated API docs](https://docs.thi.ng/umbrella/intervals/)
 
 ```ts
-import { interval, Interval } from "@thi.ng/intervals";
-
 // [0 .. +∞] (fully closed)
-a = Interval.withMin(0);
+a = withMin(0);
 
 // [-∞ .. 1) (open on RHS)
-b = Interval.withMax(1, true);
+b = withMax(1, true);
 
-i = a.intersection(b);
+i = intersection(a, b);
 i.toString();
 // [0 .. 1)
 
@@ -81,68 +100,76 @@ i.toString();
 interval("[0 .. 1)")
 // Interval { l: 0, r: 1, lopen: false, ropen: true }
 
+contains(i, 1);
+// or
 i.contains(1);
 // false (because interval is open on RHS)
 
-i.contains(0.999999);
+contains(i, 0.999999);
 // true
 
 // classify interval relative to point (true if RHS < x)
-i.isBefore(-1)
+isBefore(i, -1)
 // false
 
-i.isBefore(1)
+isBefore(i, 1)
 // true
 
 // classify interval relative to point (true if LHS > x)
-i.isAfter(-1);
+isAfter(i, -1);
 // true
 
-i.isAfter(1);
+isAfter(i, 1);
 // false
 
 // grow interval to include 2 => [0 ... 2]
-i2 = i.include(2);
+i2 = include(i, 2);
 
 // sort order: LHS -> RHS
-i.compare(i2);
+compare(i, i2);
 // -1
 
 // classify WRT given interval arg
-i.classify(Interval.infinity());
+// returns Classifier enum
+classify(i, infinity());
 // 3 (aka Classifier.SUBSET)
 
 // create transformed interval
 // (here scaled around centroid)
-i.map((x) => x + (x - i.centroid()) * 2).toString();
+transform(i, (x) => x + (x - centroid(i)) * 2).toString();
 // [-1 .. 2)
 
 // iterator of decimated interval values
-[...i.values(0.25)];
+[...values(i, 0.25)];
 // [ 0, 0.25, 0.5, 0.75 ]
 
 // close RHS
 i.ropen = false;
 
-[...i.values(0.25)];
+// iterator of 0.25-spaced values in interval
+[...values(i, 0.25)];
 // [ 0, 0.25, 0.5, 0.75, 1 ] => now includes 1
 
+// iterator of n equidistant samples
+[...samples(i, 4)]
+// [ 0, 0.3333333333333333, 0.6666666666666666, 1 ]
+
 // constrain values to interval (taking openness into account)
-interval("(0..1)").max(-2)
+max(interval("(0..1)"), -2)
 // 0.000001
 
 // if given value is outside interval, uses opt epsilon value
 // to return closest inside value (default: 1e-6)...
-interval("(0..1)").max(-2, 1e-3)
+max(interval("(0..1)"), -2, 1e-3)
 // 0.001
 
-interval("(0..1)").min(2, 1e-3)
+min(interval("(0..1)"), 2, 1e-3)
 // 0.999
 
 // clamp on both sides
-interval("[0..1)").clamp(-2, 1e-3)
+clamp(interval("[0..1)"), -2, 1e-3)
 // 0
-interval("[0..1)").clamp(2, 1e-3)
+clamp(interval("[0..1)"), 2, 1e-3)
 // 0.999
 ```
 
@@ -169,4 +196,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2021 Karsten Schmidt // Apache Software License 2.0

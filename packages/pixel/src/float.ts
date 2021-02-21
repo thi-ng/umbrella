@@ -6,9 +6,11 @@ import type {
     BlitOpts,
     FloatFormat,
     FloatFormatSpec,
+    IPixelBuffer,
     PackedFormat,
 } from "./api";
-import { defFloatFormat, FLOAT_GRAY } from "./format";
+import { defFloatFormat } from "./format/float-format";
+import { FLOAT_GRAY } from "./format/float-gray";
 import { PackedBuffer } from "./packed";
 import { clampRegion, ensureChannel, ensureSize, prepRegions } from "./utils";
 
@@ -27,13 +29,34 @@ export const floatBuffer = (
     pixels?: Float32Array
 ) => new FloatBuffer(w, h, fmt, pixels);
 
-export class FloatBuffer {
-    width: number;
-    height: number;
-    stride: number;
-    rowStride: number;
-    pixels: Float32Array;
-    format: FloatFormat;
+export class FloatBuffer implements IPixelBuffer<Float32Array, NumericArray> {
+    /**
+     * Creates a new `FloatBuffer` from given {@link PackedBuffer} and using
+     * provided {@link FloatFormat}.
+     *
+     * @remarks
+     * See {@link FloatBuffer.as} for reverse operation.
+     *
+     * @param src
+     * @param fmt
+     */
+    static fromPacked(src: PackedBuffer, fmt: FloatFormat | FloatFormatSpec) {
+        const dest = new FloatBuffer(src.width, src.height, fmt);
+        const { pixels: dbuf, format: dfmt, stride } = dest;
+        const { pixels: sbuf, format: sfmt } = src;
+        for (let i = sbuf.length; --i >= 0; ) {
+            dbuf.set(dfmt.fromABGR(sfmt.toABGR(sbuf[i])), i * stride);
+        }
+        return dest;
+    }
+
+    readonly width: number;
+    readonly height: number;
+    readonly stride: number;
+    readonly rowStride: number;
+    readonly pixels: Float32Array;
+    readonly format: FloatFormat;
+    protected __empty: NumericArray;
 
     constructor(
         w: number,
@@ -49,6 +72,9 @@ export class FloatBuffer {
         this.stride = fmt.channels.length;
         this.rowStride = w * this.stride;
         this.pixels = pixels || new Float32Array(w * h * this.stride);
+        this.__empty = <NumericArray>(
+            Object.freeze(new Array<number>(this.stride).fill(0))
+        );
     }
 
     as(fmt: PackedFormat) {
@@ -75,6 +101,7 @@ export class FloatBuffer {
             const idx = (x | 0) * stride + (y | 0) * this.rowStride;
             return this.pixels.subarray(idx, idx + stride);
         }
+        return this.__empty;
     }
 
     setAt(x: number, y: number, col: NumericArray) {
@@ -257,6 +284,34 @@ export class FloatBuffer {
             pixels.set(tmp, j);
         }
         return this;
+    }
+
+    /**
+     * Returns new buffer of downscaled version (by given integer factor) using
+     * simple nearest neighbor sampling.
+     *
+     * @param res
+     */
+    downsample(res: number) {
+        res |= 0;
+        const { width, height, stride, pixels: sbuf } = this;
+        const dest = new FloatBuffer(
+            (width / res) | 0,
+            (height / res) | 0,
+            this.format
+        );
+        const { width: dwidth, height: dheight, pixels: dbuf } = dest;
+        res *= stride;
+        for (let y = 0, i = 0; y < dheight; y++) {
+            for (
+                let x = 0, j = y * res * width;
+                x < dwidth;
+                x++, i += stride, j += res
+            ) {
+                dbuf.set(sbuf.subarray(j, j + stride), i);
+            }
+        }
+        return dest;
     }
 
     protected ensureFormat(dest: FloatBuffer) {

@@ -314,7 +314,7 @@ If in doubt, please ask first...
 
 It has been [brought to my
 attention](https://github.com/thi-ng/umbrella/issues/154) (thanks to
-@Bnaya) that exported `const enums` negatively interfere with some
+[@Bnaya](https://github.com/Bnaya)) that exported `const enums` negatively interfere with some
 downstream workflows related to Babel transpilation and TypeScript's
 `isolatedModules` compilation feature. For that reason, that latter
 option is now enabled for all packages and exported `const enum`s are

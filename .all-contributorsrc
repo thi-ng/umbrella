@@ -240,6 +240,63 @@
       "contributions": [
         "financial"
       ]
+    },
+    {
+      "login": "jamieowen",
+      "name": "Jamie Owen",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/248957?v=4",
+      "profile": "http://jamieowen.com",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "rkesters",
+      "name": "Robert Kesteson",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/5572145?v=4",
+      "profile": "https://github.com/rkesters",
+      "contributions": [
+        "bug",
+        "code"
+      ]
+    },
+    {
+      "login": "chancyk",
+      "name": "Chancy Kennedy",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1731217?v=4",
+      "profile": "https://github.com/chancyk",
+      "contributions": [
+        "financial"
+      ]
+    },
+    {
+      "login": "Jarred-Sumner",
+      "name": "Jarred Sumner",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/709451?v=4",
+      "profile": "https://jarredsumner.com",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "JamieSlome",
+      "name": "Jamie Slome",
+      "avatar_url": "https://avatars.githubusercontent.com/u/55323451?v=4",
+      "profile": "https://418sec.com",
+      "contributions": [
+        "bug",
+        "security"
+      ]
+    },
+    {
+      "login": "d3v53c",
+      "name": "d3v53c",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64132745?v=4",
+      "profile": "https://github.com/d3v53c",
+      "contributions": [
+        "bug",
+        "security"
+      ]
     }
   ],
   "contributorsPerLine": 7,

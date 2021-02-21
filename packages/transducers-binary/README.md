@@ -20,7 +20,7 @@ This project is part of the
   - [Streaming hexdump](#streaming-hexdump)
   - [Structured byte buffer construction](#structured-byte-buffer-construction)
   - [Bitstream](#bitstream)
-  - [Base64 & UTF-8 en/decoding](#base64--utf-8-en-decoding)
+  - [Base64 & UTF-8 en/decoding](#base64--utf-8-endecoding)
   - [Transducers](#transducers)
   - [Reducers](#reducers)
 - [Authors](#authors)
@@ -43,7 +43,7 @@ iterable for direct use.
 
 ### Related packages
 
-- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary) - 95+ assorted binary / bitwise operations, conversions, utilities
+- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary) - 100+ assorted binary / bitwise operations, conversions, utilities, lookup tables
 - [@thi.ng/bitstream](https://github.com/thi-ng/umbrella/tree/develop/packages/bitstream) - ES6 iterator based read/write bit streams with support for variable word widths
 - [@thi.ng/unionstruct](https://github.com/thi-ng/umbrella/tree/develop/packages/unionstruct) - C-style struct, union and bitfield read/write views of ArrayBuffers
 
@@ -61,7 +61,7 @@ yarn add @thi.ng/transducers-binary
 <script src="https://unpkg.com/@thi.ng/transducers-binary/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.86 KB / CJS: 3.01 KB / UMD: 2.91 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.64 KB / CJS: 2.79 KB / UMD: 2.69 KB
 
 ## Dependencies
 
@@ -311,4 +311,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2021 Karsten Schmidt // Apache Software License 2.0

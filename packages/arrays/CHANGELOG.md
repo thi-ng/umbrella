@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.8.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.8.3...@thi.ng/arrays@0.8.4) (2020-12-07)
+## [0.10.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.10.1...@thi.ng/arrays@0.10.2) (2021-02-20)
 
 **Note:** Version bump only for package @thi.ng/arrays
 
@@ -11,25 +11,30 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.8.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.8.2...@thi.ng/arrays@0.8.3) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/arrays
+# [0.10.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.9.2...@thi.ng/arrays@0.10.0) (2021-01-21)
 
 
+### Bug Fixes
+
+* **arrays:** fixed-length binarySearch2/4/8/16/32 ([39e5c37](https://github.com/thi-ng/umbrella/commit/39e5c3736135f9a49daceee1fe4da9fbdbb96eab))
 
 
+### Features
 
-## [0.8.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.8.1...@thi.ng/arrays@0.8.2) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/arrays
-
-
+* **arrays:** add insert/insertUnsafe() ([2a78598](https://github.com/thi-ng/umbrella/commit/2a7859823d2fb56eef4ee7a6919fe70072475f42))
 
 
 
-## [0.8.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.8.0...@thi.ng/arrays@0.8.1) (2020-09-22)
 
-**Note:** Version bump only for package @thi.ng/arrays
+
+# [0.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.8.5...@thi.ng/arrays@0.9.0) (2021-01-02)
+
+
+### Features
+
+* **arrays:** add bisect(), bisectWith() ([17d06a4](https://github.com/thi-ng/umbrella/commit/17d06a43e338aca5f2dc61110382363639daecc5))
+* **arrays:** add into(), sortByCachedKey() ([b94f64c](https://github.com/thi-ng/umbrella/commit/b94f64c2c351cfed5ea9ade5e42ad0b7076ef9e9))
+* **arrays:** update sortByCachedKey(), add tests ([64e8f6e](https://github.com/thi-ng/umbrella/commit/64e8f6e4e83c26c73e23a4831483bd328b78bc49))
 
 
 
@@ -52,22 +57,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **arrays:** add non-recursive binary search fns ([29a4ee4](https://github.com/thi-ng/umbrella/commit/29a4ee4d888ccb049df9b50a57e3884ce2d4d0f3))
-
-
-
-
-
-## [0.6.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.6.14...@thi.ng/arrays@0.6.15) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/arrays
-
-
-
-
-
-## [0.6.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.6.13...@thi.ng/arrays@0.6.14) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/arrays
 
 
 

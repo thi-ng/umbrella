@@ -3,11 +3,7 @@ import { identity } from "@thi.ng/compose";
 import { polyline as gPolyline, resample, vertices } from "@thi.ng/geom";
 import { circle, group, polyline, svg } from "@thi.ng/hiccup-svg";
 import { fromIterable, merge, sync } from "@thi.ng/rstream";
-import {
-    GestureEvent,
-    gestureStream,
-    GestureType,
-} from "@thi.ng/rstream-gestures";
+import { GestureEvent, gestureStream } from "@thi.ng/rstream-gestures";
 import {
     comp,
     filter,
@@ -116,10 +112,10 @@ const collectPath = () => {
     return (g: GestureEvent) => {
         console.log(g);
         switch (g.type) {
-            case GestureType.START:
+            case "start":
                 pts = [g.pos];
                 break;
-            case GestureType.DRAG:
+            case "drag":
                 pts.push(g.pos);
                 break;
         }
@@ -138,9 +134,7 @@ const gesture = merge<any, any>({
         // mouse & touch event stream attached to document.body
         // we're filtering out move & zoom events to avoid extraneous work
         gestureStream(document.body).transform(
-            filter(
-                (g) => g.type != GestureType.MOVE && g.type != GestureType.ZOOM
-            ),
+            filter((g) => !(g.type === "move" || g.type === "zoom")),
             map(collectPath())
         ),
     ],

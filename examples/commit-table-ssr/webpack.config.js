@@ -17,7 +17,5 @@ module.exports = {
             { test: /\.ts$/, use: "ts-loader" },
         ],
     },
-    node: {
-        process: false,
-    },
+    node: false,
 };

@@ -1,4 +1,5 @@
 import { peek } from "@thi.ng/arrays";
+import { clamp0 } from "@thi.ng/math";
 import { wordWrap } from "@thi.ng/transducers";
 import type { TextBoxOpts } from "./api";
 import { beginClip, beginStyle, Canvas, endClip, endStyle } from "./canvas";
@@ -112,7 +113,7 @@ export const textBox = (
         innerH = lines.length + 2;
         height = innerH + 2 * padding[1];
     } else {
-        innerH = Math.max(0, height - 2);
+        innerH = clamp0(height - 2);
     }
     strokeRect(canvas, x, y, width, height);
     fillRect(canvas, x + 1, y + 1, width - 2, height - 2, " ");

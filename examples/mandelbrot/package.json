@@ -7,7 +7,7 @@
     "license": "Apache-2.0",
     "scripts": {
         "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
-        "start": "yarn build:worker && ../../node_modules/.bin/snowpack dev",
+        "start": "yarn build:worker && ../../node_modules/.bin/snowpack dev --reload",
         "build": "yarn build:worker && ../../node_modules/.bin/snowpack build",
         "build:worker": "../../node_modules/.bin/webpack --config webpack.worker.js --mode production"
     },
@@ -15,7 +15,6 @@
         "@thi.ng/compose": "latest",
         "@thi.ng/dl-asset": "latest",
         "@thi.ng/equiv": "latest",
-        "@thi.ng/hdom": "latest",
         "@thi.ng/hdom-components": "latest",
         "@thi.ng/math": "latest",
         "@thi.ng/rstream": "latest",

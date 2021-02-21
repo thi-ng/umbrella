@@ -3,33 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [6.13.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.13.3...@thi.ng/api@6.13.4) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/api
+# [7.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.13.6...@thi.ng/api@7.0.0) (2021-02-20)
 
 
+### Features
+
+* **api:** add Range type ([5d94974](https://github.com/thi-ng/umbrella/commit/5d94974c34ca81513d40743f2a9b9a3ed20146d3))
+* **api:** add typedArrayType() classifier ([5c81fd8](https://github.com/thi-ng/umbrella/commit/5c81fd859514401c2c419b2ed3ec0f12025356c3))
+* **api:** more finely grained typedarray types ([8316d05](https://github.com/thi-ng/umbrella/commit/8316d058f0b5f760afd89e8590619670210a970a))
+* **api:** replace Type enum w/ strings consts ([a333d41](https://github.com/thi-ng/umbrella/commit/a333d418222972373cc1f9b256def2f79610d3fa))
 
 
+### BREAKING CHANGES
 
-## [6.13.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.13.2...@thi.ng/api@6.13.3) (2020-11-26)
+* **api:** replace Type enum w/ string consts
 
-**Note:** Version bump only for package @thi.ng/api
-
-
-
-
-
-## [6.13.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.13.1...@thi.ng/api@6.13.2) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/api
-
-
-
-
-
-## [6.13.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.13.0...@thi.ng/api@6.13.1) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/api
+- update Type, UintType, IntType, FloatType aliases
+- update GL2TYPE, TYPE2GL, SIZEOF, TYPEDARRAY_CTORS tables
+- add asNativeType(), asGLType() conversions
+- add sizeOf()
+- add uintTypeForBits(), intTypeForBits()
+- update/rename uintTypeForSize(), intTypeForSize()
 
 
 
@@ -47,30 +41,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **api:** add DeepPartial type ([0d9a0de](https://github.com/thi-ng/umbrella/commit/0d9a0de2c3b5029bdc49101727d234a065a94869))
 * **api:** add FnU and FnN function types ([4ba48d0](https://github.com/thi-ng/umbrella/commit/4ba48d0dc4324c79c9e9b11d9e55b04b5c5f54c7))
-
-
-
-
-
-## [6.12.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.12.2...@thi.ng/api@6.12.3) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/api
-
-
-
-
-
-## [6.12.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.12.1...@thi.ng/api@6.12.2) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/api
-
-
-
-
-
-## [6.12.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.12.0...@thi.ng/api@6.12.1) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/api
 
 
 

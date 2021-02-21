@@ -8,7 +8,7 @@ export interface AOSAttribSpec {
     size: number;
     /**
      * Primitive type ID for backing array.
-     * Default: Type.F32
+     * Default: "f32"
      */
     type: Type;
     /**

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom-voronoi",
-    "version": "0.2.13",
+    "version": "0.2.20",
     "description": "Fast, incremental 2D Delaunay & Voronoi mesh implementation",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -33,31 +33,31 @@
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
-        "doc": "node_modules/.bin/typedoc --mode modules --out doc --theme ../../tools/doc/typedoc-theme src",
+        "doc": "node_modules/.bin/typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
-        "@microsoft/api-extractor": "^7.12.0",
-        "@types/mocha": "^8.0.3",
-        "@types/node": "^14.14.10",
-        "mocha": "^8.2.1",
+        "@microsoft/api-extractor": "^7.12.1",
+        "@types/mocha": "^8.2.0",
+        "@types/node": "^14.14.14",
+        "mocha": "^8.3.0",
         "nyc": "^15.1.0",
         "ts-node": "^9.1.1",
-        "typedoc": "^0.19.2",
-        "typescript": "^4.1.2"
+        "typedoc": "^0.20.26",
+        "typescript": "^4.1.5"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.13.4",
-        "@thi.ng/checks": "^2.7.11",
-        "@thi.ng/geom-clip-line": "^1.2.13",
-        "@thi.ng/geom-clip-poly": "^1.0.38",
-        "@thi.ng/geom-isec": "^0.7.2",
-        "@thi.ng/geom-poly-utils": "^0.2.2",
-        "@thi.ng/math": "^2.2.2",
-        "@thi.ng/quad-edge": "^0.2.26",
-        "@thi.ng/vectors": "^4.8.2"
+        "@thi.ng/api": "^7.0.0",
+        "@thi.ng/checks": "^2.9.0",
+        "@thi.ng/geom-clip-line": "^1.2.20",
+        "@thi.ng/geom-clip-poly": "^1.0.45",
+        "@thi.ng/geom-isec": "^0.7.9",
+        "@thi.ng/geom-poly-utils": "^0.3.6",
+        "@thi.ng/math": "^3.2.0",
+        "@thi.ng/quad-edge": "^0.2.29",
+        "@thi.ng/vectors": "^5.0.0"
     },
     "files": [
         "*.js",

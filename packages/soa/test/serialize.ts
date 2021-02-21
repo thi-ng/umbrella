@@ -4,7 +4,7 @@ import { scalar, serializer, soa, utf8z } from "../src";
 
 describe("serialize", () => {
     it("scalar", () => {
-        const struct = soa(2, { id: { type: Type.U32, size: 1 } });
+        const struct = soa(2, { id: { type: "u32", size: 1 } });
         const ser = serializer({ id: scalar });
         struct.setIndex(0, ser.encode({ id: 0xdecafbad }));
         struct.setIndex(1, ser.encode({ id: 0xaa55aa55 }));
@@ -15,7 +15,7 @@ describe("serialize", () => {
     });
 
     it("utf8z", () => {
-        const struct = soa(2, { name: { type: Type.U8, size: 10 } });
+        const struct = soa(2, { name: { type: "u8", size: 10 } });
         const ser = serializer({ name: utf8z(10) });
         assert.deepStrictEqual(ser.decode(struct.index(0)), { name: "" });
         struct.setIndex(0, ser.encode({ name: "hëLl0!" }));

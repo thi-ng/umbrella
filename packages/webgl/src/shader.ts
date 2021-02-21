@@ -1,4 +1,4 @@
-import { deref, Fn3, IObjectOf } from "@thi.ng/api";
+import { asGLType, deref, Fn3, IObjectOf } from "@thi.ng/api";
 import {
     existsAndNotNull,
     isArray,
@@ -14,6 +14,7 @@ import {
     Sym,
     sym,
     SymOpts,
+    Type,
     uniform,
 } from "@thi.ng/shader-ast";
 import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
@@ -32,8 +33,10 @@ import {
     GLSLDeclPrefixes,
     IShader,
     ShaderAttrib,
+    ShaderAttribSpec,
     ShaderAttribSpecs,
     ShaderFn,
+    ShaderOutputSpec,
     ShaderSpec,
     ShaderState,
     ShaderType,
@@ -121,7 +124,7 @@ export class Shader implements IShader {
                 gl.vertexAttribPointer(
                     shaderAttrib.loc,
                     attr.size || 3,
-                    attr.type || gl.FLOAT,
+                    asGLType(attr.type || gl.FLOAT)!,
                     attr.normalized || false,
                     attr.stride || 0,
                     attr.offset || 0
@@ -274,13 +277,8 @@ const initShaderExtensions = (
     }
 };
 
-export const shaderSourceFromAST = (
-    spec: ShaderSpec,
-    type: ShaderType,
-    version: GLSLVersion
-) => {
-    let prelude = "";
-    prelude += spec.pre
+const compilePrelude = (spec: ShaderSpec, version: GLSLVersion) => {
+    let prelude = spec.pre
         ? spec.replacePrelude
             ? spec.pre
             : spec.pre + "\n" + GLSL_HEADER
@@ -294,48 +292,73 @@ export const shaderSourceFromAST = (
             );
         }
     }
+    return prelude;
+};
+
+const compileIODecls = <T extends ShaderAttribSpec | ShaderOutputSpec>(
+    decl: (type: Type, id: string, opts?: SymOpts) => Sym<Type>,
+    src: IObjectOf<T>,
+    dest: IObjectOf<Sym<any>>
+) => {
+    for (let id in src) {
+        const a = src[id];
+        dest[id] = isArray(a)
+            ? decl(a[0], id, { loc: a[1] })
+            : decl(<any>a, id);
+    }
+};
+
+const varyingOpts = (v: ShaderVaryingSpec): [GLSL, SymOpts] => {
+    const [vtype, opts]: [GLSL, SymOpts] = isArray(v)
+        ? [v[0], { num: v[1] }]
+        : [v, {}];
+    /(u?int|[ui]vec[234])/.test(vtype) && (opts.smooth = "flat");
+    return [vtype, opts];
+};
+
+const compileVaryingDecls = (
+    spec: ShaderSpec,
+    decl: (type: Type, id: string, opts?: SymOpts) => Sym<Type>,
+    acc: IObjectOf<Sym<any>>
+) => {
+    for (let id in spec.varying) {
+        const [vtype, opts] = varyingOpts(spec.varying[id]);
+        acc[id] = decl(vtype, id, opts);
+    }
+};
+
+const compileUniformDecls = (spec: ShaderSpec, acc: IObjectOf<Sym<any>>) => {
+    for (let id in spec.uniforms) {
+        const u = spec.uniforms[id];
+        acc[id] = isArray(u)
+            ? uniform(
+                  u[0],
+                  id,
+                  u[0].indexOf("[]") > 0 ? { num: <number>u[1] } : undefined
+              )
+            : uniform(u, id);
+    }
+};
+
+export const shaderSourceFromAST = (
+    spec: ShaderSpec,
+    type: ShaderType,
+    version: GLSLVersion
+) => {
+    let prelude = compilePrelude(spec, version);
     const inputs: IObjectOf<Sym<any>> = {};
     const outputs: IObjectOf<Sym<any>> = {};
     const outputAliases: IObjectOf<Sym<any>> = {};
     const unis: IObjectOf<Sym<any>> = {};
-    if (spec.uniforms) {
-        for (let id in spec.uniforms) {
-            const u = spec.uniforms[id];
-            unis[id] = isArray(u)
-                ? u[0].indexOf("[]") > 0
-                    ? uniform(u[0], id, { num: <number>u[1] })
-                    : uniform(u[0], id)
-                : uniform(u, id);
-        }
-    }
+    spec.uniforms && compileUniformDecls(spec, unis);
     if (type === "vs") {
-        for (let id in spec.attribs) {
-            const a = spec.attribs[id];
-            inputs[id] = isArray(a)
-                ? input(a[0], id, { loc: a[1] })
-                : input(a, id);
-        }
-        if (spec.varying) {
-            for (let id in spec.varying) {
-                const [vtype, opts] = varyingOpts(spec.varying[id]);
-                outputs[id] = output(vtype, id, opts);
-            }
-        }
+        compileIODecls(input, spec.attribs, inputs);
+        spec.varying && compileVaryingDecls(spec, output, outputs);
     } else {
-        if (spec.varying) {
-            for (let id in spec.varying) {
-                const [vtype, opts] = varyingOpts(spec.varying[id]);
-                inputs[id] = input(vtype, id, opts);
-            }
-        }
+        spec.varying && compileVaryingDecls(spec, input, inputs);
         const outs = spec.outputs || DEFAULT_OUTPUT;
         if (version >= GLSLVersion.GLES_300) {
-            for (let id in outs) {
-                const o = outs[id];
-                outputs[id] = isArray(o)
-                    ? output(o[0], id, { loc: o[1] })
-                    : output(o, id);
-            }
+            compileIODecls(output, outs, outputs);
         } else {
             for (let id in outs) {
                 const o = outs[id];
@@ -368,14 +391,6 @@ export const shaderSourceFromAST = (
     );
 };
 
-const varyingOpts = (v: ShaderVaryingSpec): [GLSL, SymOpts] => {
-    const [vtype, opts]: [GLSL, SymOpts] = isArray(v)
-        ? [v[0], { num: v[1] }]
-        : [v, {}];
-    /(u?int|[ui]vec[234])/.test(vtype) && (opts.smooth = "flat");
-    return [vtype, opts];
-};
-
 export const prepareShaderSource = (
     spec: ShaderSpec,
     type: ShaderType,
@@ -386,20 +401,7 @@ export const prepareShaderSource = (
     const isVS = type === "vs";
     let src = "";
     src += `#version ${version}\n`;
-    src += spec.pre
-        ? spec.replacePrelude
-            ? spec.pre
-            : spec.pre + "\n" + GLSL_HEADER
-        : GLSL_HEADER;
-    if (spec.ext) {
-        for (let id in spec.ext) {
-            src += compileExtensionPragma(
-                id,
-                spec.ext[<ExtensionName>id]!,
-                version
-            );
-        }
-    }
+    src += compilePrelude(spec, version);
     if (spec.generateDecls !== false) {
         src += isVS
             ? compileVars(spec.attribs, syntax.attrib, prefixes)

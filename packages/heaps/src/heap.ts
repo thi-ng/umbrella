@@ -102,7 +102,7 @@ export class Heap<T>
 
     pushPop(val: T, vals = this.values) {
         const head = vals[0];
-        if (vals.length > 0 && this.compare(head, val) < 0) {
+        if (vals.length > 0 && this.compare(head, val) <= 0) {
             vals[0] = val;
             val = head;
             this.percolateDown(0, vals);

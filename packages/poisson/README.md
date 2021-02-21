@@ -48,7 +48,7 @@ indices are supported as well...
 ### Related packages
 
 - [@thi.ng/geom-voronoi](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-voronoi) - Fast, incremental 2D Delaunay & Voronoi mesh implementation
-- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random) - Pseudo-random number generators w/ unified API
+- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random) - Pseudo-random number generators w/ unified API, distributions, weighted choices, ID generation
 
 ## Installation
 
@@ -219,4 +219,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2021 Karsten Schmidt // Apache Software License 2.0

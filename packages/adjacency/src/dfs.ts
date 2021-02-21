@@ -1,4 +1,5 @@
 import { BitField } from "@thi.ng/bitfield";
+import { DCons } from "@thi.ng/dcons";
 import type { IGraph } from "./api";
 
 export class DFS {
@@ -17,10 +18,11 @@ export class DFS {
     }
 
     search(id: number) {
-        this.marked.setAt(id);
+        const { edges, marked } = this;
+        marked.setAt(id);
         for (let n of this.graph.neighbors(id)) {
-            if (!this.marked.at(n)) {
-                this.edges[n] = id;
+            if (!marked.at(n)) {
+                edges[n] = id;
                 this.search(n);
             }
         }
@@ -30,13 +32,26 @@ export class DFS {
         return this.marked.at(id) !== 0;
     }
 
-    pathTo(id: number) {
-        if (!this.hasPathTo(id)) return;
-        const path = [];
-        for (let i = id; i !== this.src; i = this.edges[i]) {
-            path.push(i);
+    pathTo(id: number): Iterable<number> | undefined {
+        if (!this.marked.at(id)) return;
+        const { edges, src } = this;
+        const path = new DCons<number>();
+        for (; id !== src; id = edges[id]) {
+            path.cons(id);
         }
-        path.push(this.src);
+        path.cons(id);
         return path;
     }
 }
+
+/**
+ * One-off Depth-First path search from vertex `src` to `dest` in given `graph`.
+ * If successful, returns path as iterable or undefined if no path connects the
+ * given vertices.
+ *
+ * @param graph
+ * @param src
+ * @param dest
+ */
+export const dfs = (graph: IGraph, src: number, dest: number) =>
+    new DFS(graph, src).pathTo(dest);

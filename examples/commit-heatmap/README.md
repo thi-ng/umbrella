@@ -1,6 +1,6 @@
 # commit-heatmap
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/commit-heatmap.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png)
 
 This is offline example creates a heatmap visualization of per-package
 commits in this mono-repo, but could also be used for other mono-repos

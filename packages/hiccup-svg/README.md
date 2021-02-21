@@ -11,7 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Important](#important)
-  - [SVG conversion of @thi.ng/geom & @thi.ng/hdom-canvas shape trees](#svg-conversion-of-thing-geom--thing-hdom-canvas-shape-trees)
+  - [SVG conversion of @thi.ng/geom & @thi.ng/hdom-canvas shape trees](#svg-conversion-of-thinggeom--thinghdom-canvas-shape-trees)
   - [Automatic attribute conversions](#automatic-attribute-conversions)
     - [Colors](#colors)
     - [Transforms](#transforms)
@@ -60,6 +60,28 @@ re-organization of various attributes, as described below. This function
 returns a new tree. The original remains untouched, as will any
 unrecognized tree / shape nodes (those will be transferred as-is to the
 result tree). See example below.
+
+Since v3.7.0 tree conversion can be implicitly triggered by providing a
+`convert: true` attribute to the root `svg()` element.
+
+```ts
+// create SVG root element and convert body
+svg(
+    { width: 100, height: 100, convert: true},
+    ["rect", { fill: [1, 0, 0] }, [0,0], 100, 100]
+)
+// [
+//   'svg',
+//   {
+//     version: '1.1',
+//     xmlns: 'http://www.w3.org/2000/svg',
+//     'xmlns:xlink': 'http://www.w3.org/1999/xlink',
+//     width: 100,
+//     height: 100
+//   },
+//   [ 'rect', { fill: '#ff0000', x: 0, y: 0, width: 100, height: 100 } ]
+// ]
+```
 
 ### Automatic attribute conversions
 
@@ -131,7 +153,7 @@ yarn add @thi.ng/hiccup-svg
 <script src="https://unpkg.com/@thi.ng/hiccup-svg/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.49 KB / CJS: 2.61 KB / UMD: 2.53 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.51 KB / CJS: 2.62 KB / UMD: 2.55 KB
 
 ## Dependencies
 
@@ -244,4 +266,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2021 Karsten Schmidt // Apache Software License 2.0

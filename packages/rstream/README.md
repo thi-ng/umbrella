@@ -27,14 +27,14 @@ This project is part of the
     - [Other stream creation helpers](#other-stream-creation-helpers)
   - [Meta streams](#meta-streams)
   - [Stream merging](#stream-merging)
-    - [Unordered merge from multiple inputs (dynamic add/remove)](#unordered-merge-from-multiple-inputs-dynamic-add-remove)
+    - [Unordered merge from multiple inputs (dynamic add/remove)](#unordered-merge-from-multiple-inputs-dynamic-addremove)
     - [Synchronized merge and labeled tuple objects](#synchronized-merge-and-labeled-tuple-objects)
   - [Stream splitting](#stream-splitting)
     - [Topic based splitting](#topic-based-splitting)
     - [Splitting via predicate](#splitting-via-predicate)
   - [Side-chaining](#side-chaining)
-    - [Input chunking / buffering, controlled by sidechain](#input-chunking---buffering--controlled-by-sidechain)
-    - [Input toggling, controlled by sidechain](#input-toggling--controlled-by-sidechain)
+    - [Input chunking / buffering, controlled by sidechain](#input-chunking--buffering-controlled-by-sidechain)
+    - [Input toggling, controlled by sidechain](#input-toggling-controlled-by-sidechain)
   - [Worker support](#worker-support)
     - [Parallel stream processing via workers](#parallel-stream-processing-via-workers)
     - [Stream processing via workers](#stream-processing-via-workers)
@@ -187,7 +187,7 @@ yarn add @thi.ng/rstream
 <script src="https://unpkg.com/@thi.ng/rstream/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.44 KB / CJS: 5.62 KB / UMD: 5.57 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.44 KB / CJS: 5.63 KB / UMD: 5.57 KB
 
 ## Dependencies
 
@@ -217,6 +217,7 @@ A selection:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/mandelbrot.jpg" width="240"/>          | Worker based, interactive Mandelbrot visualization                               | [Demo](https://demo.thi.ng/umbrella/mandelbrot/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/mandelbrot)          |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/markdown-parser.jpg" width="240"/>     | Minimal Markdown to Hiccup to HTML parser / transformer                          | [Demo](https://demo.thi.ng/umbrella/markdown/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/markdown)            |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/parse-playground.png" width="240"/>    | Parser grammar livecoding editor/playground & codegen                            | [Demo](https://demo.thi.ng/umbrella/parse-playground/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/parse-playground)    |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-sorting.png" width="240"/>       | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel                 | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-sorting)       |
 |                                                                                                                            | Demonstates various rdom usage patterns                                          | [Demo](https://demo.thi.ng/umbrella/rdom-basics/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-basics)         |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-lissajous.png" width="240"/>      | rdom & hiccup-canvas interop test                                                | [Demo](https://demo.thi.ng/umbrella/rdom-lissajous/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-lissajous)      |
 |                                                                                                                            | Full umbrella repo doc string search w/ paginated results                        | [Demo](https://demo.thi.ng/umbrella/rdom-search-docs/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-search-docs)    |
@@ -827,4 +828,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2017 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2017 - 2021 Karsten Schmidt // Apache Software License 2.0

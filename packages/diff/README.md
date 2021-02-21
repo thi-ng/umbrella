@@ -14,8 +14,6 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
-- [Breaking changes](#breaking-changes)
-  - [2.0.0](#200)
 - [Authors](#authors)
 - [License](#license)
 
@@ -43,7 +41,7 @@ yarn add @thi.ng/diff
 <script src="https://unpkg.com/@thi.ng/diff/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.25 KB / CJS: 1.30 KB / UMD: 1.33 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.15 KB / CJS: 1.21 KB / UMD: 1.24 KB
 
 ## Dependencies
 
@@ -55,9 +53,10 @@ Package sizes (gzipped, pre-treeshake): ESM: 1.25 KB / CJS: 1.30 KB / UMD: 1.33 
 [Generated API docs](https://docs.thi.ng/umbrella/diff/)
 
 ```ts
-import { diffArray, DiffMode } from "@thi.ng/diff";
+import { diffArray } from "@thi.ng/diff";
 
-diffArray([1, 2, 3], [1, 2, 4], DiffMode.FULL);
+// diff w/ default diff mode
+diffArray([1, 2, 3], [1, 2, 4], "full");
 // {
 //     distance: 2,
 //     adds: { 2: 4 },
@@ -66,20 +65,6 @@ diffArray([1, 2, 3], [1, 2, 4], DiffMode.FULL);
 //     linear: [0, 0, 1,  0, 1, 2,  -1, 2, 3,  1, 2, 4]
 // }
 ```
-
-## Breaking changes
-
-### 2.0.0
-
-The linear edit logs of both `diffArray` and `diffObject` are now
-returned as flat arrays, with each log entry consisting of 3 or 2
-successive array items. This is to avoid allocation of various small
-arrays.
-
-The order of optional args to both functions has been swapped to:
-
-- `diffArray(old, new, mode?, equiv?)`
-- `diffObject(old, new, mode?, equiv?)`
 
 ## Authors
 
@@ -98,4 +83,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2021 Karsten Schmidt // Apache Software License 2.0

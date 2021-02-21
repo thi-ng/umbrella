@@ -1,8 +1,8 @@
 # crypto-chart
 
-[Live demo](https://s3.amazonaws.com/demo.thi.ng/umbrella/crypto-chart/index.html)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/crypto-chart.png)
 
-![chart](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/crypto-chart.png)
+[Live demo](https://s3.amazonaws.com/demo.thi.ng/umbrella/crypto-chart/index.html)
 
 Price data provided by [cryptocompare.com](https://min-api.cryptocompare.com/).
 
@@ -20,7 +20,7 @@ updates / diffs when there were any relevant upstream value changes.
 
 The diagram below shows a schematic of the dataflow graph used:
 
-![dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/crypto-dflow.png)
+![dataflow](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/crypto-dflow.png)
 
 ## Building
 

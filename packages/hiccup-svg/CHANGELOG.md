@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [3.6.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.6.4...@thi.ng/hiccup-svg@3.6.5) (2020-12-07)
+## [3.7.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.7.5...@thi.ng/hiccup-svg@3.7.6) (2021-02-20)
 
 **Note:** Version bump only for package @thi.ng/hiccup-svg
 
@@ -11,33 +11,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [3.6.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.6.3...@thi.ng/hiccup-svg@3.6.4) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/hiccup-svg
+# [3.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.6.6...@thi.ng/hiccup-svg@3.7.0) (2021-01-02)
 
 
+### Features
 
-
-
-## [3.6.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.6.2...@thi.ng/hiccup-svg@3.6.3) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/hiccup-svg
-
-
-
-
-
-## [3.6.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.6.1...@thi.ng/hiccup-svg@3.6.2) (2020-10-03)
-
-**Note:** Version bump only for package @thi.ng/hiccup-svg
-
-
-
-
-
-## [3.6.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.6.0...@thi.ng/hiccup-svg@3.6.1) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/hiccup-svg
+* **hiccup-svg:** update svg(), add convert attrib ([cd67a09](https://github.com/thi-ng/umbrella/commit/cd67a09c61c93bc7a84ac63eab48f85ab6c52d2a))
 
 
 
@@ -52,38 +31,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **hiccup-svg:** fix [#194](https://github.com/thi-ng/umbrella/issues/194), add `baseline` support ([f8d4a38](https://github.com/thi-ng/umbrella/commit/f8d4a3868a59f6ce426b8c6fa258b0dda69f1d97))
 * **hiccup-svg:** fix/update convertTree() ([997dbf6](https://github.com/thi-ng/umbrella/commit/997dbf6eb6da314e8c7f93908a973139fc650eec))
 * **hiccup-svg:** update ff() formatter (int check) ([609d278](https://github.com/thi-ng/umbrella/commit/609d27812b76ebfad96bdc74821840b96ca26307))
-
-
-
-
-
-## [3.5.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.5.10...@thi.ng/hiccup-svg@3.5.11) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/hiccup-svg
-
-
-
-
-
-## [3.5.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.5.9...@thi.ng/hiccup-svg@3.5.10) (2020-08-20)
-
-**Note:** Version bump only for package @thi.ng/hiccup-svg
-
-
-
-
-
-## [3.5.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.5.8...@thi.ng/hiccup-svg@3.5.9) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/hiccup-svg
-
-
-
-
-
-## [3.5.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.5.7...@thi.ng/hiccup-svg@3.5.8) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/hiccup-svg
 
 
 

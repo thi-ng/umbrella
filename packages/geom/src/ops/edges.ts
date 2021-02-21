@@ -1,5 +1,7 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
-import { IShape, SamplingOpts, Type } from "@thi.ng/geom-api";
+import type { IShape, SamplingOpts } from "@thi.ng/geom-api";
+import type { VecPair } from "@thi.ng/vectors";
 import type { AABB } from "../api/aabb";
 import type { Polygon } from "../api/polygon";
 import type { Polyline } from "../api/polyline";
@@ -7,8 +9,6 @@ import type { Rect } from "../api/rect";
 import { dispatch } from "../internal/dispatch";
 import { edgeIterator } from "../internal/edges";
 import { vertices } from "./vertices";
-import type { VecPair } from "@thi.ng/vectors";
-import type { IObjectOf } from "@thi.ng/api";
 
 export const edges: MultiFn1O<
     IShape,
@@ -25,7 +25,7 @@ edges.addAll(<
         >
     >
 >{
-    [Type.AABB]: ($: AABB) => {
+    aabb: ($: AABB) => {
         const [a, b, c, d, e, f, g, h] = vertices($);
         return [
             [a, b],
@@ -43,13 +43,13 @@ edges.addAll(<
         ];
     },
 
-    [Type.POLYGON]: ($: Polygon) => edgeIterator($.points, true),
+    poly: ($: Polygon) => edgeIterator($.points, true),
 
-    [Type.POLYLINE]: ($: Polyline) => edgeIterator($.points),
+    polyline: ($: Polyline) => edgeIterator($.points),
 
-    [Type.RECT]: ($: Rect) => edgeIterator(vertices($), true),
+    rect: ($: Rect) => edgeIterator(vertices($), true),
 });
 
-edges.isa(Type.LINE, Type.POLYLINE);
-edges.isa(Type.QUAD, Type.POLYGON);
-edges.isa(Type.TRIANGLE, Type.POLYGON);
+edges.isa("line", "polyline");
+edges.isa("quad", "poly");
+edges.isa("tri", "poly");

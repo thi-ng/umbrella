@@ -21,7 +21,7 @@ import {
     sync,
     trace,
 } from "@thi.ng/rstream";
-import { padLeft } from "@thi.ng/strings";
+import { Z2 } from "@thi.ng/strings";
 import {
     comp,
     filter,
@@ -172,9 +172,6 @@ const API_URL = (market: string, symbol: string, period: number) =>
 
 // stub for local testing
 // const API_URL = (..._) => `ohlc.json`;
-
-// helper functions
-const Z2 = padLeft(2, "0");
 
 const emitOnStream = (stream: Subscription<any, any>) => (e: Event) =>
     stream.next((<HTMLInputElement>e.target).value);

@@ -1,5 +1,5 @@
 import { timedResult } from "@thi.ng/bench";
-import { hueRgba } from "@thi.ng/color";
+import { hueRgb } from "@thi.ng/color";
 import {
     $x,
     $xyz,
@@ -43,7 +43,7 @@ import { sma } from "@thi.ng/transducers-stats";
 import { NUM_WORKERS, WorkerJob, WorkerResult } from "./api";
 
 // color table to tint each worker's region
-const COLORS = [...map((i) => hueRgba([], i), normRange(NUM_WORKERS))];
+const COLORS = [...map((i) => hueRgb([], i), normRange(NUM_WORKERS))];
 
 // shader AST functions from the shader-ast-raymarch example
 const scene = defn("vec2", "scene", ["vec3"], (pos) => {

@@ -1,30 +1,19 @@
 import type { IReset } from "@thi.ng/api";
 import { clamp05, PI } from "@thi.ng/math";
-import { FilterType } from "../constants";
+import type { SVFType } from "../api";
 import { AProc } from "./aproc";
 
-type SVFType =
-    | FilterType.LP
-    | FilterType.HP
-    | FilterType.BP
-    | FilterType.NOTCH
-    | FilterType.PEAK
-    | FilterType.ALL;
+export const svfLP = (fc: number, q?: number) => new SVF("lp", fc, q);
 
-export const svfLP = (fc: number, q?: number) => new SVF(FilterType.LP, fc, q);
+export const svfHP = (fc: number, q?: number) => new SVF("hp", fc, q);
 
-export const svfHP = (fc: number, q?: number) => new SVF(FilterType.HP, fc, q);
+export const svfBP = (fc: number, q?: number) => new SVF("bp", fc, q);
 
-export const svfBP = (fc: number, q?: number) => new SVF(FilterType.BP, fc, q);
+export const svfNotch = (fc: number, q?: number) => new SVF("notch", fc, q);
 
-export const svfNotch = (fc: number, q?: number) =>
-    new SVF(FilterType.NOTCH, fc, q);
+export const svfPeak = (fc: number, q?: number) => new SVF("peak", fc, q);
 
-export const svfPeak = (fc: number, q?: number) =>
-    new SVF(FilterType.PEAK, fc, q);
-
-export const svfAllpass = (fc: number, q?: number) =>
-    new SVF(FilterType.ALL, fc, q);
+export const svfAllpass = (fc: number, q?: number) => new SVF("all", fc, q);
 
 /**
  * Multi-type state variable filter w/ trapezoidal integration, after
@@ -66,17 +55,17 @@ export class SVF extends AProc<number, number> implements IReset {
         this._c2 = 2 * x2 - _c2;
         // TODO support type morphing / interpolation?
         switch (this._type) {
-            case FilterType.LP:
+            case "lp":
                 return (this._val = x2);
-            case FilterType.HP:
+            case "hp":
                 return (this._val = x - this._k * x1 - x2);
-            case FilterType.BP:
+            case "bp":
                 return (this._val = x1);
-            case FilterType.NOTCH:
+            case "notch":
                 return (this._val = x - this._k * x1);
-            case FilterType.PEAK:
+            case "peak":
                 return (this._val = 2 * x2 - x + this._k * x1);
-            case FilterType.ALL:
+            case "all":
                 return (this._val = x - 2 * this._k * x1);
         }
     }

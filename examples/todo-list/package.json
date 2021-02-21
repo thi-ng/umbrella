@@ -7,14 +7,13 @@
     "license": "Apache-2.0",
     "scripts": {
         "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
-        "start": "../../node_modules/.bin/snowpack dev",
+        "start": "../../node_modules/.bin/snowpack dev --reload",
         "build": "../../node_modules/.bin/snowpack build"
     },
     "dependencies": {
         "@thi.ng/api": "latest",
         "@thi.ng/atom": "latest",
         "@thi.ng/hdom": "latest",
-        "@thi.ng/paths": "latest",
         "@thi.ng/transducers": "latest"
     },
     "browserslist": [
@@ -32,6 +31,6 @@
         "screenshot": "examples/todo-list.png"
     },
     "devDependencies": {
-        "@types/snowpack-env": "^2.3.2"
+        "@types/snowpack-env": "^2.3.3"
     }
 }

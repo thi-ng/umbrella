@@ -1,8 +1,8 @@
 import {
+    NumericArray,
     SIZEOF,
     Type,
     typedArray,
-    TYPEDARRAY_CTORS,
     TypedArrayTypeMap,
 } from "@thi.ng/api";
 import type { ReadonlyVec, Vec, VecOpSV, VectorConstructor } from "./api";
@@ -14,11 +14,11 @@ import type { ReadonlyVec, Vec, VecOpSV, VectorConstructor } from "./api";
  * and `byteStride` the number of bytes between resulting vectors
  * (defaults to `size * SIZEOF[type]`). It's user's responsibility to
  * ensure these two values are compatible with the chosen array type
- * (i.e. for `Type.F32`, these MUST be multiples of 4).
+ * (i.e. for `"f32"`, these MUST be multiples of 4).
  *
  * @example
  * ```ts
- * mapBuffer(Type.F32, new ArrayBuffer(32), 4, 2)
+ * mapBuffer("f32", new ArrayBuffer(32), 4, 2)
  * // [
  * //   Float32Array [ 0, 0 ],
  * //   Float32Array [ 0, 0 ],
@@ -43,9 +43,8 @@ export const mapBuffer = <T extends Type>(
     byteStride = size * SIZEOF[type]
 ) => {
     const res: TypedArrayTypeMap[T][] = [];
-    const ctor = TYPEDARRAY_CTORS[type];
     for (; --num >= 0; byteOffset += byteStride) {
-        res.push(<any>new ctor(buf, byteOffset, size));
+        res.push(typedArray(type, buf, byteOffset, size));
     }
     return res;
 };
@@ -81,7 +80,7 @@ export const intoBuffer = <T extends Type>(
 
 export const mapStridedBuffer = <T>(
     ctor: VectorConstructor<T>,
-    buf: Vec,
+    buf: NumericArray,
     num: number,
     start: number,
     cstride: number,
@@ -97,7 +96,7 @@ export const mapStridedBuffer = <T>(
 
 export const intoStridedBuffer = (
     set: VecOpSV,
-    buf: Vec,
+    buf: NumericArray,
     src: Iterable<Vec>,
     start: number,
     cstride: number,

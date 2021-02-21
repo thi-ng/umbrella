@@ -13,7 +13,7 @@ This project is part of the
   - [Blue noise](#blue-noise)
   - [Green noise](#green-noise)
   - [Pink noise](#pink-noise)
-  - [Red / brown noise](#red---brown-noise)
+  - [Red / brown noise](#red--brown-noise)
   - [Violet noise](#violet-noise)
   - [White noise](#white-noise)
   - [Status](#status)
@@ -21,7 +21,7 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
-  - [Use as IGen in @thi.ng/dsp](#use-as-igen-in-thing-dsp)
+  - [Use as IGen in @thi.ng/dsp](#use-as-igen-in-thingdsp)
 - [Authors](#authors)
 - [License](#license)
 
@@ -348,7 +348,7 @@ white
 ### Related packages
 
 - [@thi.ng/dsp](https://github.com/thi-ng/umbrella/tree/develop/packages/dsp) - Composable signal generators, oscillators, filters, FFT, spectrum, windowing & related DSP utils
-- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random) - Pseudo-random number generators w/ unified API
+- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random) - Pseudo-random number generators w/ unified API, distributions, weighted choices, ID generation
 
 ## Installation
 
@@ -442,4 +442,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2015 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2021 Karsten Schmidt // Apache Software License 2.0

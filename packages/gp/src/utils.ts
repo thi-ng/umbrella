@@ -1,14 +1,14 @@
 import { assert } from "@thi.ng/api";
 import { add, choices, range } from "@thi.ng/transducers";
-import { GeneType, GPOpts, OpGene, TerminalGene } from "./api";
+import type { GPOpts, OpGene, TerminalGene } from "./api";
 
 export const terminalNode = <T>(value: T): TerminalGene<T> => ({
-    type: GeneType.TERMINAL,
+    type: "term",
     value,
 });
 
 export const opNode = <OP, A>(op: OP, args: A[]): OpGene<OP, A> => ({
-    type: GeneType.OP,
+    type: "op",
     op,
     args,
 });

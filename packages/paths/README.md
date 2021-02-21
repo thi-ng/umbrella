@@ -78,7 +78,7 @@ yarn add @thi.ng/paths
 <script src="https://unpkg.com/@thi.ng/paths/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.18 KB / CJS: 1.29 KB / UMD: 1.25 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.15 KB / CJS: 1.25 KB / UMD: 1.21 KB
 
 ## Dependencies
 
@@ -98,7 +98,6 @@ A selection:
 | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 |                                                                                                                           | Using hdom in an Elm-like manner                                                 | [Demo](https://demo.thi.ng/umbrella/hdom-elm/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-elm)            |
 |                                                                                                                           | Event handling w/ interceptors and side effects                                  | [Demo](https://demo.thi.ng/umbrella/interceptor-basics2/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/interceptor-basics2) |
-|                                                                                                                           | Basic SPA example with atom-based UI router                                      | [Demo](https://demo.thi.ng/umbrella/login-form/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/login-form)          |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-event-loop.png" width="240"/> | Minimal demo of using rstream constructs to form an interceptor-style event loop | [Demo](https://demo.thi.ng/umbrella/rstream-event-loop/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-event-loop)  |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/todo-list.png" width="240"/>          | Obligatory to-do list example with undo/redo                                     | [Demo](https://demo.thi.ng/umbrella/todo-list/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/todo-list)           |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/triple-query.png" width="240"/>       | Triple store query results & sortable table                                      | [Demo](https://demo.thi.ng/umbrella/triple-query/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/triple-query)        |
@@ -368,4 +367,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2021 Karsten Schmidt // Apache Software License 2.0

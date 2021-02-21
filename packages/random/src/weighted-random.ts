@@ -20,13 +20,11 @@ export const weightedRandom = <T>(
 ) => {
     const n = choices.length;
     assert(n > 0, "no choices given");
-    const opts = choices
-        .map(
-            weights
-                ? (x, i) => <[T, number]>[x, weights[i]]
-                : (x) => <[T, number]>[x, 1]
-        )
-        .sort((a, b) => b[1] - a[1]);
+    const opts = weights
+        ? choices
+              .map((x, i) => <[T, number]>[x, weights[i]])
+              .sort((a, b) => b[1] - a[1])
+        : choices.map((x) => <[T, number]>[x, 1]);
     const total = opts.reduce((acc, o) => acc + o[1], 0);
     assert(total > 0, "no choices given");
     return () => {

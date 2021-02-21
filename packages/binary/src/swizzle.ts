@@ -196,3 +196,19 @@ export const flip16: FnN = (x) => mux(x << 16, x >>> 16, 0xffff);
  * @deprecated renamed to {@link flip8}
  */
 export const flipBytes = flip8;
+
+/**
+ * Swaps bytes lanes 0 & 2 (i.e. bits 24-31 with bits 8-15)
+ *
+ * @param x
+ */
+export const swapLane02: FnN = (x) =>
+    ((x & 0xff00) << 16) | ((x >>> 16) & 0xff00) | (x & 0x00ff00ff);
+
+/**
+ * Swaps bytes lanes 1 & 3 (i.e. bits 16-23 with bits 0-7)
+ *
+ * @param x
+ */
+export const swapLane13: FnN = (x) =>
+    ((x & 0xff) << 16) | ((x >> 16) & 0xff) | (x & 0xff00ff00);

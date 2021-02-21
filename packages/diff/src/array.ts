@@ -1,7 +1,6 @@
 import type { FnU3, Nullable } from "@thi.ng/api";
 import { equiv as _equiv } from "@thi.ng/equiv";
-import type { ArrayDiff, DiffKeyMap, EditLog } from "./api";
-import { DiffMode } from "./constants";
+import type { ArrayDiff, DiffKeyMap, DiffMode, EditLog } from "./api";
 
 let _cachedFP: Nullable<Int32Array>;
 let _cachedPath: Nullable<Int32Array>;
@@ -34,13 +33,13 @@ const simpleDiff = <T>(
     const n = src.length;
     const linear = <EditLog<Number, T>>state.linear;
     state.distance = n;
-    if (mode !== DiffMode.ONLY_DISTANCE) {
+    if (mode !== "only-distance") {
         for (let i = 0, j = 0; i < n; i++, j += 3) {
             linear[j] = logDir;
             linear[j + 1] = i;
             linear[j + 2] = src[i];
         }
-        if (mode === DiffMode.FULL) {
+        if (mode === "full") {
             const _state = <DiffKeyMap<T>>state[key];
             for (let i = 0; i < n; i++) {
                 _state[i] = src[i];
@@ -70,7 +69,7 @@ const simpleDiff = <T>(
 export const diffArray = <T>(
     a: ArrayLike<T> | undefined | null,
     b: ArrayLike<T> | undefined | null,
-    mode = DiffMode.FULL,
+    mode: DiffMode = "full",
     equiv = _equiv
 ) => {
     const state = <ArrayDiff<T>>{
@@ -145,14 +144,14 @@ export const diffArray = <T>(
 
     state.distance = delta + 2 * p;
 
-    if (mode !== DiffMode.ONLY_DISTANCE) {
+    if (mode !== "only-distance") {
         p = path[doff] * 3;
         while (p >= 0) {
             epc.push(p);
             p = pathPos[p + 2] * 3;
         }
 
-        if (mode === DiffMode.FULL) {
+        if (mode === "full") {
             buildFullLog<T>(epc, pathPos, state, _a, _b, reverse);
         } else {
             buildLinearLog<T>(
@@ -162,7 +161,7 @@ export const diffArray = <T>(
                 _a,
                 _b,
                 reverse,
-                mode === DiffMode.ONLY_DISTANCE_LINEAR
+                mode === "only-distance-linear"
             );
         }
     }

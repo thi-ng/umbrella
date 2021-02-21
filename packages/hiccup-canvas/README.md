@@ -22,12 +22,12 @@ This project is part of the
   - [Definition group](#definition-group)
   - [Circle](#circle)
   - [Circular arc](#circular-arc)
-  - [Ellipse / elliptic arc](#ellipse---elliptic-arc)
+  - [Ellipse / elliptic arc](#ellipse--elliptic-arc)
   - [Rect](#rect)
   - [Line](#line)
   - [Horizontal Line](#horizontal-line)
   - [Vertical Line](#vertical-line)
-  - [Polyline / Polygon](#polyline---polygon)
+  - [Polyline / Polygon](#polyline--polygon)
   - [Path](#path)
     - [SVG paths with arc segments](#svg-paths-with-arc-segments)
   - [Points](#points)
@@ -40,7 +40,7 @@ This project is part of the
     - [String](#string)
     - [Number](#number)
     - [Array](#array)
-    - [@thi.ng/color values](#thing-color-values)
+    - [@thi.ng/color values](#thingcolor-values)
   - [Coordinate transformations](#coordinate-transformations)
     - [Transform matrix](#transform-matrix)
     - [Override transform](#override-transform)
@@ -86,7 +86,7 @@ yarn add @thi.ng/hiccup-canvas
 <script src="https://unpkg.com/@thi.ng/hiccup-canvas/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.55 KB / CJS: 2.67 KB / UMD: 2.67 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.53 KB / CJS: 2.65 KB / UMD: 2.65 KB
 
 ## Dependencies
 
@@ -503,4 +503,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2021 Karsten Schmidt // Apache Software License 2.0

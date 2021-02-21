@@ -1,9 +1,8 @@
 import { equiv } from "@thi.ng/equiv";
-import {
+import type {
     Attribs,
     IHiccupPathSegment,
     IHiccupShape,
-    Type,
 } from "@thi.ng/geom-api";
 import {
     pointAt as arcPointAt,
@@ -25,7 +24,7 @@ export class Arc implements IHiccupShape, IHiccupPathSegment {
     ) {}
 
     get type() {
-        return Type.ARC;
+        return "arc";
     }
 
     copy(): Arc {

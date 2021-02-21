@@ -10,6 +10,13 @@ import type { FnN, FnN2, FnN3, FnN4, FnU3 } from "@thi.ng/api";
 export const clamp: FnN3 = (x, min, max) => (x < min ? min : x > max ? max : x);
 
 /**
+ * Clamps value `x` to closed [0 .. ∞] interval.
+ *
+ * @param x
+ */
+export const clamp0: FnN = (x) => (x > 0 ? x : 0);
+
+/**
  * Clamps value `x` to closed [0 .. 1] interval.
  *
  * @param x

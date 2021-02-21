@@ -3,81 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.41](https://github.com/thi-ng/umbrella/compare/@thi.ng/soa@0.1.40...@thi.ng/soa@0.1.41) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/soa
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/soa@0.1.47...@thi.ng/soa@0.2.0) (2021-02-20)
 
 
+### Code Refactoring
+
+* **soa:** update attrib type handling ([274dadf](https://github.com/thi-ng/umbrella/commit/274dadf2507ac4daeea59c53a0f408343d582d8e))
 
 
+### BREAKING CHANGES
 
-## [0.1.40](https://github.com/thi-ng/umbrella/compare/@thi.ng/soa@0.1.39...@thi.ng/soa@0.1.40) (2020-11-26)
+* **soa:** attrib buffer data type use string consts
 
-**Note:** Version bump only for package @thi.ng/soa
-
-
-
-
-
-## [0.1.39](https://github.com/thi-ng/umbrella/compare/@thi.ng/soa@0.1.38...@thi.ng/soa@0.1.39) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/soa
-
-
-
-
-
-## [0.1.38](https://github.com/thi-ng/umbrella/compare/@thi.ng/soa@0.1.37...@thi.ng/soa@0.1.38) (2020-10-03)
-
-**Note:** Version bump only for package @thi.ng/soa
-
-
-
-
-
-## [0.1.37](https://github.com/thi-ng/umbrella/compare/@thi.ng/soa@0.1.36...@thi.ng/soa@0.1.37) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/soa
-
-
-
-
-
-## [0.1.36](https://github.com/thi-ng/umbrella/compare/@thi.ng/soa@0.1.35...@thi.ng/soa@0.1.36) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/soa
-
-
-
-
-
-## [0.1.35](https://github.com/thi-ng/umbrella/compare/@thi.ng/soa@0.1.34...@thi.ng/soa@0.1.35) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/soa
-
-
-
-
-
-## [0.1.34](https://github.com/thi-ng/umbrella/compare/@thi.ng/soa@0.1.33...@thi.ng/soa@0.1.34) (2020-08-20)
-
-**Note:** Version bump only for package @thi.ng/soa
-
-
-
-
-
-## [0.1.33](https://github.com/thi-ng/umbrella/compare/@thi.ng/soa@0.1.32...@thi.ng/soa@0.1.33) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/soa
-
-
-
-
-
-## [0.1.32](https://github.com/thi-ng/umbrella/compare/@thi.ng/soa@0.1.31...@thi.ng/soa@0.1.32) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/soa
+- part of unified umbrella-wide changes to thi.ng/api Type alias
+  (see a333d4182)
 
 
 

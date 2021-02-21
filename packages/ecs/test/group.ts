@@ -15,7 +15,7 @@ describe("component", () => {
 
     it("group", () => {
         const a = ecs.defComponent({ id: "a", default: () => "a" })!;
-        const b = ecs.defComponent({ id: "b", type: 7, size: 2 })!;
+        const b = ecs.defComponent({ id: "b", type: "f32", size: 2 })!;
         const g = ecs.defGroup([a, b]);
         ecs.defEntity(["a", "b"]);
         ecs.defEntity({ a: "aa", b: [1, 2] });

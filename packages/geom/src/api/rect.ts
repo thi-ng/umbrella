@@ -1,5 +1,5 @@
 import { isNumber } from "@thi.ng/checks";
-import { AABBLike, Attribs, IHiccupShape, Type } from "@thi.ng/geom-api";
+import type { AABBLike, Attribs, IHiccupShape } from "@thi.ng/geom-api";
 import { add2, set, Vec } from "@thi.ng/vectors";
 import { copyAttribs } from "../internal/copy-attribs";
 
@@ -15,7 +15,7 @@ export class Rect implements AABBLike, IHiccupShape {
     }
 
     get type() {
-        return Type.RECT;
+        return "rect";
     }
 
     copy(): Rect {

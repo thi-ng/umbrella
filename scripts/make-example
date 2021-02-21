@@ -80,11 +80,15 @@ cat << EOF > "$MODULE"/package.json
     "license": "Apache-2.0",
     "scripts": {
         "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
-        "start": "../../node_modules/.bin/snowpack dev",
+        "start": "../../node_modules/.bin/snowpack dev --reload",
         "build": "../../node_modules/.bin/snowpack build"
     },
+    "devDependencies": {
+        "@thi.ng/snowpack-env": "^2.3.3"
+    },
     "dependencies": {
-        "@thi.ng/api": "latest"
+        "@thi.ng/api": "latest",
+        "@thi.ng/rdom": "latest"
     },
     "browserslist": [
         "last 3 Chrome versions"

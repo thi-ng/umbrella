@@ -3,89 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.67](https://github.com/thi-ng/umbrella/compare/@thi.ng/adjacency@0.1.66...@thi.ng/adjacency@0.1.67) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/adjacency
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/adjacency@0.2.6...@thi.ng/adjacency@0.3.0) (2021-02-20)
 
 
+### Features
+
+* **adjacency:** add AdjacencyList impl & initial tests ([8f44c97](https://github.com/thi-ng/umbrella/commit/8f44c9762c0856a9b96e4548d2386eca6dcbf397))
+* **adjacency:** add IGraph.degree() & impls ([9fb02ac](https://github.com/thi-ng/umbrella/commit/9fb02ac7467785a0802c544cbc3100d6ac52fb87))
+* **adjacency:** major update Adjacency(Bit)Matrix classes & API ([cd71a5f](https://github.com/thi-ng/umbrella/commit/cd71a5fca3b2d8525c5b1c6e9032e55e39fea2dd))
 
 
+### Performance Improvements
 
-## [0.1.66](https://github.com/thi-ng/umbrella/compare/@thi.ng/adjacency@0.1.65...@thi.ng/adjacency@0.1.66) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/adjacency
-
+* **adjacency:** pre-cache MST edge costs ([290f3a6](https://github.com/thi-ng/umbrella/commit/290f3a6e1f9d71ddf3bb33f4bc6e9552896903a9))
 
 
+### BREAKING CHANGES
 
+* **adjacency:** replace .valence() w/ more flexible .degree() methods
 
-## [0.1.65](https://github.com/thi-ng/umbrella/compare/@thi.ng/adjacency@0.1.64...@thi.ng/adjacency@0.1.65) (2020-11-24)
+- add IGraph.degree() with same default behavior as .valence(),
+  but supporting diff degree types (in/out/inout)
+- add .degree() impls for all
+- remove old .valence() methods
+- update tests
+* **adjacency:** fixed order add/removeEdge(), valence(), neighbors(),
+remove static methods
 
-**Note:** Version bump only for package @thi.ng/adjacency
-
-
-
-
-
-## [0.1.64](https://github.com/thi-ng/umbrella/compare/@thi.ng/adjacency@0.1.63...@thi.ng/adjacency@0.1.64) (2020-10-19)
-
-**Note:** Version bump only for package @thi.ng/adjacency
-
-
-
-
-
-## [0.1.63](https://github.com/thi-ng/umbrella/compare/@thi.ng/adjacency@0.1.62...@thi.ng/adjacency@0.1.63) (2020-10-03)
-
-**Note:** Version bump only for package @thi.ng/adjacency
+- update IGraph, add/update methods, return types, generics
+- remove/replace static methods in Adjacency(Bit)Matrix
+- add defAdjBitMatrix/defAdjMatrix
+- refactor/extract/re-use .toDot() graphviz conversion
+- update tests
 
 
 
 
 
-## [0.1.62](https://github.com/thi-ng/umbrella/compare/@thi.ng/adjacency@0.1.61...@thi.ng/adjacency@0.1.62) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/adjacency
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/adjacency@0.1.67...@thi.ng/adjacency@0.2.0) (2020-12-22)
 
 
+### Code Refactoring
+
+* **adjacency:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enum w/ type alias ([88edbe1](https://github.com/thi-ng/umbrella/commit/88edbe10ffe9ceb9f5e8494c9a60b8067a7d57d1))
 
 
+### BREAKING CHANGES
 
-## [0.1.61](https://github.com/thi-ng/umbrella/compare/@thi.ng/adjacency@0.1.60...@thi.ng/adjacency@0.1.61) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/adjacency
-
-
-
-
-
-## [0.1.60](https://github.com/thi-ng/umbrella/compare/@thi.ng/adjacency@0.1.59...@thi.ng/adjacency@0.1.60) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/adjacency
-
-
-
-
-
-## [0.1.59](https://github.com/thi-ng/umbrella/compare/@thi.ng/adjacency@0.1.58...@thi.ng/adjacency@0.1.59) (2020-08-20)
-
-**Note:** Version bump only for package @thi.ng/adjacency
-
-
-
-
-
-## [0.1.58](https://github.com/thi-ng/umbrella/compare/@thi.ng/adjacency@0.1.57...@thi.ng/adjacency@0.1.58) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/adjacency
-
-
-
-
-
-## [0.1.57](https://github.com/thi-ng/umbrella/compare/@thi.ng/adjacency@0.1.56...@thi.ng/adjacency@0.1.57) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/adjacency
+* **adjacency:** replace DegreeType w/ type alias
 
 
 

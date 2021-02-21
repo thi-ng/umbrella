@@ -7,7 +7,7 @@ import {
     Stream,
     sync,
 } from "@thi.ng/rstream";
-import { padLeft } from "@thi.ng/strings";
+import { Z2 } from "@thi.ng/strings";
 import { dedupe, map, reducer, scan, sideEffect } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { app, printApp } from "./components";
@@ -15,8 +15,6 @@ import { ctx } from "./config";
 import { SLIDES } from "./slides";
 
 const INTERACTIVE = true;
-
-const D2 = padLeft(2, "0");
 
 const initKeys = (stream: Stream<number>) =>
     fromDOMEvent(window, "keydown").transform(
@@ -59,7 +57,7 @@ const main = sync({
         slideID,
         content: slideID.transform(map((id: number) => SLIDES[id])),
         time: fromInterval(1000).transform(
-            map((x: number) => `${D2((x / 60) | 0)}:${D2(x % 60)}`)
+            map((x: number) => `${Z2((x / 60) | 0)}:${Z2(x % 60)}`)
         ),
     },
 });

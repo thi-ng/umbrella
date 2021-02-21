@@ -59,22 +59,22 @@ interface FSMCtx {
  * Default hiccup element factories
  */
 const DEFAULT_TAGS: TagFactories = {
-    blockquote: (xs) => ["blockquote", ...xs],
-    code: (body) => ["code", body],
+    blockquote: (xs) => ["blockquote", {}, ...xs],
+    code: (body) => ["code", {}, body],
     codeblock: (lang, body) => ["pre", { lang }, body],
-    em: (body) => ["em", body],
-    heading: (level, xs) => [level < 7 ? `h${level}` : "p", ...xs],
-    hr: () => ["hr"],
+    em: (body) => ["em", {}, body],
+    heading: (level, xs) => [level < 7 ? `h${level}` : "p", {}, ...xs],
+    hr: () => ["hr", {}],
     img: (src, alt) => ["img", { src, alt }],
-    li: (xs: any[]) => ["li", ...xs],
+    li: (xs: any[]) => ["li", {}, ...xs],
     link: (href, body) => ["a", { href }, body],
-    list: (type, xs) => [type, ...xs],
-    paragraph: (xs) => ["p", ...xs],
-    strong: (body) => ["strong", body],
-    strike: (body) => ["del", body],
-    table: (rows) => ["table", ["tbody", ...rows]],
-    td: (_, xs) => ["td", ...xs],
-    tr: (_, xs) => ["tr", ...xs],
+    list: (type, xs) => [type, {}, ...xs],
+    paragraph: (xs) => ["p", {}, ...xs],
+    strong: (body) => ["strong", {}, body],
+    strike: (body) => ["del", {}, body],
+    table: (rows) => ["table", {}, ["tbody", {}, ...rows]],
+    td: (_, xs) => ["td", {}, ...xs],
+    tr: (_, xs) => ["tr", {}, ...xs],
 };
 
 const BQUOTE = ">";
@@ -134,7 +134,9 @@ const collectAndRestart = (tag: (xs: any[]) => any[]) => (
 ): ParseResult => [State.START, [tag(collectChildren(ctx))]];
 
 const collectBlockQuote = (ctx: FSMCtx): ParseResult => (
-    ctx.children!.push(ctx.body, ["br"]), (ctx.body = ""), [State.BLOCKQUOTE]
+    ctx.children!.push(ctx.body, ["br", {}]),
+    (ctx.body = ""),
+    [State.BLOCKQUOTE]
 );
 
 const collectCodeBlock = (tag: Fn2<string, string, any[]>) => (

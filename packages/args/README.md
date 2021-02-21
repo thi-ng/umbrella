@@ -1,0 +1,210 @@
+<!-- This file is generated - DO NOT EDIT! -->
+
+# ![args](https://media.thi.ng/umbrella/banners/thing-args.svg?396fd2a1)
+
+[![npm version](https://img.shields.io/npm/v/@thi.ng/args.svg)](https://www.npmjs.com/package/@thi.ng/args)
+![npm downloads](https://img.shields.io/npm/dm/@thi.ng/args.svg)
+[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+
+This project is part of the
+[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+
+- [About](#about)
+  - [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [API](#api)
+  - [Basic usage](#basic-usage)
+    - [Generate & display help](#generate--display-help)
+    - [Parsing, value coercions & side effects](#parsing-value-coercions--side-effects)
+- [Authors](#authors)
+- [License](#license)
+
+## About
+
+Declarative, functional & typechecked CLI argument/options parser, value coercions etc..
+
+Includes built-in support for the following argument types (of course custom arg types are supported too):
+
+| **Argument type**    | **Multiple** | **Example**                | **Result**                    |
+|----------------------|--------------|----------------------------|-------------------------------|
+| **Flag**             |              | `--force`, `-f`            | `force: true`                 |
+| **String**           | ✅            | `--foo bar`                | `foo: "bar"`                  |
+| **Float/int/hex**    | ✅            | `--bg ff997f`              | `bg: 16750975`                |
+| **Enum**             | ✅            | `--type png`               | `type: "png"`                 |
+| **KV pairs**         | ✅            | `--define foo=bar`         | `define: { foo: "bar" }`      |
+| **JSON**             |              | `--config '{"foo": [23]}'` | `config: { foo: [23] }`       |
+| **Fixed size tuple** |              | `--size 640x480`           | `size: { value: [640, 480] }` |
+
+If multiple values/repetitions are allowed for an argument, the values will be
+collected into an array (apart from KV pairs, which will yield an object).
+Furthermore, for multi-args, an optional delimiter can be specified to extract
+individual values, e.g. `-a 1,2,3` equals `-a 1 -a 2 -a 3`
+
+### Status
+
+**BETA** - possibly breaking changes forthcoming
+
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bargs%5D+in%3Atitle)
+
+## Installation
+
+```bash
+yarn add @thi.ng/args
+```
+
+```html
+// ES module
+<script type="module" src="https://unpkg.com/@thi.ng/args?module" crossorigin></script>
+
+// UMD
+<script src="https://unpkg.com/@thi.ng/args/lib/index.umd.js" crossorigin></script>
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 2.03 KB / CJS: 2.16 KB / UMD: 2.10 KB
+
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/args/)
+
+### Basic usage
+
+```ts
+type ImgType = "png" | "jpg" | "gif" | "tiff";
+
+// CLI args will be validated against this interface
+interface TestArgs {
+    configPath?: string;
+    force: boolean;
+    bg: number;
+    type: ImgType;
+    size?: Tuple<number>;
+    xtra?: { a: number; b: string };
+    define?: KVDict;
+}
+
+// arg specifications
+const specs: Args<TestArgs> = {
+    // string arg
+    configPath: string({
+        alias: "c",
+        hint: "PATH",
+        desc: "Config file path (CLI args always take precedence over those settings)",
+    }),
+    // boolean flag (default: false)
+    force: flag({
+        alias: "f",
+        desc: "Force operation",
+        // side effect & predicate
+        // parsing only continues if fn returns true
+        fn: (_) => (console.log("force mode enabled"), true),
+    }),
+    // hex int value
+    bg: hex({
+        desc: "Background color",
+        // mandatory args require a `default` value and/or `optional: false`
+        default: 0xffffff,
+    }),
+    // enum value (mandatory)
+    type: oneOf(["png", "jpg", "gif", "tiff"], {
+        alias: "t",
+        desc: "Image type",
+        // mandatory args require a `default` value and/or `optional: false`
+        optional: false,
+    }),
+    // fixed size numeric tuple w/ `x` as delimiter
+    // size: tuple(coerceInt, 2, { hint: "WxH", desc: "Target size" }, "x"),
+    // syntax sugar for above:
+    size: size(2, { hint: "WxH", desc: "Target size" }),
+    // JSON string arg
+    xtra: json({
+        alias: "x",
+        desc: "Extra options",
+    }),
+    // key-value pairs parsed into an object
+    define: kvPairs({ alias: "D", desc: "Define dict entry" }),
+};
+
+try {
+    // parse argv w/ above argument specs & default options
+    // (by default usage is shown if error occurs)
+    const args = parse(specs, process.argv);
+    console.log(args);
+} catch (_) {}
+```
+
+#### Generate & display help
+
+By default uses ANSI colors (see
+[`UsageOpts`](https://github.com/thi-ng/umbrella/blob/develop/packages/args/src/api.ts)),
+`--help` is always available as built-in:
+
+```text
+ts-node index.ts --help
+
+--bg HEX                        Background color
+-c PATH, --config-path PATH     Config file path (CLI args always take
+                                precedence over those settings)
+-D key=val, --define key=val    [multiple] Define dict entry
+-f, --force                     Force operation
+--size WxH                      Target size
+-t ID, --type ID                [required] Image type: 'png', 'jpg', 'gif',
+                                'tiff'
+-x JSON, --xtra JSON            Extra options
+```
+
+#### Parsing, value coercions & side effects
+
+The below invocation demonstrates how the various argument types are handled &
+represented in the result. Parsing stops with the first non-argument value (here
+`sourcefile.png`) and the remaining values are made available via `rest` in the
+result object.
+
+```bash
+ts-node index.ts \
+    -f -t png --bg ff00ff --size 640x480 \
+    -D author=toxi -D date=2018-03-24 \
+    --xtra '{"foo": [23]}' \
+    sourcefile.png
+
+# force mode enabled
+# {
+#   result: {
+#     force: true,
+#     type: 'png',
+#     bg: 16711935,
+#     size: Tuple { value: [640, 480] }
+#     define: { author: 'toxi', date: '2018-03-24' },
+#     xtra: { foo: [23] },
+#   },
+#   index: 15,
+#   rest: [ 'sourcefile.png' ],
+#   done: false
+# }
+```
+
+## Authors
+
+Karsten Schmidt
+
+If this project contributes to an academic publication, please cite it as:
+
+```bibtex
+@misc{thing-args,
+  title = "@thi.ng/args",
+  author = "Karsten Schmidt",
+  note = "https://thi.ng/args",
+  year = 2018
+}
+```
+
+## License
+
+&copy; 2018 - 2021 Karsten Schmidt // Apache Software License 2.0

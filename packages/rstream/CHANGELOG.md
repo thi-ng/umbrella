@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [5.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@5.0.9...@thi.ng/rstream@5.0.10) (2020-12-07)
+## [5.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@5.1.0...@thi.ng/rstream@5.1.1) (2021-02-20)
 
 **Note:** Version bump only for package @thi.ng/rstream
 
@@ -11,41 +11,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [5.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@5.0.8...@thi.ng/rstream@5.0.9) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/rstream
+# [5.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@5.0.15...@thi.ng/rstream@5.1.0) (2021-01-22)
 
 
+### Features
 
-
-
-## [5.0.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@5.0.7...@thi.ng/rstream@5.0.8) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/rstream
-
-
-
-
-
-## [5.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@5.0.6...@thi.ng/rstream@5.0.7) (2020-10-19)
-
-**Note:** Version bump only for package @thi.ng/rstream
-
-
-
-
-
-## [5.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@5.0.5...@thi.ng/rstream@5.0.6) (2020-10-03)
-
-**Note:** Version bump only for package @thi.ng/rstream
-
-
-
-
-
-## [5.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@5.0.4...@thi.ng/rstream@5.0.5) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/rstream
+* **rstream:** add CommonOpts for .map() ([6324123](https://github.com/thi-ng/umbrella/commit/63241231a93c34fa5fb834706f26e024adf3100b))
 
 
 
@@ -57,30 +28,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * **rstream:** update PubSub.subscribeTopic(), fix [#248](https://github.com/thi-ng/umbrella/issues/248) ([3e2240a](https://github.com/thi-ng/umbrella/commit/3e2240ababeee342857eead64c491789cc97b960))
-
-
-
-
-
-## [5.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@5.0.2...@thi.ng/rstream@5.0.3) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/rstream
-
-
-
-
-
-## [5.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@5.0.1...@thi.ng/rstream@5.0.2) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/rstream
-
-
-
-
-
-## [5.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@5.0.0...@thi.ng/rstream@5.0.1) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/rstream
 
 
 

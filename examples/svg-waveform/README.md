@@ -1,4 +1,7 @@
 # svg-waveform
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-waveform.png)
+
 ## About
 
 Interactive, additive waveform synthesis (no audio) and SVG waveform

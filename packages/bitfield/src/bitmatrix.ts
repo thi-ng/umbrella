@@ -1,6 +1,7 @@
 import { assert, Fn2, IClear, ICopy } from "@thi.ng/api";
 import { align, bitAnd, bitNot, bitOr, bitXor } from "@thi.ng/binary";
-import { binOp, toString } from "./util";
+import { BitField } from "./bitfield";
+import { binOp, popCount, toString } from "./util";
 
 /**
  * MxN row-major 2D bit matrix, backed by a Uint32Array. Hence the width
@@ -66,9 +67,7 @@ export class BitMatrix implements IClear, ICopy<BitMatrix> {
      * @param n - column
      */
     at(m: number, n: number) {
-        return (
-            this.data[(n >>> 5) + m * this.stride] & (0x80000000 >>> (n & 31))
-        );
+        return this.data[(n >>> 5) + m * this.stride] & (1 << (~n & 31));
     }
 
     /**
@@ -79,9 +78,9 @@ export class BitMatrix implements IClear, ICopy<BitMatrix> {
      * @param n - column
      * @param v - bit value
      */
-    setAt(m: number, n: number, v = true) {
+    setAt(m: number, n: number, v: boolean | number = true) {
         const id = (n >>> 5) + m * this.stride;
-        const mask = 0x80000000 >>> (n & 31);
+        const mask = 1 << (~n & 31);
         const r = this.data[id] & mask;
         if (v) {
             this.data[id] |= mask;
@@ -100,7 +99,7 @@ export class BitMatrix implements IClear, ICopy<BitMatrix> {
      */
     toggleAt(m: number, n: number) {
         const id = (n >>> 5) + m * this.stride;
-        const mask = 0x80000000 >>> (n & 31);
+        const mask = 1 << (~n & 31);
         const r = this.data[id] & mask;
         if (r) {
             this.data[id] &= ~mask;
@@ -126,6 +125,42 @@ export class BitMatrix implements IClear, ICopy<BitMatrix> {
         return this.binOp(this, bitNot);
     }
 
+    popCountRow(m: number) {
+        this.ensureRow(m);
+        m *= this.stride;
+        return popCount(this.data.subarray(m, m + this.stride));
+    }
+
+    popCountColumn(n: number) {
+        this.ensureColumn(n);
+        const { data, stride, m } = this;
+        const mask = 1 << (~n & 31);
+        let res = 0;
+        for (let i = n >>> 5, j = 0; j < m; i += stride, j++) {
+            data[i] & mask && res++;
+        }
+        return res;
+    }
+
+    row(m: number) {
+        this.ensureRow(m);
+        const row = new BitField(this.n);
+        m *= this.stride;
+        row.data.set(this.data.subarray(m, m + this.stride));
+        return row;
+    }
+
+    column(n: number) {
+        this.ensureColumn(n);
+        const { data, stride, m } = this;
+        const column = new BitField(m);
+        const mask = 1 << (~n & 31);
+        for (let i = n >>> 5, j = 0; j < m; i += stride, j++) {
+            data[i] & mask && column.setAt(j);
+        }
+        return column;
+    }
+
     toString() {
         const res: string[] = [];
         for (let i = 0, j = 0, s = this.stride; i < this.m; i++, j += s) {
@@ -146,7 +181,15 @@ export class BitMatrix implements IClear, ICopy<BitMatrix> {
             `matrices must be same size`
         );
     }
+
+    protected ensureRow(m: number) {
+        assert(m >= 0 && m < this.m, `row index out of range: ${m}`);
+    }
+
+    protected ensureColumn(n: number) {
+        assert(n >= 0 && n < this.n, `column index out of range: ${n}`);
+    }
 }
 
-export const bitMatrix = (rows: number, cols = rows) =>
+export const defBitMatrix = (rows: number, cols = rows) =>
     new BitMatrix(rows, cols);

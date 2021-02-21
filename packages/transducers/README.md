@@ -25,11 +25,11 @@ This project is part of the
   - [Fuzzy search](#fuzzy-search)
   - [Histogram generation & result grouping](#histogram-generation--result-grouping)
   - [Pagination](#pagination)
-  - [Multiplexing / parallel transducer application](#multiplexing---parallel-transducer-application)
+  - [Multiplexing / parallel transducer application](#multiplexing--parallel-transducer-application)
   - [Moving average using sliding window](#moving-average-using-sliding-window)
   - [Benchmark function execution time](#benchmark-function-execution-time)
   - [Apply inspectors to debug transducer pipeline](#apply-inspectors-to-debug-transducer-pipeline)
-  - [Stream parsing / structuring](#stream-parsing---structuring)
+  - [Stream parsing / structuring](#stream-parsing--structuring)
   - [CSV parsing](#csv-parsing)
   - [Early termination](#early-termination)
   - [Scan operator](#scan-operator)
@@ -52,7 +52,7 @@ This project is part of the
     - [transduceRight](#transduceright)
     - [run](#run)
   - [Transducers](#transducers)
-  - [Generators / Iterators](#generators---iterators)
+  - [Generators / Iterators](#generators--iterators)
   - [Reducers](#reducers)
 - [Authors](#authors)
   - [Maintainer](#maintainer)
@@ -89,14 +89,14 @@ will return a reduced result of the given input iterable.
 
 ### 7.0.0 release
 
-Thanks to a [PR](https://github.com/thi-ng/umbrella/pull/223) and
-[related issue](https://github.com/thi-ng/umbrella/issues/186) by
-@gavinpc-mindgrub, various transducers functions have been fixed for the
-case when they're invoked with an _empty_ string as input iterable.
-Furthermore,
+Thanks to a [PR](https://github.com/thi-ng/umbrella/pull/223) and [related
+issue](https://github.com/thi-ng/umbrella/issues/186) by
+[@gavinpc-mindgrub](https://github.com/gavinpc-mindgrub), various transducers
+functions have been fixed for the case when they're invoked with an _empty_
+string as input iterable. Furthermore,
 [`flatten()`](https://github.com/thi-ng/umbrella/blob/develop/packages/transducers/src/xform/flatten.ts)
-is _always_ treating strings as atomic values now, whereas before
-top-level strings would be split into individual characters.
+is _always_ treating strings as atomic values now, whereas before top-level
+strings would be split into individual characters.
 
 ### 6.0.0 release
 
@@ -169,7 +169,7 @@ yarn add @thi.ng/transducers
 <script src="https://unpkg.com/@thi.ng/transducers/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 8.35 KB / CJS: 8.91 KB / UMD: 8.07 KB
+Package sizes (gzipped, pre-treeshake): ESM: 8.37 KB / CJS: 8.93 KB / UMD: 8.08 KB
 
 ## Dependencies
 
@@ -995,4 +995,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2021 Karsten Schmidt // Apache Software License 2.0

@@ -1,7 +1,8 @@
-import { gvec, IVector, Vec, Vec2, Vec3, Vec4 } from "@thi.ng/vectors";
+import type { NumericArray } from "@thi.ng/api";
+import { gvec, IVector, Vec2, Vec3, Vec4 } from "@thi.ng/vectors";
 
 export const wrap = (
-    buf: Vec,
+    buf: NumericArray,
     size: number,
     idx: number,
     stride: number

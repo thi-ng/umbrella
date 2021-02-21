@@ -1,5 +1,7 @@
 # adaptive-threshold
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/adaptive-threshold.png)
+
 [Live demo](http://demo.thi.ng/umbrella/adaptive-threshold/)
 
 Image processing via

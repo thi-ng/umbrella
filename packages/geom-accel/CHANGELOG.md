@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.1.28](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.1.27...@thi.ng/geom-accel@2.1.28) (2020-12-07)
+## [2.1.35](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.1.34...@thi.ng/geom-accel@2.1.35) (2021-02-20)
 
 **Note:** Version bump only for package @thi.ng/geom-accel
 
@@ -11,73 +11,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [2.1.27](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.1.26...@thi.ng/geom-accel@2.1.27) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/geom-accel
+## [2.1.33](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.1.32...@thi.ng/geom-accel@2.1.33) (2021-01-21)
 
 
+### Bug Fixes
 
-
-
-## [2.1.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.1.25...@thi.ng/geom-accel@2.1.26) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/geom-accel
-
-
-
-
-
-## [2.1.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.1.24...@thi.ng/geom-accel@2.1.25) (2020-10-03)
-
-**Note:** Version bump only for package @thi.ng/geom-accel
-
-
-
-
-
-## [2.1.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.1.23...@thi.ng/geom-accel@2.1.24) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/geom-accel
-
-
-
-
-
-## [2.1.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.1.22...@thi.ng/geom-accel@2.1.23) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/geom-accel
-
-
-
-
-
-## [2.1.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.1.21...@thi.ng/geom-accel@2.1.22) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/geom-accel
-
-
-
-
-
-## [2.1.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.1.20...@thi.ng/geom-accel@2.1.21) (2020-08-20)
-
-**Note:** Version bump only for package @thi.ng/geom-accel
-
-
-
-
-
-## [2.1.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.1.19...@thi.ng/geom-accel@2.1.20) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/geom-accel
-
-
-
-
-
-## [2.1.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.1.18...@thi.ng/geom-accel@2.1.19) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/geom-accel
+* **geom-accel:** size update in ASpatialGrid.set() ([b41f7ba](https://github.com/thi-ng/umbrella/commit/b41f7ba38b454f6790c640d9363faa56ebe2190e))
 
 
 

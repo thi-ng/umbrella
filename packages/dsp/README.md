@@ -72,7 +72,7 @@ yarn add @thi.ng/dsp
 <script src="https://unpkg.com/@thi.ng/dsp/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 6.75 KB / CJS: 7.22 KB / UMD: 6.73 KB
+Package sizes (gzipped, pre-treeshake): ESM: 6.98 KB / CJS: 7.51 KB / UMD: 6.94 KB
 
 ## Dependencies
 
@@ -515,19 +515,27 @@ Desmos](https://www.desmos.com/calculator/lkyf2ag3ta) to experiment.
 - `scaleFFT()`
 - `complexArray()`
 - `conjugate()`
+- `powerSumSquared()`
+- `powerMeanSquared()`
+- `powerTimeIntegral()`
 - `spectrumMag()`
 - `spectrumPow()` (optionally as dBFS)
 - `spectrumPhase()`
 - `binFreq()`
 - `freqBin()`
 - `fftFreq()`
+- `integralT()` / `integralTSquared()`
+- `integralF()` / `integralFSquared()`
 
 #### Window functions
 
 [Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/fft/window.ts)
 
 - `window()`
+- `applyWindow()`
 - `windowRect()`
+- `windowBartlett()`
+- `windowWelch()`
 - `windowSin()`
 - `windowSinPow()`
 - `windowLanczos()`
@@ -561,4 +569,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2015 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2021 Karsten Schmidt // Apache Software License 2.0

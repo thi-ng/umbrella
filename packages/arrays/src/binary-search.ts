@@ -86,6 +86,11 @@ export const binarySearchNumeric = (
     return -low - 1;
 };
 
+export const binarySearch2 = (buf: ArrayLike<number>, x: number) => {
+    let idx = buf[1] <= x ? 1 : 0;
+    return buf[idx] === x ? idx : buf[0] < x ? -idx - 2 : -1;
+};
+
 /**
  * Non-recursive, optimized binary search for fixed size numeric arrays of 4
  * values. Returns index of `x` or `-index-1` if not found.
@@ -96,7 +101,7 @@ export const binarySearchNumeric = (
 export const binarySearch4 = (buf: ArrayLike<number>, x: number) => {
     let idx = buf[2] <= x ? 2 : 0;
     idx |= buf[idx + 1] <= x ? 1 : 0;
-    return buf[idx] === x ? idx : -idx - 1;
+    return buf[idx] === x ? idx : buf[0] < x ? -idx - 2 : -1;
 };
 
 /**
@@ -110,7 +115,7 @@ export const binarySearch8 = (buf: ArrayLike<number>, x: number) => {
     let idx = buf[4] <= x ? 4 : 0;
     idx |= buf[idx + 2] <= x ? 2 : 0;
     idx |= buf[idx + 1] <= x ? 1 : 0;
-    return buf[idx] === x ? idx : -idx - 1;
+    return buf[idx] === x ? idx : buf[0] < x ? -idx - 2 : -1;
 };
 
 /**
@@ -125,7 +130,7 @@ export const binarySearch16 = (buf: ArrayLike<number>, x: number) => {
     idx |= buf[idx + 4] <= x ? 4 : 0;
     idx |= buf[idx + 2] <= x ? 2 : 0;
     idx |= buf[idx + 1] <= x ? 1 : 0;
-    return buf[idx] === x ? idx : -idx - 1;
+    return buf[idx] === x ? idx : buf[0] < x ? -idx - 2 : -1;
 };
 
 /**
@@ -141,7 +146,7 @@ export const binarySearch32 = (buf: ArrayLike<number>, x: number) => {
     idx |= buf[idx + 4] <= x ? 4 : 0;
     idx |= buf[idx + 2] <= x ? 2 : 0;
     idx |= buf[idx + 1] <= x ? 1 : 0;
-    return buf[idx] === x ? idx : -idx - 1;
+    return buf[idx] === x ? idx : buf[0] < x ? -idx - 2 : -1;
 };
 
 /**

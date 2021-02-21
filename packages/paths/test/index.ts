@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { exists, getIn, getInUnsafe, setIn, setInUnsafe } from "../src";
+import { exists, getIn, getInUnsafe, mutIn, setIn, setInUnsafe } from "../src";
 
 describe("paths", () => {
     it("getIn", () => {
@@ -183,4 +183,9 @@ describe("paths", () => {
         assert.ok(!exists(b, "x.y.z.3.u"), "x.y.z.3.u");
         assert.ok(!exists(b, "x.z.y.2.u"), "x.z.y.2.u");
     });
+
+    it("mutIn", () => {
+      const a: any = {};
+      assert.throws(() => mutIn(a, ['__proto__', 'polluted'], true))
+    })
 });

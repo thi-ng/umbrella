@@ -3,8 +3,10 @@ import type { ISeedable } from "./api";
 import { ARandom } from "./arandom";
 import { DEFAULT_SEED_160 } from "./constants";
 
-// https://en.wikipedia.org/wiki/Xorshift#xorwow
-
+/**
+ * @remarks
+ * Reference: https://en.wikipedia.org/wiki/Xorshift#xorwow
+ */
 export class XorWow
     extends ARandom
     implements

@@ -16,15 +16,15 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-  - [Minimal example #1: Local state, RAF update](#minimal-example-1--local-state--raf-update)
-  - [Minimal example #2: Reactive, push-based state & update](#minimal-example-2--reactive--push-based-state--update)
-  - [Minimal example #3: Immutable app state & interceptors](#minimal-example-3--immutable-app-state--interceptors)
-  - [Minimal example #4: Canvas scene tree / branch-local behavior](#minimal-example-4--canvas-scene-tree---branch-local-behavior)
+  - [Minimal example #1: Local state, RAF update](#minimal-example-1-local-state-raf-update)
+  - [Minimal example #2: Reactive, push-based state & update](#minimal-example-2-reactive-push-based-state--update)
+  - [Minimal example #3: Immutable app state & interceptors](#minimal-example-3-immutable-app-state--interceptors)
+  - [Minimal example #4: Canvas scene tree / branch-local behavior](#minimal-example-4-canvas-scene-tree--branch-local-behavior)
 - [API](#api)
   - [The hdom data flow](#the-hdom-data-flow)
   - [Nested arrays](#nested-arrays)
   - [Attribute objects](#attribute-objects)
-  - [Pure functions and/or closures](#pure-functions-and-or-closures)
+  - [Pure functions and/or closures](#pure-functions-andor-closures)
   - [Iterators](#iterators)
   - [Interface support](#interface-support)
   - [Component objects with life cycle methods](#component-objects-with-life-cycle-methods)
@@ -44,12 +44,12 @@ This project is part of the
 - [User context](#user-context)
   - [`value` attribute handling](#value-attribute-handling)
   - [Behavior control attributes](#behavior-control-attributes)
-    - [\_\_impl](#impl)
-    - [\_\_diff](#diff)
-    - [\_\_normalize](#normalize)
-    - [\_\_release](#release)
-    - [\_\_serialize](#serialize)
-    - [\_\_skip](#skip)
+    - [\_\_impl](#__impl)
+    - [\_\_diff](#__diff)
+    - [\_\_normalize](#__normalize)
+    - [\_\_release](#__release)
+    - [\_\_serialize](#__serialize)
+    - [\_\_skip](#__skip)
   - [Benchmarks](#benchmarks)
 - [Authors](#authors)
   - [Maintainer](#maintainer)
@@ -142,7 +142,7 @@ yarn install
 yarn start
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.65 KB / CJS: 3.75 KB / UMD: 3.68 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.63 KB / CJS: 3.73 KB / UMD: 3.66 KB
 
 ## Dependencies
 
@@ -1242,4 +1242,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2015 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2021 Karsten Schmidt // Apache Software License 2.0

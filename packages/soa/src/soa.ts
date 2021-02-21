@@ -1,11 +1,4 @@
-import {
-    assert,
-    ILength,
-    SIZEOF,
-    TypedArray,
-    typedArray,
-    TYPEDARRAY_CTORS,
-} from "@thi.ng/api";
+import { assert, ILength, SIZEOF, TypedArray, typedArray } from "@thi.ng/api";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import type { SOAAttribSpec, SOASpecs, SOATuple } from "./api";
 import { prepareSpec } from "./utils";
@@ -39,14 +32,13 @@ export class SOA<K extends string> implements ILength {
         this.ensureIndex(from);
         this.ensureIndex(to, from, this.length);
         let { size, stride, type } = this.specs[id];
-        const ctor = TYPEDARRAY_CTORS[type!];
         const buf = this.buffers[id].buffer;
         stride! *= SIZEOF[type!];
         from *= stride!;
         to *= stride!;
         const res: Vec[] = [];
         for (; from < to; from += stride!) {
-            res.push(new ctor(buf, from, size!));
+            res.push(typedArray(type!, buf, from, size!));
         }
         return res;
     }

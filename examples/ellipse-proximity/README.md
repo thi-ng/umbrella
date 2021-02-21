@@ -1,5 +1,7 @@
 # ellipse-proximity
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ellipse-proximity.png)
+
 [Live demo](http://demo.thi.ng/umbrella/ellipse-proximity/)
 
 Please refer to the [example build instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions) on the wiki.

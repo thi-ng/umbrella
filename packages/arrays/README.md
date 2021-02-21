@@ -42,7 +42,7 @@ yarn add @thi.ng/arrays
 <script src="https://unpkg.com/@thi.ng/arrays/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.84 KB / CJS: 2.00 KB / UMD: 1.99 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.08 KB / CJS: 2.27 KB / UMD: 2.23 KB
 
 ## Dependencies
 
@@ -57,17 +57,25 @@ Package sizes (gzipped, pre-treeshake): ESM: 1.84 KB / CJS: 2.00 KB / UMD: 1.99 
 
 [Generated API docs](https://docs.thi.ng/umbrella/arrays/)
 
+- [arrayIterator()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/iterator.ts)
 - [binarySearch()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/binary-search.ts)
+- [bisect()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/bisect.ts)
 - [endsWith()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/ends-with.ts)
 - [ensureArray()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/ensure-array.ts)
 - [ensureIterable()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/ensure-iterable.ts)
+- [fillRange()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/fill-range.ts)
+- [find()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/find.ts)
 - [fuzzyMatch()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/fuzzy-match.ts)
+- [insert()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/insert.ts)
+- [into()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/into.ts)
 - [isSorted()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/is-sorted.ts)
+- [levenshtein()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/levenshtein.ts)
 - [multiSwap()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/swap.ts)
 - [peek()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/peek.ts)
 - [quickSort()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/quicksort.ts)
 - [shuffle()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/shuffle.ts) (w/ custom PRNG support)
 - [shuffleRange()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/shuffle.ts) (w/ custom PRNG support)
+- [sortByCachedKey()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/sort-cached.ts)
 - [startsWith()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/starts-with.ts)
 - [swap()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/swap.ts)
 - [swizzle()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/swizzle.ts)
@@ -117,4 +125,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2021 Karsten Schmidt // Apache Software License 2.0

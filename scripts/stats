@@ -12,7 +12,7 @@ fi
 if [ $# -gt 1 ]; then
     out="$2"
 else
-    out=stats.csv
+    out=assets/stats.csv
 fi
 
 echo "package,files,comments,sloc" > $out

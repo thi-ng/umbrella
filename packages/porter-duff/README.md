@@ -20,8 +20,8 @@ This project is part of the
   - [Basic usage](#basic-usage)
   - [Operators](#operators)
   - [Custom operators](#custom-operators)
-  - [Additional operators / modifiers](#additional-operators---modifiers)
-  - [Pre/post-multiplied colors](#pre-post-multiplied-colors)
+  - [Additional operators / modifiers](#additional-operators--modifiers)
+  - [Pre/post-multiplied colors](#prepost-multiplied-colors)
 - [Authors](#authors)
 - [License](#license)
 
@@ -51,7 +51,7 @@ ints or RGBA float vectors.
 
 ### Related packages
 
-- [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel) - Typed array backed, packed integer and unpacked floating point pixel buffers w/ customizable formats, blitting, dithering, conversions
+- [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel) - Typed array backed, integer and floating point pixel buffers w/ customizable formats, blitting, dithering, conversions
 - [@thi.ng/shader-ast-stdlib](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib) - Function collection for modular GPGPU / shader programming with [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
 
 ## Installation
@@ -200,4 +200,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2021 Karsten Schmidt // Apache Software License 2.0

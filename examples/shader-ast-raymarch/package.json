@@ -7,7 +7,7 @@
     "license": "Apache-2.0",
     "scripts": {
         "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
-        "start": "../../node_modules/.bin/snowpack dev",
+        "start": "../../node_modules/.bin/snowpack dev --reload",
         "build": "../../node_modules/.bin/snowpack build"
     },
     "dependencies": {
@@ -28,6 +28,6 @@
         "screenshot": "shader-ast/shader-ast-raymarch.jpg"
     },
     "devDependencies": {
-        "@types/snowpack-env": "^2.3.2"
+        "@types/snowpack-env": "^2.3.3"
     }
 }

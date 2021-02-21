@@ -16,7 +16,7 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [API](#api)
   - [ZCurve class](#zcurve-class)
-  - [Low level (2D / 3D only)](#low-level-2d---3d-only)
+  - [Low level (2D / 3D only)](#low-level-2d--3d-only)
 - [Authors](#authors)
 - [License](#license)
 
@@ -157,4 +157,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2015 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2021 Karsten Schmidt // Apache Software License 2.0

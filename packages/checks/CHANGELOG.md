@@ -3,57 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.7.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.10...@thi.ng/checks@2.7.11) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/checks
+# [2.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.8.0...@thi.ng/checks@2.9.0) (2021-02-20)
 
 
+### Features
 
-
-
-## [2.7.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.9...@thi.ng/checks@2.7.10) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/checks
+* **checks:** add isIllegalKey() (make public) ([507fc80](https://github.com/thi-ng/umbrella/commit/507fc806903e766e42a98ddd569ba4031925204b))
+* **checks:** replace isPrototypePolluted() w/ isProtoPath() ([d276b84](https://github.com/thi-ng/umbrella/commit/d276b8465eda21a32f3613d20c043ea50fce7f57))
 
 
 
 
 
-## [2.7.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.8...@thi.ng/checks@2.7.9) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/checks
+# [2.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.13...@thi.ng/checks@2.8.0) (2021-01-10)
 
 
+### Features
 
-
-
-## [2.7.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.7...@thi.ng/checks@2.7.8) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/checks
-
-
-
-
-
-## [2.7.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.6...@thi.ng/checks@2.7.7) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/checks
-
-
-
-
-
-## [2.7.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.5...@thi.ng/checks@2.7.6) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/checks
-
-
-
-
-
-## [2.7.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.7.4...@thi.ng/checks@2.7.5) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/checks
+* **checks:** add isNumericInt/Float() checks ([7e054c1](https://github.com/thi-ng/umbrella/commit/7e054c14b06850800869ba0bc8c8174e233dda53))
 
 
 

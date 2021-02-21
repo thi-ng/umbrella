@@ -1,5 +1,6 @@
+import type { Fn } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
-import { Attribs, IHiccupShape, Type } from "@thi.ng/geom-api";
+import type { Attribs, IHiccupShape } from "@thi.ng/geom-api";
 import { copyAttribs } from "../internal/copy-attribs";
 
 export class Group implements IHiccupShape {
@@ -9,7 +10,7 @@ export class Group implements IHiccupShape {
     ) {}
 
     get type() {
-        return Type.GROUP;
+        return "group";
     }
 
     *[Symbol.iterator]() {
@@ -17,10 +18,11 @@ export class Group implements IHiccupShape {
     }
 
     copy(): Group {
-        return new Group(
-            copyAttribs(this),
-            <IHiccupShape[]>this.children.map((c) => c.copy())
-        );
+        return this.copyTransformed((c) => <IHiccupShape>c.copy());
+    }
+
+    copyTransformed(fn: Fn<IHiccupShape, IHiccupShape>) {
+        return new Group(copyAttribs(this), this.children.map(fn));
     }
 
     equiv(o: any) {

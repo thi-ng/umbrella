@@ -1,19 +1,14 @@
 import type { FnO, Path } from "@thi.ng/api";
 
-export enum Patch {
-    SET,
-    INSERT,
-    UPDATE,
-    DELETE,
-}
+export type Patch = "set" | "insert" | "update" | "delete";
 
 export type PatchArrayOp<T> =
-    | [Patch.SET, number, T]
-    | [Patch.INSERT, number, T[]]
-    | [Patch.UPDATE, number, FnO<T, T>, ...any[]]
-    | [Patch.DELETE, number];
+    | ["set", number, T]
+    | ["insert", number, T[]]
+    | ["update", number, FnO<T, T>, ...any[]]
+    | ["delete", number];
 
 export type PatchObjOp =
-    | [Patch.SET, Path, any]
-    | [Patch.UPDATE, Path, FnO<any, any>, ...any[]]
-    | [Patch.DELETE, Path];
+    | ["set", Path, any]
+    | ["update", Path, FnO<any, any>, ...any[]]
+    | ["delete", Path];

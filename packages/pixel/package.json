@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/pixel",
-    "version": "0.4.9",
-    "description": "Typed array backed, packed integer and unpacked floating point pixel buffers w/ customizable formats, blitting, dithering, conversions",
+    "version": "0.6.1",
+    "description": "Typed array backed, integer and floating point pixel buffers w/ customizable formats, blitting, dithering, conversions",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -33,35 +33,42 @@
         "cover": "nyc mocha test && nyc report --reporter=lcov",
         "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
-        "doc": "node_modules/.bin/typedoc --mode modules --out doc --theme ../../tools/doc/typedoc-theme src",
+        "doc": "node_modules/.bin/typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
-        "@microsoft/api-extractor": "^7.12.0",
-        "@types/mocha": "^8.0.3",
-        "@types/node": "^14.14.10",
-        "mocha": "^8.2.1",
+        "@microsoft/api-extractor": "^7.12.1",
+        "@types/mocha": "^8.2.0",
+        "@types/node": "^14.14.14",
+        "mocha": "^8.3.0",
         "nyc": "^15.1.0",
         "ts-node": "^9.1.1",
-        "typedoc": "^0.19.2",
-        "typescript": "^4.1.2"
+        "typedoc": "^0.20.26",
+        "typescript": "^4.1.5"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.13.4",
-        "@thi.ng/checks": "^2.7.11",
-        "@thi.ng/math": "^2.2.2",
-        "@thi.ng/porter-duff": "^0.1.34"
+        "@thi.ng/api": "^7.0.0",
+        "@thi.ng/binary": "^2.1.0",
+        "@thi.ng/checks": "^2.9.0",
+        "@thi.ng/math": "^3.2.0",
+        "@thi.ng/porter-duff": "^0.1.38"
     },
     "files": [
         "*.js",
         "*.d.ts",
-        "lib"
+        "lib",
+        "format"
     ],
     "keywords": [
+        "8bit",
+        "16bit",
+        "24bit",
+        "32bit",
         "alpha",
         "array",
+        "argb",
         "binary",
         "blend",
         "blit",
@@ -72,11 +79,14 @@
         "datastructure",
         "dither",
         "float",
+        "format",
         "grayscale",
         "image",
         "interval",
         "multiformat",
-        "pixelbuffer",
+        "pixel",
+        "resize",
+        "rgb565",
         "typedarray",
         "typescript"
     ],

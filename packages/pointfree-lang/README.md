@@ -15,7 +15,7 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [Command line usage](#command-line-usage)
-  - [Include files / libraries](#include-files---libraries)
+  - [Include files / libraries](#include-files--libraries)
   - [CLI example](#cli-example)
 - [API](#api)
 - [Language & Syntax](#language--syntax)
@@ -34,7 +34,7 @@ This project is part of the
   - [Variables](#variables)
     - [Dynamic scoping](#dynamic-scoping)
   - [Objects](#objects)
-- [Ideas / Todos](#ideas---todos)
+- [Ideas / Todos](#ideas--todos)
 - [Authors](#authors)
 - [License](#license)
 
@@ -80,7 +80,7 @@ yarn add @thi.ng/pointfree-lang
 <script src="https://unpkg.com/@thi.ng/pointfree-lang/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.30 KB / CJS: 5.30 KB / UMD: 5.21 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.00 KB / CJS: 5.00 KB / UMD: 4.94 KB
 
 ## Dependencies
 
@@ -722,4 +722,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2021 Karsten Schmidt // Apache Software License 2.0

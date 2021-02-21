@@ -1,4 +1,4 @@
-import type { Fn, NumOrString } from "@thi.ng/api";
+import type { Fn, FnN, NumOrString } from "@thi.ng/api";
 
 export enum Align {
     LEFT,
@@ -40,9 +40,11 @@ export interface ImageOpts {
      */
     chars: NumOrString[];
     /**
-     * Format to apply to all chars.
+     * Format to apply to each pixel. If a function is given, it will be called
+     * for each pixel value, normalized to [0..1] interval (and after gamma
+     * correction). The function MUST return a valid format ID.
      */
-    format: number;
+    format: number | FnN;
     /**
      * Gamma correction value / exponent. All source pixel values will
      * be raised by this exponent.

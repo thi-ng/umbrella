@@ -1,3 +1,5 @@
+import { fillRange } from "@thi.ng/arrays";
+
 /**
  * Typed array based Disjoint Set implementation with quick union and
  * path compression, after Sedgewick & Wayne.
@@ -17,12 +19,9 @@ export class DisjointSet {
      * @param n - initial capacity, ID range [0..n)
      */
     constructor(n: number) {
-        const roots = (this.roots = new Uint32Array(n));
-        this.ranks = new Uint8Array(n).fill(0);
+        this.roots = fillRange(new Uint32Array(n));
+        this.ranks = new Uint8Array(n);
         this.count = n;
-        for (let i = 0; i < n; ++i) {
-            roots[i] = i;
-        }
     }
 
     /**
@@ -99,3 +98,10 @@ export class DisjointSet {
         return sets;
     }
 }
+
+/**
+ * Creates a new {@link DisjointSet} with capacity `n`.
+ *
+ * @param n
+ */
+export const defDisjointSet = (n: number) => new DisjointSet(n);

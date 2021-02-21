@@ -6,9 +6,9 @@ import { soa } from "../src";
 describe("soa", () => {
     it("basic", () => {
         const struct = soa(2, {
-            a: { type: Type.U16 },
+            a: { type: "u16" },
             b: { size: 2, default: [1, 2] },
-            c: { type: Type.I8, size: 2, default: [-3, 4] },
+            c: { type: "i8", size: 2, default: [-3, 4] },
         });
         assert.strictEqual(struct.length, 2);
         assert.deepStrictEqual(struct.keys(), ["a", "b", "c"]);
@@ -31,14 +31,14 @@ describe("soa", () => {
 
     it("copy", () => {
         const src = soa(2, {
-            a: { type: Type.U16 },
+            a: { type: "u16" },
             b: { size: 2, default: [1, 2] },
-            c: { type: Type.I8, size: 2, default: [-3, 4] },
+            c: { type: "i8", size: 2, default: [-3, 4] },
         });
         const dest = soa(4, {
-            a: { type: Type.U16, default: [0xaa55] },
+            a: { type: "u16", default: [0xaa55] },
             b: { size: 2 },
-            c: { type: Type.I8, size: 2 },
+            c: { type: "i8", size: 2 },
         });
         src.copyTo(dest, undefined, 2);
         assert(

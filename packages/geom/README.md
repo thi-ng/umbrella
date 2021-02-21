@@ -48,7 +48,7 @@ themselves too):
 - [@thi.ng/geom-io-obj](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-io-obj) - Wavefront OBJ parser (& exporter soon)
 - [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isec) - 2D/3D shape intersection checks
 - [@thi.ng/geom-isoline](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isoline) - Fast 2D contour line extraction / generation
-- [@thi.ng/geom-poly-utils](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-poly-utils) - 2D polygon / triangle analysis & processing utilities
+- [@thi.ng/geom-poly-utils](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-poly-utils) - 2D polygon/polyline analysis & processing utilities
 - [@thi.ng/geom-resample](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-resample) - Customizable nD polyline interpolation, re-sampling, splitting & nearest point computation
 - [@thi.ng/geom-splines](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-splines) - nD cubic & quadratic curve analysis, conversion, interpolation, splitting
 - [@thi.ng/geom-subdiv-curve](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-subdiv-curve) - Freely customizable, iterative nD subdivision curves for open / closed geometries
@@ -75,7 +75,7 @@ yarn add @thi.ng/geom
 <script src="https://unpkg.com/@thi.ng/geom/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 10.49 KB / CJS: 10.82 KB / UMD: 10.16 KB
+Package sizes (gzipped, pre-treeshake): ESM: 10.30 KB / CJS: 10.52 KB / UMD: 9.95 KB
 
 ## Dependencies
 
@@ -154,4 +154,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2013 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2013 - 2021 Karsten Schmidt // Apache Software License 2.0

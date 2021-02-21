@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.4.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.4.8...@thi.ng/pixel@0.4.9) (2020-12-07)
+## [0.6.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.6.0...@thi.ng/pixel@0.6.1) (2021-02-20)
 
 **Note:** Version bump only for package @thi.ng/pixel
 
@@ -11,57 +11,24 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.4.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.4.7...@thi.ng/pixel@0.4.8) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/pixel
+# [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.5.1...@thi.ng/pixel@0.6.0) (2021-01-13)
 
 
+### Features
 
-
-
-## [0.4.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.4.6...@thi.ng/pixel@0.4.7) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/pixel
+* **pixel:** add downsample() for both buffer types ([0b9b0fa](https://github.com/thi-ng/umbrella/commit/0b9b0fad5ce7edcfaf50be767a73f8cc3fe7ebfe))
 
 
 
 
 
-## [0.4.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.4.5...@thi.ng/pixel@0.4.6) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/pixel
+# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.4.10...@thi.ng/pixel@0.5.0) (2021-01-02)
 
 
+### Features
 
-
-
-## [0.4.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.4.4...@thi.ng/pixel@0.4.5) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/pixel
-
-
-
-
-
-## [0.4.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.4.3...@thi.ng/pixel@0.4.4) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/pixel
-
-
-
-
-
-## [0.4.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.4.2...@thi.ng/pixel@0.4.3) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/pixel
-
-
-
-
-
-## [0.4.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.4.1...@thi.ng/pixel@0.4.2) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/pixel
+* **pixel:** add FLOAT_HSVA format, update FloatFormatSpec ([118c4ed](https://github.com/thi-ng/umbrella/commit/118c4edbacd75249262f26962153f614148cedec))
+* **pixel:** add FloatBuffer.fromPacked() ([abd1ca8](https://github.com/thi-ng/umbrella/commit/abd1ca80d455999dd8c3af87d24b4f1905d7806d))
 
 
 

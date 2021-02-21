@@ -27,7 +27,7 @@ This project is part of the
     - [External modifications during active transaction](#external-modifications-during-active-transaction)
   - [Cursor](#cursor)
   - [Derived views](#derived-views)
-  - [Undo / Redo history](#undo---redo-history)
+  - [Undo / Redo history](#undo--redo-history)
 - [Authors](#authors)
 - [License](#license)
 
@@ -660,4 +660,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2017 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2017 - 2021 Karsten Schmidt // Apache Software License 2.0

@@ -15,6 +15,10 @@ export const trunc: FnN = (x) => (x < 0 ? Math.ceil(x) : Math.floor(x));
 
 export const roundTo = (x: number, prec = 1) => Math.round(x / prec) * prec;
 
+export const floorTo = (x: number, prec = 1) => Math.floor(x / prec) * prec;
+
+export const ceilTo = (x: number, prec = 1) => Math.ceil(x / prec) * prec;
+
 /**
  * Only rounds `x` to nearest int if `fract(x)` <= `eps` or >= `1-eps`.
  *

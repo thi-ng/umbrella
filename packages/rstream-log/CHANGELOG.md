@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [3.1.52](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@3.1.51...@thi.ng/rstream-log@3.1.52) (2020-12-07)
+## [3.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@3.2.2...@thi.ng/rstream-log@3.2.3) (2021-02-20)
 
 **Note:** Version bump only for package @thi.ng/rstream-log
 
@@ -11,73 +11,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [3.1.51](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@3.1.50...@thi.ng/rstream-log@3.1.51) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/rstream-log
+# [3.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@3.1.55...@thi.ng/rstream-log@3.2.0) (2021-01-13)
 
 
+### Features
 
-
-
-## [3.1.50](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@3.1.49...@thi.ng/rstream-log@3.1.50) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/rstream-log
-
-
-
-
-
-## [3.1.49](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@3.1.48...@thi.ng/rstream-log@3.1.49) (2020-10-19)
-
-**Note:** Version bump only for package @thi.ng/rstream-log
-
-
-
-
-
-## [3.1.48](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@3.1.47...@thi.ng/rstream-log@3.1.48) (2020-10-03)
-
-**Note:** Version bump only for package @thi.ng/rstream-log
-
-
-
-
-
-## [3.1.47](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@3.1.46...@thi.ng/rstream-log@3.1.47) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/rstream-log
-
-
-
-
-
-## [3.1.46](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@3.1.45...@thi.ng/rstream-log@3.1.46) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/rstream-log
-
-
-
-
-
-## [3.1.45](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@3.1.44...@thi.ng/rstream-log@3.1.45) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/rstream-log
-
-
-
-
-
-## [3.1.44](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@3.1.43...@thi.ng/rstream-log@3.1.44) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/rstream-log
-
-
-
-
-
-## [3.1.43](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-log@3.1.42...@thi.ng/rstream-log@3.1.43) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/rstream-log
+* **rstream-log:** update default body format for formatString() ([841b062](https://github.com/thi-ng/umbrella/commit/841b06271362c6941176b057d1bfab363c07d104))
 
 
 

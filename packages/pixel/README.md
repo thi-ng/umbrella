@@ -14,6 +14,7 @@ This project is part of the
   - [Packed integer pixel formats](#packed-integer-pixel-formats)
   - [Floating point pixel formats](#floating-point-pixel-formats)
   - [Status](#status)
+  - [Support packages](#support-packages)
   - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -24,7 +25,7 @@ This project is part of the
 
 ## About
 
-Typed array backed, packed integer and unpacked floating point pixel buffers w/ customizable formats, blitting, dithering, conversions.
+Typed array backed, integer and floating point pixel buffers w/ customizable formats, blitting, dithering, conversions.
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/pixel-basics.png)
 
@@ -115,6 +116,10 @@ formats can be defined via `defFloatFormat()`.
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bpixel%5D+in%3Atitle)
 
+### Support packages
+
+- [@thi.ng/pixel-io-netpbm](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-io-netpbm) - Multi-format NetPBM reader & writer support for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
+
 ### Related packages
 
 - [@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/develop/packages/porter-duff) - Porter-Duff operators for packed ints & float-array alpha compositing
@@ -133,11 +138,12 @@ yarn add @thi.ng/pixel
 <script src="https://unpkg.com/@thi.ng/pixel/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 4.79 KB / CJS: 4.97 KB / UMD: 4.90 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.35 KB / CJS: 5.57 KB / UMD: 5.52 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/develop/packages/porter-duff)
@@ -150,13 +156,15 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                                | Description                                       | Live demo                                                | Source                                                                                |
-| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/adaptive-threshold.png" width="240"/> | Interactive image processing (adaptive threshold) | [Demo](https://demo.thi.ng/umbrella/adaptive-threshold/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/adaptive-threshold) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/pixel-basics.png" width="240"/>          | Pixel buffer manipulations                        | [Demo](https://demo.thi.ng/umbrella/pixel-basics/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-basics)       |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/porter-duff/porter-duff2.png" width="240"/>    | Port-Duff image compositing / alpha blending      | [Demo](https://demo.thi.ng/umbrella/porter-duff/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/porter-duff)        |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-workers.jpg" width="240"/> | Fork-join worker-based raymarch renderer          | [Demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-workers) |
-|                                                                                                                           | Minimal multi-pass / GPGPU example                | [Demo](https://demo.thi.ng/umbrella/webgl-multipass/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-multipass)    |
+| Screenshot                                                                                                                | Description                                                      | Live demo                                                | Source                                                                                |
+| ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/adaptive-threshold.png" width="240"/> | Interactive image processing (adaptive threshold)                | [Demo](https://demo.thi.ng/umbrella/adaptive-threshold/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/adaptive-threshold) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/pixel-basics.png" width="240"/>          | Pixel buffer manipulations                                       | [Demo](https://demo.thi.ng/umbrella/pixel-basics/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-basics)       |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-sorting.png" width="240"/>      | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-sorting)      |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/porter-duff/porter-duff2.png" width="240"/>    | Port-Duff image compositing / alpha blending                     | [Demo](https://demo.thi.ng/umbrella/porter-duff/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/porter-duff)        |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-workers.jpg" width="240"/> | Fork-join worker-based raymarch renderer                         | [Demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-workers) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas-image.png" width="240"/>  | Textmode image warping w/ 16bit color output                     | [Demo](https://demo.thi.ng/umbrella/text-canvas-image/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas-image)  |
+|                                                                                                                           | Minimal multi-pass / GPGPU example                               | [Demo](https://demo.thi.ng/umbrella/webgl-multipass/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-multipass)    |
 
 ## API
 
@@ -243,4 +251,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2019 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2019 - 2021 Karsten Schmidt // Apache Software License 2.0

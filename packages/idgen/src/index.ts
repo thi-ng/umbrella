@@ -23,7 +23,7 @@ export class IDGen implements Iterable<number>, IClear, INotify {
     protected vmask: number;
     protected shift: number;
 
-    constructor(bits = 32, vbits = 32 - bits, cap = 2 ** bits, next = 0) {
+    constructor(bits = 32, vbits = 32 - bits, cap = 2 ** bits, start = 0) {
         const maxCap = 2 ** bits;
         assert(bits > 0 && bits + vbits <= 32, "wrong total bit size [1..32]");
         assert(
@@ -31,8 +31,8 @@ export class IDGen implements Iterable<number>, IClear, INotify {
             `requested capacity too large for bit size (max. ${maxCap})`
         );
         this.ids = [];
-        this.nextID = next;
-        this.start = next;
+        this.nextID = start;
+        this.start = start;
         this._capacity = cap;
         this.num = 0;
         this.mask = maxCap - 1;
@@ -41,10 +41,20 @@ export class IDGen implements Iterable<number>, IClear, INotify {
         this._freeID = -1;
     }
 
+    /**
+     * Extract actual ID (without version bits).
+     *
+     * @param id
+     */
     id(id: number) {
         return id & this.mask;
     }
 
+    /**
+     * Extract version from ID
+     *
+     * @param id
+     */
     version(id: number) {
         return (id >>> this.shift) & this.vmask;
     }
@@ -75,14 +85,14 @@ export class IDGen implements Iterable<number>, IClear, INotify {
     }
 
     /**
-     * Number of available IDs.
+     * Number of remaining available IDs.
      */
     get available() {
         return this._capacity - this.num - this.start;
     }
 
     /**
-     * Number of used IDs.
+     * Number of currently used IDs.
      */
     get used() {
         return this.num;
@@ -96,14 +106,15 @@ export class IDGen implements Iterable<number>, IClear, INotify {
     }
 
     *[Symbol.iterator]() {
+        const { ids, mask } = this;
         for (let i = this.nextID; --i >= 0; ) {
-            const id = this.ids[i];
-            if ((id & this.mask) === i) yield id;
+            const id = ids[i];
+            if ((id & mask) === i) yield id;
         }
     }
 
     /**
-     * Frees all existing IDs and resets counter to zero.
+     * Frees all existing IDs and resets counter to original start ID.
      */
     clear() {
         this.ids.length = 0;
@@ -114,13 +125,13 @@ export class IDGen implements Iterable<number>, IClear, INotify {
 
     /**
      * Returns next available ID or throws error (assertion) if no further IDs
-     * are currently available.
+     * are currently available. Emits {@link EVENT_ADDED} if successful.
      */
     next() {
         let id: number;
         if (this._freeID !== -1) {
             id = this._freeID;
-            const rawID = this.id(id);
+            const rawID = id & this.mask;
             this._freeID = this.ids[rawID];
             this.ids[rawID] = id;
         } else {
@@ -135,13 +146,13 @@ export class IDGen implements Iterable<number>, IClear, INotify {
 
     /**
      * Marks given ID as available again and increases its version (if
-     * versioning is enabled).
+     * versioning is enabled). Emits {@link EVENT_REMOVED} if successful.
      *
      * @param id
      */
     free(id: number) {
         if (!this.has(id)) return false;
-        this.ids[this.id(id)] = this._freeID;
+        this.ids[id & this.mask] = this._freeID;
         this._freeID = this.nextVersion(id);
         this.num--;
         this.notify({ id: EVENT_REMOVED, target: this, value: id });
@@ -154,7 +165,7 @@ export class IDGen implements Iterable<number>, IClear, INotify {
      * @param id
      */
     has(id: number) {
-        const rawID = this.id(id);
+        const rawID = id & this.mask;
         return id >= 0 && rawID < this.nextID && this.ids[rawID] === id;
     }
 
@@ -179,9 +190,23 @@ export class IDGen implements Iterable<number>, IClear, INotify {
     }
 }
 
+/**
+ * Returns a new {@link IDGen} instance configured to use given counter &
+ * version bits.
+ *
+ * @remarks
+ * Overall ID range/capacity can be explicitly limited using `cap` (default and
+ * maximum: 2^bits). The start ID can be defined via `start` (default: 0) and
+ * MUST be < `cap`.
+ *
+ * @param bits
+ * @param vbits
+ * @param cap
+ * @param start
+ */
 export const idgen = (
     bits: number,
     vbits?: number,
     cap?: number,
-    next?: number
-) => new IDGen(bits, vbits, cap, next);
+    start?: number
+) => new IDGen(bits, vbits, cap, start);

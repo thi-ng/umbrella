@@ -1,5 +1,7 @@
 # parse-playground
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/parse-playground.png)
+
 [Visit playground](http://demo.thi.ng/umbrella/parse-playground/)
 
 This project was largely created during the very first [thi.ng/umbrella

@@ -24,7 +24,7 @@ This project is part of the
   - [SortedMap](#sortedmap)
     - [Ranged queries](#ranged-queries)
   - [SortedSet](#sortedset)
-  - [SparseSet8/16/32](#sparseset8-16-32)
+  - [SparseSet8/16/32](#sparseset81632)
   - [TrieMap](#triemap)
   - [MultiTrie](#multitrie)
 - [Authors](#authors)
@@ -176,7 +176,7 @@ yarn add @thi.ng/associative
 <script src="https://unpkg.com/@thi.ng/associative/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 6.24 KB / CJS: 6.43 KB / UMD: 6.21 KB
+Package sizes (gzipped, pre-treeshake): ESM: 6.24 KB / CJS: 6.41 KB / UMD: 6.20 KB
 
 ## Dependencies
 
@@ -393,4 +393,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2017 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2017 - 2021 Karsten Schmidt // Apache Software License 2.0

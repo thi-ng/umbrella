@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [3.2.35](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.2.34...@thi.ng/diff@3.2.35) (2020-12-07)
+## [4.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@4.0.1...@thi.ng/diff@4.0.2) (2021-02-20)
 
 **Note:** Version bump only for package @thi.ng/diff
 
@@ -11,57 +11,20 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [3.2.34](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.2.33...@thi.ng/diff@3.2.34) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/diff
+# [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.2.35...@thi.ng/diff@4.0.0) (2020-12-22)
 
 
+### Code Refactoring
+
+* **diff:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace DiffMode enum ([cc77c71](https://github.com/thi-ng/umbrella/commit/cc77c711746eabebb4af58421282c50830613915))
 
 
+### BREAKING CHANGES
 
-## [3.2.33](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.2.32...@thi.ng/diff@3.2.33) (2020-11-24)
+* **diff:** replace DiffMode enum w/ type alias
 
-**Note:** Version bump only for package @thi.ng/diff
-
-
-
-
-
-## [3.2.32](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.2.31...@thi.ng/diff@3.2.32) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/diff
-
-
-
-
-
-## [3.2.31](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.2.30...@thi.ng/diff@3.2.31) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/diff
-
-
-
-
-
-## [3.2.30](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.2.29...@thi.ng/diff@3.2.30) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/diff
-
-
-
-
-
-## [3.2.29](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.2.28...@thi.ng/diff@3.2.29) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/diff
-
-
-
-
-
-## [3.2.28](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.2.27...@thi.ng/diff@3.2.28) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/diff
+- rename DiffMode.ONLY_DISTANCE_LINEAR_ONLY_CHANGES => "minimal"
+- update diffObject() mode arg to only allow: "full" or "only-distance"
 
 
 

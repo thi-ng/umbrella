@@ -41,13 +41,13 @@ This project is part of the
 - [Core vocabulary](#core-vocabulary)
   - [D-Stack modification](#d-stack-modification)
   - [R-Stack modification](#r-stack-modification)
-  - [Word & quotation execution / combinators](#word--quotation-execution---combinators)
+  - [Word & quotation execution / combinators](#word--quotation-execution--combinators)
   - [Primitive math](#primitive-math)
   - [Logic](#logic)
   - [Environment](#environment)
-  - [Arrays, objects, strings](#arrays--objects--strings)
+  - [Arrays, objects, strings](#arrays-objects-strings)
     - [String specific](#string-specific)
-  - [I/O](#i-o)
+  - [I/O](#io)
   - [Error handling](#error-handling)
   - [Control flow](#control-flow)
     - [cond](#cond)
@@ -206,7 +206,7 @@ yarn add @thi.ng/pointfree
 <script src="https://unpkg.com/@thi.ng/pointfree/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.32 KB / CJS: 3.85 KB / UMD: 3.57 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.32 KB / CJS: 3.86 KB / UMD: 3.58 KB
 
 ## Dependencies
 
@@ -1179,4 +1179,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2015 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2021 Karsten Schmidt // Apache Software License 2.0

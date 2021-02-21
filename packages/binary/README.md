@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-95+ assorted binary / bitwise operations, conversions, utilities.
+100+ assorted binary / bitwise operations, conversions, utilities, lookup tables.
 
 ### Status
 
@@ -42,7 +42,7 @@ yarn add @thi.ng/binary
 <script src="https://unpkg.com/@thi.ng/binary/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.88 KB / CJS: 2.19 KB / UMD: 1.87 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.02 KB / CJS: 2.36 KB / UMD: 2.01 KB
 
 ## Dependencies
 
@@ -83,4 +83,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2021 Karsten Schmidt // Apache Software License 2.0

@@ -1,37 +1,8 @@
-import type { Pair } from "@thi.ng/api";
 import { CSR } from "@thi.ng/sparse";
-import { DegreeType, IGraph } from "./api";
+import type { DegreeType, Edge, IGraph } from "./api";
+import { into, invert, toDot } from "./utils";
 
-export class AdjacencyMatrix extends CSR implements IGraph {
-    static newEmpty(n: number, undirected = false) {
-        const raw = CSR.empty(n);
-        return new AdjacencyMatrix(n, raw.data, raw.rows, raw.cols, undirected);
-    }
-
-    /**
-     * Creates adjacency matrix from given edge pairs. Each edge is
-     * `[dest-node src-node]`.
-     *
-     * @remarks
-     * If `undirected` is true (default: false), creates symmetrical
-     * edges.
-     *
-     * @param n - max number of vertices
-     * @param edges - edge pairs
-     * @param undirected - true, if undirected
-     */
-    static fromEdges(
-        n: number,
-        edges: Iterable<Pair<number, number>>,
-        undirected = false
-    ) {
-        const mat = AdjacencyMatrix.newEmpty(n, undirected);
-        for (let e of edges) {
-            mat.addEdge(e[0], e[1]);
-        }
-        return mat;
-    }
-
+export class AdjacencyMatrix extends CSR implements IGraph<number> {
     undirected: boolean;
 
     constructor(
@@ -53,26 +24,32 @@ export class AdjacencyMatrix extends CSR implements IGraph {
             for (let j = rows[i]; j < jj; j++) {
                 const k = cols[j];
                 if (directed || i <= k) {
-                    yield <Pair<number, number>>[i, k];
+                    yield <Edge>[i, k];
                 }
             }
         }
     }
 
     addEdge(from: number, to: number) {
-        this.setAt(to, from, 1);
-        this.undirected && this.setAt(from, to, 1);
-        return this;
+        if (!this.at(from, to)) {
+            this.setAt(from, to, 1, false);
+            this.undirected && this.setAt(to, from, 1, false);
+            return true;
+        }
+        return false;
     }
 
     removeEdge(from: number, to: number) {
-        this.setAt(to, from, 0);
-        this.undirected && this.setAt(from, to, 0);
-        return this;
+        if (this.at(from, to)) {
+            this.setAt(from, to, 0, false);
+            this.undirected && this.setAt(to, from, 0, false);
+            return true;
+        }
+        return false;
     }
 
     hasEdge(from: number, to: number) {
-        return this.at(to, from) !== 0 || this.at(from, to) !== 0;
+        return this.at(from, to) !== 0;
     }
 
     numEdges() {
@@ -84,33 +61,50 @@ export class AdjacencyMatrix extends CSR implements IGraph {
         return this.m;
     }
 
-    valence(id: number): number {
-        return this.nnzRow(id);
+    degree(id: number, type: DegreeType = "out") {
+        let degree = 0;
+        this.ensureIndex(id, id);
+        if (this.undirected || type !== "in") degree += this.nnzRow(id);
+        if (!this.undirected && type !== "out") degree += this.nnzCol(id);
+        return degree;
     }
 
     neighbors(id: number): number[] {
         return this.nzRowCols(id);
     }
 
+    invert(): AdjacencyMatrix {
+        return invert(
+            defAdjMatrix(this.m, undefined, this.undirected),
+            this.edges()
+        );
+    }
+
     /**
+     * Returns a diagonal sparse matrix {@link @thi.ng/sparse#CSR} containing
+     * information about the degree of each vertex, i.e. the number of edges
+     * attached to each vertex.
+     *
+     * @remarks
+     * Reference: https://en.wikipedia.org/wiki/Degree_matrix
      *
      * @param deg - degree type
      */
-    degreeMat(deg: DegreeType = DegreeType.OUT) {
+    degreeMat(deg: DegreeType = "out") {
         const res = CSR.empty(this.m);
         switch (deg) {
-            case DegreeType.OUT:
+            case "out":
             default:
                 for (let i = this.m; --i >= 0; ) {
                     res.setAt(i, i, this.nnzRow(i));
                 }
                 break;
-            case DegreeType.IN:
+            case "in":
                 for (let i = this.m; --i >= 0; ) {
                     res.setAt(i, i, this.nnzCol(i));
                 }
                 break;
-            case DegreeType.BOTH:
+            case "inout":
                 for (let i = this.m; --i >= 0; ) {
                     res.setAt(i, i, this.nnzRow(i) + this.nnzCol(i));
                 }
@@ -136,7 +130,7 @@ export class AdjacencyMatrix extends CSR implements IGraph {
     normalizedLaplacian(deg?: CSR) {
         deg = deg || this.degreeMat();
         const m = this.m;
-        const res = AdjacencyMatrix.newEmpty(m);
+        const res = CSR.empty(m);
         for (let i = 0; i < m; i++) {
             for (let j = 0; j < m; j++) {
                 if (i === j && deg.at(i, i) > 0) {
@@ -154,7 +148,7 @@ export class AdjacencyMatrix extends CSR implements IGraph {
     }
 
     /**
-     * Computes: `I - nA + n^2 * (D - I)`, where `I` is the unit matrix,
+     * Computes: `I - nA + n^2 * (D - I)`, where `I` is the identity matrix,
      * `A` the adjacency matrix, `D` the degree matrix, and `n` is a
      * (complex-valued) number.
      *
@@ -165,27 +159,41 @@ export class AdjacencyMatrix extends CSR implements IGraph {
      * @param deg - degree matrix
      */
     deformedLaplacian(n: number, deg?: CSR) {
-        deg = deg || this.degreeMat();
+        deg = deg ? deg.copy() : this.degreeMat();
         const I = CSR.identity(this.m);
         return I.copy()
             .sub(this.copy().mulN(n))
-            .add(
-                deg
-                    .copy()
-                    .sub(I)
-                    .mulN(n * n)
-            );
+            .add(deg.sub(I).mulN(n * n));
     }
 
-    toDot() {
-        const [type, sep] = this.undirected
-            ? ["graph", "--"]
-            : ["digraph", "->"];
-        const res = [`${type} g {`];
-        for (let e of this.edges()) {
-            res.push(`"${e[0]}"${sep}"${e[1]}";`);
-        }
-        res.push(`}`);
-        return res.join("\n");
+    toDot(ids?: string[]) {
+        return toDot(this.edges(), this.undirected, ids);
     }
 }
+
+/**
+ * Creates an adjacency matrix backed by a sparse {@link @thi.ng/sparse#CSR}
+ * matrix, optionally initialize with given edge pairs. Each edge is a `[src,
+ * dest]` tuple. If `undirected` is true (default: false), creates symmetrical
+ * edges (i.e. undirected graph).
+ *
+ * @param n - max number of vertices
+ * @param edges - edge pairs
+ * @param undirected - true, if undirected
+ */
+export const defAdjMatrix = (
+    n: number,
+    edges?: Iterable<Edge>,
+    undirected = false
+) => {
+    const raw = CSR.empty(n);
+    const mat = new AdjacencyMatrix(
+        n,
+        raw.data,
+        raw.rows,
+        raw.cols,
+        undirected
+    );
+    edges && into(mat, edges);
+    return mat;
+};

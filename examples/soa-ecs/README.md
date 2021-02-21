@@ -1,6 +1,6 @@
 # soa-ecs
 
-![100k particle system](https://raw.githubusercontent.com/thi-ng/umbrella/master/assets/examples/soa-ecs-100k.png)
+![100k particle system](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/soa-ecs-100k.png)
 
 [Live demo](http://demo.thi.ng/umbrella/soa-ecs/)
 

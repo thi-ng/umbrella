@@ -47,6 +47,28 @@ returns a new tree. The original remains untouched, as will any
 unrecognized tree / shape nodes (those will be transferred as-is to the
 result tree). See example below.
 
+Since v3.7.0 tree conversion can be implicitly triggered by providing a
+`convert: true` attribute to the root `svg()` element.
+
+```ts
+// create SVG root element and convert body
+svg(
+    { width: 100, height: 100, convert: true},
+    ["rect", { fill: [1, 0, 0] }, [0,0], 100, 100]
+)
+// [
+//   'svg',
+//   {
+//     version: '1.1',
+//     xmlns: 'http://www.w3.org/2000/svg',
+//     'xmlns:xlink': 'http://www.w3.org/1999/xlink',
+//     width: 100,
+//     height: 100
+//   },
+//   [ 'rect', { fill: '#ff0000', x: 0, y: 0, width: 100, height: 100 } ]
+// ]
+```
+
 ### Automatic attribute conversions
 
 #### Colors

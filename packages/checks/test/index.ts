@@ -10,6 +10,7 @@ import {
     isNil,
     isObject,
     isPlainObject,
+    isProtoPath,
     isString,
     isSymbol,
     isTransferable,
@@ -191,5 +192,21 @@ describe("checks", function () {
         assert.ok(!isHexColor("#ff3300 hi"), "invalid: #ff3300 hi");
         assert.ok(!isHexColor("hi #ff3300 hi"), "invalid: hi #ff3300 hi");
         assert.ok(!isHexColor("#123 #123"), "invalid: #123 #123");
+    });
+
+    it("isProtoPath", () => {
+        assert.ok(!isProtoPath("foo.__proto.bar"), "0");
+        assert.ok(!isProtoPath("foo.bar"), "1");
+        assert.ok(!isProtoPath(""), "2");
+        assert.ok(isProtoPath("__proto__"), "3");
+        assert.ok(isProtoPath("prototype"), "4");
+        assert.ok(isProtoPath("constructor"), "5");
+        assert.ok(isProtoPath("foo.__proto__.bar"), "6");
+        assert.ok(!isProtoPath([]), "7");
+        assert.ok(!isProtoPath([""]), "8");
+        assert.ok(!isProtoPath(["foo", 23]), "9");
+        assert.ok(!isProtoPath(["prototype.foo"]), "10");
+        assert.ok(isProtoPath(["__proto__"]), "11");
+        assert.ok(isProtoPath(["foo", "__proto__", "bar"]), "12");
     });
 });

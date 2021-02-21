@@ -4,11 +4,12 @@ import {
     IObjectOf,
     IRelease,
     NULL_LOGGER,
+    NumericArray,
     Type,
     TypedArray,
 } from "@thi.ng/api";
 import type { MemPool, MemPoolOpts } from "@thi.ng/malloc";
-import type { ReadonlyVec, StridedVec, Vec } from "@thi.ng/vectors";
+import type { ReadonlyVec, StridedVec } from "@thi.ng/vectors";
 
 export interface AttribSpec {
     type: GLType | Type;
@@ -50,7 +51,7 @@ export interface IVecPool extends IRelease {
 }
 
 export type VecFactory = (
-    buf: Vec,
+    buf: NumericArray,
     size: number,
     index: number,
     stride: number

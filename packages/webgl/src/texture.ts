@@ -84,106 +84,119 @@ export class Texture implements ITexture {
         target: TextureTarget,
         opts: Partial<TextureOpts>
     ) {
-        const gl = this.gl;
+        if (opts.image === undefined) return;
+        target === TextureTarget.TEXTURE_3D
+            ? this.configureImage3d(target, opts)
+            : this.configureImage2d(target, opts);
+    }
+
+    protected configureImage2d(
+        target: TextureTarget,
+        opts: Partial<TextureOpts>
+    ) {
+        const level = opts.level || 0;
+        const pos = opts.pos || [0, 0, 0];
+        const { image, width, height } = opts;
         const decl = TEX_FORMATS[this.format];
         const baseFormat = decl.format;
-        const { type, format } = this;
-        if (opts.image !== undefined) {
-            const level = opts.level || 0;
-            const pos = opts.pos || [0, 0, 0];
-            if (target === TextureTarget.TEXTURE_3D) {
-                if (opts.width && opts.height && opts.depth) {
-                    if (opts.sub) {
-                        (<WebGL2RenderingContext>gl).texSubImage3D(
-                            target,
-                            level,
-                            pos[0],
-                            pos[1],
-                            pos[2],
-                            opts.width,
-                            opts.height,
-                            opts.depth,
-                            baseFormat,
-                            type,
-                            <any>opts.image
-                        );
-                    } else {
-                        if (level === 0) {
-                            this.size = [opts.width, opts.height, opts.depth];
-                        }
-                        (<WebGL2RenderingContext>gl).texImage3D(
-                            target,
-                            level,
-                            format,
-                            opts.width,
-                            opts.height,
-                            opts.depth,
-                            0,
-                            baseFormat,
-                            type,
-                            <any>opts.image
-                        );
-                    }
-                }
+        const { gl, type, format } = this;
+        if (width && height) {
+            if (opts.sub) {
+                gl.texSubImage2D(
+                    target,
+                    level,
+                    pos[0],
+                    pos[1],
+                    width,
+                    height,
+                    baseFormat,
+                    type,
+                    <ArrayBufferView>image
+                );
             } else {
-                if (opts.width && opts.height) {
-                    if (opts.sub) {
-                        gl.texSubImage2D(
-                            target,
-                            level,
-                            pos[0],
-                            pos[1],
-                            opts.width,
-                            opts.height,
-                            baseFormat,
-                            type,
-                            <ArrayBufferView>opts.image
-                        );
-                    } else {
-                        if (level === 0) {
-                            this.size = [opts.width, opts.height];
-                        }
-                        gl.texImage2D(
-                            target,
-                            level,
-                            format,
-                            opts.width,
-                            opts.height,
-                            0,
-                            baseFormat,
-                            type,
-                            <ArrayBufferView>opts.image
-                        );
-                    }
-                } else {
-                    if (opts.sub) {
-                        gl.texSubImage2D(
-                            target,
-                            level,
-                            pos[0],
-                            pos[1],
-                            baseFormat,
-                            type,
-                            <TexImageSource>opts.image
-                        );
-                    } else {
-                        if (opts.image != null && level == 0) {
-                            this.size = [
-                                (<any>opts.image).width,
-                                (<any>opts.image).height,
-                            ];
-                        }
-                        gl.texImage2D(
-                            target,
-                            level,
-                            format,
-                            baseFormat,
-                            type,
-                            <TexImageSource>opts.image
-                        );
-                    }
+                if (level === 0) {
+                    this.size = [width, height];
                 }
+                gl.texImage2D(
+                    target,
+                    level,
+                    format,
+                    width,
+                    height,
+                    0,
+                    baseFormat,
+                    type,
+                    <ArrayBufferView>image
+                );
             }
+        } else {
+            if (opts.sub) {
+                gl.texSubImage2D(
+                    target,
+                    level,
+                    pos[0],
+                    pos[1],
+                    baseFormat,
+                    type,
+                    <TexImageSource>image
+                );
+            } else {
+                if (image != null && level === 0) {
+                    this.size = [(<any>image).width, (<any>image).height];
+                }
+                gl.texImage2D(
+                    target,
+                    level,
+                    format,
+                    baseFormat,
+                    type,
+                    <TexImageSource>image
+                );
+            }
+        }
+    }
+
+    protected configureImage3d(
+        target: TextureTarget,
+        opts: Partial<TextureOpts>
+    ) {
+        const { image, width, height, depth } = opts;
+        if (!(width && height && depth)) return;
+        const level = opts.level || 0;
+        const pos = opts.pos || [0, 0, 0];
+        const decl = TEX_FORMATS[this.format];
+        const baseFormat = decl.format;
+        const { gl, type, format } = this;
+        if (opts.sub) {
+            (<WebGL2RenderingContext>gl).texSubImage3D(
+                target,
+                level,
+                pos[0],
+                pos[1],
+                pos[2],
+                width,
+                height,
+                depth,
+                baseFormat,
+                type,
+                <any>image
+            );
+        } else {
+            if (level === 0) {
+                this.size = [width, height, depth];
+            }
+            (<WebGL2RenderingContext>gl).texImage3D(
+                target,
+                level,
+                format,
+                width,
+                height,
+                depth,
+                0,
+                baseFormat,
+                type,
+                <any>image
+            );
         }
     }
 

@@ -1,5 +1,7 @@
 # Minimal Markdown parser
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/markdown-parser.jpg)
+
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
@@ -90,6 +92,8 @@ import { parse } from "@thi.ng/hiccup-markdown";
 
 const src = `
 # Hello world
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/Hello world.png)
 
 [This](http://example.com) is a _test_.
 

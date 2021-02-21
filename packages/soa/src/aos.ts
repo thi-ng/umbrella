@@ -26,9 +26,9 @@ import { prepareSpec } from "./utils";
  * aos(
  *   1024,
  *   {
- *     a: { type: Type.U16, size: 1 }, // 2 bytes, align 2, offset 0
- *     b: { type: Type.F32, size: 2 }, // 8 bytes, align 4, offset 4
- *     c: { type: Type.U8, size: 1 },  // 1 byte,  align 1, offset 12
+ *     a: { type: "u16", size: 1 }, // 2 bytes, align 2, offset 0
+ *     b: { type: "f32", size: 2 }, // 8 bytes, align 4, offset 4
+ *     c: { type: "u8", size: 1 },  // 1 byte,  align 1, offset 12
  *   }
  * );
  * ```

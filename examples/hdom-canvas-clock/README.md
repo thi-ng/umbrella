@@ -1,5 +1,7 @@
 # hdom-canvas-clock
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/hdom-canvas-clock.png)
+
 [Live demo](http://demo.thi.ng/umbrella/hdom-canvas-clock/)
 
 Declarative canvas drawing using the

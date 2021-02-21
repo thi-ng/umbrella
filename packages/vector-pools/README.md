@@ -16,7 +16,7 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [API](#api)
-  - [WebGL geometry definition / manipulation](#webgl-geometry-definition---manipulation)
+  - [WebGL geometry definition / manipulation](#webgl-geometry-definition--manipulation)
   - [WASM interop](#wasm-interop)
 - [Authors](#authors)
 - [License](#license)
@@ -69,7 +69,7 @@ yarn add @thi.ng/vector-pools
 <script src="https://unpkg.com/@thi.ng/vector-pools/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.07 KB / CJS: 3.14 KB / UMD: 3.22 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.00 KB / CJS: 3.06 KB / UMD: 3.16 KB
 
 ## Dependencies
 
@@ -284,4 +284,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2021 Karsten Schmidt // Apache Software License 2.0

@@ -22,7 +22,7 @@ This project is part of the
   - [Node references](#node-references)
   - [Prefixed IDs](#prefixed-ids)
   - [Includes](#includes)
-  - [EGF generation / serialization](#egf-generation---serialization)
+  - [EGF generation / serialization](#egf-generation--serialization)
 - [Authors](#authors)
 - [License](#license)
 
@@ -527,4 +527,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2020 - 2021 Karsten Schmidt // Apache Software License 2.0

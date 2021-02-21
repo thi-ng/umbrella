@@ -1,5 +1,5 @@
 import { isNumber } from "@thi.ng/checks";
-import { AABBLike, Attribs, Type } from "@thi.ng/geom-api";
+import type { AABBLike, Attribs } from "@thi.ng/geom-api";
 import { add3, set, Vec } from "@thi.ng/vectors";
 import { copyAttribs } from "../internal/copy-attribs";
 
@@ -15,7 +15,7 @@ export class AABB implements AABBLike {
     }
 
     get type() {
-        return Type.AABB;
+        return "aabb";
     }
 
     copy(): AABB {

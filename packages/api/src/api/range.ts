@@ -1,3 +1,5 @@
+export type Range = [number, number];
+
 export type Range0_1 = 0 | 1;
 
 export type Range0_3 = Range0_1 | 2 | 3;

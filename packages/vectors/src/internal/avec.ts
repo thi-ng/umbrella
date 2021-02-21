@@ -1,11 +1,12 @@
-import type { StridedVec, Vec } from "../api";
+import type { NumericArray } from "@thi.ng/api";
+import type { StridedVec } from "../api";
 
 export abstract class AVec implements StridedVec {
-    buf: Vec;
+    buf: NumericArray;
     offset: number;
     stride: number;
 
-    constructor(buf: Vec, offset = 0, stride = 1) {
+    constructor(buf: NumericArray, offset = 0, stride = 1) {
         this.buf = buf;
         this.offset = offset;
         this.stride = stride;

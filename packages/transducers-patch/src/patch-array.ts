@@ -1,7 +1,7 @@
-import { isNumber } from "@thi.ng/checks";
+import { isString } from "@thi.ng/checks";
 import { illegalArgs, illegalArity } from "@thi.ng/errors";
 import { reduce, reducer, Reducer } from "@thi.ng/transducers";
-import { Patch, PatchArrayOp } from "./api";
+import type { PatchArrayOp } from "./api";
 
 /**
  * Reducer for {@link Patch} based array edits. Only numeric indices are
@@ -64,16 +64,16 @@ export function patchArray<T>(...args: any[]) {
 
     const edit = (acc: T[], x: PatchArrayOp<T> | PatchArrayOp<T>[]) => {
         switch (x[0]) {
-            case Patch.SET:
+            case "set":
                 acc[x[1]] = x[2];
                 break;
-            case Patch.UPDATE:
+            case "update":
                 acc[x[1]] = x[2](acc[x[1]], ...x.slice(3));
                 break;
-            case Patch.INSERT:
+            case "insert":
                 acc.splice(x[1], 0, ...x[2]);
                 break;
-            case Patch.DELETE:
+            case "delete":
                 acc.splice(x[1], 1);
                 break;
             default:
@@ -88,7 +88,7 @@ export function patchArray<T>(...args: any[]) {
               () => [],
               (acc, x) => {
                   immutable && (acc = acc.slice());
-                  if (isNumber(x[0])) {
+                  if (isString(x[0])) {
                       acc = edit(acc, x);
                   } else {
                       for (let e of <PatchArrayOp<T>[]>x) {

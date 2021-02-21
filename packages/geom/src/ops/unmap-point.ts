@@ -1,10 +1,10 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2O, MultiFn2O } from "@thi.ng/defmulti";
-import { IShape, Type } from "@thi.ng/geom-api";
+import type { IShape } from "@thi.ng/geom-api";
 import { madd, mixBilinear, ReadonlyVec, Vec } from "@thi.ng/vectors";
 import type { Quad } from "../api/quad";
 import type { Rect } from "../api/rect";
 import { dispatch } from "../internal/dispatch";
-import type { IObjectOf } from "@thi.ng/api";
 
 /**
  * Projects given point `uv` (normalized coords) into the target space
@@ -27,7 +27,7 @@ export const unmapPoint: MultiFn2O<IShape, ReadonlyVec, Vec, Vec> = defmulti(
 );
 
 unmapPoint.addAll(<IObjectOf<Implementation2O<unknown, ReadonlyVec, Vec, Vec>>>{
-    [Type.QUAD]: ({ points }: Quad, uv, out = []) =>
+    quad: ({ points }: Quad, uv, out = []) =>
         mixBilinear(
             out,
             points[0],
@@ -38,9 +38,9 @@ unmapPoint.addAll(<IObjectOf<Implementation2O<unknown, ReadonlyVec, Vec, Vec>>>{
             uv[1]
         ),
 
-    [Type.RECT]: ($: Rect, uvw: ReadonlyVec, out = []) =>
+    rect: ($: Rect, uvw: ReadonlyVec, out = []) =>
         madd(out, $.size, uvw, $.pos),
 });
 
-unmapPoint.isa(Type.AABB, Type.RECT);
-unmapPoint.isa(Type.QUAD3, Type.QUAD);
+unmapPoint.isa("aabb", "rect");
+unmapPoint.isa("quad3", "quad");

@@ -21,8 +21,8 @@ export class Canvas {
     ) {
         this.width = width;
         this.height = height;
-        this.buf = new Uint32Array(width * height).fill(0x20);
         this.format = this.defaultFormat = format;
+        this.buf = new Uint32Array(width * height).fill(charCode(0x20, format));
         this.styles = [style];
         this.clipRects = [
             { x1: 0, y1: 0, x2: width, y2: height, w: width, h: height },

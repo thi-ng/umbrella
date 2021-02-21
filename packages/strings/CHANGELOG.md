@@ -3,17 +3,64 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.11.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.11.1...@thi.ng/strings@1.11.2) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/strings
+# [1.15.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.14.0...@thi.ng/strings@1.15.0) (2021-02-20)
 
 
+### Features
+
+* **strings:** add int/intLocale, vector formatters ([ac55fe0](https://github.com/thi-ng/umbrella/commit/ac55fe007bed81d04848eddb1c4145eb26cdd437))
 
 
 
-## [1.11.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.11.0...@thi.ng/strings@1.11.1) (2020-11-26)
 
-**Note:** Version bump only for package @thi.ng/strings
+
+# [1.14.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.13.0...@thi.ng/strings@1.14.0) (2021-01-13)
+
+
+### Features
+
+* **strings:** add stringify() HOF ([4ab7e72](https://github.com/thi-ng/umbrella/commit/4ab7e72bf87cbf058a38ca85b5e2853a5f432d9d))
+
+
+
+
+
+# [1.13.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.12.0...@thi.ng/strings@1.13.0) (2021-01-10)
+
+
+### Features
+
+* **strings:** add stripAnsi(), lengthAnsi() fns ([86fa81a](https://github.com/thi-ng/umbrella/commit/86fa81acb7dfcf1dc3d6f5600cbf427ee44cf722))
+* **strings:** add tab conversion fns ([aefdd97](https://github.com/thi-ng/umbrella/commit/aefdd97e27fce2405860e817b9c5b4aedb6e59e4))
+* **strings:** add wordWrap*() fns ([2a283c0](https://github.com/thi-ng/umbrella/commit/2a283c018592d8cc76f4ef83b69c6ce3c378aca6))
+* **strings:** update padLeft/Right() args ([118f97f](https://github.com/thi-ng/umbrella/commit/118f97f1fca27671c53d184484a7b435e6eedf88))
+
+
+### Performance Improvements
+
+* **strings:** simplify string default delim regexp ([bb62760](https://github.com/thi-ng/umbrella/commit/bb62760f2069a1f7edeaa09ce0e0639047789af3))
+
+
+
+
+
+# [1.12.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.11.4...@thi.ng/strings@1.12.0) (2021-01-05)
+
+
+### Features
+
+* **strings:** add interpolateKeys() ([bd78d1d](https://github.com/thi-ng/umbrella/commit/bd78d1dba5e467e6cda452e6db6fcd0fb9a3cf19))
+
+
+
+
+
+## [1.11.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.11.3...@thi.ng/strings@1.11.4) (2021-01-02)
+
+
+### Bug Fixes
+
+* **strings:** update slugifyGH() replacements ([#174](https://github.com/thi-ng/umbrella/issues/174)) ([98a9135](https://github.com/thi-ng/umbrella/commit/98a91351728d730446f9654fc93317c1bece77ed))
 
 
 
@@ -38,46 +85,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **strings:** add BOM const, update pkg meta ([b6751fc](https://github.com/thi-ng/umbrella/commit/b6751fc506a28a075ea9fee1a5f6d3520449f5af))
 * **strings:** add escape(), update unescape(), add tests ([e0d5f1e](https://github.com/thi-ng/umbrella/commit/e0d5f1edcdf78b075908c4973586a0f1732fe006))
 * **strings:** add unescape() ([924466b](https://github.com/thi-ng/umbrella/commit/924466bc5d5f16ced3da95fa2f24dab2bfad0679))
-
-
-
-
-
-## [1.9.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.9.5...@thi.ng/strings@1.9.6) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/strings
-
-
-
-
-
-## [1.9.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.9.4...@thi.ng/strings@1.9.5) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/strings
-
-
-
-
-
-## [1.9.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.9.3...@thi.ng/strings@1.9.4) (2020-08-20)
-
-**Note:** Version bump only for package @thi.ng/strings
-
-
-
-
-
-## [1.9.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.9.2...@thi.ng/strings@1.9.3) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/strings
-
-
-
-
-
-## [1.9.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.9.1...@thi.ng/strings@1.9.2) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/strings
 
 
 

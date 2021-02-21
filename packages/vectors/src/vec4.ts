@@ -1,4 +1,4 @@
-import type { IHash } from "@thi.ng/api";
+import type { IHash, NumericArray } from "@thi.ng/api";
 import { EPS } from "@thi.ng/math";
 import {
     IVector,
@@ -36,7 +36,7 @@ export class Vec4 extends AVec implements IHash<number>, IVector<Vec4> {
      * @param estride - element stride
      */
     static mapBuffer(
-        buf: Vec,
+        buf: NumericArray,
         num: number = buf.length >> 2,
         start = 0,
         cstride = 1,
@@ -60,7 +60,7 @@ export class Vec4 extends AVec implements IHash<number>, IVector<Vec4> {
      * @param estride -
      */
     static intoBuffer(
-        buf: Vec,
+        buf: NumericArray,
         src: Iterable<Vec4>,
         start = 0,
         cstride = 1,
@@ -70,7 +70,7 @@ export class Vec4 extends AVec implements IHash<number>, IVector<Vec4> {
     }
 
     static *iterator(
-        buf: Vec,
+        buf: NumericArray,
         num: number,
         start = 0,
         cstride = 1,
@@ -79,13 +79,13 @@ export class Vec4 extends AVec implements IHash<number>, IVector<Vec4> {
         return vecIterator(Vec4, buf, num, start, cstride, estride);
     }
 
-    static readonly X_AXIS = new Vec4(X4);
-    static readonly Y_AXIS = new Vec4(Y4);
-    static readonly Z_AXIS = new Vec4(Z4);
-    static readonly MIN = new Vec4(MIN4);
-    static readonly MAX = new Vec4(MAX4);
-    static readonly ZERO = new Vec4(ZERO4);
-    static readonly ONE = new Vec4(ONE4);
+    static readonly X_AXIS = new Vec4(<NumericArray>X4);
+    static readonly Y_AXIS = new Vec4(<NumericArray>Y4);
+    static readonly Z_AXIS = new Vec4(<NumericArray>Z4);
+    static readonly MIN = new Vec4(<NumericArray>MIN4);
+    static readonly MAX = new Vec4(<NumericArray>MAX4);
+    static readonly ZERO = new Vec4(<NumericArray>ZERO4);
+    static readonly ONE = new Vec4(<NumericArray>ONE4);
 
     x!: number;
     y!: number;
@@ -93,7 +93,7 @@ export class Vec4 extends AVec implements IHash<number>, IVector<Vec4> {
     w!: number;
     [id: number]: number;
 
-    constructor(buf?: Vec, offset = 0, stride = 1) {
+    constructor(buf?: NumericArray, offset = 0, stride = 1) {
         super(buf || [0, 0, 0, 0], offset, stride);
     }
 
@@ -144,5 +144,7 @@ export const asVec4 = (x: Vec) =>
     x instanceof Vec4
         ? x
         : new Vec4(
-              x.length >= 4 ? x : [x[0] || 0, x[1] || 0, x[2] || 0, x[3] || 0]
+              x.length >= 4
+                  ? <NumericArray>x
+                  : [x[0] || 0, x[1] || 0, x[2] || 0, x[3] || 0]
           );

@@ -1,4 +1,5 @@
 import { LogLevel } from "@thi.ng/api";
+import { stringify } from "@thi.ng/strings";
 import { map, Transducer } from "@thi.ng/transducers";
 import type { BodyFormat, DateFormat, LogEntry, LogEntryObj } from "../api";
 
@@ -9,7 +10,7 @@ export const formatString = (
     bodyFmt?: BodyFormat
 ): Transducer<LogEntry, string> => {
     dtFmt = dtFmt || isoDate;
-    bodyFmt = bodyFmt || ((x) => x.toString());
+    bodyFmt = bodyFmt || ((x) => x.map(stringify()).join(" "));
     return map(
         ([level, id, time, ...body]) =>
             `[${LogLevel[level]}] ${id}: ${dtFmt!(time)} ${bodyFmt!(body)}`

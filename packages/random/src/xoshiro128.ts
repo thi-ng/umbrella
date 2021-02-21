@@ -3,9 +3,12 @@ import type { ISeedable } from "./api";
 import { ARandom } from "./arandom";
 import { DEFAULT_SEED_128 } from "./constants";
 
-// http://prng.di.unimi.it/
-// http://prng.di.unimi.it/xoshiro128plusplus.c
-
+/**
+ * @remarks
+ * References:
+ * - http://prng.di.unimi.it/
+ * - http://prng.di.unimi.it/xoshiro128plusplus.c
+ */
 export class Xoshiro128
     extends ARandom
     implements

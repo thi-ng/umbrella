@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.2.38](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-markdown@1.2.37...@thi.ng/hiccup-markdown@1.2.38) (2020-12-07)
+## [1.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-markdown@1.3.0...@thi.ng/hiccup-markdown@1.3.1) (2021-02-20)
 
 **Note:** Version bump only for package @thi.ng/hiccup-markdown
 
@@ -11,73 +11,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.2.37](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-markdown@1.2.36...@thi.ng/hiccup-markdown@1.2.37) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/hiccup-markdown
+# [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-markdown@1.2.44...@thi.ng/hiccup-markdown@1.3.0) (2021-01-22)
 
 
+### Features
 
-
-
-## [1.2.36](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-markdown@1.2.35...@thi.ng/hiccup-markdown@1.2.36) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/hiccup-markdown
-
-
-
-
-
-## [1.2.35](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-markdown@1.2.34...@thi.ng/hiccup-markdown@1.2.35) (2020-10-03)
-
-**Note:** Version bump only for package @thi.ng/hiccup-markdown
-
-
-
-
-
-## [1.2.34](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-markdown@1.2.33...@thi.ng/hiccup-markdown@1.2.34) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/hiccup-markdown
-
-
-
-
-
-## [1.2.33](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-markdown@1.2.32...@thi.ng/hiccup-markdown@1.2.33) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/hiccup-markdown
-
-
-
-
-
-## [1.2.32](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-markdown@1.2.31...@thi.ng/hiccup-markdown@1.2.32) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/hiccup-markdown
-
-
-
-
-
-## [1.2.31](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-markdown@1.2.30...@thi.ng/hiccup-markdown@1.2.31) (2020-08-20)
-
-**Note:** Version bump only for package @thi.ng/hiccup-markdown
-
-
-
-
-
-## [1.2.30](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-markdown@1.2.29...@thi.ng/hiccup-markdown@1.2.30) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/hiccup-markdown
-
-
-
-
-
-## [1.2.29](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-markdown@1.2.28...@thi.ng/hiccup-markdown@1.2.29) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/hiccup-markdown
+* **hiccup-markdown:** update DEFAULT_TAGS ([8f7f9d4](https://github.com/thi-ng/umbrella/commit/8f7f9d4b9b040799a5a981bfe00b82f233ce87bb))
 
 
 

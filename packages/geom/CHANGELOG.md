@@ -3,25 +3,43 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.13.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.13.3...@thi.ng/geom@1.13.4) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/geom
+# [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@2.0.6...@thi.ng/geom@2.1.0) (2021-02-20)
 
 
+### Bug Fixes
+
+* **geom:** fix regression/update buffer arg types ([9cf5e5d](https://github.com/thi-ng/umbrella/commit/9cf5e5d43d648eecfdcba861f44acc4d3e9fd17c))
 
 
+### Features
 
-## [1.13.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.13.2...@thi.ng/geom@1.13.3) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
+* **geom:** add tangentAt() support for cubic/quadratic ([4302f58](https://github.com/thi-ng/umbrella/commit/4302f58dd4d490fbb0b97754ae7d54f28a8fa269))
 
 
 
-## [1.13.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.13.1...@thi.ng/geom@1.13.2) (2020-11-26)
 
-**Note:** Version bump only for package @thi.ng/geom
+
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.13.4...@thi.ng/geom@2.0.0) (2020-12-22)
+
+
+### Bug Fixes
+
+* **geom:** fix [#268](https://github.com/thi-ng/umbrella/issues/268) add Group.copyTransformed() ([2da6c63](https://github.com/thi-ng/umbrella/commit/2da6c63b5a2dbc45bc1272eaf592d3d74d8ce74e))
+
+
+### Code Refactoring
+
+* **geom:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enum w/ type alias ([67988ad](https://github.com/thi-ng/umbrella/commit/67988ad31f478b28de85e40d8ab7c51501ef4acb))
+* **geom:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace Type enum w/ alias ([ef7ba74](https://github.com/thi-ng/umbrella/commit/ef7ba74c189755d760d84c700b0c970a281a3b04))
+
+
+### BREAKING CHANGES
+
+* **geom:** replace Type enum returned by IShape.type w/ string consts
+
+- update all shape classes
+- update all ops/multimethod dispatches
+* **geom:** replace SegmentType w/ type alias
 
 
 
@@ -66,44 +84,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.11.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.11.7...@thi.ng/geom@1.11.8) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
 ## [1.11.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.11.6...@thi.ng/geom@1.11.7) (2020-08-28)
 
 
 ### Bug Fixes
 
 * **geom:** update asPolyline() for PATH/POLYGON ([243962c](https://github.com/thi-ng/umbrella/commit/243962ce4b2a690eb84e540f9d55d52d355edc39))
-
-
-
-
-
-## [1.11.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.11.5...@thi.ng/geom@1.11.6) (2020-08-20)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [1.11.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.11.4...@thi.ng/geom@1.11.5) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [1.11.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.11.3...@thi.ng/geom@1.11.4) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/geom
 
 
 

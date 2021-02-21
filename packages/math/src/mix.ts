@@ -1,6 +1,13 @@
 import type { FnN, FnN2, FnN3, FnN4, FnN5, FnN6 } from "@thi.ng/api";
 import { EPS, HALF_PI, PI } from "./api";
 
+/**
+ * Linear interpolation without clamping. Computes `a + (b - a) * t`
+ *
+ * @param a - start value
+ * @param b - end value
+ * @param t - interpolation factor [0..1]
+ */
 export const mix: FnN3 = (a, b, t) => a + (b - a) * t;
 
 /**
@@ -146,9 +153,9 @@ export const tangentDiff3 = (
 ) => 0.5 * ((next - curr) / (tc - tb) + (curr - prev) / (tb - ta));
 
 /**
- * HOF interpolator. Takes a timing function `f` and interval `[from,
- * to]`. Returns function which takes normalized time as single arg and
- * returns interpolated value.
+ * HOF interpolator. Takes a timing function `f` and interval `[from,to]`.
+ * Returns function which takes normalized time (in [0,1] range) as single arg
+ * and returns interpolated value.
  *
  * @param f -
  * @param from -
@@ -262,20 +269,34 @@ export const sinc: FnN2 = (k, t) => {
 };
 
 /**
- * Sigmoid function for inputs in [0..1] interval.
+ * Sigmoid function for inputs arounds center bias.
  *
- * @param k -
- * @param t -
+ * @remarks
+ * Updated in v3.0.0 to add bias value to satisfy more use cases. Use
+ * {@link sigmoid01} for old behavior.
+ *
+ * @param bias - center value (for which result = 0.5)
+ * @param k - steepness
+ * @param t - input value
  */
-export const sigmoid: FnN2 = (k, t) => 1 / (1 + Math.exp(-k * (2 * t - 1)));
+export const sigmoid: FnN3 = (bias, k, t) =>
+    t != bias ? 1 / (1 + Math.exp(-k * (t - bias))) : 0.5;
 
 /**
- * Sigmoid function for inputs in [-1..+1] interval.
+ * Sigmoid function for inputs in [0..1] interval. Center bias = 0.5.
+ *
+ * @param k - steepness
+ * @param t - input value
+ */
+export const sigmoid01: FnN3 = (k, t) => sigmoid(0.5, k, t);
+
+/**
+ * Sigmoid function for inputs in [-1..+1] interval. Center bias = 0
  *
  * @param k -
  * @param t -
  */
-export const sigmoid11: FnN2 = (k, t) => 1 / (1 + Math.exp(-k * t));
+export const sigmoid11: FnN2 = (k, t) => sigmoid(0, k, t);
 
 /**
  * Generalized Schlick bias gain curve, based on:
@@ -304,3 +325,16 @@ export const schlick: FnN3 = (a, b, t) =>
  * @param num
  */
 export const expFactor: FnN3 = (a, b, num) => (b / a) ** (1 / num);
+
+/**
+ * Computes gaussian bell curve for given center `bias` and `sigma` (spread).
+ *
+ * @remarks
+ * Interactive graph: https://www.desmos.com/calculator/aq6hdzxprv
+ *
+ * @param bias
+ * @param sigma
+ * @param t
+ */
+export const gaussian: FnN3 = (bias, sigma, t) =>
+    Math.exp(-((t - bias) ** 2) / (2 * sigma * sigma));

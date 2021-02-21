@@ -1,13 +1,13 @@
 import { clamp01 } from "@thi.ng/math";
-import { dotS3, dotS4, setC4 } from "@thi.ng/vectors";
+import { dotS3, dotS4, ReadonlyVec, setC4 } from "@thi.ng/vectors";
 import type { Color, ColorMatrix, ReadonlyColor } from "../api";
 import { ensureAlpha } from "./ensure-alpha";
 
 export const mulV33 = (
     out: Color | null,
-    mat: number[],
+    mat: ReadonlyVec,
     src: ReadonlyColor,
-    clampOut = true
+    clampOut = false
 ) => {
     const x = dotS3(mat, src, 0, 0, 3);
     const y = dotS3(mat, src, 1, 0, 3);

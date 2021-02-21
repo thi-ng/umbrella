@@ -3,15 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/viz@0.2.1...@thi.ng/viz@0.2.2) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/viz
-
-
-
-
-
-## [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/viz@0.2.0...@thi.ng/viz@0.2.1) (2020-11-26)
+## [0.2.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/viz@0.2.9...@thi.ng/viz@0.2.10) (2021-02-20)
 
 **Note:** Version bump only for package @thi.ng/viz
 
@@ -26,22 +18,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **viz:** add barPlot() & interleave opts ([8f3d4e1](https://github.com/thi-ng/umbrella/commit/8f3d4e13f2b81f70ef027780d02e39e4886d3e29))
 * **viz:** update grid opts (add major flags) ([4fac849](https://github.com/thi-ng/umbrella/commit/4fac84998786c7c884de170775d1797d3218aa19))
-
-
-
-
-
-## [0.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/viz@0.1.1...@thi.ng/viz@0.1.2) (2020-10-19)
-
-**Note:** Version bump only for package @thi.ng/viz
-
-
-
-
-
-## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/viz@0.1.0...@thi.ng/viz@0.1.1) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/viz
 
 
 

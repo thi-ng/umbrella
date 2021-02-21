@@ -223,9 +223,10 @@ export class Subscription<A, B>
      * function `fn` is used as `map`'s transformation fn.
      *
      * @param fn
+     * @param opts
      */
-    map<C>(fn: Fn<B, C>): Subscription<B, C> {
-        return this.subscribe(map(fn));
+    map<C>(fn: Fn<B, C>, opts?: Partial<CommonOpts>): Subscription<B, C> {
+        return this.subscribe(map(fn), opts);
     }
 
     /**

@@ -1,5 +1,4 @@
 export * from "./api";
-export * from "./constants";
 
 export * from "./comp/addg";
 export * from "./comp/compp";
@@ -43,6 +42,7 @@ export * from "./proc/svf";
 export * from "./proc/waveshaper";
 
 export * from "./osc/additive";
+export * from "./osc/cos";
 export * from "./osc/dsf";
 export * from "./osc/mix";
 export * from "./osc/parabolic";
@@ -53,8 +53,10 @@ export * from "./osc/tri";
 export * from "./osc/wavetable";
 
 export * from "./fft/fft";
+export * from "./fft/power";
 export * from "./fft/window";
 
 export * from "./util/anti-alias";
+export * from "./util/complex";
 export * from "./util/convert";
 export * from "./util/filter-response";

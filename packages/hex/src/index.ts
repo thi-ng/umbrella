@@ -182,3 +182,14 @@ export const U64BE = (x: ArrayLike<number>, i: number) =>
  */
 export const U64LE = (x: ArrayLike<number>, i: number) =>
     U32LE(x, i + 4) + U32LE(x, i);
+
+/**
+ * Returns UUID formatted string of given byte array from optional start index
+ * `i` (default: 0). Array must have min. length 16 (starting from `i`).
+ *
+ * @param id -
+ * @param i -
+ */
+export const uuid = (id: ArrayLike<number>, i = 0) =>
+    // prettier-ignore
+    `${U32BE(id, i)}-${U16BE(id, i + 4)}-${U16BE(id, i + 6)}-${U16BE(id, i + 8)}-${U48BE(id, i + 10)}`;

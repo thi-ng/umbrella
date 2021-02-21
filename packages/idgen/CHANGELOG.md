@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.2.27](https://github.com/thi-ng/umbrella/compare/@thi.ng/idgen@0.2.26...@thi.ng/idgen@0.2.27) (2020-12-07)
+## [0.2.30](https://github.com/thi-ng/umbrella/compare/@thi.ng/idgen@0.2.29...@thi.ng/idgen@0.2.30) (2021-02-20)
 
 **Note:** Version bump only for package @thi.ng/idgen
 
@@ -11,65 +11,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.2.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/idgen@0.2.25...@thi.ng/idgen@0.2.26) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/idgen
+## [0.2.29](https://github.com/thi-ng/umbrella/compare/@thi.ng/idgen@0.2.28...@thi.ng/idgen@0.2.29) (2021-01-02)
 
 
+### Performance Improvements
 
-
-
-## [0.2.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/idgen@0.2.24...@thi.ng/idgen@0.2.25) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/idgen
-
-
-
-
-
-## [0.2.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/idgen@0.2.23...@thi.ng/idgen@0.2.24) (2020-10-19)
-
-**Note:** Version bump only for package @thi.ng/idgen
-
-
-
-
-
-## [0.2.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/idgen@0.2.22...@thi.ng/idgen@0.2.23) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/idgen
-
-
-
-
-
-## [0.2.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/idgen@0.2.21...@thi.ng/idgen@0.2.22) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/idgen
-
-
-
-
-
-## [0.2.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/idgen@0.2.20...@thi.ng/idgen@0.2.21) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/idgen
-
-
-
-
-
-## [0.2.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/idgen@0.2.19...@thi.ng/idgen@0.2.20) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/idgen
-
-
-
-
-
-## [0.2.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/idgen@0.2.18...@thi.ng/idgen@0.2.19) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/idgen
+* **idgen:** minor updates IDGen, add doc strings ([1c0e284](https://github.com/thi-ng/umbrella/commit/1c0e284e9f48d4a37a55f74db0fb2b6eade9dc89))
 
 
 

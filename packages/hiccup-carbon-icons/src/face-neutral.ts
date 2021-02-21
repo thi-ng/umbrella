@@ -1,8 +1,10 @@
+import { svg } from "./_svg";
+
 /**
  * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#FACE_NEUTRAL
  */
 // prettier-ignore
-export const FACE_NEUTRAL: any[] =
-    ["svg", { viewBox: "0 0 32 32" },
-        ["path", { d: "M16 2a14 14 0 1014 14A14 14 0 0016 2zm0 26a12 12 0 1112-12 12 12 0 01-12 12z" }],
-        ["path", { d: "M11.5 11a2.5 2.5 0 102.5 2.5 2.5 2.5 0 00-2.5-2.5zM20.5 11a2.5 2.5 0 102.5 2.5 2.5 2.5 0 00-2.5-2.5zM10 20h12v2H10z" }]];
+export const FACE_NEUTRAL = svg(
+    ["path", { d: "M16 2a14 14 0 1014 14A14 14 0 0016 2zm0 26a12 12 0 1112-12 12 12 0 01-12 12z" }],
+    ["path", { d: "M11.5 11a2.5 2.5 0 102.5 2.5 2.5 2.5 0 00-2.5-2.5zM20.5 11a2.5 2.5 0 102.5 2.5 2.5 2.5 0 00-2.5-2.5zM10 20h12v2H10z" }]
+);

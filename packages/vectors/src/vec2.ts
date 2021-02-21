@@ -1,4 +1,4 @@
-import type { IHash } from "@thi.ng/api";
+import type { IHash, NumericArray } from "@thi.ng/api";
 import { EPS } from "@thi.ng/math";
 import {
     IVector,
@@ -35,7 +35,7 @@ export class Vec2 extends AVec implements IHash<number>, IVector<Vec2> {
      * @param estride - element stride
      */
     static mapBuffer(
-        buf: Vec,
+        buf: NumericArray,
         num: number = buf.length >> 1,
         start = 0,
         cstride = 1,
@@ -59,7 +59,7 @@ export class Vec2 extends AVec implements IHash<number>, IVector<Vec2> {
      * @param estride -
      */
     static intoBuffer(
-        buf: Vec,
+        buf: NumericArray,
         src: Iterable<Vec2>,
         start = 0,
         cstride = 1,
@@ -69,7 +69,7 @@ export class Vec2 extends AVec implements IHash<number>, IVector<Vec2> {
     }
 
     static iterator(
-        buf: Vec,
+        buf: NumericArray,
         num: number,
         start = 0,
         cstride = 1,
@@ -78,18 +78,18 @@ export class Vec2 extends AVec implements IHash<number>, IVector<Vec2> {
         return vecIterator(Vec2, buf, num, start, cstride, estride);
     }
 
-    static readonly X_AXIS = new Vec2(X2);
-    static readonly Y_AXIS = new Vec2(Y2);
-    static readonly MIN = new Vec2(MIN2);
-    static readonly MAX = new Vec2(MAX2);
-    static readonly ZERO = new Vec2(ZERO2);
-    static readonly ONE = new Vec2(ONE2);
+    static readonly X_AXIS = new Vec2(<NumericArray>X2);
+    static readonly Y_AXIS = new Vec2(<NumericArray>Y2);
+    static readonly MIN = new Vec2(<NumericArray>MIN2);
+    static readonly MAX = new Vec2(<NumericArray>MAX2);
+    static readonly ZERO = new Vec2(<NumericArray>ZERO2);
+    static readonly ONE = new Vec2(<NumericArray>ONE2);
 
     x!: number;
     y!: number;
     [id: number]: number;
 
-    constructor(buf?: Vec, offset = 0, stride = 1) {
+    constructor(buf?: NumericArray, offset = 0, stride = 1) {
         super(buf || [0, 0], offset, stride);
     }
 
@@ -139,4 +139,4 @@ export const vec2n = (n: number) => new Vec2([n, n]);
 export const asVec2 = (x: Vec) =>
     x instanceof Vec2
         ? x
-        : new Vec2(x.length >= 2 ? x : [x[0] || 0, x[1] || 0]);
+        : new Vec2(x.length >= 2 ? <NumericArray>x : [x[0] || 0, x[1] || 0]);

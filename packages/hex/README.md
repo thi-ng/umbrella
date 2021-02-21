@@ -41,7 +41,7 @@ yarn add @thi.ng/hex
 <script src="https://unpkg.com/@thi.ng/hex/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 322 bytes / CJS: 428 bytes / UMD: 491 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 358 bytes / CJS: 469 bytes / UMD: 525 bytes
 
 ## Dependencies
 
@@ -108,4 +108,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2020 - 2021 Karsten Schmidt // Apache Software License 2.0

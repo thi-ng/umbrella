@@ -3,8 +3,8 @@ import type {
     Fn2,
     IObjectOf,
     NumericArray,
-    Type,
     TypedArray,
+    UintType,
 } from "@thi.ng/api";
 
 /**
@@ -34,8 +34,6 @@ export enum Filter {
     NEAREST,
     LINEAR,
 }
-
-export type UintType = Type.U8 | Type.U16 | Type.U32;
 
 /**
  * Blend function (for packed integers) given to IBlend implementations.
@@ -179,6 +177,11 @@ export interface FloatFormatSpec {
     alpha?: boolean;
     gray?: boolean;
     channels: Lane[];
+    /**
+     * If given, {@link defFloatFormat} won't generate conversions and use those
+     * provided instead.
+     */
+    convert?: IABGRConvert<NumericArray>;
 }
 
 export interface FloatFormat extends IABGRConvert<NumericArray> {
@@ -201,10 +204,12 @@ export interface RawPixelBuffer extends CanvasContext {
     pixels: Uint32Array;
 }
 
-export interface IPixelBuffer<T extends TypedArray, P> {
-    width: number;
-    height: number;
-    pixels: T;
+export interface IPixelBuffer<T extends TypedArray = TypedArray, P = any> {
+    readonly width: number;
+    readonly height: number;
+    readonly format: IABGRConvert<any>;
+    readonly stride: number;
+    readonly pixels: T;
 
     /**
      * Returns pixel value at given position. If pos is outside the

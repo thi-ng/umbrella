@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.5.33](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-binary@0.5.32...@thi.ng/transducers-binary@0.5.33) (2020-12-07)
+## [0.6.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-binary@0.6.5...@thi.ng/transducers-binary@0.6.6) (2021-02-20)
 
 **Note:** Version bump only for package @thi.ng/transducers-binary
 
@@ -11,65 +11,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.5.32](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-binary@0.5.31...@thi.ng/transducers-binary@0.5.32) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/transducers-binary
+# [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-binary@0.5.33...@thi.ng/transducers-binary@0.6.0) (2020-12-22)
 
 
+### Code Refactoring
+
+* **transducers-binary:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enum w/ type alias ([50cc52a](https://github.com/thi-ng/umbrella/commit/50cc52a84b135535053370e022309aee5b670625))
 
 
+### BREAKING CHANGES
 
-## [0.5.31](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-binary@0.5.30...@thi.ng/transducers-binary@0.5.31) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/transducers-binary
-
-
-
-
-
-## [0.5.30](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-binary@0.5.29...@thi.ng/transducers-binary@0.5.30) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/transducers-binary
-
-
-
-
-
-## [0.5.29](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-binary@0.5.28...@thi.ng/transducers-binary@0.5.29) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/transducers-binary
-
-
-
-
-
-## [0.5.28](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-binary@0.5.27...@thi.ng/transducers-binary@0.5.28) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/transducers-binary
-
-
-
-
-
-## [0.5.27](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-binary@0.5.26...@thi.ng/transducers-binary@0.5.27) (2020-08-20)
-
-**Note:** Version bump only for package @thi.ng/transducers-binary
-
-
-
-
-
-## [0.5.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-binary@0.5.25...@thi.ng/transducers-binary@0.5.26) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/transducers-binary
-
-
-
-
-
-## [0.5.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-binary@0.5.24...@thi.ng/transducers-binary@0.5.25) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/transducers-binary
+* **transducers-binary:** replace Type enum w/ type alias, update BinStructItem
 
 
 

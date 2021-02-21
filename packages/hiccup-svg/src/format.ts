@@ -1,5 +1,5 @@
 import { isArrayLike, isString } from "@thi.ng/checks";
-import { resolveAsCSS } from "@thi.ng/color";
+import { css } from "@thi.ng/color";
 import type { Vec2Like } from "./api";
 
 let PRECISION = 2;
@@ -112,7 +112,8 @@ const buildTransform = (attribs: any) => {
 };
 
 /**
- * Attempts to convert a single color attrib value.
+ * Attempts to convert a single color attrib value. If `col` is prefixed with
+ * `$`, the value will be converted into a `url(#...)` reference.
  *
  * {@link fattribs}
  *
@@ -125,7 +126,7 @@ export const fcolor = (col: any) =>
         ? col[0] === "$"
             ? `url(#${col.substr(1)})`
             : col
-        : resolveAsCSS(col);
+        : css(col);
 
 export const withoutKeys = (src: any, keys: Set<PropertyKey>) => {
     const dest: any = {};

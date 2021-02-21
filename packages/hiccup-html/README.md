@@ -11,13 +11,13 @@ This project is part of the
 
 - [About](#about)
   - [Supported elements](#supported-elements)
-    - [Head / metadata](#head---metadata)
+    - [Head / metadata](#head--metadata)
     - [Sections](#sections)
     - [Text content](#text-content)
     - [Lists](#lists)
     - [Tables](#tables)
     - [Inline](#inline)
-    - [Forms / inputs](#forms---inputs)
+    - [Forms / inputs](#forms--inputs)
     - [Media](#media)
   - [Compatibility](#compatibility)
   - [Status](#status)
@@ -194,9 +194,10 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                              | Description                                           | Live demo                                              | Source                                                                              |
-| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------ | ----------------------------------------------------------------------------------- |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/parse-playground.png" width="240"/> | Parser grammar livecoding editor/playground & codegen | [Demo](https://demo.thi.ng/umbrella/parse-playground/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/parse-playground) |
+| Screenshot                                                                                                              | Description                                                      | Live demo                                              | Source                                                                              |
+| ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/parse-playground.png" width="240"/> | Parser grammar livecoding editor/playground & codegen            | [Demo](https://demo.thi.ng/umbrella/parse-playground/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/parse-playground) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-sorting.png" width="240"/>    | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-sorting)    |
 
 ## API
 
@@ -352,4 +353,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2020 - 2021 Karsten Schmidt // Apache Software License 2.0

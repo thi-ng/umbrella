@@ -1,0 +1,118 @@
+#!/usr/bin/env node
+const fs = require("fs");
+const execSync = require("child_process").execSync;
+
+const PKG = process.argv[2];
+
+const AWS_PROFILE = "--profile thing-umbrella";
+const S3_BUCKET = "s3://docs.thi.ng";
+const S3_PREFIX = "/umbrella";
+const S3_OPTS = `${AWS_PROFILE} --acl public-read`;
+const SYNC_OPTS = `${S3_OPTS} --include "*" --exclude "*.sass" --exclude "*.ts"`;
+const CF_DISTRO = "E2855K70PVNL1D";
+
+const MINIFY_OPTS =
+    "--file-ext html --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype --minify-css true";
+
+function* files(dir, ext) {
+    for (let f of fs.readdirSync(dir)) {
+        const curr = dir + "/" + f;
+        if (f.endsWith(ext)) {
+            yield curr;
+        } else if (fs.statSync(curr).isDirectory()) {
+            yield* files(curr, ext);
+        }
+    }
+}
+
+const sanitizeFile = (f) => {
+    let updated = false;
+    const src = fs
+        .readFileSync(f, "utf-8")
+        .replace(
+            /\{@link @thi\.ng\/([a-z0-9-]+)(#(\w+))?\s*\|\s*([^\}]+)\}/g,
+            (_, id, label) => {
+                updated = true;
+                return `<a href="${S3_PREFIX}/${id}/">${label}</a>`;
+            }
+        )
+        .replace(
+            /\{@link @thi\.ng\/([a-z0-9-]+)#(\w+)?\s*\}/g,
+            (_, id, sym) => {
+                updated = true;
+                let path = `${S3_PREFIX}/${id}/`;
+                if (!sym)
+                    return `<a href="${S3_PREFIX}/${id}/">@thi.ng/${id}</a>`;
+                if (sym.startsWith("I")) {
+                    path += `interfaces/${sym.toLowerCase()}.html`;
+                } else if (/^[a-z]/.test(sym)) {
+                    path += `modules.html#${sym.toLowerCase()}`;
+                }
+                return `<a href="${path}">${sym}</a>`;
+            }
+        )
+        .replace(/\{@link @thi\.ng\/([a-z0-9-]+)#?\s*\}/g, (_, id) => {
+            updated = true;
+            return `<a href="${S3_PREFIX}/${id}/">@thi.ng/${id}</a>`;
+        });
+    if (updated) {
+        console.log("sanitizing:", f);
+        fs.writeFileSync(f, src, "utf-8");
+    }
+};
+
+const sanitizePackage = (root) => {
+    for (let f of files(root, ".html")) {
+        sanitizeFile(f);
+    }
+};
+
+const minifyPackage = (root) => {
+    console.log("minifying", root);
+    execSync(
+        `node_modules/.bin/html-minifier-terser ${MINIFY_OPTS} --input-dir ${root} --output-dir ${root}`
+    );
+};
+
+const syncPackage = (id, root) => {
+    console.log("syncing", root);
+    console.log(
+        execSync(
+            `aws s3 sync ${root} ${S3_BUCKET}${S3_PREFIX}/${id} ${SYNC_OPTS}`
+        ).toString()
+    );
+};
+
+const invalidatePackage = (id) =>
+    execSync(
+        `aws cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths "${S3_PREFIX}/${id}/*" ${AWS_PROFILE}`
+    );
+
+const processPackage = (id) => {
+    console.log("processing", id);
+    const root = `packages/${id}/doc`;
+    try {
+        sanitizePackage(root);
+        minifyPackage(root);
+        syncPackage(id, root);
+        invalidatePackage(id);
+    } catch (e) {
+        console.warn(e);
+    }
+};
+
+if (PKG) {
+    processPackage(PKG);
+} else {
+    for (let pkg of fs.readdirSync("packages")) {
+        if (fs.statSync(`packages/${pkg}`).isDirectory()) {
+            processPackage(pkg);
+        }
+    }
+}
+
+execSync(
+    `node_modules/.bin/ts-node -P tools/tsconfig.json tools/src/doc-table.ts`
+);
+
+execSync(`aws s3 cp docs.html ${S3_BUCKET}/index.html ${S3_OPTS}`);

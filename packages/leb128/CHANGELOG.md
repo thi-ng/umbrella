@@ -3,71 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.0.37](https://github.com/thi-ng/umbrella/compare/@thi.ng/leb128@1.0.36...@thi.ng/leb128@1.0.37) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/leb128
-
-
-
-
-
-## [1.0.36](https://github.com/thi-ng/umbrella/compare/@thi.ng/leb128@1.0.35...@thi.ng/leb128@1.0.36) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/leb128
-
-
-
-
-
-## [1.0.35](https://github.com/thi-ng/umbrella/compare/@thi.ng/leb128@1.0.34...@thi.ng/leb128@1.0.35) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/leb128
-
-
-
-
-
-## [1.0.34](https://github.com/thi-ng/umbrella/compare/@thi.ng/leb128@1.0.33...@thi.ng/leb128@1.0.34) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/leb128
-
-
-
-
-
-## [1.0.33](https://github.com/thi-ng/umbrella/compare/@thi.ng/leb128@1.0.32...@thi.ng/leb128@1.0.33) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/leb128
-
-
-
-
-
-## [1.0.32](https://github.com/thi-ng/umbrella/compare/@thi.ng/leb128@1.0.31...@thi.ng/leb128@1.0.32) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/leb128
-
-
-
-
-
-## [1.0.31](https://github.com/thi-ng/umbrella/compare/@thi.ng/leb128@1.0.30...@thi.ng/leb128@1.0.31) (2020-08-20)
-
-**Note:** Version bump only for package @thi.ng/leb128
-
-
-
-
-
-## [1.0.30](https://github.com/thi-ng/umbrella/compare/@thi.ng/leb128@1.0.29...@thi.ng/leb128@1.0.30) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/leb128
-
-
-
-
-
-## [1.0.29](https://github.com/thi-ng/umbrella/compare/@thi.ng/leb128@1.0.28...@thi.ng/leb128@1.0.29) (2020-08-16)
+## [1.0.44](https://github.com/thi-ng/umbrella/compare/@thi.ng/leb128@1.0.43...@thi.ng/leb128@1.0.44) (2021-02-20)
 
 **Note:** Version bump only for package @thi.ng/leb128
 

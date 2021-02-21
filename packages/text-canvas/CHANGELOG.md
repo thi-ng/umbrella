@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.2.35](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.2.34...@thi.ng/text-canvas@0.2.35) (2020-12-07)
+## [0.4.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.4.4...@thi.ng/text-canvas@0.4.5) (2021-02-20)
 
 **Note:** Version bump only for package @thi.ng/text-canvas
 
@@ -11,73 +11,35 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.2.34](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.2.33...@thi.ng/text-canvas@0.2.34) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/text-canvas
+## [0.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.4.0...@thi.ng/text-canvas@0.4.1) (2021-01-10)
 
 
+### Bug Fixes
 
-
-
-## [0.2.33](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.2.32...@thi.ng/text-canvas@0.2.33) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/text-canvas
+* **text-canvas:** fix FMT_ANSI256 bg bitshift ([b50a0f9](https://github.com/thi-ng/umbrella/commit/b50a0f9c0464774f3b62888d718da89381b3014c))
 
 
 
 
 
-## [0.2.32](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.2.31...@thi.ng/text-canvas@0.2.32) (2020-10-03)
-
-**Note:** Version bump only for package @thi.ng/text-canvas
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.3.0...@thi.ng/text-canvas@0.4.0) (2021-01-05)
 
 
+### Features
 
-
-
-## [0.2.31](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.2.30...@thi.ng/text-canvas@0.2.31) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/text-canvas
+* **text-canvas:** add formatter fns/utils ([fb4470d](https://github.com/thi-ng/umbrella/commit/fb4470d5a708e3d1f700bab5274463f754489940))
 
 
 
 
 
-## [0.2.30](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.2.29...@thi.ng/text-canvas@0.2.30) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/text-canvas
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.2.36...@thi.ng/text-canvas@0.3.0) (2021-01-02)
 
 
+### Features
 
-
-
-## [0.2.29](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.2.28...@thi.ng/text-canvas@0.2.29) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/text-canvas
-
-
-
-
-
-## [0.2.28](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.2.27...@thi.ng/text-canvas@0.2.28) (2020-08-20)
-
-**Note:** Version bump only for package @thi.ng/text-canvas
-
-
-
-
-
-## [0.2.27](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.2.26...@thi.ng/text-canvas@0.2.27) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/text-canvas
-
-
-
-
-
-## [0.2.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.2.25...@thi.ng/text-canvas@0.2.26) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/text-canvas
+* **text-canvas:** add ANSI256 & HTML_565 formatters ([1f2d35b](https://github.com/thi-ng/umbrella/commit/1f2d35b306c30bfecd168f25abd0ead18e2fdf2a))
+* **text-canvas:** add imageRaw(), update image() ([34037ad](https://github.com/thi-ng/umbrella/commit/34037ad4ec87027779c72b683c3a4194f1995e79))
 
 
 

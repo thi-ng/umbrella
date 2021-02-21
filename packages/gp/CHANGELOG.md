@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.35](https://github.com/thi-ng/umbrella/compare/@thi.ng/gp@0.1.34...@thi.ng/gp@0.1.35) (2020-12-07)
+## [0.2.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/gp@0.2.5...@thi.ng/gp@0.2.6) (2021-02-20)
 
 **Note:** Version bump only for package @thi.ng/gp
 
@@ -11,57 +11,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.1.34](https://github.com/thi-ng/umbrella/compare/@thi.ng/gp@0.1.33...@thi.ng/gp@0.1.34) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/gp
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/gp@0.1.35...@thi.ng/gp@0.2.0) (2020-12-22)
 
 
+### Code Refactoring
+
+* **gp:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enum w/ type alias ([6fd4291](https://github.com/thi-ng/umbrella/commit/6fd4291eb2be4baae93b3f365478f73990e044b0))
 
 
+### BREAKING CHANGES
 
-## [0.1.33](https://github.com/thi-ng/umbrella/compare/@thi.ng/gp@0.1.32...@thi.ng/gp@0.1.33) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/gp
-
-
-
-
-
-## [0.1.32](https://github.com/thi-ng/umbrella/compare/@thi.ng/gp@0.1.31...@thi.ng/gp@0.1.32) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/gp
-
-
-
-
-
-## [0.1.31](https://github.com/thi-ng/umbrella/compare/@thi.ng/gp@0.1.30...@thi.ng/gp@0.1.31) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/gp
-
-
-
-
-
-## [0.1.30](https://github.com/thi-ng/umbrella/compare/@thi.ng/gp@0.1.29...@thi.ng/gp@0.1.30) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/gp
-
-
-
-
-
-## [0.1.29](https://github.com/thi-ng/umbrella/compare/@thi.ng/gp@0.1.28...@thi.ng/gp@0.1.29) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/gp
-
-
-
-
-
-## [0.1.28](https://github.com/thi-ng/umbrella/compare/@thi.ng/gp@0.1.27...@thi.ng/gp@0.1.28) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/gp
+* **gp:** replace GeneType w/ type alias
 
 
 

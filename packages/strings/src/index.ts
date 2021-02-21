@@ -1,4 +1,6 @@
 export * from "./api";
+
+export * from "./ansi";
 export * from "./case";
 export * from "./center";
 export * from "./cursor";
@@ -7,6 +9,7 @@ export * from "./float";
 export * from "./format";
 export * from "./groups";
 export * from "./hollerith";
+export * from "./int";
 export * from "./interpolate";
 export * from "./join";
 export * from "./pad-left";
@@ -19,9 +22,13 @@ export * from "./repeat";
 export * from "./slugify";
 export * from "./splice";
 export * from "./split";
+export * from "./stringify";
+export * from "./tabs";
 export * from "./trim";
 export * from "./truncate";
 export * from "./truncate-left";
 export * from "./units";
 export * from "./uuid";
+export * from "./vector";
 export * from "./wrap";
+export * from "./word-wrap";

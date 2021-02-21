@@ -1,5 +1,7 @@
 # geom-convex-hull
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-convex-hull.png)
+
 [Live demo](http://demo.thi.ng/umbrella/geom-convex-hull/)
 
 A refactored version of a [blog post code example by Pete

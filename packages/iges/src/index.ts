@@ -155,7 +155,7 @@ const formatTerminate = (doc: IGESDocument) =>
 
 const formatStatus = (s: Partial<EntityStatus>) =>
     [s.blank || 0, s.subord || 0, s.usage || 0, s.hierarchy || 0]
-        .map($Z2)
+        .map((x) => $Z2(x))
         .join("");
 
 const formatDictEntry = (e: DictEntry) =>

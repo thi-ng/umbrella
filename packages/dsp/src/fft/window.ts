@@ -1,4 +1,4 @@
-import type { FloatArray, Fn, FnU3, FnU4 } from "@thi.ng/api";
+import type { FloatArray, Fn, FnU3, FnU4, NumericArray } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
 import { PI, TAU } from "@thi.ng/math";
 import type { WindowFn } from "../api";
@@ -27,7 +27,31 @@ export const window = (fn: WindowFn, lenOfBuf: number | FloatArray) => {
     return buf;
 };
 
+/**
+ * Takes a `signal` and `window` buffer and multiplies both elementwise. Writes
+ * results into `out` (or back into `signal` by default).
+ *
+ * @param signal
+ * @param window
+ * @param out
+ */
+export const applyWindow = (
+    signal: NumericArray,
+    window: NumericArray,
+    out = signal
+) => {
+    for (let i = signal.length; --i >= 0; ) {
+        out[i] = signal[i] * window[i];
+    }
+    return out;
+};
+
 export const windowRect: WindowFn = () => 1;
+
+export const windowBartlett: WindowFn = (i, n) =>
+    1 - Math.abs((i - n / 2) / (n / 2));
+
+export const windowWelch: WindowFn = (i, n) => 1 - ((i - n / 2) / (n / 2)) ** 2;
 
 export const windowSin: WindowFn = (i, n) => sin((PI * i) / n);
 

@@ -3,63 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@2.0.23...@thi.ng/bench@2.0.24) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/bench
-
-
-
-
-
-## [2.0.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@2.0.22...@thi.ng/bench@2.0.23) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/bench
-
-
-
-
-
-## [2.0.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@2.0.21...@thi.ng/bench@2.0.22) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/bench
-
-
-
-
-
-## [2.0.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@2.0.20...@thi.ng/bench@2.0.21) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/bench
-
-
-
-
-
-## [2.0.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@2.0.19...@thi.ng/bench@2.0.20) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/bench
-
-
-
-
-
-## [2.0.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@2.0.18...@thi.ng/bench@2.0.19) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/bench
-
-
-
-
-
-## [2.0.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@2.0.17...@thi.ng/bench@2.0.18) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/bench
-
-
-
-
-
-## [2.0.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@2.0.16...@thi.ng/bench@2.0.17) (2020-08-16)
+## [2.0.27](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@2.0.26...@thi.ng/bench@2.0.27) (2021-02-20)
 
 **Note:** Version bump only for package @thi.ng/bench
 

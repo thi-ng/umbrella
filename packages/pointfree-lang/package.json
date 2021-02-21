@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/pointfree-lang",
-    "version": "1.4.17",
+    "version": "1.4.21",
     "description": "Forth style syntax layer/compiler & CLI for the @thi.ng/pointfree DSL",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,25 +38,25 @@
         "pegtest": "pegjs -o build/src/parser.js src/grammar.pegjs",
         "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
-        "doc": "node_modules/.bin/typedoc --mode modules --out doc --theme ../../tools/doc/typedoc-theme src",
+        "doc": "node_modules/.bin/typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
-        "@microsoft/api-extractor": "^7.12.0",
-        "@types/mocha": "^8.0.3",
-        "@types/node": "^14.14.10",
-        "mocha": "^8.2.1",
+        "@microsoft/api-extractor": "^7.12.1",
+        "@types/mocha": "^8.2.0",
+        "@types/node": "^14.14.14",
+        "mocha": "^8.3.0",
         "pegjs": "0.11.0-master.b7b87ea",
         "ts-node": "^9.1.1",
-        "typedoc": "^0.19.2",
-        "typescript": "^4.1.2"
+        "typedoc": "^0.20.26",
+        "typescript": "^4.1.5"
     },
     "dependencies": {
-        "@thi.ng/api": "^6.13.4",
-        "@thi.ng/bench": "^2.0.24",
-        "@thi.ng/errors": "^1.2.24",
-        "@thi.ng/pointfree": "^2.0.18",
+        "@thi.ng/api": "^7.0.0",
+        "@thi.ng/bench": "^2.0.27",
+        "@thi.ng/errors": "^1.2.27",
+        "@thi.ng/pointfree": "^2.0.22",
         "commander": "^6.2.0"
     },
     "files": [

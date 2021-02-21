@@ -10,8 +10,8 @@
         "build": "yarn clean && ../../node_modules/.bin/ts-node src/index.ts"
     },
     "devDependencies": {
-        "ts-node": "^9.1.0",
-        "typescript": "^4.1.2"
+        "ts-node": "^9.1.1",
+        "typescript": "^4.1.5"
     },
     "dependencies": {
         "@thi.ng/checks": "latest",
@@ -21,8 +21,7 @@
         "@thi.ng/math": "latest",
         "@thi.ng/paths": "latest",
         "@thi.ng/strings": "latest",
-        "@thi.ng/transducers": "latest",
-        "@thi.ng/vectors": "latest"
+        "@thi.ng/transducers": "latest"
     },
     "browserslist": [
         "last 3 Chrome versions"

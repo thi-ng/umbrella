@@ -1,5 +1,7 @@
 # canvas-dial
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/canvas-dial.png)
+
 [Live demo](http://demo.thi.ng/umbrella/canvas-dial/)
 
 Customizable canvas-based radial dial component with mouse & touch

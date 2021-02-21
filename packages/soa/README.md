@@ -10,6 +10,10 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
+  - [Supported memory layouts](#supported-memory-layouts)
+    - [AOS (Array Of Structures)](#aos-array-of-structures)
+    - [SOA (Structure of Arrays)](#soa-structure-of-arrays)
+    - [Hybrid](#hybrid)
   - [Status](#status)
   - [Related packages](#related-packages)
 - [Installation](#installation)
@@ -22,6 +26,20 @@ This project is part of the
 ## About
 
 SOA & AOS memory mapped structured views with optional & extensible serialization.
+
+### Supported memory layouts
+
+#### AOS (Array Of Structures)
+
+![AOS memory block diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/soa/aos.png)
+
+#### SOA (Structure of Arrays)
+
+![SOA memory block diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/soa/soa.png)
+
+#### Hybrid
+
+![Hybrid memory block diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/soa/hybrid.png)
 
 ### Status
 
@@ -55,7 +73,7 @@ yarn add @thi.ng/soa
 <script src="https://unpkg.com/@thi.ng/soa/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.45 KB / CJS: 1.52 KB / UMD: 1.62 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.42 KB / CJS: 1.49 KB / UMD: 1.59 KB
 
 ## Dependencies
 
@@ -100,4 +118,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2019 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2019 - 2021 Karsten Schmidt // Apache Software License 2.0

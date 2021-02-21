@@ -3,8 +3,8 @@ import { equiv } from "@thi.ng/equiv";
 import { canvas2D } from "@thi.ng/hdom-components";
 import { fit, mix } from "@thi.ng/math";
 import { stream, Stream, sync, tunnel } from "@thi.ng/rstream";
-import { gestureStream, GestureType } from "@thi.ng/rstream-gestures";
-import { padLeft } from "@thi.ng/strings";
+import { gestureStream } from "@thi.ng/rstream-gestures";
+import { Z4 } from "@thi.ng/strings";
 import { map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 
@@ -14,7 +14,6 @@ const AUTO_ZOOM = false;
 
 // frame export helpers
 let frame = 0;
-const Z4 = padLeft(4, "0");
 
 // canvas size
 const SIZE = 640;
@@ -132,13 +131,13 @@ const app = () => {
                     const _x2 = x2.deref()!;
                     const _y2 = y2.deref()!;
                     switch (e.type) {
-                        case GestureType.START:
+                        case "start":
                             sel1.next(e.pos);
                             break;
-                        case GestureType.DRAG:
+                        case "drag":
                             sel2.next(e.pos);
                             break;
-                        case GestureType.END: {
+                        case "end": {
                             const p = sel1.deref();
                             if (!p || equiv(p, e.pos)) return;
                             // compute target coord based on current zoom region
@@ -166,7 +165,7 @@ const app = () => {
                             newRender(ax, ay, bx, by);
                             break;
                         }
-                        case GestureType.ZOOM:
+                        case "zoom":
                             updateZoom(e.zoom);
                             break;
                         default:

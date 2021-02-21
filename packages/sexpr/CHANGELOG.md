@@ -3,63 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.2.30](https://github.com/thi-ng/umbrella/compare/@thi.ng/sexpr@0.2.29...@thi.ng/sexpr@0.2.30) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/sexpr
-
-
-
-
-
-## [0.2.29](https://github.com/thi-ng/umbrella/compare/@thi.ng/sexpr@0.2.28...@thi.ng/sexpr@0.2.29) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/sexpr
-
-
-
-
-
-## [0.2.28](https://github.com/thi-ng/umbrella/compare/@thi.ng/sexpr@0.2.27...@thi.ng/sexpr@0.2.28) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/sexpr
-
-
-
-
-
-## [0.2.27](https://github.com/thi-ng/umbrella/compare/@thi.ng/sexpr@0.2.26...@thi.ng/sexpr@0.2.27) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/sexpr
-
-
-
-
-
-## [0.2.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/sexpr@0.2.25...@thi.ng/sexpr@0.2.26) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/sexpr
-
-
-
-
-
-## [0.2.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/sexpr@0.2.24...@thi.ng/sexpr@0.2.25) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/sexpr
-
-
-
-
-
-## [0.2.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/sexpr@0.2.23...@thi.ng/sexpr@0.2.24) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/sexpr
-
-
-
-
-
-## [0.2.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/sexpr@0.2.22...@thi.ng/sexpr@0.2.23) (2020-08-16)
+## [0.2.34](https://github.com/thi-ng/umbrella/compare/@thi.ng/sexpr@0.2.33...@thi.ng/sexpr@0.2.34) (2021-02-20)
 
 **Note:** Version bump only for package @thi.ng/sexpr
 

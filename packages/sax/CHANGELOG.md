@@ -3,63 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.1.42](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@1.1.41...@thi.ng/sax@1.1.42) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/sax
-
-
-
-
-
-## [1.1.41](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@1.1.40...@thi.ng/sax@1.1.41) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/sax
-
-
-
-
-
-## [1.1.40](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@1.1.39...@thi.ng/sax@1.1.40) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/sax
-
-
-
-
-
-## [1.1.39](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@1.1.38...@thi.ng/sax@1.1.39) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/sax
-
-
-
-
-
-## [1.1.38](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@1.1.37...@thi.ng/sax@1.1.38) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/sax
-
-
-
-
-
-## [1.1.37](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@1.1.36...@thi.ng/sax@1.1.37) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/sax
-
-
-
-
-
-## [1.1.36](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@1.1.35...@thi.ng/sax@1.1.36) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/sax
-
-
-
-
-
-## [1.1.35](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@1.1.34...@thi.ng/sax@1.1.35) (2020-08-16)
+## [1.1.49](https://github.com/thi-ng/umbrella/compare/@thi.ng/sax@1.1.48...@thi.ng/sax@1.1.49) (2021-02-20)
 
 **Note:** Version bump only for package @thi.ng/sax
 

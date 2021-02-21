@@ -11,20 +11,20 @@ This project is part of the
 
 - [About](#about)
 - [Memory layout](#memory-layout)
-  - [Free block compaction / coalescing](#free-block-compaction---coalescing)
+  - [Free block compaction / coalescing](#free-block-compaction--coalescing)
   - [Block splitting](#block-splitting)
   - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
   - [MemPool](#mempool)
-  - [`malloc(size: number)`](#mallocsize--number)
-  - [`mallocAs(type: Type, num: number)`](#mallocastype--type--num--number)
-  - [`calloc(size: number, fill = 0)`](#callocsize--number--fill--0)
-  - [`callocAs(type: Type, num: number, fill = 0)`](#callocastype--type--num--number--fill--0)
-  - [`realloc(addr: number, size: number)`](#reallocaddr--number--size--number)
-  - [`reallocArray(buf: TypedArray, num: number)`](#reallocarraybuf--typedarray--num--number)
-  - [`free(addr: number | TypedArray)`](#freeaddr--number--typedarray)
+  - [`malloc(size: number)`](#mallocsize-number)
+  - [`mallocAs(type: Type, num: number)`](#mallocastype-type-num-number)
+  - [`calloc(size: number, fill = 0)`](#callocsize-number-fill--0)
+  - [`callocAs(type: Type, num: number, fill = 0)`](#callocastype-type-num-number-fill--0)
+  - [`realloc(addr: number, size: number)`](#reallocaddr-number-size-number)
+  - [`reallocArray(buf: TypedArray, num: number)`](#reallocarraybuf-typedarray-num-number)
+  - [`free(addr: number | TypedArray)`](#freeaddr-number--typedarray)
   - [`freeAll()`](#freeall)
   - [`release()`](#release)
   - [`stats()`](#stats)
@@ -361,4 +361,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2021 Karsten Schmidt // Apache Software License 2.0

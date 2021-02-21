@@ -1,17 +1,11 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
 import { defmulti, Implementation2 } from "@thi.ng/defmulti";
-import {
-    IHiccupShape,
-    IShape,
-    PathSegment,
-    SegmentType,
-    Type,
-} from "@thi.ng/geom-api";
+import type { IHiccupShape, IShape, PathSegment } from "@thi.ng/geom-api";
 import { mulV, ReadonlyMat } from "@thi.ng/matrices";
 import { map } from "@thi.ng/transducers";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { Cubic } from "../api/cubic";
-import { Group } from "../api/group";
+import type { Group } from "../api/group";
 import { Line } from "../api/line";
 import { Path } from "../api/path";
 import { Points, Points3 } from "../api/points";
@@ -52,24 +46,21 @@ export const transformVertices = defmulti<
 transformVertices.addAll(<
     IObjectOf<Implementation2<unknown, Fn<ReadonlyVec, ReadonlyMat>, IShape>>
 >{
-    [Type.ARC]: ($: IShape, fn) => transformVertices(asPolyline($), fn),
+    arc: ($: IShape, fn) => transformVertices(asPolyline($), fn),
 
-    [Type.CUBIC]: tx(Cubic),
+    cubic: tx(Cubic),
 
-    [Type.GROUP]: ($: Group, fn) =>
-        new Group(
-            copyAttribs($),
-            $.children.map((x) => <IHiccupShape>transformVertices(x, fn))
-        ),
+    group: ($: Group, fn) =>
+        $.copyTransformed((x) => <IHiccupShape>transformVertices(x, fn)),
 
-    [Type.LINE]: tx(Line),
+    line: tx(Line),
 
-    [Type.PATH]: ($: Path, fn) =>
+    path: ($: Path, fn) =>
         new Path(
             [
                 ...map(
                     (s) =>
-                        s.type === SegmentType.MOVE
+                        s.type === "m"
                             ? <PathSegment>{
                                   type: s.type,
                                   point: mulV([], fn(s.point!), s.point!),
@@ -84,22 +75,22 @@ transformVertices.addAll(<
             copyAttribs($)
         ),
 
-    [Type.POINTS]: tx(Points),
+    points: tx(Points),
 
-    [Type.POINTS3]: tx3(Points3),
+    points3: tx3(Points3),
 
-    [Type.POLYGON]: tx(Polygon),
+    poly: tx(Polygon),
 
-    [Type.POLYLINE]: tx(Polyline),
+    polyline: tx(Polyline),
 
-    [Type.QUAD]: tx(Quad),
+    quad: tx(Quad),
 
-    [Type.QUADRATIC]: tx(Quadratic),
+    quadratic: tx(Quadratic),
 
-    [Type.RECT]: ($: Rect, fn) => transformVertices(asPolygon($), fn),
+    rect: ($: Rect, fn) => transformVertices(asPolygon($), fn),
 
-    [Type.TRIANGLE]: tx(Triangle),
+    tri: tx(Triangle),
 });
 
-transformVertices.isa(Type.CIRCLE, Type.RECT);
-transformVertices.isa(Type.ELLIPSE, Type.CIRCLE);
+transformVertices.isa("circle", "rect");
+transformVertices.isa("ellipse", "circle");

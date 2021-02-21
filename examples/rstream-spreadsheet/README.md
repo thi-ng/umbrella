@@ -1,5 +1,7 @@
 # rstream-spreadsheet
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-spreadsheet.png)
+
 [Live demo](http://demo.thi.ng/umbrella/rstream-spreadsheet/)
 
 Spreadsheet demo built w/

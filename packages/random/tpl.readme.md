@@ -13,19 +13,34 @@ This project is part of the
 
 ${pkg.description}
 
-This package provides the `IRandom` interface and various (mostly
-seedable) pseudo-random number generator implementations, incl. a
-`IRandom` wrapper for `Math.random()`:
+This package provides the `IRandom` interface and various (mostly seedable)
+pseudo-random number generator implementations, incl. `IRandom` wrappers for
+`Math.random()` and `window.crypto`:
 
-- [Smush32](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/smush.ts)
+- [Crypto](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/crypto.ts)
+- [Smush32](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/smush32.ts)
 - [System](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/system.ts)
 - [Xoshiro128](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/xoshiro128.ts)
 - [XorShift128](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/xorshift128.ts)
 - [XorWow](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/xorwow.ts)
 - [XsAdd](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/xsadd.ts)
 
-Partially ported from C implementations taken from
-[c.thi.ng](http://c.thi.ng).
+Partially ported from C implementations taken from [c.thi.ng](http://c.thi.ng).
+
+### Random distributions
+
+- [`exponential()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/distributions/exponential.ts)
+- [`gaussian()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/distributions/gaussian.ts)
+- [`geometric()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/distributions/geometric.ts)
+- [`normal()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/distributions/normal.ts)
+- [`uniform()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/distributions/uniform.ts)
+
+### Other utilities
+
+- [`randomBytes()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/random-bytes.ts)
+- [`randomID()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/random-id.ts)
+- [`weightedRandom()](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/weighted-random.ts)
+- [`uuidv4Bytes()` / `uuid()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/uuid.ts)
 
 ${status}
 
@@ -80,11 +95,6 @@ rnd.minmax(10, 20)
 rnd.gaussian()
 // 0.10632886109089679
 ```
-
-### Other utilities
-
-- [randomBytes](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/random-bytes.ts)
-- [randomID](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/random-id.ts)
 
 ## Authors
 

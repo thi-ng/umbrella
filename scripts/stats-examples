@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# usage: stats packages stats.csv (default)
+# usage: stats examples stats-ex.csv
+
+if [ $# -gt 0 ]; then
+    modules="$1/*"
+else
+    modules="examples/*"
+fi
+
+if [ $# -gt 1 ]; then
+    out="$2"
+else
+    out=assets/stats-examples.csv
+fi
+
+echo "example,files,comments,sloc" > $out
+
+for m in $modules; do
+    if [ -d "$m" ]; then
+        skip=$(grep -e '"skip": true' "$m/package.json")
+        if [ -e "$m/.skip" ] || [ -n "$skip" ]; then
+            echo "\tskipping $m"
+        else
+            echo "$m $skip"
+            echo "$m,$(cloc "$m"/src --csv | grep "TypeScript" | cut -d ',' -f1 -f4-5)" >> $out
+        fi
+    fi
+done
+
+echo "---"
+awk -F ',' '{ files+=$2; comments+=$3; sloc+=$4 } END { print "files:", files, "\tcode:", sloc, "\ttotal:", sloc + comments }' $out

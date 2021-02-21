@@ -11,7 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Current features](#current-features)
-  - [Available components / widgets](#available-components---widgets)
+  - [Available components / widgets](#available-components--widgets)
   - [State handling](#state-handling)
   - [Layout support](#layout-support)
   - [Key controls](#key-controls)
@@ -239,7 +239,7 @@ yarn add @thi.ng/imgui
 <script src="https://unpkg.com/@thi.ng/imgui/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 6.75 KB / CJS: 6.95 KB / UMD: 6.99 KB
+Package sizes (gzipped, pre-treeshake): ESM: 6.75 KB / CJS: 6.96 KB / UMD: 7.00 KB
 
 ## Dependencies
 
@@ -291,4 +291,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2019 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2019 - 2021 Karsten Schmidt // Apache Software License 2.0

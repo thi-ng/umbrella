@@ -3,63 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.2.35](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@2.2.34...@thi.ng/interceptors@2.2.35) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/interceptors
-
-
-
-
-
-## [2.2.34](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@2.2.33...@thi.ng/interceptors@2.2.34) (2020-11-26)
-
-**Note:** Version bump only for package @thi.ng/interceptors
-
-
-
-
-
-## [2.2.33](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@2.2.32...@thi.ng/interceptors@2.2.33) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/interceptors
-
-
-
-
-
-## [2.2.32](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@2.2.31...@thi.ng/interceptors@2.2.32) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/interceptors
-
-
-
-
-
-## [2.2.31](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@2.2.30...@thi.ng/interceptors@2.2.31) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/interceptors
-
-
-
-
-
-## [2.2.30](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@2.2.29...@thi.ng/interceptors@2.2.30) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/interceptors
-
-
-
-
-
-## [2.2.29](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@2.2.28...@thi.ng/interceptors@2.2.29) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/interceptors
-
-
-
-
-
-## [2.2.28](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@2.2.27...@thi.ng/interceptors@2.2.28) (2020-08-16)
+## [2.2.39](https://github.com/thi-ng/umbrella/compare/@thi.ng/interceptors@2.2.38...@thi.ng/interceptors@2.2.39) (2021-02-20)
 
 **Note:** Version bump only for package @thi.ng/interceptors
 

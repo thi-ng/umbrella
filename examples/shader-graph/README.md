@@ -1,10 +1,14 @@
 # shader-graph
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-graph.jpg)
+
 [Live demo](http://demo.thi.ng/umbrella/shader-graph/)
 
-![demo screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-graph.jpg)
-
-Minimal shader graph setup based on [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl), [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast) and [@thi.ng/scenegraph](https://github.com/thi-ng/umbrella/tree/develop/packages/scenegraph).
+Minimal shader graph setup based on
+[@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl),
+[@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
+and
+[@thi.ng/scenegraph](https://github.com/thi-ng/umbrella/tree/develop/packages/scenegraph).
 
 This project was developed from scratch during the [2nd thi.ng livestream on
 Youtube](https://www.youtube.com/watch?v=hEC_qbUXDo8). Please see video for

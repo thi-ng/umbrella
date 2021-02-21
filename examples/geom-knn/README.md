@@ -1,5 +1,7 @@
 # geom-knn
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-knn.jpg)
+
 [Live demo](http://demo.thi.ng/umbrella/geom-knn/)
 
 Drawing / debug toy based on 2x recursive KNN search using the k-D tree

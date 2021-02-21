@@ -55,7 +55,7 @@ yarn add @thi.ng/webgl-msdf
 <script src="https://unpkg.com/@thi.ng/webgl-msdf/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.48 KB / CJS: 1.53 KB / UMD: 1.59 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.48 KB / CJS: 1.52 KB / UMD: 1.58 KB
 
 ## Dependencies
 
@@ -101,4 +101,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2019 - 2020 Karsten Schmidt // Apache Software License 2.0
+&copy; 2019 - 2021 Karsten Schmidt // Apache Software License 2.0

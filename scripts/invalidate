@@ -1,0 +1,5 @@
+#!/bin/sh
+aws cloudfront create-invalidation \
+    --distribution-id EL2F1HMDPZ2RL \
+    --paths "/umbrella/$1/*" \
+    --profile thing-umbrella

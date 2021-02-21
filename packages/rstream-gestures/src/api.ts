@@ -15,13 +15,7 @@ export type UIEventID =
     | "touchcancel"
     | "wheel";
 
-export enum GestureType {
-    START,
-    MOVE,
-    DRAG,
-    END,
-    ZOOM,
-}
+export type GestureType = "move" | "start" | "drag" | "end" | "zoom";
 
 export interface GestureInfo {
     /**

@@ -3,73 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.3.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.3.24...@thi.ng/bitfield@0.3.25) (2020-12-07)
-
-**Note:** Version bump only for package @thi.ng/bitfield
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.3.30...@thi.ng/bitfield@0.4.0) (2021-02-20)
 
 
+### Features
+
+* **bitfield:** add row/column extracts, popcounts, rename factories ([0c4c112](https://github.com/thi-ng/umbrella/commit/0c4c1127cbb9bd6fb071837adef2d7b65e2de533))
 
 
+### BREAKING CHANGES
 
-## [0.3.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.3.23...@thi.ng/bitfield@0.3.24) (2020-11-26)
+* **bitfield:** rename factory fns to follow umbrella-wide naming conventions
 
-**Note:** Version bump only for package @thi.ng/bitfield
-
-
-
-
-
-## [0.3.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.3.22...@thi.ng/bitfield@0.3.23) (2020-11-24)
-
-**Note:** Version bump only for package @thi.ng/bitfield
-
-
-
-
-
-## [0.3.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.3.21...@thi.ng/bitfield@0.3.22) (2020-09-22)
-
-**Note:** Version bump only for package @thi.ng/bitfield
-
-
-
-
-
-## [0.3.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.3.20...@thi.ng/bitfield@0.3.21) (2020-09-13)
-
-**Note:** Version bump only for package @thi.ng/bitfield
-
-
-
-
-
-## [0.3.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.3.19...@thi.ng/bitfield@0.3.20) (2020-08-28)
-
-**Note:** Version bump only for package @thi.ng/bitfield
-
-
-
-
-
-## [0.3.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.3.18...@thi.ng/bitfield@0.3.19) (2020-08-20)
-
-**Note:** Version bump only for package @thi.ng/bitfield
-
-
-
-
-
-## [0.3.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.3.17...@thi.ng/bitfield@0.3.18) (2020-08-17)
-
-**Note:** Version bump only for package @thi.ng/bitfield
-
-
-
-
-
-## [0.3.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.3.16...@thi.ng/bitfield@0.3.17) (2020-08-16)
-
-**Note:** Version bump only for package @thi.ng/bitfield
+- rename bitField() => defBitField()
+- rename bitMatrix() => defBitMatrix()
+- add BitMatrix.row()/column() bitfield extraction
+- add BitMatrix.popCountRow/Column()
+- add BitField.popCount()
+- update masks in bit accessors
+- update BitField ctor & accessors to allow numbers (not just booleans)
 
 
 
