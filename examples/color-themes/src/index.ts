@@ -1,3 +1,4 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { isMobile, isString } from "@thi.ng/checks";
 import {
     ColorRangePreset,
@@ -32,6 +33,7 @@ import {
 } from "@thi.ng/rdom";
 import { staticDropdown } from "@thi.ng/rdom-components";
 import { debounce, reactive, Stream, sync, SyncTuple } from "@thi.ng/rstream";
+// import { toDot, walk } from "@thi.ng/rstream-dot";
 
 // pre-sort range preset IDs for dropdown menus
 const RANGE_IDs = <ColorRangePreset[]>Object.keys(COLOR_RANGES).sort();
@@ -39,7 +41,7 @@ const RANGE_IDs = <ColorRangePreset[]>Object.keys(COLOR_RANGES).sort();
 ///////////////////////// UI widgets
 
 const themePartControls = ([id, part]: [string, ColorThemePart]) => {
-    const stream = <Stream<ColorThemePart>>parts.getSourceForID(id);
+    const stream = parts[id];
     return div(
         ".grid.mb3",
         {},
@@ -125,7 +127,7 @@ const themePart = (
     });
 
 const randomizeThemeParts = () => {
-    for (let part of Object.values(parts.getSources())) {
+    for (let part of Object.values(parts)) {
         part.next({
             range: RANGE_IDs[SYSTEM.int() % RANGE_IDs.length],
             base: lch.random(),
@@ -134,22 +136,25 @@ const randomizeThemeParts = () => {
     }
 };
 
-const parts = sync({
-    src: {
-        0: themePart("bright", "goldenrod"),
-        1: themePart("hard", "turquoise", 0.33),
-        2: themePart("cool", "fuchsia", 0.5),
-        3: themePart("warm", "seagreen", 0.1),
-    },
-});
+// setup streams of color theme parts
+const parts: IObjectOf<Stream<ColorThemePart>> = {
+    0: themePart("bright", "goldenrod"),
+    1: themePart("hard", "turquoise", 0.33),
+    2: themePart("cool", "fuchsia", 0.5),
+    3: themePart("warm", "seagreen", 0.1),
+};
 
-// debounce needed for batch update via randomizeTheme()
-const debouncedParts = parts.subscribe(debounce(16));
+// debounce needed to avoid triggering extraneous updates via randomizeTheme()
+const debouncedParts = sync({ src: parts, id: "parts" }).subscribe(debounce(1));
 
-const num = reactive(isMobile() ? 100 : 200);
-const variance = reactive(0.05);
-const sorted = reactive(false);
-const seed = reactive(0xdecafbad);
+// streams for other user controls
+// (the IDs are optional, only used for visualization purposes, see end of file)
+const num = reactive(isMobile() ? 100 : 200, { id: "num" });
+const variance = reactive(0.05, { id: "variance" });
+const sorted = reactive(false, { id: "sorted" });
+const seed = reactive(0xdecafbad, { id: "seed" });
+
+// stream combinator
 const mainInputs = <const>{
     parts: debouncedParts,
     num,
@@ -157,7 +162,7 @@ const mainInputs = <const>{
     seed,
     sorted,
 };
-const main = sync({ src: mainInputs });
+const main = sync({ src: mainInputs, id: "main" });
 
 ///////////////////////// UI components
 
@@ -172,12 +177,23 @@ $compile(
             {},
             // list of controls for each theme part
             $list<[string, ColorThemePart]>(
-                debouncedParts.map((parts) => Object.entries(parts)),
+                debouncedParts.map((parts) => Object.entries(parts), {
+                    id: "swatches",
+                }),
                 "div",
                 {},
                 themePartControls
             ),
-            // global controls: variance, random seed, sorting
+            // global controls: num swatches, variance, random seed, sorting
+            control(
+                "num swatches",
+                inputRange({
+                    min: 10,
+                    max: 200,
+                    value: num,
+                    oninput: $inputNum(num),
+                })
+            ),
             control(
                 "variance",
                 inputRange({
@@ -215,3 +231,14 @@ $compile(
         )
     )
 ).mount(document.getElementById("app")!);
+
+// traverse dataflow graph from given roots, produce Graphviz DOT output
+// (also uncomment rstream-dot import above)
+
+// console.log(
+//     toDot(
+//         walk([...Object.values(parts), variance, num, sorted, seed], {
+//             values: true,
+//         })
+//     )
+// );
