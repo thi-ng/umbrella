@@ -1,5 +1,6 @@
 import { fromIterable } from "../from/iterable";
 import { metaStream, MetaStreamOpts } from "../metastream";
+import { optsWithID } from "../utils/idgen";
 
 /**
  * Returns a subscription which ignores any intermediate inputs arriving
@@ -13,7 +14,10 @@ import { metaStream, MetaStreamOpts } from "../metastream";
  * @param delay
  */
 export const debounce = <T>(delay: number, opts?: Partial<MetaStreamOpts>) =>
-    metaStream((x: T) => fromIterable([x], { delay }), {
-        emitLast: true,
-        ...opts,
-    });
+    metaStream(
+        (x: T) => fromIterable([x], { delay }),
+        optsWithID("debounce", {
+            emitLast: true,
+            ...opts,
+        })
+    );
