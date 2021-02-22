@@ -1,7 +1,7 @@
 import type { Fn2, Path } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks";
 import { defSetterUnsafe } from "@thi.ng/paths";
-import { ISubscribable, Subscription } from "@thi.ng/rstream";
+import { ISubscribable, nextID, Subscription } from "@thi.ng/rstream";
 import type { IComponent, IMountWithState, NumOrElement } from "./api";
 import { $attribs } from "./dom";
 import { SCHEDULER } from "./scheduler";
@@ -53,7 +53,7 @@ export class $Sub<T = any> extends Subscription<T, T> {
     el?: Element;
 
     constructor(protected inner: IMountWithState<T | undefined>) {
-        super();
+        super(undefined, { id: `rdom$sub-${nextID()}` });
     }
 
     async mount(parent: Element, index: NumOrElement = -1) {
@@ -85,7 +85,7 @@ export class $SubA extends Subscription<any, any> {
     protected attr: any = {};
 
     constructor(protected comp: IComponent, path: Path) {
-        super();
+        super(undefined, { id: `rdom$sub-${nextID()}` });
         this.setter = defSetterUnsafe(path);
     }
 
