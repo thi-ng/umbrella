@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@3.0.0...@thi.ng/color@3.0.1) (2021-02-22)
+
+
+### Bug Fixes
+
+* **color:** update compileThemePart() ([b8ceed6](https://github.com/thi-ng/umbrella/commit/b8ceed69e128c9f88999a92dc57971a1ab3c3e33))
+
+
+
+
+
 # [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@2.1.5...@thi.ng/color@3.0.0) (2021-02-20)
 
 

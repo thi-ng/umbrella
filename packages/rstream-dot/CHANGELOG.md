@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-dot@1.1.59...@thi.ng/rstream-dot@1.2.0) (2021-02-22)
+
+
+### Features
+
+* **rstream-dot:** update opts, deps & value handling ([be0b146](https://github.com/thi-ng/umbrella/commit/be0b146b2daeeff560f704bc5771ce5390e2ecf3))
+
+
+
+
+
 ## [1.1.59](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-dot@1.1.58...@thi.ng/rstream-dot@1.1.59) (2021-02-20)
 
 **Note:** Version bump only for package @thi.ng/rstream-dot
