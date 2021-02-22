@@ -4,7 +4,7 @@ const px = (x: number) => x.toFixed(3) + "px";
 export const circle = (col: string, x: number, y: number, w: number, h = w) => [
     "div",
     {
-        class: "absolute z-1 white f7 tc br-100 " + col,
+        class: "absolute z-1 white f7 tc br-100 o-80 " + col,
         style: {
             left: px(x - w / 2),
             top: px(y - h / 2),

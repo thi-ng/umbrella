@@ -65,7 +65,7 @@ const graph = initGraph(db, {
     // the `[1, 1]` is the lookup path, i.e. `gesture[1][1]`
     // (only defined during drag gestures)
     clickpos: {
-        fn: extract(["active", 0, "click"]),
+        fn: extract(["active", 0, "start"]),
         ins: { src: { stream: () => gestures } },
         outs: { "*": "clickpos" },
     },
@@ -95,7 +95,7 @@ const graph = initGraph(db, {
     circle: {
         fn: node(
             map((ins) => {
-                console.log(ins);
+                // console.log(ins);
                 const { click, radius, color } = ins;
                 return click && radius && color
                     ? circle(color, click[0], click[1], radius * 2)
