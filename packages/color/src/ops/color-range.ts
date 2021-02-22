@@ -198,7 +198,7 @@ const compileThemePart = (
     } else if (isString(part)) {
         spec = themePartFromString(part);
     } else {
-        spec = part;
+        spec = { ...part };
         spec.weight == null && (spec.weight = 1);
     }
     isString(spec.range) && (spec.range = COLOR_RANGES[spec.range]);
