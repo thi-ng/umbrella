@@ -29,7 +29,7 @@ export interface DotOpts {
     values: boolean;
     dir: string;
     font: string;
-    fontsize: string;
+    fontsize: string | number;
     text: string;
-    color: Record<NodeType, string>;
+    color: Partial<Record<NodeType, string>>;
 }

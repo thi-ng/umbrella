@@ -4,29 +4,24 @@ import {
     StreamMerge,
     StreamSync,
 } from "@thi.ng/rstream";
+import { truncate } from "@thi.ng/strings";
+import { map } from "@thi.ng/transducers";
 import type { DotOpts, Node, NodeType, WalkState } from "./api";
 
 export * from "./api";
 
-const getNodeType = (sub: ISubscribable<any>) => {
-    if (sub instanceof Stream) {
-        return "Stream";
-    }
-    if (sub instanceof StreamSync) {
-        return "StreamSync";
-    }
-    if (sub instanceof StreamMerge) {
-        return "StreamMerge";
-    }
-};
+const getNodeType = (sub: ISubscribable<any>) =>
+    sub instanceof Stream
+        ? "Stream"
+        : sub instanceof StreamSync
+        ? "StreamSync"
+        : sub instanceof StreamMerge
+        ? "StreamMerge"
+        : undefined;
 
 const dotNode = (s: Node, opts: DotOpts) => {
     let res = `s${s.id}[label="`;
-    if (s.type) {
-        res += `${s.label}\\n(${s.type})`;
-    } else {
-        res += `${s.label}`;
-    }
+    res += s.type ? `${s.label}\\n(${s.type})` : `${s.label}`;
     if (s.body !== undefined) {
         res += `\\n${s.body.replace(/"/g, `'`).replace(/\n/g, "\\n")}`;
     }
@@ -37,12 +32,12 @@ const dotNode = (s: Node, opts: DotOpts) => {
     return res + `"];`;
 };
 
-const dotEdge = (a: Node, b: Node, _: DotOpts) => {
-    let res = `s${a.id} -> s${b.id}`;
-    if (b.xform) {
-        res += `[label="xform"]`;
-    }
-    return res + ";";
+const dotEdge = (a: Node, b: Node, _: DotOpts) =>
+    `s${a.id} -> s${b.id}${b.xform ? `[label="xform"]` : ""};`;
+
+const subValue = (sub: ISubscribable<any>) => {
+    const res = JSON.stringify(sub.deref ? sub.deref() : undefined);
+    return res ? truncate(64, "...")(res) : res;
 };
 
 export const walk = (
@@ -60,10 +55,7 @@ export const walk = (
             label: sub.id || "<noid>",
             type: getNodeType(sub),
             xform: !!(<any>sub).xform,
-            body:
-                opts.values && sub.deref
-                    ? JSON.stringify(sub.deref())
-                    : undefined,
+            body: opts.values ? subValue(sub) : undefined,
         };
         state.subs.set(sub, desc);
         state.id++;
@@ -82,29 +74,28 @@ export const walk = (
 };
 
 export const toDot = (state: WalkState, opts?: Partial<DotOpts>) => {
-    opts = Object.assign(
-        {
-            dir: "LR",
-            font: "Inconsolata",
-            fontsize: 11,
-            text: "white",
-            color: {
-                default: "black",
-                noid: "gray",
-                stream: "blue",
-                streammerge: "red",
-                streamsync: "red",
-            },
-        },
-        opts
-    );
+    opts = {
+        dir: "TB",
+        font: "sans-serif",
+        fontsize: 10,
+        text: "white",
+        ...opts,
+    };
+    opts.color = {
+        default: "black",
+        noid: "gray",
+        stream: "blue",
+        streammerge: "red",
+        streamsync: "red",
+        ...(opts.color || {}),
+    };
     return [
         "digraph g {",
         `rankdir=${opts.dir};`,
-        `node[fontname=${opts.font},fontsize=${opts.fontsize},style=filled,fontcolor=${opts.text}];`,
-        `edge[fontname=${opts.font},fontsize=${opts.fontsize}];`,
-        ...[...state.subs.values()].map((n) => dotNode(n, <DotOpts>opts)),
-        ...state.rels.map((r) => dotEdge(r[0], r[1], <DotOpts>opts)),
+        `node[fontname="${opts.font}",fontsize=${opts.fontsize},style=filled,fontcolor=${opts.text}];`,
+        `edge[fontname="${opts.font}",fontsize=${opts.fontsize}];`,
+        ...map((n) => dotNode(n, <DotOpts>opts), state.subs.values()),
+        ...map((r) => dotEdge(r[0], r[1], <DotOpts>opts), state.rels),
         "}",
     ].join("\n");
 };
