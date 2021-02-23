@@ -8,6 +8,7 @@ import {
 import { illegalArgs } from "@thi.ng/errors";
 import { EPS } from "@thi.ng/math";
 import type { IRandom } from "@thi.ng/random";
+import { vector } from "@thi.ng/strings";
 import {
     clamp4,
     declareIndices,
@@ -124,12 +125,16 @@ export const defColor = <M extends ColorMode, K extends string>(
             return eqDelta4(this, <any>o, eps);
         }
 
+        randomize(rnd?: IRandom): this {
+            return <any>randMinMax(this, minR, maxR, rnd);
+        }
+
         toJSON() {
             return this.deref();
         }
 
-        randomize(rnd?: IRandom): this {
-            return <any>randMinMax(this, minR, maxR, rnd);
+        toString() {
+            return vector(4, 4)(this);
         }
     };
 
