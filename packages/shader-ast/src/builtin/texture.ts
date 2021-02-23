@@ -73,6 +73,11 @@ export function textureSize(sampler: Term<Sampler>, lod: IntTerm): FnCall<any> {
     );
 }
 
+/**
+ * @param sampler
+ * @param uv
+ * @param bias - not allowed in vertex shader
+ */
 // prettier-ignore
 export function texture(sampler: Sampler2DTerm, uv: Vec2Term, bias?: FloatTerm): FnCall<"vec4">;
 // prettier-ignore
@@ -100,6 +105,11 @@ export function texture(sampler: Term<Sampler>, uv: Term<Vec>, bias?: FloatTerm)
     return $call("texture", sampler, uv, bias);
 }
 
+/**
+ * @param sampler
+ * @param uvw
+ * @param bias - not allowed in vertex shader
+ */
 // prettier-ignore
 export function textureProj(sampler: Sampler2DTerm, uvw: Term<"vec3" | "vec4">, bias?: FloatTerm): FnCall<"vec4">;
 // prettier-ignore
@@ -120,30 +130,36 @@ export function textureProj(sampler: Term<Sampler>, uv: Term<Vec>, bias?: FloatT
 }
 
 // prettier-ignore
-export function textureLod(sampler: Sampler2DTerm, uv: Vec2Term, bias?: FloatTerm): FnCall<"vec4">;
+export function textureLod(sampler: Sampler2DTerm, uv: Vec2Term, lod: FloatTerm): FnCall<"vec4">;
 // prettier-ignore
-export function textureLod(sampler: Sampler3DTerm, uvw: Vec3Term, bias?: FloatTerm): FnCall<"vec4">;
+export function textureLod(sampler: Sampler3DTerm, uvw: Vec3Term, lod: FloatTerm): FnCall<"vec4">;
 // prettier-ignore
-export function textureLod(sampler: SamplerCubeTerm, uvw: Vec3Term, bias?: FloatTerm): FnCall<"vec4">;
+export function textureLod(sampler: SamplerCubeTerm, uvw: Vec3Term, lod: FloatTerm): FnCall<"vec4">;
 // prettier-ignore
-export function textureLod(sampler: ISampler2DTerm, uv: Vec2Term, bias?: FloatTerm): FnCall<"ivec4">;
+export function textureLod(sampler: ISampler2DTerm, uv: Vec2Term, lod: FloatTerm): FnCall<"ivec4">;
 // prettier-ignore
-export function textureLod(sampler: ISampler3DTerm, uvw: Vec3Term, bias?: FloatTerm): FnCall<"ivec4">;
+export function textureLod(sampler: ISampler3DTerm, uvw: Vec3Term, lod: FloatTerm): FnCall<"ivec4">;
 // prettier-ignore
-export function textureLod(sampler: ISamplerCubeTerm, uvw: Vec3Term, bias?: FloatTerm): FnCall<"ivec4">;
+export function textureLod(sampler: ISamplerCubeTerm, uvw: Vec3Term, lod: FloatTerm): FnCall<"ivec4">;
 // prettier-ignore
-export function textureLod(sampler: USampler2DTerm, uv: Vec2Term, bias?: FloatTerm): FnCall<"uvec4">;
+export function textureLod(sampler: USampler2DTerm, uv: Vec2Term, lod: FloatTerm): FnCall<"uvec4">;
 // prettier-ignore
-export function textureLod(sampler: USampler3DTerm, uvw: Vec3Term, bias?: FloatTerm): FnCall<"uvec4">;
+export function textureLod(sampler: USampler3DTerm, uvw: Vec3Term, lod: FloatTerm): FnCall<"uvec4">;
 // prettier-ignore
-export function textureLod(sampler: USamplerCubeTerm, uvw: Vec3Term, bias?: FloatTerm): FnCall<"uvec4">;
+export function textureLod(sampler: USamplerCubeTerm, uvw: Vec3Term, lod: FloatTerm): FnCall<"uvec4">;
 // prettier-ignore
-export function textureLod(sampler: Term<"sampler2DShadow">, uvw: Vec3Term, bias?: FloatTerm): FnCall<"float">;
+export function textureLod(sampler: Term<"sampler2DShadow">, uvw: Vec3Term, lod: FloatTerm): FnCall<"float">;
 // prettier-ignore
-export function textureLod(sampler: Term<Sampler>, uv: Term<Vec>, bias?: FloatTerm): FnCall<any> {
-    return $call("textureLod", sampler, uv, bias);
+export function textureLod(sampler: Term<Sampler>, uv: Term<Vec>, lod: FloatTerm): FnCall<any> {
+    return $call("textureLod", sampler, uv, lod);
 }
 
+/**
+ * @param sampler
+ * @param uvw
+ * @param off
+ * @param bias - not allowed in vertex shader
+ */
 // prettier-ignore
 export function textureOffset(sampler: Sampler2DTerm, uvw: Vec2Term, off: IVec2Term, bias?: FloatTerm): FnCall<"vec4">;
 // prettier-ignore
@@ -179,30 +195,25 @@ export function textureOffset(sampler: Term<Sampler>, uv: Term<Vec>, off: Term<I
 }
 
 // prettier-ignore
-export function texelFetch(sampler: Sampler2DTerm, uv: IVec2Term, lod?: IntTerm): FnCall<"vec4">;
+export function texelFetch(sampler: Sampler2DTerm, uv: IVec2Term, lod: IntTerm): FnCall<"vec4">;
 // prettier-ignore
-export function texelFetch(sampler: Sampler3DTerm, uvw: IVec3Term, lod?: IntTerm): FnCall<"vec4">;
+export function texelFetch(sampler: Sampler3DTerm, uvw: IVec3Term, lod: IntTerm): FnCall<"vec4">;
 // prettier-ignore
-export function texelFetch(sampler: ISampler2DTerm, uv: IVec2Term, lod?: IntTerm): FnCall<"ivec4">;
+export function texelFetch(sampler: ISampler2DTerm, uv: IVec2Term, lod: IntTerm): FnCall<"ivec4">;
 // prettier-ignore
-export function texelFetch(sampler: ISampler3DTerm, uvw: IVec3Term, lod?: IntTerm): FnCall<"ivec4">;
+export function texelFetch(sampler: ISampler3DTerm, uvw: IVec3Term, lod: IntTerm): FnCall<"ivec4">;
 // prettier-ignore
-export function texelFetch(sampler: USampler2DTerm, uv: IVec2Term, lod?: IntTerm): FnCall<"uvec4">;
+export function texelFetch(sampler: USampler2DTerm, uv: IVec2Term, lod: IntTerm): FnCall<"uvec4">;
 // prettier-ignore
-export function texelFetch(sampler: USampler3DTerm, uvw: IVec3Term, lod?: IntTerm): FnCall<"uvec4">;
+export function texelFetch(sampler: USampler3DTerm, uvw: IVec3Term, lod: IntTerm): FnCall<"uvec4">;
 // prettier-ignore
-export function texelFetch(sampler: Term<Sampler>, uv: Term<IVec>, lod?: IntTerm): FnCall<any> {
-    return lod ? builtinCall(
+export function texelFetch(sampler: Term<Sampler>, uv: Term<IVec>, lod: IntTerm): FnCall<any> {
+    return builtinCall(
         "texelFetch",
         texRetType(sampler),
         sampler,
         uv,
         lod
-    ) : builtinCall(
-        "texelFetch",
-        texRetType(sampler),
-        sampler,
-        uv
     );
 }
 
@@ -222,6 +233,135 @@ export function texelFetchOffset(sampler: USampler3DTerm, uvw: IVec3Term, lod: I
 export function texelFetchOffset(sampler: Term<Sampler>, uv: Term<IVec>, lod: IntTerm, offset: Term<IVec>): FnCall<any> {
     return builtinCall(
         "texelFetchOffset",
+        texRetType(sampler),
+        sampler,
+        uv,
+        lod,
+        offset
+    );
+}
+
+/**
+ * @param sampler
+ * @param uvw
+ * @param off
+ * @param bias - not allowed in vertex shader
+ */
+// prettier-ignore
+export function textureProjOffset(sampler: Sampler2DTerm, uvw: Vec3Term, off: IVec2Term, bias?: FloatTerm): FnCall<"vec4">;
+// prettier-ignore
+export function textureProjOffset(sampler: Sampler2DTerm, uvw: Vec4Term, off: IVec2Term, bias?: FloatTerm): FnCall<"vec4">;
+// prettier-ignore
+export function textureProjOffset(sampler: Sampler3DTerm, uvw: Vec4Term, off: IVec3Term, bias?: FloatTerm): FnCall<"vec4">;
+// prettier-ignore
+export function textureProjOffset(sampler: ISampler2DTerm, uvw: Vec3Term, off: IVec2Term, bias?: FloatTerm): FnCall<"ivec4">;
+// prettier-ignore
+export function textureProjOffset(sampler: ISampler2DTerm, uvw: Vec4Term, off: IVec2Term, bias?: FloatTerm): FnCall<"ivec4">;
+// prettier-ignore
+export function textureProjOffset(sampler: ISampler3DTerm, uvw: Vec4Term, off: IVec3Term, bias?: FloatTerm): FnCall<"ivec4">;
+// prettier-ignore
+export function textureProjOffset(sampler: USampler2DTerm, uvw: Vec3Term, off: IVec2Term, bias?: FloatTerm): FnCall<"uvec4">;
+// prettier-ignore
+export function textureProjOffset(sampler: USampler2DTerm, uvw: Vec4Term, off: IVec2Term, bias?: FloatTerm): FnCall<"uvec4">;
+// prettier-ignore
+export function textureProjOffset(sampler: USampler3DTerm, uvw: Vec4Term, off: IVec3Term, bias?: FloatTerm): FnCall<"uvec4">;
+// prettier-ignore
+export function textureProjOffset(sampler: Term<"sampler2DShadow">, uvw: Vec4Term, off: IVec2Term, bias?: FloatTerm): FnCall<"float">;
+// prettier-ignore
+export function textureProjOffset(sampler: Term<Sampler>, uv: Term<Vec>, off: Term<IVec>, bias?: FloatTerm): FnCall<any> {
+    const f = bias ? builtinCall(
+        "textureProjOffset",
+        texRetType(sampler),
+        sampler,
+        uv,
+        off,
+        bias
+    ) : builtinCall(
+        "textureProjOffset",
+        texRetType(sampler),
+        sampler,
+        uv,
+        off
+    );
+    !isVec(f) && (f.info = "n");
+    return f;
+}
+
+// prettier-ignore
+export function texelLodOffset(sampler: Sampler2DTerm, uv: Vec2Term, lod: FloatTerm, offset: IVec2Term): FnCall<"vec4">;
+// prettier-ignore
+export function texelLodOffset(sampler: Sampler3DTerm, uvw: Vec3Term, lod: FloatTerm, offset: IVec3Term): FnCall<"vec4">;
+// prettier-ignore
+export function texelLodOffset(sampler: ISampler2DTerm, uv: Vec2Term, lod: FloatTerm, offset: IVec2Term): FnCall<"ivec4">;
+// prettier-ignore
+export function texelLodOffset(sampler: ISampler3DTerm, uvw: Vec3Term, lod: FloatTerm, offset: IVec3Term): FnCall<"ivec4">;
+// prettier-ignore
+export function texelLodOffset(sampler: USampler2DTerm, uv: Vec2Term, lod: FloatTerm, offset: IVec2Term): FnCall<"uvec4">;
+// prettier-ignore
+export function texelLodOffset(sampler: USampler3DTerm, uvw: Vec3Term, lod: FloatTerm, offset: IVec3Term): FnCall<"uvec4">;
+// prettier-ignore
+export function texelLodOffset(sampler: Term<"sampler2DShadow">, uvw: Vec3Term, lod: FloatTerm, offset: IVec2Term): FnCall<"float">;
+// prettier-ignore
+export function texelLodOffset(sampler: Term<Sampler>, uv: Term<Vec>, lod: FloatTerm, offset: Term<IVec>): FnCall<any> {
+    return builtinCall(
+        "texelLodOffset",
+        texRetType(sampler),
+        sampler,
+        uv,
+        lod,
+        offset
+    );
+}
+
+// prettier-ignore
+export function textureProjLod(sampler: Sampler2DTerm, uv: Vec3Term, lod: FloatTerm): FnCall<"vec4">;
+// prettier-ignore
+export function textureProjLod(sampler: Sampler2DTerm, uv: Vec4Term, lod: FloatTerm): FnCall<"vec4">;
+// prettier-ignore
+export function textureProjLod(sampler: Sampler3DTerm, uvw: Vec4Term, lod: FloatTerm): FnCall<"vec4">;
+// prettier-ignore
+export function textureProjLod(sampler: ISampler2DTerm, uv: Vec3Term, lod: FloatTerm): FnCall<"ivec4">;
+// prettier-ignore
+export function textureProjLod(sampler: ISampler2DTerm, uv: Vec4Term, lod: FloatTerm): FnCall<"ivec4">;
+// prettier-ignore
+export function textureProjLod(sampler: ISampler3DTerm, uvw: Vec4Term, lod: FloatTerm): FnCall<"ivec4">;
+// prettier-ignore
+export function textureProjLod(sampler: USampler2DTerm, uv: Vec3Term, lod: FloatTerm): FnCall<"uvec4">;
+// prettier-ignore
+export function textureProjLod(sampler: USampler2DTerm, uv: Vec4Term, lod: FloatTerm): FnCall<"uvec4">;
+// prettier-ignore
+export function textureProjLod(sampler: USampler3DTerm, uvw: Vec4Term, lod: FloatTerm): FnCall<"uvec4">;
+// prettier-ignore
+export function textureProjLod(sampler: Term<"sampler2DShadow">, uvw: Vec4Term, lod: FloatTerm): FnCall<"float">;
+// prettier-ignore
+export function textureProjLod(sampler: Term<Sampler>, uv: Term<Vec>, lod: FloatTerm): FnCall<any> {
+    return $call("textureProjLod", sampler, uv, lod);
+}
+
+// prettier-ignore
+export function texelProjLodOffset(sampler: Sampler2DTerm, uv: Vec3Term, lod: FloatTerm, offset: IVec2Term): FnCall<"vec4">;
+// prettier-ignore
+export function texelProjLodOffset(sampler: Sampler2DTerm, uv: Vec4Term, lod: FloatTerm, offset: IVec2Term): FnCall<"vec4">;
+// prettier-ignore
+export function texelProjLodOffset(sampler: Sampler3DTerm, uvw: Vec4Term, lod: FloatTerm, offset: IVec3Term): FnCall<"vec4">;
+// prettier-ignore
+export function texelProjLodOffset(sampler: ISampler2DTerm, uv: Vec3Term, lod: FloatTerm, offset: IVec2Term): FnCall<"ivec4">;
+// prettier-ignore
+export function texelProjLodOffset(sampler: ISampler2DTerm, uv: Vec4Term, lod: FloatTerm, offset: IVec2Term): FnCall<"ivec4">;
+// prettier-ignore
+export function texelProjLodOffset(sampler: ISampler3DTerm, uvw: Vec4Term, lod: FloatTerm, offset: IVec3Term): FnCall<"ivec4">;
+// prettier-ignore
+export function texelProjLodOffset(sampler: USampler2DTerm, uv: Vec3Term, lod: FloatTerm, offset: IVec2Term): FnCall<"uvec4">;
+// prettier-ignore
+export function texelProjLodOffset(sampler: USampler2DTerm, uv: Vec4Term, lod: FloatTerm, offset: IVec2Term): FnCall<"uvec4">;
+// prettier-ignore
+export function texelProjLodOffset(sampler: USampler3DTerm, uvw: Vec4Term, lod: FloatTerm, offset: IVec3Term): FnCall<"uvec4">;
+// prettier-ignore
+export function texelProjLodOffset(sampler: Term<"sampler2DShadow">, uvw: Vec4Term, lod: FloatTerm, offset: IVec2Term): FnCall<"float">;
+// prettier-ignore
+export function texelProjLodOffset(sampler: Term<Sampler>, uv: Term<Vec>, lod: FloatTerm, offset: Term<IVec>): FnCall<any> {
+    return builtinCall(
+        "texelProjLodOffset",
         texRetType(sampler),
         sampler,
         uv,
@@ -261,6 +401,104 @@ export function textureGrad(sampler: Term<Sampler>, uvw: Term<Vec>, dx: Term<Vec
         uvw,
         dx,
         dy
+    );
+    !isVec(f) && (f.info = "n");
+    return f;
+}
+
+// prettier-ignore
+export function textureGradOffset(sampler: Sampler2DTerm, uv: Vec2Term, dx: Vec2Term, dy: Vec2Term, offset: IVec2Term): FnCall<"vec4">;
+// prettier-ignore
+export function textureGradOffset(sampler: Sampler3DTerm, uvw: Vec3Term, dx: Vec3Term, dy: Vec3Term, offset: IVec3Term): FnCall<"vec4">;
+// prettier-ignore
+export function textureGradOffset(sampler: ISampler2DTerm, uv: Vec2Term, dx: Vec2Term, dy: Vec2Term, offset: IVec2Term): FnCall<"ivec4">;
+// prettier-ignore
+export function textureGradOffset(sampler: ISampler3DTerm, uvw: Vec3Term, dx: Vec3Term, dy: Vec3Term, offset: IVec3Term): FnCall<"ivec4">;
+// prettier-ignore
+export function textureGradOffset(sampler: USampler2DTerm, uv: Vec2Term, dx: Vec2Term, dy: Vec2Term, offset: IVec2Term): FnCall<"uvec4">;
+// prettier-ignore
+export function textureGradOffset(sampler: USampler3DTerm, uvw: Vec3Term, dx: Vec3Term, dy: Vec3Term, offset: IVec3Term): FnCall<"uvec4">;
+// prettier-ignore
+export function textureGradOffset(sampler: Term<"sampler2DShadow">, uvw: Vec3Term, dx: Vec3Term, dy: Vec3Term, offset: IVec2Term): FnCall<"float">;
+// prettier-ignore
+export function textureGradOffset(sampler: Term<Sampler>, uvw: Term<Vec>, dx: Term<Vec>, dy: Term<Vec>, offset: Term<IVec>): FnCall<any> {
+    const f = builtinCall(
+        "textureGradOffset",
+        texRetType(sampler),
+        sampler,
+        uvw,
+        dx,
+        dy,
+        offset
+    );
+    !isVec(f) && (f.info = "n");
+    return f;
+}
+
+// prettier-ignore
+export function textureProjGrad(sampler: Sampler2DTerm, uv: Vec3Term, dx: Vec2Term, dy: Vec2Term): FnCall<"vec4">;
+// prettier-ignore
+export function textureProjGrad(sampler: Sampler2DTerm, uv: Vec4Term, dx: Vec2Term, dy: Vec2Term): FnCall<"vec4">;
+// prettier-ignore
+export function textureProjGrad(sampler: Sampler3DTerm, uvw: Vec3Term, dx: Vec3Term, dy: Vec3Term): FnCall<"vec4">;
+// prettier-ignore
+export function textureProjGrad(sampler: ISampler2DTerm, uv: Vec3Term, dx: Vec2Term, dy: Vec2Term): FnCall<"ivec4">;
+// prettier-ignore
+export function textureProjGrad(sampler: ISampler2DTerm, uv: Vec4Term, dx: Vec2Term, dy: Vec2Term): FnCall<"ivec4">;
+// prettier-ignore
+export function textureProjGrad(sampler: ISampler3DTerm, uvw: Vec4Term, dx: Vec3Term, dy: Vec3Term): FnCall<"ivec4">;
+// prettier-ignore
+export function textureProjGrad(sampler: USampler2DTerm, uv: Vec3Term, dx: Vec2Term, dy: Vec2Term): FnCall<"uvec4">;
+// prettier-ignore
+export function textureProjGrad(sampler: USampler2DTerm, uv: Vec4Term, dx: Vec2Term, dy: Vec2Term): FnCall<"uvec4">;
+// prettier-ignore
+export function textureProjGrad(sampler: USampler3DTerm, uvw: Vec4Term, dx: Vec3Term, dy: Vec3Term): FnCall<"uvec4">;
+// prettier-ignore
+export function textureProjGrad(sampler: Term<"sampler2DShadow">, uvw: Vec4Term, dx: Vec2Term, dy: Vec2Term): FnCall<"float">;
+// prettier-ignore
+export function textureProjGrad(sampler: Term<Sampler>, uvw: Term<Vec>, dx: Term<Vec>, dy: Term<Vec>): FnCall<any> {
+    const f = builtinCall(
+        "textureProjGrad",
+        texRetType(sampler),
+        sampler,
+        uvw,
+        dx,
+        dy,
+    );
+    !isVec(f) && (f.info = "n");
+    return f;
+}
+
+// prettier-ignore
+export function textureProjGradOffset(sampler: Sampler2DTerm, uv: Vec3Term, dx: Vec2Term, dy: Vec2Term, offset: IVec2Term): FnCall<"vec4">;
+// prettier-ignore
+export function textureProjGradOffset(sampler: Sampler2DTerm, uv: Vec4Term, dx: Vec2Term, dy: Vec2Term, offset: IVec2Term): FnCall<"vec4">;
+// prettier-ignore
+export function textureProjGradOffset(sampler: Sampler3DTerm, uvw: Vec4Term, dx: Vec3Term, dy: Vec3Term, offset: IVec3Term): FnCall<"vec4">;
+// prettier-ignore
+export function textureProjGradOffset(sampler: ISampler2DTerm, uv: Vec3Term, dx: Vec2Term, dy: Vec2Term, offset: IVec2Term): FnCall<"ivec4">;
+// prettier-ignore
+export function textureProjGradOffset(sampler: ISampler2DTerm, uv: Vec4Term, dx: Vec2Term, dy: Vec2Term, offset: IVec2Term): FnCall<"ivec4">;
+// prettier-ignore
+export function textureProjGradOffset(sampler: ISampler3DTerm, uvw: Vec4Term, dx: Vec3Term, dy: Vec3Term, offset: IVec3Term): FnCall<"ivec4">;
+// prettier-ignore
+export function textureProjGradOffset(sampler: USampler2DTerm, uv: Vec3Term, dx: Vec2Term, dy: Vec2Term, offset: IVec2Term): FnCall<"uvec4">;
+// prettier-ignore
+export function textureProjGradOffset(sampler: USampler2DTerm, uv: Vec4Term, dx: Vec2Term, dy: Vec2Term, offset: IVec2Term): FnCall<"uvec4">;
+// prettier-ignore
+export function textureProjGradOffset(sampler: USampler3DTerm, uvw: Vec4Term, dx: Vec3Term, dy: Vec3Term, offset: IVec3Term): FnCall<"uvec4">;
+// prettier-ignore
+export function textureProjGradOffset(sampler: Term<"sampler2DShadow">, uvw: Vec4Term, dx: Vec2Term, dy: Vec2Term, offset: IVec2Term): FnCall<"float">;
+// prettier-ignore
+export function textureProjGradOffset(sampler: Term<Sampler>, uvw: Term<Vec>, dx: Term<Vec>, dy: Term<Vec>, offset: Term<IVec>): FnCall<any> {
+    const f = builtinCall(
+        "textureProjGradOffset",
+        texRetType(sampler),
+        sampler,
+        uvw,
+        dx,
+        dy,
+        offset
     );
     !isVec(f) && (f.info = "n");
     return f;

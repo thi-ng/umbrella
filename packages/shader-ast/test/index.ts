@@ -8,8 +8,11 @@ import {
     Lit,
     mul,
     ret,
+    sym,
+    texture,
     TRUE,
     vec2,
+    vec3,
 } from "../src";
 
 describe("shader-ast", () => {
@@ -168,5 +171,91 @@ describe("shader-ast", () => {
                 },
             ],
         });
+    });
+
+    it("texture", () => {
+        const s2d = sym("sampler2D", "tex");
+        const s3d = sym("sampler3D", "tex");
+        const args2d = [
+            {
+                id: "tex",
+                init: undefined,
+                opts: {},
+                tag: "sym",
+                type: "sampler2D",
+            },
+            {
+                info: "n",
+                tag: "lit",
+                type: "vec2",
+                val: [
+                    {
+                        info: undefined,
+                        tag: "lit",
+                        type: "float",
+                        val: 0,
+                    },
+                ],
+            },
+        ];
+        assert.deepStrictEqual(
+            texture(s2d, vec2()),
+            {
+                args: args2d,
+                id: "texture",
+                tag: "call_i",
+                type: "vec4",
+            },
+            "2d"
+        );
+        assert.deepStrictEqual(
+            texture(s2d, vec2(), float(1)),
+            {
+                args: [
+                    ...args2d,
+                    {
+                        info: undefined,
+                        tag: "lit",
+                        type: "float",
+                        val: 1,
+                    },
+                ],
+                id: "texture",
+                tag: "call_i",
+                type: "vec4",
+            },
+            "2d bias"
+        );
+        assert.deepStrictEqual(
+            texture(s3d, vec3()),
+            {
+                args: [
+                    {
+                        id: "tex",
+                        init: undefined,
+                        opts: {},
+                        tag: "sym",
+                        type: "sampler3D",
+                    },
+                    {
+                        info: "n",
+                        tag: "lit",
+                        type: "vec3",
+                        val: [
+                            {
+                                info: undefined,
+                                tag: "lit",
+                                type: "float",
+                                val: 0,
+                            },
+                        ],
+                    },
+                ],
+                id: "texture",
+                tag: "call_i",
+                type: "vec4",
+            },
+            "3d"
+        );
     });
 });
