@@ -38,6 +38,9 @@ import { debounce, reactive, Stream, sync, SyncTuple } from "@thi.ng/rstream";
 // pre-sort range preset IDs for dropdown menus
 const RANGE_IDs = <ColorRangePreset[]>Object.keys(COLOR_RANGES).sort();
 
+// number of serialized state tokens (from hash fragment)
+const NUM_STATE_TOKENS = 15;
+
 ///////////////////////// UI widgets
 
 const themePartControls = ([id, part]: [string, ColorThemePart]) => {
@@ -154,6 +157,23 @@ const variance = reactive(0.05, { id: "variance" });
 const sorted = reactive(false, { id: "sorted" });
 const seed = reactive(0xdecafbad, { id: "seed" });
 
+// attempt to restore state from hash fragment
+if (location.hash.length > 1) {
+    const tokens = atob(location.hash.substr(1)).split("|");
+    if (tokens.length === NUM_STATE_TOKENS) {
+        seed.next(parseInt(tokens[0]));
+        num.next(parseInt(tokens[1]));
+        variance.next(parseFloat(tokens[2]));
+        for (let i = 3, j = 0; j < 4; i += 3, j++) {
+            parts[j].next({
+                range: <ColorRangePreset>tokens[i],
+                base: lch(JSON.parse(tokens[i + 1])),
+                weight: parseFloat(tokens[i + 2]),
+            });
+        }
+    }
+}
+
 // stream combinator
 const mainInputs = <const>{
     parts: debouncedParts,
@@ -232,8 +252,24 @@ $compile(
     )
 ).mount(document.getElementById("app")!);
 
+// store current config base64 encoded in hash fragment
+main.subscribe({
+    next({ parts, num, variance, seed }) {
+        const res = [
+            seed,
+            num,
+            variance,
+            ...Object.values(parts).map(
+                (p) => `${p.range}|${p.base}|${p.weight}`
+            ),
+        ].join("|");
+        location.hash = btoa(res);
+    },
+});
+
 // traverse dataflow graph from given roots, produce Graphviz DOT output
 // (also uncomment rstream-dot import above)
+// see: https://twitter.com/thing_umbrella/status/1363844585907249156
 
 // console.log(
 //     toDot(
