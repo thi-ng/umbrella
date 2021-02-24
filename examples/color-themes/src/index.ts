@@ -1,48 +1,50 @@
-import type { IObjectOf } from "@thi.ng/api";
-import { isMobile, isString } from "@thi.ng/checks";
 import {
     ColorRangePreset,
-    colorsFromTheme,
     ColorThemePart,
-    COLOR_RANGES,
     css,
-    CSSColorName,
-    distCIEDE2000,
     lch,
     LCH,
-    proximity,
-    sort,
     swatchesH,
 } from "@thi.ng/color";
 import {
     button,
     checkbox,
+    datalist,
     div,
     inputColor,
     inputRange,
+    option,
     span,
 } from "@thi.ng/hiccup-html";
 import { svg } from "@thi.ng/hiccup-svg";
-import { SYSTEM, XsAdd } from "@thi.ng/random";
 import {
     $compile,
+    $inputCheckbox,
     $inputNum,
+    $inputTrigger,
     $list,
     $refresh,
     ComponentLike,
 } from "@thi.ng/rdom";
 import { staticDropdown } from "@thi.ng/rdom-components";
-import { debounce, reactive, Stream, sync, SyncTuple } from "@thi.ng/rstream";
-// import { toDot, walk } from "@thi.ng/rstream-dot";
+import { reactive } from "@thi.ng/rstream";
+import { MainOutputs, RANGE_IDs } from "./api";
+import {
+    debouncedParts,
+    downloadTrigger,
+    main,
+    num,
+    parts,
+    randomizeThemeParts,
+    seed,
+    sorted,
+    variance,
+} from "./state";
 
-// pre-sort range preset IDs for dropdown menus
-const RANGE_IDs = <ColorRangePreset[]>Object.keys(COLOR_RANGES).sort();
-
-// number of serialized state tokens (from hash fragment)
-const NUM_STATE_TOKENS = 15;
-
-///////////////////////// UI widgets
-
+/**
+ * UI root component for a set of controls for a single color theme part (range
+ * preset, base color, weight).
+ */
 const themePartControls = ([id, part]: [string, ColorThemePart]) => {
     const stream = parts[id];
     return div(
@@ -84,27 +86,21 @@ const themePartControls = ([id, part]: [string, ColorThemePart]) => {
     );
 };
 
-const control = (label: string, body: ComponentLike) =>
-    div(".grid2.mb3", {}, span({}, label), body);
+/**
+ * Simple 2-column component wrapper for given label & body component.
+ *
+ * @param label
+ * @param body
+ */
+const control = (label: string, ...body: ComponentLike[]) =>
+    div(".grid2.mb3", {}, span({}, label), ...body);
 
-const themeSwatches = async ({
-    parts,
-    num,
-    variance,
-    seed,
-    sorted,
-}: SyncTuple<typeof mainInputs>) => {
-    const colors = [
-        ...colorsFromTheme(Object.values(parts), {
-            num,
-            variance,
-            rnd: new XsAdd(seed),
-        }),
-    ];
-    if (sorted) {
-        sort(colors, proximity(lch(1, 0, 0), distCIEDE2000()));
-    }
-    return <ComponentLike>svg(
+/**
+ * SVG component wrapper for color swatches.
+ *
+ * @param state
+ */
+const svgSwatches = async ({ colors, num }: MainOutputs) => <ComponentLike>svg(
         {
             width: "100vw",
             height: "100vh",
@@ -114,83 +110,14 @@ const themeSwatches = async ({
         },
         swatchesH(colors, 5, 100)
     );
-};
 
-///////////////////////// streams / app state
-
-const themePart = (
-    range: ColorRangePreset,
-    base: LCH | CSSColorName,
-    weight = 1
-) =>
-    reactive<ColorThemePart>({
-        range,
-        base: isString(base) ? lch(base) : base,
-        weight,
-    });
-
-const randomizeThemeParts = () => {
-    for (let part of Object.values(parts)) {
-        part.next({
-            range: RANGE_IDs[SYSTEM.int() % RANGE_IDs.length],
-            base: lch.random(),
-            weight: SYSTEM.float(),
-        });
-    }
-};
-
-// setup streams of color theme parts
-const parts: IObjectOf<Stream<ColorThemePart>> = {
-    0: themePart("bright", "goldenrod"),
-    1: themePart("hard", "turquoise", 0.33),
-    2: themePart("cool", "fuchsia", 0.5),
-    3: themePart("warm", "seagreen", 0.1),
-};
-
-// debounce needed to avoid triggering extraneous updates via randomizeTheme()
-const debouncedParts = sync({ src: parts, id: "parts" }).subscribe(debounce(1));
-
-// streams for other user controls
-// (the IDs are optional, only used for visualization purposes, see end of file)
-const num = reactive(isMobile() ? 100 : 200, { id: "num" });
-const variance = reactive(0.05, { id: "variance" });
-const sorted = reactive(false, { id: "sorted" });
-const seed = reactive(0xdecafbad, { id: "seed" });
-
-// attempt to restore state from hash fragment
-if (location.hash.length > 1) {
-    const tokens = atob(location.hash.substr(1)).split("|");
-    if (tokens.length === NUM_STATE_TOKENS) {
-        seed.next(parseInt(tokens[0]));
-        num.next(parseInt(tokens[1]));
-        variance.next(parseFloat(tokens[2]));
-        for (let i = 3, j = 0; j < 4; i += 3, j++) {
-            parts[j].next({
-                range: <ColorRangePreset>tokens[i],
-                base: lch(JSON.parse(tokens[i + 1])),
-                weight: parseFloat(tokens[i + 2]),
-            });
-        }
-    }
-}
-
-// stream combinator
-const mainInputs = <const>{
-    parts: debouncedParts,
-    num,
-    variance,
-    seed,
-    sorted,
-};
-const main = sync({ src: mainInputs, id: "main" });
-
-///////////////////////// UI components
+// main UI
 
 $compile(
     div(
         {},
         // color swatches
-        $refresh<SyncTuple<typeof mainInputs>>(main, themeSwatches),
+        $refresh<MainOutputs>(main, svgSwatches),
         // theme controls in HUD UI
         div(
             ".z-1.fixed.top-0.left-0.bg-white-80.ma3-m.ma3-l.pa3.w-100.w-50-m.w-33-l",
@@ -208,11 +135,19 @@ $compile(
             control(
                 "num swatches",
                 inputRange({
-                    min: 10,
-                    max: 200,
+                    min: 8,
+                    max: 256,
+                    list: "pow2",
                     value: num,
                     oninput: $inputNum(num),
-                })
+                }),
+                datalist(
+                    "#pow2",
+                    {},
+                    ...[8, 16, 32, 64, 128, 256].map((x) =>
+                        option({}, String(x))
+                    )
+                )
             ),
             control(
                 "variance",
@@ -237,44 +172,21 @@ $compile(
                 "sort",
                 checkbox({
                     checked: sorted,
-                    onchange: (e) =>
-                        sorted.next(
-                            Boolean((<HTMLInputElement>e.target).checked)
-                        ),
+                    onchange: $inputCheckbox(sorted),
                 })
             ),
             button(
-                ".bg-black.white.w4",
+                ".bg-black.white.bn.pa2.mr3",
                 { onclick: randomizeThemeParts },
                 "randomize"
+            ),
+            button(
+                ".bg-black.white.bn.pa2",
+                {
+                    onclick: $inputTrigger(downloadTrigger),
+                },
+                "download (ACT)"
             )
         )
     )
 ).mount(document.getElementById("app")!);
-
-// store current config base64 encoded in hash fragment
-main.subscribe({
-    next({ parts, num, variance, seed }) {
-        const res = [
-            seed,
-            num,
-            variance,
-            ...Object.values(parts).map(
-                (p) => `${p.range}|${p.base}|${p.weight}`
-            ),
-        ].join("|");
-        location.hash = btoa(res);
-    },
-});
-
-// traverse dataflow graph from given roots, produce Graphviz DOT output
-// (also uncomment rstream-dot import above)
-// see: https://twitter.com/thing_umbrella/status/1363844585907249156
-
-// console.log(
-//     toDot(
-//         walk([...Object.values(parts), variance, num, sorted, seed], {
-//             values: true,
-//         })
-//     )
-// );
