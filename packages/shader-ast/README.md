@@ -49,6 +49,8 @@ This project is part of the
     - [Tree traversals](#tree-traversals)
     - [Constant folding](#constant-folding)
 - [Authors](#authors)
+  - [Maintainer](#maintainer)
+  - [Contributors](#contributors)
 - [License](#license)
 
 ## About
@@ -184,7 +186,7 @@ yarn add @thi.ng/shader-ast
 <script src="https://unpkg.com/@thi.ng/shader-ast/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 4.73 KB / CJS: 5.26 KB / UMD: 4.72 KB
+Package sizes (gzipped, pre-treeshake): ESM: 4.85 KB / CJS: 5.40 KB / UMD: 4.81 KB
 
 ## Dependencies
 
@@ -588,14 +590,20 @@ constantFolding(ast)
 
 ## Authors
 
-Karsten Schmidt
+### Maintainer
+
+- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
+
+### Contributors
+
+- Jamie Owen ([@jamieowen](https://github.com/jamieowen))
 
 If this project contributes to an academic publication, please cite it as:
 
 ```bibtex
 @misc{thing-shader-ast,
   title = "@thi.ng/shader-ast",
-  author = "Karsten Schmidt",
+  author = "Karsten Schmidt and others",
   note = "https://thi.ng/shader-ast",
   year = 2019
 }
