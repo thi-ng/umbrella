@@ -16,7 +16,7 @@ import { debounce, reactive, stream, Stream, sync } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 import { MainInputs, MainOutputs, RANGE_IDs } from "./api";
 import { downloadACT } from "./palette";
-import { initFromHash } from "./serialize";
+import { attachSerializer, initFromHash } from "./serialize";
 // import { toDot, walk } from "@thi.ng/rstream-dot";
 
 const themePart = (
@@ -98,6 +98,8 @@ export const main = sync<typeof mainInputs, MainOutputs>({
     xform: map(computeSwatches),
     id: "main",
 });
+
+attachSerializer(main);
 
 export const downloadTrigger = stream<boolean>();
 sync({
