@@ -29,3 +29,20 @@ export const $input = (stream: ISubscriber<string>) => (e: Event) =>
 export const $inputNum = (stream: ISubscriber<number>, fallback = 0) => (
     e: Event
 ) => stream.next(maybeParseFloat((<any>e.target).value, fallback));
+
+/**
+ * HOF DOM event listener to emit a checkbox input's value on given stream.
+ *
+ * @param stream
+ */
+export const $inputCheckbox = (stream: ISubscriber<boolean>) => (e: Event) =>
+    stream.next((<HTMLInputElement>e.target).checked);
+
+/**
+ * HOF DOM event listener to emit `true` on given stream when event is
+ * triggered.
+ *
+ * @param stream
+ */
+export const $inputTrigger = (stream: ISubscriber<boolean>) => () =>
+    stream.next(true);
