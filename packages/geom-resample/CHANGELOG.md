@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.58](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-resample@0.2.57...@thi.ng/geom-resample@0.2.58) (2021-02-24)
+
+**Note:** Version bump only for package @thi.ng/geom-resample
+
+
+
+
+
 ## [0.2.57](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-resample@0.2.56...@thi.ng/geom-resample@0.2.57) (2021-02-20)
 
 **Note:** Version bump only for package @thi.ng/geom-resample

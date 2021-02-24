@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.28](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdiff@0.1.27...@thi.ng/hdiff@0.1.28) (2021-02-24)
+
+**Note:** Version bump only for package @thi.ng/hdiff
+
+
+
+
+
 ## [0.1.27](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdiff@0.1.26...@thi.ng/hdiff@0.1.27) (2021-02-20)
 
 **Note:** Version bump only for package @thi.ng/hdiff

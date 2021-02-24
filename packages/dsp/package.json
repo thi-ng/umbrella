@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dsp",
-    "version": "3.0.6",
+    "version": "3.0.7",
     "description": "Composable signal generators, oscillators, filters, FFT, spectrum, windowing & related DSP utils",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -53,8 +53,8 @@
         "@thi.ng/checks": "^2.9.0",
         "@thi.ng/errors": "^1.2.27",
         "@thi.ng/math": "^3.2.0",
-        "@thi.ng/random": "^2.3.0",
-        "@thi.ng/transducers": "^7.6.0"
+        "@thi.ng/random": "^2.3.1",
+        "@thi.ng/transducers": "^7.6.1"
     },
     "files": [
         "*.js",

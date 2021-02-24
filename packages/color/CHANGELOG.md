@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@3.0.1...@thi.ng/color@3.1.0) (2021-02-24)
+
+
+### Features
+
+* **color:** add .toString() impl ([cc65bf0](https://github.com/thi-ng/umbrella/commit/cc65bf031e75c4b96c3c0089cf51c62b88187afe))
+
+
+
+
+
 ## [3.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@3.0.0...@thi.ng/color@3.0.1) (2021-02-22)
 
 

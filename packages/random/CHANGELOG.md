@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@2.3.0...@thi.ng/random@2.3.1) (2021-02-24)
+
+
+### Bug Fixes
+
+* **random:** update weightedRandom() ([b1cf4d8](https://github.com/thi-ng/umbrella/commit/b1cf4d8feccac4b3468a2fb0fdee268306406d78))
+
+
+
+
+
 # [2.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@2.2.0...@thi.ng/random@2.3.0) (2021-02-20)
 
 
