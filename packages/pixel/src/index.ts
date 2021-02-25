@@ -3,6 +3,7 @@ export * from "./canvas";
 export * from "./codegen";
 export * from "./dither";
 export * from "./float";
+export * from "./gradient";
 export * from "./packed";
 export * from "./utils";
 
@@ -24,5 +25,6 @@ export * from "./format/float-format";
 export * from "./format/float-gray";
 export * from "./format/float-gray-alpha";
 export * from "./format/float-hsva";
+export * from "./format/float-norm";
 export * from "./format/float-rgb";
 export * from "./format/float-rgba";
