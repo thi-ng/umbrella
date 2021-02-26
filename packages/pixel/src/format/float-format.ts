@@ -1,4 +1,5 @@
 import type { Fn2, FnN2, IObjectOf, NumericArray } from "@thi.ng/api";
+import { clamp01 } from "@thi.ng/math";
 import { FloatFormat, FloatFormatSpec, Lane } from "../api";
 import { luminanceABGR } from "../utils";
 
@@ -19,7 +20,7 @@ export const defFloatFormat = (fmt: FloatFormatSpec) => {
         return res;
     }
     const to = (col: NumericArray, i: number) =>
-        ((col[i] * 0xff + 0.5) | 0) << chanShift[chan[i]];
+        ((clamp01(col[i]) * 0xff + 0.5) | 0) << chanShift[chan[i]];
     const from: FnN2 = (col, i) => ((col >>> chanShift[chan[i]]) & 0xff) / 0xff;
     switch (chan.length) {
         case 1:
@@ -56,7 +57,7 @@ const defConvert1 = (
 
 const defConvert1Gray = (res: FloatFormat) => {
     res.toABGR = (col) =>
-        ((((col[0] * 0xff + 0.5) | 0) * 0x010101) | 0xff000000) >>> 0;
+        ((((clamp01(col[0]) * 0xff + 0.5) | 0) * 0x010101) | 0xff000000) >>> 0;
     res.fromABGR = (col, out = []) => (
         (out[0] = luminanceABGR(col) / 0xff), out
     );
@@ -84,7 +85,7 @@ const defConvert2Gray = (res: FloatFormat, from: FnN2) => {
     const gray = ~~(res.channels[0] === Lane.ALPHA);
     const alpha = gray ^ 1;
     res.toABGR = (col) => {
-        let out = ((col[gray] * 0xff + 0.5) | 0) * 0x010101;
+        let out = ((clamp01(col[gray]) * 0xff + 0.5) | 0) * 0x010101;
         out |= ((col[alpha] * 0xff + 0.5) | 0) << 24;
         return out >>> 0;
     };
