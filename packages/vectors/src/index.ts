@@ -158,6 +158,7 @@ export * from "./signed-area";
 export * from "./signed-volume";
 export * from "./sin";
 export * from "./sinh";
+export * from "./softmax";
 export * from "./some";
 export * from "./sqrt";
 export * from "./step";
