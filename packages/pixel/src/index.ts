@@ -1,6 +1,7 @@
 export * from "./api";
 export * from "./canvas";
 export * from "./codegen";
+export * from "./convolve";
 export * from "./dither";
 export * from "./float";
 export * from "./gradient";
