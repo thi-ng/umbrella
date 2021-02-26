@@ -8,6 +8,7 @@ export * from "./float";
 export * from "./gray";
 export * from "./logic";
 export * from "./mask";
+export * from "./one-hot";
 export * from "./pow";
 export * from "./rotate";
 export * from "./splat";
