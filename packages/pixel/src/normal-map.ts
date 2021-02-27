@@ -1,12 +1,34 @@
 import { isNumber } from "@thi.ng/checks";
-import { convolve, GRADIENT_X, GRADIENT_Y } from "./convolve";
+import { convolve } from "./convolve";
 import { FloatBuffer } from "./float";
 import { FLOAT_NORMAL } from "./format/float-norm";
 import { ensureChannel } from "./utils";
 
-interface NormalMapOpts {
+export interface NormalMapOpts {
+    /**
+     * Channel ID to use for gradient extraction in source image.
+     *
+     * @defaultValue 0
+     */
     channel: number;
+    /**
+     * Step size (aka number of pixels) between left/right, top/bottom
+     * neighbors.
+     *
+     * @defaultValue 0
+     */
+    step: number;
+    /**
+     * Result gradient scale factor(s).
+     *
+     * @defaultValue 1
+     */
     scale: number | [number, number];
+    /**
+     * Z-axis value to use in blue channel of normal map.
+     *
+     * @defaultValue 1
+     */
     z: number;
 }
 
@@ -29,22 +51,32 @@ interface NormalMapOpts {
  * @param opts
  */
 export const normalMap = (src: FloatBuffer, opts?: Partial<NormalMapOpts>) => {
-    const { channel, scale, z } = {
+    const { channel, step, scale, z } = {
         channel: 0,
+        step: 0,
         scale: [1, 1],
         z: 1,
         ...opts,
     };
     ensureChannel(src.format, channel);
+    const spec = [-1, ...new Array(step).fill(0), 1];
     const [sx, sy] = isNumber(scale) ? [scale, scale] : scale;
     const dest = new FloatBuffer(src.width, src.height, FLOAT_NORMAL);
     dest.setChannel(
         0,
-        convolve(src, { kernel: GRADIENT_X, scale: sx, channel })
+        convolve(src, {
+            kernel: { spec, size: [step + 2, 1] },
+            scale: sx,
+            channel,
+        })
     );
     dest.setChannel(
         1,
-        convolve(src, { kernel: GRADIENT_Y, scale: sy, channel })
+        convolve(src, {
+            kernel: { spec, size: [1, step + 2] },
+            scale: sy,
+            channel,
+        })
     );
     dest.setChannel(2, z);
     return dest;
