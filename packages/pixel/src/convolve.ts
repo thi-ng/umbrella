@@ -1,4 +1,4 @@
-import { assert, Fn, Fn2, FnN, IObjectOf, NumericArray } from "@thi.ng/api";
+import { assert, Fn, FnN, NumericArray } from "@thi.ng/api";
 import { isFunction, isNumber } from "@thi.ng/checks";
 import { FloatBuffer } from "./float";
 import { FLOAT_GRAY } from "./format/float-gray";
@@ -52,8 +52,8 @@ export interface ConvolveOpts {
 export const convolve = (src: FloatBuffer, opts: ConvolveOpts) => {
     const { kernel, channel, pad, scale } = {
         channel: 0,
-        pad: true,
         scale: 1,
+        pad: true,
         ...opts,
     };
     ensureChannel(src.format, channel);
@@ -68,14 +68,9 @@ export const convolve = (src: FloatBuffer, opts: ConvolveOpts) => {
     const dheight = pad ? height : height - kh + 1;
     const dest = new FloatBuffer(dwidth, dheight, FLOAT_GRAY);
     const dpix = dest.pixels;
-    let $kernel: FnN;
-    if (isFunction(kernel.spec)) {
-        $kernel = kernel.spec(src);
-    } else {
-        const k = FLOAT_KERNELS[`${kw}-${kh}`];
-        assert(!!k, `missing impl for given kernel size: ${size}`);
-        $kernel = k(src, kernel.spec);
-    }
+    const $kernel = (isFunction(kernel.spec)
+        ? kernel.spec
+        : defKernel(kernel.spec, kw, kh))(src);
     const kh2 = kh >> 1;
     const kw2 = kw >> 1;
     const maxY = height - kh2;
@@ -94,35 +89,49 @@ export const convolve = (src: FloatBuffer, opts: ConvolveOpts) => {
     return dest;
 };
 
-const FLOAT_KERNELS: IObjectOf<Fn2<FloatBuffer, NumericArray, FnN>> = {
-    "2-1": (src, [a, b]) => {
-        const { pixels: pix, stride } = src;
-        return (idx) => a * pix[idx - stride] + b * pix[idx + stride];
-    },
-    "1-2": (src, [a, b]) => {
-        const { pixels: pix, rowStride } = src;
-        return (idx) => a * pix[idx - rowStride] + b * pix[idx + rowStride];
-    },
-    "3-3": (src, [a, b, c, d, e, f, g, h, i]) => {
-        const { pixels: pix, stride, rowStride } = src;
-        const y1 = rowStride + stride;
-        const y2 = rowStride - stride;
-        return (idx) =>
-            a * pix[idx - y1] +
-            b * pix[idx - rowStride] +
-            c * pix[idx - y2] +
-            d * pix[idx - stride] +
-            e * pix[idx] +
-            f * pix[idx + stride] +
-            g * pix[idx + y2] +
-            h * pix[idx + rowStride] +
-            i * pix[idx + y1];
-    },
+/**
+ * HOF convolution kernel factory. Takes kernel coefficients and width/height,
+ * returns optimized kernel function for use with {@link convolve}.
+ *
+ * @param coeffs
+ * @param w
+ * @param h
+ */
+export const defKernel = (coeffs: NumericArray, w: number, h: number) => {
+    const prefix: string[] = [];
+    const prefixI: string[] = [];
+    const body: string[] = [];
+    const kvars: string[] = [];
+    const h2 = h >> 1;
+    const w2 = w >> 1;
+    for (let y = 0, i = 0; y < h; y++) {
+        const yy = y - h2;
+        const row: string[] = [];
+        for (let x = 0; x < w; x++, i++) {
+            const kv = `k${y}${x}`;
+            kvars.push(kv);
+            const xx = x - w2;
+            const idx =
+                (yy !== 0 ? `i${y}` : `i`) + (xx !== 0 ? ` + x${x}` : "");
+            coeffs[i] !== 0 && row.push(`${kv} * pix[${idx}]`);
+            y === 0 && xx !== 0 && prefix.push(`const x${x} = ${xx} * stride;`);
+        }
+        row.length && body.push(row.join(" + "));
+        if (yy !== 0) {
+            prefix.push(`const y${y} = ${yy} * rowStride;`);
+            prefixI.push(`const i${y} = i + y${y};`);
+        }
+    }
+    const fnBody = `const { pixels: pix, stride, rowStride } = src;
+const [${kvars.join(", ")}] = [${coeffs.join(", ")}];
+${prefix.join("\n")}
+return (i) => {
+${prefixI.join("\n")}
+return ${body.join(" + ")};
+};`;
+    // console.log(fnBody);
+    return <Fn<FloatBuffer, FnN>>new Function("src", fnBody);
 };
-
-export const GRADIENT_X: KernelSpec = { spec: [-1, 1], size: [2, 1] };
-
-export const GRADIENT_Y: KernelSpec = { spec: [-1, 1], size: [1, 2] };
 
 export const SOBEL_X: KernelSpec = {
     spec: [-1, -2, -1, 0, 0, 0, 1, 2, 1],
