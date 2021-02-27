@@ -95,6 +95,14 @@ export const convolve = (src: FloatBuffer, opts: ConvolveOpts) => {
 };
 
 const FLOAT_KERNELS: IObjectOf<Fn2<FloatBuffer, NumericArray, FnN>> = {
+    "2-1": (src, [a, b]) => {
+        const { pixels: pix, stride } = src;
+        return (idx) => a * pix[idx - stride] + b * pix[idx + stride];
+    },
+    "1-2": (src, [a, b]) => {
+        const { pixels: pix, rowStride } = src;
+        return (idx) => a * pix[idx - rowStride] + b * pix[idx + rowStride];
+    },
     "3-3": (src, [a, b, c, d, e, f, g, h, i]) => {
         const { pixels: pix, stride, rowStride } = src;
         const y1 = rowStride + stride;
@@ -112,6 +120,10 @@ const FLOAT_KERNELS: IObjectOf<Fn2<FloatBuffer, NumericArray, FnN>> = {
     },
 };
 
+export const GRADIENT_X: KernelSpec = { spec: [-1, 1], size: [2, 1] };
+
+export const GRADIENT_Y: KernelSpec = { spec: [-1, 1], size: [1, 2] };
+
 export const SOBEL_X: KernelSpec = {
     spec: [-1, -2, -1, 0, 0, 0, 1, 2, 1],
     size: 3,
@@ -124,6 +136,11 @@ export const SOBEL_Y: KernelSpec = {
 
 export const SHARPEN: KernelSpec = {
     spec: [0, -1, 0, -1, 5, -1, 0, -1, 0],
+    size: 3,
+};
+
+export const HIGHPASS: KernelSpec = {
+    spec: [-1, -1, -1, -1, 9, -1, -1, -1, -1],
     size: 3,
 };
 

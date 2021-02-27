@@ -1,0 +1,51 @@
+import { isNumber } from "@thi.ng/checks";
+import { convolve, GRADIENT_X, GRADIENT_Y } from "./convolve";
+import { FloatBuffer } from "./float";
+import { FLOAT_NORMAL } from "./format/float-norm";
+import { ensureChannel } from "./utils";
+
+interface NormalMapOpts {
+    channel: number;
+    scale: number | [number, number];
+    z: number;
+}
+
+/**
+ * Computes normal map image (aka gradient in X & Y directions and a static Z
+ * value) for a single channel in given {@link FloatBuffer}. The resulting
+ * buffer will use the {@link FLOAT_NORMAL} format, storing the horizontal
+ * gradient in the 1st channel (red), vertical gradient in the 2nd channel
+ * (green) and sets last channel to given `z` value (blue).
+ *
+ * @remarks
+ * The gradient values will be scaled with `scale` (default: 1, but supports
+ * individual X/Y factors). Gradient values will be signed.
+ *
+ * The partial gradients of the last column/row will be set to zero
+ * (respectively). I.e. the right most pixel column will have `red = 0` and last
+ * row will have `green = 0`.
+ *
+ * @param src
+ * @param opts
+ */
+export const normalMap = (src: FloatBuffer, opts?: Partial<NormalMapOpts>) => {
+    const { channel, scale, z } = {
+        channel: 0,
+        scale: [1, 1],
+        z: 1,
+        ...opts,
+    };
+    ensureChannel(src.format, channel);
+    const [sx, sy] = isNumber(scale) ? [scale, scale] : scale;
+    const dest = new FloatBuffer(src.width, src.height, FLOAT_NORMAL);
+    dest.setChannel(
+        0,
+        convolve(src, { kernel: GRADIENT_X, scale: sx, channel })
+    );
+    dest.setChannel(
+        1,
+        convolve(src, { kernel: GRADIENT_Y, scale: sy, channel })
+    );
+    dest.setChannel(2, z);
+    return dest;
+};

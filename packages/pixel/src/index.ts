@@ -4,7 +4,7 @@ export * from "./codegen";
 export * from "./convolve";
 export * from "./dither";
 export * from "./float";
-export * from "./gradient";
+export * from "./normal-map";
 export * from "./packed";
 export * from "./utils";
 
