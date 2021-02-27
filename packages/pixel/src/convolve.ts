@@ -1,45 +1,9 @@
 import { assert, Fn, FnN, NumericArray } from "@thi.ng/api";
 import { isFunction, isNumber } from "@thi.ng/checks";
+import type { ConvolveOpts, KernelSpec } from "./api";
 import { FloatBuffer } from "./float";
 import { FLOAT_GRAY } from "./format/float-gray";
 import { ensureChannel } from "./utils";
-
-export interface KernelSpec {
-    /**
-     * Kernel coefficients or factory function.
-     */
-    spec: NumericArray | Fn<FloatBuffer, FnN>;
-    /**
-     * Kernel size. If given as number, expands to `[size, size]`.
-     */
-    size: number | [number, number];
-}
-
-export interface ConvolveOpts {
-    /**
-     * Convolution kernel details/implementation.
-     */
-    kernel: KernelSpec;
-    /**
-     * Channel ID to convolve.
-     *
-     * @defaultValue 0
-     */
-    channel?: number;
-    /**
-     * If true, the result image will be same size as source image with empty
-     * (padded) border pixels.
-     *
-     * @defaultValue true
-     */
-    pad?: boolean;
-    /**
-     * Result scale factor
-     *
-     * @defaultValue 1
-     */
-    scale?: number;
-}
 
 /**
  * Convolves a single channel from given `src` float buffer with provided

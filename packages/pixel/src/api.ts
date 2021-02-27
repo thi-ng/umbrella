@@ -1,6 +1,8 @@
 import type {
+    FloatArray,
     Fn,
     Fn2,
+    FnN,
     IObjectOf,
     NumericArray,
     TypedArray,
@@ -346,4 +348,69 @@ export interface BayerMatrix {
     mat: number[][];
     invSize: number;
     mask: number;
+}
+
+export interface KernelSpec {
+    /**
+     * Kernel coefficients or factory function.
+     */
+    spec: NumericArray | Fn<IPixelBuffer<FloatArray, NumericArray>, FnN>;
+    /**
+     * Kernel size. If given as number, expands to `[size, size]`.
+     */
+    size: number | [number, number];
+}
+
+export interface ConvolveOpts {
+    /**
+     * Convolution kernel details/implementation.
+     */
+    kernel: KernelSpec;
+    /**
+     * Channel ID to convolve.
+     *
+     * @defaultValue 0
+     */
+    channel?: number;
+    /**
+     * If true, the result image will be same size as source image with empty
+     * (padded) border pixels.
+     *
+     * @defaultValue true
+     */
+    pad?: boolean;
+    /**
+     * Result scale factor
+     *
+     * @defaultValue 1
+     */
+    scale?: number;
+}
+
+export interface NormalMapOpts {
+    /**
+     * Channel ID to use for gradient extraction in source image.
+     *
+     * @defaultValue 0
+     */
+    channel: number;
+    /**
+     * Step size (aka number of pixels) between left/right, top/bottom
+     * neighbors.
+     *
+     * @defaultValue 0
+     */
+    step: number;
+    /**
+     * Result gradient scale factor(s).
+     *
+     * @defaultValue 1
+     */
+    scale: number | [number, number];
+    /**
+     * Z-axis value to use in blue channel of normal map.
+     *
+     * @defaultValue 1
+     */
+    z: number;
 }

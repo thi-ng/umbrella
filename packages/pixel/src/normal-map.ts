@@ -1,36 +1,9 @@
 import { isNumber } from "@thi.ng/checks";
+import type { NormalMapOpts } from "./api";
 import { convolve } from "./convolve";
 import { FloatBuffer } from "./float";
 import { FLOAT_NORMAL } from "./format/float-norm";
 import { ensureChannel } from "./utils";
-
-export interface NormalMapOpts {
-    /**
-     * Channel ID to use for gradient extraction in source image.
-     *
-     * @defaultValue 0
-     */
-    channel: number;
-    /**
-     * Step size (aka number of pixels) between left/right, top/bottom
-     * neighbors.
-     *
-     * @defaultValue 0
-     */
-    step: number;
-    /**
-     * Result gradient scale factor(s).
-     *
-     * @defaultValue 1
-     */
-    scale: number | [number, number];
-    /**
-     * Z-axis value to use in blue channel of normal map.
-     *
-     * @defaultValue 1
-     */
-    z: number;
-}
 
 /**
  * Computes normal map image (aka gradient in X & Y directions and a static Z
