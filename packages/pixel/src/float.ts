@@ -1,4 +1,4 @@
-import { assert, Fn, NumericArray } from "@thi.ng/api";
+import { assert, Fn, ICopy, IEmpty, NumericArray } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
 import { clamp01 } from "@thi.ng/math";
 import type {
@@ -29,7 +29,11 @@ export const floatBuffer = (
     pixels?: Float32Array
 ) => new FloatBuffer(w, h, fmt, pixels);
 
-export class FloatBuffer implements IPixelBuffer<Float32Array, NumericArray> {
+export class FloatBuffer
+    implements
+        IPixelBuffer<Float32Array, NumericArray>,
+        ICopy<FloatBuffer>,
+        IEmpty<FloatBuffer> {
     /**
      * Creates a new `FloatBuffer` from given {@link PackedBuffer} and using
      * provided {@link FloatFormat}.
@@ -90,9 +94,13 @@ export class FloatBuffer implements IPixelBuffer<Float32Array, NumericArray> {
     }
 
     copy() {
-        const dest = new FloatBuffer(this.width, this.height, this.format);
+        const dest = this.empty();
         dest.pixels.set(this.pixels);
         return dest;
+    }
+
+    empty() {
+        return new FloatBuffer(this.width, this.height, this.format);
     }
 
     getAt(x: number, y: number) {

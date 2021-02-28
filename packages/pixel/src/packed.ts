@@ -1,4 +1,11 @@
-import { Fn, typedArray, UIntArray, uintTypeForBits } from "@thi.ng/api";
+import {
+    Fn,
+    ICopy,
+    IEmpty,
+    typedArray,
+    UIntArray,
+    uintTypeForBits,
+} from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks";
 import {
     isPremultipliedInt,
@@ -52,7 +59,11 @@ export const packedBuffer = (
  */
 export const buffer = packedBuffer;
 
-export class PackedBuffer implements IPixelBuffer<UIntArray, number> {
+export class PackedBuffer
+    implements
+        IPixelBuffer<UIntArray, number>,
+        ICopy<PackedBuffer>,
+        IEmpty<PackedBuffer> {
     static fromImage(
         img: HTMLImageElement,
         fmt: PackedFormat,
@@ -110,9 +121,13 @@ export class PackedBuffer implements IPixelBuffer<UIntArray, number> {
     }
 
     copy() {
-        const dest = new PackedBuffer(this.width, this.height, this.format);
+        const dest = this.empty();
         dest.pixels.set(this.pixels);
         return dest;
+    }
+
+    empty() {
+        return new PackedBuffer(this.width, this.height, this.format);
     }
 
     getAt(x: number, y: number) {
