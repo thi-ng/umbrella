@@ -21,6 +21,9 @@ import { asIntVec, ensureChannel, range } from "./utils";
  * @remarks
  * Use {@link convolveImage} to process multiple or all channels in a buffer.
  *
+ * References:
+ * - https://en.wikipedia.org/wiki/Kernel_(image_processing)
+ *
  * @param src
  * @param opts
  */
@@ -55,7 +58,7 @@ const convolve = ({
     channel,
     dest,
     dwidth,
-    $kernel,
+    kernel,
     kh2,
     kw2,
     pad,
@@ -80,7 +83,7 @@ const convolve = ({
             x < maxX;
             x += strideX, i += strideX * srcStride, j++
         ) {
-            dpix[j] = $kernel(i) * scale;
+            dpix[j] = kernel(i) * scale;
         }
     }
     return dest;
@@ -120,9 +123,6 @@ const initConvolve = (src: FloatBuffer, opts: ConvolveOpts) => {
         kw >= 0 && kw <= width && kh >= 0 && kh <= height,
         `invalid kernel size: ${size}`
     );
-    const kh2 = kh >> 1;
-    const kw2 = kw >> 1;
-    const $kernel = initKernel(src, kernel, kw, kh);
     const dwidth = destSize(width, strideX, kw, pad);
     const dheight = destSize(height, strideY, kh, pad);
     const dest = new FloatBuffer(dwidth, dheight, FLOAT_GRAY);
@@ -131,9 +131,9 @@ const initConvolve = (src: FloatBuffer, opts: ConvolveOpts) => {
         dest,
         dheight,
         dwidth,
-        $kernel,
-        kh2,
-        kw2,
+        kernel: initKernel(src, kernel, kw, kh),
+        kh2: kh >> 1,
+        kw2: kw >> 1,
         pad,
         rowStride,
         scale,
@@ -221,6 +221,25 @@ export const POOL_MEAN: PoolTemplate = (body, w, h) =>
 export const POOL_MIN: PoolTemplate = (body) => `Math.min(${body.join(",")})`;
 
 export const POOL_MAX: PoolTemplate = (body) => `Math.max(${body.join(",")})`;
+
+/**
+ * Higher order adaptive threshold {@link PoolTemplate}. Computes: `step(C -
+ * mean(K) + O)`, where `C` is the center pixel, `K` the entire set of pixels in
+ * the kernel and `O` and arbitrary offset value.
+ *
+ * @example
+ * ```ts
+ * // 3x3 adaptive threshold w/ offset = 1
+ * convolveChannel(src, { kernel: { pool: POOL_THRESHOLD(1), size: 3 }});
+ * ```
+ *
+ * @param offset
+ */
+export const POOL_THRESHOLD = (offset = 0): PoolTemplate => (body, w, h) => {
+    const center = POOL_NEAREST(body, w, h);
+    const mean = `(${body.join("+")})/${w * h}`;
+    return `(${center} - ${mean} + ${offset}) < 0 ? 0 : 1`;
+};
 
 export const SOBEL_X: KernelSpec = {
     spec: [-1, -2, -1, 0, 0, 0, 1, 2, 1],
