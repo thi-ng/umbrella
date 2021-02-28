@@ -22,12 +22,23 @@ import { clampRegion, ensureChannel, ensureSize, prepRegions } from "./utils";
  * @param fmt -
  * @param pixels -
  */
-export const floatBuffer = (
+export function floatBuffer(
     w: number,
     h: number,
     fmt: FloatFormat | FloatFormatSpec,
     pixels?: Float32Array
-) => new FloatBuffer(w, h, fmt, pixels);
+): FloatBuffer;
+export function floatBuffer(
+    src: PackedBuffer,
+    fmt: FloatFormat | FloatFormatSpec
+): FloatBuffer;
+export function floatBuffer(...args: any[]) {
+    return args[0] instanceof PackedBuffer
+        ? // @ts-ignore
+          FloatBuffer.fromPacked(...args)
+        : // @ts-ignore
+          new FloatBuffer(...args);
+}
 
 export class FloatBuffer
     implements

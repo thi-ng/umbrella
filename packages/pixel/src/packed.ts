@@ -47,12 +47,22 @@ import {
  * @param fmt -
  * @param pixels -
  */
-export const packedBuffer = (
+export function packedBuffer(
     w: number,
     h: number,
     fmt: PackedFormat | PackedFormatSpec,
     pixels?: UIntArray
-) => new PackedBuffer(w, h, fmt, pixels);
+): PackedBuffer;
+export function packedBuffer(
+    src: PackedBuffer,
+    fmt: PackedFormat | PackedFormatSpec
+): PackedBuffer;
+export function packedBuffer(...args: any[]) {
+    return args[0] instanceof PackedBuffer
+        ? args[0].as(args[1])
+        : // @ts-ignore
+          new PackedBuffer(...args);
+}
 
 /**
  * @deprecated use {@link packedBuffer} instead.
