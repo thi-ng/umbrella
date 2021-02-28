@@ -1,10 +1,4 @@
-import {
-    convolveChannel,
-    FloatBuffer,
-    FLOAT_GRAY,
-    GRAY8,
-    PackedBuffer,
-} from "@thi.ng/pixel";
+import { convolveChannel, FloatBuffer, POOL_THRESHOLD } from "@thi.ng/pixel";
 
 /**
  * Adaptive threshold computation: uses `convolveChannel` with a custom pooling
@@ -16,16 +10,23 @@ import {
  * @param offset
  */
 export const adaptiveThreshold = (
-    src: PackedBuffer,
+    src: FloatBuffer,
     windowSize: number,
     offset = 0
 ) =>
-    convolveChannel(FloatBuffer.fromPacked(src, FLOAT_GRAY), {
+    convolveChannel(src, {
+        pad: false,
         kernel: {
-            pool: (body, w, h) =>
-                `(${body[(h >> 1) * w + (w >> 1)]} - (${body.join("+")})/${
-                    w * h
-                } + ${offset / 255}) < 0 ? 0 : 1`,
+            // pool kernel template for code generator:
+            // take a `body` array of pixel lookups (W x H items)
+            // w, h are kernel size
+            // pool: (body, w, h) => {
+            //     const center = body[(h >> 1) * w + (w >> 1)];
+            //     const mean = `(${body.join("+")})/${w * h}`;
+            //     return `(${center} - ${mean} + ${offset / 255}) < 0 ? 0 : 1`;
+            // },
+            // the same logic also available as preset:
+            pool: POOL_THRESHOLD(offset / 255),
             size: windowSize,
         },
-    }).as(GRAY8);
+    });

@@ -1,5 +1,5 @@
 import type { Val1 } from "@thi.ng/api";
-import type { PackedBuffer } from "@thi.ng/pixel";
+import type { FloatBuffer } from "@thi.ng/pixel";
 
 // event ID constants
 export const SET_IMAGE = "set-image";
@@ -20,8 +20,8 @@ export type EventType = keyof EventTypeMap;
 export type Event = Val1<EventTypeMap, EventType>;
 
 export interface AppState {
-    srcImg?: PackedBuffer;
-    destImg?: PackedBuffer;
+    srcImg?: FloatBuffer;
+    destImg?: FloatBuffer;
     threshold: {
         windowSize: number;
         offset: number;
