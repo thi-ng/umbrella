@@ -24,10 +24,12 @@ ${pkg.description}
 - Pre/post-multiply alpha
 - Region / sub-image extraction
 - Single-channel manipulation / extraction / replacement / conversion
+- Single channel convolution w/ arbitrary shaped/sized kernels, pooling, striding
+- Customizable normal map generation (i.e. X/Y gradients plus static Z component)
 - Inversion
+- Image downsampling (nearest neighbor, min/max/mean pooling)
 - XY pixel accessors
-- 10 packed integer and 4 floating point preset formats (see table
-  below)
+- 12 packed integer and 6 floating point preset formats (see table below)
 - Ordered dithering w/ customizable Bayer matrix size and target color
   steps (int formats only)
 - Declarative custom format & optimized code generation

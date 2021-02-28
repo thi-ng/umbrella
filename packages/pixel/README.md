@@ -25,7 +25,7 @@ This project is part of the
 
 ## About
 
-Typed array backed, integer and floating point pixel buffers w/ customizable formats, blitting, dithering, conversions.
+Typedarray integer & float pixel buffers w/ customizable formats, blitting, dithering, convolution.
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/pixel-basics.png)
 
@@ -38,10 +38,12 @@ Typed array backed, integer and floating point pixel buffers w/ customizable for
 - Pre/post-multiply alpha
 - Region / sub-image extraction
 - Single-channel manipulation / extraction / replacement / conversion
+- Single channel convolution w/ arbitrary shaped/sized kernels, pooling, striding
+- Customizable normal map generation (i.e. X/Y gradients plus static Z component)
 - Inversion
+- Image downsampling (nearest neighbor, min/max/mean pooling)
 - XY pixel accessors
-- 10 packed integer and 4 floating point preset formats (see table
-  below)
+- 12 packed integer and 6 floating point preset formats (see table below)
 - Ordered dithering w/ customizable Bayer matrix size and target color
   steps (int formats only)
 - Declarative custom format & optimized code generation
@@ -138,7 +140,7 @@ yarn add @thi.ng/pixel
 <script src="https://unpkg.com/@thi.ng/pixel/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.35 KB / CJS: 5.57 KB / UMD: 5.52 KB
+Package sizes (gzipped, pre-treeshake): ESM: 6.87 KB / CJS: 7.13 KB / UMD: 6.99 KB
 
 ## Dependencies
 
