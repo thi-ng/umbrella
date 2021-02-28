@@ -213,7 +213,7 @@ export const defKernel = (
 };
 
 export const POOL_NEAREST: PoolTemplate = (body, w, h) =>
-    body[(h >> 1) + (w >> 1)];
+    body[(h >> 1) * w + (w >> 1)];
 
 export const POOL_MEAN: PoolTemplate = (body, w, h) =>
     `(${body.join("+")})*${1 / (w * h)}`;
