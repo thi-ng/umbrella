@@ -74,33 +74,43 @@ export class PackedBuffer
         IPixelBuffer<UIntArray, number>,
         ICopy<PackedBuffer>,
         IEmpty<PackedBuffer> {
+    /**
+     * Creates a new pixel buffer from given HTML image element with optional
+     * support for format conversion (default: {@link ABGR8888} & resizing.
+     *
+     * @param img
+     * @param fmt
+     * @param width
+     * @param height
+     */
     static fromImage(
         img: HTMLImageElement,
-        fmt: PackedFormat,
+        fmt?: PackedFormat,
         width?: number,
         height = width
     ) {
-        const ctx = imageCanvas(img, width, height);
-        const w = ctx.canvas.width;
-        const h = ctx.canvas.height;
-        const src = new Uint32Array(
-            ctx.ctx.getImageData(0, 0, w, h).data.buffer
+        return PackedBuffer.fromCanvas(
+            imageCanvas(img, width, height).canvas,
+            fmt
         );
-        const dest = typedArray(fmt.type, w * h);
-        const from = fmt.fromABGR;
-        for (let i = dest.length; --i >= 0; ) {
-            dest[i] = from(src[i]);
-        }
-        return new PackedBuffer(w, h, fmt, dest);
     }
 
-    static fromCanvas(canvas: HTMLCanvasElement) {
-        return new PackedBuffer(
-            canvas.width,
-            canvas.height,
-            ABGR8888,
-            canvasPixels(canvas).pixels
-        );
+    static fromCanvas(canvas: HTMLCanvasElement, fmt: PackedFormat = ABGR8888) {
+        const ctx = canvasPixels(canvas);
+        const w = canvas.width;
+        const h = canvas.height;
+        let dest: UIntArray | undefined;
+        if (fmt === ABGR8888) {
+            dest = ctx.pixels;
+        } else {
+            dest = typedArray(fmt.type, w * h);
+            const src = ctx.pixels;
+            const from = fmt.fromABGR;
+            for (let i = dest.length; --i >= 0; ) {
+                dest[i] = from(src[i]);
+            }
+        }
+        return new PackedBuffer(w, h, fmt, dest);
     }
 
     readonly width: number;
