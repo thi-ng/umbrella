@@ -2,6 +2,7 @@ import type {
     FloatArray,
     Fn,
     Fn2,
+    Fn3,
     FnN,
     IObjectOf,
     NumericArray,
@@ -350,16 +351,42 @@ export interface BayerMatrix {
     mask: number;
 }
 
-export interface KernelSpec {
+export type PoolTemplate = Fn3<string[], number, number, string>;
+
+export interface ConvolutionKernelSpec {
     /**
-     * Kernel coefficients or factory function.
+     * Kernel coefficients.
      */
-    spec: NumericArray | Fn<IPixelBuffer<FloatArray, NumericArray>, FnN>;
+    spec: NumericArray;
     /**
      * Kernel size. If given as number, expands to `[size, size]`.
      */
     size: number | [number, number];
 }
+
+export interface PoolKernelSpec {
+    /**
+     * Code template function for {@link defPoolKernel}.
+     */
+    pool: PoolTemplate;
+    /**
+     * Kernel size. If given as number, expands to `[size, size]`.
+     */
+    size: number | [number, number];
+}
+
+export interface KernelFnSpec {
+    /**
+     * Kernel factory.
+     */
+    fn: Fn<IPixelBuffer<FloatArray, NumericArray>, FnN>;
+    /**
+     * Kernel size. If given as number, expands to `[size, size]`.
+     */
+    size: number | [number, number];
+}
+
+export type KernelSpec = ConvolutionKernelSpec | PoolKernelSpec | KernelFnSpec;
 
 export interface ConvolveOpts {
     /**
@@ -385,6 +412,12 @@ export interface ConvolveOpts {
      * @defaultValue 1
      */
     scale?: number;
+    /**
+     * Step size to process only every nth pixel.
+     *
+     * @defaultValue 1
+     */
+    stride?: number | [number, number];
 }
 
 export interface NormalMapOpts {

@@ -1,4 +1,5 @@
 import { assert, Fn, Fn2, FnN, TypedArray, UIntArray } from "@thi.ng/api";
+import { isNumber } from "@thi.ng/checks";
 import { clamp } from "@thi.ng/math";
 import type { BlitOpts, PackedFormat, FloatFormat } from "./api";
 
@@ -121,3 +122,16 @@ export const transformABGR = (
         pix[i] = from(fn(to(pix[i])));
     }
 };
+
+/** @internal */
+export const asVec = (x: number | [number, number]) =>
+    isNumber(x) ? [x, x] : x;
+
+/** @internal */
+export const asIntVec = (x: number | [number, number]) => {
+    const v = asVec(x);
+    return [v[0] | 0, v[1] | 0];
+};
+
+/** @internal */
+export const range = (n: number) => new Uint8Array(n).map((_, i) => i);
