@@ -24,11 +24,12 @@ ${pkg.description}
 - Pre/post-multiply alpha
 - Region / sub-image extraction
 - Single-channel manipulation / extraction / replacement / conversion
-- Single channel convolution w/ arbitrary shaped/sized kernels, pooling, striding
+- Convolution w/ arbitrary shaped/sized kernels, pooling, striding (resizing)
+- Convolution kernel & pooling kernels presets
 - Customizable normal map generation (i.e. X/Y gradients plus static Z component)
 - Inversion
-- Image downsampling (nearest neighbor, min/max/mean pooling)
-- XY pixel accessors
+- Image downsampling (nearest neighbor, mean/min/max pooling)
+- XY full pixel & channel-only accessors
 - 12 packed integer and 6 floating point preset formats (see table below)
 - Ordered dithering w/ customizable Bayer matrix size and target color
   steps (int formats only)
@@ -86,18 +87,60 @@ New formats can be defined via `defPackedFormat()`.
 Strided floating point format presets for use with `floatBuffer()`. New
 formats can be defined via `defFloatFormat()`.
 
-
 | Format ID          | Channel count | Description                 |
 |--------------------|---------------|-----------------------------|
 | `FLOAT_GRAY`       | 1             | Single channel / grayscale  |
 | `FLOAT_GRAY_ALPHA` | 2             | Grayscale and alpha channel |
+| `FLOAT_NORMAL`     | 3             | Normal map (signed values)  |
 | `FLOAT_RGB`        | 3             | Red, Green, Blue            |
 | `FLOAT_RGBA`       | 4             | Red, Green, Blue, Alpha     |
 
-- All color channels are unclamped (but can be clamped via
-  `buf.clamp()`). For conversion to packed int formats assumed to
-  contain normalized data (i.e. [0..1] interval)
+- All color channels are unclamped (but can be clamped via `buf.clamp()`). For
+  conversion to packed int formats assumed to contain normalized data (i.e.
+  [0..1] interval, with exception of `FLOAT_NORMAL` which uses [-1..1] range)
 - Conversion between float formats is currently unsupported
+
+### Strided convolution & pooling
+
+Floating point buffers can be processed using arbitrary convolution kernels. The
+following convolution kernel presets are provided for convenience:
+
+| Kernel           | Size        |
+|------------------|-------------|
+| `BOX_BLUR3`      | 3x3         |
+| `BOX_BLUR5`      | 5x5         |
+| `GAUSSIAN_BLUR3` | 3x3         |
+| `GAUSSIAN_BLUR5` | 5x5         |
+| `GAUSSIAN(n)`    | 2n+1 x 2n+1 |
+| `HIGHPASS3`      | 3x3         |
+| `SHARPEN3`       | 3x3         |
+| `SOBEL_X`        | 3x3         |
+| `SOBEL_Y`        | 3x3         |
+| `UNSHARP_MASK5`  | 5x5         |
+
+Furthermore, convolution supports striding (i.e. only processing every nth pixel
+column/row) and pixel pooling (e.g. for ML applications). Available pooling
+kernel presets (kernel sizes are configured independently):
+
+| Kernel                 | Description        |
+|------------------------|--------------------|
+| `POOL_MEAN`            | Moving average     |
+| `POOL_MAX`             | Local maximum      |
+| `POOL_MIN`             | Local minimum      |
+| `POOL_NEAREST`         | Nearest neighbor   |
+| `POOL_THRESHOLD(bias)` | Adaptive threshold |
+
+Convolution can be applied to single, multiple or all channels of a
+`FloatBuffer`. See
+[`convolveChannel()`](https://docs.thi.ng/umbrella/pixel/modules.html#convolvechannel)
+and
+[`convolveImage()`](https://docs.thi.ng/umbrella/pixel/modules.html#convolveimage)
+
+TODO add image & code example
+
+### Normal map generation
+
+TODO add image & code example
 
 ${status}
 
