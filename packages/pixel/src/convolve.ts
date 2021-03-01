@@ -155,11 +155,12 @@ const destSize = (orig: number, res: number, k: number, pad: boolean) =>
  * {@link convolve}.
  *
  * @remarks
- * The result function will always use unrolled loops to access pixels and hence
- * kernel sizes shouldn't be larger than ~9x9 to avoid excessive function
- * bodies. For convolution kernels, only non-zero weighted pixels will be
- * included in the result function to avoid extraneous lookups. Row & column
- * offsets are pre-calculated too.
+ * If total kernel size (width * height) is < 1024, the result function will use
+ * unrolled loops to access pixels and hence kernel sizes shouldn't be larger
+ * than ~32x32 to avoid excessive function bodies. For convolution kernels, only
+ * non-zero weighted pixels will be included in the result function to avoid
+ * extraneous lookups. Row & column offsets are pre-calculated too. Larger
+ * kernel sizes are handled via {@link defLargeKernel}.
  *
  * @param tpl
  * @param w
@@ -170,6 +171,7 @@ export const defKernel = (
     w: number,
     h: number
 ) => {
+    if (w * h > 1024 && !isFunction(tpl)) return defLargeKernel(tpl, w, h);
     const isPool = isFunction(tpl);
     const prefix: string[] = [];
     const prefixI: string[] = [];
@@ -181,7 +183,7 @@ export const defKernel = (
         const yy = y - h2;
         const row: string[] = [];
         for (let x = 0; x < w; x++, i++) {
-            const kv = `k${y}${x}`;
+            const kv = `k${y}_${x}`;
             kvars.push(kv);
             const xx = x - w2;
             const idx = (yy !== 0 ? `i${y}` : `i`) + (xx !== 0 ? `+x${x}` : "");
@@ -212,6 +214,39 @@ export const defKernel = (
     return <Fn<FloatBuffer, FnN>>new Function("src", fnBody);
 };
 
+/**
+ * Loop based fallback for {@link defKernel}, intended for larger kernel sizes
+ * for which loop-unrolled approach is prohibitive.
+ *
+ * @param kernel
+ * @param w
+ * @param h
+ */
+export const defLargeKernel = (
+    kernel: NumericArray,
+    w: number,
+    h: number
+): Fn<FloatBuffer, FnN> => {
+    const h2 = h >> 1;
+    const w2 = w >> 1;
+    return (src) => {
+        const { pixels, rowStride, stride } = src;
+        return (i) => {
+            let sum = 0;
+            for (let y = -h2, k = 0; y <= h2; y++) {
+                for (
+                    let x = -w2, ii = i + y * rowStride;
+                    x <= w2;
+                    x++, ii += stride, k++
+                ) {
+                    sum += kernel[k] * pixels[ii];
+                }
+            }
+            return sum;
+        };
+    };
+};
+
 export const POOL_NEAREST: PoolTemplate = (body, w, h) =>
     body[(h >> 1) * w + (w >> 1)];
 
@@ -224,21 +259,21 @@ export const POOL_MAX: PoolTemplate = (body) => `Math.max(${body.join(",")})`;
 
 /**
  * Higher order adaptive threshold {@link PoolTemplate}. Computes: `step(C -
- * mean(K) + O)`, where `C` is the center pixel, `K` the entire set of pixels in
- * the kernel and `O` and arbitrary offset value.
+ * mean(K) + B)`, where `C` is the center pixel, `K` the entire set of pixels in
+ * the kernel and `B` an arbitrary bias/offset value.
  *
  * @example
  * ```ts
- * // 3x3 adaptive threshold w/ offset = 1
+ * // 3x3 adaptive threshold w/ bias = 1
  * convolveChannel(src, { kernel: { pool: POOL_THRESHOLD(1), size: 3 }});
  * ```
  *
- * @param offset
+ * @param bias
  */
-export const POOL_THRESHOLD = (offset = 0): PoolTemplate => (body, w, h) => {
+export const POOL_THRESHOLD = (bias = 0): PoolTemplate => (body, w, h) => {
     const center = POOL_NEAREST(body, w, h);
     const mean = `(${body.join("+")})/${w * h}`;
-    return `(${center} - ${mean} + ${offset}) < 0 ? 0 : 1`;
+    return `(${center} - ${mean} + ${bias}) < 0 ? 0 : 1`;
 };
 
 export const SOBEL_X: KernelSpec = {
@@ -251,12 +286,12 @@ export const SOBEL_Y: KernelSpec = {
     size: 3,
 };
 
-export const SHARPEN: KernelSpec = {
+export const SHARPEN3: KernelSpec = {
     spec: [0, -1, 0, -1, 5, -1, 0, -1, 0],
     size: 3,
 };
 
-export const HIGHPASS: KernelSpec = {
+export const HIGHPASS3: KernelSpec = {
     spec: [-1, -1, -1, -1, 9, -1, -1, -1, -1],
     size: 3,
 };
@@ -264,6 +299,11 @@ export const HIGHPASS: KernelSpec = {
 export const BOX_BLUR3: KernelSpec = {
     pool: POOL_MEAN,
     size: 3,
+};
+
+export const BOX_BLUR5: KernelSpec = {
+    pool: POOL_MEAN,
+    size: 5,
 };
 
 export const GAUSSIAN_BLUR3: KernelSpec = {
@@ -281,6 +321,28 @@ export const GAUSSIAN_BLUR5: KernelSpec = {
         1 / 256, 1 / 64, 3 / 128, 1 / 64, 1 / 256,
     ],
     size: 5,
+};
+
+/**
+ * Higher order Gaussian blur kernel for given pixel radius `r` (integer).
+ * Returns {@link ConvolutionKernelSpec} with resulting kernel size of `2r+1`.
+ *
+ * @param r
+ */
+export const GAUSSIAN = (r: number): ConvolutionKernelSpec => {
+    r |= 0;
+    assert(r > 0, `invalid kernel radius: ${r}`);
+    const sigma = -1 / (2 * (Math.hypot(r, r) / 3) ** 2);
+    const res: number[] = [];
+    let sum = 0;
+    for (let y = -r; y <= r; y++) {
+        for (let x = -r; x <= r; x++) {
+            const g = Math.exp((x * x + y * y) * sigma);
+            res.push(g);
+            sum += g;
+        }
+    }
+    return { spec: res.map((x) => x / sum), size: r * 2 + 1 };
 };
 
 export const UNSHARP_MASK5: KernelSpec = {
