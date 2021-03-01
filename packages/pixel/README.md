@@ -156,7 +156,37 @@ TODO add image & code example
 
 ### Normal map generation
 
-TODO add image & code example
+Normal maps can be created via `normalMap()`. This function uses an adjustable
+convolution kernel size to control gradient smoothness & details. Result X/Y
+gradients can also be scaled (uniform or anisotropic) and the Z component can be
+customized to (default: 1.0). The resulting image is in `FLOAT_NORMAL` format,
+using signed channel values. This channel format is auto-translating these into
+unsigned values when the image is converted into an integer format.
+
+| Step | Scale = 1                                                                                | Scale = 2                                                                                | Scale = 4                                                                                | Scale = 8                                                                                |
+|------|------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
+| 0    | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-0-1.jpg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-0-2.jpg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-0-4.jpg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-0-8.jpg) |
+| 1    | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-1-1.jpg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-1-2.jpg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-1-4.jpg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-1-8.jpg) |
+| 2    | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-2-1.jpg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-2-2.jpg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-2-4.jpg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-2-8.jpg) |
+| 3    | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-3-1.jpg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-3-2.jpg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-3-4.jpg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/nmap-3-8.jpg) |
+
+```ts
+import { floatBuffer, normalMap, FLOAT_GRAY, RGB888 } from "@thi.ng/pixel";
+import { asPPM, read } from "@thi.ng/pixel-io-netpbm";
+
+// read source image into a single channel floating point buffer
+const src = floatBuffer(read(readFileSync("noise.pgm")), FLOAT_GRAY);
+
+// create normal map (w/ default options)
+const nmap = normalMap(src, { step: 0, scale: 1 });
+
+// pixel lookup (vectors are stored _un_normalized)
+nmap.getAt(10, 10);
+// Float32Array(3) [ -0.019607841968536377, -0.04313725233078003, 1 ]
+
+// save as 24bit PBM, conversion to RGB int format first
+writeFileSync("noise-normal.ppm", asPPM(nmap.as(RGB888)));
+```
 
 ### Status
 
