@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/base-n",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "description": "Arbitrary base-n conversions w/ presets for base16/32/36/58/62/64/85, support for arrays & bigints",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,7 +49,7 @@
         "typescript": "^4.2.2"
     },
     "dependencies": {
-        "@thi.ng/hex": "^0.2.3"
+        "@thi.ng/hex": "^0.2.4"
     },
     "files": [
         "*.js",
@@ -81,5 +81,5 @@
         "status": "beta",
         "year": 2017
     },
-    "gitHead": "a59cd470a1728cb5f40e96e010fb98ead30e3142"
+    "gitHead": "c70903833fe6e89bbdb3f7d82197866320f91b3a"
 }

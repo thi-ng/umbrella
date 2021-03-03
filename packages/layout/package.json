@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/layout",
-    "version": "0.1.32",
+    "version": "0.1.33",
     "description": "Configurable nested 2D grid layout manager",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,7 +49,7 @@
         "typescript": "^4.2.2"
     },
     "dependencies": {
-        "@thi.ng/checks": "^2.9.3"
+        "@thi.ng/checks": "^2.9.4"
     },
     "files": [
         "*.js",
@@ -75,5 +75,5 @@
     "thi.ng": {
         "year": 2019
     },
-    "gitHead": "a59cd470a1728cb5f40e96e010fb98ead30e3142"
+    "gitHead": "c70903833fe6e89bbdb3f7d82197866320f91b3a"
 }
