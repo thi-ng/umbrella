@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.3.13...@thi.ng/dcons@2.3.14) (2021-03-03)
+
+**Note:** Version bump only for package @thi.ng/dcons
+
+
+
+
+
 ## [2.3.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.3.12...@thi.ng/dcons@2.3.13) (2021-03-03)
 
 **Note:** Version bump only for package @thi.ng/dcons

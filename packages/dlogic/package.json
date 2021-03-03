@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dlogic",
-    "version": "1.0.40",
+    "version": "1.0.41",
     "description": "Assorted digital logic ops / constructs",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,7 +49,7 @@
         "typescript": "^4.2.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.1"
+        "@thi.ng/api": "^7.1.2"
     },
     "files": [
         "*.js",
@@ -71,5 +71,5 @@
     "thi.ng": {
         "year": 2017
     },
-    "gitHead": "2ea9dfeae53824b3e9708ddac37bf1204c9494ca"
+    "gitHead": "a59cd470a1728cb5f40e96e010fb98ead30e3142"
 }

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/bitstream",
-    "version": "1.1.34",
+    "version": "1.1.35",
     "description": "ES6 iterator based read/write bit streams with support for variable word widths",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,7 +49,7 @@
         "typescript": "^4.2.2"
     },
     "dependencies": {
-        "@thi.ng/errors": "^1.2.29"
+        "@thi.ng/errors": "^1.2.30"
     },
     "files": [
         "*.js",
@@ -67,5 +67,5 @@
         "access": "public"
     },
     "sideEffects": false,
-    "gitHead": "2ea9dfeae53824b3e9708ddac37bf1204c9494ca"
+    "gitHead": "a59cd470a1728cb5f40e96e010fb98ead30e3142"
 }

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/csp",
-    "version": "1.1.53",
+    "version": "1.1.54",
     "description": "ES6 promise based CSP primitives & operations",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -53,12 +53,12 @@
         "typescript": "^4.2.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.1",
-        "@thi.ng/arrays": "^0.10.5",
-        "@thi.ng/checks": "^2.9.2",
-        "@thi.ng/dcons": "^2.3.13",
-        "@thi.ng/errors": "^1.2.29",
-        "@thi.ng/transducers": "^7.6.3"
+        "@thi.ng/api": "^7.1.2",
+        "@thi.ng/arrays": "^0.10.6",
+        "@thi.ng/checks": "^2.9.3",
+        "@thi.ng/dcons": "^2.3.14",
+        "@thi.ng/errors": "^1.2.30",
+        "@thi.ng/transducers": "^7.6.4"
     },
     "files": [
         "*.js",
@@ -81,5 +81,5 @@
         "access": "public"
     },
     "sideEffects": false,
-    "gitHead": "2ea9dfeae53824b3e9708ddac37bf1204c9494ca"
+    "gitHead": "a59cd470a1728cb5f40e96e010fb98ead30e3142"
 }
