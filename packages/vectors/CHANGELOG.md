@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@5.0.1...@thi.ng/vectors@5.1.0) (2021-03-03)
+
+
+### Bug Fixes
+
+* **vectors:** update GVec internals (TS4.2) ([e6b7b74](https://github.com/thi-ng/umbrella/commit/e6b7b74bc7f43efed67ccba6de62f09e35c18e0e))
+
+
+### Features
+
+* **vectors:** add softMax() & oneHot() ([4f242c8](https://github.com/thi-ng/umbrella/commit/4f242c81c12e669bad85df6cf4f9588394121a0d))
+
+
+
+
+
 ## [5.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@5.0.0...@thi.ng/vectors@5.0.1) (2021-02-24)
 
 **Note:** Version bump only for package @thi.ng/vectors

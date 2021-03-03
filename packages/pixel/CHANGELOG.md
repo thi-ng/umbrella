@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.6.1...@thi.ng/pixel@0.7.0) (2021-03-03)
+
+
+### Bug Fixes
+
+* **pixel:** add clamping for float->ABGR conversion ([41540e0](https://github.com/thi-ng/umbrella/commit/41540e085b2261208e44e6f25b327e3371eae2df))
+* **pixel:** fix POOL_NEAREST index ([b98d05d](https://github.com/thi-ng/umbrella/commit/b98d05d7827d98d3971bdbcd562735b96fa9b7ec))
+
+
+### Features
+
+* **pixel:** add 5x5 kernel presets ([56f96f4](https://github.com/thi-ng/umbrella/commit/56f96f4842e6a57087a565a8e5ce82e590da7d66))
+* **pixel:** add convolve() & preset kernels ([6a31dc3](https://github.com/thi-ng/umbrella/commit/6a31dc38f3f0ae48853d899420d0fbebcc6b8678))
+* **pixel:** add defKernel() kernel fn codegen ([25b97a3](https://github.com/thi-ng/umbrella/commit/25b97a341fa54ee8a82e3083fcb85a8061db8b1f))
+* **pixel:** add defLargeKernel(), conv presets ([9c71165](https://github.com/thi-ng/umbrella/commit/9c71165adb71103fa88a5486987f270fecd2f439))
+* **pixel:** add gradientImage() & FLOAT_NORMAL format ([78683b7](https://github.com/thi-ng/umbrella/commit/78683b701418bf184b2a1327cfd5e50397d687e0))
+* **pixel:** add IEmpty impls for Float/PackedBuffer ([46ac1a1](https://github.com/thi-ng/umbrella/commit/46ac1a1906b256eefab0934efea300c67db7ea28))
+* **pixel:** add normalMap(), add more kernels ([f32686d](https://github.com/thi-ng/umbrella/commit/f32686d463ffcb49b37e9b1b811ff5de06b58fed))
+* **pixel:** add POOL_THRESHOLD preset ([5f1c1de](https://github.com/thi-ng/umbrella/commit/5f1c1dea87251f8a584cbe94d83784e7e4cc31a5))
+* **pixel:** add step size support for normalMap() ([ab72a79](https://github.com/thi-ng/umbrella/commit/ab72a79532baab3f07f53419cb5970e90e97e0dd))
+* **pixel:** add/update buffer factory fns ([ba38e13](https://github.com/thi-ng/umbrella/commit/ba38e137c6913d048bb4d678137241ee179d160c))
+* **pixel:** update PackedBuffer.fromCanvas() ([3bdb086](https://github.com/thi-ng/umbrella/commit/3bdb0860bcd35a0475e83ebe948847f1ecd42db6))
+* **pixel:** update/extend/refactor convolveChannel/Image() ([6692865](https://github.com/thi-ng/umbrella/commit/6692865d5facb75bf667056afa9cfee93ade2da6))
+
+
+
+
+
 ## [0.6.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.6.0...@thi.ng/pixel@0.6.1) (2021-02-20)
 
 **Note:** Version bump only for package @thi.ng/pixel

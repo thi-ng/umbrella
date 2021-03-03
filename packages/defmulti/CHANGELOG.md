@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.3.5...@thi.ng/defmulti@1.3.6) (2021-03-03)
+
+
+### Bug Fixes
+
+* **defmulti:** add missing type anno (TS4.2) ([bc74d21](https://github.com/thi-ng/umbrella/commit/bc74d21264f2d3b76fc288eeccab398ad66f76da))
+
+
+
+
+
 ## [1.3.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.3.4...@thi.ng/defmulti@1.3.5) (2021-02-20)
 
 **Note:** Version bump only for package @thi.ng/defmulti

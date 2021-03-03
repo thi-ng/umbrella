@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hiccup-html",
-    "version": "0.3.12",
+    "version": "0.3.13",
     "description": "100+ type-checked HTML5 element functions for @thi.ng/hiccup related infrastructure",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -48,7 +48,7 @@
         "typescript": "^4.2.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.0.0"
+        "@thi.ng/api": "^7.1.0"
     },
     "files": [
         "*.js",
