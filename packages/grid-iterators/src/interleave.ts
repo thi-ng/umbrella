@@ -1,5 +1,5 @@
 import { map, range2d } from "@thi.ng/transducers";
-import { swapxy } from "./swap";
+import { swapxy } from "./utils";
 
 /**
  * Yields 2D grid coordinates in the order of interleaved columns with
@@ -18,7 +18,7 @@ import { swapxy } from "./swap";
  */
 export function* interleaveColumns2d(cols: number, rows = cols, step = 2) {
     for (let j = 0; j < step; j++) {
-        yield* map(swapxy, range2d(0, rows, j, cols, 1, step));
+        yield* map(swapxy, range2d(0, rows | 0, j, cols | 0, 1, step | 0));
     }
 }
 
@@ -39,6 +39,6 @@ export function* interleaveColumns2d(cols: number, rows = cols, step = 2) {
  */
 export function* interleaveRows2d(cols: number, rows = cols, step = 2) {
     for (let j = 0; j < step; j++) {
-        yield* range2d(0, cols, j, rows, 1, step);
+        yield* range2d(0, cols | 0, j, rows | 0, 1, step | 0);
     }
 }

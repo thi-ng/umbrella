@@ -1,5 +1,6 @@
 import { ceilPow2 } from "@thi.ng/binary";
 import { demux2 } from "@thi.ng/morton";
+import { asInt } from "./utils";
 
 /**
  * Yields 2D grid coordinates in Z-curve (Morton) order. A perfect
@@ -11,6 +12,7 @@ import { demux2 } from "@thi.ng/morton";
  * @param rows -
  */
 export function* zcurve2d(cols: number, rows = cols) {
+    [cols, rows] = asInt(cols, rows);
     const max = ceilPow2(Math.pow(Math.max(cols, rows), 2));
     for (let i = 0; i < max; i++) {
         const p = demux2(i);

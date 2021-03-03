@@ -1,3 +1,5 @@
+import { asInt } from "./utils";
+
 /**
  * Yields sequence of 2D grid coordinates in zigzag row order starting
  * from [0,0], given `cols` and `rows`.
@@ -10,6 +12,7 @@
  *
  */
 export function* zigzagRows2d(cols: number, rows = cols) {
+    [cols, rows] = asInt(cols, rows);
     const num = cols * rows;
     for (let i = 0; i < num; i++) {
         let x = i % cols;

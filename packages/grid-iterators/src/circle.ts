@@ -1,8 +1,9 @@
 import { hline } from "./hvline";
+import { asInt } from "./utils";
 
 export function* circle(cx: number, cy: number, r: number, fill = true) {
+    [cx, cy, r] = asInt(cx, cy, r);
     if (r < 1) return;
-    r |= 0;
     let x = 0;
     let y = r;
     let y2 = r * r;

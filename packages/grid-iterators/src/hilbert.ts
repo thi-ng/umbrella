@@ -1,3 +1,5 @@
+import { asInt } from "./utils";
+
 /**
  * Yields sequence of 2D grid coordinates along 2D Hilbert curve using
  * given `cols` and `rows` (each max. 32768 (2^15)).
@@ -9,6 +11,7 @@
  * @param rows -
  */
 export function* hilbert2d(cols: number, rows = cols) {
+    [cols, rows] = asInt(cols, rows);
     let hIndex = 0; // hilbert curve index
     let hOrder = 0; // hilbert curve order
     // fit to number of buckets

@@ -1,3 +1,5 @@
+import { asInt } from "./utils";
+
 /**
  * Similar to {@link diagonal2d}, but yields 2D grid coordinates in zigzag
  * diagonal order starting at [0,0] and using given `cols` and `rows`.
@@ -6,6 +8,7 @@
  * @param rows -
  */
 export function* zigzagDiagonal2d(cols: number, rows = cols) {
+    [cols, rows] = asInt(cols, rows);
     const num = cols * rows - 1;
     for (
         let x = 0, y = 0, ny = 0, dx = -1, dy = 1, d = 0, down = true, i = 0;

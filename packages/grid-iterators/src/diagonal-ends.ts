@@ -1,4 +1,5 @@
 import { diagonal2d } from "./diagonal";
+import { asInt } from "./utils";
 
 /**
  * Filtered version of {@link diagonal2d}, only including end points of
@@ -12,6 +13,7 @@ import { diagonal2d } from "./diagonal";
  * @param rows -
  */
 export function* diagonalEnds2d(cols: number, rows = cols) {
+    [cols, rows] = asInt(cols, rows);
     const num = cols * rows - 1;
     const maxX = cols - 1;
     const maxY = rows - 1;

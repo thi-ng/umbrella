@@ -1,3 +1,5 @@
+import { asInt } from "./utils";
+
 /**
  * Yields sequence of 2D grid coordinates in outward spiral order
  * starting from the center, given `cols` and `rows`.
@@ -9,6 +11,7 @@
  * @param rows -
  */
 export function* spiral2d(cols: number, rows = cols) {
+    [cols, rows] = asInt(cols, rows);
     const num = cols * rows;
     const center = (Math.min(cols, rows) - 1) >> 1;
     for (let i = 0; i < num; i++) {

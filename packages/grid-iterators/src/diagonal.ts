@@ -1,3 +1,5 @@
+import { asInt } from "./utils";
+
 /**
  * Yields sequence of 2D grid coordinates in diagonal order starting at
  * [0,0] and using given `cols` and `rows`. Each diagonal starts at y=0
@@ -10,6 +12,7 @@
  * @param rows -
  */
 export function* diagonal2d(cols: number, rows = cols) {
+    [cols, rows] = asInt(cols, rows);
     const num = cols * rows - 1;
     for (let x = 0, y = 0, nx = 1, ny = 0, i = 0; i <= num; i++) {
         yield [x, y];

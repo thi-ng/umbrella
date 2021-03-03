@@ -1,22 +1,24 @@
-export function* line(ox: number, oy: number, ex: number, ey: number) {
-    const dx = Math.abs(ex - ox);
-    const dy = -Math.abs(ey - oy);
+import { asInt } from "./utils";
 
-    let sx = ox < ex ? 1 : -1;
-    let sy = oy < ey ? 1 : -1;
+export function* line(ax: number, ay: number, bx: number, by: number) {
+    [ax, ay, bx, by] = asInt(ax, ay, bx, by);
+    const dx = Math.abs(bx - ax);
+    const dy = -Math.abs(by - ay);
+    const sx = ax < bx ? 1 : -1;
+    const sy = ay < by ? 1 : -1;
     let err = dx + dy;
 
     while (true) {
-        yield [ox, oy];
-        if (ox === ex && oy === ey) return;
+        yield [ax, ay];
+        if (ax === bx && ay === by) return;
         let t = err << 1;
         if (t < dx) {
             err += dx;
-            oy += sy;
+            ay += sy;
         }
         if (t > dy) {
             err += dy;
-            ox += sx;
+            ax += sx;
         }
     }
 }
