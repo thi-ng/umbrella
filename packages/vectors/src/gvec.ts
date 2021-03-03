@@ -1,4 +1,4 @@
-import type { NumericArray } from "@thi.ng/api";
+import type { NumericArray, StringOrSym } from "@thi.ng/api";
 import { EPS } from "@thi.ng/math";
 import { memoize1 } from "@thi.ng/memoize";
 import { map, range } from "@thi.ng/transducers";
@@ -18,7 +18,7 @@ const SYM_EMPTY = "empty";
 const SYM_EQD = "eqDelta";
 const SYM_STR = "toString";
 
-const PROPS = new Set<PropertyKey>([
+const PROPS = new Set<StringOrSym>([
     SYM_B,
     SYM_C,
     SYM_CV,
@@ -31,7 +31,7 @@ const PROPS = new Set<PropertyKey>([
     Symbol.iterator,
 ]);
 
-const keys = memoize1<number, PropertyKey[]>((size: number) => [
+const keys = memoize1<number, StringOrSym[]>((size: number) => [
     ...map(String, range(size)),
     ...PROPS,
 ]);
@@ -144,7 +144,7 @@ export const gvec = (
         set(obj, id, value) {
             const j = parseInt(<string>id);
             if (!isNaN(j) && <any>j >= 0 && <any>j < size) {
-                obj[offset + ((<number>id) | 0) * stride] = value;
+                obj[offset + ((<any>id) | 0) * stride] = value;
             } else {
                 switch (id) {
                     case SYM_O:
