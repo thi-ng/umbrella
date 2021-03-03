@@ -36,7 +36,12 @@
  * @param steps -
  * @param falloff -
  */
-export function* curve(start: number, end: number, steps = 10, rate = 0.1) {
+export function* curve(
+    start: number,
+    end: number,
+    steps = 10,
+    rate = 0.1
+): IterableIterator<number> {
     const c = Math.exp(
         -Math.log((Math.abs(end - start) + rate) / rate) / steps
     );
