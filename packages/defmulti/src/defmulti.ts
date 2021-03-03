@@ -1,6 +1,6 @@
 import { unsupported } from "@thi.ng/errors";
 import { DEFAULT, LOGGER } from "./constants";
-import type { IObjectOf } from "@thi.ng/api";
+import type { IObjectOf, Pair } from "@thi.ng/api";
 import type {
     AncestorDefs,
     DispatchFn,
@@ -151,7 +151,9 @@ export function defmulti<T>(f: any, ancestors?: AncestorDefs) {
     fn.parents = (id: PropertyKey) => rels[<any>id];
     fn.ancestors = (id: PropertyKey) =>
         new Set<PropertyKey>(findAncestors([], rels, id));
-    fn.dependencies = function* () {
+    fn.dependencies = function* (): IterableIterator<
+        Pair<PropertyKey, PropertyKey | undefined>
+    > {
         for (let a in rels) {
             for (let b of rels[a]) yield [a, b];
         }
