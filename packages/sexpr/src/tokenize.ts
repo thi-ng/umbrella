@@ -13,7 +13,10 @@ import type { SyntaxOpts, Token } from "./api";
  * @param src -
  * @param opts -
  */
-export function* tokenize(src: Iterable<string>, opts?: Partial<SyntaxOpts>) {
+export function* tokenize(
+    src: Iterable<string>,
+    opts?: Partial<SyntaxOpts>
+): IterableIterator<Token> {
     const { scopes: rawScopes, whiteSpace, string } = {
         ...DEFAULT_SYNTAX,
         ...opts,
