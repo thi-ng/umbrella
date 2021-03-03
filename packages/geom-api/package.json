@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom-api",
-    "version": "2.0.8",
+    "version": "2.0.9",
     "description": "Shared type & interface declarations for @thi.ng/geom packages",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,8 +49,8 @@
         "typescript": "^4.2.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.0",
-        "@thi.ng/vectors": "^5.1.0"
+        "@thi.ng/api": "^7.1.1",
+        "@thi.ng/vectors": "^5.1.1"
     },
     "files": [
         "*.js",
@@ -69,5 +69,6 @@
     "sideEffects": false,
     "thi.ng": {
         "year": 2013
-    }
+    },
+    "gitHead": "2ea9dfeae53824b3e9708ddac37bf1204c9494ca"
 }

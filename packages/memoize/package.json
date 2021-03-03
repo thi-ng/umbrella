@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/memoize",
-    "version": "2.1.10",
+    "version": "2.1.11",
     "description": "Function memoization with configurable caching",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,7 +49,7 @@
         "typescript": "^4.2.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.0"
+        "@thi.ng/api": "^7.1.1"
     },
     "files": [
         "*.js",
@@ -68,5 +68,6 @@
     "sideEffects": false,
     "thi.ng": {
         "year": 2018
-    }
+    },
+    "gitHead": "2ea9dfeae53824b3e9708ddac37bf1204c9494ca"
 }

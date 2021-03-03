@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/api",
-    "version": "7.1.0",
+    "version": "7.1.1",
     "description": "Common, generic types, interfaces & mixins",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -73,5 +73,6 @@
         "process": false,
         "setTimeout": false
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "gitHead": "2ea9dfeae53824b3e9708ddac37bf1204c9494ca"
 }

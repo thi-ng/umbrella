@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/errors",
-    "version": "1.2.28",
+    "version": "1.2.29",
     "description": "Custom error types and error factory functions",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -67,5 +67,6 @@
     "sideEffects": false,
     "thi.ng": {
         "year": 2018
-    }
+    },
+    "gitHead": "2ea9dfeae53824b3e9708ddac37bf1204c9494ca"
 }

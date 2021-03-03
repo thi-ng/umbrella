@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/bench",
-    "version": "2.0.28",
+    "version": "2.0.29",
     "description": "Benchmarking utilities w/ optional statistics",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -74,5 +74,6 @@
     "sideEffects": false,
     "thi.ng": {
         "year": 2018
-    }
+    },
+    "gitHead": "2ea9dfeae53824b3e9708ddac37bf1204c9494ca"
 }

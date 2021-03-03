@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/pixel",
-    "version": "0.7.0",
+    "version": "0.7.1",
     "description": "Typedarray integer & float pixel buffers w/ customizable formats, blitting, dithering, convolution",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,11 +49,11 @@
         "typescript": "^4.2.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.0",
-        "@thi.ng/binary": "^2.2.0",
-        "@thi.ng/checks": "^2.9.1",
-        "@thi.ng/math": "^3.2.1",
-        "@thi.ng/porter-duff": "^0.1.39"
+        "@thi.ng/api": "^7.1.1",
+        "@thi.ng/binary": "^2.2.1",
+        "@thi.ng/checks": "^2.9.2",
+        "@thi.ng/math": "^3.2.2",
+        "@thi.ng/porter-duff": "^0.1.40"
     },
     "files": [
         "*.js",
@@ -104,5 +104,6 @@
             "porter-duff"
         ],
         "year": 2019
-    }
+    },
+    "gitHead": "2ea9dfeae53824b3e9708ddac37bf1204c9494ca"
 }

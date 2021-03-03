@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rstream-graph",
-    "version": "3.2.56",
+    "version": "3.2.57",
     "description": "Declarative dataflow graph construction for @thi.ng/rstream",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,14 +49,14 @@
         "typescript": "^4.2.2"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.0",
-        "@thi.ng/atom": "^4.1.29",
-        "@thi.ng/checks": "^2.9.1",
-        "@thi.ng/errors": "^1.2.28",
-        "@thi.ng/paths": "^4.2.1",
-        "@thi.ng/resolve-map": "^4.2.14",
-        "@thi.ng/rstream": "^5.1.4",
-        "@thi.ng/transducers": "^7.6.2"
+        "@thi.ng/api": "^7.1.1",
+        "@thi.ng/atom": "^4.1.30",
+        "@thi.ng/checks": "^2.9.2",
+        "@thi.ng/errors": "^1.2.29",
+        "@thi.ng/paths": "^4.2.2",
+        "@thi.ng/resolve-map": "^4.2.15",
+        "@thi.ng/rstream": "^5.1.5",
+        "@thi.ng/transducers": "^7.6.3"
     },
     "files": [
         "*.js",
@@ -84,5 +84,6 @@
     "thi.ng": {
         "parent": "@thi.ng/rstream",
         "year": 2018
-    }
+    },
+    "gitHead": "2ea9dfeae53824b3e9708ddac37bf1204c9494ca"
 }

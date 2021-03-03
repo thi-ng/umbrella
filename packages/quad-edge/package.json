@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/quad-edge",
-    "version": "0.2.30",
+    "version": "0.2.31",
     "description": "Quadedge data structure after Guibas & Stolfi",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -75,5 +75,6 @@
             "geom-voronoi"
         ],
         "year": 2015
-    }
+    },
+    "gitHead": "2ea9dfeae53824b3e9708ddac37bf1204c9494ca"
 }
