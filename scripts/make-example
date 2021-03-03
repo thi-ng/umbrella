@@ -140,8 +140,9 @@ module.exports = {
             },
         ],
     ],
-    installOptions: {
-        installTypes: true,
+    packageOptions: {
+        source: "local",
+        types: true,
     },
     buildOptions: {
         baseUrl: "/umbrella/$1",
@@ -186,6 +187,8 @@ echo "writing README.md..."
 cat << EOF > "$MODULE"/README.md
 # $1
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/$1.png)
+
 [Live demo](http://demo.thi.ng/umbrella/$1/)
 
 Please refer to the [example build instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions) on the wiki.
@@ -196,5 +199,5 @@ Please refer to the [example build instructions](https://github.com/thi-ng/umbre
 
 ## License
 
-&copy; 2020 $AUTHOR // Apache Software License 2.0
+&copy; 2021 $AUTHOR // Apache Software License 2.0
 EOF
