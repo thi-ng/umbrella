@@ -570,7 +570,7 @@ concatenation (see `concat()`) for more efficient application.
 
 ### Related packages
 
-- [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel) - Typed array backed, integer and floating point pixel buffers w/ customizable formats, blitting, dithering, conversions
+- [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel) - Typedarray integer & float pixel buffers w/ customizable formats, blitting, dithering, convolution
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors) - Optimized 2d/3d/4d and arbitrary length vector operations
 
 ## Installation

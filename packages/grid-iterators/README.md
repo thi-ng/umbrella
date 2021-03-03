@@ -172,7 +172,7 @@ yarn add @thi.ng/grid-iterators
 <script src="https://unpkg.com/@thi.ng/grid-iterators/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.41 KB / CJS: 1.53 KB / UMD: 1.58 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.47 KB / CJS: 1.59 KB / UMD: 1.63 KB
 
 ## Dependencies
 

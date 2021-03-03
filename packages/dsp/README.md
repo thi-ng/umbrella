@@ -72,7 +72,7 @@ yarn add @thi.ng/dsp
 <script src="https://unpkg.com/@thi.ng/dsp/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 6.98 KB / CJS: 7.51 KB / UMD: 6.94 KB
+Package sizes (gzipped, pre-treeshake): ESM: 6.99 KB / CJS: 7.51 KB / UMD: 6.94 KB
 
 ## Dependencies
 
