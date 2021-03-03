@@ -1,8 +1,6 @@
 {
-    "lerna": "3.22.1",
-    "packages": [
-        "packages/*"
-    ],
+    "lerna": "4.0.0",
+    "packages": ["packages/*"],
     "version": "independent",
     "npmClient": "yarn",
     "useWorkspaces": true,
@@ -11,8 +9,5 @@
             "conventionalCommits": true
         }
     },
-    "ignoreChanges": [
-        "**/test/**",
-        "**/*.md"
-    ]
+    "ignoreChanges": ["**/test/**", "**/*.md"]
 }

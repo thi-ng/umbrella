@@ -28,7 +28,7 @@
         "build:release": "yarn clean && yarn build:wasm && yarn build:es6 && node ../../scripts/bundle-module all",
         "build:es6": "tsc --declaration",
         "build:test": "rimraf build && tsc -p test/tsconfig.json",
-        "build:wasm": "asc assembly/index.ts -b simd.wasm -t simd.wat --optimize --enable simd --runtime none --importMemory --memoryBase 0 && yarn build:binary",
+        "build:wasm": "asc assembly/index.ts -b simd.wasm -t simd.wat --optimize --enable simd --runtime stub --importMemory --memoryBase 0 && yarn build:binary",
         "build:binary": "echo \"/** @internal */\nexport const BINARY = \\\"$(../../scripts/base64 simd.wasm)\\\";\" > src/binary.ts",
         "build:check": "tsc --isolatedModules --noEmit",
         "test": "yarn build:test && node --experimental-wasm-simd build/test/index.js",
@@ -41,14 +41,14 @@
     },
     "devDependencies": {
         "@istanbuljs/nyc-config-typescript": "^1.0.1",
-        "@microsoft/api-extractor": "^7.12.1",
+        "@microsoft/api-extractor": "^7.13.1",
         "@types/mocha": "^8.2.0",
         "@types/node": "^14.14.14",
-        "assemblyscript": "0.17.9",
+        "assemblyscript": "0.18.12",
         "mocha": "^8.3.0",
         "nyc": "^15.1.0",
         "ts-node": "^9.1.1",
-        "typedoc": "^0.20.26",
+        "typedoc": "^0.20.28",
         "typescript": "^4.2.2"
     },
     "dependencies": {

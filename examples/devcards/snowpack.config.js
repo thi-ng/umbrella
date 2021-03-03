@@ -20,8 +20,9 @@ module.exports = {
             },
         ],
     ],
-    installOptions: {
-        installTypes: true,
+    packageOptions: {
+        source: "local",
+        types: true,
     },
     buildOptions: {
         baseUrl: "/umbrella/devcards",
