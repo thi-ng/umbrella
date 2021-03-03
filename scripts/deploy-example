@@ -20,22 +20,23 @@ console.log(args);
 
 execSync(`find examples/${EXAMPLE} -type f -name '*.DS_Store' -ls -delete`);
 
-function* files(dir, ext = "") {
+function* files(dir, ext = "", maxDepth = Infinity, depth = 0) {
+    if (depth >= maxDepth) return;
     try {
         for (let f of fs.readdirSync(dir)) {
             const curr = dir + "/" + f;
-            if (fs.statSync(curr).isDirectory()) {
-                yield* files(curr, ext);
-            } else if (f.endsWith(ext)) {
+            if (f.endsWith(ext)) {
                 yield curr;
+            } else if (fs.statSync(curr).isDirectory()) {
+                yield* files(curr, ext, maxDepth, depth + 1);
             }
         }
     } catch (_) {}
 }
 
 const uploadAssets = (dir, opts) => {
-    opts = { ext: "", gzip: true, ...opts };
-    for (let f of files(`${BUILD}${dir}`, opts.ext)) {
+    opts = { ext: "", gzip: true, depth: Infinity, ...opts };
+    for (let f of files(`${BUILD}${dir}`, opts.ext, opts.depth)) {
         const fd = `${BUCKET}/${f
             .replace(BUILD, "")
             .substr(dir === "" ? 1 : 0)}`;
@@ -65,6 +66,7 @@ const include = (id) => args.has(id) || args.has("all");
 uploadAssets("assets");
 
 uploadAssets("js");
+uploadAssets("", { ext: ".js", depth: 1 });
 uploadAssets("", { ext: ".html" });
 
 console.log("invaliding", DEST_DIR);
