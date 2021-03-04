@@ -1,4 +1,4 @@
-import { Fn, IDeref, SEMAPHORE } from "@thi.ng/api";
+import { Fn, IDeref, NULL_LOGGER, SEMAPHORE } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
 import { implementsFunction, isFunction, isPlainObject } from "@thi.ng/checks";
 import { illegalArity, illegalState } from "@thi.ng/errors";
@@ -328,7 +328,13 @@ export class Subscription<A, B>
             }
         }
         if (!notified) {
-            LOGGER.warn(this.id, "unhandled error:", e);
+            // ensure error is at least logged to console
+            // even if default NULL_LOGGER is used...
+            (LOGGER !== NULL_LOGGER ? LOGGER : console).warn(
+                this.id,
+                "unhandled error:",
+                e
+            );
             if (this.parent) {
                 LOGGER.debug(this.id, "unsubscribing...");
                 this.unsubscribe();
