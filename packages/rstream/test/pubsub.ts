@@ -67,6 +67,7 @@ describe("PubSub", function () {
         });
         pub.subscribeTopic("a", collect);
         pub.subscribeTopic("b", collect);
+        pub.subscribeTopic("c", collect);
         fromIterableSync("abcbd").subscribe(pub);
         assert.deepStrictEqual(acc, {
             a: [["a", 0]],
@@ -74,7 +75,7 @@ describe("PubSub", function () {
                 ["b", 1],
                 ["b", 3],
             ],
-            c: [],
+            c: [["c", 2]],
             d: [],
         });
         assert.strictEqual(pub.getState(), State.DONE);

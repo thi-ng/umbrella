@@ -7,7 +7,7 @@ import {
     take,
 } from "@thi.ng/transducers";
 import * as assert from "assert";
-import { fromIterable, Stream } from "../src";
+import { fromIterable, ISubscriber, Stream } from "../src";
 
 describe("transducers", () => {
     let src: Stream<number>;
@@ -15,7 +15,7 @@ describe("transducers", () => {
 
     let check = (expected: any, done: Function) => {
         let buf: any[] = [];
-        return {
+        return <ISubscriber<any>>{
             next(x: any) {
                 buf.push(x);
             },
@@ -31,8 +31,8 @@ describe("transducers", () => {
     });
 
     it("works chained", (done) => {
-        src.transform(map((x: number) => x * 10))
-            .transform(map((x: number) => x + 1))
+        src.transform(map((x) => x * 10))
+            .transform(map((x) => x + 1))
             .subscribe(check([101, 201, 301], done));
     });
 
