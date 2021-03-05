@@ -66,6 +66,9 @@ export interface StreamMergeOpts<A, B> extends TransformableOpts<A, B> {
 export const merge = <A, B>(opts?: Partial<StreamMergeOpts<A, B>>) =>
     new StreamMerge(opts);
 
+/**
+ * @see {@link merge} for reference & examples.
+ */
 export class StreamMerge<A, B> extends Subscription<A, B> {
     sources: Map<ISubscribable<A>, Subscription<A, any>>;
 

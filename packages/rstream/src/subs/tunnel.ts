@@ -63,6 +63,9 @@ export interface TunnelOpts<A> {
  */
 export const tunnel = <A, B>(opts: TunnelOpts<A>) => new Tunnel<A, B>(opts);
 
+/**
+ * @see {@link tunnel} for reference & examples.
+ */
 export class Tunnel<A, B> extends Subscription<A, B> {
     workers: Worker[];
     src: Worker | Blob | string;

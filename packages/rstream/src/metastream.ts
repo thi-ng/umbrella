@@ -101,6 +101,9 @@ export const metaStream = <A, B>(
     opts?: Partial<MetaStreamOpts>
 ) => new MetaStream(factory, opts);
 
+/**
+ * @see {@link metaStream} for reference & examples.
+ */
 export class MetaStream<A, B> extends Subscription<A, B> {
     factory: Fn<A, Subscription<B, B>>;
     stream?: Subscription<B, B>;

@@ -3,12 +3,15 @@ import { metaStream, MetaStreamOpts } from "../metastream";
 import { optsWithID } from "../utils/idgen";
 
 /**
- * Returns a subscription which ignores any intermediate inputs arriving
- * faster than given `delay` time period.
+ * Returns a subscription which buffers any intermediate inputs arriving faster
+ * than given `delay` time period, then emits last received value after `delay`
+ * milliseconds.
  *
  * @example
  * ```ts
- *
+ * const src = fromIterable([1, 2, 3], { delay: 10 })
+ * src.subscribe(debounce(20)).subscribe({ next: console.log });
+ * // 3
  * ```
  *
  * @param delay

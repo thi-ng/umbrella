@@ -88,6 +88,9 @@ export const reactive = <T>(val: T, opts?: Partial<CommonOpts>) => {
     return res;
 };
 
+/**
+ * @see {@link stream} & {@link reactive} for reference & examples.
+ */
 export class Stream<T> extends Subscription<T, T> implements IStream<T> {
     src?: StreamSource<T>;
 
