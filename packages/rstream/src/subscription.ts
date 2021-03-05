@@ -1,6 +1,6 @@
 import { Fn, IDeref, NULL_LOGGER, SEMAPHORE } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
-import { implementsFunction, isFunction, isPlainObject } from "@thi.ng/checks";
+import { implementsFunction, isPlainObject } from "@thi.ng/checks";
 import { illegalArity, illegalState } from "@thi.ng/errors";
 import {
     comp,
@@ -21,8 +21,9 @@ import {
     LOGGER,
     State,
     SubscriptionOpts,
+    WithErrorHandlerOpts,
 } from "./api";
-import { nextID } from "./utils/idgen";
+import { nextID, optsWithID } from "./utils/idgen";
 
 /**
  * Creates a new {@link Subscription} instance, the fundamental datatype
@@ -128,17 +129,13 @@ export class Subscription<A, B>
 
     /**
      * Creates new child subscription with given subscriber and/or
-     * transducer and optional subscription ID.
+     * transducer and options.
      */
     subscribe(
-        sub: Partial<ISubscriber<B>>,
+        sub: ISubscriber<B>,
         opts?: Partial<CommonOpts>
     ): Subscription<B, B>;
     subscribe<C>(sub: Subscription<B, C>): Subscription<B, C>;
-    subscribe<C>(
-        xform: Transducer<B, C>,
-        opts?: Partial<CommonOpts>
-    ): Subscription<B, C>;
     subscribe<C>(
         sub: Partial<ISubscriber<C>>,
         xform: Transducer<B, C>,
@@ -146,7 +143,7 @@ export class Subscription<A, B>
     ): Subscription<B, C>;
     subscribe(...args: any[]): any {
         this.ensureState();
-        let sub: Subscription<any, any> | undefined;
+        let sub: ISubscriber<any> = args[0];
         !peek(args) && args.pop();
         const opts: Partial<SubscriptionOpts<any, any>> =
             args.length > 1 && isPlainObject(peek(args))
@@ -154,28 +151,22 @@ export class Subscription<A, B>
                 : {};
         switch (args.length) {
             case 1:
-                if (isFunction(args[0])) {
-                    opts.xform = args[0];
-                    !opts.id && (opts.id = `xform-${nextID()}`);
-                } else {
-                    sub = args[0];
-                }
                 break;
             case 2:
-                sub = args[0];
                 opts.xform = args[1];
                 break;
             default:
                 illegalArity(args.length);
         }
-        if (implementsFunction(sub!, "subscribe") && !opts.xform) {
-            sub!.parent = this;
+        let $sub: Subscription<any, any>;
+        if (implementsFunction(sub, "subscribe") && !opts.xform) {
+            $sub = <Subscription<any, any>>sub;
+            $sub.parent = this;
         } else {
-            // FIXME inherit options from this sub or defaults?
-            sub = subscription<B, B>(sub, { parent: this, ...opts });
+            $sub = subscription<B, B>(sub, { parent: this, ...opts });
         }
-        this.last !== SEMAPHORE && sub!.next(this.last);
-        return this.addWrapped(sub!);
+        this.last !== SEMAPHORE && $sub.next(this.last);
+        return this.addWrapped($sub);
     }
 
     /**
@@ -200,21 +191,30 @@ export class Subscription<A, B>
      *
      * Shorthand for `subscribe(comp(xf1, xf2,...), id)`
      */
-    transform<C>(
-        a: Transducer<B, C>,
-        opts?: Partial<CommonOpts>
-    ): Subscription<B, C>;
     // prettier-ignore
-    transform<C, D>(a: Transducer<B, C>, b: Transducer<C, D>, opts?: Partial<CommonOpts>): Subscription<B, D>;
+    transform<C>(a: Transducer<B, C>, opts?: Partial<WithErrorHandlerOpts>): Subscription<B, C>;
     // prettier-ignore
-    transform<C, D, E>(a: Transducer<B, C>, b: Transducer<C, D>, c: Transducer<D, E>, opts?: Partial<CommonOpts>): Subscription<B, E>;
+    transform<C, D>(a: Transducer<B, C>, b: Transducer<C, D>, opts?: Partial<WithErrorHandlerOpts>): Subscription<B, D>;
     // prettier-ignore
-    transform<C, D, E, F>(a: Transducer<B, C>, b: Transducer<C, D>, c: Transducer<D, E>, d: Transducer<E, F>, opts?: Partial<CommonOpts>): Subscription<B, F>;
-    transform(...xf: any[]) {
-        const n = xf.length - 1;
-        return isPlainObject(xf[n])
-            ? this.subscribe((<any>comp)(...xf.slice(0, n)), xf[n])
-            : this.subscribe((<any>comp)(...xf));
+    transform<C, D, E>(a: Transducer<B, C>, b: Transducer<C, D>, c: Transducer<D, E>, opts?: Partial<WithErrorHandlerOpts>): Subscription<B, E>;
+    // prettier-ignore
+    transform<C, D, E, F>(a: Transducer<B, C>, b: Transducer<C, D>, c: Transducer<D, E>, d: Transducer<E, F>, opts?: Partial<WithErrorHandlerOpts>): Subscription<B, F>;
+    transform(...args: any[]) {
+        let sub: Partial<ISubscriber<B>> | undefined;
+        let opts: Partial<SubscriptionOpts<any, any>>;
+        const n = args.length - 1;
+        if (isPlainObject(args[n])) {
+            opts = optsWithID(`xform`, {
+                ...args[n],
+                // @ts-ignore
+                xform: comp(...args.slice(0, n)),
+            });
+            sub = { error: (<WithErrorHandlerOpts>opts).error };
+        } else {
+            // @ts-ignore
+            opts = { xform: comp(...args) };
+        }
+        return this.subscribe(<any>sub, opts);
     }
 
     /**
@@ -225,8 +225,11 @@ export class Subscription<A, B>
      * @param fn
      * @param opts
      */
-    map<C>(fn: Fn<B, C>, opts?: Partial<CommonOpts>): Subscription<B, C> {
-        return this.subscribe(map(fn), opts);
+    map<C>(
+        fn: Fn<B, C>,
+        opts?: Partial<WithErrorHandlerOpts>
+    ): Subscription<B, C> {
+        return this.transform(map(fn), opts);
     }
 
     /**
@@ -343,10 +346,10 @@ export class Subscription<A, B>
         }
     }
 
-    protected addWrapped(wrapped: Subscription<any, any>) {
-        this.subs.push(wrapped);
+    protected addWrapped(sub: Subscription<any, any>) {
+        this.subs.push(sub);
         this.state = State.ACTIVE;
-        return wrapped;
+        return sub;
     }
 
     protected dispatch(x: B) {
@@ -354,7 +357,7 @@ export class Subscription<A, B>
         this.cacheLast && (this.last = x);
         const subs = this.subs;
         let n = subs.length;
-        let s: ISubscriber<B>;
+        let s: Partial<ISubscriber<B>>;
         if (n === 1) {
             s = subs[0];
             try {

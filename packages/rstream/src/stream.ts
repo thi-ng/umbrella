@@ -105,26 +105,22 @@ export class Stream<T> extends Subscription<T, T> implements IStream<T> {
     }
 
     subscribe(
-        sub: Partial<ISubscriber<T>>,
+        sub: ISubscriber<T>,
         opts?: Partial<CommonOpts>
     ): Subscription<T, T>;
     subscribe<C>(sub: Subscription<T, C>): Subscription<T, C>;
-    subscribe<C>(
-        xform: Transducer<T, C>,
-        opts?: Partial<CommonOpts>
-    ): Subscription<T, C>;
     subscribe<C>(
         sub: Partial<ISubscriber<C>>,
         xform: Transducer<T, C>,
         opts?: Partial<CommonOpts>
     ): Subscription<T, C>;
     subscribe(...args: any[]): any {
-        const wrapped = super.subscribe.apply(this, <any>args);
+        const sub = super.subscribe.apply(this, <any>args);
         if (!this._inited) {
             this._cancel = (this.src && this.src(this)) || (() => void 0);
             this._inited = true;
         }
-        return wrapped;
+        return sub;
     }
 
     unsubscribe(sub?: Subscription<T, any>) {

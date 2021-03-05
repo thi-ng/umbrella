@@ -76,6 +76,13 @@ export interface TransformableOpts<A, B> extends CommonOpts {
     xform: Transducer<A, B>;
 }
 
+export interface WithErrorHandlerOpts extends CommonOpts {
+    /**
+     * Optional error handler to use for this
+     */
+    error: Fn<any, void>;
+}
+
 export interface SubscriptionOpts<A, B> extends TransformableOpts<A, B> {
     /**
      * Parent stream / subscription.
@@ -96,15 +103,11 @@ export interface ISubscriber<T> {
 
 export interface ISubscribable<T> extends IDeref<T | undefined>, IID<string> {
     subscribe(
-        sub: Partial<ISubscriber<T>>,
+        sub: ISubscriber<T>,
         opts?: Partial<CommonOpts>
     ): Subscription<T, T>;
     subscribe<C>(
         sub: Partial<ISubscriber<T>>,
-        xform: Transducer<T, C>,
-        opts?: Partial<CommonOpts>
-    ): Subscription<T, C>;
-    subscribe<C>(
         xform: Transducer<T, C>,
         opts?: Partial<CommonOpts>
     ): Subscription<T, C>;
@@ -152,3 +155,5 @@ export type StreamSource<T> = (sub: Stream<T>) => StreamCancel | void;
 export let LOGGER = NULL_LOGGER;
 
 export const setLogger = (logger: ILogger) => (LOGGER = logger);
+
+export const DUMMY: ISubscriber<any> = { next() {} };
