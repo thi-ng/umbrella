@@ -1,4 +1,4 @@
-import { Fn, IDeref, NULL_LOGGER, SEMAPHORE } from "@thi.ng/api";
+import { Fn, NULL_LOGGER, SEMAPHORE } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
 import { implementsFunction, isPlainObject } from "@thi.ng/checks";
 import { illegalArity, illegalState } from "@thi.ng/errors";
@@ -17,7 +17,7 @@ import {
     CommonOpts,
     ISubscribable,
     ISubscriber,
-    ITransformable,
+    ISubscription,
     LOGGER,
     State,
     SubscriptionOpts,
@@ -83,12 +83,7 @@ export const subscription = <A, B>(
 /**
  * @see {@link subscription} for reference & examples.
  */
-export class Subscription<A, B>
-    implements
-        IDeref<B | undefined>,
-        ISubscriber<A>,
-        ISubscribable<B>,
-        ITransformable<B> {
+export class Subscription<A, B> implements ISubscription<A, B> {
     id: string;
 
     closeIn: CloseMode;

@@ -150,9 +150,11 @@ export interface ITransformable<B> {
     ): Subscription<B, C>;
 }
 
-export interface ISubscribableSubscriber<T>
-    extends ISubscriber<T>,
-        ISubscribable<any> {}
+export interface ISubscription<A = any, B = A>
+    extends IDeref<B | undefined>,
+        ISubscriber<A>,
+        ISubscribable<B>,
+        ITransformable<B> {}
 
 export interface IStream<T> extends ISubscriber<T> {
     cancel: StreamCancel;
