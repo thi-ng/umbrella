@@ -8,6 +8,7 @@ import {
     ISubscriber,
     LOGGER,
     SubscriptionOpts,
+    WithErrorHandlerOpts,
 } from "./api";
 import { Subscription, subscription } from "./subscription";
 import { optsWithID } from "./utils/idgen";
@@ -98,16 +99,11 @@ export class PubSub<A, B> extends Subscription<A, B> {
 
     subscribeTopic<C>(
         topicID: any,
-        xform: Transducer<B, C>,
-        opts?: Partial<CommonOpts>
-    ): Subscription<B, C>;
-    subscribeTopic<C>(
-        topicID: any,
         opts?: Partial<CommonOpts>
     ): Subscription<B, C>;
     subscribeTopic(
         topicID: any,
-        sub: Partial<ISubscriber<B>>,
+        sub: ISubscriber<B>,
         opts?: Partial<CommonOpts>
     ): Subscription<B, B>;
     subscribeTopic(
@@ -124,6 +120,21 @@ export class PubSub<A, B> extends Subscription<A, B> {
                 }))
             );
         return t.subscribe(sub, opts);
+    }
+
+    transformTopic<C>(
+        topicID: any,
+        xform: Transducer<B, C>,
+        opts: Partial<WithErrorHandlerOpts> = {}
+    ) {
+        return this.subscribeTopic(
+            topicID,
+            <ISubscriber<B>>{ error: opts.error },
+            <any>{
+                ...opts,
+                xform,
+            }
+        );
     }
 
     unsubscribeTopic(topicID: any, sub: Subscription<B, any>) {
