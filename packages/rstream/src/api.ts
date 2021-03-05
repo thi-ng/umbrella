@@ -67,7 +67,7 @@ export interface CommonOpts {
     cache: boolean;
 }
 
-export interface TransformableOpts<A, B> extends CommonOpts {
+export interface WithTransform<A, B> {
     /**
      * Transducer to transform incoming stream values. If given, all
      * child subscriptions will only receive the transformed result
@@ -76,12 +76,18 @@ export interface TransformableOpts<A, B> extends CommonOpts {
     xform: Transducer<A, B>;
 }
 
-export interface WithErrorHandlerOpts extends CommonOpts {
+export interface TransformableOpts<A, B>
+    extends CommonOpts,
+        WithTransform<A, B> {}
+
+export interface WithErrorHandler {
     /**
      * Optional error handler to use for this
      */
     error: Fn<any, void>;
 }
+
+export interface WithErrorHandlerOpts extends CommonOpts, WithErrorHandler {}
 
 export interface SubscriptionOpts<A, B> extends TransformableOpts<A, B> {
     /**
@@ -119,26 +125,29 @@ export interface ISubscribable<T> extends IDeref<T | undefined>, IID<string> {
 export interface ITransformable<B> {
     transform<C>(
         a: Transducer<B, C>,
-        opts?: Partial<CommonOpts>
+        opts?: Partial<WithErrorHandlerOpts>
     ): Subscription<B, C>;
     transform<C, D>(
         a: Transducer<B, C>,
         b: Transducer<C, D>,
-        opts?: Partial<CommonOpts>
+        opts?: Partial<WithErrorHandlerOpts>
     ): Subscription<B, D>;
     transform<C, D, E>(
         a: Transducer<B, C>,
         b: Transducer<C, D>,
         c: Transducer<D, E>,
-        opts?: Partial<CommonOpts>
+        opts?: Partial<WithErrorHandlerOpts>
     ): Subscription<B, E>;
     transform<C, D, E, F>(
         a: Transducer<B, C>,
         b: Transducer<C, D>,
         c: Transducer<D, E>,
         d: Transducer<E, F>,
-        opts?: Partial<CommonOpts>
+        opts?: Partial<WithErrorHandlerOpts>
     ): Subscription<B, F>;
+    transform<C>(
+        opts: WithTransform<B, C> & Partial<WithErrorHandlerOpts>
+    ): Subscription<B, C>;
 }
 
 export interface ISubscribableSubscriber<T>

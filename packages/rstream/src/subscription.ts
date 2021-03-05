@@ -22,6 +22,7 @@ import {
     State,
     SubscriptionOpts,
     WithErrorHandlerOpts,
+    WithTransform,
 } from "./api";
 import { nextID, optsWithID } from "./utils/idgen";
 
@@ -79,6 +80,9 @@ export const subscription = <A, B>(
     opts?: Partial<SubscriptionOpts<A, B>>
 ) => new Subscription(sub, opts);
 
+/**
+ * @see {@link subscription} for reference & examples.
+ */
 export class Subscription<A, B>
     implements
         IDeref<B | undefined>,
@@ -191,28 +195,50 @@ export class Subscription<A, B>
      *
      * Shorthand for `subscribe(comp(xf1, xf2,...), id)`
      */
-    // prettier-ignore
-    transform<C>(a: Transducer<B, C>, opts?: Partial<WithErrorHandlerOpts>): Subscription<B, C>;
-    // prettier-ignore
-    transform<C, D>(a: Transducer<B, C>, b: Transducer<C, D>, opts?: Partial<WithErrorHandlerOpts>): Subscription<B, D>;
-    // prettier-ignore
-    transform<C, D, E>(a: Transducer<B, C>, b: Transducer<C, D>, c: Transducer<D, E>, opts?: Partial<WithErrorHandlerOpts>): Subscription<B, E>;
-    // prettier-ignore
-    transform<C, D, E, F>(a: Transducer<B, C>, b: Transducer<C, D>, c: Transducer<D, E>, d: Transducer<E, F>, opts?: Partial<WithErrorHandlerOpts>): Subscription<B, F>;
+    transform<C>(
+        a: Transducer<B, C>,
+        opts?: Partial<WithErrorHandlerOpts>
+    ): Subscription<B, C>;
+    transform<C, D>(
+        a: Transducer<B, C>,
+        b: Transducer<C, D>,
+        opts?: Partial<WithErrorHandlerOpts>
+    ): Subscription<B, D>;
+    transform<C, D, E>(
+        a: Transducer<B, C>,
+        b: Transducer<C, D>,
+        c: Transducer<D, E>,
+        opts?: Partial<WithErrorHandlerOpts>
+    ): Subscription<B, E>;
+    transform<C, D, E, F>(
+        a: Transducer<B, C>,
+        b: Transducer<C, D>,
+        c: Transducer<D, E>,
+        d: Transducer<E, F>,
+        opts?: Partial<WithErrorHandlerOpts>
+    ): Subscription<B, F>;
+    transform<C>(
+        opts: WithTransform<B, C> & Partial<WithErrorHandlerOpts>
+    ): Subscription<B, C>;
     transform(...args: any[]) {
         let sub: Partial<ISubscriber<B>> | undefined;
         let opts: Partial<SubscriptionOpts<any, any>>;
         const n = args.length - 1;
         if (isPlainObject(args[n])) {
-            opts = optsWithID(`xform`, {
-                ...args[n],
-                // @ts-ignore
-                xform: comp(...args.slice(0, n)),
-            });
+            opts = optsWithID(
+                `xform`,
+                n > 0
+                    ? {
+                          ...args[n],
+                          // @ts-ignore
+                          xform: comp(...args.slice(0, n)),
+                      }
+                    : args[n]
+            );
             sub = { error: (<WithErrorHandlerOpts>opts).error };
         } else {
             // @ts-ignore
-            opts = { xform: comp(...args) };
+            opts = optsWithID(`xform`, { xform: comp(...args) });
         }
         return this.subscribe(<any>sub, opts);
     }
@@ -229,7 +255,7 @@ export class Subscription<A, B>
         fn: Fn<B, C>,
         opts?: Partial<WithErrorHandlerOpts>
     ): Subscription<B, C> {
-        return this.transform(map(fn), opts);
+        return this.transform(map(fn), opts || {});
     }
 
     /**
