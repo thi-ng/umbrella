@@ -31,8 +31,8 @@ describe("transducers", () => {
     });
 
     it("works chained", (done) => {
-        src.subscribe(map((x: number) => x * 10))
-            .subscribe(map((x: number) => x + 1))
+        src.transform(map((x: number) => x * 10))
+            .transform(map((x: number) => x + 1))
             .subscribe(check([101, 201, 301], done));
     });
 

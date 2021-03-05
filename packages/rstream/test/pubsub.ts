@@ -102,7 +102,7 @@ describe("PubSub", function () {
         }, TIMEOUT * 7.5);
     });
 
-    it("subTopic xform", () => {
+    it("transformTopic", () => {
         const acc: any = [];
         const collect = {
             next(x: any) {
@@ -110,7 +110,7 @@ describe("PubSub", function () {
             },
         };
         pub = pubsub({ topic: (x) => x });
-        pub.subscribeTopic(
+        pub.transformTopic(
             "a",
             map((x) => x.toUpperCase())
         ).subscribe(collect);

@@ -2,6 +2,7 @@ import { frequencies, map, mapcat } from "@thi.ng/transducers";
 import * as assert from "assert";
 import {
     CloseMode,
+    DUMMY,
     fromIterable,
     fromIterableSync,
     merge,
@@ -59,8 +60,8 @@ describe("StreamMerge", () => {
 
     it("stops when no more subs", () => {
         assert(src.getState() === State.IDLE);
-        let sub1 = src.subscribe({});
-        let sub2 = src.subscribe({});
+        let sub1 = src.subscribe(DUMMY);
+        let sub2 = src.subscribe(DUMMY);
         sub1.unsubscribe();
         assert(src.getState() === State.ACTIVE);
         sub2.unsubscribe();
@@ -79,7 +80,7 @@ describe("StreamMerge", () => {
         const sources = [
             fromIterable([1, 2, 3]),
             fromIterable([4, 5, 6]),
-        ].map((s) => s.subscribe(map((x) => fromIterable([x, x, x]))));
+        ].map((s) => s.transform(map((x) => fromIterable([x, x, x]))));
         const main = merge({ src: <any>sources });
         const histogram = frequencies();
         let acc: any = histogram[0]();

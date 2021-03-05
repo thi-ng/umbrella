@@ -108,13 +108,10 @@ describe("Subscription", function () {
         );
     });
 
-    it("sub xform only", () => {
+    it("transform", () => {
         let buf: any[] = [];
         fromIterableSync([1], { closeIn: CloseMode.NEVER })
-            .subscribe(
-                map((x: number) => x + 10),
-                undefined
-            )
+            .transform(map((x: number) => x + 10))
             .subscribe({
                 next(x) {
                     buf.push(x);

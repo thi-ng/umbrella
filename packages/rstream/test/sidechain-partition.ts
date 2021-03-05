@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { sidechainPartition, State, Stream, stream } from "../src";
+import { DUMMY, sidechainPartition, State, Stream, stream } from "../src";
 
 describe("SidechainPartition", function () {
     let src: Stream<any>, side: Stream<any>, buf: any[];
@@ -62,7 +62,7 @@ describe("SidechainPartition", function () {
 
     it("unsubscribe chain (from child)", () => {
         const part = src.subscribe(sidechainPartition(side));
-        const sub = part.subscribe({});
+        const sub = part.subscribe(DUMMY);
         sub.unsubscribe();
         assert.strictEqual(src.getState(), State.DONE);
         assert.strictEqual(side.getState(), State.DONE);

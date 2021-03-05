@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { CloseMode, fromIterable, metaStream, State } from "../src";
+import { CloseMode, DUMMY, fromIterable, metaStream, State } from "../src";
 import { TIMEOUT } from "./config";
 
 describe("MetaStream", function () {
@@ -32,7 +32,7 @@ describe("MetaStream", function () {
             closeIn: CloseMode.NEVER,
         });
         const sub = src.subscribe(meta);
-        const child = sub.subscribe({});
+        const child = sub.subscribe(DUMMY);
         setTimeout(() => {
             assert.strictEqual(src.getState(), State.DONE);
             assert.strictEqual(meta.getState(), State.ACTIVE);

@@ -40,6 +40,7 @@ describe("fromIterable()", function () {
 
     it("finishes", (_done) => {
         let sub: Subscription<any, any> = src.subscribe({
+            next() {},
             done() {
                 assert.strictEqual(src.getState(), State.DONE, "src not done");
                 assert.strictEqual(sub.getState(), State.DONE, "sub not done");

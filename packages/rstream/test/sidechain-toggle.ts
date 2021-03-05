@@ -1,6 +1,6 @@
 import type { Predicate } from "@thi.ng/api";
 import * as assert from "assert";
-import { sidechainToggle, State, Stream, stream } from "../src";
+import { DUMMY, sidechainToggle, State, Stream, stream } from "../src";
 
 describe("SidechainToggle", () => {
     let src: Stream<any>, side: Stream<any>, buf: any[];
@@ -50,7 +50,7 @@ describe("SidechainToggle", () => {
 
     it("unsubscribe chain (from child)", () => {
         const part = src.subscribe(sidechainToggle(side));
-        const sub = part.subscribe({});
+        const sub = part.subscribe(DUMMY);
         sub.unsubscribe();
         assert.strictEqual(src.getState(), State.DONE);
         assert.strictEqual(side.getState(), State.DONE);

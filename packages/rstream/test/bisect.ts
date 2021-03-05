@@ -19,6 +19,7 @@ describe("bisect", () => {
             )
         );
         src.subscribe({
+            next() { },
             done() {
                 assert. deepStrictEqual(odds, [1, 3]);
                 assert. deepStrictEqual(evens, [2, 4]);
@@ -40,6 +41,7 @@ describe("bisect", () => {
         let doneCount = 0;
         src.subscribe(bisect((x) => !!(x & 1), subo, sube));
         src.subscribe({
+            next() {},
             done() {
                 assert. deepStrictEqual(odds, [10, 30]);
                 assert. deepStrictEqual(evens, [200, 400]);

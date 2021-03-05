@@ -9,6 +9,7 @@ describe("Timeout", function () {
         this.timeout(TIMEOUT * 2);
 
         timeout(TIMEOUT).subscribe({
+            next() {},
             error: (e) => {
                 assert(e instanceof Error);
                 done();
@@ -22,6 +23,7 @@ describe("Timeout", function () {
         const error = "error object";
 
         timeout(TIMEOUT, { error }).subscribe({
+            next() {},
             error: (err) => {
                 assert.strictEqual(err, error);
                 done();
@@ -34,6 +36,7 @@ describe("Timeout", function () {
 
         timeout(TIMEOUT)
             .subscribe({
+                next() {},
                 error: () => assert.fail("timed out"),
             })
             .unsubscribe();
