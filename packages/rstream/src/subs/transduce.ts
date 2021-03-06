@@ -59,7 +59,7 @@ export const transduce = <A, B, C>(
                     reject(e);
                 },
             },
-            xform
+            { xform }
         );
     }).then(
         (fulfilled) => {

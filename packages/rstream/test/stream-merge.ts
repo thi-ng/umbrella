@@ -2,7 +2,6 @@ import { frequencies, map, mapcat } from "@thi.ng/transducers";
 import * as assert from "assert";
 import {
     CloseMode,
-    DUMMY,
     fromIterable,
     fromIterableSync,
     merge,
@@ -60,8 +59,8 @@ describe("StreamMerge", () => {
 
     it("stops when no more subs", () => {
         assert(src.getState() === State.IDLE);
-        let sub1 = src.subscribe(DUMMY);
-        let sub2 = src.subscribe(DUMMY);
+        let sub1 = src.subscribe({});
+        let sub2 = src.subscribe({});
         sub1.unsubscribe();
         assert(src.getState() === State.ACTIVE);
         sub2.unsubscribe();

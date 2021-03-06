@@ -1,7 +1,7 @@
-import { Fn, NULL_LOGGER, SEMAPHORE } from "@thi.ng/api";
-import { peek } from "@thi.ng/arrays";
+import { Fn, Nullable, NULL_LOGGER, SEMAPHORE } from "@thi.ng/api";
 import { implementsFunction, isPlainObject } from "@thi.ng/checks";
-import { illegalArity, illegalState } from "@thi.ng/errors";
+import { peek } from "@thi.ng/arrays";
+import { illegalState } from "@thi.ng/errors";
 import {
     comp,
     isReduced,
@@ -21,6 +21,7 @@ import {
     LOGGER,
     State,
     SubscriptionOpts,
+    TransformableOpts,
     WithErrorHandlerOpts,
     WithTransform,
 } from "./api";
@@ -76,7 +77,7 @@ import { nextID, optsWithID } from "./utils/idgen";
  * @param opts -
  */
 export const subscription = <A, B>(
-    sub?: ISubscriber<B>,
+    sub: Nullable<Partial<ISubscriber<B>>>,
     opts?: Partial<SubscriptionOpts<A, B>>
 ) => new Subscription(sub, opts);
 
@@ -90,7 +91,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
     closeOut: CloseMode;
 
     protected parent?: ISubscribable<A>;
-    protected subs: ISubscriber<B>[];
+    protected subs: Partial<ISubscriber<B>>[];
     protected xform?: Reducer<B[], A>;
     protected state: State = State.IDLE;
 
@@ -98,7 +99,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
     protected last: any;
 
     constructor(
-        sub?: ISubscriber<B>,
+        sub: Nullable<Partial<ISubscriber<B>>>,
         opts: Partial<SubscriptionOpts<A, B>> = {}
     ) {
         this.parent = opts.parent;
@@ -130,33 +131,20 @@ export class Subscription<A, B> implements ISubscription<A, B> {
      * Creates new child subscription with given subscriber and/or
      * transducer and options.
      */
+    subscribe<C>(sub: Subscription<B, C>): Subscription<B, C>;
     subscribe(
-        sub: ISubscriber<B>,
+        sub: Partial<ISubscriber<B>>,
         opts?: Partial<CommonOpts>
     ): Subscription<B, B>;
-    subscribe<C>(sub: Subscription<B, C>): Subscription<B, C>;
     subscribe<C>(
         sub: Partial<ISubscriber<C>>,
-        xform: Transducer<B, C>,
-        opts?: Partial<CommonOpts>
+        opts?: Partial<TransformableOpts<B, C>>
     ): Subscription<B, C>;
-    subscribe(...args: any[]): any {
+    subscribe(
+        sub: Partial<ISubscriber<any>>,
+        opts: Partial<TransformableOpts<any, any>> = {}
+    ): any {
         this.ensureState();
-        let sub: ISubscriber<any> = args[0];
-        !peek(args) && args.pop();
-        const opts: Partial<SubscriptionOpts<any, any>> =
-            args.length > 1 && isPlainObject(peek(args))
-                ? { ...args.pop() }
-                : {};
-        switch (args.length) {
-            case 1:
-                break;
-            case 2:
-                opts.xform = args[1];
-                break;
-            default:
-                illegalArity(args.length);
-        }
         let $sub: Subscription<any, any>;
         if (implementsFunction(sub, "subscribe") && !opts.xform) {
             $sub = <Subscription<any, any>>sub;
@@ -217,25 +205,24 @@ export class Subscription<A, B> implements ISubscription<A, B> {
     ): Subscription<B, C>;
     transform(...args: any[]) {
         let sub: Partial<ISubscriber<B>> | undefined;
-        let opts: Partial<SubscriptionOpts<any, any>>;
-        const n = args.length - 1;
-        if (isPlainObject(args[n])) {
-            opts = optsWithID(
-                `xform`,
-                n > 0
-                    ? {
-                          ...args[n],
-                          // @ts-ignore
-                          xform: comp(...args.slice(0, n)),
-                      }
-                    : args[n]
-            );
+        let opts: Partial<SubscriptionOpts<any, any>> | undefined;
+        if (isPlainObject(peek(args))) {
+            opts = args.pop();
             sub = { error: (<WithErrorHandlerOpts>opts).error };
-        } else {
-            // @ts-ignore
-            opts = optsWithID(`xform`, { xform: comp(...args) });
         }
-        return this.subscribe(<any>sub, opts);
+        return this.subscribe(
+            <any>sub,
+            optsWithID(
+                "xform",
+                args.length > 0
+                    ? {
+                          ...opts!,
+                          // @ts-ignore
+                          xform: comp(...args),
+                      }
+                    : opts
+            )
+        );
     }
 
     /**

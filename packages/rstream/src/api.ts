@@ -107,18 +107,50 @@ export interface ISubscriber<T> {
     [id: string]: any;
 }
 
-export interface ISubscribable<T> extends IDeref<T | undefined>, IID<string> {
+export interface ISubscribable<A> extends IDeref<A | undefined>, IID<string> {
+    /**
+     * Adds given `sub` as child subscription.
+     *
+     * @param sub
+     */
+    subscribe<B>(sub: Subscription<A, B>): Subscription<A, B>;
+    /**
+     * Wraps given partial `sub` in a {@link Subscription} and attaches it as
+     * child subscription.
+     *
+     * @param sub
+     * @param opts
+     */
     subscribe(
-        sub: ISubscriber<T>,
+        sub: Partial<ISubscriber<A>>,
         opts?: Partial<CommonOpts>
-    ): Subscription<T, T>;
-    subscribe<C>(
-        sub: Partial<ISubscriber<T>>,
-        xform: Transducer<T, C>,
-        opts?: Partial<CommonOpts>
-    ): Subscription<T, C>;
-    subscribe<C>(sub: Subscription<T, C>): Subscription<T, C>;
-    unsubscribe(sub?: Partial<ISubscriber<T>>): boolean;
+    ): Subscription<A, A>;
+    /**
+     * Wraps given partial `sub` in a {@link Subscription} and attaches it as
+     * child subscription. If `opts` defines a transducer (via `xform` key),
+     * input values will be transformed first before reaching the child sub's
+     * {@link ISubsciber.next} handler. Any further downstream subscriptions
+     * attached to the returned wrapped sub will also only receive those
+     * transformed values.
+     *
+     * @see {@link ITransformable}
+     *
+     * @param sub
+     * @param opts
+     */
+    subscribe<B>(
+        sub: Partial<ISubscriber<B>>,
+        opts?: Partial<TransformableOpts<A, B>>
+    ): Subscription<A, B>;
+    /**
+     * Removes given child sub, or if `sub` is omitted, detaches this
+     * subscription itself from its upstream parent (possibly triggering a
+     * cascade of further unsubscriptions, depending on
+     * {@link CommonOpts.closeOut} settings of parent(s)).
+     *
+     * @param sub
+     */
+    unsubscribe(sub?: Partial<ISubscriber<A>>): boolean;
     getState(): State;
 }
 
@@ -166,5 +198,3 @@ export type StreamSource<T> = (sub: Stream<T>) => StreamCancel | void;
 export let LOGGER = NULL_LOGGER;
 
 export const setLogger = (logger: ILogger) => (LOGGER = logger);
-
-export const DUMMY: ISubscriber<any> = { next() {} };

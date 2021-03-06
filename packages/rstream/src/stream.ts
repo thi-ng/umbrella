@@ -1,5 +1,4 @@
 import { isFunction } from "@thi.ng/checks";
-import type { Transducer } from "@thi.ng/transducers";
 import {
     CloseMode,
     CommonOpts,
@@ -8,6 +7,7 @@ import {
     LOGGER,
     StreamCancel,
     StreamSource,
+    TransformableOpts,
 } from "./api";
 import { Subscription } from "./subscription";
 import { optsWithID } from "./utils/idgen";
@@ -99,31 +99,35 @@ export class Stream<T> extends Subscription<T, T> implements IStream<T> {
 
     constructor(opts?: Partial<CommonOpts>);
     constructor(src: StreamSource<T>, opts?: Partial<CommonOpts>);
-    // prettier-ignore
-    constructor(src?: StreamSource<T> | Partial<CommonOpts>, opts?: Partial<CommonOpts>) {
+    constructor(
+        src?: StreamSource<T> | Partial<CommonOpts>,
+        opts?: Partial<CommonOpts>
+    ) {
         const [_src, _opts] = isFunction(src) ? [src, opts] : [undefined, src];
         super(undefined, optsWithID("stream", _opts));
         this.src = _src;
         this._inited = false;
     }
 
+    subscribe<C>(sub: Subscription<T, C>): Subscription<T, C>;
     subscribe(
-        sub: ISubscriber<T>,
+        sub: Partial<ISubscriber<T>>,
         opts?: Partial<CommonOpts>
     ): Subscription<T, T>;
-    subscribe<C>(sub: Subscription<T, C>): Subscription<T, C>;
     subscribe<C>(
         sub: Partial<ISubscriber<C>>,
-        xform: Transducer<T, C>,
-        opts?: Partial<CommonOpts>
+        opts?: Partial<TransformableOpts<T, C>>
     ): Subscription<T, C>;
-    subscribe(...args: any[]): any {
-        const sub = super.subscribe.apply(this, <any>args);
+    subscribe(
+        sub: Partial<ISubscriber<any>>,
+        opts: Partial<TransformableOpts<any, any>> = {}
+    ): any {
+        const $sub = super.subscribe(sub, opts);
         if (!this._inited) {
             this._cancel = (this.src && this.src(this)) || (() => void 0);
             this._inited = true;
         }
-        return sub;
+        return $sub;
     }
 
     unsubscribe(sub?: Subscription<T, any>) {

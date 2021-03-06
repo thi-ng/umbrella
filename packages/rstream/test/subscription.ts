@@ -79,7 +79,7 @@ describe("Subscription", function () {
                     called = true;
                 },
             },
-            partition(2, true)
+            { xform: partition<number>(2, true) }
         );
         setTimeout(() => sub.unsubscribe(), TIMEOUT * 2.5);
         setTimeout(() => {
@@ -104,7 +104,7 @@ describe("Subscription", function () {
                     done();
                 },
             },
-            partition(2, true)
+            { xform: partition(2, true) }
         );
     });
 
@@ -128,7 +128,7 @@ describe("Subscription", function () {
                     buf.push(x);
                 },
             },
-            map((x: number) => x + 10)
+            { xform: map((x: number) => x + 10) }
         );
         assert.deepStrictEqual(buf, [11]);
     });
@@ -141,7 +141,7 @@ describe("Subscription", function () {
                     buf.push(x);
                 },
             }),
-            map((x: number) => x + 10)
+            { xform: map((x: number) => x + 10) }
         );
         assert.deepStrictEqual(buf, [11]);
     });

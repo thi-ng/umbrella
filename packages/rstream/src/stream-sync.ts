@@ -195,8 +195,7 @@ export class StreamSync<
                     done: () => this.markDone(src),
                     __owner: this,
                 },
-                labeled<string, any>(id),
-                { id: `in-${id}` }
+                { xform: labeled<string, any>(id), id: `in-${id}` }
             )
         );
     }
