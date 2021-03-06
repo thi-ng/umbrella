@@ -8,7 +8,6 @@ import {
     CloseMode,
     fromIterableSync,
     fromViewUnsafe,
-    ISubscriber,
     ISubscription,
     StreamSync,
     sync,
@@ -176,8 +175,10 @@ const nodeOutID = (
         {
             next: (x) => state.resetIn(<any>path, x),
         },
-        map((x) => (x != null ? x[id] : x)),
-        { id: `out-${nodeID}-${id}` }
+        {
+            xform: map((x: any) => (x != null ? x[id] : x)),
+            id: `out-${nodeID}-${id}`,
+        }
     );
 
 /**
@@ -280,12 +281,10 @@ export const node1 = (
 ): NodeFactory<any> => (
     src: IObjectOf<ISubscription>,
     id: string
-): ISubscription => (
-    ensureInputs(src, [inputID], id),
-    xform
-        ? src[inputID].transform(xform, { id })
-        : src[inputID].subscribe(<ISubscriber<any>>{}, { id })
-);
+): ISubscription => {
+    ensureInputs(src, [inputID], id);
+    return src[inputID].subscribe({}, { xform, id });
+};
 
 /**
  * Syntax sugar for `node()`, intended for nodes w/ 2 inputs, by default

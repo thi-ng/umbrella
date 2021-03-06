@@ -1,5 +1,5 @@
 import { Atom } from "@thi.ng/atom";
-import { DUMMY, fromIterable } from "@thi.ng/rstream";
+import { fromIterable } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 import * as assert from "assert";
 import { add, initGraph, mul, node1 } from "../src";
@@ -26,7 +26,7 @@ describe("rstream-graph", () => {
                     b: { path: "b" },
                 },
                 outs: {
-                    alt: (n) => n.subscribe(DUMMY), // identical to main out, testing only
+                    alt: (n) => n.subscribe({}), // identical to main out, testing only
                 },
             },
             mul: {
