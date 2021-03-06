@@ -10,13 +10,12 @@ import { iterator1 } from "../iterator";
  *
  * @example
  * ```ts
- * // example using @thi.ng/rstream
- * rstream
- *     .fromInterval(1000)
- *     .subscribe(
- *         rstream.trace(),
- *         comp(benchmark(), movingAverage(60))
- *     )
+ * import { fromInterval, trace } from "@thi.ng/rstream";
+ *
+ * fromInterval(1000).subscribe(
+ *   trace(),
+ *   { xform: comp(benchmark(), movingAverage(60)) }
+ * )
  * ```
  */
 export function benchmark(): Transducer<any, number>;
