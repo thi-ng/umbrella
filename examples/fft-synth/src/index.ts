@@ -3,9 +3,8 @@ import { fit, fitClamped } from "@thi.ng/math";
 import {
     fromAtom,
     fromDOMEvent,
-    fromRAF,
     merge,
-    sidechainPartition,
+    sidechainPartitionRAF,
     sync,
 } from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
@@ -82,7 +81,8 @@ const app = () => {
     };
 };
 
-main.subscribe(sidechainPartition<any, number>(fromRAF())).transform(
-    map(app()),
-    updateDOM()
-);
+// subscription & transformation of app state stream. uses a RAF
+// sidechain to buffer intra-frame state updates. then only passes the
+// most recent one to `app()` and its resulting UI tree to the
+// `updateDOM()` transducer
+sidechainPartitionRAF(main).transform(map(app()), updateDOM());

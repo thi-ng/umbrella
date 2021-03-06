@@ -1,8 +1,6 @@
-import { peek } from "@thi.ng/arrays";
 import {
-    fromRAF,
     ISubscribable,
-    sidechainPartition,
+    sidechainPartitionRAF,
     Subscription,
     subscription,
     sync,
@@ -47,9 +45,7 @@ const ctx = {
  * @param ctx user context object
  */
 const domUpdate = (root: HTMLElement, tree: ISubscribable<any>, ctx?: any) =>
-    tree
-        .subscribe(sidechainPartition<any, number>(fromRAF()))
-        .transform(map(peek), updateDOM({ root, ctx }));
+    sidechainPartitionRAF(tree).transform(updateDOM({ root, ctx }));
 
 /**
  * Generic button component.

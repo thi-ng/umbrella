@@ -33,9 +33,8 @@ import { setInManyUnsafe } from "@thi.ng/paths";
 import {
     fromAtom,
     fromDOMEvent,
-    fromRAF,
     merge,
-    sidechainPartition,
+    sidechainPartitionRAF,
     sync,
 } from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
@@ -552,10 +551,8 @@ const main = sync({
     },
 });
 
-// transform the stream:
-main
-    // group potentially higher frequency event updates & sync with RAF
-    // to avoid extraneous real DOM/Canvas updates
-    .subscribe(sidechainPartition<any, number>(fromRAF()))
-    // then apply main compoment function & apply hdom
-    .transform(map(app()), updateDOM());
+// subscription & transformation of app state stream. uses a RAF
+// sidechain to buffer intra-frame state updates. then only passes the
+// most recent one to `app()` and its resulting UI tree to the
+// `updateDOM()` transducer
+sidechainPartitionRAF(main).transform(map(app()), updateDOM());
