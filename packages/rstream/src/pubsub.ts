@@ -4,10 +4,10 @@ import { unsupported } from "@thi.ng/errors";
 import type { Transducer } from "@thi.ng/transducers";
 import {
     CloseMode,
-    CommonOpts,
     ISubscriber,
     LOGGER,
     SubscriptionOpts,
+    TransformableOpts,
     WithErrorHandlerOpts,
 } from "./api";
 import { Subscription, subscription } from "./subscription";
@@ -62,13 +62,13 @@ export interface PubSubOpts<A, B, T> {
  *
  * @param opts -
  */
-export const pubsub = <A, B, T = any>(opts: PubSubOpts<A, B, T>) =>
+export const pubsub = <A, B = A, T = any>(opts: PubSubOpts<A, B, T>) =>
     new PubSub(opts);
 
 /**
  * @see {@link pubsub} for reference & examples.
  */
-export class PubSub<A, B, T = any> extends Subscription<A, B> {
+export class PubSub<A, B = A, T = any> extends Subscription<A, B> {
     topicfn: Fn<B, T>;
     topics: EquivMap<T, Subscription<B, B>>;
 
@@ -101,23 +101,23 @@ export class PubSub<A, B, T = any> extends Subscription<A, B> {
 
     subscribeTopic<C>(
         topicID: T,
-        opts?: Partial<CommonOpts>
+        opts?: Partial<TransformableOpts<B, C>>
+    ): Subscription<B, C>;
+    subscribeTopic<C>(
+        topicID: T,
+        sub: ISubscriber<C>,
+        opts?: Partial<TransformableOpts<B, C>>
     ): Subscription<B, C>;
     subscribeTopic(
         topicID: T,
-        sub: ISubscriber<B>,
-        opts?: Partial<CommonOpts>
-    ): Subscription<B, B>;
-    subscribeTopic(
-        topicID: T,
         sub: any,
-        opts?: Partial<CommonOpts>
+        opts?: Partial<TransformableOpts<any, any>>
     ): Subscription<any, any> {
         let t = this.topics.get(topicID);
         !t &&
             this.topics.set(
                 topicID,
-                (t = subscription<B, B>(undefined, {
+                (t = subscription(undefined, {
                     closeOut: CloseMode.NEVER,
                 }))
             );
