@@ -381,7 +381,8 @@ export class TripleStore implements Iterable<Triple>, IToDot {
         spec.bind && xforms.push(bindVars(spec.bind));
         spec.select && xforms.push(filterSolutions(spec.select));
         if (xforms.length) {
-            query = query!.transform(comp.apply(null, <any>xforms));
+            // @ts-ignore
+            query = query!.transform(...xforms);
         }
         return query!;
     }
