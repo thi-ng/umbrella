@@ -5,7 +5,7 @@ import { illegalArgs } from "@thi.ng/errors";
 import { min3id } from "@thi.ng/math";
 import {
     CloseMode,
-    ISubscribable,
+    ISubscription,
     nextID,
     Stream,
     Subscription,
@@ -55,8 +55,8 @@ export class TripleStore implements Iterable<Triple>, IToDot {
     indexS: Map<any, TripleIds>;
     indexP: Map<any, TripleIds>;
     indexO: Map<any, TripleIds>;
-    indexSelections: IObjectOf<Map<any, Subscription<Edit, TripleIds>>>;
-    queries: Map<string, ISubscribable<TripleIds>>;
+    indexSelections: IObjectOf<Map<any, ISubscription<Edit, TripleIds>>>;
+    queries: Map<string, ISubscription<any, TripleIds>>;
     allIDs: TripleIds;
 
     streamAll: Stream<TripleIds>;
@@ -186,29 +186,33 @@ export class TripleStore implements Iterable<Triple>, IToDot {
      * @param id -
      * @param param1 -
      */
-    addPatternQuery(pattern: Pattern, id?: string): ISubscribable<Triples>;
+    addPatternQuery(pattern: Pattern, id?: string): ISubscription<any, Triples>;
     addPatternQuery(
         pattern: Pattern,
         id?: string,
         emitTriples?: false
-    ): ISubscribable<TripleIds>;
+    ): ISubscription<TripleIds>;
     addPatternQuery(
         pattern: Pattern,
         id?: string,
         emitTriples?: true
-    ): ISubscribable<Triples>;
-    addPatternQuery(pattern: Pattern, id?: string, emitTriples = true) {
-        let results: ISubscribable<TripleIds | Triples> | undefined;
+    ): ISubscription<Triples>;
+    addPatternQuery(
+        pattern: Pattern,
+        id?: string,
+        emitTriples = true
+    ): ISubscription {
+        let results: ISubscription<any, TripleIds> | undefined;
         const [s, p, o] = pattern;
         if (s == null && p == null && o == null) {
-            results = <ISubscribable<TripleIds>>this.streamAll;
+            results = this.streamAll;
         } else {
             const key = JSON.stringify(pattern);
             if (!(results = this.queries.get(key))) {
                 const qs = this.getIndexSelection(this.streamS, s, "s");
                 const qp = this.getIndexSelection(this.streamP, p, "p");
                 const qo = this.getIndexSelection(this.streamO, o, "o");
-                let src: IObjectOf<Subscription<any, TripleIds>>;
+                let src: IObjectOf<ISubscription<any, TripleIds>>;
                 let xform = intersect2;
                 // optimize cases with 2 null terms (only needs single intersection w/ streamAll)
                 if (s == null && p == null) {
@@ -221,19 +225,19 @@ export class TripleStore implements Iterable<Triple>, IToDot {
                     src = { s: qs, p: qp, o: qo };
                     xform = intersect3;
                 }
-                results = <ISubscribable<TripleIds>>sync({
+                results = sync({
                     id,
                     src,
                     xform,
                     reset: true,
                 });
-                this.queries.set(key, <ISubscribable<TripleIds>>results);
+                this.queries.set(key, results);
                 submit(this.indexS, qs, s);
                 submit(this.indexP, qp, p);
                 submit(this.indexO, qo, o);
             }
         }
-        return emitTriples ? results.subscribe(resultTriples(this)) : results;
+        return emitTriples ? results.transform(resultTriples(this)) : results;
     }
 
     /**
@@ -377,9 +381,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
         spec.bind && xforms.push(bindVars(spec.bind));
         spec.select && xforms.push(filterSolutions(spec.select));
         if (xforms.length) {
-            query = <ISubscribable<any>>(
-                query!.subscribe(comp.apply(null, <any>xforms))
-            );
+            query = query!.transform(comp.apply(null, <any>xforms));
         }
         return query!;
     }
@@ -432,7 +434,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
         stream: Stream<Edit>,
         key: any,
         id: string
-    ): Subscription<any, TripleIds> {
+    ): ISubscription<any, TripleIds> {
         if (key == null) {
             return this.streamAll;
         }
@@ -456,7 +458,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
 
 const submit = (
     index: Map<any, TripleIds>,
-    stream: Subscription<Edit, TripleIds>,
+    stream: ISubscription<Edit, TripleIds>,
     key: any
 ) => {
     if (key != null) {
