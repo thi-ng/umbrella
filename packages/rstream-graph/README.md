@@ -56,7 +56,7 @@ yarn add @thi.ng/rstream-graph
 <script src="https://unpkg.com/@thi.ng/rstream-graph/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.04 KB / CJS: 1.14 KB / UMD: 1.19 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.04 KB / CJS: 1.14 KB / UMD: 1.18 KB
 
 ## Dependencies
 
