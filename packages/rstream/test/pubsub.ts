@@ -67,16 +67,22 @@ describe("PubSub", function () {
         });
         pub.subscribeTopic("a", collect);
         pub.subscribeTopic("b", collect);
-        pub.subscribeTopic("c", collect);
-        fromIterableSync("abcbd").subscribe(pub);
+        pub.subscribeTopic("c", collect, {
+            xform: map((x) => [x[0], x[1] * 10]),
+        });
+        pub.transformTopic(
+            "d",
+            map((x) => [x[0], x[1] * 11])
+        ).subscribe(collect);
+        fromIterableSync("abcbde").subscribe(pub);
         assert.deepStrictEqual(acc, {
             a: [["a", 0]],
             b: [
                 ["b", 1],
                 ["b", 3],
             ],
-            c: [["c", 2]],
-            d: [],
+            c: [["c", 20]],
+            d: [["d", 44]],
         });
         assert.strictEqual(pub.getState(), State.DONE);
     });
