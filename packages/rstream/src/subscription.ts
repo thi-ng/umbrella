@@ -1,4 +1,4 @@
-import { Fn, Nullable, NULL_LOGGER, SEMAPHORE } from "@thi.ng/api";
+import { Fn, NULL_LOGGER, SEMAPHORE } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
 import { implementsFunction, isPlainObject } from "@thi.ng/checks";
 import { illegalState } from "@thi.ng/errors";
@@ -76,7 +76,7 @@ import { nextID, optsWithID } from "./utils/idgen";
  * @param opts -
  */
 export const subscription = <A, B>(
-    sub: Nullable<Partial<ISubscriber<B>>>,
+    sub?: Partial<ISubscriber<B>>,
     opts?: Partial<SubscriptionOpts<A, B>>
 ) => new Subscription(sub, opts);
 
@@ -99,7 +99,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
     protected last: any;
 
     constructor(
-        sub: Nullable<Partial<ISubscriber<B>>>,
+        sub?: Partial<ISubscriber<B>>,
         opts: Partial<SubscriptionOpts<A, B>> = {}
     ) {
         this.parent = opts.parent;
