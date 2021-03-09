@@ -6,6 +6,7 @@ export * from "./stream";
 export * from "./stream-merge";
 export * from "./stream-sync";
 export * from "./subscription";
+export * from "./sub2";
 export * from "./trigger";
 export * from "./tween";
 
