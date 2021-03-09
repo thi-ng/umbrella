@@ -3,7 +3,7 @@ import { peek } from "@thi.ng/arrays";
 import { isString } from "@thi.ng/checks";
 import { canvas2D } from "@thi.ng/hdom-components";
 import { fitClamped } from "@thi.ng/math";
-import type { Subscription } from "@thi.ng/rstream";
+import type { ISubscription } from "@thi.ng/rstream";
 import { GestureEvent, gestureStream } from "@thi.ng/rstream-gestures";
 import { heading, sub2 } from "@thi.ng/vectors";
 
@@ -128,7 +128,7 @@ export const dial = (_opts: Partial<DialOpts>) => {
         font: "10px sans-serif",
         ..._opts,
     };
-    let events: Subscription<any, GestureEvent>;
+    let events: ISubscription<any, GestureEvent>;
     let cx: number, cy: number;
     const startTheta = opts.base + opts.gap / 2;
 

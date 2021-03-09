@@ -1,7 +1,7 @@
 import {
     ISubscribable,
+    ISubscriber,
     sidechainPartitionRAF,
-    Subscription,
     subscription,
     sync,
 } from "@thi.ng/rstream";
@@ -66,7 +66,7 @@ const button = (ctx: any, onclick: EventListener, body: any) => [
  * @param _ hdom user context (unused)
  * @param stream counter stream
  */
-const clickButton = (_: any, stream: Subscription<boolean, number>) => [
+const clickButton = (_: any, stream: ISubscriber<boolean>) => [
     button,
     () => stream.next(true),
     stream.deref(),
@@ -78,7 +78,7 @@ const clickButton = (_: any, stream: Subscription<boolean, number>) => [
  * @param _ hdom user context (unused)
  * @param counters streams to reset
  */
-const resetButton = (_: any, counters: Subscription<boolean, number>[]) => [
+const resetButton = (_: any, counters: ISubscriber<boolean>[]) => [
     button,
     () => counters.forEach((c) => c.next(false)),
     "reset",

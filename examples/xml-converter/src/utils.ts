@@ -1,4 +1,4 @@
-import type { Subscription } from "@thi.ng/rstream";
+import type { ISubscriber } from "@thi.ng/rstream";
 import { splice } from "@thi.ng/strings";
 import { map } from "@thi.ng/transducers";
 
@@ -9,7 +9,7 @@ export const xformAsSet = map(asSet);
 
 // key event handler for textareas to override Tab key behavior and
 // insert spaces at cursor position instead of changing keyboard focus
-export const handleTab = (stream: Subscription<string, any>) => (
+export const handleTab = (stream: ISubscriber<string>) => (
     e: KeyboardEvent
 ) => {
     // override tab to insert spaces at edit pos
