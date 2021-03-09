@@ -1,7 +1,6 @@
 import { Fn, Fn0, IDeref, IID, ILogger, NULL_LOGGER } from "@thi.ng/api";
 import type { Transducer } from "@thi.ng/transducers";
 import type { Stream } from "./stream";
-import type { Subscription } from "./subscription";
 
 export enum State {
     IDLE,
@@ -80,11 +79,13 @@ export interface TransformableOpts<A, B>
     extends CommonOpts,
         WithTransform<A, B> {}
 
+export type ErrorHandler = Fn<any, boolean>;
+
 export interface WithErrorHandler {
     /**
      * Optional error handler to use for this
      */
-    error: Fn<any, void>;
+    error: ErrorHandler;
 }
 
 export interface WithErrorHandlerOpts extends CommonOpts, WithErrorHandler {}
@@ -93,17 +94,17 @@ export interface SubscriptionOpts<A, B> extends TransformableOpts<A, B> {
     /**
      * Parent stream / subscription.
      */
-    parent: ISubscribable<A>;
+    parent: ISubscription<any, A>;
 }
 
 export interface ISubscriber<T> {
     next: Fn<T, void>;
-    error?: Fn<any, void>;
+    error?: ErrorHandler;
     done?: Fn0<void>;
     /**
      * Internal use only. Do not use.
      */
-    __owner?: ISubscribable<any>;
+    __owner?: ISubscription<any>;
     [id: string]: any;
 }
 
@@ -113,7 +114,7 @@ export interface ISubscribable<A> extends IDeref<A | undefined>, IID<string> {
      *
      * @param sub
      */
-    subscribe<B>(sub: Subscription<A, B>): Subscription<A, B>;
+    subscribe<B>(sub: ISubscription<A, B>): ISubscription<A, B>;
     /**
      * Wraps given partial `sub` in a {@link Subscription} and attaches it as
      * child subscription.
@@ -124,7 +125,7 @@ export interface ISubscribable<A> extends IDeref<A | undefined>, IID<string> {
     subscribe(
         sub: Partial<ISubscriber<A>>,
         opts?: Partial<CommonOpts>
-    ): Subscription<A, A>;
+    ): ISubscription<A, A>;
     /**
      * Wraps given partial `sub` in a {@link Subscription} and attaches it as
      * child subscription. If `opts` defines a transducer (via `xform` key),
@@ -141,7 +142,7 @@ export interface ISubscribable<A> extends IDeref<A | undefined>, IID<string> {
     subscribe<B>(
         sub: Partial<ISubscriber<B>>,
         opts?: Partial<TransformableOpts<A, B>>
-    ): Subscription<A, B>;
+    ): ISubscription<A, B>;
     /**
      * Removes given child sub, or if `sub` is omitted, detaches this
      * subscription itself from its upstream parent (possibly triggering a
@@ -150,43 +151,46 @@ export interface ISubscribable<A> extends IDeref<A | undefined>, IID<string> {
      *
      * @param sub
      */
-    unsubscribe(sub?: Partial<ISubscriber<A>>): boolean;
-    getState(): State;
+    unsubscribe(sub?: ISubscription<A, any>): boolean;
 }
 
 export interface ITransformable<B> {
     transform<C>(
         a: Transducer<B, C>,
         opts?: Partial<WithErrorHandlerOpts>
-    ): Subscription<B, C>;
+    ): ISubscription<B, C>;
     transform<C, D>(
         a: Transducer<B, C>,
         b: Transducer<C, D>,
         opts?: Partial<WithErrorHandlerOpts>
-    ): Subscription<B, D>;
+    ): ISubscription<B, D>;
     transform<C, D, E>(
         a: Transducer<B, C>,
         b: Transducer<C, D>,
         c: Transducer<D, E>,
         opts?: Partial<WithErrorHandlerOpts>
-    ): Subscription<B, E>;
+    ): ISubscription<B, E>;
     transform<C, D, E, F>(
         a: Transducer<B, C>,
         b: Transducer<C, D>,
         c: Transducer<D, E>,
         d: Transducer<E, F>,
         opts?: Partial<WithErrorHandlerOpts>
-    ): Subscription<B, F>;
+    ): ISubscription<B, F>;
     transform<C>(
         opts: WithTransform<B, C> & Partial<WithErrorHandlerOpts>
-    ): Subscription<B, C>;
+    ): ISubscription<B, C>;
 }
 
 export interface ISubscription<A = any, B = A>
     extends IDeref<B | undefined>,
         ISubscriber<A>,
         ISubscribable<B>,
-        ITransformable<B> {}
+        ITransformable<B> {
+    parent?: ISubscription<any, A>;
+
+    getState(): State;
+}
 
 export interface IStream<T> extends ISubscriber<T> {
     cancel: StreamCancel;

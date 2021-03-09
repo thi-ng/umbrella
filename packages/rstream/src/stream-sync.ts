@@ -6,7 +6,13 @@ import {
     partitionSync,
     PartitionSync,
 } from "@thi.ng/transducers";
-import { ISubscribable, LOGGER, State, TransformableOpts } from "./api";
+import {
+    ISubscribable,
+    ISubscription,
+    LOGGER,
+    State,
+    TransformableOpts,
+} from "./api";
 import { Subscription } from "./subscription";
 import { isFirstOrLastInput } from "./utils/checks";
 import { optsWithID } from "./utils/idgen";
@@ -133,7 +139,7 @@ export class StreamSync<
     /**
      * maps actual inputs to their virtual input subs
      */
-    sources: Map<ISubscribable<any>, Subscription<any, [string, any]>>;
+    sources: Map<ISubscribable<any>, ISubscription<any, [string, any]>>;
     /**
      * maps real source IDs to their actual input
      */

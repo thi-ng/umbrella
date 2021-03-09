@@ -1,4 +1,4 @@
-import { ISubscribable, State, TransformableOpts } from "./api";
+import { ISubscribable, ISubscription, State, TransformableOpts } from "./api";
 import { Subscription } from "./subscription";
 import { isFirstOrLastInput } from "./utils/checks";
 import { optsWithID } from "./utils/idgen";
@@ -70,7 +70,7 @@ export const merge = <A, B>(opts?: Partial<StreamMergeOpts<A, B>>) =>
  * @see {@link merge} for reference & examples.
  */
 export class StreamMerge<A, B> extends Subscription<A, B> {
-    sources: Map<ISubscribable<A>, Subscription<A, any>>;
+    sources: Map<ISubscribable<A>, ISubscription<A, any>>;
 
     constructor(opts?: Partial<StreamMergeOpts<A, B>>) {
         opts = opts || {};

@@ -1,4 +1,4 @@
-import type { CommonOpts } from "../api";
+import type { CommonOpts, ISubscription } from "../api";
 import { Subscription } from "../subscription";
 
 /**
@@ -6,7 +6,7 @@ import { Subscription } from "../subscription";
  * {@link sidechainPartition}, {@link sidechainToggle}).
  */
 export abstract class ASidechain<A, S, B> extends Subscription<A, B> {
-    sideSub!: Subscription<any, S>;
+    sideSub!: ISubscription<any, S>;
 
     constructor(opts?: Partial<CommonOpts>) {
         super(undefined, opts);

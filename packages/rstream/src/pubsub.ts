@@ -5,6 +5,7 @@ import type { Transducer } from "@thi.ng/transducers";
 import {
     CloseMode,
     ISubscriber,
+    ISubscription,
     LOGGER,
     SubscriptionOpts,
     TransformableOpts,
@@ -102,17 +103,17 @@ export class PubSub<A, B = A, T = any> extends Subscription<A, B> {
     subscribeTopic<C>(
         topicID: T,
         opts?: Partial<TransformableOpts<B, C>>
-    ): Subscription<B, C>;
+    ): ISubscription<B, C>;
     subscribeTopic<C>(
         topicID: T,
         sub: ISubscriber<C>,
         opts?: Partial<TransformableOpts<B, C>>
-    ): Subscription<B, C>;
+    ): ISubscription<B, C>;
     subscribeTopic(
         topicID: T,
         sub: any,
         opts?: Partial<TransformableOpts<any, any>>
-    ): Subscription<any, any> {
+    ): ISubscription<any, any> {
         let t = this.topics.get(topicID);
         !t &&
             this.topics.set(
@@ -139,12 +140,12 @@ export class PubSub<A, B = A, T = any> extends Subscription<A, B> {
         );
     }
 
-    unsubscribeTopic(topicID: T, sub: Subscription<B, any>) {
+    unsubscribeTopic(topicID: T, sub: ISubscription<B, any>) {
         const t = this.topics.get(topicID);
         return t ? t.unsubscribe(sub) : false;
     }
 
-    unsubscribe(sub: Subscription<B, any>) {
+    unsubscribe(sub?: ISubscription<B, any>) {
         if (!sub) {
             for (let t of this.topics.values()) {
                 t.unsubscribe();

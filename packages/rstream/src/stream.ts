@@ -153,6 +153,7 @@ export class Stream<T> extends Subscription<T, T> implements IStream<T> {
     error(e: any) {
         super.error(e);
         this.cancel();
+        return false;
     }
 
     cancel() {

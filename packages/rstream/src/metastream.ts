@@ -1,5 +1,5 @@
 import { assert, Fn } from "@thi.ng/api";
-import { CloseMode, CommonOpts, State } from "./api";
+import { CloseMode, CommonOpts, ISubscription, State } from "./api";
 import { Subscription } from "./subscription";
 import { optsWithID } from "./utils/idgen";
 
@@ -107,7 +107,7 @@ export const metaStream = <A, B>(
 export class MetaStream<A, B> extends Subscription<A, B> {
     factory: Fn<A, Subscription<B, B>>;
     stream?: Subscription<B, B>;
-    sub?: Subscription<B, B>;
+    sub?: ISubscription<B, B>;
     emitLast: boolean;
     doneRequested: boolean;
 

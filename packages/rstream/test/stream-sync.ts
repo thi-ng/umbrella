@@ -113,7 +113,7 @@ describe("StreamSync", function () {
         src.b.next(2);
         src.a.next(3);
         src.a.next(4);
-        main.done();
+        main.done!();
     });
 
     it("mergeOnly (w/ required keys)", (done) => {
@@ -146,7 +146,7 @@ describe("StreamSync", function () {
         src.b.next(2);
         src.a.next(3);
         src.a.next(4);
-        main.done();
+        main.done!();
     });
 
     it("fromPromise", (done) => {

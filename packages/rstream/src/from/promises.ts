@@ -1,6 +1,5 @@
 import { mapcat } from "@thi.ng/transducers";
-import type { CommonOpts } from "../api";
-import type { Subscription } from "../subscription";
+import type { CommonOpts, ISubscription } from "../api";
 import { optsWithID } from "../utils/idgen";
 import { fromPromise } from "./promise";
 
@@ -43,7 +42,7 @@ import { fromPromise } from "./promise";
 export const fromPromises = <T>(
     promises: Iterable<T | PromiseLike<T>>,
     opts?: Partial<CommonOpts>
-): Subscription<T[], T> =>
+): ISubscription<T[], T> =>
     fromPromise(Promise.all(promises), optsWithID("promises", opts)).transform(
         mapcat((x: T[]) => x)
     );

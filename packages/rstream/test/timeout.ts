@@ -13,6 +13,7 @@ describe("Timeout", function () {
             error: (e) => {
                 assert(e instanceof Error);
                 done();
+                return true;
             },
         });
     });
@@ -27,6 +28,7 @@ describe("Timeout", function () {
             error: (err) => {
                 assert.strictEqual(err, error);
                 done();
+                return true;
             },
         });
     });
@@ -55,6 +57,7 @@ describe("Timeout", function () {
             },
             error: () => {
                 assert.deepStrictEqual(res, [1, 2]);
+                return true;
             },
         });
 

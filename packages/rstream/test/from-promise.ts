@@ -41,6 +41,7 @@ describe("fromPromise()", function () {
                 assert.strictEqual(src.getState(), State.ERROR);
                 assert.strictEqual(sub.getState(), State.ERROR);
                 called = true;
+                return false;
             },
         });
         setTimeout(() => {
@@ -68,6 +69,7 @@ describe("fromPromise()", function () {
                 assert.strictEqual(src.getState(), State.ERROR);
                 assert.strictEqual(sub.getState(), State.ERROR);
                 called = true;
+                return false;
             },
         });
         setTimeout(() => {
