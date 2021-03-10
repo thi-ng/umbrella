@@ -6,6 +6,7 @@ export enum State {
     IDLE,
     ACTIVE,
     DONE,
+    UNSUBSCRIBED,
     ERROR,
     DISABLED, // TODO currently unused
 }
