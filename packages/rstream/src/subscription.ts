@@ -1,11 +1,11 @@
 import { assert, Fn, NULL_LOGGER, SEMAPHORE } from "@thi.ng/api";
+import { peek } from "@thi.ng/arrays";
 import { isPlainObject } from "@thi.ng/checks";
 import { illegalState } from "@thi.ng/errors";
 import {
     comp,
     isReduced,
     map,
-    peek,
     push,
     Reduced,
     Reducer,
