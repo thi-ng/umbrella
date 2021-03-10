@@ -4,10 +4,12 @@ import {
     CommonOpts,
     IStream,
     ISubscriber,
+    ISubscription,
     LOGGER,
     StreamCancel,
     StreamSource,
     TransformableOpts,
+    WithErrorHandlerOpts,
 } from "./api";
 import { Subscription } from "./subscription";
 import { optsWithID } from "./utils/idgen";
@@ -97,27 +99,32 @@ export class Stream<T> extends Subscription<T, T> implements IStream<T> {
     protected _cancel: StreamCancel | undefined;
     protected _inited: boolean;
 
-    constructor(opts?: Partial<CommonOpts>);
-    constructor(src: StreamSource<T>, opts?: Partial<CommonOpts>);
+    constructor(opts?: Partial<WithErrorHandlerOpts>);
+    constructor(src: StreamSource<T>, opts?: Partial<WithErrorHandlerOpts>);
     constructor(
-        src?: StreamSource<T> | Partial<CommonOpts>,
-        opts?: Partial<CommonOpts>
+        src?: StreamSource<T> | Partial<WithErrorHandlerOpts>,
+        opts?: Partial<WithErrorHandlerOpts>
     ) {
-        const [_src, _opts] = isFunction(src) ? [src, opts] : [undefined, src];
-        super(undefined, optsWithID("stream", _opts));
+        const [_src, _opts] = isFunction(src)
+            ? [src, opts || {}]
+            : [undefined, src || {}];
+        super(
+            _opts.error ? { error: _opts.error } : undefined,
+            optsWithID("stream", _opts)
+        );
         this.src = _src;
         this._inited = false;
     }
 
-    subscribe<C>(sub: Subscription<T, C>): Subscription<T, C>;
+    subscribe<C>(sub: ISubscription<T, C>): ISubscription<T, C>;
     subscribe(
         sub: Partial<ISubscriber<T>>,
         opts?: Partial<CommonOpts>
-    ): Subscription<T, T>;
+    ): ISubscription<T, T>;
     subscribe<C>(
         sub: Partial<ISubscriber<C>>,
         opts?: Partial<TransformableOpts<T, C>>
-    ): Subscription<T, C>;
+    ): ISubscription<T, C>;
     subscribe(
         sub: Partial<ISubscriber<any>>,
         opts: Partial<TransformableOpts<any, any>> = {}
@@ -130,12 +137,12 @@ export class Stream<T> extends Subscription<T, T> implements IStream<T> {
         return $sub;
     }
 
-    unsubscribe(sub?: Subscription<T, any>) {
+    unsubscribe(sub?: ISubscription<T, any>) {
         const res = super.unsubscribe(sub);
         if (
             res &&
             (!sub ||
-                ((!this.subs || !this.subs.length) &&
+                ((!this.subs || !this.subs.size) &&
                     this.closeOut !== CloseMode.NEVER))
         ) {
             this.cancel();
@@ -151,7 +158,7 @@ export class Stream<T> extends Subscription<T, T> implements IStream<T> {
     }
 
     error(e: any) {
-        super.error(e);
+        if (super.error(e)) return true;
         this.cancel();
         return false;
     }

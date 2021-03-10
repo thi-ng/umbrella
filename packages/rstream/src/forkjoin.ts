@@ -129,8 +129,8 @@ export const forkJoin = <IN, MSG, RES, OUT>(
                 String(id),
                 opts.src
                     .transform(map((x: IN) => opts.fork(id, numWorkers, x)))
-                    .subscribe(
-                        tunnel<MSG, RES>({
+                    .subscribe<RES>(
+                        tunnel({
                             src: opts.worker,
                             transferables: opts.transferables,
                             interrupt: opts.interrupt === true,

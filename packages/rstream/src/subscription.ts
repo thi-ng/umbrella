@@ -1,11 +1,11 @@
-import { Fn, NULL_LOGGER, SEMAPHORE } from "@thi.ng/api";
-import { peek } from "@thi.ng/arrays";
-import { implementsFunction, isPlainObject } from "@thi.ng/checks";
+import { assert, Fn, NULL_LOGGER, SEMAPHORE } from "@thi.ng/api";
+import { isPlainObject } from "@thi.ng/checks";
 import { illegalState } from "@thi.ng/errors";
 import {
     comp,
     isReduced,
     map,
+    peek,
     push,
     Reduced,
     Reducer,
@@ -24,7 +24,7 @@ import {
     WithErrorHandlerOpts,
     WithTransform,
 } from "./api";
-import { nextID, optsWithID } from "./utils/idgen";
+import { optsWithID } from "./utils/idgen";
 
 /**
  * Creates a new {@link Subscription} instance, the fundamental datatype
@@ -80,43 +80,35 @@ export const subscription = <A, B>(
     opts?: Partial<SubscriptionOpts<A, B>>
 ) => new Subscription(sub, opts);
 
-/**
- * @see {@link subscription} for reference & examples.
- */
 export class Subscription<A, B> implements ISubscription<A, B> {
     id: string;
-
     closeIn: CloseMode;
     closeOut: CloseMode;
-
     parent?: ISubscription<any, A>;
+    __owner?: ISubscription<any>;
 
-    protected subs: Partial<ISubscriber<B>>[];
     protected xform?: Reducer<B[], A>;
-    protected state: State = State.IDLE;
-
     protected cacheLast: boolean;
-    protected last: any;
+    protected last: any = SEMAPHORE;
+    protected state = State.IDLE;
+    protected subs = new Set<Partial<ISubscriber<B>>>();
 
     constructor(
-        sub?: Partial<ISubscriber<B>>,
-        opts: Partial<SubscriptionOpts<A, B>> = {}
+        protected wrapped?: Partial<ISubscriber<B>>,
+        opts?: Partial<SubscriptionOpts<A, B>>
     ) {
+        opts = optsWithID(`$sub`, {
+            closeIn: CloseMode.LAST,
+            closeOut: CloseMode.LAST,
+            cache: true,
+            ...opts,
+        });
         this.parent = opts.parent;
-        this.closeIn =
-            opts.closeIn !== undefined ? opts.closeIn : CloseMode.LAST;
-        this.closeOut =
-            opts.closeOut !== undefined ? opts.closeOut : CloseMode.LAST;
-        this.cacheLast = opts.cache !== false;
-        this.id = opts.id || `sub-${nextID()}`;
-        this.last = SEMAPHORE;
-        this.subs = [];
-        if (sub) {
-            this.subs.push(sub);
-        }
-        if (opts.xform) {
-            this.xform = opts.xform(push());
-        }
+        this.id = opts.id!;
+        this.closeIn = opts.closeIn!;
+        this.closeOut = opts.closeOut!;
+        this.cacheLast = opts.cache!;
+        opts.xform && (this.xform = opts.xform(push()));
     }
 
     deref(): B | undefined {
@@ -145,29 +137,19 @@ export class Subscription<A, B> implements ISubscription<A, B> {
         opts: Partial<TransformableOpts<any, any>> = {}
     ): any {
         this.ensureState();
-        let $sub: Subscription<any, any>;
-        if (implementsFunction(sub, "subscribe") && !opts.xform) {
-            $sub = <Subscription<any, any>>sub;
-            $sub.parent = this;
+        let $sub: ISubscriber<any>;
+        if (sub instanceof Subscription && !opts.xform) {
+            // ensure sub is still unattached
+            assert(!sub.parent, `sub '${sub.id}' already has a parent`);
+            sub.parent = this;
+            $sub = sub;
         } else {
-            $sub = subscription<B, B>(sub, { parent: this, ...opts });
+            $sub = new Subscription(sub, { ...opts, parent: this });
         }
-        this.last !== SEMAPHORE && $sub.next(this.last);
-        return this.addWrapped($sub);
-    }
-
-    /**
-     * Returns array of new child subscriptions for all given
-     * subscribers.
-     *
-     * @param subs -
-     */
-    subscribeAll(...subs: ISubscriber<B>[]) {
-        const wrapped: ISubscription<B, B>[] = [];
-        for (let s of subs) {
-            wrapped.push(this.subscribe(s));
-        }
-        return wrapped;
+        this.subs.add($sub);
+        this.state = State.ACTIVE;
+        this.last != SEMAPHORE && $sub.next(this.last);
+        return $sub;
     }
 
     /**
@@ -240,33 +222,24 @@ export class Subscription<A, B> implements ISubscription<A, B> {
         return this.transform(map(fn), opts || {});
     }
 
-    /**
-     * If called without arg, removes this subscription from parent (if
-     * any), cleans up internal state and goes into DONE state. If
-     * called with arg, removes the sub from internal pool and if no
-     * other subs are remaining also cleans up itself and goes into DONE
-     * state.
-     *
-     * @param sub -
-     */
-    unsubscribe(sub?: ISubscription<B, any>) {
-        LOGGER.debug(this.id, "unsub start", sub ? sub.id : "self");
-        if (!sub) {
-            let res = true;
-            if (this.parent) {
-                res = this.parent.unsubscribe(this);
-            }
-            this.state = State.DONE;
-            this.cleanup();
-            return res;
-        }
+    unsubscribe(sub?: Partial<ISubscription<B>>) {
+        return sub ? this.unsubscribeChild(sub) : this.unsubscribeSelf();
+    }
+
+    protected unsubscribeSelf() {
+        LOGGER.debug(this.id, "unsub self");
+        this.parent && this.parent.unsubscribe(this);
+        this.state < State.DONE && (this.state = State.UNSUBSCRIBED);
+        this.release();
+        return true;
+    }
+
+    protected unsubscribeChild(sub: Partial<ISubscription<B>>) {
         LOGGER.debug(this.id, "unsub child", sub.id);
-        const idx = this.subs.indexOf(sub);
-        if (idx >= 0) {
-            this.subs.splice(idx, 1);
+        if (this.subs.delete(sub)) {
             if (
                 this.closeOut === CloseMode.FIRST ||
-                (!this.subs.length && this.closeOut !== CloseMode.NEVER)
+                (!this.subs.size && this.closeOut !== CloseMode.NEVER)
             ) {
                 this.unsubscribe();
             }
@@ -277,96 +250,79 @@ export class Subscription<A, B> implements ISubscription<A, B> {
 
     next(x: A) {
         if (this.state >= State.DONE) return;
-        this.xform ? this.dispatchXform(<any>x) : this.dispatch(<any>x);
+        this.xform ? this.dispatchXform(x) : this.dispatch(<any>x);
     }
 
     done() {
         LOGGER.debug(this.id, "entering done()");
-        if (this.state < State.DONE) {
-            try {
-                if (this.xform) {
-                    const acc = this.xform[1]([]);
-                    const uacc = unreduced(acc);
-                    const n = uacc.length;
-                    for (let i = 0; i < n; i++) {
-                        this.dispatch(uacc[i]);
-                    }
-                }
-            } catch (e) {
-                this.error(e);
-                return;
-            }
-            this.state = State.DONE;
-            for (let s of this.subs.slice()) {
-                try {
-                    s.done && s.done();
-                } catch (e) {
-                    s.error ? s.error(e) : this.error(e);
-                }
-            }
-            this.unsubscribe();
-            LOGGER.debug(this.id, "exiting done()");
+        if (this.state >= State.DONE) return;
+        if (this.xform) {
+            if (!this.dispatchXformDone()) return;
         }
+        this.state = State.DONE;
+        // attempt to call .done in wrapped sub
+        if (this.dispatchTo("done")) {
+            // disconnect from parent & internal cleanup
+            this.unsubscribe();
+        }
+        LOGGER.debug(this.id, "exiting done()");
     }
 
     error(e: any) {
+        // only the wrapped sub's error handler gets a chance
+        // to deal with the error
+        const sub = this.wrapped;
+        const hasErrorHandler = sub && sub.error;
+        hasErrorHandler &&
+            LOGGER.debug(this.id, "attempting wrapped error handler");
+        // flag success if error handler returns true
+        // (i.e. it could handle/recover from the error)
+        // else detach this entire sub by going into error state...
+        return (hasErrorHandler && sub!.error!(e)) || this.unhandledError(e);
+    }
+
+    protected unhandledError(e: any) {
+        // ensure error is at least logged to console
+        // even if default NULL_LOGGER is used...
+        (LOGGER !== NULL_LOGGER ? LOGGER : console).warn(
+            this.id,
+            "unhandled error:",
+            e
+        );
+        this.unsubscribe();
         this.state = State.ERROR;
-        const subs = this.subs;
-        let notified = false;
-        if (subs.length) {
-            for (let s of subs.slice()) {
-                if (s.error) {
-                    s.error(e);
-                    notified = true;
+        return false;
+    }
+
+    protected dispatchTo(type: "next" | "done" | "error", x?: B) {
+        let s: Partial<ISubscriber<B>> | undefined = this.wrapped;
+        if (s) {
+            try {
+                s[type] && s[type]!(x!);
+            } catch (e) {
+                // give wrapped sub a chance to handle error
+                // (if that failed then we're already in error state now & terminate)
+                if (!this.error(e)) return false;
+            }
+        }
+        // process other child subs
+        for (s of type === "next" ? this.subs : [...this.subs]) {
+            try {
+                s[type] && s[type]!(x!);
+            } catch (e) {
+                if (type === "error" || !s.error || !s.error(e)) {
+                    // if no or failed handler, go into error state
+                    return this.unhandledError(e);
                 }
             }
         }
-        if (!notified) {
-            // ensure error is at least logged to console
-            // even if default NULL_LOGGER is used...
-            (LOGGER !== NULL_LOGGER ? LOGGER : console).warn(
-                this.id,
-                "unhandled error:",
-                e
-            );
-            if (this.parent) {
-                LOGGER.debug(this.id, "unsubscribing...");
-                this.unsubscribe();
-                this.state = State.ERROR;
-            }
-        }
-        return notified;
-    }
-
-    protected addWrapped(sub: Subscription<any, any>) {
-        this.subs.push(sub);
-        this.state = State.ACTIVE;
-        return sub;
+        return true;
     }
 
     protected dispatch(x: B) {
-        // LOGGER.debug(this.id, "dispatch", x);
+        LOGGER.debug(this.id, "dispatch", x);
         this.cacheLast && (this.last = x);
-        const subs = this.subs;
-        let n = subs.length;
-        let s: Partial<ISubscriber<B>>;
-        if (n === 1) {
-            s = subs[0];
-            try {
-                s.next && s.next(x);
-            } catch (e) {
-                s.error ? s.error(e) : this.error(e);
-            }
-        } else {
-            for (; --n >= 0; ) {
-                s = subs[n];
-                try {
-                    s.next && s.next(x);
-                } catch (e) {
-                    s.error ? s.error(e) : this.error(e);
-                }
-            }
-        }
+        this.dispatchTo("next", x);
     }
 
     protected dispatchXform(x: A) {
@@ -374,15 +330,40 @@ export class Subscription<A, B> implements ISubscription<A, B> {
         try {
             acc = this.xform![2]([], x);
         } catch (e) {
+            // error in transducer can only be handled by the wrapped
+            // subscriber's error handler (if avail)
             this.error(e);
+            // don't dispatch value(s)
             return;
         }
+        if (this.dispatchXformVals(acc)) {
+            isReduced(acc) && this.done();
+        }
+    }
+
+    protected dispatchXformDone() {
+        let acc: B[] | Reduced<B[]>;
+        try {
+            // collect remaining values from transducer
+            acc = this.xform![1]([]);
+        } catch (e) {
+            // error in transducer can only be handled by the wrapped
+            // subscriber's error handler (if avail)
+            return this.error(e);
+        }
+        return this.dispatchXformVals(acc);
+    }
+
+    protected dispatchXformVals(acc: B[] | Reduced<B[]>) {
         const uacc = unreduced(acc);
-        const n = uacc.length;
-        for (let i = 0; i < n; i++) {
+        for (
+            let i = 0, n = uacc.length;
+            i < n && this.state < State.DONE;
+            i++
+        ) {
             this.dispatch(uacc[i]);
         }
-        isReduced(acc) && this.done();
+        return this.state < State.ERROR;
     }
 
     protected ensureState() {
@@ -391,9 +372,8 @@ export class Subscription<A, B> implements ISubscription<A, B> {
         }
     }
 
-    protected cleanup() {
-        LOGGER.debug(this.id, "cleanup");
-        this.subs.length = 0;
+    protected release() {
+        this.subs.clear();
         delete this.parent;
         delete this.xform;
         delete this.last;

@@ -14,7 +14,7 @@ export abstract class ASidechain<A, S, B> extends Subscription<A, B> {
 
     unsubscribe(sub?: Subscription<any, any>) {
         const res = super.unsubscribe(sub);
-        if (!sub || !this.subs.length) {
+        if (!sub || !this.subs.size) {
             this.sideSub.unsubscribe();
         }
         return res;

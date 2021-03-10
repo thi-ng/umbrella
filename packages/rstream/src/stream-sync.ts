@@ -6,13 +6,7 @@ import {
     partitionSync,
     PartitionSync,
 } from "@thi.ng/transducers";
-import {
-    ISubscribable,
-    ISubscription,
-    LOGGER,
-    State,
-    TransformableOpts,
-} from "./api";
+import { ISubscribable, ISubscription, LOGGER, TransformableOpts } from "./api";
 import { Subscription } from "./subscription";
 import { isFirstOrLastInput } from "./utils/checks";
 import { optsWithID } from "./utils/idgen";
@@ -271,10 +265,10 @@ export class StreamSync<
 
     unsubscribe(sub?: Subscription<B, any>) {
         if (!sub) {
+            LOGGER.debug(this.id, "unsub sources");
             for (let s of this.sources.values()) {
                 s.unsubscribe();
             }
-            this.state = State.DONE;
             this.sources.clear();
             this.psync.clear();
             this.realSourceIDs.clear();

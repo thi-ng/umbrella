@@ -55,7 +55,7 @@ export const sidechainPartition = <A, B>(
  */
 export const sidechainPartitionRAF = <T>(src: ISubscribable<T>) =>
     src
-        .subscribe(sidechainPartition<T, number>(fromRAF()))
+        .subscribe<T[]>(sidechainPartition<T, number>(fromRAF()))
         .transform(map(peek));
 
 export class SidechainPartition<T, S> extends ASidechain<T, S, T[]> {

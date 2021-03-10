@@ -1,4 +1,4 @@
-import { CloseMode, CommonOpts, State } from "../api";
+import { CloseMode, State, WithErrorHandlerOpts } from "../api";
 import { Stream } from "../stream";
 import { optsWithID } from "../utils/idgen";
 
@@ -13,7 +13,10 @@ import { optsWithID } from "../utils/idgen";
  * @param src -
  * @param opts -
  */
-export const fromPromise = <T>(src: Promise<T>, opts?: Partial<CommonOpts>) => {
+export const fromPromise = <T>(
+    src: Promise<T>,
+    opts?: Partial<WithErrorHandlerOpts>
+) => {
     let canceled = false;
     let isError = false;
     let err: any = {};
