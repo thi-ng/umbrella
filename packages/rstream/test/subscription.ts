@@ -57,8 +57,8 @@ describe("Subscription", function () {
         setTimeout(() => sub.unsubscribe(), TIMEOUT * 1.5);
         setTimeout(() => {
             assert.deepStrictEqual(buf, [1]);
-            assert.strictEqual(src.getState(), State.DONE);
-            assert.strictEqual((<any>src).subs.length, 0);
+            assert.strictEqual(src.getState(), State.UNSUBSCRIBED);
+            assert.strictEqual((<any>src).subs.size, 0);
             assert(!called);
             done();
         }, TIMEOUT * 4);
@@ -84,7 +84,7 @@ describe("Subscription", function () {
         setTimeout(() => sub.unsubscribe(), TIMEOUT * 2.5);
         setTimeout(() => {
             assert.deepStrictEqual(buf, [[1, 2]]);
-            assert.strictEqual(src.getState(), State.DONE);
+            assert.strictEqual(src.getState(), State.UNSUBSCRIBED);
             assert(!called);
             done();
         }, TIMEOUT * 4);

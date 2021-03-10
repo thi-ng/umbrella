@@ -1,5 +1,6 @@
 import * as assert from "assert";
-import { sidechainPartition, State, Stream, stream } from "../src";
+import { sidechainPartition, Stream, stream } from "../src";
+import { assertUnsub } from "./utils";
 
 describe("SidechainPartition", function () {
     let src: Stream<any>, side: Stream<any>, buf: any[];
@@ -64,9 +65,9 @@ describe("SidechainPartition", function () {
         const part = src.subscribe(sidechainPartition(side));
         const sub = part.subscribe({});
         sub.unsubscribe();
-        assert.strictEqual(src.getState(), State.DONE);
-        assert.strictEqual(side.getState(), State.DONE);
-        assert.strictEqual(part.getState(), State.DONE);
-        assert.strictEqual(sub.getState(), State.DONE);
+        assertUnsub(src);
+        assertUnsub(side);
+        assertUnsub(part);
+        assertUnsub(sub);
     });
 });

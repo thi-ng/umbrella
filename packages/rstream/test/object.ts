@@ -1,5 +1,6 @@
 import * as assert from "assert";
-import { fromObject, State, stream, Subscription } from "../src";
+import { fromObject, stream, Subscription } from "../src";
+import { assertDone } from "./utils";
 
 type Foo = { a?: number; b: string };
 
@@ -35,8 +36,8 @@ describe("fromObject", () => {
             a: [1, 2, undefined],
             b: ["foo", "bar", "baz"],
         });
-        assert.strictEqual(obj.streams.a.getState(), State.DONE);
-        assert.strictEqual(obj.streams.b.getState(), State.DONE);
+        assertDone(obj.streams.a);
+        assertDone(obj.streams.b);
     });
 
     it("subscriber", () => {
@@ -63,8 +64,8 @@ describe("fromObject", () => {
             a: [1, undefined],
             b: ["foo", "bar"],
         });
-        assert.strictEqual(obj.streams.a.getState(), State.DONE);
-        assert.strictEqual(obj.streams.b.getState(), State.DONE);
+        assertDone(obj.streams.a);
+        assertDone(obj.streams.b);
     });
 
     it("defaults & dedupe", () => {
