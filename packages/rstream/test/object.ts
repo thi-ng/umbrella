@@ -1,6 +1,6 @@
 import * as assert from "assert";
 import { fromObject, stream, Subscription } from "../src";
-import { assertDone } from "./utils";
+import { assertUnsub } from "./utils";
 
 type Foo = { a?: number; b: string };
 
@@ -36,8 +36,8 @@ describe("fromObject", () => {
             a: [1, 2, undefined],
             b: ["foo", "bar", "baz"],
         });
-        assertDone(obj.streams.a);
-        assertDone(obj.streams.b);
+        assertUnsub(obj.streams.a);
+        assertUnsub(obj.streams.b);
     });
 
     it("subscriber", () => {
@@ -64,8 +64,8 @@ describe("fromObject", () => {
             a: [1, undefined],
             b: ["foo", "bar"],
         });
-        assertDone(obj.streams.a);
-        assertDone(obj.streams.b);
+        assertUnsub(obj.streams.a);
+        assertUnsub(obj.streams.b);
     });
 
     it("defaults & dedupe", () => {

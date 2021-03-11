@@ -1,7 +1,7 @@
 import * as assert from "assert";
 import { CloseMode, fromIterable, metaStream } from "../src";
 import { TIMEOUT } from "./config";
-import { assertActive, assertDone, assertIdle } from "./utils";
+import { assertActive, assertIdle, assertUnsub } from "./utils";
 
 describe("MetaStream", function () {
     this.retries(3);
@@ -20,9 +20,9 @@ describe("MetaStream", function () {
         });
         setTimeout(() => {
             assert.deepStrictEqual(acc, [10, 20, 30, 20, 40, 60, 30, 60, 90]);
-            assertDone(meta);
-            assertDone(sub);
-            assertDone(sub2);
+            assertUnsub(meta);
+            assertUnsub(sub);
+            assertUnsub(sub2);
             done();
         }, 5 * TIMEOUT);
     });
@@ -35,7 +35,7 @@ describe("MetaStream", function () {
         const sub = src.subscribe(meta);
         const child = sub.subscribe({});
         setTimeout(() => {
-            assertDone(src);
+            assertUnsub(src);
             assertActive(meta);
             assertActive(sub);
             assertIdle(child);
@@ -59,7 +59,7 @@ describe("MetaStream", function () {
         });
         setTimeout(() => {
             child.unsubscribe();
-            assertDone(src);
+            assertUnsub(src);
             assertActive(meta);
             meta.subscribe({
                 next(x) {

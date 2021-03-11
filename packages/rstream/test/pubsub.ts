@@ -3,7 +3,7 @@ import { map, mapIndexed } from "@thi.ng/transducers";
 import * as assert from "assert";
 import { fromIterable, fromIterableSync, PubSub, pubsub } from "../src";
 import { TIMEOUT } from "./config";
-import { assertDone } from "./utils";
+import { assertUnsub } from "./utils";
 
 describe("PubSub", function () {
     this.retries(3);
@@ -18,9 +18,9 @@ describe("PubSub", function () {
         const b = pub.subscribeTopic("b", collect);
         fromIterableSync("abcbd").subscribe(pub);
         assert.deepStrictEqual(acc, { a: ["a"], b: ["b", "b"] });
-        assertDone(pub);
-        assertDone(a);
-        assertDone(b);
+        assertUnsub(pub);
+        assertUnsub(a);
+        assertUnsub(b);
     });
 
     it("complex keys", () => {
@@ -56,7 +56,7 @@ describe("PubSub", function () {
                 [["b", 2], [["b", 2]]],
             ]
         );
-        assertDone(pub);
+        assertUnsub(pub);
     });
 
     it("transducer", () => {
@@ -85,7 +85,7 @@ describe("PubSub", function () {
             c: [["c", 20]],
             d: [["d", 44]],
         });
-        assertDone(pub);
+        assertUnsub(pub);
     });
 
     it("unsubTopic", function (done) {
@@ -105,7 +105,7 @@ describe("PubSub", function () {
         }, TIMEOUT * 2.5);
         setTimeout(() => {
             assert.deepStrictEqual(acc, { a: ["a"], b: ["b"] });
-            assertDone(pub);
+            assertUnsub(pub);
             done();
         }, TIMEOUT * 7.5);
     });

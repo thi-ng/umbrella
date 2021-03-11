@@ -9,6 +9,7 @@ import {
     subscription,
 } from "../src";
 import { TIMEOUT } from "./config";
+import { assertUnsub } from "./utils";
 
 describe("Subscription", function () {
     this.retries(3);
@@ -88,6 +89,23 @@ describe("Subscription", function () {
             assert(!called);
             done();
         }, TIMEOUT * 4);
+    });
+
+    it("done state", (done) => {
+        this.timeout(TIMEOUT * 3);
+        let state = State.IDLE;
+        src = fromIterable([1]);
+        const sub = src.subscribe({
+            done() {
+                state = sub.getState();
+            },
+        });
+        setTimeout(() => {
+            assert.strictEqual(state, State.DONE);
+            assertUnsub(sub);
+            assertUnsub(src);
+            done();
+        }, TIMEOUT * 2);
     });
 
     it("completing transducer sends all values", (done) => {

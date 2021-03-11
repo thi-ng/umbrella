@@ -229,7 +229,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
     protected unsubscribeSelf() {
         LOGGER.debug(this.id, "unsub self");
         this.parent && this.parent.unsubscribe(this);
-        this.state < State.DONE && (this.state = State.UNSUBSCRIBED);
+        this.state < State.UNSUBSCRIBED && (this.state = State.UNSUBSCRIBED);
         this.release();
         return true;
     }
@@ -263,7 +263,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
         // attempt to call .done in wrapped sub
         if (this.dispatchTo("done")) {
             // disconnect from parent & internal cleanup
-            this.unsubscribe();
+            this.state < State.UNSUBSCRIBED && this.unsubscribe();
         }
         LOGGER.debug(this.id, "exiting done()");
     }
