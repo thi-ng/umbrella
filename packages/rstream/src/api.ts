@@ -8,7 +8,6 @@ export enum State {
     DONE,
     UNSUBSCRIBED,
     ERROR,
-    DISABLED, // TODO currently unused
 }
 
 /**
@@ -99,8 +98,38 @@ export interface SubscriptionOpts<A, B> extends TransformableOpts<A, B> {
 }
 
 export interface ISubscriber<T> {
+    /**
+     * Receives new input value `x` and executes any side effect.
+     */
     next: Fn<T, void>;
+    /**
+     * Error handler, which will be called to handle any uncaught errors while
+     * executing {@link ISubscriber.next} or a transducer function attached to
+     * the {@link Subscription} wrapping this subscriber. The error handler must
+     * return true to indicate the error could be successfully handled/recovered
+     * from. If false, the subscription will go into {@link State.ERROR} and
+     * stops processing any further values (plus might trigger recursive
+     * teardown of the upstream dataflow topology).
+     */
     error?: ErrorHandler;
+    /**
+     * Life cycle handler, usually invoked automatically when a finite stream
+     * source is finished.
+     *
+     * @remarks
+     * If the wrapping subscription has an associated transducer, any
+     * potentially internally buffered values will still be delivered to
+     * `.next()` first and the `.done()` handler only executed after.
+     *
+     * `.done()` handlers are called depth-first (in terms of
+     * dataflow/subscription topology) and the wrapping subscription instance
+     * usually then triggers a teardown in reverse (topological) order, by
+     * calling {@link ISubscribable.unsubscribe} on itself.
+     *
+     * If an error occurs during the execution of this handler, the subscription
+     * will still be potentially placed into the ERROR state, depending on
+     * presence and outcome of an error handler.
+     */
     done?: Fn0<void>;
     /**
      * Internal use only. Do not use.
