@@ -69,10 +69,15 @@ import { optsWithID } from "./utils/idgen";
  * @param src -
  * @param opts -
  */
-export function stream<T>(opts?: Partial<CommonOpts>): Stream<T>;
-// prettier-ignore
-export function stream<T>(src: StreamSource<T>, opts?: Partial<CommonOpts>): Stream<T>;
-export function stream<T>(src?: any, opts?: Partial<CommonOpts>): Stream<T> {
+export function stream<T>(opts?: Partial<WithErrorHandlerOpts>): Stream<T>;
+export function stream<T>(
+    src: StreamSource<T>,
+    opts?: Partial<WithErrorHandlerOpts>
+): Stream<T>;
+export function stream<T>(
+    src?: any,
+    opts?: Partial<WithErrorHandlerOpts>
+): Stream<T> {
     return new Stream<T>(src, opts);
 }
 
@@ -131,7 +136,16 @@ export class Stream<T> extends Subscription<T, T> implements IStream<T> {
     ): any {
         const $sub = super.subscribe(sub, opts);
         if (!this._inited) {
-            this._cancel = (this.src && this.src(this)) || (() => void 0);
+            if (this.src) {
+                try {
+                    this._cancel = this.src(this) || (() => void 0);
+                } catch (e) {
+                    let s = this.wrapped;
+                    if (!s || !s.error || !s.error(e)) {
+                        this.unhandledError(e);
+                    }
+                }
+            }
             this._inited = true;
         }
         return $sub;

@@ -5,11 +5,12 @@ import {
     fromIterable,
     fromIterableSync,
     State,
+    stream,
     Stream,
     subscription,
 } from "../src";
 import { TIMEOUT } from "./config";
-import { assertUnsub } from "./utils";
+import { assertError, assertIdle, assertUnsub } from "./utils";
 
 describe("Subscription", function () {
     this.retries(3);
@@ -162,5 +163,24 @@ describe("Subscription", function () {
             { xform: map((x: number) => x + 10) }
         );
         assert.deepStrictEqual(buf, [11]);
+    });
+
+    it("stream source error", () => {
+        let err: any;
+        const src = stream(
+            () => {
+                throw "eek";
+            },
+            {
+                error(e) {
+                    err = e;
+                    return false;
+                },
+            }
+        );
+        const sub = src.subscribe({});
+        assert.strictEqual(err, "eek");
+        assertError(src);
+        assertIdle(sub);
     });
 });
