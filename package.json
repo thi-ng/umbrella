@@ -17,13 +17,13 @@
         "mocha": "^8.3.0",
         "nyc": "^15.1.0",
         "rimraf": "^3.0.2",
-        "rollup": "^2.40.0",
+        "rollup": "^2.41.2",
         "rollup-plugin-cleanup": "^3.2.1",
         "snowpack": "^3.0.13",
         "terser": "^5.6.0",
-        "ts-loader": "^8.0.17",
-        "typescript": "^4.2.2",
-        "webpack": "^5.24.2",
+        "ts-loader": "^8.0.18",
+        "typescript": "^4.2.3",
+        "webpack": "^5.25.0",
         "webpack-cli": "^4.5.0"
     },
     "dependencies": {
@@ -49,6 +49,6 @@
         "tool:searchindex": "ts-node -P tools/tsconfig.json tools/src/build-search-index.ts"
     },
     "resolutions": {
-        "typescript": "^4.2.2"
+        "typescript": "^4.2.3"
     }
 }

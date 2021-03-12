@@ -46,8 +46,8 @@
         "mocha": "^8.3.0",
         "nyc": "^15.1.0",
         "ts-node": "^9.1.1",
-        "typedoc": "^0.20.28",
-        "typescript": "^4.2.2"
+        "typedoc": "^0.20.30",
+        "typescript": "^4.2.3"
     },
     "dependencies": {
         "@thi.ng/arrays": "^0.10.7",
