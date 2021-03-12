@@ -118,9 +118,12 @@ export class PubSub<A, B = A, T = any> extends Subscription<A, B> {
         !t &&
             this.topics.set(
                 topicID,
-                (t = subscription(undefined, {
-                    closeOut: CloseMode.NEVER,
-                }))
+                (t = subscription(
+                    undefined,
+                    optsWithID("topic", {
+                        closeOut: CloseMode.NEVER,
+                    })
+                ))
             );
         return t.subscribe(sub, opts);
     }
@@ -166,6 +169,7 @@ export class PubSub<A, B = A, T = any> extends Subscription<A, B> {
 
     protected dispatch(x: B) {
         LOGGER.debug(this.id, "dispatch", x);
+        this.cacheLast && (this.last = x);
         const t = this.topicfn(x);
         if (t !== undefined) {
             const sub = this.topics.get(t);
@@ -173,7 +177,9 @@ export class PubSub<A, B = A, T = any> extends Subscription<A, B> {
                 try {
                     sub.next && sub.next(x);
                 } catch (e) {
-                    sub.error ? sub.error(e) : this.error(e);
+                    if (!sub.error || !sub.error(e)) {
+                        return this.unhandledError(e);
+                    }
                 }
             }
         }

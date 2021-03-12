@@ -97,7 +97,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
         protected wrapped?: Partial<ISubscriber<B>>,
         opts?: Partial<SubscriptionOpts<A, B>>
     ) {
-        opts = optsWithID(`$sub`, {
+        opts = optsWithID(`sub`, {
             closeIn: CloseMode.LAST,
             closeOut: CloseMode.LAST,
             cache: true,
