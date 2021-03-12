@@ -29,7 +29,7 @@ for e in $examples; do
             (cd "$e" && yarn build)
         fi
         if [ 0 -eq $? ]; then
-            rm -rf "$ebuild"/__snowpack__ "$ebuild"/_dist_ "$ebuild"/web_modules
+            rm -rf "$ebuild"/_snowpack "$ebuild"/_dist_ "$ebuild"/web_modules
             src=$(find "$ebuild" -name '*.js')
             for js in $src; do
                 node_modules/.bin/terser -c -m --ecma 6 -o "$js" "$js"
