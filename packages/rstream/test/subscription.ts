@@ -4,13 +4,14 @@ import {
     CloseMode,
     fromIterable,
     fromIterableSync,
+    ISubscription,
     State,
     stream,
     Stream,
     subscription,
 } from "../src";
 import { TIMEOUT } from "./config";
-import { assertError, assertIdle, assertUnsub } from "./utils";
+import { assertActive, assertError, assertIdle, assertUnsub } from "./utils";
 
 describe("Subscription", function () {
     this.retries(3);
@@ -18,6 +19,46 @@ describe("Subscription", function () {
     let src: Stream<number>;
 
     beforeEach(() => {});
+
+    it("fsm", () => {
+        src = stream();
+        assertIdle(src);
+        const sub = src.subscribe({
+            next() {
+                throw 1;
+            },
+        });
+        let state2 = State.IDLE;
+        let err: any;
+        let sub2: ISubscription;
+        sub2 = src.subscribe({
+            next() {
+                throw 1;
+            },
+            done() {
+                state2 = sub2.getState();
+            },
+            error(e) {
+                err = e;
+                return true;
+            },
+        });
+        assertActive(src);
+        assertActive(sub);
+        assertActive(sub2);
+        src.next(1);
+        assertActive(src);
+        assertError(sub);
+        assertActive(sub2);
+        src.done();
+        assertUnsub(src);
+        assertError(sub);
+        assertUnsub(sub2);
+        assert.strictEqual(state2, State.DONE);
+        assert.strictEqual(err, 1);
+
+        assert.throws(() => src.subscribe({}), "subscribe");
+    });
 
     it("new sub receives last", function (done) {
         this.timeout(TIMEOUT * 5);
@@ -181,6 +222,6 @@ describe("Subscription", function () {
         const sub = src.subscribe({});
         assert.strictEqual(err, "eek");
         assertError(src);
-        assertIdle(sub);
+        assertActive(sub);
     });
 });

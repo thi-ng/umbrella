@@ -119,6 +119,10 @@ export class Subscription<A, B> implements ISubscription<A, B> {
         return this.state;
     }
 
+    protected setState(state: State) {
+        this.state = state;
+    }
+
     /**
      * Creates new child subscription with given subscriber and/or
      * transducer and options.
@@ -139,6 +143,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
         this.ensureState();
         let $sub: ISubscriber<any>;
         if (sub instanceof Subscription && !opts.xform) {
+            sub.ensureState();
             // ensure sub is still unattached
             assert(!sub.parent, `sub '${sub.id}' already has a parent`);
             sub.parent = this;
@@ -147,7 +152,8 @@ export class Subscription<A, B> implements ISubscription<A, B> {
             $sub = new Subscription(sub, { ...opts, parent: this });
         }
         this.subs.add($sub);
-        this.state = State.ACTIVE;
+        this.setState(State.ACTIVE);
+        $sub.setState(State.ACTIVE);
         this.last != SEMAPHORE && $sub.next(this.last);
         return $sub;
     }

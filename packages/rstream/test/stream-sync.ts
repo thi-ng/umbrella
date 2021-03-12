@@ -86,7 +86,7 @@ describe("StreamSync", function () {
         assertActive(a);
         assertActive(b);
         assertActive(a1);
-        assert.strictEqual(a1res.getState(), State.IDLE, "a1res != IDLE");
+        assertActive(a1res);
         assertUnsub(c);
         assertUnsub(a2);
         assertUnsub(res);

@@ -1,7 +1,7 @@
 import * as assert from "assert";
 import { fromIterable, fromPromise, ISubscribable, resolve } from "../src";
 import { TIMEOUT } from "./config";
-import { assertActive, assertIdle } from "./utils";
+import { assertActive } from "./utils";
 
 describe("fromPromise()", function () {
     this.retries(3);
@@ -56,7 +56,7 @@ describe("fromPromise()", function () {
             assert.strictEqual(err, 23);
             assert.strictEqual(state.err, undefined);
             assertActive(src);
-            assertIdle(sub);
+            assertActive(sub);
             done();
         }, TIMEOUT);
     });
@@ -83,7 +83,7 @@ describe("fromPromise()", function () {
             assert.strictEqual(err.message, "foo");
             assert.strictEqual(state.err, undefined);
             assertActive(src);
-            assertIdle(sub);
+            assertActive(sub);
             done();
         }, TIMEOUT);
     });

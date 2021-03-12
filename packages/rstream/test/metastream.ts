@@ -1,7 +1,7 @@
 import * as assert from "assert";
 import { CloseMode, fromIterable, metaStream } from "../src";
 import { TIMEOUT } from "./config";
-import { assertActive, assertIdle, assertUnsub } from "./utils";
+import { assertActive, assertUnsub } from "./utils";
 
 describe("MetaStream", function () {
     this.retries(3);
@@ -38,7 +38,7 @@ describe("MetaStream", function () {
             assertUnsub(src);
             assertActive(meta);
             assertActive(sub);
-            assertIdle(child);
+            assertActive(child);
             done();
         }, 3 * TIMEOUT);
     });
