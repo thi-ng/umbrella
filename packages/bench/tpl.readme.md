@@ -88,6 +88,9 @@ See
 [api.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/bench/src/api.ts)
 for configuration options.
 
+Also see the [formatting](#output-formatting) section below for other output
+options. This example uses the default format...
+
 ```ts
 benchmark(() => fib(40), { title: "fib", iter: 10, warmup: 5 });
 // benchmarking: fib
@@ -100,6 +103,7 @@ benchmark(() => fib(40), { title: "fib", iter: 10, warmup: 5 });
 
 // also returns results:
 // {
+//   title: "fib",
 //   iter: 10,
 //   total: 7333.72402,
 //   mean: 733.372402,
@@ -111,6 +115,49 @@ benchmark(() => fib(40), { title: "fib", iter: 10, warmup: 5 });
 //   sd: 0.542200865574415
 // }
 ```
+
+### Benchmark suites
+
+Multiple benchmarks can be run sequentially as suite (also returns an array of
+all results):
+
+```ts
+b.suite(
+    [
+        { title: "fib2(10)", fn: () => fib2(10) },
+        { title: "fib2(20)", fn: () => fib2(20) },
+        { title: "fib2(30)", fn: () => fib2(30) },
+        { title: "fib2(40)", fn: () => fib2(40) },
+    ],
+    { iter: 10, size: 100000, warmup: 5, format: b.FORMAT_MD }
+)
+
+// |                   Title|    Iter|    Size|       Total|    Mean|  Median|     Min|     Max|      Q1|      Q3|     SD%|
+// |------------------------|-------:|-------:|-----------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|
+// |                fib2(10)|      10|  100000|       54.34|    5.43|    5.15|    4.40|    8.14|    4.84|    6.67|   20.32|
+// |                fib2(20)|      10|  100000|      121.24|   12.12|   12.13|   11.73|   12.91|   11.93|   12.35|    2.61|
+// |                fib2(30)|      10|  100000|      152.98|   15.30|   14.51|   13.93|   20.77|   14.35|   16.35|   12.65|
+// |                fib2(40)|      10|  100000|      164.79|   16.48|   15.60|   15.01|   19.27|   15.42|   18.80|    9.34|
+```
+
+Same table as actual Markdown:
+
+|                   Title|    Iter|    Size|       Total|    Mean|  Median|     Min|     Max|      Q1|      Q3|     SD%|
+|------------------------|-------:|-------:|-----------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|
+|                fib2(10)|      10|  100000|       54.34|    5.43|    5.15|    4.40|    8.14|    4.84|    6.67|   20.32|
+|                fib2(20)|      10|  100000|      121.24|   12.12|   12.13|   11.73|   12.91|   11.93|   12.35|    2.61|
+|                fib2(30)|      10|  100000|      152.98|   15.30|   14.51|   13.93|   20.77|   14.35|   16.35|   12.65|
+|                fib2(40)|      10|  100000|      164.79|   16.48|   15.60|   15.01|   19.27|   15.42|   18.80|    9.34|
+
+### Output formatting
+
+The following output formatters are available. Custom formatters can be easily
+defined (see source for examples). Formatters are configured via the `format`
+option given to `benchmark()` or `suite()`.
+
+- `FORMAT_DEFAULT` - default plain text formatting
+- `FORMAT_CSV` - Comma-separated values (w/ column header)
+- `FORMAT_MD` - Markdown table format
 
 ## Authors
 

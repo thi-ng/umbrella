@@ -1,20 +1,28 @@
 import type { BenchmarkOpts, BenchmarkResult } from "./api";
 import { benchResult } from "./bench";
-import { timedResult } from "./timed";
+import { FORMAT_DEFAULT } from "./format/default";
+
+export const DEFAULT_OPTS: BenchmarkOpts = {
+    title: "benchmark",
+    iter: 1e3,
+    size: 1,
+    warmup: 10,
+    output: true,
+    format: FORMAT_DEFAULT,
+};
 
 export const benchmark = (
     fn: () => void,
     opts?: Partial<BenchmarkOpts>
 ): BenchmarkResult => {
-    opts = { title: "", iter: 1e3, warmup: 10, print: true, ...opts };
-    const { iter, warmup, print } = opts;
-    print && console.log(`benchmarking: ${opts.title}`);
-    const t = benchResult(fn, warmup)[1];
-    print && console.log(`\twarmup... ${t.toFixed(2)}ms (${warmup} runs)`);
-    print && console.log("\texecuting...");
+    const _opts = <BenchmarkOpts>{ ...DEFAULT_OPTS, ...opts };
+    const { iter, size, warmup, output, format } = _opts;
+    output && outputString(format!.start(_opts));
+    const t = benchResult(fn, warmup * size)[1];
+    output && outputString(format!.warmup(t, _opts));
     const samples: number[] = [];
     for (let i = iter!; --i >= 0; ) {
-        samples.push(timedResult(fn)[1]);
+        samples.push(benchResult(fn, size)[1]);
     }
     samples.sort((a, b) => a - b);
     const total = samples.reduce((acc, x) => acc + x, 0);
@@ -30,18 +38,10 @@ export const benchmark = (
         ) /
             mean) *
         100;
-    if (print) {
-        console.log(`\ttotal: ${total.toFixed(2)}ms, runs: ${iter}`);
-        console.log(
-            `\tmean: ${mean.toFixed(2)}ms, median: ${median.toFixed(
-                2
-            )}ms, range: [${min.toFixed(2)}..${max.toFixed(2)}]`
-        );
-        console.log(`\tq1: ${q1.toFixed(2)}ms, q3: ${q3.toFixed(2)}ms`);
-        console.log(`\tsd: ${sd.toFixed(2)}%`);
-    }
-    return {
-        iter: iter!,
+    const res: BenchmarkResult = {
+        title: _opts.title,
+        iter,
+        size,
         total,
         mean,
         median,
@@ -51,4 +51,15 @@ export const benchmark = (
         q3,
         sd,
     };
+    output && outputString(format!.result(res));
+    return res;
 };
+
+/**
+ * Only outputs non-empty strings to console.
+ *
+ * @param str
+ *
+ * @internal
+ */
+export const outputString = (str: string) => str !== "" && console.log(str);
