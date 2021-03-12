@@ -156,7 +156,7 @@ export class Stream<T> extends Subscription<T, T> implements IStream<T> {
         if (
             res &&
             (!sub ||
-                ((!this.subs || !this.subs.size) &&
+                ((!this.subs || !this.subs.length) &&
                     this.closeOut !== CloseMode.NEVER))
         ) {
             this.cancel();

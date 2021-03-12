@@ -91,7 +91,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
     protected cacheLast: boolean;
     protected last: any = SEMAPHORE;
     protected state = State.IDLE;
-    protected subs = new Set<Partial<ISubscriber<B>>>();
+    protected subs: Partial<ISubscriber<B>>[] = [];
 
     constructor(
         protected wrapped?: Partial<ISubscriber<B>>,
@@ -151,7 +151,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
         } else {
             $sub = new Subscription(sub, { ...opts, parent: this });
         }
-        this.subs.add($sub);
+        this.subs.push($sub);
         this.setState(State.ACTIVE);
         $sub.setState(State.ACTIVE);
         this.last != SEMAPHORE && $sub.next(this.last);
@@ -242,10 +242,12 @@ export class Subscription<A, B> implements ISubscription<A, B> {
 
     protected unsubscribeChild(sub: Partial<ISubscription<B>>) {
         LOGGER.debug(this.id, "unsub child", sub.id);
-        if (this.subs.delete(sub)) {
+        const idx = this.subs.indexOf(sub);
+        if (idx >= 0) {
+            this.subs.splice(idx, 1);
             if (
                 this.closeOut === CloseMode.FIRST ||
-                (!this.subs.size && this.closeOut !== CloseMode.NEVER)
+                (!this.subs.length && this.closeOut !== CloseMode.NEVER)
             ) {
                 this.unsubscribe();
             }
@@ -312,7 +314,9 @@ export class Subscription<A, B> implements ISubscription<A, B> {
             }
         }
         // process other child subs
-        for (s of type === "next" ? this.subs : [...this.subs]) {
+        const subs = type === "next" ? this.subs : [...this.subs];
+        for (let i = subs.length; --i >= 0; ) {
+            s = subs[i];
             try {
                 s[type] && s[type]!(x!);
             } catch (e) {
@@ -379,7 +383,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
     }
 
     protected release() {
-        this.subs.clear();
+        this.subs.length = 0;
         delete this.parent;
         delete this.xform;
         delete this.last;
