@@ -54,7 +54,8 @@
     "files": [
         "*.js",
         "*.d.ts",
-        "lib"
+        "lib",
+        "format"
     ],
     "keywords": [
         "benchmark",
@@ -68,7 +69,7 @@
         "measure",
         "statistics",
         "table",
-        "timing",
+        "time",
         "typescript"
     ],
     "publishConfig": {
