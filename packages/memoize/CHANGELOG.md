@@ -3,46 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.1.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@2.1.12...@thi.ng/memoize@2.1.13) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/memoize
-
-
-
-
-
-## [2.1.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@2.1.11...@thi.ng/memoize@2.1.12) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/memoize
-
-
-
-
-
-## [2.1.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@2.1.10...@thi.ng/memoize@2.1.11) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/memoize
-
-
-
-
-
-## [2.1.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@2.1.9...@thi.ng/memoize@2.1.10) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/memoize
-
-
-
-
-
-## [2.1.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@2.1.8...@thi.ng/memoize@2.1.9) (2021-02-20)
-
-**Note:** Version bump only for package @thi.ng/memoize
-
-
-
-
-
 # [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@2.0.19...@thi.ng/memoize@2.1.0) (2020-08-20)
 
 

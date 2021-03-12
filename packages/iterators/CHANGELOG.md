@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [5.1.55](https://github.com/thi-ng/umbrella/compare/@thi.ng/iterators@5.1.54...@thi.ng/iterators@5.1.55) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/iterators
-
-
-
-
-
-## [5.1.54](https://github.com/thi-ng/umbrella/compare/@thi.ng/iterators@5.1.53...@thi.ng/iterators@5.1.54) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/iterators
-
-
-
-
-
-## [5.1.53](https://github.com/thi-ng/umbrella/compare/@thi.ng/iterators@5.1.52...@thi.ng/iterators@5.1.53) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/iterators
-
-
-
-
-
-## [5.1.52](https://github.com/thi-ng/umbrella/compare/@thi.ng/iterators@5.1.51...@thi.ng/iterators@5.1.52) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/iterators
-
-
-
-
-
-## [5.1.51](https://github.com/thi-ng/umbrella/compare/@thi.ng/iterators@5.1.50...@thi.ng/iterators@5.1.51) (2021-02-24)
-
-**Note:** Version bump only for package @thi.ng/iterators
-
-
-
-
-
-## [5.1.50](https://github.com/thi-ng/umbrella/compare/@thi.ng/iterators@5.1.49...@thi.ng/iterators@5.1.50) (2021-02-20)
-
-**Note:** Version bump only for package @thi.ng/iterators
-
-
-
-
-
 # [5.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/iterators@5.0.19...@thi.ng/iterators@5.1.0) (2019-07-07)
 
 ### Bug Fixes

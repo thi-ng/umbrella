@@ -3,46 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [8.2.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@8.2.21...@thi.ng/hdom@8.2.22) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/hdom
-
-
-
-
-
-## [8.2.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@8.2.20...@thi.ng/hdom@8.2.21) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/hdom
-
-
-
-
-
-## [8.2.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@8.2.19...@thi.ng/hdom@8.2.20) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/hdom
-
-
-
-
-
-## [8.2.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@8.2.18...@thi.ng/hdom@8.2.19) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/hdom
-
-
-
-
-
-## [8.2.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@8.2.17...@thi.ng/hdom@8.2.18) (2021-02-20)
-
-**Note:** Version bump only for package @thi.ng/hdom
-
-
-
-
-
 # [8.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdom@8.1.0...@thi.ng/hdom@8.2.0) (2020-07-02)
 
 

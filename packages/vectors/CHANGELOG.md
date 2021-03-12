@@ -3,30 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [5.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@5.1.2...@thi.ng/vectors@5.1.3) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [5.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@5.1.1...@thi.ng/vectors@5.1.2) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
-## [5.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@5.1.0...@thi.ng/vectors@5.1.1) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/vectors
-
-
-
-
-
 # [5.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@5.0.1...@thi.ng/vectors@5.1.0) (2021-03-03)
 
 
@@ -38,14 +14,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **vectors:** add softMax() & oneHot() ([4f242c8](https://github.com/thi-ng/umbrella/commit/4f242c81c12e669bad85df6cf4f9588394121a0d))
-
-
-
-
-
-## [5.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@5.0.0...@thi.ng/vectors@5.0.1) (2021-02-24)
-
-**Note:** Version bump only for package @thi.ng/vectors
 
 
 

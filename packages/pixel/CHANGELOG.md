@@ -3,30 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.7.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.7.2...@thi.ng/pixel@0.7.3) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/pixel
-
-
-
-
-
-## [0.7.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.7.1...@thi.ng/pixel@0.7.2) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/pixel
-
-
-
-
-
-## [0.7.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.7.0...@thi.ng/pixel@0.7.1) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/pixel
-
-
-
-
-
 # [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.6.1...@thi.ng/pixel@0.7.0) (2021-03-03)
 
 
@@ -50,14 +26,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **pixel:** add/update buffer factory fns ([ba38e13](https://github.com/thi-ng/umbrella/commit/ba38e137c6913d048bb4d678137241ee179d160c))
 * **pixel:** update PackedBuffer.fromCanvas() ([3bdb086](https://github.com/thi-ng/umbrella/commit/3bdb0860bcd35a0475e83ebe948847f1ecd42db6))
 * **pixel:** update/extend/refactor convolveChannel/Image() ([6692865](https://github.com/thi-ng/umbrella/commit/6692865d5facb75bf667056afa9cfee93ade2da6))
-
-
-
-
-
-## [0.6.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.6.0...@thi.ng/pixel@0.6.1) (2021-02-20)
-
-**Note:** Version bump only for package @thi.ng/pixel
 
 
 

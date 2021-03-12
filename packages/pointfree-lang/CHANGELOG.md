@@ -3,46 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.4.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.4.24...@thi.ng/pointfree-lang@1.4.25) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/pointfree-lang
-
-
-
-
-
-## [1.4.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.4.23...@thi.ng/pointfree-lang@1.4.24) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/pointfree-lang
-
-
-
-
-
-## [1.4.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.4.22...@thi.ng/pointfree-lang@1.4.23) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/pointfree-lang
-
-
-
-
-
-## [1.4.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.4.21...@thi.ng/pointfree-lang@1.4.22) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/pointfree-lang
-
-
-
-
-
-## [1.4.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.4.20...@thi.ng/pointfree-lang@1.4.21) (2021-02-20)
-
-**Note:** Version bump only for package @thi.ng/pointfree-lang
-
-
-
-
-
 # [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.3.0...@thi.ng/pointfree-lang@1.4.0) (2020-04-27)
 
 

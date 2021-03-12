@@ -3,46 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.2.29](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@1.2.28...@thi.ng/dot@1.2.29) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/dot
-
-
-
-
-
-## [1.2.28](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@1.2.27...@thi.ng/dot@1.2.28) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/dot
-
-
-
-
-
-## [1.2.27](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@1.2.26...@thi.ng/dot@1.2.27) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/dot
-
-
-
-
-
-## [1.2.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@1.2.25...@thi.ng/dot@1.2.26) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/dot
-
-
-
-
-
-## [1.2.25](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@1.2.24...@thi.ng/dot@1.2.25) (2021-02-20)
-
-**Note:** Version bump only for package @thi.ng/dot
-
-
-
-
-
 # [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@1.1.14...@thi.ng/dot@1.2.0) (2020-04-03)
 
 

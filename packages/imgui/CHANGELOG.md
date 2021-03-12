@@ -3,62 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.2.59](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.58...@thi.ng/imgui@0.2.59) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/imgui
-
-
-
-
-
-## [0.2.58](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.57...@thi.ng/imgui@0.2.58) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/imgui
-
-
-
-
-
-## [0.2.57](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.56...@thi.ng/imgui@0.2.57) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/imgui
-
-
-
-
-
-## [0.2.56](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.55...@thi.ng/imgui@0.2.56) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/imgui
-
-
-
-
-
-## [0.2.55](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.54...@thi.ng/imgui@0.2.55) (2021-02-24)
-
-**Note:** Version bump only for package @thi.ng/imgui
-
-
-
-
-
-## [0.2.54](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.53...@thi.ng/imgui@0.2.54) (2021-02-22)
-
-**Note:** Version bump only for package @thi.ng/imgui
-
-
-
-
-
-## [0.2.53](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.52...@thi.ng/imgui@0.2.53) (2021-02-20)
-
-**Note:** Version bump only for package @thi.ng/imgui
-
-
-
-
-
 ## [0.2.42](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.41...@thi.ng/imgui@0.2.42) (2020-11-24)
 
 

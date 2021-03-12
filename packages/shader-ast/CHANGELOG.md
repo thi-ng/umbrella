@@ -3,52 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.8.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.8.3...@thi.ng/shader-ast@0.8.4) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.8.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.8.2...@thi.ng/shader-ast@0.8.3) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.8.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.8.1...@thi.ng/shader-ast@0.8.2) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.8.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.8.0...@thi.ng/shader-ast@0.8.1) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
 # [0.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.7.13...@thi.ng/shader-ast@0.8.0) (2021-02-24)
 
 
 ### Features
 
 * **shader-ast:** add more texture lookup fns ([3c95d13](https://github.com/thi-ng/umbrella/commit/3c95d1363f4eb51e8d04dc7618d50f8f70b121e4))
-
-
-
-
-
-## [0.7.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.7.12...@thi.ng/shader-ast@0.7.13) (2021-02-20)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
 
 
 

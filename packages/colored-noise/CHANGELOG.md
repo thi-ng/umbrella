@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/colored-noise@0.1.18...@thi.ng/colored-noise@0.1.19) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/colored-noise
-
-
-
-
-
-## [0.1.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/colored-noise@0.1.17...@thi.ng/colored-noise@0.1.18) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/colored-noise
-
-
-
-
-
-## [0.1.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/colored-noise@0.1.16...@thi.ng/colored-noise@0.1.17) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/colored-noise
-
-
-
-
-
-## [0.1.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/colored-noise@0.1.15...@thi.ng/colored-noise@0.1.16) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/colored-noise
-
-
-
-
-
-## [0.1.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/colored-noise@0.1.14...@thi.ng/colored-noise@0.1.15) (2021-02-24)
-
-**Note:** Version bump only for package @thi.ng/colored-noise
-
-
-
-
-
-## [0.1.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/colored-noise@0.1.13...@thi.ng/colored-noise@0.1.14) (2021-02-20)
-
-**Note:** Version bump only for package @thi.ng/colored-noise
-
-
-
-
-
 # 0.1.0 (2020-08-28)
 
 

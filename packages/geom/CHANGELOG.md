@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@2.1.5...@thi.ng/geom@2.1.6) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [2.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@2.1.4...@thi.ng/geom@2.1.5) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [2.1.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@2.1.3...@thi.ng/geom@2.1.4) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [2.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@2.1.2...@thi.ng/geom@2.1.3) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [2.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@2.1.1...@thi.ng/geom@2.1.2) (2021-02-24)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
-## [2.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@2.1.0...@thi.ng/geom@2.1.1) (2021-02-22)
-
-**Note:** Version bump only for package @thi.ng/geom
-
-
-
-
-
 # [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@2.0.6...@thi.ng/geom@2.1.0) (2021-02-20)
 
 

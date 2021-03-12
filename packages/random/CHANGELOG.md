@@ -3,38 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.3.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@2.3.4...@thi.ng/random@2.3.5) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/random
-
-
-
-
-
-## [2.3.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@2.3.3...@thi.ng/random@2.3.4) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/random
-
-
-
-
-
-## [2.3.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@2.3.2...@thi.ng/random@2.3.3) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/random
-
-
-
-
-
-## [2.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@2.3.1...@thi.ng/random@2.3.2) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/random
-
-
-
-
-
 ## [2.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@2.3.0...@thi.ng/random@2.3.1) (2021-02-24)
 
 

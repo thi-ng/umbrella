@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.3.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph@1.3.13...@thi.ng/dgraph@1.3.14) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/dgraph
-
-
-
-
-
-## [1.3.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph@1.3.12...@thi.ng/dgraph@1.3.13) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/dgraph
-
-
-
-
-
-## [1.3.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph@1.3.11...@thi.ng/dgraph@1.3.12) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/dgraph
-
-
-
-
-
-## [1.3.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph@1.3.10...@thi.ng/dgraph@1.3.11) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/dgraph
-
-
-
-
-
-## [1.3.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph@1.3.9...@thi.ng/dgraph@1.3.10) (2021-02-24)
-
-**Note:** Version bump only for package @thi.ng/dgraph
-
-
-
-
-
-## [1.3.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph@1.3.8...@thi.ng/dgraph@1.3.9) (2021-02-20)
-
-**Note:** Version bump only for package @thi.ng/dgraph
-
-
-
-
-
 # [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph@1.2.28...@thi.ng/dgraph@1.3.0) (2020-11-24)
 
 

@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.86](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@2.0.85...@thi.ng/transducers-hdom@2.0.86) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/transducers-hdom
-
-
-
-
-
-## [2.0.85](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@2.0.84...@thi.ng/transducers-hdom@2.0.85) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/transducers-hdom
-
-
-
-
-
-## [2.0.84](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@2.0.83...@thi.ng/transducers-hdom@2.0.84) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/transducers-hdom
-
-
-
-
-
-## [2.0.83](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@2.0.82...@thi.ng/transducers-hdom@2.0.83) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/transducers-hdom
-
-
-
-
-
-## [2.0.82](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@2.0.81...@thi.ng/transducers-hdom@2.0.82) (2021-02-24)
-
-**Note:** Version bump only for package @thi.ng/transducers-hdom
-
-
-
-
-
-## [2.0.81](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@2.0.80...@thi.ng/transducers-hdom@2.0.81) (2021-02-20)
-
-**Note:** Version bump only for package @thi.ng/transducers-hdom
-
-
-
-
-
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@1.2.16...@thi.ng/transducers-hdom@2.0.0) (2019-01-21)
 
 ### Build System

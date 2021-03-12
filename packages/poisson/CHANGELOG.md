@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.1.33](https://github.com/thi-ng/umbrella/compare/@thi.ng/poisson@1.1.32...@thi.ng/poisson@1.1.33) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/poisson
-
-
-
-
-
-## [1.1.32](https://github.com/thi-ng/umbrella/compare/@thi.ng/poisson@1.1.31...@thi.ng/poisson@1.1.32) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/poisson
-
-
-
-
-
-## [1.1.31](https://github.com/thi-ng/umbrella/compare/@thi.ng/poisson@1.1.30...@thi.ng/poisson@1.1.31) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/poisson
-
-
-
-
-
-## [1.1.30](https://github.com/thi-ng/umbrella/compare/@thi.ng/poisson@1.1.29...@thi.ng/poisson@1.1.30) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/poisson
-
-
-
-
-
-## [1.1.29](https://github.com/thi-ng/umbrella/compare/@thi.ng/poisson@1.1.28...@thi.ng/poisson@1.1.29) (2021-02-24)
-
-**Note:** Version bump only for package @thi.ng/poisson
-
-
-
-
-
-## [1.1.28](https://github.com/thi-ng/umbrella/compare/@thi.ng/poisson@1.1.27...@thi.ng/poisson@1.1.28) (2021-02-20)
-
-**Note:** Version bump only for package @thi.ng/poisson
-
-
-
-
-
 # [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/poisson@1.0.17...@thi.ng/poisson@1.1.0) (2020-05-29)
 
 

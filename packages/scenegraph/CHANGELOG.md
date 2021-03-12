@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.3.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/scenegraph@0.3.22...@thi.ng/scenegraph@0.3.23) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/scenegraph
-
-
-
-
-
-## [0.3.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/scenegraph@0.3.21...@thi.ng/scenegraph@0.3.22) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/scenegraph
-
-
-
-
-
-## [0.3.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/scenegraph@0.3.20...@thi.ng/scenegraph@0.3.21) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/scenegraph
-
-
-
-
-
-## [0.3.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/scenegraph@0.3.19...@thi.ng/scenegraph@0.3.20) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/scenegraph
-
-
-
-
-
-## [0.3.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/scenegraph@0.3.18...@thi.ng/scenegraph@0.3.19) (2021-02-24)
-
-**Note:** Version bump only for package @thi.ng/scenegraph
-
-
-
-
-
-## [0.3.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/scenegraph@0.3.17...@thi.ng/scenegraph@0.3.18) (2021-02-20)
-
-**Note:** Version bump only for package @thi.ng/scenegraph
-
-
-
-
-
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/scenegraph@0.2.1...@thi.ng/scenegraph@0.3.0) (2020-07-28)
 
 

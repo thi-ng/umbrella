@@ -3,44 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [7.6.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.6.4...@thi.ng/transducers@7.6.5) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
-## [7.6.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.6.3...@thi.ng/transducers@7.6.4) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
-## [7.6.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.6.2...@thi.ng/transducers@7.6.3) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
 ## [7.6.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.6.1...@thi.ng/transducers@7.6.2) (2021-03-03)
 
 
 ### Bug Fixes
 
 * **transducers:** add missing type anno (TS4.2) ([7ced9be](https://github.com/thi-ng/umbrella/commit/7ced9be6b0dc41567c4b65517e8caba1d0bfffe2))
-
-
-
-
-
-## [7.6.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.6.0...@thi.ng/transducers@7.6.1) (2021-02-24)
-
-**Note:** Version bump only for package @thi.ng/transducers
 
 
 

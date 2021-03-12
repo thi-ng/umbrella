@@ -3,46 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.5.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/ecs@0.5.4...@thi.ng/ecs@0.5.5) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/ecs
-
-
-
-
-
-## [0.5.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/ecs@0.5.3...@thi.ng/ecs@0.5.4) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/ecs
-
-
-
-
-
-## [0.5.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/ecs@0.5.2...@thi.ng/ecs@0.5.3) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/ecs
-
-
-
-
-
-## [0.5.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/ecs@0.5.1...@thi.ng/ecs@0.5.2) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/ecs
-
-
-
-
-
-## [0.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/ecs@0.5.0...@thi.ng/ecs@0.5.1) (2021-02-24)
-
-**Note:** Version bump only for package @thi.ng/ecs
-
-
-
-
-
 # [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/ecs@0.4.9...@thi.ng/ecs@0.5.0) (2021-02-20)
 
 

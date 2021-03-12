@@ -3,38 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.4.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.4.3...@thi.ng/rdom@0.4.4) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/rdom
-
-
-
-
-
-## [0.4.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.4.2...@thi.ng/rdom@0.4.3) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/rdom
-
-
-
-
-
-## [0.4.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.4.1...@thi.ng/rdom@0.4.2) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/rdom
-
-
-
-
-
-## [0.4.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.4.0...@thi.ng/rdom@0.4.1) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/rdom
-
-
-
-
-
 # [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.3.9...@thi.ng/rdom@0.4.0) (2021-02-24)
 
 
@@ -52,14 +20,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * **rdom:** add stream IDs for $Sub/$SubA ([e8b8fd4](https://github.com/thi-ng/umbrella/commit/e8b8fd4785f9836f0270bbc01dc216c2c87d2e8d))
-
-
-
-
-
-## [0.3.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.3.7...@thi.ng/rdom@0.3.8) (2021-02-20)
-
-**Note:** Version bump only for package @thi.ng/rdom
 
 
 

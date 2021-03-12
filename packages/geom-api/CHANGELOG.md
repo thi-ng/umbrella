@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@2.0.10...@thi.ng/geom-api@2.0.11) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/geom-api
-
-
-
-
-
-## [2.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@2.0.9...@thi.ng/geom-api@2.0.10) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/geom-api
-
-
-
-
-
-## [2.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@2.0.8...@thi.ng/geom-api@2.0.9) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/geom-api
-
-
-
-
-
-## [2.0.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@2.0.7...@thi.ng/geom-api@2.0.8) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/geom-api
-
-
-
-
-
-## [2.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@2.0.6...@thi.ng/geom-api@2.0.7) (2021-02-24)
-
-**Note:** Version bump only for package @thi.ng/geom-api
-
-
-
-
-
-## [2.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@2.0.5...@thi.ng/geom-api@2.0.6) (2021-02-20)
-
-**Note:** Version bump only for package @thi.ng/geom-api
-
-
-
-
-
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@1.1.4...@thi.ng/geom-api@2.0.0) (2020-12-22)
 
 

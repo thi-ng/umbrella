@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.1.65](https://github.com/thi-ng/umbrella/compare/@thi.ng/iges@1.1.64...@thi.ng/iges@1.1.65) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/iges
-
-
-
-
-
-## [1.1.64](https://github.com/thi-ng/umbrella/compare/@thi.ng/iges@1.1.63...@thi.ng/iges@1.1.64) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/iges
-
-
-
-
-
-## [1.1.63](https://github.com/thi-ng/umbrella/compare/@thi.ng/iges@1.1.62...@thi.ng/iges@1.1.63) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/iges
-
-
-
-
-
-## [1.1.62](https://github.com/thi-ng/umbrella/compare/@thi.ng/iges@1.1.61...@thi.ng/iges@1.1.62) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/iges
-
-
-
-
-
-## [1.1.61](https://github.com/thi-ng/umbrella/compare/@thi.ng/iges@1.1.60...@thi.ng/iges@1.1.61) (2021-02-24)
-
-**Note:** Version bump only for package @thi.ng/iges
-
-
-
-
-
-## [1.1.60](https://github.com/thi-ng/umbrella/compare/@thi.ng/iges@1.1.59...@thi.ng/iges@1.1.60) (2021-02-20)
-
-**Note:** Version bump only for package @thi.ng/iges
-
-
-
-
-
 # [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/iges@1.0.15...@thi.ng/iges@1.1.0) (2019-04-15)
 
 ### Features

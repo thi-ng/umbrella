@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.4.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/simd@0.4.21...@thi.ng/simd@0.4.22) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/simd
-
-
-
-
-
-## [0.4.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/simd@0.4.20...@thi.ng/simd@0.4.21) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/simd
-
-
-
-
-
-## [0.4.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/simd@0.4.19...@thi.ng/simd@0.4.20) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/simd
-
-
-
-
-
-## [0.4.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/simd@0.4.18...@thi.ng/simd@0.4.19) (2021-03-03)
-
-**Note:** Version bump only for package @thi.ng/simd
-
-
-
-
-
-## [0.4.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/simd@0.4.17...@thi.ng/simd@0.4.18) (2021-02-24)
-
-**Note:** Version bump only for package @thi.ng/simd
-
-
-
-
-
-## [0.4.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/simd@0.4.16...@thi.ng/simd@0.4.17) (2021-02-20)
-
-**Note:** Version bump only for package @thi.ng/simd
-
-
-
-
-
 # [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/simd@0.3.1...@thi.ng/simd@0.4.0) (2020-07-25)
 
 
