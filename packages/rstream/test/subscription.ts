@@ -101,7 +101,7 @@ describe("Subscription", function () {
         setTimeout(() => {
             assert.deepStrictEqual(buf, [1]);
             assert.strictEqual(src.getState(), State.UNSUBSCRIBED);
-            assert.strictEqual((<any>src).subs.size, 0);
+            assert.strictEqual((<any>src).subs.length, 0);
             assert(!called);
             done();
         }, TIMEOUT * 4);

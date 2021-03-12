@@ -43,10 +43,12 @@ describe("bisect", () => {
         src.subscribe({
             next() {},
             done() {
-                assert. deepStrictEqual(odds, [10, 30]);
-                assert. deepStrictEqual(evens, [200, 400]);
-                assert.strictEqual(doneCount, 2);
-                done();
+                setTimeout(() => {
+                    assert.deepStrictEqual(odds, [10, 30]);
+                    assert.deepStrictEqual(evens, [200, 400]);
+                    assert.strictEqual(doneCount, 2);
+                    done();
+                }, 0);
             }
         });
     });
