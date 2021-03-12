@@ -191,17 +191,17 @@ export class TripleStore implements Iterable<Triple>, IToDot {
         pattern: Pattern,
         id?: string,
         emitTriples?: false
-    ): ISubscription<TripleIds>;
+    ): ISubscription<any, TripleIds>;
     addPatternQuery(
         pattern: Pattern,
         id?: string,
         emitTriples?: true
-    ): ISubscription<Triples>;
+    ): ISubscription<any, Triples>;
     addPatternQuery(
         pattern: Pattern,
         id?: string,
         emitTriples = true
-    ): ISubscription {
+    ): ISubscription<any, any> {
         let results: ISubscription<any, TripleIds> | undefined;
         const [s, p, o] = pattern;
         if (s == null && p == null && o == null) {
