@@ -205,7 +205,7 @@ error.subscribe({ next: (e) => alert(`An error occurred:\n${e}`) });
 const refresh = fromInterval(60000).subscribe(trace("refresh"));
 
 // this stream combinator performs API requests to obtain OHLC data
-const request = sync({
+const response = sync({
     src: { market, symbol, period, refresh },
     xform: map((inst) =>
         fetch(API_URL(inst.market, inst.symbol, inst.period))
@@ -216,15 +216,7 @@ const request = sync({
             )
             .then((json) => ({ ...inst, ohlc: json ? json.Data : null }))
     ),
-});
-
-const response = request.subscribe<{
-    ohlc: any;
-    market: string;
-    symbol: string;
-    period: number;
-    refresh: number;
-}>(resolvePromise({ fail: (e) => error.next(e.message) }));
+}).subscribe(resolvePromise({ fail: (e) => error.next(e.message) }));
 
 // this stream combinator computes a number of statistics on incoming OHLC data
 // including calculation of moving averages (based on current mode selection)
