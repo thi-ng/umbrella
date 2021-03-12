@@ -1,7 +1,7 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { dropdown } from "@thi.ng/hdom-components";
 import { clamp } from "@thi.ng/math";
-import { reactive, Stream, Subscription, sync } from "@thi.ng/rstream";
+import { ISubscriber, reactive, Stream, sync } from "@thi.ng/rstream";
 import {
     comp,
     map,
@@ -17,7 +17,7 @@ import { bits } from "@thi.ng/transducers-binary";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { FONT } from "./font";
 
-const emitOnStream = (stream: Subscription<any, any>) => (e: Event) =>
+const emitOnStream = (stream: ISubscriber<any>) => (e: Event) =>
     stream.next((<HTMLSelectElement>e.target).value);
 
 // retrieve font bytes for given char

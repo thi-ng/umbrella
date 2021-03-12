@@ -6,15 +6,14 @@ import { $canvas } from "@thi.ng/rdom-canvas";
 import {
     fromDOMEvent,
     fromRAF,
-    ISubscribable,
+    ISubscription,
     reactive,
-    Subscription,
     sync,
 } from "@thi.ng/rstream";
 import { map, slidingWindow } from "@thi.ng/transducers";
 
 const slider = (
-    dest: Subscription<number, number>,
+    dest: ISubscription<number, number>,
     desc: string,
     tooltip: string,
     attribs?: any
@@ -60,7 +59,7 @@ size.next(<any>null);
 
 // combine various reactive parameters
 // and transform via transducers
-const dots: ISubscribable<any[]> = sync({
+const dots: ISubscription<any, any[]> = sync({
     src: { a, b, scale, size, time: fromRAF() },
 }).transform(
     // compute next lissajous point

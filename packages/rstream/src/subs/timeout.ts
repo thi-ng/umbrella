@@ -35,6 +35,9 @@ export const timeout = <T>(
     opts?: Partial<TimeoutOpts>
 ): Subscription<T, T> => new Timeout(timeoutMs, opts);
 
+/**
+ * @see {@link timeout} for reference & examples.
+ */
 class Timeout<T> extends Subscription<T, T> {
     protected timeoutMs: number;
     protected timeoutId: any;
@@ -61,18 +64,19 @@ class Timeout<T> extends Subscription<T, T> {
     reset() {
         this.timeoutId = setTimeout(() => {
             if (this.state < State.DONE) {
-                this.error(
+                this.dispatchTo(
+                    "error",
                     this.errorObj ||
                         new Error(
-                            `Timeout stream "${this.id}" after ${this.timeoutMs} ms`
+                            `Timeout '${this.id}' after ${this.timeoutMs} ms`
                         )
                 );
             }
         }, this.timeoutMs);
     }
 
-    cleanup(): void {
+    release() {
         clearTimeout(this.timeoutId);
-        super.cleanup();
+        super.release();
     }
 }

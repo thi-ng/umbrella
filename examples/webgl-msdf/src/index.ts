@@ -4,7 +4,7 @@ import { canvasWebGL } from "@thi.ng/hdom-components";
 import { fitClamped } from "@thi.ng/math";
 import { concat, lookAt, perspective, transform44 } from "@thi.ng/matrices";
 import { SYSTEM } from "@thi.ng/random";
-import { fromDOMEvent, Subscription } from "@thi.ng/rstream";
+import { fromDOMEvent, ISubscription } from "@thi.ng/rstream";
 import {
     $w,
     add,
@@ -219,7 +219,7 @@ const app = () => {
     const glyphs = convertGlyphs(GLYPHS);
     let stars: ModelSpec;
     let body: ModelSpec;
-    let mouse: Subscription<any, ReadonlyVec>;
+    let mouse: ISubscription<any, ReadonlyVec>;
     let bg = 0;
     const canvas = canvasWebGL({
         init: async (el, gl) => {

@@ -50,9 +50,7 @@ export const defHandler = <E extends EventType>(
         next: <Fn<Event, void>>handler,
         error: console.warn,
     };
-    return xform
-        ? eventProc.subscribeTopic(id, {}, {}).subscribe(sub, xform)
-        : eventProc.subscribeTopic(id, sub);
+    return eventProc.subscribeTopic(id, sub, { xform });
 };
 
 /**

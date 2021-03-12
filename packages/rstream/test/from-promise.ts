@@ -1,15 +1,28 @@
 import * as assert from "assert";
-import {
-    fromIterable,
-    fromPromise,
-    resolve,
-    State,
-    Subscription,
-} from "../src";
+import { fromIterable, fromPromise, ISubscribable, resolve } from "../src";
 import { TIMEOUT } from "./config";
+import { assertActive } from "./utils";
 
 describe("fromPromise()", function () {
     this.retries(3);
+
+    const dummySub = (src: ISubscribable<any>) => {
+        const state = { err: undefined, called: false };
+        const sub = src.subscribe({
+            next(_) {
+                assert.fail("called next()");
+            },
+            done() {
+                assert.fail("called done()");
+            },
+            error(e) {
+                state.err = e;
+                state.called = true;
+                return true;
+            },
+        });
+        return { sub, state };
+    };
 
     it("resolves to sub", (done) => {
         let src = fromPromise(Promise.resolve(23));
@@ -26,56 +39,51 @@ describe("fromPromise()", function () {
         });
     });
 
-    it("rejects to sub", (done) => {
-        let src = fromPromise(Promise.reject(23));
-        let called = false;
-        let sub: Subscription<never, never> = src.subscribe({
-            next(_) {
-                assert.fail("called next()");
-            },
-            done() {
-                assert.fail("called done()");
-            },
-            error(x) {
-                assert.strictEqual(x, 23);
-                assert.strictEqual(src.getState(), State.ERROR);
-                assert.strictEqual(sub.getState(), State.ERROR);
-                called = true;
+    it("rejected promise", (done) => {
+        let called1 = false;
+        let err: any;
+        let src = fromPromise(Promise.reject<number>(23), {
+            error: (e) => {
+                err = e;
+                called1 = true;
+                return true;
             },
         });
+        const { sub, state } = dummySub(src);
         setTimeout(() => {
-            assert(called, "not called");
+            assert(called1, "not called1");
+            assert(!state.called, "not called2");
+            assert.strictEqual(err, 23);
+            assert.strictEqual(state.err, undefined);
+            assertActive(src);
+            assertActive(sub);
             done();
         }, TIMEOUT);
     });
 
-    it("passes error to sub", (done) => {
+    it("promise w/ error", (done) => {
+        let called1 = false;
+        let err: any;
         let src = fromPromise(
             new Promise(() => {
                 throw new Error("foo");
-            })
+            }),
+            {
+                error: (e) => {
+                    err = e;
+                    called1 = true;
+                    return true;
+                },
+            }
         );
-        let called = false;
-        let sub: Subscription<any, any> = src.subscribe({
-            next(_) {
-                assert.fail("called next()");
-            },
-            done() {
-                assert.fail("called done()");
-            },
-            error(x) {
-                assert.strictEqual(x.message, "foo");
-                assert.strictEqual(src.getState(), State.ERROR);
-                assert.strictEqual(sub.getState(), State.ERROR);
-                called = true;
-            },
-        });
+        const { sub, state } = dummySub(src);
         setTimeout(() => {
-            assert(called, "not called");
-            // TODO remove, next() doesn't throw error anymore if already in done or error state
-            // assert.throws(() => src.next(Promise.resolve()), "no next() allowed");
-            src.done();
-            assert.strictEqual(src.getState(), State.ERROR, "src not ERROR");
+            assert(called1, "not called1");
+            assert(!state.called, "not called2");
+            assert.strictEqual(err.message, "foo");
+            assert.strictEqual(state.err, undefined);
+            assertActive(src);
+            assertActive(sub);
             done();
         }, TIMEOUT);
     });

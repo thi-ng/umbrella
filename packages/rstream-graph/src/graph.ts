@@ -8,7 +8,7 @@ import {
     CloseMode,
     fromIterableSync,
     fromViewUnsafe,
-    ISubscribable,
+    ISubscription,
     StreamSync,
     sync,
 } from "@thi.ng/rstream";
@@ -22,6 +22,7 @@ import type {
     NodeInputSpec,
     NodeOutputs,
     NodeOutputSpec,
+    NodeResolver,
     NodeSpec,
 } from "./api";
 
@@ -39,18 +40,17 @@ import type {
  * @param spec -
  */
 export const initGraph = (state: IAtom<any>, spec: GraphSpec): Graph => {
-    const res: Graph = {};
+    const res: IObjectOf<Node | NodeResolver> = {};
     for (let id in spec) {
         const n = spec[id];
-        res[id] = isNodeSpec(n)
-            ? <any>nodeFromSpec(state, <NodeSpec>spec[id], id)
-            : <any>n;
+        res[id] = isNodeSpec(n) ? nodeFromSpec(state, n, id) : n;
     }
     return resolve(res);
 };
 
+/** @internal */
 const isNodeSpec = (x: any): x is NodeSpec =>
-    isPlainObject(x) && isFunction((<any>x).fn);
+    isPlainObject(x) && isFunction(x.fn);
 
 /**
  * Transforms a single {@link NodeSpec} into a lookup function for
@@ -115,7 +115,7 @@ const prepareNodeInputs = (
     if (!ins) return res;
     for (let id in ins) {
         const i = ins[id];
-        const src = i.path
+        const src: ISubscription = i.path
             ? fromViewUnsafe(state, { path: i.path })
             : i.stream
             ? isString(i.stream)
@@ -127,14 +127,14 @@ const prepareNodeInputs = (
                   { closeIn: CloseMode.NEVER }
               )
             : illegalArgs(`invalid node input: ${id}`);
-        res[id] = i.xform ? src.subscribe(i.xform, id) : src;
+        res[id] = i.xform ? src.transform(i.xform, { id }) : src;
     }
     return res;
 };
 
 const prepareNodeOutputs = (
     outs: IObjectOf<NodeOutputSpec> | undefined,
-    node: ISubscribable<any>,
+    node: ISubscription,
     state: IAtom<any>,
     nodeID: string
 ) => {
@@ -152,7 +152,7 @@ const prepareNodeOutputs = (
 };
 
 const nodeOutAll = (
-    node: ISubscribable<any>,
+    node: ISubscription,
     state: IAtom<any>,
     nodeID: string,
     path: Path
@@ -165,7 +165,7 @@ const nodeOutAll = (
     );
 
 const nodeOutID = (
-    node: ISubscribable<any>,
+    node: ISubscription,
     state: IAtom<any>,
     nodeID: string,
     path: Path,
@@ -175,8 +175,10 @@ const nodeOutID = (
         {
             next: (x) => state.resetIn(<any>path, x),
         },
-        map((x) => (x != null ? x[id] : x)),
-        { id: `out-${nodeID}-${id}` }
+        {
+            xform: map((x: any) => (x != null ? x[id] : x)),
+            id: `out-${nodeID}-${id}`,
+        }
     );
 
 /**
@@ -258,7 +260,7 @@ export const node = (
     inputIDs?: string[],
     reset = false
 ): NodeFactory<any> => (
-    src: IObjectOf<ISubscribable<any>>,
+    src: IObjectOf<ISubscription>,
     id: string
 ): StreamSync<any, any> => (
     ensureInputs(src, inputIDs, id), sync({ src, xform, id, reset })
@@ -277,14 +279,12 @@ export const node1 = (
     xform?: Transducer<any, any>,
     inputID = "src"
 ): NodeFactory<any> => (
-    src: IObjectOf<ISubscribable<any>>,
+    src: IObjectOf<ISubscription>,
     id: string
-): ISubscribable<any> => (
-    ensureInputs(src, [inputID], id),
-    xform
-        ? src[inputID].subscribe(xform, { id })
-        : src[inputID].subscribe({}, { id })
-);
+): ISubscription => {
+    ensureInputs(src, [inputID], id);
+    return src[inputID].subscribe({}, { xform, id });
+};
 
 /**
  * Syntax sugar for `node()`, intended for nodes w/ 2 inputs, by default
@@ -309,7 +309,7 @@ export const node2 = (
  * @param nodeID -
  */
 export const ensureInputs = (
-    src: IObjectOf<ISubscribable<any>>,
+    src: IObjectOf<ISubscription>,
     inputIDs: string[] | undefined,
     nodeID: string
 ) => {

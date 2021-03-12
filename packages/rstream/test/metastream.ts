@@ -1,6 +1,7 @@
 import * as assert from "assert";
-import { CloseMode, fromIterable, metaStream, State } from "../src";
+import { CloseMode, fromIterable, metaStream } from "../src";
 import { TIMEOUT } from "./config";
+import { assertActive, assertUnsub } from "./utils";
 
 describe("MetaStream", function () {
     this.retries(3);
@@ -19,9 +20,9 @@ describe("MetaStream", function () {
         });
         setTimeout(() => {
             assert.deepStrictEqual(acc, [10, 20, 30, 20, 40, 60, 30, 60, 90]);
-            assert.strictEqual(meta.getState(), State.DONE);
-            assert.strictEqual(sub.getState(), State.DONE);
-            assert.strictEqual(sub2.getState(), State.DONE);
+            assertUnsub(meta);
+            assertUnsub(sub);
+            assertUnsub(sub2);
             done();
         }, 5 * TIMEOUT);
     });
@@ -34,10 +35,10 @@ describe("MetaStream", function () {
         const sub = src.subscribe(meta);
         const child = sub.subscribe({});
         setTimeout(() => {
-            assert.strictEqual(src.getState(), State.DONE);
-            assert.strictEqual(meta.getState(), State.ACTIVE);
-            assert.strictEqual(sub.getState(), State.ACTIVE);
-            assert.strictEqual(child.getState(), State.IDLE);
+            assertUnsub(src);
+            assertActive(meta);
+            assertActive(sub);
+            assertActive(child);
             done();
         }, 3 * TIMEOUT);
     });
@@ -58,8 +59,8 @@ describe("MetaStream", function () {
         });
         setTimeout(() => {
             child.unsubscribe();
-            assert.strictEqual(src.getState(), State.DONE);
-            assert.strictEqual(meta.getState(), State.ACTIVE);
+            assertUnsub(src);
+            assertActive(meta);
             meta.subscribe({
                 next(x) {
                     acc.push(x);

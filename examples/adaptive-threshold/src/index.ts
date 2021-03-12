@@ -1,6 +1,5 @@
-import { peek } from "@thi.ng/arrays";
 import type { PackedBuffer } from "@thi.ng/pixel";
-import { fromRAF, sidechainPartition } from "@thi.ng/rstream";
+import { sidechainPartitionRAF } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import {
@@ -113,6 +112,4 @@ const app = (state: AppState) => {
 // sidechain to buffer intra-frame state updates. then only passes the
 // most recent one to `app()` and its resulting UI tree to the
 // `updateDOM()` transducer
-state
-    .subscribe(sidechainPartition<AppState, number>(fromRAF()))
-    .transform(map(peek), map(app), updateDOM());
+sidechainPartitionRAF(state).transform(map(app), updateDOM());

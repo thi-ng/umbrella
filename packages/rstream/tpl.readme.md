@@ -64,61 +64,62 @@ programming:
 
 ${status}
 
-### Breaking changes in 5.0.0
+### New features & breaking changes in 6.0.0
 
-Type inference for `sync()` (aka `StreamSync`), one of the main pillars of this
-package, was semi-broken in earlier versions and has been updated to better
-infer result types from the given object of input streams. For this work, input
-sources now MUST be given as object (array form is not allowed anymore, see
-below). Furthermore, the two generics have different meanings now and unless you
-were using `sync<any,any>(...)` these will need to be updated (or, better yet,
-removed). See
-[source](https://github.com/thi-ng/umbrella/blob/develop/packages/rstream/src/stream-sync.ts)
-for more details.
+Completely revised & improved [error handling](#error-handling), stronger
+distinction between `.subscribe()` and `.transform()` methods & internal
+simplification of their implementations.
 
-```ts
-// NEW approach
-const main = sync({
-  src: {
-    a: reactive(23),
-    b: reactive("foo").map((x) => x.toUpperCase()),
-    c: reactive([1, 2])
-  }
-});
-```
+1. All error handlers now MUST return a boolean to indicate if the error was
+   recoverable from or should put the subscription into the error state. See
+   [error handling](#error-handling) for details.
 
-`main`'s type can now be inferred as:
+2. The options given to `.transform()` and `.map()` can now include an `error`
+   handler:
 
 ```ts
-StreamSync<
-  { a: Stream<number>, b: Subscription<string,string>, c: Stream<number[]> },
-  { a: number, b: string, c: number[] }
->
+// transform stream with given transducer(s)
+// and forward any errors to `handleError` (user defined fn)
+src.transform(xf1, xf2,..., { error: (e) => { ... } });
+
+// or, also new, provide everything as single options object
+// (for this version, see note (1) below)
+src.transform({ xform: map(...), error: handleError });
 ```
 
-If the `xform` (transducer) option is given, the result will be inferred based
-on the transducer's result type...
-
-To compensate for the loss of specifying input sources as array (rather than as
-an object), the [`autoObj()`
-reducer](https://github.com/thi-ng/umbrella/blob/develop/packages/transducers/src/rfn/auto-obj.ts)
-has been added, allowing for quick conversion of an array into an object with
-auto-labeled keys.
+3. The `.subscribe(sub, xform, opts)` signature has been removed and the `xform`
+   (transducer) must now be given as part of the options object:
 
 ```ts
-const main = sync({
-  src: autoObj("input", [reactive(23), reactive("foo"), reactive([1, 2])])
-});
+const src = reactive(1);
+
+// old
+src.subscribe(trace("foo"), filter((x) => x < 10), { id: "child-sub" });
+
+// new, see note (1) below
+src.subscribe(trace("foo"), { xform: filter((x) => x < 10), id: "child-sub" });
 ```
 
-In this case the type of `main` will be inferred as:
+4. Added generics for [PubSub](#topic-based-splitting) topics, added
+   `.transformTopic()` and updated signatures for `.subscribeTopic()`, both in
+   similarity to above.
 
 ```ts
-StreamSync<
-  IObjectOf<Stream<number> | Stream<string> | Stream<number[]>>,
-  IObjectOf<number | string | number[]>
->
+type Event = { id: string; value: any; };
+
+const src = pubsub<Event>({ topic: (e) => e.id });
+
+// transform topic stream with given transducer (see note (1) below)
+// and forward any errors to `handleError` (user defined fn)
+src.transformTopic("foo", map((e) => e.value), { error: handleError })
 ```
+
+**Notes:**
+
+- (1): If using multiple transducers, they must be pre-composed with
+  [`comp()`](https://docs.thi.ng/umbrella/transducers/modules.html#comp). Other
+  signatures of `.transform()` method support up to 4 transducers and composes
+  them automatically.
 
 ${supportPackages}
 
@@ -711,6 +712,49 @@ Create value stream from worker messages.
 - [trace](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/subs/trace.ts) - debug helper
 - [transduce](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/subs/transduce.ts) - transduce or just reduce an entire stream into a promise
 - [tween](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/tween.ts) - stream interpolation
+
+### Error handling
+
+**Detailed information, discussion & diagrams about the new error handling can
+be found in [this issue](https://github.com/thi-ng/umbrella/issues/281)**
+
+The `ISubscriber` interface supports optional error handlers which will be
+called if code in the `next()` or `done()` handlers throws an error. If no error
+handler is defined for a subscriber, the wrapping `Subscription`'s own error
+handler will be called, which _might_ put this subscription into an error
+state and stop it from receiving new values.
+
+```ts
+src = subscription({ next(x) { throw x; } });
+
+// triggers error, caught by subscription wrapper
+src.next(1);
+// sub-0 unhandled error: 1
+
+src.getState() === State.ERROR
+// true
+
+// no error, but also inputs won't be received/processed either
+src.next(2)
+
+// another sub with error handler & indicating error could be handled
+src = subscription({
+  next(x) { throw x; },
+  error(x) { console.warn("eeek", x);  return true; }
+});
+
+// error caught by given handler
+src.next(1)
+// eeek 1
+
+// sub still usable, no error
+src.getState() !== State.ERROR
+// true
+
+// further inputs still accepted
+src.next(2)
+// eeek 2
+```
 
 ## Authors
 

@@ -1,4 +1,4 @@
-import type { Subscription } from "@thi.ng/rstream";
+import type { ISubscriber } from "@thi.ng/rstream";
 import { mapIndexed } from "@thi.ng/transducers";
 import { handleTab } from "./utils";
 
@@ -143,7 +143,7 @@ const iconButton = (
 const copyButton = (
     { copyButton }: any,
     attribs: any,
-    stream: Subscription<boolean, boolean>,
+    stream: ISubscriber<boolean>,
     text: string,
     delay = 500
 ) => [

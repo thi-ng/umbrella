@@ -8,6 +8,7 @@ import {
     State,
     StreamMerge,
 } from "../src";
+import { assertActive, assertUnsub } from "./utils";
 
 describe("StreamMerge", () => {
     let src: StreamMerge<number, number>;
@@ -62,9 +63,9 @@ describe("StreamMerge", () => {
         let sub1 = src.subscribe({});
         let sub2 = src.subscribe({});
         sub1.unsubscribe();
-        assert(src.getState() === State.ACTIVE);
+        assertActive(src);
         sub2.unsubscribe();
-        assert(src.getState() === State.DONE);
+        assertUnsub(src);
     });
 
     it("applies transducer", (done) => {
@@ -79,7 +80,7 @@ describe("StreamMerge", () => {
         const sources = [
             fromIterable([1, 2, 3]),
             fromIterable([4, 5, 6]),
-        ].map((s) => s.subscribe(map((x) => fromIterable([x, x, x]))));
+        ].map((s) => s.transform(map((x) => fromIterable([x, x, x]))));
         const main = merge({ src: <any>sources });
         const histogram = frequencies();
         let acc: any = histogram[0]();

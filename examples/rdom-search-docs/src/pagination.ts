@@ -2,15 +2,15 @@ import type { IRelease } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
 import { button, div } from "@thi.ng/hiccup-html";
 import { clamp } from "@thi.ng/math";
-import { reactive, Stream, Subscription, sync } from "@thi.ng/rstream";
+import { ISubscription, reactive, Stream, sync } from "@thi.ng/rstream";
 import { comp, dedupe, map, page } from "@thi.ng/transducers";
 
 export class Pagination<T extends any[]> implements IRelease {
     page: Stream<number>;
-    maxPage: Subscription<T, number>;
-    resultPage: Subscription<any, T>;
+    maxPage: ISubscription<T, number>;
+    resultPage: ISubscription<any, T>;
 
-    constructor(src: Subscription<any, T>, pageSize: number) {
+    constructor(src: ISubscription<any, T>, pageSize: number) {
         this.page = reactive(0);
         this.maxPage = src.transform(map((res) => ~~(res.length / pageSize)));
         // produce search result page using `page()` transducer

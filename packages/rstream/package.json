@@ -88,6 +88,9 @@
     "sideEffects": false,
     "thi.ng": {
         "related": [
+            "atom",
+            "hdom",
+            "rdom",
             "transducers"
         ],
         "year": 2017

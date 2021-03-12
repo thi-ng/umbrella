@@ -1,6 +1,6 @@
-import type { Fn, IObjectOf, Path, NumOrString } from "@thi.ng/api";
+import type { Fn, IObjectOf, NumOrString, Path } from "@thi.ng/api";
 import type { ResolveFn } from "@thi.ng/resolve-map";
-import type { ISubscribable } from "@thi.ng/rstream";
+import type { ISubscription } from "@thi.ng/rstream";
 import type { Transducer } from "@thi.ng/transducers";
 
 /**
@@ -8,17 +8,17 @@ import type { Transducer } from "@thi.ng/transducers";
  * {@link @thi.ng/rstream#ISubscribable} using given object of inputs
  * and node ID. See `node()` and `node1()`.
  */
-export type NodeFactory<T> = (src: NodeInputs, id: string) => ISubscribable<T>;
+export type NodeFactory<T> = (src: NodeInputs, id: string) => ISubscription<T>;
 
 export type NodeResolver = Fn<ResolveFn, Node>;
-export type NodeInputs = IObjectOf<ISubscribable<any>>;
-export type NodeOutputs = IObjectOf<ISubscribable<any>>;
+export type NodeInputs = IObjectOf<ISubscription>;
+export type NodeOutputs = IObjectOf<ISubscription>;
 export type Graph = IObjectOf<Node>;
 
 export interface Node {
     ins: NodeInputs;
     outs: NodeOutputs;
-    node: ISubscribable<any>;
+    node: ISubscription;
 }
 
 /**
@@ -103,14 +103,14 @@ export interface NodeSpec {
 export interface NodeInputSpec {
     id?: string;
     path?: Path;
-    stream?: string | ((resolve: ResolveFn) => ISubscribable<any>);
-    const?: any | ((resolve: ResolveFn) => any);
+    stream?: string | Fn<ResolveFn, ISubscription>;
+    const?: any | Fn<ResolveFn, any>;
     xform?: Transducer<any, any>;
 }
 
 export type NodeOutputSpec = Path | NodeOutputFn;
 
 export type NodeOutputFn = (
-    node: ISubscribable<any>,
+    node: ISubscription,
     id: NumOrString
-) => ISubscribable<any>;
+) => ISubscription;

@@ -1,9 +1,9 @@
-import { CommonOpts, LOGGER } from "../api";
+import { LOGGER, WithErrorHandlerOpts } from "../api";
 import { Stream } from "../stream";
 import { optsWithID } from "../utils/idgen";
 import { makeWorker } from "../utils/worker";
 
-export interface FromWorkerOpts extends CommonOpts {
+export interface FromWorkerOpts extends WithErrorHandlerOpts {
     /**
      * If true, the worker will be terminated when the stream
      * is being closed.
@@ -43,17 +43,17 @@ export const fromWorker = <T>(
     const _worker = makeWorker(worker);
     opts = optsWithID("worker", opts);
     return new Stream<T>((stream) => {
-        const ml = (e: MessageEvent) => {
+        const msgListener = (e: MessageEvent) => {
             stream.next(e.data);
         };
-        const el = (e: MessageEvent) => {
+        const errListener = (e: MessageEvent) => {
             stream.error(e.data);
         };
-        _worker.addEventListener("message", ml);
-        _worker.addEventListener("error", <EventListener>el);
+        _worker.addEventListener("message", msgListener);
+        _worker.addEventListener("error", <EventListener>errListener);
         return () => {
-            _worker.removeEventListener("message", ml);
-            _worker.removeEventListener("error", <EventListener>el);
+            _worker.removeEventListener("message", msgListener);
+            _worker.removeEventListener("error", <EventListener>errListener);
             if (opts!.terminate !== false) {
                 LOGGER.info("terminating worker", _worker);
                 _worker.terminate();

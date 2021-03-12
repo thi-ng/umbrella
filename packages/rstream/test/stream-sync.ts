@@ -13,19 +13,19 @@ import {
     transduce,
 } from "../src";
 import { TIMEOUT } from "./config";
+import { assertActive, assertUnsub } from "./utils";
 
 describe("StreamSync", function () {
     this.retries(3);
 
-    function adder() {
-        return map((ports: any) => {
+    const adder = () =>
+        map((ports: any) => {
             let sum = 0;
             for (let p in ports) {
                 sum += ports[p];
             }
             return sum;
         });
-    }
 
     it("dataflow & teardown", () => {
         let a, b, c;
@@ -37,32 +37,43 @@ describe("StreamSync", function () {
             a2: { ins: { b: 10 } },
         });
         const a1 = sync({
+            id: "a1",
             src: {
-                a: (a = fromView(db, { path: ["a1", "ins", "a"] })),
-                b: (b = fromView(db, { path: ["a1", "ins", "b"] })),
+                a: (a = fromView(db, { path: ["a1", "ins", "a"], id: "a" })),
+                b: (b = fromView(db, { path: ["a1", "ins", "b"], id: "b" })),
             },
             xform: adder(),
         });
-        const a1res = a1.subscribe({
-            next(x) {
-                a1buf = x;
+        const a1res = a1.subscribe(
+            {
+                next(x) {
+                    a1buf = x;
+                },
+                done() {
+                    a1done = true;
+                },
             },
-            done() {
-                a1done = true;
-            },
-        });
+            { id: "a1res" }
+        );
         const a2 = sync({
-            src: <any>[a1, (c = fromView(db, { path: ["a2", "ins", "b"] }))],
+            id: "a2",
+            src: <any>[
+                a1,
+                (c = fromView(db, { path: ["a2", "ins", "b"], id: "c" })),
+            ],
             xform: adder(),
         });
-        const res = a2.subscribe({
-            next(x) {
-                a2buf = x;
+        const res = a2.subscribe(
+            {
+                next(x) {
+                    a2buf = x;
+                },
+                done() {
+                    a2done = true;
+                },
             },
-            done() {
-                a2done = true;
-            },
-        });
+            { id: "res" }
+        );
         assert.strictEqual(a1buf, 3);
         assert.strictEqual(a2buf, 13);
         db.reset({ a1: { ins: { a: 100, b: 200 } }, a2: { ins: { b: 1000 } } });
@@ -72,19 +83,19 @@ describe("StreamSync", function () {
         res.unsubscribe();
         assert(!a1done);
         assert(!a2done);
-        assert.strictEqual(a.getState(), State.ACTIVE, "a != ACTIVE");
-        assert.strictEqual(b.getState(), State.ACTIVE, "b != ACTIVE");
-        assert.strictEqual(a1.getState(), State.ACTIVE, "a1 != ACTIVE");
-        assert.strictEqual(a1res.getState(), State.IDLE, "a1res != IDLE");
-        assert.strictEqual(c.getState(), State.DONE, "c != DONE");
-        assert.strictEqual(a2.getState(), State.DONE, "a2 != DONE");
-        assert.strictEqual(res.getState(), State.DONE, "res != DONE");
+        assertActive(a);
+        assertActive(b);
+        assertActive(a1);
+        assertActive(a1res);
+        assertUnsub(c);
+        assertUnsub(a2);
+        assertUnsub(res);
         // teardown from a1 result
         a1res.unsubscribe();
-        assert.strictEqual(a.getState(), State.DONE, "a != DONE");
-        assert.strictEqual(b.getState(), State.DONE, "b != DONE");
-        assert.strictEqual(a1.getState(), State.DONE, "a1 != DONE");
-        assert.strictEqual(a1res.getState(), State.DONE, "a1res != DONE");
+        assertUnsub(a);
+        assertUnsub(b);
+        assertUnsub(a1);
+        assertUnsub(a1res);
         assert(!a1done);
         assert(!a2done);
     });
@@ -97,8 +108,10 @@ describe("StreamSync", function () {
         };
         const res: any[] = [];
         const main = sync({ src, mergeOnly: true }).subscribe({
-            next: (x) => res.push(x),
-            done: () => {
+            next(x) {
+                res.push(x);
+            },
+            done() {
                 assert.deepStrictEqual(res, [
                     { c: 1 },
                     { c: 1, b: 2 },
@@ -113,7 +126,7 @@ describe("StreamSync", function () {
         src.b.next(2);
         src.a.next(3);
         src.a.next(4);
-        main.done();
+        main.done!();
     });
 
     it("mergeOnly (w/ required keys)", (done) => {
@@ -132,8 +145,10 @@ describe("StreamSync", function () {
                 filter((tuple: any) => tuple.a != null && tuple.b != null)
             )
             .subscribe({
-                next: (x) => res.push(x),
-                done: () => {
+                next(x) {
+                    res.push(x);
+                },
+                done() {
                     assert.deepStrictEqual(res, [
                         { c: 1, b: 2, a: 3 },
                         { c: 1, b: 2, a: 4 },
@@ -146,7 +161,7 @@ describe("StreamSync", function () {
         src.b.next(2);
         src.a.next(3);
         src.a.next(4);
-        main.done();
+        main.done!();
     });
 
     it("fromPromise", (done) => {

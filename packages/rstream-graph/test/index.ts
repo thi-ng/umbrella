@@ -1,16 +1,16 @@
 import { Atom } from "@thi.ng/atom";
-import * as rs from "@thi.ng/rstream";
+import { fromIterable } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 import * as assert from "assert";
-import * as rsg from "../src";
+import { add, initGraph, mul, node1 } from "../src";
 
 describe("rstream-graph", () => {
     it("basic", (done) => {
         const acc: number[] = [];
         const state = new Atom<any>({ a: 1, b: 2 });
-        const graph = rsg.initGraph(state, {
+        const graph = initGraph(state, {
             foo: () => ({
-                node: rs.fromIterable([2]),
+                node: fromIterable([2]),
                 ins: {},
                 outs: {},
             }),
@@ -20,7 +20,7 @@ describe("rstream-graph", () => {
                 outs: {},
             }),
             add: {
-                fn: rsg.add,
+                fn: add,
                 ins: {
                     a: { path: "a" },
                     b: { path: "b" },
@@ -30,10 +30,10 @@ describe("rstream-graph", () => {
                 },
             },
             mul: {
-                fn: rsg.mul,
+                fn: mul,
                 ins: {
                     a: { stream: "/add/outs/alt" },
-                    b: { stream: () => rs.fromIterable([10, 20, 30]) },
+                    b: { stream: () => fromIterable([10, 20, 30]) },
                     c: { stream: "/bar/node" },
                 },
                 outs: {
@@ -47,7 +47,7 @@ describe("rstream-graph", () => {
                 ins: {
                     src: { stream: "/mul/node" },
                 },
-                fn: rsg.node1(map((x: number) => ({ x: x, x2: x * 2 }))),
+                fn: node1(map((x: number) => ({ x: x, x2: x * 2 }))),
                 outs: {
                     "*": "res",
                 },
@@ -56,7 +56,7 @@ describe("rstream-graph", () => {
                 ins: {
                     src: { stream: "/res/node" },
                 },
-                fn: rsg.node1(),
+                fn: node1(),
                 outs: {
                     x: "res2.x",
                 },

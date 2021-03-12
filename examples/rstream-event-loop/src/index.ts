@@ -1,5 +1,4 @@
-import { peek } from "@thi.ng/arrays";
-import { fromRAF, sidechainPartition } from "@thi.ng/rstream";
+import { sidechainPartitionRAF } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { AppState, NEXT, PREV } from "./api";
@@ -24,10 +23,38 @@ const app = ({ pageID, isLoading }: AppState) =>
               // navigation buttons w/ event dispatch
               [
                   "div",
-                  ["button", { onclick: () => dispatch([PREV, 5]) }, "<<"],
-                  ["button", { onclick: () => dispatch([PREV, 1]) }, "<"],
-                  ["button", { onclick: () => dispatch([NEXT, 1]) }, ">"],
-                  ["button", { onclick: () => dispatch([NEXT, 5]) }, ">>"],
+                  [
+                      "button",
+                      {
+                          disabled: pageID < 5,
+                          onclick: () => dispatch([PREV, 5]),
+                      },
+                      "<<",
+                  ],
+                  [
+                      "button",
+                      {
+                          disabled: pageID === 0,
+                          onclick: () => dispatch([PREV, 1]),
+                      },
+                      "<",
+                  ],
+                  [
+                      "button",
+                      {
+                          disabled: pageID === 19,
+                          onclick: () => dispatch([NEXT, 1]),
+                      },
+                      ">",
+                  ],
+                  [
+                      "button",
+                      {
+                          disabled: pageID >= 15,
+                          onclick: () => dispatch([NEXT, 5]),
+                      },
+                      ">>",
+                  ],
               ],
               // only here to show timestamp of last DOM update
               ["div.mt3", new Date().toString()],
@@ -45,6 +72,4 @@ const page = (_: any, pageID: number) => ["h1", `Page: ${pageID}`];
 // sidechain to buffer intra-frame state updates. then only passes the
 // most recent one to `app()` and its resulting UI tree to the
 // `updateDOM()` transducer
-state
-    .subscribe(sidechainPartition<AppState, number>(fromRAF()))
-    .transform(map(peek), map(app), updateDOM());
+sidechainPartitionRAF(state).transform(map(app), updateDOM());

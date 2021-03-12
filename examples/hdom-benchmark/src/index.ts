@@ -72,13 +72,15 @@ const fpsCounter = (
                 );
             },
         },
-        // stream transducer to compute the windowed moving avarage
-        comp(
-            benchmark(),
-            movingAverage(period),
-            map((x) => 1000 / x),
-            partition(width, 1, true)
-        )
+        {
+            // stream transducer to compute the windowed moving avarage
+            xform: comp(
+                benchmark(),
+                movingAverage(period),
+                map((x) => 1000 / x),
+                partition(width, 1, true)
+            ),
+        }
     );
     return [
         {

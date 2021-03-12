@@ -1,8 +1,9 @@
 import { EquivMap } from "@thi.ng/associative";
 import { map, mapIndexed } from "@thi.ng/transducers";
 import * as assert from "assert";
-import { fromIterable, fromIterableSync, PubSub, pubsub, State } from "../src";
+import { fromIterable, fromIterableSync, PubSub, pubsub } from "../src";
 import { TIMEOUT } from "./config";
+import { assertUnsub } from "./utils";
 
 describe("PubSub", function () {
     this.retries(3);
@@ -17,9 +18,9 @@ describe("PubSub", function () {
         const b = pub.subscribeTopic("b", collect);
         fromIterableSync("abcbd").subscribe(pub);
         assert.deepStrictEqual(acc, { a: ["a"], b: ["b", "b"] });
-        assert.strictEqual(pub.getState(), State.DONE);
-        assert.strictEqual(a.getState(), State.DONE);
-        assert.strictEqual(b.getState(), State.DONE);
+        assertUnsub(pub);
+        assertUnsub(a);
+        assertUnsub(b);
     });
 
     it("complex keys", () => {
@@ -55,7 +56,7 @@ describe("PubSub", function () {
                 [["b", 2], [["b", 2]]],
             ]
         );
-        assert.strictEqual(pub.getState(), State.DONE);
+        assertUnsub(pub);
     });
 
     it("transducer", () => {
@@ -67,17 +68,24 @@ describe("PubSub", function () {
         });
         pub.subscribeTopic("a", collect);
         pub.subscribeTopic("b", collect);
-        fromIterableSync("abcbd").subscribe(pub);
+        pub.subscribeTopic("c", collect, {
+            xform: map((x) => [x[0], x[1] * 10]),
+        });
+        pub.transformTopic(
+            "d",
+            map((x) => [x[0], x[1] * 11])
+        ).subscribe(collect);
+        fromIterableSync("abcbde").subscribe(pub);
         assert.deepStrictEqual(acc, {
             a: [["a", 0]],
             b: [
                 ["b", 1],
                 ["b", 3],
             ],
-            c: [],
-            d: [],
+            c: [["c", 20]],
+            d: [["d", 44]],
         });
-        assert.strictEqual(pub.getState(), State.DONE);
+        assertUnsub(pub);
     });
 
     it("unsubTopic", function (done) {
@@ -97,12 +105,12 @@ describe("PubSub", function () {
         }, TIMEOUT * 2.5);
         setTimeout(() => {
             assert.deepStrictEqual(acc, { a: ["a"], b: ["b"] });
-            assert.strictEqual(pub.getState(), State.DONE);
+            assertUnsub(pub);
             done();
         }, TIMEOUT * 7.5);
     });
 
-    it("subTopic xform", () => {
+    it("transformTopic", () => {
         const acc: any = [];
         const collect = {
             next(x: any) {
@@ -110,7 +118,7 @@ describe("PubSub", function () {
             },
         };
         pub = pubsub({ topic: (x) => x });
-        pub.subscribeTopic(
+        pub.transformTopic(
             "a",
             map((x) => x.toUpperCase())
         ).subscribe(collect);

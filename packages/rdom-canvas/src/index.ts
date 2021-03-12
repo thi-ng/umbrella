@@ -10,7 +10,7 @@ import {
     isSubscribable,
     NumOrElement,
 } from "@thi.ng/rdom";
-import { ISubscribable, reactive, Subscription } from "@thi.ng/rstream";
+import { ISubscription, reactive } from "@thi.ng/rstream";
 import { sideEffect } from "@thi.ng/transducers";
 
 /**
@@ -25,8 +25,8 @@ import { sideEffect } from "@thi.ng/transducers";
  * will be overriden in any way by `size` arg.
  */
 export const $canvas = (
-    body: ISubscribable<any[] | IToHiccup>,
-    size: number[] | Subscription<any, number[]>,
+    body: ISubscription<any[] | IToHiccup>,
+    size: number[] | ISubscription<any, number[]>,
     attribs?: any
 ) => $sub(body, new $Canvas(size, attribs));
 
@@ -36,16 +36,16 @@ export class $Canvas
     el?: HTMLCanvasElement;
     ctx?: CanvasRenderingContext2D;
     inner?: IComponent<any>;
-    size: Subscription<any, number[]>;
-    sizeSub: Subscription<number[], number[]>;
+    size: ISubscription<any, number[]>;
+    sizeSub: ISubscription<number[], number[]>;
 
     constructor(
-        size: number[] | Subscription<any, number[]>,
+        size: number[] | ISubscription<any, number[]>,
         protected attribs: any = {}
     ) {
         super();
         this.size = isSubscribable(size)
-            ? <Subscription<any, number[]>>size
+            ? <ISubscription<any, number[]>>size
             : reactive(<number[]>size);
         this.sizeSub = this.size.transform(
             sideEffect((size) => this.resize(size))

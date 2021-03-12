@@ -6,7 +6,7 @@ import {
     partitionSync,
     PartitionSync,
 } from "@thi.ng/transducers";
-import { ISubscribable, LOGGER, State, TransformableOpts } from "./api";
+import { ISubscribable, ISubscription, LOGGER, TransformableOpts } from "./api";
 import { Subscription } from "./subscription";
 import { isFirstOrLastInput } from "./utils/checks";
 import { optsWithID } from "./utils/idgen";
@@ -123,6 +123,9 @@ export const sync = <A extends IObjectOf<ISubscribable<any>>, B = SyncTuple<A>>(
     opts: Partial<StreamSyncOpts<A, B>>
 ) => new StreamSync<A, B>(opts);
 
+/**
+ * @see {@link sync} for reference & examples.
+ */
 export class StreamSync<
     A extends IObjectOf<ISubscribable<any>>,
     B = SyncTuple<A>
@@ -130,7 +133,7 @@ export class StreamSync<
     /**
      * maps actual inputs to their virtual input subs
      */
-    sources: Map<ISubscribable<any>, Subscription<any, [string, any]>>;
+    sources: Map<ISubscribable<any>, ISubscription<any, [string, any]>>;
     /**
      * maps real source IDs to their actual input
      */
@@ -192,8 +195,7 @@ export class StreamSync<
                     done: () => this.markDone(src),
                     __owner: this,
                 },
-                labeled<string, any>(id),
-                { id: `in-${id}` }
+                { xform: labeled<string, any>(id), id: `in-${id}` }
             )
         );
     }
@@ -263,10 +265,10 @@ export class StreamSync<
 
     unsubscribe(sub?: Subscription<B, any>) {
         if (!sub) {
+            LOGGER.debug(this.id, "unsub sources");
             for (let s of this.sources.values()) {
                 s.unsubscribe();
             }
-            this.state = State.DONE;
             this.sources.clear();
             this.psync.clear();
             this.realSourceIDs.clear();

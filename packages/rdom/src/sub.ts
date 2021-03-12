@@ -44,9 +44,9 @@ export function $sub(
     tag: IMountWithState<any> | string,
     attribs?: any
 ): IComponent {
-    return isString(tag)
-        ? <$Sub>src.subscribe(new $Sub($wrapText(tag, attribs)))
-        : <$Sub>src.subscribe(new $Sub(tag));
+    return <$Sub>(
+        src.subscribe(new $Sub(isString(tag) ? $wrapText(tag, attribs) : tag))
+    );
 }
 
 export class $Sub<T = any> extends Subscription<T, T> {

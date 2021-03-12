@@ -1,7 +1,7 @@
 import { timed } from "@thi.ng/bench";
 import { anchor, div, inputText } from "@thi.ng/hiccup-html";
 import { $compile, $list, $text, Component, IComponent } from "@thi.ng/rdom";
-import { debounce, reactive, Stream, Subscription } from "@thi.ng/rstream";
+import { debounce, ISubscription, reactive, Stream } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 // @ts-ignore
 import { deserialize } from "@ygoe/msgpack";
@@ -20,7 +20,7 @@ class DocSearch extends Component {
     inner!: IComponent;
     pager!: Pagination<string[][]>;
     query!: Stream<string>;
-    queryResults!: Subscription<string, string[][]>;
+    queryResults!: ISubscription<string, string[][]>;
 
     updateQuery(e: InputEvent) {
         const term = (<HTMLInputElement>e.target).value;

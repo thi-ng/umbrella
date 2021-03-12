@@ -1,5 +1,8 @@
 import type { Predicate } from "@thi.ng/api";
+import { peek } from "@thi.ng/arrays";
+import { map } from "@thi.ng/transducers";
 import { CommonOpts, ISubscribable, State } from "../api";
+import { fromRAF } from "../from/raf";
 import type { Subscription } from "../subscription";
 import { optsWithID } from "../utils/idgen";
 import { ASidechain } from "./asidechain";
@@ -39,6 +42,21 @@ export const sidechainPartition = <A, B>(
     side: ISubscribable<B>,
     opts?: Partial<SidechainPartitionOpts<B>>
 ): Subscription<A, A[]> => new SidechainPartition<A, B>(side, opts);
+
+/**
+ * Syntax sugar for one of most common {@link sidechainPartition} use cases, to
+ * synchronize downstream processing w/ `requestAnimationFrame()`. The returned
+ * subscription debounces any high frequency intra-frame input values and (if
+ * any present), passes only most recent one downstream *during* next RAF event
+ * processing.
+ *
+ * @param src
+ * @returns
+ */
+export const sidechainPartitionRAF = <T>(src: ISubscribable<T>) =>
+    src
+        .subscribe<T[]>(sidechainPartition<T, number>(fromRAF()))
+        .transform(map(peek));
 
 export class SidechainPartition<T, S> extends ASidechain<T, S, T[]> {
     buf: T[];

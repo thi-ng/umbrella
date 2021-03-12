@@ -1,8 +1,14 @@
 import * as assert from "assert";
-import { fromIterable, State, Stream, Subscription } from "../src";
+import {
+    fromIterable,
+    ISubscription,
+    State,
+    Stream,
+    Subscription,
+} from "../src";
 import { TIMEOUT } from "./config";
 
-describe("fromIterable()", function () {
+describe("fromIterable", function () {
     this.retries(3);
 
     let src: Stream<number>;
@@ -39,7 +45,8 @@ describe("fromIterable()", function () {
     });
 
     it("finishes", (_done) => {
-        let sub: Subscription<any, any> = src.subscribe({
+        let sub: ISubscription = src.subscribe({
+            next() {},
             done() {
                 assert.strictEqual(src.getState(), State.DONE, "src not done");
                 assert.strictEqual(sub.getState(), State.DONE, "sub not done");

@@ -16,5 +16,6 @@ export const trace = (prefix?: any): ISubscriber<any> => ({
     },
     error(e) {
         prefix ? console.log(prefix, "error", e) : console.log("error", e);
+        return false;
     },
 });

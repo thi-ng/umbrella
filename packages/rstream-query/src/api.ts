@@ -1,5 +1,5 @@
-import { ILogger, IObjectOf, NULL_LOGGER } from "@thi.ng/api";
-import type { ISubscribable } from "@thi.ng/rstream";
+import { Fn, ILogger, IObjectOf, NULL_LOGGER } from "@thi.ng/api";
+import type { ISubscription } from "@thi.ng/rstream";
 
 export type Pattern = [any, any, any];
 
@@ -15,9 +15,9 @@ export type Solution = IObjectOf<any>;
 
 export type Solutions = Set<Solution>;
 
-export type QuerySolution = ISubscribable<Solutions>;
+export type QuerySolution = ISubscription<any, Solutions>;
 
-export type BindFn = (s: Solution) => any;
+export type BindFn = Fn<Solution, any>;
 
 export interface Edit {
     index: Set<number>;

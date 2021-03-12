@@ -14,10 +14,10 @@ import { resolve } from "@thi.ng/resolve-map";
 import {
     fromEvent,
     fromInterval,
+    ISubscriber,
     reactive,
     resolve as resolvePromise,
     stream,
-    Subscription,
     sync,
     trace,
 } from "@thi.ng/rstream";
@@ -173,11 +173,11 @@ const API_URL = (market: string, symbol: string, period: number) =>
 // stub for local testing
 // const API_URL = (..._) => `ohlc.json`;
 
-const emitOnStream = (stream: Subscription<any, any>) => (e: Event) =>
+const emitOnStream = (stream: ISubscriber<any>) => (e: Event) =>
     stream.next((<HTMLInputElement>e.target).value);
 
 const menu = (
-    stream: Subscription<any, any>,
+    stream: ISubscriber<any>,
     title: string,
     items: DropDownOption[]
 ) =>
