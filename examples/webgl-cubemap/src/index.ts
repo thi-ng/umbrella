@@ -94,6 +94,7 @@ const app = () => {
                     },
                     error(e) {
                         console.warn(e);
+                        return true;
                     },
                 });
         },

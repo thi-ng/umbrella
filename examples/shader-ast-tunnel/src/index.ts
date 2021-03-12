@@ -1,5 +1,4 @@
-import { swizzle8 } from "@thi.ng/binary";
-import { int32Srgb } from "@thi.ng/color";
+import { intAbgr32Srgb } from "@thi.ng/color";
 import {
     $x,
     $xy,
@@ -123,7 +122,7 @@ if (JS_MODE) {
             let y = ((uv[1] * TH) | 0) % TH;
             x < 0 && (x += TW);
             y < 0 && (y += TH);
-            return int32Srgb([], swizzle8(texData[y * TW + x], 0, 3, 2, 1));
+            return intAbgr32Srgb([], texData[y * TW + x]);
         };
 
         // compile AST to actual JS:
