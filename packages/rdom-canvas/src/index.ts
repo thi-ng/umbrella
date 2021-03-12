@@ -25,7 +25,7 @@ import { sideEffect } from "@thi.ng/transducers";
  * will be overriden in any way by `size` arg.
  */
 export const $canvas = (
-    body: ISubscription<any[] | IToHiccup>,
+    body: ISubscription<any, any[] | IToHiccup>,
     size: number[] | ISubscription<any, number[]>,
     attribs?: any
 ) => $sub(body, new $Canvas(size, attribs));
