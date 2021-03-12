@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/scenegraph@0.3.23...@thi.ng/scenegraph@0.3.24) (2021-03-12)
+
+**Note:** Version bump only for package @thi.ng/scenegraph
+
+
+
+
+
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/scenegraph@0.2.1...@thi.ng/scenegraph@0.3.0) (2020-07-28)
 
 

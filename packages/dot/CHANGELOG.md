@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.30](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@1.2.29...@thi.ng/dot@1.2.30) (2021-03-12)
+
+**Note:** Version bump only for package @thi.ng/dot
+
+
+
+
+
 # [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@1.1.14...@thi.ng/dot@1.2.0) (2020-04-03)
 
 

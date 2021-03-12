@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@2.0.31...@thi.ng/bench@2.1.0) (2021-03-12)
+
+
+### Features
+
+* **bench:** add suite & formatters, update benchmark() ([5ea02bd](https://github.com/thi-ng/umbrella/commit/5ea02bd0cfe71ff388d24906b7ce2a7ce4e72ce8))
+
+
+
+
+
 ## [2.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/bench@2.0.5...@thi.ng/bench@2.0.6) (2020-04-03)
 
 
