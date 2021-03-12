@@ -115,7 +115,7 @@ const prepareNodeInputs = (
     if (!ins) return res;
     for (let id in ins) {
         const i = ins[id];
-        const src: ISubscription = i.path
+        const src: ISubscription<any, any> = i.path
             ? fromViewUnsafe(state, { path: i.path })
             : i.stream
             ? isString(i.stream)
@@ -134,7 +134,7 @@ const prepareNodeInputs = (
 
 const prepareNodeOutputs = (
     outs: IObjectOf<NodeOutputSpec> | undefined,
-    node: ISubscription,
+    node: ISubscription<any, any>,
     state: IAtom<any>,
     nodeID: string
 ) => {
@@ -152,7 +152,7 @@ const prepareNodeOutputs = (
 };
 
 const nodeOutAll = (
-    node: ISubscription,
+    node: ISubscription<any, any>,
     state: IAtom<any>,
     nodeID: string,
     path: Path
@@ -165,7 +165,7 @@ const nodeOutAll = (
     );
 
 const nodeOutID = (
-    node: ISubscription,
+    node: ISubscription<any, any>,
     state: IAtom<any>,
     nodeID: string,
     path: Path,
@@ -260,7 +260,7 @@ export const node = (
     inputIDs?: string[],
     reset = false
 ): NodeFactory<any> => (
-    src: IObjectOf<ISubscription>,
+    src: IObjectOf<ISubscription<any, any>>,
     id: string
 ): StreamSync<any, any> => (
     ensureInputs(src, inputIDs, id), sync({ src, xform, id, reset })
@@ -279,9 +279,9 @@ export const node1 = (
     xform?: Transducer<any, any>,
     inputID = "src"
 ): NodeFactory<any> => (
-    src: IObjectOf<ISubscription>,
+    src: IObjectOf<ISubscription<any, any>>,
     id: string
-): ISubscription => {
+): ISubscription<any, any> => {
     ensureInputs(src, [inputID], id);
     return src[inputID].subscribe({}, { xform, id });
 };
@@ -309,7 +309,7 @@ export const node2 = (
  * @param nodeID -
  */
 export const ensureInputs = (
-    src: IObjectOf<ISubscription>,
+    src: IObjectOf<ISubscription<any, any>>,
     inputIDs: string[] | undefined,
     nodeID: string
 ) => {

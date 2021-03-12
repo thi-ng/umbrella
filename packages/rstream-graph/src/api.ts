@@ -8,17 +8,20 @@ import type { Transducer } from "@thi.ng/transducers";
  * {@link @thi.ng/rstream#ISubscribable} using given object of inputs
  * and node ID. See `node()` and `node1()`.
  */
-export type NodeFactory<T> = (src: NodeInputs, id: string) => ISubscription<T>;
+export type NodeFactory<T> = (
+    src: NodeInputs,
+    id: string
+) => ISubscription<T, any>;
 
 export type NodeResolver = Fn<ResolveFn, Node>;
-export type NodeInputs = IObjectOf<ISubscription>;
-export type NodeOutputs = IObjectOf<ISubscription>;
+export type NodeInputs = IObjectOf<ISubscription<any, any>>;
+export type NodeOutputs = IObjectOf<ISubscription<any, any>>;
 export type Graph = IObjectOf<Node>;
 
 export interface Node {
     ins: NodeInputs;
     outs: NodeOutputs;
-    node: ISubscription;
+    node: ISubscription<any, any>;
 }
 
 /**
@@ -103,7 +106,7 @@ export interface NodeSpec {
 export interface NodeInputSpec {
     id?: string;
     path?: Path;
-    stream?: string | Fn<ResolveFn, ISubscription>;
+    stream?: string | Fn<ResolveFn, ISubscription<any, any>>;
     const?: any | Fn<ResolveFn, any>;
     xform?: Transducer<any, any>;
 }
@@ -111,6 +114,6 @@ export interface NodeInputSpec {
 export type NodeOutputSpec = Path | NodeOutputFn;
 
 export type NodeOutputFn = (
-    node: ISubscription,
+    node: ISubscription<any, any>,
     id: NumOrString
-) => ISubscription;
+) => ISubscription<any, any>;
