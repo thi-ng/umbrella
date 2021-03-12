@@ -263,7 +263,7 @@ export class StreamSync<
         return <A>res;
     }
 
-    unsubscribe(sub?: Subscription<B, any>) {
+    unsubscribe(sub?: ISubscription<B, any>) {
         if (!sub) {
             LOGGER.debug(this.id, "unsub sources");
             for (let s of this.sources.values()) {

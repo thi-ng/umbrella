@@ -136,7 +136,7 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
         return ok;
     }
 
-    unsubscribe(sub?: Subscription<B, any>) {
+    unsubscribe(sub?: ISubscription<B, any>) {
         if (!sub) {
             for (let s of this.sources.values()) {
                 s.unsubscribe();

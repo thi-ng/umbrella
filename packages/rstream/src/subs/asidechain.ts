@@ -12,7 +12,7 @@ export abstract class ASidechain<A, S, B> extends Subscription<A, B> {
         super(undefined, opts);
     }
 
-    unsubscribe(sub?: Subscription<any, any>) {
+    unsubscribe(sub?: ISubscription<B, any>) {
         const res = super.unsubscribe(sub);
         if (!sub || !this.subs.length) {
             this.sideSub.unsubscribe();

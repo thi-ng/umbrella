@@ -85,7 +85,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
     closeIn: CloseMode;
     closeOut: CloseMode;
     parent?: ISubscription<any, A>;
-    __owner?: ISubscription<any>;
+    __owner?: ISubscription<any, any>;
 
     protected xform?: Reducer<B[], A>;
     protected cacheLast: boolean;
@@ -228,7 +228,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
         return this.transform(map(fn), opts || {});
     }
 
-    unsubscribe(sub?: Partial<ISubscription<B>>) {
+    unsubscribe(sub?: ISubscription<B, any>) {
         return sub ? this.unsubscribeChild(sub) : this.unsubscribeSelf();
     }
 
@@ -240,7 +240,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
         return true;
     }
 
-    protected unsubscribeChild(sub: Partial<ISubscription<B>>) {
+    protected unsubscribeChild(sub: ISubscription<B, any>) {
         LOGGER.debug(this.id, "unsub child", sub.id);
         const idx = this.subs.indexOf(sub);
         if (idx >= 0) {

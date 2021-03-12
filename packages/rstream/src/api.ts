@@ -134,7 +134,7 @@ export interface ISubscriber<T> {
     /**
      * Internal use only. Do not use.
      */
-    __owner?: ISubscription<any>;
+    __owner?: ISubscription<any, any>;
     [id: string]: any;
 }
 
@@ -210,9 +210,13 @@ export interface ITransformable<B> {
     transform<C>(
         opts: WithTransform<B, C> & Partial<WithErrorHandlerOpts>
     ): ISubscription<B, C>;
+    map<C>(
+        fn: Fn<B, C>,
+        opts?: Partial<WithErrorHandlerOpts>
+    ): ISubscription<B, C>;
 }
 
-export interface ISubscription<A = any, B = A>
+export interface ISubscription<A, B>
     extends IDeref<B | undefined>,
         ISubscriber<A>,
         ISubscribable<B>,

@@ -30,7 +30,7 @@ describe("Subscription", function () {
         });
         let state2 = State.IDLE;
         let err: any;
-        let sub2: ISubscription;
+        let sub2: ISubscription<any, any>;
         sub2 = src.subscribe({
             next() {
                 throw 1;

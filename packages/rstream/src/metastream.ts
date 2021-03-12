@@ -159,7 +159,7 @@ export class MetaStream<A, B> extends Subscription<A, B> {
         }
     }
 
-    unsubscribe(sub?: Subscription<B, any>) {
+    unsubscribe(sub?: ISubscription<B, any>) {
         if (this.stream && (!sub || this.subs.length === 1)) {
             this.detach(!sub);
         }
