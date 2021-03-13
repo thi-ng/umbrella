@@ -54,6 +54,7 @@
         "@thi.ng/arrays": "^0.10.8",
         "@thi.ng/bitfield": "^0.4.5",
         "@thi.ng/dcons": "^2.3.16",
+        "@thi.ng/errors": "^1.2.32",
         "@thi.ng/sparse": "^0.1.71"
     },
     "files": [

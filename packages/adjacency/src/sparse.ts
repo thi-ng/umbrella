@@ -1,3 +1,4 @@
+import { ensureIndex2 } from "@thi.ng/errors";
 import { CSR } from "@thi.ng/sparse";
 import type { DegreeType, Edge, IGraph } from "./api";
 import { into, invert, toDot } from "./utils";
@@ -63,7 +64,7 @@ export class AdjacencyMatrix extends CSR implements IGraph<number> {
 
     degree(id: number, type: DegreeType = "out") {
         let degree = 0;
-        this.ensureIndex(id, id);
+        ensureIndex2(id, id, this.m, this.n);
         if (this.undirected || type !== "in") degree += this.nnzRow(id);
         if (!this.undirected && type !== "out") degree += this.nnzCol(id);
         return degree;
