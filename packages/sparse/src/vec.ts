@@ -1,4 +1,5 @@
 import { assert, FnN2 } from "@thi.ng/api";
+import { ensureIndex } from "@thi.ng/errors";
 import type { NzEntry } from "./api";
 
 export type BinOp = FnN2;
@@ -47,7 +48,7 @@ export class SparseVec {
     }
 
     at(m: number, safe = true) {
-        safe && this.ensureIndex(m);
+        safe && ensureIndex(m, 0, this.m);
         const d = this.data;
         for (let i = 0, n = d.length; i < n && d[i] <= m; i += 2) {
             if (m === d[i]) {
@@ -58,7 +59,7 @@ export class SparseVec {
     }
 
     setAt(m: number, v: number, safe = true) {
-        safe && this.ensureIndex(m);
+        safe && ensureIndex(m, 0, this.m);
         const d = this.data;
         for (let i = 0, n = d.length; i < n; i += 2) {
             if (m < d[i]) {
@@ -212,10 +213,6 @@ export class SparseVec {
             res[d[i]] = d[i + 1];
         }
         return res;
-    }
-
-    protected ensureIndex(m: number) {
-        assert(m >= 0 && m < this.m, `index out of bounds: ${m}`);
     }
 
     protected ensureSize(v: SparseVec) {

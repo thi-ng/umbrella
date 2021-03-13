@@ -1,4 +1,5 @@
 import { assert } from "@thi.ng/api";
+import { ensureIndex2 } from "@thi.ng/errors";
 import { ASparseMatrix } from "./amatrix";
 import type { NzEntry } from "./api";
 import { at, compress, diag, remove, setAt } from "./compressed";
@@ -134,12 +135,12 @@ export class CSR extends ASparseMatrix {
     }
 
     at(m: number, n: number, safe = true) {
-        safe && this.ensureIndex(m, n);
+        safe && ensureIndex2(m, n, this.m, this.n);
         return at(m, n, this.rows, this.cols, this.data);
     }
 
     setAt(m: number, n: number, x: number, safe = true, compact = true) {
-        safe && this.ensureIndex(m, n);
+        safe && ensureIndex2(m, n, this.m, this.n);
         const state = setAt(
             m,
             n,

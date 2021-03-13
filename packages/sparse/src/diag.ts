@@ -1,4 +1,5 @@
 import { assert } from "@thi.ng/api";
+import { ensureIndex2 } from "@thi.ng/errors";
 import { ASparseMatrix } from "./amatrix";
 import type { NzEntry } from "./api";
 import { CSC } from "./csc";
@@ -29,7 +30,7 @@ export class Diag extends ASparseMatrix {
     }
 
     at(m: number, n: number, safe = true) {
-        safe && this.ensureIndex(m, n);
+        safe && ensureIndex2(m, n, this.m, this.n);
         return m === n ? this.data.at(m, false) : 0;
     }
 

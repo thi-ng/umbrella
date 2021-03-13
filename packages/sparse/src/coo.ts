@@ -1,3 +1,4 @@
+import { ensureIndex2 } from "@thi.ng/errors";
 import { partition } from "@thi.ng/transducers";
 import { ASparseMatrix } from "./amatrix";
 import type { NzEntry } from "./api";
@@ -42,7 +43,7 @@ export class COO extends ASparseMatrix {
     }
 
     at(m: number, n: number, safe = true) {
-        safe && this.ensureIndex(m, n);
+        safe && ensureIndex2(m, n, this.m, this.n);
         const d = this.data;
         for (let i = 0, l = d.length; i < l && d[i] <= m; i += 3) {
             if (d[i] === m && d[i + 1] === n) {
@@ -53,7 +54,7 @@ export class COO extends ASparseMatrix {
     }
 
     setAt(m: number, n: number, v: number, safe = true) {
-        safe && this.ensureIndex(m, n);
+        safe && ensureIndex2(m, n, this.m, this.n);
         const d = this.data;
         for (let i = 0, l = d.length; i < l; i += 3) {
             const r = d[i];

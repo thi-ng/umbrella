@@ -41,13 +41,6 @@ export abstract class ASparseMatrix {
         return trace;
     }
 
-    protected ensureIndex(m: number, n: number) {
-        assert(
-            m >= 0 && m < this.m && n >= 0 && n < this.n,
-            `index out of bounds (${m}, ${n})`
-        );
-    }
-
     protected ensureSize(mat: ASparseMatrix) {
         assert(
             mat.m === this.m && mat.n === this.n,

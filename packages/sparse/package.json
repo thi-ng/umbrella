@@ -50,6 +50,7 @@
     },
     "dependencies": {
         "@thi.ng/api": "^7.1.4",
+        "@thi.ng/errors": "^1.2.32",
         "@thi.ng/transducers": "^7.6.6"
     },
     "files": [
