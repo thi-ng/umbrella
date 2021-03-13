@@ -1,5 +1,6 @@
 import { assert, Fn2, IClear, ICopy } from "@thi.ng/api";
 import { align, bitAnd, bitNot, bitOr, bitXor } from "@thi.ng/binary";
+import { ensureIndex } from "@thi.ng/errors";
 import { BitField } from "./bitfield";
 import { binOp, popCount, toString } from "./util";
 
@@ -126,13 +127,13 @@ export class BitMatrix implements IClear, ICopy<BitMatrix> {
     }
 
     popCountRow(m: number) {
-        this.ensureRow(m);
+        ensureIndex(m, 0, this.m);
         m *= this.stride;
         return popCount(this.data.subarray(m, m + this.stride));
     }
 
     popCountColumn(n: number) {
-        this.ensureColumn(n);
+        ensureIndex(n, 0, this.n);
         const { data, stride, m } = this;
         const mask = 1 << (~n & 31);
         let res = 0;
@@ -143,7 +144,7 @@ export class BitMatrix implements IClear, ICopy<BitMatrix> {
     }
 
     row(m: number) {
-        this.ensureRow(m);
+        ensureIndex(m, 0, this.m);
         const row = new BitField(this.n);
         m *= this.stride;
         row.data.set(this.data.subarray(m, m + this.stride));
@@ -151,7 +152,7 @@ export class BitMatrix implements IClear, ICopy<BitMatrix> {
     }
 
     column(n: number) {
-        this.ensureColumn(n);
+        ensureIndex(n, 0, this.n);
         const { data, stride, m } = this;
         const column = new BitField(m);
         const mask = 1 << (~n & 31);
@@ -180,14 +181,6 @@ export class BitMatrix implements IClear, ICopy<BitMatrix> {
             field.m === this.m && field.n === this.n,
             `matrices must be same size`
         );
-    }
-
-    protected ensureRow(m: number) {
-        assert(m >= 0 && m < this.m, `row index out of range: ${m}`);
-    }
-
-    protected ensureColumn(n: number) {
-        assert(n >= 0 && n < this.n, `column index out of range: ${n}`);
     }
 }
 

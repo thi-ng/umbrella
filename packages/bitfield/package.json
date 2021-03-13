@@ -51,6 +51,7 @@
     "dependencies": {
         "@thi.ng/api": "^7.1.4",
         "@thi.ng/binary": "^2.2.4",
+        "@thi.ng/errors": "^1.2.32",
         "@thi.ng/strings": "^1.15.5"
     },
     "files": [
