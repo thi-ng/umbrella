@@ -52,6 +52,7 @@
     "dependencies": {
         "@thi.ng/api": "^7.1.4",
         "@thi.ng/binary": "^2.2.4",
+        "@thi.ng/errors": "^1.2.32",
         "@thi.ng/transducers-binary": "^0.6.12",
         "@thi.ng/vectors": "^5.1.4"
     },

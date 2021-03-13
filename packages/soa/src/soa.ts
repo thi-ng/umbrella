@@ -1,4 +1,5 @@
 import { assert, ILength, SIZEOF, TypedArray, typedArray } from "@thi.ng/api";
+import { ensureIndex } from "@thi.ng/errors";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import type { SOAAttribSpec, SOASpecs, SOATuple } from "./api";
 import { prepareSpec } from "./utils";
@@ -20,8 +21,8 @@ export class SOA<K extends string> implements ILength {
     }
 
     *values(from = 0, to = this.length): IterableIterator<SOATuple<K, Vec>> {
-        this.ensureIndex(from);
-        this.ensureIndex(to, from, this.length);
+        ensureIndex(from, 0, this.length);
+        ensureIndex(to, from, this.length + 1);
         for (; from < to; from++) {
             yield this.indexUnsafe(from);
         }
@@ -29,8 +30,8 @@ export class SOA<K extends string> implements ILength {
 
     attribValues(id: K, from = 0, to = this.length) {
         this.ensureAttrib(id);
-        this.ensureIndex(from);
-        this.ensureIndex(to, from, this.length);
+        ensureIndex(from, 0, this.length);
+        ensureIndex(to, from, this.length + 1);
         let { size, stride, type } = this.specs[id];
         const buf = this.buffers[id].buffer;
         stride! *= SIZEOF[type!];
@@ -45,7 +46,7 @@ export class SOA<K extends string> implements ILength {
 
     attribValue(id: K, i: number): Vec {
         this.ensureAttrib(id);
-        this.ensureIndex(i);
+        ensureIndex(i, 0, this.length);
         return this.attribValueUnsafe(id, i);
     }
 
@@ -57,7 +58,7 @@ export class SOA<K extends string> implements ILength {
 
     setAttribValue(id: K, i: number, val: ReadonlyVec) {
         this.ensureAttrib(id);
-        this.ensureIndex(i);
+        ensureIndex(i, 0, this.length);
         const spec = this.specs[id];
         assert(val.length <= spec.size!, `${id} value too large`);
         this.buffers[id].set(val, i * spec.stride!);
@@ -70,7 +71,7 @@ export class SOA<K extends string> implements ILength {
 
     setAttribValues(id: K, vals: Iterable<ReadonlyVec>, from = 0) {
         this.ensureAttrib(id);
-        this.ensureIndex(from);
+        ensureIndex(from, 0, this.length);
         const buf = this.buffers[id];
         const stride = this.specs[id].stride!;
         const end = this.length * stride;
@@ -86,7 +87,7 @@ export class SOA<K extends string> implements ILength {
     index(i: number): SOATuple<K, Vec>;
     index<ID extends K>(i: number, ids: ID[]): SOATuple<ID, Vec>;
     index(i: number, ids?: K[]): any {
-        this.ensureIndex(i);
+        ensureIndex(i, 0, this.length);
         return this.indexUnsafe(i, ids!);
     }
 
@@ -108,7 +109,7 @@ export class SOA<K extends string> implements ILength {
     }
 
     setIndex(i: number, vals: Partial<SOATuple<K, ReadonlyVec>>) {
-        this.ensureIndex(i);
+        ensureIndex(i, 0, this.length);
         for (let id in vals) {
             this.setAttribValue(id, i, <any>vals[id]!);
         }
@@ -136,11 +137,11 @@ export class SOA<K extends string> implements ILength {
         srcFrom = 0,
         srcTo = this.length
     ) {
-        this.ensureIndex(srcFrom);
-        this.ensureIndex(srcTo, srcFrom, this.length);
+        ensureIndex(srcFrom, 0, this.length);
+        ensureIndex(srcTo, srcFrom, this.length + 1);
         const num = srcTo - srcFrom;
-        dest.ensureIndex(destFrom);
-        dest.ensureIndex(destFrom + num, destFrom, dest.length);
+        ensureIndex(destFrom, 0, dest.length);
+        ensureIndex(destFrom + num, destFrom, dest.length + 1);
         ids = ids || <K[]>Object.keys(this.specs);
         for (let k = ids.length; --k >= 0; ) {
             const id = ids[k];
@@ -188,10 +189,6 @@ export class SOA<K extends string> implements ILength {
 
     protected ensureAttrib(id: K) {
         assert(!!this.specs[id], `invalid attrib ${id}`);
-    }
-
-    protected ensureIndex(i: number, min = 0, max = this.length - 1) {
-        assert(i >= min && i <= max, `index out of bounds: ${i}`);
     }
 }
 
