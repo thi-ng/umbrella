@@ -1,5 +1,4 @@
-import {
-    assert,
+import type {
     Comparator,
     Fn,
     IClear,
@@ -12,12 +11,12 @@ import {
     ISeq,
     ISeqable,
     IStack,
-    Predicate,
+    Predicate
 } from "@thi.ng/api";
 import { isArrayLike } from "@thi.ng/checks";
 import { compare } from "@thi.ng/compare";
 import { equiv } from "@thi.ng/equiv";
-import { illegalArgs } from "@thi.ng/errors";
+import { ensureIndex, illegalArgs } from "@thi.ng/errors";
 import { IRandom, SYSTEM } from "@thi.ng/random";
 import { IReducible, isReduced, ReductionFn } from "@thi.ng/transducers";
 
@@ -223,7 +222,7 @@ export class DCons<T>
         if (n <= 0) {
             return this.cons(x);
         } else {
-            this.ensureIndex(n);
+            ensureIndex(n, 0, this._length);
             return this.insertBefore(this.nthCellUnsafe(n), x);
         }
     }
@@ -235,7 +234,7 @@ export class DCons<T>
         if (n >= this._length - 1) {
             return this.push(x);
         } else {
-            this.ensureIndex(n);
+            ensureIndex(n, 0, this._length);
             return this.insertAfter(this.nthCellUnsafe(n), x);
         }
     }
@@ -307,7 +306,7 @@ export class DCons<T>
             if (at < 0) {
                 at += this._length;
             }
-            this.ensureIndex(at);
+            ensureIndex(at, 0, this._length);
             cell = this.nthCellUnsafe(at);
         } else {
             cell = at;
@@ -638,10 +637,6 @@ export class DCons<T>
 
     toJSON() {
         return [...this];
-    }
-
-    protected ensureIndex(i: number) {
-        assert(i >= 0 && i < this._length, `index out of range: ${i}`);
     }
 
     protected nthCellUnsafe(n: number) {

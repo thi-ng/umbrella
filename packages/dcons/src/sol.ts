@@ -1,5 +1,5 @@
 import type { Fn2, Predicate } from "@thi.ng/api";
-import { illegalArgs } from "@thi.ng/errors";
+import { outOfBounds } from "@thi.ng/errors";
 import { ConsCell, DCons } from "./dcons";
 
 /**
@@ -44,7 +44,7 @@ export class SOL<T> extends DCons<T> {
 
     setNth(n: number, v: T) {
         const cell = this.nthCell(n);
-        !cell && illegalArgs(`index out of bounds: ${n}`);
+        !cell && outOfBounds(n);
         this._reorder(this, cell!).value = v;
         return this;
     }
