@@ -1,4 +1,4 @@
-import type { IDeref } from "@thi.ng/api";
+import { assert, IDeref } from "@thi.ng/api";
 import { Heap } from "@thi.ng/heaps";
 import { clamp0 } from "@thi.ng/math";
 import type { ReadonlyVec } from "@thi.ng/vectors";
@@ -35,6 +35,7 @@ export class KNearest<D, T>
         radius = Infinity,
         public sorted = false
     ) {
+        assert(k > 0, `invalid k (must be > 0)`);
         this.radius = clamp0(radius);
         this.reset();
     }
@@ -76,7 +77,7 @@ export class KNearest<D, T>
             const heap = this._heap;
             if (heap.length === this.k) {
                 heap.pushPop([d, val]);
-                this._currR = heap.peek()[0];
+                this._currR = heap.peek()![0];
             } else {
                 heap.push([d, val]);
             }
