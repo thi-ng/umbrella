@@ -460,6 +460,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/d3v53c"><img src="https://avatars.githubusercontent.com/u/64132745?v=4?s=100" width="100px;" alt=""/><br /><sub><b>d3v53c</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Ad3v53c" title="Bug reports">🐛</a> <a href="#security-d3v53c" title="Security">🛡️</a></td>
+    <td align="center"><a href="https://edgeandnode.com"><img src="https://avatars.githubusercontent.com/u/19324?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jannis Pohlmann</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3AJannis" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
