@@ -383,7 +383,7 @@ const collect = <K extends ReadonlyVec, V>(
     node: KdNode<K, V>,
     ndist: number
 ) =>
-    (!acc.length || ndist < acc.peek()[0]) &&
+    (!acc.length || ndist < acc.peek()![0]) &&
     (acc.length >= maxNum
         ? acc.pushPop([ndist, node])
         : acc.push([ndist, node]));
