@@ -76,7 +76,7 @@ export class Heap<T>
         return new Heap<T>(null, { compare: this.compare });
     }
 
-    peek() {
+    peek(): T | undefined {
         return this.values[0];
     }
 
@@ -86,7 +86,7 @@ export class Heap<T>
         return this;
     }
 
-    pop() {
+    pop(): T | undefined {
         const vals = this.values;
         const tail = vals.pop();
         let res: T;
@@ -100,7 +100,7 @@ export class Heap<T>
         return res;
     }
 
-    pushPop(val: T, vals = this.values) {
+    pushPop(val: T, vals = this.values): T | undefined {
         const head = vals[0];
         if (vals.length > 0 && this.compare(head, val) <= 0) {
             vals[0] = val;
@@ -124,7 +124,7 @@ export class Heap<T>
      *
      * @param vals - values to insert
      */
-    pushPopAll(vals: Iterable<T>) {
+    pushPopAll(vals: Iterable<T>): T | undefined {
         let res: any;
         for (let v of vals) {
             res = this.pushPop(v);
