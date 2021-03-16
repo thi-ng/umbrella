@@ -19,6 +19,7 @@ export * from "./format/gray16";
 export * from "./format/gray-alpha16";
 export * from "./format/gray8";
 export * from "./format/gray-alpha8";
+export * from "./format/indexed";
 export * from "./format/rgb565";
 export * from "./format/rgb888";
 
