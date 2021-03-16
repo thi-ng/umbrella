@@ -27,8 +27,11 @@ export const mix: FnN3 = (a, b, t) => a + (b - a) * t;
  * @param u - 1st interpolation factor
  * @param v - 2nd interpolation factor
  */
-export const mixBilinear: FnN6 = (a, b, c, d, u, v) =>
-    mix(mix(a, b, u), mix(c, d, u), v);
+export const mixBilinear: FnN6 = (a, b, c, d, u, v) => {
+    const iu = 1 - u;
+    const iv = 1 - v;
+    return a * iu * iv + b * u * iv + c * iu * v + d * u * v;
+};
 
 export const mixQuadratic: FnN4 = (a, b, c, t) => {
     const s = 1 - t;
