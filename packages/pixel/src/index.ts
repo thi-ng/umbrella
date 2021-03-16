@@ -6,6 +6,8 @@ export * from "./dither";
 export * from "./float";
 export * from "./normal-map";
 export * from "./packed";
+export * from "./resize";
+export * from "./sample";
 export * from "./utils";
 
 export * from "./format/packed-format";

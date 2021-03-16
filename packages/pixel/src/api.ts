@@ -23,20 +23,12 @@ export enum Lane {
 /**
  * Wrap behaviors (currently unused)
  */
-export enum Wrap {
-    NONE,
-    U,
-    V,
-    UV,
-}
+export type Wrap = "clamp" | "wrap" | "repeat";
 
 /**
  * Filtered access types (currently unused)
  */
-export enum Filter {
-    NEAREST,
-    LINEAR,
-}
+export type Filter = "nearest" | "linear";
 
 /**
  * Blend function (for packed integers) given to IBlend implementations.
