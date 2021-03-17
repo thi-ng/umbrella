@@ -11,6 +11,8 @@ import { EPS, HALF_PI, PI } from "./api";
 export const mix: FnN3 = (a, b, t) => a + (b - a) * t;
 
 /**
+ * Bilinear interpolation of given values (`a`,`b`,`c`,`d`).
+ *
  * @example
  * ```ts
  * c    d
@@ -102,6 +104,83 @@ export const mixCubicHermite: FnN5 = (a, ta, b, tb, t) => {
     const h11 = t2 * s;
     return h00 * a + h10 * ta + h01 * b + h11 * tb;
 };
+
+/**
+ * Similar to {@link mixCubicHermite}, but takes 4 control values (uniformly
+ * spaced) and computes tangents automatically. Returns `b` iff `t=0` and `c`
+ * iff `t=1.0`.
+ *
+ * @param a
+ * @param b
+ * @param c
+ * @param d
+ * @param t
+ */
+export const mixCubicHermiteFromPoints: FnN5 = (a, b, c, d, t) => {
+    d *= 0.5;
+    const aa = -0.5 * a + 1.5 * b - 1.5 * c + d;
+    const bb = a - 2.5 * b + 2 * c - d;
+    const cc = -0.5 * a + 0.5 * c;
+    const dd = b;
+    const t2 = t * t;
+    return t * t2 * aa + t2 * bb + t * cc + dd;
+};
+
+/**
+ * Bicubic interpolation of given 4x4 sample values (in row major order, i.e.
+ * `s00..s03` = 1st row).
+ *
+ * @remarks
+ * Result will not be clamped and might fall outside the total range of the
+ * input samples.
+ *
+ * @param s00
+ * @param s01
+ * @param s02
+ * @param s03
+ * @param s10
+ * @param s11
+ * @param s12
+ * @param s13
+ * @param s20
+ * @param s21
+ * @param s22
+ * @param s23
+ * @param s30
+ * @param s31
+ * @param s32
+ * @param s33
+ * @param u
+ * @param v
+ * @returns
+ */
+export const mixBicubic = (
+    s00: number,
+    s01: number,
+    s02: number,
+    s03: number,
+    s10: number,
+    s11: number,
+    s12: number,
+    s13: number,
+    s20: number,
+    s21: number,
+    s22: number,
+    s23: number,
+    s30: number,
+    s31: number,
+    s32: number,
+    s33: number,
+    u: number,
+    v: number
+) =>
+    mixCubicHermiteFromPoints(
+        mixCubicHermiteFromPoints(s00, s01, s02, s03, u),
+        mixCubicHermiteFromPoints(s10, s11, s12, s13, u),
+        mixCubicHermiteFromPoints(s20, s21, s22, s23, u),
+        mixCubicHermiteFromPoints(s30, s31, s32, s33, u),
+        v
+    );
 
 /**
  * Helper function for {@link mixCubicHermite}. Computes cardinal tangents
