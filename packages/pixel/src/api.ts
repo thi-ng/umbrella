@@ -242,7 +242,7 @@ export interface IPixelBuffer<T extends TypedArray = TypedArray, P = any> {
     ): IPixelBuffer<T, P>;
 }
 
-export interface IBlit<T extends TypedArray, P> {
+export interface IBlit<T extends IPixelBuffer> {
     /**
      * Blits pixels into given `dest` pixel buffer, using provided
      * options. If `dest` buffer is smaller than source buffer, only the
@@ -254,7 +254,7 @@ export interface IBlit<T extends TypedArray, P> {
      * @param dest -
      * @param opts -
      */
-    blit(dest: IPixelBuffer<T, P>, opts?: Partial<BlitOpts>): void;
+    blit(dest: T, opts?: Partial<BlitOpts>): void;
 
     /**
      * Converts and blits pixels into given canvas at position `x`, `y`
@@ -264,7 +264,7 @@ export interface IBlit<T extends TypedArray, P> {
     blitCanvas(canvas: HTMLCanvasElement, x?: number, y?: number): void;
 }
 
-export interface IBlend<F, T extends TypedArray, P> {
+export interface IBlend<T extends IPixelBuffer, F> {
     /**
      * Uses given `op` function to blend / compose pixels of this buffer
      * with those of `dest` and writes results into `dest`. Supports
@@ -274,11 +274,17 @@ export interface IBlend<F, T extends TypedArray, P> {
      * @param dest -
      * @param opts -
      */
-    blend(op: F, dest: IPixelBuffer<T, P>, opts?: Partial<BlitOpts>): void;
+    blend(op: F, dest: T, opts?: Partial<BlitOpts>): void;
 }
 
-export interface IInvert {
-    invert(): this;
+export interface IInvert<T extends IPixelBuffer> {
+    invert(): T;
+}
+
+export interface IResizable<T extends IPixelBuffer, F> {
+    scale(scale: number, sampler?: F | Filter): T;
+
+    resize(w: number, h: number, sampler?: F | Filter): T;
 }
 
 export interface IColorChannel<T extends TypedArray, C> {
@@ -443,4 +449,4 @@ export interface NormalMapOpts {
 
 export type IntSampler = FnU2<number>;
 
-export type FloatSampler = FnU2<number, FloatArray>;
+export type FloatSampler = FnU2<number, NumericArray>;

@@ -1,6 +1,6 @@
 import {
     assert,
-    Fn,
+    Fn2,
     ICopy,
     IEmpty,
     typedArray,
@@ -19,8 +19,12 @@ import {
     BlendFnInt,
     BlitOpts,
     Filter,
+    IBlend,
+    IBlit,
+    IInvert,
     IntSampler,
     IPixelBuffer,
+    IResizable,
     Lane,
     PackedChannel,
     PackedFormat,
@@ -76,6 +80,10 @@ export const buffer = packedBuffer;
 export class PackedBuffer
     implements
         IPixelBuffer<UIntArray, number>,
+        IResizable<PackedBuffer, IntSampler>,
+        IBlend<PackedBuffer, BlendFnInt>,
+        IBlit<PackedBuffer>,
+        IInvert<PackedBuffer>,
         ICopy<PackedBuffer>,
         IEmpty<PackedBuffer> {
     /**
@@ -351,10 +359,10 @@ export class PackedBuffer
         return true;
     }
 
-    forEach(f: Fn<number, number>) {
+    forEach(f: Fn2<number, number, number>) {
         const pix = this.pixels;
         for (let i = pix.length; --i >= 0; ) {
-            pix[i] = f(pix[i]);
+            pix[i] = f(pix[i], i);
         }
         return this;
     }

@@ -30,7 +30,24 @@ export function defSampler(
     const id = `${filter[0]}${wrap[0]}${suffix}`;
     const impl = (isFloat
         ? <IObjectOf<Fn<FloatBuffer, FloatSampler>>>{
-              // TODO
+              nc1: sampleFNC,
+              nw1: sampleFNW,
+              nr1: sampleFNR,
+              nc: sampleFNC,
+              nw: sampleFNW,
+              nr: sampleFNR,
+              lc1: (src) => bilinearGrayF(sampleINC(src)),
+              lw1: (src) => bilinearGrayF(sampleINW(src)),
+              lr1: (src) => bilinearGrayF(sampleINR(src)),
+              lc: (src) => bilinearFloat(src, sampleFNC(src)),
+              lw: (src) => bilinearFloat(src, sampleFNW(src)),
+              lr: (src) => bilinearFloat(src, sampleFNR(src)),
+              cc1: (src) => bicubicGrayF(sampleINC(src)),
+              cw1: (src) => bicubicGrayF(sampleINW(src)),
+              cr1: (src) => bicubicGrayF(sampleINR(src)),
+              cc: (src) => bicubicFloat(src, sampleFNC(src)),
+              cw: (src) => bicubicFloat(src, sampleFNW(src)),
+              cr: (src) => bicubicFloat(src, sampleFNR(src)),
           }
         : <IObjectOf<Fn<PackedBuffer, IntSampler>>>{
               nc1: sampleINC,
@@ -42,12 +59,12 @@ export function defSampler(
               lc1: (src) => bilinearGray(sampleINC(src)),
               lw1: (src) => bilinearGray(sampleINW(src)),
               lr1: (src) => bilinearGray(sampleINR(src)),
-              cc1: (src) => bicubicGray(src, sampleINC(src)),
-              cw1: (src) => bicubicGray(src, sampleINW(src)),
-              cr1: (src) => bicubicGray(src, sampleINR(src)),
               lc: (src) => bilinearABGR(src, sampleINC(src)),
               lw: (src) => bilinearABGR(src, sampleINW(src)),
               lr: (src) => bilinearABGR(src, sampleINR(src)),
+              cc1: (src) => bicubicGray(src, sampleINC(src)),
+              cw1: (src) => bicubicGray(src, sampleINW(src)),
+              cr1: (src) => bicubicGray(src, sampleINR(src)),
               cc: (src) => bicubicABGR(src, sampleINC(src)),
               cw: (src) => bicubicABGR(src, sampleINW(src)),
               cr: (src) => bicubicABGR(src, sampleINR(src)),
@@ -56,7 +73,7 @@ export function defSampler(
     return impl(<any>src);
 }
 
-const sampleINC = ({ pixels, width, height }: PackedBuffer): IntSampler => (
+const sampleINC = ({ pixels, width, height }: IPixelBuffer): IntSampler => (
     x,
     y
 ) =>
@@ -64,15 +81,55 @@ const sampleINC = ({ pixels, width, height }: PackedBuffer): IntSampler => (
         ? pixels[(y | 0) * width + (x | 0)]
         : 0;
 
-const sampleINW = ({ pixels, width, height }: PackedBuffer): IntSampler => (
+const sampleINW = ({ pixels, width, height }: IPixelBuffer): IntSampler => (
     x,
     y
 ) => pixels[fmod(y | 0, height) * width + fmod(x | 0, width)];
 
-const sampleINR = ({ pixels, width, height }: PackedBuffer): IntSampler => {
+const sampleINR = ({ pixels, width, height }: IPixelBuffer): IntSampler => {
     const w1 = width - 1;
     const h1 = height - 1;
     return (x, y) => pixels[clamp(y | 0, 0, h1) * width + clamp(x | 0, 0, w1)];
+};
+
+const sampleFNC = ({
+    pixels,
+    width,
+    height,
+    rowStride,
+    stride,
+}: FloatBuffer): FloatSampler => (x, y) => {
+    let i: number;
+    return x >= 0 && x < width && y >= 0 && y < height
+        ? ((i = (y | 0) * rowStride + (x | 0) * stride),
+          pixels.slice(i, i + stride))
+        : [0];
+};
+
+const sampleFNW = ({
+    pixels,
+    width,
+    height,
+    rowStride,
+    stride,
+}: FloatBuffer): FloatSampler => (x, y) => {
+    let i = fmod(y | 0, height) * rowStride + fmod(x | 0, width) * stride;
+    return pixels.slice(i, i + stride);
+};
+
+const sampleFNR = ({
+    pixels,
+    width,
+    height,
+    rowStride,
+    stride,
+}: FloatBuffer): FloatSampler => {
+    const w1 = width - 1;
+    const h1 = height - 1;
+    return (x, y) => {
+        let i = clamp(y | 0, 0, h1) * rowStride + clamp(x | 0, 0, w1) * stride;
+        return pixels.slice(i, i + stride);
+    };
 };
 
 const mixBilinearChan = (
@@ -96,6 +153,21 @@ const bilinearGray = (sample: IntSampler): IntSampler => (x, y) => {
     );
 };
 
+const bilinearGrayF = (sample: IntSampler): FloatSampler => (x, y) => {
+    x -= 0.5;
+    y -= 0.5;
+    return [
+        mixBilinear(
+            sample(x, y),
+            sample(x + 1, y),
+            sample(x, y + 1),
+            sample(x + 1, y + 1),
+            fract(x),
+            fract(y)
+        ),
+    ];
+};
+
 const bilinearABGR = (src: PackedBuffer, sample1: IntSampler): IntSampler => {
     const { fromABGR, toABGR } = src.format;
     const u32 = new Uint32Array(4);
@@ -117,6 +189,28 @@ const bilinearABGR = (src: PackedBuffer, sample1: IntSampler): IntSampler => {
                     (mixBilinearChan(u8, u, v, 3) << 24)
             ) >>> 0
         );
+    };
+};
+
+const bilinearFloat = (
+    { stride }: FloatBuffer,
+    sample1: FloatSampler
+): FloatSampler => {
+    const f32 = new Float32Array(stride * 4);
+    return (x, y) => {
+        x -= 0.5;
+        y -= 0.5;
+        f32.set(sample1(x, y), 0);
+        f32.set(sample1(x + 1, y), stride);
+        f32.set(sample1(x, y + 1), stride * 2);
+        f32.set(sample1(x + 1, y + 1), stride * 3);
+        const u = fract(x);
+        const v = fract(y);
+        let res = [];
+        for (let i = 0; i < stride; i++) {
+            res.push(mixBilinearChan(f32, u, v, i, stride));
+        }
+        return res;
     };
 };
 
@@ -155,6 +249,41 @@ const bicubicGray = (src: PackedBuffer, sample: IntSampler): IntSampler => {
             0,
             max
         );
+    };
+};
+
+const bicubicGrayF = (sample: IntSampler): FloatSampler => {
+    return (x, y) => {
+        x -= 0.5;
+        y -= 0.5;
+        const x1 = x - 1;
+        const x2 = x + 1;
+        const x3 = x + 2;
+        const y1 = y - 1;
+        const y2 = y + 1;
+        const y3 = y + 2;
+        return [
+            mixBicubic(
+                sample(x1, y1),
+                sample(x, y1),
+                sample(x2, y1),
+                sample(x3, y1),
+                sample(x1, y),
+                sample(x, y),
+                sample(x2, y),
+                sample(x3, y),
+                sample(x1, y2),
+                sample(x, y2),
+                sample(x2, y2),
+                sample(x3, y2),
+                sample(x1, y3),
+                sample(x, y3),
+                sample(x2, y3),
+                sample(x3, y3),
+                fract(x),
+                fract(y)
+            ),
+        ];
     };
 };
 
@@ -231,5 +360,45 @@ const bicubicABGR = (src: PackedBuffer, sample: IntSampler): IntSampler => {
                     (mixBicubicChan(u8, u, v, 3) << 24)
             ) >>> 0
         );
+    };
+};
+
+const bicubicFloat = (
+    { stride }: FloatBuffer,
+    sample: FloatSampler
+): FloatSampler => {
+    const f32 = new Float32Array(stride * 16);
+    return (x, y) => {
+        x -= 0.5;
+        y -= 0.5;
+        const x1 = x - 1;
+        const x2 = x + 1;
+        const x3 = x + 2;
+        const y1 = y - 1;
+        const y2 = y + 1;
+        const y3 = y + 2;
+        const u = fract(x);
+        const v = fract(y);
+        f32.set(sample(x1, y1), 0);
+        f32.set(sample(x, y1), stride);
+        f32.set(sample(x2, y1), 2 * stride);
+        f32.set(sample(x3, y1), 3 * stride);
+        f32.set(sample(x1, y), 4 * stride);
+        f32.set(sample(x, y), 5 * stride);
+        f32.set(sample(x2, y), 6 * stride);
+        f32.set(sample(x3, y), 7 * stride);
+        f32.set(sample(x1, y2), 8 * stride);
+        f32.set(sample(x, y2), 9 * stride);
+        f32.set(sample(x2, y2), 10 * stride);
+        f32.set(sample(x3, y2), 11 * stride);
+        f32.set(sample(x1, y3), 12 * stride);
+        f32.set(sample(x, y3), 13 * stride);
+        f32.set(sample(x2, y3), 14 * stride);
+        f32.set(sample(x3, y3), 15 * stride);
+        let res = [];
+        for (let i = 0; i < stride; i++) {
+            res.push(mixBicubicChan(f32, u, v, i, stride, -Infinity, Infinity));
+        }
+        return res;
     };
 };

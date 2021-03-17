@@ -1,17 +1,24 @@
-import { assert, Fn, ICopy, IEmpty, NumericArray } from "@thi.ng/api";
-import { isNumber } from "@thi.ng/checks";
+import { assert, Fn2, ICopy, IEmpty, NumericArray } from "@thi.ng/api";
+import { isNumber, isString } from "@thi.ng/checks";
 import { clamp01 } from "@thi.ng/math";
 import type {
     BlendFnFloat,
     BlitOpts,
+    Filter,
     FloatFormat,
     FloatFormatSpec,
+    FloatSampler,
+    IBlend,
+    IBlit,
+    IInvert,
     IPixelBuffer,
+    IResizable,
     PackedFormat,
 } from "./api";
 import { defFloatFormat } from "./format/float-format";
 import { FLOAT_GRAY } from "./format/float-gray";
 import { PackedBuffer } from "./packed";
+import { defSampler } from "./sample";
 import { clampRegion, ensureChannel, ensureSize, prepRegions } from "./utils";
 
 /**
@@ -43,6 +50,10 @@ export function floatBuffer(...args: any[]) {
 export class FloatBuffer
     implements
         IPixelBuffer<Float32Array, NumericArray>,
+        IResizable<FloatBuffer, FloatSampler>,
+        IBlend<FloatBuffer, BlendFnFloat>,
+        IBlit<FloatBuffer>,
+        IInvert<FloatBuffer>,
         ICopy<FloatBuffer>,
         IEmpty<FloatBuffer> {
     /**
@@ -263,10 +274,10 @@ export class FloatBuffer
         });
     }
 
-    forEach(f: Fn<NumericArray, void>) {
+    forEach(f: Fn2<NumericArray, number, NumericArray>) {
         const { pixels, stride } = this;
-        for (let i = 0, n = pixels.length; i < n; i + stride) {
-            f(pixels.subarray(i, i + stride));
+        for (let i = 0, j = 0, n = pixels.length; i < n; i += stride, j++) {
+            pixels.set(f(pixels.subarray(i, i + stride), j), i);
         }
         return this;
     }
@@ -305,29 +316,41 @@ export class FloatBuffer
         return this;
     }
 
-    /**
-     * Returns new buffer of downscaled version (by given integer factor) using
-     * simple nearest neighbor sampling.
-     *
-     * @param res
-     */
-    downsample(res: number) {
-        res |= 0;
-        const { width, height, stride, pixels: sbuf } = this;
-        const dest = new FloatBuffer(
-            (width / res) | 0,
-            (height / res) | 0,
-            this.format
-        );
-        const { width: dwidth, height: dheight, pixels: dbuf } = dest;
-        res *= stride;
-        for (let y = 0, i = 0; y < dheight; y++) {
-            for (
-                let x = 0, j = y * res * width;
-                x < dwidth;
-                x++, i += stride, j += res
-            ) {
-                dbuf.set(sbuf.subarray(j, j + stride), i);
+    invert() {
+        const { pixels, format, stride } = this;
+        for (
+            let i = 0,
+                n = pixels.length,
+                m = format.alpha ? stride - 1 : stride;
+            i < n;
+            i += stride
+        ) {
+            for (let j = 0; j < m; j++) pixels[i + j] = 1 - pixels[i + j];
+        }
+        return this;
+    }
+
+    scale(scale: number, sampler?: FloatSampler | Filter) {
+        assert(scale > 0, `scale must be > 0`);
+        return this.resize(this.width * scale, this.height * scale, sampler);
+    }
+
+    resize(w: number, h: number, sampler: FloatSampler | Filter = "linear") {
+        w |= 0;
+        h |= 0;
+        assert(w > 0 && h > 0, `target width & height must be > 0`);
+        const dest = floatBuffer(w, h, this.format);
+        const dpix = dest.pixels;
+        const scaleX = w > 0 ? this.width / w : 0;
+        const scaleY = h > 0 ? this.height / h : 0;
+        const stride = this.stride;
+        sampler = isString(sampler)
+            ? defSampler(this, sampler, "repeat")
+            : sampler;
+        for (let y = 0, i = 0; y < h; y++) {
+            const yy = y * scaleY;
+            for (let x = 0; x < w; x++, i += stride) {
+                dpix.set(sampler(x * scaleX, yy), i);
             }
         }
         return dest;
