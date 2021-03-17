@@ -73,12 +73,13 @@ yarn add @thi.ng/soa
 <script src="https://unpkg.com/@thi.ng/soa/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.42 KB / CJS: 1.49 KB / UMD: 1.59 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.41 KB / CJS: 1.49 KB / UMD: 1.59 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/transducers-binary](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 

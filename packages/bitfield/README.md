@@ -44,12 +44,13 @@ yarn add @thi.ng/bitfield
 <script src="https://unpkg.com/@thi.ng/bitfield/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.17 KB / CJS: 1.22 KB / UMD: 1.31 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.14 KB / CJS: 1.19 KB / UMD: 1.29 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 
 ## API

@@ -85,7 +85,7 @@ yarn add @thi.ng/dcons
 <script src="https://unpkg.com/@thi.ng/dcons/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.12 KB / CJS: 2.21 KB / UMD: 2.31 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.11 KB / CJS: 2.19 KB / UMD: 2.29 KB
 
 ## Dependencies
 
