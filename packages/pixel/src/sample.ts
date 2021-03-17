@@ -1,18 +1,14 @@
-import {
-    assert,
-    FloatArray,
-    Fn,
-    FnU2,
-    IObjectOf,
-    NumericArray,
-} from "@thi.ng/api";
-import { clamp, fmod, fract, mixBilinear, mixBicubic } from "@thi.ng/math";
-import type { Filter, IPixelBuffer, Wrap } from "./api";
+import { assert, Fn, IObjectOf, NumericArray } from "@thi.ng/api";
+import { clamp, fmod, fract, mixBicubic, mixBilinear } from "@thi.ng/math";
+import type {
+    Filter,
+    FloatSampler,
+    IntSampler,
+    IPixelBuffer,
+    Wrap,
+} from "./api";
 import type { FloatBuffer } from "./float";
 import type { PackedBuffer } from "./packed";
-
-type IntSampler = FnU2<number>;
-type FloatSampler = FnU2<number, FloatArray>;
 
 export function defSampler(
     src: PackedBuffer,
@@ -188,7 +184,9 @@ const mixBicubicChan = (
     u: number,
     v: number,
     i: number,
-    s = 4
+    s = 4,
+    min = 0,
+    max = 255
 ) =>
     clamp(
         mixBicubic(
@@ -211,14 +209,14 @@ const mixBicubicChan = (
             u,
             v
         ),
-        0,
-        255
+        min,
+        max
     );
 
 const bicubicABGR = (src: PackedBuffer, sample: IntSampler): IntSampler => {
     const { fromABGR, toABGR } = src.format;
-    const buf32 = new Uint32Array(16);
-    const buf8 = new Uint8Array(buf32.buffer);
+    const u32 = new Uint32Array(16);
+    const u8 = new Uint8Array(u32.buffer);
     return (x, y) => {
         x -= 0.5;
         y -= 0.5;
@@ -230,28 +228,28 @@ const bicubicABGR = (src: PackedBuffer, sample: IntSampler): IntSampler => {
         const y3 = y + 2;
         const u = fract(x);
         const v = fract(y);
-        buf32[0] = toABGR(sample(x1, y1));
-        buf32[1] = toABGR(sample(x, y1));
-        buf32[2] = toABGR(sample(x2, y1));
-        buf32[3] = toABGR(sample(x3, y1));
-        buf32[4] = toABGR(sample(x1, y));
-        buf32[5] = toABGR(sample(x, y));
-        buf32[6] = toABGR(sample(x2, y));
-        buf32[7] = toABGR(sample(x3, y));
-        buf32[8] = toABGR(sample(x1, y2));
-        buf32[9] = toABGR(sample(x, y2));
-        buf32[10] = toABGR(sample(x2, y2));
-        buf32[11] = toABGR(sample(x3, y2));
-        buf32[12] = toABGR(sample(x1, y3));
-        buf32[13] = toABGR(sample(x, y3));
-        buf32[14] = toABGR(sample(x2, y3));
-        buf32[15] = toABGR(sample(x3, y3));
+        u32[0] = toABGR(sample(x1, y1));
+        u32[1] = toABGR(sample(x, y1));
+        u32[2] = toABGR(sample(x2, y1));
+        u32[3] = toABGR(sample(x3, y1));
+        u32[4] = toABGR(sample(x1, y));
+        u32[5] = toABGR(sample(x, y));
+        u32[6] = toABGR(sample(x2, y));
+        u32[7] = toABGR(sample(x3, y));
+        u32[8] = toABGR(sample(x1, y2));
+        u32[9] = toABGR(sample(x, y2));
+        u32[10] = toABGR(sample(x2, y2));
+        u32[11] = toABGR(sample(x3, y2));
+        u32[12] = toABGR(sample(x1, y3));
+        u32[13] = toABGR(sample(x, y3));
+        u32[14] = toABGR(sample(x2, y3));
+        u32[15] = toABGR(sample(x3, y3));
         return (
             fromABGR(
-                (mixBicubicChan(buf8, u, v, 3) << 24) |
-                    (mixBicubicChan(buf8, u, v, 2) << 16) |
-                    (mixBicubicChan(buf8, u, v, 1) << 8) |
-                    mixBicubicChan(buf8, u, v, 0)
+                mixBicubicChan(u8, u, v, 0) |
+                    (mixBicubicChan(u8, u, v, 1) << 8) |
+                    (mixBicubicChan(u8, u, v, 2) << 16) |
+                    (mixBicubicChan(u8, u, v, 3) << 24)
             ) >>> 0
         );
     };

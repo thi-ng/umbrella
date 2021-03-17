@@ -4,6 +4,7 @@ import type {
     Fn2,
     Fn3,
     FnN,
+    FnU2,
     IObjectOf,
     NumericArray,
     TypedArray,
@@ -439,3 +440,7 @@ export interface NormalMapOpts {
      */
     z: number;
 }
+
+export type IntSampler = FnU2<number>;
+
+export type FloatSampler = FnU2<number, FloatArray>;

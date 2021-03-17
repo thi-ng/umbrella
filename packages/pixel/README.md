@@ -150,7 +150,7 @@ sampler(-1.1, 0.5).toString(16)
 // 'ff79643a'
 
 // resize image to 1024x256 using bicubic sampling
-const img = resize(src, 1024, 256, "cubic");
+const img = src.resize(1024, 256, "cubic");
 ```
 
 | Filter      |                                                                                                                                          |
@@ -259,7 +259,7 @@ yarn add @thi.ng/pixel
 <script src="https://unpkg.com/@thi.ng/pixel/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 8.17 KB / CJS: 8.45 KB / UMD: 8.20 KB
+Package sizes (gzipped, pre-treeshake): ESM: 8.19 KB / CJS: 8.47 KB / UMD: 8.22 KB
 
 ## Dependencies
 

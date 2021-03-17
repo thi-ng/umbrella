@@ -1,4 +1,5 @@
 import {
+    assert,
     Fn,
     ICopy,
     IEmpty,
@@ -6,7 +7,7 @@ import {
     UIntArray,
     uintTypeForBits,
 } from "@thi.ng/api";
-import { isNumber } from "@thi.ng/checks";
+import { isNumber, isString } from "@thi.ng/checks";
 import {
     isPremultipliedInt,
     postmultiplyInt,
@@ -17,6 +18,8 @@ import {
     BayerSize,
     BlendFnInt,
     BlitOpts,
+    Filter,
+    IntSampler,
     IPixelBuffer,
     Lane,
     PackedChannel,
@@ -28,6 +31,7 @@ import { compileGrayFromABGR, compileGrayToABGR } from "./codegen";
 import { defBayer } from "./dither";
 import { ABGR8888 } from "./format/abgr8888";
 import { defPackedFormat } from "./format/packed-format";
+import { defSampler } from "./sample";
 import {
     clampRegion,
     ensureChannel,
@@ -425,27 +429,32 @@ export class PackedBuffer
     }
 
     /**
-     * Returns new buffer of downscaled version (by given integer factor) using
-     * simple nearest neighbor sampling.
+     * Returns scaled version of this buffer using given sampler or filter
+     * (default: `"linear"`) for interpolation. Syntax sugar for
+     * {@link PackedBuffer.resize}.
      *
-     * @param res
+     * @param scale
      */
-    downsample(res: number) {
-        res |= 0;
-        const { width, height, pixels: sbuf } = this;
-        const dest = new PackedBuffer(
-            (width / res) | 0,
-            (height / res) | 0,
-            this.format
-        );
-        const { width: dwidth, height: dheight, pixels: dbuf } = dest;
-        for (let y = 0, i = 0; y < dheight; y++) {
-            for (
-                let x = 0, j = y * res * width;
-                x < dwidth;
-                x++, i++, j += res
-            ) {
-                dbuf[i] = sbuf[j];
+    scale(scale: number, sampler: IntSampler | Filter = "linear") {
+        assert(scale > 0, `scale must be > 0`);
+        return this.resize(this.width * scale, this.height * scale, sampler);
+    }
+
+    resize(w: number, h: number, sampler: IntSampler | Filter = "linear") {
+        w |= 0;
+        h |= 0;
+        assert(w > 0 && h > 0, `target width & height must be > 0`);
+        const dest = packedBuffer(w, h, this.format);
+        const dpix = dest.pixels;
+        const scaleX = w > 0 ? this.width / w : 0;
+        const scaleY = h > 0 ? this.height / h : 0;
+        sampler = isString(sampler)
+            ? defSampler(this, sampler, "repeat")
+            : sampler;
+        for (let y = 0, i = 0; y < h; y++) {
+            const yy = y * scaleY;
+            for (let x = 0; x < w; x++, i++) {
+                dpix[i] = sampler(x * scaleX, yy);
             }
         }
         return dest;

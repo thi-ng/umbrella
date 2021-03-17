@@ -131,7 +131,7 @@ sampler(-1.1, 0.5).toString(16)
 // 'ff79643a'
 
 // resize image to 1024x256 using bicubic sampling
-const img = resize(src, 1024, 256, "cubic");
+const img = src.resize(1024, 256, "cubic");
 ```
 
 | Filter      |                                                                                                                                          |
