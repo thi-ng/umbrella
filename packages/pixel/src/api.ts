@@ -28,7 +28,7 @@ export type Wrap = "clamp" | "wrap" | "repeat";
 /**
  * Filtered access types (currently unused)
  */
-export type Filter = "nearest" | "linear";
+export type Filter = "nearest" | "linear" | "cubic";
 
 /**
  * Blend function (for packed integers) given to IBlend implementations.

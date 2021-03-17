@@ -9,12 +9,13 @@ export const resize = (
     filter: Filter = "linear"
 ) => {
     const dest = packedBuffer(w, h, src.format);
-    const s = defSampler(src, filter, "clamp");
-    const scaleX = (src.width - 1) / (w - 1);
-    const scaleY = (src.height - 1) / (h - 1);
+    const sample = defSampler(src, filter, "repeat");
+    const scaleX = w > 0 ? src.width / w : 0;
+    const scaleY = h > 0 ? src.height / h : 0;
     for (let y = 0, i = 0; y < h; y++) {
+        const yy = y * scaleY;
         for (let x = 0; x < w; x++, i++) {
-            dest.pixels[i] = s(x * scaleX, y * scaleY);
+            dest.pixels[i] = sample(x * scaleX, yy);
         }
     }
     return dest;
