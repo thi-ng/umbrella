@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/distance@0.1.8...@thi.ng/distance@0.1.9) (2021-03-17)
+
+
+### Bug Fixes
+
+* **distance:** update KNearest ctor & heap handling ([#283](https://github.com/thi-ng/umbrella/issues/283)) ([e7cd6f1](https://github.com/thi-ng/umbrella/commit/e7cd6f134bb05d5d5e37e7e7ba241f984d94d98c))
+
+
+
+
+
 ## [0.1.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/distance@0.1.7...@thi.ng/distance@0.1.8) (2021-03-12)
 
 **Note:** Version bump only for package @thi.ng/distance

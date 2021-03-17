@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/ksuid",
-    "version": "0.1.7",
+    "version": "0.1.8",
     "description": "Configurable K-sortable unique identifiers, binary & base-N encoded",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -53,7 +53,7 @@
         "@thi.ng/api": "^7.1.4",
         "@thi.ng/base-n": "^0.1.6",
         "@thi.ng/random": "^2.3.6",
-        "@thi.ng/strings": "^1.15.5"
+        "@thi.ng/strings": "^1.15.6"
     },
     "files": [
         "*.js",

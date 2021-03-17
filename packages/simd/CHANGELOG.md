@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/simd@0.4.23...@thi.ng/simd@0.4.24) (2021-03-17)
+
+**Note:** Version bump only for package @thi.ng/simd
+
+
+
+
+
 ## [0.4.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/simd@0.4.22...@thi.ng/simd@0.4.23) (2021-03-12)
 
 **Note:** Version bump only for package @thi.ng/simd

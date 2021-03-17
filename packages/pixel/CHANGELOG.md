@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.7.4...@thi.ng/pixel@0.8.0) (2021-03-17)
+
+
+### Features
+
+* **pixel:** add bicubic samplers, fix resize() ([951fa9e](https://github.com/thi-ng/umbrella/commit/951fa9e1263db6f165dcaee3c951c09b43e42fef))
+* **pixel:** add defIndexed() HOF pixel format ([c13a568](https://github.com/thi-ng/umbrella/commit/c13a5687fac6d08c14d80f380b5c664422b18a3e))
+* **pixel:** add defSampler(), resize() ([aa71eb7](https://github.com/thi-ng/umbrella/commit/aa71eb7a2ccf02fa543c68308371143882ae5e5f)), closes [#256](https://github.com/thi-ng/umbrella/issues/256)
+* **pixel:** add float format samplers, update various types ([6f9dae6](https://github.com/thi-ng/umbrella/commit/6f9dae6010118e491ed161fa4a5bd40ec4719ad4))
+
+
+
+
+
 ## [0.7.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.7.3...@thi.ng/pixel@0.7.4) (2021-03-12)
 
 **Note:** Version bump only for package @thi.ng/pixel

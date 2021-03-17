@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/porter-duff",
-    "version": "0.1.43",
+    "version": "0.1.44",
     "description": "Porter-Duff operators for packed ints & float-array alpha compositing",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -50,7 +50,7 @@
     },
     "dependencies": {
         "@thi.ng/api": "^7.1.4",
-        "@thi.ng/math": "^3.2.5"
+        "@thi.ng/math": "^3.3.0"
     },
     "files": [
         "*.js",

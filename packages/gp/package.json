@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/gp",
-    "version": "0.2.12",
+    "version": "0.2.13",
     "description": "Genetic programming helpers & strategies (tree based & multi-expression programming)",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -50,10 +50,10 @@
     },
     "dependencies": {
         "@thi.ng/api": "^7.1.4",
-        "@thi.ng/math": "^3.2.5",
+        "@thi.ng/math": "^3.3.0",
         "@thi.ng/random": "^2.3.6",
-        "@thi.ng/transducers": "^7.6.6",
-        "@thi.ng/zipper": "^0.1.42"
+        "@thi.ng/transducers": "^7.6.7",
+        "@thi.ng/zipper": "^0.1.43"
     },
     "files": [
         "*.js",

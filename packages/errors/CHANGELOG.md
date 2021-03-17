@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/errors@1.2.32...@thi.ng/errors@1.3.0) (2021-03-17)
+
+
+### Features
+
+* **errors:** add ensureIndex2(), update outOfBounds() arg type ([ab007d6](https://github.com/thi-ng/umbrella/commit/ab007d6b502c3d1650c7e9cf50da05f0ac042ef3))
+* **errors:** add outOfBounds(), ensureIndex() ([fb5ca0a](https://github.com/thi-ng/umbrella/commit/fb5ca0a7f8a4a6648d3c8485a9108e9154ee4400))
+
+
+
+
+
 ## [1.2.32](https://github.com/thi-ng/umbrella/compare/@thi.ng/errors@1.2.31...@thi.ng/errors@1.2.32) (2021-03-12)
 
 **Note:** Version bump only for package @thi.ng/errors

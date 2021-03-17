@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@3.2.5...@thi.ng/math@3.3.0) (2021-03-17)
+
+
+### Features
+
+* **math:** add mixBicubic(), mixCubicHermiteFromPoints() ([30dda42](https://github.com/thi-ng/umbrella/commit/30dda424cc1a433a71dfa762f0b8c453114466a0))
+
+
+### Performance Improvements
+
+* **math:** replace mixBilinear() w/ inline impl ([bb16dc5](https://github.com/thi-ng/umbrella/commit/bb16dc591dd9455b8d0061a664375a9dc8c74a36))
+
+
+
+
+
 ## [3.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@3.2.4...@thi.ng/math@3.2.5) (2021-03-12)
 
 **Note:** Version bump only for package @thi.ng/math

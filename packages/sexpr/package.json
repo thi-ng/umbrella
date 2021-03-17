@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/sexpr",
-    "version": "0.2.39",
+    "version": "0.2.40",
     "description": "Extensible S-Expression parser & runtime infrastructure",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -51,7 +51,7 @@
     "dependencies": {
         "@thi.ng/api": "^7.1.4",
         "@thi.ng/checks": "^2.9.5",
-        "@thi.ng/defmulti": "^1.3.10"
+        "@thi.ng/defmulti": "^1.3.11"
     },
     "files": [
         "*.js",
