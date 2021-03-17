@@ -13,6 +13,9 @@ This project is part of the
   - [WIP features](#wip-features)
   - [Packed integer pixel formats](#packed-integer-pixel-formats)
   - [Floating point pixel formats](#floating-point-pixel-formats)
+  - [Filtered image sampling and resizing](#filtered-image-sampling-and-resizing)
+    - [Filters](#filters)
+    - [Wrap mode](#wrap-mode)
   - [Strided convolution & pooling](#strided-convolution--pooling)
   - [Normal map generation](#normal-map-generation)
   - [Status](#status)
@@ -44,7 +47,7 @@ Typedarray integer & float pixel buffers w/ customizable formats, blitting, dith
 - Convolution kernel & pooling kernels presets
 - Customizable normal map generation (i.e. X/Y gradients plus static Z component)
 - Inversion
-- Image downsampling (nearest neighbor, mean/min/max pooling)
+- Image sampling, resizing, pooling (nearest neighbor, bilinear, bicubic, mean/min/max pooling)
 - XY full pixel & channel-only accessors
 - 12 packed integer and 6 floating point preset formats (see table below)
 - Ordered dithering w/ customizable Bayer matrix size and target color
@@ -115,6 +118,46 @@ formats can be defined via `defFloatFormat()`.
   conversion to packed int formats assumed to contain normalized data (i.e.
   [0..1] interval, with exception of `FLOAT_NORMAL` which uses [-1..1] range)
 - Conversion between float formats is currently unsupported
+
+### Filtered image sampling and resizing
+
+Currently only available for integer formats, image samplers can be created with
+the following filters & wrap modes:
+
+#### Filters
+
+- `"nearest"` - nearest neighbor
+- `"linear"` - bilinear interpolation
+- `"cubic"` - bicubic interpolation
+
+#### Wrap mode
+
+- `"clamp"` - outside values return 0
+- `"wrap"` - infinite tiling
+- `"repeat"` - edge pixels are repeated
+
+```ts
+const src = packedBuffer(4, 4, ABGR8888);
+
+// fill w/ random colors
+src.pixels.forEach((_,i) => src.pixels[i] = 0xff << 24 | (Math.random() * 0xffffff));
+
+// create bilinear sampler w/ repeated edge pixels
+const sampler = defSampler(src, "linear", "repeat");
+
+// sample at fractional positions (even outside image)
+sampler(-1.1, 0.5).toString(16)
+// 'ff79643a'
+
+// resize image to 1024x256 using bicubic sampling
+const img = resize(src, 1024, 256, "cubic");
+```
+
+| Filter      |                                                                                                                                          |
+|-------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| `"nearest"` | ![resized image w/ nearest neighbor sampling](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/resize-nearest.png) |
+| `"linear"`  | ![resized image w/ bilinear sampling](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/resize-bilinear.jpg)        |
+| `"cubic"`   | ![resized image w/ bicubic sampling](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/resize-bicubic.jpg)          |
 
 ### Strided convolution & pooling
 
@@ -216,7 +259,7 @@ yarn add @thi.ng/pixel
 <script src="https://unpkg.com/@thi.ng/pixel/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 7.18 KB / CJS: 7.45 KB / UMD: 7.29 KB
+Package sizes (gzipped, pre-treeshake): ESM: 8.17 KB / CJS: 8.45 KB / UMD: 8.20 KB
 
 ## Dependencies
 
