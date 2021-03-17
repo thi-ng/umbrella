@@ -121,8 +121,8 @@ formats can be defined via `defFloatFormat()`.
 
 ### Filtered image sampling and resizing
 
-Currently only available for integer formats, image samplers can be created with
-the following filters & wrap modes:
+Available (and optimized) for both integer & floating point formats, image
+samplers can be created with the following filters & wrap modes:
 
 #### Filters
 
@@ -259,7 +259,7 @@ yarn add @thi.ng/pixel
 <script src="https://unpkg.com/@thi.ng/pixel/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 8.19 KB / CJS: 8.47 KB / UMD: 8.22 KB
+Package sizes (gzipped, pre-treeshake): ESM: 8.69 KB / CJS: 8.96 KB / UMD: 8.70 KB
 
 ## Dependencies
 

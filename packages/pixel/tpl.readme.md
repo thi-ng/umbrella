@@ -102,8 +102,8 @@ formats can be defined via `defFloatFormat()`.
 
 ### Filtered image sampling and resizing
 
-Currently only available for integer formats, image samplers can be created with
-the following filters & wrap modes:
+Available (and optimized) for both integer & floating point formats, image
+samplers can be created with the following filters & wrap modes:
 
 #### Filters
 
