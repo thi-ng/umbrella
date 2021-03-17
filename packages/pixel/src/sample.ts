@@ -75,6 +75,14 @@ const sampleINR = ({ pixels, width, height }: PackedBuffer): IntSampler => {
     return (x, y) => pixels[clamp(y | 0, 0, h1) * width + clamp(x | 0, 0, w1)];
 };
 
+const mixBilinearChan = (
+    buf: NumericArray,
+    u: number,
+    v: number,
+    i: number,
+    s = 4
+) => mixBilinear(buf[i], buf[i + s], buf[i + 2 * s], buf[i + 3 * s], u, v);
+
 const bilinearGray = (sample: IntSampler): IntSampler => (x, y) => {
     x -= 0.5;
     y -= 0.5;
@@ -90,52 +98,23 @@ const bilinearGray = (sample: IntSampler): IntSampler => (x, y) => {
 
 const bilinearABGR = (src: PackedBuffer, sample1: IntSampler): IntSampler => {
     const { fromABGR, toABGR } = src.format;
+    const u32 = new Uint32Array(4);
+    const u8 = new Uint8Array(u32.buffer);
     return (x, y) => {
         x -= 0.5;
         y -= 0.5;
-        const p1 = toABGR(sample1(x, y));
-        const p2 = toABGR(sample1(x + 1, y));
-        const p3 = toABGR(sample1(x, y + 1));
-        const p4 = toABGR(sample1(x + 1, y + 1));
+        u32[0] = toABGR(sample1(x, y));
+        u32[1] = toABGR(sample1(x + 1, y));
+        u32[2] = toABGR(sample1(x, y + 1));
+        u32[3] = toABGR(sample1(x + 1, y + 1));
         const u = fract(x);
         const v = fract(y);
         return (
             fromABGR(
-                (mixBilinear(
-                    p1 >>> 24,
-                    p2 >>> 24,
-                    p3 >>> 24,
-                    p4 >>> 24,
-                    u,
-                    v
-                ) <<
-                    24) |
-                    (mixBilinear(
-                        (p1 >> 16) & 0xff,
-                        (p2 >> 16) & 0xff,
-                        (p3 >> 16) & 0xff,
-                        (p4 >> 16) & 0xff,
-                        u,
-                        v
-                    ) <<
-                        16) |
-                    (mixBilinear(
-                        (p1 >> 8) & 0xff,
-                        (p2 >> 8) & 0xff,
-                        (p3 >> 8) & 0xff,
-                        (p4 >> 8) & 0xff,
-                        u,
-                        v
-                    ) <<
-                        8) |
-                    mixBilinear(
-                        p1 & 0xff,
-                        p2 & 0xff,
-                        p3 & 0xff,
-                        p4 & 0xff,
-                        u,
-                        v
-                    )
+                mixBilinearChan(u8, u, v, 0) |
+                    (mixBilinearChan(u8, u, v, 1) << 8) |
+                    (mixBilinearChan(u8, u, v, 2) << 16) |
+                    (mixBilinearChan(u8, u, v, 3) << 24)
             ) >>> 0
         );
     };
