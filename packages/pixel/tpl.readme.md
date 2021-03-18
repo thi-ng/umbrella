@@ -24,27 +24,21 @@ ${pkg.description}
 - Pre/post-multiply alpha
 - Region / sub-image extraction
 - Single-channel manipulation / extraction / replacement / conversion
+- Accessors for normalized channel value
+- Image sampling, resizing, pooling
+  - Filters: nearest neighbor, bilinear, bicubic
+  - Wrap behaviors: clamp, wrap, repeat
+  - Pooling: mean/min/max
+- Invert image
 - Convolution w/ arbitrary shaped/sized kernels, pooling, striding (resizing)
 - Convolution kernel & pooling kernels presets
 - Customizable normal map generation (i.e. X/Y gradients plus static Z component)
-- Inversion
-- Image sampling, resizing, pooling (nearest neighbor, bilinear, bicubic, mean/min/max pooling)
 - XY full pixel & channel-only accessors
 - 12 packed integer and 6 floating point preset formats (see table below)
 - Ordered dithering w/ customizable Bayer matrix size and target color
   steps (int formats only)
 - Declarative custom format & optimized code generation
 - HTML canvas creation & `ImageData` utilities
-
-### WIP features
-
-- [x] Accessors for normalized channel value
-- [x] Pre/Post-multipy (only if alpha is available)
-- [x] Re-add strided float buffers / formats
-- [x] Dithering
-- Readonly texture sampling abstraction
-    - [ ] Wrap-around behaviors
-    - [ ] Filtered access (bilinear interpolation)
 
 ### Packed integer pixel formats
 
