@@ -23,6 +23,7 @@ import {
     Vec2Sym,
     vec4,
 } from "@thi.ng/shader-ast";
+import { ABGR8888, defSampler, packedBuffer } from "@thi.ng/pixel";
 import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
 import {
     canvasRenderer,
@@ -124,6 +125,16 @@ if (JS_MODE) {
             y < 0 && (y += TH);
             return intAbgr32Srgb([], texData[y * TW + x]);
         };
+
+        // alternatively use custom image sampler to perform
+        // filtered texture lookups:
+        // const sampler = defSampler(
+        //     packedBuffer(TW, TH, ABGR8888, texData),
+        //     "linear",
+        //     "wrap"
+        // );
+        // JS_DEFAULT_ENV.sampler2D.texture = (_, uv) =>
+        //     intAbgr32Srgb([], sampler(uv[0] * TW, uv[1] * TH));
 
         // compile AST to actual JS:
         // under the hood all vector & matrix operations delegate to
