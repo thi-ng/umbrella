@@ -70,8 +70,8 @@ const convolve = ({
     strideY,
 }: ReturnType<typeof initConvolve>) => {
     ensureChannel(src.format, channel);
-    const maxY = src.height - kh2;
-    const maxX = src.width - kw2;
+    const maxY = src.height - kh2 + (kh2 & 1 ? 0 : 1);
+    const maxX = src.width - kw2 + (kw2 & 1 ? 0 : 1);
     const padX = pad && strideX === 1;
     const padY = pad && strideY === 1;
     const dpix = dest.pixels;
