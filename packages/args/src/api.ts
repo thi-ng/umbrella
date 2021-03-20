@@ -72,6 +72,12 @@ export interface ParseOpts {
      * @see {@link UsageOpts}
      */
     usageOpts: Partial<UsageOpts>;
+    /**
+     * Usage command option(s)
+     *
+     * @defaultValue ["--help"]
+     */
+    help: string[];
 }
 
 export interface UsageOpts {
@@ -99,6 +105,18 @@ export interface UsageOpts {
      * @defaultValue true
      */
     showDefaults: boolean;
+    /**
+     * Prefix content to show before list of options.
+     *
+     * @default empty string
+     */
+    prefix: string;
+    /**
+     * Suffix content to show after list of options.
+     *
+     * @default empty string
+     */
+    suffix: string;
 }
 
 /**

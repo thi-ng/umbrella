@@ -5,14 +5,12 @@ import { camel } from "@thi.ng/strings";
 import type { Args, ArgSpecExt, ParseOpts, ParseResult } from "./api";
 import { usage } from "./usage";
 
-const HELP = "--help";
-
 export const parse = <T extends IObjectOf<any>>(
     specs: Args<T>,
     argv: string[],
     opts?: Partial<ParseOpts>
 ): ParseResult<T> | undefined => {
-    opts = { start: 2, showUsage: true, ...opts };
+    opts = { start: 2, showUsage: true, help: ["--help", "-h"], ...opts };
     try {
         return parseOpts(specs, argv, opts);
     } catch (e) {
@@ -36,7 +34,7 @@ const parseOpts = <T extends IObjectOf<any>>(
     for (; i < argv.length; ) {
         const a = argv[i];
         if (!id) {
-            if (a === HELP) {
+            if (opts.help!.includes(a)) {
                 console.log(usage(specs, opts.usageOpts));
                 return;
             }
