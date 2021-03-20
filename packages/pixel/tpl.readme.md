@@ -115,7 +115,7 @@ samplers can be created with the following filters & wrap modes:
 const src = packedBuffer(4, 4, ABGR8888);
 
 // fill w/ random colors
-src.pixels.forEach((_,i) => src.pixels[i] = 0xff << 24 | (Math.random() * 0xffffff));
+src.forEach((_,i) => 0xff000000 | Math.random() * 0xffffff);
 
 // create bilinear sampler w/ repeated edge pixels
 const sampler = defSampler(src, "linear", "repeat");
@@ -168,9 +168,21 @@ Convolution can be applied to single, multiple or all channels of a
 `FloatBuffer`. See
 [`convolveChannel()`](https://docs.thi.ng/umbrella/pixel/modules.html#convolvechannel)
 and
-[`convolveImage()`](https://docs.thi.ng/umbrella/pixel/modules.html#convolveimage)
+[`convolveImage()`](https://docs.thi.ng/umbrella/pixel/modules.html#convolveimage).
 
-TODO add image & code example
+See
+[ConvolveOpts](https://docs.thi.ng/umbrella/pixel/interfaces/convolveopts.html)
+for config options.
+
+```js
+// convolutions are only available for float buffers (for now)
+src = floatBuffer(read("test.ppm"), FLOAT_RGB);
+
+// apply horizontal Sobel kernel preset to all channels
+// downscale image by factor 2 (must be integer)
+// scale kernel result values by factor 4
+convolveImage(src, { kernel: SOBEL_X, stride: 2, scale: 4 });
+```
 
 ### Normal map generation
 
