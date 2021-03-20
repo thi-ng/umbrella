@@ -54,7 +54,7 @@ export const usage = <T extends IObjectOf<any>>(
                       )
                     : "";
                 const defaults =
-                    opts.showDefaults && spec.default
+                    opts.showDefaults && spec.default !== undefined
                         ? ansi(
                               ` (default: ${stringify()(
                                   spec.defaultHint != undefined
