@@ -87,6 +87,13 @@ export const FORMATTERS: Record<string, FormatFn> = {
         const za = Math.abs(z);
         return `${z < 0 ? "-" : "+"}${Z2((za / 60) | 0)}:${Z2(za % 60)}`;
     },
+    /**
+     * Returns literal `"Z"` iff timezone offset is zero (UTC), else the same as
+     * `Z` formatter.
+     *
+     * @param d
+     */
+    ZZ: (d) => (d.getTimezoneOffset() === 0 ? "Z" : FORMATTERS.Z(d)),
 };
 
 /**
@@ -96,14 +103,18 @@ export const FORMATTERS: Record<string, FormatFn> = {
  * instead of local time (default).
  *
  * @remarks
- * See {@link FORMATTERS} for available date component format IDs.
+ * See {@link FORMATTERS} for available date component format IDs. To escape a
+ * formatter and use as a string literal, prefix the term with `\\`.
  *
  * @example
  * ```ts
  * const fmt = defFormat(["yyyy", "-", "MM", "-", "dd"]);
  *
  * fmt(new Date(2015, 3, 23))
- * // 2015-04-23
+ * // "2015-04-23"
+ *
+ * defFormat(["\\yyyy"])(new Date(2015, 3, 23))
+ * // "yyyy"
  * ```
  *
  * @param fmt
@@ -118,7 +129,9 @@ export const defFormat = (fmt: (string | FormatFn)[]) => (
         .map((x) => {
             let fmt: FormatFn;
             return typeof x === "string"
-                ? (fmt = FORMATTERS[x])
+                ? x.startsWith("\\")
+                    ? x.substr(1)
+                    : (fmt = FORMATTERS[x])
                     ? fmt(d)
                     : x
                 : typeof x === "function"
@@ -169,7 +182,17 @@ export const FMT_hms = defFormat(["h", ":", "mm", ":", "ss", " ", "A"]);
  * Format preset, e.g. `20200919-170801`
  */
 // prettier-ignore
-export const FMT_yyyyMMdd_HHmmss = defFormat(["yyyy", "MM", "dd", "-", "HH", "mm", "ss"]);
+export const FMT_yyyyMMdd_HHmmss = defFormat(
+    ["yyyy", "MM", "dd", "-", "HH", "mm", "ss"]
+);
+/**
+ * ISO8601 format preset (without millisecond term), e.g.
+ * `2020-09-19T17:08:01Z`
+ */
+// prettier-ignore
+export const FMT_ISO_SHORT = defFormat(
+    ["yyyy", "-", "MM", "-", "dd", "T", "HH", ":", "mm", ":", "ss", "ZZ"]
+);
 
 /**
  * Returns a time formatter for given FPS (frames / second, in [1..1000] range),
