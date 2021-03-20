@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.8.0...@thi.ng/pixel@0.8.1) (2021-03-20)
+
+
+### Bug Fixes
+
+* **pixel:** update convolve() for even kernel sizes ([b086224](https://github.com/thi-ng/umbrella/commit/b086224a51c0dd23b4cae1d158c1e1236328d445))
+
+
+
+
+
 # [0.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.7.4...@thi.ng/pixel@0.8.0) (2021-03-17)
 
 

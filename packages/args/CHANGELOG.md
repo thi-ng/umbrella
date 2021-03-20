@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/args@0.2.7...@thi.ng/args@0.3.0) (2021-03-20)
+
+
+### Features
+
+* **args:** update ParseOpts, UsageOpts ([6577c80](https://github.com/thi-ng/umbrella/commit/6577c806e246ecf8244b1af6a2cefc400a7eb365))
+
+
+
+
+
 ## [0.2.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/args@0.2.6...@thi.ng/args@0.2.7) (2021-03-17)
 
 **Note:** Version bump only for package @thi.ng/args

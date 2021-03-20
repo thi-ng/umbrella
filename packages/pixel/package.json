@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/pixel",
-    "version": "0.8.0",
+    "version": "0.8.1",
     "description": "Typedarray integer & float pixel buffers w/ customizable formats, blitting, dithering, convolution",
     "module": "./index.js",
     "main": "./lib/index.js",
