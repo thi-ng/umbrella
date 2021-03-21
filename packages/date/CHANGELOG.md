@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/date@0.2.11...@thi.ng/date@0.3.0) (2021-03-21)
+
+
+### Features
+
+* **date:** add/update formatters ([010e739](https://github.com/thi-ng/umbrella/commit/010e739f790209af67b5087a49aa390547b0fce1))
+
+
+
+
+
 ## [0.2.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/date@0.2.10...@thi.ng/date@0.2.11) (2021-03-12)
 
 **Note:** Version bump only for package @thi.ng/date

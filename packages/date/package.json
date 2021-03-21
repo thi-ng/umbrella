@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/date",
-    "version": "0.2.11",
+    "version": "0.3.0",
     "description": "Date/timestamp iterators, formatters, rounding",
     "module": "./index.js",
     "main": "./lib/index.js",
