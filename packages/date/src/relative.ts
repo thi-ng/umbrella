@@ -1,10 +1,10 @@
-import { assert } from "@thi.ng/api";
+import type { Period } from "./api";
 import { DateTime, dateTime } from "./datetime";
 
 /**
  * Takes a relative time `offset` string in plain english and an optional `base`
  * date (default: now). Parses `offset` and returns new date with relative
- * offset applied.
+ * offset applied. Returns `undefined` if parsing failed.
  *
  * @remarks
  * This function only handles the parsing and input normalization aspect for
@@ -13,19 +13,20 @@ import { DateTime, dateTime } from "./datetime";
  * The following input formats are supported:
  *
  * - `"tomorrow"` / `"yesterday"` - ±1 day
- * - `"<num><period><" ago">?"` - ±num periods, if `ago` is given, the offset
- *   will be applied towards the past
+ * - `"<num><period><" ago">?"` - ±num periods, if the `" ago"` suffix is given,
+ *   the offset will be applied towards the past
  *
  * If using the latter form:
  *
- * - `<num>` can be an positive integer or the strings `"next "`, `"a "` or `"an
- *   "`
+ * - `<num>` can be a positve integer or strings: `"next "`, `"a "` or `"an "`
  * - `<period>` can be:
+ *   - `ms` / `millis` / `millisecond` / `milliseconds`
  *   - `s` / `sec` / `secs` / `second` / `seconds`
  *   - `min` / `mins` / `minute` / `minutes`
  *   - `h` / `hour` / `hours`
  *   - `d` / `day` / `days`
- *   - `m` / `month` / `months`
+ *   - `w` / `week` / `weeks`
+ *   - `month` / `months`
  *   - `y` / `year` / `years`
  *
  * @param offset
@@ -33,7 +34,7 @@ import { DateTime, dateTime } from "./datetime";
  */
 export const parseRelative = (
     offset: string,
-    base: DateTime | Date | number = Date.now()
+    base?: DateTime | Date | number
 ) => {
     const epoch = dateTime(base);
     switch (offset) {
@@ -44,41 +45,52 @@ export const parseRelative = (
             epoch.decDay();
             return epoch;
         default: {
-            const match = /^(an? |next |\d+\s?)(s(?:(ecs?|onds?))?|min(?:(s|utes?))?|h(?:ours?)?|d(?:ays?)?|w(?:eeks?)?|m(?:onths?)?|y(?:ears?)?)(\s+ago)?$/.exec(
+            const match = /^(an? |next |\d+\s?)((ms|milli(?:(s?|seconds?)))|s(?:(ecs?|econds?))?|min(?:(s|utes?))?|h(?:ours?)?|d(?:ays?)?|w(?:eeks?)?|months?|y(?:ears?)?)(\s+ago)?$/.exec(
                 offset
             );
-            assert(!!match, `can't parse time offset string: '${offset}'`);
-            console.log(match);
-            const $num = match![1];
-            const num =
-                ($num === "next " || $num === "a " || $num === "an "
-                    ? 1
-                    : Number($num)) * (match![4] ? -1 : 1);
-            let period = match![2];
-            period =
-                period !== "s" && period.endsWith("s")
-                    ? period.substr(0, period.length - 1)
-                    : period;
-            period =
-                (<const>{
-                    s: "second",
-                    sec: "second",
-                    min: "minute",
-                    h: "hour",
-                    d: "day",
-                    w: "week",
-                    m: "month",
-                    y: "year",
-                })[period] || period;
-            return relative(num, <any>period, base);
+            return match
+                ? relative(
+                      parseNum(match![1], !!match[7]),
+                      parsePeriod(match![2]),
+                      base
+                  )
+                : undefined;
         }
     }
+};
+
+const parseNum = (x: string, past: boolean) =>
+    (x === "next " || x === "a " || x === "an " ? 1 : Number(x)) *
+    (past ? -1 : 1);
+
+const parsePeriod = (x: string) => {
+    x =
+        x !== "s" && x !== "ms" && x.endsWith("s")
+            ? x.substr(0, x.length - 1)
+            : x;
+    return <Period>{
+            ms: "t",
+            milli: "t",
+            millisecond: "t",
+            sec: "s",
+            second: "s",
+            min: "m",
+            minute: "m",
+            hour: "h",
+            day: "d",
+            week: "w",
+            month: "M",
+            year: "y",
+        }[x] || <Period>x;
 };
 
 /**
  * Applies the given relative offset (defined by `num` and `period`) to the
  * optionally given `base` date (default: now). If `num < 0` the new date will
  * be in the past.
+ *
+ * @remarks
+ * Note: This current implementation is O(n).
  *
  * @param num
  * @param period
@@ -87,23 +99,24 @@ export const parseRelative = (
  */
 export const relative = (
     num: number,
-    period: "second" | "minute" | "hour" | "day" | "week" | "month" | "year",
+    period: Period,
     base: DateTime | Date | number = Date.now()
 ) => {
     const op =
         (num > 0 ? "inc" : "dec") +
         (<const>{
-            second: "Second",
-            minute: "Minute",
-            hour: "Hour",
-            day: "Day",
-            week: "Week",
-            month: "Month",
-            year: "Year",
+            t: "Millisecond",
+            s: "Second",
+            m: "Minute",
+            h: "Hour",
+            d: "Day",
+            w: "Week",
+            M: "Month",
+            y: "Year",
         })[period]!;
+    const absNum = Math.abs(num);
     const epoch = dateTime(base);
-    num = Math.abs(num);
-    for (let i = 0; i < num; i++) {
+    for (let i = 0; i < absNum; i++) {
         // @ts-ignore
         epoch[op]();
     }

@@ -58,4 +58,6 @@ export type EpochIterator = IterableIterator<number>;
 
 export type Precision = "y" | "M" | "d" | "h" | "m" | "s" | "t";
 
+export type Period = Precision | "w";
+
 export type FormatFn = Fn<Date, string>;
