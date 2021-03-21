@@ -1,4 +1,4 @@
-import type { ICopy } from "@thi.ng/api";
+import type { ICompare, ICopy, IEqualsDelta, IEquiv } from "@thi.ng/api";
 import { DAYS_IN_MONTH, Precision } from "./api";
 
 export const dateTime = (epoch?: DateTime | Date | number, prec?: Precision) =>
@@ -8,7 +8,12 @@ export const dateTime = (epoch?: DateTime | Date | number, prec?: Precision) =>
  * Epoch abstraction with adjustable coarseness/precision. All date fields in
  * UTC only.
  */
-export class DateTime implements ICopy<DateTime> {
+export class DateTime
+    implements
+        ICopy<DateTime>,
+        ICompare<DateTime | Date | number>,
+        IEquiv,
+        IEqualsDelta<DateTime | Date | number> {
     t: number;
     s: number;
     m: number;
@@ -38,6 +43,22 @@ export class DateTime implements ICopy<DateTime> {
 
     getTime() {
         return Date.UTC(this.y, this.M, this.d, this.h, this.m, this.s, this.t);
+    }
+
+    compare(d: DateTime | Date | number) {
+        return this.getTime() - ensureDate(d).getTime();
+    }
+
+    equiv(o: any) {
+        return o instanceof DateTime ||
+            o instanceof Date ||
+            typeof o === "number"
+            ? this.compare(o) === 0
+            : false;
+    }
+
+    eqDelta(d: DateTime | Date | number, eps = 0) {
+        return Math.abs(this.getTime() - ensureDate(d).getTime()) <= eps;
     }
 
     daysInMonth() {
