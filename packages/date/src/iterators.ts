@@ -40,6 +40,15 @@ export const months = defIterator("M", (d) => d.incMonth());
 
 /**
  * Yields iterator of UTC timestamps in given semi-open interval in daily
+ * precision (each timestamp is 7 days apart).
+ *
+ * @param from
+ * @param to
+ */
+export const weeks = defIterator("d", (d) => d.incWeek());
+
+/**
+ * Yields iterator of UTC timestamps in given semi-open interval in daily
  * precision (each timestamp is at midnight/beginning of each day).
  *
  * @param from
