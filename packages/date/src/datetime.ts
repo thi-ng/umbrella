@@ -1,7 +1,7 @@
 import type { ICopy } from "@thi.ng/api";
 import { DAYS_IN_MONTH, Precision } from "./api";
 
-export const dateTime = (epoch?: Date | number, prec?: Precision) =>
+export const dateTime = (epoch?: DateTime | Date | number, prec?: Precision) =>
     new DateTime(epoch, prec);
 
 /**
@@ -61,10 +61,26 @@ export class DateTime implements ICopy<DateTime> {
         return this.t;
     }
 
+    decMillisecond() {
+        if (--this.t < 0) {
+            this.t = 999;
+            this.decSecond();
+        }
+        return this.t;
+    }
+
     incSecond() {
         if (++this.s > 59) {
             this.s = 0;
             this.incMinute();
+        }
+        return this.s;
+    }
+
+    decSecond() {
+        if (--this.s < 0) {
+            this.s = 59;
+            this.decMinute();
         }
         return this.s;
     }
@@ -77,10 +93,26 @@ export class DateTime implements ICopy<DateTime> {
         return this.m;
     }
 
+    decMinute() {
+        if (--this.m < 0) {
+            this.m = 59;
+            this.decHour();
+        }
+        return this.m;
+    }
+
     incHour() {
         if (++this.h > 23) {
             this.h = 0;
             this.incDay();
+        }
+        return this.h;
+    }
+
+    decHour() {
+        if (--this.h < 0) {
+            this.h = 23;
+            this.decDay();
         }
         return this.h;
     }
@@ -93,6 +125,33 @@ export class DateTime implements ICopy<DateTime> {
         return this.d;
     }
 
+    decDay() {
+        if (--this.d < 1) {
+            this.decMonth();
+            this.d = this.daysInMonth();
+        }
+        return this.d;
+    }
+
+    incWeek() {
+        this.d += 7;
+        const max = this.daysInMonth();
+        if (this.d > max) {
+            this.d -= max;
+            this.incMonth();
+        }
+        return this.d;
+    }
+
+    decWeek() {
+        this.d -= 7;
+        if (this.d < 1) {
+            this.decMonth();
+            this.d += this.daysInMonth();
+        }
+        return this.d;
+    }
+
     incMonth() {
         if (++this.M > 11) {
             this.M = 0;
@@ -101,9 +160,22 @@ export class DateTime implements ICopy<DateTime> {
         return this.M;
     }
 
+    decMonth() {
+        if (--this.M < 0) {
+            this.M = 11;
+            --this.y;
+        }
+        return this.M;
+    }
+
     incYear() {
         // TODO epoch overflow handling, throw error?
         return ++this.y;
+    }
+
+    decYear() {
+        // TODO epoch underflow handling, throw error?
+        return --this.y;
     }
 
     toDate() {
