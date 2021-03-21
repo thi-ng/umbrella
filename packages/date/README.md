@@ -45,7 +45,7 @@ yarn add @thi.ng/date
 <script src="https://unpkg.com/@thi.ng/date/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.75 KB / CJS: 1.91 KB / UMD: 1.90 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.82 KB / CJS: 1.98 KB / UMD: 1.96 KB
 
 ## Dependencies
 
@@ -120,7 +120,9 @@ a.daysInMonth()
 
 Custom date/time formatters can be assembled via
 [`defFormat()`](https://github.com/thi-ng/umbrella/blob/develop/packages/date/src/format.ts#L93),
-using the following partial format identifiers. The `MMM` and `E` formatters use the currently active [locale](#locale).
+using the following partial format identifiers. The `MMM` and `E` formatters use
+the currently active [locale](#locale). To escape a formatter and use as a
+string literal, prefix the term with `\\`.
 
 | ID     | Description                                 |
 |--------|---------------------------------------------|
@@ -141,11 +143,14 @@ using the following partial format identifiers. The `MMM` and `E` formatters use
 | `S`    | Unpadded millisecond of second              |
 | `A`    | 12-hour AM/PM marker                        |
 | `Z`    | Timezone offset in signed `HH:mm` format    |
+| `ZZ`   | Same as `Z`, but special handling for UTC   |
 
-<small>(Format IDs somewhat based on Java's [SimpleDateFormat](https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/text/SimpleDateFormat.html))</small>
+<small>(Format IDs somewhat based on Java's
+[SimpleDateFormat](https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/text/SimpleDateFormat.html))</small>
 
 The following preset formatters are available:
 
+- `FMT_ISO_SHORT` - `"2020-09-13T21:42:07Z"`
 - `FMT_yyyyMMdd` - `"2020-09-13"`
 - `FMT_Mdyyyy` - `"9/13/2020"`
 - `FMT_MMMdyyyy` - `"Sep 13 2020"`
@@ -170,7 +175,7 @@ arg (default: all `:`).
 
 ```ts
 a = defTimecode(30);
-a(HOUR + 2*MINUTE + 3*SECOND + 4*1000/30)
+a(1*HOUR + 2*MINUTE + 3*SECOND + 4*1000/30)
 // "01:02:03:04"
 
 a(DAY);
