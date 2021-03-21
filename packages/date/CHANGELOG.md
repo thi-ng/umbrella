@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/date@0.3.0...@thi.ng/date@0.4.0) (2021-03-21)
+
+
+### Features
+
+* **date:** add date decrement methods ([a52b89e](https://github.com/thi-ng/umbrella/commit/a52b89e717a64c78f4c9749fcba9f73e92476096))
+* **date:** add interface impls to DateTime ([e3417dd](https://github.com/thi-ng/umbrella/commit/e3417dd4c01b547a9831ada3af90fbb727e4b369))
+* **date:** add relative date offset parsing/apply ([5329538](https://github.com/thi-ng/umbrella/commit/53295382d1e9ac2f5d09ead9e223c49cd83cf203))
+* **date:** add weeks() iterator ([7ea9d1e](https://github.com/thi-ng/umbrella/commit/7ea9d1e66b9f20c1f54cd2610ef83f8e7a7a9470))
+* **date:** update relative date handling ([80d406c](https://github.com/thi-ng/umbrella/commit/80d406c09c02a3ebdd0a3e329841db30d47fc3a8))
+
+
+
+
+
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/date@0.2.11...@thi.ng/date@0.3.0) (2021-03-21)
 
 
