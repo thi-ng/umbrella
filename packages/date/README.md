@@ -15,6 +15,7 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [API](#api)
   - [DateTime & iterators](#datetime--iterators)
+  - [Relative dates](#relative-dates)
   - [Formatters](#formatters)
   - [Timecodes](#timecodes)
   - [Locales](#locales)
@@ -23,7 +24,7 @@ This project is part of the
 
 ## About
 
-Date/timestamp iterators, formatters, rounding.
+Date/timestamp iterators, composable formatters, relative date parsing, rounding.
 
 ### Status
 
@@ -45,7 +46,7 @@ yarn add @thi.ng/date
 <script src="https://unpkg.com/@thi.ng/date/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.82 KB / CJS: 1.98 KB / UMD: 1.96 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.45 KB / CJS: 2.63 KB / UMD: 2.58 KB
 
 ## Dependencies
 
@@ -114,6 +115,27 @@ a.daysInMonth()
 //   '2020-08-01',
 //   '2020-09-01'
 // ]
+```
+
+### Relative dates
+
+Relative dates can be obtained via
+[`parseRelatie()`](https://docs.thi.ng/umbrella/date/modules.html#parserelative)
+or [`relative()`](https://docs.thi.ng/umbrella/date/modules.html#relative).
+
+```ts
+const now = dateTime();
+// DateTime { y: 2021, M: 2, d: 21, h: 14, m: 26, s: 0, t: 661 }
+
+// see the linked documentation for all supported formats
+parseRelative("2 weeks ago", now);
+// DateTime { y: 2021, M: 2, d: 7, h: 14, m: 26, s: 0, t: 661 }
+
+parseRelative("an hour", now);
+// DateTime { y: 2021, M: 2, d: 21, h: 15, m: 26, s: 0, t: 661 }
+
+parseRelative("tomorrow", now);
+// DateTime { y: 2021, M: 2, d: 22, h: 14, m: 26, s: 0, t: 661 }
 ```
 
 ### Formatters

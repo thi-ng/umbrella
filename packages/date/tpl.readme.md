@@ -98,6 +98,27 @@ a.daysInMonth()
 // ]
 ```
 
+### Relative dates
+
+Relative dates can be obtained via
+[`parseRelatie()`](https://docs.thi.ng/umbrella/date/modules.html#parserelative)
+or [`relative()`](https://docs.thi.ng/umbrella/date/modules.html#relative).
+
+```ts
+const now = dateTime();
+// DateTime { y: 2021, M: 2, d: 21, h: 14, m: 26, s: 0, t: 661 }
+
+// see the linked documentation for all supported formats
+parseRelative("2 weeks ago", now);
+// DateTime { y: 2021, M: 2, d: 7, h: 14, m: 26, s: 0, t: 661 }
+
+parseRelative("an hour", now);
+// DateTime { y: 2021, M: 2, d: 21, h: 15, m: 26, s: 0, t: 661 }
+
+parseRelative("tomorrow", now);
+// DateTime { y: 2021, M: 2, d: 22, h: 14, m: 26, s: 0, t: 661 }
+```
+
 ### Formatters
 
 Custom date/time formatters can be assembled via

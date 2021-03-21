@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/date",
     "version": "0.3.0",
-    "description": "Date/timestamp iterators, formatters, rounding",
+    "description": "Date/timestamp iterators, composable formatters, relative date parsing, rounding",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -63,8 +63,13 @@
         "interval",
         "iterator",
         "math",
+        "offset",
+        "parser",
+        "precision",
         "presets",
+        "relative",
         "smpte",
+        "string",
         "time",
         "typescript",
         "utc"
