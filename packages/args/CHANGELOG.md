@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/args@0.3.1...@thi.ng/args@0.4.0) (2021-03-22)
+
+
+### Features
+
+* **args:** add arg groups, segment usage output ([ebf5197](https://github.com/thi-ng/umbrella/commit/ebf51974e4e1e1d5288af9ad420d4211addd95ad))
+* **args:** support arbitrary length aliases ([1cfdf49](https://github.com/thi-ng/umbrella/commit/1cfdf49a53cca2f80836caf428e220e90f687ad1))
+
+
+
+
+
 ## [0.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/args@0.3.0...@thi.ng/args@0.3.1) (2021-03-21)
 
 
