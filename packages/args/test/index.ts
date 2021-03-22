@@ -226,4 +226,17 @@ describe("args", () => {
             { result: { a: 1 }, index: 3, done: false, rest: ["ignore"] }
         );
     });
+
+    it("long alias", () => {
+        assert.deepStrictEqual(
+            parse<{ a?: string }>(
+                { a: string({ alias: "aaa" }) },
+                ["-aaa", "a"],
+                {
+                    start: 0,
+                }
+            ),
+            { result: { a: "a" }, index: 2, done: true, rest: [] }
+        );
+    });
 });
