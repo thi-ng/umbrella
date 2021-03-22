@@ -16,6 +16,7 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
+  - [Intersection vs. union queries](#intersection-vs-union-queries)
   - [Query patterns](#query-patterns)
   - [Querying objects](#querying-objects)
 - [Authors](#authors)
@@ -66,7 +67,7 @@ yarn add @thi.ng/oquery
 <script src="https://unpkg.com/@thi.ng/oquery/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.29 KB / CJS: 1.34 KB / UMD: 1.35 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.42 KB / CJS: 1.48 KB / UMD: 1.46 KB
 
 ## Dependencies
 
@@ -91,6 +92,17 @@ types), with each of the three terms one of:
 - **Literal value** - for subjects and predicates, this can only be a string
   or number. For "object" position any value type is allowed
 - **Array or `Set`** - multiple choices (literals) for given query term
+
+### Intersection vs. union queries
+
+By default, arrays or sets in O(bject) position are matched in an
+elementwise manner using OR-semantics, i.e. a match succeeds with the first
+matched element. Since v0.3.0 intersection queries are supported too, i.e. all
+elements of the given array/set must match for the query to succeed (see
+examples/differences further below).
+
+The behavior can be chosen via the [`intersect` query
+option](https://docs.thi.ng/umbrella/oquery/interfaces/queryopts.html#intersect).
 
 ### Query patterns
 
@@ -119,6 +131,9 @@ const DB = {
         parent: "alice",
         knows: ["alice", "bob", "dori"],
     },
+    dori: {
+        knows: ["bob"]
+    }
 };
 ```
 
@@ -209,10 +224,6 @@ const query = defQuery({ partial: true });
 query(DB, null, "type", "person");
 // { alice: { type: 'person' }, bob: { type: 'person' } }
 
-// find all who know bob or charlie
-query(DB, null, "knows", ["bob", "charlie"])
-// { alice: { knows: [ 'bob', 'charlie' ] }, charlie: { knows: [ 'bob' ] } }
-
 // everyone w/ given min age
 query(DB, null, "age", (age) => age >= 33)
 // { alice: { age: 33 } }
@@ -222,6 +233,28 @@ query(DB, (id) => id >= "a" && id < "c", null, null)
 // {
 //   alice: { age: 33, knows: [ 'bob', 'charlie', 'dori' ], type: 'person' },
 //   bob: { age: 32, knows: [ 'alice' ], type: 'person', spouse: 'alice' }
+// }
+```
+
+Union vs. intersection queries:
+
+```ts
+const union = defQuery();
+
+// who knows bob OR charlie?
+union(DB, null, "knows", ["bob", "charlie"]);
+// {
+//   alice: { age: 33, knows: [ 'bob', 'charlie', 'dori' ], type: 'person' },
+//   charlie: { parent: 'alice', knows: [ 'alice', 'bob', 'dori' ] },
+//   dori: { knows: [ 'bob' ] }
+// }
+
+const isec = defQuery({ intersect: true });
+
+// who knows bob AND charlie?
+isec(DB, null, "knows", ["bob", "charlie"]);
+// {
+//   alice: { age: 33, knows: [ 'bob', 'charlie', 'dori' ], type: 'person' }
 // }
 ```
 

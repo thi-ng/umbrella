@@ -62,12 +62,14 @@
         "array",
         "datalog",
         "graph",
+        "intersection",
         "object",
         "pattern",
         "predicate",
         "query",
         "triples",
         "typescript",
+        "union",
         "wildcard"
     ],
     "publishConfig": {
