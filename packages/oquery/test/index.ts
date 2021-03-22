@@ -18,13 +18,16 @@ const DB = {
         parent: "alice",
         knows: ["alice", "bob", "dori"],
     },
+    dori: {
+        knows: ["bob"],
+    },
 };
 
 const DB_A: any[] = [{ id: 1 }, { id: 11, name: "b" }, { name: "c" }];
 
 describe("oquery", () => {
     it("all patterns", () => {
-        const { alice, bob, charlie } = DB;
+        const { alice, bob, charlie, dori } = DB;
         const tests: Record<
             QueryType,
             [SPInputTerm, SPInputTerm, OTerm, any, any]
@@ -40,7 +43,9 @@ describe("oquery", () => {
                 "alice",
                 "knows",
                 (o: any) => o == "bob" || o == "charlie",
-                { alice: { knows: ["bob", "charlie"] } },
+                {
+                    alice: { knows: ["bob", "charlie"] },
+                },
                 { alice },
             ],
             lln: ["bob", "knows", null, { bob: { knows: ["alice"] } }, { bob }],
@@ -112,8 +117,9 @@ describe("oquery", () => {
                 {
                     bob: { knows: ["alice"] },
                     charlie: { knows: ["alice", "bob", "dori"] },
+                    dori: { knows: ["bob"] },
                 },
-                { bob, charlie },
+                { bob, charlie, dori },
             ],
             ffl: [
                 (s) => s != "alice",
@@ -197,8 +203,12 @@ describe("oquery", () => {
                 null,
                 () => true,
                 (o: any) => o == "bob",
-                { alice: { knows: ["bob"] }, charlie: { knows: ["bob"] } },
-                { alice, charlie },
+                {
+                    alice: { knows: ["bob"] },
+                    charlie: { knows: ["bob"] },
+                    dori: { knows: ["bob"] },
+                },
+                { alice, charlie, dori },
             ],
             nfn: [
                 null,
@@ -382,6 +392,38 @@ describe("oquery", () => {
         assert.deepStrictEqual(
             defKeyQuery<any[]>()(DB_A, "name", null, res2),
             new Set([1, 2, -1])
+        );
+    });
+
+    it("intersection", () => {
+        assert.deepStrictEqual(
+            defQuery({ intersect: true, cwise: true, partial: true })(
+                DB,
+                null,
+                "knows",
+                ["bob", "dori"]
+            ),
+            {
+                alice: { knows: ["bob", "charlie", "dori"] },
+                charlie: { knows: ["alice", "bob", "dori"] },
+            },
+            "isec (partial)"
+        );
+        assert.deepStrictEqual(
+            defKeyQuery({ intersect: true, cwise: true })(DB, null, "knows", [
+                "bob",
+                "dori",
+            ]),
+            new Set(["alice", "charlie"]),
+            "isec (key)"
+        );
+        assert.deepStrictEqual(
+            defKeyQuery({ intersect: false, cwise: true })(DB, null, "knows", [
+                "bob",
+                "dori",
+            ]),
+            new Set(["alice", "charlie", "dori"]),
+            "union"
         );
     });
 });

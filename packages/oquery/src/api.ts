@@ -149,9 +149,9 @@ export type KeyQueryFn<T extends QueryObj | QueryObj[]> = T extends QueryObj[]
  */
 export interface QueryOpts {
     /**
-     * If false, an entire object is included in the solution as soon as any of
-     * its P(redicate)-O(bject) terms matches. If true, only successfully
-     * matched property values will be included for each result.
+     * If false (default), an entire object is included in the solution as soon
+     * as any of its P(redicate)-O(bject) terms matches. If true, only the
+     * successfully matched property values will be included for each result.
      *
      * @example
      * ```ts
@@ -168,9 +168,13 @@ export interface QueryOpts {
      */
     partial: boolean;
     /**
-     * If true (default), any array values in the target object's O(bject)
-     * position will be matched componentwise rather than matched as array value
-     * themselves.
+     * If true (default), any array or Set values in the target object's
+     * O(bject) position will be matched componentwise rather than matched as
+     * array value themselves.
+     *
+     * @remarks
+     * Array or Set terms in S(ubject) or P(redicate) position are of course
+     * ALWAYS matched in a componentwise manner.
      *
      * @example
      * ```ts
@@ -186,6 +190,15 @@ export interface QueryOpts {
      */
     cwise: boolean;
     /**
+     * Only used if `cwise` is enabled. If false (default), an array or Set
+     * query term in O(bject) position will succeed if at least ONE of its
+     * elements is matched (aka union query). If true, ALL of the query elements
+     * must matched (aka intersection query).
+     *
+     * @defaultValue false
+     */
+    intersect: boolean;
+    /**
      * Equality predicate applied for matching literals in O(bject) position.
      *
      * @defaultValue thi.ng/equiv#equiv
@@ -196,4 +209,5 @@ export interface QueryOpts {
 /**
  * Subset of {@link QueryOpts} applicable to {@link defKeyQuery}.
  */
-export interface KeyQueryOpts extends Pick<QueryOpts, "cwise" | "equiv"> {}
+export interface KeyQueryOpts
+    extends Pick<QueryOpts, "cwise" | "intersect" | "equiv"> {}

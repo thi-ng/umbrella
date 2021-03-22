@@ -21,16 +21,70 @@ import type {
  * Classifies a single S,P,O term. See {@link QueryType} for explanations.
  *
  * @param x
+ *
+ * @internal
  */
 const classify = (x: any) => (x != null ? (isFunction(x) ? "f" : "l") : "n");
 
-const coerce = (x: any) =>
+/** @internal */
+const ensureArray = (src: any[] | Set<any>) => (isArray(src) ? src : [...src]);
+
+/** @internal */
+const ensureSet = (src: any[] | Set<any>) =>
+    isArray(src) ? new Set(src) : src;
+
+/**
+ * HOF predicate function for intersection queries (i.e. iff `opts.intersect =
+ * true`). Takes an array or set query term and returns predicate to check if
+ * ALL of the query term elements are present in a given object (assumed to be
+ * an array or set too).
+ *
+ * @param src
+ *
+ * @internal
+ */
+const intersect = (src: any[] | Set<any>) => {
+    const a = ensureArray(src);
+    const num = a.length;
+    return (b: any) => {
+        const $b = ensureSet(b);
+        for (let i = num; --i >= 0; ) {
+            if (!$b.has(a[i])) return false;
+        }
+        return true;
+    };
+};
+
+/**
+ * Checks the type of a single S,P,O term and if an array or Set, returns a
+ * predicate function to check if an element is included. Otherwise, returns
+ * input. If `isec` is true, the returned predicate will be the result of
+ * {@link intersect}.
+ *
+ * @param x
+ * @param isec
+ *
+ * @internal
+ */
+const coerce = (x: any, isec = false) =>
     isArray(x)
-        ? (y: any) => x.includes(y)
+        ? isec
+            ? intersect(x)
+            : (y: any) => x.includes(y)
         : isSet(x)
-        ? (y: any) => x.has(y)
+        ? isec
+            ? intersect(x)
+            : (y: any) => x.has(y)
         : x;
 
+/**
+ * Similar to {@link coerce}, but intended for S,P terms. Unless `x` is a
+ * function or null, coerces `x` (or its elements) to strings first.
+ *
+ * @param x
+ *
+ * @internal
+ */
 const coerceStr = (x: any) =>
     isArray(x)
         ? coerce(x.map((y) => String(y)))
@@ -321,9 +375,18 @@ const impl = defmulti<
 impl.addAll(IMPLS);
 
 const objQuery = (src: QueryObj[], opts: QueryOpts, args: any[]) => {
+    const isIsec = opts.cwise && opts.intersect;
+    isIsec && (opts.cwise = false);
     let [s, p, o, out] = <[SPInputTerm, SPInputTerm, OTerm, QueryObj?]>args;
     out = out || {};
-    impl(out, src, coerceStr(s), coerceStr(p), coerce(o), <QueryOpts>opts);
+    impl(
+        out,
+        src,
+        coerceStr(s),
+        coerceStr(p),
+        coerce(o, isIsec),
+        <QueryOpts>opts
+    );
     return out;
 };
 
@@ -334,15 +397,24 @@ const arrayQuery = (
     o: OTerm,
     collect: Fn2<any, number, void>
 ) => {
+    const isIsec = opts.cwise && opts.intersect;
+    isIsec && (opts.cwise = false);
     const $p = coerceStr(p);
-    const $o = coerce(o);
+    const $o = coerce(o, isIsec);
     // pre-select implementation to avoid dynamic dispatch
     const impl = IMPLS[<QueryType>("n" + classify($p) + classify($o))];
     for (let i = 0, n = src.length; i < n; i++) {
         const res: QueryObj = {};
-        impl(res, { _: src[i] }, null, $p, $o, opts);
+        impl(res, { _: src[i] }, "_", $p, $o, opts);
         res._ && collect(res._, i);
     }
+};
+
+const DEFAULT_OPTS: QueryOpts = {
+    partial: false,
+    cwise: true,
+    intersect: false,
+    equiv,
 };
 
 /**
@@ -360,7 +432,7 @@ const arrayQuery = (
 export const defQuery = <T extends QueryObj | QueryObj[] = QueryObj>(
     opts?: Partial<QueryOpts>
 ): QueryFn<T> => {
-    const $opts: QueryOpts = { partial: false, cwise: true, equiv, ...opts };
+    const $opts: QueryOpts = { ...DEFAULT_OPTS, ...opts };
     return <QueryFn<T>>((src: any, ...args: any[]): any => {
         if (isArray(src)) {
             const out: QueryObj[] = args[2] || [];
@@ -387,7 +459,7 @@ export const defQuery = <T extends QueryObj | QueryObj[] = QueryObj>(
 export const defKeyQuery = <T extends QueryObj | QueryObj[] = QueryObj>(
     opts?: Partial<KeyQueryOpts>
 ) => {
-    const $opts: QueryOpts = { partial: false, cwise: true, equiv, ...opts };
+    const $opts: QueryOpts = { ...DEFAULT_OPTS, ...opts };
     return <KeyQueryFn<T>>((src: any, ...args: any[]): any => {
         if (isArray(src)) {
             const out = args[2] || new Set<number>();
