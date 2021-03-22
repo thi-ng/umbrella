@@ -23,12 +23,14 @@ export interface TableOpts {
     formatHead?: number;
     border?: Border;
     padding?: number[];
+    hard?: boolean;
 }
 
 export interface TextBoxOpts {
     format: number;
     padding: number[];
     style: StrokeStyle;
+    hard?: boolean;
 }
 
 export interface ImageOpts {

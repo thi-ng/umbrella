@@ -15,7 +15,13 @@ import { fillRect, strokeRect } from "./rect";
 import { horizontalOnly, verticalOnly } from "./style";
 import { textLines, wordWrappedLines } from "./text";
 
-type RawCell = { body: string; format?: number; height?: number };
+type RawCell = {
+    body: string;
+    format?: number;
+    height?: number;
+    hard?: boolean;
+};
+
 type Cell = { body: string[]; format?: number; height?: number };
 
 export const initTable = (opts: TableOpts, cells: (string | RawCell)[][]) => {
@@ -38,7 +44,11 @@ export const initTable = (opts: TableOpts, cells: (string | RawCell)[][]) => {
             const cell = isString(row[j])
                 ? { body: <string>row[j] }
                 : <RawCell>row[j];
-            const lines = wordWrappedLines(cols[j].width, cell.body);
+            const lines = wordWrappedLines(
+                cols[j].width,
+                cell.body,
+                cell.hard || opts.hard
+            );
             wrappedRow.push({ body: lines, format: cell.format });
             rowHeights[i] = Math.max(
                 rowHeights[i],
