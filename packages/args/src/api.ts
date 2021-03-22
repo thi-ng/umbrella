@@ -1,11 +1,34 @@
 import type { Fn, IDeref, IObjectOf } from "@thi.ng/api";
 
 export interface ArgSpecBase {
+    /**
+     * Shorthand for given arg/option
+     */
     alias?: string;
+    /**
+     * Description (for usage only)
+     */
     desc?: string;
+    /**
+     * Type hint (for usage only)
+     */
     hint?: string;
+    /**
+     * Custom string representation of default value (e.g. a hex value)
+     */
     defaultHint?: string;
+    /**
+     * Predicate function called when this arg is being parsed. Function MUST
+     * return true for parsing to continue.
+     */
     fn?: Fn<string, boolean>;
+    /**
+     * Group ID this arg belongs to. By default args belong to a "main" group.
+     * {@link flag} args are associated with the "flags" group (by default).
+     *
+     * See {@link UsageOpts.groups} for more details.
+     */
+    group?: string;
 }
 
 export type ArgSpecRestrict<T> = undefined extends T
@@ -117,6 +140,14 @@ export interface UsageOpts {
      * @default empty string
      */
     suffix: string;
+    /**
+     * Defines output order of arg groups. By default args belong to either
+     * "main" or "flag" groups. Each group's args are output in alphabetical
+     * order. Groups are separated by an empty line.
+     *
+     * @defaultValue `["flags", "main"]`
+     */
+    groups: string[];
 }
 
 /**

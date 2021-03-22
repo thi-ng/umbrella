@@ -18,9 +18,10 @@ const $single = <T = number>(coerce: Fn<string, T>, hint: string) => <
     S extends Partial<ArgSpec<T>>
 >(
     spec: S
-): S & { coerce: Fn<string, T>; hint: string } => ({
+): S & { coerce: Fn<string, T>; hint: string; group: string } => ({
     coerce,
     hint,
+    group: "main",
     ...spec,
 });
 
@@ -28,10 +29,16 @@ const $multi = <T = number>(coerce: Fn<string[], T[]>, hint: string) => <
     S extends Partial<ArgSpec<T[]> & { delim: string }>
 >(
     spec: S
-): S & { coerce: Fn<string[], T[]>; hint: string; multi: true } => ({
+): S & {
+    coerce: Fn<string[], T[]>;
+    hint: string;
+    multi: true;
+    group: string;
+} => ({
     hint: $hint(hint, spec.delim),
     multi: true,
     coerce,
+    group: "main",
     ...spec,
 });
 
@@ -46,9 +53,10 @@ const $hint = (hint: string, delim?: string) =>
  */
 export const flag = <S extends Partial<ArgSpec<boolean>>>(
     spec: S
-): S & { flag: true; default: boolean } => ({
+): S & { flag: true; default: boolean; group: string } => ({
     flag: true,
     default: false,
+    group: "flags",
     ...spec,
 });
 
@@ -127,9 +135,10 @@ export const ints = $multi(coerceInts, "INT");
  */
 export const json = <T, S extends Partial<ArgSpec<T>>>(
     spec: S
-): S & { coerce: Fn<string, T>; hint: string } => ({
+): S & { coerce: Fn<string, T>; hint: string; group: string } => ({
     coerce: coerceJson,
     hint: "JSON",
+    group: "main",
     ...spec,
 });
 
@@ -146,9 +155,12 @@ const $desc = (opts: readonly string[], prefix?: string) =>
 export const oneOf = <K extends string, S extends Partial<ArgSpec<K>>>(
     opts: readonly K[],
     spec: S
-): S & { coerce: Fn<string, K>; hint: string } & { desc: string } => ({
+): S & { coerce: Fn<string, K>; hint: string; group: string } & {
+    desc: string;
+} => ({
     coerce: coerceOneOf(opts),
     hint: "ID",
+    group: "main",
     ...spec,
     desc: $desc(opts, spec.desc),
 });
@@ -171,10 +183,12 @@ export const oneOfMulti = <
     coerce: Fn<string[], K[]>;
     hint: string;
     multi: true;
+    group: string;
 } & { desc: string } => ({
     coerce: (xs) => xs.map(coerceOneOf(opts)),
     hint: $hint("ID", spec.delim),
     multi: true,
+    group: "main",
     ...spec,
     desc: $desc(opts, spec.desc),
 });
@@ -195,10 +209,16 @@ export const kvPairs = <S extends Partial<ArgSpec<KVDict>>>(
     spec: S,
     delim = "=",
     strict?: boolean
-): S & { coerce: Fn<string[], KVDict>; hint: string; multi: true } => ({
+): S & {
+    coerce: Fn<string[], KVDict>;
+    hint: string;
+    multi: true;
+    group: string;
+} => ({
     coerce: coerceKV(delim, strict),
     hint: `key${delim}val`,
     multi: true,
+    group: "main",
     ...spec,
 });
 
@@ -233,9 +253,10 @@ export const tuple = <T, S extends Partial<ArgSpec<Tuple<T>>>>(
     size: number,
     spec: S,
     delim = ","
-): S & { coerce: Fn<string, Tuple<T>>; hint: string } => ({
+): S & { coerce: Fn<string, Tuple<T>>; hint: string; group: string } => ({
     coerce: coerceTuple(coerce, size, delim),
     hint: [...repeat("N", size)].join(delim),
+    group: "main",
     ...spec,
 });
 

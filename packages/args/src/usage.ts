@@ -19,6 +19,7 @@ export const usage = <T extends IObjectOf<any>>(
         showDefaults: true,
         prefix: "",
         suffix: "",
+        groups: ["flags", "main"],
         ...opts,
     };
     const theme =
@@ -28,55 +29,56 @@ export const usage = <T extends IObjectOf<any>>(
     const indent = repeat(" ", opts.paramWidth!);
     const ansi = (x: string, col: number) =>
         col != null ? `\x1b[${col}m${x}\x1b[0m` : x;
-    return [
-        opts.prefix,
-        ...Object.keys(specs)
-            .sort()
-            .map((id) => {
-                const spec: ArgSpecExt = specs[id];
-                const hint = spec.hint
-                    ? ansi(" " + spec.hint, theme.hint!)
-                    : "";
-                const name = ansi(`--${kebab(id)}`, theme.param!);
-                const alias = spec.alias
-                    ? `${ansi("-" + spec.alias, theme.param!)}${hint}, `
-                    : "";
-                const params = `${alias}${name}${hint}`;
-                const isRequired =
-                    spec.optional === false && spec.default === undefined;
-                const prefixes: string[] = [];
-                isRequired && prefixes.push("required");
-                spec.multi && prefixes.push("multiple");
-                const prefix = prefixes.length
+    const format = (ids: string[]) =>
+        ids.map((id) => {
+            const spec: ArgSpecExt = specs[id];
+            const hint = spec.hint ? ansi(" " + spec.hint, theme.hint!) : "";
+            const name = ansi(`--${kebab(id)}`, theme.param!);
+            const alias = spec.alias
+                ? `${ansi("-" + spec.alias, theme.param!)}${hint}, `
+                : "";
+            const params = `${alias}${name}${hint}`;
+            const isRequired =
+                spec.optional === false && spec.default === undefined;
+            const prefixes: string[] = [];
+            isRequired && prefixes.push("required");
+            spec.multi && prefixes.push("multiple");
+            const prefix = prefixes.length
+                ? ansi(
+                      `[${prefixes.join(", ")}] `,
+                      isRequired ? theme.required! : theme.multi!
+                  )
+                : "";
+            const defaults =
+                opts.showDefaults && spec.default !== undefined
                     ? ansi(
-                          `[${prefixes.join(", ")}] `,
-                          isRequired ? theme.required! : theme.multi!
+                          ` (default: ${stringify()(
+                              spec.defaultHint != undefined
+                                  ? spec.defaultHint
+                                  : spec.default
+                          )})`,
+                          theme.default
                       )
                     : "";
-                const defaults =
-                    opts.showDefaults && spec.default !== undefined
-                        ? ansi(
-                              ` (default: ${stringify()(
-                                  spec.defaultHint != undefined
-                                      ? spec.defaultHint
-                                      : spec.default
-                              )})`,
-                              theme.default
-                          )
-                        : "";
-                return (
-                    padRight(opts.paramWidth!)(
-                        params,
-                        stripAnsi(params).length
-                    ) +
-                    wordWrapLines(
-                        prefix + (spec.desc || "") + defaults,
-                        opts.lineWidth! - opts.paramWidth!
-                    )
-                        .map((l, i) => (i > 0 ? indent : "") + l)
-                        .join("\n")
-                );
-            }),
+            return (
+                padRight(opts.paramWidth!)(params, stripAnsi(params).length) +
+                wordWrapLines(
+                    prefix + (spec.desc || "") + defaults,
+                    opts.lineWidth! - opts.paramWidth!
+                )
+                    .map((l, i) => (i > 0 ? indent : "") + l)
+                    .join("\n")
+            );
+        });
+    const sortedIDs = Object.keys(specs).sort();
+    const groups = opts.groups
+        ? opts.groups.map((gid) =>
+              sortedIDs.filter((id) => specs[id].group === gid)
+          )
+        : [sortedIDs];
+    return [
+        opts.prefix,
+        ...groups.map((ids) => format(ids).join("\n") + "\n"),
         opts.suffix,
     ].join("\n");
 };
