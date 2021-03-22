@@ -61,7 +61,7 @@ yarn add @thi.ng/args
 <script src="https://unpkg.com/@thi.ng/args/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.03 KB / CJS: 2.16 KB / UMD: 2.10 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.14 KB / CJS: 2.27 KB / UMD: 2.23 KB
 
 ## Dependencies
 
@@ -142,18 +142,29 @@ try {
 
 #### Generate & display help
 
-By default uses ANSI colors (see
-[`UsageOpts`](https://github.com/thi-ng/umbrella/blob/develop/packages/args/src/api.ts)),
-`--help` is always available as built-in:
+Usage information can be generated via `usage()` and is automatically triggered
+via the special `--help` option (configurable, see
+[ParseOpts](https://docs.thi.ng/umbrella/args/interfaces/parseopts.html)).
+
+Each arg can be associated with arbitrary group IDs, which are then used to
+segment usage output. By default, `flag()` args are assigned to a `"flags"`
+group, all others to `"main"`. The default output order too is `["flags",
+"main"]`, but can be configured via a `group` option given an arg spec or
+factory function.
+
+By default, ANSI colors are used to format the result string of `usage()`, but
+can be disabled (see
+[`UsageOpts`](https://docs.thi.ng/umbrella/args/interfaces/usageopts.html)).
 
 ```text
 ts-node index.ts --help
+
+-f, --force                     Force operation
 
 --bg HEX                        Background color
 -c PATH, --config-path PATH     Config file path (CLI args always take
                                 precedence over those settings)
 -D key=val, --define key=val    [multiple] Define dict entry
--f, --force                     Force operation
 --size WxH                      Target size
 -t ID, --type ID                [required] Image type: 'png', 'jpg', 'gif',
                                 'tiff'
