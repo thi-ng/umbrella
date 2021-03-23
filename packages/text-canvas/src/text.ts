@@ -1,6 +1,6 @@
 import { peek } from "@thi.ng/arrays";
 import { clamp0 } from "@thi.ng/math";
-import { mapcat, wordWrap } from "@thi.ng/transducers";
+import { wordWrapLines } from "@thi.ng/strings";
 import type { TextBoxOpts } from "./api";
 import { beginClip, beginStyle, Canvas, endClip, endStyle } from "./canvas";
 import { fillRect, strokeRect } from "./rect";
@@ -73,22 +73,16 @@ export const textColumn = (
     width: number,
     txt: string,
     format = canvas.format,
-    hardWrap = false
+    hard = false
 ) => {
     x |= 0;
     y |= 0;
     width |= 0;
     const height = canvas.height;
-    for (let line of txt.split("\n")) {
-        for (let words of wordWrap(
-            width,
-            { always: false },
-            splitLine(line, width, hardWrap)
-        )) {
-            textLine(canvas, x, y, words.join(" "), format);
-            y++;
-            if (y >= height) return y;
-        }
+    for (let line of wordWrapLines(txt, { width, hard })) {
+        textLine(canvas, x, y, line.toString(), format);
+        y++;
+        if (y >= height) break;
     }
     return y;
 };
@@ -137,7 +131,9 @@ export const textBox = (
     width |= 0;
     let innerW = width - 2 - 2 * padX;
     let innerH = 0;
-    const lines = wordWrappedLines(innerW, txt, hard);
+    const lines = wordWrapLines(txt, { width: innerW, hard }).map((l) =>
+        l.toString()
+    );
     if (height < 0) {
         innerH = lines.length + 2;
         height = innerH + 2 * padY;
@@ -154,37 +150,4 @@ export const textBox = (
     style && endStyle(canvas);
     canvas.format = currFmt;
     return y + height;
-};
-
-export const wordWrappedLines = (
-    width: number,
-    txt: string,
-    hardWrap = false
-) => {
-    const lines: string[] = [];
-    for (let line of txt.split("\n")) {
-        for (let words of wordWrap(
-            width,
-            { always: false },
-            splitLine(line, width, hardWrap)
-        )) {
-            lines.push(words.join(" "));
-        }
-    }
-    return lines;
-};
-
-const splitLine = (line: string, width: number, hard = false) => {
-    let lineItems: Iterable<string> = line.split(" ");
-    return hard ? mapcat((w) => splitWord(w, width), lineItems) : lineItems;
-};
-
-const splitWord = (w: string, width: number) => {
-    const res: string[] = [];
-    while (w.length > width) {
-        res.push(w.substr(0, width));
-        w = w.substr(width);
-    }
-    res.push(w);
-    return res;
 };
