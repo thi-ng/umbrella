@@ -1,10 +1,11 @@
 import type { IObjectOf } from "@thi.ng/api";
 import {
     kebab,
+    lengthAnsi,
     padRight,
     repeat,
+    SPLIT_ANSI,
     stringify,
-    stripAnsi,
     wordWrapLines,
 } from "@thi.ng/strings";
 import { Args, ArgSpecExt, ColorTheme, DEFAULT_THEME, UsageOpts } from "./api";
@@ -61,12 +62,13 @@ export const usage = <T extends IObjectOf<any>>(
                       )
                     : "";
             return (
-                padRight(opts.paramWidth!)(params, stripAnsi(params).length) +
-                wordWrapLines(
-                    prefix + (spec.desc || "") + defaults,
-                    opts.lineWidth! - opts.paramWidth!
-                )
-                    .map((l, i) => (i > 0 ? indent : "") + l)
+                padRight(opts.paramWidth!)(params, lengthAnsi(params)) +
+                wordWrapLines(prefix + (spec.desc || "") + defaults, {
+                    width: opts.lineWidth! - opts.paramWidth!,
+                    splitter: SPLIT_ANSI,
+                    hard: true,
+                })
+                    .map((l, i) => (i > 0 ? indent + l : l))
                     .join("\n")
             );
         });
