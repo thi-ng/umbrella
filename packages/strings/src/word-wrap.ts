@@ -1,43 +1,170 @@
 import { lengthAnsi } from "./ansi";
+import type { IWordSplit, WordWrapOpts } from "./api";
+import { split } from "./split";
 
-export const wordWrap = (str: string, lineWidth?: number) =>
-    wordWrapLines(str, lineWidth).join("\n");
+/**
+ * Internal representation of a single line (for word wrapping purposes). A thin
+ * wrapper of individual word and the _logical_ line length (rather than the
+ * actualy string width).
+ *
+ * @internal
+ */
+class Line {
+    n = 0;
+    w: string[] = [];
 
-export const wordWrapLines = (str: string, lineWidth = 80) => {
-    const res: string[] = [];
-    for (let line of str.split("\n")) {
-        if (!line.length) {
-            res.push("");
-            continue;
-        }
-        wordWrapLine(line, lineWidth, res);
+    constructor(word?: string, n?: number) {
+        word != null && this.add(word, n);
     }
-    return res;
+
+    add(word: string, n = word.length) {
+        this.w.push(word);
+        this.n += n + ~~(this.n > 0);
+        return this;
+    }
+
+    toString() {
+        return this.w.join(" ");
+    }
+}
+
+/**
+ * (Default) wordwrap word splitting strategy for plain text.
+ */
+export const SPLIT_PLAIN: IWordSplit = {
+    length: (x) => x.length,
+    split: (_, max) => max,
 };
 
-export const wordWrapLine = (
-    line: string,
-    lineWidth = 80,
-    acc: string[] = []
-) => {
-    let ln = 0;
-    let curr: string[] = [];
-    for (let w of line.split(" ")) {
-        const l = lengthAnsi(w) + (ln > 0 ? 1 : 0);
-        if (ln + l <= lineWidth) {
-            curr.push(w, " ");
-            ln += l;
-        } else {
-            acc.push(trimLine(curr));
-            curr = [w, " "];
-            ln = l;
+/**
+ * Wordwrap word splitting strategy for text containing ANSI control sequences.
+ */
+export const SPLIT_ANSI: IWordSplit = {
+    length: lengthAnsi,
+    split: (x, max) => {
+        const re = /\x1b\[[0-9;]+m/g;
+        let i = max;
+        let match: RegExpExecArray | null;
+        while ((match = re.exec(x))) {
+            if (match.index >= max) break;
+            const n = match[0].length;
+            i += n;
+            max += n;
         }
+        return i;
+    },
+};
+
+/**
+ * Attempts to append given word to current line or else creates a new line.
+ *
+ * @internal
+ */
+const append = (acc: Line[], word: string, wordLen: number, width: number) => {
+    const curr = acc[acc.length - 1];
+    curr && width - curr.n > wordLen
+        ? curr.add(word, wordLen)
+        : acc.push(new Line(word, wordLen));
+};
+
+/**
+ * Depending on wrap mode (hard/soft), splits too long words into multiple lines
+ * and appends them to `acc`.
+ *
+ * @remarks
+ * Splitting uses the provided {@link IWordSplit} impl (or, if missing,
+ * {@link SPLIT_PLAIN}). If the current start line only has less than
+ * {@link WordWrapOpts.min} chars available and the word is longer than that, it
+ * will be placed into a new line (thus minimizing legibility issues).
+ *
+ * @param word
+ * @param opts
+ * @param offset
+ * @param acc
+ *
+ * @internal
+ */
+const wrapWord = (
+    word: string,
+    opts: Partial<WordWrapOpts>,
+    offset = 0,
+    acc: Line[] = []
+) => {
+    const width = opts.width || 80;
+    const impl = opts.splitter || SPLIT_PLAIN;
+    let len = impl.length(word);
+    let free = width - offset;
+    // don't start word in current line if only
+    // a few chars left...
+    if (free < (opts.min || 4) && free < len) {
+        free = width;
     }
-    ln && acc.push(trimLine(curr));
+    // (maybe) hardwrap long word
+    while (opts.hard && len > free) {
+        const split = impl.split(word, free);
+        const chunk = word.substr(0, split);
+        append(acc, chunk, free, width);
+        word = word.substr(split);
+        free = width;
+        len = impl.length(word);
+    }
+    append(acc, word, len, width);
     return acc;
 };
 
-const trimLine = (x: string[]) => {
-    /^\s+$/.test(x[x.length - 1]) && x.pop();
-    return x.join("");
+/**
+ * Wordwraps a single-`line` string using provided options. Returns array of
+ * {@link Line} objects, which can simply be `.join("\n")`ed to convert back
+ * into text.
+ *
+ * @see {@link wordWrap} for main user facing alternative.
+ *
+ * @param line
+ * @param opts
+ * @param acc
+ *
+ * @internal
+ */
+export const wordWrapLine = (
+    line: string,
+    opts: Partial<WordWrapOpts>,
+    acc: Line[] = []
+) => {
+    if (!line.length) {
+        acc.push(new Line());
+        return acc;
+    }
+    for (let word of split(line, opts.delimWord || /\s/g)) {
+        const curr = acc[acc.length - 1];
+        wrapWord(word, opts, curr && curr.n > 0 ? curr.n + 1 : 0, acc);
+    }
+    return acc;
 };
+
+/**
+ * Wordwraps a multi-`line` string using provided options. Returns array of
+ * {@link Line} objects, which can simply be `.join("\n")`ed to convert back
+ * into text.
+ *
+ * @see {@link wordWrap} for main user facing alternative.
+ *
+ * @param lines
+ * @param opts
+ */
+export const wordWrapLines = (lines: string, opts: Partial<WordWrapOpts>) => {
+    let acc: Line[] = [];
+    for (let line of split(lines, opts.delimLine)) {
+        acc = acc.concat(wordWrapLine(line, opts));
+    }
+    return acc;
+};
+
+/**
+ * Same as {@link wordWrapLines}, but returns wordwrapped result as string. See
+ * {@link WordWrapOpts} for options.
+ *
+ * @param str
+ * @param opts
+ */
+export const wordWrap = (str: string, opts: Partial<WordWrapOpts>) =>
+    wordWrapLines(str, opts).join("\n");
