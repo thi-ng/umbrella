@@ -21,9 +21,20 @@ import {
 import type { Canvas } from "./canvas";
 
 /**
- * Returns string representation of canvas, optionally using given
- * string formatter. If none is given, returns plain string
- * representation, ignoring any character format data.
+ * Convenience {@link StringFormat} which ignores any formatting and results in
+ * plain text.
+ */
+export const FMT_NONE: StringFormat = {
+    prefix: "",
+    suffix: "",
+    start: () => "",
+    end: "",
+};
+
+/**
+ * Returns string representation of canvas, optionally using given string
+ * formatter. If none is given, returns plain string representation, ignoring
+ * any character format data.
  *
  * @param canvas
  * @param format
