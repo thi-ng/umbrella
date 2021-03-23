@@ -14,6 +14,27 @@ const RE = /\x1b\[[0-9;]+m/g;
 export const stripAnsi = (x: string) => x.replace(RE, "");
 
 /**
+ * Returns true iff `x` contains ANSI control sequences.
+ *
+ * @param x
+ */
+export const isAnsi = (x: string) => /\x1b\[[0-9;]+m/i.test(x);
+
+/**
+ * Returns true iff `x` starts w/ an ANSI control sequence.
+ *
+ * @param x
+ */
+export const isAnsiStart = (x: string) => /^\x1b\[[0-9;]+m/i.test(x);
+
+/**
+ * Returns true iff `x` ends w/ an ANSI control sequence.
+ *
+ * @param x
+ */
+export const isAnsiEnd = (x: string) => /\x1b\[[0-9;]+m$/i.test(x);
+
+/**
  * Returns length of `x` excluding any ANSI control sequences (via
  * {@link stripAnsi}).
  *
