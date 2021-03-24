@@ -85,6 +85,7 @@ Partially based on Clojure version of [thi.ng/strf](http://thi.ng/strf).
 - `grams`
 - `meters`
 - `seconds`
+- `ruler` / `grid`
 
 ### Miscellaneous
 

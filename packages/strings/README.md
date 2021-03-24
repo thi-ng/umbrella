@@ -106,6 +106,7 @@ Partially based on Clojure version of [thi.ng/strf](http://thi.ng/strf).
 - `grams`
 - `meters`
 - `seconds`
+- `ruler` / `grid`
 
 ### Miscellaneous
 
@@ -132,7 +133,7 @@ yarn add @thi.ng/strings
 <script src="https://unpkg.com/@thi.ng/strings/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.97 KB / CJS: 4.26 KB / UMD: 4.04 KB
+Package sizes (gzipped, pre-treeshake): ESM: 4.08 KB / CJS: 4.38 KB / UMD: 4.15 KB
 
 ## Dependencies
 

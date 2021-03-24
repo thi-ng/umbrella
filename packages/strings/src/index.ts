@@ -19,6 +19,7 @@ export * from "./percent";
 export * from "./radix";
 export * from "./range";
 export * from "./repeat";
+export * from "./ruler";
 export * from "./slugify";
 export * from "./splice";
 export * from "./split";
