@@ -4,7 +4,7 @@ import { serialize } from "@thi.ng/hiccup";
 import { convertTree } from "@thi.ng/hiccup-svg";
 import { fit } from "@thi.ng/math";
 import { repeat } from "@thi.ng/strings";
-import { barChartHStr } from "@thi.ng/text-canvas";
+import { barChartHLines } from "@thi.ng/text-canvas";
 import type { AsciiVizOpts, InstrumentFn, VizualizeVarOpts } from "./api";
 import { varToHiccup } from "./var";
 
@@ -117,8 +117,7 @@ export const fuzzySetToAscii = (
         vals.push(fn(i));
     }
     const index = Math.round(fit(res, min, max, 0, vals.length));
-    let chart = barChartHStr(height, vals, 0, 1)
-        .split("\n")
+    let chart = barChartHLines(height, vals, 0, 1)
         .map((line) => line.substr(0, index) + "|" + line.substr(index + 1))
         .join("\n")
         .replace(/ /g, empty);
