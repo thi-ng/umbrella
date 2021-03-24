@@ -119,6 +119,8 @@ and the following presets are supplied:
 - `FMT_HTML_INLINE_CSS` - HTML `<span>` elements with inline CSS
 - `FMT_HTML_TACHYONS` - HTML `<span>` elements with [Tachyons
   CSS](http://tachyons.io/) class names
+- `FMT_NONE` - dummy formatter outputting plain text only (all format
+  information discarded)
 
 ```ts
 // Terminal
@@ -260,8 +262,8 @@ each newly pushed one being intersected with the previous top-of-stack rect:
 
 - `textLine`
 - `textLines`
-- `textColumn`
-- `textBox`
+- `textColumn` (word wrapped)
+- `textBox` (word wrapped)
 
 ### Bars & bar charts
 
@@ -287,6 +289,10 @@ following border style options:
 | `Border.FRAME`   | ![table](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/table-border-frame.png)   |
 | `Border.FRAME_H` | ![table](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/table-border-frame-h.png) |
 | `Border.FRAME_V` | ![table](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/table-border-frame-v.png) |
+
+Table cell contents will be word-wrapped. By default, individual words longer
+than the configured cell width will be truncated, but can be forced to wrap by
+enabling the `hard` option (see example below).
 
 ```ts
 import { repeatedly } from "@thi.ng/transducers";
@@ -317,7 +323,9 @@ tc.table(
         // border mode
         border: tc.Border.ALL,
         // internal cell padding [h,v]
-        padding: [1, 0]
+        padding: [1, 0],
+        // hard word wrap
+        hard: true,
     },
     // table contents (row major)
     // each cell either a string or RawCell object

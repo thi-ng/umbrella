@@ -10,27 +10,107 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
+  - [General](#general)
+  - [Numeric formatters](#numeric-formatters)
+  - [Casing](#casing)
+  - [Slugify](#slugify)
+  - [ANSI](#ansi)
+  - [Word wrapping](#word-wrapping)
+  - [Padding / wrapping](#padding--wrapping)
+  - [Indentation](#indentation)
+  - [Char range presets / lookup tables](#char-range-presets--lookup-tables)
+  - [Units](#units)
+  - [Miscellaneous](#miscellaneous)
   - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [API](#api)
   - [Basic usage examples](#basic-usage-examples)
-  - [General](#general)
-  - [Case](#case)
-  - [Numeric & radix-based](#numeric--radix-based)
-  - [Padding / truncation](#padding--truncation)
-  - [Units](#units)
-  - [String creation & editing](#string-creation--editing)
 - [Authors](#authors)
 - [License](#license)
 
 ## About
 
-Various higher-order, configurable string formatting & utility
-functions, some memoized. Please sources / docstrings for now.
+Various (80+) string formatting, word wrapping & utility functions, some
+higher-order, some memoized.
 
 Partially based on Clojure version of [thi.ng/strf](http://thi.ng/strf).
+
+### General
+
+- `defFormat` / `format`
+- `interpolate` / `interpolateKeys`
+- `escape` / `unescape`
+- `join` / `splice` / `split`
+- `repeat`
+- `stringify`
+
+### Numeric formatters
+
+- `radix`
+- `int` / `intLocale`
+- `float` / `floatFixedWidth`
+- `maybeParseFloat` / `maybeParseInt`
+- `percent`
+- `uuid`
+- `vector`
+- `B8` / `B16` / `B32` - fixed size binary formatters
+- `U8` / `U16` / `U24` / `U32` / `U64` - fixed size hex formatters
+- `Z2` / `Z3` / `Z4` - fixed sized zero padded number formatters
+
+### Casing
+
+- `lower` / `upper` / `capitalize`
+- `camel` / `kebab` / `snake` / `upperSnake`
+
+### Slugify
+
+- `slugify` / `slugifyGH`
+
+### ANSI
+
+- `isAnsi` / `isAnsiEnd` / `isAnsiStart`
+- `stripAnsi`
+- `lengthAnsi`
+
+### Word wrapping
+
+- `wordWrap` / `wordWrapLine` / `wordWrapLines`
+- `SPLIT_PLAIN` / `SPLIT_ANSI`
+
+### Padding / wrapping
+
+- `center`
+- `padLeft` / `padRight`
+- `truncate` / `truncateLeft` / `truncateRight`
+- `trim`
+- `wrap`
+
+### Indentation
+
+- `spacesToTabs` / `spacesToTabsLine`
+- `tabsToSpaces` / `tabsToSpacesLine`
+
+### Char range presets / lookup tables
+
+- `charRange`
+- `ALPHA` / `ALPHA_NUM` / `DIGITS` / `LOWER` / `UPPER` / `HEX`
+- `BOM` / `ESCAPES` / `ESCAPES_REV`
+- `WS` / `PUNCTUATION`
+
+### Units
+
+- `units`
+- `bits` / `bytes`
+- `grams`
+- `meters`
+- `seconds`
+
+### Miscellaneous
+
+- `hstr` - [Hollerith strings](https://en.wikipedia.org/wiki/Hollerith_constant)
+- `computeCursorPos`
 
 ### Status
 
@@ -52,7 +132,7 @@ yarn add @thi.ng/strings
 <script src="https://unpkg.com/@thi.ng/strings/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.65 KB / CJS: 3.94 KB / UMD: 3.74 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.97 KB / CJS: 4.26 KB / UMD: 4.04 KB
 
 ## Dependencies
 
@@ -100,62 +180,6 @@ fmt("usd", 1.2345, 0.5);
 fmt("eur", 1.2345, 0.25)
 // Price: €1.23 (25.00% off)
 ```
-
-### General
-
-- `defFormat`
-- `format`
-- `hstr`
-- `ignore`
-- `interpolate`
-- `str`
-
-### Case
-
-- `camel`
-- `capitalize`
-- `kebab`
-- `lower`
-- `snake`
-- `slugify`
-- `upper`
-
-### Numeric & radix-based
-
-- `float`
-- `floatFixedWidth`
-- `maybeParseFloat`
-- `maybeParseInt`
-- `percent`
-- `radix`
-- `uuid`
-- `B8` / `B16` / `B32` - binary / bitstring presets
-- `U8` / `U16` / `U24` / `U32` / `U64` - hex format presets (unsigned values)
-
-### Padding / truncation
-
-- `center`
-- `padLeft`
-- `padRight`
-- `truncate`
-- `truncateLeft`
-- `wrap`
-- `Z2` / `Z3` / `Z4` - zero-pad presets
-
-### Units
-
-- `units` - define new unit w/ magnitudes & suffixes
-- `bits`
-- `bytes`
-- `grams`
-- `meters`
-- `seconds`
-
-### String creation & editing
-
-- `charRange`
-- `repeat`
-- `splice`
 
 ## Authors
 
