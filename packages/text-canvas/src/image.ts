@@ -1,8 +1,11 @@
+import type { UIntArray } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays";
 import { isNumber } from "@thi.ng/checks";
 import { clamp0 } from "@thi.ng/math";
 import { ClipRect, ImageOpts, SHADES_BLOCK } from "./api";
-import { Canvas } from "./canvas";
+import { canvas, Canvas } from "./canvas";
+import { FMT_ANSI565 } from "./format";
+import { toString } from "./string";
 import { charCode, intersectRect } from "./utils";
 
 export const blit = (canvas: Canvas, x: number, y: number, src: Canvas) => {
@@ -176,6 +179,35 @@ export const imageRaw = (
         }
     }
 };
+
+/**
+ * Syntax sugar for {@link imageRaw}. Takes a thi.ng/pixel compatible 16bit
+ * pixel buffer in RGB565 format and converts it into a new {@link canvas}. The
+ * optional `char` will be used as character for each pixel.
+ *
+ * @param src
+ * @param char
+ */
+export const imageCanvas565 = (
+    src: { width: number; height: number; pixels: UIntArray },
+    char?: string
+) => {
+    const dest = canvas(src.width, src.height);
+    imageRaw(dest, 0, 0, src.width, src.height, src.pixels, char);
+    return dest;
+};
+
+/**
+ * Same as {@link imageCanvas565}, but returns resulting canvas as 24bit ANSI
+ * string.
+ *
+ * @param src
+ * @param char
+ */
+export const imageString565 = (
+    src: { width: number; height: number; pixels: UIntArray },
+    char?: string
+) => toString(imageCanvas565(src, char), FMT_ANSI565);
 
 const imgRect = (
     canvas: Canvas,
