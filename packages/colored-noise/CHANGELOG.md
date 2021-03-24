@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/colored-noise@0.1.22...@thi.ng/colored-noise@0.1.23) (2021-03-24)
+
+**Note:** Version bump only for package @thi.ng/colored-noise
+
+
+
+
+
 ## [0.1.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/colored-noise@0.1.21...@thi.ng/colored-noise@0.1.22) (2021-03-24)
 
 **Note:** Version bump only for package @thi.ng/colored-noise

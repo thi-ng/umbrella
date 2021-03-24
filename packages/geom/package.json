@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom",
-    "version": "2.1.9",
+    "version": "2.1.10",
     "description": "Functional, polymorphic API for 2D geometry types & SVG generation",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -68,11 +68,11 @@
         "@thi.ng/geom-subdiv-curve": "^0.1.82",
         "@thi.ng/geom-tessellate": "^0.2.65",
         "@thi.ng/hiccup": "^3.6.14",
-        "@thi.ng/hiccup-svg": "^3.7.15",
+        "@thi.ng/hiccup-svg": "^3.7.16",
         "@thi.ng/math": "^3.3.0",
         "@thi.ng/matrices": "^0.6.51",
         "@thi.ng/random": "^2.3.6",
-        "@thi.ng/strings": "^2.0.0",
+        "@thi.ng/strings": "^2.1.0",
         "@thi.ng/transducers": "^7.6.7",
         "@thi.ng/vectors": "^5.1.5"
     },

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.9.20...@thi.ng/parse@0.9.21) (2021-03-24)
+
+**Note:** Version bump only for package @thi.ng/parse
+
+
+
+
+
 ## [0.9.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.9.19...@thi.ng/parse@0.9.20) (2021-03-24)
 
 **Note:** Version bump only for package @thi.ng/parse

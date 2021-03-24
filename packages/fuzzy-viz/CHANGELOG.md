@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/fuzzy-viz@0.1.16...@thi.ng/fuzzy-viz@0.1.17) (2021-03-24)
+
+
+### Performance Improvements
+
+* **fuzzy-viz:** update fuzzySetToAscii() ([84c6a3f](https://github.com/thi-ng/umbrella/commit/84c6a3f077c16027c9dde79618992bbe3be9d5a6))
+
+
+
+
+
 ## [0.1.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/fuzzy-viz@0.1.15...@thi.ng/fuzzy-viz@0.1.16) (2021-03-24)
 
 **Note:** Version bump only for package @thi.ng/fuzzy-viz

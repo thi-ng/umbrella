@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@2.0.0...@thi.ng/strings@2.1.0) (2021-03-24)
+
+
+### Features
+
+* **strings:** add ruler(), grid() fns, update readme ([d93cbf9](https://github.com/thi-ng/umbrella/commit/d93cbf9708c414e703fde61e80b5762f34899aa4))
+
+
+
+
+
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.15.6...@thi.ng/strings@2.0.0) (2021-03-24)
 
 
