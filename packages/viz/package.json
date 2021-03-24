@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/viz",
-    "version": "0.2.19",
+    "version": "0.2.20",
     "description": "Declarative, functional & multi-format data visualization toolkit based around @thi.ng/hiccup",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -61,7 +61,7 @@
         "@thi.ng/associative": "^5.1.7",
         "@thi.ng/checks": "^2.9.5",
         "@thi.ng/math": "^3.3.0",
-        "@thi.ng/strings": "^1.15.6",
+        "@thi.ng/strings": "^2.0.0",
         "@thi.ng/transducers": "^7.6.7"
     },
     "files": [

@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.15.6...@thi.ng/strings@2.0.0) (2021-03-24)
+
+
+### Features
+
+* **strings:** add ANSI predicates ([928694b](https://github.com/thi-ng/umbrella/commit/928694b0a46a7a58b0b4ab56562afceb0b6c8d8d))
+* **strings:** major update wordWrap() & co. ([9c9c9cc](https://github.com/thi-ng/umbrella/commit/9c9c9cc1abe68ec32edbe91ac5c277561cafd3c4))
+* **strings:** update split() args ([ea503e8](https://github.com/thi-ng/umbrella/commit/ea503e8abdf3598ccd0c1abf5d484164ea73890c))
+
+
+### BREAKING CHANGES
+
+* **strings:** major update wordWrap(), wordWrapLines() etc.
+
+- update arguments
+- add `WordWrapOpts` to configure wordwrap behavior
+- add `IWordSplit` interface and `SPLIT_PLAIN`, `SPLIT_ANSI` impls
+- implement hardwrap mode
+
+
+
+
+
 ## [1.15.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@1.15.5...@thi.ng/strings@1.15.6) (2021-03-17)
 
 **Note:** Version bump only for package @thi.ng/strings

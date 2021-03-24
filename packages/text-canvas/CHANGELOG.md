@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.4.12...@thi.ng/text-canvas@0.5.0) (2021-03-24)
+
+
+### Features
+
+* **text-canvas:** add FMT_NONE dummy formatter ([0b1f3bd](https://github.com/thi-ng/umbrella/commit/0b1f3bd88405aa89fdf344513bb43f7ac8a95e84))
+* **text-canvas:** add hardwrapped text support ([4e171db](https://github.com/thi-ng/umbrella/commit/4e171db1e77269604578495170b05a5e0bfcbc95))
+
+
+
+
+
 ## [0.4.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.4.11...@thi.ng/text-canvas@0.4.12) (2021-03-17)
 
 **Note:** Version bump only for package @thi.ng/text-canvas
