@@ -3,7 +3,7 @@ import { padLeft, padRight, repeat } from "@thi.ng/strings";
 import { map } from "@thi.ng/transducers";
 import { BARS_H, BARS_V } from "./api";
 
-export const barChartHStr = (
+export const barChartHLines = (
     height: number,
     vals: Iterable<number>,
     min = 0,
@@ -19,15 +19,29 @@ export const barChartHStr = (
         }
         res.push(line);
     }
-    return res.join("\n");
+    return res;
 };
 
-export const barChartVStr = (
+export const barChartHStr = (
+    height: number,
+    vals: Iterable<number>,
+    min?: number,
+    max?: number
+) => barChartHLines(height, vals, min, max).join("\n");
+
+export const barChartVLines = (
     width: number,
     vals: Iterable<number>,
     min = 0,
     max = 1
-) => [...map((x) => barHorizontal(width, x, min, max), vals)].join("\n");
+) => [...map((x) => barHorizontal(width, x, min, max), vals)];
+
+export const barChartVStr = (
+    width: number,
+    vals: Iterable<number>,
+    min?: number,
+    max?: number
+) => barChartVLines(width, vals, min, max).join("\n");
 
 export const barHorizontal = (width: number, x: number, min = 0, max = 1) =>
     bar(BARS_H, width, false, x, min, max, "");
