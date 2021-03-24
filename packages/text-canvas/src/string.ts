@@ -44,20 +44,22 @@ export const toString = (canvas: Canvas, format?: StringFormat) => {
     const res: string[] = [];
     if (format) {
         const { start, end, prefix, suffix, zero } = format;
+        let prevID: number, ch: number, id: number;
+        const check = zero ? () => prevID !== -1 : () => prevID !== 0;
         for (let y = 0, i = 0; y < height; y++) {
-            let prevID = -1;
+            prevID = zero ? -1 : 0;
             res.push(prefix);
             for (let x = 0; x < width; x++, i++) {
-                const ch = buf[i];
-                const id = ch >>> 16;
+                ch = buf[i];
+                id = ch >>> 16;
                 if (id != prevID) {
-                    (zero || prevID) && res.push(end);
+                    check() && res.push(end);
                     (zero || id) && res.push(start(id));
                     prevID = id;
                 }
                 res.push(String.fromCharCode(ch & 0xffff));
             }
-            (zero || prevID) && res.push(end);
+            check() && res.push(end);
             res.push(suffix);
         }
         return res.join("");
