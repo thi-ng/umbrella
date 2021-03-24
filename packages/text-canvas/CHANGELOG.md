@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.5.1...@thi.ng/text-canvas@0.6.0) (2021-03-24)
+
+
+### Bug Fixes
+
+* **text-canvas:** fix format start/end handling in toString() ([5100222](https://github.com/thi-ng/umbrella/commit/5100222a874ce57ef1cd6892bf4e51faebf62dd1))
+
+
+### Features
+
+* **text-canvas:** add FMT_ANSI565, update StringFormat ([3bf5b47](https://github.com/thi-ng/umbrella/commit/3bf5b475cd75c9046804c81fb80b5f9e6d056fd0))
+* **text-canvas:** add imageCanvas/String565() fns ([6e254eb](https://github.com/thi-ng/umbrella/commit/6e254ebf7acf6520551caf99aef3a0b93d06a519))
+
+
+
+
+
 ## [0.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.5.0...@thi.ng/text-canvas@0.5.1) (2021-03-24)
 
 **Note:** Version bump only for package @thi.ng/text-canvas
