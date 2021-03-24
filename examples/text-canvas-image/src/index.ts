@@ -1,5 +1,5 @@
 import { imagePromise, PackedBuffer, RGB565 } from "@thi.ng/pixel";
-import { canvas, FMT_HTML_565, setAt, toString } from "@thi.ng/text-canvas";
+import { canvas, FMT_HTML565, setAt, toString } from "@thi.ng/text-canvas";
 import IMG from "./test.png";
 
 // text canvas size
@@ -16,7 +16,7 @@ const H = 48;
     // create text canvas
     const c = canvas(W, H, 0xffff);
     // define 16bit formatter
-    const fmt = FMT_HTML_565();
+    const fmt = FMT_HTML565();
     // precalc charcode for each pixel
     const char = "▓".charCodeAt(0);
 
