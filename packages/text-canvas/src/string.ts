@@ -43,21 +43,21 @@ export const toString = (canvas: Canvas, format?: StringFormat) => {
     const { buf, width, height } = canvas;
     const res: string[] = [];
     if (format) {
-        const { start, end, prefix, suffix } = format;
+        const { start, end, prefix, suffix, zero } = format;
         for (let y = 0, i = 0; y < height; y++) {
-            let prevID = 0;
+            let prevID = -1;
             res.push(prefix);
             for (let x = 0; x < width; x++, i++) {
                 const ch = buf[i];
                 const id = ch >>> 16;
                 if (id != prevID) {
-                    prevID && res.push(end);
-                    id && res.push(start(id));
+                    (zero || prevID) && res.push(end);
+                    (zero || id) && res.push(start(id));
                     prevID = id;
                 }
                 res.push(String.fromCharCode(ch & 0xffff));
             }
-            prevID && res.push(end);
+            (zero || prevID) && res.push(end);
             res.push(suffix);
         }
         return res.join("");

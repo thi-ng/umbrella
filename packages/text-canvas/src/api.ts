@@ -97,6 +97,17 @@ export interface StringFormat {
      * Suffix for each canvas row / line result string (e.g. linebreak)
      */
     suffix: string;
+    /**
+     * If true, DON'T skip 0-valued format IDs during formatting.
+     *
+     * @remarks
+     * This is needed for various custom color-only formats, e.g. in order to
+     * reproduce black in `FMT_ANSI565`. In the default format, a zero refers to
+     * the default format of the target.
+     *
+     * @defaultValue false
+     */
+    zero?: boolean;
 }
 
 export interface HtmlFormatOpts {
