@@ -86,27 +86,25 @@ const append = (acc: Line[], word: string, wordLen: number, width: number) => {
  */
 const wrapWord = (
     word: string,
-    opts: Partial<WordWrapOpts>,
+    { width, min, hard, splitter }: WordWrapOpts,
     offset = 0,
     acc: Line[] = []
 ) => {
-    const width = opts.width || 80;
-    const impl = opts.splitter || SPLIT_PLAIN;
-    let len = impl.length(word);
+    let len = splitter.length(word);
     let free = width - offset;
     // don't start word in current line if only
     // a few chars left...
-    if (free < (opts.min || 4) && free < len) {
+    if (free < min && free < len) {
         free = width;
     }
     // (maybe) hardwrap long word
-    while (opts.hard && len > free) {
-        const split = impl.split(word, free);
+    while (hard && len > free) {
+        const split = splitter.split(word, free);
         const chunk = word.substr(0, split);
         append(acc, chunk, free, width);
         word = word.substr(split);
         free = width;
-        len = impl.length(word);
+        len = splitter.length(word);
     }
     append(acc, word, len, width);
     return acc;
@@ -134,9 +132,16 @@ export const wordWrapLine = (
         acc.push(new Line());
         return acc;
     }
+    const $opts = <WordWrapOpts>{
+        width: 80,
+        min: 4,
+        hard: false,
+        splitter: SPLIT_PLAIN,
+        ...opts,
+    };
     for (let word of split(line, opts.delimWord || /\s/g)) {
         const curr = acc[acc.length - 1];
-        wrapWord(word, opts, curr && curr.n > 0 ? curr.n + 1 : 0, acc);
+        wrapWord(word, $opts, curr && curr.n > 0 ? curr.n + 1 : 0, acc);
     }
     return acc;
 };
