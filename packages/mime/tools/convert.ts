@@ -39,6 +39,6 @@ console.log(
  *
  * @internal
  */
-export const DB =`,
+export const DB: Record<string, Record<string, string>> =`,
     dest
 );

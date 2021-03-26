@@ -29,10 +29,28 @@ export const MIME_TYPES = ((defs: any) => {
  * Since v0.2.0 the extension can be given as either `".ext"` or `"ext"`.
  * Previously, only the latter was supported.
  *
+ * Also see {@link preferredExtension} for reverse operation.
+ *
  * @param ext
  * @param fallback
  */
 export const preferredType = (ext: string, fallback = MIME_TYPES.bin[0]) => {
     const type = MIME_TYPES[ext[0] === "." ? ext.substr(1) : ext];
     return type ? type[0] : fallback;
+};
+
+/**
+ * Reverse lookup to {@link preferredType}. Takes MIME type string and returns
+ * preferred file extension (or failing that) returns `fallback` (default:
+ * "bin").
+ *
+ * @param mime
+ * @param fallback
+ * @returns
+ */
+export const preferredExtension = (mime: string, fallback = "bin") => {
+    const [prefix, suffix] = mime.split("/");
+    const group = DB[prefix];
+    const ext = group ? group[suffix] : undefined;
+    return ext ? ext.split(",")[0] : fallback;
 };

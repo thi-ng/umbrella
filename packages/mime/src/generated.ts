@@ -1,9 +1,9 @@
 /**
- * generated @ 2021-03-26T00:52:45.668Z - DO NOT EDIT!
+ * generated @ 2021-03-26T15:12:37.106Z - DO NOT EDIT!
  *
  * @internal
  */
-export const DB = {
+export const DB: Record<string, Record<string, string>> = {
     application: {
         "andrew-inset": "ez",
         applixware: "aw",
