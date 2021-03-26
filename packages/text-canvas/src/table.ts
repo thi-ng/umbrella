@@ -21,6 +21,7 @@ type RawCell = {
     format?: number;
     height?: number;
     hard?: boolean;
+    wrap?: boolean;
 };
 
 type Cell = { body: string[]; format?: number; height?: number };
@@ -45,12 +46,15 @@ export const initTable = (opts: TableOpts, cells: (string | RawCell)[][]) => {
             const cell = isString(row[j])
                 ? { body: <string>row[j] }
                 : <RawCell>row[j];
-            const lines = wordWrapLines(cell.body, {
-                width: cols[j].width,
-                hard: cell.hard || opts.hard,
-            });
+            const lines =
+                cell.wrap !== false
+                    ? wordWrapLines(cell.body, {
+                          width: cols[j].width,
+                          hard: cell.hard || opts.hard,
+                      }).map((l) => l.toString())
+                    : cell.body.split(/\r?\n/g);
             wrappedRow.push({
-                body: lines.map((l) => l.toString()),
+                body: lines,
                 format: cell.format,
             });
             rowHeights[i] = Math.max(
