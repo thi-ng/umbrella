@@ -22,14 +22,17 @@ export const MIME_TYPES = ((defs: any) => {
 })(DB);
 
 /**
- * Returns preferred MIME type for given file extension or, if no match
- * is available, the `fallback` MIME type (default:
- * `application/octet-stream`).
+ * Returns preferred MIME type for given file extension or, if no match is
+ * available, the `fallback` MIME type (default: `application/octet-stream`).
+ *
+ * @remarks
+ * Since v0.2.0 the extension can be given as either `".ext"` or `"ext"`.
+ * Previously, only the latter was supported.
  *
  * @param ext
  * @param fallback
  */
 export const preferredType = (ext: string, fallback = MIME_TYPES.bin[0]) => {
-    const type = MIME_TYPES[ext];
+    const type = MIME_TYPES[ext[0] === "." ? ext.substr(1) : ext];
     return type ? type[0] : fallback;
 };
