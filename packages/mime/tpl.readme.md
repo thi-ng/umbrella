@@ -13,8 +13,9 @@ This project is part of the
 
 ${pkg.description}
 
-All MIME type mappings based on
-[mime-db](https://github.com/jshttp/mime-db).
+All MIME type mappings based on [mime-db](https://github.com/jshttp/mime-db)
+(2021-03-26). For filesize reasons no vendor MIME types (aka `*/vnd.*`) are
+included. Most of them are fairly obscure anyway, so likely not problematic.
 
 ${status}
 
@@ -74,6 +75,22 @@ preferredType("foo")
 preferredType("foo", "text/plain")
 // "text/plain"
 ```
+
+## Conversion from mime-db
+
+1. Download the [latest version of mime-db's JSON
+   index](https://raw.githubusercontent.com/jshttp/mime-db/master/db.json) and
+   save it to `tools/mime-db.json`
+2. Run the following command to build an up-to-date index (assumes the umbrella
+   repo has been pre-built already). Output will always be to stdout.
+
+```bash
+# from the thi.ng/umbrella repo root
+cd packages/mime
+yarn tool:convert
+```
+
+3. Copy the output and paste it into `src/generated.ts`
 
 ## Authors
 

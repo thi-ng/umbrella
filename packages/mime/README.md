@@ -14,15 +14,17 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
+- [Conversion from mime-db](#conversion-from-mime-db)
 - [Authors](#authors)
 - [License](#license)
 
 ## About
 
-350+ file extension to MIME type mappings, based on mime-db.
+650+ file extension to MIME type mappings, based on mime-db.
 
-All MIME type mappings based on
-[mime-db](https://github.com/jshttp/mime-db).
+All MIME type mappings based on [mime-db](https://github.com/jshttp/mime-db)
+(2021-03-26). For filesize reasons no vendor MIME types (aka `*/vnd.*`) are
+included. Most of them are fairly obscure anyway, so likely not problematic.
 
 ### Status
 
@@ -44,7 +46,7 @@ yarn add @thi.ng/mime
 <script src="https://unpkg.com/@thi.ng/mime/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.38 KB / CJS: 2.43 KB / UMD: 2.54 KB
+Package sizes (gzipped, pre-treeshake): ESM: 4.46 KB / CJS: 4.52 KB / UMD: 4.63 KB
 
 ## Dependencies
 
@@ -88,6 +90,22 @@ preferredType("foo")
 preferredType("foo", "text/plain")
 // "text/plain"
 ```
+
+## Conversion from mime-db
+
+1. Download the [latest version of mime-db's JSON
+   index](https://raw.githubusercontent.com/jshttp/mime-db/master/db.json) and
+   save it to `tools/mime-db.json`
+2. Run the following command to build an up-to-date index (assumes the umbrella
+   repo has been pre-built already). Output will always be to stdout.
+
+```bash
+# from the thi.ng/umbrella repo root
+cd packages/mime
+yarn tool:convert
+```
+
+3. Copy the output and paste it into `src/generated.ts`
 
 ## Authors
 

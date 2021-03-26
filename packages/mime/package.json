@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/mime",
     "version": "0.1.33",
-    "description": "350+ file extension to MIME type mappings, based on mime-db",
+    "description": "650+ file extension to MIME type mappings, based on mime-db",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
