@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.6.0...@thi.ng/text-canvas@0.7.0) (2021-03-26)
+
+
+### Features
+
+* **text-canvas:** update table cell wordwrap handling ([f19f925](https://github.com/thi-ng/umbrella/commit/f19f9251443bc609a28fe5776399c162bc75b9b8))
+
+
+
+
+
 # [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.5.1...@thi.ng/text-canvas@0.6.0) (2021-03-24)
 
 
