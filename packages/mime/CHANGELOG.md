@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/mime@0.2.0...@thi.ng/mime@0.3.0) (2021-03-27)
+
+
+### Features
+
+* **mime:** add preferredExtension(), update convert tool ([c3f5ec1](https://github.com/thi-ng/umbrella/commit/c3f5ec12f324a4e627b26dc45d480c0e761602ea))
+
+
+
+
+
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/mime@0.1.33...@thi.ng/mime@0.2.0) (2021-03-26)
 
 

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hdiff",
-    "version": "0.1.36",
+    "version": "0.1.37",
     "description": "String diffing w/ hiccup output for further processing, e.g. with @thi.ng/hdom, @thi.ng/hiccup. Includes CLI util to generate HTML, with theme support and code folding",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -54,7 +54,7 @@
         "@thi.ng/api": "^7.1.4",
         "@thi.ng/diff": "^4.0.7",
         "@thi.ng/hiccup": "^3.6.14",
-        "@thi.ng/hiccup-css": "^1.1.56",
+        "@thi.ng/hiccup-css": "^1.1.57",
         "@thi.ng/strings": "^2.1.0"
     },
     "files": [
