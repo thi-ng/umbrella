@@ -61,6 +61,11 @@ are only available in NodeJS.
 
 ${status}
 
+**You're strongly encouraged to update to at least v0.4.0 to avoid the potential
+of arbitrary code execution in older versions when decrypting `#gpg`-tagged
+property values.** A security advisory will be published ASAP. A fix has been
+deployed already.
+
 #### Feature ideas
 
 (Non-exhaustive list)

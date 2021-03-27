@@ -82,6 +82,11 @@ are only available in NodeJS.
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Begf%5D+in%3Atitle)
 
+**You're strongly encouraged to update to at least v0.4.0 to avoid the potential
+of arbitrary code execution in older versions when decrypting `#gpg`-tagged
+property values.** A security advisory will be published ASAP. A fix has been
+deployed already.
+
 #### Feature ideas
 
 (Non-exhaustive list)
