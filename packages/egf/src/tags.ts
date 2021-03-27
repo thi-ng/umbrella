@@ -1,7 +1,7 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { maybeParseFloat, maybeParseInt, unescape } from "@thi.ng/strings";
 import { base64Decode } from "@thi.ng/transducers-binary";
-import { execSync } from "child_process";
+import { execFileSync } from "child_process";
 import { readFileSync } from "fs";
 import { resolve as resolvePath } from "path";
 import { IS_NODE, NODE_ONLY, TagParser } from "./api";
@@ -24,7 +24,9 @@ export const BUILTINS: IObjectOf<TagParser> = {
     gpg: IS_NODE
         ? (_, body, ctx) =>
               (ctx.opts.decrypt
-                  ? execSync(`echo "${body}" | gpg --decrypt`).toString()
+                  ? execFileSync("gpg", ["--decrypt"], {
+                        input: body,
+                    }).toString()
                   : body
               ).trim()
         : NODE_ONLY,
