@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/imgui",
-    "version": "0.2.63",
+    "version": "0.2.64",
     "description": "Immediate mode GUI with flexible state handling & data only shape output",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -51,14 +51,14 @@
     "dependencies": {
         "@thi.ng/api": "^7.1.4",
         "@thi.ng/checks": "^2.9.5",
-        "@thi.ng/geom": "^2.1.10",
-        "@thi.ng/geom-api": "^2.0.13",
-        "@thi.ng/geom-isec": "^0.7.16",
-        "@thi.ng/geom-tessellate": "^0.2.65",
+        "@thi.ng/geom": "^2.1.11",
+        "@thi.ng/geom-api": "^2.0.14",
+        "@thi.ng/geom-isec": "^0.7.17",
+        "@thi.ng/geom-tessellate": "^0.2.66",
         "@thi.ng/layout": "^0.1.34",
         "@thi.ng/math": "^3.3.0",
-        "@thi.ng/transducers": "^7.6.7",
-        "@thi.ng/vectors": "^5.1.5"
+        "@thi.ng/transducers": "^7.6.8",
+        "@thi.ng/vectors": "^5.1.6"
     },
     "files": [
         "*.js",
