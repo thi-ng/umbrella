@@ -46,7 +46,7 @@ yarn add @thi.ng/mime
 <script src="https://unpkg.com/@thi.ng/mime/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 4.46 KB / CJS: 4.52 KB / UMD: 4.63 KB
+Package sizes (gzipped, pre-treeshake): ESM: 4.52 KB / CJS: 4.58 KB / UMD: 4.68 KB
 
 ## Dependencies
 
@@ -89,6 +89,19 @@ preferredType("foo")
 // unknown file extension w/ given fallback type
 preferredType("foo", "text/plain")
 // "text/plain"
+```
+
+Since v0.3.0 reverse lookups are possible too, using `preferredExtension()` (also supports fallback):
+
+```ts
+preferredExtension("image/svg+xml");
+// "svg"
+
+preferredExtension("image/foo");
+// "bin" (default fallback)
+
+preferredExtension("image/foo", "dat");
+// "dat" (custom fallback)
 ```
 
 ## Conversion from mime-db

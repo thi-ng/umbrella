@@ -76,6 +76,19 @@ preferredType("foo", "text/plain")
 // "text/plain"
 ```
 
+Since v0.3.0 reverse lookups are possible too, using `preferredExtension()` (also supports fallback):
+
+```ts
+preferredExtension("image/svg+xml");
+// "svg"
+
+preferredExtension("image/foo");
+// "bin" (default fallback)
+
+preferredExtension("image/foo", "dat");
+// "dat" (custom fallback)
+```
+
 ## Conversion from mime-db
 
 1. Download the [latest version of mime-db's JSON
