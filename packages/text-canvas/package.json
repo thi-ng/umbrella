@@ -64,6 +64,10 @@
         "lib"
     ],
     "keywords": [
+        "4bit",
+        "8bit",
+        "16bit",
+        "24bit",
         "ansi",
         "array",
         "ascii",
@@ -72,6 +76,7 @@
         "blit",
         "canvas",
         "circle",
+        "color",
         "datastructure",
         "drawing",
         "format",
