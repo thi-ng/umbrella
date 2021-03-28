@@ -66,6 +66,7 @@ interface TestArgs {
     bg: number;
     type: ImgType;
     size?: Tuple<number>;
+    pos?: Tuple<number>;
     xtra?: { a: number; b: string };
     define?: KVDict;
 }
@@ -103,6 +104,9 @@ const specs: Args<TestArgs> = {
     // size: tuple(coerceInt, 2, { hint: "WxH", desc: "Target size" }, "x"),
     // syntax sugar for above:
     size: size(2, { hint: "WxH", desc: "Target size" }),
+    // another version for tuples of floating point values
+    // pos: tuple(coerceFloat, 2, { desc: "Lat/Lon" }, ","),
+    pos: vec(2, { desc: "Lat/Lon" }),
     // JSON string arg
     xtra: json({
         alias: "x",
@@ -145,6 +149,7 @@ ts-node index.ts --help
 -c PATH, --config-path PATH     Config file path (CLI args always take
                                 precedence over those settings)
 -D key=val, --define key=val    [multiple] Define dict entry
+--pos N,N                       Lat/Lon
 --size WxH                      Target size
 -t ID, --type ID                [required] Image type: 'png', 'jpg', 'gif',
                                 'tiff'
