@@ -123,19 +123,22 @@ export interface UsageOpts {
      */
     color: Partial<ColorTheme> | false;
     /**
-     * If true (default), display argument default values.
+     * If true (default), display argument default values. Nullish or false
+     * default values will never be shown.
      *
      * @defaultValue true
      */
     showDefaults: boolean;
     /**
-     * Prefix content to show before list of options.
+     * Prefix content to show before list of options. Can contain ANSI control
+     * seqs and will be automatically word wrapped to given `lineWidth`.
      *
      * @default empty string
      */
     prefix: string;
     /**
-     * Suffix content to show after list of options.
+     * Suffix content to show after list of options.  Can contain ANSI control
+     * seqs and will be automatically word wrapped to given `lineWidth`.
      *
      * @default empty string
      */

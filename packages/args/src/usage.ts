@@ -28,8 +28,6 @@ export const usage = <T extends IObjectOf<any>>(
             ? { ...DEFAULT_THEME, ...opts.color }
             : <ColorTheme>{};
     const indent = repeat(" ", opts.paramWidth!);
-    const ansi = (x: string, col: number) =>
-        col != null ? `\x1b[${col}m${x}\x1b[0m` : x;
     const format = (ids: string[]) =>
         ids.map((id) => {
             const spec: ArgSpecExt = specs[id];
@@ -51,9 +49,11 @@ export const usage = <T extends IObjectOf<any>>(
                   )
                 : "";
             const defaults =
-                opts.showDefaults && spec.default !== undefined
+                opts.showDefaults &&
+                spec.default != null &&
+                spec.default !== false
                     ? ansi(
-                          ` (default: ${stringify()(
+                          ` (default: ${stringify(true)(
                               spec.defaultHint != undefined
                                   ? spec.defaultHint
                                   : spec.default
@@ -63,11 +63,10 @@ export const usage = <T extends IObjectOf<any>>(
                     : "";
             return (
                 padRight(opts.paramWidth!)(params, lengthAnsi(params)) +
-                wordWrapLines(prefix + (spec.desc || "") + defaults, {
-                    width: opts.lineWidth! - opts.paramWidth!,
-                    splitter: SPLIT_ANSI,
-                    hard: true,
-                })
+                wrap(
+                    prefix + (spec.desc || "") + defaults,
+                    opts.lineWidth! - opts.paramWidth!
+                )
                     .map((l, i) => (i > 0 ? indent + l : l))
                     .join("\n")
             );
@@ -79,8 +78,20 @@ export const usage = <T extends IObjectOf<any>>(
           )
         : [sortedIDs];
     return [
-        opts.prefix,
+        ...wrap(opts.prefix, opts.lineWidth!),
         ...groups.map((ids) => format(ids).join("\n") + "\n"),
-        opts.suffix,
+        ...wrap(opts.suffix, opts.lineWidth!),
     ].join("\n");
 };
+
+const ansi = (x: string, col: number) =>
+    col != null ? `\x1b[${col}m${x}\x1b[0m` : x;
+
+const wrap = (str: string | undefined, width: number) =>
+    str
+        ? wordWrapLines(str, {
+              width,
+              splitter: SPLIT_ANSI,
+              hard: true,
+          })
+        : [];

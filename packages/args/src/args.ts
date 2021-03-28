@@ -143,7 +143,7 @@ export const json = <T, S extends Partial<ArgSpec<T>>>(
 });
 
 const $desc = (opts: readonly string[], prefix?: string) =>
-    `${prefix ? prefix + ": " : ""}${opts.map((x) => `'${x}'`).join(", ")}`;
+    `${prefix ? prefix + ": " : ""}${opts.map((x) => `"${x}"`).join(", ")}`;
 
 /**
  * Returns full {@link ArgSpec} for an enum-like string value arg. The raw CLI
