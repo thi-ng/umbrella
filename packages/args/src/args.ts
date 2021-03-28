@@ -272,3 +272,16 @@ export const size = <S extends Partial<ArgSpec<Tuple<number>>>>(
     spec: S,
     delim = "x"
 ) => tuple(coerceInt, size, spec, delim);
+
+/**
+ * Syntax sugar for `tuple(coerceFloat, size, {...}, delim)`.
+ *
+ * @param size
+ * @param spec
+ * @param delim
+ */
+export const vec = <S extends Partial<ArgSpec<Tuple<number>>>>(
+    size: number,
+    spec: S,
+    delim = ","
+) => tuple(coerceFloat, size, spec, delim);
