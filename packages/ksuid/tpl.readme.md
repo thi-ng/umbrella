@@ -21,7 +21,9 @@ added flexibility in terms of configuration & implementation:
   [@thi.ng/base-n](https://github.com/thi-ng/umbrella/tree/develop/packages/base-n)
   for alternatives)
 - Epoch start time offset
-- RNG source (default: `window.crypto`)
+- Time-only base ID generation (optional)
+- KSUID parsing / decomposition
+- Configurable RNG source (default: `window.crypto` or `Math.random`)
 
 KSUIDs generated w/ this package consist of the lower 32bits of an Unix epoch
 (potentially time shifted to free up bits for future timestamps) and N bits of a
@@ -75,6 +77,19 @@ const a = id.nextBinary()
 // format a binary KSUID
 id.format(a);
 // '05XCZ32AaDZfZt0SWE2C22o6cqK'
+
+id.parse("05XCZ32AaDZfZt0SWE2C22o6cqK")
+// {
+//   epoch: 1610498125000,
+//   id: Uint8Array(16) [
+//     101, 251, 244,  17, 155, 97,
+//      24, 101,  70,  71, 207, 23,
+//      32,  21, 244, 116
+//   ]
+// }
+
+new Date(1610498125000).toISOString()
+// '2021-01-13T00:35:25.000Z'
 ```
 
 Creating custom IDs:
