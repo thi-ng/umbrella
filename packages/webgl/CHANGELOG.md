@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@4.0.9...@thi.ng/webgl@4.0.10) (2021-03-28)
+
+**Note:** Version bump only for package @thi.ng/webgl
+
+
+
+
+
 ## [4.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@4.0.8...@thi.ng/webgl@4.0.9) (2021-03-27)
 
 **Note:** Version bump only for package @thi.ng/webgl

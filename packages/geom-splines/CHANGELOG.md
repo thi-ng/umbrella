@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.53](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-splines@0.5.52...@thi.ng/geom-splines@0.5.53) (2021-03-28)
+
+**Note:** Version bump only for package @thi.ng/geom-splines
+
+
+
+
+
 ## [0.5.52](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-splines@0.5.51...@thi.ng/geom-splines@0.5.52) (2021-03-27)
 
 **Note:** Version bump only for package @thi.ng/geom-splines

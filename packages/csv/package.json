@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/csv",
-    "version": "0.1.20",
+    "version": "0.1.21",
     "description": "Customizable, transducer-based CSV parser/object mapper and transformer",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -52,7 +52,7 @@
         "@thi.ng/api": "^7.1.4",
         "@thi.ng/checks": "^2.9.5",
         "@thi.ng/strings": "^2.1.0",
-        "@thi.ng/transducers": "^7.6.8"
+        "@thi.ng/transducers": "^7.6.9"
     },
     "files": [
         "*.js",

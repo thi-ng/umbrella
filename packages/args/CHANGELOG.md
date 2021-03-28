@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/args@0.4.2...@thi.ng/args@0.5.0) (2021-03-28)
+
+
+### Features
+
+* **args:** add vec() arg type ([f05cb2a](https://github.com/thi-ng/umbrella/commit/f05cb2a6d0798ef0558775a81dba2d834308747c))
+* **args:** wordwrap usage prefix/suffix, defaults ([325b558](https://github.com/thi-ng/umbrella/commit/325b558f74f8dbfaa2c7de72c6800cdbc8c54acd))
+
+
+
+
+
 ## [0.4.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/args@0.4.1...@thi.ng/args@0.4.2) (2021-03-24)
 
 **Note:** Version bump only for package @thi.ng/args

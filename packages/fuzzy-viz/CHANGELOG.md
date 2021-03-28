@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/fuzzy-viz@0.1.20...@thi.ng/fuzzy-viz@0.1.21) (2021-03-28)
+
+**Note:** Version bump only for package @thi.ng/fuzzy-viz
+
+
+
+
+
 ## [0.1.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/fuzzy-viz@0.1.19...@thi.ng/fuzzy-viz@0.1.20) (2021-03-27)
 
 **Note:** Version bump only for package @thi.ng/fuzzy-viz

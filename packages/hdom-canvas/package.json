@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hdom-canvas",
-    "version": "3.0.42",
+    "version": "3.0.43",
     "description": "@thi.ng/hdom component wrapper for declarative canvas scenegraphs",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -53,7 +53,7 @@
         "@thi.ng/checks": "^2.9.5",
         "@thi.ng/diff": "^4.0.7",
         "@thi.ng/hdom": "^8.2.24",
-        "@thi.ng/hiccup-canvas": "^1.1.32"
+        "@thi.ng/hiccup-canvas": "^1.1.33"
     },
     "files": [
         "*.js",
