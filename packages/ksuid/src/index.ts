@@ -72,19 +72,41 @@ export class KSUID {
      * Returns a new baseN encoded ID string.
      */
     next() {
-        return this.pad(this.base.encodeBytes(this.nextBinary()));
+        return this.format(this.nextBinary());
     }
 
     /**
      * Returns a new ID as byte array.
      */
     nextBinary() {
-        const buf = new Uint8Array(this.size);
-        const t = (Date.now() / 1000 - this.epoch) & 0xffffffff;
-        buf.set([t >>> 24, (t >>> 16) & 0xff, (t >>> 8) & 0xff, t & 0xff]);
+        const buf = this.timeOnlyBinary();
         return this.rnd
             ? randomBytesFrom(this.rnd, buf, 4)
             : randomBytes(buf, 4);
+    }
+
+    /**
+     * Returns a new baseN encoded ID string for given `epoch` (default: current
+     * time) and with all random payload bytes set to 0.
+     *
+     * @param epoch
+     */
+    timeOnly(epoch?: number) {
+        return this.format(this.timeOnlyBinary(epoch));
+    }
+
+    /**
+     * Binary version of {@link KSUI.timeOnly}, but returns byte array. The
+     * first 4 bytes will contain the timestamp.
+     *
+     * @param epoch
+     */
+    timeOnlyBinary(epoch = Date.now()) {
+        const buf = new Uint8Array(this.size);
+        let t = epoch / 1000 - this.epoch;
+        assert(t >= 0, "configured base epoch must be in the past");
+        buf.set([t >>> 24, (t >>> 16) & 0xff, (t >>> 8) & 0xff, t & 0xff]);
+        return buf;
     }
 
     /**
@@ -97,6 +119,28 @@ export class KSUID {
             `illegal KSUID size, expected ${this.size} bytes`
         );
         return this.pad(this.base.encodeBytes(buf));
+    }
+
+    /**
+     * Takes a KSUID string (assumed to be generated with the same config as
+     * this instance) and parses it into an object of: `{ epoch, id }`, where
+     * `epoch` is the Unix epoch of the ID and `id` the random bytes.
+     *
+     * @remarks
+     * This operation requires `bigint` support by the host environment.
+     *
+     * @param id
+     */
+    parse(id: string) {
+        const buf = new Uint8Array(this.size);
+        this.base.decodeBytes(id, buf);
+        return {
+            epoch:
+                (((buf[0] << 24) | (buf[1] << 16) | (buf[2] << 8) | buf[3]) +
+                    this.epoch) *
+                1000,
+            id: buf.slice(4),
+        };
     }
 }
 
