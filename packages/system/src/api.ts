@@ -1,4 +1,4 @@
-import type { Fn, Keys } from "@thi.ng/api";
+import { Fn, ILogger, Keys, NULL_LOGGER } from "@thi.ng/api";
 
 export interface ILifecycle {
     /**
@@ -48,3 +48,13 @@ export type SystemSpecs<T extends SystemMap<T>> = Record<
         deps?: Keys<T>[];
     }
 >;
+
+/** @internal */
+export let LOGGER = NULL_LOGGER;
+
+/**
+ * Sets package logger to given instance.
+ *
+ * @param logger
+ */
+export const setLogger = (logger: ILogger) => (LOGGER = logger);

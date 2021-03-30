@@ -1,6 +1,6 @@
 import type { Keys } from "@thi.ng/api";
 import { DGraph } from "@thi.ng/dgraph";
-import type { ILifecycle, SystemMap, SystemSpecs } from "./api";
+import { ILifecycle, LOGGER, SystemMap, SystemSpecs } from "./api";
 
 export const defSystem = <T extends SystemMap<T>>(map: SystemSpecs<T>) =>
     new System<T>(map);
@@ -37,7 +37,7 @@ export class System<T extends SystemMap<T>> implements ILifecycle {
         for (let id of this.topology) {
             const comp = this.components[id];
             if (comp.start && !(await comp.start())) {
-                console.warn(`error starting component: ${id}`);
+                LOGGER.warn(`error starting component: ${id}`);
                 return false;
             }
         }
@@ -59,7 +59,7 @@ export class System<T extends SystemMap<T>> implements ILifecycle {
             const id = topo[i];
             const comp = this.components[id];
             if (comp.stop && !(await comp.stop())) {
-                console.warn(`error stopping component: ${id}`);
+                LOGGER.warn(`error stopping component: ${id}`);
             }
         }
         return true;
