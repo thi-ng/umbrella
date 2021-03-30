@@ -26,7 +26,7 @@ import type { Canvas } from "./canvas";
  */
 export const FMT_NONE: StringFormat = {
     prefix: "",
-    suffix: "",
+    suffix: "\n",
     start: () => "",
     end: "",
 };
@@ -95,24 +95,26 @@ export const defFormat = (fmt: StringFormat, code: number) => (x: any) =>
 
 const PRESETS = {
     black: FG_BLACK,
-    red: FG_RED,
-    green: FG_GREEN,
-    yellow: FG_YELLOW,
     blue: FG_BLUE,
-    magenta: FG_MAGENTA,
     cyan: FG_CYAN,
-    lightGray: FG_LIGHT_GRAY,
     gray: FG_GRAY,
-    lightRed: FG_LIGHT_RED,
-    lightGreen: FG_LIGHT_GREEN,
-    lightYellow: FG_LIGHT_YELLOW,
-    lightBlue: FG_LIGHT_BLUE,
-    lightMagenta: FG_LIGHT_MAGENTA,
-    lightCyan: FG_LIGHT_CYAN,
+    green: FG_GREEN,
+    magenta: FG_MAGENTA,
+    red: FG_RED,
     white: FG_WHITE,
+    yellow: FG_YELLOW,
+    lightBlue: FG_LIGHT_BLUE,
+    lightCyan: FG_LIGHT_CYAN,
+    lightGray: FG_LIGHT_GRAY,
+    lightGreen: FG_LIGHT_GREEN,
+    lightMagenta: FG_LIGHT_MAGENTA,
+    lightRed: FG_LIGHT_RED,
+    lightYellow: FG_LIGHT_YELLOW,
 };
 
-type PresetID = Keys<typeof PRESETS>;
+export type PresetID = Keys<typeof PRESETS>;
+
+export type FormatPresets = Record<PresetID, Fn<any, string>>;
 
 /**
  * Takes a {@link StringFormat} impl supporting preset format ID constants (e.g.
@@ -121,12 +123,8 @@ type PresetID = Keys<typeof PRESETS>;
  *
  * @param fmt
  */
-export const defFormatPresets = (fmt: StringFormat) =>
-    <Record<PresetID, Fn<any, string>>>(
-        Object.keys(PRESETS).reduce(
-            (acc, id) => (
-                (acc[id] = defFormat(fmt, PRESETS[<PresetID>id])), acc
-            ),
-            <any>{}
-        )
+export const defFormatPresets = (fmt: StringFormat): FormatPresets =>
+    Object.keys(PRESETS).reduce(
+        (acc, id) => ((acc[id] = defFormat(fmt, PRESETS[<PresetID>id])), acc),
+        <any>{}
     );
