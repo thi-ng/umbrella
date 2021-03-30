@@ -47,6 +47,7 @@ export * from "./degrees";
 export * from "./direction";
 export * from "./dist";
 export * from "./dist-chebyshev";
+export * from "./dist-haversine";
 export * from "./dist-manhattan";
 export * from "./dist-weighted";
 export * from "./distsq";
