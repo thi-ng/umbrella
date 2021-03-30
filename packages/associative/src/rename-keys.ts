@@ -1,3 +1,5 @@
+import type { Fn2, Nullable } from "@thi.ng/api";
+import { isArray } from "@thi.ng/checks";
 import { empty } from "./utils";
 
 /**
@@ -43,4 +45,55 @@ export const renameKeysObj = <T>(
         out[km.hasOwnProperty(k) ? km[k] : k] = src[k];
     }
     return out;
+};
+
+/**
+ * Similar to (combination of) {@link renameKeysObj} and
+ * {@link selectDefinedKeysObj}. Takes a `src` object and `keys`, an object of
+ * mappings to rename given keys and (optionally) transform their values.
+ * Returns new object. If `src` is nullish itself, returns an empty object.
+ *
+ * @remarks
+ * Only keys with non-nullish values (in `src`) are being processed. The `keys`
+ * object uses the original key names as keys and the new keys as their values
+ * (like {@link renameKeysObj}). If a transformation of a key's value is
+ * desired, the format is `{ oldname: [newname, xform] }`, where `xform` is a
+ * 2-arg function, receiving the original value of `oldname` and the entire
+ * `src` object as 2nd arg. The return value of that function will be used as
+ * the value of `newname`.
+ *
+ * @example
+ * ```ts
+ * renameTransformedKeys(
+ *   // source object
+ *   { a: 1, b: 2, c: null },
+ *   // mappings
+ *   {
+ *     // rename a => aa
+ *     a: "aa",
+ *     // rename & transform
+ *     b: ["bb", (x, src) => x * 10 + src.a]
+ *     // ignored, since original c is null
+ *     c: "cc"
+ *   }
+ * )
+ * // { aa: 1, bb: 21 }
+ * ```
+ *
+ * @param src
+ * @param keys
+ */
+export const renameTransformedKeys = <T extends object, K extends keyof T>(
+    src: Nullable<T>,
+    keys: Record<K, PropertyKey | [PropertyKey, Fn2<any, T, any>]>
+) => {
+    if (!src) return {};
+    const res: any = {};
+    for (let $k in keys) {
+        const spec = keys[$k];
+        const [k, fn] = isArray(spec) ? spec : [spec];
+        const val = src[$k];
+        if (val != null) res[k] = fn ? fn(val, src) : val;
+    }
+    return res;
 };
