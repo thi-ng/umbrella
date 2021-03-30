@@ -26,7 +26,8 @@ distance values. The following preset metrics are provided too:
 | `EUCLEDIAN1`      | ✅          |         |        |        |                                                                      |
 | `EUCLEDIAN2`      |            |         | ✅      |        |                                                                      |
 | `EUCLEDIAN3`      |            |         |        | ✅      |                                                                      |
-| `DIST_SQ`         |            | ✅       |        |        | Squared dist (avoids `Math.sqrt`)                                |
+| `HAVERSINE`       |            |         | ✅      |        | Great-circle distance for lon/lat geo locations                      |
+| `DIST_SQ`         |            | ✅       |        |        | Squared dist (avoids `Math.sqrt`)                                    |
 | `DIST_SQ1`        | ✅          |         |        |        |                                                                      |
 | `DIST_SQ2`        |            |         | ✅      |        |                                                                      |
 | `DIST_SQ3`        |            |         |        | ✅      |                                                                      |
