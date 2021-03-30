@@ -38,7 +38,7 @@ ${pkg.description}
 - Key-value pair inversion for maps and vanilla objects
     - i.e. swaps `K => V` to `V => K`
 - Single or multi-property index generation for maps and objects
-- Key selection & renaming for maps and objects
+- Key selection & renaming / transformations for maps and objects
 
 ### Why?
 

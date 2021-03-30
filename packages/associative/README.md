@@ -59,7 +59,7 @@ Alternative Map and Set implementations with customizable equality semantics & s
 - Key-value pair inversion for maps and vanilla objects
     - i.e. swaps `K => V` to `V => K`
 - Single or multi-property index generation for maps and objects
-- Key selection & renaming for maps and objects
+- Key selection & renaming / transformations for maps and objects
 
 ### Why?
 
@@ -176,7 +176,7 @@ yarn add @thi.ng/associative
 <script src="https://unpkg.com/@thi.ng/associative/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 6.21 KB / CJS: 6.39 KB / UMD: 6.20 KB
+Package sizes (gzipped, pre-treeshake): ESM: 6.32 KB / CJS: 6.50 KB / UMD: 6.30 KB
 
 ## Dependencies
 
