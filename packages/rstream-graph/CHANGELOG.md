@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.64](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@3.2.63...@thi.ng/rstream-graph@3.2.64) (2021-03-30)
+
+**Note:** Version bump only for package @thi.ng/rstream-graph
+
+
+
+
+
 ## [3.2.63](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-graph@3.2.62...@thi.ng/rstream-graph@3.2.63) (2021-03-28)
 
 **Note:** Version bump only for package @thi.ng/rstream-graph

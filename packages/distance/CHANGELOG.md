@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/distance@0.1.11...@thi.ng/distance@0.2.0) (2021-03-30)
+
+
+### Features
+
+* **distance:** add HAVERSINE preset, update readme ([cfc771e](https://github.com/thi-ng/umbrella/commit/cfc771eb21cf2574eaa2476eaee7920674cae9c3))
+
+
+
+
+
 ## [0.1.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/distance@0.1.10...@thi.ng/distance@0.1.11) (2021-03-28)
 
 **Note:** Version bump only for package @thi.ng/distance

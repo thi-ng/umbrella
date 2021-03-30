@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.46](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-fuzz@0.1.45...@thi.ng/geom-fuzz@0.1.46) (2021-03-30)
+
+**Note:** Version bump only for package @thi.ng/geom-fuzz
+
+
+
+
+
 ## [0.1.45](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-fuzz@0.1.44...@thi.ng/geom-fuzz@0.1.45) (2021-03-28)
 
 **Note:** Version bump only for package @thi.ng/geom-fuzz

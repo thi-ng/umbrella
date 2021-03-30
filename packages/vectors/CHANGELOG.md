@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@5.1.7...@thi.ng/vectors@5.2.0) (2021-03-30)
+
+
+### Features
+
+* **vectors:** add distHaversine() ([4dcc9cf](https://github.com/thi-ng/umbrella/commit/4dcc9cf8205a4e97c2abf14c6d6cb40949532c94))
+
+
+
+
+
 ## [5.1.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@5.1.6...@thi.ng/vectors@5.1.7) (2021-03-28)
 
 **Note:** Version bump only for package @thi.ng/vectors

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.48](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph-dot@0.1.47...@thi.ng/dgraph-dot@0.1.48) (2021-03-30)
+
+**Note:** Version bump only for package @thi.ng/dgraph-dot
+
+
+
+
+
 ## [0.1.47](https://github.com/thi-ng/umbrella/compare/@thi.ng/dgraph-dot@0.1.46...@thi.ng/dgraph-dot@0.1.47) (2021-03-28)
 
 **Note:** Version bump only for package @thi.ng/dgraph-dot
