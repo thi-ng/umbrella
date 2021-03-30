@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/system",
-    "version": "0.2.48",
+    "version": "0.3.0",
     "description": "Minimal DI / life cycle container for stateful app components",
     "module": "./index.js",
     "main": "./lib/index.js",

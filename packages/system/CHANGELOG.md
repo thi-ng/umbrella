@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/system@0.2.48...@thi.ng/system@0.3.0) (2021-03-30)
+
+
+### Features
+
+* **system:** add package LOGGER ([f67364c](https://github.com/thi-ng/umbrella/commit/f67364cb12f7a868e005a8f6ea7759d9fc03c216))
+
+
+
+
+
 ## [0.2.48](https://github.com/thi-ng/umbrella/compare/@thi.ng/system@0.2.47...@thi.ng/system@0.2.48) (2021-03-30)
 
 **Note:** Version bump only for package @thi.ng/system
