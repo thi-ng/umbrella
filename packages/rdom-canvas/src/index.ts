@@ -82,7 +82,7 @@ export class $Canvas
     update(tree: any[] | IToHiccup) {
         if (tree == null) return;
         const shapes = implementsFunction(tree, "toHiccup")
-            ? (<IToHiccup>tree).toHiccup()
+            ? tree.toHiccup()
             : tree;
         shapes[1].__clear !== false &&
             this.ctx!.clearRect(0, 0, this.el!.width, this.el!.height);
