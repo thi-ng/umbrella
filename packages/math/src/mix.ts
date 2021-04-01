@@ -370,7 +370,7 @@ export const sigmoid: FnN3 = (bias, k, t) =>
  * @param k - steepness
  * @param t - input value
  */
-export const sigmoid01: FnN3 = (k, t) => sigmoid(0.5, k, t);
+export const sigmoid01: FnN2 = (k, t) => sigmoid(0.5, k, t);
 
 /**
  * Sigmoid function for inputs in [-1..+1] interval. Center bias = 0
