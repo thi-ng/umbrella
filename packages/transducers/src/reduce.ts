@@ -27,7 +27,7 @@ export function reduce<A, B>(...args: any[]): A {
     return unreduced(
         complete(
             implementsFunction(xs, "$reduce")
-                ? (<IReducible<A, B>>xs).$reduce(reduce, acc)
+                ? xs.$reduce(reduce, acc)
                 : isArrayLike(xs)
                 ? reduceArray(reduce, acc, xs)
                 : reduceIterable(reduce, acc, <Iterable<B>>xs)
