@@ -1,4 +1,4 @@
-import type { IDeref, NumericArray } from "@thi.ng/api";
+import type { NumericArray } from "@thi.ng/api";
 import {
     implementsFunction,
     isArrayLike,
@@ -158,7 +158,7 @@ export const defColor = <M extends ColorMode, K extends string>(
                 ? fromColor(src, (<IColor>src).mode, xs)
                 : <any>new $Color(<NumericArray>src, ...xs)
             : implementsFunction(src, "deref")
-            ? fromColor((<IDeref<any>>src).deref(), (<IColor>src).mode, xs)
+            ? fromColor(src.deref(), (<IColor>src).mode, xs)
             : isNumber(src)
             ? xs.length && xs.every(isNumber)
                 ? <any>new $Color(...ensureArgs([src, ...xs]))
