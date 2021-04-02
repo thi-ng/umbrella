@@ -48,8 +48,10 @@ Typedarray integer & float pixel buffers w/ customizable formats, blitting, dith
   - Wrap behaviors: clamp, wrap, repeat
   - Pooling: mean/min/max
 - Invert image
-- Convolution w/ arbitrary shaped/sized kernels, pooling, striding (resizing)
+- Convolution w/ arbitrary shaped/sized kernels, pooling, striding
 - Convolution kernel & pooling kernels presets
+  - Higher order kernel generators (Gaussian, Lanczos)
+- Image pyramid generation (w/ customizable kernels)
 - Customizable normal map generation (i.e. X/Y gradients plus static Z component)
 - XY full pixel & channel-only accessors
 - 12 packed integer and 6 floating point preset formats (see table below)
@@ -165,14 +167,21 @@ following convolution kernel presets are provided for convenience:
 | `GAUSSIAN_BLUR5` | 5x5         |
 | `GAUSSIAN(n)`    | 2n+1 x 2n+1 |
 | `HIGHPASS3`      | 3x3         |
+| `LANCZOS(a,s)`   | as+1 x as+1 |
 | `SHARPEN3`       | 3x3         |
 | `SOBEL_X`        | 3x3         |
 | `SOBEL_Y`        | 3x3         |
 | `UNSHARP_MASK5`  | 5x5         |
 
-Furthermore, convolution supports striding (i.e. only processing every nth pixel
-column/row) and pixel pooling (e.g. for ML applications). Available pooling
-kernel presets (kernel sizes are configured independently):
+Custom kernels can be defined (and code generated) using an array of
+coefficients and a given kernel size. See above presets and
+[`defKernel()`](https://docs.thi.ng/umbrella/pixel/modules.html#defkernel) for
+reference.
+
+Furthermore, convolution supports striding (i.e. only processing & keeping every
+nth pixel column/row, aka downscaling) and pixel pooling (e.g. for ML
+applications). Available pooling kernel presets (kernel sizes must be configured
+independently):
 
 | Kernel                 | Description        |
 |------------------------|--------------------|
@@ -264,7 +273,7 @@ yarn add @thi.ng/pixel
 <script src="https://unpkg.com/@thi.ng/pixel/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 8.66 KB / CJS: 8.93 KB / UMD: 8.64 KB
+Package sizes (gzipped, pre-treeshake): ESM: 9.07 KB / CJS: 9.35 KB / UMD: 9.07 KB
 
 ## Dependencies
 
