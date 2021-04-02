@@ -410,13 +410,6 @@ export interface ConvolveOpts {
      */
     channel?: number;
     /**
-     * If true, the result image will be same size as source image with empty
-     * (padded) border pixels.
-     *
-     * @defaultValue true
-     */
-    pad?: boolean;
-    /**
      * Result scale factor
      *
      * @defaultValue 1
@@ -428,6 +421,11 @@ export interface ConvolveOpts {
      * @defaultValue 1
      */
     stride?: number | [number, number];
+    /**
+     * Pixel read offset, only to be used for pooling operations. Should be set
+     * to `kernelSize/2` and MUST be in `[0,stride)` interval.
+     */
+    offset?: number | [number, number];
 }
 
 export interface NormalMapOpts {
