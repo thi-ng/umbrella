@@ -80,7 +80,7 @@ const convolve = ({
         sy += stepY, dy++
     ) {
         for (
-            let sx = offsetX * srcStride, dx = 0;
+            let sx = offsetX * srcStride + channel, dx = 0;
             dx < dwidth;
             sx += stepX, dx++, i++
         ) {

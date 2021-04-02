@@ -368,6 +368,23 @@ export class FloatBuffer
         return dest;
     }
 
+    upsize() {
+        const { width, height, pixels, stride, rowStride } = this;
+        const dstride = stride * 2;
+        const dest = floatBuffer(width * 2, height * 2, this.format);
+        const dpix = dest.pixels;
+        for (let y = 0, si = 0; y < height; y++) {
+            for (
+                let x = 0, di = y * rowStride * 4;
+                x < width;
+                x++, si += stride, di += dstride
+            ) {
+                dpix.set(pixels.subarray(si, si + stride), di);
+            }
+        }
+        return dest;
+    }
+
     protected ensureFormat(dest: FloatBuffer) {
         assert(
             dest.format === this.format,

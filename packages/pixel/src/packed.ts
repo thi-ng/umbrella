@@ -479,4 +479,16 @@ export class PackedBuffer
         }
         return dest;
     }
+
+    upsize() {
+        const { width, height, pixels } = this;
+        const dest = new PackedBuffer(width * 2, height * 2, this.format);
+        const dpix = dest.pixels;
+        for (let y = 0, si = 0; y < height; y++) {
+            for (let x = 0, di = y * width * 4; x < width; x++, si++, di += 2) {
+                dpix[di] = pixels[si];
+            }
+        }
+        return dest;
+    }
 }
