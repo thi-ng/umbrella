@@ -345,10 +345,42 @@ export const cubicPulse: FnN3 = (w, c, t) => {
     return t > w ? 0 : ((t /= w), 1 - t * t * (3 - 2 * t));
 };
 
-export const sinc: FnN2 = (k, t) => {
-    t = PI * (k * t - 1.0);
-    return Math.sin(t) / t;
-};
+/**
+ * Unnormalized Sinc function: sin(x)/x. Returns 1 for t=0.
+ *
+ * @remarks
+ * https://en.wikipedia.org/wiki/Sinc_function
+ *
+ * @param k
+ * @param t
+ */
+export const sinc: FnN = (t) => (t !== 0 ? Math.sin(t) / t : 1);
+
+/**
+ * Normalized Sinc function, returns sinc(π*k*t).
+ *
+ * @remarks
+ * https://en.wikipedia.org/wiki/Sinc_function
+ *
+ * @see {@link sinc}
+ *
+ * @param k
+ * @param t
+ */
+export const sincNormalized: FnN2 = (k, t) => sinc(PI * k * t);
+
+/**
+ * Lanczos filter. Returns `sinc(πt)sinc(πt/a)` iff `t` in (-a,a) interval, else
+ * returns 0.
+ *
+ * @remarks
+ * Interactive graph: https://www.desmos.com/calculator/pmypqgefle
+ *
+ * @param a
+ * @param t
+ */
+export const lanczos: FnN2 = (a, t) =>
+    t !== 0 ? (-a < t && t < a ? sinc(PI * t) * sinc((PI * t) / a) : 0) : 1;
 
 /**
  * Sigmoid function for inputs arounds center bias.
