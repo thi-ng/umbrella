@@ -1,5 +1,6 @@
-import { assert, Fn, FnN, NumericArray } from "@thi.ng/api";
+import { assert, Fn, FnN3, NumericArray } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks";
+import { clamp, lanczos } from "@thi.ng/math";
 import type {
     ConvolutionKernelSpec,
     ConvolveOpts,
@@ -58,10 +59,10 @@ const convolve = ({
     channel,
     dest,
     dwidth,
+    dheight,
     kernel,
-    kh2,
-    kw2,
-    pad,
+    offsetX,
+    offsetY,
     rowStride,
     scale,
     src,
@@ -70,20 +71,20 @@ const convolve = ({
     strideY,
 }: ReturnType<typeof initConvolve>) => {
     ensureChannel(src.format, channel);
-    const maxY = src.height - kh2 + (kh2 & 1 ? 0 : 1);
-    const maxX = src.width - kw2 + (kw2 & 1 ? 0 : 1);
-    const padX = pad && strideX === 1;
-    const padY = pad && strideY === 1;
     const dpix = dest.pixels;
-    for (let sy = kh2, dy = padY ? kh2 : 0; sy < maxY; sy += strideY, dy++) {
+    const stepX = strideX * srcStride;
+    const stepY = strideY * rowStride;
+    for (
+        let sy = offsetY * rowStride, dy = 0, i = 0;
+        dy < dheight;
+        sy += stepY, dy++
+    ) {
         for (
-            let x = kw2,
-                i = sy * rowStride + x * srcStride + channel,
-                j = dy * dwidth + (padX ? x : 0);
-            x < maxX;
-            x += strideX, i += strideX * srcStride, j++
+            let sx = offsetX * srcStride, dx = 0;
+            dx < dwidth;
+            sx += stepX, dx++, i++
         ) {
-            dpix[j] = kernel(i) * scale;
+            dpix[i] = kernel(sx, sy, channel) * scale;
         }
     }
     return dest;
@@ -107,9 +108,9 @@ const initKernel = (
 
 /** @internal */
 const initConvolve = (src: FloatBuffer, opts: ConvolveOpts) => {
-    const { kernel, channel, stride: sampleStride, pad, scale } = {
+    const { kernel, channel, stride: sampleStride, scale, offset } = {
         channel: 0,
-        pad: true,
+        offset: 0,
         scale: 1,
         stride: 1,
         ...opts,
@@ -117,14 +118,12 @@ const initConvolve = (src: FloatBuffer, opts: ConvolveOpts) => {
     const size = kernel.size;
     const [kw, kh] = asIntVec(size);
     const [strideX, strideY] = asIntVec(sampleStride);
+    const [offsetX, offsetY] = asIntVec(offset);
     assert(strideX >= 1 && strideY >= 1, `illegal stride: ${sampleStride}`);
     const { width, height, stride: srcStride, rowStride } = src;
-    assert(
-        kw >= 0 && kw <= width && kh >= 0 && kh <= height,
-        `invalid kernel size: ${size}`
-    );
-    const dwidth = destSize(width, strideX, kw, pad);
-    const dheight = destSize(height, strideY, kh, pad);
+    const dwidth = Math.floor(width / strideX);
+    const dheight = Math.floor(height / strideY);
+    assert(dwidth > 0 && dheight > 0, `too large stride(s) for given image`);
     const dest = new FloatBuffer(dwidth, dheight, FLOAT_GRAY);
     return {
         channel,
@@ -132,9 +131,8 @@ const initConvolve = (src: FloatBuffer, opts: ConvolveOpts) => {
         dheight,
         dwidth,
         kernel: initKernel(src, kernel, kw, kh),
-        kh2: kh >> 1,
-        kw2: kw >> 1,
-        pad,
+        offsetX,
+        offsetY,
         rowStride,
         scale,
         src,
@@ -144,10 +142,6 @@ const initConvolve = (src: FloatBuffer, opts: ConvolveOpts) => {
     };
 };
 
-/** @internal */
-const destSize = (orig: number, res: number, k: number, pad: boolean) =>
-    pad ? Math.floor(orig / res) : Math.ceil((orig - k + 1) / res);
-
 /**
  * HOF convolution or pooling kernel code generator. Takes either a
  * {@link PoolTemplate} function or array of kernel coefficients and kernel
@@ -155,12 +149,13 @@ const destSize = (orig: number, res: number, k: number, pad: boolean) =>
  * {@link convolve}.
  *
  * @remarks
- * If total kernel size (width * height) is < 1024, the result function will use
+ * If total kernel size (width * height) is < 512, the result function will use
  * unrolled loops to access pixels and hence kernel sizes shouldn't be larger
- * than ~32x32 to avoid excessive function bodies. For convolution kernels, only
- * non-zero weighted pixels will be included in the result function to avoid
- * extraneous lookups. Row & column offsets are pre-calculated too. Larger
- * kernel sizes are handled via {@link defLargeKernel}.
+ * than ~22x22 to avoid excessive function bodies. For dynamically generated
+ * kernel functions, only non-zero weighted pixels will be included in the
+ * result function to avoid extraneous lookups. Row & column offsets are
+ * pre-calculated too. Larger kernel sizes are handled via
+ * {@link defLargeKernel}.
  *
  * @param tpl
  * @param w
@@ -171,10 +166,9 @@ export const defKernel = (
     w: number,
     h: number
 ) => {
-    if (w * h > 1024 && !isFunction(tpl)) return defLargeKernel(tpl, w, h);
+    if (w * h > 512 && !isFunction(tpl)) return defLargeKernel(tpl, w, h);
     const isPool = isFunction(tpl);
     const prefix: string[] = [];
-    const prefixI: string[] = [];
     const body: string[] = [];
     const kvars: string[] = [];
     const h2 = h >> 1;
@@ -186,16 +180,34 @@ export const defKernel = (
             const kv = `k${y}_${x}`;
             kvars.push(kv);
             const xx = x - w2;
-            const idx = (yy !== 0 ? `i${y}` : `i`) + (xx !== 0 ? `+x${x}` : "");
+            const idx =
+                (yy !== 0 ? `y${y}` : `y`) + (xx !== 0 ? `+x${x}` : "+x");
             isPool
                 ? row.push(`pix[${idx}]`)
                 : (<NumericArray>tpl)[i] !== 0 && row.push(`${kv}*pix[${idx}]`);
-            y === 0 && xx !== 0 && prefix.push(`const x${x} = ${xx} * stride;`);
+            if (y === 0 && xx !== 0) {
+                prefix.push(
+                    xx < 0
+                        ? `const x${x} = max(x${
+                              xx < -1 ? xx + "*" : "-"
+                          }stride,channel);`
+                        : `const x${x} = min(x+${
+                              xx > 1 ? xx + "*" : ""
+                          }stride,maxX+channel);`
+                );
+            }
         }
         row.length && body.push(...row);
         if (yy !== 0) {
-            prefix.push(`const y${y} = ${yy} * rowStride;`);
-            prefixI.push(`const i${y} = i + y${y};`);
+            prefix.push(
+                yy < 0
+                    ? `const y${y} = max(y${
+                          yy < -1 ? yy + "*" : "-"
+                      }rowStride,0);`
+                    : `const y${y} = min(y+${
+                          yy > 1 ? yy + "*" : ""
+                      }rowStride,maxY);`
+            );
         }
     }
     const decls = isPool
@@ -204,14 +216,17 @@ export const defKernel = (
     const inner = isPool ? (<PoolTemplate>tpl)(body, w, h) : body.join(" + ");
     const fnBody = [
         decls,
+        "const { min, max } = Math;",
         "const { pixels: pix, stride, rowStride } = src;",
+        "const maxX = (src.width - 1) * stride;",
+        "const maxY = (src.height - 1) * rowStride;",
+        "return (x, y, channel) => {",
         ...prefix,
-        "return (i) => {",
-        ...prefixI,
         `return ${inner};`,
         "}",
     ].join("\n");
-    return <Fn<FloatBuffer, FnN>>new Function("src", fnBody);
+    // console.log(fnBody);
+    return <Fn<FloatBuffer, FnN3>>new Function("src", fnBody);
 };
 
 /**
@@ -226,20 +241,30 @@ export const defLargeKernel = (
     kernel: NumericArray,
     w: number,
     h: number
-): Fn<FloatBuffer, FnN> => {
-    const h2 = h >> 1;
-    const w2 = w >> 1;
+): Fn<FloatBuffer, FnN3> => {
     return (src) => {
         const { pixels, rowStride, stride } = src;
-        return (i) => {
-            let sum = 0;
-            for (let y = -h2, k = 0; y <= h2; y++) {
+        const x0 = -(w >> 1) * stride;
+        const x1 = -x0 + (w & 1 ? stride : 0);
+        const y0 = -(h >> 1) * rowStride;
+        const y1 = -y0 + (h & 1 ? rowStride : 0);
+        const maxX = (src.width - 1) * stride;
+        const maxY = (src.height - 1) * rowStride;
+        return (xx, yy, channel) => {
+            const $maxX = maxX + channel;
+            let sum = 0,
+                y: number,
+                x: number,
+                k: number,
+                row: number;
+            for (y = y0, k = 0; y < y1; y += rowStride) {
                 for (
-                    let x = -w2, ii = i + y * rowStride;
-                    x <= w2;
-                    x++, ii += stride, k++
+                    x = x0, row = clamp(yy + y, 0, maxY);
+                    x < x1;
+                    x += stride, k++
                 ) {
-                    sum += kernel[k] * pixels[ii];
+                    sum +=
+                        kernel[k] * pixels[row + clamp(xx + x, channel, $maxX)];
                 }
             }
             return sum;
@@ -340,6 +365,34 @@ export const GAUSSIAN = (r: number): ConvolutionKernelSpec => {
             const g = Math.exp((x * x + y * y) * sigma);
             res.push(g);
             sum += g;
+        }
+    }
+    return { spec: res.map((x) => x / sum), size: r * 2 + 1 };
+};
+
+/**
+ * Higher-order Lanczos filter kernel generator for given `a` value (recommended
+ * 2 or 3) and `scale` (num pixels per `a`).
+ *
+ * @remarks
+ * https://en.wikipedia.org/wiki/Lanczos_resampling#Lanczos_kernel
+ *
+ * @param a
+ * @param scale
+ */
+export const LANCZOS = (a: number, scale = 2): ConvolutionKernelSpec => {
+    assert(a > 0, `invalid coefficient: ${a}`);
+    const r = Math.ceil(a * scale);
+    const res: number[] = [];
+    let sum = 0;
+    for (let y = -r; y <= r; y++) {
+        const yy = y / scale;
+        const ly = lanczos(a, yy);
+        for (let x = -r; x <= r; x++) {
+            const m = Math.hypot(x / scale, yy);
+            const l = m < a ? ly * lanczos(a, x / scale) : 0;
+            res.push(l);
+            sum += l;
         }
     }
     return { spec: res.map((x) => x / sum), size: r * 2 + 1 };

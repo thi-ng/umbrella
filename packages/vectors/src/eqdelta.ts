@@ -33,10 +33,10 @@ export const eqDelta: MultiVecOpRoVVO<boolean, number> = vop();
 
 eqDelta.default((v1, v2, eps = EPS) => {
     if (implementsFunction(v1, "eqDelta")) {
-        return (<any>v1).eqDelta(v2, eps);
+        return v1.eqDelta(v2, eps);
     }
     if (implementsFunction(v2, "eqDelta")) {
-        return (<any>v2).eqDelta(v1, eps);
+        return v2.eqDelta(v1, eps);
     }
     return eqDeltaS(v1, v2, v1.length, eps);
 });

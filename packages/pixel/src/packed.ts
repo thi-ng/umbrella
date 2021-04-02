@@ -25,6 +25,7 @@ import {
     IntSampler,
     IPixelBuffer,
     IResizable,
+    IToImageData,
     Lane,
     PackedChannel,
     PackedFormat,
@@ -80,6 +81,7 @@ export const buffer = packedBuffer;
 export class PackedBuffer
     implements
         IPixelBuffer<UIntArray, number>,
+        IToImageData,
         IResizable<PackedBuffer, IntSampler>,
         IBlend<PackedBuffer, BlendFnInt>,
         IBlit<PackedBuffer>,
@@ -250,8 +252,19 @@ export class PackedBuffer
         return dest;
     }
 
-    blitCanvas(canvas: HTMLCanvasElement, x = 0, y = 0) {
-        const ctx = canvas.getContext("2d")!;
+    blitCanvas(
+        canvas: HTMLCanvasElement | CanvasRenderingContext2D,
+        x = 0,
+        y = 0
+    ) {
+        const ctx =
+            canvas instanceof HTMLCanvasElement
+                ? canvas.getContext("2d")!
+                : canvas;
+        ctx.putImageData(this.toImageData(), x, y);
+    }
+
+    toImageData() {
         const idata = new ImageData(this.width, this.height);
         const dest = new Uint32Array(idata.data.buffer);
         const src = this.pixels;
@@ -259,8 +272,7 @@ export class PackedBuffer
         for (let i = dest.length; --i >= 0; ) {
             dest[i] = fmt(src[i]);
         }
-        ctx.putImageData(idata, x, y);
-        return canvas;
+        return idata;
     }
 
     getRegion(

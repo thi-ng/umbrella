@@ -257,11 +257,22 @@ export interface IBlit<T extends IPixelBuffer> {
     blit(dest: T, opts?: Partial<BlitOpts>): void;
 
     /**
-     * Converts and blits pixels into given canvas at position `x`, `y`
-     * (0,0 by default). If canvas is smaller than source buffer, only
-     * the top-left region will be written.
+     * Converts and blits pixels into given canvas (or canvas context) at
+     * position `x`, `y` (0,0 by default). If canvas is smaller than source
+     * buffer, only the top-left region will be written.
      */
-    blitCanvas(canvas: HTMLCanvasElement, x?: number, y?: number): void;
+    blitCanvas(
+        canvas: HTMLCanvasElement | CanvasRenderingContext2D,
+        x?: number,
+        y?: number
+    ): void;
+}
+
+export interface IToImageData {
+    /**
+     * Returns the contents of the pixel buffer as HTML canvas `ImageData`.
+     */
+    toImageData(): ImageData;
 }
 
 export interface IBlend<T extends IPixelBuffer, F> {
@@ -399,13 +410,6 @@ export interface ConvolveOpts {
      */
     channel?: number;
     /**
-     * If true, the result image will be same size as source image with empty
-     * (padded) border pixels.
-     *
-     * @defaultValue true
-     */
-    pad?: boolean;
-    /**
      * Result scale factor
      *
      * @defaultValue 1
@@ -417,6 +421,11 @@ export interface ConvolveOpts {
      * @defaultValue 1
      */
     stride?: number | [number, number];
+    /**
+     * Pixel read offset, only to be used for pooling operations. Should be set
+     * to `kernelSize/2` and MUST be in `[0,stride)` interval.
+     */
+    offset?: number | [number, number];
 }
 
 export interface NormalMapOpts {

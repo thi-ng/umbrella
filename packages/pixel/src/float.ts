@@ -13,6 +13,7 @@ import type {
     IInvert,
     IPixelBuffer,
     IResizable,
+    IToImageData,
     PackedFormat,
 } from "./api";
 import { defFloatFormat } from "./format/float-format";
@@ -50,6 +51,7 @@ export function floatBuffer(...args: any[]) {
 export class FloatBuffer
     implements
         IPixelBuffer<Float32Array, NumericArray>,
+        IToImageData,
         IResizable<FloatBuffer, FloatSampler>,
         IBlend<FloatBuffer, BlendFnFloat>,
         IBlit<FloatBuffer>,
@@ -245,16 +247,26 @@ export class FloatBuffer
         return dest;
     }
 
-    blitCanvas(canvas: HTMLCanvasElement, x = 0, y = 0) {
-        const ctx = canvas.getContext("2d")!;
+    blitCanvas(
+        canvas: HTMLCanvasElement | CanvasRenderingContext2D,
+        x = 0,
+        y = 0
+    ) {
+        const ctx =
+            canvas instanceof HTMLCanvasElement
+                ? canvas.getContext("2d")!
+                : canvas;
+        ctx.putImageData(this.toImageData(), x, y);
+    }
+
+    toImageData() {
         const idata = new ImageData(this.width, this.height);
         const dest = new Uint32Array(idata.data.buffer);
         const { stride, pixels, format } = this;
         for (let i = 0, j = 0, n = pixels.length; i < n; i += stride, j++) {
             dest[j] = format.toABGR(pixels.subarray(i, i + stride));
         }
-        ctx.putImageData(idata, x, y);
-        return canvas;
+        return idata;
     }
 
     getRegion(x: number, y: number, width: number, height: number) {
