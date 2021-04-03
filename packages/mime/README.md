@@ -23,8 +23,10 @@ This project is part of the
 650+ file extension to MIME type mappings, based on mime-db.
 
 All MIME type mappings based on [mime-db](https://github.com/jshttp/mime-db)
-(2021-03-26). For filesize reasons no vendor MIME types (aka `*/vnd.*`) are
-included. Most of them are fairly obscure anyway, so likely not problematic.
+(2021-03-26). For filesize reasons only [a small selected
+number](https://github.com/thi-ng/umbrella/blob/develop/packages/mime/tools/convert.ts#L7)
+of vendor MIME types (aka `*/vnd.*`) are included. Most of the omitted ones are
+fairly obscure anyway, so likely not problematic...
 
 ### Status
 
@@ -46,7 +48,7 @@ yarn add @thi.ng/mime
 <script src="https://unpkg.com/@thi.ng/mime/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 4.52 KB / CJS: 4.58 KB / UMD: 4.68 KB
+Package sizes (gzipped, pre-treeshake): ESM: 4.79 KB / CJS: 4.85 KB / UMD: 4.95 KB
 
 ## Dependencies
 
@@ -74,7 +76,8 @@ MIME_TYPES.jpeg
 // [ 'image/jpeg' ]
 ```
 
-To simplify lookup and support a fallback type, the package also has `preferredType()` function:
+To simplify lookup and support a fallback type, the package also has
+`preferredType()` function:
 
 ```ts
 import { preferredType } from "@thi.ng/mime";
@@ -91,7 +94,8 @@ preferredType("foo", "text/plain")
 // "text/plain"
 ```
 
-Since v0.3.0 reverse lookups are possible too, using `preferredExtension()` (also supports fallback):
+Since v0.3.0 reverse lookups are possible too, using `preferredExtension()`
+(also supports fallback):
 
 ```ts
 preferredExtension("image/svg+xml");
@@ -108,9 +112,10 @@ preferredExtension("image/foo", "dat");
 
 1. Download the [latest version of mime-db's JSON
    index](https://raw.githubusercontent.com/jshttp/mime-db/master/db.json) and
-   save it to `tools/mime-db.json`
+   save it to `[packages/mime/]tools/mime-db.json`
 2. Run the following command to build an up-to-date index (assumes the umbrella
-   repo has been pre-built already). Output will always be to stdout.
+   repo has been pre-built already). Output will always be be written to
+   `src/generated.ts`.
 
 ```bash
 # from the thi.ng/umbrella repo root
@@ -118,7 +123,7 @@ cd packages/mime
 yarn tool:convert
 ```
 
-3. Copy the output and paste it into `src/generated.ts`
+Additional configuration options are available in the `tools/convert.ts` script.
 
 ## Authors
 

@@ -1,5 +1,5 @@
 /**
- * generated @ 2021-03-26T15:12:37.106Z - DO NOT EDIT!
+ * generated @ 2021-04-03T11:47:03.364Z - DO NOT EDIT!
  *
  * @internal
  */
@@ -152,6 +152,22 @@ export const DB: Record<string, Record<string, string>> = {
         ubjson: "ubj",
         "urc-ressheet+xml": "rsheet",
         "urc-targetdesc+xml": "td",
+        "vnd.apple.installer+xml": "mpkg",
+        "vnd.apple.keynote": "key",
+        "vnd.apple.mpegurl": "m3u8",
+        "vnd.apple.numbers": "numbers",
+        "vnd.apple.pages": "pages",
+        "vnd.apple.pkpass": "pkpass",
+        "vnd.google-apps.document": "gdoc",
+        "vnd.google-apps.presentation": "gslides",
+        "vnd.google-apps.spreadsheet": "gsheet",
+        "vnd.google-earth.kml+xml": "kml",
+        "vnd.google-earth.kmz": "kmz",
+        "vnd.ms-excel": "xls,xlm,xla,xlc,xlt,xlw",
+        "vnd.ms-powerpoint": "ppt,pps,pot",
+        "vnd.openstreetmap.data+xml": "osm",
+        "vnd.rar": "rar",
+        "vnd.unity": "unityweb",
         "voicexml+xml": "vxml",
         wasm: "wasm",
         widget: "wgt",
@@ -391,6 +407,11 @@ export const DB: Record<string, Record<string, string>> = {
         t38: "t38",
         tiff: "tif,tiff",
         "tiff-fx": "tfx",
+        "vnd.adobe.photoshop": "psd",
+        "vnd.dwg": "dwg",
+        "vnd.dxf": "dxf",
+        "vnd.microsoft.icon": "ico",
+        "vnd.radiance": "hdr,*pic,rgbe,xyze",
         webp: "webp",
         wmf: "wmf",
         "x-3ds": "3ds",
@@ -430,6 +451,7 @@ export const DB: Record<string, Record<string, string>> = {
         mtl: "mtl",
         obj: "obj",
         stl: "stl",
+        "vnd.usdz+zip": "usdz",
         vrml: "wrl,vrml",
         "x3d+binary": "*x3db,x3dbz",
         "x3d+fastinfoset": "x3db",
@@ -465,6 +487,7 @@ export const DB: Record<string, Record<string, string>> = {
         turtle: "ttl",
         "uri-list": "uri,uris,urls",
         vcard: "vcard",
+        "vnd.graphviz": "gv",
         vtt: "vtt",
         "x-asm": "s,asm",
         "x-c": "c,cc,cxx,cpp,h,hh,dic",
@@ -522,5 +545,7 @@ export const DB: Record<string, Record<string, string>> = {
         "x-sgi-movie": "movie",
         "x-smv": "smv",
     },
-    "x-conference": { "x-cooltalk": "ice" },
+    "x-conference": {
+        "x-cooltalk": "ice",
+    },
 };
