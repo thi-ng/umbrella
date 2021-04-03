@@ -15,14 +15,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.2.32](https://github.com/thi-ng/umbrella/compare/@thi.ng/errors@1.2.31...@thi.ng/errors@1.2.32) (2021-03-12)
-
-**Note:** Version bump only for package @thi.ng/errors
-
-
-
-
-
 # [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/errors@1.1.2...@thi.ng/errors@1.2.0) (2019-08-21)
 
 ### Features

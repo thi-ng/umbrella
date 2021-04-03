@@ -3,30 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/fuzzy@0.1.9...@thi.ng/fuzzy@0.1.10) (2021-04-03)
-
-**Note:** Version bump only for package @thi.ng/fuzzy
-
-
-
-
-
-## [0.1.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/fuzzy@0.1.8...@thi.ng/fuzzy@0.1.9) (2021-03-17)
-
-**Note:** Version bump only for package @thi.ng/fuzzy
-
-
-
-
-
-## [0.1.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/fuzzy@0.1.7...@thi.ng/fuzzy@0.1.8) (2021-03-12)
-
-**Note:** Version bump only for package @thi.ng/fuzzy
-
-
-
-
-
 # 0.1.0 (2020-12-22)
 
 

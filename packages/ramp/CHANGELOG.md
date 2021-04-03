@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.57](https://github.com/thi-ng/umbrella/compare/@thi.ng/ramp@0.1.56...@thi.ng/ramp@0.1.57) (2021-04-03)
-
-**Note:** Version bump only for package @thi.ng/ramp
-
-
-
-
-
-## [0.1.56](https://github.com/thi-ng/umbrella/compare/@thi.ng/ramp@0.1.55...@thi.ng/ramp@0.1.56) (2021-03-30)
-
-**Note:** Version bump only for package @thi.ng/ramp
-
-
-
-
-
-## [0.1.55](https://github.com/thi-ng/umbrella/compare/@thi.ng/ramp@0.1.54...@thi.ng/ramp@0.1.55) (2021-03-28)
-
-**Note:** Version bump only for package @thi.ng/ramp
-
-
-
-
-
-## [0.1.54](https://github.com/thi-ng/umbrella/compare/@thi.ng/ramp@0.1.53...@thi.ng/ramp@0.1.54) (2021-03-27)
-
-**Note:** Version bump only for package @thi.ng/ramp
-
-
-
-
-
-## [0.1.53](https://github.com/thi-ng/umbrella/compare/@thi.ng/ramp@0.1.52...@thi.ng/ramp@0.1.53) (2021-03-17)
-
-**Note:** Version bump only for package @thi.ng/ramp
-
-
-
-
-
-## [0.1.52](https://github.com/thi-ng/umbrella/compare/@thi.ng/ramp@0.1.51...@thi.ng/ramp@0.1.52) (2021-03-12)
-
-**Note:** Version bump only for package @thi.ng/ramp
-
-
-
-
-
 # 0.1.0 (2020-01-24)
 
 ### Features

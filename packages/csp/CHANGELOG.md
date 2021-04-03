@@ -3,46 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.1.60](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@1.1.59...@thi.ng/csp@1.1.60) (2021-04-03)
-
-**Note:** Version bump only for package @thi.ng/csp
-
-
-
-
-
-## [1.1.59](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@1.1.58...@thi.ng/csp@1.1.59) (2021-03-28)
-
-**Note:** Version bump only for package @thi.ng/csp
-
-
-
-
-
-## [1.1.58](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@1.1.57...@thi.ng/csp@1.1.58) (2021-03-27)
-
-**Note:** Version bump only for package @thi.ng/csp
-
-
-
-
-
-## [1.1.57](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@1.1.56...@thi.ng/csp@1.1.57) (2021-03-17)
-
-**Note:** Version bump only for package @thi.ng/csp
-
-
-
-
-
-## [1.1.56](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@1.1.55...@thi.ng/csp@1.1.56) (2021-03-12)
-
-**Note:** Version bump only for package @thi.ng/csp
-
-
-
-
-
 # [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@1.0.19...@thi.ng/csp@1.1.0) (2019-07-07)
 
 ### Bug Fixes

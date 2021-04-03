@@ -3,46 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.9.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.9.21...@thi.ng/parse@0.9.22) (2021-04-03)
-
-**Note:** Version bump only for package @thi.ng/parse
-
-
-
-
-
-## [0.9.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.9.20...@thi.ng/parse@0.9.21) (2021-03-24)
-
-**Note:** Version bump only for package @thi.ng/parse
-
-
-
-
-
-## [0.9.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.9.19...@thi.ng/parse@0.9.20) (2021-03-24)
-
-**Note:** Version bump only for package @thi.ng/parse
-
-
-
-
-
-## [0.9.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.9.18...@thi.ng/parse@0.9.19) (2021-03-17)
-
-**Note:** Version bump only for package @thi.ng/parse
-
-
-
-
-
-## [0.9.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.9.17...@thi.ng/parse@0.9.18) (2021-03-12)
-
-**Note:** Version bump only for package @thi.ng/parse
-
-
-
-
-
 # [0.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/parse@0.8.2...@thi.ng/parse@0.9.0) (2020-08-17)
 
 

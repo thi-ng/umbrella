@@ -3,60 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/system@0.3.0...@thi.ng/system@0.3.1) (2021-04-03)
-
-**Note:** Version bump only for package @thi.ng/system
-
-
-
-
-
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/system@0.2.48...@thi.ng/system@0.3.0) (2021-03-30)
 
 
 ### Features
 
 * **system:** add package LOGGER ([f67364c](https://github.com/thi-ng/umbrella/commit/f67364cb12f7a868e005a8f6ea7759d9fc03c216))
-
-
-
-
-
-## [0.2.48](https://github.com/thi-ng/umbrella/compare/@thi.ng/system@0.2.47...@thi.ng/system@0.2.48) (2021-03-30)
-
-**Note:** Version bump only for package @thi.ng/system
-
-
-
-
-
-## [0.2.47](https://github.com/thi-ng/umbrella/compare/@thi.ng/system@0.2.46...@thi.ng/system@0.2.47) (2021-03-28)
-
-**Note:** Version bump only for package @thi.ng/system
-
-
-
-
-
-## [0.2.46](https://github.com/thi-ng/umbrella/compare/@thi.ng/system@0.2.45...@thi.ng/system@0.2.46) (2021-03-27)
-
-**Note:** Version bump only for package @thi.ng/system
-
-
-
-
-
-## [0.2.45](https://github.com/thi-ng/umbrella/compare/@thi.ng/system@0.2.44...@thi.ng/system@0.2.45) (2021-03-17)
-
-**Note:** Version bump only for package @thi.ng/system
-
-
-
-
-
-## [0.2.44](https://github.com/thi-ng/umbrella/compare/@thi.ng/system@0.2.43...@thi.ng/system@0.2.44) (2021-03-12)
-
-**Note:** Version bump only for package @thi.ng/system
 
 
 

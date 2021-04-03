@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [3.0.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@3.0.17...@thi.ng/rstream-gestures@3.0.18) (2021-04-03)
-
-**Note:** Version bump only for package @thi.ng/rstream-gestures
-
-
-
-
-
-## [3.0.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@3.0.16...@thi.ng/rstream-gestures@3.0.17) (2021-03-30)
-
-**Note:** Version bump only for package @thi.ng/rstream-gestures
-
-
-
-
-
-## [3.0.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@3.0.15...@thi.ng/rstream-gestures@3.0.16) (2021-03-28)
-
-**Note:** Version bump only for package @thi.ng/rstream-gestures
-
-
-
-
-
-## [3.0.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@3.0.14...@thi.ng/rstream-gestures@3.0.15) (2021-03-27)
-
-**Note:** Version bump only for package @thi.ng/rstream-gestures
-
-
-
-
-
-## [3.0.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@3.0.13...@thi.ng/rstream-gestures@3.0.14) (2021-03-17)
-
-**Note:** Version bump only for package @thi.ng/rstream-gestures
-
-
-
-
-
-## [3.0.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@3.0.12...@thi.ng/rstream-gestures@3.0.13) (2021-03-12)
-
-**Note:** Version bump only for package @thi.ng/rstream-gestures
-
-
-
-
-
 # [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-gestures@2.0.45...@thi.ng/rstream-gestures@3.0.0) (2020-12-22)
 
 

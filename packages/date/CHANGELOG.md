@@ -29,14 +29,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.2.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/date@0.2.10...@thi.ng/date@0.2.11) (2021-03-12)
-
-**Note:** Version bump only for package @thi.ng/date
-
-
-
-
-
 ## [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/date@0.2.0...@thi.ng/date@0.2.1) (2020-11-24)
 
 

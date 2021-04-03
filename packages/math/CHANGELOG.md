@@ -35,14 +35,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [3.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@3.2.4...@thi.ng/math@3.2.5) (2021-03-12)
-
-**Note:** Version bump only for package @thi.ng/math
-
-
-
-
-
 # [3.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@3.1.0...@thi.ng/math@3.2.0) (2021-02-20)
 
 

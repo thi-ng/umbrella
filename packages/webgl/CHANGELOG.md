@@ -3,62 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [4.0.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@4.0.11...@thi.ng/webgl@4.0.12) (2021-04-03)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
-## [4.0.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@4.0.10...@thi.ng/webgl@4.0.11) (2021-03-30)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
-## [4.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@4.0.9...@thi.ng/webgl@4.0.10) (2021-03-28)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
-## [4.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@4.0.8...@thi.ng/webgl@4.0.9) (2021-03-27)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
-## [4.0.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@4.0.7...@thi.ng/webgl@4.0.8) (2021-03-20)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
-## [4.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@4.0.6...@thi.ng/webgl@4.0.7) (2021-03-17)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
-## [4.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@4.0.5...@thi.ng/webgl@4.0.6) (2021-03-12)
-
-**Note:** Version bump only for package @thi.ng/webgl
-
-
-
-
-
 # [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@3.3.15...@thi.ng/webgl@4.0.0) (2021-02-20)
 
 

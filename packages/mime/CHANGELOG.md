@@ -14,14 +14,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/mime@0.3.0...@thi.ng/mime@0.3.1) (2021-03-28)
-
-**Note:** Version bump only for package @thi.ng/mime
-
-
-
-
-
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/mime@0.2.0...@thi.ng/mime@0.3.0) (2021-03-27)
 
 
@@ -39,14 +31,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **mime:** update to latest mime-db release ([1010191](https://github.com/thi-ng/umbrella/commit/10101919d5dcfdb1477d54904a164c1d6e2e65e6))
-
-
-
-
-
-## [0.1.33](https://github.com/thi-ng/umbrella/compare/@thi.ng/mime@0.1.32...@thi.ng/mime@0.1.33) (2021-03-12)
-
-**Note:** Version bump only for package @thi.ng/mime
 
 
 

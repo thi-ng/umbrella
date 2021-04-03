@@ -42,14 +42,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.7.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.7.3...@thi.ng/pixel@0.7.4) (2021-03-12)
-
-**Note:** Version bump only for package @thi.ng/pixel
-
-
-
-
-
 # [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.6.1...@thi.ng/pixel@0.7.0) (2021-03-03)
 
 

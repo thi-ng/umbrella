@@ -3,46 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.75](https://github.com/thi-ng/umbrella/compare/@thi.ng/sparse@0.1.74...@thi.ng/sparse@0.1.75) (2021-04-03)
-
-**Note:** Version bump only for package @thi.ng/sparse
-
-
-
-
-
-## [0.1.74](https://github.com/thi-ng/umbrella/compare/@thi.ng/sparse@0.1.73...@thi.ng/sparse@0.1.74) (2021-03-28)
-
-**Note:** Version bump only for package @thi.ng/sparse
-
-
-
-
-
-## [0.1.73](https://github.com/thi-ng/umbrella/compare/@thi.ng/sparse@0.1.72...@thi.ng/sparse@0.1.73) (2021-03-27)
-
-**Note:** Version bump only for package @thi.ng/sparse
-
-
-
-
-
-## [0.1.72](https://github.com/thi-ng/umbrella/compare/@thi.ng/sparse@0.1.71...@thi.ng/sparse@0.1.72) (2021-03-17)
-
-**Note:** Version bump only for package @thi.ng/sparse
-
-
-
-
-
-## [0.1.71](https://github.com/thi-ng/umbrella/compare/@thi.ng/sparse@0.1.70...@thi.ng/sparse@0.1.71) (2021-03-12)
-
-**Note:** Version bump only for package @thi.ng/sparse
-
-
-
-
-
 # 0.1.0 (2019-02-17)
 
 ### Features

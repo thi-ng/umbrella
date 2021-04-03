@@ -3,36 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/oquery@0.3.0...@thi.ng/oquery@0.3.1) (2021-04-03)
-
-**Note:** Version bump only for package @thi.ng/oquery
-
-
-
-
-
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/oquery@0.2.11...@thi.ng/oquery@0.3.0) (2021-03-22)
 
 
 ### Features
 
 * **oquery:** fix [#264](https://github.com/thi-ng/umbrella/issues/264), add intersection queries ([f3ad108](https://github.com/thi-ng/umbrella/commit/f3ad1083645076c8a1bd38f7152345e25ab581f1))
-
-
-
-
-
-## [0.2.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/oquery@0.2.10...@thi.ng/oquery@0.2.11) (2021-03-17)
-
-**Note:** Version bump only for package @thi.ng/oquery
-
-
-
-
-
-## [0.2.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/oquery@0.2.9...@thi.ng/oquery@0.2.10) (2021-03-12)
-
-**Note:** Version bump only for package @thi.ng/oquery
 
 
 

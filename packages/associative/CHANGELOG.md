@@ -3,14 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [5.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@5.2.0...@thi.ng/associative@5.2.1) (2021-04-03)
-
-**Note:** Version bump only for package @thi.ng/associative
-
-
-
-
-
 # [5.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@5.1.9...@thi.ng/associative@5.2.0) (2021-03-30)
 
 
@@ -18,38 +10,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **associative:** add renameTransformedKeys() ([3190537](https://github.com/thi-ng/umbrella/commit/31905378cc32ba7ccfd752803515136ba1507d17))
 * **associative:** add selectDefinedKeys*() fns ([e0977db](https://github.com/thi-ng/umbrella/commit/e0977db6708abdaaa2ef9dc78d472d77467e30bb))
-
-
-
-
-
-## [5.1.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@5.1.8...@thi.ng/associative@5.1.9) (2021-03-28)
-
-**Note:** Version bump only for package @thi.ng/associative
-
-
-
-
-
-## [5.1.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@5.1.7...@thi.ng/associative@5.1.8) (2021-03-27)
-
-**Note:** Version bump only for package @thi.ng/associative
-
-
-
-
-
-## [5.1.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@5.1.6...@thi.ng/associative@5.1.7) (2021-03-17)
-
-**Note:** Version bump only for package @thi.ng/associative
-
-
-
-
-
-## [5.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/associative@5.1.5...@thi.ng/associative@5.1.6) (2021-03-12)
-
-**Note:** Version bump only for package @thi.ng/associative
 
 
 

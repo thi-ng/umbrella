@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.2.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/soa@0.2.10...@thi.ng/soa@0.2.11) (2021-04-03)
-
-**Note:** Version bump only for package @thi.ng/soa
-
-
-
-
-
-## [0.2.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/soa@0.2.9...@thi.ng/soa@0.2.10) (2021-03-30)
-
-**Note:** Version bump only for package @thi.ng/soa
-
-
-
-
-
-## [0.2.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/soa@0.2.8...@thi.ng/soa@0.2.9) (2021-03-28)
-
-**Note:** Version bump only for package @thi.ng/soa
-
-
-
-
-
-## [0.2.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/soa@0.2.7...@thi.ng/soa@0.2.8) (2021-03-27)
-
-**Note:** Version bump only for package @thi.ng/soa
-
-
-
-
-
-## [0.2.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/soa@0.2.6...@thi.ng/soa@0.2.7) (2021-03-17)
-
-**Note:** Version bump only for package @thi.ng/soa
-
-
-
-
-
-## [0.2.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/soa@0.2.5...@thi.ng/soa@0.2.6) (2021-03-12)
-
-**Note:** Version bump only for package @thi.ng/soa
-
-
-
-
-
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/soa@0.1.47...@thi.ng/soa@0.2.0) (2021-02-20)
 
 

@@ -14,14 +14,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.2.37](https://github.com/thi-ng/umbrella/compare/@thi.ng/heaps@1.2.36...@thi.ng/heaps@1.2.37) (2021-03-12)
-
-**Note:** Version bump only for package @thi.ng/heaps
-
-
-
-
-
 ## [1.2.31](https://github.com/thi-ng/umbrella/compare/@thi.ng/heaps@1.2.30...@thi.ng/heaps@1.2.31) (2021-01-21)
 
 

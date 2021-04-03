@@ -3,46 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.2.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/gp@0.2.15...@thi.ng/gp@0.2.16) (2021-04-03)
-
-**Note:** Version bump only for package @thi.ng/gp
-
-
-
-
-
-## [0.2.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/gp@0.2.14...@thi.ng/gp@0.2.15) (2021-03-28)
-
-**Note:** Version bump only for package @thi.ng/gp
-
-
-
-
-
-## [0.2.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/gp@0.2.13...@thi.ng/gp@0.2.14) (2021-03-27)
-
-**Note:** Version bump only for package @thi.ng/gp
-
-
-
-
-
-## [0.2.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/gp@0.2.12...@thi.ng/gp@0.2.13) (2021-03-17)
-
-**Note:** Version bump only for package @thi.ng/gp
-
-
-
-
-
-## [0.2.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/gp@0.2.11...@thi.ng/gp@0.2.12) (2021-03-12)
-
-**Note:** Version bump only for package @thi.ng/gp
-
-
-
-
-
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/gp@0.1.35...@thi.ng/gp@0.2.0) (2020-12-22)
 
 
