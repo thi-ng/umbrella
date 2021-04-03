@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/math",
-    "version": "3.3.0",
+    "version": "3.4.0",
     "description": "Assorted common math functions & utilities",
     "module": "./index.js",
     "main": "./lib/index.js",

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.43](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom-canvas@0.1.42...@thi.ng/rdom-canvas@0.1.43) (2021-04-03)
+
+**Note:** Version bump only for package @thi.ng/rdom-canvas
+
+
+
+
+
 ## [0.1.42](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom-canvas@0.1.41...@thi.ng/rdom-canvas@0.1.42) (2021-03-30)
 
 **Note:** Version bump only for package @thi.ng/rdom-canvas

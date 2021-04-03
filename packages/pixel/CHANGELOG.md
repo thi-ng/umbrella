@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.8.1...@thi.ng/pixel@0.9.0) (2021-04-03)
+
+
+### Features
+
+* **pixel:** add .upsize() impls, fix convolve() ([08f0d7c](https://github.com/thi-ng/umbrella/commit/08f0d7c200fa03bc4fb017d3dbc9237581af19ee))
+* **pixel:** add imagePyramid() iterator ([7f77e07](https://github.com/thi-ng/umbrella/commit/7f77e07089eca68b5825715c3709312d4374c37a))
+* **pixel:** add IToImageData & impls ([3172e1e](https://github.com/thi-ng/umbrella/commit/3172e1eb8582901bddf12281e65df618e4d4f476))
+* **pixel:** update/fix convolution, add LANCZOS ([eadefda](https://github.com/thi-ng/umbrella/commit/eadefda5f119ee8453edb3df3109ebcba692b429))
+
+
+
+
+
 ## [0.8.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.8.0...@thi.ng/pixel@0.8.1) (2021-03-20)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@3.3.0...@thi.ng/math@3.4.0) (2021-04-03)
+
+
+### Bug Fixes
+
+* **math:** fix sigmoid01() signature ([378cb17](https://github.com/thi-ng/umbrella/commit/378cb17d4ad2ef2f301039e067af251c867d7da8))
+
+
+### Features
+
+* **math:** add lanczos(), fix/update/add sinc ([e661b7a](https://github.com/thi-ng/umbrella/commit/e661b7a8e8ce49e4d34ae572818d6b0e8e7a292d))
+
+
+
+
+
 # [3.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@3.2.5...@thi.ng/math@3.3.0) (2021-03-17)
 
 

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.7.19...@thi.ng/hiccup-svg@3.7.20) (2021-04-03)
+
+**Note:** Version bump only for package @thi.ng/hiccup-svg
+
+
+
+
+
 ## [3.7.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.7.18...@thi.ng/hiccup-svg@3.7.19) (2021-03-30)
 
 **Note:** Version bump only for package @thi.ng/hiccup-svg

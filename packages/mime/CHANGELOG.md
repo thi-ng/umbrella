@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/mime@0.3.1...@thi.ng/mime@0.4.0) (2021-04-03)
+
+
+### Features
+
+* **mime:** update tool, incl. more mime types ([df59d93](https://github.com/thi-ng/umbrella/commit/df59d930f6813781aada2c9d4b1d9a1d485b1dfb))
+
+
+
+
+
 ## [0.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/mime@0.3.0...@thi.ng/mime@0.3.1) (2021-03-28)
 
 **Note:** Version bump only for package @thi.ng/mime

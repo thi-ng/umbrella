@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.46](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-io-obj@0.1.45...@thi.ng/geom-io-obj@0.1.46) (2021-04-03)
+
+**Note:** Version bump only for package @thi.ng/geom-io-obj
+
+
+
+
+
 ## [0.1.45](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-io-obj@0.1.44...@thi.ng/geom-io-obj@0.1.45) (2021-03-30)
 
 **Note:** Version bump only for package @thi.ng/geom-io-obj

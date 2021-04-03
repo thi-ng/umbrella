@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dot",
-    "version": "1.2.30",
+    "version": "1.2.31",
     "description": "Graphviz document abstraction & serialization to DOT format",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -50,7 +50,7 @@
     },
     "dependencies": {
         "@thi.ng/api": "^7.1.4",
-        "@thi.ng/checks": "^2.9.5"
+        "@thi.ng/checks": "^2.9.6"
     },
     "files": [
         "*.js",

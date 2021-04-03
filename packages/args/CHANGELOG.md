@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/args@0.5.0...@thi.ng/args@0.5.1) (2021-04-03)
+
+**Note:** Version bump only for package @thi.ng/args
+
+
+
+
+
 # [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/args@0.4.2...@thi.ng/args@0.5.0) (2021-03-28)
 
 

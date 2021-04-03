@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-canvas@1.1.34...@thi.ng/hiccup-canvas@1.2.0) (2021-04-03)
+
+
+### Features
+
+* **hiccup-canvas:** add IToImageData support ([7cc4709](https://github.com/thi-ng/umbrella/commit/7cc4709386c99337702d5788b04d14d13618e56b))
+
+
+
+
+
 ## [1.1.34](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-canvas@1.1.33...@thi.ng/hiccup-canvas@1.1.34) (2021-03-30)
 
 **Note:** Version bump only for package @thi.ng/hiccup-canvas
