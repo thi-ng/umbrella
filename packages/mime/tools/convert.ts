@@ -19,6 +19,13 @@ const INCLUDE = new Set<string>([
     "application/vnd.ms-excel",
     "application/vnd.ms-powerpoint",
     "application/vnd.openstreetmap.data+xml",
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.template",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.template",
+    "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+    "application/vnd.openxmlformats-officedocument.presentationml.slideshow",
+    "application/vnd.openxmlformats-officedocument.presentationml.template",
     "application/vnd.rar",
     "application/vnd.unity",
     "image/vnd.adobe.photoshop",
@@ -45,9 +52,21 @@ const src = JSON.parse(readFileSync("tools/mime-db.json", "utf-8"));
 
 // Destination index w/ prefilled types not included in mime-db
 const dest: IObjectOf<IObjectOf<string>> = {
+    // see: https://twitter.com/toxi/status/1378719456269058058
+    application: {
+        "x-sidefx-houdini-project": "hip,hipnc,hiplc",
+        "x-sidefx-houdini-asset": "hda",
+    },
     image: {
         // http://fileformats.archiveteam.org/wiki/Radiance_HDR
         "vnd.radiance": "hdr,*pic,rgbe,xyze",
+    },
+    model: {
+        // Houdini default extension for binary STL models
+        "stl+binary": "bstl",
+        // Houdini geometry formats
+        "x-sidefx-houdini": "geo",
+        "x-sidefx-houdini+binary": "bgeo",
     },
 };
 

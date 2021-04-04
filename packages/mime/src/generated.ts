@@ -1,5 +1,5 @@
 /**
- * generated @ 2021-04-03T11:47:03.364Z - DO NOT EDIT!
+ * generated @ 2021-04-04T15:01:57.202Z - DO NOT EDIT!
  *
  * @internal
  */
@@ -166,6 +166,13 @@ export const DB: Record<string, Record<string, string>> = {
         "vnd.ms-excel": "xls,xlm,xla,xlc,xlt,xlw",
         "vnd.ms-powerpoint": "ppt,pps,pot",
         "vnd.openstreetmap.data+xml": "osm",
+        "vnd.openxmlformats-officedocument.presentationml.presentation": "pptx",
+        "vnd.openxmlformats-officedocument.presentationml.slideshow": "ppsx",
+        "vnd.openxmlformats-officedocument.presentationml.template": "potx",
+        "vnd.openxmlformats-officedocument.spreadsheetml.sheet": "xlsx",
+        "vnd.openxmlformats-officedocument.spreadsheetml.template": "xltx",
+        "vnd.openxmlformats-officedocument.wordprocessingml.document": "docx",
+        "vnd.openxmlformats-officedocument.wordprocessingml.template": "dotx",
         "vnd.rar": "rar",
         "vnd.unity": "unityweb",
         "voicexml+xml": "vxml",
@@ -267,6 +274,8 @@ export const DB: Record<string, Record<string, string>> = {
         "x-sh": "sh",
         "x-shar": "shar",
         "x-shockwave-flash": "swf",
+        "x-sidefx-houdini-asset": "hda",
+        "x-sidefx-houdini-project": "hip,hipnc,hiplc",
         "x-silverlight-app": "xap",
         "x-sql": "sql",
         "x-stuffit": "sit",
@@ -451,8 +460,11 @@ export const DB: Record<string, Record<string, string>> = {
         mtl: "mtl",
         obj: "obj",
         stl: "stl",
+        "stl+binary": "bstl",
         "vnd.usdz+zip": "usdz",
         vrml: "wrl,vrml",
+        "x-sidefx-houdini": "geo",
+        "x-sidefx-houdini+binary": "bgeo",
         "x3d+binary": "*x3db,x3dbz",
         "x3d+fastinfoset": "x3db",
         "x3d+vrml": "*x3dv,x3dvz",
