@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/mime@0.4.0...@thi.ng/mime@0.5.0) (2021-04-04)
+
+
+### Features
+
+* **mime:** add MSFT & SideFX types ([58c247d](https://github.com/thi-ng/umbrella/commit/58c247de4c30528319ab274c2609487e5dd4df5f))
+
+
+
+
+
 # [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/mime@0.3.1...@thi.ng/mime@0.4.0) (2021-04-03)
 
 
