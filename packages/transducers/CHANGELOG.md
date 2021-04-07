@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.6.10...@thi.ng/transducers@7.7.0) (2021-04-07)
+
+
+### Features
+
+* **transducers:** add partitionWhen() xform ([d2dd4d9](https://github.com/thi-ng/umbrella/commit/d2dd4d92895622bfa38d8458472d86f9e89e8952))
+
+
+
+
+
 ## [7.6.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.6.1...@thi.ng/transducers@7.6.2) (2021-03-03)
 
 

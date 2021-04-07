@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.33](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-glsl@0.2.32...@thi.ng/shader-ast-glsl@0.2.33) (2021-04-07)
+
+**Note:** Version bump only for package @thi.ng/shader-ast-glsl
+
+
+
+
+
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-glsl@0.1.39...@thi.ng/shader-ast-glsl@0.2.0) (2020-07-28)
 
 
