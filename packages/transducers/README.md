@@ -169,7 +169,7 @@ yarn add @thi.ng/transducers
 <script src="https://unpkg.com/@thi.ng/transducers/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 8.37 KB / CJS: 8.93 KB / UMD: 8.08 KB
+Package sizes (gzipped, pre-treeshake): ESM: 8.40 KB / CJS: 8.96 KB / UMD: 8.14 KB
 
 ## Dependencies
 
@@ -879,6 +879,7 @@ tx.transduce(tx.map((x) => x*10), tx.push(), tx.range(4))
 - [partitionSort](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/partition-sort.ts)
 - [partitionSync](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/partition-sync.ts)
 - [partitionTime](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/partition-time.ts)
+- [partitionWhen](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/partition-when.ts)
 - [partition](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/partition.ts)
 - [peek](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/peek.ts)
 - [pluck](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/pluck.ts)
