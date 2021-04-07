@@ -81,6 +81,7 @@ export * from "./xform/partition-of";
 export * from "./xform/partition-sort";
 export * from "./xform/partition-sync";
 export * from "./xform/partition-time";
+export * from "./xform/partition-when";
 export * from "./xform/partition";
 export * from "./xform/peek";
 export * from "./xform/pluck";
