@@ -39,6 +39,7 @@ const INCLUDE = new Set<string>([
 const LO_PRIORITIES: IObjectOf<string> = {
     "3gpp": "audio/3gpp",
     jpm: "video/jpm",
+    markdown: "text/markdown",
     mp3: "audio/mp3",
     rtf: "text/rtf",
     wav: "audio/wave",

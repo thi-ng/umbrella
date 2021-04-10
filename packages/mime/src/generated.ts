@@ -1,5 +1,5 @@
 /**
- * generated @ 2021-04-04T15:01:57.202Z - DO NOT EDIT!
+ * generated @ 2021-04-10T11:16:38.116Z - DO NOT EDIT!
  *
  * @internal
  */
@@ -481,7 +481,7 @@ export const DB: Record<string, Record<string, string>> = {
         jade: "jade",
         jsx: "jsx",
         less: "less",
-        markdown: "markdown,md",
+        markdown: "*markdown,md",
         mathml: "mml",
         mdx: "mdx",
         n3: "n3",

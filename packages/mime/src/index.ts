@@ -51,6 +51,6 @@ export const preferredType = (ext: string, fallback = MIME_TYPES.bin[0]) => {
 export const preferredExtension = (mime: string, fallback = "bin") => {
     const [prefix, suffix] = mime.split("/");
     const group = DB[prefix];
-    const ext = group ? group[suffix] : undefined;
-    return ext ? ext.split(",")[0] : fallback;
+    const ext = group ? group[suffix].split(",") : undefined;
+    return ext ? ext.find((x) => x[0] !== "*") || ext[0].substr(1) : fallback;
 };
