@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/mime@0.5.0...@thi.ng/mime@0.5.1) (2021-04-10)
+
+
+### Bug Fixes
+
+* **mime:** fix preferredExtension() ([2ebe6ed](https://github.com/thi-ng/umbrella/commit/2ebe6ed8d448eb35b42c6cc5c95094938a7d5a22))
+
+
+
+
+
 # [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/mime@0.4.0...@thi.ng/mime@0.5.0) (2021-04-04)
 
 
