@@ -5,5 +5,5 @@
 *.pdf	-text
 *.png	-text
 *.gz    -text
-tools/doc/typedoc-theme/* linguist-vendored
+tools/doc/typedoc-theme/* -linguist-detectable
 yarn.lock -diff
