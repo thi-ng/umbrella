@@ -12,6 +12,7 @@ export * from "./xsadd";
 export * from "./coin";
 export * from "./random-bytes";
 export * from "./random-id";
+export * from "./unique-indices";
 export * from "./uuid";
 export * from "./weighted-random";
 
