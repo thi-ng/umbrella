@@ -11,5 +11,5 @@ import { SYSTEM } from "../system";
  * @param rnd
  * @param lambda - event interval [0,Inf)
  */
-export const exponential = (rnd: IRandom = SYSTEM, lambda = 10) => () =>
-    lambda === 0 ? () => Infinity : -Math.log(1 - rnd.float(1)) / lambda;
+export const exponential = (rnd: IRandom = SYSTEM, lambda = 10) =>
+    lambda === 0 ? () => Infinity : () => -Math.log(1 - rnd.float(1)) / lambda;
