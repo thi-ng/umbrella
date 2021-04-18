@@ -46,6 +46,7 @@
         "test": "yarn build && yarn test:only",
         "test:only": "lerna run test",
         "tool:imports": "ts-node -P tools/tsconfig.json tools/src/check-imports.ts",
+        "tool:exports": "ts-node -P tools/tsconfig.json tools/src/check-exports.ts",
         "tool:searchindex": "ts-node -P tools/tsconfig.json tools/src/build-search-index.ts"
     },
     "resolutions": {
