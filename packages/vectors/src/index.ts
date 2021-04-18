@@ -101,6 +101,7 @@ export * from "./major";
 export * from "./map";
 export * from "./map-vectors";
 export * from "./max";
+export * from "./median";
 export * from "./min";
 export * from "./minor";
 export * from "./mix-bilinear";
