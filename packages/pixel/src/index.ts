@@ -3,6 +3,7 @@ export * from "./canvas";
 export * from "./codegen";
 export * from "./convolve";
 export * from "./dither";
+export * from "./dominant-colors";
 export * from "./float";
 export * from "./normal-map";
 export * from "./packed";

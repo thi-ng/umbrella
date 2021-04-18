@@ -52,6 +52,7 @@
         "@thi.ng/api": "^7.1.4",
         "@thi.ng/binary": "^2.2.4",
         "@thi.ng/checks": "^2.9.6",
+        "@thi.ng/k-means": "^0.0.1",
         "@thi.ng/math": "^3.4.0",
         "@thi.ng/porter-duff": "^0.1.45"
     },
