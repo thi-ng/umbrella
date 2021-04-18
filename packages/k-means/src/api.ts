@@ -1,6 +1,7 @@
+import type { Fn, Fn0 } from "@thi.ng/api";
 import type { IDistance } from "@thi.ng/distance";
 import type { IRandom } from "@thi.ng/random";
-import type { ReadonlyVec } from "@thi.ng/vectors";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 export interface KMeansOpts {
     /**
@@ -15,7 +16,19 @@ export interface KMeansOpts {
      * PRNG instance to use for random centroid selection
      */
     rnd: IRandom;
+    /**
+     * Centroid refinement strategy (default: {@link means}).
+     */
+    strategy: CentroidStrategy;
 }
+
+export type CentroidStrategy = Fn<
+    number,
+    {
+        update: Fn<ReadonlyVec, void>;
+        finish: Fn0<Vec | undefined>;
+    }
+>;
 
 export interface Cluster {
     /**

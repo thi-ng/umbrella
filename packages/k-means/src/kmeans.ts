@@ -1,14 +1,19 @@
 import { argmin, DIST_SQ, IDistance } from "@thi.ng/distance";
 import { uniqueIndices } from "@thi.ng/random";
-import { add, mulN, ReadonlyVec, Vec, zeroes } from "@thi.ng/vectors";
-import type { Cluster, KMeansOpts } from "./api";
+import { add, median, mulN, ReadonlyVec, Vec, zeroes } from "@thi.ng/vectors";
+import type { CentroidStrategy, Cluster, KMeansOpts } from "./api";
 
 export const kmeans = <T extends ReadonlyVec>(
     k: number,
     samples: T[],
     opts?: Partial<KMeansOpts>
 ) => {
-    let { dist, maxIter, rnd } = { dist: DIST_SQ, maxIter: 32, ...opts };
+    let { strategy, dist, maxIter, rnd } = {
+        strategy: means,
+        dist: DIST_SQ,
+        maxIter: 32,
+        ...opts,
+    };
     const num = samples.length;
     const dim = samples[0].length;
     const centroidIDs = uniqueIndices(k, num, undefined, undefined, rnd);
@@ -18,17 +23,13 @@ export const kmeans = <T extends ReadonlyVec>(
     outer: while (update && maxIter-- > 0) {
         update = assign(samples, centroids, clusters, dist);
         for (let i = 0; i < k; i++) {
-            const mean = zeroes(dim);
-            let clusterSize = 0;
+            const impl = strategy(dim);
             for (let j = 0; j < num; j++) {
-                if (i === clusters[j]) {
-                    add(mean, mean, samples[j]);
-                    clusterSize++;
-                }
+                i === clusters[j] && impl.update(samples[j]);
             }
-            if (clusterSize > 0) {
-                mulN(mean, mean, 1 / clusterSize);
-                centroids[i] = mean;
+            const centroid = impl.finish();
+            if (centroid) {
+                centroids[i] = centroid;
             } else {
                 const numC = centroidIDs.length;
                 uniqueIndices(1, num, centroidIDs, undefined, rnd);
@@ -68,4 +69,24 @@ const buildClusters = (centroids: ReadonlyVec[], clusters: number[]) => {
         ).items.push(i);
     }
     return indices;
+};
+
+export const means: CentroidStrategy = (dim) => {
+    const acc = zeroes(dim);
+    let n = 0;
+    return {
+        update: (p) => {
+            add(acc, acc, p);
+            n++;
+        },
+        finish: () => (n ? mulN(acc, acc, 1 / n) : undefined),
+    };
+};
+
+export const medians: CentroidStrategy = () => {
+    const acc: ReadonlyVec[] = [];
+    return {
+        update: (p) => acc.push(p),
+        finish: () => (acc.length ? median([], acc) : undefined),
+    };
 };
