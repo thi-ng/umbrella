@@ -53,6 +53,7 @@
         "@thi.ng/checks": "^2.9.6",
         "@thi.ng/color": "^3.1.13",
         "@thi.ng/math": "^3.4.0",
+        "@thi.ng/pixel": "^0.9.0",
         "@thi.ng/vectors": "^5.2.2"
     },
     "files": [
