@@ -351,14 +351,15 @@ Component wise op with one input vector and single scalar:
 
 ### Distances
 
-| Function        | Generic | Fixed | Strided | Int | Comments            |
-|-----------------|---------|-------|---------|-----|---------------------|
-| `dist`          | ✓       |       |         |     |                     |
-| `distSq`        | ✓       | 2-4   |         |     |                     |
-| `distChebyshev` | ✓       | 2-4   |         |     |                     |
-| `distHaversine` |         | 2     |         |     | lon/lat coordinates |
-| `distManhattan` | ✓       | 2-4   |         |     |                     |
-| `pointOnRay`    | ✓       | 2-3   |         |     | point at distance   |
+| Function              | Generic | Fixed | Strided | Int | Comments            |
+|-----------------------|---------|-------|---------|-----|---------------------|
+| `dist`                | ✓       |       |         |     |                     |
+| `distSq`              | ✓       | 2-4   |         |     |                     |
+| `distChebyshev`       | ✓       | 2-4   |         |     |                     |
+| `distHaversineLatLon` |         | 2     |         |     | lat/lon coordinates |
+| `distHaversineLonLat` |         | 2     |         |     | lon/lat coordinates |
+| `distManhattan`       | ✓       | 2-4   |         |     |                     |
+| `pointOnRay`          | ✓       | 2-3   |         |     | point at distance   |
 
 ### Orientation
 
