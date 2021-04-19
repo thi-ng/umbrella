@@ -87,6 +87,7 @@
         "grayscale",
         "image",
         "interval",
+        "k-means",
         "multiformat",
         "normal",
         "pixel",
