@@ -49,9 +49,11 @@ Partially ported from C implementations taken from [c.thi.ng](http://c.thi.ng).
 
 ### Other utilities
 
-- [`randomBytes()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/random-bytes.ts)
+- [`coin()` / `fairCoin()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/coin.ts)
+- [`randomBytes()` / `randomBytesFrom()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/random-bytes.ts)
 - [`randomID()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/random-id.ts)
-- [`weightedRandom()](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/weighted-random.ts)
+- [`weightedRandom()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/weighted-random.ts)
+- [`uniqueIndices()` / `uniqueValuesFrom()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/unique-indices.ts)
 - [`uuidv4Bytes()` / `uuid()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/uuid.ts)
 
 ### Status
@@ -78,7 +80,7 @@ yarn add @thi.ng/random
 <script src="https://unpkg.com/@thi.ng/random/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.66 KB / CJS: 1.79 KB / UMD: 1.77 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.81 KB / CJS: 1.94 KB / UMD: 1.91 KB
 
 ## Dependencies
 
@@ -128,11 +130,6 @@ rnd.norm(100)
 // next float in given interval [min .. max)
 rnd.minmax(10, 20)
 // 15.295951807707537
-
-// next gaussian (using iterative CLT approach)
-// optional params: num samples, offset, scale
-rnd.gaussian()
-// 0.10632886109089679
 ```
 
 ## Authors
