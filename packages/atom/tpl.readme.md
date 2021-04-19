@@ -397,7 +397,7 @@ let x = 0;
 let a = defAtom({ value: 1 })
 
 // create an eager view by passing `false` as last arg
-view = defView(["value"], (y) => (x = y, y * 10), false);
+view = defView(a, ["value"], (y) => (x = y, y * 10), false);
 
 // check `x` to verify that transformer already has run
 x === 1
