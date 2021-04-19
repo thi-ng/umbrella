@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.9.0...@thi.ng/pixel@0.10.0) (2021-04-19)
+
+
+### Features
+
+* **pixel:** add dominantColors(), update deps ([ad0617e](https://github.com/thi-ng/umbrella/commit/ad0617e6ed3077d8d0c1549416afc27df261edc9))
+
+
+
+
+
 # [0.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.8.1...@thi.ng/pixel@0.9.0) (2021-04-03)
 
 

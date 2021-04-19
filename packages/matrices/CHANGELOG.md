@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.57](https://github.com/thi-ng/umbrella/compare/@thi.ng/matrices@0.6.56...@thi.ng/matrices@0.6.57) (2021-04-19)
+
+**Note:** Version bump only for package @thi.ng/matrices
+
+
+
+
+
 ## [0.6.56](https://github.com/thi-ng/umbrella/compare/@thi.ng/matrices@0.6.55...@thi.ng/matrices@0.6.56) (2021-04-07)
 
 **Note:** Version bump only for package @thi.ng/matrices

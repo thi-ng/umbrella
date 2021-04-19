@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@5.2.2...@thi.ng/vectors@5.3.0) (2021-04-19)
+
+
+### Features
+
+* **vectors:** add componentwise median() ([39b5c55](https://github.com/thi-ng/umbrella/commit/39b5c5537f23bf9d9e59da725c89a22714cc0091))
+* **vectors:** replace distHaversine() ([9d9d4e8](https://github.com/thi-ng/umbrella/commit/9d9d4e8f1697ba96755e5fc2fe0cf898ff12b105))
+
+
+
+
+
 ## [5.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@5.2.1...@thi.ng/vectors@5.2.2) (2021-04-07)
 
 **Note:** Version bump only for package @thi.ng/vectors

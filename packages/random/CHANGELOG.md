@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@2.3.7...@thi.ng/random@2.4.0) (2021-04-19)
+
+
+### Bug Fixes
+
+* **random:** HOF issue w/ exponential() ([12586b9](https://github.com/thi-ng/umbrella/commit/12586b9eda66ce3d741402cc9b802c0369f64d88))
+
+
+### Features
+
+* **random:** add uniqueValuesFrom/uniqueIndices() ([3b3b5d8](https://github.com/thi-ng/umbrella/commit/3b3b5d8d71d8c3019f84bae7a4791b12933720c4))
+
+
+
+
+
 ## [2.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@2.3.0...@thi.ng/random@2.3.1) (2021-02-24)
 
 
