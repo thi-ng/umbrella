@@ -28,18 +28,18 @@ export const weightedRandom = <T>(
     assert(n > 0, "no choices given");
     const opts = weights
         ? choices
-              .map((x, i) => <[T, number]>[x, weights[i]])
-              .sort((a, b) => b[1] - a[1])
-        : choices.map((x) => <[T, number]>[x, 1]);
-    const total = opts.reduce((acc, o) => acc + o[1], 0);
+              .map((x, i) => <[number, T]>[weights[i], x])
+              .sort((a, b) => b[0] - a[0])
+        : choices.map((x) => <[number, T]>[1, x]);
+    const total = opts.reduce((acc, o) => acc + o[0], 0);
     total <= 0 && console.warn("total weights <= 0");
     return () => {
         const r = rnd.float(total);
         let sum = total;
         for (let i = 0; i < n; i++) {
-            sum -= opts[i][1];
+            sum -= opts[i][0];
             if (sum <= r) {
-                return opts[i][0];
+                return opts[i][1];
             }
         }
         return <never>undefined;

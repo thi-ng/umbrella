@@ -53,7 +53,7 @@ export const uniqueIndices = (
     k: number,
     max: number,
     existing?: number[],
-    maxTrials?: number,
+    maxTrials = max,
     rnd: IRandom = SYSTEM
 ) => {
     assert(k >= 0 && k <= max, `k must be in [0, ${max}] interval`);
