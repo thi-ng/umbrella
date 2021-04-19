@@ -86,7 +86,7 @@ yarn add @thi.ng/hiccup-canvas
 <script src="https://unpkg.com/@thi.ng/hiccup-canvas/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.53 KB / CJS: 2.65 KB / UMD: 2.65 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.57 KB / CJS: 2.69 KB / UMD: 2.69 KB
 
 ## Dependencies
 
@@ -94,6 +94,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 2.53 KB / CJS: 2.65 KB / UMD: 2.65 
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
+- [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 
 ## Usage examples
