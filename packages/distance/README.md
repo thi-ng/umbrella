@@ -33,20 +33,21 @@ The package provides the
 interface for custom distance metric implementations & conversions from/to raw
 distance values. The following preset metrics are provided too:
 
-| **Preset**        | **Number** | **n-D** | **2D** | **3D** | **Comments**                                                         |
-|-------------------|------------|---------|--------|--------|----------------------------------------------------------------------|
-| `EUCLEDIAN`       |            | ✅       |        |        | Eucledian distance                                                   |
-| `EUCLEDIAN1`      | ✅          |         |        |        |                                                                      |
-| `EUCLEDIAN2`      |            |         | ✅      |        |                                                                      |
-| `EUCLEDIAN3`      |            |         |        | ✅      |                                                                      |
-| `HAVERSINE`       |            |         | ✅      |        | Great-circle distance for lon/lat geo locations                      |
-| `DIST_SQ`         |            | ✅       |        |        | Squared dist (avoids `Math.sqrt`)                                    |
-| `DIST_SQ1`        | ✅          |         |        |        |                                                                      |
-| `DIST_SQ2`        |            |         | ✅      |        |                                                                      |
-| `DIST_SQ3`        |            |         |        | ✅      |                                                                      |
-| `defManhattan(n)` |            | ✅       |        |        | [Manhattan distance](https://en.wikipedia.org/wiki/Taxicab_geometry) |
-| `MANHATTAN2`      |            |         | ✅      |        |                                                                      |
-| `MANHATTAN3`      |            |         |        | ✅      |                                                                      |
+| **Preset**         | **Number** | **nD** | **2D** | **3D** | **Comments**                                                         |
+|--------------------|------------|--------|--------|--------|----------------------------------------------------------------------|
+| `EUCLEDIAN`        |            | ✅      |        |        | Eucledian distance                                                   |
+| `EUCLEDIAN1`       | ✅          |        |        |        |                                                                      |
+| `EUCLEDIAN2`       |            |        | ✅      |        |                                                                      |
+| `EUCLEDIAN3`       |            |        |        | ✅      |                                                                      |
+| `HAVERSINE_LATLON` |            |        | ✅      |        | Great-circle distance for lat/lon geo locations                      |
+| `HAVERSINE_LONLAT` |            |        | ✅      |        | Great-circle distance for lon/lat geo locations                      |
+| `DIST_SQ`          |            | ✅      |        |        | Squared dist (avoids `Math.sqrt`)                                    |
+| `DIST_SQ1`         | ✅          |        |        |        |                                                                      |
+| `DIST_SQ2`         |            |        | ✅      |        |                                                                      |
+| `DIST_SQ3`         |            |        |        | ✅      |                                                                      |
+| `defManhattan(n)`  |            | ✅      |        |        | [Manhattan distance](https://en.wikipedia.org/wiki/Taxicab_geometry) |
+| `MANHATTAN2`       |            |        | ✅      |        |                                                                      |
+| `MANHATTAN3`       |            |        |        | ✅      |                                                                      |
 
 ### Neighborhoods
 
@@ -107,7 +108,7 @@ yarn add @thi.ng/distance
 <script src="https://unpkg.com/@thi.ng/distance/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 887 bytes / CJS: 994 bytes / UMD: 1.01 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.06 KB / CJS: 1.17 KB / UMD: 1.21 KB
 
 ## Dependencies
 
