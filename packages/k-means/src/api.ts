@@ -5,6 +5,11 @@ import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 export interface KMeansOpts {
     /**
+     * Array of initial centroids (i.e. indices of selected points in `samples`
+     * array given to {@link kmeans}).
+     */
+    initial: number[];
+    /**
      * Distance function/metric to use for finding nearest centroid.
      */
     dist: IDistance<ReadonlyVec>;

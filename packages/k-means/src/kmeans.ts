@@ -1,6 +1,15 @@
+import { assert } from "@thi.ng/api";
 import { argmin, DIST_SQ, IDistance } from "@thi.ng/distance";
-import { uniqueIndices } from "@thi.ng/random";
-import { add, median, mulN, ReadonlyVec, Vec, zeroes } from "@thi.ng/vectors";
+import { SYSTEM, uniqueIndices, weightedRandom } from "@thi.ng/random";
+import {
+    add,
+    distSq,
+    median,
+    mulN,
+    ReadonlyVec,
+    Vec,
+    zeroes,
+} from "@thi.ng/vectors";
 import type { CentroidStrategy, Cluster, KMeansOpts } from "./api";
 
 export const kmeans = <T extends ReadonlyVec>(
@@ -8,15 +17,16 @@ export const kmeans = <T extends ReadonlyVec>(
     samples: T[],
     opts?: Partial<KMeansOpts>
 ) => {
-    let { strategy, dist, maxIter, rnd } = {
-        strategy: means,
+    let { dist, initial, maxIter, rnd, strategy } = {
         dist: DIST_SQ,
         maxIter: 32,
+        strategy: means,
         ...opts,
     };
     const num = samples.length;
     const dim = samples[0].length;
-    const centroidIDs = uniqueIndices(k, num, undefined, undefined, rnd);
+    const centroidIDs = initial || initKmeanspp(k, samples, rnd);
+    assert(centroidIDs.length === k, `wrong number of initial centroids`);
     const centroids: Vec[] = centroidIDs.map((i) => samples[i]);
     const clusters: number[] = [];
     let update = true;
@@ -40,6 +50,39 @@ export const kmeans = <T extends ReadonlyVec>(
         }
     }
     return buildClusters(centroids, clusters);
+};
+
+/**
+ * k-means++ initialization / selection of initial cluster centroids.
+ *
+ * @remarks
+ * References:
+ * - https://en.wikipedia.org/wiki/K-means%2B%2B
+ * - http://ilpubs.stanford.edu:8090/778/1/2006-13.pdf
+ * - http://vldb.org/pvldb/vol5/p622_bahmanbahmani_vldb2012.pdf (TODO)
+ *
+ * @param k
+ * @param samples
+ * @param rnd
+ */
+export const initKmeanspp = <T extends ReadonlyVec>(
+    k: number,
+    samples: T[],
+    rnd = SYSTEM
+) => {
+    const num = samples.length;
+    const centroidIDs = [rnd.int() % num];
+    const centroids = [samples[centroidIDs[0]]];
+    const indices = new Array(num).fill(0).map((_, i) => i);
+    while (centroidIDs.length < k) {
+        let probs = samples.map((p) =>
+            distSq(p, centroids[argmin(p, centroids)!])
+        );
+        const id = weightedRandom(indices, probs)();
+        centroidIDs.push(id);
+        centroids.push(samples[id]);
+    }
+    return centroidIDs;
 };
 
 const assign = <T extends ReadonlyVec>(
