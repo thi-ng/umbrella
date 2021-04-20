@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/k-means@0.1.0...@thi.ng/k-means@0.2.0) (2021-04-20)
+
+
+### Features
+
+* **k-means:** add meansLatLon centroid strategy, docstrings ([269c11c](https://github.com/thi-ng/umbrella/commit/269c11c10907351d98acfb929af5036a23a2e5c3))
+
+
+
+
+
 # 0.1.0 (2021-04-19)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/date@0.4.0...@thi.ng/date@0.5.0) (2021-04-20)
+
+
+### Features
+
+* **date:** update relative date parsing ([2491668](https://github.com/thi-ng/umbrella/commit/2491668d877d837f3d5101de4730441db3cdbb1b))
+
+
+
+
+
 # [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/date@0.3.0...@thi.ng/date@0.4.0) (2021-03-21)
 
 
