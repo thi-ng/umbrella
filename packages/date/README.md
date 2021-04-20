@@ -46,7 +46,7 @@ yarn add @thi.ng/date
 <script src="https://unpkg.com/@thi.ng/date/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.45 KB / CJS: 2.63 KB / UMD: 2.58 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.46 KB / CJS: 2.63 KB / UMD: 2.59 KB
 
 ## Dependencies
 
@@ -136,6 +136,9 @@ parseRelative("an hour", now);
 
 parseRelative("tomorrow", now);
 // DateTime { y: 2021, M: 2, d: 22, h: 14, m: 26, s: 0, t: 661 }
+
+parseRelative("-1 month", now)
+// DateTime { y: 2021, M: 1, d: 21, h: 14, m: 26, s: 0, t: 661 }
 ```
 
 ### Formatters

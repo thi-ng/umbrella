@@ -117,6 +117,9 @@ parseRelative("an hour", now);
 
 parseRelative("tomorrow", now);
 // DateTime { y: 2021, M: 2, d: 22, h: 14, m: 26, s: 0, t: 661 }
+
+parseRelative("-1 month", now)
+// DateTime { y: 2021, M: 1, d: 21, h: 14, m: 26, s: 0, t: 661 }
 ```
 
 ### Formatters

@@ -13,8 +13,12 @@ import { DateTime, dateTime } from "./datetime";
  * The following input formats are supported:
  *
  * - `"tomorrow"` / `"yesterday"` - ±1 day
- * - `"<num><period><" ago">?"` - ±num periods, if the `" ago"` suffix is given,
- *   the offset will be applied towards the past
+ * - `<"-"|"+">?<num><period><" ago">?"` - ±num periods (if prefixed with "-" or
+ *   if the `" ago"` suffix is given, the offset will be applied towards the
+ *   past)
+ *
+ * (Note: If both negative offset and "ago" is given, the suffix will, like a
+ * double-negative, flip the direction back towards the future).
  *
  * If using the latter form:
  *
@@ -45,7 +49,7 @@ export const parseRelative = (
             epoch.decDay();
             return epoch;
         default: {
-            const match = /^(an? |next |\d+\s?)((ms|milli(?:(s?|seconds?)))|s(?:(ecs?|econds?))?|min(?:(s|utes?))?|h(?:ours?)?|d(?:ays?)?|w(?:eeks?)?|months?|y(?:ears?)?)(\s+ago)?$/.exec(
+            const match = /^(an? |next |[-+]?\d+\s?)((ms|milli(?:(s?|seconds?)))|s(?:(ecs?|econds?))?|min(?:(s|utes?))?|h(?:ours?)?|d(?:ays?)?|w(?:eeks?)?|months?|y(?:ears?)?)(\s+ago)?$/.exec(
                 offset
             );
             return match

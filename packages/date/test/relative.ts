@@ -1,5 +1,16 @@
 import * as assert from "assert";
-import { dateTime, parseRelative } from "../src";
+import { DateTime, dateTime, parseRelative } from "../src";
+
+const checkDate = (offset: string, base: DateTime, expected: number) => {
+    const d = parseRelative(offset, base);
+    assert(!!d, `couldn't parse ${offset}`);
+    assert(
+        d.equiv(expected),
+        `no match (past): ${d.toISOString()} => ${dateTime(
+            expected
+        ).toISOString()} (${offset})`
+    );
+};
 
 const check = (
     period: string[],
@@ -10,24 +21,11 @@ const check = (
 ) => {
     const base = dateTime(ref);
     for (let p of period) {
-        let offset = `${num} ${p} ago`;
-        let d = parseRelative(offset, base);
-        assert(!!d, `couldn't parse ${offset}`);
-        assert(
-            d.equiv(past),
-            `no match (past): ${d.toISOString()} => ${dateTime(
-                past
-            ).toISOString()} (${offset})`
-        );
-        offset = `${num} ${p}`;
-        d = parseRelative(offset, base);
-        assert(!!d, `couldn't parse ${offset}`);
-        assert(
-            d.equiv(future),
-            `no match (future): ${d.toISOString()} => ${dateTime(
-                future
-            ).toISOString()} (${offset})`
-        );
+        checkDate(`-${num} ${p}`, base, past);
+        checkDate(`-${num} ${p} ago`, base, future);
+        checkDate(`${num} ${p} ago`, base, past);
+        checkDate(`${num} ${p}`, base, future);
+        checkDate(`+${num} ${p}`, base, future);
     }
 };
 
