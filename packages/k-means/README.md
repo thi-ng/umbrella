@@ -41,7 +41,7 @@ yarn add @thi.ng/k-means
 <script src="https://unpkg.com/@thi.ng/k-means/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 796 bytes / CJS: 856 bytes / UMD: 972 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 928 bytes / CJS: 987 bytes / UMD: 1.07 KB
 
 ## Dependencies
 
@@ -57,7 +57,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 796 bytes / CJS: 856 bytes / UMD: 9
 Example usage:
 
 ```ts
-import { kmeans } from "@thi.ng/k-means";
+import { kmeans, meansLatLon } from "@thi.ng/k-means";
 import { HAVERSINE_LATLON } from "@thi.ng/distance";
 
 // data from: https://simplemaps.com/data/world-cities
@@ -79,8 +79,13 @@ const items = [
 const clusters = kmeans(
     3,
     items.map((x) => x.latlon),
-    // use custom distance function (default: DIST_SQ)
-    { dist: HAVERSINE_LATLON }
+    {
+        // custom centroid calc for geo locations
+        // https://docs.thi.ng/umbrella/k-means/modules.html#meanslatlon
+        strategy: meansLatLon,
+        // custom distance function for geo location (default: DIST_SQ)
+        dist: HAVERSINE_LATLON
+    }
 );
 
 // print each cluster
