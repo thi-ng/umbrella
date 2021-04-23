@@ -7,6 +7,7 @@ export * from "./extrema";
 export * from "./fit";
 export * from "./int";
 export * from "./interval";
+export * from "./libc";
 export * from "./min-error";
 export * from "./mix";
 export * from "./prec";
