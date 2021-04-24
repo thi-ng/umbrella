@@ -1,6 +1,6 @@
 import { centroid, circle, polygon, Polygon, vertices } from "@thi.ng/geom";
 import { triFan } from "@thi.ng/geom-tessellate";
-import { fmod } from "@thi.ng/math";
+import { mod } from "@thi.ng/math";
 import { mapIndexed } from "@thi.ng/transducers";
 import { add2, hash } from "@thi.ng/vectors";
 import { Hash, Key } from "../api";
@@ -49,11 +49,11 @@ export const radialMenu = (
         switch (gui.key) {
             case Key.UP:
             case Key.RIGHT:
-                gui.focusID = id + fmod(sel + 1, n);
+                gui.focusID = id + mod(sel + 1, n);
                 break;
             case Key.DOWN:
             case Key.LEFT:
-                gui.focusID = id + fmod(sel - 1, n);
+                gui.focusID = id + mod(sel - 1, n);
             default:
         }
     }
