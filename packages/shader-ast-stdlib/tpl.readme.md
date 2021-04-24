@@ -258,6 +258,7 @@ TODO. For now, please see doc strings in source for details...
 - `toLinear`
 - `toSRGB`
 - `luminanceRGB`
+- `decodeRGBE`
 
 ### Porter-Duff alpha blending
 

@@ -90,7 +90,7 @@ yarn add @thi.ng/shader-ast-stdlib
 <script src="https://unpkg.com/@thi.ng/shader-ast-stdlib/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 6.15 KB / CJS: 6.97 KB / UMD: 6.38 KB
+Package sizes (gzipped, pre-treeshake): ESM: 6.20 KB / CJS: 7.04 KB / UMD: 6.45 KB
 
 ## Dependencies
 
@@ -318,6 +318,7 @@ TODO. For now, please see doc strings in source for details...
 - `toLinear`
 - `toSRGB`
 - `luminanceRGB`
+- `decodeRGBE`
 
 ### Porter-Duff alpha blending
 
