@@ -22,6 +22,16 @@ Partially ported from Clojure version
 
 ${status}
 
+### Breaking changes in v4.0.0
+
+The introduction of several [standard libc math
+functions](https://www.cplusplus.com/reference/cmath/) causes a behavior change
+of the existing `fmod()` function...
+
+- rename `fmod()` => `mod()` to align w/ GLSL counterpart
+- add new `fmod()` w/ standard libc behavior (same as JS % op)
+- add `remainder()` w/ standard libc behavior
+
 ${supportPackages}
 
 ${relatedPackages}

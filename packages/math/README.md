@@ -13,6 +13,7 @@ For the Clojure version, please visit: [thi.ng/math-clj](https://thi.ng/math-clj
 
 - [About](#about)
   - [Status](#status)
+  - [Breaking changes in v4.0.0](#breaking-changes-in-v400)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -36,6 +37,16 @@ Partially ported from Clojure version
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bmath%5D+in%3Atitle)
+
+### Breaking changes in v4.0.0
+
+The introduction of several [standard libc math
+functions](https://www.cplusplus.com/reference/cmath/) causes a behavior change
+of the existing `fmod()` function...
+
+- rename `fmod()` => `mod()` to align w/ GLSL counterpart
+- add new `fmod()` w/ standard libc behavior (same as JS % op)
+- add `remainder()` w/ standard libc behavior
 
 ## Installation
 
