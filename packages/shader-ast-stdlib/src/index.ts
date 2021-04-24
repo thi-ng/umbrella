@@ -4,6 +4,7 @@ export * from "./color/aces-film";
 export * from "./color/linear-srgb";
 export * from "./color/luminance";
 export * from "./color/porter-duff";
+export * from "./color/rgbe";
 
 export * from "./fog/exp";
 export * from "./fog/exp2";
