@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@3.4.0...@thi.ng/math@4.0.0) (2021-04-24)
+
+
+### Features
+
+* **math:** add libc math fns ([28b41a8](https://github.com/thi-ng/umbrella/commit/28b41a824758b83cea09c29f48e6f14f56368c40))
+* **math:** add/update modulo functions ([be7b02b](https://github.com/thi-ng/umbrella/commit/be7b02beaf4ab1ab1030597a5f4eb94d43e1469b))
+
+
+### BREAKING CHANGES
+
+* **math:** Introduction of standard libc math functions causes
+behavior change of existing `fmod()` function...
+
+- rename `fmod()` => `mod()` to align w/ GLSL counterpart
+- add new `fmod()` w/ standard libc behavior (same as JS % op)
+- add `remainder()` w/ standard libc behavior
+- update doc strings
+
+
+
+
+
 # [3.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@3.3.0...@thi.ng/math@3.4.0) (2021-04-03)
 
 

@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@5.3.0...@thi.ng/vectors@6.0.0) (2021-04-24)
+
+
+### Features
+
+* **vectors:** add/update modulo functions ([81d2e63](https://github.com/thi-ng/umbrella/commit/81d2e63f12f87893b9e53d070260bb6c9b9f0dcd))
+
+
+### BREAKING CHANGES
+
+* **vectors:** Introduction of standard libc math functions in thi.ng/math
+causes behavior change/flip of existing `fmod()` & `mod()` functions...
+
+- swap `fmod()` <> `mod()` to align w/ their GLSL & libc counterparts
+- same goes for `fmodN()` <> `modN()`
+- add `remainder()`/ `remainderN()` w/ standard libc behavior
+- update doc strings
+
+
+
+
+
 # [5.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@5.2.2...@thi.ng/vectors@5.3.0) (2021-04-19)
 
 

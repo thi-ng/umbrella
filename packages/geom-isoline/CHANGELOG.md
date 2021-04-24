@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.89](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isoline@0.1.88...@thi.ng/geom-isoline@0.1.89) (2021-04-24)
+
+**Note:** Version bump only for package @thi.ng/geom-isoline
+
+
+
+
+
 ## [0.1.88](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isoline@0.1.87...@thi.ng/geom-isoline@0.1.88) (2021-04-19)
 
 **Note:** Version bump only for package @thi.ng/geom-isoline

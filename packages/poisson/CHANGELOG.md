@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.42](https://github.com/thi-ng/umbrella/compare/@thi.ng/poisson@1.1.41...@thi.ng/poisson@1.1.42) (2021-04-24)
+
+**Note:** Version bump only for package @thi.ng/poisson
+
+
+
+
+
 ## [1.1.41](https://github.com/thi-ng/umbrella/compare/@thi.ng/poisson@1.1.40...@thi.ng/poisson@1.1.41) (2021-04-19)
 
 **Note:** Version bump only for package @thi.ng/poisson

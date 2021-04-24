@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.5.26...@thi.ng/shader-ast-stdlib@0.6.0) (2021-04-24)
+
+
+### Features
+
+* **shader-ast-stdlib:** add decodeRGBE() ([f98c6a2](https://github.com/thi-ng/umbrella/commit/f98c6a26a072f63a2b14def005e81985379f0bff))
+
+
+
+
+
 ## [0.5.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.5.25...@thi.ng/shader-ast-stdlib@0.5.26) (2021-04-19)
 
 **Note:** Version bump only for package @thi.ng/shader-ast-stdlib
