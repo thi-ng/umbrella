@@ -7,17 +7,17 @@ import {
     bitXorI4,
     divI4,
     divNI4,
+    fmod4,
+    fmodN4,
     lshiftI4,
-    mod4,
-    modN4,
     mulI4,
     mulNI4,
     rshiftI4,
     subI4,
     subNI4,
 } from "@thi.ng/vectors";
-import { VEC4 } from "./vec4";
 import type { JSBuiltinsIntVec } from "../api";
+import { VEC4 } from "./vec4";
 
 export const IVEC4: JSBuiltinsIntVec = {
     ...VEC4,
@@ -27,9 +27,9 @@ export const IVEC4: JSBuiltinsIntVec = {
     div: (a, b) => divI4([], a, b),
     divvn: (a, b) => divNI4([], a, b),
     divnv: (a, b) => divI4(null, [a, a, a, a], b),
-    modi: (a, b) => mod4([], a, b),
-    modivn: (a, b) => modN4([], a, b),
-    modinv: (a, b) => mod4(null, [a, a, a, a], b),
+    modi: (a, b) => fmod4([], a, b),
+    modivn: (a, b) => fmodN4([], a, b),
+    modinv: (a, b) => fmod4(null, [a, a, a, a], b),
     mul: (a, b) => mulI4([], a, b),
     mulvn: (a, b) => mulNI4([], a, b),
     mulnv: (a, b) => mulNI4([], b, a),

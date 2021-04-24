@@ -7,17 +7,17 @@ import {
     bitXorI3,
     divI3,
     divNI3,
+    fmod3,
+    fmodN3,
     lshiftI3,
-    mod3,
-    modN3,
     mulI3,
     mulNI3,
     rshiftI3,
     subI3,
     subNI3,
 } from "@thi.ng/vectors";
-import { VEC3 } from "./vec3";
 import type { JSBuiltinsIntVec } from "../api";
+import { VEC3 } from "./vec3";
 
 export const IVEC3: JSBuiltinsIntVec = {
     ...VEC3,
@@ -27,9 +27,9 @@ export const IVEC3: JSBuiltinsIntVec = {
     div: (a, b) => divI3([], a, b),
     divvn: (a, b) => divNI3([], a, b),
     divnv: (a, b) => divI3(null, [a, a, a], b),
-    modi: (a, b) => mod3([], a, b),
-    modivn: (a, b) => modN3([], a, b),
-    modinv: (a, b) => mod3(null, [a, a, a], b),
+    modi: (a, b) => fmod3([], a, b),
+    modivn: (a, b) => fmodN3([], a, b),
+    modinv: (a, b) => fmod3(null, [a, a, a], b),
     mul: (a, b) => mulI3([], a, b),
     mulvn: (a, b) => mulNI3([], a, b),
     mulnv: (a, b) => mulNI3([], b, a),
