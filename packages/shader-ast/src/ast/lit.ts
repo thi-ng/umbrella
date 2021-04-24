@@ -115,8 +115,10 @@ const $uvec = $gvec(wrapUint, UINT0);
 
 const $bvec = $gvec(wrapBool, FALSE);
 
+const $vinfo = (v: Type, info = "") => v[0] + info.substr(1);
+
 const $info = (xs: any[], info: (string | undefined)[]) =>
-    isVec(xs[0]) ? xs[0].type[0] : info[xs.length];
+    isVec(xs[0]) ? $vinfo(xs[0].type, info[xs.length]) : info[xs.length];
 
 const $gvec2 = <T extends Type>(
     type: T,
@@ -128,7 +130,7 @@ const $gvec3 = <T extends Type>(
     type: T,
     ctor: Fn<any[], (Term<any> | undefined)[]>,
     xs: any[]
-) => lit(type, (xs = ctor(xs)), xs.length === 2 ? "vn" : $info(xs, ["n", "n"]));
+) => lit(type, (xs = ctor(xs)), $info(xs, ["n", "n", "vn"]));
 
 const $gvec4 = <T extends Type>(
     type: T,
@@ -140,7 +142,7 @@ const $gvec4 = <T extends Type>(
         (xs = ctor(xs)),
         xs.length === 2
             ? isVec(xs[1])
-                ? "vv"
+                ? xs[0].type[0] + xs[1].type[0]
                 : "vn"
             : $info(xs, ["n", "n", , "vnn"])
     );
