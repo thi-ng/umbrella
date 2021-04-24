@@ -1,5 +1,5 @@
 import { assert, Fn, IObjectOf, NumericArray } from "@thi.ng/api";
-import { clamp, fmod, fract, mixBicubic, mixBilinear } from "@thi.ng/math";
+import { clamp, fract, mixBicubic, mixBilinear, mod } from "@thi.ng/math";
 import type {
     Filter,
     FloatSampler,
@@ -84,7 +84,7 @@ const sampleINC = ({ pixels, width, height }: IPixelBuffer): IntSampler => (
 const sampleINW = ({ pixels, width, height }: IPixelBuffer): IntSampler => (
     x,
     y
-) => pixels[fmod(y | 0, height) * width + fmod(x | 0, width)];
+) => pixels[mod(y | 0, height) * width + mod(x | 0, width)];
 
 const sampleINR = ({ pixels, width, height }: IPixelBuffer): IntSampler => {
     const w1 = width - 1;
@@ -113,7 +113,7 @@ const sampleFNW = ({
     rowStride,
     stride,
 }: FloatBuffer): FloatSampler => (x, y) => {
-    let i = fmod(y | 0, height) * rowStride + fmod(x | 0, width) * stride;
+    let i = mod(y | 0, height) * rowStride + mod(x | 0, width) * stride;
     return pixels.slice(i, i + stride);
 };
 
