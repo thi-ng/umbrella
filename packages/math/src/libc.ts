@@ -34,6 +34,26 @@ export const fdim: FnN2 = (x, y) => Math.max(x - y, 0);
 export const fma: FnN3 = (x, y, z) => x * y + z;
 
 /**
+ * Similar to {@link mod}, {@link remainder}. Returns `x - y * trunc(x / y)`,
+ * i.e. essentially the same as JS `%` operator. Result will always have the
+ * sign of `x`.
+ *
+ * @remarks
+ * **Caution:** Due to the introduction of libc math functions in v4.0.0 and the
+ * resulting name/behavior clashes between the modulo logic in JS, C & GLSL, the
+ * previous `fmod` function has been renamed to {@link mod} to align w/ its GLSL
+ * version and now exhibits a different behavior to this current {@link fmod}
+ * function.
+ *
+ * Reference: https://www.cplusplus.com/reference/cmath/fmod/
+ *
+ * @param x
+ * @param y
+ */
+export const fmod: FnN2 = (x, y) => x % y;
+//export const fmod: FnN2 = (x, y) => x - y * Math.trunc(x / y);
+
+/**
  * Inverse op of {@link ldexp}. Breaks the number `x` into its binary
  * significand (a floating point with an abs value in `[0.5,1.0)` interval and
  * an integral exponent for 2, such that: `x = significand * 2^exp`. Returns
@@ -72,3 +92,14 @@ export const frexp = (x: number) => {
  * @param exp
  */
 export const ldexp: FnN2 = (x, exp) => x * 2 ** exp;
+
+/**
+ * Similar to {@link fmod}, {@link mod}. Returns `x - y * round(x / y)`.
+ *
+ * @remarks
+ * https://www.cplusplus.com/reference/cmath/remainder/
+ *
+ * @param x
+ * @param y
+ */
+export const remainder: FnN2 = (x, y) => x - y * Math.round(x / y);
