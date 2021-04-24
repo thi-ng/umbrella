@@ -8,6 +8,7 @@ import { FN2 } from "./internal/templates";
  * `remainder()` (or its equivavalent in the thi.ng/maths package), i.e.
  * componentwise `a - b * round(a / b)`.
  *
+ * @remarks
  * Also see {@link @thi.ng/math#remainder}.
  */
 export const [remainder, remainder2, remainder3, remainder4] = defHofOp<

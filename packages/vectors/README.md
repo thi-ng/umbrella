@@ -12,6 +12,7 @@ This project is part of the
 - [About](#about)
   - [Features](#features)
   - [Status](#status)
+  - [Breaking changes in v6.0.0](#breaking-changes-in-v600)
   - [Breaking changes in v3.0.0](#breaking-changes-in-v300)
   - [Related packages](#related-packages)
 - [Installation](#installation)
@@ -117,6 +118,18 @@ Partially ported from [thi.ng/geom-clj](http://thi.ng/geom-clj) (Clojure) and
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bvectors%5D+in%3Atitle)
 
+### Breaking changes in v6.0.0
+
+The introduction of seveveral standard [libc math
+functions](https://www.cplusplus.com/reference/cmath/) to the
+[@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
+package caused a behavior change of existing `fmod()` function. For symmetry
+reasons the same changes have been applied to this package...
+
+- swap `fmod()` ⇄ `mod()`, to align the latter with its GLSL counterpart
+- the new `fmod()` has standard libc behavior (same as JS `%` operator)
+- add `remainder()` with standard libc behavior
+
 ### Breaking changes in v3.0.0
 
 - to avoid confusion, the arg order of `madd` and `maddN` functions have
@@ -157,7 +170,7 @@ yarn add @thi.ng/vectors
 <script src="https://unpkg.com/@thi.ng/vectors/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 11.55 KB / CJS: 14.51 KB / UMD: 12.80 KB
+Package sizes (gzipped, pre-treeshake): ESM: 11.61 KB / CJS: 14.60 KB / UMD: 12.88 KB
 
 ## Dependencies
 
@@ -341,15 +354,16 @@ Vanilla vector (array) factories:
 
 Component wise op with 2 input vectors:
 
-| Function | Generic | Fixed | Strided | Int          | Comments        |
-|----------|---------|-------|---------|--------------|-----------------|
-| `add`    | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                 |
-| `div`    | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                 |
-| `mul`    | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                 |
-| `sub`    | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                 |
-| `fmod`   | ✓       | 2-4   |         |              | (GLSL behavior) |
-| `mod`    | ✓       | 2-4   |         |              | (JS behavior)   |
-| `pow`    | ✓       | 2-4   |         |              |                 |
+| Function    | Generic | Fixed | Strided | Int          | Comments        |
+|-------------|---------|-------|---------|--------------|-----------------|
+| `add`       | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                 |
+| `div`       | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                 |
+| `mul`       | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                 |
+| `sub`       | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                 |
+| `fmod`      | ✓       | 2-4   |         |              | (C/JS behavior) |
+| `mod`       | ✓       | 2-4   |         |              | (GLSL behavior) |
+| `pow`       | ✓       | 2-4   |         |              |                 |
+| `remainder` | ✓       | 2-4   |         |              | (C behavior)    |
 
 ```ts
 // generic
@@ -373,17 +387,18 @@ addS2([], [1,0,2,0], [0,10,0,0,0,20], 0, 0, 1, 1, 2, 4)
 
 Component wise op with one input vector and single scalar:
 
-| Function | Generic | Fixed | Strided | Int          | Comments                   |
-|----------|---------|-------|---------|--------------|----------------------------|
-| `addN`   | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                            |
-| `divN`   | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                            |
-| `mulN`   | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                            |
-| `subN`   | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                            |
-| `neg`    | ✓       |       |         |              | same as `mulN(out, v, -1)` |
-| `fmodN`  | ✓       | 2-4   |         |              | (GLSL behavior)            |
-| `modN`   | ✓       | 2-4   |         |              | (JS behavior)              |
-| `powN`   | ✓       | 2-4   |         |              |                            |
-| `roundN` | ✓       | 2-4   |         |              |                            |
+| Function     | Generic | Fixed | Strided | Int          | Comments                   |
+|--------------|---------|-------|---------|--------------|----------------------------|
+| `addN`       | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                            |
+| `divN`       | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                            |
+| `mulN`       | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                            |
+| `subN`       | ✓       | 2-4   | S2-S4   | I2-I4, U2-U4 |                            |
+| `neg`        | ✓       |       |         |              | same as `mulN(out, v, -1)` |
+| `fmodN`      | ✓       | 2-4   |         |              | (C/JS behavior)            |
+| `modN`       | ✓       | 2-4   |         |              | (GLSL behavior)            |
+| `powN`       | ✓       | 2-4   |         |              |                            |
+| `remainderN` | ✓       | 2-4   |         |              | (C behavior)               |
+| `roundN`     | ✓       | 2-4   |         |              |                            |
 
 ### Combined operations
 

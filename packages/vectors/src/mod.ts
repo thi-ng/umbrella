@@ -12,8 +12,8 @@ import { FN2 } from "./internal/templates";
  * **Caution:** Due to the introduction of libc math functions in thi.ng/math
  * v4.0.0 and the resulting name/behavior clashes between the modulo logic in
  * JS, C & GLSL, this function previously _was_ called `fmod`, but going forward
- * has been renamed to align w/ its GLSL version and now exhibits a different
- * behavior to the current {@link fmod} function.
+ * has been renamed/swapped to align w/ its GLSL version and now exhibits a
+ * different behavior than the current {@link fmod} function.
  *
  * https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/mod.xhtml
  */
