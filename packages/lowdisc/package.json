@@ -57,6 +57,17 @@
         "lib"
     ],
     "keywords": [
+        "discrepancy",
+        "halton",
+        "golden-ratio",
+        "iterator",
+        "kronecker",
+        "monte-carlo",
+        "nd",
+        "plastic-number",
+        "random",
+        "sample",
+        "sequence",
         "typescript"
     ],
     "publishConfig": {
@@ -64,6 +75,10 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "poisson",
+            "random"
+        ],
         "status": "beta",
         "year": 2020
     }

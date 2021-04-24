@@ -14,6 +14,7 @@ This project is part of the
   - [Kronecker](#kronecker)
   - [R<sub>2</sub> recurrence](#rsub2sub-recurrence)
   - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -60,6 +61,11 @@ Based on Kronecker with each dimension's base automatically derived from the
 **BETA** - possibly breaking changes forthcoming
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Blowdisc%5D+in%3Atitle)
+
+### Related packages
+
+- [@thi.ng/poisson](https://github.com/thi-ng/umbrella/tree/develop/packages/poisson) - nD Stratified grid and Poisson-disc sampling w/ support for spatial density functions and custom PRNGs
+- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random) - Pseudo-random number generators w/ unified API, distributions, weighted choices, ID generation
 
 ## Installation
 
