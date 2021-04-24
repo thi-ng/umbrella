@@ -1,18 +1,15 @@
-import { fmod as _fmod } from "@thi.ng/math";
-import type { MultiVecOpVV, VecOpVV } from "./api";
-import { ARGS_VV, defHofOp } from "./internal/codegen";
-import { FN2 } from "./internal/templates";
+import { defMathOp } from "./internal/codegen";
 
 /**
- * This version of mod uses the same logic as in GLSL, whereas {@link mod}
- * merely uses JavaScript's `%` modulo operator, yielding different
- * results for negative values, i.e. using the sign of the last arg.
+ * Similar to {@link mod}, {@link remainder}. This version of modulo uses the
+ * same logic as the standard C function `fmod` and/or the JS `%` operator,
+ * yielding results with the same sign as `a`, i.e. computes `a-b*floor(a/b)`.
  *
- * `a - b * floor(a/b)`
- *
+ * @remarks
+ * **Caution:** Due to the introduction of libc math functions in thi.ng/math
+ * v4.0.0 and the resulting name/behavior clashes between the modulo logic in
+ * JS, C & GLSL, this function previously _was_ called `mod`, but going forward
+ * has been renamed to align w/ its C version and now exhibits a different
+ * behavior to the current {@link mod} function.
  */
-export const [fmod, fmod2, fmod3, fmod4] = defHofOp<MultiVecOpVV, VecOpVV>(
-    _fmod,
-    FN2("op"),
-    ARGS_VV
-);
+export const [fmod, fmod2, fmod3, fmod4] = defMathOp("%");

@@ -140,6 +140,8 @@ export * from "./random";
 export * from "./randoms";
 export * from "./reflect";
 export * from "./refract";
+export * from "./remainder";
+export * from "./remaindern";
 export * from "./rotate-around-axis";
 export * from "./rotate-around-point";
 export * from "./rotate";
