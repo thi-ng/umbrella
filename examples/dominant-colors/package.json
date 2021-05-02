@@ -1,0 +1,45 @@
+{
+    "name": "dominant-colors",
+    "version": "0.0.1",
+    "description": "Color palette generation via dominant color extraction from uploaded images",
+    "repository": "https://github.com/thi-ng/umbrella",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
+        "start": "../../node_modules/.bin/snowpack dev --reload",
+        "build": "../../node_modules/.bin/snowpack build"
+    },
+    "devDependencies": {
+        "@thi.ng/snowpack-env": "^2.3.3"
+    },
+    "dependencies": {
+        "@thi.ng/bench": "latest",
+        "@thi.ng/color": "latest",
+        "@thi.ng/dl-asset": "latest",
+        "@thi.ng/hiccup-html": "latest",
+        "@thi.ng/hiccup-svg": "latest",
+        "@thi.ng/pixel": "latest",
+        "@thi.ng/rdom": "latest",
+        "@thi.ng/rstream": "latest",
+        "@thi.ng/transducers": "latest"
+    },
+    "browserslist": [
+        "last 3 Chrome versions"
+    ],
+    "browser": {
+        "process": false
+    },
+    "thi.ng": {
+        "readme": [
+            "color",
+            "dl-asset",
+            "hiccup-svg",
+            "k-means",
+            "pixel",
+            "rdom",
+            "rstream"
+        ],
+        "screenshot": "examples/dominant-colors.png"
+    }
+}
