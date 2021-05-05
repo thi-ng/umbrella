@@ -6,6 +6,7 @@ import type {
     ShaderOutputSpec,
     ShaderSpec,
     ShaderUniformSpecs,
+    UniformDecl,
 } from "./api/shader";
 import type { ITexture } from "./api/texture";
 import { compileModel } from "./buffer";
@@ -113,18 +114,24 @@ const initShader = (
         varying: pass.varying,
         uniforms: <ShaderUniformSpecs>{
             ...pass.uniforms,
-            ...(numIns
-                ? {
-                      inputs: ["sampler2D[]", numIns, [...range(numIns)]],
-                  }
-                : null),
+            ...transduce(
+                map(
+                    (i) =>
+                        <[string, UniformDecl]>[`input${i}`, ["sampler2D", i]]
+                ),
+                assocObj(),
+                range(numIns)
+            ),
         },
         outputs: numOuts
             ? transduce(
-                  map<number, [string, ShaderOutputSpec]>((i) => [
-                      `output${i}`,
-                      ["vec4", i],
-                  ]),
+                  map(
+                      (i) =>
+                          <[string, ShaderOutputSpec]>[
+                              `output${i}`,
+                              ["vec4", i],
+                          ]
+                  ),
                   assocObj(),
                   range(numOuts)
               )
