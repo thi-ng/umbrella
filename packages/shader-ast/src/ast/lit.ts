@@ -190,7 +190,8 @@ export function vec4(...xs: any[]): Lit<"vec4"> {
 }
 
 export function ivec2(): Lit<"ivec2">;
-export function ivec2(x: NumericB): Lit<"ivec2">;
+// prettier-ignore
+export function ivec2(x: NumericB | Vec2Term | UVec2Term | BVec2Term): Lit<"ivec2">;
 // prettier-ignore
 export function ivec2(x: NumericB, y: NumericB): Lit<"ivec2">;
 // prettier-ignore
@@ -199,7 +200,8 @@ export function ivec2(...xs: any[]): Lit<"ivec2"> {
 }
 
 export function ivec3(): Lit<"ivec3">;
-export function ivec3(x: NumericB): Lit<"ivec3">;
+// prettier-ignore
+export function ivec3(x: NumericB | Vec3Term | UVec3Term | BVec3Term): Lit<"ivec3">;
 export function ivec3(xy: Vec2Term | BVec2Term, z: NumericB): Lit<"ivec3">;
 // prettier-ignore
 export function ivec3(x: NumericB, y: NumericB, z: NumericB): Lit<"ivec3">;
@@ -208,7 +210,8 @@ export function ivec3(...xs: any[]): Lit<"ivec3"> {
 }
 
 export function ivec4(): Lit<"ivec4">;
-export function ivec4(x: NumericB): Lit<"ivec4">;
+// prettier-ignore
+export function ivec4(x: NumericB | Vec4Term | UVec4Term | BVec4Term): Lit<"ivec4">;
 export function ivec4(x: Vec3Term | BVec3Term, y: NumericB): Lit<"ivec4">;
 // prettier-ignore
 export function ivec4(x: Vec2Term | BVec2Term, y: Vec2Term | BVec2Term): Lit<"ivec4">;
@@ -221,7 +224,8 @@ export function ivec4(...xs: any[]): Lit<"ivec4"> {
 }
 
 export function uvec2(): Lit<"uvec2">;
-export function uvec2(x: NumericB): Lit<"uvec2">;
+// prettier-ignore
+export function uvec2(x: NumericB | Vec2Term | IVec2Term | BVec2Term): Lit<"uvec2">;
 // prettier-ignore
 export function uvec2(x: NumericB, y: NumericB): Lit<"uvec2">;
 // prettier-ignore
@@ -230,7 +234,8 @@ export function uvec2(...xs: any[]): Lit<"uvec2"> {
 }
 
 export function uvec3(): Lit<"uvec3">;
-export function uvec3(x: NumericB): Lit<"uvec3">;
+// prettier-ignore
+export function uvec3(x: NumericB | Vec3Term | IVec3Term | BVec3Term): Lit<"uvec3">;
 // prettier-ignore
 export function uvec3(xy: Vec2Term | BVec2Term, z: NumericB): Lit<"uvec3">;
 // prettier-ignore
@@ -240,7 +245,8 @@ export function uvec3(...xs: any[]): Lit<"uvec3"> {
 }
 
 export function uvec4(): Lit<"uvec4">;
-export function uvec4(x: NumericB): Lit<"uvec4">;
+// prettier-ignore
+export function uvec4(x: NumericB | Vec4Term | IVec4Term | BVec4Term): Lit<"uvec4">;
 // prettier-ignore
 export function uvec4(xyz: Vec3Term | BVec3Term, w: NumericB): Lit<"uvec4">;
 // prettier-ignore
@@ -254,7 +260,8 @@ export function uvec4(...xs: any[]): Lit<"uvec4"> {
 }
 
 export function bvec2(): Lit<"bvec2">;
-export function bvec2(x: NumericB): Lit<"bvec2">;
+// prettier-ignore
+export function bvec2(x: NumericB | Vec2Term | IVec2Term | UVec2Term): Lit<"bvec2">;
 // prettier-ignore
 export function bvec2(x: NumericB, y: NumericB): Lit<"bvec2">;
 // prettier-ignore
@@ -263,7 +270,8 @@ export function bvec2(...xs: any[]): Lit<"bvec2"> {
 }
 
 export function bvec3(): Lit<"bvec3">;
-export function bvec3(x: NumericB): Lit<"bvec3">;
+// prettier-ignore
+export function bvec3(x: NumericB | Vec3Term | IVec3Term | UVec3Term): Lit<"bvec3">;
 // prettier-ignore
 export function bvec3(xy: Vec2Term | IVec2Term | UVec2Term | BVec2Term, z: NumericB): Lit<"bvec3">;
 // prettier-ignore
@@ -273,7 +281,8 @@ export function bvec3(...xs: any[]): Lit<"bvec3"> {
 }
 
 export function bvec4(): Lit<"bvec4">;
-export function bvec4(x: NumericB): Lit<"bvec4">;
+// prettier-ignore
+export function bvec4(x: NumericB | Vec4Term | IVec4Term | UVec4Term): Lit<"bvec4">;
 // prettier-ignore
 export function bvec4(xyz: Vec3Term | IVec3Term | UVec3Term | BVec3Term, w: NumericB): Lit<"bvec4">;
 // prettier-ignore
