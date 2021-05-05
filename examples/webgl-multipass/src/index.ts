@@ -5,7 +5,6 @@ import {
     assign,
     defMain,
     fract,
-    index,
     length,
     mul,
     pow,
@@ -84,9 +83,9 @@ const toy = defMultiPass({
                             <Vec4Sym>outs.fragColor,
                             vec4(
                                 mul(
-                                    $xyz(texture(index(unis.inputs, 0), uv)),
+                                    $xyz(texture(unis.input0, uv)),
                                     pow(
-                                        $x(texture(index(unis.inputs, 1), uv)),
+                                        $x(texture(unis.input1, uv)),
                                         fit1101(sin(unis.time))
                                     )
                                 ),
