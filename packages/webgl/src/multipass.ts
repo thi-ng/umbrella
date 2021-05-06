@@ -1,4 +1,12 @@
 import { assert, IObjectOf } from "@thi.ng/api";
+import {
+    $xy,
+    assign,
+    defMain,
+    INT0,
+    ivec2,
+    texelFetch,
+} from "@thi.ng/shader-ast";
 import { assocObj, map, range, some, transduce } from "@thi.ng/transducers";
 import type { ExtensionBehaviors } from "./api/ext";
 import type { Multipass, MultipassOpts, PassOpts } from "./api/multipass";
@@ -180,3 +188,44 @@ const initBuffers = (
     ).map((pass) =>
         defFBO(opts.gl, { tex: pass.outputs.map((id) => textures[id]) })
     );
+
+/**
+ * Returns a dynamically generated single pass spec ({@link PassOpts}) for use
+ * within a larger multipass pipeline spec, and which copies given `src`
+ * textures into their respective `dest` textures (e.g. for feedback purposes).
+ *
+ * @remarks
+ * Both arrays must have same length. The first `src` texture is written to the
+ * first `dest` tex, etc.
+ *
+ * WebGL2 only (uses `texelFetch()`)
+ *
+ * @param src
+ * @param dest
+ */
+export const passCopy = (src: string[], dest: string[]): PassOpts => {
+    assert(
+        src.length === dest.length,
+        `require same number of in/out textures`
+    );
+    return {
+        fs: (gl, unis, _, outs) => [
+            defMain(() => [
+                ...map(
+                    (i) =>
+                        assign(
+                            outs[`output${i}`],
+                            texelFetch(
+                                unis[`input${i}`],
+                                ivec2($xy(gl.gl_FragCoord)),
+                                INT0
+                            )
+                        ),
+                    range(src.length)
+                ),
+            ]),
+        ],
+        inputs: src,
+        outputs: dest,
+    };
+};
