@@ -59,7 +59,7 @@ yarn add @thi.ng/leb128
 <script src="https://unpkg.com/@thi.ng/leb128/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 988 bytes / CJS: 1.04 KB / UMD: 1.12 KB
+Package sizes (gzipped, pre-treeshake): ESM: 988 bytes / CJS: 1.03 KB / UMD: 1.13 KB
 
 ## Dependencies
 

@@ -13,12 +13,12 @@
 > the composer of. Geared towards versatility, not any specific type of music."
 > &mdash; [@loganpowell](https://twitter.com/logantpowell/status/1186334119812304901) via Twitter
 
-Mono-repository for 148+ thi.ng TypeScript/ES6 projects, a wide
-collection of largely data transformation oriented packages and building
-blocks for (non-exhaustive list of topics):
-
 **Please visit [thi.ng](https://thi.ng) for additional information & topic based
 search of packages relevant to your use cases...**
+
+Mono-repository for 151+ thi.ng TypeScript/ES6 projects, a wide
+collection of largely data transformation oriented packages and building
+blocks for (non-exhaustive list of topics):
 
 - Functional programming (composition, memoization, transducers, multi-methods)
 - Data structures & data transformations for wide range of use cases (list,
@@ -81,7 +81,7 @@ Most packages:
 
 ## Examples
 
-There's a steadily growing number (~100) of standalone examples
+There's a steadily growing number (100+) of standalone examples
 (different complexities, often combining functionality from several
 packages) in the [**examples**](./examples/README.md) directory.
 
@@ -132,17 +132,19 @@ for other project-wide information, tidbits, useful snippets etc.
 feature or `develop` branches)
 -->
 
-### Latest additions / major updates (2021-02-20)
+### Latest additions / updates (since 04/2021)
 
-| Project                                                 | Version                                                                                                                       | Changelog                                            | Description                                           |
-|---------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|-------------------------------------------------------|
-| [`@thi.ng/api`](./packages/api)                         | [![version](https://img.shields.io/npm/v/@thi.ng/api.svg)](https://www.npmjs.com/package/@thi.ng/api)                         | [changelog](./packages/api/CHANGELOG.md)             | repo wide type alias replacements                     |
-| [`@thi.ng/color`](./packages/color)                     | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)                     | [changelog](./packages/color/CHANGELOG.md)           | Complete refactor/overhaul/extension of color package |
-| [`@thi.ng/malloc`](./packages/malloc)                   | [![version](https://img.shields.io/npm/v/@thi.ng/malloc.svg)](https://www.npmjs.com/package/@thi.ng/malloc)                   | [changelog](./packages/malloc/CHANGELOG.md)          | repo wide type alias replacements                     |
-| [`@thi.ng/pixel-io-netpbm`](./packages/pixel-io-netpbm) | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-netpbm.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-netpbm) | [changelog](./packages/pixel-io-netpbm/CHANGELOG.md) | 1/8/16/24bit NetPBM image format reader/writer        |
-| [`@thi.ng/vectors`](./packages/vectors)                 | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)                 | [changelog](./packages/vectors/CHANGELOG.md)         | repo wide type alias replacements                     |
-| [`@thi.ng/vector-pools`](./packages/vector-pools)       | [![version](https://img.shields.io/npm/v/@thi.ng/vector-pools.svg)](https://www.npmjs.com/package/@thi.ng/vector-pools)       | [changelog](./packages/vector-pools/CHANGELOG.md)    | repo wide type alias replacements                     |
-| [`@thi.ng/webgl`](./packages/webgl)                     | [![version](https://img.shields.io/npm/v/@thi.ng/webgl.svg)](https://www.npmjs.com/package/@thi.ng/webgl)                     | [changelog](./packages/webgl/CHANGELOG.md)           | repo wide type alias replacements                     |
+| Project                                         | Version                                                                                                               | Changelog                                        | Description                                    |
+|-------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|------------------------------------------------|
+| [`@thi.ng/date`](./packages/date)               | [![version](https://img.shields.io/npm/v/@thi.ng/date.svg)](https://www.npmjs.com/package/@thi.ng/date)               | [changelog](./packages/date/CHANGELOG.md)        | Date/time iterators, formatters, rounding      |
+| [`@thi.ng/distance`](./packages/distance)       | [![version](https://img.shields.io/npm/v/@thi.ng/distance.svg)](https://www.npmjs.com/package/@thi.ng/distance)       | [changelog](./packages/distance/CHANGELOG.md)    | n-D distance metrics & K-nearest neighborhoods |
+| [`@thi.ng/k-means`](./packages/k-means)         | [![version](https://img.shields.io/npm/v/@thi.ng/k-means.svg)](https://www.npmjs.com/package/@thi.ng/k-means)         | [changelog](./packages/k-means/CHANGELOG.md)     | K-means clustering of n-D data                 |
+| [`@thi.ng/lowdisc`](./packages/lowdisc)         | [![version](https://img.shields.io/npm/v/@thi.ng/lowdisc.svg)](https://www.npmjs.com/package/@thi.ng/lowdisc)         | [changelog](./packages/lowdisc/CHANGELOG.md)     | n-D Low discrepancy sequence generators        |
+| [`@thi.ng/math`](./packages/math)               | [![version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)               | [changelog](./packages/math/CHANGELOG.md)        | Assorted common math functions & utilities     |
+| [`@thi.ng/mime`](./packages/mime)               | [![version](https://img.shields.io/npm/v/@thi.ng/mime.svg)](https://www.npmjs.com/package/@thi.ng/mime)               | [changelog](./packages/mime/CHANGELOG.md)        | File extension to MIME type mappings           |
+| [`@thi.ng/pixel`](./packages/pixel)             | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)             | [changelog](./packages/pixel/CHANGELOG.md)       | Multi-format pixel buffers                     |
+| [`@thi.ng/transducers`](./packages/transducers) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers) | [changelog](./packages/transducers/CHANGELOG.md) | Composable data transformations                |
+| [`@thi.ng/vectors`](./packages/vectors)         | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)         | [changelog](./packages/vectors/CHANGELOG.md)     | Fixed & arbitrary-length vector ops            |
 
 ### Fundamentals
 
@@ -186,6 +188,7 @@ feature or `develop` branches)
 |-----------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|----------------------------------------------------------|
 | [`@thi.ng/colored-noise`](./packages/colored-noise) | [![version](https://img.shields.io/npm/v/@thi.ng/colored-noise.svg)](https://www.npmjs.com/package/@thi.ng/colored-noise) | [changelog](./packages/colored-noise/CHANGELOG.md) | 1D colored noise generators                              |
 | [`@thi.ng/ksuid`](./packages/ksuid)                 | [![version](https://img.shields.io/npm/v/@thi.ng/ksuid.svg)](https://www.npmjs.com/package/@thi.ng/ksuid)                 | [changelog](./packages/ksuid/CHANGELOG.md)         | K-sortable unique identifiers, binary & base-N encoded   |
+| [`@thi.ng/lowdisc`](./packages/lowdisc)             | [![version](https://img.shields.io/npm/v/@thi.ng/lowdisc.svg)](https://www.npmjs.com/package/@thi.ng/lowdisc)             | [changelog](./packages/lowdisc/CHANGELOG.md)       | n-D Low discrepancy sequence generators                  |
 | [`@thi.ng/random`](./packages/random)               | [![version](https://img.shields.io/npm/v/@thi.ng/random.svg)](https://www.npmjs.com/package/@thi.ng/random)               | [changelog](./packages/random/CHANGELOG.md)        | Seedable PRNG implementations, distributions & utilities |
 
 ### File format support
@@ -236,7 +239,7 @@ feature or `develop` branches)
 | [`@thi.ng/rstream-log-file`](./packages/rstream-log-file) | [![version](https://img.shields.io/npm/v/@thi.ng/rstream-log-file.svg)](https://www.npmjs.com/package/@thi.ng/rstream-log-file) | [changelog](./packages/rstream-log-file/CHANGELOG.md) | Log-file output handler                      |
 | [`@thi.ng/rstream-query`](./packages/rstream-query)       | [![version](https://img.shields.io/npm/v/@thi.ng/rstream-query.svg)](https://www.npmjs.com/package/@thi.ng/rstream-query)       | [changelog](./packages/rstream-query/CHANGELOG.md)    | Triple store & query engine                  |
 
-### Data structures
+### Algorithms & data structures
 
 | Project                                         | Version                                                                                                               | Changelog                                        | Description                              |
 |-------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|------------------------------------------|
@@ -254,6 +257,7 @@ feature or `develop` branches)
 | [`@thi.ng/gp`](./packages/gp)                   | [![version](https://img.shields.io/npm/v/@thi.ng/gp.svg)](https://www.npmjs.com/package/@thi.ng/gp)                   | [changelog](./packages/gp/CHANGELOG.md)          | Genetic programming helpers / AST gen    |
 | [`@thi.ng/heaps`](./packages/heaps)             | [![version](https://img.shields.io/npm/v/@thi.ng/heaps.svg)](https://www.npmjs.com/package/@thi.ng/heaps)             | [changelog](./packages/heaps/CHANGELOG.md)       | Binary & d-ary heap impls                |
 | [`@thi.ng/idgen`](./packages/idgen)             | [![version](https://img.shields.io/npm/v/@thi.ng/idgen.svg)](https://www.npmjs.com/package/@thi.ng/idgen)             | [changelog](./packages/idgen/CHANGELOG.md)       | Versioned ID generation / free-list      |
+| [`@thi.ng/k-means`](./packages/k-means)         | [![version](https://img.shields.io/npm/v/@thi.ng/k-means.svg)](https://www.npmjs.com/package/@thi.ng/k-means)         | [changelog](./packages/k-means/CHANGELOG.md)     | K-means clustering of n-D data           |
 | [`@thi.ng/ramp`](./packages/ramp)               | [![version](https://img.shields.io/npm/v/@thi.ng/ramp.svg)](https://www.npmjs.com/package/@thi.ng/ramp)               | [changelog](./packages/ramp/CHANGELOG.md)        | Parametric, interpolated lookup tables   |
 | [`@thi.ng/quad-edge`](./packages/quad-edge)     | [![version](https://img.shields.io/npm/v/@thi.ng/quad-edge.svg)](https://www.npmjs.com/package/@thi.ng/quad-edge)     | [changelog](./packages/quad-edge/CHANGELOG.md)   | Quad-edge, dual-graph data structure     |
 | [`@thi.ng/resolve-map`](./packages/resolve-map) | [![version](https://img.shields.io/npm/v/@thi.ng/resolve-map.svg)](https://www.npmjs.com/package/@thi.ng/resolve-map) | [changelog](./packages/resolve-map/CHANGELOG.md) | DAG computations & value resolution      |

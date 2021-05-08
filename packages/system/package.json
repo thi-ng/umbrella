@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/system",
     "version": "0.3.4",
-    "description": "Minimal DI / life cycle container for stateful app components",
+    "description": "Minimal and explicit dependency-injection & lifecycle container for stateful app components",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -64,6 +64,7 @@
         "dependency",
         "graph",
         "injection",
+        "sort",
         "topology",
         "typescript"
     ],

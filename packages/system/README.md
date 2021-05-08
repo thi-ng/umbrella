@@ -23,7 +23,7 @@ This project is part of the
 
 ## About
 
-Minimal DI / life cycle container for stateful app components.
+Minimal and explicit dependency-injection & lifecycle container for stateful app components.
 
 Inspired by Stuart Sierra's
 [component](https://github.com/stuartsierra/component) framework for
@@ -77,17 +77,20 @@ interface FooSys {
 }
 
 // Step 2: Provide component implementations
-// Components can be classes or any object implementing the
+// Components can be classes or any object implementing the (fully optional)
 // `ILifecycle` interface...
 
 class Logger implements ILifecycle {
+    
     info(msg: string) {
         console.log(`[info] ${msg}`);
     }
+
     async start() {
         this.info("start logger");
         return true;
     }
+    
     async stop() {
         this.info("stop logger");
         return true;
@@ -97,12 +100,14 @@ class Logger implements ILifecycle {
 // DB requires a logger & cache
 
 class DB implements ILifecycle {
+    
     constructor(protected logger: Logger, protected cache: Cache) {}
 
     async start() {
         this.logger.info("start db");
         return true;
     }
+
     async stop() {
         this.logger.info("stop db");
         return true;
@@ -110,12 +115,14 @@ class DB implements ILifecycle {
 }
 
 class Cache implements ILifecycle {
+
     constructor(protected logger: Logger) {}
 
     async start() {
         this.logger.info("start cache");
         return true;
     }
+    
     async stop() {
         this.logger.info("stop cache");
         return true;
@@ -139,7 +146,6 @@ const FOO = defSystem<FooSys>({
         factory: ({ logger }) => new Cache(logger),
         deps: ["logger"],
     },
-
     dummy: {
         factory: ({ logger }) => ({
             async start() {
@@ -175,12 +181,16 @@ FOO.reset();
 
 ### System visualization
 
-In order for a `System` to initialize its components in the correct order, an internal [dependency graph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph) is constructed. This graph not required any further after system construction, however can be useful for debugging and documentation purposes.
+For a `System` to initialize its components in the correct order, an internal
+[dependency
+graph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph) is
+constructed. This graph is not required any further after system construction,
+though can be useful for debugging and documentation purposes.
 
 For example, we can utilize the
 [@thi.ng/dgraph-dot](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph-dot)
-package to create [Graphviz](https://graphviz.org) source file to
-visualize the dependencies between the system's components.
+package to generate a [Graphviz](https://graphviz.org) source file to visualize
+the dependencies between the system's components.
 
 ```ts
 import { toDot } from "@thi.ng/dgraph-dot";

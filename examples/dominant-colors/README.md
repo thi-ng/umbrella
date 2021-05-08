@@ -1,6 +1,6 @@
 # dominant-colors
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/dominant-colors.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/dominant-colors.png)
 
 [Live demo](http://demo.thi.ng/umbrella/dominant-colors/)
 
