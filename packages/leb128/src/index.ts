@@ -26,8 +26,21 @@ if (hasWASM()) {
 
 const ensureWASM = () => !wasm && unsupported("WASM module unavailable");
 
-const copy = (src: Uint8Array, idx: number) =>
+const encode = (op: "leb128_encode_s_js" | "leb128_encode_u_js") => (
+    x: number
+) => {
+    ensureWASM();
+    return U8.slice(0, wasm[op](x));
+};
+
+const decode = (op: "leb128_decode_s_js" | "leb128_decode_u_js") => (
+    src: Uint8Array,
+    idx = 0
+) => {
+    ensureWASM();
     U8.set(src.subarray(idx, Math.min(idx + 10, src.length)), 0);
+    return [wasm[op](0, 0), U8[0]];
+};
 
 /**
  * Encodes signed integer `x` into LEB128 varint format and returns
@@ -35,10 +48,7 @@ const copy = (src: Uint8Array, idx: number) =>
  *
  * @param x -
  */
-export const encodeSLEB128 = (x: number) => {
-    ensureWASM();
-    return U8.slice(0, wasm.leb128_encode_s_js(x));
-};
+export const encodeSLEB128 = encode("leb128_encode_s_js");
 
 /**
  * Takes Uint8Array with LEB128 encoded signed varint and an optional
@@ -48,11 +58,7 @@ export const encodeSLEB128 = (x: number) => {
  * @param src -
  * @param idx -
  */
-export const decodeSLEB128 = (src: Uint8Array, idx = 0) => {
-    ensureWASM();
-    copy(src, idx);
-    return [wasm.leb128_decode_s_js(0, 0), U8[0]];
-};
+export const decodeSLEB128 = decode("leb128_decode_s_js");
 
 /**
  * Encodes unsigned integer `x` into LEB128 varint format and returns
@@ -60,10 +66,7 @@ export const decodeSLEB128 = (src: Uint8Array, idx = 0) => {
  *
  * @param x -
  */
-export const encodeULEB128 = (x: number) => {
-    ensureWASM();
-    return U8.slice(0, wasm.leb128_encode_u_js(x));
-};
+export const encodeULEB128 = encode("leb128_encode_u_js");
 
 /**
  * Takes Uint8Array with LEB128 encoded unsigned varint and an optional
@@ -73,8 +76,4 @@ export const encodeULEB128 = (x: number) => {
  * @param src -
  * @param idx -
  */
-export const decodeULEB128 = (src: Uint8Array, idx = 0) => {
-    ensureWASM();
-    copy(src, idx);
-    return [wasm.leb128_decode_u_js(0, 0), U8[0]];
-};
+export const decodeULEB128 = decode("leb128_decode_u_js");
