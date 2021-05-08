@@ -142,6 +142,22 @@ const initConvolve = (src: FloatBuffer, opts: ConvolveOpts) => {
     };
 };
 
+const declOffset = (
+    idx: number,
+    i: number,
+    pre: string,
+    stride: string,
+    min: string,
+    max: string
+) =>
+    idx < 0
+        ? `const ${pre}${i} = max(${pre}${
+              idx < -1 ? idx + "*" : "-"
+          }${stride},${min});`
+        : `const ${pre}${i} = min(${pre}+${
+              idx > 1 ? idx + "*" : ""
+          }${stride},${max});`;
+
 /**
  * HOF convolution or pooling kernel code generator. Takes either a
  * {@link PoolTemplate} function or array of kernel coefficients and kernel
@@ -187,27 +203,13 @@ export const defKernel = (
                 : (<NumericArray>tpl)[i] !== 0 && row.push(`${kv}*pix[${idx}]`);
             if (y === 0 && xx !== 0) {
                 prefix.push(
-                    xx < 0
-                        ? `const x${x} = max(x${
-                              xx < -1 ? xx + "*" : "-"
-                          }stride,channel);`
-                        : `const x${x} = min(x+${
-                              xx > 1 ? xx + "*" : ""
-                          }stride,maxX+channel);`
+                    declOffset(xx, x, "x", "stride", "channel", "maxX+channel")
                 );
             }
         }
         row.length && body.push(...row);
         if (yy !== 0) {
-            prefix.push(
-                yy < 0
-                    ? `const y${y} = max(y${
-                          yy < -1 ? yy + "*" : "-"
-                      }rowStride,0);`
-                    : `const y${y} = min(y+${
-                          yy > 1 ? yy + "*" : ""
-                      }rowStride,maxY);`
-            );
+            prefix.push(declOffset(yy, y, "y", "rowStride", "0", "maxY"));
         }
     }
     const decls = isPool
