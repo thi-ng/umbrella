@@ -1,7 +1,7 @@
 import type { Fn } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks";
 import { clamp, inRange } from "@thi.ng/math";
-import type { AxisSpec, DomainValues, VizSpec } from "../api";
+import type { AxisSpec, DomainValues, PlotFn, VizSpec } from "../api";
 
 /** @internal */
 export const valueMapper = (
@@ -32,3 +32,20 @@ export function* processedPoints(
         yield pointOnly ? mapper(p) : [mapper(p), p];
     }
 }
+
+/**
+ * Returns a simple {@link PlotFn} which uses a single `shape` element and
+ * produces its points via {@link processedPoints}.
+ *
+ * @param shape -
+ *
+ * @internal
+ */
+export const defSimplePlotFn = <T extends { attribs: any }>(shape: string) => (
+    data: DomainValues,
+    opts: Partial<T> = {}
+): PlotFn => (spec) => [
+    shape,
+    opts.attribs || {},
+    [...processedPoints(spec, data, true)],
+];

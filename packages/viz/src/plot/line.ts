@@ -1,15 +1,7 @@
-import type { DomainValues, PlotFn } from "../api";
-import { processedPoints } from "./utils";
+import { defSimplePlotFn } from "./utils";
 
 export interface LinePlotOpts {
     attribs: any;
 }
 
-export const linePlot = (
-    data: DomainValues,
-    opts: Partial<LinePlotOpts> = {}
-): PlotFn => (spec) => [
-    "polyline",
-    opts.attribs || {},
-    [...processedPoints(spec, data, true)],
-];
+export const linePlot = defSimplePlotFn<LinePlotOpts>("polyline");
