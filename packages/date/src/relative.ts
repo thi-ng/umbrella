@@ -1,5 +1,6 @@
 import type { Period } from "./api";
 import { DateTime, dateTime } from "./datetime";
+import { EN_LONG, EN_SHORT } from "./i18n";
 
 /**
  * Takes a relative time `offset` string in plain english and an optional `base`
@@ -13,6 +14,7 @@ import { DateTime, dateTime } from "./datetime";
  * The following input formats are supported:
  *
  * - `"tomorrow"` / `"yesterday"` - ±1 day
+ * - any weekday names in {@link EN_SHORT} and {@link EN_LONG} (always in future)
  * - `<"-"|"+">?<num><period><" ago">?"` - ±num periods (if prefixed with "-" or
  *   if the `" ago"` suffix is given, the offset will be applied towards the
  *   past)
@@ -40,8 +42,11 @@ export const parseRelative = (
     offset: string,
     base?: DateTime | Date | number
 ) => {
+    offset = offset.toLowerCase();
     const epoch = dateTime(base);
     switch (offset) {
+        case "today":
+            return epoch;
         case "tomorrow":
             epoch.incDay();
             return epoch;
@@ -49,6 +54,16 @@ export const parseRelative = (
             epoch.decDay();
             return epoch;
         default: {
+            let idx = findIndex(EN_SHORT.days, offset);
+            if (idx < 0) {
+                idx = findIndex(EN_LONG.days, offset);
+            }
+            if (idx >= 0) {
+                do {
+                    epoch.incDay();
+                } while (epoch.toDate().getDay() != idx);
+                return epoch;
+            }
             const match = /^(an? |next |[-+]?\d+\s?)((ms|milli(?:(s?|seconds?)))|s(?:(ecs?|econds?))?|min(?:(s|utes?))?|h(?:ours?)?|d(?:ays?)?|w(?:eeks?)?|months?|y(?:ears?)?)(\s+ago)?$/.exec(
                 offset
             );
@@ -62,6 +77,9 @@ export const parseRelative = (
         }
     }
 };
+
+const findIndex = (items: string[], x: string) =>
+    items.findIndex((y) => y.toLowerCase() === x);
 
 const parseNum = (x: string, past: boolean) =>
     (x === "next " || x === "a " || x === "an " ? 1 : Number(x)) *

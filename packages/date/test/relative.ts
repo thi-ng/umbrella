@@ -81,4 +81,15 @@ describe("relative", () => {
             Date.UTC(2026, 0, 1)
         );
     });
+
+    it("parse (weekday)", () => {
+        const base = dateTime(Date.UTC(2021, 0, 1));
+        checkDate("sat", base, Date.UTC(2021, 0, 2));
+        checkDate("sunday", base, Date.UTC(2021, 0, 3));
+        checkDate("thu", base, Date.UTC(2021, 0, 7));
+        checkDate("friday", base, Date.UTC(2021, 0, 8));
+        checkDate("today", base, Date.UTC(2021, 0, 1));
+        checkDate("tomorrow", base, Date.UTC(2021, 0, 2));
+        checkDate("yesterday", base, Date.UTC(2020, 11, 31));
+    });
 });
