@@ -195,7 +195,7 @@ export class Location<T> {
         if (!node) return this.up;
         while (true) {
             const child: Location<T> | undefined = node!.isBranch
-                ? this.down
+                ? node.down
                 : undefined;
             if (!child) return node;
             node = child.rightmost;
