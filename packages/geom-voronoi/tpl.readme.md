@@ -56,9 +56,9 @@ ${docLink}
 import * as g from "@thi.ng/geom";
 import { DVMesh } from "@thi.ng/geom-voronoi";
 import { repeatedly } from "@thi.ng/transducers";
-import { randNorm2 } from "@thi.ng/vectors";
+import { randNormS2 } from "@thi.ng/vectors";
 
-const pts = [...repeatedly(() => randNorm2([], Math.random() * 250), 1000)];
+const pts = [...repeatedly(() => randNormS2([], Math.random() * 250), 1000)];
 
 const mesh = new DVMesh(pts);
 
@@ -67,7 +67,7 @@ mesh.delaunay()
 mesh.voronoi()
 
 // ...or clipped & filtered polygons within convex polygon boundary
-const bounds = g.vertices(g.center(g.rect(500)));
+const bounds = g.vertices(g.center(g.rect(500))!);
 // [ [ -250, -250 ], [ 250, -250 ], [ 250, 250 ], [ -250, 250 ] ]
 
 const cells = mesh.voronoi(bounds);
