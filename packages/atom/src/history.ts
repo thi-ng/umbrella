@@ -61,7 +61,7 @@ export class History<T> implements IHistory<T> {
     constructor(state: IAtom<T>, maxLen = 100, changed?: Predicate2<T>) {
         this.state = state;
         this.maxLen = maxLen;
-        this.changed = changed || ((a, b) => !equiv(a, b));
+        this.changed = changed || ((a: T, b: T) => !equiv(a, b));
         this.clear();
     }
 
