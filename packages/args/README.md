@@ -26,15 +26,16 @@ Declarative, functional & typechecked CLI argument/options parser, value coercio
 
 Includes built-in support for the following argument types (of course custom arg types are supported too):
 
-| **Argument type**    | **Multiple** | **Example**                | **Result**                    |
-|----------------------|--------------|----------------------------|-------------------------------|
-| **Flag**             |              | `--force`, `-f`            | `force: true`                 |
-| **String**           | ✅            | `--foo bar`                | `foo: "bar"`                  |
-| **Float/int/hex**    | ✅            | `--bg ff997f`              | `bg: 16750975`                |
-| **Enum**             | ✅            | `--type png`               | `type: "png"`                 |
-| **KV pairs**         | ✅            | `--define foo=bar`         | `define: { foo: "bar" }`      |
-| **JSON**             |              | `--config '{"foo": [23]}'` | `config: { foo: [23] }`       |
-| **Fixed size tuple** |              | `--size 640x480`           | `size: { value: [640, 480] }` |
+| **Argument type**    | **Multiple** | **Example**                | **Result**                        |
+|----------------------|--------------|----------------------------|-----------------------------------|
+| **Flag**             |              | `--force`, `-f`            | `force: true`                     |
+| **String**           | ✅            | `--foo bar`                | `foo: "bar"`                      |
+| **Float/int/hex**    | ✅            | `--bg ff997f`              | `bg: 16750975`                    |
+| **Enum**             | ✅            | `--type png`               | `type: "png"`                     |
+| **KV pairs**         | ✅            | `--define foo=bar`         | `define: { foo: "bar" }`          |
+| **KV multi pairs**   | ✅            | `-D foo=bar -D foo=baz`    | `define: { foo: ["bar", "baz"] }` |
+| **JSON**             |              | `--config '{"foo": [23]}'` | `config: { foo: [23] }`           |
+| **Fixed size tuple** |              | `--size 640x480`           | `size: { value: [640, 480] }`     |
 
 If multiple values/repetitions are allowed for an argument, the values will be
 collected into an array (apart from KV pairs, which will yield an object).
@@ -61,7 +62,7 @@ yarn add @thi.ng/args
 <script src="https://unpkg.com/@thi.ng/args/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.21 KB / CJS: 2.34 KB / UMD: 2.29 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.28 KB / CJS: 2.40 KB / UMD: 2.34 KB
 
 ## Dependencies
 
