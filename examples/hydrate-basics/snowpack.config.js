@@ -23,8 +23,10 @@ module.exports = {
     packageOptions: {
         source: "local",
         types: true,
+        knownEntrypoints: ["tslib"]
     },
     buildOptions: {
         baseUrl: "/umbrella/hydrate-basics",
     },
+    workspaceRoot: "../..",
 };

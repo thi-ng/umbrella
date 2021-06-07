@@ -7,27 +7,27 @@
         "@microsoft/api-documenter": "^7.12.8",
         "@microsoft/api-extractor": "^7.13.1",
         "@snowpack/plugin-typescript": "^1.2.1",
-        "@snowpack/plugin-webpack": "^2.3.0",
+        "@snowpack/plugin-webpack": "^2.3.1",
         "@types/snowpack-env": "^2.3.3",
         "benchmark": "^2.1.4",
         "file-loader": "^6.2.0",
         "gzip-size": "^6.0.0",
         "html-minifier-terser": "^5.1.1",
         "lerna": "^4.0.0",
-        "mocha": "^8.3.0",
+        "mocha": "^9.0.0",
         "nyc": "^15.1.0",
         "rimraf": "^3.0.2",
-        "rollup": "^2.41.2",
+        "rollup": "^2.51.0",
         "rollup-plugin-cleanup": "^3.2.1",
-        "snowpack": "^3.0.13",
-        "terser": "^5.6.0",
-        "ts-loader": "^8.0.18",
-        "typescript": "^4.2.3",
-        "webpack": "^5.25.0",
-        "webpack-cli": "^4.5.0"
+        "snowpack": "^3.5.6",
+        "terser": "^5.7.0",
+        "ts-loader": "^9.2.3",
+        "typescript": "4.2.4",
+        "webpack": "^5.38.1",
+        "webpack-cli": "^4.7.2"
     },
     "dependencies": {
-        "@ygoe/msgpack": "^1.0.2"
+        "@ygoe/msgpack": "^1.0.3"
     },
     "scripts": {
         "bootstrap": "yarn install && lerna -v && lerna bootstrap",
@@ -50,6 +50,6 @@
         "tool:searchindex": "ts-node -P tools/tsconfig.json tools/src/build-search-index.ts"
     },
     "resolutions": {
-        "typescript": "^4.2.3"
+        "typescript": "4.2.4"
     }
 }

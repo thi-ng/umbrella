@@ -23,8 +23,10 @@ module.exports = {
     packageOptions: {
         source: "local",
         types: true,
+        knownEntrypoints: ["tslib"]
     },
     buildOptions: {
         baseUrl: "/umbrella/hdom-theme-adr-0003",
     },
+    workspaceRoot: "../..",
 };
