@@ -1,6 +1,6 @@
 import type { Fn } from "@thi.ng/api";
 import { repeat } from "@thi.ng/strings";
-import type { ArgSpec, KVDict, Tuple } from "./api";
+import type { ArgSpec, KVDict, KVMultiDict, Tuple } from "./api";
 import {
     coerceFloat,
     coerceFloats,
@@ -14,33 +14,33 @@ import {
     coerceTuple,
 } from "./coerce";
 
-const $single = <T = number>(coerce: Fn<string, T>, hint: string) => <
-    S extends Partial<ArgSpec<T>>
->(
-    spec: S
-): S & { coerce: Fn<string, T>; hint: string; group: string } => ({
-    coerce,
-    hint,
-    group: "main",
-    ...spec,
-});
+const $single =
+    <T = number>(coerce: Fn<string, T>, hint: string) =>
+    <S extends Partial<ArgSpec<T>>>(
+        spec: S
+    ): S & { coerce: Fn<string, T>; hint: string; group: string } => ({
+        coerce,
+        hint,
+        group: "main",
+        ...spec,
+    });
 
-const $multi = <T = number>(coerce: Fn<string[], T[]>, hint: string) => <
-    S extends Partial<ArgSpec<T[]> & { delim: string }>
->(
-    spec: S
-): S & {
-    coerce: Fn<string[], T[]>;
-    hint: string;
-    multi: true;
-    group: string;
-} => ({
-    hint: $hint(hint, spec.delim),
-    multi: true,
-    coerce,
-    group: "main",
-    ...spec,
-});
+const $multi =
+    <T = number>(coerce: Fn<string[], T[]>, hint: string) =>
+    <S extends Partial<ArgSpec<T[]> & { delim: string }>>(
+        spec: S
+    ): S & {
+        coerce: Fn<string[], T[]>;
+        hint: string;
+        multi: true;
+        group: string;
+    } => ({
+        hint: $hint(hint, spec.delim),
+        multi: true,
+        coerce,
+        group: "main",
+        ...spec,
+    });
 
 const $hint = (hint: string, delim?: string) =>
     hint + (delim ? `[${delim}..]` : "");
@@ -217,6 +217,32 @@ export const kvPairs = <S extends Partial<ArgSpec<KVDict>>>(
 } => ({
     coerce: coerceKV(delim, strict),
     hint: `key${delim}val`,
+    multi: true,
+    group: "main",
+    ...spec,
+});
+
+/**
+ * Like {@link kvPairs}, but coerces KV pairs into a result {@link KVMultiDict}
+ * which supports multiple values per given key (each key's values are collected
+ * into arrays).
+ *
+ * @param spec
+ * @param delim
+ * @param strict
+ */
+export const kvPairsMulti = <S extends Partial<ArgSpec<KVMultiDict>>>(
+    spec: S,
+    delim = "=",
+    strict?: boolean
+): S & {
+    coerce: Fn<string[], KVMultiDict>;
+    hint: string;
+    multi: true;
+    group: string;
+} => ({
+    coerce: coerceKV(delim, strict, true),
+    hint: `key${delim}val(s)`,
     multi: true,
     group: "main",
     ...spec,
