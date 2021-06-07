@@ -61,12 +61,18 @@ export type Args<T extends IObjectOf<any>> = {
               coerce: Fn<string[], Exclude<T[id], undefined>>;
               multi: true;
           }
+        : KVMultiDict extends T[id]
+        ? ArgSpec<T[id]> & {
+              coerce: Fn<string[], Exclude<T[id], undefined>>;
+              multi: true;
+          }
         : ArgSpec<T[id]> & {
               coerce: Fn<string, Exclude<T[id], undefined>>;
           };
 };
 
 export type KVDict = IObjectOf<string>;
+export type KVMultiDict = IObjectOf<string[]>;
 
 export interface ParseResult<T> {
     result: T;

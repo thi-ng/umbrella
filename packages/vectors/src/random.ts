@@ -27,8 +27,13 @@ export const [random, random2, random3, random4] = defHofOp<
     "!a && (a=[]);"
 );
 
+const $norm =
+    (random: VecOpOOO<number, number, IRandom>) =>
+    (v: Vec | null, n = 1, rnd: IRandom = SYSTEM) =>
+        normalize(random((v = v || []), -1, 1, rnd), v, n);
+
 /**
- * Sets `v` to random vector, normalized to length `n` (default: 1). If
+ * Sets `v` to a random vector, normalized to length `n` (default: 1). If
  * no `rnd` instance is given, uses {@link @thi.ng/random#SYSTEM}, i.e.
  * `Math.random`.
  *
@@ -36,8 +41,10 @@ export const [random, random2, random3, random4] = defHofOp<
  * @param n -
  * @param rnd -
  */
-export const randNorm = (v: Vec | null, n = 1, rnd: IRandom = SYSTEM) =>
-    normalize((v = random(v, -1, 1, rnd)), v, n);
+export const randNorm = $norm(random);
+export const randNorm2 = $norm(random2);
+export const randNorm3 = $norm(random3);
+export const randNorm4 = $norm(random4);
 
 /**
  * Sets `out` to random vector with each component in the semi-open

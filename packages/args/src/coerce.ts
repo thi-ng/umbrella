@@ -1,7 +1,7 @@
 import type { Fn } from "@thi.ng/api";
 import { isHex, isNumericFloat, isNumericInt } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
-import { KVDict, Tuple } from "./api";
+import { KVDict, KVMultiDict, Tuple } from "./api";
 
 export const coerceString = (x: string) => x;
 
@@ -24,29 +24,50 @@ export const coerceInts = (xs: string[]) => xs.map(coerceInt);
 
 export const coerceJson = <T>(x: string): T => JSON.parse(x);
 
-export const coerceOneOf = <K extends string>(xs: readonly K[]) => (
-    x: string
-) => (xs.includes(<K>x) ? <K>x : illegalArgs(`invalid option: ${x}`));
+export const coerceOneOf =
+    <K extends string>(xs: readonly K[]) =>
+    (x: string) =>
+        xs.includes(<K>x) ? <K>x : illegalArgs(`invalid option: ${x}`);
 
-export const coerceKV = (delim = "=", strict = false) => (pairs: string[]) =>
-    pairs.reduce((acc, x) => {
-        const idx = x.indexOf(delim);
-        strict &&
-            idx < 1 &&
-            illegalArgs(`got '${x}', but expected a 'key${delim}value' pair`);
-        idx > 0
-            ? (acc[x.substr(0, idx)] = x.substr(idx + 1))
-            : (acc[x] = "true");
-        return acc;
-    }, <KVDict>{});
+export function coerceKV(
+    delim?: string,
+    strict?: boolean,
+    multi?: false
+): Fn<string[], KVDict>;
+export function coerceKV(
+    delim?: string,
+    strict?: boolean,
+    multi?: true
+): Fn<string[], KVMultiDict>;
+export function coerceKV(delim = "=", strict = false, multi = false) {
+    return (pairs: string[]) =>
+        pairs.reduce((acc, x) => {
+            const idx = x.indexOf(delim);
+            strict &&
+                idx < 1 &&
+                illegalArgs(
+                    `got '${x}', but expected a 'key${delim}value' pair`
+                );
+            if (idx > 0) {
+                const id = x.substr(0, idx);
+                const val = x.substr(idx + 1);
+                if (multi) {
+                    acc[id] ? (<string[]>acc[id]).push(val) : (acc[id] = [val]);
+                } else {
+                    acc[id] = val;
+                }
+            } else {
+                acc[x] = multi ? ["true"] : "true";
+            }
+            return acc;
+        }, <any>{});
+}
 
-export const coerceTuple = <T>(
-    coerce: Fn<string, T>,
-    size: number,
-    delim = ","
-) => (src: string) => {
-    const parts = src.split(delim);
-    parts.length !== size &&
-        illegalArgs(`got '${src}', but expected a tuple of ${size} values`);
-    return new Tuple(parts.map(coerce));
-};
+export const coerceTuple =
+    <T>(coerce: Fn<string, T>, size: number, delim = ",") =>
+    (src: string) => {
+        const parts = src.split(delim);
+        parts.length !== size &&
+            illegalArgs(`got '${src}', but expected a tuple of ${size} values`);
+        return new Tuple(parts.map(coerce));
+    };

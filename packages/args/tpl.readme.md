@@ -15,15 +15,16 @@ ${pkg.description}
 
 Includes built-in support for the following argument types (of course custom arg types are supported too):
 
-| **Argument type**    | **Multiple** | **Example**                | **Result**                    |
-|----------------------|--------------|----------------------------|-------------------------------|
-| **Flag**             |              | `--force`, `-f`            | `force: true`                 |
-| **String**           | ✅            | `--foo bar`                | `foo: "bar"`                  |
-| **Float/int/hex**    | ✅            | `--bg ff997f`              | `bg: 16750975`                |
-| **Enum**             | ✅            | `--type png`               | `type: "png"`                 |
-| **KV pairs**         | ✅            | `--define foo=bar`         | `define: { foo: "bar" }`      |
-| **JSON**             |              | `--config '{"foo": [23]}'` | `config: { foo: [23] }`       |
-| **Fixed size tuple** |              | `--size 640x480`           | `size: { value: [640, 480] }` |
+| **Argument type**    | **Multiple** | **Example**                | **Result**                        |
+|----------------------|--------------|----------------------------|-----------------------------------|
+| **Flag**             |              | `--force`, `-f`            | `force: true`                     |
+| **String**           | ✅            | `--foo bar`                | `foo: "bar"`                      |
+| **Float/int/hex**    | ✅            | `--bg ff997f`              | `bg: 16750975`                    |
+| **Enum**             | ✅            | `--type png`               | `type: "png"`                     |
+| **KV pairs**         | ✅            | `--define foo=bar`         | `define: { foo: "bar" }`          |
+| **KV multi pairs**   | ✅            | `-D foo=bar -D foo=baz`    | `define: { foo: ["bar", "baz"] }` |
+| **JSON**             |              | `--config '{"foo": [23]}'` | `config: { foo: [23] }`           |
+| **Fixed size tuple** |              | `--size 640x480`           | `size: { value: [640, 480] }`     |
 
 If multiple values/repetitions are allowed for an argument, the values will be
 collected into an array (apart from KV pairs, which will yield an object).

@@ -8,7 +8,9 @@ import {
     ints,
     json,
     KVDict,
+    KVMultiDict,
     kvPairs,
+    kvPairsMulti,
     oneOf,
     parse,
     size,
@@ -144,6 +146,33 @@ describe("args", () => {
                     showUsage: false,
                 }
             )
+        );
+    });
+
+    it("kvMulti", () => {
+        assert.deepStrictEqual(
+            parse<{ a?: KVMultiDict }>(
+                { a: kvPairsMulti({}) },
+                [
+                    "--a",
+                    "foo=aa",
+                    "--a",
+                    "bar=bb",
+                    "--a",
+                    "foo=cc",
+                    "--a",
+                    "debug",
+                ],
+                { start: 0 }
+            ),
+            {
+                result: {
+                    a: { foo: ["aa", "cc"], bar: ["bb"], debug: ["true"] },
+                },
+                index: 8,
+                done: true,
+                rest: [],
+            }
         );
     });
 
