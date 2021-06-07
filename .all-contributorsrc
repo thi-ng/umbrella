@@ -317,6 +317,15 @@
         "bug",
         "code"
       ]
+    },
+    {
+      "login": "Robsteranium",
+      "name": "Robin Gower",
+      "avatar_url": "https://avatars.githubusercontent.com/u/49654?v=4",
+      "profile": "http://infonomics.ltd.uk",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
