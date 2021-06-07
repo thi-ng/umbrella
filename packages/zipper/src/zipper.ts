@@ -73,7 +73,7 @@ export class Location<T> {
         return this._path ? this._path.r : undefined;
     }
 
-    get left() {
+    get left(): Location<T> | undefined {
         const path = this._path;
         const lefts = path && path.l;
         return lefts && lefts.length
@@ -91,7 +91,7 @@ export class Location<T> {
             : undefined;
     }
 
-    get right() {
+    get right(): Location<T> | undefined {
         const path = this._path;
         const rights = path && path.r;
         if (!rights) return;
@@ -109,7 +109,7 @@ export class Location<T> {
         );
     }
 
-    get leftmost() {
+    get leftmost(): Location<T> {
         const path = this._path;
         const lefts = path && path.l;
         return lefts && lefts.length
@@ -127,7 +127,7 @@ export class Location<T> {
             : this;
     }
 
-    get rightmost() {
+    get rightmost(): Location<T> {
         const path = this._path;
         const rights = path && path.r;
         return rights
@@ -148,7 +148,7 @@ export class Location<T> {
             : this;
     }
 
-    get down() {
+    get down(): Location<T> | undefined {
         if (!this.isBranch) return;
         const children = this.children;
         if (!children) return;
@@ -166,7 +166,7 @@ export class Location<T> {
         );
     }
 
-    get up() {
+    get up(): Location<T> | undefined {
         let path = this._path;
         const pnodes = path && path.nodes;
         if (!pnodes) return;
@@ -190,7 +190,7 @@ export class Location<T> {
         return parent ? parent.root : this._node;
     }
 
-    get prev() {
+    get prev(): Location<T> | undefined {
         let node = this.left;
         if (!node) return this.up;
         while (true) {
@@ -202,7 +202,7 @@ export class Location<T> {
         }
     }
 
-    get next() {
+    get next(): Location<T> | undefined {
         if (this.isBranch) return this.down;
         let right = this.right;
         if (right) return right;
