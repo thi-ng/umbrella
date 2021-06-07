@@ -307,6 +307,16 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "Shakthi",
+      "name": "Shakthi Prasad G S",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1297378?v=4",
+      "profile": "https://github.com/Shakthi",
+      "contributions": [
+        "bug",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
