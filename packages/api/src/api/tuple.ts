@@ -1,15 +1,15 @@
 /**
  * Returns an array's value type.
  */
-export type ArrayValue<T extends any[]> = T[0];
+export type ArrayValue<T extends unknown[]> = T[0];
 
 /**
  * Defines a fixed sized, iterable tuple with elements of type `T` and
  * length `N`.
  */
-export type Tuple<T, N extends number> = [T, ...T[]] & { length: N } & Iterable<
-        T
-    >;
+export type Tuple<T, N extends number> = [T, ...T[]] & {
+    length: N;
+} & Iterable<T>;
 
 /**
  * Extracts a tuple's length / size.
@@ -24,34 +24,27 @@ export type IsEmpty<T extends unknown[]> = T extends [] ? 1 : 0;
 /**
  * Extracts the first element of a tuple.
  */
-export type Head<T extends unknown[]> = T extends Parameters<
-    (v: infer R, ...args: any[]) => any
->
-    ? R
+export type Head<T extends unknown[]> = T extends [infer A, ...unknown[]]
+    ? A
     : never;
 
 /**
  * Extracts everything except the first element from a tuple.
  */
-export type Tail<T extends unknown[]> = ((...a: T) => void) extends (
-    v: any,
-    ...args: infer R
-) => void
-    ? R
+export type Tail<T extends unknown[]> = T extends [unknown, ...infer A]
+    ? A
     : never;
 
 /**
  * Adds an element at the start of an tuple.
  */
-export type Prepend<T, U extends unknown[]> = Parameters<
-    (v: T, ...args: U) => void
->;
+export type Prepend<T, U extends unknown[]> = [T, ...U];
 
 /**
  * Internal version of {@link Reverse} accepting 1 extra argument for
  * the accumulated value.
  */
-type ReverseReducer<T extends unknown[], C extends unknown[] = []> = {
+type ReverseReducer<T extends unknown[], C extends unknown[]> = {
     // case when we got 0 elements
     0: C;
 
@@ -67,7 +60,7 @@ type ReverseReducer<T extends unknown[], C extends unknown[] = []> = {
 /**
  * Reverses the order of elements from a tuple.
  */
-export type Reverse<T extends unknown[]> = ReverseReducer<T>;
+export type Reverse<T extends unknown[]> = ReverseReducer<T, []>;
 
 /**
  * Extracts the last element from a tuple.
