@@ -143,10 +143,12 @@ module.exports = {
     packageOptions: {
         source: "local",
         types: true,
+        knownEntrypoints: ["tslib"],
     },
     buildOptions: {
         baseUrl: "/umbrella/$1",
     },
+    workspaceRoot: "../..",
 };
 EOF
 
