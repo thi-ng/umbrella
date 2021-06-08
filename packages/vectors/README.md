@@ -170,7 +170,7 @@ yarn add @thi.ng/vectors
 <script src="https://unpkg.com/@thi.ng/vectors/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 11.61 KB / CJS: 14.60 KB / UMD: 12.88 KB
+Package sizes (gzipped, pre-treeshake): ESM: 11.64 KB / CJS: 14.63 KB / UMD: 12.91 KB
 
 ## Dependencies
 
@@ -534,7 +534,7 @@ All ops support custom PRNG impls based on the
 |--------------|---------|-------|---------|-----|----------|
 | `jitter`     | ✓       |       |         |     |          |
 | `randMinMax` | ✓       | 2-4   | S2-S4   |     |          |
-| `randNorm`   | ✓       |       | S2-S4   |     |          |
+| `randNorm`   | ✓       | 2-4   | S2-S4   |     |          |
 | `random`     | ✓       | 2-4   | S2-S4   |     |          |
 
 ### Unary vector math ops

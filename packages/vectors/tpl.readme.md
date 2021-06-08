@@ -435,7 +435,7 @@ All ops support custom PRNG impls based on the
 |--------------|---------|-------|---------|-----|----------|
 | `jitter`     | ✓       |       |         |     |          |
 | `randMinMax` | ✓       | 2-4   | S2-S4   |     |          |
-| `randNorm`   | ✓       |       | S2-S4   |     |          |
+| `randNorm`   | ✓       | 2-4   | S2-S4   |     |          |
 | `random`     | ✓       | 2-4   | S2-S4   |     |          |
 
 ### Unary vector math ops
