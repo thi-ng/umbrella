@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@6.0.0...@thi.ng/vectors@6.0.1) (2021-06-08)
+
+
+### Bug Fixes
+
+* **vectors:** re-add missing randNorm2/3/4 fns ([0f0e270](https://github.com/thi-ng/umbrella/commit/0f0e270c6f552d66605396e66a967180cc42fdbb))
+
+
+
+
+
 # [6.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@5.3.0...@thi.ng/vectors@6.0.0) (2021-04-24)
 
 

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/adjacency@0.3.16...@thi.ng/adjacency@0.3.17) (2021-06-08)
+
+**Note:** Version bump only for package @thi.ng/adjacency
+
+
+
+
+
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/adjacency@0.2.6...@thi.ng/adjacency@0.3.0) (2021-02-20)
 
 

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/hex@0.2.5...@thi.ng/hex@0.2.6) (2021-06-08)
+
+**Note:** Version bump only for package @thi.ng/hex
+
+
+
+
+
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hex@0.1.3...@thi.ng/hex@0.2.0) (2021-02-20)
 
 

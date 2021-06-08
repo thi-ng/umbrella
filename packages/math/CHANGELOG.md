@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@4.0.0...@thi.ng/math@4.0.1) (2021-06-08)
+
+**Note:** Version bump only for package @thi.ng/math
+
+
+
+
+
 # [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@3.4.0...@thi.ng/math@4.0.0) (2021-04-24)
 
 

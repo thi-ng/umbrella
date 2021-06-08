@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/prefixes@0.1.17...@thi.ng/prefixes@0.1.18) (2021-06-08)
+
+**Note:** Version bump only for package @thi.ng/prefixes
+
+
+
+
+
 # 0.1.0 (2020-07-02)
 
 

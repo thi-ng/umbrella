@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/math",
-    "version": "4.0.0",
+    "version": "4.0.1",
     "description": "Assorted common math functions & utilities",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -49,7 +49,7 @@
         "typescript": "4.2.4"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.4"
+        "@thi.ng/api": "^7.1.5"
     },
     "files": [
         "*.js",

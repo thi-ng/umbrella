@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/args@0.5.1...@thi.ng/args@0.6.0) (2021-06-08)
+
+
+### Features
+
+* **args:** add kvPairsMulti(), update coerceKV() ([fd12f80](https://github.com/thi-ng/umbrella/commit/fd12f807dba2546133278a607c4b79dcf9a12b07))
+
+
+
+
+
 # [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/args@0.4.2...@thi.ng/args@0.5.0) (2021-03-28)
 
 

@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@4.0.16...@thi.ng/webgl@5.0.0) (2021-06-08)
+
+
+### Code Refactoring
+
+* **webgl:** update multipass texture uniforms ([86d363a](https://github.com/thi-ng/umbrella/commit/86d363aa80c1861388bccd9fb57000afd96e4257))
+
+
+### Features
+
+* **webgl:** add passCopy() HOF pass gen ([fb6b5b7](https://github.com/thi-ng/umbrella/commit/fb6b5b76d16a75d157499f7ccf46c777a063131e))
+
+
+### BREAKING CHANGES
+
+* **webgl:** replace input tex `sampler2D[]` array w/ named inputs
+
+- new unis: `input0`, `input1`, etc. to sync w/ same approach as
+  already used for outputs
+- new approach also simplifies texture lookups in shader-ast code
+
+
+
+
+
 # [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl@3.3.15...@thi.ng/webgl@4.0.0) (2021-02-20)
 
 
