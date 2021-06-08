@@ -3,14 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/distance@0.3.0...@thi.ng/distance@0.3.1) (2021-04-24)
-
-**Note:** Version bump only for package @thi.ng/distance
-
-
-
-
-
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/distance@0.2.2...@thi.ng/distance@0.3.0) (2021-04-19)
 
 
@@ -18,14 +10,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **distance:** add argmin*() fns ([72ed376](https://github.com/thi-ng/umbrella/commit/72ed3760c7a6982bcab7d94666957cad90f4f0ef))
 * **distance:** replace HAVERSINE w/ alts ([3a9a77a](https://github.com/thi-ng/umbrella/commit/3a9a77ab0fd06484f2fda5d67c7b151645436a32))
-
-
-
-
-
-## [0.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/distance@0.2.1...@thi.ng/distance@0.2.2) (2021-04-07)
-
-**Note:** Version bump only for package @thi.ng/distance
 
 
 

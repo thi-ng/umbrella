@@ -3,38 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-canvas@1.2.3...@thi.ng/hiccup-canvas@1.2.4) (2021-04-24)
-
-**Note:** Version bump only for package @thi.ng/hiccup-canvas
-
-
-
-
-
-## [1.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-canvas@1.2.2...@thi.ng/hiccup-canvas@1.2.3) (2021-04-20)
-
-**Note:** Version bump only for package @thi.ng/hiccup-canvas
-
-
-
-
-
-## [1.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-canvas@1.2.1...@thi.ng/hiccup-canvas@1.2.2) (2021-04-19)
-
-**Note:** Version bump only for package @thi.ng/hiccup-canvas
-
-
-
-
-
-## [1.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-canvas@1.2.0...@thi.ng/hiccup-canvas@1.2.1) (2021-04-07)
-
-**Note:** Version bump only for package @thi.ng/hiccup-canvas
-
-
-
-
-
 # [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-canvas@1.1.34...@thi.ng/hiccup-canvas@1.2.0) (2021-04-03)
 
 

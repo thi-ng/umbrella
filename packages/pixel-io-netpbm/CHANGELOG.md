@@ -3,30 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel-io-netpbm@0.1.10...@thi.ng/pixel-io-netpbm@0.1.11) (2021-04-24)
-
-**Note:** Version bump only for package @thi.ng/pixel-io-netpbm
-
-
-
-
-
-## [0.1.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel-io-netpbm@0.1.9...@thi.ng/pixel-io-netpbm@0.1.10) (2021-04-20)
-
-**Note:** Version bump only for package @thi.ng/pixel-io-netpbm
-
-
-
-
-
-## [0.1.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel-io-netpbm@0.1.8...@thi.ng/pixel-io-netpbm@0.1.9) (2021-04-19)
-
-**Note:** Version bump only for package @thi.ng/pixel-io-netpbm
-
-
-
-
-
 # 0.1.0 (2021-02-20)
 
 

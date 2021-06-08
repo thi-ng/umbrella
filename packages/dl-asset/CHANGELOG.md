@@ -3,22 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.4.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/dl-asset@0.4.23...@thi.ng/dl-asset@0.4.24) (2021-04-10)
-
-**Note:** Version bump only for package @thi.ng/dl-asset
-
-
-
-
-
-## [0.4.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/dl-asset@0.4.22...@thi.ng/dl-asset@0.4.23) (2021-04-04)
-
-**Note:** Version bump only for package @thi.ng/dl-asset
-
-
-
-
-
 # [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dl-asset@0.3.14...@thi.ng/dl-asset@0.4.0) (2020-07-08)
 
 

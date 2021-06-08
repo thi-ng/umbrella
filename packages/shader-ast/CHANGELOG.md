@@ -14,22 +14,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.8.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.8.11...@thi.ng/shader-ast@0.8.12) (2021-04-19)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
-## [0.8.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.8.10...@thi.ng/shader-ast@0.8.11) (2021-04-07)
-
-**Note:** Version bump only for package @thi.ng/shader-ast
-
-
-
-
-
 # [0.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.7.13...@thi.ng/shader-ast@0.8.0) (2021-02-24)
 
 

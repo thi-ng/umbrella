@@ -3,30 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.1.76](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-query@1.1.75...@thi.ng/rstream-query@1.1.76) (2021-04-24)
-
-**Note:** Version bump only for package @thi.ng/rstream-query
-
-
-
-
-
-## [1.1.75](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-query@1.1.74...@thi.ng/rstream-query@1.1.75) (2021-04-19)
-
-**Note:** Version bump only for package @thi.ng/rstream-query
-
-
-
-
-
-## [1.1.74](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-query@1.1.73...@thi.ng/rstream-query@1.1.74) (2021-04-07)
-
-**Note:** Version bump only for package @thi.ng/rstream-query
-
-
-
-
-
 ## [1.1.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-query@1.1.6...@thi.ng/rstream-query@1.1.7) (2019-11-30)
 
 ### Bug Fixes
