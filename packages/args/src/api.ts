@@ -136,6 +136,12 @@ export interface UsageOpts {
      */
     showDefaults: boolean;
     /**
+     * If true, displays group names as sub headings.
+     *
+     * @defaultValue false
+     */
+    showGroupNames: boolean;
+    /**
      * Prefix content to show before list of options. Can contain ANSI control
      * seqs and will be automatically word wrapped to given `lineWidth`.
      *

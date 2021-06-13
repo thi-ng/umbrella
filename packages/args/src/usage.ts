@@ -72,14 +72,21 @@ export const usage = <T extends IObjectOf<any>>(
             );
         });
     const sortedIDs = Object.keys(specs).sort();
-    const groups = opts.groups
-        ? opts.groups.map((gid) =>
-              sortedIDs.filter((id) => specs[id].group === gid)
-          )
-        : [sortedIDs];
+    const groups: [string, string[]][] = opts.groups
+        ? opts.groups.map((gid) => [
+              gid,
+              sortedIDs.filter((id) => specs[id].group === gid),
+          ])
+        : [["options", sortedIDs]];
     return [
         ...wrap(opts.prefix, opts.lineWidth!),
-        ...groups.map((ids) => format(ids).join("\n") + "\n"),
+        ...groups.map(([gid, ids]) =>
+            [
+                ...(opts.showGroupNames ? [`${gid}:\n`] : []),
+                ...format(ids),
+                "",
+            ].join("\n")
+        ),
         ...wrap(opts.suffix, opts.lineWidth!),
     ].join("\n");
 };
