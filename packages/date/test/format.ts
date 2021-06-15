@@ -1,13 +1,29 @@
 import * as assert from "assert";
-import { DAY, defFormat, defTimecode, HOUR, MINUTE, SECOND } from "../src";
+import {
+    dateTime,
+    DAY,
+    defFormat,
+    defTimecode,
+    HOUR,
+    MINUTE,
+    SECOND,
+} from "../src";
 
 describe("date", () => {
     it("formatters", () => {
-        const d = new Date(2020, 8, 1, 2, 3, 4, 5);
-        const d2 = new Date(1996, 11, 13, 14, 15, 16, 17);
+        const d = dateTime(Date.UTC(2020, 8, 1, 2, 3, 4, 5));
+        const d2 = dateTime(Date.UTC(1996, 11, 13, 14, 15, 16, 17));
         const check = (fmt: string[], res1: string, res2: string) => {
-            assert.strictEqual(defFormat(fmt)(d), res1, `${res1} (a)`);
-            assert.strictEqual(defFormat(fmt)(d2), res2, `${res2} (b)`);
+            assert.strictEqual(
+                defFormat(fmt)(d, true),
+                res1,
+                `${fmt}: ${res1} (a)`
+            );
+            assert.strictEqual(
+                defFormat(fmt)(d2, true),
+                res2,
+                `${fmt}: ${res2} (b)`
+            );
         };
         check(["yy"], "20", "96");
         check(["yyyy"], "2020", "1996");

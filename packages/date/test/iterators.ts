@@ -10,7 +10,7 @@ import {
     years,
 } from "../src";
 
-describe("date", () => {
+describe("iterators", () => {
     it("hours", () => {
         const fmt = defFormat(["dd", " ", "h", ":", "mm", " ", "A"]);
         assert.deepStrictEqual(
@@ -19,7 +19,7 @@ describe("date", () => {
                     Date.UTC(2019, 11, 30, 15, 1),
                     Date.UTC(2019, 11, 31, 15, 1)
                 ),
-            ].map((x) => fmt(x)),
+            ].map((x) => fmt(x, true)),
             [
                 "30 4:00 PM",
                 "30 5:00 PM",
@@ -51,9 +51,9 @@ describe("date", () => {
 
     it("days", () => {
         assert.deepStrictEqual(
-            [
-                ...days(Date.UTC(2019, 11, 30, 15), Date.UTC(2020, 1, 1, 1)),
-            ].map((x) => FMT_yyyyMMdd(x)),
+            [...days(Date.UTC(2019, 11, 30, 15), Date.UTC(2020, 1, 1, 1))].map(
+                (x) => FMT_yyyyMMdd(x)
+            ),
             [
                 "2019-12-31",
                 "2020-01-01",

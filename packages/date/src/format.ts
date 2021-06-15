@@ -82,8 +82,8 @@ export const FORMATTERS: Record<string, FormatFn> = {
     /**
      * Timezone offset in signed `HH:mm` format
      */
-    Z: (d) => {
-        const z = d.getTimezoneOffset();
+    Z: (d, utc = false) => {
+        const z = utc ? 0 : d.getTimezoneOffset();
         const za = Math.abs(z);
         return `${z < 0 ? "-" : "+"}${Z2((za / 60) | 0)}:${Z2(za % 60)}`;
     },
@@ -93,7 +93,7 @@ export const FORMATTERS: Record<string, FormatFn> = {
      *
      * @param d
      */
-    ZZ: (d) => (d.getTimezoneOffset() === 0 ? "Z" : FORMATTERS.Z(d)),
+    ZZ: (d, utc = false) => (utc ? "Z" : FORMATTERS.Z(d, utc)),
 };
 
 /**
@@ -119,27 +119,26 @@ export const FORMATTERS: Record<string, FormatFn> = {
  *
  * @param fmt
  */
-export const defFormat = (fmt: (string | FormatFn)[]) => (
-    x: DateTime | Date | number,
-    utc = false
-) => {
-    let d = ensureDate(x);
-    utc && (d = new Date(d.getTime() + d.getTimezoneOffset() * MINUTE));
-    return fmt
-        .map((x) => {
-            let fmt: FormatFn;
-            return typeof x === "string"
-                ? x.startsWith("\\")
-                    ? x.substr(1)
-                    : (fmt = FORMATTERS[x])
-                    ? fmt(d)
-                    : x
-                : typeof x === "function"
-                ? x(d)
-                : x;
-        })
-        .join("");
-};
+export const defFormat =
+    (fmt: (string | FormatFn)[]) =>
+    (x: DateTime | Date | number, utc = false) => {
+        let d = ensureDate(x);
+        utc && (d = new Date(d.getTime() + d.getTimezoneOffset() * MINUTE));
+        return fmt
+            .map((x) => {
+                let fmt: FormatFn;
+                return typeof x === "string"
+                    ? x.startsWith("\\")
+                        ? x.substr(1)
+                        : (fmt = FORMATTERS[x])
+                        ? fmt(d, utc)
+                        : x
+                    : typeof x === "function"
+                    ? x(d, utc)
+                    : x;
+            })
+            .join("");
+    };
 
 /**
  * Format preset, e.g. `2020-09-19`

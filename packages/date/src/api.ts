@@ -1,4 +1,4 @@
-import type { Fn } from "@thi.ng/api";
+import type { Fn2 } from "@thi.ng/api";
 
 /**
  * Second duration in milliseconds
@@ -60,4 +60,4 @@ export type Precision = "y" | "M" | "d" | "h" | "m" | "s" | "t";
 
 export type Period = Precision | "w";
 
-export type FormatFn = Fn<Date, string>;
+export type FormatFn = Fn2<Date, boolean, string>;
