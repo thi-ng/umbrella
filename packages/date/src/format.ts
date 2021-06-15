@@ -94,6 +94,11 @@ export const FORMATTERS: Record<string, FormatFn> = {
      * @param d
      */
     ZZ: (d, utc = false) => (utc ? "Z" : FORMATTERS.Z(d, utc)),
+    /**
+     * Returns current {@link LOCALE}'s separator.
+     */
+    "~": () => LOCALE.sep,
+    "~~": () => LOCALE.sepAlt || " ",
 };
 
 /**
@@ -154,13 +159,13 @@ export const FMT_Mdyyyy = defFormat(["M", "/", "d", "/", "yyyy"]);
  */
 export const FMT_MMMdyyyy = defFormat(["MMM", " ", "d", " ", "yyyy"]);
 /**
- * Format preset, e.g. `19/9/2020`
+ * Format preset, e.g. `19.9.2020`
  */
-export const FMT_dMyyyy = defFormat(["d", "/", "M", "/", "yyyy"]);
+export const FMT_dMyyyy = defFormat(["d", "~", "M", "~", "yyyy"]);
 /**
  * Format preset, e.g. `19 Sep 2020`
  */
-export const FMT_dMMMyyyy = defFormat(["d", " ", "MMM", " ", "yyyy"]);
+export const FMT_dMMMyyyy = defFormat(["d", "~~", "MMM", " ", "yyyy"]);
 /**
  * Format preset, e.g. `17:08`
  */

@@ -1,6 +1,6 @@
 import type { Period } from "./api";
 import { DateTime, dateTime } from "./datetime";
-import { EN_LONG, EN_SHORT } from "./i18n";
+import { EN_LONG, EN_SHORT } from "./i18n/en";
 
 /**
  * Takes a relative time `offset` string in plain english and an optional `base`
@@ -64,9 +64,10 @@ export const parseRelative = (
                 } while (epoch.toDate().getDay() != idx);
                 return epoch;
             }
-            const match = /^(an? |next |[-+]?\d+\s?)((ms|milli(?:(s?|seconds?)))|s(?:(ecs?|econds?))?|min(?:(s|utes?))?|h(?:ours?)?|d(?:ays?)?|w(?:eeks?)?|months?|y(?:ears?)?)(\s+ago)?$/.exec(
-                offset
-            );
+            const match =
+                /^(an? |next |[-+]?\d+\s?)((ms|milli(?:(s?|seconds?)))|s(?:(ecs?|econds?))?|min(?:(s|utes?))?|h(?:ours?)?|d(?:ays?)?|w(?:eeks?)?|months?|y(?:ears?)?)(\s+ago)?$/.exec(
+                    offset
+                );
             return match
                 ? relative(
                       parseNum(match![1], !!match[7]),

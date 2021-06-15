@@ -43,6 +43,14 @@ export interface Locale {
      * Names of weekdays (starting w/ Sunday)
      */
     days: string[];
+    /**
+     * Separator between day, month, year. E.g. `/` for English.
+     */
+    sep: string;
+    /**
+     * Separator between day and month in long formats. Default: " "
+     */
+    sepAlt?: string;
 }
 
 export interface IEpoch {
