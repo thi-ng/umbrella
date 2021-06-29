@@ -1,6 +1,10 @@
-import type { Locale } from "../api";
+import type { LocaleSpec } from "../api";
 
-export const DE_SHORT: Locale = {
+/**
+ * @remarks
+ * Reference: https://en.wikipedia.org/wiki/Date_and_time_notation_in_Europe#Germany
+ */
+export const DE_SHORT: LocaleSpec = {
     months: [
         "Jan",
         "Feb",
@@ -16,11 +20,17 @@ export const DE_SHORT: Locale = {
         "Dez",
     ],
     days: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
-    sep: ".",
-    sepAlt: ". ",
+    sepED: ", ",
+    sepDM: ".",
+    sepMY: ".",
+    date: ["d", "/DM", "M", "/MY", "yyyy"],
 };
 
-export const DE_LONG: Locale = {
+/**
+ * @remarks
+ * Reference: https://en.wikipedia.org/wiki/Date_and_time_notation_in_Europe#Germany
+ */
+export const DE_LONG: LocaleSpec = {
     months: [
         "Januar",
         "Februar",
@@ -44,6 +54,7 @@ export const DE_LONG: Locale = {
         "Freitag",
         "Samstag",
     ],
-    sep: ".",
-    sepAlt: ". ",
+    sepED: ", ",
+    sepDM: ". ",
+    sepMY: " ",
 };

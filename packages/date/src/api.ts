@@ -44,14 +44,49 @@ export interface Locale {
      */
     days: string[];
     /**
-     * Separator between day, month, year. E.g. `/` for English.
+     * Default date format spec for use with {@link defFormat}
+     *
+     * @defaultValue ["E", "/ED", "d", "/DM", "MMM", "/MY", "yyyy"]
      */
-    sep: string;
+    date: string[];
     /**
-     * Separator between day and month in long formats. Default: " "
+     * Default time format spec for use with {@link defFormat}
+     *
+     * @defaultValue ["H", "/HM", "mm"]
      */
-    sepAlt?: string;
+    time: string[];
+    /**
+     * Separator between day & month.
+     *
+     * @defaultValue "/"
+     */
+    sepDM: string;
+    /**
+     * Separator between month & year
+     *
+     * @defaultValue " "
+     */
+    sepMY: string;
+    /**
+     * Separator between weekday & day
+     *
+     * @defaultValue " "
+     */
+    sepED: string;
+    /**
+     * Separator between hour & minute
+     *
+     * @defaultValue ":"
+     */
+    sepHM: string;
 }
+
+/**
+ * A partially optional version of {@link Locale}, for use with
+ * {@link setLocale}.
+ */
+export type LocaleSpec = Pick<Locale, "months" | "days"> &
+    Partial<Omit<Locale, "months" | "days">>;
 
 export interface IEpoch {
     getTime(): number;

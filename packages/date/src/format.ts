@@ -42,6 +42,10 @@ export const FORMATTERS: Record<string, FormatFn> = {
      */
     HH: (d) => Z2(d.getHours()),
     /**
+     * Unpadded our of day (0-23)
+     */
+    H: (d) => String(d.getHours()),
+    /**
      * Zero-padded hour of day (1-12)
      */
     hh: (d) => {
@@ -76,9 +80,14 @@ export const FORMATTERS: Record<string, FormatFn> = {
      */
     S: (d) => String(d.getMilliseconds()),
     /**
-     * 12-hour AM/PM marker
+     * 12-hour AM/PM marker (uppercase)
      */
     A: (d) => String(d.getHours() < 12 ? "AM" : "PM"),
+    /**
+     *
+     * 12-hour am/pm marker (lowercase)
+     */
+    a: (d) => String(d.getHours() < 12 ? "am" : "pm"),
     /**
      * Timezone offset in signed `HH:mm` format
      */
@@ -95,10 +104,21 @@ export const FORMATTERS: Record<string, FormatFn> = {
      */
     ZZ: (d, utc = false) => (utc ? "Z" : FORMATTERS.Z(d, utc)),
     /**
-     * Returns current {@link LOCALE}'s separator.
+     * Current {@link LOCALE}'s day-month separator.
      */
-    "~": () => LOCALE.sep,
-    "~~": () => LOCALE.sepAlt || " ",
+    "/DM": () => LOCALE.sepDM,
+    /**
+     * Current {@link LOCALE}'s weekday-day separator.
+     */
+    "/ED": () => LOCALE.sepED,
+    /**
+     * Current {@link LOCALE}'s hour-minute separator.
+     */
+    "/HM": () => LOCALE.sepHM,
+    /**
+     * Current {@link LOCALE}'s month-year separator.
+     */
+    "/MY": () => LOCALE.sepMY,
 };
 
 /**

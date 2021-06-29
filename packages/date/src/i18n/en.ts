@@ -1,6 +1,10 @@
-import type { Locale } from "../api";
+import type { LocaleSpec } from "../api";
 
-export const EN_SHORT: Locale = {
+/**
+ * @remarks
+ * Reference: https://en.wikipedia.org/wiki/Date_and_time_notation_in_the_United_Kingdom
+ */
+export const EN_SHORT: LocaleSpec = {
     months: [
         "Jan",
         "Feb",
@@ -16,10 +20,16 @@ export const EN_SHORT: Locale = {
         "Dec",
     ],
     days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-    sep: "/",
+    sepHM: ".",
+    date: ["dd", "/DM", "MM", "/MY", "yyyy"],
+    time: ["h", "/HM", "mm", " ", "a"],
 };
 
-export const EN_LONG: Locale = {
+/**
+ * @remarks
+ * Reference: https://en.wikipedia.org/wiki/Date_and_time_notation_in_the_United_Kingdom
+ */
+export const EN_LONG: LocaleSpec = {
     months: [
         "January",
         "February",
@@ -43,5 +53,8 @@ export const EN_LONG: Locale = {
         "Friday",
         "Saturday",
     ],
-    sep: "/",
+    sepDM: " ",
+    sepMY: " ",
+    sepHM: ".",
+    time: ["h", "/HM", "mm", " ", "a"],
 };

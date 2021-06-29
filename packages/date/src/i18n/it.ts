@@ -1,6 +1,10 @@
-import type { Locale } from "../api";
+import type { LocaleSpec } from "../api";
 
-export const IT_LONG: Locale = {
+/**
+ * @remarks
+ * Reference: https://en.wikipedia.org/wiki/Date_and_time_notation_in_Italy
+ */
+export const IT_LONG: LocaleSpec = {
     months: [
         "gennaio",
         "febbraio",
@@ -24,5 +28,7 @@ export const IT_LONG: Locale = {
         "venerdì",
         "sabato",
     ],
-    sep: "/",
+    sepDM: " ",
+    sepMY: " ",
+    sepHM: ".",
 };

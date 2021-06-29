@@ -1,6 +1,33 @@
-import type { Locale } from "../api";
+import type { LocaleSpec } from "../api";
 
-export const ES_LONG: Locale = {
+/**
+ * @remarks
+ * Reference: https://en.wikipedia.org/wiki/Date_and_time_notation_in_Spain
+ */
+export const ES_SHORT: LocaleSpec = {
+    months: [
+        "ene",
+        "feb",
+        "mar",
+        "abr",
+        "may",
+        "jun",
+        "jul",
+        "ago",
+        "sep",
+        "oct",
+        "nov",
+        "dic",
+    ],
+    days: ["D", "L", "M", "X", "J", "V", "S"],
+    date: ["d", "/DM", "MM", "/MY", "yyyy"],
+};
+
+/**
+ * @remarks
+ * Reference: https://en.wikipedia.org/wiki/Date_and_time_notation_in_Spain
+ */
+export const ES_LONG: LocaleSpec = {
     months: [
         "enero",
         "febrero",
@@ -24,5 +51,6 @@ export const ES_LONG: Locale = {
         "viernes",
         "sábado",
     ],
-    sep: "/",
+    sepDM: " ",
+    sepMY: " ",
 };
