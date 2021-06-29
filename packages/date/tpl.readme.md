@@ -141,15 +141,21 @@ string literal, prefix the term with `\\`.
 | `d`    | Unpadded day of month                       |
 | `E`    | Weekday name in current locale (e.g. `Mon`) |
 | `HH`   | Zero-padded 2-digit hour of day (0-23)      |
+| `H`    | Unpadded hour of day (0-23)                 |
 | `h`    | Unpadded hour of day (1-12)                 |
 | `mm`   | Zero-padded 2-digit minute of hour          |
 | `m`    | Unpadded minute of hour                     |
 | `ss`   | Zero-padded 2-digit second of minute        |
 | `s`    | Unpadded second of minute                   |
 | `S`    | Unpadded millisecond of second              |
-| `A`    | 12-hour AM/PM marker                        |
-| `Z`    | Timezone offset in signed `HH:mm` format    |
+| `A`    | 12-hour AM/PM marker (uppercase)            |
+| `a`    | 12-hour am/pm marker (lowercase)            |
+| `Z`    | Timezone offset in signed `±HH:mm` format   |
 | `ZZ`   | Same as `Z`, but special handling for UTC   |
+| `/ED`  | Locale-specific weekday-day separator       |
+| `/DM`  | Locale-specific day-month separator         |
+| `/MY`  | Locale-specific month-year separator        |
+| `/HM`  | Locale-specific hour-minute separator       |
 
 <small>(Format IDs somewhat based on Java's
 [SimpleDateFormat](https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/text/SimpleDateFormat.html))</small>
@@ -193,6 +199,19 @@ b(Day + HOUR + 2*MINUTE + 3*SECOND + 999)
 ```
 
 ### Locales
+
+The following locale presets are available by default:
+
+| Preset     | Example                          |
+|------------|----------------------------------|
+| `DE_SHORT` | `29.6.2021 @ 5:48`               |
+| `DE_LONG`  | `Dienstag, 29. Juni 2021 @ 5:48` |
+| `EN_SHORT` | `29/06/2021 @ 5.48 am`           |
+| `EN_LONG`  | `Tuesday 29 June 2021 @ 5.48 am` |
+| `ES_SHORT` | `29/06/2021 @ 5:48`              |
+| `ES_LONG`  | `martes 29 junio 2021 @ 5:48`    |
+| `FR_LONG`  | `mardi 29 juin 2021 @ 5h 48`     |
+| `IT_LONG`  | `martedì 29 giugno 2021 @ 5.48`  |
 
 The `MMM` (month) and `E` (weekday) formatters make use of the strings provided
 by the current `LOCALE` (default: `EN_SHORT`) and can be set/changed via the
