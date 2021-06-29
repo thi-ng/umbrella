@@ -85,7 +85,7 @@ export const FORMATTERS: Record<string, FormatFn> = {
     Z: (d, utc = false) => {
         const z = utc ? 0 : d.getTimezoneOffset();
         const za = Math.abs(z);
-        return `${z < 0 ? "-" : "+"}${Z2((za / 60) | 0)}:${Z2(za % 60)}`;
+        return `${z < 0 ? "+" : "-"}${Z2((za / 60) | 0)}:${Z2(za % 60)}`;
     },
     /**
      * Returns literal `"Z"` iff timezone offset is zero (UTC), else the same as
