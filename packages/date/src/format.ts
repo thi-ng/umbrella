@@ -14,7 +14,7 @@ export const FORMATTERS: Record<string, FormatFn> = {
      */
     yy: (d) => String(d.getFullYear() % 100),
     /**
-     * 3-letter month name (e.g. `Feb`)
+     * Month name, using current {@link LOCALE} (e.g. `Feb`)
      */
     MMM: (d) => LOCALE.months[d.getMonth()],
     /**
@@ -34,7 +34,7 @@ export const FORMATTERS: Record<string, FormatFn> = {
      */
     d: (d) => String(d.getDate()),
     /**
-     * 3-letter weekday name (e.g. `Mon`)
+     * Weekday name, using current {@link LOCALE} (e.g. `Mon`)
      */
     E: (d) => LOCALE.days[d.getDay()],
     /**
