@@ -1,40 +1,44 @@
 #!/usr/bin/env node
 
 const api = require("@thi.ng/api");
+const args = require("@thi.ng/args");
 const bench = require("@thi.ng/bench");
 const pf = require("@thi.ng/pointfree");
 const pfl = require("@thi.ng/pointfree-lang");
 const fs = require("fs");
-const { program } = require("commander");
 
-program
-    .version(require("../package.json").version)
-    .arguments("[file]")
-    .option("-d, --debug", "print debug info")
-    .option("-e, --exec <src>", "execute given string")
-    .parse(process.argv);
+const argOpts = {
+    debug: args.flag({ alias: "d", desc: "print debug info", group: "main" }),
+    exec: args.string({ alias: "e", desc: "execute given string" }),
+};
 
-let src = program.exec;
-if (!src) {
-    const fname = program.args[0];
-    if (!fname) {
-        process.stderr.write("no input given...\n\n");
-        program.help();
-    }
+const { result: opts, rest } = args.parse(argOpts, process.argv);
+
+if (!(opts.exec || rest.length)) {
+    process.stderr.write(args.usage(argOpts, { prefix: "Usage: pointfree [opts] [file]" }));
+    process.exit(1);
+}
+
+let src;
+
+if (!opts.exec) {
     try {
-        src = fs.readFileSync(fname).toString();
+        src = fs.readFileSync(rest[0]).toString();
+        rest.shift();
     } catch (e) {
         process.stderr.write(`error reading source file ${e.message}`);
         process.exit(1);
     }
+} else {
+    src = opts.exec;
 }
 
 try {
-    const logger = program.debug
+    const logger = opts.debug
         ? new api.ConsoleLogger("pointfree")
         : api.NULL_LOGGER;
     const includeCache = new Set();
-    const rootEnv = { args: program.args };
+    const rootEnv = { args: rest };
     const builtins = {
         include: (ctx) => {
             const stack = ctx[0];
