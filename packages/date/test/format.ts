@@ -44,7 +44,7 @@ describe("date", () => {
         check(["yyyy", "-", "MM", "-", "dd"], "2020-09-01", "1996-12-13");
         assert.strictEqual(
             defFormat(["Z", "/", "ZZ"])(Date.UTC(2021, 0), true),
-            "+00:00/Z"
+            "-00:00/Z"
         );
         assert.strictEqual(defFormat(["\\yyyy"])(0), "yyyy");
     });

@@ -10,4 +10,42 @@ describe("datetime", () => {
             [true, false, true, false, true, false, true, false, true, false]
         );
     });
+
+    it("week number", () => {
+        (<[string, number][]>[
+            // start on mon & leap
+            ["2024-01-01", 1],
+            ["2024-03-03", 9],
+            ["2024-03-04", 10],
+            // start on tue
+            ["2019-01-06", 1],
+            ["2019-01-07", 2],
+            // start on wed & leap year
+            ["2020-01-01", 1],
+            ["2020-03-01", 9],
+            ["2020-03-02", 10],
+            ["2020-12-31", 53],
+            // start on thur
+            ["2015-01-01", 1],
+            ["2015-01-04", 1],
+            ["2015-01-05", 2],
+            // start on fri & prev. leap
+            ["2021-01-01", 53],
+            ["2021-01-03", 53],
+            ["2021-01-04", 1],
+            // start on sat
+            ["2011-01-01", 52],
+            ["2011-01-02", 52],
+            ["2011-01-03", 1],
+            // start on sun & leap
+            ["2012-01-01", 52],
+            ["2012-01-02", 1],
+        ]).forEach(([date, week]) =>
+            assert.strictEqual(
+                dateTime(Date.parse(date)).weekInYear(),
+                week,
+                date
+            )
+        );
+    });
 });

@@ -1,5 +1,6 @@
 import type { ICompare, ICopy, IEqualsDelta, IEquiv } from "@thi.ng/api";
-import { DAYS_IN_MONTH, Precision } from "./api";
+import type { Precision } from "./api";
+import { daysInMonth, isLeapYear, mapWeekday } from "./utils";
 
 export const dateTime = (epoch?: DateTime | Date | number, prec?: Precision) =>
     new DateTime(epoch, prec);
@@ -13,7 +14,8 @@ export class DateTime
         ICopy<DateTime>,
         ICompare<DateTime | Date | number>,
         IEquiv,
-        IEqualsDelta<DateTime | Date | number> {
+        IEqualsDelta<DateTime | Date | number>
+{
     t: number;
     s: number;
     m: number;
@@ -62,8 +64,33 @@ export class DateTime
     }
 
     daysInMonth() {
-        const days = DAYS_IN_MONTH[this.M];
-        return days + (this.M === 1 && this.isLeapYear() ? 1 : 0);
+        return daysInMonth(this.M, this.isLeapYear());
+    }
+
+    dayInYear() {
+        let day = 0;
+        const isLeap = this.isLeapYear();
+        for (let i = 0; i < this.M; i++) day += daysInMonth(i, isLeap);
+        return day + this.d;
+    }
+
+    /**
+     * Returns week number according to ISO8601.
+     *
+     * @remarks
+     * Reference:
+     * https://en.wikipedia.org/wiki/Week#The_ISO_week_date_system
+     *
+     */
+    weekInYear() {
+        const start = mapWeekday(new Date(Date.UTC(this.y, 0, 1)).getDay());
+        if (!this.M) {
+            if (start === 5 && this.d < 4) return 53;
+            if (start === 6 && this.d < 3) return 52 + ~~isLeapYear(this.y - 1);
+            if (start === 7 && this.d < 2) return 52;
+        }
+        const offset = (start < 5 ? 8 : 15) - start;
+        return Math.ceil((this.dayInYear() - offset) / 7 + 1);
     }
 
     /**
@@ -71,7 +98,7 @@ export class DateTime
      * multiples of 400.
      */
     isLeapYear() {
-        return !(this.y % 4) && (!!(this.y % 100) || !(this.y % 400));
+        return isLeapYear(this.y);
     }
 
     incMillisecond() {
