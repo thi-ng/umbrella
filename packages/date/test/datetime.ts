@@ -11,6 +11,26 @@ describe("datetime", () => {
         );
     });
 
+    it("day in year", () => {
+        (<[string, number][]>[
+            ["2020-01-01", 1],
+            ["2021-01-01", 1],
+            ["2020-02-28", 31 + 28],
+            ["2020-02-29", 31 + 29],
+            ["2020-03-01", 31 + 29 + 1],
+            ["2021-02-28", 31 + 28],
+            ["2021-03-01", 31 + 28 + 1],
+            ["2020-12-31", 366],
+            ["2021-12-31", 365],
+        ]).forEach(([date, day]) =>
+            assert.strictEqual(
+                dateTime(Date.parse(date)).dayInYear(),
+                day,
+                date
+            )
+        );
+    });
+
     it("week number", () => {
         (<[string, number][]>[
             // start on mon & leap

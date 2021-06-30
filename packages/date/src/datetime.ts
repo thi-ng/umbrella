@@ -1,5 +1,5 @@
 import type { ICompare, ICopy, IEqualsDelta, IEquiv } from "@thi.ng/api";
-import type { Precision } from "./api";
+import { DAYS_IN_MONTH_OFFSET, Precision } from "./api";
 import { daysInMonth, isLeapYear, mapWeekday } from "./utils";
 
 export const dateTime = (epoch?: DateTime | Date | number, prec?: Precision) =>
@@ -64,14 +64,15 @@ export class DateTime
     }
 
     daysInMonth() {
-        return daysInMonth(this.M, this.isLeapYear());
+        return daysInMonth(this.y, this.M);
     }
 
     dayInYear() {
-        let day = 0;
-        const isLeap = this.isLeapYear();
-        for (let i = 0; i < this.M; i++) day += daysInMonth(i, isLeap);
-        return day + this.d;
+        return (
+            DAYS_IN_MONTH_OFFSET[this.M] +
+            this.d +
+            ~~(this.M > 1 && this.isLeapYear())
+        );
     }
 
     /**

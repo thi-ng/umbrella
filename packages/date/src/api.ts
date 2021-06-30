@@ -34,6 +34,13 @@ export const YEAR = 365.25 * DAY;
  */
 export const DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
+/**
+ * LUT of day-in-year values for 1st of each month (non-leap year)
+ */
+export const DAYS_IN_MONTH_OFFSET = [
+    0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334,
+];
+
 export interface Locale {
     /**
      * Names of months
