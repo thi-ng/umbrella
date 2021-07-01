@@ -40,7 +40,7 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
-        "assemblyscript": "0.19.4"
+        "assemblyscript": "0.19.5"
     },
     "dependencies": {
         "@thi.ng/transducers-binary": "^0.6.20"
