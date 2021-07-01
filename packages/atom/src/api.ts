@@ -1,5 +1,4 @@
 import type {
-    DeepPath,
     FnO,
     IClear,
     IDeref,
@@ -16,13 +15,11 @@ import type {
     Path4,
     Path5,
     Path6,
-    Path7,
-    Path8,
     PathVal,
     Predicate,
 } from "@thi.ng/api";
 
-export type SwapFn<A, B> = FnO<A, B>;
+export type SwapFn<A, B = A> = FnO<A, B>;
 
 export interface ReadonlyAtom<T> extends IDeref<T>, IRelease, IWatch<T> {}
 
@@ -47,18 +44,18 @@ export interface IReset<T> {
         path: Path6<T, A, B, C, D, E, F>,
         val: PathVal<T, [A, B, C, D, E, F]>
     ): T;
-    resetIn<A, B, C, D, E, F, G>(
-        path: Path7<T, A, B, C, D, E, F, G>,
-        val: PathVal<T, [A, B, C, D, E, F, G]>
-    ): T;
-    resetIn<A, B, C, D, E, F, G, H>(
-        path: Path8<T, A, B, C, D, E, F, G, H>,
-        val: PathVal<T, [A, B, C, D, E, F, G, H]>
-    ): T;
-    resetIn<A, B, C, D, E, F, G, H>(
-        path: DeepPath<T, A, B, C, D, E, F, G, H>,
-        val: any
-    ): T;
+    // resetIn<A, B, C, D, E, F, G>(
+    //     path: Path7<T, A, B, C, D, E, F, G>,
+    //     val: PathVal<T, [A, B, C, D, E, F, G]>
+    // ): T;
+    // resetIn<A, B, C, D, E, F, G, H>(
+    //     path: Path8<T, A, B, C, D, E, F, G, H>,
+    //     val: PathVal<T, [A, B, C, D, E, F, G, H]>
+    // ): T;
+    // resetIn<A, B, C, D, E, F, G, H>(
+    //     path: DeepPath<T, A, B, C, D, E, F, G, H>,
+    //     val: any
+    // ): T;
 
     resetInUnsafe(path: Path, val: any): T;
 }
@@ -100,27 +97,27 @@ export interface ISwap<T> {
         >,
         ...args: any[]
     ): T;
-    swapIn<A, B, C, D, E, F, G>(
-        path: Path7<T, A, B, C, D, E, F, G>,
-        fn: SwapFn<
-            OptPathVal<T, [A, B, C, D, E, F, G]>,
-            PathVal<T, [A, B, C, D, E, F, G]>
-        >,
-        ...args: any[]
-    ): T;
-    swapIn<A, B, C, D, E, F, G, H>(
-        path: Path8<T, A, B, C, D, E, F, G, H>,
-        fn: SwapFn<
-            OptPathVal<T, [A, B, C, D, E, F, G, H]>,
-            PathVal<T, [A, B, C, D, E, F, G, H]>
-        >,
-        ...args: any[]
-    ): T;
-    swapIn<A, B, C, D, E, F, G, H>(
-        path: DeepPath<T, A, B, C, D, E, F, G, H>,
-        fn: SwapFn<any, any>,
-        ...args: any[]
-    ): T;
+    // swapIn<A, B, C, D, E, F, G>(
+    //     path: Path7<T, A, B, C, D, E, F, G>,
+    //     fn: SwapFn<
+    //         OptPathVal<T, [A, B, C, D, E, F, G]>,
+    //         PathVal<T, [A, B, C, D, E, F, G]>
+    //     >,
+    //     ...args: any[]
+    // ): T;
+    // swapIn<A, B, C, D, E, F, G, H>(
+    //     path: Path8<T, A, B, C, D, E, F, G, H>,
+    //     fn: SwapFn<
+    //         OptPathVal<T, [A, B, C, D, E, F, G, H]>,
+    //         PathVal<T, [A, B, C, D, E, F, G, H]>
+    //     >,
+    //     ...args: any[]
+    // ): T;
+    // swapIn<A, B, C, D, E, F, G, H>(
+    //     path: DeepPath<T, A, B, C, D, E, F, G, H>,
+    //     fn: SwapFn<any, any>,
+    //     ...args: any[]
+    // ): T;
 
     swapInUnsafe(path: Path, fn: SwapFn<any, any>, ...args: any[]): T;
 }
