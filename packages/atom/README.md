@@ -11,6 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Status](#status)
+- [Temporary restrictions](#temporary-restrictions)
 - [Breaking changes](#breaking-changes)
   - [4.0.0](#400)
     - [Type checked accessors](#type-checked-accessors)
@@ -56,6 +57,10 @@ reactive updates from performed state changes.
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Batom%5D+in%3Atitle)
+
+## Temporary restrictions
+
+Due to a change of inferencing rules in TypeScript 4.3 with regards to tuples, the `IReset` and `ISwap` interface definitions in this package had to be updated and removed support for lookup path lengths > 6. This change is expected to be temporary only and is tracked by [#303](https://github.com/thi-ng/umbrella/issues/303).
 
 ## Breaking changes
 

@@ -31,6 +31,10 @@ reactive updates from performed state changes.
 
 ${status}
 
+## Temporary restrictions
+
+Due to a change of inferencing rules in TypeScript 4.3 with regards to tuples, the `IReset` and `ISwap` interface definitions in this package had to be updated and removed support for lookup path lengths > 6. This change is expected to be temporary only and is tracked by [#303](https://github.com/thi-ng/umbrella/issues/303).
+
 ## Breaking changes
 
 ### 4.0.0
