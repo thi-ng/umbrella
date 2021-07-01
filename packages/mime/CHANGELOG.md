@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/mime@0.5.2...@thi.ng/mime@0.5.3) (2021-07-01)
+
+**Note:** Version bump only for package @thi.ng/mime
+
+
+
+
+
 ## [0.5.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/mime@0.5.1...@thi.ng/mime@0.5.2) (2021-06-08)
 
 **Note:** Version bump only for package @thi.ng/mime

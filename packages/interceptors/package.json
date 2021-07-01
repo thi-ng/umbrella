@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/interceptors",
-    "version": "2.2.47",
+    "version": "2.2.48",
     "description": "Interceptor based event bus, side effect & immutable state handling",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,11 +38,11 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.5",
-        "@thi.ng/atom": "^4.1.36",
-        "@thi.ng/checks": "^2.9.7",
-        "@thi.ng/errors": "^1.3.1",
-        "@thi.ng/paths": "^4.2.8"
+        "@thi.ng/api": "^7.1.6",
+        "@thi.ng/atom": "^4.1.37",
+        "@thi.ng/checks": "^2.9.8",
+        "@thi.ng/errors": "^1.3.2",
+        "@thi.ng/paths": "^4.2.9"
     },
     "files": [
         "*.js",

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.27](https://github.com/thi-ng/umbrella/compare/@thi.ng/csv@0.1.26...@thi.ng/csv@0.1.27) (2021-07-01)
+
+**Note:** Version bump only for package @thi.ng/csv
+
+
+
+
+
 ## [0.1.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/csv@0.1.25...@thi.ng/csv@0.1.26) (2021-06-08)
 
 **Note:** Version bump only for package @thi.ng/csv

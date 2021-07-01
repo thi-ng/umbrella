@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dual-algebra",
-    "version": "0.1.13",
+    "version": "0.1.14",
     "description": "Multivariate dual number algebra, automatic differentiation",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,7 +38,7 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.5"
+        "@thi.ng/api": "^7.1.6"
     },
     "files": [
         "*.js",

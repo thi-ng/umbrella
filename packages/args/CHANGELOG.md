@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/args@0.6.0...@thi.ng/args@0.7.0) (2021-07-01)
+
+
+### Features
+
+* **args:** add showGroupNames option ([6917111](https://github.com/thi-ng/umbrella/commit/6917111aa6f019cbc4622a30be65c7f43cf995f9))
+
+
+
+
+
 # [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/args@0.5.1...@thi.ng/args@0.6.0) (2021-06-08)
 
 

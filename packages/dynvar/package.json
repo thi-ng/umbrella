@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dynvar",
-    "version": "0.1.36",
+    "version": "0.1.37",
     "description": "Dynamically scoped variable bindings",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,7 +38,7 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.5"
+        "@thi.ng/api": "^7.1.6"
     },
     "files": [
         "*.js",

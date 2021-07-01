@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/adapt-dpi@1.0.20...@thi.ng/adapt-dpi@1.0.21) (2021-07-01)
+
+**Note:** Version bump only for package @thi.ng/adapt-dpi
+
+
+
+
+
 ## [1.0.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/adapt-dpi@1.0.19...@thi.ng/adapt-dpi@1.0.20) (2021-06-08)
 
 **Note:** Version bump only for package @thi.ng/adapt-dpi

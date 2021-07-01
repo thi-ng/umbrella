@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.65](https://github.com/thi-ng/umbrella/compare/@thi.ng/bencode@0.3.64...@thi.ng/bencode@0.3.65) (2021-07-01)
+
+**Note:** Version bump only for package @thi.ng/bencode
+
+
+
+
+
 ## [0.3.64](https://github.com/thi-ng/umbrella/compare/@thi.ng/bencode@0.3.63...@thi.ng/bencode@0.3.64) (2021-06-08)
 
 **Note:** Version bump only for package @thi.ng/bencode

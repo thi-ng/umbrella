@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/date@0.6.0...@thi.ng/date@0.7.0) (2021-07-01)
+
+
+### Bug Fixes
+
+* **date:** fix UTC handling in formatters ([cab1434](https://github.com/thi-ng/umbrella/commit/cab143429933b1575ec7194251dc5d5a909a4ca7))
+* **date:** flip sign in TZ offset formatter (`Z`) ([dc536cb](https://github.com/thi-ng/umbrella/commit/dc536cbc72512789d0c106831add830236c8fee0))
+
+
+### Features
+
+* **date:** add new DateTime methods ([a0123cb](https://github.com/thi-ng/umbrella/commit/a0123cbfd0d553fc34a8f40c0289fcf66bfa2ded))
+* **date:** add/update epoch rounding fns ([ec3033e](https://github.com/thi-ng/umbrella/commit/ec3033e785428087789803770fd598551f1c5b02))
+* **date:** add/update locales, add separators ([61f34e7](https://github.com/thi-ng/umbrella/commit/61f34e74bbd55fe21e66d730e17a9cfd548989b4))
+* **date:** update/extend locales, format prims ([089a9d4](https://github.com/thi-ng/umbrella/commit/089a9d40224ff007392daefbf111191deeb72c7c))
+
+
+### Performance Improvements
+
+* **date:** refactor dayInYear() as O(1) ([2c2d684](https://github.com/thi-ng/umbrella/commit/2c2d6846f3360c28312712dda358b457151e58e2))
+
+
+
+
+
 # [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/date@0.5.0...@thi.ng/date@0.6.0) (2021-06-08)
 
 

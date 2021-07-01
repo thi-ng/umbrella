@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/bench",
-    "version": "2.1.1",
+    "version": "2.1.2",
     "description": "Benchmarking utilities w/ various statistics & formatters (CSV, Markdown etc.)",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,7 +38,7 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.5"
+        "@thi.ng/api": "^7.1.6"
     },
     "files": [
         "*.js",
