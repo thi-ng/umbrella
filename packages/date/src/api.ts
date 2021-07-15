@@ -92,6 +92,37 @@ export interface Locale {
      * @defaultValue ":"
      */
     sepHM: string;
+    /**
+     * Singular & plural versions of various date/time units.
+     */
+    units: Record<Precision, LocaleUnit>;
+    /**
+     * Translated version of "less than".
+     */
+    less: string;
+    /**
+     * Template for past tense (`%s` will be replaced with result).
+     */
+    past: string;
+    /**
+     * Translated version of "now".
+     */
+    now: string;
+    /**
+     * Template for future tense (`%s` will be replaced with result).
+     */
+    future: string;
+}
+
+export interface LocaleUnit {
+    /**
+     * Singular
+     */
+    s: string;
+    /**
+     * Plural
+     */
+    p: string;
 }
 
 /**

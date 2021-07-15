@@ -31,4 +31,17 @@ export const FR_LONG: LocaleSpec = {
     sepDM: " ",
     sepMY: " ",
     sepHM: "h ",
+    units: {
+        y: { s: "année", p: "ans" },
+        M: { s: "mois", p: "mois" },
+        d: { s: "jour", p: "jours" },
+        h: { s: "heure", p: "heures" },
+        m: { s: "minute", p: "minutes" },
+        s: { s: "seconde", p: "secondes" },
+        t: { s: "milliseconde", p: "millisecondes" },
+    },
+    less: "moins de",
+    past: "il y a %s",
+    now: "à présent",
+    future: "en %s",
 };

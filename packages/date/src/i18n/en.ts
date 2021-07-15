@@ -23,6 +23,19 @@ export const EN_SHORT: LocaleSpec = {
     sepHM: ".",
     date: ["dd", "/DM", "MM", "/MY", "yyyy"],
     time: ["h", "/HM", "mm", " ", "a"],
+    units: {
+        y: { s: "y", p: "y" },
+        M: { s: "m", p: "m" },
+        d: { s: "d", p: "d" },
+        h: { s: "h", p: "h" },
+        m: { s: "min", p: "min" },
+        s: { s: "s", p: "s" },
+        t: { s: "ms", p: "ms" },
+    },
+    less: "<",
+    past: "%s ago",
+    now: "just now",
+    future: "in %s",
 };
 
 /**
@@ -57,4 +70,17 @@ export const EN_LONG: LocaleSpec = {
     sepMY: " ",
     sepHM: ".",
     time: ["h", "/HM", "mm", " ", "a"],
+    units: {
+        y: { s: "year", p: "years" },
+        M: { s: "month", p: "months" },
+        d: { s: "day", p: "days" },
+        h: { s: "hour", p: "hours" },
+        m: { s: "minute", p: "minutes" },
+        s: { s: "second", p: "seconds" },
+        t: { s: "millisecond", p: "milliseconds" },
+    },
+    less: "less than a",
+    past: "%s ago",
+    now: "just now",
+    future: "in %s",
 };

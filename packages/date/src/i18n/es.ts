@@ -4,29 +4,6 @@ import type { LocaleSpec } from "../api";
  * @remarks
  * Reference: https://en.wikipedia.org/wiki/Date_and_time_notation_in_Spain
  */
-export const ES_SHORT: LocaleSpec = {
-    months: [
-        "ene",
-        "feb",
-        "mar",
-        "abr",
-        "may",
-        "jun",
-        "jul",
-        "ago",
-        "sep",
-        "oct",
-        "nov",
-        "dic",
-    ],
-    days: ["D", "L", "M", "X", "J", "V", "S"],
-    date: ["d", "/DM", "MM", "/MY", "yyyy"],
-};
-
-/**
- * @remarks
- * Reference: https://en.wikipedia.org/wiki/Date_and_time_notation_in_Spain
- */
 export const ES_LONG: LocaleSpec = {
     months: [
         "enero",
@@ -53,4 +30,17 @@ export const ES_LONG: LocaleSpec = {
     ],
     sepDM: " ",
     sepMY: " ",
+    units: {
+        y: { s: "año", p: "años" },
+        M: { s: "mes", p: "meses" },
+        d: { s: "día", p: "días" },
+        h: { s: "hora", p: "horas" },
+        m: { s: "minuto", p: "minutos" },
+        s: { s: "segundo", p: "segundos" },
+        t: { s: "millisegundo", p: "millisegundos" },
+    },
+    less: "menos de",
+    past: "hace %s",
+    now: "ahora",
+    future: "en %s",
 };
