@@ -1,13 +1,13 @@
-import type { FnN } from "@thi.ng/api";
-import { DAY, HOUR, MINUTE, SECOND } from "./api";
+import { DAY, HOUR, MINUTE, RoundingFn, SECOND } from "./api";
+import { ensureDate } from "./utils";
 
 /**
  * Rounds down `epoch` to minute precision.
  *
  * @param epoch
  */
-export const floorSecond: FnN = (epoch) => {
-    const d = new Date(epoch);
+export const floorSecond: RoundingFn = (epoch) => {
+    const d = ensureDate(epoch);
     return Date.UTC(
         d.getUTCFullYear(),
         d.getUTCMonth(),
@@ -23,8 +23,8 @@ export const floorSecond: FnN = (epoch) => {
  *
  * @param epoch
  */
-export const floorMinute: FnN = (epoch) => {
-    const d = new Date(epoch);
+export const floorMinute: RoundingFn = (epoch) => {
+    const d = ensureDate(epoch);
     return Date.UTC(
         d.getUTCFullYear(),
         d.getUTCMonth(),
@@ -39,8 +39,8 @@ export const floorMinute: FnN = (epoch) => {
  *
  * @param epoch
  */
-export const floorHour: FnN = (epoch) => {
-    const d = new Date(epoch);
+export const floorHour: RoundingFn = (epoch) => {
+    const d = ensureDate(epoch);
     return Date.UTC(
         d.getUTCFullYear(),
         d.getUTCMonth(),
@@ -54,8 +54,8 @@ export const floorHour: FnN = (epoch) => {
  *
  * @param epoch
  */
-export const floorDay: FnN = (epoch) => {
-    const d = new Date(epoch);
+export const floorDay: RoundingFn = (epoch) => {
+    const d = ensureDate(epoch);
     return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
 };
 
@@ -64,8 +64,8 @@ export const floorDay: FnN = (epoch) => {
  *
  * @param epoch
  */
-export const floorMonth: FnN = (epoch) => {
-    const d = new Date(epoch);
+export const floorMonth: RoundingFn = (epoch) => {
+    const d = ensureDate(epoch);
     return Date.UTC(d.getUTCFullYear(), d.getUTCMonth());
 };
 
@@ -74,8 +74,8 @@ export const floorMonth: FnN = (epoch) => {
  *
  * @param epoch
  */
-export const floorYear: FnN = (epoch) => {
-    const d = new Date(epoch);
+export const floorYear: RoundingFn = (epoch) => {
+    const d = ensureDate(epoch);
     return Date.UTC(d.getUTCFullYear(), 0);
 };
 
@@ -84,36 +84,40 @@ export const floorYear: FnN = (epoch) => {
  *
  * @param epoch
  */
-export const ceilSecond: FnN = (epoch) => floorSecond(epoch + SECOND);
+export const ceilSecond: RoundingFn = (epoch) =>
+    floorSecond(ensureDate(epoch).getTime() + SECOND);
 
 /**
  * Rounds up `epoch` to minute precision.
  *
  * @param epoch
  */
-export const ceilMinute: FnN = (epoch) => floorMinute(epoch + MINUTE);
+export const ceilMinute: RoundingFn = (epoch) =>
+    floorMinute(ensureDate(epoch).getTime() + MINUTE);
 
 /**
  * Rounds up `epoch` to hour precision.
  *
  * @param epoch
  */
-export const ceilHour: FnN = (epoch) => floorHour(epoch + HOUR);
+export const ceilHour: RoundingFn = (epoch) =>
+    floorHour(ensureDate(epoch).getTime() + HOUR);
 
 /**
  * Rounds up `epoch` to day precision
  *
  * @param epoch
  */
-export const ceilDay: FnN = (epoch) => floorDay(epoch + DAY);
+export const ceilDay: RoundingFn = (epoch) =>
+    floorDay(ensureDate(epoch).getTime() + DAY);
 
 /**
  * Rounds up `epoch` to month precision
  *
  * @param epoch
  */
-export const ceilMonth: FnN = (epoch) => {
-    const d = new Date(epoch);
+export const ceilMonth: RoundingFn = (epoch) => {
+    const d = ensureDate(epoch);
     let y = d.getUTCFullYear();
     let m = d.getUTCMonth() + 1;
     m > 11 && y++;
@@ -125,7 +129,7 @@ export const ceilMonth: FnN = (epoch) => {
  *
  * @param epoch
  */
-export const ceilYear: FnN = (epoch) => {
-    const d = new Date(epoch);
+export const ceilYear: RoundingFn = (epoch) => {
+    const d = ensureDate(epoch);
     return Date.UTC(d.getUTCFullYear() + 1, 0);
 };

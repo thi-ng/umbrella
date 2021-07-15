@@ -1,4 +1,6 @@
-import type { Fn2 } from "@thi.ng/api";
+import type { Fn, Fn2 } from "@thi.ng/api";
+import type { DateTime } from "./datetime";
+
 /**
  * Days per month LUT (non-leap year)
  */
@@ -104,14 +106,32 @@ export interface IEpoch {
 }
 
 export interface EpochIteratorConstructor {
-    ([from, to]: (number | IEpoch)[]): EpochIterator;
-    (from: number | IEpoch, to: number | IEpoch): EpochIterator;
+    ([from, to]: MaybeDate[]): EpochIterator;
+    (from: MaybeDate, to: MaybeDate): EpochIterator;
 }
 
 export type EpochIterator = IterableIterator<number>;
 
+/**
+ * DateTime precision/resolution IDs:
+ *
+ * - y : year
+ * - M : month
+ * - d : day
+ * - h : hour
+ * - m : minute
+ * - s : second
+ * - t : millisecond
+ */
 export type Precision = "y" | "M" | "d" | "h" | "m" | "s" | "t";
 
-export type Period = Precision | "w";
+export type Period = Precision | "w" | "q";
 
 export type FormatFn = Fn2<Date, boolean, string>;
+
+export type MaybeDate = DateTime | Date | number | string;
+
+/**
+ * Date rounding function for {@link MaybeDate} inputs.
+ */
+export type RoundingFn = Fn<MaybeDate, number>;

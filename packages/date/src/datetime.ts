@@ -1,8 +1,20 @@
 import type { ICompare, ICopy, IEqualsDelta, IEquiv } from "@thi.ng/api";
-import { DAYS_IN_MONTH_OFFSET, Precision } from "./api";
-import { daysInMonth, isLeapYear, mapWeekday } from "./utils";
+import { isNumber, isString } from "@thi.ng/checks";
+import { DAY, HOUR, MaybeDate, MINUTE, Precision, SECOND } from "./api";
+import {
+    dayInYear,
+    daysInMonth,
+    ensureDate,
+    ensureEpoch,
+    isLeapYear,
+    precisionToID,
+    weekInYear,
+    Z2,
+    Z3,
+    Z4,
+} from "./utils";
 
-export const dateTime = (epoch?: DateTime | Date | number, prec?: Precision) =>
+export const dateTime = (epoch?: MaybeDate, prec?: Precision) =>
     new DateTime(epoch, prec);
 
 /**
@@ -12,9 +24,9 @@ export const dateTime = (epoch?: DateTime | Date | number, prec?: Precision) =>
 export class DateTime
     implements
         ICopy<DateTime>,
-        ICompare<DateTime | Date | number>,
+        ICompare<MaybeDate>,
         IEquiv,
-        IEqualsDelta<DateTime | Date | number>
+        IEqualsDelta<MaybeDate>
 {
     t: number;
     s: number;
@@ -24,12 +36,9 @@ export class DateTime
     M: number;
     y: number;
 
-    constructor(
-        epoch: DateTime | Date | number = Date.now(),
-        prec: Precision = "t"
-    ) {
+    constructor(epoch: MaybeDate = Date.now(), prec: Precision = "t") {
         const x = ensureDate(epoch);
-        const id = "yMdhmst".indexOf(prec);
+        const id = precisionToID(prec);
         this.y = x.getUTCFullYear();
         this.M = id >= 1 ? x.getUTCMonth() : 0;
         this.d = id >= 2 ? x.getUTCDate() : 1;
@@ -39,27 +48,70 @@ export class DateTime
         this.t = id >= 6 ? x.getUTCMilliseconds() : 0;
     }
 
+    set(d: MaybeDate) {
+        const $d = ensureDateTime(d);
+        this.y = $d.y;
+        this.M = $d.M;
+        this.d = $d.d;
+        this.h = $d.h;
+        this.m = $d.m;
+        this.s = $d.s;
+        this.t = $d.t;
+        return this;
+    }
+
     copy() {
-        return new DateTime(this.getTime());
+        return new DateTime(this.toISOString());
     }
 
     getTime() {
         return Date.UTC(this.y, this.M, this.d, this.h, this.m, this.s, this.t);
     }
 
-    compare(d: DateTime | Date | number) {
-        return this.getTime() - ensureDate(d).getTime();
+    withPrecision(prec: Precision) {
+        return new DateTime(this, prec);
+    }
+
+    setPrecision(prec: Precision) {
+        const precID = precisionToID(prec);
+        precID < 6 && (this.t = 0);
+        precID < 5 && (this.s = 0);
+        precID < 4 && (this.m = 0);
+        precID < 3 && (this.h = 0);
+        precID < 2 && (this.d = 1);
+        precID < 1 && (this.M = 0);
+        return this;
+    }
+
+    compare(d: MaybeDate) {
+        return this.getTime() - ensureEpoch(d);
+    }
+
+    /**
+     * Returns true if this instance is before the given date, i.e. if
+     * `this.compare(d) < 0`.
+     *
+     * @param d
+     */
+    isBefore(d: MaybeDate) {
+        return this.compare(d) < 0;
+    }
+
+    /**
+     * Returns true if this instance is before the given date, i.e. if
+     * `this.compare(d) > 0`.
+     *
+     * @param d
+     */
+    isAfter(d: MaybeDate) {
+        return this.compare(d) > 0;
     }
 
     equiv(o: any) {
-        return o instanceof DateTime ||
-            o instanceof Date ||
-            typeof o === "number"
-            ? this.compare(o) === 0
-            : false;
+        return maybeIsDate(o) ? this.compare(o) === 0 : false;
     }
 
-    eqDelta(d: DateTime | Date | number, eps = 0) {
+    eqDelta(d: MaybeDate, eps = 0) {
         return Math.abs(this.getTime() - ensureDate(d).getTime()) <= eps;
     }
 
@@ -68,11 +120,7 @@ export class DateTime
     }
 
     dayInYear() {
-        return (
-            DAYS_IN_MONTH_OFFSET[this.M] +
-            this.d +
-            ~~(this.M > 1 && this.isLeapYear())
-        );
+        return dayInYear(this.y, this.M, this.d);
     }
 
     /**
@@ -84,14 +132,7 @@ export class DateTime
      *
      */
     weekInYear() {
-        const start = mapWeekday(new Date(Date.UTC(this.y, 0, 1)).getDay());
-        if (!this.M) {
-            if (start === 5 && this.d < 4) return 53;
-            if (start === 6 && this.d < 3) return 52 + ~~isLeapYear(this.y - 1);
-            if (start === 7 && this.d < 2) return 52;
-        }
-        const offset = (start < 5 ? 8 : 15) - start;
-        return Math.ceil((this.dayInYear() - offset) / 7 + 1);
+        return weekInYear(this.y, this.M, this.d);
     }
 
     /**
@@ -189,7 +230,7 @@ export class DateTime
             this.d -= max;
             this.incMonth();
         }
-        return this.d;
+        return this.weekInYear();
     }
 
     decWeek() {
@@ -198,7 +239,7 @@ export class DateTime
             this.decMonth();
             this.d += this.daysInMonth();
         }
-        return this.d;
+        return this.weekInYear();
     }
 
     incMonth() {
@@ -227,8 +268,31 @@ export class DateTime
         return --this.y;
     }
 
+    add(x: number, prec: Precision) {
+        const res = this.copy();
+        const precID = precisionToID(prec);
+        if (precID >= 2) {
+            res.set(
+                res.getTime() + x * [DAY, HOUR, MINUTE, SECOND, 1][precID - 2]
+            );
+        } else if (prec === "M") {
+            const y = (x / 12) | 0;
+            res.y += y;
+            x -= y * 12;
+            const m = res.M + x;
+            m > 11 && res.y++;
+            m < 0 && res.y--;
+            res.M = m % 12;
+            if (res.M < 0) res.M += 12;
+            res.d = Math.min(res.d, res.daysInMonth());
+        } else if (prec === "y") {
+            res.y += x;
+        }
+        return res;
+    }
+
     toDate() {
-        return new Date(this.getTime());
+        return new Date(this.toISOString());
     }
 
     toJSON() {
@@ -240,13 +304,28 @@ export class DateTime
     }
 
     toISOString() {
-        return this.toDate().toISOString();
+        return `${Z4(this.y)}-${Z2(this.M + 1)}-${Z2(this.d)}T${Z2(
+            this.h
+        )}:${Z2(this.m)}:${Z2(this.s)}.${Z3(this.t)}Z`;
+    }
+
+    valueOf() {
+        return this.getTime();
     }
 }
 
-export const ensureDate = (x: number | DateTime | Date) =>
-    typeof x === "number"
-        ? new Date(x)
-        : x instanceof DateTime
-        ? x.toDate()
-        : x;
+/**
+ * Coerces `x` to a {@link DateTime} instance.
+ *
+ * @param x
+ */
+export const ensureDateTime = (x: MaybeDate, prec: Precision = "t") =>
+    x instanceof DateTime ? x : new DateTime(x, prec);
+
+/**
+ * Returns true if `x` is a {@link MaybeDate}.
+ *
+ * @param x
+ */
+export const maybeIsDate = (x: any) =>
+    x instanceof DateTime || x instanceof Date || isNumber(x) || isString(x);
