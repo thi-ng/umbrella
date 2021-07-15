@@ -1,3 +1,4 @@
+import type { Fn0 } from "@thi.ng/api";
 import type { Locale, LocaleSpec } from "./api";
 import { EN_SHORT } from "./i18n/en";
 
@@ -17,5 +18,19 @@ export const setLocale = (locale: LocaleSpec): Locale =>
         time: ["H", "/HM", "mm"],
         ...locale,
     });
+
+/**
+ * Executes given `fn` with temporarily active `locale`. Returns result of `fn`.
+ *
+ * @param locale
+ * @param fn
+ */
+export const withLocale = <T>(locale: LocaleSpec, fn: Fn0<T>) => {
+    const old = LOCALE;
+    setLocale(locale);
+    const res = fn();
+    setLocale(old);
+    return res;
+};
 
 export let LOCALE = setLocale(EN_SHORT);
