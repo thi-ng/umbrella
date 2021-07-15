@@ -1,4 +1,20 @@
 import type { Fn2 } from "@thi.ng/api";
+/**
+ * Days per month LUT (non-leap year)
+ */
+export const DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+/**
+ * LUT of day-in-year values for 1st of each month (non-leap year)
+ */
+export const DAYS_IN_MONTH_OFFSET = [
+    0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334,
+];
+
+/**
+ * There're 97 leap years and 303 normal years per 400 years
+ */
+export const DAYS_IN_400YEARS = 97 * 366 + 303 * 365;
 
 /**
  * Second duration in milliseconds
@@ -21,25 +37,13 @@ export const DAY = 24 * HOUR;
  */
 export const WEEK = 7 * DAY;
 /**
- * Mean month duration (30.4375 days) in milliseconds
+ * Mean year duration (365.2425 days) in milliseconds
  */
-export const MONTH = 30.4375 * DAY;
+export const YEAR = (DAYS_IN_400YEARS / 400) * DAY;
 /**
- * Mean year duration (365.25 days) in milliseconds
+ * Mean month duration (30.436875 days) in milliseconds
  */
-export const YEAR = 365.25 * DAY;
-
-/**
- * Days per month LUT (non-leap year)
- */
-export const DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
-/**
- * LUT of day-in-year values for 1st of each month (non-leap year)
- */
-export const DAYS_IN_MONTH_OFFSET = [
-    0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334,
-];
+export const MONTH = YEAR / 12;
 
 export interface Locale {
     /**
