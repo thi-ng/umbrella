@@ -1,8 +1,7 @@
-import { DAY, FormatFn, HOUR, MINUTE, SECOND } from "./api";
-import { DateTime, ensureDate } from "./datetime";
+import { isFunction, isString } from "@thi.ng/checks";
+import { FormatFn, MaybeDate, MINUTE } from "./api";
 import { LOCALE } from "./i18n";
-
-const Z2 = (x: number) => (x < 10 ? "0" + x : String(x));
+import { ensureDate, weekInYear, Z2 } from "./utils";
 
 export const FORMATTERS: Record<string, FormatFn> = {
     /**
@@ -37,6 +36,14 @@ export const FORMATTERS: Record<string, FormatFn> = {
      * Weekday name, using current {@link LOCALE} (e.g. `Mon`)
      */
     E: (d) => LOCALE.days[d.getDay()],
+    /**
+     * Unpadded ISO week number.
+     */
+    w: (d) => String(weekInYear(d.getFullYear(), d.getMonth(), d.getDate())),
+    /**
+     * Zero-padded 2-digit ISO week number.
+     */
+    ww: (d) => Z2(weekInYear(d.getFullYear(), d.getMonth(), d.getDate())),
     /**
      * Zero-padded 2-digit hour of day (0-23)
      */
@@ -146,19 +153,19 @@ export const FORMATTERS: Record<string, FormatFn> = {
  */
 export const defFormat =
     (fmt: (string | FormatFn)[]) =>
-    (x: DateTime | Date | number, utc = false) => {
+    (x: MaybeDate, utc = false) => {
         let d = ensureDate(x);
         utc && (d = new Date(d.getTime() + d.getTimezoneOffset() * MINUTE));
         return fmt
             .map((x) => {
                 let fmt: FormatFn;
-                return typeof x === "string"
+                return isString(x)
                     ? x.startsWith("\\")
                         ? x.substr(1)
                         : (fmt = FORMATTERS[x])
                         ? fmt(d, utc)
                         : x
-                    : typeof x === "function"
+                    : isFunction(x)
                     ? x(d, utc)
                     : x;
             })
@@ -219,53 +226,10 @@ export const FMT_ISO_SHORT = defFormat(
 );
 
 /**
- * Returns a time formatter for given FPS (frames / second, in [1..1000] range),
- * e.g. `HH:mm:ss:ff`. The returned function takes a single arg (time in
- * milliseconds) and returns formatted string.
- *
- * @remarks
- * The timecode considers days too, but only includes them in the result if the
- * day part is non-zero. The 4 separators between each field can be customized
- * via 2nd arg (default: all `:`).
- *
- * @example
- * ```ts
- * a = defTimecode(30);
- * a(HOUR + 2*MINUTE + 3*SECOND + 4*1000/30)
- * // "01:02:03:04"
- *
- * a(DAY);
- * // "01:00:00:00:00"
- *
- * b = defTimecode(30, ["d ", "h ", "' ", '" ']);
- * b(Day + HOUR + 2*MINUTE + 3*SECOND + 999)
- * // "01d 01h 02' 03" 29"
- * ```
- *
- * @param fps
- * @param sep
+ * ISO8601 format preset (with millisecond term), e.g.
+ * `2020-09-19T17:08:01.123Z`
  */
-export const defTimecode = (fps: number, sep: ArrayLike<string> = "::::") => {
-    const frame = 1000 / fps;
-    return (t: number) => {
-        const d = (t / DAY) | 0;
-        t -= d * DAY;
-        const h = (t / HOUR) | 0;
-        t -= h * HOUR;
-        const m = (t / MINUTE) | 0;
-        t -= m * MINUTE;
-        const s = (t / SECOND) | 0;
-        t -= s * SECOND;
-        const parts = [
-            Z2(h),
-            sep[1],
-            Z2(m),
-            sep[2],
-            Z2(s),
-            sep[3],
-            Z2((t / frame) | 0),
-        ];
-        d > 0 && parts.unshift(`${Z2(d)}${sep[0]}`);
-        return parts.join("");
-    };
-};
+// prettier-ignore
+export const FMT_ISO = defFormat(
+    ["yyyy", "-", "MM", "-", "dd", "T", "HH", ":", "mm", ":", "ss", ".", "S", "ZZ"]
+);
