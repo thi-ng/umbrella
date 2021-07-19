@@ -1,6 +1,8 @@
 import type { ICompare, ICopy, IEqualsDelta, IEquiv } from "@thi.ng/api";
 import { isNumber, isString } from "@thi.ng/checks";
-import { DAY, HOUR, MaybeDate, MINUTE, Precision, SECOND } from "./api";
+import { DAY, HOUR, MaybeDate, MINUTE, Period, Precision, SECOND } from "./api";
+import { defFormat } from "./format";
+import { LOCALE } from "./i18n";
 import {
     dayInYear,
     daysInMonth,
@@ -268,7 +270,9 @@ export class DateTime
         return --this.y;
     }
 
-    add(x: number, prec: Precision) {
+    add(x: number, prec: Period): DateTime {
+        if (prec === "w") return this.add(x * 7, "d");
+        if (prec === "q") return this.add(x * 3, "M");
         const res = this.copy();
         const precID = precisionToID(prec);
         if (precID >= 2) {
@@ -301,6 +305,10 @@ export class DateTime
 
     toString() {
         return this.toDate().toUTCString();
+    }
+
+    toLocaleString() {
+        return defFormat(LOCALE.dateTime)(this, true);
     }
 
     toISOString() {

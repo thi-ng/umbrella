@@ -1,17 +1,17 @@
 import { isFunction, isString } from "@thi.ng/checks";
 import { FormatFn, MaybeDate, MINUTE } from "./api";
 import { LOCALE } from "./i18n";
-import { ensureDate, weekInYear, Z2 } from "./utils";
+import { ensureDate, weekInYear, Z2, Z4 } from "./utils";
 
 export const FORMATTERS: Record<string, FormatFn> = {
     /**
      * Full year (4 digits)
      */
-    yyyy: (d) => String(d.getFullYear()),
+    yyyy: (d) => Z4(d.getFullYear()),
     /**
      * Short year (2 digits, e.g. `2020 % 100` => 20)
      */
-    yy: (d) => String(d.getFullYear() % 100),
+    yy: (d) => Z2(d.getFullYear() % 100),
     /**
      * Month name, using current {@link LOCALE} (e.g. `Feb`)
      */
@@ -37,13 +37,13 @@ export const FORMATTERS: Record<string, FormatFn> = {
      */
     E: (d) => LOCALE.days[d.getDay()],
     /**
+     * Zero-padded 2-digit ISO week number.
+     */
+    ww: (d) => Z2(FORMATTERS.w(d, false)),
+    /**
      * Unpadded ISO week number.
      */
     w: (d) => String(weekInYear(d.getFullYear(), d.getMonth(), d.getDate())),
-    /**
-     * Zero-padded 2-digit ISO week number.
-     */
-    ww: (d) => Z2(weekInYear(d.getFullYear(), d.getMonth(), d.getDate())),
     /**
      * Zero-padded 2-digit hour of day (0-23)
      */
@@ -91,7 +91,6 @@ export const FORMATTERS: Record<string, FormatFn> = {
      */
     A: (d) => String(d.getHours() < 12 ? "AM" : "PM"),
     /**
-     *
      * 12-hour am/pm marker (lowercase)
      */
     a: (d) => String(d.getHours() < 12 ? "am" : "pm"),

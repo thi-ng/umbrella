@@ -8,8 +8,8 @@ import { EN_SHORT } from "./i18n/en";
  *
  * @param locale
  */
-export const setLocale = (locale: LocaleSpec): Locale =>
-    (LOCALE = <Locale>{
+export const setLocale = (locale: LocaleSpec): Locale => {
+    LOCALE = <Locale>{
         sepED: " ",
         sepDM: "/",
         sepMY: "/",
@@ -17,7 +17,11 @@ export const setLocale = (locale: LocaleSpec): Locale =>
         date: ["E", "/ED", "d", "/DM", "MMM", "/MY", "yyyy"],
         time: ["H", "/HM", "mm"],
         ...locale,
-    });
+    };
+    !LOCALE.dateTime &&
+        (LOCALE.dateTime = [...LOCALE.date, ", ", ...LOCALE.time]);
+    return LOCALE;
+};
 
 /**
  * Executes given `fn` with temporarily active `locale`. Returns result of `fn`.

@@ -133,16 +133,7 @@ export const relative = (
     num: number,
     period: Period,
     base: MaybeDate = dateTime()
-) => {
-    if (period === "w") {
-        num *= 7;
-        period = "d";
-    } else if (period === "q") {
-        num *= 3;
-        period = "M";
-    }
-    return dateTime(base).add(num, period);
-};
+) => dateTime(base).add(num, period);
 
 /**
  * Returns the signed difference in milliseconds between given two dates `a` and

@@ -69,6 +69,13 @@ export interface Locale {
      */
     time: string[];
     /**
+     * Default combined date & time format spec for use with {@link defFormat}
+     * and {@link DateTime.toLocaleString()}.
+     *
+     * @defaultValue concatenation of `date` and `time` options
+     */
+    dateTime: string[];
+    /**
      * Separator between day & month.
      *
      * @defaultValue "/"

@@ -1,4 +1,4 @@
-import type { FnN2, FnN3 } from "@thi.ng/api";
+import type { FnN2, FnN3, NumOrString } from "@thi.ng/api";
 import { implementsFunction, isNumber, isString } from "@thi.ng/checks";
 import {
     DAYS_IN_MONTH,
@@ -8,16 +8,19 @@ import {
 } from "./api";
 
 /** @internal */
-export const Z2 = (x: number) => (x < 10 ? "0" + x : String(x));
+export const Z2 = (x: NumOrString) => {
+    let xx = String(x);
+    return xx.length > 1 ? xx : "0" + xx;
+};
 
 /** @internal */
-export const Z3 = (x: number) => {
+export const Z3 = (x: NumOrString) => {
     let xx = String(x);
     return xx.length > 2 ? xx : "000".substr(0, 3 - xx.length) + xx;
 };
 
 /** @internal */
-export const Z4 = (x: number) => {
+export const Z4 = (x: NumOrString) => {
     let xx = String(x);
     return xx.length > 3 ? xx : "0000".substr(0, 4 - xx.length) + xx;
 };
@@ -27,7 +30,7 @@ export const Z4 = (x: number) => {
  *
  * @param x
  */
-export const ensureDate = (x: MaybeDate) =>
+export const ensureDate = (x: MaybeDate): Date =>
     isString(x) || isNumber(x)
         ? new Date(x)
         : implementsFunction(x, "toDate")
