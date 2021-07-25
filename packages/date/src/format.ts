@@ -1,7 +1,7 @@
 import { isFunction, isString } from "@thi.ng/checks";
 import { FormatFn, MaybeDate, MINUTE } from "./api";
 import { LOCALE } from "./i18n";
-import { ensureDate, weekInYear, Z2, Z4 } from "./utils";
+import { ensureDate, weekInYear, Z2, Z3, Z4 } from "./utils";
 
 export const FORMATTERS: Record<string, FormatFn> = {
     /**
@@ -45,6 +45,15 @@ export const FORMATTERS: Record<string, FormatFn> = {
      */
     w: (d) => String(weekInYear(d.getFullYear(), d.getMonth(), d.getDate())),
     /**
+     * Unpadded quarter:
+     *
+     * - 1 = Jan - Mar
+     * - 2 = Apr - Jun
+     * - 3 = Jul - Sep
+     * - 4 = Oct - Dec
+     */
+    q: (d) => String(((d.getMonth() / 3) | 0) + 1),
+    /**
      * Zero-padded 2-digit hour of day (0-23)
      */
     HH: (d) => Z2(d.getHours()),
@@ -82,6 +91,10 @@ export const FORMATTERS: Record<string, FormatFn> = {
      * Unpadded second of minute
      */
     s: (d) => String(d.getSeconds()),
+    /**
+     * Zero-padded 3-digit millisecond of second
+     */
+    SS: (d) => Z3(d.getMilliseconds()),
     /**
      * Unpadded millisecond of second
      */
@@ -157,12 +170,12 @@ export const defFormat =
         utc && (d = new Date(d.getTime() + d.getTimezoneOffset() * MINUTE));
         return fmt
             .map((x) => {
-                let fmt: FormatFn;
+                let fn: FormatFn;
                 return isString(x)
                     ? x.startsWith("\\")
                         ? x.substr(1)
-                        : (fmt = FORMATTERS[x])
-                        ? fmt(d, utc)
+                        : (fn = FORMATTERS[x])
+                        ? fn(d, utc)
                         : x
                     : isFunction(x)
                     ? x(d, utc)
@@ -230,5 +243,5 @@ export const FMT_ISO_SHORT = defFormat(
  */
 // prettier-ignore
 export const FMT_ISO = defFormat(
-    ["yyyy", "-", "MM", "-", "dd", "T", "HH", ":", "mm", ":", "ss", ".", "S", "ZZ"]
+    ["yyyy", "-", "MM", "-", "dd", "T", "HH", ":", "mm", ":", "ss", ".", "SS", "ZZ"]
 );
