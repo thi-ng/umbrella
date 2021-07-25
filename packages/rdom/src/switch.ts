@@ -127,7 +127,7 @@ export class Switch<T> extends Component implements IMountWithState<T> {
     async update(val: T) {
         this.inner && (await this.inner.unmount());
         this.inner = undefined;
-        if (val != null && val !== this.val) {
+        if (val != null) {
             this.val = val;
             let loader: IComponent | undefined;
             if (this.loader) {
