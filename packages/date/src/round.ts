@@ -70,6 +70,16 @@ export const floorMonth: RoundingFn = (epoch) => {
 };
 
 /**
+ * Rounds down `epoch` to month precision, but at beginning of a quarter.
+ *
+ * @param epoch
+ */
+export const floorQuarter: RoundingFn = (epoch) => {
+    const d = ensureDate(epoch);
+    return Date.UTC(d.getUTCFullYear(), ((d.getUTCMonth() / 3) | 0) * 3);
+};
+
+/**
  * Rounds down `epoch` to year precision.
  *
  * @param epoch
@@ -120,6 +130,19 @@ export const ceilMonth: RoundingFn = (epoch) => {
     const d = ensureDate(epoch);
     let y = d.getUTCFullYear();
     let m = d.getUTCMonth() + 1;
+    m > 11 && y++;
+    return Date.UTC(y, m % 12);
+};
+
+/**
+ * Rounds up `epoch` to month precision (beginning of next quarter)
+ *
+ * @param epoch
+ */
+export const ceilQuarter: RoundingFn = (epoch) => {
+    const d = ensureDate(epoch);
+    let y = d.getUTCFullYear();
+    let m = (((d.getUTCMonth() + 3) / 3) | 0) * 3;
     m > 11 && y++;
     return Date.UTC(y, m % 12);
 };
