@@ -39,22 +39,34 @@ ${docLink}
 
 TODO - Please see tests and doc strings in source for now...
 
-### DateTime & iterators
+### DateTime
 
 The `DateTime` class acts as a thin wrapper around **UTC** epochs/timestamps,
 with the constructor supporting coercions and varying granularity/precision
-(from years to milliseconds). The main use case of this class is as backend for
-the various epoch iterators provided by this package, which in turn are largely
-intended for visualization purposes (axis tick label generators in
-[@thi.ng/viz](https://github.com/thi-ng/umbrella/tree/develop/packages/viz)).
+(from years to milliseconds). Default precision is milliseconds.
+
+| Key | Precision   |
+|-----|-------------|
+| `y` | Year        |
+| `M` | Month       |
+| `d` | Day         |
+| `h` | Hour        |
+| `m` | Minute      |
+| `s` | Second      |
+| `t` | Millisecond |
+
+Note: `DateTime` instances also define the above keys as properties, plus
+getters for week-in-year (`.w`) and quarter (`.q`).
 
 ```ts
-// create w/ current date (or pass epoch, Date or DateTime instances)
+// create w/ current date (or pass epoch, string, Date or DateTime instances)
 const a = dateTime();
 // DateTime { y: 2020, M: 8, d: 19, h: 12, m: 17, s: 16, t: 884 }
 
 // provide additional precision (here year only)
 const b = dateTime(a, "y");
+// or
+const b = a.withPrecision("y")
 // DateTime { y: 2020, M: 0, d: 1, h: 0, m: 0, s: 0, t: 0 }
 
 a.toString();
@@ -71,34 +83,107 @@ a.isLeapYear()
 a.daysInMonth()
 // 30
 
-[...months(b, a)]
+a.dayInYear()
+// 263
+
+a.weekInYear()
+// 38
+
+a.isAfter(b)
+// true\
+
+b.isBefore(a)
+// true
+```
+
+### Math & comparison
+
+DateTime instances support basic math to derive future/past instances, given an
+offset period. Period identifiers are any `Precision` ID (see above) or `w`
+(week, aka 7 days) or `q` (quarter, aka 3 months):
+
+```ts
+const a = dateTime();
+// DateTime { y: 2020, M: 8, d: 19, h: 12, m: 17, s: 16, t: 884 }
+
+// create new instance 61 seconds in the future
+// any `Period` ID can be used
+a.add(61, "s")
+// DateTime { y: 2020, M: 8, d: 19, h: 12, m: 18, s: 17, t: 884 }
+
+// ...or 90 days ago
+a.add(-90, "d")
+// DateTime { y: 2020, M: 5, d: 21, h: 12, m: 17, s: 16, t: 884 }
+
+// ...or 2 quarters (aka 2x 3 months) ahead of time
+a.add(2, "q").toISOString()
+// "2021-03-19T12:17:16.884Z"
+
+// check for equivalence
+a.equiv("2020-09-19T12:17:16.884Z")
+// true
+
+// are dates equal (with tolerance of ±100 ms)
+a.eqDelta(a.add(99, "t"), 100)
+// true
+
+a.compare(a.add(1, "s"))
+// -1000
+
+// compute difference between dates (in milliseconds)
+difference(a, "1970-01-01") === a.getTime()
+// true
+
+difference("2021-02", "2020-02")
+// 31622400000
+
+difference("2021-02", "2020-02") / DAY
+// 366 (because 2020 was a leap year)
+```
+
+### Iterators
+
+Several iterators are provided to produce timestamps of various granularities
+between two given dates. Originally, these were intended for visualization
+purposes (i.e. as axis tick label generators for
+[@thi.ng/viz](https://github.com/thi-ng/umbrella/tree/develop/packages/viz)).
+
+- `years()`
+- `querters()`
+- `months()`
+- `weeks()`
+- `days()`
+- `hours()`
+- `minutes()`
+- `seconds()`
+- `milliseconds()`
+
+```ts
+[...months("2021-01-03", "2021-07-16")]
 // [
-//   1577836800000,
-//   1580515200000,
-//   1583020800000,
-//   1585699200000,
-//   1588291200000,
-//   1590969600000,
-//   1593561600000,
-//   1596240000000,
-//   1598918400000
+//   1609459200000,
+//   1612137600000,
+//   1614556800000,
+//   1617235200000,
+//   1619827200000,
+//   1622505600000,
+//   1625097600000
 // ]
 
-[...months(b, a)].map((x) => FMT_yyyyMMdd(x))
+[...months("2021-01-03", "2021-07-16")].map((x) => FMT_yyyyMMdd(x))
 // [
-//   '2020-01-01',
-//   '2020-02-01',
-//   '2020-03-01',
-//   '2020-04-01',
-//   '2020-05-01',
-//   '2020-06-01',
-//   '2020-07-01',
-//   '2020-08-01',
-//   '2020-09-01'
+//   '2021-02-01',
+//   '2021-03-01',
+//   '2021-04-01',
+//   '2021-05-01',
+//   '2021-06-01',
+//   '2021-07-01'
 // ]
 ```
 
 ### Relative dates
+
+#### Parsing
 
 Relative dates can be obtained via
 [`parseRelatie()`](https://docs.thi.ng/umbrella/date/modules.html#parserelative)
@@ -122,32 +207,82 @@ parseRelative("-1 month", now)
 // DateTime { y: 2021, M: 1, d: 21, h: 14, m: 26, s: 0, t: 661 }
 ```
 
-### Formatters
+#### Formatting
+
+Dates can be formatted as relative descriptions using
+[`formatRelative()`](https://docs.thi.ng/umbrella/date/modules.html#formatrelative)
+and
+[`formatRelativeParts()`](https://docs.thi.ng/umbrella/date/modules.html#formatrelativeparts).
+Both functions use the currently active [locale](#locales) and accept an optional
+reference date (default: now).
+
+```ts
+setLocale(EN_LONG);
+
+formatRelative("2020-06-01", "2021-07-01")
+// "1 year ago"
+formatRelative("2020-08-01", "2021-07-01")
+// "11 months ago"
+formatRelative("2021-07-01 13:45", "2021-07-01 12:05")
+// "in 2 hours"
+formatRelative("2021-07-01 12:23:24", "2021-07-01 12:05")
+// "in 18 minutes"
+
+// with default precision (seconds)
+formatRelativeParts("2012-12-25 17:59:34", "2021-07-16 12:05")
+// "8 years, 6 months, 21 days, 17 hours, 5 minutes, 26 seconds ago"
+
+// with day precision
+formatRelativeParts("2012-12-25 17:59:34", "2021-07-16 12:05", "d")
+// "8 years, 6 months, 22 days ago"
+
+// with month precision
+formatRelativeParts("2012-12-25 17:59:34", "2021-07-16 12:05", "M")
+// "8 years, 7 months ago"
+
+formatRelativeParts("2021-07-16", "2021-01-01", "y")
+// "in less than 1 year"
+
+// with locale DE_LONG
+withLocale(DE_LONG, () => formatRelativeParts("2020-01-01 12:34"))
+// "vor 1 Jahr, 6 Monaten, 15 Tagen, 23 Stunden, 38 Minuten, 9 Sekunden"
+
+// obtain the relative parts in raw form
+// returns tuple of: [sign, years, months, days, hours, mins, secs, millis]
+decomposeDifference("2020-01-01 12:34", Date.now())
+// [-1, 1, 6, 15, 23, 38, 9, 703]
+```
+
+### Date & time formatters
 
 Custom date/time formatters can be assembled via
-[`defFormat()`](https://github.com/thi-ng/umbrella/blob/develop/packages/date/src/format.ts#L93),
+[`defFormat()`](https://docs.thi.ng/umbrella/date/modules.html#defformat),
 using the following partial format identifiers. The `MMM` and `E` formatters use
-the currently active [locale](#locale). To escape a formatter and use as a
+the currently active [locale](#locales). To escape a formatter and use as a
 string literal, prefix the term with `\\`.
 
 | ID     | Description                                 |
 |--------|---------------------------------------------|
-| `yyyy` | Full year (4 digits)                        |
 | `yy`   | Short year (2 digits)                       |
-| `MMM`  | Month name in current locale (e.g. `Feb`)   |
-| `MM`   | Zero-padded 2-digit month                   |
+| `yyyy` | Full year (4 digits)                        |
 | `M`    | Unpadded month                              |
-| `dd`   | Zero-padded 2-digit day of month            |
+| `MM`   | Zero-padded 2-digit month                   |
+| `MMM`  | Month name in current locale (e.g. `Feb`)   |
 | `d`    | Unpadded day of month                       |
+| `dd`   | Zero-padded 2-digit day of month            |
 | `E`    | Weekday name in current locale (e.g. `Mon`) |
-| `HH`   | Zero-padded 2-digit hour of day (0-23)      |
+| `w`    | Unpadded week-in-year (ISO8601)             |
+| `ww`   | Zero-padded 2-digit week-in-year (ISO8601)  |
+| `q`    | Unpadded quarter                            |
 | `H`    | Unpadded hour of day (0-23)                 |
+| `HH`   | Zero-padded 2-digit hour of day (0-23)      |
 | `h`    | Unpadded hour of day (1-12)                 |
-| `mm`   | Zero-padded 2-digit minute of hour          |
 | `m`    | Unpadded minute of hour                     |
-| `ss`   | Zero-padded 2-digit second of minute        |
+| `mm`   | Zero-padded 2-digit minute of hour          |
 | `s`    | Unpadded second of minute                   |
+| `ss`   | Zero-padded 2-digit second of minute        |
 | `S`    | Unpadded millisecond of second              |
+| `SS`   | Zero-padded 3-digit millisecond of second   |
 | `A`    | 12-hour AM/PM marker (uppercase)            |
 | `a`    | 12-hour am/pm marker (lowercase)            |
 | `Z`    | Timezone offset in signed `±HH:mm` format   |
@@ -208,7 +343,6 @@ The following locale presets are available by default:
 | `DE_LONG`  | `Dienstag, 29. Juni 2021 @ 5:48` |
 | `EN_SHORT` | `29/06/2021 @ 5.48 am`           |
 | `EN_LONG`  | `Tuesday 29 June 2021 @ 5.48 am` |
-| `ES_SHORT` | `29/06/2021 @ 5:48`              |
 | `ES_LONG`  | `martes 29 junio 2021 @ 5:48`    |
 | `FR_LONG`  | `mardi 29 juin 2021 @ 5h 48`     |
 | `IT_LONG`  | `martedì 29 giugno 2021 @ 5.48`  |
@@ -233,18 +367,24 @@ fmt(dateTime());
 // Sat 19 Sep 2020
 
 setLocale(EN_LONG);
-// {
-//   months: [
-//     'January', 'February', 'March', 'April', 'May', 'June',
-//     'July', 'August', 'September', 'October', 'November', 'December'
-//   ],
-//   days: [
-//     'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
-//   ]
-// }
 
 fmt(dateTime());
 // Saturday 19 September 2020
+```
+
+Use [`withLocale()`](https://docs.thi.ng/umbrella/date/modules.html#withlocale)
+to only temporarily set a locale and execute a function with it, then
+automatically restoring the currently active locale.
+
+```ts
+fmt(dateTime());
+// 'Fri 16 Jul 2021'
+
+withLocale(FR_LONG, () => fmt(dateTime()));
+// 'vendredi 16 juillet 2021'
+
+fmt(dateTime());
+// 'Fri 16 Jul 2021'
 ```
 
 ## Authors
