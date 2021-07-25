@@ -38,7 +38,8 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.6"
+        "@thi.ng/api": "^7.1.6",
+        "@thi.ng/checks": "^2.9.8"
     },
     "files": [
         "*.js",
