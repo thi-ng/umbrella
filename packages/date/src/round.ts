@@ -1,4 +1,4 @@
-import { DAY, HOUR, MINUTE, RoundingFn, SECOND } from "./api";
+import { DAY, HOUR, MINUTE, RoundingFn, SECOND, WEEK } from "./api";
 import { ensureDate } from "./utils";
 
 /**
@@ -60,6 +60,21 @@ export const floorDay: RoundingFn = (epoch) => {
 };
 
 /**
+ * Rounds down `epoch` to week precision. Assumes ISO8601 week logic, i.e. weeks
+ * start on Monday.
+ *
+ * @param epoch
+ */
+export const floorWeek: RoundingFn = (epoch) => {
+    const d = ensureDate(epoch);
+    const w = d.getUTCDay();
+    return (
+        Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()) -
+        ((w || 7) - 1) * DAY
+    );
+};
+
+/**
  * Rounds down `epoch` to month precision.
  *
  * @param epoch
@@ -84,10 +99,8 @@ export const floorQuarter: RoundingFn = (epoch) => {
  *
  * @param epoch
  */
-export const floorYear: RoundingFn = (epoch) => {
-    const d = ensureDate(epoch);
-    return Date.UTC(d.getUTCFullYear(), 0);
-};
+export const floorYear: RoundingFn = (epoch) =>
+    Date.UTC(ensureDate(epoch).getUTCFullYear(), 0);
 
 /**
  * Rounds up `epoch` to minute precision.
@@ -122,6 +135,15 @@ export const ceilDay: RoundingFn = (epoch) =>
     floorDay(ensureDate(epoch).getTime() + DAY);
 
 /**
+ * Rounds up `epoch` to week precision. Assumes ISO8601 week logic, i.e. weeks
+ * start on Monday.
+ *
+ * @param epoch
+ */
+export const ceilWeek: RoundingFn = (epoch) =>
+    floorWeek(ensureDate(epoch).getTime() + WEEK);
+
+/**
  * Rounds up `epoch` to month precision
  *
  * @param epoch
@@ -152,7 +174,5 @@ export const ceilQuarter: RoundingFn = (epoch) => {
  *
  * @param epoch
  */
-export const ceilYear: RoundingFn = (epoch) => {
-    const d = ensureDate(epoch);
-    return Date.UTC(d.getUTCFullYear() + 1, 0);
-};
+export const ceilYear: RoundingFn = (epoch) =>
+    Date.UTC(ensureDate(epoch).getUTCFullYear() + 1, 0);

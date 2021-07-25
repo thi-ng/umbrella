@@ -70,7 +70,7 @@ export interface Locale {
     time: string[];
     /**
      * Default combined date & time format spec for use with {@link defFormat}
-     * and {@link DateTime.toLocaleString()}.
+     * and {@link DateTime.toLocaleString}.
      *
      * @defaultValue concatenation of `date` and `time` options
      */

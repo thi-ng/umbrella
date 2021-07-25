@@ -1,16 +1,25 @@
 import type { Fn } from "@thi.ng/api";
+import { isString } from "@thi.ng/checks";
 import type { EpochIterator, EpochIteratorConstructor, Precision } from "./api";
 import { DateTime } from "./datetime";
+import { floorQuarter, floorWeek } from "./round";
 
+/**
+ * Higher-order epoch iterator factory. Returns iterator with configured
+ * precision and `tick` fn.
+ *
+ * @param prec
+ * @param tick
+ */
 export const defIterator = (
-    prec: Precision,
+    prec: Precision | Fn<number, DateTime>,
     tick: Fn<DateTime, void>
 ): EpochIteratorConstructor => {
     return function* (...xs: any[]): EpochIterator {
         let [from, to] = (<number[]>(xs.length > 1 ? xs : xs[0])).map((x) =>
             new DateTime(x).getTime()
         );
-        let state = new DateTime(from, prec);
+        let state = isString(prec) ? new DateTime(from, prec) : prec(from);
         let epoch = from;
         while (epoch < to) {
             epoch = state.getTime();
@@ -31,6 +40,19 @@ export const years = defIterator("y", (d) => d.incYear());
 
 /**
  * Yields iterator of UTC timestamps in given semi-open interval in monthly
+ * precision (each timestamp is at beginning of a month), but spaced at 3 month
+ * intervals.
+ *
+ * @param from
+ * @param to
+ */
+export const quarters = defIterator(
+    (from) => new DateTime(floorQuarter(from)),
+    (d) => d.incQuarter()
+);
+
+/**
+ * Yields iterator of UTC timestamps in given semi-open interval in monthly
  * precision (each timestamp is at beginning of each month).
  *
  * @param from
@@ -40,12 +62,16 @@ export const months = defIterator("M", (d) => d.incMonth());
 
 /**
  * Yields iterator of UTC timestamps in given semi-open interval in daily
- * precision (each timestamp is 7 days apart).
+ * precision (each timestamp is 7 days apart). As per ISO8601, weeks start on
+ * Mondays.
  *
  * @param from
  * @param to
  */
-export const weeks = defIterator("d", (d) => d.incWeek());
+export const weeks = defIterator(
+    (from) => new DateTime(floorWeek(from)),
+    (d) => d.incWeek()
+);
 
 /**
  * Yields iterator of UTC timestamps in given semi-open interval in daily

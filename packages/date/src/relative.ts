@@ -145,6 +145,15 @@ export const relative = (
 export const difference = (a: MaybeDate, b: MaybeDate) =>
     ensureEpoch(a) - ensureEpoch(b);
 
+/**
+ * Computes and decomposes difference between given dates. Returns tuple of:
+ * `[sign, years, months, days, hours, mins, secs, millis]`. The `sign` is used
+ * to indicate the relative order of `a` compared to `b`, i.e. same contract as
+ * {@link @thi.ng/api#ICompare}.
+ *
+ * @param a
+ * @param b
+ */
 export const decomposeDifference = (
     a: MaybeDate,
     b: MaybeDate = new Date()
@@ -162,9 +171,9 @@ export const decomposeDifference = (
 
     const parts = [
         Math.sign(dur),
-        0,
-        0,
-        0,
+        0, // year
+        0, // month
+        0, // day
         hour / HOUR,
         min / MINUTE,
         sec / SECOND,

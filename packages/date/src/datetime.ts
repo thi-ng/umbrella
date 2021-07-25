@@ -50,6 +50,26 @@ export class DateTime
         this.t = id >= 6 ? x.getUTCMilliseconds() : 0;
     }
 
+    /**
+     * Readonly property, returning 1-based quarter
+     *
+     * @remarks
+     * - 1 = Jan - Mar
+     * - 2 = Apr - Jun
+     * - 3 = Jul - Sep
+     * - 4 = Oct - Dec
+     */
+    get q() {
+        return ((this.M / 3) | 0) + 1;
+    }
+
+    /**
+     * Alias readonly property, same as {@link DateTime.weekInYear}.
+     */
+    get w() {
+        return this.weekInYear();
+    }
+
     set(d: MaybeDate) {
         const $d = ensureDateTime(d);
         this.y = $d.y;
@@ -260,6 +280,24 @@ export class DateTime
         return this.M;
     }
 
+    incQuarter() {
+        this.M += 3;
+        if (this.M > 11) {
+            this.M %= 12;
+            this.y++;
+        }
+        return this.q;
+    }
+
+    decQuarter() {
+        this.M -= 3;
+        if (this.M < 0) {
+            this.M += 12;
+            this.y--;
+        }
+        return this.q;
+    }
+
     incYear() {
         // TODO epoch overflow handling, throw error?
         return ++this.y;
@@ -270,6 +308,13 @@ export class DateTime
         return --this.y;
     }
 
+    /**
+     * Returns a new `DateTime` instance relative to this date, but with given
+     * period added/subtracted.
+     *
+     * @param x
+     * @param prec
+     */
     add(x: number, prec: Period): DateTime {
         if (prec === "w") return this.add(x * 7, "d");
         if (prec === "q") return this.add(x * 3, "M");
@@ -307,6 +352,14 @@ export class DateTime
         return this.toDate().toUTCString();
     }
 
+    /**
+     * Returns formatted version using current {@link LOCALE.dateTime}
+     * formatter.
+     *
+     * @remarks
+     * The host environment's locale is NOT used. Only the currently active
+     * `LOCALE` is relevant.
+     */
     toLocaleString() {
         return defFormat(LOCALE.dateTime)(this, true);
     }
