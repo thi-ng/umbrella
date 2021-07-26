@@ -107,6 +107,19 @@ export type NumOrElement = number | Element;
  * {@link RAFScheduler}.
  */
 export interface IScheduler {
+    /**
+     * Registers a new task for processing. The `scope` arg is used to uniquely
+     * associate the task with a given component.
+     *
+     * @param scope
+     * @param task
+     */
     add(scope: any, task: Task): void;
+    /**
+     * Attempts to cancel all tasks for given `scope`. Depending on
+     * implementation and timing this might not be possible (anymore).
+     *
+     * @param scope
+     */
     cancel(scope: any): void;
 }

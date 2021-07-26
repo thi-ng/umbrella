@@ -1,5 +1,13 @@
 import type { Task, IScheduler } from "./api";
 
+/**
+ * {@link IScheduler} implementation which queues component updates (or other
+ * tasks) and then only processes them during next RAF cycle. Supports task
+ * cancellation.
+ *
+ * @remarks
+ * See {@link setScheduler} and {@link NullScheduler}.
+ */
 export class RAFScheduler implements IScheduler {
     tasks: Map<any, Task[]>;
     raf: number;
@@ -29,6 +37,13 @@ export class RAFScheduler implements IScheduler {
     }
 }
 
+/**
+ * Dummy (and default) {@link IScheduler} implementation which immediately
+ * processes component updates.
+ *
+ * @remarks
+ * See {@link setScheduler} and {@link RAFScheduler}.
+ */
 export class NullScheduler implements IScheduler {
     add(_: any, fn: Task) {
         fn();
@@ -40,4 +55,10 @@ export class NullScheduler implements IScheduler {
 // export let SCHEDULER: IScheduler = new RAFScheduler();
 export let SCHEDULER: IScheduler = new NullScheduler();
 
+/**
+ * Sets rdom-global scheduler for component updates (and other tasks).
+ *
+ * @param s
+ * @returns
+ */
 export const setScheduler = (s: IScheduler) => (SCHEDULER = s);
