@@ -1,36 +1,35 @@
 import { assert, Fn, NumOrString } from "@thi.ng/api";
 import type { ISubscribable } from "@thi.ng/rstream";
-import type {
-    ComponentLike,
-    IComponent,
-    IMountWithState,
-    NumOrElement,
-} from "./api";
+import type { IComponent, IMountWithState, NumOrElement } from "./api";
 import { $compile } from "./compile";
 import { Component } from "./component";
 import { $sub } from "./sub";
 import { $wrapText } from "./wrap";
 
 /**
- * Reactive component wrapper to dynamically switch/replace itself with
- * one of the given components depending on subscribed value.
+ * Reactive component wrapper to dynamically switch/replace itself with one of
+ * the given components depending on subscribed value.
  *
  * @remarks
- * Subscribes to `src`, then calls `keyFn` for each received value and
- * uses result to call one of the given `ctors` async component
- * factories. The value returned from the chosen factory will be passsed
- * to {@link $compile} and then mounted in place of this `$switch`
- * wrapper. If an uncaught error occurs the `error` component factory
- * will be used instead.
+ * Subscribes to `src`, then calls `keyFn` for each received value and uses
+ * result to call one of the given `ctors` async component factories. The value
+ * returned from the chosen factory will be passsed to {@link $compile} and then
+ * mounted in place of this `$switch` wrapper. If an uncaught error occurs in
+ * the selected component factory, the `error` component factory will be used
+ * instead (which is expected to succeed).
  *
- * When a new value is received from `src`, the currently active inner
- * component will always be fist `unmount`ed and if the optional
- * `loader` is given, it will be temporarily mounted whilst the actual
- * `ctor` component factory executes. This is can be used to show a
- * pre-loaders.
+ * When a new value is received from `src`, the currently active inner component
+ * (if any) will always be fist `unmount`ed and if the optional `loader` is
+ * given, it will be temporarily mounted whilst the actual `ctor` component
+ * factory executes. This is can be used to show a pre-loaders.
  *
- * All component factories are async functions to facilitate dynamic
- * `import()` / code splitting and other async initializations (WASM etc.)
+ * **IMPORTANT:** When a `null` or `undefined` value is received from `src`, the
+ * currently active inner component will be unmounted and the optional loader
+ * shown. However, no other inner component constructor will be called in this
+ * case (until the next valid/non-null value is received).
+ *
+ * All component factories are async functions to facilitate dynamic `import()`
+ * / code splitting and other async initializations (WASM etc.)
  *
  * @example
  * ```ts
@@ -62,9 +61,9 @@ import { $wrapText } from "./wrap";
 export const $switch = <T>(
     src: ISubscribable<T>,
     keyFn: Fn<T, NumOrString>,
-    ctors: Record<NumOrString, Fn<T, Promise<ComponentLike>>>,
-    error?: Fn<Error, Promise<ComponentLike>>,
-    loader?: Fn<T, Promise<ComponentLike>>
+    ctors: Record<NumOrString, Fn<T, Promise<any>>>,
+    error?: Fn<Error, Promise<any>>,
+    loader?: Fn<T, Promise<any>>
 ) => $sub<T>(src, new Switch<T>(keyFn, ctors, error, loader));
 
 /**
@@ -79,6 +78,11 @@ export const $switch = <T>(
  * `$compile`d and then getting re-mounted. See {@link $switch} for
  * further details.
  *
+ * @example
+ * ```ts
+ * $refresh(fromInterval(1000), async (x) => ["div", {}, x])
+ * ```
+ *
  * @param src
  * @param ctor
  * @param error
@@ -86,9 +90,9 @@ export const $switch = <T>(
  */
 export const $refresh = <T>(
     src: ISubscribable<T>,
-    ctor: Fn<T, Promise<ComponentLike>>,
-    error?: Fn<Error, Promise<ComponentLike>>,
-    loader?: Fn<T, Promise<ComponentLike>>
+    ctor: Fn<T, Promise<any>>,
+    error?: Fn<Error, Promise<any>>,
+    loader?: Fn<T, Promise<any>>
 ) => $switch(src, () => 0, { 0: ctor }, error, loader);
 
 export class Switch<T> extends Component implements IMountWithState<T> {
@@ -99,10 +103,10 @@ export class Switch<T> extends Component implements IMountWithState<T> {
 
     constructor(
         protected keyFn: Fn<T, NumOrString>,
-        protected ctors: Record<NumOrString, Fn<T, Promise<ComponentLike>>>,
-        protected error: Fn<Error, Promise<ComponentLike>> = async (e) =>
+        protected ctors: Record<NumOrString, Fn<T, Promise<any>>>,
+        protected error: Fn<Error, Promise<any>> = async (e) =>
             $wrapText("span", {}, e),
-        protected loader: Fn<T, Promise<ComponentLike>> = async () =>
+        protected loader: Fn<T, Promise<any>> = async () =>
             $wrapText("span", {
                 hidden: true,
             })
@@ -142,8 +146,8 @@ export class Switch<T> extends Component implements IMountWithState<T> {
                 loader && (await loader.unmount());
             } catch (e) {
                 if (this.error) {
-                    loader && (await loader.unmount());
                     this.inner = $compile(await this.error(e));
+                    loader && (await loader.unmount());
                 }
             }
         } else {
