@@ -31,7 +31,7 @@ describe("paths", () => {
     });
 
     it("setIn (len = 1)", () => {
-        assert.deepStrictEqual(setIn({ a: 23 }, ["a"], 24), {
+        assert.deepStrictEqual(setIn({ a: 23 }, <const>["a"], 24), {
             a: 24,
         });
         assert.deepStrictEqual(
@@ -49,7 +49,7 @@ describe("paths", () => {
     });
 
     it("setIn (len = 2)", () => {
-        assert.deepStrictEqual(setIn({ a: { b: 23 } }, ["a", "b"], 24), {
+        assert.deepStrictEqual(setIn({ a: { b: 23 } }, <const>["a", "b"], 24), {
             a: { b: 24 },
         });
         assert.deepStrictEqual(
@@ -67,7 +67,7 @@ describe("paths", () => {
 
     it("setIn (len = 3)", () => {
         assert.deepStrictEqual(
-            setIn({ a: { b: { c: 23 } } }, ["a", "b", "c"], 24),
+            setIn({ a: { b: { c: 23 } } }, <const>["a", "b", "c"], 24),
             {
                 a: { b: { c: 24 } },
             }
@@ -89,7 +89,11 @@ describe("paths", () => {
 
     it("setIn (len = 4)", () => {
         assert.deepStrictEqual(
-            setIn({ a: { b: { c: { d: 23 } } } }, ["a", "b", "c", "d"], 24),
+            setIn(
+                { a: { b: { c: { d: 23 } } } },
+                <const>["a", "b", "c", "d"],
+                24
+            ),
             {
                 a: { b: { c: { d: 24 } } },
             }
@@ -113,7 +117,7 @@ describe("paths", () => {
         assert.deepStrictEqual(
             setIn(
                 { a: { b: { c: { d: { e: 23 } } } } },
-                ["a", "b", "c", "d", "e"],
+                <const>["a", "b", "c", "d", "e"],
                 24
             ),
             { a: { b: { c: { d: { e: 24 } } } } }
@@ -185,7 +189,7 @@ describe("paths", () => {
     });
 
     it("mutIn", () => {
-      const a: any = {};
-      assert.throws(() => mutIn(a, ['__proto__', 'polluted'], true))
-    })
+        const a: any = {};
+        assert.throws(() => mutIn(a, ["__proto__", "polluted"], true));
+    });
 });
