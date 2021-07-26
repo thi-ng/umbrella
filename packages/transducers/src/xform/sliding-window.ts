@@ -16,10 +16,10 @@ import { $iter } from "../iterator";
  *
  * @example
  * ```ts
- * [...window(3, range(5))]
+ * [...slidingWindow(3, range(5))]
  * // [ [ 0 ], [ 0, 1 ], [ 0, 1, 2 ], [ 1, 2, 3 ], [ 2, 3, 4 ] ]
  *
- * [...window(3, false, range(5))]
+ * [...slidingWindow(3, false, range(5))]
  * // [ [ 0, 1, 2 ], [ 1, 2, 3 ], [ 2, 3, 4 ] ]
  * ```
  *
