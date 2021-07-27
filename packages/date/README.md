@@ -287,25 +287,26 @@ string literal, prefix the term with `\\`.
 
 | ID     | Description                                 |
 |--------|---------------------------------------------|
-| `yyyy` | Full year (4 digits)                        |
 | `yy`   | Short year (2 digits)                       |
-| `MMM`  | Month name in current locale (e.g. `Feb`)   |
-| `MM`   | Zero-padded 2-digit month                   |
+| `yyyy` | Full year (4 digits)                        |
 | `M`    | Unpadded month                              |
-| `dd`   | Zero-padded 2-digit day of month            |
+| `MM`   | Zero-padded 2-digit month                   |
+| `MMM`  | Month name in current locale (e.g. `Feb`)   |
 | `d`    | Unpadded day of month                       |
+| `dd`   | Zero-padded 2-digit day of month            |
 | `E`    | Weekday name in current locale (e.g. `Mon`) |
-| `ww`   | Zero-padded 2-digit week-in-year (ISO8601)  |
 | `w`    | Unpadded week-in-year (ISO8601)             |
+| `ww`   | Zero-padded 2-digit week-in-year (ISO8601)  |
 | `q`    | Unpadded quarter                            |
-| `HH`   | Zero-padded 2-digit hour of day (0-23)      |
 | `H`    | Unpadded hour of day (0-23)                 |
+| `HH`   | Zero-padded 2-digit hour of day (0-23)      |
 | `h`    | Unpadded hour of day (1-12)                 |
-| `mm`   | Zero-padded 2-digit minute of hour          |
 | `m`    | Unpadded minute of hour                     |
-| `ss`   | Zero-padded 2-digit second of minute        |
+| `mm`   | Zero-padded 2-digit minute of hour          |
 | `s`    | Unpadded second of minute                   |
+| `ss`   | Zero-padded 2-digit second of minute        |
 | `S`    | Unpadded millisecond of second              |
+| `SS`   | Zero-padded 3-digit millisecond of second   |
 | `A`    | 12-hour AM/PM marker (uppercase)            |
 | `a`    | 12-hour am/pm marker (lowercase)            |
 | `Z`    | Timezone offset in signed `±HH:mm` format   |
