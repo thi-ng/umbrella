@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.4.17...@thi.ng/rdom@0.5.0) (2021-07-27)
+
+
+### Bug Fixes
+
+* **rdom:** fix [#304](https://github.com/thi-ng/umbrella/issues/304), update Switch.update() ([a2899c0](https://github.com/thi-ng/umbrella/commit/a2899c09b62458edd75dd785b64db0519b85eb6d))
+
+
+### Features
+
+* **rdom:** relax return types for $switch() ([71c334b](https://github.com/thi-ng/umbrella/commit/71c334bfc5715e58296750e9d118927dce53406a))
+
+
+
+
+
 ## [0.4.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.4.16...@thi.ng/rdom@0.4.17) (2021-07-01)
 
 **Note:** Version bump only for package @thi.ng/rdom

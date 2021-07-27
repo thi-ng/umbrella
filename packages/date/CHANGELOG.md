@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/date@0.7.0...@thi.ng/date@0.8.0) (2021-07-27)
+
+
+### Bug Fixes
+
+* **date:** minor update EN_LONG locale ([a9dcd47](https://github.com/thi-ng/umbrella/commit/a9dcd47c5932842f2cfe76e3de7d424f87630921))
+
+
+### Features
+
+* **date:** add quarter-based rounding fns ([24a7a76](https://github.com/thi-ng/umbrella/commit/24a7a76898a6ff8b212eef117aa94b4759144e84))
+* **date:** add relative date calc & formatting ([3100814](https://github.com/thi-ng/umbrella/commit/3100814280a917ccc1a85ab7a170e0b8e5fb0bd4))
+* **date:** add withLocale() helper ([8c9493e](https://github.com/thi-ng/umbrella/commit/8c9493edf5a870e5f45efdac160aea4eac9d63fe))
+* **date:** add/update constants ([2b28839](https://github.com/thi-ng/umbrella/commit/2b288397a8a27d6a6596568522949fd443752d43))
+* **date:** add/update formatters ([56d9b64](https://github.com/thi-ng/umbrella/commit/56d9b64ca735b109469da27f66e7b0dde4ce5e41))
+* **date:** add/update formatters & presets ([3f3d8d0](https://github.com/thi-ng/umbrella/commit/3f3d8d07ea154e08194017536e73a0a6263c18cf))
+* **date:** major update DateTime methods, fixes ([9268573](https://github.com/thi-ng/umbrella/commit/92685738ff3dd4cb6ec7df7e9630aea6e2ec4511))
+* **date:** update DateTime, iterators, rounding ([7c0652a](https://github.com/thi-ng/umbrella/commit/7c0652a7a61e3f3faf92cc3421184b446d3fc0b1))
+* **date:** update Locale & presets ([50d889d](https://github.com/thi-ng/umbrella/commit/50d889d14646c93b5678b1c378d55f8b80f4979e))
+* **date:** update Locale, DateTime.add() ([f20c129](https://github.com/thi-ng/umbrella/commit/f20c1292972f84de10e88a4ac4429b7b87251d8d))
+
+
+
+
+
 # [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/date@0.6.0...@thi.ng/date@0.7.0) (2021-07-01)
 
 

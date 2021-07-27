@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-dot@1.2.18...@thi.ng/rstream-dot@1.2.19) (2021-07-27)
+
+**Note:** Version bump only for package @thi.ng/rstream-dot
+
+
+
+
+
 ## [1.2.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-dot@1.2.17...@thi.ng/rstream-dot@1.2.18) (2021-07-01)
 
 **Note:** Version bump only for package @thi.ng/rstream-dot

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/vectors",
-    "version": "6.0.2",
+    "version": "6.0.3",
     "description": "Optimized 2d/3d/4d and arbitrary length vector operations",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -46,7 +46,7 @@
         "@thi.ng/math": "^4.0.2",
         "@thi.ng/memoize": "^2.1.16",
         "@thi.ng/random": "^2.4.2",
-        "@thi.ng/transducers": "^7.7.4"
+        "@thi.ng/transducers": "^7.7.5"
     },
     "files": [
         "*.js",
