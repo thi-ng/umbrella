@@ -1,0 +1,42 @@
+{
+    "pkglink": {
+        "scope": "markdown",
+        "prefix": "@thi",
+        "body": [
+            "[@thi.ng/$1](https://github.com/thi-ng/umbrella/tree/develop/packages/$1)"
+        ],
+        "description": "thi.ng umbrella pkg link"
+    },
+    "doclink": {
+        "scope": "markdown",
+        "prefix": "@doc",
+        "body": [
+            "[`${2:name}()`](https://docs.thi.ng/umbrella/${1:pkg}/modules.html#${2/(.*)/${1:/downcase}/})"
+        ],
+        "description": "thi.ng umbrella doc link (function)"
+    },
+    "doclink_class": {
+        "scope": "markdown",
+        "prefix": "@docc",
+        "body": [
+            "[`${2:name}`](https://docs.thi.ng/umbrella/${1:pkg}/classes/${2/(.*)/${1:/downcase}/}.html)"
+        ],
+        "description": "thi.ng umbrella doc link (class)"
+    },
+    "doclink_interface": {
+        "scope": "markdown",
+        "prefix": "@doci",
+        "body": [
+            "[`${2:name}`](https://docs.thi.ng/umbrella/${1:pkg}/interfaces/${2/(.*)/${1:/downcase}/}.html)"
+        ],
+        "description": "thi.ng umbrella doc link (interface)"
+    },
+    "imagelink": {
+        "scope": "markdown",
+        "prefix": "@img",
+        "body": [
+            "![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/$1/$2)"
+        ],
+        "description": "thi.ng umbrella image link"
+    }
+}
