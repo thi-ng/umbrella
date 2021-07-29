@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/args@0.7.0...@thi.ng/args@0.7.1) (2021-07-29)
+
+
+### Bug Fixes
+
+* **args:** omit empty groups from usage() ([a66c19a](https://github.com/thi-ng/umbrella/commit/a66c19aa8d682a7f4b6ae5b3de51a26e806a02dc))
+
+
+
+
+
 # [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/args@0.6.0...@thi.ng/args@0.7.0) (2021-07-01)
 
 
