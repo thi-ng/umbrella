@@ -1,4 +1,4 @@
-import type { IObjectOf } from "@thi.ng/api";
+import type { IObjectOf, Pair } from "@thi.ng/api";
 import {
     kebab,
     lengthAnsi,
@@ -72,11 +72,15 @@ export const usage = <T extends IObjectOf<any>>(
             );
         });
     const sortedIDs = Object.keys(specs).sort();
-    const groups: [string, string[]][] = opts.groups
-        ? opts.groups.map((gid) => [
-              gid,
-              sortedIDs.filter((id) => specs[id].group === gid),
-          ])
+    const groups: Pair<string, string[]>[] = opts.groups
+        ? opts.groups
+              .map(
+                  (gid): Pair<string, string[]> => [
+                      gid,
+                      sortedIDs.filter((id) => specs[id].group === gid),
+                  ]
+              )
+              .filter((g) => !!g[1].length)
         : [["options", sortedIDs]];
     return [
         ...wrap(opts.prefix, opts.lineWidth!),
