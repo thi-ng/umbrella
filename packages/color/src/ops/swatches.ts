@@ -11,12 +11,48 @@ export const swatchesH = (
     cols: (ReadonlyColor | string)[],
     w = 5,
     h = 50,
+    gap = 0,
     attribs?: IObjectOf<any>
-) => swatches(cols, (fill, i) => ["rect", { fill }, [i * w, 0], w, h], attribs);
+) =>
+    swatches(
+        cols,
+        (fill, i) => ["rect", { fill }, [i * (w + gap), 0], w, h],
+        attribs
+    );
+
+export const dotsH = (
+    cols: (ReadonlyColor | string)[],
+    r = 25,
+    gap = 0,
+    attribs?: IObjectOf<any>
+) =>
+    swatches(
+        cols,
+        (fill, i) => ["circle", { fill }, [i * (r * 2 + gap), 0], r],
+        attribs
+    );
 
 export const swatchesV = (
     cols: (ReadonlyColor | string)[],
     w = 50,
     h = 5,
+    gap = 0,
     attribs: IObjectOf<any> = {}
-) => swatches(cols, (fill, i) => ["rect", { fill }, [0, i * h], w, h], attribs);
+) =>
+    swatches(
+        cols,
+        (fill, i) => ["rect", { fill }, [0, i * (h + gap)], w, h],
+        attribs
+    );
+
+export const dotsV = (
+    cols: (ReadonlyColor | string)[],
+    r = 25,
+    gap = 0,
+    attribs?: IObjectOf<any>
+) =>
+    swatches(
+        cols,
+        (fill, i) => ["circle", { fill }, [0, i * (r * 2 + gap)], r],
+        attribs
+    );
