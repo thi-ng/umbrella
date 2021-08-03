@@ -85,11 +85,13 @@ export const initKmeanspp = <T extends ReadonlyVec>(
     const metric = dist.metric;
     while (centroidIDs.length < k) {
         let probs = samples.map(
-            (p) => dist.from(metric(p, centroids[argmin(p, centroids)!])) ** 2
+            (p) =>
+                dist.from(metric(p, centroids[argmin(p, centroids, dist)!])) **
+                2
         );
         let id: number;
         do {
-            id = weightedRandom(indices, probs)();
+            id = weightedRandom(indices, probs, rnd)();
         } while (centroidIDs.includes(id));
         centroidIDs.push(id);
         centroids.push(samples[id]);
