@@ -1,5 +1,18 @@
+import type { Fn2 } from "@thi.ng/api";
 import { kmeans, KMeansOpts } from "@thi.ng/k-means";
 import type { FloatBuffer } from "./float";
+
+export interface DominantColorOpts extends KMeansOpts {
+    /**
+     * Predicate used to only include pixels in the analysis for which the
+     * filter returns truthy result. E.g. to pre-exclude weakly saturated or
+     * dark colors etc. The second arg is the index of the pixel in the image's
+     * pixel buffer.
+     *
+     * If omitted, all pixels will be included (default).
+     */
+    filter: Fn2<Float32Array, number, boolean>;
+}
 
 /**
  * Takes a {@link FloatBuffer} and applies k-means clustering to extract the
@@ -18,14 +31,17 @@ import type { FloatBuffer } from "./float";
 export const dominantColors = (
     img: FloatBuffer,
     num: number,
-    opts?: Partial<KMeansOpts>
+    opts: Partial<DominantColorOpts> = {}
 ) => {
     const n = img.width * img.height;
     const mapped: Float32Array[] = [];
+    const filter = opts.filter || (() => true);
     for (let i = 0, j = 0, s = img.stride; i < n; i++, j += s) {
-        mapped.push(img.pixels.subarray(j, j + s));
+        const p = img.pixels.subarray(j, j + s);
+        if (filter(p, i)) mapped.push(p);
     }
-    return kmeans(num, mapped, opts)
+    if (!mapped.length) return [];
+    return kmeans(Math.min(num, mapped.length), mapped, opts)
         .sort((a, b) => b.items.length - a.items.length)
         .map((c) => ({ color: [...c.centroid], area: c.items.length / n }));
 };
