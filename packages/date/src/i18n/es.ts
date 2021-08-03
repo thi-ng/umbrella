@@ -39,7 +39,7 @@ export const ES_LONG: LocaleSpec = {
         s: { s: "segundo", p: "segundos" },
         t: { s: "millisegundo", p: "millisegundos" },
     },
-    less: "menos de",
+    less: "menos de %s",
     past: "hace %s",
     now: "ahora",
     future: "en %s",

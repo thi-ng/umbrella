@@ -40,8 +40,9 @@ export const IT_LONG: LocaleSpec = {
         s: { s: "secondo", p: "secondi" },
         t: { s: "millisecondo", p: "millisecondi" },
     },
-    less: "meno di",
+    less: "meno di %s",
     past: "%s fa",
-    now: "adesso",
-    future: "tra %s",
+    // https://dailyitalianwords.com/ora-vs-adesso/
+    now: "ora",
+    future: "in %s",
 };

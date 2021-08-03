@@ -104,7 +104,8 @@ export interface Locale {
      */
     units: Record<Precision, LocaleUnit>;
     /**
-     * Translated version of "less than".
+     * Translated version of "less than" for use with {@link unitsLessThan}.
+     * (`%s` will be replaced with the provided numeric value).
      */
     less: string;
     /**
@@ -130,6 +131,14 @@ export interface LocaleUnit {
      * Plural
      */
     p: string;
+    /**
+     * Singular dativ. If omitted, the same as singular.
+     */
+    sd?: string;
+    /**
+     * Plural dativ. If omitted, the same as plural.
+     */
+    pd?: string;
 }
 
 /**

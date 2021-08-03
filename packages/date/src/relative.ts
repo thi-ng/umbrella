@@ -1,7 +1,6 @@
 import {
     DAY,
     HOUR,
-    LocaleUnit,
     MaybeDate,
     MINUTE,
     MONTH,
@@ -11,7 +10,7 @@ import {
     YEAR,
 } from "./api";
 import { DateTime, dateTime, ensureDateTime } from "./datetime";
-import { LOCALE } from "./i18n";
+import { LOCALE, tense, units, unitsLessThan } from "./i18n";
 import { EN_LONG, EN_SHORT } from "./i18n/en";
 import { ensureEpoch, idToPrecision, precisionToID } from "./utils";
 
@@ -211,12 +210,11 @@ export const decomposeDifference = (
 
 /**
  * Takes a `date` and optional reference `base` date and (also optional
- * `prec`ision). Computes the difference between given dates and returns it as
- * formatted string.
+ * `prec`ision, i.e. number of fractional digits, default: 0). Computes the difference
+ * between given dates and returns it as formatted string.
  *
  * @remarks
- * As with {@link parseRelative}, (currently) this function doesn't make use of
- * the active {@link LOCALE} and only outputs English phrases.
+ * Returns {@link LOCALE.now} if absolute difference is < `eps` milliseconds (default: 100).
  *
  * @see {@link formatRelativeParts} for alternative output.
  *
@@ -239,43 +237,45 @@ export const decomposeDifference = (
  * @param date
  * @param base
  * @param prec
+ * @param eps
  */
 export const formatRelative = (
     date: MaybeDate,
     base: MaybeDate = new Date(),
-    prec = 1
+    prec = 0,
+    eps = 100
 ) => {
     const delta = difference(date, base);
-    if (delta === 0) return LOCALE.now;
+    if (Math.abs(delta) < eps) return LOCALE.now;
 
     let abs = Math.abs(delta);
-    let units: Precision;
+    let unit: Precision;
     if (abs < SECOND) {
-        units = "t";
+        unit = "t";
     } else if (abs < MINUTE) {
         abs /= SECOND;
-        units = "s";
+        unit = "s";
     } else if (abs < HOUR) {
         abs /= MINUTE;
-        units = "m";
+        unit = "m";
     } else if (abs < DAY) {
         abs /= HOUR;
-        units = "h";
+        unit = "h";
     } else if (abs < MONTH) {
         abs /= DAY;
-        units = "d";
+        unit = "d";
     } else if (abs < YEAR) {
         abs /= MONTH;
-        units = "M";
+        unit = "M";
     } else {
         abs /= YEAR;
-        units = "y";
+        unit = "y";
     }
 
-    return tense(
-        delta,
-        unitString(LOCALE.units[units], Math.round(abs / prec) * prec)
-    );
+    const exp = 10 ** -prec;
+    abs = Math.round(abs / exp) * exp;
+
+    return tense(delta, `${abs.toFixed(prec)} ${units(abs, unit, true, true)}`);
 };
 
 /**
@@ -285,8 +285,9 @@ export const formatRelative = (
  * etc.). Only non-zero parts will be mentioned.
  *
  * @remarks
- * Uses {@link decomposeDifference} for given dates to extract parts for
- * formatting.
+ * Returns {@link LOCALE.now} if absolute difference is < `eps` milliseconds
+ * (default: 100). In all other cases uses {@link decomposeDifference} for
+ * given dates to extract parts for formatting.
  *
  * @example
  * ```ts
@@ -305,14 +306,18 @@ export const formatRelative = (
  * @param date
  * @param base
  * @param prec
+ * @param eps
  */
 export const formatRelativeParts = (
     date: MaybeDate,
     base: MaybeDate = Date.now(),
-    prec: Precision = "s"
+    prec: Precision = "s",
+    eps = 1000
 ) => {
+    date = ensureEpoch(date);
+    base = ensureEpoch(base);
+    if (Math.abs(date - base) < eps) return LOCALE.now;
     const [sign, ...parts] = decomposeDifference(date, base);
-    if (!sign) return LOCALE.now;
     const precID = precisionToID(prec);
     let maxID = precID;
     while (!parts[maxID] && maxID > 0) maxID--;
@@ -329,18 +334,12 @@ export const formatRelativeParts = (
         .map((x, i) => {
             let unit = LOCALE.units[idToPrecision(i)];
             return x > 0
-                ? unitString(unit, x)
+                ? units(x, unit, true)
                 : i === maxID && maxID < 6
-                ? `${LOCALE.less} 1 ${unit.s}`
+                ? unitsLessThan(1, unit, true)
                 : "";
         })
         .filter((x) => !!x)
         .join(", ");
     return tense(sign, res);
 };
-
-const unitString = (unit: LocaleUnit, x: number) =>
-    `${x} ${unit[x > 1 ? "p" : "s"]}`;
-
-const tense = (sign: number, res: string) =>
-    (sign < 0 ? LOCALE.past : LOCALE.future).replace("%s", res);

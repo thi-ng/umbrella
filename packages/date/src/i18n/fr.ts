@@ -32,16 +32,17 @@ export const FR_LONG: LocaleSpec = {
     sepMY: " ",
     sepHM: "h ",
     units: {
-        y: { s: "année", p: "ans" },
+        y: { s: "année", sd: "an", p: "ans" },
         M: { s: "mois", p: "mois" },
-        d: { s: "jour", p: "jours" },
+        d: { s: "jour", sd: "journée", p: "jours" },
         h: { s: "heure", p: "heures" },
         m: { s: "minute", p: "minutes" },
         s: { s: "seconde", p: "secondes" },
         t: { s: "milliseconde", p: "millisecondes" },
     },
-    less: "moins de",
+    less: "moins de %s",
     past: "il y a %s",
     now: "à présent",
-    future: "en %s",
+    // https://www.thoughtco.com/learn-essential-french-prepositions-4078684
+    future: "dans %s",
 };
