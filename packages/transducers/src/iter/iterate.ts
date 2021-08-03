@@ -7,8 +7,8 @@ import type { Fn2 } from "@thi.ng/api";
  *
  * @remarks
  * The first value emitted always is `seed` itself, then f(seed),
- * f(f(seed)) etc. The given function is called with the current
- * iteration counter as 2nd arg.
+ * f(f(seed, i)) etc. The given function is called with the current
+ * iteration counter as 2nd arg (starting w/ i=1).
  *
  * @example
  * ```ts
@@ -28,9 +28,8 @@ export function* iterate<T>(
     seed: T,
     num = Infinity
 ): IterableIterator<T> {
-    let i = 0;
-    while (i < num) {
+    for (let i = 1; i <= num; i++) {
         yield seed;
-        seed = fn(seed, ++i);
+        seed = fn(seed, i);
     }
 }
