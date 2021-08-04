@@ -65,7 +65,7 @@ const include = (id) => args.has(id) || args.has("all");
 
 uploadAssets("assets");
 
-uploadAssets("js");
+uploadAssets("js", { ext: ".js", depth: 2 });
 uploadAssets("", { ext: ".js", depth: 1 });
 uploadAssets("", { ext: ".html" });
 
