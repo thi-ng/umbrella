@@ -130,10 +130,12 @@ module.exports = {
             "@snowpack/plugin-webpack",
             {
                 extendConfig: (config) => {
-                    config.node = {
-                        process: false,
-                        setImmediate: false,
-                        util: "empty",
+                    config.node = false;
+                    config.resolve = {
+                        alias: {
+                            process: false,
+                            util: false,
+                        }
                     };
                     return config;
                 },
