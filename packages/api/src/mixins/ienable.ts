@@ -23,17 +23,11 @@ export const IEnableMixin = mixin(<IEnable<any>>{
     },
 
     enable(this: _IEnable) {
-        this._enabled = true;
-        if (this.notify) {
-            this.notify({ id: EVENT_ENABLE, target: this });
-        }
+        $enable(this, true, EVENT_ENABLE);
     },
 
     disable(this: _IEnable) {
-        this._enabled = false;
-        if (this.notify) {
-            this.notify({ id: EVENT_DISABLE, target: this });
-        }
+        $enable(this, false, EVENT_DISABLE);
     },
 
     toggle(this: _IEnable) {
@@ -41,3 +35,10 @@ export const IEnableMixin = mixin(<IEnable<any>>{
         return this._enabled;
     },
 });
+
+const $enable = (target: _IEnable, state: boolean, id: string) => {
+    target._enabled = state;
+    if (target.notify) {
+        target.notify({ id, target });
+    }
+};
