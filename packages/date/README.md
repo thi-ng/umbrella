@@ -28,7 +28,7 @@ This project is part of the
 
 ## About
 
-Date/timestamp iterators, composable formatters, relative date parsing, rounding.
+Datetime types, relative dates, math, iterators, composable formatters, locales.
 
 ### Status
 
@@ -50,12 +50,13 @@ yarn add @thi.ng/date
 <script src="https://unpkg.com/@thi.ng/date/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.40 KB / CJS: 5.67 KB / UMD: 5.47 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.52 KB / CJS: 5.81 KB / UMD: 5.61 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 
 ## API
 

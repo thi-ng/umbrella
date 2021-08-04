@@ -835,6 +835,7 @@ and return a reduced result (as if it would be called via `reduce()`).
 - [min](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/min.ts)
 - [minCompare](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/min-compare.ts)
 - [minMag](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/min-mag.ts)
+- [minMax](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/min-max.ts)
 - [mul](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/mul.ts)
 - [push](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/push.ts)
 - [pushCopy](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/push-copy.ts)

@@ -155,7 +155,7 @@ yarn add @thi.ng/rdom
 <script src="https://unpkg.com/@thi.ng/rdom/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.80 KB / CJS: 3.96 KB / UMD: 3.92 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.83 KB / CJS: 3.99 KB / UMD: 3.94 KB
 
 ## Dependencies
 

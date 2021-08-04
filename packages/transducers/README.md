@@ -169,7 +169,7 @@ yarn add @thi.ng/transducers
 <script src="https://unpkg.com/@thi.ng/transducers/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 8.40 KB / CJS: 8.96 KB / UMD: 8.14 KB
+Package sizes (gzipped, pre-treeshake): ESM: 8.44 KB / CJS: 9.00 KB / UMD: 8.18 KB
 
 ## Dependencies
 
@@ -963,6 +963,7 @@ and return a reduced result (as if it would be called via `reduce()`).
 - [min](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/min.ts)
 - [minCompare](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/min-compare.ts)
 - [minMag](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/min-mag.ts)
+- [minMax](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/min-max.ts)
 - [mul](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/mul.ts)
 - [push](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/push.ts)
 - [pushCopy](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/push-copy.ts)
