@@ -14,7 +14,7 @@ export class PixelCanvas extends Component {
         const buf = this.buffer;
         this.el = this.$el(
             "canvas",
-            { width: buf.width, height: buf.height },
+            { width: buf.width, height: buf.height, class: "dib v-top" },
             null,
             parent,
             index

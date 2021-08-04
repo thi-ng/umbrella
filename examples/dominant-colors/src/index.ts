@@ -6,9 +6,9 @@ import { reactive, stream, sync } from "@thi.ng/rstream";
 import { float } from "@thi.ng/strings";
 import { map } from "@thi.ng/transducers";
 import type { SortMode } from "./api";
+import { cssPalette } from "./components/css";
 import { PixelCanvas } from "./components/pixelcanvas";
 import { slider } from "./components/slider";
-import { svgSwatches } from "./components/swatches";
 import { downloadACT } from "./palette";
 import { postProcess, processImage } from "./process";
 
@@ -21,7 +21,7 @@ const num = reactive(8);
 // min chromacity of result colors (percent)
 const minChroma = reactive(10);
 // min cluster area (percent)
-const minArea = reactive(1);
+const minArea = reactive(0.5);
 const sortMode = reactive<SortMode>("hue");
 // dummy stream to retrigger updates
 const update = reactive(true);
@@ -88,7 +88,7 @@ $compile(
         slider(minArea, "min. area", {
             min: 0,
             max: 25,
-            step: 1,
+            step: 0.5,
         }),
         div(".mv3", {}, "Sort colors by:"),
         staticRadio<SortMode>(["hue", "luma", "area"], <any>sortMode, {
@@ -107,16 +107,10 @@ $compile(
             $refresh(result, async (res) =>
                 div(
                     {},
+                    cssPalette(res.colors),
                     // resized image as canvas
                     new PixelCanvas(res.buf),
                     // swatches of dominant colors
-                    div(
-                        {},
-                        svgSwatches(
-                            res.colors.map((c) => c.col),
-                            size
-                        )
-                    ),
                     div(
                         {},
                         `hue range: ${res.hues.map(float(3)).join(" .. ")}`
