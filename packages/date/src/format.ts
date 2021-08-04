@@ -1,7 +1,8 @@
 import { isFunction, isString } from "@thi.ng/checks";
+import { Z2, Z3, Z4 } from "@thi.ng/strings";
 import { FormatFn, MaybeDate, MINUTE } from "./api";
 import { LOCALE } from "./i18n";
-import { ensureDate, weekInYear, Z2, Z3, Z4 } from "./utils";
+import { ensureDate, weekInYear } from "./utils";
 
 export const FORMATTERS: Record<string, FormatFn> = {
     /**

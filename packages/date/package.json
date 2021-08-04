@@ -39,7 +39,8 @@
     },
     "dependencies": {
         "@thi.ng/api": "^7.1.6",
-        "@thi.ng/checks": "^2.9.8"
+        "@thi.ng/checks": "^2.9.8",
+        "@thi.ng/strings": "^2.1.2"
     },
     "files": [
         "*.js",

@@ -1,5 +1,5 @@
+import { Z2 } from "@thi.ng/strings";
 import { DAY, HOUR, MINUTE, MONTH, SECOND, YEAR } from "./api";
-import { Z2 } from "./utils";
 
 /**
  * Returns a time formatter for given FPS (frames / second, in [1..1000] range),

@@ -1,5 +1,6 @@
 import type { ICompare, ICopy, IEqualsDelta, IEquiv } from "@thi.ng/api";
 import { isNumber, isString } from "@thi.ng/checks";
+import { Z2, Z3, Z4 } from "@thi.ng/strings";
 import { DAY, HOUR, MaybeDate, MINUTE, Period, Precision, SECOND } from "./api";
 import { defFormat } from "./format";
 import { LOCALE } from "./i18n";
@@ -11,9 +12,6 @@ import {
     isLeapYear,
     precisionToID,
     weekInYear,
-    Z2,
-    Z3,
-    Z4,
 } from "./utils";
 
 export const dateTime = (epoch?: MaybeDate, prec?: Precision) =>
