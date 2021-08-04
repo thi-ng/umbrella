@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom-components@0.1.46...@thi.ng/rdom-components@0.2.0) (2021-08-04)
+
+
+### Features
+
+* **rdom-components:** add input components ([fb390c1](https://github.com/thi-ng/umbrella/commit/fb390c1c30d0224a20526eacae7df7d092709518))
+* **rdom-components:** add staticRadio() component ([ff3d1c4](https://github.com/thi-ng/umbrella/commit/ff3d1c4495191de814427e36b8ac7ff744fc98c2))
+
+
+
+
+
 ## [0.1.46](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom-components@0.1.45...@thi.ng/rdom-components@0.1.46) (2021-07-27)
 
 **Note:** Version bump only for package @thi.ng/rdom-components

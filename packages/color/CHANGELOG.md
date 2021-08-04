@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@3.1.18...@thi.ng/color@3.2.0) (2021-08-04)
+
+
+### Features
+
+* **color:** add/update swatch functions ([391ae4a](https://github.com/thi-ng/umbrella/commit/391ae4aa2e57aa14b9a2acdb1e3365b191612470))
+
+
+
+
+
 ## [3.1.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@3.1.17...@thi.ng/color@3.1.18) (2021-07-27)
 
 **Note:** Version bump only for package @thi.ng/color

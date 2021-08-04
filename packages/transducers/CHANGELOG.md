@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.7.5...@thi.ng/transducers@7.8.0) (2021-08-04)
+
+
+### Features
+
+* **transducers:** add minMax() reducer ([5f8a722](https://github.com/thi-ng/umbrella/commit/5f8a72215010645cce039cedab3313fae722e363))
+* **transducers:** update repeatedly(), iterate() ([b7d9ba4](https://github.com/thi-ng/umbrella/commit/b7d9ba42b812c3b39909e86be5eebfa4e235f535))
+
+
+
+
+
 ## [7.7.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.7.4...@thi.ng/transducers@7.7.5) (2021-07-27)
 
 **Note:** Version bump only for package @thi.ng/transducers

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/args",
-    "version": "0.7.1",
+    "version": "0.7.2",
     "description": "Declarative, functional & typechecked CLI argument/options parser, value coercions etc.",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,10 +38,10 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.6",
+        "@thi.ng/api": "^7.1.7",
         "@thi.ng/checks": "^2.9.8",
         "@thi.ng/errors": "^1.3.2",
-        "@thi.ng/strings": "^2.1.2"
+        "@thi.ng/strings": "^2.1.3"
     },
     "files": [
         "*.js",

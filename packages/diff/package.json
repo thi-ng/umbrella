@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/diff",
-    "version": "4.0.9",
+    "version": "4.0.10",
     "description": "Customizable diff implementations for arrays (sequential) & objects (associative), with or without linear edit logs",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,7 +38,7 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.6",
+        "@thi.ng/api": "^7.1.7",
         "@thi.ng/equiv": "^1.0.43"
     },
     "files": [

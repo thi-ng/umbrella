@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.5.0...@thi.ng/rdom@0.6.0) (2021-08-04)
+
+
+### Features
+
+* **rdom:** add $inputFile/Files() handlers ([7f8888b](https://github.com/thi-ng/umbrella/commit/7f8888b0f0857aa9abde8ca6ea666a6f37bb64f2))
+
+
+
+
+
 # [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.4.17...@thi.ng/rdom@0.5.0) (2021-07-27)
 
 

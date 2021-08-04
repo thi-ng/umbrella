@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/k-means@0.2.4...@thi.ng/k-means@0.2.5) (2021-08-04)
+
+
+### Bug Fixes
+
+* **k-means:** update initKmeanspp() ([dd0d965](https://github.com/thi-ng/umbrella/commit/dd0d9654b1aacce8a4bbbd921f2ce44d0eaa276a))
+
+
+
+
+
 ## [0.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/k-means@0.2.3...@thi.ng/k-means@0.2.4) (2021-07-27)
 
 **Note:** Version bump only for package @thi.ng/k-means

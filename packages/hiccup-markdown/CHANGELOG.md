@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.24](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-markdown@1.3.23...@thi.ng/hiccup-markdown@1.3.24) (2021-08-04)
+
+**Note:** Version bump only for package @thi.ng/hiccup-markdown
+
+
+
+
+
 ## [1.3.23](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-markdown@1.3.22...@thi.ng/hiccup-markdown@1.3.23) (2021-07-27)
 
 **Note:** Version bump only for package @thi.ng/hiccup-markdown

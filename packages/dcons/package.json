@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dcons",
-    "version": "2.3.26",
+    "version": "2.3.27",
     "description": "Double-linked lists with comprehensive set of operations (incl. optional self-organizing behaviors)",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,13 +38,13 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.6",
+        "@thi.ng/api": "^7.1.7",
         "@thi.ng/checks": "^2.9.8",
-        "@thi.ng/compare": "^1.3.30",
+        "@thi.ng/compare": "^1.3.31",
         "@thi.ng/equiv": "^1.0.43",
         "@thi.ng/errors": "^1.3.2",
-        "@thi.ng/random": "^2.4.2",
-        "@thi.ng/transducers": "^7.7.5"
+        "@thi.ng/random": "^2.4.3",
+        "@thi.ng/transducers": "^7.8.0"
     },
     "files": [
         "*.js",

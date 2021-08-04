@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.39](https://github.com/thi-ng/umbrella/compare/@thi.ng/grid-iterators@0.4.38...@thi.ng/grid-iterators@0.4.39) (2021-08-04)
+
+**Note:** Version bump only for package @thi.ng/grid-iterators
+
+
+
+
+
 ## [0.4.38](https://github.com/thi-ng/umbrella/compare/@thi.ng/grid-iterators@0.4.37...@thi.ng/grid-iterators@0.4.38) (2021-07-27)
 
 **Note:** Version bump only for package @thi.ng/grid-iterators

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/heaps",
-    "version": "1.2.40",
+    "version": "1.2.41",
     "description": "Various heap implementations for arbitrary values and with customizable ordering",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -39,8 +39,8 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.6",
-        "@thi.ng/compare": "^1.3.30"
+        "@thi.ng/api": "^7.1.7",
+        "@thi.ng/compare": "^1.3.31"
     },
     "files": [
         "*.js",

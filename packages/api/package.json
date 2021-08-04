@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/api",
-    "version": "7.1.6",
+    "version": "7.1.7",
     "description": "Common, generic types, interfaces & mixins",
     "module": "./index.js",
     "main": "./lib/index.js",
