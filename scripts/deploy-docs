@@ -88,14 +88,14 @@ const invalidatePackage = (id) =>
         `aws cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths "${S3_PREFIX}/${id}/*" ${AWS_PROFILE}`
     );
 
-const processPackage = (id) => {
+const processPackage = (id, invalidate = true) => {
     console.log("processing", id);
     const root = `packages/${id}/doc`;
     try {
         sanitizePackage(root);
         minifyPackage(root);
         syncPackage(id, root);
-        invalidatePackage(id);
+        invalidate && invalidatePackage(id);
     } catch (e) {
         console.warn(e);
     }
@@ -104,11 +104,9 @@ const processPackage = (id) => {
 if (PKG) {
     processPackage(PKG);
 } else {
-    for (let pkg of fs.readdirSync("packages")) {
-        if (fs.statSync(`packages/${pkg}`).isDirectory()) {
-            processPackage(pkg);
-        }
-    }
+    const pkgs = fs.readdirSync("packages")
+        .filter((p) => fs.statSync(`packages/${p}`).isDirectory());
+    pkgs.forEach((pkg, i) => processPackage(pkg, i === pkgs.length - 1));
 }
 
 execSync(
