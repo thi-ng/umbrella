@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.8.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.8.0...@thi.ng/transducers@7.8.1) (2021-08-04)
+
+**Note:** Version bump only for package @thi.ng/transducers
+
+
+
+
+
 # [7.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.7.5...@thi.ng/transducers@7.8.0) (2021-08-04)
 
 

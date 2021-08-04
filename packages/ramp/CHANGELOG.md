@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.65](https://github.com/thi-ng/umbrella/compare/@thi.ng/ramp@0.1.64...@thi.ng/ramp@0.1.65) (2021-08-04)
+
+**Note:** Version bump only for package @thi.ng/ramp
+
+
+
+
+
 ## [0.1.64](https://github.com/thi-ng/umbrella/compare/@thi.ng/ramp@0.1.63...@thi.ng/ramp@0.1.64) (2021-08-04)
 
 **Note:** Version bump only for package @thi.ng/ramp

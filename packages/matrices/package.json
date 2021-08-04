@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/matrices",
-    "version": "0.6.62",
+    "version": "0.6.63",
     "description": "Matrix & quaternion operations for 2D/3D geometry processing",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -41,7 +41,7 @@
         "@thi.ng/api": "^7.1.7",
         "@thi.ng/checks": "^2.9.8",
         "@thi.ng/math": "^4.0.3",
-        "@thi.ng/vectors": "^6.0.4"
+        "@thi.ng/vectors": "^6.0.5"
     },
     "files": [
         "*.js",
