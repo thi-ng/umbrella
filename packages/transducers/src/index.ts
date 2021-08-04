@@ -27,6 +27,7 @@ export * from "./rfn/mean";
 export * from "./rfn/min";
 export * from "./rfn/min-compare";
 export * from "./rfn/min-mag";
+export * from "./rfn/min-max";
 export * from "./rfn/mul";
 export * from "./rfn/push";
 export * from "./rfn/push-copy";
