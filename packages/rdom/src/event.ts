@@ -26,9 +26,10 @@ export const $input = (stream: ISubscriber<string>) => (e: Event) =>
  * @param stream -
  * @param fallback -
  */
-export const $inputNum = (stream: ISubscriber<number>, fallback = 0) => (
-    e: Event
-) => stream.next(maybeParseFloat((<any>e.target).value, fallback));
+export const $inputNum =
+    (stream: ISubscriber<number>, fallback = 0) =>
+    (e: Event) =>
+        stream.next(maybeParseFloat((<any>e.target).value, fallback));
 
 /**
  * HOF DOM event listener to emit a checkbox input's value on given stream.
@@ -46,3 +47,21 @@ export const $inputCheckbox = (stream: ISubscriber<boolean>) => (e: Event) =>
  */
 export const $inputTrigger = (stream: ISubscriber<boolean>) => () =>
     stream.next(true);
+
+/**
+ * HOF DOM event listener to emit a file input's first selected file on given
+ * stream.
+ *
+ * @param stream
+ */
+export const $inputFile = (stream: ISubscriber<File>) => (e: Event) =>
+    stream.next((<HTMLInputElement>e.target).files![0]);
+
+/**
+ * HOF DOM event listener to emit a file input's entire selected list of files
+ * on given stream.
+ *
+ * @param stream
+ */
+export const $inputFiles = (stream: ISubscriber<FileList>) => (e: Event) =>
+    stream.next((<HTMLInputElement>e.target).files!);
