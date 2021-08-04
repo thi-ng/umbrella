@@ -1,63 +1,55 @@
-import { timed } from "@thi.ng/bench";
-import { swatchesH } from "@thi.ng/color";
-import { button, div, h1, inputFile } from "@thi.ng/hiccup-html";
-import { svg } from "@thi.ng/hiccup-svg";
-import {
-    ABGR8888,
-    dominantColors,
-    floatBuffer,
-    FLOAT_RGB,
-    PackedBuffer,
-} from "@thi.ng/pixel";
-import {
-    $compile,
-    $input,
-    $refresh,
-    Component,
-    NumOrElement,
-} from "@thi.ng/rdom";
+import { isMobile } from "@thi.ng/checks";
+import { button, div, h1, inputFile, label, span } from "@thi.ng/hiccup-html";
+import { $compile, $inputFile, $inputTrigger, $refresh } from "@thi.ng/rdom";
+import { staticRadio } from "@thi.ng/rdom-components";
 import { reactive, stream, sync } from "@thi.ng/rstream";
+import { float } from "@thi.ng/strings";
 import { map } from "@thi.ng/transducers";
+import type { SortMode } from "./api";
+import { PixelCanvas } from "./components/pixelcanvas";
+import { slider } from "./components/slider";
+import { svgSwatches } from "./components/swatches";
 import { downloadACT } from "./palette";
-
-/**
- * Converts image into pixel buffer, resizes it to max 256 pixels (longest side)
- * and applies k-means clustering to obtain dominant colors and their coverage.
- * Only colors with given `minArea` (normalized) are considered.
- *
- * @param img
- * @param num
- * @param minArea
- */
-const processImage = (img: HTMLImageElement, num: number, minArea = 0.025) =>
-    timed(() => {
-        let buf = PackedBuffer.fromImage(img, ABGR8888);
-        buf = buf.scale(256 / Math.max(buf.width, buf.height), "nearest");
-        const colors = dominantColors(floatBuffer(buf, FLOAT_RGB), num).filter(
-            (c) => c.area >= minArea
-        );
-        return { buf, colors };
-    });
-
-// images read from files
-const image = stream<HTMLImageElement>();
-// number of dominant colors to extract
-const num = reactive(5);
-// dummy stream to retrigger updates
-const update = reactive("");
-
-// stream combinator & image processor
-const result = sync({
-    src: {
-        image,
-        num,
-        _: update,
-    },
-    xform: map((params) => processImage(params.image, params.num)),
-});
+import { postProcess, processImage } from "./process";
 
 // stream of input files
 const file = stream<File>();
+// images read from files
+const image = stream<HTMLImageElement>();
+// number of dominant colors to extract
+const num = reactive(8);
+// min chromacity of result colors (percent)
+const minChroma = reactive(10);
+// min cluster area (percent)
+const minArea = reactive(1);
+const sortMode = reactive<SortMode>("hue");
+// dummy stream to retrigger updates
+const update = reactive(true);
+
+const size = (isMobile() ? 0.5 : 1) * 25;
+
+// stream combinator & image processor
+const main = sync({
+    src: {
+        image,
+        num,
+        minChroma,
+        _: update,
+    },
+    xform: map((params) =>
+        processImage(params.image, params.num, params.minChroma * 0.01)
+    ),
+});
+
+// final result combinator & post-analysis/filtering
+const result = sync({
+    src: { main, minArea, sortMode },
+    xform: map(({ main: { buf, colors }, minArea, sortMode }) => ({
+        buf,
+        ...postProcess(colors, minArea, sortMode),
+    })),
+});
+
 // new values pushed into `file` will trigger reading file as an image
 // once ready, puts image into `image` stream for further processing
 file.subscribe({
@@ -72,71 +64,69 @@ file.subscribe({
     },
 });
 
-// thi.ng/rdom UI component
-// creates a canvas element and blits given pixel buffer into it
-// when the component mounts
-class PixelCanvas extends Component {
-    constructor(protected buffer: PackedBuffer) {
-        super();
-    }
-
-    async mount(parent: Element, index?: NumOrElement) {
-        const buf = this.buffer;
-        this.el = this.$el(
-            "canvas",
-            { width: buf.width, height: buf.height },
-            null,
-            parent,
-            index
-        );
-        buf.blitCanvas(<HTMLCanvasElement>this.el);
-        return this.el;
-    }
-}
-
 // main UI
 $compile(
     div(
+        ".lh-copy.f6.f5-ns",
         {},
-        h1({}, "Dominant colors"),
+        h1(".ma0", {}, "Dominant colors"),
         inputFile(".db.mv3", {
-            accept: ["image/jpg", "image/png", "image/gif"],
+            accept: ["image/jpg", "image/png", "image/gif", "image/webp"],
             multiple: false,
-            onchange: (e) => file.next((<HTMLInputElement>e.target).files![0]),
+            onchange: $inputFile(file),
         }),
-        button(".db.mv3", { onclick: $input(update) }, "update"),
+        slider(num, "max. colors", {
+            min: 2,
+            max: 16,
+            step: 1,
+        }),
+        slider(minChroma, "min. chroma", {
+            min: 0,
+            max: 100,
+            step: 5,
+        }),
+        slider(minArea, "min. area", {
+            min: 0,
+            max: 25,
+            step: 1,
+        }),
+        div(".mv3", {}, "Sort colors by:"),
+        staticRadio<SortMode>(["hue", "luma", "area"], <any>sortMode, {
+            label: (id, radio) =>
+                label(
+                    ".db",
+                    { for: id },
+                    span(".dib.w-50.w-25-ns", {}, id),
+                    radio
+                ),
+        }),
+        button(".db.mv3", { onclick: $inputTrigger(update) }, "update"),
         div(
             {},
             // this part of the UI will be replaced for each new processed image
-            $refresh<ReturnType<typeof processImage>>(result, async (res) =>
+            $refresh(result, async (res) =>
                 div(
                     {},
                     // resized image as canvas
                     new PixelCanvas(res.buf),
                     // swatches of dominant colors
                     div(
-                        ".mv3",
                         {},
-                        svg(
-                            {
-                                width: res.colors.length * 50,
-                                height: 50,
-                                convert: true,
-                            },
-                            swatchesH(
-                                res.colors.map((c) => c.color),
-                                50,
-                                50,
-                                { stroke: "black" }
-                            )
+                        svgSwatches(
+                            res.colors.map((c) => c.col),
+                            size
                         )
+                    ),
+                    div(
+                        {},
+                        `hue range: ${res.hues.map(float(3)).join(" .. ")}`
                     ),
                     // download palette button
                     button(
                         ".db.mv3",
                         {
                             onclick: () =>
-                                downloadACT(res.colors.map((c) => c.color)),
+                                downloadACT(res.colors.map((c) => c.col)),
                         },
                         "download .act palette"
                     )
