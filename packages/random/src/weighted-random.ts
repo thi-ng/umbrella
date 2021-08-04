@@ -5,8 +5,9 @@ import { SYSTEM } from "./system";
 /**
  * Returns a no-arg function which produces a random choice of given weighted
  * `choices` and using given {@link IRandom} instance (default {@link SYSTEM}.
- * If `weights` are given, it must be the same size as `choices`. If omitted,
- * each choice will have same probability.
+ * If `weights` are given, it must be the same size as `choices` (else missing
+ * weights will be assumed zero). If omitted entirely, each choice will have
+ * same probability.
  *
  * @remarks
  * Throws an error if the `choices` array is empty (requires at least 1 item).
@@ -28,7 +29,7 @@ export const weightedRandom = <T>(
     assert(n > 0, "no choices given");
     const opts = weights
         ? choices
-              .map((x, i) => <[number, T]>[weights[i], x])
+              .map((x, i) => <[number, T]>[weights[i] || 0, x])
               .sort((a, b) => b[0] - a[0])
         : choices.map((x) => <[number, T]>[1, x]);
     const total = opts.reduce((acc, o) => acc + o[0], 0);
