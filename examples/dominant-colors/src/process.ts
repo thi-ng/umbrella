@@ -29,7 +29,7 @@ export const processImage = (
         buf = buf.scale(256 / Math.max(buf.width, buf.height), "nearest");
         const colors = dominantColors(floatBuffer(buf, FLOAT_RGB), num, {
             // use min chroma as pre-filter criteria
-            filter: (p) => lch(srgb(p)).c > minChroma,
+            filter: (p) => lch(srgb(p)).c >= minChroma,
         }).map((c) => <DominantColor>{ col: lch(srgb(c.color)), area: c.area });
         return { buf, colors };
     });
