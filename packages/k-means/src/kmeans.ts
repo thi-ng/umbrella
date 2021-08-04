@@ -5,8 +5,8 @@ import { add, median, mulN, ReadonlyVec, Vec, zeroes } from "@thi.ng/vectors";
 import type { CentroidStrategy, Cluster, KMeansOpts } from "./api";
 
 /**
- * Takes an array of n-dimensional `samples` and attempts to assign them to `k`
- * clusters, using the behavior defined by (optionally) given `opts`.
+ * Takes an array of n-dimensional `samples` and attempts to assign them to up
+ * to `k` clusters, using the behavior defined by (optionally) given `opts`.
  *
  * @remarks
  * https://en.wikipedia.org/wiki/K-medians_clustering
@@ -14,7 +14,6 @@ import type { CentroidStrategy, Cluster, KMeansOpts } from "./api";
  * @param k
  * @param samples
  * @param opts
- * @returns
  */
 export const kmeans = <T extends ReadonlyVec>(
     k: number,
@@ -30,7 +29,8 @@ export const kmeans = <T extends ReadonlyVec>(
     const num = samples.length;
     const dim = samples[0].length;
     const centroidIDs = initial || initKmeanspp(k, samples, dist, rnd);
-    assert(centroidIDs.length === k, `wrong number of initial centroids`);
+    assert(centroidIDs.length > 0, `missing initial centroids`);
+    k = centroidIDs.length;
     const centroids: Vec[] = centroidIDs.map((i) => samples[i]);
     const clusters: number[] = [];
     let update = true;
@@ -61,6 +61,11 @@ export const kmeans = <T extends ReadonlyVec>(
  * centroid initialization method for {@link kmeans}.
  *
  * @remarks
+ * Might return fewer than `k` centroid IDs if the requested number cannot be
+ * fulfilled (e.g. due to lower number of samples and/or distance metric).
+ * Throws an error if `samples` are empty.
+ *
+ * @remarks
  * References:
  * - https://en.wikipedia.org/wiki/K-means%2B%2B
  * - http://ilpubs.stanford.edu:8090/778/1/2006-13.pdf
@@ -78,17 +83,22 @@ export const initKmeanspp = <T extends ReadonlyVec>(
     rnd = SYSTEM
 ) => {
     const num = samples.length;
-    assert(num >= k, `insufficient samples for k=${k}`);
+    assert(num > 0, `missing samples`);
+    k = Math.min(k, num);
     const centroidIDs = [rnd.int() % num];
     const centroids = [samples[centroidIDs[0]]];
     const indices = new Array(num).fill(0).map((_, i) => i);
     const metric = dist.metric;
     while (centroidIDs.length < k) {
-        let probs = samples.map(
-            (p) =>
+        let psum = 0;
+        const probs = samples.map((p) => {
+            const d =
                 dist.from(metric(p, centroids[argmin(p, centroids, dist)!])) **
-                2
-        );
+                2;
+            psum += d;
+            return d;
+        });
+        if (!psum) break;
         let id: number;
         do {
             id = weightedRandom(indices, probs, rnd)();
