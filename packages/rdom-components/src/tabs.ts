@@ -1,7 +1,7 @@
 import type { Fn, Fn4 } from "@thi.ng/api";
 import { Attribs, div, section } from "@thi.ng/hiccup-html";
 import { $list, $switch, ComponentLike } from "@thi.ng/rdom";
-import type { Subscription } from "@thi.ng/rstream";
+import type { ISubscription } from "@thi.ng/rstream";
 import { dedupe, map, range } from "@thi.ng/transducers";
 
 export interface TabOpts {
@@ -11,7 +11,7 @@ export interface TabOpts {
         content: Partial<Attribs>;
     }>;
     head: Fn4<
-        Subscription<number, number>,
+        ISubscription<number, number>,
         string,
         number,
         boolean,
@@ -23,7 +23,7 @@ export interface TabOpts {
     }[];
 }
 
-export const tabs = (src: Subscription<number, number>, opts: TabOpts) => {
+export const tabs = (src: ISubscription<number, number>, opts: TabOpts) => {
     const { attribs, head, sections } = <TabOpts>{ attribs: {}, ...opts };
     return div(
         attribs!.wrapper,

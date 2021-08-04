@@ -5,6 +5,7 @@ import {
     inputNumber,
     InputNumericAttribs,
 } from "@thi.ng/hiccup-html";
+import { $inputNum } from "@thi.ng/rdom";
 import type { ISubscription } from "@thi.ng/rstream";
 import { pluck, repeatedly } from "@thi.ng/transducers";
 
@@ -15,8 +16,7 @@ export const inputNumeric = (
     inputNumber({
         ...attribs,
         value: dest,
-        oninput: (e: InputEvent) =>
-            dest.next(parseFloat((<HTMLInputElement>e.target).value)),
+        oninput: $inputNum(dest),
     });
 
 export const inputVector = (

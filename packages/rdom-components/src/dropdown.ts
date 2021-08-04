@@ -43,10 +43,12 @@ export const staticDropdown = <T = string>(
     );
 };
 
-const $option = <T>(
-    sel: Subscription<string, string>,
-    { label, value }: DropdownOpts<T>
-) => (x: T) => {
-    let v = value(x);
-    return option({ value: v, selected: v === sel.deref() }, label(x));
-};
+const $option =
+    <T>(sel: Subscription<string, string>, { label, value }: DropdownOpts<T>) =>
+    (x: T) => {
+        let v = value(x);
+        return option(
+            { value: v, selected: sel.map((x) => v === x) },
+            label(x)
+        );
+    };

@@ -1,7 +1,7 @@
 import type { Fn, Fn4 } from "@thi.ng/api";
 import { Attribs, div, section } from "@thi.ng/hiccup-html";
 import { $list, $promise, ComponentLike } from "@thi.ng/rdom";
-import type { Subscription } from "@thi.ng/rstream";
+import type { ISubscription } from "@thi.ng/rstream";
 import { dedupe, map, range } from "@thi.ng/transducers";
 
 export interface AccordionOpts {
@@ -12,7 +12,7 @@ export interface AccordionOpts {
         content?: Partial<Attribs>;
     };
     head: Fn4<
-        Subscription<number, number>,
+        ISubscription<number, number>,
         string,
         number,
         boolean,
@@ -26,7 +26,7 @@ export interface AccordionOpts {
 }
 
 export const accordion = (
-    src: Subscription<number, number>,
+    src: ISubscription<number, number>,
     { attribs, head, sections, error }: AccordionOpts
 ) => {
     return $list(
