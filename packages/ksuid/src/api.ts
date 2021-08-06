@@ -17,9 +17,11 @@ export interface KSUIDOpts {
      */
     rnd: IRandom;
     /**
-     * Number of bytes for random payload.
+     * Number of bytes for random payload. By default, the 32 bit version uses
+     * 16 bytes, the 64bit version only 12 (but also has a 1000x smaller
+     * timespan / collision space).
      *
-     * @defaultValue 16
+     * @defaultValue 16 or 12
      */
     bytes: number;
     /**
@@ -27,11 +29,11 @@ export interface KSUIDOpts {
      * extend the time headroom of IDs into the future.
      *
      * @remarks
-     * The default value is approx. 2020-09-13, meaning this is the T0 epoch for
-     * all IDs (providing an additional ~50 year lifespan compared to the
-     * standard 1970-01-01 epoch)
+     * The default value (for both 32 & 64bit impls) is approx. 2020-09-13,
+     * meaning this is the T0 epoch for all IDs (providing an additional ~50
+     * year lifespan compared to the standard 1970-01-01 epoch)
      *
-     * @defaultValue 1_600_000_000
+     * @defaultValue 1_600_000_000 or 1_600_000_000_000
      */
     epoch: number;
 }

@@ -12,7 +12,7 @@ export class KSUID extends AKSUID {
 
     timeOnlyBinary(epoch = Date.now()) {
         const buf = new Uint8Array(this.size);
-        const t = this.ensureTime(epoch / 1000 - this.epoch);
+        const t = this.ensureTime((epoch / 1000 - this.epoch) | 0);
         buf.set([t >>> 24, (t >> 16) & 0xff, (t >> 8) & 0xff, t & 0xff]);
         return buf;
     }
@@ -20,10 +20,8 @@ export class KSUID extends AKSUID {
     parse(id: string) {
         const buf = new Uint8Array(this.size);
         this.base.decodeBytes(id, buf);
-        const t =
-            ((buf[0] << 24) | (buf[1] << 16) | (buf[2] << 8) | buf[3]) >>> 0;
         return {
-            epoch: (t + this.epoch) * 1000,
+            epoch: (this.u32(buf) + this.epoch) * 1000,
             id: buf.slice(4),
         };
     }

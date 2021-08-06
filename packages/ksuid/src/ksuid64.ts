@@ -31,13 +31,9 @@ export class KSUID64 extends AKSUID {
     parse(id: string) {
         const buf = new Uint8Array(this.size);
         this.base.decodeBytes(id, buf);
-        const h =
-            ((buf[0] << 24) | (buf[1] << 16) | (buf[2] << 8) | buf[3]) >>> 0;
-        const l =
-            ((buf[4] << 24) | (buf[5] << 16) | (buf[6] << 8) | buf[7]) >>> 0;
-        const t = h * 0x1_0000_0000 + l;
         return {
-            epoch: t + this.epoch,
+            epoch:
+                this.u32(buf) * 0x1_0000_0000 + this.u32(buf, 4) + this.epoch,
             id: buf.slice(8),
         };
     }

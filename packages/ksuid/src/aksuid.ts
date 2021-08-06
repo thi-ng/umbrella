@@ -10,17 +10,16 @@ import type { KSUIDOpts } from "./api";
  */
 export abstract class AKSUID {
     /**
-     * Returns the byte size of a single ID, based on the KSUID's configuration.
-     * The default config will result in 20-byte IDs (27 chars base62 encoded).
+     * Byte size of a single ID, based on the KSUID's configuration. The default
+     * config will result in 20-byte IDs (27 chars base62 encoded).
      */
     readonly size: number;
-
-    protected base: BaseN;
+    readonly base: BaseN;
+    readonly epoch: number;
     protected rnd?: IRandom;
-    protected epoch: number;
     protected pad: (x: any) => string;
 
-    constructor(protected epochSize: number, opts: Partial<KSUIDOpts>) {
+    constructor(public readonly epochSize: number, opts: Partial<KSUIDOpts>) {
         this.base = opts.base || BASE62;
         this.rnd = opts.rnd;
         this.epoch = opts.epoch!;
@@ -71,10 +70,7 @@ export abstract class AKSUID {
      * `.nextBinary()`).
      */
     format(buf: Uint8Array) {
-        assert(
-            buf.length == this.size,
-            `illegal KSUID size, expected ${this.size} bytes`
-        );
+        this.ensureSize(buf);
         return this.pad(this.base.encodeBytes(buf));
     }
 
@@ -90,8 +86,26 @@ export abstract class AKSUID {
      */
     abstract parse(id: string): { epoch: number; id: Uint8Array };
 
+    protected ensureSize(buf: Uint8Array) {
+        assert(
+            buf.length == this.size,
+            `illegal KSUID size, expected ${this.size} bytes`
+        );
+        return buf;
+    }
+
     protected ensureTime(t: number) {
         assert(t >= 0, "configured base epoch must be in the past");
         return t;
+    }
+
+    protected u32(buf: Uint8Array, i = 0) {
+        return (
+            ((buf[i] << 24) |
+                (buf[i + 1] << 16) |
+                (buf[i + 2] << 8) |
+                buf[i + 3]) >>>
+            0
+        );
     }
 }
