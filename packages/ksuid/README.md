@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Configurable K-sortable unique identifiers, binary & base-N encoded.
+Configurable sortable unique IDs, binary & base-N encoded, 32/64bit time resolution.
 
 Idea based on [segmentio/ksuid](https://github.com/segmentio/ksuid), though with
 added flexibility in terms of configuration & implementation:
@@ -30,15 +30,17 @@ added flexibility in terms of configuration & implementation:
 - Base-N encoding scheme (default: base62, see
   [@thi.ng/base-n](https://github.com/thi-ng/umbrella/tree/develop/packages/base-n)
   for alternatives)
+- Timestamp resolution (seconds [32 bits], milliseconds [64 bits])
 - Epoch start time offset
 - Time-only base ID generation (optional)
 - KSUID parsing / decomposition
 - Configurable RNG source (default: `window.crypto` or `Math.random`)
 
-KSUIDs generated w/ this package consist of the lower 32bits of an Unix epoch
-(potentially time shifted to free up bits for future timestamps) and N bits of a
-random payload (from a configurable source). IDs can be generated as byte arrays
-or base-N encoded strings. For the latter, the JS runtime MUST support
+KSUIDs generated w/ this package consist of the lower 32bits or 64bits of an
+Unix epoch (potentially time shifted to free up bits for future timestamps) and
+N additional bits of a random payload (from a configurable source). IDs can be
+generated as byte arrays or base-N encoded strings. For the latter, the JS
+runtime MUST support
 [`BigInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt).
 
 ![KSUID bit layout diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/ksuid/ksuid.png)
@@ -68,7 +70,7 @@ yarn add @thi.ng/ksuid
 <script src="https://unpkg.com/@thi.ng/ksuid/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 563 bytes / CJS: 620 bytes / UMD: 743 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 708 bytes / CJS: 774 bytes / UMD: 887 bytes
 
 ## Dependencies
 
@@ -84,8 +86,10 @@ Package sizes (gzipped, pre-treeshake): ESM: 563 bytes / CJS: 620 bytes / UMD: 7
 ```ts
 import { defKSUID } from "@thi.ng/ksuid";
 
-// init w/ defaults
+// init 32bit epoch (resolution: seconds) w/ defaults
 const id = defKSUID();
+// init 64bit epoch (resolution: milliseconds), same API
+const id = defKSUID64();
 
 id.next();
 // '05XCWbXa3akRqLDBUw4ogCVKGkd'
