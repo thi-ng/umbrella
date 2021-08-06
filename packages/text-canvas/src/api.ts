@@ -38,9 +38,9 @@ export interface ImageOpts {
      * Target characters in order of increasing brightness (assuming
      * white text on black bg).
      *
-     * @defaultValue {@link SHADES}
+     * @defaultValue {@link SHADES_BLOCK}
      */
-    chars: NumOrString[];
+    chars: string | NumOrString[];
     /**
      * Format to apply to each pixel. If a function is given, it will be called
      * for each pixel value, normalized to [0..1] interval (and after gamma
