@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/ksuid",
     "version": "0.2.6",
-    "description": "Configurable K-sortable unique identifiers, binary & base-N encoded",
+    "description": "Configurable sortable unique IDs, binary & base-N encoded, 32/64bit time resolution",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -50,6 +50,8 @@
         "lib"
     ],
     "keywords": [
+        "32bit",
+        "64bit",
         "base62",
         "bigint",
         "binary",
@@ -61,6 +63,7 @@
         "epoch",
         "generator",
         "id",
+        "millisecond",
         "random",
         "sort",
         "timestamp",
