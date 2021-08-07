@@ -1,6 +1,5 @@
+import { XsAdd } from "@thi.ng/random";
 import * as assert from "assert";
-import { XsAdd } from "../../random";
-
 import { AKSUID, defKSUID, defKSUID64 } from "../src";
 
 describe("ksuid", () => {
@@ -9,12 +8,12 @@ describe("ksuid", () => {
         const a = id.timeOnly(t);
         assert.strictEqual(a.length, 27);
         let res = id.parse(a);
-        assert(Math.abs(res.epoch - t) < eps);
+        assert(Math.abs(res.epoch - t) < eps * 2);
         assert.deepStrictEqual(res.id, new Uint8Array(20 - id.epochSize));
         const b = id.nextBinary();
         assert.deepStrictEqual(b.slice(id.epochSize), buf);
         res = id.parse(id.format(b));
-        assert(Math.abs(res.epoch - t) < eps);
+        assert(Math.abs(res.epoch - t) < eps * 2);
         assert.deepStrictEqual(res.id, buf);
     };
 
