@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/ksuid@0.3.0...@thi.ng/ksuid@0.4.0) (2021-08-07)
+
+
+### Features
+
+* **ksuid:** add ULID impl, update IKSUID & tests ([566846b](https://github.com/thi-ng/umbrella/commit/566846b7cfa735f15d07b25e4514fa3ee540adbf))
+
+
+
+
+
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/ksuid@0.2.6...@thi.ng/ksuid@0.3.0) (2021-08-07)
 
 

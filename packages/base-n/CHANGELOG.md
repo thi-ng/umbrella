@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/base-n@0.1.8...@thi.ng/base-n@0.2.0) (2021-08-07)
+
+
+### Features
+
+* **base-n:** add BASE32_CROCKFORD preset ([7d1cad9](https://github.com/thi-ng/umbrella/commit/7d1cad9430746efe80cd70482906b6f03b262d8a))
+
+
+
+
+
 ## [0.1.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/base-n@0.1.7...@thi.ng/base-n@0.1.8) (2021-07-01)
 
 **Note:** Version bump only for package @thi.ng/base-n
