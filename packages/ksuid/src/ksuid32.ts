@@ -28,8 +28,8 @@ export class KSUID32 extends AKSUID {
 }
 
 /**
- * Creates and returns a new 32bit epoch KSUID instance (w/ second time
- * precision).
+ * Creates and returns a new 32bit epoch KSUID generator instance (w/ second
+ * time precision).
  *
  * @param opts
  */

@@ -1,11 +1,13 @@
+import { BASE32_CROCKFORD } from "@thi.ng/base-n";
 import { AKSUID } from "./aksuid";
 import type { KSUIDOpts } from "./api";
 
-export class KSUID64 extends AKSUID {
+export class ULID extends AKSUID {
     constructor(opts?: Partial<KSUIDOpts>) {
-        super(8, {
-            epoch: 1_600_000_000_000,
-            bytes: 12,
+        super(6, {
+            epoch: 0,
+            bytes: 10,
+            base: BASE32_CROCKFORD,
             ...opts,
         });
     }
@@ -16,8 +18,6 @@ export class KSUID64 extends AKSUID {
         const h = (t / 0x1_0000_0000) >>> 0;
         const l = (t & 0xffff_ffff) >>> 0;
         buf.set([
-            h >>> 24,
-            (h >> 16) & 0xff,
             (h >> 8) & 0xff,
             h & 0xff,
             l >>> 24,
@@ -33,17 +33,21 @@ export class KSUID64 extends AKSUID {
         this.base.decodeBytes(id, buf);
         return {
             epoch:
-                this.u32(buf) * 0x1_0000_0000 + this.u32(buf, 4) + this.epoch,
-            id: buf.slice(8),
+                ((buf[0] << 8) | buf[1]) * 0x1_0000_0000 +
+                this.u32(buf, 2) +
+                this.epoch,
+            id: buf.slice(6),
         };
     }
 }
 
 /**
- * Creates and returns a new 64bit epoch KSUID generator instance (w/
- * millisecond time precision).
+ * Creates and returns a new ULID generator instance (w/ 48bit epoch millisecond
+ * time precision).
+ *
+ * @remarks
+ * https://github.com/ulid/spec
  *
  * @param opts
  */
-export const defKSUID64 = (opts?: Partial<KSUIDOpts>): KSUID64 =>
-    new KSUID64(opts);
+export const defULID = (opts?: Partial<KSUIDOpts>): ULID => new ULID(opts);

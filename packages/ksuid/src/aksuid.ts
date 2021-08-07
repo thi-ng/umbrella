@@ -10,6 +10,7 @@ import type { IKSUID, KSUIDOpts } from "./api";
  */
 export abstract class AKSUID implements IKSUID {
     readonly size: number;
+    readonly encodedSize: number;
     readonly base: BaseN;
     readonly epoch: number;
     protected rnd?: IRandom;
@@ -23,10 +24,8 @@ export abstract class AKSUID implements IKSUID {
         this.rnd = opts.rnd;
         this.epoch = opts.epoch!;
         this.size = this.epochSize + opts.bytes!;
-        this.pad = padLeft(
-            this.base.size(2 ** (this.size * 8) - 1),
-            this.base.base[0]
-        );
+        this.encodedSize = this.base.size(2 ** (this.size * 8) - 1);
+        this.pad = padLeft(this.encodedSize, this.base.base[0]);
     }
 
     next() {

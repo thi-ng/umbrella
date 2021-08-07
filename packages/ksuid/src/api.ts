@@ -7,6 +7,7 @@ export interface IKSUID {
      * config will result in 20-byte IDs (27 chars base62 encoded).
      */
     readonly size: number;
+    readonly encodedSize: number;
     readonly base: BaseN;
     readonly epoch: number;
     readonly epochSize: number;
