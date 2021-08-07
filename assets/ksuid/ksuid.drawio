@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e" scale="2" border="8">
     <diagram id="puqlMnuzA39FSYj3CqCd" name="Page-1">
-        <mxGraphModel dx="578" dy="419" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#FFFFFF" math="0" shadow="0">
+        <mxGraphModel dx="1199" dy="393" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#FFFFFF" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -27,6 +27,27 @@
                 </mxCell>
                 <mxCell id="5" value="96 bits" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=IBM Plex Mono;fontColor=#000000;" parent="1" vertex="1">
                     <mxGeometry x="355" y="250" width="70" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="epoch" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=IBM Plex Mono;fillColor=#FFFFCC;fontColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="280" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="random" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=IBM Plex Mono;fillColor=#CCFFE6;fontColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="160" y="280" width="200" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="48 bits" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=IBM Plex Mono;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="50" y="330" width="60" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="80 bits" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=IBM Plex Mono;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="280" y="330" width="70" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="KSUID32" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=IBM Plex Mono;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="-40" y="130" width="70" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="KSUID64" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=IBM Plex Mono;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="-40" y="210" width="70" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="ULID" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=IBM Plex Mono;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="-40" y="290" width="70" height="20" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

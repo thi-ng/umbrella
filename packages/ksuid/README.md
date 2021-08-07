@@ -21,23 +21,30 @@ This project is part of the
 
 ## About
 
-Configurable sortable unique IDs, binary & base-N encoded, 32/64bit time resolution.
+Configurable sortable unique IDs, ULIDs, binary & base-N encoded, 32/48/64bit time resolution.
 
-Idea based on [segmentio/ksuid](https://github.com/segmentio/ksuid), though with
-added flexibility in terms of configuration & implementation:
+Idea based on [segmentio/ksuid](https://github.com/segmentio/ksuid), though the
+added flexibility in terms of configuration & implementation also enables the
+creation of [ULIDs](https://github.com/ulid/spec):
 
-- Configurable bit size (default: 160 bits)
-- Base-N encoding scheme (default: base62, see
+| Feature                               | KSUID default          | ULID default           |
+|---------------------------------------|------------------------|------------------------|
+| Configurable bit size                 | 160 bits               | 128 bits               |
+| Base-N encoding scheme                | base62<sup>(1)</sup>   | base32 (Crockford)     |
+| Timestamp resolution                  | seconds (32 bits)      | milliseconds (48 bits) |
+|                                       | milliseconds (64 bits) |                        |
+| Epoch start time offset               | approx. 2020-09-13     | none                   |
+| Time-only base ID generation          | ✅                      | ✅                      |
+| ID parsing / decomposition            | ✅                      | ✅                      |
+| Configurable RNG source<sup>(2)</sup> | ✅                      | ✅                      |
+
+- <sup>(1)</sup> See
   [@thi.ng/base-n](https://github.com/thi-ng/umbrella/tree/develop/packages/base-n)
-  for alternatives)
-- Timestamp resolution (seconds [32 bits], milliseconds [64 bits])
-- Epoch start time offset
-- Time-only base ID generation (optional)
-- KSUID parsing / decomposition
-- Configurable RNG source (default: `window.crypto`, `Math.random` fallback)
+  for alternatives
+- <sup>(2)</sup> Default: `window.crypto`, `Math.random` as fallback
 
-KSUIDs generated w/ this package are composed from a 32 bit or 64 bit Unix epoch
-(by default time shifted to free up bits for future timestamps) and N additional
+IDs generated w/ this package are composed of a 32, 48 or 64 bit Unix epochs (by
+default time shifted to free up bits for future timestamps) and N additional
 bits of a random payload (from a configurable source). IDs can be generated as
 byte arrays or base-N encoded strings. For the latter, the JS runtime MUST
 support
@@ -70,7 +77,7 @@ yarn add @thi.ng/ksuid
 <script src="https://unpkg.com/@thi.ng/ksuid/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 730 bytes / CJS: 798 bytes / UMD: 907 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 803 bytes / CJS: 879 bytes / UMD: 974 bytes
 
 ## Dependencies
 
@@ -84,12 +91,14 @@ Package sizes (gzipped, pre-treeshake): ESM: 730 bytes / CJS: 798 bytes / UMD: 9
 [Generated API docs](https://docs.thi.ng/umbrella/ksuid/)
 
 ```ts
-import { defKSUID32, defKSUID64 } from "@thi.ng/ksuid";
+import { defKSUID32, defKSUID64, defULID } from "@thi.ng/ksuid";
 
 // init 32bit epoch (resolution: seconds) w/ defaults
 const id = defKSUID32();
 // init 64bit epoch (resolution: milliseconds), same API
 const id = defKSUID64();
+// init 48bit epoch (resolution: milliseconds), same API
+const id = defULID();
 
 id.next();
 // '05XCWbXa3akRqLDBUw4ogCVKGkd'

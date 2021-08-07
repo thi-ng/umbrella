@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/ksuid",
     "version": "0.3.0",
-    "description": "Configurable sortable unique IDs, binary & base-N encoded, 32/64bit time resolution",
+    "description": "Configurable K-sortable unique IDs, ULIDs, binary & base-N encoded, 32/48/64bit time resolutions",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -68,6 +68,7 @@
         "sort",
         "timestamp",
         "typescript",
+        "ulid",
         "uuid"
     ],
     "publishConfig": {
