@@ -1,7 +1,7 @@
 import { AKSUID } from "./aksuid";
 import type { KSUIDOpts } from "./api";
 
-export class KSUID extends AKSUID {
+export class KSUID32 extends AKSUID {
     constructor(opts?: Partial<KSUIDOpts>) {
         super(4, {
             epoch: 1_600_000_000,
@@ -33,4 +33,5 @@ export class KSUID extends AKSUID {
  *
  * @param opts
  */
-export const defKSUID = (opts?: Partial<KSUIDOpts>): KSUID => new KSUID(opts);
+export const defKSUID32 = (opts?: Partial<KSUIDOpts>): KSUID32 =>
+    new KSUID32(opts);
