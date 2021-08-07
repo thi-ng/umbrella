@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.7.13...@thi.ng/text-canvas@0.7.14) (2021-08-07)
+
+
+### Bug Fixes
+
+* **text-canvas:** fix ImageOpts.chars type ([0ae7855](https://github.com/thi-ng/umbrella/commit/0ae78552be39f543e98f8716dc239c3ce9c50b7b))
+
+
+
+
+
 ## [0.7.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.7.12...@thi.ng/text-canvas@0.7.13) (2021-08-04)
 
 **Note:** Version bump only for package @thi.ng/text-canvas

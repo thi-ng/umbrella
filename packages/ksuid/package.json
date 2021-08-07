@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/ksuid",
-    "version": "0.2.6",
+    "version": "0.3.0",
     "description": "Configurable sortable unique IDs, binary & base-N encoded, 32/64bit time resolution",
     "module": "./index.js",
     "main": "./lib/index.js",

@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/ksuid@0.2.6...@thi.ng/ksuid@0.3.0) (2021-08-07)
+
+
+### Code Refactoring
+
+* **ksuid:** extract IKSUID, update impls, docs ([1276c94](https://github.com/thi-ng/umbrella/commit/1276c940d6e7b584d90eb871261ff6a28352de4f))
+
+
+### Features
+
+* **ksuid:** pkg restructure, add 64bit version ([9c40b20](https://github.com/thi-ng/umbrella/commit/9c40b2053afb9067723bfb0377e5e3ea2a38c52a))
+
+
+### BREAKING CHANGES
+
+* **ksuid:** Rename KSUID => KSUID32 / defKSUID32()
+
+- update readme
+- update tests
+- update pkg meta
+
+
+
+
+
 ## [0.2.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/ksuid@0.2.5...@thi.ng/ksuid@0.2.6) (2021-08-04)
 
 **Note:** Version bump only for package @thi.ng/ksuid
