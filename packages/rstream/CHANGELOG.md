@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@6.0.13...@thi.ng/rstream@6.0.14) (2021-08-08)
+
+
+### Bug Fixes
+
+* **rstream:** fix [#305](https://github.com/thi-ng/umbrella/issues/305), metaStream() factory arg type ([2bc7bff](https://github.com/thi-ng/umbrella/commit/2bc7bff2eff9331d3a52830d0275d47fc7c59e78))
+
+
+
+
+
 ## [6.0.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@6.0.12...@thi.ng/rstream@6.0.13) (2021-08-04)
 
 **Note:** Version bump only for package @thi.ng/rstream
