@@ -13,13 +13,13 @@
 : filter-pkg ( name pat -- name? ) over -rot match? not [ drop ] when ;
 
 ( store pattern and base dir in global var )
-@args dup 2 at pattern! 1 at dup base!
+@args dup 1 at pattern! 0 at dup base!
 
 ( load packages dir )
 read-dir
 
 ( filter package list if CLI arg given )
-@args length 2 > [ [ @pattern filter-pkg ] mapll ] when
+@args length 1 > [ [ @pattern filter-pkg ] mapll ] when
 
 ( try to process all packages, ignoring any errors )
 [ [ @base read-pkg pkg-semver . ] [ drop ] try ] mapl

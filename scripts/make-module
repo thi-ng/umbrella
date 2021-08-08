@@ -83,7 +83,7 @@ cat << EOF > "$MODULE"/package.json
         "pub": "yarn build:release && yarn publish --access public"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.4"
+        "@thi.ng/api": "^7.1.7"
     },
     "files": [
         "*.js",
