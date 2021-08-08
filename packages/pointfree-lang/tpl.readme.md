@@ -71,11 +71,13 @@ For CLI usage, in addition to the other language features discussed further belo
 
 | Word         | Stack comment        | Description                               | NodeJS equiv                |
 |--------------|----------------------|-------------------------------------------|-----------------------------|
-| `@args`      | `( -- arg[] )`       | Places CLI args on stack                  | `process.argv`              |
+| `@args`      | `( -- arg[] )`       | Places CLI args on stack<sup>(1)</sup>    | `process.argv`              |
 | `include`    | `( path -- )`        | Includes another pointfree-lang file      |                             |
 | `read-dir`   | `( path -- file[] )` | Returns array of file names in given dir  | `readdirSync(path)`         |
 | `read-file`  | `( path -- str )`    | Reads file and returns contents as string | `readFileSync(path)`        |
 | `write-file` | `( body path -- )`   | Writes body to file at given path         | `writeFileSync(path, body)` |
+
+- <sup>(1)</sup> - index 0 is the first user supplied arg (rather than 2 as with `process.argv`)
 
 ### Include files / libraries
 
@@ -121,13 +123,13 @@ harness existing syntax coloring support for Forth...)
 : filter-pkg ( name pat -- name? ) over -rot match? not [ drop ] when ;
 
 ( store pattern and base dir in global var )
-@args dup 2 at pattern! 1 at base!
+@args dup 1 at pattern! 0 at base!
 
 ( load packages dir )
 @base read-dir
 
-( filter package list if CLI arg given )
-@args length 2 > [ [ @pattern filter-pkg ] mapll ] when
+( filter package list if 2nd CLI arg given )
+@args length 1 > [ [ @pattern filter-pkg ] mapll ] when
 
 ( try to process all packages, ignoring any errors )
 [ [ @base read-pkg pkg-semver . ] [ drop ] try ] mapl
@@ -145,7 +147,7 @@ pointfree semver.f node_modules
 # ... 100's more ...
 
 # filtered w/ pattern (regex)
-pointfree semver.f node_modules ^type
+pointfree semver.f node_modules '^type'
 # type-check@0.3.2
 # type-fest@0.3.1
 # typedarray@0.0.6
