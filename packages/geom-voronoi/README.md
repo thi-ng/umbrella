@@ -11,6 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -40,6 +41,10 @@ in ~850ms (Chrome 72, MBP 2016)
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bgeom-voronoi%5D+in%3Atitle)
+
+### Related packages
+
+- [@thi.ng/quad-edge](https://github.com/thi-ng/umbrella/tree/develop/packages/quad-edge) - Quadedge data structure after Guibas & Stolfi
 
 ## Installation
 

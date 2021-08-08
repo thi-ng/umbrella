@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/imgui",
-    "version": "0.2.76",
+    "version": "1.0.0",
     "description": "Immediate mode GUI with flexible state handling & data only shape output",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -72,7 +72,6 @@
     },
     "sideEffects": false,
     "thi.ng": {
-        "status": "alpha",
         "year": 2019
     }
 }

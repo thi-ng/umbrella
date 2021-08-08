@@ -113,7 +113,7 @@ auto-wrap such values embedded in an hiccup tree.
 
 ### Status
 
-**ALPHA** - bleeding edge / work-in-progress
+**BETA** - possibly breaking changes forthcoming
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Brdom%5D+in%3Atitle)
 

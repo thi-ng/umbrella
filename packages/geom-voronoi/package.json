@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom-voronoi",
-    "version": "0.2.40",
+    "version": "1.0.0",
     "description": "Fast, incremental 2D Delaunay & Voronoi mesh implementation",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -74,6 +74,9 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "quad-edge"
+        ],
         "year": 2016
     }
 }

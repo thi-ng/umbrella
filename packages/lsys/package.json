@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/lsys",
-    "version": "0.2.92",
+    "version": "1.0.0",
     "description": "Functional, extensible L-System architecture w/ support for probabilistic rules",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -76,7 +76,6 @@
                 "url": "https://medium.com/@thi.ng/workshop-report-generative-design-with-clojure-7d6d8ea9a6e8"
             }
         ],
-        "status": "beta",
         "year": 2019
     }
 }
