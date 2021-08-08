@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/date",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Datetime types, relative dates, math, iterators, composable formatters, locales",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,9 +38,9 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.8",
-        "@thi.ng/checks": "^2.9.9",
-        "@thi.ng/strings": "^2.1.4"
+        "@thi.ng/api": "^7.1.9",
+        "@thi.ng/checks": "^2.9.10",
+        "@thi.ng/strings": "^2.1.5"
     },
     "files": [
         "*.js",

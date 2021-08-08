@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.9.9...@thi.ng/checks@2.9.10) (2021-08-08)
+
+**Note:** Version bump only for package @thi.ng/checks
+
+
+
+
+
 ## [2.9.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.9.8...@thi.ng/checks@2.9.9) (2021-08-08)
 
 **Note:** Version bump only for package @thi.ng/checks

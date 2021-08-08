@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.33](https://github.com/thi-ng/umbrella/compare/@thi.ng/compare@1.3.32...@thi.ng/compare@1.3.33) (2021-08-08)
+
+**Note:** Version bump only for package @thi.ng/compare
+
+
+
+
+
 ## [1.3.32](https://github.com/thi-ng/umbrella/compare/@thi.ng/compare@1.3.31...@thi.ng/compare@1.3.32) (2021-08-08)
 
 **Note:** Version bump only for package @thi.ng/compare

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.39](https://github.com/thi-ng/umbrella/compare/@thi.ng/unionstruct@1.1.38...@thi.ng/unionstruct@1.1.39) (2021-08-08)
+
+**Note:** Version bump only for package @thi.ng/unionstruct
+
+
+
+
+
 ## [1.1.38](https://github.com/thi-ng/umbrella/compare/@thi.ng/unionstruct@1.1.37...@thi.ng/unionstruct@1.1.38) (2021-08-08)
 
 **Note:** Version bump only for package @thi.ng/unionstruct

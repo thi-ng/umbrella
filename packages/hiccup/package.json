@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hiccup",
-    "version": "3.6.19",
+    "version": "3.6.20",
     "description": "HTML/SVG/XML serialization of nested data structures, iterables & closures",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,12 +38,12 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
-        "@thi.ng/atom": "^4.1.39"
+        "@thi.ng/atom": "^4.1.40"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.8",
-        "@thi.ng/checks": "^2.9.9",
-        "@thi.ng/errors": "^1.3.3"
+        "@thi.ng/api": "^7.1.9",
+        "@thi.ng/checks": "^2.9.10",
+        "@thi.ng/errors": "^1.3.4"
     },
     "files": [
         "*.js",
