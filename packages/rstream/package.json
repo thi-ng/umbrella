@@ -39,7 +39,7 @@
     },
     "dependencies": {
         "@thi.ng/api": "^7.1.8",
-        "@thi.ng/arrays": "^0.10.16",
+        "@thi.ng/arrays": "^1.0.0",
         "@thi.ng/associative": "^5.2.10",
         "@thi.ng/atom": "^4.1.39",
         "@thi.ng/checks": "^2.9.9",

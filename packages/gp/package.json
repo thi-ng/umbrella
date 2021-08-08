@@ -42,7 +42,7 @@
         "@thi.ng/math": "^4.0.4",
         "@thi.ng/random": "^2.4.5",
         "@thi.ng/transducers": "^7.8.2",
-        "@thi.ng/zipper": "^0.1.50"
+        "@thi.ng/zipper": "^1.0.0"
     },
     "files": [
         "*.js",

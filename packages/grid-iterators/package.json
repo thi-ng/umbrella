@@ -39,7 +39,7 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "dependencies": {
-        "@thi.ng/arrays": "^0.10.16",
+        "@thi.ng/arrays": "^1.0.0",
         "@thi.ng/binary": "^2.2.8",
         "@thi.ng/morton": "^2.0.44",
         "@thi.ng/random": "^2.4.5",

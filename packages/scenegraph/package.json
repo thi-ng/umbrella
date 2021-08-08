@@ -40,7 +40,7 @@
     "dependencies": {
         "@thi.ng/api": "^7.1.8",
         "@thi.ng/checks": "^2.9.9",
-        "@thi.ng/matrices": "^0.6.64",
+        "@thi.ng/matrices": "^1.0.0",
         "@thi.ng/vectors": "^6.0.6"
     },
     "files": [

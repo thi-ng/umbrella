@@ -40,7 +40,7 @@
     "dependencies": {
         "@thi.ng/api": "^7.1.8",
         "@thi.ng/geom-api": "^2.0.26",
-        "@thi.ng/geom-closest-point": "^0.5.31",
+        "@thi.ng/geom-closest-point": "^1.0.0",
         "@thi.ng/math": "^4.0.4",
         "@thi.ng/vectors": "^6.0.6"
     },

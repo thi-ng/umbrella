@@ -40,7 +40,7 @@
     "dependencies": {
         "@thi.ng/checks": "^2.9.9",
         "@thi.ng/geom-api": "^2.0.26",
-        "@thi.ng/geom-resample": "^0.2.77",
+        "@thi.ng/geom-resample": "^1.0.0",
         "@thi.ng/math": "^4.0.4",
         "@thi.ng/vectors": "^6.0.6"
     },

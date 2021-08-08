@@ -38,8 +38,8 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "dependencies": {
-        "@thi.ng/geom-isec": "^0.7.29",
-        "@thi.ng/geom-poly-utils": "^0.3.26",
+        "@thi.ng/geom-isec": "^1.0.0",
+        "@thi.ng/geom-poly-utils": "^1.0.0",
         "@thi.ng/math": "^4.0.4",
         "@thi.ng/vectors": "^6.0.6"
     },

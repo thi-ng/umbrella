@@ -37,14 +37,14 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
-        "@thi.ng/pixel": "^0.9.0"
+        "@thi.ng/pixel": "^1.0.0"
     },
     "dependencies": {
         "@thi.ng/api": "^7.1.8",
         "@thi.ng/checks": "^2.9.9",
         "@thi.ng/color": "^3.2.2",
         "@thi.ng/math": "^4.0.4",
-        "@thi.ng/pixel": "^0.11.2",
+        "@thi.ng/pixel": "^1.0.0",
         "@thi.ng/vectors": "^6.0.6"
     },
     "files": [

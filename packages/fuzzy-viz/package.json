@@ -39,12 +39,12 @@
     },
     "dependencies": {
         "@thi.ng/api": "^7.1.8",
-        "@thi.ng/fuzzy": "^0.1.14",
+        "@thi.ng/fuzzy": "^1.0.2",
         "@thi.ng/hiccup": "^3.6.19",
         "@thi.ng/hiccup-svg": "^3.7.29",
         "@thi.ng/math": "^4.0.4",
         "@thi.ng/strings": "^2.1.4",
-        "@thi.ng/text-canvas": "^0.7.14"
+        "@thi.ng/text-canvas": "^1.0.2"
     },
     "files": [
         "*.js",

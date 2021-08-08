@@ -40,11 +40,11 @@
     },
     "dependencies": {
         "@thi.ng/api": "^7.1.8",
-        "@thi.ng/arrays": "^0.10.16",
+        "@thi.ng/arrays": "^1.0.0",
         "@thi.ng/checks": "^2.9.9",
         "@thi.ng/equiv": "^1.0.44",
         "@thi.ng/geom-api": "^2.0.26",
-        "@thi.ng/geom-isec": "^0.7.29",
+        "@thi.ng/geom-isec": "^1.0.0",
         "@thi.ng/heaps": "^1.2.42",
         "@thi.ng/math": "^4.0.4",
         "@thi.ng/transducers": "^7.8.2",

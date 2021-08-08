@@ -43,8 +43,8 @@
         "@thi.ng/geom": "^2.1.23",
         "@thi.ng/geom-api": "^2.0.26",
         "@thi.ng/geom-clip-line": "^1.2.40",
-        "@thi.ng/geom-resample": "^0.2.77",
-        "@thi.ng/grid-iterators": "^0.4.41",
+        "@thi.ng/geom-resample": "^1.0.0",
+        "@thi.ng/grid-iterators": "^1.0.0",
         "@thi.ng/transducers": "^7.8.2",
         "@thi.ng/vectors": "^6.0.6"
     },

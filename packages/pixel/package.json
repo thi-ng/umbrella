@@ -43,7 +43,7 @@
         "@thi.ng/checks": "^2.9.9",
         "@thi.ng/k-means": "^0.3.1",
         "@thi.ng/math": "^4.0.4",
-        "@thi.ng/porter-duff": "^0.1.50"
+        "@thi.ng/porter-duff": "^1.0.0"
     },
     "files": [
         "*.js",

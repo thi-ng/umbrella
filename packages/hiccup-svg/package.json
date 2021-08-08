@@ -40,7 +40,7 @@
     "dependencies": {
         "@thi.ng/checks": "^2.9.9",
         "@thi.ng/color": "^3.2.2",
-        "@thi.ng/prefixes": "^0.1.20"
+        "@thi.ng/prefixes": "^1.0.0"
     },
     "files": [
         "*.js",

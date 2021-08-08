@@ -38,7 +38,7 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "dependencies": {
-        "@thi.ng/hex": "^0.2.7"
+        "@thi.ng/hex": "^1.0.2"
     },
     "files": [
         "*.js",

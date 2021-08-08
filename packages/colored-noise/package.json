@@ -40,8 +40,8 @@
     "devDependencies": {
         "@thi.ng/api": "^7.1.8",
         "@thi.ng/dsp": "^3.0.26",
-        "@thi.ng/dsp-io-wav": "^0.1.58",
-        "@thi.ng/text-canvas": "^0.7.14",
+        "@thi.ng/dsp-io-wav": "^1.0.2",
+        "@thi.ng/text-canvas": "^1.0.2",
         "@thi.ng/transducers": "^7.8.2",
         "@thi.ng/vectors": "^6.0.6"
     },

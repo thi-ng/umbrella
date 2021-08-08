@@ -46,7 +46,7 @@
         "@thi.ng/binary": "^2.2.8",
         "@thi.ng/checks": "^2.9.9",
         "@thi.ng/dcons": "^2.3.29",
-        "@thi.ng/idgen": "^0.2.38",
+        "@thi.ng/idgen": "^1.0.2",
         "@thi.ng/malloc": "^5.0.11",
         "@thi.ng/transducers": "^7.8.2",
         "tslib": "^2.3.0"

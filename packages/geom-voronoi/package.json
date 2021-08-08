@@ -42,10 +42,10 @@
         "@thi.ng/checks": "^2.9.9",
         "@thi.ng/geom-clip-line": "^1.2.40",
         "@thi.ng/geom-clip-poly": "^1.0.65",
-        "@thi.ng/geom-isec": "^0.7.29",
-        "@thi.ng/geom-poly-utils": "^0.3.26",
+        "@thi.ng/geom-isec": "^1.0.0",
+        "@thi.ng/geom-poly-utils": "^1.0.0",
         "@thi.ng/math": "^4.0.4",
-        "@thi.ng/quad-edge": "^0.2.37",
+        "@thi.ng/quad-edge": "^1.0.0",
         "@thi.ng/vectors": "^6.0.6"
     },
     "files": [

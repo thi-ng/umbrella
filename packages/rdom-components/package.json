@@ -39,7 +39,7 @@
     "dependencies": {
         "@thi.ng/api": "^7.1.8",
         "@thi.ng/associative": "^5.2.10",
-        "@thi.ng/hiccup-html": "^0.3.20",
+        "@thi.ng/hiccup-html": "^1.0.2",
         "@thi.ng/rdom": "^0.6.3",
         "@thi.ng/rstream": "^6.0.15",
         "@thi.ng/strings": "^2.1.4",

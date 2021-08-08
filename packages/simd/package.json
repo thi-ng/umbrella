@@ -43,7 +43,7 @@
         "assemblyscript": "0.19.8"
     },
     "dependencies": {
-        "@thi.ng/transducers-binary": "^0.6.25"
+        "@thi.ng/transducers-binary": "^1.0.0"
     },
     "files": [
         "*.js",
