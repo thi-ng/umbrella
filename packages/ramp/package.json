@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/ramp",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Parametric interpolated 1D lookup tables for remapping values",
     "module": "./index.js",
     "main": "./lib/index.js",

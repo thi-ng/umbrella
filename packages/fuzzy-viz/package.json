@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/fuzzy-viz",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Visualization, instrumentation & introspection utils for @thi.ng/fuzzy",
     "module": "./index.js",
     "main": "./lib/index.js",

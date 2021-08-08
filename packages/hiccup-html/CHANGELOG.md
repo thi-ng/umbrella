@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-html@0.3.20...@thi.ng/hiccup-html@1.0.1) (2021-08-08)
+
+**Note:** Version bump only for package @thi.ng/hiccup-html
+
+
+
+
+
 ## [0.3.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-html@0.3.19...@thi.ng/hiccup-html@0.3.20) (2021-08-04)
 
 **Note:** Version bump only for package @thi.ng/hiccup-html

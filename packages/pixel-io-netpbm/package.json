@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/pixel-io-netpbm",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Multi-format NetPBM reader & writer support for @thi.ng/pixel",
     "module": "./index.js",
     "main": "./lib/index.js",

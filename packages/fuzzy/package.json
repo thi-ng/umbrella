@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/fuzzy",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Fuzzy logic operators & configurable rule inferencing engine",
     "module": "./index.js",
     "main": "./lib/index.js",
