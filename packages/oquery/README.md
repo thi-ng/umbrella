@@ -33,7 +33,7 @@ objects and arrays of objects.
 
 ### Status
 
-**ALPHA** - bleeding edge / work-in-progress
+**STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Boquery%5D+in%3Atitle)
 

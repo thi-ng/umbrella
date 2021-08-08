@@ -42,7 +42,7 @@ yarn add @thi.ng/k-means
 <script src="https://unpkg.com/@thi.ng/k-means/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 930 bytes / CJS: 991 bytes / UMD: 1.07 KB
+Package sizes (gzipped, pre-treeshake): ESM: 937 bytes / CJS: 998 bytes / UMD: 1.08 KB
 
 ## Dependencies
 

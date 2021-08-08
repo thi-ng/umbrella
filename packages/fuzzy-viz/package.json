@@ -70,7 +70,6 @@
     "sideEffects": false,
     "thi.ng": {
         "parent": "@thi.ng/fuzzy",
-        "status": "alpha",
         "year": 2020
     }
 }

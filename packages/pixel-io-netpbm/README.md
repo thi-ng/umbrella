@@ -42,7 +42,7 @@ size and other meta data (from comments), without parsing the full image.
 
 ### Status
 
-**ALPHA** - bleeding edge / work-in-progress
+**STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bpixel-io-netpbm%5D+in%3Atitle)
 

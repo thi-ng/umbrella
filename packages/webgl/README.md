@@ -57,7 +57,7 @@ Largely declarative WebGL 1.0 / 2.0 abstraction layer, partially ported
 
 ### Status
 
-**BETA** - possibly breaking changes forthcoming
+**STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bwebgl%5D+in%3Atitle)
 

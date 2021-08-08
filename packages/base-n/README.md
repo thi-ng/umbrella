@@ -23,7 +23,7 @@ Arbitrary base-n conversions w/ presets for base16/32/36/58/62/64/85, support fo
 
 ### Status
 
-**BETA** - possibly breaking changes forthcoming
+**STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bbase-n%5D+in%3Atitle)
 
@@ -41,7 +41,7 @@ yarn add @thi.ng/base-n
 <script src="https://unpkg.com/@thi.ng/base-n/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 789 bytes / CJS: 892 bytes / UMD: 970 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 811 bytes / CJS: 919 bytes / UMD: 995 bytes
 
 ## Dependencies
 

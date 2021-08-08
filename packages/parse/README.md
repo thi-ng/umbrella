@@ -58,7 +58,7 @@ Purely functional parser combinators & AST generation for generic inputs.
 
 ### Status
 
-**BETA** - possibly breaking changes forthcoming
+**STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bparse%5D+in%3Atitle)
 

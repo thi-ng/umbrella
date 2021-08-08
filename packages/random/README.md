@@ -64,7 +64,7 @@ Partially ported from C implementations taken from [c.thi.ng](http://c.thi.ng).
 
 ### Related packages
 
-- [@thi.ng/ksuid](https://github.com/thi-ng/umbrella/tree/develop/packages/ksuid) - Configurable K-sortable unique identifiers, binary & base-N encoded
+- [@thi.ng/ksuid](https://github.com/thi-ng/umbrella/tree/develop/packages/ksuid) - Configurable K-sortable unique IDs, ULIDs, binary & base-N encoded, 32/48/64bit time resolutions
 
 ## Installation
 
@@ -80,7 +80,7 @@ yarn add @thi.ng/random
 <script src="https://unpkg.com/@thi.ng/random/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.81 KB / CJS: 1.94 KB / UMD: 1.91 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.81 KB / CJS: 1.95 KB / UMD: 1.91 KB
 
 ## Dependencies
 

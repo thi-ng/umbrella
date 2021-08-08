@@ -79,7 +79,6 @@
             "fsm",
             "transducers-fsm"
         ],
-        "status": "beta",
         "year": 2020
     }
 }

@@ -43,7 +43,7 @@ Partially ported from other thi.ng projects (e.g.
 
 ### Status
 
-**BETA** - possibly breaking changes forthcoming
+**STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bdsp%5D+in%3Atitle)
 

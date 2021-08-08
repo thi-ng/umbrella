@@ -68,7 +68,6 @@
     "sideEffects": false,
     "thi.ng": {
         "parent": "@thi.ng/pixel",
-        "status": "alpha",
         "year": 2021
     }
 }

@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Configurable sortable unique IDs, ULIDs, binary & base-N encoded, 32/48/64bit time resolution.
+Configurable K-sortable unique IDs, ULIDs, binary & base-N encoded, 32/48/64bit time resolutions.
 
 Idea based on [segmentio/ksuid](https://github.com/segmentio/ksuid), though the
 added flexibility in terms of configuration & implementation also enables the
@@ -77,7 +77,7 @@ yarn add @thi.ng/ksuid
 <script src="https://unpkg.com/@thi.ng/ksuid/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 803 bytes / CJS: 879 bytes / UMD: 974 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 812 bytes / CJS: 888 bytes / UMD: 983 bytes
 
 ## Dependencies
 

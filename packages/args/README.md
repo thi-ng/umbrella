@@ -44,7 +44,7 @@ individual values, e.g. `-a 1,2,3` equals `-a 1 -a 2 -a 3`
 
 ### Status
 
-**BETA** - possibly breaking changes forthcoming
+**STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bargs%5D+in%3Atitle)
 

@@ -23,7 +23,7 @@ WAV file format generation. This is a support package for [@thi.ng/dsp](https://
 
 ### Status
 
-**ALPHA** - bleeding edge / work-in-progress
+**STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bdsp-io-wav%5D+in%3Atitle)
 
