@@ -33,12 +33,12 @@ transformation pipeline.
 
 ### Status
 
-**BETA** - possibly breaking changes forthcoming
+**DEPRECATED** - no further development planned
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btransducers-fsm%5D+in%3Atitle)
 
 This package might be merged with (or deprecated by) the newer
-[@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm)
+[@thi.ng/parse](https://github.com/thi-ng/umbrella/tree/develop/packages/parse)
 package.
 
 ### Related packages

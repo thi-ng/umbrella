@@ -61,7 +61,7 @@
             "fsm",
             "sax"
         ],
-        "status": "beta",
+        "status": "deprecated",
         "year": 2018
     }
 }

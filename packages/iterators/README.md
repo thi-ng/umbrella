@@ -79,7 +79,7 @@ more composable & efficient transducers via
 
 ### Status
 
-**STABLE** - used in production
+**DEPRECATED** - no further development planned
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Biterators%5D+in%3Atitle)
 

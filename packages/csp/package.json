@@ -69,5 +69,9 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "status": "deprecated",
+        "year": 2016
+    }
 }
