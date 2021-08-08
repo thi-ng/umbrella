@@ -11,7 +11,7 @@
         "scope": "markdown",
         "prefix": "@doc",
         "body": [
-            "[`${2:name}()`](https://docs.thi.ng/umbrella/${1:pkg}/modules.html#${2/(.*)/${1:/downcase}/})"
+            "[`${2:name}()`](https://docs.thi.ng/umbrella/${1:pkg}/modules.html#${2:name})"
         ],
         "description": "thi.ng umbrella doc link (function)"
     },

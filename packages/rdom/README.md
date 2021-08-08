@@ -108,7 +108,7 @@ constructs and patterns. Most of _rdom_ only deals with either subscribing to
 reactive values and/or wrapping/transforming existing subscriptions, either
 explicitly using the provided control components (e.g.
 [`$sub()`](https://docs.thi.ng/umbrella/rdom/modules.html#_sub)) or using
-[`$compile()`](https://docs.thi.ng/umbrella/rdom/modules.html#$compile) to
+[`$compile()`](https://docs.thi.ng/umbrella/rdom/modules.html#_compile) to
 auto-wrap such values embedded in an hiccup tree.
 
 ### Status

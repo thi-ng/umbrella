@@ -22,7 +22,7 @@ transformation pipeline.
 ${status}
 
 This package might be merged with (or deprecated by) the newer
-[@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm)
+[@thi.ng/parse](https://github.com/thi-ng/umbrella/tree/develop/packages/parse)
 package.
 
 ${supportPackages}

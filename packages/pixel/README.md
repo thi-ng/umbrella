@@ -177,7 +177,7 @@ following convolution kernel presets are provided for convenience:
 
 Custom kernels can be defined (and code generated) using an array of
 coefficients and a given kernel size. See above presets and
-[`defKernel()`](https://docs.thi.ng/umbrella/pixel/modules.html#defkernel) for
+[`defKernel()`](https://docs.thi.ng/umbrella/pixel/modules.html#defKernel) for
 reference.
 
 Furthermore, convolution supports striding (i.e. only processing & keeping every
@@ -195,9 +195,9 @@ independently):
 
 Convolution can be applied to single, multiple or all channels of a
 `FloatBuffer`. See
-[`convolveChannel()`](https://docs.thi.ng/umbrella/pixel/modules.html#convolvechannel)
+[`convolveChannel()`](https://docs.thi.ng/umbrella/pixel/modules.html#convolveChannel)
 and
-[`convolveImage()`](https://docs.thi.ng/umbrella/pixel/modules.html#convolveimage).
+[`convolveImage()`](https://docs.thi.ng/umbrella/pixel/modules.html#convolveImage).
 
 See
 [ConvolveOpts](https://docs.thi.ng/umbrella/pixel/interfaces/convolveopts.html)
