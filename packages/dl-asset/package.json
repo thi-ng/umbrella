@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dl-asset",
-    "version": "0.4.27",
+    "version": "1.0.0",
     "description": "Local asset download for web apps, with automatic MIME type detection",
     "module": "./index.js",
     "main": "./lib/index.js",
