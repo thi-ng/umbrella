@@ -1,4 +1,4 @@
-import { assert, Fn } from "@thi.ng/api";
+import { assert, Fn, Nullable } from "@thi.ng/api";
 import { CloseMode, CommonOpts, ISubscription, State } from "./api";
 import { Subscription } from "./subscription";
 import { optsWithID } from "./utils/idgen";
@@ -15,30 +15,27 @@ export interface MetaStreamOpts extends CommonOpts {
 }
 
 /**
- * Returns a {@link Subscription} which transforms each incoming value
- * into a new {@link Stream}, subscribes to it (via an hidden / internal
+ * Returns a {@link Subscription} which transforms each incoming value into a
+ * new {@link ISubscription}, subscribes to it (via an hidden / internal
  * subscription) and then only passes values from that stream to its own
  * subscribers.
  *
  * @remarks
- * If a new value is received, the metastream first unsubscribes from
- * any still active stream, before creating and subscribing to the new
- * stream. Hence this stream type is useful for cases where streams need
- * to be dynamically created & inserted into an existing dataflow
- * topology.
+ * If a new value is received, the metastream first unsubscribes from any still
+ * active previous stream (if any), before creating and subscribing to the new
+ * one. Hence this stream type is useful for cases where streams need to be
+ * dynamically created & inserted into an existing dataflow topology.
  *
- * The user supplied `factory` function will be called for each incoming
- * value and is responsible for creating the new stream instances. If
- * the function returns null/undefined, no further action will be taken
- * (acts like a filter transducer).
+ * The user supplied `factory` function will be called for each incoming value
+ * and is responsible for creating the new stream instances. If the function
+ * returns null/undefined, no further action will be taken (acts like a filter
+ * transducer).
  *
- * The factory function does NOT need to create *new* streams, but can
- * merely return other existing streams, and so making the meta stream
- * act like a switch with arbitrary criteria.
- *
- * If the meta stream itself is the only subscriber to existing input
- * streams, you'll need to configure the input's
- * {@link CommonOpts.closeOut} option to keep them alive and support
+ * The factory function does NOT need to create *new* streams, but can merely
+ * return other existing streams, and so making the meta stream act like a
+ * switch with arbitrary criteria. However, if the meta stream itself is the
+ * only subscriber to such existing input streams, you'll need to configure the
+ * input's {@link CommonOpts.closeOut} option to keep them alive and support
  * dynamic switching between them.
  *
  * @example
@@ -97,7 +94,7 @@ export interface MetaStreamOpts extends CommonOpts {
  * @param id -
  */
 export const metaStream = <A, B>(
-    factory: Fn<A, Subscription<B, B>>,
+    factory: Fn<A, Nullable<ISubscription<B, B>>>,
     opts?: Partial<MetaStreamOpts>
 ) => new MetaStream(factory, opts);
 
@@ -105,14 +102,14 @@ export const metaStream = <A, B>(
  * @see {@link metaStream} for reference & examples.
  */
 export class MetaStream<A, B> extends Subscription<A, B> {
-    factory: Fn<A, Subscription<B, B>>;
-    stream?: Subscription<B, B>;
+    factory: Fn<A, Nullable<ISubscription<B, B>>>;
+    stream?: ISubscription<B, B>;
     sub?: ISubscription<B, B>;
     emitLast: boolean;
     doneRequested: boolean;
 
     constructor(
-        factory: Fn<A, Subscription<B, B>>,
+        factory: Fn<A, Nullable<ISubscription<B, B>>>,
         opts: Partial<MetaStreamOpts> = {}
     ) {
         super(undefined, optsWithID("metastram", opts));

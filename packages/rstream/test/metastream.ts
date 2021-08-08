@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { CloseMode, fromIterable, metaStream } from "../src";
+import { CloseMode, fromIterable, metaStream, reactive } from "../src";
 import { TIMEOUT } from "./config";
 import { assertActive, assertUnsub } from "./utils";
 
@@ -7,12 +7,12 @@ describe("MetaStream", function () {
     this.retries(3);
 
     it("basic", (done) => {
+        const acc: number[] = [];
         const src = fromIterable([1, 2, 3], { delay: TIMEOUT });
         const meta = metaStream<number, number>((x) =>
             fromIterable([x * 10, x * 20, x * 30], { delay: TIMEOUT >> 2 })
         );
         const sub = src.subscribe(meta);
-        const acc: number[] = [];
         const sub2 = sub.subscribe({
             next(x) {
                 acc.push(x);
@@ -20,6 +20,27 @@ describe("MetaStream", function () {
         });
         setTimeout(() => {
             assert.deepStrictEqual(acc, [10, 20, 30, 20, 40, 60, 30, 60, 90]);
+            assertUnsub(meta);
+            assertUnsub(sub);
+            assertUnsub(sub2);
+            done();
+        }, 5 * TIMEOUT);
+    });
+
+    it("null", (done) => {
+        const acc: number[] = [];
+        const src = fromIterable([1, 2, 3], { delay: TIMEOUT });
+        const meta = metaStream<number, number>((x) =>
+            x & 1 ? reactive(x) : null
+        );
+        const sub = src.subscribe(meta);
+        const sub2 = sub.subscribe({
+            next(x) {
+                acc.push(x);
+            },
+        });
+        setTimeout(() => {
+            assert.deepStrictEqual(acc, [1, 3]);
             assertUnsub(meta);
             assertUnsub(sub);
             assertUnsub(sub2);
