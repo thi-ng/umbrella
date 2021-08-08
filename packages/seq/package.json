@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/seq",
-    "version": "0.2.40",
+    "version": "0.2.41",
     "description": "Various implementations of the @thi.ng/api `ISeq` interface / sequence abstraction",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,8 +38,8 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.7",
-        "@thi.ng/checks": "^2.9.8"
+        "@thi.ng/api": "^7.1.8",
+        "@thi.ng/checks": "^2.9.9"
     },
     "files": [
         "*.js",

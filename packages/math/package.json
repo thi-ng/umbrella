@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/math",
-    "version": "4.0.3",
+    "version": "4.0.4",
     "description": "Assorted common math functions & utilities",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,7 +38,7 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.7"
+        "@thi.ng/api": "^7.1.8"
     },
     "files": [
         "*.js",

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hiccup-html",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "100+ type-checked HTML5 element functions for @thi.ng/hiccup related infrastructure",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -37,7 +37,7 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.7"
+        "@thi.ng/api": "^7.1.8"
     },
     "files": [
         "*.js",

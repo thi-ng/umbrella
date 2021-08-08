@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/arrays",
-    "version": "0.10.15",
+    "version": "0.10.16",
     "description": "Array / Arraylike utilities",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,12 +38,12 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.7",
-        "@thi.ng/checks": "^2.9.8",
-        "@thi.ng/compare": "^1.3.31",
-        "@thi.ng/equiv": "^1.0.43",
-        "@thi.ng/errors": "^1.3.2",
-        "@thi.ng/random": "^2.4.4"
+        "@thi.ng/api": "^7.1.8",
+        "@thi.ng/checks": "^2.9.9",
+        "@thi.ng/compare": "^1.3.32",
+        "@thi.ng/equiv": "^1.0.44",
+        "@thi.ng/errors": "^1.3.3",
+        "@thi.ng/random": "^2.4.5"
     },
     "files": [
         "*.js",

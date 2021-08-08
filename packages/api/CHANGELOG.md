@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.1.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@7.1.7...@thi.ng/api@7.1.8) (2021-08-08)
+
+**Note:** Version bump only for package @thi.ng/api
+
+
+
+
+
 ## [7.1.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@7.1.6...@thi.ng/api@7.1.7) (2021-08-04)
 
 **Note:** Version bump only for package @thi.ng/api
