@@ -79,7 +79,27 @@ const contourVertex: Fn5<ReadonlyVec, number, number, number, number, Vec>[] = [
     (src, w, x, y, iso) => [x, y + mix(src, w, x, y, x, y + 1, iso)]
 ];
 
-export function* isolines(src: ReadonlyVec, w: number, h: number, iso: number) {
+/**
+ * Takes an linearized 2d input field of scalars (i.e. `src` array), its
+ * `width`, `height` and computes iso lines (contours) for given `iso` threshold
+ * value. The computation is implemented as a generator, yielding 1 point array
+ * per found contour. The returned points optionally can be scaled using `scale`
+ * factor or vector. The default scale of 1.0 will result in coords in these
+ * ranges: [0..w) (for X) and [0..h) (for Y).
+ *
+ * @param src
+ * @param w
+ * @param h
+ * @param iso
+ * @param scale
+ */
+export function* isolines(
+    src: ReadonlyVec,
+    w: number,
+    h: number,
+    iso: number,
+    scale: ReadonlyVec | number = 1
+) {
     const coded = encodeCrossings(src, w, h, iso);
     let curr: Vec[] = [];
     let from: number;
@@ -89,6 +109,7 @@ export function* isolines(src: ReadonlyVec, w: number, h: number, iso: number) {
     let y!: number;
     const w1 = w - 1;
     const h1 = h - 1;
+    const [sx, sy] = typeof scale === "number" ? [scale, scale] : scale;
     const cells = range2d(h, w);
     let next: boolean = true;
     let idx: number;
@@ -133,7 +154,10 @@ export function* isolines(src: ReadonlyVec, w: number, h: number, iso: number) {
             coded[i] = clear;
         }
         if (to >= 0) {
-            curr.push(contourVertex[to >> 1](src, w, x, y, iso));
+            const p = contourVertex[to >> 1](src, w, x, y, iso);
+            p[0] *= sx;
+            p[1] *= sy;
+            curr.push(p);
             x += NEXT_EDGES[to];
             y += NEXT_EDGES[to + 1];
         } else {
