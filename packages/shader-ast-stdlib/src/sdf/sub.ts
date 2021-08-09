@@ -1,9 +1,11 @@
 import { FloatTerm, max, neg } from "@thi.ng/shader-ast";
 
 /**
- * Inline function.  SDF shape subtraction (a - b).
+ * Inline function. Variadic SDF shape subtraction (a - b) for any number of
+ * terms (at least 1 required).
  *
- * @param a - float
- * @param b - float
+ * @param a -
+ * @param terms -
  */
-export const sdfSubtract = (a: FloatTerm, b: FloatTerm) => max(neg(b), a);
+export const sdfSubtract = (a: FloatTerm, ...terms: FloatTerm[]) =>
+    terms.reduce((a, b) => max(a, neg(b)), a);

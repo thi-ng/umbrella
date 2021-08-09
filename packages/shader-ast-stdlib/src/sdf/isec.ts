@@ -1,9 +1,11 @@
 import { FloatTerm, max } from "@thi.ng/shader-ast";
 
 /**
- * Inline function. SDF shape intersection (a & b).
+ * Inline function. Variadic SDF shape intersection (a & b) for any number of
+ * terms (at least 1 required).
  *
- * @param a - float
- * @param b - float
+ * @param a -
+ * @param terms -
  */
-export const sdfIntersect = (a: FloatTerm, b: FloatTerm) => max(b, a);
+export const sdfIntersect = (a: FloatTerm, ...terms: FloatTerm[]) =>
+    terms.reduce((a, b) => max(a, b), a);

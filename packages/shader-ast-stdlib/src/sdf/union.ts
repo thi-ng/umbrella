@@ -1,12 +1,14 @@
 import { $x, defn, FloatTerm, lt, min, ret, ternary } from "@thi.ng/shader-ast";
 
 /**
- * Inline function. SDF shape union (a || b).
+ * Inline function. Variadic SDF shape union (a || b) for any number of terms
+ * (at least 1 required).
  *
- * @param a - float
- * @param b - float
+ * @param a -
+ * @param terms -
  */
-export const sdfUnion = (a: FloatTerm, b: FloatTerm) => min(a, b);
+export const sdfUnion = (a: FloatTerm, ...terms: FloatTerm[]) =>
+    terms.reduce((a, b) => min(a, b), a);
 
 /**
  * SDF shape union for vec2 terms, i.e. the common form where the X coord
