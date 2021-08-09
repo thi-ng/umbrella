@@ -3,29 +3,36 @@ import { isString } from "@thi.ng/checks";
 import type { Locale, LocaleSpec, LocaleUnit, Precision } from "./api";
 import { EN_SHORT } from "./i18n/en";
 
-/**
- * Sets {@link LOCALE} for formatting and fills in missing default values.
- * Unless called explicitly, the package uses {@link EN_SHORT} by default.
- *
- * @param locale
- */
-export const setLocale = (locale: LocaleSpec): Locale => {
-    LOCALE = <Locale>{
+const prepLocale = (spec: LocaleSpec): Locale => {
+    const locale = <Locale>{
         sepED: " ",
         sepDM: "/",
         sepMY: "/",
         sepHM: ":",
         date: ["E", "/ED", "d", "/DM", "MMM", "/MY", "yyyy"],
         time: ["H", "/HM", "mm"],
-        ...locale,
+        ...spec,
     };
-    !LOCALE.dateTime &&
-        (LOCALE.dateTime = [...LOCALE.date, ", ", ...LOCALE.time]);
-    return LOCALE;
+    !locale.dateTime &&
+        (locale.dateTime = [...locale.date, ", ", ...locale.time]);
+    return locale;
 };
 
 /**
+ * Sets {@link LOCALE} for formatting and fills in missing default values.
+ * Unless called explicitly, the package uses {@link EN_SHORT} by default.
+ *
+ * @param locale
+ */
+export const setLocale = (locale: LocaleSpec): Locale =>
+    (LOCALE = prepLocale(locale));
+
+/**
  * Executes given `fn` with temporarily active `locale`. Returns result of `fn`.
+ *
+ * @remarks
+ * `fn` will be called within a try/catch block and the previous locale will be
+ * restored even if `fn` throws an error.
  *
  * @param locale
  * @param fn
@@ -33,12 +40,17 @@ export const setLocale = (locale: LocaleSpec): Locale => {
 export const withLocale = <T>(locale: LocaleSpec, fn: Fn0<T>) => {
     const old = LOCALE;
     setLocale(locale);
-    const res = fn();
-    setLocale(old);
-    return res;
+    try {
+        const res = fn();
+        setLocale(old);
+        return res;
+    } catch (e) {
+        setLocale(old);
+        throw e;
+    }
 };
 
-export let LOCALE = setLocale(EN_SHORT);
+export let LOCALE = prepLocale(EN_SHORT);
 
 /**
  * Returns a copy of current {@link LOCALE}'s weekday names array.
