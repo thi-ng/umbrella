@@ -85,7 +85,7 @@ const contourVertex: Fn5<ReadonlyVec, number, number, number, number, Vec>[] = [
  * value. The computation is implemented as a generator, yielding 1 point array
  * per found contour. The returned points optionally can be scaled using `scale`
  * factor or vector. The default scale of 1.0 will result in coords in these
- * ranges: [0..w) (for X) and [0..h) (for Y).
+ * ranges: [0.5 .. w-0.5] (for X) and [0.5 .. h-0.5] (for Y).
  *
  * @param src
  * @param w
@@ -155,8 +155,8 @@ export function* isolines(
         }
         if (to >= 0) {
             const p = contourVertex[to >> 1](src, w, x, y, iso);
-            p[0] *= sx;
-            p[1] *= sy;
+            p[0] = (p[0] + 0.5) * sx;
+            p[1] = (p[1] + 0.5) * sy;
             curr.push(p);
             x += NEXT_EDGES[to];
             y += NEXT_EDGES[to + 1];
