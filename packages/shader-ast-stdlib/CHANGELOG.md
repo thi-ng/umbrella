@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.6.7...@thi.ng/shader-ast-stdlib@0.7.0) (2021-08-09)
+
+
+### Features
+
+* **shader-ast-stdlib:** add sdfUnion2(), add missing exports ([9d52838](https://github.com/thi-ng/umbrella/commit/9d5283848a61d97cd57fab38d792479449a8068d))
+* **shader-ast-stdlib:** variadic sdf isec/sub/union ([fbff935](https://github.com/thi-ng/umbrella/commit/fbff93515220ac9263e9ad74f9359a78bf2ab24c))
+
+
+
+
+
 ## [0.6.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.6.6...@thi.ng/shader-ast-stdlib@0.6.7) (2021-08-08)
 
 **Note:** Version bump only for package @thi.ng/shader-ast-stdlib

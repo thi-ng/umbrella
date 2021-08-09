@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isoline@1.0.1...@thi.ng/geom-isoline@1.1.0) (2021-08-09)
+
+
+### Bug Fixes
+
+* **geom-isoline:** add half-pixel offset to result coords ([9b90370](https://github.com/thi-ng/umbrella/commit/9b9037048a7664eca20fda50df44e3018323d475))
+
+
+### Features
+
+* **geom-isoline:** add scale factor support ([b3f93d2](https://github.com/thi-ng/umbrella/commit/b3f93d20ff56464d2bec86d2de721344872d0cbc))
+
+
+
+
+
 ## [1.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-isoline@0.1.95...@thi.ng/geom-isoline@1.0.1) (2021-08-08)
 
 **Note:** Version bump only for package @thi.ng/geom-isoline
