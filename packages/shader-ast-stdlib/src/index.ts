@@ -62,6 +62,7 @@ export * from "./sdf/smooth-isec";
 export * from "./sdf/smooth-sub";
 export * from "./sdf/smooth-union";
 export * from "./sdf/sphere";
+export * from "./sdf/sub";
 export * from "./sdf/torus";
 export * from "./sdf/tri";
 export * from "./sdf/union";
