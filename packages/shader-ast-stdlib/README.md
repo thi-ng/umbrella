@@ -26,11 +26,15 @@ This project is part of the
   - [Fog](#fog)
   - [Lighting](#lighting)
   - [Math](#math)
+  - [Oscillators](#oscillators)
   - [Matrix operations](#matrix-operations)
   - [Noise / randomness](#noise--randomness)
   - [Raymarching](#raymarching)
   - [Screen coordinates](#screen-coordinates)
   - [Signed Distance Fields](#signed-distance-fields)
+    - [Primitives](#primitives)
+    - [Polyhedra](#polyhedra)
+    - [Operators / combinators](#operators--combinators)
   - [Texture lookups](#texture-lookups)
 - [Authors](#authors)
 - [License](#license)
@@ -39,28 +43,29 @@ This project is part of the
 
 Function collection for modular GPGPU / shader programming with [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast).
 
-A growing collection (currently 110+) of useful functions & higher order
-constructs for GPU / shader programming, acting as optional standard
-library for
+A growing collection (currently ~170) of useful functions & higher order
+constructs (incl. meta programming approaches) for GPU / shader programming,
+acting as optional standard library for
 [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
 based workflows.
 
-These functions can be imported like normal TS/JS functions and (in TS)
-are fully type checked.
+These functions can be imported like normal TS/JS functions and (in TS) are
+fully type checked.
 
 Some of the functions have been ported from GLSL:
 
 - Signed Distance Field primitives and operations are based on work by
-Inigo Quilezles (iq).
+Inigo Quilezles (iq), HG_SDF (Mercury).
 - Hash functions (PRNGs) by Dave Hoskins
 - Noise functions by Ashima Arts / Stefan Gustavson
-- Various functions from thi.ng/shadergraph, thi.ng/vectors,
-  thi.ng/matrices, thi.ng/color
+- Various other functions ported from thi.ng/shadergraph, thi.ng/vectors,
+  thi.ng/matrices, thi.ng/color, thi.ng/dsp
 
 Reference:
 
 - http://www.iquilezles.org/www/articles/distfunctions2d/distfunctions2d.htm
 - http://www.iquilezles.org/www/articles/distfunctions/distfunctions.htm
+- http://mercury.sexy/hg_sdf/
 - https://www.shadertoy.com/view/4djSRW
 - https://github.com/ashima/webgl-noise
 
@@ -90,7 +95,7 @@ yarn add @thi.ng/shader-ast-stdlib
 <script src="https://unpkg.com/@thi.ng/shader-ast-stdlib/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 6.20 KB / CJS: 7.04 KB / UMD: 6.45 KB
+Package sizes (gzipped, pre-treeshake): ESM: 6.83 KB / CJS: 7.81 KB / UMD: 7.09 KB
 
 ## Dependencies
 
@@ -376,6 +381,12 @@ for reference.
 - `polar2` / `polar3`
 - `sincos` / `cossin`
 
+### Oscillators
+
+[/src/math](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/math/osc.ts)
+
+- `sinOsc` / `sawOsc` / `triOsc` / `rectOsc`
+
 ### Matrix operations
 
 [/src/matrix](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/matrix/)
@@ -421,7 +432,8 @@ for reference.
 
 [/src/sdf](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib/src/sdf/)
 
-- `sdfAnnular`
+#### Primitives
+
 - `sdfBox2`
 - `sdfBox3`
 - `sdfCircle`
@@ -431,15 +443,29 @@ for reference.
 - `sdfLine3`
 - `sdfPlane2`
 - `sdfPlane3`
+- `sdfSphere`
+- `sdfTorus`
+- `sdfTriangle2`
+
+#### Polyhedra
+
+- `sdfDodecahedron` / `sdfDodecahedronSmooth`
+- `sdfIcosahedron` / `sdfIcosahedronSmooth`
+- `sdfOctahedron` / `sdfOctahedronSmooth`
+- `sdfTruncatedOctahedron` / `sdfTruncatedOctahedronSmooth`
+- `sdfTruncatedIcosahedron` / `sdfTruncatedIcosahedronSmooth`
+
+#### Operators / combinators
+
+- `sdfAnnular`
+- `sdfMirror2`
 - `sdfRepeat2`
+- `sdfRepeatPolar2`
 - `sdfRepeat3`
 - `sdfRound`
 - `sdfSmoothIntersect`
 - `sdfSmoothSubtract`
 - `sdfSmoothUnion`
-- `sdfSphere`
-- `sdfTorus`
-- `sdfTriangle2`
 - `sdfUnion`
 
 ### Texture lookups
