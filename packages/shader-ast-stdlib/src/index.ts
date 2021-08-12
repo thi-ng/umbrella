@@ -26,6 +26,7 @@ export * from "./math/mincomp";
 export * from "./math/mix-cubic";
 export * from "./math/mix-quadratic";
 export * from "./math/orthogonal";
+export * from "./math/osc";
 export * from "./math/polar";
 export * from "./math/sincos";
 
