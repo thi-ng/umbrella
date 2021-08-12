@@ -5,12 +5,9 @@ import type {
     BVec2Term,
     BVec3Term,
     BVec4Term,
-    FloatTerm,
-    IntTerm,
     IVec2Term,
     IVec3Term,
     IVec4Term,
-    UintTerm,
     UVec2Term,
     UVec3Term,
     UVec4Term,
@@ -43,14 +40,14 @@ export const int = (x: NumericB) =>
 export const uint = (x: NumericB) =>
     lit("uint", isBoolean(x) ? (<any>x) & 1 : isNumber(x) ? x >>> 0 : x);
 
-const wrap = <T extends Type>(type: T, ctor: Fn<any, Term<T>>) => (
-    x?: any
-): Term<T> | undefined =>
-    isNumber(x)
-        ? ctor(x)
-        : x !== undefined && !isVec(x) && x.type !== type
-        ? ctor(x)
-        : x;
+const wrap =
+    <T extends Type>(type: T, ctor: Fn<any, Term<T>>) =>
+    (x?: any): Term<T> | undefined =>
+        isNumber(x)
+            ? ctor(x)
+            : x !== undefined && !isVec(x) && x.type !== type
+            ? ctor(x)
+            : x;
 
 /**
  * Takes a plain number or numeric term and wraps it as float literal if
@@ -87,25 +84,26 @@ export const wrapBool = wrap("bool", bool);
 export const TRUE = bool(true);
 export const FALSE = bool(false);
 
-export const FLOAT0: FloatTerm = float(0);
-export const FLOAT1: FloatTerm = float(1);
-export const FLOAT2: FloatTerm = float(2);
-export const FLOAT05: FloatTerm = float(0.5);
+export const FLOAT0 = float(0);
+export const FLOAT1 = float(1);
+export const FLOAT2 = float(2);
+export const FLOAT05 = float(0.5);
 
-export const INT0: IntTerm = int(0);
-export const INT1: IntTerm = int(1);
+export const INT0 = int(0);
+export const INT1 = int(1);
 
-export const UINT0: UintTerm = uint(0);
-export const UINT1: UintTerm = uint(1);
+export const UINT0 = uint(0);
+export const UINT1 = uint(1);
 
-export const PI: FloatTerm = float(Math.PI);
-export const TAU: FloatTerm = float(Math.PI * 2);
-export const HALF_PI: FloatTerm = float(Math.PI / 2);
-export const SQRT2: FloatTerm = float(Math.SQRT2);
+export const PI = float(Math.PI);
+export const TAU = float(Math.PI * 2);
+export const HALF_PI = float(Math.PI / 2);
+export const SQRT2 = float(Math.SQRT2);
+export const PHI = float((1 + Math.sqrt(5)) / 2);
 
-const $gvec = (wrap: Fn<any, Term<any> | undefined>, init: Term<any>) => (
-    xs: any[]
-) => [xs[0] === undefined ? init : wrap(xs[0]), ...xs.slice(1).map(wrap)];
+const $gvec =
+    (wrap: Fn<any, Term<any> | undefined>, init: Term<any>) => (xs: any[]) =>
+        [xs[0] === undefined ? init : wrap(xs[0]), ...xs.slice(1).map(wrap)];
 
 const $vec = $gvec(wrapFloat, FLOAT0);
 
@@ -323,3 +321,11 @@ export function mat4(a: NumericF, b: NumericF, c: NumericF, d: NumericF, e: Nume
 export function mat4(...xs: any[]): Lit<"mat4"> {
     return $gmat("mat4", ["n", "n", , , "vvvv"], xs);
 }
+
+export const VEC2_0 = vec2(0);
+export const VEC2_1 = vec2(1);
+export const VEC2_2 = vec2(2);
+
+export const VEC3_0 = vec3(0);
+export const VEC3_1 = vec3(1);
+export const VEC3_2 = vec3(2);
