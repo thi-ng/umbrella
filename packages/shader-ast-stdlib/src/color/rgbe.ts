@@ -11,6 +11,7 @@ import {
     sub,
     ternary,
     vec3,
+    VEC3_0,
 } from "@thi.ng/shader-ast";
 
 /**
@@ -30,7 +31,7 @@ export const decodeRGBE = defn("vec3", "decodeRGBE", ["ivec4"], (col) => {
             ternary(
                 gt($w(col), INT0),
                 mul(vec3($xyz(col)), exp2(float(sub($w(col), 136)))),
-                vec3()
+                VEC3_0
             )
         ),
     ];

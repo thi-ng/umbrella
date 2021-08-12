@@ -25,6 +25,7 @@ import {
     Vec2Sym,
     vec3,
     Vec3Sym,
+    VEC3_0,
     vec4,
     Vec4Sym,
 } from "@thi.ng/shader-ast";
@@ -78,7 +79,7 @@ export const snoise2 = defn("float", "snoise2", ["vec2"], (v) => {
                     FLOAT05,
                     vec3(magSq2(x0), magSq2($xy(x12)), magSq2($(x12, "zw")))
                 ),
-                vec3()
+                VEC3_0
             )
         )),
         assign(m, mul(m, m)),

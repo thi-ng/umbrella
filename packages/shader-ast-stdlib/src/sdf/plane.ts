@@ -9,7 +9,7 @@ import { add, defn, dot, ret } from "@thi.ng/shader-ast";
  */
 export const sdfPlane2 = defn(
     "float",
-    "sdPlane",
+    "sdPlane2",
     ["vec2", "vec2", "float"],
     (p, n, w) => [ret(add(dot(p, n), w))]
 );
@@ -23,7 +23,7 @@ export const sdfPlane2 = defn(
  */
 export const sdfPlane3 = defn(
     "float",
-    "sdPlane",
+    "sdPlane3",
     ["vec3", "vec3", "float"],
     (p, n, w) => [ret(add(dot(p, n), w))]
 );

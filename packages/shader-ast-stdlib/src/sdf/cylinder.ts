@@ -13,6 +13,7 @@ import {
     sym,
     vec2,
     Vec2Sym,
+    VEC2_0,
 } from "@thi.ng/shader-ast";
 import { maxComp2 } from "../math/maxcomp";
 
@@ -32,7 +33,7 @@ export const sdfCylinder = defn(
         let d: Vec2Sym;
         return [
             (d = sym(sub(abs(vec2(length($(p, "xz")), $y(p))), vec2(h, r)))),
-            ret(add(min(maxComp2(d), FLOAT0), length(max(d, vec2())))),
+            ret(add(min(maxComp2(d), FLOAT0), length(max(d, VEC2_0)))),
         ];
     }
 );

@@ -15,6 +15,7 @@ import {
     vec2,
     Vec2Sym,
     Vec2Term,
+    VEC2_1,
     Vec4Term,
     _any,
 } from "@thi.ng/shader-ast";
@@ -70,7 +71,7 @@ export const borderMask = defn(
             _any(
                 bvec4(
                     lessThan(uv, vec2(width)),
-                    greaterThan(add(uv, width), vec2(1))
+                    greaterThan(add(uv, width), VEC2_1)
                 )
             )
         ),
