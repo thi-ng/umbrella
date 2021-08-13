@@ -459,7 +459,13 @@ console.log(js(lambert))
 
 ### Compilation & execution
 
-### AST tooling & traversal
+Depending on intended target environment, the following packages can be used to
+execute shader-ast trees/programs:
+
+- WebGL (v1, v2): [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl)
+- JavaScript: [@thi.ng/shader-ast-js](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-js)
+
+### AST tooling, traversal, optimization
 
 #### Tree traversals
 
@@ -467,33 +473,52 @@ console.log(js(lambert))
 - `allChildren`
 - `scopeChildren`
 
-#### Constant folding
+#### Tree optimization: Constant folding
 
-Currently only works for scalars and primitive math ops:
+Currently, only the following operations are supported / considered:
+
+- scalar math ops
+- single component vector swizzling
+- literal hoisting
 
 ```ts
-import { constantFolding } from "@thi.ng/shader-ast";
+const foo = defn("float", "foo", ["float"], (x) => [
+  ret(mul(x, add(neg(float(10)), float(42))))
+]);
 
-const ast = mul(float(10), add(float(1), float(2)));
+const bar = vec2(100, 200);
 
-// {
-//   tag: 'op2',
-//   type: 'float',
-//   info: undefined,
-//   op: '*',
-//   l: { tag: 'lit', type: 'float', info: undefined, val: 10 },
-//   r: {
-//     tag: 'op2',
-//     type: 'float',
-//     info: undefined,
-//     op: '+',
-//     l: { tag: 'lit', type: 'float', info: undefined, val: 1 },
-//     r: { tag: 'lit', type: 'float', info: undefined, val: 2 }
-//   }
-// }
+const prog = scope([
+  foo,
+  foo(add(float(1), float(2))),
+  foo(add($x(bar), $y(bar)))
+], true);
 
-constantFolding(ast)
-// { tag: 'lit', type: 'float', info: undefined, val: 30 }
+// unoptimized AST as GLSL (see section above)
+glsl(prog);
+
+// float foo(in float _sym0) {
+//   return (_sym0 * (-10.0 + 42.0));
+// };
+// foo((1.0 + 2.0));
+// foo((vec2(100.0, 200.0).x + vec2(100.0, 200.0).y));
+
+// same tree after constant folding optimizations
+glsl(constantFolding(prog))
+
+// float foo(in float _sym0) {
+//   return (_sym0 * 32.0);
+// };
+// foo(3.0);
+// foo(300.0);
+
+const expr = mul(float(4), $x(vec2(2)))
+
+glsl(expr)
+// (4.0 * vec2(2.0).x)
+
+glsl(constantFolding(expr))
+// 8.0
 ```
 
 ## Authors
