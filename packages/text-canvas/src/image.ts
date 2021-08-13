@@ -13,7 +13,13 @@ export const blit = (canvas: Canvas, x: number, y: number, src: Canvas) => {
     y |= 0;
     const { buf: sbuf, width: sw, height: sh } = src;
     const { buf: dbuf, width: dw } = canvas;
-    const { x1, y1, y2, w: iw, h: ih } = intersectRect(
+    const {
+        x1,
+        y1,
+        y2,
+        w: iw,
+        h: ih,
+    } = intersectRect(
         { x1: x, y1: y, x2: x + sw, y2: y + sh, w: sw, h: sh },
         peek(canvas.clipRects)
     );
@@ -105,13 +111,16 @@ export const image = (
     w |= 0;
     h |= 0;
     const { buf, width } = canvas;
-    const { x1, y1, x2, y2, sx, sy, w: iw, h: ih } = imgRect(
-        canvas,
-        x,
-        y,
-        w,
-        h
-    );
+    const {
+        x1,
+        y1,
+        x2,
+        y2,
+        sx,
+        sy,
+        w: iw,
+        h: ih,
+    } = imgRect(canvas, x, y, w, h);
     if (!iw || !ih) return;
     const { chars, format, gamma, invert, bits } = {
         chars: SHADES_BLOCK,
@@ -162,13 +171,16 @@ export const imageRaw = (
     w |= 0;
     h |= 0;
     const { buf, width } = canvas;
-    const { x1, y1, x2, y2, sx, sy, w: iw, h: ih } = imgRect(
-        canvas,
-        x,
-        y,
-        w,
-        h
-    );
+    const {
+        x1,
+        y1,
+        x2,
+        y2,
+        sx,
+        sy,
+        w: iw,
+        h: ih,
+    } = imgRect(canvas, x, y, w, h);
     if (!iw || !ih) return;
     const code = char.charCodeAt(0);
     for (let yy = sy, dy = y1; dy < y2; yy++, dy++) {
@@ -179,6 +191,112 @@ export const imageRaw = (
         }
     }
 };
+
+/**
+ * Similar to {@link imageRaw}, but always thresholds pixels given `thresh` and
+ * converts groups of 2x4 pixels into Unicode Braille characters. Each written
+ * char will use given `format` ID (optional) or default to canvas' currently
+ * active format.
+ *
+ * @remarks
+ * For best results, it's recommended to pre-dither the image (e.g. using
+ * thi.ng/pixel or other dither tools).
+ *
+ * Reference:
+ * https://en.wikipedia.org/wiki/Braille_Patterns#Identifying.2C_naming_and_ordering
+ *
+ * @param canvas
+ * @param x
+ * @param y
+ * @param w
+ * @param h
+ * @param pixels
+ * @param thresh
+ * @param format
+ */
+export const imageBraille = (
+    canvas: Canvas,
+    x: number,
+    y: number,
+    w: number,
+    h: number,
+    pixels: ArrayLike<number>,
+    thresh: number,
+    format?: number
+) => {
+    x |= 0;
+    y |= 0;
+    w |= 0;
+    h |= 0;
+    const { buf, width } = canvas;
+    const fmt = (format !== undefined ? format : canvas.format) << 16;
+    const {
+        x1,
+        y1,
+        x2,
+        y2,
+        sx,
+        sy,
+        w: iw,
+        h: ih,
+    } = imgRect(canvas, x, y, w >> 1, h >> 2);
+    if (!iw || !ih) return;
+    const w2 = w * 2;
+    const w3 = w * 3;
+
+    const braille = (i: number) =>
+        (pixels[i] >= thresh ? 1 : 0) |
+        (pixels[i + w] >= thresh ? 2 : 0) |
+        (pixels[i + w2] >= thresh ? 4 : 0) |
+        (pixels[i + w3] >= thresh ? 8 : 0) |
+        (pixels[i + 1] >= thresh ? 16 : 0) |
+        (pixels[i + w + 1] >= thresh ? 32 : 0) |
+        (pixels[i + w2 + 1] >= thresh ? 64 : 0) |
+        (pixels[i + w3 + 1] >= thresh ? 128 : 0) |
+        0x2800;
+
+    for (let yy = sy, dy = y1; dy < y2; yy += 4, dy++) {
+        let sidx = sx + yy * w;
+        let didx = x1 + dy * width;
+        for (let xx = sx, dx = x1; dx < x2; xx += 2, dx++, sidx += 2) {
+            buf[didx++] = braille(sidx) | fmt;
+        }
+    }
+};
+
+/**
+ * Syntax sugar for {@link imageBraille}. Takes a thi.ng/pixel compatible 8bit
+ * grayscale pixel buffer and converts it into a new {@link canvas}.
+ *
+ * @remarks
+ * The returned canvas will have 50% width and 25% height of the original image
+ * (due to each Braille character encoding 2x4 pixels).
+ *
+ * @param src
+ * @param thresh
+ * @param format
+ */
+export const imageCanvasBraille = (
+    src: { width: number; height: number; pixels: UIntArray },
+    thresh: number,
+    format = 0
+) => {
+    const dest = canvas(src.width >> 1, src.height >> 2);
+    imageBraille(dest, 0, 0, src.width, src.height, src.pixels, thresh, format);
+    return dest;
+};
+
+/**
+ * Same as {@link imageCanvasBrailler}, but returns resulting canvas as plain
+ * string (of Unicode Braille characters).
+ *
+ * @param src
+ * @param thresh
+ */
+export const imageStringBraille = (
+    src: { width: number; height: number; pixels: UIntArray },
+    thresh: number
+) => toString(imageCanvasBraille(src, thresh, 0));
 
 /**
  * Syntax sugar for {@link imageRaw}. Takes a thi.ng/pixel compatible 16bit
