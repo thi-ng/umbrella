@@ -186,7 +186,7 @@ yarn add @thi.ng/shader-ast
 <script src="https://unpkg.com/@thi.ng/shader-ast/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.21 KB / CJS: 5.78 KB / UMD: 5.13 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.46 KB / CJS: 6.00 KB / UMD: 5.36 KB
 
 ## Dependencies
 
@@ -195,6 +195,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 5.21 KB / CJS: 5.78 KB / UMD: 5.13 
 - [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
 - [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 
 ## Usage examples
 
@@ -569,7 +570,8 @@ execute shader-ast trees/programs:
 
 Currently, only the following operations are supported / considered:
 
-- scalar math ops
+- scalar math operators
+- scalar math built-in functions
 - single component vector swizzling
 - literal hoisting
 

@@ -477,7 +477,8 @@ execute shader-ast trees/programs:
 
 Currently, only the following operations are supported / considered:
 
-- scalar math ops
+- scalar math operators
+- scalar math built-in functions
 - single component vector swizzling
 - literal hoisting
 

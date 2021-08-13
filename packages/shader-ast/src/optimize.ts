@@ -1,6 +1,7 @@
-import { LogLevel } from "@thi.ng/api";
+import { Fn, IObjectOf, LogLevel } from "@thi.ng/api";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti";
-import type { Lit, Op1, Op2, Swizzle, Term } from "./api/nodes";
+import { clamp, deg, fract, mix, mod, rad } from "@thi.ng/math";
+import type { FnCall, Lit, Op1, Op2, Swizzle, Term } from "./api/nodes";
 import type { Operator } from "./api/ops";
 import type { Swizzle4_1 } from "./api/swizzles";
 import {
@@ -36,8 +37,14 @@ const replaceNode = (node: any, next: any) => {
     return true;
 };
 
+const replaceNumericNode = (node: any, res: number) => {
+    node.type === "int" && (res |= 0);
+    node.type === "uint" && (res >>>= 0);
+    return replaceNode(node, lit(node.type, res));
+};
+
 /** @internal */
-const maybeFoldMath = (op: Operator, l: any, r: any) =>
+const maybeFoldMath = (op: Operator, l: number, r: number) =>
     op === "+"
         ? l + r
         : op === "-"
@@ -50,6 +57,33 @@ const maybeFoldMath = (op: Operator, l: any, r: any) =>
 
 /** @internal */
 const COMPS: Record<Swizzle4_1, number> = { x: 0, y: 1, z: 2, w: 3 };
+
+const BUILTINS: IObjectOf<Fn<number[], number>> = {
+    abs: ([a]) => Math.abs(a),
+    acos: ([a]) => Math.acos(a),
+    asin: ([a]) => Math.asin(a),
+    ceil: ([a]) => Math.ceil(a),
+    clamp: ([a, b, c]) => clamp(a, b, c),
+    cos: ([a]) => Math.cos(a),
+    degrees: ([a]) => deg(a),
+    exp: ([a]) => Math.exp(a),
+    exp2: ([a]) => Math.pow(2, a),
+    floor: ([a]) => Math.floor(a),
+    fract: ([a]) => fract(a),
+    inversesqrt: ([a]) => 1 / Math.sqrt(a),
+    log: ([a]) => Math.log(a),
+    log2: ([a]) => Math.log2(a),
+    max: ([a, b]) => Math.max(a, b),
+    min: ([a, b]) => Math.min(a, b),
+    mix: ([a, b, c]) => mix(a, b, c),
+    mod: ([a, b]) => mod(a, b),
+    pow: ([a, b]) => Math.pow(a, b),
+    radians: ([a]) => rad(a),
+    sign: ([a]) => Math.sign(a),
+    sin: ([a]) => Math.sin(a),
+    tan: ([a]) => Math.tan(a),
+    sqrt: ([a]) => Math.sqrt(a),
+};
 
 /** @internal */
 export const foldNode = defmulti<Term<any>, boolean | undefined>((t) => t.tag);
@@ -67,13 +101,24 @@ foldNode.addAll({
     op2: (node) => {
         const $node = <Op2<any>>node;
         if (isLitNumericConst($node.l) && isLitNumericConst($node.r)) {
-            const vl = (<Lit<"float">>$node.l).val;
-            const vr = (<Lit<"float">>$node.r).val;
-            let res = maybeFoldMath($node.op, vl, vr);
+            const l: number = $node.l.val;
+            const r: number = $node.r.val;
+            let res = maybeFoldMath($node.op, l, r);
             if (res !== undefined) {
-                $node.type === "int" && (res |= 0);
-                $node.type === "uint" && (res >>>= 0);
-                return replaceNode(node, lit($node.type, res));
+                return replaceNumericNode(node, res);
+            }
+        }
+    },
+
+    call_i: (node) => {
+        const $node = <FnCall<any>>node;
+        if ($node.args.every((x) => isLitNumericConst(x))) {
+            const op = BUILTINS[$node.id];
+            if (op !== undefined) {
+                return replaceNumericNode(
+                    node,
+                    op($node.args.map((x) => (<Lit<any>>x).val))
+                );
             }
         }
     },
@@ -115,7 +160,8 @@ foldNode.addAll({
  * @remarks
  * Currently, only the following operations are supported / considered:
  *
- * - scalar math ops
+ * - scalar math operators
+ * - scalar math built-in functions
  * - single component vector swizzling
  * - literal hoisting
  *
