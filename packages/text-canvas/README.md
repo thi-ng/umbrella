@@ -59,7 +59,7 @@ yarn add @thi.ng/text-canvas
 <script src="https://unpkg.com/@thi.ng/text-canvas/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 6.05 KB / CJS: 6.40 KB / UMD: 6.14 KB
+Package sizes (gzipped, pre-treeshake): ESM: 6.27 KB / CJS: 6.63 KB / UMD: 6.34 KB
 
 ## Dependencies
 
@@ -314,6 +314,7 @@ each newly pushed one being intersected with the previous top-of-stack rect:
 - `extract`
 - `scrollV`
 - `image` / `imageRaw` / `imageCanvas565` / `imageString565`
+- `imageBraille` / `imageCanvasBraille` / `imageStringBraille`
 
 ```ts
 import { RGB565 } from "@thi.ng/pixel";

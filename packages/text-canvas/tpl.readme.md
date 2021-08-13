@@ -262,6 +262,7 @@ each newly pushed one being intersected with the previous top-of-stack rect:
 - `extract`
 - `scrollV`
 - `image` / `imageRaw` / `imageCanvas565` / `imageString565`
+- `imageBraille` / `imageCanvasBraille` / `imageStringBraille`
 
 ```ts
 import { RGB565 } from "@thi.ng/pixel";
