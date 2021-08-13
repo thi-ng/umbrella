@@ -4,6 +4,7 @@ import {
     div,
     FLOAT1,
     FloatSym,
+    FloatTerm,
     mix,
     mul,
     ret,
@@ -16,6 +17,7 @@ import { fit1101 } from "../math/fit";
 /**
  * @param d1 - float
  * @param d2 - float
+ * @param k - float
  */
 export const sdfSmoothIntersect = defn(
     "float",
@@ -29,3 +31,13 @@ export const sdfSmoothIntersect = defn(
         ];
     }
 );
+
+/**
+ * Variadic compiletime macro for {@link sdfSmoothIntersect}. Takes smooth factor
+ * `k`, followed by any number (at least 1 required) of SDF terms.
+ *
+ * @param k
+ * @param terms
+ */
+export const sdfSmoothIntersectAll = (k: FloatTerm, ...terms: FloatTerm[]) =>
+    terms.reduce((acc, x) => sdfSmoothIntersect(acc, x, k));

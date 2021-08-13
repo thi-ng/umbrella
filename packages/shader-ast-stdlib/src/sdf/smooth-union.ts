@@ -3,6 +3,7 @@ import {
     div,
     FLOAT1,
     FloatSym,
+    FloatTerm,
     mix,
     mul,
     ret,
@@ -15,6 +16,7 @@ import { fit1101 } from "../math/fit";
 /**
  * @param d1 - float
  * @param d2 - float
+ * @param k - float
  */
 export const sdfSmoothUnion = defn(
     "float",
@@ -28,3 +30,13 @@ export const sdfSmoothUnion = defn(
         ];
     }
 );
+
+/**
+ * Variadic compiletime macro for {@link sdfSmoothUnion}. Takes smooth factor
+ * `k`, followed by any number (at least 1 required) of SDF terms.
+ *
+ * @param k
+ * @param terms
+ */
+export const sdfSmoothUnionAll = (k: FloatTerm, ...terms: FloatTerm[]) =>
+    terms.reduce((acc, x) => sdfSmoothUnion(acc, x, k));
