@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@1.0.3...@thi.ng/text-canvas@1.1.0) (2021-08-13)
+
+
+### Features
+
+* **text-canvas:** add image -> braille functions ([8201ad2](https://github.com/thi-ng/umbrella/commit/8201ad2c83f32522fcb6fbf0d3d46925491aacc8))
+
+
+
+
+
 ## [1.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@1.0.2...@thi.ng/text-canvas@1.0.3) (2021-08-08)
 
 **Note:** Version bump only for package @thi.ng/text-canvas

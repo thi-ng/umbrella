@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.8.20...@thi.ng/shader-ast@0.9.0) (2021-08-13)
+
+
+### Features
+
+* **shader-ast:** add module logger ([24c8ad5](https://github.com/thi-ng/umbrella/commit/24c8ad5eafc531793295f4e3abe97834c83b4295))
+* **shader-ast:** add optimizers for built-in fns ([b0124d7](https://github.com/thi-ng/umbrella/commit/b0124d7dc8a38ec2fcea412e8c880e39c66f6d43))
+* **shader-ast:** add/update AST node predicates ([8a4855e](https://github.com/thi-ng/umbrella/commit/8a4855ec701307df8a80ac9802274540361a59a2))
+* **shader-ast:** add/update vec2/3 & float consts ([2748f0b](https://github.com/thi-ng/umbrella/commit/2748f0b7c3baed890840d7b06c86c7a1be73ccde))
+* **shader-ast:** update/improve AST optimizer ([ad60add](https://github.com/thi-ng/umbrella/commit/ad60addce9391887e4e7f9c1ce1eb2d2371073ee))
+
+
+
+
+
 ## [0.8.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.8.19...@thi.ng/shader-ast@0.8.20) (2021-08-08)
 
 **Note:** Version bump only for package @thi.ng/shader-ast

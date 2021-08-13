@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.7.0...@thi.ng/shader-ast-stdlib@0.8.0) (2021-08-13)
+
+
+### Features
+
+* **shader-ast-stdlib:** add oscillator fns ([f14e8cb](https://github.com/thi-ng/umbrella/commit/f14e8cb39b11ce99033b529ab46e7d103036b3e8))
+* **shader-ast-stdlib:** add SDF domain ops ([c41b288](https://github.com/thi-ng/umbrella/commit/c41b288758b532a10ed625f8a1d8a4e899af53a8))
+* **shader-ast-stdlib:** add SDF polyhedra fns ([2100e50](https://github.com/thi-ng/umbrella/commit/2100e508828501d3d7d7f7e398da2a8d4b600c6c))
+* **shader-ast-stdlib:** add variadic SDF ops ([8d6390c](https://github.com/thi-ng/umbrella/commit/8d6390cc7df7d3ee41c8a415956253cdc2bd8e97))
+
+
+
+
+
 # [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.6.7...@thi.ng/shader-ast-stdlib@0.7.0) (2021-08-09)
 
 
