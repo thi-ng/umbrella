@@ -95,7 +95,7 @@ yarn add @thi.ng/shader-ast-stdlib
 <script src="https://unpkg.com/@thi.ng/shader-ast-stdlib/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 6.83 KB / CJS: 7.81 KB / UMD: 7.09 KB
+Package sizes (gzipped, pre-treeshake): ESM: 6.88 KB / CJS: 7.86 KB / UMD: 7.12 KB
 
 ## Dependencies
 
@@ -438,7 +438,6 @@ for reference.
 - `sdfBox3`
 - `sdfCircle`
 - `sdfCylinder`
-- `sdfIntersect`
 - `sdfLine2`
 - `sdfLine3`
 - `sdfPlane2`
@@ -458,14 +457,16 @@ for reference.
 #### Operators / combinators
 
 - `sdfAnnular`
+- `sdfIntersect`
 - `sdfMirror2`
 - `sdfRepeat2`
 - `sdfRepeatPolar2`
 - `sdfRepeat3`
 - `sdfRound`
-- `sdfSmoothIntersect`
-- `sdfSmoothSubtract`
-- `sdfSmoothUnion`
+- `sdfSubtract`
+- `sdfSmoothIntersect` / `sdfSmoothIntersectAll`
+- `sdfSmoothSubtract` / `sdfSmoothSubtractAll`
+- `sdfSmoothUnion` / `sdfSmoothUnionAll`
 - `sdfUnion`
 
 ### Texture lookups

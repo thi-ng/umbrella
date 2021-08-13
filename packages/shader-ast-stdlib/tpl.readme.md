@@ -374,7 +374,6 @@ for reference.
 - `sdfBox3`
 - `sdfCircle`
 - `sdfCylinder`
-- `sdfIntersect`
 - `sdfLine2`
 - `sdfLine3`
 - `sdfPlane2`
@@ -394,14 +393,16 @@ for reference.
 #### Operators / combinators
 
 - `sdfAnnular`
+- `sdfIntersect`
 - `sdfMirror2`
 - `sdfRepeat2`
 - `sdfRepeatPolar2`
 - `sdfRepeat3`
 - `sdfRound`
-- `sdfSmoothIntersect`
-- `sdfSmoothSubtract`
-- `sdfSmoothUnion`
+- `sdfSubtract`
+- `sdfSmoothIntersect` / `sdfSmoothIntersectAll`
+- `sdfSmoothSubtract` / `sdfSmoothSubtractAll`
+- `sdfSmoothUnion` / `sdfSmoothUnionAll`
 - `sdfUnion`
 
 ### Texture lookups
