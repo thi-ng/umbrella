@@ -18,16 +18,15 @@ import type {
 import type { NumericB, NumericF, Type } from "../api/types";
 import { isVec } from "./checks";
 
-export const lit = <T extends Type>(
-    type: T,
-    val: any,
-    info?: string
-): Lit<T> => ({
-    tag: "lit",
-    type,
-    info,
-    val,
-});
+export const lit = <T extends Type>(type: T, val: any, info?: string): Lit<T> =>
+    type === val.type && info === val.info
+        ? val
+        : {
+              tag: "lit",
+              type,
+              info,
+              val,
+          };
 
 export const bool = (x: NumericB) => lit("bool", isNumber(x) ? !!x : x);
 
