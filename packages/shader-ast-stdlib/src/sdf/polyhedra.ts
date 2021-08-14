@@ -2,14 +2,13 @@ import {
     abs,
     add,
     defn,
-    div,
     dot,
     FLOAT0,
-    FLOAT1,
     FloatTerm,
     max,
     PHI,
     pow,
+    reciprocal,
     ret,
     sub,
     TaggedFn2,
@@ -84,7 +83,7 @@ const defGDF = (
                         (acc: FloatTerm, v) => add(acc, pow(abs(dot(p, v)), e)),
                         FLOAT0
                     ),
-                    div(FLOAT1, e)
+                    reciprocal(e)
                 ),
                 r
             )

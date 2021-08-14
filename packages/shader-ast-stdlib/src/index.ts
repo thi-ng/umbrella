@@ -1,6 +1,7 @@
 export * from "./api";
 
 export * from "./color/aces-film";
+export * from "./color/levels";
 export * from "./color/linear-srgb";
 export * from "./color/luminance";
 export * from "./color/porter-duff";
