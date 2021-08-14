@@ -156,6 +156,8 @@ export const targetJS = () => {
 
         idx: (t) => `${emit(t.val)}[${emit(t.id)}]`,
 
+        idxm: (t) => `${t.val.type}.idx(${emit(t.val)},${emit(t.id)})`,
+
         if: (t) => {
             const res = `if (${emit(t.test)}) ${emit(t.t)}`;
             return t.f ? `${res} else ${emit(t.f)}` : res;

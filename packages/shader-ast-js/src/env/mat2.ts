@@ -22,6 +22,7 @@ export const MAT2: JSBuiltinsMat = {
     div: (a, b) => div22([], a, b),
     divnv: (a, b) => div22(null, [a, a, a, a], b),
     divvn: (a, b) => divN22([], a, b),
+    idx: (a, b) => [a[b * 2], a[b * 2 + 1]],
     inc: (a) => addN22([], a, 1),
     mul: (a, b) => mul22([], a, b),
     mulm: (a, b) => mulM22([], a, b),

@@ -11,7 +11,7 @@ import {
     sub33,
     subN33,
 } from "@thi.ng/matrices";
-import { neg, vecOf } from "@thi.ng/vectors";
+import { neg, setS3, vecOf } from "@thi.ng/vectors";
 import type { JSBuiltinsMat } from "../api";
 
 export const MAT3: JSBuiltinsMat = {
@@ -22,6 +22,7 @@ export const MAT3: JSBuiltinsMat = {
     div: (a, b) => div33([], a, b),
     divnv: (a, b) => div33(null, vecOf(9, a), b),
     divvn: (a, b) => divN33([], a, b),
+    idx: (a, b) => setS3([], a, 0, b * 3),
     inc: (a) => addN33([], a, 1),
     mul: (a, b) => mul33([], a, b),
     mulm: (a, b) => mulM33([], a, b),

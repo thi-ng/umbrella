@@ -158,6 +158,7 @@ export interface JSBuiltinsMat
     mulm: Fn2<Mat, Mat, Mat>;
     mulvm: Fn2<Vec, Mat, Vec>;
     mulmv: Fn2<Mat, Vec, Vec>;
+    idx: Fn2<Mat, number, Vec>;
 }
 
 export interface JSBuiltinsSampler {
