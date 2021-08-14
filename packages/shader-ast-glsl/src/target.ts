@@ -5,6 +5,8 @@ import {
     defTarget,
     FnCall,
     FuncArg,
+    Index,
+    IndexM,
     isMat,
     isVec,
     itemType,
@@ -90,6 +92,9 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
         return res.join("");
     };
 
+    const emitIndex = (t: Index<any> | IndexM<any>) =>
+        `${emit(t.val)}[${emit(t.id)}]`;
+
     const emit: Fn<Term<any>, string> = defTarget({
         arg: (t) => $decl(t, true),
 
@@ -123,7 +128,8 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
                 t.iter ? emit(t.iter) : ""
             }) ${emit(t.scope)}`,
 
-        idx: (t) => `${emit(t.val)}[${emit(t.id)}]`,
+        idx: emitIndex,
+        idxm: emitIndex,
 
         if: (t) => {
             const res = `if (${emit(t.test)}) ` + emit(t.t);
