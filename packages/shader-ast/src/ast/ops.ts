@@ -217,8 +217,21 @@ export function modi(l: Term<any> | number, r: Term<any> | number): Op2<any> {
     );
 }
 
+/**
+ * Syntax sugar for `-x`.
+ *
+ * @param val
+ */
 export const neg = <T extends Prim | Int | IVec | Mat>(val: Term<T>) =>
     op1("-", val);
+
+/**
+ * Syntax sugar for `1 / x`.
+ *
+ * @param val
+ */
+export const reciprocal = <T extends Prim>(val: Term<T>): Op2<T> =>
+    op2("/", 1, val);
 
 /**
  * Multiply-add: a * b + c. The `b` and `c` terms must be compatible with `a`.
@@ -260,10 +273,10 @@ export const not = (val: BoolTerm) => op1("!", val);
 export const or = (a: BoolTerm, b: BoolTerm) => op2("||", a, b);
 export const and = (a: BoolTerm, b: BoolTerm) => op2("&&", a, b);
 
-const cmp = (op: ComparisonOperator) => <A extends Comparable, B extends A>(
-    a: Term<A>,
-    b: Term<B>
-): BoolTerm => op2(op, a, b, "bool");
+const cmp =
+    (op: ComparisonOperator) =>
+    <A extends Comparable, B extends A>(a: Term<A>, b: Term<B>): BoolTerm =>
+        op2(op, a, b, "bool");
 
 export const eq = cmp("==");
 export const neq = cmp("!=");
