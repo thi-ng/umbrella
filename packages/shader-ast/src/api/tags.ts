@@ -9,6 +9,7 @@ export type Tag =
     | "fn"
     | "for"
     | "idx"
+    | "idxm"
     | "if"
     | "lit"
     | "op1"

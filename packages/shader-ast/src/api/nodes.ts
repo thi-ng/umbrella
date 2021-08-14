@@ -13,7 +13,7 @@ import type { Operator } from "./ops";
 import type { SymOpts } from "./syms";
 import type { Tag } from "./tags";
 import type { BoolTerm } from "./terms";
-import type { Assignable, Indexable, Type, Vec } from "./types";
+import type { Assignable, Indexable, Mat, Type, Vec } from "./types";
 
 export interface Term<T extends Type> {
     tag: Tag;
@@ -53,6 +53,11 @@ export interface Swizzle<T extends Type> extends Term<T> {
 export interface Index<T extends Type> extends Term<T> {
     id: Term<"int"> | Term<"uint">;
     val: Term<Indexable>;
+}
+
+export interface IndexM<T extends Type> extends Term<T> {
+    id: Term<"int"> | Term<"uint">;
+    val: Term<Mat>;
 }
 
 export interface Assign<T extends Type> extends Term<T> {
@@ -131,7 +136,8 @@ export interface TaggedFn3<
     B extends Type,
     C extends Type,
     T extends Type
-> extends Func3<A, B, C, T>, Func<T> {
+> extends Func3<A, B, C, T>,
+        Func<T> {
     args: [Sym<A>, Sym<B>, Sym<C>];
 }
 
@@ -141,7 +147,8 @@ export interface TaggedFn4<
     C extends Type,
     D extends Type,
     T extends Type
-> extends Func4<A, B, C, D, T>, Func<T> {
+> extends Func4<A, B, C, D, T>,
+        Func<T> {
     args: [Sym<A>, Sym<B>, Sym<C>, Sym<D>];
 }
 
@@ -152,7 +159,8 @@ export interface TaggedFn5<
     D extends Type,
     E extends Type,
     T extends Type
-> extends Func5<A, B, C, D, E, T>, Func<T> {
+> extends Func5<A, B, C, D, E, T>,
+        Func<T> {
     args: [Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>];
 }
 
@@ -164,7 +172,8 @@ export interface TaggedFn6<
     E extends Type,
     F extends Type,
     T extends Type
-> extends Func6<A, B, C, D, E, F, T>, Func<T> {
+> extends Func6<A, B, C, D, E, F, T>,
+        Func<T> {
     args: [Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>, Sym<F>];
 }
 
@@ -177,7 +186,8 @@ export interface TaggedFn7<
     F extends Type,
     G extends Type,
     T extends Type
-> extends Func7<A, B, C, D, E, F, G, T>, Func<T> {
+> extends Func7<A, B, C, D, E, F, G, T>,
+        Func<T> {
     args: [Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>, Sym<F>, Sym<G>];
 }
 
@@ -191,7 +201,8 @@ export interface TaggedFn8<
     G extends Type,
     H extends Type,
     T extends Type
-> extends Func8<A, B, C, D, E, F, G, H, T>, Func<T> {
+> extends Func8<A, B, C, D, E, F, G, H, T>,
+        Func<T> {
     args: [Sym<A>, Sym<B>, Sym<C>, Sym<D>, Sym<E>, Sym<F>, Sym<G>, Sym<H>];
 }
 

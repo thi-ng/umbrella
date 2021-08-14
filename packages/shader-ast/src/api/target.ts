@@ -10,6 +10,7 @@ import type {
     FuncArg,
     FuncReturn,
     Index,
+    IndexM,
     Lit,
     Op1,
     Op2,
@@ -31,6 +32,7 @@ export interface TargetImpl<T> extends Record<Tag, Fn<any, T>> {
     fn: Fn<Func<any>, T>;
     for: Fn<ForLoop, T>;
     idx: Fn<Index<any>, T>;
+    idxm: Fn<IndexM<any>, T>;
     if: Fn<Branch, T>;
     lit: Fn<Lit<any>, T>;
     op1: Fn<Op1<any>, T>;

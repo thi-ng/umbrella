@@ -1,11 +1,13 @@
 import { isNumber } from "@thi.ng/checks";
-import type { Index, Sym } from "../api/nodes";
+import type { Index, IndexM, Sym } from "../api/nodes";
 import type { UintTerm } from "../api/terms";
 import type {
     Indexable,
     IndexTypeMap,
+    Mat,
     MatIndexTypeMap,
     NumericI,
+    Vec,
 } from "../api/types";
 import { int } from "./lit";
 
@@ -19,14 +21,26 @@ export const index = <T extends Indexable>(
     val,
 });
 
+const MAT_VEC: Record<Mat, Vec> = {
+    mat2: "vec2",
+    mat3: "vec3",
+    mat4: "vec4",
+    // mat23: "vec3",
+    // mat24: "vec4",
+    // mat32: "vec2",
+    // mat34: "vec4",
+    // mat42: "vec2",
+    // mat43: "vec3",
+};
+
 // prettier-ignore
-export function indexMat<T extends keyof MatIndexTypeMap>(m: Sym<T>, id: number): Index<MatIndexTypeMap[T]>;
+export function indexMat<T extends keyof MatIndexTypeMap>(m: Sym<T>, id: number): IndexM<MatIndexTypeMap[T]>;
 // prettier-ignore
 export function indexMat<T extends keyof MatIndexTypeMap>(m: Sym<T>, a: number, b: number): Index<"float">;
-export function indexMat(m: Sym<any>, a: number, b?: number): Index<any> {
-    const idx: any = {
-        tag: "idx",
-        type: <any>m.type.replace("mat", "vec"),
+export function indexMat(m: Sym<any>, a: number, b?: number): any {
+    const idx: IndexM<any> = {
+        tag: "idxm",
+        type: MAT_VEC[<Mat>m.type],
         id: int(a),
         val: m,
     };
