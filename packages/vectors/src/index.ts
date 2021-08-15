@@ -180,6 +180,7 @@ export * from "./sum";
 export * from "./swizzle";
 export * from "./tan";
 export * from "./tanh";
+export * from "./tensor";
 export * from "./trunc";
 export * from "./vec-of";
 export * from "./wrap";
