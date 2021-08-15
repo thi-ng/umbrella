@@ -72,6 +72,11 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "hdom-canvas",
+            "hiccup-canvas",
+            "rdom-canvas"
+        ],
         "year": 2019
     }
 }

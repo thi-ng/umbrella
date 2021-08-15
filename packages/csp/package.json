@@ -71,6 +71,9 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "rstream"
+        ],
         "status": "deprecated",
         "year": 2016
     }

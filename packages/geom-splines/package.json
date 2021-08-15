@@ -76,5 +76,11 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "parent": "@thi.ng/geom",
+        "related": [
+            "geom-subdiv-curve"
+        ]
+    }
 }

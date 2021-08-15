@@ -63,6 +63,9 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "math"
+        ],
         "status": "alpha",
         "year": 2020
     }

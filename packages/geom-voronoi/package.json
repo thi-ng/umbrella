@@ -74,6 +74,7 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "parent": "@thi.ng/geom",
         "related": [
             "quad-edge"
         ],

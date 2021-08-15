@@ -61,6 +61,10 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "adjacency",
+            "dgraph"
+        ],
         "status": "beta",
         "year": 2018
     }

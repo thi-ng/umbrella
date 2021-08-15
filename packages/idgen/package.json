@@ -60,6 +60,10 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "ecs",
+            "ksuid"
+        ],
         "year": 2019
     }
 }

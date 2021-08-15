@@ -64,6 +64,7 @@
         "glsl",
         "gpgpu",
         "interval",
+        "optimize",
         "shader",
         "tree",
         "typecheck",

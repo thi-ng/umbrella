@@ -81,6 +81,7 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "parent": "@thi.ng/pointfree",
         "year": 2018
     }
 }

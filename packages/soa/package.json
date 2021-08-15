@@ -79,7 +79,8 @@
             "malloc",
             "simd",
             "unionstruct",
-            "vector-pools"
+            "vector-pools",
+            "vectors"
         ],
         "status": "alpha",
         "year": 2019

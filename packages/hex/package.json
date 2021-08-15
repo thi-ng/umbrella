@@ -54,6 +54,9 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "base-n"
+        ],
         "year": 2020
     }
 }

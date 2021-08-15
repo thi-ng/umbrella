@@ -68,5 +68,10 @@
         "process": false,
         "setTimeout": false
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "related": [
+            "atom"
+        ]
+    }
 }

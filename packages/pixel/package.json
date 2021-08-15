@@ -92,7 +92,10 @@
     "sideEffects": false,
     "thi.ng": {
         "related": [
-            "porter-duff"
+            "color",
+            "porter-duff",
+            "shader-ast",
+            "webgl"
         ],
         "year": 2019
     }

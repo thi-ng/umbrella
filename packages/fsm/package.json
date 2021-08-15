@@ -66,6 +66,10 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "parse",
+            "transducers-fsm"
+        ],
         "status": "deprecated",
         "year": 2018
     }

@@ -91,6 +91,9 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "math"
+        ],
         "year": 2015
     }
 }

@@ -84,7 +84,9 @@
         ],
         "related": [
             "hdom",
-            "hdom-canvas"
+            "hdom-canvas",
+            "rdom",
+            "rdom-canvas"
         ],
         "year": 2016
     }

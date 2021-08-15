@@ -82,6 +82,9 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "dgraph"
+        ],
         "year": 2018
     }
 }

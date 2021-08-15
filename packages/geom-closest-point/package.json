@@ -68,6 +68,11 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "parent": "@thi.ng/geom",
+        "related": [
+            "geom-isec",
+            "geom-resample"
+        ],
         "year": 2018
     }
 }

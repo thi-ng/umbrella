@@ -68,6 +68,12 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "malloc",
+            "soa",
+            "vectors",
+            "vector-pools"
+        ],
         "status": "alpha",
         "year": 2019
     }

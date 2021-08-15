@@ -67,6 +67,7 @@
     "thi.ng": {
         "parent": "@thi.ng/rstream",
         "related": [
+            "dgraph-dot",
             "dot"
         ],
         "year": 2018

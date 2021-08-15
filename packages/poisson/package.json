@@ -71,7 +71,9 @@
     "sideEffects": false,
     "thi.ng": {
         "related": [
+            "geom",
             "geom-voronoi",
+            "lowdisc",
             "random"
         ],
         "year": 2016

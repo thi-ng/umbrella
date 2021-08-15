@@ -69,6 +69,10 @@
     "sideEffects": false,
     "thi.ng": {
         "parent": "@thi.ng/rstream",
+        "related": [
+            "hdom",
+            "rdom"
+        ],
         "year": 2018
     }
 }

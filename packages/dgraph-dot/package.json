@@ -62,6 +62,7 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "parent": "@thi.ng/dgraph",
         "year": 2020
     }
 }

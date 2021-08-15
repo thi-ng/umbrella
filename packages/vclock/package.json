@@ -46,15 +46,18 @@
         "lib"
     ],
     "keywords": [
+        "compare",
         "clock",
+        "datastructure",
         "diff",
         "distributed",
         "immutable",
-        "sorting",
+        "sort",
         "state",
         "time",
         "typescript",
-        "vector"
+        "vector",
+        "version"
     ],
     "publishConfig": {
         "access": "public"

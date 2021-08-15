@@ -63,6 +63,13 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "hdom-canvas",
+            "hiccup",
+            "hiccup-canvas",
+            "hiccup-svg",
+            "rdom-canvas"
+        ],
         "status": "alpha"
     }
 }

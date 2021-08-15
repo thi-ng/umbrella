@@ -63,6 +63,11 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "atom",
+            "hdom",
+            "rdom"
+        ],
         "status": "deprecated",
         "year": 2016
     }

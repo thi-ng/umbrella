@@ -64,6 +64,10 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "relate": [
+            "malloc",
+            "soa"
+        ],
         "year": 2017
     }
 }

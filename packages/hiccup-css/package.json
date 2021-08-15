@@ -68,6 +68,11 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "parent": "@thi.ng/hiccup",
+        "related": [
+            "hiccup-html",
+            "hiccup-svg"
+        ],
         "year": 2016
     }
 }

@@ -58,6 +58,9 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "mime"
+        ],
         "year": 2020
     }
 }

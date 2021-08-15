@@ -74,6 +74,13 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "hdom",
+            "hiccup",
+            "hiccup-html",
+            "hiccup-svg",
+            "transducers"
+        ],
         "status": "beta",
         "year": 2020
     }

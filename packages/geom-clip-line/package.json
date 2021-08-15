@@ -62,6 +62,10 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "parent": "@thi.ng/geom",
+        "related": [
+            "geom-clip-poly"
+        ],
         "year": 2013
     }
 }

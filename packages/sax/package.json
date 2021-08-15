@@ -63,6 +63,7 @@
     "thi.ng": {
         "related": [
             "hiccup-svg",
+            "parse",
             "transducers",
             "transducers-fsm"
         ],

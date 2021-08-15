@@ -63,6 +63,7 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "parent": "@thi.ng/geom",
         "status": "alpha",
         "year": 2016
     }

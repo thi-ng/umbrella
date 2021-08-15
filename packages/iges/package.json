@@ -67,6 +67,9 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "geom"
+        ],
         "status": "alpha",
         "year": 2016
     }

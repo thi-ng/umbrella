@@ -68,6 +68,7 @@
     "thi.ng": {
         "related": [
             "associative",
+            "csv",
             "egf",
             "rstream-query"
         ],

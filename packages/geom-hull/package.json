@@ -60,6 +60,7 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "parent": "@thi.ng/geom",
         "year": 2013
     }
 }

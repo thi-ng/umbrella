@@ -58,6 +58,9 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "dl-asset"
+        ],
         "year": 2020
     }
 }

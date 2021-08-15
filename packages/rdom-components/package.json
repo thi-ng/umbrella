@@ -66,6 +66,10 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "parent": "@thi.ng/rdom",
+        "related": [
+            "rdom-canvas"
+        ],
         "status": "alpha",
         "year": 2020
     }

@@ -62,6 +62,7 @@
     "sideEffects": false,
     "thi.ng": {
         "related": [
+            "binary",
             "bitstream",
             "range-coder"
         ],

@@ -65,6 +65,11 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "adjacency",
+            "dot",
+            "system"
+        ],
         "year": 2015
     }
 }

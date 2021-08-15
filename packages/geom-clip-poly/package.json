@@ -65,6 +65,10 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "parent": "@thi.ng/geom",
+        "related": [
+            "geom-clip-line"
+        ],
         "year": 2013
     }
 }

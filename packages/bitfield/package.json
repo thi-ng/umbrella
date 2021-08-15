@@ -64,5 +64,10 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "thi.ng": {
+        "related": [
+            "adjacency"
+        ]
+    }
 }

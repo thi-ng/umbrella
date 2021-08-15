@@ -66,6 +66,10 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "hdom",
+            "rdom"
+        ],
         "year": 2014
     }
 }

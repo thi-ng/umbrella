@@ -75,6 +75,7 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "parent": "@thi.ng/hiccup",
         "related": [
             "hdom-canvas",
             "hiccup"

@@ -86,6 +86,11 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "hiccup",
+            "hiccup-canvas",
+            "hiccup-svg"
+        ],
         "status": "alpha",
         "year": 2014
     }

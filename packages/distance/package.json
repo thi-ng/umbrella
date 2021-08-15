@@ -67,7 +67,9 @@
     "sideEffects": false,
     "thi.ng": {
         "related": [
-            "geom-accel"
+            "geom-accel",
+            "k-means",
+            "vectors"
         ],
         "year": 2021
     }

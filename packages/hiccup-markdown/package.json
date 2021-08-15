@@ -72,6 +72,7 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "parent": "@thi.ng/hiccup",
         "status": "alpha",
         "year": 2018
     }

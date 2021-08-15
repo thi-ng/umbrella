@@ -65,6 +65,9 @@
     },
     "sideEffects": false,
     "thi.ng": {
+        "related": [
+            "parse"
+        ],
         "status": "alpha",
         "year": 2019
     }

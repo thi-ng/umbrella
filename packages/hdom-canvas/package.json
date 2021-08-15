@@ -73,7 +73,8 @@
             "geom",
             "hdom",
             "hiccup-canvas",
-            "hiccup-svg"
+            "hiccup-svg",
+            "rdom-canvas"
         ],
         "year": 2018
     }
