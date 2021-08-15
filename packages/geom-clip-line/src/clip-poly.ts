@@ -19,11 +19,15 @@ export const clipLinePoly = (
     b: ReadonlyVec,
     pts: ReadonlyVec[]
 ) => {
-    const isecs = intersectRayPolylineAll(a, direction([], a, b), pts, true)
-        .isec;
+    const isecs = intersectRayPolylineAll(
+        a,
+        direction([], a, b),
+        pts,
+        true
+    ).isec;
     if (!isecs) return;
     const segments: Vec[][] = [];
-    for (let i = 0; i < isecs.length; i += 2) {
+    for (let i = 0, n = isecs.length - 1; i < n; i += 2) {
         segments.push([<Vec>isecs[i], <Vec>isecs[i + 1]]);
     }
     return segments;
