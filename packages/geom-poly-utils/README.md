@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-2D polygon/polyline analysis & processing utilities.
+2D polygon/polyline analysis & processing utilities. This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
 
 - signed 2D polygon & triangle area
 - triangle barycentric coord conversion
@@ -82,10 +82,10 @@ If this project contributes to an academic publication, please cite it as:
   title = "@thi.ng/geom-poly-utils",
   author = "Karsten Schmidt",
   note = "https://thi.ng/geom-poly-utils",
-  year = 2016
+  year = 2013
 }
 ```
 
 ## License
 
-&copy; 2016 - 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2013 - 2021 Karsten Schmidt // Apache Software License 2.0

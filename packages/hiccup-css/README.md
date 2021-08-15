@@ -13,6 +13,7 @@ This project is part of the
 - [Features](#features)
 - [Use cases](#use-cases)
   - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -39,7 +40,7 @@ This project is part of the
 
 ## About
 
-CSS from nested JS data structures.
+CSS from nested JS data structures. This is a support package for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup).
 
 Following a similar pattern as the
 [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
@@ -89,6 +90,11 @@ Clojure projects:
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bhiccup-css%5D+in%3Atitle)
+
+### Related packages
+
+- [@thi.ng/hiccup-html](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html) - 100+ type-checked HTML5 element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) related infrastructure
+- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg) - SVG element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) & [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
 
 ## Installation
 

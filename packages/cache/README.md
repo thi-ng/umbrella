@@ -13,6 +13,7 @@ This project is part of the
   - [Available strategies](#available-strategies)
   - [Features](#features)
   - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -48,6 +49,10 @@ strategies](https://en.wikipedia.org/wiki/Cache_replacement_policies).
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bcache%5D+in%3Atitle)
+
+### Related packages
+
+- [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative) - Alternative Map and Set implementations with customizable equality semantics & supporting operations
 
 ## Installation
 

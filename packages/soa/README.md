@@ -58,6 +58,7 @@ by
 - [@thi.ng/simd](https://github.com/thi-ng/umbrella/tree/develop/packages/simd) - WASM based SIMD vector operations for batch processing
 - [@thi.ng/unionstruct](https://github.com/thi-ng/umbrella/tree/develop/packages/unionstruct) - C-style struct, union and bitfield read/write views of ArrayBuffers
 - [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/develop/packages/vector-pools) - Data structures for managing & working with strided, memory mapped vectors
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors) - Optimized 2d/3d/4d and arbitrary length vector operations
 
 ## Installation
 

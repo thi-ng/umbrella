@@ -11,6 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -49,6 +50,10 @@ ES6 promise based CSP primitives & operations.
 This package might possibly become deprecated soon. See
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 for a similar, but alternative (and actively maintained) approach.
+
+### Related packages
+
+- [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream) - Reactive streams & subscription primitives for constructing dataflow graphs / pipelines
 
 ## Installation
 

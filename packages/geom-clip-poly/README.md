@@ -11,6 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -19,7 +20,7 @@ This project is part of the
 
 ## About
 
-2D convex polygon clipping (Sutherland-Hodgeman).
+2D convex polygon clipping (Sutherland-Hodgeman). This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
 
 Current implementation is based on [toxiclibs](http://toxiclibs.org)
 (Java) and Clojure version [thi.ng/geom-clj](http://thi.ng/geom-clj).
@@ -32,6 +33,10 @@ This package has been extracted from the former (now obsolete)
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bgeom-clip-poly%5D+in%3Atitle)
+
+### Related packages
+
+- [@thi.ng/geom-clip-line](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-clip-line) - 2D line clipping (Liang-Barsky)
 
 ## Installation
 

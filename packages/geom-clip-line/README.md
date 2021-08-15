@@ -11,6 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -19,7 +20,7 @@ This project is part of the
 
 ## About
 
-2D line clipping (Liang-Barsky).
+2D line clipping (Liang-Barsky). This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
 
 Current implementation is based on [toxiclibs](http://toxiclibs.org)
 (Java) and Clojure version [thi.ng/geom-clj](http://thi.ng/geom-clj).
@@ -32,6 +33,10 @@ This package has been extracted from the former (now obsolete)
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bgeom-clip-line%5D+in%3Atitle)
+
+### Related packages
+
+- [@thi.ng/geom-clip-poly](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-clip-poly) - 2D convex polygon clipping (Sutherland-Hodgeman)
 
 ## Installation
 
@@ -47,7 +52,7 @@ yarn add @thi.ng/geom-clip-line
 <script src="https://unpkg.com/@thi.ng/geom-clip-line/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 532 bytes / CJS: 598 bytes / UMD: 708 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 527 bytes / CJS: 591 bytes / UMD: 704 bytes
 
 ## Dependencies
 

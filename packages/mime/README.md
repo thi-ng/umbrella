@@ -11,6 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -33,6 +34,10 @@ fairly obscure anyway, so likely not problematic...
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bmime%5D+in%3Atitle)
+
+### Related packages
+
+- [@thi.ng/dl-asset](https://github.com/thi-ng/umbrella/tree/develop/packages/dl-asset) - Local asset download for web apps, with automatic MIME type detection
 
 ## Installation
 

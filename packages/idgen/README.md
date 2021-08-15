@@ -11,6 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -48,6 +49,11 @@ be checked for validity via `.has(id)` (in constant time).
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bidgen%5D+in%3Atitle)
+
+### Related packages
+
+- [@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/develop/packages/ecs) - Entity Component System based around typed arrays & sparse sets
+- [@thi.ng/ksuid](https://github.com/thi-ng/umbrella/tree/develop/packages/ksuid) - Configurable K-sortable unique IDs, ULIDs, binary & base-N encoded, 32/48/64bit time resolutions
 
 ## Installation
 

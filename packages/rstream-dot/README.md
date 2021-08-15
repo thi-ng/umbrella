@@ -30,6 +30,7 @@ Graphviz DOT conversion of [@thi.ng/rstream](https://github.com/thi-ng/umbrella/
 
 ### Related packages
 
+- [@thi.ng/dgraph-dot](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph-dot) - Customizable Graphviz DOT serialization for [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph)
 - [@thi.ng/dot](https://github.com/thi-ng/umbrella/tree/develop/packages/dot) - Graphviz document abstraction & serialization to DOT format
 
 ## Installation

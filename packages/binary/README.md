@@ -11,6 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -27,6 +28,10 @@ This project is part of the
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bbinary%5D+in%3Atitle)
+
+### Related packages
+
+- [@thi.ng/transducers-binary](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary) - Binary data related transducers & reducers
 
 ## Installation
 

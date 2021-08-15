@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-2D/3D shape intersection checks.
+2D/3D shape intersection checks. This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
 
 | Type   | Circle | Line | Poly | Ray | Rect | Tri |
 |--------|:------:|:----:|:----:|:---:|:----:|:---:|
@@ -99,10 +99,10 @@ If this project contributes to an academic publication, please cite it as:
   title = "@thi.ng/geom-isec",
   author = "Karsten Schmidt",
   note = "https://thi.ng/geom-isec",
-  year = 2016
+  year = 2013
 }
 ```
 
 ## License
 
-&copy; 2016 - 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2013 - 2021 Karsten Schmidt // Apache Software License 2.0

@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-2D circular / elliptic arc operations.
+2D circular / elliptic arc operations. This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
 
 ### Status
 

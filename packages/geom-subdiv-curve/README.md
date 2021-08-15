@@ -11,6 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -19,7 +20,7 @@ This project is part of the
 
 ## About
 
-Freely customizable, iterative nD subdivision curves for open / closed geometries.
+Freely customizable, iterative nD subdivision curves for open / closed geometries. This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
 
 Based in principle on:
 
@@ -43,6 +44,10 @@ Supplied / implemented subdivision schemes:
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bgeom-subdiv-curve%5D+in%3Atitle)
+
+### Related packages
+
+- [@thi.ng/geom-splines](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-splines) - nD cubic & quadratic curve analysis, conversion, interpolation, splitting
 
 ## Installation
 

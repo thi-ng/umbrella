@@ -11,6 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -110,6 +111,10 @@ are suffixed with `S` (for "scalar"): `quadraticS`, `cubicS` and `quarticS`...
 **ALPHA** - bleeding edge / work-in-progress
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bdual-algebra%5D+in%3Atitle)
+
+### Related packages
+
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math) - Assorted common math functions & utilities
 
 ## Installation
 

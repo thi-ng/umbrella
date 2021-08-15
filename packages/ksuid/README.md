@@ -61,6 +61,7 @@ support
 ### Related packages
 
 - [@thi.ng/base-n](https://github.com/thi-ng/umbrella/tree/develop/packages/base-n) - Arbitrary base-n conversions w/ presets for base16/32/36/58/62/64/85, support for arrays & bigints
+- [@thi.ng/idgen](https://github.com/thi-ng/umbrella/tree/develop/packages/idgen) - Generator of opaque numeric identifiers with optional support for ID versioning and efficient re-use
 - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random) - Pseudo-random number generators w/ unified API, distributions, weighted choices, ID generation
 
 ## Installation

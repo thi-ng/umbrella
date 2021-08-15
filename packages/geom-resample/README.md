@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Customizable nD polyline interpolation, re-sampling, splitting & nearest point computation.
+Customizable nD polyline interpolation, re-sampling, splitting & nearest point computation. This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
 
 Also includes an implementation of [Douglas-Peucker polyline / polygon
 simplification](https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm).

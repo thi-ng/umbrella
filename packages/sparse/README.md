@@ -11,6 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -26,6 +27,11 @@ Sparse vector & matrix implementations.
 **ALPHA** - bleeding edge / work-in-progress
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bsparse%5D+in%3Atitle)
+
+### Related packages
+
+- [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/develop/packages/matrices) - Matrix & quaternion operations for 2D/3D geometry processing
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors) - Optimized 2d/3d/4d and arbitrary length vector operations
 
 ## Installation
 

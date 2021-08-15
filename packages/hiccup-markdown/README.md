@@ -30,7 +30,7 @@ This project is part of the
 
 ## About
 
-Markdown parser & serializer from/to Hiccup format.
+Markdown parser & serializer from/to Hiccup format. This is a support package for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup).
 
 This package provides both a customizable
 [Markdown](https://en.wikipedia.org/wiki/Markdown)-to-[Hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)

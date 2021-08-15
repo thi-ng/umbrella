@@ -11,6 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -35,6 +36,10 @@ Currently, this package provides:
 **ALPHA** - bleeding edge / work-in-progress
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Brdom-components%5D+in%3Atitle)
+
+### Related packages
+
+- [@thi.ng/rdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom-canvas) - [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom) component wrapper for [@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas) and declarative canvas drawing
 
 ## Installation
 

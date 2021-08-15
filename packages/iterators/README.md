@@ -11,6 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -82,6 +83,10 @@ more composable & efficient transducers via
 **DEPRECATED** - no further development planned
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Biterators%5D+in%3Atitle)
+
+### Related packages
+
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers) - Lightweight transducer implementations for ES6 / TypeScript
 
 ## Installation
 

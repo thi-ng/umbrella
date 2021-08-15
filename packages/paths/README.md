@@ -15,6 +15,7 @@ This project is part of the
   - [4.0.0](#400)
     - [Naming convention](#naming-convention)
     - [Type checked accessors](#type-checked-accessors)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -63,6 +64,10 @@ also provide fallbacks (e.g. `getter()` => `defGetterUnsafe()`).
 Type checking for paths is currently "only" supported for the first 8
 levels of nesting. Deeper paths are supported but only partially checked
 and their value type inferred as `any`.
+
+### Related packages
+
+- [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom) - Mutable wrappers for nested immutable values with optional undo/redo history and transaction support
 
 ## Installation
 

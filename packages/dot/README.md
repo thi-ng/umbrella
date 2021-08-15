@@ -11,6 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -38,6 +39,11 @@ details.
 **BETA** - possibly breaking changes forthcoming
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bdot%5D+in%3Atitle)
+
+### Related packages
+
+- [@thi.ng/adjacency](https://github.com/thi-ng/umbrella/tree/develop/packages/adjacency) - Sparse & bitwise adjacency matrices and related functions for directed & undirected graphs
+- [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph) - Type-agnostic directed acyclic graph (DAG) & graph operations
 
 ## Installation
 

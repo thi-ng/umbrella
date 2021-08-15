@@ -11,6 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -41,6 +42,10 @@ based on different strategies. See doc strings for further details.
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bmemoize%5D+in%3Atitle)
+
+### Related packages
+
+- [@thi.ng/cache](https://github.com/thi-ng/umbrella/tree/develop/packages/cache) - In-memory cache implementations with ES6 Map-like API and different eviction strategies
 
 ## Installation
 

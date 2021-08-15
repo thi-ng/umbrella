@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Fast 2D convex hull (Graham Scan).
+Fast 2D convex hull (Graham Scan). This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
 
 Current implementation is partially based on Clojure version of
 [thi.ng/geom](http://thi.ng/geom).

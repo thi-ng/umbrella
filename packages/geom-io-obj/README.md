@@ -22,7 +22,7 @@ This project is part of the
 
 ## About
 
-Wavefront OBJ parser (& exporter soon).
+Wavefront OBJ parser (& exporter soon). This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
 
 ### Features
 

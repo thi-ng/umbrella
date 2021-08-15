@@ -12,6 +12,7 @@ This project is part of the
 - [About](#about)
   - [Status](#status)
   - [Breaking changes](#breaking-changes)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -39,6 +40,11 @@ Unified mouse, mouse wheel & multi-touch event stream abstraction. This is a sup
 
 Multi-touch support has been added in v2.0.0, resulting in a complete
 rewrite of `gestureStream()` and new event data formats.
+
+### Related packages
+
+- [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom) - Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors
+- [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom) - Lightweight, reactive, VDOM-less UI/DOM components with async lifecycle and [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) compatible
 
 ## Installation
 

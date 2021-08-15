@@ -11,6 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -20,7 +21,7 @@ This project is part of the
 
 ## About
 
-2D / 3D closest point / proximity helpers.
+2D / 3D closest point / proximity helpers. This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
 
 Current implementations partially based on
 [toxiclibs](http://toxiclibs.org) (Java) and Clojure version of
@@ -31,6 +32,11 @@ Current implementations partially based on
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bgeom-closest-point%5D+in%3Atitle)
+
+### Related packages
+
+- [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isec) - 2D/3D shape intersection checks
+- [@thi.ng/geom-resample](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-resample) - Customizable nD polyline interpolation, re-sampling, splitting & nearest point computation
 
 ## Installation
 

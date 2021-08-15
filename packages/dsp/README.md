@@ -12,6 +12,7 @@ This project is part of the
 - [About](#about)
   - [Status](#status)
   - [Support packages](#support-packages)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -57,6 +58,10 @@ might be ported to WASM.
 ### Support packages
 
 - [@thi.ng/dsp-io-wav](https://github.com/thi-ng/umbrella/tree/develop/packages/dsp-io-wav) - WAV file format generation
+
+### Related packages
+
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math) - Assorted common math functions & utilities
 
 ## Installation
 

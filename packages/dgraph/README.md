@@ -13,6 +13,7 @@ This project is part of the
   - [Features](#features)
   - [Status](#status)
   - [Support packages](#support-packages)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -42,6 +43,12 @@ maps & sets as backend.
 ### Support packages
 
 - [@thi.ng/dgraph-dot](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph-dot) - Customizable Graphviz DOT serialization for [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph)
+
+### Related packages
+
+- [@thi.ng/adjacency](https://github.com/thi-ng/umbrella/tree/develop/packages/adjacency) - Sparse & bitwise adjacency matrices and related functions for directed & undirected graphs
+- [@thi.ng/dot](https://github.com/thi-ng/umbrella/tree/develop/packages/dot) - Graphviz document abstraction & serialization to DOT format
+- [@thi.ng/system](https://github.com/thi-ng/umbrella/tree/develop/packages/system) - Minimal and explicit dependency-injection & lifecycle container for stateful app components
 
 ## Installation
 

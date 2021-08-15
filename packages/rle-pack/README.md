@@ -57,6 +57,7 @@ Then per value:
 
 ### Related packages
 
+- [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary) - 100+ assorted binary / bitwise operations, conversions, utilities, lookup tables
 - [@thi.ng/bitstream](https://github.com/thi-ng/umbrella/tree/develop/packages/bitstream) - ES6 iterator based read/write bit streams with support for variable word widths
 - [@thi.ng/range-coder](https://github.com/thi-ng/umbrella/tree/develop/packages/range-coder) - Binary data range encoder / decoder
 
