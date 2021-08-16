@@ -1,4 +1,5 @@
 import { Fn3, Pair, Predicate2, SEMAPHORE } from "@thi.ng/api";
+import { findIndex } from "@thi.ng/arrays";
 import { equiv } from "@thi.ng/equiv";
 import type { EquivSetOpts, IEquivSet } from "./api";
 import { dissoc } from "./dissoc";
@@ -54,9 +55,9 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     copy(): ArraySet<T> {
-        const $this = __private.get(this)!;
-        const s = new ArraySet<T>(null, { equiv: $this.equiv });
-        __private.get(s)!.vals = $this.vals.slice();
+        const { equiv, vals } = __private.get(this)!;
+        const s = new ArraySet<T>(null, { equiv });
+        __private.get(s)!.vals = vals.slice();
         return s;
     }
 
@@ -95,23 +96,15 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
      * @param notFound - default value
      */
     get(key: T, notFound?: T): T | undefined {
-        const $this = __private.get(this)!;
-        const eq = $this.equiv;
-        const vals = $this.vals;
-        for (let i = vals.length; --i >= 0; ) {
-            if (eq(vals[i], key)) {
-                return vals[i];
-            }
-        }
-        return notFound;
+        const { equiv, vals } = __private.get(this)!;
+        const i = findIndex(vals, key, equiv);
+        return i >= 0 ? vals[i] : notFound;
     }
 
     delete(key: T) {
-        const $this = __private.get(this)!;
-        const eq = $this.equiv;
-        const vals = $this.vals;
+        const { equiv, vals } = __private.get(this)!;
         for (let i = vals.length; --i >= 0; ) {
-            if (eq(vals[i], key)) {
+            if (equiv(vals[i], key)) {
                 vals.splice(i, 1);
                 return true;
             }
