@@ -25,12 +25,7 @@ export const clipLinePoly = (
         pts,
         true
     ).isec;
-    if (!isecs) return;
-    const segments: Vec[][] = [];
-    for (let i = 0, n = isecs.length - 1; i < n; i += 2) {
-        segments.push([<Vec>isecs[i], <Vec>isecs[i + 1]]);
-    }
-    return segments;
+    return isecs ? collectSegments(<Vec[]>isecs) : undefined;
 };
 
 export const clipLineSegmentPoly = (
@@ -46,9 +41,13 @@ export const clipLineSegmentPoly = (
     }
     isAInside && (<Vec[]>isecs).unshift(a);
     isBInside && (<Vec[]>isecs).push(b);
+    return collectSegments(<Vec[]>isecs);
+};
+
+const collectSegments = (isecs: Vec[]) => {
     const segments: Vec[][] = [];
     for (let i = 0, n = isecs.length - 1; i < n; i += 2) {
-        segments.push([<Vec>isecs[i], <Vec>isecs[i + 1]]);
+        segments.push([isecs[i], isecs[i + 1]]);
     }
     return segments;
 };
