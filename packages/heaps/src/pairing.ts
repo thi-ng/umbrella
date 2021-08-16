@@ -6,8 +6,11 @@ import type {
     IEmpty,
     ILength,
     IStack,
+    Predicate,
+    Predicate2,
 } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare";
+import { equiv } from "@thi.ng/equiv";
 import type { HeapOpts } from "./api";
 
 interface Node<T> {
@@ -16,6 +19,11 @@ interface Node<T> {
     p?: Node<T>;
 }
 
+export const defPairingHeap = <T>(
+    values?: Iterable<T> | null,
+    opts?: Partial<HeapOpts<T>>
+) => new PairingHeap(values, opts);
+
 export class PairingHeap<T>
     implements
         Iterable<T>,
@@ -23,14 +31,17 @@ export class PairingHeap<T>
         ICopy<PairingHeap<T>>,
         IEmpty<PairingHeap<T>>,
         ILength,
-        IStack<T, T, PairingHeap<T>> {
+        IStack<T, T, PairingHeap<T>>
+{
     protected compare: Comparator<T>;
+    protected equiv: Predicate2<T>;
     protected root!: Node<T>;
     protected _size!: number;
 
-    constructor(vals?: Iterable<T>, opts?: HeapOpts<T>) {
-        opts = Object.assign({ compare: compare }, opts);
-        this.compare = opts.compare;
+    constructor(vals?: Iterable<T> | null, opts?: Partial<HeapOpts<T>>) {
+        opts = { compare, equiv, ...opts };
+        this.compare = opts.compare!;
+        this.equiv = opts.equiv!;
         this.clear();
         vals && this.into(vals);
     }
@@ -51,7 +62,7 @@ export class PairingHeap<T>
     }
 
     empty() {
-        return new PairingHeap<T>(undefined, { compare });
+        return new PairingHeap<T>(null, { compare, equiv });
     }
 
     copy() {
@@ -101,6 +112,18 @@ export class PairingHeap<T>
             this.push(i);
         }
         return this;
+    }
+
+    find(val: T) {
+        let found: T | undefined;
+        this.visit((x) => (this.equiv(x, val) ? ((found = x), false) : true));
+        return found;
+    }
+
+    findWith(fn: Predicate<T>) {
+        let found: T | undefined;
+        this.visit((x) => (fn(x) ? ((found = x), false) : true));
+        return found;
     }
 
     /**

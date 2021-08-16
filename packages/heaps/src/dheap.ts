@@ -1,7 +1,11 @@
 import type { ICopy, IEmpty, IStack } from "@thi.ng/api";
-import { compare } from "@thi.ng/compare";
 import type { DHeapOpts } from "./api";
 import { Heap } from "./heap";
+
+export const defDHeap = <T>(
+    values?: Iterable<T> | null,
+    opts?: Partial<DHeapOpts<T>>
+) => new DHeap(values, opts);
 
 /**
  * Generic d-ary heap / priority queue with configurable arity (default
@@ -17,7 +21,8 @@ import { Heap } from "./heap";
  */
 export class DHeap<T>
     extends Heap<T>
-    implements ICopy<DHeap<T>>, IEmpty<DHeap<T>>, IStack<T, T, DHeap<T>> {
+    implements ICopy<DHeap<T>>, IEmpty<DHeap<T>>, IStack<T, T, DHeap<T>>
+{
     /**
      * Returns index of parent node or -1 if `idx < 1`.
      *
@@ -41,12 +46,10 @@ export class DHeap<T>
     protected d: number;
 
     constructor(values?: Iterable<T> | null, opts?: Partial<DHeapOpts<T>>) {
-        super(undefined, { compare, ...opts });
+        super(undefined, opts);
         this.d = (opts && opts.d) || 4;
         this.values = [];
-        if (values) {
-            this.into(values);
-        }
+        values && this.into(values);
     }
 
     copy(): DHeap<T> {
@@ -78,7 +81,7 @@ export class DHeap<T>
     }
 
     heapify(vals = this.values) {
-        for (var i = ((vals.length - 1) / this.d) | 0; i >= 0; i--) {
+        for (let i = ((vals.length - 1) / this.d) | 0; i >= 0; i--) {
             this.percolateDown(i, vals);
         }
     }

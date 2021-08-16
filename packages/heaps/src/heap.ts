@@ -1,13 +1,22 @@
-import { compare } from "@thi.ng/compare";
 import type {
     Comparator,
     IClear,
     ICopy,
     IEmpty,
+    IInto,
     ILength,
     IStack,
+    Predicate,
+    Predicate2,
 } from "@thi.ng/api";
+import { compare } from "@thi.ng/compare";
+import { equiv } from "@thi.ng/equiv";
 import type { HeapOpts } from "./api";
+
+export const defHeap = <T>(
+    values?: Iterable<T> | null,
+    opts?: Partial<HeapOpts<T>>
+) => new Heap(values, opts);
 
 /**
  * Generic binary heap / priority queue with customizable ordering via
@@ -32,8 +41,10 @@ export class Heap<T>
         IClear,
         ICopy<Heap<T>>,
         IEmpty<Heap<T>>,
+        IInto<T, Heap<T>>,
         ILength,
-        IStack<T, T, Heap<T>> {
+        IStack<T, T, Heap<T>>
+{
     static parentIndex(idx: number) {
         return idx > 0 ? (idx - 1) >> 1 : -1;
     }
@@ -44,10 +55,12 @@ export class Heap<T>
 
     values: T[];
     compare: Comparator<T>;
+    equiv: Predicate2<T>;
 
-    constructor(values?: Iterable<T> | null, opts?: HeapOpts<T>) {
-        opts = Object.assign({ compare: compare }, opts);
-        this.compare = opts.compare;
+    constructor(values?: Iterable<T> | null, opts?: Partial<HeapOpts<T>>) {
+        opts = { compare, equiv, ...opts };
+        this.compare = opts.compare!;
+        this.equiv = opts.equiv!;
         this.values = [];
         if (values) {
             this.into(values);
@@ -139,8 +152,36 @@ export class Heap<T>
         return res;
     }
 
+    remove(val: T) {
+        const { values, equiv } = this;
+        for (let i = values.length; --i >= 0; ) {
+            if (equiv(values[i], val)) {
+                this.values.splice(i, 1);
+                this.heapify();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    find(val: T) {
+        const { values, equiv } = this;
+        for (let i = values.length; --i >= 0; ) {
+            if (equiv(values[i], val)) {
+                return values[i];
+            }
+        }
+    }
+
+    findWith(pred: Predicate<T>) {
+        const values = this.values;
+        for (let i = values.length; --i >= 0; ) {
+            if (pred(values[i])) return values[i];
+        }
+    }
+
     heapify(vals = this.values) {
-        for (var i = (vals.length - 1) >> 1; i >= 0; i--) {
+        for (let i = (vals.length - 1) >> 1; i >= 0; i--) {
             this.percolateDown(i, vals);
         }
     }
