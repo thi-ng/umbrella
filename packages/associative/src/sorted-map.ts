@@ -79,9 +79,7 @@ export class SortedMap<K, V> extends Map<K, V> {
     }
 
     *entries(key?: K, max = false): IterableIterator<Pair<K, V>> {
-        const $this = __private.get(this)!;
-        let node = $this.head;
-        const cmp = $this.cmp;
+        let { head: node, cmp } = __private.get(this)!;
         let code: number | undefined;
         if (max) {
             while ((node = node.next[0])) {
@@ -275,10 +273,7 @@ export class SortedMap<K, V> extends Map<K, V> {
     }
 
     protected findPredNode(k: K) {
-        const $this = __private.get(this)!;
-        const cmp = $this.cmp;
-        let node = $this.head;
-        let level = $this.h;
+        let { cmp, head: node, h: level } = __private.get(this)!;
         while (level >= 0) {
             while (node.next[level] && cmp(node.next[level].k, k) < 0) {
                 node = node.next[level];

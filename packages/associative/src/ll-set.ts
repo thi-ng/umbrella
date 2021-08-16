@@ -58,9 +58,8 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     copy() {
-        const $this = __private.get(this)!;
         const s = new LLSet<T>(null, this.opts());
-        __private.get(s)!.vals = $this.vals.copy();
+        __private.get(s)!.vals = __vals(this).copy();
         return s;
     }
 
@@ -99,11 +98,10 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
      * @param notFound - default value
      */
     get(key: T, notFound?: T): T | undefined {
-        const $this = __private.get(this)!;
-        const eq = $this.equiv;
-        let i = $this.vals.head;
+        const { equiv, vals } = __private.get(this)!;
+        let i = vals.head;
         while (i) {
-            if (eq(i.value, key)) {
+            if (equiv(i.value, key)) {
                 return i.value;
             }
             i = i.next;
@@ -112,12 +110,11 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     delete(key: T) {
-        const $this = __private.get(this)!;
-        const eq = $this.equiv;
-        let i = $this.vals.head;
+        const { equiv, vals } = __private.get(this)!;
+        let i = vals.head;
         while (i) {
-            if (eq(i.value, key)) {
-                $this.vals.splice(i, 1);
+            if (equiv(i.value, key)) {
+                vals.splice(i, 1);
                 return true;
             }
             i = i.next;

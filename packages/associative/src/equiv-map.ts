@@ -34,7 +34,8 @@ export class EquivMap<K, V>
         Iterable<Pair<K, V>>,
         ICopy<EquivMap<K, V>>,
         IEmpty<EquivMap<K, V>>,
-        IEquiv {
+        IEquiv
+{
     /**
      * Creates a new instance with optional initial key-value pairs and
      * provided options. If no `opts` are given, uses `ArraySet` for
@@ -77,9 +78,9 @@ export class EquivMap<K, V>
     }
 
     clear() {
-        const $this = __private.get(this)!;
-        $this.keys.clear();
-        $this.map.clear();
+        const { keys, map } = __private.get(this)!;
+        keys.clear();
+        map.clear();
     }
 
     empty(): EquivMap<K, V> {
@@ -87,12 +88,12 @@ export class EquivMap<K, V>
     }
 
     copy() {
-        const $this = __private.get(this)!;
+        const { keys, map, opts } = __private.get(this)!;
         const m = new EquivMap<K, V>();
         __private.set(m, {
-            keys: $this.keys.copy(),
-            map: new Map<K, V>($this.map),
-            opts: $this.opts,
+            keys: keys.copy(),
+            map: new Map<K, V>(map),
+            opts,
         });
         return m;
     }
@@ -102,11 +103,11 @@ export class EquivMap<K, V>
     }
 
     delete(key: K) {
-        const $this = __private.get(this)!;
-        key = $this.keys.get(key, SEMAPHORE);
+        const { keys, map } = __private.get(this)!;
+        key = keys.get(key, SEMAPHORE);
         if (key !== <any>SEMAPHORE) {
-            $this.map.delete(key);
-            $this.keys.delete(key);
+            map.delete(key);
+            keys.delete(key);
             return true;
         }
         return false;
@@ -131,10 +132,10 @@ export class EquivMap<K, V>
     }
 
     get(key: K, notFound?: V): V | undefined {
-        const $this = __private.get(this)!;
-        key = $this.keys.get(key, SEMAPHORE);
+        const { keys, map } = __private.get(this)!;
+        key = keys.get(key, SEMAPHORE);
         if (key !== <any>SEMAPHORE) {
-            return $this.map.get(key);
+            return map.get(key);
         }
         return notFound;
     }
@@ -144,13 +145,13 @@ export class EquivMap<K, V>
     }
 
     set(key: K, value: V) {
-        const $this = __private.get(this)!;
-        const k = $this.keys.get(key, SEMAPHORE);
+        const { keys, map } = __private.get(this)!;
+        const k = keys.get(key, SEMAPHORE);
         if (k !== <any>SEMAPHORE) {
-            $this.map.set(k, value);
+            map.set(k, value);
         } else {
-            $this.keys.add(key);
-            $this.map.set(key, value);
+            keys.add(key);
+            map.set(key, value);
         }
         return this;
     }

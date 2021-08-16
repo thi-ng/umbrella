@@ -66,7 +66,8 @@ export class HashMap<K, V>
         Iterable<Pair<K, V>>,
         ICopy<HashMap<K, V>>,
         IEmpty<HashMap<K, V>>,
-        IEquiv {
+        IEquiv
+{
     constructor(pairs: Iterable<Pair<K, V>> | null, opts: HashMapOpts<K>) {
         super();
         const m = ceilPow2(Math.min(opts.cap || DEFAULT_CAP, 4)) - 1;
@@ -183,21 +184,20 @@ export class HashMap<K, V>
 
     delete(key: K) {
         const $this = __private.get(this)!;
+        const { bins, mask } = $this;
         let i = this.find(key, $this);
-        const bins = $this.bins;
         if (i >= 0 && !bins[i]) {
             return false;
         }
         $this.size--;
-        const m = $this.mask;
         let j = i;
         let k: number;
         while (true) {
             delete bins[i];
             do {
-                j = (j + 1) & m;
+                j = (j + 1) & mask;
                 if (!bins[j]) return true;
-                k = $this.hash(bins[j][0]) & m;
+                k = $this.hash(bins[j][0]) & mask;
             } while (i <= j ? i < k && k <= j : i < k || k <= j);
             bins[i] = bins[j];
             i = j;
@@ -224,15 +224,13 @@ export class HashMap<K, V>
     }
 
     protected find(key: K, $this: HashMapState<K, V>) {
-        const m = $this.mask;
-        const bins = $this.bins;
-        const equiv = $this.equiv;
-        let i = m;
-        let h = $this.hash(key) & m;
+        const { bins, equiv, mask } = $this;
+        let i = mask;
+        let h = $this.hash(key) & mask;
         while (bins[h] && !equiv(bins[h][0], key)) {
             i--;
             if (i < 0) return -1;
-            h = (h + 1) & $this.mask;
+            h = (h + 1) & mask;
         }
         return h;
     }

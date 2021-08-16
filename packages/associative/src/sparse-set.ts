@@ -27,7 +27,8 @@ const fail = () => illegalArgs(`dense & sparse arrays must be of same size`);
 @inspectable
 export abstract class ASparseSet<T extends UIntArray>
     extends Set<number>
-    implements IEquiv {
+    implements IEquiv
+{
     protected constructor(dense: T, sparse: T) {
         super();
         __private.set(this, { dense, sparse, n: 0 });
@@ -68,11 +69,9 @@ export abstract class ASparseSet<T extends UIntArray>
 
     add(key: number) {
         const $this = __private.get(this)!;
-        const dense = $this.dense;
-        const sparse = $this.sparse;
+        const { dense, sparse, n } = $this;
         const max = dense.length;
         const i = sparse[key];
-        const n = $this.n;
         if (key < max && n < max && !(i < n && dense[i] === key)) {
             dense[n] = key;
             sparse[key] = n;
@@ -83,8 +82,7 @@ export abstract class ASparseSet<T extends UIntArray>
 
     delete(key: number) {
         const $this = __private.get(this)!;
-        const dense = $this.dense;
-        const sparse = $this.sparse;
+        const { dense, sparse } = $this;
         const i = sparse[key];
         if (i < $this.n && dense[i] === key) {
             const j = dense[--$this.n];
@@ -129,20 +127,16 @@ export abstract class ASparseSet<T extends UIntArray>
     }
 
     *entries(): IterableIterator<Pair<number, number>> {
-        const $this = __private.get(this)!;
-        const d = $this.dense;
-        const n = $this.n;
+        const { dense, n } = __private.get(this)!;
         for (let i = 0; i < n; i++) {
-            yield [d[i], d[i]];
+            yield [dense[i], dense[i]];
         }
     }
 
     *keys(): IterableIterator<number> {
-        const $this = __private.get(this)!;
-        const d = $this.dense;
-        const n = $this.n;
+        const { dense, n } = __private.get(this)!;
         for (let i = 0; i < n; i++) {
-            yield d[i];
+            yield dense[i];
         }
     }
 
@@ -162,7 +156,8 @@ export abstract class ASparseSet<T extends UIntArray>
 
 export class SparseSet8
     extends ASparseSet<Uint8Array>
-    implements IEquivSet<number> {
+    implements IEquivSet<number>
+{
     constructor(dense: Uint8Array, sparse: Uint8Array);
     constructor(n: number);
     constructor(n: number | Uint8Array, sparse?: Uint8Array) {
@@ -192,7 +187,8 @@ export class SparseSet8
 
 export class SparseSet16
     extends ASparseSet<Uint16Array>
-    implements IEquivSet<number> {
+    implements IEquivSet<number>
+{
     constructor(dense: Uint16Array, sparse: Uint16Array);
     constructor(n: number);
     constructor(n: number | Uint16Array, sparse?: Uint16Array) {
@@ -222,7 +218,8 @@ export class SparseSet16
 
 export class SparseSet32
     extends ASparseSet<Uint32Array>
-    implements IEquivSet<number> {
+    implements IEquivSet<number>
+{
     constructor(dense: Uint32Array, sparse: Uint32Array);
     constructor(n: number);
     constructor(n: number | Uint32Array, sparse?: Uint32Array) {
