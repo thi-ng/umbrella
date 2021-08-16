@@ -180,6 +180,10 @@ export class Heap<T>
         }
     }
 
+    has(val: T) {
+        return this.find(val) !== undefined;
+    }
+
     heapify(vals = this.values) {
         for (let i = (vals.length - 1) >> 1; i >= 0; i--) {
             this.percolateDown(i, vals);

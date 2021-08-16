@@ -126,6 +126,10 @@ export class PairingHeap<T>
         return found;
     }
 
+    has(val: T) {
+        return this.find(val) !== undefined;
+    }
+
     /**
      * Computes union with given heap and clears `heap`, i.e. this heap
      * will take ownership of `heap`'s items (if any).

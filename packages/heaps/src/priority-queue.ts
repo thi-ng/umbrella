@@ -5,6 +5,7 @@ import type {
     IInto,
     ILength,
     Pair,
+    Predicate,
     Predicate2,
 } from "@thi.ng/api";
 import { compareNumDesc } from "@thi.ng/compare";
@@ -99,9 +100,20 @@ export class PriorityQueue<T>
     }
 
     remove(val: T) {
-        const { heap, equiv } = this;
-        const item = heap.findWith((x) => equiv(x[1], val));
-        return item ? heap.remove(item) : false;
+        const item = this.find(val);
+        return item ? this.heap.remove(item) : false;
+    }
+
+    find(val: T) {
+        return this.heap.findWith((x) => this.equiv(x[1], val));
+    }
+
+    findWith(fn: Predicate<Pair<number, T>>) {
+        return this.heap.findWith(fn);
+    }
+
+    has(val: T) {
+        return !!this.find(val);
     }
 
     into(values: Iterable<Pair<number, T>>) {
