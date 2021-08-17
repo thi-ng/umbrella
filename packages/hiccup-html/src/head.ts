@@ -2,6 +2,7 @@ import type {
     Attribs,
     AttribVal,
     BooleanAttrib,
+    CDataContent,
     CORSAttribs,
     ImportanceAttribs,
     MultiStringAttrib,
@@ -153,7 +154,14 @@ export interface StyleAttribs extends Attribs {
     type: StringAttrib;
 }
 
-export const style = defElement<Partial<StyleAttribs>, string>("style");
+export const style = defElement<Partial<StyleAttribs>, string | CDataContent>(
+    "style",
+    {
+        type: "text/css",
+    }
+);
+
+style({}, ["!CDATA", "foo", "bar"]);
 
 export interface ScriptAttribs extends Attribs, CORSAttribs, ReferrerAttribs {
     async: BooleanAttrib;
@@ -165,4 +173,6 @@ export interface ScriptAttribs extends Attribs, CORSAttribs, ReferrerAttribs {
     type: StringAttrib;
 }
 
-export const script = defElement<Partial<ScriptAttribs>, string>("script");
+export const script = defElement<Partial<ScriptAttribs>, string | CDataContent>(
+    "script"
+);

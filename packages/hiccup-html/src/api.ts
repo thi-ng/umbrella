@@ -1,5 +1,7 @@
 import type { Fn, IObjectOf, MaybeDeref, NumOrString } from "@thi.ng/api";
 
+export type CDataContent = ["!CDATA", ...string[]];
+
 export type AttribVal<T> = MaybeDeref<T | undefined>;
 export type BooleanAttrib = AttribVal<boolean>;
 export type NumericAttrib = AttribVal<number>;
