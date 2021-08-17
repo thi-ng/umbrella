@@ -1,6 +1,6 @@
 import { defAdjBitMatrix } from "@thi.ng/adjacency";
 import { CDATA, COMMENT, serialize } from "@thi.ng/hiccup";
-import { anchor } from "@thi.ng/hiccup-html";
+import { anchor, script, style, title } from "@thi.ng/hiccup-html";
 import {
     circle,
     group,
@@ -63,7 +63,7 @@ const processPkg = (id: number) => {
                     "text-anchor": "end",
                     "dominant-baseline": "middle",
                 },
-                ["title", {}, `used by ${n} package${n !== 1 ? "s" : ""}`]
+                title({}, `used by ${n} package${n !== 1 ? "s" : ""}`)
             )
         ),
         ...map(
@@ -80,13 +80,12 @@ const processPkg = (id: number) => {
                             row,
                         },
                     },
-                    [
-                        "title",
+                    title(
                         {},
                         deps.hasEdge(id, d)
                             ? `dependency: ${ids[id]} ⟸ ${ids[d]}`
-                            : `related: ${ids[id]} ⟺ ${ids[d]}`,
-                    ]
+                            : `related: ${ids[id]} ⟺ ${ids[d]}`
+                    )
                 ),
             new Set([...deps.neighbors(id), ...rels.neighbors(id)])
         ),
@@ -116,26 +115,22 @@ const doc = svg(
         "font-family": "'IBM Plex Mono', monospace",
     },
     [COMMENT, `generated @ ${new Date().toISOString()}`],
-    [
-        "style",
-        { type: "text/css" },
-        [
-            "!CDATA",
-            "@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&display=swap');",
-            `.d { fill: #0cf; }`,
-            `.r { fill: #f39; }`,
-            `@keyframes dsel { from { fill: #0cf; } to { fill: #40f; } }`,
-            `@keyframes rsel { from { fill: #f39; } to { fill: #906; } }`,
-            `.d:hover { animation: 0.5s ease-in-out infinite alternate dsel; }`,
-            `.dr:hover { animation: 0.5s ease-in-out infinite alternate drsel; }`,
-            `.r:hover { animation: 0.5s ease-in-out infinite alternate rsel; }`,
-            `line.sel { stroke: #000; }`,
-            `.h { opacity: 0.1; }`,
-            `.t { transition: opacity 0.1s linear; }`,
-            `@keyframes fade { from { opacity: 0; } to { opacity: 1 } }`,
-            `.fade { animation: 0.1s linear fade; }`,
-        ],
-    ],
+    style({}, [
+        CDATA,
+        "@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&display=swap');",
+        `.d { fill: #0cf; }`,
+        `.r { fill: #f39; }`,
+        `@keyframes dsel { from { fill: #0cf; } to { fill: #40f; } }`,
+        `@keyframes rsel { from { fill: #f39; } to { fill: #906; } }`,
+        `.d:hover { animation: 0.5s ease-in-out infinite alternate dsel; }`,
+        `.dr:hover { animation: 0.5s ease-in-out infinite alternate drsel; }`,
+        `.r:hover { animation: 0.5s ease-in-out infinite alternate rsel; }`,
+        `line.sel { stroke: #000; }`,
+        `.h { opacity: 0.1; }`,
+        `.t { transition: opacity 0.1s linear; }`,
+        `@keyframes fade { from { opacity: 0; } to { opacity: 1 } }`,
+        `.fade { animation: 0.1s linear fade; }`,
+    ]),
     anchor(
         { href: `https://thi.ng/` },
         circle([LW / 2, LW / 2], LW / 3, { fill: "#000" }),
@@ -158,11 +153,7 @@ const doc = svg(
                         rotate: -PI / 2,
                         "dominant-baseline": "middle",
                     },
-                    [
-                        "title",
-                        {},
-                        `depends on ${n} package${n !== 1 ? "s" : ""}`,
-                    ]
+                    title({}, `depends on ${n} package${n !== 1 ? "s" : ""}`)
                 )
             );
         }, range(num)),
@@ -183,12 +174,9 @@ const doc = svg(
     ]),
     group({ id: "links" }),
     cells,
-    [
-        "script",
-        {},
-        [
-            CDATA,
-            `const svg = document.querySelector("svg");
+    script({}, [
+        CDATA,
+        `const svg = document.querySelector("svg");
 const links = document.getElementById("links");
 const cells = document.getElementById("cells");
 const labels = document.getElementById("labels");
@@ -307,15 +295,11 @@ const handleInteraction = (e) => {
 
 svg.addEventListener("mousemove", handleInteraction);
 svg.addEventListener("touchstart", handleInteraction);`,
-        ],
-    ],
-    [
-        "script",
-        {
-            data: { domain: "dependencies.thi.ng" },
-            "xlink:href": "https://plausible.io/js/plausible.js",
-        },
-    ]
+    ]),
+    script({
+        data: { domain: "dependencies.thi.ng" },
+        "xlink:href": "https://plausible.io/js/plausible.js",
+    })
 );
 
 writeFileSync("deps.svg", serialize(doc));
