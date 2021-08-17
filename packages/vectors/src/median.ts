@@ -1,4 +1,5 @@
 import type { ReadonlyVec, Vec } from "./api";
+import { ensureInputs } from "./internal/ensure";
 
 /**
  * Takes an array of vectors (of uniform dimensions) and computes the
@@ -15,6 +16,7 @@ import type { ReadonlyVec, Vec } from "./api";
  * @param src
  */
 export const median = (out: Vec | null, src: ReadonlyVec[]) => {
+    ensureInputs(src);
     out = out || [];
     const m = src.length >> 1;
     for (let i = src[0].length; --i >= 0; ) {
