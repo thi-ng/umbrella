@@ -89,9 +89,9 @@ Trigonometry:
 
 Polynomials:
 
-- `quadratic(x, a, b, c)`
-- `cubic(x, a, b, c, d)`
-- `quartic(x, a, b, c, d)`
+- `quadratic(x, a, b, c)` ⇒ _ax^2 + bx + c_
+- `cubic(x, a, b, c, d)` ⇒ _ax^3 + bx^2 + cx + d_
+- `quartic(x, a, b, c, d, e)` ⇒ _ax^4 + bx^3 + cx^2 + dx + e_
 
 For each polynomial, there're scalar versions available too, taking only
 rational numbers as arguments (rather than dual numbers already). These versions
