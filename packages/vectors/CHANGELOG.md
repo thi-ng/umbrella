@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@6.0.7...@thi.ng/vectors@6.1.0) (2021-08-17)
+
+
+### Features
+
+* **vectors:** add mean, minBounds, maxBounds ([640877f](https://github.com/thi-ng/umbrella/commit/640877f39b1b9487aa5692d1a2931ad85a516b26))
+* **vectors:** add tensor product ([1fcc3ea](https://github.com/thi-ng/umbrella/commit/1fcc3ea3e8e3802c6b8c21c9d8148543c3917c63))
+
+
+
+
+
 ## [6.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@6.0.6...@thi.ng/vectors@6.0.7) (2021-08-08)
 
 **Note:** Version bump only for package @thi.ng/vectors

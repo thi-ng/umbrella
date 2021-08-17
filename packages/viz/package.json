@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/viz",
-    "version": "0.2.37",
+    "version": "0.2.38",
     "description": "Declarative, functional & multi-format data visualization toolkit based around @thi.ng/hiccup",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -44,16 +44,16 @@
         "tool:tags": "ts-node -P tools/tsconfig.json tools/tagcloud.ts"
     },
     "devDependencies": {
-        "@thi.ng/date": "^1.0.4"
+        "@thi.ng/date": "^1.0.5"
     },
     "dependencies": {
         "@thi.ng/api": "^7.1.9",
-        "@thi.ng/arrays": "^1.0.1",
-        "@thi.ng/associative": "^5.2.11",
+        "@thi.ng/arrays": "^1.0.2",
+        "@thi.ng/associative": "^5.2.12",
         "@thi.ng/checks": "^2.9.10",
         "@thi.ng/math": "^4.0.5",
-        "@thi.ng/strings": "^2.1.5",
-        "@thi.ng/transducers": "^7.8.3"
+        "@thi.ng/strings": "^2.1.6",
+        "@thi.ng/transducers": "^7.8.4"
     },
     "files": [
         "*.js",

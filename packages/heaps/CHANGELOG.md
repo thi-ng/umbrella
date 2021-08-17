@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/heaps@1.2.43...@thi.ng/heaps@1.3.0) (2021-08-17)
+
+
+### Features
+
+* **heaps:** add PriorityQueue impl ([c33027b](https://github.com/thi-ng/umbrella/commit/c33027bfe8cc1cb5aa0241767d7bc788ff6b63f6))
+* **heaps:** add/update find()/has() impls ([5ca6538](https://github.com/thi-ng/umbrella/commit/5ca6538d04fdc66f5174db5a7d6183979b26465c))
+* **heaps:** update all Heap impls, opts, add factories ([fbfb7bb](https://github.com/thi-ng/umbrella/commit/fbfb7bb2959334544efa2d52bd98d8d3e5638dcc))
+
+
+
+
+
 ## [1.2.43](https://github.com/thi-ng/umbrella/compare/@thi.ng/heaps@1.2.42...@thi.ng/heaps@1.2.43) (2021-08-08)
 
 **Note:** Version bump only for package @thi.ng/heaps

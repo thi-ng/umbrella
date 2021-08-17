@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/memoize",
-    "version": "2.1.19",
+    "version": "2.1.20",
     "description": "Function memoization with configurable caching",
     "module": "./index.js",
     "main": "./lib/index.js",

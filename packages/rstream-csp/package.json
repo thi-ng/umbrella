@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rstream-csp",
-    "version": "2.0.75",
+    "version": "2.0.76",
     "description": "@thi.ng/csp bridge module for @thi.ng/rstream",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,8 +38,8 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "dependencies": {
-        "@thi.ng/csp": "^1.1.70",
-        "@thi.ng/rstream": "^6.0.16"
+        "@thi.ng/csp": "^1.1.71",
+        "@thi.ng/rstream": "^6.0.17"
     },
     "files": [
         "*.js",

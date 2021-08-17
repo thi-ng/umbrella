@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@2.1.19...@thi.ng/memoize@2.1.20) (2021-08-17)
+
+**Note:** Version bump only for package @thi.ng/memoize
+
+
+
+
+
 ## [2.1.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@2.1.18...@thi.ng/memoize@2.1.19) (2021-08-08)
 
 **Note:** Version bump only for package @thi.ng/memoize

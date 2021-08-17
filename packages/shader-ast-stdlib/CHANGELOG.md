@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.8.0...@thi.ng/shader-ast-stdlib@0.9.0) (2021-08-17)
+
+
+### Features
+
+* **shader-ast-stdlib:** add level correction fns ([54963e7](https://github.com/thi-ng/umbrella/commit/54963e7b30f198def2d3b061f47b7dbaa53ae620))
+
+
+
+
+
 # [0.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.7.0...@thi.ng/shader-ast-stdlib@0.8.0) (2021-08-13)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-html@1.0.3...@thi.ng/hiccup-html@1.1.0) (2021-08-17)
+
+
+### Features
+
+* **hiccup-html:** update style/script element defs ([a1f9ac8](https://github.com/thi-ng/umbrella/commit/a1f9ac8b2f56376747af53a2f8e9911ed3704c27))
+
+
+
+
+
 ## [1.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-html@1.0.2...@thi.ng/hiccup-html@1.0.3) (2021-08-08)
 
 **Note:** Version bump only for package @thi.ng/hiccup-html

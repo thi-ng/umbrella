@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hiccup-carbon-icons",
-    "version": "2.0.23",
+    "version": "2.0.24",
     "description": "Full set of IBM's Carbon icons in hiccup format",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -40,7 +40,7 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
-        "@thi.ng/hiccup": "^3.6.20"
+        "@thi.ng/hiccup": "^3.6.21"
     },
     "files": [
         "*.js",

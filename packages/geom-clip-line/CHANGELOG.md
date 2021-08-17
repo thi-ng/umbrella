@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.42](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.2.41...@thi.ng/geom-clip-line@1.2.42) (2021-08-17)
+
+
+### Bug Fixes
+
+* **geom-clip-line:** off-by-one error in clipLinePoly() ([7898810](https://github.com/thi-ng/umbrella/commit/7898810244a7a4e4cba43c7ec0bedc095e1f4be4))
+
+
+
+
+
 ## [1.2.41](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.2.40...@thi.ng/geom-clip-line@1.2.41) (2021-08-08)
 
 **Note:** Version bump only for package @thi.ng/geom-clip-line

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hdom",
-    "version": "8.2.30",
+    "version": "8.2.31",
     "description": "Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,7 +38,7 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
-        "@thi.ng/atom": "^4.1.40"
+        "@thi.ng/atom": "^4.1.41"
     },
     "dependencies": {
         "@thi.ng/api": "^7.1.9",
@@ -46,8 +46,8 @@
         "@thi.ng/diff": "^4.0.12",
         "@thi.ng/equiv": "^1.0.45",
         "@thi.ng/errors": "^1.3.4",
-        "@thi.ng/hiccup": "^3.6.20",
-        "@thi.ng/prefixes": "^1.0.1"
+        "@thi.ng/hiccup": "^3.6.21",
+        "@thi.ng/prefixes": "^1.0.2"
     },
     "files": [
         "*.js",

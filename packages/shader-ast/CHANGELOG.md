@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.9.0...@thi.ng/shader-ast@0.10.0) (2021-08-17)
+
+
+### Features
+
+* **shader-ast:** add node type for matrix indexing ([394dd49](https://github.com/thi-ng/umbrella/commit/394dd4999037bc3040f61cb690415e19c4a1e14b))
+* **shader-ast:** add reciprocal() syntax sugar ([c710d81](https://github.com/thi-ng/umbrella/commit/c710d814812690cae2aa517b1de7becf09798b8c))
+
+
+### Performance Improvements
+
+* **shader-ast:** avoid nested literals ([998cf35](https://github.com/thi-ng/umbrella/commit/998cf3554696835a87fec370f11fb1292424263d))
+
+
+
+
+
 # [0.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast@0.8.20...@thi.ng/shader-ast@0.9.0) (2021-08-13)
 
 

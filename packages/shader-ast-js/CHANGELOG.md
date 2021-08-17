@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.45](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-js@0.5.44...@thi.ng/shader-ast-js@0.5.45) (2021-08-17)
+
+
+### Bug Fixes
+
+* **shader-ast-js:** fix matrix indexing ([094ab36](https://github.com/thi-ng/umbrella/commit/094ab360f927dd0f9cecc8afa090de79334295dd))
+
+
+
+
+
 ## [0.5.44](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-js@0.5.43...@thi.ng/shader-ast-js@0.5.44) (2021-08-13)
 
 **Note:** Version bump only for package @thi.ng/shader-ast-js

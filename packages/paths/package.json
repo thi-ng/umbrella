@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/paths",
-    "version": "4.2.12",
+    "version": "4.2.13",
     "description": "Immutable, optimized and optionally typed path-based object property / array accessors with structural sharing",
     "module": "./index.js",
     "main": "./lib/index.js",

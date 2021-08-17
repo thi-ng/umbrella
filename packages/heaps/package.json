@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/heaps",
-    "version": "1.2.43",
+    "version": "1.3.0",
     "description": "Various heap implementations for arbitrary values and with customizable ordering",
     "module": "./index.js",
     "main": "./lib/index.js",
