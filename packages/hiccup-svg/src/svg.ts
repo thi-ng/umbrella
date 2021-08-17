@@ -4,8 +4,8 @@ import { fattribs } from "./format";
 
 /**
  * Defines an <svg> root element with default XML namespaces. By default
- * currently still sets SVG version to 1.1 to support Safari and other legacy
- * tooling.
+ * currently still defaults to SVG version to 1.1 to support Safari and other
+ * legacy tooling.
  *
  * @remarks
  * If the `convert: true` attrib is given, all body elements will be
@@ -24,8 +24,7 @@ export const svg = (attribs: any, ...body: any[]): any[] => {
     });
     if (attribs.convert) {
         delete attribs.convert;
-        return ["svg", attribs, ...body.map(convertTree)];
-    } else {
-        return ["svg", attribs, ...body];
+        body = body.map(convertTree);
     }
+    return ["svg", attribs, ...body];
 };
