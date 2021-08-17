@@ -52,7 +52,7 @@ yarn add @thi.ng/geom-clip-line
 <script src="https://unpkg.com/@thi.ng/geom-clip-line/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 527 bytes / CJS: 591 bytes / UMD: 704 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 530 bytes / CJS: 596 bytes / UMD: 694 bytes
 
 ## Dependencies
 

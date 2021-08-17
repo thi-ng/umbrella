@@ -180,7 +180,7 @@ yarn add @thi.ng/hiccup-html
 <script src="https://unpkg.com/@thi.ng/hiccup-html/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.45 KB / CJS: 1.86 KB / UMD: 1.76 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.48 KB / CJS: 1.89 KB / UMD: 1.79 KB
 
 ## Dependencies
 
