@@ -57,57 +57,55 @@ Optimized 2d/3d/4d and arbitrary length vector operations.
 Likely the most comprehensive vector library for TypeScript / JavaScript
 currently available.
 
-This package provides **~720 largely code generated functions** and
-supporting types to perform vector operations on fixed and
-arbitrary-length vectors, both packed and strided (i.e. where individual
-vector components are not successive array elements, for example in SOA
-memory layouts).
+This package provides **over 800(!) largely code generated functions** and
+supporting types to perform vector operations on fixed and arbitrary-length
+vectors, both packed and strided (i.e. where individual vector components are
+not successive array elements, for example in SOA memory layouts).
 
-Includes componentwise logic operations for boolean vectors,
-componentwise comparisons for numeric vectors and componentwise binary
-ops for signed & unsigned integer vectors.
+Includes componentwise logic operations for boolean vectors, componentwise
+comparisons for numeric vectors and componentwise binary ops for signed &
+unsigned integer vectors.
 
 ### Features
 
 - Small & fast: The vast majority of functions are code generated with
-  fixed-sized versions not using any loops. Minified + gzipped, the
-  entire package is ~10.1KB (though you'll hardly ever use all
-  functions).
-- Unified API: Any `ArrayLike` type can be used as vector containers
-  (e.g. JS arrays, typed arrays, custom impls). Most functions are
-  implemented as multi-methods, dispatching to any potentially optimized
-  versions based on given vector arguments.
-- Highly modular: Each function is defined in its own submodule / file.
-  In addition to each generic multi-method base function, all
-  fixed-length optimized versions are exported too. E.g. If
+  fixed-sized versions not using any loops. Minified + gzipped, the entire
+  package is ~11.8KB (though you'll hardly ever use all functions).
+- Unified API: Any `ArrayLike` type can be used as vector containers (e.g. JS
+  arrays, typed arrays, custom impls). Most functions are implemented as
+  multi-methods, dispatching to any potentially optimized versions based on
+  given vector arguments.
+- Highly modular: Each function is defined in its own submodule / file. In
+  addition to each generic multi-method base function, all fixed-length
+  optimized versions are exported too. E.g. If
   [`add`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/add.ts)
-  performs vector addition on arbitrary-length vectors, `add2`, `add3`,
-  `add4` are the optimized version for fixed-length vectors...
-- Extensible: Custom vector ops can be defined in a similar manner using
-  the provided code generation helpers (see
+  performs vector addition on arbitrary-length vectors, `add2`, `add3`, `add4`
+  are the optimized version for fixed-length vectors...
+- Extensible: Custom vector ops can be defined in a similar manner using the
+  provided code generation helpers (see
   [vop.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/internal/vop.ts)
   and
   [codegen.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/internal/codegen.ts)
   for details).
-- Immutable by default: Each operation producing a vector result takes
-  an output vector as first argument. If `null`, the vector given as 2nd
-  argument will be used as output (i.e. for mutation).
+- Immutable by default: Each operation producing a vector result takes an output
+  vector as first argument. If `null`, the vector given as 2nd argument will
+  (usually) be used as output (i.e. for mutation).
 - Strided vector support is handled via the lightweight
   [`Vec2/3/4`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/vec2.ts)
   class wrappers and the
   [`gvec()`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/gvec.ts)
-  proxy (for generic, arbitrary-length vectors). These types behave like
-  normal arrays (for read/write operations) and are also iterable. A
-  subset of functions (suffixed with `S`, e.g.
+  proxy (for generic, arbitrary-length vectors). These types behave like normal
+  arrays (for read/write operations) and are also iterable. A subset of
+  functions (suffixed with `S`, e.g.
   [`addS`](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/adds.ts)
-  vs. `add`) also support striding without the need for extra class
-  wrappers. This is handled via additional index and stride arguments
-  for each input/output vector. These functions are only available for
-  sizes 2 / 3 / 4, though.
+  vs. `add`) also support striding without the need for extra class wrappers.
+  This is handled via additional index and stride arguments for each
+  input/output vector. These functions are only available for sizes 2 / 3 / 4,
+  though.
 - Random vector functions support the `IRandom` interface defined by
   [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
-  to work with custom (P)RNGs. If omitted, the built-in `Math.random()`
-  will be used.
+  to work with custom (P)RNGs. If omitted, the built-in `Math.random()` will be
+  used.
 
 Partially ported from [thi.ng/geom-clj](http://thi.ng/geom-clj) (Clojure) and
 [c.thi.ng](http://c.thi.ng) (C11).
@@ -170,7 +168,7 @@ yarn add @thi.ng/vectors
 <script src="https://unpkg.com/@thi.ng/vectors/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 11.70 KB / CJS: 14.70 KB / UMD: 12.96 KB
+Package sizes (gzipped, pre-treeshake): ESM: 11.83 KB / CJS: 14.84 KB / UMD: 13.08 KB
 
 ## Dependencies
 
@@ -272,8 +270,8 @@ v.hash([1, 2, 3])
 
 ### Naming conventions
 
-Wherever possible, each operation comes in different variations. All
-fixed size versions use optimized, loop-free implementations.
+Wherever possible, each operation comes in different variations. All fixed size
+versions use optimized, loop-free implementations.
 
 | Suffix          | Description                            |
 |-----------------|----------------------------------------|
@@ -574,6 +572,8 @@ All ops support custom PRNG impls based on the
 Functions to transform flat / strided buffers w/ vector operations:
 
 -   `mapV` / `mapVN` / `mapVV` / `mapVVN` / `mapVVV`
+-   `mean` / `median`
+-   `minBounds` / `maxBounds`
 
 ### Comparison / equality
 
