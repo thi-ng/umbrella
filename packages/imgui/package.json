@@ -54,7 +54,7 @@
         "*.d.ts",
         "lib",
         "behaviors",
-        "component"
+        "components"
     ],
     "keywords": [
         "browser",
