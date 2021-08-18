@@ -1,4 +1,5 @@
-import { readdirSync, statSync, writeFileSync } from "fs";
+import { equivSet } from "@thi.ng/equiv";
+import { existsSync, readdirSync, statSync, writeFileSync } from "fs";
 import { readJSON } from "./io";
 
 const subdirs = (root: string) => {
@@ -11,17 +12,21 @@ const subdirs = (root: string) => {
 };
 
 const processPackage = (id: string) => {
-    const pkgPath = `packages/${id}/package.json`;
+    const pkkRoot = `packages/${id}`;
+    const pkgPath = `${pkkRoot}/package.json`;
     console.log("checking", pkgPath);
     const pkg = readJSON(pkgPath);
-    const srcDirs = subdirs(`packages/${id}/src`);
-    const newFiles = ["*.js", "*.d.ts", "lib", ...srcDirs.sort()];
-    const oldLength = pkg.files.length;
-    const newLength = newFiles.length;
-    if (
-        oldLength !== newLength &&
-        !(pkg.files.includes("bin") && newLength === oldLength - 1)
-    ) {
+    const srcDirs = subdirs(`${pkkRoot}/src`).sort();
+    const hasBin = existsSync(`${pkkRoot}/bin`);
+    const oldFiles = new Set(pkg.files);
+    const newFiles = [
+        "*.js",
+        "*.d.ts",
+        "lib",
+        ...(hasBin ? ["bin"] : []),
+        ...srcDirs,
+    ];
+    if (!equivSet(oldFiles, new Set(newFiles))) {
         console.log("fixing pkg", newFiles);
         pkg.files = newFiles;
         writeFileSync(pkgPath, JSON.stringify(pkg, null, 4));
