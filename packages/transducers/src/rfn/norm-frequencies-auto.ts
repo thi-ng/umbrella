@@ -13,6 +13,10 @@ import { frequencies } from "./frequencies";
  *
  * normFrequenciesAuto(items)
  * // Map(5) { 1 => 0.4, 2 => 0.3, 3 => 0.1, 4 => 0.1, 5 => 0.1 }
+ *
+ * // frequencies by 1st letter
+ * normFrequenciesAuto(x => x[0], ["alice", "abba", "bob", "charlie"])
+ * // Map(3) { 'a' => 0.5, 'b' => 0.25, 'c' => 0.25 }
  * ```
  */
 export function normFrequenciesAuto<A>(): Reducer<Map<A, number>, A>;
@@ -29,7 +33,7 @@ export function normFrequenciesAuto(...args: any[]): any {
     if (res !== undefined) {
         return res;
     }
-    const [init, complete, reduce] = frequencies();
+    const [init, complete, reduce] = frequencies(...(<[]>args));
     let norm = 0;
     return [
         init,
