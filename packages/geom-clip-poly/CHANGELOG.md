@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.69](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-poly@1.0.68...@thi.ng/geom-clip-poly@1.0.69) (2021-08-19)
+
+**Note:** Version bump only for package @thi.ng/geom-clip-poly
+
+
+
+
+
 ## [1.0.68](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-poly@1.0.67...@thi.ng/geom-clip-poly@1.0.68) (2021-08-19)
 
 **Note:** Version bump only for package @thi.ng/geom-clip-poly

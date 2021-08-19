@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/color",
-    "version": "3.2.5",
+    "version": "3.2.6",
     "description": "Array-based color types, CSS parsing, conversions, transformations, declarative theme generation, gradients, presets",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -50,8 +50,8 @@
         "@thi.ng/math": "^4.0.5",
         "@thi.ng/random": "^2.4.7",
         "@thi.ng/strings": "^2.1.6",
-        "@thi.ng/transducers": "^7.9.0",
-        "@thi.ng/vectors": "^6.1.1"
+        "@thi.ng/transducers": "^7.9.1",
+        "@thi.ng/vectors": "^6.1.2"
     },
     "files": [
         "*.js",

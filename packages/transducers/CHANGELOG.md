@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.9.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.9.0...@thi.ng/transducers@7.9.1) (2021-08-19)
+
+
+### Bug Fixes
+
+* **transducers:** update normFrequenciesAuto() ([5b5200b](https://github.com/thi-ng/umbrella/commit/5b5200b6d4e61df6c2e6458b99b8b10ea9f3bb65))
+
+
+
+
+
 # [7.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.8.4...@thi.ng/transducers@7.9.0) (2021-08-19)
 
 

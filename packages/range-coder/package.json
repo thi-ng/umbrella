@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/range-coder",
-    "version": "1.0.91",
+    "version": "1.0.92",
     "description": "Binary data range encoder / decoder",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,7 +38,7 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "devDependencies": {
-        "@thi.ng/transducers": "^7.9.0"
+        "@thi.ng/transducers": "^7.9.1"
     },
     "dependencies": {
         "@thi.ng/bitstream": "^1.1.43"

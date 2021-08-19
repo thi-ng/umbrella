@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.93](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@1.0.92...@thi.ng/cache@1.0.93) (2021-08-19)
+
+**Note:** Version bump only for package @thi.ng/cache
+
+
+
+
+
 ## [1.0.92](https://github.com/thi-ng/umbrella/compare/@thi.ng/cache@1.0.91...@thi.ng/cache@1.0.92) (2021-08-19)
 
 **Note:** Version bump only for package @thi.ng/cache
