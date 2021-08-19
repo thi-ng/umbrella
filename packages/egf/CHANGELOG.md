@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/egf@0.4.14...@thi.ng/egf@0.4.15) (2021-08-19)
+
+**Note:** Version bump only for package @thi.ng/egf
+
+
+
+
+
 ## [0.4.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/egf@0.4.13...@thi.ng/egf@0.4.14) (2021-08-17)
 
 **Note:** Version bump only for package @thi.ng/egf

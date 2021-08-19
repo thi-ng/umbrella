@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.8.4...@thi.ng/transducers@7.9.0) (2021-08-19)
+
+
+### Features
+
+* **transducers:** add normalized frequencies() reducers ([d09db8d](https://github.com/thi-ng/umbrella/commit/d09db8d47be81e78dea1f4e16917249924b65e35))
+
+
+
+
+
 ## [7.8.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.8.3...@thi.ng/transducers@7.8.4) (2021-08-17)
 
 **Note:** Version bump only for package @thi.ng/transducers
