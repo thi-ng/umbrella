@@ -169,7 +169,7 @@ yarn add @thi.ng/transducers
 <script src="https://unpkg.com/@thi.ng/transducers/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 8.44 KB / CJS: 9.00 KB / UMD: 8.18 KB
+Package sizes (gzipped, pre-treeshake): ESM: 8.53 KB / CJS: 9.12 KB / UMD: 8.28 KB
 
 ## Dependencies
 
@@ -965,6 +965,9 @@ and return a reduced result (as if it would be called via `reduce()`).
 - [minMag](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/min-mag.ts)
 - [minMax](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/min-max.ts)
 - [mul](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/mul.ts)
+- [normCount](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/norm-count.ts)
+- [normFrequencies](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/norm-frequencies.ts)
+- [normFrequenciesAuto](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/norm-frequencies-auto.ts)
 - [push](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/push.ts)
 - [pushCopy](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/push-copy.ts)
 - [pushSort](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/push-sort.ts)
