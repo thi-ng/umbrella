@@ -3,46 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [3.0.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@3.0.11...@thi.ng/intervals@3.0.12) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/intervals
-
-
-
-
-
-## [3.0.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@3.0.10...@thi.ng/intervals@3.0.11) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/intervals
-
-
-
-
-
-## [3.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@3.0.9...@thi.ng/intervals@3.0.10) (2021-08-04)
-
-**Note:** Version bump only for package @thi.ng/intervals
-
-
-
-
-
-## [3.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@3.0.8...@thi.ng/intervals@3.0.9) (2021-07-01)
-
-**Note:** Version bump only for package @thi.ng/intervals
-
-
-
-
-
-## [3.0.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@3.0.7...@thi.ng/intervals@3.0.8) (2021-06-08)
-
-**Note:** Version bump only for package @thi.ng/intervals
-
-
-
-
-
 # [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@2.1.5...@thi.ng/intervals@3.0.0) (2021-02-20)
 
 

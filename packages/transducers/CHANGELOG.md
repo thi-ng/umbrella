@@ -25,38 +25,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [7.8.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.8.3...@thi.ng/transducers@7.8.4) (2021-08-17)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
-## [7.8.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.8.2...@thi.ng/transducers@7.8.3) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
-## [7.8.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.8.1...@thi.ng/transducers@7.8.2) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
-## [7.8.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.8.0...@thi.ng/transducers@7.8.1) (2021-08-04)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
 # [7.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.7.5...@thi.ng/transducers@7.8.0) (2021-08-04)
 
 
@@ -64,30 +32,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **transducers:** add minMax() reducer ([5f8a722](https://github.com/thi-ng/umbrella/commit/5f8a72215010645cce039cedab3313fae722e363))
 * **transducers:** update repeatedly(), iterate() ([b7d9ba4](https://github.com/thi-ng/umbrella/commit/b7d9ba42b812c3b39909e86be5eebfa4e235f535))
-
-
-
-
-
-## [7.7.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.7.4...@thi.ng/transducers@7.7.5) (2021-07-27)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
-## [7.7.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.7.3...@thi.ng/transducers@7.7.4) (2021-07-01)
-
-**Note:** Version bump only for package @thi.ng/transducers
-
-
-
-
-
-## [7.7.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.7.2...@thi.ng/transducers@7.7.3) (2021-06-08)
-
-**Note:** Version bump only for package @thi.ng/transducers
 
 
 

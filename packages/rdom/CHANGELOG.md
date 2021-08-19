@@ -3,62 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.6.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.6.6...@thi.ng/rdom@0.6.7) (2021-08-19)
-
-**Note:** Version bump only for package @thi.ng/rdom
-
-
-
-
-
-## [0.6.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.6.5...@thi.ng/rdom@0.6.6) (2021-08-19)
-
-**Note:** Version bump only for package @thi.ng/rdom
-
-
-
-
-
-## [0.6.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.6.4...@thi.ng/rdom@0.6.5) (2021-08-17)
-
-**Note:** Version bump only for package @thi.ng/rdom
-
-
-
-
-
-## [0.6.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.6.3...@thi.ng/rdom@0.6.4) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/rdom
-
-
-
-
-
-## [0.6.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.6.2...@thi.ng/rdom@0.6.3) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/rdom
-
-
-
-
-
-## [0.6.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.6.1...@thi.ng/rdom@0.6.2) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/rdom
-
-
-
-
-
-## [0.6.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.6.0...@thi.ng/rdom@0.6.1) (2021-08-04)
-
-**Note:** Version bump only for package @thi.ng/rdom
-
-
-
-
-
 # [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.5.0...@thi.ng/rdom@0.6.0) (2021-08-04)
 
 
@@ -81,22 +25,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **rdom:** relax return types for $switch() ([71c334b](https://github.com/thi-ng/umbrella/commit/71c334bfc5715e58296750e9d118927dce53406a))
-
-
-
-
-
-## [0.4.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.4.16...@thi.ng/rdom@0.4.17) (2021-07-01)
-
-**Note:** Version bump only for package @thi.ng/rdom
-
-
-
-
-
-## [0.4.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.4.15...@thi.ng/rdom@0.4.16) (2021-06-08)
-
-**Note:** Version bump only for package @thi.ng/rdom
 
 
 

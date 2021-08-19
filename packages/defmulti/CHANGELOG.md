@@ -3,46 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.3.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.3.15...@thi.ng/defmulti@1.3.16) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/defmulti
-
-
-
-
-
-## [1.3.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.3.14...@thi.ng/defmulti@1.3.15) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/defmulti
-
-
-
-
-
-## [1.3.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.3.13...@thi.ng/defmulti@1.3.14) (2021-08-04)
-
-**Note:** Version bump only for package @thi.ng/defmulti
-
-
-
-
-
-## [1.3.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.3.12...@thi.ng/defmulti@1.3.13) (2021-07-01)
-
-**Note:** Version bump only for package @thi.ng/defmulti
-
-
-
-
-
-## [1.3.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.3.11...@thi.ng/defmulti@1.3.12) (2021-06-08)
-
-**Note:** Version bump only for package @thi.ng/defmulti
-
-
-
-
-
 ## [1.3.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.3.5...@thi.ng/defmulti@1.3.6) (2021-03-03)
 
 

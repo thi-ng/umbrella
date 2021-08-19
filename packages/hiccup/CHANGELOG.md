@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [3.6.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.6.20...@thi.ng/hiccup@3.6.21) (2021-08-17)
-
-**Note:** Version bump only for package @thi.ng/hiccup
-
-
-
-
-
-## [3.6.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.6.19...@thi.ng/hiccup@3.6.20) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/hiccup
-
-
-
-
-
-## [3.6.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.6.18...@thi.ng/hiccup@3.6.19) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/hiccup
-
-
-
-
-
-## [3.6.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.6.17...@thi.ng/hiccup@3.6.18) (2021-08-04)
-
-**Note:** Version bump only for package @thi.ng/hiccup
-
-
-
-
-
-## [3.6.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.6.16...@thi.ng/hiccup@3.6.17) (2021-07-01)
-
-**Note:** Version bump only for package @thi.ng/hiccup
-
-
-
-
-
-## [3.6.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.6.15...@thi.ng/hiccup@3.6.16) (2021-06-08)
-
-**Note:** Version bump only for package @thi.ng/hiccup
-
-
-
-
-
 # [3.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@3.5.8...@thi.ng/hiccup@3.6.0) (2020-09-13)
 
 

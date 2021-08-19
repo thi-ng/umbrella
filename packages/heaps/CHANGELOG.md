@@ -16,46 +16,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.2.43](https://github.com/thi-ng/umbrella/compare/@thi.ng/heaps@1.2.42...@thi.ng/heaps@1.2.43) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/heaps
-
-
-
-
-
-## [1.2.42](https://github.com/thi-ng/umbrella/compare/@thi.ng/heaps@1.2.41...@thi.ng/heaps@1.2.42) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/heaps
-
-
-
-
-
-## [1.2.41](https://github.com/thi-ng/umbrella/compare/@thi.ng/heaps@1.2.40...@thi.ng/heaps@1.2.41) (2021-08-04)
-
-**Note:** Version bump only for package @thi.ng/heaps
-
-
-
-
-
-## [1.2.40](https://github.com/thi-ng/umbrella/compare/@thi.ng/heaps@1.2.39...@thi.ng/heaps@1.2.40) (2021-07-01)
-
-**Note:** Version bump only for package @thi.ng/heaps
-
-
-
-
-
-## [1.2.39](https://github.com/thi-ng/umbrella/compare/@thi.ng/heaps@1.2.38...@thi.ng/heaps@1.2.39) (2021-06-08)
-
-**Note:** Version bump only for package @thi.ng/heaps
-
-
-
-
-
 ## [1.2.38](https://github.com/thi-ng/umbrella/compare/@thi.ng/heaps@1.2.37...@thi.ng/heaps@1.2.38) (2021-03-17)
 
 

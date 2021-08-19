@@ -14,54 +14,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [1.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-html@1.0.2...@thi.ng/hiccup-html@1.0.3) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/hiccup-html
-
-
-
-
-
-## [1.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-html@1.0.1...@thi.ng/hiccup-html@1.0.2) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/hiccup-html
-
-
-
-
-
-## [1.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-html@0.3.20...@thi.ng/hiccup-html@1.0.1) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/hiccup-html
-
-
-
-
-
-## [0.3.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-html@0.3.19...@thi.ng/hiccup-html@0.3.20) (2021-08-04)
-
-**Note:** Version bump only for package @thi.ng/hiccup-html
-
-
-
-
-
-## [0.3.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-html@0.3.18...@thi.ng/hiccup-html@0.3.19) (2021-07-01)
-
-**Note:** Version bump only for package @thi.ng/hiccup-html
-
-
-
-
-
-## [0.3.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-html@0.3.17...@thi.ng/hiccup-html@0.3.18) (2021-06-08)
-
-**Note:** Version bump only for package @thi.ng/hiccup-html
-
-
-
-
-
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-html@0.2.0...@thi.ng/hiccup-html@0.3.0) (2020-07-09)
 
 

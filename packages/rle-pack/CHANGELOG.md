@@ -3,46 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.1.43](https://github.com/thi-ng/umbrella/compare/@thi.ng/rle-pack@2.1.42...@thi.ng/rle-pack@2.1.43) (2021-08-17)
-
-**Note:** Version bump only for package @thi.ng/rle-pack
-
-
-
-
-
-## [2.1.42](https://github.com/thi-ng/umbrella/compare/@thi.ng/rle-pack@2.1.41...@thi.ng/rle-pack@2.1.42) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/rle-pack
-
-
-
-
-
-## [2.1.41](https://github.com/thi-ng/umbrella/compare/@thi.ng/rle-pack@2.1.40...@thi.ng/rle-pack@2.1.41) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/rle-pack
-
-
-
-
-
-## [2.1.40](https://github.com/thi-ng/umbrella/compare/@thi.ng/rle-pack@2.1.39...@thi.ng/rle-pack@2.1.40) (2021-07-01)
-
-**Note:** Version bump only for package @thi.ng/rle-pack
-
-
-
-
-
-## [2.1.39](https://github.com/thi-ng/umbrella/compare/@thi.ng/rle-pack@2.1.38...@thi.ng/rle-pack@2.1.39) (2021-06-08)
-
-**Note:** Version bump only for package @thi.ng/rle-pack
-
-
-
-
-
 # [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rle-pack@2.0.6...@thi.ng/rle-pack@2.1.0) (2019-07-07)
 
 ### Features

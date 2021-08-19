@@ -3,62 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/zipper@1.0.1...@thi.ng/zipper@1.0.2) (2021-08-17)
-
-**Note:** Version bump only for package @thi.ng/zipper
-
-
-
-
-
-## [1.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/zipper@0.1.50...@thi.ng/zipper@1.0.1) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/zipper
-
-
-
-
-
-## [0.1.50](https://github.com/thi-ng/umbrella/compare/@thi.ng/zipper@0.1.49...@thi.ng/zipper@0.1.50) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/zipper
-
-
-
-
-
-## [0.1.49](https://github.com/thi-ng/umbrella/compare/@thi.ng/zipper@0.1.48...@thi.ng/zipper@0.1.49) (2021-08-04)
-
-**Note:** Version bump only for package @thi.ng/zipper
-
-
-
-
-
-## [0.1.48](https://github.com/thi-ng/umbrella/compare/@thi.ng/zipper@0.1.47...@thi.ng/zipper@0.1.48) (2021-08-04)
-
-**Note:** Version bump only for package @thi.ng/zipper
-
-
-
-
-
-## [0.1.47](https://github.com/thi-ng/umbrella/compare/@thi.ng/zipper@0.1.46...@thi.ng/zipper@0.1.47) (2021-07-01)
-
-**Note:** Version bump only for package @thi.ng/zipper
-
-
-
-
-
-## [0.1.46](https://github.com/thi-ng/umbrella/compare/@thi.ng/zipper@0.1.45...@thi.ng/zipper@0.1.46) (2021-06-08)
-
-**Note:** Version bump only for package @thi.ng/zipper
-
-
-
-
-
 # 0.1.0 (2019-11-30)
 
 ### Features

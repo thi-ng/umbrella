@@ -3,46 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.1.40](https://github.com/thi-ng/umbrella/compare/@thi.ng/unionstruct@1.1.39...@thi.ng/unionstruct@1.1.40) (2021-08-17)
-
-**Note:** Version bump only for package @thi.ng/unionstruct
-
-
-
-
-
-## [1.1.39](https://github.com/thi-ng/umbrella/compare/@thi.ng/unionstruct@1.1.38...@thi.ng/unionstruct@1.1.39) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/unionstruct
-
-
-
-
-
-## [1.1.38](https://github.com/thi-ng/umbrella/compare/@thi.ng/unionstruct@1.1.37...@thi.ng/unionstruct@1.1.38) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/unionstruct
-
-
-
-
-
-## [1.1.37](https://github.com/thi-ng/umbrella/compare/@thi.ng/unionstruct@1.1.36...@thi.ng/unionstruct@1.1.37) (2021-07-01)
-
-**Note:** Version bump only for package @thi.ng/unionstruct
-
-
-
-
-
-## [1.1.36](https://github.com/thi-ng/umbrella/compare/@thi.ng/unionstruct@1.1.35...@thi.ng/unionstruct@1.1.36) (2021-06-08)
-
-**Note:** Version bump only for package @thi.ng/unionstruct
-
-
-
-
-
 # [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/unionstruct@1.0.6...@thi.ng/unionstruct@1.1.0) (2019-07-07)
 
 ### Bug Fixes

@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@1.0.1...@thi.ng/bitfield@1.0.2) (2021-08-17)
-
-**Note:** Version bump only for package @thi.ng/bitfield
-
-
-
-
-
-## [1.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.4.12...@thi.ng/bitfield@1.0.1) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/bitfield
-
-
-
-
-
-## [0.4.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.4.11...@thi.ng/bitfield@0.4.12) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/bitfield
-
-
-
-
-
-## [0.4.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.4.10...@thi.ng/bitfield@0.4.11) (2021-08-04)
-
-**Note:** Version bump only for package @thi.ng/bitfield
-
-
-
-
-
-## [0.4.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.4.9...@thi.ng/bitfield@0.4.10) (2021-07-01)
-
-**Note:** Version bump only for package @thi.ng/bitfield
-
-
-
-
-
-## [0.4.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.4.8...@thi.ng/bitfield@0.4.9) (2021-06-08)
-
-**Note:** Version bump only for package @thi.ng/bitfield
-
-
-
-
-
 # [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/bitfield@0.3.30...@thi.ng/bitfield@0.4.0) (2021-02-20)
 
 

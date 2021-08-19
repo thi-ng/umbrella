@@ -3,92 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@1.0.4...@thi.ng/imgui@1.0.5) (2021-08-19)
-
-**Note:** Version bump only for package @thi.ng/imgui
-
-
-
-
-
-## [1.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@1.0.3...@thi.ng/imgui@1.0.4) (2021-08-19)
-
-**Note:** Version bump only for package @thi.ng/imgui
-
-
-
-
-
 ## [1.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@1.0.2...@thi.ng/imgui@1.0.3) (2021-08-18)
 
 
 ### Bug Fixes
 
 * **imgui:** include missing src folder in pkg ([67e2f71](https://github.com/thi-ng/umbrella/commit/67e2f71e098a57677d8a44a44b30c31ae11546ca))
-
-
-
-
-
-## [1.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@1.0.1...@thi.ng/imgui@1.0.2) (2021-08-17)
-
-**Note:** Version bump only for package @thi.ng/imgui
-
-
-
-
-
-## [1.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.76...@thi.ng/imgui@1.0.1) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/imgui
-
-
-
-
-
-## [0.2.76](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.75...@thi.ng/imgui@0.2.76) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/imgui
-
-
-
-
-
-## [0.2.75](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.74...@thi.ng/imgui@0.2.75) (2021-08-04)
-
-**Note:** Version bump only for package @thi.ng/imgui
-
-
-
-
-
-## [0.2.74](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.73...@thi.ng/imgui@0.2.74) (2021-08-04)
-
-**Note:** Version bump only for package @thi.ng/imgui
-
-
-
-
-
-## [0.2.73](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.72...@thi.ng/imgui@0.2.73) (2021-07-27)
-
-**Note:** Version bump only for package @thi.ng/imgui
-
-
-
-
-
-## [0.2.72](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.71...@thi.ng/imgui@0.2.72) (2021-07-01)
-
-**Note:** Version bump only for package @thi.ng/imgui
-
-
-
-
-
-## [0.2.71](https://github.com/thi-ng/umbrella/compare/@thi.ng/imgui@0.2.70...@thi.ng/imgui@0.2.71) (2021-06-08)
-
-**Note:** Version bump only for package @thi.ng/imgui
 
 
 

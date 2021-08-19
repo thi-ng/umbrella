@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [4.2.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@4.2.12...@thi.ng/paths@4.2.13) (2021-08-17)
-
-**Note:** Version bump only for package @thi.ng/paths
-
-
-
-
-
-## [4.2.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@4.2.11...@thi.ng/paths@4.2.12) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/paths
-
-
-
-
-
-## [4.2.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@4.2.10...@thi.ng/paths@4.2.11) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/paths
-
-
-
-
-
-## [4.2.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@4.2.9...@thi.ng/paths@4.2.10) (2021-08-04)
-
-**Note:** Version bump only for package @thi.ng/paths
-
-
-
-
-
-## [4.2.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@4.2.8...@thi.ng/paths@4.2.9) (2021-07-01)
-
-**Note:** Version bump only for package @thi.ng/paths
-
-
-
-
-
-## [4.2.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@4.2.7...@thi.ng/paths@4.2.8) (2021-06-08)
-
-**Note:** Version bump only for package @thi.ng/paths
-
-
-
-
-
 # [4.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/paths@4.1.13...@thi.ng/paths@4.2.0) (2021-02-20)
 
 

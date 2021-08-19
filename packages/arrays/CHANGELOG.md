@@ -3,62 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@1.0.1...@thi.ng/arrays@1.0.2) (2021-08-17)
-
-**Note:** Version bump only for package @thi.ng/arrays
-
-
-
-
-
-## [1.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.10.16...@thi.ng/arrays@1.0.1) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/arrays
-
-
-
-
-
-## [0.10.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.10.15...@thi.ng/arrays@0.10.16) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/arrays
-
-
-
-
-
-## [0.10.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.10.14...@thi.ng/arrays@0.10.15) (2021-08-04)
-
-**Note:** Version bump only for package @thi.ng/arrays
-
-
-
-
-
-## [0.10.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.10.13...@thi.ng/arrays@0.10.14) (2021-08-04)
-
-**Note:** Version bump only for package @thi.ng/arrays
-
-
-
-
-
-## [0.10.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.10.12...@thi.ng/arrays@0.10.13) (2021-07-01)
-
-**Note:** Version bump only for package @thi.ng/arrays
-
-
-
-
-
-## [0.10.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.10.11...@thi.ng/arrays@0.10.12) (2021-06-08)
-
-**Note:** Version bump only for package @thi.ng/arrays
-
-
-
-
-
 # [0.10.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/arrays@0.9.2...@thi.ng/arrays@0.10.0) (2021-01-21)
 
 

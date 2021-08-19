@@ -3,22 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.9.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.9.1...@thi.ng/shader-ast-stdlib@0.9.2) (2021-08-19)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-stdlib
-
-
-
-
-
-## [0.9.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.9.0...@thi.ng/shader-ast-stdlib@0.9.1) (2021-08-19)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-stdlib
-
-
-
-
-
 # [0.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.8.0...@thi.ng/shader-ast-stdlib@0.9.0) (2021-08-17)
 
 
@@ -51,62 +35,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * **shader-ast-stdlib:** add sdfUnion2(), add missing exports ([9d52838](https://github.com/thi-ng/umbrella/commit/9d5283848a61d97cd57fab38d792479449a8068d))
 * **shader-ast-stdlib:** variadic sdf isec/sub/union ([fbff935](https://github.com/thi-ng/umbrella/commit/fbff93515220ac9263e9ad74f9359a78bf2ab24c))
-
-
-
-
-
-## [0.6.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.6.6...@thi.ng/shader-ast-stdlib@0.6.7) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-stdlib
-
-
-
-
-
-## [0.6.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.6.5...@thi.ng/shader-ast-stdlib@0.6.6) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-stdlib
-
-
-
-
-
-## [0.6.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.6.4...@thi.ng/shader-ast-stdlib@0.6.5) (2021-08-04)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-stdlib
-
-
-
-
-
-## [0.6.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.6.3...@thi.ng/shader-ast-stdlib@0.6.4) (2021-08-04)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-stdlib
-
-
-
-
-
-## [0.6.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.6.2...@thi.ng/shader-ast-stdlib@0.6.3) (2021-07-27)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-stdlib
-
-
-
-
-
-## [0.6.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.6.1...@thi.ng/shader-ast-stdlib@0.6.2) (2021-07-01)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-stdlib
-
-
-
-
-
-## [0.6.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-stdlib@0.6.0...@thi.ng/shader-ast-stdlib@0.6.1) (2021-06-08)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-stdlib
 
 
 

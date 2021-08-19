@@ -3,92 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [6.0.19](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@6.0.18...@thi.ng/rstream@6.0.19) (2021-08-19)
-
-**Note:** Version bump only for package @thi.ng/rstream
-
-
-
-
-
-## [6.0.18](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@6.0.17...@thi.ng/rstream@6.0.18) (2021-08-19)
-
-**Note:** Version bump only for package @thi.ng/rstream
-
-
-
-
-
-## [6.0.17](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@6.0.16...@thi.ng/rstream@6.0.17) (2021-08-17)
-
-**Note:** Version bump only for package @thi.ng/rstream
-
-
-
-
-
-## [6.0.16](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@6.0.15...@thi.ng/rstream@6.0.16) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/rstream
-
-
-
-
-
-## [6.0.15](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@6.0.14...@thi.ng/rstream@6.0.15) (2021-08-08)
-
-**Note:** Version bump only for package @thi.ng/rstream
-
-
-
-
-
 ## [6.0.14](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@6.0.13...@thi.ng/rstream@6.0.14) (2021-08-08)
 
 
 ### Bug Fixes
 
 * **rstream:** fix [#305](https://github.com/thi-ng/umbrella/issues/305), metaStream() factory arg type ([2bc7bff](https://github.com/thi-ng/umbrella/commit/2bc7bff2eff9331d3a52830d0275d47fc7c59e78))
-
-
-
-
-
-## [6.0.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@6.0.12...@thi.ng/rstream@6.0.13) (2021-08-04)
-
-**Note:** Version bump only for package @thi.ng/rstream
-
-
-
-
-
-## [6.0.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@6.0.11...@thi.ng/rstream@6.0.12) (2021-08-04)
-
-**Note:** Version bump only for package @thi.ng/rstream
-
-
-
-
-
-## [6.0.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@6.0.10...@thi.ng/rstream@6.0.11) (2021-07-27)
-
-**Note:** Version bump only for package @thi.ng/rstream
-
-
-
-
-
-## [6.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@6.0.9...@thi.ng/rstream@6.0.10) (2021-07-01)
-
-**Note:** Version bump only for package @thi.ng/rstream
-
-
-
-
-
-## [6.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@6.0.8...@thi.ng/rstream@6.0.9) (2021-06-08)
-
-**Note:** Version bump only for package @thi.ng/rstream
 
 
 
