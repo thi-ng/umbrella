@@ -1,5 +1,6 @@
 import type { IObjectOf, Pair } from "@thi.ng/api";
 import {
+    capitalize,
     kebab,
     lengthAnsi,
     padRight,
@@ -45,7 +46,7 @@ export const usage = <T extends IObjectOf<any>>(
         ...wrap(opts.prefix, opts.lineWidth!),
         ...groups.map(([gid, ids]) =>
             [
-                ...(opts.showGroupNames ? [`${gid}:\n`] : []),
+                ...(opts.showGroupNames ? [`${capitalize(gid)}:\n`] : []),
                 ...format(ids),
                 "",
             ].join("\n")
