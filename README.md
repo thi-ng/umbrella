@@ -16,9 +16,9 @@
 **Please visit [thi.ng](https://thi.ng) for additional information & topic based
 search of packages relevant to your use cases...**
 
-Mono-repository for 151+ thi.ng TypeScript/ES6 projects, a wide
-collection of largely data transformation oriented packages and building
-blocks for (non-exhaustive list of topics):
+Mono-repository for 152+ thi.ng TypeScript/ES6 projects, a wide collection of
+largely data transformation oriented packages and building blocks for
+(non-exhaustive list of topics):
 
 - Functional programming (composition, memoization, transducers, multi-methods)
 - Data structures & data transformations for wide range of use cases (list,
@@ -132,19 +132,24 @@ for other project-wide information, tidbits, useful snippets etc.
 feature or `develop` branches)
 -->
 
-### Latest additions / updates (since 04/2021)
+### Latest additions / updates (since 08/2021)
 
-| Project                                         | Version                                                                                                               | Changelog                                        | Description                                    |
-|-------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|------------------------------------------------|
-| [`@thi.ng/date`](./packages/date)               | [![version](https://img.shields.io/npm/v/@thi.ng/date.svg)](https://www.npmjs.com/package/@thi.ng/date)               | [changelog](./packages/date/CHANGELOG.md)        | Date/time iterators, formatters, rounding      |
-| [`@thi.ng/distance`](./packages/distance)       | [![version](https://img.shields.io/npm/v/@thi.ng/distance.svg)](https://www.npmjs.com/package/@thi.ng/distance)       | [changelog](./packages/distance/CHANGELOG.md)    | n-D distance metrics & K-nearest neighborhoods |
-| [`@thi.ng/k-means`](./packages/k-means)         | [![version](https://img.shields.io/npm/v/@thi.ng/k-means.svg)](https://www.npmjs.com/package/@thi.ng/k-means)         | [changelog](./packages/k-means/CHANGELOG.md)     | K-means clustering of n-D data                 |
-| [`@thi.ng/lowdisc`](./packages/lowdisc)         | [![version](https://img.shields.io/npm/v/@thi.ng/lowdisc.svg)](https://www.npmjs.com/package/@thi.ng/lowdisc)         | [changelog](./packages/lowdisc/CHANGELOG.md)     | n-D Low discrepancy sequence generators        |
-| [`@thi.ng/math`](./packages/math)               | [![version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)               | [changelog](./packages/math/CHANGELOG.md)        | Assorted common math functions & utilities     |
-| [`@thi.ng/mime`](./packages/mime)               | [![version](https://img.shields.io/npm/v/@thi.ng/mime.svg)](https://www.npmjs.com/package/@thi.ng/mime)               | [changelog](./packages/mime/CHANGELOG.md)        | File extension to MIME type mappings           |
-| [`@thi.ng/pixel`](./packages/pixel)             | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)             | [changelog](./packages/pixel/CHANGELOG.md)       | Multi-format pixel buffers                     |
-| [`@thi.ng/transducers`](./packages/transducers) | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers) | [changelog](./packages/transducers/CHANGELOG.md) | Composable data transformations                |
-| [`@thi.ng/vectors`](./packages/vectors)         | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)         | [changelog](./packages/vectors/CHANGELOG.md)     | Fixed & arbitrary-length vector ops            |
+| Project                                                     | Version                                                                                                                           | Changelog                                              | Description                                            |
+|-------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|--------------------------------------------------------|
+| [`@thi.ng/args`](./packages/args)                           | [![version](https://img.shields.io/npm/v/@thi.ng/args.svg)](https://www.npmjs.com/package/@thi.ng/args)                           | [changelog](./packages/args/CHANGELOG.md)              | Declarative & functional CLI arg parsing & coercions   |
+| [`@thi.ng/atom`](./packages/atom)                           | [![version](https://img.shields.io/npm/v/@thi.ng/atom.svg)](https://www.npmjs.com/package/@thi.ng/atom)                           | [changelog](./packages/atom/CHANGELOG.md)              | Immutable value wrappers, views, history               |
+| [`@thi.ng/color-palettes`](./packages/color-palettes)       | [![version](https://img.shields.io/npm/v/@thi.ng/color-palettes.svg)](https://www.npmjs.com/package/@thi.ng/color-palettes)       | [changelog](./packages/color-palettes/CHANGELOG.md)    | Collection of color palettes                           |
+| [`@thi.ng/date`](./packages/date)                           | [![version](https://img.shields.io/npm/v/@thi.ng/date.svg)](https://www.npmjs.com/package/@thi.ng/date)                           | [changelog](./packages/date/CHANGELOG.md)              | Date/time iterators, formatters, rounding              |
+| [`@thi.ng/heaps`](./packages/heaps)                         | [![version](https://img.shields.io/npm/v/@thi.ng/heaps.svg)](https://www.npmjs.com/package/@thi.ng/heaps)                         | [changelog](./packages/heaps/CHANGELOG.md)             | Binary & d-ary heap impls                              |
+| [`@thi.ng/geom-isoline`](./packages/geom-isoline)           | [![version](https://img.shields.io/npm/v/@thi.ng/geom-isoline.svg)](https://www.npmjs.com/package/@thi.ng/geom-isoline)           | [changelog](./packages/geom-isoline/CHANGELOG.md)      | 2D contour line extraction                             |
+| [`@thi.ng/k-means`](./packages/k-means)                     | [![version](https://img.shields.io/npm/v/@thi.ng/k-means.svg)](https://www.npmjs.com/package/@thi.ng/k-means)                     | [changelog](./packages/k-means/CHANGELOG.md)           | K-means clustering of n-D data                         |
+| [`@thi.ng/ksuid`](./packages/ksuid)                         | [![version](https://img.shields.io/npm/v/@thi.ng/ksuid.svg)](https://www.npmjs.com/package/@thi.ng/ksuid)                         | [changelog](./packages/ksuid/CHANGELOG.md)             | K-sortable unique identifiers, binary & base-N encoded |
+| [`@thi.ng/pixel`](./packages/pixel)                         | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)                         | [changelog](./packages/pixel/CHANGELOG.md)             | Multi-format pixel buffers                             |
+| [`@thi.ng/rdom`](./packages/rdom)                           | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)                           | [changelog](./packages/rdom/CHANGELOG.md)              | Reactive, diff-less, async UI components               |
+| [`@thi.ng/rdom-components`](./packages/rdom-components)     | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-components.svg)](https://www.npmjs.com/package/@thi.ng/rdom-components)     | [changelog](./packages/rdom-components/CHANGELOG.md)   | Unstyled, customizable component collection            |
+| [`@thi.ng/shader-ast`](./packages/shader-ast)               | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast)               | [changelog](./packages/shader-ast/CHANGELOG.md)        | AST DSL for x-platform shader code                     |
+| [`@thi.ng/shader-ast-stdlib`](./packages/shader-ast-stdlib) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-stdlib.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-stdlib) | [changelog](./packages/shader-ast-stdlib/CHANGELOG.md) | 100+ useful AST shader functions                       |
+| [`@thi.ng/transducers`](./packages/transducers)             | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)             | [changelog](./packages/transducers/CHANGELOG.md)       | Composable data transformations                        |
 
 ### Fundamentals
 
@@ -291,6 +296,7 @@ feature or `develop` branches)
 | Project                                                       | Version                                                                                                                             | Changelog                                               | Description                                         |
 |---------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|
 | [`@thi.ng/color`](./packages/color)                           | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)                           | [changelog](./packages/color/CHANGELOG.md)              | Color conversions, gradients                        |
+| [`@thi.ng/color-palettes`](./packages/color-palettes)         | [![version](https://img.shields.io/npm/v/@thi.ng/color-palettes.svg)](https://www.npmjs.com/package/@thi.ng/color-palettes)         | [changelog](./packages/color-palettes/CHANGELOG.md)     | Collection of color palettes                        |
 | [`@thi.ng/dgraph-dot`](./packages/dgraph-dot)                 | [![version](https://img.shields.io/npm/v/@thi.ng/dgraph-dot.svg)](https://www.npmjs.com/package/@thi.ng/dgraph-dot)                 | [changelog](./packages/dgraph-dot/CHANGELOG.md)         | Dependency graph -> Graphviz                        |
 | [`@thi.ng/fuzzy-viz`](./packages/fuzzy-viz)                   | [![version](https://img.shields.io/npm/v/@thi.ng/fuzzy-viz.svg)](https://www.npmjs.com/package/@thi.ng/fuzzy-viz)                   | [changelog](./packages/fuzzy-viz/CHANGELOG.md)          | Visualization, instrumentation for @thi.ng/fuzzy    |
 | [`@thi.ng/geom`](./packages/geom)                             | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)                             | [changelog](./packages/geom/CHANGELOG.md)               | 2D only geometry types & ops                        |
