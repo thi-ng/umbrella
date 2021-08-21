@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/color-palettes",
     "version": "0.0.1",
-    "description": "Collection of image based color palettes",
+    "description": "Collection of 64 image based color palettes",
     "module": "./index.js",
     "main": "./lib/index.js",
     "umd:main": "./lib/index.umd.js",
@@ -60,7 +60,6 @@
     "sideEffects": false,
     "thi.ng": {
         "parent": "@thi.ng/color",
-        "status": "alpha",
-        "year": 2019
+        "year": 2021
     }
 }

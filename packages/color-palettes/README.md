@@ -22,11 +22,11 @@ This project is part of the
 
 ## About
 
-Collection of image based color palettes. This is a support package for [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color).
+Collection of 64 image based color palettes. This is a support package for [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color).
 
 ### Status
 
-**ALPHA** - bleeding edge / work-in-progress
+**STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bcolor-palettes%5D+in%3Atitle)
 
@@ -149,10 +149,10 @@ If this project contributes to an academic publication, please cite it as:
   title = "@thi.ng/color-palettes",
   author = "Karsten Schmidt",
   note = "https://thi.ng/color-palettes",
-  year = 2019
+  year = 2021
 }
 ```
 
 ## License
 
-&copy; 2019 - 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2021 Karsten Schmidt // Apache Software License 2.0
