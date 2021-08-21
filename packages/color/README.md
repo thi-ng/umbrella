@@ -23,6 +23,7 @@ For the Clojure version, please visit: [thi.ng/color-clj](https://thi.ng/color-c
     - [Cosine gradients](#cosine-gradients)
   - [RGB color transformations](#rgb-color-transformations)
   - [Status](#status)
+  - [Support packages](#support-packages)
   - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -567,6 +568,10 @@ concatenation (see `concat()`) for more efficient application.
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bcolor%5D+in%3Atitle)
+
+### Support packages
+
+- [@thi.ng/color-palettes](https://github.com/thi-ng/umbrella/tree/develop/packages/color-palettes) - Collection of 64 image based color palettes
 
 ### Related packages
 
