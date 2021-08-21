@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/color-palettes",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "Collection of 64 image based color palettes",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,7 +38,6 @@
         "pub": "yarn build:release && yarn publish --access public",
         "tool:swatches": "ts-node -P tools/tsconfig.json tools/index.ts"
     },
-    "dependencies": {},
     "files": [
         "*.js",
         "*.d.ts",
