@@ -123,5 +123,3 @@ export const joinWith = <A, B>(
     }
     return empty(a, Set);
 };
-
-joinWith(new Set([{ a: 1, b: 2 }]), new Set([{ id: 1, c: 2 }]), { a: "id" });
