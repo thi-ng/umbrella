@@ -28,7 +28,7 @@
         "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
         "build:es6": "tsc --declaration",
         "build:test": "rimraf build && tsc -p test/tsconfig.json",
-        "build:binary": "echo \"/** @internal */\nexport const BINARY = \\\"$(../../scripts/base64 opt.wasm)\\\";\" > src/binary.ts",
+        "build:binary": "tools/build-binary.sh",
         "build:check": "tsc --isolatedModules --noEmit",
         "test": "mocha test",
         "cover": "nyc mocha test && nyc report --reporter=lcov",
@@ -49,12 +49,16 @@
         "lib"
     ],
     "keywords": [
+        "64bit",
         "bigint",
         "binary",
         "conversion",
+        "integer",
         "typedarray",
         "typescript",
-        "wasm"
+        "varint",
+        "wasm",
+        "zig"
     ],
     "publishConfig": {
         "access": "public"
