@@ -16,7 +16,7 @@ WASM based [Little Endian Base
 supporting (u)int64 range (however for JS purposes only up to
 `MAX_SAFE_INTEGER`).
 
-The WASM binary (~660 bytes) is embedded as base64 string in the
+The WASM binary (~860 bytes) is embedded as base64 string in the
 TypeScript source to make it easier to use in both browser & node
 environments. The source code of the actual implementation (written in
 [Zig](https://ziglang.org)) is included in
@@ -75,8 +75,14 @@ leb.decodeSLEB128(enc)
 
 ## Building the binary
 
+Requirements:
+
+- [Zig](https://ziglang.org/download/)
+- [Binaryen](https://github.com/WebAssembly/binaryen)
+
 ```bash
-# download latest master from https://ziglang.org/download/
+# install required tools
+brew install zig binaryen
 
 # first run native tests
 zig test packages/leb128/src/leb128.zig
@@ -84,16 +90,7 @@ zig test packages/leb128/src/leb128.zig
 # Test 2/2 max safe integer...OK
 # All tests passed.
 
-# compile to WASM (requires zig v0.4.0 or later)
-zig build-lib -target wasm32-freestanding --release-small --strip src/leb128.zig
-
-# apply binaryen optimizer
-wasm-opt leb128.wasm -o opt.wasm -Os
-
-# display as .wat text format
-wasm2wat opt.wasm
-
-# base64 encode and generate src/binary.ts
+# build binary and regenerate src/binary.ts
 yarn build:binary
 
 # test TS/JS version
