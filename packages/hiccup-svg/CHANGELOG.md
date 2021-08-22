@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.7.33...@thi.ng/hiccup-svg@3.8.0) (2021-08-22)
+
+
+### Features
+
+* **hiccup-svg:** add numericAttribs(), fix svg() ([d6cb992](https://github.com/thi-ng/umbrella/commit/d6cb9929d274c83e89670e9140bba1cb172a0deb))
+
+
+
+
+
 # [3.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.6.6...@thi.ng/hiccup-svg@3.7.0) (2021-01-02)
 
 

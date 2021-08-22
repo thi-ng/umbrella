@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rdom",
-    "version": "0.6.7",
+    "version": "0.6.8",
     "description": "Lightweight, reactive, VDOM-less UI/DOM components with async lifecycle and @thi.ng/hiccup compatible",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -44,7 +44,7 @@
         "@thi.ng/hiccup": "^3.6.21",
         "@thi.ng/paths": "^4.2.13",
         "@thi.ng/prefixes": "^1.0.2",
-        "@thi.ng/rstream": "^6.0.19",
+        "@thi.ng/rstream": "^6.0.20",
         "@thi.ng/strings": "^2.1.6"
     },
     "files": [
