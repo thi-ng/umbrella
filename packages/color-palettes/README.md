@@ -65,6 +65,10 @@ Also see the [swatch generator](https://github.com/thi-ng/umbrella/blob/develop/
 
 Below the color themes are shown **sorted by median LCH chromacity**:
 
+(Please note that for some reason (likely color profile related) Google Chrome
+shows the more saturated colors much more muted than they actually are/should
+be. Any pointers to workarounds/solutions are appreciated...):
+
 ### Soft
 
 | Preset               | Swatches                                                                                                    |
