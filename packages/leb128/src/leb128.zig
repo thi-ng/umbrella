@@ -119,13 +119,13 @@ const mem = @import("std").mem;
 
 test "min safe integer" {
     assert(leb128_encode_s(-9007199254740991, buf[0..]) == 8);
-    assert(mem.eql(u8, buf[0..8], []u8{129, 128, 128, 128, 128, 128, 128, 112}));
+    assert(mem.eql(u8, buf[0..8], &[_]u8{ 129, 128, 128, 128, 128, 128, 128, 112 }));
 }
 
 test "max safe integer" {
     assert(leb128_encode_s(9007199254740991, buf[0..]) == 8);
-    assert(mem.eql(u8, buf[0..8], []u8{255, 255, 255, 255, 255, 255, 255, 15}));
+    assert(mem.eql(u8, buf[0..8], &[_]u8{ 255, 255, 255, 255, 255, 255, 255, 15 }));
 
     assert(leb128_encode_u(9007199254740991, buf[0..]) == 8);
-    assert(mem.eql(u8, buf[0..8], []u8{255, 255, 255, 255, 255, 255, 255, 15}));
+    assert(mem.eql(u8, buf[0..8], &[_]u8{ 255, 255, 255, 255, 255, 255, 255, 15 }));
 }
