@@ -25,7 +25,7 @@ const BASE_URL =
 const R = 24;
 const D = R * 2;
 const GAP = 5;
-const width = 6 * (D + 5);
+const width = 6 * (D + GAP);
 const cellW = (width - 2 * GAP) / 3;
 const yOff = D + GAP;
 
@@ -91,10 +91,11 @@ const grouped: Map<number, ThemeStat[]> = groupByMap(
 const sections: string[] = [];
 
 for (let gid of [...grouped.keys()].sort()) {
-    sections.push(`## ${["Soft", "Medium", "Strong"][gid]}`);
+    sections.push(`### ${["Soft", "Medium", "Strong"][gid]}`);
     const rows = [["Preset", "Swatches", "Stats"]];
     const themes = grouped.get(gid)!.sort(compareByKey("sortKey"));
-    for (let { id, theme, sortKey } of themes) {
+    const cw = cellW + GAP;
+    for (let { id, theme } of themes) {
         console.log(id);
         const doc = serialize(
             svg(
@@ -104,10 +105,7 @@ for (let gid of [...grouped.keys()].sort()) {
                     (i, [x, y]) => [
                         "g",
                         {
-                            translate: [
-                                (cellW + GAP) * x,
-                                yOff + (cellW + GAP) * y,
-                            ],
+                            translate: [cw * x, yOff + cw * y],
                         },
                         composition(theme, i),
                     ],
