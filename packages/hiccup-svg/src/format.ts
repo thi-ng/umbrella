@@ -17,31 +17,45 @@ export const fpoints = (pts: Vec2Like[], sep = " ") =>
     pts ? pts.map(fpoint).join(sep) : "";
 
 /**
+ * Takes an attributes object and a number of attrib IDs whose values should be
+ * formatted using {@link ff}. Mutates and returns `attribs` object.
+ *
+ * @param attribs
+ * @param ids
+ */
+export const numericAttribs = (attribs: any, ...ids: string[]) => {
+    let v: any;
+    for (let id of ids) {
+        (v = attribs[id]) != null && (attribs[id] = ff(v));
+    }
+    return attribs;
+};
+
+/**
  * Takes an attributes object and converts any `fill`, `stroke` or
- * transformation attributes, i.e. `transform`, `rotate`, `scale`,
- * `translate`. If the element has a `transform` attrib, conversion of
- * the other attribs will be skipped, else the values are assumed to be
- * either strings or:
+ * transformation attributes, i.e. `transform`, `rotate`, `scale`, `translate`.
+ *
+ * @remarks
+ * If the element has a `transform` attrib, conversion of the other attribs will
+ * be skipped, else the values are assumed to be either strings or:
  *
  * - `transform`: 6-element numeric array (mat23)
  * - `translate`: 2-element array
  * - `rotate`: number (angle in radians)
  * - `scale`: number (uniform scale) or 2-elem array
  *
- * If no `transform` is given, the resulting transformation order will
- * always be TRS. Any string values given will be used as-is and
- * therefore need to be complete, e.g. `{ rotate: "rotate(60)" }`
+ * If no `transform` is given, the resulting transformation order will always be
+ * TRS. Any string values given will be used as-is and therefore need to be
+ * complete, e.g. `{ rotate: "rotate(60)" }`
  *
- * For color related attribs (`fill`, `stroke`), if given value is
- * array-like, a number or an {@link @thi.ng/color#IColor} instance, it
- * will be converted into a CSS color string using
- * {@link @thi.ng/color#asCSS}.
+ * For color related attribs (`fill`, `stroke`), if given value is array-like, a
+ * number or an {@link @thi.ng/color#IColor} instance, it will be converted into
+ * a CSS color string using {@link @thi.ng/color#asCSS}.
  *
- * String color attribs prefixed with `$` are replaced with `url(#...)`
- * refs (used for referencing gradients).
+ * String color attribs prefixed with `$` are replaced with `url(#...)` refs
+ * (used for referencing gradients).
  *
- * Returns updated attribs or `undefined` if `attribs` itself is
- * null-ish.
+ * Returns updated attribs or `undefined` if `attribs` itself is null-ish.
  *
  * @param attribs - attributes object
  *

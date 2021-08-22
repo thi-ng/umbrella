@@ -1,6 +1,6 @@
 import { XML_SVG, XML_XLINK } from "@thi.ng/prefixes";
 import { convertTree } from "./convert";
-import { fattribs } from "./format";
+import { fattribs, numericAttribs } from "./format";
 
 /**
  * Defines an <svg> root element with default XML namespaces. By default
@@ -16,12 +16,19 @@ import { fattribs } from "./format";
  * @param body - shape primitives
  */
 export const svg = (attribs: any, ...body: any[]): any[] => {
-    attribs = fattribs({
-        version: "1.1",
-        xmlns: XML_SVG,
-        "xmlns:xlink": XML_XLINK,
-        ...attribs,
-    });
+    attribs = fattribs(
+        numericAttribs(
+            {
+                version: "1.1",
+                xmlns: XML_SVG,
+                "xmlns:xlink": XML_XLINK,
+                ...attribs,
+            },
+            "width",
+            "height",
+            "stroke-width"
+        )
+    );
     if (attribs.convert) {
         delete attribs.convert;
         body = body.map(convertTree);
