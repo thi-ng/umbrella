@@ -61,7 +61,7 @@ directory are using this package.
 A selection:
 
 | Screenshot                                                                                                        | Description                                 | Live demo                                        | Source                                                                        |
-| ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------- |
+|:------------------------------------------------------------------------------------------------------------------|:--------------------------------------------|:-------------------------------------------------|:------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/ramp-synth.png" width="240"/> | Unison wavetable synth with waveform editor | [Demo](https://demo.thi.ng/umbrella/ramp-synth/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/ramp-synth) |
 
 ## API

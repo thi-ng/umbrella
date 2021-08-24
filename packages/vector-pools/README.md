@@ -89,7 +89,7 @@ directory are using this package.
 A selection:
 
 | Screenshot                                                                                                        | Description                                 | Live demo                                        | Source                                                                        |
-| ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------- |
+|:------------------------------------------------------------------------------------------------------------------|:--------------------------------------------|:-------------------------------------------------|:------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-msdf.jpg" width="240"/> | WebGL MSDF text rendering & particle system | [Demo](https://demo.thi.ng/umbrella/webgl-msdf/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-msdf) |
 
 ## API

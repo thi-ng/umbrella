@@ -84,7 +84,7 @@ directory are using this package.
 A selection:
 
 | Screenshot                                                                                                             | Description                                  | Live demo                                          | Source                                                                          |
-| ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------- |
+|:-----------------------------------------------------------------------------------------------------------------------|:---------------------------------------------|:---------------------------------------------------|:--------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/pixel-basics.png" width="240"/>       | Pixel buffer manipulations                   | [Demo](https://demo.thi.ng/umbrella/pixel-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-basics) |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/porter-duff/porter-duff2.png" width="240"/> | Port-Duff image compositing / alpha blending | [Demo](https://demo.thi.ng/umbrella/porter-duff/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/porter-duff)  |
 

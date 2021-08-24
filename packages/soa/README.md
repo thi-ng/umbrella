@@ -93,7 +93,7 @@ directory are using this package.
 A selection:
 
 | Screenshot                                                                                                          | Description                                  | Live demo                                        | Source                                                                        |
-| ------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------- |
+|:--------------------------------------------------------------------------------------------------------------------|:---------------------------------------------|:-------------------------------------------------|:------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/soa-ecs-100k.png" width="240"/> | Entity Component System w/ 100k 3D particles | [Demo](https://demo.thi.ng/umbrella/soa-ecs/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/soa-ecs)    |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-cube.png" width="240"/>   | WebGL multi-colored cube mesh                | [Demo](https://demo.thi.ng/umbrella/webgl-cube/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-cube) |
 

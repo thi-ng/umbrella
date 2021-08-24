@@ -99,7 +99,7 @@ directory are using this package.
 A selection:
 
 | Screenshot                                                                                                          | Description                                 | Live demo                                          | Source                                                                          |
-| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------- |
+|:--------------------------------------------------------------------------------------------------------------------|:--------------------------------------------|:---------------------------------------------------|:--------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/triple-query.png" width="240"/> | Triple store query results & sortable table | [Demo](https://demo.thi.ng/umbrella/triple-query/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/triple-query) |
 
 ## API

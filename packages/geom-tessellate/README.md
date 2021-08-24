@@ -73,7 +73,7 @@ directory are using this package.
 A selection:
 
 | Screenshot                                                                                                | Description                               | Live demo                                         | Source                                                                         |
-| --------------------------------------------------------------------------------------------------------- | ----------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------ |
+|:----------------------------------------------------------------------------------------------------------|:------------------------------------------|:--------------------------------------------------|:-------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/tessel.png" width="240"/> | Animated, recursive polygon tessellations | [Demo](https://demo.thi.ng/umbrella/geom-tessel/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-tessel) |
 
 ## API

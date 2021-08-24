@@ -74,7 +74,7 @@ directory are using this package.
 A selection:
 
 | Screenshot                                                                                                   | Description                           | Live demo                                              | Source                                                                              |
-| ------------------------------------------------------------------------------------------------------------ | ------------------------------------- | ------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+|:-------------------------------------------------------------------------------------------------------------|:--------------------------------------|:-------------------------------------------------------|:------------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-fuzz.png" width="240"/> | geom-fuzz basic shape & fill examples | [Demo](https://demo.thi.ng/umbrella/geom-fuzz-basics/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-fuzz-basics) |
 
 ## API

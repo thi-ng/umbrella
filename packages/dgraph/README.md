@@ -82,10 +82,9 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                           | Description                              | Live| Source                                                                           |
-|                                                                                                                      |                                          | demo|                                                                                  |
-| -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- | --- | -------------------------------------------------------------------------------- |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/package-stats.png" width="240"/> | CLI util to visualize umbrella pkg stats |     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/package-stats) |
+| Screenshot                                                                                                           | Description                              | Live demo | Source                                                                           |
+|:---------------------------------------------------------------------------------------------------------------------|:-----------------------------------------|:----------|:---------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/package-stats.png" width="240"/> | CLI util to visualize umbrella pkg stats |           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/package-stats) |
 
 ## API
 

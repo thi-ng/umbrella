@@ -62,7 +62,7 @@ directory are using this package.
 A selection:
 
 | Screenshot                                                                                                      | Description                                                | Live demo                                        | Source                                                                        |
-| --------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------- |
+|:----------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------|:-------------------------------------------------|:------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-isoline.png" width="240"/> | Animated sine plasma effect visualized using contour lines | [Demo](https://demo.thi.ng/umbrella/iso-plasma/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/iso-plasma) |
 
 ## API

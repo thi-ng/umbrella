@@ -74,7 +74,7 @@ directory are using this package.
 A selection:
 
 | Screenshot                                                                                                                | Description                              | Live demo                                                | Source                                                                                |
-| ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+|:--------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-workers.jpg" width="240"/> | Fork-join worker-based raymarch renderer | [Demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-workers) |
 
 ## API

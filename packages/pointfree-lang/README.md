@@ -98,10 +98,9 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                           | Description                      | Live| Source                                                                           |
-|                                                                                                                      |                                  | demo|                                                                                  |
-| -------------------------------------------------------------------------------------------------------------------- | -------------------------------- | --- | -------------------------------------------------------------------------------- |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-svg.png" width="240"/> | Generate SVG using pointfree DSL |     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-svg) |
+| Screenshot                                                                                                           | Description                      | Live demo | Source                                                                           |
+|:---------------------------------------------------------------------------------------------------------------------|:---------------------------------|:----------|:---------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pointfree-svg.png" width="240"/> | Generate SVG using pointfree DSL |           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pointfree-svg) |
 
 ## Command line usage
 
