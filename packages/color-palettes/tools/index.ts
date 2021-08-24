@@ -1,8 +1,8 @@
 import { dotsH, lch } from "@thi.ng/color";
-import { compareByKey } from "@thi.ng/compare";
+import { compareByKey, compareNumDesc } from "@thi.ng/compare";
 import { serialize } from "@thi.ng/hiccup";
 import { svg } from "@thi.ng/hiccup-svg";
-import { padRight, repeat } from "@thi.ng/strings";
+import { table } from "@thi.ng/markdown-table";
 import {
     assocObj,
     groupByMap,
@@ -19,8 +19,9 @@ import { writeFileSync } from "fs";
 import { THEMES } from "../src";
 
 const BASE_URL =
-    "https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes";
-// const BASE_URL = ".";
+    process.argv[2] !== "--local"
+        ? "https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes"
+        : ".";
 
 const R = 24;
 const D = R * 2;
@@ -49,22 +50,6 @@ const composition = (theme: string[], i: number) => [
     ]),
 ];
 
-const makeTable = (rows: string[][]) => {
-    const [w1, w2] = rows.reduce(
-        (acc, [a, b]) => [
-            Math.max(acc[0], a.length),
-            Math.max(acc[1], b.length),
-        ],
-        [0, 0]
-    );
-
-    const p1 = padRight(w1);
-    const p2 = padRight(w2);
-    const table = rows.map(([a, b]) => `| ${p1(a)} | ${p2(b)} |`);
-    table.splice(1, 0, `|${repeat("-", w1 + 2)}|${repeat("-", w2 + 2)}|`);
-    return table.join("\n");
-};
-
 type ThemeStat = { id: string; sortKey: number; key: number; theme: string[] };
 
 const themeStats = transduce(
@@ -90,13 +75,14 @@ const grouped: Map<number, ThemeStat[]> = groupByMap(
 
 const sections: string[] = [];
 
-for (let gid of [...grouped.keys()].sort()) {
+for (let gid of [...grouped.keys()].sort(compareNumDesc)) {
     sections.push(`### ${["Soft", "Medium", "Strong"][gid]}`);
-    const rows = [["Preset", "Swatches", "Stats"]];
-    const themes = grouped.get(gid)!.sort(compareByKey("sortKey"));
+    const rows: string[][] = [];
+    const themes = grouped
+        .get(gid)!
+        .sort(compareByKey("sortKey", compareNumDesc));
     const cw = cellW + GAP;
     for (let { id, theme } of themes) {
-        console.log(id);
         const doc = serialize(
             svg(
                 { convert: true, width, height: yOff + cellW * 2 + GAP },
@@ -117,7 +103,7 @@ for (let gid of [...grouped.keys()].sort()) {
 
         rows.push([`\`${id}\``, `![](${BASE_URL}/${id}.svg)`]);
     }
-    sections.push(makeTable(rows));
+    sections.push(table(["Preset", "Swatches"], rows));
 }
 
 writeFileSync(`export/table.md`, sections.join("\n\n"));
