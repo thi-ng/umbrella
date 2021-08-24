@@ -1,5 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { idgen } from "@thi.ng/idgen";
+import { tableKeys } from "@thi.ng/markdown-table";
 import { Z3 } from "@thi.ng/strings";
 import {
     comp,
@@ -14,7 +15,6 @@ import { META_FIELD } from "./api";
 import { initConfig } from "./config";
 import { readJSON } from "./io";
 import { thumb } from "./partials/asset";
-import { table } from "./partials/table";
 
 interface Example extends IObjectOf<string> {
     id: string;
@@ -62,13 +62,12 @@ and commented source code.
 If you want to [contribute](../CONTRIBUTING.md) an example, please get
 in touch via PR, issue tracker, email or twitter!
 
-${table(
+${tableKeys(
     ["#", "Screenshot", "Name", "Description"],
     ["id", "img", "name", "description"],
     examples
 )}
 `;
-
     writeFileSync("examples/README.md", BODY);
 } catch (e) {
     console.log(e.message);
