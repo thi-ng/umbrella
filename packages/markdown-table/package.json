@@ -1,0 +1,71 @@
+{
+    "name": "@thi.ng/markdown-table",
+    "version": "0.0.1",
+    "description": "Markdown table formatter/generator with support for column alignments",
+    "module": "./index.js",
+    "main": "./lib/index.js",
+    "umd:main": "./lib/index.umd.js",
+    "typings": "./index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thi-ng/umbrella.git"
+    },
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/markdown-table#readme",
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
+        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
+        "build:es6": "tsc --declaration",
+        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "build:check": "tsc --isolatedModules --noEmit",
+        "test": "mocha test",
+        "cover": "nyc mocha test && nyc report --reporter=lcov",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
+        "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
+        "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
+        "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
+        "pub": "yarn build:release && yarn publish --access public"
+    },
+    "dependencies": {
+        "@thi.ng/api": "^7.1.9",
+        "@thi.ng/strings": "^2.1.6",
+        "@thi.ng/transducers": "^7.9.1"
+    },
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "lib"
+    ],
+    "keywords": [
+        "align",
+        "ascii",
+        "format",
+        "generator",
+        "markdown",
+        "table",
+        "text",
+        "typescript"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "sideEffects": false,
+    "thi.ng": {
+        "related": [
+            "hiccup-markdown",
+            "text-canvas"
+        ],
+        "year": 2021
+    }
+}
