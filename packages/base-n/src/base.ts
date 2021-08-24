@@ -21,7 +21,7 @@ export class BaseN implements IBase {
         let res = "";
         while (x > 0) {
             res = base[x % N] + res;
-            x = (x / N) | 0;
+            x = Math.floor(x / N);
         }
         return res;
     }
