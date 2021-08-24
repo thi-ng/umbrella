@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/base-n@1.0.4...@thi.ng/base-n@1.0.5) (2021-08-24)
+
+
+### Bug Fixes
+
+* **base-n:** fix [#308](https://github.com/thi-ng/umbrella/issues/308), remove unintentional int cast ([27a0d7e](https://github.com/thi-ng/umbrella/commit/27a0d7e5052d6c40b247bfe4ef8c1611b9907a6a))
+
+
+
+
+
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/base-n@0.1.8...@thi.ng/base-n@0.2.0) (2021-08-07)
 
 

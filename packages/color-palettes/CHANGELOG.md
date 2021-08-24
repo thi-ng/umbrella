@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/color-palettes@0.2.0...@thi.ng/color-palettes@0.3.0) (2021-08-24)
+
+
+### Features
+
+* **color-palettes:** add new palettes, update readme ([14f2952](https://github.com/thi-ng/umbrella/commit/14f29523554b82540bba020d52d6fffde8347348))
+* **color-palettes:** update/simplify swatch gen ([3187949](https://github.com/thi-ng/umbrella/commit/31879491ed4b59e4d91c818939f9c9beee980779))
+
+
+
+
+
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/color-palettes@0.1.0...@thi.ng/color-palettes@0.2.0) (2021-08-22)
 
 
