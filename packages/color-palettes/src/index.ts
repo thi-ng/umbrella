@@ -799,4 +799,20 @@ export const THEMES = {
         "#7ba7b5",
         "#3c758f",
     ],
+    "00iGNImQqINC9iQ1D": [
+        "#72564a",
+        "#a29aa2",
+        "#129dab",
+        "#f78915",
+        "#e0a657",
+        "#f3d1a9",
+    ],
+    "00iGNInM4y8vS5Aon": [
+        "#2a3c6f",
+        "#8c5788",
+        "#b6762d",
+        "#a8928a",
+        "#ebbc44",
+        "#e0cdb8",
+    ],
 };
