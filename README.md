@@ -476,6 +476,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/Shakthi"><img src="https://avatars.githubusercontent.com/u/1297378?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Shakthi Prasad G S</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3AShakthi" title="Bug reports">🐛</a> <a href="https://github.com/thi-ng/umbrella/commits?author=Shakthi" title="Code">💻</a></td>
     <td align="center"><a href="http://infonomics.ltd.uk"><img src="https://avatars.githubusercontent.com/u/49654?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Robin Gower</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3ARobsteranium" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/djmike"><img src="https://avatars.githubusercontent.com/u/266039?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Michael Latzoni</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Adjmike" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/ZYinMD"><img src="https://avatars.githubusercontent.com/u/32368482?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Z Yin</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3AZYinMD" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
