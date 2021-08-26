@@ -1,7 +1,22 @@
+import type { TypedArray } from "./typedarray";
+
 /**
- * Returns an array's value type.
+ * Returns an array's value type. Assumes array is homogeneous (only type of
+ * first element will be considered).
  */
 export type ArrayValue<T extends unknown[]> = T[0];
+
+/**
+ * Somewhat similar, but recursive version of {@link ArrayValue}. If `T` is an
+ * array/typedarray recursively descends into it or (if not an array) returns
+ * `T`. Assumes arrays at each level are homogeneous (only type of first
+ * elements will be considered).
+ */
+export type DeepArrayValue<T> = T extends unknown[]
+    ? DeepArrayValue<T[0]>
+    : T extends TypedArray
+    ? number
+    : T;
 
 /**
  * Defines a fixed sized, iterable tuple with elements of type `T` and
@@ -47,13 +62,10 @@ export type Prepend<T, U extends unknown[]> = [T, ...U];
 type ReverseReducer<T extends unknown[], C extends unknown[]> = {
     // case when we got 0 elements
     0: C;
-
     // case when we got 1 element
     1: Prepend<Head<T>, C>;
-
     // case when we got more than 1 element
     2: ReverseReducer<Tail<T>, Prepend<Head<T>, C>>;
-
     // switch between cases
 }[Tail<T> extends [] ? (Head<T> extends never ? 0 : 1) : 2];
 
