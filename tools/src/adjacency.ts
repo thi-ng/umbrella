@@ -13,6 +13,7 @@ import {
 import { PI } from "@thi.ng/math";
 import { XML_SVG } from "@thi.ng/prefixes";
 import { comp, filter, iterator, map, range } from "@thi.ng/transducers";
+import { execSync } from "child_process";
 import { writeFileSync } from "fs";
 import { files, readJSON } from "./io";
 import { shortName } from "./partials/package";
@@ -302,4 +303,12 @@ svg.addEventListener("touchstart", handleInteraction);`,
     })
 );
 
-writeFileSync("deps.svg", serialize(doc));
+writeFileSync("assets/deps.svg", serialize(doc));
+execSync("gzip -9 -f assets/deps.svg");
+
+console.log("uploading...");
+console.log(
+    execSync(
+        `aws s3 cp assets/deps.svg.gz s3://dependencies.thi.ng/index.svg --content-type image/svg+xml --content-encoding gzip --acl public-read --profile thing-umbrella`
+    ).toString()
+);
