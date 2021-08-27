@@ -1,4 +1,4 @@
-import type { Fn, Nullable } from "@thi.ng/api";
+import type { DeepArrayValue, Fn, Nullable } from "@thi.ng/api";
 import { isIterable, isString } from "@thi.ng/checks";
 import type { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
@@ -36,20 +36,20 @@ type MaybeIterable<T> = Nullable<Iterable<T>>;
  * @param fn -
  * @param src -
  */
-export function flattenWith<T>(
-    fn: Fn<T, MaybeIterable<T>>
-): Transducer<T | Iterable<T>, T>;
-export function flattenWith<T>(
-    fn: Fn<T, MaybeIterable<T>>,
-    src: Iterable<T | Iterable<T>>
-): IterableIterator<T>;
-export function flattenWith<T>(
-    fn: Fn<T, MaybeIterable<T>>,
-    src?: Iterable<T | Iterable<T>>
+export function flattenWith<A, B = DeepArrayValue<A>>(
+    fn: Fn<any, MaybeIterable<any>>
+): Transducer<A, B>;
+export function flattenWith<A, B = DeepArrayValue<A>>(
+    fn: Fn<any, MaybeIterable<any>>,
+    src: Iterable<A>
+): IterableIterator<B>;
+export function flattenWith<A>(
+    fn: Fn<any, MaybeIterable<any>>,
+    src?: Iterable<A>
 ): any {
     return isIterable(src)
         ? iterator(flattenWith(fn), isString(src) ? <any>[src] : src)
-        : (rfn: Reducer<any, T>) => {
+        : (rfn: Reducer<any, A>) => {
               const reduce = rfn[2];
               const flatten = (acc: any, x: any) => {
                   const xx = fn(x);

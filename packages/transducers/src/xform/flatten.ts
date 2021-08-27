@@ -1,3 +1,4 @@
+import type { DeepArrayValue } from "@thi.ng/api";
 import { isNotStringAndIterable } from "@thi.ng/checks";
 import type { Transducer } from "../api";
 import { flattenWith } from "./flatten-with";
@@ -21,10 +22,12 @@ import { flattenWith } from "./flatten-with";
  *
  * @param src -
  */
-export function flatten<T>(): Transducer<T | Iterable<T>, T>;
-export function flatten<T>(src: Iterable<T | Iterable<T>>): IterableIterator<T>;
-export function flatten<T>(src?: Iterable<T | Iterable<T>>): any {
-    return flattenWith(
+export function flatten<A, B = DeepArrayValue<A>>(): Transducer<A, B>;
+export function flatten<A, B = DeepArrayValue<A>>(
+    src: Iterable<A>
+): IterableIterator<B>;
+export function flatten(src?: Iterable<any>): any {
+    return flattenWith<any, any>(
         (x) => (isNotStringAndIterable(x) ? x : undefined),
         src!
     );
