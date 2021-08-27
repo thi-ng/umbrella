@@ -105,8 +105,7 @@ const app = ({ id, ksize, sim }: any) => [
         [
             "a.link.blue",
             {
-                href:
-                    "https://en.wikipedia.org/wiki/Elementary_cellular_automaton#Random_initial_state",
+                href: "https://en.wikipedia.org/wiki/Elementary_cellular_automaton#Random_initial_state",
             },
             "Wikipedia",
         ],
@@ -153,9 +152,7 @@ wolfram
     .transform(slidingWindow(WIDTH))
     // sidechainToggle is only letting new values through if enabled by
     // objExport stream
-    .subscribe(
-        sidechainToggle<any, boolean>(objExport, { initial: false })
-    )
+    .subscribe(sidechainToggle<any, boolean>(objExport, { initial: false }))
     // actual OBJ conversion & export
     .transform(
         map((grid) =>
@@ -165,7 +162,7 @@ wolfram
                     map(([[x, y]]) => `v ${x} ${y} 0`)
                 ),
                 str("\n"),
-                zip(range2d(WIDTH, WIDTH), flatten(grid))
+                zip(range2d(WIDTH, WIDTH), flatten<number[]>(grid))
             )
         ),
         map((obj: string) =>
