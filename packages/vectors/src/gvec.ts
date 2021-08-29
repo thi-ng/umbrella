@@ -7,6 +7,7 @@ import { eqDeltaS } from "./eqdelta";
 import { stridedValues } from "./internal/vec-utils";
 import { zeroes } from "./setn";
 import { setS } from "./sets";
+import { FORMATTER } from "./string";
 
 const SYM_B = "buf";
 const SYM_L = "length";
@@ -131,9 +132,7 @@ export const gvec = (
                         eqDeltaS(buf, o, size, eps, offset, 0, stride, 1);
                 case SYM_STR:
                     return () =>
-                        JSON.stringify([
-                            ...stridedValues(obj, size, offset, stride),
-                        ]);
+                        FORMATTER(stridedValues(obj, size, offset, stride));
                 default:
                     const j = parseInt(<string>id);
                     return !isNaN(j) && j >= 0 && j < size

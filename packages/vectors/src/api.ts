@@ -306,3 +306,29 @@ export const Z4: ReadonlyVec = Object.freeze([0, 0, 1, 0]);
 export const W4: ReadonlyVec = Object.freeze([0, 0, 0, 1]);
 
 export type Template = (syms: string[], i?: number) => string;
+
+export interface ToStringOpts {
+    /**
+     * Number of fractional digits
+     *
+     * @defaultValue 3
+     */
+    prec: number;
+    /**
+     * If given, each formatted vector component will be padded to given number
+     * of characters.
+     */
+    width: number;
+    /**
+     * Inter-component delimiter.
+     *
+     * @defaultValue ", "
+     */
+    delim: string;
+    /**
+     * Prefix/suffix wrapper strings.
+     *
+     * @defaultValue "[" and "]"
+     */
+    wrap: ArrayLike<string>;
+}

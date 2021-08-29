@@ -127,10 +127,6 @@ export class Vec3 extends AVec implements IHash<number>, IVector<Vec3> {
     toJSON() {
         return [this.x, this.y, this.z];
     }
-
-    toString() {
-        return `[${this.x}, ${this.y}, ${this.z}]`;
-    }
 }
 
 declareIndices(Vec3.prototype, ["x", "y", "z"]);

@@ -124,10 +124,6 @@ export class Vec2 extends AVec implements IHash<number>, IVector<Vec2> {
     toJSON() {
         return [this.x, this.y];
     }
-
-    toString() {
-        return `[${this.x}, ${this.y}]`;
-    }
 }
 
 declareIndices(Vec2.prototype, ["x", "y"]);

@@ -128,10 +128,6 @@ export class Vec4 extends AVec implements IHash<number>, IVector<Vec4> {
     toJSON() {
         return [this.x, this.y, this.z, this.w];
     }
-
-    toString() {
-        return `[${this.x}, ${this.y}, ${this.z}, ${this.w}]`;
-    }
 }
 
 declareIndices(Vec4.prototype, ["x", "y", "z", "w"]);

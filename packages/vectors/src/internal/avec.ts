@@ -1,5 +1,6 @@
 import type { NumericArray } from "@thi.ng/api";
 import type { StridedVec } from "../api";
+import { FORMATTER } from "../string";
 
 export abstract class AVec implements StridedVec {
     buf: NumericArray;
@@ -15,4 +16,8 @@ export abstract class AVec implements StridedVec {
     abstract get length(): number;
 
     abstract [Symbol.iterator](): IterableIterator<number>;
+
+    toString() {
+        return FORMATTER(this);
+    }
 }
