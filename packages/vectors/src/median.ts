@@ -24,3 +24,19 @@ export const median = (out: Vec | null, src: ReadonlyVec[]) => {
     }
     return out;
 };
+
+/**
+ * Computes the median component of given vector.
+ *
+ * @example
+ * ```ts
+ * vmean([10, 20, 5, 15])
+ * // 10
+ * ```
+ *
+ * @param a
+ */
+export const vmedian = (a: ReadonlyVec) => {
+    a = [...a].sort((a, b) => a - b);
+    return a[a.length >> 1];
+};

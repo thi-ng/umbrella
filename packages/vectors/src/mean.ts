@@ -3,6 +3,7 @@ import type { ReadonlyVec, Vec } from "./api";
 import { ensureInputs } from "./internal/ensure";
 import { mulN } from "./muln";
 import { set } from "./set";
+import { sum } from "./sum";
 
 /**
  * Takes an array of vectors (of uniform dimensions) and computes the
@@ -28,3 +29,16 @@ export const mean = (out: Vec | null, src: ReadonlyVec[]) => {
     }
     return mulN(out, out, 1 / src.length);
 };
+
+/**
+ * Computes the mean of components of given vector.
+ *
+ * @example
+ * ```ts
+ * vmean([5, 10, 15, 20])
+ * // 12.5
+ * ```
+ *
+ * @param a
+ */
+export const vmean = (a: ReadonlyVec) => sum(a) / a.length;
