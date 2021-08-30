@@ -159,6 +159,21 @@ const assembleG = (
     ret !== null ? `return ${ret};` : "",
 ];
 
+const assembleS = (
+    tpl: Template,
+    syms = ARGS_VV,
+    ret = "o",
+    pre = DEFAULT_OUT,
+    post?: string
+) => [
+    pre,
+    "while(k-->0) {",
+    tpl(syms.split(",").map((x) => `${x}[i${x}+k*s${x}]`)),
+    "}",
+    post,
+    ret !== null ? `return ${ret};` : "",
+];
+
 /** @internal */
 export const defaultOut: FnU2<string> = (o, args) =>
     `!${o} && (${o}=${args.split(",")[1]});`;
@@ -229,6 +244,16 @@ export const compileG = (
     );
 
 /** @internal */
+export const compileS = (
+    tpl: Template,
+    args: string,
+    syms = args,
+    ret?: string,
+    pre?: string,
+    post?: string
+) => <any>new Function(args, assembleS(tpl, syms, ret, pre, post).join(""));
+
+/** @internal */
 export const compileGHOF = (
     fns: any[],
     tpl: Template,
@@ -254,14 +279,14 @@ export const compileGHOF = (
         )(...fns)
     );
 
-export const defOp = <M, V>(
+export const defOp = <MULTI, FIXED>(
     tpl: Template,
     args = ARGS_VV,
     syms?: string,
     ret = "o",
     dispatch = 1,
     pre?: string
-): [M, V, V, V] => {
+): [MULTI, ...FIXED[]] => {
     syms = syms || args;
     pre = pre != null ? pre : defaultOut(ret, args);
     const fn: any = vop(dispatch);
@@ -271,9 +296,10 @@ export const defOp = <M, V>(
     return [fn, $(2), $(3), $(4)];
 };
 
-export const defFnOp = <M, V>(op: string) => defOp<M, V>(FN(op), ARGS_V);
+export const defFnOp = <MULTI, FIXED>(op: string) =>
+    defOp<MULTI, FIXED>(FN(op), ARGS_V);
 
-export const defHofOp = <M, V>(
+export const defHofOp = <MULTI, FIXED>(
     op: any,
     tpl?: Template,
     args = ARGS_V,
@@ -281,7 +307,7 @@ export const defHofOp = <M, V>(
     ret = "o",
     dispatch = 1,
     pre?: string
-): [M, V, V, V] => {
+): [MULTI, ...FIXED[]] => {
     const _tpl = tpl || FN("op");
     syms = syms || args;
     pre = pre != null ? pre : defaultOut(ret, args);
@@ -292,19 +318,21 @@ export const defHofOp = <M, V>(
     return [fn, $(2), $(3), $(4)];
 };
 
-export const defOpS = <V>(
+export const defOpS = <GENERIC, FIXED>(
     tpl: Template,
-    args = `${ARGS_VV},${SARGS_VV}`,
+    args = ARGS_VV,
+    idxArgs = SARGS_VV,
     syms = ARGS_VV,
     ret = "o",
     pre?: string,
     sizes = [2, 3, 4]
-): V[] =>
-    sizes.map((dim) =>
+): [GENERIC, ...FIXED[]] => [
+    compileS(tpl, `${args},k,${idxArgs}`, syms, ret, pre),
+    ...sizes.map((dim) =>
         compile(
             dim,
             tpl,
-            args,
+            `${args},${idxArgs}`,
             syms,
             ret,
             "",
@@ -312,24 +340,32 @@ export const defOpS = <V>(
             "",
             true
         )
-    );
+    ),
+];
 
-export const defHofOpS = <V>(
+export const defHofOpS = <GENERIC, FIXED>(
     op: any,
     tpl: Template,
-    args = `${ARGS_VV},${SARGS_VV}`,
+    args = ARGS_VV,
+    idxArgs = SARGS_VV,
     syms = ARGS_VV,
     ret = "o",
     pre?: string,
     sizes = [2, 3, 4]
-): V[] =>
-    sizes.map((dim) =>
+): [GENERIC, ...FIXED[]] => [
+    new Function(
+        "op",
+        `return (${args},k,${idxArgs})=>{${assembleS(tpl, syms, ret, pre).join(
+            ""
+        )}}`
+    )(op),
+    ...sizes.map((dim) =>
         compileHOF(
             dim,
             [op],
             tpl,
             "op",
-            args,
+            `${args},${idxArgs}`,
             syms,
             ret,
             "",
@@ -337,7 +373,8 @@ export const defHofOpS = <V>(
             "",
             true
         )
-    );
+    ),
+];
 
 export const defMathOp = (op: string) => defOp<MultiVecOpVV, VecOpVV>(MATH(op));
 
