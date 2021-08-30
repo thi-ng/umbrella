@@ -17,5 +17,5 @@ import { mulN } from "./muln";
 export const standardize = (out: Vec | null, a: ReadonlyVec) => {
     out = center(out, a);
     const m = magSq(out);
-    return mulN(null, out, m > 0 ? 1 / Math.sqrt(m / (out.length - 1)) : 0);
+    return m > 0 ? mulN(null, out, 1 / Math.sqrt(m / (out.length - 1))) : out;
 };
