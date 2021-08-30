@@ -143,6 +143,20 @@ export type VecOpSGV = (
     sa?: number
 ) => Vec;
 
+export type VecOpSN = (
+    out: Vec | null,
+    n: number,
+    io?: number,
+    so?: number
+) => Vec;
+export type VecOpSGN = (
+    out: Vec | null,
+    n: number,
+    num: number,
+    io?: number,
+    so?: number
+) => Vec;
+
 export type VecOpSVN = (
     out: Vec | null,
     a: ReadonlyVec,
