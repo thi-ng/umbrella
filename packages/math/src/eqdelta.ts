@@ -4,18 +4,13 @@ const abs = Math.abs;
 const max = Math.max;
 
 /**
- * Similar to {@link eqDelta}, but used given `eps` as is.
+ * Similar to {@link eqDeltaScaled}, but uses given `eps` as is.
  *
  * @param a - left value
  * @param b - right value
  * @param eps - epsilon / tolerance, default `1e-6`
  */
 export const eqDelta = (a: number, b: number, eps = EPS) => abs(a - b) <= eps;
-
-/**
- * @deprecated
- */
-export const eqDeltaFixed = eqDelta;
 
 /**
  * Checks if `|a - b| <= ε` and adapts given epsilon value to the given
