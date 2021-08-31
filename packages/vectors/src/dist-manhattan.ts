@@ -17,6 +17,10 @@ const $ = (dim: number) =>
         )
     );
 
+/**
+ * @remarks
+ * Reference: https://en.wikipedia.org/wiki/Taxicab_geometry
+ */
 export const distManhattan: MultiVecOpRoVV<number> = vop();
 
 distManhattan.default(

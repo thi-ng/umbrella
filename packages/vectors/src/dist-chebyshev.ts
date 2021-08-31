@@ -17,6 +17,10 @@ const $ = (dim: number) =>
         )
     );
 
+/**
+ * @remarks
+ * Reference: https://en.wikipedia.org/wiki/Chebyshev_distance
+ */
 export const distChebyshev: MultiVecOpRoVV<number> = vop();
 
 distChebyshev.default((a, b) => {
