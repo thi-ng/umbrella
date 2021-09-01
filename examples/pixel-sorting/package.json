@@ -14,6 +14,7 @@
         "@thi.ng/snowpack-env": "^2.3.3"
     },
     "dependencies": {
+        "@thi.ng/bench": "latest",
         "@thi.ng/color": "latest",
         "@thi.ng/hiccup-html": "latest",
         "@thi.ng/intervals": "latest",

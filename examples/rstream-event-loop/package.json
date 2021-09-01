@@ -12,7 +12,6 @@
     },
     "dependencies": {
         "@thi.ng/api": "latest",
-        "@thi.ng/arrays": "latest",
         "@thi.ng/paths": "latest",
         "@thi.ng/rstream": "latest",
         "@thi.ng/transducers": "latest",

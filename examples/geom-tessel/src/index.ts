@@ -1,4 +1,4 @@
-import { partial } from "@thi.ng/compose/partial";
+import { partial } from "@thi.ng/compose";
 import {
     arcLength,
     asPolygon,

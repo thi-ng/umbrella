@@ -1,7 +1,7 @@
 {
     "name": "pixel-indexed",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "Image dithering and remapping using indexed palettes",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
@@ -14,8 +14,9 @@
         "@thi.ng/snowpack-env": "^2.3.3"
     },
     "dependencies": {
-        "@thi.ng/api": "latest",
-        "@thi.ng/rdom": "latest"
+        "@thi.ng/color": "latest",
+        "@thi.ng/color-palettes": "latest",
+        "@thi.ng/pixel": "latest"
     },
     "browserslist": [
         "last 3 Chrome versions"
@@ -24,8 +25,7 @@
         "process": false
     },
     "thi.ng": {
-        "skip": true,
-        "readme": false,
-        "screenshot": "examples/"
+        "readme": true,
+        "screenshot": "examples/pixel-indexed.jpg"
     }
 }

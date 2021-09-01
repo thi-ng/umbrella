@@ -24,7 +24,12 @@
         "process": false
     },
     "thi.ng": {
-        "readme": true,
+        "readme": [
+            "geom",
+            "matrices",
+            "text-canvas",
+            "vectors"
+        ],
         "screenshot": "examples/text-canvas.png"
     },
     "devDependencies": {

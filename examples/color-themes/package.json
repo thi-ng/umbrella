@@ -14,14 +14,18 @@
         "@thi.ng/snowpack-env": "^2.3.3"
     },
     "dependencies": {
+        "@thi.ng/api": "latest",
         "@thi.ng/checks": "latest",
         "@thi.ng/color": "latest",
+        "@thi.ng/dl-asset": "latest",
         "@thi.ng/hiccup-html": "latest",
         "@thi.ng/hiccup-svg": "latest",
         "@thi.ng/random": "latest",
         "@thi.ng/rdom": "latest",
         "@thi.ng/rdom-components": "latest",
-        "@thi.ng/rstream": "latest"
+        "@thi.ng/rstream": "latest",
+        "@thi.ng/rstream-dot": "latest",
+        "@thi.ng/transducers": "latest"
     },
     "browserslist": [
         "last 3 Chrome versions"

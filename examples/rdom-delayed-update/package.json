@@ -1,7 +1,7 @@
 {
     "name": "rdom-delayed-update",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "Dynamically loaded images w/ preloader state",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
@@ -14,8 +14,11 @@
         "@thi.ng/snowpack-env": "^2.3.3"
     },
     "dependencies": {
-        "@thi.ng/api": "latest",
-        "@thi.ng/rdom": "latest"
+        "@thi.ng/compose": "latest",
+        "@thi.ng/random": "latest",
+        "@thi.ng/rdom": "latest",
+        "@thi.ng/rstream": "latest",
+        "@thi.ng/transducers": "latest"
     },
     "browserslist": [
         "last 3 Chrome versions"
@@ -24,8 +27,9 @@
         "process": false
     },
     "thi.ng": {
-        "skip": true,
-        "readme": false,
-        "screenshot": "examples/"
+        "readme": [
+            "rdom"
+        ],
+        "screenshot": "examples/rdom-delayed-update.jpg"
     }
 }

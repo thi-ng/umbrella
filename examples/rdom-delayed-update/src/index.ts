@@ -16,13 +16,13 @@ interface UserSummary {
 }
 
 const users = reactive<UserSummary[]>([
-    { id: 1, name: "alice" },
-    { id: 2, name: "bob" },
-    { id: 3, name: "charlie" },
-    { id: 4, name: "dora" },
-    { id: 5, name: "emma" },
-    { id: 6, name: "fred" },
-    { id: 7, name: "gina" },
+    { id: 1, name: "Alice" },
+    { id: 2, name: "Bob" },
+    { id: 3, name: "Charlie" },
+    { id: 4, name: "Dora" },
+    { id: 5, name: "Emma" },
+    { id: 6, name: "Fred" },
+    { id: 7, name: "Gina" },
 ]);
 
 const colors = cycle(["f00", "0ff", "f0f", "f90", "00f", "0f0"]);
@@ -90,7 +90,7 @@ class UserComponent extends Component {
                 [
                     "h3.pa2.ma0.f6",
                     {},
-                    `Project #${this.user.id}: ${this.user.name}`,
+                    `User #${this.user.id}: ${this.user.name}`,
                 ],
             ]),
             parent,

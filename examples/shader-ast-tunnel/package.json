@@ -11,8 +11,8 @@
         "build": "../../node_modules/.bin/snowpack build"
     },
     "dependencies": {
-        "@thi.ng/binary": "latest",
         "@thi.ng/color": "latest",
+        "@thi.ng/pixel": "latest",
         "@thi.ng/shader-ast": "latest",
         "@thi.ng/shader-ast-glsl": "latest",
         "@thi.ng/shader-ast-js": "latest",
