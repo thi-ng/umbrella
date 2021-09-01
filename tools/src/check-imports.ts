@@ -61,7 +61,11 @@ const updateProjects = (parent: string, latest = false) => {
     for (let pkg of readdirSync(parent)) {
         pkg = `${parent}/${pkg}`;
         if (statSync(pkg).isDirectory()) {
-            updateImports(pkg, latest);
+            try {
+                updateImports(pkg, latest);
+            } catch (e) {
+                console.warn("\terror processing package", pkg);
+            }
         }
     }
 };
