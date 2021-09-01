@@ -1,4 +1,4 @@
-import type { Op1, Op1N, Op2, Op3, Op4 } from "./api";
+import type { Dual, Op1, Op1N, Op2, Op3, Op4 } from "./api";
 
 /**
  * Creates a multivariate dual number.
@@ -7,7 +7,7 @@ import type { Op1, Op1N, Op2, Op3, Op4 } from "./api";
  * @param n - number of variables (default: 1)
  * @param i - variable index (0 < i <= n)
  */
-export const dual = (real: number, n = 1, i = 0) => {
+export const dual = (real: number, n = 1, i = 0): Dual => {
     const out = new Array(n + 1).fill(0, 1);
     out[0] = real;
     i > 0 && (out[i] = 1);
@@ -53,7 +53,7 @@ export const defOp = <T extends Function>(
 ): T =>
     <any>(
         ((...xs: any[]) =>
-            xs[dispatch].length > 2 ? multi(...xs) : single(...xs))
+            xs[dispatch].length < 3 ? single(...xs) : multi(...xs))
     );
 
 export const add = defOp<Op2>(
@@ -220,6 +220,15 @@ export const atan = defOp<Op1>(
 );
 
 /**
+ * Linear interpolation for dual numbers: `a + (b - a) * t`
+ *
+ * @param a
+ * @param b
+ * @param t
+ */
+export const mix = (a: Dual, b: Dual, t: Dual) => add(a, mul(sub(b, a), t));
+
+/**
  * Higher order function. Takes a 2-multivariate {@link Op2} and returns new
  * function which takes two real numbers `x` and `y` representing variables in
  * the given function. When called, converts `x` and `y` first into dual numbers
@@ -250,9 +259,6 @@ export const evalFn3 = (fn: Op3) => (x: number, y: number, z: number) =>
  *
  * @param fn
  */
-export const evalFn4 = (fn: Op4) => (
-    x: number,
-    y: number,
-    z: number,
-    w: number
-) => fn([x, 1, 0, 0, 0], [y, 0, 1, 0, 0], [z, 0, 0, 1, 0], [w, 0, 0, 0, 1]);
+export const evalFn4 =
+    (fn: Op4) => (x: number, y: number, z: number, w: number) =>
+        fn([x, 1, 0, 0, 0], [y, 0, 1, 0, 0], [z, 0, 0, 1, 0], [w, 0, 0, 0, 1]);
