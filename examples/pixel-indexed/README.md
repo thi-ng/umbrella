@@ -1,6 +1,6 @@
 # pixel-indexed
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/pixel-indexed.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/pixel-indexed.jpg)
 
 [Live demo](http://demo.thi.ng/umbrella/pixel-indexed/)
 
