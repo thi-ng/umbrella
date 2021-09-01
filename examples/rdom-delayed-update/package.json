@@ -1,0 +1,31 @@
+{
+    "name": "rdom-delayed-update",
+    "version": "0.0.1",
+    "description": "TODO",
+    "repository": "https://github.com/thi-ng/umbrella",
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
+        "start": "../../node_modules/.bin/snowpack dev --reload",
+        "build": "../../node_modules/.bin/snowpack build"
+    },
+    "devDependencies": {
+        "@thi.ng/snowpack-env": "^2.3.3"
+    },
+    "dependencies": {
+        "@thi.ng/api": "latest",
+        "@thi.ng/rdom": "latest"
+    },
+    "browserslist": [
+        "last 3 Chrome versions"
+    ],
+    "browser": {
+        "process": false
+    },
+    "thi.ng": {
+        "skip": true,
+        "readme": false,
+        "screenshot": "examples/"
+    }
+}
