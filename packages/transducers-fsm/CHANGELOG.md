@@ -1,48 +1,33 @@
-# Change Log
+#  Change Log 
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines. 
 
-## [1.1.73](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-fsm@1.1.72...@thi.ng/transducers-fsm@1.1.73) (2021-09-03)
+#  [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-fsm@1.0.19...@thi.ng/transducers-fsm@1.1.0) (2019-07-07) 
 
-**Note:** Version bump only for package @thi.ng/transducers-fsm
+###  Features 
 
+- **transducers-fsm:** enable TS strict compiler flags (refactor) ([734103d](https://github.com/thi-ng/umbrella/commit/734103d)) 
 
+#  [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-fsm@0.2.36...@thi.ng/transducers-fsm@1.0.0) (2019-01-21) 
 
+###  Build System 
 
+- update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703)) 
 
-# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-fsm@1.0.19...@thi.ng/transducers-fsm@1.1.0) (2019-07-07)
+###  BREAKING CHANGES 
 
-### Features
+- enabled multi-outputs (ES6 modules, CJS, UMD) 
+- build scripts now first build ES6 modules in package root, then call   `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib` 
+- all imports MUST be updated to only refer to package level   (not individual files anymore). tree shaking in user land will get rid of   all unused imported symbols. 
 
-* **transducers-fsm:** enable TS strict compiler flags (refactor) ([734103d](https://github.com/thi-ng/umbrella/commit/734103d))
+#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-fsm@0.1.0...@thi.ng/transducers-fsm@0.2.0) (2018-06-19) 
 
-# [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-fsm@0.2.36...@thi.ng/transducers-fsm@1.0.0) (2019-01-21)
+###  Features 
 
-### Build System
+- **transducers-fsm:** support multiple results, add tests, update readme ([a9ca135](https://github.com/thi-ng/umbrella/commit/a9ca135)) 
 
-* update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
+#  0.1.0 (2018-06-18) 
 
-### BREAKING CHANGES
+###  Features 
 
-* enabled multi-outputs (ES6 modules, CJS, UMD)
-
-- build scripts now first build ES6 modules in package root, then call
-  `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
-- all imports MUST be updated to only refer to package level
-  (not individual files anymore). tree shaking in user land will get rid of
-  all unused imported symbols.
-
-<a name="0.2.0"></a>
-# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-fsm@0.1.0...@thi.ng/transducers-fsm@0.2.0) (2018-06-19)
-
-### Features
-
-* **transducers-fsm:** support multiple results, add tests, update readme ([a9ca135](https://github.com/thi-ng/umbrella/commit/a9ca135))
-
-<a name="0.1.0"></a>
-# 0.1.0 (2018-06-18)
-
-### Features
-
-* **transducers-fsm:** inital import ([7c3c290](https://github.com/thi-ng/umbrella/commit/7c3c290))
+- **transducers-fsm:** inital import ([7c3c290](https://github.com/thi-ng/umbrella/commit/7c3c290)) 

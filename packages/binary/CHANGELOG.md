@@ -1,104 +1,14 @@
-# Change Log
+#  Change Log 
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines. 
 
-## [2.2.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/binary@2.2.10...@thi.ng/binary@2.2.11) (2021-09-03)
+#  [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/binary@2.1.0...@thi.ng/binary@2.2.0) (2021-03-03) 
 
-**Note:** Version bump only for package @thi.ng/binary
+###  Features 
 
+- **binary:** add binary/one-hot conversions ([eeb6396](https://github.com/thi-ng/umbrella/commit/eeb6396ae1fbe700643d5a98a3923af9c1e9c51a)) 
 
+#  [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/binary@2.0.21...@thi.ng/binary@2.1.0) (2021-02-20) 
 
+###  Features 
 
-
-# [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/binary@2.1.0...@thi.ng/binary@2.2.0) (2021-03-03)
-
-
-### Features
-
-* **binary:** add binary/one-hot conversions ([eeb6396](https://github.com/thi-ng/umbrella/commit/eeb6396ae1fbe700643d5a98a3923af9c1e9c51a))
-
-
-
-
-
-# [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/binary@2.0.21...@thi.ng/binary@2.1.0) (2021-02-20)
-
-
-### Features
-
-* **binary:** add interleave4_12_24/4_16_32() ([89044d2](https://github.com/thi-ng/umbrella/commit/89044d2dfe4035028729fff4d9e7c890bdb008ff))
-* **binary:** add MSB_BITS8/16/32 LUTs ([e0eb47b](https://github.com/thi-ng/umbrella/commit/e0eb47bf4293832347b99a6706d257b391fd31b9))
-* **binary:** add swapLane02/13 ([2e45f48](https://github.com/thi-ng/umbrella/commit/2e45f48e946aa09943b01b4a7b7a9daee9e520ca))
-
-
-
-
-
-# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/binary@1.3.2...@thi.ng/binary@2.0.0) (2020-03-06)
-
-
-### Features
-
-* **binary:** make binary logic ops unmasked, rename masked versions ([c07cf04](https://github.com/thi-ng/umbrella/commit/c07cf040f831b7393d889f6e97dbae001769d0c2))
-
-
-### BREAKING CHANGES
-
-* **binary:** make binary logic ops unmasked, rename masked versions
-
-- existing names used for unmasked versions (returning signed ints)
-- masked versions of bitOr/bitAnd/bitXor etc. now suffixed with `M`, e.g. `bitAndM()`
-
-
-
-
-
-# [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/binary@1.2.1...@thi.ng/binary@1.3.0) (2020-02-25)
-
-
-### Features
-
-* **binary:** add byte conversions ([564310b](https://github.com/thi-ng/umbrella/commit/564310b45db9f6cfe8788af14e47c7346ef6a576))
-* **binary:** add endianess detection, 64bit float/int/uint conv ([856e035](https://github.com/thi-ng/umbrella/commit/856e035d68d727c717ce1cbb021e171fca81e3a8))
-* **binary:** add float & 64bit byte conversions ([9882196](https://github.com/thi-ng/umbrella/commit/9882196a887c842efda2c835d3b86f491893c6f9))
-* **binary:** add float/int conversions ([2e02d34](https://github.com/thi-ng/umbrella/commit/2e02d345a970eeb783109c6b92b32fda6b322235))
-* **binary:** add lane16/setLane16, flip8/16, mux ([1aa0a5e](https://github.com/thi-ng/umbrella/commit/1aa0a5e665ab067840ade8abdab73bfd2d0e9325))
-
-
-
-
-
-# [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/binary@1.1.1...@thi.ng/binary@1.2.0) (2019-11-30)
-
-### Features
-
-* **binary:** add bitSize() ([f085bfb](https://github.com/thi-ng/umbrella/commit/f085bfbaf1e6cb77c9a8eec8d488d716165b93dc))
-
-# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/binary@1.0.8...@thi.ng/binary@1.1.0) (2019-07-31)
-
-### Features
-
-* **binary:** add setLane8/4/2 fns ([7e24f5e](https://github.com/thi-ng/umbrella/commit/7e24f5e))
-
-# [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/binary@0.1.2...@thi.ng/binary@1.0.0) (2019-01-21)
-
-### Build System
-
-* update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
-
-### BREAKING CHANGES
-
-* enabled multi-outputs (ES6 modules, CJS, UMD)
-
-- build scripts now first build ES6 modules in package root, then call
-  `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
-- all imports MUST be updated to only refer to package level
-  (not individual files anymore). tree shaking in user land will get rid of
-  all unused imported symbols.
-
-# 0.1.0 (2018-10-17)
-
-### Features
-
-* **binary:** add [@thi](https://github.com/thi).ng/binary package ([458d4a0](https://github.com/thi-ng/umbrella/commit/458d4a0))

@@ -1,50 +1,22 @@
-# Change Log
+#  Change Log 
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines. 
 
-## [0.2.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom-components@0.2.8...@thi.ng/rdom-components@0.2.9) (2021-09-03)
+#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom-components@0.1.46...@thi.ng/rdom-components@0.2.0) (2021-08-04) 
 
-**Note:** Version bump only for package @thi.ng/rdom-components
+###  Features 
 
+- **rdom-components:** add input components ([fb390c1](https://github.com/thi-ng/umbrella/commit/fb390c1c30d0224a20526eacae7df7d092709518)) 
+- **rdom-components:** add staticRadio() component ([ff3d1c4](https://github.com/thi-ng/umbrella/commit/ff3d1c4495191de814427e36b8ac7ff744fc98c2)) 
 
+##  [0.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom-components@0.1.1...@thi.ng/rdom-components@0.1.2) (2020-07-09) 
 
+###  Bug Fixes 
 
+- **rdom-components:** sub handling in accord/tabs ([6b51fd2](https://github.com/thi-ng/umbrella/commit/6b51fd2ae851070cb82c8eed7194f9b3ec03e6c0)) 
 
-## [0.2.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom-components@0.2.7...@thi.ng/rdom-components@0.2.8) (2021-08-22)
+#  0.1.0 (2020-07-08) 
 
-**Note:** Version bump only for package @thi.ng/rdom-components
+###  Features 
 
-
-
-
-
-# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom-components@0.1.46...@thi.ng/rdom-components@0.2.0) (2021-08-04)
-
-
-### Features
-
-* **rdom-components:** add input components ([fb390c1](https://github.com/thi-ng/umbrella/commit/fb390c1c30d0224a20526eacae7df7d092709518))
-* **rdom-components:** add staticRadio() component ([ff3d1c4](https://github.com/thi-ng/umbrella/commit/ff3d1c4495191de814427e36b8ac7ff744fc98c2))
-
-
-
-
-
-## [0.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom-components@0.1.1...@thi.ng/rdom-components@0.1.2) (2020-07-09)
-
-
-### Bug Fixes
-
-* **rdom-components:** sub handling in accord/tabs ([6b51fd2](https://github.com/thi-ng/umbrella/commit/6b51fd2ae851070cb82c8eed7194f9b3ec03e6c0))
-
-
-
-
-
-# 0.1.0 (2020-07-08)
-
-
-### Features
-
-* **rdom-components:** import as new pkg (MBP2010 version) ([b7f72b6](https://github.com/thi-ng/umbrella/commit/b7f72b6a19dfdc4bdb35d89bda34e787d93e5e22))
+- **rdom-components:** import as new pkg (MBP2010 version) ([b7f72b6](https://github.com/thi-ng/umbrella/commit/b7f72b6a19dfdc4bdb35d89bda34e787d93e5e22)) 

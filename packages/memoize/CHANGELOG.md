@@ -1,80 +1,54 @@
-# Change Log
+#  Change Log 
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines. 
 
-## [2.1.21](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@2.1.20...@thi.ng/memoize@2.1.21) (2021-09-03)
+#  [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@2.0.19...@thi.ng/memoize@2.1.0) (2020-08-20) 
 
-**Note:** Version bump only for package @thi.ng/memoize
+###  Features 
 
+- **memoize:** add doOnce(), update readme ([889e00d](https://github.com/thi-ng/umbrella/commit/889e00d0376cda39f2a7e5848780bdf26f5fc5ca)) 
 
+#  [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@1.1.8...@thi.ng/memoize@2.0.0) (2020-02-25) 
 
+###  Code Refactoring 
 
+- **memoize:** update imports ([d6b5614](https://github.com/thi-ng/umbrella/commit/d6b56148ec3ab36f97bc3fce94d7c49a74e81e96)) 
 
-# [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@2.0.19...@thi.ng/memoize@2.1.0) (2020-08-20)
+###  BREAKING CHANGES 
 
+- **memoize:** replace obsolete Fn type aliases w/ @thi.ng/api types 
 
-### Features
+#  [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@1.0.9...@thi.ng/memoize@1.1.0) (2019-07-07) 
 
-* **memoize:** add doOnce(), update readme ([889e00d](https://github.com/thi-ng/umbrella/commit/889e00d0376cda39f2a7e5848780bdf26f5fc5ca))
+###  Bug Fixes 
 
+- **memoize:** return type memoize1() ([c0dafb9](https://github.com/thi-ng/umbrella/commit/c0dafb9)) 
 
+###  Features 
 
+- **memoize:** enable TS strict compiler flags (refactor) ([a08cc69](https://github.com/thi-ng/umbrella/commit/a08cc69)) 
 
+#  [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@0.2.6...@thi.ng/memoize@1.0.0) (2019-01-21) 
 
-# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@1.1.8...@thi.ng/memoize@2.0.0) (2020-02-25)
+###  Build System 
 
+- update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703)) 
 
-### Code Refactoring
+###  BREAKING CHANGES 
 
-* **memoize:** update imports ([d6b5614](https://github.com/thi-ng/umbrella/commit/d6b56148ec3ab36f97bc3fce94d7c49a74e81e96))
+- enabled multi-outputs (ES6 modules, CJS, UMD) 
+- build scripts now first build ES6 modules in package root, then call   `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib` 
+- all imports MUST be updated to only refer to package level   (not individual files anymore). tree shaking in user land will get rid of   all unused imported symbols. 
 
+#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@0.1.2...@thi.ng/memoize@0.2.0) (2018-09-06) 
 
-### BREAKING CHANGES
+###  Features 
 
-* **memoize:** replace obsolete Fn type aliases w/ @thi.ng/api types
+- **memoize:** add defonce() ([61bed88](https://github.com/thi-ng/umbrella/commit/61bed88)) 
 
+#  0.1.0 (2018-08-08) 
 
+###  Features 
 
-
-
-# [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@1.0.9...@thi.ng/memoize@1.1.0) (2019-07-07)
-
-### Bug Fixes
-
-* **memoize:** return type memoize1() ([c0dafb9](https://github.com/thi-ng/umbrella/commit/c0dafb9))
-
-### Features
-
-* **memoize:** enable TS strict compiler flags (refactor) ([a08cc69](https://github.com/thi-ng/umbrella/commit/a08cc69))
-
-# [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@0.2.6...@thi.ng/memoize@1.0.0) (2019-01-21)
-
-### Build System
-
-* update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
-
-### BREAKING CHANGES
-
-* enabled multi-outputs (ES6 modules, CJS, UMD)
-
-- build scripts now first build ES6 modules in package root, then call
-  `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
-- all imports MUST be updated to only refer to package level
-  (not individual files anymore). tree shaking in user land will get rid of
-  all unused imported symbols.
-
-<a name="0.2.0"></a>
-# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/memoize@0.1.2...@thi.ng/memoize@0.2.0) (2018-09-06)
-
-### Features
-
-* **memoize:** add defonce() ([61bed88](https://github.com/thi-ng/umbrella/commit/61bed88))
-
-<a name="0.1.0"></a>
-# 0.1.0 (2018-08-08)
-
-### Features
-
-* **memoize:** add [@thi](https://github.com/thi).ng/memoize package ([adc4928](https://github.com/thi-ng/umbrella/commit/adc4928))
-* **memoize:** add optional cache arg for memoizeJ() ([2bc092d](https://github.com/thi-ng/umbrella/commit/2bc092d))
+- **memoize:** add [@thi](https://github.com/thi).ng/memoize package ([adc4928](https://github.com/thi-ng/umbrella/commit/adc4928)) 
+- **memoize:** add optional cache arg for memoizeJ() ([2bc092d](https://github.com/thi-ng/umbrella/commit/2bc092d)) 

@@ -1,136 +1,106 @@
-# Change Log
+#  Change Log 
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines. 
 
-## [4.0.13](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@4.0.12...@thi.ng/diff@4.0.13) (2021-09-03)
+#  [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.2.35...@thi.ng/diff@4.0.0) (2020-12-22) 
 
-**Note:** Version bump only for package @thi.ng/diff
+###  Code Refactoring 
 
+- **diff:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace DiffMode enum ([cc77c71](https://github.com/thi-ng/umbrella/commit/cc77c711746eabebb4af58421282c50830613915)) 
 
+###  BREAKING CHANGES 
 
+- **diff:** replace DiffMode enum w/ type alias 
+    - rename DiffMode.ONLY_DISTANCE_LINEAR_ONLY_CHANGES => "minimal" 
+    - update diffObject() mode arg to only allow: "full" or "only-distance" 
 
+##  [3.2.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.2.19...@thi.ng/diff@3.2.20) (2020-05-05) 
 
-# [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.2.35...@thi.ng/diff@4.0.0) (2020-12-22)
+###  Performance Improvements 
 
+- **diff:** diffArray() main loop, add clearCache() ([fa2f692](https://github.com/thi-ng/umbrella/commit/fa2f692ad1c469aa3e5f62857db746341b5fdac7)) 
 
-### Code Refactoring
+#  [3.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.1.3...@thi.ng/diff@3.2.0) (2019-07-07) 
 
-* **diff:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace DiffMode enum ([cc77c71](https://github.com/thi-ng/umbrella/commit/cc77c711746eabebb4af58421282c50830613915))
+###  Features 
 
+- **diff:** enable TS strict compiler flags (refactor) ([5a7d90b](https://github.com/thi-ng/umbrella/commit/5a7d90b)) 
 
-### BREAKING CHANGES
+#  [3.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.0.6...@thi.ng/diff@3.1.0) (2019-04-11) 
 
-* **diff:** replace DiffMode enum w/ type alias
+###  Features 
 
-- rename DiffMode.ONLY_DISTANCE_LINEAR_ONLY_CHANGES => "minimal"
-- update diffObject() mode arg to only allow: "full" or "only-distance"
+- **diff:** add DiffMode.ONLY_DISTANCE_LINEAR_ONLY_CHANGES, add tests ([9a2087d](https://github.com/thi-ng/umbrella/commit/9a2087d)) 
 
+#  [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@2.0.2...@thi.ng/diff@3.0.0) (2019-01-21) 
 
+###  Build System 
 
+- update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703)) 
 
+###  BREAKING CHANGES 
 
-## [3.2.20](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.2.19...@thi.ng/diff@3.2.20) (2020-05-05)
+- enabled multi-outputs (ES6 modules, CJS, UMD) 
+- build scripts now first build ES6 modules in package root, then call   `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib` 
+- all imports MUST be updated to only refer to package level   (not individual files anymore). tree shaking in user land will get rid of   all unused imported symbols. 
 
+##  [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@2.0.0...@thi.ng/diff@2.0.1) (2018-12-09) 
 
-### Performance Improvements
+###  Performance Improvements 
 
-* **diff:** diffArray() main loop, add clearCache() ([fa2f692](https://github.com/thi-ng/umbrella/commit/fa2f692ad1c469aa3e5f62857db746341b5fdac7))
+- **diff:** further array caching/reuse ([19b0a55](https://github.com/thi-ng/umbrella/commit/19b0a55)) 
 
+#  [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@1.1.4...@thi.ng/diff@2.0.0) (2018-12-08) 
 
+###  Code Refactoring 
 
+- **diff:** flatten linear edit logs, update readme & arg order ([64feacf](https://github.com/thi-ng/umbrella/commit/64feacf)) 
 
+###  Features 
 
-# [3.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.1.3...@thi.ng/diff@3.2.0) (2019-07-07)
+- **diff:** add fast paths for simple cases, add tests, refactor as arrow fns ([6c6da82](https://github.com/thi-ng/umbrella/commit/6c6da82)) 
 
-### Features
+###  Performance Improvements 
 
-* **diff:** enable TS strict compiler flags (refactor) ([5a7d90b](https://github.com/thi-ng/umbrella/commit/5a7d90b))
+- **diff:** flatten linear edit logs, rewrite diffObject(), add DiffMode ([e8356cd](https://github.com/thi-ng/umbrella/commit/e8356cd)) 
+- **diff:** reduce amount of temp/internal array allocs (diffArray) ([d1ee6d9](https://github.com/thi-ng/umbrella/commit/d1ee6d9)) 
 
-# [3.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@3.0.6...@thi.ng/diff@3.1.0) (2019-04-11)
+###  BREAKING CHANGES 
 
-### Features
+- **diff:** `ArrayDiff.linear` & `ObjectDiff.edits` now flat arrays 
+    - see commit e8356cd296c12462ad9b126f966b55545b6ef70d 
+    - this change drastically reduces the number of array allocations 
+    - each ArrayDiff.linear entry consists of 3 successive items 
+    - each ObjectDiff.edits entry constist of 2 successive items 
+    - add `DiffMode` enum to control level of detail & internal fast paths 
+    - update `ArrayDiff` & `ObjectDiff` types 
+    - remove obsolete `DiffLogEntry` 
+    - replace `diffObject` with 2.5x faster version 
 
-* **diff:** add DiffMode.ONLY_DISTANCE_LINEAR_ONLY_CHANGES, add tests ([9a2087d](https://github.com/thi-ng/umbrella/commit/9a2087d))
+##  [1.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@1.0.9...@thi.ng/diff@1.0.10) (2018-04-30) 
 
-# [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@2.0.2...@thi.ng/diff@3.0.0) (2019-01-21)
+###  Performance Improvements 
 
-### Build System
+- **diff:** add option to only build linear edit log ([431527a](https://github.com/thi-ng/umbrella/commit/431527a)) 
 
-* update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
+#  [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@0.1.3...@thi.ng/diff@1.0.0) (2018-02-27) 
 
-### BREAKING CHANGES
+###  Features 
 
-* enabled multi-outputs (ES6 modules, CJS, UMD)
+- **diff:** update diffArray, generic types ([6e0dfa1](https://github.com/thi-ng/umbrella/commit/6e0dfa1)) 
 
-- build scripts now first build ES6 modules in package root, then call
-  `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
-- all imports MUST be updated to only refer to package level
-  (not individual files anymore). tree shaking in user land will get rid of
-  all unused imported symbols.
+###  BREAKING CHANGES 
 
-## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@2.0.0...@thi.ng/diff@2.0.1) (2018-12-09)
+- **diff:** update DiffLogEntry structure 
 
-### Performance Improvements
+##  [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@0.1.0...@thi.ng/diff@0.1.1) (2018-02-02) 
 
-* **diff:** further array caching/reuse ([19b0a55](https://github.com/thi-ng/umbrella/commit/19b0a55))
+###  Performance Improvements 
 
-# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@1.1.4...@thi.ng/diff@2.0.0) (2018-12-08)
+- **diff:** add fail fasts ([448e839](https://github.com/thi-ng/umbrella/commit/448e839)) 
 
-### Code Refactoring
+#  0.1.0 (2018-02-01) 
 
-* **diff:** flatten linear edit logs, update readme & arg order ([64feacf](https://github.com/thi-ng/umbrella/commit/64feacf))
+###  Features 
 
-### Features
-
-* **diff:** add fast paths for simple cases, add tests, refactor as arrow fns ([6c6da82](https://github.com/thi-ng/umbrella/commit/6c6da82))
-
-### Performance Improvements
-
-* **diff:** flatten linear edit logs, rewrite diffObject(), add DiffMode ([e8356cd](https://github.com/thi-ng/umbrella/commit/e8356cd))
-* **diff:** reduce amount of temp/internal array allocs (diffArray) ([d1ee6d9](https://github.com/thi-ng/umbrella/commit/d1ee6d9))
-
-### BREAKING CHANGES
-
-* **diff:** `ArrayDiff.linear` & `ObjectDiff.edits` now flat arrays
-
-- see commit e8356cd296c12462ad9b126f966b55545b6ef70d
-- this change drastically reduces the number of array allocations
-- each ArrayDiff.linear entry consists of 3 successive items
-- each ObjectDiff.edits entry constist of 2 successive items
-- add `DiffMode` enum to control level of detail & internal fast paths
-- update `ArrayDiff` & `ObjectDiff` types
-- remove obsolete `DiffLogEntry`
-- replace `diffObject` with 2.5x faster version
-
-<a name="1.0.10"></a>
-## [1.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@1.0.9...@thi.ng/diff@1.0.10) (2018-04-30)
-
-### Performance Improvements
-
-* **diff:** add option to only build linear edit log ([431527a](https://github.com/thi-ng/umbrella/commit/431527a))
-
-<a name="1.0.0"></a>
-# [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@0.1.3...@thi.ng/diff@1.0.0) (2018-02-27)
-
-### Features
-
-* **diff:** update diffArray, generic types ([6e0dfa1](https://github.com/thi-ng/umbrella/commit/6e0dfa1))
-
-### BREAKING CHANGES
-
-* **diff:** update DiffLogEntry structure
-
-<a name="0.1.1"></a>
-## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/diff@0.1.0...@thi.ng/diff@0.1.1) (2018-02-02)
-
-### Performance Improvements
-
-* **diff:** add fail fasts ([448e839](https://github.com/thi-ng/umbrella/commit/448e839))
-
-<a name="0.1.0"></a>
-# 0.1.0 (2018-02-01)
-
-### Features
-
-* **diff:** re-import diff package (MBP2010) ([4d0d437](https://github.com/thi-ng/umbrella/commit/4d0d437))
+- **diff:** re-import diff package (MBP2010) ([4d0d437](https://github.com/thi-ng/umbrella/commit/4d0d437)) 

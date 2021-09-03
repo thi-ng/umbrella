@@ -1,36 +1,31 @@
-# Change Log
+#  Change Log 
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines. 
 
-## [1.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/bencode@1.0.4...@thi.ng/bencode@1.0.5) (2021-09-03)
+##  [1.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/bencode@1.0.4...@thi.ng/bencode@1.0.5) (2021-09-03) 
 
-**Note:** Version bump only for package @thi.ng/bencode
+**Note:** Version bump only for package @thi.ng/bencode 
 
+#  [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/bencode@0.2.17...@thi.ng/bencode@0.3.0) (2019-07-07) 
 
+###  Features 
 
+- **bencode:** enable TS strict compiler flags (refactor) ([1be1a14](https://github.com/thi-ng/umbrella/commit/1be1a14)) 
 
+##  [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/bencode@0.2.0...@thi.ng/bencode@0.2.1) (2019-02-20) 
 
-# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/bencode@0.2.17...@thi.ng/bencode@0.3.0) (2019-07-07)
+###  Bug Fixes 
 
-### Features
+- **bencode:** string list val decoding, add tests, update readme ([9f2b8ae](https://github.com/thi-ng/umbrella/commit/9f2b8ae)) 
 
-* **bencode:** enable TS strict compiler flags (refactor) ([1be1a14](https://github.com/thi-ng/umbrella/commit/1be1a14))
+#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/bencode@0.1.1...@thi.ng/bencode@0.2.0) (2019-02-15) 
 
-## [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/bencode@0.2.0...@thi.ng/bencode@0.2.1) (2019-02-20)
+###  Features 
 
-### Bug Fixes
+- **bencode:** add decode(), fix string length handling ([c1bbc6f](https://github.com/thi-ng/umbrella/commit/c1bbc6f)) 
 
-* **bencode:** string list val decoding, add tests, update readme ([9f2b8ae](https://github.com/thi-ng/umbrella/commit/9f2b8ae))
+#  0.1.0 (2019-02-05) 
 
-# [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/bencode@0.1.1...@thi.ng/bencode@0.2.0) (2019-02-15)
+###  Features 
 
-### Features
-
-* **bencode:** add decode(), fix string length handling ([c1bbc6f](https://github.com/thi-ng/umbrella/commit/c1bbc6f))
-
-# 0.1.0 (2019-02-05)
-
-### Features
-
-* **bencode:** re-import updated bencode pkg ([cf7dc3a](https://github.com/thi-ng/umbrella/commit/cf7dc3a))
+- **bencode:** re-import updated bencode pkg ([cf7dc3a](https://github.com/thi-ng/umbrella/commit/cf7dc3a)) 
