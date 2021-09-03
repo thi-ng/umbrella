@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/mime",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "650+ file extension to MIME type mappings, based on mime-db",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -39,7 +39,7 @@
         "tool:convert": "ts-node -P tools/tsconfig.json tools/convert.ts"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.9"
+        "@thi.ng/api": "^7.2.0"
     },
     "files": [
         "*.js",

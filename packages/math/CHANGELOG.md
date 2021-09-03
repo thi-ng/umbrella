@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@4.0.5...@thi.ng/math@4.0.6) (2021-09-03)
+
+
+### Bug Fixes
+
+* **math:** removing deprecated eqDeltaFixed() ([1de245b](https://github.com/thi-ng/umbrella/commit/1de245bff0d2c1d9436e39240ecd648cef744488))
+
+
+
+
+
 # [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@3.4.0...@thi.ng/math@4.0.0) (2021-04-24)
 
 

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/binary",
-    "version": "2.2.10",
+    "version": "2.2.11",
     "description": "100+ assorted binary / bitwise operations, conversions, utilities, lookup tables",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,7 +38,7 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.9"
+        "@thi.ng/api": "^7.2.0"
     },
     "files": [
         "*.js",

@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@6.1.2...@thi.ng/vectors@6.2.0) (2021-09-03)
+
+
+### Bug Fixes
+
+* **vectors:** add correct type for setNS() ([3817d65](https://github.com/thi-ng/umbrella/commit/3817d6562fc9ab749f1dde25d57e8108c91ebefc))
+
+
+### Features
+
+* **vectors:** add covariance(), correlation() fns ([b8d661d](https://github.com/thi-ng/umbrella/commit/b8d661dadebb725868fe48650e6461567706e47b))
+* **vectors:** add formatter support ([2bbb54e](https://github.com/thi-ng/umbrella/commit/2bbb54ee322bd3b22f73e36d430c4477fd2a25cd))
+* **vectors:** add generic strided dot product ([9c34793](https://github.com/thi-ng/umbrella/commit/9c34793950e9cb831dee46d5dbbc19b0dfb982df))
+* **vectors:** add new distance metrics ([24aa2f4](https://github.com/thi-ng/umbrella/commit/24aa2f43060ad2030797c6de031437a65ab783da))
+* **vectors:** add new module re-exports ([92e7f73](https://github.com/thi-ng/umbrella/commit/92e7f730741b09018dae92e4428fe635b02125ab))
+* **vectors:** add statistics related vector ops ([d6507ad](https://github.com/thi-ng/umbrella/commit/d6507ad8a3821fd2839a6c0d34d7d254d81790de))
+* **vectors:** add strided versions of various ops ([cbd9576](https://github.com/thi-ng/umbrella/commit/cbd95760715d8fbd1d2b974f87c0cf80db08bbb5))
+
+
+### Performance Improvements
+
+* **vectors:** update standardize() ([e87b979](https://github.com/thi-ng/umbrella/commit/e87b979d54026f3a104762fac30105e51f93eef5))
+
+
+
+
+
 # [6.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@6.0.7...@thi.ng/vectors@6.1.0) (2021-08-17)
 
 

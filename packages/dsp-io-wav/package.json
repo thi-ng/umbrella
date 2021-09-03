@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dsp-io-wav",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "description": "WAV file format generation",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,10 +38,10 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.9",
-        "@thi.ng/binary": "^2.2.10",
-        "@thi.ng/transducers": "^7.9.1",
-        "@thi.ng/transducers-binary": "^1.0.4"
+        "@thi.ng/api": "^7.2.0",
+        "@thi.ng/binary": "^2.2.11",
+        "@thi.ng/transducers": "^7.9.2",
+        "@thi.ng/transducers-binary": "^1.0.5"
     },
     "files": [
         "*.js",

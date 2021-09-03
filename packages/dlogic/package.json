@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dlogic",
-    "version": "1.0.48",
+    "version": "1.0.49",
     "description": "Assorted digital logic ops / constructs",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,7 +38,7 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.9"
+        "@thi.ng/api": "^7.2.0"
     },
     "files": [
         "*.js",

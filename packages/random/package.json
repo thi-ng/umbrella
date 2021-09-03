@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/random",
-    "version": "2.4.7",
+    "version": "2.4.8",
     "description": "Pseudo-random number generators w/ unified API, distributions, weighted choices, ID generation",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,8 +38,8 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.1.9",
-        "@thi.ng/checks": "^2.9.10",
+        "@thi.ng/api": "^7.2.0",
+        "@thi.ng/checks": "^2.9.11",
         "@thi.ng/hex": "^1.0.4"
     },
     "files": [

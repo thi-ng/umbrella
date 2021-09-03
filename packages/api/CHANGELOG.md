@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@7.1.9...@thi.ng/api@7.2.0) (2021-09-03)
+
+
+### Features
+
+* **api:** add DeepArrayValue type ([a309fac](https://github.com/thi-ng/umbrella/commit/a309faca831651f611b9b056d9c7587f85b60087))
+
+
+
+
+
 # [7.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@7.0.0...@thi.ng/api@7.1.0) (2021-03-03)
 
 

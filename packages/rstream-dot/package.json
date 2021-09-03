@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rstream-dot",
-    "version": "1.2.28",
+    "version": "1.2.29",
     "description": "Graphviz DOT conversion of @thi.ng/rstream dataflow graph topologies",
     "module": "./index.js",
     "main": "./lib/index.js",
@@ -38,9 +38,9 @@
         "pub": "yarn build:release && yarn publish --access public"
     },
     "dependencies": {
-        "@thi.ng/rstream": "^6.0.20",
-        "@thi.ng/strings": "^2.1.6",
-        "@thi.ng/transducers": "^7.9.1"
+        "@thi.ng/rstream": "^6.0.21",
+        "@thi.ng/strings": "^2.1.7",
+        "@thi.ng/transducers": "^7.9.2"
     },
     "files": [
         "*.js",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.9.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.9.1...@thi.ng/transducers@7.9.2) (2021-09-03)
+
+
+### Bug Fixes
+
+* **transducers:** fix [#310](https://github.com/thi-ng/umbrella/issues/310), update flatten/flattenWith ([bfbd726](https://github.com/thi-ng/umbrella/commit/bfbd7269fe506c0f40c109f1701a1ea50dc944e9))
+
+
+
+
+
 ## [7.9.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.9.0...@thi.ng/transducers@7.9.1) (2021-08-19)
 
 
