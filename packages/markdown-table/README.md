@@ -49,11 +49,12 @@ yarn add @thi.ng/markdown-table
 <script src="https://unpkg.com/@thi.ng/markdown-table/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 536 bytes / CJS: 582 bytes / UMD: 687 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 536 bytes / CJS: 582 bytes / UMD: 688 bytes
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/develop/packages/compose)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 

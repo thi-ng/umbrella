@@ -100,7 +100,6 @@ A selection:
 |:-------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------|:--------------------------------------------------|:-------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/fft-synth.png" width="240"/>   | Interactive inverse FFT toy synth                 | [Demo](https://demo.thi.ng/umbrella/fft-synth/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/fft-synth)   |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-spline.png" width="240"/> | Polygon to cubic curve conversion & visualization | [Demo](https://demo.thi.ng/umbrella/poly-spline/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-spline) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas.png" width="240"/> | 3D wireframe textmode demo                        | [Demo](https://demo.thi.ng/umbrella/text-canvas/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas) |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-ssao.jpg" width="240"/>  | WebGL screenspace ambient occlusion               | [Demo](https://demo.thi.ng/umbrella/webgl-ssao/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-ssao)  |
 
 ## API

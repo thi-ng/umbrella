@@ -168,7 +168,7 @@ yarn add @thi.ng/vectors
 <script src="https://unpkg.com/@thi.ng/vectors/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 11.83 KB / CJS: 14.84 KB / UMD: 13.08 KB
+Package sizes (gzipped, pre-treeshake): ESM: 12.67 KB / CJS: 15.85 KB / UMD: 13.92 KB
 
 ## Dependencies
 
@@ -206,6 +206,7 @@ A selection:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph.png" width="240"/>                    | 2D scenegraph & shape picking                                        | [Demo](https://demo.thi.ng/umbrella/scenegraph/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph)            |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-image.png" width="240"/>              | 2D scenegraph & image map based geometry manipulation                | [Demo](https://demo.thi.ng/umbrella/scenegraph-image/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-image)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/soa-ecs-100k.png" width="240"/>                  | Entity Component System w/ 100k 3D particles                         | [Demo](https://demo.thi.ng/umbrella/soa-ecs/)               | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/soa-ecs)               |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/spline-tangent.png" width="240"/>                | Compute cubic spline position & tangent using Dual Numbers           | [Demo](https://demo.thi.ng/umbrella/spline-tangent/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/spline-tangent)        |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas.png" width="240"/>                   | 3D wireframe textmode demo                                           | [Demo](https://demo.thi.ng/umbrella/text-canvas/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas)           |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-cube.png" width="240"/>                    | WebGL multi-colored cube mesh                                        | [Demo](https://demo.thi.ng/umbrella/webgl-cube/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-cube)            |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-grid.jpg" width="240"/>                    | WebGL instancing, animated grid                                      | [Demo](https://demo.thi.ng/umbrella/webgl-grid/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-grid)            |

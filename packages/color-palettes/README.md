@@ -13,6 +13,7 @@ This project is part of the
   - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [Available palettes](#available-palettes)
   - [Usage](#usage)
   - [Strong](#strong)
@@ -50,6 +51,18 @@ Package sizes (gzipped, pre-treeshake): ESM: 4.11 KB / CJS: 4.18 KB / UMD: 4.34 
 ## Dependencies
 
 None
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+| Screenshot                                                                                                           | Description                                          | Live demo                                           | Source                                                                           |
+|:---------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-indexed.jpg" width="240"/> | Image dithering and remapping using indexed palettes | [Demo](https://demo.thi.ng/umbrella/pixel-indexed/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-indexed) |
 
 ## Available palettes
 

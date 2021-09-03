@@ -62,7 +62,7 @@ yarn add @thi.ng/math
 <script src="https://unpkg.com/@thi.ng/math/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.94 KB / CJS: 4.55 KB / UMD: 3.75 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.93 KB / CJS: 4.54 KB / UMD: 3.73 KB
 
 ## Dependencies
 

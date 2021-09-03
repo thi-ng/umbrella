@@ -14,6 +14,7 @@ This project is part of the
   - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -130,11 +131,23 @@ yarn add @thi.ng/dual-algebra
 <script src="https://unpkg.com/@thi.ng/dual-algebra/lib/index.umd.js" crossorigin></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 916 bytes / CJS: 1.03 KB / UMD: 1.08 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.00 KB / CJS: 1.15 KB / UMD: 1.17 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+| Screenshot                                                                                                            | Description                                                | Live demo                                            | Source                                                                            |
+|:----------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------|:-----------------------------------------------------|:----------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/spline-tangent.png" width="240"/> | Compute cubic spline position & tangent using Dual Numbers | [Demo](https://demo.thi.ng/umbrella/spline-tangent/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/spline-tangent) |
 
 ## API
 
