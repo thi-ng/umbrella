@@ -1,4 +1,5 @@
-import { $, dot, mul, sub } from "@thi.ng/dual-algebra";
+import type { FnU5 } from "@thi.ng/api";
+import { $, dot, Dual, mul, sub } from "@thi.ng/dual-algebra";
 import { asSvg, circle, cubic, line, svgDoc, text } from "@thi.ng/geom";
 import { fract } from "@thi.ng/math";
 import { vector } from "@thi.ng/strings";
@@ -6,7 +7,7 @@ import { add2, normalize, sub2 } from "@thi.ng/vectors";
 
 /**
  * Computes point at `t` (in [0..1] range) on given cubic curve using dual
- * numbers, i.e. it computes (jointly) both the position *AND* the first
+ * numbers, i.e. it computes (jointly) both the position **AND** the first
  * derivative (aka tangent) at this point.
  *
  * @param a
@@ -15,22 +16,19 @@ import { add2, normalize, sub2 } from "@thi.ng/vectors";
  * @param d
  * @param t
  */
-const splinePosAndTangent = (
-    a: number,
-    b: number,
-    c: number,
-    d: number,
-    _t: number
-) => {
+const splinePosAndTangent: FnU5<number, Dual> = (a, b, c, d, _t) => {
     const t = $(_t, 1); // dual variable
     const s = sub($(1), t); // dual variable (1 - t)
     const s2 = mul(s, s); // squared
     const t2 = mul(t, t); // ...
-    // dot product of...
+    // dot product of 2 dual number vectors...
+    // the real part of the result contains the position
+    // the dual part the tangent
     return dot(
         // vector of coordinates (as dual numbers)
         [$(a), $(b), $(c), $(d)],
-        // Bernstein coefficients (also dual numbers)
+        // Bernstein spline coefficients (also dual numbers)
+        // see: https://en.wikipedia.org/wiki/Bernstein_polynomial
         [mul(s, s2), mul(mul(s2, t), $(3)), mul(mul(t2, s), $(3)), mul(t, t2)]
     );
 };
