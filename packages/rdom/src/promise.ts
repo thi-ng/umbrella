@@ -38,7 +38,7 @@ export class $Promise extends Component {
         try {
             this.inner = this.$compile(await this.promise);
         } catch (e) {
-            this.inner = this.$compile(this.error(e));
+            this.inner = this.$compile(this.error(<Error>e));
         }
         return (this.el = await this.inner.mount(parent, index));
     }

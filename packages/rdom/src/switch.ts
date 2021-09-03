@@ -146,7 +146,7 @@ export class Switch<T> extends Component implements IMountWithState<T> {
                 loader && (await loader.unmount());
             } catch (e) {
                 if (this.error) {
-                    this.inner = $compile(await this.error(e));
+                    this.inner = $compile(await this.error(<Error>e));
                     loader && (await loader.unmount());
                 }
             }
