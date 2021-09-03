@@ -8,7 +8,7 @@ import { BasicRouter } from "./basic";
 export class HTMLRouter extends BasicRouter {
     protected currentPath!: string;
     protected popHandler!: Fn<PopStateEvent, void>;
-    protected hashHandler!: Fn<HashChangeEvent, void>;
+    protected hashHandler!: EventListener;
     protected useFragment: boolean;
     protected ignoreHashChange: boolean;
 
