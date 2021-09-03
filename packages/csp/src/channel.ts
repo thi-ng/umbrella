@@ -379,7 +379,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
                                       this.state = State.CLOSED;
                                   }
                               } catch (e) {
-                                  this.onerror(e, this, value);
+                                  this.onerror(<Error>e, this, value);
                               }
                           }
                         : () => value,
@@ -593,7 +593,7 @@ export class Channel<T> implements IReadWriteableChannel<T> {
                             // finalize/complete transducer
                             this.tx[1](this.txbuf);
                         } catch (e) {
-                            this.onerror(e, this);
+                            this.onerror(<Error>e, this);
                         }
                     }
                     if (!this.isReadable()) {
