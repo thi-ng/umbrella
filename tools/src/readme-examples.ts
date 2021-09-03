@@ -70,6 +70,6 @@ ${tableKeys(
 `;
     writeFileSync("examples/README.md", BODY);
 } catch (e) {
-    console.log(e.message);
+    console.log((<Error>e).message);
     process.exit(1);
 }

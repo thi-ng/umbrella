@@ -59,6 +59,6 @@ try {
 
     writeFileSync("./README.md", readme);
 } catch (e) {
-    console.log(e.message);
+    console.log((<Error>e).message);
     process.exit(1);
 }
