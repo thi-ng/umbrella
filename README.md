@@ -16,7 +16,7 @@
 **Please visit [thi.ng](https://thi.ng) for additional information & topic based
 search of packages relevant to your use cases...**
 
-Mono-repository for 152+ thi.ng TypeScript/ES6 projects, a wide collection of
+Mono-repository for 153+ thi.ng TypeScript/ES6 projects, a wide collection of
 largely data transformation oriented packages and building blocks for
 (non-exhaustive list of topics):
 
@@ -140,6 +140,7 @@ feature or `develop` branches)
 | [`@thi.ng/atom`](./packages/atom)                           | [![version](https://img.shields.io/npm/v/@thi.ng/atom.svg)](https://www.npmjs.com/package/@thi.ng/atom)                           | [changelog](./packages/atom/CHANGELOG.md)              | Immutable value wrappers, views, history               |
 | [`@thi.ng/color-palettes`](./packages/color-palettes)       | [![version](https://img.shields.io/npm/v/@thi.ng/color-palettes.svg)](https://www.npmjs.com/package/@thi.ng/color-palettes)       | [changelog](./packages/color-palettes/CHANGELOG.md)    | Collection of color palettes                           |
 | [`@thi.ng/date`](./packages/date)                           | [![version](https://img.shields.io/npm/v/@thi.ng/date.svg)](https://www.npmjs.com/package/@thi.ng/date)                           | [changelog](./packages/date/CHANGELOG.md)              | Date/time iterators, formatters, rounding              |
+| [`@thi.ng/dual-algebra`](./packages/dual-algebra)           | [![version](https://img.shields.io/npm/v/@thi.ng/dual-algebra.svg)](https://www.npmjs.com/package/@thi.ng/dual-algebra)           | [changelog](./packages/dual-algebra/CHANGELOG.md)      | Dual number algebra / automatic differentiation        |
 | [`@thi.ng/heaps`](./packages/heaps)                         | [![version](https://img.shields.io/npm/v/@thi.ng/heaps.svg)](https://www.npmjs.com/package/@thi.ng/heaps)                         | [changelog](./packages/heaps/CHANGELOG.md)             | Binary & d-ary heap impls                              |
 | [`@thi.ng/geom-isoline`](./packages/geom-isoline)           | [![version](https://img.shields.io/npm/v/@thi.ng/geom-isoline.svg)](https://www.npmjs.com/package/@thi.ng/geom-isoline)           | [changelog](./packages/geom-isoline/CHANGELOG.md)      | 2D contour line extraction                             |
 | [`@thi.ng/k-means`](./packages/k-means)                     | [![version](https://img.shields.io/npm/v/@thi.ng/k-means.svg)](https://www.npmjs.com/package/@thi.ng/k-means)                     | [changelog](./packages/k-means/CHANGELOG.md)           | K-means clustering of n-D data                         |
@@ -151,6 +152,7 @@ feature or `develop` branches)
 | [`@thi.ng/shader-ast`](./packages/shader-ast)               | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast)               | [changelog](./packages/shader-ast/CHANGELOG.md)        | AST DSL for x-platform shader code                     |
 | [`@thi.ng/shader-ast-stdlib`](./packages/shader-ast-stdlib) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-stdlib.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-stdlib) | [changelog](./packages/shader-ast-stdlib/CHANGELOG.md) | 100+ useful AST shader functions                       |
 | [`@thi.ng/transducers`](./packages/transducers)             | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)             | [changelog](./packages/transducers/CHANGELOG.md)       | Composable data transformations                        |
+| [`@thi.ng/vectors`](./packages/vectors)                     | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)                     | [changelog](./packages/vectors/CHANGELOG.md)           | Fixed & arbitrary-length vector ops                    |
 
 ### Fundamentals
 
