@@ -92,7 +92,7 @@ export const updateCell = (id: string, val: string) => {
             $eval(val, id);
             DB.resetIn(<const>[id, "error"], null);
         } catch (e) {
-            DB.resetIn(<const>[id, "error"], e.message);
+            DB.resetIn(<const>[id, "error"], (<Error>e).message);
         }
     } else {
         removeCell(id);

@@ -3,7 +3,7 @@ import { timedResult } from "@thi.ng/bench";
 import { downloadWithMime } from "@thi.ng/dl-asset";
 import { DOWNLOAD, withSize } from "@thi.ng/hiccup-carbon-icons";
 import { anchor, div, h1, main, textArea } from "@thi.ng/hiccup-html";
-import { defContext, defGrammar, print } from "@thi.ng/parse";
+import { defContext, defGrammar, Language, print } from "@thi.ng/parse";
 import { $compile } from "@thi.ng/rdom";
 import {
     dynamicDropdown,
@@ -39,7 +39,9 @@ import {
 // this uses a base64 & msgpack encoded version of the two editors
 const parseState = ((): Nullable<string[]> => {
     try {
-        return deserialize([...base64Decode(location.hash.substr(1))]);
+        return deserialize(
+            new Uint8Array(base64Decode(location.hash.substr(1)))
+        );
     } catch (e) {}
 })() || [DEFAULT_GRAMMAR, DEFAULT_RULE, ...DEFAULT_INPUTS];
 
@@ -63,13 +65,15 @@ const inputID = reactive(0);
 const activeInput = inputID.subscribe(metaStream((id) => srcInputs[id]));
 
 // stream transform attempting to compile grammar
-const lang = srcGrammar.map((src) => {
-    try {
-        return { lang: defGrammar(src) };
-    } catch (e) {
-        return { error: e };
+const lang = srcGrammar.map(
+    (src): Partial<{ lang: Language; error: Error }> => {
+        try {
+            return { lang: defGrammar(src) };
+        } catch (e) {
+            return { error: <Error>e };
+        }
     }
-});
+);
 
 // stream transform to extract parser rule IDs
 const ruleIDs = lang.transform(
@@ -94,39 +98,36 @@ const result = sync({
         src: activeInput,
         rule: activeRule,
     },
-}).map(
-    ({ lang, src, rule }): ParseResult => {
-        // error if no valid grammar
-        if (!lang.lang) return $result("err", lang.error);
-        const parser = lang.lang.rules[rule];
-        if (!parser)
-            return $result("err", `invalid or missing parser: ${rule}`);
-        try {
-            const ast: string[] = [];
-            const ctx = defContext(src, { retain: true });
-            // measure execution time of the parsing process
-            const [res, time] = timedResult(() =>
-                print(parser, (x) => ast.push(x))(ctx)
-            );
-            const body = ast.join("\n");
-            return res
-                ? ctx.done
-                    ? $result("ok", body, time)
-                    : $result(
-                          "partial",
-                          `partial match only (stopped @ ${ctx.state.l}:${ctx.state.c})...\n\n${body}`,
-                          time
-                      )
+}).map(({ lang, src, rule }): ParseResult => {
+    // error if no valid grammar
+    if (!lang.lang) return $result("err", lang.error!.message);
+    const parser = lang.lang.rules[rule];
+    if (!parser) return $result("err", `invalid or missing parser: ${rule}`);
+    try {
+        const ast: string[] = [];
+        const ctx = defContext(src, { retain: true });
+        // measure execution time of the parsing process
+        const [res, time] = timedResult(() =>
+            print(parser, (x) => ast.push(x))(ctx)
+        );
+        const body = ast.join("\n");
+        return res
+            ? ctx.done
+                ? $result("ok", body, time)
                 : $result(
-                      "fail",
-                      `input parse failure (no match)...\n\n${body}`,
+                      "partial",
+                      `partial match only (stopped @ ${ctx.state.l}:${ctx.state.c})...\n\n${body}`,
                       time
-                  );
-        } catch (e) {
-            return $result("err", `Parse error: ${e}`);
-        }
+                  )
+            : $result(
+                  "fail",
+                  `input parse failure (no match)...\n\n${body}`,
+                  time
+              );
+    } catch (e) {
+        return $result("err", `Parse error: ${e}`);
     }
-);
+});
 
 // update URL hash fragment with the msgpack & base64 encoded version of
 // the selected parser rule and contents of all editors

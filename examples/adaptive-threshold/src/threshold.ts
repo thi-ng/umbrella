@@ -15,7 +15,6 @@ export const adaptiveThreshold = (
     offset = 0
 ) =>
     convolveChannel(src, {
-        pad: false,
         kernel: {
             // pool kernel template for code generator:
             // take a `body` array of pixel lookups (W x H items)
