@@ -79,7 +79,7 @@ export const pathFromSvg = (svg: string) => {
     } catch (e) {
         throw e instanceof Error
             ? e
-            : new Error(`illegal char '${svg.charAt(e)}' @ ${e}`);
+            : new Error(`illegal char '${svg.charAt(<number>e)}' @ ${e}`);
     }
 };
 
