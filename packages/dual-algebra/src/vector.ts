@@ -1,5 +1,11 @@
-import type { Dual } from "./api";
+import type { FnU2 } from "@thi.ng/api";
+import type { Dual, Op2, OpV2 } from "./api";
 import { add, div, dual, mul, sub } from "./ops";
+
+const defVecOp2 =
+    (op: Op2): OpV2 =>
+    (a, b) =>
+        a.map((a, i) => op(a, b[i]));
 
 /**
  * Dual vector addition. Applies {@link add} in a component-wise manner. Returns
@@ -8,8 +14,7 @@ import { add, div, dual, mul, sub } from "./ops";
  * @param a
  * @param b
  */
-export const vadd = (a: Dual[], b: Dual[]): Dual[] =>
-    a.map((a, i) => add(a, b[i]));
+export const vadd = defVecOp2(add);
 
 /**
  * Dual vector subtraction. Applies {@link sub} in a component-wise manner.
@@ -18,8 +23,7 @@ export const vadd = (a: Dual[], b: Dual[]): Dual[] =>
  * @param a
  * @param b
  */
-export const vsub = (a: Dual[], b: Dual[]): Dual[] =>
-    a.map((a, i) => sub(a, b[i]));
+export const vsub = defVecOp2(sub);
 
 /**
  * Dual vector multiplication. Applies {@link mul} in a component-wise manner.
@@ -28,8 +32,7 @@ export const vsub = (a: Dual[], b: Dual[]): Dual[] =>
  * @param a
  * @param b
  */
-export const vmul = (a: Dual[], b: Dual[]): Dual[] =>
-    a.map((a, i) => mul(a, b[i]));
+export const vmul = defVecOp2(mul);
 
 /**
  * Dual vector division. Applies {@link div} in a component-wise manner.
@@ -38,8 +41,7 @@ export const vmul = (a: Dual[], b: Dual[]): Dual[] =>
  * @param a
  * @param b
  */
-export const vdiv = (a: Dual[], b: Dual[]): Dual[] =>
-    a.map((a, i) => div(a, b[i]));
+export const vdiv = defVecOp2(div);
 
 /**
  * Computes dot product of 2 dual vectors.
@@ -47,5 +49,5 @@ export const vdiv = (a: Dual[], b: Dual[]): Dual[] =>
  * @param a
  * @param b
  */
-export const dot = (a: Dual[], b: Dual[]): Dual =>
+export const dot: FnU2<Dual[], Dual> = (a, b) =>
     a.reduce((acc, a, i) => add(acc, mul(a, b[i])), dual(0, a[0].length));

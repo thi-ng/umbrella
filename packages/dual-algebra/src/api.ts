@@ -24,3 +24,5 @@ export type Op4 = FnU4<Dual>;
 export type Op5 = FnU5<Dual>;
 
 export type Op6 = FnU6<Dual>;
+
+export type OpV2 = FnU2<Dual[]>;
