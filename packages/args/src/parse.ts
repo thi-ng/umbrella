@@ -15,7 +15,9 @@ export const parse = <T extends IObjectOf<any>>(
         return parseOpts(specs, argv, opts);
     } catch (e) {
         if (opts.showUsage) {
-            console.log(e.message + "\n\n" + usage(specs, opts.usageOpts));
+            console.log(
+                (<Error>e).message + "\n\n" + usage(specs, opts.usageOpts)
+            );
         }
         throw e;
     }
@@ -137,6 +139,6 @@ const coerceValue = (spec: ArgSpecExt, acc: any, id: string) => {
         }
         acc[id] = spec.coerce!(acc[id]);
     } catch (e) {
-        throw new Error(`arg --${id}: ${e.message}`);
+        throw new Error(`arg --${id}: ${(<Error>e).message}`);
     }
 };
