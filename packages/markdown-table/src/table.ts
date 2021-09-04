@@ -1,4 +1,5 @@
 import { assert, Fn, Keys } from "@thi.ng/api";
+import { isString } from "@thi.ng/checks";
 import { juxt } from "@thi.ng/compose";
 import {
     center,
@@ -20,7 +21,8 @@ import {
     transduce,
     Transducer,
 } from "@thi.ng/transducers";
-import type { Align, Column, Row, TableOpts } from "./api";
+import type { Column } from ".";
+import type { Align, Row, TableOpts } from "./api";
 
 const PADS: Record<Align, Fn<number, Stringer<string>>> = {
     c: center,
@@ -116,7 +118,7 @@ export const table = (
  * ```ts
  * tableKeys(
  *   ["ID", "Actor", "Comment"],
- *   ["id", "name", "hint"],
+ *   ["id", "name", (x) => x.hint],
  *   [
  *       { id: 1, name: "Alice" },
  *       { id: 201, name: "Bob", hint: "(foe)" },
@@ -141,7 +143,7 @@ export const table = (
  */
 export const tableKeys = <T>(
     headers: string[],
-    keys: Keys<T>[],
+    keys: (Keys<T> | Fn<T, Column>)[],
     items: Iterable<T>,
     opts?: Partial<TableOpts>
 ) =>
@@ -150,11 +152,12 @@ export const tableKeys = <T>(
         map<T, Row>(
             juxt(
                 // @ts-ignore
-                ...keys.map((k) => (x) => str(x[k]))
+                ...keys.map((k) => (isString(k) ? (x) => str(x[k]) : k))
             ),
             items
         ),
         opts
     );
 
-const str = (x: Column) => (x != null ? String(x) : "");
+/** @internal */
+const str = (x: any) => (x != null ? String(x) : "");

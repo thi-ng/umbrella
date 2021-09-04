@@ -29,7 +29,7 @@ describe("markdown-table", () => {
         assert.strictEqual(
             tableKeys(
                 ["ID", "Actor", "Comment"],
-                ["id", "name", "hint"],
+                ["id", "name", (x) => x.hint],
                 [
                     { id: 1, name: "Alice" },
                     { id: 201, name: "Bob", hint: "(foe)" },
