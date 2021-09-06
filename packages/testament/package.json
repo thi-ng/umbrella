@@ -1,0 +1,83 @@
+{
+    "name": "@thi.ng/testament",
+    "version": "0.0.1",
+    "description": "Minimal, rational & TypeScript-friendly test runner",
+    "type": "module",
+    "module": "./index.js",
+    "typings": "./index.d.ts",
+    "bin": {
+        "testament": "bin/testament"
+    },
+    "sideEffects": false,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thi-ng/umbrella.git"
+    },
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/testament#readme",
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
+        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
+        "build:es6": "tsc --declaration",
+        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "build:check": "tsc --isolatedModules --noEmit",
+        "test": "testament test",
+        "cover": "nyc mocha test && nyc report --reporter=lcov",
+        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
+        "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
+        "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
+        "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
+        "pub": "yarn build:release && yarn publish --access public"
+    },
+    "dependencies": {
+        "@thi.ng/api": "^7.2.0",
+        "@thi.ng/args": "^1.1.1",
+        "@thi.ng/bench": "^2.1.6",
+        "@thi.ng/checks": "^2.9.11"
+    },
+    "devDependencies": {
+        "@thi.ng/testament": "^0.0.1"
+    },
+    "keywords": [
+        "typescript"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "files": [
+        "*.js",
+        "*.d.ts"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js"
+        },
+        "./api": {
+            "import": "./api.js"
+        },
+        "./cli": {
+            "import": "./cli.js"
+        },
+        "./group": {
+            "import": "./group.js"
+        },
+        "./test": {
+            "import": "./test.js"
+        }
+    },
+    "thi.ng": {
+        "status": "alpha",
+        "year": 2021
+    }
+}
