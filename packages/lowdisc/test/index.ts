@@ -1,6 +1,5 @@
+import { group } from "@thi.ng/testament";
 // import * as assert from "assert";
 // import { } from "../src";
 
-// group("lowdisc", () => {
-//     it("tests pending");
-// });
+group("lowdisc", {});

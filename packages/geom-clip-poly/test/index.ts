@@ -1,6 +1,5 @@
+import { group } from "@thi.ng/testament";
 // import * as assert from "assert";
 // import * as gc from "../src";
 
-// group("geom-clip-poly", () => {
-//     it("tests pending");
-// });
+group("geom-clip-poly", {});

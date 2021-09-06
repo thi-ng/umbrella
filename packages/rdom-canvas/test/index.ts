@@ -1,6 +1,5 @@
+import { group } from "@thi.ng/testament";
 // import * as assert from "assert";
 // import { } from "../src";
 
-// group("rdom-canvas", () => {
-//     it("tests pending");
-// });
+group("rdom-canvas", {});
