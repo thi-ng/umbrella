@@ -1,33 +1,17 @@
-import { flag, parse } from "@thi.ng/args";
-import { isString } from "@thi.ng/checks";
 import { readdirSync, statSync } from "fs";
 import { resolve } from "path";
+import { isString } from "./utils";
 
-interface TestamentArgs {
-    csv: boolean;
-}
+// interface TestamentArgs {
+//     csv: boolean;
+// }
 
 (async () => {
-    const res = parse<TestamentArgs>(
-        { csv: flag({ desc: "Output CSV" }) },
-        process.argv,
-        {
-            start: 2,
-            usageOpts: {
-                prefix: `
-@thi.ng/testament test runner
-Usage: testament [opts] DIR1 DIR2...
-
-Options:`,
-            },
-        }
-    );
-
-    if (!res) return;
+    const dirs = process.argv.slice(2);
 
     // const cwd = process.argv[1];
 
-    for (let dir of res.rest) {
+    for (let dir of dirs) {
         for (let src of files(resolve(dir), ".ts")) {
             try {
                 await import(src);

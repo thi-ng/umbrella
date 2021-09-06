@@ -1,6 +1,6 @@
-import type { Fn } from "@thi.ng/api";
-import { now, timeDiff, Timestamp } from "@thi.ng/bench";
-import { LOGGER, TestCtx, TestOpts, TestResult, TIMEOUT } from "./api";
+import { Fn, TestCtx, TestOpts, TestResult, TIMEOUT, Timestamp } from "./api";
+import { LOGGER } from "./logger";
+import { now, timeDiff } from "./utils";
 
 export const test = async (
     title: string,

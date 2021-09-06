@@ -36,15 +36,6 @@
         "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
         "pub": "yarn build:release && yarn publish --access public"
     },
-    "dependencies": {
-        "@thi.ng/api": "^7.2.0",
-        "@thi.ng/args": "^1.1.1",
-        "@thi.ng/bench": "^2.1.6",
-        "@thi.ng/checks": "^2.9.11"
-    },
-    "devDependencies": {
-        "@thi.ng/testament": "^0.0.1"
-    },
     "keywords": [
         "typescript"
     ],

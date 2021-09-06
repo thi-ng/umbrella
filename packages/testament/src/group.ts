@@ -1,5 +1,5 @@
-import type { Fn } from "@thi.ng/api";
-import { GroupOpts, LOGGER, TestCtx, TestResult } from "./api";
+import type { Fn, GroupOpts, TestCtx, TestResult } from "./api";
+import { LOGGER } from "./logger";
 import { test } from "./test";
 
 export const group = async (
@@ -14,7 +14,9 @@ export const group = async (
     };
     let results: TestResult[] = [];
     try {
+        logger.info("----------");
         logger.info(title);
+        logger.info("----------");
         for (let k in tests) {
             beforeEach && beforeEach();
             const res = await test(k, tests[k], opts);

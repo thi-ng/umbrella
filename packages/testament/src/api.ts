@@ -1,4 +1,10 @@
-import { ConsoleLogger, Fn0, Fn2, ILogger } from "@thi.ng/api";
+export type Fn0<A> = () => A;
+export type Fn<A, B> = (a: A) => B;
+export type Fn2<A, B, C> = (a: A, b: B) => C;
+
+export type VoidFn = Fn0<void>;
+
+export type Timestamp = number | bigint;
 
 export interface TestOpts {
     logger: ILogger;
@@ -7,15 +13,15 @@ export interface TestOpts {
 }
 
 export interface GroupOpts extends TestOpts {
-    beforeEach: Fn0<void>;
-    afterEach: Fn0<void>;
+    beforeEach: VoidFn;
+    afterEach: VoidFn;
     stop: boolean;
     exit: boolean;
 }
 
 export interface TestCtx {
-    done: Fn0<void>;
-    setTimeout: Fn2<Fn0<void>, number, any>;
+    done: VoidFn;
+    setTimeout: Fn2<VoidFn, number, any>;
 }
 
 export interface TestResult {
@@ -24,6 +30,14 @@ export interface TestResult {
     error?: Error;
 }
 
-export let LOGGER = new ConsoleLogger("testament");
+export interface ILogger {
+    level: number;
 
-export let TIMEOUT = 5000;
+    fine(...args: any[]): void;
+    debug(...args: any[]): void;
+    info(...args: any[]): void;
+    warn(...args: any[]): void;
+    severe(...args: any[]): void;
+}
+
+export let TIMEOUT = 1000;
